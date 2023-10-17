@@ -1,0 +1,1225 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="uiDataSet" targetNamespace="http://tempuri.org/uiDataSet.xsd" xmlns:mstns="http://tempuri.org/uiDataSet.xsd" xmlns="http://tempuri.org/uiDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="1" FunctionsComponentName="cmb数量単位TableAdapter" GeneratorFunctionsComponentClassName="cmb数量単位TableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" UserFunctionsComponentName="cmb数量単位TableAdapter" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="uidbConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="uidbConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.u_net.Properties.Settings.GlobalReference.Default.uidbConnectionString" Provider="System.Data.SqlClient" />
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="uidbConnectionString1" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="uidbConnectionString1 (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.u_net.Properties.Settings.GlobalReference.Default.uidbConnectionString1" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="M商品TableAdapter" GeneratorDataComponentClassName="M商品TableAdapter" Name="M商品" UserDataComponentName="M商品TableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="uidbConnectionString (Settings)" DbObjectName="uidb.dbo.M商品" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>DELETE FROM [dbo].[M商品] WHERE (([商品コード] = @Original_商品コード) AND ([Revision] = @Original_Revision) AND ((@IsNull_ActiveDate = 1 AND [ActiveDate] IS NULL) OR ([ActiveDate] = @Original_ActiveDate)) AND ((@IsNull_商品名 = 1 AND [商品名] IS NULL) OR ([商品名] = @Original_商品名)) AND ((@IsNull_シリーズコード = 1 AND [シリーズコード] IS NULL) OR ([シリーズコード] = @Original_シリーズコード)) AND ((@IsNull_シリーズ名 = 1 AND [シリーズ名] IS NULL) OR ([シリーズ名] = @Original_シリーズ名)) AND ((@IsNull_品名 = 1 AND [品名] IS NULL) OR ([品名] = @Original_品名)) AND ((@IsNull_掛率有効 = 1 AND [掛率有効] IS NULL) OR ([掛率有効] = @Original_掛率有効)) AND ((@IsNull_商品分類コード = 1 AND [商品分類コード] IS NULL) OR ([商品分類コード] = @Original_商品分類コード)) AND ((@IsNull_ItemCategoryName = 1 AND [ItemCategoryName] IS NULL) OR ([ItemCategoryName] = @Original_ItemCategoryName)) AND ((@IsNull_売上区分コード = 1 AND [売上区分コード] IS NULL) OR ([売上区分コード] = @Original_売上区分コード)) AND ((@IsNull_SalesCategoryName = 1 AND [SalesCategoryName] IS NULL) OR ([SalesCategoryName] = @Original_SalesCategoryName)) AND ((@IsNull_PurchaseCategoryCode = 1 AND [PurchaseCategoryCode] IS NULL) OR ([PurchaseCategoryCode] = @Original_PurchaseCategoryCode)) AND ((@IsNull_PurchaseCategoryName = 1 AND [PurchaseCategoryName] IS NULL) OR ([PurchaseCategoryName] = @Original_PurchaseCategoryName)) AND ((@IsNull_FlowCategoryCode = 1 AND [FlowCategoryCode] IS NULL) OR ([FlowCategoryCode] = @Original_FlowCategoryCode)) AND ((@IsNull_FlowCategoryName = 1 AND [FlowCategoryName] IS NULL) OR ([FlowCategoryName] = @Original_FlowCategoryName)) AND ((@IsNull_ClientName = 1 AND [ClientName] IS NULL) OR ([ClientName] = @Original_ClientName)) AND ((@IsNull_IsUnit = 1 AND [IsUnit] IS NULL) OR ([IsUnit] = @Original_IsUnit)) AND ((@IsNull_在庫管理 = 1 AND [在庫管理] IS NULL) OR ([在庫管理] = @Original_在庫管理)) AND ((@IsNull_在庫下限数量 = 1 AND [在庫下限数量] IS NULL) OR ([在庫下限数量] = @Original_在庫下限数量)) AND ((@IsNull_ラインコード = 1 AND [ラインコード] IS NULL) OR ([ラインコード] = @Original_ラインコード)) AND ((@IsNull_数量単位コード = 1 AND [数量単位コード] IS NULL) OR ([数量単位コード] = @Original_数量単位コード)) AND ((@IsNull_CustomerSerialNumberRequired = 1 AND [CustomerSerialNumberRequired] IS NULL) OR ([CustomerSerialNumberRequired] = @Original_CustomerSerialNumberRequired)) AND ((@IsNull_InstructionUsageGroupCode = 1 AND [InstructionUsageGroupCode] IS NULL) OR ([InstructionUsageGroupCode] = @Original_InstructionUsageGroupCode)) AND ((@IsNull_在庫数量 = 1 AND [在庫数量] IS NULL) OR ([在庫数量] = @Original_在庫数量)) AND ((@IsNull_Discontinued = 1 AND [Discontinued] IS NULL) OR ([Discontinued] = @Original_Discontinued)) AND ((@IsNull_備考 = 1 AND [備考] IS NULL) OR ([備考] = @Original_備考)) AND ((@IsNull_作成日時 = 1 AND [作成日時] IS NULL) OR ([作成日時] = @Original_作成日時)) AND ((@IsNull_作成者コード = 1 AND [作成者コード] IS NULL) OR ([作成者コード] = @Original_作成者コード)) AND ((@IsNull_CreateUserFullName = 1 AND [CreateUserFullName] IS NULL) OR ([CreateUserFullName] = @Original_CreateUserFullName)) AND ((@IsNull_更新日時 = 1 AND [更新日時] IS NULL) OR ([更新日時] = @Original_更新日時)) AND ((@IsNull_更新者コード = 1 AND [更新者コード] IS NULL) OR ([更新者コード] = @Original_更新者コード)) AND ((@IsNull_UpdateUserFullName = 1 AND [UpdateUserFullName] IS NULL) OR ([UpdateUserFullName] = @Original_UpdateUserFullName)) AND ((@IsNull_無効日時 = 1 AND [無効日時] IS NULL) OR ([無効日時] = @Original_無効日時)) AND ((@IsNull_無効者コード = 1 AND [無効者コード] IS NULL) OR ([無効者コード] = @Original_無効者コード)) AND ((@IsNull_DeleteUserFullName = 1 AND [DeleteUserFullName] IS NULL) OR ([DeleteUserFullName] = @Original_DeleteUserFullName)))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="StringFixedLength" Direction="Input" ParameterName="@Original_商品コード" Precision="0" ProviderType="NChar" Scale="0" Size="0" SourceColumn="商品コード" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_Revision" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="Revision" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_ActiveDate" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="ActiveDate" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@Original_ActiveDate" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="ActiveDate" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_商品名" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="商品名" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_商品名" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="商品名" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_シリーズコード" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="シリーズコード" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="StringFixedLength" Direction="Input" ParameterName="@Original_シリーズコード" Precision="0" ProviderType="NChar" Scale="0" Size="0" SourceColumn="シリーズコード" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_シリーズ名" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="シリーズ名" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_シリーズ名" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="シリーズ名" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_品名" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="品名" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_品名" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="品名" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_掛率有効" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="掛率有効" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int16" Direction="Input" ParameterName="@Original_掛率有効" Precision="0" ProviderType="SmallInt" Scale="0" Size="0" SourceColumn="掛率有効" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_商品分類コード" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="商品分類コード" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="StringFixedLength" Direction="Input" ParameterName="@Original_商品分類コード" Precision="0" ProviderType="NChar" Scale="0" Size="0" SourceColumn="商品分類コード" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_ItemCategoryName" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="ItemCategoryName" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_ItemCategoryName" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="ItemCategoryName" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_売上区分コード" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="売上区分コード" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Byte" Direction="Input" ParameterName="@Original_売上区分コード" Precision="0" ProviderType="TinyInt" Scale="0" Size="0" SourceColumn="売上区分コード" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_SalesCategoryName" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="SalesCategoryName" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_SalesCategoryName" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="SalesCategoryName" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_PurchaseCategoryCode" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PurchaseCategoryCode" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@Original_PurchaseCategoryCode" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="PurchaseCategoryCode" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_PurchaseCategoryName" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PurchaseCategoryName" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_PurchaseCategoryName" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="PurchaseCategoryName" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_FlowCategoryCode" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="FlowCategoryCode" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@Original_FlowCategoryCode" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="FlowCategoryCode" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_FlowCategoryName" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="FlowCategoryName" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_FlowCategoryName" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="FlowCategoryName" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_ClientName" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="ClientName" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_ClientName" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="ClientName" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_IsUnit" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="IsUnit" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_IsUnit" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="IsUnit" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_在庫管理" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="在庫管理" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int16" Direction="Input" ParameterName="@Original_在庫管理" Precision="0" ProviderType="SmallInt" Scale="0" Size="0" SourceColumn="在庫管理" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_在庫下限数量" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="在庫下限数量" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_在庫下限数量" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="在庫下限数量" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_ラインコード" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="ラインコード" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Byte" Direction="Input" ParameterName="@Original_ラインコード" Precision="0" ProviderType="TinyInt" Scale="0" Size="0" SourceColumn="ラインコード" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_数量単位コード" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="数量単位コード" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Byte" Direction="Input" ParameterName="@Original_数量単位コード" Precision="0" ProviderType="TinyInt" Scale="0" Size="0" SourceColumn="数量単位コード" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_CustomerSerialNumberRequired" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="CustomerSerialNumberRequired" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int16" Direction="Input" ParameterName="@Original_CustomerSerialNumberRequired" Precision="0" ProviderType="SmallInt" Scale="0" Size="0" SourceColumn="CustomerSerialNumberRequired" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_InstructionUsageGroupCode" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="InstructionUsageGroupCode" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@Original_InstructionUsageGroupCode" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="InstructionUsageGroupCode" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_在庫数量" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="在庫数量" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_在庫数量" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="在庫数量" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_Discontinued" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="Discontinued" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_Discontinued" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="Discontinued" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_備考" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="備考" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_備考" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="備考" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_作成日時" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="作成日時" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@Original_作成日時" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="作成日時" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_作成者コード" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="作成者コード" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="StringFixedLength" Direction="Input" ParameterName="@Original_作成者コード" Precision="0" ProviderType="NChar" Scale="0" Size="0" SourceColumn="作成者コード" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_CreateUserFullName" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="CreateUserFullName" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_CreateUserFullName" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="CreateUserFullName" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_更新日時" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="更新日時" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@Original_更新日時" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="更新日時" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_更新者コード" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="更新者コード" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="StringFixedLength" Direction="Input" ParameterName="@Original_更新者コード" Precision="0" ProviderType="NChar" Scale="0" Size="0" SourceColumn="更新者コード" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_UpdateUserFullName" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="UpdateUserFullName" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_UpdateUserFullName" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="UpdateUserFullName" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_無効日時" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="無効日時" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@Original_無効日時" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="無効日時" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_無効者コード" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="無効者コード" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="StringFixedLength" Direction="Input" ParameterName="@Original_無効者コード" Precision="0" ProviderType="NChar" Scale="0" Size="0" SourceColumn="無効者コード" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_DeleteUserFullName" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="DeleteUserFullName" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_DeleteUserFullName" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="DeleteUserFullName" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </DeleteCommand>
+                <InsertCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>INSERT INTO [dbo].[M商品] ([商品コード], [Revision], [ActiveDate], [商品名], [シリーズコード], [シリーズ名], [品名], [掛率有効], [商品分類コード], [ItemCategoryName], [売上区分コード], [SalesCategoryName], [PurchaseCategoryCode], [PurchaseCategoryName], [FlowCategoryCode], [FlowCategoryName], [ClientName], [IsUnit], [在庫管理], [在庫下限数量], [ラインコード], [数量単位コード], [CustomerSerialNumberRequired], [InstructionUsageGroupCode], [在庫数量], [Discontinued], [ChangeSummary], [備考], [作成日時], [作成者コード], [CreateUserFullName], [更新日時], [更新者コード], [UpdateUserFullName], [無効日時], [無効者コード], [DeleteUserFullName]) VALUES (@商品コード, @Revision, @ActiveDate, @商品名, @シリーズコード, @シリーズ名, @品名, @掛率有効, @商品分類コード, @ItemCategoryName, @売上区分コード, @SalesCategoryName, @PurchaseCategoryCode, @PurchaseCategoryName, @FlowCategoryCode, @FlowCategoryName, @ClientName, @IsUnit, @在庫管理, @在庫下限数量, @ラインコード, @数量単位コード, @CustomerSerialNumberRequired, @InstructionUsageGroupCode, @在庫数量, @Discontinued, @ChangeSummary, @備考, @作成日時, @作成者コード, @CreateUserFullName, @更新日時, @更新者コード, @UpdateUserFullName, @無効日時, @無効者コード, @DeleteUserFullName);
+SELECT 商品コード, Revision, ActiveDate, 商品名, シリーズコード, シリーズ名, 品名, 掛率有効, 商品分類コード, ItemCategoryName, 売上区分コード, SalesCategoryName, PurchaseCategoryCode, PurchaseCategoryName, FlowCategoryCode, FlowCategoryName, ClientName, IsUnit, 在庫管理, 在庫下限数量, ラインコード, 数量単位コード, CustomerSerialNumberRequired, InstructionUsageGroupCode, 在庫数量, Discontinued, ChangeSummary, 備考, 作成日時, 作成者コード, CreateUserFullName, 更新日時, 更新者コード, UpdateUserFullName, 無効日時, 無効者コード, DeleteUserFullName FROM M商品 WHERE (Revision = @Revision) AND (商品コード = @商品コード)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="StringFixedLength" Direction="Input" ParameterName="@商品コード" Precision="0" ProviderType="NChar" Scale="0" Size="0" SourceColumn="商品コード" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Revision" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="Revision" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@ActiveDate" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="ActiveDate" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@商品名" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="商品名" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="StringFixedLength" Direction="Input" ParameterName="@シリーズコード" Precision="0" ProviderType="NChar" Scale="0" Size="0" SourceColumn="シリーズコード" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@シリーズ名" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="シリーズ名" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@品名" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="品名" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int16" Direction="Input" ParameterName="@掛率有効" Precision="0" ProviderType="SmallInt" Scale="0" Size="0" SourceColumn="掛率有効" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="StringFixedLength" Direction="Input" ParameterName="@商品分類コード" Precision="0" ProviderType="NChar" Scale="0" Size="0" SourceColumn="商品分類コード" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@ItemCategoryName" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="ItemCategoryName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Byte" Direction="Input" ParameterName="@売上区分コード" Precision="0" ProviderType="TinyInt" Scale="0" Size="0" SourceColumn="売上区分コード" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@SalesCategoryName" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="SalesCategoryName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@PurchaseCategoryCode" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="PurchaseCategoryCode" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@PurchaseCategoryName" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="PurchaseCategoryName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@FlowCategoryCode" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="FlowCategoryCode" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@FlowCategoryName" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="FlowCategoryName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@ClientName" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="ClientName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsUnit" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="IsUnit" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int16" Direction="Input" ParameterName="@在庫管理" Precision="0" ProviderType="SmallInt" Scale="0" Size="0" SourceColumn="在庫管理" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@在庫下限数量" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="在庫下限数量" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Byte" Direction="Input" ParameterName="@ラインコード" Precision="0" ProviderType="TinyInt" Scale="0" Size="0" SourceColumn="ラインコード" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Byte" Direction="Input" ParameterName="@数量単位コード" Precision="0" ProviderType="TinyInt" Scale="0" Size="0" SourceColumn="数量単位コード" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int16" Direction="Input" ParameterName="@CustomerSerialNumberRequired" Precision="0" ProviderType="SmallInt" Scale="0" Size="0" SourceColumn="CustomerSerialNumberRequired" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@InstructionUsageGroupCode" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="InstructionUsageGroupCode" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@在庫数量" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="在庫数量" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Discontinued" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="Discontinued" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@ChangeSummary" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="ChangeSummary" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@備考" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="備考" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@作成日時" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="作成日時" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="StringFixedLength" Direction="Input" ParameterName="@作成者コード" Precision="0" ProviderType="NChar" Scale="0" Size="0" SourceColumn="作成者コード" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@CreateUserFullName" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="CreateUserFullName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@更新日時" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="更新日時" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="StringFixedLength" Direction="Input" ParameterName="@更新者コード" Precision="0" ProviderType="NChar" Scale="0" Size="0" SourceColumn="更新者コード" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@UpdateUserFullName" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="UpdateUserFullName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@無効日時" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="無効日時" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="StringFixedLength" Direction="Input" ParameterName="@無効者コード" Precision="0" ProviderType="NChar" Scale="0" Size="0" SourceColumn="無効者コード" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@DeleteUserFullName" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="DeleteUserFullName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </InsertCommand>
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT 商品コード, Revision, ActiveDate, 商品名, シリーズコード, シリーズ名, 品名, 掛率有効, 商品分類コード, ItemCategoryName, 売上区分コード, SalesCategoryName, PurchaseCategoryCode, PurchaseCategoryName, FlowCategoryCode, FlowCategoryName, ClientName, IsUnit, 在庫管理, 在庫下限数量, ラインコード, 数量単位コード, CustomerSerialNumberRequired, InstructionUsageGroupCode, 在庫数量, Discontinued, ChangeSummary, 備考, 作成日時, 作成者コード, CreateUserFullName, 更新日時, 更新者コード, UpdateUserFullName, 無効日時, 無効者コード, DeleteUserFullName FROM dbo.M商品</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>UPDATE [dbo].[M商品] SET [商品コード] = @商品コード, [Revision] = @Revision, [ActiveDate] = @ActiveDate, [商品名] = @商品名, [シリーズコード] = @シリーズコード, [シリーズ名] = @シリーズ名, [品名] = @品名, [掛率有効] = @掛率有効, [商品分類コード] = @商品分類コード, [ItemCategoryName] = @ItemCategoryName, [売上区分コード] = @売上区分コード, [SalesCategoryName] = @SalesCategoryName, [PurchaseCategoryCode] = @PurchaseCategoryCode, [PurchaseCategoryName] = @PurchaseCategoryName, [FlowCategoryCode] = @FlowCategoryCode, [FlowCategoryName] = @FlowCategoryName, [ClientName] = @ClientName, [IsUnit] = @IsUnit, [在庫管理] = @在庫管理, [在庫下限数量] = @在庫下限数量, [ラインコード] = @ラインコード, [数量単位コード] = @数量単位コード, [CustomerSerialNumberRequired] = @CustomerSerialNumberRequired, [InstructionUsageGroupCode] = @InstructionUsageGroupCode, [在庫数量] = @在庫数量, [Discontinued] = @Discontinued, [ChangeSummary] = @ChangeSummary, [備考] = @備考, [作成日時] = @作成日時, [作成者コード] = @作成者コード, [CreateUserFullName] = @CreateUserFullName, [更新日時] = @更新日時, [更新者コード] = @更新者コード, [UpdateUserFullName] = @UpdateUserFullName, [無効日時] = @無効日時, [無効者コード] = @無効者コード, [DeleteUserFullName] = @DeleteUserFullName WHERE (([商品コード] = @Original_商品コード) AND ([Revision] = @Original_Revision) AND ((@IsNull_ActiveDate = 1 AND [ActiveDate] IS NULL) OR ([ActiveDate] = @Original_ActiveDate)) AND ((@IsNull_商品名 = 1 AND [商品名] IS NULL) OR ([商品名] = @Original_商品名)) AND ((@IsNull_シリーズコード = 1 AND [シリーズコード] IS NULL) OR ([シリーズコード] = @Original_シリーズコード)) AND ((@IsNull_シリーズ名 = 1 AND [シリーズ名] IS NULL) OR ([シリーズ名] = @Original_シリーズ名)) AND ((@IsNull_品名 = 1 AND [品名] IS NULL) OR ([品名] = @Original_品名)) AND ((@IsNull_掛率有効 = 1 AND [掛率有効] IS NULL) OR ([掛率有効] = @Original_掛率有効)) AND ((@IsNull_商品分類コード = 1 AND [商品分類コード] IS NULL) OR ([商品分類コード] = @Original_商品分類コード)) AND ((@IsNull_ItemCategoryName = 1 AND [ItemCategoryName] IS NULL) OR ([ItemCategoryName] = @Original_ItemCategoryName)) AND ((@IsNull_売上区分コード = 1 AND [売上区分コード] IS NULL) OR ([売上区分コード] = @Original_売上区分コード)) AND ((@IsNull_SalesCategoryName = 1 AND [SalesCategoryName] IS NULL) OR ([SalesCategoryName] = @Original_SalesCategoryName)) AND ((@IsNull_PurchaseCategoryCode = 1 AND [PurchaseCategoryCode] IS NULL) OR ([PurchaseCategoryCode] = @Original_PurchaseCategoryCode)) AND ((@IsNull_PurchaseCategoryName = 1 AND [PurchaseCategoryName] IS NULL) OR ([PurchaseCategoryName] = @Original_PurchaseCategoryName)) AND ((@IsNull_FlowCategoryCode = 1 AND [FlowCategoryCode] IS NULL) OR ([FlowCategoryCode] = @Original_FlowCategoryCode)) AND ((@IsNull_FlowCategoryName = 1 AND [FlowCategoryName] IS NULL) OR ([FlowCategoryName] = @Original_FlowCategoryName)) AND ((@IsNull_ClientName = 1 AND [ClientName] IS NULL) OR ([ClientName] = @Original_ClientName)) AND ((@IsNull_IsUnit = 1 AND [IsUnit] IS NULL) OR ([IsUnit] = @Original_IsUnit)) AND ((@IsNull_在庫管理 = 1 AND [在庫管理] IS NULL) OR ([在庫管理] = @Original_在庫管理)) AND ((@IsNull_在庫下限数量 = 1 AND [在庫下限数量] IS NULL) OR ([在庫下限数量] = @Original_在庫下限数量)) AND ((@IsNull_ラインコード = 1 AND [ラインコード] IS NULL) OR ([ラインコード] = @Original_ラインコード)) AND ((@IsNull_数量単位コード = 1 AND [数量単位コード] IS NULL) OR ([数量単位コード] = @Original_数量単位コード)) AND ((@IsNull_CustomerSerialNumberRequired = 1 AND [CustomerSerialNumberRequired] IS NULL) OR ([CustomerSerialNumberRequired] = @Original_CustomerSerialNumberRequired)) AND ((@IsNull_InstructionUsageGroupCode = 1 AND [InstructionUsageGroupCode] IS NULL) OR ([InstructionUsageGroupCode] = @Original_InstructionUsageGroupCode)) AND ((@IsNull_在庫数量 = 1 AND [在庫数量] IS NULL) OR ([在庫数量] = @Original_在庫数量)) AND ((@IsNull_Discontinued = 1 AND [Discontinued] IS NULL) OR ([Discontinued] = @Original_Discontinued)) AND ((@IsNull_備考 = 1 AND [備考] IS NULL) OR ([備考] = @Original_備考)) AND ((@IsNull_作成日時 = 1 AND [作成日時] IS NULL) OR ([作成日時] = @Original_作成日時)) AND ((@IsNull_作成者コード = 1 AND [作成者コード] IS NULL) OR ([作成者コード] = @Original_作成者コード)) AND ((@IsNull_CreateUserFullName = 1 AND [CreateUserFullName] IS NULL) OR ([CreateUserFullName] = @Original_CreateUserFullName)) AND ((@IsNull_更新日時 = 1 AND [更新日時] IS NULL) OR ([更新日時] = @Original_更新日時)) AND ((@IsNull_更新者コード = 1 AND [更新者コード] IS NULL) OR ([更新者コード] = @Original_更新者コード)) AND ((@IsNull_UpdateUserFullName = 1 AND [UpdateUserFullName] IS NULL) OR ([UpdateUserFullName] = @Original_UpdateUserFullName)) AND ((@IsNull_無効日時 = 1 AND [無効日時] IS NULL) OR ([無効日時] = @Original_無効日時)) AND ((@IsNull_無効者コード = 1 AND [無効者コード] IS NULL) OR ([無効者コード] = @Original_無効者コード)) AND ((@IsNull_DeleteUserFullName = 1 AND [DeleteUserFullName] IS NULL) OR ([DeleteUserFullName] = @Original_DeleteUserFullName)));
+SELECT 商品コード, Revision, ActiveDate, 商品名, シリーズコード, シリーズ名, 品名, 掛率有効, 商品分類コード, ItemCategoryName, 売上区分コード, SalesCategoryName, PurchaseCategoryCode, PurchaseCategoryName, FlowCategoryCode, FlowCategoryName, ClientName, IsUnit, 在庫管理, 在庫下限数量, ラインコード, 数量単位コード, CustomerSerialNumberRequired, InstructionUsageGroupCode, 在庫数量, Discontinued, ChangeSummary, 備考, 作成日時, 作成者コード, CreateUserFullName, 更新日時, 更新者コード, UpdateUserFullName, 無効日時, 無効者コード, DeleteUserFullName FROM M商品 WHERE (Revision = @Revision) AND (商品コード = @商品コード)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="StringFixedLength" Direction="Input" ParameterName="@商品コード" Precision="0" ProviderType="NChar" Scale="0" Size="0" SourceColumn="商品コード" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Revision" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="Revision" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@ActiveDate" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="ActiveDate" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@商品名" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="商品名" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="StringFixedLength" Direction="Input" ParameterName="@シリーズコード" Precision="0" ProviderType="NChar" Scale="0" Size="0" SourceColumn="シリーズコード" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@シリーズ名" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="シリーズ名" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@品名" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="品名" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int16" Direction="Input" ParameterName="@掛率有効" Precision="0" ProviderType="SmallInt" Scale="0" Size="0" SourceColumn="掛率有効" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="StringFixedLength" Direction="Input" ParameterName="@商品分類コード" Precision="0" ProviderType="NChar" Scale="0" Size="0" SourceColumn="商品分類コード" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@ItemCategoryName" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="ItemCategoryName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Byte" Direction="Input" ParameterName="@売上区分コード" Precision="0" ProviderType="TinyInt" Scale="0" Size="0" SourceColumn="売上区分コード" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@SalesCategoryName" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="SalesCategoryName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@PurchaseCategoryCode" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="PurchaseCategoryCode" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@PurchaseCategoryName" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="PurchaseCategoryName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@FlowCategoryCode" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="FlowCategoryCode" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@FlowCategoryName" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="FlowCategoryName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@ClientName" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="ClientName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsUnit" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="IsUnit" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int16" Direction="Input" ParameterName="@在庫管理" Precision="0" ProviderType="SmallInt" Scale="0" Size="0" SourceColumn="在庫管理" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@在庫下限数量" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="在庫下限数量" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Byte" Direction="Input" ParameterName="@ラインコード" Precision="0" ProviderType="TinyInt" Scale="0" Size="0" SourceColumn="ラインコード" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Byte" Direction="Input" ParameterName="@数量単位コード" Precision="0" ProviderType="TinyInt" Scale="0" Size="0" SourceColumn="数量単位コード" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int16" Direction="Input" ParameterName="@CustomerSerialNumberRequired" Precision="0" ProviderType="SmallInt" Scale="0" Size="0" SourceColumn="CustomerSerialNumberRequired" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@InstructionUsageGroupCode" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="InstructionUsageGroupCode" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@在庫数量" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="在庫数量" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Discontinued" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="Discontinued" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@ChangeSummary" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="ChangeSummary" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@備考" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="備考" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@作成日時" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="作成日時" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="StringFixedLength" Direction="Input" ParameterName="@作成者コード" Precision="0" ProviderType="NChar" Scale="0" Size="0" SourceColumn="作成者コード" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@CreateUserFullName" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="CreateUserFullName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@更新日時" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="更新日時" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="StringFixedLength" Direction="Input" ParameterName="@更新者コード" Precision="0" ProviderType="NChar" Scale="0" Size="0" SourceColumn="更新者コード" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@UpdateUserFullName" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="UpdateUserFullName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@無効日時" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="無効日時" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="StringFixedLength" Direction="Input" ParameterName="@無効者コード" Precision="0" ProviderType="NChar" Scale="0" Size="0" SourceColumn="無効者コード" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@DeleteUserFullName" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="DeleteUserFullName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="StringFixedLength" Direction="Input" ParameterName="@Original_商品コード" Precision="0" ProviderType="NChar" Scale="0" Size="0" SourceColumn="商品コード" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_Revision" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="Revision" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_ActiveDate" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="ActiveDate" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@Original_ActiveDate" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="ActiveDate" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_商品名" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="商品名" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_商品名" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="商品名" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_シリーズコード" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="シリーズコード" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="StringFixedLength" Direction="Input" ParameterName="@Original_シリーズコード" Precision="0" ProviderType="NChar" Scale="0" Size="0" SourceColumn="シリーズコード" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_シリーズ名" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="シリーズ名" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_シリーズ名" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="シリーズ名" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_品名" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="品名" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_品名" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="品名" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_掛率有効" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="掛率有効" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int16" Direction="Input" ParameterName="@Original_掛率有効" Precision="0" ProviderType="SmallInt" Scale="0" Size="0" SourceColumn="掛率有効" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_商品分類コード" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="商品分類コード" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="StringFixedLength" Direction="Input" ParameterName="@Original_商品分類コード" Precision="0" ProviderType="NChar" Scale="0" Size="0" SourceColumn="商品分類コード" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_ItemCategoryName" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="ItemCategoryName" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_ItemCategoryName" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="ItemCategoryName" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_売上区分コード" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="売上区分コード" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Byte" Direction="Input" ParameterName="@Original_売上区分コード" Precision="0" ProviderType="TinyInt" Scale="0" Size="0" SourceColumn="売上区分コード" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_SalesCategoryName" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="SalesCategoryName" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_SalesCategoryName" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="SalesCategoryName" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_PurchaseCategoryCode" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PurchaseCategoryCode" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@Original_PurchaseCategoryCode" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="PurchaseCategoryCode" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_PurchaseCategoryName" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PurchaseCategoryName" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_PurchaseCategoryName" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="PurchaseCategoryName" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_FlowCategoryCode" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="FlowCategoryCode" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@Original_FlowCategoryCode" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="FlowCategoryCode" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_FlowCategoryName" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="FlowCategoryName" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_FlowCategoryName" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="FlowCategoryName" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_ClientName" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="ClientName" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_ClientName" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="ClientName" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_IsUnit" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="IsUnit" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_IsUnit" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="IsUnit" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_在庫管理" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="在庫管理" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int16" Direction="Input" ParameterName="@Original_在庫管理" Precision="0" ProviderType="SmallInt" Scale="0" Size="0" SourceColumn="在庫管理" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_在庫下限数量" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="在庫下限数量" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_在庫下限数量" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="在庫下限数量" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_ラインコード" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="ラインコード" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Byte" Direction="Input" ParameterName="@Original_ラインコード" Precision="0" ProviderType="TinyInt" Scale="0" Size="0" SourceColumn="ラインコード" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_数量単位コード" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="数量単位コード" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Byte" Direction="Input" ParameterName="@Original_数量単位コード" Precision="0" ProviderType="TinyInt" Scale="0" Size="0" SourceColumn="数量単位コード" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_CustomerSerialNumberRequired" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="CustomerSerialNumberRequired" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int16" Direction="Input" ParameterName="@Original_CustomerSerialNumberRequired" Precision="0" ProviderType="SmallInt" Scale="0" Size="0" SourceColumn="CustomerSerialNumberRequired" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_InstructionUsageGroupCode" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="InstructionUsageGroupCode" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@Original_InstructionUsageGroupCode" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="InstructionUsageGroupCode" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_在庫数量" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="在庫数量" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_在庫数量" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="在庫数量" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_Discontinued" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="Discontinued" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_Discontinued" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="Discontinued" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_備考" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="備考" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_備考" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="備考" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_作成日時" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="作成日時" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@Original_作成日時" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="作成日時" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_作成者コード" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="作成者コード" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="StringFixedLength" Direction="Input" ParameterName="@Original_作成者コード" Precision="0" ProviderType="NChar" Scale="0" Size="0" SourceColumn="作成者コード" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_CreateUserFullName" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="CreateUserFullName" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_CreateUserFullName" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="CreateUserFullName" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_更新日時" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="更新日時" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@Original_更新日時" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="更新日時" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_更新者コード" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="更新者コード" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="StringFixedLength" Direction="Input" ParameterName="@Original_更新者コード" Precision="0" ProviderType="NChar" Scale="0" Size="0" SourceColumn="更新者コード" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_UpdateUserFullName" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="UpdateUserFullName" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_UpdateUserFullName" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="UpdateUserFullName" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_無効日時" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="無効日時" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@Original_無効日時" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="無効日時" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_無効者コード" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="無効者コード" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="StringFixedLength" Direction="Input" ParameterName="@Original_無効者コード" Precision="0" ProviderType="NChar" Scale="0" Size="0" SourceColumn="無効者コード" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_DeleteUserFullName" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="DeleteUserFullName" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_DeleteUserFullName" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="DeleteUserFullName" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="商品コード" DataSetColumn="商品コード" />
+              <Mapping SourceColumn="Revision" DataSetColumn="Revision" />
+              <Mapping SourceColumn="ActiveDate" DataSetColumn="ActiveDate" />
+              <Mapping SourceColumn="商品名" DataSetColumn="商品名" />
+              <Mapping SourceColumn="シリーズコード" DataSetColumn="シリーズコード" />
+              <Mapping SourceColumn="シリーズ名" DataSetColumn="シリーズ名" />
+              <Mapping SourceColumn="品名" DataSetColumn="品名" />
+              <Mapping SourceColumn="掛率有効" DataSetColumn="掛率有効" />
+              <Mapping SourceColumn="商品分類コード" DataSetColumn="商品分類コード" />
+              <Mapping SourceColumn="ItemCategoryName" DataSetColumn="ItemCategoryName" />
+              <Mapping SourceColumn="売上区分コード" DataSetColumn="売上区分コード" />
+              <Mapping SourceColumn="SalesCategoryName" DataSetColumn="SalesCategoryName" />
+              <Mapping SourceColumn="PurchaseCategoryCode" DataSetColumn="PurchaseCategoryCode" />
+              <Mapping SourceColumn="PurchaseCategoryName" DataSetColumn="PurchaseCategoryName" />
+              <Mapping SourceColumn="FlowCategoryCode" DataSetColumn="FlowCategoryCode" />
+              <Mapping SourceColumn="FlowCategoryName" DataSetColumn="FlowCategoryName" />
+              <Mapping SourceColumn="ClientName" DataSetColumn="ClientName" />
+              <Mapping SourceColumn="IsUnit" DataSetColumn="IsUnit" />
+              <Mapping SourceColumn="在庫管理" DataSetColumn="在庫管理" />
+              <Mapping SourceColumn="在庫下限数量" DataSetColumn="在庫下限数量" />
+              <Mapping SourceColumn="ラインコード" DataSetColumn="ラインコード" />
+              <Mapping SourceColumn="数量単位コード" DataSetColumn="数量単位コード" />
+              <Mapping SourceColumn="CustomerSerialNumberRequired" DataSetColumn="CustomerSerialNumberRequired" />
+              <Mapping SourceColumn="InstructionUsageGroupCode" DataSetColumn="InstructionUsageGroupCode" />
+              <Mapping SourceColumn="在庫数量" DataSetColumn="在庫数量" />
+              <Mapping SourceColumn="Discontinued" DataSetColumn="Discontinued" />
+              <Mapping SourceColumn="ChangeSummary" DataSetColumn="ChangeSummary" />
+              <Mapping SourceColumn="備考" DataSetColumn="備考" />
+              <Mapping SourceColumn="作成日時" DataSetColumn="作成日時" />
+              <Mapping SourceColumn="作成者コード" DataSetColumn="作成者コード" />
+              <Mapping SourceColumn="CreateUserFullName" DataSetColumn="CreateUserFullName" />
+              <Mapping SourceColumn="更新日時" DataSetColumn="更新日時" />
+              <Mapping SourceColumn="更新者コード" DataSetColumn="更新者コード" />
+              <Mapping SourceColumn="UpdateUserFullName" DataSetColumn="UpdateUserFullName" />
+              <Mapping SourceColumn="無効日時" DataSetColumn="無効日時" />
+              <Mapping SourceColumn="無効者コード" DataSetColumn="無効者コード" />
+              <Mapping SourceColumn="DeleteUserFullName" DataSetColumn="DeleteUserFullName" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="M商品明細TableAdapter" GeneratorDataComponentClassName="M商品明細TableAdapter" Name="M商品明細" UserDataComponentName="M商品明細TableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="uidbConnectionString (Settings)" DbObjectName="uidb.dbo.M商品明細" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>DELETE FROM [M商品明細] WHERE (([商品コード] = @Original_商品コード) AND ([Revision] = @Original_Revision) AND ([明細番号] = @Original_明細番号) AND ((@IsNull_型式番号 = 1 AND [型式番号] IS NULL) OR ([型式番号] = @Original_型式番号)) AND ((@IsNull_型式名 = 1 AND [型式名] IS NULL) OR ([型式名] = @Original_型式名)) AND ((@IsNull_定価 = 1 AND [定価] IS NULL) OR ([定価] = @Original_定価)) AND ((@IsNull_原価 = 1 AND [原価] IS NULL) OR ([原価] = @Original_原価)) AND ((@IsNull_機能 = 1 AND [機能] IS NULL) OR ([機能] = @Original_機能)) AND ((@IsNull_構成番号 = 1 AND [構成番号] IS NULL) OR ([構成番号] = @Original_構成番号)))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="StringFixedLength" Direction="Input" ParameterName="@Original_商品コード" Precision="0" ProviderType="NChar" Scale="0" Size="0" SourceColumn="商品コード" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_Revision" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="Revision" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int16" Direction="Input" ParameterName="@Original_明細番号" Precision="0" ProviderType="SmallInt" Scale="0" Size="0" SourceColumn="明細番号" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_型式番号" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="型式番号" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_型式番号" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="型式番号" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_型式名" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="型式名" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_型式名" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="型式名" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_定価" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="定価" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Currency" Direction="Input" ParameterName="@Original_定価" Precision="0" ProviderType="Money" Scale="0" Size="0" SourceColumn="定価" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_原価" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="原価" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Currency" Direction="Input" ParameterName="@Original_原価" Precision="0" ProviderType="Money" Scale="0" Size="0" SourceColumn="原価" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_機能" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="機能" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_機能" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="機能" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_構成番号" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="構成番号" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int16" Direction="Input" ParameterName="@Original_構成番号" Precision="0" ProviderType="SmallInt" Scale="0" Size="0" SourceColumn="構成番号" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </DeleteCommand>
+                <InsertCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>INSERT INTO [M商品明細] ([商品コード], [Revision], [明細番号], [型式番号], [型式名], [定価], [原価], [機能], [構成番号]) VALUES (@商品コード, @Revision, @明細番号, @型式番号, @型式名, @定価, @原価, @機能, @構成番号);
+SELECT 商品コード, Revision, 明細番号, 型式番号, 型式名, 定価, 原価, 機能, 構成番号 FROM M商品明細 WHERE (Revision = @Revision) AND (商品コード = @商品コード) AND (明細番号 = @明細番号)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="StringFixedLength" Direction="Input" ParameterName="@商品コード" Precision="0" ProviderType="NChar" Scale="0" Size="0" SourceColumn="商品コード" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Revision" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="Revision" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int16" Direction="Input" ParameterName="@明細番号" Precision="0" ProviderType="SmallInt" Scale="0" Size="0" SourceColumn="明細番号" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@型式番号" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="型式番号" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@型式名" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="型式名" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Currency" Direction="Input" ParameterName="@定価" Precision="0" ProviderType="Money" Scale="0" Size="0" SourceColumn="定価" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Currency" Direction="Input" ParameterName="@原価" Precision="0" ProviderType="Money" Scale="0" Size="0" SourceColumn="原価" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@機能" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="機能" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int16" Direction="Input" ParameterName="@構成番号" Precision="0" ProviderType="SmallInt" Scale="0" Size="0" SourceColumn="構成番号" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </InsertCommand>
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT               商品コード, Revision, 明細番号, 型式番号, 型式名, 定価, 原価, 機能, 構成番号
+FROM                 M商品明細
+WHERE                (商品コード = N'CurrentCode')</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="CurrentCode" Precision="0" Scale="0" Size="0" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>UPDATE [M商品明細] SET [商品コード] = @商品コード, [Revision] = @Revision, [明細番号] = @明細番号, [型式番号] = @型式番号, [型式名] = @型式名, [定価] = @定価, [原価] = @原価, [機能] = @機能, [構成番号] = @構成番号 WHERE (([商品コード] = @Original_商品コード) AND ([Revision] = @Original_Revision) AND ([明細番号] = @Original_明細番号) AND ((@IsNull_型式番号 = 1 AND [型式番号] IS NULL) OR ([型式番号] = @Original_型式番号)) AND ((@IsNull_型式名 = 1 AND [型式名] IS NULL) OR ([型式名] = @Original_型式名)) AND ((@IsNull_定価 = 1 AND [定価] IS NULL) OR ([定価] = @Original_定価)) AND ((@IsNull_原価 = 1 AND [原価] IS NULL) OR ([原価] = @Original_原価)) AND ((@IsNull_機能 = 1 AND [機能] IS NULL) OR ([機能] = @Original_機能)) AND ((@IsNull_構成番号 = 1 AND [構成番号] IS NULL) OR ([構成番号] = @Original_構成番号)));
+SELECT 商品コード, Revision, 明細番号, 型式番号, 型式名, 定価, 原価, 機能, 構成番号 FROM M商品明細 WHERE (Revision = @Revision) AND (商品コード = @商品コード) AND (明細番号 = @明細番号)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="StringFixedLength" Direction="Input" ParameterName="@商品コード" Precision="0" ProviderType="NChar" Scale="0" Size="0" SourceColumn="商品コード" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Revision" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="Revision" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int16" Direction="Input" ParameterName="@明細番号" Precision="0" ProviderType="SmallInt" Scale="0" Size="0" SourceColumn="明細番号" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@型式番号" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="型式番号" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@型式名" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="型式名" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Currency" Direction="Input" ParameterName="@定価" Precision="0" ProviderType="Money" Scale="0" Size="0" SourceColumn="定価" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Currency" Direction="Input" ParameterName="@原価" Precision="0" ProviderType="Money" Scale="0" Size="0" SourceColumn="原価" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@機能" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="機能" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int16" Direction="Input" ParameterName="@構成番号" Precision="0" ProviderType="SmallInt" Scale="0" Size="0" SourceColumn="構成番号" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="StringFixedLength" Direction="Input" ParameterName="@Original_商品コード" Precision="0" ProviderType="NChar" Scale="0" Size="0" SourceColumn="商品コード" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_Revision" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="Revision" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int16" Direction="Input" ParameterName="@Original_明細番号" Precision="0" ProviderType="SmallInt" Scale="0" Size="0" SourceColumn="明細番号" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_型式番号" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="型式番号" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_型式番号" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="型式番号" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_型式名" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="型式名" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_型式名" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="型式名" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_定価" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="定価" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Currency" Direction="Input" ParameterName="@Original_定価" Precision="0" ProviderType="Money" Scale="0" Size="0" SourceColumn="定価" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_原価" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="原価" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Currency" Direction="Input" ParameterName="@Original_原価" Precision="0" ProviderType="Money" Scale="0" Size="0" SourceColumn="原価" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_機能" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="機能" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_機能" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="機能" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_構成番号" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="構成番号" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int16" Direction="Input" ParameterName="@Original_構成番号" Precision="0" ProviderType="SmallInt" Scale="0" Size="0" SourceColumn="構成番号" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="商品コード" DataSetColumn="商品コード" />
+              <Mapping SourceColumn="Revision" DataSetColumn="Revision" />
+              <Mapping SourceColumn="明細番号" DataSetColumn="明細番号" />
+              <Mapping SourceColumn="型式番号" DataSetColumn="型式番号" />
+              <Mapping SourceColumn="型式名" DataSetColumn="型式名" />
+              <Mapping SourceColumn="定価" DataSetColumn="定価" />
+              <Mapping SourceColumn="原価" DataSetColumn="原価" />
+              <Mapping SourceColumn="機能" DataSetColumn="機能" />
+              <Mapping SourceColumn="構成番号" DataSetColumn="構成番号" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="ComboBoxManufactureFlowTableAdapter" GeneratorDataComponentClassName="ComboBoxManufactureFlowTableAdapter" Name="ManufactureFlow" UserDataComponentName="ComboBoxManufactureFlowTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="uidbConnectionString (Settings)" DbObjectName="uidb.dbo.ManufactureFlow" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>DELETE FROM [ManufactureFlow] WHERE (([Code] = @Original_Code) AND ((@IsNull_Name = 1 AND [Name] IS NULL) OR ([Name] = @Original_Name)))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@Original_Code" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="Code" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_Name" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="Name" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_Name" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Name" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </DeleteCommand>
+                <InsertCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>INSERT INTO [ManufactureFlow] ([Code], [Name]) VALUES (@Code, @Name);
+SELECT Code, Name FROM ManufactureFlow WHERE (Code = @Code)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@Code" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="Code" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Name" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Name" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </InsertCommand>
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT               Code, Name 
+FROM                 ManufactureFlow</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>UPDATE [ManufactureFlow] SET [Code] = @Code, [Name] = @Name WHERE (([Code] = @Original_Code) AND ((@IsNull_Name = 1 AND [Name] IS NULL) OR ([Name] = @Original_Name)));
+SELECT Code, Name FROM ManufactureFlow WHERE (Code = @Code)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@Code" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="Code" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Name" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Name" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@Original_Code" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="Code" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_Name" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="Name" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_Name" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Name" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Code" DataSetColumn="Code" />
+              <Mapping SourceColumn="Name" DataSetColumn="Name" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="M単位TableAdapter" GeneratorDataComponentClassName="M単位TableAdapter" Name="M単位" UserDataComponentName="M単位TableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="uidbConnectionString (Settings)" DbObjectName="uidb.dbo.M単位" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <InsertCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>INSERT INTO [M単位] ([単位名]) VALUES (@単位名)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@単位名" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="単位名" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </InsertCommand>
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT right(replace(str(単位コード),' ','0'),2) as 単位コード, 単位名 FROM M単位; </CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="単位コード" DataSetColumn="単位コード" />
+              <Mapping SourceColumn="単位名" DataSetColumn="単位名" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="ComboBox売上区分TableAdapter" GeneratorDataComponentClassName="ComboBox売上区分TableAdapter" Name="M売上区分" UserDataComponentName="ComboBox売上区分TableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="uidbConnectionString (Settings)" DbObjectName="uidb.dbo.M売上区分" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>DELETE FROM [M売上区分] WHERE (([売上区分コード] = @Original_売上区分コード) AND ((@IsNull_売上区分名 = 1 AND [売上区分名] IS NULL) OR ([売上区分名] = @Original_売上区分名)))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Byte" Direction="Input" ParameterName="@Original_売上区分コード" Precision="0" ProviderType="TinyInt" Scale="0" Size="0" SourceColumn="売上区分コード" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_売上区分名" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="売上区分名" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_売上区分名" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="売上区分名" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </DeleteCommand>
+                <InsertCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>INSERT INTO [M売上区分] ([売上区分コード], [売上区分名]) VALUES (@売上区分コード, @売上区分名);
+SELECT 売上区分コード, 売上区分名 FROM M売上区分 WHERE (売上区分コード = @売上区分コード)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Byte" Direction="Input" ParameterName="@売上区分コード" Precision="0" ProviderType="TinyInt" Scale="0" Size="0" SourceColumn="売上区分コード" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@売上区分名" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="売上区分名" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </InsertCommand>
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT               売上区分コード, 売上区分名
+FROM                 M売上区分</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>UPDATE [M売上区分] SET [売上区分コード] = @売上区分コード, [売上区分名] = @売上区分名 WHERE (([売上区分コード] = @Original_売上区分コード) AND ((@IsNull_売上区分名 = 1 AND [売上区分名] IS NULL) OR ([売上区分名] = @Original_売上区分名)));
+SELECT 売上区分コード, 売上区分名 FROM M売上区分 WHERE (売上区分コード = @売上区分コード)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Byte" Direction="Input" ParameterName="@売上区分コード" Precision="0" ProviderType="TinyInt" Scale="0" Size="0" SourceColumn="売上区分コード" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@売上区分名" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="売上区分名" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Byte" Direction="Input" ParameterName="@Original_売上区分コード" Precision="0" ProviderType="TinyInt" Scale="0" Size="0" SourceColumn="売上区分コード" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_売上区分名" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="売上区分名" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_売上区分名" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="売上区分名" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="売上区分コード" DataSetColumn="売上区分コード" />
+              <Mapping SourceColumn="売上区分名" DataSetColumn="売上区分名" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="M商品分類TableAdapter" GeneratorDataComponentClassName="M商品分類TableAdapter" Name="M商品分類" UserDataComponentName="M商品分類TableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="uidbConnectionString (Settings)" DbObjectName="uidb.dbo.M商品分類" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>DELETE FROM [dbo].[M商品分類] WHERE (([商品分類コード] = @Original_商品分類コード) AND ((@IsNull_分類名 = 1 AND [分類名] IS NULL) OR ([分類名] = @Original_分類名)) AND ((@IsNull_分類内容 = 1 AND [分類内容] IS NULL) OR ([分類内容] = @Original_分類内容)))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="StringFixedLength" Direction="Input" ParameterName="@Original_商品分類コード" Precision="0" ProviderType="NChar" Scale="0" Size="0" SourceColumn="商品分類コード" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_分類名" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="分類名" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_分類名" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="分類名" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_分類内容" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="分類内容" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_分類内容" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="分類内容" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </DeleteCommand>
+                <InsertCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>INSERT INTO [dbo].[M商品分類] ([商品分類コード], [分類名], [分類内容]) VALUES (@商品分類コード, @分類名, @分類内容);
+SELECT 商品分類コード, 分類名, 分類内容 FROM M商品分類 WHERE (商品分類コード = @商品分類コード)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="StringFixedLength" Direction="Input" ParameterName="@商品分類コード" Precision="0" ProviderType="NChar" Scale="0" Size="0" SourceColumn="商品分類コード" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@分類名" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="分類名" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@分類内容" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="分類内容" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </InsertCommand>
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT 商品分類コード, 分類名, 分類内容 FROM dbo.M商品分類</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>UPDATE [dbo].[M商品分類] SET [商品分類コード] = @商品分類コード, [分類名] = @分類名, [分類内容] = @分類内容 WHERE (([商品分類コード] = @Original_商品分類コード) AND ((@IsNull_分類名 = 1 AND [分類名] IS NULL) OR ([分類名] = @Original_分類名)) AND ((@IsNull_分類内容 = 1 AND [分類内容] IS NULL) OR ([分類内容] = @Original_分類内容)));
+SELECT 商品分類コード, 分類名, 分類内容 FROM M商品分類 WHERE (商品分類コード = @商品分類コード)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="StringFixedLength" Direction="Input" ParameterName="@商品分類コード" Precision="0" ProviderType="NChar" Scale="0" Size="0" SourceColumn="商品分類コード" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@分類名" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="分類名" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@分類内容" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="分類内容" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="StringFixedLength" Direction="Input" ParameterName="@Original_商品分類コード" Precision="0" ProviderType="NChar" Scale="0" Size="0" SourceColumn="商品分類コード" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_分類名" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="分類名" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_分類名" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="分類名" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_分類内容" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="分類内容" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_分類内容" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="分類内容" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="商品分類コード" DataSetColumn="商品分類コード" />
+              <Mapping SourceColumn="分類名" DataSetColumn="分類名" />
+              <Mapping SourceColumn="分類内容" DataSetColumn="分類内容" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="CombBox商品コードTableAdapter" GeneratorDataComponentClassName="CombBox商品コードTableAdapter" Name="CombBox商品コード" UserDataComponentName="CombBox商品コードTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="uidbConnectionString (Settings)" DbObjectName="uidb.dbo.M商品" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <InsertCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>INSERT INTO [M商品] ([商品コード]) VALUES (@商品コード)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="StringFixedLength" Direction="Input" ParameterName="@商品コード" Precision="0" ProviderType="NChar" Scale="0" Size="0" SourceColumn="商品コード" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </InsertCommand>
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT               M商品.商品コード
+FROM                 M商品 INNER JOIN
+                           M商品明細 ON M商品.商品コード = M商品明細.商品コード
+GROUP BY         M商品.商品コード
+ORDER BY          M商品.商品コード DESC</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="商品コード" DataSetColumn="商品コード" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="combBoxMシリーズTableAdapter" GeneratorDataComponentClassName="combBoxMシリーズTableAdapter" Name="Mシリーズ" UserDataComponentName="combBoxMシリーズTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="uidbConnectionString (Settings)" DbObjectName="uidb.dbo.Mシリーズ" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>DELETE FROM [Mシリーズ] WHERE (([シリーズコード] = @Original_シリーズコード) AND ((@IsNull_シリーズ名 = 1 AND [シリーズ名] IS NULL) OR ([シリーズ名] = @Original_シリーズ名)))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="StringFixedLength" Direction="Input" ParameterName="@Original_シリーズコード" Precision="0" ProviderType="NChar" Scale="0" Size="0" SourceColumn="シリーズコード" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_シリーズ名" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="シリーズ名" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_シリーズ名" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="シリーズ名" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </DeleteCommand>
+                <InsertCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>INSERT INTO [Mシリーズ] ([シリーズコード], [シリーズ名]) VALUES (@シリーズコード, @シリーズ名);
+SELECT シリーズコード, シリーズ名 FROM Mシリーズ WHERE (シリーズコード = @シリーズコード)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="StringFixedLength" Direction="Input" ParameterName="@シリーズコード" Precision="0" ProviderType="NChar" Scale="0" Size="0" SourceColumn="シリーズコード" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@シリーズ名" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="シリーズ名" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </InsertCommand>
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT                      シリーズコード, シリーズ名
+FROM                         Mシリーズ</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>UPDATE [Mシリーズ] SET [シリーズコード] = @シリーズコード, [シリーズ名] = @シリーズ名 WHERE (([シリーズコード] = @Original_シリーズコード) AND ((@IsNull_シリーズ名 = 1 AND [シリーズ名] IS NULL) OR ([シリーズ名] = @Original_シリーズ名)));
+SELECT シリーズコード, シリーズ名 FROM Mシリーズ WHERE (シリーズコード = @シリーズコード)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="StringFixedLength" Direction="Input" ParameterName="@シリーズコード" Precision="0" ProviderType="NChar" Scale="0" Size="0" SourceColumn="シリーズコード" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@シリーズ名" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="シリーズ名" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="StringFixedLength" Direction="Input" ParameterName="@Original_シリーズコード" Precision="0" ProviderType="NChar" Scale="0" Size="0" SourceColumn="シリーズコード" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_シリーズ名" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="シリーズ名" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_シリーズ名" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="シリーズ名" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="シリーズコード" DataSetColumn="シリーズコード" />
+              <Mapping SourceColumn="シリーズ名" DataSetColumn="シリーズ名" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="V商品ヘッダTableAdapter" GeneratorDataComponentClassName="V商品ヘッダTableAdapter" Name="V商品ヘッダ" UserDataComponentName="V商品ヘッダTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="uidbConnectionString (Settings)" DbObjectName="uidb.dbo.V商品ヘッダ" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT 商品コード, 商品名, シリーズコード, シリーズ名, 品名, 商品分類コード, 分類内容, 分類名, 掛率有効, 売上区分コード, 在庫下限数量, FlowCategoryCode, 処理区分コード, FlowCategoryName, 処理区分名, 数量単位コード, 数量単位名, CustomerSerialNumberRequired, ClientName, Discontinued, IsUnit, 備考, 作成日時, 作成者コード, 作成者名, 更新日時, 更新者コード, 更新者名, 削除, ComposedChipMount FROM dbo.V商品ヘッダ</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@商品コード" Precision="0" Scale="0" Size="0" SourceColumn="商品コード" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="商品コード" DataSetColumn="商品コード" />
+              <Mapping SourceColumn="商品名" DataSetColumn="商品名" />
+              <Mapping SourceColumn="シリーズコード" DataSetColumn="シリーズコード" />
+              <Mapping SourceColumn="シリーズ名" DataSetColumn="シリーズ名" />
+              <Mapping SourceColumn="品名" DataSetColumn="品名" />
+              <Mapping SourceColumn="商品分類コード" DataSetColumn="商品分類コード" />
+              <Mapping SourceColumn="分類内容" DataSetColumn="分類内容" />
+              <Mapping SourceColumn="分類名" DataSetColumn="分類名" />
+              <Mapping SourceColumn="掛率有効" DataSetColumn="掛率有効" />
+              <Mapping SourceColumn="売上区分コード" DataSetColumn="売上区分コード" />
+              <Mapping SourceColumn="在庫下限数量" DataSetColumn="在庫下限数量" />
+              <Mapping SourceColumn="FlowCategoryCode" DataSetColumn="FlowCategoryCode" />
+              <Mapping SourceColumn="処理区分コード" DataSetColumn="処理区分コード" />
+              <Mapping SourceColumn="FlowCategoryName" DataSetColumn="FlowCategoryName" />
+              <Mapping SourceColumn="処理区分名" DataSetColumn="処理区分名" />
+              <Mapping SourceColumn="数量単位コード" DataSetColumn="数量単位コード" />
+              <Mapping SourceColumn="数量単位名" DataSetColumn="数量単位名" />
+              <Mapping SourceColumn="CustomerSerialNumberRequired" DataSetColumn="CustomerSerialNumberRequired" />
+              <Mapping SourceColumn="ClientName" DataSetColumn="ClientName" />
+              <Mapping SourceColumn="Discontinued" DataSetColumn="Discontinued" />
+              <Mapping SourceColumn="IsUnit" DataSetColumn="IsUnit" />
+              <Mapping SourceColumn="備考" DataSetColumn="備考" />
+              <Mapping SourceColumn="作成日時" DataSetColumn="作成日時" />
+              <Mapping SourceColumn="作成者コード" DataSetColumn="作成者コード" />
+              <Mapping SourceColumn="作成者名" DataSetColumn="作成者名" />
+              <Mapping SourceColumn="更新日時" DataSetColumn="更新日時" />
+              <Mapping SourceColumn="更新者コード" DataSetColumn="更新者コード" />
+              <Mapping SourceColumn="更新者名" DataSetColumn="更新者名" />
+              <Mapping SourceColumn="削除" DataSetColumn="削除" />
+              <Mapping SourceColumn="ComposedChipMount" DataSetColumn="ComposedChipMount" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="uiDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="uiDataSet" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="uiDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="M商品" msprop:Generator_RowEvHandlerName="M商品RowChangeEventHandler" msprop:Generator_RowDeletedName="M商品RowDeleted" msprop:Generator_RowDeletingName="M商品RowDeleting" msprop:Generator_RowEvArgName="M商品RowChangeEvent" msprop:Generator_TablePropName="M商品" msprop:Generator_RowChangedName="M商品RowChanged" msprop:Generator_UserTableName="M商品" msprop:Generator_RowChangingName="M商品RowChanging" msprop:Generator_RowClassName="M商品Row" msprop:Generator_TableClassName="M商品DataTable" msprop:Generator_TableVarName="tableM商品">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="商品コード" msprop:Generator_ColumnPropNameInTable="商品コードColumn" msprop:Generator_ColumnPropNameInRow="商品コード" msprop:Generator_UserColumnName="商品コード" msprop:Generator_ColumnVarNameInTable="column商品コード">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="8" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Revision" msprop:Generator_ColumnPropNameInTable="RevisionColumn" msprop:Generator_ColumnPropNameInRow="Revision" msprop:Generator_UserColumnName="Revision" msprop:Generator_ColumnVarNameInTable="columnRevision" type="xs:int" />
+              <xs:element name="ActiveDate" msprop:Generator_ColumnPropNameInTable="ActiveDateColumn" msprop:Generator_ColumnPropNameInRow="ActiveDate" msprop:Generator_UserColumnName="ActiveDate" msprop:Generator_ColumnVarNameInTable="columnActiveDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="商品名" msprop:Generator_ColumnPropNameInTable="商品名Column" msprop:Generator_ColumnPropNameInRow="商品名" msprop:Generator_UserColumnName="商品名" msprop:Generator_ColumnVarNameInTable="column商品名" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="40" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="シリーズコード" msprop:Generator_ColumnPropNameInTable="シリーズコードColumn" msprop:Generator_ColumnPropNameInRow="シリーズコード" msprop:Generator_UserColumnName="シリーズコード" msprop:Generator_ColumnVarNameInTable="columnシリーズコード" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="8" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="シリーズ名" msprop:Generator_ColumnPropNameInTable="シリーズ名Column" msprop:Generator_ColumnPropNameInRow="シリーズ名" msprop:Generator_UserColumnName="シリーズ名" msprop:Generator_ColumnVarNameInTable="columnシリーズ名" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="24" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="品名" msprop:Generator_ColumnPropNameInTable="品名Column" msprop:Generator_ColumnPropNameInRow="品名" msprop:Generator_UserColumnName="品名" msprop:Generator_ColumnVarNameInTable="column品名" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="46" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="掛率有効" msprop:Generator_ColumnPropNameInTable="掛率有効Column" msprop:Generator_ColumnPropNameInRow="掛率有効" msprop:Generator_UserColumnName="掛率有効" msprop:Generator_ColumnVarNameInTable="column掛率有効" type="xs:short" minOccurs="0" />
+              <xs:element name="商品分類コード" msprop:Generator_ColumnPropNameInTable="商品分類コードColumn" msprop:Generator_ColumnPropNameInRow="商品分類コード" msprop:Generator_UserColumnName="商品分類コード" msprop:Generator_ColumnVarNameInTable="column商品分類コード" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ItemCategoryName" msprop:Generator_ColumnPropNameInTable="ItemCategoryNameColumn" msprop:Generator_ColumnPropNameInRow="ItemCategoryName" msprop:Generator_UserColumnName="ItemCategoryName" msprop:Generator_ColumnVarNameInTable="columnItemCategoryName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="売上区分コード" msprop:Generator_ColumnPropNameInTable="売上区分コードColumn" msprop:Generator_ColumnPropNameInRow="売上区分コード" msprop:Generator_UserColumnName="売上区分コード" msprop:Generator_ColumnVarNameInTable="column売上区分コード" type="xs:unsignedByte" minOccurs="0" />
+              <xs:element name="SalesCategoryName" msprop:Generator_ColumnPropNameInTable="SalesCategoryNameColumn" msprop:Generator_ColumnPropNameInRow="SalesCategoryName" msprop:Generator_UserColumnName="SalesCategoryName" msprop:Generator_ColumnVarNameInTable="columnSalesCategoryName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PurchaseCategoryCode" msprop:Generator_ColumnPropNameInTable="PurchaseCategoryCodeColumn" msprop:Generator_ColumnPropNameInRow="PurchaseCategoryCode" msprop:Generator_UserColumnName="PurchaseCategoryCode" msprop:Generator_ColumnVarNameInTable="columnPurchaseCategoryCode" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PurchaseCategoryName" msprop:Generator_ColumnPropNameInTable="PurchaseCategoryNameColumn" msprop:Generator_ColumnPropNameInRow="PurchaseCategoryName" msprop:Generator_UserColumnName="PurchaseCategoryName" msprop:Generator_ColumnVarNameInTable="columnPurchaseCategoryName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="FlowCategoryCode" msprop:Generator_ColumnPropNameInTable="FlowCategoryCodeColumn" msprop:Generator_ColumnPropNameInRow="FlowCategoryCode" msprop:Generator_UserColumnName="FlowCategoryCode" msprop:Generator_ColumnVarNameInTable="columnFlowCategoryCode" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="3" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="FlowCategoryName" msprop:Generator_ColumnPropNameInTable="FlowCategoryNameColumn" msprop:Generator_ColumnPropNameInRow="FlowCategoryName" msprop:Generator_UserColumnName="FlowCategoryName" msprop:Generator_ColumnVarNameInTable="columnFlowCategoryName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ClientName" msprop:Generator_ColumnPropNameInTable="ClientNameColumn" msprop:Generator_ColumnPropNameInRow="ClientName" msprop:Generator_UserColumnName="ClientName" msprop:Generator_ColumnVarNameInTable="columnClientName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="IsUnit" msprop:Generator_ColumnPropNameInTable="IsUnitColumn" msprop:Generator_ColumnPropNameInRow="IsUnit" msprop:Generator_UserColumnName="IsUnit" msprop:Generator_ColumnVarNameInTable="columnIsUnit" type="xs:int" minOccurs="0" />
+              <xs:element name="在庫管理" msprop:Generator_ColumnPropNameInTable="在庫管理Column" msprop:Generator_ColumnPropNameInRow="在庫管理" msprop:Generator_UserColumnName="在庫管理" msprop:Generator_ColumnVarNameInTable="column在庫管理" type="xs:short" minOccurs="0" />
+              <xs:element name="在庫下限数量" msprop:Generator_ColumnPropNameInTable="在庫下限数量Column" msprop:Generator_ColumnPropNameInRow="在庫下限数量" msprop:Generator_UserColumnName="在庫下限数量" msprop:Generator_ColumnVarNameInTable="column在庫下限数量" type="xs:int" minOccurs="0" />
+              <xs:element name="ラインコード" msprop:Generator_ColumnPropNameInTable="ラインコードColumn" msprop:Generator_ColumnPropNameInRow="ラインコード" msprop:Generator_UserColumnName="ラインコード" msprop:Generator_ColumnVarNameInTable="columnラインコード" type="xs:unsignedByte" minOccurs="0" />
+              <xs:element name="数量単位コード" msprop:Generator_ColumnPropNameInTable="数量単位コードColumn" msprop:Generator_ColumnPropNameInRow="数量単位コード" msprop:Generator_UserColumnName="数量単位コード" msprop:Generator_ColumnVarNameInTable="column数量単位コード" type="xs:unsignedByte" minOccurs="0" />
+              <xs:element name="CustomerSerialNumberRequired" msprop:Generator_ColumnPropNameInTable="CustomerSerialNumberRequiredColumn" msprop:Generator_ColumnPropNameInRow="CustomerSerialNumberRequired" msprop:Generator_UserColumnName="CustomerSerialNumberRequired" msprop:Generator_ColumnVarNameInTable="columnCustomerSerialNumberRequired" type="xs:short" minOccurs="0" />
+              <xs:element name="InstructionUsageGroupCode" msprop:Generator_ColumnPropNameInTable="InstructionUsageGroupCodeColumn" msprop:Generator_ColumnPropNameInRow="InstructionUsageGroupCode" msprop:Generator_UserColumnName="InstructionUsageGroupCode" msprop:Generator_ColumnVarNameInTable="columnInstructionUsageGroupCode" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="在庫数量" msprop:Generator_ColumnPropNameInTable="在庫数量Column" msprop:Generator_ColumnPropNameInRow="在庫数量" msprop:Generator_UserColumnName="在庫数量" msprop:Generator_ColumnVarNameInTable="column在庫数量" type="xs:int" minOccurs="0" />
+              <xs:element name="Discontinued" msprop:Generator_ColumnPropNameInTable="DiscontinuedColumn" msprop:Generator_ColumnPropNameInRow="Discontinued" msprop:Generator_UserColumnName="Discontinued" msprop:Generator_ColumnVarNameInTable="columnDiscontinued" type="xs:int" minOccurs="0" />
+              <xs:element name="ChangeSummary" msprop:Generator_ColumnPropNameInTable="ChangeSummaryColumn" msprop:Generator_ColumnPropNameInRow="ChangeSummary" msprop:Generator_UserColumnName="ChangeSummary" msprop:Generator_ColumnVarNameInTable="columnChangeSummary" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="備考" msprop:Generator_ColumnPropNameInTable="備考Column" msprop:Generator_ColumnPropNameInRow="備考" msprop:Generator_UserColumnName="備考" msprop:Generator_ColumnVarNameInTable="column備考" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="作成日時" msprop:Generator_ColumnPropNameInTable="作成日時Column" msprop:Generator_ColumnPropNameInRow="作成日時" msprop:Generator_UserColumnName="作成日時" msprop:Generator_ColumnVarNameInTable="column作成日時" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="作成者コード" msprop:Generator_ColumnPropNameInTable="作成者コードColumn" msprop:Generator_ColumnPropNameInRow="作成者コード" msprop:Generator_UserColumnName="作成者コード" msprop:Generator_ColumnVarNameInTable="column作成者コード" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="3" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CreateUserFullName" msprop:Generator_ColumnPropNameInTable="CreateUserFullNameColumn" msprop:Generator_ColumnPropNameInRow="CreateUserFullName" msprop:Generator_UserColumnName="CreateUserFullName" msprop:Generator_ColumnVarNameInTable="columnCreateUserFullName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="更新日時" msprop:Generator_ColumnPropNameInTable="更新日時Column" msprop:Generator_ColumnPropNameInRow="更新日時" msprop:Generator_UserColumnName="更新日時" msprop:Generator_ColumnVarNameInTable="column更新日時" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="更新者コード" msprop:Generator_ColumnPropNameInTable="更新者コードColumn" msprop:Generator_ColumnPropNameInRow="更新者コード" msprop:Generator_UserColumnName="更新者コード" msprop:Generator_ColumnVarNameInTable="column更新者コード" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="3" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="UpdateUserFullName" msprop:Generator_ColumnPropNameInTable="UpdateUserFullNameColumn" msprop:Generator_ColumnPropNameInRow="UpdateUserFullName" msprop:Generator_UserColumnName="UpdateUserFullName" msprop:Generator_ColumnVarNameInTable="columnUpdateUserFullName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="無効日時" msprop:Generator_ColumnPropNameInTable="無効日時Column" msprop:Generator_ColumnPropNameInRow="無効日時" msprop:Generator_UserColumnName="無効日時" msprop:Generator_ColumnVarNameInTable="column無効日時" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="無効者コード" msprop:Generator_ColumnPropNameInTable="無効者コードColumn" msprop:Generator_ColumnPropNameInRow="無効者コード" msprop:Generator_UserColumnName="無効者コード" msprop:Generator_ColumnVarNameInTable="column無効者コード" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="3" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DeleteUserFullName" msprop:Generator_ColumnPropNameInTable="DeleteUserFullNameColumn" msprop:Generator_ColumnPropNameInRow="DeleteUserFullName" msprop:Generator_UserColumnName="DeleteUserFullName" msprop:Generator_ColumnVarNameInTable="columnDeleteUserFullName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="M商品明細" msprop:Generator_RowEvHandlerName="M商品明細RowChangeEventHandler" msprop:Generator_RowDeletedName="M商品明細RowDeleted" msprop:Generator_RowDeletingName="M商品明細RowDeleting" msprop:Generator_RowEvArgName="M商品明細RowChangeEvent" msprop:Generator_TablePropName="M商品明細" msprop:Generator_RowChangedName="M商品明細RowChanged" msprop:Generator_UserTableName="M商品明細" msprop:Generator_RowChangingName="M商品明細RowChanging" msprop:Generator_RowClassName="M商品明細Row" msprop:Generator_TableClassName="M商品明細DataTable" msprop:Generator_TableVarName="tableM商品明細">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="商品コード" msprop:Generator_ColumnPropNameInTable="商品コードColumn" msprop:Generator_ColumnPropNameInRow="商品コード" msprop:Generator_UserColumnName="商品コード" msprop:Generator_ColumnVarNameInTable="column商品コード">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="8" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Revision" msprop:Generator_ColumnPropNameInTable="RevisionColumn" msprop:Generator_ColumnPropNameInRow="Revision" msprop:Generator_UserColumnName="Revision" msprop:Generator_ColumnVarNameInTable="columnRevision" type="xs:int" />
+              <xs:element name="明細番号" msprop:Generator_ColumnPropNameInTable="明細番号Column" msprop:Generator_ColumnPropNameInRow="明細番号" msprop:Generator_UserColumnName="明細番号" msprop:Generator_ColumnVarNameInTable="column明細番号" type="xs:short" />
+              <xs:element name="型式番号" msprop:Generator_ColumnPropNameInTable="型式番号Column" msprop:Generator_ColumnPropNameInRow="型式番号" msprop:Generator_UserColumnName="型式番号" msprop:Generator_ColumnVarNameInTable="column型式番号" type="xs:int" minOccurs="0" />
+              <xs:element name="型式名" msprop:Generator_ColumnPropNameInTable="型式名Column" msprop:Generator_ColumnPropNameInRow="型式名" msprop:Generator_UserColumnName="型式名" msprop:Generator_ColumnVarNameInTable="column型式名" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="48" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="定価" msprop:Generator_ColumnPropNameInTable="定価Column" msprop:Generator_ColumnPropNameInRow="定価" msprop:Generator_UserColumnName="定価" msprop:Generator_ColumnVarNameInTable="column定価" type="xs:decimal" minOccurs="0" />
+              <xs:element name="原価" msprop:Generator_ColumnPropNameInTable="原価Column" msprop:Generator_ColumnPropNameInRow="原価" msprop:Generator_UserColumnName="原価" msprop:Generator_ColumnVarNameInTable="column原価" type="xs:decimal" minOccurs="0" />
+              <xs:element name="機能" msprop:Generator_ColumnPropNameInTable="機能Column" msprop:Generator_ColumnPropNameInRow="機能" msprop:Generator_UserColumnName="機能" msprop:Generator_ColumnVarNameInTable="column機能" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="構成番号" msprop:Generator_ColumnPropNameInTable="構成番号Column" msprop:Generator_ColumnPropNameInRow="構成番号" msprop:Generator_UserColumnName="構成番号" msprop:Generator_ColumnVarNameInTable="column構成番号" type="xs:short" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="ManufactureFlow" msprop:Generator_RowEvHandlerName="ManufactureFlowRowChangeEventHandler" msprop:Generator_RowDeletedName="ManufactureFlowRowDeleted" msprop:Generator_RowDeletingName="ManufactureFlowRowDeleting" msprop:Generator_RowEvArgName="ManufactureFlowRowChangeEvent" msprop:Generator_TablePropName="ManufactureFlow" msprop:Generator_RowChangedName="ManufactureFlowRowChanged" msprop:Generator_UserTableName="ManufactureFlow" msprop:Generator_RowChangingName="ManufactureFlowRowChanging" msprop:Generator_RowClassName="ManufactureFlowRow" msprop:Generator_TableClassName="ManufactureFlowDataTable" msprop:Generator_TableVarName="tableManufactureFlow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Code" msprop:Generator_ColumnPropNameInTable="CodeColumn" msprop:Generator_ColumnPropNameInRow="Code" msprop:Generator_UserColumnName="Code" msprop:Generator_ColumnVarNameInTable="columnCode">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="3" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Name" msprop:Generator_ColumnPropNameInTable="NameColumn" msprop:Generator_ColumnPropNameInRow="Name" msprop:Generator_UserColumnName="Name" msprop:Generator_ColumnVarNameInTable="columnName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="M単位" msprop:Generator_RowEvHandlerName="M単位RowChangeEventHandler" msprop:Generator_RowDeletedName="M単位RowDeleted" msprop:Generator_RowDeletingName="M単位RowDeleting" msprop:Generator_RowEvArgName="M単位RowChangeEvent" msprop:Generator_TablePropName="M単位" msprop:Generator_RowChangedName="M単位RowChanged" msprop:Generator_UserTableName="M単位" msprop:Generator_RowChangingName="M単位RowChanging" msprop:Generator_RowClassName="M単位Row" msprop:Generator_TableClassName="M単位DataTable" msprop:Generator_TableVarName="tableM単位">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="単位コード" msdata:ReadOnly="true" msprop:Generator_ColumnPropNameInTable="単位コードColumn" msprop:Generator_ColumnPropNameInRow="単位コード" msprop:Generator_UserColumnName="単位コード" msprop:Generator_ColumnVarNameInTable="column単位コード" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="4" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="単位名" msprop:Generator_ColumnPropNameInTable="単位名Column" msprop:Generator_ColumnPropNameInRow="単位名" msprop:Generator_UserColumnName="単位名" msprop:Generator_ColumnVarNameInTable="column単位名" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="6" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="M売上区分" msprop:Generator_RowEvHandlerName="M売上区分RowChangeEventHandler" msprop:Generator_RowDeletedName="M売上区分RowDeleted" msprop:Generator_RowDeletingName="M売上区分RowDeleting" msprop:Generator_RowEvArgName="M売上区分RowChangeEvent" msprop:Generator_TablePropName="M売上区分" msprop:Generator_RowChangedName="M売上区分RowChanged" msprop:Generator_UserTableName="M売上区分" msprop:Generator_RowChangingName="M売上区分RowChanging" msprop:Generator_RowClassName="M売上区分Row" msprop:Generator_TableClassName="M売上区分DataTable" msprop:Generator_TableVarName="tableM売上区分">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="売上区分コード" msprop:Generator_ColumnPropNameInTable="売上区分コードColumn" msprop:Generator_ColumnPropNameInRow="売上区分コード" msprop:Generator_UserColumnName="売上区分コード" msprop:Generator_ColumnVarNameInTable="column売上区分コード" type="xs:unsignedByte" />
+              <xs:element name="売上区分名" msprop:Generator_ColumnPropNameInTable="売上区分名Column" msprop:Generator_ColumnPropNameInRow="売上区分名" msprop:Generator_UserColumnName="売上区分名" msprop:Generator_ColumnVarNameInTable="column売上区分名" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="M商品分類" msprop:Generator_RowEvHandlerName="M商品分類RowChangeEventHandler" msprop:Generator_RowDeletedName="M商品分類RowDeleted" msprop:Generator_RowDeletingName="M商品分類RowDeleting" msprop:Generator_RowEvArgName="M商品分類RowChangeEvent" msprop:Generator_TablePropName="M商品分類" msprop:Generator_RowChangedName="M商品分類RowChanged" msprop:Generator_UserTableName="M商品分類" msprop:Generator_RowChangingName="M商品分類RowChanging" msprop:Generator_RowClassName="M商品分類Row" msprop:Generator_TableClassName="M商品分類DataTable" msprop:Generator_TableVarName="tableM商品分類">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="商品分類コード" msprop:Generator_ColumnPropNameInTable="商品分類コードColumn" msprop:Generator_ColumnPropNameInRow="商品分類コード" msprop:Generator_UserColumnName="商品分類コード" msprop:Generator_ColumnVarNameInTable="column商品分類コード">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="分類名" msprop:Generator_ColumnPropNameInTable="分類名Column" msprop:Generator_ColumnPropNameInRow="分類名" msprop:Generator_UserColumnName="分類名" msprop:Generator_ColumnVarNameInTable="column分類名" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="分類内容" msprop:Generator_ColumnPropNameInTable="分類内容Column" msprop:Generator_ColumnPropNameInRow="分類内容" msprop:Generator_UserColumnName="分類内容" msprop:Generator_ColumnVarNameInTable="column分類内容" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="CombBox商品コード" msprop:Generator_RowEvHandlerName="CombBox商品コードRowChangeEventHandler" msprop:Generator_RowDeletedName="CombBox商品コードRowDeleted" msprop:Generator_RowDeletingName="CombBox商品コードRowDeleting" msprop:Generator_RowEvArgName="CombBox商品コードRowChangeEvent" msprop:Generator_TablePropName="CombBox商品コード" msprop:Generator_RowChangedName="CombBox商品コードRowChanged" msprop:Generator_UserTableName="CombBox商品コード" msprop:Generator_RowChangingName="CombBox商品コードRowChanging" msprop:Generator_RowClassName="CombBox商品コードRow" msprop:Generator_TableClassName="CombBox商品コードDataTable" msprop:Generator_TableVarName="tableCombBox商品コード">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="商品コード" msprop:Generator_ColumnPropNameInTable="商品コードColumn" msprop:Generator_ColumnPropNameInRow="商品コード" msprop:Generator_UserColumnName="商品コード" msprop:Generator_ColumnVarNameInTable="column商品コード">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="8" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Mシリーズ" msprop:Generator_RowEvHandlerName="MシリーズRowChangeEventHandler" msprop:Generator_RowDeletedName="MシリーズRowDeleted" msprop:Generator_RowDeletingName="MシリーズRowDeleting" msprop:Generator_RowEvArgName="MシリーズRowChangeEvent" msprop:Generator_TablePropName="Mシリーズ" msprop:Generator_RowChangedName="MシリーズRowChanged" msprop:Generator_UserTableName="Mシリーズ" msprop:Generator_RowChangingName="MシリーズRowChanging" msprop:Generator_RowClassName="MシリーズRow" msprop:Generator_TableClassName="MシリーズDataTable" msprop:Generator_TableVarName="tableMシリーズ">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="シリーズコード" msprop:Generator_ColumnPropNameInTable="シリーズコードColumn" msprop:Generator_ColumnPropNameInRow="シリーズコード" msprop:Generator_UserColumnName="シリーズコード" msprop:Generator_ColumnVarNameInTable="columnシリーズコード">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="8" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="シリーズ名" msprop:Generator_ColumnPropNameInTable="シリーズ名Column" msprop:Generator_ColumnPropNameInRow="シリーズ名" msprop:Generator_UserColumnName="シリーズ名" msprop:Generator_ColumnVarNameInTable="columnシリーズ名" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="V商品ヘッダ" msprop:Generator_RowClassName="V商品ヘッダRow" msprop:Generator_RowEvHandlerName="V商品ヘッダRowChangeEventHandler" msprop:Generator_RowDeletedName="V商品ヘッダRowDeleted" msprop:Generator_RowDeletingName="V商品ヘッダRowDeleting" msprop:Generator_RowEvArgName="V商品ヘッダRowChangeEvent" msprop:Generator_TablePropName="V商品ヘッダ" msprop:Generator_RowChangedName="V商品ヘッダRowChanged" msprop:Generator_UserTableName="V商品ヘッダ" msprop:Generator_RowChangingName="V商品ヘッダRowChanging" msprop:Generator_TableClassName="V商品ヘッダDataTable" msprop:Generator_TableVarName="tableV商品ヘッダ">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="商品コード" msprop:Generator_UserColumnName="商品コード" msprop:Generator_ColumnPropNameInTable="商品コードColumn" msprop:Generator_ColumnPropNameInRow="商品コード" msprop:Generator_ColumnVarNameInTable="column商品コード">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="8" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="商品名" msprop:Generator_UserColumnName="商品名" msprop:Generator_ColumnPropNameInTable="商品名Column" msprop:Generator_ColumnPropNameInRow="商品名" msprop:Generator_ColumnVarNameInTable="column商品名" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="40" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="シリーズコード" msprop:Generator_UserColumnName="シリーズコード" msprop:Generator_ColumnPropNameInTable="シリーズコードColumn" msprop:Generator_ColumnPropNameInRow="シリーズコード" msprop:Generator_ColumnVarNameInTable="columnシリーズコード" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="8" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="シリーズ名" msprop:Generator_UserColumnName="シリーズ名" msprop:Generator_ColumnPropNameInTable="シリーズ名Column" msprop:Generator_ColumnPropNameInRow="シリーズ名" msprop:Generator_ColumnVarNameInTable="columnシリーズ名" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="品名" msprop:Generator_UserColumnName="品名" msprop:Generator_ColumnPropNameInTable="品名Column" msprop:Generator_ColumnPropNameInRow="品名" msprop:Generator_ColumnVarNameInTable="column品名" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="46" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="商品分類コード" msprop:Generator_UserColumnName="商品分類コード" msprop:Generator_ColumnPropNameInTable="商品分類コードColumn" msprop:Generator_ColumnPropNameInRow="商品分類コード" msprop:Generator_ColumnVarNameInTable="column商品分類コード" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="分類内容" msprop:Generator_UserColumnName="分類内容" msprop:Generator_ColumnPropNameInTable="分類内容Column" msprop:Generator_ColumnPropNameInRow="分類内容" msprop:Generator_ColumnVarNameInTable="column分類内容" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="分類名" msprop:Generator_UserColumnName="分類名" msprop:Generator_ColumnPropNameInTable="分類名Column" msprop:Generator_ColumnPropNameInRow="分類名" msprop:Generator_ColumnVarNameInTable="column分類名" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="掛率有効" msprop:Generator_UserColumnName="掛率有効" msprop:Generator_ColumnPropNameInTable="掛率有効Column" msprop:Generator_ColumnPropNameInRow="掛率有効" msprop:Generator_ColumnVarNameInTable="column掛率有効" type="xs:short" minOccurs="0" />
+              <xs:element name="売上区分コード" msprop:Generator_UserColumnName="売上区分コード" msprop:Generator_ColumnPropNameInTable="売上区分コードColumn" msprop:Generator_ColumnPropNameInRow="売上区分コード" msprop:Generator_ColumnVarNameInTable="column売上区分コード" type="xs:unsignedByte" minOccurs="0" />
+              <xs:element name="在庫下限数量" msprop:Generator_UserColumnName="在庫下限数量" msprop:Generator_ColumnPropNameInTable="在庫下限数量Column" msprop:Generator_ColumnPropNameInRow="在庫下限数量" msprop:Generator_ColumnVarNameInTable="column在庫下限数量" type="xs:int" minOccurs="0" />
+              <xs:element name="FlowCategoryCode" msprop:Generator_UserColumnName="FlowCategoryCode" msprop:Generator_ColumnPropNameInTable="FlowCategoryCodeColumn" msprop:Generator_ColumnPropNameInRow="FlowCategoryCode" msprop:Generator_ColumnVarNameInTable="columnFlowCategoryCode" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="3" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="処理区分コード" msprop:Generator_UserColumnName="処理区分コード" msprop:Generator_ColumnPropNameInTable="処理区分コードColumn" msprop:Generator_ColumnPropNameInRow="処理区分コード" msprop:Generator_ColumnVarNameInTable="column処理区分コード" type="xs:unsignedByte" minOccurs="0" />
+              <xs:element name="FlowCategoryName" msprop:Generator_UserColumnName="FlowCategoryName" msprop:Generator_ColumnPropNameInTable="FlowCategoryNameColumn" msprop:Generator_ColumnPropNameInRow="FlowCategoryName" msprop:Generator_ColumnVarNameInTable="columnFlowCategoryName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="処理区分名" msprop:Generator_UserColumnName="処理区分名" msprop:Generator_ColumnPropNameInTable="処理区分名Column" msprop:Generator_ColumnPropNameInRow="処理区分名" msprop:Generator_ColumnVarNameInTable="column処理区分名" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="数量単位コード" msprop:Generator_UserColumnName="数量単位コード" msprop:Generator_ColumnPropNameInTable="数量単位コードColumn" msprop:Generator_ColumnPropNameInRow="数量単位コード" msprop:Generator_ColumnVarNameInTable="column数量単位コード" type="xs:unsignedByte" minOccurs="0" />
+              <xs:element name="数量単位名" msprop:Generator_UserColumnName="数量単位名" msprop:Generator_ColumnPropNameInTable="数量単位名Column" msprop:Generator_ColumnPropNameInRow="数量単位名" msprop:Generator_ColumnVarNameInTable="column数量単位名" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="6" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CustomerSerialNumberRequired" msprop:Generator_UserColumnName="CustomerSerialNumberRequired" msprop:Generator_ColumnPropNameInTable="CustomerSerialNumberRequiredColumn" msprop:Generator_ColumnPropNameInRow="CustomerSerialNumberRequired" msprop:Generator_ColumnVarNameInTable="columnCustomerSerialNumberRequired" type="xs:short" minOccurs="0" />
+              <xs:element name="ClientName" msprop:Generator_UserColumnName="ClientName" msprop:Generator_ColumnPropNameInTable="ClientNameColumn" msprop:Generator_ColumnPropNameInRow="ClientName" msprop:Generator_ColumnVarNameInTable="columnClientName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Discontinued" msprop:Generator_UserColumnName="Discontinued" msprop:Generator_ColumnPropNameInTable="DiscontinuedColumn" msprop:Generator_ColumnPropNameInRow="Discontinued" msprop:Generator_ColumnVarNameInTable="columnDiscontinued" type="xs:int" minOccurs="0" />
+              <xs:element name="IsUnit" msprop:Generator_UserColumnName="IsUnit" msprop:Generator_ColumnPropNameInTable="IsUnitColumn" msprop:Generator_ColumnPropNameInRow="IsUnit" msprop:Generator_ColumnVarNameInTable="columnIsUnit" type="xs:int" minOccurs="0" />
+              <xs:element name="備考" msprop:Generator_UserColumnName="備考" msprop:Generator_ColumnPropNameInTable="備考Column" msprop:Generator_ColumnPropNameInRow="備考" msprop:Generator_ColumnVarNameInTable="column備考" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="作成日時" msprop:Generator_UserColumnName="作成日時" msprop:Generator_ColumnPropNameInTable="作成日時Column" msprop:Generator_ColumnPropNameInRow="作成日時" msprop:Generator_ColumnVarNameInTable="column作成日時" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="作成者コード" msprop:Generator_UserColumnName="作成者コード" msprop:Generator_ColumnPropNameInTable="作成者コードColumn" msprop:Generator_ColumnPropNameInRow="作成者コード" msprop:Generator_ColumnVarNameInTable="column作成者コード" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="3" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="作成者名" msprop:Generator_UserColumnName="作成者名" msprop:Generator_ColumnPropNameInTable="作成者名Column" msprop:Generator_ColumnPropNameInRow="作成者名" msprop:Generator_ColumnVarNameInTable="column作成者名" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="更新日時" msprop:Generator_UserColumnName="更新日時" msprop:Generator_ColumnPropNameInTable="更新日時Column" msprop:Generator_ColumnPropNameInRow="更新日時" msprop:Generator_ColumnVarNameInTable="column更新日時" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="更新者コード" msprop:Generator_UserColumnName="更新者コード" msprop:Generator_ColumnPropNameInTable="更新者コードColumn" msprop:Generator_ColumnPropNameInRow="更新者コード" msprop:Generator_ColumnVarNameInTable="column更新者コード" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="3" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="更新者名" msprop:Generator_UserColumnName="更新者名" msprop:Generator_ColumnPropNameInTable="更新者名Column" msprop:Generator_ColumnPropNameInRow="更新者名" msprop:Generator_ColumnVarNameInTable="column更新者名" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="削除" msdata:ReadOnly="true" msprop:Generator_UserColumnName="削除" msprop:Generator_ColumnPropNameInTable="削除Column" msprop:Generator_ColumnPropNameInRow="削除" msprop:Generator_ColumnVarNameInTable="column削除" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="8000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ComposedChipMount" msdata:ReadOnly="true" msprop:Generator_UserColumnName="ComposedChipMount" msprop:Generator_ColumnPropNameInTable="ComposedChipMountColumn" msprop:Generator_ColumnPropNameInRow="ComposedChipMount" msprop:Generator_ColumnVarNameInTable="columnComposedChipMount" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:M商品" />
+      <xs:field xpath="mstns:商品コード" />
+      <xs:field xpath="mstns:Revision" />
+    </xs:unique>
+    <xs:unique name="M商品明細_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:M商品明細" />
+      <xs:field xpath="mstns:商品コード" />
+      <xs:field xpath="mstns:Revision" />
+      <xs:field xpath="mstns:明細番号" />
+    </xs:unique>
+    <xs:unique name="ManufactureFlow_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:ManufactureFlow" />
+      <xs:field xpath="mstns:Code" />
+    </xs:unique>
+    <xs:unique name="M売上区分_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:M売上区分" />
+      <xs:field xpath="mstns:売上区分コード" />
+    </xs:unique>
+    <xs:unique name="M商品分類_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:M商品分類" />
+      <xs:field xpath="mstns:商品分類コード" />
+    </xs:unique>
+    <xs:unique name="Mシリーズ_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Mシリーズ" />
+      <xs:field xpath="mstns:シリーズコード" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>
