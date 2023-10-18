@@ -150,6 +150,7 @@ namespace u_net
             comboBoxManufactureFlowTableAdapter = new uiDataSetTableAdapters.ComboBoxManufactureFlowTableAdapter();
             m商品分類TableAdapter = new uiDataSetTableAdapters.M商品分類TableAdapter();
             comboBox売上区分TableAdapter = new uiDataSetTableAdapters.ComboBox売上区分TableAdapter();
+            tableAdapterManager = new uiDataSetTableAdapters.TableAdapterManager();
             ((System.ComponentModel.ISupportInitialize)M商品BindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)uiDataSet).BeginInit();
             ((System.ComponentModel.ISupportInitialize)comboBox売上区分bindingSource).BeginInit();
@@ -621,6 +622,7 @@ namespace u_net
             // 売上区分コード
             // 
             売上区分コード.DataSource = comboBox売上区分bindingSource;
+            売上区分コード.DisplayMember = "売上区分名";
             売上区分コード.FormattingEnabled = true;
             売上区分コード.Location = new Point(144, 261);
             売上区分コード.Margin = new Padding(4, 3, 4, 3);
@@ -1274,6 +1276,20 @@ namespace u_net
             // 
             comboBox売上区分TableAdapter.ClearBeforeFill = true;
             // 
+            // tableAdapterManager1
+            // 
+            tableAdapterManager.BackupDataSetBeforeUpdate = false;
+            tableAdapterManager.combBoxMシリーズTableAdapter = null;
+            tableAdapterManager.CombBox商品コードTableAdapter = null;
+            tableAdapterManager.ComboBoxManufactureFlowTableAdapter = null;
+            tableAdapterManager.ComboBox売上区分TableAdapter = null;
+            tableAdapterManager.Connection = null;
+            tableAdapterManager.M単位TableAdapter = null;
+            tableAdapterManager.M商品TableAdapter = null;
+            tableAdapterManager.M商品分類TableAdapter = null;
+            tableAdapterManager.M商品明細TableAdapter = null;
+            tableAdapterManager.UpdateOrder = uiDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            // 
             // F_商品
             // 
             AutoScaleDimensions = new SizeF(8F, 12F);
@@ -1406,9 +1422,7 @@ namespace u_net
         private System.Windows.Forms.Button コマンド削除;
         private System.Windows.Forms.Button コマンド複写;
         private System.Windows.Forms.Button コマンド修正;
-        private System.Windows.Forms.BindingSource M商品BindingSource;
-
-        private uiDataSetTableAdapters.TableAdapterManager tableAdapterManager;
+        private System.Windows.Forms.BindingSource M商品BindingSource;        
         private System.Windows.Forms.BindingSource M商品明細BindingSource;
 
         private System.Windows.Forms.DataGridView dataGridView1;
@@ -1498,6 +1512,7 @@ namespace u_net
         private DataGridViewTextBoxColumn 機能DataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn 構成番号DataGridViewTextBoxColumn;
         private uiDataSetTableAdapters.combBoxMシリーズTableAdapter combBoxMシリーズTableAdapter;
+        private uiDataSetTableAdapters.TableAdapterManager tableAdapterManager;
     }
 }
 

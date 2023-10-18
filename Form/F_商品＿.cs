@@ -14,12 +14,12 @@ using u_net.Public;
 
 namespace u_net
 {
-    public partial class F_商品 : Form
+    public partial class F_商品＿ : Form
     {
         private Control previousControl;
         private SqlConnection cn;
         private SqlTransaction tx;
-        public F_商品()
+        public F_商品＿()
         {
             this.Text = "商品";       // ウィンドウタイトルを設定
             this.MaximizeBox = false;  // 最大化ボタンを無効化
@@ -53,11 +53,11 @@ namespace u_net
 
 
             this.combBox商品コードTableAdapter.Fill(this.uiDataSet.CombBox商品コード);
-            this.combBoxMシリーズTableAdapter.Fill(this.uiDataSet.Mシリーズ);
-            this.m商品分類TableAdapter.Fill(this.uiDataSet.M商品分類);
-            this.comboBox売上区分TableAdapter.Fill(this.uiDataSet.M売上区分);
-            this.m単位TableAdapter.Fill(this.uiDataSet.M単位);
-            this.comboBoxManufactureFlowTableAdapter.Fill(this.uiDataSet.ManufactureFlow);
+            //this.combBoxMシリーズTableAdapter.Fill(this.uiDataSet.Mシリーズ);
+            //this.m商品分類TableAdapter.Fill(this.uiDataSet.M商品分類);
+            //this.comboBox売上区分TableAdapter.Fill(this.uiDataSet.M売上区分);
+            //this.m単位TableAdapter.Fill(this.uiDataSet.M単位);
+            //this.comboBoxManufactureFlowTableAdapter.Fill(this.uiDataSet.ManufactureFlow);
 
             previousControl = null;
             try
@@ -610,13 +610,13 @@ namespace u_net
                 }
                 // コントロールのフィールドを初期化
                 商品コード.Text = codeString;
-                作成日時.Text = null;
-                作成者コード.Text = null;
-                作成者名.Text = null;
-                更新日時.Text = null;
-                更新者コード.Text = null;
-                更新者名.Text = null;
-                削除.Text = null;
+                //作成日時.Text = null;
+                //作成者コード.Text = null;
+                //作成者名.Text = null;
+                //更新日時.Text = null;
+                //更新者コード.Text = null;
+                //更新者名.Text = null;
+                //削除.Text = null;
 
                 //明細行のリセット
                 detailNumber = 1;
@@ -693,18 +693,18 @@ namespace u_net
                 {
                     if (!row.IsNewRow)
                     {
-                        string 型式名 = row.Cells["型式名DataGridViewTextBoxColumn"].Value as string;
+                        string 型式名 = row.Cells["型式名"].Value as string;
 
                         if (!string.IsNullOrEmpty(型式名) && 型式名 != "---")
                         {
                             // データグリッドビューから値を取得してデータテーブル内の値を変更
-                            dataGridView1.Rows[row.Index].Cells["型式番号DataGridViewTextBoxColumn"].Value = lngi;
-                            dataGridView1.Rows[row.Index].Cells["構成番号DataGridViewTextBoxColumn"].Value = DBNull.Value;
+                            dataGridView1.Rows[row.Index].Cells["型式番号"].Value = lngi;
+                            dataGridView1.Rows[row.Index].Cells["構成番号"].Value = DBNull.Value;
                             lngi++;
                         }
                         else
                         {
-                            dataGridView1.Rows[row.Index].Cells["構成番号DataGridViewTextBoxColumn"].Value = lngi;
+                            dataGridView1.Rows[row.Index].Cells["構成番号"].Value = lngi;
                         }
                     }
                 }
@@ -842,14 +842,12 @@ namespace u_net
             MessageBox.Show(商品分類コード.Text);
             MessageBox.Show(数量単位コード.Text);
             MessageBox.Show(商品コード.Text);
-            MessageBox.Show(商品コード.SelectedValue.ToString());
+            //MessageBox.Show(商品コード.SelectedValue.ToString());
         }
 
         private void 商品コード_TextChanged(object sender, EventArgs e)
         {
-
-            //  this.v商品ヘッダTableAdapter.Fill(this.uiDataSet.V商品ヘッダ, this.商品コード.Text);
-
+            this.v商品ヘッダTableAdapter.Fill(this.uiDataSet.V商品ヘッダ, this.商品コード.Text);
         }
 
     }
