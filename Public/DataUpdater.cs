@@ -39,15 +39,34 @@ namespace u_net.Public
                                 switch (control)
                                 {
                                     case TextBox textBox:
-                                        controlValue = textBox.Text;
+                                        if (!string.IsNullOrEmpty(textBox.Text))
+                                        {
+                                            controlValue = textBox.Text;
+                                        }
                                         break;
 
                                     case ComboBox comboBox:
-                                        controlValue = comboBox.SelectedValue;
+                                        //ユニークキーは初期値で表示され、selectedvalueが異なるための処理
+                                        if (control.Name == ukname)
+                                        {
+                                            controlValue = comboBox.Text;
+                                        }
+                                        else
+                                        {
+                                            controlValue = comboBox.SelectedValue;
+                                        }
                                         break;
 
                                     case CheckBox checkBox:
-                                        controlValue = checkBox.Checked;
+                                        //controlValue = checkBox.Checked;
+                                        if (checkBox.Checked)
+                                        {
+                                            controlValue = -1;
+                                        }
+                                        else
+                                        {
+                                            controlValue = 0;
+                                        }
                                         break;
                                 }
 
