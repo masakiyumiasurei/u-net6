@@ -33,6 +33,7 @@ namespace u_net
             this.コマンド登録 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.コマンド新規 = new System.Windows.Forms.Button();
             this.コマンド印刷 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.コマンドメール = new System.Windows.Forms.Button();
@@ -42,7 +43,6 @@ namespace u_net
             this.コマンド削除 = new System.Windows.Forms.Button();
             this.コマンド複写 = new System.Windows.Forms.Button();
             this.コマンド読込 = new System.Windows.Forms.Button();
-            this.コマンド新規 = new System.Windows.Forms.Button();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -102,12 +102,14 @@ namespace u_net
             this.ウェブアドレス_ラベル = new System.Windows.Forms.Label();
             this.担当者メールアドレス_ラベル = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.仕入先3 = new System.Windows.Forms.TextBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.仕入先1_ラベル = new System.Windows.Forms.Label();
             this.仕入先2 = new System.Windows.Forms.TextBox();
+            this.仕入先3 = new System.Windows.Forms.TextBox();
             this.仕入先1 = new System.Windows.Forms.TextBox();
             this.仕入先3_ラベル = new System.Windows.Forms.Label();
             this.仕入先2_ラベル = new System.Windows.Forms.Label();
-            this.仕入先1_ラベル = new System.Windows.Forms.Label();
             this.備考_ラベル = new System.Windows.Forms.Label();
             this.メーカー名フリガナ = new System.Windows.Forms.TextBox();
             this.メーカー省略名 = new System.Windows.Forms.TextBox();
@@ -134,8 +136,6 @@ namespace u_net
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -149,7 +149,8 @@ namespace u_net
             this.コマンド終了.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.コマンド終了.Name = "コマンド終了";
             this.コマンド終了.Size = new System.Drawing.Size(116, 31);
-            this.コマンド終了.TabIndex = 0;
+            this.コマンド終了.TabIndex = 999;
+            this.コマンド終了.TabStop = false;
             this.コマンド終了.Text = "終了";
             this.コマンド終了.UseVisualStyleBackColor = true;
             // 
@@ -162,6 +163,7 @@ namespace u_net
             this.コマンド登録.Name = "コマンド登録";
             this.コマンド登録.Size = new System.Drawing.Size(116, 31);
             this.コマンド登録.TabIndex = 1;
+            this.コマンド登録.TabStop = false;
             this.コマンド登録.Text = "登録";
             this.コマンド登録.UseVisualStyleBackColor = true;
             // 
@@ -185,6 +187,19 @@ namespace u_net
             this.panel1.Size = new System.Drawing.Size(1468, 42);
             this.panel1.TabIndex = 81;
             // 
+            // コマンド新規
+            // 
+            this.コマンド新規.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.コマンド新規.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.コマンド新規.Location = new System.Drawing.Point(3, 5);
+            this.コマンド新規.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.コマンド新規.Name = "コマンド新規";
+            this.コマンド新規.Size = new System.Drawing.Size(116, 31);
+            this.コマンド新規.TabIndex = 2;
+            this.コマンド新規.TabStop = false;
+            this.コマンド新規.Text = "新規";
+            this.コマンド新規.UseVisualStyleBackColor = true;
+            // 
             // コマンド印刷
             // 
             this.コマンド印刷.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -195,6 +210,7 @@ namespace u_net
             this.コマンド印刷.Name = "コマンド印刷";
             this.コマンド印刷.Size = new System.Drawing.Size(116, 31);
             this.コマンド印刷.TabIndex = 11;
+            this.コマンド印刷.TabStop = false;
             this.コマンド印刷.Text = "印刷";
             this.コマンド印刷.UseVisualStyleBackColor = true;
             // 
@@ -208,6 +224,7 @@ namespace u_net
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(116, 31);
             this.button3.TabIndex = 10;
+            this.button3.TabStop = false;
             this.button3.UseVisualStyleBackColor = true;
             // 
             // コマンドメール
@@ -220,6 +237,7 @@ namespace u_net
             this.コマンドメール.Name = "コマンドメール";
             this.コマンドメール.Size = new System.Drawing.Size(116, 31);
             this.コマンドメール.TabIndex = 9;
+            this.コマンドメール.TabStop = false;
             this.コマンドメール.Text = "メール";
             this.コマンドメール.UseVisualStyleBackColor = true;
             // 
@@ -233,6 +251,7 @@ namespace u_net
             this.コマンド仕入先.Name = "コマンド仕入先";
             this.コマンド仕入先.Size = new System.Drawing.Size(116, 31);
             this.コマンド仕入先.TabIndex = 8;
+            this.コマンド仕入先.TabStop = false;
             this.コマンド仕入先.Text = "仕入先";
             this.コマンド仕入先.UseVisualStyleBackColor = true;
             // 
@@ -245,6 +264,7 @@ namespace u_net
             this.コマンド確定.Name = "コマンド確定";
             this.コマンド確定.Size = new System.Drawing.Size(116, 31);
             this.コマンド確定.TabIndex = 7;
+            this.コマンド確定.TabStop = false;
             this.コマンド確定.Text = "確定";
             this.コマンド確定.UseVisualStyleBackColor = true;
             // 
@@ -257,6 +277,7 @@ namespace u_net
             this.コマンド承認.Name = "コマンド承認";
             this.コマンド承認.Size = new System.Drawing.Size(116, 31);
             this.コマンド承認.TabIndex = 6;
+            this.コマンド承認.TabStop = false;
             this.コマンド承認.Text = "承認";
             this.コマンド承認.UseVisualStyleBackColor = true;
             // 
@@ -269,6 +290,7 @@ namespace u_net
             this.コマンド削除.Name = "コマンド削除";
             this.コマンド削除.Size = new System.Drawing.Size(116, 31);
             this.コマンド削除.TabIndex = 5;
+            this.コマンド削除.TabStop = false;
             this.コマンド削除.Text = "削除";
             this.コマンド削除.UseVisualStyleBackColor = true;
             // 
@@ -281,6 +303,7 @@ namespace u_net
             this.コマンド複写.Name = "コマンド複写";
             this.コマンド複写.Size = new System.Drawing.Size(116, 31);
             this.コマンド複写.TabIndex = 4;
+            this.コマンド複写.TabStop = false;
             this.コマンド複写.Text = "複写";
             this.コマンド複写.UseVisualStyleBackColor = true;
             // 
@@ -294,20 +317,9 @@ namespace u_net
             this.コマンド読込.Name = "コマンド読込";
             this.コマンド読込.Size = new System.Drawing.Size(116, 31);
             this.コマンド読込.TabIndex = 3;
+            this.コマンド読込.TabStop = false;
             this.コマンド読込.Text = "読込";
             this.コマンド読込.UseVisualStyleBackColor = true;
-            // 
-            // コマンド新規
-            // 
-            this.コマンド新規.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.コマンド新規.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.コマンド新規.Location = new System.Drawing.Point(3, 5);
-            this.コマンド新規.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.コマンド新規.Name = "コマンド新規";
-            this.コマンド新規.Size = new System.Drawing.Size(116, 31);
-            this.コマンド新規.TabIndex = 2;
-            this.コマンド新規.Text = "新規";
-            this.コマンド新規.UseVisualStyleBackColor = true;
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -441,14 +453,13 @@ namespace u_net
             // 
             // 削除
             // 
-            this.削除.BackColor = System.Drawing.Color.White;
+            this.削除.BackColor = System.Drawing.SystemColors.Window;
             this.削除.Enabled = false;
             this.削除.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.削除.Location = new System.Drawing.Point(943, 200);
             this.削除.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.削除.Multiline = true;
             this.削除.Name = "削除";
-            this.削除.ReadOnly = true;
             this.削除.Size = new System.Drawing.Size(139, 23);
             this.削除.TabIndex = 184;
             // 
@@ -469,27 +480,25 @@ namespace u_net
             // 
             // 更新者名
             // 
-            this.更新者名.BackColor = System.Drawing.Color.White;
+            this.更新者名.BackColor = System.Drawing.SystemColors.Window;
             this.更新者名.Enabled = false;
             this.更新者名.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.更新者名.Location = new System.Drawing.Point(1088, 140);
             this.更新者名.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.更新者名.Multiline = true;
             this.更新者名.Name = "更新者名";
-            this.更新者名.ReadOnly = true;
             this.更新者名.Size = new System.Drawing.Size(313, 23);
             this.更新者名.TabIndex = 182;
             // 
             // 更新者コード
             // 
-            this.更新者コード.BackColor = System.Drawing.Color.White;
+            this.更新者コード.BackColor = System.Drawing.SystemColors.Window;
             this.更新者コード.Enabled = false;
             this.更新者コード.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.更新者コード.Location = new System.Drawing.Point(943, 140);
             this.更新者コード.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.更新者コード.Multiline = true;
             this.更新者コード.Name = "更新者コード";
-            this.更新者コード.ReadOnly = true;
             this.更新者コード.Size = new System.Drawing.Size(139, 23);
             this.更新者コード.TabIndex = 181;
             // 
@@ -525,40 +534,37 @@ namespace u_net
             // 
             // 更新日時
             // 
-            this.更新日時.BackColor = System.Drawing.Color.White;
+            this.更新日時.BackColor = System.Drawing.SystemColors.Window;
             this.更新日時.Enabled = false;
             this.更新日時.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.更新日時.Location = new System.Drawing.Point(944, 110);
             this.更新日時.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.更新日時.Multiline = true;
             this.更新日時.Name = "更新日時";
-            this.更新日時.ReadOnly = true;
             this.更新日時.Size = new System.Drawing.Size(313, 23);
             this.更新日時.TabIndex = 178;
             // 
             // 作成者名
             // 
-            this.作成者名.BackColor = System.Drawing.Color.White;
+            this.作成者名.BackColor = System.Drawing.SystemColors.Window;
             this.作成者名.Enabled = false;
             this.作成者名.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.作成者名.Location = new System.Drawing.Point(1088, 80);
             this.作成者名.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.作成者名.Multiline = true;
             this.作成者名.Name = "作成者名";
-            this.作成者名.ReadOnly = true;
             this.作成者名.Size = new System.Drawing.Size(313, 23);
             this.作成者名.TabIndex = 177;
             // 
             // 作成者コード
             // 
-            this.作成者コード.BackColor = System.Drawing.Color.White;
+            this.作成者コード.BackColor = System.Drawing.SystemColors.Window;
             this.作成者コード.Enabled = false;
             this.作成者コード.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.作成者コード.Location = new System.Drawing.Point(943, 80);
             this.作成者コード.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.作成者コード.Multiline = true;
             this.作成者コード.Name = "作成者コード";
-            this.作成者コード.ReadOnly = true;
             this.作成者コード.Size = new System.Drawing.Size(139, 23);
             this.作成者コード.TabIndex = 176;
             // 
@@ -594,14 +600,13 @@ namespace u_net
             // 
             // 作成日時
             // 
-            this.作成日時.BackColor = System.Drawing.Color.White;
+            this.作成日時.BackColor = System.Drawing.SystemColors.Window;
             this.作成日時.Enabled = false;
             this.作成日時.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.作成日時.Location = new System.Drawing.Point(944, 50);
             this.作成日時.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.作成日時.Multiline = true;
             this.作成日時.Name = "作成日時";
-            this.作成日時.ReadOnly = true;
             this.作成日時.Size = new System.Drawing.Size(313, 23);
             this.作成日時.TabIndex = 173;
             // 
@@ -639,12 +644,13 @@ namespace u_net
             // 
             this.Revision.DisplayMember = "シリーズコード";
             this.Revision.Enabled = false;
+            this.Revision.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.Revision.FormattingEnabled = true;
             this.Revision.Location = new System.Drawing.Point(400, 50);
             this.Revision.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Revision.Name = "Revision";
-            this.Revision.Size = new System.Drawing.Size(160, 23);
-            this.Revision.TabIndex = 168;
+            this.Revision.Size = new System.Drawing.Size(160, 21);
+            this.Revision.TabIndex = 2;
             this.Revision.ValueMember = "シリーズコード";
             // 
             // メーカー名フリガナ_ラベル
@@ -671,7 +677,7 @@ namespace u_net
             this.メーカー名.Multiline = true;
             this.メーカー名.Name = "メーカー名";
             this.メーカー名.Size = new System.Drawing.Size(530, 23);
-            this.メーカー名.TabIndex = 165;
+            this.メーカー名.TabIndex = 3;
             // 
             // メーカー名_ラベル
             // 
@@ -697,7 +703,7 @@ namespace u_net
             this.担当者メールアドレス.Multiline = true;
             this.担当者メールアドレス.Name = "担当者メールアドレス";
             this.担当者メールアドレス.Size = new System.Drawing.Size(530, 23);
-            this.担当者メールアドレス.TabIndex = 163;
+            this.担当者メールアドレス.TabIndex = 16;
             // 
             // ファックス番号_ラベル
             // 
@@ -738,7 +744,7 @@ namespace u_net
             this.備考.Multiline = true;
             this.備考.Name = "備考";
             this.備考.Size = new System.Drawing.Size(550, 51);
-            this.備考.TabIndex = 152;
+            this.備考.TabIndex = 22;
             // 
             // メーカー省略名_ラベル
             // 
@@ -803,7 +809,6 @@ namespace u_net
             // メーカーコード
             // 
             this.メーカーコード.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(153)))));
-            this.メーカーコード.Enabled = false;
             this.メーカーコード.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.メーカーコード.Location = new System.Drawing.Point(160, 50);
             this.メーカーコード.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -811,7 +816,7 @@ namespace u_net
             this.メーカーコード.Name = "メーカーコード";
             this.メーカーコード.ReadOnly = true;
             this.メーカーコード.Size = new System.Drawing.Size(139, 23);
-            this.メーカーコード.TabIndex = 194;
+            this.メーカーコード.TabIndex = 1;
             // 
             // 担当者名_ラベル
             // 
@@ -869,20 +874,54 @@ namespace u_net
             this.groupBox1.Location = new System.Drawing.Point(11, 411);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(700, 120);
-            this.groupBox1.TabIndex = 199;
+            this.groupBox1.TabIndex = 18;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "仕入先";
             // 
-            // 仕入先3
+            // label17
             // 
-            this.仕入先3.BackColor = System.Drawing.Color.White;
-            this.仕入先3.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.仕入先3.Location = new System.Drawing.Point(150, 50);
-            this.仕入先3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.仕入先3.Multiline = true;
-            this.仕入先3.Name = "仕入先3";
-            this.仕入先3.Size = new System.Drawing.Size(530, 23);
-            this.仕入先3.TabIndex = 220;
+            this.label17.AllowDrop = true;
+            this.label17.AutoEllipsis = true;
+            this.label17.Font = new System.Drawing.Font("BIZ UDゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label17.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label17.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label17.Location = new System.Drawing.Point(20, 80);
+            this.label17.Margin = new System.Windows.Forms.Padding(0);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(132, 17);
+            this.label17.TabIndex = 222;
+            this.label17.Text = "仕入先3";
+            this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label16
+            // 
+            this.label16.AllowDrop = true;
+            this.label16.AutoEllipsis = true;
+            this.label16.Font = new System.Drawing.Font("BIZ UDゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label16.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label16.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label16.Location = new System.Drawing.Point(20, 50);
+            this.label16.Margin = new System.Windows.Forms.Padding(0);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(132, 17);
+            this.label16.TabIndex = 221;
+            this.label16.Text = "仕入先2";
+            this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // 仕入先1_ラベル
+            // 
+            this.仕入先1_ラベル.AllowDrop = true;
+            this.仕入先1_ラベル.AutoEllipsis = true;
+            this.仕入先1_ラベル.Font = new System.Drawing.Font("BIZ UDゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.仕入先1_ラベル.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.仕入先1_ラベル.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.仕入先1_ラベル.Location = new System.Drawing.Point(20, 20);
+            this.仕入先1_ラベル.Margin = new System.Windows.Forms.Padding(0);
+            this.仕入先1_ラベル.Name = "仕入先1_ラベル";
+            this.仕入先1_ラベル.Size = new System.Drawing.Size(132, 17);
+            this.仕入先1_ラベル.TabIndex = 200;
+            this.仕入先1_ラベル.Text = "仕入先1(S)";
+            this.仕入先1_ラベル.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // 仕入先2
             // 
@@ -893,7 +932,18 @@ namespace u_net
             this.仕入先2.Multiline = true;
             this.仕入先2.Name = "仕入先2";
             this.仕入先2.Size = new System.Drawing.Size(530, 23);
-            this.仕入先2.TabIndex = 219;
+            this.仕入先2.TabIndex = 19;
+            // 
+            // 仕入先3
+            // 
+            this.仕入先3.BackColor = System.Drawing.Color.White;
+            this.仕入先3.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.仕入先3.Location = new System.Drawing.Point(150, 50);
+            this.仕入先3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.仕入先3.Multiline = true;
+            this.仕入先3.Name = "仕入先3";
+            this.仕入先3.Size = new System.Drawing.Size(530, 23);
+            this.仕入先3.TabIndex = 20;
             // 
             // 仕入先1
             // 
@@ -904,7 +954,7 @@ namespace u_net
             this.仕入先1.Multiline = true;
             this.仕入先1.Name = "仕入先1";
             this.仕入先1.Size = new System.Drawing.Size(530, 23);
-            this.仕入先1.TabIndex = 218;
+            this.仕入先1.TabIndex = 21;
             // 
             // 仕入先3_ラベル
             // 
@@ -936,21 +986,6 @@ namespace u_net
             this.仕入先2_ラベル.Text = "仕入先2";
             this.仕入先2_ラベル.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // 仕入先1_ラベル
-            // 
-            this.仕入先1_ラベル.AllowDrop = true;
-            this.仕入先1_ラベル.AutoEllipsis = true;
-            this.仕入先1_ラベル.Font = new System.Drawing.Font("BIZ UDゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.仕入先1_ラベル.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.仕入先1_ラベル.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.仕入先1_ラベル.Location = new System.Drawing.Point(20, 20);
-            this.仕入先1_ラベル.Margin = new System.Windows.Forms.Padding(0);
-            this.仕入先1_ラベル.Name = "仕入先1_ラベル";
-            this.仕入先1_ラベル.Size = new System.Drawing.Size(132, 17);
-            this.仕入先1_ラベル.TabIndex = 200;
-            this.仕入先1_ラベル.Text = "仕入先1(S)";
-            this.仕入先1_ラベル.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
             // 備考_ラベル
             // 
             this.備考_ラベル.AllowDrop = true;
@@ -975,12 +1010,11 @@ namespace u_net
             this.メーカー名フリガナ.Multiline = true;
             this.メーカー名フリガナ.Name = "メーカー名フリガナ";
             this.メーカー名フリガナ.Size = new System.Drawing.Size(530, 23);
-            this.メーカー名フリガナ.TabIndex = 201;
+            this.メーカー名フリガナ.TabIndex = 4;
             // 
             // メーカー省略名
             // 
             this.メーカー省略名.BackColor = System.Drawing.Color.White;
-            this.メーカー省略名.Enabled = false;
             this.メーカー省略名.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.メーカー省略名.Location = new System.Drawing.Point(160, 140);
             this.メーカー省略名.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -988,12 +1022,11 @@ namespace u_net
             this.メーカー省略名.Name = "メーカー省略名";
             this.メーカー省略名.ReadOnly = true;
             this.メーカー省略名.Size = new System.Drawing.Size(139, 23);
-            this.メーカー省略名.TabIndex = 202;
+            this.メーカー省略名.TabIndex = 5;
             // 
             // 郵便番号
             // 
             this.郵便番号.BackColor = System.Drawing.Color.White;
-            this.郵便番号.Enabled = false;
             this.郵便番号.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.郵便番号.Location = new System.Drawing.Point(160, 170);
             this.郵便番号.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -1001,7 +1034,7 @@ namespace u_net
             this.郵便番号.Name = "郵便番号";
             this.郵便番号.ReadOnly = true;
             this.郵便番号.Size = new System.Drawing.Size(201, 23);
-            this.郵便番号.TabIndex = 203;
+            this.郵便番号.TabIndex = 6;
             // 
             // 住所1
             // 
@@ -1012,7 +1045,7 @@ namespace u_net
             this.住所1.Multiline = true;
             this.住所1.Name = "住所1";
             this.住所1.Size = new System.Drawing.Size(530, 23);
-            this.住所1.TabIndex = 204;
+            this.住所1.TabIndex = 7;
             // 
             // 住所2
             // 
@@ -1023,12 +1056,11 @@ namespace u_net
             this.住所2.Multiline = true;
             this.住所2.Name = "住所2";
             this.住所2.Size = new System.Drawing.Size(530, 23);
-            this.住所2.TabIndex = 205;
+            this.住所2.TabIndex = 8;
             // 
             // 電話番号1
             // 
             this.電話番号1.BackColor = System.Drawing.Color.White;
-            this.電話番号1.Enabled = false;
             this.電話番号1.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.電話番号1.Location = new System.Drawing.Point(160, 260);
             this.電話番号1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -1036,12 +1068,11 @@ namespace u_net
             this.電話番号1.Name = "電話番号1";
             this.電話番号1.ReadOnly = true;
             this.電話番号1.Size = new System.Drawing.Size(100, 23);
-            this.電話番号1.TabIndex = 206;
+            this.電話番号1.TabIndex = 9;
             // 
             // 電話番号2
             // 
             this.電話番号2.BackColor = System.Drawing.Color.White;
-            this.電話番号2.Enabled = false;
             this.電話番号2.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.電話番号2.Location = new System.Drawing.Point(280, 260);
             this.電話番号2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -1049,12 +1080,11 @@ namespace u_net
             this.電話番号2.Name = "電話番号2";
             this.電話番号2.ReadOnly = true;
             this.電話番号2.Size = new System.Drawing.Size(100, 23);
-            this.電話番号2.TabIndex = 207;
+            this.電話番号2.TabIndex = 10;
             // 
             // 電話番号3
             // 
             this.電話番号3.BackColor = System.Drawing.Color.White;
-            this.電話番号3.Enabled = false;
             this.電話番号3.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.電話番号3.Location = new System.Drawing.Point(400, 260);
             this.電話番号3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -1062,7 +1092,7 @@ namespace u_net
             this.電話番号3.Name = "電話番号3";
             this.電話番号3.ReadOnly = true;
             this.電話番号3.Size = new System.Drawing.Size(100, 23);
-            this.電話番号3.TabIndex = 208;
+            this.電話番号3.TabIndex = 11;
             // 
             // label2
             // 
@@ -1084,14 +1114,14 @@ namespace u_net
             this.ファックス番号1.Location = new System.Drawing.Point(160, 290);
             this.ファックス番号1.Name = "ファックス番号1";
             this.ファックス番号1.Size = new System.Drawing.Size(100, 23);
-            this.ファックス番号1.TabIndex = 0;
+            this.ファックス番号1.TabIndex = 12;
             // 
             // 担当者名
             // 
             this.担当者名.Location = new System.Drawing.Point(160, 320);
             this.担当者名.Name = "担当者名";
             this.担当者名.Size = new System.Drawing.Size(530, 23);
-            this.担当者名.TabIndex = 0;
+            this.担当者名.TabIndex = 15;
             // 
             // ウェブアドレス
             // 
@@ -1099,7 +1129,7 @@ namespace u_net
             this.ウェブアドレス.Location = new System.Drawing.Point(160, 380);
             this.ウェブアドレス.Name = "ウェブアドレス";
             this.ウェブアドレス.Size = new System.Drawing.Size(530, 23);
-            this.ウェブアドレス.TabIndex = 0;
+            this.ウェブアドレス.TabIndex = 17;
             // 
             // 版数_ラベル
             // 
@@ -1112,7 +1142,9 @@ namespace u_net
             // ActiveDate
             // 
             this.ActiveDate.Enabled = false;
+            this.ActiveDate.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.ActiveDate.Location = new System.Drawing.Point(943, 170);
+            this.ActiveDate.Multiline = true;
             this.ActiveDate.Name = "ActiveDate";
             this.ActiveDate.Size = new System.Drawing.Size(314, 23);
             this.ActiveDate.TabIndex = 0;
@@ -1138,14 +1170,14 @@ namespace u_net
             this.ファックス番号2.Location = new System.Drawing.Point(280, 290);
             this.ファックス番号2.Name = "ファックス番号2";
             this.ファックス番号2.Size = new System.Drawing.Size(100, 23);
-            this.ファックス番号2.TabIndex = 0;
+            this.ファックス番号2.TabIndex = 13;
             // 
             // ファックス番号3
             // 
             this.ファックス番号3.Location = new System.Drawing.Point(400, 290);
             this.ファックス番号3.Name = "ファックス番号3";
             this.ファックス番号3.Size = new System.Drawing.Size(100, 23);
-            this.ファックス番号3.TabIndex = 0;
+            this.ファックス番号3.TabIndex = 14;
             // 
             // label3
             // 
@@ -1232,38 +1264,9 @@ namespace u_net
             this.label11.Text = "削除者コード";
             this.label11.Visible = false;
             // 
-            // label16
-            // 
-            this.label16.AllowDrop = true;
-            this.label16.AutoEllipsis = true;
-            this.label16.Font = new System.Drawing.Font("BIZ UDゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label16.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label16.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label16.Location = new System.Drawing.Point(20, 50);
-            this.label16.Margin = new System.Windows.Forms.Padding(0);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(132, 17);
-            this.label16.TabIndex = 221;
-            this.label16.Text = "仕入先2";
-            this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label17
-            // 
-            this.label17.AllowDrop = true;
-            this.label17.AutoEllipsis = true;
-            this.label17.Font = new System.Drawing.Font("BIZ UDゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label17.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label17.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label17.Location = new System.Drawing.Point(20, 80);
-            this.label17.Margin = new System.Windows.Forms.Padding(0);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(132, 17);
-            this.label17.TabIndex = 222;
-            this.label17.Text = "仕入先3";
-            this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
             // F_メーカー
             // 
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1665, 777);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.label8);
