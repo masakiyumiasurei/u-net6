@@ -96,20 +96,20 @@ namespace u_net
 
                 string original = FunctionClass.採番(cn, "ITM");
                 商品コード.Text = original.Substring(original.Length - 8);
-                Revision.Text = "1";
-                掛率有効.Checked = true;
+                //Revision.Text = "1";
+                //掛率有効.Checked = true;
 
-                FlowCategoryCode.SelectedValue = "001";
+                //FlowCategoryCode.SelectedValue = "001";
 
-                //FlowCategoryName.Text = (FlowCategoryCode.SelectedItem as DataRowView)["Name"].ToString();
-
-
-                数量単位コード.SelectedValue = 1;
+                ////FlowCategoryName.Text = (FlowCategoryCode.SelectedItem as DataRowView)["Name"].ToString();
 
 
-                CustomerSerialNumberRequired.Checked = false;
-                IsUnit.Checked = false;
-                Discontinued.Checked = false;
+                //数量単位コード.SelectedValue = 1;
+
+
+                //CustomerSerialNumberRequired.Checked = false;
+                //IsUnit.Checked = false;
+                //Discontinued.Checked = false;
 
                 string CurrentCode = 商品コード.Text;
                 // 明細部を初期化
@@ -165,9 +165,9 @@ namespace u_net
         private bool ErrCheck()
         {
             //入力確認    
-            if (!FunctionClass.IsError(this.商品名)) return false;
-            if (!FunctionClass.IsError(this.商品コード)) return false;
-            if (!FunctionClass.IsError(this.売上区分コード)) return false;
+            //if (!FunctionClass.IsError(this.商品名)) return false;
+            //if (!FunctionClass.IsError(this.商品コード)) return false;
+            //if (!FunctionClass.IsError(this.売上区分コード)) return false;
             return true;
         }
         private void コマンド登録_Click(object sender, EventArgs e)
@@ -200,13 +200,13 @@ namespace u_net
                     //this.M商品TableAdapter.Transaction = transaction;
                     //this.M商品TableAdapter.Update(this.uiDataSet.M商品);
 
-                    string strwhere = " 商品コード='" + this.商品コード.Text + "' and Revision=" + this.Revision.Text;
+                    //string strwhere = " 商品コード='" + this.商品コード.Text + "' and Revision=" + this.Revision.Text;
 
-                    if (!DataUpdater.UpdateOrInsertDataFrom(this, cn, "M商品", strwhere, "商品コード", transaction))
-                    {
-                        //transaction.Rollback(); 関数内でロールバック入れた
-                        return false;
-                    }
+                    //if (!DataUpdater.UpdateOrInsertDataFrom(this, cn, "M商品", strwhere, "商品コード", transaction))
+                    //{
+                    //    //transaction.Rollback(); 関数内でロールバック入れた
+                    //    return false;
+                    //}
 
 
                     // M商品明細データを保存
@@ -257,9 +257,9 @@ namespace u_net
         //セルのデフォルト値
         private void dataGridView1_DefaultValuesNeeded(object sender, DataGridViewRowEventArgs e)
         {
-            e.Row.Cells["dgv商品コード"].Value = this.商品コード.Text; //Convert.ToInt32(this.顧客ID);
-            e.Row.Cells["dgvRevision"].Value = this.Revision.Text;
-            e.Row.Cells["明細番号"].Value = detailNumber.ToString();
+            //e.Row.Cells["dgv商品コード"].Value = this.商品コード.Text; //Convert.ToInt32(this.顧客ID);
+            //e.Row.Cells["dgvRevision"].Value = this.Revision.Text;
+            //e.Row.Cells["明細番号"].Value = detailNumber.ToString();
             detailNumber++; // 連番を増やす
             //e.Row.Cells["担当者コード"].Value = tantou;
             //e.Row.Cells["時刻"].Value = DateTime.Now.ToString("HH:mm");            
@@ -571,7 +571,7 @@ namespace u_net
             {
                 // ヘッダ部制御
                 FunctionClass.LockData(this, false);
-                商品名.Focus();
+                //商品名.Focus();
                 商品コード.Enabled = false;
                 コマンド新規.Enabled = false;
                 コマンド読込.Enabled = true;
@@ -610,13 +610,13 @@ namespace u_net
                 }
                 // コントロールのフィールドを初期化
                 商品コード.Text = codeString;
-                作成日時.Text = null;
-                作成者コード.Text = null;
-                作成者名.Text = null;
-                更新日時.Text = null;
-                更新者コード.Text = null;
-                更新者名.Text = null;
-                削除.Text = null;
+                //作成日時.Text = null;
+                //作成者コード.Text = null;
+                //作成者名.Text = null;
+                //更新日時.Text = null;
+                //更新者コード.Text = null;
+                //更新者名.Text = null;
+                //削除.Text = null;
 
                 //明細行のリセット
                 detailNumber = 1;
@@ -731,7 +731,7 @@ namespace u_net
 
             if (this.ActiveControl == this.商品コード)
             {
-                this.商品名.Focus();
+                //this.商品名.Focus();
             }
 
             this.商品コード.Enabled = !dataChanged;
@@ -825,10 +825,10 @@ namespace u_net
 
         private void 商品分類コード_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (this.商品分類コード.SelectedItem != null)
-            {
-                分類内容.Text = (商品分類コード.SelectedItem as DataRowView)["分類内容"].ToString();
-            }
+            //if (this.商品分類コード.SelectedItem != null)
+            //{
+            //    分類内容.Text = (商品分類コード.SelectedItem as DataRowView)["分類内容"].ToString();
+            //}
         }
 
         private void FlowCategoryCode_SelectedIndexChanged(object sender, EventArgs e)
@@ -839,8 +839,8 @@ namespace u_net
 
         private void button1_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(商品分類コード.Text);
-            MessageBox.Show(数量単位コード.Text);
+            //MessageBox.Show(商品分類コード.Text);
+            //MessageBox.Show(数量単位コード.Text);
             MessageBox.Show(商品コード.Text);
             MessageBox.Show(商品コード.SelectedValue.ToString());
         }

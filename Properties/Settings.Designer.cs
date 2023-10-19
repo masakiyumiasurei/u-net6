@@ -33,16 +33,5 @@ namespace u_net.Properties {
                 return ((string)(this["uidbConnectionString"]));
             }
         }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=128.20.70.215\\\\MSSQLSERVER,1435;Initial Catalog=uidb;Persist Security" +
-            " Info=True;User ID=sa;Password=Hbm-0855")]
-        public string uidbConnectionString1 {
-            get {
-                return ((string)(this["uidbConnectionString1"]));
-            }
-        }
     }
 }

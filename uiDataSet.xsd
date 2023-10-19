@@ -5,7 +5,7 @@
       <DataSource DefaultConnectionIndex="1" FunctionsComponentName="cmb数量単位TableAdapter" GeneratorFunctionsComponentClassName="cmb数量単位TableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" UserFunctionsComponentName="cmb数量単位TableAdapter" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
         <Connections>
           <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="uidbConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="uidbConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.u_net.Properties.Settings.GlobalReference.Default.uidbConnectionString" Provider="System.Data.SqlClient" />
-          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="uidbConnectionString1" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="uidbConnectionString1 (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.u_net.Properties.Settings.GlobalReference.Default.uidbConnectionString1" Provider="System.Data.SqlClient" />
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="uidbConnectionString1" IsAppSettingsProperty="true" Modifier="Assembly" Name="uidbConnectionString1 (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.u_net.Properties.Settings.GlobalReference.Default.uidbConnectionString1" Provider="System.Data.SqlClient" />
         </Connections>
         <Tables>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="M商品TableAdapter" GeneratorDataComponentClassName="M商品TableAdapter" Name="M商品" UserDataComponentName="M商品TableAdapter">
@@ -394,7 +394,28 @@ SELECT 商品コード, Revision, 明細番号, 型式番号, 型式名, 定価,
               <Mapping SourceColumn="機能" DataSetColumn="機能" />
               <Mapping SourceColumn="構成番号" DataSetColumn="構成番号" />
             </Mappings>
-            <Sources />
+            <Sources>
+              <DbSource ConnectionRef="uidbConnectionString (Settings)" DbObjectName="uidb.dbo.M商品明細" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillAll" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataAll" GeneratorSourceName="FillAll" GetMethodModifier="Public" GetMethodName="GetDataAll" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataAll" UserSourceName="FillAll">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT               商品コード, Revision, 明細番号, 型式番号, 型式名, 定価, 原価, 機能, 構成番号
+FROM                 M商品明細
+</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="uidbConnectionString (Settings)" DbObjectName="uidb.dbo.M商品明細" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillBy" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataBy" GeneratorSourceName="FillBy" GetMethodModifier="Public" GetMethodName="GetDataBy" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="FillBy">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT               商品コード, Revision, 明細番号, 型式番号, 型式名, 定価, 原価, 機能, 構成番号
+FROM                 M商品明細
+</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </Sources>
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="ComboBoxManufactureFlowTableAdapter" GeneratorDataComponentClassName="ComboBoxManufactureFlowTableAdapter" Name="ManufactureFlow" UserDataComponentName="ComboBoxManufactureFlowTableAdapter">
             <MainSource>
@@ -1242,11 +1263,11 @@ SELECT 納品書送付コード, 送付処理 FROM M納品書送付処理 WHERE 
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="M納品書送付処理" msprop:Generator_RowEvHandlerName="M納品書送付処理RowChangeEventHandler" msprop:Generator_RowDeletedName="M納品書送付処理RowDeleted" msprop:Generator_RowDeletingName="M納品書送付処理RowDeleting" msprop:Generator_RowEvArgName="M納品書送付処理RowChangeEvent" msprop:Generator_TablePropName="M納品書送付処理" msprop:Generator_RowChangedName="M納品書送付処理RowChanged" msprop:Generator_RowChangingName="M納品書送付処理RowChanging" msprop:Generator_TableClassName="M納品書送付処理DataTable" msprop:Generator_RowClassName="M納品書送付処理Row" msprop:Generator_TableVarName="tableM納品書送付処理" msprop:Generator_UserTableName="M納品書送付処理">
+        <xs:element name="M納品書送付処理" msprop:Generator_RowEvHandlerName="M納品書送付処理RowChangeEventHandler" msprop:Generator_RowDeletedName="M納品書送付処理RowDeleted" msprop:Generator_RowDeletingName="M納品書送付処理RowDeleting" msprop:Generator_RowEvArgName="M納品書送付処理RowChangeEvent" msprop:Generator_TablePropName="M納品書送付処理" msprop:Generator_RowChangedName="M納品書送付処理RowChanged" msprop:Generator_UserTableName="M納品書送付処理" msprop:Generator_RowChangingName="M納品書送付処理RowChanging" msprop:Generator_RowClassName="M納品書送付処理Row" msprop:Generator_TableClassName="M納品書送付処理DataTable" msprop:Generator_TableVarName="tableM納品書送付処理">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="納品書送付コード" msprop:Generator_ColumnPropNameInRow="納品書送付コード" msprop:Generator_ColumnPropNameInTable="納品書送付コードColumn" msprop:Generator_ColumnVarNameInTable="column納品書送付コード" msprop:Generator_UserColumnName="納品書送付コード" type="xs:unsignedByte" />
-              <xs:element name="送付処理" msprop:Generator_ColumnPropNameInRow="送付処理" msprop:Generator_ColumnPropNameInTable="送付処理Column" msprop:Generator_ColumnVarNameInTable="column送付処理" msprop:Generator_UserColumnName="送付処理" minOccurs="0">
+              <xs:element name="納品書送付コード" msprop:Generator_ColumnPropNameInTable="納品書送付コードColumn" msprop:Generator_ColumnPropNameInRow="納品書送付コード" msprop:Generator_UserColumnName="納品書送付コード" msprop:Generator_ColumnVarNameInTable="column納品書送付コード" type="xs:unsignedByte" />
+              <xs:element name="送付処理" msprop:Generator_ColumnPropNameInTable="送付処理Column" msprop:Generator_ColumnPropNameInRow="送付処理" msprop:Generator_UserColumnName="送付処理" msprop:Generator_ColumnVarNameInTable="column送付処理" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="10" />

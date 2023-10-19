@@ -28,29 +28,30 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.テスト = new System.Windows.Forms.Button();
-            this.SuspendLayout();
+            テスト = new Button();
+            SuspendLayout();
             // 
             // テスト
             // 
-            this.テスト.Location = new System.Drawing.Point(577, 329);
-            this.テスト.Name = "テスト";
-            this.テスト.Size = new System.Drawing.Size(93, 43);
-            this.テスト.TabIndex = 0;
-            this.テスト.Text = "button1";
-            this.テスト.UseVisualStyleBackColor = true;
-            this.テスト.Click += new System.EventHandler(this.テスト_Click);
+            テスト.Location = new Point(265, 92);
+            テスト.Margin = new Padding(4, 5, 4, 5);
+            テスト.Name = "テスト";
+            テスト.Size = new Size(124, 72);
+            テスト.TabIndex = 0;
+            テスト.Text = "button1";
+            テスト.UseVisualStyleBackColor = true;
+            テスト.Click += テスト_Click;
             // 
-            // F_main
+            // F_test
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.テスト);
-            this.Name = "F_main";
-            this.Text = "main";
-            this.ResumeLayout(false);
-
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(1067, 750);
+            Controls.Add(テスト);
+            Margin = new Padding(4, 5, 4, 5);
+            Name = "F_test";
+            Text = "main";
+            ResumeLayout(false);
         }
 
         #endregion
