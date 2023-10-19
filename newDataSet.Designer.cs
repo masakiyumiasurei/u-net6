@@ -7290,13 +7290,13 @@ namespace u_net.newDataSetTableAdapters {
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
     public partial class Q商品管理TableAdapter : global::System.ComponentModel.Component {
         
-        private global::Microsoft.Data.SqlClient.SqlDataAdapter _adapter;
+        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
         
-        private global::Microsoft.Data.SqlClient.SqlConnection _connection;
+        private global::System.Data.SqlClient.SqlConnection _connection;
         
-        private global::Microsoft.Data.SqlClient.SqlTransaction _transaction;
+        private global::System.Data.SqlClient.SqlTransaction _transaction;
         
-        private global::Microsoft.Data.SqlClient.SqlCommand[] _commandCollection;
+        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
         
         private bool _clearBeforeFill;
         
@@ -7308,7 +7308,7 @@ namespace u_net.newDataSetTableAdapters {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        protected internal global::Microsoft.Data.SqlClient.SqlDataAdapter Adapter {
+        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
             get {
                 if ((this._adapter == null)) {
                     this.InitAdapter();
@@ -7319,7 +7319,7 @@ namespace u_net.newDataSetTableAdapters {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        internal global::Microsoft.Data.SqlClient.SqlConnection Connection {
+        internal global::System.Data.SqlClient.SqlConnection Connection {
             get {
                 if ((this._connection == null)) {
                     this.InitConnection();
@@ -7339,7 +7339,7 @@ namespace u_net.newDataSetTableAdapters {
                 }
                 for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
                     if ((this.CommandCollection[i] != null)) {
-                        ((global::Microsoft.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
+                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
                     }
                 }
             }
@@ -7347,7 +7347,7 @@ namespace u_net.newDataSetTableAdapters {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        internal global::Microsoft.Data.SqlClient.SqlTransaction Transaction {
+        internal global::System.Data.SqlClient.SqlTransaction Transaction {
             get {
                 return this._transaction;
             }
@@ -7373,7 +7373,7 @@ namespace u_net.newDataSetTableAdapters {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        protected global::Microsoft.Data.SqlClient.SqlCommand[] CommandCollection {
+        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
             get {
                 if ((this._commandCollection == null)) {
                     this.InitCommandCollection();
@@ -7396,7 +7396,7 @@ namespace u_net.newDataSetTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitAdapter() {
-            this._adapter = new global::Microsoft.Data.SqlClient.SqlDataAdapter();
+            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "Q商品管理";
@@ -7418,15 +7418,15 @@ namespace u_net.newDataSetTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitConnection() {
-            this._connection = new global::Microsoft.Data.SqlClient.SqlConnection();
+            this._connection = new global::System.Data.SqlClient.SqlConnection();
             this._connection.ConnectionString = global::u_net.Properties.Settings.Default.uidbConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::Microsoft.Data.SqlClient.SqlCommand[1];
-            this._commandCollection[0] = new global::Microsoft.Data.SqlClient.SqlCommand();
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[2];
+            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = @"SELECT               TOP (100) PERCENT dbo.M商品.商品コード, dbo.M商品.商品名 AS 基本型式名, dbo.Mシリーズ.シリーズ名, 
 case when M商品.シリーズコード is not null then '○'  
@@ -7441,6 +7441,52 @@ FROM                 dbo.M商品 LEFT OUTER JOIN
                            dbo.Mシリーズ ON dbo.M商品.シリーズコード = dbo.Mシリーズ.シリーズコード LEFT OUTER JOIN
                            dbo.M社員 ON dbo.M商品.更新者コード = dbo.M社員.社員コード";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[1].Connection = this.Connection;
+            this._commandCollection[1].CommandText = "SELECT               商品コード, 基本型式名, シリーズ名, 在庫管理, 在庫数量, 在庫下限数量, 更新日時, 更新者名, 廃止, 削除," +
+                " ユニ, 構成\r\nFROM                 (SELECT               TOP (100) PERCENT M商品.商品コード," +
+                " M商品.商品名 AS 基本型式名, Mシリーズ.シリーズ名, CASE WHEN M商品.シリーズコード IS NOT NULL THEN \'○\' ELSE " +
+                "NULL END AS 在庫管理, \r\n                                                       Mシリーズ" +
+                ".在庫数量, Mシリーズ.在庫下限数量, M商品.更新日時, M社員.氏名 AS 更新者名, CASE WHEN M商品.Discontinued = 0 TH" +
+                "EN NULL ELSE \'■\' END AS 廃止, \r\n                                                  " +
+                "     CASE WHEN M商品.無効日時 IS NOT NULL THEN \'■\' ELSE NULL END AS 削除, CASE WHEN M商品." +
+                "IsUnit <> 0 THEN \'■\' ELSE NULL END AS ユニ, CASE WHEN ItemCode IS NOT NULL \r\n     " +
+                "                                                  THEN \'■\' ELSE NULL END AS 構成\r\n" +
+                "                            FROM                 M商品 LEFT OUTER JOIN\r\n          " +
+                "                                             ItemCode_ComposedMountChip ON M商品.商" +
+                "品コード = ItemCode_ComposedMountChip.ItemCode LEFT OUTER JOIN\r\n                    " +
+                "                                   Mシリーズ ON M商品.シリーズコード = Mシリーズ.シリーズコード LEFT OUT" +
+                "ER JOIN\r\n                                                       M社員 ON M商品.更新者コー" +
+                "ド = M社員.社員コード) AS T\r\nWHERE                (基本型式名 LIKE @基本型式名 OR\r\n               " +
+                "            @基本型式名 IS NULL) AND (更新者名 = @更新者名 OR\r\n                           @更新" +
+                "者名 IS NULL) AND (構成 IS NULL AND @構成 = 1 OR\r\n                           構成 IS NOT" +
+                " NULL AND @構成 = 2 OR\r\n                           @構成 IS NULL) AND (ユニ IS NULL AN" +
+                "D @ユニ = 1 OR\r\n                           ユニ IS NOT NULL AND @ユニ = 2 OR\r\n        " +
+                "                   @ユニ IS NULL) AND (廃止 IS NULL AND @廃止 = 1 OR\r\n                " +
+                "           廃止 IS NOT NULL AND @廃止 = 2 OR\r\n                           @廃止 IS NULL" +
+                ") AND (削除 IS NULL AND @削除 = 1 OR\r\n                           削除 IS NOT NULL AND " +
+                "@削除 = 2 OR\r\n                           @削除 IS NULL) AND (シリーズ名 LIKE @シリーズ名 OR\r\n " +
+                "                          @シリーズ名 IS NULL) AND (更新日時 BETWEEN @更新日開始 AND @更新日終了) O" +
+                "R\r\n                           (@更新日開始 IS NULL) AND (@更新日終了 IS NULL) AND (基本型式名 L" +
+                "IKE @基本型式名 OR\r\n                           @基本型式名 IS NULL) AND (更新者名 = @更新者名 OR\r\n" +
+                "                           @更新者名 IS NULL) AND (構成 IS NULL AND @構成 = 1 OR\r\n      " +
+                "                     構成 IS NOT NULL AND @構成 = 2 OR\r\n                           @" +
+                "構成 IS NULL) AND (ユニ IS NULL AND @ユニ = 1 OR\r\n                           ユニ IS NOT" +
+                " NULL AND @ユニ = 2 OR\r\n                           @ユニ IS NULL) AND (廃止 IS NULL AN" +
+                "D @廃止 = 1 OR\r\n                           廃止 IS NOT NULL AND @廃止 = 2 OR\r\n        " +
+                "                   @廃止 IS NULL) AND (削除 IS NULL AND @削除 = 1 OR\r\n                " +
+                "           削除 IS NOT NULL AND @削除 = 2 OR\r\n                           @削除 IS NULL" +
+                ") AND (シリーズ名 LIKE @シリーズ名 OR\r\n                           @シリーズ名 IS NULL)";
+            this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@基本型式名", global::System.Data.SqlDbType.NVarChar, 40, global::System.Data.ParameterDirection.Input, 0, 0, "基本型式名", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@更新者名", global::System.Data.SqlDbType.NVarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "更新者名", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@構成", global::System.Data.SqlDbType.VarChar, 1024, global::System.Data.ParameterDirection.Input, 0, 0, "", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ユニ", global::System.Data.SqlDbType.VarChar, 1024, global::System.Data.ParameterDirection.Input, 0, 0, "", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@廃止", global::System.Data.SqlDbType.VarChar, 1024, global::System.Data.ParameterDirection.Input, 0, 0, "", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@削除", global::System.Data.SqlDbType.VarChar, 1024, global::System.Data.ParameterDirection.Input, 0, 0, "", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@シリーズ名", global::System.Data.SqlDbType.NVarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "シリーズ名", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@更新日開始", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 0, 0, "更新日時", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@更新日終了", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 0, 0, "更新日時", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -7462,6 +7508,138 @@ FROM                 dbo.M商品 LEFT OUTER JOIN
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
         public virtual newDataSet.Q商品管理DataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
+            newDataSet.Q商品管理DataTable dataTable = new newDataSet.Q商品管理DataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillBy(newDataSet.Q商品管理DataTable dataTable, string 基本型式名, string 更新者名, string 構成, string ユニ, string 廃止, string 削除, string シリーズ名, global::System.Nullable<global::System.DateTime> 更新日開始, global::System.Nullable<global::System.DateTime> 更新日終了) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            if ((基本型式名 == null)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(基本型式名));
+            }
+            if ((更新者名 == null)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((string)(更新者名));
+            }
+            if ((構成 == null)) {
+                throw new global::System.ArgumentNullException("構成");
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[2].Value = ((string)(構成));
+            }
+            if ((ユニ == null)) {
+                throw new global::System.ArgumentNullException("ユニ");
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[3].Value = ((string)(ユニ));
+            }
+            if ((廃止 == null)) {
+                throw new global::System.ArgumentNullException("廃止");
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[4].Value = ((string)(廃止));
+            }
+            if ((削除 == null)) {
+                throw new global::System.ArgumentNullException("削除");
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[5].Value = ((string)(削除));
+            }
+            if ((シリーズ名 == null)) {
+                this.Adapter.SelectCommand.Parameters[6].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[6].Value = ((string)(シリーズ名));
+            }
+            if ((更新日開始.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[7].Value = ((System.DateTime)(更新日開始.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[7].Value = global::System.DBNull.Value;
+            }
+            if ((更新日終了.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[8].Value = ((System.DateTime)(更新日終了.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[8].Value = global::System.DBNull.Value;
+            }
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual newDataSet.Q商品管理DataTable GetDataBy(string 基本型式名, string 更新者名, string 構成, string ユニ, string 廃止, string 削除, string シリーズ名, global::System.Nullable<global::System.DateTime> 更新日開始, global::System.Nullable<global::System.DateTime> 更新日終了) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            if ((基本型式名 == null)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(基本型式名));
+            }
+            if ((更新者名 == null)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((string)(更新者名));
+            }
+            if ((構成 == null)) {
+                throw new global::System.ArgumentNullException("構成");
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[2].Value = ((string)(構成));
+            }
+            if ((ユニ == null)) {
+                throw new global::System.ArgumentNullException("ユニ");
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[3].Value = ((string)(ユニ));
+            }
+            if ((廃止 == null)) {
+                throw new global::System.ArgumentNullException("廃止");
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[4].Value = ((string)(廃止));
+            }
+            if ((削除 == null)) {
+                throw new global::System.ArgumentNullException("削除");
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[5].Value = ((string)(削除));
+            }
+            if ((シリーズ名 == null)) {
+                this.Adapter.SelectCommand.Parameters[6].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[6].Value = ((string)(シリーズ名));
+            }
+            if ((更新日開始.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[7].Value = ((System.DateTime)(更新日開始.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[7].Value = global::System.DBNull.Value;
+            }
+            if ((更新日終了.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[8].Value = ((System.DateTime)(更新日終了.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[8].Value = global::System.DBNull.Value;
+            }
             newDataSet.Q商品管理DataTable dataTable = new newDataSet.Q商品管理DataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
