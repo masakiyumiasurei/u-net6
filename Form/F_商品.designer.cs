@@ -151,6 +151,7 @@ namespace u_net
             m商品分類TableAdapter = new uiDataSetTableAdapters.M商品分類TableAdapter();
             comboBox売上区分TableAdapter = new uiDataSetTableAdapters.ComboBox売上区分TableAdapter();
             tableAdapterManager = new uiDataSetTableAdapters.TableAdapterManager();
+            dataSet11 = new DataSet1();
             ((System.ComponentModel.ISupportInitialize)M商品BindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)uiDataSet).BeginInit();
             ((System.ComponentModel.ISupportInitialize)comboBox売上区分bindingSource).BeginInit();
@@ -164,6 +165,7 @@ namespace u_net
             panel1.SuspendLayout();
             statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)v商品ヘッダBindingSource).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataSet11).BeginInit();
             SuspendLayout();
             // 
             // M商品BindingSource
@@ -1276,7 +1278,7 @@ namespace u_net
             // 
             comboBox売上区分TableAdapter.ClearBeforeFill = true;
             // 
-            // tableAdapterManager1
+            // tableAdapterManager
             // 
             tableAdapterManager.BackupDataSetBeforeUpdate = false;
             tableAdapterManager.combBoxMシリーズTableAdapter = null;
@@ -1289,6 +1291,12 @@ namespace u_net
             tableAdapterManager.M商品分類TableAdapter = null;
             tableAdapterManager.M商品明細TableAdapter = null;
             tableAdapterManager.UpdateOrder = uiDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            // 
+            // dataSet11
+            // 
+            dataSet11.DataSetName = "DataSet1";
+            dataSet11.Namespace = "http://tempuri.org/DataSet1.xsd";
+            dataSet11.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // F_商品
             // 
@@ -1368,6 +1376,7 @@ namespace u_net
             statusStrip1.ResumeLayout(false);
             statusStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)v商品ヘッダBindingSource).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataSet11).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -1422,7 +1431,7 @@ namespace u_net
         private System.Windows.Forms.Button コマンド削除;
         private System.Windows.Forms.Button コマンド複写;
         private System.Windows.Forms.Button コマンド修正;
-        private System.Windows.Forms.BindingSource M商品BindingSource;        
+        private System.Windows.Forms.BindingSource M商品BindingSource;
         private System.Windows.Forms.BindingSource M商品明細BindingSource;
 
         private System.Windows.Forms.DataGridView dataGridView1;
@@ -1513,6 +1522,7 @@ namespace u_net
         private DataGridViewTextBoxColumn 構成番号DataGridViewTextBoxColumn;
         private uiDataSetTableAdapters.combBoxMシリーズTableAdapter combBoxMシリーズTableAdapter;
         private uiDataSetTableAdapters.TableAdapterManager tableAdapterManager;
+        private DataSet1 dataSet11;
     }
 }
 
