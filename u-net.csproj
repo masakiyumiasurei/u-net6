@@ -15,6 +15,15 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Form\F_受注.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F_受注.designer.cs">
+      <DependentUpon>F_受注.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="F_受注.resx">
+      <DependentUpon>F_受注.cs</DependentUpon>
+    </EmbeddedResource>
     <Compile Update="Form\F_商品back.cs">
       <SubType>Form</SubType>
     </Compile>

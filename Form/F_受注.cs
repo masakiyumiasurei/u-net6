@@ -14,12 +14,12 @@ using u_net.Public;
 
 namespace u_net
 {
-    public partial class F_商品back : Form
+    public partial class F_受注 : Form
     {
         private Control previousControl;
         private SqlConnection cn;
         private SqlTransaction tx;
-        public F_商品back()
+        public F_受注()
         {
             this.Text = "商品";       // ウィンドウタイトルを設定
             this.MaximizeBox = false;  // 最大化ボタンを無効化
@@ -122,7 +122,7 @@ namespace u_net
                 品名.Focus();
                 商品コード.Enabled = false;
                 コマンド新規.Enabled = false;
-                コマンド修正.Enabled = true;
+                コマンド読込.Enabled = true;
                 コマンド複写.Enabled = false;
                 コマンド削除.Enabled = false;
                 コマンド承認.Enabled = false;
@@ -149,7 +149,7 @@ namespace u_net
                 this.商品コード.Enabled = true;
                 this.商品コード.Focus();
                 this.コマンド新規.Enabled = true;
-                this.コマンド修正.Enabled = false;
+                this.コマンド読込.Enabled = false;
                 this.コマンド複写.Enabled = false;
                 this.コマンド登録.Enabled = false;
 
@@ -227,7 +227,7 @@ namespace u_net
                     if (true)//IsNewData)
                     {
                         コマンド新規.Enabled = true;
-                        コマンド修正.Enabled = false;
+                        コマンド読込.Enabled = false;
                     }
 
                     コマンド複写.Enabled = true;
@@ -574,7 +574,7 @@ namespace u_net
                 商品名.Focus();
                 商品コード.Enabled = false;
                 コマンド新規.Enabled = false;
-                コマンド修正.Enabled = true;
+                コマンド読込.Enabled = true;
                 コマンド複写.Enabled = false;
                 コマンド削除.Enabled = false;
                 // コマンド承認.Enabled = false;
@@ -665,7 +665,7 @@ namespace u_net
         }
 
         //form_Loadの処理だと、グリッドビューがアクティブにならないので、グリッドビューにカーソルを持っていきたい時はこちら
-        private void F_商品_Shown(object sender, EventArgs e)
+        private void F_受注_Shown(object sender, EventArgs e)
         {
             //this.Activate();
             //this.ActiveControl = dataGridView1;
@@ -740,7 +740,7 @@ namespace u_net
             this.コマンド登録.Enabled = dataChanged;
         }
 
-        private void F_商品_KeyDown(object sender, KeyEventArgs e)
+        private void F_受注_KeyDown(object sender, KeyEventArgs e)
         {
             switch (e.KeyCode)
             {
@@ -762,9 +762,9 @@ namespace u_net
                     }
                     break;
                 case Keys.F2:
-                    if (コマンド修正.Enabled)
+                    if (コマンド読込.Enabled)
                     {
-                        コマンド修正.Focus();
+                        コマンド読込.Focus();
                         コマンド修正_Click(this, EventArgs.Empty); // クリックイベントを呼び出す
                     }
                     break;
@@ -781,7 +781,7 @@ namespace u_net
                     }
                     break;
                 case Keys.F5:
-                    if (コマンドシリーズ.Enabled)
+                    if (コマンド顧客.Enabled)
                     {
                         コマンドシリーズ_Click(this, EventArgs.Empty); // クリックイベントを呼び出す
                     }
@@ -842,14 +842,40 @@ namespace u_net
             MessageBox.Show(商品分類コード.Text);
             MessageBox.Show(数量単位コード.Text);
             MessageBox.Show(商品コード.Text);
-            //MessageBox.Show(商品コード.SelectedValue.ToString());
+            MessageBox.Show(商品コード.SelectedValue.ToString());
         }
 
         private void 商品コード_TextChanged(object sender, EventArgs e)
         {
-            this.v商品ヘッダTableAdapter.Fill(this.uiDataSet.V商品ヘッダ, this.商品コード.Text);
+            
+            //  this.v商品ヘッダTableAdapter.Fill(this.uiDataSet.V商品ヘッダ, this.商品コード.Text);
+
         }
 
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void F_受注_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label16_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox5_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox10_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 
 
