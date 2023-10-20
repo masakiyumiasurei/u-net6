@@ -16,6 +16,15 @@ namespace u_net
 {
     public partial class F_商品管理 : Form
     {
+        public string str基本型式名 = "";
+        public string strシリーズ名 = "";
+        public DateTime dtm更新日開始 = DateTime.MinValue;
+        public DateTime dtm更新日終了 = DateTime.MinValue;
+        public string str更新者名 = "";
+        public int intComposedChipMount = 0;
+        public int intIsUnit = 0;
+        public int lngDiscontinued = 0;
+        public int lngDeleted = 0;
 
         int intWindowHeight = 0;
         int intWindowWidth = 0;
@@ -131,18 +140,7 @@ namespace u_net
 
             return result;
         }
-
-        public string str基本型式名 = "";
-        public string strシリーズ名 = "";
-        public DateTime dtm更新日開始 = DateTime.MinValue;
-        public DateTime dtm更新日終了 = DateTime.MinValue;
-        public string str更新者名 = "";
-        public int intComposedChipMount = 0;
-        public int intIsUnit = 0;
-        public int lngDiscontinued = 0;
-        public int lngDeleted = 0;
-
-
+        
         private int Filtering()
         {
             try
@@ -227,7 +225,7 @@ namespace u_net
                     "FROM M商品 LEFT OUTER JOIN ItemCode_ComposedMountChip ON M商品.商品コード = ItemCode_ComposedMountChip.ItemCode " +
                     "LEFT OUTER JOIN Mシリーズ ON M商品.シリーズコード = Mシリーズ.シリーズコード " +
                     "LEFT OUTER JOIN M社員 ON M商品.更新者コード = M社員.社員コード) AS T " +
-                    "WHERE 1=1" + filter;
+                    "WHERE " + filter;
 
                 Connect();
                 using (var command = new SqlCommand(query, cn))
@@ -239,6 +237,11 @@ namespace u_net
                         adapter.Fill(dataTable);
 
                         // DataTable を DataGridView にバインド
+                        dataGridView1.DataSource = null; // データソースをクリア
+                        dataGridView1.Rows.Clear();     // DataGridView内の行をクリア
+                        
+                        dataGridView1.Refresh();
+                        dataGridView1.Invalidate();
                         dataGridView1.DataSource = dataTable;
                     }
                 }
@@ -341,8 +344,8 @@ namespace u_net
         private void コマンド抽出_Click(object sender, EventArgs e)
         {
             dataGridView1.Focus();
-            //商品管理_抽出 form = new 商品管理_抽出();
-            //form.Show();
+            F_商品管理_抽出 form = new F_商品管理_抽出();
+            form.Show();
         }
     }
 }

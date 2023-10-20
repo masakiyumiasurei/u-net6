@@ -118,11 +118,15 @@ namespace u_net
             try
             {
                 F_商品管理 frmTarget = new F_商品管理();
-                
+
                 frmTarget.str基本型式名 = Nz(基本型式名.Text);
                 frmTarget.strシリーズ名 = Nz(シリーズ名.Text);
-                frmTarget.dtm更新日開始 = DateTime.Parse(Nz(更新日開始.Text));
-                frmTarget.dtm更新日終了 = DateTime.Parse(Nz(更新日終了.Text));
+                frmTarget.dtm更新日開始 = string.IsNullOrEmpty(更新日開始.Text) ? 
+                    DateTime.MinValue : DateTime.Parse(更新日開始.Text);
+
+                frmTarget.dtm更新日終了 = string.IsNullOrEmpty(更新日終了.Text) ?
+                    DateTime.MinValue : DateTime.Parse(更新日終了.Text);
+
                 frmTarget.str更新者名 = Nz(更新者名.Text);
 
                 if (intComposedChipMountbutton1.Checked)
@@ -176,13 +180,13 @@ namespace u_net
                 {
                     frmTarget.lngDiscontinued = 0;
                 }
-                
+
                 long cnt = frmTarget.DoUpdate();
 
                 if (cnt == 0)
                 {
                     MessageBox.Show("抽出条件に一致するデータはありません。", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    
+
                     return;
                 }
                 else if (cnt < 0)

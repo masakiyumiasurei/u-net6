@@ -380,6 +380,7 @@
             抽出ボタン.TabIndex = 208;
             抽出ボタン.Text = "抽出(&O)";
             抽出ボタン.UseVisualStyleBackColor = true;
+            抽出ボタン.Click += 抽出ボタン_Click;
             // 
             // キャンセルボタン
             // 
