@@ -32,9 +32,9 @@
             panel1 = new Panel();
             button4 = new Button();
             button3 = new Button();
-            コマンドメール = new Button();
+            コマンド商品 = new Button();
             コマンドメーカー = new Button();
-            コマンド印刷 = new Button();
+            コマンド保守 = new Button();
             コマンド更新 = new Button();
             コマンド全表示 = new Button();
             コマンド初期化 = new Button();
@@ -46,9 +46,6 @@
             label1 = new Label();
             label2 = new Label();
             dataGridView1 = new DataGridView();
-            newDataSet = new newDataSet();
-            q商品管理TableAdapter = new newDataSetTableAdapters.Q商品管理TableAdapter();
-            q商品管理bindingSource = new BindingSource(components);
             dataGridViewTextBoxColumn51 = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn52 = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn53 = new DataGridViewTextBoxColumn();
@@ -61,10 +58,13 @@
             dataGridViewTextBoxColumn60 = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn61 = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn62 = new DataGridViewTextBoxColumn();
+            q商品管理bindingSource = new BindingSource(components);
+            newDataSet = new newDataSet();
+            q商品管理TableAdapter = new newDataSetTableAdapters.Q商品管理TableAdapter();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)newDataSet).BeginInit();
             ((System.ComponentModel.ISupportInitialize)q商品管理bindingSource).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)newDataSet).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -72,9 +72,9 @@
             panel1.BackColor = SystemColors.ActiveCaption;
             panel1.Controls.Add(button4);
             panel1.Controls.Add(button3);
-            panel1.Controls.Add(コマンドメール);
+            panel1.Controls.Add(コマンド商品);
             panel1.Controls.Add(コマンドメーカー);
-            panel1.Controls.Add(コマンド印刷);
+            panel1.Controls.Add(コマンド保守);
             panel1.Controls.Add(コマンド更新);
             panel1.Controls.Add(コマンド全表示);
             panel1.Controls.Add(コマンド初期化);
@@ -113,18 +113,18 @@
             button3.TabIndex = 10;
             button3.UseVisualStyleBackColor = true;
             // 
-            // コマンドメール
+            // コマンド商品
             // 
-            コマンドメール.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            コマンドメール.ForeColor = Color.Blue;
-            コマンドメール.ImageAlign = ContentAlignment.BottomLeft;
-            コマンドメール.Location = new Point(361, 4);
-            コマンドメール.Margin = new Padding(1, 2, 1, 2);
-            コマンドメール.Name = "コマンドメール";
-            コマンドメール.Size = new Size(70, 22);
-            コマンドメール.TabIndex = 9;
-            コマンドメール.Text = "メール";
-            コマンドメール.UseVisualStyleBackColor = true;
+            コマンド商品.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            コマンド商品.ForeColor = Color.Blue;
+            コマンド商品.ImageAlign = ContentAlignment.BottomLeft;
+            コマンド商品.Location = new Point(361, 4);
+            コマンド商品.Margin = new Padding(1, 2, 1, 2);
+            コマンド商品.Name = "コマンド商品";
+            コマンド商品.Size = new Size(70, 22);
+            コマンド商品.TabIndex = 9;
+            コマンド商品.Text = "商品";
+            コマンド商品.UseVisualStyleBackColor = true;
             // 
             // コマンドメーカー
             // 
@@ -139,23 +139,24 @@
             コマンドメーカー.Text = "メーカー";
             コマンドメーカー.UseVisualStyleBackColor = true;
             // 
-            // コマンド印刷
+            // コマンド保守
             // 
-            コマンド印刷.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            コマンド印刷.ImageAlign = ContentAlignment.BottomLeft;
-            コマンド印刷.Location = new Point(648, 4);
-            コマンド印刷.Margin = new Padding(1, 2, 1, 2);
-            コマンド印刷.Name = "コマンド印刷";
-            コマンド印刷.Size = new Size(70, 22);
-            コマンド印刷.TabIndex = 7;
-            コマンド印刷.Text = "印刷";
-            コマンド印刷.UseVisualStyleBackColor = true;
+            コマンド保守.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            コマンド保守.ImageAlign = ContentAlignment.BottomLeft;
+            コマンド保守.Location = new Point(648, 4);
+            コマンド保守.Margin = new Padding(1, 2, 1, 2);
+            コマンド保守.Name = "コマンド保守";
+            コマンド保守.Size = new Size(70, 22);
+            コマンド保守.TabIndex = 7;
+            コマンド保守.Text = "保守";
+            コマンド保守.UseVisualStyleBackColor = true;
+            コマンド保守.Click += コマンド保守_Click;
             // 
             // コマンド更新
             // 
             コマンド更新.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             コマンド更新.ImageAlign = ContentAlignment.BottomLeft;
-            コマンド更新.Location = new Point(577, 4);
+            コマンド更新.Location = new Point(720, 4);
             コマンド更新.Margin = new Padding(1, 2, 1, 2);
             コマンド更新.Name = "コマンド更新";
             コマンド更新.Size = new Size(70, 22);
@@ -210,12 +211,13 @@
             コマンド抽出.TabIndex = 2;
             コマンド抽出.Text = "抽出";
             コマンド抽出.UseVisualStyleBackColor = true;
+            コマンド抽出.Click += コマンド抽出_Click;
             // 
             // コマンド入出力
             // 
             コマンド入出力.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             コマンド入出力.ImageAlign = ContentAlignment.BottomLeft;
-            コマンド入出力.Location = new Point(720, 4);
+            コマンド入出力.Location = new Point(577, 4);
             コマンド入出力.Margin = new Padding(1, 2, 1, 2);
             コマンド入出力.Name = "コマンド入出力";
             コマンド入出力.Size = new Size(70, 22);
@@ -234,6 +236,7 @@
             コマンド終了.TabIndex = 0;
             コマンド終了.Text = "終了";
             コマンド終了.UseVisualStyleBackColor = true;
+            コマンド終了.Click += コマンド終了_Click;
             // 
             // 表示件数
             // 
@@ -277,21 +280,6 @@
             dataGridView1.Size = new Size(1054, 328);
             dataGridView1.TabIndex = 87;
             dataGridView1.SizeChanged += Form_Resize;
-            // 
-            // newDataSet
-            // 
-            newDataSet.DataSetName = "newDataSet";
-            newDataSet.Namespace = "http://tempuri.org/newDataSet.xsd";
-            newDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // q商品管理TableAdapter
-            // 
-            q商品管理TableAdapter.ClearBeforeFill = true;
-            // 
-            // q商品管理bindingSource
-            // 
-            q商品管理bindingSource.DataMember = "Q商品管理";
-            q商品管理bindingSource.DataSource = newDataSet;
             // 
             // dataGridViewTextBoxColumn51
             // 
@@ -377,6 +365,21 @@
             dataGridViewTextBoxColumn62.Name = "dataGridViewTextBoxColumn62";
             dataGridViewTextBoxColumn62.ReadOnly = true;
             // 
+            // q商品管理bindingSource
+            // 
+            q商品管理bindingSource.DataMember = "Q商品管理";
+            q商品管理bindingSource.DataSource = newDataSet;
+            // 
+            // newDataSet
+            // 
+            newDataSet.DataSetName = "newDataSet";
+            newDataSet.Namespace = "http://tempuri.org/newDataSet.xsd";
+            newDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // q商品管理TableAdapter
+            // 
+            q商品管理TableAdapter.ClearBeforeFill = true;
+            // 
             // F_商品管理
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -393,8 +396,8 @@
             Load += Form_Load;
             panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)newDataSet).EndInit();
             ((System.ComponentModel.ISupportInitialize)q商品管理bindingSource).EndInit();
+            ((System.ComponentModel.ISupportInitialize)newDataSet).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -403,9 +406,9 @@
         private Panel panel1;
         private Button button4;
         private Button button3;
-        private Button コマンドメール;
+        private Button コマンド商品;
         private Button コマンドメーカー;
-        private Button コマンド印刷;
+        private Button コマンド保守;
         private Button コマンド更新;
         private Button コマンド全表示;
         private Button コマンド初期化;

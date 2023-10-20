@@ -16,8 +16,10 @@ namespace u_net
 {
     public partial class F_商品管理 : Form
     {
+
         int intWindowHeight = 0;
         int intWindowWidth = 0;
+        private Control previousControl;
         private SqlConnection cn;
         public F_商品管理()
         {
@@ -29,6 +31,17 @@ namespace u_net
             string connectionString = connectionInfo.Getconnect();
             cn = new SqlConnection(connectionString);
             cn.Open();
+        }
+        private void InitializeFilter()
+        {
+            this.str基本型式名 = "";
+            this.strシリーズ名 = "";
+            this.dtm更新日開始 = DateTime.MinValue;
+            this.dtm更新日終了 = DateTime.MinValue;
+            this.str更新者名 = "";
+            this.intIsUnit = 1;
+            this.lngDiscontinued = 1;
+            this.lngDeleted = 1;
         }
         private void Form_Load(object sender, EventArgs e)
         {
@@ -69,7 +82,7 @@ namespace u_net
 
             this.Size = new Size(this.Width, ySize * myapi.GetTwipPerDot(intpixel) - 1200);
 
-            //InitializeFilter() 必要かまだ不明のため
+            InitializeFilter();
             DoUpdate();
 
 
@@ -121,20 +134,19 @@ namespace u_net
 
         string str基本型式名 = "";
         string strシリーズ名 = "";
-        DateTime dtm更新日開始;
-        DateTime dtm更新日終了;
+        DateTime dtm更新日開始= DateTime.MinValue;
+        DateTime dtm更新日終了= DateTime.MinValue;
         string str更新者名 = "";
         int intComposedChipMount = 0;
         int intIsUnit = 0;
         int lngDiscontinued = 0;
         int lngDeleted = 0;
 
-        
+
         private int Filtering()
         {
             try
             {
-                
                 string filter = string.Empty;
 
                 // 基本型式名
@@ -142,25 +154,21 @@ namespace u_net
                 {
                     filter += "基本型式名 LIKE '%" + str基本型式名 + "%' AND ";
                 }
-
                 // シリーズ名
                 if (!string.IsNullOrEmpty(strシリーズ名))
                 {
                     filter += "シリーズ名 LIKE '%" + strシリーズ名 + "%' AND ";
                 }
-
                 // 更新日時
                 if (dtm更新日開始 != DateTime.MinValue)
                 {
                     filter += "'" + dtm更新日開始 + "' <= 更新日時 AND 更新日時 <= '" + dtm更新日終了 + "' AND ";
                 }
-
                 // 更新者名
                 if (!string.IsNullOrEmpty(str更新者名))
                 {
                     filter += "更新者名 = '" + str更新者名 + "' AND ";
                 }
-
                 // チップマウントデータが構成されているかどうか
                 switch (intComposedChipMount)
                 {
@@ -171,7 +179,6 @@ namespace u_net
                         filter += "構成 IS NOT NULL AND ";
                         break;
                 }
-
                 // ユニットかどうか
                 switch (intIsUnit)
                 {
@@ -182,7 +189,6 @@ namespace u_net
                         filter += "ユニ IS NOT NULL AND ";
                         break;
                 }
-
                 // 廃止
                 switch (lngDiscontinued)
                 {
@@ -217,7 +223,7 @@ namespace u_net
                     "CASE WHEN M商品.Discontinued = 0 THEN NULL ELSE '■' END AS 廃止, " +
                     "CASE WHEN M商品.無効日時 IS NOT NULL THEN '■' ELSE NULL END AS 削除, " +
                     "CASE WHEN M商品.IsUnit <> 0 THEN '■' ELSE NULL END AS ユニ, " +
-                    "CASE WHEN ItemCode IS NOT NULL THEN '■' ELSE NULL END AS 構成 " + 
+                    "CASE WHEN ItemCode IS NOT NULL THEN '■' ELSE NULL END AS 構成 " +
                     "FROM M商品 LEFT OUTER JOIN ItemCode_ComposedMountChip ON M商品.商品コード = ItemCode_ComposedMountChip.ItemCode " +
                     "LEFT OUTER JOIN Mシリーズ ON M商品.シリーズコード = Mシリーズ.シリーズコード " +
                     "LEFT OUTER JOIN M社員 ON M商品.更新者コード = M社員.社員コード) AS T " +
@@ -232,17 +238,15 @@ namespace u_net
                         var dataTable = new DataTable();
                         adapter.Fill(dataTable);
 
-                        // 4. DataTable を DataGridView にバインド
+                        // DataTable を DataGridView にバインド
                         dataGridView1.DataSource = dataTable;
                     }
                 }
 
-
-
                 //フィルタ条件があるかどうかを確認し、データを抽出
-                if (!string.IsNullOrEmpty(filter))
-                {
-                    q商品管理TableAdapter.ClearBeforeFill = false;
+                //if (!string.IsNullOrEmpty(filter))
+                //{
+                //    q商品管理TableAdapter.ClearBeforeFill = false;
                 //q商品管理TableAdapter.FillBy(newDataSet.Q商品管理, filter基本型式名, filterシリーズ名, filter更新日開始,
                 //   filter更新日終了, filter更新者名, filter構成, filterユニ, filter廃止, filter削除);
                 //}
@@ -250,9 +254,9 @@ namespace u_net
                 //{
                 //    q商品管理TableAdapter.ClearBeforeFill = false;
                 //    q商品管理TableAdapter.Fill(newDataSet.Q商品管理);
-                 }
+                //}
 
-                return newDataSet.Q商品管理.Rows.Count;
+                return dataGridView1.RowCount;
             }
             catch (Exception ex)
             {
@@ -261,6 +265,84 @@ namespace u_net
             }
         }
 
+        private void Form_KeyDown(int KeyCode, int Shift)
+        {
+            try
+            {
+                int intShiftDown = 0;
 
+                int intKeyCode = KeyCode;
+
+
+                switch (KeyCode)
+                {
+                    //case (int)Keys.F1:
+                    //    if (this.コマンド抽出.Enabled) コマンド抽出_Click(null, null);
+                    //    break;
+                    //case (int)Keys.F2:
+                    //    if (this.コマンド検索.Enabled) コマンド検索_Click(null, null);
+                    //    break;
+                    //case (int)Keys.F3:
+                    //    if (this.コマンド初期化.Enabled) コマンド初期化_Click(null, null);
+                    //    break;
+                    //case (int)Keys.F4:
+                    //    if (this.コマンド全表示.Enabled) コマンド全表示_Click(null, null);
+                    //    break;
+                    //case (int)Keys.F5:
+                    //    if (this.コマンド商品.Enabled) コマンド商品_Click(null, null);
+                    //    break;
+
+
+                    //case (int)Keys.F9:
+                    //    if (this.コマンド入出力.Enabled) コマンド入出力_Click(null, null);
+                    //    break;
+                    //case (int)Keys.F10:
+                    //    if (this.コマンド保守.Enabled) コマンド保守_Click(null, null);
+                    //    break;
+                    //case (int)Keys.F11:
+                    //    if (this.コマンド更新.Enabled) コマンド更新_Click(null, null);
+                    //    break;
+                    //case (int)Keys.F12:
+                    //    if (this.コマンド終了.Enabled) コマンド終了_Click(null, null);
+                    //    break;
+                    //case (int)Keys.Return:
+                    //    if (this.ActiveControl == this.商品)
+                    //    {
+                    //        // Replace "OpenForm" with the appropriate method to open a form.
+                    //        OpenForm("商品", gridobject.TextMatrix(gridobject.row, 1));
+                    //    }
+                    //    break;
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("KeyDown - " + ex.Message);
+            }
+        }
+
+        private void コマンド終了_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void コマンド保守_Click(object sender, EventArgs e)
+        {
+            if (ActiveControl == コマンド保守)
+            {
+                if (previousControl != null)
+                {
+                    previousControl.Focus();
+                }
+            }
+            MessageBox.Show("このコマンドは使用できません。", "保守コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void コマンド抽出_Click(object sender, EventArgs e)
+        {
+            dataGridView1.Focus();
+            //商品管理_抽出 form = new 商品管理_抽出();
+            //form.Show();
+        }
     }
 }

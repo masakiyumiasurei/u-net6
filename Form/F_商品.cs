@@ -194,12 +194,7 @@ namespace u_net
                 try
                 {
                     // M商品データを保存
-                    //this.Validate();
-                    //this.M商品BindingSource.EndEdit();
-                    //this.M商品TableAdapter.Connection = cn;
-                    //this.M商品TableAdapter.Transaction = transaction;
-                    //this.M商品TableAdapter.Update(this.uiDataSet.M商品);
-
+                    
                     string strwhere = " 商品コード='" + this.商品コード.Text + "' and Revision=" + this.Revision.Text;
 
                     if (!DataUpdater.UpdateOrInsertDataFrom(this, cn, "M商品", strwhere, "商品コード", transaction))

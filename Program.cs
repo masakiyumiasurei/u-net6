@@ -16,7 +16,7 @@ namespace u_net
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new F_商品管理());
+            Application.Run(new F_商品管理_抽出());
             //Application.Run(new F_test());
         }
     }
