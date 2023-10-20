@@ -210,7 +210,7 @@ namespace u_net
             }
         }
 
-        private void MyForm_FormClosing(object sender, FormClosingEventArgs e)
+        private void Form_Unload(object sender, FormClosingEventArgs e)
         {
             try
             {
@@ -260,7 +260,7 @@ namespace u_net
                         CommonConnect();
 
                         // 初版データのときのみ採番された番号を戻す
-                        if (!ReturnNewCode(cn, CommonConstants.CH_MAKER, CurrentCode))
+                        if (!FunctionClass.ReturnNewCode(cn, CommonConstants.CH_MAKER, CurrentCode))
                         {
                             MessageBox.Show("エラーのためコードは破棄されました。" + Environment.NewLine +
                                 "メーカーコード　：　" + CurrentCode, BASE_CAPTION, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -508,315 +508,468 @@ namespace u_net
 
 
 
-        //private void コマンド新規_Click(object sender, EventArgs e)
-        //{
-        //    try
-        //    {
-        //        if (this.ActiveControl == this.コマンド新規)
-        //        {
-        //            if (previousControl != null)
-        //            {
-        //                previousControl.Focus();
-        //            }
-        //        }
+        private void コマンド新規_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Cursor.Current = Cursors.WaitCursor;
+                this.DoubleBuffered = true;
 
-        //        // 変更があるときは登録確認を行う
-        //        if (this.コマンド登録.Enabled)
-        //        {
-        //            var Res = MessageBox.Show("変更内容を登録しますか？", "新規コマンド", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                if (this.ActiveControl == this.コマンド新規)
+                {
+                    this.コマンド新規.Focus();
+                }
 
-        //            switch (Res)
-        //            {
-        //                case DialogResult.Yes:
+                // 変更がある
+                if (this.IsChanged)
+                {
+                    var intRes = MessageBox.Show("変更内容を登録しますか？", "新規コマンド", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                    switch (intRes)
+                    {
+                        case DialogResult.Yes:
+                            // 登録処理
+                            if (!SaveData(this.CurrentCode, this.CurrentRevision))
+                            {
+                                MessageBox.Show("エラーのため登録できません。", "新規コマンド", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                                goto Bye_コマンド新規_Click;
+                            }
+                            break;
+                        case DialogResult.Cancel:
+                            goto Bye_コマンド新規_Click;
+                    }
+                }
 
-        //                    if (!ErrCheck()) return;
-        //                    // 登録処理
-        //                    if (!SaveData())
-        //                    {
-        //                        MessageBox.Show("登録できませんでした。", "新規コマンド", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-        //                        return;
-        //                    }
+                // 新規モードへ移行
+                if (!GoNewMode())
+                {
+                    MessageBox.Show("エラーのため新規モードへ移行できません。", "新規コマンド", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    goto Bye_コマンド新規_Click;
+                }
+            }
+            finally
+            {
+                this.DoubleBuffered = false;
+                Cursor.Current = Cursors.Default;
+            }
 
-        //                    break;
-        //                case DialogResult.Cancel:
-        //                    return;
-        //            }
-        //        }
-        //        // 新規モードへ移行
-        //        if (!GoNewMode())
-        //        {
-        //            goto Err_コマンド新規_Click;
-        //        }
-        //        return;
-
-        //    Err_コマンド新規_Click:
-        //        MessageBox.Show("エラーのため新規モードへ移行できません。", "新規コマンド", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        // 例外処理
-        //        Debug.Print(this.Name + "_コマンド新規 - " + ex.Message);
-        //        MessageBox.Show("エラーのため新規モードへ移行できません。", "新規コマンド", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-        //    }
-        //}
-
-        //private void コマンド修正_Click(object sender, EventArgs e)
-        //{
-        //    try
-        //    {
-        //        // データに変更があった場合の処理
-        //        if (this.コマンド登録.Enabled)
-        //        {
-
-        //            var res = MessageBox.Show("変更内容を登録しますか？", this.Text, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
-
-        //            switch (res)
-        //            {
-        //                case DialogResult.Yes:
-
-        //                    if (!ErrCheck()) return;
-        //                    this.DoubleBuffered = false;
-
-        //                    if (!SaveData())
-        //                    {
-        //                        MessageBox.Show("エラーのため登録できませんでした。", "修正コマンド", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-        //                    }
-        //                    this.DoubleBuffered = true;
-        //                    break;
-
-        //                case DialogResult.No:
-        //                    // 新規モードのときに登録しない場合はコードを戻す
-        //                    if (this.コマンド新規.Enabled)
-        //                    {
-        //                        Connect();
-        //                        if (!FunctionClass.ReturnCode(cn, "ITM" + this.メーカーコード.Text))
-        //                        {
-        //                            MessageBox.Show("エラーのためコードは破棄されました。\n\nメーカーコード： " + this.メーカーコード.Text, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-        //                        }
-        //                    }
-        //                    break;
-
-        //                case DialogResult.Cancel:
-        //                    return;
-        //            }
-        //        }
-        //        else
-        //        {
-        //            // 新規モードのときに変更がない場合はコードを戻す
-        //            if (this.コマンド新規.Enabled)
-        //            {
-        //                if (!FunctionClass.ReturnCode(cn, "ITM" + this.メーカーコード.Text))
-        //                {
-        //                    MessageBox.Show("エラーのためコードは破棄されました。\n\nメーカーコード： " + this.メーカーコード.Text, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-        //                }
-        //            }
-        //        }
-
-        //        // 修正モードへ移行する
-        //        if (!GoModifyMode())
-        //        {
-        //            // 移行に失敗した場合の処理
-        //            Debug.Print(this.Name + "_コマンド修正_Click - Error");
-        //            if (MessageBox.Show("エラーが発生しました。\n\n管理者に連絡してください。\n\n強制終了しますか？", "修正コマンド", MessageBoxButtons.YesNo, MessageBoxIcon.Error) == DialogResult.Yes)
-        //            {
-        //                this.Close();
-        //            }
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Debug.Print(this.Name + "_コマンド修正_Click - " + ex.Message);
-        //        MessageBox.Show("エラーが発生しました。\n\n管理者に連絡してください。\n\n強制終了しますか？", "修正コマンド", MessageBoxButtons.YesNo, MessageBoxIcon.Error);
-        //        this.Close();
-        //    }
-        //}
-
-        //private void コマンド複写_Click(object sender, EventArgs e)
-        //{
-        //    if (this.ActiveControl == this.コマンド複写)
-        //    {
-        //        if (previousControl != null)
-        //        {
-        //            previousControl.Focus();
-        //        }
-        //    }
-        //    //新規採番したコードをメーカー明細にセット
-        //    string original = FunctionClass.採番(cn, "ITM");
-        //    string originalcode = original.Substring(original.Length - 8);
-
-        //    if (CopyData(originalcode))
-        //    {
-        //        // ヘッダ部制御
-        //        FunctionClass.LockData(this, false);
-        //        メーカー名.Focus();
-        //        メーカーコード.Enabled = false;
-        //        コマンド新規.Enabled = false;
-        //        コマンド読込.Enabled = true;
-        //        コマンド複写.Enabled = false;
-        //        コマンド削除.Enabled = false;
-        //        // コマンド承認.Enabled = false;
-        //        // コマンド確定.Enabled = false;
-        //        コマンド登録.Enabled = true;
-        //    }
-        //    else
-        //    {
-        //        MessageBox.Show("エラーが発生しました。\n複写できません。", "複写コマンド", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-        //        return;
-        //    }
-        //}
-
-        //private bool CopyData(string codeString)
-        //{
-        //    try
-        //    {
-        //        // DataGridView内の各行にアクセス
-        //        foreach (DataGridViewRow row in dataGridView1.Rows)
-        //        {
-        //            // 行が新しい行を示す場合など、データ行でない場合は無視
-        //            if (!row.IsNewRow)
-        //            {
-        //                // メーカーコードカラムのセルを取得
-        //                DataGridViewCell productCodeCell = row.Cells["dgvメーカーコード"]; // カラム名に応じて変更
-
-        //                if (productCodeCell != null)
-        //                {
-        //                    // メーカーコードカラムのセルの値を新しいメーカーコードに変更
-        //                    productCodeCell.Value = codeString;
-        //                }
-        //            }
-        //        }
-        //        // コントロールのフィールドを初期化
-        //        メーカーコード.Text = codeString;
-        //        作成日時.Text = null;
-        //        作成者コード.Text = null;
-        //        作成者名.Text = null;
-        //        更新日時.Text = null;
-        //        更新者コード.Text = null;
-        //        更新者名.Text = null;
-        //        削除.Text = null;
-
-        //        //明細行のリセット
-        //        detailNumber = 1;
+        Bye_コマンド新規_Click:
+            return;
+        }
 
 
-        //        return true;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        // エラーが発生した場合の処理
-        //        MessageBox.Show("_CopyData - " + ex.Message);
-        //        return false;
-        //    }
-        //}
+
+        private void コマンド読込_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.DoubleBuffered = true;
+
+                //this.Painting = false;
+
+                CommonConnect();
+
+                if (!this.IsChanged)
+                {
+                    // 新規モードで且つコードが取得済みのときはコードを戻す
+                    if (this.IsNewData && !string.IsNullOrEmpty(this.CurrentCode))
+                    {
+
+                        
+
+                        // 採番された番号を戻す
+                        if (!FunctionClass.ReturnNewCode(cn, CommonConstants.CH_MAKER, this.CurrentCode))
+                        {
+                            MessageBox.Show("エラーのためコードは破棄されました。" + Environment.NewLine +
+                                "メーカーコード　：　" + this.CurrentCode, "読込コマンド", MessageBoxButtons.OK);
+                        }
+                    }
+
+                    // 読込モードへ移行する
+                    if (!GoModifyMode())
+                    {
+                        goto Err_コマンド読込_Click;
+                    }
+
+                    goto Bye_コマンド読込_Click;
+                }
+
+                // 変更されているときは登録確認を行う
+                var intRes = MessageBox.Show("変更内容を登録しますか？", "読込コマンド", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                switch (intRes)
+                {
+                    case DialogResult.Yes:
+                        // エラーチェック
+                        if (IsErrorData("メーカーコード"))
+                        {
+                            return;
+                        }
+
+                        // 登録処理
+                        if (!SaveData(this.CurrentCode, this.CurrentRevision))
+                        {
+                            MessageBox.Show("エラーのため登録できません。", "読込コマンド", MessageBoxButtons.OK);
+                            return;
+                        }
+                        break;
+                    case DialogResult.No:
+                        // 新規モードで且つコードが取得済みのときはコードを戻す
+                        if (this.IsNewData && !string.IsNullOrEmpty(this.CurrentCode))
+                        {
+                            // 採番された番号を戻す
+                            if (!FunctionClass.ReturnNewCode(cn, CommonConstants.CH_MAKER, this.CurrentCode))
+                            {
+                                MessageBox.Show("エラーのためコードは破棄されました。" + Environment.NewLine +
+                                    "メーカーコード　：　" + this.CurrentCode, "読込コマンド", MessageBoxButtons.OK);
+                            }
+                        }
+                        break;
+                    case DialogResult.Cancel:
+                        return;
+                }
+
+                // 読込モードへ移行する
+                if (!GoModifyMode())
+                {
+                    goto Err_コマンド読込_Click;
+                }
+            }
+            finally
+            {
+                //this.Painting = true;
+            }
+
+        Bye_コマンド読込_Click:
+            return;
+
+        Err_コマンド読込_Click:
+            //Debug.Print(this.Name + "_コマンド読込_Click - " + Err.Number + " : " + Err.Description);
+            MessageBox.Show("エラーが発生しました。" + Environment.NewLine +
+                "[ " + BASE_CAPTION + " ]を終了します。", "読込コマンド", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //this.Painting = true;
+            this.Close();
+        }
 
 
-        //private void コマンド削除_Click(object sender, EventArgs e)
-        //{
+        private bool IsErrorData(string ExFieldName1, string ExFieldName2 = "")
+        {
+            try
+            {
+                bool isErrorData = false;
 
-        //}
+                // ヘッダ部のチェック
+                foreach (Control objControl in this.Controls)
+                {
+                    if ((objControl is TextBox || objControl is ComboBox) && objControl.Visible)
+                    {
+                        if (objControl.Name != ExFieldName1 && objControl.Name != ExFieldName2)
+                        {
+                            if (FunctionClass.IsError(objControl))
+                            { 
+                                isErrorData = true;
+                                objControl.Focus();
+                                return isErrorData;
+                            }
+                        }
+                    }
+                }
 
-        //private void コマンドシリーズ_Click(object sender, EventArgs e)
-        //{
-
-        //}
-
-        //private void コマンド承認_Click(object sender, EventArgs e)
-        //{
-        //    if (ActiveControl == コマンド承認)
-        //    {
-        //        if (previousControl != null)
-        //        {
-        //            previousControl.Focus();
-        //        }
-        //    }
-        //    MessageBox.Show("このコマンドは使用できません。", "承認コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        //}
-
-        //private void コマンド終了_Click(object sender, EventArgs e)
-        //{
-        //    this.Close();
-        //}
-        //private void コマンド確定_Click(object sender, EventArgs e)
-        //{
-
-        //}
-
-        ////form_Loadの処理だと、グリッドビューがアクティブにならないので、グリッドビューにカーソルを持っていきたい時はこちら
-        //private void F_メーカー_Shown(object sender, EventArgs e)
-        //{
-        //    //this.Activate();
-        //    //this.ActiveControl = dataGridView1;
-        //    //dataGridView1.CurrentCell = dataGridView1[1, new_cnt];
-        //}
+                return isErrorData;
+            }
+            catch (Exception ex)
+            {
+                Debug.Print(this.Name + "_IsErrorData - " + ex.Message);
+                return true;
+            }
+        }
 
 
-        //// コントロールがフォーカスを受け取ったとき、前回のフォーカスを記憶
-        //private void Control_GotFocus(object sender, EventArgs e)
-        //{
 
-        //    previousControl = sender as Control;
-        //}
+        private void コマンド複写_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (ActiveControl == コマンド複写)
+                {
+                    GetNextControl(コマンド複写, false).Focus();
+                }
 
-        ////メーカー明細の型式番号と構成番号を設定する 同一のメーカーコード内での連番　と型式名ごとの番号
-        //private bool SetModelNumber()
-        //{
-        //    try
-        //    {
-        //        //  DataTable table = this.uiDataSet.Mメーカー明細;
-        //        int lngi = 1;
-        //        // string 列名1 = dataGridView1.Columns["型式名"].Name;
+                this.DoubleBuffered = true;
+                //this.Painting = false;
 
-        //        foreach (DataGridViewRow row in dataGridView1.Rows)
-        //        {
-        //            if (!row.IsNewRow)
-        //            {
-        //                string 型式名 = row.Cells["型式名DataGridViewTextBoxColumn"].Value as string;
+                CommonConnect();
 
-        //                if (!string.IsNullOrEmpty(型式名) && 型式名 != "---")
-        //                {
-        //                    // データグリッドビューから値を取得してデータテーブル内の値を変更
-        //                    dataGridView1.Rows[row.Index].Cells["型式番号DataGridViewTextBoxColumn"].Value = lngi;
-        //                    dataGridView1.Rows[row.Index].Cells["構成番号DataGridViewTextBoxColumn"].Value = DBNull.Value;
-        //                    lngi++;
-        //                }
-        //                else
-        //                {
-        //                    dataGridView1.Rows[row.Index].Cells["構成番号DataGridViewTextBoxColumn"].Value = lngi;
-        //                }
-        //            }
-        //        }
+                string newCode = FunctionClass.GetNewCode(cn, CommonConstants.CH_MAKER);
+                if (CopyData(newCode.Substring(newCode.Length - 8), 1))
+                {
+                    ChangedData(true);
+                    FunctionClass.LockData(this, false);
 
-        //        return true;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show("SetModelNumber Error: " + ex.Message);
-        //        return false;
-        //    }
-        //}
+                    this.メーカー名.Focus();
+                    this.コマンド新規.Enabled = false;
+                    this.コマンド読込.Enabled = true;
+                }
+            }
+            finally
+            {
+                //this.Painting = true;
+            }
+        }
 
-        //public void ChangedData(bool dataChanged)
-        //{
-        //    if (dataChanged)
-        //    {
-        //        this.Text = this.Name + "*";
-        //    }
-        //    else
-        //    {
-        //        this.Text = this.Name;
-        //    }
 
-        //    if (this.ActiveControl == this.メーカーコード)
-        //    {
-        //        this.メーカー名.Focus();
-        //    }
+        private bool CopyData(string codeString, int editionNumber = -1)
+        {
+            try
+            {
+                // キー情報を設定
+                メーカーコード.Text = codeString;
+                if (editionNumber != -1)
+                {
+                    Revision.Text = editionNumber.ToString();
+                }
 
-        //    this.メーカーコード.Enabled = !dataChanged;
-        //    this.コマンド複写.Enabled = !dataChanged;
-        //    this.コマンド削除.Enabled = !dataChanged;
-        //    this.コマンド登録.Enabled = dataChanged;
-        //}
+                // 初期値を設定
+                作成日時.Text = null;
+                作成者コード.Text = null;
+                作成者名.Text = null;
+                更新日時.Text = null;
+                更新者コード.Text = null;
+                更新者名.Text = null;
+                // 他の値も同様に設定
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Debug.Print(this.Name + "_CopyData - " + ex.Message);
+                return false;
+            }
+        }
+
+        private void コマンド削除_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string strCode = CurrentCode; // 仮のCurrentCodeの取得
+                int intEdition = CurrentRevision; // 仮のCurrentRevisionの取得
+                string strMsg;
+
+                this.DoubleBuffered = true;
+                //this.Painting = false;
+
+                DialogResult intRes;
+
+                if (ActiveControl == コマンド削除)
+                {
+                    GetNextControl(コマンド削除, false).Focus();
+                }
+
+                if (intEdition == 1)
+                {
+                    strMsg = "メーカーコード　：　" + strCode + Environment.NewLine +
+                             "このメーカーデータを削除/復元します。" + Environment.NewLine +
+                             "削除/復元するには[はい]を選択してください。" + Environment.NewLine + Environment.NewLine +
+                             "※削除後も参照することができます。";
+
+                    intRes = MessageBox.Show(strMsg, "削除コマンド", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                }
+                else
+                {
+                    strMsg = "このバージョンのU-netでは操作できません。" + Environment.NewLine +
+                             "最新バージョンのU-netで操作してください";
+
+                    intRes = MessageBox.Show(strMsg, "削除コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    // 2版以上の場合の処理はコメントアウトしました
+                    // strMsg の内容に合わせて適切な処理を実装してください
+                }
+
+                if (intRes == DialogResult.Cancel)
+                {
+                    goto Bye_コマンド削除_Click;
+                }
+                else
+                {
+                    // 認証処理や削除処理を実装する必要があります
+                    // また、MessageBox などのメッセージボックスを適切に置き換えてください
+                }
+            }
+            finally
+            {
+                //this.Painting = true;
+            }
+
+        Bye_コマンド削除_Click:
+            Close();
+        }
+
+        private void コマンド仕入先_Click(object sender, EventArgs e)
+        {
+            // エラーハンドリングはC#では別の方法を使用するため、ここでは省略
+            // On Error Resume Next の代替方法はC#にはありません
+
+            if (ActiveControl == コマンド仕入先)
+            {
+                GetNextControl(コマンド仕入先, false).Focus();
+            }
+
+            // 仕入先フォームを開く
+            //Form 仕入先Form = new 仕入先(); // 仕入先フォームの名前に合わせて変更してください
+            //仕入先Form.Show();
+        }
+
+        private void コマンドメール_Click(object sender, EventArgs e)
+        {
+            string toEmail = Convert.ToString(担当者メールアドレス.Text);
+
+            if (string.IsNullOrEmpty(toEmail))
+            {
+                MessageBox.Show("メールアドレスを入力してください。", "メールコマンド", MessageBoxButtons.OK);
+                担当者メールアドレス.Focus();
+                return;
+            }
+
+            // デフォルトのメールクライアントを起動して新しいメールを作成
+            try
+            {
+                string mailtoLink = "mailto:" + toEmail;
+                System.Diagnostics.Process.Start(mailtoLink);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("メールを起動できませんでした。\nエラー: " + ex.Message, "メールコマンド", MessageBoxButtons.OK);
+            }
+        }
+
+        private void コマンド印刷_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void コマンド承認_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void コマンド確定_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void コマンド登録_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.DoubleBuffered = true;
+
+                //this.Painting = false;
+
+                if (ActiveControl == コマンド登録)
+                {
+                    GetNextControl(コマンド登録, false).Focus();
+                }
+
+                // 登録時におけるエラーチェック
+                if (IsErrorData("メーカーコード"))
+                {
+                    goto Bye_コマンド登録_Click;
+                }
+
+                //DoWait("登録しています...");
+
+                if (SaveData(CurrentCode, CurrentRevision))
+                {
+                    // 登録成功
+                    ChangedData(false);
+
+                    if (IsNewData)
+                    {
+                        // 新規モードの場合、版数一覧を更新し、ボタンの状態を変更
+                        // Me.メーカー版数.Requery(); // データを再読み込む処理が必要
+                        コマンド新規.Enabled = true;
+                        コマンド読込.Enabled = false;
+                    }
+
+                    // その他の処理を追加
+                    // Me.コマンド承認.Enabled = Me.IsDecided;
+                    // Me.コマンド確定.Enabled = true;
+                }
+                else
+                {
+                    MessageBox.Show("登録できませんでした。", "登録コマンド", MessageBoxButtons.OK);
+                }
+            }
+            finally
+            {
+                Close();
+                //this.Painting = true;
+            }
+
+        Bye_コマンド登録_Click:
+            return;
+        }
+
+        private void コマンド終了_Click(object sender, EventArgs e)
+        {
+            // エラーハンドリングはC#では別の方法を使用するため、ここでは省略
+            // On Error Resume Next の代替方法はC#にはありません
+
+            Close(); // フォームを閉じる
+        }
+
+
+
+        private void Form_KeyDown(object sender, KeyEventArgs e)
+        {
+            bool intShiftDown = (Control.ModifierKeys & Keys.Shift) == Keys.Shift;
+
+            if (intShiftDown)
+            {
+                Debug.Print(Name + " - Shiftキーが押されました");
+            }
+
+            switch (e.KeyCode)
+            {
+                case Keys.F1:
+                    if (コマンド新規.Enabled) コマンド新規_Click(sender, e);
+                    break;
+                case Keys.F2:
+                    if (コマンド読込.Enabled) コマンド読込_Click(sender, e);
+                    break;
+                case Keys.F3:
+                    if (コマンド複写.Enabled) コマンド複写_Click(sender, e);
+                    break;
+                case Keys.F4:
+                    if (コマンド削除.Enabled) コマンド削除_Click(sender, e);
+                    break;
+                case Keys.F5:
+                    if (コマンド仕入先.Enabled) コマンド仕入先_Click(sender, e);
+                    break;
+                case Keys.F6:
+                    if (コマンドメール.Enabled) コマンドメール_Click(sender, e);
+                    break;
+                case Keys.F8:
+                    if (コマンド印刷.Enabled) コマンド印刷_Click(sender, e);
+                    break;
+                case Keys.F9:
+                    if (コマンド承認.Enabled) コマンド承認_Click(sender, e);
+                    break;
+                case Keys.F10:
+                    if (コマンド確定.Enabled) コマンド確定_Click(sender, e);
+                    break;
+                case Keys.F11:
+                    if (コマンド登録.Enabled) コマンド登録_Click(sender, e);
+                    break;
+                case Keys.F12:
+                    if (コマンド終了.Enabled) コマンド終了_Click(sender, e);
+                    break;
+            }
+        }
+
+
+
+
+
+
 
         //private void F_メーカー_KeyDown(object sender, KeyEventArgs e)
         //{
@@ -890,54 +1043,6 @@ namespace u_net
         //            }
         //            break;
         //    }
-        //}
-        //private void 品名_TextChanged(object sender, EventArgs e)
-        //{
-        //    FunctionClass.LimitText(this.品名, 48);
-        //    ChangedData(true);
-        //}
-        //private void 品名_Enter(object sender, EventArgs e)
-        //{
-        //    this.toolStripStatusLabel2.Text = "■受注時などに表示されるメーカーの品名です。　■全角２４文字まで入力できます。";
-        //}
-
-        //private void メーカー分類コード_SelectedIndexChanged(object sender, EventArgs e)
-        //{
-        //    if (this.メーカー分類コード.SelectedItem != null)
-        //    {
-        //        分類内容.Text = (メーカー分類コード.SelectedItem as DataRowView)["分類内容"].ToString();
-        //    }
-        //}
-
-        //private void FlowCategoryCode_SelectedIndexChanged(object sender, EventArgs e)
-        //{
-        //    //MessageBox.Show(FlowCategoryCode.SelectedValue.ToString());
-
-        //}
-
-        //private void button1_Click(object sender, EventArgs e)
-        //{
-        //    MessageBox.Show(メーカー分類コード.Text);
-        //    MessageBox.Show(数量単位コード.Text);
-        //    MessageBox.Show(メーカーコード.Text);
-        //    MessageBox.Show(メーカーコード.SelectedValue.ToString());
-        //}
-
-        //private void メーカーコード_TextChanged(object sender, EventArgs e)
-        //{
-
-        //    //  this.vメーカーヘッダTableAdapter.Fill(this.uiDataSet.Vメーカーヘッダ, this.メーカーコード.Text);
-
-        //}
-
-        //private void label17_Click(object sender, EventArgs e)
-        //{
-
-        //}
-
-        //private void label2_Click(object sender, EventArgs e)
-        //{
-
         //}
 
 

@@ -340,7 +340,26 @@ namespace u_net.Public
 
 
 
+        public static bool ReturnNewCode(SqlConnection conn, string header, string code)
+        {
+            try
+            {
+                string strSQL = "EXEC ReturnCode '" + header + "','" + code + "'";
 
+                using (SqlCommand cmd = new SqlCommand(strSQL, conn))
+                {
+                    cmd.CommandType = CommandType.Text;
+                    cmd.ExecuteNonQuery();
+                }
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Debug.Print("ReturnNewCode - " + ex.Message);
+                return false;
+            }
+        }
 
 
 

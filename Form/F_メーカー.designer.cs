@@ -149,23 +149,26 @@ namespace u_net
             this.コマンド終了.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.コマンド終了.Name = "コマンド終了";
             this.コマンド終了.Size = new System.Drawing.Size(116, 31);
-            this.コマンド終了.TabIndex = 999;
+            this.コマンド終了.TabIndex = 1021;
             this.コマンド終了.TabStop = false;
             this.コマンド終了.Text = "終了";
             this.コマンド終了.UseVisualStyleBackColor = true;
+            this.コマンド終了.Click += new System.EventHandler(this.コマンド終了_Click);
             // 
             // コマンド登録
             // 
+            this.コマンド登録.Enabled = false;
             this.コマンド登録.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.コマンド登録.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.コマンド登録.Location = new System.Drawing.Point(1216, 6);
             this.コマンド登録.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.コマンド登録.Name = "コマンド登録";
             this.コマンド登録.Size = new System.Drawing.Size(116, 31);
-            this.コマンド登録.TabIndex = 1;
+            this.コマンド登録.TabIndex = 1020;
             this.コマンド登録.TabStop = false;
             this.コマンド登録.Text = "登録";
             this.コマンド登録.UseVisualStyleBackColor = true;
+            this.コマンド登録.Click += new System.EventHandler(this.コマンド登録_Click);
             // 
             // dataGridView1
             // 
@@ -189,16 +192,18 @@ namespace u_net
             // 
             // コマンド新規
             // 
+            this.コマンド新規.Enabled = false;
             this.コマンド新規.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.コマンド新規.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.コマンド新規.Location = new System.Drawing.Point(3, 5);
             this.コマンド新規.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.コマンド新規.Name = "コマンド新規";
             this.コマンド新規.Size = new System.Drawing.Size(116, 31);
-            this.コマンド新規.TabIndex = 2;
+            this.コマンド新規.TabIndex = 1002;
             this.コマンド新規.TabStop = false;
             this.コマンド新規.Text = "新規";
             this.コマンド新規.UseVisualStyleBackColor = true;
+            this.コマンド新規.Click += new System.EventHandler(this.コマンド新規_Click);
             // 
             // コマンド印刷
             // 
@@ -209,10 +214,11 @@ namespace u_net
             this.コマンド印刷.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.コマンド印刷.Name = "コマンド印刷";
             this.コマンド印刷.Size = new System.Drawing.Size(116, 31);
-            this.コマンド印刷.TabIndex = 11;
+            this.コマンド印刷.TabIndex = 1011;
             this.コマンド印刷.TabStop = false;
             this.コマンド印刷.Text = "印刷";
             this.コマンド印刷.UseVisualStyleBackColor = true;
+            this.コマンド印刷.Click += new System.EventHandler(this.コマンド印刷_Click);
             // 
             // button3
             // 
@@ -223,7 +229,7 @@ namespace u_net
             this.button3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(116, 31);
-            this.button3.TabIndex = 10;
+            this.button3.TabIndex = 1010;
             this.button3.TabStop = false;
             this.button3.UseVisualStyleBackColor = true;
             // 
@@ -236,10 +242,11 @@ namespace u_net
             this.コマンドメール.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.コマンドメール.Name = "コマンドメール";
             this.コマンドメール.Size = new System.Drawing.Size(116, 31);
-            this.コマンドメール.TabIndex = 9;
+            this.コマンドメール.TabIndex = 1009;
             this.コマンドメール.TabStop = false;
             this.コマンドメール.Text = "メール";
             this.コマンドメール.UseVisualStyleBackColor = true;
+            this.コマンドメール.Click += new System.EventHandler(this.コマンドメール_Click);
             // 
             // コマンド仕入先
             // 
@@ -250,62 +257,71 @@ namespace u_net
             this.コマンド仕入先.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.コマンド仕入先.Name = "コマンド仕入先";
             this.コマンド仕入先.Size = new System.Drawing.Size(116, 31);
-            this.コマンド仕入先.TabIndex = 8;
+            this.コマンド仕入先.TabIndex = 1008;
             this.コマンド仕入先.TabStop = false;
             this.コマンド仕入先.Text = "仕入先";
             this.コマンド仕入先.UseVisualStyleBackColor = true;
+            this.コマンド仕入先.Click += new System.EventHandler(this.コマンド仕入先_Click);
             // 
             // コマンド確定
             // 
+            this.コマンド確定.Enabled = false;
             this.コマンド確定.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.コマンド確定.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.コマンド確定.Location = new System.Drawing.Point(1095, 6);
             this.コマンド確定.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.コマンド確定.Name = "コマンド確定";
             this.コマンド確定.Size = new System.Drawing.Size(116, 31);
-            this.コマンド確定.TabIndex = 7;
+            this.コマンド確定.TabIndex = 1007;
             this.コマンド確定.TabStop = false;
             this.コマンド確定.Text = "確定";
             this.コマンド確定.UseVisualStyleBackColor = true;
+            this.コマンド確定.Click += new System.EventHandler(this.コマンド確定_Click);
             // 
             // コマンド承認
             // 
+            this.コマンド承認.Enabled = false;
             this.コマンド承認.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.コマンド承認.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.コマンド承認.Location = new System.Drawing.Point(973, 6);
             this.コマンド承認.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.コマンド承認.Name = "コマンド承認";
             this.コマンド承認.Size = new System.Drawing.Size(116, 31);
-            this.コマンド承認.TabIndex = 6;
+            this.コマンド承認.TabIndex = 1006;
             this.コマンド承認.TabStop = false;
             this.コマンド承認.Text = "承認";
             this.コマンド承認.UseVisualStyleBackColor = true;
+            this.コマンド承認.Click += new System.EventHandler(this.コマンド承認_Click);
             // 
             // コマンド削除
             // 
+            this.コマンド削除.Enabled = false;
             this.コマンド削除.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.コマンド削除.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.コマンド削除.Location = new System.Drawing.Point(367, 6);
             this.コマンド削除.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.コマンド削除.Name = "コマンド削除";
             this.コマンド削除.Size = new System.Drawing.Size(116, 31);
-            this.コマンド削除.TabIndex = 5;
+            this.コマンド削除.TabIndex = 1005;
             this.コマンド削除.TabStop = false;
             this.コマンド削除.Text = "削除";
             this.コマンド削除.UseVisualStyleBackColor = true;
+            this.コマンド削除.Click += new System.EventHandler(this.コマンド削除_Click);
             // 
             // コマンド複写
             // 
+            this.コマンド複写.Enabled = false;
             this.コマンド複写.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.コマンド複写.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.コマンド複写.Location = new System.Drawing.Point(245, 6);
             this.コマンド複写.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.コマンド複写.Name = "コマンド複写";
             this.コマンド複写.Size = new System.Drawing.Size(116, 31);
-            this.コマンド複写.TabIndex = 4;
+            this.コマンド複写.TabIndex = 1004;
             this.コマンド複写.TabStop = false;
             this.コマンド複写.Text = "複写";
             this.コマンド複写.UseVisualStyleBackColor = true;
+            this.コマンド複写.Click += new System.EventHandler(this.コマンド複写_Click);
             // 
             // コマンド読込
             // 
@@ -316,10 +332,11 @@ namespace u_net
             this.コマンド読込.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.コマンド読込.Name = "コマンド読込";
             this.コマンド読込.Size = new System.Drawing.Size(116, 31);
-            this.コマンド読込.TabIndex = 3;
+            this.コマンド読込.TabIndex = 1003;
             this.コマンド読込.TabStop = false;
             this.コマンド読込.Text = "読込";
             this.コマンド読込.UseVisualStyleBackColor = true;
+            this.コマンド読込.Click += new System.EventHandler(this.コマンド読込_Click);
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -461,7 +478,7 @@ namespace u_net
             this.削除.Multiline = true;
             this.削除.Name = "削除";
             this.削除.Size = new System.Drawing.Size(139, 23);
-            this.削除.TabIndex = 184;
+            this.削除.TabIndex = 50;
             // 
             // label15
             // 
@@ -474,7 +491,7 @@ namespace u_net
             this.label15.Margin = new System.Windows.Forms.Padding(0);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(85, 17);
-            this.label15.TabIndex = 183;
+            this.label15.TabIndex = 49;
             this.label15.Text = "削除";
             this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -488,7 +505,7 @@ namespace u_net
             this.更新者名.Multiline = true;
             this.更新者名.Name = "更新者名";
             this.更新者名.Size = new System.Drawing.Size(313, 23);
-            this.更新者名.TabIndex = 182;
+            this.更新者名.TabIndex = 46;
             // 
             // 更新者コード
             // 
@@ -500,7 +517,7 @@ namespace u_net
             this.更新者コード.Multiline = true;
             this.更新者コード.Name = "更新者コード";
             this.更新者コード.Size = new System.Drawing.Size(139, 23);
-            this.更新者コード.TabIndex = 181;
+            this.更新者コード.TabIndex = 45;
             // 
             // label14
             // 
@@ -513,7 +530,7 @@ namespace u_net
             this.label14.Margin = new System.Windows.Forms.Padding(0);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(85, 17);
-            this.label14.TabIndex = 180;
+            this.label14.TabIndex = 44;
             this.label14.Text = "更新者";
             this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -528,7 +545,7 @@ namespace u_net
             this.label13.Margin = new System.Windows.Forms.Padding(0);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(85, 17);
-            this.label13.TabIndex = 179;
+            this.label13.TabIndex = 42;
             this.label13.Text = "更新日時";
             this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -542,7 +559,7 @@ namespace u_net
             this.更新日時.Multiline = true;
             this.更新日時.Name = "更新日時";
             this.更新日時.Size = new System.Drawing.Size(313, 23);
-            this.更新日時.TabIndex = 178;
+            this.更新日時.TabIndex = 43;
             // 
             // 作成者名
             // 
@@ -554,7 +571,7 @@ namespace u_net
             this.作成者名.Multiline = true;
             this.作成者名.Name = "作成者名";
             this.作成者名.Size = new System.Drawing.Size(313, 23);
-            this.作成者名.TabIndex = 177;
+            this.作成者名.TabIndex = 41;
             // 
             // 作成者コード
             // 
@@ -566,7 +583,7 @@ namespace u_net
             this.作成者コード.Multiline = true;
             this.作成者コード.Name = "作成者コード";
             this.作成者コード.Size = new System.Drawing.Size(139, 23);
-            this.作成者コード.TabIndex = 176;
+            this.作成者コード.TabIndex = 40;
             // 
             // label12
             // 
@@ -579,7 +596,7 @@ namespace u_net
             this.label12.Margin = new System.Windows.Forms.Padding(0);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(85, 17);
-            this.label12.TabIndex = 175;
+            this.label12.TabIndex = 39;
             this.label12.Text = "作成者";
             this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -594,7 +611,7 @@ namespace u_net
             this.label10.Margin = new System.Windows.Forms.Padding(0);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(85, 17);
-            this.label10.TabIndex = 174;
+            this.label10.TabIndex = 37;
             this.label10.Text = "作成日時";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -608,7 +625,7 @@ namespace u_net
             this.作成日時.Multiline = true;
             this.作成日時.Name = "作成日時";
             this.作成日時.Size = new System.Drawing.Size(313, 23);
-            this.作成日時.TabIndex = 173;
+            this.作成日時.TabIndex = 38;
             // 
             // label9
             // 
@@ -621,8 +638,8 @@ namespace u_net
             this.label9.Margin = new System.Windows.Forms.Padding(0);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(153, 17);
-            this.label9.TabIndex = 172;
-            this.label9.Text = "住所2(建物名)(B)";
+            this.label9.TabIndex = 12;
+            this.label9.Text = "住所2(建物名)(&B)";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // 郵便番号_ラベル
@@ -636,8 +653,8 @@ namespace u_net
             this.郵便番号_ラベル.Margin = new System.Windows.Forms.Padding(0);
             this.郵便番号_ラベル.Name = "郵便番号_ラベル";
             this.郵便番号_ラベル.Size = new System.Drawing.Size(97, 17);
-            this.郵便番号_ラベル.TabIndex = 169;
-            this.郵便番号_ラベル.Text = "郵便番号(Z)";
+            this.郵便番号_ラベル.TabIndex = 8;
+            this.郵便番号_ラベル.Text = "郵便番号(&Z)";
             this.郵便番号_ラベル.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // メーカー名フリガナ_ラベル
@@ -651,8 +668,8 @@ namespace u_net
             this.メーカー名フリガナ_ラベル.Margin = new System.Windows.Forms.Padding(0);
             this.メーカー名フリガナ_ラベル.Name = "メーカー名フリガナ_ラベル";
             this.メーカー名フリガナ_ラベル.Size = new System.Drawing.Size(132, 17);
-            this.メーカー名フリガナ_ラベル.TabIndex = 167;
-            this.メーカー名フリガナ_ラベル.Text = "メーカー名フリガナ(E)";
+            this.メーカー名フリガナ_ラベル.TabIndex = 4;
+            this.メーカー名フリガナ_ラベル.Text = "メーカー名フリガナ(&E)";
             this.メーカー名フリガナ_ラベル.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // メーカー名
@@ -677,8 +694,8 @@ namespace u_net
             this.メーカー名_ラベル.Margin = new System.Windows.Forms.Padding(0);
             this.メーカー名_ラベル.Name = "メーカー名_ラベル";
             this.メーカー名_ラベル.Size = new System.Drawing.Size(99, 17);
-            this.メーカー名_ラベル.TabIndex = 164;
-            this.メーカー名_ラベル.Text = "メーカー名(N)";
+            this.メーカー名_ラベル.TabIndex = 2;
+            this.メーカー名_ラベル.Text = "メーカー名(&N)";
             this.メーカー名_ラベル.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // 担当者メールアドレス
@@ -690,7 +707,7 @@ namespace u_net
             this.担当者メールアドレス.Multiline = true;
             this.担当者メールアドレス.Name = "担当者メールアドレス";
             this.担当者メールアドレス.Size = new System.Drawing.Size(530, 23);
-            this.担当者メールアドレス.TabIndex = 16;
+            this.担当者メールアドレス.TabIndex = 25;
             // 
             // ファックス番号_ラベル
             // 
@@ -703,8 +720,8 @@ namespace u_net
             this.ファックス番号_ラベル.Margin = new System.Windows.Forms.Padding(0);
             this.ファックス番号_ラベル.Name = "ファックス番号_ラベル";
             this.ファックス番号_ラベル.Size = new System.Drawing.Size(132, 17);
-            this.ファックス番号_ラベル.TabIndex = 156;
-            this.ファックス番号_ラベル.Text = "ファックス番号(X)";
+            this.ファックス番号_ラベル.TabIndex = 18;
+            this.ファックス番号_ラベル.Text = "ファックス番号(&X)";
             this.ファックス番号_ラベル.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // 電話番号_ラベル
@@ -718,8 +735,8 @@ namespace u_net
             this.電話番号_ラベル.Margin = new System.Windows.Forms.Padding(0);
             this.電話番号_ラベル.Name = "電話番号_ラベル";
             this.電話番号_ラベル.Size = new System.Drawing.Size(97, 17);
-            this.電話番号_ラベル.TabIndex = 154;
-            this.電話番号_ラベル.Text = "電話番号(T)";
+            this.電話番号_ラベル.TabIndex = 14;
+            this.電話番号_ラベル.Text = "電話番号(&T)";
             this.電話番号_ラベル.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // 備考
@@ -731,7 +748,7 @@ namespace u_net
             this.備考.Multiline = true;
             this.備考.Name = "備考";
             this.備考.Size = new System.Drawing.Size(550, 51);
-            this.備考.TabIndex = 22;
+            this.備考.TabIndex = 36;
             // 
             // メーカー省略名_ラベル
             // 
@@ -744,8 +761,8 @@ namespace u_net
             this.メーカー省略名_ラベル.Margin = new System.Windows.Forms.Padding(0);
             this.メーカー省略名_ラベル.Name = "メーカー省略名_ラベル";
             this.メーカー省略名_ラベル.Size = new System.Drawing.Size(123, 17);
-            this.メーカー省略名_ラベル.TabIndex = 153;
-            this.メーカー省略名_ラベル.Text = "メーカー省略名(I)";
+            this.メーカー省略名_ラベル.TabIndex = 6;
+            this.メーカー省略名_ラベル.Text = "メーカー省略名(&I)";
             this.メーカー省略名_ラベル.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label1
@@ -774,8 +791,8 @@ namespace u_net
             this.メーカーコード_ラベル.Margin = new System.Windows.Forms.Padding(0);
             this.メーカーコード_ラベル.Name = "メーカーコード_ラベル";
             this.メーカーコード_ラベル.Size = new System.Drawing.Size(122, 17);
-            this.メーカーコード_ラベル.TabIndex = 149;
-            this.メーカーコード_ラベル.Text = "メーカーコード(C)";
+            this.メーカーコード_ラベル.TabIndex = 0;
+            this.メーカーコード_ラベル.Text = "メーカーコード(&C)";
             this.メーカーコード_ラベル.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // 住所_ラベル
@@ -789,8 +806,8 @@ namespace u_net
             this.住所_ラベル.Margin = new System.Windows.Forms.Padding(0);
             this.住所_ラベル.Name = "住所_ラベル";
             this.住所_ラベル.Size = new System.Drawing.Size(97, 17);
-            this.住所_ラベル.TabIndex = 193;
-            this.住所_ラベル.Text = "住所(A)";
+            this.住所_ラベル.TabIndex = 10;
+            this.住所_ラベル.Text = "住所(&A)";
             this.住所_ラベル.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // メーカーコード
@@ -801,7 +818,6 @@ namespace u_net
             this.メーカーコード.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.メーカーコード.Multiline = true;
             this.メーカーコード.Name = "メーカーコード";
-            this.メーカーコード.ReadOnly = true;
             this.メーカーコード.Size = new System.Drawing.Size(139, 23);
             this.メーカーコード.TabIndex = 1;
             // 
@@ -816,8 +832,8 @@ namespace u_net
             this.担当者名_ラベル.Margin = new System.Windows.Forms.Padding(0);
             this.担当者名_ラベル.Name = "担当者名_ラベル";
             this.担当者名_ラベル.Size = new System.Drawing.Size(132, 17);
-            this.担当者名_ラベル.TabIndex = 195;
-            this.担当者名_ラベル.Text = "担当者名(H)";
+            this.担当者名_ラベル.TabIndex = 22;
+            this.担当者名_ラベル.Text = "担当者名(&H)";
             this.担当者名_ラベル.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // ウェブアドレス_ラベル
@@ -831,8 +847,8 @@ namespace u_net
             this.ウェブアドレス_ラベル.Margin = new System.Windows.Forms.Padding(0);
             this.ウェブアドレス_ラベル.Name = "ウェブアドレス_ラベル";
             this.ウェブアドレス_ラベル.Size = new System.Drawing.Size(132, 17);
-            this.ウェブアドレス_ラベル.TabIndex = 196;
-            this.ウェブアドレス_ラベル.Text = "ウェブアドレス(W)";
+            this.ウェブアドレス_ラベル.TabIndex = 26;
+            this.ウェブアドレス_ラベル.Text = "ウェブアドレス(&W)";
             this.ウェブアドレス_ラベル.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // 担当者メールアドレス_ラベル
@@ -846,8 +862,8 @@ namespace u_net
             this.担当者メールアドレス_ラベル.Margin = new System.Windows.Forms.Padding(0);
             this.担当者メールアドレス_ラベル.Name = "担当者メールアドレス_ラベル";
             this.担当者メールアドレス_ラベル.Size = new System.Drawing.Size(153, 17);
-            this.担当者メールアドレス_ラベル.TabIndex = 197;
-            this.担当者メールアドレス_ラベル.Text = "担当者メールアドレス(M)";
+            this.担当者メールアドレス_ラベル.TabIndex = 24;
+            this.担当者メールアドレス_ラベル.Text = "担当者メールアドレス(&M)";
             this.担当者メールアドレス_ラベル.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // groupBox1
@@ -861,7 +877,7 @@ namespace u_net
             this.groupBox1.Location = new System.Drawing.Point(11, 411);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(700, 120);
-            this.groupBox1.TabIndex = 18;
+            this.groupBox1.TabIndex = 28;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "仕入先";
             // 
@@ -876,7 +892,7 @@ namespace u_net
             this.label17.Margin = new System.Windows.Forms.Padding(0);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(132, 17);
-            this.label17.TabIndex = 222;
+            this.label17.TabIndex = 33;
             this.label17.Text = "仕入先3";
             this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -891,7 +907,7 @@ namespace u_net
             this.label16.Margin = new System.Windows.Forms.Padding(0);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(132, 17);
-            this.label16.TabIndex = 221;
+            this.label16.TabIndex = 31;
             this.label16.Text = "仕入先2";
             this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -906,8 +922,8 @@ namespace u_net
             this.仕入先1_ラベル.Margin = new System.Windows.Forms.Padding(0);
             this.仕入先1_ラベル.Name = "仕入先1_ラベル";
             this.仕入先1_ラベル.Size = new System.Drawing.Size(132, 17);
-            this.仕入先1_ラベル.TabIndex = 200;
-            this.仕入先1_ラベル.Text = "仕入先1(S)";
+            this.仕入先1_ラベル.TabIndex = 29;
+            this.仕入先1_ラベル.Text = "仕入先1(&S)";
             this.仕入先1_ラベル.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // 仕入先2
@@ -919,7 +935,7 @@ namespace u_net
             this.仕入先2.Multiline = true;
             this.仕入先2.Name = "仕入先2";
             this.仕入先2.Size = new System.Drawing.Size(530, 23);
-            this.仕入先2.TabIndex = 19;
+            this.仕入先2.TabIndex = 30;
             // 
             // 仕入先3
             // 
@@ -930,7 +946,7 @@ namespace u_net
             this.仕入先3.Multiline = true;
             this.仕入先3.Name = "仕入先3";
             this.仕入先3.Size = new System.Drawing.Size(530, 23);
-            this.仕入先3.TabIndex = 20;
+            this.仕入先3.TabIndex = 32;
             // 
             // 仕入先1
             // 
@@ -941,7 +957,7 @@ namespace u_net
             this.仕入先1.Multiline = true;
             this.仕入先1.Name = "仕入先1";
             this.仕入先1.Size = new System.Drawing.Size(530, 23);
-            this.仕入先1.TabIndex = 21;
+            this.仕入先1.TabIndex = 34;
             // 
             // 仕入先3_ラベル
             // 
@@ -984,8 +1000,8 @@ namespace u_net
             this.備考_ラベル.Margin = new System.Windows.Forms.Padding(0);
             this.備考_ラベル.Name = "備考_ラベル";
             this.備考_ラベル.Size = new System.Drawing.Size(122, 17);
-            this.備考_ラベル.TabIndex = 200;
-            this.備考_ラベル.Text = "備考(O)";
+            this.備考_ラベル.TabIndex = 35;
+            this.備考_ラベル.Text = "備考(&O)";
             this.備考_ラベル.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // メーカー名フリガナ
@@ -997,7 +1013,7 @@ namespace u_net
             this.メーカー名フリガナ.Multiline = true;
             this.メーカー名フリガナ.Name = "メーカー名フリガナ";
             this.メーカー名フリガナ.Size = new System.Drawing.Size(530, 23);
-            this.メーカー名フリガナ.TabIndex = 4;
+            this.メーカー名フリガナ.TabIndex = 5;
             // 
             // メーカー省略名
             // 
@@ -1007,9 +1023,8 @@ namespace u_net
             this.メーカー省略名.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.メーカー省略名.Multiline = true;
             this.メーカー省略名.Name = "メーカー省略名";
-            this.メーカー省略名.ReadOnly = true;
             this.メーカー省略名.Size = new System.Drawing.Size(139, 23);
-            this.メーカー省略名.TabIndex = 5;
+            this.メーカー省略名.TabIndex = 7;
             // 
             // 郵便番号
             // 
@@ -1019,9 +1034,8 @@ namespace u_net
             this.郵便番号.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.郵便番号.Multiline = true;
             this.郵便番号.Name = "郵便番号";
-            this.郵便番号.ReadOnly = true;
             this.郵便番号.Size = new System.Drawing.Size(201, 23);
-            this.郵便番号.TabIndex = 6;
+            this.郵便番号.TabIndex = 9;
             // 
             // 住所1
             // 
@@ -1032,7 +1046,7 @@ namespace u_net
             this.住所1.Multiline = true;
             this.住所1.Name = "住所1";
             this.住所1.Size = new System.Drawing.Size(530, 23);
-            this.住所1.TabIndex = 7;
+            this.住所1.TabIndex = 11;
             // 
             // 住所2
             // 
@@ -1043,7 +1057,7 @@ namespace u_net
             this.住所2.Multiline = true;
             this.住所2.Name = "住所2";
             this.住所2.Size = new System.Drawing.Size(530, 23);
-            this.住所2.TabIndex = 8;
+            this.住所2.TabIndex = 13;
             // 
             // 電話番号1
             // 
@@ -1053,9 +1067,8 @@ namespace u_net
             this.電話番号1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.電話番号1.Multiline = true;
             this.電話番号1.Name = "電話番号1";
-            this.電話番号1.ReadOnly = true;
             this.電話番号1.Size = new System.Drawing.Size(100, 23);
-            this.電話番号1.TabIndex = 9;
+            this.電話番号1.TabIndex = 15;
             // 
             // 電話番号2
             // 
@@ -1065,9 +1078,8 @@ namespace u_net
             this.電話番号2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.電話番号2.Multiline = true;
             this.電話番号2.Name = "電話番号2";
-            this.電話番号2.ReadOnly = true;
             this.電話番号2.Size = new System.Drawing.Size(100, 23);
-            this.電話番号2.TabIndex = 10;
+            this.電話番号2.TabIndex = 16;
             // 
             // 電話番号3
             // 
@@ -1077,9 +1089,8 @@ namespace u_net
             this.電話番号3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.電話番号3.Multiline = true;
             this.電話番号3.Name = "電話番号3";
-            this.電話番号3.ReadOnly = true;
             this.電話番号3.Size = new System.Drawing.Size(100, 23);
-            this.電話番号3.TabIndex = 11;
+            this.電話番号3.TabIndex = 17;
             // 
             // label2
             // 
@@ -1101,14 +1112,14 @@ namespace u_net
             this.ファックス番号1.Location = new System.Drawing.Point(160, 290);
             this.ファックス番号1.Name = "ファックス番号1";
             this.ファックス番号1.Size = new System.Drawing.Size(100, 23);
-            this.ファックス番号1.TabIndex = 12;
+            this.ファックス番号1.TabIndex = 19;
             // 
             // 担当者名
             // 
             this.担当者名.Location = new System.Drawing.Point(160, 320);
             this.担当者名.Name = "担当者名";
             this.担当者名.Size = new System.Drawing.Size(530, 23);
-            this.担当者名.TabIndex = 15;
+            this.担当者名.TabIndex = 23;
             // 
             // ウェブアドレス
             // 
@@ -1116,14 +1127,14 @@ namespace u_net
             this.ウェブアドレス.Location = new System.Drawing.Point(160, 380);
             this.ウェブアドレス.Name = "ウェブアドレス";
             this.ウェブアドレス.Size = new System.Drawing.Size(530, 23);
-            this.ウェブアドレス.TabIndex = 17;
+            this.ウェブアドレス.TabIndex = 27;
             // 
             // 版数_ラベル
             // 
             this.版数_ラベル.Location = new System.Drawing.Point(354, 50);
             this.版数_ラベル.Name = "版数_ラベル";
             this.版数_ラベル.Size = new System.Drawing.Size(39, 23);
-            this.版数_ラベル.TabIndex = 0;
+            this.版数_ラベル.TabIndex = 9999;
             this.版数_ラベル.Text = "版数";
             // 
             // ActiveDate
@@ -1134,14 +1145,14 @@ namespace u_net
             this.ActiveDate.Multiline = true;
             this.ActiveDate.Name = "ActiveDate";
             this.ActiveDate.Size = new System.Drawing.Size(314, 23);
-            this.ActiveDate.TabIndex = 0;
+            this.ActiveDate.TabIndex = 48;
             // 
             // 削除日時
             // 
             this.削除日時.Location = new System.Drawing.Point(944, 320);
             this.削除日時.Name = "削除日時";
             this.削除日時.Size = new System.Drawing.Size(100, 23);
-            this.削除日時.TabIndex = 0;
+            this.削除日時.TabIndex = 52;
             this.削除日時.Visible = false;
             // 
             // 削除者コード
@@ -1149,7 +1160,7 @@ namespace u_net
             this.削除者コード.Location = new System.Drawing.Point(944, 350);
             this.削除者コード.Name = "削除者コード";
             this.削除者コード.Size = new System.Drawing.Size(100, 23);
-            this.削除者コード.TabIndex = 0;
+            this.削除者コード.TabIndex = 54;
             this.削除者コード.Visible = false;
             // 
             // ファックス番号2
@@ -1157,14 +1168,14 @@ namespace u_net
             this.ファックス番号2.Location = new System.Drawing.Point(280, 290);
             this.ファックス番号2.Name = "ファックス番号2";
             this.ファックス番号2.Size = new System.Drawing.Size(100, 23);
-            this.ファックス番号2.TabIndex = 13;
+            this.ファックス番号2.TabIndex = 20;
             // 
             // ファックス番号3
             // 
             this.ファックス番号3.Location = new System.Drawing.Point(400, 290);
             this.ファックス番号3.Name = "ファックス番号3";
             this.ファックス番号3.Size = new System.Drawing.Size(100, 23);
-            this.ファックス番号3.TabIndex = 14;
+            this.ファックス番号3.TabIndex = 21;
             // 
             // label3
             // 
@@ -1229,7 +1240,7 @@ namespace u_net
             this.label7.Margin = new System.Windows.Forms.Padding(0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(85, 17);
-            this.label7.TabIndex = 213;
+            this.label7.TabIndex = 47;
             this.label7.Text = "適用日";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -1238,7 +1249,7 @@ namespace u_net
             this.label8.Location = new System.Drawing.Point(852, 320);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(100, 23);
-            this.label8.TabIndex = 214;
+            this.label8.TabIndex = 51;
             this.label8.Text = "削除日時";
             this.label8.Visible = false;
             // 
@@ -1247,7 +1258,7 @@ namespace u_net
             this.label11.Location = new System.Drawing.Point(852, 350);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(100, 23);
-            this.label11.TabIndex = 215;
+            this.label11.TabIndex = 53;
             this.label11.Text = "削除者コード";
             this.label11.Visible = false;
             // 
@@ -1340,7 +1351,9 @@ namespace u_net
             this.Controls.Add(this.削除者コード);
             this.Controls.Add(this.panel1);
             this.Name = "F_メーカー";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form_Unload);
             this.Load += new System.EventHandler(this.Form_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
