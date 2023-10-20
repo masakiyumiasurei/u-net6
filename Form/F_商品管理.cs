@@ -24,7 +24,7 @@ namespace u_net
 
         private void Form_Load(object sender, EventArgs e)
         {
-            this.q商品管理TableAdapter.Fill(this.newDataSet.Q商品管理);
+            //this.q商品管理TableAdapter.Fill(this.newDataSet.Q商品管理);
 
             intWindowHeight = this.Height;
             intWindowWidth = this.Width;
@@ -62,20 +62,23 @@ namespace u_net
             this.Size = new Size(this.Width, ySize * myapi.GetTwipPerDot(intpixel) - 1200);
 
             //InitializeFilter() 必要かまだ不明のため
-
+            DoUpdate();
 
 
         }
-                
+
         private void Form_Resize(object sender, EventArgs e)
         {
             try
             {
-                dataGridView1.Height = dataGridView1.Height + (this.Height - intWindowHeight);
-                intWindowHeight = this.Height;  // 高さ保存
+                if (this.Height > 1000)
+                {
+                    dataGridView1.Height = dataGridView1.Height + (this.Height - intWindowHeight);
+                    intWindowHeight = this.Height;  // 高さ保存
 
-                dataGridView1.Width = dataGridView1.Width + (this.Width - intWindowWidth);
-                intWindowWidth = this.Width;    // 幅保存
+                    dataGridView1.Width = dataGridView1.Width + (this.Width - intWindowWidth);
+                    intWindowWidth = this.Width;    // 幅保存
+                }
             }
             catch (Exception ex)
             {
@@ -89,7 +92,7 @@ namespace u_net
             try
             {
                 result = Filtering();
-             //   DrawGrid();
+                //   DrawGrid();
                 if (result >= 0)
                 {
                     this.表示件数.Text = result.ToString();
@@ -108,104 +111,127 @@ namespace u_net
             return result;
         }
 
+        string str基本型式名 = "";
+        string strシリーズ名 = "";
+        DateTime dtm更新日開始;
+        DateTime dtm更新日終了;
+        string str更新者名 = "";
+        int intComposedChipMount = 0;
+        int intIsUnit = 0;
+        int lngDiscontinued = 0;
+        int lngDeleted = 0;
+
+
         private int Filtering()
         {
-        //    try
-        //    {
-        //        string filter = string.Empty;
+            try
+            {
+                string filter基本型式名 = string.Empty;
+                string filterシリーズ名 = string.Empty;
+                DateTime filter更新日開始 = DateTime.MinValue;
+                DateTime filter更新日終了 = DateTime.MinValue;
+                string filter更新者名 = string.Empty;
+                string filter構成 = "";
+                string filterユニ = "";
+                string filter廃止 = "";
+                string filter削除 = "";
+                //string filter;
 
-        //        // 基本型式名
-        //        if (!string.IsNullOrEmpty(str基本型式名))
-        //        {
-        //            filter += "基本型式名 LIKE '%" + str基本型式名 + "%' AND ";
-        //        }
 
-        //        // シリーズ名
-        //        if (!string.IsNullOrEmpty(strシリーズ名))
-        //        {
-        //            filter += "シリーズ名 LIKE '%" + strシリーズ名 + "%' AND ";
-        //        }
+                // 基本型式名
+                if (!string.IsNullOrEmpty(str基本型式名))
+                {
+                    filter基本型式名 = str基本型式名;
+                }
 
-        //        // 更新日時
-        //        if (dtm更新日開始 != 0)
-        //        {
-        //            filter += "'" + dtm更新日開始 + "' <= 更新日時 AND 更新日時 <= '" + dtm更新日終了 + "' AND ";
-        //        }
+                // シリーズ名
+                if (!string.IsNullOrEmpty(strシリーズ名))
+                {
+                    filterシリーズ名 = strシリーズ名;
+                }
 
-        //        // 更新者名
-        //        if (!string.IsNullOrEmpty(str更新者名))
-        //        {
-        //            filter += "更新者名 = '" + str更新者名 + "' AND ";
-        //        }
+                // 更新日時
+                if (dtm更新日開始 != DateTime.MinValue)
+                {
+                    filter更新日開始 = dtm更新日開始;
+                    filter更新日終了 = dtm更新日終了;
+                }
 
-        //        // チップマウントデータが構成されているかどうか
-        //        switch (intComposedChipMount)
-        //        {
-        //            case 1:
-        //                filter += "構成 IS NULL AND ";
-        //                break;
-        //            case 2:
-        //                filter += "構成 IS NOT NULL AND ";
-        //                break;
-        //        }
+                // 更新者名
+                if (!string.IsNullOrEmpty(str更新者名))
+                {
+                    filter更新者名 = str更新者名;
+                }
 
-        //        // ユニットかどうか
-        //        switch (intIsUnit)
-        //        {
-        //            case 1:
-        //                filter += "ユニ IS NULL AND ";
-        //                break;
-        //            case 2:
-        //                filter += "ユニ IS NOT NULL AND ";
-        //                break;
-        //        }
+                // チップマウントデータが構成されているかどうか
+                switch (intComposedChipMount)
+                {
+                    case 1:
+                        filter構成 += "IS NULL";
+                        break;
+                    case 2:
+                        filter構成 += "IS NOT NULL";
+                        break;
+                }
 
-        //        // 廃止
-        //        switch (lngDiscontinued)
-        //        {
-        //            case 1:
-        //                filter += "廃止 IS NULL AND ";
-        //                break;
-        //            case 2:
-        //                filter += "廃止 IS NOT NULL AND ";
-        //                break;
-        //        }
+                // ユニットかどうか
+                switch (intIsUnit)
+                {
+                    case 1:
+                        filterユニ += "IS NULL";
+                        break;
+                    case 2:
+                        filterユニ += "IS NOT NULL";
+                        break;
+                }
 
-        //        // 削除
-        //        switch (lngDeleted)
-        //        {
-        //            case 1:
-        //                filter += "削除 IS NULL AND ";
-        //                break;
-        //            case 2:
-        //                filter += "削除 IS NOT NULL AND ";
-        //                break;
-        //        }
+                // 廃止
+                switch (lngDiscontinued)
+                {
+                    case 1:
+                        filter廃止 = "IS NULL";
+                        break;
+                    case 2:
+                        filter廃止 = "IS NOT NULL";
+                        break;
+                }
 
-        //        if (!string.IsNullOrEmpty(filter))
-        //        {
-        //            filter = filter.Substring(0, filter.Length - 5); // 最後の " AND " を削除
-        //        }
+                // 削除
+                switch (lngDeleted)
+                {
+                    case 1:
+                        filter削除 = "IS NULL";
+                        break;
+                    case 2:
+                        filter削除 = "IS NOT NULL";
+                        break;
+                }
 
-        //        // フィルタ条件があるかどうかを確認し、データを抽出
-        //        if (!string.IsNullOrEmpty(filter))
-        //        {
-        //            q商品管理TableAdapter.ClearBeforeFill = false;
-        //            q商品管理TableAdapter.FillBy(uiDataSet.q商品管理, filter);
-        //        }
-        //        else
-        //        {
-        //            q商品管理TableAdapter.ClearBeforeFill = false;
-        //            q商品管理TableAdapter.Fill(uiDataSet.q商品管理);
-        //        }
+                //if (!string.IsNullOrEmpty(filter))
+                //{
+                //    filter = filter.Substring(0, filter.Length - 5); // 最後の " AND " を削除
+                //}
 
-        //        return uiDataSet.q商品管理.Rows.Count;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Console.WriteLine("Filtering - " + ex.Message);
+                // フィルタ条件があるかどうかを確認し、データを抽出
+                //if (!string.IsNullOrEmpty(filter))
+                //{                    
+                q商品管理TableAdapter.ClearBeforeFill = false;
+                q商品管理TableAdapter.FillBy(newDataSet.Q商品管理, filter基本型式名, filterシリーズ名, filter更新日開始,
+                   filter更新日終了, filter更新者名, filter構成, filterユニ, filter廃止, filter削除);
+                //}
+                //else
+                //{
+                //    q商品管理TableAdapter.ClearBeforeFill = false;
+                //    q商品管理TableAdapter.Fill(newDataSet.Q商品管理);
+                //}
+
+                return newDataSet.Q商品管理.Rows.Count;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Filtering - " + ex.Message);
                 return -1;
-        //    }
+            }
         }
 
 

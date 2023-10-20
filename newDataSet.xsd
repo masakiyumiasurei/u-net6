@@ -5,7 +5,7 @@
       <DataSource DefaultConnectionIndex="1" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
         <Connections>
           <Connection ConnectionStringObject="Data Source=128.20.70.215\MSSQLSERVER,1435;Initial Catalog=uidb;Persist Security Info=True;User ID=sa;Password=Hbm-0855;Trust Server Certificate=True" IsAppSettingsProperty="false" Modifier="Assembly" Name="uidbConnectionString" ParameterPrefix="@" Provider="Microsoft.Data.SqlClient" />
-          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="uidbConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="uidbConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.u_net.Properties.Settings.GlobalReference.Default.uidbConnectionString" Provider="System.Data.SqlClient" />
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="uidbConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="uidbConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.u_net.Properties.Settings.GlobalReference.Default.uidbConnectionString" Provider="Microsoft.Data.SqlClient" />
         </Connections>
         <Tables>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="M商品検索TableAdapter" GeneratorDataComponentClassName="M商品検索TableAdapter" Name="M商品" UserDataComponentName="M商品検索TableAdapter">
@@ -365,49 +365,28 @@ FROM                 dbo.M商品 LEFT OUTER JOIN
               <DbSource ConnectionRef="uidbConnectionString (Settings)" DbObjectName="SELECT TOP (100) PERCENT M商品.商品コード, M商品.商品名 AS 基本型式名, Mシリーズ.シリーズ名, CASE WHEN M商品.シリーズコード IS NOT NULL THEN '○' ELSE NULL END AS 在庫管理, Mシリーズ.在庫数量, Mシリーズ.在庫下限数量, M商品.更新日時, M社員.氏名 AS 更新者名, CASE WHEN M商品.Discontinued = 0 THEN NULL ELSE '■' END AS 廃止, CASE WHEN M商品.無効日時 IS NOT NULL THEN '■' ELSE NULL END AS 削除, CASE WHEN M商品.IsUnit &lt;&gt; 0 THEN '■' ELSE NULL END AS ユニ, CASE WHEN ItemCode IS NOT NULL THEN '■' ELSE NULL END AS 構成 FROM M商品 LEFT OUTER JOIN ItemCode_ComposedMountChip ON M商品.商品コード = ItemCode_ComposedMountChip.ItemCode LEFT OUTER JOIN Mシリーズ ON M商品.シリーズコード = Mシリーズ.シリーズコード LEFT OUTER JOIN M社員 ON M商品.更新者コード = M社員.社員コード" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="FillBy" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataBy" GeneratorSourceName="FillBy" GetMethodModifier="Public" GetMethodName="GetDataBy" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="FillBy">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>SELECT               商品コード, 基本型式名, シリーズ名, 在庫管理, 在庫数量, 在庫下限数量, 更新日時, 更新者名, 廃止, 削除, ユニ, 構成
-FROM                 (SELECT               TOP (100) PERCENT M商品.商品コード, M商品.商品名 AS 基本型式名, Mシリーズ.シリーズ名, CASE WHEN M商品.シリーズコード IS NOT NULL THEN '○' ELSE NULL END AS 在庫管理, 
-                                                       Mシリーズ.在庫数量, Mシリーズ.在庫下限数量, M商品.更新日時, M社員.氏名 AS 更新者名, CASE WHEN M商品.Discontinued = 0 THEN NULL ELSE '■' END AS 廃止, 
-                                                       CASE WHEN M商品.無効日時 IS NOT NULL THEN '■' ELSE NULL END AS 削除, CASE WHEN M商品.IsUnit &lt;&gt; 0 THEN '■' ELSE NULL END AS ユニ, CASE WHEN ItemCode IS NOT NULL 
-                                                       THEN '■' ELSE NULL END AS 構成
-                            FROM                 M商品 LEFT OUTER JOIN
-                                                       ItemCode_ComposedMountChip ON M商品.商品コード = ItemCode_ComposedMountChip.ItemCode LEFT OUTER JOIN
-                                                       Mシリーズ ON M商品.シリーズコード = Mシリーズ.シリーズコード LEFT OUTER JOIN
-                                                       M社員 ON M商品.更新者コード = M社員.社員コード) AS T
-WHERE                (基本型式名 LIKE @基本型式名 OR
-                           @基本型式名 IS NULL) AND (更新者名 = @更新者名 OR
-                           @更新者名 IS NULL) AND (構成 IS NULL AND @構成 = 1 OR
-                           構成 IS NOT NULL AND @構成 = 2 OR
-                           @構成 IS NULL) AND (ユニ IS NULL AND @ユニ = 1 OR
-                           ユニ IS NOT NULL AND @ユニ = 2 OR
-                           @ユニ IS NULL) AND (廃止 IS NULL AND @廃止 = 1 OR
-                           廃止 IS NOT NULL AND @廃止 = 2 OR
-                           @廃止 IS NULL) AND (削除 IS NULL AND @削除 = 1 OR
-                           削除 IS NOT NULL AND @削除 = 2 OR
-                           @削除 IS NULL) AND (シリーズ名 LIKE @シリーズ名 OR
-                           @シリーズ名 IS NULL) AND (更新日時 BETWEEN @更新日開始 AND @更新日終了) OR
-                           (@更新日開始 IS NULL) AND (@更新日終了 IS NULL) AND (基本型式名 LIKE @基本型式名 OR
-                           @基本型式名 IS NULL) AND (更新者名 = @更新者名 OR
-                           @更新者名 IS NULL) AND (構成 IS NULL AND @構成 = 1 OR
-                           構成 IS NOT NULL AND @構成 = 2 OR
-                           @構成 IS NULL) AND (ユニ IS NULL AND @ユニ = 1 OR
-                           ユニ IS NOT NULL AND @ユニ = 2 OR
-                           @ユニ IS NULL) AND (廃止 IS NULL AND @廃止 = 1 OR
-                           廃止 IS NOT NULL AND @廃止 = 2 OR
-                           @廃止 IS NULL) AND (削除 IS NULL AND @削除 = 1 OR
-                           削除 IS NOT NULL AND @削除 = 2 OR
-                           @削除 IS NULL) AND (シリーズ名 LIKE @シリーズ名 OR
-                           @シリーズ名 IS NULL)</CommandText>
+                    <CommandText>SELECT                      商品コード, 基本型式名, シリーズ名, 在庫管理, 在庫数量, 在庫下限数量, 更新日時, 更新者名, 廃止, 削除, ユニ, 構成
+FROM                         (SELECT                      TOP (100) PERCENT M商品.商品コード, M商品.商品名 AS 基本型式名, Mシリーズ.シリーズ名, CASE WHEN M商品.シリーズコード IS NOT NULL 
+                                                                              THEN '○' ELSE NULL END AS 在庫管理, Mシリーズ.在庫数量, Mシリーズ.在庫下限数量, M商品.更新日時, M社員.氏名 AS 更新者名, 
+                                                                              CASE WHEN M商品.Discontinued = 0 THEN NULL ELSE '■' END AS 廃止, CASE WHEN M商品.無効日時 IS NOT NULL THEN '■' ELSE NULL 
+                                                                              END AS 削除, CASE WHEN M商品.IsUnit &lt;&gt; 0 THEN '■' ELSE NULL END AS ユニ, CASE WHEN ItemCode IS NOT NULL THEN '■' ELSE NULL 
+                                                                              END AS 構成
+                                        FROM                         M商品 LEFT OUTER JOIN
+                                                                              ItemCode_ComposedMountChip ON M商品.商品コード = ItemCode_ComposedMountChip.ItemCode LEFT OUTER JOIN
+                                                                              Mシリーズ ON M商品.シリーズコード = Mシリーズ.シリーズコード LEFT OUTER JOIN
+                                                                              M社員 ON M商品.更新者コード = M社員.社員コード) AS T
+WHERE                       (基本型式名 LIKE @基本型式名) AND (更新者名 = @更新者名) AND (構成 = @構成) AND (ユニ = @ユニ) AND (廃止 = @廃止) AND (削除 = @削除) AND 
+                                      (シリーズ名 LIKE @シリーズ名) AND (更新日時 BETWEEN @更新日開始 AND @更新日終了)</CommandText>
                     <Parameters>
                       <Parameter AllowDbNull="true" AutogeneratedName="基本型式名" ColumnName="基本型式名" DataSourceName="SELECT TOP (100) PERCENT M商品.商品コード, M商品.商品名 AS 基本型式名, Mシリーズ.シリーズ名, CASE WHEN M商品.シリーズコード IS NOT NULL THEN '○' ELSE NULL END AS 在庫管理, Mシリーズ.在庫数量, Mシリーズ.在庫下限数量, M商品.更新日時, M社員.氏名 AS 更新者名, CASE WHEN M商品.Discontinued = 0 THEN NULL ELSE '■' END AS 廃止, CASE WHEN M商品.無効日時 IS NOT NULL THEN '■' ELSE NULL END AS 削除, CASE WHEN M商品.IsUnit &lt;&gt; 0 THEN '■' ELSE NULL END AS ユニ, CASE WHEN ItemCode IS NOT NULL THEN '■' ELSE NULL END AS 構成 FROM M商品 LEFT OUTER JOIN ItemCode_ComposedMountChip ON M商品.商品コード = ItemCode_ComposedMountChip.ItemCode LEFT OUTER JOIN Mシリーズ ON M商品.シリーズコード = Mシリーズ.シリーズコード LEFT OUTER JOIN M社員 ON M商品.更新者コード = M社員.社員コード" DataTypeServer="nvarchar(40)" DbType="String" Direction="Input" ParameterName="@基本型式名" Precision="0" Scale="0" Size="40" SourceColumn="基本型式名" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="更新者名" ColumnName="更新者名" DataSourceName="SELECT TOP (100) PERCENT M商品.商品コード, M商品.商品名 AS 基本型式名, Mシリーズ.シリーズ名, CASE WHEN M商品.シリーズコード IS NOT NULL THEN '○' ELSE NULL END AS 在庫管理, Mシリーズ.在庫数量, Mシリーズ.在庫下限数量, M商品.更新日時, M社員.氏名 AS 更新者名, CASE WHEN M商品.Discontinued = 0 THEN NULL ELSE '■' END AS 廃止, CASE WHEN M商品.無効日時 IS NOT NULL THEN '■' ELSE NULL END AS 削除, CASE WHEN M商品.IsUnit &lt;&gt; 0 THEN '■' ELSE NULL END AS ユニ, CASE WHEN ItemCode IS NOT NULL THEN '■' ELSE NULL END AS 構成 FROM M商品 LEFT OUTER JOIN ItemCode_ComposedMountChip ON M商品.商品コード = ItemCode_ComposedMountChip.ItemCode LEFT OUTER JOIN Mシリーズ ON M商品.シリーズコード = Mシリーズ.シリーズコード LEFT OUTER JOIN M社員 ON M商品.更新者コード = M社員.社員コード" DataTypeServer="nvarchar(50)" DbType="String" Direction="Input" ParameterName="@更新者名" Precision="0" Scale="0" Size="50" SourceColumn="更新者名" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="false" AutogeneratedName="構成" ColumnName="" DataSourceName="" DataTypeServer="unknown" DbType="AnsiString" Direction="Input" ParameterName="@構成" Precision="0" Scale="0" Size="1024" SourceColumn="" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="false" AutogeneratedName="ユニ" ColumnName="" DataSourceName="" DataTypeServer="unknown" DbType="AnsiString" Direction="Input" ParameterName="@ユニ" Precision="0" Scale="0" Size="1024" SourceColumn="" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="false" AutogeneratedName="廃止" ColumnName="" DataSourceName="" DataTypeServer="unknown" DbType="AnsiString" Direction="Input" ParameterName="@廃止" Precision="0" Scale="0" Size="1024" SourceColumn="" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="false" AutogeneratedName="削除" ColumnName="" DataSourceName="" DataTypeServer="unknown" DbType="AnsiString" Direction="Input" ParameterName="@削除" Precision="0" Scale="0" Size="1024" SourceColumn="" SourceColumnNullMapping="false" SourceVersion="Current" />
                       <Parameter AllowDbNull="true" AutogeneratedName="シリーズ名" ColumnName="シリーズ名" DataSourceName="SELECT TOP (100) PERCENT M商品.商品コード, M商品.商品名 AS 基本型式名, Mシリーズ.シリーズ名, CASE WHEN M商品.シリーズコード IS NOT NULL THEN '○' ELSE NULL END AS 在庫管理, Mシリーズ.在庫数量, Mシリーズ.在庫下限数量, M商品.更新日時, M社員.氏名 AS 更新者名, CASE WHEN M商品.Discontinued = 0 THEN NULL ELSE '■' END AS 廃止, CASE WHEN M商品.無効日時 IS NOT NULL THEN '■' ELSE NULL END AS 削除, CASE WHEN M商品.IsUnit &lt;&gt; 0 THEN '■' ELSE NULL END AS ユニ, CASE WHEN ItemCode IS NOT NULL THEN '■' ELSE NULL END AS 構成 FROM M商品 LEFT OUTER JOIN ItemCode_ComposedMountChip ON M商品.商品コード = ItemCode_ComposedMountChip.ItemCode LEFT OUTER JOIN Mシリーズ ON M商品.シリーズコード = Mシリーズ.シリーズコード LEFT OUTER JOIN M社員 ON M商品.更新者コード = M社員.社員コード" DataTypeServer="nvarchar(50)" DbType="String" Direction="Input" ParameterName="@シリーズ名" Precision="0" Scale="0" Size="50" SourceColumn="シリーズ名" SourceColumnNullMapping="false" SourceVersion="Current" />
                       <Parameter AllowDbNull="true" AutogeneratedName="更新日開始" ColumnName="更新日時" DataSourceName="SELECT TOP (100) PERCENT M商品.商品コード, M商品.商品名 AS 基本型式名, Mシリーズ.シリーズ名, CASE WHEN M商品.シリーズコード IS NOT NULL THEN '○' ELSE NULL END AS 在庫管理, Mシリーズ.在庫数量, Mシリーズ.在庫下限数量, M商品.更新日時, M社員.氏名 AS 更新者名, CASE WHEN M商品.Discontinued = 0 THEN NULL ELSE '■' END AS 廃止, CASE WHEN M商品.無効日時 IS NOT NULL THEN '■' ELSE NULL END AS 削除, CASE WHEN M商品.IsUnit &lt;&gt; 0 THEN '■' ELSE NULL END AS ユニ, CASE WHEN ItemCode IS NOT NULL THEN '■' ELSE NULL END AS 構成 FROM M商品 LEFT OUTER JOIN ItemCode_ComposedMountChip ON M商品.商品コード = ItemCode_ComposedMountChip.ItemCode LEFT OUTER JOIN Mシリーズ ON M商品.シリーズコード = Mシリーズ.シリーズコード LEFT OUTER JOIN M社員 ON M商品.更新者コード = M社員.社員コード" DataTypeServer="datetime" DbType="DateTime" Direction="Input" ParameterName="@更新日開始" Precision="0" Scale="0" Size="8" SourceColumn="更新日時" SourceColumnNullMapping="false" SourceVersion="Current" />
                       <Parameter AllowDbNull="true" AutogeneratedName="更新日終了" ColumnName="更新日時" DataSourceName="SELECT TOP (100) PERCENT M商品.商品コード, M商品.商品名 AS 基本型式名, Mシリーズ.シリーズ名, CASE WHEN M商品.シリーズコード IS NOT NULL THEN '○' ELSE NULL END AS 在庫管理, Mシリーズ.在庫数量, Mシリーズ.在庫下限数量, M商品.更新日時, M社員.氏名 AS 更新者名, CASE WHEN M商品.Discontinued = 0 THEN NULL ELSE '■' END AS 廃止, CASE WHEN M商品.無効日時 IS NOT NULL THEN '■' ELSE NULL END AS 削除, CASE WHEN M商品.IsUnit &lt;&gt; 0 THEN '■' ELSE NULL END AS ユニ, CASE WHEN ItemCode IS NOT NULL THEN '■' ELSE NULL END AS 構成 FROM M商品 LEFT OUTER JOIN ItemCode_ComposedMountChip ON M商品.商品コード = ItemCode_ComposedMountChip.ItemCode LEFT OUTER JOIN Mシリーズ ON M商品.シリーズコード = Mシリーズ.シリーズコード LEFT OUTER JOIN M社員 ON M商品.更新者コード = M社員.社員コード" DataTypeServer="datetime" DbType="DateTime" Direction="Input" ParameterName="@更新日終了" Precision="0" Scale="0" Size="8" SourceColumn="更新日時" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="更新者名" ColumnName="更新者名" DataSourceName="SELECT TOP (100) PERCENT M商品.商品コード, M商品.商品名 AS 基本型式名, Mシリーズ.シリーズ名, CASE WHEN M商品.シリーズコード IS NOT NULL THEN '○' ELSE NULL END AS 在庫管理, Mシリーズ.在庫数量, Mシリーズ.在庫下限数量, M商品.更新日時, M社員.氏名 AS 更新者名, CASE WHEN M商品.Discontinued = 0 THEN NULL ELSE '■' END AS 廃止, CASE WHEN M商品.無効日時 IS NOT NULL THEN '■' ELSE NULL END AS 削除, CASE WHEN M商品.IsUnit &lt;&gt; 0 THEN '■' ELSE NULL END AS ユニ, CASE WHEN ItemCode IS NOT NULL THEN '■' ELSE NULL END AS 構成 FROM M商品 LEFT OUTER JOIN ItemCode_ComposedMountChip ON M商品.商品コード = ItemCode_ComposedMountChip.ItemCode LEFT OUTER JOIN Mシリーズ ON M商品.シリーズコード = Mシリーズ.シリーズコード LEFT OUTER JOIN M社員 ON M商品.更新者コード = M社員.社員コード" DataTypeServer="nvarchar(50)" DbType="String" Direction="Input" ParameterName="@更新者名" Precision="0" Scale="0" Size="50" SourceColumn="更新者名" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="構成" ColumnName="構成" DataSourceName="SELECT TOP (100) PERCENT M商品.商品コード, M商品.商品名 AS 基本型式名, Mシリーズ.シリーズ名, CASE WHEN M商品.シリーズコード IS NOT NULL THEN '○' ELSE NULL END AS 在庫管理, Mシリーズ.在庫数量, Mシリーズ.在庫下限数量, M商品.更新日時, M社員.氏名 AS 更新者名, CASE WHEN M商品.Discontinued = 0 THEN NULL ELSE '■' END AS 廃止, CASE WHEN M商品.無効日時 IS NOT NULL THEN '■' ELSE NULL END AS 削除, CASE WHEN M商品.IsUnit &lt;&gt; 0 THEN '■' ELSE NULL END AS ユニ, CASE WHEN ItemCode IS NOT NULL THEN '■' ELSE NULL END AS 構成 FROM M商品 LEFT OUTER JOIN ItemCode_ComposedMountChip ON M商品.商品コード = ItemCode_ComposedMountChip.ItemCode LEFT OUTER JOIN Mシリーズ ON M商品.シリーズコード = Mシリーズ.シリーズコード LEFT OUTER JOIN M社員 ON M商品.更新者コード = M社員.社員コード" DataTypeServer="unknown" DbType="Object" Direction="Input" ParameterName="@構成" Precision="0" Scale="0" Size="1024" SourceColumn="構成" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="ユニ" ColumnName="ユニ" DataSourceName="SELECT TOP (100) PERCENT M商品.商品コード, M商品.商品名 AS 基本型式名, Mシリーズ.シリーズ名, CASE WHEN M商品.シリーズコード IS NOT NULL THEN '○' ELSE NULL END AS 在庫管理, Mシリーズ.在庫数量, Mシリーズ.在庫下限数量, M商品.更新日時, M社員.氏名 AS 更新者名, CASE WHEN M商品.Discontinued = 0 THEN NULL ELSE '■' END AS 廃止, CASE WHEN M商品.無効日時 IS NOT NULL THEN '■' ELSE NULL END AS 削除, CASE WHEN M商品.IsUnit &lt;&gt; 0 THEN '■' ELSE NULL END AS ユニ, CASE WHEN ItemCode IS NOT NULL THEN '■' ELSE NULL END AS 構成 FROM M商品 LEFT OUTER JOIN ItemCode_ComposedMountChip ON M商品.商品コード = ItemCode_ComposedMountChip.ItemCode LEFT OUTER JOIN Mシリーズ ON M商品.シリーズコード = Mシリーズ.シリーズコード LEFT OUTER JOIN M社員 ON M商品.更新者コード = M社員.社員コード" DataTypeServer="unknown" DbType="Object" Direction="Input" ParameterName="@ユニ" Precision="0" Scale="0" Size="1024" SourceColumn="ユニ" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="廃止" ColumnName="廃止" DataSourceName="SELECT TOP (100) PERCENT M商品.商品コード, M商品.商品名 AS 基本型式名, Mシリーズ.シリーズ名, CASE WHEN M商品.シリーズコード IS NOT NULL THEN '○' ELSE NULL END AS 在庫管理, Mシリーズ.在庫数量, Mシリーズ.在庫下限数量, M商品.更新日時, M社員.氏名 AS 更新者名, CASE WHEN M商品.Discontinued = 0 THEN NULL ELSE '■' END AS 廃止, CASE WHEN M商品.無効日時 IS NOT NULL THEN '■' ELSE NULL END AS 削除, CASE WHEN M商品.IsUnit &lt;&gt; 0 THEN '■' ELSE NULL END AS ユニ, CASE WHEN ItemCode IS NOT NULL THEN '■' ELSE NULL END AS 構成 FROM M商品 LEFT OUTER JOIN ItemCode_ComposedMountChip ON M商品.商品コード = ItemCode_ComposedMountChip.ItemCode LEFT OUTER JOIN Mシリーズ ON M商品.シリーズコード = Mシリーズ.シリーズコード LEFT OUTER JOIN M社員 ON M商品.更新者コード = M社員.社員コード" DataTypeServer="unknown" DbType="Object" Direction="Input" ParameterName="@廃止" Precision="0" Scale="0" Size="1024" SourceColumn="廃止" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="削除" ColumnName="削除" DataSourceName="SELECT TOP (100) PERCENT M商品.商品コード, M商品.商品名 AS 基本型式名, Mシリーズ.シリーズ名, CASE WHEN M商品.シリーズコード IS NOT NULL THEN '○' ELSE NULL END AS 在庫管理, Mシリーズ.在庫数量, Mシリーズ.在庫下限数量, M商品.更新日時, M社員.氏名 AS 更新者名, CASE WHEN M商品.Discontinued = 0 THEN NULL ELSE '■' END AS 廃止, CASE WHEN M商品.無効日時 IS NOT NULL THEN '■' ELSE NULL END AS 削除, CASE WHEN M商品.IsUnit &lt;&gt; 0 THEN '■' ELSE NULL END AS ユニ, CASE WHEN ItemCode IS NOT NULL THEN '■' ELSE NULL END AS 構成 FROM M商品 LEFT OUTER JOIN ItemCode_ComposedMountChip ON M商品.商品コード = ItemCode_ComposedMountChip.ItemCode LEFT OUTER JOIN Mシリーズ ON M商品.シリーズコード = Mシリーズ.シリーズコード LEFT OUTER JOIN M社員 ON M商品.更新者コード = M社員.社員コード" DataTypeServer="unknown" DbType="Object" Direction="Input" ParameterName="@削除" Precision="0" Scale="0" Size="1024" SourceColumn="削除" SourceColumnNullMapping="false" SourceVersion="Current" />
                     </Parameters>
                   </DbCommand>
                 </SelectCommand>
@@ -422,172 +401,172 @@ WHERE                (基本型式名 LIKE @基本型式名 OR
   <xs:element name="newDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="newDataSet" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="newDataSet">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="M商品" msprop:Generator_RowEvHandlerName="M商品RowChangeEventHandler" msprop:Generator_RowDeletedName="M商品RowDeleted" msprop:Generator_RowDeletingName="M商品RowDeleting" msprop:Generator_RowEvArgName="M商品RowChangeEvent" msprop:Generator_TablePropName="M商品" msprop:Generator_RowChangedName="M商品RowChanged" msprop:Generator_RowChangingName="M商品RowChanging" msprop:Generator_TableClassName="M商品DataTable" msprop:Generator_RowClassName="M商品Row" msprop:Generator_TableVarName="tableM商品" msprop:Generator_UserTableName="M商品">
+        <xs:element name="M商品" msprop:Generator_RowClassName="M商品Row" msprop:Generator_RowEvHandlerName="M商品RowChangeEventHandler" msprop:Generator_RowDeletedName="M商品RowDeleted" msprop:Generator_RowDeletingName="M商品RowDeleting" msprop:Generator_RowEvArgName="M商品RowChangeEvent" msprop:Generator_TablePropName="M商品" msprop:Generator_RowChangedName="M商品RowChanged" msprop:Generator_UserTableName="M商品" msprop:Generator_RowChangingName="M商品RowChanging" msprop:Generator_TableClassName="M商品DataTable" msprop:Generator_TableVarName="tableM商品">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="商品コード" msprop:Generator_ColumnPropNameInRow="商品コード" msprop:Generator_ColumnPropNameInTable="商品コードColumn" msprop:Generator_ColumnVarNameInTable="column商品コード" msprop:Generator_UserColumnName="商品コード">
+              <xs:element name="商品コード" msprop:Generator_UserColumnName="商品コード" msprop:Generator_ColumnPropNameInTable="商品コードColumn" msprop:Generator_ColumnPropNameInRow="商品コード" msprop:Generator_ColumnVarNameInTable="column商品コード">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="8" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="Revision" msprop:Generator_ColumnPropNameInRow="Revision" msprop:Generator_ColumnPropNameInTable="RevisionColumn" msprop:Generator_ColumnVarNameInTable="columnRevision" msprop:Generator_UserColumnName="Revision" type="xs:int" />
-              <xs:element name="ActiveDate" msprop:Generator_ColumnPropNameInRow="ActiveDate" msprop:Generator_ColumnPropNameInTable="ActiveDateColumn" msprop:Generator_ColumnVarNameInTable="columnActiveDate" msprop:Generator_UserColumnName="ActiveDate" type="xs:dateTime" minOccurs="0" />
-              <xs:element name="商品名" msprop:Generator_ColumnPropNameInRow="商品名" msprop:Generator_ColumnPropNameInTable="商品名Column" msprop:Generator_ColumnVarNameInTable="column商品名" msprop:Generator_UserColumnName="商品名" minOccurs="0">
+              <xs:element name="Revision" msprop:Generator_UserColumnName="Revision" msprop:Generator_ColumnPropNameInTable="RevisionColumn" msprop:Generator_ColumnPropNameInRow="Revision" msprop:Generator_ColumnVarNameInTable="columnRevision" type="xs:int" />
+              <xs:element name="ActiveDate" msprop:Generator_UserColumnName="ActiveDate" msprop:Generator_ColumnPropNameInTable="ActiveDateColumn" msprop:Generator_ColumnPropNameInRow="ActiveDate" msprop:Generator_ColumnVarNameInTable="columnActiveDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="商品名" msprop:Generator_UserColumnName="商品名" msprop:Generator_ColumnPropNameInTable="商品名Column" msprop:Generator_ColumnPropNameInRow="商品名" msprop:Generator_ColumnVarNameInTable="column商品名" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="40" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="シリーズコード" msprop:Generator_ColumnPropNameInRow="シリーズコード" msprop:Generator_ColumnPropNameInTable="シリーズコードColumn" msprop:Generator_ColumnVarNameInTable="columnシリーズコード" msprop:Generator_UserColumnName="シリーズコード" minOccurs="0">
+              <xs:element name="シリーズコード" msprop:Generator_UserColumnName="シリーズコード" msprop:Generator_ColumnPropNameInTable="シリーズコードColumn" msprop:Generator_ColumnPropNameInRow="シリーズコード" msprop:Generator_ColumnVarNameInTable="columnシリーズコード" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="8" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="シリーズ名" msprop:Generator_ColumnPropNameInRow="シリーズ名" msprop:Generator_ColumnPropNameInTable="シリーズ名Column" msprop:Generator_ColumnVarNameInTable="columnシリーズ名" msprop:Generator_UserColumnName="シリーズ名" minOccurs="0">
+              <xs:element name="シリーズ名" msprop:Generator_UserColumnName="シリーズ名" msprop:Generator_ColumnPropNameInTable="シリーズ名Column" msprop:Generator_ColumnPropNameInRow="シリーズ名" msprop:Generator_ColumnVarNameInTable="columnシリーズ名" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="24" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="品名" msprop:Generator_ColumnPropNameInRow="品名" msprop:Generator_ColumnPropNameInTable="品名Column" msprop:Generator_ColumnVarNameInTable="column品名" msprop:Generator_UserColumnName="品名" minOccurs="0">
+              <xs:element name="品名" msprop:Generator_UserColumnName="品名" msprop:Generator_ColumnPropNameInTable="品名Column" msprop:Generator_ColumnPropNameInRow="品名" msprop:Generator_ColumnVarNameInTable="column品名" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="46" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="掛率有効" msprop:Generator_ColumnPropNameInRow="掛率有効" msprop:Generator_ColumnPropNameInTable="掛率有効Column" msprop:Generator_ColumnVarNameInTable="column掛率有効" msprop:Generator_UserColumnName="掛率有効" type="xs:short" minOccurs="0" />
-              <xs:element name="商品分類コード" msprop:Generator_ColumnPropNameInRow="商品分類コード" msprop:Generator_ColumnPropNameInTable="商品分類コードColumn" msprop:Generator_ColumnVarNameInTable="column商品分類コード" msprop:Generator_UserColumnName="商品分類コード" minOccurs="0">
+              <xs:element name="掛率有効" msprop:Generator_UserColumnName="掛率有効" msprop:Generator_ColumnPropNameInTable="掛率有効Column" msprop:Generator_ColumnPropNameInRow="掛率有効" msprop:Generator_ColumnVarNameInTable="column掛率有効" type="xs:short" minOccurs="0" />
+              <xs:element name="商品分類コード" msprop:Generator_UserColumnName="商品分類コード" msprop:Generator_ColumnPropNameInTable="商品分類コードColumn" msprop:Generator_ColumnPropNameInRow="商品分類コード" msprop:Generator_ColumnVarNameInTable="column商品分類コード" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="2" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="ItemCategoryName" msprop:Generator_ColumnPropNameInRow="ItemCategoryName" msprop:Generator_ColumnPropNameInTable="ItemCategoryNameColumn" msprop:Generator_ColumnVarNameInTable="columnItemCategoryName" msprop:Generator_UserColumnName="ItemCategoryName" minOccurs="0">
+              <xs:element name="ItemCategoryName" msprop:Generator_UserColumnName="ItemCategoryName" msprop:Generator_ColumnPropNameInTable="ItemCategoryNameColumn" msprop:Generator_ColumnPropNameInRow="ItemCategoryName" msprop:Generator_ColumnVarNameInTable="columnItemCategoryName" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="50" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="売上区分コード" msprop:Generator_ColumnPropNameInRow="売上区分コード" msprop:Generator_ColumnPropNameInTable="売上区分コードColumn" msprop:Generator_ColumnVarNameInTable="column売上区分コード" msprop:Generator_UserColumnName="売上区分コード" type="xs:unsignedByte" minOccurs="0" />
-              <xs:element name="SalesCategoryName" msprop:Generator_ColumnPropNameInRow="SalesCategoryName" msprop:Generator_ColumnPropNameInTable="SalesCategoryNameColumn" msprop:Generator_ColumnVarNameInTable="columnSalesCategoryName" msprop:Generator_UserColumnName="SalesCategoryName" minOccurs="0">
+              <xs:element name="売上区分コード" msprop:Generator_UserColumnName="売上区分コード" msprop:Generator_ColumnPropNameInTable="売上区分コードColumn" msprop:Generator_ColumnPropNameInRow="売上区分コード" msprop:Generator_ColumnVarNameInTable="column売上区分コード" type="xs:unsignedByte" minOccurs="0" />
+              <xs:element name="SalesCategoryName" msprop:Generator_UserColumnName="SalesCategoryName" msprop:Generator_ColumnPropNameInTable="SalesCategoryNameColumn" msprop:Generator_ColumnPropNameInRow="SalesCategoryName" msprop:Generator_ColumnVarNameInTable="columnSalesCategoryName" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="50" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="PurchaseCategoryCode" msprop:Generator_ColumnPropNameInRow="PurchaseCategoryCode" msprop:Generator_ColumnPropNameInTable="PurchaseCategoryCodeColumn" msprop:Generator_ColumnVarNameInTable="columnPurchaseCategoryCode" msprop:Generator_UserColumnName="PurchaseCategoryCode" minOccurs="0">
+              <xs:element name="PurchaseCategoryCode" msprop:Generator_UserColumnName="PurchaseCategoryCode" msprop:Generator_ColumnPropNameInTable="PurchaseCategoryCodeColumn" msprop:Generator_ColumnPropNameInRow="PurchaseCategoryCode" msprop:Generator_ColumnVarNameInTable="columnPurchaseCategoryCode" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="2" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="PurchaseCategoryName" msprop:Generator_ColumnPropNameInRow="PurchaseCategoryName" msprop:Generator_ColumnPropNameInTable="PurchaseCategoryNameColumn" msprop:Generator_ColumnVarNameInTable="columnPurchaseCategoryName" msprop:Generator_UserColumnName="PurchaseCategoryName" minOccurs="0">
+              <xs:element name="PurchaseCategoryName" msprop:Generator_UserColumnName="PurchaseCategoryName" msprop:Generator_ColumnPropNameInTable="PurchaseCategoryNameColumn" msprop:Generator_ColumnPropNameInRow="PurchaseCategoryName" msprop:Generator_ColumnVarNameInTable="columnPurchaseCategoryName" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="50" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="FlowCategoryCode" msprop:Generator_ColumnPropNameInRow="FlowCategoryCode" msprop:Generator_ColumnPropNameInTable="FlowCategoryCodeColumn" msprop:Generator_ColumnVarNameInTable="columnFlowCategoryCode" msprop:Generator_UserColumnName="FlowCategoryCode" minOccurs="0">
+              <xs:element name="FlowCategoryCode" msprop:Generator_UserColumnName="FlowCategoryCode" msprop:Generator_ColumnPropNameInTable="FlowCategoryCodeColumn" msprop:Generator_ColumnPropNameInRow="FlowCategoryCode" msprop:Generator_ColumnVarNameInTable="columnFlowCategoryCode" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="3" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="FlowCategoryName" msprop:Generator_ColumnPropNameInRow="FlowCategoryName" msprop:Generator_ColumnPropNameInTable="FlowCategoryNameColumn" msprop:Generator_ColumnVarNameInTable="columnFlowCategoryName" msprop:Generator_UserColumnName="FlowCategoryName" minOccurs="0">
+              <xs:element name="FlowCategoryName" msprop:Generator_UserColumnName="FlowCategoryName" msprop:Generator_ColumnPropNameInTable="FlowCategoryNameColumn" msprop:Generator_ColumnPropNameInRow="FlowCategoryName" msprop:Generator_ColumnVarNameInTable="columnFlowCategoryName" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="50" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="ClientName" msprop:Generator_ColumnPropNameInRow="ClientName" msprop:Generator_ColumnPropNameInTable="ClientNameColumn" msprop:Generator_ColumnVarNameInTable="columnClientName" msprop:Generator_UserColumnName="ClientName" minOccurs="0">
+              <xs:element name="ClientName" msprop:Generator_UserColumnName="ClientName" msprop:Generator_ColumnPropNameInTable="ClientNameColumn" msprop:Generator_ColumnPropNameInRow="ClientName" msprop:Generator_ColumnVarNameInTable="columnClientName" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="200" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="IsUnit" msprop:Generator_ColumnPropNameInRow="IsUnit" msprop:Generator_ColumnPropNameInTable="IsUnitColumn" msprop:Generator_ColumnVarNameInTable="columnIsUnit" msprop:Generator_UserColumnName="IsUnit" type="xs:int" minOccurs="0" />
-              <xs:element name="在庫管理" msprop:Generator_ColumnPropNameInRow="在庫管理" msprop:Generator_ColumnPropNameInTable="在庫管理Column" msprop:Generator_ColumnVarNameInTable="column在庫管理" msprop:Generator_UserColumnName="在庫管理" type="xs:short" minOccurs="0" />
-              <xs:element name="在庫下限数量" msprop:Generator_ColumnPropNameInRow="在庫下限数量" msprop:Generator_ColumnPropNameInTable="在庫下限数量Column" msprop:Generator_ColumnVarNameInTable="column在庫下限数量" msprop:Generator_UserColumnName="在庫下限数量" type="xs:int" minOccurs="0" />
-              <xs:element name="ラインコード" msprop:Generator_ColumnPropNameInRow="ラインコード" msprop:Generator_ColumnPropNameInTable="ラインコードColumn" msprop:Generator_ColumnVarNameInTable="columnラインコード" msprop:Generator_UserColumnName="ラインコード" type="xs:unsignedByte" minOccurs="0" />
-              <xs:element name="数量単位コード" msprop:Generator_ColumnPropNameInRow="数量単位コード" msprop:Generator_ColumnPropNameInTable="数量単位コードColumn" msprop:Generator_ColumnVarNameInTable="column数量単位コード" msprop:Generator_UserColumnName="数量単位コード" type="xs:unsignedByte" minOccurs="0" />
-              <xs:element name="CustomerSerialNumberRequired" msprop:Generator_ColumnPropNameInRow="CustomerSerialNumberRequired" msprop:Generator_ColumnPropNameInTable="CustomerSerialNumberRequiredColumn" msprop:Generator_ColumnVarNameInTable="columnCustomerSerialNumberRequired" msprop:Generator_UserColumnName="CustomerSerialNumberRequired" type="xs:short" minOccurs="0" />
-              <xs:element name="InstructionUsageGroupCode" msprop:Generator_ColumnPropNameInRow="InstructionUsageGroupCode" msprop:Generator_ColumnPropNameInTable="InstructionUsageGroupCodeColumn" msprop:Generator_ColumnVarNameInTable="columnInstructionUsageGroupCode" msprop:Generator_UserColumnName="InstructionUsageGroupCode" minOccurs="0">
+              <xs:element name="IsUnit" msprop:Generator_UserColumnName="IsUnit" msprop:Generator_ColumnPropNameInTable="IsUnitColumn" msprop:Generator_ColumnPropNameInRow="IsUnit" msprop:Generator_ColumnVarNameInTable="columnIsUnit" type="xs:int" minOccurs="0" />
+              <xs:element name="在庫管理" msprop:Generator_UserColumnName="在庫管理" msprop:Generator_ColumnPropNameInTable="在庫管理Column" msprop:Generator_ColumnPropNameInRow="在庫管理" msprop:Generator_ColumnVarNameInTable="column在庫管理" type="xs:short" minOccurs="0" />
+              <xs:element name="在庫下限数量" msprop:Generator_UserColumnName="在庫下限数量" msprop:Generator_ColumnPropNameInTable="在庫下限数量Column" msprop:Generator_ColumnPropNameInRow="在庫下限数量" msprop:Generator_ColumnVarNameInTable="column在庫下限数量" type="xs:int" minOccurs="0" />
+              <xs:element name="ラインコード" msprop:Generator_UserColumnName="ラインコード" msprop:Generator_ColumnPropNameInTable="ラインコードColumn" msprop:Generator_ColumnPropNameInRow="ラインコード" msprop:Generator_ColumnVarNameInTable="columnラインコード" type="xs:unsignedByte" minOccurs="0" />
+              <xs:element name="数量単位コード" msprop:Generator_UserColumnName="数量単位コード" msprop:Generator_ColumnPropNameInTable="数量単位コードColumn" msprop:Generator_ColumnPropNameInRow="数量単位コード" msprop:Generator_ColumnVarNameInTable="column数量単位コード" type="xs:unsignedByte" minOccurs="0" />
+              <xs:element name="CustomerSerialNumberRequired" msprop:Generator_UserColumnName="CustomerSerialNumberRequired" msprop:Generator_ColumnPropNameInTable="CustomerSerialNumberRequiredColumn" msprop:Generator_ColumnPropNameInRow="CustomerSerialNumberRequired" msprop:Generator_ColumnVarNameInTable="columnCustomerSerialNumberRequired" type="xs:short" minOccurs="0" />
+              <xs:element name="InstructionUsageGroupCode" msprop:Generator_UserColumnName="InstructionUsageGroupCode" msprop:Generator_ColumnPropNameInTable="InstructionUsageGroupCodeColumn" msprop:Generator_ColumnPropNameInRow="InstructionUsageGroupCode" msprop:Generator_ColumnVarNameInTable="columnInstructionUsageGroupCode" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="2" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="在庫数量" msprop:Generator_ColumnPropNameInRow="在庫数量" msprop:Generator_ColumnPropNameInTable="在庫数量Column" msprop:Generator_ColumnVarNameInTable="column在庫数量" msprop:Generator_UserColumnName="在庫数量" type="xs:int" minOccurs="0" />
-              <xs:element name="Discontinued" msprop:Generator_ColumnPropNameInRow="Discontinued" msprop:Generator_ColumnPropNameInTable="DiscontinuedColumn" msprop:Generator_ColumnVarNameInTable="columnDiscontinued" msprop:Generator_UserColumnName="Discontinued" type="xs:int" minOccurs="0" />
-              <xs:element name="ChangeSummary" msprop:Generator_ColumnPropNameInRow="ChangeSummary" msprop:Generator_ColumnPropNameInTable="ChangeSummaryColumn" msprop:Generator_ColumnVarNameInTable="columnChangeSummary" msprop:Generator_UserColumnName="ChangeSummary" minOccurs="0">
+              <xs:element name="在庫数量" msprop:Generator_UserColumnName="在庫数量" msprop:Generator_ColumnPropNameInTable="在庫数量Column" msprop:Generator_ColumnPropNameInRow="在庫数量" msprop:Generator_ColumnVarNameInTable="column在庫数量" type="xs:int" minOccurs="0" />
+              <xs:element name="Discontinued" msprop:Generator_UserColumnName="Discontinued" msprop:Generator_ColumnPropNameInTable="DiscontinuedColumn" msprop:Generator_ColumnPropNameInRow="Discontinued" msprop:Generator_ColumnVarNameInTable="columnDiscontinued" type="xs:int" minOccurs="0" />
+              <xs:element name="ChangeSummary" msprop:Generator_UserColumnName="ChangeSummary" msprop:Generator_ColumnPropNameInTable="ChangeSummaryColumn" msprop:Generator_ColumnPropNameInRow="ChangeSummary" msprop:Generator_ColumnVarNameInTable="columnChangeSummary" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="2147483647" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="備考" msprop:Generator_ColumnPropNameInRow="備考" msprop:Generator_ColumnPropNameInTable="備考Column" msprop:Generator_ColumnVarNameInTable="column備考" msprop:Generator_UserColumnName="備考" minOccurs="0">
+              <xs:element name="備考" msprop:Generator_UserColumnName="備考" msprop:Generator_ColumnPropNameInTable="備考Column" msprop:Generator_ColumnPropNameInRow="備考" msprop:Generator_ColumnVarNameInTable="column備考" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="100" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="作成日時" msprop:Generator_ColumnPropNameInRow="作成日時" msprop:Generator_ColumnPropNameInTable="作成日時Column" msprop:Generator_ColumnVarNameInTable="column作成日時" msprop:Generator_UserColumnName="作成日時" type="xs:dateTime" minOccurs="0" />
-              <xs:element name="作成者コード" msprop:Generator_ColumnPropNameInRow="作成者コード" msprop:Generator_ColumnPropNameInTable="作成者コードColumn" msprop:Generator_ColumnVarNameInTable="column作成者コード" msprop:Generator_UserColumnName="作成者コード" minOccurs="0">
+              <xs:element name="作成日時" msprop:Generator_UserColumnName="作成日時" msprop:Generator_ColumnPropNameInTable="作成日時Column" msprop:Generator_ColumnPropNameInRow="作成日時" msprop:Generator_ColumnVarNameInTable="column作成日時" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="作成者コード" msprop:Generator_UserColumnName="作成者コード" msprop:Generator_ColumnPropNameInTable="作成者コードColumn" msprop:Generator_ColumnPropNameInRow="作成者コード" msprop:Generator_ColumnVarNameInTable="column作成者コード" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="3" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="CreateUserFullName" msprop:Generator_ColumnPropNameInRow="CreateUserFullName" msprop:Generator_ColumnPropNameInTable="CreateUserFullNameColumn" msprop:Generator_ColumnVarNameInTable="columnCreateUserFullName" msprop:Generator_UserColumnName="CreateUserFullName" minOccurs="0">
+              <xs:element name="CreateUserFullName" msprop:Generator_UserColumnName="CreateUserFullName" msprop:Generator_ColumnPropNameInTable="CreateUserFullNameColumn" msprop:Generator_ColumnPropNameInRow="CreateUserFullName" msprop:Generator_ColumnVarNameInTable="columnCreateUserFullName" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="50" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="更新日時" msprop:Generator_ColumnPropNameInRow="更新日時" msprop:Generator_ColumnPropNameInTable="更新日時Column" msprop:Generator_ColumnVarNameInTable="column更新日時" msprop:Generator_UserColumnName="更新日時" type="xs:dateTime" minOccurs="0" />
-              <xs:element name="更新者コード" msprop:Generator_ColumnPropNameInRow="更新者コード" msprop:Generator_ColumnPropNameInTable="更新者コードColumn" msprop:Generator_ColumnVarNameInTable="column更新者コード" msprop:Generator_UserColumnName="更新者コード" minOccurs="0">
+              <xs:element name="更新日時" msprop:Generator_UserColumnName="更新日時" msprop:Generator_ColumnPropNameInTable="更新日時Column" msprop:Generator_ColumnPropNameInRow="更新日時" msprop:Generator_ColumnVarNameInTable="column更新日時" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="更新者コード" msprop:Generator_UserColumnName="更新者コード" msprop:Generator_ColumnPropNameInTable="更新者コードColumn" msprop:Generator_ColumnPropNameInRow="更新者コード" msprop:Generator_ColumnVarNameInTable="column更新者コード" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="3" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="UpdateUserFullName" msprop:Generator_ColumnPropNameInRow="UpdateUserFullName" msprop:Generator_ColumnPropNameInTable="UpdateUserFullNameColumn" msprop:Generator_ColumnVarNameInTable="columnUpdateUserFullName" msprop:Generator_UserColumnName="UpdateUserFullName" minOccurs="0">
+              <xs:element name="UpdateUserFullName" msprop:Generator_UserColumnName="UpdateUserFullName" msprop:Generator_ColumnPropNameInTable="UpdateUserFullNameColumn" msprop:Generator_ColumnPropNameInRow="UpdateUserFullName" msprop:Generator_ColumnVarNameInTable="columnUpdateUserFullName" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="50" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="無効日時" msprop:Generator_ColumnPropNameInRow="無効日時" msprop:Generator_ColumnPropNameInTable="無効日時Column" msprop:Generator_ColumnVarNameInTable="column無効日時" msprop:Generator_UserColumnName="無効日時" type="xs:dateTime" minOccurs="0" />
-              <xs:element name="無効者コード" msprop:Generator_ColumnPropNameInRow="無効者コード" msprop:Generator_ColumnPropNameInTable="無効者コードColumn" msprop:Generator_ColumnVarNameInTable="column無効者コード" msprop:Generator_UserColumnName="無効者コード" minOccurs="0">
+              <xs:element name="無効日時" msprop:Generator_UserColumnName="無効日時" msprop:Generator_ColumnPropNameInTable="無効日時Column" msprop:Generator_ColumnPropNameInRow="無効日時" msprop:Generator_ColumnVarNameInTable="column無効日時" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="無効者コード" msprop:Generator_UserColumnName="無効者コード" msprop:Generator_ColumnPropNameInTable="無効者コードColumn" msprop:Generator_ColumnPropNameInRow="無効者コード" msprop:Generator_ColumnVarNameInTable="column無効者コード" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="3" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="DeleteUserFullName" msprop:Generator_ColumnPropNameInRow="DeleteUserFullName" msprop:Generator_ColumnPropNameInTable="DeleteUserFullNameColumn" msprop:Generator_ColumnVarNameInTable="columnDeleteUserFullName" msprop:Generator_UserColumnName="DeleteUserFullName" minOccurs="0">
+              <xs:element name="DeleteUserFullName" msprop:Generator_UserColumnName="DeleteUserFullName" msprop:Generator_ColumnPropNameInTable="DeleteUserFullNameColumn" msprop:Generator_ColumnPropNameInRow="DeleteUserFullName" msprop:Generator_ColumnVarNameInTable="columnDeleteUserFullName" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="50" />
@@ -597,69 +576,69 @@ WHERE                (基本型式名 LIKE @基本型式名 OR
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="V商品管理" msprop:Generator_RowEvHandlerName="V商品管理RowChangeEventHandler" msprop:Generator_RowDeletedName="V商品管理RowDeleted" msprop:Generator_RowDeletingName="V商品管理RowDeleting" msprop:Generator_RowEvArgName="V商品管理RowChangeEvent" msprop:Generator_TablePropName="V商品管理" msprop:Generator_RowChangedName="V商品管理RowChanged" msprop:Generator_RowChangingName="V商品管理RowChanging" msprop:Generator_TableClassName="V商品管理DataTable" msprop:Generator_RowClassName="V商品管理Row" msprop:Generator_TableVarName="tableV商品管理" msprop:Generator_UserTableName="V商品管理">
+        <xs:element name="V商品管理" msprop:Generator_RowClassName="V商品管理Row" msprop:Generator_RowEvHandlerName="V商品管理RowChangeEventHandler" msprop:Generator_RowDeletedName="V商品管理RowDeleted" msprop:Generator_RowDeletingName="V商品管理RowDeleting" msprop:Generator_RowEvArgName="V商品管理RowChangeEvent" msprop:Generator_TablePropName="V商品管理" msprop:Generator_RowChangedName="V商品管理RowChanged" msprop:Generator_UserTableName="V商品管理" msprop:Generator_RowChangingName="V商品管理RowChanging" msprop:Generator_TableClassName="V商品管理DataTable" msprop:Generator_TableVarName="tableV商品管理">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="商品コード" msprop:Generator_ColumnPropNameInRow="商品コード" msprop:Generator_ColumnPropNameInTable="商品コードColumn" msprop:Generator_ColumnVarNameInTable="column商品コード" msprop:Generator_UserColumnName="商品コード">
+              <xs:element name="商品コード" msprop:Generator_UserColumnName="商品コード" msprop:Generator_ColumnPropNameInTable="商品コードColumn" msprop:Generator_ColumnPropNameInRow="商品コード" msprop:Generator_ColumnVarNameInTable="column商品コード">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="8" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="基本型式名" msprop:Generator_ColumnPropNameInRow="基本型式名" msprop:Generator_ColumnPropNameInTable="基本型式名Column" msprop:Generator_ColumnVarNameInTable="column基本型式名" msprop:Generator_UserColumnName="基本型式名" minOccurs="0">
+              <xs:element name="基本型式名" msprop:Generator_UserColumnName="基本型式名" msprop:Generator_ColumnPropNameInTable="基本型式名Column" msprop:Generator_ColumnPropNameInRow="基本型式名" msprop:Generator_ColumnVarNameInTable="column基本型式名" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="40" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="シリーズ名" msprop:Generator_ColumnPropNameInRow="シリーズ名" msprop:Generator_ColumnPropNameInTable="シリーズ名Column" msprop:Generator_ColumnVarNameInTable="columnシリーズ名" msprop:Generator_UserColumnName="シリーズ名" minOccurs="0">
+              <xs:element name="シリーズ名" msprop:Generator_UserColumnName="シリーズ名" msprop:Generator_ColumnPropNameInTable="シリーズ名Column" msprop:Generator_ColumnPropNameInRow="シリーズ名" msprop:Generator_ColumnVarNameInTable="columnシリーズ名" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="50" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="在庫管理" msdata:ReadOnly="true" msprop:Generator_ColumnPropNameInRow="在庫管理" msprop:Generator_ColumnPropNameInTable="在庫管理Column" msprop:Generator_ColumnVarNameInTable="column在庫管理" msprop:Generator_UserColumnName="在庫管理" minOccurs="0">
+              <xs:element name="在庫管理" msdata:ReadOnly="true" msprop:Generator_UserColumnName="在庫管理" msprop:Generator_ColumnPropNameInTable="在庫管理Column" msprop:Generator_ColumnPropNameInRow="在庫管理" msprop:Generator_ColumnVarNameInTable="column在庫管理" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="8000" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="在庫数量" msprop:Generator_ColumnPropNameInRow="在庫数量" msprop:Generator_ColumnPropNameInTable="在庫数量Column" msprop:Generator_ColumnVarNameInTable="column在庫数量" msprop:Generator_UserColumnName="在庫数量" type="xs:int" minOccurs="0" />
-              <xs:element name="在庫下限数量" msprop:Generator_ColumnPropNameInRow="在庫下限数量" msprop:Generator_ColumnPropNameInTable="在庫下限数量Column" msprop:Generator_ColumnVarNameInTable="column在庫下限数量" msprop:Generator_UserColumnName="在庫下限数量" type="xs:int" minOccurs="0" />
-              <xs:element name="更新日時" msprop:Generator_ColumnPropNameInRow="更新日時" msprop:Generator_ColumnPropNameInTable="更新日時Column" msprop:Generator_ColumnVarNameInTable="column更新日時" msprop:Generator_UserColumnName="更新日時" type="xs:dateTime" minOccurs="0" />
-              <xs:element name="更新者名" msprop:Generator_ColumnPropNameInRow="更新者名" msprop:Generator_ColumnPropNameInTable="更新者名Column" msprop:Generator_ColumnVarNameInTable="column更新者名" msprop:Generator_UserColumnName="更新者名" minOccurs="0">
+              <xs:element name="在庫数量" msprop:Generator_UserColumnName="在庫数量" msprop:Generator_ColumnPropNameInTable="在庫数量Column" msprop:Generator_ColumnPropNameInRow="在庫数量" msprop:Generator_ColumnVarNameInTable="column在庫数量" type="xs:int" minOccurs="0" />
+              <xs:element name="在庫下限数量" msprop:Generator_UserColumnName="在庫下限数量" msprop:Generator_ColumnPropNameInTable="在庫下限数量Column" msprop:Generator_ColumnPropNameInRow="在庫下限数量" msprop:Generator_ColumnVarNameInTable="column在庫下限数量" type="xs:int" minOccurs="0" />
+              <xs:element name="更新日時" msprop:Generator_UserColumnName="更新日時" msprop:Generator_ColumnPropNameInTable="更新日時Column" msprop:Generator_ColumnPropNameInRow="更新日時" msprop:Generator_ColumnVarNameInTable="column更新日時" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="更新者名" msprop:Generator_UserColumnName="更新者名" msprop:Generator_ColumnPropNameInTable="更新者名Column" msprop:Generator_ColumnPropNameInRow="更新者名" msprop:Generator_ColumnVarNameInTable="column更新者名" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="50" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="廃止" msdata:ReadOnly="true" msprop:Generator_ColumnPropNameInRow="廃止" msprop:Generator_ColumnPropNameInTable="廃止Column" msprop:Generator_ColumnVarNameInTable="column廃止" msprop:Generator_UserColumnName="廃止" minOccurs="0">
+              <xs:element name="廃止" msdata:ReadOnly="true" msprop:Generator_UserColumnName="廃止" msprop:Generator_ColumnPropNameInTable="廃止Column" msprop:Generator_ColumnPropNameInRow="廃止" msprop:Generator_ColumnVarNameInTable="column廃止" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="2" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="削除" msdata:ReadOnly="true" msprop:Generator_ColumnPropNameInRow="削除" msprop:Generator_ColumnPropNameInTable="削除Column" msprop:Generator_ColumnVarNameInTable="column削除" msprop:Generator_UserColumnName="削除" minOccurs="0">
+              <xs:element name="削除" msdata:ReadOnly="true" msprop:Generator_UserColumnName="削除" msprop:Generator_ColumnPropNameInTable="削除Column" msprop:Generator_ColumnPropNameInRow="削除" msprop:Generator_ColumnVarNameInTable="column削除" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="2" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="ユニ" msdata:ReadOnly="true" msprop:Generator_ColumnPropNameInRow="ユニ" msprop:Generator_ColumnPropNameInTable="ユニColumn" msprop:Generator_ColumnVarNameInTable="columnユニ" msprop:Generator_UserColumnName="ユニ" minOccurs="0">
+              <xs:element name="ユニ" msdata:ReadOnly="true" msprop:Generator_UserColumnName="ユニ" msprop:Generator_ColumnPropNameInTable="ユニColumn" msprop:Generator_ColumnPropNameInRow="ユニ" msprop:Generator_ColumnVarNameInTable="columnユニ" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="2" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="構成" msdata:ReadOnly="true" msprop:Generator_ColumnPropNameInRow="構成" msprop:Generator_ColumnPropNameInTable="構成Column" msprop:Generator_ColumnVarNameInTable="column構成" msprop:Generator_UserColumnName="構成" minOccurs="0">
+              <xs:element name="構成" msdata:ReadOnly="true" msprop:Generator_UserColumnName="構成" msprop:Generator_ColumnPropNameInTable="構成Column" msprop:Generator_ColumnPropNameInRow="構成" msprop:Generator_ColumnVarNameInTable="column構成" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="2" />
@@ -669,69 +648,69 @@ WHERE                (基本型式名 LIKE @基本型式名 OR
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="Q商品管理" msprop:Generator_RowEvHandlerName="Q商品管理RowChangeEventHandler" msprop:Generator_RowDeletedName="Q商品管理RowDeleted" msprop:Generator_RowDeletingName="Q商品管理RowDeleting" msprop:Generator_RowEvArgName="Q商品管理RowChangeEvent" msprop:Generator_TablePropName="Q商品管理" msprop:Generator_RowChangedName="Q商品管理RowChanged" msprop:Generator_RowChangingName="Q商品管理RowChanging" msprop:Generator_TableClassName="Q商品管理DataTable" msprop:Generator_RowClassName="Q商品管理Row" msprop:Generator_TableVarName="tableQ商品管理" msprop:Generator_UserTableName="Q商品管理">
+        <xs:element name="Q商品管理" msprop:Generator_RowClassName="Q商品管理Row" msprop:Generator_RowEvHandlerName="Q商品管理RowChangeEventHandler" msprop:Generator_RowDeletedName="Q商品管理RowDeleted" msprop:Generator_RowDeletingName="Q商品管理RowDeleting" msprop:Generator_RowEvArgName="Q商品管理RowChangeEvent" msprop:Generator_TablePropName="Q商品管理" msprop:Generator_RowChangedName="Q商品管理RowChanged" msprop:Generator_UserTableName="Q商品管理" msprop:Generator_RowChangingName="Q商品管理RowChanging" msprop:Generator_TableClassName="Q商品管理DataTable" msprop:Generator_TableVarName="tableQ商品管理">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="商品コード" msprop:Generator_ColumnPropNameInRow="商品コード" msprop:Generator_ColumnPropNameInTable="商品コードColumn" msprop:Generator_ColumnVarNameInTable="column商品コード" msprop:Generator_UserColumnName="商品コード">
+              <xs:element name="商品コード" msprop:Generator_UserColumnName="商品コード" msprop:Generator_ColumnPropNameInTable="商品コードColumn" msprop:Generator_ColumnPropNameInRow="商品コード" msprop:Generator_ColumnVarNameInTable="column商品コード">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="8" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="基本型式名" msprop:Generator_ColumnPropNameInRow="基本型式名" msprop:Generator_ColumnPropNameInTable="基本型式名Column" msprop:Generator_ColumnVarNameInTable="column基本型式名" msprop:Generator_UserColumnName="基本型式名" minOccurs="0">
+              <xs:element name="基本型式名" msprop:Generator_UserColumnName="基本型式名" msprop:Generator_ColumnPropNameInTable="基本型式名Column" msprop:Generator_ColumnPropNameInRow="基本型式名" msprop:Generator_ColumnVarNameInTable="column基本型式名" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="40" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="シリーズ名" msprop:Generator_ColumnPropNameInRow="シリーズ名" msprop:Generator_ColumnPropNameInTable="シリーズ名Column" msprop:Generator_ColumnVarNameInTable="columnシリーズ名" msprop:Generator_UserColumnName="シリーズ名" minOccurs="0">
+              <xs:element name="シリーズ名" msprop:Generator_UserColumnName="シリーズ名" msprop:Generator_ColumnPropNameInTable="シリーズ名Column" msprop:Generator_ColumnPropNameInRow="シリーズ名" msprop:Generator_ColumnVarNameInTable="columnシリーズ名" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="50" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="在庫管理" msdata:ReadOnly="true" msprop:Generator_ColumnPropNameInRow="在庫管理" msprop:Generator_ColumnPropNameInTable="在庫管理Column" msprop:Generator_ColumnVarNameInTable="column在庫管理" msprop:Generator_UserColumnName="在庫管理" minOccurs="0">
+              <xs:element name="在庫管理" msdata:ReadOnly="true" msprop:Generator_UserColumnName="在庫管理" msprop:Generator_ColumnPropNameInTable="在庫管理Column" msprop:Generator_ColumnPropNameInRow="在庫管理" msprop:Generator_ColumnVarNameInTable="column在庫管理" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="2" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="在庫数量" msprop:Generator_ColumnPropNameInRow="在庫数量" msprop:Generator_ColumnPropNameInTable="在庫数量Column" msprop:Generator_ColumnVarNameInTable="column在庫数量" msprop:Generator_UserColumnName="在庫数量" type="xs:int" minOccurs="0" />
-              <xs:element name="在庫下限数量" msprop:Generator_ColumnPropNameInRow="在庫下限数量" msprop:Generator_ColumnPropNameInTable="在庫下限数量Column" msprop:Generator_ColumnVarNameInTable="column在庫下限数量" msprop:Generator_UserColumnName="在庫下限数量" type="xs:int" minOccurs="0" />
-              <xs:element name="更新日時" msprop:Generator_ColumnPropNameInRow="更新日時" msprop:Generator_ColumnPropNameInTable="更新日時Column" msprop:Generator_ColumnVarNameInTable="column更新日時" msprop:Generator_UserColumnName="更新日時" type="xs:dateTime" minOccurs="0" />
-              <xs:element name="更新者名" msprop:Generator_ColumnPropNameInRow="更新者名" msprop:Generator_ColumnPropNameInTable="更新者名Column" msprop:Generator_ColumnVarNameInTable="column更新者名" msprop:Generator_UserColumnName="更新者名" minOccurs="0">
+              <xs:element name="在庫数量" msprop:Generator_UserColumnName="在庫数量" msprop:Generator_ColumnPropNameInTable="在庫数量Column" msprop:Generator_ColumnPropNameInRow="在庫数量" msprop:Generator_ColumnVarNameInTable="column在庫数量" type="xs:int" minOccurs="0" />
+              <xs:element name="在庫下限数量" msprop:Generator_UserColumnName="在庫下限数量" msprop:Generator_ColumnPropNameInTable="在庫下限数量Column" msprop:Generator_ColumnPropNameInRow="在庫下限数量" msprop:Generator_ColumnVarNameInTable="column在庫下限数量" type="xs:int" minOccurs="0" />
+              <xs:element name="更新日時" msprop:Generator_UserColumnName="更新日時" msprop:Generator_ColumnPropNameInTable="更新日時Column" msprop:Generator_ColumnPropNameInRow="更新日時" msprop:Generator_ColumnVarNameInTable="column更新日時" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="更新者名" msprop:Generator_UserColumnName="更新者名" msprop:Generator_ColumnPropNameInTable="更新者名Column" msprop:Generator_ColumnPropNameInRow="更新者名" msprop:Generator_ColumnVarNameInTable="column更新者名" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="50" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="廃止" msdata:ReadOnly="true" msprop:Generator_ColumnPropNameInRow="廃止" msprop:Generator_ColumnPropNameInTable="廃止Column" msprop:Generator_ColumnVarNameInTable="column廃止" msprop:Generator_UserColumnName="廃止" minOccurs="0">
+              <xs:element name="廃止" msdata:ReadOnly="true" msprop:Generator_UserColumnName="廃止" msprop:Generator_ColumnPropNameInTable="廃止Column" msprop:Generator_ColumnPropNameInRow="廃止" msprop:Generator_ColumnVarNameInTable="column廃止" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="2" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="削除" msdata:ReadOnly="true" msprop:Generator_ColumnPropNameInRow="削除" msprop:Generator_ColumnPropNameInTable="削除Column" msprop:Generator_ColumnVarNameInTable="column削除" msprop:Generator_UserColumnName="削除" minOccurs="0">
+              <xs:element name="削除" msdata:ReadOnly="true" msprop:Generator_UserColumnName="削除" msprop:Generator_ColumnPropNameInTable="削除Column" msprop:Generator_ColumnPropNameInRow="削除" msprop:Generator_ColumnVarNameInTable="column削除" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="2" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="ユニ" msdata:ReadOnly="true" msprop:Generator_ColumnPropNameInRow="ユニ" msprop:Generator_ColumnPropNameInTable="ユニColumn" msprop:Generator_ColumnVarNameInTable="columnユニ" msprop:Generator_UserColumnName="ユニ" minOccurs="0">
+              <xs:element name="ユニ" msdata:ReadOnly="true" msprop:Generator_UserColumnName="ユニ" msprop:Generator_ColumnPropNameInTable="ユニColumn" msprop:Generator_ColumnPropNameInRow="ユニ" msprop:Generator_ColumnVarNameInTable="columnユニ" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="2" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="構成" msdata:ReadOnly="true" msprop:Generator_ColumnPropNameInRow="構成" msprop:Generator_ColumnPropNameInTable="構成Column" msprop:Generator_ColumnVarNameInTable="column構成" msprop:Generator_UserColumnName="構成" minOccurs="0">
+              <xs:element name="構成" msdata:ReadOnly="true" msprop:Generator_UserColumnName="構成" msprop:Generator_ColumnPropNameInTable="構成Column" msprop:Generator_ColumnPropNameInRow="構成" msprop:Generator_ColumnVarNameInTable="column構成" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="2" />
