@@ -32,13 +32,13 @@ namespace u_net
                 F_商品管理 frmTarget = new F_商品管理(); // F_商品管理フォームのインスタンスを作成
 
                 // F_商品管理クラスからデータを取得し、現在のフォームのコントロールに設定
-                 this.基本型式名.Text = frmTarget.str基本型式名;
-                //シリーズ名.Text = frmTarget.strシリーズ名;
-                //if (frmTarget.dtm更新日開始 != 0)
-                //    更新日開始.Value = frmTarget.dtm更新日開始;
-                //if (frmTarget.dtm更新日終了 != 0)
-                //    更新日終了.Value = frmTarget.dtm更新日終了;
-                //更新者名.Text = frmTarget.str更新者名;
+                this.基本型式名.Text = frmTarget.str基本型式名;
+                シリーズ名.Text = frmTarget.strシリーズ名;
+                if (frmTarget.dtm更新日開始 != DateTime.MinValue)
+                    更新日開始.Text = frmTarget.dtm更新日開始.ToString();
+                if (frmTarget.dtm更新日終了 != DateTime.MinValue)
+                    更新日終了.Text = frmTarget.dtm更新日終了.ToString();
+                更新者名.SelectedItem = frmTarget.str更新者名;
                 //ComposedChipMount.Value = frmTarget.intComposedChipMount;
                 //IsUnit = frmTarget.intIsUnit;
                 //Discontinued.Value = frmTarget.lngDiscontinued;
