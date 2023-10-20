@@ -38,13 +38,18 @@
             更新日開始 = new TextBox();
             label2 = new Label();
             更新日終了 = new TextBox();
+            groupBox1 = new GroupBox();
+            radioButton1 = new RadioButton();
+            radioButton2 = new RadioButton();
+            radioButton3 = new RadioButton();
+            groupBox1.SuspendLayout();
             SuspendLayout();
             // 
             // 売上区分コード
             // 
             売上区分コード.DisplayMember = "更新者名";
             売上区分コード.FormattingEnabled = true;
-            売上区分コード.Location = new Point(116, 132);
+            売上区分コード.Location = new Point(116, 114);
             売上区分コード.Margin = new Padding(4, 3, 4, 3);
             売上区分コード.Name = "売上区分コード";
             売上区分コード.Size = new Size(160, 23);
@@ -58,7 +63,7 @@
             label9.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             label9.ForeColor = SystemColors.ActiveCaptionText;
             label9.ImageAlign = ContentAlignment.MiddleLeft;
-            label9.Location = new Point(27, 132);
+            label9.Location = new Point(24, 114);
             label9.Margin = new Padding(0);
             label9.Name = "label9";
             label9.Size = new Size(85, 17);
@@ -86,7 +91,7 @@
             シリーズ名.BackColor = Color.White;
             シリーズ名.Enabled = false;
             シリーズ名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            シリーズ名.Location = new Point(116, 57);
+            シリーズ名.Location = new Point(116, 51);
             シリーズ名.Margin = new Padding(3, 2, 3, 2);
             シリーズ名.Multiline = true;
             シリーズ名.Name = "シリーズ名";
@@ -128,7 +133,7 @@
             label1.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             label1.ForeColor = SystemColors.ActiveCaptionText;
             label1.ImageAlign = ContentAlignment.MiddleLeft;
-            label1.Location = new Point(24, 95);
+            label1.Location = new Point(24, 83);
             label1.Margin = new Padding(0);
             label1.Name = "label1";
             label1.Size = new Size(85, 17);
@@ -141,7 +146,7 @@
             更新日開始.BackColor = Color.White;
             更新日開始.Enabled = false;
             更新日開始.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            更新日開始.Location = new Point(116, 94);
+            更新日開始.Location = new Point(116, 82);
             更新日開始.Margin = new Padding(3, 2, 3, 2);
             更新日開始.Multiline = true;
             更新日開始.Name = "更新日開始";
@@ -157,7 +162,7 @@
             label2.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             label2.ForeColor = SystemColors.ActiveCaptionText;
             label2.ImageAlign = ContentAlignment.MiddleLeft;
-            label2.Location = new Point(311, 96);
+            label2.Location = new Point(311, 84);
             label2.Margin = new Padding(0);
             label2.Name = "label2";
             label2.Size = new Size(27, 16);
@@ -170,7 +175,7 @@
             更新日終了.BackColor = Color.White;
             更新日終了.Enabled = false;
             更新日終了.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            更新日終了.Location = new Point(369, 95);
+            更新日終了.Location = new Point(369, 83);
             更新日終了.Margin = new Padding(3, 2, 3, 2);
             更新日終了.Multiline = true;
             更新日終了.Name = "更新日終了";
@@ -179,11 +184,57 @@
             更新日終了.TabIndex = 201;
             更新日終了.Visible = false;
             // 
+            // groupBox1
+            // 
+            groupBox1.Controls.Add(radioButton3);
+            groupBox1.Controls.Add(radioButton2);
+            groupBox1.Controls.Add(radioButton1);
+            groupBox1.Location = new Point(39, 159);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new Size(525, 63);
+            groupBox1.TabIndex = 203;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "廃止指定(B)";
+            // 
+            // radioButton1
+            // 
+            radioButton1.AutoSize = true;
+            radioButton1.Location = new Point(30, 22);
+            radioButton1.Name = "radioButton1";
+            radioButton1.Size = new Size(96, 19);
+            radioButton1.TabIndex = 1;
+            radioButton1.TabStop = true;
+            radioButton1.Text = "廃止していない";
+            radioButton1.UseVisualStyleBackColor = true;
+            // 
+            // radioButton2
+            // 
+            radioButton2.AutoSize = true;
+            radioButton2.Location = new Point(214, 22);
+            radioButton2.Name = "radioButton2";
+            radioButton2.Size = new Size(85, 19);
+            radioButton2.TabIndex = 2;
+            radioButton2.TabStop = true;
+            radioButton2.Text = "廃止している";
+            radioButton2.UseVisualStyleBackColor = true;
+            // 
+            // radioButton3
+            // 
+            radioButton3.AutoSize = true;
+            radioButton3.Location = new Point(347, 22);
+            radioButton3.Name = "radioButton3";
+            radioButton3.Size = new Size(77, 19);
+            radioButton3.TabIndex = 204;
+            radioButton3.TabStop = true;
+            radioButton3.Text = "指定しない";
+            radioButton3.UseVisualStyleBackColor = true;
+            // 
             // F_商品管理_抽出
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(594, 450);
+            Controls.Add(groupBox1);
             Controls.Add(label2);
             Controls.Add(更新日終了);
             Controls.Add(label1);
@@ -196,6 +247,8 @@
             Controls.Add(label5);
             Name = "F_商品管理_抽出";
             Text = "F_商品管理_抽出";
+            groupBox1.ResumeLayout(false);
+            groupBox1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -212,5 +265,9 @@
         private TextBox 更新日開始;
         private Label label2;
         private TextBox 更新日終了;
+        private GroupBox groupBox1;
+        private RadioButton radioButton3;
+        private RadioButton radioButton2;
+        private RadioButton radioButton1;
     }
 }

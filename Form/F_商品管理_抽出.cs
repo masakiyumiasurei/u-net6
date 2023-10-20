@@ -32,7 +32,7 @@ namespace u_net
                 F_商品管理 frmTarget = new F_商品管理(); // F_商品管理フォームのインスタンスを作成
 
                 // F_商品管理クラスからデータを取得し、現在のフォームのコントロールに設定
-                // this.基本型式名.Text = frmTarget.str基本型式名;
+                 this.基本型式名.Text = frmTarget.str基本型式名;
                 //シリーズ名.Text = frmTarget.strシリーズ名;
                 //if (frmTarget.dtm更新日開始 != 0)
                 //    更新日開始.Value = frmTarget.dtm更新日開始;

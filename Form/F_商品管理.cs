@@ -132,15 +132,15 @@ namespace u_net
             return result;
         }
 
-        string str基本型式名 = "";
-        string strシリーズ名 = "";
-        DateTime dtm更新日開始= DateTime.MinValue;
-        DateTime dtm更新日終了= DateTime.MinValue;
-        string str更新者名 = "";
-        int intComposedChipMount = 0;
-        int intIsUnit = 0;
-        int lngDiscontinued = 0;
-        int lngDeleted = 0;
+        public string str基本型式名 = "";
+        public string strシリーズ名 = "";
+        public DateTime dtm更新日開始 = DateTime.MinValue;
+        public DateTime dtm更新日終了 = DateTime.MinValue;
+        public string str更新者名 = "";
+        public int intComposedChipMount = 0;
+        public int intIsUnit = 0;
+        public int lngDiscontinued = 0;
+        public int lngDeleted = 0;
 
 
         private int Filtering()
