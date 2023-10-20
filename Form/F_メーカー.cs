@@ -19,10 +19,12 @@ namespace u_net
         private Control previousControl;
         private SqlConnection cn;
         private SqlTransaction tx;
+        private string BASE_CAPTION = "メーカー"; 
         public F_メーカー()
         {
             this.Text = "メーカー";       // ウィンドウタイトルを設定
             this.MaximizeBox = false;  // 最大化ボタンを無効化
+            this.MinimizeBox = false; //最小化ボタンを無効化
 
             InitializeComponent();
 
@@ -36,398 +38,474 @@ namespace u_net
             cn.Open();
         }
 
-
-        ////SqlConnection cn = new SqlConnection();
-        //SqlCommand cmd = new SqlCommand();
-        //DataSet ds = new DataSet();
-        //DataTable dt = new DataTable();
-        //SqlDataAdapter adapter = new SqlDataAdapter();
-
-        //int new_cnt;
-        //int kokyaku_id;
-        //string kokyaku_cd;
-        //int tantou;
-
-        //private void Form_Load(object sender, EventArgs e)
-        //{
+        public void CommonConnect()
+        {
+            CommonConnection connectionInfo = new CommonConnection();
+            string connectionString = connectionInfo.Getconnect();
+            cn = new SqlConnection(connectionString);
+            cn.Open();
+        }
 
 
-        //    this.combBoxメーカーコードTableAdapter.Fill(this.uiDataSet.CombBoxメーカーコード);
-        //    this.combBoxMシリーズTableAdapter.Fill(this.uiDataSet.Mシリーズ);
-        //    this.mメーカー分類TableAdapter.Fill(this.uiDataSet.Mメーカー分類);
-        //    this.comboBox売上区分TableAdapter.Fill(this.uiDataSet.M売上区分);
-        //    this.m単位TableAdapter.Fill(this.uiDataSet.M単位);
-        //    this.comboBoxManufactureFlowTableAdapter.Fill(this.uiDataSet.ManufactureFlow);
 
-        //    previousControl = null;
-        //    try
-        //    {
-        //        if (true)
-        //        {
-        //            if (!GoNewMode())
-        //            {
-        //                return;
-        //            }
-        //        }
-        //        else
-        //        {
-
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show("初期化に失敗しました。", "エラー");
-        //    }
-        //}
-
-        //private bool GoNewMode()
-        //{
-        //    try
-        //    {
-        //        string strSQL;
-        //        Connect(); // Connect メソッドの呼び出し
-
-        //        //FunctionClass functionClass = new FunctionClass(); staticに変更
-
-        //        // ヘッダ部を初期化
-        //        //SetControls(this, null);
-        //        //バインドソースの新規追加
-        //        //this.MメーカーBindingSource.AddNew();
-
-        //        string original = FunctionClass.採番(cn, "ITM");
-        //        メーカーコード.Text = original.Substring(original.Length - 8);
-        //        Revision.Text = "1";
-        //        掛率有効.Checked = true;
-
-        //        FlowCategoryCode.SelectedValue = "001";
-
-        //        //FlowCategoryName.Text = (FlowCategoryCode.SelectedItem as DataRowView)["Name"].ToString();
+        //SqlConnection cn = new SqlConnection();
+        SqlCommand cmd = new SqlCommand();
+        DataSet ds = new DataSet();
+        DataTable dt = new DataTable();
+        SqlDataAdapter adapter = new SqlDataAdapter();
 
 
-        //        数量単位コード.SelectedValue = 1;
+        private void Form_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                this.SuspendLayout();
+                //DoWait("しばらくお待ちください...");
+
+                //IntPtr hIcon = LoadIconFromPath(CurrentProject.Path + "\\card.ico");
+                //SendMessage(this.Handle, WM_SETICON, new IntPtr(1), hIcon);
+
+                //object varOpenArgs = this.OpenArgs;
+
+                int intWindowHeight = this.Height;
+                int intWindowWidth = this.Width;
+
+                string code = null;
+
+                if (string.IsNullOrEmpty(code))
+                {
+                    // 新規モードへ
+                    //if (!GoNewMode())
+                    //{
+                    //    throw new Exception("初期化に失敗しました。");
+                    //}
+                }
+                else
+                {
+                    // 修正モードへ
+                    if (!GoModifyMode())
+                    {
+                        throw new Exception("初期化に失敗しました。");
+                    }
+                    //this.メーカーコード.Text = varOpenArgs.ToString();
+                    // コードを設定したことでイベント発生
+                }
+
+                // 成功時の処理
+                return;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("初期化に失敗しました。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.Close();
+            }
+            finally
+            {
+                this.ResumeLayout();
+            }
+        }
 
 
-        //        CustomerSerialNumberRequired.Checked = false;
-        //        IsUnit.Checked = false;
-        //        Discontinued.Checked = false;
+        private bool GoNewMode()
+        {
+            try
+            {
+                // 各コントロール値を初期化
+                //SetControls(this, null);
 
-        //        string CurrentCode = メーカーコード.Text;
-        //        // 明細部を初期化
-        //        this.Mメーカー明細TableAdapter.Fill(this.uiDataSet.Mメーカー明細, CurrentCode);
-        //        //strSQL = "SELECT * FROM Mメーカー明細 WHERE メーカーコード='" + CurrentCode + "' ORDER BY 明細番号";
-        //        //LoadDetails(strSQL, SubForm, dbWork, "メーカー明細");
+                CommonConnect();
 
-        //        // ヘッダ部を制御
-        //        //LockData(this, false);
-        //        品名.Focus();
-        //        メーカーコード.Enabled = false;
-        //        コマンド新規.Enabled = false;
-        //        コマンド読込.Enabled = true;
-        //        コマンド複写.Enabled = false;
-        //        コマンド削除.Enabled = false;
-        //        コマンド承認.Enabled = false;
-        //        コマンド確定.Enabled = false;
-        //        コマンド登録.Enabled = false;
+                string code = FunctionClass.GetNewCode(cn, CommonConstants.CH_MAKER);
+                this.メーカーコード.Text = code.Substring(code.Length - 8);
+                // this.メーカーコード.Text = 採番(objConnection, CH_MAKER).Substring(採番(objConnection, CH_MAKER).Length - 8);
+                this.Revision.Text = 1.ToString();
 
-        //        return true;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Debug.WriteLine("GoNewMode - " + ex.Message);
-        //        return false;
-        //    }
-        //}
+                // 編集による変更がない状態へ遷移する
+                ChangedData(false);
 
-        //private bool GoModifyMode()
-        //{
-        //    try
-        //    {
-        //        // 表示データをクリア 空文字のときにnullにする処理。不要？？
-        //        //SetControls(this, null);
+                // ヘッダ部動作制御
+                FunctionClass.LockData(this, false);
+                this.メーカー名.Focus();
+                this.メーカーコード.Enabled = false;
+                this.コマンド新規.Enabled = false;
+                this.コマンド読込.Enabled = true;
+                this.コマンド複写.Enabled = false;
+                this.コマンド削除.Enabled = false;
+                this.コマンドメール.Enabled = false;
+                // this.コマンド承認.Enabled = false;
+                // this.コマンド確定.Enabled = false;
+                this.コマンド登録.Enabled = false;
 
-        //        FunctionClass.LockData(this, true, "メーカーコード");
-        //        this.メーカーコード.Enabled = true;
-        //        this.メーカーコード.Focus();
-        //        this.コマンド新規.Enabled = true;
-        //        this.コマンド読込.Enabled = false;
-        //        this.コマンド複写.Enabled = false;
-        //        this.コマンド登録.Enabled = false;
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Debug.Print(this.Name + "_GoNewMode - " + ex.Message);
+                return false;
+            }
+        }
 
-        //        return true;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show("修正Mode - " + ex.HResult + " : " + ex.Message);
-        //        return false;
-        //    }
-        //}
+        public void ChangedData(bool isChanged)
+        {
+            try
+            {
+                if (isChanged)
+                {
+                    this.Text = BASE_CAPTION + "*";
+                }
+                else
+                {
+                    this.Text = BASE_CAPTION;
+                }
 
-        //private bool ErrCheck()
-        //{
-        //    //入力確認    
-        //    if (!FunctionClass.IsError(this.メーカー名)) return false;
-        //    if (!FunctionClass.IsError(this.メーカーコード)) return false;
-        //    if (!FunctionClass.IsError(this.売上区分コード)) return false;
-        //    return true;
-        //}
-        //private void コマンド登録_Click(object sender, EventArgs e)
-        //{
-        //    //保存確認
-        //    if (MessageBox.Show("変更内容を保存しますか？", "保存確認",
-        //        MessageBoxButtons.OKCancel,
-        //        MessageBoxIcon.Question) == DialogResult.OK)
-        //    {
-        //        if (!ErrCheck()) return;
-
-        //        if (!SaveData()) return;
-        //    }
-        //}
-
-        //private bool SaveData()
-        //{
-        //    //管理情報の設定
-        //    if (!SetModelNumber()) return false;
-
-        //    Connect();
-        //    SqlTransaction transaction = cn.BeginTransaction();
-        //    {
-        //        try
-        //        {
-        //            // Mメーカーデータを保存
-        //            //this.Validate();
-        //            //this.MメーカーBindingSource.EndEdit();
-        //            //this.MメーカーTableAdapter.Connection = cn;
-        //            //this.MメーカーTableAdapter.Transaction = transaction;
-        //            //this.MメーカーTableAdapter.Update(this.uiDataSet.Mメーカー);
-
-        //            string strwhere = " メーカーコード='" + this.メーカーコード.Text + "' and Revision=" + this.Revision.Text;
-
-        //            if (!DataUpdater.UpdateOrInsertDataFrom(this, cn, "Mメーカー", strwhere, "メーカーコード", transaction))
-        //            {
-        //                //transaction.Rollback(); 関数内でロールバック入れた
-        //                return false;
-        //            }
+                // キー情報を表示するコントロールを制御
+                // コードにフォーカスがある状態でサブフォームから呼び出されたときの対処
+                if (this.ActiveControl == this.メーカーコード)
+                {
+                    this.メーカー名.Focus();
+                }
+                this.メーカーコード.Enabled = !isChanged;
+                this.コマンド複写.Enabled = !isChanged;
+                this.コマンド削除.Enabled = !isChanged;
+                this.コマンドメール.Enabled = !isChanged;
+                this.コマンド登録.Enabled = isChanged;
+            }
+            catch (Exception ex)
+            {
+                Debug.Print(this.Name + "_ChangedData - " + ex.Message);
+                // エラー処理が必要に応じて実装
+            }
+        }
 
 
-        //            // Mメーカー明細データを保存
-        //            this.Mメーカー明細TableAdapter.Connection = cn;
-        //            this.Mメーカー明細TableAdapter.Transaction = transaction;
-        //            this.Mメーカー明細TableAdapter.Update(this.uiDataSet.Mメーカー明細);
+        private bool GoModifyMode()
+        {
+            try
+            {
+                bool result = false;
 
-        //            // トランザクションをコミット
-        //            transaction.Commit();
+                // 各コントロールの値をクリア
+                //SetControls(this, null);
 
-        //            // データベースへの変更を適用
-        //            this.tableAdapterManager.UpdateAll(this.uiDataSet);
-        //            MessageBox.Show("登録を完了しました");
+                // 編集による変更がない状態へ遷移
+                ChangedData(false);
 
-        //            メーカーコード.Enabled = true;
+                this.メーカーコード.Enabled = true;
+                this.メーカーコード.Focus();
+                // メーカーコードコントロールが使用可能になってから LockData を呼び出す
+                FunctionClass.LockData(this, true, "メーカーコード");
+                this.コマンド新規.Enabled = true;
+                this.コマンド読込.Enabled = false;
+                this.コマンド複写.Enabled = false;
+                // this.コマンド確定.Enabled = false;
+                this.コマンド登録.Enabled = false;
 
-        //            // 新規モードのときは修正モードへ移行する
-        //            if (true)//IsNewData)
-        //            {
-        //                コマンド新規.Enabled = true;
-        //                コマンド読込.Enabled = false;
-        //            }
+                result = true;
+                return result;
+            }
+            catch (Exception ex)
+            {
+                Debug.Print(this.Name + "_GoModifyMode - " + ex.Message);
+                return false;
+            }
+        }
 
-        //            コマンド複写.Enabled = true;
-        //            コマンド削除.Enabled = true;
-        //            コマンド登録.Enabled = false;
+        private void MyForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            try
+            {
 
-        //            return true;
+                // 変更された場合
+                if (IsChanged)
+                {
+                    var intRes = MessageBox.Show("変更内容を登録しますか？", BASE_CAPTION, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                    switch (intRes)
+                    {
+                        case DialogResult.Yes:
+                            if (SaveData(CurrentCode, CurrentRevision))
+                            {
+                                // 保存に成功した場合
+                                return;
+                            }
+                            else
+                            {
+                                if (MessageBox.Show("登録できませんでした。" + Environment.NewLine +
+                                    "強制終了しますか？" + Environment.NewLine +
+                                    "[はい]を選択した場合、メーカーコードは破棄されます。" + Environment.NewLine +
+                                    "[いいえ]を選択した場合、終了しません。", BASE_CAPTION, MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes)
+                                {
+                                    e.Cancel = false;
+                                }
+                                else
+                                {
+                                    e.Cancel = true;
+                                }
+                                return;
+                            }
+                        case DialogResult.No:
+                            // 新規モードのときはコードを戻す
+                            break;
+                        case DialogResult.Cancel:
+                            e.Cancel = true;
+                            return;
+                    }
+                }
 
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            // トランザクション内でエラーが発生した場合、ロールバックを実行
-        //            if (transaction != null)
-        //            {
-        //                transaction.Rollback();
-        //            }
+                // 新規モードのときに登録しない場合は内部の更新データを元に戻す
+                if (IsNewData)
+                {
+                    if (!string.IsNullOrEmpty(CurrentCode) && CurrentRevision == 1)
+                    {
 
-        //            コマンド登録.Enabled = true;
-        //            // エラーメッセージを表示またはログに記録
-        //            MessageBox.Show("データの保存中にエラーが発生しました: " + ex.Message, "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        //            return false;
-        //        }
-        //    }
-        //}
+                        CommonConnect();
 
-        //private int detailNumber = 1; // 最初の連番
-        //セルのデフォルト値
-        //private void dataGridView1_DefaultValuesNeeded(object sender, DataGridViewRowEventArgs e)
-        //{
-        //    e.Row.Cells["メーカーコードDataGridViewTextBoxColumn"].Value = this.メーカーコード.Text; //Convert.ToInt32(this.顧客ID);
-        //    e.Row.Cells["RevisionDataGridViewTextBoxColumn"].Value = this.Revision.Text;
-        //    e.Row.Cells["明細番号DataGridViewTextBoxColumn"].Value = detailNumber.ToString();
-        //    detailNumber++; // 連番を増やす
-        //    //e.Row.Cells["担当者コード"].Value = tantou;
-        //    //e.Row.Cells["時刻"].Value = DateTime.Now.ToString("HH:mm");            
-        //}
+                        // 初版データのときのみ採番された番号を戻す
+                        if (!ReturnNewCode(cn, CommonConstants.CH_MAKER, CurrentCode))
+                        {
+                            MessageBox.Show("エラーのためコードは破棄されました。" + Environment.NewLine +
+                                "メーカーコード　：　" + CurrentCode, BASE_CAPTION, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.Print(this.Name + "_FormClosing - " + ex.Message);
+                MessageBox.Show(ex.Message, "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
 
-        //// DataGridViewの初期設定
-        //private void InitializeDataGridView()
-        //{
+        public bool IsChanged
+        {
+            get
+            {
+                return コマンド登録.Enabled;
+            }
+        }
 
-        //    // DefaultValuesNeededイベントハンドラを登録
-        //    dataGridView1.DefaultValuesNeeded += new DataGridViewRowEventHandler(dataGridView1_DefaultValuesNeeded);
-        //}
+        public bool IsNewData
+        {
+            get
+            {
+                return !コマンド新規.Enabled;
+            }
+        }
 
-        //private void dataGridView1_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
-        //{
-        //    //削除するかユーザーに確認する
-        //    if (MessageBox.Show("この行を削除しますか？",
-        //        "削除の確認",
-        //        MessageBoxButtons.OKCancel,
-        //        MessageBoxIcon.Question) != DialogResult.OK)
-        //    {
-        //        e.Cancel = true;
-        //    }
-        //}
-        ////セルのフォーマット
-        //private void dataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
-        //{
-        //    try
-        //    {
-        //        DataGridView dgv = (DataGridView)sender;
-        //        //セルの列を確認
-        //        if (dgv.Columns[e.ColumnIndex].Name == "重要FLG" && e.Value is Boolean)
-        //        {
-        //            Boolean val = (Boolean)e.Value;
-        //            //セルの値により、背景色を変更する
-        //            if (val == true)
-        //            {
-        //                dgv.Rows[e.RowIndex].Cells["約定内容"].Style.ForeColor = Color.Red;
-        //            }
-        //            else
-        //            {
-        //                dgv.Rows[e.RowIndex].Cells["約定内容"].Style.ForeColor = Color.Black;
-        //            }
-        //        }
-        //        else if (dgv.Columns[e.ColumnIndex].Name == "時刻" && e.Value is string)
-        //        {
-        //            string val = (string)e.Value;
+        public string CurrentCode
+        {
+            get
+            {
+                return string.IsNullOrEmpty(メーカーコード.Text) ? "" : メーカーコード.Text;
+            }
+        }
 
-        //            dataGridView1.Columns["時刻"].DefaultCellStyle.Format = "HH:mm";
-        //            //val.ToString("HH:mm");
-        //        }
-        //        else if (dgv.Columns[e.ColumnIndex].Name == "支払先" && e.Value != null)
-        //        {
-        //            var combo = dgv.Columns[e.ColumnIndex] as DataGridViewComboBoxColumn;
-        //            var item = combo.Items.Cast<DataRowView>().FirstOrDefault(row => row[combo.ValueMember].ToString() == e.Value.ToString());
+        public int CurrentRevision
+        {
+            get
+            {
+                return string.IsNullOrEmpty(Revision.Text) ? 0 : int.Parse(Revision.Text);
+            }
+        }
 
-        //            if (item != null)
-        //            {
-        //                e.Value = item[combo.DisplayMember];
-        //                e.FormattingApplied = true;
-        //            }
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Console.WriteLine(ex.Message);
-        //    }
-        //}
-        //private void dataGridView1_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
-        //{
+        private bool SaveData(string SaveCode, int SaveEdition = -1)
+        {
+            try
+            {
+                DateTime now = DateTime.Now;
+                Control objControl1 = null;
+                Control objControl2 = null;
+                Control objControl3 = null;
+                Control objControl4 = null;
+                Control objControl5 = null;
+                Control objControl6 = null;
+                object varSaved1 = null;
+                object varSaved2 = null;
+                object varSaved3 = null;
+                object varSaved4 = null;
+                object varSaved5 = null;
+                object varSaved6 = null;
+                object varSaved7 = null;
 
-        //    DataGridView dgv = (DataGridView)sender;
-        //    //該当する列か調べる
-        //    //クリックされたカラムが「約定内容」「区分」カラムなら、ユーザーが文字列を入力できるようにする
+                bool isNewData = IsNewData;
 
-        //    if (dgv.CurrentCell.OwningColumn.Name == "約定内容" || dgv.CurrentCell.OwningColumn.Name == "区分"
-        //        || dgv.CurrentCell.OwningColumn.Name == "交渉相手")
-        //    {
-        //        //編集のために表示されているコントロールを取得
-        //        DataGridViewComboBoxEditingControl cb =
-        //            (DataGridViewComboBoxEditingControl)e.Control;
-        //        cb.DropDownStyle = ComboBoxStyle.DropDown;
-        //    }
-        //    //表示されているコントロールがDataGridViewTextBoxEditingControlか調べる
-        //    if (e.Control is DataGridViewTextBoxEditingControl)
-        //    {
-        //        //編集のために表示されているコントロールを取得
-        //        DataGridViewTextBoxEditingControl tb = (DataGridViewTextBoxEditingControl)e.Control;
+                if (isNewData)
+                {
+                    objControl1 = 作成日時;
+                    objControl2 = 作成者コード;
+                    objControl3 = 作成者名;
+                    varSaved1 = objControl1.Text;
+                    varSaved2 = objControl2.Text;
+                    varSaved3 = objControl3.Text;
+                    varSaved7 = ActiveDate.Text;
+                    objControl1.Text = now.ToString();
+                    //objControl2.Text = LoginUserCode;
+                    //objControl3.Text = LoginUserFullName;
+                    ActiveDate.Text = now.ToString();
+                }
 
-        //        tb.KeyPress -=
-        //         new KeyPressEventHandler(dataGridViewTextBox_KeyPress);
+                objControl4 = 更新日時;
+                objControl5 = 更新者コード;
+                objControl6 = 更新者名;
 
-        //        //該当する列か調べる
-        //        if (dgv.CurrentCell.OwningColumn.Name == "時刻")//クリックされたカラムが「時刻」カラムなら
-        //        {
-        //            //KeyPressイベントハンドラを追加
-        //            tb.KeyPress +=
-        //            new KeyPressEventHandler(dataGridViewTextBox_KeyPress);
-        //            // this.KeyDown += new KeyEventHandler(Form1_KeyDown);
-        //        }
-        //    }
-        //}
-        ////DataGridViewに表示されているテキストボックスのKeyPressイベントハンドラ
-        //private void dataGridViewTextBox_KeyPress(object sender,
-        //    KeyPressEventArgs e)
-        //{
-        //    //数字とコロンしか入力できないようにする
-        //    if ((e.KeyChar < '0' || e.KeyChar > '9') && e.KeyChar != ':')
-        //    {
-        //        e.Handled = true;
-        //    }
-        //}
+                // 登録前の状態を退避しておく
+                varSaved4 = objControl4.Text;
+                varSaved5 = objControl5.Text;
+                varSaved6 = objControl6.Text;
 
-        //private void dataGridView1_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
-        //{//コンボボックスにフリー入力し、その内容をコンボボックスの項目に追加
-        //    DataGridView dgv = (DataGridView)sender;
-        //    //該当する列か調べる
-        //    if ((dgv.Columns[e.ColumnIndex].Name == "約定内容" &&
-        //        dgv.Columns[e.ColumnIndex] is DataGridViewComboBoxColumn) ||
-        //        (dgv.Columns[e.ColumnIndex].Name == "区分" &&
-        //        dgv.Columns[e.ColumnIndex] is DataGridViewComboBoxColumn) ||
-        //        (dgv.Columns[e.ColumnIndex].Name == "交渉相手" &&
-        //        dgv.Columns[e.ColumnIndex] is DataGridViewComboBoxColumn)
-        //        )
-        //    {
-        //        DataGridViewComboBoxColumn cbc = (DataGridViewComboBoxColumn)dgv.Columns[e.ColumnIndex];
-        //        //コンボボックスの項目に追加する
-        //        if (!cbc.Items.Contains(e.FormattedValue))
-        //        {
-        //            cbc.Items.Add(e.FormattedValue);
-        //        }
-        //        //セルの値を設定しないと、元に戻ってしまう
-        //        dgv[e.ColumnIndex, e.RowIndex].Value = e.FormattedValue;
-        //    }
-        //}
-        //private void dataGridView1_DataError(object sender, DataGridViewDataErrorEventArgs e)
-        //{
-        //    //e.Cancel = true;
-        //}
-        //private void dataGridView1_CellEnter(object sender, DataGridViewCellEventArgs e)
-        //{
-        //    DataGridView dgv = (DataGridView)sender;
-        //    switch (dgv.Columns[e.ColumnIndex].Name)
-        //    {
-        //        case "時刻":
-        //        case "約定額":
-        //            dgv.ImeMode = ImeMode.Disable;
-        //            break;
+                // 値の設定
+                objControl4.Text = now.ToString();
+                //objControl5.Text = LoginUserCode;
+                //objControl6.Text = LoginUserFullName;
 
-        //        case "内容":
-        //        case "交渉相手":
-        //            dgv.ImeMode = ImeMode.Hiragana;
-        //            break;
-        //    }
-        //    //コンボボックスのプルダウン
-        //    if ((dgv.Columns[e.ColumnIndex].Name == "約定内容" || dgv.Columns[e.ColumnIndex].Name == "支払先"
-        //        || dgv.Columns[e.ColumnIndex].Name == "区分") || dgv.Columns[e.ColumnIndex].Name == "交渉相手" &&
-        //           dgv.Columns[e.ColumnIndex] is DataGridViewComboBoxColumn)
-        //    {
-        //        SendKeys.Send("{F4}");
-        //    }
-        //    //カレンダーを表示する
-        //    if (dgv.Columns[e.ColumnIndex].Name == "約定日")
-        //    {
-        //        SendKeys.Send("{F2}");
-        //        SendKeys.Send("{F4}");
-        //    }
-        //}
+                // 登録処理
+                if (RegTrans(SaveCode, SaveEdition))
+                {
+                    // 登録成功
+                    return true;
+                }
+                else
+                {
+                    // 登録失敗
+                    if (isNewData)
+                    {
+                        objControl1.Text = (string)varSaved1;
+                        objControl2.Text = (string)varSaved2;
+                        objControl3.Text = (string)varSaved3;
+                        ActiveDate.Text = (string)varSaved7;
+                    }
+
+                    objControl4.Text = (string)varSaved4;
+                    objControl5.Text = (string)varSaved5;
+                    objControl6.Text = (string)varSaved6;
+                }
+
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Debug.Print(this.Name + "_SaveData - " + ex.Message);
+                return false;
+            }
+        }
+
+        public bool RegTrans(string codeString, int editionNumber = -1)
+        {
+            try
+            {
+                bool success = false;
+                string strKey = "";
+
+                Connect();
+
+                using (SqlTransaction trans = cn.BeginTransaction())
+                {
+                    try
+                    {
+                        // ヘッダ部の登録
+                        if (SaveHeader(this, codeString, editionNumber))
+                        {
+                            trans.Commit(); // トランザクション完了
+                            success = true;
+                        }
+                        else
+                        {
+                            trans.Rollback(); // 変更をキャンセル
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        trans.Rollback(); // 変更をキャンセル
+                        throw ex;
+                    }
+                }
+
+                return success;
+            }
+            catch (Exception ex)
+            {
+                if (cn.State == ConnectionState.Open)
+                {
+                    cn.Close(); // データベース接続を閉じる
+                }
+
+                Debug.Print(this.Name + "_RegTrans - " + ex.Message);
+                return false;
+            }
+        }
+
+        public bool SaveHeader(Form formObject, string codeString, int editionNumber = -1)
+        {
+            try
+            {
+                bool success = false;
+
+                Connect();
+
+                using (SqlTransaction trans = cn.BeginTransaction())
+                {
+                    try
+                    {
+                        string strKey = (editionNumber == -1) ? "メーカーコード = @CodeString" : "メーカーコード = @CodeString AND Revision = @EditionNumber";
+                        string strSQL = "SELECT * FROM Mメーカー WHERE " + strKey;
+
+                        using (SqlCommand cmd = new SqlCommand(strSQL, cn, trans))
+                        {
+                            cmd.Parameters.AddWithValue("@CodeString", codeString);
+                            if (editionNumber != -1)
+                            {
+                                cmd.Parameters.AddWithValue("@EditionNumber", editionNumber);
+                            }
+
+                            using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                            {
+                                DataTable dataTable = new DataTable();
+                                adapter.Fill(dataTable);
+
+                                if (dataTable.Rows.Count == 0)
+                                {
+                                    // 新しいレコードを追加
+                                    DataRow newRow = dataTable.NewRow();
+                                    FunctionClass.SetForm2Table(formObject, newRow, "", "");
+                                    dataTable.Rows.Add(newRow);
+                                }
+                                else
+                                {
+                                    // 既存のレコードを更新
+                                    FunctionClass.SetForm2Table(formObject, dataTable.Rows[0], "メーカーコード", "Revision");
+                                }
+
+                                // データベースに変更を保存
+                                using (SqlCommandBuilder builder = new SqlCommandBuilder(adapter))
+                                {
+                                    adapter.Update(dataTable);
+                                }
+                            }
+                        }
+
+                        trans.Commit(); // トランザクション完了
+                        success = true;
+                    }
+                    catch (Exception ex)
+                    {
+                        trans.Rollback(); // 変更をキャンセル
+                        throw ex;
+                    }
+                }
+
+                return success;
+            }
+            catch (Exception ex)
+            {
+                if (cn.State == ConnectionState.Open)
+                {
+                    cn.Close(); // データベース接続を閉じる
+                }
+
+                Debug.Print(this.Name + "_SaveHeader - " + ex.Message);
+                return false;
+            }
+        }
+
 
 
         //private void コマンド新規_Click(object sender, EventArgs e)
@@ -862,10 +940,7 @@ namespace u_net
 
         //}
 
-        //private void F_メーカー_Load(object sender, EventArgs e)
-        //{
 
-        //}
     }
 
 

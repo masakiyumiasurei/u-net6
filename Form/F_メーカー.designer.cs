@@ -85,7 +85,6 @@ namespace u_net
             this.作成日時 = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.郵便番号_ラベル = new System.Windows.Forms.Label();
-            this.Revision = new System.Windows.Forms.ComboBox();
             this.メーカー名フリガナ_ラベル = new System.Windows.Forms.Label();
             this.メーカー名 = new System.Windows.Forms.TextBox();
             this.メーカー名_ラベル = new System.Windows.Forms.Label();
@@ -136,6 +135,7 @@ namespace u_net
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
+            this.Revision = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -639,19 +639,6 @@ namespace u_net
             this.郵便番号_ラベル.TabIndex = 169;
             this.郵便番号_ラベル.Text = "郵便番号(Z)";
             this.郵便番号_ラベル.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // Revision
-            // 
-            this.Revision.DisplayMember = "シリーズコード";
-            this.Revision.Enabled = false;
-            this.Revision.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.Revision.FormattingEnabled = true;
-            this.Revision.Location = new System.Drawing.Point(400, 50);
-            this.Revision.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.Revision.Name = "Revision";
-            this.Revision.Size = new System.Drawing.Size(160, 21);
-            this.Revision.TabIndex = 2;
-            this.Revision.ValueMember = "シリーズコード";
             // 
             // メーカー名フリガナ_ラベル
             // 
@@ -1264,10 +1251,23 @@ namespace u_net
             this.label11.Text = "削除者コード";
             this.label11.Visible = false;
             // 
+            // Revision
+            // 
+            this.Revision.BackColor = System.Drawing.SystemColors.Window;
+            this.Revision.Enabled = false;
+            this.Revision.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.Revision.Location = new System.Drawing.Point(400, 50);
+            this.Revision.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Revision.Multiline = true;
+            this.Revision.Name = "Revision";
+            this.Revision.Size = new System.Drawing.Size(139, 23);
+            this.Revision.TabIndex = 1000;
+            // 
             // F_メーカー
             // 
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1665, 777);
+            this.Controls.Add(this.Revision);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
@@ -1299,7 +1299,6 @@ namespace u_net
             this.Controls.Add(this.作成日時);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.郵便番号_ラベル);
-            this.Controls.Add(this.Revision);
             this.Controls.Add(this.メーカー名フリガナ_ラベル);
             this.Controls.Add(this.メーカー名);
             this.Controls.Add(this.メーカー名_ラベル);
@@ -1341,6 +1340,7 @@ namespace u_net
             this.Controls.Add(this.削除者コード);
             this.Controls.Add(this.panel1);
             this.Name = "F_メーカー";
+            this.Load += new System.EventHandler(this.Form_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
@@ -1430,7 +1430,6 @@ namespace u_net
         private System.Windows.Forms.TextBox 作成日時;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label 郵便番号_ラベル;
-        private System.Windows.Forms.ComboBox Revision;
         private System.Windows.Forms.Label メーカー名フリガナ_ラベル;
         private System.Windows.Forms.TextBox メーカー名;
         private System.Windows.Forms.Label メーカー名_ラベル;
@@ -1457,7 +1456,6 @@ namespace u_net
         private DataGridViewTextBoxColumn 構成番号DataGridViewTextBoxColumn;
         private uiDataSetTableAdapters.combBoxMシリーズTableAdapter combBoxMシリーズTableAdapter;
         private uiDataSetTableAdapters.TableAdapterManager tableAdapterManager;
-        private DataSet1 dataSet11;
         private Label 住所_ラベル;
         private TextBox メーカーコード;
         private Label 担当者名_ラベル;
@@ -1498,6 +1496,7 @@ namespace u_net
         private Label label7;
         private Label label8;
         private Label label11;
+        private TextBox Revision;
     }
 }
 

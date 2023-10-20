@@ -271,5 +271,82 @@ namespace u_net.Public
             }
         }
 
+
+        public static string GetNewCode(SqlConnection conn, string header)
+        {
+            string result = "";
+
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand("GetNewCode3", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new SqlParameter("@header", SqlDbType.NVarChar, 255)).Value = header;
+                    conn.Open();
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            result = reader.GetString(0);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.Print("GetNewCode - " + ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            return result;
+        }
+
+
+
+        public static void SetForm2Table(Form formObject, DataRow dataRow, string exControlName1, string exControlName2)
+        {
+            try
+            {
+                foreach (DataColumn column in dataRow.Table.Columns)
+                {
+                    string fieldName = column.ColumnName;
+
+                    if (fieldName != exControlName1 && fieldName != exControlName2)
+                    {
+                        if (formObject.Controls.ContainsKey(fieldName))
+                        {
+                            // フォームのコントロール名がテーブルのフィールド名と一致する場合
+                            // データを設定
+                            formObject.Controls[fieldName].Text = dataRow[fieldName].ToString();
+                        }
+                        else
+                        {
+                            // フィールド名とコントロール名が一致しない場合、エラー処理を行うか、
+                            // または無視するかはアプリケーションの要件に合わせて実装してください
+                            Debug.Print("SetForm2Table - フィールド " + fieldName + " のコントロールがフォーム上で見つかりません。");
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.Print("SetForm2Table - " + ex.Message);
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
     }
 }
