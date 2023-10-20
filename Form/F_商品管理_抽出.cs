@@ -22,15 +22,19 @@ namespace u_net
         {
             try
             {
+
                 // 対象フォームが読み込まれていないときはすぐに終了する
-                if (Application.OpenForms["商品管理"] == null)
+                if (Application.OpenForms["F_商品管理"] == null)
                 {
                     MessageBox.Show("[商品管理]画面が起動していない状態では実行できません。", "警告", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     this.Close();
                     return;
                 }
+                
+                //F_商品管理 frmTarget = new F_商品管理(); // NEWだと開いてるインスタンスにならない
 
-                F_商品管理 frmTarget = new F_商品管理(); // F_商品管理フォームのインスタンスを作成
+                //開いているフォームのインスタンスを作成する
+                F_商品管理 frmTarget = Application.OpenForms.OfType<F_商品管理>().FirstOrDefault();
 
                 // F_商品管理クラスからデータを取得し、現在のフォームのコントロールに設定
                 this.基本型式名.Text = frmTarget.str基本型式名;
@@ -117,11 +121,14 @@ namespace u_net
         {
             try
             {
-                F_商品管理 frmTarget = new F_商品管理();
+                F_商品管理? frmTarget = Application.OpenForms.OfType<F_商品管理>().FirstOrDefault();
+                //F_商品管理 frmTarget = new F_商品管理();
+
+
 
                 frmTarget.str基本型式名 = Nz(基本型式名.Text);
                 frmTarget.strシリーズ名 = Nz(シリーズ名.Text);
-                frmTarget.dtm更新日開始 = string.IsNullOrEmpty(更新日開始.Text) ? 
+                frmTarget.dtm更新日開始 = string.IsNullOrEmpty(更新日開始.Text) ?
                     DateTime.MinValue : DateTime.Parse(更新日開始.Text);
 
                 frmTarget.dtm更新日終了 = string.IsNullOrEmpty(更新日終了.Text) ?
@@ -205,6 +212,11 @@ namespace u_net
                 //this.Painting = true;
                 this.Close();
             }
+        }
+
+        private void キャンセルボタン_MouseClick(object sender, MouseEventArgs e)
+        {
+            this.Close();
         }
 
         // Nz メソッドの代替

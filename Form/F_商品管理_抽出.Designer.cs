@@ -56,6 +56,7 @@
             DeletedButton1 = new RadioButton();
             抽出ボタン = new Button();
             キャンセルボタン = new Button();
+            test = new DateTimePicker();
             Discontinued.SuspendLayout();
             intComposedChipMount.SuspendLayout();
             IsUnit.SuspendLayout();
@@ -390,12 +391,21 @@
             キャンセルボタン.TabIndex = 209;
             キャンセルボタン.Text = "キャンセル(&X)";
             キャンセルボタン.UseVisualStyleBackColor = true;
+            キャンセルボタン.MouseClick += キャンセルボタン_MouseClick;
+            // 
+            // test
+            // 
+            test.Location = new Point(405, 127);
+            test.Name = "test";
+            test.Size = new Size(118, 23);
+            test.TabIndex = 210;
             // 
             // F_商品管理_抽出
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(594, 540);
+            Controls.Add(test);
             Controls.Add(キャンセルボタン);
             Controls.Add(抽出ボタン);
             Controls.Add(Deleted);
@@ -414,6 +424,7 @@
             Controls.Add(label5);
             Name = "F_商品管理_抽出";
             Text = "F_商品管理_抽出";
+            Load += Form_Load;
             Discontinued.ResumeLayout(false);
             Discontinued.PerformLayout();
             intComposedChipMount.ResumeLayout(false);
@@ -456,5 +467,6 @@
         private RadioButton DeletedButton1;
         private Button 抽出ボタン;
         private Button キャンセルボタン;
+        private DateTimePicker test;
     }
 }

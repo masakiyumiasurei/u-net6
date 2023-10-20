@@ -28,8 +28,8 @@ namespace u_net
 
         int intWindowHeight = 0;
         int intWindowWidth = 0;
-        private Control previousControl;
-        private SqlConnection cn;
+        private Control? previousControl;
+        private SqlConnection? cn;
         public F_商品管理()
         {
             InitializeComponent();
@@ -61,28 +61,28 @@ namespace u_net
 
             // DataGridViewの設定
             dataGridView1.AllowUserToResizeColumns = true;
-            dataGridView1.Font = new System.Drawing.Font("MS ゴシック", 10);
-            dataGridView1.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.FromArgb(210, 210, 255);
-            dataGridView1.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridView1.GridColor = System.Drawing.Color.FromArgb(230, 230, 230);
-            dataGridView1.ColumnHeadersDefaultCellStyle.Font = new System.Drawing.Font("MS ゴシック", 10);
-            dataGridView1.DefaultCellStyle.Font = new System.Drawing.Font("MS ゴシック", 10);
-            dataGridView1.DefaultCellStyle.ForeColor = System.Drawing.Color.Black;
+            dataGridView1.Font = new Font("MS ゴシック", 10);
+            dataGridView1.DefaultCellStyle.SelectionBackColor = Color.FromArgb(210, 210, 255);
+            dataGridView1.DefaultCellStyle.SelectionForeColor = Color.Black;
+            dataGridView1.GridColor = Color.FromArgb(230, 230, 230);
+            dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font("MS ゴシック", 9);
+            dataGridView1.DefaultCellStyle.Font = new Font("MS ゴシック", 10);
+            dataGridView1.DefaultCellStyle.ForeColor = Color.Black;
 
             // 列の幅を設定 もとは恐らくtwipのためピクセルに直す
-            dataGridView1.Columns[0].Width = 500 / 20;
-            dataGridView1.Columns[1].Width = 1150 / 20;
-            dataGridView1.Columns[2].Width = 3500 / 20;
-            dataGridView1.Columns[3].Width = 1500 / 20;
-            dataGridView1.Columns[4].Width = 500 / 20;
-            dataGridView1.Columns[5].Width = 1350 / 20;
-            dataGridView1.Columns[6].Width = 1350 / 20;
-            dataGridView1.Columns[7].Width = 2200 / 20;
-            dataGridView1.Columns[8].Width = 1300 / 20;
-            dataGridView1.Columns[9].Width = 500 / 20;
-            dataGridView1.Columns[10].Width = 500 / 20;
-            dataGridView1.Columns[11].Width = 500 / 20;
-            // dataGridView1.Columns[12].Width = 500/20;
+            dataGridView1.Columns[0].Width = 500 / 15;
+            dataGridView1.Columns[1].Width = 1150 / 15;
+            dataGridView1.Columns[2].Width = 3500 / 15;
+            dataGridView1.Columns[3].Width = 1500 / 15;
+            dataGridView1.Columns[4].Width = 500 / 15;
+            dataGridView1.Columns[5].Width = 1350 / 15;
+            dataGridView1.Columns[6].Width = 1350 / 15;
+            dataGridView1.Columns[7].Width = 2200 / 15;
+            dataGridView1.Columns[8].Width = 1300 / 15;
+            dataGridView1.Columns[9].Width = 500 / 15;
+            dataGridView1.Columns[10].Width = 500 / 15;
+            dataGridView1.Columns[11].Width = 500 / 15;
+            // dataGridView1.Columns[12].Width = 500/15;
 
             MyApi myapi = new MyApi();
             int xSize, ySize, intpixel;
@@ -93,7 +93,6 @@ namespace u_net
 
             InitializeFilter();
             DoUpdate();
-
 
         }
 
