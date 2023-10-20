@@ -54,8 +54,8 @@
             radioButton10 = new RadioButton();
             radioButton11 = new RadioButton();
             radioButton12 = new RadioButton();
-            button1 = new Button();
-            button2 = new Button();
+            抽出ボタン = new Button();
+            キャンセルボタン = new Button();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox3.SuspendLayout();
@@ -70,7 +70,7 @@
             更新者名.Margin = new Padding(4, 3, 4, 3);
             更新者名.Name = "更新者名";
             更新者名.Size = new Size(160, 23);
-            更新者名.TabIndex = 198;
+            更新者名.TabIndex = 9;
             更新者名.ValueMember = "更新者名";
             // 
             // label9
@@ -84,8 +84,8 @@
             label9.Margin = new Padding(0);
             label9.Name = "label9";
             label9.Size = new Size(85, 17);
-            label9.TabIndex = 197;
-            label9.Text = "更新者名&N";
+            label9.TabIndex = 8;
+            label9.Text = "更新者名(&N)";
             label9.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // label7
@@ -99,23 +99,20 @@
             label7.Margin = new Padding(0);
             label7.Name = "label7";
             label7.Size = new Size(85, 17);
-            label7.TabIndex = 196;
-            label7.Text = "シリーズ名(S)";
+            label7.TabIndex = 3;
+            label7.Text = "シリーズ名(&S)";
             label7.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // シリーズ名
             // 
             シリーズ名.BackColor = Color.White;
-            シリーズ名.Enabled = false;
             シリーズ名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             シリーズ名.Location = new Point(116, 51);
             シリーズ名.Margin = new Padding(3, 2, 3, 2);
             シリーズ名.Multiline = true;
             シリーズ名.Name = "シリーズ名";
-            シリーズ名.ReadOnly = true;
             シリーズ名.Size = new Size(413, 23);
-            シリーズ名.TabIndex = 195;
-            シリーズ名.Visible = false;
+            シリーズ名.TabIndex = 4;
             // 
             // 基本型式名
             // 
@@ -126,7 +123,7 @@
             基本型式名.Multiline = true;
             基本型式名.Name = "基本型式名";
             基本型式名.Size = new Size(413, 23);
-            基本型式名.TabIndex = 194;
+            基本型式名.TabIndex = 2;
             // 
             // label5
             // 
@@ -139,7 +136,7 @@
             label5.Margin = new Padding(0);
             label5.Name = "label5";
             label5.Size = new Size(87, 17);
-            label5.TabIndex = 193;
+            label5.TabIndex = 1;
             label5.Text = "基本型式名(&N)";
             label5.TextAlign = ContentAlignment.MiddleLeft;
             // 
@@ -154,23 +151,20 @@
             label1.Margin = new Padding(0);
             label1.Name = "label1";
             label1.Size = new Size(85, 17);
-            label1.TabIndex = 200;
-            label1.Text = "更新日(U)";
+            label1.TabIndex = 5;
+            label1.Text = "更新日(&U)";
             label1.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // 更新日開始
             // 
             更新日開始.BackColor = Color.White;
-            更新日開始.Enabled = false;
             更新日開始.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             更新日開始.Location = new Point(116, 82);
             更新日開始.Margin = new Padding(3, 2, 3, 2);
             更新日開始.Multiline = true;
             更新日開始.Name = "更新日開始";
-            更新日開始.ReadOnly = true;
             更新日開始.Size = new Size(160, 23);
-            更新日開始.TabIndex = 199;
-            更新日開始.Visible = false;
+            更新日開始.TabIndex = 6;
             // 
             // label2
             // 
@@ -190,16 +184,13 @@
             // 更新日終了
             // 
             更新日終了.BackColor = Color.White;
-            更新日終了.Enabled = false;
             更新日終了.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             更新日終了.Location = new Point(369, 83);
             更新日終了.Margin = new Padding(3, 2, 3, 2);
             更新日終了.Multiline = true;
             更新日終了.Name = "更新日終了";
-            更新日終了.ReadOnly = true;
             更新日終了.Size = new Size(160, 23);
-            更新日終了.TabIndex = 201;
-            更新日終了.Visible = false;
+            更新日終了.TabIndex = 7;
             // 
             // groupBox1
             // 
@@ -211,7 +202,7 @@
             groupBox1.Size = new Size(525, 63);
             groupBox1.TabIndex = 203;
             groupBox1.TabStop = false;
-            groupBox1.Text = "廃止指定(B)";
+            groupBox1.Text = "廃止指定(&B)";
             // 
             // radioButton3
             // 
@@ -256,7 +247,7 @@
             groupBox2.Size = new Size(525, 63);
             groupBox2.TabIndex = 205;
             groupBox2.TabStop = false;
-            groupBox2.Text = "構成登録(C)";
+            groupBox2.Text = "構成登録(&C)";
             // 
             // radioButton4
             // 
@@ -301,7 +292,7 @@
             groupBox3.Size = new Size(525, 63);
             groupBox3.TabIndex = 206;
             groupBox3.TabStop = false;
-            groupBox3.Text = "ユニット指定(I)";
+            groupBox3.Text = "ユニット指定(&I)";
             // 
             // radioButton7
             // 
@@ -346,7 +337,7 @@
             groupBox4.Size = new Size(525, 63);
             groupBox4.TabIndex = 207;
             groupBox4.TabStop = false;
-            groupBox4.Text = "削除指定(D)";
+            groupBox4.Text = "削除指定(&D)";
             // 
             // radioButton10
             // 
@@ -381,31 +372,31 @@
             radioButton12.Text = "削除していない";
             radioButton12.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // 抽出ボタン
             // 
-            button1.Location = new Point(263, 489);
-            button1.Name = "button1";
-            button1.Size = new Size(114, 23);
-            button1.TabIndex = 208;
-            button1.Text = "洲出(O)";
-            button1.UseVisualStyleBackColor = true;
+            抽出ボタン.Location = new Point(263, 489);
+            抽出ボタン.Name = "抽出ボタン";
+            抽出ボタン.Size = new Size(114, 23);
+            抽出ボタン.TabIndex = 208;
+            抽出ボタン.Text = "抽出(&O)";
+            抽出ボタン.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // キャンセルボタン
             // 
-            button2.Location = new Point(386, 489);
-            button2.Name = "button2";
-            button2.Size = new Size(114, 23);
-            button2.TabIndex = 209;
-            button2.Text = "button2";
-            button2.UseVisualStyleBackColor = true;
+            キャンセルボタン.Location = new Point(386, 489);
+            キャンセルボタン.Name = "キャンセルボタン";
+            キャンセルボタン.Size = new Size(114, 23);
+            キャンセルボタン.TabIndex = 209;
+            キャンセルボタン.Text = "キャンセル(&X)";
+            キャンセルボタン.UseVisualStyleBackColor = true;
             // 
             // F_商品管理_抽出
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(594, 540);
-            Controls.Add(button2);
-            Controls.Add(button1);
+            Controls.Add(キャンセルボタン);
+            Controls.Add(抽出ボタン);
             Controls.Add(groupBox4);
             Controls.Add(groupBox3);
             Controls.Add(groupBox2);
@@ -462,7 +453,7 @@
         private RadioButton radioButton10;
         private RadioButton radioButton11;
         private RadioButton radioButton12;
-        private Button button1;
-        private Button button2;
+        private Button 抽出ボタン;
+        private Button キャンセルボタン;
     }
 }
