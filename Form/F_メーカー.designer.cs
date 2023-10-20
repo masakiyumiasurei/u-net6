@@ -1350,6 +1350,7 @@ namespace u_net
             this.Controls.Add(this.削除日時);
             this.Controls.Add(this.削除者コード);
             this.Controls.Add(this.panel1);
+            this.KeyPreview = true;
             this.Name = "F_メーカー";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form_Unload);
             this.Load += new System.EventHandler(this.Form_Load);

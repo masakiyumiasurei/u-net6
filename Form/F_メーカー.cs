@@ -920,6 +920,7 @@ namespace u_net
 
         private void Form_KeyDown(object sender, KeyEventArgs e)
         {
+
             bool intShiftDown = (Control.ModifierKeys & Keys.Shift) == Keys.Shift;
 
             if (intShiftDown)
@@ -930,10 +931,18 @@ namespace u_net
             switch (e.KeyCode)
             {
                 case Keys.F1:
-                    if (コマンド新規.Enabled) コマンド新規_Click(sender, e);
+                    if (コマンド新規.Enabled)
+                    {
+                        コマンド新規.Focus();
+                        コマンド新規_Click(sender, e);
+                    }
                     break;
                 case Keys.F2:
-                    if (コマンド読込.Enabled) コマンド読込_Click(sender, e);
+                    if (コマンド読込.Enabled)
+                    {
+                        コマンド読込.Focus();
+                        コマンド読込_Click(sender, e);
+                    }
                     break;
                 case Keys.F3:
                     if (コマンド複写.Enabled) コマンド複写_Click(sender, e);
@@ -945,7 +954,11 @@ namespace u_net
                     if (コマンド仕入先.Enabled) コマンド仕入先_Click(sender, e);
                     break;
                 case Keys.F6:
-                    if (コマンドメール.Enabled) コマンドメール_Click(sender, e);
+                    if (コマンドメール.Enabled)
+                    {
+                        コマンドメール.Focus();
+                        コマンドメール_Click(sender, e);
+                    }
                     break;
                 case Keys.F8:
                     if (コマンド印刷.Enabled) コマンド印刷_Click(sender, e);
