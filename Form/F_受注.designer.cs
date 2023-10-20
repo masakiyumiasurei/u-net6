@@ -957,7 +957,7 @@ namespace u_net
             this.button2.TabIndex = 197;
             this.button2.Text = "▼";
             this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            //this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button3
             // 
@@ -1211,7 +1211,7 @@ namespace u_net
             this.label16.TabIndex = 218;
             this.label16.Text = "納品書送付";
             this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label16.Click += new System.EventHandler(this.label16_Click);
+            //this.label16.Click += new System.EventHandler(this.label16_Click);
             // 
             // comboBox5
             // 
@@ -1224,7 +1224,7 @@ namespace u_net
             this.comboBox5.Size = new System.Drawing.Size(98, 20);
             this.comboBox5.TabIndex = 217;
             this.comboBox5.ValueMember = "Code";
-            this.comboBox5.SelectedIndexChanged += new System.EventHandler(this.comboBox5_SelectedIndexChanged);
+            //this.comboBox5.SelectedIndexChanged += new System.EventHandler(this.comboBox5_SelectedIndexChanged);
             // 
             // textBox10
             // 
@@ -1239,7 +1239,7 @@ namespace u_net
             this.textBox10.Size = new System.Drawing.Size(313, 23);
             this.textBox10.TabIndex = 216;
             this.textBox10.Visible = false;
-            this.textBox10.TextChanged += new System.EventHandler(this.textBox10_TextChanged);
+            //this.textBox10.TextChanged += new System.EventHandler(this.textBox10_TextChanged);
             // 
             // F_受注
             // 
@@ -1300,7 +1300,7 @@ namespace u_net
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "F_受注";
             this.Text = "商品";
-            this.Load += new System.EventHandler(this.F_受注_Load);
+            //this.Load += new System.EventHandler(this.F_受注_Load);
             ((System.ComponentModel.ISupportInitialize)(this.M商品BindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.uiDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBox売上区分bindingSource)).EndInit();
