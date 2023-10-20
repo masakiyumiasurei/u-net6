@@ -38,28 +38,28 @@
             更新日開始 = new TextBox();
             label2 = new Label();
             更新日終了 = new TextBox();
-            groupBox1 = new GroupBox();
-            radioButton3 = new RadioButton();
-            radioButton2 = new RadioButton();
-            radioButton1 = new RadioButton();
-            groupBox2 = new GroupBox();
-            radioButton4 = new RadioButton();
-            radioButton5 = new RadioButton();
-            radioButton6 = new RadioButton();
-            groupBox3 = new GroupBox();
-            radioButton7 = new RadioButton();
-            radioButton8 = new RadioButton();
-            radioButton9 = new RadioButton();
-            groupBox4 = new GroupBox();
-            radioButton10 = new RadioButton();
-            radioButton11 = new RadioButton();
-            radioButton12 = new RadioButton();
+            Discontinued = new GroupBox();
+            DiscontinuedButton3 = new RadioButton();
+            DiscontinuedButton2 = new RadioButton();
+            DiscontinuedButton1 = new RadioButton();
+            intComposedChipMount = new GroupBox();
+            intComposedChipMountbutton3 = new RadioButton();
+            intComposedChipMountbutton2 = new RadioButton();
+            intComposedChipMountbutton1 = new RadioButton();
+            IsUnit = new GroupBox();
+            IsUnitButton3 = new RadioButton();
+            IsUnitButton2 = new RadioButton();
+            IsUnitButton1 = new RadioButton();
+            Deleted = new GroupBox();
+            DeletedButton3 = new RadioButton();
+            DeletedButton2 = new RadioButton();
+            DeletedButton1 = new RadioButton();
             抽出ボタン = new Button();
             キャンセルボタン = new Button();
-            groupBox1.SuspendLayout();
-            groupBox2.SuspendLayout();
-            groupBox3.SuspendLayout();
-            groupBox4.SuspendLayout();
+            Discontinued.SuspendLayout();
+            intComposedChipMount.SuspendLayout();
+            IsUnit.SuspendLayout();
+            Deleted.SuspendLayout();
             SuspendLayout();
             // 
             // 更新者名
@@ -192,185 +192,185 @@
             更新日終了.Size = new Size(160, 23);
             更新日終了.TabIndex = 7;
             // 
-            // groupBox1
+            // Discontinued
             // 
-            groupBox1.Controls.Add(radioButton3);
-            groupBox1.Controls.Add(radioButton2);
-            groupBox1.Controls.Add(radioButton1);
-            groupBox1.Location = new Point(39, 159);
-            groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(525, 63);
-            groupBox1.TabIndex = 203;
-            groupBox1.TabStop = false;
-            groupBox1.Text = "廃止指定(&B)";
+            Discontinued.Controls.Add(DiscontinuedButton3);
+            Discontinued.Controls.Add(DiscontinuedButton2);
+            Discontinued.Controls.Add(DiscontinuedButton1);
+            Discontinued.Location = new Point(39, 159);
+            Discontinued.Name = "Discontinued";
+            Discontinued.Size = new Size(525, 63);
+            Discontinued.TabIndex = 203;
+            Discontinued.TabStop = false;
+            Discontinued.Text = "廃止指定(&B)";
             // 
-            // radioButton3
+            // DiscontinuedButton3
             // 
-            radioButton3.AutoSize = true;
-            radioButton3.Location = new Point(347, 22);
-            radioButton3.Name = "radioButton3";
-            radioButton3.Size = new Size(77, 19);
-            radioButton3.TabIndex = 204;
-            radioButton3.TabStop = true;
-            radioButton3.Text = "指定しない";
-            radioButton3.UseVisualStyleBackColor = true;
+            DiscontinuedButton3.AutoSize = true;
+            DiscontinuedButton3.Location = new Point(347, 22);
+            DiscontinuedButton3.Name = "DiscontinuedButton3";
+            DiscontinuedButton3.Size = new Size(77, 19);
+            DiscontinuedButton3.TabIndex = 204;
+            DiscontinuedButton3.TabStop = true;
+            DiscontinuedButton3.Text = "指定しない";
+            DiscontinuedButton3.UseVisualStyleBackColor = true;
             // 
-            // radioButton2
+            // DiscontinuedButton2
             // 
-            radioButton2.AutoSize = true;
-            radioButton2.Location = new Point(195, 22);
-            radioButton2.Name = "radioButton2";
-            radioButton2.Size = new Size(85, 19);
-            radioButton2.TabIndex = 2;
-            radioButton2.TabStop = true;
-            radioButton2.Text = "廃止している";
-            radioButton2.UseVisualStyleBackColor = true;
+            DiscontinuedButton2.AutoSize = true;
+            DiscontinuedButton2.Location = new Point(195, 22);
+            DiscontinuedButton2.Name = "DiscontinuedButton2";
+            DiscontinuedButton2.Size = new Size(85, 19);
+            DiscontinuedButton2.TabIndex = 2;
+            DiscontinuedButton2.TabStop = true;
+            DiscontinuedButton2.Text = "廃止している";
+            DiscontinuedButton2.UseVisualStyleBackColor = true;
             // 
-            // radioButton1
+            // DiscontinuedButton1
             // 
-            radioButton1.AutoSize = true;
-            radioButton1.Location = new Point(30, 22);
-            radioButton1.Name = "radioButton1";
-            radioButton1.Size = new Size(96, 19);
-            radioButton1.TabIndex = 1;
-            radioButton1.TabStop = true;
-            radioButton1.Text = "廃止していない";
-            radioButton1.UseVisualStyleBackColor = true;
+            DiscontinuedButton1.AutoSize = true;
+            DiscontinuedButton1.Location = new Point(30, 22);
+            DiscontinuedButton1.Name = "DiscontinuedButton1";
+            DiscontinuedButton1.Size = new Size(96, 19);
+            DiscontinuedButton1.TabIndex = 1;
+            DiscontinuedButton1.TabStop = true;
+            DiscontinuedButton1.Text = "廃止していない";
+            DiscontinuedButton1.UseVisualStyleBackColor = true;
             // 
-            // groupBox2
+            // intComposedChipMount
             // 
-            groupBox2.Controls.Add(radioButton4);
-            groupBox2.Controls.Add(radioButton5);
-            groupBox2.Controls.Add(radioButton6);
-            groupBox2.Location = new Point(39, 237);
-            groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(525, 63);
-            groupBox2.TabIndex = 205;
-            groupBox2.TabStop = false;
-            groupBox2.Text = "構成登録(&C)";
+            intComposedChipMount.Controls.Add(intComposedChipMountbutton3);
+            intComposedChipMount.Controls.Add(intComposedChipMountbutton2);
+            intComposedChipMount.Controls.Add(intComposedChipMountbutton1);
+            intComposedChipMount.Location = new Point(39, 237);
+            intComposedChipMount.Name = "intComposedChipMount";
+            intComposedChipMount.Size = new Size(525, 63);
+            intComposedChipMount.TabIndex = 205;
+            intComposedChipMount.TabStop = false;
+            intComposedChipMount.Text = "構成登録(&C)";
             // 
-            // radioButton4
+            // intComposedChipMountbutton3
             // 
-            radioButton4.AutoSize = true;
-            radioButton4.Location = new Point(347, 22);
-            radioButton4.Name = "radioButton4";
-            radioButton4.Size = new Size(77, 19);
-            radioButton4.TabIndex = 204;
-            radioButton4.TabStop = true;
-            radioButton4.Text = "指定しない";
-            radioButton4.UseVisualStyleBackColor = true;
+            intComposedChipMountbutton3.AutoSize = true;
+            intComposedChipMountbutton3.Location = new Point(347, 22);
+            intComposedChipMountbutton3.Name = "intComposedChipMountbutton3";
+            intComposedChipMountbutton3.Size = new Size(77, 19);
+            intComposedChipMountbutton3.TabIndex = 204;
+            intComposedChipMountbutton3.TabStop = true;
+            intComposedChipMountbutton3.Text = "指定しない";
+            intComposedChipMountbutton3.UseVisualStyleBackColor = true;
             // 
-            // radioButton5
+            // intComposedChipMountbutton2
             // 
-            radioButton5.AutoSize = true;
-            radioButton5.Location = new Point(195, 22);
-            radioButton5.Name = "radioButton5";
-            radioButton5.Size = new Size(85, 19);
-            radioButton5.TabIndex = 2;
-            radioButton5.TabStop = true;
-            radioButton5.Text = "登録している";
-            radioButton5.UseVisualStyleBackColor = true;
+            intComposedChipMountbutton2.AutoSize = true;
+            intComposedChipMountbutton2.Location = new Point(195, 22);
+            intComposedChipMountbutton2.Name = "intComposedChipMountbutton2";
+            intComposedChipMountbutton2.Size = new Size(85, 19);
+            intComposedChipMountbutton2.TabIndex = 2;
+            intComposedChipMountbutton2.TabStop = true;
+            intComposedChipMountbutton2.Text = "登録している";
+            intComposedChipMountbutton2.UseVisualStyleBackColor = true;
             // 
-            // radioButton6
+            // intComposedChipMountbutton1
             // 
-            radioButton6.AutoSize = true;
-            radioButton6.Location = new Point(30, 22);
-            radioButton6.Name = "radioButton6";
-            radioButton6.Size = new Size(96, 19);
-            radioButton6.TabIndex = 1;
-            radioButton6.TabStop = true;
-            radioButton6.Text = "登録していない";
-            radioButton6.UseVisualStyleBackColor = true;
+            intComposedChipMountbutton1.AutoSize = true;
+            intComposedChipMountbutton1.Location = new Point(30, 22);
+            intComposedChipMountbutton1.Name = "intComposedChipMountbutton1";
+            intComposedChipMountbutton1.Size = new Size(96, 19);
+            intComposedChipMountbutton1.TabIndex = 1;
+            intComposedChipMountbutton1.TabStop = true;
+            intComposedChipMountbutton1.Text = "登録していない";
+            intComposedChipMountbutton1.UseVisualStyleBackColor = true;
             // 
-            // groupBox3
+            // IsUnit
             // 
-            groupBox3.Controls.Add(radioButton7);
-            groupBox3.Controls.Add(radioButton8);
-            groupBox3.Controls.Add(radioButton9);
-            groupBox3.Location = new Point(39, 317);
-            groupBox3.Name = "groupBox3";
-            groupBox3.Size = new Size(525, 63);
-            groupBox3.TabIndex = 206;
-            groupBox3.TabStop = false;
-            groupBox3.Text = "ユニット指定(&I)";
+            IsUnit.Controls.Add(IsUnitButton3);
+            IsUnit.Controls.Add(IsUnitButton2);
+            IsUnit.Controls.Add(IsUnitButton1);
+            IsUnit.Location = new Point(39, 317);
+            IsUnit.Name = "IsUnit";
+            IsUnit.Size = new Size(525, 63);
+            IsUnit.TabIndex = 206;
+            IsUnit.TabStop = false;
+            IsUnit.Text = "ユニット指定(&I)";
             // 
-            // radioButton7
+            // IsUnitButton3
             // 
-            radioButton7.AutoSize = true;
-            radioButton7.Location = new Point(347, 22);
-            radioButton7.Name = "radioButton7";
-            radioButton7.Size = new Size(77, 19);
-            radioButton7.TabIndex = 204;
-            radioButton7.TabStop = true;
-            radioButton7.Text = "指定しない";
-            radioButton7.UseVisualStyleBackColor = true;
+            IsUnitButton3.AutoSize = true;
+            IsUnitButton3.Location = new Point(347, 22);
+            IsUnitButton3.Name = "IsUnitButton3";
+            IsUnitButton3.Size = new Size(77, 19);
+            IsUnitButton3.TabIndex = 204;
+            IsUnitButton3.TabStop = true;
+            IsUnitButton3.Text = "指定しない";
+            IsUnitButton3.UseVisualStyleBackColor = true;
             // 
-            // radioButton8
+            // IsUnitButton2
             // 
-            radioButton8.AutoSize = true;
-            radioButton8.Location = new Point(195, 22);
-            radioButton8.Name = "radioButton8";
-            radioButton8.Size = new Size(89, 19);
-            radioButton8.TabIndex = 2;
-            radioButton8.TabStop = true;
-            radioButton8.Text = "ユニットである";
-            radioButton8.UseVisualStyleBackColor = true;
+            IsUnitButton2.AutoSize = true;
+            IsUnitButton2.Location = new Point(195, 22);
+            IsUnitButton2.Name = "IsUnitButton2";
+            IsUnitButton2.Size = new Size(89, 19);
+            IsUnitButton2.TabIndex = 2;
+            IsUnitButton2.TabStop = true;
+            IsUnitButton2.Text = "ユニットである";
+            IsUnitButton2.UseVisualStyleBackColor = true;
             // 
-            // radioButton9
+            // IsUnitButton1
             // 
-            radioButton9.AutoSize = true;
-            radioButton9.Location = new Point(30, 22);
-            radioButton9.Name = "radioButton9";
-            radioButton9.Size = new Size(100, 19);
-            radioButton9.TabIndex = 1;
-            radioButton9.TabStop = true;
-            radioButton9.Text = "ユニットではない";
-            radioButton9.UseVisualStyleBackColor = true;
+            IsUnitButton1.AutoSize = true;
+            IsUnitButton1.Location = new Point(30, 22);
+            IsUnitButton1.Name = "IsUnitButton1";
+            IsUnitButton1.Size = new Size(100, 19);
+            IsUnitButton1.TabIndex = 1;
+            IsUnitButton1.TabStop = true;
+            IsUnitButton1.Text = "ユニットではない";
+            IsUnitButton1.UseVisualStyleBackColor = true;
             // 
-            // groupBox4
+            // Deleted
             // 
-            groupBox4.Controls.Add(radioButton10);
-            groupBox4.Controls.Add(radioButton11);
-            groupBox4.Controls.Add(radioButton12);
-            groupBox4.Location = new Point(39, 396);
-            groupBox4.Name = "groupBox4";
-            groupBox4.Size = new Size(525, 63);
-            groupBox4.TabIndex = 207;
-            groupBox4.TabStop = false;
-            groupBox4.Text = "削除指定(&D)";
+            Deleted.Controls.Add(DeletedButton3);
+            Deleted.Controls.Add(DeletedButton2);
+            Deleted.Controls.Add(DeletedButton1);
+            Deleted.Location = new Point(39, 396);
+            Deleted.Name = "Deleted";
+            Deleted.Size = new Size(525, 63);
+            Deleted.TabIndex = 207;
+            Deleted.TabStop = false;
+            Deleted.Text = "削除指定(&D)";
             // 
-            // radioButton10
+            // DeletedButton3
             // 
-            radioButton10.AutoSize = true;
-            radioButton10.Location = new Point(347, 22);
-            radioButton10.Name = "radioButton10";
-            radioButton10.Size = new Size(77, 19);
-            radioButton10.TabIndex = 204;
-            radioButton10.TabStop = true;
-            radioButton10.Text = "指定しない";
-            radioButton10.UseVisualStyleBackColor = true;
+            DeletedButton3.AutoSize = true;
+            DeletedButton3.Location = new Point(347, 22);
+            DeletedButton3.Name = "DeletedButton3";
+            DeletedButton3.Size = new Size(77, 19);
+            DeletedButton3.TabIndex = 204;
+            DeletedButton3.TabStop = true;
+            DeletedButton3.Text = "指定しない";
+            DeletedButton3.UseVisualStyleBackColor = true;
             // 
-            // radioButton11
+            // DeletedButton2
             // 
-            radioButton11.AutoSize = true;
-            radioButton11.Location = new Point(195, 22);
-            radioButton11.Name = "radioButton11";
-            radioButton11.Size = new Size(85, 19);
-            radioButton11.TabIndex = 2;
-            radioButton11.TabStop = true;
-            radioButton11.Text = "削除している";
-            radioButton11.UseVisualStyleBackColor = true;
+            DeletedButton2.AutoSize = true;
+            DeletedButton2.Location = new Point(195, 22);
+            DeletedButton2.Name = "DeletedButton2";
+            DeletedButton2.Size = new Size(85, 19);
+            DeletedButton2.TabIndex = 2;
+            DeletedButton2.TabStop = true;
+            DeletedButton2.Text = "削除している";
+            DeletedButton2.UseVisualStyleBackColor = true;
             // 
-            // radioButton12
+            // DeletedButton1
             // 
-            radioButton12.AutoSize = true;
-            radioButton12.Location = new Point(30, 22);
-            radioButton12.Name = "radioButton12";
-            radioButton12.Size = new Size(96, 19);
-            radioButton12.TabIndex = 1;
-            radioButton12.TabStop = true;
-            radioButton12.Text = "削除していない";
-            radioButton12.UseVisualStyleBackColor = true;
+            DeletedButton1.AutoSize = true;
+            DeletedButton1.Location = new Point(30, 22);
+            DeletedButton1.Name = "DeletedButton1";
+            DeletedButton1.Size = new Size(96, 19);
+            DeletedButton1.TabIndex = 1;
+            DeletedButton1.TabStop = true;
+            DeletedButton1.Text = "削除していない";
+            DeletedButton1.UseVisualStyleBackColor = true;
             // 
             // 抽出ボタン
             // 
@@ -397,10 +397,10 @@
             ClientSize = new Size(594, 540);
             Controls.Add(キャンセルボタン);
             Controls.Add(抽出ボタン);
-            Controls.Add(groupBox4);
-            Controls.Add(groupBox3);
-            Controls.Add(groupBox2);
-            Controls.Add(groupBox1);
+            Controls.Add(Deleted);
+            Controls.Add(IsUnit);
+            Controls.Add(intComposedChipMount);
+            Controls.Add(Discontinued);
             Controls.Add(label2);
             Controls.Add(更新日終了);
             Controls.Add(label1);
@@ -413,14 +413,14 @@
             Controls.Add(label5);
             Name = "F_商品管理_抽出";
             Text = "F_商品管理_抽出";
-            groupBox1.ResumeLayout(false);
-            groupBox1.PerformLayout();
-            groupBox2.ResumeLayout(false);
-            groupBox2.PerformLayout();
-            groupBox3.ResumeLayout(false);
-            groupBox3.PerformLayout();
-            groupBox4.ResumeLayout(false);
-            groupBox4.PerformLayout();
+            Discontinued.ResumeLayout(false);
+            Discontinued.PerformLayout();
+            intComposedChipMount.ResumeLayout(false);
+            intComposedChipMount.PerformLayout();
+            IsUnit.ResumeLayout(false);
+            IsUnit.PerformLayout();
+            Deleted.ResumeLayout(false);
+            Deleted.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -437,22 +437,22 @@
         private TextBox 更新日開始;
         private Label label2;
         private TextBox 更新日終了;
-        private GroupBox groupBox1;
-        private RadioButton radioButton3;
-        private RadioButton radioButton2;
-        private RadioButton radioButton1;
-        private GroupBox groupBox2;
-        private RadioButton radioButton4;
-        private RadioButton radioButton5;
-        private RadioButton radioButton6;
-        private GroupBox groupBox3;
-        private RadioButton radioButton7;
-        private RadioButton radioButton8;
-        private RadioButton radioButton9;
-        private GroupBox groupBox4;
-        private RadioButton radioButton10;
-        private RadioButton radioButton11;
-        private RadioButton radioButton12;
+        private GroupBox Discontinued;
+        private RadioButton DiscontinuedButton3;
+        private RadioButton DiscontinuedButton2;
+        private RadioButton DiscontinuedButton1;
+        private GroupBox intComposedChipMount;
+        private RadioButton intComposedChipMountbutton3;
+        private RadioButton intComposedChipMountbutton2;
+        private RadioButton intComposedChipMountbutton1;
+        private GroupBox IsUnit;
+        private RadioButton IsUnitButton3;
+        private RadioButton IsUnitButton2;
+        private RadioButton IsUnitButton1;
+        private GroupBox Deleted;
+        private RadioButton DeletedButton3;
+        private RadioButton DeletedButton2;
+        private RadioButton DeletedButton1;
         private Button 抽出ボタン;
         private Button キャンセルボタン;
     }
