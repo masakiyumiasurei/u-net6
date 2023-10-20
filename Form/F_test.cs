@@ -23,14 +23,16 @@ namespace u_net
 
         private void テスト_Click(object sender, EventArgs e)
         {
-            Connection connectionInfo = new Connection();
-            string connectionString = connectionInfo.Getconnect();
-            SqlConnection connection = new SqlConnection(connectionString);
-            connection.Open();
+            MyApi yourClass = new MyApi();
+            //Connection connectionInfo = new Connection();
+            //string connectionString = connectionInfo.Getconnect();
+            //SqlConnection connection = new SqlConnection(connectionString);
+            //connection.Open();
 
-            FunctionClass functionClass = new FunctionClass();
-            // 採番メソッドを呼び出し
-            string 採番コード = FunctionClass.採番(connection, "A");
+            //FunctionClass functionClass = new FunctionClass();
+            //// 採番メソッドを呼び出し
+            //string 採番コード = FunctionClass.採番(connection, "A");
+
 
         }
     }

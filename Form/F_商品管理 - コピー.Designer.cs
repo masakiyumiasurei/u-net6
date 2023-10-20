@@ -1,6 +1,6 @@
 ﻿namespace u_net
 {
-    partial class F_商品管理
+    partial class F_商品管理_
     {
         /// <summary>
         /// Required designer variable.
@@ -46,9 +46,25 @@
             label1 = new Label();
             label2 = new Label();
             q商品管理bindingSource = new BindingSource(components);
+            newDataSet = new newDataSet();
+            v商品管理TableAdapter = new newDataSetTableAdapters.V商品管理TableAdapter();
+            q商品管理TableAdapter = new newDataSetTableAdapters.Q商品管理TableAdapter();
             dataGridView1 = new DataGridView();
+            商品コードDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            基本型式名DataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            シリーズ名DataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            在庫管理DataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            在庫数量DataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            在庫下限数量DataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            更新日時DataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            更新者名DataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            廃止DataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            削除DataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            ユニDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            構成DataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)q商品管理bindingSource).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)newDataSet).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -248,6 +264,21 @@
             // q商品管理bindingSource
             // 
             q商品管理bindingSource.DataMember = "Q商品管理";
+            q商品管理bindingSource.DataSource = newDataSet;
+            // 
+            // newDataSet
+            // 
+            newDataSet.DataSetName = "newDataSet";
+            newDataSet.Namespace = "http://tempuri.org/newDataSet.xsd";
+            newDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // v商品管理TableAdapter
+            // 
+            v商品管理TableAdapter.ClearBeforeFill = true;
+            // 
+            // q商品管理TableAdapter
+            // 
+            q商品管理TableAdapter.ClearBeforeFill = true;
             // 
             // dataGridView1
             // 
@@ -255,6 +286,7 @@
             dataGridView1.AllowUserToDeleteRows = false;
             dataGridView1.AutoGenerateColumns = false;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { 商品コードDataGridViewTextBoxColumn, 基本型式名DataGridViewTextBoxColumn, シリーズ名DataGridViewTextBoxColumn, 在庫管理DataGridViewTextBoxColumn, 在庫数量DataGridViewTextBoxColumn, 在庫下限数量DataGridViewTextBoxColumn, 更新日時DataGridViewTextBoxColumn, 更新者名DataGridViewTextBoxColumn, 廃止DataGridViewTextBoxColumn, 削除DataGridViewTextBoxColumn, ユニDataGridViewTextBoxColumn, 構成DataGridViewTextBoxColumn });
             dataGridView1.DataSource = q商品管理bindingSource;
             dataGridView1.Location = new Point(0, 48);
             dataGridView1.Name = "dataGridView1";
@@ -262,7 +294,83 @@
             dataGridView1.RowTemplate.Height = 29;
             dataGridView1.Size = new Size(1204, 437);
             dataGridView1.TabIndex = 87;
-            dataGridView1.SizeChanged += Form_Resize;
+            // 
+            // 商品コードDataGridViewTextBoxColumn
+            // 
+            商品コードDataGridViewTextBoxColumn.DataPropertyName = "商品コード";
+            商品コードDataGridViewTextBoxColumn.HeaderText = "商品コード";
+            商品コードDataGridViewTextBoxColumn.Name = "商品コードDataGridViewTextBoxColumn";
+            // 
+            // 基本型式名DataGridViewTextBoxColumn
+            // 
+            基本型式名DataGridViewTextBoxColumn.DataPropertyName = "基本型式名";
+            基本型式名DataGridViewTextBoxColumn.HeaderText = "基本型式名";
+            基本型式名DataGridViewTextBoxColumn.Name = "基本型式名DataGridViewTextBoxColumn";
+            // 
+            // シリーズ名DataGridViewTextBoxColumn
+            // 
+            シリーズ名DataGridViewTextBoxColumn.DataPropertyName = "シリーズ名";
+            シリーズ名DataGridViewTextBoxColumn.HeaderText = "シリーズ名";
+            シリーズ名DataGridViewTextBoxColumn.Name = "シリーズ名DataGridViewTextBoxColumn";
+            // 
+            // 在庫管理DataGridViewTextBoxColumn
+            // 
+            在庫管理DataGridViewTextBoxColumn.DataPropertyName = "在庫管理";
+            在庫管理DataGridViewTextBoxColumn.HeaderText = "在庫管理";
+            在庫管理DataGridViewTextBoxColumn.Name = "在庫管理DataGridViewTextBoxColumn";
+            在庫管理DataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // 在庫数量DataGridViewTextBoxColumn
+            // 
+            在庫数量DataGridViewTextBoxColumn.DataPropertyName = "在庫数量";
+            在庫数量DataGridViewTextBoxColumn.HeaderText = "在庫数量";
+            在庫数量DataGridViewTextBoxColumn.Name = "在庫数量DataGridViewTextBoxColumn";
+            // 
+            // 在庫下限数量DataGridViewTextBoxColumn
+            // 
+            在庫下限数量DataGridViewTextBoxColumn.DataPropertyName = "在庫下限数量";
+            在庫下限数量DataGridViewTextBoxColumn.HeaderText = "在庫下限数量";
+            在庫下限数量DataGridViewTextBoxColumn.Name = "在庫下限数量DataGridViewTextBoxColumn";
+            // 
+            // 更新日時DataGridViewTextBoxColumn
+            // 
+            更新日時DataGridViewTextBoxColumn.DataPropertyName = "更新日時";
+            更新日時DataGridViewTextBoxColumn.HeaderText = "更新日時";
+            更新日時DataGridViewTextBoxColumn.Name = "更新日時DataGridViewTextBoxColumn";
+            // 
+            // 更新者名DataGridViewTextBoxColumn
+            // 
+            更新者名DataGridViewTextBoxColumn.DataPropertyName = "更新者名";
+            更新者名DataGridViewTextBoxColumn.HeaderText = "更新者名";
+            更新者名DataGridViewTextBoxColumn.Name = "更新者名DataGridViewTextBoxColumn";
+            // 
+            // 廃止DataGridViewTextBoxColumn
+            // 
+            廃止DataGridViewTextBoxColumn.DataPropertyName = "廃止";
+            廃止DataGridViewTextBoxColumn.HeaderText = "廃止";
+            廃止DataGridViewTextBoxColumn.Name = "廃止DataGridViewTextBoxColumn";
+            廃止DataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // 削除DataGridViewTextBoxColumn
+            // 
+            削除DataGridViewTextBoxColumn.DataPropertyName = "削除";
+            削除DataGridViewTextBoxColumn.HeaderText = "削除";
+            削除DataGridViewTextBoxColumn.Name = "削除DataGridViewTextBoxColumn";
+            削除DataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // ユニDataGridViewTextBoxColumn
+            // 
+            ユニDataGridViewTextBoxColumn.DataPropertyName = "ユニ";
+            ユニDataGridViewTextBoxColumn.HeaderText = "ユニ";
+            ユニDataGridViewTextBoxColumn.Name = "ユニDataGridViewTextBoxColumn";
+            ユニDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // 構成DataGridViewTextBoxColumn
+            // 
+            構成DataGridViewTextBoxColumn.DataPropertyName = "構成";
+            構成DataGridViewTextBoxColumn.HeaderText = "構成";
+            構成DataGridViewTextBoxColumn.Name = "構成DataGridViewTextBoxColumn";
+            構成DataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // F_商品管理
             // 
@@ -279,6 +387,7 @@
             Load += Form_Load;
             panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)q商品管理bindingSource).EndInit();
+            ((System.ComponentModel.ISupportInitialize)newDataSet).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();
