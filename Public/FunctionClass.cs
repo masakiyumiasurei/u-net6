@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.Diagnostics;
 using Microsoft.Data.SqlClient;
+using Newtonsoft.Json.Linq;
 
 namespace u_net.Public
 {
@@ -282,7 +283,7 @@ namespace u_net.Public
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.Add(new SqlParameter("@header", SqlDbType.NVarChar, 255)).Value = header;
-                    conn.Open();
+                    //conn.Open();
 
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
@@ -339,6 +340,33 @@ namespace u_net.Public
         }
 
 
+        public static void SetTable2Form(Form formObject, SqlDataReader reader)
+        {
+            try
+            {
+                if (reader == null || reader.IsClosed) return; // データがない場合や閉じている場合は何もしない
+
+                // データベースの列名をフォームのコントロール名と一致させておく必要があります
+                for (int i = 0; i < reader.FieldCount; i++)
+                {
+                    string columnName = reader.GetName(i);
+                    if (formObject.Controls.ContainsKey(columnName))
+                    {
+                        // フォーム内のコントロールにデータを設定
+                        Control control = formObject.Controls[columnName];
+                        control.Text = reader[columnName].ToString();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // エラーハンドリングを行うことをお勧めします
+                Console.WriteLine("SetTable2Form Error: " + ex.Message);
+            }
+        }
+
+
+
 
         public static bool ReturnNewCode(SqlConnection conn, string header, string code)
         {
@@ -362,10 +390,76 @@ namespace u_net.Public
         }
 
 
+        public static void OpenUrl(string url)
+        {
+            try
+            {
+                Process.Start(new ProcessStartInfo
+                {
+                    FileName = url,
+                    UseShellExecute = true
+                });
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("エラー: " + ex.Message);
+            }
+        }
+
+
+        public static bool IsValidUrl(string url)
+        {
+            // URL の妥当性を確認するためのカスタムロジックを実装
+            // このロジックは URL の形式に合ったものである必要があります
+            // 有効な URL であるかどうかの判定を行います
+            try
+            {
+                Uri uri = new Uri(url);
+                return uri.Scheme == Uri.UriSchemeHttp || uri.Scheme == Uri.UriSchemeHttps;
+            }
+            catch (UriFormatException)
+            {
+                return false;
+            }
+        }
 
 
 
+        public const string ApiUrl = "https://zipcloud.ibsnet.co.jp/api/search";
 
+        public static async Task<string> GetAddressFromZipCode(string zipCode)
+        {
+            using (var httpClient = new HttpClient())
+            {
+                var apiUrl = $"{ApiUrl}?zipcode={zipCode}";
+
+                try
+                {
+                    var response = await httpClient.GetStringAsync(apiUrl);
+                    var result = JObject.Parse(response);
+                    if (result["results"][0]["address1"].ToString() != null)
+                    {
+                        return result["results"][0]["address1"].ToString() + result["results"][0]["address2"].ToString() + result["results"][0]["address3"].ToString();
+                    }
+                    else
+                    {
+                        return "";
+                    }
+                }
+                catch (Exception ex)
+                {
+                    return "エラー: " + ex.Message;
+                }
+            }
+        }
+
+        public static bool IsValidZipCode(string zipCode)
+        {
+            // 郵便番号の正規表現パターン (例: "123-4567")
+            string pattern = @"^\d{3}-?\d{4}$";
+
+            return System.Text.RegularExpressions.Regex.IsMatch(zipCode, pattern);
+        }
 
     }
 }

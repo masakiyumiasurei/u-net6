@@ -31,7 +31,6 @@ namespace u_net
         {
             this.コマンド終了 = new System.Windows.Forms.Button();
             this.コマンド登録 = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
             this.コマンド新規 = new System.Windows.Forms.Button();
             this.コマンド印刷 = new System.Windows.Forms.Button();
@@ -136,7 +135,6 @@ namespace u_net
             this.label8 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.Revision = new System.Windows.Forms.TextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -169,16 +167,6 @@ namespace u_net
             this.コマンド登録.Text = "登録";
             this.コマンド登録.UseVisualStyleBackColor = true;
             this.コマンド登録.Click += new System.EventHandler(this.コマンド登録_Click);
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 613);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.Height = 21;
-            this.dataGridView1.Size = new System.Drawing.Size(1453, 261);
-            this.dataGridView1.TabIndex = 109;
             // 
             // panel1
             // 
@@ -678,10 +666,11 @@ namespace u_net
             this.メーカー名.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.メーカー名.Location = new System.Drawing.Point(160, 80);
             this.メーカー名.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.メーカー名.Multiline = true;
             this.メーカー名.Name = "メーカー名";
-            this.メーカー名.Size = new System.Drawing.Size(530, 23);
+            this.メーカー名.Size = new System.Drawing.Size(530, 20);
             this.メーカー名.TabIndex = 3;
+            this.メーカー名.TextChanged += new System.EventHandler(this.メーカー名_TextChanged);
+            this.メーカー名.Validated += new System.EventHandler(this.メーカー名_Validated);
             // 
             // メーカー名_ラベル
             // 
@@ -704,10 +693,10 @@ namespace u_net
             this.担当者メールアドレス.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.担当者メールアドレス.Location = new System.Drawing.Point(160, 350);
             this.担当者メールアドレス.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.担当者メールアドレス.Multiline = true;
             this.担当者メールアドレス.Name = "担当者メールアドレス";
-            this.担当者メールアドレス.Size = new System.Drawing.Size(530, 23);
+            this.担当者メールアドレス.Size = new System.Drawing.Size(530, 20);
             this.担当者メールアドレス.TabIndex = 25;
+            this.担当者メールアドレス.TextChanged += new System.EventHandler(this.担当者メールアドレス_TextChanged);
             // 
             // ファックス番号_ラベル
             // 
@@ -749,6 +738,7 @@ namespace u_net
             this.備考.Name = "備考";
             this.備考.Size = new System.Drawing.Size(550, 51);
             this.備考.TabIndex = 36;
+            this.備考.TextChanged += new System.EventHandler(this.備考_TextChanged);
             // 
             // メーカー省略名_ラベル
             // 
@@ -816,10 +806,12 @@ namespace u_net
             this.メーカーコード.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.メーカーコード.Location = new System.Drawing.Point(160, 50);
             this.メーカーコード.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.メーカーコード.Multiline = true;
             this.メーカーコード.Name = "メーカーコード";
-            this.メーカーコード.Size = new System.Drawing.Size(139, 23);
+            this.メーカーコード.Size = new System.Drawing.Size(139, 20);
             this.メーカーコード.TabIndex = 1;
+            this.メーカーコード.KeyDown += new System.Windows.Forms.KeyEventHandler(this.メーカーコード_KeyDown);
+            this.メーカーコード.Validating += new System.ComponentModel.CancelEventHandler(this.メーカーコード_Validating);
+            this.メーカーコード.Validated += new System.EventHandler(this.メーカーコード_Validated);
             // 
             // 担当者名_ラベル
             // 
@@ -932,10 +924,11 @@ namespace u_net
             this.仕入先2.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.仕入先2.Location = new System.Drawing.Point(150, 20);
             this.仕入先2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.仕入先2.Multiline = true;
             this.仕入先2.Name = "仕入先2";
-            this.仕入先2.Size = new System.Drawing.Size(530, 23);
+            this.仕入先2.Size = new System.Drawing.Size(530, 20);
             this.仕入先2.TabIndex = 30;
+            this.仕入先2.TextChanged += new System.EventHandler(this.仕入先1_TextChanged);
+            this.仕入先2.Validated += new System.EventHandler(this.仕入先1_Validated);
             // 
             // 仕入先3
             // 
@@ -943,10 +936,11 @@ namespace u_net
             this.仕入先3.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.仕入先3.Location = new System.Drawing.Point(150, 50);
             this.仕入先3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.仕入先3.Multiline = true;
             this.仕入先3.Name = "仕入先3";
-            this.仕入先3.Size = new System.Drawing.Size(530, 23);
+            this.仕入先3.Size = new System.Drawing.Size(530, 20);
             this.仕入先3.TabIndex = 32;
+            this.仕入先3.TextChanged += new System.EventHandler(this.仕入先2_TextChanged);
+            this.仕入先3.Validated += new System.EventHandler(this.仕入先2_Validated);
             // 
             // 仕入先1
             // 
@@ -954,10 +948,11 @@ namespace u_net
             this.仕入先1.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.仕入先1.Location = new System.Drawing.Point(150, 80);
             this.仕入先1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.仕入先1.Multiline = true;
             this.仕入先1.Name = "仕入先1";
-            this.仕入先1.Size = new System.Drawing.Size(530, 23);
+            this.仕入先1.Size = new System.Drawing.Size(530, 20);
             this.仕入先1.TabIndex = 34;
+            this.仕入先1.TextChanged += new System.EventHandler(this.仕入先3_TextChanged);
+            this.仕入先1.Validated += new System.EventHandler(this.仕入先3_Validated);
             // 
             // 仕入先3_ラベル
             // 
@@ -1010,10 +1005,11 @@ namespace u_net
             this.メーカー名フリガナ.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.メーカー名フリガナ.Location = new System.Drawing.Point(160, 110);
             this.メーカー名フリガナ.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.メーカー名フリガナ.Multiline = true;
             this.メーカー名フリガナ.Name = "メーカー名フリガナ";
-            this.メーカー名フリガナ.Size = new System.Drawing.Size(530, 23);
+            this.メーカー名フリガナ.Size = new System.Drawing.Size(530, 20);
             this.メーカー名フリガナ.TabIndex = 5;
+            this.メーカー名フリガナ.TextChanged += new System.EventHandler(this.メーカー名フリガナ_TextChanged);
+            this.メーカー名フリガナ.Validated += new System.EventHandler(this.メーカー名フリガナ_Validated);
             // 
             // メーカー省略名
             // 
@@ -1021,10 +1017,11 @@ namespace u_net
             this.メーカー省略名.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.メーカー省略名.Location = new System.Drawing.Point(160, 140);
             this.メーカー省略名.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.メーカー省略名.Multiline = true;
             this.メーカー省略名.Name = "メーカー省略名";
-            this.メーカー省略名.Size = new System.Drawing.Size(139, 23);
+            this.メーカー省略名.Size = new System.Drawing.Size(139, 20);
             this.メーカー省略名.TabIndex = 7;
+            this.メーカー省略名.TextChanged += new System.EventHandler(this.メーカー省略名_TextChanged);
+            this.メーカー省略名.Validated += new System.EventHandler(this.メーカー省略名_Validated);
             // 
             // 郵便番号
             // 
@@ -1032,10 +1029,11 @@ namespace u_net
             this.郵便番号.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.郵便番号.Location = new System.Drawing.Point(160, 170);
             this.郵便番号.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.郵便番号.Multiline = true;
             this.郵便番号.Name = "郵便番号";
-            this.郵便番号.Size = new System.Drawing.Size(201, 23);
+            this.郵便番号.Size = new System.Drawing.Size(201, 20);
             this.郵便番号.TabIndex = 9;
+            this.郵便番号.TextChanged += new System.EventHandler(this.郵便番号_TextChanged);
+            this.郵便番号.Validated += new System.EventHandler(this.郵便番号_Validated);
             // 
             // 住所1
             // 
@@ -1043,10 +1041,11 @@ namespace u_net
             this.住所1.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.住所1.Location = new System.Drawing.Point(160, 200);
             this.住所1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.住所1.Multiline = true;
             this.住所1.Name = "住所1";
-            this.住所1.Size = new System.Drawing.Size(530, 23);
+            this.住所1.Size = new System.Drawing.Size(530, 20);
             this.住所1.TabIndex = 11;
+            this.住所1.TextChanged += new System.EventHandler(this.住所1_TextChanged);
+            this.住所1.Validated += new System.EventHandler(this.住所1_Validated);
             // 
             // 住所2
             // 
@@ -1054,10 +1053,11 @@ namespace u_net
             this.住所2.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.住所2.Location = new System.Drawing.Point(160, 230);
             this.住所2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.住所2.Multiline = true;
             this.住所2.Name = "住所2";
-            this.住所2.Size = new System.Drawing.Size(530, 23);
+            this.住所2.Size = new System.Drawing.Size(530, 20);
             this.住所2.TabIndex = 13;
+            this.住所2.TextChanged += new System.EventHandler(this.住所2_TextChanged);
+            this.住所2.Validated += new System.EventHandler(this.住所2_Validated);
             // 
             // 電話番号1
             // 
@@ -1065,10 +1065,11 @@ namespace u_net
             this.電話番号1.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.電話番号1.Location = new System.Drawing.Point(160, 260);
             this.電話番号1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.電話番号1.Multiline = true;
             this.電話番号1.Name = "電話番号1";
-            this.電話番号1.Size = new System.Drawing.Size(100, 23);
+            this.電話番号1.Size = new System.Drawing.Size(100, 20);
             this.電話番号1.TabIndex = 15;
+            this.電話番号1.TextChanged += new System.EventHandler(this.電話番号1_TextChanged);
+            this.電話番号1.Validated += new System.EventHandler(this.電話番号1_Validated);
             // 
             // 電話番号2
             // 
@@ -1076,10 +1077,11 @@ namespace u_net
             this.電話番号2.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.電話番号2.Location = new System.Drawing.Point(280, 260);
             this.電話番号2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.電話番号2.Multiline = true;
             this.電話番号2.Name = "電話番号2";
-            this.電話番号2.Size = new System.Drawing.Size(100, 23);
+            this.電話番号2.Size = new System.Drawing.Size(100, 20);
             this.電話番号2.TabIndex = 16;
+            this.電話番号2.TextChanged += new System.EventHandler(this.電話番号2_TextChanged);
+            this.電話番号2.Validated += new System.EventHandler(this.電話番号2_Validated);
             // 
             // 電話番号3
             // 
@@ -1087,10 +1089,11 @@ namespace u_net
             this.電話番号3.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.電話番号3.Location = new System.Drawing.Point(400, 260);
             this.電話番号3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.電話番号3.Multiline = true;
             this.電話番号3.Name = "電話番号3";
-            this.電話番号3.Size = new System.Drawing.Size(100, 23);
+            this.電話番号3.Size = new System.Drawing.Size(100, 20);
             this.電話番号3.TabIndex = 17;
+            this.電話番号3.TextChanged += new System.EventHandler(this.電話番号3_TextChanged);
+            this.電話番号3.Validated += new System.EventHandler(this.電話番号3_Validated);
             // 
             // label2
             // 
@@ -1113,6 +1116,8 @@ namespace u_net
             this.ファックス番号1.Name = "ファックス番号1";
             this.ファックス番号1.Size = new System.Drawing.Size(100, 23);
             this.ファックス番号1.TabIndex = 19;
+            this.ファックス番号1.TextChanged += new System.EventHandler(this.FAX番号1_TextChanged);
+            this.ファックス番号1.Validated += new System.EventHandler(this.FAX番号1_Validated);
             // 
             // 担当者名
             // 
@@ -1120,6 +1125,8 @@ namespace u_net
             this.担当者名.Name = "担当者名";
             this.担当者名.Size = new System.Drawing.Size(530, 23);
             this.担当者名.TabIndex = 23;
+            this.担当者名.TextChanged += new System.EventHandler(this.担当者名_TextChanged);
+            this.担当者名.Validated += new System.EventHandler(this.担当者名_Validated);
             // 
             // ウェブアドレス
             // 
@@ -1128,6 +1135,8 @@ namespace u_net
             this.ウェブアドレス.Name = "ウェブアドレス";
             this.ウェブアドレス.Size = new System.Drawing.Size(530, 23);
             this.ウェブアドレス.TabIndex = 27;
+            this.ウェブアドレス.Click += new System.EventHandler(this.ウェブアドレス_Click);
+            this.ウェブアドレス.TextChanged += new System.EventHandler(this.ウェブアドレス_TextChanged);
             // 
             // 版数_ラベル
             // 
@@ -1169,6 +1178,8 @@ namespace u_net
             this.ファックス番号2.Name = "ファックス番号2";
             this.ファックス番号2.Size = new System.Drawing.Size(100, 23);
             this.ファックス番号2.TabIndex = 20;
+            this.ファックス番号2.TextChanged += new System.EventHandler(this.FAX番号2_TextChanged);
+            this.ファックス番号2.Validated += new System.EventHandler(this.FAX番号2_Validated);
             // 
             // ファックス番号3
             // 
@@ -1176,6 +1187,8 @@ namespace u_net
             this.ファックス番号3.Name = "ファックス番号3";
             this.ファックス番号3.Size = new System.Drawing.Size(100, 23);
             this.ファックス番号3.TabIndex = 21;
+            this.ファックス番号3.TextChanged += new System.EventHandler(this.FAX番号3_TextChanged);
+            this.ファックス番号3.Validated += new System.EventHandler(this.fAX番号3_Validated);
             // 
             // label3
             // 
@@ -1321,7 +1334,6 @@ namespace u_net
             this.Controls.Add(this.label1);
             this.Controls.Add(this.メーカーコード_ラベル);
             this.Controls.Add(this.住所_ラベル);
-            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.メーカーコード);
             this.Controls.Add(this.担当者名_ラベル);
             this.Controls.Add(this.ウェブアドレス_ラベル);
@@ -1352,10 +1364,10 @@ namespace u_net
             this.Controls.Add(this.panel1);
             this.KeyPreview = true;
             this.Name = "F_メーカー";
+            this.Text = " ";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form_Unload);
             this.Load += new System.EventHandler(this.Form_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form_KeyDown);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -1414,8 +1426,6 @@ namespace u_net
         private System.Windows.Forms.Button コマンド削除;
         private System.Windows.Forms.Button コマンド複写;
         private System.Windows.Forms.Button コマンド読込;
-
-        private System.Windows.Forms.DataGridView dataGridView1;
         private uiDataSetTableAdapters.M単位TableAdapter m単位TableAdapter;
         private uiDataSetTableAdapters.ComboBoxManufactureFlowTableAdapter comboBoxManufactureFlowTableAdapter;
         private uiDataSetTableAdapters.ComboBox売上区分TableAdapter comboBox売上区分TableAdapter;

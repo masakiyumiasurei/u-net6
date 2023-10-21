@@ -35,6 +35,10 @@ namespace u_net
         public const string USER_CODE_GA = "110";          // 業務チームの承認者のユーザーコード
 
         private const int BUF_SIZE = 256;
+
+        public const string LoginUserCode = "0855";
+        public const string LoginUserFullName = "阪南太郎";
+
     }
 
 }
