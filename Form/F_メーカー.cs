@@ -227,7 +227,7 @@ namespace u_net
                     switch (intRes)
                     {
                         case DialogResult.Yes:
-                            if (SaveData(CurrentCode, CurrentRevision))
+                            if (SaveData())
                             {
                                 // 保存に成功した場合
                                 return;
@@ -323,204 +323,268 @@ namespace u_net
         }
 
 
-        private bool SaveData(string SaveCode, int SaveEdition = -1)
+        private bool SaveData()
         {
-            try
+
+
+            Connect();
+            SqlTransaction transaction = cn.BeginTransaction();
             {
-                DateTime now = DateTime.Now;
-                Control objControl1 = null;
-                Control objControl2 = null;
-                Control objControl3 = null;
-                Control objControl4 = null;
-                Control objControl5 = null;
-                Control objControl6 = null;
-                object varSaved1 = null;
-                object varSaved2 = null;
-                object varSaved3 = null;
-                object varSaved4 = null;
-                object varSaved5 = null;
-                object varSaved6 = null;
-                object varSaved7 = null;
-
-                bool isNewData = IsNewData;
-
-                if (isNewData)
+                try
                 {
-                    objControl1 = 作成日時;
-                    objControl2 = 作成者コード;
-                    objControl3 = 作成者名;
-                    varSaved1 = objControl1.Text;
-                    varSaved2 = objControl2.Text;
-                    varSaved3 = objControl3.Text;
-                    varSaved7 = ActiveDate.Text;
-                    objControl1.Text = now.ToString();
-                    objControl2.Text = CommonConstants.LoginUserCode;
-                    objControl3.Text = CommonConstants.LoginUserFullName;
-                    ActiveDate.Text = now.ToString();
-                }
 
-                objControl4 = 更新日時;
-                objControl5 = 更新者コード;
-                objControl6 = 更新者名;
+                    string strwhere = " メーカーコード='" + this.メーカーコード.Text + "' and Revision=" + this.Revision.Text;
 
-                // 登録前の状態を退避しておく
-                varSaved4 = objControl4.Text;
-                varSaved5 = objControl5.Text;
-                varSaved6 = objControl6.Text;
+                    if (!DataUpdater.UpdateOrInsertDataFrom(this, cn, "Mメーカー", strwhere, "メーカーコード", transaction))
+                    {
+                        //transaction.Rollback(); 関数内でロールバック入れた
+                        return false;
+                    }
 
-                // 値の設定
-                objControl4.Text = now.ToString();
-                objControl5.Text = CommonConstants.LoginUserCode;
-                objControl6.Text = CommonConstants.LoginUserFullName;
 
-                // 登録処理
-                if (RegTrans(SaveCode, SaveEdition))
-                {
-                    // 登録成功
+
+                    // トランザクションをコミット
+                    transaction.Commit();
+
+
+
+                    MessageBox.Show("登録を完了しました");
+
+                    メーカーコード.Enabled = true;
+
+                    // 新規モードのときは修正モードへ移行する
+                    if (IsNewData)
+                    {
+                        コマンド新規.Enabled = true;
+                    }
+
+                    コマンド複写.Enabled = true;
+                    コマンド削除.Enabled = true;
+                    コマンド登録.Enabled = false;
+
                     return true;
+
                 }
-                else
+                catch (Exception ex)
                 {
-                    // 登録失敗
-                    if (isNewData)
+                    // トランザクション内でエラーが発生した場合、ロールバックを実行
+                    if (transaction != null)
                     {
-                        objControl1.Text = (string)varSaved1;
-                        objControl2.Text = (string)varSaved2;
-                        objControl3.Text = (string)varSaved3;
-                        ActiveDate.Text = (string)varSaved7;
+                        transaction.Rollback();
                     }
 
-                    objControl4.Text = (string)varSaved4;
-                    objControl5.Text = (string)varSaved5;
-                    objControl6.Text = (string)varSaved6;
+                    コマンド登録.Enabled = true;
+                    // エラーメッセージを表示またはログに記録
+                    MessageBox.Show("データの保存中にエラーが発生しました: " + ex.Message, "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
                 }
-
-                return false;
-            }
-            catch (Exception ex)
-            {
-                Debug.Print(this.Name + "_SaveData - " + ex.Message);
-                return false;
             }
         }
 
-        public bool RegTrans(string codeString, int editionNumber = -1)
-        {
-            try
-            {
-                bool success = false;
-                string strKey = "";
 
-                Connect();
+        //private bool SaveData(string SaveCode, int SaveEdition = -1)
+        //{
+        //    try
+        //    {
+        //        DateTime now = DateTime.Now;
+        //        Control objControl1 = null;
+        //        Control objControl2 = null;
+        //        Control objControl3 = null;
+        //        Control objControl4 = null;
+        //        Control objControl5 = null;
+        //        Control objControl6 = null;
+        //        object varSaved1 = null;
+        //        object varSaved2 = null;
+        //        object varSaved3 = null;
+        //        object varSaved4 = null;
+        //        object varSaved5 = null;
+        //        object varSaved6 = null;
+        //        object varSaved7 = null;
 
-                using (SqlTransaction trans = cn.BeginTransaction())
-                {
-                    try
-                    {
-                        // ヘッダ部の登録
-                        if (SaveHeader(this, codeString, editionNumber))
-                        {
-                            trans.Commit(); // トランザクション完了
-                            success = true;
-                        }
-                        else
-                        {
-                            trans.Rollback(); // 変更をキャンセル
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        trans.Rollback(); // 変更をキャンセル
-                        throw ex;
-                    }
-                }
+        //        bool isNewData = IsNewData;
 
-                return success;
-            }
-            catch (Exception ex)
-            {
-                if (cn.State == ConnectionState.Open)
-                {
-                    cn.Close(); // データベース接続を閉じる
-                }
+        //        if (isNewData)
+        //        {
+        //            objControl1 = 作成日時;
+        //            objControl2 = 作成者コード;
+        //            objControl3 = 作成者名;
+        //            varSaved1 = objControl1.Text;
+        //            varSaved2 = objControl2.Text;
+        //            varSaved3 = objControl3.Text;
+        //            varSaved7 = ActiveDate.Text;
+        //            objControl1.Text = now.ToString();
+        //            objControl2.Text = CommonConstants.LoginUserCode;
+        //            objControl3.Text = CommonConstants.LoginUserFullName;
+        //            ActiveDate.Text = now.ToString();
+        //        }
 
-                Debug.Print(this.Name + "_RegTrans - " + ex.Message);
-                return false;
-            }
-        }
+        //        objControl4 = 更新日時;
+        //        objControl5 = 更新者コード;
+        //        objControl6 = 更新者名;
 
-        public bool SaveHeader(Form formObject, string codeString, int editionNumber = -1)
-        {
-            try
-            {
-                bool success = false;
+        //        // 登録前の状態を退避しておく
+        //        varSaved4 = objControl4.Text;
+        //        varSaved5 = objControl5.Text;
+        //        varSaved6 = objControl6.Text;
 
-                Connect();
+        //        // 値の設定
+        //        objControl4.Text = now.ToString();
+        //        objControl5.Text = CommonConstants.LoginUserCode;
+        //        objControl6.Text = CommonConstants.LoginUserFullName;
 
-                using (SqlTransaction trans = cn.BeginTransaction())
-                {
-                    try
-                    {
-                        string strKey = (editionNumber == -1) ? "メーカーコード = @CodeString" : "メーカーコード = @CodeString AND Revision = @EditionNumber";
-                        string strSQL = "SELECT * FROM Mメーカー WHERE " + strKey;
+        //        // 登録処理
+        //        if (RegTrans(SaveCode, SaveEdition))
+        //        {
+        //            // 登録成功
+        //            return true;
+        //        }
+        //        else
+        //        {
+        //            // 登録失敗
+        //            if (isNewData)
+        //            {
+        //                objControl1.Text = (string)varSaved1;
+        //                objControl2.Text = (string)varSaved2;
+        //                objControl3.Text = (string)varSaved3;
+        //                ActiveDate.Text = (string)varSaved7;
+        //            }
 
-                        using (SqlCommand cmd = new SqlCommand(strSQL, cn, trans))
-                        {
-                            cmd.Parameters.AddWithValue("@CodeString", codeString);
-                            if (editionNumber != -1)
-                            {
-                                cmd.Parameters.AddWithValue("@EditionNumber", editionNumber);
-                            }
+        //            objControl4.Text = (string)varSaved4;
+        //            objControl5.Text = (string)varSaved5;
+        //            objControl6.Text = (string)varSaved6;
+        //        }
 
-                            using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
-                            {
-                                DataTable dataTable = new DataTable();
-                                adapter.Fill(dataTable);
+        //        return false;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Debug.Print(this.Name + "_SaveData - " + ex.Message);
+        //        return false;
+        //    }
+        //}
 
-                                if (dataTable.Rows.Count == 0)
-                                {
-                                    // 新しいレコードを追加
-                                    DataRow newRow = dataTable.NewRow();
-                                    FunctionClass.SetForm2Table(formObject, newRow, "", "");
-                                    dataTable.Rows.Add(newRow);
-                                }
-                                else
-                                {
-                                    // 既存のレコードを更新
-                                    FunctionClass.SetForm2Table(formObject, dataTable.Rows[0], "メーカーコード", "Revision");
-                                }
 
-                                // データベースに変更を保存
-                                using (SqlCommandBuilder builder = new SqlCommandBuilder(adapter))
-                                {
-                                    adapter.Update(dataTable);
-                                }
-                            }
-                        }
 
-                        trans.Commit(); // トランザクション完了
-                        success = true;
-                    }
-                    catch (Exception ex)
-                    {
-                        trans.Rollback(); // 変更をキャンセル
-                        throw ex;
-                    }
-                }
 
-                return success;
-            }
-            catch (Exception ex)
-            {
-                if (cn.State == ConnectionState.Open)
-                {
-                    cn.Close(); // データベース接続を閉じる
-                }
 
-                Debug.Print(this.Name + "_SaveHeader - " + ex.Message);
-                return false;
-            }
-        }
+
+        //public bool RegTrans(string codeString, int editionNumber = -1)
+        //{
+        //    try
+        //    {
+        //        bool success = false;
+        //        string strKey = "";
+
+        //        Connect();
+
+        //        using (SqlTransaction trans = cn.BeginTransaction())
+        //        {
+        //            try
+        //            {
+        //                // ヘッダ部の登録
+        //                if (SaveHeader(this, codeString, editionNumber))
+        //                {
+        //                    trans.Commit(); // トランザクション完了
+        //                    success = true;
+        //                }
+        //                else
+        //                {
+        //                    trans.Rollback(); // 変更をキャンセル
+        //                }
+        //            }
+        //            catch (Exception ex)
+        //            {
+        //                trans.Rollback(); // 変更をキャンセル
+        //                throw ex;
+        //            }
+        //        }
+
+        //        return success;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        if (cn.State == ConnectionState.Open)
+        //        {
+        //            cn.Close(); // データベース接続を閉じる
+        //        }
+
+        //        Debug.Print(this.Name + "_RegTrans - " + ex.Message);
+        //        return false;
+        //    }
+        //}
+
+        //public bool SaveHeader(Form formObject, string codeString, int editionNumber = -1)
+        //{
+        //    try
+        //    {
+        //        bool success = false;
+
+        //        Connect();
+
+        //        using (SqlTransaction trans = cn.BeginTransaction())
+        //        {
+        //            try
+        //            {
+        //                string strKey = (editionNumber == -1) ? "メーカーコード = @CodeString" : "メーカーコード = @CodeString AND Revision = @EditionNumber";
+        //                string strSQL = "SELECT * FROM Mメーカー WHERE " + strKey;
+
+        //                using (SqlCommand cmd = new SqlCommand(strSQL, cn, trans))
+        //                {
+        //                    cmd.Parameters.AddWithValue("@CodeString", codeString);
+        //                    if (editionNumber != -1)
+        //                    {
+        //                        cmd.Parameters.AddWithValue("@EditionNumber", editionNumber);
+        //                    }
+
+        //                    using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+        //                    {
+        //                        DataTable dataTable = new DataTable();
+        //                        adapter.Fill(dataTable);
+
+        //                        if (dataTable.Rows.Count == 0)
+        //                        {
+        //                            // 新しいレコードを追加
+        //                            DataRow newRow = dataTable.NewRow();
+        //                            FunctionClass.SetForm2Table(formObject, newRow, "", "");
+        //                            dataTable.Rows.Add(newRow);
+        //                        }
+        //                        else
+        //                        {
+        //                            // 既存のレコードを更新
+        //                            FunctionClass.SetForm2Table(formObject, dataTable.Rows[0], "メーカーコード", "Revision");
+        //                        }
+
+        //                        // データベースに変更を保存
+        //                        using (SqlCommandBuilder builder = new SqlCommandBuilder(adapter))
+        //                        {
+        //                            adapter.Update(dataTable);
+        //                        }
+        //                    }
+        //                }
+
+        //                trans.Commit(); // トランザクション完了
+        //                success = true;
+        //            }
+        //            catch (Exception ex)
+        //            {
+        //                trans.Rollback(); // 変更をキャンセル
+        //                throw ex;
+        //            }
+        //        }
+
+        //        return success;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        if (cn.State == ConnectionState.Open)
+        //        {
+        //            cn.Close(); // データベース接続を閉じる
+        //        }
+
+        //        Debug.Print(this.Name + "_SaveHeader - " + ex.Message);
+        //        return false;
+        //    }
+        //}
 
 
 
@@ -544,7 +608,7 @@ namespace u_net
                     {
                         case DialogResult.Yes:
                             // 登録処理
-                            if (!SaveData(this.CurrentCode, this.CurrentRevision))
+                            if (!SaveData())
                             {
                                 MessageBox.Show("エラーのため登録できません。", "新規コマンド", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                                 goto Bye_コマンド新規_Click;
@@ -614,14 +678,10 @@ namespace u_net
                 switch (intRes)
                 {
                     case DialogResult.Yes:
-                        // エラーチェック
-                        if (IsErrorData("メーカーコード"))
-                        {
-                            return;
-                        }
+                        if (!ErrCheck()) return;
 
                         // 登録処理
-                        if (!SaveData(this.CurrentCode, this.CurrentRevision))
+                        if (!SaveData())
                         {
                             MessageBox.Show("エラーのため登録できません。", "読込コマンド", MessageBoxButtons.OK);
                             return;
@@ -666,38 +726,48 @@ namespace u_net
         }
 
 
-        private bool IsErrorData(string ExFieldName1, string ExFieldName2 = "")
+        //private bool IsErrorData(string ExFieldName1, string ExFieldName2 = "")
+        //{
+        //    try
+        //    {
+        //        bool isErrorData = false;
+
+        //        // ヘッダ部のチェック
+        //        foreach (Control objControl in this.Controls)
+        //        {
+        //            if ((objControl is TextBox || objControl is ComboBox) && objControl.Visible)
+        //            {
+        //                if (objControl.Name != ExFieldName1 && objControl.Name != ExFieldName2)
+        //                {
+        //                    if (!FunctionClass.IsError(objControl))
+        //                    { 
+        //                        isErrorData = true;
+        //                        objControl.Focus();
+        //                        return isErrorData;
+        //                    }
+        //                }
+        //            }
+        //        }
+
+        //        return isErrorData;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Debug.Print(this.Name + "_IsErrorData - " + ex.Message);
+        //        return true;
+        //    }
+        //}
+
+
+        private bool ErrCheck()
         {
-            try
-            {
-                bool isErrorData = false;
-
-                // ヘッダ部のチェック
-                foreach (Control objControl in this.Controls)
-                {
-                    if ((objControl is TextBox || objControl is ComboBox) && objControl.Visible)
-                    {
-                        if (objControl.Name != ExFieldName1 && objControl.Name != ExFieldName2)
-                        {
-                            if (FunctionClass.IsError(objControl))
-                            { 
-                                isErrorData = true;
-                                objControl.Focus();
-                                return isErrorData;
-                            }
-                        }
-                    }
-                }
-
-                return isErrorData;
-            }
-            catch (Exception ex)
-            {
-                Debug.Print(this.Name + "_IsErrorData - " + ex.Message);
-                return true;
-            }
+            //入力確認    
+            if (!FunctionClass.IsError(this.メーカーコード)) return false;
+            if (!FunctionClass.IsError(this.メーカー名)) return false;
+            if (!FunctionClass.IsError(this.メーカー名フリガナ)) return false;
+            if (!FunctionClass.IsError(this.メーカー省略名)) return false;
+            return true;
         }
-
 
 
         private void コマンド複写_Click(object sender, EventArgs e)
@@ -980,8 +1050,8 @@ namespace u_net
 
         private void コマンド登録_Click(object sender, EventArgs e)
         {
-            try
-            {
+            //try
+            //{
                 this.DoubleBuffered = true;
 
                 //this.Painting = false;
@@ -992,14 +1062,14 @@ namespace u_net
                 }
 
                 // 登録時におけるエラーチェック
-                if (IsErrorData("メーカーコード"))
+                if (!ErrCheck())
                 {
                     goto Bye_コマンド登録_Click;
                 }
 
                 //DoWait("登録しています...");
 
-                if (SaveData(CurrentCode, CurrentRevision))
+                if (SaveData())
                 {
                     // 登録成功
                     ChangedData(false);
@@ -1020,12 +1090,12 @@ namespace u_net
                 {
                     MessageBox.Show("登録できませんでした。", "登録コマンド", MessageBoxButtons.OK);
                 }
-            }
-            finally
-            {
-                Close();
+            //}
+            //finally
+            //{
+                //Close();
                 //this.Painting = true;
-            }
+            //}
 
         Bye_コマンド登録_Click:
             return;
