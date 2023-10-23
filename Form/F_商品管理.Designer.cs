@@ -226,6 +226,7 @@
             コマンド入出力.TabIndex = 1;
             コマンド入出力.Text = "入出力";
             コマンド入出力.UseVisualStyleBackColor = true;
+            コマンド入出力.Click += コマンド入出力_Click;
             // 
             // コマンド終了
             // 
@@ -279,7 +280,10 @@
             dataGridView1.RowTemplate.Height = 29;
             dataGridView1.Size = new Size(1205, 515);
             dataGridView1.TabIndex = 87;
+            dataGridView1.CellClick += dataGridView1_CellClick;
+            dataGridView1.CellDoubleClick += dataGridView1_CellDoubleClick;
             dataGridView1.CellPainting += DataGridView1_CellPainting;
+            dataGridView1.Sorted += dataGridView1_Sorted;
             // 
             // dataGridViewTextBoxColumn51
             // 

@@ -30,7 +30,7 @@ namespace u_net
                     this.Close();
                     return;
                 }
-                
+
                 //F_商品管理 frmTarget = new F_商品管理(); // NEWだと開いてるインスタンスにならない
 
                 //開いているフォームのインスタンスを作成する
@@ -53,7 +53,7 @@ namespace u_net
                     case 2:
                         intComposedChipMountbutton2.Checked = true;
                         break;
-                    case 3:
+                    case 0:
                         intComposedChipMountbutton3.Checked = true;
                         break;
 
@@ -69,7 +69,7 @@ namespace u_net
                     case 2:
                         IsUnitButton2.Checked = true;
                         break;
-                    case 3:
+                    case 0:
                         IsUnitButton3.Checked = true;
                         break;
 
@@ -85,7 +85,7 @@ namespace u_net
                     case 2:
                         DiscontinuedButton2.Checked = true;
                         break;
-                    case 3:
+                    case 0:
                         DiscontinuedButton3.Checked = true;
                         break;
 
@@ -101,7 +101,7 @@ namespace u_net
                     case 2:
                         DeletedButton2.Checked = true;
                         break;
-                    case 3:
+                    case 0:
                         DeletedButton3.Checked = true;
                         break;
 

@@ -19,13 +19,14 @@ namespace u_net
         private Control previousControl;
         private SqlConnection cn;
         private SqlTransaction tx;
+        public string args="";
+
         public F_商品()
         {
             this.Text = "商品";       // ウィンドウタイトルを設定
             this.MaximizeBox = false;  // 最大化ボタンを無効化
 
             InitializeComponent();
-
 
         }
         public void Connect()

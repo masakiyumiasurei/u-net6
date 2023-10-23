@@ -56,7 +56,6 @@
             DeletedButton1 = new RadioButton();
             抽出ボタン = new Button();
             キャンセルボタン = new Button();
-            test = new DateTimePicker();
             Discontinued.SuspendLayout();
             intComposedChipMount.SuspendLayout();
             IsUnit.SuspendLayout();
@@ -67,10 +66,10 @@
             // 
             更新者名.DisplayMember = "更新者名";
             更新者名.FormattingEnabled = true;
-            更新者名.Location = new Point(116, 114);
-            更新者名.Margin = new Padding(4, 3, 4, 3);
+            更新者名.Location = new Point(133, 152);
+            更新者名.Margin = new Padding(5, 4, 5, 4);
             更新者名.Name = "更新者名";
-            更新者名.Size = new Size(160, 23);
+            更新者名.Size = new Size(182, 28);
             更新者名.TabIndex = 9;
             更新者名.ValueMember = "更新者名";
             // 
@@ -81,10 +80,10 @@
             label9.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             label9.ForeColor = SystemColors.ActiveCaptionText;
             label9.ImageAlign = ContentAlignment.MiddleLeft;
-            label9.Location = new Point(24, 114);
+            label9.Location = new Point(27, 152);
             label9.Margin = new Padding(0);
             label9.Name = "label9";
-            label9.Size = new Size(85, 17);
+            label9.Size = new Size(97, 23);
             label9.TabIndex = 8;
             label9.Text = "更新者名(&N)";
             label9.TextAlign = ContentAlignment.MiddleLeft;
@@ -96,10 +95,10 @@
             label7.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             label7.ForeColor = SystemColors.ActiveCaptionText;
             label7.ImageAlign = ContentAlignment.MiddleLeft;
-            label7.Location = new Point(24, 58);
+            label7.Location = new Point(27, 77);
             label7.Margin = new Padding(0);
             label7.Name = "label7";
-            label7.Size = new Size(85, 17);
+            label7.Size = new Size(97, 23);
             label7.TabIndex = 3;
             label7.Text = "シリーズ名(&S)";
             label7.TextAlign = ContentAlignment.MiddleLeft;
@@ -108,22 +107,20 @@
             // 
             シリーズ名.BackColor = Color.White;
             シリーズ名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            シリーズ名.Location = new Point(116, 51);
-            シリーズ名.Margin = new Padding(3, 2, 3, 2);
+            シリーズ名.Location = new Point(133, 68);
             シリーズ名.Multiline = true;
             シリーズ名.Name = "シリーズ名";
-            シリーズ名.Size = new Size(413, 23);
+            シリーズ名.Size = new Size(471, 29);
             シリーズ名.TabIndex = 4;
             // 
             // 基本型式名
             // 
             基本型式名.BackColor = Color.White;
             基本型式名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            基本型式名.Location = new Point(116, 23);
-            基本型式名.Margin = new Padding(3, 2, 3, 2);
+            基本型式名.Location = new Point(133, 31);
             基本型式名.Multiline = true;
             基本型式名.Name = "基本型式名";
-            基本型式名.Size = new Size(413, 23);
+            基本型式名.Size = new Size(471, 29);
             基本型式名.TabIndex = 2;
             // 
             // label5
@@ -133,10 +130,10 @@
             label5.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             label5.ForeColor = SystemColors.ActiveCaptionText;
             label5.ImageAlign = ContentAlignment.MiddleLeft;
-            label5.Location = new Point(27, 23);
+            label5.Location = new Point(31, 31);
             label5.Margin = new Padding(0);
             label5.Name = "label5";
-            label5.Size = new Size(87, 17);
+            label5.Size = new Size(99, 23);
             label5.TabIndex = 1;
             label5.Text = "基本型式名(&N)";
             label5.TextAlign = ContentAlignment.MiddleLeft;
@@ -148,10 +145,10 @@
             label1.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             label1.ForeColor = SystemColors.ActiveCaptionText;
             label1.ImageAlign = ContentAlignment.MiddleLeft;
-            label1.Location = new Point(24, 83);
+            label1.Location = new Point(27, 111);
             label1.Margin = new Padding(0);
             label1.Name = "label1";
-            label1.Size = new Size(85, 17);
+            label1.Size = new Size(97, 23);
             label1.TabIndex = 5;
             label1.Text = "更新日(&U)";
             label1.TextAlign = ContentAlignment.MiddleLeft;
@@ -160,11 +157,10 @@
             // 
             更新日開始.BackColor = Color.White;
             更新日開始.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            更新日開始.Location = new Point(116, 82);
-            更新日開始.Margin = new Padding(3, 2, 3, 2);
+            更新日開始.Location = new Point(133, 109);
             更新日開始.Multiline = true;
             更新日開始.Name = "更新日開始";
-            更新日開始.Size = new Size(160, 23);
+            更新日開始.Size = new Size(182, 29);
             更新日開始.TabIndex = 6;
             // 
             // label2
@@ -174,10 +170,10 @@
             label2.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             label2.ForeColor = SystemColors.ActiveCaptionText;
             label2.ImageAlign = ContentAlignment.MiddleLeft;
-            label2.Location = new Point(311, 84);
+            label2.Location = new Point(355, 112);
             label2.Margin = new Padding(0);
             label2.Name = "label2";
-            label2.Size = new Size(27, 16);
+            label2.Size = new Size(31, 21);
             label2.TabIndex = 202;
             label2.Text = "～";
             label2.TextAlign = ContentAlignment.MiddleLeft;
@@ -186,11 +182,10 @@
             // 
             更新日終了.BackColor = Color.White;
             更新日終了.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            更新日終了.Location = new Point(369, 83);
-            更新日終了.Margin = new Padding(3, 2, 3, 2);
+            更新日終了.Location = new Point(422, 111);
             更新日終了.Multiline = true;
             更新日終了.Name = "更新日終了";
-            更新日終了.Size = new Size(160, 23);
+            更新日終了.Size = new Size(182, 29);
             更新日終了.TabIndex = 7;
             // 
             // Discontinued
@@ -198,9 +193,11 @@
             Discontinued.Controls.Add(DiscontinuedButton3);
             Discontinued.Controls.Add(DiscontinuedButton2);
             Discontinued.Controls.Add(DiscontinuedButton1);
-            Discontinued.Location = new Point(39, 159);
+            Discontinued.Location = new Point(45, 212);
+            Discontinued.Margin = new Padding(3, 4, 3, 4);
             Discontinued.Name = "Discontinued";
-            Discontinued.Size = new Size(525, 63);
+            Discontinued.Padding = new Padding(3, 4, 3, 4);
+            Discontinued.Size = new Size(600, 84);
             Discontinued.TabIndex = 203;
             Discontinued.TabStop = false;
             Discontinued.Text = "廃止指定(&B)";
@@ -208,9 +205,10 @@
             // DiscontinuedButton3
             // 
             DiscontinuedButton3.AutoSize = true;
-            DiscontinuedButton3.Location = new Point(347, 22);
+            DiscontinuedButton3.Location = new Point(397, 29);
+            DiscontinuedButton3.Margin = new Padding(3, 4, 3, 4);
             DiscontinuedButton3.Name = "DiscontinuedButton3";
-            DiscontinuedButton3.Size = new Size(77, 19);
+            DiscontinuedButton3.Size = new Size(92, 24);
             DiscontinuedButton3.TabIndex = 204;
             DiscontinuedButton3.TabStop = true;
             DiscontinuedButton3.Text = "指定しない";
@@ -219,9 +217,10 @@
             // DiscontinuedButton2
             // 
             DiscontinuedButton2.AutoSize = true;
-            DiscontinuedButton2.Location = new Point(195, 22);
+            DiscontinuedButton2.Location = new Point(223, 29);
+            DiscontinuedButton2.Margin = new Padding(3, 4, 3, 4);
             DiscontinuedButton2.Name = "DiscontinuedButton2";
-            DiscontinuedButton2.Size = new Size(85, 19);
+            DiscontinuedButton2.Size = new Size(101, 24);
             DiscontinuedButton2.TabIndex = 2;
             DiscontinuedButton2.TabStop = true;
             DiscontinuedButton2.Text = "廃止している";
@@ -230,9 +229,10 @@
             // DiscontinuedButton1
             // 
             DiscontinuedButton1.AutoSize = true;
-            DiscontinuedButton1.Location = new Point(30, 22);
+            DiscontinuedButton1.Location = new Point(34, 29);
+            DiscontinuedButton1.Margin = new Padding(3, 4, 3, 4);
             DiscontinuedButton1.Name = "DiscontinuedButton1";
-            DiscontinuedButton1.Size = new Size(96, 19);
+            DiscontinuedButton1.Size = new Size(115, 24);
             DiscontinuedButton1.TabIndex = 1;
             DiscontinuedButton1.TabStop = true;
             DiscontinuedButton1.Text = "廃止していない";
@@ -243,9 +243,11 @@
             intComposedChipMount.Controls.Add(intComposedChipMountbutton3);
             intComposedChipMount.Controls.Add(intComposedChipMountbutton2);
             intComposedChipMount.Controls.Add(intComposedChipMountbutton1);
-            intComposedChipMount.Location = new Point(39, 237);
+            intComposedChipMount.Location = new Point(45, 316);
+            intComposedChipMount.Margin = new Padding(3, 4, 3, 4);
             intComposedChipMount.Name = "intComposedChipMount";
-            intComposedChipMount.Size = new Size(525, 63);
+            intComposedChipMount.Padding = new Padding(3, 4, 3, 4);
+            intComposedChipMount.Size = new Size(600, 84);
             intComposedChipMount.TabIndex = 205;
             intComposedChipMount.TabStop = false;
             intComposedChipMount.Text = "構成登録(&C)";
@@ -253,9 +255,10 @@
             // intComposedChipMountbutton3
             // 
             intComposedChipMountbutton3.AutoSize = true;
-            intComposedChipMountbutton3.Location = new Point(347, 22);
+            intComposedChipMountbutton3.Location = new Point(397, 29);
+            intComposedChipMountbutton3.Margin = new Padding(3, 4, 3, 4);
             intComposedChipMountbutton3.Name = "intComposedChipMountbutton3";
-            intComposedChipMountbutton3.Size = new Size(77, 19);
+            intComposedChipMountbutton3.Size = new Size(92, 24);
             intComposedChipMountbutton3.TabIndex = 204;
             intComposedChipMountbutton3.TabStop = true;
             intComposedChipMountbutton3.Text = "指定しない";
@@ -264,9 +267,10 @@
             // intComposedChipMountbutton2
             // 
             intComposedChipMountbutton2.AutoSize = true;
-            intComposedChipMountbutton2.Location = new Point(195, 22);
+            intComposedChipMountbutton2.Location = new Point(223, 29);
+            intComposedChipMountbutton2.Margin = new Padding(3, 4, 3, 4);
             intComposedChipMountbutton2.Name = "intComposedChipMountbutton2";
-            intComposedChipMountbutton2.Size = new Size(85, 19);
+            intComposedChipMountbutton2.Size = new Size(101, 24);
             intComposedChipMountbutton2.TabIndex = 2;
             intComposedChipMountbutton2.TabStop = true;
             intComposedChipMountbutton2.Text = "登録している";
@@ -275,9 +279,10 @@
             // intComposedChipMountbutton1
             // 
             intComposedChipMountbutton1.AutoSize = true;
-            intComposedChipMountbutton1.Location = new Point(30, 22);
+            intComposedChipMountbutton1.Location = new Point(34, 29);
+            intComposedChipMountbutton1.Margin = new Padding(3, 4, 3, 4);
             intComposedChipMountbutton1.Name = "intComposedChipMountbutton1";
-            intComposedChipMountbutton1.Size = new Size(96, 19);
+            intComposedChipMountbutton1.Size = new Size(115, 24);
             intComposedChipMountbutton1.TabIndex = 1;
             intComposedChipMountbutton1.TabStop = true;
             intComposedChipMountbutton1.Text = "登録していない";
@@ -288,9 +293,11 @@
             IsUnit.Controls.Add(IsUnitButton3);
             IsUnit.Controls.Add(IsUnitButton2);
             IsUnit.Controls.Add(IsUnitButton1);
-            IsUnit.Location = new Point(39, 317);
+            IsUnit.Location = new Point(45, 423);
+            IsUnit.Margin = new Padding(3, 4, 3, 4);
             IsUnit.Name = "IsUnit";
-            IsUnit.Size = new Size(525, 63);
+            IsUnit.Padding = new Padding(3, 4, 3, 4);
+            IsUnit.Size = new Size(600, 84);
             IsUnit.TabIndex = 206;
             IsUnit.TabStop = false;
             IsUnit.Text = "ユニット指定(&I)";
@@ -298,9 +305,10 @@
             // IsUnitButton3
             // 
             IsUnitButton3.AutoSize = true;
-            IsUnitButton3.Location = new Point(347, 22);
+            IsUnitButton3.Location = new Point(397, 29);
+            IsUnitButton3.Margin = new Padding(3, 4, 3, 4);
             IsUnitButton3.Name = "IsUnitButton3";
-            IsUnitButton3.Size = new Size(77, 19);
+            IsUnitButton3.Size = new Size(92, 24);
             IsUnitButton3.TabIndex = 204;
             IsUnitButton3.TabStop = true;
             IsUnitButton3.Text = "指定しない";
@@ -309,9 +317,10 @@
             // IsUnitButton2
             // 
             IsUnitButton2.AutoSize = true;
-            IsUnitButton2.Location = new Point(195, 22);
+            IsUnitButton2.Location = new Point(223, 29);
+            IsUnitButton2.Margin = new Padding(3, 4, 3, 4);
             IsUnitButton2.Name = "IsUnitButton2";
-            IsUnitButton2.Size = new Size(89, 19);
+            IsUnitButton2.Size = new Size(105, 24);
             IsUnitButton2.TabIndex = 2;
             IsUnitButton2.TabStop = true;
             IsUnitButton2.Text = "ユニットである";
@@ -320,9 +329,10 @@
             // IsUnitButton1
             // 
             IsUnitButton1.AutoSize = true;
-            IsUnitButton1.Location = new Point(30, 22);
+            IsUnitButton1.Location = new Point(34, 29);
+            IsUnitButton1.Margin = new Padding(3, 4, 3, 4);
             IsUnitButton1.Name = "IsUnitButton1";
-            IsUnitButton1.Size = new Size(100, 19);
+            IsUnitButton1.Size = new Size(120, 24);
             IsUnitButton1.TabIndex = 1;
             IsUnitButton1.TabStop = true;
             IsUnitButton1.Text = "ユニットではない";
@@ -333,9 +343,11 @@
             Deleted.Controls.Add(DeletedButton3);
             Deleted.Controls.Add(DeletedButton2);
             Deleted.Controls.Add(DeletedButton1);
-            Deleted.Location = new Point(39, 396);
+            Deleted.Location = new Point(45, 528);
+            Deleted.Margin = new Padding(3, 4, 3, 4);
             Deleted.Name = "Deleted";
-            Deleted.Size = new Size(525, 63);
+            Deleted.Padding = new Padding(3, 4, 3, 4);
+            Deleted.Size = new Size(600, 84);
             Deleted.TabIndex = 207;
             Deleted.TabStop = false;
             Deleted.Text = "削除指定(&D)";
@@ -343,9 +355,10 @@
             // DeletedButton3
             // 
             DeletedButton3.AutoSize = true;
-            DeletedButton3.Location = new Point(347, 22);
+            DeletedButton3.Location = new Point(397, 29);
+            DeletedButton3.Margin = new Padding(3, 4, 3, 4);
             DeletedButton3.Name = "DeletedButton3";
-            DeletedButton3.Size = new Size(77, 19);
+            DeletedButton3.Size = new Size(92, 24);
             DeletedButton3.TabIndex = 204;
             DeletedButton3.TabStop = true;
             DeletedButton3.Text = "指定しない";
@@ -354,9 +367,10 @@
             // DeletedButton2
             // 
             DeletedButton2.AutoSize = true;
-            DeletedButton2.Location = new Point(195, 22);
+            DeletedButton2.Location = new Point(223, 29);
+            DeletedButton2.Margin = new Padding(3, 4, 3, 4);
             DeletedButton2.Name = "DeletedButton2";
-            DeletedButton2.Size = new Size(85, 19);
+            DeletedButton2.Size = new Size(101, 24);
             DeletedButton2.TabIndex = 2;
             DeletedButton2.TabStop = true;
             DeletedButton2.Text = "削除している";
@@ -365,9 +379,10 @@
             // DeletedButton1
             // 
             DeletedButton1.AutoSize = true;
-            DeletedButton1.Location = new Point(30, 22);
+            DeletedButton1.Location = new Point(34, 29);
+            DeletedButton1.Margin = new Padding(3, 4, 3, 4);
             DeletedButton1.Name = "DeletedButton1";
-            DeletedButton1.Size = new Size(96, 19);
+            DeletedButton1.Size = new Size(115, 24);
             DeletedButton1.TabIndex = 1;
             DeletedButton1.TabStop = true;
             DeletedButton1.Text = "削除していない";
@@ -375,9 +390,10 @@
             // 
             // 抽出ボタン
             // 
-            抽出ボタン.Location = new Point(263, 489);
+            抽出ボタン.Location = new Point(301, 652);
+            抽出ボタン.Margin = new Padding(3, 4, 3, 4);
             抽出ボタン.Name = "抽出ボタン";
-            抽出ボタン.Size = new Size(114, 23);
+            抽出ボタン.Size = new Size(130, 31);
             抽出ボタン.TabIndex = 208;
             抽出ボタン.Text = "抽出(&O)";
             抽出ボタン.UseVisualStyleBackColor = true;
@@ -385,27 +401,20 @@
             // 
             // キャンセルボタン
             // 
-            キャンセルボタン.Location = new Point(386, 489);
+            キャンセルボタン.Location = new Point(441, 652);
+            キャンセルボタン.Margin = new Padding(3, 4, 3, 4);
             キャンセルボタン.Name = "キャンセルボタン";
-            キャンセルボタン.Size = new Size(114, 23);
+            キャンセルボタン.Size = new Size(130, 31);
             キャンセルボタン.TabIndex = 209;
             キャンセルボタン.Text = "キャンセル(&X)";
             キャンセルボタン.UseVisualStyleBackColor = true;
             キャンセルボタン.MouseClick += キャンセルボタン_MouseClick;
             // 
-            // test
-            // 
-            test.Location = new Point(405, 127);
-            test.Name = "test";
-            test.Size = new Size(118, 23);
-            test.TabIndex = 210;
-            // 
             // F_商品管理_抽出
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(594, 540);
-            Controls.Add(test);
+            ClientSize = new Size(679, 720);
             Controls.Add(キャンセルボタン);
             Controls.Add(抽出ボタン);
             Controls.Add(Deleted);
@@ -422,6 +431,7 @@
             Controls.Add(シリーズ名);
             Controls.Add(基本型式名);
             Controls.Add(label5);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "F_商品管理_抽出";
             Text = "F_商品管理_抽出";
             Load += Form_Load;
@@ -467,6 +477,5 @@
         private RadioButton DeletedButton1;
         private Button 抽出ボタン;
         private Button キャンセルボタン;
-        private DateTimePicker test;
     }
 }

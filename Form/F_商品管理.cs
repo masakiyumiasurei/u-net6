@@ -78,7 +78,7 @@ namespace u_net
             dataGridView1.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
 
             // 列の幅を設定 もとは恐らくtwipのためピクセルに直す
-           
+
             //0列目はaccessでは行ヘッダのためずらす
             //dataGridView1.Columns[0].Width = 500 / twipperdot;
             dataGridView1.Columns[0].Width = 1250 / twipperdot; //1150
@@ -102,7 +102,10 @@ namespace u_net
             //accessのmovesizeメソッドの引数の座標単位はtwipなので以下で
 
             this.Size = new Size(this.Width, ySize - 1200 / twipperdot);
+
             this.StartPosition = FormStartPosition.Manual; // 手動で位置を指定
+            int screenWidth = Screen.PrimaryScreen.Bounds.Width; // プライマリスクリーンの幅
+            x = (screenWidth - this.Width) / 2;
             this.Location = new Point(x, y);
 
             InitializeFilter();
@@ -287,11 +290,12 @@ namespace u_net
             //列ヘッダーかどうか調べる
             if (e.ColumnIndex < 0 && e.RowIndex >= 0)
             {
+                dataGridView1.SuspendLayout();
                 //セルを描画する
                 e.Paint(e.ClipBounds, DataGridViewPaintParts.All);
 
                 //行番号を描画する範囲を決定する
-                //e.AdvancedBorderStyleやe.CellStyle.Paddingは無視しています
+                //e.AdvancedBorderStyleやe.CellStyle.Paddingは無視
                 Rectangle indexRect = e.CellBounds;
                 indexRect.Inflate(-2, -2);
                 //行番号を描画する
@@ -303,6 +307,51 @@ namespace u_net
                     TextFormatFlags.Right | TextFormatFlags.VerticalCenter);
                 //描画が完了したことを知らせる
                 e.Handled = true;
+                dataGridView1.ResumeLayout();
+
+            }
+        }
+
+        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            //if (e.Button != MouseButtons.Left) return; // 左ボタンのダブルクリック以外は無視
+
+            if (e.RowIndex >= 0) // ヘッダー行でない場合
+            {
+                string selectedData = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString(); // 1列目のデータを取得
+
+                F_商品 targetform = new F_商品();
+
+                targetform.args = selectedData;
+                targetform.Show();
+            }
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0) // ヘッダー行でない場合
+            {
+                dataGridView1.ClearSelection();
+                dataGridView1.Rows[e.RowIndex].Selected = true;
+            }
+        }
+
+        private bool sorting;
+        private void dataGridView1_Sorted(object sender, EventArgs e)
+        {
+            if (!sorting)
+            {
+                sorting = true;
+
+                // DataGridViewのソートが完了したら、先頭行を選択する
+                if (dataGridView1.Rows.Count > 0)
+                {
+                    dataGridView1.ClearSelection();
+                    dataGridView1.Rows[0].Selected = true;
+                    dataGridView1.FirstDisplayedScrollingRowIndex = 0; // 先頭行を表示
+                }
+
+                sorting = false;
             }
         }
         private void Form_KeyDown(int KeyCode, int Shift)
@@ -383,6 +432,16 @@ namespace u_net
             dataGridView1.Focus();
             F_商品管理_抽出 form = new F_商品管理_抽出();
             form.Show();
+        }
+
+        private void コマンド入出力_Click(object sender, EventArgs e)
+        {
+            dataGridView1.Focus(); // DataGridViewにフォーカスを設定
+
+            if (dataGridView1.FirstDisplayedScrollingRowIndex >= 5)
+            {
+                dataGridView1.FirstDisplayedScrollingRowIndex -= 5;
+            }
         }
     }
 }
