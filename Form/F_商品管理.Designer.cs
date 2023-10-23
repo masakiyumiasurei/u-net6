@@ -120,25 +120,25 @@
             コマンド商品.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             コマンド商品.ForeColor = Color.Blue;
             コマンド商品.ImageAlign = ContentAlignment.BottomLeft;
-            コマンド商品.Location = new Point(411, 5);
+            コマンド商品.Location = new Point(333, 5);
             コマンド商品.Margin = new Padding(0, 3, 0, 3);
             コマンド商品.Name = "コマンド商品";
             コマンド商品.Size = new Size(80, 29);
             コマンド商品.TabIndex = 9;
             コマンド商品.Text = "商品";
             コマンド商品.UseVisualStyleBackColor = true;
+            コマンド商品.Click += コマンド商品_Click;
             // 
             // コマンドメーカー
             // 
             コマンドメーカー.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             コマンドメーカー.ForeColor = Color.Blue;
             コマンドメーカー.ImageAlign = ContentAlignment.BottomLeft;
-            コマンドメーカー.Location = new Point(333, 5);
+            コマンドメーカー.Location = new Point(411, 5);
             コマンドメーカー.Margin = new Padding(0, 3, 0, 3);
             コマンドメーカー.Name = "コマンドメーカー";
             コマンドメーカー.Size = new Size(80, 29);
             コマンドメーカー.TabIndex = 8;
-            コマンドメーカー.Text = "メーカー";
             コマンドメーカー.UseVisualStyleBackColor = true;
             // 
             // コマンド保守
@@ -165,42 +165,46 @@
             コマンド更新.TabIndex = 6;
             コマンド更新.Text = "更新";
             コマンド更新.UseVisualStyleBackColor = true;
+            コマンド更新.Click += コマンド更新_Click;
             // 
             // コマンド全表示
             // 
             コマンド全表示.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             コマンド全表示.ImageAlign = ContentAlignment.BottomLeft;
-            コマンド全表示.Location = new Point(240, 5);
+            コマンド全表示.Location = new Point(237, 5);
             コマンド全表示.Margin = new Padding(0, 3, 0, 3);
             コマンド全表示.Name = "コマンド全表示";
             コマンド全表示.Size = new Size(80, 29);
             コマンド全表示.TabIndex = 5;
             コマンド全表示.Text = "全表示";
             コマンド全表示.UseVisualStyleBackColor = true;
+            コマンド全表示.Click += コマンド全表示_Click;
             // 
             // コマンド初期化
             // 
             コマンド初期化.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             コマンド初期化.ImageAlign = ContentAlignment.BottomLeft;
-            コマンド初期化.Location = new Point(161, 5);
+            コマンド初期化.Location = new Point(159, 5);
             コマンド初期化.Margin = new Padding(0, 3, 0, 3);
             コマンド初期化.Name = "コマンド初期化";
             コマンド初期化.Size = new Size(80, 29);
             コマンド初期化.TabIndex = 4;
             コマンド初期化.Text = "初期化";
             コマンド初期化.UseVisualStyleBackColor = true;
+            コマンド初期化.Click += コマンド初期化_Click;
             // 
             // コマンド検索
             // 
             コマンド検索.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             コマンド検索.ImageAlign = ContentAlignment.BottomLeft;
-            コマンド検索.Location = new Point(82, 5);
+            コマンド検索.Location = new Point(81, 5);
             コマンド検索.Margin = new Padding(0, 3, 0, 3);
             コマンド検索.Name = "コマンド検索";
             コマンド検索.Size = new Size(80, 29);
             コマンド検索.TabIndex = 3;
             コマンド検索.Text = "検索";
             コマンド検索.UseVisualStyleBackColor = true;
+            コマンド検索.Click += コマンド検索_Click;
             // 
             // コマンド抽出
             // 
@@ -284,6 +288,7 @@
             dataGridView1.CellDoubleClick += dataGridView1_CellDoubleClick;
             dataGridView1.CellPainting += DataGridView1_CellPainting;
             dataGridView1.Sorted += dataGridView1_Sorted;
+            dataGridView1.KeyDown += dataGridView1_KeyDown;
             // 
             // dataGridViewTextBoxColumn51
             // 
@@ -407,6 +412,7 @@
             Text = "商品管理";
             Load += Form_Load;
             SizeChanged += Form_Resize;
+            KeyDown += Form_KeyDown;
             panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ((System.ComponentModel.ISupportInitialize)q商品管理bindingSource).EndInit();
@@ -426,7 +432,6 @@
         private Button コマンド更新;
         private Button コマンド全表示;
         private Button コマンド初期化;
-        private Button コマンド検索;
         private Button コマンド抽出;
         private Button コマンド入出力;
         private Button コマンド終了;
@@ -564,5 +569,6 @@
         private newDataSet newDataSet;
         private newDataSetTableAdapters.Q商品管理TableAdapter q商品管理TableAdapter;
         private Panel panel2;
+        private Button コマンド検索;
     }
 }

@@ -110,7 +110,7 @@ namespace u_net
 
             InitializeFilter();
             DoUpdate();
-
+            Cleargrid(dataGridView1);
         }
 
         private void Form_Resize(object sender, EventArgs e)
@@ -262,18 +262,6 @@ namespace u_net
                     }
                 }
 
-                //フィルタ条件があるかどうかを確認し、データを抽出
-                //if (!string.IsNullOrEmpty(filter))
-                //{
-                //    q商品管理TableAdapter.ClearBeforeFill = false;
-                //q商品管理TableAdapter.FillBy(newDataSet.Q商品管理, filter基本型式名, filterシリーズ名, filter更新日開始,
-                //   filter更新日終了, filter更新者名, filter構成, filterユニ, filter廃止, filter削除);
-                //}
-                //else
-                //{
-                //    q商品管理TableAdapter.ClearBeforeFill = false;
-                //    q商品管理TableAdapter.Fill(newDataSet.Q商品管理);
-                //}
 
                 return dataGridView1.RowCount;
             }
@@ -336,6 +324,7 @@ namespace u_net
             }
         }
 
+
         private bool sorting;
         private void dataGridView1_Sorted(object sender, EventArgs e)
         {
@@ -346,67 +335,32 @@ namespace u_net
                 // DataGridViewのソートが完了したら、先頭行を選択する
                 if (dataGridView1.Rows.Count > 0)
                 {
-                    dataGridView1.ClearSelection();
-                    dataGridView1.Rows[0].Selected = true;
-                    dataGridView1.FirstDisplayedScrollingRowIndex = 0; // 先頭行を表示
+                    Cleargrid(dataGridView1);
+
                 }
 
                 sorting = false;
             }
         }
-        private void Form_KeyDown(int KeyCode, int Shift)
+
+        private void dataGridView1_KeyDown(object sender, KeyEventArgs e)
         {
-            try
+            // Shiftキーが押されているときは何もしない
+            if (e.Shift)
             {
-                int intShiftDown = 0;
-
-                int intKeyCode = KeyCode;
-
-
-                switch (KeyCode)
-                {
-                    //case (int)Keys.F1:
-                    //    if (this.コマンド抽出.Enabled) コマンド抽出_Click(null, null);
-                    //    break;
-                    //case (int)Keys.F2:
-                    //    if (this.コマンド検索.Enabled) コマンド検索_Click(null, null);
-                    //    break;
-                    //case (int)Keys.F3:
-                    //    if (this.コマンド初期化.Enabled) コマンド初期化_Click(null, null);
-                    //    break;
-                    //case (int)Keys.F4:
-                    //    if (this.コマンド全表示.Enabled) コマンド全表示_Click(null, null);
-                    //    break;
-                    //case (int)Keys.F5:
-                    //    if (this.コマンド商品.Enabled) コマンド商品_Click(null, null);
-                    //    break;
-
-
-                    //case (int)Keys.F9:
-                    //    if (this.コマンド入出力.Enabled) コマンド入出力_Click(null, null);
-                    //    break;
-                    //case (int)Keys.F10:
-                    //    if (this.コマンド保守.Enabled) コマンド保守_Click(null, null);
-                    //    break;
-                    //case (int)Keys.F11:
-                    //    if (this.コマンド更新.Enabled) コマンド更新_Click(null, null);
-                    //    break;
-                    //case (int)Keys.F12:
-                    //    if (this.コマンド終了.Enabled) コマンド終了_Click(null, null);
-                    //    break;
-                    //case (int)Keys.Return:
-                    //    if (this.ActiveControl == this.商品)
-                    //    {
-                    //        // Replace "OpenForm" with the appropriate method to open a form.
-                    //        OpenForm("商品", gridobject.TextMatrix(gridobject.row, 1));
-                    //    }
-                    //    break;
-
-                }
+                e.SuppressKeyPress = true;
             }
-            catch (Exception ex)
+        }
+
+        //選択行をクリアして先頭を表示して先頭行を選択
+        private void Cleargrid(DataGridView dataGridView)
+        {
+            dataGridView.ClearSelection();
+
+            if (dataGridView.Rows.Count > 0)
             {
-                MessageBox.Show("KeyDown - " + ex.Message);
+                dataGridView.Rows[0].Selected = true;
+                dataGridView.FirstDisplayedScrollingRowIndex = 0; // 先頭行を表示
             }
         }
 
@@ -438,9 +392,129 @@ namespace u_net
         {
             dataGridView1.Focus(); // DataGridViewにフォーカスを設定
 
-            if (dataGridView1.FirstDisplayedScrollingRowIndex >= 5)
+            int selectedRowIndex = dataGridView1.CurrentCell.RowIndex;
+
+            if (selectedRowIndex >= 5)
             {
-                dataGridView1.FirstDisplayedScrollingRowIndex -= 5;
+                dataGridView1.FirstDisplayedScrollingRowIndex = selectedRowIndex - 5;
+            }
+        }
+
+        private void コマンド初期化_Click(object sender, EventArgs e)
+        {
+            if (ActiveControl == コマンド初期化)
+            {
+                if (previousControl != null)
+                {
+                    previousControl.Focus();
+                }
+            }
+            MessageBox.Show("このコマンドは使用できません。", "初期化コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void コマンド全表示_Click(object sender, EventArgs e)
+        {
+            InitializeFilter();
+            DoUpdate();
+            Cleargrid(dataGridView1);
+        }
+
+        private void コマンド更新_Click(object sender, EventArgs e)
+        {
+            if (this.ActiveControl == this.コマンド更新)
+            {
+                if (previousControl != null)
+                {
+                    previousControl.Focus();
+                }
+                DoUpdate();
+                Cleargrid(dataGridView1);
+            }
+        }
+
+        private void コマンド検索_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void コマンド商品_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count > 0)
+            {
+                // DataGridView1で選択された行が存在する場合
+                string selectedData = dataGridView1.SelectedRows[0].Cells[0].Value.ToString(); // 1列目のデータを取得
+
+                // 商品フォームを作成し、引数を設定して表示
+                F_商品 targetform = new F_商品();
+                targetform.args = selectedData;
+                targetform.Show();
+            }
+            else
+            {
+                // ユーザーが行を選択していない場合のエラーハンドリング
+                MessageBox.Show("行が選択されていません。");
+            }
+        }
+
+        private void Form_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {                
+
+                switch (e.KeyCode)
+                {
+                    case Keys.F1:
+                        if (this.コマンド抽出.Enabled) コマンド抽出_Click(null, null);
+                        break;
+                    case Keys.F2:
+                        if (this.コマンド検索.Enabled) コマンド検索_Click(null, null);
+                        break;
+                    case Keys.F3:
+                        if (this.コマンド初期化.Enabled) コマンド初期化_Click(null, null);
+                        break;
+                    case Keys.F4:
+                        if (this.コマンド全表示.Enabled) コマンド全表示_Click(null, null);
+                        break;
+                    case Keys.F5:
+                        if (this.コマンド商品.Enabled) コマンド商品_Click(null, null);
+                        break;
+                    case Keys.F9:
+                        if (this.コマンド入出力.Enabled) コマンド入出力_Click(null, null);
+                        break;
+                    case Keys.F10:
+                        if (this.コマンド保守.Enabled) コマンド保守_Click(null, null);
+                        break;
+                    case Keys.F11:
+                        if (this.コマンド更新.Enabled) コマンド更新_Click(null, null);
+                        break;
+                    case Keys.F12:
+                        if (this.コマンド終了.Enabled) コマンド終了_Click(null, null);
+                        break;
+                    case Keys.Return:
+                        if (this.ActiveControl == this.dataGridView1)
+                        {
+                            if (dataGridView1.SelectedRows.Count > 0)
+                            {
+                                // DataGridView1で選択された行が存在する場合
+                                string selectedData = dataGridView1.SelectedRows[0].Cells[0].Value.ToString(); // 1列目のデータを取得
+
+                                // 商品フォームを作成し、引数を設定して表示
+                                F_商品 targetform = new F_商品();
+                                targetform.args = selectedData;
+                                targetform.Show();
+                            }
+                            else
+                            {
+                                // ユーザーが行を選択していない場合のエラーハンドリング
+                                MessageBox.Show("行が選択されていません。");
+                            }
+                        }
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("KeyDown - " + ex.Message);
             }
         }
     }
