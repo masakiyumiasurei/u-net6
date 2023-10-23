@@ -55,6 +55,12 @@ namespace u_net
         private void Form_Load(object sender, EventArgs e)
         {
             //this.q商品管理TableAdapter.Fill(this.newDataSet.Q商品管理);
+            MyApi myapi = new MyApi();
+            int xSize, ySize, intpixel, twipperdot;
+
+            //1インチ当たりのピクセル数 アクセスのサイズの引数がtwipなのでピクセルに変換する除算値を求める
+            intpixel = myapi.GetLogPixel();
+            twipperdot = myapi.GetTwipPerDot(intpixel);
 
             intWindowHeight = this.Height;
             intWindowWidth = this.Width;
@@ -68,28 +74,36 @@ namespace u_net
             dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font("MS ゴシック", 9);
             dataGridView1.DefaultCellStyle.Font = new Font("MS ゴシック", 10);
             dataGridView1.DefaultCellStyle.ForeColor = Color.Black;
+            dataGridView1.Columns[0].DefaultCellStyle.BackColor = Color.FromArgb(255, 255, 200); // 薄い黄色
+            dataGridView1.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
 
             // 列の幅を設定 もとは恐らくtwipのためピクセルに直す
-            dataGridView1.Columns[0].Width = 500 / 15;
-            dataGridView1.Columns[1].Width = 1150 / 15;
-            dataGridView1.Columns[2].Width = 3500 / 15;
-            dataGridView1.Columns[3].Width = 1500 / 15;
-            dataGridView1.Columns[4].Width = 500 / 15;
-            dataGridView1.Columns[5].Width = 1350 / 15;
-            dataGridView1.Columns[6].Width = 1350 / 15;
-            dataGridView1.Columns[7].Width = 2200 / 15;
-            dataGridView1.Columns[8].Width = 1300 / 15;
-            dataGridView1.Columns[9].Width = 500 / 15;
-            dataGridView1.Columns[10].Width = 500 / 15;
-            dataGridView1.Columns[11].Width = 500 / 15;
-            // dataGridView1.Columns[12].Width = 500/15;
+           
+            //0列目はaccessでは行ヘッダのためずらす
+            //dataGridView1.Columns[0].Width = 500 / twipperdot;
+            dataGridView1.Columns[0].Width = 1250 / twipperdot; //1150
+            dataGridView1.Columns[1].Width = 3500 / twipperdot;
+            dataGridView1.Columns[2].Width = 1500 / twipperdot;
+            dataGridView1.Columns[3].Width = 500 / twipperdot;
+            dataGridView1.Columns[4].Width = 1350 / twipperdot;
+            dataGridView1.Columns[5].Width = 1350 / twipperdot;
+            dataGridView1.Columns[6].Width = 2200 / twipperdot;
+            dataGridView1.Columns[7].Width = 1400 / twipperdot;//1300
+            dataGridView1.Columns[8].Width = 500 / twipperdot;
+            dataGridView1.Columns[9].Width = 500 / twipperdot;
+            dataGridView1.Columns[10].Width = 500 / twipperdot;
+            dataGridView1.Columns[11].Width = 500 / twipperdot;
 
-            MyApi myapi = new MyApi();
-            int xSize, ySize, intpixel;
             myapi.GetFullScreen(out xSize, out ySize);
-            intpixel = myapi.GetLogPixel();
+
+            int x = 10, y = 10;
 
             this.Size = new Size(this.Width, ySize * myapi.GetTwipPerDot(intpixel) - 1200);
+            //accessのmovesizeメソッドの引数の座標単位はtwipなので以下で
+
+            this.Size = new Size(this.Width, ySize - 1200 / twipperdot);
+            this.StartPosition = FormStartPosition.Manual; // 手動で位置を指定
+            this.Location = new Point(x, y);
 
             InitializeFilter();
             DoUpdate();
@@ -139,7 +153,7 @@ namespace u_net
 
             return result;
         }
-        
+
         private int Filtering()
         {
             try
@@ -238,7 +252,7 @@ namespace u_net
                         // DataTable を DataGridView にバインド
                         dataGridView1.DataSource = null; // データソースをクリア
                         dataGridView1.Rows.Clear();     // DataGridView内の行をクリア
-                        
+
                         dataGridView1.Refresh();
                         dataGridView1.Invalidate();
                         dataGridView1.DataSource = dataTable;
@@ -267,6 +281,30 @@ namespace u_net
             }
         }
 
+        private void DataGridView1_CellPainting(object sender,
+    DataGridViewCellPaintingEventArgs e)
+        {
+            //列ヘッダーかどうか調べる
+            if (e.ColumnIndex < 0 && e.RowIndex >= 0)
+            {
+                //セルを描画する
+                e.Paint(e.ClipBounds, DataGridViewPaintParts.All);
+
+                //行番号を描画する範囲を決定する
+                //e.AdvancedBorderStyleやe.CellStyle.Paddingは無視しています
+                Rectangle indexRect = e.CellBounds;
+                indexRect.Inflate(-2, -2);
+                //行番号を描画する
+                TextRenderer.DrawText(e.Graphics,
+                    (e.RowIndex + 1).ToString(),
+                    e.CellStyle.Font,
+                    indexRect,
+                    e.CellStyle.ForeColor,
+                    TextFormatFlags.Right | TextFormatFlags.VerticalCenter);
+                //描画が完了したことを知らせる
+                e.Handled = true;
+            }
+        }
         private void Form_KeyDown(int KeyCode, int Shift)
         {
             try
