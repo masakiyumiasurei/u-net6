@@ -306,7 +306,7 @@ namespace u_net
 
             if (e.RowIndex >= 0) // ヘッダー行でない場合
             {
-                string selectedData = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString(); // 1列目のデータを取得
+                string selectedData = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString(); // 1列目のデータを取得
 
                 F_商品 targetform = new F_商品();
 

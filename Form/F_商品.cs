@@ -63,7 +63,7 @@ namespace u_net
             previousControl = null;
             try
             {
-                if (true)
+                if (string.IsNullOrEmpty(args))
                 {
                     if (!GoNewMode())
                     {
@@ -72,7 +72,10 @@ namespace u_net
                 }
                 else
                 {
-
+                    if (!GoModifyMode())
+                    {
+                        return;
+                    }
                 }
             }
             catch (Exception ex)
@@ -145,6 +148,10 @@ namespace u_net
             {
                 // 表示データをクリア 空文字のときにnullにする処理。不要？？
                 //SetControls(this, null);
+                if (!string.IsNullOrEmpty(args))
+                {
+                    this.商品コード.Text = args; 
+                }
 
                 FunctionClass.LockData(this, true, "商品コード");
                 this.商品コード.Enabled = true;
