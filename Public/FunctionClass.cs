@@ -10,6 +10,8 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.Diagnostics;
 using Microsoft.Data.SqlClient;
 using Newtonsoft.Json.Linq;
+using TextBox = System.Windows.Forms.TextBox;
+using ComboBox = System.Windows.Forms.ComboBox;
 
 namespace u_net.Public
 {
@@ -460,6 +462,31 @@ namespace u_net.Public
 
             return System.Text.RegularExpressions.Regex.IsMatch(zipCode, pattern);
         }
+
+
+
+        public static void ClearControl(Control control)
+        {
+            foreach (Control childControl in control.Controls)
+            {
+                ClearControl(childControl); // 再帰的に子コントロールを処理
+
+                if (childControl is TextBox textBox)
+                {
+                    textBox.Text = null; // TextBoxのTextプロパティをクリア
+                }
+                else if (childControl is ComboBox comboBox)
+                {
+                    comboBox.SelectedIndex = -1; // ComboBoxの選択をクリア
+                }
+                else if (childControl is CheckBox checkBox)
+                {
+                    checkBox.Checked = false; // CheckBoxのチェックを外す
+                }
+            }
+        }
+
+
 
     }
 }

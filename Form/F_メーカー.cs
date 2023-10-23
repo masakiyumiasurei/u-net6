@@ -113,8 +113,8 @@ namespace u_net
         {
             try
             {
-                // 各コントロール値を初期化
-                //SetControls(this, null);
+            // 各コントロール値を初期化
+                FunctionClass.ClearControl(this);
 
                 CommonConnect();
 
@@ -190,7 +190,7 @@ namespace u_net
                 bool result = false;
 
                 // 各コントロールの値をクリア
-                //SetControls(this, null);
+                FunctionClass.ClearControl(this);
 
                 // 編集による変更がない状態へ遷移
                 ChangedData(false);
@@ -204,8 +204,12 @@ namespace u_net
                 this.コマンド複写.Enabled = false;
                 // this.コマンド確定.Enabled = false;
                 this.コマンド登録.Enabled = false;
+                if (!string.IsNullOrEmpty(this.削除日時.Text))
+                {
+                    this.削除.Text = "■";
+                }
 
-                result = true;
+                    result = true;
                 return result;
             }
             catch (Exception ex)
@@ -317,8 +321,9 @@ namespace u_net
         {
             get
             {
-                // 現在のデータが削除されているかどうかを取得する
-                return !Convert.IsDBNull(this.削除日時.Text);
+                bool isEmptyOrDbNull = string.IsNullOrEmpty(this.削除日時.Text) || Convert.IsDBNull(this.削除日時.Text);
+
+                return !isEmptyOrDbNull;
             }
         }
 
@@ -332,6 +337,55 @@ namespace u_net
             {
                 try
                 {
+
+
+                    DateTime now = DateTime.Now;
+                    Control objControl1 = null;
+                    Control objControl2 = null;
+                    Control objControl3 = null;
+                    Control objControl4 = null;
+                    Control objControl5 = null;
+                    Control objControl6 = null;
+                    object varSaved1 = null;
+                    object varSaved2 = null;
+                    object varSaved3 = null;
+                    object varSaved4 = null;
+                    object varSaved5 = null;
+                    object varSaved6 = null;
+                    object varSaved7 = null;
+
+                    bool isNewData = IsNewData;
+
+                    if (isNewData)
+                    {
+                        objControl1 = 作成日時;
+                        objControl2 = 作成者コード;
+                        objControl3 = 作成者名;
+                        varSaved1 = objControl1.Text;
+                        varSaved2 = objControl2.Text;
+                        varSaved3 = objControl3.Text;
+                        varSaved7 = ActiveDate.Text;
+                        objControl1.Text = now.ToString();
+                        objControl2.Text = CommonConstants.LoginUserCode;
+                        objControl3.Text = CommonConstants.LoginUserFullName;
+                        ActiveDate.Text = now.ToString();
+                    }
+
+                    objControl4 = 更新日時;
+                    objControl5 = 更新者コード;
+                    objControl6 = 更新者名;
+
+                    // 登録前の状態を退避しておく
+                    varSaved4 = objControl4.Text;
+                    varSaved5 = objControl5.Text;
+                    varSaved6 = objControl6.Text;
+
+                    // 値の設定
+                    objControl4.Text = now.ToString();
+                    objControl5.Text = CommonConstants.LoginUserCode;
+                    objControl6.Text = CommonConstants.LoginUserFullName;
+
+
 
                     string strwhere = " メーカーコード='" + this.メーカーコード.Text + "' and Revision=" + this.Revision.Text;
 
@@ -937,7 +991,7 @@ namespace u_net
 
                 if (this.IsDeleted)
                 {
-                    // GUIから判断しても良いものか？
+                 
                     strUpdate = "削除日時=NULL,削除者コード=NULL";
                 }
                 else
@@ -961,26 +1015,26 @@ namespace u_net
                     cmd.CommandText = sql;
                     cmd.ExecuteNonQuery();
 
-                    // ADOエラー対策
-                    if (cmd.Parameters.Count == 0)
-                    {
-                        cmd.Transaction.Commit(); // トランザクション完了
 
-                        // GUI更新
-                        if (this.IsDeleted)
-                        {
-                            this.削除日時.Text = null;
-                            this.削除者コード.Text = null;
-                        }
-                        else
-                        {
-                            this.削除日時.Text = deleteTime.ToString();
-                            this.削除者コード.Text = deleteUser;
-                        }
+                    cmd.Transaction.Commit(); // トランザクション完了
+
+                    // GUI更新
+                    if (this.IsDeleted)
+                    {
+                        this.削除日時.Text = null;
+                        this.削除者コード.Text = null;
+                        this.削除.Text = null;
+                    }
+                    else
+                    {
+                        this.削除日時.Text = deleteTime.ToString();
+                        this.削除者コード.Text = deleteUser;
+                        this.削除.Text = "■";
+                    }
 
                         isDeleted = false;
                     }
-                }
+                
 
                 return isDeleted;
             }

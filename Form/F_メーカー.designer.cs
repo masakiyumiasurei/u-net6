@@ -122,7 +122,6 @@ namespace u_net
             this.担当者名 = new System.Windows.Forms.TextBox();
             this.ウェブアドレス = new System.Windows.Forms.TextBox();
             this.版数_ラベル = new System.Windows.Forms.Label();
-            this.ActiveDate = new System.Windows.Forms.TextBox();
             this.削除日時 = new System.Windows.Forms.TextBox();
             this.削除者コード = new System.Windows.Forms.TextBox();
             this.ファックス番号2 = new System.Windows.Forms.TextBox();
@@ -135,6 +134,7 @@ namespace u_net
             this.label8 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.Revision = new System.Windows.Forms.TextBox();
+            this.ActiveDate = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -1146,16 +1146,6 @@ namespace u_net
             this.版数_ラベル.TabIndex = 9999;
             this.版数_ラベル.Text = "版数";
             // 
-            // ActiveDate
-            // 
-            this.ActiveDate.Enabled = false;
-            this.ActiveDate.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.ActiveDate.Location = new System.Drawing.Point(943, 170);
-            this.ActiveDate.Multiline = true;
-            this.ActiveDate.Name = "ActiveDate";
-            this.ActiveDate.Size = new System.Drawing.Size(314, 23);
-            this.ActiveDate.TabIndex = 48;
-            // 
             // 削除日時
             // 
             this.削除日時.Location = new System.Drawing.Point(944, 320);
@@ -1287,10 +1277,23 @@ namespace u_net
             this.Revision.Size = new System.Drawing.Size(139, 23);
             this.Revision.TabIndex = 1000;
             // 
+            // ActiveDate
+            // 
+            this.ActiveDate.BackColor = System.Drawing.SystemColors.Window;
+            this.ActiveDate.Enabled = false;
+            this.ActiveDate.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.ActiveDate.Location = new System.Drawing.Point(943, 170);
+            this.ActiveDate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.ActiveDate.Multiline = true;
+            this.ActiveDate.Name = "ActiveDate";
+            this.ActiveDate.Size = new System.Drawing.Size(313, 23);
+            this.ActiveDate.TabIndex = 10000;
+            // 
             // F_メーカー
             // 
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(1665, 777);
+            this.ClientSize = new System.Drawing.Size(1486, 712);
+            this.Controls.Add(this.ActiveDate);
             this.Controls.Add(this.Revision);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.label8);
@@ -1358,7 +1361,6 @@ namespace u_net
             this.Controls.Add(this.担当者名);
             this.Controls.Add(this.ウェブアドレス);
             this.Controls.Add(this.版数_ラベル);
-            this.Controls.Add(this.ActiveDate);
             this.Controls.Add(this.削除日時);
             this.Controls.Add(this.削除者コード);
             this.Controls.Add(this.panel1);
@@ -1506,7 +1508,6 @@ namespace u_net
         private TextBox 担当者名;
         private TextBox ウェブアドレス;
         private Label 版数_ラベル;
-        private TextBox ActiveDate;
         private TextBox 削除日時;
         private TextBox 削除者コード;
         private TextBox ファックス番号2;
@@ -1521,6 +1522,7 @@ namespace u_net
         private Label label8;
         private Label label11;
         private TextBox Revision;
+        private TextBox ActiveDate;
     }
 }
 
