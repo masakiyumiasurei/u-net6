@@ -16,6 +16,7 @@ namespace u_net
 {
     public partial class F_商品管理 : Form
     {
+        public string str検索コード = "ORD";
         public string str基本型式名 = "";
         public string strシリーズ名 = "";
         public DateTime dtm更新日開始 = DateTime.MinValue;
@@ -25,6 +26,8 @@ namespace u_net
         public int intIsUnit = 0;
         public int lngDiscontinued = 0;
         public int lngDeleted = 0;
+        
+
 
         int intWindowHeight = 0;
         int intWindowWidth = 0;
@@ -434,7 +437,9 @@ namespace u_net
 
         private void コマンド検索_Click(object sender, EventArgs e)
         {
-
+            str検索コード = "ORD";
+            F_検索コード form = new F_検索コード();
+            form.Show();
         }
 
         private void コマンド商品_Click(object sender, EventArgs e)
@@ -459,7 +464,7 @@ namespace u_net
         private void Form_KeyDown(object sender, KeyEventArgs e)
         {
             try
-            {                
+            {
 
                 switch (e.KeyCode)
                 {

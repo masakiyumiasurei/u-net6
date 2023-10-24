@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(F_商品管理));
             panel1 = new Panel();
             button4 = new Button();
             button3 = new Button();
@@ -408,6 +409,7 @@
             Controls.Add(panel2);
             Controls.Add(dataGridView1);
             Controls.Add(panel1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "F_商品管理";
             Text = "商品管理";
             Load += Form_Load;
