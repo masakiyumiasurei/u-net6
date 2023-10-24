@@ -68,9 +68,9 @@ namespace u_net
                 if (string.IsNullOrEmpty(strCode))
                     return;
 
-                strCode = FunctionClass.FormatCode(FunctionClass.Nz(this.str検索コード, ""), strCode);
+                strCode = FunctionClass.FormatCode(OriginalClass.Nz(this.str検索コード, ""), strCode);
 
-                if (strCode != FunctionClass.Nz(this.ActiveControl.Text, ""))
+                if (strCode != OriginalClass.Nz(this.ActiveControl.Text, ""))
                 {
                     this.ActiveControl.Text = strCode;
                 }

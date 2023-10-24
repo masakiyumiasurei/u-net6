@@ -310,10 +310,7 @@ namespace u_net.Public
             return result;
         }
 
-
-
         
-
 
 
         public static bool ReturnNewCode(SqlConnection conn, string header, string code)
