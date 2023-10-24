@@ -116,7 +116,7 @@ namespace u_net
             try
             {
             // 各コントロール値を初期化
-                FunctionClass.SetControls(this);
+                VariableSet.SetControls(this);
 
                 CommonConnect();
 
@@ -192,7 +192,7 @@ namespace u_net
                 bool result = false;
 
                 // 各コントロールの値をクリア
-                FunctionClass.SetControls(this);
+                VariableSet.SetControls(this);
 
                 // 編集による変更がない状態へ遷移
                 ChangedData(false);
@@ -1097,10 +1097,10 @@ namespace u_net
             // 画面のキャプチャをデスクトップに保存
             string screenshotFileName = "screenshot.png";
             string screenshotFilePath = Path.Combine(desktopPath, screenshotFileName);
-            FunctionClass.CaptureActiveForm(screenshotFilePath);
+            OriginalClass.CaptureActiveForm(screenshotFilePath);
 
             // 印刷ダイアログを表示
-            FunctionClass.PrintScreen(screenshotFilePath);
+            OriginalClass.PrintScreen(screenshotFilePath);
         }
 
         
@@ -1306,7 +1306,7 @@ namespace u_net
                 {
                     if (reader.Read())
                     {
-                        FunctionClass.SetTable2Form(formObject, reader);
+                        VariableSet.SetTable2Form(formObject, reader);
                         loadHeader = true;
                     }
                 }
@@ -1322,9 +1322,9 @@ namespace u_net
             string inputText = ウェブアドレス.Text;
 
             // 入力が有効な URL の形式であるかを確認
-            if (FunctionClass.IsValidUrl(inputText))
+            if (OriginalClass.IsValidUrl(inputText))
             {
-                FunctionClass.OpenUrl(inputText);
+                OriginalClass.OpenUrl(inputText);
                 
             }
         }
@@ -1339,10 +1339,10 @@ namespace u_net
             string zipCode = 郵便番号.Text;
 
             // 郵便番号が正しい形式かどうかを確認
-            if (FunctionClass.IsValidZipCode(zipCode))
+            if (OriginalClass.IsValidZipCode(zipCode))
             {
                 // 郵便番号APIを使用して住所情報を取得
-                string address = await FunctionClass.GetAddressFromZipCode(zipCode);
+                string address = await OriginalClass.GetAddressFromZipCode(zipCode);
                 住所1.Text = address;
             }
             else
