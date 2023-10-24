@@ -312,63 +312,7 @@ namespace u_net.Public
 
 
 
-        public static void SetForm2Table(Form formObject, DataRow dataRow, string exControlName1, string exControlName2)
-        {
-            try
-            {
-                foreach (DataColumn column in dataRow.Table.Columns)
-                {
-                    string fieldName = column.ColumnName;
-
-                    if (fieldName != exControlName1 && fieldName != exControlName2)
-                    {
-                        if (formObject.Controls.ContainsKey(fieldName))
-                        {
-                            // フォームのコントロール名がテーブルのフィールド名と一致する場合
-                            // データを設定
-                            formObject.Controls[fieldName].Text = dataRow[fieldName].ToString();
-                        }
-                        else
-                        {
-                            // フィールド名とコントロール名が一致しない場合、エラー処理を行うか、
-                            // または無視するかはアプリケーションの要件に合わせて実装してください
-                            Debug.Print("SetForm2Table - フィールド " + fieldName + " のコントロールがフォーム上で見つかりません。");
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Debug.Print("SetForm2Table - " + ex.Message);
-            }
-        }
-
-
-        public static void SetTable2Form(Form formObject, SqlDataReader reader)
-        {
-            try
-            {
-                if (reader == null || reader.IsClosed) return; // データがない場合や閉じている場合は何もしない
-
-                // データベースの列名をフォームのコントロール名と一致させておく必要があります
-                for (int i = 0; i < reader.FieldCount; i++)
-                {
-                    string columnName = reader.GetName(i);
-                    if (formObject.Controls.ContainsKey(columnName))
-                    {
-                        // フォーム内のコントロールにデータを設定
-                        Control control = formObject.Controls[columnName];
-                        control.Text = reader[columnName].ToString();
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                // エラーハンドリングを行うことをお勧めします
-                Console.WriteLine("SetTable2Form Error: " + ex.Message);
-            }
-        }
-
+        
 
 
 
@@ -394,155 +338,15 @@ namespace u_net.Public
         }
 
 
-        public static void OpenUrl(string url)
-        {
-            try
-            {
-                Process.Start(new ProcessStartInfo
-                {
-                    FileName = url,
-                    UseShellExecute = true
-                });
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("エラー: " + ex.Message);
-            }
-        }
+        
 
+       
 
-        public static bool IsValidUrl(string url)
-        {
-            // URL の妥当性を確認するためのカスタムロジックを実装
-            // このロジックは URL の形式に合ったものである必要があります
-            // 有効な URL であるかどうかの判定を行います
-            try
-            {
-                Uri uri = new Uri(url);
-                return uri.Scheme == Uri.UriSchemeHttp || uri.Scheme == Uri.UriSchemeHttps;
-            }
-            catch (UriFormatException)
-            {
-                return false;
-            }
-        }
+        
 
 
 
-        public const string ApiUrl = "https://zipcloud.ibsnet.co.jp/api/search";
 
-        public static async Task<string> GetAddressFromZipCode(string zipCode)
-        {
-            using (var httpClient = new HttpClient())
-            {
-                var apiUrl = $"{ApiUrl}?zipcode={zipCode}";
-
-                try
-                {
-                    var response = await httpClient.GetStringAsync(apiUrl);
-                    var result = JObject.Parse(response);
-                    if (result["results"][0]["address1"].ToString() != null)
-                    {
-                        return result["results"][0]["address1"].ToString() + result["results"][0]["address2"].ToString() + result["results"][0]["address3"].ToString();
-                    }
-                    else
-                    {
-                        return "";
-                    }
-                }
-                catch (Exception ex)
-                {
-                    return "エラー: " + ex.Message;
-                }
-            }
-        }
-
-        public static bool IsValidZipCode(string zipCode)
-        {
-            // 郵便番号の正規表現パターン (例: "123-4567")
-            string pattern = @"^\d{3}-?\d{4}$";
-
-            return System.Text.RegularExpressions.Regex.IsMatch(zipCode, pattern);
-        }
-
-
-
-        public static void SetControls(Control control)
-        {
-            foreach (Control childControl in control.Controls)
-            {
-                SetControls(childControl); // 再帰的に子コントロールを処理
-
-                if (childControl is TextBox textBox)
-                {
-                    textBox.Text = null; // TextBoxのTextプロパティをクリア
-                }
-                else if (childControl is ComboBox comboBox)
-                {
-                    comboBox.SelectedIndex = -1; // ComboBoxの選択をクリア
-                }
-                else if (childControl is CheckBox checkBox)
-                {
-                    checkBox.Checked = false; // CheckBoxのチェックを外す
-                }
-            }
-        }
-
-        public static void CaptureScreen(string outputPath)
-        {
-            // 画面のサイズを取得
-            Rectangle bounds = Screen.GetBounds(Point.Empty);
-
-            // スクリーンショットを撮るためのBitmapオブジェクトを作成
-            using (Bitmap bitmap = new Bitmap(bounds.Width, bounds.Height))
-            {
-                using (Graphics g = Graphics.FromImage(bitmap))
-                {
-                    g.CopyFromScreen(Point.Empty, Point.Empty, bounds.Size);
-                }
-
-                // デスクトップに保存
-                bitmap.Save(outputPath, ImageFormat.Png);
-            }
-        }
-
-        public static void CaptureActiveForm(string outputPath)
-        {            // アクティブなフォームを取得
-            Form activeForm = Form.ActiveForm;
-
-            if (activeForm != null)
-            {
-                // アクティブなフォームのサイズを取得
-                Rectangle bounds = activeForm.Bounds;
-
-                // スクリーンショットを撮るためのBitmapオブジェクトを作成
-                using (Bitmap bitmap = new Bitmap(bounds.Width, bounds.Height))
-                {
-                    using (Graphics g = Graphics.FromImage(bitmap))
-                    {
-                        g.CopyFromScreen(activeForm.Location, Point.Empty, bounds.Size);
-                    }
-
-                    // ファイルに保存
-                    bitmap.Save(outputPath, ImageFormat.Png);
-                }
-            }
-            else
-            {
-                // アクティブなフォームがない場合のエラーハンドリング
-                MessageBox.Show("アクティブなフォームが見つかりません。");
-            }
-        }
-
-        public static void PrintScreen(string imagePath)
-        {
-            PrintDocument printDocument = new PrintDocument();
-            printDocument.PrintPage += (sender, e) =>
-            {
-                Image image = Image.FromFile(imagePath);
-                e.Graphics.DrawImage(image, e.MarginBounds);
-            };
-        }
         //省略されたコードを補完する
         // 戻り値 → 完全形のコード エラーの時はデフォルト値を返す
         public static string FormatCode(string HeaderString, string AbbreviatedCode)
@@ -565,14 +369,10 @@ namespace u_net.Public
             }
         }
 
-        //指定された値がnullまたはDBNull.Valueの場合に、デフォルトの値（通常は0や空の文字列など）を返す
-        public static T Nz<T>(T value, T defaultValue)
-        {
-            return (value == null || value.Equals(DBNull.Value)) ? defaultValue : value;
-        }
+        
 
         // 入力英小文字を英大文字に変換する
-        static int ChangeBig(int intKey)
+        public static int ChangeBig(int intKey)
         {
             string strCharacter;
 
