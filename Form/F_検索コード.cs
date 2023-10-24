@@ -16,5 +16,10 @@ namespace u_net
         {
             InitializeComponent();
         }
+        private void Form_Load(object sender, EventArgs e)
+        {
+            F_商品管理 frmTarget = Application.OpenForms.OfType<F_商品管理>().FirstOrDefault();
+            this.検索コード.Text = frmTarget.str検索コード;
+        }
     }
 }
