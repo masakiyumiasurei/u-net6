@@ -143,10 +143,10 @@ namespace u_net
             // 
             this.コマンド終了.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.コマンド終了.ForeColor = System.Drawing.Color.Red;
-            this.コマンド終了.Location = new System.Drawing.Point(1337, 6);
+            this.コマンド終了.Location = new System.Drawing.Point(795, 5);
             this.コマンド終了.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.コマンド終了.Name = "コマンド終了";
-            this.コマンド終了.Size = new System.Drawing.Size(116, 31);
+            this.コマンド終了.Size = new System.Drawing.Size(70, 20);
             this.コマンド終了.TabIndex = 1021;
             this.コマンド終了.TabStop = false;
             this.コマンド終了.Text = "終了";
@@ -158,10 +158,10 @@ namespace u_net
             this.コマンド登録.Enabled = false;
             this.コマンド登録.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.コマンド登録.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.コマンド登録.Location = new System.Drawing.Point(1216, 6);
+            this.コマンド登録.Location = new System.Drawing.Point(725, 5);
             this.コマンド登録.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.コマンド登録.Name = "コマンド登録";
-            this.コマンド登録.Size = new System.Drawing.Size(116, 31);
+            this.コマンド登録.Size = new System.Drawing.Size(70, 20);
             this.コマンド登録.TabIndex = 1020;
             this.コマンド登録.TabStop = false;
             this.コマンド登録.Text = "登録";
@@ -180,17 +180,18 @@ namespace u_net
             // 
             // コマンド新規
             // 
+            this.コマンド新規.BackColor = System.Drawing.SystemColors.Control;
             this.コマンド新規.Enabled = false;
             this.コマンド新規.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.コマンド新規.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.コマンド新規.Location = new System.Drawing.Point(3, 5);
+            this.コマンド新規.Location = new System.Drawing.Point(5, 5);
             this.コマンド新規.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.コマンド新規.Name = "コマンド新規";
-            this.コマンド新規.Size = new System.Drawing.Size(116, 31);
+            this.コマンド新規.Size = new System.Drawing.Size(70, 20);
             this.コマンド新規.TabIndex = 1002;
             this.コマンド新規.TabStop = false;
             this.コマンド新規.Text = "新規";
-            this.コマンド新規.UseVisualStyleBackColor = true;
+            this.コマンド新規.UseVisualStyleBackColor = false;
             this.コマンド新規.Click += new System.EventHandler(this.コマンド新規_Click);
             // 
             // コマンド印刷
@@ -198,10 +199,10 @@ namespace u_net
             this.コマンド印刷.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.コマンド印刷.ForeColor = System.Drawing.Color.Blue;
             this.コマンド印刷.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.コマンド印刷.Location = new System.Drawing.Point(852, 6);
+            this.コマンド印刷.Location = new System.Drawing.Point(510, 5);
             this.コマンド印刷.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.コマンド印刷.Name = "コマンド印刷";
-            this.コマンド印刷.Size = new System.Drawing.Size(116, 31);
+            this.コマンド印刷.Size = new System.Drawing.Size(70, 20);
             this.コマンド印刷.TabIndex = 1011;
             this.コマンド印刷.TabStop = false;
             this.コマンド印刷.Text = "印刷";
@@ -210,13 +211,14 @@ namespace u_net
             // 
             // button3
             // 
+            this.button3.Enabled = false;
             this.button3.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.button3.ForeColor = System.Drawing.Color.Blue;
             this.button3.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.button3.Location = new System.Drawing.Point(731, 6);
+            this.button3.Location = new System.Drawing.Point(440, 5);
             this.button3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(116, 31);
+            this.button3.Size = new System.Drawing.Size(70, 20);
             this.button3.TabIndex = 1010;
             this.button3.TabStop = false;
             this.button3.UseVisualStyleBackColor = true;
@@ -226,10 +228,10 @@ namespace u_net
             this.コマンドメール.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.コマンドメール.ForeColor = System.Drawing.Color.Blue;
             this.コマンドメール.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.コマンドメール.Location = new System.Drawing.Point(609, 6);
+            this.コマンドメール.Location = new System.Drawing.Point(370, 5);
             this.コマンドメール.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.コマンドメール.Name = "コマンドメール";
-            this.コマンドメール.Size = new System.Drawing.Size(116, 31);
+            this.コマンドメール.Size = new System.Drawing.Size(70, 20);
             this.コマンドメール.TabIndex = 1009;
             this.コマンドメール.TabStop = false;
             this.コマンドメール.Text = "メール";
@@ -241,10 +243,10 @@ namespace u_net
             this.コマンド仕入先.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.コマンド仕入先.ForeColor = System.Drawing.Color.Blue;
             this.コマンド仕入先.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.コマンド仕入先.Location = new System.Drawing.Point(488, 6);
+            this.コマンド仕入先.Location = new System.Drawing.Point(300, 5);
             this.コマンド仕入先.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.コマンド仕入先.Name = "コマンド仕入先";
-            this.コマンド仕入先.Size = new System.Drawing.Size(116, 31);
+            this.コマンド仕入先.Size = new System.Drawing.Size(70, 20);
             this.コマンド仕入先.TabIndex = 1008;
             this.コマンド仕入先.TabStop = false;
             this.コマンド仕入先.Text = "仕入先";
@@ -256,10 +258,10 @@ namespace u_net
             this.コマンド確定.Enabled = false;
             this.コマンド確定.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.コマンド確定.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.コマンド確定.Location = new System.Drawing.Point(1095, 6);
+            this.コマンド確定.Location = new System.Drawing.Point(655, 5);
             this.コマンド確定.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.コマンド確定.Name = "コマンド確定";
-            this.コマンド確定.Size = new System.Drawing.Size(116, 31);
+            this.コマンド確定.Size = new System.Drawing.Size(70, 20);
             this.コマンド確定.TabIndex = 1007;
             this.コマンド確定.TabStop = false;
             this.コマンド確定.Text = "確定";
@@ -271,10 +273,10 @@ namespace u_net
             this.コマンド承認.Enabled = false;
             this.コマンド承認.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.コマンド承認.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.コマンド承認.Location = new System.Drawing.Point(973, 6);
+            this.コマンド承認.Location = new System.Drawing.Point(585, 5);
             this.コマンド承認.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.コマンド承認.Name = "コマンド承認";
-            this.コマンド承認.Size = new System.Drawing.Size(116, 31);
+            this.コマンド承認.Size = new System.Drawing.Size(70, 20);
             this.コマンド承認.TabIndex = 1006;
             this.コマンド承認.TabStop = false;
             this.コマンド承認.Text = "承認";
@@ -286,10 +288,10 @@ namespace u_net
             this.コマンド削除.Enabled = false;
             this.コマンド削除.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.コマンド削除.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.コマンド削除.Location = new System.Drawing.Point(367, 6);
+            this.コマンド削除.Location = new System.Drawing.Point(215, 5);
             this.コマンド削除.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.コマンド削除.Name = "コマンド削除";
-            this.コマンド削除.Size = new System.Drawing.Size(116, 31);
+            this.コマンド削除.Size = new System.Drawing.Size(70, 20);
             this.コマンド削除.TabIndex = 1005;
             this.コマンド削除.TabStop = false;
             this.コマンド削除.Text = "削除";
@@ -301,10 +303,10 @@ namespace u_net
             this.コマンド複写.Enabled = false;
             this.コマンド複写.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.コマンド複写.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.コマンド複写.Location = new System.Drawing.Point(245, 6);
+            this.コマンド複写.Location = new System.Drawing.Point(145, 5);
             this.コマンド複写.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.コマンド複写.Name = "コマンド複写";
-            this.コマンド複写.Size = new System.Drawing.Size(116, 31);
+            this.コマンド複写.Size = new System.Drawing.Size(70, 20);
             this.コマンド複写.TabIndex = 1004;
             this.コマンド複写.TabStop = false;
             this.コマンド複写.Text = "複写";
@@ -316,10 +318,10 @@ namespace u_net
             this.コマンド読込.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.コマンド読込.ForeColor = System.Drawing.Color.Blue;
             this.コマンド読込.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.コマンド読込.Location = new System.Drawing.Point(124, 6);
+            this.コマンド読込.Location = new System.Drawing.Point(75, 5);
             this.コマンド読込.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.コマンド読込.Name = "コマンド読込";
-            this.コマンド読込.Size = new System.Drawing.Size(116, 31);
+            this.コマンド読込.Size = new System.Drawing.Size(70, 20);
             this.コマンド読込.TabIndex = 1003;
             this.コマンド読込.TabStop = false;
             this.コマンド読込.Text = "読込";

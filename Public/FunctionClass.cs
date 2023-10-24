@@ -12,6 +12,8 @@ using Microsoft.Data.SqlClient;
 using Newtonsoft.Json.Linq;
 using TextBox = System.Windows.Forms.TextBox;
 using ComboBox = System.Windows.Forms.ComboBox;
+using System.Drawing.Imaging;
+using System.Drawing.Printing;
 
 namespace u_net.Public
 {
@@ -465,11 +467,11 @@ namespace u_net.Public
 
 
 
-        public static void ClearControl(Control control)
+        public static void SetControls(Control control)
         {
             foreach (Control childControl in control.Controls)
             {
-                ClearControl(childControl); // 再帰的に子コントロールを処理
+                SetControls(childControl); // 再帰的に子コントロールを処理
 
                 if (childControl is TextBox textBox)
                 {
@@ -486,6 +488,60 @@ namespace u_net.Public
             }
         }
 
+        public static void CaptureScreen(string outputPath)
+        {
+            // 画面のサイズを取得
+            Rectangle bounds = Screen.GetBounds(Point.Empty);
+
+            // スクリーンショットを撮るためのBitmapオブジェクトを作成
+            using (Bitmap bitmap = new Bitmap(bounds.Width, bounds.Height))
+            {
+                using (Graphics g = Graphics.FromImage(bitmap))
+                {
+                    g.CopyFromScreen(Point.Empty, Point.Empty, bounds.Size);
+                }
+
+                // デスクトップに保存
+                bitmap.Save(outputPath, ImageFormat.Png);
+            }
+        }
+
+        public static void CaptureActiveForm(string outputPath)
+        {            // アクティブなフォームを取得
+            Form activeForm = Form.ActiveForm;
+
+            if (activeForm != null)
+            {
+                // アクティブなフォームのサイズを取得
+                Rectangle bounds = activeForm.Bounds;
+
+                // スクリーンショットを撮るためのBitmapオブジェクトを作成
+                using (Bitmap bitmap = new Bitmap(bounds.Width, bounds.Height))
+                {
+                    using (Graphics g = Graphics.FromImage(bitmap))
+                    {
+                        g.CopyFromScreen(activeForm.Location, Point.Empty, bounds.Size);
+                    }
+
+                    // ファイルに保存
+                    bitmap.Save(outputPath, ImageFormat.Png);
+                }
+            }
+            else
+            {
+                // アクティブなフォームがない場合のエラーハンドリング
+                MessageBox.Show("アクティブなフォームが見つかりません。");
+            }
+        }
+
+        public static void PrintScreen(string imagePath)
+        {
+            PrintDocument printDocument = new PrintDocument();
+            printDocument.PrintPage += (sender, e) =>
+            {
+                Image image = Image.FromFile(imagePath);
+                e.Graphics.DrawImage(image, e.MarginBounds);
+            };
         //省略されたコードを補完する
         // 戻り値 → 完全形のコード エラーの時はデフォルト値を返す
         public static string FormatCode(string HeaderString, string AbbreviatedCode)
@@ -498,10 +554,6 @@ namespace u_net.Public
                 int intHeaderLen = HeaderString.Length;
                 string strBody;
 
-                if (!AbbreviatedCode.StartsWith(HeaderString))
-                {
-                    AbbreviatedCode = HeaderString + AbbreviatedCode;
-                }
 
                 strBody = Math.Abs(long.Parse(AbbreviatedCode.Substring(intHeaderLen))).ToString("00000000");
                 return HeaderString + strBody.Substring(0, 8);

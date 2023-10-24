@@ -14,6 +14,8 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Newtonsoft.Json.Linq;
+using System.Drawing.Imaging;
+using System.Drawing.Printing;
 
 namespace u_net
 {
@@ -114,7 +116,7 @@ namespace u_net
             try
             {
             // 各コントロール値を初期化
-                FunctionClass.ClearControl(this);
+                FunctionClass.SetControls(this);
 
                 CommonConnect();
 
@@ -190,7 +192,7 @@ namespace u_net
                 bool result = false;
 
                 // 各コントロールの値をクリア
-                FunctionClass.ClearControl(this);
+                FunctionClass.SetControls(this);
 
                 // 編集による変更がない状態へ遷移
                 ChangedData(false);
@@ -1089,8 +1091,19 @@ namespace u_net
 
         private void コマンド印刷_Click(object sender, EventArgs e)
         {
+            // デスクトップフォルダのパスを取得
+            string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
 
+            // 画面のキャプチャをデスクトップに保存
+            string screenshotFileName = "screenshot.png";
+            string screenshotFilePath = Path.Combine(desktopPath, screenshotFileName);
+            FunctionClass.CaptureActiveForm(screenshotFilePath);
+
+            // 印刷ダイアログを表示
+            FunctionClass.PrintScreen(screenshotFilePath);
         }
+
+        
 
         private void コマンド承認_Click(object sender, EventArgs e)
         {
