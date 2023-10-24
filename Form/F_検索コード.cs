@@ -14,16 +14,18 @@ namespace u_net
 {
     public partial class F_検索コード : Form
     {
+        object Obj;
         public string str検索コード;
         public string formName;
         public string _callerFormName;
         public string _検索コード;
 
         //Form frmTarget;
-        public F_検索コード(string callerFormName , string 検索コード)
+        public F_検索コード(object o, string 検索コード)　　//(string callerFormName, string 検索コード)
         {
-            _callerFormName = callerFormName;
+            //_callerFormName = callerFormName;
             _検索コード = 検索コード;
+            Obj = o;
             InitializeComponent();
         }
         private void Form_Load(object sender, EventArgs e)
@@ -34,23 +36,25 @@ namespace u_net
 
         private void 検索ボタン_Click(object sender, EventArgs e)
         {
-            switch (_callerFormName)
-            {
-                case "F_商品管理":
-                    //F_商品管理 frmTarget = Application.OpenForms.OfType<F_商品管理>().FirstOrDefault();
-                    //商品管理はSearchCodeメソッドがないのでエラー
-                    //frmTarget.SearchCode();
-                    MessageBox.Show("商品管理では検索コードでの検索が出来ません");
-                    break;
+            //switch (_callerFormName)
+            //{
+            //    case "F_商品管理":
+            //        //F_商品管理 frmTarget = Application.OpenForms.OfType<F_商品管理>().FirstOrDefault();
+            //        //商品管理はSearchCodeメソッドがないのでエラー
+            //        //frmTarget.SearchCode();
+            //        MessageBox.Show("商品管理では検索コードでの検索が出来ません");
+            //        break;
 
-                case "F_":
-                    //F_ frmTarget2 = Application.OpenForms.OfType<F_商品>().FirstOrDefault();
-                    //frmTarget2.SearchCode();
-                    break;
-                default:
-                    MessageBox.Show(_callerFormName + "に対応する処理はありません。");
-                    break;
-            }
+            //    case "F_":
+            //        //F_ frmTarget2 = Application.OpenForms.OfType<F_商品>().FirstOrDefault();
+            //        //frmTarget2.SearchCode();
+            //        break;
+            //    default:
+            //        MessageBox.Show(_callerFormName + "に対応する処理はありません。");
+            //        break;
+            //}
+            MidForm parentform = (MidForm)Obj;
+            parentform.SearchCode(this.検索コード.Text);
         }
 
         private void 検索コード_KeyDown(object sender, KeyEventArgs e)
@@ -79,10 +83,12 @@ namespace u_net
 
         private void キャンセルボタン_Click(object sender, EventArgs e)
         {
-
             this.Close();
         }
 
-        
+        private void 検索コード_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.KeyChar = (char)FunctionClass.ChangeBig((int)e.KeyChar);
+        }
     }
 }

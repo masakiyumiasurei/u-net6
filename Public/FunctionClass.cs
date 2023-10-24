@@ -572,7 +572,7 @@ namespace u_net.Public
         }
 
         // 入力英小文字を英大文字に変換する
-        static int ChangeBig(int intKey)
+        public static int ChangeBig(int intKey)
         {
             string strCharacter;
 

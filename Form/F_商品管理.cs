@@ -14,7 +14,7 @@ using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace u_net
 {
-    public partial class F_商品管理 : Form
+    public partial class F_商品管理 : MidForm
     {
         public string str検索コード = "ORD";
         public string str基本型式名 = "";
@@ -43,6 +43,11 @@ namespace u_net
             string connectionString = connectionInfo.Getconnect();
             cn = new SqlConnection(connectionString);
             cn.Open();
+        }
+        public override void SearchCode(string searchcode)
+        {
+            MessageBox.Show(searchcode);
+            //this.textBox.Text = s;
         }
         private void InitializeFilter()
         {
@@ -438,7 +443,7 @@ namespace u_net
         private void コマンド検索_Click(object sender, EventArgs e)
         {
             str検索コード = "ORD";
-            F_検索コード form = new F_検索コード("F_商品管理", str検索コード);
+            F_検索コード form = new F_検索コード(this, str検索コード);
             form.Show();
         }
 
