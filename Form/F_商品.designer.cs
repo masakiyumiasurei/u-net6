@@ -151,7 +151,6 @@ namespace u_net
             m商品分類TableAdapter = new uiDataSetTableAdapters.M商品分類TableAdapter();
             comboBox売上区分TableAdapter = new uiDataSetTableAdapters.ComboBox売上区分TableAdapter();
             tableAdapterManager = new uiDataSetTableAdapters.TableAdapterManager();
-            
             ((System.ComponentModel.ISupportInitialize)M商品BindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)uiDataSet).BeginInit();
             ((System.ComponentModel.ISupportInitialize)comboBox売上区分bindingSource).BeginInit();
@@ -165,7 +164,6 @@ namespace u_net
             panel1.SuspendLayout();
             statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)v商品ヘッダBindingSource).BeginInit();
-            
             SuspendLayout();
             // 
             // M商品BindingSource
@@ -1292,7 +1290,6 @@ namespace u_net
             tableAdapterManager.M商品明細TableAdapter = null;
             tableAdapterManager.UpdateOrder = uiDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             // 
-             // 
             // F_商品
             // 
             AutoScaleDimensions = new SizeF(8F, 12F);
@@ -1371,7 +1368,6 @@ namespace u_net
             statusStrip1.ResumeLayout(false);
             statusStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)v商品ヘッダBindingSource).EndInit();
-            
             ResumeLayout(false);
             PerformLayout();
         }
@@ -1517,7 +1513,7 @@ namespace u_net
         private DataGridViewTextBoxColumn 構成番号DataGridViewTextBoxColumn;
         private uiDataSetTableAdapters.combBoxMシリーズTableAdapter combBoxMシリーズTableAdapter;
         private uiDataSetTableAdapters.TableAdapterManager tableAdapterManager;
-        
+
     }
 }
 

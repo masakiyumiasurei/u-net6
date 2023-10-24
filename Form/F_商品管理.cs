@@ -438,7 +438,7 @@ namespace u_net
         private void コマンド検索_Click(object sender, EventArgs e)
         {
             str検索コード = "ORD";
-            F_検索コード form = new F_検索コード();
+            F_検索コード form = new F_検索コード("F_商品管理", str検索コード);
             form.Show();
         }
 

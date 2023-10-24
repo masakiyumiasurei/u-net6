@@ -19,7 +19,7 @@ namespace u_net
         private Control previousControl;
         private SqlConnection cn;
         private SqlTransaction tx;
-        public string args="";
+        public string args = "";
 
         public F_商品()
         {
@@ -150,7 +150,7 @@ namespace u_net
                 //SetControls(this, null);
                 if (!string.IsNullOrEmpty(args))
                 {
-                    this.商品コード.Text = args; 
+                    this.商品コード.Text = args;
                 }
 
                 FunctionClass.LockData(this, true, "商品コード");
@@ -202,7 +202,7 @@ namespace u_net
                 try
                 {
                     // M商品データを保存
-                    
+
                     string strwhere = " 商品コード='" + this.商品コード.Text + "' and Revision=" + this.Revision.Text;
 
                     if (!DataUpdater.UpdateOrInsertDataFrom(this, cn, "M商品", strwhere, "商品コード", transaction))

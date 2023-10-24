@@ -486,7 +486,50 @@ namespace u_net.Public
             }
         }
 
+        //省略されたコードを補完する
+        // 戻り値 → 完全形のコード エラーの時はデフォルト値を返す
+        public static string FormatCode(string HeaderString, string AbbreviatedCode)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(AbbreviatedCode))
+                    return string.Empty;
 
+                int intHeaderLen = HeaderString.Length;
+                string strBody;
 
+                if (!AbbreviatedCode.StartsWith(HeaderString))
+                {
+                    AbbreviatedCode = HeaderString + AbbreviatedCode;
+                }
+
+                strBody = Math.Abs(long.Parse(AbbreviatedCode.Substring(intHeaderLen))).ToString("00000000");
+                return HeaderString + strBody.Substring(0, 8);
+            }
+            catch (Exception)
+            {
+                return HeaderString + "00000000";
+            }
+        }
+
+        //指定された値がnullまたはDBNull.Valueの場合に、デフォルトの値（通常は0や空の文字列など）を返す
+        public static T Nz<T>(T value, T defaultValue)
+        {
+            return (value == null || value.Equals(DBNull.Value)) ? defaultValue : value;
+        }
+
+        // 入力英小文字を英大文字に変換する
+        static int ChangeBig(int intKey)
+        {
+            string strCharacter;
+
+            if (intKey < 21)
+            {
+                return intKey;
+            }
+
+            strCharacter = ((char)intKey).ToString();
+            return (int)char.ToUpper(strCharacter[0]);
+        }
     }
 }
