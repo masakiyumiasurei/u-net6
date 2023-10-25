@@ -240,6 +240,7 @@
             this.d00.TabIndex = 13;
             this.d00.Text = "1";
             this.d00.UseVisualStyleBackColor = true;
+            this.d00.Click += new System.EventHandler(this.d00_Click);
             // 
             // d01
             // 
@@ -250,6 +251,7 @@
             this.d01.TabIndex = 14;
             this.d01.Text = "1";
             this.d01.UseVisualStyleBackColor = true;
+            this.d01.Click += new System.EventHandler(this.d01_Click);
             // 
             // d02
             // 
@@ -260,6 +262,7 @@
             this.d02.TabIndex = 15;
             this.d02.Text = "1";
             this.d02.UseVisualStyleBackColor = true;
+            this.d02.Click += new System.EventHandler(this.d02_Click);
             // 
             // d03
             // 
@@ -270,6 +273,7 @@
             this.d03.TabIndex = 16;
             this.d03.Text = "1";
             this.d03.UseVisualStyleBackColor = true;
+            this.d03.Click += new System.EventHandler(this.d03_Click);
             // 
             // d04
             // 
@@ -280,6 +284,7 @@
             this.d04.TabIndex = 17;
             this.d04.Text = "1";
             this.d04.UseVisualStyleBackColor = true;
+            this.d04.Click += new System.EventHandler(this.d04_Click);
             // 
             // d05
             // 
@@ -290,6 +295,7 @@
             this.d05.TabIndex = 18;
             this.d05.Text = "1";
             this.d05.UseVisualStyleBackColor = true;
+            this.d05.Click += new System.EventHandler(this.d05_Click);
             // 
             // d06
             // 
@@ -300,6 +306,7 @@
             this.d06.TabIndex = 19;
             this.d06.Text = "1";
             this.d06.UseVisualStyleBackColor = true;
+            this.d06.Click += new System.EventHandler(this.d06_Click);
             // 
             // d16
             // 
@@ -310,6 +317,7 @@
             this.d16.TabIndex = 26;
             this.d16.Text = "1";
             this.d16.UseVisualStyleBackColor = true;
+            this.d16.Click += new System.EventHandler(this.d16_Click);
             // 
             // d15
             // 
@@ -320,6 +328,7 @@
             this.d15.TabIndex = 25;
             this.d15.Text = "1";
             this.d15.UseVisualStyleBackColor = true;
+            this.d15.Click += new System.EventHandler(this.d15_Click);
             // 
             // d14
             // 
@@ -330,6 +339,7 @@
             this.d14.TabIndex = 24;
             this.d14.Text = "1";
             this.d14.UseVisualStyleBackColor = true;
+            this.d14.Click += new System.EventHandler(this.d14_Click);
             // 
             // d13
             // 
@@ -340,6 +350,7 @@
             this.d13.TabIndex = 23;
             this.d13.Text = "1";
             this.d13.UseVisualStyleBackColor = true;
+            this.d13.Click += new System.EventHandler(this.d13_Click);
             // 
             // d12
             // 
@@ -350,6 +361,7 @@
             this.d12.TabIndex = 22;
             this.d12.Text = "1";
             this.d12.UseVisualStyleBackColor = true;
+            this.d12.Click += new System.EventHandler(this.d12_Click);
             // 
             // d11
             // 
@@ -360,6 +372,7 @@
             this.d11.TabIndex = 21;
             this.d11.Text = "1";
             this.d11.UseVisualStyleBackColor = true;
+            this.d11.Click += new System.EventHandler(this.d11_Click);
             // 
             // d10
             // 
@@ -370,6 +383,7 @@
             this.d10.TabIndex = 20;
             this.d10.Text = "1";
             this.d10.UseVisualStyleBackColor = true;
+            this.d10.Click += new System.EventHandler(this.d10_Click);
             // 
             // d26
             // 
@@ -380,6 +394,7 @@
             this.d26.TabIndex = 33;
             this.d26.Text = "1";
             this.d26.UseVisualStyleBackColor = true;
+            this.d26.Click += new System.EventHandler(this.d26_Click);
             // 
             // d25
             // 
@@ -390,6 +405,7 @@
             this.d25.TabIndex = 32;
             this.d25.Text = "1";
             this.d25.UseVisualStyleBackColor = true;
+            this.d25.Click += new System.EventHandler(this.d25_Click);
             // 
             // d24
             // 
@@ -400,6 +416,7 @@
             this.d24.TabIndex = 31;
             this.d24.Text = "1";
             this.d24.UseVisualStyleBackColor = true;
+            this.d24.Click += new System.EventHandler(this.d24_Click);
             // 
             // d23
             // 
@@ -410,6 +427,7 @@
             this.d23.TabIndex = 30;
             this.d23.Text = "1";
             this.d23.UseVisualStyleBackColor = true;
+            this.d23.Click += new System.EventHandler(this.d23_Click);
             // 
             // d22
             // 
@@ -420,6 +438,7 @@
             this.d22.TabIndex = 29;
             this.d22.Text = "1";
             this.d22.UseVisualStyleBackColor = true;
+            this.d22.Click += new System.EventHandler(this.d22_Click);
             // 
             // d21
             // 
@@ -430,6 +449,7 @@
             this.d21.TabIndex = 28;
             this.d21.Text = "1";
             this.d21.UseVisualStyleBackColor = true;
+            this.d21.Click += new System.EventHandler(this.d21_Click);
             // 
             // d20
             // 
@@ -440,6 +460,7 @@
             this.d20.TabIndex = 27;
             this.d20.Text = "1";
             this.d20.UseVisualStyleBackColor = true;
+            this.d20.Click += new System.EventHandler(this.d20_Click);
             // 
             // d36
             // 
@@ -450,6 +471,7 @@
             this.d36.TabIndex = 40;
             this.d36.Text = "1";
             this.d36.UseVisualStyleBackColor = true;
+            this.d36.Click += new System.EventHandler(this.d36_Click);
             // 
             // d35
             // 
@@ -460,6 +482,7 @@
             this.d35.TabIndex = 39;
             this.d35.Text = "1";
             this.d35.UseVisualStyleBackColor = true;
+            this.d35.Click += new System.EventHandler(this.d35_Click);
             // 
             // d34
             // 
@@ -470,6 +493,7 @@
             this.d34.TabIndex = 38;
             this.d34.Text = "1";
             this.d34.UseVisualStyleBackColor = true;
+            this.d34.Click += new System.EventHandler(this.d34_Click);
             // 
             // d33
             // 
@@ -480,6 +504,7 @@
             this.d33.TabIndex = 37;
             this.d33.Text = "1";
             this.d33.UseVisualStyleBackColor = true;
+            this.d33.Click += new System.EventHandler(this.d33_Click);
             // 
             // d32
             // 
@@ -490,6 +515,7 @@
             this.d32.TabIndex = 36;
             this.d32.Text = "1";
             this.d32.UseVisualStyleBackColor = true;
+            this.d32.Click += new System.EventHandler(this.d32_Click);
             // 
             // d31
             // 
@@ -500,6 +526,7 @@
             this.d31.TabIndex = 35;
             this.d31.Text = "1";
             this.d31.UseVisualStyleBackColor = true;
+            this.d31.Click += new System.EventHandler(this.d31_Click);
             // 
             // d30
             // 
@@ -510,6 +537,7 @@
             this.d30.TabIndex = 34;
             this.d30.Text = "1";
             this.d30.UseVisualStyleBackColor = true;
+            this.d30.Click += new System.EventHandler(this.d30_Click);
             // 
             // d46
             // 
@@ -520,6 +548,7 @@
             this.d46.TabIndex = 47;
             this.d46.Text = "1";
             this.d46.UseVisualStyleBackColor = true;
+            this.d46.Click += new System.EventHandler(this.d46_Click);
             // 
             // d45
             // 
@@ -530,6 +559,7 @@
             this.d45.TabIndex = 46;
             this.d45.Text = "1";
             this.d45.UseVisualStyleBackColor = true;
+            this.d45.Click += new System.EventHandler(this.d45_Click);
             // 
             // d44
             // 
@@ -540,6 +570,7 @@
             this.d44.TabIndex = 45;
             this.d44.Text = "1";
             this.d44.UseVisualStyleBackColor = true;
+            this.d44.Click += new System.EventHandler(this.d44_Click);
             // 
             // d43
             // 
@@ -550,6 +581,7 @@
             this.d43.TabIndex = 44;
             this.d43.Text = "1";
             this.d43.UseVisualStyleBackColor = true;
+            this.d43.Click += new System.EventHandler(this.d43_Click);
             // 
             // d42
             // 
@@ -560,6 +592,7 @@
             this.d42.TabIndex = 43;
             this.d42.Text = "1";
             this.d42.UseVisualStyleBackColor = true;
+            this.d42.Click += new System.EventHandler(this.d42_Click);
             // 
             // d41
             // 
@@ -570,6 +603,7 @@
             this.d41.TabIndex = 42;
             this.d41.Text = "1";
             this.d41.UseVisualStyleBackColor = true;
+            this.d41.Click += new System.EventHandler(this.d41_Click);
             // 
             // d40
             // 
@@ -580,6 +614,7 @@
             this.d40.TabIndex = 41;
             this.d40.Text = "1";
             this.d40.UseVisualStyleBackColor = true;
+            this.d40.Click += new System.EventHandler(this.d40_Click);
             // 
             // d56
             // 
@@ -590,6 +625,7 @@
             this.d56.TabIndex = 54;
             this.d56.Text = "1";
             this.d56.UseVisualStyleBackColor = true;
+            this.d56.Click += new System.EventHandler(this.d56_Click);
             // 
             // d55
             // 
@@ -600,6 +636,7 @@
             this.d55.TabIndex = 53;
             this.d55.Text = "1";
             this.d55.UseVisualStyleBackColor = true;
+            this.d55.Click += new System.EventHandler(this.d55_Click);
             // 
             // d54
             // 
@@ -610,6 +647,7 @@
             this.d54.TabIndex = 52;
             this.d54.Text = "1";
             this.d54.UseVisualStyleBackColor = true;
+            this.d54.Click += new System.EventHandler(this.d54_Click);
             // 
             // d53
             // 
@@ -620,6 +658,7 @@
             this.d53.TabIndex = 51;
             this.d53.Text = "1";
             this.d53.UseVisualStyleBackColor = true;
+            this.d53.Click += new System.EventHandler(this.d53_Click);
             // 
             // d52
             // 
@@ -630,6 +669,7 @@
             this.d52.TabIndex = 50;
             this.d52.Text = "1";
             this.d52.UseVisualStyleBackColor = true;
+            this.d52.Click += new System.EventHandler(this.d52_Click);
             // 
             // d51
             // 
@@ -640,6 +680,7 @@
             this.d51.TabIndex = 49;
             this.d51.Text = "1";
             this.d51.UseVisualStyleBackColor = true;
+            this.d51.Click += new System.EventHandler(this.d51_Click);
             // 
             // d50
             // 
@@ -650,6 +691,7 @@
             this.d50.TabIndex = 48;
             this.d50.Text = "1";
             this.d50.UseVisualStyleBackColor = true;
+            this.d50.Click += new System.EventHandler(this.d50_Click);
             // 
             // SetTodayButton
             // 
@@ -732,6 +774,7 @@
             this.Controls.Add(this.cmdNextYear);
             this.Controls.Add(this.cmdPrevYear);
             this.Name = "F_カレンダー";
+            this.Load += new System.EventHandler(this.Form_Open);
             this.ResumeLayout(false);
             this.PerformLayout();
 
