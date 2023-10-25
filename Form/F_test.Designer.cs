@@ -28,34 +28,58 @@
         /// </summary>
         private void InitializeComponent()
         {
-            テスト = new Button();
-            SuspendLayout();
+            this.日付選択 = new System.Windows.Forms.Button();
+            this.日付 = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.SuspendLayout();
             // 
-            // テスト
+            // 日付選択
             // 
-            テスト.Location = new Point(265, 92);
-            テスト.Margin = new Padding(4, 5, 4, 5);
-            テスト.Name = "テスト";
-            テスト.Size = new Size(124, 72);
-            テスト.TabIndex = 0;
-            テスト.Text = "button1";
-            テスト.UseVisualStyleBackColor = true;
-            テスト.Click += テスト_Click;
+            this.日付選択.Location = new System.Drawing.Point(358, 289);
+            this.日付選択.Margin = new System.Windows.Forms.Padding(4);
+            this.日付選択.Name = "日付選択";
+            this.日付選択.Size = new System.Drawing.Size(29, 23);
+            this.日付選択.TabIndex = 0;
+            this.日付選択.Text = "▼";
+            this.日付選択.UseVisualStyleBackColor = true;
+            this.日付選択.Click += new System.EventHandler(this.日付選択_Click);
+            // 
+            // 日付
+            // 
+            this.日付.Location = new System.Drawing.Point(232, 289);
+            this.日付.Name = "日付";
+            this.日付.Size = new System.Drawing.Size(126, 23);
+            this.日付.TabIndex = 10002;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(195, 293);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(31, 15);
+            this.label1.TabIndex = 10003;
+            this.label1.Text = "日付";
             // 
             // F_test
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1067, 750);
-            Controls.Add(テスト);
-            Margin = new Padding(4, 5, 4, 5);
-            Name = "F_test";
-            Text = "main";
-            ResumeLayout(false);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(934, 562);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.日付);
+            this.Controls.Add(this.日付選択);
+            this.Margin = new System.Windows.Forms.Padding(4);
+            this.Name = "F_test";
+            this.Text = "main";
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         #endregion
 
-        private System.Windows.Forms.Button テスト;
+        private System.Windows.Forms.Button 日付選択;
+        private TextBox 日付;
+        private Label label1;
     }
 }
