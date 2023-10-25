@@ -10,6 +10,7 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using u_net.Public;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 
 namespace u_net
@@ -846,14 +847,28 @@ namespace u_net
             MessageBox.Show(商品コード.Text);
             MessageBox.Show(商品コード.SelectedValue.ToString());
         }
-
+          
         private void 商品コード_TextChanged(object sender, EventArgs e)
         {
+            
+            //商品コードの更新後処理でレコードの値を表示する
+            this.コマンド複写.Enabled = true;
+            this.コマンド削除.Enabled = true;
+            try
+            {
+                string strSQL = "SELECT * FROM V商品ヘッダ WHERE 商品コード='" + this.商品コード.Text + "'";
+                Connect();
+                VariableSet.SetTable2Form(this, strSQL, cn);
+                
+                this.M商品明細TableAdapter.Fill(this.uiDataSet.M商品明細, this.商品コード.Text);
 
-            //  this.v商品ヘッダTableAdapter.Fill(this.uiDataSet.V商品ヘッダ, this.商品コード.Text);
-
+            }
+            catch
+            {
+                MessageBox.Show("正しく読み込みが出来ませんでした");
+                cn.Close();
+            }
         }
-
     }
 
 

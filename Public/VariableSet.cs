@@ -38,8 +38,8 @@ namespace u_net.Public
                         }
                         else
                         {
-                            // フィールド名とコントロール名が一致しない場合、エラー処理を行うか、
-                            // または無視するかはアプリケーションの要件に合わせて実装してください
+                            // フィールド名とコントロール名が一致しない場合、エラー処理を行う
+                            
                             Debug.Print("SetForm2Table - フィールド " + fieldName + " のコントロールがフォーム上で見つかりません。");
                         }
                     }
@@ -52,32 +52,63 @@ namespace u_net.Public
         }
 
 
-        public static void SetTable2Form(Form formObject, SqlDataReader reader)
+        public static void SetTable2Form(Form formObject, string sourceSQL, SqlConnection cn)
         {
             try
             {
-                if (reader == null || reader.IsClosed) return; // データがない場合や閉じている場合は何もしない
+                if (string.IsNullOrWhiteSpace(sourceSQL) || cn == null) return; // クエリまたは接続が無効な場合は何もしない
 
-                // データベースの列名をフォームのコントロール名と一致させておく必要があります
-                for (int i = 0; i < reader.FieldCount; i++)
+                using (SqlCommand command = new SqlCommand(sourceSQL, cn)) 
+
+                using (SqlDataReader reader = command.ExecuteReader())
                 {
-                    string columnName = reader.GetName(i);
-                    if (formObject.Controls.ContainsKey(columnName))
+                    if (reader.HasRows)
                     {
-                        // フォーム内のコントロールにデータを設定
-                        Control control = formObject.Controls[columnName];
-                        control.Text = reader[columnName].ToString();
+                        reader.Read();
+
+                        // データベースの列名をフォームのコントロール名と一致させておく
+                        for (int i = 0; i < reader.FieldCount; i++)
+                        {
+                            string columnName = reader.GetName(i);
+
+                            if (formObject.Controls.ContainsKey(columnName))
+                            {
+                                Control control = formObject.Controls[columnName];
+
+                                // TextBoxとComboBoxで処理を分ける
+                                if (control is TextBox)
+                                {
+                                    control.Text = reader[columnName].ToString();
+                                }
+                                else if (control is ComboBox)
+                                {
+                                    ComboBox comboBox = (ComboBox)control;
+                                    comboBox.SelectedValue = reader[columnName];
+                                }
+                                else if (control is CheckBox)
+                                {
+                                    CheckBox checkBox = (CheckBox)control;
+                                    bool value;
+                                    if (reader[columnName] == DBNull.Value || Convert.ToInt32(reader[columnName]) == 0)
+                                    {
+                                        checkBox.Checked = false; // 値が0またはnullの場合、チェックを外す
+                                    }
+                                    else
+                                    {
+                                        checkBox.Checked = true; // それ以外の場合、チェックを入れる
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
+                
             }
             catch (Exception ex)
             {
-                // エラーハンドリングを行うことをお勧めします
-                Console.WriteLine("SetTable2Form Error: " + ex.Message);
+                MessageBox.Show("正しく読み込みが出来ませんでした");
             }
         }
-
-
 
 
         public static void SetControls(Control control)
