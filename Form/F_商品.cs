@@ -879,6 +879,11 @@ namespace u_net
                 cn.Close();
             }
         }
+
+        private void 数量単位コード_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
     //public class DataGridViewEx : DataGridView
     //{

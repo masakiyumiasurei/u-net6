@@ -657,6 +657,7 @@ namespace u_net
             数量単位コード.Size = new Size(160, 20);
             数量単位コード.TabIndex = 190;
             数量単位コード.ValueMember = "単位コード";
+            数量単位コード.SelectedIndexChanged += 数量単位コード_SelectedIndexChanged;
             // 
             // 商品コード
             // 
