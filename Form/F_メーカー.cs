@@ -33,7 +33,6 @@ namespace u_net
 
             InitializeComponent();
 
-
         }
         public void Connect()
         {
@@ -51,14 +50,11 @@ namespace u_net
             cn.Open();
         }
 
-
-
         //SqlConnection cn = new SqlConnection();
         SqlCommand cmd = new SqlCommand();
         DataSet ds = new DataSet();
         DataTable dt = new DataTable();
         SqlDataAdapter adapter = new SqlDataAdapter();
-
 
         private void Form_Load(object sender, EventArgs e)
         {
@@ -142,7 +138,6 @@ namespace u_net
                 this.コマンド登録.Enabled = false;
 
 
-
                 return true;
             }
             catch (Exception ex)
@@ -183,7 +178,6 @@ namespace u_net
                 // エラー処理が必要に応じて実装
             }
         }
-
 
         private bool GoModifyMode()
         {

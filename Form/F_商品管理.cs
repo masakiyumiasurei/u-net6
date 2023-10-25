@@ -25,12 +25,11 @@ namespace u_net
         public int intComposedChipMount = 0;
         public int intIsUnit = 0;
         public int lngDiscontinued = 0;
-        public int lngDeleted = 0;
-        
-
+        public int lngDeleted = 0;      
 
         int intWindowHeight = 0;
         int intWindowWidth = 0;
+
         private Control? previousControl;
         private SqlConnection? cn;
         public F_商品管理()
@@ -47,6 +46,7 @@ namespace u_net
         public override void SearchCode(string searchcode)
         {
             MessageBox.Show(searchcode);
+            DoUpdate();
             //this.textBox.Text = s;
         }
         private void InitializeFilter()
@@ -308,6 +308,7 @@ namespace u_net
             }
         }
 
+        //ダブルクリックで商品フォームを開く　商品コードを渡す
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             //if (e.Button != MouseButtons.Left) return; // 左ボタンのダブルクリック以外は無視

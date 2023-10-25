@@ -36,22 +36,15 @@ namespace u_net
             cn = new SqlConnection(connectionString);
             cn.Open();
         }
-
-
-        //SqlConnection cn = new SqlConnection();
+        
         SqlCommand cmd = new SqlCommand();
         DataSet ds = new DataSet();
         DataTable dt = new DataTable();
         SqlDataAdapter adapter = new SqlDataAdapter();
-
-        int new_cnt;
-        int kokyaku_id;
-        string kokyaku_cd;
-        int tantou;
+             
 
         private void Form_Load(object sender, EventArgs e)
         {
-
 
             this.combBox商品コードTableAdapter.Fill(this.uiDataSet.CombBox商品コード);
             this.combBoxMシリーズTableAdapter.Fill(this.uiDataSet.Mシリーズ);
@@ -59,10 +52,15 @@ namespace u_net
             this.comboBox売上区分TableAdapter.Fill(this.uiDataSet.M売上区分);
             this.m単位TableAdapter.Fill(this.uiDataSet.M単位);
             this.comboBoxManufactureFlowTableAdapter.Fill(this.uiDataSet.ManufactureFlow);
+            int intWindowHeight = this.Height;
+            int intWindowWidth = this.Width;
 
             previousControl = null;
+
             try
             {
+                this.SuspendLayout();
+
                 if (string.IsNullOrEmpty(args))
                 {
                     if (!GoNewMode())
@@ -82,19 +80,21 @@ namespace u_net
             {
                 MessageBox.Show("初期化に失敗しました。", "エラー");
             }
+            finally
+            {
+                this.ResumeLayout();
+            }
         }
 
         private bool GoNewMode()
         {
             try
             {
+                // 各コントロール値を初期化
+                VariableSet.SetControls(this);
                 string strSQL;
-                Connect(); // Connect メソッドの呼び出し
-
-                //FunctionClass functionClass = new FunctionClass(); staticに変更
-
-                // ヘッダ部を初期化
-                //SetControls(this, null);
+                Connect();
+                
                 //バインドソースの新規追加
                 //this.M商品BindingSource.AddNew();
 
