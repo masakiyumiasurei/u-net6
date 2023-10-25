@@ -858,14 +858,14 @@ namespace u_net
             {
                 string strSQL = "SELECT * FROM V商品ヘッダ WHERE 商品コード='" + this.商品コード.Text + "'";
                 Connect();
-                VariableSet.SetTable2Form(this, strSQL, cn);
+                if (!VariableSet.SetTable2Form(this, strSQL, cn)) return;
                 
                 this.M商品明細TableAdapter.Fill(this.uiDataSet.M商品明細, this.商品コード.Text);
 
             }
-            catch
+            catch(Exception ex)
             {
-                MessageBox.Show("正しく読み込みが出来ませんでした");
+                MessageBox.Show("正しく読み込みが出来ませんでした" + ex.Message);
                 cn.Close();
             }
         }

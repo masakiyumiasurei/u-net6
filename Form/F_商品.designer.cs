@@ -151,6 +151,8 @@ namespace u_net
             m商品分類TableAdapter = new uiDataSetTableAdapters.M商品分類TableAdapter();
             comboBox売上区分TableAdapter = new uiDataSetTableAdapters.ComboBox売上区分TableAdapter();
             tableAdapterManager = new uiDataSetTableAdapters.TableAdapterManager();
+            label18 = new Label();
+            label19 = new Label();
             ((System.ComponentModel.ISupportInitialize)M商品BindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)uiDataSet).BeginInit();
             ((System.ComponentModel.ISupportInitialize)comboBox売上区分bindingSource).BeginInit();
@@ -588,22 +590,22 @@ namespace u_net
             // statusStrip1
             // 
             statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1, toolStripStatusLabel2 });
-            statusStrip1.Location = new Point(0, 619);
+            statusStrip1.Location = new Point(0, 622);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Padding = new Padding(1, 0, 19, 0);
-            statusStrip1.Size = new Size(1469, 25);
+            statusStrip1.Size = new Size(1469, 22);
             statusStrip1.TabIndex = 110;
             statusStrip1.Text = "statusStrip1";
             // 
             // toolStripStatusLabel1
             // 
             toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            toolStripStatusLabel1.Size = new Size(0, 20);
+            toolStripStatusLabel1.Size = new Size(0, 17);
             // 
             // toolStripStatusLabel2
             // 
             toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            toolStripStatusLabel2.Size = new Size(111, 20);
+            toolStripStatusLabel2.Size = new Size(89, 17);
             toolStripStatusLabel2.Text = "各種項目の説明";
             // 
             // button1
@@ -1090,12 +1092,11 @@ namespace u_net
             CustomerSerialNumberRequired.CheckAlign = ContentAlignment.MiddleRight;
             CustomerSerialNumberRequired.DataBindings.Add(new Binding("Checked", M商品BindingSource, "CustomerSerialNumberRequired", true));
             CustomerSerialNumberRequired.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            CustomerSerialNumberRequired.Location = new Point(55, 233);
+            CustomerSerialNumberRequired.Location = new Point(186, 235);
             CustomerSerialNumberRequired.Margin = new Padding(4, 3, 4, 3);
             CustomerSerialNumberRequired.Name = "CustomerSerialNumberRequired";
-            CustomerSerialNumberRequired.Size = new Size(120, 16);
+            CustomerSerialNumberRequired.Size = new Size(15, 14);
             CustomerSerialNumberRequired.TabIndex = 158;
-            CustomerSerialNumberRequired.Text = "顧客シリアル必須";
             CustomerSerialNumberRequired.UseVisualStyleBackColor = true;
             // 
             // 数量単位名
@@ -1132,12 +1133,11 @@ namespace u_net
             掛率有効.AutoSize = true;
             掛率有効.CheckAlign = ContentAlignment.MiddleRight;
             掛率有効.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            掛率有効.Location = new Point(55, 211);
+            掛率有効.Location = new Point(144, 207);
             掛率有効.Margin = new Padding(4, 3, 4, 3);
             掛率有効.Name = "掛率有効";
-            掛率有効.Size = new Size(72, 16);
+            掛率有効.Size = new Size(15, 14);
             掛率有効.TabIndex = 155;
-            掛率有効.Text = "掛率有効";
             掛率有効.UseVisualStyleBackColor = true;
             // 
             // 性別label
@@ -1290,12 +1290,44 @@ namespace u_net
             tableAdapterManager.M商品明細TableAdapter = null;
             tableAdapterManager.UpdateOrder = uiDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             // 
+            // label18
+            // 
+            label18.AllowDrop = true;
+            label18.AutoEllipsis = true;
+            label18.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label18.ForeColor = SystemColors.ActiveCaptionText;
+            label18.ImageAlign = ContentAlignment.MiddleLeft;
+            label18.Location = new Point(52, 204);
+            label18.Margin = new Padding(0);
+            label18.Name = "label18";
+            label18.Size = new Size(85, 17);
+            label18.TabIndex = 193;
+            label18.Text = "掛率有効(&G)";
+            label18.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // label19
+            // 
+            label19.AllowDrop = true;
+            label19.AutoEllipsis = true;
+            label19.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label19.ForeColor = SystemColors.ActiveCaptionText;
+            label19.ImageAlign = ContentAlignment.MiddleLeft;
+            label19.Location = new Point(52, 233);
+            label19.Margin = new Padding(0);
+            label19.Name = "label19";
+            label19.Size = new Size(128, 17);
+            label19.TabIndex = 194;
+            label19.Text = "顧客シリアル必須(&I)";
+            label19.TextAlign = ContentAlignment.MiddleLeft;
+            // 
             // F_商品
             // 
             AutoScaleDimensions = new SizeF(8F, 12F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
             ClientSize = new Size(1469, 644);
+            Controls.Add(label19);
+            Controls.Add(label18);
             Controls.Add(button1);
             Controls.Add(売上区分コード);
             Controls.Add(FlowCategoryCode);
@@ -1513,7 +1545,8 @@ namespace u_net
         private DataGridViewTextBoxColumn 構成番号DataGridViewTextBoxColumn;
         private uiDataSetTableAdapters.combBoxMシリーズTableAdapter combBoxMシリーズTableAdapter;
         private uiDataSetTableAdapters.TableAdapterManager tableAdapterManager;
-
+        private Label label18;
+        private Label label19;
     }
 }
 

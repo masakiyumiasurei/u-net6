@@ -1304,30 +1304,31 @@ namespace u_net
             string strSQL;
             if (editionNumber == -1)
             {
-                strSQL = "SELECT * FROM Vメーカーヘッダ WHERE メーカーコード=@codeString";
+                strSQL = "SELECT * FROM Vメーカーヘッダ WHERE メーカーコード='" + codeString + "'";
             }
             else
             {
-                strSQL = "SELECT * FROM Vメーカーヘッダ WHERE メーカーコード=@codeString AND Revision=@editionNumber";
+                strSQL = "SELECT * FROM Vメーカーヘッダ WHERE メーカーコード'" + codeString + "' AND Revision= " + editionNumber;
             }
 
-            using (SqlCommand command = new SqlCommand(strSQL, cn))
-            {
-                command.Parameters.AddWithValue("@codeString", codeString);
-                if (editionNumber != -1)
-                {
-                    command.Parameters.AddWithValue("@editionNumber", editionNumber);
-                }
+            //using (SqlCommand command = new SqlCommand(strSQL, cn))
+            //{
+            //    command.Parameters.AddWithValue("@codeString", codeString);
+            //    if (editionNumber != -1)
+            //    {
+            //        command.Parameters.AddWithValue("@editionNumber", editionNumber);
+            //    }
 
-                using (SqlDataReader reader = command.ExecuteReader())
-                {
-                    if (reader.Read())
-                    {
-                        VariableSet.SetTable2Form(formObject, reader);
+            //    using (SqlDataReader reader = command.ExecuteReader())
+            //    {
+            //        if (reader.Read())
+            //        {
+                        //ここ修正した。
+                        VariableSet.SetTable2Form(this, strSQL, cn);
                         loadHeader = true;
-                    }
-                }
-            }
+            //        }
+            //    }
+            //}
 
 
             return loadHeader;
