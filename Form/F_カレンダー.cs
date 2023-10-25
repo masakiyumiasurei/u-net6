@@ -34,11 +34,8 @@ namespace u_net
             InitializeComponent();
         }
 
-        private void btnOK_Click(object sender, EventArgs e)
+        private void CloseCalendar(object sender, EventArgs e)
         {
-            // 日付選択フォームから選択した日付を取得
-            SelectedDate = this.日付.Text;
-
             // ダイアログをOKで閉じる
             DialogResult = DialogResult.OK;
             Close();
