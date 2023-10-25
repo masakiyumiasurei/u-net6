@@ -19,12 +19,35 @@ using System.Drawing.Printing;
 
 namespace u_net
 {
+
+
+    
     public partial class F_メーカー : Form
     {
         private Control previousControl;
         private SqlConnection cn;
         private SqlTransaction tx;
-        private string BASE_CAPTION = "メーカー"; 
+        private string BASE_CAPTION = "メーカー";
+
+        // 日付選択フォームへの参照を保持するための変数
+        private F_カレンダー dateSelectionForm;
+
+        private void 日付_Click(object sender, EventArgs e)
+        {
+            // 日付選択フォームを作成し表示
+            dateSelectionForm = new F_カレンダー();
+            if (dateSelectionForm.ShowDialog() == DialogResult.OK)
+            {
+                // 日付選択フォームから選択した日付を取得
+                string selectedDate = dateSelectionForm.SelectedDate;
+
+                // フォームAの日付コントロールに選択した日付を設定
+                日付.Text = selectedDate;
+            }
+        }
+
+
+
         public F_メーカー()
         {
             this.Text = "メーカー";       // ウィンドウタイトルを設定
@@ -1610,7 +1633,7 @@ namespace u_net
             ChangedData(true);
         }
 
-
+        
     }
 
 

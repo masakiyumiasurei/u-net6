@@ -135,6 +135,7 @@ namespace u_net
             this.label11 = new System.Windows.Forms.Label();
             this.Revision = new System.Windows.Forms.TextBox();
             this.ActiveDate = new System.Windows.Forms.TextBox();
+            this.日付 = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -1291,10 +1292,19 @@ namespace u_net
             this.ActiveDate.Size = new System.Drawing.Size(313, 23);
             this.ActiveDate.TabIndex = 10000;
             // 
+            // 日付
+            // 
+            this.日付.Location = new System.Drawing.Point(886, 452);
+            this.日付.Name = "日付";
+            this.日付.Size = new System.Drawing.Size(297, 23);
+            this.日付.TabIndex = 10001;
+            this.日付.Click += new System.EventHandler(this.日付_Click);
+            // 
             // F_メーカー
             // 
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1486, 712);
+            this.Controls.Add(this.日付);
             this.Controls.Add(this.ActiveDate);
             this.Controls.Add(this.Revision);
             this.Controls.Add(this.label11);
@@ -1525,6 +1535,7 @@ namespace u_net
         private Label label11;
         private TextBox Revision;
         private TextBox ActiveDate;
+        private TextBox 日付;
     }
 }
 
