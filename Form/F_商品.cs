@@ -74,6 +74,10 @@ namespace u_net
                     {
                         return;
                     }
+                    if (!string.IsNullOrEmpty(args))
+                    {
+                        this.商品コード.Text = args;
+                    }
                 }
             }
             catch (Exception ex)
@@ -122,7 +126,7 @@ namespace u_net
                 //LoadDetails(strSQL, SubForm, dbWork, "商品明細");
 
                 // ヘッダ部を制御
-                //LockData(this, false);
+                FunctionClass.LockData(this, false);
                 品名.Focus();
                 商品コード.Enabled = false;
                 コマンド新規.Enabled = false;
@@ -146,12 +150,7 @@ namespace u_net
         {
             try
             {
-                // 表示データをクリア 空文字のときにnullにする処理。不要？？
-                //SetControls(this, null);
-                if (!string.IsNullOrEmpty(args))
-                {
-                    this.商品コード.Text = args;
-                }
+                VariableSet.SetControls(this);
 
                 FunctionClass.LockData(this, true, "商品コード");
                 this.商品コード.Enabled = true;
