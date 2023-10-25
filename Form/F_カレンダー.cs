@@ -22,7 +22,7 @@ namespace u_net
 {
     public partial class F_カレンダー : Form
     {
-        private DateTime myDate = DateTime.Now.Date;
+        private DateTime myDate = DateTime.Today;
         private string myYear = DateTime.Now.Year.ToString();
         private string myMonth = DateTime.Now.Month.ToString();
         private string myDay = DateTime.Now.Day.ToString();
@@ -42,7 +42,10 @@ namespace u_net
 
         private void Form_Open(object sender, EventArgs e)
         {
-
+            for (int i = 1; i <= 12; i++)
+            {
+                cboMonth.Items.Add(i.ToString() + '月');
+            }
 
             DateToElements();
 
@@ -137,6 +140,88 @@ namespace u_net
         {
             Selected?.Invoke(this, selectedDate);
         }
+
+
+
+
+
+
+        private void cmdCancel_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Cancel;
+            Close();
+        }
+
+        private void SetTodayButton_Click(object sender, EventArgs e)
+        {
+            myDate = DateTime.Today;
+            OnSelected(myDate);
+            Done(myDate);
+        }
+
+        private void cmdPrevYear_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmdNextYear_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmdPrevMonth_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
+        private void cmdNextMonth_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cboMonth_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            myMonth = (cboMonth.SelectedIndex + 1).ToString();
+            ElementsToDate();
+        }
+
+
+        private void txtYear_Validated(object sender, EventArgs e)
+        {
+            myYear = txtYear.Text;
+            ElementsToDate();
+        }
+
+        private void txtYear_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(txtYear.Text))
+            {
+                if (!int.TryParse(txtYear.Text, out int value) || value < 1000 || value > 3000)
+                {
+                    // 範囲外の数値が入力された場合に警告を表示
+                    MessageBox.Show("有効な数値（1000から3000の範囲内）を入力してください。", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    e.Cancel = true; // 入力をキャンセルし、テキストボックスの値を元に戻す
+                }
+            }
+        }
+
+        
+
+        private void txtYear_KeyPress(object sender, KeyPressEventArgs e)
+ {
+            char allowedChar = e.KeyChar;
+
+            // 数値と特殊キー（バックスペース）以外の入力を無効化
+            if (!char.IsDigit(allowedChar) && !char.IsControl(allowedChar))
+            {
+                e.Handled = true;
+            }
+
+           
+        }
+
 
 
 
@@ -351,44 +436,6 @@ namespace u_net
             DateClick(sender);
         }
 
-        private void cmdCancel_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void SetTodayButton_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void cmdPrevYear_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void cmdNextYear_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void cmdPrevMonth_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtYear_Validated(object sender, EventArgs e)
-        {
-
-        }
-
-        private void cboMonth_Validated(object sender, EventArgs e)
-        {
-
-        }
-
-        private void cmdNextMonth_Click(object sender, EventArgs e)
-        {
-
-        }
+        
     }
 }

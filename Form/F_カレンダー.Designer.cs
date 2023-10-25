@@ -154,6 +154,9 @@
             this.txtYear.Name = "txtYear";
             this.txtYear.Size = new System.Drawing.Size(80, 23);
             this.txtYear.TabIndex = 4;
+            this.txtYear.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtYear.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtYear_KeyPress);
+            this.txtYear.Validating += new System.ComponentModel.CancelEventHandler(this.txtYear_Validating);
             this.txtYear.Validated += new System.EventHandler(this.txtYear_Validated);
             // 
             // label1
@@ -161,7 +164,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label1.ForeColor = System.Drawing.Color.Red;
-            this.label1.Location = new System.Drawing.Point(7, 30);
+            this.label1.Location = new System.Drawing.Point(10, 30);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(22, 17);
             this.label1.TabIndex = 6;
@@ -171,7 +174,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(42, 30);
+            this.label2.Location = new System.Drawing.Point(50, 30);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(22, 17);
             this.label2.TabIndex = 7;
@@ -181,7 +184,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label3.Location = new System.Drawing.Point(78, 30);
+            this.label3.Location = new System.Drawing.Point(89, 30);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(22, 17);
             this.label3.TabIndex = 8;
@@ -191,7 +194,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label4.Location = new System.Drawing.Point(112, 30);
+            this.label4.Location = new System.Drawing.Point(131, 30);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(22, 17);
             this.label4.TabIndex = 9;
@@ -201,7 +204,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label5.Location = new System.Drawing.Point(148, 30);
+            this.label5.Location = new System.Drawing.Point(170, 30);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(22, 17);
             this.label5.TabIndex = 10;
@@ -211,7 +214,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label6.Location = new System.Drawing.Point(183, 30);
+            this.label6.Location = new System.Drawing.Point(211, 30);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(22, 17);
             this.label6.TabIndex = 11;
@@ -222,7 +225,7 @@
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label7.ForeColor = System.Drawing.Color.Blue;
-            this.label7.Location = new System.Drawing.Point(217, 30);
+            this.label7.Location = new System.Drawing.Point(250, 30);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(22, 17);
             this.label7.TabIndex = 12;
@@ -596,7 +599,7 @@
             this.d41.Font = new System.Drawing.Font("Arial", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.d41.Location = new System.Drawing.Point(40, 170);
             this.d41.Name = "d41";
-            this.d41.Size = new System.Drawing.Size(35, 30);
+            this.d41.Size = new System.Drawing.Size(40, 30);
             this.d41.TabIndex = 42;
             this.d41.Text = "1";
             this.d41.UseVisualStyleBackColor = true;
@@ -714,12 +717,13 @@
             // 
             // cboMonth
             // 
+            this.cboMonth.Font = new System.Drawing.Font("ＭＳ ゴシック", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.cboMonth.FormattingEnabled = true;
             this.cboMonth.Location = new System.Drawing.Point(175, 0);
             this.cboMonth.Name = "cboMonth";
-            this.cboMonth.Size = new System.Drawing.Size(80, 23);
+            this.cboMonth.Size = new System.Drawing.Size(80, 24);
             this.cboMonth.TabIndex = 57;
-            this.cboMonth.Validated += new System.EventHandler(this.cboMonth_Validated);
+            this.cboMonth.SelectedIndexChanged += new System.EventHandler(this.cboMonth_SelectedIndexChanged);
             // 
             // F_カレンダー
             // 
