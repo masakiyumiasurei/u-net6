@@ -715,28 +715,26 @@ namespace u_net
             // 
             // ComposedChipMount
             // 
-            ComposedChipMount.BackColor = Color.White;
-            ComposedChipMount.Enabled = false;
+            ComposedChipMount.BackColor = SystemColors.Control;
             ComposedChipMount.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             ComposedChipMount.Location = new Point(944, 245);
             ComposedChipMount.Margin = new Padding(3, 2, 3, 2);
             ComposedChipMount.Multiline = true;
             ComposedChipMount.Name = "ComposedChipMount";
             ComposedChipMount.ReadOnly = true;
-            ComposedChipMount.Size = new Size(139, 23);
+            ComposedChipMount.Size = new Size(25, 23);
             ComposedChipMount.TabIndex = 185;
             // 
             // 削除
             // 
-            削除.BackColor = Color.White;
-            削除.Enabled = false;
+            削除.BackColor = SystemColors.Control;
             削除.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             削除.Location = new Point(943, 204);
             削除.Margin = new Padding(3, 2, 3, 2);
             削除.Multiline = true;
             削除.Name = "削除";
             削除.ReadOnly = true;
-            削除.Size = new Size(139, 23);
+            削除.Size = new Size(25, 23);
             削除.TabIndex = 184;
             // 
             // label15
@@ -756,8 +754,7 @@ namespace u_net
             // 
             // 更新者名
             // 
-            更新者名.BackColor = Color.White;
-            更新者名.Enabled = false;
+            更新者名.BackColor = SystemColors.Control;
             更新者名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             更新者名.Location = new Point(1088, 168);
             更新者名.Margin = new Padding(3, 2, 3, 2);
@@ -769,8 +766,7 @@ namespace u_net
             // 
             // 更新者コード
             // 
-            更新者コード.BackColor = Color.White;
-            更新者コード.Enabled = false;
+            更新者コード.BackColor = SystemColors.Control;
             更新者コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             更新者コード.Location = new Point(943, 167);
             更新者コード.Margin = new Padding(3, 2, 3, 2);
@@ -812,8 +808,7 @@ namespace u_net
             // 
             // 更新日時
             // 
-            更新日時.BackColor = Color.White;
-            更新日時.Enabled = false;
+            更新日時.BackColor = SystemColors.Control;
             更新日時.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             更新日時.Location = new Point(944, 132);
             更新日時.Margin = new Padding(3, 2, 3, 2);
@@ -825,8 +820,7 @@ namespace u_net
             // 
             // 作成者名
             // 
-            作成者名.BackColor = Color.White;
-            作成者名.Enabled = false;
+            作成者名.BackColor = SystemColors.Control;
             作成者名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             作成者名.Location = new Point(1088, 94);
             作成者名.Margin = new Padding(3, 2, 3, 2);
@@ -838,8 +832,7 @@ namespace u_net
             // 
             // 作成者コード
             // 
-            作成者コード.BackColor = Color.White;
-            作成者コード.Enabled = false;
+            作成者コード.BackColor = SystemColors.Control;
             作成者コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             作成者コード.Location = new Point(943, 93);
             作成者コード.Margin = new Padding(3, 2, 3, 2);
@@ -881,8 +874,7 @@ namespace u_net
             // 
             // 作成日時
             // 
-            作成日時.BackColor = Color.White;
-            作成日時.Enabled = false;
+            作成日時.BackColor = SystemColors.Control;
             作成日時.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             作成日時.Location = new Point(944, 58);
             作成日時.Margin = new Padding(3, 2, 3, 2);

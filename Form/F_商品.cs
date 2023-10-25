@@ -37,12 +37,12 @@ namespace u_net
             cn = new SqlConnection(connectionString);
             cn.Open();
         }
-        
+
         SqlCommand cmd = new SqlCommand();
         DataSet ds = new DataSet();
         DataTable dt = new DataTable();
         SqlDataAdapter adapter = new SqlDataAdapter();
-             
+
 
         private void Form_Load(object sender, EventArgs e)
         {
@@ -99,7 +99,7 @@ namespace u_net
                 VariableSet.SetControls(this);
                 string strSQL;
                 Connect();
-                
+
                 //バインドソースの新規追加
                 //this.M商品BindingSource.AddNew();
 
@@ -847,31 +847,37 @@ namespace u_net
             MessageBox.Show(商品コード.Text);
             MessageBox.Show(商品コード.SelectedValue.ToString());
         }
-          
+
         private void 商品コード_TextChanged(object sender, EventArgs e)
         {
-            
+            UpdatedControl();
+        }
+
+
+        private void UpdatedControl()
+        {
             //商品コードの更新後処理でレコードの値を表示する
             this.コマンド複写.Enabled = true;
             this.コマンド削除.Enabled = true;
             try
             {
-                string strSQL = "SELECT * FROM V商品ヘッダ WHERE 商品コード='" + this.商品コード.Text + "'";
+                string CurrentCode = this.商品コード.Text;
+                string strSQL = "SELECT * FROM V商品ヘッダ WHERE 商品コード='" + CurrentCode + "'";
                 Connect();
                 if (!VariableSet.SetTable2Form(this, strSQL, cn)) return;
-                
-                this.M商品明細TableAdapter.Fill(this.uiDataSet.M商品明細, this.商品コード.Text);
 
+                this.M商品明細TableAdapter.Fill(this.uiDataSet.M商品明細, CurrentCode);
+                FunctionClass.LockData(this, false, "商品コード");
+                コマンド複写.Enabled = true;
+                コマンド削除.Enabled = true;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show("正しく読み込みが出来ませんでした" + ex.Message);
                 cn.Close();
             }
         }
     }
-
-
     //public class DataGridViewEx : DataGridView
     //{
     //    [System.Security.Permissions.UIPermission(

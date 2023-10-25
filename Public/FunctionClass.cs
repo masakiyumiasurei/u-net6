@@ -335,15 +335,6 @@ namespace u_net.Public
         }
 
 
-        
-
-       
-
-        
-
-
-
-
         //省略されたコードを補完する
         // 戻り値 → 完全形のコード エラーの時はデフォルト値を返す
         public static string FormatCode(string HeaderString, string AbbreviatedCode)
