@@ -866,6 +866,8 @@ namespace u_net
                 Connect();
                 if (!VariableSet.SetTable2Form(this, strSQL, cn)) return;
 
+                //V商品ヘッダにrevisionカラムがないため
+                this.Revision.Text = "1";
                 this.M商品明細TableAdapter.Fill(this.uiDataSet.M商品明細, CurrentCode);
                 FunctionClass.LockData(this, false, "商品コード");
                 コマンド複写.Enabled = true;

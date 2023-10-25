@@ -249,11 +249,14 @@ namespace u_net.Public
         {
             foreach (Control control in formObject.Controls)
             {
-                if (control.Enabled)
-                {
+                //if (control.Enabled)
+                //{
+                //アクセスでは、enabledのがtureのコントロールをLockするようにしていたが、
+                //.netではコンボボックスとチェックボックスにはreadonlyがないため、enabledで制御する。
+                //コンボボックスとチェックボックスにはenabledの状態を条件に入れない
                     if (control is TextBox)
                     {
-                        if (control.Name != exControlName1 && control.Name != exControlName2)
+                        if (control.Enabled && control.Name != exControlName1 && control.Name != exControlName2)
                         {
                             ((TextBox)control).ReadOnly = lockedOn;
                         }
@@ -272,7 +275,7 @@ namespace u_net.Public
                             ((CheckBox)control).Enabled = !lockedOn;
                         }
                     }
-                }
+                //}
             }
         }
 

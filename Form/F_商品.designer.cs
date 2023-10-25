@@ -675,7 +675,7 @@ namespace u_net
             // 
             Revision.BackColor = Color.White;
             Revision.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            Revision.Location = new Point(1183, 409);
+            Revision.Location = new Point(990, 421);
             Revision.Margin = new Padding(3, 2, 3, 2);
             Revision.Multiline = true;
             Revision.Name = "Revision";

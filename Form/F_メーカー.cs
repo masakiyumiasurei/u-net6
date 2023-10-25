@@ -1323,9 +1323,9 @@ namespace u_net
             //    {
             //        if (reader.Read())
             //        {
-                        //ここ修正した。
-                        VariableSet.SetTable2Form(this, strSQL, cn);
-                        loadHeader = true;
+            //ここ修正した。
+            VariableSet.SetTable2Form(this, strSQL, cn);
+            loadHeader = true;
             //        }
             //    }
             //}
