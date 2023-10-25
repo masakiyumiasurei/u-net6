@@ -58,7 +58,7 @@ namespace u_net
             int.TryParse(myMonth, out month);
 
             txtYear.Text = myYear;
-            cboMonth.Text = month.ToString(); // コンボボックスのインデックスは0から始まるため、月の値から1を引きます
+            cboMonth.Text = month.ToString() + "月"; // コンボボックスのインデックスは0から始まるため、月の値から1を引きます
 
             DrawDateButtons();
         }
@@ -351,6 +351,44 @@ namespace u_net
             DateClick(sender);
         }
 
+        private void cmdCancel_Click(object sender, EventArgs e)
+        {
 
+        }
+
+        private void SetTodayButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmdPrevYear_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmdNextYear_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmdPrevMonth_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtYear_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cboMonth_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmdNextMonth_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
