@@ -161,23 +161,28 @@ namespace u_net
 
         private void cmdPrevYear_Click(object sender, EventArgs e)
         {
+            myDate = myDate.AddYears(-1);
+            DateToElements();
 
         }
 
         private void cmdNextYear_Click(object sender, EventArgs e)
         {
-
+            myDate = myDate.AddYears(1);
+            DateToElements();
         }
 
         private void cmdPrevMonth_Click(object sender, EventArgs e)
         {
-
+            myDate = myDate.AddMonths(-1);
+            DateToElements();
         }
 
 
         private void cmdNextMonth_Click(object sender, EventArgs e)
         {
-
+            myDate = myDate.AddMonths(1);
+            DateToElements();
         }
 
         private void cboMonth_SelectedIndexChanged(object sender, EventArgs e)
