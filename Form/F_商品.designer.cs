@@ -151,6 +151,8 @@ namespace u_net
             m商品分類TableAdapter = new uiDataSetTableAdapters.M商品分類TableAdapter();
             comboBox売上区分TableAdapter = new uiDataSetTableAdapters.ComboBox売上区分TableAdapter();
             tableAdapterManager = new uiDataSetTableAdapters.TableAdapterManager();
+            label18 = new Label();
+            label19 = new Label();
             ((System.ComponentModel.ISupportInitialize)M商品BindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)uiDataSet).BeginInit();
             ((System.ComponentModel.ISupportInitialize)comboBox売上区分bindingSource).BeginInit();
@@ -588,22 +590,22 @@ namespace u_net
             // statusStrip1
             // 
             statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1, toolStripStatusLabel2 });
-            statusStrip1.Location = new Point(0, 619);
+            statusStrip1.Location = new Point(0, 622);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Padding = new Padding(1, 0, 19, 0);
-            statusStrip1.Size = new Size(1469, 25);
+            statusStrip1.Size = new Size(1469, 22);
             statusStrip1.TabIndex = 110;
             statusStrip1.Text = "statusStrip1";
             // 
             // toolStripStatusLabel1
             // 
             toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            toolStripStatusLabel1.Size = new Size(0, 20);
+            toolStripStatusLabel1.Size = new Size(0, 17);
             // 
             // toolStripStatusLabel2
             // 
             toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            toolStripStatusLabel2.Size = new Size(111, 20);
+            toolStripStatusLabel2.Size = new Size(89, 17);
             toolStripStatusLabel2.Text = "各種項目の説明";
             // 
             // button1
@@ -655,6 +657,7 @@ namespace u_net
             数量単位コード.Size = new Size(160, 20);
             数量単位コード.TabIndex = 190;
             数量単位コード.ValueMember = "単位コード";
+            数量単位コード.SelectedIndexChanged += 数量単位コード_SelectedIndexChanged;
             // 
             // 商品コード
             // 
@@ -673,7 +676,7 @@ namespace u_net
             // 
             Revision.BackColor = Color.White;
             Revision.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            Revision.Location = new Point(1183, 409);
+            Revision.Location = new Point(990, 421);
             Revision.Margin = new Padding(3, 2, 3, 2);
             Revision.Multiline = true;
             Revision.Name = "Revision";
@@ -713,28 +716,26 @@ namespace u_net
             // 
             // ComposedChipMount
             // 
-            ComposedChipMount.BackColor = Color.White;
-            ComposedChipMount.Enabled = false;
+            ComposedChipMount.BackColor = SystemColors.Control;
             ComposedChipMount.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             ComposedChipMount.Location = new Point(944, 245);
             ComposedChipMount.Margin = new Padding(3, 2, 3, 2);
             ComposedChipMount.Multiline = true;
             ComposedChipMount.Name = "ComposedChipMount";
             ComposedChipMount.ReadOnly = true;
-            ComposedChipMount.Size = new Size(139, 23);
+            ComposedChipMount.Size = new Size(25, 23);
             ComposedChipMount.TabIndex = 185;
             // 
             // 削除
             // 
-            削除.BackColor = Color.White;
-            削除.Enabled = false;
+            削除.BackColor = SystemColors.Control;
             削除.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             削除.Location = new Point(943, 204);
             削除.Margin = new Padding(3, 2, 3, 2);
             削除.Multiline = true;
             削除.Name = "削除";
             削除.ReadOnly = true;
-            削除.Size = new Size(139, 23);
+            削除.Size = new Size(25, 23);
             削除.TabIndex = 184;
             // 
             // label15
@@ -754,8 +755,7 @@ namespace u_net
             // 
             // 更新者名
             // 
-            更新者名.BackColor = Color.White;
-            更新者名.Enabled = false;
+            更新者名.BackColor = SystemColors.Control;
             更新者名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             更新者名.Location = new Point(1088, 168);
             更新者名.Margin = new Padding(3, 2, 3, 2);
@@ -767,8 +767,7 @@ namespace u_net
             // 
             // 更新者コード
             // 
-            更新者コード.BackColor = Color.White;
-            更新者コード.Enabled = false;
+            更新者コード.BackColor = SystemColors.Control;
             更新者コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             更新者コード.Location = new Point(943, 167);
             更新者コード.Margin = new Padding(3, 2, 3, 2);
@@ -810,8 +809,7 @@ namespace u_net
             // 
             // 更新日時
             // 
-            更新日時.BackColor = Color.White;
-            更新日時.Enabled = false;
+            更新日時.BackColor = SystemColors.Control;
             更新日時.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             更新日時.Location = new Point(944, 132);
             更新日時.Margin = new Padding(3, 2, 3, 2);
@@ -823,8 +821,7 @@ namespace u_net
             // 
             // 作成者名
             // 
-            作成者名.BackColor = Color.White;
-            作成者名.Enabled = false;
+            作成者名.BackColor = SystemColors.Control;
             作成者名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             作成者名.Location = new Point(1088, 94);
             作成者名.Margin = new Padding(3, 2, 3, 2);
@@ -836,8 +833,7 @@ namespace u_net
             // 
             // 作成者コード
             // 
-            作成者コード.BackColor = Color.White;
-            作成者コード.Enabled = false;
+            作成者コード.BackColor = SystemColors.Control;
             作成者コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             作成者コード.Location = new Point(943, 93);
             作成者コード.Margin = new Padding(3, 2, 3, 2);
@@ -879,8 +875,7 @@ namespace u_net
             // 
             // 作成日時
             // 
-            作成日時.BackColor = Color.White;
-            作成日時.Enabled = false;
+            作成日時.BackColor = SystemColors.Control;
             作成日時.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             作成日時.Location = new Point(944, 58);
             作成日時.Margin = new Padding(3, 2, 3, 2);
@@ -1090,12 +1085,11 @@ namespace u_net
             CustomerSerialNumberRequired.CheckAlign = ContentAlignment.MiddleRight;
             CustomerSerialNumberRequired.DataBindings.Add(new Binding("Checked", M商品BindingSource, "CustomerSerialNumberRequired", true));
             CustomerSerialNumberRequired.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            CustomerSerialNumberRequired.Location = new Point(55, 233);
+            CustomerSerialNumberRequired.Location = new Point(186, 235);
             CustomerSerialNumberRequired.Margin = new Padding(4, 3, 4, 3);
             CustomerSerialNumberRequired.Name = "CustomerSerialNumberRequired";
-            CustomerSerialNumberRequired.Size = new Size(120, 16);
+            CustomerSerialNumberRequired.Size = new Size(15, 14);
             CustomerSerialNumberRequired.TabIndex = 158;
-            CustomerSerialNumberRequired.Text = "顧客シリアル必須";
             CustomerSerialNumberRequired.UseVisualStyleBackColor = true;
             // 
             // 数量単位名
@@ -1132,12 +1126,11 @@ namespace u_net
             掛率有効.AutoSize = true;
             掛率有効.CheckAlign = ContentAlignment.MiddleRight;
             掛率有効.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            掛率有効.Location = new Point(55, 211);
+            掛率有効.Location = new Point(144, 207);
             掛率有効.Margin = new Padding(4, 3, 4, 3);
             掛率有効.Name = "掛率有効";
-            掛率有効.Size = new Size(72, 16);
+            掛率有効.Size = new Size(15, 14);
             掛率有効.TabIndex = 155;
-            掛率有効.Text = "掛率有効";
             掛率有効.UseVisualStyleBackColor = true;
             // 
             // 性別label
@@ -1290,12 +1283,44 @@ namespace u_net
             tableAdapterManager.M商品明細TableAdapter = null;
             tableAdapterManager.UpdateOrder = uiDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             // 
+            // label18
+            // 
+            label18.AllowDrop = true;
+            label18.AutoEllipsis = true;
+            label18.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label18.ForeColor = SystemColors.ActiveCaptionText;
+            label18.ImageAlign = ContentAlignment.MiddleLeft;
+            label18.Location = new Point(52, 204);
+            label18.Margin = new Padding(0);
+            label18.Name = "label18";
+            label18.Size = new Size(85, 17);
+            label18.TabIndex = 193;
+            label18.Text = "掛率有効(&G)";
+            label18.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // label19
+            // 
+            label19.AllowDrop = true;
+            label19.AutoEllipsis = true;
+            label19.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label19.ForeColor = SystemColors.ActiveCaptionText;
+            label19.ImageAlign = ContentAlignment.MiddleLeft;
+            label19.Location = new Point(52, 233);
+            label19.Margin = new Padding(0);
+            label19.Name = "label19";
+            label19.Size = new Size(128, 17);
+            label19.TabIndex = 194;
+            label19.Text = "顧客シリアル必須(&I)";
+            label19.TextAlign = ContentAlignment.MiddleLeft;
+            // 
             // F_商品
             // 
             AutoScaleDimensions = new SizeF(8F, 12F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
             ClientSize = new Size(1469, 644);
+            Controls.Add(label19);
+            Controls.Add(label18);
             Controls.Add(button1);
             Controls.Add(売上区分コード);
             Controls.Add(FlowCategoryCode);
@@ -1513,7 +1538,8 @@ namespace u_net
         private DataGridViewTextBoxColumn 構成番号DataGridViewTextBoxColumn;
         private uiDataSetTableAdapters.combBoxMシリーズTableAdapter combBoxMシリーズTableAdapter;
         private uiDataSetTableAdapters.TableAdapterManager tableAdapterManager;
-
+        private Label label18;
+        private Label label19;
     }
 }
 

@@ -249,20 +249,23 @@ namespace u_net.Public
         {
             foreach (Control control in formObject.Controls)
             {
-                if (control.Enabled)
-                {
-                    if (control is System.Windows.Forms.TextBox)
+                //if (control.Enabled)
+                //{
+                //アクセスでは、enabledのがtureのコントロールをLockするようにしていたが、
+                //.netではコンボボックスとチェックボックスにはreadonlyがないため、enabledで制御する。
+                //コンボボックスとチェックボックスにはenabledの状態を条件に入れない
+                    if (control is TextBox)
                     {
-                        if (control.Name != exControlName1 && control.Name != exControlName2)
+                        if (control.Enabled && control.Name != exControlName1 && control.Name != exControlName2)
                         {
-                            ((System.Windows.Forms.TextBox)control).ReadOnly = lockedOn;
+                            ((TextBox)control).ReadOnly = lockedOn;
                         }
                     }
-                    else if (control is System.Windows.Forms.ComboBox)
+                    else if (control is ComboBox)
                     {
                         if (control.Name != exControlName1 && control.Name != exControlName2)
                         {
-                            ((System.Windows.Forms.ComboBox)control).Enabled = !lockedOn;
+                            ((ComboBox)control).Enabled = !lockedOn;
                         }
                     }
                     else if (control is CheckBox)
@@ -272,7 +275,7 @@ namespace u_net.Public
                             ((CheckBox)control).Enabled = !lockedOn;
                         }
                     }
-                }
+                //}
             }
         }
 
@@ -333,15 +336,6 @@ namespace u_net.Public
                 return false;
             }
         }
-
-
-        
-
-       
-
-        
-
-
 
 
         //省略されたコードを補完する

@@ -21,7 +21,7 @@ namespace u_net
 {
 
 
-    
+
     public partial class F_メーカー : Form
     {
         private Control previousControl;
@@ -41,7 +41,6 @@ namespace u_net
 
             InitializeComponent();
 
-
         }
         public void Connect()
         {
@@ -59,14 +58,11 @@ namespace u_net
             cn.Open();
         }
 
-
-
         //SqlConnection cn = new SqlConnection();
         SqlCommand cmd = new SqlCommand();
         DataSet ds = new DataSet();
         DataTable dt = new DataTable();
         SqlDataAdapter adapter = new SqlDataAdapter();
-
 
         private void Form_Load(object sender, EventArgs e)
         {
@@ -123,7 +119,7 @@ namespace u_net
         {
             try
             {
-            // 各コントロール値を初期化
+                // 各コントロール値を初期化
                 VariableSet.SetControls(this);
 
                 CommonConnect();
@@ -148,7 +144,6 @@ namespace u_net
                 // this.コマンド承認.Enabled = false;
                 // this.コマンド確定.Enabled = false;
                 this.コマンド登録.Enabled = false;
-
 
 
                 return true;
@@ -192,7 +187,6 @@ namespace u_net
             }
         }
 
-
         private bool GoModifyMode()
         {
             try
@@ -219,7 +213,7 @@ namespace u_net
                     this.削除.Text = "■";
                 }
 
-                    result = true;
+                result = true;
                 return result;
             }
             catch (Exception ex)
@@ -718,7 +712,7 @@ namespace u_net
                     if (this.IsNewData && !string.IsNullOrEmpty(this.CurrentCode))
                     {
 
-                        
+
 
                         // 採番された番号を戻す
                         if (!FunctionClass.ReturnNewCode(cn, CommonConstants.CH_MAKER, this.CurrentCode))
@@ -950,7 +944,7 @@ namespace u_net
                     if (intRes == DialogResult.Yes)
                     {
                         // 応答がYesのとき
-                        if (SetDeleted(cn, strCode, intEdition,DateTime.Now, CommonConstants.LoginUserCode))
+                        if (SetDeleted(cn, strCode, intEdition, DateTime.Now, CommonConstants.LoginUserCode))
                         {
                             goto Err_コマンド削除_Click;
                         }
@@ -1001,7 +995,7 @@ namespace u_net
 
                 if (this.IsDeleted)
                 {
-                 
+
                     strUpdate = "削除日時=NULL,削除者コード=NULL";
                 }
                 else
@@ -1042,9 +1036,9 @@ namespace u_net
                         this.削除.Text = "■";
                     }
 
-                        isDeleted = false;
-                    }
-                
+                    isDeleted = false;
+                }
+
 
                 return isDeleted;
             }
@@ -1111,7 +1105,7 @@ namespace u_net
             OriginalClass.PrintScreen(screenshotFilePath);
         }
 
-        
+
 
         private void コマンド承認_Click(object sender, EventArgs e)
         {
@@ -1127,50 +1121,50 @@ namespace u_net
         {
             //try
             //{
-                this.DoubleBuffered = true;
+            this.DoubleBuffered = true;
 
-                //this.Painting = false;
+            //this.Painting = false;
 
-                if (ActiveControl == コマンド登録)
+            if (ActiveControl == コマンド登録)
+            {
+                GetNextControl(コマンド登録, false).Focus();
+            }
+
+            // 登録時におけるエラーチェック
+            if (!ErrCheck())
+            {
+                goto Bye_コマンド登録_Click;
+            }
+
+            //DoWait("登録しています...");
+
+            if (SaveData())
+            {
+                // 登録成功
+                ChangedData(false);
+
+                if (IsNewData)
                 {
-                    GetNextControl(コマンド登録, false).Focus();
+                    // 新規モードの場合、版数一覧を更新し、ボタンの状態を変更
+                    // Me.メーカー版数.Requery(); // データを再読み込む処理が必要
+                    コマンド新規.Enabled = true;
+                    コマンド読込.Enabled = false;
                 }
 
-                // 登録時におけるエラーチェック
-                if (!ErrCheck())
-                {
-                    goto Bye_コマンド登録_Click;
-                }
-
-                //DoWait("登録しています...");
-
-                if (SaveData())
-                {
-                    // 登録成功
-                    ChangedData(false);
-
-                    if (IsNewData)
-                    {
-                        // 新規モードの場合、版数一覧を更新し、ボタンの状態を変更
-                        // Me.メーカー版数.Requery(); // データを再読み込む処理が必要
-                        コマンド新規.Enabled = true;
-                        コマンド読込.Enabled = false;
-                    }
-
-                    // その他の処理を追加
-                    // Me.コマンド承認.Enabled = Me.IsDecided;
-                    // Me.コマンド確定.Enabled = true;
-                }
-                else
-                {
-                    MessageBox.Show("登録できませんでした。", "登録コマンド", MessageBoxButtons.OK);
-                }
-            //}
-            //finally
-            //{
-                //Close();
-                //this.Painting = true;
-            //}
+                // その他の処理を追加
+                // Me.コマンド承認.Enabled = Me.IsDecided;
+                // Me.コマンド確定.Enabled = true;
+            }
+            else
+            {
+                MessageBox.Show("登録できませんでした。", "登録コマンド", MessageBoxButtons.OK);
+            }
+        //}
+        //finally
+        //{
+        //Close();
+        //this.Painting = true;
+        //}
 
         Bye_コマンド登録_Click:
             return;
@@ -1295,31 +1289,32 @@ namespace u_net
             string strSQL;
             if (editionNumber == -1)
             {
-                strSQL = "SELECT * FROM Vメーカーヘッダ WHERE メーカーコード=@codeString";
+                strSQL = "SELECT * FROM Vメーカーヘッダ WHERE メーカーコード='" + codeString + "'";
             }
             else
             {
-                strSQL = "SELECT * FROM Vメーカーヘッダ WHERE メーカーコード=@codeString AND Revision=@editionNumber";
+                strSQL = "SELECT * FROM Vメーカーヘッダ WHERE メーカーコード'" + codeString + "' AND Revision= " + editionNumber;
             }
 
-            using (SqlCommand command = new SqlCommand(strSQL, cn))
-            {
-                command.Parameters.AddWithValue("@codeString", codeString);
-                if (editionNumber != -1)
-                {
-                    command.Parameters.AddWithValue("@editionNumber", editionNumber);
-                }
+            //using (SqlCommand command = new SqlCommand(strSQL, cn))
+            //{
+            //    command.Parameters.AddWithValue("@codeString", codeString);
+            //    if (editionNumber != -1)
+            //    {
+            //        command.Parameters.AddWithValue("@editionNumber", editionNumber);
+            //    }
 
-                using (SqlDataReader reader = command.ExecuteReader())
-                {
-                    if (reader.Read())
-                    {
-                        VariableSet.SetTable2Form(formObject, reader);
-                        loadHeader = true;
-                    }
-                }
-            }
-            
+            //    using (SqlDataReader reader = command.ExecuteReader())
+            //    {
+            //        if (reader.Read())
+            //        {
+            //ここ修正した。
+            VariableSet.SetTable2Form(this, strSQL, cn);
+            loadHeader = true;
+            //        }
+            //    }
+            //}
+
 
             return loadHeader;
         }
@@ -1333,12 +1328,12 @@ namespace u_net
             if (OriginalClass.IsValidUrl(inputText))
             {
                 OriginalClass.OpenUrl(inputText);
-                
+
             }
         }
 
-       
-        
+
+
 
 
         private async void 郵便番号_Validated(object sender, EventArgs e)
@@ -1624,7 +1619,7 @@ namespace u_net
             ChangedData(true);
         }
 
-        
+
     }
 
 

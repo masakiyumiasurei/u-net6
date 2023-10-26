@@ -10,6 +10,7 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using u_net.Public;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 
 namespace u_net
@@ -37,21 +38,14 @@ namespace u_net
             cn.Open();
         }
 
-
-        //SqlConnection cn = new SqlConnection();
         SqlCommand cmd = new SqlCommand();
         DataSet ds = new DataSet();
         DataTable dt = new DataTable();
         SqlDataAdapter adapter = new SqlDataAdapter();
 
-        int new_cnt;
-        int kokyaku_id;
-        string kokyaku_cd;
-        int tantou;
 
         private void Form_Load(object sender, EventArgs e)
         {
-
 
             this.combBox商品コードTableAdapter.Fill(this.uiDataSet.CombBox商品コード);
             this.combBoxMシリーズTableAdapter.Fill(this.uiDataSet.Mシリーズ);
@@ -59,10 +53,15 @@ namespace u_net
             this.comboBox売上区分TableAdapter.Fill(this.uiDataSet.M売上区分);
             this.m単位TableAdapter.Fill(this.uiDataSet.M単位);
             this.comboBoxManufactureFlowTableAdapter.Fill(this.uiDataSet.ManufactureFlow);
+            int intWindowHeight = this.Height;
+            int intWindowWidth = this.Width;
 
             previousControl = null;
+
             try
             {
+                this.SuspendLayout();
+
                 if (string.IsNullOrEmpty(args))
                 {
                     if (!GoNewMode())
@@ -76,11 +75,19 @@ namespace u_net
                     {
                         return;
                     }
+                    if (!string.IsNullOrEmpty(args))
+                    {
+                        this.商品コード.Text = args;
+                    }
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show("初期化に失敗しました。", "エラー");
+            }
+            finally
+            {
+                this.ResumeLayout();
             }
         }
 
@@ -88,13 +95,11 @@ namespace u_net
         {
             try
             {
+                // 各コントロール値を初期化
+                VariableSet.SetControls(this);
                 string strSQL;
-                Connect(); // Connect メソッドの呼び出し
+                Connect();
 
-                //FunctionClass functionClass = new FunctionClass(); staticに変更
-
-                // ヘッダ部を初期化
-                //SetControls(this, null);
                 //バインドソースの新規追加
                 //this.M商品BindingSource.AddNew();
 
@@ -122,7 +127,7 @@ namespace u_net
                 //LoadDetails(strSQL, SubForm, dbWork, "商品明細");
 
                 // ヘッダ部を制御
-                //LockData(this, false);
+                FunctionClass.LockData(this, false);
                 品名.Focus();
                 商品コード.Enabled = false;
                 コマンド新規.Enabled = false;
@@ -146,12 +151,7 @@ namespace u_net
         {
             try
             {
-                // 表示データをクリア 空文字のときにnullにする処理。不要？？
-                //SetControls(this, null);
-                if (!string.IsNullOrEmpty(args))
-                {
-                    this.商品コード.Text = args;
-                }
+                VariableSet.SetControls(this);
 
                 FunctionClass.LockData(this, true, "商品コード");
                 this.商品コード.Enabled = true;
@@ -850,14 +850,41 @@ namespace u_net
 
         private void 商品コード_TextChanged(object sender, EventArgs e)
         {
-
-            //  this.v商品ヘッダTableAdapter.Fill(this.uiDataSet.V商品ヘッダ, this.商品コード.Text);
-
+            UpdatedControl();
         }
 
+
+        private void UpdatedControl()
+        {
+            //商品コードの更新後処理でレコードの値を表示する
+            this.コマンド複写.Enabled = true;
+            this.コマンド削除.Enabled = true;
+            try
+            {
+                string CurrentCode = this.商品コード.Text;
+                string strSQL = "SELECT * FROM V商品ヘッダ WHERE 商品コード='" + CurrentCode + "'";
+                Connect();
+                if (!VariableSet.SetTable2Form(this, strSQL, cn)) return;
+
+                //V商品ヘッダにrevisionカラムがないため
+                this.Revision.Text = "1";
+                this.M商品明細TableAdapter.Fill(this.uiDataSet.M商品明細, CurrentCode);
+                FunctionClass.LockData(this, false, "商品コード");
+                コマンド複写.Enabled = true;
+                コマンド削除.Enabled = true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("正しく読み込みが出来ませんでした" + ex.Message);
+                cn.Close();
+            }
+        }
+
+        private void 数量単位コード_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
-
-
     //public class DataGridViewEx : DataGridView
     //{
     //    [System.Security.Permissions.UIPermission(
