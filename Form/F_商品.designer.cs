@@ -38,6 +38,7 @@ namespace u_net
             comboBox売上区分bindingSource = new BindingSource(components);
             manufactureFlowBindingSource = new BindingSource(components);
             m単位BindingSource = new BindingSource(components);
+            newDataSet = new newDataSet();
             combBox商品コードBindingSource = new BindingSource(components);
             m商品分類BindingSource = new BindingSource(components);
             mシリーズBindingSource = new BindingSource(components);
@@ -97,7 +98,6 @@ namespace u_net
             button1 = new Button();
             売上区分コード = new ComboBox();
             FlowCategoryCode = new ComboBox();
-            数量単位コード = new ComboBox();
             商品コード = new ComboBox();
             Revision = new TextBox();
             label17 = new Label();
@@ -146,18 +146,20 @@ namespace u_net
             combBox商品コードTableAdapter = new uiDataSetTableAdapters.CombBox商品コードTableAdapter();
             M商品明細TableAdapter = new uiDataSetTableAdapters.M商品明細TableAdapter();
             combBoxMシリーズTableAdapter = new uiDataSetTableAdapters.combBoxMシリーズTableAdapter();
-            m単位TableAdapter = new uiDataSetTableAdapters.M単位TableAdapter();
+            M単位TableAdapter = new uiDataSetTableAdapters.M単位TableAdapter();
             comboBoxManufactureFlowTableAdapter = new uiDataSetTableAdapters.ComboBoxManufactureFlowTableAdapter();
             m商品分類TableAdapter = new uiDataSetTableAdapters.M商品分類TableAdapter();
             comboBox売上区分TableAdapter = new uiDataSetTableAdapters.ComboBox売上区分TableAdapter();
             tableAdapterManager = new uiDataSetTableAdapters.TableAdapterManager();
             label18 = new Label();
             label19 = new Label();
+            数量単位コード = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)M商品BindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)uiDataSet).BeginInit();
             ((System.ComponentModel.ISupportInitialize)comboBox売上区分bindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)manufactureFlowBindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)m単位BindingSource).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)newDataSet).BeginInit();
             ((System.ComponentModel.ISupportInitialize)combBox商品コードBindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)m商品分類BindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)mシリーズBindingSource).BeginInit();
@@ -220,6 +222,12 @@ namespace u_net
             m単位BindingSource.DataMember = "M単位";
             m単位BindingSource.DataSource = uiDataSet;
             // 
+            // newDataSet
+            // 
+            newDataSet.DataSetName = "newDataSet";
+            newDataSet.Namespace = "http://tempuri.org/newDataSet.xsd";
+            newDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
             // combBox商品コードBindingSource
             // 
             combBox商品コードBindingSource.DataMember = "CombBox商品コード";
@@ -241,6 +249,7 @@ namespace u_net
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Columns.AddRange(new DataGridViewColumn[] { 商品コードDataGridViewTextBoxColumn, revisionDataGridViewTextBoxColumn, 明細番号DataGridViewTextBoxColumn, 型式番号DataGridViewTextBoxColumn, 型式名DataGridViewTextBoxColumn, 定価DataGridViewTextBoxColumn, 原価DataGridViewTextBoxColumn, 機能DataGridViewTextBoxColumn, 構成番号DataGridViewTextBoxColumn });
             dataGridView1.DataSource = M商品明細BindingSource;
+            dataGridView1.ImeMode = ImeMode.On;
             dataGridView1.Location = new Point(0, 502);
             dataGridView1.Margin = new Padding(4, 3, 4, 3);
             dataGridView1.Name = "dataGridView1";
@@ -645,20 +654,6 @@ namespace u_net
             FlowCategoryCode.TabIndex = 191;
             FlowCategoryCode.ValueMember = "Code";
             // 
-            // 数量単位コード
-            // 
-            数量単位コード.DataSource = m単位BindingSource;
-            数量単位コード.DisplayMember = "単位名";
-            数量単位コード.FormattingEnabled = true;
-            数量単位コード.Location = new Point(144, 324);
-            数量単位コード.Margin = new Padding(4, 3, 4, 3);
-            数量単位コード.MaxLength = 10;
-            数量単位コード.Name = "数量単位コード";
-            数量単位コード.Size = new Size(160, 20);
-            数量単位コード.TabIndex = 190;
-            数量単位コード.ValueMember = "単位コード";
-            数量単位コード.SelectedIndexChanged += 数量単位コード_SelectedIndexChanged;
-            // 
             // 商品コード
             // 
             商品コード.DataSource = combBox商品コードBindingSource;
@@ -671,6 +666,8 @@ namespace u_net
             商品コード.TabIndex = 189;
             商品コード.ValueMember = "商品コード";
             商品コード.TextChanged += 商品コード_TextChanged;
+            商品コード.KeyDown += 商品コード_KeyDown;
+            商品コード.KeyPress += 商品コード_KeyPress;
             // 
             // Revision
             // 
@@ -1104,7 +1101,6 @@ namespace u_net
             数量単位名.ReadOnly = true;
             数量単位名.Size = new Size(313, 23);
             数量単位名.TabIndex = 157;
-            数量単位名.Visible = false;
             // 
             // label2
             // 
@@ -1253,9 +1249,9 @@ namespace u_net
             // 
             combBoxMシリーズTableAdapter.ClearBeforeFill = true;
             // 
-            // m単位TableAdapter
+            // M単位TableAdapter
             // 
-            m単位TableAdapter.ClearBeforeFill = true;
+            M単位TableAdapter.ClearBeforeFill = true;
             // 
             // comboBoxManufactureFlowTableAdapter
             // 
@@ -1313,18 +1309,29 @@ namespace u_net
             label19.Text = "顧客シリアル必須(&I)";
             label19.TextAlign = ContentAlignment.MiddleLeft;
             // 
+            // 数量単位コード
+            // 
+            数量単位コード.DataSource = m単位BindingSource;
+            数量単位コード.DisplayMember = "単位名";
+            数量単位コード.FormattingEnabled = true;
+            数量単位コード.Location = new Point(143, 321);
+            数量単位コード.Name = "数量単位コード";
+            数量単位コード.Size = new Size(161, 20);
+            数量単位コード.TabIndex = 195;
+            数量単位コード.ValueMember = "単位コード";
+            // 
             // F_商品
             // 
             AutoScaleDimensions = new SizeF(8F, 12F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
             ClientSize = new Size(1469, 644);
+            Controls.Add(数量単位コード);
             Controls.Add(label19);
             Controls.Add(label18);
             Controls.Add(button1);
             Controls.Add(売上区分コード);
             Controls.Add(FlowCategoryCode);
-            Controls.Add(数量単位コード);
             Controls.Add(商品コード);
             Controls.Add(Revision);
             Controls.Add(label17);
@@ -1384,6 +1391,7 @@ namespace u_net
             ((System.ComponentModel.ISupportInitialize)comboBox売上区分bindingSource).EndInit();
             ((System.ComponentModel.ISupportInitialize)manufactureFlowBindingSource).EndInit();
             ((System.ComponentModel.ISupportInitialize)m単位BindingSource).EndInit();
+            ((System.ComponentModel.ISupportInitialize)newDataSet).EndInit();
             ((System.ComponentModel.ISupportInitialize)combBox商品コードBindingSource).EndInit();
             ((System.ComponentModel.ISupportInitialize)m商品分類BindingSource).EndInit();
             ((System.ComponentModel.ISupportInitialize)mシリーズBindingSource).EndInit();
@@ -1452,7 +1460,7 @@ namespace u_net
 
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.BindingSource m単位BindingSource;
-        private uiDataSetTableAdapters.M単位TableAdapter m単位TableAdapter;
+        private uiDataSetTableAdapters.M単位TableAdapter M単位TableAdapter;
         private System.Windows.Forms.BindingSource manufactureFlowBindingSource;
         private uiDataSetTableAdapters.ComboBoxManufactureFlowTableAdapter comboBoxManufactureFlowTableAdapter;
         private System.Windows.Forms.BindingSource comboBox売上区分bindingSource;
@@ -1478,7 +1486,6 @@ namespace u_net
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ComboBox 売上区分コード;
         private System.Windows.Forms.ComboBox FlowCategoryCode;
-        private System.Windows.Forms.ComboBox 数量単位コード;
         private System.Windows.Forms.ComboBox 商品コード;
         private System.Windows.Forms.TextBox Revision;
         private System.Windows.Forms.Label label17;
@@ -1540,6 +1547,8 @@ namespace u_net
         private uiDataSetTableAdapters.TableAdapterManager tableAdapterManager;
         private Label label18;
         private Label label19;
+        private ComboBox 数量単位コード;
+        private newDataSet newDataSet;
     }
 }
 

@@ -17,7 +17,7 @@ namespace u_net
 {
     public partial class F_商品 : Form
     {
-        private Control previousControl;
+        private Control? previousControl;
         private SqlConnection cn;
         private SqlTransaction tx;
         public string args = "";
@@ -51,8 +51,10 @@ namespace u_net
             this.combBoxMシリーズTableAdapter.Fill(this.uiDataSet.Mシリーズ);
             this.m商品分類TableAdapter.Fill(this.uiDataSet.M商品分類);
             this.comboBox売上区分TableAdapter.Fill(this.uiDataSet.M売上区分);
-            this.m単位TableAdapter.Fill(this.uiDataSet.M単位);
+            this.M単位TableAdapter.Fill(this.uiDataSet.M単位);
             this.comboBoxManufactureFlowTableAdapter.Fill(this.uiDataSet.ManufactureFlow);
+
+
             int intWindowHeight = this.Height;
             int intWindowWidth = this.Width;
 
@@ -110,10 +112,10 @@ namespace u_net
 
                 FlowCategoryCode.SelectedValue = "001";
 
-                //FlowCategoryName.Text = (FlowCategoryCode.SelectedItem as DataRowView)["Name"].ToString();
 
-
+                //何故かこれだけ値が入らない
                 数量単位コード.SelectedValue = 1;
+                //売上区分コード.SelectedValue = 1;
 
 
                 CustomerSerialNumberRequired.Checked = false;
@@ -122,7 +124,7 @@ namespace u_net
 
                 string CurrentCode = 商品コード.Text;
                 // 明細部を初期化
-                this.M商品明細TableAdapter.Fill(this.uiDataSet.M商品明細, CurrentCode);
+                //this.M商品明細TableAdapter.Fill(this.uiDataSet.M商品明細, CurrentCode);
                 //strSQL = "SELECT * FROM M商品明細 WHERE 商品コード='" + CurrentCode + "' ORDER BY 明細番号";
                 //LoadDetails(strSQL, SubForm, dbWork, "商品明細");
 
@@ -288,149 +290,7 @@ namespace u_net
             }
         }
         //セルのフォーマット
-        private void dataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
-        {
-            try
-            {
-                DataGridView dgv = (DataGridView)sender;
-                //セルの列を確認
-                if (dgv.Columns[e.ColumnIndex].Name == "重要FLG" && e.Value is Boolean)
-                {
-                    Boolean val = (Boolean)e.Value;
-                    //セルの値により、背景色を変更する
-                    if (val == true)
-                    {
-                        dgv.Rows[e.RowIndex].Cells["約定内容"].Style.ForeColor = Color.Red;
-                    }
-                    else
-                    {
-                        dgv.Rows[e.RowIndex].Cells["約定内容"].Style.ForeColor = Color.Black;
-                    }
-                }
-                else if (dgv.Columns[e.ColumnIndex].Name == "時刻" && e.Value is string)
-                {
-                    string val = (string)e.Value;
 
-                    dataGridView1.Columns["時刻"].DefaultCellStyle.Format = "HH:mm";
-                    //val.ToString("HH:mm");
-                }
-                else if (dgv.Columns[e.ColumnIndex].Name == "支払先" && e.Value != null)
-                {
-                    var combo = dgv.Columns[e.ColumnIndex] as DataGridViewComboBoxColumn;
-                    var item = combo.Items.Cast<DataRowView>().FirstOrDefault(row => row[combo.ValueMember].ToString() == e.Value.ToString());
-
-                    if (item != null)
-                    {
-                        e.Value = item[combo.DisplayMember];
-                        e.FormattingApplied = true;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-        }
-        private void dataGridView1_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
-        {
-
-            DataGridView dgv = (DataGridView)sender;
-            //該当する列か調べる
-            //クリックされたカラムが「約定内容」「区分」カラムなら、ユーザーが文字列を入力できるようにする
-
-            if (dgv.CurrentCell.OwningColumn.Name == "約定内容" || dgv.CurrentCell.OwningColumn.Name == "区分"
-                || dgv.CurrentCell.OwningColumn.Name == "交渉相手")
-            {
-                //編集のために表示されているコントロールを取得
-                DataGridViewComboBoxEditingControl cb =
-                    (DataGridViewComboBoxEditingControl)e.Control;
-                cb.DropDownStyle = ComboBoxStyle.DropDown;
-            }
-            //表示されているコントロールがDataGridViewTextBoxEditingControlか調べる
-            if (e.Control is DataGridViewTextBoxEditingControl)
-            {
-                //編集のために表示されているコントロールを取得
-                DataGridViewTextBoxEditingControl tb = (DataGridViewTextBoxEditingControl)e.Control;
-
-                tb.KeyPress -=
-                 new KeyPressEventHandler(dataGridViewTextBox_KeyPress);
-
-                //該当する列か調べる
-                if (dgv.CurrentCell.OwningColumn.Name == "時刻")//クリックされたカラムが「時刻」カラムなら
-                {
-                    //KeyPressイベントハンドラを追加
-                    tb.KeyPress +=
-                    new KeyPressEventHandler(dataGridViewTextBox_KeyPress);
-                    // this.KeyDown += new KeyEventHandler(Form1_KeyDown);
-                }
-            }
-        }
-        //DataGridViewに表示されているテキストボックスのKeyPressイベントハンドラ
-        private void dataGridViewTextBox_KeyPress(object sender,
-            KeyPressEventArgs e)
-        {
-            //数字とコロンしか入力できないようにする
-            if ((e.KeyChar < '0' || e.KeyChar > '9') && e.KeyChar != ':')
-            {
-                e.Handled = true;
-            }
-        }
-
-        private void dataGridView1_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
-        {//コンボボックスにフリー入力し、その内容をコンボボックスの項目に追加
-            DataGridView dgv = (DataGridView)sender;
-            //該当する列か調べる
-            if ((dgv.Columns[e.ColumnIndex].Name == "約定内容" &&
-                dgv.Columns[e.ColumnIndex] is DataGridViewComboBoxColumn) ||
-                (dgv.Columns[e.ColumnIndex].Name == "区分" &&
-                dgv.Columns[e.ColumnIndex] is DataGridViewComboBoxColumn) ||
-                (dgv.Columns[e.ColumnIndex].Name == "交渉相手" &&
-                dgv.Columns[e.ColumnIndex] is DataGridViewComboBoxColumn)
-                )
-            {
-                DataGridViewComboBoxColumn cbc = (DataGridViewComboBoxColumn)dgv.Columns[e.ColumnIndex];
-                //コンボボックスの項目に追加する
-                if (!cbc.Items.Contains(e.FormattedValue))
-                {
-                    cbc.Items.Add(e.FormattedValue);
-                }
-                //セルの値を設定しないと、元に戻ってしまう
-                dgv[e.ColumnIndex, e.RowIndex].Value = e.FormattedValue;
-            }
-        }
-        private void dataGridView1_DataError(object sender, DataGridViewDataErrorEventArgs e)
-        {
-            //e.Cancel = true;
-        }
-        private void dataGridView1_CellEnter(object sender, DataGridViewCellEventArgs e)
-        {
-            DataGridView dgv = (DataGridView)sender;
-            switch (dgv.Columns[e.ColumnIndex].Name)
-            {
-                case "時刻":
-                case "約定額":
-                    dgv.ImeMode = ImeMode.Disable;
-                    break;
-
-                case "内容":
-                case "交渉相手":
-                    dgv.ImeMode = ImeMode.Hiragana;
-                    break;
-            }
-            //コンボボックスのプルダウン
-            if ((dgv.Columns[e.ColumnIndex].Name == "約定内容" || dgv.Columns[e.ColumnIndex].Name == "支払先"
-                || dgv.Columns[e.ColumnIndex].Name == "区分") || dgv.Columns[e.ColumnIndex].Name == "交渉相手" &&
-                   dgv.Columns[e.ColumnIndex] is DataGridViewComboBoxColumn)
-            {
-                SendKeys.Send("{F4}");
-            }
-            //カレンダーを表示する
-            if (dgv.Columns[e.ColumnIndex].Name == "約定日")
-            {
-                SendKeys.Send("{F2}");
-                SendKeys.Send("{F4}");
-            }
-        }
 
 
         private void コマンド新規_Click(object sender, EventArgs e)
@@ -638,7 +498,116 @@ namespace u_net
 
         private void コマンド削除_Click(object sender, EventArgs e)
         {
+            if (ActiveControl == コマンド削除)
+            {
+                if (previousControl != null)
+                {
+                    previousControl.Focus();
+                }
+            }
+            string CurrentCode=this.商品コード.Text;
 
+            if (!string.IsNullOrEmpty(ComposedChipMount.Text) || IsUnit.Checked)
+            {
+                MessageBox.Show("本商品はマウントデータが構成されています。削除する前にマウントラインで使用されていないことを確認してください.", "削除コマンド",
+                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            DialogResult result = MessageBox.Show($"商品コード：{CurrentCode}\n\nこの商品データを削除します。\n削除後元に戻すことはできません。\n\n削除しますか？", "削除コマンド", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.No)
+                return;
+
+            // データベースからデータを削除
+            if (DeleteData(CurrentCode))
+            {
+                削除.Text = "■";
+                MessageBox.Show("削除しました。", "削除コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.SuspendLayout();
+
+                // 新規モードへ移行
+                if (!GoNewMode())
+                {
+                    MessageBox.Show($"エラーのため新規モードへ移行できません。\n[{Name}]を終了します。", "削除コマンド", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    this.ResumeLayout();
+                    Close();
+                }
+
+                this.ResumeLayout();
+            }
+            else
+            {
+                MessageBox.Show("削除できませんでした。他のユーザーにより削除されている可能性があります。", "削除コマンド", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
+        private bool DeleteData( string codeString)
+        {
+            bool success = false;
+
+            // SQL文で使用するパラメータ名
+            string codeParam = "@Code";
+
+            // トランザクションを開始
+            Connect();
+            SqlTransaction transaction = cn.BeginTransaction();
+
+            try
+            {
+                //ログインユーザについてはどうするか検討
+                string LoginUserCode = "test";
+                // データベース操作のためのSQL文
+                string selectSql = "SELECT * FROM M商品 WHERE 商品コード = " + codeParam + " AND 無効日時 IS NULL";
+                string updateSql = "UPDATE M商品 SET 無効日時 = GETDATE(), 無効者コード = @UserCode WHERE 商品コード = " + codeParam + " AND 無効日時 IS NULL";
+
+                using (SqlCommand selectCommand = new SqlCommand(selectSql, cn, transaction))
+                {
+                    selectCommand.Parameters.Add(new SqlParameter(codeParam, codeString));
+                    using (SqlDataReader reader = selectCommand.ExecuteReader())
+                    {
+                        if (reader.HasRows)
+                        {
+                            // 商品が見つかった場合、削除処理を実行
+                            using (SqlCommand updateCommand = new SqlCommand(updateSql, cn, transaction))
+                            {
+                                updateCommand.Parameters.Add(new SqlParameter(codeParam, codeString));
+                                updateCommand.Parameters.Add(new SqlParameter("@UserCode", LoginUserCode)); // LoginUserCode に適切な値を設定
+
+                                int rowsAffected = updateCommand.ExecuteNonQuery();
+
+                                if (rowsAffected > 0)
+                                {
+                                    // 更新が成功した場合、トランザクションをコミット
+                                    transaction.Commit();
+                                    success = true;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // エラー処理
+                Console.WriteLine("DeleteData - " + ex.Message);
+
+                try
+                {
+                    // エラーが発生した場合、トランザクションをロールバック
+                    transaction.Rollback();
+                }
+                catch (Exception rollbackEx)
+                {
+                    Console.WriteLine("Rollback Error - " + rollbackEx.Message);
+                }
+            }
+            finally
+            {                
+                cn.Close();
+            }
+
+            return success;
         }
 
         private void コマンドシリーズ_Click(object sender, EventArgs e)
@@ -818,7 +787,8 @@ namespace u_net
         }
         private void 品名_TextChanged(object sender, EventArgs e)
         {
-            FunctionClass.LimitText(this.品名, 48);
+            if (!FunctionClass.LimitText((TextBox)this.ActiveControl, 48)) return;
+
             ChangedData(true);
         }
         private void 品名_Enter(object sender, EventArgs e)
@@ -842,14 +812,26 @@ namespace u_net
 
         private void button1_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(商品分類コード.Text);
-            MessageBox.Show(数量単位コード.Text);
-            MessageBox.Show(商品コード.Text);
-            MessageBox.Show(商品コード.SelectedValue.ToString());
+            //this.M商品明細TableAdapter.Fill(this.uiDataSet.M商品明細);
+            this.M商品明細BindingSource.ResetBindings(false);
+            dataGridView1.Invalidate();
+            if (M商品明細BindingSource.DataSource != null)
+            {
+                MessageBox.Show("datasourceが設定されている");
+            }
+            else
+            {
+                // DataSourceが設定されていないか、間違っています。
+            }
+            //MessageBox.Show(数量単位コード.Text);
+            //MessageBox.Show((string)数量単位コード.SelectedValue);
+            //MessageBox.Show(商品コード.Text);
+
         }
 
         private void 商品コード_TextChanged(object sender, EventArgs e)
         {
+            if (!FunctionClass.LimitText(this.ActiveControl, 8)) return;
             UpdatedControl();
         }
 
@@ -880,11 +862,46 @@ namespace u_net
             }
         }
 
-        private void 数量単位コード_SelectedIndexChanged(object sender, EventArgs e)
+        private void 商品コード_KeyDown(object sender, KeyEventArgs e)
         {
+            if (e.KeyCode == Keys.Enter)
+            {
+                if (string.IsNullOrEmpty(ActiveControl.Text))
+                    return;
 
+                string strCode = ActiveControl.Text.PadLeft(8, '0');
+
+                if (strCode != (ActiveControl.Text ?? ""))
+                {
+                    ActiveControl.Text = strCode;
+                }
+            }
+        }
+
+        private void 商品コード_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            int keyAscii = e.KeyChar; // キーのASCIIコードを取得（仮の値）
+
+            keyAscii = FunctionClass.ChangeBig(keyAscii);
+
+            switch (keyAscii)
+            {
+                case ' ': // スペース
+                case 12288: // 全角スペース
+                    if (ActiveControl is ComboBox comboBox)
+                    {
+                        comboBox.DroppedDown = true; // ドロップダウンメニューを表示
+                    }
+                    e.Handled = true; // キー入力を無効にする
+                    break;
+            }
         }
     }
+
+
+
+
+
     //public class DataGridViewEx : DataGridView
     //{
     //    [System.Security.Permissions.UIPermission(

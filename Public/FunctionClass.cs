@@ -166,47 +166,71 @@ namespace u_net.Public
         }
 
         //入力文字列のバイト数制限
-        public static void LimitText(System.Windows.Forms.TextBox textBox, int limitBytes)
+        public static bool LimitText(Control control, int limitBytes)
         {
             try
             {
-                int inputBytes = Encoding.Default.GetByteCount(textBox.Text);
-
-                if (inputBytes <= limitBytes)
+                if (control == null)
                 {
-                    return; // 制限を超えない場合は何もしない
+                    return false;
                 }
 
-                int selStart = textBox.SelectionStart;
-                int selLength = textBox.SelectionLength;
-
-                // 制限を超えた場合、バイト数を制限する
-                string originalText = textBox.Text;
-                byte[] bytes = Encoding.Default.GetBytes(originalText);
-
-                if (selStart + selLength >= originalText.Length)
+                if (control is TextBox textBox)
                 {
-                    selStart = originalText.Length - 1;
-                    selLength = 0;
+                    int inputBytes = Encoding.GetEncoding("Shift_JIS").GetByteCount(textBox.Text);
+                    if (inputBytes > limitBytes)
+                    {
+                        int selStart = textBox.SelectionStart;
+                        int selLength = textBox.SelectionLength;
+
+                        string originalText = textBox.Text;
+                        byte[] bytes = Encoding.GetEncoding("Shift_JIS").GetBytes(originalText);
+
+                        if (selStart + selLength >= originalText.Length)
+                        {
+                            selStart = originalText.Length - 1;
+                            selLength = 0;
+                        }
+
+                        byte[] truncatedBytes = new byte[limitBytes];
+                        Array.Copy(bytes, truncatedBytes, limitBytes);
+
+                        string truncatedText = Encoding.GetEncoding("Shift_JIS").GetString(truncatedBytes);
+
+                        textBox.Text = truncatedText;
+                        textBox.SelectionStart = selStart;
+                        textBox.SelectionLength = selLength;
+                    }
+                }
+                else if (control is ComboBox comboBox)
+                {
+                    if (comboBox.SelectedItem != null)
+                    {
+                        // ComboBox の場合、SelectedItem に対して制限をかける
+                        string selectedItemText = comboBox.SelectedItem.ToString();
+                        int inputBytes = Encoding.GetEncoding("Shift_JIS").GetByteCount(selectedItemText);
+                        if (inputBytes > limitBytes)
+                        {
+                            byte[] bytes = Encoding.GetEncoding("Shift_JIS").GetBytes(selectedItemText);
+
+                            byte[] truncatedBytes = new byte[limitBytes];
+                            Array.Copy(bytes, truncatedBytes, limitBytes);
+
+                            string truncatedText = Encoding.GetEncoding("Shift_JIS").GetString(truncatedBytes);
+
+                            comboBox.SelectedItem = truncatedText; // 選択されたアイテムを制限したテキストに変更
+                        }
+                    }
                 }
 
-                byte[] truncatedBytes = new byte[limitBytes];
-                Array.Copy(bytes, truncatedBytes, limitBytes);
-
-                string truncatedText = Encoding.Default.GetString(truncatedBytes);
-
-                textBox.Text = truncatedText;
-                textBox.SelectionStart = selStart;
-                textBox.SelectionLength = selLength;
-
-                MessageBox.Show("文字数制限オーバー");
+                return true;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("エラー" + ex.Message);
+                Console.WriteLine("LimitText error: " + ex.Message);
+                return false;
             }
         }
-
         //取得したコードをリサイクルテーブルへ戻す 登録処理を中断した時用
         public static bool ReturnCode(SqlConnection connection, string codeString)
         {

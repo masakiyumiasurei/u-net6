@@ -54,8 +54,8 @@ namespace u_net.Public
 
         public static bool SetTable2Form(Form formObject, string sourceSQL, SqlConnection cn)
         {
-            try
-            {
+            //try
+            //{
                 if (string.IsNullOrWhiteSpace(sourceSQL) || cn == null) return false; // クエリまたは接続が無効な場合は何もしない
 
                 using (SqlCommand command = new SqlCommand(sourceSQL, cn)) 
@@ -104,12 +104,12 @@ namespace u_net.Public
                 }
 
                 return true;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("正しく読み込みが出来ませんでした" + ex.Message);
-                return false;
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show("正しく読み込みが出来ませんでした" + ex.Message);
+            //    return false;
+            //}
         }
 
 
