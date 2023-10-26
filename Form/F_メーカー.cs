@@ -1377,7 +1377,7 @@ namespace u_net
 
         private void メーカーコード_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            FunctionClass.IsError(this.ActiveControl);
+            FunctionClass.IsError((Control)sender);
         }
 
         private void メーカーコード_KeyDown(object sender, KeyEventArgs e)
