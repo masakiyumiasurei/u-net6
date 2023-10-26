@@ -372,7 +372,7 @@ namespace u_net
 
                         case DialogResult.No:
                             // 新規モードのときに登録しない場合はコードを戻す
-                            if (this.コマンド新規.Enabled)
+                            if (!this.コマンド新規.Enabled)
                             {
                                 Connect();
                                 if (!FunctionClass.ReturnCode(cn, "ITM" + this.商品コード.Text))
@@ -787,7 +787,7 @@ namespace u_net
         }
         private void 品名_TextChanged(object sender, EventArgs e)
         {
-            if (!FunctionClass.LimitText((TextBox)this.ActiveControl, 48)) return;
+            if (!FunctionClass.LimitText(this.品名, 48)) return;
 
             ChangedData(true);
         }
