@@ -20,10 +20,22 @@ namespace u_net
         {
             InitializeComponent();
         }
+        private void button1_Click(object sender, EventArgs e)
+        {
+            LocalSetting test = new LocalSetting();
+            //test.LoadPlace("000", this);
+            test.SavePlace("000", this);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            LocalSetting test = new LocalSetting();
+            test.LoadPlace("000", this);
+        }
 
         private void テスト_Click(object sender, EventArgs e)
         {
-            MyApi yourClass = new MyApi();
+            //MyApi yourClass = new MyApi();
             //Connection connectionInfo = new Connection();
             //string connectionString = connectionInfo.Getconnect();
             //SqlConnection connection = new SqlConnection(connectionString);
@@ -56,5 +68,7 @@ namespace u_net
                 日付.Text = selectedDate;
             }
         }
+
+       
     }
 }

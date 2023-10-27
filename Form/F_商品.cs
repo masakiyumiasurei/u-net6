@@ -30,7 +30,6 @@ namespace u_net
             this.MaximizeBox = false;  // 最大化ボタンを無効化
 
             InitializeComponent();
-
         }
         public void Connect()
         {
@@ -83,6 +82,12 @@ namespace u_net
                         this.商品コード.Text = args;
                     }
                 }
+
+                //実行中フォーム起動
+                string LoginUserCode = "000";//テスト用 ログインユーザを実行中にどのように管理するか決まったら修正
+                LocalSetting localSetting = new LocalSetting();
+                localSetting.LoadPlace(LoginUserCode, this);
+
             }
             catch (Exception ex)
             {
@@ -640,7 +645,6 @@ namespace u_net
         //フォームを閉じる時のロールバック等の処理
         private void Form_FormClosing(object sender, FormClosingEventArgs e)
         {
-
             try
             {
                 if (this.コマンド登録.Enabled)
@@ -700,9 +704,13 @@ namespace u_net
                     }
                 }
 
+                string LoginUserCode = "000";//テスト用 ログインユーザを実行中にどのように管理するか決まったら修正
+                LocalSetting test = new LocalSetting();                
+                test.SavePlace(LoginUserCode, this);
 
-                //＊＊＊＊datagridviewを空にする処理　後で入れる
-
+                //実行中フォーム起動
+                
+                
 
             }
             catch (Exception ex)

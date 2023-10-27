@@ -87,7 +87,7 @@ namespace u_net
 
             // 列の幅を設定 もとは恐らくtwipのためピクセルに直す
 
-            //0列目はaccessでは行ヘッダのためずらす
+            //0列目はaccessでは行ヘッダのため、ずらす
             //dataGridView1.Columns[0].Width = 500 / twipperdot;
             dataGridView1.Columns[0].Width = 1250 / twipperdot; //1150
             dataGridView1.Columns[1].Width = 3500 / twipperdot;
