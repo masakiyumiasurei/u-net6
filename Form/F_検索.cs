@@ -56,13 +56,6 @@ namespace u_net
  
 
 
-     
-
-
-
-
-
-
 
         private void Filtering(object filterNumber, string FilterName)
         {
@@ -149,6 +142,9 @@ namespace u_net
             // 件数を表示する
             表示件数.Text = リスト.RowCount.ToString();
 
+            //選択ボタンをEnable=falseにする
+            Enable_Switch();
+
             リスト.Focus(); // トグルボタンがクリックされた場合の処理
 
             // 値が確定済みであれば何もしない
@@ -191,38 +187,37 @@ namespace u_net
             }
 
             // ウィンドウサイズを調整する
-            int lngX, lngy;
-            myapi.GetFullScreen(out lngX, out lngy);
-            intWindowHeight = this.Height;
-            intWindowWidth = this.Width;
-            this.Width = intWindowWidth;
-            this.Height = lngy * myapi.GetTwipPerDot(myapi.GetLogPixel()) - 1200;
+            //int lngX, lngy;
+            //myapi.GetFullScreen(out lngX, out lngy);
+            //intWindowHeight = this.Height;
+            //intWindowWidth = this.Width;
+            //this.Width = intWindowWidth;
+            //this.Height = lngy * myapi.GetTwipPerDot(myapi.GetLogPixel()) - 1200;
+            //Form_Resize(sender, e);
 
 
             // 一覧を表示する
             Filtering(FilterNumber, FilterName);
+
+            リスト.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
+            リスト.ReadOnly = true;
+            リスト.AllowUserToAddRows = false;
+            リスト.AllowUserToDeleteRows = false;
         }
 
    
 
-        private void Form_Resize(object sender, EventArgs e)
-        {
-            this.SuspendLayout();
-            リスト.Height += (this.Height - intWindowHeight);
-            リスト.Width += (this.Width - intWindowWidth);
-            intWindowHeight = this.Height;
-            intWindowWidth = this.Width;
-            this.ResumeLayout();
-        }
+        //private void Form_Resize(object sender, EventArgs e)
+        //{
+        //    this.SuspendLayout();
+        //    リスト.Height += (this.Height - intWindowHeight);
+        //    リスト.Width += (this.Width - intWindowWidth);
+        //    intWindowHeight = this.Height;
+        //    intWindowWidth = this.Width;
+        //    this.ResumeLayout();
+        //}
 
-        private void キャンセルボタン_Click(object sender, EventArgs e)
-        {
-
-            DialogResult = DialogResult.Cancel;
-            this.Close();
-        }
-
-
+        
 
         private void リスト_DblClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -323,6 +318,14 @@ namespace u_net
             }
         }
 
+
+        private void キャンセルボタン_Click(object sender, EventArgs e)
+        {
+
+            DialogResult = DialogResult.Cancel;
+            this.Close();
+        }
+
         private void 検索ボタン_Click(object sender, EventArgs e)
         {
             リスト.Focus();
@@ -330,6 +333,68 @@ namespace u_net
             //Form searchForm = new Form();
             //searchForm.Show();
         }
+
+        private void Enable_Switch()
+        {
+
+            フィルタ_ア.Enabled = true;
+            フィルタ_カ.Enabled = true;
+            フィルタ_サ.Enabled = true;
+            フィルタ_タ.Enabled = true;
+            フィルタ_ナ.Enabled = true;
+            フィルタ_ハ.Enabled = true;
+            フィルタ_マ.Enabled = true;
+            フィルタ_ヤ.Enabled = true;
+            フィルタ_ラ.Enabled = true;
+            フィルタ_ワ.Enabled = true;
+            フィルタ_abc.Enabled = true;
+            フィルタ_全て.Enabled = true;
+
+            switch (FilterNumber)
+            {
+                case 1:
+                    フィルタ_ア.Enabled = false;
+                    break;
+                case 2:
+                    フィルタ_カ.Enabled = false;
+                    break;
+                case 3:
+                    フィルタ_サ.Enabled = false;
+                    break;
+                case 4:
+                    フィルタ_タ.Enabled = false;
+                    break;
+                case 5:
+                    フィルタ_ナ.Enabled = false;
+                    break;
+                case 6:
+                    フィルタ_ハ.Enabled = false;
+                    break;
+                case 7:
+                    フィルタ_マ.Enabled = false;
+                    break;
+                case 8:
+                    フィルタ_ヤ.Enabled = false;
+                    break;
+                case 9:
+                    フィルタ_ラ.Enabled = false;
+                    break;
+                case 10:
+                    フィルタ_ワ.Enabled = false;
+                    break;
+                case 11:
+                    フィルタ_abc.Enabled = false;
+                    break;
+                case 12:
+                    フィルタ_全て.Enabled = false;
+                    break;
+            }
+
+
+
+        }
+
+       
 
         private void フィルタ_ア_Click(object sender, EventArgs e)
         {

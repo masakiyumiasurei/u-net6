@@ -42,30 +42,33 @@
             this.フィルタ_ナ = new System.Windows.Forms.Button();
             this.フィルタ_タ = new System.Windows.Forms.Button();
             this.フィルタ_サ = new System.Windows.Forms.Button();
+            this.キャンセルボタン = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.リスト)).BeginInit();
             this.SuspendLayout();
             // 
             // リスト
             // 
             this.リスト.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.リスト.Location = new System.Drawing.Point(12, 83);
+            this.リスト.Location = new System.Drawing.Point(31, 103);
             this.リスト.Name = "リスト";
             this.リスト.RowTemplate.Height = 25;
-            this.リスト.Size = new System.Drawing.Size(704, 407);
+            this.リスト.Size = new System.Drawing.Size(767, 466);
             this.リスト.TabIndex = 0;
             this.リスト.KeyDown += new System.Windows.Forms.KeyEventHandler(this.リスト_KeyDown);
             // 
             // 表示件数
             // 
-            this.表示件数.Location = new System.Drawing.Point(497, 547);
+            this.表示件数.Location = new System.Drawing.Point(92, 584);
             this.表示件数.Name = "表示件数";
+            this.表示件数.ReadOnly = true;
             this.表示件数.Size = new System.Drawing.Size(100, 23);
             this.表示件数.TabIndex = 0;
             this.表示件数.TabStop = false;
             // 
             // フィルタ_ア
             // 
-            this.フィルタ_ア.Location = new System.Drawing.Point(12, 25);
+            this.フィルタ_ア.Location = new System.Drawing.Point(31, 45);
             this.フィルタ_ア.Name = "フィルタ_ア";
             this.フィルタ_ア.Size = new System.Drawing.Size(60, 40);
             this.フィルタ_ア.TabIndex = 0;
@@ -74,7 +77,7 @@
             // 
             // フィルタ_カ
             // 
-            this.フィルタ_カ.Location = new System.Drawing.Point(78, 25);
+            this.フィルタ_カ.Location = new System.Drawing.Point(97, 45);
             this.フィルタ_カ.Name = "フィルタ_カ";
             this.フィルタ_カ.Size = new System.Drawing.Size(60, 40);
             this.フィルタ_カ.TabIndex = 0;
@@ -83,7 +86,7 @@
             // 
             // フィルタ_全て
             // 
-            this.フィルタ_全て.Location = new System.Drawing.Point(768, 25);
+            this.フィルタ_全て.Location = new System.Drawing.Point(787, 45);
             this.フィルタ_全て.Name = "フィルタ_全て";
             this.フィルタ_全て.Size = new System.Drawing.Size(60, 40);
             this.フィルタ_全て.TabIndex = 0;
@@ -92,7 +95,7 @@
             // 
             // フィルタ_abc
             // 
-            this.フィルタ_abc.Location = new System.Drawing.Point(702, 25);
+            this.フィルタ_abc.Location = new System.Drawing.Point(721, 45);
             this.フィルタ_abc.Name = "フィルタ_abc";
             this.フィルタ_abc.Size = new System.Drawing.Size(60, 40);
             this.フィルタ_abc.TabIndex = 0;
@@ -101,7 +104,7 @@
             // 
             // フィルタ_ワ
             // 
-            this.フィルタ_ワ.Location = new System.Drawing.Point(636, 25);
+            this.フィルタ_ワ.Location = new System.Drawing.Point(655, 45);
             this.フィルタ_ワ.Name = "フィルタ_ワ";
             this.フィルタ_ワ.Size = new System.Drawing.Size(60, 40);
             this.フィルタ_ワ.TabIndex = 0;
@@ -110,7 +113,7 @@
             // 
             // フィルタ_ラ
             // 
-            this.フィルタ_ラ.Location = new System.Drawing.Point(570, 25);
+            this.フィルタ_ラ.Location = new System.Drawing.Point(589, 45);
             this.フィルタ_ラ.Name = "フィルタ_ラ";
             this.フィルタ_ラ.Size = new System.Drawing.Size(60, 40);
             this.フィルタ_ラ.TabIndex = 0;
@@ -119,7 +122,7 @@
             // 
             // フィルタ_ヤ
             // 
-            this.フィルタ_ヤ.Location = new System.Drawing.Point(504, 25);
+            this.フィルタ_ヤ.Location = new System.Drawing.Point(523, 45);
             this.フィルタ_ヤ.Name = "フィルタ_ヤ";
             this.フィルタ_ヤ.Size = new System.Drawing.Size(60, 40);
             this.フィルタ_ヤ.TabIndex = 0;
@@ -128,7 +131,7 @@
             // 
             // フィルタ_マ
             // 
-            this.フィルタ_マ.Location = new System.Drawing.Point(438, 25);
+            this.フィルタ_マ.Location = new System.Drawing.Point(457, 45);
             this.フィルタ_マ.Name = "フィルタ_マ";
             this.フィルタ_マ.Size = new System.Drawing.Size(60, 40);
             this.フィルタ_マ.TabIndex = 0;
@@ -137,7 +140,7 @@
             // 
             // フィルタ_ハ
             // 
-            this.フィルタ_ハ.Location = new System.Drawing.Point(372, 25);
+            this.フィルタ_ハ.Location = new System.Drawing.Point(391, 45);
             this.フィルタ_ハ.Name = "フィルタ_ハ";
             this.フィルタ_ハ.Size = new System.Drawing.Size(60, 40);
             this.フィルタ_ハ.TabIndex = 0;
@@ -146,7 +149,7 @@
             // 
             // フィルタ_ナ
             // 
-            this.フィルタ_ナ.Location = new System.Drawing.Point(306, 25);
+            this.フィルタ_ナ.Location = new System.Drawing.Point(325, 45);
             this.フィルタ_ナ.Name = "フィルタ_ナ";
             this.フィルタ_ナ.Size = new System.Drawing.Size(60, 40);
             this.フィルタ_ナ.TabIndex = 0;
@@ -155,7 +158,7 @@
             // 
             // フィルタ_タ
             // 
-            this.フィルタ_タ.Location = new System.Drawing.Point(240, 25);
+            this.フィルタ_タ.Location = new System.Drawing.Point(259, 45);
             this.フィルタ_タ.Name = "フィルタ_タ";
             this.フィルタ_タ.Size = new System.Drawing.Size(60, 40);
             this.フィルタ_タ.TabIndex = 0;
@@ -164,16 +167,36 @@
             // 
             // フィルタ_サ
             // 
-            this.フィルタ_サ.Location = new System.Drawing.Point(158, 25);
+            this.フィルタ_サ.Location = new System.Drawing.Point(177, 45);
             this.フィルタ_サ.Name = "フィルタ_サ";
             this.フィルタ_サ.Size = new System.Drawing.Size(60, 40);
             this.フィルタ_サ.TabIndex = 0;
             this.フィルタ_サ.Text = "サ";
             this.フィルタ_サ.Click += new System.EventHandler(this.フィルタ_サ_Click);
             // 
+            // キャンセルボタン
+            // 
+            this.キャンセルボタン.Location = new System.Drawing.Point(728, 12);
+            this.キャンセルボタン.Name = "キャンセルボタン";
+            this.キャンセルボタン.Size = new System.Drawing.Size(119, 24);
+            this.キャンセルボタン.TabIndex = 1;
+            this.キャンセルボタン.Text = "キャンセル(&C)";
+            this.キャンセルボタン.Click += new System.EventHandler(this.キャンセルボタン_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(31, 584);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(55, 15);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "表示件数";
+            // 
             // F_検索
             // 
             this.ClientSize = new System.Drawing.Size(990, 632);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.キャンセルボタン);
             this.Controls.Add(this.表示件数);
             this.Controls.Add(this.リスト);
             this.Controls.Add(this.フィルタ_ア);
@@ -213,5 +236,7 @@
         private Button フィルタ_ナ;
         private Button フィルタ_タ;
         private Button フィルタ_サ;
+        private Button キャンセルボタン;
+        private Label label1;
     }
 }
