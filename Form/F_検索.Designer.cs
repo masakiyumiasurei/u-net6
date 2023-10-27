@@ -61,6 +61,7 @@
             this.表示件数.Name = "表示件数";
             this.表示件数.Size = new System.Drawing.Size(100, 23);
             this.表示件数.TabIndex = 0;
+            this.表示件数.TabStop = false;
             // 
             // フィルタ_ア
             // 

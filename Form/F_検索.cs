@@ -182,12 +182,13 @@ namespace u_net
         {
             MyApi myapi = new MyApi();
 
-            //if (string.IsNullOrEmpty(openArgs))
-            //{
-            //    MessageBox.Show("呼び出しに失敗しました。\n管理者に連絡してください。", this.Name, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            //    this.Close();
-            //    return;
-            //}
+            if (string.IsNullOrEmpty(FilterName))
+            {
+                MessageBox.Show("呼び出しに失敗しました。\n管理者に連絡してください。", this.Name, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                DialogResult = DialogResult.Cancel;
+                this.Close();
+               
+            }
 
             // ウィンドウサイズを調整する
             int lngX, lngy;
@@ -275,14 +276,14 @@ namespace u_net
                 case Keys.Return:
                     リスト_DblClick(null, null);
                     break;
-                //case Keys.Right:
-                //    フリガナフィルタ.Text = (フリガナフィルタ.Value % 12) + 1;
-                //    Filtering(フリガナフィルタ.Value, FilterName);
-                //    break;
-                //case Keys.Left:
-                //    フリガナフィルタ.Text = (フリガナフィルタ.Value + (12 - 2)) % 12 + 1;
-                //    Filtering(フリガナフィルタ.Value, FilterName);
-                //    break;
+                case Keys.Right:
+                    FilterNumber = (FilterNumber % 12) + 1;
+                    Filtering(FilterNumber, FilterName);
+                    break;
+                case Keys.Left:
+                    FilterNumber = (FilterNumber + (12 - 2)) % 12 + 1;
+                    Filtering(FilterNumber, FilterName);
+                    break;
                 case Keys.F1:
                     フィルタ_ア_Click(sender,e);
                     break;
