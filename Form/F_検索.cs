@@ -53,84 +53,10 @@ namespace u_net
         }
 
 
-        //private void MyForm_Load(object sender, EventArgs e)
-        //{
-        //    MyApi myapi = new MyApi();
-        //    int xSize, ySize, intpixel, twipperdot;
-
-        //    // フォームを開く前に値の設定対象となるコントロールへの参照が必要
-        //    // 引数がない場合は開かない
-        //    //if (String.IsNullOrEmpty(this.openArgs))
-        //    //{
-        //    //    MessageBox.Show("呼び出しに失敗しました。\n管理者に連絡してください.", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-        //    //    this.Close();
-        //    //    return;
-        //    //}
-
-        //    // ウィンドウサイズを調整する
-        //    int lngX, lngY;
-        //    myapi.GetFullScreen(out lngX, out lngY);
-        //    int intWindowHeight = this.Height;
-        //    int intWindowWidth = this.Width;
-        //    this.Bounds = new Rectangle(this.Left, this.Top, intWindowWidth, lngY * myapi.GetTwipPerDot(myapi.GetLogPixel()) - 1200);
-        //}
+ 
 
 
-        //private void ApplyFilter(int filterNumber, string filterName)
-        //{
-        //    Connect();
-                
-        //    string filterCondition = string.Empty;
-
-        //    switch (filterNumber)
-        //    {
-        //        case 1:
-        //            filterCondition = " WHERE " + filterName + " like '[アイウエオ]%'";
-        //            break;
-        //        case 2:
-        //            filterCondition = " WHERE " + filterName + " like '[カキクケコガギグゲゴ]%'";
-        //            break;
-        //            // 他のケースも続けて記述
-        //    }
-
-        //    string query = GetQueryForFilter(filterName) + filterCondition;
-        //    SqlDataAdapter adapter = new SqlDataAdapter(query, cn);
-        //    DataTable dataTable = new DataTable();
-        //    adapter.Fill(dataTable);
-
-        //    // DataGridViewにデータをバインド
-        //    リスト.DataSource = dataTable;
-            
-        //}
-
-        //private string GetQueryForFilter(string filterName)
-        //{
-        //    // フィルター名に基づいて適切なSQLクエリを返す
-        //    switch (filterName)
-        //    {
-        //        case "申請顧客名フリガナ":
-        //            return "SELECT 顧客コード, 顧客名, 顧客担当者名 FROM V顧客検索_申請";
-        //        case "顧客名フリガナ":
-        //            return "SELECT 顧客コード, 顧客名, 顧客担当者名, 無効 FROM V顧客検索";
-        //        case "仕入先名フリガナ":
-        //            return "SELECT 仕入先コード, 仕入先名, 電話番号 FROM V仕入先検索";
-        //        case "メーカー名フリガナ":
-        //            return "SELECT メーカーコード, メーカー名, 電話番号 FROM uv_メーカー検索";
-        //        case "支払先名フリガナ":
-        //            return "SELECT 支払先コード, 支払先名, 電話番号 FROM V支払先検索";
-        //        default:
-        //            return string.Empty;
-        //    }
-        //}
-
-        //private void filterButton_Click(object sender, EventArgs e)
-        //{
-        //    int filterNumber = 1; // 任意のフィルター番号
-        //    string filterName = "申請顧客名フリガナ"; // 任意のフィルター名
-        //    ApplyFilter(filterNumber, filterName);
-        //}
-    
-
+     
 
 
 
@@ -145,6 +71,7 @@ namespace u_net
             // FilterName   - 抽出対象となるフィールド名
             Connect();
             string strFilter = "";
+            string query = "";
 
             switch (filterNumber)
             {
@@ -194,21 +121,30 @@ namespace u_net
             switch (FilterName)
             {
                 case "申請顧客名フリガナ":
-                    リスト.DataSource = "SELECT 顧客コード, 顧客名, 顧客担当者名 FROM V顧客検索_申請 " + strFilter + " ORDER BY " + FilterName + ";";
+                    query = "SELECT 顧客コード, 顧客名, 顧客担当者名 FROM V顧客検索_申請 " + strFilter + " ORDER BY " + FilterName + ";";
                     break;
                 case "顧客名フリガナ":
-                    リスト.DataSource = "SELECT 顧客コード, 顧客名, 顧客担当者名, 無効 FROM V顧客検索 " + strFilter + " ORDER BY " + FilterName + ";";
+                    query = "SELECT 顧客コード, 顧客名, 顧客担当者名, 無効 FROM V顧客検索 " + strFilter + " ORDER BY " + FilterName + ";";
                     break;
                 case "仕入先名フリガナ":
-                    リスト.DataSource = "SELECT 仕入先コード, 仕入先名, 電話番号 FROM V仕入先検索 " + strFilter + " ORDER BY " + FilterName + ";";
+                    query = "SELECT 仕入先コード, 仕入先名, 電話番号 FROM V仕入先検索 " + strFilter + " ORDER BY " + FilterName + ";";
                     break;
                 case "メーカー名フリガナ":
-                    リスト.DataSource = "SELECT メーカーコード, メーカー名, 電話番号 FROM uv_メーカー検索 " + strFilter + " ORDER BY " + FilterName + ";";
+                    query = "SELECT メーカーコード, メーカー名, 電話番号 FROM uv_メーカー検索 " + strFilter + " ORDER BY " + FilterName + ";";
                     break;
                 case "支払先名フリガナ":
-                    リスト.DataSource = "SELECT 支払先コード, 支払先名, 電話番号 FROM V支払先検索 " + strFilter + " ORDER BY " + FilterName + ";";
+                    query = "SELECT 支払先コード, 支払先名, 電話番号 FROM V支払先検索 " + strFilter + " ORDER BY " + FilterName + ";";
                     break;
             }
+
+            
+            SqlDataAdapter adapter = new SqlDataAdapter(query, cn);
+            DataTable dataTable = new DataTable();
+            adapter.Fill(dataTable);
+
+            // DataGridViewにデータをバインド
+            リスト.DataSource = dataTable;
+
 
             // 件数を表示する
             表示件数.Text = リスト.RowCount.ToString();
@@ -242,7 +178,7 @@ namespace u_net
 
 
 
-        private void Form_Load(object sender, EventArgs e)
+        public void Form_Load(object sender, EventArgs e)
         {
             MyApi myapi = new MyApi();
 

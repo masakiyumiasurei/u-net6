@@ -53,6 +53,7 @@
             this.リスト.RowTemplate.Height = 25;
             this.リスト.Size = new System.Drawing.Size(704, 407);
             this.リスト.TabIndex = 0;
+            this.リスト.KeyDown += new System.Windows.Forms.KeyEventHandler(this.リスト_KeyDown);
             // 
             // 表示件数
             // 
@@ -68,6 +69,7 @@
             this.フィルタ_ア.Size = new System.Drawing.Size(60, 40);
             this.フィルタ_ア.TabIndex = 0;
             this.フィルタ_ア.Text = "ア";
+            this.フィルタ_ア.Click += new System.EventHandler(this.フィルタ_ア_Click);
             // 
             // フィルタ_カ
             // 
@@ -76,6 +78,7 @@
             this.フィルタ_カ.Size = new System.Drawing.Size(60, 40);
             this.フィルタ_カ.TabIndex = 0;
             this.フィルタ_カ.Text = "カ";
+            this.フィルタ_カ.Click += new System.EventHandler(this.フィルタ_カ_Click);
             // 
             // フィルタ_全て
             // 
@@ -84,6 +87,7 @@
             this.フィルタ_全て.Size = new System.Drawing.Size(60, 40);
             this.フィルタ_全て.TabIndex = 0;
             this.フィルタ_全て.Text = "全て";
+            this.フィルタ_全て.Click += new System.EventHandler(this.フィルタ_全て_Click);
             // 
             // フィルタ_abc
             // 
@@ -92,6 +96,7 @@
             this.フィルタ_abc.Size = new System.Drawing.Size(60, 40);
             this.フィルタ_abc.TabIndex = 0;
             this.フィルタ_abc.Text = "abc";
+            this.フィルタ_abc.Click += new System.EventHandler(this.フィルタ_abc_Click);
             // 
             // フィルタ_ワ
             // 
@@ -100,6 +105,7 @@
             this.フィルタ_ワ.Size = new System.Drawing.Size(60, 40);
             this.フィルタ_ワ.TabIndex = 0;
             this.フィルタ_ワ.Text = "ワ";
+            this.フィルタ_ワ.Click += new System.EventHandler(this.フィルタ_ワ_Click);
             // 
             // フィルタ_ラ
             // 
@@ -108,6 +114,7 @@
             this.フィルタ_ラ.Size = new System.Drawing.Size(60, 40);
             this.フィルタ_ラ.TabIndex = 0;
             this.フィルタ_ラ.Text = "ラ";
+            this.フィルタ_ラ.Click += new System.EventHandler(this.フィルタ_ラ_Click);
             // 
             // フィルタ_ヤ
             // 
@@ -116,6 +123,7 @@
             this.フィルタ_ヤ.Size = new System.Drawing.Size(60, 40);
             this.フィルタ_ヤ.TabIndex = 0;
             this.フィルタ_ヤ.Text = "ヤ";
+            this.フィルタ_ヤ.Click += new System.EventHandler(this.フィルタ_ヤ_Click);
             // 
             // フィルタ_マ
             // 
@@ -124,6 +132,7 @@
             this.フィルタ_マ.Size = new System.Drawing.Size(60, 40);
             this.フィルタ_マ.TabIndex = 0;
             this.フィルタ_マ.Text = "マ";
+            this.フィルタ_マ.Click += new System.EventHandler(this.フィルタ_マ_Click);
             // 
             // フィルタ_ハ
             // 
@@ -132,6 +141,7 @@
             this.フィルタ_ハ.Size = new System.Drawing.Size(60, 40);
             this.フィルタ_ハ.TabIndex = 0;
             this.フィルタ_ハ.Text = "ハ";
+            this.フィルタ_ハ.Click += new System.EventHandler(this.フィルタ_ハ_Click);
             // 
             // フィルタ_ナ
             // 
@@ -140,6 +150,7 @@
             this.フィルタ_ナ.Size = new System.Drawing.Size(60, 40);
             this.フィルタ_ナ.TabIndex = 0;
             this.フィルタ_ナ.Text = "ナ";
+            this.フィルタ_ナ.Click += new System.EventHandler(this.フィルタ_ナ_Click);
             // 
             // フィルタ_タ
             // 
@@ -148,6 +159,7 @@
             this.フィルタ_タ.Size = new System.Drawing.Size(60, 40);
             this.フィルタ_タ.TabIndex = 0;
             this.フィルタ_タ.Text = "タ";
+            this.フィルタ_タ.Click += new System.EventHandler(this.フィルタ_タ_Click);
             // 
             // フィルタ_サ
             // 
@@ -156,6 +168,7 @@
             this.フィルタ_サ.Size = new System.Drawing.Size(60, 40);
             this.フィルタ_サ.TabIndex = 0;
             this.フィルタ_サ.Text = "サ";
+            this.フィルタ_サ.Click += new System.EventHandler(this.フィルタ_サ_Click);
             // 
             // F_検索
             // 
@@ -175,6 +188,7 @@
             this.Controls.Add(this.フィルタ_タ);
             this.Controls.Add(this.フィルタ_サ);
             this.Name = "F_検索";
+            this.Load += new System.EventHandler(this.Form_Load);
             ((System.ComponentModel.ISupportInitialize)(this.リスト)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
