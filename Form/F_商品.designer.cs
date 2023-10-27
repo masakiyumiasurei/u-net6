@@ -1383,6 +1383,7 @@ namespace u_net
             Margin = new Padding(3, 2, 3, 2);
             Name = "F_商品";
             Text = "商品";
+            FormClosing += Form_FormClosing;
             Load += Form_Load;
             Shown += F_商品_Shown;
             KeyDown += F_商品_KeyDown;

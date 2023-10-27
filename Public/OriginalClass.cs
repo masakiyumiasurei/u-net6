@@ -20,7 +20,6 @@ namespace u_net.Public
     internal class OriginalClass
     {
 
-
         public static void OpenUrl(string url)
         {
             try

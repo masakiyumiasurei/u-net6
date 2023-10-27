@@ -11,6 +11,7 @@ using System.Linq;
 using System.Windows.Forms;
 using u_net.Public;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
+using System.Data.Common;
 
 
 namespace u_net
@@ -21,6 +22,7 @@ namespace u_net
         private SqlConnection cn;
         private SqlTransaction tx;
         public string args = "";
+        public string CurrentCode = "";
 
         public F_商品()
         {
@@ -53,7 +55,6 @@ namespace u_net
             this.comboBox売上区分TableAdapter.Fill(this.uiDataSet.M売上区分);
             this.M単位TableAdapter.Fill(this.uiDataSet.M単位);
             this.comboBoxManufactureFlowTableAdapter.Fill(this.uiDataSet.ManufactureFlow);
-
 
             int intWindowHeight = this.Height;
             int intWindowWidth = this.Width;
@@ -106,7 +107,9 @@ namespace u_net
                 //this.M商品BindingSource.AddNew();
 
                 string original = FunctionClass.採番(cn, "ITM");
-                商品コード.Text = original.Substring(original.Length - 8);
+
+                CurrentCode = original.Substring(original.Length - 8);
+                商品コード.Text = CurrentCode;
                 Revision.Text = "1";
                 掛率有効.Checked = true;
 
@@ -122,7 +125,6 @@ namespace u_net
                 IsUnit.Checked = false;
                 Discontinued.Checked = false;
 
-                string CurrentCode = 商品コード.Text;
                 // 明細部を初期化
                 //this.M商品明細TableAdapter.Fill(this.uiDataSet.M商品明細, CurrentCode);
                 //strSQL = "SELECT * FROM M商品明細 WHERE 商品コード='" + CurrentCode + "' ORDER BY 明細番号";
@@ -362,6 +364,7 @@ namespace u_net
 
                             if (!ErrCheck()) return;
                             this.DoubleBuffered = false;
+                            //Call DoWait("登録しています...")
 
                             if (!SaveData())
                             {
@@ -372,7 +375,7 @@ namespace u_net
 
                         case DialogResult.No:
                             // 新規モードのときに登録しない場合はコードを戻す
-                            if (!this.コマンド新規.Enabled)
+                            if (!this.コマンド新規.Enabled && !string.IsNullOrEmpty(CurrentCode))
                             {
                                 Connect();
                                 if (!FunctionClass.ReturnCode(cn, "ITM" + this.商品コード.Text))
@@ -389,7 +392,7 @@ namespace u_net
                 else
                 {
                     // 新規モードのときに変更がない場合はコードを戻す
-                    if (this.コマンド新規.Enabled)
+                    if (!this.コマンド新規.Enabled && !string.IsNullOrEmpty(CurrentCode))
                     {
                         if (!FunctionClass.ReturnCode(cn, "ITM" + this.商品コード.Text))
                         {
@@ -505,13 +508,13 @@ namespace u_net
                     previousControl.Focus();
                 }
             }
-            string CurrentCode=this.商品コード.Text;
+            CurrentCode = this.商品コード.Text;
 
             if (!string.IsNullOrEmpty(ComposedChipMount.Text) || IsUnit.Checked)
             {
                 MessageBox.Show("本商品はマウントデータが構成されています。削除する前にマウントラインで使用されていないことを確認してください.", "削除コマンド",
                     MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return;
+                //return;  そのまま削除できる仕様の様
             }
 
             DialogResult result = MessageBox.Show($"商品コード：{CurrentCode}\n\nこの商品データを削除します。\n削除後元に戻すことはできません。\n\n削除しますか？", "削除コマンド", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -542,7 +545,7 @@ namespace u_net
             }
         }
 
-        private bool DeleteData( string codeString)
+        private bool DeleteData(string codeString)
         {
             bool success = false;
 
@@ -556,7 +559,7 @@ namespace u_net
             try
             {
                 //ログインユーザについてはどうするか検討
-                string LoginUserCode = "test";
+                string LoginUserCode = "tes";
                 // データベース操作のためのSQL文
                 string selectSql = "SELECT * FROM M商品 WHERE 商品コード = " + codeParam + " AND 無効日時 IS NULL";
                 string updateSql = "UPDATE M商品 SET 無効日時 = GETDATE(), 無効者コード = @UserCode WHERE 商品コード = " + codeParam + " AND 無効日時 IS NULL";
@@ -569,6 +572,8 @@ namespace u_net
                         if (reader.HasRows)
                         {
                             // 商品が見つかった場合、削除処理を実行
+                            reader.Close(); // 同じ接続なのでデータリーダーを閉じておく
+
                             using (SqlCommand updateCommand = new SqlCommand(updateSql, cn, transaction))
                             {
                                 updateCommand.Parameters.Add(new SqlParameter(codeParam, codeString));
@@ -603,7 +608,7 @@ namespace u_net
                 }
             }
             finally
-            {                
+            {
                 cn.Close();
             }
 
@@ -631,6 +636,83 @@ namespace u_net
         {
             this.Close();
         }
+
+        //フォームを閉じる時のロールバック等の処理
+        private void Form_FormClosing(object sender, FormClosingEventArgs e)
+        {
+
+            try
+            {
+                if (this.コマンド登録.Enabled)
+                {
+                    // データに変更がある場合の処理
+                    DialogResult result = MessageBox.Show("変更内容を登録しますか？", this.Text, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+
+                    switch (result)
+                    {
+                        case DialogResult.Yes:
+                            // エラーチェック
+                            if (!ErrCheck()) return;
+
+
+                            // 登録処理
+                            //DoWait("登録しています...");
+                            this.SuspendLayout();
+
+                            if (!SaveData())
+                            {
+                                if (MessageBox.Show("エラーのため登録できませんでした。" + Environment.NewLine +
+                                    "強制終了しますか？", this.Text, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                                {
+                                    e.Cancel = true;
+                                    return;
+                                }
+                            }
+                            break;
+
+                        case DialogResult.No:
+                            // 新規モードのときに登録しない場合はコードを戻す
+                            if (!this.コマンド新規.Enabled && !string.IsNullOrEmpty(CurrentCode))
+                            {
+                                Connect();
+                                if (!FunctionClass.ReturnCode(cn, "ITM" + this.商品コード.Text))
+                                {
+                                    MessageBox.Show("エラーのためコードは破棄されました。\n\n商品コード： " + this.商品コード.Text, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                                }
+                            }
+                            break;
+
+                        case DialogResult.Cancel:
+                            e.Cancel = true;
+                            return;
+                    }
+                }
+                else
+                {
+                    // 新規モードのときに変更がない場合はコードを戻す
+                    if (!this.コマンド新規.Enabled && !string.IsNullOrEmpty(CurrentCode))
+                    {
+                        Connect();
+                        if (!FunctionClass.ReturnCode(cn, "ITM" + this.商品コード.Text))
+                        {
+                            MessageBox.Show("エラーのためコードは破棄されました。\n\n商品コード： " + this.商品コード.Text, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        }
+                    }
+                }
+
+
+                //＊＊＊＊datagridviewを空にする処理　後で入れる
+
+
+            }
+            catch (Exception ex)
+            {
+                // エラー処理
+                Console.WriteLine("Form_FormClosing error: " + ex.Message);
+                MessageBox.Show("終了時にエラーが発生しました。", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
         private void コマンド確定_Click(object sender, EventArgs e)
         {
 
@@ -648,7 +730,6 @@ namespace u_net
         // コントロールがフォーカスを受け取ったとき、前回のフォーカスを記憶
         private void Control_GotFocus(object sender, EventArgs e)
         {
-
             previousControl = sender as Control;
         }
 
@@ -810,24 +891,7 @@ namespace u_net
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            //this.M商品明細TableAdapter.Fill(this.uiDataSet.M商品明細);
-            this.M商品明細BindingSource.ResetBindings(false);
-            dataGridView1.Invalidate();
-            if (M商品明細BindingSource.DataSource != null)
-            {
-                MessageBox.Show("datasourceが設定されている");
-            }
-            else
-            {
-                // DataSourceが設定されていないか、間違っています。
-            }
-            //MessageBox.Show(数量単位コード.Text);
-            //MessageBox.Show((string)数量単位コード.SelectedValue);
-            //MessageBox.Show(商品コード.Text);
 
-        }
 
         private void 商品コード_TextChanged(object sender, EventArgs e)
         {
@@ -843,7 +907,7 @@ namespace u_net
             this.コマンド削除.Enabled = true;
             try
             {
-                string CurrentCode = this.商品コード.Text;
+                CurrentCode = this.商品コード.Text;
                 string strSQL = "SELECT * FROM V商品ヘッダ WHERE 商品コード='" + CurrentCode + "'";
                 Connect();
                 if (!VariableSet.SetTable2Form(this, strSQL, cn)) return;
@@ -896,6 +960,25 @@ namespace u_net
                     break;
             }
         }
+        private void button1_Click(object sender, EventArgs e)
+        {
+            //this.M商品明細TableAdapter.Fill(this.uiDataSet.M商品明細);
+            this.M商品明細BindingSource.ResetBindings(false);
+            dataGridView1.Invalidate();
+            if (M商品明細BindingSource.DataSource != null)
+            {
+                MessageBox.Show("datasourceが設定されている");
+            }
+            else
+            {
+                // DataSourceが設定されていないか、間違っています。
+            }
+            //MessageBox.Show(数量単位コード.Text);
+            //MessageBox.Show((string)数量単位コード.SelectedValue);
+            //MessageBox.Show(商品コード.Text);
+
+        }
+
     }
 
 

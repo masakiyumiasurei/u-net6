@@ -231,19 +231,34 @@ namespace u_net.Public
                 return false;
             }
         }
+
         //取得したコードをリサイクルテーブルへ戻す 登録処理を中断した時用
         public static bool ReturnCode(SqlConnection connection, string codeString)
         {
             bool success = false;
+            string strAdoptCode = "";
+            int lngCounter = 0;
+            string strKey = "";
+            string strSQL = "";
+            string strFetch = "";
+            int lngLength = 0;
+
             if (connection.State != ConnectionState.Open)
             {
                 connection.Open();
             }
 
-            string strAdoptCode = string.Empty;
-            long lngCounter = 0;
+            for (lngLength = 1; lngLength <= codeString.Length; lngLength++)
+            {
+                strFetch = codeString.Substring(lngLength - 1, 1);
+                if (char.IsDigit(strFetch[0]))
+                {
+                    break;
+                }
+            }
 
-            // パターンに基づいてstrAdoptCodeとlngCounterを取得する処理を追加
+            strAdoptCode = codeString.Substring(0, (int)lngLength - 1);
+            lngCounter = int.Parse(codeString.Substring((int)lngLength - 1, 8));
 
             string query = "SELECT * FROM 採番リサイクル WHERE 採番コード = @採番コード AND カウンタ = @カウンタ";
             using (SqlCommand command = new SqlCommand(query, connection))
@@ -264,10 +279,16 @@ namespace u_net.Public
                             success = true;
                         }
                     }
+                    else
+                    {
+                        success = false;
+                        return success;
+                    }
                 }
             }
             return success;
         }
+
 
         public static void LockData(Form formObject, bool lockedOn, string exControlName1 = null, string exControlName2 = null)
         {
