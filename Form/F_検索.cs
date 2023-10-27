@@ -199,13 +199,15 @@ namespace u_net
             // 一覧を表示する
             Filtering(FilterNumber, FilterName);
 
+            //列幅を自動調整する
             リスト.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
+            
             リスト.ReadOnly = true;
             リスト.AllowUserToAddRows = false;
             リスト.AllowUserToDeleteRows = false;
         }
 
-   
+
 
         //private void Form_Resize(object sender, EventArgs e)
         //{
@@ -217,8 +219,7 @@ namespace u_net
         //    this.ResumeLayout();
         //}
 
-        
-
+       
         private void リスト_DblClick(object sender, DataGridViewCellEventArgs e)
         {
             try
