@@ -4,9 +4,8 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using u_net.Public;
 
-namespace u_net
+namespace u_net.Public
 {
     internal class LocalSetting
     {
@@ -24,7 +23,7 @@ namespace u_net
         {
             try
             {
-               string objectName = form.Name;
+                string objectName = form.Name;
                 // フォーム名に"F_"があれば、取り除く
                 if (objectName.StartsWith("F_"))
                 {
@@ -47,7 +46,7 @@ namespace u_net
 
                         if (reader.Read())
                         {
-                        //Mオブジェクト配置にレコードがある場合は登録
+                            //Mオブジェクト配置にレコードがある場合は登録
                             lngLeft = Convert.ToInt64(reader["WindowLeft"]);
                             lngTop = Convert.ToInt64(reader["WindowTop"]);
                             lngWidth = Convert.ToInt64(reader["WindowWidth"]);
@@ -74,9 +73,9 @@ namespace u_net
                                 //accessではtwipがサイズ単位のため、ピクセルをapiから取得してtwipに変換していたが、
                                 //こちらでは不要。微調整用の数値がtwipのため、１ドットあたりの twip値を逆に割ると丁度か
 
-                                lngWidth = xSize  - (150/ myapi.GetTwipPerDot(intpixel));
-                                lngHeight = ySize  - (1200/ myapi.GetTwipPerDot(intpixel));
-                             }
+                                lngWidth = xSize - 150 / myapi.GetTwipPerDot(intpixel);
+                                lngHeight = ySize - 1200 / myapi.GetTwipPerDot(intpixel);
+                            }
                         }
 
                         // オブジェクトの配置を調整
@@ -89,7 +88,7 @@ namespace u_net
                         }
                     }
                 }
-                
+
             }
             catch (Exception ex)
             {
@@ -100,8 +99,8 @@ namespace u_net
 
         public void SavePlace(string userCode, Form form)
         {
-             Connect(); 
-            
+            Connect();
+
             SqlTransaction transaction = cn.BeginTransaction();
 
             try
