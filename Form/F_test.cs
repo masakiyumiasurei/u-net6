@@ -56,5 +56,27 @@ namespace u_net
                 日付.Text = selectedDate;
             }
         }
+
+
+
+
+
+        // 検索フォームへの参照を保持するための変数
+        private F_検索 SearchForm;
+
+
+        private void 顧客選択ボタン_Click(object sender, EventArgs e)
+        {
+            SearchForm = new F_検索();
+            SearchForm.FilterName = "顧客名フリガナ";
+            if (SearchForm.ShowDialog() == DialogResult.OK)
+            {
+                // 日付選択フォームから選択した日付を取得
+                string SelectedCode = SearchForm.SelectedCode;
+
+                // フォームAの日付コントロールに選択した日付を設定
+                顧客コード.Text = SelectedCode;
+            }
+        }
     }
 }
