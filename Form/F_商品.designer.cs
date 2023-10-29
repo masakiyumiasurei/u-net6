@@ -146,15 +146,15 @@ namespace u_net
             label19 = new Label();
             数量単位コード = new ComboBox();
             notifyIcon1 = new NotifyIcon(components);
-            商品コードDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            revisionDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            dgv商品コード = new DataGridViewTextBoxColumn();
+            dgvrevision = new DataGridViewTextBoxColumn();
             dgv明細番号 = new DataGridViewTextBoxColumn();
-            型式番号DataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            型式名DataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            定価DataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            原価DataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            機能DataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            構成番号DataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            型式番号 = new DataGridViewTextBoxColumn();
+            型式名 = new DataGridViewTextBoxColumn();
+            定価 = new DataGridViewTextBoxColumn();
+            原価 = new DataGridViewTextBoxColumn();
+            dgv機能 = new DataGridViewTextBoxColumn();
+            dgv構成番号 = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)M商品BindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)uiDataSet).BeginInit();
             ((System.ComponentModel.ISupportInitialize)comboBox売上区分bindingSource).BeginInit();
@@ -248,7 +248,7 @@ namespace u_net
             // 
             dataGridView1.AutoGenerateColumns = false;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { 商品コードDataGridViewTextBoxColumn, revisionDataGridViewTextBoxColumn, dgv明細番号, 型式番号DataGridViewTextBoxColumn, 型式名DataGridViewTextBoxColumn, 定価DataGridViewTextBoxColumn, 原価DataGridViewTextBoxColumn, 機能DataGridViewTextBoxColumn, 構成番号DataGridViewTextBoxColumn });
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { dgv商品コード, dgvrevision, dgv明細番号, 型式番号, 型式名, 定価, 原価, dgv機能, dgv構成番号 });
             dataGridView1.DataSource = M商品明細BindingSource;
             dataGridView1.ImeMode = ImeMode.On;
             dataGridView1.Location = new Point(0, 502);
@@ -1272,17 +1272,17 @@ namespace u_net
             notifyIcon1.Text = "notifyIcon1";
             notifyIcon1.Visible = true;
             // 
-            // 商品コードDataGridViewTextBoxColumn
+            // dgv商品コード
             // 
-            商品コードDataGridViewTextBoxColumn.DataPropertyName = "商品コード";
-            商品コードDataGridViewTextBoxColumn.HeaderText = "商品コード";
-            商品コードDataGridViewTextBoxColumn.Name = "商品コードDataGridViewTextBoxColumn";
+            dgv商品コード.DataPropertyName = "商品コード";
+            dgv商品コード.HeaderText = "商品コード";
+            dgv商品コード.Name = "dgv商品コード";
             // 
-            // revisionDataGridViewTextBoxColumn
+            // dgvrevision
             // 
-            revisionDataGridViewTextBoxColumn.DataPropertyName = "Revision";
-            revisionDataGridViewTextBoxColumn.HeaderText = "Revision";
-            revisionDataGridViewTextBoxColumn.Name = "revisionDataGridViewTextBoxColumn";
+            dgvrevision.DataPropertyName = "Revision";
+            dgvrevision.HeaderText = "Revision";
+            dgvrevision.Name = "dgvrevision";
             // 
             // dgv明細番号
             // 
@@ -1290,41 +1290,41 @@ namespace u_net
             dgv明細番号.HeaderText = "明細番号";
             dgv明細番号.Name = "dgv明細番号";
             // 
-            // 型式番号DataGridViewTextBoxColumn
+            // 型式番号
             // 
-            型式番号DataGridViewTextBoxColumn.DataPropertyName = "型式番号";
-            型式番号DataGridViewTextBoxColumn.HeaderText = "型式番号";
-            型式番号DataGridViewTextBoxColumn.Name = "型式番号DataGridViewTextBoxColumn";
+            型式番号.DataPropertyName = "型式番号";
+            型式番号.HeaderText = "型式番号";
+            型式番号.Name = "型式番号";
             // 
-            // 型式名DataGridViewTextBoxColumn
+            // 型式名
             // 
-            型式名DataGridViewTextBoxColumn.DataPropertyName = "型式名";
-            型式名DataGridViewTextBoxColumn.HeaderText = "型式名";
-            型式名DataGridViewTextBoxColumn.Name = "型式名DataGridViewTextBoxColumn";
+            型式名.DataPropertyName = "型式名";
+            型式名.HeaderText = "型式名";
+            型式名.Name = "型式名";
             // 
-            // 定価DataGridViewTextBoxColumn
+            // 定価
             // 
-            定価DataGridViewTextBoxColumn.DataPropertyName = "定価";
-            定価DataGridViewTextBoxColumn.HeaderText = "定価";
-            定価DataGridViewTextBoxColumn.Name = "定価DataGridViewTextBoxColumn";
+            定価.DataPropertyName = "定価";
+            定価.HeaderText = "定価";
+            定価.Name = "定価";
             // 
-            // 原価DataGridViewTextBoxColumn
+            // 原価
             // 
-            原価DataGridViewTextBoxColumn.DataPropertyName = "原価";
-            原価DataGridViewTextBoxColumn.HeaderText = "原価";
-            原価DataGridViewTextBoxColumn.Name = "原価DataGridViewTextBoxColumn";
+            原価.DataPropertyName = "原価";
+            原価.HeaderText = "原価";
+            原価.Name = "原価";
             // 
-            // 機能DataGridViewTextBoxColumn
+            // dgv機能
             // 
-            機能DataGridViewTextBoxColumn.DataPropertyName = "機能";
-            機能DataGridViewTextBoxColumn.HeaderText = "機能";
-            機能DataGridViewTextBoxColumn.Name = "機能DataGridViewTextBoxColumn";
+            dgv機能.DataPropertyName = "機能";
+            dgv機能.HeaderText = "機能";
+            dgv機能.Name = "dgv機能";
             // 
-            // 構成番号DataGridViewTextBoxColumn
+            // dgv構成番号
             // 
-            構成番号DataGridViewTextBoxColumn.DataPropertyName = "構成番号";
-            構成番号DataGridViewTextBoxColumn.HeaderText = "構成番号";
-            構成番号DataGridViewTextBoxColumn.Name = "構成番号DataGridViewTextBoxColumn";
+            dgv構成番号.DataPropertyName = "構成番号";
+            dgv構成番号.HeaderText = "構成番号";
+            dgv構成番号.Name = "dgv構成番号";
             // 
             // F_商品
             // 
@@ -1479,15 +1479,7 @@ namespace u_net
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgv商品コード;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgvRevision;
-        private System.Windows.Forms.DataGridViewTextBoxColumn 明細番号;
-        private System.Windows.Forms.DataGridViewTextBoxColumn 型式番号;
-        private System.Windows.Forms.DataGridViewTextBoxColumn 型式名;
-        private System.Windows.Forms.DataGridViewTextBoxColumn 定価;
-        private System.Windows.Forms.DataGridViewTextBoxColumn 原価;
-        private System.Windows.Forms.DataGridViewTextBoxColumn 機能;
-        private System.Windows.Forms.DataGridViewTextBoxColumn 構成番号;
+
         private System.Windows.Forms.BindingSource mシリーズBindingSource;
 
         private System.Windows.Forms.Button button1;
@@ -1548,15 +1540,15 @@ namespace u_net
         private ComboBox 数量単位コード;
         private newDataSet newDataSet;
         private NotifyIcon notifyIcon1;
-        private DataGridViewTextBoxColumn 商品コードDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn revisionDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn dgv商品コード;
+        private DataGridViewTextBoxColumn dgvrevision;
         private DataGridViewTextBoxColumn dgv明細番号;
-        private DataGridViewTextBoxColumn 型式番号DataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn 型式名DataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn 定価DataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn 原価DataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn 機能DataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn 構成番号DataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn 型式番号;
+        private DataGridViewTextBoxColumn 型式名;
+        private DataGridViewTextBoxColumn 定価;
+        private DataGridViewTextBoxColumn 原価;
+        private DataGridViewTextBoxColumn dgv機能;
+        private DataGridViewTextBoxColumn dgv構成番号;
     }
 }
 

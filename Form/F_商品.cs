@@ -265,40 +265,6 @@ namespace u_net
             }
         }
 
-        private int detailNumber = 1; // 最初の連番
-        //セルのデフォルト値
-        private void dataGridView1_DefaultValuesNeeded(object sender, DataGridViewRowEventArgs e)
-        {
-            e.Row.Cells["商品コードDataGridViewTextBoxColumn"].Value = this.商品コード.Text; //Convert.ToInt32(this.顧客ID);
-            e.Row.Cells["RevisionDataGridViewTextBoxColumn"].Value = this.Revision.Text;
-            e.Row.Cells["明細番号DataGridViewTextBoxColumn"].Value = detailNumber.ToString();
-            detailNumber++; // 連番を増やす
-            //e.Row.Cells["担当者コード"].Value = tantou;
-            //e.Row.Cells["時刻"].Value = DateTime.Now.ToString("HH:mm");            
-        }
-
-        // DataGridViewの初期設定
-        private void InitializeDataGridView()
-        {
-
-            // DefaultValuesNeededイベントハンドラを登録
-            dataGridView1.DefaultValuesNeeded += new DataGridViewRowEventHandler(dataGridView1_DefaultValuesNeeded);
-        }
-
-        private void dataGridView1_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
-        {
-            //削除するかユーザーに確認する
-            if (MessageBox.Show("この行を削除しますか？",
-                "削除の確認",
-                MessageBoxButtons.OKCancel,
-                MessageBoxIcon.Question) != DialogResult.OK)
-            {
-                e.Cancel = true;
-            }
-        }
-        //セルのフォーマット
-
-
 
         private void コマンド新規_Click(object sender, EventArgs e)
         {
@@ -741,6 +707,38 @@ namespace u_net
             previousControl = sender as Control;
         }
 
+        // DataGridViewの初期設定
+        private void InitializeDataGridView()
+        {
+            // DefaultValuesNeededイベントハンドラを登録
+            dataGridView1.DefaultValuesNeeded += new DataGridViewRowEventHandler(dataGridView1_DefaultValuesNeeded);
+        }
+
+        private int detailNumber = 1; // 最初の連番
+        //セルのデフォルト値
+        private void dataGridView1_DefaultValuesNeeded(object sender, DataGridViewRowEventArgs e)
+        {
+            e.Row.Cells["dgv商品コード"].Value = this.商品コード.Text; //Convert.ToInt32(this.顧客ID);
+            e.Row.Cells["dgvRevision"].Value = this.Revision.Text;
+            e.Row.Cells["dgv明細番号"].Value = detailNumber.ToString();
+            detailNumber++; // 連番を増やす
+            //e.Row.Cells["担当者コード"].Value = tantou;
+            //e.Row.Cells["時刻"].Value = DateTime.Now.ToString("HH:mm");            
+        }
+         
+
+        private void dataGridView1_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
+        {
+            //削除するかユーザーに確認する
+            if (MessageBox.Show("この行を削除しますか？",
+                "削除の確認",
+                MessageBoxButtons.OKCancel,
+                MessageBoxIcon.Question) != DialogResult.OK)
+            {
+                e.Cancel = true;
+            }
+        }
+
         //商品明細の型式番号と構成番号を設定する 同一の商品コード内での連番　と型式名ごとの番号
         private bool SetModelNumber()
         {
@@ -754,18 +752,18 @@ namespace u_net
                 {
                     if (!row.IsNewRow)
                     {
-                        string 型式名 = row.Cells["型式名DataGridViewTextBoxColumn"].Value as string;
+                        string 型式名 = row.Cells["dgv型式名"].Value as string;
 
                         if (!string.IsNullOrEmpty(型式名) && 型式名 != "---")
                         {
                             // データグリッドビューから値を取得してデータテーブル内の値を変更
-                            dataGridView1.Rows[row.Index].Cells["型式番号DataGridViewTextBoxColumn"].Value = lngi;
-                            dataGridView1.Rows[row.Index].Cells["構成番号DataGridViewTextBoxColumn"].Value = DBNull.Value;
+                            dataGridView1.Rows[row.Index].Cells["dgv型式番号"].Value = lngi;
+                            dataGridView1.Rows[row.Index].Cells["dgv構成番号"].Value = DBNull.Value;
                             lngi++;
                         }
                         else
                         {
-                            dataGridView1.Rows[row.Index].Cells["構成番号DataGridViewTextBoxColumn"].Value = lngi;
+                            dataGridView1.Rows[row.Index].Cells["dgv構成番号"].Value = lngi;
                         }
                     }
                 }
@@ -880,6 +878,7 @@ namespace u_net
 
             ChangedData(true);
         }
+
         private void 品名_Enter(object sender, EventArgs e)
         {
             this.toolStripStatusLabel2.Text = "■受注時などに表示される商品の品名です。　■全角２４文字まで入力できます。";
