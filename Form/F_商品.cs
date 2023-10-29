@@ -705,12 +705,12 @@ namespace u_net
                 }
 
                 string LoginUserCode = "000";//テスト用 ログインユーザを実行中にどのように管理するか決まったら修正
-                LocalSetting test = new LocalSetting();                
+                LocalSetting test = new LocalSetting();
                 test.SavePlace(LoginUserCode, this);
 
                 //実行中フォーム起動
-                
-                
+
+
 
             }
             catch (Exception ex)
@@ -922,10 +922,17 @@ namespace u_net
 
                 //V商品ヘッダにrevisionカラムがないため
                 this.Revision.Text = "1";
-                this.M商品明細TableAdapter.Fill(this.uiDataSet.M商品明細, CurrentCode);
+
+                //何故かdatagridviewに反映しない？
+                // this.M商品明細TableAdapter.Fill(this.uiDataSet.M商品明細, CurrentCode);
+                strSQL = "SELECT * FROM M商品明細 WHERE 商品コード='" + CurrentCode + "'";
+                DataGridUtils.SetDataGridView(cn, strSQL, this.dataGridView1);
+
+
                 FunctionClass.LockData(this, false, "商品コード");
                 コマンド複写.Enabled = true;
                 コマンド削除.Enabled = true;
+                cn.Close();
             }
             catch (Exception ex)
             {
