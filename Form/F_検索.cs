@@ -176,6 +176,7 @@ namespace u_net
 
         public void Form_Load(object sender, EventArgs e)
         {
+
             MyApi myapi = new MyApi();
 
             if (string.IsNullOrEmpty(FilterName))
@@ -195,6 +196,11 @@ namespace u_net
             //this.Height = lngy * myapi.GetTwipPerDot(myapi.GetLogPixel()) - 1200;
             //Form_Resize(sender, e);
 
+            //実行中フォーム起動
+            string LoginUserCode = "000";//テスト用 ログインユーザを実行中にどのように管理するか決まったら修正
+            LocalSetting localSetting = new LocalSetting();
+            localSetting.LoadPlace(LoginUserCode, this);
+
 
             // 一覧を表示する
             Filtering(FilterNumber, FilterName);
@@ -205,8 +211,18 @@ namespace u_net
             リスト.ReadOnly = true;
             リスト.AllowUserToAddRows = false;
             リスト.AllowUserToDeleteRows = false;
+
+            toolStripStatusLabel2.Text = "■確定するには、確定したい項目をダブルクリックするか、選択後[Enter]キーを押下します。　■[Function]キーあるいは←→キーで抽出条件を変更します。";
+
         }
 
+
+        private void F_検索_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            string LoginUserCode = "000";//テスト用 ログインユーザを実行中にどのように管理するか決まったら修正
+            LocalSetting test = new LocalSetting();
+            test.SavePlace(LoginUserCode, this);
+        }
 
 
         //private void Form_Resize(object sender, EventArgs e)
@@ -219,7 +235,7 @@ namespace u_net
         //    this.ResumeLayout();
         //}
 
-       
+
         private void リスト_DblClick(object sender, DataGridViewCellEventArgs e)
         {
             try

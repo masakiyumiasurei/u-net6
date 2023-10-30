@@ -49,6 +49,20 @@ namespace u_net
 
             DateToElements();
 
+            //実行中フォーム起動
+            string LoginUserCode = "000";//テスト用 ログインユーザを実行中にどのように管理するか決まったら修正
+            LocalSetting localSetting = new LocalSetting();
+            localSetting.LoadPlace(LoginUserCode, this);
+
+
+        }
+
+
+        private void F_カレンダー_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            string LoginUserCode = "000";//テスト用 ログインユーザを実行中にどのように管理するか決まったら修正
+            LocalSetting test = new LocalSetting();
+            test.SavePlace(LoginUserCode, this);
         }
 
         private void DateToElements()

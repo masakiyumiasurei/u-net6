@@ -45,7 +45,11 @@
             this.キャンセルボタン = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.検索ボタン = new System.Windows.Forms.Button();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             ((System.ComponentModel.ISupportInitialize)(this.リスト)).BeginInit();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // リスト
@@ -220,9 +224,33 @@
             this.検索ボタン.Text = "詳細検索(&S)";
             this.検索ボタン.Click += new System.EventHandler(this.検索ボタン_Click);
             // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel1,
+            this.toolStripStatusLabel2});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 633);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 19, 0);
+            this.statusStrip1.Size = new System.Drawing.Size(672, 22);
+            this.statusStrip1.TabIndex = 111;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 17);
+            // 
+            // toolStripStatusLabel2
+            // 
+            this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
+            this.toolStripStatusLabel2.Size = new System.Drawing.Size(89, 17);
+            this.toolStripStatusLabel2.Text = "各種項目の説明";
+            // 
             // F_検索
             // 
-            this.ClientSize = new System.Drawing.Size(672, 634);
+            this.ClientSize = new System.Drawing.Size(672, 655);
+            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.検索ボタン);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.キャンセルボタン);
@@ -241,8 +269,11 @@
             this.Controls.Add(this.フィルタ_タ);
             this.Controls.Add(this.フィルタ_サ);
             this.Name = "F_検索";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.F_検索_FormClosing);
             this.Load += new System.EventHandler(this.Form_Load);
             ((System.ComponentModel.ISupportInitialize)(this.リスト)).EndInit();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -268,5 +299,8 @@
         private Button キャンセルボタン;
         private Label label1;
         private Button 検索ボタン;
+        private StatusStrip statusStrip1;
+        private ToolStripStatusLabel toolStripStatusLabel1;
+        private ToolStripStatusLabel toolStripStatusLabel2;
     }
 }
