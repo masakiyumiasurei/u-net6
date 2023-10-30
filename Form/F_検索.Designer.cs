@@ -60,7 +60,7 @@
             this.リスト.RowTemplate.Height = 25;
             this.リスト.Size = new System.Drawing.Size(650, 500);
             this.リスト.TabIndex = 0;
-            this.リスト.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.リスト_DblClick);
+            this.リスト.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.リスト_CellMouseDoubleClick);
             this.リスト.KeyDown += new System.Windows.Forms.KeyEventHandler(this.リスト_KeyDown);
             // 
             // 表示件数

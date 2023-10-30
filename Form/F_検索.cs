@@ -147,6 +147,12 @@ namespace u_net
 
             リスト.Focus(); // トグルボタンがクリックされた場合の処理
 
+            if (リスト.RowCount > 0)
+            {
+                リスト.Rows[0].Selected = true;
+            }
+
+
             // 値が確定済みであれば何もしない
             //switch (objArgs.GetType().Name)
             //{
@@ -170,6 +176,8 @@ namespace u_net
             //    リスト.Selected[1] = true;
             //    リスト.Value = リスト.Column[0, 1];
             //}
+
+            
         }
 
 
@@ -207,7 +215,15 @@ namespace u_net
 
             //列幅を自動調整する
             リスト.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
-            
+
+            //選択範囲を行全体に設定
+            リスト.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+
+            if (リスト.RowCount > 0)
+            {
+                リスト.Rows[0].Selected = true;
+            }
+
             リスト.ReadOnly = true;
             リスト.AllowUserToAddRows = false;
             リスト.AllowUserToDeleteRows = false;
@@ -235,8 +251,7 @@ namespace u_net
         //    this.ResumeLayout();
         //}
 
-
-        private void リスト_DblClick(object sender, DataGridViewCellEventArgs e)
+        private void リスト_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             try
             {
@@ -275,18 +290,29 @@ namespace u_net
                 }
                 else
                 {
-                    Console.WriteLine(this.Name + "_リスト_DblClick - " + ex.HResult + " : " + ex.Message);
+                    Console.WriteLine(this.Name + "_リスト_CellMouseDoubleClick - " + ex.HResult + " : " + ex.Message);
                 }
             }
-     
         }
 
         private void リスト_KeyDown(object sender, KeyEventArgs e)
         {
             switch (e.KeyCode)
             {
-                case Keys.Return:
-                    リスト_DblClick(null, null);
+                case Keys.Enter:
+                    if (リスト.SelectedRows.Count > 0)
+                    {
+                        // 選択されている行を取得
+                        DataGridViewRow selectedRow = リスト.SelectedRows[0];
+
+                        // 選択した行の各セルの値を取得
+                        string column1Value = selectedRow.Cells[0].Value.ToString(); // 0は列のインデックス
+
+                        SelectedCode = column1Value;
+
+                        DialogResult = DialogResult.OK;
+                        Close();
+                    }
                     break;
                 case Keys.Right:
                     FilterNumber = (FilterNumber % 12) + 1;
@@ -332,6 +358,7 @@ namespace u_net
                 case Keys.F12:
                     フィルタ_全て_Click(sender, e);
                     break;
+                
             }
         }
 
