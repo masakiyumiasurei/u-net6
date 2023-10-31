@@ -66,6 +66,12 @@ namespace u_net
 
         private void Form_Load(object sender, EventArgs e)
         {
+
+            //実行中フォーム起動
+            string LoginUserCode = "000";//テスト用 ログインユーザを実行中にどのように管理するか決まったら修正
+            LocalSetting localSetting = new LocalSetting();
+            localSetting.LoadPlace(LoginUserCode, this);
+
             try
             {
                 this.SuspendLayout();
@@ -225,6 +231,12 @@ namespace u_net
 
         private void Form_Unload(object sender, FormClosingEventArgs e)
         {
+
+            string LoginUserCode = "000";//テスト用 ログインユーザを実行中にどのように管理するか決まったら修正
+            LocalSetting test = new LocalSetting();
+            test.SavePlace(LoginUserCode, this);
+
+
             try
             {
 
@@ -1594,7 +1606,7 @@ namespace u_net
 
 
 
-        private void fAX番号3_Validated(object sender, EventArgs e)
+        private void FAX番号3_Validated(object sender, EventArgs e)
         {
             UpdatedControl((Control)sender);
         }
@@ -1619,7 +1631,125 @@ namespace u_net
             ChangedData(true);
         }
 
+        private void メーカー名_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Text = "■全角30文字まで入力できます。";
+        }
 
+        private void メーカー名_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Text = "各種項目の説明";
+        }
+
+        private void メーカー名フリガナ_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Text = "■全角60文字まで入力できます。";
+        }
+
+        private void メーカー名フリガナ_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Text = "各種項目の説明";
+        }
+
+        private void メーカー省略名_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Text = "■メーカーの省略名を入力します。　■全角5文字まで入力できます。";
+        }
+
+        private void メーカー省略名_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Text = "各種項目の説明";
+        }
+
+        private void 住所1_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Text = "■全角25文字まで入力できます。";
+        }
+
+        private void 住所1_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Text = "各種項目の説明";
+        }
+
+        private void 住所2_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Text = "■全角25文字まで入力できます。";
+        }
+
+        private void 住所2_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Text = "各種項目の説明";
+        }
+
+        private void 担当者名_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Text = "■全角25文字まで入力できます。";
+        }
+
+        private void 担当者名_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Text = "各種項目の説明";
+        }
+
+        private void 担当者メールアドレス_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Text = "■半角100文字まで入力できます。";
+        }
+
+        private void 担当者メールアドレス_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Text = "各種項目の説明";
+        }
+
+        private void ウェブアドレス_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Text = "■半角100文字まで入力できます。";
+        }
+
+        private void ウェブアドレス_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Text = "各種項目の説明";
+        }
+
+        private void 仕入先1_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Text = "■全角30文字まで入力できます。";
+        }
+
+        private void 仕入先1_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Text = "各種項目の説明";
+        }
+
+        private void 仕入先2_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Text = "■全角30文字まで入力できます。";
+        }
+
+        private void 仕入先2_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Text = "各種項目の説明";
+        }
+
+        private void 仕入先3_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Text = "■全角30文字まで入力できます。";
+        }
+
+        private void 仕入先3_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Text = "各種項目の説明";
+        }
+
+        private void 備考_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Text = "■全角100文字まで入力できます。";
+        }
+
+        private void 備考_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Text = "各種項目の説明";
+        }
     }
 
 

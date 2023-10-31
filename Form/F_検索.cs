@@ -147,6 +147,12 @@ namespace u_net
 
             リスト.Focus(); // トグルボタンがクリックされた場合の処理
 
+            if (リスト.RowCount > 0)
+            {
+                リスト.Rows[0].Selected = true;
+            }
+
+
             // 値が確定済みであれば何もしない
             //switch (objArgs.GetType().Name)
             //{
@@ -170,12 +176,15 @@ namespace u_net
             //    リスト.Selected[1] = true;
             //    リスト.Value = リスト.Column[0, 1];
             //}
+
+            
         }
 
 
 
         public void Form_Load(object sender, EventArgs e)
         {
+
             MyApi myapi = new MyApi();
 
             if (string.IsNullOrEmpty(FilterName))
@@ -195,18 +204,41 @@ namespace u_net
             //this.Height = lngy * myapi.GetTwipPerDot(myapi.GetLogPixel()) - 1200;
             //Form_Resize(sender, e);
 
+            //実行中フォーム起動
+            string LoginUserCode = "000";//テスト用 ログインユーザを実行中にどのように管理するか決まったら修正
+            LocalSetting localSetting = new LocalSetting();
+            localSetting.LoadPlace(LoginUserCode, this);
+
 
             // 一覧を表示する
             Filtering(FilterNumber, FilterName);
 
             //列幅を自動調整する
             リスト.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
-            
+
+            //選択範囲を行全体に設定
+            リスト.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+
+            if (リスト.RowCount > 0)
+            {
+                リスト.Rows[0].Selected = true;
+            }
+
             リスト.ReadOnly = true;
             リスト.AllowUserToAddRows = false;
             リスト.AllowUserToDeleteRows = false;
+
+            toolStripStatusLabel2.Text = "■確定するには、確定したい項目をダブルクリックするか、選択後[Enter]キーを押下します。　■[Function]キーあるいは←→キーで抽出条件を変更します。";
+
         }
 
+
+        private void F_検索_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            string LoginUserCode = "000";//テスト用 ログインユーザを実行中にどのように管理するか決まったら修正
+            LocalSetting test = new LocalSetting();
+            test.SavePlace(LoginUserCode, this);
+        }
 
 
         //private void Form_Resize(object sender, EventArgs e)
@@ -219,8 +251,7 @@ namespace u_net
         //    this.ResumeLayout();
         //}
 
-       
-        private void リスト_DblClick(object sender, DataGridViewCellEventArgs e)
+        private void リスト_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             try
             {
@@ -259,18 +290,29 @@ namespace u_net
                 }
                 else
                 {
-                    Console.WriteLine(this.Name + "_リスト_DblClick - " + ex.HResult + " : " + ex.Message);
+                    Console.WriteLine(this.Name + "_リスト_CellMouseDoubleClick - " + ex.HResult + " : " + ex.Message);
                 }
             }
-     
         }
 
         private void リスト_KeyDown(object sender, KeyEventArgs e)
         {
             switch (e.KeyCode)
             {
-                case Keys.Return:
-                    リスト_DblClick(null, null);
+                case Keys.Enter:
+                    if (リスト.SelectedRows.Count > 0)
+                    {
+                        // 選択されている行を取得
+                        DataGridViewRow selectedRow = リスト.SelectedRows[0];
+
+                        // 選択した行の各セルの値を取得
+                        string column1Value = selectedRow.Cells[0].Value.ToString(); // 0は列のインデックス
+
+                        SelectedCode = column1Value;
+
+                        DialogResult = DialogResult.OK;
+                        Close();
+                    }
                     break;
                 case Keys.Right:
                     FilterNumber = (FilterNumber % 12) + 1;
@@ -316,6 +358,7 @@ namespace u_net
                 case Keys.F12:
                     フィルタ_全て_Click(sender, e);
                     break;
+                
             }
         }
 
