@@ -725,7 +725,7 @@ namespace u_net
             //e.Row.Cells["担当者コード"].Value = tantou;
             //e.Row.Cells["時刻"].Value = DateTime.Now.ToString("HH:mm");            
         }
-         
+
 
         private void dataGridView1_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
         {
@@ -892,13 +892,6 @@ namespace u_net
             }
         }
 
-        private void FlowCategoryCode_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            //MessageBox.Show(FlowCategoryCode.SelectedValue.ToString());
-
-        }
-
-
 
         private void 商品コード_TextChanged(object sender, EventArgs e)
         {
@@ -906,7 +899,8 @@ namespace u_net
             UpdatedControl();
         }
 
-
+        //アクセスではコンボボックスの横のテキストボックスを修正する処理があったが、今回はvalueとdisplayが同じコンボボックスなので不要
+        //商品コードの更新処理のみ行う
         private void UpdatedControl()
         {
             //商品コードの更新後処理でレコードの値を表示する
@@ -993,7 +987,51 @@ namespace u_net
 
         }
 
+        private void 商品名_TextChanged(object sender, EventArgs e)
+        {
+            if (!FunctionClass.LimitText(this.ActiveControl, 40)) return;
+            ChangedData(true);
+        }
+
+        private void 商品名_Enter(object sender, EventArgs e)
+        {
+            this.toolStripStatusLabel2.Text = "■半角４０文字まで入力できます。";
+        }
+
+        private void シリーズコード_TextChanged(object sender, EventArgs e)
+        {
+            string enteredText = シリーズコード.Text;
+            if (!ComboBoxContainsValue(シリーズコード, enteredText))
+            {
+                MessageBox.Show("シリーズを選択してください。" + Environment.NewLine + "シリーズは事前に登録されている必要があります。",
+                    this.Name, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                シリーズコード.Text = ""; // テキストボックスをクリア
+                シリーズコード.SelectedValue = DBNull.Value;
+            }
+
+            if (!FunctionClass.LimitText(this.ActiveControl, 8)) return;
+            ChangedData(true);
+        }
+
+        private void シリーズコード_Enter(object sender, EventArgs e)
+        {
+            this.toolStripStatusLabel2.Text = "■この欄を入力すると自動的に在庫管理対象となります。　■半角２０文字まで入力できます。　■[space]キーでドロップダウンリストを表示します。";
+        }
+
+        // コンボボックスのアイテムに指定の値が含まれているかチェック
+        private bool ComboBoxContainsValue(ComboBox comboBox, string value)
+        {
+            foreach (var item in comboBox.Items)
+            {
+                if (item.ToString() == value)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
     }
+}
 
 
 
