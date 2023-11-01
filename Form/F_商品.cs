@@ -1041,6 +1041,29 @@ namespace u_net
         {
             this.toolStripStatusLabel2.Text = "■この商品の売上区分を選択します。　■この入力値は受注入力時の初期値になります。";
         }
+
+        private void FlowCategoryCode_TextChanged(object sender, EventArgs e)
+        {
+            if (!FunctionClass.LimitText(this.ActiveControl, 3)) return;
+            ChangedData(true);
+        }
+
+        private void 数量単位コード_TextChanged(object sender, EventArgs e)
+        {
+            if (!FunctionClass.LimitText(this.ActiveControl, 2)) return;
+            ChangedData(true);
+        }
+
+        private void ClientName_Enter(object sender, EventArgs e)
+        {
+            this.toolStripStatusLabel2.Text = "■受注時に初期設定される依頼主です。　■全角100文字まで入力できます。";
+        }
+
+        private void ClientName_TextChanged(object sender, EventArgs e)
+        {
+            if (!FunctionClass.LimitText(this.ActiveControl, 200)) return;
+            ChangedData(true);
+        }
     }
 }
 

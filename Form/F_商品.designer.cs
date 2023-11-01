@@ -624,6 +624,7 @@ namespace u_net
             売上区分コード.AutoCompleteSource = AutoCompleteSource.ListItems;
             売上区分コード.DataSource = comboBox売上区分bindingSource;
             売上区分コード.DisplayMember = "売上区分名";
+            売上区分コード.DropDownStyle = ComboBoxStyle.DropDownList;
             売上区分コード.FormattingEnabled = true;
             売上区分コード.Location = new Point(144, 261);
             売上区分コード.Margin = new Padding(4, 3, 4, 3);
@@ -637,13 +638,15 @@ namespace u_net
             // 
             FlowCategoryCode.DataSource = manufactureFlowBindingSource;
             FlowCategoryCode.DisplayMember = "Name";
+            FlowCategoryCode.DropDownStyle = ComboBoxStyle.DropDownList;
             FlowCategoryCode.FormattingEnabled = true;
-            FlowCategoryCode.Location = new Point(144, 287);
+            FlowCategoryCode.Location = new Point(144, 289);
             FlowCategoryCode.Margin = new Padding(4, 3, 4, 3);
             FlowCategoryCode.Name = "FlowCategoryCode";
             FlowCategoryCode.Size = new Size(160, 20);
-            FlowCategoryCode.TabIndex = 191;
+            FlowCategoryCode.TabIndex = 18;
             FlowCategoryCode.ValueMember = "Code";
+            FlowCategoryCode.TextChanged += FlowCategoryCode_TextChanged;
             // 
             // 商品コード
             // 
@@ -910,6 +913,7 @@ namespace u_net
             商品分類コード.AutoCompleteSource = AutoCompleteSource.ListItems;
             商品分類コード.DataSource = m商品分類BindingSource;
             商品分類コード.DisplayMember = "分類名";
+            商品分類コード.DropDownStyle = ComboBoxStyle.DropDownList;
             商品分類コード.FormattingEnabled = true;
             商品分類コード.Location = new Point(144, 177);
             商品分類コード.Margin = new Padding(4, 3, 4, 3);
@@ -947,6 +951,7 @@ namespace u_net
             シリーズコード.AutoCompleteSource = AutoCompleteSource.ListItems;
             シリーズコード.DataSource = mシリーズBindingSource;
             シリーズコード.DisplayMember = "シリーズ名";
+            シリーズコード.DropDownStyle = ComboBoxStyle.DropDownList;
             シリーズコード.FormattingEnabled = true;
             シリーズコード.Location = new Point(144, 115);
             シリーズコード.Margin = new Padding(4, 3, 4, 3);
@@ -1023,7 +1028,9 @@ namespace u_net
             ClientName.Multiline = true;
             ClientName.Name = "ClientName";
             ClientName.Size = new Size(581, 23);
-            ClientName.TabIndex = 163;
+            ClientName.TabIndex = 22;
+            ClientName.TextChanged += ClientName_TextChanged;
+            ClientName.Enter += ClientName_Enter;
             // 
             // label3
             // 
@@ -1036,8 +1043,8 @@ namespace u_net
             label3.Margin = new Padding(0);
             label3.Name = "label3";
             label3.Size = new Size(87, 17);
-            label3.TabIndex = 162;
-            label3.Text = "依頼主名";
+            label3.TabIndex = 21;
+            label3.Text = "依頼主名(&L)";
             label3.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // 品名
@@ -1117,8 +1124,8 @@ namespace u_net
             label2.Margin = new Padding(0);
             label2.Name = "label2";
             label2.Size = new Size(85, 17);
-            label2.TabIndex = 156;
-            label2.Text = "数量単位";
+            label2.TabIndex = 19;
+            label2.Text = "数量単位(&U)";
             label2.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // 掛率有効
@@ -1145,8 +1152,8 @@ namespace u_net
             性別label.Margin = new Padding(0);
             性別label.Name = "性別label";
             性別label.Size = new Size(85, 17);
-            性別label.TabIndex = 154;
-            性別label.Text = "処理区分";
+            性別label.TabIndex = 17;
+            性別label.Text = "処理区分(&F)";
             性別label.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // 備考
@@ -1316,14 +1323,18 @@ namespace u_net
             // 
             // 数量単位コード
             // 
+            数量単位コード.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            数量単位コード.AutoCompleteSource = AutoCompleteSource.ListItems;
             数量単位コード.DataSource = m単位BindingSource;
             数量単位コード.DisplayMember = "単位名";
+            数量単位コード.DropDownStyle = ComboBoxStyle.DropDownList;
             数量単位コード.FormattingEnabled = true;
             数量単位コード.Location = new Point(143, 321);
             数量単位コード.Name = "数量単位コード";
             数量単位コード.Size = new Size(161, 20);
-            数量単位コード.TabIndex = 195;
+            数量単位コード.TabIndex = 20;
             数量単位コード.ValueMember = "単位コード";
+            数量単位コード.TextChanged += 数量単位コード_TextChanged;
             // 
             // notifyIcon1
             // 
