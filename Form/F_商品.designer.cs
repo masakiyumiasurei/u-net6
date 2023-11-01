@@ -43,6 +43,15 @@ namespace u_net
             m商品分類BindingSource = new BindingSource(components);
             mシリーズBindingSource = new BindingSource(components);
             dataGridView1 = new DataGridView();
+            dgv商品コード = new DataGridViewTextBoxColumn();
+            dgvrevision = new DataGridViewTextBoxColumn();
+            dgv明細番号 = new DataGridViewTextBoxColumn();
+            型式番号 = new DataGridViewTextBoxColumn();
+            型式名 = new DataGridViewTextBoxColumn();
+            定価 = new DataGridViewTextBoxColumn();
+            原価 = new DataGridViewTextBoxColumn();
+            dgv機能 = new DataGridViewTextBoxColumn();
+            dgv構成番号 = new DataGridViewTextBoxColumn();
             M商品明細BindingSource = new BindingSource(components);
             panel1 = new Panel();
             button4 = new Button();
@@ -86,7 +95,6 @@ namespace u_net
             statusStrip1 = new StatusStrip();
             toolStripStatusLabel1 = new ToolStripStatusLabel();
             toolStripStatusLabel2 = new ToolStripStatusLabel();
-            button1 = new Button();
             売上区分コード = new ComboBox();
             FlowCategoryCode = new ComboBox();
             商品コード = new ComboBox();
@@ -146,15 +154,7 @@ namespace u_net
             label19 = new Label();
             数量単位コード = new ComboBox();
             notifyIcon1 = new NotifyIcon(components);
-            dgv商品コード = new DataGridViewTextBoxColumn();
-            dgvrevision = new DataGridViewTextBoxColumn();
-            dgv明細番号 = new DataGridViewTextBoxColumn();
-            型式番号 = new DataGridViewTextBoxColumn();
-            型式名 = new DataGridViewTextBoxColumn();
-            定価 = new DataGridViewTextBoxColumn();
-            原価 = new DataGridViewTextBoxColumn();
-            dgv機能 = new DataGridViewTextBoxColumn();
-            dgv構成番号 = new DataGridViewTextBoxColumn();
+            button1 = new Button();
             ((System.ComponentModel.ISupportInitialize)M商品BindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)uiDataSet).BeginInit();
             ((System.ComponentModel.ISupportInitialize)comboBox売上区分bindingSource).BeginInit();
@@ -258,6 +258,60 @@ namespace u_net
             dataGridView1.Size = new Size(1453, 261);
             dataGridView1.TabIndex = 109;
             dataGridView1.DefaultValuesNeeded += dataGridView1_DefaultValuesNeeded;
+            // 
+            // dgv商品コード
+            // 
+            dgv商品コード.DataPropertyName = "商品コード";
+            dgv商品コード.HeaderText = "商品コード";
+            dgv商品コード.Name = "dgv商品コード";
+            // 
+            // dgvrevision
+            // 
+            dgvrevision.DataPropertyName = "Revision";
+            dgvrevision.HeaderText = "Revision";
+            dgvrevision.Name = "dgvrevision";
+            // 
+            // dgv明細番号
+            // 
+            dgv明細番号.DataPropertyName = "明細番号";
+            dgv明細番号.HeaderText = "明細番号";
+            dgv明細番号.Name = "dgv明細番号";
+            // 
+            // 型式番号
+            // 
+            型式番号.DataPropertyName = "型式番号";
+            型式番号.HeaderText = "型式番号";
+            型式番号.Name = "型式番号";
+            // 
+            // 型式名
+            // 
+            型式名.DataPropertyName = "型式名";
+            型式名.HeaderText = "型式名";
+            型式名.Name = "型式名";
+            // 
+            // 定価
+            // 
+            定価.DataPropertyName = "定価";
+            定価.HeaderText = "定価";
+            定価.Name = "定価";
+            // 
+            // 原価
+            // 
+            原価.DataPropertyName = "原価";
+            原価.HeaderText = "原価";
+            原価.Name = "原価";
+            // 
+            // dgv機能
+            // 
+            dgv機能.DataPropertyName = "機能";
+            dgv機能.HeaderText = "機能";
+            dgv機能.Name = "dgv機能";
+            // 
+            // dgv構成番号
+            // 
+            dgv構成番号.DataPropertyName = "構成番号";
+            dgv構成番号.HeaderText = "構成番号";
+            dgv構成番号.Name = "dgv構成番号";
             // 
             // M商品明細BindingSource
             // 
@@ -563,19 +617,6 @@ namespace u_net
             toolStripStatusLabel2.Name = "toolStripStatusLabel2";
             toolStripStatusLabel2.Size = new Size(89, 17);
             toolStripStatusLabel2.Text = "各種項目の説明";
-            // 
-            // button1
-            // 
-            button1.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            button1.ForeColor = Color.Red;
-            button1.Location = new Point(1183, 218);
-            button1.Margin = new Padding(3, 2, 3, 2);
-            button1.Name = "button1";
-            button1.Size = new Size(116, 31);
-            button1.TabIndex = 147;
-            button1.Text = "テスト";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
             // 
             // 売上区分コード
             // 
@@ -901,6 +942,8 @@ namespace u_net
             シリーズコード.Size = new Size(160, 20);
             シリーズコード.TabIndex = 168;
             シリーズコード.ValueMember = "シリーズコード";
+            シリーズコード.TextChanged += シリーズコード_TextChanged;
+            シリーズコード.Enter += シリーズコード_Enter;
             // 
             // label7
             // 
@@ -941,6 +984,8 @@ namespace u_net
             商品名.Name = "商品名";
             商品名.Size = new Size(581, 23);
             商品名.TabIndex = 165;
+            商品名.TextChanged += 商品名_TextChanged;
+            商品名.Enter += 商品名_Enter;
             // 
             // label5
             // 
@@ -1219,7 +1264,6 @@ namespace u_net
             tableAdapterManager.CombBox商品コードTableAdapter = null;
             tableAdapterManager.ComboBoxManufactureFlowTableAdapter = null;
             tableAdapterManager.ComboBox売上区分TableAdapter = null;
-            tableAdapterManager.Connection = null;
             tableAdapterManager.M単位TableAdapter = null;
             tableAdapterManager.M商品TableAdapter = null;
             tableAdapterManager.M商品分類TableAdapter = null;
@@ -1272,59 +1316,18 @@ namespace u_net
             notifyIcon1.Text = "notifyIcon1";
             notifyIcon1.Visible = true;
             // 
-            // dgv商品コード
+            // button1
             // 
-            dgv商品コード.DataPropertyName = "商品コード";
-            dgv商品コード.HeaderText = "商品コード";
-            dgv商品コード.Name = "dgv商品コード";
-            // 
-            // dgvrevision
-            // 
-            dgvrevision.DataPropertyName = "Revision";
-            dgvrevision.HeaderText = "Revision";
-            dgvrevision.Name = "dgvrevision";
-            // 
-            // dgv明細番号
-            // 
-            dgv明細番号.DataPropertyName = "明細番号";
-            dgv明細番号.HeaderText = "明細番号";
-            dgv明細番号.Name = "dgv明細番号";
-            // 
-            // 型式番号
-            // 
-            型式番号.DataPropertyName = "型式番号";
-            型式番号.HeaderText = "型式番号";
-            型式番号.Name = "型式番号";
-            // 
-            // 型式名
-            // 
-            型式名.DataPropertyName = "型式名";
-            型式名.HeaderText = "型式名";
-            型式名.Name = "型式名";
-            // 
-            // 定価
-            // 
-            定価.DataPropertyName = "定価";
-            定価.HeaderText = "定価";
-            定価.Name = "定価";
-            // 
-            // 原価
-            // 
-            原価.DataPropertyName = "原価";
-            原価.HeaderText = "原価";
-            原価.Name = "原価";
-            // 
-            // dgv機能
-            // 
-            dgv機能.DataPropertyName = "機能";
-            dgv機能.HeaderText = "機能";
-            dgv機能.Name = "dgv機能";
-            // 
-            // dgv構成番号
-            // 
-            dgv構成番号.DataPropertyName = "構成番号";
-            dgv構成番号.HeaderText = "構成番号";
-            dgv構成番号.Name = "dgv構成番号";
+            button1.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            button1.ForeColor = Color.Red;
+            button1.Location = new Point(1183, 218);
+            button1.Margin = new Padding(3, 2, 3, 2);
+            button1.Name = "button1";
+            button1.Size = new Size(116, 31);
+            button1.TabIndex = 147;
+            button1.Text = "テスト";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // F_商品
             // 
@@ -1481,8 +1484,6 @@ namespace u_net
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
 
         private System.Windows.Forms.BindingSource mシリーズBindingSource;
-
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ComboBox 売上区分コード;
         private System.Windows.Forms.ComboBox FlowCategoryCode;
         private System.Windows.Forms.ComboBox 商品コード;
@@ -1549,6 +1550,7 @@ namespace u_net
         private DataGridViewTextBoxColumn 原価;
         private DataGridViewTextBoxColumn dgv機能;
         private DataGridViewTextBoxColumn dgv構成番号;
+        private Button button1;
     }
 }
 
