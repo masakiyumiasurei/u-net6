@@ -91,7 +91,24 @@ namespace u_net.Public
             return System.Text.RegularExpressions.Regex.IsMatch(zipCode, pattern);
         }
 
+        // コンボボックスのアイテムに指定の値が含まれているかチェック
+        public static bool ComboBoxContainsValue(ComboBox comboBox, string value)
+        {
+            foreach (var item in comboBox.Items)
+            {
+                if (item is DataRowView rowView)
+                {
+                    string itemText = rowView.Row.Field<string>(1); // 2列目を取得
+                    //MessageBox.Show(itemText);
 
+                    if (itemText == value)
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
 
 
 

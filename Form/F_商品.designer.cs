@@ -600,26 +600,28 @@ namespace u_net
             // statusStrip1
             // 
             statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1, toolStripStatusLabel2 });
-            statusStrip1.Location = new Point(0, 622);
+            statusStrip1.Location = new Point(0, 619);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Padding = new Padding(1, 0, 19, 0);
-            statusStrip1.Size = new Size(1469, 22);
+            statusStrip1.Size = new Size(1469, 25);
             statusStrip1.TabIndex = 110;
             statusStrip1.Text = "statusStrip1";
             // 
             // toolStripStatusLabel1
             // 
             toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            toolStripStatusLabel1.Size = new Size(0, 17);
+            toolStripStatusLabel1.Size = new Size(0, 20);
             // 
             // toolStripStatusLabel2
             // 
             toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            toolStripStatusLabel2.Size = new Size(89, 17);
+            toolStripStatusLabel2.Size = new Size(111, 20);
             toolStripStatusLabel2.Text = "各種項目の説明";
             // 
             // 売上区分コード
             // 
+            売上区分コード.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            売上区分コード.AutoCompleteSource = AutoCompleteSource.ListItems;
             売上区分コード.DataSource = comboBox売上区分bindingSource;
             売上区分コード.DisplayMember = "売上区分名";
             売上区分コード.FormattingEnabled = true;
@@ -627,8 +629,9 @@ namespace u_net
             売上区分コード.Margin = new Padding(4, 3, 4, 3);
             売上区分コード.Name = "売上区分コード";
             売上区分コード.Size = new Size(160, 20);
-            売上区分コード.TabIndex = 192;
+            売上区分コード.TabIndex = 16;
             売上区分コード.ValueMember = "売上区分コード";
+            売上区分コード.Enter += 売上区分コード_Enter;
             // 
             // FlowCategoryCode
             // 
@@ -644,14 +647,17 @@ namespace u_net
             // 
             // 商品コード
             // 
+            商品コード.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            商品コード.AutoCompleteSource = AutoCompleteSource.ListItems;
             商品コード.DataSource = combBox商品コードBindingSource;
             商品コード.DisplayMember = "商品コード";
             商品コード.FormattingEnabled = true;
+            商品コード.ImeMode = ImeMode.NoControl;
             商品コード.Location = new Point(144, 50);
             商品コード.Margin = new Padding(4, 3, 4, 3);
             商品コード.Name = "商品コード";
             商品コード.Size = new Size(160, 20);
-            商品コード.TabIndex = 189;
+            商品コード.TabIndex = 2;
             商品コード.ValueMember = "商品コード";
             商品コード.TextChanged += 商品コード_TextChanged;
             商品コード.KeyDown += 商品コード_KeyDown;
@@ -881,8 +887,8 @@ namespace u_net
             label9.Margin = new Padding(0);
             label9.Name = "label9";
             label9.Size = new Size(85, 17);
-            label9.TabIndex = 172;
-            label9.Text = "売上区分";
+            label9.TabIndex = 15;
+            label9.Text = "売上区分(&A)";
             label9.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // 分類内容
@@ -900,16 +906,20 @@ namespace u_net
             // 
             // 商品分類コード
             // 
+            商品分類コード.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            商品分類コード.AutoCompleteSource = AutoCompleteSource.ListItems;
             商品分類コード.DataSource = m商品分類BindingSource;
             商品分類コード.DisplayMember = "分類名";
             商品分類コード.FormattingEnabled = true;
-            商品分類コード.Location = new Point(144, 174);
+            商品分類コード.Location = new Point(144, 177);
             商品分類コード.Margin = new Padding(4, 3, 4, 3);
             商品分類コード.Name = "商品分類コード";
             商品分類コード.Size = new Size(160, 20);
-            商品分類コード.TabIndex = 170;
+            商品分類コード.TabIndex = 11;
             商品分類コード.ValueMember = "商品分類コード";
             商品分類コード.SelectedIndexChanged += 商品分類コード_SelectedIndexChanged;
+            商品分類コード.TextChanged += 商品分類コード_TextChanged;
+            商品分類コード.Enter += 商品分類コード_Enter;
             // 
             // v商品ヘッダBindingSource
             // 
@@ -927,12 +937,14 @@ namespace u_net
             label8.Margin = new Padding(0);
             label8.Name = "label8";
             label8.Size = new Size(85, 17);
-            label8.TabIndex = 169;
-            label8.Text = "商品分類";
+            label8.TabIndex = 10;
+            label8.Text = "商品分類(&G)";
             label8.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // シリーズコード
             // 
+            シリーズコード.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            シリーズコード.AutoCompleteSource = AutoCompleteSource.ListItems;
             シリーズコード.DataSource = mシリーズBindingSource;
             シリーズコード.DisplayMember = "シリーズ名";
             シリーズコード.FormattingEnabled = true;
@@ -940,7 +952,7 @@ namespace u_net
             シリーズコード.Margin = new Padding(4, 3, 4, 3);
             シリーズコード.Name = "シリーズコード";
             シリーズコード.Size = new Size(160, 20);
-            シリーズコード.TabIndex = 168;
+            シリーズコード.TabIndex = 6;
             シリーズコード.ValueMember = "シリーズコード";
             シリーズコード.TextChanged += シリーズコード_TextChanged;
             シリーズコード.Enter += シリーズコード_Enter;
@@ -956,8 +968,8 @@ namespace u_net
             label7.Margin = new Padding(0);
             label7.Name = "label7";
             label7.Size = new Size(85, 17);
-            label7.TabIndex = 167;
-            label7.Text = "シリーズ";
+            label7.TabIndex = 5;
+            label7.Text = "シリーズ(&S)";
             label7.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // シリーズ名
@@ -983,7 +995,7 @@ namespace u_net
             商品名.Multiline = true;
             商品名.Name = "商品名";
             商品名.Size = new Size(581, 23);
-            商品名.TabIndex = 165;
+            商品名.TabIndex = 4;
             商品名.TextChanged += 商品名_TextChanged;
             商品名.Enter += 商品名_Enter;
             // 
@@ -998,8 +1010,8 @@ namespace u_net
             label5.Margin = new Padding(0);
             label5.Name = "label5";
             label5.Size = new Size(87, 17);
-            label5.TabIndex = 164;
-            label5.Text = "基本型式名";
+            label5.TabIndex = 3;
+            label5.Text = "基本型式名(&B)";
             label5.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // ClientName
@@ -1038,7 +1050,7 @@ namespace u_net
             品名.Multiline = true;
             品名.Name = "品名";
             品名.Size = new Size(481, 23);
-            品名.TabIndex = 161;
+            品名.TabIndex = 8;
             品名.TextChanged += 品名_TextChanged;
             品名.Enter += 品名_Enter;
             // 
@@ -1078,7 +1090,7 @@ namespace u_net
             CustomerSerialNumberRequired.Margin = new Padding(4, 3, 4, 3);
             CustomerSerialNumberRequired.Name = "CustomerSerialNumberRequired";
             CustomerSerialNumberRequired.Size = new Size(15, 14);
-            CustomerSerialNumberRequired.TabIndex = 158;
+            CustomerSerialNumberRequired.TabIndex = 14;
             CustomerSerialNumberRequired.UseVisualStyleBackColor = true;
             // 
             // 数量単位名
@@ -1118,8 +1130,9 @@ namespace u_net
             掛率有効.Margin = new Padding(4, 3, 4, 3);
             掛率有効.Name = "掛率有効";
             掛率有効.Size = new Size(15, 14);
-            掛率有効.TabIndex = 155;
+            掛率有効.TabIndex = 12;
             掛率有効.UseVisualStyleBackColor = true;
+            掛率有効.CheckedChanged += 掛率有効_CheckedChanged;
             // 
             // 性別label
             // 
@@ -1158,8 +1171,8 @@ namespace u_net
             label11.Margin = new Padding(0);
             label11.Name = "label11";
             label11.Size = new Size(87, 17);
-            label11.TabIndex = 153;
-            label11.Text = "品名";
+            label11.TabIndex = 7;
+            label11.Text = "品名(&N)";
             label11.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // FlowCategoryName
@@ -1217,8 +1230,8 @@ namespace u_net
             label4.Margin = new Padding(0);
             label4.Name = "label4";
             label4.Size = new Size(87, 17);
-            label4.TabIndex = 149;
-            label4.Text = "商品コード";
+            label4.TabIndex = 1;
+            label4.Text = "商品コード(&C)";
             label4.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // m商品TableAdapter
@@ -1264,6 +1277,7 @@ namespace u_net
             tableAdapterManager.CombBox商品コードTableAdapter = null;
             tableAdapterManager.ComboBoxManufactureFlowTableAdapter = null;
             tableAdapterManager.ComboBox売上区分TableAdapter = null;
+            tableAdapterManager.Connection = null;
             tableAdapterManager.M単位TableAdapter = null;
             tableAdapterManager.M商品TableAdapter = null;
             tableAdapterManager.M商品分類TableAdapter = null;
@@ -1281,8 +1295,8 @@ namespace u_net
             label18.Margin = new Padding(0);
             label18.Name = "label18";
             label18.Size = new Size(85, 17);
-            label18.TabIndex = 193;
-            label18.Text = "掛率有効(&G)";
+            label18.TabIndex = 11;
+            label18.Text = "掛率有効(&D)";
             label18.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // label19
@@ -1296,7 +1310,7 @@ namespace u_net
             label19.Margin = new Padding(0);
             label19.Name = "label19";
             label19.Size = new Size(128, 17);
-            label19.TabIndex = 194;
+            label19.TabIndex = 13;
             label19.Text = "顧客シリアル必須(&I)";
             label19.TextAlign = ContentAlignment.MiddleLeft;
             // 

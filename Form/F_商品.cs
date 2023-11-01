@@ -1001,7 +1001,10 @@ namespace u_net
         private void シリーズコード_TextChanged(object sender, EventArgs e)
         {
             string enteredText = シリーズコード.Text;
-            if (!ComboBoxContainsValue(シリーズコード, enteredText))
+            if (string.IsNullOrEmpty(enteredText)) return;
+
+
+            if (!OriginalClass.ComboBoxContainsValue(シリーズコード, enteredText))
             {
                 MessageBox.Show("シリーズを選択してください。" + Environment.NewLine + "シリーズは事前に登録されている必要があります。",
                     this.Name, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -1018,17 +1021,25 @@ namespace u_net
             this.toolStripStatusLabel2.Text = "■この欄を入力すると自動的に在庫管理対象となります。　■半角２０文字まで入力できます。　■[space]キーでドロップダウンリストを表示します。";
         }
 
-        // コンボボックスのアイテムに指定の値が含まれているかチェック
-        private bool ComboBoxContainsValue(ComboBox comboBox, string value)
+        private void 商品分類コード_Enter(object sender, EventArgs e)
         {
-            foreach (var item in comboBox.Items)
-            {
-                if (item.ToString() == value)
-                {
-                    return true;
-                }
-            }
-            return false;
+            this.toolStripStatusLabel2.Text = "■商品が所属する分類を指定します。";
+        }
+
+        private void 商品分類コード_TextChanged(object sender, EventArgs e)
+        {
+            if (!FunctionClass.LimitText(this.ActiveControl, 2)) return;
+            ChangedData(true);
+        }
+
+        private void 掛率有効_CheckedChanged(object sender, EventArgs e)
+        {
+            ChangedData(true);
+        }
+
+        private void 売上区分コード_Enter(object sender, EventArgs e)
+        {
+            this.toolStripStatusLabel2.Text = "■この商品の売上区分を選択します。　■この入力値は受注入力時の初期値になります。";
         }
     }
 }
@@ -1037,321 +1048,321 @@ namespace u_net
 
 
 
-    //public class DataGridViewEx : DataGridView
-    //{
-    //    [System.Security.Permissions.UIPermission(
-    //        System.Security.Permissions.SecurityAction.Demand,
-    //        Window = System.Security.Permissions.UIPermissionWindow.AllWindows)]
-    //    protected override bool ProcessDialogKey(Keys keyData)
-    //    {
-    //        //Enterキーが押された時は、Tabキーが押されたようにする
-    //        if ((keyData & Keys.KeyCode) == Keys.Enter)
-    //        {
-    //            return this.ProcessTabKey(keyData);
-    //        }
-    //        // 既定の処理を行う
-    //        return base.ProcessDialogKey(keyData);
-    //    }
+//public class DataGridViewEx : DataGridView
+//{
+//    [System.Security.Permissions.UIPermission(
+//        System.Security.Permissions.SecurityAction.Demand,
+//        Window = System.Security.Permissions.UIPermissionWindow.AllWindows)]
+//    protected override bool ProcessDialogKey(Keys keyData)
+//    {
+//        //Enterキーが押された時は、Tabキーが押されたようにする
+//        if ((keyData & Keys.KeyCode) == Keys.Enter)
+//        {
+//            return this.ProcessTabKey(keyData);
+//        }
+//        // 既定の処理を行う
+//        return base.ProcessDialogKey(keyData);
+//    }
 
-    //    [System.Security.Permissions.SecurityPermission(
-    //        System.Security.Permissions.SecurityAction.Demand,
-    //        Flags = System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode)]
-    //    protected override bool ProcessDataGridViewKey(KeyEventArgs e)
-    //    {
-    //        //Enterキーが押された時は、Tabキーが押されたようにする
-    //        if (e.KeyCode == Keys.Enter)
-    //        {
-    //            return this.ProcessTabKey(e.KeyCode);
-    //        }
-    //        return base.ProcessDataGridViewKey(e);
-    //    }
-    //}
+//    [System.Security.Permissions.SecurityPermission(
+//        System.Security.Permissions.SecurityAction.Demand,
+//        Flags = System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode)]
+//    protected override bool ProcessDataGridViewKey(KeyEventArgs e)
+//    {
+//        //Enterキーが押された時は、Tabキーが押されたようにする
+//        if (e.KeyCode == Keys.Enter)
+//        {
+//            return this.ProcessTabKey(e.KeyCode);
+//        }
+//        return base.ProcessDataGridViewKey(e);
+//    }
+//}
 
-    //private void b_内容検索_KeyDown(object sender, KeyEventArgs e)
-    //{//内容検索の文字列を含む内容の行を選択する
-    //    if (e.KeyCode == Keys.Enter)
-    //    {
-    //        this.dataGridView1.ClearSelection();
+//private void b_内容検索_KeyDown(object sender, KeyEventArgs e)
+//{//内容検索の文字列を含む内容の行を選択する
+//    if (e.KeyCode == Keys.Enter)
+//    {
+//        this.dataGridView1.ClearSelection();
 
-    //        DataGridView dgv = this.dataGridView1;
-    //        System.Collections.IList list = dgv.Rows;
-    //        for (int i = 0; i < list.Count; i++)
-    //        {
-    //            //nullを比較するとエラーになるので先に省く
-    //            if (dataGridView1["内容", i].FormattedValue.ToString() != null)
-    //            {
-    //                //ボックスの文字列を比較
-    //                if ((dataGridView1["内容", i].FormattedValue.ToString().Contains(this.b_内容検索.Text)) && (true))
-    //                {
-    //                    //ボックスを選択
-    //                    this.dataGridView1["内容", i].Selected = true;
-    //                }
-    //            }
-    //        }
-    //    }
-    //}
+//        DataGridView dgv = this.dataGridView1;
+//        System.Collections.IList list = dgv.Rows;
+//        for (int i = 0; i < list.Count; i++)
+//        {
+//            //nullを比較するとエラーになるので先に省く
+//            if (dataGridView1["内容", i].FormattedValue.ToString() != null)
+//            {
+//                //ボックスの文字列を比較
+//                if ((dataGridView1["内容", i].FormattedValue.ToString().Contains(this.b_内容検索.Text)) && (true))
+//                {
+//                    //ボックスを選択
+//                    this.dataGridView1["内容", i].Selected = true;
+//                }
+//            }
+//        }
+//    }
+//}
 
-    //private void b_相手検索_KeyDown(object sender, KeyEventArgs e)
-    //{//相手検索の文字列を含む相手の行を選択する
+//private void b_相手検索_KeyDown(object sender, KeyEventArgs e)
+//{//相手検索の文字列を含む相手の行を選択する
 
-    //    if (e.KeyCode == Keys.Enter)
-    //    {
-    //        this.dataGridView1.ClearSelection();
+//    if (e.KeyCode == Keys.Enter)
+//    {
+//        this.dataGridView1.ClearSelection();
 
-    //        DataGridView dgv = this.dataGridView1;
-    //        System.Collections.IList list = dgv.Rows;
-    //        for (int i = 0; i < list.Count; i++)
-    //        {
-    //            //nullを比較するとエラーになるので先に省く
-    //            if (dataGridView1["交渉相手", i].FormattedValue.ToString() != null)
-    //            {
-    //                //ボックスの文字列を比較
-    //                if ((dataGridView1["交渉相手", i].FormattedValue.ToString().Contains(this.b_相手検索.Text)) && (true))
-    //                {
-    //                    //ボックスを選択
-    //                    this.dataGridView1["交渉相手", i].Selected = true;
-    //                }
-    //            }
-    //        }
-    //    }
-    //}
-
-
-    //private void Form1_Load(object sender, EventArgs e)
-    //{
-    //              //上部の設定
-    //    Connect();
-    //    cmd = cn.CreateCommand();
-
-    //    cmd.CommandText = "select 顧客コード from T_顧客 where id=" + kokyaku_id;
-
-    //    SqlDataReader dr = cmd.ExecuteReader();
-
-    //    if (dr.HasRows)
-    //    {
-    //        dr.Read();
-    //        顧客コード.Text = dr["顧客コード"].ToString();
-    //        kokyaku_cd = dr["顧客コード"].ToString();                
-    //        dr.Close();
-    //    }
-
-    //    cmd.CommandText = "select isnull(sum(滞納額),0) as 滞納額合計,isnull(sum(変動水道代),0) as 水道代合計 from T_滞納 " +
-    //        "where 顧客コード='" + kokyaku_cd + "'";
-    //    dr = cmd.ExecuteReader();
-    //    if (dr.HasRows)
-    //    {
-    //        dr.Read();
-    //        滞納額合計.Text = dr["滞納額合計"].ToString();
-    //        水道代合計.Text = dr["水道代合計"].ToString();
-    //        dr.Close();
-    //    }
-
-    //    cmd.CommandText = "select isnull(sum(入金額),0) as 入金額合計 from T_滞納入金 " +
-    //       "where 顧客コード='" + kokyaku_cd + "'";
-
-    //    dr = cmd.ExecuteReader();
-    //    if (dr.HasRows)
-    //    {
-    //        dr.Read();
-    //        入金額合計.Text = dr["入金額合計"].ToString();
-    //        dr.Close();
-    //    }
-    //    int zankin;
-    //    zankin = Convert.ToInt32(滞納額合計.Text) + Convert.ToInt32(水道代合計.Text) - Convert.ToInt32(入金額合計.Text);
-    //    滞納残金.Text = zankin.ToString();
+//        DataGridView dgv = this.dataGridView1;
+//        System.Collections.IList list = dgv.Rows;
+//        for (int i = 0; i < list.Count; i++)
+//        {
+//            //nullを比較するとエラーになるので先に省く
+//            if (dataGridView1["交渉相手", i].FormattedValue.ToString() != null)
+//            {
+//                //ボックスの文字列を比較
+//                if ((dataGridView1["交渉相手", i].FormattedValue.ToString().Contains(this.b_相手検索.Text)) && (true))
+//                {
+//                    //ボックスを選択
+//                    this.dataGridView1["交渉相手", i].Selected = true;
+//                }
+//            }
+//        }
+//    }
+//}
 
 
-    //    cmd.CommandText = "SELECT * FROM " +            
-    //    "(SELECT IIf(IsNull(T_契約緊急連絡先.id, 0) > 0, T_契約緊急連絡先.名称, T_契約保証人.氏名) as 関係人氏名," +
-    //    "IIf(IsNull(T_契約緊急連絡先.id, 0) > 0, T_契約緊急連絡先.カナ, T_契約保証人.カナ) as 関係人カナ," +
-    //    "IIf(IsNull(T_契約緊急連絡先.id, 0) > 0, T_契約緊急連絡先.TEL, T_契約保証人.TEL) as 関係人TEL," +
-    //    "IIf(IsNull(T_契約緊急連絡先.id, 0) > 0, T_契約緊急連絡先.TEL携帯, T_契約保証人.TEL携帯) as 関係人TEL携帯," +
-    //    "IIf(IsNull(T_契約緊急連絡先.id, 0) > 0, T_契約緊急連絡先.続柄, T_契約保証人.続柄) as 関係人続柄," +
-    //    "IIf(IsNull(T_契約緊急連絡先.id, 0) > 0, T_契約緊急連絡先.生年月日, T_契約保証人.生年月日) as 関係人生年月日," +
-    //    "IIf(IsNull(T_契約緊急連絡先.id, 0) > 0, T_契約緊急連絡先.住所, T_契約保証人.住所1) as 関係人住所1," +
-    //    "IIf(IsNull(T_契約緊急連絡先.id, 0) > 0, T_契約緊急連絡先.住所2, T_契約保証人.住所2) as 関係人住所2," +
-    //    "IIf(IsNull(T_契約緊急連絡先.id, 0) > 0, '緊急連絡先', '契約保証人') as 関係人種別, " +
-    //    "T_顧客.生年月日,T_顧客.性別 " +
-    //    "FROM T_顧客 left join T_契約保証人 ON T_顧客.顧客コード = T_契約保証人.顧客コード " +
-    //    "and T_契約保証人.id in (SELECT MIN(id) FROM T_契約保証人 group by 顧客コード) " +
-    //    "left join T_契約緊急連絡先 ON T_顧客.顧客コード = T_契約緊急連絡先.顧客コード " +
-    //    "and T_契約緊急連絡先.id in (SELECT MIN(id) FROM T_契約緊急連絡先 group by 顧客コード) " +
-    //    "where T_顧客.ID = " + kokyaku_id + ") as T_kokyaku  "; 
+//private void Form1_Load(object sender, EventArgs e)
+//{
+//              //上部の設定
+//    Connect();
+//    cmd = cn.CreateCommand();
 
-    //    dr = cmd.ExecuteReader();
-    //    if (dr.HasRows)
-    //    {
-    //        dr.Read();
-    //        関係人氏名.Text = dr["関係人氏名"].ToString();
-    //        関係人カナ.Text = dr["関係人カナ"].ToString();
-    //        関係人TEL.Text = dr["関係人TEL"].ToString();
-    //        関係人TEL携帯.Text = dr["関係人TEL携帯"].ToString();
-    //        関係人続柄.Text = dr["関係人続柄"].ToString();                
-    //        関係人種別.Text = dr["関係人種別"].ToString();
-    //        関係人氏名.Text = dr["関係人氏名"].ToString();
+//    cmd.CommandText = "select 顧客コード from T_顧客 where id=" + kokyaku_id;
 
-    //        if (dr["性別"] != DBNull.Value)
-    //        {
-    //            int genderCode = Convert.ToInt32(dr["性別"]);
+//    SqlDataReader dr = cmd.ExecuteReader();
 
-    //            if (genderCode == 1)
-    //            {
-    //                性別.Text = "男";
-    //            }
-    //            else if (genderCode == 2)
-    //            {
-    //                性別.Text = "女";
-    //            }
-    //        }
-    //        if (dr["生年月日"] != DBNull.Value)
-    //        {
-    //            DateTime dateOfBirth = (DateTime)dr["生年月日"];
-    //            Age.Text = Myage.CalculateAge(dateOfBirth).ToString();
-    //        }
+//    if (dr.HasRows)
+//    {
+//        dr.Read();
+//        顧客コード.Text = dr["顧客コード"].ToString();
+//        kokyaku_cd = dr["顧客コード"].ToString();                
+//        dr.Close();
+//    }
 
-    //        //生年月日がnullでも空文字でもない場合
-    //        if (!dr.IsDBNull(dr.GetOrdinal("関係人生年月日")) && dr.GetDateTime(dr.GetOrdinal("関係人生年月日")) != DateTime.MinValue)
-    //        {
-    //            関係人年齢.Text = (GetAge((DateTime)dr["関係人生年月日"]).ToString());
-    //            関係人生年月日.Text = ((DateTime)dr["関係人生年月日"]).Date.ToString("yyyy/MM/dd");
-    //        }
+//    cmd.CommandText = "select isnull(sum(滞納額),0) as 滞納額合計,isnull(sum(変動水道代),0) as 水道代合計 from T_滞納 " +
+//        "where 顧客コード='" + kokyaku_cd + "'";
+//    dr = cmd.ExecuteReader();
+//    if (dr.HasRows)
+//    {
+//        dr.Read();
+//        滞納額合計.Text = dr["滞納額合計"].ToString();
+//        水道代合計.Text = dr["水道代合計"].ToString();
+//        dr.Close();
+//    }
 
-    //        //$""内で{}で囲んだ部分は式として解釈され、if-else文と同じように動作する
-    //        関係人住所.Text = $"{(dr.IsDBNull(dr.GetOrdinal("関係人住所1")) ? "" : dr["関係人住所1"].ToString())}" +
-    //        $"{(dr.IsDBNull(dr.GetOrdinal("関係人住所2")) ? "" : dr["関係人住所2"].ToString())}";
-    //    dr.Close();
-    //    }
+//    cmd.CommandText = "select isnull(sum(入金額),0) as 入金額合計 from T_滞納入金 " +
+//       "where 顧客コード='" + kokyaku_cd + "'";
 
-    //    cn.Close();
-
-    //    //this.v_顧客TableAdapter.Fill(this.rentDataSet.V_顧客, kokyaku_id);
-    //    //this.koushoTableAdapter.Fill(this.rentDataSet.kousho, kokyaku_id);
-    //    //this.t_約定内容TableAdapter.Fill(this.rentDataSet.T_約定内容);
-    //    //this.t_滞納TableAdapter.Fill(this.rentDataSet.T_滞納, kokyaku_cd);
-    //    //this.t_CODETableAdapter.Fill(this.rentDataSet.T_CODE);
-
-    //    DataGridView dgv = this.dataGridView1;
-    //    string col="";
-
-    //    for (int j = 0; j < 3; j++)
-    //    {
-    //        switch (j)
-    //        {
-    //            case 0:
-    //                col = "約定内容";
-    //                break;
-    //            case 1:
-    //                col = "区分";
-    //                break;
-    //            case 2:
-    //                col = "交渉相手";
-    //                break;
-    //        }
-
-    //        DataGridViewComboBoxColumn cbc = (DataGridViewComboBoxColumn)dgv.Columns[col];
-    //        System.Collections.IList list = dgv.Rows;
-
-    //        for (int i = 0; i < list.Count; i++)//プルダウンのソースである約定内容カラム　の内容をプルダウンにセットする
-    //        {
-    //            DataGridViewRow datarow = (DataGridViewRow)list[i];
-    //            //nullを比較するとエラーになるので先に省く
-    //            if (datarow.Cells[col].Value != null)
-    //            {
-    //                //コンボボックスのItemsに無く、かつ""でないものを判別
-    //                if ((!cbc.Items.Contains(datarow.Cells[col].Value)) && (datarow.Cells[col].Value.ToString() != ""))
-    //                {
-    //                    //コンボボックスの項目に追加する
-    //                    cbc.Items.Add(datarow.Cells[col].Value);
-    //                }
-    //            }
-    //        }
-    //        if (j == 0)
-    //        {
-    //            //foreach (DataRow DTdr in this.rentDataSet.T_約定内容.Rows)//DataSetT_約定内容　の内容をプルダウンにセットする
-    //            //{
-    //            //    //nullを比較するとエラーになるので先に省く
-    //            //    if (DTdr["約定内容"] != null)
-    //            //    {
-    //            //        //コンボボックスのItemsに無く、かつ""でないものを判別
-    //            //        if ((!cbc.Items.Contains(DTdr["約定内容"])) && (DTdr["約定内容"].ToString() != ""))
-    //            //        {
-    //            //            //コンボボックスの項目に追加する
-    //            //            cbc.Items.Add(DTdr["約定内容"]);
-    //            //        }
-    //            //    }
-    //            //}
-    //        }
-    //        //リストの数
-    //        new_cnt = list.Count-1;
-    //    }                        
-    //}
+//    dr = cmd.ExecuteReader();
+//    if (dr.HasRows)
+//    {
+//        dr.Read();
+//        入金額合計.Text = dr["入金額合計"].ToString();
+//        dr.Close();
+//    }
+//    int zankin;
+//    zankin = Convert.ToInt32(滞納額合計.Text) + Convert.ToInt32(水道代合計.Text) - Convert.ToInt32(入金額合計.Text);
+//    滞納残金.Text = zankin.ToString();
 
 
-    //    DataGridView dgv = this.dataGridView1;
+//    cmd.CommandText = "SELECT * FROM " +            
+//    "(SELECT IIf(IsNull(T_契約緊急連絡先.id, 0) > 0, T_契約緊急連絡先.名称, T_契約保証人.氏名) as 関係人氏名," +
+//    "IIf(IsNull(T_契約緊急連絡先.id, 0) > 0, T_契約緊急連絡先.カナ, T_契約保証人.カナ) as 関係人カナ," +
+//    "IIf(IsNull(T_契約緊急連絡先.id, 0) > 0, T_契約緊急連絡先.TEL, T_契約保証人.TEL) as 関係人TEL," +
+//    "IIf(IsNull(T_契約緊急連絡先.id, 0) > 0, T_契約緊急連絡先.TEL携帯, T_契約保証人.TEL携帯) as 関係人TEL携帯," +
+//    "IIf(IsNull(T_契約緊急連絡先.id, 0) > 0, T_契約緊急連絡先.続柄, T_契約保証人.続柄) as 関係人続柄," +
+//    "IIf(IsNull(T_契約緊急連絡先.id, 0) > 0, T_契約緊急連絡先.生年月日, T_契約保証人.生年月日) as 関係人生年月日," +
+//    "IIf(IsNull(T_契約緊急連絡先.id, 0) > 0, T_契約緊急連絡先.住所, T_契約保証人.住所1) as 関係人住所1," +
+//    "IIf(IsNull(T_契約緊急連絡先.id, 0) > 0, T_契約緊急連絡先.住所2, T_契約保証人.住所2) as 関係人住所2," +
+//    "IIf(IsNull(T_契約緊急連絡先.id, 0) > 0, '緊急連絡先', '契約保証人') as 関係人種別, " +
+//    "T_顧客.生年月日,T_顧客.性別 " +
+//    "FROM T_顧客 left join T_契約保証人 ON T_顧客.顧客コード = T_契約保証人.顧客コード " +
+//    "and T_契約保証人.id in (SELECT MIN(id) FROM T_契約保証人 group by 顧客コード) " +
+//    "left join T_契約緊急連絡先 ON T_顧客.顧客コード = T_契約緊急連絡先.顧客コード " +
+//    "and T_契約緊急連絡先.id in (SELECT MIN(id) FROM T_契約緊急連絡先 group by 顧客コード) " +
+//    "where T_顧客.ID = " + kokyaku_id + ") as T_kokyaku  "; 
+
+//    dr = cmd.ExecuteReader();
+//    if (dr.HasRows)
+//    {
+//        dr.Read();
+//        関係人氏名.Text = dr["関係人氏名"].ToString();
+//        関係人カナ.Text = dr["関係人カナ"].ToString();
+//        関係人TEL.Text = dr["関係人TEL"].ToString();
+//        関係人TEL携帯.Text = dr["関係人TEL携帯"].ToString();
+//        関係人続柄.Text = dr["関係人続柄"].ToString();                
+//        関係人種別.Text = dr["関係人種別"].ToString();
+//        関係人氏名.Text = dr["関係人氏名"].ToString();
+
+//        if (dr["性別"] != DBNull.Value)
+//        {
+//            int genderCode = Convert.ToInt32(dr["性別"]);
+
+//            if (genderCode == 1)
+//            {
+//                性別.Text = "男";
+//            }
+//            else if (genderCode == 2)
+//            {
+//                性別.Text = "女";
+//            }
+//        }
+//        if (dr["生年月日"] != DBNull.Value)
+//        {
+//            DateTime dateOfBirth = (DateTime)dr["生年月日"];
+//            Age.Text = Myage.CalculateAge(dateOfBirth).ToString();
+//        }
+
+//        //生年月日がnullでも空文字でもない場合
+//        if (!dr.IsDBNull(dr.GetOrdinal("関係人生年月日")) && dr.GetDateTime(dr.GetOrdinal("関係人生年月日")) != DateTime.MinValue)
+//        {
+//            関係人年齢.Text = (GetAge((DateTime)dr["関係人生年月日"]).ToString());
+//            関係人生年月日.Text = ((DateTime)dr["関係人生年月日"]).Date.ToString("yyyy/MM/dd");
+//        }
+
+//        //$""内で{}で囲んだ部分は式として解釈され、if-else文と同じように動作する
+//        関係人住所.Text = $"{(dr.IsDBNull(dr.GetOrdinal("関係人住所1")) ? "" : dr["関係人住所1"].ToString())}" +
+//        $"{(dr.IsDBNull(dr.GetOrdinal("関係人住所2")) ? "" : dr["関係人住所2"].ToString())}";
+//    dr.Close();
+//    }
+
+//    cn.Close();
+
+//    //this.v_顧客TableAdapter.Fill(this.rentDataSet.V_顧客, kokyaku_id);
+//    //this.koushoTableAdapter.Fill(this.rentDataSet.kousho, kokyaku_id);
+//    //this.t_約定内容TableAdapter.Fill(this.rentDataSet.T_約定内容);
+//    //this.t_滞納TableAdapter.Fill(this.rentDataSet.T_滞納, kokyaku_cd);
+//    //this.t_CODETableAdapter.Fill(this.rentDataSet.T_CODE);
+
+//    DataGridView dgv = this.dataGridView1;
+//    string col="";
+
+//    for (int j = 0; j < 3; j++)
+//    {
+//        switch (j)
+//        {
+//            case 0:
+//                col = "約定内容";
+//                break;
+//            case 1:
+//                col = "区分";
+//                break;
+//            case 2:
+//                col = "交渉相手";
+//                break;
+//        }
+
+//        DataGridViewComboBoxColumn cbc = (DataGridViewComboBoxColumn)dgv.Columns[col];
+//        System.Collections.IList list = dgv.Rows;
+
+//        for (int i = 0; i < list.Count; i++)//プルダウンのソースである約定内容カラム　の内容をプルダウンにセットする
+//        {
+//            DataGridViewRow datarow = (DataGridViewRow)list[i];
+//            //nullを比較するとエラーになるので先に省く
+//            if (datarow.Cells[col].Value != null)
+//            {
+//                //コンボボックスのItemsに無く、かつ""でないものを判別
+//                if ((!cbc.Items.Contains(datarow.Cells[col].Value)) && (datarow.Cells[col].Value.ToString() != ""))
+//                {
+//                    //コンボボックスの項目に追加する
+//                    cbc.Items.Add(datarow.Cells[col].Value);
+//                }
+//            }
+//        }
+//        if (j == 0)
+//        {
+//            //foreach (DataRow DTdr in this.rentDataSet.T_約定内容.Rows)//DataSetT_約定内容　の内容をプルダウンにセットする
+//            //{
+//            //    //nullを比較するとエラーになるので先に省く
+//            //    if (DTdr["約定内容"] != null)
+//            //    {
+//            //        //コンボボックスのItemsに無く、かつ""でないものを判別
+//            //        if ((!cbc.Items.Contains(DTdr["約定内容"])) && (DTdr["約定内容"].ToString() != ""))
+//            //        {
+//            //            //コンボボックスの項目に追加する
+//            //            cbc.Items.Add(DTdr["約定内容"]);
+//            //        }
+//            //    }
+//            //}
+//        }
+//        //リストの数
+//        new_cnt = list.Count-1;
+//    }                        
+//}
 
 
-    //    Connect();
-    //    string sql;
-    //    sql = "update T_顧客 set 特記事項 = N'" + 備考.Text + "' where id =" + kokyaku_id;
-    //    SqlCommand cmd = new SqlCommand(sql, cn);
+//    DataGridView dgv = this.dataGridView1;
 
-    //    var transaction = cn.BeginTransaction();
-    //    cmd.Transaction = transaction;
 
-    //    try
-    //    {
-    //       cmd.ExecuteNonQuery();
+//    Connect();
+//    string sql;
+//    sql = "update T_顧客 set 特記事項 = N'" + 備考.Text + "' where id =" + kokyaku_id;
+//    SqlCommand cmd = new SqlCommand(sql, cn);
 
-    //        //確定されてない時　何故か1回endedit　を行うと2回目はendeditでもセルが確定されない。
-    //        //入力セルを移動すると確定される
-    //        //2回目はvalueが空白（DBNULL）になっている この条件でfalseにする
+//    var transaction = cn.BeginTransaction();
+//    cmd.Transaction = transaction;
 
-    //        if (dataGridView1.CurrentRow != null)
-    //            if (dataGridView1.CurrentCell.EditedFormattedValue.ToString() == dataGridView1.CurrentCell.Value.ToString())
-    //            {
-    //                this.Validate();
-    //                //this.koushoBindingSource.EndEdit();
-    //                //this.koushoTableAdapter.Update(this.rentDataSet);
-    //                MessageBox.Show("変更を保存しました");
-    //                transaction.Commit();
-    //                cn.Close();
-    //            }
-    //            else
-    //            {
-    //                MessageBox.Show(dataGridView1.CurrentCell.OwningColumn.HeaderText + "項目の「" + dataGridView1.CurrentCell.EditedFormattedValue.ToString() +
-    // "」は確定されてません。\r\n そのセルを確定してください。違うセルを選択すれば確定されます。");
-    //                transaction.Commit();
-    //                cn.Close();
-    //                return;
-    //            }
-    //        else
-    //        {
-    //            MessageBox.Show("変更を保存しました");
-    //            transaction.Commit();
-    //            cn.Close();
-    //            return;
-    //        }
-    //    }
-    //    catch (Exception err)
-    //    {
-    //        MessageBox.Show("保存できませんでした:" + err.Message);
-    //        transaction.Rollback();
-    //        cn.Close();
-    //        return;
-    //    }
-    //    //約定額に登録のあるレコードがあればメッセージ
-    //    foreach (DataGridViewRow row in dgv.Rows)
-    //    {
-    //        //最終行はインスタンスがないため null チェック
-    //        if (dgv["約定額", row.Index].Value != null)
-    //        {
-    //            int tmpint = DBNull.Value.Equals(dgv["約定額", row.Index].Value) ? 0 : (int)(dgv["約定額", row.Index].Value);
+//    try
+//    {
+//       cmd.ExecuteNonQuery();
 
-    //            if (tmpint > 0)
-    //            {
-    //                MessageBox.Show("約定の登録があります。約定画面で確認してください");
-    //                break;
-    //            }
-    //        }
-    //    }
-}
+//        //確定されてない時　何故か1回endedit　を行うと2回目はendeditでもセルが確定されない。
+//        //入力セルを移動すると確定される
+//        //2回目はvalueが空白（DBNULL）になっている この条件でfalseにする
+
+//        if (dataGridView1.CurrentRow != null)
+//            if (dataGridView1.CurrentCell.EditedFormattedValue.ToString() == dataGridView1.CurrentCell.Value.ToString())
+//            {
+//                this.Validate();
+//                //this.koushoBindingSource.EndEdit();
+//                //this.koushoTableAdapter.Update(this.rentDataSet);
+//                MessageBox.Show("変更を保存しました");
+//                transaction.Commit();
+//                cn.Close();
+//            }
+//            else
+//            {
+//                MessageBox.Show(dataGridView1.CurrentCell.OwningColumn.HeaderText + "項目の「" + dataGridView1.CurrentCell.EditedFormattedValue.ToString() +
+// "」は確定されてません。\r\n そのセルを確定してください。違うセルを選択すれば確定されます。");
+//                transaction.Commit();
+//                cn.Close();
+//                return;
+//            }
+//        else
+//        {
+//            MessageBox.Show("変更を保存しました");
+//            transaction.Commit();
+//            cn.Close();
+//            return;
+//        }
+//    }
+//    catch (Exception err)
+//    {
+//        MessageBox.Show("保存できませんでした:" + err.Message);
+//        transaction.Rollback();
+//        cn.Close();
+//        return;
+//    }
+//    //約定額に登録のあるレコードがあればメッセージ
+//    foreach (DataGridViewRow row in dgv.Rows)
+//    {
+//        //最終行はインスタンスがないため null チェック
+//        if (dgv["約定額", row.Index].Value != null)
+//        {
+//            int tmpint = DBNull.Value.Equals(dgv["約定額", row.Index].Value) ? 0 : (int)(dgv["約定額", row.Index].Value);
+
+//            if (tmpint > 0)
+//            {
+//                MessageBox.Show("約定の登録があります。約定画面で確認してください");
+//                break;
+//            }
+//        }
+//    }
+//}
