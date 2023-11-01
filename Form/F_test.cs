@@ -16,6 +16,18 @@ namespace u_net
     public partial class F_test : Form
     {
 
+        private Control previousControl;
+        private SqlConnection cn;
+        private SqlTransaction tx;
+
+        public void Connect()
+        {
+            Connection connectionInfo = new Connection();
+            string connectionString = connectionInfo.Getconnect();
+            cn = new SqlConnection(connectionString);
+            cn.Open();
+        }
+
         public F_test()
         {
             InitializeComponent();
@@ -89,6 +101,22 @@ namespace u_net
                 // フォームAの日付コントロールに選択した日付を設定
                 顧客コード.Text = SelectedCode;
             }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Connect();
+
+            bool hoge;
+
+            FunctionClass fn = new FunctionClass();
+
+
+            hoge = fn.CByteChar("３３３");
+
+            textBox1.Text = hoge.ToString();
+
+
         }
     }
 }

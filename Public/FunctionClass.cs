@@ -526,7 +526,7 @@ namespace u_net.Public
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@UserID1", userID1);
-                    connection.Open();
+                    //connection.Open();
                     object userGroup = command.ExecuteScalar();
 
                     if (userGroup != null)
@@ -546,7 +546,7 @@ namespace u_net.Public
                         }
                     }
 
-                    connection.Close();
+                    //connection.Close();
                 }
             }
             catch (Exception ex)
@@ -599,7 +599,7 @@ namespace u_net.Public
                     cmd.Parameters.AddWithValue("@GroupCode", groupCode);
                     cmd.Parameters.AddWithValue("@Number", number);
 
-                    connection.Open();
+                    //connection.Open();
                     int rowsAffected = cmd.ExecuteNonQuery();
                     connection.Close();
 
@@ -630,7 +630,7 @@ namespace u_net.Public
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@Code", code);
-                    connection.Open();
+                    //connection.Open();
 
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
@@ -644,7 +644,7 @@ namespace u_net.Public
                         }
                     }
 
-                    connection.Close();
+                    //connection.Close();
                 }
             }
             catch (Exception ex)
@@ -672,7 +672,7 @@ namespace u_net.Public
                     cmd.CommandText = "SELECT 社員コード FROM M社員 WHERE ユーザー名 = @EmployeeName";
                     cmd.Parameters.AddWithValue("@EmployeeName", employeeName);
 
-                    connection.Open();
+                   
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
                         if (reader.Read())
@@ -713,7 +713,7 @@ namespace u_net.Public
                     cmd.CommandText = "SELECT 氏名 FROM M社員 WHERE 社員コード = @EmployeeCode";
                     cmd.Parameters.AddWithValue("@EmployeeCode", employeeCode);
 
-                    connection.Open();
+
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
                         if (reader.Read())
@@ -746,13 +746,21 @@ namespace u_net.Public
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    connection.Open();
-                    result = (int)cmd.ExecuteScalar();
+                    SqlParameter outputParameter = new SqlParameter("@製造コード", SqlDbType.Int);
+                    outputParameter.Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add(outputParameter);
+
+                    cmd.ExecuteNonQuery();
+
+                    if (outputParameter.Value != DBNull.Value)
+                    {
+                        result = (int)outputParameter.Value;
+                    }
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine("FirstManuCode - " + ex.GetType().Name + " : " + ex.Message);
+                Console.WriteLine("FirstManuCode - " + ex.Message);
             }
 
             return result;
@@ -762,25 +770,28 @@ namespace u_net.Public
         {
             string firstOrderCode = "";
 
+
             try
             {
                 using (SqlCommand cmd = new SqlCommand("usp_先頭受注コード", connection))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    connection.Open();
-                    var result = cmd.ExecuteScalar();
-                    connection.Close();
+                    SqlParameter outputParameter = new SqlParameter("@受注コード", SqlDbType.NChar,9);
+                    outputParameter.Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add(outputParameter);
 
-                    if (result != null)
+                    cmd.ExecuteNonQuery();
+
+                    if (outputParameter.Value != DBNull.Value)
                     {
-                        firstOrderCode = result.ToString();
+                        firstOrderCode = (string)outputParameter.Value;
                     }
                 }
             }
             catch (Exception ex)
             {
-                // エラーハンドリングを行うか、エラーログを記録するなどの処理をここに追加できます
+                Console.WriteLine("FirstOrderCode - " + ex.Message);
             }
 
             return firstOrderCode;
@@ -911,7 +922,7 @@ namespace u_net.Public
                 // 自社の締日をデータベースから取得
                 using (SqlConnection connection = new SqlConnection("your_connection_string_here"))
                 {
-                    connection.Open();
+                    //connection.Open();
 
                     string strSQL = "SELECT 自社締日 FROM 会社情報";
                     using (SqlCommand command = new SqlCommand(strSQL, connection))
@@ -970,7 +981,7 @@ namespace u_net.Public
                 using (SqlCommand cmd = new SqlCommand())
                 {
                     cmd.Connection = connection;
-                    connection.Open();
+                    //connection.Open();
 
                     // 採番リサイクルテーブルからコードを取得
                     string recycleQuery = "SELECT TOP 1 * FROM 採番リサイクル WHERE 採番コード = @TransactString ORDER BY カウンタ";
@@ -1038,7 +1049,7 @@ namespace u_net.Public
                     }
 
                     cmd.Parameters.Clear();
-                    connection.Close();
+                    //connection.Close();
                 }
             }
             catch (Exception ex)
@@ -1065,7 +1076,7 @@ namespace u_net.Public
                 using (SqlCommand cmd = new SqlCommand())
                 {
                     cmd.Connection = connection;
-                    connection.Open();
+                    //connection.Open();
 
                     // SQLクエリを構築
                     string query = "SELECT * FROM M顧客 WHERE 顧客コード = @CustomerCode";
@@ -1094,7 +1105,7 @@ namespace u_net.Public
                     }
                 }
 
-                connection.Close();
+                //connection.Close();
             }
             catch (Exception ex)
             {
@@ -1119,7 +1130,7 @@ namespace u_net.Public
                 using (SqlCommand cmd = new SqlCommand())
                 {
                     cmd.Connection = connection;
-                    connection.Open();
+                    //connection.Open();
 
                     // 社員コードの存在確認
                     string query = "SELECT 部 FROM M社員 WHERE 社員コード = @UserCode";
@@ -1157,7 +1168,7 @@ namespace u_net.Public
                     }
                 }
 
-                connection.Close();
+                //connection.Close();
             }
             catch (Exception ex)
             {
@@ -1182,7 +1193,7 @@ namespace u_net.Public
                 using (SqlCommand cmd = new SqlCommand())
                 {
                     cmd.Connection = connection;
-                    connection.Open();
+                    //connection.Open();
 
                     // SQLクエリを構築
                     string query = "SELECT 社員コード FROM M社員 WHERE 部 = @Section " +
@@ -1200,7 +1211,7 @@ namespace u_net.Public
                     }
                 }
 
-                connection.Close();
+                //connection.Close();
             }
             catch (Exception ex)
             {
@@ -1228,7 +1239,7 @@ namespace u_net.Public
                 using (SqlCommand cmd = new SqlCommand())
                 {
                     cmd.Connection = connection;
-                    connection.Open();
+                    //connection.Open();
 
                     // SQLクエリを構築
                     string query = "SELECT GETDATE() AS 現在日付";
@@ -1244,7 +1255,7 @@ namespace u_net.Public
                     }
                 }
 
-                connection.Close();
+                //connection.Close();
             }
             catch (Exception ex)
             {
@@ -1275,7 +1286,7 @@ namespace u_net.Public
                 using (SqlCommand cmd = new SqlCommand())
                 {
                     cmd.Connection = connection;
-                    connection.Open();
+                    //connection.Open();
 
                     // 社員コードの存在確認
                     string query = "SELECT 部 FROM M社員 WHERE 社員コード = @EmployeeCode";
@@ -1292,7 +1303,7 @@ namespace u_net.Public
                     }
                 }
 
-                connection.Close();
+                //connection.Close();
             }
             catch (Exception ex)
             {
@@ -1317,7 +1328,7 @@ namespace u_net.Public
                 using (SqlCommand cmd = new SqlCommand())
                 {
                     cmd.Connection = connection;
-                    connection.Open();
+                    //connection.Open();
 
                     // メーカーコードの存在確認
                     string query = "SELECT メーカー名 FROM Mメーカー WHERE メーカーコード = @MakerCode";
@@ -1334,7 +1345,7 @@ namespace u_net.Public
                     }
                 }
 
-                connection.Close();
+                //connection.Close();
             }
             catch (Exception ex)
             {
@@ -1359,7 +1370,7 @@ namespace u_net.Public
                 using (SqlCommand cmd = new SqlCommand())
                 {
                     cmd.Connection = connection;
-                    connection.Open();
+                    //connection.Open();
 
                     // メーカーコードの存在確認
                     string query = "SELECT メーカー省略名 FROM Mメーカー WHERE メーカーコード = @MakerCode";
@@ -1376,7 +1387,7 @@ namespace u_net.Public
                     }
                 }
 
-                connection.Close();
+                //connection.Close();
             }
             catch (Exception ex)
             {
@@ -1400,7 +1411,7 @@ namespace u_net.Public
                 using (SqlCommand cmd = new SqlCommand())
                 {
                     cmd.Connection = connection;
-                    connection.Open();
+                    //connection.Open();
 
                     // 最終バージョンの取得クエリ
                     string query = "SELECT ISNULL(MAX(バージョン番号), '0.000') AS 最終バージョン FROM Tシステム更新履歴";
@@ -1416,7 +1427,7 @@ namespace u_net.Public
                     }
                 }
 
-                connection.Close();
+                //connection.Close();
             }
             catch (Exception ex)
             {
@@ -1431,41 +1442,28 @@ namespace u_net.Public
 
         public static float GetNewVersion(SqlConnection connection)
         {
-            // 最新バージョン数を返す関数
-
             float newVersion = 0.0f;
 
             try
             {
-                using (SqlCommand cmd = new SqlCommand())
+                using (SqlCommand cmd = new SqlCommand("usp_最新バージョン", connection))
                 {
-                    cmd.Connection = connection;
-                    connection.Open();
-
-                    // SQLストアドプロシージャの実行
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "usp_最新バージョン";
-                    cmd.Parameters.Clear();
 
-                    SqlParameter outputParameter = new SqlParameter();
-                    outputParameter.ParameterName = "@ReturnValue";
-                    outputParameter.Direction = ParameterDirection.ReturnValue;
+                    SqlParameter outputParameter = new SqlParameter("@最新バージョン数", SqlDbType.Float);
+                    outputParameter.Direction = ParameterDirection.Output;
                     cmd.Parameters.Add(outputParameter);
 
                     cmd.ExecuteNonQuery();
 
-                    if (cmd.Parameters["@ReturnValue"].Value != DBNull.Value)
+                    if (outputParameter.Value != DBNull.Value)
                     {
-                        int intVersion = Convert.ToInt32(cmd.Parameters["@ReturnValue"].Value);
-                        newVersion = intVersion / 1000.0f + 1;
+                        newVersion = (float)Convert.ToDouble(outputParameter.Value);
                     }
                 }
-
-                connection.Close();
             }
             catch (Exception ex)
             {
-                // エラーハンドリングを行うか、エラーログを記録するなどの処理をここに追加できます
                 Console.WriteLine("GetNewVersion - " + ex.Message);
             }
 
@@ -1474,45 +1472,59 @@ namespace u_net.Public
 
 
 
-        public static DateTime GetPayDay(DateTime targetDate)
+        public static DateTime GetPayDay(SqlConnection connection, DateTime targetDate)
         {
-            // 支払期日を取得する関数
-
-            DateTime payDay = DateTime.MinValue;
+            DateTime result = DateTime.MinValue;
 
             try
             {
-                int closedDay = 0;   // 自社の締日
-                int payDiff = 0;     // 支払期間
-                int payDayOfMonth = 0; // 支払期日
-                int additionMonths = 0; // 締日後の加算月数
+                int intClosedDay = 0;   // 自社の締日
+                int intPayDiff = 0;     // 支払期間
+                int intPayDay = 0;      // 支払期日
 
-                // サーバーから自社の会計情報を取得する代わりに、これらの情報を適切な方法で取得する必要があります。
-
-                // 締日以前か締日以後かを調整
-                DateTime adjustedDate = (targetDate.Day <= closedDay)
-                    ? targetDate.AddMonths(payDiff)
-                    : targetDate.AddMonths(payDiff + 1);
-
-                // 支払期日を加味する
-                if (payDayOfMonth == 0)
+                using (SqlCommand cmd = new SqlCommand("SELECT 自社締日, 支払期間, 支払期日 FROM 会社情報", connection))
                 {
-                    // 支払期日が0の場合、翌月の1日から1日引いた日付を支払期日とします
-                    payDay = new DateTime(adjustedDate.AddMonths(1).Year, adjustedDate.AddMonths(1).Month, 1).AddDays(-1);
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            intClosedDay = Convert.ToInt32(reader["自社締日"]);
+                            intPayDiff = Convert.ToInt32(reader["支払期間"]);
+                            intPayDay = Convert.ToInt32(reader["支払期日"]);
+                        }
+                    }
+                }
+
+                int intAddition = 0; // 締日後の加算月数
+                DateTime dat1;
+
+                if (targetDate.Day <= intClosedDay)
+                {
+                    dat1 = targetDate.AddMonths(intPayDiff);
                 }
                 else
                 {
-                    // 支払期日が指定されている場合、その日を支払期日とします
-                    payDay = new DateTime(adjustedDate.Year, adjustedDate.Month, payDayOfMonth);
+                    dat1 = targetDate.AddMonths(intPayDiff + 1);
                 }
+
+                if (intPayDay == 0)
+                {
+                    result = new DateTime(dat1.AddMonths(1).Year, dat1.AddMonths(1).Month, 1).AddDays(-1);
+                }
+                else
+                {
+                    result = new DateTime(dat1.Year, dat1.Month, intPayDay);
+                }
+
+
             }
             catch (Exception ex)
             {
-                // エラーハンドリングを行うか、エラーログを記録するなどの処理をここに追加できます
                 Console.WriteLine("GetPayDay - " + ex.Message);
             }
 
-            return payDay;
+            return result;
         }
 
 
@@ -1547,7 +1559,7 @@ namespace u_net.Public
                     {
                         if (reader.Read())
                         {
-                            recordCount = (long)reader[0];
+                            recordCount = (long)reader.GetInt32(0);
                         }
                     }
                 }
@@ -1574,7 +1586,7 @@ namespace u_net.Public
                 if (connection != null && !string.IsNullOrEmpty(connection.ConnectionString))
                 {
                     string connectionString = connection.ConnectionString;
-                    int startIndex = connectionString.IndexOf("data source=");
+                    int startIndex = connectionString.IndexOf("Data Source=");
 
                     if (startIndex >= 0)
                     {
@@ -1600,7 +1612,7 @@ namespace u_net.Public
 
 
 
-        public static string GetSignature(string userCode)
+        public static string GetSignature(SqlConnection connection,string userCode)
         {
             // ユーザーの署名を取得する関数
 
@@ -1608,9 +1620,7 @@ namespace u_net.Public
 
             try
             {
-                using (SqlConnection connection = new SqlConnection("YourConnectionStringHere"))
-                {
-                    connection.Open();
+      
 
                     string strSQL = "SELECT * FROM V社員_署名 WHERE 社員コード=@userCode";
                     using (SqlCommand cmd = new SqlCommand(strSQL, connection))
@@ -1635,7 +1645,7 @@ namespace u_net.Public
                             }
                         }
                     }
-                }
+                
             }
             catch (Exception ex)
             {
@@ -1649,7 +1659,7 @@ namespace u_net.Public
 
 
 
-        public static long GetStock(DateTime appointedDate, string codeString)
+        public static long GetStock(SqlConnection connection,DateTime appointedDate, string codeString)
         {
             // 理論在庫を取得する関数
 
@@ -1657,22 +1667,19 @@ namespace u_net.Public
 
             try
             {
-                using (SqlConnection connection = new SqlConnection("YourConnectionStringHere"))
-                {
-                    connection.Open();
-
+      
                     using (SqlCommand cmd = new SqlCommand("SP理論在庫出力", connection))
                     {
                         cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                        cmd.Parameters.Add(new SqlParameter("@AppointedDate", SqlDbType.DateTime)).Value = appointedDate;
-                        cmd.Parameters.Add(new SqlParameter("@CodeString", SqlDbType.VarChar, 255)).Value = codeString;
-                        cmd.Parameters.Add(new SqlParameter("@Stock", SqlDbType.BigInt)).Direction = ParameterDirection.Output;
+                        cmd.Parameters.Add(new SqlParameter("@dteDay", SqlDbType.DateTime)).Value = appointedDate;
+                        cmd.Parameters.Add(new SqlParameter("@strCode", SqlDbType.VarChar, 255)).Value = codeString;
+                        cmd.Parameters.Add(new SqlParameter("@intStock", SqlDbType.BigInt)).Direction = ParameterDirection.Output;
 
                         cmd.ExecuteNonQuery();
 
                         stock = (long)cmd.Parameters["@Stock"].Value;
                     }
-                }
+                
             }
             catch (Exception ex)
             {
@@ -1685,7 +1692,7 @@ namespace u_net.Public
 
 
 
-        public static string GetSupplierName(string supplierCode)
+        public static string GetSupplierName(SqlConnection connection,string supplierCode)
         {
             // 仕入先コードから仕入先名を取得する関数
 
@@ -1693,9 +1700,7 @@ namespace u_net.Public
 
             try
             {
-                using (SqlConnection connection = new SqlConnection("YourConnectionStringHere"))
-                {
-                    connection.Open();
+               
 
                     string strSQL = "SELECT * FROM M仕入先 WHERE 仕入先コード = @SupplierCode";
                     using (SqlCommand cmd = new SqlCommand(strSQL, connection))
@@ -1720,7 +1725,7 @@ namespace u_net.Public
                             }
                         }
                     }
-                }
+                
             }
             catch (Exception ex)
             {
@@ -2038,68 +2043,64 @@ namespace u_net.Public
 
         public static int LastManuCode(SqlConnection connection)
         {
+            int lastManuCode = -1;
+
             try
             {
-                int lastManuCode = -1;
-
                 using (SqlCommand cmd = new SqlCommand("usp_最終製造コード", connection))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    cmd.Parameters.Add(new SqlParameter
-                    {
-                        ParameterName = "@ReturnValue",
-                        SqlDbType = SqlDbType.Int,
-                        Direction = ParameterDirection.ReturnValue
-                    });
+                    SqlParameter outputParameter = new SqlParameter("@製造コード", SqlDbType.Int);
+                    outputParameter.Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add(outputParameter);
 
                     cmd.ExecuteNonQuery();
 
-                    lastManuCode = (int)cmd.Parameters["@ReturnValue"].Value;
+                    if (outputParameter.Value != DBNull.Value)
+                    {
+                        lastManuCode = (int)outputParameter.Value;
+                    }
                 }
-
-                return lastManuCode;
             }
             catch (Exception ex)
             {
                 Console.WriteLine("LastManuCode - " + ex.Message);
-                // エラーハンドリングを行うか、エラーログを記録するなどの処理をここに追加できます
-                return -1; // エラー時は -1 を返します
             }
+
+            return lastManuCode;
         }
 
 
         public static string LastOrderCode(SqlConnection connection)
         {
+
+            string lastOrderCode = "";
+
             try
             {
-                string lastOrderCode = "";
-
                 using (SqlCommand cmd = new SqlCommand("usp_最終受注コード", connection))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    cmd.Parameters.Add(new SqlParameter
-                    {
-                        ParameterName = "@ReturnValue",
-                        SqlDbType = SqlDbType.NVarChar,
-                        Size = 255,
-                        Direction = ParameterDirection.ReturnValue
-                    });
+                    SqlParameter outputParameter = new SqlParameter("@受注コード", SqlDbType.NChar, 9);
+                    outputParameter.Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add(outputParameter);
 
                     cmd.ExecuteNonQuery();
 
-                    lastOrderCode = cmd.Parameters["@ReturnValue"].Value.ToString();
+                    if (outputParameter.Value != DBNull.Value)
+                    {
+                        lastOrderCode = (string)outputParameter.Value;
+                    }
                 }
-
-                return lastOrderCode;
             }
             catch (Exception ex)
             {
                 Console.WriteLine("LastOrderCode - " + ex.Message);
-                // エラーハンドリングを行うか、エラーログを記録するなどの処理をここに追加できます
-                return "";
             }
+
+            return lastOrderCode;
         }
 
 
@@ -2171,7 +2172,7 @@ namespace u_net.Public
 
 
 
-        public object Zn(object value, object valueIfZero = null)
+        public object Zn(object value, object? valueIfZero = null)
         {
             if (value == null || string.IsNullOrWhiteSpace(value.ToString()) ||
                 (value is int intValue && intValue == 0 && !value.ToString().Equals("00000000")))
@@ -2195,7 +2196,7 @@ namespace u_net.Public
 
 
 
-        public object ZnSQL(object value, object valueIfZero = null)
+        public object ZnSQL(object value, object? valueIfZero = null)
         {
             if (value == null || string.IsNullOrWhiteSpace(value.ToString()) || Convert.IsDBNull(value))
             {
@@ -2220,10 +2221,10 @@ namespace u_net.Public
         {
             try
             {
-                if (connection.State != ConnectionState.Open)
-                {
-                    connection.Open();
-                }
+                //if (connection.State != ConnectionState.Open)
+                //{
+                //    connection.Open();
+                //}
 
                 string adoptCode = "";
                 int counter = 0;
