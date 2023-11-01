@@ -155,6 +155,8 @@ namespace u_net
             数量単位コード = new ComboBox();
             notifyIcon1 = new NotifyIcon(components);
             button1 = new Button();
+            label20 = new Label();
+            label21 = new Label();
             ((System.ComponentModel.ISupportInitialize)M商品BindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)uiDataSet).BeginInit();
             ((System.ComponentModel.ISupportInitialize)comboBox売上区分bindingSource).BeginInit();
@@ -461,7 +463,7 @@ namespace u_net
             コマンド新規.Location = new Point(3, 6);
             コマンド新規.Margin = new Padding(3, 2, 3, 2);
             コマンド新規.Name = "コマンド新規";
-            コマンド新規.Size = new Size(116, 31);
+            コマンド新規.Size = new Size(72, 25);
             コマンド新規.TabIndex = 2;
             コマンド新規.Text = "新規";
             コマンド新規.UseVisualStyleBackColor = true;
@@ -626,6 +628,7 @@ namespace u_net
             売上区分コード.DisplayMember = "売上区分名";
             売上区分コード.DropDownStyle = ComboBoxStyle.DropDownList;
             売上区分コード.FormattingEnabled = true;
+            売上区分コード.ImeMode = ImeMode.Disable;
             売上区分コード.Location = new Point(144, 261);
             売上区分コード.Margin = new Padding(4, 3, 4, 3);
             売上区分コード.Name = "売上区分コード";
@@ -640,6 +643,7 @@ namespace u_net
             FlowCategoryCode.DisplayMember = "Name";
             FlowCategoryCode.DropDownStyle = ComboBoxStyle.DropDownList;
             FlowCategoryCode.FormattingEnabled = true;
+            FlowCategoryCode.ImeMode = ImeMode.Disable;
             FlowCategoryCode.Location = new Point(144, 289);
             FlowCategoryCode.Margin = new Padding(4, 3, 4, 3);
             FlowCategoryCode.Name = "FlowCategoryCode";
@@ -670,13 +674,14 @@ namespace u_net
             // 
             Revision.BackColor = Color.White;
             Revision.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            Revision.Location = new Point(990, 421);
+            Revision.Location = new Point(1112, 387);
             Revision.Margin = new Padding(3, 2, 3, 2);
             Revision.Multiline = true;
             Revision.Name = "Revision";
             Revision.ReadOnly = true;
             Revision.Size = new Size(99, 24);
             Revision.TabIndex = 188;
+            Revision.Visible = false;
             // 
             // label17
             // 
@@ -718,7 +723,7 @@ namespace u_net
             ComposedChipMount.Name = "ComposedChipMount";
             ComposedChipMount.ReadOnly = true;
             ComposedChipMount.Size = new Size(25, 23);
-            ComposedChipMount.TabIndex = 185;
+            ComposedChipMount.TabIndex = 34;
             // 
             // 削除
             // 
@@ -730,7 +735,7 @@ namespace u_net
             削除.Name = "削除";
             削除.ReadOnly = true;
             削除.Size = new Size(25, 23);
-            削除.TabIndex = 184;
+            削除.TabIndex = 33;
             // 
             // label15
             // 
@@ -757,7 +762,7 @@ namespace u_net
             更新者名.Name = "更新者名";
             更新者名.ReadOnly = true;
             更新者名.Size = new Size(313, 23);
-            更新者名.TabIndex = 182;
+            更新者名.TabIndex = 32;
             // 
             // 更新者コード
             // 
@@ -769,7 +774,7 @@ namespace u_net
             更新者コード.Name = "更新者コード";
             更新者コード.ReadOnly = true;
             更新者コード.Size = new Size(139, 23);
-            更新者コード.TabIndex = 181;
+            更新者コード.TabIndex = 31;
             // 
             // label14
             // 
@@ -811,7 +816,7 @@ namespace u_net
             更新日時.Name = "更新日時";
             更新日時.ReadOnly = true;
             更新日時.Size = new Size(313, 23);
-            更新日時.TabIndex = 178;
+            更新日時.TabIndex = 30;
             // 
             // 作成者名
             // 
@@ -823,7 +828,7 @@ namespace u_net
             作成者名.Name = "作成者名";
             作成者名.ReadOnly = true;
             作成者名.Size = new Size(313, 23);
-            作成者名.TabIndex = 177;
+            作成者名.TabIndex = 29;
             // 
             // 作成者コード
             // 
@@ -835,7 +840,7 @@ namespace u_net
             作成者コード.Name = "作成者コード";
             作成者コード.ReadOnly = true;
             作成者コード.Size = new Size(139, 23);
-            作成者コード.TabIndex = 176;
+            作成者コード.TabIndex = 28;
             // 
             // label12
             // 
@@ -877,7 +882,7 @@ namespace u_net
             作成日時.Name = "作成日時";
             作成日時.ReadOnly = true;
             作成日時.Size = new Size(313, 23);
-            作成日時.TabIndex = 173;
+            作成日時.TabIndex = 27;
             // 
             // label9
             // 
@@ -915,6 +920,7 @@ namespace u_net
             商品分類コード.DisplayMember = "分類名";
             商品分類コード.DropDownStyle = ComboBoxStyle.DropDownList;
             商品分類コード.FormattingEnabled = true;
+            商品分類コード.ImeMode = ImeMode.Disable;
             商品分類コード.Location = new Point(144, 177);
             商品分類コード.Margin = new Padding(4, 3, 4, 3);
             商品分類コード.Name = "商品分類コード";
@@ -953,6 +959,7 @@ namespace u_net
             シリーズコード.DisplayMember = "シリーズ名";
             シリーズコード.DropDownStyle = ComboBoxStyle.DropDownList;
             シリーズコード.FormattingEnabled = true;
+            シリーズコード.ImeMode = ImeMode.Disable;
             シリーズコード.Location = new Point(144, 115);
             シリーズコード.Margin = new Padding(4, 3, 4, 3);
             シリーズコード.Name = "シリーズコード";
@@ -995,6 +1002,7 @@ namespace u_net
             // 
             商品名.BackColor = Color.White;
             商品名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            商品名.ImeMode = ImeMode.Off;
             商品名.Location = new Point(144, 80);
             商品名.Margin = new Padding(3, 2, 3, 2);
             商品名.Multiline = true;
@@ -1023,6 +1031,7 @@ namespace u_net
             // 
             ClientName.BackColor = Color.White;
             ClientName.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            ClientName.ImeMode = ImeMode.Hiragana;
             ClientName.Location = new Point(144, 360);
             ClientName.Margin = new Padding(3, 2, 3, 2);
             ClientName.Multiline = true;
@@ -1051,6 +1060,7 @@ namespace u_net
             // 
             品名.BackColor = Color.White;
             品名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            品名.ImeMode = ImeMode.Hiragana;
             品名.Location = new Point(144, 146);
             品名.Margin = new Padding(3, 2, 3, 2);
             品名.MaxLength = 24;
@@ -1066,26 +1076,27 @@ namespace u_net
             Discontinued.AutoSize = true;
             Discontinued.CheckAlign = ContentAlignment.MiddleRight;
             Discontinued.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            Discontinued.Location = new Point(80, 395);
+            Discontinued.Location = new Point(146, 397);
             Discontinued.Margin = new Padding(4, 3, 4, 3);
             Discontinued.Name = "Discontinued";
-            Discontinued.Size = new Size(48, 16);
-            Discontinued.TabIndex = 160;
-            Discontinued.Text = "廃止";
+            Discontinued.Size = new Size(15, 14);
+            Discontinued.TabIndex = 24;
             Discontinued.UseVisualStyleBackColor = true;
+            Discontinued.CheckedChanged += Discontinued_CheckedChanged;
+            Discontinued.Enter += Discontinued_Enter;
             // 
             // IsUnit
             // 
             IsUnit.AutoSize = true;
             IsUnit.CheckAlign = ContentAlignment.MiddleRight;
             IsUnit.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            IsUnit.Location = new Point(845, 429);
+            IsUnit.Location = new Point(943, 397);
             IsUnit.Margin = new Padding(4, 3, 4, 3);
             IsUnit.Name = "IsUnit";
-            IsUnit.Size = new Size(72, 16);
-            IsUnit.TabIndex = 159;
-            IsUnit.Text = "ユニット";
+            IsUnit.Size = new Size(15, 14);
+            IsUnit.TabIndex = 36;
             IsUnit.UseVisualStyleBackColor = true;
+            IsUnit.CheckedChanged += IsUnit_CheckedChanged;
             // 
             // CustomerSerialNumberRequired
             // 
@@ -1160,12 +1171,15 @@ namespace u_net
             // 
             備考.BackColor = Color.White;
             備考.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            備考.ImeMode = ImeMode.Hiragana;
             備考.Location = new Point(144, 427);
             備考.Margin = new Padding(3, 2, 3, 2);
             備考.Multiline = true;
             備考.Name = "備考";
             備考.Size = new Size(581, 51);
-            備考.TabIndex = 152;
+            備考.TabIndex = 26;
+            備考.TextChanged += 備考_TextChanged;
+            備考.Enter += 備考_Enter;
             // 
             // label11
             // 
@@ -1207,8 +1221,8 @@ namespace u_net
             label6.Margin = new Padding(0);
             label6.Name = "label6";
             label6.Size = new Size(63, 17);
-            label6.TabIndex = 150;
-            label6.Text = "備考";
+            label6.TabIndex = 25;
+            label6.Text = "備考(&O)";
             label6.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // label1
@@ -1329,6 +1343,7 @@ namespace u_net
             数量単位コード.DisplayMember = "単位名";
             数量単位コード.DropDownStyle = ComboBoxStyle.DropDownList;
             数量単位コード.FormattingEnabled = true;
+            数量単位コード.ImeMode = ImeMode.Disable;
             数量単位コード.Location = new Point(143, 321);
             数量単位コード.Name = "数量単位コード";
             数量単位コード.Size = new Size(161, 20);
@@ -1352,7 +1367,38 @@ namespace u_net
             button1.TabIndex = 147;
             button1.Text = "テスト";
             button1.UseVisualStyleBackColor = true;
+            button1.Visible = false;
             button1.Click += button1_Click;
+            // 
+            // label20
+            // 
+            label20.AllowDrop = true;
+            label20.AutoEllipsis = true;
+            label20.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label20.ForeColor = SystemColors.ActiveCaptionText;
+            label20.ImageAlign = ContentAlignment.MiddleLeft;
+            label20.Location = new Point(57, 394);
+            label20.Margin = new Padding(0);
+            label20.Name = "label20";
+            label20.Size = new Size(85, 17);
+            label20.TabIndex = 23;
+            label20.Text = "廃止(&T)";
+            label20.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // label21
+            // 
+            label21.AllowDrop = true;
+            label21.AutoEllipsis = true;
+            label21.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label21.ForeColor = SystemColors.ActiveCaptionText;
+            label21.ImageAlign = ContentAlignment.MiddleLeft;
+            label21.Location = new Point(823, 395);
+            label21.Margin = new Padding(0);
+            label21.Name = "label21";
+            label21.Size = new Size(85, 17);
+            label21.TabIndex = 35;
+            label21.Text = "ユニット(&M)";
+            label21.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // F_商品
             // 
@@ -1360,6 +1406,8 @@ namespace u_net
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
             ClientSize = new Size(1469, 644);
+            Controls.Add(label21);
+            Controls.Add(label20);
             Controls.Add(数量単位コード);
             Controls.Add(label19);
             Controls.Add(label18);
@@ -1576,6 +1624,8 @@ namespace u_net
         private DataGridViewTextBoxColumn dgv機能;
         private DataGridViewTextBoxColumn dgv構成番号;
         private Button button1;
+        private Label label20;
+        private Label label21;
     }
 }
 

@@ -1064,6 +1064,32 @@ namespace u_net
             if (!FunctionClass.LimitText(this.ActiveControl, 200)) return;
             ChangedData(true);
         }
+
+        private void Discontinued_Enter(object sender, EventArgs e)
+        {
+            this.toolStripStatusLabel2.Text = "■この商品を出荷する際、顧客シリアルが必要な時に指定します。";
+        }
+
+        private void Discontinued_CheckedChanged(object sender, EventArgs e)
+        {
+            ChangedData(true);
+        }
+
+        private void 備考_TextChanged(object sender, EventArgs e)
+        {
+            if (!FunctionClass.LimitText(this.ActiveControl, 200)) return;
+            ChangedData(true);
+        }
+
+        private void 備考_Enter(object sender, EventArgs e)
+        {
+            this.toolStripStatusLabel2.Text = "■全角１００文字まで入力できます。";
+        }
+
+        private void IsUnit_CheckedChanged(object sender, EventArgs e)
+        {
+            ChangedData(true);
+        }
     }
 }
 
