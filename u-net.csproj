@@ -8,7 +8,12 @@
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <ApplicationIcon>icon\unetc.ico</ApplicationIcon>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="icon\unetc.ico" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="GrapeCity.Win.MultiRow" Version="11.2.0" />
