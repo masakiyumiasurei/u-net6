@@ -107,16 +107,44 @@ namespace u_net
         {
             Connect();
 
-            bool hoge;
+            string hoge;
 
             FunctionClass fn = new FunctionClass();
 
 
-            hoge = fn.CByteChar("３３３");
+            hoge = FunctionClass.GetAddupMonth(cn,DateTime.Today,0);
 
             textBox1.Text = hoge.ToString();
 
 
+        }
+
+        private void 日付_KeyDown(object sender, KeyEventArgs e)
+        {
+            FunctionClass fn = new FunctionClass();
+
+            DateTime DateValue;
+
+            DateTime.TryParse(日付.Text, out DateValue);
+
+            if (e.KeyCode == Keys.Add)
+            {
+                // "+"キーが押された場合
+
+                DateTime newDate = fn.InputDate('+', DateValue);
+                日付.Text = newDate.ToString();
+                e.SuppressKeyPress = true;
+
+            }
+            else if (e.KeyCode == Keys.Subtract)
+            {
+                // "-"キーが押された場合
+
+                DateTime newDate = fn.InputDate('-', DateValue);
+                日付.Text = newDate.ToString();
+                e.SuppressKeyPress = true;
+
+            }
         }
     }
 }

@@ -460,6 +460,10 @@ namespace u_net.Public
                     ctlTarget.Text = ctlCurrent.Text;
                 }
             }
+            catch (FormatException)
+            {
+                Console.WriteLine("Control1またはControl2のConvertに失敗しました。");
+            }
             catch (Exception ex)
             {
                 Console.WriteLine("AdjustRange - " + ex.GetType().Name + " : " + ex.Message);
@@ -468,7 +472,7 @@ namespace u_net.Public
 
 
 
-        public static long AnsiInStrB(object start = null, string str1 = null, object str2 = null, int compare = 0)
+        public static long AnsiInStrB(object? start = null, string? str1 = null, object? str2 = null, int? compare = 0)
         {
             long result = 0;
 
@@ -910,7 +914,7 @@ namespace u_net.Public
 
 
 
-        public static string GetAddupMonth(DateTime receivedDate, int supplierCloseDay)
+        public static string GetAddupMonth(SqlConnection connection, DateTime receivedDate, int supplierCloseDay)
         {
             // 集計月を格納する変数
             string addupMonth = "0";
@@ -920,22 +924,19 @@ namespace u_net.Public
                 int myCloseDay = 0;  // 自社の締日
 
                 // 自社の締日をデータベースから取得
-                using (SqlConnection connection = new SqlConnection("your_connection_string_here"))
-                {
-                    //connection.Open();
 
-                    string strSQL = "SELECT 自社締日 FROM 会社情報";
-                    using (SqlCommand command = new SqlCommand(strSQL, connection))
+                string strSQL = "SELECT 自社締日 FROM 会社情報";
+                using (SqlCommand command = new SqlCommand(strSQL, connection))
+                {
+                    using (SqlDataReader reader = command.ExecuteReader())
                     {
-                        using (SqlDataReader reader = command.ExecuteReader())
+                        if (reader.Read())
                         {
-                            if (reader.Read())
-                            {
-                                myCloseDay = reader.GetInt32(0);
-                            }
+                            myCloseDay = (int)reader.GetByte(0);
                         }
                     }
                 }
+                
 
                 // 仕入先の締日が末日の場合、検収月の末日とする
                 if (supplierCloseDay == 0)
@@ -2552,11 +2553,70 @@ namespace u_net.Public
 
 
 
+        public static void 範囲指定(Control control1, Control control2)
+        {
+            // エラーハンドリングを追加
+            try
+            {
+                Form frmOn = control1.FindForm(); // コントロールが所属するフォーム
+                Control ctlCurrent = control1;    // 調整元の値のあるコントロール
+                Control ctlTarget = control2;     // 調整先のコントロール
+
+                // ２つのコントロールを含むフォームが違っていれば何もしない
+                if (ctlCurrent.Parent != ctlTarget.Parent)
+                    return;
+
+                if (frmOn.ActiveControl.Name == ctlCurrent.Name)
+                {
+                    ctlCurrent = control1;
+                    ctlTarget = control2;
+                }
+                else
+                {
+                    ctlCurrent = control2;
+                    ctlTarget = control1;
+                }
+
+                // どちらかのコントロール値が null のときは両方の値を null に設定する
+                if (ctlCurrent.Text == "" || ctlTarget.Text == "")
+                {
+                    ctlTarget.Text = ctlCurrent.Text;
+                }
+
+                // コントロール1の値 <= コントロール2の値 とする
+                if (Convert.ToDouble(control1.Text) > Convert.ToDouble(control2.Text))
+                {
+                    ctlTarget.Text = ctlCurrent.Text;
+                }
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Control1またはControl2のConvertに失敗しました。");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("範囲指定 - " + ex.GetType().Name + " : " + ex.Message);
+            }
+        }
 
 
 
 
+        public DateTime InputDate(char keyCommand, DateTime date)
+        {
+            if (keyCommand == '+')
+            {
+                // "+"の場合、日付を1日進める
+                date = date.AddDays(1);
+            }
+            else if (keyCommand == '-')
+            {
+                // "-"の場合、日付を1日戻す
+                date = date.AddDays(-1);
+            }
 
+            return date;
+        }
 
 
 
@@ -2617,9 +2677,9 @@ namespace u_net.Public
                 // 祝祭日・公休日の確認
                 using (SqlCommand cmd = new SqlCommand("SELECT COUNT(*) FROM Holiday WHERE Date = @Date", connection))
                 {
-                    cmd.Parameters.AddWithValue("@Date", date);
+                    cmd.Parameters.AddWithValue("@Date", date.Date);
 
-                    connection.Open();
+     
                     int count = (int)cmd.ExecuteScalar();
                     connection.Close();
 
@@ -2636,22 +2696,24 @@ namespace u_net.Public
 
 
 
-        public void WhereString(ref string bodyString, string addString)
+        public static string WhereString(string bodyString, string addString)
         {
             if (string.IsNullOrEmpty(addString))
-            {
-                return;
-            }
+                return bodyString;
 
             if (string.IsNullOrEmpty(bodyString))
             {
-                bodyString = "(" + addString + ")";
+                return "(" + addString + ")";
             }
             else
             {
-                if (bodyString.IndexOf(addString) == -1)
+                if (!bodyString.Contains(addString))
                 {
-                    bodyString += " AND (" + addString + ")";
+                    return bodyString + " AND (" + addString + ")";
+                }
+                else
+                {
+                    return bodyString;
                 }
             }
         }
