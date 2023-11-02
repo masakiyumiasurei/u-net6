@@ -48,6 +48,9 @@ namespace u_net
         private void Form_Load(object sender, EventArgs e)
         {
 
+            FunctionClass fn = new FunctionClass();
+            fn.DoWait("しばらくお待ちください...");
+
             this.combBox商品コードTableAdapter.Fill(this.uiDataSet.CombBox商品コード);
             this.combBoxMシリーズTableAdapter.Fill(this.uiDataSet.Mシリーズ);
             this.m商品分類TableAdapter.Fill(this.uiDataSet.M商品分類);
@@ -82,6 +85,8 @@ namespace u_net
                         this.商品コード.Text = args;
                     }
                 }
+
+                fn.WaitForm.Close();
 
                 //実行中フォーム起動
                 string LoginUserCode = "000";//テスト用 ログインユーザを実行中にどのように管理するか決まったら修正

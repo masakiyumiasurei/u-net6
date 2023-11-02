@@ -111,7 +111,6 @@ namespace u_net
             string hoge;
 
             FunctionClass fn = new FunctionClass();
-
             fn.DoWait("ボタン3を実行中...");
 
             int i = 0;

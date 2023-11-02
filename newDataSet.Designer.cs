@@ -8089,7 +8089,7 @@ FROM                 dbo.M商品 LEFT OUTER JOIN
     [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
         ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class M単位TableAdapter : global::System.ComponentModel.Component {
+    public partial class MtaniTableAdapter : global::System.ComponentModel.Component {
         
         private global::Microsoft.Data.SqlClient.SqlDataAdapter _adapter;
         
@@ -8103,7 +8103,7 @@ FROM                 dbo.M商品 LEFT OUTER JOIN
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public M単位TableAdapter() {
+        public MtaniTableAdapter() {
             this.ClearBeforeFill = true;
         }
         
@@ -8206,8 +8206,8 @@ FROM                 dbo.M商品 LEFT OUTER JOIN
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::Microsoft.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[M単位] WHERE (([単位コード] = @Original_単位コード) AND ((@IsNull_単位名 = 1 " +
-                "AND [単位名] IS NULL) OR ([単位名] = @Original_単位名)))";
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM [M単位] WHERE (([単位コード] = @Original_単位コード) AND ((@IsNull_単位名 = 1 AND [単" +
+                "位名] IS NULL) OR ([単位名] = @Original_単位名)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             global::Microsoft.Data.SqlClient.SqlParameter param = new global::Microsoft.Data.SqlClient.SqlParameter();
             param.ParameterName = "@Original_単位コード";
@@ -8235,8 +8235,8 @@ FROM                 dbo.M商品 LEFT OUTER JOIN
             this._adapter.DeleteCommand.Parameters.Add(param);
             this._adapter.InsertCommand = new global::Microsoft.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[M単位] ([単位コード], [単位名]) VALUES (@単位コード, @単位名);\r\nSELECT 単位コード, 単位" +
-                "名 FROM M単位 WHERE (単位コード = @単位コード)";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [M単位] ([単位コード], [単位名]) VALUES (@単位コード, @単位名);\r\nSELECT 単位コード, 単位名 FROM" +
+                " M単位 WHERE (単位コード = @単位コード)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             param = new global::Microsoft.Data.SqlClient.SqlParameter();
             param.ParameterName = "@単位コード";
@@ -8253,9 +8253,9 @@ FROM                 dbo.M商品 LEFT OUTER JOIN
             this._adapter.InsertCommand.Parameters.Add(param);
             this._adapter.UpdateCommand = new global::Microsoft.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = "UPDATE [dbo].[M単位] SET [単位コード] = @単位コード, [単位名] = @単位名 WHERE (([単位コード] = @Original" +
-                "_単位コード) AND ((@IsNull_単位名 = 1 AND [単位名] IS NULL) OR ([単位名] = @Original_単位名)));\r\n" +
-                "SELECT 単位コード, 単位名 FROM M単位 WHERE (単位コード = @単位コード)";
+            this._adapter.UpdateCommand.CommandText = "UPDATE [M単位] SET [単位コード] = @単位コード, [単位名] = @単位名 WHERE (([単位コード] = @Original_単位コード" +
+                ") AND ((@IsNull_単位名 = 1 AND [単位名] IS NULL) OR ([単位名] = @Original_単位名)));\r\nSELECT" +
+                " 単位コード, 単位名 FROM M単位 WHERE (単位コード = @単位コード)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             param = new global::Microsoft.Data.SqlClient.SqlParameter();
             param.ParameterName = "@単位コード";
@@ -8310,16 +8310,26 @@ FROM                 dbo.M商品 LEFT OUTER JOIN
             this._commandCollection = new global::Microsoft.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::Microsoft.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT 単位コード, 単位名 FROM dbo.M単位";
+            this._commandCollection[0].CommandText = "SELECT               単位コード, 単位名\r\nFROM                 M単位\r\nWHERE                (" +
+                "単位コード = @code)";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            global::Microsoft.Data.SqlClient.SqlParameter param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@code";
+            param.DbType = global::System.Data.DbType.Byte;
+            param.SqlDbType = global::System.Data.SqlDbType.TinyInt;
+            param.Size = 1;
+            param.IsNullable = true;
+            param.SourceColumn = "単位コード";
+            this._commandCollection[0].Parameters.Add(param);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(newDataSet.M単位DataTable dataTable) {
+        public virtual int Fill(newDataSet.M単位DataTable dataTable, byte code) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((byte)(code));
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
             }
@@ -8331,8 +8341,9 @@ FROM                 dbo.M商品 LEFT OUTER JOIN
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual newDataSet.M単位DataTable GetData() {
+        public virtual newDataSet.M単位DataTable GetData(byte code) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((byte)(code));
             newDataSet.M単位DataTable dataTable = new newDataSet.M単位DataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
@@ -8485,7 +8496,7 @@ FROM                 dbo.M商品 LEFT OUTER JOIN
         
         private M商品検索TableAdapter _m商品検索TableAdapter;
         
-        private M単位TableAdapter _m単位TableAdapter;
+        private MtaniTableAdapter _mtaniTableAdapter;
         
         private bool _backupDataSetBeforeUpdate;
         
@@ -8521,12 +8532,12 @@ FROM                 dbo.M商品 LEFT OUTER JOIN
         [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
             "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
             "a", "System.Drawing.Design.UITypeEditor")]
-        public M単位TableAdapter M単位TableAdapter {
+        public MtaniTableAdapter MtaniTableAdapter {
             get {
-                return this._m単位TableAdapter;
+                return this._mtaniTableAdapter;
             }
             set {
-                this._m単位TableAdapter = value;
+                this._mtaniTableAdapter = value;
             }
         }
         
@@ -8553,9 +8564,9 @@ FROM                 dbo.M商品 LEFT OUTER JOIN
                             && (this._m商品検索TableAdapter.Connection != null))) {
                     return this._m商品検索TableAdapter.Connection;
                 }
-                if (((this._m単位TableAdapter != null) 
-                            && (this._m単位TableAdapter.Connection != null))) {
-                    return this._m単位TableAdapter.Connection;
+                if (((this._mtaniTableAdapter != null) 
+                            && (this._mtaniTableAdapter.Connection != null))) {
+                    return this._mtaniTableAdapter.Connection;
                 }
                 return null;
             }
@@ -8573,7 +8584,7 @@ FROM                 dbo.M商品 LEFT OUTER JOIN
                 if ((this._m商品検索TableAdapter != null)) {
                     count = (count + 1);
                 }
-                if ((this._m単位TableAdapter != null)) {
+                if ((this._mtaniTableAdapter != null)) {
                     count = (count + 1);
                 }
                 return count;
@@ -8596,12 +8607,12 @@ FROM                 dbo.M商品 LEFT OUTER JOIN
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._m単位TableAdapter != null)) {
+            if ((this._mtaniTableAdapter != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.M単位.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
-                    result = (result + this._m単位TableAdapter.Update(updatedRows));
+                    result = (result + this._mtaniTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -8623,11 +8634,11 @@ FROM                 dbo.M商品 LEFT OUTER JOIN
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._m単位TableAdapter != null)) {
+            if ((this._mtaniTableAdapter != null)) {
                 global::System.Data.DataRow[] addedRows = dataSet.M単位.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
-                    result = (result + this._m単位TableAdapter.Update(addedRows));
+                    result = (result + this._mtaniTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -8641,11 +8652,11 @@ FROM                 dbo.M商品 LEFT OUTER JOIN
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private int UpdateDeletedRows(newDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
             int result = 0;
-            if ((this._m単位TableAdapter != null)) {
+            if ((this._mtaniTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.M単位.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
-                    result = (result + this._m単位TableAdapter.Update(deletedRows));
+                    result = (result + this._mtaniTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -8700,8 +8711,8 @@ FROM                 dbo.M商品 LEFT OUTER JOIN
                         && (this.MatchTableAdapterConnection(this._m商品検索TableAdapter.Connection) == false))) {
                 throw new global::System.ArgumentException("TableAdapterManager で管理されるすべての TableAdapter は同一の接続文字列を使用する必要があります。");
             }
-            if (((this._m単位TableAdapter != null) 
-                        && (this.MatchTableAdapterConnection(this._m単位TableAdapter.Connection) == false))) {
+            if (((this._mtaniTableAdapter != null) 
+                        && (this.MatchTableAdapterConnection(this._mtaniTableAdapter.Connection) == false))) {
                 throw new global::System.ArgumentException("TableAdapterManager で管理されるすべての TableAdapter は同一の接続文字列を使用する必要があります。");
             }
             global::System.Data.IDbConnection workConnection = this.Connection;
@@ -8744,13 +8755,13 @@ FROM                 dbo.M商品 LEFT OUTER JOIN
                         adaptersWithAcceptChangesDuringUpdate.Add(this._m商品検索TableAdapter.Adapter);
                     }
                 }
-                if ((this._m単位TableAdapter != null)) {
-                    revertConnections.Add(this._m単位TableAdapter, this._m単位TableAdapter.Connection);
-                    this._m単位TableAdapter.Connection = ((global::Microsoft.Data.SqlClient.SqlConnection)(workConnection));
-                    this._m単位TableAdapter.Transaction = ((global::Microsoft.Data.SqlClient.SqlTransaction)(workTransaction));
-                    if (this._m単位TableAdapter.Adapter.AcceptChangesDuringUpdate) {
-                        this._m単位TableAdapter.Adapter.AcceptChangesDuringUpdate = false;
-                        adaptersWithAcceptChangesDuringUpdate.Add(this._m単位TableAdapter.Adapter);
+                if ((this._mtaniTableAdapter != null)) {
+                    revertConnections.Add(this._mtaniTableAdapter, this._mtaniTableAdapter.Connection);
+                    this._mtaniTableAdapter.Connection = ((global::Microsoft.Data.SqlClient.SqlConnection)(workConnection));
+                    this._mtaniTableAdapter.Transaction = ((global::Microsoft.Data.SqlClient.SqlTransaction)(workTransaction));
+                    if (this._mtaniTableAdapter.Adapter.AcceptChangesDuringUpdate) {
+                        this._mtaniTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
+                        adaptersWithAcceptChangesDuringUpdate.Add(this._mtaniTableAdapter.Adapter);
                     }
                 }
                 // 
@@ -8815,9 +8826,9 @@ FROM                 dbo.M商品 LEFT OUTER JOIN
                     this._m商品検索TableAdapter.Connection = ((global::Microsoft.Data.SqlClient.SqlConnection)(revertConnections[this._m商品検索TableAdapter]));
                     this._m商品検索TableAdapter.Transaction = null;
                 }
-                if ((this._m単位TableAdapter != null)) {
-                    this._m単位TableAdapter.Connection = ((global::Microsoft.Data.SqlClient.SqlConnection)(revertConnections[this._m単位TableAdapter]));
-                    this._m単位TableAdapter.Transaction = null;
+                if ((this._mtaniTableAdapter != null)) {
+                    this._mtaniTableAdapter.Connection = ((global::Microsoft.Data.SqlClient.SqlConnection)(revertConnections[this._mtaniTableAdapter]));
+                    this._mtaniTableAdapter.Transaction = null;
                 }
                 if ((0 < adaptersWithAcceptChangesDuringUpdate.Count)) {
                     global::System.Data.Common.DataAdapter[] adapters = new System.Data.Common.DataAdapter[adaptersWithAcceptChangesDuringUpdate.Count];

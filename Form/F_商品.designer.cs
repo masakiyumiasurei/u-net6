@@ -1374,6 +1374,7 @@ namespace u_net
             型式番号.DataPropertyName = "型式番号";
             型式番号.HeaderText = "型式番号";
             型式番号.Name = "型式番号";
+            型式番号.Visible = false;
             // 
             // 型式名
             // 
@@ -1405,6 +1406,7 @@ namespace u_net
             dgv構成番号.DataPropertyName = "構成番号";
             dgv構成番号.HeaderText = "構成番号";
             dgv構成番号.Name = "dgv構成番号";
+            dgv構成番号.Visible = false;
             // 
             // F_商品
             // 
