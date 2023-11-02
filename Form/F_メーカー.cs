@@ -67,6 +67,9 @@ namespace u_net
         private void Form_Load(object sender, EventArgs e)
         {
 
+            FunctionClass fn = new FunctionClass();
+            fn.DoWait("しばらくお待ちください...");
+
             //実行中フォーム起動
             string LoginUserCode = "000";//テスト用 ログインユーザを実行中にどのように管理するか決まったら修正
             LocalSetting localSetting = new LocalSetting();
@@ -117,6 +120,7 @@ namespace u_net
             finally
             {
                 this.ResumeLayout();
+                fn.WaitForm.Close();
             }
         }
 
@@ -351,6 +355,8 @@ namespace u_net
             Connect();
             SqlTransaction transaction = cn.BeginTransaction();
             {
+                
+
                 try
                 {
 
@@ -417,8 +423,7 @@ namespace u_net
                     transaction.Commit();
 
 
-
-                    MessageBox.Show("登録を完了しました");
+                   
 
                     メーカーコード.Enabled = true;
 
@@ -448,6 +453,8 @@ namespace u_net
                     MessageBox.Show("データの保存中にエラーが発生しました: " + ex.Message, "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false;
                 }
+
+                
             }
         }
 
@@ -913,7 +920,7 @@ namespace u_net
 
                 strCode = this.CurrentCode;
                 intEdition = this.CurrentRevision;
-
+                FunctionClass fn = new FunctionClass();
 
                 DialogResult intRes;
 
@@ -955,11 +962,17 @@ namespace u_net
 
                     if (intRes == DialogResult.Yes)
                     {
+                        
+                        fn.DoWait("削除しています...");
+
                         // 応答がYesのとき
                         if (SetDeleted(cn, strCode, intEdition, DateTime.Now, CommonConstants.LoginUserCode))
                         {
+                            fn.WaitForm.Close();
                             goto Err_コマンド削除_Click;
                         }
+
+                        fn.WaitForm.Close();
                     }
                     else if (intRes == DialogResult.OK)
                     {
@@ -967,13 +980,13 @@ namespace u_net
                     }
                     else
                     {
-                        goto Err_コマンド削除_Click;
+                        goto Bye_コマンド削除_Click;
                     }
                 }
 
             Bye_コマンド削除_Click:
                 //DoCmd.Close(AcObjectType.acForm, "実行中", AcCloseSave.acSavePrompt);
-
+                
                 return;
 
             Err_コマンド削除_Click:
@@ -1148,7 +1161,8 @@ namespace u_net
                 goto Bye_コマンド登録_Click;
             }
 
-            //DoWait("登録しています...");
+            FunctionClass fn = new FunctionClass();
+            fn.DoWait("登録しています...");
 
             if (SaveData())
             {
@@ -1166,11 +1180,16 @@ namespace u_net
                 // その他の処理を追加
                 // Me.コマンド承認.Enabled = Me.IsDecided;
                 // Me.コマンド確定.Enabled = true;
+                fn.WaitForm.Close();
+                MessageBox.Show("登録を完了しました", "登録コマンド", MessageBoxButtons.OK);
             }
             else
             {
+                fn.WaitForm.Close();
                 MessageBox.Show("登録できませんでした。", "登録コマンド", MessageBoxButtons.OK);
             }
+
+            
         //}
         //finally
         //{

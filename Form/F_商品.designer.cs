@@ -1470,6 +1470,7 @@ namespace u_net
             Controls.Add(dataGridView1);
             Controls.Add(panel1);
             Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+
             Icon = (Icon)resources.GetObject("$this.Icon");
             KeyPreview = true;
             Margin = new Padding(3, 2, 3, 2);
