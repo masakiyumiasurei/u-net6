@@ -11,6 +11,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="GrapeCity.Win.MultiRow" Version="11.2.0" />
     <PackageReference Include="Microsoft.Data.SqlClient" Version="5.2.0-preview3.23201.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.12">
       <PrivateAssets>all</PrivateAssets>
@@ -25,16 +26,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Form\F_検索.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Update="Form\F_検索.cs" />
     <Compile Update="Form\F_商品back.cs">
       <SubType>Form</SubType>
     </Compile>
 	  <Compile Update="Form\F_メーカー.cs" />
-	  <Compile Update="Form\F_カレンダー.cs">
-	    <SubType>Form</SubType>
-	  </Compile>
+	  <Compile Update="Form\F_カレンダー.cs" />
     <Compile Update="newDataSet.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>

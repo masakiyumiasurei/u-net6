@@ -38,6 +38,7 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // 日付選択
@@ -49,6 +50,7 @@
             this.日付選択.TabIndex = 0;
             this.日付選択.Text = "▼";
             this.日付選択.UseVisualStyleBackColor = true;
+            this.日付選択.Click += new System.EventHandler(this.日付選択_Click);
             // 
             // 日付
             // 
@@ -56,6 +58,7 @@
             this.日付.Name = "日付";
             this.日付.Size = new System.Drawing.Size(126, 23);
             this.日付.TabIndex = 10002;
+            this.日付.KeyDown += new System.Windows.Forms.KeyEventHandler(this.日付_KeyDown);
             // 
             // label1
             // 
@@ -128,11 +131,19 @@
             this.textBox1.Size = new System.Drawing.Size(126, 23);
             this.textBox1.TabIndex = 10008;
             // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(45, 241);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(126, 23);
+            this.textBox2.TabIndex = 10009;
+            // 
             // F_test
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(934, 562);
+            this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
@@ -163,5 +174,6 @@
         private Button 顧客選択ボタン;
         private Button button3;
         private TextBox textBox1;
+        private TextBox textBox2;
     }
 }
