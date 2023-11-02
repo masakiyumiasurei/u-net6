@@ -26,16 +26,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Form\F_検索.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Update="Form\F_検索.cs" />
     <Compile Update="Form\F_商品back.cs">
       <SubType>Form</SubType>
     </Compile>
 	  <Compile Update="Form\F_メーカー.cs" />
-	  <Compile Update="Form\F_カレンダー.cs">
-	    <SubType>Form</SubType>
-	  </Compile>
+	  <Compile Update="Form\F_カレンダー.cs" />
     <Compile Update="newDataSet.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>

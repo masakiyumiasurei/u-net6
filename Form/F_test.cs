@@ -103,19 +103,28 @@ namespace u_net
             }
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private  void button3_Click(object sender, EventArgs e)
         {
+
             Connect();
 
             string hoge;
 
             FunctionClass fn = new FunctionClass();
 
+            fn.DoWait("ボタン3を実行中...");
+
+            int i = 0;
+            while (i < 1000000000)
+            {
+                i++;
+            }
 
             hoge = FunctionClass.GetAddupMonth(cn,DateTime.Today,0);
 
             textBox1.Text = hoge.ToString();
 
+            fn.WaitForm.Close();
 
         }
 

@@ -660,6 +660,18 @@ namespace u_net.Public
         }
 
 
+        public F_実行中 WaitForm;
+        public void DoWait(string String1)
+        {
+            WaitForm = new F_実行中();
+            WaitForm.String1 = String1;
+            WaitForm.Show();
+            Application.DoEvents();
+        }
+
+
+
+
 
         public static string employeeCode(SqlConnection connection, string employeeName)
         {
