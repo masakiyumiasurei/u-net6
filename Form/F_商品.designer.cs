@@ -43,6 +43,15 @@ namespace u_net
             m商品分類BindingSource = new BindingSource(components);
             mシリーズBindingSource = new BindingSource(components);
             dataGridView1 = new DataGridView();
+            dgv商品コード = new DataGridViewTextBoxColumn();
+            dgvrevision = new DataGridViewTextBoxColumn();
+            dgv明細番号 = new DataGridViewTextBoxColumn();
+            型式番号 = new DataGridViewTextBoxColumn();
+            型式名 = new DataGridViewTextBoxColumn();
+            定価 = new DataGridViewTextBoxColumn();
+            原価 = new DataGridViewTextBoxColumn();
+            機能 = new DataGridViewTextBoxColumn();
+            構成番号 = new DataGridViewTextBoxColumn();
             M商品明細BindingSource = new BindingSource(components);
             panel1 = new Panel();
             button4 = new Button();
@@ -134,7 +143,6 @@ namespace u_net
             m商品TableAdapter = new uiDataSetTableAdapters.M商品TableAdapter();
             v商品ヘッダTableAdapter = new uiDataSetTableAdapters.V商品ヘッダTableAdapter();
             combBox商品コードTableAdapter = new uiDataSetTableAdapters.CombBox商品コードTableAdapter();
-            M商品明細TableAdapter = new uiDataSetTableAdapters.M商品明細TableAdapter();
             combBoxMシリーズTableAdapter = new uiDataSetTableAdapters.combBoxMシリーズTableAdapter();
             M単位TableAdapter = new uiDataSetTableAdapters.M単位TableAdapter();
             comboBoxManufactureFlowTableAdapter = new uiDataSetTableAdapters.ComboBoxManufactureFlowTableAdapter();
@@ -148,15 +156,7 @@ namespace u_net
             button1 = new Button();
             label20 = new Label();
             label21 = new Label();
-            dgv商品コード = new DataGridViewTextBoxColumn();
-            dgvrevision = new DataGridViewTextBoxColumn();
-            dgv明細番号 = new DataGridViewTextBoxColumn();
-            型式番号 = new DataGridViewTextBoxColumn();
-            型式名 = new DataGridViewTextBoxColumn();
-            定価 = new DataGridViewTextBoxColumn();
-            原価 = new DataGridViewTextBoxColumn();
-            dgv機能 = new DataGridViewTextBoxColumn();
-            dgv構成番号 = new DataGridViewTextBoxColumn();
+            mshomeisaiTableAdapter = new newDataSetTableAdapters.MshomeisaiTableAdapter();
             ((System.ComponentModel.ISupportInitialize)M商品BindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)uiDataSet).BeginInit();
             ((System.ComponentModel.ISupportInitialize)comboBox売上区分bindingSource).BeginInit();
@@ -250,7 +250,7 @@ namespace u_net
             // 
             dataGridView1.AutoGenerateColumns = false;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { dgv商品コード, dgvrevision, dgv明細番号, 型式番号, 型式名, 定価, 原価, dgv機能, dgv構成番号 });
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { dgv商品コード, dgvrevision, dgv明細番号, 型式番号, 型式名, 定価, 原価, 機能, 構成番号 });
             dataGridView1.DataSource = M商品明細BindingSource;
             dataGridView1.ImeMode = ImeMode.On;
             dataGridView1.Location = new Point(0, 502);
@@ -259,12 +259,74 @@ namespace u_net
             dataGridView1.RowTemplate.Height = 21;
             dataGridView1.Size = new Size(943, 261);
             dataGridView1.TabIndex = 109;
+            dataGridView1.CellEnter += dataGridView1_CellEnter;
+            dataGridView1.CellValueChanged += dataGridView1_CellValueChanged;
             dataGridView1.DefaultValuesNeeded += dataGridView1_DefaultValuesNeeded;
+            // 
+            // dgv商品コード
+            // 
+            dgv商品コード.DataPropertyName = "商品コード";
+            dgv商品コード.HeaderText = "商品コード";
+            dgv商品コード.Name = "dgv商品コード";
+            dgv商品コード.Visible = false;
+            // 
+            // dgvrevision
+            // 
+            dgvrevision.DataPropertyName = "Revision";
+            dgvrevision.HeaderText = "Revision";
+            dgvrevision.Name = "dgvrevision";
+            dgvrevision.Visible = false;
+            // 
+            // dgv明細番号
+            // 
+            dgv明細番号.DataPropertyName = "明細番号";
+            dgv明細番号.HeaderText = "明細番号";
+            dgv明細番号.Name = "dgv明細番号";
+            dgv明細番号.Visible = false;
+            // 
+            // 型式番号
+            // 
+            型式番号.DataPropertyName = "型式番号";
+            型式番号.HeaderText = "型式番号";
+            型式番号.Name = "型式番号";
+            型式番号.Visible = false;
+            // 
+            // 型式名
+            // 
+            型式名.DataPropertyName = "型式名";
+            型式名.HeaderText = "型式名";
+            型式名.Name = "型式名";
+            型式名.ToolTipText = "半角48文字まで";
+            // 
+            // 定価
+            // 
+            定価.DataPropertyName = "定価";
+            定価.HeaderText = "定価";
+            定価.Name = "定価";
+            // 
+            // 原価
+            // 
+            原価.DataPropertyName = "原価";
+            原価.HeaderText = "原価";
+            原価.Name = "原価";
+            // 
+            // 機能
+            // 
+            機能.DataPropertyName = "機能";
+            機能.HeaderText = "機能";
+            機能.Name = "機能";
+            // 
+            // 構成番号
+            // 
+            構成番号.DataPropertyName = "構成番号";
+            構成番号.HeaderText = "構成番号";
+            構成番号.Name = "構成番号";
+            構成番号.Visible = false;
             // 
             // M商品明細BindingSource
             // 
             M商品明細BindingSource.DataMember = "M商品明細";
-            M商品明細BindingSource.DataSource = uiDataSet;
+            M商品明細BindingSource.DataSource = newDataSet;
             // 
             // panel1
             // 
@@ -1011,7 +1073,7 @@ namespace u_net
             品名.ImeMode = ImeMode.Hiragana;
             品名.Location = new Point(94, 147);
             品名.Margin = new Padding(3, 2, 3, 2);
-            品名.MaxLength = 24;
+            品名.MaxLength = 48;
             品名.Multiline = true;
             品名.Name = "品名";
             品名.Size = new Size(377, 20);
@@ -1215,10 +1277,6 @@ namespace u_net
             // 
             combBox商品コードTableAdapter.ClearBeforeFill = true;
             // 
-            // M商品明細TableAdapter
-            // 
-            M商品明細TableAdapter.ClearBeforeFill = true;
-            // 
             // combBoxMシリーズTableAdapter
             // 
             combBoxMシリーズTableAdapter.ClearBeforeFill = true;
@@ -1348,65 +1406,9 @@ namespace u_net
             label21.Text = "ユニット(&M)";
             label21.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // dgv商品コード
+            // mshomeisaiTableAdapter
             // 
-            dgv商品コード.DataPropertyName = "商品コード";
-            dgv商品コード.HeaderText = "商品コード";
-            dgv商品コード.Name = "dgv商品コード";
-            dgv商品コード.Visible = false;
-            // 
-            // dgvrevision
-            // 
-            dgvrevision.DataPropertyName = "Revision";
-            dgvrevision.HeaderText = "Revision";
-            dgvrevision.Name = "dgvrevision";
-            dgvrevision.Visible = false;
-            // 
-            // dgv明細番号
-            // 
-            dgv明細番号.DataPropertyName = "明細番号";
-            dgv明細番号.HeaderText = "明細番号";
-            dgv明細番号.Name = "dgv明細番号";
-            dgv明細番号.Visible = false;
-            // 
-            // 型式番号
-            // 
-            型式番号.DataPropertyName = "型式番号";
-            型式番号.HeaderText = "型式番号";
-            型式番号.Name = "型式番号";
-            型式番号.Visible = false;
-            // 
-            // 型式名
-            // 
-            型式名.DataPropertyName = "型式名";
-            型式名.HeaderText = "型式名";
-            型式名.Name = "型式名";
-            型式名.ToolTipText = "半角48文字まで";
-            // 
-            // 定価
-            // 
-            定価.DataPropertyName = "定価";
-            定価.HeaderText = "定価";
-            定価.Name = "定価";
-            // 
-            // 原価
-            // 
-            原価.DataPropertyName = "原価";
-            原価.HeaderText = "原価";
-            原価.Name = "原価";
-            // 
-            // dgv機能
-            // 
-            dgv機能.DataPropertyName = "機能";
-            dgv機能.HeaderText = "機能";
-            dgv機能.Name = "dgv機能";
-            // 
-            // dgv構成番号
-            // 
-            dgv構成番号.DataPropertyName = "構成番号";
-            dgv構成番号.HeaderText = "構成番号";
-            dgv構成番号.Name = "dgv構成番号";
-            dgv構成番号.Visible = false;
+            mshomeisaiTableAdapter.ClearBeforeFill = true;
             // 
             // F_商品
             // 
@@ -1614,7 +1616,6 @@ namespace u_net
         private uiDataSet uiDataSet;
         private uiDataSetTableAdapters.M商品TableAdapter m商品TableAdapter;
         private uiDataSetTableAdapters.V商品ヘッダTableAdapter v商品ヘッダTableAdapter;
-        private uiDataSetTableAdapters.M商品明細TableAdapter M商品明細TableAdapter;
         private uiDataSetTableAdapters.combBoxMシリーズTableAdapter combBoxMシリーズTableAdapter;
         private uiDataSetTableAdapters.TableAdapterManager tableAdapterManager;
         private Label label18;
@@ -1625,6 +1626,7 @@ namespace u_net
         private Button button1;
         private Label label20;
         private Label label21;
+        private newDataSetTableAdapters.MshomeisaiTableAdapter mshomeisaiTableAdapter;
         private DataGridViewTextBoxColumn dgv商品コード;
         private DataGridViewTextBoxColumn dgvrevision;
         private DataGridViewTextBoxColumn dgv明細番号;
@@ -1632,8 +1634,8 @@ namespace u_net
         private DataGridViewTextBoxColumn 型式名;
         private DataGridViewTextBoxColumn 定価;
         private DataGridViewTextBoxColumn 原価;
-        private DataGridViewTextBoxColumn dgv機能;
-        private DataGridViewTextBoxColumn dgv構成番号;
+        private DataGridViewTextBoxColumn 機能;
+        private DataGridViewTextBoxColumn 構成番号;
     }
 }
 

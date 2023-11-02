@@ -30,14 +30,6 @@
         {
             components = new System.ComponentModel.Container();
             dataGridView1 = new DataGridView();
-            商品分類コードDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            分類名DataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            分類内容DataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            bindingSource = new BindingSource(components);
-            uiDataSet = new uiDataSet();
-            m商品明細TableAdapter = new uiDataSetTableAdapters.M商品明細TableAdapter();
-            m商品分類TableAdapter = new uiDataSetTableAdapters.M商品分類TableAdapter();
-            dataGridView2 = new DataGridView();
             商品コードDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             revisionDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             明細番号DataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
@@ -47,19 +39,24 @@
             原価DataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             機能DataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             構成番号DataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            bindingSource1 = new BindingSource(components);
+            bindingSource = new BindingSource(components);
             newDataSet1 = new newDataSet();
+            uiDataSet = new uiDataSet();
+            m商品分類TableAdapter = new uiDataSetTableAdapters.M商品分類TableAdapter();
+            dataGridView2 = new DataGridView();
+            bindingSource1 = new BindingSource(components);
             dataGridView3 = new DataGridView();
-            mtaniTableAdapter = new newDataSetTableAdapters.MtaniTableAdapter();
-            bindingSource2 = new BindingSource(components);
             単位コードDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             単位名DataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            bindingSource2 = new BindingSource(components);
+            mtaniTableAdapter = new newDataSetTableAdapters.MtaniTableAdapter();
+            mshomeisaiTableAdapter = new newDataSetTableAdapters.MshomeisaiTableAdapter();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)bindingSource).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)newDataSet1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)uiDataSet).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)bindingSource1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)newDataSet1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)bindingSource2).BeginInit();
             SuspendLayout();
@@ -68,62 +65,13 @@
             // 
             dataGridView1.AutoGenerateColumns = false;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { 商品分類コードDataGridViewTextBoxColumn, 分類名DataGridViewTextBoxColumn, 分類内容DataGridViewTextBoxColumn });
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { 商品コードDataGridViewTextBoxColumn, revisionDataGridViewTextBoxColumn, 明細番号DataGridViewTextBoxColumn, 型式番号DataGridViewTextBoxColumn, 型式名DataGridViewTextBoxColumn, 定価DataGridViewTextBoxColumn, 原価DataGridViewTextBoxColumn, 機能DataGridViewTextBoxColumn, 構成番号DataGridViewTextBoxColumn });
             dataGridView1.DataSource = bindingSource;
             dataGridView1.Location = new Point(44, 22);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowTemplate.Height = 29;
             dataGridView1.Size = new Size(744, 150);
             dataGridView1.TabIndex = 0;
-            // 
-            // 商品分類コードDataGridViewTextBoxColumn
-            // 
-            商品分類コードDataGridViewTextBoxColumn.DataPropertyName = "商品分類コード";
-            商品分類コードDataGridViewTextBoxColumn.HeaderText = "商品分類コード";
-            商品分類コードDataGridViewTextBoxColumn.Name = "商品分類コードDataGridViewTextBoxColumn";
-            // 
-            // 分類名DataGridViewTextBoxColumn
-            // 
-            分類名DataGridViewTextBoxColumn.DataPropertyName = "分類名";
-            分類名DataGridViewTextBoxColumn.HeaderText = "分類名";
-            分類名DataGridViewTextBoxColumn.Name = "分類名DataGridViewTextBoxColumn";
-            // 
-            // 分類内容DataGridViewTextBoxColumn
-            // 
-            分類内容DataGridViewTextBoxColumn.DataPropertyName = "分類内容";
-            分類内容DataGridViewTextBoxColumn.HeaderText = "分類内容";
-            分類内容DataGridViewTextBoxColumn.Name = "分類内容DataGridViewTextBoxColumn";
-            // 
-            // bindingSource
-            // 
-            bindingSource.DataMember = "M商品分類";
-            bindingSource.DataSource = uiDataSet;
-            // 
-            // uiDataSet
-            // 
-            uiDataSet.DataSetName = "uiDataSet";
-            uiDataSet.Namespace = "http://tempuri.org/uiDataSet.xsd";
-            uiDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // m商品明細TableAdapter
-            // 
-            m商品明細TableAdapter.ClearBeforeFill = true;
-            // 
-            // m商品分類TableAdapter
-            // 
-            m商品分類TableAdapter.ClearBeforeFill = true;
-            // 
-            // dataGridView2
-            // 
-            dataGridView2.AutoGenerateColumns = false;
-            dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView2.Columns.AddRange(new DataGridViewColumn[] { 商品コードDataGridViewTextBoxColumn, revisionDataGridViewTextBoxColumn, 明細番号DataGridViewTextBoxColumn, 型式番号DataGridViewTextBoxColumn, 型式名DataGridViewTextBoxColumn, 定価DataGridViewTextBoxColumn, 原価DataGridViewTextBoxColumn, 機能DataGridViewTextBoxColumn, 構成番号DataGridViewTextBoxColumn });
-            dataGridView2.DataSource = bindingSource1;
-            dataGridView2.Location = new Point(44, 190);
-            dataGridView2.Name = "dataGridView2";
-            dataGridView2.RowTemplate.Height = 29;
-            dataGridView2.Size = new Size(603, 150);
-            dataGridView2.TabIndex = 1;
             // 
             // 商品コードDataGridViewTextBoxColumn
             // 
@@ -179,16 +127,42 @@
             構成番号DataGridViewTextBoxColumn.HeaderText = "構成番号";
             構成番号DataGridViewTextBoxColumn.Name = "構成番号DataGridViewTextBoxColumn";
             // 
-            // bindingSource1
+            // bindingSource
             // 
-            bindingSource1.DataMember = "M商品明細";
-            bindingSource1.DataSource = uiDataSet;
+            bindingSource.DataMember = "M商品明細";
+            bindingSource.DataSource = newDataSet1;
             // 
             // newDataSet1
             // 
             newDataSet1.DataSetName = "newDataSet";
             newDataSet1.Namespace = "http://tempuri.org/newDataSet.xsd";
             newDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // uiDataSet
+            // 
+            uiDataSet.DataSetName = "uiDataSet";
+            uiDataSet.Namespace = "http://tempuri.org/uiDataSet.xsd";
+            uiDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // m商品分類TableAdapter
+            // 
+            m商品分類TableAdapter.ClearBeforeFill = true;
+            // 
+            // dataGridView2
+            // 
+            dataGridView2.AutoGenerateColumns = false;
+            dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView2.DataSource = bindingSource1;
+            dataGridView2.Location = new Point(44, 190);
+            dataGridView2.Name = "dataGridView2";
+            dataGridView2.RowTemplate.Height = 29;
+            dataGridView2.Size = new Size(603, 150);
+            dataGridView2.TabIndex = 1;
+            // 
+            // bindingSource1
+            // 
+            bindingSource1.DataSource = newDataSet1;
+            bindingSource1.Position = 0;
             // 
             // dataGridView3
             // 
@@ -202,15 +176,6 @@
             dataGridView3.Size = new Size(587, 70);
             dataGridView3.TabIndex = 2;
             // 
-            // mtaniTableAdapter
-            // 
-            mtaniTableAdapter.ClearBeforeFill = true;
-            // 
-            // bindingSource2
-            // 
-            bindingSource2.DataMember = "M単位";
-            bindingSource2.DataSource = newDataSet1;
-            // 
             // 単位コードDataGridViewTextBoxColumn
             // 
             単位コードDataGridViewTextBoxColumn.DataPropertyName = "単位コード";
@@ -222,6 +187,19 @@
             単位名DataGridViewTextBoxColumn.DataPropertyName = "単位名";
             単位名DataGridViewTextBoxColumn.HeaderText = "単位名";
             単位名DataGridViewTextBoxColumn.Name = "単位名DataGridViewTextBoxColumn";
+            // 
+            // bindingSource2
+            // 
+            bindingSource2.DataMember = "M単位";
+            bindingSource2.DataSource = newDataSet1;
+            // 
+            // mtaniTableAdapter
+            // 
+            mtaniTableAdapter.ClearBeforeFill = true;
+            // 
+            // mshomeisaiTableAdapter
+            // 
+            mshomeisaiTableAdapter.ClearBeforeFill = true;
             // 
             // 明細
             // 
@@ -236,10 +214,10 @@
             Load += 明細_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ((System.ComponentModel.ISupportInitialize)bindingSource).EndInit();
+            ((System.ComponentModel.ISupportInitialize)newDataSet1).EndInit();
             ((System.ComponentModel.ISupportInitialize)uiDataSet).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView2).EndInit();
             ((System.ComponentModel.ISupportInitialize)bindingSource1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)newDataSet1).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView3).EndInit();
             ((System.ComponentModel.ISupportInitialize)bindingSource2).EndInit();
             ResumeLayout(false);
@@ -250,12 +228,15 @@
         private DataGridView dataGridView1;
         private BindingSource bindingSource;
         private uiDataSet uiDataSet;
-        private uiDataSetTableAdapters.M商品明細TableAdapter m商品明細TableAdapter;
-        private DataGridViewTextBoxColumn 商品分類コードDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn 分類名DataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn 分類内容DataGridViewTextBoxColumn;
         private uiDataSetTableAdapters.M商品分類TableAdapter m商品分類TableAdapter;
         private DataGridView dataGridView2;
+        private BindingSource bindingSource1;
+        private newDataSet newDataSet1;
+        private DataGridView dataGridView3;
+        private DataGridViewTextBoxColumn 単位コードDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn 単位名DataGridViewTextBoxColumn;
+        private BindingSource bindingSource2;
+        private newDataSetTableAdapters.MtaniTableAdapter mtaniTableAdapter;
         private DataGridViewTextBoxColumn 商品コードDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn revisionDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn 明細番号DataGridViewTextBoxColumn;
@@ -265,12 +246,6 @@
         private DataGridViewTextBoxColumn 原価DataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn 機能DataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn 構成番号DataGridViewTextBoxColumn;
-        private BindingSource bindingSource1;
-        private newDataSet newDataSet1;
-        private DataGridView dataGridView3;
-        private DataGridViewTextBoxColumn 単位コードDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn 単位名DataGridViewTextBoxColumn;
-        private BindingSource bindingSource2;
-        private newDataSetTableAdapters.MtaniTableAdapter mtaniTableAdapter;
+        private newDataSetTableAdapters.MshomeisaiTableAdapter mshomeisaiTableAdapter;
     }
 }

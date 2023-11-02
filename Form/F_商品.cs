@@ -227,9 +227,9 @@ namespace u_net
 
 
                     // M商品明細データを保存
-                    this.M商品明細TableAdapter.Connection = cn;
-                    this.M商品明細TableAdapter.Transaction = transaction;
-                    this.M商品明細TableAdapter.Update(this.uiDataSet.M商品明細);
+                    this.mshomeisaiTableAdapter.Connection = cn;
+                    this.mshomeisaiTableAdapter.Transaction = transaction;
+                    this.mshomeisaiTableAdapter.Update(this.newDataSet.M商品明細);
 
                     // トランザクションをコミット
                     transaction.Commit();
@@ -681,8 +681,6 @@ namespace u_net
 
                 //実行中フォーム起動
 
-
-
             }
             catch (Exception ex)
             {
@@ -712,25 +710,6 @@ namespace u_net
             previousControl = sender as Control;
         }
 
-        // DataGridViewの初期設定
-        private void InitializeDataGridView()
-        {
-            // DefaultValuesNeededイベントハンドラを登録
-            dataGridView1.DefaultValuesNeeded += new DataGridViewRowEventHandler(dataGridView1_DefaultValuesNeeded);
-        }
-
-        private int detailNumber = 1; // 最初の連番
-        //セルのデフォルト値
-        private void dataGridView1_DefaultValuesNeeded(object sender, DataGridViewRowEventArgs e)
-        {
-            e.Row.Cells["dgv商品コード"].Value = this.商品コード.Text; //Convert.ToInt32(this.顧客ID);
-            e.Row.Cells["dgvRevision"].Value = this.Revision.Text;
-            e.Row.Cells["dgv明細番号"].Value = detailNumber.ToString();
-            detailNumber++; // 連番を増やす
-            //e.Row.Cells["担当者コード"].Value = tantou;
-            //e.Row.Cells["時刻"].Value = DateTime.Now.ToString("HH:mm");            
-        }
-
 
         private void dataGridView1_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
         {
@@ -749,26 +728,24 @@ namespace u_net
         {
             try
             {
-                //  DataTable table = this.uiDataSet.M商品明細;
                 int lngi = 1;
-                // string 列名1 = dataGridView1.Columns["型式名"].Name;
 
                 foreach (DataGridViewRow row in dataGridView1.Rows)
                 {
                     if (!row.IsNewRow)
                     {
-                        string 型式名 = row.Cells["dgv型式名"].Value as string;
+                        string 型式名 = row.Cells["型式名"].Value as string;
 
                         if (!string.IsNullOrEmpty(型式名) && 型式名 != "---")
                         {
                             // データグリッドビューから値を取得してデータテーブル内の値を変更
-                            dataGridView1.Rows[row.Index].Cells["dgv型式番号"].Value = lngi;
-                            dataGridView1.Rows[row.Index].Cells["dgv構成番号"].Value = DBNull.Value;
+                            dataGridView1.Rows[row.Index].Cells["型式番号"].Value = lngi;
+                            dataGridView1.Rows[row.Index].Cells["構成番号"].Value = DBNull.Value;
                             lngi++;
                         }
                         else
                         {
-                            dataGridView1.Rows[row.Index].Cells["dgv構成番号"].Value = lngi;
+                            dataGridView1.Rows[row.Index].Cells["構成番号"].Value = lngi;
                         }
                     }
                 }
@@ -924,8 +901,11 @@ namespace u_net
 
                 //何故かdatagridviewに反映しない？
                 // this.M商品明細TableAdapter.Fill(this.uiDataSet.M商品明細, CurrentCode);
-                strSQL = "SELECT * FROM M商品明細 WHERE 商品コード='" + CurrentCode + "'";
-                DataGridUtils.SetDataGridView(cn, strSQL, this.dataGridView1);
+
+                this.mshomeisaiTableAdapter.Fill(this.newDataSet.M商品明細, CurrentCode);
+
+                //strSQL = "SELECT * FROM M商品明細 WHERE 商品コード='" + CurrentCode + "'";
+                //DataGridUtils.SetDataGridView(cn, strSQL, this.dataGridView1);
 
 
                 FunctionClass.LockData(this, false, "商品コード");
@@ -1095,6 +1075,121 @@ namespace u_net
         private void IsUnit_CheckedChanged(object sender, EventArgs e)
         {
             ChangedData(true);
+        }
+
+
+        // DataGridViewの初期設定
+        private void InitializeDataGridView()
+        {
+            // DefaultValuesNeededイベントハンドラを登録
+            dataGridView1.DefaultValuesNeeded += new DataGridViewRowEventHandler(dataGridView1_DefaultValuesNeeded);
+        }
+
+        private int detailNumber = 1; // 最初の連番
+        //セルのデフォルト値
+        private void dataGridView1_DefaultValuesNeeded(object sender, DataGridViewRowEventArgs e)
+        {
+            e.Row.Cells["dgv商品コード"].Value = this.商品コード.Text; //Convert.ToInt32(this.顧客ID);
+            e.Row.Cells["dgvRevision"].Value = this.Revision.Text;
+            e.Row.Cells["dgv明細番号"].Value = detailNumber.ToString();
+            detailNumber++; // 連番を増やす
+        }
+
+        //セルの変更後の処理
+        private void dataGridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0) // ヘッダーセルの場合は無視
+                return;
+
+            string columnName = dataGridView1.Columns[e.ColumnIndex].Name;
+
+            switch (columnName)
+            {
+                case "型式名":
+                    if (!FunctionClass.LimitText(this.ActiveControl, 48)) return;
+                    ChangedData(true);
+                    break;
+                case "定価":
+                    if (!FunctionClass.LimitText(this.ActiveControl, 10)) return;
+                    ChangedData(true);
+                    break;
+                case "原価":
+                    if (!FunctionClass.LimitText(this.ActiveControl, 10)) return;
+                    ChangedData(true);
+                    break;
+                case "機能":
+                    if (!FunctionClass.LimitText(this.ActiveControl, 50)) return;
+                    ChangedData(true);
+                    break;
+                default:
+                    // その他のカラムが変更された場合の処理
+                    break;
+            }
+        }
+
+        private void dataGridView1_CellEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0) // ヘッダーセルの場合は無視
+                return;
+            
+            string columnName = dataGridView1.Columns[e.ColumnIndex].Name;
+
+            switch (columnName)
+            {
+                case "型式名":
+                    this.toolStripStatusLabel2.Text = "■半角４８文字まで入力できます。　■英数字は半角文字で入力し、半角カタカナは使用しないでください。";
+                    break;
+                case "定価":
+                    this.toolStripStatusLabel2.Text = "■型式ごとの定価を設定します。　■マイナス価格を設定することも可能です。";
+                    break;
+
+                case "原価":                    
+
+                    break;
+
+                case "機能":
+                    this.toolStripStatusLabel2.Text = "■全角２５文字まで入力できます。";
+                    break;
+
+                default:
+                    // その他のカラムにエンターされた場合の処理
+                    break;
+            }
+        }
+
+        //セルの変更前の処理
+        private void dataGridView1_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
+        {
+            if (e.RowIndex < 0) // ヘッダーセルの場合は無視
+                return;
+                       
+            string columnName = dataGridView1.Columns[e.ColumnIndex].Name;
+            string newValue = e.FormattedValue.ToString(); // 変更後の値
+                        
+            switch (columnName)
+            {
+                case "型式名":
+                    
+                    break;
+
+                case "定価":
+                    
+                    break;
+
+                case "原価":
+                    // 原価カラムの変更前の処理
+                    // ここに処理を記述
+                    break;
+
+                case "機能":
+                    // 機能カラムの変更前の処理
+                    // ここに処理を記述
+                    break;
+
+                default:
+                    // その他のカラムの変更前の処理
+                    break;
+            }
         }
     }
 }

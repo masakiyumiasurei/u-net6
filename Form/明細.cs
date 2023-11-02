@@ -21,8 +21,8 @@ namespace u_net
         {
             string code = "01";
             //this.m商品分類TableAdapter.FillBy(this.uiDataSet.M商品分類,code);
-            //this.m商品明細TableAdapter.Fill(this.uiDataSet.M商品明細, "00000451");
-            this.mtaniTableAdapter.Fill(this.newDataSet1.M単位,1);
+             this.mshomeisaiTableAdapter.Fill(this.newDataSet1.M商品明細, "00000373");
+            this.mtaniTableAdapter.Fill(this.newDataSet1.M単位, 1);
         }
     }
 }

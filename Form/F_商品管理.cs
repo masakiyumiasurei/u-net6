@@ -252,23 +252,25 @@ namespace u_net
                     "WHERE " + filter;
 
                 Connect();
-                using (var command = new SqlCommand(query, cn))
-                {
-                    // クエリの結果を取得するためのデータアダプターを使用してデータを取得
-                    using (var adapter = new SqlDataAdapter(command))
-                    {
-                        var dataTable = new DataTable();
-                        adapter.Fill(dataTable);
+                DataGridUtils.SetDataGridView(cn, query, this.dataGridView1);
 
-                        // DataTable を DataGridView にバインド
-                        dataGridView1.DataSource = null; // データソースをクリア
-                        dataGridView1.Rows.Clear();     // DataGridView内の行をクリア
+                //using (var command = new SqlCommand(query, cn))
+                //{
+                //    // クエリの結果を取得するためのデータアダプターを使用してデータを取得
+                //    using (var adapter = new SqlDataAdapter(command))
+                //    {
+                //        var dataTable = new DataTable();
+                //        adapter.Fill(dataTable);
 
-                        dataGridView1.Refresh();
-                        dataGridView1.Invalidate();
-                        dataGridView1.DataSource = dataTable;
-                    }
-                }
+                //        // DataTable を DataGridView にバインド
+                //        dataGridView1.DataSource = null; // データソースをクリア
+                //        dataGridView1.Rows.Clear();     // DataGridView内の行をクリア
+
+                //        dataGridView1.Refresh();
+                //        dataGridView1.Invalidate();
+                //        dataGridView1.DataSource = dataTable;
+                //    }
+                //}
 
 
                 return dataGridView1.RowCount;
