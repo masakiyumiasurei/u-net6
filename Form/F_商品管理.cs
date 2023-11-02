@@ -320,7 +320,7 @@ namespace u_net
                 F_商品 targetform = new F_商品();
 
                 targetform.args = selectedData;
-                targetform.Show();
+                targetform.ShowDialog();
             }
         }
 
@@ -394,7 +394,7 @@ namespace u_net
         {
             dataGridView1.Focus();
             F_商品管理_抽出 form = new F_商品管理_抽出();
-            form.Show();
+            form.ShowDialog();
         }
 
         private void コマンド入出力_Click(object sender, EventArgs e)
@@ -445,7 +445,7 @@ namespace u_net
         {
             str検索コード = "ORD";
             F_検索コード form = new F_検索コード(this, str検索コード);
-            form.Show();
+            form.ShowDialog();
         }
 
         private void コマンド商品_Click(object sender, EventArgs e)
@@ -458,7 +458,7 @@ namespace u_net
                 // 商品フォームを作成し、引数を設定して表示
                 F_商品 targetform = new F_商品();
                 targetform.args = selectedData;
-                targetform.Show();
+                targetform.ShowDialog();
             }
             else
             {
@@ -512,7 +512,7 @@ namespace u_net
                                 // 商品フォームを作成し、引数を設定して表示
                                 F_商品 targetform = new F_商品();
                                 targetform.args = selectedData;
-                                targetform.Show();
+                                targetform.ShowDialog();
                             }
                             else
                             {

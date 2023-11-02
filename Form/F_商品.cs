@@ -874,7 +874,7 @@ namespace u_net
         }
         private void 品名_TextChanged(object sender, EventArgs e)
         {
-            if (!FunctionClass.LimitText(this.品名, 48)) return;
+            if (!FunctionClass.LimitText(this.ActiveControl, 48)) return;
 
             ChangedData(true);
         }
@@ -895,7 +895,8 @@ namespace u_net
 
         private void 商品コード_TextChanged(object sender, EventArgs e)
         {
-            if (!FunctionClass.LimitText(this.ActiveControl, 8)) return;
+            //他フォームから渡されたときは this.ActiveControlが商品コントロールにならないので商品コードをコントロールとして渡す
+            if (!FunctionClass.LimitText(this.商品コード, 8)) return;
             UpdatedControl();
         }
 
