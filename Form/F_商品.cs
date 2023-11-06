@@ -1295,9 +1295,9 @@ namespace u_net
                     // 明細削除ボタンの処理を実行
                     明細削除ボタン_Click(sender, e);
                 }
-                else if (buttonName == "別のボタン")
+                else if (buttonName == "行挿入ボタン")
                 {
-
+                    行挿入ボタン_Click(sender,e);
 
                 }
 
@@ -1312,14 +1312,71 @@ namespace u_net
                 if (result == DialogResult.Yes)
                 {
                     dataGridView1.Rows.RemoveAt(e.RowIndex);
+                    ChangedData(true);
+                    NumberDetails("明細番号");
                 }
-
 
             }
             catch (Exception ex)
             {
                 MessageBox.Show("エラーが発生しました。\n" + ex.Message, "行削除エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
 
+        private void NumberDetails(string fieldName, long StartValue = 1, long offset = 1)
+        {
+            //明細番号をふり直す
+            //FieldName - 番号を格納するフィールド名
+            //共通化すべきか？フォームによって引数が異なっている様だが。。。共通で使用する様に作ってるようだが、datagridviewを使用しないのであれば共通化は不要か
+
+            try
+            {
+                long lngi = StartValue;
+
+                foreach (DataGridViewRow row in dataGridView1.Rows)
+                {
+                    if (!row.IsNewRow)
+                    {
+                        row.Cells[fieldName].Value = lngi.ToString();
+                        lngi += offset;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(this.Name + "_NumberDetails - " + ex.Message);
+            }
+        }
+
+        private void 行挿入ボタン_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DataGridViewRow selectedRow = dataGridView1.SelectedRows[0]; // 選択された行
+                int rowIndex = selectedRow.Index;
+
+                // DataGridViewのデータソースにアクセスして行を挿入
+                DataTable dt = (DataTable)dataGridView1.DataSource;
+                DataRow newRow = dt.NewRow();
+                dt.Rows.InsertAt(newRow, rowIndex);
+
+                long lngCurrent = (long)newRow["明細番号"]; // 新しい行の明細番号
+
+                // 明細番号を振り直す処理
+                long lngBegin = (lngCurrent % 2 == 0) ? -1 : -2;
+                NumberDetails("明細番号",lngBegin,-2);
+
+                for (int i = rowIndex; i < dt.Rows.Count; i++)
+                {
+                    dt.Rows[i]["明細番号"] = -2 * (lngCurrent - 1) + lngBegin + 1;
+                    lngCurrent += 2;
+                }
+                // DataGridViewを再描画
+                dataGridView1.Refresh();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(this.Name + "_行挿入ボタン_Click - " + ex.Message);
             }
         }
 

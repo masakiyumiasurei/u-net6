@@ -9407,7 +9407,7 @@ FROM                 dbo.M商品 LEFT OUTER JOIN
             this._adapter.InsertCommand = new global::Microsoft.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
             this._adapter.InsertCommand.CommandText = @"INSERT INTO [M商品明細] ([商品コード], [Revision], [明細番号], [型式番号], [型式名], [定価], [原価], [機能], [構成番号]) VALUES (@商品コード, @Revision, @明細番号, @型式番号, @型式名, @定価, @原価, @機能, @構成番号);
-SELECT 商品コード, Revision, 明細番号, 型式番号, 型式名, 定価, 原価, 機能, 構成番号 FROM M商品明細 WHERE (Revision = @Revision) AND (商品コード = @商品コード) AND (明細番号 = @明細番号)";
+SELECT 商品コード, Revision, 明細番号, 型式番号, 型式名, 定価, 原価, 機能, 構成番号 FROM M商品明細 WHERE (Revision = @Revision) AND (商品コード = @商品コード) AND (明細番号 = @明細番号) ORDER BY 明細番号";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             param = new global::Microsoft.Data.SqlClient.SqlParameter();
             param.ParameterName = "@商品コード";
@@ -9473,7 +9473,7 @@ SELECT 商品コード, Revision, 明細番号, 型式番号, 型式名, 定価,
             this._adapter.UpdateCommand = new global::Microsoft.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
             this._adapter.UpdateCommand.CommandText = @"UPDATE [M商品明細] SET [商品コード] = @商品コード, [Revision] = @Revision, [明細番号] = @明細番号, [型式番号] = @型式番号, [型式名] = @型式名, [定価] = @定価, [原価] = @原価, [機能] = @機能, [構成番号] = @構成番号 WHERE (([商品コード] = @Original_商品コード) AND ([Revision] = @Original_Revision) AND ([明細番号] = @Original_明細番号) AND ((@IsNull_型式番号 = 1 AND [型式番号] IS NULL) OR ([型式番号] = @Original_型式番号)) AND ((@IsNull_型式名 = 1 AND [型式名] IS NULL) OR ([型式名] = @Original_型式名)) AND ((@IsNull_定価 = 1 AND [定価] IS NULL) OR ([定価] = @Original_定価)) AND ((@IsNull_原価 = 1 AND [原価] IS NULL) OR ([原価] = @Original_原価)) AND ((@IsNull_機能 = 1 AND [機能] IS NULL) OR ([機能] = @Original_機能)) AND ((@IsNull_構成番号 = 1 AND [構成番号] IS NULL) OR ([構成番号] = @Original_構成番号)));
-SELECT 商品コード, Revision, 明細番号, 型式番号, 型式名, 定価, 原価, 機能, 構成番号 FROM M商品明細 WHERE (Revision = @Revision) AND (商品コード = @商品コード) AND (明細番号 = @明細番号)";
+SELECT 商品コード, Revision, 明細番号, 型式番号, 型式名, 定価, 原価, 機能, 構成番号 FROM M商品明細 WHERE (Revision = @Revision) AND (商品コード = @商品コード) AND (明細番号 = @明細番号) ORDER BY 明細番号";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             param = new global::Microsoft.Data.SqlClient.SqlParameter();
             param.ParameterName = "@商品コード";
@@ -9677,7 +9677,8 @@ SELECT 商品コード, Revision, 明細番号, 型式番号, 型式名, 定価,
             this._commandCollection[0] = new global::Microsoft.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT               商品コード, Revision, 明細番号, 型式番号, 型式名, 定価, 原価, 機能, 構成番号\r\nFROM    " +
-                "             M商品明細\r\nWHERE                (商品コード = @code)";
+                "             M商品明細\r\nWHERE                (商品コード = @code)\r\nORDER BY          明細番号" +
+                "";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             global::Microsoft.Data.SqlClient.SqlParameter param = new global::Microsoft.Data.SqlClient.SqlParameter();
             param.ParameterName = "@code";
