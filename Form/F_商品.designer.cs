@@ -1365,6 +1365,7 @@ namespace u_net
             明細削除ボタン.HeaderText = "";
             明細削除ボタン.Name = "明細削除ボタン";
             明細削除ボタン.Text = "X";
+            明細削除ボタン.ToolTipText = "明細行を削除します";
             明細削除ボタン.UseColumnTextForButtonValue = true;
             明細削除ボタン.Width = 22;
             // 

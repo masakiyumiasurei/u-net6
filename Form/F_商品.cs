@@ -1297,7 +1297,7 @@ namespace u_net
                 }
                 else if (buttonName == "行挿入ボタン")
                 {
-                    行挿入ボタン_Click(sender,e);
+                    行挿入ボタン_Click(sender, e);
 
                 }
 
@@ -1313,7 +1313,7 @@ namespace u_net
                 {
                     dataGridView1.Rows.RemoveAt(e.RowIndex);
                     ChangedData(true);
-                    NumberDetails("明細番号");
+                    NumberDetails("dgv明細番号");
                 }
 
             }
@@ -1351,32 +1351,69 @@ namespace u_net
         private void 行挿入ボタン_Click(object sender, EventArgs e)
         {
             try
-            {
-                DataGridViewRow selectedRow = dataGridView1.SelectedRows[0]; // 選択された行
-                int rowIndex = selectedRow.Index;
+            {      
+                    BindingSource bindingSource = (BindingSource)dataGridView1.DataSource;
+                    DataTable dataTable = ((DataView)bindingSource.List).Table;
+                    DataRow currentRow = ((DataRowView)bindingSource.Current).Row;
 
-                // DataGridViewのデータソースにアクセスして行を挿入
-                DataTable dt = (DataTable)dataGridView1.DataSource;
-                DataRow newRow = dt.NewRow();
-                dt.Rows.InsertAt(newRow, rowIndex);
+                    // データベースから取得した明細番号の値を取得
+                    long lngCurrent = Convert.ToInt64(currentRow["明細番号"]);
 
-                long lngCurrent = (long)newRow["明細番号"]; // 新しい行の明細番号
+                    // 作業用明細番号を振り、マイナス空間を構築する（増分=-2）
+                    long lngBegin = (lngCurrent % 2 == 0) ? -1 : -2;
+                    NumberDetails( "dgv明細番号", lngBegin, -2);
 
-                // 明細番号を振り直す処理
-                long lngBegin = (lngCurrent % 2 == 0) ? -1 : -2;
-                NumberDetails("明細番号",lngBegin,-2);
+                    // マイナス空間において挿入される番号を持つ新規レコードを追加する
+                    DataRow newRow = dataTable.NewRow();
+                    newRow["商品コード"] = this.商品コード.Text; // CurrentCode はどこから来るかに注意
+                    newRow["Revision"] = this.Revision.Text;
+                    newRow["明細番号"] = -2 * (lngCurrent - 1) + lngBegin + 1;
+                    dataTable.Rows.Add(newRow);
 
-                for (int i = rowIndex; i < dt.Rows.Count; i++)
-                {
-                    dt.Rows[i]["明細番号"] = -2 * (lngCurrent - 1) + lngBegin + 1;
-                    lngCurrent += 2;
-                }
-                // DataGridViewを再描画
-                dataGridView1.Refresh();
+                    // 降順に並べ替える
+               //     dataTable.DefaultView.Sort = "明細番号 DESC";
+
+                    // 挿入したレコードをカレントレコードとする
+                //    bindingSource.Position = bindingSource.Find("明細番号", newRow["明細番号"]);
+
+                    // 正式な明細番号を振る
+               //     NumberDetails("dgv明細番号");
+
+                    //// 一時的にDataGridViewの描画を無効にする
+                    //dataGridView1.SuspendLayout();
+
+                    //// 現在の行番号を取得
+                    //int currentRowIndex = currentRow.Index;
+                    //int currentDetailNumber = Convert.ToInt32(currentRow.Cells["dgv明細番号"].Value);
+
+                    //// 新しい行を挿入
+                    ////dataGridView1.Rows.Insert(currentRowIndex, 1);
+                    //DataGridViewRow newRow = dataGridView1.Rows[currentRowIndex];
+                    //dt.Rows.Add(newRow);
+
+                    //// 既定値の設定
+                    //newRow.Cells["dgv商品コード"].Value = this.商品コード.Text;
+                    //newRow.Cells["dgvRevision"].Value = this.Revision.Text;
+                    //newRow.Cells["dgv明細番号"].Value = detailNumber.ToString();
+                    //detailNumber++; // 連番を増やす
+
+                    //// 明細番号を設定
+                    //int newDetailNumber = -2 * (currentDetailNumber - 1) - (currentDetailNumber % 2 == 0 ? 1 : 2);
+                    //newRow.Cells["dgv明細番号"].Value = newDetailNumber.ToString();
+
+                    //// 明細番号を再計算
+                    //NumberDetails("dgv明細番号");
+
+                    //// 新しい行を選択
+                    //dataGridView1.CurrentCell = newRow.Cells[0];
+
+                    //// 描画を再開
+                    //dataGridView1.ResumeLayout();
+                
             }
             catch (Exception ex)
             {
-                Console.WriteLine(this.Name + "_行挿入ボタン_Click - " + ex.Message);
+                Debug.WriteLine("行挿入ボタン_Click - " + ex.Message);
             }
         }
 
