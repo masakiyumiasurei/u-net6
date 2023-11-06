@@ -251,7 +251,7 @@ namespace u_net
                 //dataGridView1.Columns[0].Width = 500 / twipperdot;
                 dataGridView1.Columns[0].Width = 1200 / twipperdot; //1150
                 dataGridView1.Columns[1].Width = 4000 / twipperdot;
-                //dataGridView1.Columns[2].Visible = false;
+                dataGridView1.Columns[2].Visible = false;
                 dataGridView1.Columns[3].Width = 1600 / twipperdot;
                 dataGridView1.Columns[4].Width = 1600 / twipperdot;
                 dataGridView1.Columns[5].Width = 2000 / twipperdot;
@@ -517,6 +517,24 @@ namespace u_net
             string LoginUserCode = "000";//テスト用 ログインユーザを実行中にどのように管理するか決まったら修正
             LocalSetting test = new LocalSetting();
             test.SavePlace(LoginUserCode, this);
+        }
+
+
+        private bool ascending = true;
+        private void dataGridView1_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.ColumnIndex == 1)
+            {
+                if (ascending)
+                {
+                    dataGridView1.Sort(dataGridView1.Columns[2], System.ComponentModel.ListSortDirection.Ascending);
+                }
+                else
+                {
+                    dataGridView1.Sort(dataGridView1.Columns[2], System.ComponentModel.ListSortDirection.Descending);
+                }
+                ascending = !ascending;
+            }
         }
     }
 }
