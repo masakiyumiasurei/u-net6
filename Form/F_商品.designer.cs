@@ -30,6 +30,12 @@ namespace u_net
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(F_商品));
             M商品BindingSource = new BindingSource(components);
             uiDataSet = new uiDataSet();
@@ -43,6 +49,7 @@ namespace u_net
             m商品分類BindingSource = new BindingSource(components);
             mシリーズBindingSource = new BindingSource(components);
             dataGridView1 = new DataGridView();
+            明細削除ボタン = new DataGridViewButtonColumn();
             dgv商品コード = new DataGridViewTextBoxColumn();
             dgvrevision = new DataGridViewTextBoxColumn();
             dgv明細番号 = new DataGridViewTextBoxColumn();
@@ -250,7 +257,7 @@ namespace u_net
             // 
             dataGridView1.AutoGenerateColumns = false;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { dgv商品コード, dgvrevision, dgv明細番号, 型式番号, 型式名, 定価, 原価, 機能, 構成番号 });
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { 明細削除ボタン, dgv商品コード, dgvrevision, dgv明細番号, 型式番号, 型式名, 定価, 原価, 機能, 構成番号 });
             dataGridView1.DataSource = M商品明細BindingSource;
             dataGridView1.ImeMode = ImeMode.On;
             dataGridView1.Location = new Point(0, 502);
@@ -259,9 +266,19 @@ namespace u_net
             dataGridView1.RowTemplate.Height = 21;
             dataGridView1.Size = new Size(943, 261);
             dataGridView1.TabIndex = 109;
+            dataGridView1.CellClick += dataGridView1_CellClick;
             dataGridView1.CellEnter += dataGridView1_CellEnter;
+            dataGridView1.CellFormatting += dataGridView1_CellFormatting;
             dataGridView1.CellValueChanged += dataGridView1_CellValueChanged;
             dataGridView1.DefaultValuesNeeded += dataGridView1_DefaultValuesNeeded;
+            // 
+            // 明細削除ボタン
+            // 
+            明細削除ボタン.HeaderText = "";
+            明細削除ボタン.Name = "明細削除ボタン";
+            明細削除ボタン.Text = "X";
+            明細削除ボタン.UseColumnTextForButtonValue = true;
+            明細削除ボタン.Width = 22;
             // 
             // dgv商品コード
             // 
@@ -280,41 +297,64 @@ namespace u_net
             // dgv明細番号
             // 
             dgv明細番号.DataPropertyName = "明細番号";
-            dgv明細番号.HeaderText = "明細番号";
+            dataGridViewCellStyle1.Font = new Font("MS UI Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dgv明細番号.DefaultCellStyle = dataGridViewCellStyle1;
+            dgv明細番号.HeaderText = "No";
             dgv明細番号.Name = "dgv明細番号";
-            dgv明細番号.Visible = false;
+            dgv明細番号.Width = 26;
             // 
             // 型式番号
             // 
             型式番号.DataPropertyName = "型式番号";
+            dataGridViewCellStyle2.Font = new Font("ＭＳ ゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            型式番号.DefaultCellStyle = dataGridViewCellStyle2;
             型式番号.HeaderText = "型式番号";
             型式番号.Name = "型式番号";
             型式番号.Visible = false;
+            型式番号.Width = 27;
             // 
             // 型式名
             // 
             型式名.DataPropertyName = "型式名";
+            dataGridViewCellStyle3.Font = new Font("ＭＳ ゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            型式名.DefaultCellStyle = dataGridViewCellStyle3;
             型式名.HeaderText = "型式名";
             型式名.Name = "型式名";
             型式名.ToolTipText = "半角48文字まで";
+            型式名.Width = 151;
             // 
             // 定価
             // 
             定価.DataPropertyName = "定価";
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.TopRight;
+            dataGridViewCellStyle4.Font = new Font("MS UI Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle4.Format = "N0";
+            dataGridViewCellStyle4.NullValue = null;
+            定価.DefaultCellStyle = dataGridViewCellStyle4;
             定価.HeaderText = "定価";
             定価.Name = "定価";
+            定価.Width = 91;
             // 
             // 原価
             // 
             原価.DataPropertyName = "原価";
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.TopRight;
+            dataGridViewCellStyle5.Font = new Font("MS UI Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle5.Format = "N0";
+            dataGridViewCellStyle5.NullValue = null;
+            原価.DefaultCellStyle = dataGridViewCellStyle5;
             原価.HeaderText = "原価";
             原価.Name = "原価";
+            原価.Width = 91;
             // 
             // 機能
             // 
             機能.DataPropertyName = "機能";
+            dataGridViewCellStyle6.Font = new Font("ＭＳ ゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            機能.DefaultCellStyle = dataGridViewCellStyle6;
             機能.HeaderText = "機能";
             機能.Name = "機能";
+            機能.Width = 363;
             // 
             // 構成番号
             // 
@@ -615,7 +655,7 @@ namespace u_net
             statusStrip1.Location = new Point(0, 619);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Padding = new Padding(1, 0, 19, 0);
-            statusStrip1.Size = new Size(941, 25);
+            statusStrip1.Size = new Size(939, 25);
             statusStrip1.TabIndex = 110;
             statusStrip1.Text = "statusStrip1";
             // 
@@ -1415,7 +1455,7 @@ namespace u_net
             AutoScaleDimensions = new SizeF(8F, 12F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
-            ClientSize = new Size(941, 644);
+            ClientSize = new Size(939, 644);
             Controls.Add(label21);
             Controls.Add(label20);
             Controls.Add(数量単位コード);
@@ -1470,7 +1510,6 @@ namespace u_net
             Controls.Add(dataGridView1);
             Controls.Add(panel1);
             Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-
             Icon = (Icon)resources.GetObject("$this.Icon");
             KeyPreview = true;
             Margin = new Padding(3, 2, 3, 2);
@@ -1628,6 +1667,7 @@ namespace u_net
         private Label label20;
         private Label label21;
         private newDataSetTableAdapters.MshomeisaiTableAdapter mshomeisaiTableAdapter;
+        private DataGridViewButtonColumn 明細削除ボタン;
         private DataGridViewTextBoxColumn dgv商品コード;
         private DataGridViewTextBoxColumn dgvrevision;
         private DataGridViewTextBoxColumn dgv明細番号;

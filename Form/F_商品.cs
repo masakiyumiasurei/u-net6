@@ -12,6 +12,7 @@ using System.Windows.Forms;
 using u_net.Public;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 using System.Data.Common;
+using GrapeCity.Win.MultiRow;
 
 
 namespace u_net
@@ -1020,7 +1021,8 @@ namespace u_net
 
         private void 掛率有効_CheckedChanged(object sender, EventArgs e)
         {
-            ChangedData(true);
+            if (this.ActiveControl != null)
+                ChangedData(true);
         }
 
         private void 売上区分コード_Enter(object sender, EventArgs e)
@@ -1058,7 +1060,8 @@ namespace u_net
 
         private void Discontinued_CheckedChanged(object sender, EventArgs e)
         {
-            ChangedData(true);
+            if (this.ActiveControl != null)
+                ChangedData(true);
         }
 
         private void 備考_TextChanged(object sender, EventArgs e)
@@ -1074,7 +1077,8 @@ namespace u_net
 
         private void IsUnit_CheckedChanged(object sender, EventArgs e)
         {
-            ChangedData(true);
+            if (this.ActiveControl != null)
+                ChangedData(true);
         }
 
 
@@ -1131,23 +1135,26 @@ namespace u_net
         {
             if (e.RowIndex < 0) // ヘッダーセルの場合は無視
                 return;
-            
+
             string columnName = dataGridView1.Columns[e.ColumnIndex].Name;
 
             switch (columnName)
             {
                 case "型式名":
+                    dataGridView1.ImeMode = System.Windows.Forms.ImeMode.Off;
                     this.toolStripStatusLabel2.Text = "■半角４８文字まで入力できます。　■英数字は半角文字で入力し、半角カタカナは使用しないでください。";
                     break;
                 case "定価":
                     this.toolStripStatusLabel2.Text = "■型式ごとの定価を設定します。　■マイナス価格を設定することも可能です。";
+                    dataGridView1.ImeMode = ImeMode.Disable;
                     break;
 
-                case "原価":                    
-
+                case "原価":
+                    dataGridView1.ImeMode = ImeMode.Disable;
                     break;
 
                 case "機能":
+                    dataGridView1.ImeMode = ImeMode.Hiragana;
                     this.toolStripStatusLabel2.Text = "■全角２５文字まで入力できます。";
                     break;
 
@@ -1162,35 +1169,160 @@ namespace u_net
         {
             if (e.RowIndex < 0) // ヘッダーセルの場合は無視
                 return;
-                       
+
+            // セルの変更前の値を取得
+            object previousValue = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
+
             string columnName = dataGridView1.Columns[e.ColumnIndex].Name;
-            string newValue = e.FormattedValue.ToString(); // 変更後の値
-                        
+            string? newValue = e.FormattedValue.ToString(); // 変更後の値
+
+
             switch (columnName)
             {
                 case "型式名":
-                    
+                    //明細番号を取得
+                    int currentNumber = int.Parse(dataGridView1.Rows[e.RowIndex].Cells["明細番号"].Value.ToString());
+
+                    if (string.IsNullOrWhiteSpace(newValue))
+                    {
+                        e.Cancel = true;
+                        MessageBox.Show(columnName + " を入力してください。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        return;
+                    }
+
+                    // ここで重複チェックを実行するメソッドを呼び出す
+                    if (DetectRepeatedID(currentNumber, previousValue as string, "---"))
+                    {
+                        e.Cancel = true;
+                        MessageBox.Show("型式名が重複しています。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
+
                     break;
 
                 case "定価":
-                    
+
+                    if (string.IsNullOrWhiteSpace(newValue))
+                    {
+                        e.Cancel = true;
+                        MessageBox.Show(columnName + " を入力してください。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        return;
+                    }
+
                     break;
 
                 case "原価":
-                    // 原価カラムの変更前の処理
-                    // ここに処理を記述
+                    // コメントアウトしていた
+
                     break;
 
                 case "機能":
-                    // 機能カラムの変更前の処理
-                    // ここに処理を記述
+                    // コメントアウトしていた
+
                     break;
 
-                default:
-                    // その他のカラムの変更前の処理
-                    break;
             }
         }
+
+        private bool DetectRepeatedID(int currentNumber, string targetID, string exName)
+        {
+            // 型式名の重複を検出する
+            // CurrentNumber - 呼び出し元明細行の明細番号
+            // TargetID      - 検出対象となる型式名
+            // ExName        - 除外する型式名
+            //               - 検出結果　True->重複あり False->重複なし
+
+            bool hasDuplicate = false;
+
+            try
+            {
+                Connect();
+
+                string query = "SELECT * FROM 商品明細 WHERE 明細番号 <> ? AND 型式名 = ? AND 型式名 <> ?";
+
+                {
+                    cmd.Parameters.AddWithValue("@currentNumber", currentNumber);
+                    cmd.Parameters.AddWithValue("@targetID", targetID);
+                    cmd.Parameters.AddWithValue("@exName", exName);
+
+                    using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                    {
+                        DataTable dataTable = new DataTable();
+                        adapter.Fill(dataTable);
+
+                        if (dataTable.Rows.Count > 0)
+                        {
+                            hasDuplicate = true;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+            }
+
+            return hasDuplicate;
+        }
+
+        //セルがマイナスの場合の処理
+        private void dataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.RowIndex < 0) // ヘッダーセルの場合は無視
+                return;
+            // セルの値を取得
+            object cellValue = dataGridView1[e.ColumnIndex, e.RowIndex].Value;
+            string columnName = dataGridView1.Columns[e.ColumnIndex].Name;
+
+            // セルの値が数値で、かつマイナスの場合
+            if (cellValue is int intValue && intValue < 0 && (columnName == "定価" || columnName == "原価"))
+            {
+                // 赤色のフォントを設定
+                e.CellStyle.ForeColor = Color.Red;
+            }
+
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // クリックされたセルがボタンセルであることを確認
+            if (e.RowIndex >= 0 && e.ColumnIndex >= 0 && dataGridView1[e.ColumnIndex, e.RowIndex] is DataGridViewButtonCell)
+            {
+                string buttonName = dataGridView1.Columns[e.ColumnIndex].Name;
+
+                // ボタンの種類に応じて処理を分ける
+                if (buttonName == "明細削除ボタン")
+                {
+                    // 明細削除ボタンの処理を実行
+                    明細削除ボタン_Click(sender, e);
+                }
+                else if (buttonName == "別のボタン")
+                {
+
+
+                }
+
+            }
+        }
+
+        private void 明細削除ボタン_Click(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                DialogResult result = MessageBox.Show("行を削除しますか？", "行削除", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.Yes)
+                {
+                    dataGridView1.Rows.RemoveAt(e.RowIndex);
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("エラーが発生しました。\n" + ex.Message, "行削除エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
+        }
+
     }
 }
 
