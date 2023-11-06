@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.更新者名 = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.担当者名 = new System.Windows.Forms.TextBox();
@@ -46,19 +45,11 @@
             this.キャンセルボタン = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.担当者メールアドレス = new System.Windows.Forms.TextBox();
+            this.更新者名 = new System.Windows.Forms.TextBox();
+            this.更新日終了選択 = new System.Windows.Forms.Button();
+            this.更新日開始選択 = new System.Windows.Forms.Button();
             this.Deleted.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // 更新者名
-            // 
-            this.更新者名.DisplayMember = "更新者名";
-            this.更新者名.FormattingEnabled = true;
-            this.更新者名.Location = new System.Drawing.Point(175, 151);
-            this.更新者名.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.更新者名.Name = "更新者名";
-            this.更新者名.Size = new System.Drawing.Size(160, 23);
-            this.更新者名.TabIndex = 9;
-            this.更新者名.ValueMember = "更新者名";
             // 
             // label9
             // 
@@ -96,10 +87,9 @@
             this.担当者名.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.担当者名.Location = new System.Drawing.Point(175, 53);
             this.担当者名.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.担当者名.Multiline = true;
             this.担当者名.Name = "担当者名";
-            this.担当者名.Size = new System.Drawing.Size(413, 23);
-            this.担当者名.TabIndex = 4;
+            this.担当者名.Size = new System.Drawing.Size(413, 20);
+            this.担当者名.TabIndex = 2;
             // 
             // メーカー名
             // 
@@ -107,10 +97,9 @@
             this.メーカー名.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.メーカー名.Location = new System.Drawing.Point(175, 20);
             this.メーカー名.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.メーカー名.Multiline = true;
             this.メーカー名.Name = "メーカー名";
-            this.メーカー名.Size = new System.Drawing.Size(413, 23);
-            this.メーカー名.TabIndex = 2;
+            this.メーカー名.Size = new System.Drawing.Size(413, 20);
+            this.メーカー名.TabIndex = 1;
             // 
             // label5
             // 
@@ -151,7 +140,7 @@
             this.更新日開始.Multiline = true;
             this.更新日開始.Name = "更新日開始";
             this.更新日開始.Size = new System.Drawing.Size(160, 23);
-            this.更新日開始.TabIndex = 6;
+            this.更新日開始.TabIndex = 4;
             // 
             // label2
             // 
@@ -172,12 +161,12 @@
             // 
             this.更新日終了.BackColor = System.Drawing.Color.White;
             this.更新日終了.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.更新日終了.Location = new System.Drawing.Point(428, 120);
+            this.更新日終了.Location = new System.Drawing.Point(397, 120);
             this.更新日終了.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.更新日終了.Multiline = true;
             this.更新日終了.Name = "更新日終了";
             this.更新日終了.Size = new System.Drawing.Size(160, 23);
-            this.更新日終了.TabIndex = 7;
+            this.更新日終了.TabIndex = 5;
             // 
             // Deleted
             // 
@@ -265,16 +254,50 @@
             this.担当者メールアドレス.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.担当者メールアドレス.Location = new System.Drawing.Point(175, 88);
             this.担当者メールアドレス.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.担当者メールアドレス.Multiline = true;
             this.担当者メールアドレス.Name = "担当者メールアドレス";
-            this.担当者メールアドレス.Size = new System.Drawing.Size(413, 23);
-            this.担当者メールアドレス.TabIndex = 211;
+            this.担当者メールアドレス.Size = new System.Drawing.Size(413, 20);
+            this.担当者メールアドレス.TabIndex = 3;
+            // 
+            // 更新者名
+            // 
+            this.更新者名.BackColor = System.Drawing.Color.White;
+            this.更新者名.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.更新者名.Location = new System.Drawing.Point(175, 153);
+            this.更新者名.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.更新者名.Name = "更新者名";
+            this.更新者名.Size = new System.Drawing.Size(413, 20);
+            this.更新者名.TabIndex = 6;
+            // 
+            // 更新日終了選択
+            // 
+            this.更新日終了選択.Location = new System.Drawing.Point(559, 120);
+            this.更新日終了選択.Margin = new System.Windows.Forms.Padding(4);
+            this.更新日終了選択.Name = "更新日終了選択";
+            this.更新日終了選択.Size = new System.Drawing.Size(29, 23);
+            this.更新日終了選択.TabIndex = 211;
+            this.更新日終了選択.Text = "▼";
+            this.更新日終了選択.UseVisualStyleBackColor = true;
+            this.更新日終了選択.Click += new System.EventHandler(this.更新日終了選択_Click);
+            // 
+            // 更新日開始選択
+            // 
+            this.更新日開始選択.Location = new System.Drawing.Point(337, 120);
+            this.更新日開始選択.Margin = new System.Windows.Forms.Padding(4);
+            this.更新日開始選択.Name = "更新日開始選択";
+            this.更新日開始選択.Size = new System.Drawing.Size(29, 23);
+            this.更新日開始選択.TabIndex = 212;
+            this.更新日開始選択.Text = "▼";
+            this.更新日開始選択.UseVisualStyleBackColor = true;
+            this.更新日開始選択.Click += new System.EventHandler(this.更新日開始選択_Click);
             // 
             // F_メーカー管理_抽出
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(612, 438);
+            this.Controls.Add(this.更新日開始選択);
+            this.Controls.Add(this.更新日終了選択);
+            this.Controls.Add(this.更新者名);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.担当者メールアドレス);
             this.Controls.Add(this.キャンセルボタン);
@@ -284,7 +307,6 @@
             this.Controls.Add(this.更新日終了);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.更新日開始);
-            this.Controls.Add(this.更新者名);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.担当者名);
@@ -301,8 +323,6 @@
         }
 
         #endregion
-
-        private ComboBox 更新者名;
         private Label label9;
         private Label label7;
         private TextBox 担当者名;
@@ -320,5 +340,8 @@
         private Button キャンセルボタン;
         private Label label3;
         private TextBox 担当者メールアドレス;
+        private TextBox 更新者名;
+        private Button 更新日終了選択;
+        private Button 更新日開始選択;
     }
 }

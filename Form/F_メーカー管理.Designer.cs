@@ -110,6 +110,7 @@
             this.コマンドメーカー.TabIndex = 9;
             this.コマンドメーカー.Text = "メーカー";
             this.コマンドメーカー.UseVisualStyleBackColor = true;
+            this.コマンドメーカー.Click += new System.EventHandler(this.コマンドメーカー_Click);
             // 
             // コマンドメール
             // 
@@ -123,6 +124,7 @@
             this.コマンドメール.TabIndex = 8;
             this.コマンドメール.Text = "メール";
             this.コマンドメール.UseVisualStyleBackColor = true;
+            this.コマンドメール.Click += new System.EventHandler(this.コマンドメール_Click);
             // 
             // コマンド印刷
             // 
@@ -136,6 +138,7 @@
             this.コマンド印刷.TabIndex = 7;
             this.コマンド印刷.Text = "印刷";
             this.コマンド印刷.UseVisualStyleBackColor = true;
+            this.コマンド印刷.Click += new System.EventHandler(this.コマンド印刷_Click);
             // 
             // コマンド入出力
             // 
@@ -149,6 +152,7 @@
             this.コマンド入出力.TabIndex = 6;
             this.コマンド入出力.Text = "入出力";
             this.コマンド入出力.UseVisualStyleBackColor = true;
+            this.コマンド入出力.Click += new System.EventHandler(this.コマンド入出力_Click);
             // 
             // コマンド全表示
             // 
@@ -162,6 +166,7 @@
             this.コマンド全表示.TabIndex = 5;
             this.コマンド全表示.Text = "全表示";
             this.コマンド全表示.UseVisualStyleBackColor = true;
+            this.コマンド全表示.Click += new System.EventHandler(this.コマンド全表示_Click);
             // 
             // コマンド初期化
             // 
@@ -175,6 +180,7 @@
             this.コマンド初期化.TabIndex = 4;
             this.コマンド初期化.Text = "初期化";
             this.コマンド初期化.UseVisualStyleBackColor = true;
+            this.コマンド初期化.Click += new System.EventHandler(this.コマンド初期化_Click);
             // 
             // コマンド検索
             // 
@@ -188,6 +194,7 @@
             this.コマンド検索.TabIndex = 3;
             this.コマンド検索.Text = "検索";
             this.コマンド検索.UseVisualStyleBackColor = true;
+            this.コマンド検索.Click += new System.EventHandler(this.コマンド検索_Click);
             // 
             // コマンド抽出
             // 
@@ -201,6 +208,7 @@
             this.コマンド抽出.TabIndex = 2;
             this.コマンド抽出.Text = "抽出";
             this.コマンド抽出.UseVisualStyleBackColor = true;
+            this.コマンド抽出.Click += new System.EventHandler(this.コマンド抽出_Click);
             // 
             // コマンド更新
             // 
@@ -214,6 +222,7 @@
             this.コマンド更新.TabIndex = 1;
             this.コマンド更新.Text = "更新";
             this.コマンド更新.UseVisualStyleBackColor = true;
+            this.コマンド更新.Click += new System.EventHandler(this.コマンド更新_Click);
             // 
             // コマンド終了
             // 
@@ -226,6 +235,7 @@
             this.コマンド終了.TabIndex = 0;
             this.コマンド終了.Text = "終了";
             this.コマンド終了.UseVisualStyleBackColor = true;
+            this.コマンド終了.Click += new System.EventHandler(this.コマンド終了_Click);
             // 
             // 表示件数
             // 
@@ -265,6 +275,11 @@
             this.dataGridView1.RowTemplate.Height = 29;
             this.dataGridView1.Size = new System.Drawing.Size(1054, 386);
             this.dataGridView1.TabIndex = 87;
+            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
+            this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
+            this.dataGridView1.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.DataGridView1_CellPainting);
+            this.dataGridView1.Sorted += new System.EventHandler(this.dataGridView1_Sorted);
+            this.dataGridView1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form_KeyDown);
             // 
             // panel2
             // 
@@ -290,6 +305,9 @@
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "F_メーカー管理";
             this.Text = "メーカー管理";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.F_メーカー管理_FormClosing);
+            this.Load += new System.EventHandler(this.Form_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form_KeyDown);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.panel2.ResumeLayout(false);

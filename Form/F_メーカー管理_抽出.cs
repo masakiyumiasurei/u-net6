@@ -44,7 +44,7 @@ namespace u_net
                     更新日開始.Text = frmTarget.dtm更新日開始.ToString();
                 if (frmTarget.dtm更新日終了 != DateTime.MinValue)
                     更新日終了.Text = frmTarget.dtm更新日終了.ToString();
-                更新者名.SelectedItem = frmTarget.str更新者名;
+                更新者名.Text = frmTarget.str更新者名;
 
  
                 switch (frmTarget.lngDeleted)
@@ -148,5 +148,34 @@ namespace u_net
             return value;
         }
 
+        private F_カレンダー dateSelectionForm;
+
+        private void 更新日終了選択_Click(object sender, EventArgs e)
+        {
+            // 日付選択フォームを作成し表示
+            dateSelectionForm = new F_カレンダー();
+            if (dateSelectionForm.ShowDialog() == DialogResult.OK)
+            {
+                // 日付選択フォームから選択した日付を取得
+                string selectedDate = dateSelectionForm.SelectedDate;
+
+                // フォームAの日付コントロールに選択した日付を設定
+                更新日終了.Text = selectedDate;
+            }
+        }
+
+        private void 更新日開始選択_Click(object sender, EventArgs e)
+        {
+            // 日付選択フォームを作成し表示
+            dateSelectionForm = new F_カレンダー();
+            if (dateSelectionForm.ShowDialog() == DialogResult.OK)
+            {
+                // 日付選択フォームから選択した日付を取得
+                string selectedDate = dateSelectionForm.SelectedDate;
+
+                // フォームAの日付コントロールに選択した日付を設定
+                更新日開始.Text = selectedDate;
+            }
+        }
     }
 }

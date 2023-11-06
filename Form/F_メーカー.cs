@@ -105,8 +105,10 @@ namespace u_net
                     {
                         throw new Exception("初期化に失敗しました。");
                     }
-                    //this.メーカーコード.Text = varOpenArgs.ToString();
-                    // コードを設定したことでイベント発生
+                    if (!string.IsNullOrEmpty(args))
+                    {
+                        this.メーカーコード.Text = args;
+                    }
                 }
 
                 // 成功時の処理

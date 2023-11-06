@@ -52,7 +52,7 @@ namespace u_net
             strSearchCode = codeString;
             strメーカーコード開始 = strSearchCode;
             strメーカーコード終了 = strSearchCode;
-            if(DoUpdate() != 1)
+            if(DoUpdate() == -1)
             {
                 MessageBox.Show("エラーが発生しました。");
             }
@@ -70,6 +70,12 @@ namespace u_net
         }
         private void Form_Load(object sender, EventArgs e)
         {
+
+            //実行中フォーム起動
+            string LoginUserCode = "000";//テスト用 ログインユーザを実行中にどのように管理するか決まったら修正
+            LocalSetting localSetting = new LocalSetting();
+            localSetting.LoadPlace(LoginUserCode, this);
+
             MyApi myapi = new MyApi();
             int xSize, ySize, intpixel, twipperdot;
 
@@ -89,23 +95,7 @@ namespace u_net
             dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font("MS ゴシック", 9);
             dataGridView1.DefaultCellStyle.Font = new Font("MS ゴシック", 10);
             dataGridView1.DefaultCellStyle.ForeColor = Color.Black;
-            dataGridView1.Columns[0].DefaultCellStyle.BackColor = Color.FromArgb(255, 255, 200); // 薄い黄色
-            dataGridView1.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
 
-            // 列の幅を設定 もとは恐らくtwipのためピクセルに直す
-
-            //0列目はaccessでは行ヘッダのため、ずらす
-            //dataGridView1.Columns[0].Width = 500 / twipperdot;
-            dataGridView1.Columns[0].Width = 1000 / twipperdot; //1150
-            dataGridView1.Columns[1].Width = 4000 / twipperdot;
-            dataGridView1.Columns[2].Width = 0 / twipperdot;
-            dataGridView1.Columns[3].Width = 1600 / twipperdot;
-            dataGridView1.Columns[4].Width = 1600 / twipperdot;
-            dataGridView1.Columns[5].Width = 2000 / twipperdot;
-            dataGridView1.Columns[6].Width = 3000 / twipperdot;
-            dataGridView1.Columns[7].Width = 2200 / twipperdot;//1300
-            dataGridView1.Columns[8].Width = 1200 / twipperdot;
-            dataGridView1.Columns[9].Width = 400 / twipperdot;
 
             myapi.GetFullScreen(out xSize, out ySize);
 
@@ -179,7 +169,7 @@ namespace u_net
                 // メーカーコード指定
                 if (!string.IsNullOrEmpty(strメーカーコード開始))
                 {
-                    filter += string.Format("(メーカーコード BETWEEN '{0}' AND '{1}')",
+                    filter += string.Format("(メーカーコード BETWEEN '{0}' AND '{1}') AND ",
                                                                   strメーカーコード開始, strメーカーコード終了);
                 }
 
@@ -192,7 +182,7 @@ namespace u_net
                         string str1 = var1.ToString();
                         if (!string.IsNullOrEmpty(str1))
                         {
-                            filter += string.Format("メーカー名 LIKE '%{0}%'", str1);
+                            filter += string.Format("メーカー名 LIKE '%{0}%' AND ", str1);
                         }
                     }
                 }
@@ -200,13 +190,13 @@ namespace u_net
                 // 担当者名指定
                 if (!string.IsNullOrEmpty(str担当者名))
                 {
-                    filter += string.Format("担当者名 LIKE '%{0}%'", str担当者名);
+                    filter += string.Format("担当者名 LIKE '%{0}%' AND ", str担当者名);
                 }
 
                 // 担当者メールアドレス指定
                 if (!string.IsNullOrEmpty(str担当者メールアドレス))
                 {
-                    filter += string.Format("担当者メールアドレス LIKE '%{0}%'", str担当者メールアドレス);
+                    filter += string.Format("担当者メールアドレス LIKE '%{0}%' AND ", str担当者メールアドレス);
                 }
                 // 更新日時
                 if (dtm更新日開始 != DateTime.MinValue)
@@ -235,12 +225,40 @@ namespace u_net
                     filter = filter.Substring(0, filter.Length - 5); // 最後の " AND " を削除
                 }
 
-                string query = "SELECT * FROM Vメーカー管理 WHERE " + filter + " ORDER BY メーカーコード DESC ";
+                string query = "SELECT * FROM Vメーカー管理 WHERE 1=1 AND " + filter + " ORDER BY メーカーコード DESC ";
 
                 Connect();
                 DataGridUtils.SetDataGridView(cn, query, this.dataGridView1);
 
 
+                MyApi myapi = new MyApi();
+                int xSize, ySize, intpixel, twipperdot;
+
+                //1インチ当たりのピクセル数 アクセスのサイズの引数がtwipなのでピクセルに変換する除算値を求める
+                intpixel = myapi.GetLogPixel();
+                twipperdot = myapi.GetTwipPerDot(intpixel);
+
+                intWindowHeight = this.Height;
+                intWindowWidth = this.Width;
+
+                // DataGridViewの設定
+                dataGridView1.Columns[0].DefaultCellStyle.BackColor = Color.FromArgb(255, 255, 200); // 薄い黄色
+                dataGridView1.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+
+                // 列の幅を設定 もとは恐らくtwipのためピクセルに直す
+
+                //0列目はaccessでは行ヘッダのため、ずらす
+                //dataGridView1.Columns[0].Width = 500 / twipperdot;
+                dataGridView1.Columns[0].Width = 1200 / twipperdot; //1150
+                dataGridView1.Columns[1].Width = 4000 / twipperdot;
+                //dataGridView1.Columns[2].Visible = false;
+                dataGridView1.Columns[3].Width = 1600 / twipperdot;
+                dataGridView1.Columns[4].Width = 1600 / twipperdot;
+                dataGridView1.Columns[5].Width = 2000 / twipperdot;
+                dataGridView1.Columns[6].Width = 3000 / twipperdot;
+                dataGridView1.Columns[7].Width = 2200 / twipperdot;//1300
+                dataGridView1.Columns[8].Width = 1200 / twipperdot;
+                dataGridView1.Columns[9].Width = 400 / twipperdot;
 
 
                 return dataGridView1.RowCount;
@@ -352,26 +370,20 @@ namespace u_net
 
         private void コマンドメール_Click(object sender, EventArgs e)
         {
-            //if (ActiveControl == コマンド印刷)
-            //{
-            //    if (previousControl != null)
-            //    {
-            //        previousControl.Focus();
-            //    }
-            //}
-            //MessageBox.Show("このコマンドは使用できません。", "保守コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
+          
+
+
+
+
+
+
         }
 
         private void コマンド印刷_Click(object sender, EventArgs e)
         {
-            //if (ActiveControl == コマンド印刷)
-            //{
-            //    if (previousControl != null)
-            //    {
-            //        previousControl.Focus();
-            //    }
-            //}
-            //MessageBox.Show("このコマンドは使用できません。", "保守コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            dataGridView1.Focus(); // DataGridViewにフォーカスを設定
+
+            MessageBox.Show("現在開発中です。", "印刷コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void コマンド抽出_Click(object sender, EventArgs e)
@@ -385,24 +397,14 @@ namespace u_net
         {
             dataGridView1.Focus(); // DataGridViewにフォーカスを設定
 
-            int selectedRowIndex = dataGridView1.CurrentCell.RowIndex;
-
-            if (selectedRowIndex >= 5)
-            {
-                dataGridView1.FirstDisplayedScrollingRowIndex = selectedRowIndex - 5;
-            }
+            MessageBox.Show("現在開発中です。", "入出力コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void コマンド初期化_Click(object sender, EventArgs e)
         {
-            if (ActiveControl == コマンド初期化)
-            {
-                if (previousControl != null)
-                {
-                    previousControl.Focus();
-                }
-            }
-            MessageBox.Show("このコマンドは使用できません。", "初期化コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            InitializeFilter();
+            DoUpdate();
+            Cleargrid(dataGridView1);
         }
 
         private void コマンド全表示_Click(object sender, EventArgs e)
@@ -414,20 +416,15 @@ namespace u_net
 
         private void コマンド更新_Click(object sender, EventArgs e)
         {
-            if (this.ActiveControl == this.コマンド入出力)
-            {
-                if (previousControl != null)
-                {
-                    previousControl.Focus();
-                }
-                DoUpdate();
-                Cleargrid(dataGridView1);
-            }
+  
+            DoUpdate();
+            Cleargrid(dataGridView1);
+            
         }
 
         private void コマンド検索_Click(object sender, EventArgs e)
         {
-            F_検索コード form = new F_検索コード(this, str検索コード);
+            F_検索コード form = new F_検索コード(this, null);
             form.ShowDialog();
         }
 
@@ -513,6 +510,13 @@ namespace u_net
             {
                 MessageBox.Show("KeyDown - " + ex.Message);
             }
+        }
+
+        private void F_メーカー管理_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            string LoginUserCode = "000";//テスト用 ログインユーザを実行中にどのように管理するか決まったら修正
+            LocalSetting test = new LocalSetting();
+            test.SavePlace(LoginUserCode, this);
         }
     }
 }
