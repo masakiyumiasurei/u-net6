@@ -27,6 +27,7 @@ namespace u_net
         private Control previousControl;
         private SqlConnection cn;
         private SqlTransaction tx;
+        public string args = "";
         private string BASE_CAPTION = "メーカー";
 
         
@@ -88,9 +89,8 @@ namespace u_net
                 int intWindowHeight = this.Height;
                 int intWindowWidth = this.Width;
 
-                string code = null;
 
-                if (string.IsNullOrEmpty(code))
+                if (string.IsNullOrEmpty(args))
                 {
                     // 新規モードへ
                     if (!GoNewMode())

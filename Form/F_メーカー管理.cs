@@ -16,15 +16,19 @@ namespace u_net
 {
     public partial class F_メーカー管理 : MidForm
     {
-        public string str検索コード = "ORD";
-        public string str基本型式名 = "";
-        public string strシリーズ名 = "";
+        public string str検索コード = CommonConstants.CH_MAKER;
+        public string strメーカーコード開始 = "";
+        public string strメーカーコード終了 = "";
+        public string strSearchCode = "";
+        public string strメーカー名 = "";
+        public string str担当者名 = "";
+        public string str担当者メールアドレス = "";
         public DateTime dtm更新日開始 = DateTime.MinValue;
         public DateTime dtm更新日終了 = DateTime.MinValue;
         public string str更新者名 = "";
-        public int intComposedChipMount = 0;
-        public int intIsUnit = 0;
-        public int lngDiscontinued = 0;
+        //public int intComposedChipMount = 0;
+        //public int intIsUnit = 0;
+        //public int lngDiscontinued = 0;
         public int lngDeleted = 0;      
 
         int intWindowHeight = 0;
@@ -43,26 +47,29 @@ namespace u_net
             cn = new SqlConnection(connectionString);
             cn.Open();
         }
-        public override void SearchCode(string searchcode)
+        public override void SearchCode(string codeString)
         {
-            MessageBox.Show(searchcode);
-            DoUpdate();
-            //this.textBox.Text = s;
+            strSearchCode = codeString;
+            strメーカーコード開始 = strSearchCode;
+            strメーカーコード終了 = strSearchCode;
+            if(DoUpdate() != 1)
+            {
+                MessageBox.Show("エラーが発生しました。");
+            }
+
         }
         private void InitializeFilter()
         {
-            this.str基本型式名 = "";
-            this.strシリーズ名 = "";
+            this.strメーカー名 = "";
+            this.str担当者名 = "";
+            this.str担当者メールアドレス = "";
             this.dtm更新日開始 = DateTime.MinValue;
             this.dtm更新日終了 = DateTime.MinValue;
             this.str更新者名 = "";
-            this.intIsUnit = 1;
-            this.lngDiscontinued = 1;
             this.lngDeleted = 1;
         }
         private void Form_Load(object sender, EventArgs e)
         {
-            //this.qメーカー管理TableAdapter.Fill(this.newDataSet.Qメーカー管理);
             MyApi myapi = new MyApi();
             int xSize, ySize, intpixel, twipperdot;
 
@@ -89,18 +96,16 @@ namespace u_net
 
             //0列目はaccessでは行ヘッダのため、ずらす
             //dataGridView1.Columns[0].Width = 500 / twipperdot;
-            dataGridView1.Columns[0].Width = 1250 / twipperdot; //1150
-            dataGridView1.Columns[1].Width = 3500 / twipperdot;
-            dataGridView1.Columns[2].Width = 1500 / twipperdot;
-            dataGridView1.Columns[3].Width = 500 / twipperdot;
-            dataGridView1.Columns[4].Width = 1350 / twipperdot;
-            dataGridView1.Columns[5].Width = 1350 / twipperdot;
-            dataGridView1.Columns[6].Width = 2200 / twipperdot;
-            dataGridView1.Columns[7].Width = 1400 / twipperdot;//1300
-            dataGridView1.Columns[8].Width = 500 / twipperdot;
-            dataGridView1.Columns[9].Width = 500 / twipperdot;
-            dataGridView1.Columns[10].Width = 500 / twipperdot;
-            dataGridView1.Columns[11].Width = 500 / twipperdot;
+            dataGridView1.Columns[0].Width = 1000 / twipperdot; //1150
+            dataGridView1.Columns[1].Width = 4000 / twipperdot;
+            dataGridView1.Columns[2].Width = 0 / twipperdot;
+            dataGridView1.Columns[3].Width = 1600 / twipperdot;
+            dataGridView1.Columns[4].Width = 1600 / twipperdot;
+            dataGridView1.Columns[5].Width = 2000 / twipperdot;
+            dataGridView1.Columns[6].Width = 3000 / twipperdot;
+            dataGridView1.Columns[7].Width = 2200 / twipperdot;//1300
+            dataGridView1.Columns[8].Width = 1200 / twipperdot;
+            dataGridView1.Columns[9].Width = 400 / twipperdot;
 
             myapi.GetFullScreen(out xSize, out ySize);
 
@@ -171,15 +176,37 @@ namespace u_net
             {
                 string filter = string.Empty;
 
-                // 基本型式名
-                if (!string.IsNullOrEmpty(str基本型式名))
+                // メーカーコード指定
+                if (!string.IsNullOrEmpty(strメーカーコード開始))
                 {
-                    filter += "基本型式名 LIKE '%" + str基本型式名 + "%' AND ";
+                    filter += string.Format("(メーカーコード BETWEEN '{0}' AND '{1}')",
+                                                                  strメーカーコード開始, strメーカーコード終了);
                 }
-                // シリーズ名
-                if (!string.IsNullOrEmpty(strシリーズ名))
+
+                // メーカー名指定
+                if (!string.IsNullOrEmpty(strメーカー名))
                 {
-                    filter += "シリーズ名 LIKE '%" + strシリーズ名 + "%' AND ";
+                    string[] arr1 = strメーカー名.Split(' ');
+                    foreach (var var1 in arr1)
+                    {
+                        string str1 = var1.ToString();
+                        if (!string.IsNullOrEmpty(str1))
+                        {
+                            filter += string.Format("メーカー名 LIKE '%{0}%'", str1);
+                        }
+                    }
+                }
+
+                // 担当者名指定
+                if (!string.IsNullOrEmpty(str担当者名))
+                {
+                    filter += string.Format("担当者名 LIKE '%{0}%'", str担当者名);
+                }
+
+                // 担当者メールアドレス指定
+                if (!string.IsNullOrEmpty(str担当者メールアドレス))
+                {
+                    filter += string.Format("担当者メールアドレス LIKE '%{0}%'", str担当者メールアドレス);
                 }
                 // 更新日時
                 if (dtm更新日開始 != DateTime.MinValue)
@@ -191,36 +218,7 @@ namespace u_net
                 {
                     filter += "更新者名 = '" + str更新者名 + "' AND ";
                 }
-                // チップマウントデータが構成されているかどうか
-                switch (intComposedChipMount)
-                {
-                    case 1:
-                        filter += "構成 IS NULL AND ";
-                        break;
-                    case 2:
-                        filter += "構成 IS NOT NULL AND ";
-                        break;
-                }
-                // ユニットかどうか
-                switch (intIsUnit)
-                {
-                    case 1:
-                        filter += "ユニ IS NULL AND ";
-                        break;
-                    case 2:
-                        filter += "ユニ IS NOT NULL AND ";
-                        break;
-                }
-                // 廃止
-                switch (lngDiscontinued)
-                {
-                    case 1:
-                        filter += "廃止 IS NULL AND ";
-                        break;
-                    case 2:
-                        filter += "廃止 IS NOT NULL AND ";
-                        break;
-                }
+              
 
                 // 削除
                 switch (lngDeleted)
@@ -237,40 +235,12 @@ namespace u_net
                     filter = filter.Substring(0, filter.Length - 5); // 最後の " AND " を削除
                 }
 
-                string query = "SELECT 商品コード, 基本型式名, シリーズ名, 在庫管理, 在庫数量, 在庫下限数量, " +
-                    "更新日時, 更新者名, 廃止, 削除, ユニ, 構成 " +
-                    "FROM (SELECT M商品.商品コード, M商品.商品名 AS 基本型式名, Mシリーズ.シリーズ名, " +
-                    "CASE WHEN M商品.シリーズコード IS NOT NULL THEN '○' ELSE NULL END AS 在庫管理, " +
-                    "Mシリーズ.在庫数量, Mシリーズ.在庫下限数量, M商品.更新日時, M社員.氏名 AS 更新者名, " +
-                    "CASE WHEN M商品.Discontinued = 0 THEN NULL ELSE '■' END AS 廃止, " +
-                    "CASE WHEN M商品.無効日時 IS NOT NULL THEN '■' ELSE NULL END AS 削除, " +
-                    "CASE WHEN M商品.IsUnit <> 0 THEN '■' ELSE NULL END AS ユニ, " +
-                    "CASE WHEN ItemCode IS NOT NULL THEN '■' ELSE NULL END AS 構成 " +
-                    "FROM M商品 LEFT OUTER JOIN ItemCode_ComposedMountChip ON M商品.商品コード = ItemCode_ComposedMountChip.ItemCode " +
-                    "LEFT OUTER JOIN Mシリーズ ON M商品.シリーズコード = Mシリーズ.シリーズコード " +
-                    "LEFT OUTER JOIN M社員 ON M商品.更新者コード = M社員.社員コード) AS T " +
-                    "WHERE " + filter;
+                string query = "SELECT * FROM Vメーカー管理 WHERE " + filter + " ORDER BY メーカーコード DESC ";
 
                 Connect();
                 DataGridUtils.SetDataGridView(cn, query, this.dataGridView1);
 
-                //using (var command = new SqlCommand(query, cn))
-                //{
-                //    // クエリの結果を取得するためのデータアダプターを使用してデータを取得
-                //    using (var adapter = new SqlDataAdapter(command))
-                //    {
-                //        var dataTable = new DataTable();
-                //        adapter.Fill(dataTable);
 
-                //        // DataTable を DataGridView にバインド
-                //        dataGridView1.DataSource = null; // データソースをクリア
-                //        dataGridView1.Rows.Clear();     // DataGridView内の行をクリア
-
-                //        dataGridView1.Refresh();
-                //        dataGridView1.Invalidate();
-                //        dataGridView1.DataSource = dataTable;
-                //    }
-                //}
 
 
                 return dataGridView1.RowCount;
@@ -310,7 +280,7 @@ namespace u_net
             }
         }
 
-        //ダブルクリックで商品フォームを開く　商品コードを渡す
+        //ダブルクリックでメーカーフォームを開く　メーカーコードを渡す
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             //if (e.Button != MouseButtons.Left) return; // 左ボタンのダブルクリック以外は無視
@@ -319,7 +289,7 @@ namespace u_net
             {
                 string selectedData = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString(); // 1列目のデータを取得
 
-                F_商品 targetform = new F_商品();
+                F_メーカー targetform = new F_メーカー();
 
                 targetform.args = selectedData;
                 targetform.ShowDialog();
@@ -380,16 +350,28 @@ namespace u_net
             this.Close();
         }
 
-        private void コマンド保守_Click(object sender, EventArgs e)
+        private void コマンドメール_Click(object sender, EventArgs e)
         {
-            if (ActiveControl == コマンド印刷)
-            {
-                if (previousControl != null)
-                {
-                    previousControl.Focus();
-                }
-            }
-            MessageBox.Show("このコマンドは使用できません。", "保守コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //if (ActiveControl == コマンド印刷)
+            //{
+            //    if (previousControl != null)
+            //    {
+            //        previousControl.Focus();
+            //    }
+            //}
+            //MessageBox.Show("このコマンドは使用できません。", "保守コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void コマンド印刷_Click(object sender, EventArgs e)
+        {
+            //if (ActiveControl == コマンド印刷)
+            //{
+            //    if (previousControl != null)
+            //    {
+            //        previousControl.Focus();
+            //    }
+            //}
+            //MessageBox.Show("このコマンドは使用できません。", "保守コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void コマンド抽出_Click(object sender, EventArgs e)
@@ -445,20 +427,19 @@ namespace u_net
 
         private void コマンド検索_Click(object sender, EventArgs e)
         {
-            str検索コード = "ORD";
             F_検索コード form = new F_検索コード(this, str検索コード);
             form.ShowDialog();
         }
 
-        private void コマンド商品_Click(object sender, EventArgs e)
+        private void コマンドメーカー_Click(object sender, EventArgs e)
         {
             if (dataGridView1.SelectedRows.Count > 0)
             {
                 // DataGridView1で選択された行が存在する場合
                 string selectedData = dataGridView1.SelectedRows[0].Cells[0].Value.ToString(); // 1列目のデータを取得
 
-                // 商品フォームを作成し、引数を設定して表示
-                F_商品 targetform = new F_商品();
+                // メーカーフォームを作成し、引数を設定して表示
+                F_メーカー targetform = new F_メーカー();
                 targetform.args = selectedData;
                 targetform.ShowDialog();
             }
@@ -489,16 +470,19 @@ namespace u_net
                         if (this.コマンド全表示.Enabled) コマンド全表示_Click(null, null);
                         break;
                     case Keys.F5:
-                        if (this.コマンドメーカー.Enabled) コマンド商品_Click(null, null);
+                        if (this.コマンドメーカー.Enabled) コマンドメーカー_Click(null, null);
+                        break;
+                    case Keys.F6:
+                        if (this.コマンドメール.Enabled) コマンドメール_Click(null, null);
                         break;
                     case Keys.F9:
-                        if (this.コマンド更新.Enabled) コマンド入出力_Click(null, null);
+                        if (this.コマンド更新.Enabled) コマンド更新_Click(null, null);
                         break;
                     case Keys.F10:
-                        if (this.コマンド印刷.Enabled) コマンド保守_Click(null, null);
+                        if (this.コマンド印刷.Enabled) コマンド印刷_Click(null, null);
                         break;
                     case Keys.F11:
-                        if (this.コマンド入出力.Enabled) コマンド更新_Click(null, null);
+                        if (this.コマンド入出力.Enabled) コマンド入出力_Click(null, null);
                         break;
                     case Keys.F12:
                         if (this.コマンド終了.Enabled) コマンド終了_Click(null, null);
@@ -511,8 +495,8 @@ namespace u_net
                                 // DataGridView1で選択された行が存在する場合
                                 string selectedData = dataGridView1.SelectedRows[0].Cells[0].Value.ToString(); // 1列目のデータを取得
 
-                                // 商品フォームを作成し、引数を設定して表示
-                                F_商品 targetform = new F_商品();
+                                // メーカーフォームを作成し、引数を設定して表示
+                                F_メーカー targetform = new F_メーカー();
                                 targetform.args = selectedData;
                                 targetform.ShowDialog();
                             }
