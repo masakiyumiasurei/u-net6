@@ -27,6 +27,7 @@ namespace u_net
         private Control previousControl;
         private SqlConnection cn;
         private SqlTransaction tx;
+        public string args = "";
         private string BASE_CAPTION = "メーカー";
 
         
@@ -88,9 +89,8 @@ namespace u_net
                 int intWindowHeight = this.Height;
                 int intWindowWidth = this.Width;
 
-                string code = null;
 
-                if (string.IsNullOrEmpty(code))
+                if (string.IsNullOrEmpty(args))
                 {
                     // 新規モードへ
                     if (!GoNewMode())
@@ -105,8 +105,10 @@ namespace u_net
                     {
                         throw new Exception("初期化に失敗しました。");
                     }
-                    //this.メーカーコード.Text = varOpenArgs.ToString();
-                    // コードを設定したことでイベント発生
+                    if (!string.IsNullOrEmpty(args))
+                    {
+                        this.メーカーコード.Text = args;
+                    }
                 }
 
                 // 成功時の処理
