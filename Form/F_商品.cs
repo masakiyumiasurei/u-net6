@@ -1365,56 +1365,52 @@ namespace u_net
 
                     // マイナス空間において挿入される番号を持つ新規レコードを追加する
                     DataRow newRow = dataTable.NewRow();
-                    newRow["商品コード"] = this.商品コード.Text; // CurrentCode はどこから来るかに注意
+                    newRow["商品コード"] = this.商品コード.Text; 
                     newRow["Revision"] = this.Revision.Text;
                     newRow["明細番号"] = -2 * (lngCurrent - 1) + lngBegin + 1;
                     dataTable.Rows.Add(newRow);
 
+                    // データソースを更新
+                    bindingSource.EndEdit();
+                    bindingSource.ResetBindings(false); // データソースをリフレッシュ
+
                     // 降順に並べ替える
-               //     dataTable.DefaultView.Sort = "明細番号 DESC";
+                    dataTable.DefaultView.Sort = "明細番号 DESC";
 
                     // 挿入したレコードをカレントレコードとする
-                //    bindingSource.Position = bindingSource.Find("明細番号", newRow["明細番号"]);
+                   bindingSource.Position = bindingSource.Find("明細番号", newRow["明細番号"]);
 
-                    // 正式な明細番号を振る
-               //     NumberDetails("dgv明細番号");
+                    // 正式な明細番号を振る　ここで1から振られない
+                   // NumberDetails("dgv明細番号");
+                UpdateAndRefreshGridView(dataTable, "dgv明細番号");
 
-                    //// 一時的にDataGridViewの描画を無効にする
-                    //dataGridView1.SuspendLayout();
+                //// 一時的にDataGridViewの描画を無効にする
+                //dataGridView1.SuspendLayout();
 
-                    //// 現在の行番号を取得
-                    //int currentRowIndex = currentRow.Index;
-                    //int currentDetailNumber = Convert.ToInt32(currentRow.Cells["dgv明細番号"].Value);
 
-                    //// 新しい行を挿入
-                    ////dataGridView1.Rows.Insert(currentRowIndex, 1);
-                    //DataGridViewRow newRow = dataGridView1.Rows[currentRowIndex];
-                    //dt.Rows.Add(newRow);
+                //// 描画を再開
+                //dataGridView1.ResumeLayout();
 
-                    //// 既定値の設定
-                    //newRow.Cells["dgv商品コード"].Value = this.商品コード.Text;
-                    //newRow.Cells["dgvRevision"].Value = this.Revision.Text;
-                    //newRow.Cells["dgv明細番号"].Value = detailNumber.ToString();
-                    //detailNumber++; // 連番を増やす
-
-                    //// 明細番号を設定
-                    //int newDetailNumber = -2 * (currentDetailNumber - 1) - (currentDetailNumber % 2 == 0 ? 1 : 2);
-                    //newRow.Cells["dgv明細番号"].Value = newDetailNumber.ToString();
-
-                    //// 明細番号を再計算
-                    //NumberDetails("dgv明細番号");
-
-                    //// 新しい行を選択
-                    //dataGridView1.CurrentCell = newRow.Cells[0];
-
-                    //// 描画を再開
-                    //dataGridView1.ResumeLayout();
-                
             }
             catch (Exception ex)
             {
                 Debug.WriteLine("行挿入ボタン_Click - " + ex.Message);
             }
+        }
+
+        private void UpdateAndRefreshGridView(DataTable dataTable, string fieldName, long startValue = 1, long offset = 1)
+        {
+            long lngi = startValue;
+
+            foreach (DataRow row in dataTable.Rows)
+            {
+                row[fieldName] = lngi.ToString();
+                lngi += offset;
+            }
+
+            // DataGridViewにデータを再バインド
+            BindingSource bindingSource = (BindingSource)dataGridView1.DataSource;
+            bindingSource.ResetBindings(false);
         }
 
     }
