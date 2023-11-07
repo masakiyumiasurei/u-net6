@@ -220,7 +220,7 @@ namespace u_net
                 this.コマンド複写.Enabled = false;
                 // this.コマンド確定.Enabled = false;
                 this.コマンド登録.Enabled = false;
-                if (!string.IsNullOrEmpty(this.削除日時.Text))
+                if (!string.IsNullOrEmpty(this.過不足数量.Text))
                 {
                     this.削除.Text = "■";
                 }
@@ -343,7 +343,7 @@ namespace u_net
         {
             get
             {
-                bool isEmptyOrDbNull = string.IsNullOrEmpty(this.削除日時.Text) || Convert.IsDBNull(this.削除日時.Text);
+                bool isEmptyOrDbNull = string.IsNullOrEmpty(this.過不足数量.Text) || Convert.IsDBNull(this.過不足数量.Text);
 
                 return !isEmptyOrDbNull;
             }
@@ -388,11 +388,9 @@ namespace u_net
                         varSaved1 = objControl1.Text;
                         varSaved2 = objControl2.Text;
                         varSaved3 = objControl3.Text;
-                        varSaved7 = ActiveDate.Text;
                         objControl1.Text = now.ToString();
                         objControl2.Text = CommonConstants.LoginUserCode;
                         objControl3.Text = CommonConstants.LoginUserFullName;
-                        ActiveDate.Text = now.ToString();
                     }
 
                     objControl4 = 更新日時;
@@ -1052,14 +1050,12 @@ namespace u_net
                     // GUI更新
                     if (this.IsDeleted)
                     {
-                        this.削除日時.Text = null;
-                        this.削除者コード.Text = null;
+                        this.過不足数量.Text = null;
                         this.削除.Text = null;
                     }
                     else
                     {
-                        this.削除日時.Text = deleteTime.ToString();
-                        this.削除者コード.Text = deleteUser;
+                        this.過不足数量.Text = deleteTime.ToString();
                         this.削除.Text = "■";
                     }
 
@@ -1095,29 +1091,7 @@ namespace u_net
             //仕入先Form.Show();
         }
 
-        private void コマンドメール_Click(object sender, EventArgs e)
-        {
-            string toEmail = Convert.ToString(担当者メールアドレス.Text);
-
-            if (string.IsNullOrEmpty(toEmail))
-            {
-                MessageBox.Show("メールアドレスを入力してください。", "メールコマンド", MessageBoxButtons.OK);
-                担当者メールアドレス.Focus();
-                return;
-            }
-
-            // デフォルトのメールクライアントを起動して新しいメールを作成
-            try
-            {
-                string mailtoLink = "mailto:" + toEmail;
-                System.Diagnostics.Process.Start(mailtoLink);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("メールを起動できませんでした。\nエラー: " + ex.Message, "メールコマンド", MessageBoxButtons.OK);
-            }
-        }
-
+       
         private void コマンド印刷_Click(object sender, EventArgs e)
         {
             // デスクトップフォルダのパスを取得
@@ -1252,7 +1226,7 @@ namespace u_net
                     if (コマンドメーカー.Enabled)
                     {
                         コマンドメーカー.Focus();
-                        コマンドメール_Click(sender, e);
+ 
                     }
                     break;
                 case Keys.F8:
@@ -1353,47 +1327,13 @@ namespace u_net
         }
 
 
-        private void ウェブアドレス_Click(object sender, EventArgs e)
-        {
-            string inputText = ウェブアドレス.Text;
-
-            // 入力が有効な URL の形式であるかを確認
-            if (OriginalClass.IsValidUrl(inputText))
-            {
-                OriginalClass.OpenUrl(inputText);
-
-            }
-        }
+      
 
 
 
 
 
-        private async void 郵便番号_Validated(object sender, EventArgs e)
-        {
-            // 郵便番号のテキストボックスの内容を取得
-            string zipCode = 郵便番号.Text;
-
-            // 郵便番号が正しい形式かどうかを確認
-            if (OriginalClass.IsValidZipCode(zipCode))
-            {
-                // 郵便番号APIを使用して住所情報を取得
-                string address = await OriginalClass.GetAddressFromZipCode(zipCode);
-                住所1.Text = address;
-            }
-            else
-            {
-                // 郵便番号が正しい形式でない場合、エラーメッセージなどを表示
-                住所1.Text = null;
-            }
-
-
-            UpdatedControl((Control)sender);
-
-        }
-
-
-
+       
 
 
 
@@ -1771,6 +1711,8 @@ namespace u_net
         {
             toolStripStatusLabel2.Text = "各種項目の説明";
         }
+
+     
     }
 
 
