@@ -91,7 +91,7 @@ namespace u_net
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label4 = new System.Windows.Forms.Label();
             this.Supplier1Name = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.仕入先1コード検索ボタン = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.仕入先1コード = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
@@ -103,7 +103,7 @@ namespace u_net
             this.版数_ラベル = new System.Windows.Forms.Label();
             this.過不足数量 = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.Revision = new System.Windows.Forms.TextBox();
+            this.版数 = new System.Windows.Forms.TextBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
@@ -115,7 +115,7 @@ namespace u_net
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label5 = new System.Windows.Forms.Label();
             this.Supplier2Name = new System.Windows.Forms.TextBox();
-            this.button2 = new System.Windows.Forms.Button();
+            this.仕入先2コード検索ボタン = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.仕入先2コード = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
@@ -123,7 +123,7 @@ namespace u_net
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.label16 = new System.Windows.Forms.Label();
             this.Supplier3Name = new System.Windows.Forms.TextBox();
-            this.button3 = new System.Windows.Forms.Button();
+            this.仕入先3コード検索ボタン = new System.Windows.Forms.Button();
             this.label18 = new System.Windows.Forms.Label();
             this.仕入先3コード = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
@@ -164,7 +164,7 @@ namespace u_net
             this.ChemSherpaVersion = new System.Windows.Forms.TextBox();
             this.label33 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.廃止 = new System.Windows.Forms.CheckBox();
             this.入数 = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.単位数量 = new System.Windows.Forms.TextBox();
@@ -187,6 +187,9 @@ namespace u_net
             this.部品使用先 = new System.Windows.Forms.DataGridView();
             this.CalcInventoryCode = new System.Windows.Forms.ComboBox();
             this.受入検査ランク = new System.Windows.Forms.ComboBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -699,10 +702,6 @@ namespace u_net
             this.品名.Name = "品名";
             this.品名.Size = new System.Drawing.Size(466, 20);
             this.品名.TabIndex = 6;
-            this.品名.TextChanged += new System.EventHandler(this.メーカー名_TextChanged);
-            this.品名.Enter += new System.EventHandler(this.メーカー名_Enter);
-            this.品名.Leave += new System.EventHandler(this.メーカー名_Leave);
-            this.品名.Validated += new System.EventHandler(this.メーカー名_Validated);
             // 
             // メーカー名_ラベル
             // 
@@ -769,7 +768,7 @@ namespace u_net
             // 
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.Supplier1Name);
-            this.groupBox1.Controls.Add(this.button1);
+            this.groupBox1.Controls.Add(this.仕入先1コード検索ボタン);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.仕入先1コード);
             this.groupBox1.Controls.Add(this.label17);
@@ -808,16 +807,16 @@ namespace u_net
             this.Supplier1Name.TabIndex = 10010;
             this.Supplier1Name.TabStop = false;
             // 
-            // button1
+            // 仕入先1コード検索ボタン
             // 
-            this.button1.Location = new System.Drawing.Point(296, 20);
-            this.button1.Margin = new System.Windows.Forms.Padding(4);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(29, 23);
-            this.button1.TabIndex = 10009;
-            this.button1.TabStop = false;
-            this.button1.Text = "▼";
-            this.button1.UseVisualStyleBackColor = true;
+            this.仕入先1コード検索ボタン.Location = new System.Drawing.Point(296, 20);
+            this.仕入先1コード検索ボタン.Margin = new System.Windows.Forms.Padding(4);
+            this.仕入先1コード検索ボタン.Name = "仕入先1コード検索ボタン";
+            this.仕入先1コード検索ボタン.Size = new System.Drawing.Size(29, 23);
+            this.仕入先1コード検索ボタン.TabIndex = 10009;
+            this.仕入先1コード検索ボタン.TabStop = false;
+            this.仕入先1コード検索ボタン.Text = "▼";
+            this.仕入先1コード検索ボタン.UseVisualStyleBackColor = true;
             // 
             // label2
             // 
@@ -870,10 +869,6 @@ namespace u_net
             this.仕入先1単価.Name = "仕入先1単価";
             this.仕入先1単価.Size = new System.Drawing.Size(139, 20);
             this.仕入先1単価.TabIndex = 15;
-            this.仕入先1単価.TextChanged += new System.EventHandler(this.仕入先3_TextChanged);
-            this.仕入先1単価.Enter += new System.EventHandler(this.仕入先3_Enter);
-            this.仕入先1単価.Leave += new System.EventHandler(this.仕入先3_Leave);
-            this.仕入先1単価.Validated += new System.EventHandler(this.仕入先3_Validated);
             // 
             // 仕入先3_ラベル
             // 
@@ -914,10 +909,6 @@ namespace u_net
             this.型番.Name = "型番";
             this.型番.Size = new System.Drawing.Size(466, 20);
             this.型番.TabIndex = 8;
-            this.型番.TextChanged += new System.EventHandler(this.メーカー名フリガナ_TextChanged);
-            this.型番.Enter += new System.EventHandler(this.メーカー名フリガナ_Enter);
-            this.型番.Leave += new System.EventHandler(this.メーカー名フリガナ_Leave);
-            this.型番.Validated += new System.EventHandler(this.メーカー名フリガナ_Validated);
             // 
             // メーカーコード
             // 
@@ -929,10 +920,6 @@ namespace u_net
             this.メーカーコード.Name = "メーカーコード";
             this.メーカーコード.Size = new System.Drawing.Size(139, 20);
             this.メーカーコード.TabIndex = 10;
-            this.メーカーコード.TextChanged += new System.EventHandler(this.メーカー省略名_TextChanged);
-            this.メーカーコード.Enter += new System.EventHandler(this.メーカー省略名_Enter);
-            this.メーカーコード.Leave += new System.EventHandler(this.メーカー省略名_Leave);
-            this.メーカーコード.Validated += new System.EventHandler(this.メーカー省略名_Validated);
             // 
             // 版数_ラベル
             // 
@@ -959,18 +946,18 @@ namespace u_net
             this.label8.Text = "過不足数量";
             this.label8.Visible = false;
             // 
-            // Revision
+            // 版数
             // 
-            this.Revision.BackColor = System.Drawing.SystemColors.Window;
-            this.Revision.Enabled = false;
-            this.Revision.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.Revision.ImeMode = System.Windows.Forms.ImeMode.Off;
-            this.Revision.Location = new System.Drawing.Point(400, 50);
-            this.Revision.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.Revision.Multiline = true;
-            this.Revision.Name = "Revision";
-            this.Revision.Size = new System.Drawing.Size(139, 23);
-            this.Revision.TabIndex = 4;
+            this.版数.BackColor = System.Drawing.SystemColors.Window;
+            this.版数.Enabled = false;
+            this.版数.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.版数.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.版数.Location = new System.Drawing.Point(400, 50);
+            this.版数.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.版数.Multiline = true;
+            this.版数.Name = "版数";
+            this.版数.Size = new System.Drawing.Size(139, 23);
+            this.版数.TabIndex = 4;
             // 
             // statusStrip1
             // 
@@ -1056,7 +1043,7 @@ namespace u_net
             // 
             this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Controls.Add(this.Supplier2Name);
-            this.groupBox2.Controls.Add(this.button2);
+            this.groupBox2.Controls.Add(this.仕入先2コード検索ボタン);
             this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Controls.Add(this.仕入先2コード);
             this.groupBox2.Controls.Add(this.label9);
@@ -1095,16 +1082,16 @@ namespace u_net
             this.Supplier2Name.TabIndex = 10010;
             this.Supplier2Name.TabStop = false;
             // 
-            // button2
+            // 仕入先2コード検索ボタン
             // 
-            this.button2.Location = new System.Drawing.Point(296, 20);
-            this.button2.Margin = new System.Windows.Forms.Padding(4);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(29, 23);
-            this.button2.TabIndex = 10009;
-            this.button2.TabStop = false;
-            this.button2.Text = "▼";
-            this.button2.UseVisualStyleBackColor = true;
+            this.仕入先2コード検索ボタン.Location = new System.Drawing.Point(296, 20);
+            this.仕入先2コード検索ボタン.Margin = new System.Windows.Forms.Padding(4);
+            this.仕入先2コード検索ボタン.Name = "仕入先2コード検索ボタン";
+            this.仕入先2コード検索ボタン.Size = new System.Drawing.Size(29, 23);
+            this.仕入先2コード検索ボタン.TabIndex = 10009;
+            this.仕入先2コード検索ボタン.TabStop = false;
+            this.仕入先2コード検索ボタン.Text = "▼";
+            this.仕入先2コード検索ボタン.UseVisualStyleBackColor = true;
             // 
             // label6
             // 
@@ -1162,7 +1149,7 @@ namespace u_net
             // 
             this.groupBox3.Controls.Add(this.label16);
             this.groupBox3.Controls.Add(this.Supplier3Name);
-            this.groupBox3.Controls.Add(this.button3);
+            this.groupBox3.Controls.Add(this.仕入先3コード検索ボタン);
             this.groupBox3.Controls.Add(this.label18);
             this.groupBox3.Controls.Add(this.仕入先3コード);
             this.groupBox3.Controls.Add(this.label19);
@@ -1201,16 +1188,16 @@ namespace u_net
             this.Supplier3Name.TabIndex = 10010;
             this.Supplier3Name.TabStop = false;
             // 
-            // button3
+            // 仕入先3コード検索ボタン
             // 
-            this.button3.Location = new System.Drawing.Point(296, 20);
-            this.button3.Margin = new System.Windows.Forms.Padding(4);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(29, 23);
-            this.button3.TabIndex = 10009;
-            this.button3.TabStop = false;
-            this.button3.Text = "▼";
-            this.button3.UseVisualStyleBackColor = true;
+            this.仕入先3コード検索ボタン.Location = new System.Drawing.Point(296, 20);
+            this.仕入先3コード検索ボタン.Margin = new System.Windows.Forms.Padding(4);
+            this.仕入先3コード検索ボタン.Name = "仕入先3コード検索ボタン";
+            this.仕入先3コード検索ボタン.Size = new System.Drawing.Size(29, 23);
+            this.仕入先3コード検索ボタン.TabIndex = 10009;
+            this.仕入先3コード検索ボタン.TabStop = false;
+            this.仕入先3コード検索ボタン.Text = "▼";
+            this.仕入先3コード検索ボタン.UseVisualStyleBackColor = true;
             // 
             // label18
             // 
@@ -1733,14 +1720,14 @@ namespace u_net
             this.label7.Text = "廃止(&B)";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // checkBox1
+            // 廃止
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(1138, 206);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(15, 14);
-            this.checkBox1.TabIndex = 10036;
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.廃止.AutoSize = true;
+            this.廃止.Location = new System.Drawing.Point(1138, 206);
+            this.廃止.Name = "廃止";
+            this.廃止.Size = new System.Drawing.Size(15, 14);
+            this.廃止.TabIndex = 10036;
+            this.廃止.UseVisualStyleBackColor = true;
             // 
             // 入数
             // 
@@ -1934,7 +1921,7 @@ namespace u_net
             this.部品集合コード.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.部品集合コード.Multiline = true;
             this.部品集合コード.Name = "部品集合コード";
-            this.部品集合コード.Size = new System.Drawing.Size(139, 23);
+            this.部品集合コード.Size = new System.Drawing.Size(115, 23);
             this.部品集合コード.TabIndex = 10055;
             this.部品集合コード.TabStop = false;
             // 
@@ -2019,10 +2006,50 @@ namespace u_net
             this.受入検査ランク.Size = new System.Drawing.Size(139, 21);
             this.受入検査ランク.TabIndex = 67;
             // 
+            // textBox1
+            // 
+            this.textBox1.BackColor = System.Drawing.SystemColors.Window;
+            this.textBox1.Enabled = false;
+            this.textBox1.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.textBox1.Location = new System.Drawing.Point(1025, 332);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(27, 23);
+            this.textBox1.TabIndex = 10061;
+            this.textBox1.TabStop = false;
+            // 
+            // textBox2
+            // 
+            this.textBox2.BackColor = System.Drawing.SystemColors.Window;
+            this.textBox2.Enabled = false;
+            this.textBox2.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.textBox2.Location = new System.Drawing.Point(1051, 332);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.textBox2.Multiline = true;
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(387, 23);
+            this.textBox2.TabIndex = 10062;
+            this.textBox2.TabStop = false;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(1439, 332);
+            this.button1.Margin = new System.Windows.Forms.Padding(4);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(29, 23);
+            this.button1.TabIndex = 10012;
+            this.button1.TabStop = false;
+            this.button1.Text = "…";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
             // F_部品
             // 
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1486, 798);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.受入検査ランク);
             this.Controls.Add(this.CalcInventoryCode);
             this.Controls.Add(this.部品使用先);
@@ -2046,7 +2073,7 @@ namespace u_net
             this.Controls.Add(this.入数);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.廃止);
             this.Controls.Add(this.label33);
             this.Controls.Add(this.label32);
             this.Controls.Add(this.ChemSherpaVersion);
@@ -2074,7 +2101,7 @@ namespace u_net
             this.Controls.Add(this.メーカーコード検索ボタン);
             this.Controls.Add(this.部品コード);
             this.Controls.Add(this.statusStrip1);
-            this.Controls.Add(this.Revision);
+            this.Controls.Add(this.版数);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.更新日時);
             this.Controls.Add(this.コマンド終了);
@@ -2244,14 +2271,14 @@ namespace u_net
         private TextBox 過不足数量;
         private Label label17;
         private Label label8;
-        private TextBox Revision;
+        private TextBox 版数;
         private StatusStrip statusStrip1;
         private ToolStripStatusLabel toolStripStatusLabel1;
         private ToolStripStatusLabel toolStripStatusLabel2;
         private ComboBox 部品コード;
         private Label label4;
         private TextBox Supplier1Name;
-        private Button button1;
+        private Button 仕入先1コード検索ボタン;
         private Label label2;
         private TextBox 仕入先1コード;
         private Button メーカーコード検索ボタン;
@@ -2261,7 +2288,7 @@ namespace u_net
         private GroupBox groupBox2;
         private Label label5;
         private TextBox Supplier2Name;
-        private Button button2;
+        private Button 仕入先2コード検索ボタン;
         private Label label6;
         private TextBox 仕入先2コード;
         private Label label9;
@@ -2269,7 +2296,7 @@ namespace u_net
         private GroupBox groupBox3;
         private Label label16;
         private TextBox Supplier3Name;
-        private Button button3;
+        private Button 仕入先3コード検索ボタン;
         private Label label18;
         private TextBox 仕入先3コード;
         private Label label19;
@@ -2310,7 +2337,7 @@ namespace u_net
         private TextBox ChemSherpaVersion;
         private Label label33;
         private Label label7;
-        private CheckBox checkBox1;
+        private CheckBox 廃止;
         private TextBox 入数;
         private Label label11;
         private TextBox 単位数量;
@@ -2333,6 +2360,9 @@ namespace u_net
         private DataGridView 部品使用先;
         private ComboBox CalcInventoryCode;
         private ComboBox 受入検査ランク;
+        private TextBox textBox1;
+        private TextBox textBox2;
+        private Button button1;
     }
 }
 

@@ -76,15 +76,101 @@ namespace u_net
             LocalSetting localSetting = new LocalSetting();
             localSetting.LoadPlace(LoginUserCode, this);
 
+            MyApi myapi = new MyApi();
+            int xSize, ySize, intpixel, twipperdot;
+
+            //1インチ当たりのピクセル数 アクセスのサイズの引数がtwipなのでピクセルに変換する除算値を求める
+            intpixel = myapi.GetLogPixel();
+            twipperdot = myapi.GetTwipPerDot(intpixel);
+
+            // DataGridViewの設定
+            部品使用先.AllowUserToResizeColumns = true;
+            部品使用先.Font = new Font("MS ゴシック", 10);
+            部品使用先.DefaultCellStyle.SelectionBackColor = Color.FromArgb(210, 210, 255);
+            部品使用先.DefaultCellStyle.SelectionForeColor = Color.Black;
+            部品使用先.GridColor = Color.FromArgb(230, 230, 230);
+            部品使用先.ColumnHeadersDefaultCellStyle.Font = new Font("MS ゴシック", 9);
+            部品使用先.DefaultCellStyle.Font = new Font("MS ゴシック", 10);
+            部品使用先.DefaultCellStyle.ForeColor = Color.Black;
+
+
+
+            this.JampAis.DataSource = new KeyValuePair<int, String>[] {
+                new KeyValuePair<int, String>(2, "有り"),
+                new KeyValuePair<int, String>(1, "無し"),
+            };
+            this.JampAis.DisplayMember = "Value";
+            this.JampAis.ValueMember = "Key";
+
+            this.JampAis.DataSource = new KeyValuePair<int, String>[] {
+                new KeyValuePair<int, String>(2, "有り"),
+                new KeyValuePair<int, String>(1, "無し"),
+            };
+            this.JampAis.DisplayMember = "Value";
+            this.JampAis.ValueMember = "Key";
+
+            this.JampAis.DataSource = new KeyValuePair<int, String>[] {
+                new KeyValuePair<int, String>(2, "有り"),
+                new KeyValuePair<int, String>(1, "無し"),
+            };
+            this.JampAis.DisplayMember = "Value";
+            this.JampAis.ValueMember = "Key";
+
+            this.JampAis.DataSource = new KeyValuePair<int, String>[] {
+                new KeyValuePair<int, String>(2, "有り"),
+                new KeyValuePair<int, String>(1, "無し"),
+            };
+            this.JampAis.DisplayMember = "Value";
+            this.JampAis.ValueMember = "Key";
+
+            this.JampAis.DataSource = new KeyValuePair<int, String>[] {
+                new KeyValuePair<int, String>(2, "有り"),
+                new KeyValuePair<int, String>(1, "無し"),
+            };
+            this.JampAis.DisplayMember = "Value";
+            this.JampAis.ValueMember = "Key";
+
+            this.JampAis.DataSource = new KeyValuePair<int, String>[] {
+                new KeyValuePair<int, String>(2, "有り"),
+                new KeyValuePair<int, String>(1, "無し"),
+            };
+            this.JampAis.DisplayMember = "Value";
+            this.JampAis.ValueMember = "Key";
+
+            this.JampAis.DataSource = new KeyValuePair<int, String>[] {
+                new KeyValuePair<int, String>(2, "有り"),
+                new KeyValuePair<int, String>(1, "無し"),
+            };
+            this.JampAis.DisplayMember = "Value";
+            this.JampAis.ValueMember = "Key";
+
+            this.JampAis.DataSource = new KeyValuePair<int, String>[] {
+                new KeyValuePair<int, String>(2, "有り"),
+                new KeyValuePair<int, String>(1, "無し"),
+            };
+            this.JampAis.DisplayMember = "Value";
+            this.JampAis.ValueMember = "Key";
+
+            this.JampAis.DataSource = new KeyValuePair<int, String>[] {
+                new KeyValuePair<int, String>(2, "有り"),
+                new KeyValuePair<int, String>(1, "無し"),
+            };
+            this.JampAis.DisplayMember = "Value";
+            this.JampAis.ValueMember = "Key";
+
+            this.JampAis.DataSource = new KeyValuePair<int, String>[] {
+                new KeyValuePair<int, String>(2, "有り"),
+                new KeyValuePair<int, String>(1, "無し"),
+            };
+            this.JampAis.DisplayMember = "Value";
+            this.JampAis.ValueMember = "Key";
+
+
+
+
             try
             {
                 this.SuspendLayout();
-                //DoWait("しばらくお待ちください...");
-
-                //IntPtr hIcon = LoadIconFromPath(CurrentProject.Path + "\\card.ico");
-                //SendMessage(this.Handle, WM_SETICON, new IntPtr(1), hIcon);
-
-                //object varOpenArgs = this.OpenArgs;
 
                 int intWindowHeight = this.Height;
                 int intWindowWidth = this.Width;
@@ -92,22 +178,14 @@ namespace u_net
 
                 if (string.IsNullOrEmpty(args))
                 {
-                    // 新規モードへ
-                    if (!GoNewMode())
-                    {
-                        throw new Exception("初期化に失敗しました。");
-                    }
+                    コマンド新規_Click(sender, e);
                 }
                 else
                 {
-                    // 修正モードへ
-                    if (!GoModifyMode())
-                    {
-                        throw new Exception("初期化に失敗しました。");
-                    }
+                    コマンド読込_Click(sender,e);
                     if (!string.IsNullOrEmpty(args))
                     {
-                        this.メーカーコード.Text = args;
+                        this.部品コード.Text = args;
                     }
                 }
 
@@ -139,7 +217,7 @@ namespace u_net
                 string code = FunctionClass.GetNewCode(cn, CommonConstants.CH_MAKER);
                 this.メーカーコード.Text = code.Substring(code.Length - 8);
                 // this.メーカーコード.Text = 採番(objConnection, CH_MAKER).Substring(採番(objConnection, CH_MAKER).Length - 8);
-                this.Revision.Text = 1.ToString();
+                this.版数.Text = 1.ToString();
 
                 // 編集による変更がない状態へ遷移する
                 ChangedData(false);
@@ -334,7 +412,7 @@ namespace u_net
         {
             get
             {
-                return string.IsNullOrEmpty(Revision.Text) ? 0 : int.Parse(Revision.Text);
+                return string.IsNullOrEmpty(版数.Text) ? 0 : int.Parse(版数.Text);
             }
         }
 
@@ -409,7 +487,7 @@ namespace u_net
 
 
 
-                    string strwhere = " メーカーコード='" + this.メーカーコード.Text + "' and Revision=" + this.Revision.Text;
+                    string strwhere = " メーカーコード='" + this.メーカーコード.Text + "' and Revision=" + this.版数.Text;
 
                     if (!DataUpdater.UpdateOrInsertDataFrom(this, cn, "Mメーカー", strwhere, "メーカーコード", transaction))
                     {
@@ -459,209 +537,7 @@ namespace u_net
         }
 
 
-        //private bool SaveData(string SaveCode, int SaveEdition = -1)
-        //{
-        //    try
-        //    {
-        //        DateTime now = DateTime.Now;
-        //        Control objControl1 = null;
-        //        Control objControl2 = null;
-        //        Control objControl3 = null;
-        //        Control objControl4 = null;
-        //        Control objControl5 = null;
-        //        Control objControl6 = null;
-        //        object varSaved1 = null;
-        //        object varSaved2 = null;
-        //        object varSaved3 = null;
-        //        object varSaved4 = null;
-        //        object varSaved5 = null;
-        //        object varSaved6 = null;
-        //        object varSaved7 = null;
-
-        //        bool isNewData = IsNewData;
-
-        //        if (isNewData)
-        //        {
-        //            objControl1 = 作成日時;
-        //            objControl2 = 作成者コード;
-        //            objControl3 = 作成者名;
-        //            varSaved1 = objControl1.Text;
-        //            varSaved2 = objControl2.Text;
-        //            varSaved3 = objControl3.Text;
-        //            varSaved7 = ActiveDate.Text;
-        //            objControl1.Text = now.ToString();
-        //            objControl2.Text = CommonConstants.LoginUserCode;
-        //            objControl3.Text = CommonConstants.LoginUserFullName;
-        //            ActiveDate.Text = now.ToString();
-        //        }
-
-        //        objControl4 = 更新日時;
-        //        objControl5 = 更新者コード;
-        //        objControl6 = 更新者名;
-
-        //        // 登録前の状態を退避しておく
-        //        varSaved4 = objControl4.Text;
-        //        varSaved5 = objControl5.Text;
-        //        varSaved6 = objControl6.Text;
-
-        //        // 値の設定
-        //        objControl4.Text = now.ToString();
-        //        objControl5.Text = CommonConstants.LoginUserCode;
-        //        objControl6.Text = CommonConstants.LoginUserFullName;
-
-        //        // 登録処理
-        //        if (RegTrans(SaveCode, SaveEdition))
-        //        {
-        //            // 登録成功
-        //            return true;
-        //        }
-        //        else
-        //        {
-        //            // 登録失敗
-        //            if (isNewData)
-        //            {
-        //                objControl1.Text = (string)varSaved1;
-        //                objControl2.Text = (string)varSaved2;
-        //                objControl3.Text = (string)varSaved3;
-        //                ActiveDate.Text = (string)varSaved7;
-        //            }
-
-        //            objControl4.Text = (string)varSaved4;
-        //            objControl5.Text = (string)varSaved5;
-        //            objControl6.Text = (string)varSaved6;
-        //        }
-
-        //        return false;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Debug.Print(this.Name + "_SaveData - " + ex.Message);
-        //        return false;
-        //    }
-        //}
-
-
-
-
-
-
-        //public bool RegTrans(string codeString, int editionNumber = -1)
-        //{
-        //    try
-        //    {
-        //        bool success = false;
-        //        string strKey = "";
-
-        //        Connect();
-
-        //        using (SqlTransaction trans = cn.BeginTransaction())
-        //        {
-        //            try
-        //            {
-        //                // ヘッダ部の登録
-        //                if (SaveHeader(this, codeString, editionNumber))
-        //                {
-        //                    trans.Commit(); // トランザクション完了
-        //                    success = true;
-        //                }
-        //                else
-        //                {
-        //                    trans.Rollback(); // 変更をキャンセル
-        //                }
-        //            }
-        //            catch (Exception ex)
-        //            {
-        //                trans.Rollback(); // 変更をキャンセル
-        //                throw ex;
-        //            }
-        //        }
-
-        //        return success;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        if (cn.State == ConnectionState.Open)
-        //        {
-        //            cn.Close(); // データベース接続を閉じる
-        //        }
-
-        //        Debug.Print(this.Name + "_RegTrans - " + ex.Message);
-        //        return false;
-        //    }
-        //}
-
-        //public bool SaveHeader(Form formObject, string codeString, int editionNumber = -1)
-        //{
-        //    try
-        //    {
-        //        bool success = false;
-
-        //        Connect();
-
-        //        using (SqlTransaction trans = cn.BeginTransaction())
-        //        {
-        //            try
-        //            {
-        //                string strKey = (editionNumber == -1) ? "メーカーコード = @CodeString" : "メーカーコード = @CodeString AND Revision = @EditionNumber";
-        //                string strSQL = "SELECT * FROM Mメーカー WHERE " + strKey;
-
-        //                using (SqlCommand cmd = new SqlCommand(strSQL, cn, trans))
-        //                {
-        //                    cmd.Parameters.AddWithValue("@CodeString", codeString);
-        //                    if (editionNumber != -1)
-        //                    {
-        //                        cmd.Parameters.AddWithValue("@EditionNumber", editionNumber);
-        //                    }
-
-        //                    using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
-        //                    {
-        //                        DataTable dataTable = new DataTable();
-        //                        adapter.Fill(dataTable);
-
-        //                        if (dataTable.Rows.Count == 0)
-        //                        {
-        //                            // 新しいレコードを追加
-        //                            DataRow newRow = dataTable.NewRow();
-        //                            FunctionClass.SetForm2Table(formObject, newRow, "", "");
-        //                            dataTable.Rows.Add(newRow);
-        //                        }
-        //                        else
-        //                        {
-        //                            // 既存のレコードを更新
-        //                            FunctionClass.SetForm2Table(formObject, dataTable.Rows[0], "メーカーコード", "Revision");
-        //                        }
-
-        //                        // データベースに変更を保存
-        //                        using (SqlCommandBuilder builder = new SqlCommandBuilder(adapter))
-        //                        {
-        //                            adapter.Update(dataTable);
-        //                        }
-        //                    }
-        //                }
-
-        //                trans.Commit(); // トランザクション完了
-        //                success = true;
-        //            }
-        //            catch (Exception ex)
-        //            {
-        //                trans.Rollback(); // 変更をキャンセル
-        //                throw ex;
-        //            }
-        //        }
-
-        //        return success;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        if (cn.State == ConnectionState.Open)
-        //        {
-        //            cn.Close(); // データベース接続を閉じる
-        //        }
-
-        //        Debug.Print(this.Name + "_SaveHeader - " + ex.Message);
-        //        return false;
-        //    }
-        //}
+ 
 
 
 
@@ -669,6 +545,8 @@ namespace u_net
         {
             try
             {
+                Connect();
+
                 Cursor.Current = Cursors.WaitCursor;
                 this.DoubleBuffered = true;
 
@@ -696,12 +574,39 @@ namespace u_net
                     }
                 }
 
-                // 新規モードへ移行
-                if (!GoNewMode())
-                {
-                    MessageBox.Show("エラーのため新規モードへ移行できません。", "新規コマンド", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    goto Bye_コマンド新規_Click;
-                }
+                VariableSet.SetControls(this);
+                //DispGrid(CurrentCode);
+
+                //string generatedPartCode = Right(FunctionClass.採番(cn, "PAR"), 8);
+                //部品コード.Text = generatedPartCode;
+                版数.Text = 1.ToString();
+                入数.Text = 1.ToString();
+                単位数量.Text = 1.ToString();
+                ロス率.Text = 0f.ToString();
+                Rohs1ChemSherpaStatusCode.SelectedValue = 1;
+                JampAis.SelectedValue = 1;
+                非含有証明書.SelectedValue = 3;
+                RoHS資料.SelectedValue = 1;
+                Rohs2ChemSherpaStatusCode.SelectedValue = 1;
+                Rohs2JampAisStatusCode.SelectedValue = 1;
+                Rohs2NonInclusionCertificationStatusCode.SelectedValue = 3;
+                Rohs2DocumentStatusCode.SelectedValue = 1;
+                Rohs2ProvisionalRegisteredStatusCode.Checked = true;
+                廃止.Checked = false;
+
+                InventoryAmount.Text = 0.ToString();
+                //ShowRohsStatus();
+                //AllowEdits = true;
+                品名.Focus();
+                部品コード.Enabled = false;
+                改版ボタン.Enabled = false;
+                コマンド新規.Enabled = false;
+                コマンド読込.Enabled = true;
+                コマンド削除.Enabled = false;
+                コマンド入出庫.Enabled = false;
+                コマンド履歴.Enabled = false;
+                コマンド登録.Enabled = false;
+
             }
             finally
             {
@@ -887,7 +792,7 @@ namespace u_net
                 メーカーコード.Text = codeString;
                 if (editionNumber != -1)
                 {
-                    Revision.Text = editionNumber.ToString();
+                    版数.Text = editionNumber.ToString();
                 }
 
                 // 初期値を設定
@@ -1166,12 +1071,6 @@ namespace u_net
             }
 
             
-        //}
-        //finally
-        //{
-        //Close();
-        //this.Painting = true;
-        //}
 
         Bye_コマンド登録_Click:
             return;
@@ -1179,8 +1078,6 @@ namespace u_net
 
         private void コマンド終了_Click(object sender, EventArgs e)
         {
-            // エラーハンドリングはC#では別の方法を使用するため、ここでは省略
-            // On Error Resume Next の代替方法はC#にはありません
 
             Close(); // フォームを閉じる
         }
@@ -1276,9 +1173,6 @@ namespace u_net
             // ヘッダ部の表示
             LoadHeader(this, codeString, editionNumber);
 
-            // 動作を制御する
-            // Me は Form クラスのインスタンスとして使用されることを仮定しています
-            // フォームのクラス名で適切な型に置き換えてください
             FunctionClass.LockData(this, this.IsDeleted, "メーカーコード");
             this.コマンド複写.Enabled = true;
             this.コマンド削除.Enabled = !this.IsDeleted;
@@ -1303,24 +1197,9 @@ namespace u_net
                 strSQL = "SELECT * FROM Vメーカーヘッダ WHERE メーカーコード'" + codeString + "' AND Revision= " + editionNumber;
             }
 
-            //using (SqlCommand command = new SqlCommand(strSQL, cn))
-            //{
-            //    command.Parameters.AddWithValue("@codeString", codeString);
-            //    if (editionNumber != -1)
-            //    {
-            //        command.Parameters.AddWithValue("@editionNumber", editionNumber);
-            //    }
 
-            //    using (SqlDataReader reader = command.ExecuteReader())
-            //    {
-            //        if (reader.Read())
-            //        {
-            //ここ修正した。
             VariableSet.SetTable2Form(this, strSQL, cn);
             loadHeader = true;
-            //        }
-            //    }
-            //}
 
 
             return loadHeader;
@@ -1337,380 +1216,60 @@ namespace u_net
 
 
 
-        private void ウェブアドレス_TextChanged(object sender, EventArgs e)
-        {
-            FunctionClass.LimitText(((TextBox)sender), 100);
-            ChangedData(true);
-        }
+        //private void メーカーコード_Validated(object sender, EventArgs e)
+        //{
+        //    UpdatedControl((Control)sender);
+        //}
 
-        private void メーカーコード_Validated(object sender, EventArgs e)
-        {
-            UpdatedControl((Control)sender);
-        }
+        //private void メーカーコード_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        //{
+        //    FunctionClass.IsError((Control)sender);
+        //}
 
-        private void メーカーコード_Validating(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            FunctionClass.IsError((Control)sender);
-        }
+        //private void メーカーコード_KeyDown(object sender, KeyEventArgs e)
+        //{
+        //    // 入力された値がエラー値の場合、textプロパティが設定できなくなるときの対処
+        //    if (e.KeyCode == Keys.Return) // Enter キーが押されたとき
+        //    {
+        //        string strCode = メーカーコード.Text;
+        //        if (string.IsNullOrEmpty(strCode)) return;
 
-        private void メーカーコード_KeyDown(object sender, KeyEventArgs e)
-        {
-            // 入力された値がエラー値の場合、textプロパティが設定できなくなるときの対処
-            if (e.KeyCode == Keys.Return) // Enter キーが押されたとき
-            {
-                string strCode = メーカーコード.Text;
-                if (string.IsNullOrEmpty(strCode)) return;
+        //        strCode = strCode.PadLeft(8, '0'); // ゼロで桁を埋める例
+        //        if (strCode != メーカーコード.Text)
+        //        {
+        //            メーカーコード.Text = strCode;
+        //        }
+        //    }
+        //}
 
-                strCode = strCode.PadLeft(8, '0'); // ゼロで桁を埋める例
-                if (strCode != メーカーコード.Text)
-                {
-                    メーカーコード.Text = strCode;
-                }
-            }
-        }
 
 
+        //private void メーカー名_Validated(object sender, EventArgs e)
+        //{
+        //    UpdatedControl((Control)sender);
+        //}
 
-        private void メーカー省略名_Validated(object sender, EventArgs e)
-        {
-            UpdatedControl((Control)sender);
-        }
 
+        //private void メーカー名_TextChanged(object sender, EventArgs e)
+        //{
+        //    FunctionClass.LimitText(((TextBox)sender), 60);
+        //    ChangedData(true);
+        //}
 
-        private void メーカー省略名_TextChanged(object sender, EventArgs e)
-        {
-            FunctionClass.LimitText(((TextBox)sender), 10);
-            ChangedData(true);
-        }
 
 
 
-        private void メーカー名_Validated(object sender, EventArgs e)
-        {
-            UpdatedControl((Control)sender);
-        }
+        //private void メーカー名_Enter(object sender, EventArgs e)
+        //{
+        //    toolStripStatusLabel2.Text = "■全角30文字まで入力できます。";
+        //}
 
+        //private void メーカー名_Leave(object sender, EventArgs e)
+        //{
+        //    toolStripStatusLabel2.Text = "各種項目の説明";
+        //}
 
-        private void メーカー名_TextChanged(object sender, EventArgs e)
-        {
-            FunctionClass.LimitText(((TextBox)sender), 60);
-            ChangedData(true);
-        }
-
-
-
-        private void メーカー名フリガナ_Validated(object sender, EventArgs e)
-        {
-            UpdatedControl((Control)sender);
-        }
-
-
-        private void メーカー名フリガナ_TextChanged(object sender, EventArgs e)
-        {
-            FunctionClass.LimitText(((TextBox)sender), 120);
-            ChangedData(true);
-        }
-
-
-
-        private void 仕入先1_Validated(object sender, EventArgs e)
-        {
-            UpdatedControl((Control)sender);
-        }
-
-
-        private void 仕入先1_TextChanged(object sender, EventArgs e)
-        {
-            FunctionClass.LimitText(((TextBox)sender), 60);
-            ChangedData(true);
-        }
-
-
-        private void 仕入先2_Validated(object sender, EventArgs e)
-        {
-            UpdatedControl((Control)sender);
-        }
-
-
-        private void 仕入先2_TextChanged(object sender, EventArgs e)
-        {
-            FunctionClass.LimitText(((TextBox)sender), 60);
-            ChangedData(true);
-        }
-
-
-        private void 仕入先3_Validated(object sender, EventArgs e)
-        {
-            UpdatedControl((Control)sender);
-        }
-
-
-        private void 仕入先3_TextChanged(object sender, EventArgs e)
-        {
-            FunctionClass.LimitText(((TextBox)sender), 60);
-            ChangedData(true);
-        }
-
-
-
-        private void 住所1_Validated(object sender, EventArgs e)
-        {
-            UpdatedControl((Control)sender);
-        }
-
-
-        private void 住所1_TextChanged(object sender, EventArgs e)
-        {
-            FunctionClass.LimitText(((TextBox)sender), 50);
-            ChangedData(true);
-        }
-
-
-        private void 住所2_Validated(object sender, EventArgs e)
-        {
-            UpdatedControl((Control)sender);
-        }
-
-
-        private void 住所2_TextChanged(object sender, EventArgs e)
-        {
-            FunctionClass.LimitText(((TextBox)sender), 50);
-            ChangedData(true);
-        }
-
-
-
-
-        private void 担当者メールアドレス_TextChanged(object sender, EventArgs e)
-        {
-            FunctionClass.LimitText(((TextBox)sender), 100);
-            ChangedData(true);
-        }
-
-        private void 担当者名_Validated(object sender, EventArgs e)
-        {
-            UpdatedControl((Control)sender);
-        }
-
-
-        private void 担当者名_TextChanged(object sender, EventArgs e)
-        {
-            FunctionClass.LimitText(((TextBox)sender), 50);
-            ChangedData(true);
-        }
-
-
-
-        private void 電話番号1_Validated(object sender, EventArgs e)
-        {
-            UpdatedControl((Control)sender);
-        }
-
-
-        private void 電話番号1_TextChanged(object sender, EventArgs e)
-        {
-            FunctionClass.LimitText(((TextBox)sender), 5);
-            ChangedData(true);
-        }
-
-
-        private void 電話番号2_Validated(object sender, EventArgs e)
-        {
-            UpdatedControl((Control)sender);
-        }
-
-
-        private void 電話番号2_TextChanged(object sender, EventArgs e)
-        {
-            FunctionClass.LimitText(((TextBox)sender), 5);
-            ChangedData(true);
-        }
-
-
-
-        private void 電話番号3_Validated(object sender, EventArgs e)
-        {
-            UpdatedControl((Control)sender);
-        }
-
-
-        private void 電話番号3_TextChanged(object sender, EventArgs e)
-        {
-            FunctionClass.LimitText(((TextBox)sender), 5);
-            ChangedData(true);
-        }
-
-        private void FAX番号1_Validated(object sender, EventArgs e)
-        {
-            UpdatedControl((Control)sender);
-        }
-
-
-        private void FAX番号1_TextChanged(object sender, EventArgs e)
-        {
-            FunctionClass.LimitText(((TextBox)sender), 5);
-            ChangedData(true);
-        }
-
-
-        private void FAX番号2_Validated(object sender, EventArgs e)
-        {
-            UpdatedControl((Control)sender);
-        }
-
-
-        private void FAX番号2_TextChanged(object sender, EventArgs e)
-        {
-            FunctionClass.LimitText(((TextBox)sender), 5);
-            ChangedData(true);
-        }
-
-
-
-        private void FAX番号3_Validated(object sender, EventArgs e)
-        {
-            UpdatedControl((Control)sender);
-        }
-
-
-        private void FAX番号3_TextChanged(object sender, EventArgs e)
-        {
-            FunctionClass.LimitText(((TextBox)sender), 5);
-            ChangedData(true);
-        }
-
-        private void 備考_TextChanged(object sender, EventArgs e)
-        {
-            FunctionClass.LimitText(((TextBox)sender), 2000);
-            ChangedData(true);
-        }
-
-
-        private void 郵便番号_TextChanged(object sender, EventArgs e)
-        {
-            FunctionClass.LimitText(((TextBox)sender), 7);
-            ChangedData(true);
-        }
-
-        private void メーカー名_Enter(object sender, EventArgs e)
-        {
-            toolStripStatusLabel2.Text = "■全角30文字まで入力できます。";
-        }
-
-        private void メーカー名_Leave(object sender, EventArgs e)
-        {
-            toolStripStatusLabel2.Text = "各種項目の説明";
-        }
-
-        private void メーカー名フリガナ_Enter(object sender, EventArgs e)
-        {
-            toolStripStatusLabel2.Text = "■全角60文字まで入力できます。";
-        }
-
-        private void メーカー名フリガナ_Leave(object sender, EventArgs e)
-        {
-            toolStripStatusLabel2.Text = "各種項目の説明";
-        }
-
-        private void メーカー省略名_Enter(object sender, EventArgs e)
-        {
-            toolStripStatusLabel2.Text = "■メーカーの省略名を入力します。　■全角5文字まで入力できます。";
-        }
-
-        private void メーカー省略名_Leave(object sender, EventArgs e)
-        {
-            toolStripStatusLabel2.Text = "各種項目の説明";
-        }
-
-        private void 住所1_Enter(object sender, EventArgs e)
-        {
-            toolStripStatusLabel2.Text = "■全角25文字まで入力できます。";
-        }
-
-        private void 住所1_Leave(object sender, EventArgs e)
-        {
-            toolStripStatusLabel2.Text = "各種項目の説明";
-        }
-
-        private void 住所2_Enter(object sender, EventArgs e)
-        {
-            toolStripStatusLabel2.Text = "■全角25文字まで入力できます。";
-        }
-
-        private void 住所2_Leave(object sender, EventArgs e)
-        {
-            toolStripStatusLabel2.Text = "各種項目の説明";
-        }
-
-        private void 担当者名_Enter(object sender, EventArgs e)
-        {
-            toolStripStatusLabel2.Text = "■全角25文字まで入力できます。";
-        }
-
-        private void 担当者名_Leave(object sender, EventArgs e)
-        {
-            toolStripStatusLabel2.Text = "各種項目の説明";
-        }
-
-        private void 担当者メールアドレス_Enter(object sender, EventArgs e)
-        {
-            toolStripStatusLabel2.Text = "■半角100文字まで入力できます。";
-        }
-
-        private void 担当者メールアドレス_Leave(object sender, EventArgs e)
-        {
-            toolStripStatusLabel2.Text = "各種項目の説明";
-        }
-
-        private void ウェブアドレス_Enter(object sender, EventArgs e)
-        {
-            toolStripStatusLabel2.Text = "■半角100文字まで入力できます。";
-        }
-
-        private void ウェブアドレス_Leave(object sender, EventArgs e)
-        {
-            toolStripStatusLabel2.Text = "各種項目の説明";
-        }
-
-        private void 仕入先1_Enter(object sender, EventArgs e)
-        {
-            toolStripStatusLabel2.Text = "■全角30文字まで入力できます。";
-        }
-
-        private void 仕入先1_Leave(object sender, EventArgs e)
-        {
-            toolStripStatusLabel2.Text = "各種項目の説明";
-        }
-
-        private void 仕入先2_Enter(object sender, EventArgs e)
-        {
-            toolStripStatusLabel2.Text = "■全角30文字まで入力できます。";
-        }
-
-        private void 仕入先2_Leave(object sender, EventArgs e)
-        {
-            toolStripStatusLabel2.Text = "各種項目の説明";
-        }
-
-        private void 仕入先3_Enter(object sender, EventArgs e)
-        {
-            toolStripStatusLabel2.Text = "■全角30文字まで入力できます。";
-        }
-
-        private void 仕入先3_Leave(object sender, EventArgs e)
-        {
-            toolStripStatusLabel2.Text = "各種項目の説明";
-        }
-
-        private void 備考_Enter(object sender, EventArgs e)
-        {
-            toolStripStatusLabel2.Text = "■全角100文字まで入力できます。";
-        }
-
-        private void 備考_Leave(object sender, EventArgs e)
-        {
-            toolStripStatusLabel2.Text = "各種項目の説明";
-        }
+      
 
      
     }
