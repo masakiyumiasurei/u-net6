@@ -29,6 +29,7 @@ namespace u_net
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.コマンド終了 = new System.Windows.Forms.Button();
             this.コマンド登録 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -137,6 +138,8 @@ namespace u_net
             this.label20 = new System.Windows.Forms.Label();
             this.GroupName = new System.Windows.Forms.TextBox();
             this.形状分類コード = new System.Windows.Forms.ComboBox();
+            this.M部品形状bindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.newDataSet = new u_net.newDataSet();
             this.label21 = new System.Windows.Forms.Label();
             this.RohsStatusCode = new System.Windows.Forms.ComboBox();
             this.label22 = new System.Windows.Forms.Label();
@@ -190,14 +193,23 @@ namespace u_net
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.m部品形状TableAdapter = new u_net.newDataSetTableAdapters.M部品形状TableAdapter();
+            this.m部品分類TableAdapter = new u_net.newDataSetTableAdapters.M部品分類TableAdapter();
+            this.rohsStatusCodeTableAdapter = new u_net.newDataSetTableAdapters.RohsStatusCodeTableAdapter();
+            this.M部品分類bindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.rohsStatusCodebindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.M部品形状bindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.newDataSet)).BeginInit();
             this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.部品使用先)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.M部品分類bindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rohsStatusCodebindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // コマンド終了
@@ -1310,6 +1322,8 @@ namespace u_net
             // 分類コード
             // 
             this.分類コード.BackColor = System.Drawing.Color.White;
+            this.分類コード.DataSource = this.M部品分類bindingSource;
+            this.分類コード.DisplayMember = "対象部品名";
             this.分類コード.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.分類コード.FormattingEnabled = true;
             this.分類コード.ImeMode = System.Windows.Forms.ImeMode.Off;
@@ -1317,6 +1331,7 @@ namespace u_net
             this.分類コード.Name = "分類コード";
             this.分類コード.Size = new System.Drawing.Size(139, 21);
             this.分類コード.TabIndex = 27;
+            this.分類コード.ValueMember = "分類コード";
             // 
             // label20
             // 
@@ -1348,6 +1363,8 @@ namespace u_net
             // 形状分類コード
             // 
             this.形状分類コード.BackColor = System.Drawing.Color.White;
+            this.形状分類コード.DataSource = this.M部品形状bindingSource;
+            this.形状分類コード.DisplayMember = "部品形状名";
             this.形状分類コード.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.形状分類コード.FormattingEnabled = true;
             this.形状分類コード.ImeMode = System.Windows.Forms.ImeMode.Off;
@@ -1355,6 +1372,18 @@ namespace u_net
             this.形状分類コード.Name = "形状分類コード";
             this.形状分類コード.Size = new System.Drawing.Size(139, 21);
             this.形状分類コード.TabIndex = 29;
+            this.形状分類コード.ValueMember = "部品形状コード";
+            // 
+            // M部品形状bindingSource
+            // 
+            this.M部品形状bindingSource.DataMember = "M部品形状";
+            this.M部品形状bindingSource.DataSource = this.newDataSet;
+            // 
+            // newDataSet
+            // 
+            this.newDataSet.DataSetName = "newDataSet";
+            this.newDataSet.Namespace = "http://tempuri.org/newDataSet.xsd";
+            this.newDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // label21
             // 
@@ -1374,6 +1403,8 @@ namespace u_net
             // RohsStatusCode
             // 
             this.RohsStatusCode.BackColor = System.Drawing.Color.White;
+            this.RohsStatusCode.DataSource = this.rohsStatusCodebindingSource;
+            this.RohsStatusCode.DisplayMember = "Name";
             this.RohsStatusCode.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.RohsStatusCode.FormattingEnabled = true;
             this.RohsStatusCode.ImeMode = System.Windows.Forms.ImeMode.Off;
@@ -1381,6 +1412,7 @@ namespace u_net
             this.RohsStatusCode.Name = "RohsStatusCode";
             this.RohsStatusCode.Size = new System.Drawing.Size(139, 21);
             this.RohsStatusCode.TabIndex = 31;
+            this.RohsStatusCode.ValueMember = "Code";
             // 
             // label22
             // 
@@ -2043,6 +2075,29 @@ namespace u_net
             this.button1.Text = "…";
             this.button1.UseVisualStyleBackColor = true;
             // 
+            // m部品形状TableAdapter
+            // 
+            this.m部品形状TableAdapter.ClearBeforeFill = true;
+            // 
+            // m部品分類TableAdapter
+            // 
+            this.m部品分類TableAdapter.ClearBeforeFill = true;
+            // 
+            // rohsStatusCodeTableAdapter
+            // 
+            this.rohsStatusCodeTableAdapter.ClearBeforeFill = true;
+            // 
+            // M部品分類bindingSource
+            // 
+            this.M部品分類bindingSource.DataMember = "M部品分類";
+            this.M部品分類bindingSource.DataSource = this.newDataSet;
+            this.M部品分類bindingSource.Sort = "分類記号";
+            // 
+            // rohsStatusCodebindingSource
+            // 
+            this.rohsStatusCodebindingSource.DataMember = "RohsStatusCode";
+            this.rohsStatusCodebindingSource.DataSource = this.newDataSet;
+            // 
             // F_部品
             // 
             this.BackColor = System.Drawing.SystemColors.Control;
@@ -2155,9 +2210,13 @@ namespace u_net
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.M部品形状bindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.newDataSet)).EndInit();
             this.groupBox4.ResumeLayout(false);
             this.groupBox5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.部品使用先)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.M部品分類bindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rohsStatusCodebindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2363,6 +2422,13 @@ namespace u_net
         private TextBox textBox1;
         private TextBox textBox2;
         private Button button1;
+        private newDataSetTableAdapters.M部品形状TableAdapter m部品形状TableAdapter;
+        private newDataSet newDataSet;
+        private newDataSetTableAdapters.M部品分類TableAdapter m部品分類TableAdapter;
+        private newDataSetTableAdapters.RohsStatusCodeTableAdapter rohsStatusCodeTableAdapter;
+        private BindingSource M部品形状bindingSource;
+        private BindingSource M部品分類bindingSource;
+        private BindingSource rohsStatusCodebindingSource;
     }
 }
 

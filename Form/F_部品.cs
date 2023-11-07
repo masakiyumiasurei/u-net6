@@ -94,6 +94,10 @@ namespace u_net
             部品使用先.DefaultCellStyle.ForeColor = Color.Black;
 
 
+            this.m部品分類TableAdapter.Fill(this.newDataSet.M部品分類);
+            this.m部品形状TableAdapter.Fill(this.newDataSet.M部品形状);
+            this.rohsStatusCodeTableAdapter.Fill(this.newDataSet.RohsStatusCode);
+
 
             this.JampAis.DataSource = new KeyValuePair<int, String>[] {
                 new KeyValuePair<int, String>(2, "有り"),
@@ -102,68 +106,72 @@ namespace u_net
             this.JampAis.DisplayMember = "Value";
             this.JampAis.ValueMember = "Key";
 
-            this.JampAis.DataSource = new KeyValuePair<int, String>[] {
-                new KeyValuePair<int, String>(2, "有り"),
-                new KeyValuePair<int, String>(1, "無し"),
+            this.非含有証明書.DataSource = new KeyValuePair<int, String>[] {
+                new KeyValuePair<int, String>(1, "返却済み"),
+                new KeyValuePair<int, String>(2, "未返却"),
+                new KeyValuePair<int, String>(3, "未提出"),
             };
-            this.JampAis.DisplayMember = "Value";
-            this.JampAis.ValueMember = "Key";
+            this.非含有証明書.DisplayMember = "Value";
+            this.非含有証明書.ValueMember = "Key";
 
-            this.JampAis.DataSource = new KeyValuePair<int, String>[] {
+            this.RoHS資料.DataSource = new KeyValuePair<int, String>[] {
                 new KeyValuePair<int, String>(2, "有り"),
                 new KeyValuePair<int, String>(1, "無し"),
             };
-            this.JampAis.DisplayMember = "Value";
-            this.JampAis.ValueMember = "Key";
+            this.RoHS資料.DisplayMember = "Value";
+            this.RoHS資料.ValueMember = "Key";
 
-            this.JampAis.DataSource = new KeyValuePair<int, String>[] {
+            this.Rohs1ChemSherpaStatusCode.DataSource = new KeyValuePair<int, String>[] {
                 new KeyValuePair<int, String>(2, "有り"),
                 new KeyValuePair<int, String>(1, "無し"),
             };
-            this.JampAis.DisplayMember = "Value";
-            this.JampAis.ValueMember = "Key";
+            this.Rohs1ChemSherpaStatusCode.DisplayMember = "Value";
+            this.Rohs1ChemSherpaStatusCode.ValueMember = "Key";
 
-            this.JampAis.DataSource = new KeyValuePair<int, String>[] {
+            this.Rohs2JampAisStatusCode.DataSource = new KeyValuePair<int, String>[] {
                 new KeyValuePair<int, String>(2, "有り"),
                 new KeyValuePair<int, String>(1, "無し"),
             };
-            this.JampAis.DisplayMember = "Value";
-            this.JampAis.ValueMember = "Key";
+            this.Rohs2JampAisStatusCode.DisplayMember = "Value";
+            this.Rohs2JampAisStatusCode.ValueMember = "Key";
 
-            this.JampAis.DataSource = new KeyValuePair<int, String>[] {
-                new KeyValuePair<int, String>(2, "有り"),
-                new KeyValuePair<int, String>(1, "無し"),
+            this.Rohs2NonInclusionCertificationStatusCode.DataSource = new KeyValuePair<int, String>[] {
+                new KeyValuePair<int, String>(1, "返却済み"),
+                new KeyValuePair<int, String>(2, "未返却"),
+                new KeyValuePair<int, String>(3, "未提出"),
             };
-            this.JampAis.DisplayMember = "Value";
-            this.JampAis.ValueMember = "Key";
+            this.Rohs2NonInclusionCertificationStatusCode.DisplayMember = "Value";
+            this.Rohs2NonInclusionCertificationStatusCode.ValueMember = "Key";
 
-            this.JampAis.DataSource = new KeyValuePair<int, String>[] {
+            this.Rohs2DocumentStatusCode.DataSource = new KeyValuePair<int, String>[] {
                 new KeyValuePair<int, String>(2, "有り"),
                 new KeyValuePair<int, String>(1, "無し"),
             };
-            this.JampAis.DisplayMember = "Value";
-            this.JampAis.ValueMember = "Key";
+            this.Rohs2DocumentStatusCode.DisplayMember = "Value";
+            this.Rohs2DocumentStatusCode.ValueMember = "Key";
 
-            this.JampAis.DataSource = new KeyValuePair<int, String>[] {
+            this.Rohs2ChemSherpaStatusCode.DataSource = new KeyValuePair<int, String>[] {
                 new KeyValuePair<int, String>(2, "有り"),
                 new KeyValuePair<int, String>(1, "無し"),
             };
-            this.JampAis.DisplayMember = "Value";
-            this.JampAis.ValueMember = "Key";
+            this.Rohs2ChemSherpaStatusCode.DisplayMember = "Value";
+            this.Rohs2ChemSherpaStatusCode.ValueMember = "Key";
 
-            this.JampAis.DataSource = new KeyValuePair<int, String>[] {
-                new KeyValuePair<int, String>(2, "有り"),
-                new KeyValuePair<int, String>(1, "無し"),
+            this.CalcInventoryCode.DataSource = new KeyValuePair<string, String>[] {
+                new KeyValuePair<string, String>("01", "する"),
+                new KeyValuePair<string, String>("02", "しない"),
             };
-            this.JampAis.DisplayMember = "Value";
-            this.JampAis.ValueMember = "Key";
+            this.CalcInventoryCode.DisplayMember = "Value";
+            this.CalcInventoryCode.ValueMember = "Key";
 
-            this.JampAis.DataSource = new KeyValuePair<int, String>[] {
-                new KeyValuePair<int, String>(2, "有り"),
-                new KeyValuePair<int, String>(1, "無し"),
+            this.受入検査ランク.DataSource = new String[] {
+                new String("A"),
+                new String("B1"),
+                new String("B2"),
+                new String("C"),
+                new String("D"),
             };
-            this.JampAis.DisplayMember = "Value";
-            this.JampAis.ValueMember = "Key";
+
 
 
 
