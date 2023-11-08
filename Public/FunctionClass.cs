@@ -2230,7 +2230,7 @@ namespace u_net.Public
 
 
 
-        public bool Recycle(SqlConnection connection, string codeString)
+        public static bool Recycle(SqlConnection connection, string codeString)
         {
             try
             {

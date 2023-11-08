@@ -73,12 +73,12 @@ namespace u_net
             this.dataGridViewTextBoxColumn27 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.削除 = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
-            this.更新者名 = new System.Windows.Forms.TextBox();
+            this.UpdaterName = new System.Windows.Forms.TextBox();
             this.更新者コード = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.更新日時 = new System.Windows.Forms.TextBox();
-            this.作成者名 = new System.Windows.Forms.TextBox();
+            this.CreatorName = new System.Windows.Forms.TextBox();
             this.作成者コード = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
@@ -89,7 +89,7 @@ namespace u_net
             this.メーカー省略名_ラベル = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.メーカーコード_ラベル = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.仕入先1フレーム = new System.Windows.Forms.GroupBox();
             this.label4 = new System.Windows.Forms.Label();
             this.Supplier1Name = new System.Windows.Forms.TextBox();
             this.仕入先1コード検索ボタン = new System.Windows.Forms.Button();
@@ -113,7 +113,7 @@ namespace u_net
             this.MakerName = new System.Windows.Forms.TextBox();
             this.改版ボタン = new System.Windows.Forms.Button();
             this.資料ボタン = new System.Windows.Forms.Button();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.仕入先2フレーム = new System.Windows.Forms.GroupBox();
             this.label5 = new System.Windows.Forms.Label();
             this.Supplier2Name = new System.Windows.Forms.TextBox();
             this.仕入先2コード検索ボタン = new System.Windows.Forms.Button();
@@ -121,7 +121,7 @@ namespace u_net
             this.仕入先2コード = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.仕入先2単価 = new System.Windows.Forms.TextBox();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.仕入先3フレーム = new System.Windows.Forms.GroupBox();
             this.label16 = new System.Windows.Forms.Label();
             this.Supplier3Name = new System.Windows.Forms.TextBox();
             this.仕入先3コード検索ボタン = new System.Windows.Forms.Button();
@@ -135,13 +135,15 @@ namespace u_net
             this.GroupNumber = new System.Windows.Forms.TextBox();
             this.FormGroupShortName = new System.Windows.Forms.TextBox();
             this.分類コード = new System.Windows.Forms.ComboBox();
+            this.M部品分類bindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.newDataSet = new u_net.newDataSet();
             this.label20 = new System.Windows.Forms.Label();
             this.GroupName = new System.Windows.Forms.TextBox();
             this.形状分類コード = new System.Windows.Forms.ComboBox();
             this.M部品形状bindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.newDataSet = new u_net.newDataSet();
             this.label21 = new System.Windows.Forms.Label();
             this.RohsStatusCode = new System.Windows.Forms.ComboBox();
+            this.rohsStatusCodebindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label22 = new System.Windows.Forms.Label();
             this.Rohs2ProvisionalRegisteredStatusCode = new System.Windows.Forms.CheckBox();
             this.label23 = new System.Windows.Forms.Label();
@@ -190,26 +192,25 @@ namespace u_net
             this.部品使用先 = new System.Windows.Forms.DataGridView();
             this.CalcInventoryCode = new System.Windows.Forms.ComboBox();
             this.受入検査ランク = new System.Windows.Forms.ComboBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.部品集合版数 = new System.Windows.Forms.TextBox();
+            this.集合名 = new System.Windows.Forms.TextBox();
+            this.部品集合参照ボタン = new System.Windows.Forms.Button();
             this.m部品形状TableAdapter = new u_net.newDataSetTableAdapters.M部品形状TableAdapter();
             this.m部品分類TableAdapter = new u_net.newDataSetTableAdapters.M部品分類TableAdapter();
             this.rohsStatusCodeTableAdapter = new u_net.newDataSetTableAdapters.RohsStatusCodeTableAdapter();
-            this.M部品分類bindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.rohsStatusCodebindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.無効日時 = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
-            this.groupBox1.SuspendLayout();
+            this.仕入先1フレーム.SuspendLayout();
             this.statusStrip1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.M部品形状bindingSource)).BeginInit();
+            this.仕入先2フレーム.SuspendLayout();
+            this.仕入先3フレーム.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.M部品分類bindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.newDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.M部品形状bindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rohsStatusCodebindingSource)).BeginInit();
             this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.部品使用先)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.M部品分類bindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rohsStatusCodebindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // コマンド終了
@@ -224,7 +225,6 @@ namespace u_net
             this.コマンド終了.TabStop = false;
             this.コマンド終了.Text = "終了";
             this.コマンド終了.UseVisualStyleBackColor = true;
-            this.コマンド終了.Click += new System.EventHandler(this.コマンド終了_Click);
             // 
             // コマンド登録
             // 
@@ -239,7 +239,6 @@ namespace u_net
             this.コマンド登録.TabStop = false;
             this.コマンド登録.Text = "登録";
             this.コマンド登録.UseVisualStyleBackColor = true;
-            this.コマンド登録.Click += new System.EventHandler(this.コマンド登録_Click);
             // 
             // panel1
             // 
@@ -280,7 +279,6 @@ namespace u_net
             this.コマンド履歴.TabStop = false;
             this.コマンド履歴.Text = "履歴";
             this.コマンド履歴.UseVisualStyleBackColor = true;
-            this.コマンド履歴.Click += new System.EventHandler(this.コマンド印刷_Click);
             // 
             // コマンド入出庫
             // 
@@ -324,7 +322,6 @@ namespace u_net
             this.コマンド仕入先.TabStop = false;
             this.コマンド仕入先.Text = "仕入先";
             this.コマンド仕入先.UseVisualStyleBackColor = true;
-            this.コマンド仕入先.Click += new System.EventHandler(this.コマンド仕入先_Click);
             // 
             // コマンド確定
             // 
@@ -339,7 +336,6 @@ namespace u_net
             this.コマンド確定.TabStop = false;
             this.コマンド確定.Text = "確定";
             this.コマンド確定.UseVisualStyleBackColor = true;
-            this.コマンド確定.Click += new System.EventHandler(this.コマンド確定_Click);
             // 
             // コマンド承認
             // 
@@ -354,7 +350,6 @@ namespace u_net
             this.コマンド承認.TabStop = false;
             this.コマンド承認.Text = "承認";
             this.コマンド承認.UseVisualStyleBackColor = true;
-            this.コマンド承認.Click += new System.EventHandler(this.コマンド承認_Click);
             // 
             // コマンド削除
             // 
@@ -369,7 +364,6 @@ namespace u_net
             this.コマンド削除.TabStop = false;
             this.コマンド削除.Text = "削除";
             this.コマンド削除.UseVisualStyleBackColor = true;
-            this.コマンド削除.Click += new System.EventHandler(this.コマンド削除_Click);
             // 
             // コマンド複写
             // 
@@ -384,7 +378,6 @@ namespace u_net
             this.コマンド複写.TabStop = false;
             this.コマンド複写.Text = "複写";
             this.コマンド複写.UseVisualStyleBackColor = true;
-            this.コマンド複写.Click += new System.EventHandler(this.コマンド複写_Click);
             // 
             // コマンド読込
             // 
@@ -558,17 +551,17 @@ namespace u_net
             this.label15.Text = "削除";
             this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // 更新者名
+            // UpdaterName
             // 
-            this.更新者名.BackColor = System.Drawing.SystemColors.Window;
-            this.更新者名.Enabled = false;
-            this.更新者名.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.更新者名.Location = new System.Drawing.Point(1244, 170);
-            this.更新者名.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.更新者名.Multiline = true;
-            this.更新者名.Name = "更新者名";
-            this.更新者名.Size = new System.Drawing.Size(207, 23);
-            this.更新者名.TabIndex = 46;
+            this.UpdaterName.BackColor = System.Drawing.SystemColors.Window;
+            this.UpdaterName.Enabled = false;
+            this.UpdaterName.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.UpdaterName.Location = new System.Drawing.Point(1244, 170);
+            this.UpdaterName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.UpdaterName.Multiline = true;
+            this.UpdaterName.Name = "UpdaterName";
+            this.UpdaterName.Size = new System.Drawing.Size(207, 23);
+            this.UpdaterName.TabIndex = 46;
             // 
             // 更新者コード
             // 
@@ -624,17 +617,17 @@ namespace u_net
             this.更新日時.Size = new System.Drawing.Size(313, 23);
             this.更新日時.TabIndex = 43;
             // 
-            // 作成者名
+            // CreatorName
             // 
-            this.作成者名.BackColor = System.Drawing.SystemColors.Window;
-            this.作成者名.Enabled = false;
-            this.作成者名.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.作成者名.Location = new System.Drawing.Point(1244, 110);
-            this.作成者名.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.作成者名.Multiline = true;
-            this.作成者名.Name = "作成者名";
-            this.作成者名.Size = new System.Drawing.Size(207, 23);
-            this.作成者名.TabIndex = 41;
+            this.CreatorName.BackColor = System.Drawing.SystemColors.Window;
+            this.CreatorName.Enabled = false;
+            this.CreatorName.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.CreatorName.Location = new System.Drawing.Point(1244, 110);
+            this.CreatorName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.CreatorName.Multiline = true;
+            this.CreatorName.Name = "CreatorName";
+            this.CreatorName.Size = new System.Drawing.Size(207, 23);
+            this.CreatorName.TabIndex = 41;
             // 
             // 作成者コード
             // 
@@ -776,21 +769,21 @@ namespace u_net
             this.メーカーコード_ラベル.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.メーカーコード_ラベル.UseMnemonic = false;
             // 
-            // groupBox1
+            // 仕入先1フレーム
             // 
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.Supplier1Name);
-            this.groupBox1.Controls.Add(this.仕入先1コード検索ボタン);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.仕入先1コード);
-            this.groupBox1.Controls.Add(this.label17);
-            this.groupBox1.Controls.Add(this.仕入先1単価);
-            this.groupBox1.Location = new System.Drawing.Point(10, 170);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(709, 81);
-            this.groupBox1.TabIndex = 11;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "仕入先(１)";
+            this.仕入先1フレーム.Controls.Add(this.label4);
+            this.仕入先1フレーム.Controls.Add(this.Supplier1Name);
+            this.仕入先1フレーム.Controls.Add(this.仕入先1コード検索ボタン);
+            this.仕入先1フレーム.Controls.Add(this.label2);
+            this.仕入先1フレーム.Controls.Add(this.仕入先1コード);
+            this.仕入先1フレーム.Controls.Add(this.label17);
+            this.仕入先1フレーム.Controls.Add(this.仕入先1単価);
+            this.仕入先1フレーム.Location = new System.Drawing.Point(10, 170);
+            this.仕入先1フレーム.Name = "仕入先1フレーム";
+            this.仕入先1フレーム.Size = new System.Drawing.Size(709, 81);
+            this.仕入先1フレーム.TabIndex = 11;
+            this.仕入先1フレーム.TabStop = false;
+            this.仕入先1フレーム.Text = "仕入先(１)";
             // 
             // label4
             // 
@@ -1051,21 +1044,21 @@ namespace u_net
             this.資料ボタン.Text = "資料";
             this.資料ボタン.UseVisualStyleBackColor = true;
             // 
-            // groupBox2
+            // 仕入先2フレーム
             // 
-            this.groupBox2.Controls.Add(this.label5);
-            this.groupBox2.Controls.Add(this.Supplier2Name);
-            this.groupBox2.Controls.Add(this.仕入先2コード検索ボタン);
-            this.groupBox2.Controls.Add(this.label6);
-            this.groupBox2.Controls.Add(this.仕入先2コード);
-            this.groupBox2.Controls.Add(this.label9);
-            this.groupBox2.Controls.Add(this.仕入先2単価);
-            this.groupBox2.Location = new System.Drawing.Point(10, 262);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(715, 81);
-            this.groupBox2.TabIndex = 16;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "仕入先(２)";
+            this.仕入先2フレーム.Controls.Add(this.label5);
+            this.仕入先2フレーム.Controls.Add(this.Supplier2Name);
+            this.仕入先2フレーム.Controls.Add(this.仕入先2コード検索ボタン);
+            this.仕入先2フレーム.Controls.Add(this.label6);
+            this.仕入先2フレーム.Controls.Add(this.仕入先2コード);
+            this.仕入先2フレーム.Controls.Add(this.label9);
+            this.仕入先2フレーム.Controls.Add(this.仕入先2単価);
+            this.仕入先2フレーム.Location = new System.Drawing.Point(10, 262);
+            this.仕入先2フレーム.Name = "仕入先2フレーム";
+            this.仕入先2フレーム.Size = new System.Drawing.Size(715, 81);
+            this.仕入先2フレーム.TabIndex = 16;
+            this.仕入先2フレーム.TabStop = false;
+            this.仕入先2フレーム.Text = "仕入先(２)";
             // 
             // label5
             // 
@@ -1157,21 +1150,21 @@ namespace u_net
             this.仕入先2単価.Size = new System.Drawing.Size(139, 20);
             this.仕入先2単価.TabIndex = 20;
             // 
-            // groupBox3
+            // 仕入先3フレーム
             // 
-            this.groupBox3.Controls.Add(this.label16);
-            this.groupBox3.Controls.Add(this.Supplier3Name);
-            this.groupBox3.Controls.Add(this.仕入先3コード検索ボタン);
-            this.groupBox3.Controls.Add(this.label18);
-            this.groupBox3.Controls.Add(this.仕入先3コード);
-            this.groupBox3.Controls.Add(this.label19);
-            this.groupBox3.Controls.Add(this.仕入先3単価);
-            this.groupBox3.Location = new System.Drawing.Point(10, 360);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(715, 81);
-            this.groupBox3.TabIndex = 21;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "仕入先(３)";
+            this.仕入先3フレーム.Controls.Add(this.label16);
+            this.仕入先3フレーム.Controls.Add(this.Supplier3Name);
+            this.仕入先3フレーム.Controls.Add(this.仕入先3コード検索ボタン);
+            this.仕入先3フレーム.Controls.Add(this.label18);
+            this.仕入先3フレーム.Controls.Add(this.仕入先3コード);
+            this.仕入先3フレーム.Controls.Add(this.label19);
+            this.仕入先3フレーム.Controls.Add(this.仕入先3単価);
+            this.仕入先3フレーム.Location = new System.Drawing.Point(10, 360);
+            this.仕入先3フレーム.Name = "仕入先3フレーム";
+            this.仕入先3フレーム.Size = new System.Drawing.Size(715, 81);
+            this.仕入先3フレーム.TabIndex = 21;
+            this.仕入先3フレーム.TabStop = false;
+            this.仕入先3フレーム.Text = "仕入先(３)";
             // 
             // label16
             // 
@@ -1333,6 +1326,18 @@ namespace u_net
             this.分類コード.TabIndex = 27;
             this.分類コード.ValueMember = "分類コード";
             // 
+            // M部品分類bindingSource
+            // 
+            this.M部品分類bindingSource.DataMember = "M部品分類";
+            this.M部品分類bindingSource.DataSource = this.newDataSet;
+            this.M部品分類bindingSource.Sort = "分類記号";
+            // 
+            // newDataSet
+            // 
+            this.newDataSet.DataSetName = "newDataSet";
+            this.newDataSet.Namespace = "http://tempuri.org/newDataSet.xsd";
+            this.newDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
             // label20
             // 
             this.label20.AllowDrop = true;
@@ -1379,12 +1384,6 @@ namespace u_net
             this.M部品形状bindingSource.DataMember = "M部品形状";
             this.M部品形状bindingSource.DataSource = this.newDataSet;
             // 
-            // newDataSet
-            // 
-            this.newDataSet.DataSetName = "newDataSet";
-            this.newDataSet.Namespace = "http://tempuri.org/newDataSet.xsd";
-            this.newDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
             // label21
             // 
             this.label21.AllowDrop = true;
@@ -1413,6 +1412,11 @@ namespace u_net
             this.RohsStatusCode.Size = new System.Drawing.Size(139, 21);
             this.RohsStatusCode.TabIndex = 31;
             this.RohsStatusCode.ValueMember = "Code";
+            // 
+            // rohsStatusCodebindingSource
+            // 
+            this.rohsStatusCodebindingSource.DataMember = "RohsStatusCode";
+            this.rohsStatusCodebindingSource.DataSource = this.newDataSet;
             // 
             // label22
             // 
@@ -2038,42 +2042,42 @@ namespace u_net
             this.受入検査ランク.Size = new System.Drawing.Size(139, 21);
             this.受入検査ランク.TabIndex = 67;
             // 
-            // textBox1
+            // 部品集合版数
             // 
-            this.textBox1.BackColor = System.Drawing.SystemColors.Window;
-            this.textBox1.Enabled = false;
-            this.textBox1.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBox1.Location = new System.Drawing.Point(1025, 332);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(27, 23);
-            this.textBox1.TabIndex = 10061;
-            this.textBox1.TabStop = false;
+            this.部品集合版数.BackColor = System.Drawing.SystemColors.Window;
+            this.部品集合版数.Enabled = false;
+            this.部品集合版数.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.部品集合版数.Location = new System.Drawing.Point(1025, 332);
+            this.部品集合版数.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.部品集合版数.Multiline = true;
+            this.部品集合版数.Name = "部品集合版数";
+            this.部品集合版数.Size = new System.Drawing.Size(27, 23);
+            this.部品集合版数.TabIndex = 10061;
+            this.部品集合版数.TabStop = false;
             // 
-            // textBox2
+            // 集合名
             // 
-            this.textBox2.BackColor = System.Drawing.SystemColors.Window;
-            this.textBox2.Enabled = false;
-            this.textBox2.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBox2.Location = new System.Drawing.Point(1051, 332);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(387, 23);
-            this.textBox2.TabIndex = 10062;
-            this.textBox2.TabStop = false;
+            this.集合名.BackColor = System.Drawing.SystemColors.Window;
+            this.集合名.Enabled = false;
+            this.集合名.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.集合名.Location = new System.Drawing.Point(1051, 332);
+            this.集合名.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.集合名.Multiline = true;
+            this.集合名.Name = "集合名";
+            this.集合名.Size = new System.Drawing.Size(387, 23);
+            this.集合名.TabIndex = 10062;
+            this.集合名.TabStop = false;
             // 
-            // button1
+            // 部品集合参照ボタン
             // 
-            this.button1.Location = new System.Drawing.Point(1439, 332);
-            this.button1.Margin = new System.Windows.Forms.Padding(4);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(29, 23);
-            this.button1.TabIndex = 10012;
-            this.button1.TabStop = false;
-            this.button1.Text = "…";
-            this.button1.UseVisualStyleBackColor = true;
+            this.部品集合参照ボタン.Location = new System.Drawing.Point(1439, 332);
+            this.部品集合参照ボタン.Margin = new System.Windows.Forms.Padding(4);
+            this.部品集合参照ボタン.Name = "部品集合参照ボタン";
+            this.部品集合参照ボタン.Size = new System.Drawing.Size(29, 23);
+            this.部品集合参照ボタン.TabIndex = 10012;
+            this.部品集合参照ボタン.TabStop = false;
+            this.部品集合参照ボタン.Text = "…";
+            this.部品集合参照ボタン.UseVisualStyleBackColor = true;
             // 
             // m部品形状TableAdapter
             // 
@@ -2087,24 +2091,22 @@ namespace u_net
             // 
             this.rohsStatusCodeTableAdapter.ClearBeforeFill = true;
             // 
-            // M部品分類bindingSource
+            // 無効日時
             // 
-            this.M部品分類bindingSource.DataMember = "M部品分類";
-            this.M部品分類bindingSource.DataSource = this.newDataSet;
-            this.M部品分類bindingSource.Sort = "分類記号";
-            // 
-            // rohsStatusCodebindingSource
-            // 
-            this.rohsStatusCodebindingSource.DataMember = "RohsStatusCode";
-            this.rohsStatusCodebindingSource.DataSource = this.newDataSet;
+            this.無効日時.Location = new System.Drawing.Point(1258, 230);
+            this.無効日時.Name = "無効日時";
+            this.無効日時.Size = new System.Drawing.Size(100, 23);
+            this.無効日時.TabIndex = 10063;
+            this.無効日時.Visible = false;
             // 
             // F_部品
             // 
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1486, 798);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.無効日時);
+            this.Controls.Add(this.部品集合参照ボタン);
+            this.Controls.Add(this.集合名);
+            this.Controls.Add(this.部品集合版数);
             this.Controls.Add(this.受入検査ランク);
             this.Controls.Add(this.CalcInventoryCode);
             this.Controls.Add(this.部品使用先);
@@ -2148,8 +2150,8 @@ namespace u_net
             this.Controls.Add(this.MakerShortName);
             this.Controls.Add(this.下移動ボタン);
             this.Controls.Add(this.上移動ボタン);
-            this.Controls.Add(this.groupBox3);
-            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.仕入先3フレーム);
+            this.Controls.Add(this.仕入先2フレーム);
             this.Controls.Add(this.資料ボタン);
             this.Controls.Add(this.改版ボタン);
             this.Controls.Add(this.MakerName);
@@ -2172,11 +2174,11 @@ namespace u_net
             this.Controls.Add(this.コマンド読込);
             this.Controls.Add(this.削除);
             this.Controls.Add(this.label15);
-            this.Controls.Add(this.更新者名);
+            this.Controls.Add(this.UpdaterName);
             this.Controls.Add(this.更新者コード);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.label13);
-            this.Controls.Add(this.作成者名);
+            this.Controls.Add(this.CreatorName);
             this.Controls.Add(this.作成者コード);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.label10);
@@ -2187,7 +2189,7 @@ namespace u_net
             this.Controls.Add(this.メーカー省略名_ラベル);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.メーカーコード_ラベル);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.仕入先1フレーム);
             this.Controls.Add(this.仕入先3_ラベル);
             this.Controls.Add(this.仕入先2_ラベル);
             this.Controls.Add(this.型番);
@@ -2198,25 +2200,23 @@ namespace u_net
             this.KeyPreview = true;
             this.Name = "F_部品";
             this.Text = " ";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form_Unload);
             this.Load += new System.EventHandler(this.Form_Load);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form_KeyDown);
             this.panel1.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.仕入先1フレーム.ResumeLayout(false);
+            this.仕入先1フレーム.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.M部品形状bindingSource)).EndInit();
+            this.仕入先2フレーム.ResumeLayout(false);
+            this.仕入先2フレーム.PerformLayout();
+            this.仕入先3フレーム.ResumeLayout(false);
+            this.仕入先3フレーム.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.M部品分類bindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.newDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.M部品形状bindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rohsStatusCodebindingSource)).EndInit();
             this.groupBox4.ResumeLayout(false);
             this.groupBox5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.部品使用先)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.M部品分類bindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rohsStatusCodebindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2288,12 +2288,12 @@ namespace u_net
         private System.Windows.Forms.DataGridViewTextBoxColumn 構成番号;
         private System.Windows.Forms.TextBox 削除;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.TextBox 更新者名;
+        private System.Windows.Forms.TextBox UpdaterName;
         private System.Windows.Forms.TextBox 更新者コード;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TextBox 更新日時;
-        private System.Windows.Forms.TextBox 作成者名;
+        private System.Windows.Forms.TextBox CreatorName;
         private System.Windows.Forms.TextBox 作成者コード;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label10;
@@ -2320,7 +2320,7 @@ namespace u_net
         private DataGridViewTextBoxColumn 構成番号DataGridViewTextBoxColumn;
         private uiDataSetTableAdapters.combBoxMシリーズTableAdapter combBoxMシリーズTableAdapter;
         private uiDataSetTableAdapters.TableAdapterManager tableAdapterManager;
-        private GroupBox groupBox1;
+        private GroupBox 仕入先1フレーム;
         private Label 仕入先3_ラベル;
         private Label 仕入先2_ラベル;
         private TextBox 型番;
@@ -2344,7 +2344,7 @@ namespace u_net
         private TextBox MakerName;
         private Button 改版ボタン;
         private Button 資料ボタン;
-        private GroupBox groupBox2;
+        private GroupBox 仕入先2フレーム;
         private Label label5;
         private TextBox Supplier2Name;
         private Button 仕入先2コード検索ボタン;
@@ -2352,7 +2352,7 @@ namespace u_net
         private TextBox 仕入先2コード;
         private Label label9;
         private TextBox 仕入先2単価;
-        private GroupBox groupBox3;
+        private GroupBox 仕入先3フレーム;
         private Label label16;
         private TextBox Supplier3Name;
         private Button 仕入先3コード検索ボタン;
@@ -2419,9 +2419,9 @@ namespace u_net
         private DataGridView 部品使用先;
         private ComboBox CalcInventoryCode;
         private ComboBox 受入検査ランク;
-        private TextBox textBox1;
-        private TextBox textBox2;
-        private Button button1;
+        private TextBox 部品集合版数;
+        private TextBox 集合名;
+        private Button 部品集合参照ボタン;
         private newDataSetTableAdapters.M部品形状TableAdapter m部品形状TableAdapter;
         private newDataSet newDataSet;
         private newDataSetTableAdapters.M部品分類TableAdapter m部品分類TableAdapter;
@@ -2429,6 +2429,7 @@ namespace u_net
         private BindingSource M部品形状bindingSource;
         private BindingSource M部品分類bindingSource;
         private BindingSource rohsStatusCodebindingSource;
+        private TextBox 無効日時;
     }
 }
 
