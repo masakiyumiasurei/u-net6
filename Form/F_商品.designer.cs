@@ -31,11 +31,15 @@ namespace u_net
         {
             components = new System.ComponentModel.Container();
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle10 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(F_商品));
             M商品BindingSource = new BindingSource(components);
             uiDataSet = new uiDataSet();
@@ -257,13 +261,30 @@ namespace u_net
             // dataGridView1
             // 
             dataGridView1.AutoGenerateColumns = false;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = SystemColors.ButtonFace;
+            dataGridViewCellStyle1.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Columns.AddRange(new DataGridViewColumn[] { 明細削除ボタン, 行挿入ボタン, dgv商品コード, dgvrevision, dgv明細番号, 型式番号, 型式名, 定価, 原価, 機能, 構成番号 });
             dataGridView1.DataSource = M商品明細BindingSource;
+            dataGridView1.EditMode = DataGridViewEditMode.EditOnEnter;
             dataGridView1.ImeMode = ImeMode.On;
             dataGridView1.Location = new Point(0, 502);
             dataGridView1.Margin = new Padding(4, 3, 4, 3);
             dataGridView1.Name = "dataGridView1";
+            dataGridViewCellStyle10.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = SystemColors.GradientInactiveCaption;
+            dataGridViewCellStyle10.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle10.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle10.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle10.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = DataGridViewTriState.True;
+            dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle10;
             dataGridView1.RowTemplate.Height = 21;
             dataGridView1.Size = new Size(943, 261);
             dataGridView1.TabIndex = 109;
@@ -1362,6 +1383,9 @@ namespace u_net
             // 
             // 明細削除ボタン
             // 
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.ForeColor = Color.Maroon;
+            明細削除ボタン.DefaultCellStyle = dataGridViewCellStyle2;
             明細削除ボタン.HeaderText = "";
             明細削除ボタン.Name = "明細削除ボタン";
             明細削除ボタン.Text = "X";
@@ -1371,6 +1395,9 @@ namespace u_net
             // 
             // 行挿入ボタン
             // 
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.ForeColor = Color.Maroon;
+            行挿入ボタン.DefaultCellStyle = dataGridViewCellStyle3;
             行挿入ボタン.HeaderText = "";
             行挿入ボタン.Name = "行挿入ボタン";
             行挿入ボタン.Text = "▶";
@@ -1395,17 +1422,19 @@ namespace u_net
             // dgv明細番号
             // 
             dgv明細番号.DataPropertyName = "明細番号";
-            dataGridViewCellStyle1.Font = new Font("MS UI Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dgv明細番号.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.BackColor = Color.SkyBlue;
+            dataGridViewCellStyle4.Font = new Font("MS UI Gothic", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            dgv明細番号.DefaultCellStyle = dataGridViewCellStyle4;
             dgv明細番号.HeaderText = "No";
             dgv明細番号.Name = "dgv明細番号";
+            dgv明細番号.ReadOnly = true;
             dgv明細番号.Width = 26;
             // 
             // 型式番号
             // 
             型式番号.DataPropertyName = "型式番号";
-            dataGridViewCellStyle2.Font = new Font("ＭＳ ゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            型式番号.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Font = new Font("ＭＳ ゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            型式番号.DefaultCellStyle = dataGridViewCellStyle5;
             型式番号.HeaderText = "型式番号";
             型式番号.Name = "型式番号";
             型式番号.Visible = false;
@@ -1414,8 +1443,8 @@ namespace u_net
             // 型式名
             // 
             型式名.DataPropertyName = "型式名";
-            dataGridViewCellStyle3.Font = new Font("ＭＳ ゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            型式名.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.Font = new Font("ＭＳ ゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            型式名.DefaultCellStyle = dataGridViewCellStyle6;
             型式名.HeaderText = "型式名";
             型式名.Name = "型式名";
             型式名.ToolTipText = "半角48文字まで";
@@ -1424,11 +1453,11 @@ namespace u_net
             // 定価
             // 
             定価.DataPropertyName = "定価";
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.TopRight;
-            dataGridViewCellStyle4.Font = new Font("MS UI Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle4.Format = "N0";
-            dataGridViewCellStyle4.NullValue = null;
-            定価.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.TopRight;
+            dataGridViewCellStyle7.Font = new Font("MS UI Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle7.Format = "N0";
+            dataGridViewCellStyle7.NullValue = "0";
+            定価.DefaultCellStyle = dataGridViewCellStyle7;
             定価.HeaderText = "定価";
             定価.Name = "定価";
             定価.Width = 91;
@@ -1436,11 +1465,11 @@ namespace u_net
             // 原価
             // 
             原価.DataPropertyName = "原価";
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.TopRight;
-            dataGridViewCellStyle5.Font = new Font("MS UI Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle5.Format = "N0";
-            dataGridViewCellStyle5.NullValue = null;
-            原価.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.TopRight;
+            dataGridViewCellStyle8.Font = new Font("MS UI Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle8.Format = "N0";
+            dataGridViewCellStyle8.NullValue = "0";
+            原価.DefaultCellStyle = dataGridViewCellStyle8;
             原価.HeaderText = "原価";
             原価.Name = "原価";
             原価.Width = 91;
@@ -1448,8 +1477,8 @@ namespace u_net
             // 機能
             // 
             機能.DataPropertyName = "機能";
-            dataGridViewCellStyle6.Font = new Font("ＭＳ ゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            機能.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle9.Font = new Font("ＭＳ ゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            機能.DefaultCellStyle = dataGridViewCellStyle9;
             機能.HeaderText = "機能";
             機能.Name = "機能";
             機能.Width = 363;
