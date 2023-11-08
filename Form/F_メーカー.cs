@@ -1093,7 +1093,7 @@ namespace u_net
             }
             else
             {
-                strSQL = "SELECT * FROM Vメーカーヘッダ WHERE メーカーコード'" + codeString + "' AND Revision= " + editionNumber;
+                strSQL = "SELECT * FROM Vメーカーヘッダ WHERE メーカーコード='" + codeString + "' AND Revision= " + editionNumber;
             }
 
             //using (SqlCommand command = new SqlCommand(strSQL, cn))

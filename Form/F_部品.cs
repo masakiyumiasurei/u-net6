@@ -212,8 +212,73 @@ namespace u_net
         }
 
 
+        private void Form_Unload(object sender, EventArgs e)
+        {
+            try
+            {
 
-     
+                CommonConnect();
+
+                // データへの変更がないときの処理
+                if (!IsChanged)
+                {
+                    // 新規モードで且つコードが取得済みのときはコードを戻す
+                    if (IsNewData && !string.IsNullOrEmpty(CurrentCode) && CurrentEdition == 1)
+                    {
+                        // 採番された番号を戻す
+                        if (!FunctionClass.ReturnCode(cn, "PAR" + CurrentCode))
+                        {
+                            MessageBox.Show("エラーのためコードは破棄されました。" + Environment.NewLine + Environment.NewLine +
+                                            "部品コード　：　" + CurrentCode, "警告", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        }
+                    }
+                    return;
+                }
+
+                // 修正されているときは登録確認を行う
+                var intRes = MessageBox.Show("変更内容を登録しますか？", "確認", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                switch (intRes)
+                {
+                    case DialogResult.Yes:
+                        // エラーチェック
+                        if (!ErrCheck())
+                        {
+                            return;
+                        }
+                        // 登録処理
+                        if (!SaveData())
+                        {
+                            if (MessageBox.Show("エラーのため登録できませんでした。" + Environment.NewLine +
+                                                "強制終了しますか？", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                            {
+                                return;
+                            }
+                        }
+                        break;
+                    case DialogResult.No:
+                        // 新規コードを取得していたときはコードを戻す
+                        if (IsNewData && !string.IsNullOrEmpty(CurrentCode) && CurrentEdition == 1)
+                        {
+                            if (!FunctionClass.ReturnCode(cn, "PAR" + CurrentCode))
+                            {
+                                MessageBox.Show("エラーのためコードは破棄されました。" + Environment.NewLine +
+                                                "部品コード　：　" + CurrentCode, "警告", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            }
+                        }
+                        break;
+                    case DialogResult.Cancel:
+                        return;
+                }
+
+
+        }
+            catch (Exception ex)
+            {
+                Debug.Print(Name + "_Unload - " + ex.Message);
+                MessageBox.Show(ex.Message, "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
 
         public bool IsChanged
         {
@@ -545,7 +610,7 @@ namespace u_net
         {
             if (this.Rohs2ProvisionalRegisteredStatusCode.Checked)
             {
-                this.RohsStatusCode = 5;
+                this.RohsStatusCode.SelectedIndex = 5;
                 // this.RohsStatusName = "仮RoHS2";
             }
             else
@@ -553,7 +618,7 @@ namespace u_net
                 if (this.Rohs2ChemSherpaStatusCode.SelectedIndex == 2 || this.Rohs2JampAisStatusCode.SelectedIndex == 2 ||
                     this.Rohs2NonInclusionCertificationStatusCode.SelectedIndex == 1 || this.Rohs2DocumentStatusCode.SelectedIndex == 2)
                 {
-                    this.RohsStatusCode = 2;
+                    this.RohsStatusCode.SelectedIndex = 2;
                     // this.RohsStatusName = "RoHS2";
                 }
                 else if (this.Rohs1ChemSherpaStatusCode.SelectedIndex == 2 || this.JampAis.SelectedIndex == 2 ||
@@ -564,7 +629,7 @@ namespace u_net
                 }
                 else
                 {
-                    this.RohsStatusCode = 3;
+                    this.RohsStatusCode.SelectedIndex = 3;
                     // this.RohsStatusName = "RoHS1非対応";
                 }
             }
@@ -775,11 +840,13 @@ namespace u_net
                 FunctionClass fn = new FunctionClass();
                 fn.DoWait("改版しています...");
 
+                CommonConnect();
+
                 if (SaveData())
                 {
-                    if (AddHistory(objConnection, this.CurrentCode, this.CurrentEdition))
+                    if (AddHistory(cn, this.CurrentCode, this.CurrentEdition))
                     {
-                        this.部品コード.Requery;
+                        //this.部品コード.Requery;
                         // ■ なぜかRequeryしてもColumn(1)がNULLとなるので、版数を+1する
                         this.版数.Text = (Convert.ToInt32(this.CurrentEdition) + 1).ToString();
                         this.コマンド履歴.Enabled = true;
@@ -805,6 +872,67 @@ namespace u_net
 
             }
         }
+
+
+
+        private bool AddHistory(SqlConnection connection, string codeString, int editionNumber)
+        {
+            try
+            {
+                connection.Open(); // 接続を開く
+                using (SqlCommand cmd = new SqlCommand("SP部品履歴追加", connection))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add("@strCode", SqlDbType.VarChar).Value = codeString;
+                    cmd.Parameters.Add("@intEdition", SqlDbType.Int).Value = editionNumber;
+                    cmd.ExecuteNonQuery(); // ストアドプロシージャを実行
+                }
+
+                return true; // 成功
+            }
+            catch (Exception ex)
+            {
+                Debug.Print(this.Name + "_AddHistory - " + ex.Message);
+                return false; // 失敗
+            }
+            finally
+            {
+                if (connection.State == ConnectionState.Open)
+                {
+                    connection.Close(); // 接続を閉じる
+                }
+            }
+        }
+
+        private void 資料ボタン_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (ActiveControl == 資料ボタン)
+                {
+                    GetNextControl(資料ボタン, false).Focus();
+                }
+
+                string strCode = 部品コード.Text;
+                if (string.IsNullOrEmpty(strCode))
+                {
+                    MessageBox.Show("部品コードを入力してください。", "警告", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    部品コード.Focus();
+                }
+                else
+                {
+                    //F_部品_資料添付 targetform = new F_部品_資料添付();
+
+                    //targetform.args = strCode;
+                    //targetform.ShowDialog();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
 
         private void コマンド削除_Click(object sender, EventArgs e)
         {
@@ -1036,6 +1164,403 @@ namespace u_net
 
             Close(); // フォームを閉じる
         }
+
+
+
+        //private void UpdatePurGrid()
+        //{
+        //■現在未使用
+        //登録後の処理として、購買フォームが開いている場合はグリッドを更新する
+        //    try
+        //    {
+        //        // 購買フォームが開いているかを確認
+        //        if (Application.OpenForms["購買"] == null)
+        //        {
+        //            return;
+        //        }
+
+        //        // 購買フォームのグリッドを取得
+        //        Form frmPurchase = Application.OpenForms["購買"];
+        //        MSHierarchicalFlexGridLib.MSHFlexGrid obj1 = (MSHierarchicalFlexGridLib.MSHFlexGrid)frmPurchase.Controls["objGrid"];
+
+        //        if (obj1 != null)
+        //        {
+        //            int currentRow = obj1.row;
+        //            string supplierCode = OriginalClass.Nz(仕入先1コード.Text,null);
+        //            string supplierName = OriginalClass.Nz(Supplier1Name.Text, null);
+        //            string productName = OriginalClass.Nz(品名.Text, null);
+        //            string modelNumber = OriginalClass.Nz(型番.Text, null);
+        //            double unitPrice = OriginalClass.Nz(仕入先1単価.Text, null);
+
+        //            if (obj1.TextMatrix[currentRow, 5] != supplierCode)
+        //            {
+        //                obj1.TextMatrix[currentRow, 5] = supplierCode;
+        //                obj1.TextMatrix[currentRow, 6] = supplierName;
+        //                frmPurchase.GetType().GetMethod("ChangedControl").Invoke(frmPurchase, new object[] { true });
+        //            }
+
+        //            obj1.TextMatrix[currentRow, 8] = productName;
+        //            obj1.TextMatrix[currentRow, 9] = modelNumber;
+        //            obj1.TextMatrix[currentRow, 13] = unitPrice.ToString("###,###,##0.00");
+
+        //            frmPurchase.GetType().GetMethod("CalcAmount").Invoke(frmPurchase, new object[] { currentRow });
+        //            frmPurchase.GetType().GetProperty("bleGridUpdated").SetValue(frmPurchase, true, null);
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Debug.Print(Name + "_UpdatedPurGrid - " + ex.Message);
+        //    }
+        //}
+
+
+        private bool LoadData(Form formObject, string codeString, int editionNumber = 0)
+        {
+            try
+            {
+                Connect();
+
+                string strSQL;
+                if (editionNumber == 0)
+                {
+                    strSQL = "SELECT * FROM V部品読込 WHERE 部品コード ='" + codeString + "'";
+                }
+                else
+                {
+                    strSQL = "SELECT * FROM V部品読込 WHERE 部品コード ='" + codeString + "' AND 部品版数= " + editionNumber;
+                }
+
+                //using (SqlCommand cmd = new SqlCommand(strSQL, connection))
+                //{
+                //    cmd.Parameters.AddWithValue("@CodeString", codeString);
+                //    if (editionNumber != 0)
+                //    {
+                //        cmd.Parameters.AddWithValue("@EditionNumber", editionNumber);
+                //    }
+
+                //    DataTable dataTable = new DataTable();
+                //    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                //    adapter.Fill(dataTable);
+
+                //    if (dataTable.Rows.Count > 0)
+                //    {
+                        //DataRow row = dataTable.Rows[0];
+                        VariableSet.SetTable2Form(this, strSQL,cn);
+                        return true;
+                    //}
+                    
+                
+
+                
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                // エラーハンドリングが必要に応じて行われるべきです
+                return false;
+            }
+        }
+        private int CheckParts(SqlConnection connectionObject, string codeString, int edition = 0)
+        {
+            try
+            {
+                string strKey;
+                string strSQL;
+                int recordCount = 0;
+
+                if (string.IsNullOrEmpty(codeString))
+                    return 0;
+
+                if (edition == 0)
+                {
+                    strKey = "部品コード = '" + codeString + "'";
+                }
+                else
+                {
+                    strKey = "部品コード = '" + codeString + "' and 版数 = " + edition;
+                }
+
+                strSQL = "SELECT COUNT(*) FROM M部品 WHERE " + strKey;
+
+                using (SqlCommand cmd = new SqlCommand(strSQL, connectionObject))
+                {
+                    connectionObject.Open();
+                    recordCount = Convert.ToInt32(cmd.ExecuteScalar());
+                    connectionObject.Close();
+                }
+
+                return recordCount;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                // エラーハンドリングが必要に応じて行われるべきです
+                return 0;
+            }
+        }
+
+
+        private bool IsError(Control controlObject, ref bool Cancel)
+        {
+            try
+            {
+                object varValue = controlObject.Text;
+                string controlName = controlObject.Name;
+
+                switch (controlName)
+                {
+                    case "部品コード":
+                    case "品名":
+                        if (string.IsNullOrEmpty(varValue.ToString()))
+                        {
+                            MessageBox.Show(controlName + "を入力してください.", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            return true;
+                        }
+                        break;
+                    case "型番":
+                        if (Cancel)
+                        {
+                            if (string.IsNullOrEmpty(varValue.ToString()))
+                            {
+                                MessageBox.Show(controlName + "を入力してください.", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                                return true;
+                            }
+                        }
+                        // 重複チェックなどを行う必要があれば、ここに追加してください。
+                        break;
+                    case "メーカーコード":
+                        if (string.IsNullOrEmpty(varValue.ToString()))
+                        {
+                            MessageBox.Show(controlName + "を入力してください.", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            return true;
+                        }
+                        // メーカーコードからの関連情報表示などが必要であればここに追加してください。
+                        break;
+                    case "仕入先1単価":
+                    case "仕入先2単価":
+                    case "仕入先3単価":
+                        if (!string.IsNullOrEmpty(varValue.ToString()))
+                        {
+                            if (!FunctionClass.IsLimit_N(varValue, 8, 2, controlName))
+                            {
+                                return true;
+                            }
+                        }
+                        break;
+                    case "分類コード":
+                        if (string.IsNullOrEmpty(varValue.ToString()))
+                        {
+                            MessageBox.Show(controlName + "を入力してください.", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            return true;
+                        }
+                        GroupNumber.Text = 分類コード.Text;
+                        break;
+                    case "形状分類コード":
+                        if (string.IsNullOrEmpty(varValue.ToString()))
+                        {
+                            MessageBox.Show("形状分類を指定してください.", "情報", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            return true;
+                        }
+                        FormGroupShortName.Text = 形状分類コード.Text;
+                        break;
+                    case "入数":
+                        if (!FunctionClass.IsLimit_N(varValue, 8, 0, controlName))
+                        {
+                            return true;
+                        }
+                        break;
+                    case "単位数量":
+                        if (!FunctionClass.IsLimit_N(varValue, 8, 0, controlName))
+                        {
+                            return true;
+                        }
+                        break;
+                    case "StandardDeliveryDay":
+                        // カスタムのチェックロジックが必要であればここに追加してください。
+                        break;
+                    case "CalcInventoryCode":
+                        if (string.IsNullOrEmpty(varValue.ToString()))
+                        {
+                            MessageBox.Show("在庫計算を指定してください.", "情報", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            return true;
+                        }
+                        break;
+                    case "受入検査ランク":
+                        if (string.IsNullOrEmpty(varValue.ToString()))
+                        {
+                            MessageBox.Show("受入検査ランクを指定してください.", "情報", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            return true;
+                        }
+                        break;
+                    case "ロス率":
+                        if (!FunctionClass.IsLimit_N(varValue, 8, 7, controlName))
+                        {
+                            return true;
+                        }
+                        break;
+                    case "Rohs1ChemSherpaStatusCode":
+                    case "JampAis":
+                    case "非含有証明書":
+                    case "RoHS資料":
+                    case "Rohs2ChemSherpaStatusCode":
+                    case "Rohs2JampAisStatusCode":
+                    case "Rohs2NonInclusionCertificationStatusCode":
+                    case "Rohs2DocumentStatusCode":
+                        if (string.IsNullOrEmpty(varValue.ToString()))
+                        {
+                            MessageBox.Show("[" + controlObject.Tag + "]を入力してください.", "情報", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            return true;
+                        }
+                        break;
+                    case "ChemSherpaVersion":
+                        // カスタムのチェックロジックが必要であればここに追加してください。
+                        break;
+                    case "在庫数量":
+                        if (!FunctionClass.IsLimit_N(varValue, 8, 0, controlName))
+                        {
+                            return true;
+                        }
+                        break;
+                    default:
+                        // 他のコントロールに対するエラーチェックロジックを追加してください。
+                        break;
+                }
+
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                // エラーハンドリングが必要に応じて行われるべきです
+                return true;
+            }
+        }
+
+
+        public bool DetectRepeatedParts(string ModelString, string ExCodeString, ref SqlDataAdapter dataAdapter)
+        {
+            bool detectRepeatedParts = false;
+
+            try
+            {
+
+                CommonConnect();
+
+                using (SqlCommand command = new SqlCommand("SP部品重複検出", cn))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.Add("@strModel", SqlDbType.VarChar).Value = ModelString;
+                    command.Parameters.Add("@strExCode", SqlDbType.VarChar).Value = ExCodeString;
+
+                    dataAdapter = new SqlDataAdapter(command);
+                    dataAdapter.Fill(new DataSet()); // You can replace "new DataSet()" with your dataset object if needed
+
+                    detectRepeatedParts = true;
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                // エラーハンドリング
+                Console.WriteLine("DetectRepeatedPartsエラー: " + ex.Message);
+            }
+
+            return detectRepeatedParts;
+        }
+
+        private void UpdatedControl(Control controlObject)
+        {
+            try
+            {
+                Connect();
+
+                switch (controlObject.Name)
+                {
+                    case "部品コード":
+
+                        FunctionClass fn = new FunctionClass();
+                        fn.DoWait("読み込んでいます...");
+
+
+                        string query = "SELECT M部品.部品コード, ISNULL([V部品履歴_最終版数].最終版数, 0) + 1 AS 版数 " +
+    "FROM M部品 LEFT OUTER JOIN [V部品履歴_最終版数] " +
+    "ON M部品.部品コード = [V部品履歴_最終版数].部品コード " +
+    "WHERE M部品.部品コード BETWEEN @StartCode AND @EndCode " +
+    "ORDER BY M部品.部品コード DESC";
+
+                        using (SqlCommand command = new SqlCommand(query, cn))
+                        {
+                            int parsedCode = int.Parse(部品コード.Text);
+                            command.Parameters.AddWithValue("@StartCode", parsedCode - 10);
+                            command.Parameters.AddWithValue("@EndCode", parsedCode + 10);
+
+                            SqlDataAdapter adapter = new SqlDataAdapter(command);
+                            DataTable dataTable = new DataTable();
+
+                            adapter.Fill(dataTable);
+
+                            // 部品コードのソースにDataTableを設定
+                            部品コード.DataSource = dataTable;
+                            部品コード.DisplayMember = "部品コード";
+                            部品コード.ValueMember = "版数";
+                        }
+                          
+                        版数.Text = 部品コード.Text;
+                        // 内容の表示
+                        LoadData(this, CurrentCode);
+                        // 使用先の表示
+                        DispGrid(CurrentCode);
+                        // 動作制御
+                        改版ボタン.Enabled = true;
+                        // コマンド複写.Enabled = true;
+                        コマンド削除.Enabled = true;
+                        コマンド入出庫.Enabled = true;
+                        コマンド履歴.Enabled = !(CurrentEdition <= 1);
+
+                        fn.WaitForm.Close();
+                        break;
+                    case "仕入先1コード":
+                        // 仕入先コードからの関連情報表示
+                        Supplier1Name.Text = FunctionClass.GetSupplierName(cn,controlObject.Text.ToString());
+                        break;
+                    case "仕入先2コード":
+                        // 仕入先コードからの関連情報表示
+                        Supplier2Name.Text = FunctionClass.GetSupplierName(cn,controlObject.Text.ToString());
+                        break;
+                    case "仕入先3コード":
+                        // 仕入先コードからの関連情報表示
+                        Supplier3Name.Text = FunctionClass.GetSupplierName(cn,controlObject.Text.ToString());
+                        break;
+                    case "入数":
+                    case "単位数量":
+                        int parsedValue = int.Parse(controlObject.Text);
+                        if (parsedValue < 1)
+                        {
+                            controlObject.Text = 1.ToString();
+                        }
+                        break;
+                    case "ロス率":
+                        controlObject.Text = float.Parse(controlObject.Text.ToString()).ToString();
+                        // Me.Controls(ControlName).Value = Me.Controls(ControlName).Value / 100;
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.Print(Name + "_UpdatedControl - " + ex.Message);
+            }
+            finally
+            {
+                
+ 
+            }
+        }
+
+
+
+
+
+
 
 
 
