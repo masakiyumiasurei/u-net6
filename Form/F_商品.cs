@@ -219,7 +219,6 @@ namespace u_net
                 try
                 {
                     // M商品データを保存
-
                     string strwhere = " 商品コード='" + this.商品コード.Text + "' and Revision=" + this.Revision.Text;
 
                     if (!DataUpdater.UpdateOrInsertDataFrom(this, cn, "M商品", strwhere, "商品コード", transaction))
@@ -228,11 +227,53 @@ namespace u_net
                         return false;
                     }
 
+                    string sql = "DELETE FROM M商品明細 WHERE " + strwhere;
+                    SqlCommand command = new SqlCommand(sql, cn, transaction);
+                    command.ExecuteNonQuery();
+
+                    foreach (DataGridViewRow row in dataGridView1.Rows)
+                    {
+                        if (!row.IsNewRow)
+                        {
+                            string 商品コード = row.Cells["商品コード"].Value.ToString();
+                            string Revision = row.Cells["Revision"].Value.ToString();
+                            string 明細番号 = row.Cells["明細番号"].Value.ToString();
+                            string 型式番号 = row.Cells["型式番号"].Value.ToString();
+                            string 型式名 = row.Cells["型式名"].Value.ToString();
+                            decimal 定価 = Convert.ToDecimal(row.Cells["定価"].Value); // 金額の場合、適切なデータ型に変換
+                            decimal 原価 = Convert.ToDecimal(row.Cells["原価"].Value); // 金額の場合、適切なデータ型に変換
+                            string 機能 = row.Cells["機能"].Value.ToString();
+                            string 構成番号 = row.Cells["構成番号"].Value.ToString();
+
+                            // データベースにデータを挿入
+                        string insertSql = "INSERT INTO M商品明細 (商品コード, Revision, 明細番号, 型式番号, 型式名, 定価, 原価, 機能, 構成番号) " +
+                            "VALUES (@商品コード, @Revision, @明細番号, @型式番号, @型式名, @定価, @原価, @機能, @構成番号)";
+                            
+                                
+                            using (SqlCommand insertCommand = new SqlCommand(insertSql, cn, transaction))
+                            {
+                                insertCommand.Parameters.AddWithValue("@商品コード", 商品コード);
+                                insertCommand.Parameters.AddWithValue("@Revision", Revision);
+                                insertCommand.Parameters.AddWithValue("@明細番号", 明細番号);
+                                insertCommand.Parameters.AddWithValue("@型式番号", 型式番号);
+                                insertCommand.Parameters.AddWithValue("@型式名", 型式名);
+                                insertCommand.Parameters.AddWithValue("@定価", 定価);
+                                insertCommand.Parameters.AddWithValue("@原価", 原価);
+                                insertCommand.Parameters.AddWithValue("@機能", 機能);
+                                insertCommand.Parameters.AddWithValue("@構成番号", 構成番号);
+
+                                insertCommand.ExecuteNonQuery();
+                            }                            
+                        }
+                    }
+
+                    // DataGridViewを更新して新しいデータを表示
+                    this.mshomeisaiTableAdapter.Fill(this.newDataSet.M商品明細, this.商品コード.Text);
 
                     // M商品明細データを保存
-                    this.mshomeisaiTableAdapter.Connection = cn;
-                    this.mshomeisaiTableAdapter.Transaction = transaction;
-                    this.mshomeisaiTableAdapter.Update(this.newDataSet.M商品明細);
+                    //this.mshomeisaiTableAdapter.Connection = cn;
+                    //this.mshomeisaiTableAdapter.Transaction = transaction;
+                    //this.mshomeisaiTableAdapter.Update(this.newDataSet.M商品明細);
 
                     // トランザクションをコミット
                     transaction.Commit();
@@ -1415,6 +1456,11 @@ namespace u_net
                 //dataTable.Rows.Add(newRow);
                 dataTable.Rows.InsertAt(newRow, newRowIndex-1);
                 dataTable.DefaultView.Sort = "明細番号";
+
+                // DataGridViewの特定のセル（"型式名" カラムのセル）をアクティブにする
+                int activeIndex = dataGridView1.Columns["型式名"].Index;
+                dataGridView1.CurrentCell = dataGridView1.Rows[newRowIndex].Cells[activeIndex];
+                dataGridView1.BeginEdit(true);
 
                 bindingSource.EndEdit();
                 bindingSource.ResetBindings(false);
