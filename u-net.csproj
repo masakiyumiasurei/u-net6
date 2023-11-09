@@ -12,6 +12,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Form\F_商品 - コピー.cs" />
+    <Compile Remove="Form\F_商品 - コピー.designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="Form\F_商品 - コピー.resx" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="icon\unetc.ico" />
   </ItemGroup>
 

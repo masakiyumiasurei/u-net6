@@ -1315,8 +1315,7 @@ namespace u_net
             // 分類コード
             // 
             this.分類コード.BackColor = System.Drawing.Color.White;
-            this.分類コード.DataSource = this.M部品分類bindingSource;
-            this.分類コード.DisplayMember = "対象部品名";
+            this.分類コード.DisplayMember = "分類コード";
             this.分類コード.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.分類コード.FormattingEnabled = true;
             this.分類コード.ImeMode = System.Windows.Forms.ImeMode.Off;
@@ -1368,8 +1367,6 @@ namespace u_net
             // 形状分類コード
             // 
             this.形状分類コード.BackColor = System.Drawing.Color.White;
-            this.形状分類コード.DataSource = this.M部品形状bindingSource;
-            this.形状分類コード.DisplayMember = "部品形状名";
             this.形状分類コード.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.形状分類コード.FormattingEnabled = true;
             this.形状分類コード.ImeMode = System.Windows.Forms.ImeMode.Off;
@@ -1377,7 +1374,6 @@ namespace u_net
             this.形状分類コード.Name = "形状分類コード";
             this.形状分類コード.Size = new System.Drawing.Size(139, 21);
             this.形状分類コード.TabIndex = 29;
-            this.形状分類コード.ValueMember = "部品形状コード";
             // 
             // M部品形状bindingSource
             // 
@@ -1402,8 +1398,6 @@ namespace u_net
             // RohsStatusCode
             // 
             this.RohsStatusCode.BackColor = System.Drawing.Color.White;
-            this.RohsStatusCode.DataSource = this.rohsStatusCodebindingSource;
-            this.RohsStatusCode.DisplayMember = "Name";
             this.RohsStatusCode.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.RohsStatusCode.FormattingEnabled = true;
             this.RohsStatusCode.ImeMode = System.Windows.Forms.ImeMode.Off;
@@ -1411,7 +1405,6 @@ namespace u_net
             this.RohsStatusCode.Name = "RohsStatusCode";
             this.RohsStatusCode.Size = new System.Drawing.Size(139, 21);
             this.RohsStatusCode.TabIndex = 31;
-            this.RohsStatusCode.ValueMember = "Code";
             // 
             // rohsStatusCodebindingSource
             // 

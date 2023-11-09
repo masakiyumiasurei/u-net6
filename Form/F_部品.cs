@@ -93,10 +93,10 @@ namespace u_net
             部品使用先.DefaultCellStyle.Font = new Font("MS ゴシック", 10);
             部品使用先.DefaultCellStyle.ForeColor = Color.Black;
 
-
-            this.m部品分類TableAdapter.Fill(this.newDataSet.M部品分類);
-            this.m部品形状TableAdapter.Fill(this.newDataSet.M部品形状);
-            this.rohsStatusCodeTableAdapter.Fill(this.newDataSet.RohsStatusCode);
+            OriginalClass ofn = new OriginalClass();
+            ofn.SetComboBox(分類コード, "SELECT 対象部品名 as Display,分類コード as Value FROM M部品分類");
+            ofn.SetComboBox(形状分類コード, "SELECT 部品形状名 as Display,部品形状コード as Value FROM M部品形状");
+            ofn.SetComboBox(RohsStatusCode, "SELECT Name as Display,Code as Value FROM rohsStatusCode");
 
 
             this.JampAis.DataSource = new KeyValuePair<int, String>[] {
@@ -214,6 +214,11 @@ namespace u_net
 
         private void Form_Unload(object sender, EventArgs e)
         {
+
+            string LoginUserCode = "000";//テスト用 ログインユーザを実行中にどのように管理するか決まったら修正
+            LocalSetting test = new LocalSetting();
+            test.SavePlace(LoginUserCode, this);
+
             try
             {
 
