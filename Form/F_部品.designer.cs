@@ -707,6 +707,8 @@ namespace u_net
             this.品名.Name = "品名";
             this.品名.Size = new System.Drawing.Size(466, 20);
             this.品名.TabIndex = 6;
+            this.品名.TextChanged += new System.EventHandler(this.品名_TextChanged);
+            this.品名.Validating += new System.ComponentModel.CancelEventHandler(this.品名_Validating);
             // 
             // メーカー名_ラベル
             // 
@@ -784,6 +786,7 @@ namespace u_net
             this.仕入先1フレーム.TabIndex = 11;
             this.仕入先1フレーム.TabStop = false;
             this.仕入先1フレーム.Text = "仕入先(１)";
+            this.仕入先1フレーム.Enter += new System.EventHandler(this.仕入先1フレーム_Enter);
             // 
             // label4
             // 
@@ -822,6 +825,7 @@ namespace u_net
             this.仕入先1コード検索ボタン.TabStop = false;
             this.仕入先1コード検索ボタン.Text = "▼";
             this.仕入先1コード検索ボタン.UseVisualStyleBackColor = true;
+            this.仕入先1コード検索ボタン.Click += new System.EventHandler(this.仕入先1コード検索ボタン_Click);
             // 
             // label2
             // 
@@ -848,6 +852,13 @@ namespace u_net
             this.仕入先1コード.Name = "仕入先1コード";
             this.仕入先1コード.Size = new System.Drawing.Size(139, 20);
             this.仕入先1コード.TabIndex = 13;
+            this.仕入先1コード.TextChanged += new System.EventHandler(this.仕入先1コード_TextChanged);
+            this.仕入先1コード.Enter += new System.EventHandler(this.仕入先1コード_Enter);
+            this.仕入先1コード.KeyDown += new System.Windows.Forms.KeyEventHandler(this.仕入先1コード_KeyDown);
+            this.仕入先1コード.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.仕入先1コード_KeyPress);
+            this.仕入先1コード.Leave += new System.EventHandler(this.仕入先1コード_Leave);
+            this.仕入先1コード.Validating += new System.ComponentModel.CancelEventHandler(this.仕入先1コード_Validating);
+            this.仕入先1コード.Validated += new System.EventHandler(this.仕入先1コード_Validated);
             // 
             // label17
             // 
@@ -874,6 +885,10 @@ namespace u_net
             this.仕入先1単価.Name = "仕入先1単価";
             this.仕入先1単価.Size = new System.Drawing.Size(139, 20);
             this.仕入先1単価.TabIndex = 15;
+            this.仕入先1単価.TextChanged += new System.EventHandler(this.仕入先1単価_TextChanged);
+            this.仕入先1単価.Enter += new System.EventHandler(this.仕入先1単価_Enter);
+            this.仕入先1単価.Leave += new System.EventHandler(this.仕入先1単価_Leave);
+            this.仕入先1単価.Validating += new System.ComponentModel.CancelEventHandler(this.仕入先1単価_Validating);
             // 
             // 仕入先3_ラベル
             // 
@@ -914,6 +929,8 @@ namespace u_net
             this.型番.Name = "型番";
             this.型番.Size = new System.Drawing.Size(466, 20);
             this.型番.TabIndex = 8;
+            this.型番.TextChanged += new System.EventHandler(this.型番_TextChanged);
+            this.型番.Validating += new System.ComponentModel.CancelEventHandler(this.型番_Validating);
             // 
             // メーカーコード
             // 
@@ -925,6 +942,10 @@ namespace u_net
             this.メーカーコード.Name = "メーカーコード";
             this.メーカーコード.Size = new System.Drawing.Size(139, 20);
             this.メーカーコード.TabIndex = 10;
+            this.メーカーコード.TextChanged += new System.EventHandler(this.メーカーコード_TextChanged);
+            this.メーカーコード.KeyDown += new System.Windows.Forms.KeyEventHandler(this.メーカーコード_KeyDown);
+            this.メーカーコード.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.メーカーコード_KeyPress);
+            this.メーカーコード.Validating += new System.ComponentModel.CancelEventHandler(this.メーカーコード_Validating);
             // 
             // 版数_ラベル
             // 
@@ -998,6 +1019,10 @@ namespace u_net
             this.部品コード.Name = "部品コード";
             this.部品コード.Size = new System.Drawing.Size(139, 21);
             this.部品コード.TabIndex = 2;
+            this.部品コード.SelectedIndexChanged += new System.EventHandler(this.部品コード_SelectedIndexChanged);
+            this.部品コード.KeyDown += new System.Windows.Forms.KeyEventHandler(this.部品コード_KeyDown);
+            this.部品コード.Validating += new System.ComponentModel.CancelEventHandler(this.部品コード_Validating);
+            this.部品コード.Validated += new System.EventHandler(this.部品コード_Validated);
             // 
             // メーカーコード検索ボタン
             // 
@@ -1059,6 +1084,7 @@ namespace u_net
             this.仕入先2フレーム.TabIndex = 16;
             this.仕入先2フレーム.TabStop = false;
             this.仕入先2フレーム.Text = "仕入先(２)";
+            this.仕入先2フレーム.Enter += new System.EventHandler(this.仕入先2フレーム_Enter);
             // 
             // label5
             // 
@@ -1097,6 +1123,7 @@ namespace u_net
             this.仕入先2コード検索ボタン.TabStop = false;
             this.仕入先2コード検索ボタン.Text = "▼";
             this.仕入先2コード検索ボタン.UseVisualStyleBackColor = true;
+            this.仕入先2コード検索ボタン.Click += new System.EventHandler(this.仕入先2コード検索ボタン_Click);
             // 
             // label6
             // 
@@ -1123,6 +1150,13 @@ namespace u_net
             this.仕入先2コード.Name = "仕入先2コード";
             this.仕入先2コード.Size = new System.Drawing.Size(139, 20);
             this.仕入先2コード.TabIndex = 18;
+            this.仕入先2コード.TextChanged += new System.EventHandler(this.仕入先2コード_TextChanged);
+            this.仕入先2コード.Enter += new System.EventHandler(this.仕入先2コード_Enter);
+            this.仕入先2コード.KeyDown += new System.Windows.Forms.KeyEventHandler(this.仕入先2コード_KeyDown);
+            this.仕入先2コード.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.仕入先2コード_KeyPress);
+            this.仕入先2コード.Leave += new System.EventHandler(this.仕入先2コード_Leave);
+            this.仕入先2コード.Validating += new System.ComponentModel.CancelEventHandler(this.仕入先2コード_Validating);
+            this.仕入先2コード.Validated += new System.EventHandler(this.仕入先2コード_Validated);
             // 
             // label9
             // 
@@ -1149,6 +1183,10 @@ namespace u_net
             this.仕入先2単価.Name = "仕入先2単価";
             this.仕入先2単価.Size = new System.Drawing.Size(139, 20);
             this.仕入先2単価.TabIndex = 20;
+            this.仕入先2単価.TextChanged += new System.EventHandler(this.仕入先2単価_TextChanged);
+            this.仕入先2単価.Enter += new System.EventHandler(this.仕入先2単価_Enter);
+            this.仕入先2単価.Leave += new System.EventHandler(this.仕入先2単価_Leave);
+            this.仕入先2単価.Validating += new System.ComponentModel.CancelEventHandler(this.仕入先2単価_Validating);
             // 
             // 仕入先3フレーム
             // 
@@ -1165,6 +1203,7 @@ namespace u_net
             this.仕入先3フレーム.TabIndex = 21;
             this.仕入先3フレーム.TabStop = false;
             this.仕入先3フレーム.Text = "仕入先(３)";
+            this.仕入先3フレーム.Enter += new System.EventHandler(this.仕入先3フレーム_Enter);
             // 
             // label16
             // 
@@ -1203,6 +1242,7 @@ namespace u_net
             this.仕入先3コード検索ボタン.TabStop = false;
             this.仕入先3コード検索ボタン.Text = "▼";
             this.仕入先3コード検索ボタン.UseVisualStyleBackColor = true;
+            this.仕入先3コード検索ボタン.Click += new System.EventHandler(this.仕入先3コード検索ボタン_Click);
             // 
             // label18
             // 
@@ -1229,6 +1269,13 @@ namespace u_net
             this.仕入先3コード.Name = "仕入先3コード";
             this.仕入先3コード.Size = new System.Drawing.Size(139, 20);
             this.仕入先3コード.TabIndex = 23;
+            this.仕入先3コード.TextChanged += new System.EventHandler(this.仕入先3コード_TextChanged);
+            this.仕入先3コード.Enter += new System.EventHandler(this.仕入先3コード_Enter);
+            this.仕入先3コード.KeyDown += new System.Windows.Forms.KeyEventHandler(this.仕入先3コード_KeyDown);
+            this.仕入先3コード.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.仕入先3コード_KeyPress);
+            this.仕入先3コード.Leave += new System.EventHandler(this.仕入先3コード_Leave);
+            this.仕入先3コード.Validating += new System.ComponentModel.CancelEventHandler(this.仕入先3コード_Validating);
+            this.仕入先3コード.Validated += new System.EventHandler(this.仕入先3コード_Validated);
             // 
             // label19
             // 
@@ -1255,6 +1302,10 @@ namespace u_net
             this.仕入先3単価.Name = "仕入先3単価";
             this.仕入先3単価.Size = new System.Drawing.Size(139, 20);
             this.仕入先3単価.TabIndex = 25;
+            this.仕入先3単価.TextChanged += new System.EventHandler(this.仕入先3単価_TextChanged);
+            this.仕入先3単価.Enter += new System.EventHandler(this.仕入先3単価_Enter);
+            this.仕入先3単価.Leave += new System.EventHandler(this.仕入先3単価_Leave);
+            this.仕入先3単価.Validating += new System.ComponentModel.CancelEventHandler(this.仕入先3単価_Validating);
             // 
             // 上移動ボタン
             // 
@@ -1324,6 +1375,10 @@ namespace u_net
             this.分類コード.Size = new System.Drawing.Size(139, 21);
             this.分類コード.TabIndex = 27;
             this.分類コード.ValueMember = "分類コード";
+            this.分類コード.SelectedIndexChanged += new System.EventHandler(this.分類コード_SelectedIndexChanged);
+            this.分類コード.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.分類コード_KeyPress);
+            this.分類コード.Validating += new System.ComponentModel.CancelEventHandler(this.分類コード_Validating);
+            this.分類コード.Validated += new System.EventHandler(this.分類コード_Validated);
             // 
             // M部品分類bindingSource
             // 
@@ -1374,6 +1429,9 @@ namespace u_net
             this.形状分類コード.Name = "形状分類コード";
             this.形状分類コード.Size = new System.Drawing.Size(139, 21);
             this.形状分類コード.TabIndex = 29;
+            this.形状分類コード.SelectedIndexChanged += new System.EventHandler(this.形状分類コード_SelectedIndexChanged);
+            this.形状分類コード.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.形状分類コード_KeyPress);
+            this.形状分類コード.Validating += new System.ComponentModel.CancelEventHandler(this.形状分類コード_Validating);
             // 
             // M部品形状bindingSource
             // 
@@ -1434,6 +1492,7 @@ namespace u_net
             this.Rohs2ProvisionalRegisteredStatusCode.Size = new System.Drawing.Size(15, 14);
             this.Rohs2ProvisionalRegisteredStatusCode.TabIndex = 33;
             this.Rohs2ProvisionalRegisteredStatusCode.UseVisualStyleBackColor = true;
+            this.Rohs2ProvisionalRegisteredStatusCode.Validated += new System.EventHandler(this.Rohs2ProvisionalRegisteredStatusCode_Validated);
             // 
             // label23
             // 
@@ -1477,6 +1536,9 @@ namespace u_net
             this.Rohs1ChemSherpaStatusCode.Name = "Rohs1ChemSherpaStatusCode";
             this.Rohs1ChemSherpaStatusCode.Size = new System.Drawing.Size(139, 21);
             this.Rohs1ChemSherpaStatusCode.TabIndex = 42;
+            this.Rohs1ChemSherpaStatusCode.SelectedIndexChanged += new System.EventHandler(this.Rohs1ChemSherpaStatusCode_SelectedIndexChanged);
+            this.Rohs1ChemSherpaStatusCode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Rohs1ChemSherpaStatusCode_KeyPress);
+            this.Rohs1ChemSherpaStatusCode.Validating += new System.ComponentModel.CancelEventHandler(this.Rohs1ChemSherpaStatusCode_Validating);
             // 
             // label27
             // 
@@ -1503,6 +1565,9 @@ namespace u_net
             this.RoHS資料.Name = "RoHS資料";
             this.RoHS資料.Size = new System.Drawing.Size(139, 21);
             this.RoHS資料.TabIndex = 40;
+            this.RoHS資料.SelectedIndexChanged += new System.EventHandler(this.RoHS資料_SelectedIndexChanged);
+            this.RoHS資料.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.RoHS資料_KeyPress);
+            this.RoHS資料.Validating += new System.ComponentModel.CancelEventHandler(this.RoHS資料_Validating);
             // 
             // label26
             // 
@@ -1529,6 +1594,9 @@ namespace u_net
             this.非含有証明書.Name = "非含有証明書";
             this.非含有証明書.Size = new System.Drawing.Size(139, 21);
             this.非含有証明書.TabIndex = 38;
+            this.非含有証明書.SelectedIndexChanged += new System.EventHandler(this.非含有証明書_SelectedIndexChanged);
+            this.非含有証明書.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.非含有証明書_KeyPress);
+            this.非含有証明書.Validating += new System.ComponentModel.CancelEventHandler(this.非含有証明書_Validating);
             // 
             // label25
             // 
@@ -1555,6 +1623,9 @@ namespace u_net
             this.JampAis.Name = "JampAis";
             this.JampAis.Size = new System.Drawing.Size(139, 21);
             this.JampAis.TabIndex = 36;
+            this.JampAis.SelectedIndexChanged += new System.EventHandler(this.JampAis_SelectedIndexChanged);
+            this.JampAis.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.JampAis_KeyPress);
+            this.JampAis.Validating += new System.ComponentModel.CancelEventHandler(this.JampAis_Validating);
             // 
             // label24
             // 
@@ -1598,6 +1669,9 @@ namespace u_net
             this.Rohs2ChemSherpaStatusCode.Name = "Rohs2ChemSherpaStatusCode";
             this.Rohs2ChemSherpaStatusCode.Size = new System.Drawing.Size(139, 21);
             this.Rohs2ChemSherpaStatusCode.TabIndex = 51;
+            this.Rohs2ChemSherpaStatusCode.SelectedIndexChanged += new System.EventHandler(this.Rohs2ChemSherpaStatusCode_SelectedIndexChanged);
+            this.Rohs2ChemSherpaStatusCode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Rohs2ChemSherpaStatusCode_KeyPress);
+            this.Rohs2ChemSherpaStatusCode.Validating += new System.ComponentModel.CancelEventHandler(this.Rohs2ChemSherpaStatusCode_Validating);
             // 
             // label28
             // 
@@ -1624,6 +1698,9 @@ namespace u_net
             this.Rohs2DocumentStatusCode.Name = "Rohs2DocumentStatusCode";
             this.Rohs2DocumentStatusCode.Size = new System.Drawing.Size(139, 21);
             this.Rohs2DocumentStatusCode.TabIndex = 49;
+            this.Rohs2DocumentStatusCode.SelectedIndexChanged += new System.EventHandler(this.Rohs2DocumentStatusCode_SelectedIndexChanged);
+            this.Rohs2DocumentStatusCode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Rohs2DocumentStatusCode_KeyPress);
+            this.Rohs2DocumentStatusCode.Validating += new System.ComponentModel.CancelEventHandler(this.Rohs2DocumentStatusCode_Validating);
             // 
             // label29
             // 
@@ -1650,6 +1727,9 @@ namespace u_net
             this.Rohs2NonInclusionCertificationStatusCode.Name = "Rohs2NonInclusionCertificationStatusCode";
             this.Rohs2NonInclusionCertificationStatusCode.Size = new System.Drawing.Size(139, 21);
             this.Rohs2NonInclusionCertificationStatusCode.TabIndex = 47;
+            this.Rohs2NonInclusionCertificationStatusCode.SelectedIndexChanged += new System.EventHandler(this.Rohs2NonInclusionCertificationStatusCode_SelectedIndexChanged);
+            this.Rohs2NonInclusionCertificationStatusCode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Rohs2NonInclusionCertificationStatusCode_KeyPress);
+            this.Rohs2NonInclusionCertificationStatusCode.Validating += new System.ComponentModel.CancelEventHandler(this.Rohs2NonInclusionCertificationStatusCode_Validating);
             // 
             // label30
             // 
@@ -1676,6 +1756,9 @@ namespace u_net
             this.Rohs2JampAisStatusCode.Name = "Rohs2JampAisStatusCode";
             this.Rohs2JampAisStatusCode.Size = new System.Drawing.Size(139, 21);
             this.Rohs2JampAisStatusCode.TabIndex = 45;
+            this.Rohs2JampAisStatusCode.SelectedIndexChanged += new System.EventHandler(this.Rohs2JampAisStatusCode_SelectedIndexChanged);
+            this.Rohs2JampAisStatusCode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Rohs2JampAisStatusCode_KeyPress);
+            this.Rohs2JampAisStatusCode.Validating += new System.ComponentModel.CancelEventHandler(this.Rohs2JampAisStatusCode_Validating);
             // 
             // label31
             // 
@@ -1717,6 +1800,8 @@ namespace u_net
             this.ChemSherpaVersion.Name = "ChemSherpaVersion";
             this.ChemSherpaVersion.Size = new System.Drawing.Size(139, 20);
             this.ChemSherpaVersion.TabIndex = 53;
+            this.ChemSherpaVersion.TextChanged += new System.EventHandler(this.ChemSherpaVersion_TextChanged);
+            this.ChemSherpaVersion.Validating += new System.ComponentModel.CancelEventHandler(this.ChemSherpaVersion_Validating);
             // 
             // label33
             // 
@@ -1757,6 +1842,7 @@ namespace u_net
             this.廃止.Size = new System.Drawing.Size(15, 14);
             this.廃止.TabIndex = 10036;
             this.廃止.UseVisualStyleBackColor = true;
+            this.廃止.Validated += new System.EventHandler(this.廃止_Validated);
             // 
             // 入数
             // 
@@ -1767,6 +1853,9 @@ namespace u_net
             this.入数.Name = "入数";
             this.入数.Size = new System.Drawing.Size(139, 20);
             this.入数.TabIndex = 55;
+            this.入数.TextChanged += new System.EventHandler(this.入数_TextChanged);
+            this.入数.Validating += new System.ComponentModel.CancelEventHandler(this.入数_Validating);
+            this.入数.Validated += new System.EventHandler(this.入数_Validated);
             // 
             // label11
             // 
@@ -1792,6 +1881,9 @@ namespace u_net
             this.単位数量.Name = "単位数量";
             this.単位数量.Size = new System.Drawing.Size(139, 20);
             this.単位数量.TabIndex = 57;
+            this.単位数量.TextChanged += new System.EventHandler(this.単位数量_TextChanged);
+            this.単位数量.Validating += new System.ComponentModel.CancelEventHandler(this.単位数量_Validating);
+            this.単位数量.Validated += new System.EventHandler(this.単位数量_Validated);
             // 
             // label34
             // 
@@ -1817,6 +1909,9 @@ namespace u_net
             this.StandardDeliveryDay.Name = "StandardDeliveryDay";
             this.StandardDeliveryDay.Size = new System.Drawing.Size(139, 20);
             this.StandardDeliveryDay.TabIndex = 59;
+            this.StandardDeliveryDay.TextChanged += new System.EventHandler(this.StandardDeliveryDay_TextChanged);
+            this.StandardDeliveryDay.Validating += new System.ComponentModel.CancelEventHandler(this.StandardDeliveryDay_Validating);
+            this.StandardDeliveryDay.Validated += new System.EventHandler(this.StandardDeliveryDay_Validated);
             // 
             // label35
             // 
@@ -1842,6 +1937,9 @@ namespace u_net
             this.ShelfNumber.Name = "ShelfNumber";
             this.ShelfNumber.Size = new System.Drawing.Size(139, 20);
             this.ShelfNumber.TabIndex = 61;
+            this.ShelfNumber.TextChanged += new System.EventHandler(this.ShelfNumber_TextChanged);
+            this.ShelfNumber.Validating += new System.ComponentModel.CancelEventHandler(this.ShelfNumber_Validating);
+            this.ShelfNumber.Validated += new System.EventHandler(this.ShelfNumber_Validated);
             // 
             // label36
             // 
@@ -1882,6 +1980,9 @@ namespace u_net
             this.ロス率.Name = "ロス率";
             this.ロス率.Size = new System.Drawing.Size(139, 20);
             this.ロス率.TabIndex = 65;
+            this.ロス率.TextChanged += new System.EventHandler(this.ロス率_TextChanged);
+            this.ロス率.Validating += new System.ComponentModel.CancelEventHandler(this.ロス率_Validating);
+            this.ロス率.Validated += new System.EventHandler(this.ロス率_Validated);
             // 
             // label38
             // 
@@ -1925,6 +2026,9 @@ namespace u_net
             this.InventoryAmount.Size = new System.Drawing.Size(139, 23);
             this.InventoryAmount.TabIndex = 10053;
             this.InventoryAmount.TabStop = false;
+            this.InventoryAmount.TextChanged += new System.EventHandler(this.InventoryAmount_TextChanged);
+            this.InventoryAmount.Validating += new System.ComponentModel.CancelEventHandler(this.InventoryAmount_Validating);
+            this.InventoryAmount.Validated += new System.EventHandler(this.InventoryAmount_Validated);
             // 
             // label40
             // 
@@ -2003,6 +2107,8 @@ namespace u_net
             this.備考.Name = "備考";
             this.備考.Size = new System.Drawing.Size(526, 180);
             this.備考.TabIndex = 68;
+            this.備考.TextChanged += new System.EventHandler(this.備考_TextChanged);
+            this.備考.Validating += new System.ComponentModel.CancelEventHandler(this.備考_Validating);
             // 
             // 部品使用先
             // 
@@ -2012,6 +2118,7 @@ namespace u_net
             this.部品使用先.RowTemplate.Height = 25;
             this.部品使用先.Size = new System.Drawing.Size(525, 214);
             this.部品使用先.TabIndex = 10060;
+            this.部品使用先.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.部品使用先_MouseDoubleClick);
             // 
             // CalcInventoryCode
             // 
@@ -2023,6 +2130,9 @@ namespace u_net
             this.CalcInventoryCode.Name = "CalcInventoryCode";
             this.CalcInventoryCode.Size = new System.Drawing.Size(139, 21);
             this.CalcInventoryCode.TabIndex = 63;
+            this.CalcInventoryCode.SelectedIndexChanged += new System.EventHandler(this.CalcInventoryCode_SelectedIndexChanged);
+            this.CalcInventoryCode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CalcInventoryCode_KeyPress);
+            this.CalcInventoryCode.Validating += new System.ComponentModel.CancelEventHandler(this.CalcInventoryCode_Validating);
             // 
             // 受入検査ランク
             // 
@@ -2034,6 +2144,9 @@ namespace u_net
             this.受入検査ランク.Name = "受入検査ランク";
             this.受入検査ランク.Size = new System.Drawing.Size(139, 21);
             this.受入検査ランク.TabIndex = 67;
+            this.受入検査ランク.SelectedIndexChanged += new System.EventHandler(this.受入検査ランク_SelectedIndexChanged);
+            this.受入検査ランク.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.受入検査ランク_KeyPress);
+            this.受入検査ランク.Validating += new System.ComponentModel.CancelEventHandler(this.受入検査ランク_Validating);
             // 
             // 部品集合版数
             // 
@@ -2071,6 +2184,7 @@ namespace u_net
             this.部品集合参照ボタン.TabStop = false;
             this.部品集合参照ボタン.Text = "…";
             this.部品集合参照ボタン.UseVisualStyleBackColor = true;
+            this.部品集合参照ボタン.Click += new System.EventHandler(this.部品集合参照ボタン_Click);
             // 
             // m部品形状TableAdapter
             // 
@@ -2194,6 +2308,7 @@ namespace u_net
             this.Name = "F_部品";
             this.Text = " ";
             this.Load += new System.EventHandler(this.Form_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form_KeyDown);
             this.panel1.ResumeLayout(false);
             this.仕入先1フレーム.ResumeLayout(false);
             this.仕入先1フレーム.PerformLayout();

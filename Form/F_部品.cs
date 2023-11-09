@@ -29,8 +29,9 @@ namespace u_net
         private SqlTransaction tx;
         public string args = "";
         private string BASE_CAPTION = "部品";
+        private int selected_frame = 0;
 
-        
+
 
 
 
@@ -470,6 +471,8 @@ namespace u_net
 
         private void ChangedData(bool isChanged)
         {
+            if (ActiveControl == null) return;
+
             if (isChanged)
             {
                 this.Text = BASE_CAPTION + "*";
@@ -1103,12 +1106,12 @@ namespace u_net
                 {
                     GetNextControl(コマンド仕入先, false).Focus();
                 }
-                else if (仕入先1フレーム.Focused)
+                else if (selected_frame == 1)
                 {
                     string code = OriginalClass.Nz(仕入先1コード.Text,null);
                     if (string.IsNullOrEmpty(code))
                     {
-                        MessageBox.Show("仕入先を入力してください。", "警告", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        MessageBox.Show("仕入先1を入力してください。", "警告", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         仕入先1コード.Focus();
                     }
                     else
@@ -1119,12 +1122,12 @@ namespace u_net
                         //targetform.ShowDialog();
                     }
                 }
-                else if (仕入先2フレーム.Focused)
+                else if (selected_frame == 2)
                 {
                     string code = OriginalClass.Nz(仕入先2コード.Text, null);
                     if (string.IsNullOrEmpty(code))
                     {
-                        MessageBox.Show("仕入先を入力してください。", "警告", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        MessageBox.Show("仕入先2を入力してください。", "警告", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         仕入先2コード.Focus();
                     }
                     else
@@ -1135,12 +1138,12 @@ namespace u_net
                         //targetform.ShowDialog();
                     }
                 }
-                else if (仕入先3フレーム.Focused)
+                else if (selected_frame == 3)
                 {
                     string code = OriginalClass.Nz(仕入先3コード.Text, null);
                     if (string.IsNullOrEmpty(code))
                     {
-                        MessageBox.Show("仕入先を入力してください。", "警告", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        MessageBox.Show("仕入先3を入力してください。", "警告", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         仕入先3コード.Focus();
                     }
                     else
@@ -1305,7 +1308,7 @@ namespace u_net
         }
 
 
-        private bool IsError(Control controlObject, ref bool Cancel)
+        private bool IsError(Control controlObject)
         {
             try
             {
@@ -1323,14 +1326,14 @@ namespace u_net
                         }
                         break;
                     case "型番":
-                        if (Cancel)
-                        {
+                        //if (Cancel)
+                        //{
                             if (string.IsNullOrEmpty(varValue.ToString()))
                             {
                                 MessageBox.Show(controlName + "を入力してください.", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                                 return true;
                             }
-                        }
+                        //}
                         // 重複チェックなどを行う必要があれば、ここに追加してください。
                         break;
                     case "メーカーコード":
@@ -1564,6 +1567,15 @@ namespace u_net
 
 
 
+        private void 部品使用先_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+
+        }
+
+        private void 部品集合参照ボタン_Click(object sender, EventArgs e)
+        {
+
+        }
 
 
 
@@ -1621,25 +1633,795 @@ namespace u_net
             }
         }
 
+        private void CalcInventoryCode_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (IsError(ActiveControl) == true ) e.Cancel = true;
+        }
+
+        private void CalcInventoryCode_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ChangedData(true);
+        }
+
+        private void CalcInventoryCode_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == ' ')
+            {
+                ComboBox comboBox = sender as ComboBox;
+                if (comboBox != null)
+                {
+                    comboBox.DroppedDown = true;
+                }
+                e.Handled = true;
+            }
+        }
+
+        private void ChemSherpaVersion_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (IsError(ActiveControl) == true ) e.Cancel = true;
+        }
+
+        private void ChemSherpaVersion_TextChanged(object sender, EventArgs e)
+        {
+            ChangedData(true);
+        }
+
+        private void JampAis_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (IsError(ActiveControl) == true ) e.Cancel = true;
+        }
+
+        private void JampAis_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ChangedData(true);
+        }
+
+        private void JampAis_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == ' ')
+            {
+                ComboBox comboBox = sender as ComboBox;
+                if (comboBox != null)
+                {
+                    comboBox.DroppedDown = true;
+                }
+                e.Handled = true;
+            }
+        }
+
+        private void Rohs1ChemSherpaStatusCode_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (IsError(ActiveControl) == true ) e.Cancel = true;
+        }
+
+        private void Rohs1ChemSherpaStatusCode_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ChangedData(true);
+        }
+
+        private void Rohs1ChemSherpaStatusCode_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == ' ')
+            {
+                ComboBox comboBox = sender as ComboBox;
+                if (comboBox != null)
+                {
+                    comboBox.DroppedDown = true;
+                }
+                e.Handled = true;
+            }
+        }
+
+        private void Rohs2ChemSherpaStatusCode_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (IsError(ActiveControl) == true ) e.Cancel = true;
+        }
+
+        private void Rohs2ChemSherpaStatusCode_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ChangedData(true);
+        }
+
+        private void Rohs2ChemSherpaStatusCode_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == ' ')
+            {
+                ComboBox comboBox = sender as ComboBox;
+                if (comboBox != null)
+                {
+                    comboBox.DroppedDown = true;
+                }
+                e.Handled = true;
+            }
+        }
+
+        private void Rohs2DocumentStatusCode_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (IsError(ActiveControl) == true ) e.Cancel = true;
+        }
+
+        private void Rohs2DocumentStatusCode_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ChangedData(true);
+        }
+
+        private void Rohs2DocumentStatusCode_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == ' ')
+            {
+                ComboBox comboBox = sender as ComboBox;
+                if (comboBox != null)
+                {
+                    comboBox.DroppedDown = true;
+                }
+                e.Handled = true;
+            }
+        }
+
+        private void Rohs2JampAisStatusCode_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (IsError(ActiveControl) == true ) e.Cancel = true;
+        }
+
+        private void Rohs2JampAisStatusCode_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ChangedData(true);
+        }
+
+        private void Rohs2JampAisStatusCode_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == ' ')
+            {
+                ComboBox comboBox = sender as ComboBox;
+                if (comboBox != null)
+                {
+                    comboBox.DroppedDown = true;
+                }
+                e.Handled = true;
+            }
+        }
+
+        private void Rohs2NonInclusionCertificationStatusCode_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (IsError(ActiveControl) == true ) e.Cancel = true;
+        }
+
+        private void Rohs2NonInclusionCertificationStatusCode_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ChangedData(true);
+        }
+
+        private void Rohs2NonInclusionCertificationStatusCode_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == ' ')
+            {
+                ComboBox comboBox = sender as ComboBox;
+                if (comboBox != null)
+                {
+                    comboBox.DroppedDown = true;
+                }
+                e.Handled = true;
+            }
+        }
+
+        private void Rohs2ProvisionalRegisteredStatusCode_Validated(object sender, EventArgs e)
+        {
+            ChangedData(true);
+        }
+
+        private void RoHS資料_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (IsError(ActiveControl) == true ) e.Cancel = true;
+        }
+
+        private void RoHS資料_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ChangedData(true);
+        }
+
+        private void RoHS資料_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == ' ')
+            {
+                ComboBox comboBox = sender as ComboBox;
+                if (comboBox != null)
+                {
+                    comboBox.DroppedDown = true;
+                }
+                e.Handled = true;
+            }
+        }
+
+        private void ShelfNumber_Validated(object sender, EventArgs e)
+        {
+            UpdatedControl(ActiveControl);
+        }
+
+        private void ShelfNumber_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (IsError(ActiveControl) == true ) e.Cancel = true;
+        }
+
+        private void ShelfNumber_TextChanged(object sender, EventArgs e)
+        {
+            FunctionClass.LimitText(ActiveControl, 10);
+            ChangedData(true);
+        }
+
+        private void StandardDeliveryDay_Validated(object sender, EventArgs e)
+        {
+            UpdatedControl(ActiveControl);
+        }
+
+        private void StandardDeliveryDay_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (IsError(ActiveControl) == true ) e.Cancel = true;
+        }
+
+        private void StandardDeliveryDay_TextChanged(object sender, EventArgs e)
+        {
+            ChangedData(true);
+        }
+
+        private void メーカーコード_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (IsError(ActiveControl) == true ) e.Cancel = true;
+        }
+
+        private void メーカーコード_TextChanged(object sender, EventArgs e)
+        {
+            FunctionClass.LimitText(ActiveControl, 8);
+            ChangedData(true);
+        }
+
+        private void メーカーコード_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Return)
+            {
+                TextBox textBox = (TextBox)sender;
+                string formattedCode = textBox.Text.Trim().PadLeft(8, '0');
+
+                if (formattedCode != textBox.Text || string.IsNullOrEmpty(textBox.Text))
+                {
+                    textBox.Text = formattedCode;
+                }
+            }
+        }
+
+        private void メーカーコード_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == ' ')
+            {
+                メーカーコード検索ボタン_Click(sender, e);
+                e.Handled = true; // イベントの処理が完了したことを示す
+            }
+        }
+
+        private void ロス率_Validated(object sender, EventArgs e)
+        {
+            UpdatedControl(ActiveControl);
+        }
+
+        private void ロス率_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (IsError(ActiveControl) == true ) e.Cancel = true;
+        }
+
+        private void ロス率_TextChanged(object sender, EventArgs e)
+        {
+            ChangedData(true);
+        }
+
+        private void 型番_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (IsError(ActiveControl) == true ) e.Cancel = true;
+        }
+
+        private void 型番_TextChanged(object sender, EventArgs e)
+        {
+            FunctionClass.LimitText(ActiveControl, 50);
+            ChangedData(true);
+        }
+
+        private void 形状分類コード_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (IsError(ActiveControl) == true ) e.Cancel = true;
+        }
+
+        private void 形状分類コード_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ChangedData(true);
+        }
+
+        private void 形状分類コード_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == ' ') // スペースキーが押されたかを確認
+            {
+                if (sender is ComboBox comboBox)
+                {
+                    comboBox.DroppedDown = true; // コンボボックスのドロップダウンを開く
+                    e.Handled = true; // イベントの処理が完了したことを示す
+                }
+            }
+        }
+
+        private void InventoryAmount_Validated(object sender, EventArgs e)
+        {
+            UpdatedControl(ActiveControl);
+        }
+
+        private void InventoryAmount_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            DialogResult result = MessageBox.Show("在庫数量はシステムにより更新されます。\n通常、ユーザーが更新することはありません。\n\n更新しますか？", "在庫数量", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.No)
+            {
+                e.Cancel = true;
+            }
+            else
+            {
+                if (IsError(ActiveControl) == true ) e.Cancel = true;
+            }
+        }
+
+        private void InventoryAmount_TextChanged(object sender, EventArgs e)
+        {
+            ChangedData(true);
+        }
+
+        private void 仕入先1コード_Validated(object sender, EventArgs e)
+        {
+            UpdatedControl(ActiveControl);
+        }
+
+        private void 仕入先1コード_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (IsError(ActiveControl) == true ) e.Cancel = true;
+        }
+
+        private void 仕入先1コード_TextChanged(object sender, EventArgs e)
+        {
+            FunctionClass.LimitText(ActiveControl, 8);
+            ChangedData(true);
+        }
+
+        private void 仕入先1コード_Enter(object sender, EventArgs e)
+        {
+            selected_frame = 1;
+        }
+
+        private void 仕入先1コード_Leave(object sender, EventArgs e)
+        {
+            selected_frame = 0;
+        }
+
+        private void 仕入先1コード_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Return)
+            {
+                Control control = (Control)sender;
+                string strCode = control.Text.Trim();
+
+                if (string.IsNullOrEmpty(strCode))
+                {
+                    return;
+                }
+
+                strCode = strCode.PadLeft(8, '0');
+
+                if (strCode != control.Text)
+                {
+                    control.Text = strCode;
+                }
+            }
+        }
+
+        private void 仕入先1コード_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Space)
+            {
+                仕入先1コード検索ボタン_Click(sender, e);
+            }
 
 
+        }
 
 
+        private void 仕入先2コード_Validated(object sender, EventArgs e)
+        {
+            UpdatedControl(ActiveControl);
+        }
+
+        private void 仕入先2コード_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (IsError(ActiveControl) == true ) e.Cancel = true;
+        }
+
+        private void 仕入先2コード_TextChanged(object sender, EventArgs e)
+        {
+            FunctionClass.LimitText(ActiveControl, 8);
+            ChangedData(true);
+        }
+
+        private void 仕入先2コード_Enter(object sender, EventArgs e)
+        {
+            selected_frame = 1;
+        }
+
+        private void 仕入先2コード_Leave(object sender, EventArgs e)
+        {
+            selected_frame = 0;
+        }
+
+        private void 仕入先2コード_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Return)
+            {
+                Control control = (Control)sender;
+                string strCode = control.Text.Trim();
+
+                if (string.IsNullOrEmpty(strCode))
+                {
+                    return;
+                }
+
+                strCode = strCode.PadLeft(8, '0');
+
+                if (strCode != control.Text)
+                {
+                    control.Text = strCode;
+                }
+            }
+        }
+
+        private void 仕入先2コード_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Space)
+            {
+                仕入先2コード検索ボタン_Click(sender, e);
+            }
 
 
+        }
+
+        private void 仕入先3コード_Validated(object sender, EventArgs e)
+        {
+            UpdatedControl(ActiveControl);
+        }
+
+        private void 仕入先3コード_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (IsError(ActiveControl) == true ) e.Cancel = true;
+        }
+
+        private void 仕入先3コード_TextChanged(object sender, EventArgs e)
+        {
+            FunctionClass.LimitText(ActiveControl, 8);
+            ChangedData(true);
+        }
+
+        private void 仕入先3コード_Enter(object sender, EventArgs e)
+        {
+            selected_frame = 1;
+        }
+
+        private void 仕入先3コード_Leave(object sender, EventArgs e)
+        {
+            selected_frame = 0;
+        }
+
+        private void 仕入先3コード_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Return)
+            {
+                Control control = (Control)sender;
+                string strCode = control.Text.Trim();
+
+                if (string.IsNullOrEmpty(strCode))
+                {
+                    return;
+                }
+
+                strCode = strCode.PadLeft(8, '0');
+
+                if (strCode != control.Text)
+                {
+                    control.Text = strCode;
+                }
+            }
+        }
+
+        private void 仕入先3コード_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Space)
+            {
+                仕入先3コード検索ボタン_Click(sender, e);
+            }
 
 
+        }
 
 
+  
+            
+        
 
+        private void 仕入先1コード検索ボタン_Click(object sender, EventArgs e)
+        {
+            SearchForm = new F_検索();
+            SearchForm.FilterName = "仕入先名フリガナ";
+            if (SearchForm.ShowDialog() == DialogResult.OK)
+            {
+                string SelectedCode = SearchForm.SelectedCode;
 
+                仕入先1コード.Text = SelectedCode;
+            }
+        }
 
+        private void 仕入先2コード検索ボタン_Click(object sender, EventArgs e)
+        {
+            SearchForm = new F_検索();
+            SearchForm.FilterName = "仕入先名フリガナ";
+            if (SearchForm.ShowDialog() == DialogResult.OK)
+            {
+                string SelectedCode = SearchForm.SelectedCode;
 
+                仕入先2コード.Text = SelectedCode;
+            }
+        }
 
+        private void 仕入先3コード検索ボタン_Click(object sender, EventArgs e)
+        {
+            SearchForm = new F_検索();
+            SearchForm.FilterName = "仕入先名フリガナ";
+            if (SearchForm.ShowDialog() == DialogResult.OK)
+            {
+                string SelectedCode = SearchForm.SelectedCode;
 
+                仕入先3コード.Text = SelectedCode;
+            }
+        }
 
+        private void 仕入先1フレーム_Enter(object sender, EventArgs e)
+        {
+            仕入先1コード.Focus();
+        }
 
+        private void 仕入先2フレーム_Enter(object sender, EventArgs e)
+        {
+            仕入先2コード.Focus();
+        }
+
+        private void 仕入先3フレーム_Enter(object sender, EventArgs e)
+        {
+            仕入先3コード.Focus();
+        }
+
+        private void 仕入先1単価_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (IsError(ActiveControl) == true ) e.Cancel = true;
+        }
+
+        private void 仕入先1単価_TextChanged(object sender, EventArgs e)
+        {
+            ChangedData(true);
+        }
+
+        private void 仕入先1単価_Enter(object sender, EventArgs e)
+        {
+            selected_frame = 1;
+        }
+
+        private void 仕入先1単価_Leave(object sender, EventArgs e)
+        {
+            selected_frame = 0;
+        }
+
+        private void 仕入先2単価_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (IsError(ActiveControl) == true ) e.Cancel = true;
+        }
+
+        private void 仕入先2単価_TextChanged(object sender, EventArgs e)
+        {
+            ChangedData(true);
+        }
+
+        private void 仕入先2単価_Enter(object sender, EventArgs e)
+        {
+            selected_frame = 2;
+        }
+
+        private void 仕入先2単価_Leave(object sender, EventArgs e)
+        {
+            selected_frame = 0;
+        }
+
+        private void 仕入先3単価_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (IsError(ActiveControl) == true ) e.Cancel = true;
+        }
+
+        private void 仕入先3単価_TextChanged(object sender, EventArgs e)
+        {
+            ChangedData(true);
+        }
+
+        private void 仕入先3単価_Enter(object sender, EventArgs e)
+        {
+            selected_frame = 3;
+        }
+
+        private void 仕入先3単価_Leave(object sender, EventArgs e)
+        {
+            selected_frame = 0;
+        }
+
+        private void 受入検査ランク_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (IsError(ActiveControl) == true ) e.Cancel = true;
+        }
+
+        private void 受入検査ランク_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ChangedData(true);
+        }
+
+        private void 受入検査ランク_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Space)
+            {
+                ComboBox comboBox = sender as ComboBox;
+                if (comboBox != null)
+                {
+                    comboBox.DroppedDown = true;
+                }
+                e.KeyChar = (char)0;
+            }
+        }
+
+        private void 単位数量_Validated(object sender, EventArgs e)
+        {
+            UpdatedControl(ActiveControl);
+        }
+
+        private void 単位数量_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (IsError(ActiveControl) == true ) e.Cancel = true;
+        }
+
+        private void 単位数量_TextChanged(object sender, EventArgs e)
+        {
+            ChangedData(true);
+        }
+
+        private void 入数_Validated(object sender, EventArgs e)
+        {
+            UpdatedControl(ActiveControl);
+        }
+
+        private void 入数_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (IsError(ActiveControl) == true ) e.Cancel = true;
+        }
+
+        private void 入数_TextChanged(object sender, EventArgs e)
+        {
+            ChangedData(true);
+        }
+
+        private void 廃止_Validated(object sender, EventArgs e)
+        {
+            ChangedData(true);
+        }
+
+        private void 非含有証明書_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (IsError(ActiveControl) == true ) e.Cancel = true;
+        }
+
+        private void 非含有証明書_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ChangedData(true);
+        }
+
+        private void 非含有証明書_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Space)
+            {
+                ComboBox comboBox = sender as ComboBox;
+                if (comboBox != null)
+                {
+                    comboBox.DroppedDown = true;
+                }
+                e.KeyChar = (char)0;
+            }
+        }
+
+        private void 備考_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (IsError(ActiveControl) == true ) e.Cancel = true;
+        }
+
+        private void 備考_TextChanged(object sender, EventArgs e)
+        {
+            FunctionClass.LimitText(ActiveControl, 4000);
+            ChangedData(true);
+        }
+
+        private void 品名_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (IsError(ActiveControl) == true ) e.Cancel = true;
+        }
+
+        private void 品名_TextChanged(object sender, EventArgs e)
+        {
+            FunctionClass.LimitText(ActiveControl, 50);
+            ChangedData(true);
+        }
+
+        private void 部品コード_Validated(object sender, EventArgs e)
+        {
+            UpdatedControl(ActiveControl);
+        }
+
+        private void 部品コード_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (IsError(ActiveControl) == true ) e.Cancel = true;
+        }
+
+        private void 部品コード_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            FunctionClass.LimitText(ActiveControl, 8);
+        }
+
+        private void 部品コード_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Return)
+            {
+                TextBox textBox = sender as TextBox;
+                if (textBox != null)
+                {
+                    string strCode = textBox.Text.Trim();
+                    if (!string.IsNullOrEmpty(strCode))
+                    {
+                        strCode = strCode.PadLeft(8, '0');
+                        if (strCode != textBox.Text)
+                        {
+                            textBox.Text = strCode;
+                        }
+                    }
+                }
+            }
+        }
+
+        
+        private void 分類コード_Validated(object sender, EventArgs e)
+        {
+            ChangedData(true);
+        }
+
+        private void 分類コード_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (IsError(ActiveControl) == true ) e.Cancel = true;
+        }
+
+        private void 分類コード_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ChangedData(true);
+        }
+
+        private void 分類コード_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Space)
+            {
+                ComboBox comboBox = sender as ComboBox;
+                if (comboBox != null)
+                {
+                    comboBox.DroppedDown = true;
+                }
+                e.KeyChar = (char)0;
+            }
+        }
     }
-
-
 }
