@@ -708,6 +708,8 @@ namespace u_net
             this.品名.Size = new System.Drawing.Size(466, 20);
             this.品名.TabIndex = 6;
             this.品名.TextChanged += new System.EventHandler(this.品名_TextChanged);
+            this.品名.Enter += new System.EventHandler(this.品名_Enter);
+            this.品名.Leave += new System.EventHandler(this.品名_Leave);
             this.品名.Validating += new System.ComponentModel.CancelEventHandler(this.品名_Validating);
             // 
             // メーカー名_ラベル
@@ -930,6 +932,8 @@ namespace u_net
             this.型番.Size = new System.Drawing.Size(466, 20);
             this.型番.TabIndex = 8;
             this.型番.TextChanged += new System.EventHandler(this.型番_TextChanged);
+            this.型番.Enter += new System.EventHandler(this.型番_Enter);
+            this.型番.Leave += new System.EventHandler(this.型番_Leave);
             this.型番.Validating += new System.ComponentModel.CancelEventHandler(this.型番_Validating);
             // 
             // メーカーコード
@@ -943,8 +947,10 @@ namespace u_net
             this.メーカーコード.Size = new System.Drawing.Size(139, 20);
             this.メーカーコード.TabIndex = 10;
             this.メーカーコード.TextChanged += new System.EventHandler(this.メーカーコード_TextChanged);
+            this.メーカーコード.Enter += new System.EventHandler(this.メーカーコード_Enter);
             this.メーカーコード.KeyDown += new System.Windows.Forms.KeyEventHandler(this.メーカーコード_KeyDown);
             this.メーカーコード.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.メーカーコード_KeyPress);
+            this.メーカーコード.Leave += new System.EventHandler(this.メーカーコード_Leave);
             this.メーカーコード.Validating += new System.ComponentModel.CancelEventHandler(this.メーカーコード_Validating);
             // 
             // 版数_ラベル
@@ -1020,7 +1026,9 @@ namespace u_net
             this.部品コード.Size = new System.Drawing.Size(139, 21);
             this.部品コード.TabIndex = 2;
             this.部品コード.SelectedIndexChanged += new System.EventHandler(this.部品コード_SelectedIndexChanged);
+            this.部品コード.Enter += new System.EventHandler(this.部品コード_Enter);
             this.部品コード.KeyDown += new System.Windows.Forms.KeyEventHandler(this.部品コード_KeyDown);
+            this.部品コード.Leave += new System.EventHandler(this.部品コード_Leave);
             this.部品コード.Validating += new System.ComponentModel.CancelEventHandler(this.部品コード_Validating);
             this.部品コード.Validated += new System.EventHandler(this.部品コード_Validated);
             // 
@@ -1376,7 +1384,9 @@ namespace u_net
             this.分類コード.TabIndex = 27;
             this.分類コード.ValueMember = "分類コード";
             this.分類コード.SelectedIndexChanged += new System.EventHandler(this.分類コード_SelectedIndexChanged);
+            this.分類コード.Enter += new System.EventHandler(this.分類コード_Enter);
             this.分類コード.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.分類コード_KeyPress);
+            this.分類コード.Leave += new System.EventHandler(this.分類コード_Leave);
             this.分類コード.Validating += new System.ComponentModel.CancelEventHandler(this.分類コード_Validating);
             this.分類コード.Validated += new System.EventHandler(this.分類コード_Validated);
             // 
@@ -1430,7 +1440,9 @@ namespace u_net
             this.形状分類コード.Size = new System.Drawing.Size(139, 21);
             this.形状分類コード.TabIndex = 29;
             this.形状分類コード.SelectedIndexChanged += new System.EventHandler(this.形状分類コード_SelectedIndexChanged);
+            this.形状分類コード.Enter += new System.EventHandler(this.形状分類コード_Enter);
             this.形状分類コード.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.形状分類コード_KeyPress);
+            this.形状分類コード.Leave += new System.EventHandler(this.形状分類コード_Leave);
             this.形状分類コード.Validating += new System.ComponentModel.CancelEventHandler(this.形状分類コード_Validating);
             // 
             // M部品形状bindingSource
@@ -1537,7 +1549,9 @@ namespace u_net
             this.Rohs1ChemSherpaStatusCode.Size = new System.Drawing.Size(139, 21);
             this.Rohs1ChemSherpaStatusCode.TabIndex = 42;
             this.Rohs1ChemSherpaStatusCode.SelectedIndexChanged += new System.EventHandler(this.Rohs1ChemSherpaStatusCode_SelectedIndexChanged);
+            this.Rohs1ChemSherpaStatusCode.Enter += new System.EventHandler(this.Rohs1ChemSherpaStatusCode_Enter);
             this.Rohs1ChemSherpaStatusCode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Rohs1ChemSherpaStatusCode_KeyPress);
+            this.Rohs1ChemSherpaStatusCode.Leave += new System.EventHandler(this.Rohs1ChemSherpaStatusCode_Leave);
             this.Rohs1ChemSherpaStatusCode.Validating += new System.ComponentModel.CancelEventHandler(this.Rohs1ChemSherpaStatusCode_Validating);
             // 
             // label27
@@ -1566,7 +1580,9 @@ namespace u_net
             this.RoHS資料.Size = new System.Drawing.Size(139, 21);
             this.RoHS資料.TabIndex = 40;
             this.RoHS資料.SelectedIndexChanged += new System.EventHandler(this.RoHS資料_SelectedIndexChanged);
+            this.RoHS資料.Enter += new System.EventHandler(this.RoHS資料_Enter);
             this.RoHS資料.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.RoHS資料_KeyPress);
+            this.RoHS資料.Leave += new System.EventHandler(this.RoHS資料_Leave);
             this.RoHS資料.Validating += new System.ComponentModel.CancelEventHandler(this.RoHS資料_Validating);
             // 
             // label26
@@ -1595,7 +1611,9 @@ namespace u_net
             this.非含有証明書.Size = new System.Drawing.Size(139, 21);
             this.非含有証明書.TabIndex = 38;
             this.非含有証明書.SelectedIndexChanged += new System.EventHandler(this.非含有証明書_SelectedIndexChanged);
+            this.非含有証明書.Enter += new System.EventHandler(this.非含有証明書_Enter);
             this.非含有証明書.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.非含有証明書_KeyPress);
+            this.非含有証明書.Leave += new System.EventHandler(this.非含有証明書_Leave);
             this.非含有証明書.Validating += new System.ComponentModel.CancelEventHandler(this.非含有証明書_Validating);
             // 
             // label25
@@ -1624,7 +1642,9 @@ namespace u_net
             this.JampAis.Size = new System.Drawing.Size(139, 21);
             this.JampAis.TabIndex = 36;
             this.JampAis.SelectedIndexChanged += new System.EventHandler(this.JampAis_SelectedIndexChanged);
+            this.JampAis.Enter += new System.EventHandler(this.JampAis_Enter);
             this.JampAis.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.JampAis_KeyPress);
+            this.JampAis.Leave += new System.EventHandler(this.JampAis_Leave);
             this.JampAis.Validating += new System.ComponentModel.CancelEventHandler(this.JampAis_Validating);
             // 
             // label24
@@ -1670,7 +1690,9 @@ namespace u_net
             this.Rohs2ChemSherpaStatusCode.Size = new System.Drawing.Size(139, 21);
             this.Rohs2ChemSherpaStatusCode.TabIndex = 51;
             this.Rohs2ChemSherpaStatusCode.SelectedIndexChanged += new System.EventHandler(this.Rohs2ChemSherpaStatusCode_SelectedIndexChanged);
+            this.Rohs2ChemSherpaStatusCode.Enter += new System.EventHandler(this.Rohs2ChemSherpaStatusCode_Enter);
             this.Rohs2ChemSherpaStatusCode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Rohs2ChemSherpaStatusCode_KeyPress);
+            this.Rohs2ChemSherpaStatusCode.Leave += new System.EventHandler(this.Rohs2ChemSherpaStatusCode_Leave);
             this.Rohs2ChemSherpaStatusCode.Validating += new System.ComponentModel.CancelEventHandler(this.Rohs2ChemSherpaStatusCode_Validating);
             // 
             // label28
@@ -1699,7 +1721,9 @@ namespace u_net
             this.Rohs2DocumentStatusCode.Size = new System.Drawing.Size(139, 21);
             this.Rohs2DocumentStatusCode.TabIndex = 49;
             this.Rohs2DocumentStatusCode.SelectedIndexChanged += new System.EventHandler(this.Rohs2DocumentStatusCode_SelectedIndexChanged);
+            this.Rohs2DocumentStatusCode.Enter += new System.EventHandler(this.Rohs2DocumentStatusCode_Enter);
             this.Rohs2DocumentStatusCode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Rohs2DocumentStatusCode_KeyPress);
+            this.Rohs2DocumentStatusCode.Leave += new System.EventHandler(this.Rohs2DocumentStatusCode_Leave);
             this.Rohs2DocumentStatusCode.Validating += new System.ComponentModel.CancelEventHandler(this.Rohs2DocumentStatusCode_Validating);
             // 
             // label29
@@ -1728,7 +1752,9 @@ namespace u_net
             this.Rohs2NonInclusionCertificationStatusCode.Size = new System.Drawing.Size(139, 21);
             this.Rohs2NonInclusionCertificationStatusCode.TabIndex = 47;
             this.Rohs2NonInclusionCertificationStatusCode.SelectedIndexChanged += new System.EventHandler(this.Rohs2NonInclusionCertificationStatusCode_SelectedIndexChanged);
+            this.Rohs2NonInclusionCertificationStatusCode.Enter += new System.EventHandler(this.Rohs2NonInclusionCertificationStatusCode_Enter);
             this.Rohs2NonInclusionCertificationStatusCode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Rohs2NonInclusionCertificationStatusCode_KeyPress);
+            this.Rohs2NonInclusionCertificationStatusCode.Leave += new System.EventHandler(this.Rohs2NonInclusionCertificationStatusCode_Leave);
             this.Rohs2NonInclusionCertificationStatusCode.Validating += new System.ComponentModel.CancelEventHandler(this.Rohs2NonInclusionCertificationStatusCode_Validating);
             // 
             // label30
@@ -1757,7 +1783,9 @@ namespace u_net
             this.Rohs2JampAisStatusCode.Size = new System.Drawing.Size(139, 21);
             this.Rohs2JampAisStatusCode.TabIndex = 45;
             this.Rohs2JampAisStatusCode.SelectedIndexChanged += new System.EventHandler(this.Rohs2JampAisStatusCode_SelectedIndexChanged);
+            this.Rohs2JampAisStatusCode.Enter += new System.EventHandler(this.Rohs2JampAisStatusCode_Enter);
             this.Rohs2JampAisStatusCode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Rohs2JampAisStatusCode_KeyPress);
+            this.Rohs2JampAisStatusCode.Leave += new System.EventHandler(this.Rohs2JampAisStatusCode_Leave);
             this.Rohs2JampAisStatusCode.Validating += new System.ComponentModel.CancelEventHandler(this.Rohs2JampAisStatusCode_Validating);
             // 
             // label31
@@ -1801,6 +1829,8 @@ namespace u_net
             this.ChemSherpaVersion.Size = new System.Drawing.Size(139, 20);
             this.ChemSherpaVersion.TabIndex = 53;
             this.ChemSherpaVersion.TextChanged += new System.EventHandler(this.ChemSherpaVersion_TextChanged);
+            this.ChemSherpaVersion.Enter += new System.EventHandler(this.ChemSherpaVersion_Enter);
+            this.ChemSherpaVersion.Leave += new System.EventHandler(this.ChemSherpaVersion_Leave);
             this.ChemSherpaVersion.Validating += new System.ComponentModel.CancelEventHandler(this.ChemSherpaVersion_Validating);
             // 
             // label33
@@ -1854,6 +1884,8 @@ namespace u_net
             this.入数.Size = new System.Drawing.Size(139, 20);
             this.入数.TabIndex = 55;
             this.入数.TextChanged += new System.EventHandler(this.入数_TextChanged);
+            this.入数.Enter += new System.EventHandler(this.入数_Enter);
+            this.入数.Leave += new System.EventHandler(this.入数_Leave);
             this.入数.Validating += new System.ComponentModel.CancelEventHandler(this.入数_Validating);
             this.入数.Validated += new System.EventHandler(this.入数_Validated);
             // 
@@ -1882,6 +1914,8 @@ namespace u_net
             this.単位数量.Size = new System.Drawing.Size(139, 20);
             this.単位数量.TabIndex = 57;
             this.単位数量.TextChanged += new System.EventHandler(this.単位数量_TextChanged);
+            this.単位数量.Enter += new System.EventHandler(this.単位数量_Enter);
+            this.単位数量.Leave += new System.EventHandler(this.単位数量_Leave);
             this.単位数量.Validating += new System.ComponentModel.CancelEventHandler(this.単位数量_Validating);
             this.単位数量.Validated += new System.EventHandler(this.単位数量_Validated);
             // 
@@ -1910,6 +1944,8 @@ namespace u_net
             this.StandardDeliveryDay.Size = new System.Drawing.Size(139, 20);
             this.StandardDeliveryDay.TabIndex = 59;
             this.StandardDeliveryDay.TextChanged += new System.EventHandler(this.StandardDeliveryDay_TextChanged);
+            this.StandardDeliveryDay.Enter += new System.EventHandler(this.StandardDeliveryDay_Enter);
+            this.StandardDeliveryDay.Leave += new System.EventHandler(this.StandardDeliveryDay_Leave);
             this.StandardDeliveryDay.Validating += new System.ComponentModel.CancelEventHandler(this.StandardDeliveryDay_Validating);
             this.StandardDeliveryDay.Validated += new System.EventHandler(this.StandardDeliveryDay_Validated);
             // 
@@ -1938,6 +1974,8 @@ namespace u_net
             this.ShelfNumber.Size = new System.Drawing.Size(139, 20);
             this.ShelfNumber.TabIndex = 61;
             this.ShelfNumber.TextChanged += new System.EventHandler(this.ShelfNumber_TextChanged);
+            this.ShelfNumber.Enter += new System.EventHandler(this.ShelfNumber_Enter);
+            this.ShelfNumber.Leave += new System.EventHandler(this.ShelfNumber_Leave);
             this.ShelfNumber.Validating += new System.ComponentModel.CancelEventHandler(this.ShelfNumber_Validating);
             this.ShelfNumber.Validated += new System.EventHandler(this.ShelfNumber_Validated);
             // 
@@ -1981,6 +2019,8 @@ namespace u_net
             this.ロス率.Size = new System.Drawing.Size(139, 20);
             this.ロス率.TabIndex = 65;
             this.ロス率.TextChanged += new System.EventHandler(this.ロス率_TextChanged);
+            this.ロス率.Enter += new System.EventHandler(this.ロス率_Enter);
+            this.ロス率.Leave += new System.EventHandler(this.ロス率_Leave);
             this.ロス率.Validating += new System.ComponentModel.CancelEventHandler(this.ロス率_Validating);
             this.ロス率.Validated += new System.EventHandler(this.ロス率_Validated);
             // 
@@ -2108,6 +2148,8 @@ namespace u_net
             this.備考.Size = new System.Drawing.Size(526, 180);
             this.備考.TabIndex = 68;
             this.備考.TextChanged += new System.EventHandler(this.備考_TextChanged);
+            this.備考.Enter += new System.EventHandler(this.備考_Enter);
+            this.備考.Leave += new System.EventHandler(this.備考_Leave);
             this.備考.Validating += new System.ComponentModel.CancelEventHandler(this.備考_Validating);
             // 
             // 部品使用先
@@ -2131,7 +2173,9 @@ namespace u_net
             this.CalcInventoryCode.Size = new System.Drawing.Size(139, 21);
             this.CalcInventoryCode.TabIndex = 63;
             this.CalcInventoryCode.SelectedIndexChanged += new System.EventHandler(this.CalcInventoryCode_SelectedIndexChanged);
+            this.CalcInventoryCode.Enter += new System.EventHandler(this.CalcInventoryCode_Enter);
             this.CalcInventoryCode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CalcInventoryCode_KeyPress);
+            this.CalcInventoryCode.Leave += new System.EventHandler(this.CalcInventoryCode_Leave);
             this.CalcInventoryCode.Validating += new System.ComponentModel.CancelEventHandler(this.CalcInventoryCode_Validating);
             // 
             // 受入検査ランク
@@ -2145,7 +2189,9 @@ namespace u_net
             this.受入検査ランク.Size = new System.Drawing.Size(139, 21);
             this.受入検査ランク.TabIndex = 67;
             this.受入検査ランク.SelectedIndexChanged += new System.EventHandler(this.受入検査ランク_SelectedIndexChanged);
+            this.受入検査ランク.Enter += new System.EventHandler(this.受入検査ランク_Enter);
             this.受入検査ランク.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.受入検査ランク_KeyPress);
+            this.受入検査ランク.Leave += new System.EventHandler(this.受入検査ランク_Leave);
             this.受入検査ランク.Validating += new System.ComponentModel.CancelEventHandler(this.受入検査ランク_Validating);
             // 
             // 部品集合版数

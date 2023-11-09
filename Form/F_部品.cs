@@ -1988,11 +1988,13 @@ namespace u_net
         private void 仕入先1コード_Enter(object sender, EventArgs e)
         {
             selected_frame = 1;
+            toolStripStatusLabel2.Text = "■仕入先コードを入力します。　■8文字まで入力可。　■[space]キーで検索ウィンドウを開きます。";
         }
 
         private void 仕入先1コード_Leave(object sender, EventArgs e)
         {
             selected_frame = 0;
+            toolStripStatusLabel2.Text = "各種項目の説明";
         }
 
         private void 仕入先1コード_KeyDown(object sender, KeyEventArgs e)
@@ -2046,11 +2048,13 @@ namespace u_net
         private void 仕入先2コード_Enter(object sender, EventArgs e)
         {
             selected_frame = 1;
+            toolStripStatusLabel2.Text = "■仕入先コードを入力します。　■8文字まで入力可。　■[space]キーで検索ウィンドウを開きます。";
         }
 
         private void 仕入先2コード_Leave(object sender, EventArgs e)
         {
             selected_frame = 0;
+            toolStripStatusLabel2.Text = "各種項目の説明";
         }
 
         private void 仕入先2コード_KeyDown(object sender, KeyEventArgs e)
@@ -2103,11 +2107,13 @@ namespace u_net
         private void 仕入先3コード_Enter(object sender, EventArgs e)
         {
             selected_frame = 1;
+            toolStripStatusLabel2.Text = "■仕入先コードを入力します。　■8文字まで入力可。　■[space]キーで検索ウィンドウを開きます。";
         }
 
         private void 仕入先3コード_Leave(object sender, EventArgs e)
         {
             selected_frame = 0;
+            toolStripStatusLabel2.Text = "各種項目の説明";
         }
 
         private void 仕入先3コード_KeyDown(object sender, KeyEventArgs e)
@@ -2195,6 +2201,7 @@ namespace u_net
         private void 仕入先3フレーム_Enter(object sender, EventArgs e)
         {
             仕入先3コード.Focus();
+            
         }
 
         private void 仕入先1単価_Validating(object sender, System.ComponentModel.CancelEventArgs e)
@@ -2210,11 +2217,13 @@ namespace u_net
         private void 仕入先1単価_Enter(object sender, EventArgs e)
         {
             selected_frame = 1;
+            toolStripStatusLabel2.Text = "単価が不明であるときは何も入力しないでください。　■数値全体で8桁まで、少数部は2桁まで入力できます。";
         }
 
         private void 仕入先1単価_Leave(object sender, EventArgs e)
         {
             selected_frame = 0;
+            toolStripStatusLabel2.Text = "各種項目の説明";
         }
 
         private void 仕入先2単価_Validating(object sender, System.ComponentModel.CancelEventArgs e)
@@ -2230,11 +2239,13 @@ namespace u_net
         private void 仕入先2単価_Enter(object sender, EventArgs e)
         {
             selected_frame = 2;
+            toolStripStatusLabel2.Text = "単価が不明であるときは何も入力しないでください。　■数値全体で8桁まで、少数部は2桁まで入力できます。";
         }
 
         private void 仕入先2単価_Leave(object sender, EventArgs e)
         {
             selected_frame = 0;
+            toolStripStatusLabel2.Text = "各種項目の説明";
         }
 
         private void 仕入先3単価_Validating(object sender, System.ComponentModel.CancelEventArgs e)
@@ -2250,11 +2261,13 @@ namespace u_net
         private void 仕入先3単価_Enter(object sender, EventArgs e)
         {
             selected_frame = 3;
+            toolStripStatusLabel2.Text = "単価が不明であるときは何も入力しないでください。　■数値全体で8桁まで、少数部は2桁まで入力できます。";
         }
 
         private void 仕入先3単価_Leave(object sender, EventArgs e)
         {
             selected_frame = 0;
+            toolStripStatusLabel2.Text = "各種項目の説明";
         }
 
         private void 受入検査ランク_Validating(object sender, System.ComponentModel.CancelEventArgs e)
@@ -2422,6 +2435,237 @@ namespace u_net
                 }
                 e.KeyChar = (char)0;
             }
+        }
+
+
+      
+        private void 部品コード_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Text = "■読み込む部品データの部品コードを入力します。";
+        }
+
+        private void 部品コード_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Text = "各種項目の説明";
+        }
+
+        private void 品名_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Text = "■全角で25文字まで入力可。　■機種依存文字は入力できません。";
+        }
+
+        private void 品名_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Text = "各種項目の説明";
+        }
+
+        private void 型番_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Text = "■半角50文字まで入力可。　■機種依存文字は入力できません。";
+        }
+
+        private void 型番_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Text = "各種項目の説明";
+        }
+
+        private void メーカーコード_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Text = "■メーカーコードを入力します。　■8文字まで入力可。　■[space]キーで検索ウィンドウを開きます。";
+        }
+
+        private void メーカーコード_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Text = "各種項目の説明";
+        }
+
+        private void 分類コード_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Text = "■[space]キーでドロップダウンリストを開きます。";
+        }
+
+        private void 分類コード_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Text = "各種項目の説明";
+        }
+
+        private void 形状分類コード_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Text = "■[space]キーでドロップダウンリストを開きます。";
+        }
+
+        private void 形状分類コード_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Text = "各種項目の説明";
+        }
+
+        private void JampAis_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Text = "■在庫部品について、RoHSの対応状況を入力します。　■[space]キーでドロップダウンリストを表示します。";
+        }
+
+        private void JampAis_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Text = "各種項目の説明";
+        }
+
+        private void 非含有証明書_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Text = "■RoHS指令に基づく非含有証明書の進捗状況を選択します。　■[space]キーでドロップダウンリストを表示します。";
+        }
+
+        private void 非含有証明書_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Text = "各種項目の説明";
+        }
+
+        private void RoHS資料_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Text = "■RoHSに関する資料の有無を入力します。　■[space]キーでドロップダウンリストを表示します。";
+        }
+
+        private void RoHS資料_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Text = "各種項目の説明";
+        }
+
+        private void Rohs1ChemSherpaStatusCode_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Text = "■RoHS1のchemSHERPAデータの入手状況を入力します。　■[space]キーでドロップダウンリストを表示します。";
+        }
+        private void Rohs1ChemSherpaStatusCode_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Text = "各種項目の説明";
+        }
+
+        private void Rohs2JampAisStatusCode_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Text = "■在庫部品について、RoHSの対応状況を入力します。　■[space]キーでドロップダウンリストを表示します。";
+        }
+
+        private void Rohs2JampAisStatusCode_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Text = "各種項目の説明";
+        }
+
+        private void Rohs2NonInclusionCertificationStatusCode_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Text = "■RoHS指令に基づく非含有証明書の進捗状況を選択します。　■[space]キーでドロップダウンリストを表示します。";
+        }
+
+        private void Rohs2NonInclusionCertificationStatusCode_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Text = "各種項目の説明";
+        }
+
+        private void Rohs2DocumentStatusCode_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Text = "■RoHSに関する資料の有無を入力します。　■[space]キーでドロップダウンリストを表示します。";
+        }
+
+        private void Rohs2DocumentStatusCode_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Text = "各種項目の説明";
+        }
+
+        private void Rohs2ChemSherpaStatusCode_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Text = "■RoHS2のchemSHERPAデータの入手状況を入力します。　■[space]キーでドロップダウンリストを表示します。";
+        }
+
+        private void Rohs2ChemSherpaStatusCode_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Text = "各種項目の説明";
+        }
+
+        private void ChemSherpaVersion_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Text = "■入手したchemSHERPAのバージョンを入力します。　■10文字まで入力可。";
+        }
+
+        private void ChemSherpaVersion_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Text = "各種項目の説明";
+        }
+
+        private void 入数_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Text = "■含まれる部品の数量です。購買時にこの値によって除算されます。";
+        }
+
+        private void 入数_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Text = "各種項目の説明";
+        }
+
+        private void 単位数量_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Text = "■発注可能な最低数量です。";
+        }
+
+        private void 単位数量_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Text = "各種項目の説明";
+        }
+
+        private void StandardDeliveryDay_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Text = "■部品の標準納期を入力します。単位は[日]で入力してください。";
+        }
+
+        private void StandardDeliveryDay_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Text = "各種項目の説明";
+        }
+
+        private void ShelfNumber_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Text = "■部品が保管されている棚番号です。";
+        }
+
+        private void ShelfNumber_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Text = "各種項目の説明";
+        }
+
+        private void CalcInventoryCode_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Text = "■[space]キーでドロップダウンリストを表示します。";
+        }
+
+        private void CalcInventoryCode_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Text = "各種項目の説明";
+        }
+
+        private void ロス率_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Text = "■在庫のロス率を係数で入力します。　■少数部は7桁まで入力できますが、表示は3桁です。";
+        }
+
+        private void ロス率_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Text = "各種項目の説明";
+        }
+
+        private void 受入検査ランク_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Text = "■[space]キーでドロップダウンリストを表示します。";
+        }
+
+        private void 受入検査ランク_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Text = "各種項目の説明";
+        }
+
+        private void 備考_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Text = "■全角2000文字まで入力できます。";
+        }
+
+        private void 備考_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Text = "各種項目の説明";
         }
     }
 }
