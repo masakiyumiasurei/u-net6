@@ -26,7 +26,7 @@ namespace u_net
         private SqlTransaction tx;
         public string args = "";
         public string CurrentCode = "";
-
+        private bool setCombo = false;
         public F_商品()
         {
             this.Text = "商品";       // ウィンドウタイトルを設定
@@ -54,12 +54,24 @@ namespace u_net
             FunctionClass fn = new FunctionClass();
             fn.DoWait("しばらくお待ちください...");
 
-            this.combBox商品コードTableAdapter.Fill(this.uiDataSet.CombBox商品コード);
-            this.combBoxMシリーズTableAdapter.Fill(this.uiDataSet.Mシリーズ);
-            this.m商品分類TableAdapter.Fill(this.uiDataSet.M商品分類);
-            this.comboBox売上区分TableAdapter.Fill(this.uiDataSet.M売上区分);
-            this.M単位TableAdapter.Fill(this.uiDataSet.M単位);
-            this.comboBoxManufactureFlowTableAdapter.Fill(this.uiDataSet.ManufactureFlow);
+            //this.combBox商品コードTableAdapter.Fill(this.uiDataSet.CombBox商品コード);
+            //this.combBoxMシリーズTableAdapter.Fill(this.uiDataSet.Mシリーズ);
+            //this.m商品分類TableAdapter.Fill(this.uiDataSet.M商品分類);
+            //this.comboBox売上区分TableAdapter.Fill(this.uiDataSet.M売上区分);
+            //this.M単位TableAdapter.Fill(this.uiDataSet.M単位);
+            //this.comboBoxManufactureFlowTableAdapter.Fill(this.uiDataSet.ManufactureFlow);
+
+            OriginalClass ofn = new OriginalClass();
+            ofn.SetComboBox(数量単位コード, "SELECT 単位名 as Display,単位コード as Value FROM M単位");
+            ofn.SetComboBox(シリーズコード, "SELECT シリーズ名 as Display,シリーズコード as Value FROM Mシリーズ");
+            ofn.SetComboBox(商品分類コード, "SELECT 分類名 as Display,商品分類コード as Value FROM M商品分類");
+            ofn.SetComboBox(売上区分コード, "SELECT 売上区分名 as Display,売上区分コード as Value FROM M売上区分");
+            ofn.SetComboBox(FlowCategoryCode, "SELECT Name as Display,Code as Value FROM ManufactureFlow");
+            setCombo = true;
+            ofn.SetComboBox(商品コード, "SELECT M商品.商品コード as Display ,M商品.商品コード as Value FROM M商品 INNER JOIN M商品明細 ON M商品.商品コード = M商品明細.商品コード " +
+                                        "GROUP BY M商品.商品コード ORDER BY M商品.商品コード DESC");
+
+            setCombo = false;
 
             int intWindowHeight = this.Height;
             int intWindowWidth = this.Width;
@@ -266,8 +278,6 @@ namespace u_net
                             }
                         }
                     }
-
-
 
 
                     // M商品明細データを保存
@@ -915,6 +925,7 @@ namespace u_net
 
         private void 商品分類コード_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (this.ActiveControl == null) return;
             if (this.商品分類コード.SelectedItem != null)
             {
                 分類内容.Text = (商品分類コード.SelectedItem as DataRowView)["分類内容"].ToString();
@@ -924,6 +935,9 @@ namespace u_net
 
         private void 商品コード_TextChanged(object sender, EventArgs e)
         {
+            //商品コードのコンボボックスのソースセット時には処理を行わない様にするため
+            if (setCombo) return;
+
             //他フォームから渡されたときは this.ActiveControlが商品コントロールにならないので商品コードをコントロールとして渡す
             if (!FunctionClass.LimitText(this.商品コード, 8)) return;
             UpdatedControl();
@@ -1003,20 +1017,15 @@ namespace u_net
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            //this.M商品明細TableAdapter.Fill(this.uiDataSet.M商品明細);
-            this.M商品明細BindingSource.ResetBindings(false);
-            dataGridView1.Invalidate();
-            if (M商品明細BindingSource.DataSource != null)
-            {
-                MessageBox.Show("datasourceが設定されている");
-            }
-            else
-            {
-                // DataSourceが設定されていないか、間違っています。
-            }
-            //MessageBox.Show(数量単位コード.Text);
-            //MessageBox.Show((string)数量単位コード.SelectedValue);
-            //MessageBox.Show(商品コード.Text);
+            dataGridView1.CurrentCell = dataGridView1[7, 2];
+            // dataGridView1[6, 2].Selected = true;
+
+            BindingSource bindingSource = (BindingSource)dataGridView1.DataSource;
+            DataTable dataTable = ((DataView)bindingSource.List).Table;
+
+            dataTable.DefaultView.Sort = "明細番号";
+
+            bindingSource.ResetBindings(false);
 
         }
 
@@ -1033,6 +1042,7 @@ namespace u_net
 
         private void シリーズコード_TextChanged(object sender, EventArgs e)
         {
+            if (this.ActiveControl == null) return;
             string enteredText = シリーズコード.Text;
             if (string.IsNullOrEmpty(enteredText)) return;
 
@@ -1490,9 +1500,6 @@ namespace u_net
 
     }
 }
-
-
-
 
 
 //public class DataGridViewEx : DataGridView
