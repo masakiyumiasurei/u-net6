@@ -37,12 +37,12 @@ namespace u_net
             コマンド印刷 = new Button();
             button3 = new Button();
             コマンドメール = new Button();
-            コマンド仕入先 = new Button();
+            コマンドメーカー = new Button();
             コマンド確定 = new Button();
             コマンド承認 = new Button();
             コマンド削除 = new Button();
             コマンド複写 = new Button();
-            コマンド読込 = new Button();
+            コマンド修正 = new Button();
             label9 = new Label();
             郵便番号_ラベル = new Label();
             仕入先名フリガナ_ラベル = new Label();
@@ -124,7 +124,7 @@ namespace u_net
             label7 = new Label();
             ActiveDate = new TextBox();
             label3 = new Label();
-            textBox1 = new TextBox();
+            無効日時 = new TextBox();
             無効者名 = new TextBox();
             無効者コード = new TextBox();
             label1 = new Label();
@@ -139,7 +139,23 @@ namespace u_net
             label10 = new Label();
             作成日時 = new TextBox();
             支払 = new TabPage();
+            振込手数料負担コード = new ComboBox();
+            label51 = new Label();
+            groupBox3 = new GroupBox();
+            label50 = new Label();
+            label35 = new Label();
+            手形発送先電話番号 = new TextBox();
+            label49 = new Label();
+            label34 = new Label();
+            label47 = new Label();
+            label48 = new Label();
+            手形発送先住所 = new TextBox();
+            手形発送先郵便番号 = new TextBox();
+            手形発送先建物名 = new TextBox();
+            手形発送先部署 = new TextBox();
+            label43 = new Label();
             groupBox2 = new GroupBox();
+            振込先口座番号 = new TextBox();
             振込先口座区分コード = new ComboBox();
             label39 = new Label();
             textBox12 = new TextBox();
@@ -147,7 +163,6 @@ namespace u_net
             振込先金融機関支店コード = new TextBox();
             振込先金融機関店分類コード = new ComboBox();
             振込先金融機関分類コード = new ComboBox();
-            label32 = new Label();
             振込先口座名 = new TextBox();
             label36 = new Label();
             label37 = new Label();
@@ -162,13 +177,18 @@ namespace u_net
             label31 = new Label();
             支払先専用 = new ComboBox();
             label30 = new Label();
-            振込先口座番号 = new TextBox();
+            label32 = new Label();
+            相殺有無 = new ComboBox();
+            label33 = new Label();
+            label40 = new Label();
+            振込手数料上限金額 = new TextBox();
             panel1.SuspendLayout();
             groupBox1.SuspendLayout();
             statusStrip1.SuspendLayout();
             tabControl1.SuspendLayout();
             基本.SuspendLayout();
             支払.SuspendLayout();
+            groupBox3.SuspendLayout();
             groupBox2.SuspendLayout();
             SuspendLayout();
             // 
@@ -268,22 +288,21 @@ namespace u_net
             コマンドメール.TabIndex = 1009;
             コマンドメール.TabStop = false;
             コマンドメール.UseVisualStyleBackColor = true;
-            コマンドメール.Click += コマンドメール_Click;
             // 
-            // コマンド仕入先
+            // コマンドメーカー
             // 
-            コマンド仕入先.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            コマンド仕入先.ForeColor = Color.Blue;
-            コマンド仕入先.ImageAlign = ContentAlignment.BottomLeft;
-            コマンド仕入先.Location = new Point(300, 5);
-            コマンド仕入先.Margin = new Padding(3, 2, 3, 2);
-            コマンド仕入先.Name = "コマンド仕入先";
-            コマンド仕入先.Size = new Size(70, 20);
-            コマンド仕入先.TabIndex = 1008;
-            コマンド仕入先.TabStop = false;
-            コマンド仕入先.Text = "メーカー";
-            コマンド仕入先.UseVisualStyleBackColor = true;
-            コマンド仕入先.Click += コマンド仕入先_Click;
+            コマンドメーカー.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            コマンドメーカー.ForeColor = Color.Blue;
+            コマンドメーカー.ImageAlign = ContentAlignment.BottomLeft;
+            コマンドメーカー.Location = new Point(300, 5);
+            コマンドメーカー.Margin = new Padding(3, 2, 3, 2);
+            コマンドメーカー.Name = "コマンドメーカー";
+            コマンドメーカー.Size = new Size(70, 20);
+            コマンドメーカー.TabIndex = 1008;
+            コマンドメーカー.TabStop = false;
+            コマンドメーカー.Text = "メーカー";
+            コマンドメーカー.UseVisualStyleBackColor = true;
+            コマンドメーカー.Click += コマンドメーカー_Click;
             // 
             // コマンド確定
             // 
@@ -345,20 +364,20 @@ namespace u_net
             コマンド複写.UseVisualStyleBackColor = true;
             コマンド複写.Click += コマンド複写_Click;
             // 
-            // コマンド読込
+            // コマンド修正
             // 
-            コマンド読込.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            コマンド読込.ForeColor = Color.Blue;
-            コマンド読込.ImageAlign = ContentAlignment.BottomLeft;
-            コマンド読込.Location = new Point(75, 5);
-            コマンド読込.Margin = new Padding(3, 2, 3, 2);
-            コマンド読込.Name = "コマンド読込";
-            コマンド読込.Size = new Size(70, 20);
-            コマンド読込.TabIndex = 1003;
-            コマンド読込.TabStop = false;
-            コマンド読込.Text = "修正";
-            コマンド読込.UseVisualStyleBackColor = true;
-            コマンド読込.Click += コマンド読込_Click;
+            コマンド修正.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            コマンド修正.ForeColor = Color.Blue;
+            コマンド修正.ImageAlign = ContentAlignment.BottomLeft;
+            コマンド修正.Location = new Point(75, 5);
+            コマンド修正.Margin = new Padding(3, 2, 3, 2);
+            コマンド修正.Name = "コマンド修正";
+            コマンド修正.Size = new Size(70, 20);
+            コマンド修正.TabIndex = 1003;
+            コマンド修正.TabStop = false;
+            コマンド修正.Text = "修正";
+            コマンド修正.UseVisualStyleBackColor = true;
+            コマンド修正.Click += コマンド修正_Click;
             // 
             // label9
             // 
@@ -395,7 +414,7 @@ namespace u_net
             仕入先名フリガナ_ラベル.AllowDrop = true;
             仕入先名フリガナ_ラベル.AutoEllipsis = true;
             仕入先名フリガナ_ラベル.Font = new Font("BIZ UDPゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            仕入先名フリガナ_ラベル.ForeColor = SystemColors.ActiveCaptionText;
+            仕入先名フリガナ_ラベル.ForeColor = Color.Red;
             仕入先名フリガナ_ラベル.ImageAlign = ContentAlignment.MiddleLeft;
             仕入先名フリガナ_ラベル.Location = new Point(7, 64);
             仕入先名フリガナ_ラベル.Margin = new Padding(0);
@@ -424,7 +443,7 @@ namespace u_net
             仕入先名_ラベル.AllowDrop = true;
             仕入先名_ラベル.AutoEllipsis = true;
             仕入先名_ラベル.Font = new Font("BIZ UDPゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            仕入先名_ラベル.ForeColor = SystemColors.ActiveCaptionText;
+            仕入先名_ラベル.ForeColor = Color.Red;
             仕入先名_ラベル.ImageAlign = ContentAlignment.MiddleLeft;
             仕入先名_ラベル.Location = new Point(7, 38);
             仕入先名_ラベル.Margin = new Padding(0);
@@ -776,7 +795,7 @@ namespace u_net
             label25.AllowDrop = true;
             label25.AutoEllipsis = true;
             label25.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            label25.ForeColor = SystemColors.ActiveCaptionText;
+            label25.ForeColor = Color.Red;
             label25.ImageAlign = ContentAlignment.MiddleLeft;
             label25.Location = new Point(6, 189);
             label25.Margin = new Padding(0);
@@ -861,7 +880,7 @@ namespace u_net
             label20.AllowDrop = true;
             label20.AutoEllipsis = true;
             label20.Font = new Font("BIZ UDPゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            label20.ForeColor = SystemColors.ActiveCaptionText;
+            label20.ForeColor = Color.Red;
             label20.ImageAlign = ContentAlignment.MiddleLeft;
             label20.Location = new Point(9, 125);
             label20.Margin = new Padding(0);
@@ -876,7 +895,7 @@ namespace u_net
             label21.AllowDrop = true;
             label21.AutoEllipsis = true;
             label21.Font = new Font("BIZ UDPゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            label21.ForeColor = SystemColors.ActiveCaptionText;
+            label21.ForeColor = Color.Red;
             label21.ImageAlign = ContentAlignment.MiddleLeft;
             label21.Location = new Point(9, 102);
             label21.Margin = new Padding(0);
@@ -975,7 +994,7 @@ namespace u_net
             label15.AllowDrop = true;
             label15.AutoEllipsis = true;
             label15.Font = new Font("BIZ UDPゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            label15.ForeColor = SystemColors.ActiveCaptionText;
+            label15.ForeColor = Color.Red;
             label15.ImageAlign = ContentAlignment.MiddleLeft;
             label15.Location = new Point(9, 25);
             label15.Margin = new Padding(0);
@@ -990,7 +1009,7 @@ namespace u_net
             label16.AllowDrop = true;
             label16.AutoEllipsis = true;
             label16.Font = new Font("BIZ UDPゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            label16.ForeColor = SystemColors.ActiveCaptionText;
+            label16.ForeColor = Color.Red;
             label16.ImageAlign = ContentAlignment.MiddleLeft;
             label16.Location = new Point(9, 50);
             label16.Margin = new Padding(0);
@@ -1289,7 +1308,7 @@ namespace u_net
             tabControl1.Location = new Point(300, 49);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(866, 761);
+            tabControl1.Size = new Size(866, 757);
             tabControl1.TabIndex = 10002;
             // 
             // 基本
@@ -1306,7 +1325,7 @@ namespace u_net
             基本.Controls.Add(label4);
             基本.Controls.Add(label5);
             基本.Controls.Add(label3);
-            基本.Controls.Add(textBox1);
+            基本.Controls.Add(無効日時);
             基本.Controls.Add(無効者名);
             基本.Controls.Add(無効者コード);
             基本.Controls.Add(label1);
@@ -1354,7 +1373,7 @@ namespace u_net
             基本.Location = new Point(4, 29);
             基本.Name = "基本";
             基本.Padding = new Padding(3);
-            基本.Size = new Size(858, 728);
+            基本.Size = new Size(858, 724);
             基本.TabIndex = 0;
             基本.Text = "基本";
             // 
@@ -1405,6 +1424,7 @@ namespace u_net
             // label8
             // 
             label8.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            label8.ForeColor = Color.Red;
             label8.Location = new Point(7, 296);
             label8.Name = "label8";
             label8.Size = new Size(117, 23);
@@ -1467,17 +1487,17 @@ namespace u_net
             label3.Text = "削除日時";
             label3.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // textBox1
+            // 無効日時
             // 
-            textBox1.BackColor = SystemColors.Control;
-            textBox1.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            textBox1.Location = new Point(626, 153);
-            textBox1.Margin = new Padding(3, 2, 3, 2);
-            textBox1.Multiline = true;
-            textBox1.Name = "textBox1";
-            textBox1.ReadOnly = true;
-            textBox1.Size = new Size(188, 20);
-            textBox1.TabIndex = 194;
+            無効日時.BackColor = SystemColors.Control;
+            無効日時.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            無効日時.Location = new Point(626, 153);
+            無効日時.Margin = new Padding(3, 2, 3, 2);
+            無効日時.Multiline = true;
+            無効日時.Name = "無効日時";
+            無効日時.ReadOnly = true;
+            無効日時.Size = new Size(188, 20);
+            無効日時.TabIndex = 194;
             // 
             // 無効者名
             // 
@@ -1653,18 +1673,232 @@ namespace u_net
             // 支払
             // 
             支払.BackColor = SystemColors.Control;
+            支払.Controls.Add(振込手数料負担コード);
+            支払.Controls.Add(label51);
+            支払.Controls.Add(groupBox3);
             支払.Controls.Add(groupBox2);
             支払.Controls.Add(CloseDay);
             支払.Controls.Add(label31);
             支払.Controls.Add(支払先専用);
             支払.Controls.Add(label30);
             支払.Controls.Add(label32);
+            支払.Controls.Add(相殺有無);
+            支払.Controls.Add(label33);
+            支払.Controls.Add(label40);
+            支払.Controls.Add(振込手数料上限金額);
             支払.Location = new Point(4, 29);
             支払.Name = "支払";
             支払.Padding = new Padding(3);
-            支払.Size = new Size(858, 728);
+            支払.Size = new Size(858, 663);
             支払.TabIndex = 1;
             支払.Text = "支払";
+            // 
+            // 振込手数料負担コード
+            // 
+            振込手数料負担コード.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            振込手数料負担コード.AutoCompleteSource = AutoCompleteSource.ListItems;
+            振込手数料負担コード.DropDownStyle = ComboBoxStyle.DropDownList;
+            振込手数料負担コード.Font = new Font("BIZ UDPゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            振込手数料負担コード.FormattingEnabled = true;
+            振込手数料負担コード.ImeMode = ImeMode.Disable;
+            振込手数料負担コード.Location = new Point(153, 363);
+            振込手数料負担コード.Margin = new Padding(4, 3, 4, 3);
+            振込手数料負担コード.Name = "振込手数料負担コード";
+            振込手数料負担コード.Size = new Size(180, 21);
+            振込手数料負担コード.TabIndex = 10018;
+            // 
+            // label51
+            // 
+            label51.AllowDrop = true;
+            label51.AutoEllipsis = true;
+            label51.Font = new Font("BIZ UDPゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            label51.ForeColor = SystemColors.ActiveCaptionText;
+            label51.ImageAlign = ContentAlignment.MiddleLeft;
+            label51.Location = new Point(29, 361);
+            label51.Margin = new Padding(0);
+            label51.Name = "label51";
+            label51.Size = new Size(97, 23);
+            label51.TabIndex = 10017;
+            label51.Text = "振込手数料負担";
+            label51.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // groupBox3
+            // 
+            groupBox3.Controls.Add(label50);
+            groupBox3.Controls.Add(label35);
+            groupBox3.Controls.Add(手形発送先電話番号);
+            groupBox3.Controls.Add(label49);
+            groupBox3.Controls.Add(label34);
+            groupBox3.Controls.Add(label47);
+            groupBox3.Controls.Add(label48);
+            groupBox3.Controls.Add(手形発送先住所);
+            groupBox3.Controls.Add(手形発送先郵便番号);
+            groupBox3.Controls.Add(手形発送先建物名);
+            groupBox3.Controls.Add(手形発送先部署);
+            groupBox3.Controls.Add(label43);
+            groupBox3.Location = new Point(20, 403);
+            groupBox3.Name = "groupBox3";
+            groupBox3.Size = new Size(818, 191);
+            groupBox3.TabIndex = 10016;
+            groupBox3.TabStop = false;
+            groupBox3.Text = "振込手数料負担";
+            // 
+            // label50
+            // 
+            label50.AllowDrop = true;
+            label50.AutoEllipsis = true;
+            label50.Font = new Font("BIZ UDPゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            label50.ForeColor = SystemColors.ActiveCaptionText;
+            label50.ImageAlign = ContentAlignment.MiddleLeft;
+            label50.Location = new Point(315, 153);
+            label50.Margin = new Padding(0);
+            label50.Name = "label50";
+            label50.Size = new Size(182, 23);
+            label50.TabIndex = 10024;
+            label50.Text = "※「-」も入力します。";
+            label50.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // label35
+            // 
+            label35.AllowDrop = true;
+            label35.AutoEllipsis = true;
+            label35.Font = new Font("BIZ UDPゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            label35.ForeColor = SystemColors.ActiveCaptionText;
+            label35.ImageAlign = ContentAlignment.MiddleLeft;
+            label35.Location = new Point(337, 31);
+            label35.Margin = new Padding(0);
+            label35.Name = "label35";
+            label35.Size = new Size(182, 23);
+            label35.TabIndex = 10016;
+            label35.Text = "※「-」は入力しません。";
+            label35.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // 手形発送先電話番号
+            // 
+            手形発送先電話番号.BackColor = Color.White;
+            手形発送先電話番号.Font = new Font("BIZ UDPゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            手形発送先電話番号.Location = new Point(133, 156);
+            手形発送先電話番号.Margin = new Padding(3, 2, 3, 2);
+            手形発送先電話番号.Name = "手形発送先電話番号";
+            手形発送先電話番号.Size = new Size(163, 20);
+            手形発送先電話番号.TabIndex = 10023;
+            // 
+            // label49
+            // 
+            label49.AllowDrop = true;
+            label49.AutoEllipsis = true;
+            label49.Font = new Font("BIZ UDPゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            label49.ForeColor = SystemColors.ActiveCaptionText;
+            label49.ImageAlign = ContentAlignment.MiddleLeft;
+            label49.Location = new Point(9, 154);
+            label49.Margin = new Padding(0);
+            label49.Name = "label49";
+            label49.Size = new Size(97, 23);
+            label49.TabIndex = 10022;
+            label49.Text = "電話番号(&T)";
+            label49.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // label34
+            // 
+            label34.AllowDrop = true;
+            label34.AutoEllipsis = true;
+            label34.Font = new Font("BIZ UDPゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            label34.ForeColor = SystemColors.ActiveCaptionText;
+            label34.ImageAlign = ContentAlignment.MiddleLeft;
+            label34.Location = new Point(2, 84);
+            label34.Margin = new Padding(0);
+            label34.Name = "label34";
+            label34.Size = new Size(120, 23);
+            label34.TabIndex = 10020;
+            label34.Text = "住所(建物名)(&U)";
+            label34.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // label47
+            // 
+            label47.AllowDrop = true;
+            label47.AutoEllipsis = true;
+            label47.Font = new Font("BIZ UDPゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            label47.ForeColor = SystemColors.ActiveCaptionText;
+            label47.ImageAlign = ContentAlignment.MiddleLeft;
+            label47.Location = new Point(2, 33);
+            label47.Margin = new Padding(0);
+            label47.Name = "label47";
+            label47.Size = new Size(97, 23);
+            label47.TabIndex = 10016;
+            label47.Text = "郵便番号(&Z)";
+            label47.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // label48
+            // 
+            label48.AllowDrop = true;
+            label48.AutoEllipsis = true;
+            label48.Font = new Font("BIZ UDPゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            label48.ForeColor = SystemColors.ActiveCaptionText;
+            label48.ImageAlign = ContentAlignment.MiddleLeft;
+            label48.Location = new Point(2, 58);
+            label48.Margin = new Padding(0);
+            label48.Name = "label48";
+            label48.Size = new Size(97, 23);
+            label48.TabIndex = 10018;
+            label48.Text = "住所(&R)";
+            label48.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // 手形発送先住所
+            // 
+            手形発送先住所.BackColor = Color.White;
+            手形発送先住所.Font = new Font("BIZ UDPゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            手形発送先住所.ImeMode = ImeMode.Hiragana;
+            手形発送先住所.Location = new Point(133, 59);
+            手形発送先住所.Margin = new Padding(3, 2, 3, 2);
+            手形発送先住所.Name = "手形発送先住所";
+            手形発送先住所.Size = new Size(364, 20);
+            手形発送先住所.TabIndex = 10019;
+            // 
+            // 手形発送先郵便番号
+            // 
+            手形発送先郵便番号.BackColor = Color.White;
+            手形発送先郵便番号.Font = new Font("BIZ UDPゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            手形発送先郵便番号.Location = new Point(133, 34);
+            手形発送先郵便番号.Margin = new Padding(3, 2, 3, 2);
+            手形発送先郵便番号.Name = "手形発送先郵便番号";
+            手形発送先郵便番号.Size = new Size(201, 20);
+            手形発送先郵便番号.TabIndex = 10017;
+            // 
+            // 手形発送先建物名
+            // 
+            手形発送先建物名.BackColor = Color.White;
+            手形発送先建物名.Font = new Font("BIZ UDPゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            手形発送先建物名.ImeMode = ImeMode.Hiragana;
+            手形発送先建物名.Location = new Point(133, 84);
+            手形発送先建物名.Margin = new Padding(3, 2, 3, 2);
+            手形発送先建物名.Name = "手形発送先建物名";
+            手形発送先建物名.Size = new Size(364, 20);
+            手形発送先建物名.TabIndex = 10021;
+            // 
+            // 手形発送先部署
+            // 
+            手形発送先部署.BackColor = Color.White;
+            手形発送先部署.Font = new Font("BIZ UDPゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            手形発送先部署.Location = new Point(133, 132);
+            手形発送先部署.Margin = new Padding(3, 2, 3, 2);
+            手形発送先部署.Name = "手形発送先部署";
+            手形発送先部署.Size = new Size(364, 20);
+            手形発送先部署.TabIndex = 10011;
+            // 
+            // label43
+            // 
+            label43.AllowDrop = true;
+            label43.AutoEllipsis = true;
+            label43.Font = new Font("BIZ UDPゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            label43.ForeColor = SystemColors.ActiveCaptionText;
+            label43.ImageAlign = ContentAlignment.MiddleLeft;
+            label43.Location = new Point(9, 129);
+            label43.Margin = new Padding(0);
+            label43.Name = "label43";
+            label43.Size = new Size(118, 23);
+            label43.TabIndex = 217;
+            label43.Text = "部署(&D)";
+            label43.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // groupBox2
             // 
@@ -1692,6 +1926,17 @@ namespace u_net
             groupBox2.TabIndex = 10008;
             groupBox2.TabStop = false;
             groupBox2.Text = "振込先口座";
+            // 
+            // 振込先口座番号
+            // 
+            振込先口座番号.BackColor = Color.White;
+            振込先口座番号.Font = new Font("BIZ UDPゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            振込先口座番号.ImeMode = ImeMode.Hiragana;
+            振込先口座番号.Location = new Point(133, 191);
+            振込先口座番号.Margin = new Padding(3, 2, 3, 2);
+            振込先口座番号.Name = "振込先口座番号";
+            振込先口座番号.Size = new Size(335, 20);
+            振込先口座番号.TabIndex = 226;
             // 
             // 振込先口座区分コード
             // 
@@ -1784,21 +2029,6 @@ namespace u_net
             振込先金融機関分類コード.Name = "振込先金融機関分類コード";
             振込先金融機関分類コード.Size = new Size(180, 21);
             振込先金融機関分類コード.TabIndex = 10009;
-            // 
-            // label32
-            // 
-            label32.AllowDrop = true;
-            label32.AutoEllipsis = true;
-            label32.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            label32.ForeColor = SystemColors.ActiveCaptionText;
-            label32.ImageAlign = ContentAlignment.MiddleLeft;
-            label32.Location = new Point(296, 9);
-            label32.Margin = new Padding(0);
-            label32.Name = "label32";
-            label32.Size = new Size(489, 21);
-            label32.TabIndex = 10007;
-            label32.Text = "※[支払先]として利用する場合のみ、専用として指定してください。";
-            label32.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // 振込先口座名
             // 
@@ -1982,16 +2212,75 @@ namespace u_net
             label30.TabIndex = 10004;
             label30.Text = "支払先専用(&E)";
             // 
-            // 振込先口座番号
+            // label32
             // 
-            振込先口座番号.BackColor = Color.White;
-            振込先口座番号.Font = new Font("BIZ UDPゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            振込先口座番号.ImeMode = ImeMode.Hiragana;
-            振込先口座番号.Location = new Point(133, 191);
-            振込先口座番号.Margin = new Padding(3, 2, 3, 2);
-            振込先口座番号.Name = "振込先口座番号";
-            振込先口座番号.Size = new Size(335, 20);
-            振込先口座番号.TabIndex = 226;
+            label32.AllowDrop = true;
+            label32.AutoEllipsis = true;
+            label32.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            label32.ForeColor = SystemColors.ActiveCaptionText;
+            label32.ImageAlign = ContentAlignment.MiddleLeft;
+            label32.Location = new Point(296, 9);
+            label32.Margin = new Padding(0);
+            label32.Name = "label32";
+            label32.Size = new Size(489, 21);
+            label32.TabIndex = 10007;
+            label32.Text = "※[支払先]として利用する場合のみ、専用として指定してください。";
+            label32.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // 相殺有無
+            // 
+            相殺有無.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            相殺有無.AutoCompleteSource = AutoCompleteSource.ListItems;
+            相殺有無.DropDownStyle = ComboBoxStyle.DropDownList;
+            相殺有無.Font = new Font("BIZ UDPゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            相殺有無.FormattingEnabled = true;
+            相殺有無.ImeMode = ImeMode.Disable;
+            相殺有無.Location = new Point(152, 620);
+            相殺有無.Margin = new Padding(4, 3, 4, 3);
+            相殺有無.Name = "相殺有無";
+            相殺有無.Size = new Size(180, 21);
+            相殺有無.TabIndex = 10015;
+            // 
+            // label33
+            // 
+            label33.AllowDrop = true;
+            label33.AutoEllipsis = true;
+            label33.Font = new Font("BIZ UDPゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            label33.ForeColor = SystemColors.ActiveCaptionText;
+            label33.ImageAlign = ContentAlignment.MiddleLeft;
+            label33.Location = new Point(28, 618);
+            label33.Margin = new Padding(0);
+            label33.Name = "label33";
+            label33.Size = new Size(97, 23);
+            label33.TabIndex = 10014;
+            label33.Text = "相殺有無";
+            label33.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // label40
+            // 
+            label40.AllowDrop = true;
+            label40.AutoEllipsis = true;
+            label40.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            label40.ForeColor = SystemColors.ActiveCaptionText;
+            label40.ImageAlign = ContentAlignment.MiddleLeft;
+            label40.Location = new Point(343, 364);
+            label40.Margin = new Padding(0);
+            label40.Name = "label40";
+            label40.Size = new Size(78, 23);
+            label40.TabIndex = 225;
+            label40.Text = "上限金額：";
+            label40.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // 振込手数料上限金額
+            // 
+            振込手数料上限金額.BackColor = Color.White;
+            振込手数料上限金額.Font = new Font("BIZ UDPゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            振込手数料上限金額.ImeMode = ImeMode.NoControl;
+            振込手数料上限金額.Location = new Point(421, 364);
+            振込手数料上限金額.Margin = new Padding(3, 2, 3, 2);
+            振込手数料上限金額.Name = "振込手数料上限金額";
+            振込手数料上限金額.Size = new Size(163, 20);
+            振込手数料上限金額.TabIndex = 226;
             // 
             // F_仕入先
             // 
@@ -2004,12 +2293,12 @@ namespace u_net
             Controls.Add(コマンド印刷);
             Controls.Add(button3);
             Controls.Add(コマンドメール);
-            Controls.Add(コマンド仕入先);
+            Controls.Add(コマンドメーカー);
             Controls.Add(コマンド確定);
             Controls.Add(コマンド承認);
             Controls.Add(コマンド削除);
             Controls.Add(コマンド複写);
-            Controls.Add(コマンド読込);
+            Controls.Add(コマンド修正);
             Controls.Add(panel1);
             Icon = (Icon)resources.GetObject("$this.Icon");
             KeyPreview = true;
@@ -2027,6 +2316,9 @@ namespace u_net
             基本.ResumeLayout(false);
             基本.PerformLayout();
             支払.ResumeLayout(false);
+            支払.PerformLayout();
+            groupBox3.ResumeLayout(false);
+            groupBox3.PerformLayout();
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
             ResumeLayout(false);
@@ -2048,12 +2340,12 @@ namespace u_net
         private System.Windows.Forms.Button コマンド印刷;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button コマンドメール;
-        private System.Windows.Forms.Button コマンド仕入先;
+        private System.Windows.Forms.Button コマンドメーカー;
         private System.Windows.Forms.Button コマンド確定;
         private System.Windows.Forms.Button コマンド承認;
         private System.Windows.Forms.Button コマンド削除;
         private System.Windows.Forms.Button コマンド複写;
-        private System.Windows.Forms.Button コマンド読込;
+        private System.Windows.Forms.Button コマンド修正;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label 郵便番号_ラベル;
         private System.Windows.Forms.Label 仕入先名フリガナ_ラベル;
@@ -2099,7 +2391,7 @@ namespace u_net
         private Label label7;
         private TextBox ActiveDate;
         private Label label3;
-        private TextBox textBox1;
+        private TextBox 無効日時;
         private TextBox 無効者名;
         private TextBox 無効者コード;
         private Label label1;
@@ -2176,6 +2468,25 @@ namespace u_net
         private Label label38;
         private TextBox 振込先金融機関支店コード;
         private TextBox 振込先口座番号;
+        private ComboBox 振込手数料負担コード;
+        private Label label51;
+        private GroupBox groupBox3;
+        private Label label50;
+        private Label label35;
+        private TextBox 手形発送先電話番号;
+        private Label label49;
+        private Label label34;
+        private Label label47;
+        private Label label48;
+        private TextBox 手形発送先住所;
+        private TextBox 手形発送先郵便番号;
+        private TextBox 手形発送先建物名;
+        private TextBox 手形発送先部署;
+        private Label label43;
+        private ComboBox 相殺有無;
+        private Label label33;
+        private Label label40;
+        private TextBox 振込手数料上限金額;
     }
 }
 
