@@ -120,7 +120,8 @@ namespace u_net
 
             //コンボボックスの設定
             OriginalClass ofn = new OriginalClass();
-            ofn.SetComboBox(Revision, "SELECT Revision as Disply , Revision as  Value FROM M仕入先 ORDER BY Revision DESC");
+            ofn.SetComboBox(仕入先コード, "SELECT 仕入先コード as Value , 仕入先名 as Disply FROM M仕入先 ORDER BY 仕入先コード DESC");
+            ofn.SetComboBox(Revision, "SELECT Revision as Disply , Revision as Value FROM M仕入先 ORDER BY Revision DESC");
 
             this.支払先専用.DataSource = new KeyValuePair<int, String>[] {
                 new KeyValuePair<int, String>(1, "専用とする"),
@@ -1075,6 +1076,25 @@ namespace u_net
                         break;
 
                     case "振込手数料負担コード":
+
+
+                        if (controlObject is ComboBox comboBox)
+                        {
+                            if (comboBox.SelectedValue is int selectedValue && selectedValue == 3)
+                            {
+                                if (string.IsNullOrEmpty(振込手数料上限金額.Text))
+                                {
+                                    振込手数料上限金額.Text = "10000";
+                                }
+                                振込手数料上限金額.Enabled = true;
+                                振込手数料上限金額.Focus();
+                            }
+                            else
+                            {
+                                支払先専用.Focus();
+                                振込手数料上限金額.Enabled = false;
+                            }
+                        }
                         break;
 
                 }
@@ -1143,8 +1163,7 @@ namespace u_net
                 住所1.Text = null;
             }
 
-            UpdatedControl((Control)sender);
-
+            //UpdatedControl((Control)sender);
         }
 
         private void ウェブアドレス_TextChanged(object sender, EventArgs e)
@@ -1179,8 +1198,6 @@ namespace u_net
             }
         }
 
-
-
         private void 仕入先省略名_Validated(object sender, EventArgs e)
         {
             UpdatedControl((Control)sender);
@@ -1194,34 +1211,18 @@ namespace u_net
         }
 
 
-
-        private void 仕入先名_Validated(object sender, EventArgs e)
-        {
-            UpdatedControl((Control)sender);
-        }
-
-
         private void 仕入先名_TextChanged(object sender, EventArgs e)
         {
-            FunctionClass.LimitText(((TextBox)sender), 60);
+            FunctionClass.LimitText(((TextBox)sender), 40);
             ChangedData(true);
-        }
-
-
-
-        private void 仕入先名フリガナ_Validated(object sender, EventArgs e)
-        {
-            UpdatedControl((Control)sender);
         }
 
 
         private void 仕入先名フリガナ_TextChanged(object sender, EventArgs e)
         {
-            FunctionClass.LimitText(((TextBox)sender), 120);
+            FunctionClass.LimitText(((TextBox)sender), 100);
             ChangedData(true);
         }
-
-
 
         private void 仕入先1_Validated(object sender, EventArgs e)
         {
@@ -1262,23 +1263,10 @@ namespace u_net
         }
 
 
-
-        private void 住所1_Validated(object sender, EventArgs e)
-        {
-            UpdatedControl((Control)sender);
-        }
-
-
         private void 住所1_TextChanged(object sender, EventArgs e)
         {
             FunctionClass.LimitText(((TextBox)sender), 50);
             ChangedData(true);
-        }
-
-
-        private void 住所2_Validated(object sender, EventArgs e)
-        {
-            UpdatedControl((Control)sender);
         }
 
 
@@ -1289,11 +1277,9 @@ namespace u_net
         }
 
 
-
-
         private void 担当者メールアドレス_TextChanged(object sender, EventArgs e)
         {
-            FunctionClass.LimitText(((TextBox)sender), 100);
+            //FunctionClass.LimitText(((TextBox)sender), 100);
             ChangedData(true);
         }
 
@@ -1305,7 +1291,7 @@ namespace u_net
 
         private void 担当者名_TextChanged(object sender, EventArgs e)
         {
-            FunctionClass.LimitText(((TextBox)sender), 50);
+            FunctionClass.LimitText(((TextBox)sender), 20);
             ChangedData(true);
         }
 
@@ -1319,7 +1305,7 @@ namespace u_net
 
         private void 電話番号1_TextChanged(object sender, EventArgs e)
         {
-            FunctionClass.LimitText(((TextBox)sender), 5);
+            FunctionClass.LimitText(((TextBox)sender), 4);
             ChangedData(true);
         }
 
@@ -1332,7 +1318,7 @@ namespace u_net
 
         private void 電話番号2_TextChanged(object sender, EventArgs e)
         {
-            FunctionClass.LimitText(((TextBox)sender), 5);
+            FunctionClass.LimitText(((TextBox)sender), 4);
             ChangedData(true);
         }
 
@@ -1346,7 +1332,7 @@ namespace u_net
 
         private void 電話番号3_TextChanged(object sender, EventArgs e)
         {
-            FunctionClass.LimitText(((TextBox)sender), 5);
+            FunctionClass.LimitText(((TextBox)sender), 4);
             ChangedData(true);
         }
 
@@ -1358,7 +1344,7 @@ namespace u_net
 
         private void FAX番号1_TextChanged(object sender, EventArgs e)
         {
-            FunctionClass.LimitText(((TextBox)sender), 5);
+            FunctionClass.LimitText(((TextBox)sender), 4);
             ChangedData(true);
         }
 
@@ -1371,7 +1357,7 @@ namespace u_net
 
         private void FAX番号2_TextChanged(object sender, EventArgs e)
         {
-            FunctionClass.LimitText(((TextBox)sender), 5);
+            FunctionClass.LimitText(((TextBox)sender), 4);
             ChangedData(true);
         }
 
@@ -1385,13 +1371,13 @@ namespace u_net
 
         private void FAX番号3_TextChanged(object sender, EventArgs e)
         {
-            FunctionClass.LimitText(((TextBox)sender), 5);
+            FunctionClass.LimitText(((TextBox)sender), 4);
             ChangedData(true);
         }
 
         private void 備考_TextChanged(object sender, EventArgs e)
         {
-            FunctionClass.LimitText(((TextBox)sender), 2000);
+            FunctionClass.LimitText(((TextBox)sender), 4000);
             ChangedData(true);
         }
 
@@ -1402,19 +1388,10 @@ namespace u_net
             ChangedData(true);
         }
 
-        private void 仕入先名_Enter(object sender, EventArgs e)
-        {
-            toolStripStatusLabel2.Text = "■全角30文字まで入力できます。";
-        }
-
-        private void 仕入先名_Leave(object sender, EventArgs e)
-        {
-            toolStripStatusLabel2.Text = "各種項目の説明";
-        }
 
         private void 仕入先名フリガナ_Enter(object sender, EventArgs e)
         {
-            toolStripStatusLabel2.Text = "■全角60文字まで入力できます。";
+            toolStripStatusLabel2.Text = "■半角カタカナは入力しないでください。　■「カブシキガイシャ」等は省略します。";
         }
 
         private void 仕入先名フリガナ_Leave(object sender, EventArgs e)
@@ -1434,7 +1411,7 @@ namespace u_net
 
         private void 住所1_Enter(object sender, EventArgs e)
         {
-            toolStripStatusLabel2.Text = "■全角25文字まで入力できます。";
+            toolStripStatusLabel2.Text = "■建物名以外の住所を入力します。　■全角２５文字まで入力できます。";
         }
 
         private void 住所1_Leave(object sender, EventArgs e)
@@ -1444,7 +1421,7 @@ namespace u_net
 
         private void 住所2_Enter(object sender, EventArgs e)
         {
-            toolStripStatusLabel2.Text = "■全角25文字まで入力できます。";
+            toolStripStatusLabel2.Text = "■建物名を入力します。　■全角２５文字まで入力できます。";
         }
 
         private void 住所2_Leave(object sender, EventArgs e)
@@ -1454,7 +1431,7 @@ namespace u_net
 
         private void 担当者名_Enter(object sender, EventArgs e)
         {
-            toolStripStatusLabel2.Text = "■全角25文字まで入力できます。";
+            toolStripStatusLabel2.Text = "■仕入先の主な担当者名を入力します。　■全角１０文字まで入力できます。";
         }
 
         private void 担当者名_Leave(object sender, EventArgs e)
@@ -1464,7 +1441,7 @@ namespace u_net
 
         private void 担当者メールアドレス_Enter(object sender, EventArgs e)
         {
-            toolStripStatusLabel2.Text = "■半角100文字まで入力できます。";
+            toolStripStatusLabel2.Text = "■電子メールアドレスを入力します。通常は半角文字で入力してください。";
         }
 
         private void 担当者メールアドレス_Leave(object sender, EventArgs e)
@@ -1474,7 +1451,7 @@ namespace u_net
 
         private void ウェブアドレス_Enter(object sender, EventArgs e)
         {
-            toolStripStatusLabel2.Text = "■半角100文字まで入力できます。";
+            toolStripStatusLabel2.Text = "■ウェブアドレスを入力します。通常は半角文字で入力します。";
         }
 
         private void ウェブアドレス_Leave(object sender, EventArgs e)
@@ -1514,7 +1491,7 @@ namespace u_net
 
         private void 備考_Enter(object sender, EventArgs e)
         {
-            toolStripStatusLabel2.Text = "■全角100文字まで入力できます。";
+            toolStripStatusLabel2.Text = "■全角4000文字まで入力できます。";
         }
 
         private void 備考_Leave(object sender, EventArgs e)
@@ -1522,7 +1499,310 @@ namespace u_net
             toolStripStatusLabel2.Text = "各種項目の説明";
         }
 
+        private void 仕入先コード_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Text = "■仕入先コードを入力します。　■半角８文字まで入力できます。";
+        }
 
+        private void 仕入先コード_TextChanged(object sender, EventArgs e)
+        {
+            FunctionClass.LimitText(((TextBox)sender), 8);
+        }
+
+        private void 評価ランク_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Text = "■部品の受入評価ランクを選択します。　■[space] キーでドロップダウンリスト表示。";
+        }
+
+        private void 評価ランク_TextChanged(object sender, EventArgs e)
+        {
+            ChangedData(true);
+        }
+
+        private void 窓口郵便番号_TextChanged(object sender, EventArgs e)
+        {
+            FunctionClass.LimitText(((TextBox)sender), 7);
+            ChangedData(true);
+        }
+
+        private async void 窓口郵便番号_Validated(object sender, EventArgs e)
+        {
+            string zipCode = 窓口郵便番号.Text;
+
+            if (OriginalClass.IsValidZipCode(zipCode))
+            {
+                string address = await OriginalClass.GetAddressFromZipCode(zipCode);
+                窓口住所1.Text = address;
+            }
+            else
+            {
+                窓口住所1.Text = null;
+            }
+
+        }
+
+        private void 窓口住所1_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Text = "■建物名以外の住所を入力します。　■全角２５文字まで入力できます。";
+        }
+
+        private void 窓口住所1_TextChanged(object sender, EventArgs e)
+        {
+            FunctionClass.LimitText(((TextBox)sender), 50);
+            ChangedData(true);
+        }
+
+        private void 窓口住所2_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Text = "■建物名を入力します。　■全角２５文字まで入力できます。";
+        }
+
+        private void 窓口住所2_TextChanged(object sender, EventArgs e)
+        {
+            FunctionClass.LimitText(((TextBox)sender), 50);
+            ChangedData(true);
+        }
+
+        private void 窓口電話番号1_TextChanged(object sender, EventArgs e)
+        {
+            FunctionClass.LimitText(((TextBox)sender), 4);
+            ChangedData(true);
+        }
+
+        private void 窓口電話番号2_TextChanged(object sender, EventArgs e)
+        {
+            FunctionClass.LimitText(((TextBox)sender), 4);
+            ChangedData(true);
+        }
+
+        private void 窓口電話番号3_TextChanged(object sender, EventArgs e)
+        {
+            FunctionClass.LimitText(((TextBox)sender), 4);
+            ChangedData(true);
+        }
+
+        private void 窓口ファックス番号1_TextChanged(object sender, EventArgs e)
+        {
+            FunctionClass.LimitText(((TextBox)sender), 4);
+            ChangedData(true);
+        }
+
+        private void 窓口ファックス番号2_TextChanged(object sender, EventArgs e)
+        {
+            FunctionClass.LimitText(((TextBox)sender), 4);
+            ChangedData(true);
+        }
+
+        private void 窓口ファックス番号3_TextChanged(object sender, EventArgs e)
+        {
+            FunctionClass.LimitText(((TextBox)sender), 4);
+            ChangedData(true);
+        }
+
+        private void 窓口メールアドレス_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Text = "■担当者の電子メールアドレスを入力します。通常は半角文字で入力します。";
+        }
+
+        private void 窓口メールアドレス_TextChanged(object sender, EventArgs e)
+        {
+            ChangedData(true);
+        }
+
+        private void 担当者名2_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Text = "■仕入先の主な担当者名を入力します。　■全角１０文字まで入力できます。";
+        }
+
+        private void 担当者名2_TextChanged(object sender, EventArgs e)
+        {
+            FunctionClass.LimitText(((TextBox)sender), 20);
+            ChangedData(true);
+        }
+
+        private void 担当者名3_TextChanged(object sender, EventArgs e)
+        {
+            FunctionClass.LimitText(((TextBox)sender), 20);
+            ChangedData(true);
+        }
+
+        private void 担当者名3_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Text = "■仕入先の主な担当者名を入力します。　■全角１０文字まで入力できます。";
+        }
+
+        private void Contact1PhoneNumber_TextChanged(object sender, EventArgs e)
+        {
+            FunctionClass.LimitText(((TextBox)sender), 20);
+            ChangedData(true);
+        }
+
+        private void Contact1PhoneNumber2_TextChanged(object sender, EventArgs e)
+        {
+            FunctionClass.LimitText(((TextBox)sender), 20);
+            ChangedData(true);
+        }
+
+        private void Contact1PhoneNumber3_TextChanged(object sender, EventArgs e)
+        {
+            FunctionClass.LimitText(((TextBox)sender), 20);
+            ChangedData(true);
+        }
+
+        private void Contact1MailAddress_TextChanged(object sender, EventArgs e)
+        {
+            FunctionClass.LimitText(((TextBox)sender), 50);
+            ChangedData(true);
+        }
+
+        private void Contact2MailAddress_TextChanged(object sender, EventArgs e)
+        {
+            FunctionClass.LimitText(((TextBox)sender), 50);
+            ChangedData(true);
+        }
+
+        private void Contact3MailAddress_TextChanged(object sender, EventArgs e)
+        {
+            FunctionClass.LimitText(((TextBox)sender), 50);
+            ChangedData(true);
+        }
+
+        private void 支払先専用_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Text = "■[支払先] マスタとしてのみ使用するかどうかを指定します。";
+        }
+
+        private void 支払先専用_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ChangedData(true);
+        }
+
+        private void CloseDay_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ChangedData(true);
+        }
+
+        private void 振込先金融機関名_TextChanged(object sender, EventArgs e)
+        {
+            FunctionClass.LimitText(((TextBox)sender), 50);
+            ChangedData(true);
+        }
+
+        private void 振込先金融機関分類コード_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ChangedData(true);
+        }
+
+        private void 振込先金融機関コード_TextChanged(object sender, EventArgs e)
+        {
+            FunctionClass.LimitText(((TextBox)sender), 10);
+            ChangedData(true);
+        }
+
+        private void 振込先金融機関店分類コード_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ChangedData(true);
+        }
+
+        private void 振込先金融機関支店名_TextChanged(object sender, EventArgs e)
+        {
+            FunctionClass.LimitText(((TextBox)sender), 50);
+            ChangedData(true);
+        }
+
+        private void 振込先金融機関支店コード_TextChanged(object sender, EventArgs e)
+        {
+            FunctionClass.LimitText(((TextBox)sender), 10);
+            ChangedData(true);
+        }
+
+        private void 振込先口座区分コード_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ChangedData(true);
+        }
+
+        private void 振込先口座番号_TextChanged(object sender, EventArgs e)
+        {
+            FunctionClass.LimitText(((TextBox)sender), 20);
+            ChangedData(true);
+        }
+
+        private void 振込先口座名_TextChanged(object sender, EventArgs e)
+        {
+            FunctionClass.LimitText(((TextBox)sender), 50);
+            ChangedData(true);
+        }
+
+        private void 振込手数料負担コード_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ChangedData(true);
+            UpdatedControl((Control)sender);
+        }
+
+        private void 振込手数料上限金額_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Text = "■自社が負担する振込手数料の上限金額を入力します。支払金額が上限金額未満のとき、自社負担となります。";
+        }
+
+        private void 振込手数料上限金額_TextChanged(object sender, EventArgs e)
+        {
+            ChangedData(true);
+        }
+
+        private void 手形発送先郵便番号_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Text = "■手形の発送先郵便番号を入力します。　■「-」は省略します。";
+        }
+
+        private async void 手形発送先郵便番号_Validated(object sender, EventArgs e)
+        {
+            string zipCode = 手形発送先郵便番号.Text;
+
+            if (OriginalClass.IsValidZipCode(zipCode))
+            {
+                string address = await OriginalClass.GetAddressFromZipCode(zipCode);
+                手形発送先住所.Text = address;
+            }
+            else
+            {
+                手形発送先住所.Text = null;
+            }
+        }
+
+        private void 手形発送先住所_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Text = "■手形の発送先住所を入力します。　■全角２５文字まで入力できます。";
+        }
+
+        private void 手形発送先住所_TextChanged(object sender, EventArgs e)
+        {
+            ChangedData(true);
+        }
+
+        private void 手形発送先建物名_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Text = "■手形の発送先住所（建物名）を入力します。　■全角２５文字まで入力できます。";
+        }
+
+        private void 手形発送先建物名_TextChanged(object sender, EventArgs e)
+        {
+            ChangedData(true);
+        }
+
+        private void 手形発送先部署_TextChanged(object sender, EventArgs e)
+        {
+            ChangedData(true);
+        }
+
+        private void 手形発送先電話番号_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Text = "■手形の発送先電話番号を入力します。　■「-」は省略できません。";
+        }
+
+        private void 相殺有無_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ChangedData(true);
+        }
     }
 
 
