@@ -87,7 +87,6 @@ namespace u_net
             this.品名 = new System.Windows.Forms.TextBox();
             this.メーカー名_ラベル = new System.Windows.Forms.Label();
             this.メーカー省略名_ラベル = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.メーカーコード_ラベル = new System.Windows.Forms.Label();
             this.仕入先1フレーム = new System.Windows.Forms.GroupBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -97,7 +96,6 @@ namespace u_net
             this.仕入先1コード = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
             this.仕入先1単価 = new System.Windows.Forms.TextBox();
-            this.仕入先3_ラベル = new System.Windows.Forms.Label();
             this.仕入先2_ラベル = new System.Windows.Forms.Label();
             this.型番 = new System.Windows.Forms.TextBox();
             this.メーカーコード = new System.Windows.Forms.TextBox();
@@ -225,6 +223,7 @@ namespace u_net
             this.コマンド終了.TabStop = false;
             this.コマンド終了.Text = "終了";
             this.コマンド終了.UseVisualStyleBackColor = true;
+            this.コマンド終了.Click += new System.EventHandler(this.コマンド終了_Click);
             // 
             // コマンド登録
             // 
@@ -239,6 +238,7 @@ namespace u_net
             this.コマンド登録.TabStop = false;
             this.コマンド登録.Text = "登録";
             this.コマンド登録.UseVisualStyleBackColor = true;
+            this.コマンド登録.Click += new System.EventHandler(this.コマンド登録_Click);
             // 
             // panel1
             // 
@@ -279,6 +279,7 @@ namespace u_net
             this.コマンド履歴.TabStop = false;
             this.コマンド履歴.Text = "履歴";
             this.コマンド履歴.UseVisualStyleBackColor = true;
+            this.コマンド履歴.Click += new System.EventHandler(this.コマンド履歴_Click);
             // 
             // コマンド入出庫
             // 
@@ -294,6 +295,7 @@ namespace u_net
             this.コマンド入出庫.TabStop = false;
             this.コマンド入出庫.Text = "入出庫";
             this.コマンド入出庫.UseVisualStyleBackColor = true;
+            this.コマンド入出庫.Click += new System.EventHandler(this.コマンド入出庫_Click);
             // 
             // コマンドメーカー
             // 
@@ -308,6 +310,7 @@ namespace u_net
             this.コマンドメーカー.TabStop = false;
             this.コマンドメーカー.Text = "メーカー";
             this.コマンドメーカー.UseVisualStyleBackColor = true;
+            this.コマンドメーカー.Click += new System.EventHandler(this.コマンドメーカー_Click);
             // 
             // コマンド仕入先
             // 
@@ -322,6 +325,7 @@ namespace u_net
             this.コマンド仕入先.TabStop = false;
             this.コマンド仕入先.Text = "仕入先";
             this.コマンド仕入先.UseVisualStyleBackColor = true;
+            this.コマンド仕入先.Click += new System.EventHandler(this.コマンド仕入先_Click);
             // 
             // コマンド確定
             // 
@@ -336,6 +340,7 @@ namespace u_net
             this.コマンド確定.TabStop = false;
             this.コマンド確定.Text = "確定";
             this.コマンド確定.UseVisualStyleBackColor = true;
+            this.コマンド確定.Click += new System.EventHandler(this.コマンド確定_Click);
             // 
             // コマンド承認
             // 
@@ -350,6 +355,7 @@ namespace u_net
             this.コマンド承認.TabStop = false;
             this.コマンド承認.Text = "承認";
             this.コマンド承認.UseVisualStyleBackColor = true;
+            this.コマンド承認.Click += new System.EventHandler(this.コマンド承認_Click);
             // 
             // コマンド削除
             // 
@@ -364,6 +370,7 @@ namespace u_net
             this.コマンド削除.TabStop = false;
             this.コマンド削除.Text = "削除";
             this.コマンド削除.UseVisualStyleBackColor = true;
+            this.コマンド削除.Click += new System.EventHandler(this.コマンド削除_Click);
             // 
             // コマンド複写
             // 
@@ -378,6 +385,7 @@ namespace u_net
             this.コマンド複写.TabStop = false;
             this.コマンド複写.Text = "複写";
             this.コマンド複写.UseVisualStyleBackColor = true;
+            this.コマンド複写.Click += new System.EventHandler(this.コマンド複写_Click);
             // 
             // コマンド読込
             // 
@@ -742,21 +750,6 @@ namespace u_net
             this.メーカー省略名_ラベル.Text = "メーカーコード(&A)";
             this.メーカー省略名_ラベル.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label1
-            // 
-            this.label1.AllowDrop = true;
-            this.label1.AutoEllipsis = true;
-            this.label1.Font = new System.Drawing.Font("BIZ UDゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label1.Location = new System.Drawing.Point(164, 95);
-            this.label1.Margin = new System.Windows.Forms.Padding(0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(87, 17);
-            this.label1.TabIndex = 148;
-            this.label1.Text = " ";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
             // メーカーコード_ラベル
             // 
             this.メーカーコード_ラベル.AllowDrop = true;
@@ -891,21 +884,6 @@ namespace u_net
             this.仕入先1単価.Enter += new System.EventHandler(this.仕入先1単価_Enter);
             this.仕入先1単価.Leave += new System.EventHandler(this.仕入先1単価_Leave);
             this.仕入先1単価.Validating += new System.ComponentModel.CancelEventHandler(this.仕入先1単価_Validating);
-            // 
-            // 仕入先3_ラベル
-            // 
-            this.仕入先3_ラベル.AllowDrop = true;
-            this.仕入先3_ラベル.AutoEllipsis = true;
-            this.仕入先3_ラベル.Font = new System.Drawing.Font("BIZ UDゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.仕入先3_ラベル.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.仕入先3_ラベル.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.仕入先3_ラベル.Location = new System.Drawing.Point(15, 80);
-            this.仕入先3_ラベル.Margin = new System.Windows.Forms.Padding(0);
-            this.仕入先3_ラベル.Name = "仕入先3_ラベル";
-            this.仕入先3_ラベル.Size = new System.Drawing.Size(132, 17);
-            this.仕入先3_ラベル.TabIndex = 202;
-            this.仕入先3_ラベル.Text = "仕入先3";
-            this.仕入先3_ラベル.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // 仕入先2_ラベル
             // 
@@ -2346,10 +2324,8 @@ namespace u_net
             this.Controls.Add(this.品名);
             this.Controls.Add(this.メーカー名_ラベル);
             this.Controls.Add(this.メーカー省略名_ラベル);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.メーカーコード_ラベル);
             this.Controls.Add(this.仕入先1フレーム);
-            this.Controls.Add(this.仕入先3_ラベル);
             this.Controls.Add(this.仕入先2_ラベル);
             this.Controls.Add(this.型番);
             this.Controls.Add(this.メーカーコード);
@@ -2360,6 +2336,7 @@ namespace u_net
             this.KeyPreview = true;
             this.Name = "F_部品";
             this.Text = " ";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form_Unload);
             this.Load += new System.EventHandler(this.Form_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form_KeyDown);
             this.panel1.ResumeLayout(false);
@@ -2463,7 +2440,6 @@ namespace u_net
         private System.Windows.Forms.TextBox 品名;
         private System.Windows.Forms.Label メーカー名_ラベル;
         private System.Windows.Forms.Label メーカー省略名_ラベル;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label メーカーコード_ラベル;
 
         private uiDataSet uiDataSet;
@@ -2482,7 +2458,6 @@ namespace u_net
         private uiDataSetTableAdapters.combBoxMシリーズTableAdapter combBoxMシリーズTableAdapter;
         private uiDataSetTableAdapters.TableAdapterManager tableAdapterManager;
         private GroupBox 仕入先1フレーム;
-        private Label 仕入先3_ラベル;
         private Label 仕入先2_ラベル;
         private TextBox 型番;
         private TextBox メーカーコード;

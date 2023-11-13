@@ -1101,8 +1101,7 @@ namespace u_net
         {
             try
             {
-                Control activeControl = ActiveForm.ActiveControl;
-                if (activeControl == コマンド仕入先)
+                if (ActiveControl == コマンド仕入先)
                 {
                     GetNextControl(コマンド仕入先, false).Focus();
                 }
@@ -1635,7 +1634,7 @@ namespace u_net
 
         private void CalcInventoryCode_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (IsError(ActiveControl) == true ) e.Cancel = true;
+            if (IsError(sender as Control) == true ) e.Cancel = true;
         }
 
         private void CalcInventoryCode_SelectedIndexChanged(object sender, EventArgs e)
@@ -1658,7 +1657,7 @@ namespace u_net
 
         private void ChemSherpaVersion_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (IsError(ActiveControl) == true ) e.Cancel = true;
+            if (IsError(sender as Control) == true ) e.Cancel = true;
         }
 
         private void ChemSherpaVersion_TextChanged(object sender, EventArgs e)
@@ -1668,7 +1667,7 @@ namespace u_net
 
         private void JampAis_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (IsError(ActiveControl) == true ) e.Cancel = true;
+            if (IsError(sender as Control) == true ) e.Cancel = true;
         }
 
         private void JampAis_SelectedIndexChanged(object sender, EventArgs e)
@@ -1691,7 +1690,7 @@ namespace u_net
 
         private void Rohs1ChemSherpaStatusCode_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (IsError(ActiveControl) == true ) e.Cancel = true;
+            if (IsError(sender as Control) == true ) e.Cancel = true;
         }
 
         private void Rohs1ChemSherpaStatusCode_SelectedIndexChanged(object sender, EventArgs e)
@@ -1714,7 +1713,7 @@ namespace u_net
 
         private void Rohs2ChemSherpaStatusCode_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (IsError(ActiveControl) == true ) e.Cancel = true;
+            if (IsError(sender as Control) == true ) e.Cancel = true;
         }
 
         private void Rohs2ChemSherpaStatusCode_SelectedIndexChanged(object sender, EventArgs e)
@@ -1737,7 +1736,7 @@ namespace u_net
 
         private void Rohs2DocumentStatusCode_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (IsError(ActiveControl) == true ) e.Cancel = true;
+            if (IsError(sender as Control) == true ) e.Cancel = true;
         }
 
         private void Rohs2DocumentStatusCode_SelectedIndexChanged(object sender, EventArgs e)
@@ -1760,7 +1759,7 @@ namespace u_net
 
         private void Rohs2JampAisStatusCode_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (IsError(ActiveControl) == true ) e.Cancel = true;
+            if (IsError(sender as Control) == true ) e.Cancel = true;
         }
 
         private void Rohs2JampAisStatusCode_SelectedIndexChanged(object sender, EventArgs e)
@@ -1783,7 +1782,7 @@ namespace u_net
 
         private void Rohs2NonInclusionCertificationStatusCode_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (IsError(ActiveControl) == true ) e.Cancel = true;
+            if (IsError(sender as Control) == true ) e.Cancel = true;
         }
 
         private void Rohs2NonInclusionCertificationStatusCode_SelectedIndexChanged(object sender, EventArgs e)
@@ -1811,7 +1810,7 @@ namespace u_net
 
         private void RoHS資料_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (IsError(ActiveControl) == true ) e.Cancel = true;
+            if (IsError(sender as Control) == true ) e.Cancel = true;
         }
 
         private void RoHS資料_SelectedIndexChanged(object sender, EventArgs e)
@@ -1834,12 +1833,12 @@ namespace u_net
 
         private void ShelfNumber_Validated(object sender, EventArgs e)
         {
-            UpdatedControl(ActiveControl);
+            UpdatedControl(sender as Control);
         }
 
         private void ShelfNumber_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (IsError(ActiveControl) == true ) e.Cancel = true;
+            if (IsError(sender as Control) == true ) e.Cancel = true;
         }
 
         private void ShelfNumber_TextChanged(object sender, EventArgs e)
@@ -1850,12 +1849,12 @@ namespace u_net
 
         private void StandardDeliveryDay_Validated(object sender, EventArgs e)
         {
-            UpdatedControl(ActiveControl);
+            UpdatedControl(sender as Control);
         }
 
         private void StandardDeliveryDay_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (IsError(ActiveControl) == true ) e.Cancel = true;
+            if (IsError(sender as Control) == true ) e.Cancel = true;
         }
 
         private void StandardDeliveryDay_TextChanged(object sender, EventArgs e)
@@ -1865,7 +1864,7 @@ namespace u_net
 
         private void メーカーコード_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (IsError(ActiveControl) == true ) e.Cancel = true;
+            if (IsError(sender as Control) == true ) e.Cancel = true;
         }
 
         private void メーカーコード_TextChanged(object sender, EventArgs e)
@@ -1884,6 +1883,7 @@ namespace u_net
                 if (formattedCode != textBox.Text || string.IsNullOrEmpty(textBox.Text))
                 {
                     textBox.Text = formattedCode;
+                    UpdatedControl(sender as Control);
                 }
             }
         }
@@ -1899,12 +1899,12 @@ namespace u_net
 
         private void ロス率_Validated(object sender, EventArgs e)
         {
-            UpdatedControl(ActiveControl);
+            UpdatedControl(sender as Control);
         }
 
         private void ロス率_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (IsError(ActiveControl) == true ) e.Cancel = true;
+            if (IsError(sender as Control) == true ) e.Cancel = true;
         }
 
         private void ロス率_TextChanged(object sender, EventArgs e)
@@ -1914,7 +1914,7 @@ namespace u_net
 
         private void 型番_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (IsError(ActiveControl) == true ) e.Cancel = true;
+            if (IsError(sender as Control) == true ) e.Cancel = true;
         }
 
         private void 型番_TextChanged(object sender, EventArgs e)
@@ -1925,7 +1925,7 @@ namespace u_net
 
         private void 形状分類コード_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (IsError(ActiveControl) == true ) e.Cancel = true;
+            if (IsError(sender as Control) == true ) e.Cancel = true;
         }
 
         private void 形状分類コード_SelectedIndexChanged(object sender, EventArgs e)
@@ -1947,7 +1947,7 @@ namespace u_net
 
         private void InventoryAmount_Validated(object sender, EventArgs e)
         {
-            UpdatedControl(ActiveControl);
+            UpdatedControl(sender as Control);
         }
 
         private void InventoryAmount_Validating(object sender, System.ComponentModel.CancelEventArgs e)
@@ -1960,7 +1960,7 @@ namespace u_net
             }
             else
             {
-                if (IsError(ActiveControl) == true ) e.Cancel = true;
+                if (IsError(sender as Control) == true ) e.Cancel = true;
             }
         }
 
@@ -1971,12 +1971,12 @@ namespace u_net
 
         private void 仕入先1コード_Validated(object sender, EventArgs e)
         {
-            UpdatedControl(ActiveControl);
+            UpdatedControl(sender as Control);
         }
 
         private void 仕入先1コード_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (IsError(ActiveControl) == true ) e.Cancel = true;
+            if (IsError(sender as Control) == true ) e.Cancel = true;
         }
 
         private void 仕入先1コード_TextChanged(object sender, EventArgs e)
@@ -2014,6 +2014,7 @@ namespace u_net
                 if (strCode != control.Text)
                 {
                     control.Text = strCode;
+                    UpdatedControl(sender as Control);
                 }
             }
         }
@@ -2031,12 +2032,12 @@ namespace u_net
 
         private void 仕入先2コード_Validated(object sender, EventArgs e)
         {
-            UpdatedControl(ActiveControl);
+            UpdatedControl(sender as Control);
         }
 
         private void 仕入先2コード_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (IsError(ActiveControl) == true ) e.Cancel = true;
+            if (IsError(sender as Control) == true ) e.Cancel = true;
         }
 
         private void 仕入先2コード_TextChanged(object sender, EventArgs e)
@@ -2074,6 +2075,7 @@ namespace u_net
                 if (strCode != control.Text)
                 {
                     control.Text = strCode;
+                    UpdatedControl(sender as Control);
                 }
             }
         }
@@ -2090,12 +2092,12 @@ namespace u_net
 
         private void 仕入先3コード_Validated(object sender, EventArgs e)
         {
-            UpdatedControl(ActiveControl);
+            UpdatedControl(sender as Control);
         }
 
         private void 仕入先3コード_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (IsError(ActiveControl) == true ) e.Cancel = true;
+            if (IsError(sender as Control) == true ) e.Cancel = true;
         }
 
         private void 仕入先3コード_TextChanged(object sender, EventArgs e)
@@ -2133,6 +2135,7 @@ namespace u_net
                 if (strCode != control.Text)
                 {
                     control.Text = strCode;
+                    UpdatedControl(sender as Control);
                 }
             }
         }
@@ -2161,6 +2164,7 @@ namespace u_net
                 string SelectedCode = SearchForm.SelectedCode;
 
                 仕入先1コード.Text = SelectedCode;
+                UpdatedControl(仕入先1コード);
             }
         }
 
@@ -2173,6 +2177,7 @@ namespace u_net
                 string SelectedCode = SearchForm.SelectedCode;
 
                 仕入先2コード.Text = SelectedCode;
+                UpdatedControl(仕入先2コード);
             }
         }
 
@@ -2185,6 +2190,7 @@ namespace u_net
                 string SelectedCode = SearchForm.SelectedCode;
 
                 仕入先3コード.Text = SelectedCode;
+                UpdatedControl(仕入先3コード);
             }
         }
 
@@ -2206,7 +2212,7 @@ namespace u_net
 
         private void 仕入先1単価_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (IsError(ActiveControl) == true ) e.Cancel = true;
+            if (IsError(sender as Control) == true ) e.Cancel = true;
         }
 
         private void 仕入先1単価_TextChanged(object sender, EventArgs e)
@@ -2228,7 +2234,7 @@ namespace u_net
 
         private void 仕入先2単価_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (IsError(ActiveControl) == true ) e.Cancel = true;
+            if (IsError(sender as Control) == true ) e.Cancel = true;
         }
 
         private void 仕入先2単価_TextChanged(object sender, EventArgs e)
@@ -2250,7 +2256,7 @@ namespace u_net
 
         private void 仕入先3単価_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (IsError(ActiveControl) == true ) e.Cancel = true;
+            if (IsError(sender as Control) == true ) e.Cancel = true;
         }
 
         private void 仕入先3単価_TextChanged(object sender, EventArgs e)
@@ -2272,7 +2278,7 @@ namespace u_net
 
         private void 受入検査ランク_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (IsError(ActiveControl) == true ) e.Cancel = true;
+            if (IsError(sender as Control) == true ) e.Cancel = true;
         }
 
         private void 受入検査ランク_SelectedIndexChanged(object sender, EventArgs e)
@@ -2295,12 +2301,12 @@ namespace u_net
 
         private void 単位数量_Validated(object sender, EventArgs e)
         {
-            UpdatedControl(ActiveControl);
+            UpdatedControl(sender as Control);
         }
 
         private void 単位数量_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (IsError(ActiveControl) == true ) e.Cancel = true;
+            if (IsError(sender as Control) == true ) e.Cancel = true;
         }
 
         private void 単位数量_TextChanged(object sender, EventArgs e)
@@ -2310,12 +2316,12 @@ namespace u_net
 
         private void 入数_Validated(object sender, EventArgs e)
         {
-            UpdatedControl(ActiveControl);
+            UpdatedControl(sender as Control);
         }
 
         private void 入数_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (IsError(ActiveControl) == true ) e.Cancel = true;
+            if (IsError(sender as Control) == true ) e.Cancel = true;
         }
 
         private void 入数_TextChanged(object sender, EventArgs e)
@@ -2330,7 +2336,7 @@ namespace u_net
 
         private void 非含有証明書_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (IsError(ActiveControl) == true ) e.Cancel = true;
+            if (IsError(sender as Control) == true ) e.Cancel = true;
         }
 
         private void 非含有証明書_SelectedIndexChanged(object sender, EventArgs e)
@@ -2353,7 +2359,7 @@ namespace u_net
 
         private void 備考_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (IsError(ActiveControl) == true ) e.Cancel = true;
+            if (IsError(sender as Control) == true ) e.Cancel = true;
         }
 
         private void 備考_TextChanged(object sender, EventArgs e)
@@ -2364,7 +2370,7 @@ namespace u_net
 
         private void 品名_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (IsError(ActiveControl) == true ) e.Cancel = true;
+            if (IsError(sender as Control) == true ) e.Cancel = true;
         }
 
         private void 品名_TextChanged(object sender, EventArgs e)
@@ -2375,12 +2381,12 @@ namespace u_net
 
         private void 部品コード_Validated(object sender, EventArgs e)
         {
-            UpdatedControl(ActiveControl);
+            UpdatedControl(sender as Control);
         }
 
         private void 部品コード_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (IsError(ActiveControl) == true ) e.Cancel = true;
+            if (IsError(sender as Control) == true ) e.Cancel = true;
         }
 
         private void 部品コード_SelectedIndexChanged(object sender, EventArgs e)
@@ -2416,7 +2422,7 @@ namespace u_net
 
         private void 分類コード_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (IsError(ActiveControl) == true ) e.Cancel = true;
+            if (IsError(sender as Control) == true ) e.Cancel = true;
         }
 
         private void 分類コード_SelectedIndexChanged(object sender, EventArgs e)
