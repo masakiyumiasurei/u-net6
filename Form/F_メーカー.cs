@@ -171,6 +171,9 @@ namespace u_net
         {
             try
             {
+
+                if (ActiveControl == null) return;
+
                 if (isChanged)
                 {
                     this.Text = BASE_CAPTION + "*";

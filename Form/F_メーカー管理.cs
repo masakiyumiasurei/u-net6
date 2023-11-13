@@ -243,7 +243,6 @@ namespace u_net
 
                 // DataGridViewの設定
                 dataGridView1.Columns[0].DefaultCellStyle.BackColor = Color.FromArgb(255, 255, 200); // 薄い黄色
-                dataGridView1.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
 
                 // 列の幅を設定 もとは恐らくtwipのためピクセルに直す
 
@@ -521,6 +520,8 @@ namespace u_net
 
 
         private bool ascending = true;
+
+        //顧客名ラベルをクリックで顧客名カナでソートする
         private void dataGridView1_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             if (e.ColumnIndex == 1)
