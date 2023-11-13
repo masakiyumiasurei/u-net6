@@ -30,7 +30,7 @@ namespace u_net
         public string args = "";
         private string BASE_CAPTION = "部品";
 
-        
+
 
 
 
@@ -189,7 +189,7 @@ namespace u_net
                 }
                 else
                 {
-                    コマンド読込_Click(sender,e);
+                    コマンド読込_Click(sender, e);
                     if (!string.IsNullOrEmpty(args))
                     {
                         this.部品コード.Text = args;
@@ -276,7 +276,7 @@ namespace u_net
                 }
 
 
-        }
+            }
             catch (Exception ex)
             {
                 Debug.Print(Name + "_Unload - " + ex.Message);
@@ -425,7 +425,7 @@ namespace u_net
             FunctionClass fn = new FunctionClass();
             fn.DoWait("登録しています...");
 
-        
+
             // 登録処理
             if (SaveData())
             {
@@ -580,7 +580,7 @@ namespace u_net
             {
 
                 Connect();
-                
+
                 using (SqlCommand command = new SqlCommand("SP部品使用先", cn))
                 {
                     command.CommandType = CommandType.StoredProcedure;
@@ -603,7 +603,7 @@ namespace u_net
                         部品使用先.Columns[部品使用先.ColumnCount - 1].Selected = true;
                     }
                 }
-                
+
             }
             catch (Exception ex)
             {
@@ -643,7 +643,7 @@ namespace u_net
         private void コマンド読込_Click(object sender, EventArgs e)
         {
             if (!AskSave()) { return; }
-                
+
 
             // strOpenArgsがどのように設定されているかに依存します。
             // もしstrOpenArgsに関連する処理が必要な場合はここに追加してください。
@@ -725,7 +725,7 @@ namespace u_net
 
 
 
-      
+
 
         private void コマンド承認_Click(object sender, EventArgs e)
         {
@@ -742,7 +742,7 @@ namespace u_net
         {
             try
             {
-    
+
                 if (this.ActiveControl == this.コマンドメーカー)
                 {
                     GetNextControl(コマンドメーカー, false).Focus();
@@ -779,7 +779,7 @@ namespace u_net
 
                 //targetform.args = 部品コード.Text;
                 //targetform.ShowDialog();
-          
+
             }
             catch (Exception ex)
             {
@@ -1105,7 +1105,7 @@ namespace u_net
                 }
                 else if (仕入先1フレーム.Focused)
                 {
-                    string code = OriginalClass.Nz(仕入先1コード.Text,null);
+                    string code = OriginalClass.Nz(仕入先1コード.Text, null);
                     if (string.IsNullOrEmpty(code))
                     {
                         MessageBox.Show("仕入先を入力してください。", "警告", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -1249,14 +1249,14 @@ namespace u_net
 
                 //    if (dataTable.Rows.Count > 0)
                 //    {
-                        //DataRow row = dataTable.Rows[0];
-                        VariableSet.SetTable2Form(this, strSQL,cn);
-                        return true;
-                    //}
-                    
-                
+                //DataRow row = dataTable.Rows[0];
+                VariableSet.SetTable2Form(this, strSQL, cn);
+                return true;
+                //}
 
-                
+
+
+
             }
             catch (Exception ex)
             {
@@ -1462,7 +1462,7 @@ namespace u_net
 
                     detectRepeatedParts = true;
                 }
-                
+
             }
             catch (Exception ex)
             {
@@ -1509,7 +1509,7 @@ namespace u_net
                             部品コード.DisplayMember = "部品コード";
                             部品コード.ValueMember = "版数";
                         }
-                          
+
                         版数.Text = 部品コード.Text;
                         // 内容の表示
                         LoadData(this, CurrentCode);
@@ -1526,15 +1526,15 @@ namespace u_net
                         break;
                     case "仕入先1コード":
                         // 仕入先コードからの関連情報表示
-                        Supplier1Name.Text = FunctionClass.GetSupplierName(cn,controlObject.Text.ToString());
+                        Supplier1Name.Text = FunctionClass.GetSupplierName(cn, controlObject.Text.ToString());
                         break;
                     case "仕入先2コード":
                         // 仕入先コードからの関連情報表示
-                        Supplier2Name.Text = FunctionClass.GetSupplierName(cn,controlObject.Text.ToString());
+                        Supplier2Name.Text = FunctionClass.GetSupplierName(cn, controlObject.Text.ToString());
                         break;
                     case "仕入先3コード":
                         // 仕入先コードからの関連情報表示
-                        Supplier3Name.Text = FunctionClass.GetSupplierName(cn,controlObject.Text.ToString());
+                        Supplier3Name.Text = FunctionClass.GetSupplierName(cn, controlObject.Text.ToString());
                         break;
                     case "入数":
                     case "単位数量":
@@ -1556,8 +1556,8 @@ namespace u_net
             }
             finally
             {
-                
- 
+
+
             }
         }
 
@@ -1604,8 +1604,8 @@ namespace u_net
                 case Keys.F5:
                     if (コマンド仕入先.Enabled) コマンド仕入先_Click(sender, e);
                     break;
-               
-             
+
+
                 case Keys.F9:
                     if (コマンド承認.Enabled) コマンド承認_Click(sender, e);
                     break;

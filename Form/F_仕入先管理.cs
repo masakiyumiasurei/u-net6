@@ -16,7 +16,8 @@ namespace u_net
 {
     public partial class F_仕入先管理 : MidForm
     {
-        public string str検索コード = CommonConstants.CH_MAKER;
+        public string str検索コード = CommonConstants.CH_MAKER;        
+        
         public string str仕入先コード開始 = "";
         public string str仕入先コード終了 = "";
         public string str仕入先名フリガナ = "";
@@ -186,14 +187,7 @@ namespace u_net
         {
             try
             {
-                string filter = string.Empty;
-
-                // 仕入先コード指定
-                if (!string.IsNullOrEmpty(str仕入先コード開始))
-                {
-                    filter += string.Format("(仕入先コード BETWEEN '{0}' AND '{1}') AND ",
-                                                                  str仕入先コード開始, str仕入先コード終了);
-                }
+                string filter = string.Empty;                             
 
                 // 仕入先名指定
                 if (!string.IsNullOrEmpty(str仕入先名))
@@ -322,7 +316,6 @@ namespace u_net
                 dataGridView1.Rows[e.RowIndex].Selected = true;
             }
         }
-
 
         private bool sorting;
         private void dataGridView1_Sorted(object sender, EventArgs e)
