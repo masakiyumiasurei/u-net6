@@ -1878,6 +1878,7 @@ namespace u_net
             // 
             this.入数.BackColor = System.Drawing.SystemColors.Window;
             this.入数.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.入数.ImeMode = System.Windows.Forms.ImeMode.Off;
             this.入数.Location = new System.Drawing.Point(912, 80);
             this.入数.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.入数.Name = "入数";
@@ -1908,6 +1909,7 @@ namespace u_net
             // 
             this.単位数量.BackColor = System.Drawing.SystemColors.Window;
             this.単位数量.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.単位数量.ImeMode = System.Windows.Forms.ImeMode.Off;
             this.単位数量.Location = new System.Drawing.Point(912, 110);
             this.単位数量.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.単位数量.Name = "単位数量";
@@ -1938,6 +1940,7 @@ namespace u_net
             // 
             this.StandardDeliveryDay.BackColor = System.Drawing.SystemColors.Window;
             this.StandardDeliveryDay.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.StandardDeliveryDay.ImeMode = System.Windows.Forms.ImeMode.Off;
             this.StandardDeliveryDay.Location = new System.Drawing.Point(912, 140);
             this.StandardDeliveryDay.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.StandardDeliveryDay.Name = "StandardDeliveryDay";
@@ -1968,6 +1971,7 @@ namespace u_net
             // 
             this.ShelfNumber.BackColor = System.Drawing.SystemColors.Window;
             this.ShelfNumber.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.ShelfNumber.ImeMode = System.Windows.Forms.ImeMode.Off;
             this.ShelfNumber.Location = new System.Drawing.Point(912, 170);
             this.ShelfNumber.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ShelfNumber.Name = "ShelfNumber";
@@ -2013,6 +2017,7 @@ namespace u_net
             // 
             this.ロス率.BackColor = System.Drawing.SystemColors.Window;
             this.ロス率.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.ロス率.ImeMode = System.Windows.Forms.ImeMode.Off;
             this.ロス率.Location = new System.Drawing.Point(912, 229);
             this.ロス率.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ロス率.Name = "ロス率";
@@ -2059,6 +2064,7 @@ namespace u_net
             this.InventoryAmount.BackColor = System.Drawing.SystemColors.Window;
             this.InventoryAmount.Enabled = false;
             this.InventoryAmount.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.InventoryAmount.ImeMode = System.Windows.Forms.ImeMode.Off;
             this.InventoryAmount.Location = new System.Drawing.Point(912, 296);
             this.InventoryAmount.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.InventoryAmount.Multiline = true;
@@ -2350,6 +2356,7 @@ namespace u_net
             this.Controls.Add(this.版数_ラベル);
             this.Controls.Add(this.過不足数量);
             this.Controls.Add(this.panel1);
+            this.ImeMode = System.Windows.Forms.ImeMode.Off;
             this.KeyPreview = true;
             this.Name = "F_部品";
             this.Text = " ";

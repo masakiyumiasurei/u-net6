@@ -213,7 +213,7 @@ namespace u_net
         }
 
 
-        private void Form_Unload(object sender, EventArgs e)
+        private void Form_Unload(object sender, FormClosingEventArgs e)
         {
 
             string LoginUserCode = "000";//テスト用 ログインユーザを実行中にどのように管理するか決まったら修正
@@ -2667,5 +2667,7 @@ namespace u_net
         {
             toolStripStatusLabel2.Text = "各種項目の説明";
         }
+
+      
     }
 }
