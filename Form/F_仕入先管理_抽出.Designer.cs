@@ -35,17 +35,17 @@
             label1 = new Label();
             仕入先名フリガナ = new TextBox();
             Discontinued = new GroupBox();
-            DiscontinuedButton3 = new RadioButton();
-            DiscontinuedButton2 = new RadioButton();
-            DiscontinuedButton1 = new RadioButton();
+            確定指定Button3 = new RadioButton();
+            確定指定Button2 = new RadioButton();
+            確定指定Button1 = new RadioButton();
             intComposedChipMount = new GroupBox();
-            intComposedChipMountbutton3 = new RadioButton();
-            intComposedChipMountbutton2 = new RadioButton();
-            intComposedChipMountbutton1 = new RadioButton();
+            承認指定button3 = new RadioButton();
+            承認指定button2 = new RadioButton();
+            承認指定button1 = new RadioButton();
             Deleted = new GroupBox();
-            DeletedButton3 = new RadioButton();
-            DeletedButton2 = new RadioButton();
-            DeletedButton1 = new RadioButton();
+            削除指定Button3 = new RadioButton();
+            削除指定Button2 = new RadioButton();
+            削除指定Button1 = new RadioButton();
             抽出ボタン = new Button();
             キャンセルボタン = new Button();
             仕入先選択ボタン = new Button();
@@ -74,6 +74,7 @@
             // 
             仕入先名.BackColor = Color.White;
             仕入先名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            仕入先名.ImeMode = ImeMode.Hiragana;
             仕入先名.Location = new Point(133, 68);
             仕入先名.Multiline = true;
             仕入先名.Name = "仕入先名";
@@ -89,6 +90,11 @@
             仕入先コード.Name = "仕入先コード";
             仕入先コード.Size = new Size(182, 29);
             仕入先コード.TabIndex = 2;
+            仕入先コード.Click += 仕入先コード_Click;
+            仕入先コード.TextChanged += 仕入先コード_TextChanged;
+            仕入先コード.DoubleClick += 仕入先コード_DoubleClick;
+            仕入先コード.KeyDown += 仕入先コード_KeyDown;
+            仕入先コード.Validated += 仕入先コード_Validated;
             // 
             // label5
             // 
@@ -124,6 +130,7 @@
             // 
             仕入先名フリガナ.BackColor = Color.White;
             仕入先名フリガナ.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            仕入先名フリガナ.ImeMode = ImeMode.Hiragana;
             仕入先名フリガナ.Location = new Point(133, 109);
             仕入先名フリガナ.Multiline = true;
             仕入先名フリガナ.Name = "仕入先名フリガナ";
@@ -132,9 +139,9 @@
             // 
             // Discontinued
             // 
-            Discontinued.Controls.Add(DiscontinuedButton3);
-            Discontinued.Controls.Add(DiscontinuedButton2);
-            Discontinued.Controls.Add(DiscontinuedButton1);
+            Discontinued.Controls.Add(確定指定Button3);
+            Discontinued.Controls.Add(確定指定Button2);
+            Discontinued.Controls.Add(確定指定Button1);
             Discontinued.Location = new Point(45, 159);
             Discontinued.Margin = new Padding(3, 4, 3, 4);
             Discontinued.Name = "Discontinued";
@@ -143,48 +150,49 @@
             Discontinued.TabIndex = 203;
             Discontinued.TabStop = false;
             Discontinued.Text = "確定指定(&D)";
+            Discontinued.Visible = false;
             // 
-            // DiscontinuedButton3
+            // 確定指定Button3
             // 
-            DiscontinuedButton3.AutoSize = true;
-            DiscontinuedButton3.Location = new Point(397, 29);
-            DiscontinuedButton3.Margin = new Padding(3, 4, 3, 4);
-            DiscontinuedButton3.Name = "DiscontinuedButton3";
-            DiscontinuedButton3.Size = new Size(92, 24);
-            DiscontinuedButton3.TabIndex = 204;
-            DiscontinuedButton3.TabStop = true;
-            DiscontinuedButton3.Text = "確定しない";
-            DiscontinuedButton3.UseVisualStyleBackColor = true;
+            確定指定Button3.AutoSize = true;
+            確定指定Button3.Location = new Point(397, 29);
+            確定指定Button3.Margin = new Padding(3, 4, 3, 4);
+            確定指定Button3.Name = "確定指定Button3";
+            確定指定Button3.Size = new Size(92, 24);
+            確定指定Button3.TabIndex = 204;
+            確定指定Button3.TabStop = true;
+            確定指定Button3.Text = "確定しない";
+            確定指定Button3.UseVisualStyleBackColor = true;
             // 
-            // DiscontinuedButton2
+            // 確定指定Button2
             // 
-            DiscontinuedButton2.AutoSize = true;
-            DiscontinuedButton2.Location = new Point(223, 29);
-            DiscontinuedButton2.Margin = new Padding(3, 4, 3, 4);
-            DiscontinuedButton2.Name = "DiscontinuedButton2";
-            DiscontinuedButton2.Size = new Size(101, 24);
-            DiscontinuedButton2.TabIndex = 2;
-            DiscontinuedButton2.TabStop = true;
-            DiscontinuedButton2.Text = "確定している";
-            DiscontinuedButton2.UseVisualStyleBackColor = true;
+            確定指定Button2.AutoSize = true;
+            確定指定Button2.Location = new Point(223, 29);
+            確定指定Button2.Margin = new Padding(3, 4, 3, 4);
+            確定指定Button2.Name = "確定指定Button2";
+            確定指定Button2.Size = new Size(101, 24);
+            確定指定Button2.TabIndex = 2;
+            確定指定Button2.TabStop = true;
+            確定指定Button2.Text = "確定している";
+            確定指定Button2.UseVisualStyleBackColor = true;
             // 
-            // DiscontinuedButton1
+            // 確定指定Button1
             // 
-            DiscontinuedButton1.AutoSize = true;
-            DiscontinuedButton1.Location = new Point(34, 29);
-            DiscontinuedButton1.Margin = new Padding(3, 4, 3, 4);
-            DiscontinuedButton1.Name = "DiscontinuedButton1";
-            DiscontinuedButton1.Size = new Size(115, 24);
-            DiscontinuedButton1.TabIndex = 1;
-            DiscontinuedButton1.TabStop = true;
-            DiscontinuedButton1.Text = "確定していない";
-            DiscontinuedButton1.UseVisualStyleBackColor = true;
+            確定指定Button1.AutoSize = true;
+            確定指定Button1.Location = new Point(34, 29);
+            確定指定Button1.Margin = new Padding(3, 4, 3, 4);
+            確定指定Button1.Name = "確定指定Button1";
+            確定指定Button1.Size = new Size(115, 24);
+            確定指定Button1.TabIndex = 1;
+            確定指定Button1.TabStop = true;
+            確定指定Button1.Text = "確定していない";
+            確定指定Button1.UseVisualStyleBackColor = true;
             // 
             // intComposedChipMount
             // 
-            intComposedChipMount.Controls.Add(intComposedChipMountbutton3);
-            intComposedChipMount.Controls.Add(intComposedChipMountbutton2);
-            intComposedChipMount.Controls.Add(intComposedChipMountbutton1);
+            intComposedChipMount.Controls.Add(承認指定button3);
+            intComposedChipMount.Controls.Add(承認指定button2);
+            intComposedChipMount.Controls.Add(承認指定button1);
             intComposedChipMount.Location = new Point(45, 263);
             intComposedChipMount.Margin = new Padding(3, 4, 3, 4);
             intComposedChipMount.Name = "intComposedChipMount";
@@ -193,48 +201,49 @@
             intComposedChipMount.TabIndex = 205;
             intComposedChipMount.TabStop = false;
             intComposedChipMount.Text = "承認指定(&A)";
+            intComposedChipMount.Visible = false;
             // 
-            // intComposedChipMountbutton3
+            // 承認指定button3
             // 
-            intComposedChipMountbutton3.AutoSize = true;
-            intComposedChipMountbutton3.Location = new Point(397, 29);
-            intComposedChipMountbutton3.Margin = new Padding(3, 4, 3, 4);
-            intComposedChipMountbutton3.Name = "intComposedChipMountbutton3";
-            intComposedChipMountbutton3.Size = new Size(92, 24);
-            intComposedChipMountbutton3.TabIndex = 204;
-            intComposedChipMountbutton3.TabStop = true;
-            intComposedChipMountbutton3.Text = "承認しない";
-            intComposedChipMountbutton3.UseVisualStyleBackColor = true;
+            承認指定button3.AutoSize = true;
+            承認指定button3.Location = new Point(397, 29);
+            承認指定button3.Margin = new Padding(3, 4, 3, 4);
+            承認指定button3.Name = "承認指定button3";
+            承認指定button3.Size = new Size(92, 24);
+            承認指定button3.TabIndex = 204;
+            承認指定button3.TabStop = true;
+            承認指定button3.Text = "承認しない";
+            承認指定button3.UseVisualStyleBackColor = true;
             // 
-            // intComposedChipMountbutton2
+            // 承認指定button2
             // 
-            intComposedChipMountbutton2.AutoSize = true;
-            intComposedChipMountbutton2.Location = new Point(223, 29);
-            intComposedChipMountbutton2.Margin = new Padding(3, 4, 3, 4);
-            intComposedChipMountbutton2.Name = "intComposedChipMountbutton2";
-            intComposedChipMountbutton2.Size = new Size(101, 24);
-            intComposedChipMountbutton2.TabIndex = 2;
-            intComposedChipMountbutton2.TabStop = true;
-            intComposedChipMountbutton2.Text = "承認している";
-            intComposedChipMountbutton2.UseVisualStyleBackColor = true;
+            承認指定button2.AutoSize = true;
+            承認指定button2.Location = new Point(223, 29);
+            承認指定button2.Margin = new Padding(3, 4, 3, 4);
+            承認指定button2.Name = "承認指定button2";
+            承認指定button2.Size = new Size(101, 24);
+            承認指定button2.TabIndex = 2;
+            承認指定button2.TabStop = true;
+            承認指定button2.Text = "承認している";
+            承認指定button2.UseVisualStyleBackColor = true;
             // 
-            // intComposedChipMountbutton1
+            // 承認指定button1
             // 
-            intComposedChipMountbutton1.AutoSize = true;
-            intComposedChipMountbutton1.Location = new Point(34, 29);
-            intComposedChipMountbutton1.Margin = new Padding(3, 4, 3, 4);
-            intComposedChipMountbutton1.Name = "intComposedChipMountbutton1";
-            intComposedChipMountbutton1.Size = new Size(115, 24);
-            intComposedChipMountbutton1.TabIndex = 1;
-            intComposedChipMountbutton1.TabStop = true;
-            intComposedChipMountbutton1.Text = "承認していない";
-            intComposedChipMountbutton1.UseVisualStyleBackColor = true;
+            承認指定button1.AutoSize = true;
+            承認指定button1.Location = new Point(34, 29);
+            承認指定button1.Margin = new Padding(3, 4, 3, 4);
+            承認指定button1.Name = "承認指定button1";
+            承認指定button1.Size = new Size(115, 24);
+            承認指定button1.TabIndex = 1;
+            承認指定button1.TabStop = true;
+            承認指定button1.Text = "承認していない";
+            承認指定button1.UseVisualStyleBackColor = true;
             // 
             // Deleted
             // 
-            Deleted.Controls.Add(DeletedButton3);
-            Deleted.Controls.Add(DeletedButton2);
-            Deleted.Controls.Add(DeletedButton1);
+            Deleted.Controls.Add(削除指定Button3);
+            Deleted.Controls.Add(削除指定Button2);
+            Deleted.Controls.Add(削除指定Button1);
             Deleted.Location = new Point(45, 377);
             Deleted.Margin = new Padding(3, 4, 3, 4);
             Deleted.Name = "Deleted";
@@ -244,41 +253,41 @@
             Deleted.TabStop = false;
             Deleted.Text = "削除指定(&D)";
             // 
-            // DeletedButton3
+            // 削除指定Button3
             // 
-            DeletedButton3.AutoSize = true;
-            DeletedButton3.Location = new Point(397, 29);
-            DeletedButton3.Margin = new Padding(3, 4, 3, 4);
-            DeletedButton3.Name = "DeletedButton3";
-            DeletedButton3.Size = new Size(92, 24);
-            DeletedButton3.TabIndex = 204;
-            DeletedButton3.TabStop = true;
-            DeletedButton3.Text = "指定しない";
-            DeletedButton3.UseVisualStyleBackColor = true;
+            削除指定Button3.AutoSize = true;
+            削除指定Button3.Location = new Point(397, 29);
+            削除指定Button3.Margin = new Padding(3, 4, 3, 4);
+            削除指定Button3.Name = "削除指定Button3";
+            削除指定Button3.Size = new Size(92, 24);
+            削除指定Button3.TabIndex = 204;
+            削除指定Button3.TabStop = true;
+            削除指定Button3.Text = "指定しない";
+            削除指定Button3.UseVisualStyleBackColor = true;
             // 
-            // DeletedButton2
+            // 削除指定Button2
             // 
-            DeletedButton2.AutoSize = true;
-            DeletedButton2.Location = new Point(223, 29);
-            DeletedButton2.Margin = new Padding(3, 4, 3, 4);
-            DeletedButton2.Name = "DeletedButton2";
-            DeletedButton2.Size = new Size(101, 24);
-            DeletedButton2.TabIndex = 2;
-            DeletedButton2.TabStop = true;
-            DeletedButton2.Text = "削除している";
-            DeletedButton2.UseVisualStyleBackColor = true;
+            削除指定Button2.AutoSize = true;
+            削除指定Button2.Location = new Point(223, 29);
+            削除指定Button2.Margin = new Padding(3, 4, 3, 4);
+            削除指定Button2.Name = "削除指定Button2";
+            削除指定Button2.Size = new Size(101, 24);
+            削除指定Button2.TabIndex = 2;
+            削除指定Button2.TabStop = true;
+            削除指定Button2.Text = "削除している";
+            削除指定Button2.UseVisualStyleBackColor = true;
             // 
-            // DeletedButton1
+            // 削除指定Button1
             // 
-            DeletedButton1.AutoSize = true;
-            DeletedButton1.Location = new Point(34, 29);
-            DeletedButton1.Margin = new Padding(3, 4, 3, 4);
-            DeletedButton1.Name = "DeletedButton1";
-            DeletedButton1.Size = new Size(115, 24);
-            DeletedButton1.TabIndex = 1;
-            DeletedButton1.TabStop = true;
-            DeletedButton1.Text = "削除していない";
-            DeletedButton1.UseVisualStyleBackColor = true;
+            削除指定Button1.AutoSize = true;
+            削除指定Button1.Location = new Point(34, 29);
+            削除指定Button1.Margin = new Padding(3, 4, 3, 4);
+            削除指定Button1.Name = "削除指定Button1";
+            削除指定Button1.Size = new Size(115, 24);
+            削除指定Button1.TabIndex = 1;
+            削除指定Button1.TabStop = true;
+            削除指定Button1.Text = "削除していない";
+            削除指定Button1.UseVisualStyleBackColor = true;
             // 
             // 抽出ボタン
             // 
@@ -304,6 +313,7 @@
             // 
             // 仕入先選択ボタン
             // 
+            仕入先選択ボタン.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             仕入先選択ボタン.Location = new Point(322, 31);
             仕入先選択ボタン.Margin = new Padding(4);
             仕入先選択ボタン.Name = "仕入先選択ボタン";
@@ -312,9 +322,11 @@
             仕入先選択ボタン.TabStop = false;
             仕入先選択ボタン.Text = "▼";
             仕入先選択ボタン.UseVisualStyleBackColor = true;
+            仕入先選択ボタン.Click += 仕入先選択ボタン_Click;
             // 
             // 仕入先参照ボタン
             // 
+            仕入先参照ボタン.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             仕入先参照ボタン.Location = new Point(359, 31);
             仕入先参照ボタン.Margin = new Padding(4);
             仕入先参照ボタン.Name = "仕入先参照ボタン";
@@ -323,6 +335,7 @@
             仕入先参照ボタン.TabStop = false;
             仕入先参照ボタン.Text = "▶";
             仕入先参照ボタン.UseVisualStyleBackColor = true;
+            仕入先参照ボタン.Click += 仕入先参照ボタン_Click;
             // 
             // F_仕入先管理_抽出
             // 
@@ -369,17 +382,17 @@
         private Label label2;
         private TextBox 更新日終了;
         private GroupBox Discontinued;
-        private RadioButton DiscontinuedButton3;
-        private RadioButton DiscontinuedButton2;
-        private RadioButton DiscontinuedButton1;
+        private RadioButton 確定指定Button3;
+        private RadioButton 確定指定Button2;
+        private RadioButton 確定指定Button1;
         private GroupBox intComposedChipMount;
-        private RadioButton intComposedChipMountbutton3;
-        private RadioButton intComposedChipMountbutton2;
-        private RadioButton intComposedChipMountbutton1;
+        private RadioButton 承認指定button3;
+        private RadioButton 承認指定button2;
+        private RadioButton 承認指定button1;
         private GroupBox Deleted;
-        private RadioButton DeletedButton3;
-        private RadioButton DeletedButton2;
-        private RadioButton DeletedButton1;
+        private RadioButton 削除指定Button3;
+        private RadioButton 削除指定Button2;
+        private RadioButton 削除指定Button1;
         private Button 抽出ボタン;
         private Button キャンセルボタン;
         private Button 仕入先選択ボタン;

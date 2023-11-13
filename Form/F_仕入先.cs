@@ -208,6 +208,7 @@ namespace u_net
                     if (!string.IsNullOrEmpty(args))
                     {
                         this.仕入先コード.Text = args;
+                        UpdatedControl(this.仕入先コード);
                     }
                 }
 
@@ -403,8 +404,6 @@ namespace u_net
             }
         }
 
-
-
         private bool SaveData()
         {
             Connect();
@@ -502,8 +501,6 @@ namespace u_net
         Bye_コマンド新規_Click:
             return;
         }
-
-
 
         private void コマンド修正_Click(object sender, EventArgs e)
         {
@@ -686,7 +683,6 @@ namespace u_net
         {
             try
             {
-
                 // With ブロック内ではコントロールに対して直接アクセス可能
                 this.窓口郵便番号.Text = this.郵便番号.Text;
                 this.窓口住所1.Text = this.住所1.Text;
@@ -904,8 +900,9 @@ namespace u_net
                 GetNextControl(コマンドメーカー, false).Focus();
             }
 
-            Form form = new F_メーカー();
-            form.Show();
+            F_メーカー form = new F_メーカー();
+            form.args = "";
+            form.ShowDialog();
         }
 
 
@@ -1061,7 +1058,7 @@ namespace u_net
 
                         //  LoadData(this.CurrentCode);
                         LoadHeader(this, this.CurrentCode);
-                        if (振込手数料負担コード.SelectedValue.ToString() == "3" && 振込手数料負担コード.SelectedValue != null)
+                        if (振込手数料負担コード.SelectedValue != null && 振込手数料負担コード.SelectedValue.ToString() == "3")
                         {
                             振込手数料上限金額.Enabled = true;
                         }
@@ -1101,7 +1098,7 @@ namespace u_net
             }
             catch (Exception ex)
             {
-                Debug.Print(this.Name + "_UpdatedControl - " + ex.Message);
+                MessageBox.Show(this.Name + "_UpdatedControl - " + ex.Message);
             }
         }
 
@@ -1506,7 +1503,7 @@ namespace u_net
 
         private void 仕入先コード_TextChanged(object sender, EventArgs e)
         {
-            FunctionClass.LimitText(((TextBox)sender), 8);
+            FunctionClass.LimitText(((ComboBox)sender), 8);
         }
 
         private void 評価ランク_Enter(object sender, EventArgs e)

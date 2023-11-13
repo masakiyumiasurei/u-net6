@@ -8,16 +8,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using u_net.Public;
 
 namespace u_net
 {
     public partial class F_仕入先管理_抽出 : Form
     {
+
         public F_仕入先管理_抽出()
         {
             InitializeComponent();
         }
 
+        SqlConnection cn;
+        public void Connect()
+        {
+            Connection connectionInfo = new Connection();
+            string connectionString = connectionInfo.Getconnect();
+            cn = new SqlConnection(connectionString);
+            cn.Open();
+        }
         private void Form_Load(object sender, EventArgs e)
         {
             try
@@ -41,67 +51,20 @@ namespace u_net
                 switch (frmTarget.lng削除指定)
                 {
                     case 1:
-                        intComposedChipMountbutton1.Checked = true;
+                        削除指定Button1.Checked = true;
                         break;
                     case 2:
-                        intComposedChipMountbutton2.Checked = true;
+                        削除指定Button2.Checked = true;
                         break;
                     case 0:
-                        intComposedChipMountbutton3.Checked = true;
+                        削除指定Button3.Checked = true;
                         break;
 
                     default:
                         // intComposedChipMount の値に対応するラジオボタンがない場合の処理
                         break;
                 }
-                switch (frmTarget.intIsUnit)
-                {
-                    case 1:
-                        IsUnitButton1.Checked = true;
-                        break;
-                    case 2:
-                        IsUnitButton2.Checked = true;
-                        break;
-                    case 0:
-                        IsUnitButton3.Checked = true;
-                        break;
 
-                    default:
-                        // intComposedChipMount の値に対応するラジオボタンがない場合の処理
-                        break;
-                }
-                switch (frmTarget.lngDiscontinued)
-                {
-                    case 1:
-                        DiscontinuedButton1.Checked = true;
-                        break;
-                    case 2:
-                        DiscontinuedButton2.Checked = true;
-                        break;
-                    case 0:
-                        DiscontinuedButton3.Checked = true;
-                        break;
-
-                    default:
-                        // intComposedChipMount の値に対応するラジオボタンがない場合の処理
-                        break;
-                }
-                switch (frmTarget.lngDeleted)
-                {
-                    case 1:
-                        DeletedButton1.Checked = true;
-                        break;
-                    case 2:
-                        DeletedButton2.Checked = true;
-                        break;
-                    case 0:
-                        DeletedButton3.Checked = true;
-                        break;
-
-                    default:
-                        // intComposedChipMount の値に対応するラジオボタンがない場合の処理
-                        break;
-                }
             }
             catch (Exception ex)
             {
@@ -117,68 +80,22 @@ namespace u_net
                 F_仕入先管理? frmTarget = Application.OpenForms.OfType<F_仕入先管理>().FirstOrDefault();
                 //F_仕入先管理 frmTarget = new F_仕入先管理();
 
+                // frmTarget.仕入先コード = Nz(仕入先コード.Text);
+                frmTarget.str仕入先名 = Nz(仕入先名.Text);
+                frmTarget.str仕入先名フリガナ = Nz(仕入先名フリガナ.Text);
 
 
-                frmTarget.str基本型式名 = Nz(仕入先コード.Text);
-                frmTarget.strシリーズ名 = Nz(仕入先名.Text);
-                frmTarget.dtm更新日開始 = string.IsNullOrEmpty(仕入先名フリガナ.Text) ?
-                    DateTime.MinValue : DateTime.Parse(仕入先名フリガナ.Text);
-
-                frmTarget.dtm更新日終了 = string.IsNullOrEmpty(更新日終了.Text) ?
-                    DateTime.MinValue : DateTime.Parse(更新日終了.Text);
-
-                frmTarget.str更新者名 = Nz(更新者名.Text);
-
-                if (intComposedChipMountbutton1.Checked)
+                if (削除指定Button1.Checked)
                 {
-                    frmTarget.intComposedChipMount = 1;
+                    frmTarget.lng削除指定 = 1;
                 }
-                else if (intComposedChipMountbutton2.Checked)
+                else if (削除指定Button2.Checked)
                 {
-                    frmTarget.intComposedChipMount = 2;
+                    frmTarget.lng削除指定 = 2;
                 }
-                else if (intComposedChipMountbutton3.Checked)
+                else if (削除指定Button3.Checked)
                 {
-                    frmTarget.intComposedChipMount = 0;
-                }
-
-                if (DeletedButton1.Checked)
-                {
-                    frmTarget.lngDeleted = 1;
-                }
-                else if (DeletedButton2.Checked)
-                {
-                    frmTarget.lngDeleted = 2;
-                }
-                else if (DeletedButton3.Checked)
-                {
-                    frmTarget.lngDeleted = 0;
-                }
-
-                if (IsUnitButton1.Checked)
-                {
-                    frmTarget.intIsUnit = 1;
-                }
-                else if (IsUnitButton2.Checked)
-                {
-                    frmTarget.intIsUnit = 2;
-                }
-                else if (IsUnitButton3.Checked)
-                {
-                    frmTarget.intIsUnit = 0;
-                }
-
-                if (DiscontinuedButton1.Checked)
-                {
-                    frmTarget.lngDiscontinued = 1;
-                }
-                else if (DiscontinuedButton2.Checked)
-                {
-                    frmTarget.lngDiscontinued = 2;
-                }
-                else if (DiscontinuedButton3.Checked)
-                {
-                    frmTarget.lngDiscontinued = 0;
+                    frmTarget.lng削除指定 = 0;
                 }
 
                 long cnt = frmTarget.DoUpdate();
@@ -212,6 +129,49 @@ namespace u_net
             this.Close();
         }
 
+        private F_検索 SearchForm;
+        private void 仕入先選択ボタン_Click(object sender, EventArgs e)
+        {
+            SearchForm = new F_検索();
+            SearchForm.FilterName = "仕入先名フリガナ";
+            if (SearchForm.ShowDialog() == DialogResult.OK)
+            {
+                string SelectedCode = SearchForm.SelectedCode;
+                仕入先コード.Text = SelectedCode;
+            }
+        }
+
+        private void 仕入先コード_DoubleClick(object sender, EventArgs e)
+        {
+            SearchForm = new F_検索();
+            SearchForm.FilterName = "仕入先名フリガナ";
+            if (SearchForm.ShowDialog() == DialogResult.OK)
+            {
+                string SelectedCode = SearchForm.SelectedCode;
+                仕入先コード.Text = SelectedCode;
+            }
+        }
+        private void 仕入先コード_Click(object sender, EventArgs e)
+        {
+            SearchForm = new F_検索();
+            SearchForm.FilterName = "仕入先名フリガナ";
+            if (SearchForm.ShowDialog() == DialogResult.OK)
+            {
+                string SelectedCode = SearchForm.SelectedCode;
+                仕入先コード.Text = SelectedCode;
+            }
+        }
+        private void 仕入先コード_Validated(object sender, EventArgs e)
+        {
+            Connect();
+            this.仕入先名.Text = FunctionClass.GetSupplierName(cn, Nz(this.仕入先コード.Text));
+        }
+        private void 仕入先コード_TextChanged(object sender, EventArgs e)
+        {
+            Connect();
+            this.仕入先名.Text = FunctionClass.GetSupplierName(cn, Nz(this.仕入先コード.Text));
+        }
+
         // Nz メソッドの代替
         private T Nz<T>(T value)
         {
@@ -221,6 +181,37 @@ namespace u_net
             }
             return value;
         }
+        private void 仕入先コード_KeyDown(object sender, KeyEventArgs e)
+        {
+            // 入力された値がエラー値の場合、Textプロパティが設定できなくなるときの対処
+            try
+            {
+                switch (e.KeyCode)
+                {
+                    case Keys.Return:
+                        string strCode = ((Control)sender).Text;
+                        if (string.IsNullOrEmpty(strCode)) return;
 
+                        strCode = strCode.PadLeft(8, '0');
+                        if (strCode != ((Control)sender).Text)
+                        {
+                            ((Control)sender).Text = strCode;
+                        }
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                // エラーハンドリング: 例外が発生した場合に処理を行う
+                Console.WriteLine("エラーが発生しました: " + ex.Message);
+            }
+        }
+
+        private void 仕入先参照ボタン_Click(object sender, EventArgs e)
+        {
+            F_仕入先 fm = new F_仕入先();
+            fm.args = this.仕入先コード.Text;
+            fm.ShowDialog();
+        }
     }
 }

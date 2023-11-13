@@ -54,8 +54,7 @@ namespace u_net.Public
 
         public static bool SetTable2Form(Form formObject, string sourceSQL, SqlConnection cn)
         {
-            //try
-            //{
+            //
                 if (string.IsNullOrWhiteSpace(sourceSQL) || cn == null) return false; // クエリまたは接続が無効な場合は何もしない
 
                 using (SqlCommand command = new SqlCommand(sourceSQL, cn)) 
@@ -66,51 +65,100 @@ namespace u_net.Public
                     {
                         reader.Read();
 
-                        // データベースの列名をフォームのコントロール名と一致させておく
-                        for (int i = 0; i < reader.FieldCount; i++)
-                        {
-                            string columnName = reader.GetName(i);
+                    SetControlValues(formObject.Controls, reader);
 
-                            if (formObject.Controls.ContainsKey(columnName))
-                            {
-                                Control control = formObject.Controls[columnName];
+                    // データベースの列名をフォームのコントロール名と一致させておく
+                    //for (int i = 0; i < reader.FieldCount; i++)
+                    //    {
+                    //        string columnName = reader.GetName(i);
 
-                                // TextBoxとComboBoxで処理を分ける
-                                if (control is TextBox)
-                                {
-                                    control.Text = reader[columnName].ToString();
-                                }
-                                else if (control is ComboBox)
-                                {
-                                    ComboBox comboBox = (ComboBox)control;
-                                    comboBox.SelectedValue = reader[columnName];
-                                }
-                                else if (control is CheckBox)
-                                {
-                                    CheckBox checkBox = (CheckBox)control;
-                                    bool value;
-                                    if (reader[columnName] == DBNull.Value || Convert.ToInt32(reader[columnName]) == 0)
-                                    {
-                                        checkBox.Checked = false; // 値が0またはnullの場合、チェックを外す
-                                    }
-                                    else
-                                    {
-                                        checkBox.Checked = true; // それ以外の場合、チェックを入れる
-                                    }
-                                }
-                            }
-                        }
+                    //        if (formObject.Controls.ContainsKey(columnName))
+                    //        {
+                    //            Control control = formObject.Controls[columnName];
+
+                    //            // TextBoxとComboBoxで処理を分ける
+                    //            if (control is TextBox)
+                    //            {
+                    //                control.Text = reader[columnName].ToString();
+                    //            }
+                    //            else if (control is ComboBox)
+                    //            {
+                    //                ComboBox comboBox = (ComboBox)control;
+                    //                comboBox.SelectedValue = reader[columnName];
+                    //            }
+                    //            else if (control is CheckBox)
+                    //            {
+                    //                CheckBox checkBox = (CheckBox)control;
+                    //                bool value;
+                    //                if (reader[columnName] == DBNull.Value || Convert.ToInt32(reader[columnName]) == 0)
+                    //                {
+                    //                    checkBox.Checked = false; // 値が0またはnullの場合、チェックを外す
+                    //                }
+                    //                else
+                    //                {
+                    //                    checkBox.Checked = true; // それ以外の場合、チェックを入れる
+                    //                }
+                    //            }
+                    //        }
+                    //    }
                     }
                 }
-
-                return true;
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show("正しく読み込みが出来ませんでした" + ex.Message);
-            //    return false;
-            //}
+                return true;           
         }
+
+        private static void SetControlValues(Control.ControlCollection controls, SqlDataReader reader)
+        {
+            foreach (Control control in controls)
+            {
+                if (control is TabControl tabControl)
+                {
+                    foreach (TabPage tabPage in tabControl.TabPages)
+                    {
+                        SetControlValues(tabPage.Controls, reader);
+                    }
+                }
+                else if (control is GroupBox groupBox)
+                {
+                    // グループボックス内のコントロールに再帰的にアクセスする
+                    SetControlValues(groupBox.Controls, reader);
+                }
+                else
+                {
+                    if (!(control is TextBox) && !(control is ComboBox) && !(control is CheckBox))
+                    {
+                        continue;
+                    }
+
+                    string columnName = control.Name;
+
+                    if (reader[columnName] != DBNull.Value)
+                    {
+                        SetControlValue(control, reader[columnName]);
+                    }
+                }
+            }
+        }
+
+        private static void SetControlValue(Control control, object value)
+        {
+            if (control is TextBox textBox)
+            {
+                textBox.Text = value.ToString();
+            }
+            else if (control is ComboBox comboBox)
+            {
+                comboBox.SelectedValue = value;
+            }
+            else if (control is CheckBox checkBox)
+            {
+                checkBox.Checked = Convert.ToInt32(value) != 0;
+            }
+           
+        }
+
+
+
+
 
 
         public static void SetControls(Control control)
@@ -133,12 +181,6 @@ namespace u_net.Public
                 }
             }
         }
-
-
-
-
-
-
 
     }
 }

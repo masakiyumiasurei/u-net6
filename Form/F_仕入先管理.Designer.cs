@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(F_仕入先管理));
             panel1 = new Panel();
+            button1 = new Button();
             button4 = new Button();
             button3 = new Button();
             コマンド仕入先 = new Button();
@@ -46,7 +47,6 @@
             label2 = new Label();
             dataGridView1 = new DataGridView();
             panel2 = new Panel();
-            button1 = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel2.SuspendLayout();
@@ -73,6 +73,18 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(1205, 43);
             panel1.TabIndex = 83;
+            // 
+            // button1
+            // 
+            button1.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            button1.ForeColor = Color.Blue;
+            button1.ImageAlign = ContentAlignment.BottomLeft;
+            button1.Location = new Point(815, 5);
+            button1.Margin = new Padding(0, 3, 0, 3);
+            button1.Name = "button1";
+            button1.Size = new Size(80, 29);
+            button1.TabIndex = 12;
+            button1.UseVisualStyleBackColor = true;
             // 
             // button4
             // 
@@ -123,7 +135,6 @@
             コマンドメール.Size = new Size(80, 29);
             コマンドメール.TabIndex = 8;
             コマンドメール.UseVisualStyleBackColor = true;
-            
             // 
             // コマンド印刷
             // 
@@ -215,7 +226,7 @@
             // 
             コマンド終了.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             コマンド終了.ForeColor = Color.Red;
-            コマンド終了.Location = new Point(892, 5);
+            コマンド終了.Location = new Point(893, 5);
             コマンド終了.Margin = new Padding(0, 3, 0, 3);
             コマンド終了.Name = "コマンド終了";
             コマンド終了.Size = new Size(80, 29);
@@ -254,11 +265,11 @@
             dataGridView1.AllowUserToAddRows = false;
             dataGridView1.AllowUserToDeleteRows = false;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(0, 48);
+            dataGridView1.Location = new Point(0, 40);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
             dataGridView1.RowTemplate.Height = 29;
-            dataGridView1.Size = new Size(1205, 515);
+            dataGridView1.Size = new Size(1205, 586);
             dataGridView1.TabIndex = 87;
             dataGridView1.CellClick += dataGridView1_CellClick;
             dataGridView1.CellDoubleClick += dataGridView1_CellDoubleClick;
@@ -273,28 +284,16 @@
             panel2.Controls.Add(label1);
             panel2.Controls.Add(label2);
             panel2.Dock = DockStyle.Bottom;
-            panel2.Location = new Point(0, 563);
+            panel2.Location = new Point(0, 627);
             panel2.Name = "panel2";
             panel2.Size = new Size(1205, 36);
             panel2.TabIndex = 88;
-            // 
-            // button1
-            // 
-            button1.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            button1.ForeColor = Color.Blue;
-            button1.ImageAlign = ContentAlignment.BottomLeft;
-            button1.Location = new Point(815, 5);
-            button1.Margin = new Padding(0, 3, 0, 3);
-            button1.Name = "button1";
-            button1.Size = new Size(80, 29);
-            button1.TabIndex = 12;
-            button1.UseVisualStyleBackColor = true;
             // 
             // F_仕入先管理
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1205, 599);
+            ClientSize = new Size(1205, 663);
             Controls.Add(panel2);
             Controls.Add(dataGridView1);
             Controls.Add(panel1);
