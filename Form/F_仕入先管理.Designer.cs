@@ -120,7 +120,7 @@
             コマンド仕入先.Name = "コマンド仕入先";
             コマンド仕入先.Size = new Size(80, 29);
             コマンド仕入先.TabIndex = 9;
-            コマンド仕入先.Text = "メーカー";
+            コマンド仕入先.Text = "仕入先";
             コマンド仕入先.UseVisualStyleBackColor = true;
             コマンド仕入先.Click += コマンド仕入先_Click;
             // 
@@ -299,7 +299,7 @@
             Controls.Add(panel1);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "F_仕入先管理";
-            Text = "仕入先管理";
+            Text = "仕払先管理";
             FormClosing += F_仕入先管理_FormClosing;
             Load += Form_Load;
             KeyDown += Form_KeyDown;

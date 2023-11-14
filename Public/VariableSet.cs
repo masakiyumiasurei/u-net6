@@ -54,8 +54,8 @@ namespace u_net.Public
 
         public static bool SetTable2Form(Form formObject, string sourceSQL, SqlConnection cn)
         {
-            //
-                if (string.IsNullOrWhiteSpace(sourceSQL) || cn == null) return false; // クエリまたは接続が無効な場合は何もしない
+            //タブコントロール、グループボックスにアクセスするため、再帰関数とする
+            if (string.IsNullOrWhiteSpace(sourceSQL) || cn == null) return false; // クエリまたは接続が無効な場合は何もしない
 
                 using (SqlCommand command = new SqlCommand(sourceSQL, cn)) 
 
@@ -106,6 +106,7 @@ namespace u_net.Public
                 return true;           
         }
 
+        //タブコントロール、グループボックスにアクセスするため、再帰関数とする
         private static void SetControlValues(Control.ControlCollection controls, SqlDataReader reader)
         {
             foreach (Control control in controls)
@@ -114,6 +115,7 @@ namespace u_net.Public
                 {
                     foreach (TabPage tabPage in tabControl.TabPages)
                     {
+                        // タブコントロール内のコントロールに再帰的にアクセスする
                         SetControlValues(tabPage.Controls, reader);
                     }
                 }
@@ -128,12 +130,19 @@ namespace u_net.Public
                     {
                         continue;
                     }
+                                        
+                        string columnName = control.Name;
 
-                    string columnName = control.Name;
-
-                    if (reader[columnName] != DBNull.Value)
+                    for (int i = 0; i < reader.FieldCount; i++)
                     {
-                        SetControlValue(control, reader[columnName]);
+                        string cname = reader.GetName(i);
+                        if (cname != columnName) continue;
+
+
+                        if (reader[columnName] != DBNull.Value)
+                        {
+                            SetControlValue(control, reader[columnName]);
+                        }
                     }
                 }
             }

@@ -1069,7 +1069,7 @@ namespace u_net
 
                         this.コマンド複写.Enabled = true;
                         this.コマンド削除.Enabled = true;
-
+                        fn.WaitForm.Close();
                         break;
 
                     case "振込手数料負担コード":
@@ -1165,7 +1165,7 @@ namespace u_net
 
         private void ウェブアドレス_TextChanged(object sender, EventArgs e)
         {
-            FunctionClass.LimitText(((TextBox)sender), 100);
+            if(!FunctionClass.LimitText(this.ActiveControl, 100)) return;
             ChangedData(true);
         }
 
@@ -1195,88 +1195,40 @@ namespace u_net
             }
         }
 
-        private void 仕入先省略名_Validated(object sender, EventArgs e)
-        {
-            UpdatedControl((Control)sender);
-        }
-
-
-        private void 仕入先省略名_TextChanged(object sender, EventArgs e)
-        {
-            FunctionClass.LimitText(((TextBox)sender), 10);
-            ChangedData(true);
-        }
-
 
         private void 仕入先名_TextChanged(object sender, EventArgs e)
         {
-            FunctionClass.LimitText(((TextBox)sender), 40);
+            if (!FunctionClass.LimitText(this.ActiveControl, 40)) return;
+            
             ChangedData(true);
         }
 
 
         private void 仕入先名フリガナ_TextChanged(object sender, EventArgs e)
         {
-            FunctionClass.LimitText(((TextBox)sender), 100);
+            if(!FunctionClass.LimitText(this.ActiveControl, 100)) return;
             ChangedData(true);
         }
-
-        private void 仕入先1_Validated(object sender, EventArgs e)
-        {
-            UpdatedControl((Control)sender);
-        }
-
-
-        private void 仕入先1_TextChanged(object sender, EventArgs e)
-        {
-            FunctionClass.LimitText(((TextBox)sender), 60);
-            ChangedData(true);
-        }
-
-
-        private void 仕入先2_Validated(object sender, EventArgs e)
-        {
-            UpdatedControl((Control)sender);
-        }
-
-
-        private void 仕入先2_TextChanged(object sender, EventArgs e)
-        {
-            FunctionClass.LimitText(((TextBox)sender), 60);
-            ChangedData(true);
-        }
-
-
-        private void 仕入先3_Validated(object sender, EventArgs e)
-        {
-            UpdatedControl((Control)sender);
-        }
-
-
-        private void 仕入先3_TextChanged(object sender, EventArgs e)
-        {
-            FunctionClass.LimitText(((TextBox)sender), 60);
-            ChangedData(true);
-        }
-
+               
 
         private void 住所1_TextChanged(object sender, EventArgs e)
         {
-            FunctionClass.LimitText(((TextBox)sender), 50);
+            if(!FunctionClass.LimitText(this.ActiveControl, 50)) return;
             ChangedData(true);
         }
 
 
         private void 住所2_TextChanged(object sender, EventArgs e)
         {
-            FunctionClass.LimitText(((TextBox)sender), 50);
+            if(!FunctionClass.LimitText(this.ActiveControl, 50)) return;
             ChangedData(true);
         }
 
 
         private void 担当者メールアドレス_TextChanged(object sender, EventArgs e)
         {
-            //FunctionClass.LimitText(((TextBox)sender), 100);
+            //FunctionClass.LimitText(this.ActiveControl, 100);
+            if (this.ActiveControl!=null) return;
             ChangedData(true);
         }
 
@@ -1288,7 +1240,7 @@ namespace u_net
 
         private void 担当者名_TextChanged(object sender, EventArgs e)
         {
-            FunctionClass.LimitText(((TextBox)sender), 20);
+           if( !FunctionClass.LimitText(this.ActiveControl, 20)) return;
             ChangedData(true);
         }
 
@@ -1302,7 +1254,7 @@ namespace u_net
 
         private void 電話番号1_TextChanged(object sender, EventArgs e)
         {
-            FunctionClass.LimitText(((TextBox)sender), 4);
+            if(!FunctionClass.LimitText(this.ActiveControl, 4)) return;
             ChangedData(true);
         }
 
@@ -1315,7 +1267,7 @@ namespace u_net
 
         private void 電話番号2_TextChanged(object sender, EventArgs e)
         {
-            FunctionClass.LimitText(((TextBox)sender), 4);
+            if(!FunctionClass.LimitText(this.ActiveControl, 4)) return;
             ChangedData(true);
         }
 
@@ -1329,7 +1281,7 @@ namespace u_net
 
         private void 電話番号3_TextChanged(object sender, EventArgs e)
         {
-            FunctionClass.LimitText(((TextBox)sender), 4);
+            if(!FunctionClass.LimitText(this.ActiveControl, 4)) return;
             ChangedData(true);
         }
 
@@ -1341,7 +1293,7 @@ namespace u_net
 
         private void FAX番号1_TextChanged(object sender, EventArgs e)
         {
-            FunctionClass.LimitText(((TextBox)sender), 4);
+            if(!FunctionClass.LimitText(this.ActiveControl, 4)) return;
             ChangedData(true);
         }
 
@@ -1354,7 +1306,7 @@ namespace u_net
 
         private void FAX番号2_TextChanged(object sender, EventArgs e)
         {
-            FunctionClass.LimitText(((TextBox)sender), 4);
+            if(!FunctionClass.LimitText(this.ActiveControl, 4)) return;
             ChangedData(true);
         }
 
@@ -1368,20 +1320,21 @@ namespace u_net
 
         private void FAX番号3_TextChanged(object sender, EventArgs e)
         {
-            FunctionClass.LimitText(((TextBox)sender), 4);
+            if(!FunctionClass.LimitText(this.ActiveControl, 4)) return;
             ChangedData(true);
         }
 
         private void 備考_TextChanged(object sender, EventArgs e)
         {
-            FunctionClass.LimitText(((TextBox)sender), 4000);
+            if(!FunctionClass.LimitText(this.ActiveControl, 4000)) return;
             ChangedData(true);
         }
 
 
         private void 郵便番号_TextChanged(object sender, EventArgs e)
         {
-            FunctionClass.LimitText(((TextBox)sender), 7);
+            if (!FunctionClass.LimitText(this.ActiveControl, 7))
+                return ;
             ChangedData(true);
         }
 
@@ -1513,12 +1466,13 @@ namespace u_net
 
         private void 評価ランク_TextChanged(object sender, EventArgs e)
         {
+            if (this.ActiveControl == null) return;
             ChangedData(true);
         }
 
         private void 窓口郵便番号_TextChanged(object sender, EventArgs e)
         {
-            FunctionClass.LimitText(((TextBox)sender), 7);
+            if(!FunctionClass.LimitText(this.ActiveControl, 7)) return;
             ChangedData(true);
         }
 
@@ -1545,7 +1499,7 @@ namespace u_net
 
         private void 窓口住所1_TextChanged(object sender, EventArgs e)
         {
-            FunctionClass.LimitText(((TextBox)sender), 50);
+            if(!FunctionClass.LimitText(this.ActiveControl, 50)) return;
             ChangedData(true);
         }
 
@@ -1556,43 +1510,49 @@ namespace u_net
 
         private void 窓口住所2_TextChanged(object sender, EventArgs e)
         {
-            FunctionClass.LimitText(((TextBox)sender), 50);
+            if (!FunctionClass.LimitText(this.ActiveControl, 50)) return;
             ChangedData(true);
         }
 
         private void 窓口電話番号1_TextChanged(object sender, EventArgs e)
         {
-            FunctionClass.LimitText(((TextBox)sender), 4);
+            if (!FunctionClass.LimitText(this.ActiveControl, 4))
+                return;
             ChangedData(true);
         }
 
         private void 窓口電話番号2_TextChanged(object sender, EventArgs e)
         {
-            FunctionClass.LimitText(((TextBox)sender), 4);
+            if (!FunctionClass.LimitText(this.ActiveControl, 4))
+                return;
             ChangedData(true);
         }
 
         private void 窓口電話番号3_TextChanged(object sender, EventArgs e)
         {
-            FunctionClass.LimitText(((TextBox)sender), 4);
+            if (!FunctionClass.LimitText(this.ActiveControl, 4))
+                return;
             ChangedData(true);
         }
 
         private void 窓口ファックス番号1_TextChanged(object sender, EventArgs e)
         {
-            FunctionClass.LimitText(((TextBox)sender), 4);
+            if (!FunctionClass.LimitText(this.ActiveControl, 4))
+                return;
             ChangedData(true);
         }
 
         private void 窓口ファックス番号2_TextChanged(object sender, EventArgs e)
         {
-            FunctionClass.LimitText(((TextBox)sender), 4);
+            if (!FunctionClass.LimitText(this.ActiveControl, 4))
+                return;
             ChangedData(true);
         }
 
         private void 窓口ファックス番号3_TextChanged(object sender, EventArgs e)
         {
-            FunctionClass.LimitText(((TextBox)sender), 4);
+            if (!FunctionClass.LimitText(this.ActiveControl, 4))
+                return;
             ChangedData(true);
         }
 
@@ -1603,6 +1563,7 @@ namespace u_net
 
         private void 窓口メールアドレス_TextChanged(object sender, EventArgs e)
         {
+            if (this.ActiveControl == null) return;
             ChangedData(true);
         }
 
@@ -1613,13 +1574,15 @@ namespace u_net
 
         private void 担当者名2_TextChanged(object sender, EventArgs e)
         {
-            FunctionClass.LimitText(((TextBox)sender), 20);
+            if (!FunctionClass.LimitText(this.ActiveControl, 20))
+                return;
             ChangedData(true);
         }
 
         private void 担当者名3_TextChanged(object sender, EventArgs e)
         {
-            FunctionClass.LimitText(((TextBox)sender), 20);
+            if (!FunctionClass.LimitText(this.ActiveControl, 20))
+                return;
             ChangedData(true);
         }
 
@@ -1630,37 +1593,43 @@ namespace u_net
 
         private void Contact1PhoneNumber_TextChanged(object sender, EventArgs e)
         {
-            FunctionClass.LimitText(((TextBox)sender), 20);
+            if (!FunctionClass.LimitText(this.ActiveControl, 20))
+                return;
             ChangedData(true);
         }
 
         private void Contact1PhoneNumber2_TextChanged(object sender, EventArgs e)
         {
-            FunctionClass.LimitText(((TextBox)sender), 20);
+            if (!FunctionClass.LimitText(this.ActiveControl, 20))
+                return;
             ChangedData(true);
         }
 
         private void Contact1PhoneNumber3_TextChanged(object sender, EventArgs e)
         {
-            FunctionClass.LimitText(((TextBox)sender), 20);
+            if (!FunctionClass.LimitText(this.ActiveControl, 20))
+                return;
             ChangedData(true);
         }
 
         private void Contact1MailAddress_TextChanged(object sender, EventArgs e)
         {
-            FunctionClass.LimitText(((TextBox)sender), 50);
+            if (!FunctionClass.LimitText(this.ActiveControl, 50))
+                return;
             ChangedData(true);
         }
 
         private void Contact2MailAddress_TextChanged(object sender, EventArgs e)
         {
-            FunctionClass.LimitText(((TextBox)sender), 50);
+            if (!FunctionClass.LimitText(this.ActiveControl, 50))
+                return;
             ChangedData(true);
         }
 
         private void Contact3MailAddress_TextChanged(object sender, EventArgs e)
         {
-            FunctionClass.LimitText(((TextBox)sender), 50);
+            if (!FunctionClass.LimitText(this.ActiveControl, 50))
+                return;
             ChangedData(true);
         }
 
@@ -1671,69 +1640,80 @@ namespace u_net
 
         private void 支払先専用_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (this.ActiveControl == null) return;
             ChangedData(true);
         }
 
         private void CloseDay_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (this.ActiveControl == null) return;
             ChangedData(true);
         }
 
         private void 振込先金融機関名_TextChanged(object sender, EventArgs e)
         {
-            FunctionClass.LimitText(((TextBox)sender), 50);
+            if (!FunctionClass.LimitText(this.ActiveControl, 50)) return;
             ChangedData(true);
         }
 
         private void 振込先金融機関分類コード_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (this.ActiveControl == null) return;
             ChangedData(true);
         }
 
         private void 振込先金融機関コード_TextChanged(object sender, EventArgs e)
         {
-            FunctionClass.LimitText(((TextBox)sender), 10);
+            if (!FunctionClass.LimitText(this.ActiveControl, 10))
+                return;
             ChangedData(true);
         }
 
         private void 振込先金融機関店分類コード_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (this.ActiveControl == null) return;
             ChangedData(true);
         }
 
         private void 振込先金融機関支店名_TextChanged(object sender, EventArgs e)
         {
-            FunctionClass.LimitText(((TextBox)sender), 50);
+            if (!FunctionClass.LimitText(this.ActiveControl, 50))
+                return;
             ChangedData(true);
         }
 
         private void 振込先金融機関支店コード_TextChanged(object sender, EventArgs e)
         {
-            FunctionClass.LimitText(((TextBox)sender), 10);
+            if (!FunctionClass.LimitText(this.ActiveControl, 10))
+                return;
             ChangedData(true);
         }
 
         private void 振込先口座区分コード_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (this.ActiveControl == null) return;
             ChangedData(true);
         }
 
         private void 振込先口座番号_TextChanged(object sender, EventArgs e)
         {
-            FunctionClass.LimitText(((TextBox)sender), 20);
+            if (!FunctionClass.LimitText(this.ActiveControl, 20))
+                return;
             ChangedData(true);
         }
 
         private void 振込先口座名_TextChanged(object sender, EventArgs e)
         {
-            FunctionClass.LimitText(((TextBox)sender), 50);
+            if (!FunctionClass.LimitText(this.ActiveControl, 50))
+                return;
             ChangedData(true);
         }
 
         private void 振込手数料負担コード_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ChangedData(true);
             UpdatedControl((Control)sender);
+            if (this.ActiveControl == null) return;
+            ChangedData(true);            
         }
 
         private void 振込手数料上限金額_Enter(object sender, EventArgs e)
@@ -1743,6 +1723,7 @@ namespace u_net
 
         private void 振込手数料上限金額_TextChanged(object sender, EventArgs e)
         {
+            if (this.ActiveControl == null) return;
             ChangedData(true);
         }
 
@@ -1773,6 +1754,7 @@ namespace u_net
 
         private void 手形発送先住所_TextChanged(object sender, EventArgs e)
         {
+            if (this.ActiveControl == null) return;
             ChangedData(true);
         }
 
@@ -1783,11 +1765,14 @@ namespace u_net
 
         private void 手形発送先建物名_TextChanged(object sender, EventArgs e)
         {
+            if (this.ActiveControl == null)
+                return;
             ChangedData(true);
         }
 
         private void 手形発送先部署_TextChanged(object sender, EventArgs e)
         {
+            if (this.ActiveControl == null) return;
             ChangedData(true);
         }
 
@@ -1798,6 +1783,7 @@ namespace u_net
 
         private void 相殺有無_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (this.ActiveControl == null) return;
             ChangedData(true);
         }
     }

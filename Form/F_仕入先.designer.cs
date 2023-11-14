@@ -1119,10 +1119,10 @@ namespace u_net
             代表者名.Name = "代表者名";
             代表者名.Size = new Size(139, 20);
             代表者名.TabIndex = 7;
-            代表者名.TextChanged += 仕入先省略名_TextChanged;
+            //代表者名.TextChanged += 仕入先省略名_TextChanged;
             代表者名.Enter += 仕入先省略名_Enter;
             代表者名.Leave += 仕入先省略名_Leave;
-            代表者名.Validated += 仕入先省略名_Validated;
+            //代表者名.Validated += 仕入先省略名_Validated;
             // 
             // 郵便番号
             // 
