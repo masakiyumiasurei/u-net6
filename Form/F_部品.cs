@@ -223,7 +223,7 @@ namespace u_net
             try
             {
 
-                CommonConnect();
+                Connect();
 
                 // データへの変更がないときの処理
                 if (!IsChanged)
@@ -759,7 +759,7 @@ namespace u_net
                 }
                 else
                 {
-                    F_部品 targetform = new F_部品();
+                    F_メーカー targetform = new F_メーカー();
 
                     targetform.args = strCode;
                     targetform.ShowDialog();
@@ -823,6 +823,11 @@ namespace u_net
                 string SelectedCode = SearchForm.SelectedCode;
 
                 メーカーコード.Text = SelectedCode;
+                string str1 = FunctionClass.GetMakerName(cn, SelectedCode);
+                string str2 = FunctionClass.GetMakerShortName(cn, SelectedCode);
+                MakerName.Text = str1;
+                MakerShortName.Text = str2;
+                
             }
         }
 
@@ -1101,11 +1106,7 @@ namespace u_net
         {
             try
             {
-                if (ActiveControl == コマンド仕入先)
-                {
-                    GetNextControl(コマンド仕入先, false).Focus();
-                }
-                else if (selected_frame == 1)
+                if (selected_frame == 1)
                 {
                     string code = OriginalClass.Nz(仕入先1コード.Text,null);
                     if (string.IsNullOrEmpty(code))
@@ -1318,20 +1319,20 @@ namespace u_net
                 {
                     case "部品コード":
                     case "品名":
-                        if (string.IsNullOrEmpty(varValue.ToString()))
-                        {
-                            MessageBox.Show(controlName + "を入力してください.", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                            return true;
-                        }
+                        //if (string.IsNullOrEmpty(varValue.ToString()))
+                        //{
+                        //    MessageBox.Show(controlName + "を入力してください.", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        //    return true;
+                        //}
                         break;
                     case "型番":
                         //if (Cancel)
                         //{
-                            if (string.IsNullOrEmpty(varValue.ToString()))
-                            {
-                                MessageBox.Show(controlName + "を入力してください.", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                                return true;
-                            }
+                            //if (string.IsNullOrEmpty(varValue.ToString()))
+                            //{
+                            //    MessageBox.Show(controlName + "を入力してください.", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            //    return true;
+                            //}
                         //}
                         // 重複チェックなどを行う必要があれば、ここに追加してください。
                         break;
@@ -1341,7 +1342,21 @@ namespace u_net
                             MessageBox.Show(controlName + "を入力してください.", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                             return true;
                         }
-                        // メーカーコードからの関連情報表示などが必要であればここに追加してください。
+                        else
+                        {
+                            string str1 = FunctionClass.GetMakerName(cn, controlObject.Text.ToString());
+                            string str2 = FunctionClass.GetMakerShortName(cn, controlObject.Text.ToString());
+                            if(string.IsNullOrEmpty(str1) || string.IsNullOrEmpty(str2))
+                            {
+                                return true;
+                            }
+                            else
+                            {
+                                MakerName.Text = str1;
+                                MakerShortName.Text = str2;
+                            }
+                        }
+                        
                         break;
                     case "仕入先1単価":
                     case "仕入先2単価":
@@ -1492,7 +1507,7 @@ namespace u_net
                         string query = "SELECT M部品.部品コード, ISNULL([V部品履歴_最終版数].最終版数, 0) + 1 AS 版数 " +
     "FROM M部品 LEFT OUTER JOIN [V部品履歴_最終版数] " +
     "ON M部品.部品コード = [V部品履歴_最終版数].部品コード " +
-    "WHERE M部品.部品コード BETWEEN @StartCode AND @EndCode " +
+    "WHERE M部品.部品コード BETWEEN '@StartCode' AND '@EndCode' " +
     "ORDER BY M部品.部品コード DESC";
 
                         using (SqlCommand command = new SqlCommand(query, cn))
@@ -1510,6 +1525,8 @@ namespace u_net
                             部品コード.DataSource = dataTable;
                             部品コード.DisplayMember = "部品コード";
                             部品コード.ValueMember = "版数";
+
+                            //版数.Text = 部品コード.V
                         }
                           
                         版数.Text = 部品コード.Text;
@@ -1536,7 +1553,7 @@ namespace u_net
                         break;
                     case "仕入先3コード":
                         // 仕入先コードからの関連情報表示
-                        Supplier3Name.Text = FunctionClass.GetSupplierName(cn,controlObject.Text.ToString());
+                       Supplier3Name.Text = FunctionClass.GetSupplierName(cn,controlObject.Text.ToString());
                         break;
                     case "入数":
                     case "単位数量":
@@ -1993,7 +2010,7 @@ namespace u_net
 
         private void 仕入先1コード_Leave(object sender, EventArgs e)
         {
-            selected_frame = 0;
+            
             toolStripStatusLabel2.Text = "各種項目の説明";
         }
 
@@ -2054,7 +2071,7 @@ namespace u_net
 
         private void 仕入先2コード_Leave(object sender, EventArgs e)
         {
-            selected_frame = 0;
+            
             toolStripStatusLabel2.Text = "各種項目の説明";
         }
 
@@ -2114,7 +2131,7 @@ namespace u_net
 
         private void 仕入先3コード_Leave(object sender, EventArgs e)
         {
-            selected_frame = 0;
+            
             toolStripStatusLabel2.Text = "各種項目の説明";
         }
 
@@ -2228,7 +2245,7 @@ namespace u_net
 
         private void 仕入先1単価_Leave(object sender, EventArgs e)
         {
-            selected_frame = 0;
+            
             toolStripStatusLabel2.Text = "各種項目の説明";
         }
 
@@ -2250,7 +2267,7 @@ namespace u_net
 
         private void 仕入先2単価_Leave(object sender, EventArgs e)
         {
-            selected_frame = 0;
+            
             toolStripStatusLabel2.Text = "各種項目の説明";
         }
 
@@ -2272,7 +2289,7 @@ namespace u_net
 
         private void 仕入先3単価_Leave(object sender, EventArgs e)
         {
-            selected_frame = 0;
+            
             toolStripStatusLabel2.Text = "各種項目の説明";
         }
 
@@ -2398,16 +2415,16 @@ namespace u_net
         {
             if (e.KeyCode == Keys.Return)
             {
-                TextBox textBox = sender as TextBox;
-                if (textBox != null)
+                ComboBox comboBox = sender as ComboBox;
+                if (comboBox != null)
                 {
-                    string strCode = textBox.Text.Trim();
+                    string strCode = comboBox.Text.Trim();
                     if (!string.IsNullOrEmpty(strCode))
                     {
                         strCode = strCode.PadLeft(8, '0');
-                        if (strCode != textBox.Text)
+                        if (strCode != comboBox.Text)
                         {
-                            textBox.Text = strCode;
+                            comboBox.Text = strCode;
                         }
                     }
                 }

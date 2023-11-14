@@ -1020,6 +1020,7 @@ namespace u_net
             this.メーカーコード検索ボタン.TabStop = false;
             this.メーカーコード検索ボタン.Text = "▼";
             this.メーカーコード検索ボタン.UseVisualStyleBackColor = true;
+            this.メーカーコード検索ボタン.Click += new System.EventHandler(this.メーカーコード検索ボタン_Click);
             // 
             // MakerName
             // 
