@@ -1010,14 +1010,15 @@ namespace u_net
             // 
             // メーカーコード検索ボタン
             // 
-            メーカーコード検索ボタン.Location = new Point(306, 140);
-            メーカーコード検索ボタン.Margin = new Padding(4);
-            メーカーコード検索ボタン.Name = "メーカーコード検索ボタン";
-            メーカーコード検索ボタン.Size = new Size(29, 23);
-            メーカーコード検索ボタン.TabIndex = 10005;
-            メーカーコード検索ボタン.TabStop = false;
-            メーカーコード検索ボタン.Text = "▼";
-            メーカーコード検索ボタン.UseVisualStyleBackColor = true;
+            this.メーカーコード検索ボタン.Location = new System.Drawing.Point(306, 140);
+            this.メーカーコード検索ボタン.Margin = new System.Windows.Forms.Padding(4);
+            this.メーカーコード検索ボタン.Name = "メーカーコード検索ボタン";
+            this.メーカーコード検索ボタン.Size = new System.Drawing.Size(29, 23);
+            this.メーカーコード検索ボタン.TabIndex = 10005;
+            this.メーカーコード検索ボタン.TabStop = false;
+            this.メーカーコード検索ボタン.Text = "▼";
+            this.メーカーコード検索ボタン.UseVisualStyleBackColor = true;
+            this.メーカーコード検索ボタン.Click += new System.EventHandler(this.メーカーコード検索ボタン_Click);
             // 
             // MakerName
             // 
