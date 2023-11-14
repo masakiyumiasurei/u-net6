@@ -98,6 +98,7 @@ namespace u_net
                     if (!string.IsNullOrEmpty(args))
                     {
                         this.商品コード.Text = args;
+                        UpdatedControl();
                     }
                 }
 
@@ -931,20 +932,18 @@ namespace u_net
                 分類内容.Text = (商品分類コード.SelectedItem as DataRowView)["分類内容"].ToString();
             }
         }
-
-
-        private void 商品コード_TextChanged(object sender, EventArgs e)
+        private void 商品コード_Validated(object sender, EventArgs e)
         {
             //商品コードのコンボボックスのソースセット時には処理を行わない様にするため
             if (setCombo) return;
 
             //他フォームから渡されたときは this.ActiveControlが商品コントロールにならないので商品コードをコントロールとして渡す
             if (!FunctionClass.LimitText(this.商品コード, 8)) return;
-            UpdatedControl();
         }
+       
 
         //アクセスではコンボボックスの横のテキストボックスを修正する処理があったが、今回はvalueとdisplayが同じコンボボックスなので不要
-        //商品コードの更新処理のみ行う
+       
         private void UpdatedControl()
         {
             //商品コードの更新後処理でレコードの値を表示する
@@ -1077,8 +1076,8 @@ namespace u_net
 
         private void 掛率有効_CheckedChanged(object sender, EventArgs e)
         {
-            if (this.ActiveControl != null)
-                ChangedData(true);
+            if (this.ActiveControl == null) return;
+            ChangedData(true);
         }
 
         private void 売上区分コード_Enter(object sender, EventArgs e)
@@ -1116,8 +1115,8 @@ namespace u_net
 
         private void Discontinued_CheckedChanged(object sender, EventArgs e)
         {
-            if (this.ActiveControl != null)
-                ChangedData(true);
+            if (this.ActiveControl == null) return;
+            ChangedData(true);
         }
 
         private void 備考_TextChanged(object sender, EventArgs e)
@@ -1133,8 +1132,8 @@ namespace u_net
 
         private void IsUnit_CheckedChanged(object sender, EventArgs e)
         {
-            if (this.ActiveControl != null)
-                ChangedData(true);
+            if (this.ActiveControl == null) return;
+            ChangedData(true);
         }
 
 
@@ -1497,6 +1496,7 @@ namespace u_net
             bindingSource.DataSource = dv;
             bindingSource.ResetBindings(false);
         }
+
 
     }
 }
