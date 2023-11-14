@@ -185,5 +185,47 @@ namespace u_net.Public
         }
 
 
+
+        private SqlConnection cn;
+        public void Connect()
+        {
+            Connection connectionInfo = new Connection();
+            string connectionString = connectionInfo.Getconnect();
+            cn = new SqlConnection(connectionString);
+            cn.Open();
+        }
+
+
+
+        public void SetComboBox(ComboBox comboBox, string sqlQuery)
+        {
+            try
+            {
+                Connect();
+
+
+                using (SqlCommand command = new SqlCommand(sqlQuery, cn))
+                {
+                    using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+                    {
+                        DataTable dataTable = new DataTable();
+                        adapter.Fill(dataTable);
+
+                        comboBox.DataSource = dataTable;
+                        comboBox.DisplayMember = "Display";
+                        comboBox.ValueMember = "Value";
+                    }
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("データの読み込み中にエラーが発生しました: " + ex.Message, "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+
+
     }
 }

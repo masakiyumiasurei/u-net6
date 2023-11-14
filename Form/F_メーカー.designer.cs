@@ -106,7 +106,6 @@ namespace u_net
             this.仕入先1 = new System.Windows.Forms.TextBox();
             this.仕入先2 = new System.Windows.Forms.TextBox();
             this.仕入先3 = new System.Windows.Forms.TextBox();
-            this.仕入先3_ラベル = new System.Windows.Forms.Label();
             this.仕入先2_ラベル = new System.Windows.Forms.Label();
             this.備考_ラベル = new System.Windows.Forms.Label();
             this.メーカー名フリガナ = new System.Windows.Forms.TextBox();
@@ -971,21 +970,6 @@ namespace u_net
             this.仕入先3.Leave += new System.EventHandler(this.仕入先3_Leave);
             this.仕入先3.Validated += new System.EventHandler(this.仕入先3_Validated);
             // 
-            // 仕入先3_ラベル
-            // 
-            this.仕入先3_ラベル.AllowDrop = true;
-            this.仕入先3_ラベル.AutoEllipsis = true;
-            this.仕入先3_ラベル.Font = new System.Drawing.Font("BIZ UDゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.仕入先3_ラベル.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.仕入先3_ラベル.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.仕入先3_ラベル.Location = new System.Drawing.Point(15, 80);
-            this.仕入先3_ラベル.Margin = new System.Windows.Forms.Padding(0);
-            this.仕入先3_ラベル.Name = "仕入先3_ラベル";
-            this.仕入先3_ラベル.Size = new System.Drawing.Size(132, 17);
-            this.仕入先3_ラベル.TabIndex = 202;
-            this.仕入先3_ラベル.Text = "仕入先3";
-            this.仕入先3_ラベル.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
             // 仕入先2_ラベル
             // 
             this.仕入先2_ラベル.AllowDrop = true;
@@ -1395,7 +1379,6 @@ namespace u_net
             this.Controls.Add(this.ウェブアドレス_ラベル);
             this.Controls.Add(this.担当者メールアドレス_ラベル);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.仕入先3_ラベル);
             this.Controls.Add(this.仕入先2_ラベル);
             this.Controls.Add(this.備考_ラベル);
             this.Controls.Add(this.メーカー名フリガナ);
@@ -1543,7 +1526,6 @@ namespace u_net
         private Label ウェブアドレス_ラベル;
         private Label 担当者メールアドレス_ラベル;
         private GroupBox groupBox1;
-        private Label 仕入先3_ラベル;
         private Label 仕入先2_ラベル;
         private Label 仕入先1_ラベル;
         private Label 備考_ラベル;

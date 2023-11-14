@@ -26,6 +26,8 @@ namespace u_net
         private SqlTransaction tx;
         public string args = "";
         public string CurrentCode = "";
+        private bool setCombo = false;
+        
 
         public F_商品()
         {
@@ -47,19 +49,30 @@ namespace u_net
         DataTable dt = new DataTable();
         SqlDataAdapter adapter = new SqlDataAdapter();
 
-
         private void Form_Load(object sender, EventArgs e)
         {
 
             FunctionClass fn = new FunctionClass();
             fn.DoWait("しばらくお待ちください...");
 
-            this.combBox商品コードTableAdapter.Fill(this.uiDataSet.CombBox商品コード);
-            this.combBoxMシリーズTableAdapter.Fill(this.uiDataSet.Mシリーズ);
-            this.m商品分類TableAdapter.Fill(this.uiDataSet.M商品分類);
-            this.comboBox売上区分TableAdapter.Fill(this.uiDataSet.M売上区分);
-            this.M単位TableAdapter.Fill(this.uiDataSet.M単位);
-            this.comboBoxManufactureFlowTableAdapter.Fill(this.uiDataSet.ManufactureFlow);
+            //this.combBox商品コードTableAdapter.Fill(this.uiDataSet.CombBox商品コード);
+            //this.combBoxMシリーズTableAdapter.Fill(this.uiDataSet.Mシリーズ);
+            //this.m商品分類TableAdapter.Fill(this.uiDataSet.M商品分類);
+            //this.comboBox売上区分TableAdapter.Fill(this.uiDataSet.M売上区分);
+            //this.M単位TableAdapter.Fill(this.uiDataSet.M単位);
+            //this.comboBoxManufactureFlowTableAdapter.Fill(this.uiDataSet.ManufactureFlow);
+
+            OriginalClass ofn = new OriginalClass();
+            ofn.SetComboBox(数量単位コード, "SELECT 単位名 as Display,単位コード as Value FROM M単位");
+            ofn.SetComboBox(シリーズコード, "SELECT シリーズ名 as Display,シリーズコード as Value FROM Mシリーズ");
+            ofn.SetComboBox(商品分類コード, "SELECT 分類名 as Display,商品分類コード as Value FROM M商品分類");
+            ofn.SetComboBox(売上区分コード, "SELECT 売上区分名 as Display,売上区分コード as Value FROM M売上区分");
+            ofn.SetComboBox(FlowCategoryCode, "SELECT Name as Display,Code as Value FROM ManufactureFlow");
+            setCombo = true;
+            ofn.SetComboBox(商品コード, "SELECT M商品.商品コード as Display ,M商品.商品コード as Value FROM M商品 INNER JOIN M商品明細 ON M商品.商品コード = M商品明細.商品コード " +
+                                        "GROUP BY M商品.商品コード ORDER BY M商品.商品コード DESC");
+
+            setCombo = false;
 
             int intWindowHeight = this.Height;
             int intWindowWidth = this.Width;
@@ -85,7 +98,7 @@ namespace u_net
                     }
                     if (!string.IsNullOrEmpty(args))
                     {
-                        this.商品コード.Text = args;
+                        this.商品コード.Text = args;                        
                     }
                 }
 
@@ -99,10 +112,12 @@ namespace u_net
             }
             catch (Exception ex)
             {
+                ChangedData(false);
                 MessageBox.Show("初期化に失敗しました。", "エラー");
             }
             finally
             {
+                ChangedData(false);
                 this.ResumeLayout();
             }
         }
@@ -118,7 +133,7 @@ namespace u_net
 
                 //バインドソースの新規追加
                 //this.M商品BindingSource.AddNew();
-
+                
                 string original = FunctionClass.採番(cn, "ITM");
 
                 CurrentCode = original.Substring(original.Length - 8);
@@ -154,12 +169,13 @@ namespace u_net
                 コマンド承認.Enabled = false;
                 コマンド確定.Enabled = false;
                 コマンド登録.Enabled = false;
-
+                
                 return true;
             }
             catch (Exception ex)
             {
                 Debug.WriteLine("GoNewMode - " + ex.Message);
+                
                 return false;
             }
         }
@@ -268,8 +284,6 @@ namespace u_net
                     }
 
 
-
-
                     // M商品明細データを保存
                     //this.mshomeisaiTableAdapter.Connection = cn;
                     //this.mshomeisaiTableAdapter.Transaction = transaction;
@@ -357,6 +371,7 @@ namespace u_net
                 {
                     goto Err_コマンド新規_Click;
                 }
+                
                 return;
 
             Err_コマンド新規_Click:
@@ -808,24 +823,27 @@ namespace u_net
 
         public void ChangedData(bool dataChanged)
         {
-            if (dataChanged)
-            {
-                this.Text = this.Name + "*";
-            }
-            else
-            {
-                this.Text = this.Name;
-            }
 
-            if (this.ActiveControl == this.商品コード)
-            {
-                this.商品名.Focus();
-            }
+            
+                if (dataChanged)
+                {
+                    this.Text = this.Name + "*";
+                }
+                else
+                {
+                    this.Text = this.Name;
+                }
 
-            this.商品コード.Enabled = !dataChanged;
-            this.コマンド複写.Enabled = !dataChanged;
-            this.コマンド削除.Enabled = !dataChanged;
-            this.コマンド登録.Enabled = dataChanged;
+                if (this.ActiveControl == this.商品コード)
+                {
+                    this.商品名.Focus();
+                }
+
+                this.商品コード.Enabled = !dataChanged;
+                this.コマンド複写.Enabled = !dataChanged;
+                this.コマンド削除.Enabled = !dataChanged;
+                this.コマンド登録.Enabled = dataChanged;
+            
         }
 
         private void F_商品_KeyDown(object sender, KeyEventArgs e)
@@ -837,7 +855,7 @@ namespace u_net
                         Control activeControl = this.ActiveControl;
                         if (activeControl is System.Windows.Forms.ComboBox)
                         {
-                            System.Windows.Forms.ComboBox activeComboBox = (System.Windows.Forms.ComboBox)activeControl;
+                            ComboBox activeComboBox = (ComboBox)activeControl;
                             activeComboBox.DroppedDown = true;
                         }
                     }
@@ -903,7 +921,7 @@ namespace u_net
         }
         private void 品名_TextChanged(object sender, EventArgs e)
         {
-            if (!FunctionClass.LimitText(this.ActiveControl, 48)) return;
+            if (!FunctionClass.LimitText((Control)sender, 48)) return;
 
             ChangedData(true);
         }
@@ -915,22 +933,28 @@ namespace u_net
 
         private void 商品分類コード_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (this.ActiveControl == null) return;
+            if (this.商品分類コード == null) return;
             if (this.商品分類コード.SelectedItem != null)
             {
                 分類内容.Text = (商品分類コード.SelectedItem as DataRowView)["分類内容"].ToString();
             }
         }
-
-
-        private void 商品コード_TextChanged(object sender, EventArgs e)
+        private void 商品コード_Validated(object sender, EventArgs e)
         {
-            //他フォームから渡されたときは this.ActiveControlが商品コントロールにならないので商品コードをコントロールとして渡す
-            if (!FunctionClass.LimitText(this.商品コード, 8)) return;
+            
+        }
+
+        private void 商品コード_SelectedIndexChanged(object sender, EventArgs e)
+        {//商品コードのコンボボックスのソースセット時には処理を行わない様にするため
+            if (setCombo) return;
+                        
+            if (!FunctionClass.LimitText((Control)sender, 8)) return;
             UpdatedControl();
         }
 
         //アクセスではコンボボックスの横のテキストボックスを修正する処理があったが、今回はvalueとdisplayが同じコンボボックスなので不要
-        //商品コードの更新処理のみ行う
+
         private void UpdatedControl()
         {
             //商品コードの更新後処理でレコードの値を表示する
@@ -940,6 +964,7 @@ namespace u_net
             {
                 CurrentCode = this.商品コード.Text;
                 string strSQL = "SELECT * FROM V商品ヘッダ WHERE 商品コード='" + CurrentCode + "'";
+                
                 Connect();
                 if (!VariableSet.SetTable2Form(this, strSQL, cn)) return;
 
@@ -959,11 +984,14 @@ namespace u_net
                 コマンド複写.Enabled = true;
                 コマンド削除.Enabled = true;
                 cn.Close();
+                ChangedData(false);
+                
             }
             catch (Exception ex)
             {
                 MessageBox.Show("正しく読み込みが出来ませんでした" + ex.Message);
                 cn.Close();
+                
             }
         }
 
@@ -1003,26 +1031,21 @@ namespace u_net
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            //this.M商品明細TableAdapter.Fill(this.uiDataSet.M商品明細);
-            this.M商品明細BindingSource.ResetBindings(false);
-            dataGridView1.Invalidate();
-            if (M商品明細BindingSource.DataSource != null)
-            {
-                MessageBox.Show("datasourceが設定されている");
-            }
-            else
-            {
-                // DataSourceが設定されていないか、間違っています。
-            }
-            //MessageBox.Show(数量単位コード.Text);
-            //MessageBox.Show((string)数量単位コード.SelectedValue);
-            //MessageBox.Show(商品コード.Text);
+            dataGridView1.CurrentCell = dataGridView1[7, 2];
+            // dataGridView1[6, 2].Selected = true;
+
+            BindingSource bindingSource = (BindingSource)dataGridView1.DataSource;
+            DataTable dataTable = ((DataView)bindingSource.List).Table;
+
+            dataTable.DefaultView.Sort = "明細番号";
+
+            bindingSource.ResetBindings(false);
 
         }
 
         private void 商品名_TextChanged(object sender, EventArgs e)
         {
-            if (!FunctionClass.LimitText(this.ActiveControl, 40)) return;
+            if (!FunctionClass.LimitText((Control)sender, 40)) return;
             ChangedData(true);
         }
 
@@ -1033,6 +1056,7 @@ namespace u_net
 
         private void シリーズコード_TextChanged(object sender, EventArgs e)
         {
+            if (this.ActiveControl==null) return;
             string enteredText = シリーズコード.Text;
             if (string.IsNullOrEmpty(enteredText)) return;
 
@@ -1045,7 +1069,7 @@ namespace u_net
                 シリーズコード.SelectedValue = DBNull.Value;
             }
 
-            if (!FunctionClass.LimitText(this.ActiveControl, 8)) return;
+            if (!FunctionClass.LimitText((Control)sender, 8)) return;
             ChangedData(true);
         }
 
@@ -1061,14 +1085,13 @@ namespace u_net
 
         private void 商品分類コード_TextChanged(object sender, EventArgs e)
         {
-            if (!FunctionClass.LimitText(this.ActiveControl, 2)) return;
+            if (!FunctionClass.LimitText((Control)sender, 2)) return;
             ChangedData(true);
         }
 
         private void 掛率有効_CheckedChanged(object sender, EventArgs e)
-        {
-            if (this.ActiveControl != null)
-                ChangedData(true);
+        {            
+            ChangedData(true);
         }
 
         private void 売上区分コード_Enter(object sender, EventArgs e)
@@ -1078,13 +1101,13 @@ namespace u_net
 
         private void FlowCategoryCode_TextChanged(object sender, EventArgs e)
         {
-            if (!FunctionClass.LimitText(this.ActiveControl, 3)) return;
+            if (!FunctionClass.LimitText((Control)sender, 3)) return;
             ChangedData(true);
         }
 
         private void 数量単位コード_TextChanged(object sender, EventArgs e)
         {
-            if (!FunctionClass.LimitText(this.ActiveControl, 2)) return;
+            if (!FunctionClass.LimitText((Control)sender, 2)) return;
             ChangedData(true);
         }
 
@@ -1095,7 +1118,7 @@ namespace u_net
 
         private void ClientName_TextChanged(object sender, EventArgs e)
         {
-            if (!FunctionClass.LimitText(this.ActiveControl, 200)) return;
+            if (!FunctionClass.LimitText((Control)sender, 200)) return;
             ChangedData(true);
         }
 
@@ -1105,14 +1128,13 @@ namespace u_net
         }
 
         private void Discontinued_CheckedChanged(object sender, EventArgs e)
-        {
-            if (this.ActiveControl != null)
-                ChangedData(true);
+        {            
+            ChangedData(true);
         }
 
         private void 備考_TextChanged(object sender, EventArgs e)
         {
-            if (!FunctionClass.LimitText(this.ActiveControl, 200)) return;
+            if (!FunctionClass.LimitText((Control)sender, 200)) return;
             ChangedData(true);
         }
 
@@ -1122,9 +1144,8 @@ namespace u_net
         }
 
         private void IsUnit_CheckedChanged(object sender, EventArgs e)
-        {
-            if (this.ActiveControl != null)
-                ChangedData(true);
+        {            
+            ChangedData(true);
         }
 
 
@@ -1156,19 +1177,19 @@ namespace u_net
             switch (columnName)
             {
                 case "型式名":
-                    if (!FunctionClass.LimitText(this.ActiveControl, 48)) return;
+                    if (!FunctionClass.LimitText((Control)sender, 48)) return;
                     ChangedData(true);
                     break;
                 case "定価":
-                    if (!FunctionClass.LimitText(this.ActiveControl, 10)) return;
+                    if (!FunctionClass.LimitText((Control)sender, 10)) return;
                     ChangedData(true);
                     break;
                 case "原価":
-                    if (!FunctionClass.LimitText(this.ActiveControl, 10)) return;
+                    if (!FunctionClass.LimitText((Control)sender, 10)) return;
                     ChangedData(true);
                     break;
                 case "機能":
-                    if (!FunctionClass.LimitText(this.ActiveControl, 50)) return;
+                    if (!FunctionClass.LimitText((Control)sender, 50)) return;
                     ChangedData(true);
                     break;
                 default:
@@ -1433,7 +1454,6 @@ namespace u_net
                     }
                 }
 
-
                 //DataGridViewに新しい行を挿入
                 DataRow newRow = dataTable.NewRow();
                 newRow["商品コード"] = this.商品コード.Text;
@@ -1451,8 +1471,6 @@ namespace u_net
 
                 bindingSource.EndEdit();
                 bindingSource.ResetBindings(false);
-
-
 
             }
             catch (Exception ex)
@@ -1486,13 +1504,9 @@ namespace u_net
             BindingSource bindingSource = (BindingSource)dataGridView1.DataSource;
             bindingSource.DataSource = dv;
             bindingSource.ResetBindings(false);
-        }
-
+        }       
     }
 }
-
-
-
 
 
 //public class DataGridViewEx : DataGridView

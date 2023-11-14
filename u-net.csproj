@@ -12,6 +12,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Form\F_商品 - コピー.cs" />
+    <Compile Remove="Form\F_商品 - コピー.designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="Form\F_商品 - コピー.resx" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="icon\unetc.ico" />
   </ItemGroup>
 
@@ -31,6 +40,18 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Form\F_仕入先管理.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Form\F_仕入先.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Form\F_仕入先管理_抽出.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Form\F_部品.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Form\F_メーカー管理.cs">
       <SubType>Form</SubType>
     </Compile>

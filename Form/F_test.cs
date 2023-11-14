@@ -95,10 +95,8 @@ namespace u_net
             SearchForm.FilterName = "顧客名フリガナ";
             if (SearchForm.ShowDialog() == DialogResult.OK)
             {
-                // 日付選択フォームから選択した日付を取得
                 string SelectedCode = SearchForm.SelectedCode;
 
-                // フォームAの日付コントロールに選択した日付を設定
                 顧客コード.Text = SelectedCode;
             }
         }

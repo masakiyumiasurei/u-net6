@@ -335,7 +335,6 @@ namespace u_net
             }
         }
 
-
         private bool sorting;
         private void dataGridView1_Sorted(object sender, EventArgs e)
         {
