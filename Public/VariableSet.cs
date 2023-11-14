@@ -135,13 +135,14 @@ namespace u_net.Public
 
                     for (int i = 0; i < reader.FieldCount; i++)
                     {
-                        string cname = reader.GetName(i);
-                        if (cname != columnName) continue;
+                        string getedName = reader.GetName(i);
 
+                        if (columnName != getedName) continue;
 
                         if (reader[columnName] != DBNull.Value)
                         {
                             SetControlValue(control, reader[columnName]);
+                            break;
                         }
                     }
                 }
