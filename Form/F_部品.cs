@@ -107,17 +107,17 @@ namespace u_net
             this.JampAis.DisplayMember = "Value";
             this.JampAis.ValueMember = "Key";
 
-            this.非含有証明書.DataSource = new KeyValuePair<int, String>[] {
-                new KeyValuePair<int, String>(1, "返却済み"),
-                new KeyValuePair<int, String>(2, "未返却"),
-                new KeyValuePair<int, String>(3, "未提出"),
+            this.非含有証明書.DataSource = new KeyValuePair<byte, String>[] {
+                new KeyValuePair<byte, String>(1, "返却済み"),
+                new KeyValuePair<byte, String>(2, "未返却"),
+                new KeyValuePair<byte, String>(3, "未提出"),
             };
             this.非含有証明書.DisplayMember = "Value";
             this.非含有証明書.ValueMember = "Key";
 
-            this.RoHS資料.DataSource = new KeyValuePair<int, String>[] {
-                new KeyValuePair<int, String>(2, "有り"),
-                new KeyValuePair<int, String>(1, "無し"),
+            this.RoHS資料.DataSource = new KeyValuePair<Int16, String>[] {
+                new KeyValuePair<Int16, String>(2, "有り"),
+                new KeyValuePair<Int16, String>(1, "無し"),
             };
             this.RoHS資料.DisplayMember = "Value";
             this.RoHS資料.ValueMember = "Key";
@@ -158,20 +158,14 @@ namespace u_net
             this.Rohs2ChemSherpaStatusCode.DisplayMember = "Value";
             this.Rohs2ChemSherpaStatusCode.ValueMember = "Key";
 
-            this.CalcInventoryCode.DataSource = new KeyValuePair<string, String>[] {
-                new KeyValuePair<string, String>("01", "する"),
-                new KeyValuePair<string, String>("02", "しない"),
-            };
+            this.CalcInventoryCode.DataSource = new KeyValuePair<string, string>[] {
+            new KeyValuePair<string, string>("01", "する"),
+            new KeyValuePair<string, string>("02", "しない"),
+};
             this.CalcInventoryCode.DisplayMember = "Value";
             this.CalcInventoryCode.ValueMember = "Key";
 
-            //this.受入検査ランク.DataSource = new String[] {
-            //    new String("A"),
-            //    new String("B1"),
-            //    new String("B2"),
-            //    new String("C"),
-            //    new String("D"),
-            //};
+            //this.受入検査ランク.DataSource = new string[] { "A", "B1", "B2", "C", "D" };
 
 
 
@@ -197,7 +191,7 @@ namespace u_net
                         UpdatedControl(部品コード);
                     }
                 }
-
+                非含有証明書.SelectedValue = 2;
                 // 成功時の処理
                 return;
             }
@@ -1258,6 +1252,13 @@ namespace u_net
                 //    {
                 //DataRow row = dataTable.Rows[0];
                 VariableSet.SetTable2Form(this, strSQL, cn);
+
+
+                if (!string.IsNullOrEmpty(this.無効日時.Text))
+                {
+                    this.削除.Text = "■";
+                }
+
                 return true;
                 //}
 
@@ -1508,36 +1509,49 @@ namespace u_net
                         fn.DoWait("読み込んでいます...");
 
 
-                        string query = "SELECT M部品.部品コード, ISNULL([V部品履歴_最終版数].最終版数, 0) + 1 AS 版数 " +
-    "FROM M部品 LEFT OUTER JOIN [V部品履歴_最終版数] " +
-    "ON M部品.部品コード = [V部品履歴_最終版数].部品コード " +
-    "WHERE M部品.部品コード BETWEEN '@StartCode' AND '@EndCode' " +
-    "ORDER BY M部品.部品コード DESC";
+                        //                    string query = "SELECT M部品.部品コード, ISNULL([V部品履歴_最終版数].最終版数, 0) + 1 AS 版数 " +
+                        //"FROM M部品 LEFT OUTER JOIN [V部品履歴_最終版数] " +
+                        //"ON M部品.部品コード = [V部品履歴_最終版数].部品コード " +
+                        //"WHERE M部品.部品コード BETWEEN '@StartCode' AND '@EndCode' " +
+                        //"ORDER BY M部品.部品コード DESC";
+
+                        //                    using (SqlCommand command = new SqlCommand(query, cn))
+                        //                    {
+                        //                        int parsedCode = int.Parse(部品コード.Text);
+                        //                        command.Parameters.AddWithValue("@StartCode", parsedCode - 10);
+                        //                        command.Parameters.AddWithValue("@EndCode", parsedCode + 10);
+
+                        //                        SqlDataAdapter adapter = new SqlDataAdapter(command);
+                        //                        DataTable dataTable = new DataTable();
+
+                        //                        adapter.Fill(dataTable);
+
+                        //                        // 部品コードのソースにDataTableを設定
+                        //                        部品コード.DataSource = dataTable;
+                        //                        部品コード.DisplayMember = "Value";
+                        //                        部品コード.ValueMember = "Key";
+
+                        //                        //版数.Text = 部品コード.V
+                        //                    }
+
+                        string query = "select max(版数) as 最終版数 from M部品履歴 where 部品コード='" + 部品コード.Text + "' group by 部品コード";
 
                         using (SqlCommand command = new SqlCommand(query, cn))
                         {
-                            int parsedCode = int.Parse(部品コード.Text);
-                            command.Parameters.AddWithValue("@StartCode", parsedCode - 10);
-                            command.Parameters.AddWithValue("@EndCode", parsedCode + 10);
-
                             SqlDataAdapter adapter = new SqlDataAdapter(command);
                             DataTable dataTable = new DataTable();
-
                             adapter.Fill(dataTable);
-
-                            // 部品コードのソースにDataTableを設定
-                            部品コード.DataSource = dataTable;
-                            部品コード.DisplayMember = "部品コード";
-                            部品コード.ValueMember = "版数";
-
-                            //版数.Text = 部品コード.V
+                            if (dataTable.Rows.Count > 0)
+                            {
+                                版数.Text = dataTable.Rows[0]["最終版数"].ToString();
+                            }
                         }
 
-                        版数.Text = 部品コード.Text;
+                        
                         // 内容の表示
-                        LoadData(this, CurrentCode);
+                        LoadData(this, 部品コード.Text);
                         // 使用先の表示
-                        DispGrid(CurrentCode);
+                        DispGrid(部品コード.Text);
                         // 動作制御
                         改版ボタン.Enabled = true;
                         // コマンド複写.Enabled = true;
@@ -2431,6 +2445,7 @@ namespace u_net
                         if (strCode != comboBox.Text)
                         {
                             comboBox.Text = strCode;
+                            部品コード_Validated(sender, e);
                         }
                     }
                 }
