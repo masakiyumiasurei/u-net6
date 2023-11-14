@@ -164,7 +164,7 @@ namespace u_net
             try
             {
                 result = Filtering();
-                //   DrawGrid();
+                
                 if (result >= 0)
                 {
                     this.表示件数.Text = result.ToString();
@@ -241,22 +241,24 @@ namespace u_net
 
                 //// DataGridViewの設定
                 dataGridView1.Columns[0].DefaultCellStyle.BackColor = Color.FromArgb(255, 255, 200); // 薄い黄色
-                                                                                                     // dataGridView1.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+             // dataGridView1.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
 
-                // 列の幅を設定 もとは恐らくtwipのためピクセルに直す                           
+                // 列の幅を設定 もとは恐らくtwipのためピクセルに直す
+                
+                dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+                dataGridView1.ColumnHeadersHeight = 25;
 
                 //0列目はaccessでは行ヘッダのため、ずらす
-
                 dataGridView1.Columns[0].Width = 1100 / twipperdot; //1150
-                dataGridView1.Columns[1].Width = 300 / twipperdot;
+                dataGridView1.Columns[1].Width = 310 / twipperdot;
                 dataGridView1.Columns[2].Width = 5000 / twipperdot;
-                dataGridView1.Columns[3].Width = 0 / twipperdot;
+                dataGridView1.Columns[3].Visible = false;
                 dataGridView1.Columns[4].Width = 2000 / twipperdot;
                 dataGridView1.Columns[5].Width = 1500 / twipperdot;
                 dataGridView1.Columns[6].Width = 1500 / twipperdot;
                 dataGridView1.Columns[7].Width = 2200 / twipperdot;//1300
                 dataGridView1.Columns[8].Width = 1500 / twipperdot;
-                dataGridView1.Columns[9].Width = 300 / twipperdot;
+                dataGridView1.Columns[9].Width = 310 / twipperdot;
 
                 return dataGridView1.RowCount;
             }
@@ -407,8 +409,7 @@ namespace u_net
 
         private void コマンド検索_Click(object sender, EventArgs e)
         {
-            F_検索コード form = new F_検索コード(this, null);
-            form.ShowDialog();
+            MessageBox.Show("現在開発中です。\n コードで検索するときに使用します。", "検索コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void コマンド仕入先_Click(object sender, EventArgs e)

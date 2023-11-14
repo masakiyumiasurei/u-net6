@@ -141,6 +141,16 @@ namespace u_net
             this.CloseDay.DisplayMember = "Value";
             this.CloseDay.ValueMember = "Key";
 
+            this.評価ランク.DataSource = new KeyValuePair<String, String>[] {
+                new KeyValuePair<String, String>("A ", "A "),
+                new KeyValuePair<String, String>("B1", "B1"),
+                new KeyValuePair<String, String>("B2", "B2"),
+                new KeyValuePair<String, String>("B3", "B3"),
+                new KeyValuePair<String, String>("C ", "C "),
+            };
+            this.評価ランク.DisplayMember = "Value";
+            this.評価ランク.ValueMember = "Key";
+
             this.振込先金融機関分類コード.DataSource = new KeyValuePair<int, String>[] {
                 new KeyValuePair<int, String>(1, "銀行"),
                 new KeyValuePair<int, String>(2, "信用金庫"),
@@ -211,7 +221,7 @@ namespace u_net
                         UpdatedControl(this.仕入先コード);
                     }
                 }
-
+                //this.評価ランク.SelectedValue = "B1";
                 // 成功時の処理
                 return;
             }
@@ -586,7 +596,7 @@ namespace u_net
         private bool ErrCheck()
         {
             //入力確認    
-            if (振込手数料負担コード.SelectedValue.ToString() == "3" && 振込手数料負担コード.SelectedValue != null)
+            if (振込手数料負担コード.SelectedValue != null && 振込手数料負担コード.SelectedValue.ToString() == "3" )
             {
                 if (!FunctionClass.IsError(this.振込手数料上限金額)) return false;
             }
@@ -678,8 +688,7 @@ namespace u_net
                 return false;
             }
         }
-
-        private void データ複写ボタン_Click()
+        private void データ複写ボタン_Click(object sender, EventArgs e)
         {
             try
             {
@@ -718,11 +727,6 @@ namespace u_net
 
                 DialogResult intRes;
 
-
-                if (ActiveControl == コマンド削除)
-                {
-                    GetNextControl(コマンド削除, false).Focus();
-                }
 
                 if (IsDeleted)
                 {
@@ -886,7 +890,7 @@ namespace u_net
             }
             catch (Exception ex)
             {
-                // エラーハンドリングを実装
+                cmd.Transaction.Rollback();
                 return true;
             }
         }
@@ -1165,7 +1169,7 @@ namespace u_net
 
         private void ウェブアドレス_TextChanged(object sender, EventArgs e)
         {
-            if(!FunctionClass.LimitText(this.ActiveControl, 100)) return;
+            if (!FunctionClass.LimitText(this.ActiveControl, 100)) return;
             ChangedData(true);
         }
 
@@ -1199,28 +1203,28 @@ namespace u_net
         private void 仕入先名_TextChanged(object sender, EventArgs e)
         {
             if (!FunctionClass.LimitText(this.ActiveControl, 40)) return;
-            
+
             ChangedData(true);
         }
 
 
         private void 仕入先名フリガナ_TextChanged(object sender, EventArgs e)
         {
-            if(!FunctionClass.LimitText(this.ActiveControl, 100)) return;
+            if (!FunctionClass.LimitText(this.ActiveControl, 100)) return;
             ChangedData(true);
         }
-               
+
 
         private void 住所1_TextChanged(object sender, EventArgs e)
         {
-            if(!FunctionClass.LimitText(this.ActiveControl, 50)) return;
+            if (!FunctionClass.LimitText(this.ActiveControl, 50)) return;
             ChangedData(true);
         }
 
 
         private void 住所2_TextChanged(object sender, EventArgs e)
         {
-            if(!FunctionClass.LimitText(this.ActiveControl, 50)) return;
+            if (!FunctionClass.LimitText(this.ActiveControl, 50)) return;
             ChangedData(true);
         }
 
@@ -1228,7 +1232,7 @@ namespace u_net
         private void 担当者メールアドレス_TextChanged(object sender, EventArgs e)
         {
             //FunctionClass.LimitText(this.ActiveControl, 100);
-            if (this.ActiveControl!=null) return;
+            if (this.ActiveControl != null) return;
             ChangedData(true);
         }
 
@@ -1240,7 +1244,7 @@ namespace u_net
 
         private void 担当者名_TextChanged(object sender, EventArgs e)
         {
-           if( !FunctionClass.LimitText(this.ActiveControl, 20)) return;
+            if (!FunctionClass.LimitText(this.ActiveControl, 20)) return;
             ChangedData(true);
         }
 
@@ -1254,7 +1258,7 @@ namespace u_net
 
         private void 電話番号1_TextChanged(object sender, EventArgs e)
         {
-            if(!FunctionClass.LimitText(this.ActiveControl, 4)) return;
+            if (!FunctionClass.LimitText(this.ActiveControl, 4)) return;
             ChangedData(true);
         }
 
@@ -1267,7 +1271,7 @@ namespace u_net
 
         private void 電話番号2_TextChanged(object sender, EventArgs e)
         {
-            if(!FunctionClass.LimitText(this.ActiveControl, 4)) return;
+            if (!FunctionClass.LimitText(this.ActiveControl, 4)) return;
             ChangedData(true);
         }
 
@@ -1281,7 +1285,7 @@ namespace u_net
 
         private void 電話番号3_TextChanged(object sender, EventArgs e)
         {
-            if(!FunctionClass.LimitText(this.ActiveControl, 4)) return;
+            if (!FunctionClass.LimitText(this.ActiveControl, 4)) return;
             ChangedData(true);
         }
 
@@ -1293,7 +1297,7 @@ namespace u_net
 
         private void FAX番号1_TextChanged(object sender, EventArgs e)
         {
-            if(!FunctionClass.LimitText(this.ActiveControl, 4)) return;
+            if (!FunctionClass.LimitText(this.ActiveControl, 4)) return;
             ChangedData(true);
         }
 
@@ -1306,7 +1310,7 @@ namespace u_net
 
         private void FAX番号2_TextChanged(object sender, EventArgs e)
         {
-            if(!FunctionClass.LimitText(this.ActiveControl, 4)) return;
+            if (!FunctionClass.LimitText(this.ActiveControl, 4)) return;
             ChangedData(true);
         }
 
@@ -1320,13 +1324,13 @@ namespace u_net
 
         private void FAX番号3_TextChanged(object sender, EventArgs e)
         {
-            if(!FunctionClass.LimitText(this.ActiveControl, 4)) return;
+            if (!FunctionClass.LimitText(this.ActiveControl, 4)) return;
             ChangedData(true);
         }
 
         private void 備考_TextChanged(object sender, EventArgs e)
         {
-            if(!FunctionClass.LimitText(this.ActiveControl, 4000)) return;
+            if (!FunctionClass.LimitText(this.ActiveControl, 4000)) return;
             ChangedData(true);
         }
 
@@ -1334,7 +1338,7 @@ namespace u_net
         private void 郵便番号_TextChanged(object sender, EventArgs e)
         {
             if (!FunctionClass.LimitText(this.ActiveControl, 7))
-                return ;
+                return;
             ChangedData(true);
         }
 
@@ -1472,7 +1476,7 @@ namespace u_net
 
         private void 窓口郵便番号_TextChanged(object sender, EventArgs e)
         {
-            if(!FunctionClass.LimitText(this.ActiveControl, 7)) return;
+            if (!FunctionClass.LimitText(this.ActiveControl, 7)) return;
             ChangedData(true);
         }
 
@@ -1499,7 +1503,7 @@ namespace u_net
 
         private void 窓口住所1_TextChanged(object sender, EventArgs e)
         {
-            if(!FunctionClass.LimitText(this.ActiveControl, 50)) return;
+            if (!FunctionClass.LimitText(this.ActiveControl, 50)) return;
             ChangedData(true);
         }
 
@@ -1713,7 +1717,7 @@ namespace u_net
         {
             UpdatedControl((Control)sender);
             if (this.ActiveControl == null) return;
-            ChangedData(true);            
+            ChangedData(true);
         }
 
         private void 振込手数料上限金額_Enter(object sender, EventArgs e)
@@ -1723,6 +1727,12 @@ namespace u_net
 
         private void 振込手数料上限金額_TextChanged(object sender, EventArgs e)
         {
+            //少数以下を非表示
+            if (decimal.TryParse(振込手数料上限金額.Text, out decimal value))
+            {
+                振込手数料上限金額.Text = value.ToString("N0");
+            }
+
             if (this.ActiveControl == null) return;
             ChangedData(true);
         }
@@ -1786,6 +1796,8 @@ namespace u_net
             if (this.ActiveControl == null) return;
             ChangedData(true);
         }
+
+
     }
 
 
