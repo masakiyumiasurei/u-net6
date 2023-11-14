@@ -165,13 +165,13 @@ namespace u_net
             this.CalcInventoryCode.DisplayMember = "Value";
             this.CalcInventoryCode.ValueMember = "Key";
 
-            this.受入検査ランク.DataSource = new String[] {
-                new String("A"),
-                new String("B1"),
-                new String("B2"),
-                new String("C"),
-                new String("D"),
-            };
+            //this.受入検査ランク.DataSource = new String[] {
+            //    new String("A"),
+            //    new String("B1"),
+            //    new String("B2"),
+            //    new String("C"),
+            //    new String("D"),
+            //};
 
 
 
@@ -194,6 +194,7 @@ namespace u_net
                     if (!string.IsNullOrEmpty(args))
                     {
                         this.部品コード.Text = args;
+                        UpdatedControl(部品コード);
                     }
                 }
 
@@ -564,9 +565,12 @@ namespace u_net
                 コマンド履歴.Enabled = false;
                 コマンド登録.Enabled = false;
 
+                
+
             }
             finally
             {
+                ChangedData(false);
                 this.DoubleBuffered = false;
                 Cursor.Current = Cursors.Default;
             }
@@ -1541,6 +1545,8 @@ namespace u_net
                         コマンド入出庫.Enabled = true;
                         コマンド履歴.Enabled = !(CurrentEdition <= 1);
 
+                        ChangedData(false);
+
                         fn.WaitForm.Close();
                         break;
                     case "仕入先1コード":
@@ -1860,7 +1866,7 @@ namespace u_net
 
         private void ShelfNumber_TextChanged(object sender, EventArgs e)
         {
-            FunctionClass.LimitText(ActiveControl, 10);
+            FunctionClass.LimitText(sender as Control, 10);
             ChangedData(true);
         }
 
@@ -1886,7 +1892,7 @@ namespace u_net
 
         private void メーカーコード_TextChanged(object sender, EventArgs e)
         {
-            FunctionClass.LimitText(ActiveControl, 8);
+            FunctionClass.LimitText(sender as Control, 8);
             ChangedData(true);
         }
 
@@ -1936,7 +1942,7 @@ namespace u_net
 
         private void 型番_TextChanged(object sender, EventArgs e)
         {
-            FunctionClass.LimitText(ActiveControl, 50);
+            FunctionClass.LimitText(sender as Control, 50);
             ChangedData(true);
         }
 
@@ -1998,7 +2004,7 @@ namespace u_net
 
         private void 仕入先1コード_TextChanged(object sender, EventArgs e)
         {
-            FunctionClass.LimitText(ActiveControl, 8);
+            FunctionClass.LimitText(sender as Control, 8);
             ChangedData(true);
         }
 
@@ -2059,7 +2065,7 @@ namespace u_net
 
         private void 仕入先2コード_TextChanged(object sender, EventArgs e)
         {
-            FunctionClass.LimitText(ActiveControl, 8);
+            FunctionClass.LimitText(sender as Control, 8);
             ChangedData(true);
         }
 
@@ -2119,7 +2125,7 @@ namespace u_net
 
         private void 仕入先3コード_TextChanged(object sender, EventArgs e)
         {
-            FunctionClass.LimitText(ActiveControl, 8);
+            FunctionClass.LimitText(sender as Control, 8);
             ChangedData(true);
         }
 
@@ -2381,7 +2387,7 @@ namespace u_net
 
         private void 備考_TextChanged(object sender, EventArgs e)
         {
-            FunctionClass.LimitText(ActiveControl, 4000);
+            FunctionClass.LimitText(sender as Control, 4000);
             ChangedData(true);
         }
 
@@ -2392,7 +2398,7 @@ namespace u_net
 
         private void 品名_TextChanged(object sender, EventArgs e)
         {
-            FunctionClass.LimitText(ActiveControl, 50);
+            FunctionClass.LimitText(sender as Control, 50);
             ChangedData(true);
         }
 
@@ -2408,7 +2414,7 @@ namespace u_net
 
         private void 部品コード_SelectedIndexChanged(object sender, EventArgs e)
         {
-            FunctionClass.LimitText(ActiveControl, 8);
+            FunctionClass.LimitText(sender as Control, 8);
         }
 
         private void 部品コード_KeyDown(object sender, KeyEventArgs e)
