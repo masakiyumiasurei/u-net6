@@ -1119,10 +1119,8 @@ namespace u_net
             代表者名.Name = "代表者名";
             代表者名.Size = new Size(139, 20);
             代表者名.TabIndex = 7;
-            //代表者名.TextChanged += 仕入先省略名_TextChanged;
             代表者名.Enter += 仕入先省略名_Enter;
             代表者名.Leave += 仕入先省略名_Leave;
-            //代表者名.Validated += 仕入先省略名_Validated;
             // 
             // 郵便番号
             // 
@@ -1430,7 +1428,6 @@ namespace u_net
             // 
             // データ複写ボタン
             // 
-            データ複写ボタン.Enabled = false;
             データ複写ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             データ複写ボタン.ImageAlign = ContentAlignment.BottomLeft;
             データ複写ボタン.Location = new Point(569, 311);
@@ -1441,6 +1438,7 @@ namespace u_net
             データ複写ボタン.TabStop = false;
             データ複写ボタン.Text = "左記情報を窓口情報へ複写する(&T)";
             データ複写ボタン.UseVisualStyleBackColor = true;
+            データ複写ボタン.Click += データ複写ボタン_Click;
             // 
             // label23
             // 
@@ -1465,7 +1463,6 @@ namespace u_net
             評価ランク.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             評価ランク.FormattingEnabled = true;
             評価ランク.ImeMode = ImeMode.Disable;
-            評価ランク.Items.AddRange(new object[] { "A", "B1", "B2", "B3", "C" });
             評価ランク.Location = new Point(138, 295);
             評価ランク.Margin = new Padding(4, 3, 4, 3);
             評価ランク.Name = "評価ランク";
