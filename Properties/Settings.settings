@@ -5,10 +5,10 @@
     <Setting Name="uidbConnectionString" Type="(Connection string)" Scope="Application">
       <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
 &lt;SerializableConnectionString xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
-  &lt;ConnectionString&gt;Data Source=128.20.70.215\MSSQLSERVER,1435;Initial Catalog=uidb;User ID=sa;Password=Hbm-0855;TrustServerCertificate=True&lt;/ConnectionString&gt;
+  &lt;ConnectionString&gt;Data Source=CLYU\HBM;Initial Catalog=uidb;User ID=test;Password=test;TrustServerCertificate=True&lt;/ConnectionString&gt;
   &lt;ProviderName&gt;Microsoft.Data.SqlClient&lt;/ProviderName&gt;
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
-      <Value Profile="(Default)">Data Source=128.20.70.215\MSSQLSERVER,1435;Initial Catalog=uidb;User ID=sa;Password=Hbm-0855;TrustServerCertificate=True</Value>
+      <Value Profile="(Default)">Data Source=CLYU\HBM;Initial Catalog=uidb;User ID=test;Password=test;TrustServerCertificate=True</Value>
     </Setting>
   </Settings>
 </SettingsFile>

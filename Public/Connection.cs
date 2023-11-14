@@ -14,12 +14,12 @@ namespace u_net
         private string _Password;
         public Connection() {
              
-            _ServerName = @"128.20.70.215\\MSSQLSERVER,1435";
+            _ServerName = @"CLYU\HBM";
 
             //本番ではprimary_が付く
             _DBName = "uidb";
-            _Login = "sa";
-            _Password = "Hbm-0855";
+            _Login = "test";
+            _Password = "test";
 
         }
 
