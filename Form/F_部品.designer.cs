@@ -1044,6 +1044,7 @@ namespace u_net
             this.改版ボタン.TabStop = false;
             this.改版ボタン.Text = "改版(&V)";
             this.改版ボタン.UseVisualStyleBackColor = true;
+            this.改版ボタン.Click += new System.EventHandler(this.改版ボタン_Click);
             // 
             // 資料ボタン
             // 

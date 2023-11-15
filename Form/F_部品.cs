@@ -755,7 +755,62 @@ namespace u_net
             MessageBox.Show("現在開発中です。", "確定コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
+     
 
+        private void 改版ボタン_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (this.ActiveControl == this.改版ボタン)
+                {
+                    GetNextControl(改版ボタン, false).Focus();
+                }
+
+
+                MessageBox.Show("部品の改版機能は未完成です。\n履歴に登録される情報は完全ではありません。", "改版", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
+                if (MessageBox.Show("改版しますか？\n\n・旧版データは履歴コマンドから参照できます。\n・最新版の部品データが有効になります。\n・この操作を元に戻すことはできません。",
+                                    "改版", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                {
+                    return;
+                }
+
+
+                FunctionClass fn = new FunctionClass();
+                fn.DoWait("改版しています...");
+
+                CommonConnect();
+
+                if (SaveData())
+                {
+                    if (AddHistory(cn, this.CurrentCode, this.CurrentEdition))
+                    {
+                        //this.部品コード.Requery;
+                        // ■ なぜかRequeryしてもColumn(1)がNULLとなるので、版数を+1する
+                        this.版数.Text = (Convert.ToInt32(this.CurrentEdition) + 1).ToString();
+                        this.コマンド履歴.Enabled = true;
+
+                        fn.WaitForm.Close();
+                    }
+                    else
+                    {
+                        fn.WaitForm.Close();
+                        MessageBox.Show("改版できませんでした。", "改版", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
+                }
+                else
+                {
+                    fn.WaitForm.Close();
+                    MessageBox.Show("改版できませんでした。", "改版", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.Print(this.Name + "_改版ボタン_Click - " + ex.Message);
+                MessageBox.Show("エラーが発生しました。", BASE_CAPTION, MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
+        }
         private void コマンドメーカー_Click(object sender, EventArgs e)
         {
             try
@@ -854,7 +909,6 @@ namespace u_net
         {
             try
             {
-                connection.Open(); // 接続を開く
                 using (SqlCommand cmd = new SqlCommand("SP部品履歴追加", connection))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
@@ -1078,10 +1132,10 @@ namespace u_net
                     }
                     else
                     {
-                        //F_仕入先 targetform = new F_仕入先();
+                        F_仕入先 targetform = new F_仕入先();
 
-                        //targetform.args = code;
-                        //targetform.ShowDialog();
+                        targetform.args = code;
+                        targetform.ShowDialog();
                     }
                 }
                 else if (selected_frame == 2)
@@ -1094,10 +1148,10 @@ namespace u_net
                     }
                     else
                     {
-                        //F_仕入先 targetform = new F_仕入先();
+                        F_仕入先 targetform = new F_仕入先();
 
-                        //targetform.args = code;
-                        //targetform.ShowDialog();
+                        targetform.args = code;
+                        targetform.ShowDialog();
                     }
                 }
                 else if (selected_frame == 3)
@@ -1110,10 +1164,10 @@ namespace u_net
                     }
                     else
                     {
-                        //F_仕入先 targetform = new F_仕入先();
+                        F_仕入先 targetform = new F_仕入先();
 
-                        //targetform.args = code;
-                        //targetform.ShowDialog();
+                        targetform.args = code;
+                        targetform.ShowDialog();
                     }
                 }
                 else
@@ -2071,7 +2125,7 @@ namespace u_net
 
         private void 仕入先2コード_Enter(object sender, EventArgs e)
         {
-            selected_frame = 1;
+            selected_frame = 2;
             toolStripStatusLabel2.Text = "■仕入先コードを入力します。　■8文字まで入力可。　■[space]キーで検索ウィンドウを開きます。";
         }
 
@@ -2131,7 +2185,7 @@ namespace u_net
 
         private void 仕入先3コード_Enter(object sender, EventArgs e)
         {
-            selected_frame = 1;
+            selected_frame = 3;
             toolStripStatusLabel2.Text = "■仕入先コードを入力します。　■8文字まで入力可。　■[space]キーで検索ウィンドウを開きます。";
         }
 
@@ -2706,9 +2760,6 @@ namespace u_net
             toolStripStatusLabel2.Text = "各種項目の説明";
         }
 
-        private void 改版ボタン_Click(object sender, EventArgs e)
-        {
-
-        }
+        
     }
 }
