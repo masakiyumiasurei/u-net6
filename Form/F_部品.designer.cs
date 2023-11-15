@@ -1354,6 +1354,7 @@ namespace u_net
             // 
             this.分類コード.BackColor = System.Drawing.Color.White;
             this.分類コード.DisplayMember = "分類コード";
+            this.分類コード.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.分類コード.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.分類コード.FormattingEnabled = true;
             this.分類コード.ImeMode = System.Windows.Forms.ImeMode.Off;
@@ -1362,6 +1363,7 @@ namespace u_net
             this.分類コード.Size = new System.Drawing.Size(139, 21);
             this.分類コード.TabIndex = 27;
             this.分類コード.ValueMember = "分類コード";
+            this.分類コード.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.分類コード_DrawItem);
             this.分類コード.SelectedIndexChanged += new System.EventHandler(this.分類コード_SelectedIndexChanged);
             this.分類コード.Enter += new System.EventHandler(this.分類コード_Enter);
             this.分類コード.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.分類コード_KeyPress);

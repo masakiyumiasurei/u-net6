@@ -95,7 +95,7 @@ namespace u_net
             部品使用先.DefaultCellStyle.ForeColor = Color.Black;
 
             OriginalClass ofn = new OriginalClass();
-            ofn.SetComboBox(分類コード, "SELECT 対象部品名 as Display,分類コード as Value FROM M部品分類");
+            ofn.SetComboBox(分類コード, "SELECT 分類記号 as Display,対象部品名 as Display2,分類コード as Value FROM M部品分類");
             ofn.SetComboBox(形状分類コード, "SELECT 部品形状名 as Display,部品形状コード as Value FROM M部品形状");
             ofn.SetComboBox(RohsStatusCode, "SELECT Name as Display,Code as Value FROM rohsStatusCode");
 
@@ -165,7 +165,17 @@ namespace u_net
             this.CalcInventoryCode.DisplayMember = "Value";
             this.CalcInventoryCode.ValueMember = "Key";
 
-            //this.受入検査ランク.DataSource = new string[] { "A", "B1", "B2", "C", "D" };
+
+            this.受入検査ランク.DataSource = new KeyValuePair<string, string>[] {
+            new KeyValuePair<string, string>("A         ", "A         "),
+            new KeyValuePair<string, string>("B1        ", "B1        "),
+            new KeyValuePair<string, string>("B2        ", "B2        "),
+            new KeyValuePair<string, string>("C         ", "C         "),
+            new KeyValuePair<string, string>("D         ", "D         "),
+};
+            this.受入検査ランク.DisplayMember = "Value";
+            this.受入検査ランク.ValueMember = "Key";
+
 
 
 
@@ -616,26 +626,30 @@ namespace u_net
         {
             if (this.Rohs2ProvisionalRegisteredStatusCode.Checked)
             {
-                this.RohsStatusCode.SelectedIndex = 5;
+                this.RohsStatusCode.SelectedValue = 5;
                 // this.RohsStatusName = "仮RoHS2";
             }
             else
             {
-                if (this.Rohs2ChemSherpaStatusCode.SelectedIndex == 2 || this.Rohs2JampAisStatusCode.SelectedIndex == 2 ||
-                    this.Rohs2NonInclusionCertificationStatusCode.SelectedIndex == 1 || this.Rohs2DocumentStatusCode.SelectedIndex == 2)
+                if ((Rohs2ChemSherpaStatusCode.SelectedValue != null && (int)Rohs2ChemSherpaStatusCode.SelectedValue == 2) ||
+    (Rohs2JampAisStatusCode.SelectedValue != null && (int)Rohs2JampAisStatusCode.SelectedValue == 2) ||
+    (Rohs2NonInclusionCertificationStatusCode.SelectedValue != null && (int)Rohs2NonInclusionCertificationStatusCode.SelectedValue == 1) ||
+    (Rohs2DocumentStatusCode.SelectedValue != null && (int)Rohs2DocumentStatusCode.SelectedValue == 2))
                 {
-                    this.RohsStatusCode.SelectedIndex = 2;
+                    this.RohsStatusCode.SelectedValue = 2;
                     // this.RohsStatusName = "RoHS2";
                 }
-                else if (this.Rohs1ChemSherpaStatusCode.SelectedIndex == 2 || this.JampAis.SelectedIndex == 2 ||
-                    this.非含有証明書.SelectedIndex == 1 || this.RoHS資料.SelectedIndex == 2)
+                else if ((Rohs1ChemSherpaStatusCode.SelectedValue != null && (int)Rohs1ChemSherpaStatusCode.SelectedValue == 2) ||
+         (JampAis.SelectedValue != null && (int)JampAis.SelectedValue == 2) ||
+         (非含有証明書.SelectedValue != null && (int)非含有証明書.SelectedValue == 1) ||
+         (RoHS資料.SelectedValue != null && (int)RoHS資料.SelectedValue == 2))
                 {
-                    this.RohsStatusCode.SelectedIndex = 6;
+                    this.RohsStatusCode.SelectedValue = 6;
                     // this.RohsStatusName = "RoHS2非対応";
                 }
                 else
                 {
-                    this.RohsStatusCode.SelectedIndex = 3;
+                    this.RohsStatusCode.SelectedValue = 3;
                     // this.RohsStatusName = "RoHS1非対応";
                 }
             }
@@ -2453,10 +2467,7 @@ namespace u_net
         }
 
         
-        private void 分類コード_Validated(object sender, EventArgs e)
-        {
-            ChangedData(true);
-        }
+        
 
         private void 分類コード_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
@@ -2481,8 +2492,18 @@ namespace u_net
             }
         }
 
+        private void 分類コード_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            OriginalClass.SetComboBoxAppearance((ComboBox)sender, e, new int[] { 50, 500 }, new string[] { "Display", "Display2" });
+            分類コード.Invalidate();
+        }
 
-      
+        private void 分類コード_Validated(object sender, EventArgs e)
+        {
+            GroupName.Text = ((DataRowView)分類コード.SelectedItem).Row.Field<String>("Display2").ToString();
+
+        }
+
         private void 部品コード_Enter(object sender, EventArgs e)
         {
             toolStripStatusLabel2.Text = "■読み込む部品データの部品コードを入力します。";
@@ -2712,6 +2733,6 @@ namespace u_net
             toolStripStatusLabel2.Text = "各種項目の説明";
         }
 
-      
+        
     }
 }
