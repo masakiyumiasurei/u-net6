@@ -96,6 +96,7 @@ namespace u_net
 
             OriginalClass ofn = new OriginalClass();
             ofn.SetComboBox(分類コード, "SELECT 分類記号 as Display,対象部品名 as Display2,分類コード as Value FROM M部品分類");
+            分類コード.DrawMode = DrawMode.OwnerDrawFixed;
             ofn.SetComboBox(形状分類コード, "SELECT 部品形状名 as Display,部品形状コード as Value FROM M部品形状");
             ofn.SetComboBox(RohsStatusCode, "SELECT Name as Display,Code as Value FROM rohsStatusCode");
 
@@ -2496,6 +2497,7 @@ namespace u_net
         {
             OriginalClass.SetComboBoxAppearance((ComboBox)sender, e, new int[] { 50, 500 }, new string[] { "Display", "Display2" });
             分類コード.Invalidate();
+            分類コード.DroppedDown = true;
         }
 
         private void 分類コード_Validated(object sender, EventArgs e)
