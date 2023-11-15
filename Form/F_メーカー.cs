@@ -29,6 +29,7 @@ namespace u_net
         private SqlTransaction tx;
         public string args = "";
         private string BASE_CAPTION = "メーカー";
+      
 
         
 
@@ -173,7 +174,7 @@ namespace u_net
             try
             {
 
-                if (ActiveControl == null) return;
+                
 
                 if (isChanged)
                 {
@@ -1060,6 +1061,7 @@ namespace u_net
                 {
                     case "メーカーコード":
                         LoadData(this.CurrentCode);
+                        ChangedData(false);
                         break;
                 }
             }
@@ -1172,7 +1174,6 @@ namespace u_net
 
         private void ウェブアドレス_TextChanged(object sender, EventArgs e)
         {
-            if (ActiveControl == null) return;
             FunctionClass.LimitText(((TextBox)sender), 100);
             ChangedData(true);
         }
@@ -1213,7 +1214,7 @@ namespace u_net
 
         private void メーカー省略名_TextChanged(object sender, EventArgs e)
         {
-            if (ActiveControl == null) return;
+
             FunctionClass.LimitText(((TextBox)sender), 10);
             ChangedData(true);
         }
@@ -1228,8 +1229,8 @@ namespace u_net
 
         private void メーカー名_TextChanged(object sender, EventArgs e)
         {
-            if (ActiveControl == null)
-                return;
+ 
+        
             FunctionClass.LimitText(((TextBox)sender), 60);
             ChangedData(true);
         }
@@ -1244,8 +1245,7 @@ namespace u_net
 
         private void メーカー名フリガナ_TextChanged(object sender, EventArgs e)
         {
-            if (ActiveControl == null)
-                return;
+   
             FunctionClass.LimitText(((TextBox)sender), 120);
             ChangedData(true);
         }
@@ -1260,8 +1260,7 @@ namespace u_net
 
         private void 仕入先1_TextChanged(object sender, EventArgs e)
         {
-            if (ActiveControl == null)
-                return;
+  
             FunctionClass.LimitText(((TextBox)sender), 60);
             ChangedData(true);
         }
@@ -1275,8 +1274,7 @@ namespace u_net
 
         private void 仕入先2_TextChanged(object sender, EventArgs e)
         {   
-            if (ActiveControl == null)
-                return;
+
             FunctionClass.LimitText(((TextBox)sender), 60);
             ChangedData(true);
         }
@@ -1290,8 +1288,7 @@ namespace u_net
 
         private void 仕入先3_TextChanged(object sender, EventArgs e)
         {   
-            if (ActiveControl == null)
-                return;
+
             FunctionClass.LimitText(((TextBox)sender), 60);
             ChangedData(true);
         }
@@ -1306,7 +1303,7 @@ namespace u_net
 
         private void 住所1_TextChanged(object sender, EventArgs e)
         {
-            if (ActiveControl == null) return;
+
             FunctionClass.LimitText(((TextBox)sender), 50);
             ChangedData(true);
         }
@@ -1320,7 +1317,7 @@ namespace u_net
 
         private void 住所2_TextChanged(object sender, EventArgs e)
         {
-            if (ActiveControl == null) return;
+
             FunctionClass.LimitText(((TextBox)sender), 50);
             ChangedData(true);
         }
@@ -1330,7 +1327,7 @@ namespace u_net
 
         private void 担当者メールアドレス_TextChanged(object sender, EventArgs e)
         {
-            if (ActiveControl == null) return;
+   
             FunctionClass.LimitText(((TextBox)sender), 100);
             ChangedData(true);
         }
@@ -1343,7 +1340,7 @@ namespace u_net
 
         private void 担当者名_TextChanged(object sender, EventArgs e)
         {
-            if (ActiveControl == null) return;
+
             FunctionClass.LimitText(((TextBox)sender), 50);
             ChangedData(true);
         }
@@ -1358,7 +1355,7 @@ namespace u_net
 
         private void 電話番号1_TextChanged(object sender, EventArgs e)
         {
-            if (ActiveControl == null) return;
+     
             FunctionClass.LimitText(((TextBox)sender), 5);
             ChangedData(true);
         }
@@ -1372,7 +1369,7 @@ namespace u_net
 
         private void 電話番号2_TextChanged(object sender, EventArgs e)
         {
-            if (ActiveControl == null) return;
+    
             FunctionClass.LimitText(((TextBox)sender), 5);
             ChangedData(true);
         }
@@ -1387,7 +1384,7 @@ namespace u_net
 
         private void 電話番号3_TextChanged(object sender, EventArgs e)
         {
-            if (ActiveControl == null) return;
+
             FunctionClass.LimitText(((TextBox)sender), 5);
             ChangedData(true);
         }
@@ -1400,7 +1397,7 @@ namespace u_net
 
         private void FAX番号1_TextChanged(object sender, EventArgs e)
         {
-            if (ActiveControl == null) return;
+    
             FunctionClass.LimitText(((TextBox)sender), 5);
             ChangedData(true);
         }
@@ -1414,7 +1411,7 @@ namespace u_net
 
         private void FAX番号2_TextChanged(object sender, EventArgs e)
         {
-            if (ActiveControl == null) return;
+      
             FunctionClass.LimitText(((TextBox)sender), 5);
             ChangedData(true);
         }
@@ -1429,14 +1426,14 @@ namespace u_net
 
         private void FAX番号3_TextChanged(object sender, EventArgs e)
         {
-            if (ActiveControl == null) return;
+       
             FunctionClass.LimitText(((TextBox)sender), 5);
             ChangedData(true);
         }
 
         private void 備考_TextChanged(object sender, EventArgs e)
         {
-            if (ActiveControl == null) return;
+     
             FunctionClass.LimitText(((TextBox)sender), 2000);
             ChangedData(true);
         }
@@ -1444,7 +1441,7 @@ namespace u_net
 
         private void 郵便番号_TextChanged(object sender, EventArgs e)
         {
-            if (ActiveControl == null) return;
+         
             FunctionClass.LimitText(((TextBox)sender), 7);
             ChangedData(true);
         }
