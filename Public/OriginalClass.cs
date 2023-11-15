@@ -210,10 +210,10 @@ namespace u_net.Public
                     {
                         DataTable dataTable = new DataTable();
                         adapter.Fill(dataTable);
-
-                        comboBox.DataSource = dataTable;
+                        
                         comboBox.DisplayMember = "Display";
                         comboBox.ValueMember = "Value";
+                        comboBox.DataSource = dataTable;
                     }
                 }
                 
@@ -224,7 +224,11 @@ namespace u_net.Public
             }
         }
 
-
+        //数値かどうか判定する
+        public static bool IsNumeric(object varValue)
+        {
+            return double.TryParse(varValue.ToString(),out _);
+        }
 
 
     }
