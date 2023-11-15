@@ -383,7 +383,7 @@ namespace u_net
                     objControl6.Text = CommonConstants.LoginUserFullName;
 
 
-                    string strwhere = " 部品コード='" + this.部品コード.Text;
+                    string strwhere = " 部品コード='" + this.部品コード.Text + "'";
 
                     if (!DataUpdater.UpdateOrInsertDataFrom(this, cn, "M部品", strwhere, "部品コード", transaction))
                     {
@@ -846,60 +846,7 @@ namespace u_net
             }
         }
 
-        private void 改版ボタン_Click()
-        {
-            try
-            {
-                if (this.ActiveControl == this.改版ボタン)
-                {
-                    GetNextControl(改版ボタン, false).Focus();
-                }
-
-
-                MessageBox.Show("部品の改版機能は未完成です。\n履歴に登録される情報は完全ではありません。", "改版", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-
-                if (MessageBox.Show("改版しますか？\n\n・旧版データは履歴コマンドから参照できます。\n・最新版の部品データが有効になります。\n・この操作を元に戻すことはできません。",
-                                    "改版", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
-                {
-                    return;
-                }
-
-
-                FunctionClass fn = new FunctionClass();
-                fn.DoWait("改版しています...");
-
-                CommonConnect();
-
-                if (SaveData())
-                {
-                    if (AddHistory(cn, this.CurrentCode, this.CurrentEdition))
-                    {
-                        //this.部品コード.Requery;
-                        // ■ なぜかRequeryしてもColumn(1)がNULLとなるので、版数を+1する
-                        this.版数.Text = (Convert.ToInt32(this.CurrentEdition) + 1).ToString();
-                        this.コマンド履歴.Enabled = true;
-
-                        fn.WaitForm.Close();
-                    }
-                    else
-                    {
-                        fn.WaitForm.Close();
-                        MessageBox.Show("改版できませんでした。", "改版", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    }
-                }
-                else
-                {
-                    fn.WaitForm.Close();
-                    MessageBox.Show("改版できませんでした。", "改版", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                }
-            }
-            catch (Exception ex)
-            {
-                Debug.Print(this.Name + "_改版ボタン_Click - " + ex.Message);
-                MessageBox.Show("エラーが発生しました。", BASE_CAPTION, MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-            }
-        }
+        
 
 
 
@@ -1082,7 +1029,7 @@ namespace u_net
                 this.品名.Focus();
                 ChangedData(true);
 
-                CommonConnect();
+                Connect();
 
                 // 以下、初期値の設定
                 string code = FunctionClass.採番(cn, "PAR");
@@ -2759,6 +2706,9 @@ namespace u_net
             toolStripStatusLabel2.Text = "各種項目の説明";
         }
 
-        
+        private void 改版ボタン_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
