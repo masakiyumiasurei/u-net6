@@ -86,6 +86,9 @@ namespace u_net
 
             // DataGridViewの設定
             部品使用先.AllowUserToResizeColumns = true;
+            部品使用先.ReadOnly = true;
+            部品使用先.AllowUserToAddRows = false;
+            部品使用先.AllowUserToDeleteRows = false;
             部品使用先.Font = new Font("MS ゴシック", 10);
             部品使用先.DefaultCellStyle.SelectionBackColor = Color.FromArgb(210, 210, 255);
             部品使用先.DefaultCellStyle.SelectionForeColor = Color.Black;
@@ -202,7 +205,6 @@ namespace u_net
                         UpdatedControl(部品コード);
                     }
                 }
-                非含有証明書.SelectedValue = 2;
                 // 成功時の処理
                 return;
             }
@@ -487,7 +489,7 @@ namespace u_net
             {
                 this.Text = BASE_CAPTION;
             }
-
+            
             // コードにフォーカスがある状態でサブフォームから呼び出されたときの対処
             if (this.ActiveControl == this.部品コード)
             {
@@ -549,8 +551,8 @@ namespace u_net
                 ロス率.Text = 0f.ToString();
                 Rohs1ChemSherpaStatusCode.SelectedValue = 1;
                 JampAis.SelectedValue = 1;
-                非含有証明書.SelectedValue = 3;
-                RoHS資料.SelectedValue = 1;
+                非含有証明書.SelectedValue = (byte)3;
+                RoHS資料.SelectedValue = (Int16)1;
                 Rohs2ChemSherpaStatusCode.SelectedValue = 1;
                 Rohs2JampAisStatusCode.SelectedValue = 1;
                 Rohs2NonInclusionCertificationStatusCode.SelectedValue = 3;
@@ -596,7 +598,7 @@ namespace u_net
                 using (SqlCommand command = new SqlCommand("SP部品使用先", cn))
                 {
                     command.CommandType = CommandType.StoredProcedure;
-                    command.Parameters.AddWithValue("@Param1", codeString);
+                    command.Parameters.AddWithValue("@PartsCode", codeString);
 
                     using (SqlDataAdapter adapter = new SqlDataAdapter(command))
                     {
@@ -642,8 +644,8 @@ namespace u_net
                 }
                 else if ((Rohs1ChemSherpaStatusCode.SelectedValue != null && (int)Rohs1ChemSherpaStatusCode.SelectedValue == 2) ||
          (JampAis.SelectedValue != null && (int)JampAis.SelectedValue == 2) ||
-         (非含有証明書.SelectedValue != null && (int)非含有証明書.SelectedValue == 1) ||
-         (RoHS資料.SelectedValue != null && (int)RoHS資料.SelectedValue == 2))
+         (非含有証明書.SelectedValue != null && (byte)非含有証明書.SelectedValue == 1) ||
+         (RoHS資料.SelectedValue != null && (Int16)RoHS資料.SelectedValue == 2))
                 {
                     this.RohsStatusCode.SelectedValue = 6;
                     // this.RohsStatusName = "RoHS2非対応";
@@ -998,7 +1000,7 @@ namespace u_net
                 FunctionClass fn = new FunctionClass();
                 fn.DoWait("削除しています...");
 
-                CommonConnect();
+                Connect();
 
                 // 削除に成功すれば新規モードへ移行する
                 if (DeleteData(cn, CurrentCode, CurrentEdition))
@@ -1051,7 +1053,7 @@ namespace u_net
                 using (SqlCommand cmd = new SqlCommand("SPユニット管理", cn, transaction))
                 {
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                    cmd.Parameters.Add(new SqlParameter("@Param1", codeString));
+                    cmd.Parameters.Add(new SqlParameter("@PartsCode", codeString));
                     cmd.ExecuteNonQuery();
                 }
 
@@ -1348,13 +1350,32 @@ namespace u_net
                     case "型番":
                         //if (Cancel)
                         //{
-                            //if (string.IsNullOrEmpty(varValue.ToString()))
-                            //{
-                            //    MessageBox.Show(controlName + "を入力してください.", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                            //    return true;
-                            //}
+                        //if (string.IsNullOrEmpty(varValue.ToString()))
+                        //{
+                        //    MessageBox.Show(controlName + "を入力してください.", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        //    return true;
+                        //}
                         //}
                         // 重複チェックなどを行う必要があれば、ここに追加してください。
+                        DataTable rs1 = null;
+                        string strPartsList = null;
+
+                        if (DetectRepeatedParts(varValue.ToString(), CurrentCode, ref rs1))
+                        {
+                            if (rs1.Rows.Count > 0)
+                            {
+                                foreach (DataRow row in rs1.Rows)
+                                {
+                                    strPartsList += row[0].ToString() + " ： ";
+                                    strPartsList += row[1].ToString() + " ： ";
+                                    strPartsList += row[2].ToString() + Environment.NewLine;
+                                }
+
+                                MessageBox.Show($"入力された型番は既に登録されています。{Environment.NewLine}{strPartsList}", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                                return true; 
+                            }
+                        
+                        }
                         break;
                     case "メーカーコード":
                         if (string.IsNullOrEmpty(varValue.ToString()))
@@ -1479,14 +1500,14 @@ namespace u_net
         }
 
 
-        public bool DetectRepeatedParts(string ModelString, string ExCodeString, ref SqlDataAdapter dataAdapter)
+        public bool DetectRepeatedParts(string ModelString, string ExCodeString, ref DataTable recordsetObject)
         {
             bool detectRepeatedParts = false;
 
             try
             {
 
-                CommonConnect();
+                Connect();
 
                 using (SqlCommand command = new SqlCommand("SP部品重複検出", cn))
                 {
@@ -1494,9 +1515,11 @@ namespace u_net
                     command.Parameters.Add("@strModel", SqlDbType.VarChar).Value = ModelString;
                     command.Parameters.Add("@strExCode", SqlDbType.VarChar).Value = ExCodeString;
 
-                    dataAdapter = new SqlDataAdapter(command);
-                    dataAdapter.Fill(new DataSet()); // You can replace "new DataSet()" with your dataset object if needed
-
+                    using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+                    {
+                        recordsetObject = new DataTable();
+                        adapter.Fill(recordsetObject);
+                    }
                     detectRepeatedParts = true;
                 }
 
@@ -1710,6 +1733,7 @@ namespace u_net
         private void ChemSherpaVersion_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
             if (IsError(sender as Control) == true ) e.Cancel = true;
+
         }
 
         private void ChemSherpaVersion_TextChanged(object sender, EventArgs e)
