@@ -37,18 +37,18 @@
             this.キャンセルボタン = new System.Windows.Forms.Button();
             this.更新者名 = new System.Windows.Forms.TextBox();
             this.廃止指定 = new System.Windows.Forms.GroupBox();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
+            this.AbolitionButton3 = new System.Windows.Forms.RadioButton();
+            this.AbolitionButton2 = new System.Windows.Forms.RadioButton();
+            this.AbolitionButton1 = new System.Windows.Forms.RadioButton();
             this.使用指定 = new System.Windows.Forms.GroupBox();
-            this.radioButton4 = new System.Windows.Forms.RadioButton();
-            this.radioButton5 = new System.Windows.Forms.RadioButton();
-            this.radioButton6 = new System.Windows.Forms.RadioButton();
+            this.UseButton3 = new System.Windows.Forms.RadioButton();
+            this.UseButton2 = new System.Windows.Forms.RadioButton();
+            this.UseButton1 = new System.Windows.Forms.RadioButton();
             this.label5 = new System.Windows.Forms.Label();
-            this.部品名 = new System.Windows.Forms.TextBox();
-            this.担当者名 = new System.Windows.Forms.TextBox();
+            this.対象部品名 = new System.Windows.Forms.TextBox();
+            this.形状名 = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.担当者メールアドレス = new System.Windows.Forms.TextBox();
+            this.品名 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -56,14 +56,14 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.分類コード = new System.Windows.Forms.ComboBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.型番 = new System.Windows.Forms.TextBox();
+            this.メーカー名 = new System.Windows.Forms.TextBox();
+            this.仕入先名 = new System.Windows.Forms.TextBox();
+            this.ChemSherpaVersion = new System.Windows.Forms.TextBox();
+            this.単価指定 = new System.Windows.Forms.ComboBox();
+            this.RohsStatusCode = new System.Windows.Forms.ComboBox();
+            this.分類記号 = new System.Windows.Forms.ComboBox();
+            this.形状 = new System.Windows.Forms.ComboBox();
             this.削除指定.SuspendLayout();
             this.廃止指定.SuspendLayout();
             this.使用指定.SuspendLayout();
@@ -161,9 +161,9 @@
             // 
             // 廃止指定
             // 
-            this.廃止指定.Controls.Add(this.radioButton1);
-            this.廃止指定.Controls.Add(this.radioButton2);
-            this.廃止指定.Controls.Add(this.radioButton3);
+            this.廃止指定.Controls.Add(this.AbolitionButton3);
+            this.廃止指定.Controls.Add(this.AbolitionButton2);
+            this.廃止指定.Controls.Add(this.AbolitionButton1);
             this.廃止指定.Location = new System.Drawing.Point(27, 477);
             this.廃止指定.Name = "廃止指定";
             this.廃止指定.Size = new System.Drawing.Size(525, 63);
@@ -171,44 +171,44 @@
             this.廃止指定.TabStop = false;
             this.廃止指定.Text = "廃止指定(&B)";
             // 
-            // radioButton1
+            // AbolitionButton3
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(347, 22);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(77, 19);
-            this.radioButton1.TabIndex = 204;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "指定しない";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.AbolitionButton3.AutoSize = true;
+            this.AbolitionButton3.Location = new System.Drawing.Point(347, 22);
+            this.AbolitionButton3.Name = "AbolitionButton3";
+            this.AbolitionButton3.Size = new System.Drawing.Size(77, 19);
+            this.AbolitionButton3.TabIndex = 204;
+            this.AbolitionButton3.TabStop = true;
+            this.AbolitionButton3.Text = "指定しない";
+            this.AbolitionButton3.UseVisualStyleBackColor = true;
             // 
-            // radioButton2
+            // AbolitionButton2
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(195, 22);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(85, 19);
-            this.radioButton2.TabIndex = 2;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "廃止している";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.AbolitionButton2.AutoSize = true;
+            this.AbolitionButton2.Location = new System.Drawing.Point(195, 22);
+            this.AbolitionButton2.Name = "AbolitionButton2";
+            this.AbolitionButton2.Size = new System.Drawing.Size(85, 19);
+            this.AbolitionButton2.TabIndex = 2;
+            this.AbolitionButton2.TabStop = true;
+            this.AbolitionButton2.Text = "廃止している";
+            this.AbolitionButton2.UseVisualStyleBackColor = true;
             // 
-            // radioButton3
+            // AbolitionButton1
             // 
-            this.radioButton3.AutoSize = true;
-            this.radioButton3.Location = new System.Drawing.Point(30, 22);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(96, 19);
-            this.radioButton3.TabIndex = 1;
-            this.radioButton3.TabStop = true;
-            this.radioButton3.Text = "廃止していない";
-            this.radioButton3.UseVisualStyleBackColor = true;
+            this.AbolitionButton1.AutoSize = true;
+            this.AbolitionButton1.Location = new System.Drawing.Point(30, 22);
+            this.AbolitionButton1.Name = "AbolitionButton1";
+            this.AbolitionButton1.Size = new System.Drawing.Size(96, 19);
+            this.AbolitionButton1.TabIndex = 1;
+            this.AbolitionButton1.TabStop = true;
+            this.AbolitionButton1.Text = "廃止していない";
+            this.AbolitionButton1.UseVisualStyleBackColor = true;
             // 
             // 使用指定
             // 
-            this.使用指定.Controls.Add(this.radioButton4);
-            this.使用指定.Controls.Add(this.radioButton5);
-            this.使用指定.Controls.Add(this.radioButton6);
+            this.使用指定.Controls.Add(this.UseButton3);
+            this.使用指定.Controls.Add(this.UseButton2);
+            this.使用指定.Controls.Add(this.UseButton1);
             this.使用指定.Location = new System.Drawing.Point(27, 397);
             this.使用指定.Name = "使用指定";
             this.使用指定.Size = new System.Drawing.Size(525, 63);
@@ -216,38 +216,38 @@
             this.使用指定.TabStop = false;
             this.使用指定.Text = "使用指定(&U)";
             // 
-            // radioButton4
+            // UseButton3
             // 
-            this.radioButton4.AutoSize = true;
-            this.radioButton4.Location = new System.Drawing.Point(347, 22);
-            this.radioButton4.Name = "radioButton4";
-            this.radioButton4.Size = new System.Drawing.Size(77, 19);
-            this.radioButton4.TabIndex = 204;
-            this.radioButton4.TabStop = true;
-            this.radioButton4.Text = "指定しない";
-            this.radioButton4.UseVisualStyleBackColor = true;
+            this.UseButton3.AutoSize = true;
+            this.UseButton3.Location = new System.Drawing.Point(347, 22);
+            this.UseButton3.Name = "UseButton3";
+            this.UseButton3.Size = new System.Drawing.Size(77, 19);
+            this.UseButton3.TabIndex = 204;
+            this.UseButton3.TabStop = true;
+            this.UseButton3.Text = "指定しない";
+            this.UseButton3.UseVisualStyleBackColor = true;
             // 
-            // radioButton5
+            // UseButton2
             // 
-            this.radioButton5.AutoSize = true;
-            this.radioButton5.Location = new System.Drawing.Point(195, 22);
-            this.radioButton5.Name = "radioButton5";
-            this.radioButton5.Size = new System.Drawing.Size(85, 19);
-            this.radioButton5.TabIndex = 2;
-            this.radioButton5.TabStop = true;
-            this.radioButton5.Text = "使用している";
-            this.radioButton5.UseVisualStyleBackColor = true;
+            this.UseButton2.AutoSize = true;
+            this.UseButton2.Location = new System.Drawing.Point(195, 22);
+            this.UseButton2.Name = "UseButton2";
+            this.UseButton2.Size = new System.Drawing.Size(85, 19);
+            this.UseButton2.TabIndex = 2;
+            this.UseButton2.TabStop = true;
+            this.UseButton2.Text = "使用している";
+            this.UseButton2.UseVisualStyleBackColor = true;
             // 
-            // radioButton6
+            // UseButton1
             // 
-            this.radioButton6.AutoSize = true;
-            this.radioButton6.Location = new System.Drawing.Point(30, 22);
-            this.radioButton6.Name = "radioButton6";
-            this.radioButton6.Size = new System.Drawing.Size(96, 19);
-            this.radioButton6.TabIndex = 1;
-            this.radioButton6.TabStop = true;
-            this.radioButton6.Text = "使用していない";
-            this.radioButton6.UseVisualStyleBackColor = true;
+            this.UseButton1.AutoSize = true;
+            this.UseButton1.Location = new System.Drawing.Point(30, 22);
+            this.UseButton1.Name = "UseButton1";
+            this.UseButton1.Size = new System.Drawing.Size(96, 19);
+            this.UseButton1.TabIndex = 1;
+            this.UseButton1.TabStop = true;
+            this.UseButton1.Text = "使用していない";
+            this.UseButton1.UseVisualStyleBackColor = true;
             // 
             // label5
             // 
@@ -264,29 +264,29 @@
             this.label5.Text = "分類記号(&G)";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // 部品名
+            // 対象部品名
             // 
-            this.部品名.BackColor = System.Drawing.Color.White;
-            this.部品名.Enabled = false;
-            this.部品名.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.部品名.Location = new System.Drawing.Point(258, 20);
-            this.部品名.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.部品名.Name = "部品名";
-            this.部品名.Size = new System.Drawing.Size(330, 20);
-            this.部品名.TabIndex = 10000;
-            this.部品名.TabStop = false;
+            this.対象部品名.BackColor = System.Drawing.Color.White;
+            this.対象部品名.Enabled = false;
+            this.対象部品名.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.対象部品名.Location = new System.Drawing.Point(258, 20);
+            this.対象部品名.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.対象部品名.Name = "対象部品名";
+            this.対象部品名.Size = new System.Drawing.Size(330, 20);
+            this.対象部品名.TabIndex = 10000;
+            this.対象部品名.TabStop = false;
             // 
-            // 担当者名
+            // 形状名
             // 
-            this.担当者名.BackColor = System.Drawing.Color.White;
-            this.担当者名.Enabled = false;
-            this.担当者名.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.担当者名.Location = new System.Drawing.Point(258, 53);
-            this.担当者名.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.担当者名.Name = "担当者名";
-            this.担当者名.Size = new System.Drawing.Size(330, 20);
-            this.担当者名.TabIndex = 21000;
-            this.担当者名.TabStop = false;
+            this.形状名.BackColor = System.Drawing.Color.White;
+            this.形状名.Enabled = false;
+            this.形状名.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.形状名.Location = new System.Drawing.Point(258, 53);
+            this.形状名.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.形状名.Name = "形状名";
+            this.形状名.Size = new System.Drawing.Size(330, 20);
+            this.形状名.TabIndex = 21000;
+            this.形状名.TabStop = false;
             // 
             // label7
             // 
@@ -303,15 +303,15 @@
             this.label7.Text = "部品形状(&H)";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // 担当者メールアドレス
+            // 品名
             // 
-            this.担当者メールアドレス.BackColor = System.Drawing.Color.White;
-            this.担当者メールアドレス.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.担当者メールアドレス.Location = new System.Drawing.Point(175, 88);
-            this.担当者メールアドレス.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.担当者メールアドレス.Name = "担当者メールアドレス";
-            this.担当者メールアドレス.Size = new System.Drawing.Size(413, 20);
-            this.担当者メールアドレス.TabIndex = 6;
+            this.品名.BackColor = System.Drawing.Color.White;
+            this.品名.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.品名.Location = new System.Drawing.Point(175, 88);
+            this.品名.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.品名.Name = "品名";
+            this.品名.Size = new System.Drawing.Size(413, 20);
+            this.品名.TabIndex = 6;
             // 
             // label3
             // 
@@ -418,115 +418,122 @@
             this.label11.Text = "chemSHERPA Ver.";
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // textBox1
+            // 型番
             // 
-            this.textBox1.BackColor = System.Drawing.Color.White;
-            this.textBox1.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBox1.Location = new System.Drawing.Point(175, 127);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(413, 20);
-            this.textBox1.TabIndex = 8;
+            this.型番.BackColor = System.Drawing.Color.White;
+            this.型番.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.型番.Location = new System.Drawing.Point(175, 127);
+            this.型番.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.型番.Name = "型番";
+            this.型番.Size = new System.Drawing.Size(413, 20);
+            this.型番.TabIndex = 8;
             // 
-            // textBox2
+            // メーカー名
             // 
-            this.textBox2.BackColor = System.Drawing.Color.White;
-            this.textBox2.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBox2.Location = new System.Drawing.Point(175, 164);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(413, 20);
-            this.textBox2.TabIndex = 10;
+            this.メーカー名.BackColor = System.Drawing.Color.White;
+            this.メーカー名.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.メーカー名.Location = new System.Drawing.Point(175, 164);
+            this.メーカー名.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.メーカー名.Name = "メーカー名";
+            this.メーカー名.Size = new System.Drawing.Size(413, 20);
+            this.メーカー名.TabIndex = 10;
             // 
-            // textBox3
+            // 仕入先名
             // 
-            this.textBox3.BackColor = System.Drawing.Color.White;
-            this.textBox3.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBox3.Location = new System.Drawing.Point(175, 201);
-            this.textBox3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(413, 20);
-            this.textBox3.TabIndex = 12;
+            this.仕入先名.BackColor = System.Drawing.Color.White;
+            this.仕入先名.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.仕入先名.Location = new System.Drawing.Point(175, 201);
+            this.仕入先名.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.仕入先名.Name = "仕入先名";
+            this.仕入先名.Size = new System.Drawing.Size(413, 20);
+            this.仕入先名.TabIndex = 12;
             // 
-            // textBox6
+            // ChemSherpaVersion
             // 
-            this.textBox6.BackColor = System.Drawing.Color.White;
-            this.textBox6.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBox6.Location = new System.Drawing.Point(175, 320);
-            this.textBox6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(139, 20);
-            this.textBox6.TabIndex = 18;
+            this.ChemSherpaVersion.BackColor = System.Drawing.Color.White;
+            this.ChemSherpaVersion.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.ChemSherpaVersion.Location = new System.Drawing.Point(175, 320);
+            this.ChemSherpaVersion.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.ChemSherpaVersion.Name = "ChemSherpaVersion";
+            this.ChemSherpaVersion.Size = new System.Drawing.Size(139, 20);
+            this.ChemSherpaVersion.TabIndex = 18;
             // 
-            // 分類コード
+            // 単価指定
             // 
-            this.分類コード.BackColor = System.Drawing.Color.White;
-            this.分類コード.DisplayMember = "分類コード";
-            this.分類コード.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.分類コード.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.分類コード.FormattingEnabled = true;
-            this.分類コード.ImeMode = System.Windows.Forms.ImeMode.Off;
-            this.分類コード.Location = new System.Drawing.Point(175, 242);
-            this.分類コード.Name = "分類コード";
-            this.分類コード.Size = new System.Drawing.Size(139, 21);
-            this.分類コード.TabIndex = 14;
-            this.分類コード.ValueMember = "分類コード";
+            this.単価指定.BackColor = System.Drawing.Color.White;
+            this.単価指定.DisplayMember = "分類コード";
+            this.単価指定.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.単価指定.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.単価指定.FormattingEnabled = true;
+            this.単価指定.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.単価指定.Location = new System.Drawing.Point(175, 242);
+            this.単価指定.Name = "単価指定";
+            this.単価指定.Size = new System.Drawing.Size(139, 21);
+            this.単価指定.TabIndex = 14;
+            this.単価指定.ValueMember = "分類コード";
             // 
-            // comboBox1
+            // RohsStatusCode
             // 
-            this.comboBox1.BackColor = System.Drawing.Color.White;
-            this.comboBox1.DisplayMember = "分類コード";
-            this.comboBox1.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.comboBox1.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.ImeMode = System.Windows.Forms.ImeMode.Off;
-            this.comboBox1.Location = new System.Drawing.Point(175, 280);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(139, 21);
-            this.comboBox1.TabIndex = 16;
-            this.comboBox1.ValueMember = "分類コード";
+            this.RohsStatusCode.BackColor = System.Drawing.Color.White;
+            this.RohsStatusCode.DisplayMember = "分類コード";
+            this.RohsStatusCode.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.RohsStatusCode.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.RohsStatusCode.FormattingEnabled = true;
+            this.RohsStatusCode.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.RohsStatusCode.Location = new System.Drawing.Point(175, 280);
+            this.RohsStatusCode.Name = "RohsStatusCode";
+            this.RohsStatusCode.Size = new System.Drawing.Size(139, 21);
+            this.RohsStatusCode.TabIndex = 16;
+            this.RohsStatusCode.ValueMember = "分類コード";
+            this.RohsStatusCode.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.RohsStatusCode_DrawItem);
             // 
-            // comboBox2
+            // 分類記号
             // 
-            this.comboBox2.BackColor = System.Drawing.Color.White;
-            this.comboBox2.DisplayMember = "分類コード";
-            this.comboBox2.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.comboBox2.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.ImeMode = System.Windows.Forms.ImeMode.Off;
-            this.comboBox2.Location = new System.Drawing.Point(175, 19);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(77, 21);
-            this.comboBox2.TabIndex = 2;
-            this.comboBox2.ValueMember = "分類コード";
+            this.分類記号.BackColor = System.Drawing.Color.White;
+            this.分類記号.DisplayMember = "分類コード";
+            this.分類記号.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.分類記号.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.分類記号.FormattingEnabled = true;
+            this.分類記号.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.分類記号.Location = new System.Drawing.Point(175, 19);
+            this.分類記号.Name = "分類記号";
+            this.分類記号.Size = new System.Drawing.Size(77, 21);
+            this.分類記号.TabIndex = 2;
+            this.分類記号.ValueMember = "分類記号";
+            this.分類記号.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.分類記号_DrawItem);
+            this.分類記号.SelectedIndexChanged += new System.EventHandler(this.分類記号_SelectedIndexChanged);
+            this.分類記号.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.分類記号_KeyPress);
             // 
-            // comboBox3
+            // 形状
             // 
-            this.comboBox3.BackColor = System.Drawing.Color.White;
-            this.comboBox3.DisplayMember = "分類コード";
-            this.comboBox3.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.comboBox3.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.ImeMode = System.Windows.Forms.ImeMode.Off;
-            this.comboBox3.Location = new System.Drawing.Point(175, 52);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(77, 21);
-            this.comboBox3.TabIndex = 4;
-            this.comboBox3.ValueMember = "分類コード";
+            this.形状.BackColor = System.Drawing.Color.White;
+            this.形状.DisplayMember = "分類コード";
+            this.形状.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.形状.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.形状.FormattingEnabled = true;
+            this.形状.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.形状.Location = new System.Drawing.Point(175, 52);
+            this.形状.Name = "形状";
+            this.形状.Size = new System.Drawing.Size(77, 21);
+            this.形状.TabIndex = 4;
+            this.形状.ValueMember = "分類コード";
+            this.形状.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.形状_DrawItem);
+            this.形状.SelectedIndexChanged += new System.EventHandler(this.形状_SelectedIndexChanged);
+            this.形状.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.形状_KeyPress);
             // 
             // F_部品管理_抽出
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(607, 703);
-            this.Controls.Add(this.comboBox3);
-            this.Controls.Add(this.comboBox2);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.分類コード);
-            this.Controls.Add(this.textBox6);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.形状);
+            this.Controls.Add(this.分類記号);
+            this.Controls.Add(this.RohsStatusCode);
+            this.Controls.Add(this.単価指定);
+            this.Controls.Add(this.ChemSherpaVersion);
+            this.Controls.Add(this.仕入先名);
+            this.Controls.Add(this.メーカー名);
+            this.Controls.Add(this.型番);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label6);
@@ -537,14 +544,14 @@
             this.Controls.Add(this.廃止指定);
             this.Controls.Add(this.更新者名);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.担当者メールアドレス);
+            this.Controls.Add(this.品名);
             this.Controls.Add(this.キャンセルボタン);
             this.Controls.Add(this.抽出ボタン);
             this.Controls.Add(this.削除指定);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.担当者名);
-            this.Controls.Add(this.部品名);
+            this.Controls.Add(this.形状名);
+            this.Controls.Add(this.対象部品名);
             this.Controls.Add(this.label5);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -572,18 +579,18 @@
         private Button キャンセルボタン;
         private TextBox 更新者名;
         private GroupBox 廃止指定;
-        private RadioButton radioButton1;
-        private RadioButton radioButton2;
-        private RadioButton radioButton3;
+        private RadioButton AbolitionButton3;
+        private RadioButton AbolitionButton2;
+        private RadioButton AbolitionButton1;
         private GroupBox 使用指定;
-        private RadioButton radioButton4;
-        private RadioButton radioButton5;
-        private RadioButton radioButton6;
+        private RadioButton UseButton3;
+        private RadioButton UseButton2;
+        private RadioButton UseButton1;
         private Label label5;
-        private TextBox 部品名;
-        private TextBox 担当者名;
+        private TextBox 対象部品名;
+        private TextBox 形状名;
         private Label label7;
-        private TextBox 担当者メールアドレス;
+        private TextBox 品名;
         private Label label3;
         private Label label1;
         private Label label2;
@@ -591,13 +598,13 @@
         private Label label6;
         private Label label8;
         private Label label11;
-        private TextBox textBox1;
-        private TextBox textBox2;
-        private TextBox textBox3;
-        private TextBox textBox6;
-        private ComboBox 分類コード;
-        private ComboBox comboBox1;
-        private ComboBox comboBox2;
-        private ComboBox comboBox3;
+        private TextBox 型番;
+        private TextBox メーカー名;
+        private TextBox 仕入先名;
+        private TextBox ChemSherpaVersion;
+        private ComboBox 単価指定;
+        private ComboBox RohsStatusCode;
+        private ComboBox 分類記号;
+        private ComboBox 形状;
     }
 }

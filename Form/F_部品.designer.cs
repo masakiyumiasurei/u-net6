@@ -1370,7 +1370,6 @@ namespace u_net
             this.分類コード.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.分類コード_KeyPress);
             this.分類コード.Leave += new System.EventHandler(this.分類コード_Leave);
             this.分類コード.Validating += new System.ComponentModel.CancelEventHandler(this.分類コード_Validating);
-            this.分類コード.Validated += new System.EventHandler(this.分類コード_Validated);
             // 
             // M部品分類bindingSource
             // 

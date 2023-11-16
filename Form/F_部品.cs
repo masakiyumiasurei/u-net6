@@ -2514,6 +2514,7 @@ namespace u_net
 
         private void 分類コード_SelectedIndexChanged(object sender, EventArgs e)
         {
+            GroupName.Text = ((DataRowView)分類コード.SelectedItem)?.Row.Field<String>("Display2")?.ToString();
             ChangedData(true);
         }
 
@@ -2535,12 +2536,6 @@ namespace u_net
             OriginalClass.SetComboBoxAppearance((ComboBox)sender, e, new int[] { 50, 500 }, new string[] { "Display", "Display2" });
             分類コード.Invalidate();
             分類コード.DroppedDown = true;
-        }
-
-        private void 分類コード_Validated(object sender, EventArgs e)
-        {
-            GroupName.Text = ((DataRowView)分類コード.SelectedItem).Row.Field<String>("Display2").ToString();
-
         }
 
         private void 部品コード_Enter(object sender, EventArgs e)
