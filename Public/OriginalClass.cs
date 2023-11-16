@@ -249,6 +249,29 @@ namespace u_net.Public
             if (Convert.ToBoolean(e.State & DrawItemState.Selected)) ControlPaint.DrawFocusRectangle(e.Graphics, e.Bounds);
         }
 
+        public static void ValidateCheck(object sender, PreviewKeyDownEventArgs e)
+        {
+            Control control = sender as Control;
+
+            
+            if (e.KeyCode == Keys.Tab)
+            {
+                // Tab キーが押されたときに Validating イベントを無効にする
+                control.CausesValidation = false;
+
+                
+
+            }else if (e.KeyCode == Keys.Return)
+            {
+                // Validating イベントを有効に戻す
+                control.CausesValidation = true;
+
+            }
+
+        }
+
+
+
 
     }
 }
