@@ -254,6 +254,29 @@ namespace u_net.Public
             return double.TryParse(varValue.ToString(),out _);
         }
 
+        public static void ValidateCheck(object sender, PreviewKeyDownEventArgs e)
+        {
+            Control control = sender as Control;
+
+            
+            if (e.KeyCode == Keys.Tab)
+            {
+                // Tab キーが押されたときに Validating イベントを無効にする
+                control.CausesValidation = false;
+
+                
+
+            }else if (e.KeyCode == Keys.Return)
+            {
+                // Validating イベントを有効に戻す
+                control.CausesValidation = true;
+
+            }
+
+        }
+
+
+
 
     }
 }

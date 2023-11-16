@@ -69,6 +69,11 @@ namespace u_net
         private void Form_Load(object sender, EventArgs e)
         {
 
+            foreach (Control control in Controls)
+            {
+                control.PreviewKeyDown += OriginalClass.ValidateCheck;
+            }
+
             FunctionClass fn = new FunctionClass();
             fn.DoWait("しばらくお待ちください...");
 
@@ -387,6 +392,20 @@ namespace u_net
 
                     if (!DataUpdater.UpdateOrInsertDataFrom(this, cn, "M部品", strwhere, "部品コード", transaction))
                     {
+
+
+                        if (IsNewData)
+                        {
+                            objControl1.Text = varSaved1.ToString();
+                            objControl2.Text = varSaved2.ToString();
+                            objControl3.Text = varSaved3.ToString();
+
+                        }
+
+                        objControl4.Text = varSaved4.ToString();
+                        objControl5.Text = varSaved5.ToString();
+                        objControl6.Text = varSaved6.ToString();
+
                         return false;
                     }
 
@@ -546,7 +565,7 @@ namespace u_net
                 string code = FunctionClass.採番(cn, "PAR");
                 部品コード.Text = code.Substring(Math.Max(0, code.Length - 8));
                 版数.Text = 1.ToString();
-                入数.Text = 1.ToString();
+                入数.Text = 1.ToString(); 
                 単位数量.Text = 1.ToString();
                 ロス率.Text = 0f.ToString();
                 Rohs1ChemSherpaStatusCode.SelectedValue = 1;
@@ -1330,11 +1349,14 @@ namespace u_net
             }
         }
 
-
+   
         private bool IsError(Control controlObject)
         {
             try
             {
+
+                
+
                 object varValue = controlObject.Text;
                 string controlName = controlObject.Name;
 
@@ -1659,7 +1681,7 @@ namespace u_net
         private void Form_KeyDown(object sender, KeyEventArgs e)
         {
 
-            bool intShiftDown = (Control.ModifierKeys & Keys.Shift) == Keys.Shift;
+                bool intShiftDown = (Control.ModifierKeys & Keys.Shift) == Keys.Shift;
 
             if (intShiftDown)
             {
@@ -1668,6 +1690,10 @@ namespace u_net
 
             switch (e.KeyCode)
             {
+                case Keys.Return:
+                    SelectNextControl(ActiveControl, true, true, true, true);
+                    break;
+
                 case Keys.F1:
                     if (コマンド新規.Enabled)
                     {
@@ -2502,7 +2528,16 @@ namespace u_net
 
         private void 分類コード_SelectedIndexChanged(object sender, EventArgs e)
         {
+            GroupName.Text = ((DataRowView)分類コード.SelectedItem)?.Row.Field<String>("Display2")?.ToString();
             ChangedData(true);
+        }
+
+        private void 分類コード_TextChanged(object sender, EventArgs e)
+        {
+            if(分類コード.SelectedValue == null)
+            {
+                GroupName.Text = null;
+            }
         }
 
         private void 分類コード_KeyPress(object sender, KeyPressEventArgs e)
@@ -2523,12 +2558,6 @@ namespace u_net
             OriginalClass.SetComboBoxAppearance((ComboBox)sender, e, new int[] { 50, 500 }, new string[] { "Display", "Display2" });
             分類コード.Invalidate();
             分類コード.DroppedDown = true;
-        }
-
-        private void 分類コード_Validated(object sender, EventArgs e)
-        {
-            GroupName.Text = ((DataRowView)分類コード.SelectedItem).Row.Field<String>("Display2").ToString();
-
         }
 
         private void 部品コード_Enter(object sender, EventArgs e)

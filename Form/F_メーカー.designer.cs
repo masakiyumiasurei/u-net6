@@ -1401,6 +1401,8 @@ namespace u_net
             this.Controls.Add(this.削除者コード);
             this.Controls.Add(this.panel1);
             this.KeyPreview = true;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "F_メーカー";
             this.Text = " ";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form_Unload);

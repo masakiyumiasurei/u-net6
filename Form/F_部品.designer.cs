@@ -1366,11 +1366,11 @@ namespace u_net
             this.分類コード.ValueMember = "分類コード";
             this.分類コード.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.分類コード_DrawItem);
             this.分類コード.SelectedIndexChanged += new System.EventHandler(this.分類コード_SelectedIndexChanged);
+            this.分類コード.TextChanged += new System.EventHandler(this.分類コード_TextChanged);
             this.分類コード.Enter += new System.EventHandler(this.分類コード_Enter);
             this.分類コード.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.分類コード_KeyPress);
             this.分類コード.Leave += new System.EventHandler(this.分類コード_Leave);
             this.分類コード.Validating += new System.ComponentModel.CancelEventHandler(this.分類コード_Validating);
-            this.分類コード.Validated += new System.EventHandler(this.分類コード_Validated);
             // 
             // M部品分類bindingSource
             // 
@@ -2344,6 +2344,8 @@ namespace u_net
             this.Controls.Add(this.panel1);
             this.ImeMode = System.Windows.Forms.ImeMode.Off;
             this.KeyPreview = true;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "F_部品";
             this.Text = " ";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form_Unload);

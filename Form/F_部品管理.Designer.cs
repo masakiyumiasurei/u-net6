@@ -1,6 +1,6 @@
 ﻿namespace u_net
 {
-    partial class F_メーカー管理
+    partial class F_部品管理
     {
         /// <summary>
         /// Required designer variable.
@@ -28,19 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(F_メーカー管理));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(F_部品管理));
             this.panel1 = new System.Windows.Forms.Panel();
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
-            this.コマンドメーカー = new System.Windows.Forms.Button();
-            this.コマンドメール = new System.Windows.Forms.Button();
-            this.コマンド印刷 = new System.Windows.Forms.Button();
-            this.コマンド入出力 = new System.Windows.Forms.Button();
-            this.コマンド全表示 = new System.Windows.Forms.Button();
+            this.コマンド部品 = new System.Windows.Forms.Button();
+            this.コマンド入出履歴 = new System.Windows.Forms.Button();
+            this.コマンド出力 = new System.Windows.Forms.Button();
+            this.コマンド保守 = new System.Windows.Forms.Button();
+            this.コマンド更新 = new System.Windows.Forms.Button();
             this.コマンド初期化 = new System.Windows.Forms.Button();
             this.コマンド検索 = new System.Windows.Forms.Button();
             this.コマンド抽出 = new System.Windows.Forms.Button();
-            this.コマンド更新 = new System.Windows.Forms.Button();
+            this.コマンド印刷プレビュー = new System.Windows.Forms.Button();
             this.コマンド終了 = new System.Windows.Forms.Button();
             this.表示件数 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -57,21 +57,21 @@
             this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.panel1.Controls.Add(this.button4);
             this.panel1.Controls.Add(this.button3);
-            this.panel1.Controls.Add(this.コマンドメーカー);
-            this.panel1.Controls.Add(this.コマンドメール);
-            this.panel1.Controls.Add(this.コマンド印刷);
-            this.panel1.Controls.Add(this.コマンド入出力);
-            this.panel1.Controls.Add(this.コマンド全表示);
+            this.panel1.Controls.Add(this.コマンド部品);
+            this.panel1.Controls.Add(this.コマンド入出履歴);
+            this.panel1.Controls.Add(this.コマンド出力);
+            this.panel1.Controls.Add(this.コマンド保守);
+            this.panel1.Controls.Add(this.コマンド更新);
             this.panel1.Controls.Add(this.コマンド初期化);
             this.panel1.Controls.Add(this.コマンド検索);
             this.panel1.Controls.Add(this.コマンド抽出);
-            this.panel1.Controls.Add(this.コマンド更新);
+            this.panel1.Controls.Add(this.コマンド印刷プレビュー);
             this.panel1.Controls.Add(this.コマンド終了);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1054, 32);
+            this.panel1.Size = new System.Drawing.Size(1305, 32);
             this.panel1.TabIndex = 83;
             // 
             // button4
@@ -98,75 +98,76 @@
             this.button3.TabIndex = 10;
             this.button3.UseVisualStyleBackColor = true;
             // 
-            // コマンドメーカー
+            // コマンド部品
             // 
-            this.コマンドメーカー.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.コマンドメーカー.ForeColor = System.Drawing.Color.Blue;
-            this.コマンドメーカー.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.コマンドメーカー.Location = new System.Drawing.Point(291, 4);
-            this.コマンドメーカー.Margin = new System.Windows.Forms.Padding(0, 2, 0, 2);
-            this.コマンドメーカー.Name = "コマンドメーカー";
-            this.コマンドメーカー.Size = new System.Drawing.Size(70, 22);
-            this.コマンドメーカー.TabIndex = 9;
-            this.コマンドメーカー.Text = "メーカー";
-            this.コマンドメーカー.UseVisualStyleBackColor = true;
-            this.コマンドメーカー.Click += new System.EventHandler(this.コマンドメーカー_Click);
+            this.コマンド部品.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.コマンド部品.ForeColor = System.Drawing.Color.Blue;
+            this.コマンド部品.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.コマンド部品.Location = new System.Drawing.Point(291, 4);
+            this.コマンド部品.Margin = new System.Windows.Forms.Padding(0, 2, 0, 2);
+            this.コマンド部品.Name = "コマンド部品";
+            this.コマンド部品.Size = new System.Drawing.Size(70, 22);
+            this.コマンド部品.TabIndex = 9;
+            this.コマンド部品.Text = "部品";
+            this.コマンド部品.UseVisualStyleBackColor = true;
+            this.コマンド部品.Click += new System.EventHandler(this.コマンド部品_Click);
             // 
-            // コマンドメール
+            // コマンド入出履歴
             // 
-            this.コマンドメール.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.コマンドメール.ForeColor = System.Drawing.Color.Blue;
-            this.コマンドメール.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.コマンドメール.Location = new System.Drawing.Point(360, 4);
-            this.コマンドメール.Margin = new System.Windows.Forms.Padding(0, 2, 0, 2);
-            this.コマンドメール.Name = "コマンドメール";
-            this.コマンドメール.Size = new System.Drawing.Size(70, 22);
-            this.コマンドメール.TabIndex = 8;
-            this.コマンドメール.Text = "メール";
-            this.コマンドメール.UseVisualStyleBackColor = true;
-            this.コマンドメール.Click += new System.EventHandler(this.コマンドメール_Click);
+            this.コマンド入出履歴.AutoSize = true;
+            this.コマンド入出履歴.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.コマンド入出履歴.ForeColor = System.Drawing.Color.Blue;
+            this.コマンド入出履歴.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.コマンド入出履歴.Location = new System.Drawing.Point(360, 4);
+            this.コマンド入出履歴.Margin = new System.Windows.Forms.Padding(0, 2, 0, 2);
+            this.コマンド入出履歴.Name = "コマンド入出履歴";
+            this.コマンド入出履歴.Size = new System.Drawing.Size(70, 22);
+            this.コマンド入出履歴.TabIndex = 8;
+            this.コマンド入出履歴.Text = "入出履歴";
+            this.コマンド入出履歴.UseVisualStyleBackColor = true;
+            this.コマンド入出履歴.Click += new System.EventHandler(this.コマンド入出履歴_Click);
             // 
-            // コマンド印刷
+            // コマンド出力
             // 
-            this.コマンド印刷.Enabled = false;
-            this.コマンド印刷.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.コマンド印刷.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.コマンド印刷.Location = new System.Drawing.Point(647, 4);
-            this.コマンド印刷.Margin = new System.Windows.Forms.Padding(0, 2, 0, 2);
-            this.コマンド印刷.Name = "コマンド印刷";
-            this.コマンド印刷.Size = new System.Drawing.Size(70, 22);
-            this.コマンド印刷.TabIndex = 7;
-            this.コマンド印刷.Text = "印刷";
-            this.コマンド印刷.UseVisualStyleBackColor = true;
-            this.コマンド印刷.Click += new System.EventHandler(this.コマンド印刷_Click);
+            this.コマンド出力.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.コマンド出力.ForeColor = System.Drawing.Color.Blue;
+            this.コマンド出力.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.コマンド出力.Location = new System.Drawing.Point(647, 4);
+            this.コマンド出力.Margin = new System.Windows.Forms.Padding(0, 2, 0, 2);
+            this.コマンド出力.Name = "コマンド出力";
+            this.コマンド出力.Size = new System.Drawing.Size(70, 22);
+            this.コマンド出力.TabIndex = 7;
+            this.コマンド出力.Text = "出力";
+            this.コマンド出力.UseVisualStyleBackColor = true;
+            this.コマンド出力.Click += new System.EventHandler(this.コマンド出力_Click);
             // 
-            // コマンド入出力
+            // コマンド保守
             // 
-            this.コマンド入出力.Enabled = false;
-            this.コマンド入出力.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.コマンド入出力.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.コマンド入出力.Location = new System.Drawing.Point(715, 4);
-            this.コマンド入出力.Margin = new System.Windows.Forms.Padding(0, 2, 0, 2);
-            this.コマンド入出力.Name = "コマンド入出力";
-            this.コマンド入出力.Size = new System.Drawing.Size(70, 22);
-            this.コマンド入出力.TabIndex = 6;
-            this.コマンド入出力.Text = "入出力";
-            this.コマンド入出力.UseVisualStyleBackColor = true;
-            this.コマンド入出力.Click += new System.EventHandler(this.コマンド入出力_Click);
+            this.コマンド保守.Enabled = false;
+            this.コマンド保守.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.コマンド保守.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.コマンド保守.Location = new System.Drawing.Point(715, 4);
+            this.コマンド保守.Margin = new System.Windows.Forms.Padding(0, 2, 0, 2);
+            this.コマンド保守.Name = "コマンド保守";
+            this.コマンド保守.Size = new System.Drawing.Size(70, 22);
+            this.コマンド保守.TabIndex = 6;
+            this.コマンド保守.Text = "保守";
+            this.コマンド保守.UseVisualStyleBackColor = true;
+            this.コマンド保守.Click += new System.EventHandler(this.コマンド保守_Click);
             // 
-            // コマンド全表示
+            // コマンド更新
             // 
-            this.コマンド全表示.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.コマンド全表示.ForeColor = System.Drawing.Color.Blue;
-            this.コマンド全表示.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.コマンド全表示.Location = new System.Drawing.Point(207, 4);
-            this.コマンド全表示.Margin = new System.Windows.Forms.Padding(0, 2, 0, 2);
-            this.コマンド全表示.Name = "コマンド全表示";
-            this.コマンド全表示.Size = new System.Drawing.Size(70, 22);
-            this.コマンド全表示.TabIndex = 5;
-            this.コマンド全表示.Text = "全表示";
-            this.コマンド全表示.UseVisualStyleBackColor = true;
-            this.コマンド全表示.Click += new System.EventHandler(this.コマンド全表示_Click);
+            this.コマンド更新.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.コマンド更新.ForeColor = System.Drawing.Color.Blue;
+            this.コマンド更新.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.コマンド更新.Location = new System.Drawing.Point(207, 4);
+            this.コマンド更新.Margin = new System.Windows.Forms.Padding(0, 2, 0, 2);
+            this.コマンド更新.Name = "コマンド更新";
+            this.コマンド更新.Size = new System.Drawing.Size(70, 22);
+            this.コマンド更新.TabIndex = 5;
+            this.コマンド更新.Text = "更新";
+            this.コマンド更新.UseVisualStyleBackColor = true;
+            this.コマンド更新.Click += new System.EventHandler(this.コマンド更新_Click);
             // 
             // コマンド初期化
             // 
@@ -210,19 +211,19 @@
             this.コマンド抽出.UseVisualStyleBackColor = true;
             this.コマンド抽出.Click += new System.EventHandler(this.コマンド抽出_Click);
             // 
-            // コマンド更新
+            // コマンド印刷プレビュー
             // 
-            this.コマンド更新.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.コマンド更新.ForeColor = System.Drawing.Color.Blue;
-            this.コマンド更新.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.コマンド更新.Location = new System.Drawing.Point(579, 4);
-            this.コマンド更新.Margin = new System.Windows.Forms.Padding(0, 2, 0, 2);
-            this.コマンド更新.Name = "コマンド更新";
-            this.コマンド更新.Size = new System.Drawing.Size(70, 22);
-            this.コマンド更新.TabIndex = 1;
-            this.コマンド更新.Text = "更新";
-            this.コマンド更新.UseVisualStyleBackColor = true;
-            this.コマンド更新.Click += new System.EventHandler(this.コマンド更新_Click);
+            this.コマンド印刷プレビュー.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.コマンド印刷プレビュー.ForeColor = System.Drawing.Color.Blue;
+            this.コマンド印刷プレビュー.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.コマンド印刷プレビュー.Location = new System.Drawing.Point(579, 4);
+            this.コマンド印刷プレビュー.Margin = new System.Windows.Forms.Padding(0, 2, 0, 2);
+            this.コマンド印刷プレビュー.Name = "コマンド印刷プレビュー";
+            this.コマンド印刷プレビュー.Size = new System.Drawing.Size(70, 22);
+            this.コマンド印刷プレビュー.TabIndex = 1;
+            this.コマンド印刷プレビュー.Text = "印刷P";
+            this.コマンド印刷プレビュー.UseVisualStyleBackColor = true;
+            this.コマンド印刷プレビュー.Click += new System.EventHandler(this.コマンド印刷プレビュー_Click);
             // 
             // コマンド終了
             // 
@@ -273,12 +274,11 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowTemplate.Height = 29;
-            this.dataGridView1.Size = new System.Drawing.Size(1054, 386);
+            this.dataGridView1.Size = new System.Drawing.Size(1300, 560);
             this.dataGridView1.TabIndex = 87;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
             this.dataGridView1.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.DataGridView1_CellPainting);
-            this.dataGridView1.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_ColumnHeaderMouseClick);
             this.dataGridView1.Sorted += new System.EventHandler(this.dataGridView1_Sorted);
             this.dataGridView1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form_KeyDown);
             // 
@@ -288,17 +288,17 @@
             this.panel2.Controls.Add(this.label1);
             this.panel2.Controls.Add(this.label2);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 422);
+            this.panel2.Location = new System.Drawing.Point(0, 600);
             this.panel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1054, 27);
+            this.panel2.Size = new System.Drawing.Size(1305, 27);
             this.panel2.TabIndex = 88;
             // 
-            // F_メーカー管理
+            // F_部品管理
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1054, 449);
+            this.ClientSize = new System.Drawing.Size(1305, 627);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.panel1);
@@ -306,12 +306,13 @@
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "F_メーカー管理";
-            this.Text = "メーカー管理";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.F_メーカー管理_FormClosing);
+            this.Name = "F_部品管理";
+            this.Text = "部品管理";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.F_部品管理_FormClosing);
             this.Load += new System.EventHandler(this.Form_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form_KeyDown);
             this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
@@ -323,14 +324,14 @@
         private Panel panel1;
         private Button button4;
         private Button button3;
-        private Button コマンドメーカー;
-        private Button コマンドメール;
-        private Button コマンド印刷;
-        private Button コマンド入出力;
-        private Button コマンド全表示;
+        private Button コマンド部品;
+        private Button コマンド入出履歴;
+        private Button コマンド出力;
+        private Button コマンド保守;
+        private Button コマンド更新;
         private Button コマンド初期化;
         private Button コマンド抽出;
-        private Button コマンド更新;
+        private Button コマンド印刷プレビュー;
         private Button コマンド終了;
         private TextBox 表示件数;
         private Label label1;
@@ -435,7 +436,7 @@
         private DataGridViewTextBoxColumn 機能DataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn 構成番号DataGridViewTextBoxColumn;
 
-        //private newDataSetTableAdapters.Vメーカー管理TableAdapter vメーカー管理TableAdapter;
+        //private newDataSetTableAdapters.V部品管理TableAdapter v部品管理TableAdapter;
 
         private DataGridView dataGridView1;
         private DataGridViewTextBoxColumn 商品コードDataGridViewTextBoxColumn;
@@ -462,7 +463,7 @@
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn60;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn61;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn62;
-        //private newDataSetTableAdapters.Qメーカー管理TableAdapter qメーカー管理TableAdapter;
+        //private newDataSetTableAdapters.Q部品管理TableAdapter q部品管理TableAdapter;
         private Panel panel2;
         private Button コマンド検索;
     }
