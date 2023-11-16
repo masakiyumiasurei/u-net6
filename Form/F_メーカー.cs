@@ -428,6 +428,26 @@ namespace u_net
                     if (!DataUpdater.UpdateOrInsertDataFrom(this, cn, "Mメーカー", strwhere, "メーカーコード", transaction))
                     {
                         //transaction.Rollback(); 関数内でロールバック入れた
+
+
+                        if (isNewData)
+                        {
+                            objControl1.Text = varSaved1.ToString();
+                            objControl2.Text = varSaved2.ToString();
+                            objControl3.Text = varSaved3.ToString();
+                            ActiveDate.Text = varSaved7.ToString();
+
+                        }
+
+                        objControl4.Text = varSaved4.ToString();
+                        objControl5.Text = varSaved5.ToString();
+                        objControl6.Text = varSaved6.ToString();
+
+
+
+
+
+
                         return false;
                     }
 
@@ -457,10 +477,10 @@ namespace u_net
                 catch (Exception ex)
                 {
                     // トランザクション内でエラーが発生した場合、ロールバックを実行
-                    if (transaction != null)
-                    {
-                        transaction.Rollback();
-                    }
+                    //if (transaction != null)
+                    //{
+                    //    transaction.Rollback();
+                    //}
 
                     コマンド登録.Enabled = true;
                     // エラーメッセージを表示またはログに記録

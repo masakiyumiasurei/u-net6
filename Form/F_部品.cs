@@ -392,6 +392,20 @@ namespace u_net
 
                     if (!DataUpdater.UpdateOrInsertDataFrom(this, cn, "M部品", strwhere, "部品コード", transaction))
                     {
+
+
+                        if (IsNewData)
+                        {
+                            objControl1.Text = varSaved1.ToString();
+                            objControl2.Text = varSaved2.ToString();
+                            objControl3.Text = varSaved3.ToString();
+
+                        }
+
+                        objControl4.Text = varSaved4.ToString();
+                        objControl5.Text = varSaved5.ToString();
+                        objControl6.Text = varSaved6.ToString();
+
                         return false;
                     }
 
@@ -2518,6 +2532,14 @@ namespace u_net
             ChangedData(true);
         }
 
+        private void 分類コード_TextChanged(object sender, EventArgs e)
+        {
+            if(分類コード.SelectedValue == null)
+            {
+                GroupName.Text = null;
+            }
+        }
+
         private void 分類コード_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == (char)Keys.Space)
@@ -2767,6 +2789,6 @@ namespace u_net
             toolStripStatusLabel2.Text = "各種項目の説明";
         }
 
-
+        
     }
 }

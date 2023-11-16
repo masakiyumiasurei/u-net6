@@ -1366,6 +1366,7 @@ namespace u_net
             this.分類コード.ValueMember = "分類コード";
             this.分類コード.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.分類コード_DrawItem);
             this.分類コード.SelectedIndexChanged += new System.EventHandler(this.分類コード_SelectedIndexChanged);
+            this.分類コード.TextChanged += new System.EventHandler(this.分類コード_TextChanged);
             this.分類コード.Enter += new System.EventHandler(this.分類コード_Enter);
             this.分類コード.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.分類コード_KeyPress);
             this.分類コード.Leave += new System.EventHandler(this.分類コード_Leave);

@@ -251,10 +251,10 @@ namespace u_net
                 switch (lng単価指定)
                 {
                     case 1:
-                        filter += "単価 IS NULL AND ";
+                        filter += "単価 IS NOT NULL AND ";
                         break;
                     case 2:
-                        filter += "単価 IS NOT NULL AND ";
+                        filter += "単価 IS NULL AND ";
                         break;
                 }
 
@@ -263,10 +263,10 @@ namespace u_net
                 switch (lng使用指定)
                 {
                     case 1:
-                        filter += "使用 IS NULL AND ";
+                        filter += "使用 IS NOT NULL AND ";
                         break;
                     case 2:
-                        filter += "使用 IS NOT NULL AND ";
+                        filter += "使用 IS NULL AND ";
                         break;
                 }
 

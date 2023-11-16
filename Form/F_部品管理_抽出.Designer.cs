@@ -462,7 +462,6 @@
             // 
             this.単価指定.BackColor = System.Drawing.Color.White;
             this.単価指定.DisplayMember = "分類コード";
-            this.単価指定.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.単価指定.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.単価指定.FormattingEnabled = true;
             this.単価指定.ImeMode = System.Windows.Forms.ImeMode.Off;
@@ -502,6 +501,7 @@
             this.分類記号.ValueMember = "分類記号";
             this.分類記号.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.分類記号_DrawItem);
             this.分類記号.SelectedIndexChanged += new System.EventHandler(this.分類記号_SelectedIndexChanged);
+            this.分類記号.TextChanged += new System.EventHandler(this.分類記号_TextChanged);
             this.分類記号.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.分類記号_KeyPress);
             // 
             // 形状
@@ -519,6 +519,7 @@
             this.形状.ValueMember = "分類コード";
             this.形状.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.形状_DrawItem);
             this.形状.SelectedIndexChanged += new System.EventHandler(this.形状_SelectedIndexChanged);
+            this.形状.TextChanged += new System.EventHandler(this.形状_TextChanged);
             this.形状.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.形状_KeyPress);
             // 
             // F_部品管理_抽出

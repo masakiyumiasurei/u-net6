@@ -57,10 +57,10 @@ namespace u_net
                 形状.DrawMode = DrawMode.OwnerDrawFixed;
 
                 this.単価指定.DataSource = new KeyValuePair<long, String>[] {
-                new KeyValuePair<long, String>(1, "有り"),
-                new KeyValuePair<long, String>(2, "無し"),
-                new KeyValuePair<long, String>(0, "指定なし"),
-            };
+                    new KeyValuePair<long, String>(1, "有り"),
+                    new KeyValuePair<long, String>(2, "無し"),
+                    new KeyValuePair<long, String>(0, "指定なし"),
+                };
                 this.単価指定.DisplayMember = "Value";
                 this.単価指定.ValueMember = "Key";
 
@@ -146,8 +146,8 @@ namespace u_net
                 frmTarget.str型番 = Nz(型番.Text);
                 frmTarget.strメーカー名 = Nz(メーカー名.Text);
                 frmTarget.str仕入先名 = Nz(仕入先名.Text);
-                frmTarget.lng単価指定 = 単価指定.SelectedValue != null ? (long)Nz(単価指定.SelectedValue) : 0;
-                frmTarget.lngRohsStatusCode = RohsStatusCode.SelectedValue != null ? (long)RohsStatusCode.SelectedValue : 0;
+                frmTarget.lng単価指定 = 単価指定.SelectedValue != null ? Convert.ToInt64(単価指定.SelectedValue) : 0;
+                frmTarget.lngRohsStatusCode = RohsStatusCode.SelectedValue != null ? Convert.ToInt64(RohsStatusCode.SelectedValue) : 0;
                 frmTarget.strChemSherpaVersion = Nz(更新者名.Text);
 
                 frmTarget.str更新者名 = Nz(更新者名.Text);
@@ -291,12 +291,30 @@ namespace u_net
 
         private void 分類記号_SelectedIndexChanged(object sender, EventArgs e)
         {
-            対象部品名.Text = (分類記号.SelectedItem as DataRowView)?.Row.Field<String>("Display2")?.ToString();
+            対象部品名.Text = (分類記号.SelectedItem as DataRowView)?.Row.Field<String>("Display2")?.ToString() ?? null;
         }
 
         private void 形状_SelectedIndexChanged(object sender, EventArgs e)
         {
+            
             形状名.Text = (形状.SelectedItem as DataRowView)?.Row.Field<String>("Display2")?.ToString();
+        }
+
+        private void 分類記号_TextChanged(object sender, EventArgs e)
+        {
+            
+            if (分類記号.SelectedValue == null)
+            {
+                対象部品名.Text = null;
+            }
+        }
+
+        private void 形状_TextChanged(object sender, EventArgs e)
+        {
+            if (形状.SelectedValue == null)
+            {
+                形状名.Text = null;
+            }
         }
     }
 }
