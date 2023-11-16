@@ -16,22 +16,46 @@ using GrapeCity.Win.MultiRow;
 using System.ComponentModel;
 using System.DirectoryServices;
 using Microsoft.EntityFrameworkCore.Metadata;
+using System.Reflection.Metadata.Ecma335;
 
 namespace u_net
 {
-    public partial class F_商品 : Form
+    public partial class F_シリーズ : Form
     {
         private Control? previousControl;
         private SqlConnection cn;
         private SqlTransaction tx;
         public string args = "";
-        public string CurrentCode = "";
         private bool setCombo = false;
-        
+        private const string STR_CODEHEADER = "SRS";
 
-        public F_商品()
+        public bool IsChanged
         {
-            this.Text = "商品";       // ウィンドウタイトルを設定
+            get
+            {
+                return コマンド登録.Enabled;
+            }
+        }
+
+        public bool IsNewData
+        {
+            get
+            {
+                return !コマンド新規.Enabled;
+            }
+        }
+
+        public string CurrentCode
+        {
+            get
+            {
+                return string.IsNullOrEmpty(シリーズコード.Text) ? "" : シリーズコード.Text;
+            }
+        }
+
+        public F_シリーズ()
+        {
+            this.Text = "シリーズ";       // ウィンドウタイトルを設定
             this.MaximizeBox = false;  // 最大化ボタンを無効化
 
             InitializeComponent();
@@ -55,29 +79,27 @@ namespace u_net
             FunctionClass fn = new FunctionClass();
             fn.DoWait("しばらくお待ちください...");
 
-            //this.combBox商品コードTableAdapter.Fill(this.uiDataSet.CombBox商品コード);
-            //this.combBoxMシリーズTableAdapter.Fill(this.uiDataSet.Mシリーズ);
-            //this.m商品分類TableAdapter.Fill(this.uiDataSet.M商品分類);
-            //this.comboBox売上区分TableAdapter.Fill(this.uiDataSet.M売上区分);
-            //this.M単位TableAdapter.Fill(this.uiDataSet.M単位);
-            //this.comboBoxManufactureFlowTableAdapter.Fill(this.uiDataSet.ManufactureFlow);
-
             OriginalClass ofn = new OriginalClass();
-            ofn.SetComboBox(数量単位コード, "SELECT 単位名 as Display,単位コード as Value FROM M単位");
-            ofn.SetComboBox(シリーズコード, "SELECT シリーズ名 as Display,シリーズコード as Value FROM Mシリーズ");
-            ofn.SetComboBox(商品分類コード, "SELECT 分類名 as Display,商品分類コード as Value FROM M商品分類");
-            ofn.SetComboBox(売上区分コード, "SELECT 売上区分名 as Display,売上区分コード as Value FROM M売上区分");
-            ofn.SetComboBox(FlowCategoryCode, "SELECT Name as Display,Code as Value FROM ManufactureFlow");
-            setCombo = true;
-            ofn.SetComboBox(商品コード, "SELECT M商品.商品コード as Display ,M商品.商品コード as Value FROM M商品 INNER JOIN M商品明細 ON M商品.商品コード = M商品明細.商品コード " +
-                                        "GROUP BY M商品.商品コード ORDER BY M商品.商品コード DESC");
+            ofn.SetComboBox(シリーズコード, "SELECT シリーズコード as Display,シリーズコード as Value FROM Mシリーズ");
 
             setCombo = false;
 
+
             int intWindowHeight = this.Height;
             int intWindowWidth = this.Width;
-
             previousControl = null;
+
+            // DataGridViewの設定
+            dataGridView1.AllowUserToResizeColumns = true;
+            dataGridView1.Font = new Font("MS ゴシック", 10);
+            dataGridView1.DefaultCellStyle.SelectionBackColor = Color.FromArgb(210, 210, 255);
+            dataGridView1.DefaultCellStyle.SelectionForeColor = Color.Black;
+            dataGridView1.GridColor = Color.FromArgb(230, 230, 230);
+            dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font("MS ゴシック", 9);
+            dataGridView1.DefaultCellStyle.Font = new Font("MS ゴシック", 10);
+            dataGridView1.DefaultCellStyle.ForeColor = Color.Black;
+
+            if (!SetGrid()) return;
 
             try
             {
@@ -98,12 +120,12 @@ namespace u_net
                     }
                     if (!string.IsNullOrEmpty(args))
                     {
-                        this.商品コード.Text = args;                        
+                        this.シリーズコード.Text = args;
                     }
                 }
 
                 fn.WaitForm.Close();
-                                
+
                 string LoginUserCode = "000";//テスト用 ログインユーザを実行中にどのように管理するか決まったら修正
                 LocalSetting localSetting = new LocalSetting();
                 localSetting.LoadPlace(LoginUserCode, this);
@@ -112,7 +134,7 @@ namespace u_net
             catch (Exception ex)
             {
                 ChangedData(false);
-                MessageBox.Show("初期化に失敗しました。", "エラー");
+                MessageBox.Show("初期化に失敗しました。\n" + ex.Message, "エラー");
             }
             finally
             {
@@ -130,51 +152,30 @@ namespace u_net
                 string strSQL;
                 Connect();
 
-                //バインドソースの新規追加
-                //this.M商品BindingSource.AddNew();
-                
-                string original = FunctionClass.採番(cn, "ITM");
-
-                CurrentCode = original.Substring(original.Length - 8);
-                商品コード.Text = CurrentCode;
-                Revision.Text = "1";
-                掛率有効.Checked = true;
-
-                FlowCategoryCode.SelectedValue = "001";
-
-
-                //何故かこれだけ値が入らない
-                数量単位コード.SelectedValue = 1;
-                //売上区分コード.SelectedValue = 1;
-
-
-                CustomerSerialNumberRequired.Checked = false;
-                IsUnit.Checked = false;
-                Discontinued.Checked = false;
-
-                // 明細部を初期化
-                //this.M商品明細TableAdapter.Fill(this.uiDataSet.M商品明細, CurrentCode);
-                //strSQL = "SELECT * FROM M商品明細 WHERE 商品コード='" + CurrentCode + "' ORDER BY 明細番号";
-                //LoadDetails(strSQL, SubForm, dbWork, "商品明細");
-
                 // ヘッダ部を制御
+                シリーズコード.Text = FunctionClass.採番(cn, STR_CODEHEADER);
+                在庫下限数量.Text = "0";
+                在庫補正数量.Text = "0";
+                補正値.Text = "0";
+
                 FunctionClass.LockData(this, false);
-                品名.Focus();
-                商品コード.Enabled = false;
+                シリーズ名.Focus();
+                シリーズコード.Enabled = false;
                 コマンド新規.Enabled = false;
                 コマンド修正.Enabled = true;
                 コマンド複写.Enabled = false;
                 コマンド削除.Enabled = false;
-                コマンド承認.Enabled = false;
-                コマンド確定.Enabled = false;
+                コマンド商品参照.Enabled = false;
+                //   コマンド承認.Enabled = false;
+                //   コマンド確定.Enabled = false;
                 コマンド登録.Enabled = false;
-                
+
                 return true;
             }
             catch (Exception ex)
             {
                 Debug.WriteLine("GoNewMode - " + ex.Message);
-                
+
                 return false;
             }
         }
@@ -184,10 +185,9 @@ namespace u_net
             try
             {
                 VariableSet.SetControls(this);
-
-                FunctionClass.LockData(this, true, "商品コード");
-                this.商品コード.Enabled = true;
-                this.商品コード.Focus();
+                FunctionClass.LockData(this, true, "シリーズコード");
+                this.シリーズコード.Enabled = true;
+                this.シリーズコード.Focus();
                 this.コマンド新規.Enabled = true;
                 this.コマンド修正.Enabled = false;
                 this.コマンド複写.Enabled = false;
@@ -197,19 +197,142 @@ namespace u_net
             }
             catch (Exception ex)
             {
-                MessageBox.Show("修正Mode - " + ex.HResult + " : " + ex.Message);
+                MessageBox.Show("GoModifyMode - " + ex.HResult + " : " + ex.Message);
                 return false;
             }
         }
 
-        private bool ErrCheck()
+        private bool SetGrid()
         {
-            //入力確認    
-            if (!FunctionClass.IsError(this.商品名)) return false;
-            if (!FunctionClass.IsError(this.商品コード)) return false;
-            if (!FunctionClass.IsError(this.売上区分コード)) return false;
+            try
+            {
+                string query = "SELECT * FROM Vシリーズ管理 WHERE 廃止 IS NULL ORDER BY シリーズコード DESC ";
+                Connect();
+                DataGridUtils.SetDataGridView(cn, query, this.dataGridView1);
+
+                int cnt = 0;
+
+                if (dataGridView1.DataSource != null)
+                {
+                    cnt = ((DataTable)dataGridView1.DataSource).Rows.Count;
+                    表示件数.Text = cnt.ToString();
+
+                    if (cnt == 0)
+                    {
+                        // データがない場合はダミーデータを追加
+                        dataGridView1.Rows.Add();
+                    }
+                }
+
+                MyApi myapi = new MyApi();
+                int xSize, ySize, intpixel, twipperdot;
+
+                intpixel = myapi.GetLogPixel();
+                twipperdot = myapi.GetTwipPerDot(intpixel);
+
+                dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+                dataGridView1.ColumnHeadersHeight = 25;
+
+                //0列目はaccessでは行ヘッダのため、ずらす
+                dataGridView1.Columns[0].Width = 1200 / twipperdot; //1150
+                dataGridView1.Columns[1].Width = 2500 / twipperdot;
+                dataGridView1.Columns[2].Width = 1200 / twipperdot;
+                dataGridView1.Columns[3].Width = 1200 / twipperdot;
+                dataGridView1.Columns[4].Width = 2300 / twipperdot;
+                dataGridView1.Columns[5].Width = 1700 / twipperdot;
+                dataGridView1.Columns[6].Width = 400 / twipperdot;
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                ChangedData(false);
+                MessageBox.Show("初期化に失敗しました。\n" + ex.Message, "エラー");
+                return false;
+            }
+        }
+        private void DataGridView1_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+            //行番号を表示する
+            //列ヘッダーかどうか調べる
+            if (e.ColumnIndex < 0 && e.RowIndex >= 0)
+            {
+                dataGridView1.SuspendLayout();
+                //セルを描画する
+                e.Paint(e.ClipBounds, DataGridViewPaintParts.All);
+
+                //行番号を描画する範囲を決定する
+                //e.AdvancedBorderStyleやe.CellStyle.Paddingは無視
+                Rectangle indexRect = e.CellBounds;
+                indexRect.Inflate(-2, -2);
+
+                //行番号を描画する
+                TextRenderer.DrawText(e.Graphics, (e.RowIndex + 1).ToString(), e.CellStyle.Font, indexRect,
+                    e.CellStyle.ForeColor, TextFormatFlags.Right | TextFormatFlags.VerticalCenter);
+
+                //描画が完了したことを知らせる
+                e.Handled = true;
+                dataGridView1.ResumeLayout();
+            }
+        }
+
+        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0) // ヘッダー行でない場合
+            {
+                try
+                {
+                    GoModifyMode();
+                    シリーズコード.SelectedValue = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString(); // 1列目のデータを取得
+                    シリーズ名.Focus();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private bool ErrCheck(Control control)
+        {
+            //入力確認
+            switch (control.Name)
+            {
+                case "シリーズ名":
+                    if (!FunctionClass.IsError(control)) return false;
+                    break;
+                case "在庫下限数量":
+                    if (!FunctionClass.IsError(control)) return false;
+                    if (OriginalClass.IsNumeric(control))
+                    {
+                        MessageBox.Show("数字を入力してください。: ", "数値判定エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                        return false;
+                    }
+                    double result;
+                    double.TryParse(control.Text, out result);
+                    if (result < 0)
+                    {
+                        MessageBox.Show("0 以上の値を入力してください。", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return false;
+                    }
+                    break;
+                case "補正値":
+                    if (!FunctionClass.IsError(control))
+                    {
+                        MessageBox.Show("在庫数量を補正しないときは 0 を入力してください。", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return false;
+                    }
+                    if (OriginalClass.IsNumeric(control))
+                    {
+                        MessageBox.Show("数字を入力してください。: ", "数値判定エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return false;
+                    }
+                    break;
+            }
             return true;
         }
+
         private void コマンド登録_Click(object sender, EventArgs e)
         {
             //保存確認
@@ -217,7 +340,7 @@ namespace u_net
                 MessageBoxButtons.OKCancel,
                 MessageBoxIcon.Question) == DialogResult.OK)
             {
-                if (!ErrCheck()) return;
+                //if (!ErrCheck("")) return;
 
                 if (!SaveData()) return;
             }
@@ -233,16 +356,16 @@ namespace u_net
             {
                 try
                 {
-                    // M商品データを保存
-                    string strwhere = " 商品コード='" + this.商品コード.Text + "' and Revision=" + this.Revision.Text;
+                    // Mシリーズデータを保存
+                    string strwhere = " シリーズコード='" + this.シリーズコード.Text + "' and Revision=" + this.Revision.Text;
 
-                    if (!DataUpdater.UpdateOrInsertDataFrom(this, cn, "M商品", strwhere, "商品コード", transaction))
+                    if (!DataUpdater.UpdateOrInsertDataFrom(this, cn, "Mシリーズ", strwhere, "シリーズコード", transaction))
                     {
                         //transaction.Rollback(); 関数内でロールバック入れた
                         return false;
                     }
 
-                    string sql = "DELETE FROM M商品明細 WHERE " + strwhere;
+                    string sql = "DELETE FROM Mシリーズ明細 WHERE " + strwhere;
                     SqlCommand command = new SqlCommand(sql, cn, transaction);
                     command.ExecuteNonQuery();
 
@@ -250,7 +373,7 @@ namespace u_net
                     {
                         if (!row.IsNewRow)
                         {
-                            string 商品コード = row.Cells["dgv商品コード"].Value.ToString();
+                            string シリーズコード = row.Cells["dgvシリーズコード"].Value.ToString();
                             string Revision = row.Cells["dgvRevision"].Value.ToString();
                             string 明細番号 = row.Cells["dgv明細番号"].Value.ToString();
                             string 型式番号 = row.Cells["型式番号"].Value.ToString();
@@ -261,13 +384,13 @@ namespace u_net
                             string 構成番号 = row.Cells["構成番号"].Value.ToString();
 
                             // データベースにデータを挿入
-                            string insertSql = "INSERT INTO M商品明細 (商品コード, Revision, 明細番号, 型式番号, 型式名, 定価, 原価, 機能, 構成番号) " +
-                                "VALUES (@商品コード, @Revision, @明細番号, @型式番号, @型式名, @定価, @原価, @機能, @構成番号)";
+                            string insertSql = "INSERT INTO Mシリーズ明細 (シリーズコード, Revision, 明細番号, 型式番号, 型式名, 定価, 原価, 機能, 構成番号) " +
+                                "VALUES (@シリーズコード, @Revision, @明細番号, @型式番号, @型式名, @定価, @原価, @機能, @構成番号)";
 
 
                             using (SqlCommand insertCommand = new SqlCommand(insertSql, cn, transaction))
                             {
-                                insertCommand.Parameters.AddWithValue("@商品コード", 商品コード);
+                                insertCommand.Parameters.AddWithValue("@シリーズコード", シリーズコード);
                                 insertCommand.Parameters.AddWithValue("@Revision", Revision);
                                 insertCommand.Parameters.AddWithValue("@明細番号", 明細番号);
                                 insertCommand.Parameters.AddWithValue("@型式番号", 型式番号);
@@ -283,22 +406,22 @@ namespace u_net
                     }
 
 
-                    // M商品明細データを保存
+                    // Mシリーズ明細データを保存
                     //this.mshomeisaiTableAdapter.Connection = cn;
                     //this.mshomeisaiTableAdapter.Transaction = transaction;
-                    //this.mshomeisaiTableAdapter.Update(this.newDataSet.M商品明細);
+                    //this.mshomeisaiTableAdapter.Update(this.newDataSet.Mシリーズ明細);
 
                     // トランザクションをコミット
                     transaction.Commit();
 
                     // DataGridViewを更新して新しいデータを表示
-                    this.mshomeisaiTableAdapter.Fill(this.newDataSet.M商品明細, this.商品コード.Text);
+                    //this.mshomeisaiTableAdapter.Fill(this.newDataSet.Mシリーズ明細, this.シリーズコード.Text);
 
                     // データベースへの変更を適用
                     this.tableAdapterManager.UpdateAll(this.uiDataSet);
                     MessageBox.Show("登録を完了しました");
 
-                    商品コード.Enabled = true;
+                    シリーズコード.Enabled = true;
 
                     // 新規モードのときは修正モードへ移行する
                     if (true)//IsNewData)
@@ -352,7 +475,7 @@ namespace u_net
                     {
                         case DialogResult.Yes:
 
-                            if (!ErrCheck()) return;
+                            if (!ErrCheck(シリーズコード)) return;
                             // 登録処理
                             if (!SaveData())
                             {
@@ -370,7 +493,7 @@ namespace u_net
                 {
                     goto Err_コマンド新規_Click;
                 }
-                
+
                 return;
 
             Err_コマンド新規_Click:
@@ -399,25 +522,27 @@ namespace u_net
                     {
                         case DialogResult.Yes:
 
-                            if (!ErrCheck()) return;
+                            // if (!ErrCheck()) return;
                             this.DoubleBuffered = false;
-                            //Call DoWait("登録しています...")
+                            FunctionClass fn = new FunctionClass();
+                            fn.DoWait("しばらくお待ちください...");
 
                             if (!SaveData())
                             {
                                 MessageBox.Show("エラーのため登録できませんでした。", "修正コマンド", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                             }
                             this.DoubleBuffered = true;
+                            fn.WaitForm.Close();
                             break;
 
                         case DialogResult.No:
                             // 新規モードのときに登録しない場合はコードを戻す
-                            if (!this.コマンド新規.Enabled && !string.IsNullOrEmpty(CurrentCode))
+                            if (!IsNewData && !string.IsNullOrEmpty(CurrentCode))
                             {
                                 Connect();
-                                if (!FunctionClass.ReturnCode(cn, "ITM" + this.商品コード.Text))
+                                if (!FunctionClass.ReturnCode(cn, STR_CODEHEADER + CurrentCode))
                                 {
-                                    MessageBox.Show("エラーのためコードは破棄されました。\n\n商品コード： " + this.商品コード.Text, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                                    MessageBox.Show("エラーのためコードは破棄されました。\n\nシリーズコード： " + CurrentCode, CurrentCode, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                                 }
                             }
                             break;
@@ -429,11 +554,11 @@ namespace u_net
                 else
                 {
                     // 新規モードのときに変更がない場合はコードを戻す
-                    if (!this.コマンド新規.Enabled && !string.IsNullOrEmpty(CurrentCode))
+                    if (IsNewData && !string.IsNullOrEmpty(CurrentCode))
                     {
-                        if (!FunctionClass.ReturnCode(cn, "ITM" + this.商品コード.Text))
+                        if (!FunctionClass.ReturnCode(cn, STR_CODEHEADER + CurrentCode))
                         {
-                            MessageBox.Show("エラーのためコードは破棄されました。\n\n商品コード： " + this.商品コード.Text, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            MessageBox.Show("エラーのためコードは破棄されました。\n\nシリーズコード： " + CurrentCode, CurrentCode, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         }
                     }
                 }
@@ -466,16 +591,16 @@ namespace u_net
                     previousControl.Focus();
                 }
             }
-            //新規採番したコードを商品明細にセット
-            string original = FunctionClass.採番(cn, "ITM");
+            //新規採番したコードをシリーズ明細にセット
+            string original = FunctionClass.採番(cn, STR_CODEHEADER);
             string originalcode = original.Substring(original.Length - 8);
 
             if (CopyData(originalcode))
             {
                 // ヘッダ部制御
                 FunctionClass.LockData(this, false);
-                商品名.Focus();
-                商品コード.Enabled = false;
+                シリーズ名.Focus();
+                シリーズコード.Enabled = false;
                 コマンド新規.Enabled = false;
                 コマンド修正.Enabled = true;
                 コマンド複写.Enabled = false;
@@ -501,18 +626,18 @@ namespace u_net
                     // 行が新しい行を示す場合など、データ行でない場合は無視
                     if (!row.IsNewRow)
                     {
-                        // 商品コードカラムのセルを取得
-                        DataGridViewCell productCodeCell = row.Cells["dgv商品コード"]; // カラム名に応じて変更
+                        // シリーズコードカラムのセルを取得
+                        DataGridViewCell productCodeCell = row.Cells["dgvシリーズコード"]; // カラム名に応じて変更
 
                         if (productCodeCell != null)
                         {
-                            // 商品コードカラムのセルの値を新しい商品コードに変更
+                            // シリーズコードカラムのセルの値を新しいシリーズコードに変更
                             productCodeCell.Value = codeString;
                         }
                     }
                 }
                 // コントロールのフィールドを初期化
-                商品コード.Text = codeString;
+                シリーズコード.Text = codeString;
                 作成日時.Text = null;
                 作成者コード.Text = null;
                 作成者名.Text = null;
@@ -545,16 +670,16 @@ namespace u_net
                     previousControl.Focus();
                 }
             }
-            CurrentCode = this.商品コード.Text;
+
 
             if (!string.IsNullOrEmpty(ComposedChipMount.Text) || IsUnit.Checked)
             {
-                MessageBox.Show("本商品はマウントデータが構成されています。削除する前にマウントラインで使用されていないことを確認してください.", "削除コマンド",
+                MessageBox.Show("本シリーズはマウントデータが構成されています。削除する前にマウントラインで使用されていないことを確認してください.", "削除コマンド",
                     MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 //return;  そのまま削除できる仕様の様
             }
 
-            DialogResult result = MessageBox.Show($"商品コード：{CurrentCode}\n\nこの商品データを削除します。\n削除後元に戻すことはできません。\n\n削除しますか？", "削除コマンド", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult result = MessageBox.Show($"シリーズコード：{CurrentCode}\n\nこのシリーズデータを削除します。\n削除後元に戻すことはできません。\n\n削除しますか？", "削除コマンド", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (result == DialogResult.No)
                 return;
@@ -598,8 +723,8 @@ namespace u_net
                 //ログインユーザについてはどうするか検討
                 string LoginUserCode = "tes";
                 // データベース操作のためのSQL文
-                string selectSql = "SELECT * FROM M商品 WHERE 商品コード = " + codeParam + " AND 無効日時 IS NULL";
-                string updateSql = "UPDATE M商品 SET 無効日時 = GETDATE(), 無効者コード = @UserCode WHERE 商品コード = " + codeParam + " AND 無効日時 IS NULL";
+                string selectSql = "SELECT * FROM Mシリーズ WHERE シリーズコード = " + codeParam + " AND 無効日時 IS NULL";
+                string updateSql = "UPDATE Mシリーズ SET 無効日時 = GETDATE(), 無効者コード = @UserCode WHERE シリーズコード = " + codeParam + " AND 無効日時 IS NULL";
 
                 using (SqlCommand selectCommand = new SqlCommand(selectSql, cn, transaction))
                 {
@@ -608,7 +733,7 @@ namespace u_net
                     {
                         if (reader.HasRows)
                         {
-                            // 商品が見つかった場合、削除処理を実行
+                            // シリーズが見つかった場合、削除処理を実行
                             reader.Close(); // 同じ接続なのでデータリーダーを閉じておく
 
                             using (SqlCommand updateCommand = new SqlCommand(updateSql, cn, transaction))
@@ -652,11 +777,6 @@ namespace u_net
             return success;
         }
 
-        private void コマンドシリーズ_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void コマンド承認_Click(object sender, EventArgs e)
         {
             if (ActiveControl == コマンド承認)
@@ -679,7 +799,7 @@ namespace u_net
         {
             try
             {
-                if (this.コマンド登録.Enabled)
+                if (IsChanged)
                 {
                     // データに変更がある場合の処理
                     DialogResult result = MessageBox.Show("変更内容を登録しますか？", this.Text, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
@@ -688,7 +808,7 @@ namespace u_net
                     {
                         case DialogResult.Yes:
                             // エラーチェック
-                            if (!ErrCheck()) return;
+                            //if (!ErrCheck()) return;
 
 
                             // 登録処理
@@ -708,12 +828,12 @@ namespace u_net
 
                         case DialogResult.No:
                             // 新規モードのときに登録しない場合はコードを戻す
-                            if (!this.コマンド新規.Enabled && !string.IsNullOrEmpty(CurrentCode))
+                            if (IsNewData && !string.IsNullOrEmpty(CurrentCode))
                             {
                                 Connect();
-                                if (!FunctionClass.ReturnCode(cn, "ITM" + this.商品コード.Text))
+                                if (!FunctionClass.ReturnCode(cn, STR_CODEHEADER + CurrentCode))
                                 {
-                                    MessageBox.Show("エラーのためコードは破棄されました。\n\n商品コード： " + this.商品コード.Text, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                                    MessageBox.Show("エラーのためコードは破棄されました。\n\nシリーズコード： " + CurrentCode, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                                 }
                             }
                             break;
@@ -726,12 +846,12 @@ namespace u_net
                 else
                 {
                     // 新規モードのときに変更がない場合はコードを戻す
-                    if (!this.コマンド新規.Enabled && !string.IsNullOrEmpty(CurrentCode))
+                    if (IsNewData && !string.IsNullOrEmpty(CurrentCode))
                     {
                         Connect();
-                        if (!FunctionClass.ReturnCode(cn, "ITM" + this.商品コード.Text))
+                        if (!FunctionClass.ReturnCode(cn, STR_CODEHEADER + CurrentCode))
                         {
-                            MessageBox.Show("エラーのためコードは破棄されました。\n\n商品コード： " + this.商品コード.Text, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            MessageBox.Show("エラーのためコードは破棄されました。\n\nシリーズコード： " + CurrentCode, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         }
                     }
                 }
@@ -756,14 +876,6 @@ namespace u_net
 
         }
 
-        //form_Loadの処理だと、グリッドビューがアクティブにならないので、グリッドビューにカーソルを持っていきたい時はこちら
-        private void F_商品_Shown(object sender, EventArgs e)
-        {
-            //this.Activate();
-            //this.ActiveControl = dataGridView1;
-            //dataGridView1.CurrentCell = dataGridView1[1, new_cnt];
-        }
-
 
         // コントロールがフォーカスを受け取ったとき、前回のフォーカスを記憶
         private void Control_GotFocus(object sender, EventArgs e)
@@ -784,7 +896,7 @@ namespace u_net
             }
         }
 
-        //商品明細の型式番号と構成番号を設定する 同一の商品コード内での連番　と型式名ごとの番号
+        //シリーズ明細の型式番号と構成番号を設定する 同一のシリーズコード内での連番　と型式名ごとの番号
         private bool SetModelNumber()
         {
             try
@@ -822,30 +934,27 @@ namespace u_net
 
         public void ChangedData(bool dataChanged)
         {
+            if (dataChanged)
+            {
+                this.Text = this.Name + "*";
+            }
+            else
+            {
+                this.Text = this.Name;
+            }
 
-            
-                if (dataChanged)
-                {
-                    this.Text = this.Name + "*";
-                }
-                else
-                {
-                    this.Text = this.Name;
-                }
+            if (this.ActiveControl == this.シリーズコード)
+            {
+                this.シリーズ名.Focus();
+            }
 
-                if (this.ActiveControl == this.商品コード)
-                {
-                    this.商品名.Focus();
-                }
-
-                this.商品コード.Enabled = !dataChanged;
-                this.コマンド複写.Enabled = !dataChanged;
-                this.コマンド削除.Enabled = !dataChanged;
-                this.コマンド登録.Enabled = dataChanged;
-            
+            this.シリーズコード.Enabled = !dataChanged;
+            this.コマンド複写.Enabled = !dataChanged;
+            this.コマンド削除.Enabled = !dataChanged;
+            this.コマンド登録.Enabled = dataChanged;
         }
 
-        private void F_商品_KeyDown(object sender, KeyEventArgs e)
+        private void F_シリーズ_KeyDown(object sender, KeyEventArgs e)
         {
             switch (e.KeyCode)
             {
@@ -886,9 +995,9 @@ namespace u_net
                     }
                     break;
                 case Keys.F5:
-                    if (コマンドシリーズ.Enabled)
+                    if (コマンド商品参照.Enabled)
                     {
-                        コマンドシリーズ_Click(this, EventArgs.Empty); // クリックイベントを呼び出す
+                        コマンド商品参照_Click(this, EventArgs.Empty); // クリックイベントを呼び出す
                     }
                     break;
                 case Keys.F9:
@@ -918,83 +1027,88 @@ namespace u_net
                     break;
             }
         }
-        private void 品名_TextChanged(object sender, EventArgs e)
-        {
-            if (!FunctionClass.LimitText((Control)sender, 48)) return;
 
-            ChangedData(true);
-        }
 
-        private void 品名_Enter(object sender, EventArgs e)
-        {
-            this.toolStripStatusLabel2.Text = "■受注時などに表示される商品の品名です。　■全角２４文字まで入力できます。";
-        }
-
-        private void 商品分類コード_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (this.ActiveControl == null) return;
-            if (this.商品分類コード == null) return;
-            if (this.商品分類コード.SelectedItem != null)
-            {
-                分類内容.Text = (商品分類コード.SelectedItem as DataRowView)["分類内容"].ToString();
-            }
-        }
-        private void 商品コード_Validated(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void 商品コード_SelectedIndexChanged(object sender, EventArgs e)
-        {//商品コードのコンボボックスのソースセット時には処理を行わない様にするため
+        private void シリーズコード_SelectedIndexChanged(object sender, EventArgs e)
+        {//シリーズコードのコンボボックスのソースセット時には処理を行わない様にするため
             if (setCombo) return;
-                        
+
             if (!FunctionClass.LimitText((Control)sender, 8)) return;
             UpdatedControl();
         }
 
-        //アクセスではコンボボックスの横のテキストボックスを修正する処理があったが、今回はvalueとdisplayが同じコンボボックスなので不要
-
         private void UpdatedControl()
         {
-            //商品コードの更新後処理でレコードの値を表示する
+            //シリーズコードの更新後処理でレコードの値を表示する
             this.コマンド複写.Enabled = true;
             this.コマンド削除.Enabled = true;
             try
             {
-                CurrentCode = this.商品コード.Text;
-                string strSQL = "SELECT * FROM V商品ヘッダ WHERE 商品コード='" + CurrentCode + "'";
-                
+                //ヘッダ部の表示
+                string strSQL = "SELECT * FROM Vシリーズヘッダ WHERE シリーズコード='" + CurrentCode + "'";
+
                 Connect();
                 if (!VariableSet.SetTable2Form(this, strSQL, cn)) return;
+                在庫数量.Text = GetStock(CurrentCode, DateTime.Now, cn).ToString();
+                補正値.Text = "0";
 
-                //V商品ヘッダにrevisionカラムがないため
-                this.Revision.Text = "1";
-
-                //何故かdatagridviewに反映しない？
-                // this.M商品明細TableAdapter.Fill(this.uiDataSet.M商品明細, CurrentCode);
-
-                this.mshomeisaiTableAdapter.Fill(this.newDataSet.M商品明細, CurrentCode);
-
-                //strSQL = "SELECT * FROM M商品明細 WHERE 商品コード='" + CurrentCode + "'";
-                //DataGridUtils.SetDataGridView(cn, strSQL, this.dataGridView1);
-
-
-                FunctionClass.LockData(this, false, "商品コード");
+                //ヘッダの制御
+                FunctionClass.LockData(this, false, "シリーズコード");
                 コマンド複写.Enabled = true;
                 コマンド削除.Enabled = true;
+                コマンド商品参照.Enabled = true;
                 cn.Close();
                 ChangedData(false);
-                
+
             }
             catch (Exception ex)
             {
                 MessageBox.Show("正しく読み込みが出来ませんでした" + ex.Message);
                 cn.Close();
-                
+
             }
         }
 
-        private void 商品コード_KeyDown(object sender, KeyEventArgs e)
+        private static int GetStock(string seriesCode, DateTime targetDate, SqlConnection cn)
+        {
+            int stock = 0;
+            string strDate = targetDate.ToString("yyyy/MM/dd"); // 対象フィールドが文字列型であるため
+
+            try
+            {
+                using (SqlCommand command = new SqlCommand("SPシリーズ在庫参照", cn))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@TargetDate", targetDate);
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            // 条件に合致するレコードを抽出
+                            if (string.Equals(seriesCode, reader["シリーズコード"].ToString()) &&
+                                DateTime.Equals(strDate, reader["確認日"].ToString()))
+                            {
+                                 stock = Convert.ToInt32(reader["在庫数量"]);
+                                //ストアドの結果では在庫数量は7番目のインデックスになるのだがVBAのコードではrs1.Fields(5).Valueとなっていた
+                                //一応ソースに合わせておくが、確認次第上にするかも
+                                //stock = Convert.ToInt32(reader[5]);
+                                break; // 一致するレコードが見つかったらループを終了
+                            }
+                        }
+                    }
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+                
+            }
+            return stock;
+        }
+
+        private void シリーズコード_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
@@ -1010,7 +1124,7 @@ namespace u_net
             }
         }
 
-        private void 商品コード_KeyPress(object sender, KeyPressEventArgs e)
+        private void シリーズコード_KeyPress(object sender, KeyPressEventArgs e)
         {
             int keyAscii = e.KeyChar; // キーのASCIIコードを取得（仮の値）
 
@@ -1030,32 +1144,23 @@ namespace u_net
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            dataGridView1.CurrentCell = dataGridView1[7, 2];
-            // dataGridView1[6, 2].Selected = true;
-
-            BindingSource bindingSource = (BindingSource)dataGridView1.DataSource;
-            DataTable dataTable = ((DataView)bindingSource.List).Table;
-
-            dataTable.DefaultView.Sort = "明細番号";
-
-            bindingSource.ResetBindings(false);
 
         }
 
-        private void 商品名_TextChanged(object sender, EventArgs e)
+        private void シリーズ名_TextChanged(object sender, EventArgs e)
         {
             if (!FunctionClass.LimitText((Control)sender, 40)) return;
             ChangedData(true);
         }
 
-        private void 商品名_Enter(object sender, EventArgs e)
+        private void シリーズ名_Enter(object sender, EventArgs e)
         {
             this.toolStripStatusLabel2.Text = "■半角４０文字まで入力できます。";
         }
 
         private void シリーズコード_TextChanged(object sender, EventArgs e)
         {
-            if (this.ActiveControl==null) return;
+            if (this.ActiveControl == null) return;
             string enteredText = シリーズコード.Text;
             if (string.IsNullOrEmpty(enteredText)) return;
 
@@ -1077,10 +1182,6 @@ namespace u_net
             this.toolStripStatusLabel2.Text = "■この欄を入力すると自動的に在庫管理対象となります。　■半角２０文字まで入力できます。　■[space]キーでドロップダウンリストを表示します。";
         }
 
-        private void 商品分類コード_Enter(object sender, EventArgs e)
-        {
-            this.toolStripStatusLabel2.Text = "■商品が所属する分類を指定します。";
-        }
 
         private void 商品分類コード_TextChanged(object sender, EventArgs e)
         {
@@ -1089,7 +1190,7 @@ namespace u_net
         }
 
         private void 掛率有効_CheckedChanged(object sender, EventArgs e)
-        {            
+        {
             ChangedData(true);
         }
 
@@ -1127,7 +1228,7 @@ namespace u_net
         }
 
         private void Discontinued_CheckedChanged(object sender, EventArgs e)
-        {            
+        {
             ChangedData(true);
         }
 
@@ -1143,7 +1244,7 @@ namespace u_net
         }
 
         private void IsUnit_CheckedChanged(object sender, EventArgs e)
-        {            
+        {
             ChangedData(true);
         }
 
@@ -1159,7 +1260,7 @@ namespace u_net
         //セルのデフォルト値
         private void dataGridView1_DefaultValuesNeeded(object sender, DataGridViewRowEventArgs e)
         {
-            e.Row.Cells["dgv商品コード"].Value = this.商品コード.Text; //Convert.ToInt32(this.顧客ID);
+            e.Row.Cells["dgvシリーズコード"].Value = this.シリーズコード.Text; //Convert.ToInt32(this.顧客ID);
             e.Row.Cells["dgvRevision"].Value = this.Revision.Text;
             e.Row.Cells["dgv明細番号"].Value = detailNumber.ToString();
             detailNumber++; // 連番を増やす
@@ -1455,7 +1556,7 @@ namespace u_net
 
                 //DataGridViewに新しい行を挿入
                 DataRow newRow = dataTable.NewRow();
-                newRow["商品コード"] = this.商品コード.Text;
+                newRow["シリーズコード"] = this.シリーズコード.Text;
                 newRow["Revision"] = this.Revision.Text;
                 newRow["明細番号"] = currentDetailNumber;
                 //dataTable.Rows.Add(newRow);
@@ -1503,7 +1604,12 @@ namespace u_net
             BindingSource bindingSource = (BindingSource)dataGridView1.DataSource;
             bindingSource.DataSource = dv;
             bindingSource.ResetBindings(false);
-        }       
+        }
+
+        private void コマンド商品参照_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 
