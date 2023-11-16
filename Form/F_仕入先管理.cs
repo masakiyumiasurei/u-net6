@@ -271,6 +271,7 @@ namespace u_net
 
         private void DataGridView1_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
+            //行番号を表示する
             //列ヘッダーかどうか調べる
             if (e.ColumnIndex < 0 && e.RowIndex >= 0)
             {
@@ -290,7 +291,6 @@ namespace u_net
                 //描画が完了したことを知らせる
                 e.Handled = true;
                 dataGridView1.ResumeLayout();
-
             }
         }
 
