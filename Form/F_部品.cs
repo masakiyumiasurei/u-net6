@@ -551,7 +551,7 @@ namespace u_net
                 string code = FunctionClass.採番(cn, "PAR");
                 部品コード.Text = code.Substring(Math.Max(0, code.Length - 8));
                 版数.Text = 1.ToString();
-                入数.Text = 1.ToString();
+                入数.Text = 1.ToString(); 
                 単位数量.Text = 1.ToString();
                 ロス率.Text = 0f.ToString();
                 Rohs1ChemSherpaStatusCode.SelectedValue = 1;

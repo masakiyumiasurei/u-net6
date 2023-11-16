@@ -31,6 +31,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Form\F_部品管理.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Form\F_部品管理_抽出.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Form\F_仕入先管理.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -68,6 +68,11 @@ namespace u_net
 
         private void Form_Load(object sender, EventArgs e)
         {
+            foreach (Control control in Controls)
+            {
+                control.PreviewKeyDown += OriginalClass.ValidateCheck;
+            }
+
 
             FunctionClass fn = new FunctionClass();
             fn.DoWait("しばらくお待ちください...");
@@ -999,6 +1004,9 @@ namespace u_net
 
             switch (e.KeyCode)
             {
+                case Keys.Return:
+                    SelectNextControl(ActiveControl, true, true, true, true);
+                    break;
                 case Keys.F1:
                     if (コマンド新規.Enabled)
                     {

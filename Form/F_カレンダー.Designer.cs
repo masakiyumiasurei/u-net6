@@ -785,6 +785,8 @@
             this.Controls.Add(this.cmdPrevMonth);
             this.Controls.Add(this.cmdNextYear);
             this.Controls.Add(this.cmdPrevYear);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "F_カレンダー";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.F_カレンダー_FormClosing);
             this.Load += new System.EventHandler(this.Form_Open);

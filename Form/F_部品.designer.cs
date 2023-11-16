@@ -2344,6 +2344,8 @@ namespace u_net
             this.Controls.Add(this.panel1);
             this.ImeMode = System.Windows.Forms.ImeMode.Off;
             this.KeyPreview = true;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "F_部品";
             this.Text = " ";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form_Unload);

@@ -268,6 +268,8 @@
             this.Controls.Add(this.フィルタ_ナ);
             this.Controls.Add(this.フィルタ_タ);
             this.Controls.Add(this.フィルタ_サ);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "F_検索";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.F_検索_FormClosing);
             this.Load += new System.EventHandler(this.Form_Load);
