@@ -36,7 +36,7 @@ namespace u_net
 
         private const int BUF_SIZE = 256;
 
-        public const string LoginUserCode = "0855";
+        public const string LoginUserCode = "855";
         public const string LoginUserFullName = "阪南太郎";
 
     }

@@ -107,8 +107,8 @@ namespace u_net.Public
                 return true; // 成功した場合は true を返す
             }
             catch (Exception ex)
-            {              
-               
+            {
+                transaction.Rollback();
                 MessageBox.Show($"データの更新中にエラーが発生しました: {ex.Message}");
                 return false; // エラーがある場合は false を返す
             }

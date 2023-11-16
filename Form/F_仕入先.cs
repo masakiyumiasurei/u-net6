@@ -448,13 +448,7 @@ namespace u_net
 
                 }
                 catch (Exception ex)
-                {
-                    // トランザクション内でエラーが発生した場合、ロールバックを実行
-                    if (transaction != null)
-                    {
-                        transaction.Rollback();
-                    }
-
+                {                  
                     コマンド登録.Enabled = true;
                     // エラーメッセージを表示またはログに記録
                     MessageBox.Show("データの保存中にエラーが発生しました: " + ex.Message, "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
