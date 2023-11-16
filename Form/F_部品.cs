@@ -69,6 +69,11 @@ namespace u_net
         private void Form_Load(object sender, EventArgs e)
         {
 
+            foreach (Control control in Controls)
+            {
+                control.PreviewKeyDown += OriginalClass.ValidateCheck;
+            }
+
             FunctionClass fn = new FunctionClass();
             fn.DoWait("しばらくお待ちください...");
 
@@ -1330,11 +1335,14 @@ namespace u_net
             }
         }
 
-
+   
         private bool IsError(Control controlObject)
         {
             try
             {
+
+                
+
                 object varValue = controlObject.Text;
                 string controlName = controlObject.Name;
 
@@ -1659,7 +1667,7 @@ namespace u_net
         private void Form_KeyDown(object sender, KeyEventArgs e)
         {
 
-            bool intShiftDown = (Control.ModifierKeys & Keys.Shift) == Keys.Shift;
+                bool intShiftDown = (Control.ModifierKeys & Keys.Shift) == Keys.Shift;
 
             if (intShiftDown)
             {
@@ -1668,6 +1676,10 @@ namespace u_net
 
             switch (e.KeyCode)
             {
+                case Keys.Return:
+                    SelectNextControl(ActiveControl, true, true, true, true);
+                    break;
+
                 case Keys.F1:
                     if (コマンド新規.Enabled)
                     {
@@ -2760,6 +2772,6 @@ namespace u_net
             toolStripStatusLabel2.Text = "各種項目の説明";
         }
 
-        
+
     }
 }
