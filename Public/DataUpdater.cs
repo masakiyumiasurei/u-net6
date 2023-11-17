@@ -7,8 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Xml.Linq;
-using GrapeCity.Win.MultiRow;
 
 namespace u_net.Public
 {
@@ -24,7 +22,6 @@ namespace u_net.Public
                 using (SqlCommand selectCommand = new SqlCommand(selectQuery, connection, transaction))
                 using (SqlDataAdapter adapter = new SqlDataAdapter(selectCommand))
                 using (DataSet dataSet = new DataSet())
-                using (Control control = new Control())
                 {
                     adapter.Fill(dataSet, tableName);
 
@@ -32,8 +29,53 @@ namespace u_net.Public
                     {
                         // 既存データが見つかった場合（更新モード）
                         DataRow row = dataSet.Tables[0].Rows[0];
+                        foreach (Control control in form.Controls)
+                        {
+                            if (control is TextBox || control is ComboBox || control is CheckBox)
+                            {
+                                string controlName = control.Name;
+                                object controlValue = null;
 
-                        SetControlValues(form.Controls, row, connection, tableName, ukname, transaction);        
+                                switch (control)
+                                {
+                                    case TextBox textBox:
+                                        if (!string.IsNullOrEmpty(textBox.Text))
+                                        {
+                                            controlValue = textBox.Text;
+                                        }
+                                        break;
+
+                                    case ComboBox comboBox:
+                                        //ユニークキーは初期値で表示され、selectedvalueが異なるための処理
+                                        if (control.Name == ukname)
+                                        {
+                                            controlValue = comboBox.Text;
+                                        }
+                                        else
+                                        {
+                                            controlValue = comboBox.SelectedValue;
+                                        }
+                                        break;
+
+                                    case CheckBox checkBox:
+                                        //controlValue = checkBox.Checked;
+                                        if (checkBox.Checked)
+                                        {
+                                            controlValue = -1;
+                                        }
+                                        else
+                                        {
+                                            controlValue = 0;
+                                        }
+                                        break;
+                                }
+
+                                if (controlValue != null && dataSet.Tables[0].Columns.Contains(controlName))
+                                {
+                                    row[controlName] = controlValue;
+                                }
+                            }
+                        }
 
                         // データベースに変更を反映
                         SqlCommandBuilder cmdBuilder = new SqlCommandBuilder(adapter);
@@ -43,57 +85,53 @@ namespace u_net.Public
                     {
                         // 既存データが見つからなかった場合（新規モード）
                         DataRow newRow = dataSet.Tables[0].NewRow();
+                        foreach (Control control in form.Controls)
+                        {
+                            if (control is TextBox || control is ComboBox || control is CheckBox)
+                            {
+                                string controlName = control.Name;
+                                object controlValue = null;
 
-                        SetControlValues(form.Controls, newRow, connection, tableName, ukname, transaction);
+                                switch (control)
+                                {
+                                    case TextBox textBox:
+                                        if (!string.IsNullOrEmpty(textBox.Text))
+                                            {
+                                            controlValue = textBox.Text;
+                                            }
+                                            break;
 
+                                    case ComboBox comboBox:
+                                        //ユニークキーは初期値で表示され、selectedvalueが異なるための処理
+                                        if (control.Name == ukname)
+                                        {
+                                            controlValue = comboBox.Text;
+                                        }
+                                        else
+                                        {
+                                            controlValue = comboBox.SelectedValue;
+                                        }
+                                            break;
 
-                        //foreach (Control control in form.Controls)
-                        //{
-                        //    if (control is TextBox || control is ComboBox || control is CheckBox)
-                        //    {
-                        //        string controlName = control.Name;
-                        //        object controlValue = null;
+                                    case CheckBox checkBox:
+                                        if (checkBox.Checked)
+                                        {
+                                            controlValue = -1;
+                                        }
+                                        else
+                                        {
+                                            controlValue = 0;
+                                        }    
+                                            
+                                            break;
+                                }
 
-                        //        switch (control)
-                        //        {
-                        //            case TextBox textBox:
-                        //                if (!string.IsNullOrEmpty(textBox.Text))
-                        //                {
-                        //                    controlValue = textBox.Text;
-                        //                }
-                        //                break;
-
-                        //            case ComboBox comboBox:
-                        //                //ユニークキーは初期値で表示され、selectedvalueが異なるための処理
-                        //                if (control.Name == ukname)
-                        //                {
-                        //                    controlValue = comboBox.Text;
-                        //                }
-                        //                else
-                        //                {
-                        //                    controlValue = comboBox.SelectedValue;
-                        //                }
-                        //                break;
-
-                        //            case CheckBox checkBox:
-                        //                if (checkBox.Checked)
-                        //                {
-                        //                    controlValue = -1;
-                        //                }
-                        //                else
-                        //                {
-                        //                    controlValue = 0;
-                        //                }
-
-                        //                break;
-                        //        }
-
-                        //        if (controlValue != null && dataSet.Tables[0].Columns.Contains(controlName))
-                        //        {
-                        //            newRow[controlName] = controlValue;
-                        //        }
-                        //    }
-                        //}
+                                if (controlValue != null && dataSet.Tables[0].Columns.Contains(controlName))
+                                {
+                                    newRow[controlName] = controlValue;
+                                }
+                            }
+                        }
 
                         dataSet.Tables[0].Rows.Add(newRow);
 
@@ -102,79 +140,29 @@ namespace u_net.Public
                         adapter.Update(dataSet, tableName);
                     }
                 }
-                                
+
+                // トランザクション内の操作が正常に終了したことをコミット
+                //transaction.Commit();
 
                 return true; // 成功した場合は true を返す
             }
             catch (Exception ex)
-            {              
-               
+            {
+                try
+                {
+                    // トランザクション内の操作にエラーがあった場合はロールバック
+                    transaction.Rollback();
+                }
+                catch (Exception rollbackEx)
+                {
+                    MessageBox.Show($"ロールバック中にエラーが発生しました: {rollbackEx.Message}");
+                }
+
+                // エラーが発生した場合の処理
                 MessageBox.Show($"データの更新中にエラーが発生しました: {ex.Message}");
                 return false; // エラーがある場合は false を返す
             }
         }
-
-        private static void SetControlValues(Control.ControlCollection controls, DataRow row, SqlConnection connection,
-            string tableName, string ukname, SqlTransaction transaction)
-        {
-            foreach (Control control in controls)
-            {
-                if (control is TabControl tabControl)
-                {
-                    foreach (TabPage tabPage in tabControl.TabPages)
-                    {
-                        // タブコントロール内のコントロールに再帰的にアクセスする
-                        SetControlValues(tabPage.Controls, row, connection, tableName, ukname, transaction);
-                    }
-                }
-                else if (control is GroupBox groupBox)
-                {
-                    // グループボックス内のコントロールに再帰的にアクセスする
-                    SetControlValues(groupBox.Controls, row, connection, tableName, ukname, transaction);
-                }
-                else
-                {
-                    if (!(control is TextBox) && !(control is ComboBox) && !(control is CheckBox))
-                    {
-                        continue;
-                    }
-
-                    string controlName = control.Name;
-                    object controlValue = null;
-
-                    switch (control)
-                    {
-                        case TextBox textBox:
-                            if (!string.IsNullOrEmpty(textBox.Text))
-                            {
-                                controlValue = textBox.Text;
-                            }
-                            break;
-
-                        case ComboBox comboBox:
-                            if (control.Name == ukname)
-                            {
-                                controlValue = comboBox.Text;
-                            }
-                            else
-                            {
-                                controlValue = comboBox.SelectedValue;
-                            }
-                            break;
-
-                        case CheckBox checkBox:
-                            controlValue = checkBox.Checked ? -1 : 0;
-                            break;
-                    }
-
-                    if (controlValue != null && row.Table.Columns.Contains(controlName))
-                    {
-                        row[controlName] = controlValue;
-                    }
-                }
-            }
-        }
-
     }
 
 }

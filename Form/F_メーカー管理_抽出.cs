@@ -8,7 +8,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using u_net.Public;
 
 namespace u_net
 {
@@ -21,17 +20,8 @@ namespace u_net
 
         private void Form_Load(object sender, EventArgs e)
         {
-
-            foreach (Control control in Controls)
-            {
-                control.PreviewKeyDown += OriginalClass.ValidateCheck;
-            }
-
             try
             {
-
-                
-
 
                 // 対象フォームが読み込まれていないときはすぐに終了する
                 if (Application.OpenForms["F_メーカー管理"] == null)

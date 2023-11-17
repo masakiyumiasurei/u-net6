@@ -54,8 +54,9 @@ namespace u_net.Public
 
         public static bool SetTable2Form(Form formObject, string sourceSQL, SqlConnection cn)
         {
-            //タブコントロール、グループボックスにアクセスするため、再帰関数とする
-            if (string.IsNullOrWhiteSpace(sourceSQL) || cn == null) return false; // クエリまたは接続が無効な場合は何もしない
+            //try
+            //{
+                if (string.IsNullOrWhiteSpace(sourceSQL) || cn == null) return false; // クエリまたは接続が無効な場合は何もしない
 
                 using (SqlCommand command = new SqlCommand(sourceSQL, cn)) 
 
@@ -65,110 +66,51 @@ namespace u_net.Public
                     {
                         reader.Read();
 
-                    SetControlValues(formObject.Controls, reader);
-
-                    // データベースの列名をフォームのコントロール名と一致させておく
-                    //for (int i = 0; i < reader.FieldCount; i++)
-                    //    {
-                    //        string columnName = reader.GetName(i);
-
-                    //        if (formObject.Controls.ContainsKey(columnName))
-                    //        {
-                    //            Control control = formObject.Controls[columnName];
-
-                    //            // TextBoxとComboBoxで処理を分ける
-                    //            if (control is TextBox)
-                    //            {
-                    //                control.Text = reader[columnName].ToString();
-                    //            }
-                    //            else if (control is ComboBox)
-                    //            {
-                    //                ComboBox comboBox = (ComboBox)control;
-                    //                comboBox.SelectedValue = reader[columnName];
-                    //            }
-                    //            else if (control is CheckBox)
-                    //            {
-                    //                CheckBox checkBox = (CheckBox)control;
-                    //                bool value;
-                    //                if (reader[columnName] == DBNull.Value || Convert.ToInt32(reader[columnName]) == 0)
-                    //                {
-                    //                    checkBox.Checked = false; // 値が0またはnullの場合、チェックを外す
-                    //                }
-                    //                else
-                    //                {
-                    //                    checkBox.Checked = true; // それ以外の場合、チェックを入れる
-                    //                }
-                    //            }
-                    //        }
-                    //    }
-                    }
-                }
-                return true;           
-        }
-
-        //タブコントロール、グループボックスにアクセスするため、再帰関数とする
-        private static void SetControlValues(Control.ControlCollection controls, SqlDataReader reader)
-        {
-            foreach (Control control in controls)
-            {
-                if (control is TabControl tabControl)
-                {
-                    foreach (TabPage tabPage in tabControl.TabPages)
-                    {
-                        // タブコントロール内のコントロールに再帰的にアクセスする
-                        SetControlValues(tabPage.Controls, reader);
-                    }
-                }
-                else if (control is GroupBox groupBox)
-                {
-                    // グループボックス内のコントロールに再帰的にアクセスする
-                    SetControlValues(groupBox.Controls, reader);
-                }
-                else
-                {
-                    if (!(control is TextBox) && !(control is ComboBox) && !(control is CheckBox))
-                    {
-                        continue;
-                    }
-                                        
-                        string columnName = control.Name;
-
-                    for (int i = 0; i < reader.FieldCount; i++)
-                    {
-                        string getedName = reader.GetName(i);
-
-                        if (columnName != getedName) continue;
-
-                        if (reader[columnName] != DBNull.Value)
+                        // データベースの列名をフォームのコントロール名と一致させておく
+                        for (int i = 0; i < reader.FieldCount; i++)
                         {
-                            SetControlValue(control, reader[columnName]);
-                            break;
+                            string columnName = reader.GetName(i);
+
+                            if (formObject.Controls.ContainsKey(columnName))
+                            {
+                                Control control = formObject.Controls[columnName];
+
+                                // TextBoxとComboBoxで処理を分ける
+                                if (control is TextBox)
+                                {
+                                    control.Text = reader[columnName].ToString();
+                                }
+                                else if (control is ComboBox)
+                                {
+                                    ComboBox comboBox = (ComboBox)control;
+                                    comboBox.SelectedValue = reader[columnName];
+                                }
+                                else if (control is CheckBox)
+                                {
+                                    CheckBox checkBox = (CheckBox)control;
+                                    bool value;
+                                    if (reader[columnName] == DBNull.Value || Convert.ToInt32(reader[columnName]) == 0)
+                                    {
+                                        checkBox.Checked = false; // 値が0またはnullの場合、チェックを外す
+                                    }
+                                    else
+                                    {
+                                        checkBox.Checked = true; // それ以外の場合、チェックを入れる
+                                    }
+                                }
+                            }
                         }
                     }
                 }
-            }
+
+                return true;
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show("正しく読み込みが出来ませんでした" + ex.Message);
+            //    return false;
+            //}
         }
-
-        private static void SetControlValue(Control control, object value)
-        {
-            if (control is TextBox textBox)
-            {
-                textBox.Text = value.ToString();
-            }
-            else if (control is ComboBox comboBox)
-            {
-                comboBox.SelectedValue = value;
-            }
-            else if (control is CheckBox checkBox)
-            {
-                checkBox.Checked = Convert.ToInt32(value) != 0;
-            }
-           
-        }
-
-
-
-
 
 
         public static void SetControls(Control control)
@@ -191,6 +133,12 @@ namespace u_net.Public
                 }
             }
         }
+
+
+
+
+
+
 
     }
 }

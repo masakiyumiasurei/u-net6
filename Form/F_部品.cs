@@ -69,11 +69,6 @@ namespace u_net
         private void Form_Load(object sender, EventArgs e)
         {
 
-            foreach (Control control in Controls)
-            {
-                control.PreviewKeyDown += OriginalClass.ValidateCheck;
-            }
-
             FunctionClass fn = new FunctionClass();
             fn.DoWait("しばらくお待ちください...");
 
@@ -91,9 +86,6 @@ namespace u_net
 
             // DataGridViewの設定
             部品使用先.AllowUserToResizeColumns = true;
-            部品使用先.ReadOnly = true;
-            部品使用先.AllowUserToAddRows = false;
-            部品使用先.AllowUserToDeleteRows = false;
             部品使用先.Font = new Font("MS ゴシック", 10);
             部品使用先.DefaultCellStyle.SelectionBackColor = Color.FromArgb(210, 210, 255);
             部品使用先.DefaultCellStyle.SelectionForeColor = Color.Black;
@@ -103,8 +95,7 @@ namespace u_net
             部品使用先.DefaultCellStyle.ForeColor = Color.Black;
 
             OriginalClass ofn = new OriginalClass();
-            ofn.SetComboBox(分類コード, "SELECT 分類記号 as Display,対象部品名 as Display2,分類コード as Value FROM M部品分類");
-            分類コード.DrawMode = DrawMode.OwnerDrawFixed;
+            ofn.SetComboBox(分類コード, "SELECT 対象部品名 as Display,分類コード as Value FROM M部品分類");
             ofn.SetComboBox(形状分類コード, "SELECT 部品形状名 as Display,部品形状コード as Value FROM M部品形状");
             ofn.SetComboBox(RohsStatusCode, "SELECT Name as Display,Code as Value FROM rohsStatusCode");
 
@@ -116,17 +107,17 @@ namespace u_net
             this.JampAis.DisplayMember = "Value";
             this.JampAis.ValueMember = "Key";
 
-            this.非含有証明書.DataSource = new KeyValuePair<byte, String>[] {
-                new KeyValuePair<byte, String>(1, "返却済み"),
-                new KeyValuePair<byte, String>(2, "未返却"),
-                new KeyValuePair<byte, String>(3, "未提出"),
+            this.非含有証明書.DataSource = new KeyValuePair<int, String>[] {
+                new KeyValuePair<int, String>(1, "返却済み"),
+                new KeyValuePair<int, String>(2, "未返却"),
+                new KeyValuePair<int, String>(3, "未提出"),
             };
             this.非含有証明書.DisplayMember = "Value";
             this.非含有証明書.ValueMember = "Key";
 
-            this.RoHS資料.DataSource = new KeyValuePair<Int16, String>[] {
-                new KeyValuePair<Int16, String>(2, "有り"),
-                new KeyValuePair<Int16, String>(1, "無し"),
+            this.RoHS資料.DataSource = new KeyValuePair<int, String>[] {
+                new KeyValuePair<int, String>(2, "有り"),
+                new KeyValuePair<int, String>(1, "無し"),
             };
             this.RoHS資料.DisplayMember = "Value";
             this.RoHS資料.ValueMember = "Key";
@@ -167,24 +158,20 @@ namespace u_net
             this.Rohs2ChemSherpaStatusCode.DisplayMember = "Value";
             this.Rohs2ChemSherpaStatusCode.ValueMember = "Key";
 
-            this.CalcInventoryCode.DataSource = new KeyValuePair<string, string>[] {
-            new KeyValuePair<string, string>("01", "する"),
-            new KeyValuePair<string, string>("02", "しない"),
-};
+            this.CalcInventoryCode.DataSource = new KeyValuePair<string, String>[] {
+                new KeyValuePair<string, String>("01", "する"),
+                new KeyValuePair<string, String>("02", "しない"),
+            };
             this.CalcInventoryCode.DisplayMember = "Value";
             this.CalcInventoryCode.ValueMember = "Key";
 
-
-            this.受入検査ランク.DataSource = new KeyValuePair<string, string>[] {
-            new KeyValuePair<string, string>("A         ", "A         "),
-            new KeyValuePair<string, string>("B1        ", "B1        "),
-            new KeyValuePair<string, string>("B2        ", "B2        "),
-            new KeyValuePair<string, string>("C         ", "C         "),
-            new KeyValuePair<string, string>("D         ", "D         "),
-};
-            this.受入検査ランク.DisplayMember = "Value";
-            this.受入検査ランク.ValueMember = "Key";
-
+            this.受入検査ランク.DataSource = new String[] {
+                new String("A"),
+                new String("B1"),
+                new String("B2"),
+                new String("C"),
+                new String("D"),
+            };
 
 
 
@@ -203,13 +190,13 @@ namespace u_net
                 }
                 else
                 {
-                    コマンド読込_Click(sender, e);
+                    コマンド読込_Click(sender,e);
                     if (!string.IsNullOrEmpty(args))
                     {
                         this.部品コード.Text = args;
-                        UpdatedControl(部品コード);
                     }
                 }
+
                 // 成功時の処理
                 return;
             }
@@ -236,7 +223,7 @@ namespace u_net
             try
             {
 
-                Connect();
+                CommonConnect();
 
                 // データへの変更がないときの処理
                 if (!IsChanged)
@@ -290,7 +277,7 @@ namespace u_net
                 }
 
 
-            }
+        }
             catch (Exception ex)
             {
                 Debug.Print(Name + "_Unload - " + ex.Message);
@@ -388,24 +375,10 @@ namespace u_net
                     objControl6.Text = CommonConstants.LoginUserFullName;
 
 
-                    string strwhere = " 部品コード='" + this.部品コード.Text + "'";
+                    string strwhere = " 部品コード='" + this.部品コード.Text;
 
                     if (!DataUpdater.UpdateOrInsertDataFrom(this, cn, "M部品", strwhere, "部品コード", transaction))
                     {
-
-
-                        if (IsNewData)
-                        {
-                            objControl1.Text = varSaved1.ToString();
-                            objControl2.Text = varSaved2.ToString();
-                            objControl3.Text = varSaved3.ToString();
-
-                        }
-
-                        objControl4.Text = varSaved4.ToString();
-                        objControl5.Text = varSaved5.ToString();
-                        objControl6.Text = varSaved6.ToString();
-
                         return false;
                     }
 
@@ -453,7 +426,7 @@ namespace u_net
             FunctionClass fn = new FunctionClass();
             fn.DoWait("登録しています...");
 
-
+        
             // 登録処理
             if (SaveData())
             {
@@ -508,7 +481,7 @@ namespace u_net
             {
                 this.Text = BASE_CAPTION;
             }
-            
+
             // コードにフォーカスがある状態でサブフォームから呼び出されたときの対処
             if (this.ActiveControl == this.部品コード)
             {
@@ -565,13 +538,13 @@ namespace u_net
                 string code = FunctionClass.採番(cn, "PAR");
                 部品コード.Text = code.Substring(Math.Max(0, code.Length - 8));
                 版数.Text = 1.ToString();
-                入数.Text = 1.ToString(); 
+                入数.Text = 1.ToString();
                 単位数量.Text = 1.ToString();
                 ロス率.Text = 0f.ToString();
                 Rohs1ChemSherpaStatusCode.SelectedValue = 1;
                 JampAis.SelectedValue = 1;
-                非含有証明書.SelectedValue = (byte)3;
-                RoHS資料.SelectedValue = (Int16)1;
+                非含有証明書.SelectedValue = 3;
+                RoHS資料.SelectedValue = 1;
                 Rohs2ChemSherpaStatusCode.SelectedValue = 1;
                 Rohs2JampAisStatusCode.SelectedValue = 1;
                 Rohs2NonInclusionCertificationStatusCode.SelectedValue = 3;
@@ -591,12 +564,9 @@ namespace u_net
                 コマンド履歴.Enabled = false;
                 コマンド登録.Enabled = false;
 
-                
-
             }
             finally
             {
-                ChangedData(false);
                 this.DoubleBuffered = false;
                 Cursor.Current = Cursors.Default;
             }
@@ -613,11 +583,11 @@ namespace u_net
             {
 
                 Connect();
-
+                
                 using (SqlCommand command = new SqlCommand("SP部品使用先", cn))
                 {
                     command.CommandType = CommandType.StoredProcedure;
-                    command.Parameters.AddWithValue("@PartsCode", codeString);
+                    command.Parameters.AddWithValue("@Param1", codeString);
 
                     using (SqlDataAdapter adapter = new SqlDataAdapter(command))
                     {
@@ -636,7 +606,7 @@ namespace u_net
                         部品使用先.Columns[部品使用先.ColumnCount - 1].Selected = true;
                     }
                 }
-
+                
             }
             catch (Exception ex)
             {
@@ -648,30 +618,26 @@ namespace u_net
         {
             if (this.Rohs2ProvisionalRegisteredStatusCode.Checked)
             {
-                this.RohsStatusCode.SelectedValue = 5;
+                this.RohsStatusCode.SelectedIndex = 5;
                 // this.RohsStatusName = "仮RoHS2";
             }
             else
             {
-                if ((Rohs2ChemSherpaStatusCode.SelectedValue != null && (int)Rohs2ChemSherpaStatusCode.SelectedValue == 2) ||
-    (Rohs2JampAisStatusCode.SelectedValue != null && (int)Rohs2JampAisStatusCode.SelectedValue == 2) ||
-    (Rohs2NonInclusionCertificationStatusCode.SelectedValue != null && (int)Rohs2NonInclusionCertificationStatusCode.SelectedValue == 1) ||
-    (Rohs2DocumentStatusCode.SelectedValue != null && (int)Rohs2DocumentStatusCode.SelectedValue == 2))
+                if (this.Rohs2ChemSherpaStatusCode.SelectedIndex == 2 || this.Rohs2JampAisStatusCode.SelectedIndex == 2 ||
+                    this.Rohs2NonInclusionCertificationStatusCode.SelectedIndex == 1 || this.Rohs2DocumentStatusCode.SelectedIndex == 2)
                 {
-                    this.RohsStatusCode.SelectedValue = 2;
+                    this.RohsStatusCode.SelectedIndex = 2;
                     // this.RohsStatusName = "RoHS2";
                 }
-                else if ((Rohs1ChemSherpaStatusCode.SelectedValue != null && (int)Rohs1ChemSherpaStatusCode.SelectedValue == 2) ||
-         (JampAis.SelectedValue != null && (int)JampAis.SelectedValue == 2) ||
-         (非含有証明書.SelectedValue != null && (byte)非含有証明書.SelectedValue == 1) ||
-         (RoHS資料.SelectedValue != null && (Int16)RoHS資料.SelectedValue == 2))
+                else if (this.Rohs1ChemSherpaStatusCode.SelectedIndex == 2 || this.JampAis.SelectedIndex == 2 ||
+                    this.非含有証明書.SelectedIndex == 1 || this.RoHS資料.SelectedIndex == 2)
                 {
-                    this.RohsStatusCode.SelectedValue = 6;
+                    this.RohsStatusCode.SelectedIndex = 6;
                     // this.RohsStatusName = "RoHS2非対応";
                 }
                 else
                 {
-                    this.RohsStatusCode.SelectedValue = 3;
+                    this.RohsStatusCode.SelectedIndex = 3;
                     // this.RohsStatusName = "RoHS1非対応";
                 }
             }
@@ -680,7 +646,7 @@ namespace u_net
         private void コマンド読込_Click(object sender, EventArgs e)
         {
             if (!AskSave()) { return; }
-
+                
 
             // strOpenArgsがどのように設定されているかに依存します。
             // もしstrOpenArgsに関連する処理が必要な場合はここに追加してください。
@@ -762,7 +728,7 @@ namespace u_net
 
 
 
-
+      
 
         private void コマンド承認_Click(object sender, EventArgs e)
         {
@@ -774,9 +740,93 @@ namespace u_net
             MessageBox.Show("現在開発中です。", "確定コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-     
 
-        private void 改版ボタン_Click(object sender, EventArgs e)
+        private void コマンドメーカー_Click(object sender, EventArgs e)
+        {
+            try
+            {
+    
+                if (this.ActiveControl == this.コマンドメーカー)
+                {
+                    GetNextControl(コマンドメーカー, false).Focus();
+                }
+
+                string strCode = this.メーカーコード.Text;
+                if (string.IsNullOrEmpty(strCode))
+                {
+                    MessageBox.Show("メーカーコードを入力してください。", BASE_CAPTION, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    this.メーカーコード.Focus();
+                }
+                else
+                {
+                    F_部品 targetform = new F_部品();
+
+                    targetform.args = strCode;
+                    targetform.ShowDialog();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error in コマンドメーカー_Click: " + ex.Message);
+            }
+        }
+
+
+        private void コマンド入出庫_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+
+                //F_入出庫履歴 targetform = new F_入出庫履歴();
+
+                //targetform.args = 部品コード.Text;
+                //targetform.ShowDialog();
+          
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error in コマンドメーカー_Click: " + ex.Message);
+            }
+        }
+
+
+
+        private void コマンド履歴_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+
+                //F_部品履歴 targetform = new F_部品履歴();
+
+                //targetform.args = CurrentCode;
+                //targetform.args2 = CurrentEdition;
+                //targetform.ShowDialog();
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error in コマンド履歴_Click: " + ex.Message);
+            }
+        }
+
+
+        private F_検索 SearchForm;
+
+        private void メーカーコード検索ボタン_Click(object sender, EventArgs e)
+        {
+            SearchForm = new F_検索();
+            SearchForm.FilterName = "メーカー名フリガナ";
+            if (SearchForm.ShowDialog() == DialogResult.OK)
+            {
+                string SelectedCode = SearchForm.SelectedCode;
+
+                メーカーコード.Text = SelectedCode;
+            }
+        }
+
+        private void 改版ボタン_Click()
         {
             try
             {
@@ -830,97 +880,6 @@ namespace u_net
 
             }
         }
-        private void コマンドメーカー_Click(object sender, EventArgs e)
-        {
-            try
-            {
-
-                if (this.ActiveControl == this.コマンドメーカー)
-                {
-                    GetNextControl(コマンドメーカー, false).Focus();
-                }
-
-                string strCode = this.メーカーコード.Text;
-                if (string.IsNullOrEmpty(strCode))
-                {
-                    MessageBox.Show("メーカーコードを入力してください。", BASE_CAPTION, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    this.メーカーコード.Focus();
-                }
-                else
-                {
-                    F_メーカー targetform = new F_メーカー();
-
-                    targetform.args = strCode;
-                    targetform.ShowDialog();
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error in コマンドメーカー_Click: " + ex.Message);
-            }
-        }
-
-
-        private void コマンド入出庫_Click(object sender, EventArgs e)
-        {
-            try
-            {
-
-
-                //F_入出庫履歴 targetform = new F_入出庫履歴();
-
-                //targetform.args = 部品コード.Text;
-                //targetform.ShowDialog();
-
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error in コマンドメーカー_Click: " + ex.Message);
-            }
-        }
-
-
-
-        private void コマンド履歴_Click(object sender, EventArgs e)
-        {
-            try
-            {
-
-
-                //F_部品履歴 targetform = new F_部品履歴();
-
-                //targetform.args = CurrentCode;
-                //targetform.args2 = CurrentEdition;
-                //targetform.ShowDialog();
-
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error in コマンド履歴_Click: " + ex.Message);
-            }
-        }
-
-
-        private F_検索 SearchForm;
-
-        private void メーカーコード検索ボタン_Click(object sender, EventArgs e)
-        {
-            SearchForm = new F_検索();
-            SearchForm.FilterName = "メーカー名フリガナ";
-            if (SearchForm.ShowDialog() == DialogResult.OK)
-            {
-                string SelectedCode = SearchForm.SelectedCode;
-
-                メーカーコード.Text = SelectedCode;
-                string str1 = FunctionClass.GetMakerName(cn, SelectedCode);
-                string str2 = FunctionClass.GetMakerShortName(cn, SelectedCode);
-                MakerName.Text = str1;
-                MakerShortName.Text = str2;
-                
-            }
-        }
-
-        
 
 
 
@@ -928,6 +887,7 @@ namespace u_net
         {
             try
             {
+                connection.Open(); // 接続を開く
                 using (SqlCommand cmd = new SqlCommand("SP部品履歴追加", connection))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
@@ -1020,7 +980,7 @@ namespace u_net
                 FunctionClass fn = new FunctionClass();
                 fn.DoWait("削除しています...");
 
-                Connect();
+                CommonConnect();
 
                 // 削除に成功すれば新規モードへ移行する
                 if (DeleteData(cn, CurrentCode, CurrentEdition))
@@ -1073,7 +1033,7 @@ namespace u_net
                 using (SqlCommand cmd = new SqlCommand("SPユニット管理", cn, transaction))
                 {
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                    cmd.Parameters.Add(new SqlParameter("@PartsCode", codeString));
+                    cmd.Parameters.Add(new SqlParameter("@Param1", codeString));
                     cmd.ExecuteNonQuery();
                 }
 
@@ -1102,7 +1062,7 @@ namespace u_net
                 this.品名.Focus();
                 ChangedData(true);
 
-                Connect();
+                CommonConnect();
 
                 // 以下、初期値の設定
                 string code = FunctionClass.採番(cn, "PAR");
@@ -1141,7 +1101,11 @@ namespace u_net
         {
             try
             {
-                if (selected_frame == 1)
+                if (ActiveControl == コマンド仕入先)
+                {
+                    GetNextControl(コマンド仕入先, false).Focus();
+                }
+                else if (selected_frame == 1)
                 {
                     string code = OriginalClass.Nz(仕入先1コード.Text,null);
                     if (string.IsNullOrEmpty(code))
@@ -1151,10 +1115,10 @@ namespace u_net
                     }
                     else
                     {
-                        F_仕入先 targetform = new F_仕入先();
+                        //F_仕入先 targetform = new F_仕入先();
 
-                        targetform.args = code;
-                        targetform.ShowDialog();
+                        //targetform.args = code;
+                        //targetform.ShowDialog();
                     }
                 }
                 else if (selected_frame == 2)
@@ -1167,10 +1131,10 @@ namespace u_net
                     }
                     else
                     {
-                        F_仕入先 targetform = new F_仕入先();
+                        //F_仕入先 targetform = new F_仕入先();
 
-                        targetform.args = code;
-                        targetform.ShowDialog();
+                        //targetform.args = code;
+                        //targetform.ShowDialog();
                     }
                 }
                 else if (selected_frame == 3)
@@ -1183,10 +1147,10 @@ namespace u_net
                     }
                     else
                     {
-                        F_仕入先 targetform = new F_仕入先();
+                        //F_仕入先 targetform = new F_仕入先();
 
-                        targetform.args = code;
-                        targetform.ShowDialog();
+                        //targetform.args = code;
+                        //targetform.ShowDialog();
                     }
                 }
                 else
@@ -1287,21 +1251,14 @@ namespace u_net
 
                 //    if (dataTable.Rows.Count > 0)
                 //    {
-                //DataRow row = dataTable.Rows[0];
-                VariableSet.SetTable2Form(this, strSQL, cn);
+                        //DataRow row = dataTable.Rows[0];
+                        VariableSet.SetTable2Form(this, strSQL,cn);
+                        return true;
+                    //}
+                    
+                
 
-
-                if (!string.IsNullOrEmpty(this.無効日時.Text))
-                {
-                    this.削除.Text = "■";
-                }
-
-                return true;
-                //}
-
-
-
-
+                
             }
             catch (Exception ex)
             {
@@ -1349,14 +1306,11 @@ namespace u_net
             }
         }
 
-   
+
         private bool IsError(Control controlObject)
         {
             try
             {
-
-                
-
                 object varValue = controlObject.Text;
                 string controlName = controlObject.Name;
 
@@ -1364,41 +1318,22 @@ namespace u_net
                 {
                     case "部品コード":
                     case "品名":
-                        //if (string.IsNullOrEmpty(varValue.ToString()))
-                        //{
-                        //    MessageBox.Show(controlName + "を入力してください.", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                        //    return true;
-                        //}
+                        if (string.IsNullOrEmpty(varValue.ToString()))
+                        {
+                            MessageBox.Show(controlName + "を入力してください.", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            return true;
+                        }
                         break;
                     case "型番":
                         //if (Cancel)
                         //{
-                        //if (string.IsNullOrEmpty(varValue.ToString()))
-                        //{
-                        //    MessageBox.Show(controlName + "を入力してください.", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                        //    return true;
-                        //}
+                            if (string.IsNullOrEmpty(varValue.ToString()))
+                            {
+                                MessageBox.Show(controlName + "を入力してください.", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                                return true;
+                            }
                         //}
                         // 重複チェックなどを行う必要があれば、ここに追加してください。
-                        DataTable rs1 = null;
-                        string strPartsList = null;
-
-                        if (DetectRepeatedParts(varValue.ToString(), CurrentCode, ref rs1))
-                        {
-                            if (rs1.Rows.Count > 0)
-                            {
-                                foreach (DataRow row in rs1.Rows)
-                                {
-                                    strPartsList += row[0].ToString() + " ： ";
-                                    strPartsList += row[1].ToString() + " ： ";
-                                    strPartsList += row[2].ToString() + Environment.NewLine;
-                                }
-
-                                MessageBox.Show($"入力された型番は既に登録されています。{Environment.NewLine}{strPartsList}", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                                return true; 
-                            }
-                        
-                        }
                         break;
                     case "メーカーコード":
                         if (string.IsNullOrEmpty(varValue.ToString()))
@@ -1406,21 +1341,7 @@ namespace u_net
                             MessageBox.Show(controlName + "を入力してください.", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                             return true;
                         }
-                        else
-                        {
-                            string str1 = FunctionClass.GetMakerName(cn, controlObject.Text.ToString());
-                            string str2 = FunctionClass.GetMakerShortName(cn, controlObject.Text.ToString());
-                            if(string.IsNullOrEmpty(str1) || string.IsNullOrEmpty(str2))
-                            {
-                                return true;
-                            }
-                            else
-                            {
-                                MakerName.Text = str1;
-                                MakerShortName.Text = str2;
-                            }
-                        }
-                        
+                        // メーカーコードからの関連情報表示などが必要であればここに追加してください。
                         break;
                     case "仕入先1単価":
                     case "仕入先2単価":
@@ -1523,14 +1444,14 @@ namespace u_net
         }
 
 
-        public bool DetectRepeatedParts(string ModelString, string ExCodeString, ref DataTable recordsetObject)
+        public bool DetectRepeatedParts(string ModelString, string ExCodeString, ref SqlDataAdapter dataAdapter)
         {
             bool detectRepeatedParts = false;
 
             try
             {
 
-                Connect();
+                CommonConnect();
 
                 using (SqlCommand command = new SqlCommand("SP部品重複検出", cn))
                 {
@@ -1538,14 +1459,12 @@ namespace u_net
                     command.Parameters.Add("@strModel", SqlDbType.VarChar).Value = ModelString;
                     command.Parameters.Add("@strExCode", SqlDbType.VarChar).Value = ExCodeString;
 
-                    using (SqlDataAdapter adapter = new SqlDataAdapter(command))
-                    {
-                        recordsetObject = new DataTable();
-                        adapter.Fill(recordsetObject);
-                    }
+                    dataAdapter = new SqlDataAdapter(command);
+                    dataAdapter.Fill(new DataSet()); // You can replace "new DataSet()" with your dataset object if needed
+
                     detectRepeatedParts = true;
                 }
-
+                
             }
             catch (Exception ex)
             {
@@ -1570,49 +1489,34 @@ namespace u_net
                         fn.DoWait("読み込んでいます...");
 
 
-                        //                    string query = "SELECT M部品.部品コード, ISNULL([V部品履歴_最終版数].最終版数, 0) + 1 AS 版数 " +
-                        //"FROM M部品 LEFT OUTER JOIN [V部品履歴_最終版数] " +
-                        //"ON M部品.部品コード = [V部品履歴_最終版数].部品コード " +
-                        //"WHERE M部品.部品コード BETWEEN '@StartCode' AND '@EndCode' " +
-                        //"ORDER BY M部品.部品コード DESC";
-
-                        //                    using (SqlCommand command = new SqlCommand(query, cn))
-                        //                    {
-                        //                        int parsedCode = int.Parse(部品コード.Text);
-                        //                        command.Parameters.AddWithValue("@StartCode", parsedCode - 10);
-                        //                        command.Parameters.AddWithValue("@EndCode", parsedCode + 10);
-
-                        //                        SqlDataAdapter adapter = new SqlDataAdapter(command);
-                        //                        DataTable dataTable = new DataTable();
-
-                        //                        adapter.Fill(dataTable);
-
-                        //                        // 部品コードのソースにDataTableを設定
-                        //                        部品コード.DataSource = dataTable;
-                        //                        部品コード.DisplayMember = "Value";
-                        //                        部品コード.ValueMember = "Key";
-
-                        //                        //版数.Text = 部品コード.V
-                        //                    }
-
-                        string query = "select max(版数) as 最終版数 from M部品履歴 where 部品コード='" + 部品コード.Text + "' group by 部品コード";
+                        string query = "SELECT M部品.部品コード, ISNULL([V部品履歴_最終版数].最終版数, 0) + 1 AS 版数 " +
+    "FROM M部品 LEFT OUTER JOIN [V部品履歴_最終版数] " +
+    "ON M部品.部品コード = [V部品履歴_最終版数].部品コード " +
+    "WHERE M部品.部品コード BETWEEN @StartCode AND @EndCode " +
+    "ORDER BY M部品.部品コード DESC";
 
                         using (SqlCommand command = new SqlCommand(query, cn))
                         {
+                            int parsedCode = int.Parse(部品コード.Text);
+                            command.Parameters.AddWithValue("@StartCode", parsedCode - 10);
+                            command.Parameters.AddWithValue("@EndCode", parsedCode + 10);
+
                             SqlDataAdapter adapter = new SqlDataAdapter(command);
                             DataTable dataTable = new DataTable();
-                            adapter.Fill(dataTable);
-                            if (dataTable.Rows.Count > 0)
-                            {
-                                版数.Text = dataTable.Rows[0]["最終版数"].ToString();
-                            }
-                        }
 
-                        
+                            adapter.Fill(dataTable);
+
+                            // 部品コードのソースにDataTableを設定
+                            部品コード.DataSource = dataTable;
+                            部品コード.DisplayMember = "部品コード";
+                            部品コード.ValueMember = "版数";
+                        }
+                          
+                        版数.Text = 部品コード.Text;
                         // 内容の表示
-                        LoadData(this, 部品コード.Text);
+                        LoadData(this, CurrentCode);
                         // 使用先の表示
-                        DispGrid(部品コード.Text);
+                        DispGrid(CurrentCode);
                         // 動作制御
                         改版ボタン.Enabled = true;
                         // コマンド複写.Enabled = true;
@@ -1620,21 +1524,19 @@ namespace u_net
                         コマンド入出庫.Enabled = true;
                         コマンド履歴.Enabled = !(CurrentEdition <= 1);
 
-                        ChangedData(false);
-
                         fn.WaitForm.Close();
                         break;
                     case "仕入先1コード":
                         // 仕入先コードからの関連情報表示
-                        Supplier1Name.Text = FunctionClass.GetSupplierName(cn, controlObject.Text.ToString());
+                        Supplier1Name.Text = FunctionClass.GetSupplierName(cn,controlObject.Text.ToString());
                         break;
                     case "仕入先2コード":
                         // 仕入先コードからの関連情報表示
-                        Supplier2Name.Text = FunctionClass.GetSupplierName(cn, controlObject.Text.ToString());
+                        Supplier2Name.Text = FunctionClass.GetSupplierName(cn,controlObject.Text.ToString());
                         break;
                     case "仕入先3コード":
                         // 仕入先コードからの関連情報表示
-                       Supplier3Name.Text = FunctionClass.GetSupplierName(cn,controlObject.Text.ToString());
+                        Supplier3Name.Text = FunctionClass.GetSupplierName(cn,controlObject.Text.ToString());
                         break;
                     case "入数":
                     case "単位数量":
@@ -1656,8 +1558,8 @@ namespace u_net
             }
             finally
             {
-
-
+                
+ 
             }
         }
 
@@ -1681,7 +1583,7 @@ namespace u_net
         private void Form_KeyDown(object sender, KeyEventArgs e)
         {
 
-                bool intShiftDown = (Control.ModifierKeys & Keys.Shift) == Keys.Shift;
+            bool intShiftDown = (Control.ModifierKeys & Keys.Shift) == Keys.Shift;
 
             if (intShiftDown)
             {
@@ -1690,10 +1592,6 @@ namespace u_net
 
             switch (e.KeyCode)
             {
-                case Keys.Return:
-                    SelectNextControl(ActiveControl, true, true, true, true);
-                    break;
-
                 case Keys.F1:
                     if (コマンド新規.Enabled)
                     {
@@ -1717,8 +1615,8 @@ namespace u_net
                 case Keys.F5:
                     if (コマンド仕入先.Enabled) コマンド仕入先_Click(sender, e);
                     break;
-
-
+               
+             
                 case Keys.F9:
                     if (コマンド承認.Enabled) コマンド承認_Click(sender, e);
                     break;
@@ -1760,7 +1658,6 @@ namespace u_net
         private void ChemSherpaVersion_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
             if (IsError(sender as Control) == true ) e.Cancel = true;
-
         }
 
         private void ChemSherpaVersion_TextChanged(object sender, EventArgs e)
@@ -1946,7 +1843,7 @@ namespace u_net
 
         private void ShelfNumber_TextChanged(object sender, EventArgs e)
         {
-            FunctionClass.LimitText(sender as Control, 10);
+            FunctionClass.LimitText(ActiveControl, 10);
             ChangedData(true);
         }
 
@@ -1972,7 +1869,7 @@ namespace u_net
 
         private void メーカーコード_TextChanged(object sender, EventArgs e)
         {
-            FunctionClass.LimitText(sender as Control, 8);
+            FunctionClass.LimitText(ActiveControl, 8);
             ChangedData(true);
         }
 
@@ -2022,7 +1919,7 @@ namespace u_net
 
         private void 型番_TextChanged(object sender, EventArgs e)
         {
-            FunctionClass.LimitText(sender as Control, 50);
+            FunctionClass.LimitText(ActiveControl, 50);
             ChangedData(true);
         }
 
@@ -2084,7 +1981,7 @@ namespace u_net
 
         private void 仕入先1コード_TextChanged(object sender, EventArgs e)
         {
-            FunctionClass.LimitText(sender as Control, 8);
+            FunctionClass.LimitText(ActiveControl, 8);
             ChangedData(true);
         }
 
@@ -2096,7 +1993,7 @@ namespace u_net
 
         private void 仕入先1コード_Leave(object sender, EventArgs e)
         {
-            
+            selected_frame = 0;
             toolStripStatusLabel2.Text = "各種項目の説明";
         }
 
@@ -2145,19 +2042,19 @@ namespace u_net
 
         private void 仕入先2コード_TextChanged(object sender, EventArgs e)
         {
-            FunctionClass.LimitText(sender as Control, 8);
+            FunctionClass.LimitText(ActiveControl, 8);
             ChangedData(true);
         }
 
         private void 仕入先2コード_Enter(object sender, EventArgs e)
         {
-            selected_frame = 2;
+            selected_frame = 1;
             toolStripStatusLabel2.Text = "■仕入先コードを入力します。　■8文字まで入力可。　■[space]キーで検索ウィンドウを開きます。";
         }
 
         private void 仕入先2コード_Leave(object sender, EventArgs e)
         {
-            
+            selected_frame = 0;
             toolStripStatusLabel2.Text = "各種項目の説明";
         }
 
@@ -2205,19 +2102,19 @@ namespace u_net
 
         private void 仕入先3コード_TextChanged(object sender, EventArgs e)
         {
-            FunctionClass.LimitText(sender as Control, 8);
+            FunctionClass.LimitText(ActiveControl, 8);
             ChangedData(true);
         }
 
         private void 仕入先3コード_Enter(object sender, EventArgs e)
         {
-            selected_frame = 3;
+            selected_frame = 1;
             toolStripStatusLabel2.Text = "■仕入先コードを入力します。　■8文字まで入力可。　■[space]キーで検索ウィンドウを開きます。";
         }
 
         private void 仕入先3コード_Leave(object sender, EventArgs e)
         {
-            
+            selected_frame = 0;
             toolStripStatusLabel2.Text = "各種項目の説明";
         }
 
@@ -2331,7 +2228,7 @@ namespace u_net
 
         private void 仕入先1単価_Leave(object sender, EventArgs e)
         {
-            
+            selected_frame = 0;
             toolStripStatusLabel2.Text = "各種項目の説明";
         }
 
@@ -2353,7 +2250,7 @@ namespace u_net
 
         private void 仕入先2単価_Leave(object sender, EventArgs e)
         {
-            
+            selected_frame = 0;
             toolStripStatusLabel2.Text = "各種項目の説明";
         }
 
@@ -2375,7 +2272,7 @@ namespace u_net
 
         private void 仕入先3単価_Leave(object sender, EventArgs e)
         {
-            
+            selected_frame = 0;
             toolStripStatusLabel2.Text = "各種項目の説明";
         }
 
@@ -2467,7 +2364,7 @@ namespace u_net
 
         private void 備考_TextChanged(object sender, EventArgs e)
         {
-            FunctionClass.LimitText(sender as Control, 4000);
+            FunctionClass.LimitText(ActiveControl, 4000);
             ChangedData(true);
         }
 
@@ -2478,7 +2375,7 @@ namespace u_net
 
         private void 品名_TextChanged(object sender, EventArgs e)
         {
-            FunctionClass.LimitText(sender as Control, 50);
+            FunctionClass.LimitText(ActiveControl, 50);
             ChangedData(true);
         }
 
@@ -2494,24 +2391,23 @@ namespace u_net
 
         private void 部品コード_SelectedIndexChanged(object sender, EventArgs e)
         {
-            FunctionClass.LimitText(sender as Control, 8);
+            FunctionClass.LimitText(ActiveControl, 8);
         }
 
         private void 部品コード_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Return)
             {
-                ComboBox comboBox = sender as ComboBox;
-                if (comboBox != null)
+                TextBox textBox = sender as TextBox;
+                if (textBox != null)
                 {
-                    string strCode = comboBox.Text.Trim();
+                    string strCode = textBox.Text.Trim();
                     if (!string.IsNullOrEmpty(strCode))
                     {
                         strCode = strCode.PadLeft(8, '0');
-                        if (strCode != comboBox.Text)
+                        if (strCode != textBox.Text)
                         {
-                            comboBox.Text = strCode;
-                            部品コード_Validated(sender, e);
+                            textBox.Text = strCode;
                         }
                     }
                 }
@@ -2519,7 +2415,10 @@ namespace u_net
         }
 
         
-        
+        private void 分類コード_Validated(object sender, EventArgs e)
+        {
+            ChangedData(true);
+        }
 
         private void 分類コード_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
@@ -2528,16 +2427,7 @@ namespace u_net
 
         private void 分類コード_SelectedIndexChanged(object sender, EventArgs e)
         {
-            GroupName.Text = ((DataRowView)分類コード.SelectedItem)?.Row.Field<String>("Display2")?.ToString();
             ChangedData(true);
-        }
-
-        private void 分類コード_TextChanged(object sender, EventArgs e)
-        {
-            if(分類コード.SelectedValue == null)
-            {
-                GroupName.Text = null;
-            }
         }
 
         private void 分類コード_KeyPress(object sender, KeyPressEventArgs e)
@@ -2553,13 +2443,8 @@ namespace u_net
             }
         }
 
-        private void 分類コード_DrawItem(object sender, DrawItemEventArgs e)
-        {
-            OriginalClass.SetComboBoxAppearance((ComboBox)sender, e, new int[] { 50, 500 }, new string[] { "Display", "Display2" });
-            分類コード.Invalidate();
-            分類コード.DroppedDown = true;
-        }
 
+      
         private void 部品コード_Enter(object sender, EventArgs e)
         {
             toolStripStatusLabel2.Text = "■読み込む部品データの部品コードを入力します。";
@@ -2789,6 +2674,6 @@ namespace u_net
             toolStripStatusLabel2.Text = "各種項目の説明";
         }
 
-        
+      
     }
 }

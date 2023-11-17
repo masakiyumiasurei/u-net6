@@ -747,10 +747,9 @@ namespace u_net
             商品コード.Name = "商品コード";
             商品コード.Size = new Size(160, 20);
             商品コード.TabIndex = 2;
-            商品コード.SelectedIndexChanged += 商品コード_SelectedIndexChanged;
+            商品コード.TextChanged += 商品コード_TextChanged;
             商品コード.KeyDown += 商品コード_KeyDown;
             商品コード.KeyPress += 商品コード_KeyPress;
-            商品コード.Validated += 商品コード_Validated;
             // 
             // Revision
             // 

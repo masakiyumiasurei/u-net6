@@ -60,10 +60,10 @@ namespace u_net
             groupBox1 = new GroupBox();
             label29 = new Label();
             Contact3MailAddress = new TextBox();
-            Contact3PhoneNumber = new TextBox();
+            Contact1PhoneNumber3 = new TextBox();
             担当者名3 = new TextBox();
             Contact2MailAddress = new TextBox();
-            Contact2PhoneNumber = new TextBox();
+            Contact1PhoneNumber2 = new TextBox();
             担当者名2 = new TextBox();
             Contact1MailAddress = new TextBox();
             Contact1PhoneNumber = new TextBox();
@@ -589,10 +589,10 @@ namespace u_net
             // 
             groupBox1.Controls.Add(label29);
             groupBox1.Controls.Add(Contact3MailAddress);
-            groupBox1.Controls.Add(Contact3PhoneNumber);
+            groupBox1.Controls.Add(Contact1PhoneNumber3);
             groupBox1.Controls.Add(担当者名3);
             groupBox1.Controls.Add(Contact2MailAddress);
-            groupBox1.Controls.Add(Contact2PhoneNumber);
+            groupBox1.Controls.Add(Contact1PhoneNumber2);
             groupBox1.Controls.Add(担当者名2);
             groupBox1.Controls.Add(Contact1MailAddress);
             groupBox1.Controls.Add(Contact1PhoneNumber);
@@ -655,17 +655,17 @@ namespace u_net
             Contact3MailAddress.TabIndex = 236;
             Contact3MailAddress.TextChanged += Contact3MailAddress_TextChanged;
             // 
-            // Contact3PhoneNumber
+            // Contact1PhoneNumber3
             // 
-            Contact3PhoneNumber.BackColor = Color.White;
-            Contact3PhoneNumber.Font = new Font("BIZ UDPゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            Contact3PhoneNumber.ImeMode = ImeMode.Disable;
-            Contact3PhoneNumber.Location = new Point(303, 272);
-            Contact3PhoneNumber.Margin = new Padding(3, 2, 3, 2);
-            Contact3PhoneNumber.Name = "Contact3PhoneNumber";
-            Contact3PhoneNumber.Size = new Size(163, 20);
-            Contact3PhoneNumber.TabIndex = 235;
-            Contact3PhoneNumber.TextChanged += Contact1PhoneNumber3_TextChanged;
+            Contact1PhoneNumber3.BackColor = Color.White;
+            Contact1PhoneNumber3.Font = new Font("BIZ UDPゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            Contact1PhoneNumber3.ImeMode = ImeMode.Disable;
+            Contact1PhoneNumber3.Location = new Point(303, 272);
+            Contact1PhoneNumber3.Margin = new Padding(3, 2, 3, 2);
+            Contact1PhoneNumber3.Name = "Contact1PhoneNumber3";
+            Contact1PhoneNumber3.Size = new Size(163, 20);
+            Contact1PhoneNumber3.TabIndex = 235;
+            Contact1PhoneNumber3.TextChanged += Contact1PhoneNumber3_TextChanged;
             // 
             // 担当者名3
             // 
@@ -692,17 +692,17 @@ namespace u_net
             Contact2MailAddress.TabIndex = 233;
             Contact2MailAddress.TextChanged += Contact2MailAddress_TextChanged;
             // 
-            // Contact2PhoneNumber
+            // Contact1PhoneNumber2
             // 
-            Contact2PhoneNumber.BackColor = Color.White;
-            Contact2PhoneNumber.Font = new Font("BIZ UDPゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            Contact2PhoneNumber.ImeMode = ImeMode.Disable;
-            Contact2PhoneNumber.Location = new Point(303, 248);
-            Contact2PhoneNumber.Margin = new Padding(3, 2, 3, 2);
-            Contact2PhoneNumber.Name = "Contact2PhoneNumber";
-            Contact2PhoneNumber.Size = new Size(163, 20);
-            Contact2PhoneNumber.TabIndex = 232;
-            Contact2PhoneNumber.TextChanged += Contact1PhoneNumber2_TextChanged;
+            Contact1PhoneNumber2.BackColor = Color.White;
+            Contact1PhoneNumber2.Font = new Font("BIZ UDPゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            Contact1PhoneNumber2.ImeMode = ImeMode.Disable;
+            Contact1PhoneNumber2.Location = new Point(303, 248);
+            Contact1PhoneNumber2.Margin = new Padding(3, 2, 3, 2);
+            Contact1PhoneNumber2.Name = "Contact1PhoneNumber2";
+            Contact1PhoneNumber2.Size = new Size(163, 20);
+            Contact1PhoneNumber2.TabIndex = 232;
+            Contact1PhoneNumber2.TextChanged += Contact1PhoneNumber2_TextChanged;
             // 
             // 担当者名2
             // 
@@ -1119,8 +1119,10 @@ namespace u_net
             代表者名.Name = "代表者名";
             代表者名.Size = new Size(139, 20);
             代表者名.TabIndex = 7;
+            代表者名.TextChanged += 仕入先省略名_TextChanged;
             代表者名.Enter += 仕入先省略名_Enter;
             代表者名.Leave += 仕入先省略名_Leave;
+            代表者名.Validated += 仕入先省略名_Validated;
             // 
             // 郵便番号
             // 
@@ -1428,6 +1430,7 @@ namespace u_net
             // 
             // データ複写ボタン
             // 
+            データ複写ボタン.Enabled = false;
             データ複写ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             データ複写ボタン.ImageAlign = ContentAlignment.BottomLeft;
             データ複写ボタン.Location = new Point(569, 311);
@@ -1438,7 +1441,6 @@ namespace u_net
             データ複写ボタン.TabStop = false;
             データ複写ボタン.Text = "左記情報を窓口情報へ複写する(&T)";
             データ複写ボタン.UseVisualStyleBackColor = true;
-            データ複写ボタン.Click += データ複写ボタン_Click;
             // 
             // label23
             // 
@@ -1463,6 +1465,7 @@ namespace u_net
             評価ランク.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             評価ランク.FormattingEnabled = true;
             評価ランク.ImeMode = ImeMode.Disable;
+            評価ランク.Items.AddRange(new object[] { "A", "B1", "B2", "B3", "C" });
             評価ランク.Location = new Point(138, 295);
             評価ランク.Margin = new Padding(4, 3, 4, 3);
             評価ランク.Name = "評価ランク";
@@ -2567,8 +2570,6 @@ namespace u_net
         private Label label40;
         private TextBox 振込手数料上限金額;
         private ComboBox 仕入先コード;
-        private TextBox Contact3PhoneNumber;
-        private TextBox Contact2PhoneNumber;
     }
 }
 
