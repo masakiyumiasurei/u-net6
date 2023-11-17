@@ -185,6 +185,7 @@ namespace u_net
             // 
             コマンド登録.Enabled = false;
             コマンド登録.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            コマンド登録.ForeColor = SystemColors.ButtonShadow;
             コマンド登録.ImageAlign = ContentAlignment.BottomLeft;
             コマンド登録.Location = new Point(680, 6);
             コマンド登録.Margin = new Padding(1, 0, 0, 0);
@@ -256,7 +257,7 @@ namespace u_net
             // 
             コマンドメール.Enabled = false;
             コマンドメール.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            コマンドメール.ForeColor = SystemColors.ControlText;
+            コマンドメール.ForeColor = SystemColors.ButtonShadow;
             コマンドメール.ImageAlign = ContentAlignment.BottomLeft;
             コマンドメール.Location = new Point(271, 6);
             コマンドメール.Margin = new Padding(1, 0, 0, 0);
@@ -270,7 +271,7 @@ namespace u_net
             // コマンド確定
             // 
             コマンド確定.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            コマンド確定.ForeColor = Color.Blue;
+            コマンド確定.ForeColor = SystemColors.ButtonShadow;
             コマンド確定.ImageAlign = ContentAlignment.BottomLeft;
             コマンド確定.Location = new Point(612, 6);
             コマンド確定.Margin = new Padding(1, 0, 0, 0);
@@ -285,6 +286,7 @@ namespace u_net
             // 
             コマンド承認.Enabled = false;
             コマンド承認.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            コマンド承認.ForeColor = SystemColors.ButtonShadow;
             コマンド承認.ImageAlign = ContentAlignment.BottomLeft;
             コマンド承認.Location = new Point(545, 6);
             コマンド承認.Margin = new Padding(1, 0, 0, 0);
@@ -299,6 +301,7 @@ namespace u_net
             // 
             コマンド削除.Enabled = false;
             コマンド削除.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            コマンド削除.ForeColor = SystemColors.ButtonShadow;
             コマンド削除.ImageAlign = ContentAlignment.BottomLeft;
             コマンド削除.Location = new Point(199, 6);
             コマンド削除.Margin = new Padding(1, 0, 0, 0);
@@ -313,6 +316,7 @@ namespace u_net
             // 
             コマンド複写.Enabled = false;
             コマンド複写.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            コマンド複写.ForeColor = SystemColors.ButtonShadow;
             コマンド複写.ImageAlign = ContentAlignment.BottomLeft;
             コマンド複写.Location = new Point(134, 6);
             コマンド複写.Margin = new Padding(1, 0, 0, 0);
@@ -341,6 +345,7 @@ namespace u_net
             // 
             コマンド新規.Enabled = false;
             コマンド新規.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            コマンド新規.ForeColor = SystemColors.ButtonShadow;
             コマンド新規.ImageAlign = ContentAlignment.BottomLeft;
             コマンド新規.Location = new Point(3, 6);
             コマンド新規.Margin = new Padding(1, 0, 0, 0);
@@ -579,7 +584,7 @@ namespace u_net
             // 
             Email作成ボタン.Location = new Point(492, 321);
             Email作成ボタン.Name = "Email作成ボタン";
-            Email作成ボタン.Size = new Size(21, 20);
+            Email作成ボタン.Size = new Size(35, 20);
             Email作成ボタン.TabIndex = 257;
             Email作成ボタン.UseVisualStyleBackColor = true;
             // 
@@ -639,13 +644,13 @@ namespace u_net
             // 
             ラベル74.AllowDrop = true;
             ラベル74.AutoEllipsis = true;
-            ラベル74.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            ラベル74.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             ラベル74.ForeColor = SystemColors.ActiveCaptionText;
             ラベル74.ImageAlign = ContentAlignment.MiddleLeft;
             ラベル74.Location = new Point(533, 323);
             ラベル74.Margin = new Padding(0);
             ラベル74.Name = "ラベル74";
-            ラベル74.Size = new Size(85, 17);
+            ラベル74.Size = new Size(105, 17);
             ラベル74.TabIndex = 252;
             ラベル74.Text = "削除者コード";
             ラベル74.TextAlign = ContentAlignment.MiddleLeft;
@@ -655,7 +660,7 @@ namespace u_net
             // 
             ラベル70.AllowDrop = true;
             ラベル70.AutoEllipsis = true;
-            ラベル70.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            ラベル70.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             ラベル70.ForeColor = SystemColors.ActiveCaptionText;
             ラベル70.ImageAlign = ContentAlignment.MiddleLeft;
             ラベル70.Location = new Point(533, 293);
@@ -671,13 +676,13 @@ namespace u_net
             // 
             ラベル72.AllowDrop = true;
             ラベル72.AutoEllipsis = true;
-            ラベル72.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            ラベル72.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             ラベル72.ForeColor = SystemColors.ActiveCaptionText;
             ラベル72.ImageAlign = ContentAlignment.MiddleLeft;
             ラベル72.Location = new Point(533, 263);
             ラベル72.Margin = new Padding(0);
             ラベル72.Name = "ラベル72";
-            ラベル72.Size = new Size(85, 17);
+            ラベル72.Size = new Size(105, 17);
             ラベル72.TabIndex = 250;
             ラベル72.Text = "確定者コード";
             ラベル72.TextAlign = ContentAlignment.MiddleLeft;
@@ -687,7 +692,7 @@ namespace u_net
             // 
             ラベル68.AllowDrop = true;
             ラベル68.AutoEllipsis = true;
-            ラベル68.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            ラベル68.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             ラベル68.ForeColor = SystemColors.ActiveCaptionText;
             ラベル68.ImageAlign = ContentAlignment.MiddleLeft;
             ラベル68.Location = new Point(533, 230);
@@ -701,7 +706,7 @@ namespace u_net
             // 
             // 削除
             // 
-            削除.BackColor = Color.White;
+            削除.BackColor = SystemColors.Control;
             削除.Font = new Font("BIZ UDPゴシック", 13F, FontStyle.Regular, GraphicsUnit.Point);
             削除.Location = new Point(716, 173);
             削除.Margin = new Padding(3, 2, 3, 2);
@@ -713,7 +718,7 @@ namespace u_net
             // 
             // 確定
             // 
-            確定.BackColor = Color.White;
+            確定.BackColor = SystemColors.Control;
             確定.Font = new Font("BIZ UDPゴシック", 13F, FontStyle.Regular, GraphicsUnit.Point);
             確定.Location = new Point(590, 173);
             確定.Margin = new Padding(3, 2, 3, 2);
@@ -747,13 +752,13 @@ namespace u_net
             // 
             ラベル78.AllowDrop = true;
             ラベル78.AutoEllipsis = true;
-            ラベル78.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            ラベル78.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             ラベル78.ForeColor = SystemColors.ActiveCaptionText;
             ラベル78.ImageAlign = ContentAlignment.MiddleLeft;
             ラベル78.Location = new Point(664, 173);
             ラベル78.Margin = new Padding(0);
             ラベル78.Name = "ラベル78";
-            ラベル78.Size = new Size(30, 17);
+            ラベル78.Size = new Size(49, 17);
             ラベル78.TabIndex = 244;
             ラベル78.Text = "削除";
             ラベル78.TextAlign = ContentAlignment.MiddleLeft;
@@ -841,7 +846,7 @@ namespace u_net
             // 
             承認順序ラベル.AllowDrop = true;
             承認順序ラベル.AutoEllipsis = true;
-            承認順序ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            承認順序ラベル.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             承認順序ラベル.ForeColor = SystemColors.ActiveCaptionText;
             承認順序ラベル.ImageAlign = ContentAlignment.MiddleLeft;
             承認順序ラベル.Location = new Point(25, 440);
@@ -856,7 +861,7 @@ namespace u_net
             // 
             担当地区コード_ラベル.AllowDrop = true;
             担当地区コード_ラベル.AutoEllipsis = true;
-            担当地区コード_ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            担当地区コード_ラベル.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             担当地区コード_ラベル.ForeColor = SystemColors.ActiveCaptionText;
             担当地区コード_ラベル.ImageAlign = ContentAlignment.MiddleLeft;
             担当地区コード_ラベル.Location = new Point(25, 410);
@@ -912,7 +917,7 @@ namespace u_net
             // 
             入社年月日_ラベル.AllowDrop = true;
             入社年月日_ラベル.AutoEllipsis = true;
-            入社年月日_ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            入社年月日_ラベル.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             入社年月日_ラベル.ForeColor = SystemColors.ActiveCaptionText;
             入社年月日_ラベル.ImageAlign = ContentAlignment.MiddleLeft;
             入社年月日_ラベル.Location = new Point(25, 350);
@@ -1003,7 +1008,7 @@ namespace u_net
             // 
             ラベル100.AllowDrop = true;
             ラベル100.AutoEllipsis = true;
-            ラベル100.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            ラベル100.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             ラベル100.ForeColor = SystemColors.ActiveCaptionText;
             ラベル100.ImageAlign = ContentAlignment.MiddleLeft;
             ラベル100.Location = new Point(363, 380);
@@ -1018,13 +1023,13 @@ namespace u_net
             // 
             ラベル76.AllowDrop = true;
             ラベル76.AutoEllipsis = true;
-            ラベル76.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            ラベル76.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             ラベル76.ForeColor = SystemColors.ActiveCaptionText;
             ラベル76.ImageAlign = ContentAlignment.MiddleLeft;
             ラベル76.Location = new Point(533, 173);
             ラベル76.Margin = new Padding(0);
             ラベル76.Name = "ラベル76";
-            ラベル76.Size = new Size(30, 17);
+            ラベル76.Size = new Size(54, 17);
             ラベル76.TabIndex = 229;
             ラベル76.Text = "確定";
             ラベル76.TextAlign = ContentAlignment.MiddleLeft;
@@ -1046,7 +1051,7 @@ namespace u_net
             // 
             ラベル19.AllowDrop = true;
             ラベル19.AutoEllipsis = true;
-            ラベル19.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            ラベル19.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             ラベル19.ForeColor = SystemColors.ActiveCaptionText;
             ラベル19.ImageAlign = ContentAlignment.MiddleLeft;
             ラベル19.Location = new Point(533, 133);
@@ -1061,7 +1066,7 @@ namespace u_net
             // 
             ラベル17.AllowDrop = true;
             ラベル17.AutoEllipsis = true;
-            ラベル17.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            ラベル17.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             ラベル17.ForeColor = SystemColors.ActiveCaptionText;
             ラベル17.ImageAlign = ContentAlignment.MiddleLeft;
             ラベル17.Location = new Point(533, 96);
@@ -1115,7 +1120,7 @@ namespace u_net
             // 
             ラベル11.AllowDrop = true;
             ラベル11.AutoEllipsis = true;
-            ラベル11.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            ラベル11.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             ラベル11.ForeColor = SystemColors.ActiveCaptionText;
             ラベル11.ImageAlign = ContentAlignment.MiddleLeft;
             ラベル11.Location = new Point(533, 59);
@@ -1130,7 +1135,7 @@ namespace u_net
             // 
             ラベル9.AllowDrop = true;
             ラベル9.AutoEllipsis = true;
-            ラベル9.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            ラベル9.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             ラベル9.ForeColor = SystemColors.ActiveCaptionText;
             ラベル9.ImageAlign = ContentAlignment.MiddleLeft;
             ラベル9.Location = new Point(533, 22);
@@ -1252,7 +1257,7 @@ namespace u_net
             電子メールアドレスラベル.Location = new Point(25, 320);
             電子メールアドレスラベル.Margin = new Padding(0);
             電子メールアドレスラベル.Name = "電子メールアドレスラベル";
-            電子メールアドレスラベル.Size = new Size(133, 20);
+            電子メールアドレスラベル.Size = new Size(160, 20);
             電子メールアドレスラベル.TabIndex = 213;
             電子メールアドレスラベル.Text = "電子メールアドレス(&M)";
             電子メールアドレスラベル.TextAlign = ContentAlignment.MiddleLeft;
@@ -1348,7 +1353,7 @@ namespace u_net
             // 
             ラベル62.AllowDrop = true;
             ラベル62.AutoEllipsis = true;
-            ラベル62.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            ラベル62.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             ラベル62.ForeColor = SystemColors.ActiveCaptionText;
             ラベル62.ImageAlign = ContentAlignment.MiddleLeft;
             ラベル62.Location = new Point(25, 380);
@@ -1364,7 +1369,7 @@ namespace u_net
             社員コード_ラベル.AllowDrop = true;
             社員コード_ラベル.AutoEllipsis = true;
             社員コード_ラベル.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            社員コード_ラベル.ForeColor = SystemColors.ActiveCaptionText;
+            社員コード_ラベル.ForeColor = SystemColors.ButtonShadow;
             社員コード_ラベル.ImageAlign = ContentAlignment.MiddleLeft;
             社員コード_ラベル.Location = new Point(25, 20);
             社員コード_ラベル.Margin = new Padding(0);
@@ -1460,7 +1465,7 @@ namespace u_net
             // 
             label23.AllowDrop = true;
             label23.AutoEllipsis = true;
-            label23.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label23.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             label23.ForeColor = SystemColors.ActiveCaptionText;
             label23.ImageAlign = ContentAlignment.MiddleLeft;
             label23.Location = new Point(25, 170);
@@ -1475,7 +1480,7 @@ namespace u_net
             // 
             label24.AllowDrop = true;
             label24.AutoEllipsis = true;
-            label24.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label24.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             label24.ForeColor = SystemColors.ActiveCaptionText;
             label24.ImageAlign = ContentAlignment.MiddleLeft;
             label24.Location = new Point(25, 140);
@@ -1490,7 +1495,7 @@ namespace u_net
             // 
             label25.AllowDrop = true;
             label25.AutoEllipsis = true;
-            label25.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label25.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             label25.ForeColor = SystemColors.ActiveCaptionText;
             label25.ImageAlign = ContentAlignment.MiddleLeft;
             label25.Location = new Point(25, 50);
@@ -1505,7 +1510,7 @@ namespace u_net
             // 
             label26.AllowDrop = true;
             label26.AutoEllipsis = true;
-            label26.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label26.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             label26.ForeColor = SystemColors.ActiveCaptionText;
             label26.ImageAlign = ContentAlignment.MiddleLeft;
             label26.Location = new Point(25, 110);
@@ -1520,7 +1525,7 @@ namespace u_net
             // 
             label27.AllowDrop = true;
             label27.AutoEllipsis = true;
-            label27.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label27.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             label27.ForeColor = SystemColors.ActiveCaptionText;
             label27.ImageAlign = ContentAlignment.MiddleLeft;
             label27.Location = new Point(25, 20);
@@ -1571,7 +1576,7 @@ namespace u_net
             // 
             ラベル108.AllowDrop = true;
             ラベル108.AutoEllipsis = true;
-            ラベル108.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            ラベル108.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             ラベル108.ForeColor = SystemColors.ActiveCaptionText;
             ラベル108.ImageAlign = ContentAlignment.MiddleLeft;
             ラベル108.Location = new Point(25, 200);
@@ -1598,7 +1603,7 @@ namespace u_net
             // 
             住所2_ラベル.AllowDrop = true;
             住所2_ラベル.AutoEllipsis = true;
-            住所2_ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            住所2_ラベル.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             住所2_ラベル.ForeColor = SystemColors.ActiveCaptionText;
             住所2_ラベル.ImageAlign = ContentAlignment.MiddleLeft;
             住所2_ラベル.Location = new Point(25, 80);
@@ -1673,7 +1678,7 @@ namespace u_net
             // 
             ラベル58.AllowDrop = true;
             ラベル58.AutoEllipsis = true;
-            ラベル58.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            ラベル58.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             ラベル58.ForeColor = SystemColors.ActiveCaptionText;
             ラベル58.ImageAlign = ContentAlignment.MiddleLeft;
             ラベル58.Location = new Point(25, 170);
@@ -1688,7 +1693,7 @@ namespace u_net
             // 
             ファックスラベル.AllowDrop = true;
             ファックスラベル.AutoEllipsis = true;
-            ファックスラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            ファックスラベル.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             ファックスラベル.ForeColor = SystemColors.ActiveCaptionText;
             ファックスラベル.ImageAlign = ContentAlignment.MiddleLeft;
             ファックスラベル.Location = new Point(25, 140);
@@ -1703,7 +1708,7 @@ namespace u_net
             // 
             住所1_ラベル.AllowDrop = true;
             住所1_ラベル.AutoEllipsis = true;
-            住所1_ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            住所1_ラベル.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             住所1_ラベル.ForeColor = SystemColors.ActiveCaptionText;
             住所1_ラベル.ImageAlign = ContentAlignment.MiddleLeft;
             住所1_ラベル.Location = new Point(25, 50);
@@ -1718,7 +1723,7 @@ namespace u_net
             // 
             電話番号_ラベル.AllowDrop = true;
             電話番号_ラベル.AutoEllipsis = true;
-            電話番号_ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            電話番号_ラベル.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             電話番号_ラベル.ForeColor = SystemColors.ActiveCaptionText;
             電話番号_ラベル.ImageAlign = ContentAlignment.MiddleLeft;
             電話番号_ラベル.Location = new Point(25, 110);
@@ -1733,7 +1738,7 @@ namespace u_net
             // 
             郵便番号_ラベル.AllowDrop = true;
             郵便番号_ラベル.AutoEllipsis = true;
-            郵便番号_ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            郵便番号_ラベル.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             郵便番号_ラベル.ForeColor = SystemColors.ActiveCaptionText;
             郵便番号_ラベル.ImageAlign = ContentAlignment.MiddleLeft;
             郵便番号_ラベル.Location = new Point(25, 20);

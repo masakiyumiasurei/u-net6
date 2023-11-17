@@ -122,6 +122,8 @@ namespace u_net
                 control.PreviewKeyDown += OriginalClass.ValidateCheck;
             }
 
+            this.tabControl1.TabPages.Remove(this.ページ79);
+
             //実行中フォーム起動
             //string LoginUserCode = "000";//テスト用 ログインユーザを実行中にどのように管理するか決まったら修正
             //LocalSetting localSetting = new LocalSetting();
@@ -228,11 +230,11 @@ namespace u_net
             {
                 if (isChanged)
                 {
-                    this.Text = BASE_CAPTION + "*";
+                    this.Text = Name + "*";
                 }
                 else
                 {
-                    this.Text = BASE_CAPTION;
+                    this.Text = Name;
                 }
 
                 // キー情報を表示するコントロールを制御
@@ -248,8 +250,9 @@ namespace u_net
                 if (IsChanged)
                 {
                     コマンド確定.Enabled = true;
+                    コマンド登録.Enabled = true;
                 }
-                this.コマンド登録.Enabled = isChanged;
+                //this.コマンド登録.Enabled = isChanged;
             }
             catch (Exception ex)
             {
@@ -379,20 +382,27 @@ namespace u_net
                         return false;
                     }
 
+                    string sql = "DELETE FROM M社員 WHERE " + strwhere;
+                    SqlCommand command = new SqlCommand(sql, cn, transaction);
+                    command.ExecuteNonQuery();
+
                     // トランザクションをコミット
                     transaction.Commit();
 
-                    //社員コード.Enabled = true;
+                    MessageBox.Show("登録を完了しました");
+
+                    社員コード.Enabled = true;
 
                     // 新規モードのときは修正モードへ移行する
-                    if (IsNewData)
+                    if (true)//IsNewData)
                     {
                         コマンド新規.Enabled = true;
                         コマンド読込.Enabled = false;
-                        コマンド複写.Enabled = true;
-                        コマンド削除.Enabled = true;
-                        コマンド承認.Enabled = false;
                     }
+                    コマンド複写.Enabled = true;
+                    コマンド削除.Enabled = true;
+                    コマンド登録.Enabled = false;
+
                     return true;
 
                 }
@@ -416,49 +426,82 @@ namespace u_net
         {
             try
             {
-                Cursor.Current = Cursors.WaitCursor;
-                this.DoubleBuffered = true;
+                //Cursor.Current = Cursors.WaitCursor;
+                //this.DoubleBuffered = true;
+
+                //if (this.ActiveControl == this.コマンド新規)
+                //{
+                //    this.コマンド新規.Focus();
+                //}
 
                 if (this.ActiveControl == this.コマンド新規)
                 {
-                    this.コマンド新規.Focus();
+                    if (previousControl != null)
+                    {
+                        previousControl.Focus();
+                    }
                 }
 
-                // 変更がある
-                if (this.IsChanged)
+                // 変更があるときは登録確認を行う
+                if (this.コマンド登録.Enabled)
                 {
-                    var intRes = MessageBox.Show("変更内容を登録しますか？", "新規コマンド", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
-                    switch (intRes)
+                    var Res = MessageBox.Show("変更内容を登録しますか？", "新規コマンド", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+
+                    switch (Res)
                     {
                         case DialogResult.Yes:
-                            //if (!ErrCheck()) return;
+
+                            if (!ErrCheck(社員コード)) return;
                             // 登録処理
                             if (!SaveData())
                             {
-                                MessageBox.Show("エラーのため登録できません。", "新規コマンド", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                                goto Bye_コマンド新規_Click;
+                                MessageBox.Show("登録できませんでした。", "新規コマンド", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                                return;
                             }
+
                             break;
                         case DialogResult.Cancel:
-                            goto Bye_コマンド新規_Click;
+                            return;
                     }
                 }
+
+                //if (this.IsChanged)
+                //{
+                //    var intRes = MessageBox.Show("変更内容を登録しますか？", "新規コマンド", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                //    switch (intRes)
+                //    {
+                //        case DialogResult.Yes:
+                //            //if (!ErrCheck()) return;
+                //            // 登録処理
+                //            if (!SaveData())
+                //            {
+                //                MessageBox.Show("エラーのため登録できません。", "新規コマンド", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                //                goto Bye_コマンド新規_Click;
+                //            }
+                //            break;
+                //        case DialogResult.Cancel:
+                //            goto Bye_コマンド新規_Click;
+                //    }
+                //}
 
                 // 新規モードへ移行
                 if (!GoNewMode())
                 {
-                    MessageBox.Show("エラーのため新規モードへ移行できません。", "新規コマンド", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    goto Bye_コマンド新規_Click;
+                    goto Err_コマンド新規_Click;
                 }
-            }
-            finally
-            {
-                this.DoubleBuffered = false;
-                Cursor.Current = Cursors.Default;
-            }
 
-        Bye_コマンド新規_Click:
-            return;
+                return;
+
+            Err_コマンド新規_Click:
+                MessageBox.Show("エラーのため新規モードへ移行できません。", "新規コマンド", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
+            }
+            catch (Exception ex)
+            {
+                // 例外処理
+                Debug.Print(this.Name + "_コマンド新規 - " + ex.Message);
+                MessageBox.Show("エラーのため新規モードへ移行できません。", "新規コマンド", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
         }
 
         private void コマンド読込_Click(object sender, EventArgs e)
@@ -742,7 +785,6 @@ namespace u_net
             }
         }
 
-
         private bool SetDeleted(SqlConnection cn, string codeString, int editionNumber, DateTime deleteTime, string deleteUser)
         {
             try
@@ -822,6 +864,46 @@ namespace u_net
             }
         }
 
+        private bool ErrCheck(Control control)
+        {
+            //入力確認
+            switch (control.Name)
+            {
+                case "シリーズ名":
+                    if (!FunctionClass.IsError(control)) return false;
+                    break;
+                case "在庫下限数量":
+                    if (!FunctionClass.IsError(control)) return false;
+                    if (OriginalClass.IsNumeric(control))
+                    {
+                        MessageBox.Show("数字を入力してください。: ", "数値判定エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                        return false;
+                    }
+                    double result;
+                    double.TryParse(control.Text, out result);
+                    if (result < 0)
+                    {
+                        MessageBox.Show("0 以上の値を入力してください。", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return false;
+                    }
+                    break;
+                case "補正値":
+                    if (!FunctionClass.IsError(control))
+                    {
+                        MessageBox.Show("在庫数量を補正しないときは 0 を入力してください。", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return false;
+                    }
+                    if (OriginalClass.IsNumeric(control))
+                    {
+                        MessageBox.Show("数字を入力してください。: ", "数値判定エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return false;
+                    }
+                    break;
+            }
+            return true;
+        }
+
         private void コマンド承認_Click(object sender, EventArgs e)
         {
             //MessageBox.Show("現在開発中です。", "承認コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -835,13 +917,22 @@ namespace u_net
 
         private void コマンド登録_Click(object sender, EventArgs e)
         {
-
-            this.DoubleBuffered = true;
-
-            if (ActiveControl == コマンド登録)
+            //保存確認
+            if (MessageBox.Show("変更内容を保存しますか？", "保存確認",
+                MessageBoxButtons.OKCancel,
+                MessageBoxIcon.Question) == DialogResult.OK)
             {
-                GetNextControl(コマンド登録, false).Focus();
+                //if (!ErrCheck("")) return;
+
+                if (!SaveData()) return;
             }
+
+            //this.DoubleBuffered = true;
+
+            //if (ActiveControl == コマンド登録)
+            //{
+            //    GetNextControl(コマンド登録, false).Focus();
+            //}
 
             // 登録時におけるエラーチェック
             //if (!ErrCheck())
@@ -849,32 +940,32 @@ namespace u_net
             //    goto Bye_コマンド登録_Click;
             //}
 
-            FunctionClass fn = new FunctionClass();
-            fn.DoWait("登録しています...");
+            //FunctionClass fn = new FunctionClass();
+            //fn.DoWait("登録しています...");
 
-            if (SaveData())
-            {
-                // 登録成功
-                ChangedData(false);
+            //if (SaveData())
+            //{
+            //    // 登録成功
+            //    ChangedData(false);
 
-                if (IsNewData)
-                {
-                    コマンド新規.Enabled = true;
-                    コマンド読込.Enabled = false;
-                    //コマンド複写.Enabled = true;
-                    //コマンド削除.Enabled = true;
-                }
-                コマンド承認.Enabled = this.IsDecided;
-                コマンド確定.Enabled = true;
+            //    if (IsNewData)
+            //    {
+            //        コマンド新規.Enabled = true;
+            //        コマンド読込.Enabled = false;
+            //        //コマンド複写.Enabled = true;
+            //        //コマンド削除.Enabled = true;
+            //    }
+            //    コマンド承認.Enabled = this.IsDecided;
+            //    コマンド確定.Enabled = true;
 
-                fn.WaitForm.Close();
-                //MessageBox.Show("登録を完了しました", "登録コマンド", MessageBoxButtons.OK);
-            }
-            else
-            {
-                fn.WaitForm.Close();
-                MessageBox.Show("登録できませんでした。", "登録コマンド", MessageBoxButtons.OK);
-            }
+            //    fn.WaitForm.Close();
+            //    //MessageBox.Show("登録を完了しました", "登録コマンド", MessageBoxButtons.OK);
+            //}
+            //else
+            //{
+            //    fn.WaitForm.Close();
+            //    MessageBox.Show("登録できませんでした。", "登録コマンド", MessageBoxButtons.OK);
+            //}
         }
 
         private void コマンド終了_Click(object sender, EventArgs e)
@@ -1210,6 +1301,17 @@ namespace u_net
         {
             switch (e.KeyCode)
             {
+                case Keys.Space: //コンボボックスならドロップダウン
+                    {
+                        Control activeControl = this.ActiveControl;
+                        if (activeControl is System.Windows.Forms.ComboBox)
+                        {
+                            ComboBox activeComboBox = (ComboBox)activeControl;
+                            activeComboBox.DroppedDown = true;
+                        }
+                    }
+                    break;
+
                 case Keys.Return:
                     SelectNextControl(ActiveControl, true, true, true, true);
                     break;
