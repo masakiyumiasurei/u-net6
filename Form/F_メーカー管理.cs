@@ -71,8 +71,6 @@ namespace u_net
         private void Form_Load(object sender, EventArgs e)
         {
 
-            
-
             //実行中フォーム起動
             string LoginUserCode = "000";//テスト用 ログインユーザを実行中にどのように管理するか決まったら修正
             LocalSetting localSetting = new LocalSetting();

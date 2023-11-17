@@ -865,7 +865,7 @@ namespace u_net
             this.label17.Location = new System.Drawing.Point(20, 50);
             this.label17.Margin = new System.Windows.Forms.Padding(0);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(123, 17);
+            this.label17.Size = new System.Drawing.Size(132, 17);
             this.label17.TabIndex = 14;
             this.label17.Text = "単価(&P)";
             this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1020,7 +1020,6 @@ namespace u_net
             this.メーカーコード検索ボタン.TabStop = false;
             this.メーカーコード検索ボタン.Text = "▼";
             this.メーカーコード検索ボタン.UseVisualStyleBackColor = true;
-            this.メーカーコード検索ボタン.Click += new System.EventHandler(this.メーカーコード検索ボタン_Click);
             // 
             // MakerName
             // 
@@ -1044,7 +1043,6 @@ namespace u_net
             this.改版ボタン.TabStop = false;
             this.改版ボタン.Text = "改版(&V)";
             this.改版ボタン.UseVisualStyleBackColor = true;
-            this.改版ボタン.Click += new System.EventHandler(this.改版ボタン_Click);
             // 
             // 資料ボタン
             // 
@@ -1355,7 +1353,6 @@ namespace u_net
             // 
             this.分類コード.BackColor = System.Drawing.Color.White;
             this.分類コード.DisplayMember = "分類コード";
-            this.分類コード.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.分類コード.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.分類コード.FormattingEnabled = true;
             this.分類コード.ImeMode = System.Windows.Forms.ImeMode.Off;
@@ -1364,13 +1361,12 @@ namespace u_net
             this.分類コード.Size = new System.Drawing.Size(139, 21);
             this.分類コード.TabIndex = 27;
             this.分類コード.ValueMember = "分類コード";
-            this.分類コード.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.分類コード_DrawItem);
             this.分類コード.SelectedIndexChanged += new System.EventHandler(this.分類コード_SelectedIndexChanged);
-            this.分類コード.TextChanged += new System.EventHandler(this.分類コード_TextChanged);
             this.分類コード.Enter += new System.EventHandler(this.分類コード_Enter);
             this.分類コード.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.分類コード_KeyPress);
             this.分類コード.Leave += new System.EventHandler(this.分類コード_Leave);
             this.分類コード.Validating += new System.ComponentModel.CancelEventHandler(this.分類コード_Validating);
+            this.分類コード.Validated += new System.EventHandler(this.分類コード_Validated);
             // 
             // M部品分類bindingSource
             // 
@@ -2172,12 +2168,6 @@ namespace u_net
             this.受入検査ランク.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.受入検査ランク.FormattingEnabled = true;
             this.受入検査ランク.ImeMode = System.Windows.Forms.ImeMode.Off;
-            this.受入検査ランク.Items.AddRange(new object[] {
-            "A",
-            "B1",
-            "B2",
-            "C",
-            "D"});
             this.受入検査ランク.Location = new System.Drawing.Point(912, 262);
             this.受入検査ランク.Name = "受入検査ランク";
             this.受入検査ランク.Size = new System.Drawing.Size(139, 21);
@@ -2344,8 +2334,6 @@ namespace u_net
             this.Controls.Add(this.panel1);
             this.ImeMode = System.Windows.Forms.ImeMode.Off;
             this.KeyPreview = true;
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
             this.Name = "F_部品";
             this.Text = " ";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form_Unload);

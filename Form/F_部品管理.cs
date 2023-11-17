@@ -9,8 +9,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.Data.SqlClient;
+using Pao.Reports;
 using u_net.Public;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
+using System.Management;
 
 namespace u_net
 {
@@ -585,6 +587,139 @@ namespace u_net
 
         private void コマンド印刷プレビュー_Click(object sender, EventArgs e)
         {
+
+
+            IReport paoRep = ReportCreator.GetPreview();
+
+            paoRep.LoadDefFile("../../../Reports/部品管理.prepd");
+
+            //最大行数
+            int maxRow = 30;
+            //現在の行
+            int CurRow = 0;
+            //行数
+            int RowCount = maxRow;
+            if(dataGridView1.RowCount > 0)
+            {
+                RowCount = dataGridView1.RowCount;
+            }
+
+            int page = 1;
+            double maxPage = Math.Ceiling((double)RowCount / maxRow);
+
+            DateTime now = DateTime.Now;
+
+            int lenB;
+
+            //描画すべき行がある限りページを増やす
+            while (RowCount > 0)
+            {
+                RowCount -= maxRow;
+
+                paoRep.PageStart();
+
+                //フッダー
+                paoRep.Write("出力日時", now.ToString("yyyy/MM/dd HH:mm:ss"));
+                paoRep.Write("ページ数", (page + "/" + maxPage + " ページ").ToString());
+
+                //明細
+                for (var i = 0; i < maxRow; i++)
+                {
+                    if (CurRow >= dataGridView1.RowCount) break;
+
+                    DataGridViewRow targetRow = dataGridView1.Rows[CurRow];
+
+                    paoRep.Write("行", (CurRow + 1).ToString(), i + 1);
+                    paoRep.Write("部品コード", targetRow.Cells["部品コード"].Value.ToString() != "" ? targetRow.Cells["部品コード"].Value.ToString()  : " ", i + 1);
+                    paoRep.Write("分類", targetRow.Cells["分類記号"].Value.ToString() != "" ? targetRow.Cells["分類記号"].Value.ToString() : " ", i + 1);
+                    paoRep.Write("形状", targetRow.Cells["形状"].Value.ToString() != "" ? targetRow.Cells["形状"].Value.ToString() : " ", i + 1);
+                    paoRep.Write("品名", targetRow.Cells["品名"].Value.ToString() != "" ? targetRow.Cells["品名"].Value.ToString() : " ", i + 1);
+                    paoRep.Write("型番", targetRow.Cells["型番"].Value.ToString() != "" ? targetRow.Cells["型番"].Value.ToString() : " ", i + 1);
+                    paoRep.Write("メーカー名", targetRow.Cells["メーカー名"].Value.ToString() != "" ? targetRow.Cells["メーカー名"].Value.ToString() : " ", i + 1);
+                    paoRep.Write("仕入先名", targetRow.Cells["仕入先名"].Value.ToString() != "" ? targetRow.Cells["仕入先名"].Value.ToString() : " " , i + 1);
+                    paoRep.Write("単価", string.Format("{0:#,0.00}", targetRow.Cells["単価"].Value) != "" ? string.Format("{0:#,0.00}", targetRow.Cells["単価"].Value) : " ", i + 1);
+                    paoRep.Write("Ro", targetRow.Cells["RoHS"].Value.ToString() != "" ? targetRow.Cells["RoHS"].Value.ToString() : " ", i + 1);
+                    paoRep.Write("廃", targetRow.Cells["廃止"].Value.ToString() == "■" ? "■" : " ", i + 1);
+                    paoRep.Write("削", targetRow.Cells["削除"].Value.ToString() == "■" ? "■" : " ", i + 1);
+
+                    paoRep.z_Objects.SetObject("品名", i + 1);
+                    lenB = Encoding.Default.GetBytes(targetRow.Cells["品名"].Value.ToString()).Length;
+                    if (40 < lenB)
+                    {
+                        paoRep.z_Objects.z_Text.z_FontAttr.Size = 6;
+                    }
+                    else if (30 < lenB)
+                    {
+                        paoRep.z_Objects.z_Text.z_FontAttr.Size = 8;
+                    }
+                    else
+                    {
+                        paoRep.z_Objects.z_Text.z_FontAttr.Size = 10;
+                    }
+
+
+                    paoRep.z_Objects.SetObject("型番", i + 1);
+                    lenB = Encoding.Default.GetBytes(targetRow.Cells["型番"].Value.ToString()).Length;
+                    if (40 < lenB)
+                    {
+                        paoRep.z_Objects.z_Text.z_FontAttr.Size = 6;
+                    }
+                    else if (30 < lenB)
+                    {
+                        paoRep.z_Objects.z_Text.z_FontAttr.Size = 8;
+                    }
+                    else
+                    {
+                        paoRep.z_Objects.z_Text.z_FontAttr.Size = 10;
+                    }
+
+
+                    paoRep.z_Objects.SetObject("メーカー名", i + 1);
+                    lenB = Encoding.Default.GetBytes(targetRow.Cells["メーカー名"].Value.ToString()).Length;
+                    if(20 < lenB)
+                    {
+                        paoRep.z_Objects.z_Text.z_FontAttr.Size = 6;
+                    }
+                    else if(16 < lenB)
+                    {
+                        paoRep.z_Objects.z_Text.z_FontAttr.Size = 8;
+                    }
+                    else
+                    {
+                        paoRep.z_Objects.z_Text.z_FontAttr.Size = 10;
+                    }
+
+                    paoRep.z_Objects.SetObject("仕入先名", i + 1);
+                    lenB = Encoding.Default.GetBytes(targetRow.Cells["仕入先名"].Value.ToString()).Length;
+                    if (24 < lenB)
+                    {
+                        paoRep.z_Objects.z_Text.z_FontAttr.Size = 6;
+                    }
+                    else if (20 < lenB)
+                    {
+                        paoRep.z_Objects.z_Text.z_FontAttr.Size = 8;
+                    }
+                    else
+                    {
+                        paoRep.z_Objects.z_Text.z_FontAttr.Size = 10;
+                    }
+
+                    CurRow++;
+
+
+                }
+
+                page++;
+
+                paoRep.PageEnd();
+
+            }
+
+
+
+            paoRep.Output();
+
+
 
         }
 

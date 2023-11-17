@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<PrintDefine>
+<PrintSetting Name="レポート定義ファイル" Ver="9.2.0" >
+<PrintAttrs>
+<FontAttr AttrName="Font1" Name="ＭＳ ゴシック" Size="9" />
+<FontAttr AttrName="Font2" Name="ＭＳ Ｐゴシック" Size="14" />
+<FontAttr AttrName="Font3" Name="ＭＳ Ｐゴシック" Size="10" Color="White" />
+<FontAttr AttrName="Font4" Name="ＭＳ Ｐゴシック" Size="7" Color="White" />
+<FontAttr AttrName="Font5" Name="ＭＳ ゴシック" Size="10" Color="White" />
+<FontAttr AttrName="Font6" Name="ＭＳ ゴシック" Size="10" />
+<FontAttr AttrName="Font7" Name="ＭＳ ゴシック" Size="8" />
+<LineAttr AttrName="Line1" Width="0.3" />
+<LineAttr AttrName="Line2" Color="Transparent" Width="0" />
+<LineAttr AttrName="Line3" Color="White" Width="0.1" />
+<LineAttr AttrName="Line4" Color="White" Width="0.1" />
+<LineAttr AttrName="Line5" Color="White" Width="0.1" />
+<LineAttr AttrName="Line6" Color="White" Width="0.1" />
+<LineAttr AttrName="Line7" Color="White" Width="0.1" />
+<LineAttr AttrName="Line8" Color="White" Width="0.1" />
+<LineAttr AttrName="Line9" Color="White" Width="0.1" />
+<LineAttr AttrName="Line10" Color="White" Width="0.1" />
+<LineAttr AttrName="Line11" Color="White" Width="0.1" />
+<LineAttr AttrName="Line12" Color="White" Width="0.1" />
+<LineAttr AttrName="Line13" Color="White" Width="0.1" />
+<LineAttr AttrName="Line14" Color="White" Width="0.1" />
+<LineAttr AttrName="Line15" Color="White" Width="0.1" />
+<LineAttr AttrName="Line16" Width="0.1" />
+<LineAttr AttrName="Line17" Width="0.1" />
+<LineAttr AttrName="Line18" Width="0.1" />
+<LineAttr AttrName="Line19" Width="0.1" />
+<LineAttr AttrName="Line20" Width="0.1" />
+<LineAttr AttrName="Line21" Width="0.1" />
+<LineAttr AttrName="Line22" Width="0.1" />
+<LineAttr AttrName="Line23" Width="0.1" />
+<LineAttr AttrName="Line24" Width="0.1" />
+<LineAttr AttrName="Line25" Width="0.1" />
+<LineAttr AttrName="Line26" Width="0.1" />
+<LineAttr AttrName="Line27" Width="0.1" />
+<LineAttr AttrName="Line28" Color="Transparent" Width="0" />
+<LineAttr AttrName="Line29" Color="Transparent" Width="0" />
+<LineAttr AttrName="Line30" Color="Transparent" Width="0" />
+<LineAttr AttrName="Line31" Width="0.1" />
+</PrintAttrs>
+<Paper Size="A4" Direction="True" />
+<Design FontAttr="Font1" LineAttr="Line1" GridWidth="2" DesignScale="100" GridFit="True" ObjLock="False" X="0" Y="0" Width="297" Height="210" DisplayRepeatObject="False" RepeatObjectColor="Silver" ImageSizeType="Clip" />
+</PrintSetting>
+<PrintObjects>
+<Text Name="Text1" X="0" Y="0" Width="298" Height="10" Text="部品管理" Align="Center" VAlign="Middle" FontAttr="Font2" />
+<Text Name="Text2" X="8" Y="10" Width="10" Height="6" Text="No." BackColor="Black" Align="Center" VAlign="Middle" FontAttr="Font3" LineAttr="Line3" />
+<Text Name="Text3" X="18" Y="10" Width="20" Height="6" Text="部品コード" BackColor="Black" Align="Center" VAlign="Middle" FontAttr="Font3" LineAttr="Line4" />
+<Text Name="Text4" X="38" Y="10" Width="10" Height="6" Text="分類" BackColor="Black" Align="Center" VAlign="Middle" FontAttr="Font4" LineAttr="Line5" />
+<Text Name="Text5" X="48" Y="10" Width="10" Height="6" Text="形状" BackColor="Black" Align="Center" VAlign="Middle" FontAttr="Font4" LineAttr="Line6" />
+<Text Name="Text6" X="58" Y="10" Width="60" Height="6" Text="品名" BackColor="Black" Align="Center" VAlign="Middle" FontAttr="Font3" LineAttr="Line7" />
+<Text Name="Text7" X="118" Y="10" Width="60" Height="6" Text="型番" BackColor="Black" Align="Center" VAlign="Middle" FontAttr="Font3" LineAttr="Line8" />
+<Text Name="Text8" X="178" Y="10" Width="32" Height="6" Text="メーカー名" BackColor="Black" Align="Center" VAlign="Middle" FontAttr="Font3" LineAttr="Line9" />
+<Text Name="Text9" X="208" Y="10" Width="32" Height="6" Text="仕入先名" BackColor="Black" Align="Center" VAlign="Middle" FontAttr="Font3" LineAttr="Line10" />
+<Text Name="Text10" X="238" Y="10" Width="20" Height="6" Text="単価" BackColor="Black" Align="Center" VAlign="Middle" FontAttr="Font3" LineAttr="Line11" />
+<Text Name="Text11" X="258" Y="10" Width="10" Height="6" Text="Ro" BackColor="Black" Align="Center" VAlign="Middle" FontAttr="Font5" LineAttr="Line12" />
+<Text Name="Text13" X="268" Y="10" Width="10" Height="6" Text="廃" BackColor="Black" Align="Center" VAlign="Middle" FontAttr="Font5" LineAttr="Line14" />
+<Text Name="Text14" X="278" Y="10" Width="10" Height="6" Text="削" BackColor="Black" Align="Center" VAlign="Middle" FontAttr="Font5" LineAttr="Line15" />
+<Text Name="行" X="8" Y="16" Width="10" Height="6" Text="*行*" Align="Right" VAlign="Middle" FontAttr="Font6" LineAttr="Line16" IntervalY="6" Repeat="30" />
+<Text Name="部品コード" X="18" Y="16" Width="20" Height="6" Text="*部品コード*" Align="Left" VAlign="Middle" FontAttr="Font6" LineAttr="Line17" IntervalY="6" Repeat="30" />
+<Text Name="分類" X="38" Y="16" Width="10" Height="6" Text="*分類*" Align="Left" VAlign="Middle" FontAttr="Font6" LineAttr="Line18" IntervalY="6" Repeat="30" />
+<Text Name="形状" X="48" Y="16" Width="10" Height="6" Text="*形状*" Align="Left" VAlign="Middle" FontAttr="Font6" LineAttr="Line19" IntervalY="6" Repeat="30" />
+<Text Name="品名" X="58" Y="16" Width="60" Height="6" Text="*品名*" PdfCutTextByHeight="True" Align="Left" VAlign="Middle" FontAttr="Font6" LineAttr="Line20" IntervalY="6" Repeat="30" />
+<Text Name="型番" X="118" Y="16" Width="60" Height="6" Text="*型番*" PdfCutTextByHeight="True" Align="Left" VAlign="Middle" FontAttr="Font6" LineAttr="Line21" IntervalY="6" Repeat="30" />
+<Text Name="メーカー名" X="178" Y="16" Width="30" Height="6" Text="*メーカー名*" Align="Left" VAlign="Middle" FontAttr="Font6" LineAttr="Line22" IntervalY="6" Repeat="30" />
+<Text Name="仕入先名" X="208" Y="16" Width="30" Height="6" Text="*仕入先名*" Align="Left" VAlign="Middle" FontAttr="Font6" LineAttr="Line23" IntervalY="6" Repeat="30" />
+<Text Name="単価" X="238" Y="16" Width="20" Height="6" Text="*単価*" Align="Right" VAlign="Middle" FontAttr="Font6" LineAttr="Line24" IntervalY="6" Repeat="30" />
+<Text Name="Ro" X="258" Y="16" Width="10" Height="6" Text="*Ro*" Align="Left" VAlign="Middle" FontAttr="Font6" LineAttr="Line25" IntervalY="6" Repeat="30" />
+<Text Name="廃" X="268" Y="16" Width="10" Height="6" Text="*廃*" Align="Center" VAlign="Middle" FontAttr="Font6" LineAttr="Line26" IntervalY="6" Repeat="30" />
+<Text Name="削" X="278" Y="16" Width="10" Height="6" Text="*削*" Align="Center" VAlign="Middle" FontAttr="Font6" LineAttr="Line27" IntervalY="6" Repeat="30" />
+<Text Name="Text27" X="10" Y="200" Width="20" Height="6" Text="出力日時" Align="Left" VAlign="Middle" FontAttr="Font7" />
+<Text Name="出力日時" X="30" Y="200" Width="60" Height="6" Text="*出力日時*" Align="Left" VAlign="Middle" FontAttr="Font7" />
+<Text Name="ページ数" X="228" Y="200" Width="60" Height="6" Text="*ページ数*" Align="Right" VAlign="Middle" FontAttr="Font7" />
+</PrintObjects>
+</PrintDefine>

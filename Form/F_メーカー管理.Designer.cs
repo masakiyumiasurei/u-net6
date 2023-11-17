@@ -304,8 +304,6 @@
             this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
             this.Name = "F_メーカー管理";
             this.Text = "メーカー管理";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.F_メーカー管理_FormClosing);

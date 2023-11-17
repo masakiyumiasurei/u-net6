@@ -101,6 +101,7 @@ namespace u_net
             label11 = new Label();
             label4 = new Label();
             notifyIcon1 = new NotifyIcon(components);
+            button1 = new Button();
             label20 = new Label();
             補正値 = new TextBox();
             在庫補正数量 = new TextBox();
@@ -130,7 +131,6 @@ namespace u_net
             // 
             // コマンド登録
             // 
-            コマンド登録.Enabled = false;
             コマンド登録.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             コマンド登録.ImageAlign = ContentAlignment.BottomLeft;
             コマンド登録.Location = new Point(680, 6);
@@ -170,8 +170,12 @@ namespace u_net
             dataGridView1.RowTemplate.Height = 21;
             dataGridView1.Size = new Size(937, 325);
             dataGridView1.TabIndex = 109;
+            dataGridView1.CellClick += dataGridView1_CellClick;
             dataGridView1.CellDoubleClick += dataGridView1_CellDoubleClick;
-            dataGridView1.CellPainting += DataGridView1_CellPainting;
+            dataGridView1.CellEnter += dataGridView1_CellEnter;
+            dataGridView1.CellFormatting += dataGridView1_CellFormatting;
+            dataGridView1.CellValueChanged += dataGridView1_CellValueChanged;
+            dataGridView1.DefaultValuesNeeded += dataGridView1_DefaultValuesNeeded;
             // 
             // panel1
             // 
@@ -232,7 +236,6 @@ namespace u_net
             // 
             // コマンド商品参照
             // 
-            コマンド商品参照.Enabled = false;
             コマンド商品参照.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             コマンド商品参照.ForeColor = Color.Blue;
             コマンド商品参照.ImageAlign = ContentAlignment.BottomLeft;
@@ -275,7 +278,6 @@ namespace u_net
             // 
             // コマンド削除
             // 
-            コマンド削除.Enabled = false;
             コマンド削除.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             コマンド削除.ImageAlign = ContentAlignment.BottomLeft;
             コマンド削除.Location = new Point(199, 6);
@@ -289,7 +291,6 @@ namespace u_net
             // 
             // コマンド複写
             // 
-            コマンド複写.Enabled = false;
             コマンド複写.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             コマンド複写.ImageAlign = ContentAlignment.BottomLeft;
             コマンド複写.Location = new Point(134, 6);
@@ -303,7 +304,6 @@ namespace u_net
             // 
             // コマンド修正
             // 
-            コマンド修正.Enabled = false;
             コマンド修正.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             コマンド修正.ImageAlign = ContentAlignment.BottomLeft;
             コマンド修正.Location = new Point(68, 6);
@@ -317,7 +317,6 @@ namespace u_net
             // 
             // コマンド新規
             // 
-            コマンド新規.Enabled = false;
             コマンド新規.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             コマンド新規.ImageAlign = ContentAlignment.BottomLeft;
             コマンド新規.Location = new Point(3, 6);
@@ -462,22 +461,22 @@ namespace u_net
             // statusStrip1
             // 
             statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1, toolStripStatusLabel2 });
-            statusStrip1.Location = new Point(0, 612);
+            statusStrip1.Location = new Point(0, 615);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Padding = new Padding(1, 0, 19, 0);
-            statusStrip1.Size = new Size(939, 25);
+            statusStrip1.Size = new Size(939, 22);
             statusStrip1.TabIndex = 110;
             statusStrip1.Text = "statusStrip1";
             // 
             // toolStripStatusLabel1
             // 
             toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            toolStripStatusLabel1.Size = new Size(0, 20);
+            toolStripStatusLabel1.Size = new Size(0, 17);
             // 
             // toolStripStatusLabel2
             // 
             toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            toolStripStatusLabel2.Size = new Size(111, 20);
+            toolStripStatusLabel2.Size = new Size(89, 17);
             toolStripStatusLabel2.Text = "各種項目の説明";
             // 
             // label16
@@ -645,6 +644,7 @@ namespace u_net
             // 在庫下限数量
             // 
             在庫下限数量.BackColor = Color.White;
+            在庫下限数量.Enabled = false;
             在庫下限数量.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             在庫下限数量.ImeMode = ImeMode.Disable;
             在庫下限数量.Location = new Point(117, 115);
@@ -699,7 +699,6 @@ namespace u_net
             // 
             // シリーズ名
             // 
-            シリーズ名.ImeMode = ImeMode.Off;
             シリーズ名.Location = new Point(118, 83);
             シリーズ名.Name = "シリーズ名";
             シリーズ名.Size = new Size(357, 19);
@@ -732,7 +731,6 @@ namespace u_net
             在庫数量.MaxLength = 48;
             在庫数量.Multiline = true;
             在庫数量.Name = "在庫数量";
-            在庫数量.ReadOnly = true;
             在庫数量.Size = new Size(161, 20);
             在庫数量.TabIndex = 8;
             在庫数量.TabStop = false;
@@ -829,7 +827,6 @@ namespace u_net
             在庫補正数量.ReadOnly = true;
             在庫補正数量.Size = new Size(142, 23);
             在庫補正数量.TabIndex = 192;
-            在庫補正数量.Visible = false;
             // 
             // label1
             // 
@@ -857,7 +854,6 @@ namespace u_net
             補正値減少ボタン.TabIndex = 12;
             補正値減少ボタン.Text = "-";
             補正値減少ボタン.UseVisualStyleBackColor = true;
-            補正値減少ボタン.Click += 補正値減少ボタン_Click;
             // 
             // 補正値増加ボタン
             // 
@@ -870,15 +866,12 @@ namespace u_net
             補正値増加ボタン.TabIndex = 194;
             補正値増加ボタン.Text = "+";
             補正値増加ボタン.UseVisualStyleBackColor = true;
-            補正値増加ボタン.Click += 補正値増加ボタン_Click;
             // 
             // 表示件数
             // 
-            表示件数.Enabled = false;
             表示件数.Location = new Point(77, 591);
             表示件数.Margin = new Padding(3, 2, 3, 2);
             表示件数.Name = "表示件数";
-            表示件数.ReadOnly = true;
             表示件数.Size = new Size(88, 19);
             表示件数.TabIndex = 195;
             // 
@@ -1100,7 +1093,6 @@ namespace u_net
         private DataGridViewTextBoxColumn 構成番号;
         private TextBox 表示件数;
         protected ComboBox シリーズコード;
-        private TextBox test;
     }
 }
 

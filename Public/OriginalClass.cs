@@ -210,13 +210,13 @@ namespace u_net.Public
                     {
                         DataTable dataTable = new DataTable();
                         adapter.Fill(dataTable);
-                        
+                        comboBox.DataSource = dataTable;
                         comboBox.DisplayMember = "Display";
                         comboBox.ValueMember = "Value";
                         comboBox.DataSource = dataTable;
                     }
                 }
-                
+
             }
             catch (Exception ex)
             {
@@ -233,7 +233,7 @@ namespace u_net.Public
 
             e.DrawBackground();
 
-            int width = 0;
+           int width = 0;
 
             for (int i = 0; i < fieldName.Length; i++)
             {
@@ -251,22 +251,23 @@ namespace u_net.Public
         //数値かどうか判定する
         public static bool IsNumeric(object varValue)
         {
-            return double.TryParse(varValue.ToString(),out _);
+            return double.TryParse(varValue.ToString(), out _);
         }
 
         public static void ValidateCheck(object sender, PreviewKeyDownEventArgs e)
         {
             Control control = sender as Control;
 
-            
+
             if (e.KeyCode == Keys.Tab)
             {
                 // Tab キーが押されたときに Validating イベントを無効にする
                 control.CausesValidation = false;
 
-                
 
-            }else if (e.KeyCode == Keys.Return)
+
+            }
+            else if (e.KeyCode == Keys.Return)
             {
                 // Validating イベントを有効に戻す
                 control.CausesValidation = true;
@@ -274,7 +275,6 @@ namespace u_net.Public
             }
 
         }
-
 
 
 
