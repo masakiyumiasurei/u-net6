@@ -39,6 +39,7 @@
 <LineAttr AttrName="Line28" Color="Transparent" Width="0" />
 <LineAttr AttrName="Line29" Color="Transparent" Width="0" />
 <LineAttr AttrName="Line30" Color="Transparent" Width="0" />
+<LineAttr AttrName="Line31" Width="0.1" />
 </PrintAttrs>
 <Paper Size="A4" Direction="True" />
 <Design FontAttr="Font1" LineAttr="Line1" GridWidth="2" DesignScale="100" GridFit="True" ObjLock="False" X="0" Y="0" Width="297" Height="210" DisplayRepeatObject="False" RepeatObjectColor="Silver" ImageSizeType="Clip" />
