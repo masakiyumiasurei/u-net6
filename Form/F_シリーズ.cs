@@ -290,6 +290,9 @@ namespace u_net
                     GoModifyMode();
                     シリーズコード.SelectedValue = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString(); // 1列目のデータを取得
                     シリーズ名.Focus();
+                    //GoModifyModeで表示件数がクリアされるため
+                    int cnt = ((DataTable)dataGridView1.DataSource).Rows.Count;
+                    表示件数.Text = cnt.ToString();
                 }
                 catch (Exception ex)
                 {
@@ -325,43 +328,46 @@ namespace u_net
                 dataGridView.FirstDisplayedScrollingRowIndex = 0; // 先頭行を表示
             }
         }
-        private bool ErrCheck(Control argscontrol)
+        private bool ErrCheck(Control argscontrol, string? tname=null)
         {
             foreach (Control control in argscontrol.Controls)
                 //入力確認
-                switch (control.Name)
+                if (string.IsNullOrEmpty(tname) || tname == control.Name)
                 {
-                    case "シリーズ名":
-                        if (!FunctionClass.IsError(control)) return false;
-                        break;
-                    case "在庫下限数量":
-                        if (!FunctionClass.IsError(control)) return false;
-                        if (OriginalClass.IsNumeric(control))
-                        {
-                            MessageBox.Show("数字を入力してください。: ", "数値判定エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    switch (control.Name)
+                    {
+                        case "シリーズ名":
+                            if (!FunctionClass.IsError(control)) return false;
+                            break;
+                        case "在庫下限数量":
+                            if (!FunctionClass.IsError(control)) return false;
+                            if (OriginalClass.IsNumeric(control))
+                            {
+                                MessageBox.Show("数字を入力してください。: ", "数値判定エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-                            return false;
-                        }
-                        double result;
-                        double.TryParse(control.Text, out result);
-                        if (result < 0)
-                        {
-                            MessageBox.Show("0 以上の値を入力してください。", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            return false;
-                        }
-                        break;
-                    case "補正値":
-                        if (!FunctionClass.IsError(control))
-                        {
-                            MessageBox.Show("在庫数量を補正しないときは 0 を入力してください。", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            return false;
-                        }
-                        if (OriginalClass.IsNumeric(control))
-                        {
-                            MessageBox.Show("数字を入力してください。: ", "数値判定エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            return false;
-                        }
-                        break;
+                                return false;
+                            }
+                            double result;
+                            double.TryParse(control.Text, out result);
+                            if (result < 0)
+                            {
+                                MessageBox.Show("0 以上の値を入力してください。", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                return false;
+                            }
+                            break;
+                        case "補正値":
+                            if (!FunctionClass.IsError(control))
+                            {
+                                MessageBox.Show("在庫数量を補正しないときは 0 を入力してください。", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                return false;
+                            }
+                            if (OriginalClass.IsNumeric(control))
+                            {
+                                MessageBox.Show("数字を入力してください。: ", "数値判定エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                return false;
+                            }
+                            break;
+                    }
                 }
             return true;
         }
@@ -413,7 +419,7 @@ namespace u_net
             {
                 Connect();
                 varSaved7 = 在庫補正数量.Text;
-                在庫補正数量.Text = this.在庫補正数量.Text + Convert.ToInt64(補正値.Text);
+                在庫補正数量.Text = (Convert.ToInt64(this.在庫補正数量.Text) + Convert.ToInt64(補正値.Text)).ToString();
 
                 DateTime dtmNow = FunctionClass.GetServerDate(cn);
                 if (IsNewData)
@@ -470,6 +476,12 @@ namespace u_net
 
                 transaction.Commit();
 
+                //コンボボックスのソースを変更する必要がある
+                setCombo = true;
+                OriginalClass ofn = new OriginalClass();
+                ofn.SetComboBox(シリーズコード, "SELECT シリーズコード as Display,シリーズコード as Value FROM Mシリーズ ORDER BY シリーズコード DESC");
+                setCombo = false;
+            
                 MessageBox.Show("登録を完了しました");
 
                 シリーズコード.Enabled = true;
@@ -615,7 +627,7 @@ namespace u_net
                     {
                         this.Close();
                     }
-                    
+
                 }
 
                 //GoModifyModeで表示件数がクリアされるため
@@ -1059,6 +1071,7 @@ namespace u_net
                 コマンド削除.Enabled = true;
                 コマンド商品参照.Enabled = true;
                 cn.Close();
+
                 ChangedData(false);
 
             }
@@ -1135,23 +1148,11 @@ namespace u_net
         {
             if (!FunctionClass.LimitText((Control)sender, 20)) return;
             ChangedData(true);
-        }
-
-
-        private void Discontinued_Enter(object sender, EventArgs e)
-        {
-            //this.toolStripStatusLabel2.Text = "■この商品を出荷する際、顧客シリアルが必要な時に指定します。";
-        }
-
+        }               
         private void Discontinued_CheckedChanged(object sender, EventArgs e)
         {
             ChangedData(true);
-        }
-
-        private void IsUnit_CheckedChanged(object sender, EventArgs e)
-        {
-            ChangedData(true);
-        }
+        }               
 
         private void 補正値増加ボタン_Click(object sender, EventArgs e)
         {
@@ -1165,7 +1166,26 @@ namespace u_net
             補正値.Text = (long.Parse(this.補正値.Text) - 1).ToString();
         }
 
+        private void 在庫下限数量_TextChanged(object sender, EventArgs e)
+        {
+            if (!FunctionClass.LimitText((Control)sender, 10)) return;
+            ChangedData(true);
+        }
 
+        private void 補正値_Enter(object sender, EventArgs e)
+        {
+            this.toolStripStatusLabel2.Text = "■在庫数量を修正するための補正数量を入力します。マイナス値も入力できます。";
+        }
+
+        private void 補正値_Validating(object sender, CancelEventArgs e)
+        {
+            ErrCheck(this, "補正値");
+        }
+
+        private void 補正値_TextChanged(object sender, EventArgs e)
+        {
+            ChangedData(true);
+        }
     }
 }
 

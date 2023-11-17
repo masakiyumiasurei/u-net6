@@ -646,13 +646,15 @@ namespace u_net
             // 
             在庫下限数量.BackColor = Color.White;
             在庫下限数量.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            在庫下限数量.ImeMode = ImeMode.Disable;
             在庫下限数量.Location = new Point(117, 115);
             在庫下限数量.Margin = new Padding(3, 2, 3, 2);
             在庫下限数量.Multiline = true;
             在庫下限数量.Name = "在庫下限数量";
             在庫下限数量.Size = new Size(161, 20);
-            在庫下限数量.TabIndex = 171;
+            在庫下限数量.TabIndex = 6;
             在庫下限数量.TextAlign = HorizontalAlignment.Right;
+            在庫下限数量.TextChanged += 在庫下限数量_TextChanged;
             // 
             // label8
             // 
@@ -676,7 +678,7 @@ namespace u_net
             シリーズコード.Location = new Point(119, 51);
             シリーズコード.Name = "シリーズコード";
             シリーズコード.Size = new Size(121, 20);
-            シリーズコード.TabIndex = 189;
+            シリーズコード.TabIndex = 2;
             シリーズコード.SelectedIndexChanged += シリーズコード_SelectedIndexChanged;
             シリーズコード.KeyDown += シリーズコード_KeyDown;
             // 
@@ -701,7 +703,7 @@ namespace u_net
             シリーズ名.Location = new Point(118, 83);
             シリーズ名.Name = "シリーズ名";
             シリーズ名.Size = new Size(357, 19);
-            シリーズ名.TabIndex = 190;
+            シリーズ名.TabIndex = 4;
             シリーズ名.TextChanged += シリーズ名_TextChanged;
             // 
             // label5
@@ -733,6 +735,7 @@ namespace u_net
             在庫数量.ReadOnly = true;
             在庫数量.Size = new Size(161, 20);
             在庫数量.TabIndex = 8;
+            在庫数量.TabStop = false;
             在庫数量.TextAlign = HorizontalAlignment.Right;
             // 
             // Discontinued
@@ -744,10 +747,10 @@ namespace u_net
             Discontinued.Margin = new Padding(4, 3, 4, 3);
             Discontinued.Name = "Discontinued";
             Discontinued.Size = new Size(15, 14);
-            Discontinued.TabIndex = 24;
+            Discontinued.TabIndex = 12;
             Discontinued.UseVisualStyleBackColor = true;
             Discontinued.CheckedChanged += Discontinued_CheckedChanged;
-            Discontinued.Enter += Discontinued_Enter;
+           
             // 
             // label11
             // 
@@ -809,8 +812,11 @@ namespace u_net
             補正値.Multiline = true;
             補正値.Name = "補正値";
             補正値.Size = new Size(161, 20);
-            補正値.TabIndex = 191;
+            補正値.TabIndex = 11;
             補正値.TextAlign = HorizontalAlignment.Right;
+            補正値.TextChanged += 補正値_TextChanged;
+            補正値.Enter += 補正値_Enter;
+            補正値.Validating += 補正値_Validating;
             // 
             // 在庫補正数量
             // 
