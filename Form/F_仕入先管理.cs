@@ -33,7 +33,7 @@ namespace u_net
         //public int intComposedChipMount = 0;
         //public int intIsUnit = 0;
         //public int lngDiscontinued = 0;
-        
+
 
         int intWindowHeight = 0;
         int intWindowWidth = 0;
@@ -100,10 +100,10 @@ namespace u_net
             dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font("MS ゴシック", 9);
             dataGridView1.DefaultCellStyle.Font = new Font("MS ゴシック", 10);
             dataGridView1.DefaultCellStyle.ForeColor = Color.Black;
-            
+
             //dataGridView1.Columns[0].DefaultCellStyle.BackColor = Color.FromArgb(255, 255, 200); // 薄い黄色
             //dataGridView1.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-                      
+
 
             //0列目はaccessでは行ヘッダのため、ずらす
             //dataGridView1.Columns[0].Width = 500 / twipperdot;
@@ -198,7 +198,7 @@ namespace u_net
                 // 仕入先名指定
                 if (!string.IsNullOrEmpty(str仕入先名))
                 {
-                   filter += string.Format("仕入先名 LIKE '%{0}%' AND ", str仕入先名);                   
+                    filter += string.Format("仕入先名 LIKE '%{0}%' AND ", str仕入先名);
                 }
 
                 // 担当者名指定
@@ -210,8 +210,8 @@ namespace u_net
                 // 担当者メールアドレス指定
                 if (!string.IsNullOrEmpty(str仕入先名フリガナ))
                 {
-                    filter += string.Format("担当者メールアドレス LIKE '%{0}%' AND ", str仕入先名フリガナ);
-                }                
+                    filter += string.Format("仕入先名フリガナ LIKE '%{0}%' AND ", str仕入先名フリガナ);
+                }
 
 
                 // 削除
@@ -247,22 +247,22 @@ namespace u_net
 
                 //// DataGridViewの設定
                 dataGridView1.Columns[0].DefaultCellStyle.BackColor = Color.FromArgb(255, 255, 200); // 薄い黄色
-                // dataGridView1.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
 
-                // 列の幅を設定 もとは恐らくtwipのためピクセルに直す                           
-                
+                dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+                dataGridView1.ColumnHeadersHeight = 25;
+
                 //0列目はaccessでは行ヘッダのため、ずらす
-                
+
                 dataGridView1.Columns[0].Width = 1100 / twipperdot; //1150
-                dataGridView1.Columns[1].Width = 300 / twipperdot;
+                dataGridView1.Columns[1].Width = 310 / twipperdot;
                 dataGridView1.Columns[2].Width = 5000 / twipperdot;
-                dataGridView1.Columns[3].Width = 0 / twipperdot;
+                dataGridView1.Columns[3].Visible = false;
                 dataGridView1.Columns[4].Width = 2000 / twipperdot;
                 dataGridView1.Columns[5].Width = 1500 / twipperdot;
                 dataGridView1.Columns[6].Width = 1500 / twipperdot;
                 dataGridView1.Columns[7].Width = 2200 / twipperdot;//1300
                 dataGridView1.Columns[8].Width = 1500 / twipperdot;
-                dataGridView1.Columns[9].Width = 300 / twipperdot;
+                dataGridView1.Columns[9].Width = 310 / twipperdot;
 
                 return dataGridView1.RowCount;
             }
@@ -288,7 +288,7 @@ namespace u_net
                 indexRect.Inflate(-2, -2);
 
                 //行番号を描画する
-                TextRenderer.DrawText(e.Graphics,(e.RowIndex + 1).ToString(),e.CellStyle.Font,indexRect,
+                TextRenderer.DrawText(e.Graphics, (e.RowIndex + 1).ToString(), e.CellStyle.Font, indexRect,
                     e.CellStyle.ForeColor, TextFormatFlags.Right | TextFormatFlags.VerticalCenter);
 
                 //描画が完了したことを知らせる
@@ -367,7 +367,7 @@ namespace u_net
         {
             this.Close();
         }
-                
+
 
         private void コマンド印刷_Click(object sender, EventArgs e)
         {
@@ -379,8 +379,8 @@ namespace u_net
         private void コマンド抽出_Click(object sender, EventArgs e)
         {
             dataGridView1.Focus();
-           // F_仕入先管理_抽出 form = new F_仕入先管理_抽出();
-            //form.ShowDialog();
+            F_仕入先管理_抽出 form = new F_仕入先管理_抽出();
+            form.ShowDialog();
         }
 
         private void コマンド入出力_Click(object sender, EventArgs e)
@@ -414,8 +414,7 @@ namespace u_net
 
         private void コマンド検索_Click(object sender, EventArgs e)
         {
-            F_検索コード form = new F_検索コード(this, null);
-            form.ShowDialog();
+            MessageBox.Show("現在開発中です。\n コードで検索するときに使用します。", "検索コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void コマンド仕入先_Click(object sender, EventArgs e)
@@ -460,8 +459,8 @@ namespace u_net
                         if (this.コマンド仕入先.Enabled) コマンド仕入先_Click(null, null);
                         break;
                     case Keys.F6:
-                        //if (this.コマンドメール.Enabled) コマンドメール_Click(null, null);
-                        //break;
+                    //if (this.コマンドメール.Enabled) コマンドメール_Click(null, null);
+                    //break;
                     case Keys.F9:
                         if (this.コマンド印刷.Enabled) コマンド印刷_Click(null, null);
                         break;
@@ -469,8 +468,8 @@ namespace u_net
                         if (this.コマンド入出力.Enabled) コマンド入出力_Click(null, null);
                         break;
                     case Keys.F11:
-                        //if (this.コマンド入出力.Enabled) コマンド入出力_Click(null, null);
-                        //break;
+                    //if (this.コマンド入出力.Enabled) コマンド入出力_Click(null, null);
+                    //break;
                     case Keys.F12:
                         if (this.コマンド終了.Enabled) コマンド終了_Click(null, null);
                         break;
@@ -513,15 +512,15 @@ namespace u_net
         private bool ascending = true;
         private void dataGridView1_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            if (e.ColumnIndex == 1)
+            if (dataGridView1.Columns[e.ColumnIndex].Name == "仕入先名")
             {
                 if (ascending)
                 {
-                    dataGridView1.Sort(dataGridView1.Columns[2], System.ComponentModel.ListSortDirection.Ascending);
+                    dataGridView1.Sort(dataGridView1.Columns["仕入先名フリガナ"], System.ComponentModel.ListSortDirection.Ascending);
                 }
                 else
                 {
-                    dataGridView1.Sort(dataGridView1.Columns[2], System.ComponentModel.ListSortDirection.Descending);
+                    dataGridView1.Sort(dataGridView1.Columns["仕入先名フリガナ"], System.ComponentModel.ListSortDirection.Descending);
                 }
                 ascending = !ascending;
             }

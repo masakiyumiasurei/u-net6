@@ -115,7 +115,7 @@ namespace u_net
             toolStripStatusLabel2 = new ToolStripStatusLabel();
             tabControl1 = new TabControl();
             基本 = new TabPage();
-            仕入先コード_ = new ComboBox();
+            仕入先コード = new ComboBox();
             データ複写ボタン = new Button();
             label23 = new Label();
             評価ランク = new ComboBox();
@@ -182,7 +182,6 @@ namespace u_net
             label33 = new Label();
             label40 = new Label();
             振込手数料上限金額 = new TextBox();
-            仕入先コード = new ComboBox();
             panel1.SuspendLayout();
             groupBox1.SuspendLayout();
             statusStrip1.SuspendLayout();
@@ -1120,10 +1119,7 @@ namespace u_net
             代表者名.Name = "代表者名";
             代表者名.Size = new Size(139, 20);
             代表者名.TabIndex = 7;
-            代表者名.TextChanged += 仕入先省略名_TextChanged;
-            代表者名.Enter += 仕入先省略名_Enter;
-            代表者名.Leave += 仕入先省略名_Leave;
-            代表者名.Validated += 仕入先省略名_Validated;
+            
             // 
             // 郵便番号
             // 
@@ -1348,7 +1344,6 @@ namespace u_net
             // 
             基本.BackColor = SystemColors.Control;
             基本.Controls.Add(仕入先コード);
-            基本.Controls.Add(仕入先コード_);
             基本.Controls.Add(データ複写ボタン);
             基本.Controls.Add(label23);
             基本.Controls.Add(評価ランク);
@@ -1410,26 +1405,21 @@ namespace u_net
             基本.Size = new Size(858, 724);
             基本.TabIndex = 0;
             基本.Text = "基本";
-            基本.Click += 基本_Click;
             // 
-            // 仕入先コード_
+            // 仕入先コード
             // 
-            仕入先コード_.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            仕入先コード_.AutoCompleteSource = AutoCompleteSource.ListItems;
-            仕入先コード_.BackColor = Color.FromArgb(255, 255, 192);
-            仕入先コード_.DropDownStyle = ComboBoxStyle.DropDownList;
-            仕入先コード_.Font = new Font("BIZ UDPゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            仕入先コード_.FormattingEnabled = true;
-            仕入先コード_.ImeMode = ImeMode.NoControl;
-            仕入先コード_.Location = new Point(136, 10);
-            仕入先コード_.Margin = new Padding(4, 3, 4, 3);
-            仕入先コード_.Name = "仕入先コード_";
-            仕入先コード_.Size = new Size(151, 21);
-            仕入先コード_.TabIndex = 1;
-            仕入先コード_.TextChanged += 仕入先コード_TextChanged;
-            仕入先コード_.Enter += 仕入先コード_Enter;
-            仕入先コード_.Validating += 仕入先コード_Validating;
-            仕入先コード_.Validated += 仕入先コード_Validated;
+            仕入先コード.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            仕入先コード.AutoCompleteSource = AutoCompleteSource.ListItems;
+            仕入先コード.Font = new Font("BIZ UDPゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            仕入先コード.FormattingEnabled = true;
+            仕入先コード.ImeMode = ImeMode.NoControl;
+            仕入先コード.Location = new Point(138, 8);
+            仕入先コード.Margin = new Padding(4, 3, 4, 3);
+            仕入先コード.Name = "仕入先コード";
+            仕入先コード.Size = new Size(149, 21);
+            仕入先コード.TabIndex = 10008;
+            仕入先コード.SelectedIndexChanged += 仕入先コード_SelectedIndexChanged;
+            仕入先コード.KeyDown += 仕入先コード_KeyDown;
             // 
             // データ複写ボタン
             // 
@@ -1444,6 +1434,7 @@ namespace u_net
             データ複写ボタン.TabStop = false;
             データ複写ボタン.Text = "左記情報を窓口情報へ複写する(&T)";
             データ複写ボタン.UseVisualStyleBackColor = true;
+            データ複写ボタン.Click += データ複写ボタン_Click;
             // 
             // label23
             // 
@@ -2368,18 +2359,6 @@ namespace u_net
             振込手数料上限金額.TextChanged += 振込手数料上限金額_TextChanged;
             振込手数料上限金額.Enter += 振込手数料上限金額_Enter;
             // 
-            // 仕入先コード
-            // 
-            仕入先コード.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            仕入先コード.AutoCompleteSource = AutoCompleteSource.ListItems;
-            仕入先コード.FormattingEnabled = true;
-            仕入先コード.ImeMode = ImeMode.NoControl;
-            仕入先コード.Location = new Point(346, 272);
-            仕入先コード.Margin = new Padding(4, 3, 4, 3);
-            仕入先コード.Name = "仕入先コード";
-            仕入先コード.Size = new Size(160, 28);
-            仕入先コード.TabIndex = 10008;
-            // 
             // F_仕入先
             // 
             BackColor = SystemColors.Control;
@@ -2584,7 +2563,6 @@ namespace u_net
         private Label label33;
         private Label label40;
         private TextBox 振込手数料上限金額;
-        private ComboBox 仕入先コード_;
         private TextBox Contact3PhoneNumber;
         private TextBox Contact2PhoneNumber;
         private ComboBox 仕入先コード;
