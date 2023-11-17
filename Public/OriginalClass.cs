@@ -210,10 +210,10 @@ namespace u_net.Public
                     {
                         DataTable dataTable = new DataTable();
                         adapter.Fill(dataTable);
-
-                        comboBox.DataSource = dataTable;
+                        
                         comboBox.DisplayMember = "Display";
                         comboBox.ValueMember = "Value";
+                        comboBox.DataSource = dataTable;
                     }
                 }
                 
@@ -222,6 +222,57 @@ namespace u_net.Public
             {
                 MessageBox.Show("データの読み込み中にエラーが発生しました: " + ex.Message, "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        public static void SetComboBoxAppearance(ComboBox cb, DrawItemEventArgs e, int[] fieldWidth, String[] fieldName)
+        {
+            DataTable dt = (DataTable)cb.DataSource;
+
+            Pen p = new Pen(Color.Gray);
+            Brush b = new SolidBrush(e.ForeColor);
+
+            e.DrawBackground();
+
+            int width = 0;
+
+            for (int i = 0; i < fieldName.Length; i++)
+            {
+                e.Graphics.DrawString(Convert.ToString(dt.Rows[e.Index][fieldName[i]]), e.Font, b, width, e.Bounds.Y);
+
+                e.Graphics.DrawLine(p, width + fieldWidth[i], e.Bounds.Top, width + fieldWidth[i], e.Bounds.Bottom);
+
+                width = width + fieldWidth[i];
+            }
+
+            cb.DropDownWidth = width;
+
+            if (Convert.ToBoolean(e.State & DrawItemState.Selected)) ControlPaint.DrawFocusRectangle(e.Graphics, e.Bounds);
+        }
+        //数値かどうか判定する
+        public static bool IsNumeric(object varValue)
+        {
+            return double.TryParse(varValue.ToString(),out _);
+        }
+
+        public static void ValidateCheck(object sender, PreviewKeyDownEventArgs e)
+        {
+            Control control = sender as Control;
+
+            
+            if (e.KeyCode == Keys.Tab)
+            {
+                // Tab キーが押されたときに Validating イベントを無効にする
+                control.CausesValidation = false;
+
+                
+
+            }else if (e.KeyCode == Keys.Return)
+            {
+                // Validating イベントを有効に戻す
+                control.CausesValidation = true;
+
+            }
+
         }
 
 
