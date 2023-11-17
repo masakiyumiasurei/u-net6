@@ -28,6 +28,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="System.Management" Version="8.0.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -89,6 +90,16 @@
 
   <ItemGroup>
     <Using Include="Microsoft.Data.SqlClient" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Reports\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Pao.Reports">
+      <HintPath>lib\Pao.Reports.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>
