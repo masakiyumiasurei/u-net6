@@ -57,7 +57,7 @@ namespace u_net
         {
             get
             {
-                return string.IsNullOrEmpty(仕入先コード.Text) ? "" : 仕入先コード.Text;
+                return string.IsNullOrEmpty(仕入先コード_.Text) ? "" : 仕入先コード_.Text;
             }
         }
 
@@ -120,7 +120,7 @@ namespace u_net
 
             //コンボボックスの設定
             OriginalClass ofn = new OriginalClass();
-            ofn.SetComboBox(仕入先コード, "SELECT 仕入先コード as Value , 仕入先名 as Disply FROM M仕入先 ORDER BY 仕入先コード DESC");
+            ofn.SetComboBox(仕入先コード_, "SELECT 仕入先名 as Disply,仕入先コード as Value FROM M仕入先 ORDER BY 仕入先コード DESC");
             ofn.SetComboBox(Revision, "SELECT Revision as Disply , Revision as Value FROM M仕入先 ORDER BY Revision DESC");
 
             this.支払先専用.DataSource = new KeyValuePair<int, String>[] {
@@ -217,8 +217,9 @@ namespace u_net
                     }
                     if (!string.IsNullOrEmpty(args))
                     {
-                        this.仕入先コード.Text = args;
-                        UpdatedControl(this.仕入先コード);
+                        //this.仕入先コード.SelectedValue = args;
+                        this.仕入先コード_.Text = args;
+                        UpdatedControl(this.仕入先コード_);
                     }
                 }
                 //this.評価ランク.SelectedValue = "B1";
@@ -247,7 +248,7 @@ namespace u_net
                 CommonConnect();
 
                 string code = FunctionClass.GetNewCode(cn, CommonConstants.CH_SUPPLIER);
-                this.仕入先コード.Text = code.Substring(code.Length - 8);
+                this.仕入先コード_.Text = code.Substring(code.Length - 8);
                 // this.仕入先コード.Text = 採番(objConnection, CH_MAKER).Substring(採番(objConnection, CH_MAKER).Length - 8);
                 this.Revision.Text = "1";
                 this.支払先専用.Text = "0";
@@ -259,7 +260,7 @@ namespace u_net
                 // ヘッダ部動作制御
                 //FunctionClass.LockData(this, false);
                 this.仕入先名.Focus();
-                this.仕入先コード.Enabled = false;
+                this.仕入先コード_.Enabled = false;
                 this.コマンド新規.Enabled = false;
                 this.コマンド修正.Enabled = true;
                 this.コマンド複写.Enabled = false;
@@ -293,11 +294,11 @@ namespace u_net
 
                 // キー情報を表示するコントロールを制御
                 // コードにフォーカスがある状態でサブフォームから呼び出されたときの対処
-                if (this.ActiveControl == this.仕入先コード)
+                if (this.ActiveControl == this.仕入先コード_)
                 {
                     this.仕入先名.Focus();
                 }
-                this.仕入先コード.Enabled = !isChanged;
+                this.仕入先コード_.Enabled = !isChanged;
                 this.コマンド複写.Enabled = !isChanged;
                 this.コマンド削除.Enabled = !isChanged;
                 this.コマンドメール.Enabled = !isChanged;
@@ -322,8 +323,8 @@ namespace u_net
                 // 編集による変更がない状態へ遷移
                 //ChangedData(false);
 
-                this.仕入先コード.Enabled = true;
-                this.仕入先コード.Focus();
+                this.仕入先コード_.Enabled = true;
+                this.仕入先コード_.Focus();
                 // 仕入先コードコントロールが使用可能になってから LockData を呼び出す
                 //FunctionClass.LockData(this, true, "仕入先コード");
                 this.コマンド新規.Enabled = true;
@@ -414,47 +415,133 @@ namespace u_net
             }
         }
 
+        private void コマンド登録_Click(object sender, EventArgs e)
+        {
+
+            this.DoubleBuffered = true;
+
+            if (ActiveControl == コマンド登録)
+            {
+                GetNextControl(コマンド登録, false).Focus();
+            }
+
+            // 登録時におけるエラーチェック
+            if (!ErrCheck())
+            {
+                goto Bye_コマンド登録_Click;
+            }
+
+            FunctionClass fn = new FunctionClass();
+            fn.DoWait("登録しています...");
+
+            if (SaveData())
+            {
+                // 登録成功
+                ChangedData(false);
+
+                if (IsNewData)
+                {
+                    コマンド新規.Enabled = true;
+                    コマンド修正.Enabled = false;
+                    コマンド複写.Enabled = true;
+                    コマンド削除.Enabled = true;
+                    コマンド承認.Enabled = true;
+
+                }
+
+                fn.WaitForm.Close();
+                MessageBox.Show("登録を完了しました", "登録コマンド", MessageBoxButtons.OK);
+            }
+            else
+            {
+                fn.WaitForm.Close();
+                MessageBox.Show("登録できませんでした。", "登録コマンド", MessageBoxButtons.OK);
+            }
+
+        Bye_コマンド登録_Click:
+            return;
+        }
         private bool SaveData()
         {
-            Connect();
-            SqlTransaction transaction = cn.BeginTransaction();
+            object varSaved1 = null;
+            object varSaved2 = null;
+            object varSaved3 = null;
+            object varSaved4 = null;
+            object varSaved5 = null;
+            object varSaved6 = null;
+            object varSaved7 = null;
+            SqlTransaction transaction;
+
+            try
             {
-                try
+                Connect();
+                DateTime dtmNow = FunctionClass.GetServerDate(cn);
+
+                if (IsNewData)
                 {
-                    DateTime now = DateTime.Now;
-                    string strwhere = " 仕入先コード='" + this.仕入先コード.Text + "' and Revision=" + this.Revision.Text;
+                    varSaved1 = 作成日時.Text;
+                    varSaved2 = 作成者コード.Text;
+                    varSaved3 = 作成者名.Text;
+                    varSaved7 = ActiveDate.Text;
+                    作成日時.Text = dtmNow.ToString();
+                    作成者コード.Text = CommonConstants.LoginUserCode;
+                    作成者名.Text = CommonConstants.LoginUserFullName;
+                    ActiveDate.Text = dtmNow.ToString();
+                }
+                varSaved4 = 更新日時.Text;
+                varSaved5 = 更新者コード.Text;
+                varSaved6 = 更新者名.Text;
+                更新日時.Text = dtmNow.ToString();
+                更新者コード.Text = CommonConstants.LoginUserCode;
+                更新者名.Text = CommonConstants.LoginUserFullName;
 
-                    if (!DataUpdater.UpdateOrInsertDataFrom(this, cn, "M仕入先", strwhere, "仕入先コード", transaction))
-                    {
-                        //transaction.Rollback(); 関数内でロールバック入れた
-                        return false;
-                    }
+                string strwhere = " 仕入先コード='" + this.仕入先コード_.Text + "' and Revision=" + this.Revision.Text;
+                transaction = cn.BeginTransaction();
 
-                    // トランザクションをコミット
-                    transaction.Commit();
-
-                    //仕入先コード.Enabled = true;
-
-                    // 新規モードのときは修正モードへ移行する
+                if (!DataUpdater.UpdateOrInsertDataFrom(this, cn, "M仕入先", strwhere, "仕入先コード", transaction))
+                {
+                    //保存できなかった時の処理
                     if (IsNewData)
                     {
-                        コマンド新規.Enabled = true;
-                        コマンド修正.Enabled = false;
-                        コマンド複写.Enabled = true;
-                        コマンド削除.Enabled = true;
-                        コマンド承認.Enabled = false;
+                        作成日時.Text = varSaved1.ToString();
+                        作成者コード.Text = varSaved2.ToString();
+                        作成者名.Text = varSaved3.ToString();
+                        ActiveDate.Text = varSaved7.ToString();
                     }
-                    return true;
 
-                }
-                catch (Exception ex)
-                {                  
-                    コマンド登録.Enabled = true;
-                    // エラーメッセージを表示またはログに記録
-                    MessageBox.Show("データの保存中にエラーが発生しました: " + ex.Message, "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    更新日時.Text = varSaved4.ToString();
+                    更新者コード.Text = varSaved5.ToString();
+                    更新者名.Text = varSaved6.ToString();
+
+                    //transaction.Rollback(); 関数内でロールバック入れた
                     return false;
                 }
+
+                // トランザクションをコミット
+                transaction.Commit();
+
+                //仕入先コード.Enabled = true;
+
+                // 新規モードのときは修正モードへ移行する
+                if (IsNewData)
+                {
+                    コマンド新規.Enabled = true;
+                    コマンド修正.Enabled = false;
+                    コマンド複写.Enabled = true;
+                    コマンド削除.Enabled = true;
+                    コマンド承認.Enabled = false;
+                }
+                return true;
+
             }
+            catch (Exception ex)
+            {
+                コマンド登録.Enabled = true;
+                // エラーメッセージを表示またはログに記録
+                MessageBox.Show("データの保存中にエラーが発生しました: " + ex.Message, "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
         }
 
         private void コマンド新規_Click(object sender, EventArgs e)
@@ -590,7 +677,7 @@ namespace u_net
         private bool ErrCheck()
         {
             //入力確認    
-            if (振込手数料負担コード.SelectedValue != null && 振込手数料負担コード.SelectedValue.ToString() == "3" )
+            if (振込手数料負担コード.SelectedValue != null && 振込手数料負担コード.SelectedValue.ToString() == "3")
             {
                 if (!FunctionClass.IsError(this.振込手数料上限金額)) return false;
             }
@@ -631,7 +718,7 @@ namespace u_net
                 CommonConnect();
                 // 初期値設定
 
-                仕入先コード.Text = FunctionClass.GetNewCode(cn, CommonConstants.CH_SUPPLIER).Substring(8);
+                仕入先コード_.Text = FunctionClass.GetNewCode(cn, CommonConstants.CH_SUPPLIER).Substring(8);
                 Revision.Text = "1";
                 作成日時.Text = null;
                 作成者コード.Text = null;
@@ -641,7 +728,7 @@ namespace u_net
                 更新者名.Text = null;
 
                 // インターフェース更新
-                仕入先コード.Enabled = false;
+                仕入先コード_.Enabled = false;
                 コマンド新規.Enabled = false;
                 コマンド修正.Enabled = false;
                 //コマンド複写.Enabled = false;
@@ -660,7 +747,7 @@ namespace u_net
             try
             {
                 // キー情報を設定
-                仕入先コード.Text = codeString;
+                仕入先コード_.Text = codeString;
                 if (editionNumber != -1)
                 {
                     Revision.Text = editionNumber.ToString();
@@ -929,52 +1016,7 @@ namespace u_net
             MessageBox.Show("現在開発中です。", "確定コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        private void コマンド登録_Click(object sender, EventArgs e)
-        {
 
-            this.DoubleBuffered = true;
-
-            if (ActiveControl == コマンド登録)
-            {
-                GetNextControl(コマンド登録, false).Focus();
-            }
-
-            // 登録時におけるエラーチェック
-            if (!ErrCheck())
-            {
-                goto Bye_コマンド登録_Click;
-            }
-
-            FunctionClass fn = new FunctionClass();
-            fn.DoWait("登録しています...");
-
-            if (SaveData())
-            {
-                // 登録成功
-                ChangedData(false);
-
-                if (IsNewData)
-                {
-                    コマンド新規.Enabled = true;
-                    コマンド修正.Enabled = false;
-                    コマンド複写.Enabled = true;
-                    コマンド削除.Enabled = true;
-                    コマンド承認.Enabled = true;
-
-                }
-
-                fn.WaitForm.Close();
-                MessageBox.Show("登録を完了しました", "登録コマンド", MessageBoxButtons.OK);
-            }
-            else
-            {
-                fn.WaitForm.Close();
-                MessageBox.Show("登録できませんでした。", "登録コマンド", MessageBoxButtons.OK);
-            }
-
-        Bye_コマンド登録_Click:
-            return;
-        }
 
         private void コマンド終了_Click(object sender, EventArgs e)
         {
@@ -1055,7 +1097,7 @@ namespace u_net
                         fn.DoWait("読み込んでいます...");
 
                         //  LoadData(this.CurrentCode);
-                        LoadHeader(this, this.CurrentCode);
+                        LoadHeader(this, this.仕入先コード_.Text);
                         if (振込手数料負担コード.SelectedValue != null && 振込手数料負担コード.SelectedValue.ToString() == "3")
                         {
                             振込手数料上限金額.Enabled = true;
@@ -1182,13 +1224,13 @@ namespace u_net
             // 入力された値がエラー値の場合、textプロパティが設定できなくなるときの対処
             if (e.KeyCode == Keys.Return) // Enter キーが押されたとき
             {
-                string strCode = 仕入先コード.Text;
+                string strCode = 仕入先コード_.Text;
                 if (string.IsNullOrEmpty(strCode)) return;
 
                 strCode = strCode.PadLeft(8, '0'); // ゼロで桁を埋める例
-                if (strCode != 仕入先コード.Text)
+                if (strCode != 仕入先コード_.Text)
                 {
-                    仕入先コード.Text = strCode;
+                    仕入先コード_.Text = strCode;
                 }
             }
         }
@@ -1791,7 +1833,10 @@ namespace u_net
             ChangedData(true);
         }
 
+        private void 基本_Click(object sender, EventArgs e)
+        {
 
+        }
     }
 
 
