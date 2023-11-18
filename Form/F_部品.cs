@@ -579,6 +579,9 @@ namespace u_net
                 Rohs2ProvisionalRegisteredStatusCode.Checked = true;
                 廃止.Checked = false;
 
+
+                ChangedData(false);
+
                 InventoryAmount.Text = 0.ToString();
                 ShowRohsStatus();
                 品名.Focus();
@@ -596,7 +599,7 @@ namespace u_net
             }
             finally
             {
-                ChangedData(false);
+                
                 this.DoubleBuffered = false;
                 Cursor.Current = Cursors.Default;
             }
