@@ -18,6 +18,8 @@ namespace u_net
             InitializeComponent();
         }
 
+        
+
         private void Form_Load(object sender, EventArgs e)
         {
             try
