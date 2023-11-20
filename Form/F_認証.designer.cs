@@ -63,10 +63,9 @@ namespace u_net
             ユーザー名.Margin = new Padding(4, 3, 4, 3);
             ユーザー名.Name = "ユーザー名";
             ユーザー名.Size = new Size(185, 21);
-            ユーザー名.TabIndex = 1;
+            ユーザー名.TabIndex = 0;
             ユーザー名.SelectedIndexChanged += ユーザー名_SelectedIndexChanged;
             ユーザー名.Enter += ユーザー名_Enter;
-            ユーザー名.KeyDown += ユーザー名_KeyDown;
             ユーザー名.Leave += ユーザー名_Leave;
             ユーザー名.Validating += ユーザー名_Validating;
             // 
@@ -75,15 +74,15 @@ namespace u_net
             パスワード.BackColor = Color.White;
             パスワード.Font = new Font("BIZ UDゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             パスワード.ImeMode = ImeMode.Off;
-            パスワード.Location = new Point(140, 33);
+            パスワード.Location = new Point(140, 35);
             パスワード.Margin = new Padding(3, 2, 3, 2);
             パスワード.Multiline = true;
             パスワード.Name = "パスワード";
             パスワード.PasswordChar = '*';
             パスワード.Size = new Size(185, 20);
-            パスワード.TabIndex = 2;
-            パスワード.Enter += パスワード_Enter;
+            パスワード.TabIndex = 1;
             パスワード.TextChanged += パスワード_TextChanged;
+            パスワード.Enter += パスワード_Enter;
             パスワード.Leave += パスワード_Leave;
             // 
             // パスワードラベル
@@ -92,7 +91,7 @@ namespace u_net
             パスワードラベル.Font = new Font("BIZ UDゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             パスワードラベル.ForeColor = SystemColors.ActiveCaptionText;
             パスワードラベル.ImageAlign = ContentAlignment.MiddleLeft;
-            パスワードラベル.Location = new Point(10, 35);
+            パスワードラベル.Location = new Point(10, 37);
             パスワードラベル.Margin = new Padding(0);
             パスワードラベル.Name = "パスワードラベル";
             パスワードラベル.Size = new Size(100, 17);
@@ -124,9 +123,9 @@ namespace u_net
             画面項目パネル.Controls.Add(ユーザー名ラベル);
             画面項目パネル.Controls.Add(パスワード);
             画面項目パネル.Controls.Add(パスワードラベル);
-            画面項目パネル.Location = new Point(40, 10);
+            画面項目パネル.Location = new Point(30, 10);
             画面項目パネル.Name = "画面項目パネル";
-            画面項目パネル.Size = new Size(400, 170);
+            画面項目パネル.Size = new Size(417, 189);
             画面項目パネル.TabIndex = 0;
             // 
             // パスワード強制変更ボタン
@@ -134,12 +133,11 @@ namespace u_net
             パスワード強制変更ボタン.BackColor = SystemColors.ButtonFace;
             パスワード強制変更ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             パスワード強制変更ボタン.Image = (Image)resources.GetObject("パスワード強制変更ボタン.Image");
-            パスワード強制変更ボタン.Location = new Point(330, 33);
+            パスワード強制変更ボタン.Location = new Point(330, 35);
             パスワード強制変更ボタン.Margin = new Padding(3, 2, 3, 2);
             パスワード強制変更ボタン.Name = "パスワード強制変更ボタン";
             パスワード強制変更ボタン.Size = new Size(20, 20);
-            パスワード強制変更ボタン.TabIndex = 8;
-            パスワード強制変更ボタン.TabStop = false;
+            パスワード強制変更ボタン.TabIndex = 7;
             パスワード強制変更ボタン.UseVisualStyleBackColor = false;
             パスワード強制変更ボタン.Click += パスワード強制変更ボタン_Click;
             // 
@@ -151,10 +149,10 @@ namespace u_net
             パスワード変更フレーム.Controls.Add(新パスワード);
             パスワード変更フレーム.Controls.Add(パスワード変更コメントラベル);
             パスワード変更フレーム.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            パスワード変更フレーム.Location = new Point(10, 60);
+            パスワード変更フレーム.Location = new Point(10, 73);
             パスワード変更フレーム.Name = "パスワード変更フレーム";
             パスワード変更フレーム.Size = new Size(370, 100);
-            パスワード変更フレーム.TabIndex = 3;
+            パスワード変更フレーム.TabIndex = 6;
             パスワード変更フレーム.TabStop = false;
             パスワード変更フレーム.Text = "パスワードの変更(&A)";
             // 
@@ -169,9 +167,9 @@ namespace u_net
             確認入力.Name = "確認入力";
             確認入力.PasswordChar = '*';
             確認入力.Size = new Size(185, 20);
-            確認入力.TabIndex = 5;
-            確認入力.Enter += 確認入力_Enter;
+            確認入力.TabIndex = 3;
             確認入力.TextChanged += 確認入力_TextChanged;
+            確認入力.Enter += 確認入力_Enter;
             確認入力.Leave += 確認入力_Leave;
             // 
             // 確認入力ラベル
@@ -213,9 +211,9 @@ namespace u_net
             新パスワード.Name = "新パスワード";
             新パスワード.PasswordChar = '*';
             新パスワード.Size = new Size(185, 20);
-            新パスワード.TabIndex = 4;
-            新パスワード.Enter += 新パスワード_Enter;
+            新パスワード.TabIndex = 2;
             新パスワード.TextChanged += 新パスワード_TextChanged;
+            新パスワード.Enter += 新パスワード_Enter;
             新パスワード.Leave += 新パスワード_Leave;
             新パスワード.Validating += 新パスワード_Validating;
             // 
@@ -237,7 +235,7 @@ namespace u_net
             // 
             statusStrip1.BackColor = SystemColors.ButtonFace;
             statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1, toolStripStatusLabel2 });
-            statusStrip1.Location = new Point(0, 209);
+            statusStrip1.Location = new Point(0, 237);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Padding = new Padding(1, 0, 19, 0);
             statusStrip1.Size = new Size(484, 22);
@@ -261,11 +259,11 @@ namespace u_net
             // 
             OKボタン.BackColor = SystemColors.ButtonFace;
             OKボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            OKボタン.Location = new Point(250, 190);
+            OKボタン.Location = new Point(293, 214);
             OKボタン.Margin = new Padding(3, 2, 3, 2);
             OKボタン.Name = "OKボタン";
             OKボタン.Size = new Size(70, 20);
-            OKボタン.TabIndex = 6;
+            OKボタン.TabIndex = 4;
             OKボタン.Text = "OK";
             OKボタン.UseVisualStyleBackColor = false;
             OKボタン.Click += OKボタン_Click;
@@ -274,11 +272,11 @@ namespace u_net
             // 
             キャンセルボタン.BackColor = SystemColors.ButtonFace;
             キャンセルボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            キャンセルボタン.Location = new Point(350, 190);
+            キャンセルボタン.Location = new Point(374, 214);
             キャンセルボタン.Margin = new Padding(3, 2, 3, 2);
             キャンセルボタン.Name = "キャンセルボタン";
             キャンセルボタン.Size = new Size(70, 20);
-            キャンセルボタン.TabIndex = 7;
+            キャンセルボタン.TabIndex = 5;
             キャンセルボタン.Text = "キャンセル";
             キャンセルボタン.UseVisualStyleBackColor = false;
             キャンセルボタン.Click += キャンセルボタン_Click;
@@ -288,7 +286,7 @@ namespace u_net
             AutoScaleDimensions = new SizeF(8F, 12F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
-            ClientSize = new Size(484, 231);
+            ClientSize = new Size(484, 259);
             Controls.Add(キャンセルボタン);
             Controls.Add(OKボタン);
             Controls.Add(statusStrip1);
@@ -302,6 +300,7 @@ namespace u_net
             Text = "認証";
             FormClosing += Form_FormClosing;
             Load += Form_Load;
+            KeyDown += Form_KeyDown;
             画面項目パネル.ResumeLayout(false);
             画面項目パネル.PerformLayout();
             パスワード変更フレーム.ResumeLayout(false);

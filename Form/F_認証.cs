@@ -33,6 +33,7 @@ namespace u_net
         public string MyUserName = string.Empty;
 
         private string strEmployeeCode = string.Empty;  // 認証結果（社員コード）
+        private string strEmployeeName = string.Empty;  // 認証結果（社員名）
         private int intDeny = 0;                        // 認証失敗回数
 
         public F_認証()
@@ -61,9 +62,13 @@ namespace u_net
 
         private void Form_Load(object sender, EventArgs e)
         {
+            foreach (Control control in Controls)
+            {
+                control.PreviewKeyDown += OriginalClass.ValidateCheck;
+            }
 
-            CommonConstants.strCertificateCode = string.Empty;
-            strEmployeeCode = string.Empty;
+            CommonConstants.LoginUserCode = string.Empty;
+            CommonConstants.LoginUserFullName = string.Empty;
             intDeny = 0;
             MyComputerName = Environment.MachineName;
             MyUserName = Environment.UserName;
@@ -109,7 +114,29 @@ namespace u_net
         {
             if (!string.IsNullOrEmpty(strEmployeeCode))
             {
-                CommonConstants.strCertificateCode = strEmployeeCode;
+                CommonConstants.LoginUserCode = strEmployeeCode;
+                CommonConstants.LoginUserFullName = strEmployeeName;
+            }
+        }
+
+        private void Form_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Space: //コンボボックスならドロップダウン
+                    {
+                        Control activeControl = this.ActiveControl;
+                        if (activeControl is System.Windows.Forms.ComboBox)
+                        {
+                            ComboBox activeComboBox = (ComboBox)activeControl;
+                            activeComboBox.DroppedDown = true;
+                        }
+                    }
+                    break;
+
+                case Keys.Return:
+                    SelectNextControl(ActiveControl, true, true, true, true);
+                    break;
             }
         }
 
@@ -128,6 +155,8 @@ namespace u_net
 
                 //社員コードを取得
                 string EmployeeCode = ユーザー名.SelectedValue.ToString();
+                //社員名を取得
+                string EmployeeName = ユーザー名.Text;
 
                 //パスワード入力チェック
                 if (string.IsNullOrEmpty(パスワード.Text))
@@ -159,11 +188,12 @@ namespace u_net
 
                 //認証OK
                 strEmployeeCode = EmployeeCode;
+                strEmployeeName = EmployeeName;
 
                 //パスワード変更処理
                 if (!string.IsNullOrEmpty(新パスワード.Text))
                 {
-                    if (ChangePassword(cn, EmployeeCode, 新パスワード.Text, DateTime.Now, CommonConstants.LoginUserCode))
+                    if (ChangePassword(cn, strEmployeeCode, 新パスワード.Text))
                     {
                         MessageBox.Show("新パスワードに変更されました。\n次回から新しいパスワードで認証されます。", "パスワードの変更処理", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
@@ -228,18 +258,6 @@ namespace u_net
         private void ユーザー名_Leave(object sender, EventArgs e)
         {
             toolStripStatusLabel2.Text = "各種項目の説明";
-        }
-
-        private void ユーザー名_KeyDown(object sender, KeyEventArgs e)
-        {
-            switch (e.KeyCode)
-            {
-                case Keys.Space:
-                    {
-                        ユーザー名.DroppedDown = true;
-                    }
-                    break;
-            }
         }
 
         private void ユーザー名_Validating(object sender, CancelEventArgs e)
@@ -357,7 +375,7 @@ namespace u_net
             return bolreturn;
         }
 
-        private bool ChangePassword(SqlConnection cn, string employeeCode, string newPassword, DateTime updateTime, string updateUser)
+        private bool ChangePassword(SqlConnection cn, string employeeCode, string newPassword)
         {
             bool bolreturn = false;
 
@@ -376,11 +394,9 @@ namespace u_net
 
                     cmd.Parameters.AddWithValue("@EmployeeCode", employeeCode);
                     cmd.Parameters.AddWithValue("@Password", newPassword);
-                    cmd.Parameters.AddWithValue("@UpdateTime", updateTime);
-                    cmd.Parameters.AddWithValue("@UpdateUser", updateUser);
 
                     string sql = "UPDATE M社員 SET " + strUpdate +
-                                 ",更新日時 = @UpdateTime ,更新者コード = @UpdateUser WHERE " + strKey;
+                                 " WHERE " + strKey;
 
                     cmd.CommandText = sql;
                     cmd.ExecuteNonQuery();
@@ -441,6 +457,7 @@ namespace u_net
 
             return EmployeePassword;
         }
+
     }
 }
 
