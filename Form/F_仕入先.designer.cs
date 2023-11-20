@@ -58,6 +58,7 @@ namespace u_net
             ウェブアドレス_ラベル = new Label();
             メールアドレス_ラベル = new Label();
             groupBox1 = new GroupBox();
+            窓口郵便番号 = new MaskedTextBox();
             label29 = new Label();
             Contact3MailAddress = new TextBox();
             Contact1PhoneNumber3 = new TextBox();
@@ -90,7 +91,6 @@ namespace u_net
             label15 = new Label();
             label16 = new Label();
             窓口住所1 = new TextBox();
-            窓口郵便番号 = new TextBox();
             窓口住所2 = new TextBox();
             備考_ラベル = new Label();
             仕入先名フリガナ = new TextBox();
@@ -587,6 +587,7 @@ namespace u_net
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(窓口郵便番号);
             groupBox1.Controls.Add(label29);
             groupBox1.Controls.Add(Contact3MailAddress);
             groupBox1.Controls.Add(Contact1PhoneNumber3);
@@ -619,7 +620,6 @@ namespace u_net
             groupBox1.Controls.Add(label15);
             groupBox1.Controls.Add(label16);
             groupBox1.Controls.Add(窓口住所1);
-            groupBox1.Controls.Add(窓口郵便番号);
             groupBox1.Controls.Add(窓口住所2);
             groupBox1.Location = new Point(24, 378);
             groupBox1.Name = "groupBox1";
@@ -627,6 +627,18 @@ namespace u_net
             groupBox1.TabIndex = 28;
             groupBox1.TabStop = false;
             groupBox1.Text = "窓口";
+            // 
+            // 窓口郵便番号
+            // 
+            窓口郵便番号.Font = new Font("BIZ UDPゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            窓口郵便番号.Location = new Point(132, 25);
+            窓口郵便番号.Mask = "000-0000";
+            窓口郵便番号.Name = "窓口郵便番号";
+            窓口郵便番号.Size = new Size(100, 20);
+            窓口郵便番号.TabIndex = 38;
+            窓口郵便番号.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
+            窓口郵便番号.TextChanged += 窓口郵便番号_TextChanged;
+            窓口郵便番号.Validated += 窓口郵便番号_Validated;
             // 
             // label29
             // 
@@ -1053,19 +1065,6 @@ namespace u_net
             窓口住所1.TabIndex = 40;
             窓口住所1.TextChanged += 窓口住所1_TextChanged;
             窓口住所1.Enter += 窓口住所1_Enter;
-            // 
-            // 窓口郵便番号
-            // 
-            窓口郵便番号.BackColor = Color.White;
-            窓口郵便番号.Font = new Font("BIZ UDPゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            窓口郵便番号.ImeMode = ImeMode.Disable;
-            窓口郵便番号.Location = new Point(133, 26);
-            窓口郵便番号.Margin = new Padding(3, 2, 3, 2);
-            窓口郵便番号.Name = "窓口郵便番号";
-            窓口郵便番号.Size = new Size(201, 20);
-            窓口郵便番号.TabIndex = 38;
-            窓口郵便番号.TextChanged += 窓口郵便番号_TextChanged;
-            窓口郵便番号.Validated += 窓口郵便番号_Validated;
             // 
             // 窓口住所2
             // 
@@ -2499,7 +2498,6 @@ namespace u_net
         private Label label15;
         private Label label16;
         private TextBox 窓口住所1;
-        private TextBox 窓口郵便番号;
         private TextBox 窓口住所2;
         private Label label23;
         private TextBox 窓口メールアドレス;
@@ -2567,6 +2565,7 @@ namespace u_net
         private ComboBox 仕入先コード;
 
         private MaskedTextBox 郵便番号;
+        private MaskedTextBox 窓口郵便番号;
     }
 }
 

@@ -19,6 +19,7 @@ using System.Drawing.Printing;
 using static System.ComponentModel.Design.ObjectSelectorEditor;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
+using System.Transactions;
 
 namespace u_net
 {
@@ -259,8 +260,8 @@ namespace u_net
                 this.仕入先コード.Text = code.Substring(code.Length - 8);
                 // this.仕入先コード.Text = 採番(objConnection, CH_MAKER).Substring(採番(objConnection, CH_MAKER).Length - 8);
                 this.Revision.Text = "1";
-                this.支払先専用.Text = "0";
-                this.CloseDay.Text = "20";
+                this.支払先専用.SelectedValue = 0;
+                this.CloseDay.SelectedValue = 20;
 
                 // 編集による変更がない状態へ遷移する
                 ChangedData(false);
@@ -355,73 +356,7 @@ namespace u_net
             }
         }
 
-        private void Form_Unload(object sender, FormClosingEventArgs e)
-        {
-            //string LoginUserCode = "000";//テスト用 ログインユーザを実行中にどのように管理するか決まったら修正
-            LocalSetting test = new LocalSetting();
-            test.SavePlace(CommonConstants.LoginUserCode, this);
-
-            try
-            {
-                // 変更された場合
-                if (IsChanged)
-                {
-                    var intRes = MessageBox.Show("変更内容を登録しますか？", BASE_CAPTION, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
-                    switch (intRes)
-                    {
-                        case DialogResult.Yes:
-                            if (SaveData())
-                            {
-                                // 保存に成功した場合
-                                return;
-                            }
-                            else
-                            {
-                                if (MessageBox.Show("登録できませんでした。" + Environment.NewLine +
-                                    "強制終了しますか？" + Environment.NewLine +
-                                    "[はい]を選択した場合、仕入先コードは破棄されます。" + Environment.NewLine +
-                                    "[いいえ]を選択した場合、終了しません。", BASE_CAPTION, MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes)
-                                {
-                                    e.Cancel = false;
-                                }
-                                else
-                                {
-                                    e.Cancel = true;
-                                }
-                                return;
-                            }
-                        case DialogResult.No:
-                            // 新規モードのときはコードを戻す
-                            break;
-                        case DialogResult.Cancel:
-                            e.Cancel = true;
-                            return;
-                    }
-                }
-
-                // 新規モードのときに登録しない場合は内部の更新データを元に戻す
-                if (IsNewData)
-                {
-                    if (!string.IsNullOrEmpty(CurrentCode) && CurrentRevision == 1)
-                    {
-
-                        CommonConnect();
-
-                        // 初版データのときのみ採番された番号を戻す
-                        if (!FunctionClass.ReturnNewCode(cn, CommonConstants.CH_MAKER, CurrentCode))
-                        {
-                            MessageBox.Show("エラーのためコードは破棄されました。" + Environment.NewLine +
-                                "仕入先コード　：　" + CurrentCode, BASE_CAPTION, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Debug.Print(this.Name + "_FormClosing - " + ex.Message);
-                MessageBox.Show(ex.Message, "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
+       
 
 
         private void コマンド登録_Click(object sender, EventArgs e)
@@ -480,79 +415,79 @@ namespace u_net
             object varSaved5 = null;
             object varSaved6 = null;
             object varSaved7 = null;
-            SqlTransaction transaction;
 
-            try
+            Connect();
+            DateTime dtmNow = FunctionClass.GetServerDate(cn);
+
+            if (IsNewData)
             {
-                Connect();
-                DateTime dtmNow = FunctionClass.GetServerDate(cn);
+                varSaved1 = 作成日時.Text;
+                varSaved2 = 作成者コード.Text;
+                varSaved3 = 作成者名.Text;
+                varSaved7 = ActiveDate.Text;
+                作成日時.Text = dtmNow.ToString();
+                作成者コード.Text = CommonConstants.LoginUserCode;
+                作成者名.Text = CommonConstants.LoginUserFullName;
+                ActiveDate.Text = dtmNow.ToString();
+            }
+            varSaved4 = 更新日時.Text;
+            varSaved5 = 更新者コード.Text;
+            varSaved6 = 更新者名.Text;
+            更新日時.Text = dtmNow.ToString();
+            更新者コード.Text = CommonConstants.LoginUserCode;
+            更新者名.Text = CommonConstants.LoginUserFullName;
 
-                if (IsNewData)
+            
+            using (SqlTransaction transaction = cn.BeginTransaction())
+            {
+                try
                 {
-                    varSaved1 = 作成日時.Text;
-                    varSaved2 = 作成者コード.Text;
-                    varSaved3 = 作成者名.Text;
-                    varSaved7 = ActiveDate.Text;
-                    作成日時.Text = dtmNow.ToString();
-                    作成者コード.Text = CommonConstants.LoginUserCode;
-                    作成者名.Text = CommonConstants.LoginUserFullName;
-                    ActiveDate.Text = dtmNow.ToString();
-                }
-                varSaved4 = 更新日時.Text;
-                varSaved5 = 更新者コード.Text;
-                varSaved6 = 更新者名.Text;
-                更新日時.Text = dtmNow.ToString();
-                更新者コード.Text = CommonConstants.LoginUserCode;
-                更新者名.Text = CommonConstants.LoginUserFullName;
+                    string strwhere = " 仕入先コード='" + this.仕入先コード.Text + "' and Revision=" + this.Revision.Text;
 
-                string strwhere = " 仕入先コード='" + this.仕入先コード.Text + "' and Revision=" + this.Revision.Text;
-                transaction = cn.BeginTransaction();
-
-                if (!DataUpdater.UpdateOrInsertDataFrom(this, cn, "M仕入先", strwhere, "仕入先コード", transaction))
-                {
-                    //保存できなかった時の処理
-                    if (IsNewData)
+                    if (!DataUpdater.UpdateOrInsertDataFrom(this, cn, "M仕入先", strwhere, "仕入先コード", transaction))
                     {
-                        作成日時.Text = varSaved1.ToString();
-                        作成者コード.Text = varSaved2.ToString();
-                        作成者名.Text = varSaved3.ToString();
-                        ActiveDate.Text = varSaved7.ToString();
+                        //保存できなかった時の処理
+                        if (IsNewData)
+                        {
+                            作成日時.Text = varSaved1.ToString();
+                            作成者コード.Text = varSaved2.ToString();
+                            作成者名.Text = varSaved3.ToString();
+                            ActiveDate.Text = varSaved7.ToString();
+                            transaction.Rollback();
+                        }
+
+                        更新日時.Text = varSaved4.ToString();
+                        更新者コード.Text = varSaved5.ToString();
+                        更新者名.Text = varSaved6.ToString();
+                        return false;
                     }
 
-                    更新日時.Text = varSaved4.ToString();
-                    更新者コード.Text = varSaved5.ToString();
-                    更新者名.Text = varSaved6.ToString();
+                    // トランザクションをコミット
+                    transaction.Commit();
 
-                    //transaction.Rollback(); 関数内でロールバック入れた
+                    //仕入先コード.Enabled = true;
+
+                    // 新規モードのときは修正モードへ移行する
+                    if (IsNewData)
+                    {
+                        コマンド新規.Enabled = true;
+                        コマンド修正.Enabled = false;
+                        コマンド複写.Enabled = true;
+                        コマンド削除.Enabled = true;
+                        コマンド承認.Enabled = false;
+                    }
+                    return true;
+
                 }
-
-                // トランザクションをコミット
-                transaction.Commit();
-
-                //仕入先コード.Enabled = true;
-
-                // 新規モードのときは修正モードへ移行する
-                if (IsNewData)
+                catch (Exception ex)
                 {
-                    コマンド新規.Enabled = true;
-                    コマンド修正.Enabled = false;
-                    コマンド複写.Enabled = true;
-                    コマンド削除.Enabled = true;
-                    コマンド承認.Enabled = false;
+                    transaction.Rollback();
+                    コマンド登録.Enabled = true;
+                    MessageBox.Show("データの保存中にエラーが発生しました: " + ex.Message, "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    return false;
                 }
-                return true;
-
             }
-            catch (Exception ex)
-            {
-
-                コマンド登録.Enabled = true;
-                // エラーメッセージを表示またはログに記録
-                MessageBox.Show("データの保存中にエラーが発生しました: " + ex.Message, "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                return false;
-            }
-
         }
 
         private void コマンド新規_Click(object sender, EventArgs e)
@@ -693,13 +628,11 @@ namespace u_net
 
             if (振込手数料負担コード.SelectedValue != null && 振込手数料負担コード.SelectedValue.ToString() == "3")
 
-                if (振込手数料負担コード.SelectedValue.ToString() == "3" && 振込手数料負担コード.SelectedValue != null)
+            {
+                if (!FunctionClass.IsError(this.振込手数料上限金額)) return false;
+            }
 
-                {
-                    if (!FunctionClass.IsError(this.振込手数料上限金額)) return false;
-                }
-
-            if (支払先専用.SelectedValue.ToString() == "1")
+            if (支払先専用.SelectedValue != null && 支払先専用.SelectedValue.ToString() == "1")
             {
                 if (!FunctionClass.IsError(this.支払先専用)) return false;
                 if (!FunctionClass.IsError(this.仕入先名)) return false;
@@ -791,7 +724,6 @@ namespace u_net
         {
             try
             {
-
                 // With ブロック内ではコントロールに対して直接アクセス可能
                 this.窓口郵便番号.Text = this.郵便番号.Text;
                 this.窓口住所1.Text = this.住所1.Text;
@@ -830,7 +762,7 @@ namespace u_net
                 if (IsDeleted)
                 {
                     // 削除済みのため復元処理
-                    strMsg = $"仕入先コード　：　{CurrentCode}{Environment.NewLine}{Environment.NewLine}" +
+                    strMsg = $"仕入先コード　：　{CurrentCode}\n\n" +
                               "このデータは削除されています。復元しますか？";
 
                     intRes = MessageBox.Show(strMsg, "削除コマンド", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
@@ -840,25 +772,24 @@ namespace u_net
                         goto Bye_コマンド削除_Click;
                     }
                     else
-                    {                        
-                        
+                    {
+
                         var authForm = new F_認証();
                         authForm.ShowDialog();
                         if (string.IsNullOrEmpty(CommonConstants.LoginUserCode))
-                        {                            
-                        
-                        //while (strCertificateCode == "")
-                        //{
+                        {
 
-                        //if (Form.ActiveForm == null || Form.ActiveForm.Name != "認証")
-                        //{
+                            //while (strCertificateCode == "")
+                            //{
+
+                            //if (Form.ActiveForm == null || Form.ActiveForm.Name != "認証")
+                            //{
                             MessageBox.Show("復元操作は取り消されました。", "削除コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             return;
                         }
                         //Application.DoEvents();
-                        
-                        Connect();
-                        if (SetDeleted(cn, strCode, intEdition, DateTime.Now, CommonConstants.LoginUserCode))
+                        //trueは削除
+                        if (SetDeleted(strCode, true))
                         {
                             MessageBox.Show("復元しました。", "削除コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
@@ -866,15 +797,15 @@ namespace u_net
                         {
                             MessageBox.Show("エラーが発生しました。復元できませんでした。", "削除コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
-                        
+
                     }
                 }
                 else
                 {
                     // 削除処理
 
-                    strMsg = $"仕入先コード　：　{CurrentCode}{Environment.NewLine}{Environment.NewLine}" +
-                "このデータを削除しますか？{Environment.NewLine}削除後、復元することができます。";
+                    strMsg = $"仕入先コード　：　{CurrentCode}\n\n" +
+                "このデータを削除しますか？\n削除後、復元することができます。";
 
                     if (MessageBox.Show(strMsg, "削除コマンド", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
@@ -888,14 +819,14 @@ namespace u_net
 
                         //Application.DoEvents();                        
 
-                        Connect();
-                        if (SetDeleted(cn, strCode, intEdition, DateTime.Now, CommonConstants.LoginUserCode))
+                        //falseは復元
+                        if (SetDeleted(strCode, false))
                         {
-                            MessageBox.Show("削除しました。{Environment.NewLine}復元するには再度削除コマンドを実行してください。", "削除コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show("削除しました。\n復元するには再度削除コマンドを実行してください。", "削除コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                         else
                         {
-                            MessageBox.Show("エラーが発生しました。{Environment.NewLine}削除できませんでした。", "削除コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show("エラーが発生しました。\n削除できませんでした。", "削除コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                         // }
                     }
@@ -913,82 +844,67 @@ namespace u_net
         }
 
 
-        private bool SetDeleted(SqlConnection cn, string codeString, int editionNumber, DateTime deleteTime, string deleteUser)
+        private bool SetDeleted(string codeString, bool DoRestore)
         {
-            try
+
+            object varSaved1 = null;
+            object varSaved2 = null;
+            object varSaved3 = null;
+            DateTime dtmNow = FunctionClass.GetServerDate(cn);
+            string strKey;
+            string strUpdate;
+            string employeename;
+            employeename = FunctionClass.EmployeeName(cn, CommonConstants.LoginUserCode);
+
+            bool isDeleted = false;
+
+            varSaved1 = 無効日時.Text;
+            varSaved2 = 無効者コード.Text;
+            varSaved3 = 無効者名.Text;
+            if (DoRestore)
             {
-                string strKey;
-                string strUpdate;
-                string employeename;
-                employeename = FunctionClass.EmployeeName(cn, deleteUser);
-
-                bool isDeleted = false;
-
-                if (editionNumber == -1)
-                {
-                    strKey = "仕入先コード=@CodeString";
-                }
-                else
-                {
-                    strKey = "仕入先コード=@CodeString AND Revision=@EditionNumber";
-                }
-
-                if (this.IsDeleted)
-                {
-                    strUpdate = "無効日時=NULL,無効者コード=NULL,無効者名=null";
-                }
-                else
-                {
-
-                    strUpdate = "無効日時=@DeleteTime,無効者コード=@DeleteUser,無効者名=@employeename";
-                }
-
-                using (SqlCommand cmd = new SqlCommand())
-                {                   
-                    cmd.Transaction = cn.BeginTransaction();
-
-                    cmd.Parameters.AddWithValue("@CodeString", codeString);
-                    cmd.Parameters.AddWithValue("@EditionNumber", editionNumber);
-                    cmd.Parameters.AddWithValue("@DeleteTime", deleteTime);
-                    cmd.Parameters.AddWithValue("@DeleteUser", deleteUser);
-                    cmd.Parameters.AddWithValue("@employeename", employeename);
-
-                    string sql = "UPDATE M仕入先 SET " + strUpdate +
-                                 ",更新日時=@DeleteTime,更新者コード=@DeleteUser WHERE " + strKey;
-
-                    cmd.CommandText = sql;
-                    cmd.ExecuteNonQuery();
-
-
-                    cmd.Transaction.Commit(); // トランザクション完了
-
-                    // GUI更新
-                    //if (this.IsDeleted)
-                    //{
-                    //    this.削除日時.Text = null;
-                    //    this.削除者コード.Text = null;
-                    //    this.削除.Text = null;
-                    //}
-                    //else
-                    //{
-                    //    this.削除日時.Text = deleteTime.ToString();
-                    //    this.削除者コード.Text = deleteUser;
-                    //    this.削除.Text = "■";
-                    //}
-
-                    isDeleted = false;
-                }
-
-
-                return isDeleted;
+                無効日時.Text = null;
+                無効者コード.Text = null;
+                無効者名.Text = null;
             }
-            catch (Exception ex)
+            else
             {
-                cmd.Transaction.Rollback();
-                return true;
+                無効日時.Text = dtmNow.ToString();
+                無効者コード.Text = CommonConstants.LoginUserCode;
+                無効者名.Text = employeename;
+            }
+
+            Connect();
+            using (SqlTransaction transaction = cn.BeginTransaction())
+            {
+                try
+                {
+                    string strwhere = " 仕入先コード='" + this.仕入先コード.Text + "' and Revision=" + this.Revision.Text;
+
+                    if (!DataUpdater.UpdateOrInsertDataFrom(this, cn, "M仕入先", strwhere, "仕入先コード", transaction))
+                    {
+                        無効日時.Text = varSaved1.ToString();
+                        無効者コード.Text = varSaved2.ToString();
+                        無効者名.Text = varSaved3.ToString();
+                        transaction.Rollback();
+                        return false;
+                    }
+
+
+                    transaction.Commit(); // トランザクション完了   
+
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    if (transaction != null)
+                    {
+                        transaction.Rollback();
+                    }
+                    return false;
+                }
             }
         }
-
 
         private void コマンドメーカー_Click(object sender, EventArgs e)
         {
@@ -1035,6 +951,73 @@ namespace u_net
             Close(); // フォームを閉じる
         }
 
+        private void Form_Unload(object sender, FormClosingEventArgs e)
+        {
+            //string LoginUserCode = "000";//テスト用 ログインユーザを実行中にどのように管理するか決まったら修正
+            LocalSetting test = new LocalSetting();
+            test.SavePlace(CommonConstants.LoginUserCode, this);
+
+            try
+            {
+                // 変更された場合
+                if (IsChanged)
+                {
+                    var intRes = MessageBox.Show("変更内容を登録しますか？", BASE_CAPTION, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                    switch (intRes)
+                    {
+                        case DialogResult.Yes:
+                            if (SaveData())
+                            {
+                                // 保存に成功した場合
+                                return;
+                            }
+                            else
+                            {
+                                if (MessageBox.Show("登録できませんでした。" + Environment.NewLine +
+                                    "強制終了しますか？" + Environment.NewLine +
+                                    "[はい]を選択した場合、仕入先コードは破棄されます。" + Environment.NewLine +
+                                    "[いいえ]を選択した場合、終了しません。", BASE_CAPTION, MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes)
+                                {
+                                    e.Cancel = false;
+                                }
+                                else
+                                {
+                                    e.Cancel = true;
+                                }
+                                return;
+                            }
+                        case DialogResult.No:
+                            // 新規モードのときはコードを戻す
+                            break;
+                        case DialogResult.Cancel:
+                            e.Cancel = true;
+                            return;
+                    }
+                }
+
+                // 新規モードのときに登録しない場合は内部の更新データを元に戻す
+                if (IsNewData)
+                {
+                    if (!string.IsNullOrEmpty(CurrentCode) && CurrentRevision == 1)
+                    {
+
+                        CommonConnect();
+
+                        // 初版データのときのみ採番された番号を戻す
+                        if (!FunctionClass.ReturnNewCode(cn, CommonConstants.CH_MAKER, CurrentCode))
+                        {
+                            MessageBox.Show("エラーのためコードは破棄されました。" + Environment.NewLine +
+                                "仕入先コード　：　" + CurrentCode, BASE_CAPTION, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.Print(this.Name + "_FormClosing - " + ex.Message);
+                MessageBox.Show(ex.Message, "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
         private void Form_KeyDown(object sender, KeyEventArgs e)
         {
 
@@ -1494,7 +1477,7 @@ namespace u_net
 
         private void 窓口郵便番号_TextChanged(object sender, EventArgs e)
         {
-            FunctionClass.LimitText(((TextBox)sender), 7);
+            //FunctionClass.LimitText(((TextBox)sender), 7);
             ChangedData(true);
         }
 
@@ -1502,7 +1485,7 @@ namespace u_net
         {
             string zipCode = 窓口郵便番号.Text;
 
-            if (OriginalClass.IsValidZipCode(zipCode))
+            if (OriginalClass.IsValidZipCode(zipCode) && string.IsNullOrEmpty(窓口住所1.Text))
             {
                 string address = await OriginalClass.GetAddressFromZipCode(zipCode);
                 窓口住所1.Text = address;

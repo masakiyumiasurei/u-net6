@@ -77,9 +77,9 @@ namespace u_net
             FunctionClass fn = new FunctionClass();
             fn.DoWait("しばらくお待ちください...");
             //実行中フォーム起動
-            string LoginUserCode = "000";//テスト用 ログインユーザを実行中にどのように管理するか決まったら修正
+            //string LoginUserCode = "000";//テスト用 ログインユーザを実行中にどのように管理するか決まったら修正
             LocalSetting localSetting = new LocalSetting();
-            localSetting.LoadPlace(LoginUserCode, this);
+            localSetting.LoadPlace(CommonConstants.LoginUserCode, this);
 
             MyApi myapi = new MyApi();
             int xSize, ySize, intpixel, twipperdot;
@@ -335,7 +335,6 @@ namespace u_net
                 if (dataGridView1.Rows.Count > 0)
                 {
                     Cleargrid(dataGridView1);
-
                 }
 
                 sorting = false;
@@ -365,6 +364,8 @@ namespace u_net
 
         private void コマンド終了_Click(object sender, EventArgs e)
         {
+            LocalSetting test = new LocalSetting();
+            test.SavePlace(CommonConstants.LoginUserCode, this);
             this.Close();
         }
 
