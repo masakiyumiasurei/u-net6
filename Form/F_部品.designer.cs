@@ -764,7 +764,6 @@ namespace u_net
             this.メーカーコード_ラベル.TabIndex = 1;
             this.メーカーコード_ラベル.Text = "部品コード(&C)";
             this.メーカーコード_ラベル.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.メーカーコード_ラベル.UseMnemonic = false;
             // 
             // 仕入先1フレーム
             // 

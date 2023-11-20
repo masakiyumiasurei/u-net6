@@ -17,10 +17,10 @@ namespace u_net
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            Application.Run(new F_入庫管理());
-           // Application.Run(new F_シリーズ());
+            //Application.Run(new F_入出庫履歴());
+            // Application.Run(new F_シリーズ());
 
-            //Application.Run(new F_部品管理());
+            Application.Run(new F_部品管理());
             //Application.Run(new F_メーカー管理());
 
         }

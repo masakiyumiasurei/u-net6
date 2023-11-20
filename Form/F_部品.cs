@@ -869,11 +869,10 @@ namespace u_net
             try
             {
 
+                F_入出庫履歴 targetform = new F_入出庫履歴();
 
-                //F_入出庫履歴 targetform = new F_入出庫履歴();
-
-                //targetform.args = 部品コード.Text;
-                //targetform.ShowDialog();
+                targetform.args = 部品コード.Text;
+                targetform.ShowDialog();
 
             }
             catch (Exception ex)
