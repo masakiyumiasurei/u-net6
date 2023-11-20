@@ -109,6 +109,10 @@ namespace u_net
 
         private void Form_Load(object sender, EventArgs e)
         {
+            foreach (Control control in Controls)
+            {
+                control.PreviewKeyDown += OriginalClass.ValidateCheck;
+            }
 
             FunctionClass fn = new FunctionClass();
             fn.DoWait("しばらくお待ちください...");
@@ -116,8 +120,8 @@ namespace u_net
 
             //実行中フォーム起動
             //string LoginUserCode = "000";//テスト用 ログインユーザを実行中にどのように管理するか決まったら修正
-            //LocalSetting localSetting = new LocalSetting();
-            //localSetting.LoadPlace(LoginUserCode, this);
+            LocalSetting localSetting = new LocalSetting();
+            localSetting.LoadPlace(CommonConstants.LoginUserCode, this);
 
             //コンボボックスの設定
             OriginalClass ofn = new OriginalClass();
@@ -354,8 +358,8 @@ namespace u_net
         private void Form_Unload(object sender, FormClosingEventArgs e)
         {
             //string LoginUserCode = "000";//テスト用 ログインユーザを実行中にどのように管理するか決まったら修正
-            //LocalSetting test = new LocalSetting();
-            //test.SavePlace(LoginUserCode, this);
+            LocalSetting test = new LocalSetting();
+            test.SavePlace(CommonConstants.LoginUserCode, this);
 
             try
             {
@@ -836,22 +840,23 @@ namespace u_net
                         goto Bye_コマンド削除_Click;
                     }
                     else
-                    {
-                        //ログイン認証フォームができたら
-                        //using (var authForm = new F_認証())
-                        //{
-                        //authForm.ShowDialog();
+                    {                        
+                        
+                        var authForm = new F_認証();
+                        authForm.ShowDialog();
+                        if (string.IsNullOrEmpty(CommonConstants.LoginUserCode))
+                        {                            
+                        
                         //while (strCertificateCode == "")
                         //{
 
-                        if (Form.ActiveForm == null || Form.ActiveForm.Name != "認証")
-                        {
+                        //if (Form.ActiveForm == null || Form.ActiveForm.Name != "認証")
+                        //{
                             MessageBox.Show("復元操作は取り消されました。", "削除コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             return;
                         }
-                        Application.DoEvents();
-
-                        //}
+                        //Application.DoEvents();
+                        
                         Connect();
                         if (SetDeleted(cn, strCode, intEdition, DateTime.Now, CommonConstants.LoginUserCode))
                         {
@@ -861,7 +866,7 @@ namespace u_net
                         {
                             MessageBox.Show("エラーが発生しました。復元できませんでした。", "削除コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
-                        //}
+                        
                     }
                 }
                 else
@@ -873,20 +878,15 @@ namespace u_net
 
                     if (MessageBox.Show(strMsg, "削除コマンド", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
-                        //using (var authenticationForm = new F_認証())
-                        //{
-                        //  authenticationForm.ShowDialog();
-
-                        //while (strCertificateCode == "")
-                        //{
-                        if (Form.ActiveForm == null || Form.ActiveForm.Name != "認証")
+                        var authForm = new F_認証();
+                        authForm.ShowDialog();
+                        if (string.IsNullOrEmpty(CommonConstants.LoginUserCode))
                         {
                             MessageBox.Show("削除操作は取り消されました。", "削除コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             return;
                         }
 
-                        Application.DoEvents();
-                        // }
+                        //Application.DoEvents();                        
 
                         Connect();
                         if (SetDeleted(cn, strCode, intEdition, DateTime.Now, CommonConstants.LoginUserCode))
@@ -944,8 +944,7 @@ namespace u_net
                 }
 
                 using (SqlCommand cmd = new SqlCommand())
-                {
-                    cmd.Connection = cn;
+                {                   
                     cmd.Transaction = cn.BeginTransaction();
 
                     cmd.Parameters.AddWithValue("@CodeString", codeString);
@@ -999,7 +998,7 @@ namespace u_net
                 GetNextControl(コマンドメーカー, false).Focus();
             }
 
-            Form form = new F_メーカー();
+            Form form = new F_メーカー管理();
             form.Show();
         }
 
@@ -1048,6 +1047,9 @@ namespace u_net
 
             switch (e.KeyCode)
             {
+                case Keys.Return:
+                    SelectNextControl(ActiveControl, true, true, true, true);
+                    break;
                 case Keys.Space: //コンボボックスならドロップダウン
                     {
                         Control activeControl = this.ActiveControl;
@@ -1213,7 +1215,7 @@ namespace u_net
             string zipCode = 郵便番号.Text;
 
             // 郵便番号が正しい形式かどうかを確認
-            if (OriginalClass.IsValidZipCode(zipCode))
+            if (OriginalClass.IsValidZipCode(zipCode) && string.IsNullOrEmpty(住所1.Text))
             {
                 // 郵便番号APIを使用して住所情報を取得
                 string address = await OriginalClass.GetAddressFromZipCode(zipCode);
@@ -1234,7 +1236,7 @@ namespace u_net
             ChangedData(true);
         }
 
-       
+
         private void 仕入先コード_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (setCombo) return;
@@ -1395,7 +1397,7 @@ namespace u_net
 
         private void 郵便番号_TextChanged(object sender, EventArgs e)
         {
-            FunctionClass.LimitText(((TextBox)sender), 7);
+            //FunctionClass.LimitText(((TextBox)sender), 7);
             ChangedData(true);
         }
 
@@ -1780,7 +1782,10 @@ namespace u_net
             ChangedData(true);
         }
 
-        
+        private void label43_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 
 

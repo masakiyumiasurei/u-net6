@@ -605,7 +605,7 @@ namespace u_net.Public
 
                     //connection.Open();
                     int rowsAffected = cmd.ExecuteNonQuery();
-                    connection.Close();
+                   // connection.Close();
 
                     if (rowsAffected > 0)
                     {
@@ -704,7 +704,7 @@ namespace u_net.Public
             }
             finally
             {
-                connection.Close();
+                //connection.Close();
             }
 
             return employeeCode;
@@ -745,7 +745,7 @@ namespace u_net.Public
             }
             finally
             {
-                connection.Close();
+                //connection.Close();
             }
 
             return employeeName;
@@ -2693,7 +2693,7 @@ namespace u_net.Public
 
      
                     int count = (int)cmd.ExecuteScalar();
-                    connection.Close();
+                    //connection.Close();
 
                     if (count > 0)
                     {
