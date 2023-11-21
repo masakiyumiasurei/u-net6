@@ -42,6 +42,51 @@ namespace u_net
         public static string LoginUserFullName = "阪南太郎";  // ログインユーザーの氏名
         public static string LoginDep;                        // ログインユーザーが所属する部
 
+
+        public static string MyAppPath;                // アプリケーションパス
+        public static string MyAppName;                // アプリケーション名
+        public static string MyComputerName;           // コンピュータ名
+        public static string MyUserName;               // ユーザー名
+        public static string MyOsName;                 // 使用OS
+        public static string ServerInstanceName;       // 接続先サーバーのインスタンス名
+
+        public static string codeString;               // コード選択フォーム用
+        public static object objParent;                // 通信用変数
+        public static Dictionary<string, object> colReports = new Dictionary<string, object>(); // レポート生成用ディクショナリ
+        public static Form frmParent;                  // 呼び出し元フォーム
+        public static Control ctlParent;               // 呼び出し元コントロール
+        public static Control ctlNext;                 // フォーカス移動先コントロール
+        public static object varShowArgs;              // Accessオブジェクト可視時引数 不要？
+        public static bool bleShowPrice;
+
+
+        //データベース操作のモジュールに設定されていた変数
+        public static byte bytConStatus;               // 接続状態（レベル）
+        public static int ConnNumber;                   // 接続番号
+        public static string strAppVer;                // アプリケーションのバージョン
+        public static string strAppLastVer;            // アプリケーションの最終リリースバージョン
+        public static string ConnectionStr;
+
+        //ローカル設定のモジュールに設定されていた変数
+        public static object varPaperSize;
+        public static string m_strServerName;    //     接続先サーバー名
+
+
+        //OSのバージョンを返す
+        public static string SysVersion()
+        {
+            var version = Environment.OSVersion;
+            string osInfo = $"Windows Version: {version.Version.Major}.{version.Version.Minor}\n" +
+                            $"Build Number: {version.Version.Build}\n" +
+                            $"Platform: {version.Platform}";
+
+            return osInfo;
+        }
+
+
     }
+
+    
+
 
 }

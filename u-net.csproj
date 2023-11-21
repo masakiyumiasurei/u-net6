@@ -32,60 +32,24 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Form\F_システム.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Update="Form\F_システム.cs" />
     
-    <Compile Update="Form\F_シリーズ在庫補正.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="Form\F_入出庫履歴.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="Form\F_シリーズ在庫参照.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="Form\F_入庫管理.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="Form\F_受注.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="Form\F_部品管理.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="Form\F_入庫管理_抽出.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="Form\F_部品管理_抽出.cs">
-      <SubType>Form</SubType>
-    </Compile>    <Compile Update="Form\F_社員管理_抽出.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="Form\F_社員管理.cs">
-      <SubType>Form</SubType>
-    </Compile>    <Compile Update="Form\F_仕入先管理.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="Form\F_仕入先.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="Form\F_仕入先管理_抽出.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="Form\F_シリーズ.cs">
-      <SubType>Form</SubType>
-    </Compile>    <Compile Update="Form\F_認証.cs">
-      <SubType>Form</SubType>
-    </Compile>    <Compile Update="Form\F_部品.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="Form\F_メーカー管理.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="Form\F_メーカー管理_抽出.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Update="Form\F_シリーズ在庫補正.cs" />
+    
+    <Compile Update="Form\F_メイン.cs" />
+    <Compile Update="Form\F_入出庫履歴.cs" />
+    <Compile Update="Form\F_シリーズ在庫参照.cs" />
+    <Compile Update="Form\F_入庫管理.cs" />
+    <Compile Update="Form\F_受注.cs" />
+    <Compile Update="Form\F_部品管理.cs" />
+    <Compile Update="Form\F_入庫管理_抽出.cs" />
+    <Compile Update="Form\F_部品管理_抽出.cs" />    <Compile Update="Form\F_社員管理_抽出.cs" />
+    <Compile Update="Form\F_社員管理.cs" />    <Compile Update="Form\F_仕入先管理.cs" />
+    <Compile Update="Form\F_仕入先.cs" />
+    <Compile Update="Form\F_仕入先管理_抽出.cs" />
+    <Compile Update="Form\F_シリーズ.cs" />    <Compile Update="Form\F_認証.cs" />    <Compile Update="Form\F_部品.cs" />
+    <Compile Update="Form\F_メーカー管理.cs" />
+    <Compile Update="Form\F_メーカー管理_抽出.cs" />
     <Compile Update="Form\F_検索.cs" />
     <Compile Update="Form\F_商品back.cs">
       <SubType>Form</SubType>
