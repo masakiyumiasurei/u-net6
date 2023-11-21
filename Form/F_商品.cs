@@ -25,7 +25,7 @@ namespace u_net
         private SqlConnection cn;
         private SqlTransaction tx;
         public string args = "";
-        //public string CurrentCode = "";
+        public string CurrentCode = "";
         private bool setCombo = false;
         public F_商品()
         {
@@ -41,49 +41,6 @@ namespace u_net
             cn = new SqlConnection(connectionString);
             cn.Open();
         }
-
-        public bool IsChanged
-        {
-            get
-            {
-                return コマンド登録.Enabled;
-            }
-        }
-
-        public bool IsNewData
-        {
-            get
-            {
-                return !コマンド新規.Enabled;
-            }
-        }
-
-        public string CurrentCode
-        {
-            get
-            {
-                return string.IsNullOrEmpty(商品コード.Text) ? "" : 商品コード.Text;
-            }
-        }
-
-        public int CurrentRevision
-        {
-            get
-            {
-                return string.IsNullOrEmpty(Revision.Text) ? 0 : int.Parse(Revision.Text);
-            }
-        }
-
-
-        //public bool IsDeleted
-        //{
-        //    get
-        //    {
-        //        bool isEmptyOrDbNull = string.IsNullOrEmpty(this.削除日時.Text) || Convert.IsDBNull(this.削除日時.Text);
-
-        //        return !isEmptyOrDbNull;
-        //    }
-        //}
 
         SqlCommand cmd = new SqlCommand();
         DataSet ds = new DataSet();
@@ -270,54 +227,10 @@ namespace u_net
 
         private bool SaveData()
         {
-            DateTime dtmNow;
-            object varSaved1 = null;
-            object varSaved2 = null;
-            object varSaved3 = null;
-            object varSaved4 = null;
-            object varSaved5 = null;
-            object varSaved6 = null;
-            Control objControl1 = null;
-            Control objControl2 = null;
-            Control objControl3 = null;
-            Control objControl4 = null;
-            Control objControl5 = null;
-            Control objControl6 = null;
-            bool headerErr = false;
-            Connect();
-            dtmNow = FunctionClass.GetServerDate(cn);
-
-            if (IsNewData)
-            {
-                objControl1 = 作成日時;
-                objControl2 = 作成者コード;
-                objControl3 = 作成者名;
-                varSaved1 = objControl1.Text;
-                varSaved2 = objControl2.Text;
-                varSaved3 = objControl3.Text;                
-                objControl1.Text = dtmNow.ToString();
-                objControl2.Text = CommonConstants.LoginUserCode;
-                objControl3.Text = CommonConstants.LoginUserFullName;                
-            }
-            objControl4 = 更新日時;
-            objControl5 = 更新者コード;
-            objControl6 = 更新者名;
-
-            // 登録前の状態を退避しておく
-            varSaved4 = objControl4.Text;
-            varSaved5 = objControl5.Text;
-            varSaved6 = objControl6.Text;
-
-            // 値の設定
-            objControl4.Text = dtmNow.ToString();
-            objControl5.Text = CommonConstants.LoginUserCode;
-            objControl6.Text = CommonConstants.LoginUserFullName;
-
             //管理情報の設定
             if (!SetModelNumber()) return false;
 
-            
-
+            Connect();
             SqlTransaction transaction = cn.BeginTransaction();
             {
                 try
@@ -327,10 +240,8 @@ namespace u_net
 
                     if (!DataUpdater.UpdateOrInsertDataFrom(this, cn, "M商品", strwhere, "商品コード", transaction))
                     {
-                        //保存失敗の処理　　明細のエラーもあるのでcatchの所へやるか。。。
-                        headerErr = true;
-                        throw new Exception();
-                        
+                        //transaction.Rollback(); 関数内でロールバック入れた
+                        return false;
                     }
 
                     string sql = "DELETE FROM M商品明細 WHERE " + strwhere;
@@ -371,22 +282,28 @@ namespace u_net
                                 insertCommand.ExecuteNonQuery();
                             }
                         }
-                    }                    
+                    }
+
+
+                    // M商品明細データを保存
+                    //this.mshomeisaiTableAdapter.Connection = cn;
+                    //this.mshomeisaiTableAdapter.Transaction = transaction;
+                    //this.mshomeisaiTableAdapter.Update(this.newDataSet.M商品明細);
 
                     // トランザクションをコミット
                     transaction.Commit();
 
                     // DataGridViewを更新して新しいデータを表示
-                   // this.mshomeisaiTableAdapter.Fill(this.newDataSet.M商品明細, this.商品コード.Text);
-                    // データベースへの変更を適用
-                   // this.tableAdapterManager.UpdateAll(this.uiDataSet);
+                    this.mshomeisaiTableAdapter.Fill(this.newDataSet.M商品明細, this.商品コード.Text);
 
+                    // データベースへの変更を適用
+                    this.tableAdapterManager.UpdateAll(this.uiDataSet);
                     MessageBox.Show("登録を完了しました");
 
                     商品コード.Enabled = true;
 
                     // 新規モードのときは修正モードへ移行する
-                    if (IsNewData)
+                    if (true)//IsNewData)
                     {
                         コマンド新規.Enabled = true;
                         コマンド修正.Enabled = false;
@@ -401,16 +318,6 @@ namespace u_net
                 }
                 catch (Exception ex)
                 {
-                    if (IsNewData)
-                    {
-                        objControl1.Text = varSaved1.ToString();
-                        objControl2.Text = varSaved2.ToString();
-                        objControl3.Text = varSaved3.ToString();
-                    }
-                    objControl4.Text = varSaved4.ToString();
-                    objControl5.Text = varSaved5.ToString();
-                    objControl6.Text = varSaved6.ToString();
-                                       
                     // トランザクション内でエラーが発生した場合、ロールバックを実行
                     if (transaction != null)
                     {
@@ -418,13 +325,9 @@ namespace u_net
                     }
 
                     コマンド登録.Enabled = true;
-                    if (headerErr)
-                    {
-                        MessageBox.Show("データの保存中にエラーが発生しました: " 
-                            + ex.Message, "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                        return false;
-
+                    // エラーメッセージを表示またはログに記録
+                    MessageBox.Show("データの保存中にエラーが発生しました: " + ex.Message, "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
                 }
             }
         }
