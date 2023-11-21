@@ -83,7 +83,7 @@ namespace u_net
 
         private void Done(DateTime SelectDate)
         {
-            SelectedDate = SelectDate.ToString();
+            SelectedDate = SelectDate.ToString("yyyy/MM/dd");
 
             // ダイアログをOKで閉じる
             DialogResult = DialogResult.OK;
