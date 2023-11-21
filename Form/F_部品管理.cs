@@ -582,7 +582,9 @@ namespace u_net
 
         private void コマンド入出履歴_Click(object sender, EventArgs e)
         {
+            F_入出庫履歴 targetform = new F_入出庫履歴();
 
+            targetform.ShowDialog();
         }
 
         private void コマンド印刷プレビュー_Click(object sender, EventArgs e)
