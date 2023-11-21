@@ -1,24 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Data.SqlClient;
-using System.Data.OleDb;
-using Microsoft.Data.SqlClient;
+﻿using System.ComponentModel;
 using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
-using System.Windows.Forms;
 using u_net.Public;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
-using System.Data.Common;
-using GrapeCity.Win.MultiRow;
-using System.ComponentModel;
-using System.DirectoryServices;
-using Microsoft.EntityFrameworkCore.Metadata;
-using GrapeCity.Win.Editors;
-using Microsoft.VisualBasic;
-using Microsoft.EntityFrameworkCore.Diagnostics;
 
 namespace u_net
 {
@@ -32,8 +14,8 @@ namespace u_net
         public string MyComputerName = string.Empty;
         public string MyUserName = string.Empty;
 
+        private Form frmParent;
         private string strEmployeeCode = string.Empty;  // 認証結果（社員コード）
-        private string strEmployeeName = string.Empty;  // 認証結果（社員名）
         private int intDeny = 0;                        // 認証失敗回数
 
         public F_認証()
@@ -52,14 +34,6 @@ namespace u_net
             cn.Open();
         }
 
-        public void CommonConnect()
-        {
-            CommonConnection connectionInfo = new CommonConnection();
-            string connectionString = connectionInfo.Getconnect();
-            cn = new SqlConnection(connectionString);
-            cn.Open();
-        }
-
         private void Form_Load(object sender, EventArgs e)
         {
             foreach (Control control in Controls)
@@ -67,36 +41,26 @@ namespace u_net
                 control.PreviewKeyDown += OriginalClass.ValidateCheck;
             }
 
-            CommonConstants.LoginUserCode = string.Empty;
+            strEmployeeCode = string.Empty;
             CommonConstants.LoginUserFullName = string.Empty;
             intDeny = 0;
             MyComputerName = Environment.MachineName;
             MyUserName = Environment.UserName;
 
+            // コンボボックスの内容セット
             OriginalClass ofn = new OriginalClass();
             ofn.SetComboBox(ユーザー名, "SELECT 氏名 as Display, 社員コード as Value FROM M社員 WHERE (退社 IS NULL) AND (削除日時 IS NULL) ORDER BY ふりがな");
 
+            // 他画面から呼び出された際に、社員コードが引数として渡されていれば処理を分岐する
             Connect();
-
-            // openArgsがどのように設定されるかに依存します。（現在、仮処理）
-            // openArgsに関連する処理が必要な場合はここに記載してください。
-
-            //If IsNull(Me.openArgs) Then
-            //    Me.ユーザー名.Value = employeeCode(objConnection, MyUserName)
-            //Else
-            //    Me.ユーザー名.enabled = False
-            //    Me.ユーザー名.Value = Me.openArgs
-            //End If
-
-            //if (!string.IsNullOrEmpty(CommonConstants.strCertificateCode))
-            if (!string.IsNullOrEmpty(args))
+            if (string.IsNullOrEmpty(args))
             {
-                ユーザー名.Enabled = false;
-                ユーザー名.SelectedValue = args;
+                ユーザー名.SelectedValue = FunctionClass.employeeCode(cn, MyUserName);
             }
             else
             {
-                ユーザー名.SelectedValue = FunctionClass.employeeCode(cn, MyUserName);
+                ユーザー名.Enabled = false;
+                ユーザー名.SelectedValue = args;
             }
 
             if (!string.IsNullOrEmpty(ユーザー名.Text))
@@ -114,8 +78,7 @@ namespace u_net
         {
             if (!string.IsNullOrEmpty(strEmployeeCode))
             {
-                CommonConstants.LoginUserCode = strEmployeeCode;
-                CommonConstants.LoginUserFullName = strEmployeeName;
+                CommonConstants.strCertificateCode = strEmployeeCode;
             }
         }
 
@@ -153,11 +116,6 @@ namespace u_net
                     return;
                 }
 
-                //社員コードを取得
-                string EmployeeCode = ユーザー名.SelectedValue.ToString();
-                //社員名を取得
-                string EmployeeName = ユーザー名.Text;
-
                 //パスワード入力チェック
                 if (string.IsNullOrEmpty(パスワード.Text))
                 {
@@ -178,7 +136,7 @@ namespace u_net
                 Connect();
 
                 //パスワード認証処理
-                string password = GetPassword(cn, EmployeeCode);
+                string password = GetPassword(cn, ユーザー名.SelectedValue.ToString());
                 if (password != パスワード.Text)
                 {
                     MessageBox.Show("パスワードが間違っています。", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -186,24 +144,20 @@ namespace u_net
                     return;
                 }
 
-                //認証OK
-                strEmployeeCode = EmployeeCode;
-                strEmployeeName = EmployeeName;
+                strEmployeeCode = ユーザー名.SelectedValue.ToString(); // 認証された
 
                 //パスワード変更処理
                 if (!string.IsNullOrEmpty(新パスワード.Text))
                 {
                     if (ChangePassword(cn, strEmployeeCode, 新パスワード.Text))
                     {
-                        MessageBox.Show("新パスワードに変更されました。\n次回から新しいパスワードで認証されます。", "パスワードの変更処理", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("パスワードが変更されました。\n次回から新しいパスワードで認証されます。", "パスワードの変更", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     else
                     {
-                        MessageBox.Show("新パスワードに変更できませんでした。", "パスワードの変更処理", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("変更できませんでした。", "パスワードの変更", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
-
-                //MessageBox.Show("認証に成功しました。メニュー起動は未実装！", "パスワード認証処理", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 //自分自身のフォームを閉じる
                 this.Close();
@@ -230,7 +184,7 @@ namespace u_net
         {
             try
             {
-                MessageBox.Show("メール送信機能は未実装です。", "パスワード強制変更ボタン", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                //MessageBox.Show("メール送信機能は未実装です。", "パスワード強制変更ボタン", MessageBoxButtons.OK, MessageBoxIcon.Stop);
 
                 //DoCmd.SendObject acSendNoObject, acSendNoObject, acFormatTXT, _
                 //"postmaster@uinics.co.jp", , , "U-netパスワード強制変更依頼", _
@@ -238,6 +192,38 @@ namespace u_net
                 //& "ログオンユーザー：" & MyUserName & vbCrLf + vbCrLf _
                 //& "このまま送信してください。" & vbCrLf _
                 //, True
+
+                // デフォルトのメールクライアントを起動して新しいメールを作成
+                try
+                {
+                    string mailtoLink = "C:\\Program Files\\Mozilla Thunderbird\\thunderbird.exe";
+                    System.Diagnostics.Process.Start(mailtoLink);
+
+                    string email = "WhiteTigerxxx@yahoo.co.jp";
+                    string subject = "請求書の添付資料有り";
+                    string body = "一行目の文字列" + "%0D%0A" +
+                                  "二行目の文字列" + "%0D%0A" +
+                                  "三行目の文字列";
+                    string cc = "test1@yahoo.co.jp";
+                    string bcc = "test2@yahoo.co.jp";
+
+                    Process.Start(
+                                "mailto:" + email +     // 宛先
+                                "?" +
+                                "subject=" + subject +    // 件名  
+                                "&" +
+                                "body=" + body +       //本文 
+                                "&" +
+                                "cc=" + cc +        //CC
+                                "&" +
+                                "bcc=" + bcc          //BCC         
+                                );
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("メールを起動できませんでした。\nエラー: " + ex.Message, "メールコマンド", MessageBoxButtons.OK);
+                }
+
             }
             catch (Exception ex)
             {
@@ -354,10 +340,8 @@ namespace u_net
             return bolreturn;
         }
 
-        private bool ログイン_end()
+        private void ログイン_end()
         {
-            bool bolreturn = false;
-
             //If Forms.Count >= 4 Then
             //    If Not LoginUserCode = "" Then
             //        DoCmd.Close acForm, "認証", acSavePrompt
@@ -369,10 +353,6 @@ namespace u_net
 
             //自分自身のフォームを閉じる
             this.Close();
-
-            bolreturn = true;
-
-            return bolreturn;
         }
 
         private bool ChangePassword(SqlConnection cn, string employeeCode, string newPassword)

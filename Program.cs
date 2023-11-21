@@ -20,7 +20,7 @@ namespace u_net
            // Application.Run(new F_入庫管理());
            // Application.Run(new F_シリーズ());
 
-            Application.Run(new F_仕入先管理());
+            Application.Run(new F_商品管理());
             //Application.Run(new F_メーカー管理());
 
         }
