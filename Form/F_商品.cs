@@ -25,7 +25,7 @@ namespace u_net
         private SqlConnection cn;
         private SqlTransaction tx;
         public string args = "";
-        public string CurrentCode = "";
+        //public string CurrentCode = "";
         private bool setCombo = false;
         public F_商品()
         {
@@ -41,6 +41,49 @@ namespace u_net
             cn = new SqlConnection(connectionString);
             cn.Open();
         }
+
+        public bool IsChanged
+        {
+            get
+            {
+                return コマンド登録.Enabled;
+            }
+        }
+
+        public bool IsNewData
+        {
+            get
+            {
+                return !コマンド新規.Enabled;
+            }
+        }
+
+        public string CurrentCode
+        {
+            get
+            {
+                return string.IsNullOrEmpty(商品コード.Text) ? "" : 商品コード.Text;
+            }
+        }
+
+        public int CurrentRevision
+        {
+            get
+            {
+                return string.IsNullOrEmpty(Revision.Text) ? 0 : int.Parse(Revision.Text);
+            }
+        }
+
+
+        //public bool IsDeleted
+        //{
+        //    get
+        //    {
+        //        bool isEmptyOrDbNull = string.IsNullOrEmpty(this.削除日時.Text) || Convert.IsDBNull(this.削除日時.Text);
+
+        //        return !isEmptyOrDbNull;
+        //    }
+        //}
 
         SqlCommand cmd = new SqlCommand();
         DataSet ds = new DataSet();
@@ -107,10 +150,9 @@ namespace u_net
 
                 fn.WaitForm.Close();
 
-                //実行中フォーム起動
-                string LoginUserCode = "000";//テスト用 ログインユーザを実行中にどのように管理するか決まったら修正
+                //実行中フォーム起動              
                 LocalSetting localSetting = new LocalSetting();
-                localSetting.LoadPlace(LoginUserCode, this);
+                localSetting.LoadPlace(CommonConstants.LoginUserCode, this);
 
             }
             catch (Exception ex)
@@ -138,8 +180,8 @@ namespace u_net
 
                 string original = FunctionClass.採番(cn, "ITM");
 
-                CurrentCode = original.Substring(original.Length - 8);
-                商品コード.Text = CurrentCode;
+                商品コード.Text = original.Substring(original.Length - 8);
+
                 Revision.Text = "1";
                 掛率有効.Checked = true;
 
@@ -227,10 +269,54 @@ namespace u_net
 
         private bool SaveData()
         {
+            DateTime dtmNow;
+            object varSaved1 = null;
+            object varSaved2 = null;
+            object varSaved3 = null;
+            object varSaved4 = null;
+            object varSaved5 = null;
+            object varSaved6 = null;
+            Control objControl1 = null;
+            Control objControl2 = null;
+            Control objControl3 = null;
+            Control objControl4 = null;
+            Control objControl5 = null;
+            Control objControl6 = null;
+            bool headerErr = false;
+            Connect();
+            dtmNow = FunctionClass.GetServerDate(cn);
+
+            if (IsNewData)
+            {
+                objControl1 = 作成日時;
+                objControl2 = 作成者コード;
+                objControl3 = 作成者名;
+                varSaved1 = objControl1.Text;
+                varSaved2 = objControl2.Text;
+                varSaved3 = objControl3.Text;
+                objControl1.Text = dtmNow.ToString();
+                objControl2.Text = CommonConstants.LoginUserCode;
+                objControl3.Text = CommonConstants.LoginUserFullName;
+            }
+            objControl4 = 更新日時;
+            objControl5 = 更新者コード;
+            objControl6 = 更新者名;
+
+            // 登録前の状態を退避しておく
+            varSaved4 = objControl4.Text;
+            varSaved5 = objControl5.Text;
+            varSaved6 = objControl6.Text;
+
+            // 値の設定
+            objControl4.Text = dtmNow.ToString();
+            objControl5.Text = CommonConstants.LoginUserCode;
+            objControl6.Text = CommonConstants.LoginUserFullName;
+
             //管理情報の設定
             if (!SetModelNumber()) return false;
 
-            Connect();
+
+
             SqlTransaction transaction = cn.BeginTransaction();
             {
                 try
@@ -240,8 +326,10 @@ namespace u_net
 
                     if (!DataUpdater.UpdateOrInsertDataFrom(this, cn, "M商品", strwhere, "商品コード", transaction))
                     {
-                        //transaction.Rollback(); 関数内でロールバック入れた
-                        return false;
+                        //保存失敗の処理　　明細のエラーもあるのでcatchの所へやるか。。。
+                        headerErr = true;
+                        throw new Exception();
+
                     }
 
                     string sql = "DELETE FROM M商品明細 WHERE " + strwhere;
@@ -284,26 +372,20 @@ namespace u_net
                         }
                     }
 
-
-                    // M商品明細データを保存
-                    //this.mshomeisaiTableAdapter.Connection = cn;
-                    //this.mshomeisaiTableAdapter.Transaction = transaction;
-                    //this.mshomeisaiTableAdapter.Update(this.newDataSet.M商品明細);
-
                     // トランザクションをコミット
                     transaction.Commit();
 
                     // DataGridViewを更新して新しいデータを表示
-                    this.mshomeisaiTableAdapter.Fill(this.newDataSet.M商品明細, this.商品コード.Text);
-
+                    // this.mshomeisaiTableAdapter.Fill(this.newDataSet.M商品明細, this.商品コード.Text);
                     // データベースへの変更を適用
-                    this.tableAdapterManager.UpdateAll(this.uiDataSet);
+                    // this.tableAdapterManager.UpdateAll(this.uiDataSet);
+
                     MessageBox.Show("登録を完了しました");
 
                     商品コード.Enabled = true;
 
                     // 新規モードのときは修正モードへ移行する
-                    if (true)//IsNewData)
+                    if (IsNewData)
                     {
                         コマンド新規.Enabled = true;
                         コマンド修正.Enabled = false;
@@ -318,6 +400,16 @@ namespace u_net
                 }
                 catch (Exception ex)
                 {
+                    if (IsNewData)
+                    {
+                        objControl1.Text = varSaved1.ToString();
+                        objControl2.Text = varSaved2.ToString();
+                        objControl3.Text = varSaved3.ToString();
+                    }
+                    objControl4.Text = varSaved4.ToString();
+                    objControl5.Text = varSaved5.ToString();
+                    objControl6.Text = varSaved6.ToString();
+
                     // トランザクション内でエラーが発生した場合、ロールバックを実行
                     if (transaction != null)
                     {
@@ -325,9 +417,13 @@ namespace u_net
                     }
 
                     コマンド登録.Enabled = true;
-                    // エラーメッセージを表示またはログに記録
-                    MessageBox.Show("データの保存中にエラーが発生しました: " + ex.Message, "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    if (headerErr)
+                    {
+                        MessageBox.Show("データの保存中にエラーが発生しました: "
+                            + ex.Message, "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                     return false;
+
                 }
             }
         }
@@ -546,7 +642,7 @@ namespace u_net
                     previousControl.Focus();
                 }
             }
-            CurrentCode = this.商品コード.Text;
+            //CurrentCode = this.商品コード.Text;
 
             if (!string.IsNullOrEmpty(ComposedChipMount.Text) || IsUnit.Checked)
             {
@@ -596,8 +692,6 @@ namespace u_net
 
             try
             {
-                //ログインユーザについてはどうするか検討
-                string LoginUserCode = "tes";
                 // データベース操作のためのSQL文
                 string selectSql = "SELECT * FROM M商品 WHERE 商品コード = " + codeParam + " AND 無効日時 IS NULL";
                 string updateSql = "UPDATE M商品 SET 無効日時 = GETDATE(), 無効者コード = @UserCode WHERE 商品コード = " + codeParam + " AND 無効日時 IS NULL";
@@ -615,7 +709,7 @@ namespace u_net
                             using (SqlCommand updateCommand = new SqlCommand(updateSql, cn, transaction))
                             {
                                 updateCommand.Parameters.Add(new SqlParameter(codeParam, codeString));
-                                updateCommand.Parameters.Add(new SqlParameter("@UserCode", LoginUserCode)); // LoginUserCode に適切な値を設定
+                                updateCommand.Parameters.Add(new SqlParameter("@UserCode", CommonConstants.LoginUserCode)); // LoginUserCode に適切な値を設定
 
                                 int rowsAffected = updateCommand.ExecuteNonQuery();
 
@@ -655,7 +749,8 @@ namespace u_net
 
         private void コマンドシリーズ_Click(object sender, EventArgs e)
         {
-
+            F_シリーズ fm = new F_シリーズ();
+            fm.ShowDialog();
         }
 
         private void コマンド承認_Click(object sender, EventArgs e)
@@ -737,9 +832,9 @@ namespace u_net
                     }
                 }
 
-                string LoginUserCode = "000";//テスト用 ログインユーザを実行中にどのように管理するか決まったら修正
+
                 LocalSetting test = new LocalSetting();
-                test.SavePlace(LoginUserCode, this);
+                test.SavePlace(CommonConstants.LoginUserCode, this);
 
                 //実行中フォーム起動
 
@@ -754,7 +849,7 @@ namespace u_net
 
         private void コマンド確定_Click(object sender, EventArgs e)
         {
-
+            MessageBox.Show("確定コマンドは使えません。", "確定コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         //form_Loadの処理だと、グリッドビューがアクティブにならないので、グリッドビューにカーソルを持っていきたい時はこちら
@@ -940,7 +1035,6 @@ namespace u_net
             }
         }
 
-
         private void 商品コード_SelectedIndexChanged(object sender, EventArgs e)
         {//商品コードのコンボボックスのソースセット時には処理を行わない様にするため
             if (setCombo) return;
@@ -958,7 +1052,7 @@ namespace u_net
             this.コマンド削除.Enabled = true;
             try
             {
-                CurrentCode = this.商品コード.Text;
+                //CurrentCode = this.商品コード.Text;
                 string strSQL = "SELECT * FROM V商品ヘッダ WHERE 商品コード='" + CurrentCode + "'";
                 Connect();
                 if (!VariableSet.SetTable2Form(this, strSQL, cn)) return;
@@ -1473,7 +1567,7 @@ namespace u_net
             {
                 Debug.WriteLine("行挿入ボタン_Click - " + ex.Message);
             }
-        }       
+        }
 
     }
 }

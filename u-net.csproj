@@ -32,6 +32,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Form\F_メイン.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Form\F_入出庫履歴.cs">
       <SubType>Form</SubType>
     </Compile>
