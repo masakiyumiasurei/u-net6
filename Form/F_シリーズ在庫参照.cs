@@ -20,6 +20,8 @@ namespace u_net
     {
         public DateTime TargetDay;
 
+        
+
 
         int intWindowHeight = 0;
         int intWindowWidth = 0;
@@ -37,8 +39,33 @@ namespace u_net
             cn = new SqlConnection(connectionString);
             cn.Open();
         }
-    
-   
+
+        public long CurrentAdjust
+        {
+            get { return Convert.ToInt64(dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[6].Value); }
+        }
+
+        public DateTime CurrentDay
+        {
+            get { return Convert.ToDateTime(dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[3].Value); }
+        }
+
+        public string CurrentSeries
+        {
+            get { return dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value.ToString(); }
+        }
+
+        public string CurrentSeriesName
+        {
+            get { return dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[1].Value.ToString(); }
+        }
+
+        public long CurrentStock
+        {
+            get { return Convert.ToInt64(dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[7].Value); }
+        }
+
+
         private void Form_Load(object sender, EventArgs e)
         {
 
@@ -503,9 +530,16 @@ namespace u_net
             }
             else
             {
-                //F_シリーズ補正 targetform = new F_シリーズ補正();
+                F_シリーズ在庫補正 targetform = new F_シリーズ在庫補正();
+                targetform.strシリーズコード = CurrentSeries;
+                targetform.strシリーズ名 = CurrentSeriesName;
+                targetform.dtm確認日 = CurrentDay;
+                targetform.lng在庫数量 = CurrentStock;
+                targetform.lng補正数量 = CurrentAdjust;
 
-                //targetform.ShowDialog();
+                targetform.ShowDialog();
+
+                DoUpdate();
             }
         }
 

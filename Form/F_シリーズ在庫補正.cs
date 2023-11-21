@@ -19,7 +19,21 @@ namespace u_net
             InitializeComponent();
         }
 
-        
+        private SqlConnection cn;
+        public string strシリーズコード;
+        public string strシリーズ名;
+        public DateTime dtm確認日;
+        public long lng在庫数量;
+        public long lng補正数量;
+
+
+        public void Connect()
+        {
+            Connection connectionInfo = new Connection();
+            string connectionString = connectionInfo.Getconnect();
+            cn = new SqlConnection(connectionString);
+            cn.Open();
+        }
 
         private void Form_Load(object sender, EventArgs e)
         {
@@ -30,47 +44,21 @@ namespace u_net
 
             try
             {
-
-                // 対象フォームが読み込まれていないときはすぐに終了する
-                if (Application.OpenForms["F_メーカー管理"] == null)
+                if (Application.OpenForms["F_シリーズ在庫参照"] == null)
                 {
-                    MessageBox.Show("[メーカー管理]画面が起動していない状態では実行できません。", "警告", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    MessageBox.Show("[F_シリーズ在庫参照]画面が起動していない状態では実行できません。", "警告", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     this.Close();
                     return;
                 }
 
-                //F_メーカー管理 frmTarget = new F_メーカー管理(); // NEWだと開いてるインスタンスにならない
+                今日の日付.Text = DateTime.Today.ToString("yyyy/MM/dd");
+                シリーズコード.Text = strシリーズコード;
+                シリーズ名.Text = strシリーズ名;
+                確認日.Text = dtm確認日.ToString("yyyy/MM/dd");
+                在庫数量.Text = lng在庫数量.ToString();
+                補正数量.Text = lng補正数量.ToString();
+                
 
-                //開いているフォームのインスタンスを作成する
-                F_メーカー管理 frmTarget = Application.OpenForms.OfType<F_メーカー管理>().FirstOrDefault();
-
-                // F_メーカー管理クラスからデータを取得し、現在のフォームのコントロールに設定
-                this.メーカー名.Text = frmTarget.strメーカー名;
-                担当者名.Text = frmTarget.str担当者名;
-                担当者メールアドレス.Text = frmTarget.str担当者メールアドレス;
-                if (frmTarget.dtm更新日開始 != DateTime.MinValue)
-                    更新日開始.Text = frmTarget.dtm更新日開始.ToString();
-                if (frmTarget.dtm更新日終了 != DateTime.MinValue)
-                    更新日終了.Text = frmTarget.dtm更新日終了.ToString();
-                更新者名.Text = frmTarget.str更新者名;
-
- 
-                switch (frmTarget.lngDeleted)
-                {
-                    case 1:
-                        DeletedButton1.Checked = true;
-                        break;
-                    case 2:
-                        DeletedButton2.Checked = true;
-                        break;
-                    case 0:
-                        DeletedButton3.Checked = true;
-                        break;
-
-                    default:
-                        // intComposedChipMount の値に対応するラジオボタンがない場合の処理
-                        break;
-                }
             }
             catch (Exception ex)
             {
@@ -79,111 +67,10 @@ namespace u_net
             }
         }
 
-        private void 抽出ボタン_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                F_メーカー管理? frmTarget = Application.OpenForms.OfType<F_メーカー管理>().FirstOrDefault();
-                //F_メーカー管理 frmTarget = new F_メーカー管理();
-
-
-
-                frmTarget.strメーカー名 = Nz(メーカー名.Text);
-                frmTarget.str担当者名 = Nz(担当者名.Text);
-                frmTarget.str担当者メールアドレス = Nz(担当者メールアドレス.Text);
-                frmTarget.dtm更新日開始 = string.IsNullOrEmpty(更新日開始.Text) ?
-                    DateTime.MinValue : DateTime.Parse(更新日開始.Text);
-
-                frmTarget.dtm更新日終了 = string.IsNullOrEmpty(更新日終了.Text) ?
-                    DateTime.MinValue : DateTime.Parse(更新日終了.Text);
-
-                frmTarget.str更新者名 = Nz(更新者名.Text);
-
-             
-                if (DeletedButton1.Checked)
-                {
-                    frmTarget.lngDeleted = 1;
-                }
-                else if (DeletedButton2.Checked)
-                {
-                    frmTarget.lngDeleted = 2;
-                }
-                else if (DeletedButton3.Checked)
-                {
-                    frmTarget.lngDeleted = 0;
-                }
-
-
-
-                long cnt = frmTarget.DoUpdate();
-
-                if (cnt == 0)
-                {
-                    MessageBox.Show("抽出条件に一致するデータはありません。", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                    return;
-                }
-                else if (cnt < 0)
-                {
-                    MessageBox.Show("エラーが発生したため、抽出できませんでした。", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    return;
-                }
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine(this.Name + "_抽出ボタン_Click - " + ex.Message);
-                MessageBox.Show("エラーが発生しました。", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
-                //this.Painting = true;
-                this.Close();
-            }
-        }
-
+      
         private void キャンセルボタン_MouseClick(object sender, MouseEventArgs e)
         {
             this.Close();
-        }
-
-        // Nz メソッドの代替
-        private T Nz<T>(T value)
-        {
-            if (value == null)
-            {
-                return default(T);
-            }
-            return value;
-        }
-
-        private F_カレンダー dateSelectionForm;
-
-        private void 更新日終了選択_Click(object sender, EventArgs e)
-        {
-            // 日付選択フォームを作成し表示
-            dateSelectionForm = new F_カレンダー();
-            if (dateSelectionForm.ShowDialog() == DialogResult.OK)
-            {
-                // 日付選択フォームから選択した日付を取得
-                string selectedDate = dateSelectionForm.SelectedDate;
-
-                // フォームAの日付コントロールに選択した日付を設定
-                更新日終了.Text = selectedDate;
-            }
-        }
-
-        private void 更新日開始選択_Click(object sender, EventArgs e)
-        {
-            // 日付選択フォームを作成し表示
-            dateSelectionForm = new F_カレンダー();
-            if (dateSelectionForm.ShowDialog() == DialogResult.OK)
-            {
-                // 日付選択フォームから選択した日付を取得
-                string selectedDate = dateSelectionForm.SelectedDate;
-
-                // フォームAの日付コントロールに選択した日付を設定
-                更新日開始.Text = selectedDate;
-            }
         }
 
         private void F_シリーズ在庫補正_FormClosing(object sender, FormClosingEventArgs e)
@@ -192,5 +79,105 @@ namespace u_net
             LocalSetting test = new LocalSetting();
             test.SavePlace(LoginUserCode, this);
         }
+
+        private void 補正数量減少ボタン_Click(object sender, EventArgs e)
+        {
+            int num = int.Parse(補正数量.Text);
+            補正数量.Text = (num-1).ToString();
+
+        }
+
+        private void 補正数量増加ボタン_Click(object sender, EventArgs e)
+        {
+            int num = int.Parse(補正数量.Text);
+            補正数量.Text = (num + 1).ToString();
+        }
+
+        private void 補正実行ボタン_Click(object sender, EventArgs e)
+        {
+            FunctionClass fn = new FunctionClass();
+            fn.DoWait("しばらくお待ちください...");
+
+            try
+            {
+                
+
+                long lngAdjust = Convert.ToInt64(補正数量.Text);
+
+                Connect();
+
+
+                SqlTransaction transaction = cn.BeginTransaction();
+
+                try
+                {
+                    string strKey = $"シリーズコード='{シリーズコード.Text}' AND 補正日='{確認日.Text}'";
+
+                    using (SqlCommand deleteCommand = new SqlCommand($"DELETE FROM Tシリーズ在庫補正 WHERE {strKey}", cn, transaction))
+                    {
+                        deleteCommand.ExecuteNonQuery();
+                    }
+
+                    if (lngAdjust != 0)
+                    {
+                        using (SqlCommand insertCommand = new SqlCommand(
+                            "INSERT INTO Tシリーズ在庫補正 (シリーズコード,補正日,補正数量,在庫締めコード,登録日時,登録者コード) " +
+                            $"VALUES ('{シリーズコード.Text}','{確認日.Text}',{lngAdjust},NULL,GETDATE(),'{CommonConstants.LoginUserCode}')", cn, transaction))
+                        {
+                            insertCommand.ExecuteNonQuery();
+                        }
+                    }
+
+                    transaction.Commit();
+                    fn.WaitForm.Close();
+
+
+
+                }
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                    fn.WaitForm.Close();
+
+                    Debug.Print($"{this.Name}_補正実行ボタン_Click - {ex.Message}");
+                    MessageBox.Show("エラーが発生したため、処理は取り消されました。",
+                                    "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            finally
+            {
+                this.Close();
+            }
+        }
+
+
+
+        private bool RecalcStock(string seriesCode, DateTime beginDate)
+        {
+            Connect();
+
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand("SPシリーズ在庫再計算", cn))
+                {
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@BeginDate", beginDate);
+                    cmd.Parameters.AddWithValue("@SeriesCode", seriesCode);
+
+                    cmd.ExecuteNonQuery();
+                }
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"{this.Name}_RecalcStock - {ex.Message}");
+                return false;
+            }
+
+           
+        }
+
+
     }
 }
