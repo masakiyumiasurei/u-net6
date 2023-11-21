@@ -85,7 +85,7 @@ namespace u_net.Public
                 }
                 else
                 {
-                    if (!(control is TextBox) && !(control is ComboBox) && !(control is CheckBox))
+                    if (!(control is TextBox) && !(control is ComboBox) && !(control is CheckBox) && !(control is MaskedTextBox))
                     {
                         continue;
                     }
@@ -115,6 +115,13 @@ namespace u_net.Public
 
                         case CheckBox checkBox:
                             controlValue = checkBox.Checked ? -1 : 0;
+                            break;
+
+                        case MaskedTextBox maskedtextBox:
+                            if (!string.IsNullOrEmpty(maskedtextBox.Text))
+                            {
+                                controlValue = maskedtextBox.Text;
+                            }
                             break;
                     }
 

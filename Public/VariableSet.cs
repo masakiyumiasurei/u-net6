@@ -92,7 +92,7 @@ namespace u_net.Public
                 }
                 else
                 {
-                    if (!(control is TextBox) && !(control is ComboBox) && !(control is CheckBox))
+                    if (!(control is TextBox) && !(control is ComboBox) && !(control is CheckBox) && !(control is MaskedTextBox))
                     {
                         continue;
                     }
@@ -128,6 +128,10 @@ namespace u_net.Public
             else if (control is CheckBox checkBox)
             {
                 checkBox.Checked = Convert.ToInt32(value) != 0;
+            }
+            else if (control is MaskedTextBox maskedTextBox)
+            {
+                maskedTextBox.Text = value.ToString();
             }
 
         }

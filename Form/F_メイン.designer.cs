@@ -1,7 +1,7 @@
 ﻿
 namespace u_net
 {
-    partial class F_仕入先
+    partial class F_メイン
     {
         /// <summary>
         /// 必要なデザイナー変数です。

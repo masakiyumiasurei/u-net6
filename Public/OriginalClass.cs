@@ -98,7 +98,7 @@ namespace u_net.Public
             {
                 if (item is DataRowView rowView)
                 {
-                    string itemText = rowView.Row.Field<string>(1); // 2列目を取得
+                    string itemText = rowView["display"].ToString();  // rowView.Row.Field<string>(1); // 2列目を取得
                     //MessageBox.Show(itemText);
 
                     if (itemText == value)

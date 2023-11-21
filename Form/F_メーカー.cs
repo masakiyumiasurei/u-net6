@@ -1178,7 +1178,7 @@ namespace u_net
             string zipCode = 郵便番号.Text;
 
             // 郵便番号が正しい形式かどうかを確認
-            if (OriginalClass.IsValidZipCode(zipCode))
+            if (OriginalClass.IsValidZipCode(zipCode) && string.IsNullOrEmpty(住所1.Text))
             {
                 // 郵便番号APIを使用して住所情報を取得
                 string address = await OriginalClass.GetAddressFromZipCode(zipCode);

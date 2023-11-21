@@ -20,25 +20,19 @@ using static System.ComponentModel.Design.ObjectSelectorEditor;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 using System.Transactions;
+using System.Data.Common;
 
 namespace u_net
 {
-    public partial class F_仕入先 : Form
+    public partial class F_メイン : Form
     {
         private Control previousControl;
         private SqlConnection cn;
         private SqlTransaction tx;
         public string args = "";
-        private string BASE_CAPTION = "仕入先";
+        private string BASE_CAPTION = "メイン";
         private bool setCombo = true;
-
-        public bool IsInvalid
-        {
-            get
-            {
-                return 無効日時.Text != null;
-            }
-        }
+               
         public bool IsChanged
         {
             get
@@ -53,35 +47,11 @@ namespace u_net
             {
                 return !コマンド新規.Enabled;
             }
-        }
+        } 
 
-        public string CurrentCode
+        public F_メイン()
         {
-            get
-            {
-                return string.IsNullOrEmpty(仕入先コード.Text) ? "" : 仕入先コード.Text;
-            }
-        }
-
-        public int CurrentRevision
-        {
-            get
-            {
-                return string.IsNullOrEmpty(Revision.Text) ? 0 : int.Parse(Revision.Text);
-            }
-        }
-        public bool IsDeleted
-        {
-            get
-            {
-                bool isEmptyOrDbNull = string.IsNullOrEmpty(this.無効日時.Text) || Convert.IsDBNull(this.無効日時.Text);
-                return !isEmptyOrDbNull;
-            }
-        }
-
-        public F_仕入先()
-        {
-            this.Text = "仕入先";       // ウィンドウタイトルを設定
+            this.Text = "メイン";       // ウィンドウタイトルを設定
             this.MaximizeBox = false;  // 最大化ボタンを無効化
             this.MinimizeBox = false; //最小化ボタンを無効化
 
@@ -110,91 +80,102 @@ namespace u_net
 
         private void Form_Load(object sender, EventArgs e)
         {
-            foreach (Control control in Controls)
-            {
-                control.PreviewKeyDown += OriginalClass.ValidateCheck;
-            }
+            //foreach (Control control in Controls)
+            //{
+            //    control.PreviewKeyDown += OriginalClass.ValidateCheck;
+            //}
 
             FunctionClass fn = new FunctionClass();
             fn.DoWait("しばらくお待ちください...");
-
+                       
 
             //実行中フォーム起動
             //string LoginUserCode = "000";//テスト用 ログインユーザを実行中にどのように管理するか決まったら修正
-            LocalSetting localSetting = new LocalSetting();
-            localSetting.LoadPlace(CommonConstants.LoginUserCode, this);
+            //LocalSetting localSetting = new LocalSetting();
+            //localSetting.LoadPlace(CommonConstants.LoginUserCode, this);
 
-            //コンボボックスの設定
-            OriginalClass ofn = new OriginalClass();
-            ofn.SetComboBox(仕入先コード, "SELECT 仕入先名 as Disply,仕入先コード as Value FROM M仕入先 ORDER BY 仕入先コード DESC");
-            ofn.SetComboBox(Revision, "SELECT Revision as Disply , Revision as Value FROM M仕入先 ORDER BY Revision DESC");
+            try
+            {
+                Connect();
+                string strLastVersion;
+                int inti;
 
-            this.支払先専用.DataSource = new KeyValuePair<int, String>[] {
-                new KeyValuePair<int, String>(1, "専用とする"),
-                new KeyValuePair<int, String>(0, "専用としない"),
-            };
-            this.支払先専用.DisplayMember = "Value";
-            this.支払先専用.ValueMember = "Key";
+                this.Text = CommonConstants.STR_APPTITLE + " Ver." + strAppVer;
 
-            this.CloseDay.DataSource = new KeyValuePair<int, String>[] {
-                new KeyValuePair<int, String>(5, "5日"),
-                new KeyValuePair<int, String>(10, "10日"),
-                new KeyValuePair<int, String>(15, "15日"),
-                new KeyValuePair<int, String>(20, "20日"),
-                new KeyValuePair<int, String>(25, "25日"),
-                new KeyValuePair<int, String>(0, "末日"),
-            };
-            this.CloseDay.DisplayMember = "Value";
-            this.CloseDay.ValueMember = "Key";
+                // クライアント情報取得
+                MyOsName = SysVersion;
+                MyComputerName = computerName();
+                MyUserName = NetUserName;
 
-            this.評価ランク.DataSource = new KeyValuePair<String, String>[] {
-                new KeyValuePair<String, String>("A ", "A "),
-                new KeyValuePair<String, String>("B1", "B1"),
-                new KeyValuePair<String, String>("B2", "B2"),
-                new KeyValuePair<String, String>("B3", "B3"),
-                new KeyValuePair<String, String>("C ", "C "),
-            };
-            this.評価ランク.DisplayMember = "Value";
-            this.評価ランク.ValueMember = "Key";
+                strLastVersion = GetLastVersion(objConnection);
 
-            this.振込先金融機関分類コード.DataSource = new KeyValuePair<int, String>[] {
-                new KeyValuePair<int, String>(1, "銀行"),
-                new KeyValuePair<int, String>(2, "信用金庫"),
-                new KeyValuePair<int, String>(3, "信用組合"),
-                new KeyValuePair<int, String>(4, "農協"),
-            };
-            this.振込先金融機関分類コード.DisplayMember = "Value";
-            this.振込先金融機関分類コード.ValueMember = "Key";
+                LoginUserCode = employeeCode(objConnection, MyUserName);
+                LoginUserName = GetUserName(objConnection, LoginUserCode);
+                LoginDep = GetDepartment(objConnection, LoginUserCode);
+                LoginUserFullName = EmployeeName(objConnection, LoginUserCode);
 
-            this.振込先金融機関店分類コード.DataSource = new KeyValuePair<int, String>[] {
-                new KeyValuePair<int, String>(1, "本店"),
-                new KeyValuePair<int, String>(2, "支店"),
-            };
-            this.振込先金融機関店分類コード.DisplayMember = "Value";
-            this.振込先金融機関店分類コード.ValueMember = "Key";
+                m_strServerName = GetServerName(objConnection);
 
-            this.振込先口座区分コード.DataSource = new KeyValuePair<int, String>[] {
-                new KeyValuePair<int, String>(1, "普通"),
-                new KeyValuePair<int, String>(2, "当座"),
-            };
-            this.振込先口座区分コード.DisplayMember = "Value";
-            this.振込先口座区分コード.ValueMember = "Key";
+                this.ログインユーザー名.Value = Zn(LoginUserFullName);
 
-            this.振込手数料負担コード.DataSource = new KeyValuePair<int, String>[] {
-                new KeyValuePair<int, String>(1, "支払先"),
-                new KeyValuePair<int, String>(2, "自社"),
-                new KeyValuePair<int, String>(3, "自社（条件付）"),
+                LoginUserCode = "test";
 
-            };
-            this.振込手数料負担コード.DisplayMember = "Value";
-            this.振込手数料負担コード.ValueMember = "Key";
+                if (LoginUserCode == "")
+                {
+                    if (LoginUserCode == "")
+                    {
+                        MessageBox.Show("システムにログインする必要があります。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        this.ログインボタン.Caption = "ログイン";
+                        this.ログインボタン.Focus();
+                    }
+                    else
+                    {
+                        this.ログインボタン.Caption = "ログアウト";
+                    }
+                }
+                else
+                {
+                    this.ログインボタン.Caption = "ログアウト";
+                }
 
-            this.相殺有無.DataSource = new KeyValuePair<int, String>[] {
-                new KeyValuePair<int, String>(1, "有り"),
-                new KeyValuePair<int, String>(2, "無し"),
-            };
-            this.相殺有無.DisplayMember = "Value";
-            this.相殺有無.ValueMember = "Key";
+                if (IsAbsence(objConnection, USER_CODE_SALES))
+                {
+                    this.営業部部長不在ボタン.PictureData = this.不在イメージコマンド.PictureData;
+                }
+                else
+                {
+                    this.営業部部長不在ボタン.PictureData = this.在席イメージコマンド.PictureData;
+                }
+
+                this.日付.Caption = DateTime.Now.ToString("yyyy年M月d日");
+
+                string targetPass = "C:\\Users\\okabe.h\\Desktop\\システム関係\\yユーアイネクス\\コピー先\\work.mdb";
+
+                if (!File.Exists(targetPass))
+                {
+                    string sourcePass = "C:\\Users\\okabe.h\\Desktop\\システム関係\\yユーアイネクス\\work.mdb";
+
+                    if (!Directory.Exists("C:\\Users\\okabe.h\\Desktop\\システム関係\\yユーアイネクス\\コピー先"))
+                    {
+                        Directory.CreateDirectory("C:\\Users\\okabe.h\\Desktop\\システム関係\\yユーアイネクス\\コピー先");
+                    }
+
+                    File.Copy(sourcePass, targetPass);
+                }
+            }
+            finally
+            {
+                this.Painting = true;
+            }
+        }
+
+
+
+
+
+
+
+
 
             try
             {

@@ -35,6 +35,9 @@
     <Compile Update="Form\F_システム.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Form\F_メイン.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Form\F_シリーズ在庫補正.cs">
       <SubType>Form</SubType>
     </Compile>
