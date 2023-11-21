@@ -314,6 +314,7 @@
             this.Controls.Add(this.label5);
             this.Name = "F_メーカー管理_抽出";
             this.Text = "F_メーカー管理_抽出";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.F_メーカー管理_抽出_FormClosing);
             this.Load += new System.EventHandler(this.Form_Load);
             this.Deleted.ResumeLayout(false);
             this.Deleted.PerformLayout();

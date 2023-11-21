@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using u_net.Public;
 
 namespace u_net
 {
@@ -22,6 +23,11 @@ namespace u_net
 
         private void Form_Load(object sender, EventArgs e)
         {
+
+            string LoginUserCode = "000";//テスト用 ログインユーザを実行中にどのように管理するか決まったら修正
+            LocalSetting localSetting = new LocalSetting();
+            localSetting.LoadPlace(LoginUserCode, this);
+
             try
             {
 
@@ -178,6 +184,13 @@ namespace u_net
                 // フォームAの日付コントロールに選択した日付を設定
                 更新日開始.Text = selectedDate;
             }
+        }
+
+        private void F_メーカー管理_抽出_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            string LoginUserCode = "000";//テスト用 ログインユーザを実行中にどのように管理するか決まったら修正
+            LocalSetting test = new LocalSetting();
+            test.SavePlace(LoginUserCode, this);
         }
     }
 }

@@ -414,6 +414,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "F_入出庫履歴";
             this.Text = "入出庫履歴";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.F_入出庫履歴_FormClosing);
             this.Load += new System.EventHandler(this.Form_Load);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
