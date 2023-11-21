@@ -41,7 +41,9 @@ namespace u_net
         private void Form_Load(object sender, EventArgs e)
         {
 
-  
+            string LoginUserCode = "000";//テスト用 ログインユーザを実行中にどのように管理するか決まったら修正
+            LocalSetting localSetting = new LocalSetting();
+            localSetting.LoadPlace(LoginUserCode, this);
 
             MyApi myapi = new MyApi();
             int xSize, ySize, intpixel, twipperdot;
@@ -158,6 +160,13 @@ namespace u_net
                 品名.Text = null;
                 型番.Text = null;
             }
+        }
+
+        private void F_入出庫履歴_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            string LoginUserCode = "000";//テスト用 ログインユーザを実行中にどのように管理するか決まったら修正
+            LocalSetting test = new LocalSetting();
+            test.SavePlace(LoginUserCode, this);
         }
     }
 }

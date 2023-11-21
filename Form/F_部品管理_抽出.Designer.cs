@@ -558,6 +558,7 @@
             this.MinimizeBox = false;
             this.Name = "F_部品管理_抽出";
             this.Text = "F_部品管理_抽出";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.F_部品管理_抽出_FormClosing);
             this.Load += new System.EventHandler(this.Form_Load);
             this.削除指定.ResumeLayout(false);
             this.削除指定.PerformLayout();
