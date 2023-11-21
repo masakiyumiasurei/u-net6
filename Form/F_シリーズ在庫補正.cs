@@ -12,9 +12,9 @@ using u_net.Public;
 
 namespace u_net
 {
-    public partial class F_メーカー管理_抽出 : Form
+    public partial class F_シリーズ在庫補正 : Form
     {
-        public F_メーカー管理_抽出()
+        public F_シリーズ在庫補正()
         {
             InitializeComponent();
         }
@@ -186,7 +186,7 @@ namespace u_net
             }
         }
 
-        private void F_メーカー管理_抽出_FormClosing(object sender, FormClosingEventArgs e)
+        private void F_シリーズ在庫補正_FormClosing(object sender, FormClosingEventArgs e)
         {
             string LoginUserCode = "000";//テスト用 ログインユーザを実行中にどのように管理するか決まったら修正
             LocalSetting test = new LocalSetting();
