@@ -78,15 +78,12 @@ namespace u_net
 
             toolTip1.SetToolTip(営業部部長不在ボタン, "営業部部長の在席状況を切り替えます");
 
-
+            FunctionClass fn = new FunctionClass();
+            fn.DoWait("しばらくお待ちください...");
 
             try
-            {
-                FunctionClass fn = new FunctionClass();
-                fn.DoWait("しばらくお待ちください...");
-
-                //テストコメント
-                //Connect();
+            {   
+                Connect();
                 string strLastVersion;
                 int inti;
 
@@ -108,14 +105,17 @@ namespace u_net
 
                 //サーバー名を設定する
                 m_strServerName = GetServerName(cn);
+                ServerInstanceName = m_strServerName;
 
                 this.ログインユーザー名.Text = fn.Zn(LoginUserFullName).ToString();
 
                 if (LoginUserCode == "")
                 {
+                    ログインボタン_Click(sender,e);
+
                     if (LoginUserCode == "")
                     {
-                        MessageBox.Show("システムにログインする必要があります。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        MessageBox.Show("システムにログインする必要があります。", "認証してください", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         this.ログインボタン.Text = "ログイン";
                         this.ログインボタン.Focus();
                     }
@@ -143,7 +143,7 @@ namespace u_net
             }
             finally
             {
-
+                fn.WaitForm.Close();
             }
         }
 
@@ -160,8 +160,7 @@ namespace u_net
         private void ログインボタン_Click(object sender, EventArgs e)
         {
             try
-            {
-                LoginUserCode = "test";
+            {                
 
                 if (LoginUserCode == "")
                 {
@@ -169,13 +168,12 @@ namespace u_net
                     F_認証 fm = new F_認証();
                     fm.ShowDialog();
 
-                    if (fm.DialogResult == DialogResult.OK)
+                    if (!string.IsNullOrEmpty(strCertificateCode))
                     {
-                        LoginUserCode = employeeCode(cn, MyUserName);
+                        LoginUserCode = strCertificateCode;
                         LoginUserName = GetUserName(cn, LoginUserCode);
                         LoginDep = GetDepartment(cn, LoginUserCode);
                         ログインボタン.Text = "ログアウト";
-
                     }
                     else
                     {

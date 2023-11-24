@@ -2738,9 +2738,22 @@ namespace u_net.Public
                 string param;
                 Process process = new Process();
                 param = $" -user:{CommonConstants.LoginUserName}{para}";
-                process.StartInfo.FileName = $"{Environment.GetEnvironmentVariable("ProgramFiles")}\\Uinics\\Uinics U-net 3 Client\\unetc.exe";
-                process.StartInfo.Arguments = param;
-                process.Start();
+
+                string programFilesPath = Environment.GetEnvironmentVariable("ProgramFiles");
+                string exePath = Path.Combine(programFilesPath, "Uinics", "Uinics U-net 3 Client", "unetc.exe");
+
+                if (!File.Exists(exePath))
+                {
+                    //programFilesにない場合は32bitを検索
+                    programFilesPath = Environment.GetEnvironmentVariable("ProgramFiles(x86)");
+                    exePath = Path.Combine(programFilesPath, "Uinics", "Uinics U-net 3 Client", "unetc.exe");
+                }
+
+                    //process.StartInfo.FileName = $"{Environment.GetEnvironmentVariable("ProgramFiles")}\\Uinics\\Uinics U-net 3 Client\\unetc.exe";
+                    process.StartInfo.FileName = exePath;
+                    process.StartInfo.Arguments = param;
+                    process.Start();                
+                
             }
             catch
             {

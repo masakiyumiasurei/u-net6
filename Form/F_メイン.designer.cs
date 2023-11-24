@@ -766,7 +766,7 @@ namespace u_net
             技術.Location = new Point(4, 24);
             技術.Name = "技術";
             技術.Padding = new Padding(3);
-            技術.Size = new Size(607, 434);
+            技術.Size = new Size(577, 380);
             技術.TabIndex = 2;
             技術.Text = "技術";
             技術.UseVisualStyleBackColor = true;
@@ -943,7 +943,7 @@ namespace u_net
             管理.Location = new Point(4, 24);
             管理.Name = "管理";
             管理.Padding = new Padding(3);
-            管理.Size = new Size(607, 434);
+            管理.Size = new Size(577, 380);
             管理.TabIndex = 3;
             管理.Text = "管理";
             管理.UseVisualStyleBackColor = true;
@@ -1144,7 +1144,7 @@ namespace u_net
             文書資料.Location = new Point(4, 24);
             文書資料.Name = "文書資料";
             文書資料.Padding = new Padding(3);
-            文書資料.Size = new Size(607, 434);
+            文書資料.Size = new Size(577, 380);
             文書資料.TabIndex = 4;
             文書資料.Text = "文書資料";
             文書資料.UseVisualStyleBackColor = true;
@@ -1298,7 +1298,7 @@ namespace u_net
             共通.Controls.Add(社員管理ボタン);
             共通.Location = new Point(4, 24);
             共通.Name = "共通";
-            共通.Size = new Size(607, 434);
+            共通.Size = new Size(577, 380);
             共通.TabIndex = 5;
             共通.Text = "共通";
             共通.UseVisualStyleBackColor = true;
@@ -1580,6 +1580,7 @@ namespace u_net
             ログインユーザー名.ReadOnly = true;
             ログインユーザー名.Size = new Size(188, 23);
             ログインユーザー名.TabIndex = 181;
+            ログインユーザー名.TextAlign = HorizontalAlignment.Center;
             // 
             // ログインボタン
             // 
@@ -1605,6 +1606,7 @@ namespace u_net
             日付.ReadOnly = true;
             日付.Size = new Size(188, 23);
             日付.TabIndex = 10004;
+            日付.TextAlign = HorizontalAlignment.Center;
             // 
             // label23
             // 
