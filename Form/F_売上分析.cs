@@ -121,14 +121,14 @@ namespace u_net
        
         private void 全国地区別売上一覧ボタン_Click(object sender, EventArgs e)
         {
-            //F_売上一覧_全国地区別 fm = new F_売上一覧_全国地区別();
-            //fm.ShowDialog();
+            F_売上一覧_全国地区別 fm = new F_売上一覧_全国地区別();
+            fm.ShowDialog();
         }
 
         private void 売上一覧_売上地区別ボタン_Click(object sender, EventArgs e)
         {
-            //F_売上一覧_売上地区別 fm = new F_売上一覧_売上地区別();
-            //fm.ShowDialog();
+            F_売上一覧_売上地区別 fm = new F_売上一覧_売上地区別();
+            fm.ShowDialog();
         }
 
         private void 区分別年度売上一覧ボタン_Click(object sender, EventArgs e)

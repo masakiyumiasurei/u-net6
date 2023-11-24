@@ -87,6 +87,7 @@
             // 
             // 売上一覧_売上地区別ボタン
             // 
+            this.売上一覧_売上地区別ボタン.ForeColor = System.Drawing.Color.Black;
             this.売上一覧_売上地区別ボタン.Location = new System.Drawing.Point(12, 51);
             this.売上一覧_売上地区別ボタン.Name = "売上一覧_売上地区別ボタン";
             this.売上一覧_売上地区別ボタン.Size = new System.Drawing.Size(184, 33);
@@ -97,6 +98,7 @@
             // 
             // 全国地区別売上一覧ボタン
             // 
+            this.全国地区別売上一覧ボタン.ForeColor = System.Drawing.Color.Black;
             this.全国地区別売上一覧ボタン.Location = new System.Drawing.Point(202, 51);
             this.全国地区別売上一覧ボタン.Name = "全国地区別売上一覧ボタン";
             this.全国地区別売上一覧ボタン.Size = new System.Drawing.Size(184, 33);
@@ -127,6 +129,7 @@
             // 
             // 区分別年度売上一覧ボタン
             // 
+            this.区分別年度売上一覧ボタン.ForeColor = System.Drawing.Color.Red;
             this.区分別年度売上一覧ボタン.Location = new System.Drawing.Point(12, 129);
             this.区分別年度売上一覧ボタン.Name = "区分別年度売上一覧ボタン";
             this.区分別年度売上一覧ボタン.Size = new System.Drawing.Size(184, 33);
@@ -137,6 +140,7 @@
             // 
             // 売上一覧_区分別ボタン
             // 
+            this.売上一覧_区分別ボタン.ForeColor = System.Drawing.Color.Red;
             this.売上一覧_区分別ボタン.Location = new System.Drawing.Point(202, 129);
             this.売上一覧_区分別ボタン.Name = "売上一覧_区分別ボタン";
             this.売上一覧_区分別ボタン.Size = new System.Drawing.Size(184, 33);
@@ -147,6 +151,7 @@
             // 
             // 売上明細参照ボタン
             // 
+            this.売上明細参照ボタン.ForeColor = System.Drawing.Color.Red;
             this.売上明細参照ボタン.Location = new System.Drawing.Point(12, 168);
             this.売上明細参照ボタン.Name = "売上明細参照ボタン";
             this.売上明細参照ボタン.Size = new System.Drawing.Size(184, 33);
@@ -187,6 +192,7 @@
             // 
             // 売上計画ボタン
             // 
+            this.売上計画ボタン.ForeColor = System.Drawing.Color.Red;
             this.売上計画ボタン.Location = new System.Drawing.Point(202, 207);
             this.売上計画ボタン.Name = "売上計画ボタン";
             this.売上計画ボタン.Size = new System.Drawing.Size(184, 33);
