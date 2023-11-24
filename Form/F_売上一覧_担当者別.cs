@@ -212,12 +212,15 @@ namespace u_net
 
         private void 集計年月_SelectedIndexChanged(object sender, EventArgs e)
         {
-            FunctionClass fn = new FunctionClass();
-            fn.DoWait("集計しています...");
+            
 
             str集計年度 = 集計年度.Text;
 
             if (string.IsNullOrEmpty(集計年度.Text)) return;
+
+
+            FunctionClass fn = new FunctionClass();
+            fn.DoWait("集計しています...");
 
             if (Filtering(集計年度.Text))
             {
