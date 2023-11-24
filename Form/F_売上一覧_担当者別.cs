@@ -12,6 +12,7 @@ using Microsoft.Data.SqlClient;
 using u_net.Public;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
+
 namespace u_net
 {
     public partial class F_売上一覧_担当者別 : MidForm
@@ -139,11 +140,7 @@ namespace u_net
             }
         }
 
-        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
+        
 
 
         private void コマンド終了_Click(object sender, EventArgs e)
@@ -162,12 +159,55 @@ namespace u_net
 
         private void コマンド出力_Click(object sender, EventArgs e)
         {
+            try
+            {
+                dataGridView1.Focus();
 
+                // 表示されているデータがない場合はユーザーに知らせる
+                if (string.IsNullOrEmpty(str集計年度))
+                {
+                    MessageBox.Show("出力できるデータがありません。\n集計年度を指定してください。",
+                                    "出力コマンド", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    集計年度.Focus();
+                    return;
+                }
+
+                string strSQL;
+
+                // SQLを作成する
+                strSQL = $"EXEC SP売上一覧_担当者別 '{str集計年度}'";
+
+                //F_出力 fm = new F_出力();
+                //fm.args = strSQL;
+                //fm.ShowDialog();
+
+            }
+            catch (Exception ex)
+            {
+                // エラー処理
+                MessageBox.Show($"エラーが発生しました: {ex.Message}", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void コピーボタン_Click(object sender, EventArgs e)
         {
+            try
+            {
+                // 選択されているセルのデータを取得
+                DataObject dataObject = dataGridView1.GetClipboardContent();
 
+                // クリップボードにコピー
+                Clipboard.SetDataObject(dataObject);
+
+                MessageBox.Show("クリップボードへコピーしました。", "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            }
+            catch (Exception ex)
+            {
+                // コピーに失敗した場合はエラーメッセージを表示
+                Console.WriteLine("クリップボードへのコピーに失敗しました。" + ex.Message);
+
+            }
         }
 
         private void 集計年月_SelectedIndexChanged(object sender, EventArgs e)
@@ -188,6 +228,7 @@ namespace u_net
                 コピーボタン.Enabled = false;
                 MessageBox.Show($"エラーが発生しました。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
+
 
 
 
@@ -221,7 +262,13 @@ namespace u_net
                     {
                         DataTable dataTable = new DataTable();
                         adapter.Fill(dataTable);
-                        dataGridView1.DataSource = dataTable;
+                        //dataGridView1.DataSource = dataTable;
+
+                        BindingSource bindingSource = new BindingSource();
+                        bindingSource.DataSource = dataTable;
+
+                        // DataGridView に BindingSource をバインド
+                        dataGridView1.DataSource = bindingSource;
                     }
 
                     // 各月ごとの金額合計行を追加する処理（AddTotalRow 関数）を呼び出す
@@ -281,20 +328,10 @@ namespace u_net
                 int rowCount = dataGridView.Rows.Count;
                 int colCount = dataGridView.Columns.Count;
 
-                // データバインドされているか確認
-                if (dataGridView.DataSource != null)
-                {
-                    // データソースから新しい行を作成し、DataGridViewに反映
-                    DataTable dt = (DataTable)dataGridView.DataSource;
-                    DataRow newRow = dt.NewRow();
-                    dt.Rows.Add(newRow);
-                    dataGridView.DataSource = dt;
-                }
-                else
-                {
-                    // データバインドされていない場合、通常の行追加
-                    dataGridView.Rows.Add();
-                }
+
+                BindingSource bindingSource = (BindingSource)dataGridView.DataSource;
+                bindingSource.AddNew();
+
 
                 // 合計行に表示する文字列
                 dataGridView.Rows[rowCount].Cells[0].Value = "(合計)";
@@ -308,8 +345,12 @@ namespace u_net
                     for (int row = 0; row < rowCount; row++)
                     {
                         // データグリッドビューのセルの値が数値であることを仮定
-                        sum += Convert.ToInt64(dataGridView.Rows[row].Cells[col].Value);
- 
+                        object cellValue = dataGridView.Rows[row].Cells[col].Value;
+                        if (cellValue != null && cellValue.ToString() != "")
+                        {
+                            sum += Convert.ToInt64(cellValue);
+                        }
+
                     }
 
                     // 合計をセルに表示
@@ -325,27 +366,24 @@ namespace u_net
             }
         }
 
-        private void dataGridView1_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
-        {
-            //if (dataGridView1.Rows.Count > 0)
-            //{
-            //    
-            //}
-        }
+
 
         private void dataGridView1_Sorted(object sender, EventArgs e)
         {
             AddTotalRow(dataGridView1);
         }
 
-        private void dataGridView1_SortCompare(object sender, DataGridViewSortCompareEventArgs e)
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex1 == dataGridView1.Rows.Count - 1 || e.RowIndex2 == dataGridView1.Rows.Count - 1)
+            if (e.RowIndex == -1 && e.ColumnIndex > 0)
             {
                 dataGridView1.Rows.RemoveAt(dataGridView1.Rows.Count - 1);
-                e.SortResult = 0; // ソートを無効化
-                e.Handled = true; // イベントのハンドリングを完了
             }
         }
+
+
+
+
+     
     }
 }

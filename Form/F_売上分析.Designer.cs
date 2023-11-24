@@ -143,6 +143,7 @@
             this.売上一覧_区分別ボタン.TabIndex = 254;
             this.売上一覧_区分別ボタン.Text = "製品区分顧客月別売上";
             this.売上一覧_区分別ボタン.UseVisualStyleBackColor = true;
+            this.売上一覧_区分別ボタン.Click += new System.EventHandler(this.売上一覧_区分別ボタン_Click);
             // 
             // 売上明細参照ボタン
             // 
