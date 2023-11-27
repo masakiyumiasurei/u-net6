@@ -24,6 +24,8 @@ using System.Data.Common;
 using static u_net.Public.FunctionClass;
 using static u_net.CommonConstants;
 using System.Runtime.InteropServices;
+using Microsoft.Web.WebView2.Core;
+using System.Reflection;
 
 namespace u_net
 {
@@ -47,6 +49,18 @@ namespace u_net
             this.MinimizeBox = false; //最小化ボタンを無効化
 
             InitializeComponent();
+
+            string appPath = Application.StartupPath;
+            // Image yourImage = Properties.Resources.your_image_resource_name;
+
+            // アイコン画像のファイルパス
+            //string iconPath = Path.Combine(appPath, "icon", "共通.png");
+
+            //string filename = "共通.png";
+            string iconPath = "共通.png";
+            // タブにアイコンを設定
+            SetTabImage(tabControl1, iconPath, 5);
+
         }
         public void Connect()
         {
@@ -69,6 +83,43 @@ namespace u_net
         DataTable dt = new DataTable();
         SqlDataAdapter adapter = new SqlDataAdapter();
 
+        public ImageList ImageList
+        {
+            get; set;
+        }
+
+        private void SetTabImage(TabControl tabControl, string imageName, int tabIndex)
+        {
+            try
+            {
+
+                ImageList imageList = new ImageList();
+
+                imageList.Images.Add(this.不在イメージコマンド.Image);
+                imageList.Images.Add(this.在席イメージコマンド.Image);
+                imageList.ImageSize = new Size(16, 16);
+                tabControl.HotTrack = true;
+                tabControl.Appearance = TabAppearance.FlatButtons;
+                tabControl.ImageList = imageList;
+
+
+
+                tabControl.TabPages[tabIndex].BackgroundImage = imageList.Images[0];
+                tabControl.TabPages[tabIndex].BackgroundImageLayout = ImageLayout.Center;
+
+                tabControl.TabPages[0].BackgroundImage = imageList.Images[1];
+                tabControl.TabPages[0].BackgroundImageLayout = ImageLayout.None;
+                //tabControl.TabPages[tabIndex].BackgroundImage = this.不在イメージコマンド.Image;//image;
+                // tabControl.TabPages[tabIndex].BackgroundImageLayout = ImageLayout.Stretch; // 画像をタブ全体に広げる場合
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"画像の設定に失敗しました。\n\n{ex.Message}", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
         private void Form_Load(object sender, EventArgs e)
         {
             foreach (Control control in Controls)
@@ -77,16 +128,14 @@ namespace u_net
             }
 
             toolTip1.SetToolTip(営業部部長不在ボタン, "営業部部長の在席状況を切り替えます");
+            toolTip1.SetToolTip(ユーアイホームボタン, "UI Homeへジャンプします");
 
-
+            FunctionClass fn = new FunctionClass();
+            fn.DoWait("しばらくお待ちください...");
 
             try
             {
-                FunctionClass fn = new FunctionClass();
-                fn.DoWait("しばらくお待ちください...");
-
-                //テストコメント
-                //Connect();
+                Connect();
                 string strLastVersion;
                 int inti;
 
@@ -108,14 +157,17 @@ namespace u_net
 
                 //サーバー名を設定する
                 m_strServerName = GetServerName(cn);
+                ServerInstanceName = m_strServerName;
 
                 this.ログインユーザー名.Text = fn.Zn(LoginUserFullName).ToString();
 
                 if (LoginUserCode == "")
                 {
+                    ログインボタン_Click(sender, e);
+
                     if (LoginUserCode == "")
                     {
-                        MessageBox.Show("システムにログインする必要があります。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        MessageBox.Show("システムにログインする必要があります。", "認証してください", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         this.ログインボタン.Text = "ログイン";
                         this.ログインボタン.Focus();
                     }
@@ -143,7 +195,7 @@ namespace u_net
             }
             finally
             {
-
+                fn.WaitForm.Close();
             }
         }
 
@@ -161,7 +213,6 @@ namespace u_net
         {
             try
             {
-                LoginUserCode = "test";
 
                 if (LoginUserCode == "")
                 {
@@ -169,13 +220,12 @@ namespace u_net
                     F_認証 fm = new F_認証();
                     fm.ShowDialog();
 
-                    if (fm.DialogResult == DialogResult.OK)
+                    if (!string.IsNullOrEmpty(strCertificateCode))
                     {
-                        LoginUserCode = employeeCode(cn, MyUserName);
+                        LoginUserCode = strCertificateCode;
                         LoginUserName = GetUserName(cn, LoginUserCode);
                         LoginDep = GetDepartment(cn, LoginUserCode);
                         ログインボタン.Text = "ログアウト";
-
                     }
                     else
                     {
@@ -315,11 +365,20 @@ namespace u_net
             string ad = "http://headsv4/";
             try
             {
+                ユーアイホームボタン.ForeColor = Color.FromArgb(0, 0, 255);
                 Process.Start(ad);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ad + "を開けませんでした。。", "OPEN時エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void ユーアイホームボタン_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (ユーアイホームボタン.ForeColor == Color.FromArgb(0, 0, 255))
+            {
+                ユーアイホームボタン.ForeColor = Color.FromArgb(255, 0, 0);
             }
         }
 
@@ -762,6 +821,69 @@ namespace u_net
             string replacedServerInstanceName = ServerInstanceName.Replace(" ", "_");
             string param = $" -sv:{replacedServerInstanceName} -open:holiday";
             GetShell(param);
+        }
+
+        private void 営業部部長不在ボタン_Click(object sender, EventArgs e)
+        {
+            Connect();
+            try
+            {
+                string strEmployeeCode = USER_CODE_SALES;
+
+                // ログインユーザーが承認者でなければ認証する
+                if (LoginUserCode != strEmployeeCode)
+                {
+                    F_認証 fm = new F_認証();
+                    fm.args = strEmployeeCode;
+                    fm.ShowDialog();
+
+                    // 認証が不成立ならば処理終了
+                    if (string.IsNullOrEmpty(strCertificateCode))
+                        return;
+                }
+
+                string strSQL = $"SELECT * FROM T不在社員 WHERE 社員コード = '{strEmployeeCode}'";
+                using (SqlDataAdapter adapter = new SqlDataAdapter(strSQL, cn))
+                {
+                    using (SqlCommandBuilder builder = new SqlCommandBuilder(adapter))
+                    {
+                        DataTable dataTable = new DataTable();
+                        adapter.Fill(dataTable);
+
+                        if (dataTable.Rows.Count == 0)
+                        {
+                            // レコードが存在しない場合は追加
+                            DataRow newRow = dataTable.NewRow();
+                            newRow["社員コード"] = strEmployeeCode;
+                            dataTable.Rows.Add(newRow);
+                            adapter.Update(dataTable);
+                            MessageBox.Show("不在にしました");
+
+                            this.営業部部長不在ボタン.Image = this.不在イメージコマンド.Image;
+                        }
+                        else
+                        {
+                            // レコードが存在する場合は削除
+                            dataTable.Rows[0].Delete();
+                            adapter.Update(dataTable);
+                            MessageBox.Show("在席にしました");
+
+                            this.営業部部長不在ボタン.Image = this.在席イメージコマンド.Image;
+                        }
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Debug.Print($"営業部部長不在ボタン_Click - {ex.Message}");
+                MessageBox.Show("エラーが発生しました。\n" + ex.Message);
+            }
+
+
+
+
+
         }
     }
 }
