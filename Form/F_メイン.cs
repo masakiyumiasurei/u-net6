@@ -25,6 +25,7 @@ using static u_net.Public.FunctionClass;
 using static u_net.CommonConstants;
 using System.Runtime.InteropServices;
 using Microsoft.Web.WebView2.Core;
+using System.Reflection;
 
 namespace u_net
 {
@@ -48,6 +49,18 @@ namespace u_net
             this.MinimizeBox = false; //最小化ボタンを無効化
 
             InitializeComponent();
+
+            string appPath = Application.StartupPath;
+            // Image yourImage = Properties.Resources.your_image_resource_name;
+
+            // アイコン画像のファイルパス
+            //string iconPath = Path.Combine(appPath, "icon", "共通.png");
+
+            //string filename = "共通.png";
+            string iconPath = "共通.png";
+            // タブにアイコンを設定
+            SetTabImage(tabControl1, iconPath, 5);
+
         }
         public void Connect()
         {
@@ -69,6 +82,43 @@ namespace u_net
         DataSet ds = new DataSet();
         DataTable dt = new DataTable();
         SqlDataAdapter adapter = new SqlDataAdapter();
+
+        public ImageList ImageList
+        {
+            get; set;
+        }
+
+        private void SetTabImage(TabControl tabControl, string imageName, int tabIndex)
+        {
+            try
+            {
+
+                ImageList imageList = new ImageList();
+
+                imageList.Images.Add(this.不在イメージコマンド.Image);
+                imageList.Images.Add(this.在席イメージコマンド.Image);
+                imageList.ImageSize = new Size(16, 16);
+                tabControl.HotTrack = true;
+                tabControl.Appearance = TabAppearance.FlatButtons;
+                tabControl.ImageList = imageList;
+
+
+
+                tabControl.TabPages[tabIndex].BackgroundImage = imageList.Images[0];
+                tabControl.TabPages[tabIndex].BackgroundImageLayout = ImageLayout.Center;
+
+                tabControl.TabPages[0].BackgroundImage = imageList.Images[1];
+                tabControl.TabPages[0].BackgroundImageLayout = ImageLayout.None;
+                //tabControl.TabPages[tabIndex].BackgroundImage = this.不在イメージコマンド.Image;//image;
+                // tabControl.TabPages[tabIndex].BackgroundImageLayout = ImageLayout.Stretch; // 画像をタブ全体に広げる場合
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"画像の設定に失敗しました。\n\n{ex.Message}", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
 
         private void Form_Load(object sender, EventArgs e)
         {
