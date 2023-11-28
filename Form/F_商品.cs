@@ -836,8 +836,6 @@ namespace u_net
                 LocalSetting test = new LocalSetting();
                 test.SavePlace(CommonConstants.LoginUserCode, this);
 
-                //実行中フォーム起動
-
             }
             catch (Exception ex)
             {

@@ -116,6 +116,10 @@ namespace u_net
             x = (screenWidth - this.Width) / 2;
             this.Location = new Point(x, y);
 
+            //実行中フォーム起動              
+            LocalSetting localSetting = new LocalSetting();
+            localSetting.LoadPlace(CommonConstants.LoginUserCode, this);
+
             InitializeFilter();
             DoUpdate();
             Cleargrid(dataGridView1);
@@ -376,6 +380,8 @@ namespace u_net
 
         private void コマンド終了_Click(object sender, EventArgs e)
         {
+            LocalSetting test = new LocalSetting();
+            test.SavePlace(CommonConstants.LoginUserCode, this);
             this.Close();
         }
 
