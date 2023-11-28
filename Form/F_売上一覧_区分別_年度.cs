@@ -15,10 +15,9 @@ using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace u_net
 {
-    public partial class F_売上一覧_区分別 : MidForm
+    public partial class F_売上一覧_区分別_年度 : MidForm
     {
-        public string str売上地区コード;
-        public string str担当者コード;
+
 
         int intWindowHeight = 0;
         int intWindowWidth = 0;
@@ -27,7 +26,7 @@ namespace u_net
 
         private Control? previousControl;
         private SqlConnection? cn;
-        public F_売上一覧_区分別()
+        public F_売上一覧_区分別_年度()
         {
             InitializeComponent();
         }
@@ -74,7 +73,7 @@ namespace u_net
 
             Connect();
 
-            using (SqlCommand cmd = new SqlCommand("SP売掛一覧_売掛年月", cn))
+            using (SqlCommand cmd = new SqlCommand("SP売掛一覧_売掛年月_年", cn))
             {
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
@@ -85,9 +84,9 @@ namespace u_net
                 dataTable.Load(reader);
              
 
-                年月度.DisplayMember = "売掛年月";
-                年月度.ValueMember = "売掛年月";
-                年月度.DataSource = dataTable;
+                年度.DisplayMember = "受注年月";
+                年度.ValueMember = "受注年月";
+                年度.DataSource = dataTable;
 
      
 
@@ -153,7 +152,7 @@ namespace u_net
 
        
 
-        private void F_売上一覧_区分別_FormClosing(object sender, FormClosingEventArgs e)
+        private void F_売上一覧_区分別_年度_FormClosing(object sender, FormClosingEventArgs e)
         {
             string LoginUserCode = CommonConstants.LoginUserCode;//テスト用 ログインユーザを実行中にどのように管理するか決まったら修正
             LocalSetting test = new LocalSetting();
@@ -164,7 +163,7 @@ namespace u_net
       
 
 
-        private  bool Filtering(DateTime SalesMonth,string SalesUserCode)
+        private  bool Filtering(string SalesYear)
         {
             bool success = false;
 
@@ -176,11 +175,11 @@ namespace u_net
                 FunctionClass fn = new FunctionClass();
 
 
-                using (SqlCommand command =  new SqlCommand("SP売上一覧_区分別", cn))
+                using (SqlCommand command =  new SqlCommand("SP売上一覧_区分別_年", cn))
                 {
                     command.CommandType = CommandType.StoredProcedure;
-                    command.Parameters.AddWithValue("@SalesMonth", SalesMonth);
-                    command.Parameters.AddWithValue("@SalesUserCode", fn.Zn(SalesUserCode));
+                    command.Parameters.AddWithValue("@SalesYear", SalesYear);
+            
 
 
                     // データベースからデータを取得して DataGridView に設定
@@ -216,24 +215,21 @@ namespace u_net
 
                     //0列目はaccessでは行ヘッダのため、ずらす
                     //dataGridView1.Columns[0].Width = 500 / twipperdot;
-                    dataGridView1.Columns[0].Width = 1000 / twipperdot; //1150
-                    dataGridView1.Columns[1].Width = 2600 / twipperdot;
-                    dataGridView1.Columns[2].Visible = false;
-                    dataGridView1.Columns[3].Width = 300 / twipperdot;
-                    dataGridView1.Columns[4].Width = 1150 / twipperdot;
-                    dataGridView1.Columns[5].Width = 1150 / twipperdot;
-                    dataGridView1.Columns[6].Width = 1150 / twipperdot;
-                    dataGridView1.Columns[7].Width = 1145 / twipperdot;//1300
-                    dataGridView1.Columns[8].Width = 1145 / twipperdot;
-                    dataGridView1.Columns[9].Width = 1100 / twipperdot;
-                    dataGridView1.Columns[10].Width = 1150 / twipperdot;
-                    dataGridView1.Columns[11].Width = 1150 / twipperdot;
-                    dataGridView1.Columns[12].Width = 1150 / twipperdot;
-                    dataGridView1.Columns[13].Width = 1145 / twipperdot;
-                    dataGridView1.Columns[14].Width = 1145 / twipperdot;
-                    dataGridView1.Columns[15].Width = 1100 / twipperdot;
+                    dataGridView1.Columns[0].Width = 1800 / twipperdot; //1150
+                    dataGridView1.Columns[1].Width = 1300 / twipperdot;
+                    dataGridView1.Columns[2].Width = 1300 / twipperdot;
+                    dataGridView1.Columns[3].Width = 1300 / twipperdot;
+                    dataGridView1.Columns[4].Width = 1300 / twipperdot;
+                    dataGridView1.Columns[5].Width = 1300 / twipperdot;
+                    dataGridView1.Columns[6].Width = 1300 / twipperdot;
+                    dataGridView1.Columns[7].Width = 1300 / twipperdot;//1300
+                    dataGridView1.Columns[8].Width = 1300 / twipperdot;
+                    dataGridView1.Columns[9].Width = 1300 / twipperdot;
+                    dataGridView1.Columns[10].Width = 1300 / twipperdot;
+                    dataGridView1.Columns[11].Width = 1300 / twipperdot;
+                    dataGridView1.Columns[12].Width = 1300 / twipperdot;
 
-                    for (int col = 4; col <= 15; col++)
+                    for (int col = 1; col <= 12; col++)
                     {
                         dataGridView1.Columns[col].DefaultCellStyle.Format = "#,###,###,##0";
                     }
@@ -253,7 +249,7 @@ namespace u_net
 
 
 
-        private bool Filtering2(DateTime SalesMonth, string SalesUserCode)
+        private bool Filtering2(string SalesYear)
         {
             bool success = false;
 
@@ -264,11 +260,11 @@ namespace u_net
                 FunctionClass fn = new FunctionClass();
 
 
-                using (SqlCommand command = new SqlCommand("SP売上一覧_区分別合計", cn))
+                using (SqlCommand command = new SqlCommand("SP売上一覧_区分別合計_年", cn))
                 {
                     command.CommandType = CommandType.StoredProcedure;
-                    command.Parameters.AddWithValue("@SalesMonth", SalesMonth);
-                    command.Parameters.AddWithValue("@SalesUserCode", fn.Zn(SalesUserCode));
+                    command.Parameters.AddWithValue("@SalesYear", SalesYear);
+            
 
 
                     // データベースからデータを取得して DataGridView に設定
@@ -307,13 +303,13 @@ namespace u_net
                     dataGridView2.Columns[3].Width = 1500 / twipperdot;
                     dataGridView2.Columns[4].Width = 1500 / twipperdot;
                     dataGridView2.Columns[5].Width = 1500 / twipperdot;
-                    dataGridView2.Columns[6].Width = 1500 / twipperdot;
 
-                    for(int col = 1; col <= 6; col++)
+
+                    for (int col = 1; col <= 5; col++)
                     {
                         dataGridView2.Columns[col].DefaultCellStyle.Format = "#,###,###,##0";
                     }
-                    
+
 
                 }
 
@@ -332,7 +328,7 @@ namespace u_net
         public bool DoUpdate()
         {
 
-            if (string.IsNullOrEmpty(年月度.Text)) return false;
+            if (string.IsNullOrEmpty(年度.Text)) return false;
 
             FunctionClass fn = new FunctionClass();
             fn.DoWait("集計しています...");
@@ -340,8 +336,8 @@ namespace u_net
             bool result = true;
             try
             {
-                Filtering(DateTime.Parse(年月度.Text),str担当者コード);
-                Filtering2(DateTime.Parse(年月度.Text), str担当者コード);
+                Filtering(年度.Text);
+                Filtering2(年度.Text);
 
             }
             catch (Exception ex)
@@ -355,12 +351,12 @@ namespace u_net
             return result;
         }
 
-
-
-        private void 年月度_SelectedIndexChanged(object sender, EventArgs e)
+        private void 年度_SelectedIndexChanged(object sender, EventArgs e)
         {
             DoUpdate();
         }
+
+ 
 
         private void コマンド印刷_Click(object sender, EventArgs e)
         {
@@ -390,16 +386,7 @@ namespace u_net
         private void コマンド抽出_Click(object sender, EventArgs e)
         {
 
-            if (string.IsNullOrEmpty(年月度.Text))
-            {
-                MessageBox.Show("抽出する前に集計年度を設定してください。", "抽出コマンド", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                年月度.Focus();
-                return;
-            }
-
-            dataGridView1.Focus();
-            F_売上一覧_区分別_抽出 form = new F_売上一覧_区分別_抽出();
-            form.ShowDialog();
+            MessageBox.Show("現在開発中です。", "抽出コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void コマンド顧客_Click(object sender, EventArgs e)
@@ -476,5 +463,7 @@ namespace u_net
                 // エラーハンドリングが必要な場合はここで適切な処理を追加してください
             }
         }
+
+        
     }
 }

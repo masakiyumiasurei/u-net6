@@ -33,7 +33,13 @@
 
   <ItemGroup>
     <Compile Update="Form\F_システム.cs" />
+    <Compile Update="Form\F_売上一覧_区分別_抽出.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Form\F_売上一覧_全国地区別.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Form\F_売上一覧_区分別_年度.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Form\F_売上一覧_売上地区別.cs">
