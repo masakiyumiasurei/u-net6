@@ -575,8 +575,7 @@ namespace u_net
             this.改版ボタン.Name = "改版ボタン";
             this.改版ボタン.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.改版ボタン.Size = new System.Drawing.Size(80, 23);
-            this.改版ボタン.TabIndex = 7;
-            this.改版ボタン.TabStop = false;
+            this.改版ボタン.TabIndex = 21;
             this.改版ボタン.Text = "改版(&R)";
             this.改版ボタン.UseVisualStyleBackColor = true;
             this.改版ボタン.Click += new System.EventHandler(this.改版ボタン_Click);
@@ -729,7 +728,7 @@ namespace u_net
             this.発注者_ラベル.Margin = new System.Windows.Forms.Padding(0);
             this.発注者_ラベル.Name = "発注者_ラベル";
             this.発注者_ラベル.Size = new System.Drawing.Size(100, 17);
-            this.発注者_ラベル.TabIndex = 8;
+            this.発注者_ラベル.TabIndex = 7;
             this.発注者_ラベル.Text = "発注者(&N)";
             this.発注者_ラベル.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -770,7 +769,7 @@ namespace u_net
             this.仕入先コード.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.仕入先コード.Name = "仕入先コード";
             this.仕入先コード.Size = new System.Drawing.Size(116, 20);
-            this.仕入先コード.TabIndex = 11;
+            this.仕入先コード.TabIndex = 10;
             this.仕入先コード.Visible = false;
             // 
             // 仕入先_ラベル
@@ -784,7 +783,7 @@ namespace u_net
             this.仕入先_ラベル.Margin = new System.Windows.Forms.Padding(0);
             this.仕入先_ラベル.Name = "仕入先_ラベル";
             this.仕入先_ラベル.Size = new System.Drawing.Size(100, 17);
-            this.仕入先_ラベル.TabIndex = 10;
+            this.仕入先_ラベル.TabIndex = 9;
             this.仕入先_ラベル.Text = "仕入先(&S)";
             this.仕入先_ラベル.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -823,7 +822,7 @@ namespace u_net
             this.仕入先担当者名.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.仕入先担当者名.Name = "仕入先担当者名";
             this.仕入先担当者名.Size = new System.Drawing.Size(199, 20);
-            this.仕入先担当者名.TabIndex = 13;
+            this.仕入先担当者名.TabIndex = 12;
             this.仕入先担当者名.Visible = false;
             // 
             // 担当者名_ラベル
@@ -837,7 +836,7 @@ namespace u_net
             this.担当者名_ラベル.Margin = new System.Windows.Forms.Padding(0);
             this.担当者名_ラベル.Name = "担当者名_ラベル";
             this.担当者名_ラベル.Size = new System.Drawing.Size(100, 17);
-            this.担当者名_ラベル.TabIndex = 12;
+            this.担当者名_ラベル.TabIndex = 11;
             this.担当者名_ラベル.Text = "担当者名(&P)";
             this.担当者名_ラベル.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -852,7 +851,7 @@ namespace u_net
             this.摘要_ラベル.Margin = new System.Windows.Forms.Padding(0);
             this.摘要_ラベル.Name = "摘要_ラベル";
             this.摘要_ラベル.Size = new System.Drawing.Size(95, 71);
-            this.摘要_ラベル.TabIndex = 14;
+            this.摘要_ラベル.TabIndex = 13;
             this.摘要_ラベル.Text = "摘要(&N)";
             // 
             // 摘要
@@ -865,7 +864,7 @@ namespace u_net
             this.摘要.Multiline = true;
             this.摘要.Name = "摘要";
             this.摘要.Size = new System.Drawing.Size(720, 84);
-            this.摘要.TabIndex = 15;
+            this.摘要.TabIndex = 14;
             // 
             // 備考
             // 
@@ -877,7 +876,7 @@ namespace u_net
             this.備考.Multiline = true;
             this.備考.Name = "備考";
             this.備考.Size = new System.Drawing.Size(720, 44);
-            this.備考.TabIndex = 17;
+            this.備考.TabIndex = 16;
             // 
             // 備考_ラベル
             // 
@@ -890,7 +889,7 @@ namespace u_net
             this.備考_ラベル.Margin = new System.Windows.Forms.Padding(0);
             this.備考_ラベル.Name = "備考_ラベル";
             this.備考_ラベル.Size = new System.Drawing.Size(95, 43);
-            this.備考_ラベル.TabIndex = 16;
+            this.備考_ラベル.TabIndex = 15;
             this.備考_ラベル.Text = "備考(&O)";
             // 
             // 在庫管理_ラベル
@@ -904,7 +903,7 @@ namespace u_net
             this.在庫管理_ラベル.Margin = new System.Windows.Forms.Padding(0);
             this.在庫管理_ラベル.Name = "在庫管理_ラベル";
             this.在庫管理_ラベル.Size = new System.Drawing.Size(95, 17);
-            this.在庫管理_ラベル.TabIndex = 18;
+            this.在庫管理_ラベル.TabIndex = 17;
             this.在庫管理_ラベル.Text = "在庫管理(&M)";
             this.在庫管理_ラベル.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -949,7 +948,7 @@ namespace u_net
             this.振込不要_ラベル.Margin = new System.Windows.Forms.Padding(0);
             this.振込不要_ラベル.Name = "振込不要_ラベル";
             this.振込不要_ラベル.Size = new System.Drawing.Size(95, 17);
-            this.振込不要_ラベル.TabIndex = 20;
+            this.振込不要_ラベル.TabIndex = 19;
             this.振込不要_ラベル.Text = "振込不要(&T)";
             this.振込不要_ラベル.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -1032,7 +1031,7 @@ namespace u_net
             this.在庫管理.Location = new System.Drawing.Point(108, 309);
             this.在庫管理.Name = "在庫管理";
             this.在庫管理.Size = new System.Drawing.Size(15, 14);
-            this.在庫管理.TabIndex = 19;
+            this.在庫管理.TabIndex = 18;
             this.在庫管理.UseVisualStyleBackColor = true;
             // 
             // NoCredit
@@ -1041,7 +1040,7 @@ namespace u_net
             this.NoCredit.Location = new System.Drawing.Point(108, 329);
             this.NoCredit.Name = "NoCredit";
             this.NoCredit.Size = new System.Drawing.Size(15, 14);
-            this.NoCredit.TabIndex = 21;
+            this.NoCredit.TabIndex = 20;
             this.NoCredit.UseVisualStyleBackColor = true;
             this.NoCredit.CheckedChanged += new System.EventHandler(this.NoCredit_CheckedChanged);
             // 
