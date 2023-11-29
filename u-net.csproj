@@ -82,6 +82,9 @@
     <Compile Update="Form\F_発注.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Form\F_入庫.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Form\F_部品管理.cs" />
     <Compile Update="Form\F_入庫管理_抽出.cs" />
     <Compile Update="Form\F_部品管理_抽出.cs" />    <Compile Update="Form\F_社員管理_抽出.cs" />
