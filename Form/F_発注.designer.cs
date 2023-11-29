@@ -99,7 +99,7 @@ namespace u_net
             this.仕入先コード = new System.Windows.Forms.TextBox();
             this.仕入先_ラベル = new System.Windows.Forms.Label();
             this.仕入先選択ボタン = new System.Windows.Forms.Button();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.仕入先名 = new System.Windows.Forms.TextBox();
             this.仕入先担当者名 = new System.Windows.Forms.TextBox();
             this.担当者名_ラベル = new System.Windows.Forms.Label();
             this.摘要_ラベル = new System.Windows.Forms.Label();
@@ -800,18 +800,18 @@ namespace u_net
             this.仕入先選択ボタン.UseVisualStyleBackColor = true;
             this.仕入先選択ボタン.Click += new System.EventHandler(this.仕入先選択ボタン_Click);
             // 
-            // textBox3
+            // 仕入先名
             // 
-            this.textBox3.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox3.Enabled = false;
-            this.textBox3.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBox3.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.textBox3.Location = new System.Drawing.Point(253, 119);
-            this.textBox3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(384, 20);
-            this.textBox3.TabIndex = 10071;
-            this.textBox3.Visible = false;
+            this.仕入先名.BackColor = System.Drawing.SystemColors.Control;
+            this.仕入先名.Enabled = false;
+            this.仕入先名.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.仕入先名.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.仕入先名.Location = new System.Drawing.Point(253, 117);
+            this.仕入先名.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.仕入先名.Name = "仕入先名";
+            this.仕入先名.Size = new System.Drawing.Size(384, 20);
+            this.仕入先名.TabIndex = 10071;
+            this.仕入先名.Visible = false;
             // 
             // 仕入先担当者名
             // 
@@ -1416,7 +1416,7 @@ namespace u_net
             this.Controls.Add(this.摘要_ラベル);
             this.Controls.Add(this.仕入先担当者名);
             this.Controls.Add(this.担当者名_ラベル);
-            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.仕入先名);
             this.Controls.Add(this.仕入先選択ボタン);
             this.Controls.Add(this.仕入先コード);
             this.Controls.Add(this.仕入先_ラベル);
@@ -1584,7 +1584,7 @@ namespace u_net
         private TextBox 仕入先コード;
         private Label 仕入先_ラベル;
         private Button 仕入先選択ボタン;
-        private TextBox textBox3;
+        private TextBox 仕入先名;
         private TextBox 仕入先担当者名;
         private Label 担当者名_ラベル;
         private Label 摘要_ラベル;
