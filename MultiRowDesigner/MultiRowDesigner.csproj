@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{6CE0865D-3D0D-4003-92FD-E81C7AD55593}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>MultiRowDesigner</RootNamespace>
+    <AssemblyName>MultiRowDesigner</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="受注明細.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="受注明細.Designer.cs">
+      <DependentUpon>受注明細.cs</DependentUpon>
+    </Compile>
+    <Compile Include="受注明細テンプレート.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="受注明細テンプレート.designer.cs">
+      <DependentUpon>受注明細テンプレート.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="GrapeCity.Framework.InputMan.v34, Version=3.4.4802.2017, Culture=neutral, PublicKeyToken=fdd90f5c44b73170" />
+    <Reference Include="GrapeCity.Framework.MultiRow.v34, Version=3.4.4802.2017, Culture=neutral, PublicKeyToken=fdd90f5c44b73170" />
+    <Reference Include="GrapeCity.Framework.PlusPak.v34, Version=3.4.4802.2017, Culture=neutral, PublicKeyToken=fdd90f5c44b73170" />
+    <Reference Include="GrapeCity.Win.Editors.v110, Version=11.0.4802.2017, Culture=neutral, PublicKeyToken=0ce01a33ce55ca12" />
+    <Reference Include="GrapeCity.Win.MultiRow.v110, Version=11.0.4802.2017, Culture=neutral, PublicKeyToken=0f7a722ee3c2bdd9, processorArchitecture=MSIL" />
+    <Reference Include="GrapeCity.Win.PlusPak.Calendar.v110, Version=11.0.4802.2017, Culture=neutral, PublicKeyToken=63a9ba12b6923243" />
+    <Reference Include="GrapeCity.Win.PlusPak.v110, Version=11.0.4802.2017, Culture=neutral, PublicKeyToken=63a9ba12b6923243" />
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="受注明細.resx">
+      <DependentUpon>受注明細.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="受注明細テンプレート.resx">
+      <DependentUpon>受注明細テンプレート.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

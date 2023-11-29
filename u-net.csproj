@@ -12,7 +12,24 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="MultiRowDesigner\**" />
+    <EmbeddedResource Remove="MultiRowDesigner\**" />
+    <None Remove="MultiRowDesigner\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="MultiRowDesigner\受注明細.cs" />
+    <Compile Include="MultiRowDesigner\受注明細.Designer.cs" />
+    <Compile Include="MultiRowDesigner\受注明細テンプレート.cs" />
+    <Compile Include="MultiRowDesigner\受注明細テンプレート.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="icon\unetc.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="MultiRowDesigner\受注明細.resx" />
   </ItemGroup>
 
   <ItemGroup>
