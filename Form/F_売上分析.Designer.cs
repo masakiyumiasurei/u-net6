@@ -129,7 +129,7 @@
             // 
             // 区分別年度売上一覧ボタン
             // 
-            this.区分別年度売上一覧ボタン.ForeColor = System.Drawing.Color.Red;
+            this.区分別年度売上一覧ボタン.ForeColor = System.Drawing.Color.Black;
             this.区分別年度売上一覧ボタン.Location = new System.Drawing.Point(12, 129);
             this.区分別年度売上一覧ボタン.Name = "区分別年度売上一覧ボタン";
             this.区分別年度売上一覧ボタン.Size = new System.Drawing.Size(184, 33);
@@ -140,7 +140,7 @@
             // 
             // 売上一覧_区分別ボタン
             // 
-            this.売上一覧_区分別ボタン.ForeColor = System.Drawing.Color.Red;
+            this.売上一覧_区分別ボタン.ForeColor = System.Drawing.Color.Black;
             this.売上一覧_区分別ボタン.Location = new System.Drawing.Point(202, 129);
             this.売上一覧_区分別ボタン.Name = "売上一覧_区分別ボタン";
             this.売上一覧_区分別ボタン.Size = new System.Drawing.Size(184, 33);
@@ -151,7 +151,7 @@
             // 
             // 売上明細参照ボタン
             // 
-            this.売上明細参照ボタン.ForeColor = System.Drawing.Color.Red;
+            this.売上明細参照ボタン.ForeColor = System.Drawing.Color.Black;
             this.売上明細参照ボタン.Location = new System.Drawing.Point(12, 168);
             this.売上明細参照ボタン.Name = "売上明細参照ボタン";
             this.売上明細参照ボタン.Size = new System.Drawing.Size(184, 33);
