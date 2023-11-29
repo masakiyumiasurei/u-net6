@@ -68,6 +68,9 @@
     <Compile Update="Form\F_売上一覧_区分別.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Form\F_売上明細参照.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Form\F_売上一覧_担当者別.cs">
       <SubType>Form</SubType>
     </Compile>
