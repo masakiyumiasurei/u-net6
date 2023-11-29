@@ -19,9 +19,6 @@ using System.Drawing.Printing;
 
 namespace u_net
 {
-
-
-
     public partial class F_発注 : Form
     {
         private Control previousControl;
@@ -30,10 +27,6 @@ namespace u_net
         public string args = "";
         private string BASE_CAPTION = "発注";
         private int selected_frame = 0;
-
-
-
-
 
         public F_発注()
         {
@@ -89,102 +82,6 @@ namespace u_net
             intpixel = myapi.GetLogPixel();
             twipperdot = myapi.GetTwipPerDot(intpixel);
 
-            // DataGridViewの設定
-            部品使用先.AllowUserToResizeColumns = true;
-            部品使用先.ReadOnly = true;
-            部品使用先.AllowUserToAddRows = false;
-            部品使用先.AllowUserToDeleteRows = false;
-            部品使用先.Font = new Font("MS ゴシック", 10);
-            部品使用先.DefaultCellStyle.SelectionBackColor = Color.FromArgb(210, 210, 255);
-            部品使用先.DefaultCellStyle.SelectionForeColor = Color.Black;
-            部品使用先.GridColor = Color.FromArgb(230, 230, 230);
-            部品使用先.ColumnHeadersDefaultCellStyle.Font = new Font("MS ゴシック", 9);
-            部品使用先.DefaultCellStyle.Font = new Font("MS ゴシック", 10);
-            部品使用先.DefaultCellStyle.ForeColor = Color.Black;
-
-            OriginalClass ofn = new OriginalClass();
-            ofn.SetComboBox(発注者コード, "SELECT 分類記号 as Display,対象部品名 as Display2,分類コード as Value FROM M部品分類");
-            発注者コード.DrawMode = DrawMode.OwnerDrawFixed;
-            ofn.SetComboBox(形状分類コード, "SELECT 部品形状名 as Display,部品形状コード as Value FROM M部品形状");
-            ofn.SetComboBox(RohsStatusCode, "SELECT Name as Display,Code as Value FROM rohsStatusCode");
-
-
-            this.JampAis.DataSource = new KeyValuePair<int, String>[] {
-                new KeyValuePair<int, String>(2, "有り"),
-                new KeyValuePair<int, String>(1, "無し"),
-            };
-            this.JampAis.DisplayMember = "Value";
-            this.JampAis.ValueMember = "Key";
-
-            this.非含有証明書.DataSource = new KeyValuePair<byte, String>[] {
-                new KeyValuePair<byte, String>(1, "返却済み"),
-                new KeyValuePair<byte, String>(2, "未返却"),
-                new KeyValuePair<byte, String>(3, "未提出"),
-            };
-            this.非含有証明書.DisplayMember = "Value";
-            this.非含有証明書.ValueMember = "Key";
-
-            this.RoHS資料.DataSource = new KeyValuePair<Int16, String>[] {
-                new KeyValuePair<Int16, String>(2, "有り"),
-                new KeyValuePair<Int16, String>(1, "無し"),
-            };
-            this.RoHS資料.DisplayMember = "Value";
-            this.RoHS資料.ValueMember = "Key";
-
-            this.Rohs1ChemSherpaStatusCode.DataSource = new KeyValuePair<int, String>[] {
-                new KeyValuePair<int, String>(2, "有り"),
-                new KeyValuePair<int, String>(1, "無し"),
-            };
-            this.Rohs1ChemSherpaStatusCode.DisplayMember = "Value";
-            this.Rohs1ChemSherpaStatusCode.ValueMember = "Key";
-
-            this.Rohs2JampAisStatusCode.DataSource = new KeyValuePair<int, String>[] {
-                new KeyValuePair<int, String>(2, "有り"),
-                new KeyValuePair<int, String>(1, "無し"),
-            };
-            this.Rohs2JampAisStatusCode.DisplayMember = "Value";
-            this.Rohs2JampAisStatusCode.ValueMember = "Key";
-
-            this.Rohs2NonInclusionCertificationStatusCode.DataSource = new KeyValuePair<int, String>[] {
-                new KeyValuePair<int, String>(1, "返却済み"),
-                new KeyValuePair<int, String>(2, "未返却"),
-                new KeyValuePair<int, String>(3, "未提出"),
-            };
-            this.Rohs2NonInclusionCertificationStatusCode.DisplayMember = "Value";
-            this.Rohs2NonInclusionCertificationStatusCode.ValueMember = "Key";
-
-            this.Rohs2DocumentStatusCode.DataSource = new KeyValuePair<int, String>[] {
-                new KeyValuePair<int, String>(2, "有り"),
-                new KeyValuePair<int, String>(1, "無し"),
-            };
-            this.Rohs2DocumentStatusCode.DisplayMember = "Value";
-            this.Rohs2DocumentStatusCode.ValueMember = "Key";
-
-            this.Rohs2ChemSherpaStatusCode.DataSource = new KeyValuePair<int, String>[] {
-                new KeyValuePair<int, String>(2, "有り"),
-                new KeyValuePair<int, String>(1, "無し"),
-            };
-            this.Rohs2ChemSherpaStatusCode.DisplayMember = "Value";
-            this.Rohs2ChemSherpaStatusCode.ValueMember = "Key";
-
-            this.CalcInventoryCode.DataSource = new KeyValuePair<string, string>[] {
-            new KeyValuePair<string, string>("01", "する"),
-            new KeyValuePair<string, string>("02", "しない"),
-};
-            this.CalcInventoryCode.DisplayMember = "Value";
-            this.CalcInventoryCode.ValueMember = "Key";
-
-
-            this.受入検査ランク.DataSource = new KeyValuePair<string, string>[] {
-            new KeyValuePair<string, string>("A         ", "A         "),
-            new KeyValuePair<string, string>("B1        ", "B1        "),
-            new KeyValuePair<string, string>("B2        ", "B2        "),
-            new KeyValuePair<string, string>("C         ", "C         "),
-            new KeyValuePair<string, string>("D         ", "D         "),
-};
-            this.受入検査ランク.DisplayMember = "Value";
-            this.受入検査ランク.ValueMember = "Key";
-
 
 
 
@@ -226,79 +123,6 @@ namespace u_net
         }
 
 
-        private void Form_Unload(object sender, FormClosingEventArgs e)
-        {
-
-            string LoginUserCode = CommonConstants.LoginUserCode;//テスト用 ログインユーザを実行中にどのように管理するか決まったら修正
-            LocalSetting test = new LocalSetting();
-            test.SavePlace(LoginUserCode, this);
-
-            try
-            {
-
-                Connect();
-
-                // データへの変更がないときの処理
-                if (!IsChanged)
-                {
-                    // 新規モードで且つコードが取得済みのときはコードを戻す
-                    if (IsNewData && !string.IsNullOrEmpty(CurrentCode) && CurrentEdition == 1)
-                    {
-                        // 採番された番号を戻す
-                        if (!FunctionClass.ReturnCode(cn, "PAR" + CurrentCode))
-                        {
-                            MessageBox.Show("エラーのためコードは破棄されました。" + Environment.NewLine + Environment.NewLine +
-                                            "部品コード　：　" + CurrentCode, "警告", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                        }
-                    }
-                    return;
-                }
-
-                // 修正されているときは登録確認を行う
-                var intRes = MessageBox.Show("変更内容を登録しますか？", "確認", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
-                switch (intRes)
-                {
-                    case DialogResult.Yes:
-                        // エラーチェック
-                        if (!ErrCheck())
-                        {
-                            return;
-                        }
-                        // 登録処理
-                        if (!SaveData())
-                        {
-                            if (MessageBox.Show("エラーのため登録できませんでした。" + Environment.NewLine +
-                                                "強制終了しますか？", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
-                            {
-                                return;
-                            }
-                        }
-                        break;
-                    case DialogResult.No:
-                        // 新規コードを取得していたときはコードを戻す
-                        if (IsNewData && !string.IsNullOrEmpty(CurrentCode) && CurrentEdition == 1)
-                        {
-                            if (!FunctionClass.ReturnCode(cn, "PAR" + CurrentCode))
-                            {
-                                MessageBox.Show("エラーのためコードは破棄されました。" + Environment.NewLine +
-                                                "部品コード　：　" + CurrentCode, "警告", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                            }
-                        }
-                        break;
-                    case DialogResult.Cancel:
-                        return;
-                }
-
-
-            }
-            catch (Exception ex)
-            {
-                Debug.Print(Name + "_Unload - " + ex.Message);
-                MessageBox.Show(ex.Message, "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-
         public bool IsChanged
         {
             get
@@ -315,127 +139,7 @@ namespace u_net
             }
         }
 
-        public string CurrentCode
-        {
-            get
-            {
-                return string.IsNullOrEmpty(発注コード.Text) ? "" : 発注コード.Text;
-            }
-        }
-
-        public int CurrentEdition
-        {
-            get
-            {
-                return string.IsNullOrEmpty(版数.Text) ? 0 : int.Parse(版数.Text);
-            }
-        }
-
-        public bool IsIncluded
-        {
-            get
-            {
-                return !string.IsNullOrEmpty(部品集合コード.Text);
-            }
-        }
-
-        private bool SaveData()
-        {
-
-            Connect();
-            SqlTransaction transaction = cn.BeginTransaction();
-            {
-                try
-                {
-
-                    DateTime dteNow = DateTime.Now;
-                    Control objControl1 = null;
-                    Control objControl2 = null;
-                    Control objControl3 = null;
-                    Control objControl4 = null;
-                    Control objControl5 = null;
-                    Control objControl6 = null;
-                    object varSaved1 = null;
-                    object varSaved2 = null;
-                    object varSaved3 = null;
-                    object varSaved4 = null;
-                    object varSaved5 = null;
-                    object varSaved6 = null;
-
-                    if (IsNewData)
-                    {
-                        objControl1 = this.作成日時;
-                        objControl2 = this.作成者コード;
-                        objControl3 = this.CreatorName;
-                        varSaved1 = objControl1.Text;
-                        varSaved2 = objControl2.Text;
-                        varSaved3 = objControl3.Text;
-                        objControl1.Text = dteNow.ToString(); // ここでDateTimeをstringに変換して設定
-                        objControl2.Text = CommonConstants.LoginUserCode;
-                        objControl3.Text = CommonConstants.LoginUserFullName;
-                    }
-
-                    objControl4 = this.更新日時;
-                    objControl5 = this.更新者コード;
-                    objControl6 = this.UpdaterName;
-
-                    varSaved4 = objControl4.Text;
-                    varSaved5 = objControl5.Text;
-                    varSaved6 = objControl6.Text;
-
-                    objControl4.Text = dteNow.ToString(); // ここでDateTimeをstringに変換して設定
-                    objControl5.Text = CommonConstants.LoginUserCode;
-                    objControl6.Text = CommonConstants.LoginUserFullName;
-
-
-                    string strwhere = " 部品コード='" + this.発注コード.Text + "'";
-
-                    if (!DataUpdater.UpdateOrInsertDataFrom(this, cn, "M部品", strwhere, "部品コード", transaction))
-                    {
-
-
-                        if (IsNewData)
-                        {
-                            objControl1.Text = varSaved1.ToString();
-                            objControl2.Text = varSaved2.ToString();
-                            objControl3.Text = varSaved3.ToString();
-
-                        }
-
-                        objControl4.Text = varSaved4.ToString();
-                        objControl5.Text = varSaved5.ToString();
-                        objControl6.Text = varSaved6.ToString();
-
-                        return false;
-                    }
-
-                    // トランザクションをコミット
-                    transaction.Commit();
-
-
-                    発注コード.Enabled = true;
-
-                    // 新規モードのときは修正モードへ移行する
-                    if (IsNewData)
-                    {
-                        コマンド新規.Enabled = true;
-                    }
-
-                    コマンド複写.Enabled = true;
-                    コマンド削除.Enabled = true;
-                    コマンド登録.Enabled = false;
-
-                    return true;
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine("Error in SaveData: " + ex.Message);
-                    return false;
-                }
-            }
-        }
-
-
+        
         private void コマンド登録_Click(object sender, EventArgs e)
         {
 
@@ -577,7 +281,7 @@ namespace u_net
                 Rohs2NonInclusionCertificationStatusCode.SelectedValue = 3;
                 Rohs2DocumentStatusCode.SelectedValue = 1;
                 Rohs2ProvisionalRegisteredStatusCode.Checked = true;
-                廃止.Checked = false;
+                在庫管理.Checked = false;
 
 
                 ChangedData(false);
@@ -843,11 +547,11 @@ namespace u_net
                     GetNextControl(コマンド送信, false).Focus();
                 }
 
-                string strCode = this.メーカーコード.Text;
+                //string strCode = this.メーカーコード.Text;
                 if (string.IsNullOrEmpty(strCode))
                 {
                     MessageBox.Show("メーカーコードを入力してください。", BASE_CAPTION, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    this.メーカーコード.Focus();
+                    //this.メーカーコード.Focus();
                 }
                 else
                 {
@@ -1632,7 +1336,7 @@ namespace u_net
                         break;
                     case "仕入先2コード":
                         // 仕入先コードからの関連情報表示
-                        Supplier2Name.Text = FunctionClass.GetSupplierName(cn, controlObject.Text.ToString());
+                        SupplierSendMethodCode.Text = FunctionClass.GetSupplierName(cn, controlObject.Text.ToString());
                         break;
                     case "仕入先3コード":
                         // 仕入先コードからの関連情報表示
@@ -2802,6 +2506,26 @@ namespace u_net
         }
 
         private void 仕入先選択ボタン_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void NoCredit_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 注釈3_ラベル_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Supplier2Name_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void SupplierSendMethodCodeフレーム_Enter(object sender, EventArgs e)
         {
 
         }
