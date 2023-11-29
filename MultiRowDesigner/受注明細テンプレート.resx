@@ -112,10 +112,204 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  
+  <metadata name="textBoxCell2.AnnotationCreatedTime" type="System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </metadata>
+  <metadata name="textBoxCell3.AnnotationCreatedTime" type="System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </metadata>
+  <metadata name="textBoxCell4.AnnotationCreatedTime" type="System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </metadata>
+  <metadata name="textBoxCell5.AnnotationCreatedTime" type="System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </metadata>
+  <metadata name="textBoxCell6.AnnotationCreatedTime" type="System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </metadata>
+  <metadata name="textBoxCell7.AnnotationCreatedTime" type="System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </metadata>
+  <metadata name="textBoxCell8.AnnotationCreatedTime" type="System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </metadata>
+  <metadata name="textBoxCell9.AnnotationCreatedTime" type="System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </metadata>
+  <metadata name="textBoxCell10.AnnotationCreatedTime" type="System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </metadata>
+  <metadata name="textBoxCell11.AnnotationCreatedTime" type="System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </metadata>
+  <metadata name="textBoxCell12.AnnotationCreatedTime" type="System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </metadata>
+  <metadata name="textBoxCell16.AnnotationCreatedTime" type="System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </metadata>
+  <metadata name="textBoxCell21.AnnotationCreatedTime" type="System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </metadata>
+  <metadata name="textBoxCell23.AnnotationCreatedTime" type="System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </metadata>
+  <metadata name="textBoxCell26.AnnotationCreatedTime" type="System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </metadata>
+  <metadata name="textBoxCell27.AnnotationCreatedTime" type="System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </metadata>
+  <metadata name="textBoxCell28.AnnotationCreatedTime" type="System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </metadata>
+  <metadata name="textBoxCell29.AnnotationCreatedTime" type="System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </metadata>
+  <metadata name="textBoxCell31.AnnotationCreatedTime" type="System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </metadata>
+  <metadata name="buttonCell1.AnnotationCreatedTime" type="System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </metadata>
+  <metadata name="受注区分.AnnotationCreatedTime" type="System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </metadata>
+  <metadata name="columnHeaderCell1.AnnotationCreatedTime" type="System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </metadata>
+  <metadata name="columnHeaderCell2.AnnotationCreatedTime" type="System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </metadata>
+  <metadata name="columnHeaderCell3.AnnotationCreatedTime" type="System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </metadata>
+  <metadata name="columnHeaderCell4.AnnotationCreatedTime" type="System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </metadata>
+  <metadata name="columnHeaderCell5.AnnotationCreatedTime" type="System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </metadata>
+  <metadata name="columnHeaderCell6.AnnotationCreatedTime" type="System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </metadata>
+  <metadata name="columnHeaderCell7.AnnotationCreatedTime" type="System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </metadata>
+  <metadata name="columnHeaderCell8.AnnotationCreatedTime" type="System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </metadata>
+  <metadata name="columnHeaderCell9.AnnotationCreatedTime" type="System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </metadata>
+  <metadata name="columnHeaderCell10.AnnotationCreatedTime" type="System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </metadata>
+  <metadata name="columnHeaderCell11.AnnotationCreatedTime" type="System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </metadata>
+  <metadata name="columnHeaderCell12.AnnotationCreatedTime" type="System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </metadata>
+  <metadata name="columnHeaderCell20.AnnotationCreatedTime" type="System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </metadata>
+  <metadata name="columnHeaderCell21.AnnotationCreatedTime" type="System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </metadata>
+  <metadata name="columnHeaderCell25.AnnotationCreatedTime" type="System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </metadata>
+  <metadata name="columnHeaderCell26.AnnotationCreatedTime" type="System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </metadata>
+  <metadata name="columnHeaderCell27.AnnotationCreatedTime" type="System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </metadata>
+  <metadata name="columnHeaderCell30.AnnotationCreatedTime" type="System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </metadata>
+  <metadata name="columnHeaderCell31.AnnotationCreatedTime" type="System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </metadata>
+  <metadata name="cornerHeaderCell1.AnnotationCreatedTime" type="System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </metadata>
+  <metadata name="columnHeaderCell13.AnnotationCreatedTime" type="System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </metadata>
+  <metadata name="cornerHeaderCell2.AnnotationCreatedTime" type="System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </metadata>
+  <metadata name="columnHeaderCell1.AnnotationCreatedTime" type="System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </metadata>
+  <metadata name="columnHeaderCell2.AnnotationCreatedTime" type="System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </metadata>
+  <metadata name="columnHeaderCell3.AnnotationCreatedTime" type="System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </metadata>
+  <metadata name="columnHeaderCell4.AnnotationCreatedTime" type="System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </metadata>
+  <metadata name="columnHeaderCell5.AnnotationCreatedTime" type="System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </metadata>
+  <metadata name="columnHeaderCell6.AnnotationCreatedTime" type="System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </metadata>
+  <metadata name="columnHeaderCell7.AnnotationCreatedTime" type="System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </metadata>
+  <metadata name="columnHeaderCell8.AnnotationCreatedTime" type="System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </metadata>
+  <metadata name="columnHeaderCell9.AnnotationCreatedTime" type="System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </metadata>
+  <metadata name="columnHeaderCell10.AnnotationCreatedTime" type="System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </metadata>
+  <metadata name="columnHeaderCell11.AnnotationCreatedTime" type="System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </metadata>
+  <metadata name="columnHeaderCell12.AnnotationCreatedTime" type="System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </metadata>
+  <metadata name="columnHeaderCell20.AnnotationCreatedTime" type="System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </metadata>
+  <metadata name="columnHeaderCell21.AnnotationCreatedTime" type="System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </metadata>
+  <metadata name="columnHeaderCell25.AnnotationCreatedTime" type="System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </metadata>
+  <metadata name="columnHeaderCell26.AnnotationCreatedTime" type="System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </metadata>
+  <metadata name="columnHeaderCell27.AnnotationCreatedTime" type="System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </metadata>
+  <metadata name="columnHeaderCell30.AnnotationCreatedTime" type="System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </metadata>
+  <metadata name="columnHeaderCell31.AnnotationCreatedTime" type="System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </metadata>
+  <metadata name="cornerHeaderCell1.AnnotationCreatedTime" type="System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </metadata>
+  <metadata name="columnHeaderCell13.AnnotationCreatedTime" type="System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </metadata>
+  <metadata name="cornerHeaderCell2.AnnotationCreatedTime" type="System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </metadata>
 </root>

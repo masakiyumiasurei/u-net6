@@ -14,6 +14,7 @@ using TextBox = System.Windows.Forms.TextBox;
 using ComboBox = System.Windows.Forms.ComboBox;
 using System.Drawing.Imaging;
 using System.Drawing.Printing;
+using GrapeCity.Win.MultiRow;
 
 namespace u_net.Public
 {
@@ -223,7 +224,32 @@ namespace u_net.Public
                 MessageBox.Show("データの読み込み中にエラーが発生しました: " + ex.Message, "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        public void SetComboBox(ComboBoxCell comboBox, string sqlQuery)
+        {
+            try
+            {
+                Connect();
 
+
+                using (SqlCommand command = new SqlCommand(sqlQuery, cn))
+                {
+                    using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+                    {
+                        DataTable dataTable = new DataTable();
+                        adapter.Fill(dataTable);
+                        comboBox.DataSource = dataTable;
+                        comboBox.DisplayMember = "Display";
+                        comboBox.ValueMember = "Value";
+                        comboBox.DataSource = dataTable;
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("データの読み込み中にエラーが発生しました: " + ex.Message, "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
         public static void SetComboBoxAppearance(ComboBox cb, DrawItemEventArgs e, int[] fieldWidth, String[] fieldName)
         {
             DataTable dt = (DataTable)cb.DataSource;

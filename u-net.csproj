@@ -18,6 +18,21 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="Form\F_入庫.cs" />
+    <Compile Remove="Form\F_入庫.designer.cs" />
+    <Compile Remove="Form\F_発注.cs" />
+    <Compile Remove="Form\F_発注.designer.cs" />
+    <Compile Remove="Form\F_製品.cs" />
+    <Compile Remove="Form\F_製品.designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="Form\F_入庫.resx" />
+    <EmbeddedResource Remove="Form\F_発注.resx" />
+    <EmbeddedResource Remove="Form\F_製品.resx" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Include="MultiRowDesigner\受注明細.cs" />
     <Compile Include="MultiRowDesigner\受注明細.Designer.cs" />
     <Compile Include="MultiRowDesigner\受注明細テンプレート.cs" />
@@ -50,9 +65,6 @@
 
   <ItemGroup>
     <Compile Update="Form\F_システム.cs" />
-    <Compile Update="Form\F_製品.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Update="Form\F_売上一覧_区分別_抽出.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -85,12 +97,6 @@
     <Compile Update="Form\F_シリーズ在庫参照.cs" />
     <Compile Update="Form\F_入庫管理.cs" />
     <Compile Update="Form\F_受注.cs" />
-    <Compile Update="Form\F_発注.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="Form\F_入庫.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Update="Form\F_部品管理.cs" />
     <Compile Update="Form\F_入庫管理_抽出.cs" />
     <Compile Update="Form\F_部品管理_抽出.cs" />    <Compile Update="Form\F_社員管理_抽出.cs" />
