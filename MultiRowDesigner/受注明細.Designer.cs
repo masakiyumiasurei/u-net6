@@ -30,7 +30,6 @@
         {
             this.gcMultiRow1 = new GrapeCity.Win.MultiRow.GcMultiRow();
             this.受注明細テンプレート1 = new MultiRowDesigner.受注明細テンプレート();
-            this.発注明細テンプレート1 = new MultiRowDesigner.発注明細テンプレート();
             ((System.ComponentModel.ISupportInitialize)(this.gcMultiRow1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -41,7 +40,7 @@
             this.gcMultiRow1.Name = "gcMultiRow1";
             this.gcMultiRow1.Size = new System.Drawing.Size(860, 200);
             this.gcMultiRow1.TabIndex = 0;
-            this.gcMultiRow1.Template = this.発注明細テンプレート1;
+            this.gcMultiRow1.Template = this.受注明細テンプレート1;
             this.gcMultiRow1.Text = "gcMultiRow1";
             // 
             // 受注明細
@@ -60,6 +59,5 @@
 
         private GrapeCity.Win.MultiRow.GcMultiRow gcMultiRow1;
         private 受注明細テンプレート 受注明細テンプレート1;
-        private 発注明細テンプレート 発注明細テンプレート1;
     }
 }
