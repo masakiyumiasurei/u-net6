@@ -74,7 +74,6 @@ namespace u_net
             label1 = new Label();
             tabControl1 = new TabControl();
             ページ55 = new TabPage();
-            営業所コード = new ComboBox();
             Email作成ボタン = new Button();
             削除日時 = new TextBox();
             削除者コード = new TextBox();
@@ -103,7 +102,8 @@ namespace u_net
             入社年月日_ラベル = new Label();
             ラベル64 = new Label();
             頭文字ラベル = new Label();
-            パート = new ComboBox();
+            社員分類 = new ComboBox();
+            勤務地コード = new ComboBox();
             頭文字 = new TextBox();
             ラベル100 = new Label();
             ラベル76 = new Label();
@@ -183,8 +183,9 @@ namespace u_net
             // 
             // コマンド登録
             // 
+            コマンド登録.Enabled = false;
             コマンド登録.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            コマンド登録.ForeColor = Color.Blue;
+            コマンド登録.ForeColor = SystemColors.ButtonShadow;
             コマンド登録.ImageAlign = ContentAlignment.BottomLeft;
             コマンド登録.Location = new Point(680, 6);
             コマンド登録.Margin = new Padding(1, 0, 0, 0);
@@ -270,7 +271,7 @@ namespace u_net
             // コマンド確定
             // 
             コマンド確定.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            コマンド確定.ForeColor = Color.Blue;
+            コマンド確定.ForeColor = SystemColors.ButtonShadow;
             コマンド確定.ImageAlign = ContentAlignment.BottomLeft;
             コマンド確定.Location = new Point(612, 6);
             コマンド確定.Margin = new Padding(1, 0, 0, 0);
@@ -514,7 +515,6 @@ namespace u_net
             // 
             // ページ55
             // 
-            ページ55.Controls.Add(営業所コード);
             ページ55.Controls.Add(Email作成ボタン);
             ページ55.Controls.Add(削除日時);
             ページ55.Controls.Add(削除者コード);
@@ -543,7 +543,8 @@ namespace u_net
             ページ55.Controls.Add(入社年月日_ラベル);
             ページ55.Controls.Add(ラベル64);
             ページ55.Controls.Add(頭文字ラベル);
-            ページ55.Controls.Add(パート);
+            ページ55.Controls.Add(社員分類);
+            ページ55.Controls.Add(勤務地コード);
             ページ55.Controls.Add(頭文字);
             ページ55.Controls.Add(ラベル100);
             ページ55.Controls.Add(ラベル76);
@@ -579,32 +580,12 @@ namespace u_net
             ページ55.Text = "　　　基本";
             ページ55.UseVisualStyleBackColor = true;
             // 
-            // 営業所コード
-            // 
-            営業所コード.BackColor = Color.White;
-            営業所コード.DisplayMember = "営業所コード";
-            営業所コード.DrawMode = DrawMode.OwnerDrawFixed;
-            営業所コード.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            営業所コード.FormattingEnabled = true;
-            営業所コード.ImeMode = ImeMode.Off;
-            営業所コード.Location = new Point(176, 230);
-            営業所コード.Name = "営業所コード";
-            営業所コード.Size = new Size(68, 22);
-            営業所コード.TabIndex = 253;
-            営業所コード.ValueMember = "営業所コード";
-            営業所コード.DrawItem += 勤務地コード_DrawItem;
-            営業所コード.SelectedIndexChanged += 勤務地コード_SelectedIndexChanged;
-            営業所コード.TextUpdate += 勤務地コード_TextUpdate;
-            営業所コード.TextChanged += 勤務地コード_TextChanged;
-            営業所コード.KeyPress += 営業所コード_KeyPress;
-            営業所コード.Validating += 勤務地コード_Validating;
-            // 
             // Email作成ボタン
             // 
             Email作成ボタン.Location = new Point(492, 321);
             Email作成ボタン.Name = "Email作成ボタン";
             Email作成ボタン.Size = new Size(35, 20);
-            Email作成ボタン.TabIndex = 12;
+            Email作成ボタン.TabIndex = 257;
             Email作成ボタン.UseVisualStyleBackColor = true;
             // 
             // 削除日時
@@ -617,7 +598,7 @@ namespace u_net
             削除日時.Name = "削除日時";
             削除日時.ReadOnly = true;
             削除日時.Size = new Size(188, 20);
-            削除日時.TabIndex = 26;
+            削除日時.TabIndex = 256;
             削除日時.Visible = false;
             // 
             // 削除者コード
@@ -630,7 +611,7 @@ namespace u_net
             削除者コード.Name = "削除者コード";
             削除者コード.ReadOnly = true;
             削除者コード.Size = new Size(47, 20);
-            削除者コード.TabIndex = 28;
+            削除者コード.TabIndex = 255;
             削除者コード.Visible = false;
             // 
             // 確定者コード
@@ -643,7 +624,7 @@ namespace u_net
             確定者コード.Name = "確定者コード";
             確定者コード.ReadOnly = true;
             確定者コード.Size = new Size(47, 20);
-            確定者コード.TabIndex = 27;
+            確定者コード.TabIndex = 254;
             確定者コード.Visible = false;
             // 
             // 確定日時
@@ -656,7 +637,7 @@ namespace u_net
             確定日時.Name = "確定日時";
             確定日時.ReadOnly = true;
             確定日時.Size = new Size(188, 20);
-            確定日時.TabIndex = 25;
+            確定日時.TabIndex = 253;
             確定日時.Visible = false;
             // 
             // ラベル74
@@ -733,7 +714,7 @@ namespace u_net
             削除.Name = "削除";
             削除.ReadOnly = true;
             削除.Size = new Size(20, 20);
-            削除.TabIndex = 30;
+            削除.TabIndex = 248;
             // 
             // 確定
             // 
@@ -745,14 +726,14 @@ namespace u_net
             確定.Name = "確定";
             確定.ReadOnly = true;
             確定.Size = new Size(20, 20);
-            確定.TabIndex = 29;
+            確定.TabIndex = 247;
             // 
             // 退社年月日選択ボタン
             // 
             退社年月日選択ボタン.Location = new Point(317, 381);
             退社年月日選択ボタン.Name = "退社年月日選択ボタン";
             退社年月日選択ボタン.Size = new Size(21, 20);
-            退社年月日選択ボタン.TabIndex = 16;
+            退社年月日選択ボタン.TabIndex = 246;
             退社年月日選択ボタン.Text = "▼";
             退社年月日選択ボタン.UseVisualStyleBackColor = true;
             退社年月日選択ボタン.Click += 退社年月日選択ボタン_Click;
@@ -762,7 +743,7 @@ namespace u_net
             入社年月日選択ボタン.Location = new Point(317, 350);
             入社年月日選択ボタン.Name = "入社年月日選択ボタン";
             入社年月日選択ボタン.Size = new Size(21, 20);
-            入社年月日選択ボタン.TabIndex = 14;
+            入社年月日選択ボタン.TabIndex = 245;
             入社年月日選択ボタン.Text = "▼";
             入社年月日選択ボタン.UseVisualStyleBackColor = true;
             入社年月日選択ボタン.Click += 入社年月日選択ボタン_Click;
@@ -793,7 +774,7 @@ namespace u_net
             更新者名.Name = "更新者名";
             更新者名.ReadOnly = true;
             更新者名.Size = new Size(142, 23);
-            更新者名.TabIndex = 24;
+            更新者名.TabIndex = 242;
             // 
             // 承認順序
             // 
@@ -803,8 +784,9 @@ namespace u_net
             承認順序.Margin = new Padding(3, 2, 3, 2);
             承認順序.Multiline = true;
             承認順序.Name = "承認順序";
+            承認順序.ReadOnly = true;
             承認順序.Size = new Size(51, 20);
-            承認順序.TabIndex = 18;
+            承認順序.TabIndex = 241;
             承認順序.TextChanged += 承認順序_TextChanged;
             // 
             // 担当地区コード
@@ -815,8 +797,9 @@ namespace u_net
             担当地区コード.Margin = new Padding(3, 2, 3, 2);
             担当地区コード.Multiline = true;
             担当地区コード.Name = "担当地区コード";
+            担当地区コード.ReadOnly = true;
             担当地区コード.Size = new Size(51, 20);
-            担当地区コード.TabIndex = 17;
+            担当地区コード.TabIndex = 240;
             担当地区コード.TextChanged += 担当地区コード_TextChanged;
             // 
             // 退社
@@ -827,8 +810,9 @@ namespace u_net
             退社.Margin = new Padding(3, 2, 3, 2);
             退社.Multiline = true;
             退社.Name = "退社";
+            退社.ReadOnly = true;
             退社.Size = new Size(135, 20);
-            退社.TabIndex = 15;
+            退社.TabIndex = 239;
             退社.TextChanged += 退社_TextChanged;
             // 
             // 入社年月日
@@ -839,8 +823,9 @@ namespace u_net
             入社年月日.Margin = new Padding(3, 2, 3, 2);
             入社年月日.Multiline = true;
             入社年月日.Name = "入社年月日";
+            入社年月日.ReadOnly = true;
             入社年月日.Size = new Size(135, 20);
-            入社年月日.TabIndex = 13;
+            入社年月日.TabIndex = 238;
             入社年月日.TextChanged += 入社年月日_TextChanged;
             // 
             // 勤務地名
@@ -855,7 +840,7 @@ namespace u_net
             勤務地名.Name = "勤務地名";
             勤務地名.ReadOnly = true;
             勤務地名.Size = new Size(235, 20);
-            勤務地名.TabIndex = 8;
+            勤務地名.TabIndex = 237;
             // 
             // 承認順序ラベル
             // 
@@ -897,7 +882,7 @@ namespace u_net
             表示名.Multiline = true;
             表示名.Name = "表示名";
             表示名.Size = new Size(312, 20);
-            表示名.TabIndex = 4;
+            表示名.TabIndex = 234;
             表示名.TextChanged += 表示名_TextChanged;
             // 
             // ふりがな
@@ -910,7 +895,7 @@ namespace u_net
             ふりがな.Multiline = true;
             ふりがな.Name = "ふりがな";
             ふりがな.Size = new Size(310, 20);
-            ふりがな.TabIndex = 2;
+            ふりがな.TabIndex = 233;
             ふりがな.TextChanged += ふりがな_TextChanged;
             // 
             // 社員コード
@@ -921,10 +906,10 @@ namespace u_net
             社員コード.Margin = new Padding(3, 2, 3, 2);
             社員コード.Multiline = true;
             社員コード.Name = "社員コード";
+            社員コード.ReadOnly = true;
             社員コード.Size = new Size(135, 20);
-            社員コード.TabIndex = 0;
+            社員コード.TabIndex = 232;
             社員コード.TextChanged += 社員コード_TextChanged;
-            社員コード.KeyDown += 社員コード_KeyDown;
             社員コード.Validating += 社員コード_Validating;
             社員コード.Validated += 社員コード_Validated;
             // 
@@ -973,22 +958,38 @@ namespace u_net
             頭文字ラベル.Text = "頭文字(&I)";
             頭文字ラベル.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // パート
+            // 社員分類
             // 
-            パート.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            パート.AutoCompleteSource = AutoCompleteSource.ListItems;
-            パート.DisplayMember = "売上区分コード";
-            パート.DropDownStyle = ComboBoxStyle.DropDownList;
-            パート.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            パート.FormattingEnabled = true;
-            パート.ImeMode = ImeMode.Disable;
-            パート.Location = new Point(176, 200);
-            パート.Margin = new Padding(4, 3, 4, 3);
-            パート.Name = "パート";
-            パート.Size = new Size(135, 21);
-            パート.TabIndex = 6;
-            パート.ValueMember = "売上区分コード";
-            パート.TextUpdate += 社員分類_TextUpdate;
+            社員分類.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            社員分類.AutoCompleteSource = AutoCompleteSource.ListItems;
+            社員分類.DisplayMember = "売上区分コード";
+            社員分類.DropDownStyle = ComboBoxStyle.DropDownList;
+            社員分類.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            社員分類.FormattingEnabled = true;
+            社員分類.ImeMode = ImeMode.Disable;
+            社員分類.Location = new Point(176, 200);
+            社員分類.Margin = new Padding(4, 3, 4, 3);
+            社員分類.Name = "社員分類";
+            社員分類.Size = new Size(135, 21);
+            社員分類.TabIndex = 209;
+            社員分類.ValueMember = "売上区分コード";
+            社員分類.TextUpdate += 社員分類_TextUpdate;
+            // 
+            // 勤務地コード
+            // 
+            勤務地コード.DisplayMember = "Code";
+            勤務地コード.DropDownStyle = ComboBoxStyle.DropDownList;
+            勤務地コード.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            勤務地コード.FormattingEnabled = true;
+            勤務地コード.ImeMode = ImeMode.Disable;
+            勤務地コード.Location = new Point(176, 230);
+            勤務地コード.Margin = new Padding(4, 3, 4, 3);
+            勤務地コード.Name = "勤務地コード";
+            勤務地コード.Size = new Size(68, 21);
+            勤務地コード.TabIndex = 211;
+            勤務地コード.ValueMember = "Code";
+            勤務地コード.TextUpdate += 勤務地コード_TextUpdate;
+            勤務地コード.Validating += 勤務地コード_Validating;
             // 
             // 頭文字
             // 
@@ -998,8 +999,9 @@ namespace u_net
             頭文字.Margin = new Padding(3, 2, 3, 2);
             頭文字.Multiline = true;
             頭文字.Name = "頭文字";
+            頭文字.ReadOnly = true;
             頭文字.Size = new Size(51, 20);
-            頭文字.TabIndex = 5;
+            頭文字.TabIndex = 231;
             頭文字.TextChanged += 頭文字_TextChanged;
             // 
             // ラベル100
@@ -1043,7 +1045,7 @@ namespace u_net
             更新者コード.Name = "更新者コード";
             更新者コード.ReadOnly = true;
             更新者コード.Size = new Size(47, 23);
-            更新者コード.TabIndex = 23;
+            更新者コード.TabIndex = 221;
             // 
             // ラベル19
             // 
@@ -1086,7 +1088,7 @@ namespace u_net
             更新日時.Name = "更新日時";
             更新日時.ReadOnly = true;
             更新日時.Size = new Size(188, 20);
-            更新日時.TabIndex = 22;
+            更新日時.TabIndex = 220;
             // 
             // 作成者名
             // 
@@ -1099,7 +1101,7 @@ namespace u_net
             作成者名.Name = "作成者名";
             作成者名.ReadOnly = true;
             作成者名.Size = new Size(142, 20);
-            作成者名.TabIndex = 21;
+            作成者名.TabIndex = 219;
             // 
             // 作成者コード
             // 
@@ -1112,7 +1114,7 @@ namespace u_net
             作成者コード.Name = "作成者コード";
             作成者コード.ReadOnly = true;
             作成者コード.Size = new Size(47, 20);
-            作成者コード.TabIndex = 20;
+            作成者コード.TabIndex = 218;
             // 
             // ラベル11
             // 
@@ -1155,7 +1157,7 @@ namespace u_net
             作成日時.Name = "作成日時";
             作成日時.ReadOnly = true;
             作成日時.Size = new Size(188, 20);
-            作成日時.TabIndex = 19;
+            作成日時.TabIndex = 217;
             // 
             // 勤務地コードラベル
             // 
@@ -1212,7 +1214,7 @@ namespace u_net
             氏名.Multiline = true;
             氏名.Name = "氏名";
             氏名.Size = new Size(310, 20);
-            氏名.TabIndex = 1;
+            氏名.TabIndex = 201;
             氏名.TextChanged += 氏名_TextChanged;
             氏名.Enter += 氏名_Enter;
             氏名.Leave += 氏名_Leave;
@@ -1242,7 +1244,7 @@ namespace u_net
             電子メールアドレス.Multiline = true;
             電子メールアドレス.Name = "電子メールアドレス";
             電子メールアドレス.Size = new Size(310, 20);
-            電子メールアドレス.TabIndex = 11;
+            電子メールアドレス.TabIndex = 214;
             電子メールアドレス.TextChanged += 電子メールアドレス_TextChanged;
             // 
             // 電子メールアドレスラベル
@@ -1271,7 +1273,7 @@ namespace u_net
             役職名.Multiline = true;
             役職名.Name = "役職名";
             役職名.Size = new Size(310, 20);
-            役職名.TabIndex = 3;
+            役職名.TabIndex = 204;
             役職名.TextChanged += 役職名_TextChanged;
             // 
             // チーム名
@@ -1282,8 +1284,9 @@ namespace u_net
             チーム名.Margin = new Padding(3, 2, 3, 2);
             チーム名.Multiline = true;
             チーム名.Name = "チーム名";
+            チーム名.ReadOnly = true;
             チーム名.Size = new Size(310, 20);
-            チーム名.TabIndex = 10;
+            チーム名.TabIndex = 224;
             チーム名.TextChanged += チーム名_TextChanged;
             チーム名.Enter += チーム名_Enter;
             チーム名.Leave += チーム名_Leave;
@@ -1341,8 +1344,9 @@ namespace u_net
             部.Margin = new Padding(3, 2, 3, 2);
             部.Multiline = true;
             部.Name = "部";
+            部.ReadOnly = true;
             部.Size = new Size(310, 20);
-            部.TabIndex = 9;
+            部.TabIndex = 223;
             部.TextChanged += 部_TextChanged;
             // 
             // ラベル62
@@ -1868,8 +1872,8 @@ namespace u_net
         private Label 入社年月日_ラベル;
         private Label ラベル64;
         private Label 頭文字ラベル;
-        private ComboBox パート;
-        private ComboBox 営業所コード;
+        private ComboBox 社員分類;
+        private ComboBox 勤務地コード;
         private TextBox 頭文字;
         private Label ラベル100;
         private Label ラベル76;
@@ -1938,7 +1942,6 @@ namespace u_net
         private StatusStrip statusStrip1;
         private ToolStripStatusLabel toolStripStatusLabel1;
         private ToolStripStatusLabel toolStripStatusLabel2;
-        private ComboBox 分類コード;
     }
 }
 
