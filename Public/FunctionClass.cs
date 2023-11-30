@@ -394,6 +394,12 @@ namespace u_net.Public
                     return string.Empty;
 
                 int intHeaderLen = HeaderString.Length;
+
+                if (!AbbreviatedCode.StartsWith(HeaderString, StringComparison.Ordinal))
+                {
+                    AbbreviatedCode = HeaderString + AbbreviatedCode;
+                }
+
                 string strBody;
 
 

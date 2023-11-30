@@ -60,9 +60,13 @@
             label7 = new Label();
             購買コード開始 = new TextBox();
             仕入先名 = new ComboBox();
+            statusStrip1 = new StatusStrip();
+            toolStripStatusLabel1 = new ToolStripStatusLabel();
+            toolStripStatusLabel2 = new ToolStripStatusLabel();
             削除指定.SuspendLayout();
             入庫状況指定.SuspendLayout();
             購買指定.SuspendLayout();
+            statusStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // 削除指定
@@ -308,6 +312,7 @@
             発注者名.Name = "発注者名";
             発注者名.Size = new Size(221, 21);
             発注者名.TabIndex = 7;
+            発注者名.Enter += 発注者名_Enter;
             // 
             // 発注コード開始
             // 
@@ -317,6 +322,8 @@
             発注コード開始.Name = "発注コード開始";
             発注コード開始.Size = new Size(184, 20);
             発注コード開始.TabIndex = 1;
+            発注コード開始.Enter += 発注コード開始_Enter;
+            発注コード開始.KeyDown += 発注コード_KeyDown;
             // 
             // label9
             // 
@@ -382,6 +389,7 @@
             発注日終了.Size = new Size(159, 23);
             発注日終了.TabIndex = 5;
             発注日終了.DoubleClick += 発注日終了_DoubleClick;
+            発注日終了.Enter += 発注日終了_Enter;
             発注日終了.Leave += 発注日終了_Leave;
             // 
             // 発注日開始
@@ -394,6 +402,7 @@
             発注日開始.Size = new Size(156, 23);
             発注日開始.TabIndex = 4;
             発注日開始.DoubleClick += 発注日開始_DoubleClick;
+            発注日開始.Enter += 発注日開始_Enter;
             発注日開始.Leave += 発注日開始_Leave;
             // 
             // label3
@@ -419,6 +428,8 @@
             発注コード終了.Name = "発注コード終了";
             発注コード終了.Size = new Size(184, 20);
             発注コード終了.TabIndex = 2;
+            発注コード終了.Enter += 発注コード終了_Enter;
+            発注コード終了.KeyDown += 発注コード_KeyDown;
             // 
             // 購買コード終了
             // 
@@ -428,8 +439,9 @@
             購買コード終了.Name = "購買コード終了";
             購買コード終了.Size = new Size(184, 20);
             購買コード終了.TabIndex = 21011;
+            購買コード終了.Enter += 購買コード終了_Enter;
             購買コード終了.KeyDown += 購買コード終了_KeyDown;
-            購買コード終了.Leave += 購買コード終了_Leave;
+            購買コード終了.Validating += 購買コード終了_Validating;
             // 
             // label7
             // 
@@ -454,8 +466,9 @@
             購買コード開始.Name = "購買コード開始";
             購買コード開始.Size = new Size(184, 20);
             購買コード開始.TabIndex = 21010;
+            購買コード開始.Enter += 購買コード開始_Enter;
             購買コード開始.KeyDown += 購買コード開始_KeyDown;
-            購買コード開始.Leave += 購買コード開始_Leave;
+            購買コード開始.Validating += 購買コード開始_Validating;
             // 
             // 仕入先名
             // 
@@ -466,14 +479,36 @@
             仕入先名.Location = new Point(148, 157);
             仕入先名.Margin = new Padding(3, 4, 3, 4);
             仕入先名.Name = "仕入先名";
-            仕入先名.Size = new Size(221, 21);
+            仕入先名.Size = new Size(397, 21);
             仕入先名.TabIndex = 21013;
+            // 
+            // statusStrip1
+            // 
+            statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1, toolStripStatusLabel2 });
+            statusStrip1.Location = new Point(0, 531);
+            statusStrip1.Name = "statusStrip1";
+            statusStrip1.Padding = new Padding(1, 0, 19, 0);
+            statusStrip1.Size = new Size(674, 25);
+            statusStrip1.TabIndex = 21014;
+            statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripStatusLabel1
+            // 
+            toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            toolStripStatusLabel1.Size = new Size(0, 20);
+            // 
+            // toolStripStatusLabel2
+            // 
+            toolStripStatusLabel2.Name = "toolStripStatusLabel2";
+            toolStripStatusLabel2.Size = new Size(111, 20);
+            toolStripStatusLabel2.Text = "各種項目の説明";
             // 
             // F_発注管理_抽出
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(649, 516);
+            ClientSize = new Size(674, 556);
+            Controls.Add(statusStrip1);
             Controls.Add(仕入先名);
             Controls.Add(購買コード終了);
             Controls.Add(label7);
@@ -510,6 +545,8 @@
             入庫状況指定.PerformLayout();
             購買指定.ResumeLayout(false);
             購買指定.PerformLayout();
+            statusStrip1.ResumeLayout(false);
+            statusStrip1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -554,5 +591,8 @@
         private Label label7;
         private TextBox 購買コード開始;
         private ComboBox 仕入先名;
+        private StatusStrip statusStrip1;
+        private ToolStripStatusLabel toolStripStatusLabel1;
+        private ToolStripStatusLabel toolStripStatusLabel2;
     }
 }

@@ -19,12 +19,13 @@ namespace u_net
         public string formName;
         public string _callerFormName;
         public string _検索コード;
+        public string _args;
 
         //Form frmTarget;
-        public F_検索コード(object o, string 検索コード)　　//(string callerFormName, string 検索コード)
+        public F_検索コード(object o, string args)　　//(string callerFormName, string 検索コード)
         {
             //_callerFormName = callerFormName;
-            _検索コード = 検索コード;
+            _args = args;
             Obj = o;
             InitializeComponent();
         }
@@ -36,7 +37,6 @@ namespace u_net
 
         private void 検索ボタン_Click(object sender, EventArgs e)
         {
-            
             MidForm parentform = (MidForm)Obj;
             parentform.SearchCode(this.検索コード.Text);
         }
@@ -52,7 +52,7 @@ namespace u_net
                 if (string.IsNullOrEmpty(strCode))
                     return;
 
-                strCode = FunctionClass.FormatCode(OriginalClass.Nz(this.str検索コード, ""), strCode);
+                strCode = FunctionClass.FormatCode(OriginalClass.Nz(_args, ""), strCode);
 
                 if (strCode != OriginalClass.Nz(this.ActiveControl.Text, ""))
                 {
