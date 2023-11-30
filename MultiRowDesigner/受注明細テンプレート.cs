@@ -29,19 +29,10 @@ namespace MultiRowDesigner
             OriginalClass ofn = new OriginalClass();
 
             ofn.SetComboBox(受注区分, "SELECT 受注区分コード AS Value,  受注区分名 AS Display From M受注区分");
+            ofn.SetComboBox(売上区分, "SELECT 売上区分コード AS Value,  売上区分名 AS Display From M売上区分");
+            ofn.SetComboBox(処理区分, "SELECT Code AS Value, Name AS Display, Note FROM ManufactureFlow ORDER BY Number");
+            ofn.SetComboBox(単位, "SELECT 単位コード AS Value,  単位名 AS Display From M単位");
 
-            //DataTable dt = new DataTable();
-
-            //dt.Columns.Add("受注区分コード", typeof(byte));
-            //dt.Columns.Add("受注区分", typeof(String));
-
-            //dt.Rows.Add(1, CommonConstants.CH_ORDER.ToString());
-            //dt.Rows.Add(2, "代替品");
-            //dt.Rows.Add(3, "返品");
-            //dt.Rows.Add(4, "値引き");
-            //dt.Rows.Add(5, "コメント");
-
-            //this.受注区分.DataSource = dt;
         }
     }
 }
