@@ -12,7 +12,39 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="MultiRowDesigner\**" />
+    <EmbeddedResource Remove="MultiRowDesigner\**" />
+    <None Remove="MultiRowDesigner\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Form\F_入庫.cs" />
+    <Compile Remove="Form\F_入庫.designer.cs" />
+    <Compile Remove="Form\F_発注.cs" />
+    <Compile Remove="Form\F_発注.designer.cs" />
+    <Compile Remove="Form\F_製品.cs" />
+    <Compile Remove="Form\F_製品.designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="Form\F_入庫.resx" />
+    <EmbeddedResource Remove="Form\F_発注.resx" />
+    <EmbeddedResource Remove="Form\F_製品.resx" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="MultiRowDesigner\受注明細.cs" />
+    <Compile Include="MultiRowDesigner\受注明細.Designer.cs" />
+    <Compile Include="MultiRowDesigner\受注明細テンプレート.cs" />
+    <Compile Include="MultiRowDesigner\受注明細テンプレート.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="icon\unetc.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="MultiRowDesigner\受注明細.resx" />
   </ItemGroup>
 
   <ItemGroup>
@@ -33,19 +65,22 @@
 
   <ItemGroup>
     <Compile Update="Form\F_システム.cs" />
-    <Compile Update="Form\F_入庫履歴.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="Form\F_発注管理_抽出.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="Form\F_発注管理.cs">
+    <Compile Update="Form\F_売上一覧_区分別_抽出.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Form\F_売上一覧_全国地区別.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Form\F_売上一覧_区分別_年度.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Form\F_売上一覧_売上地区別.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Form\F_売上一覧_区分別.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Form\F_売上明細参照.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Form\F_売上一覧_担当者別.cs">
