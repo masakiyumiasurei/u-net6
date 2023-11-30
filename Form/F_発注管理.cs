@@ -15,6 +15,7 @@ using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 using System.Management;
 using static u_net.Public.FunctionClass;
 using static u_net.Public.OriginalClass;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace u_net
 {
@@ -55,7 +56,7 @@ namespace u_net
         {
             get
             {
-                int dataCount = dataGridView1.Rows.Count - 1; // ヘッダー行を引く
+                int dataCount = dataGridView1.Rows.Count;
                 return dataCount < 0 ? 0 : dataCount;
             }
         }
@@ -64,7 +65,7 @@ namespace u_net
             // 現在選択されているデータのコードを取得する
             get
             {
-                return dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[1].Value?.ToString();
+                return dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value?.ToString();
             }
         }
         public string CurrentEdition
@@ -72,7 +73,7 @@ namespace u_net
             // 現在選択されているデータの版数を取得する
             get
             {
-                return dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[2].Value?.ToString();
+                return dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[1].Value?.ToString();
             }
         }
         public bool IsApproved
@@ -131,10 +132,6 @@ namespace u_net
             FunctionClass fn = new FunctionClass();
             fn.DoWait("しばらくお待ちください...");
 
-            //実行中フォーム起動
-            LocalSetting localSetting = new LocalSetting();
-            localSetting.LoadPlace(CommonConstants.LoginUserCode, this);
-
             MyApi myapi = new MyApi();
             int xSize, ySize, intpixel, twipperdot;
 
@@ -155,7 +152,6 @@ namespace u_net
             dataGridView1.DefaultCellStyle.Font = new Font("MS ゴシック", 10);
             dataGridView1.DefaultCellStyle.ForeColor = Color.Black;
 
-
             myapi.GetFullScreen(out xSize, out ySize);
 
             int x = 10, y = 10;
@@ -169,6 +165,9 @@ namespace u_net
             int screenWidth = Screen.PrimaryScreen.Bounds.Width; // プライマリスクリーンの幅
             x = (screenWidth - this.Width) / 2;
             this.Location = new Point(x, y);
+
+            //LocalSetting localSetting = new LocalSetting();
+            //localSetting.LoadPlace(CommonConstants.LoginUserCode, this);
 
             InitializeFilter();
             DoUpdate();
@@ -238,41 +237,41 @@ namespace u_net
 
                 if (!string.IsNullOrEmpty(str発注コード開始))
                 {
-                    WhereString(filter, "(発注コード BETWEEN '" + str発注コード開始 + "' AND '" + str発注コード終了 + "')");
+                    filter = WhereString(filter, "(発注コード BETWEEN '" + str発注コード開始 + "' AND '" + str発注コード終了 + "')");
                 }
 
                 // 発注日指定
-                if (Convert.ToDouble(dtm発注日開始) != 0 && Convert.ToDouble(dtm発注日終了) != 0)
+                if (dtm発注日開始 != DateTime.MinValue && dtm発注日終了 != DateTime.MinValue)
                 {
-                    WhereString(filter, "'" + dtm発注日開始 + "'<=発注日 and 発注日<='" + dtm発注日終了 + "'");
+                    filter = WhereString(filter, "'" + dtm発注日開始 + "'<=発注日 and 発注日<='" + dtm発注日終了 + "'");
                 }
 
                 // 発注者名指定
                 if (!string.IsNullOrEmpty(str発注者名))
                 {
-                    WhereString(filter, "発注者名='" + str発注者名 + "'");
+                    filter = WhereString(filter, "発注者名='" + str発注者名 + "'");
                 }
 
                 // 購買コード指定
                 if (!string.IsNullOrEmpty(str購買コード開始))
                 {
-                    WhereString(filter, "(購買コード BETWEEN '" + str購買コード開始 + "' AND '" + str購買コード終了 + "')");
+                    filter = WhereString(filter, "(購買コード BETWEEN '" + str購買コード開始 + "' AND '" + str購買コード終了 + "')");
                 }
 
                 // 仕入先名指定
                 if (!string.IsNullOrEmpty(str仕入先名))
                 {
-                    WhereString(filter, "仕入先名='" + str仕入先名 + "'");
+                    filter = WhereString(filter, "仕入先名='" + str仕入先名 + "'");
                 }
 
                 // 購買指定
                 switch (lng購買指定)
                 {
                     case 1:
-                        WhereString(filter, "購買コード IS NULL");
+                        filter = WhereString(filter, "購買コード IS NULL");
                         break;
                     case 2:
-                        WhereString(filter, "購買コード IS NOT NULL");
+                        filter = WhereString(filter, "購買コード IS NOT NULL");
                         break;
                 }
 
@@ -280,13 +279,16 @@ namespace u_net
                 switch (lng入庫状況指定)
                 {
                     case 0:
-                        WhereString(filter, "入庫状況 = 0 OR 入庫状況 = 1");
+                        filter = WhereString(filter, "入庫状況 = '' OR 入庫状況 = '□'");
+                        //filter = WhereString(filter, "入庫状況 = 0 OR 入庫状況 = 1");
                         break;
                     case 2:
-                        WhereString(filter, "入庫状況 = 2");
+                        filter = WhereString(filter, "入庫状況 = '■'");
+                        //filter = WhereString(filter, "入庫状況 = 2");
                         break;
                     case 3:
-                        WhereString(filter, "入庫状況 <> 20");
+                        //「指定しない」なので、存在しない値以外という条件になっている　そもそも条件自体不要なのでは。。。
+                        filter = WhereString(filter, "入庫状況 <> '20'");
                         break;
                 }
 
@@ -294,18 +296,40 @@ namespace u_net
                 switch (lng削除指定)
                 {
                     case 1:
-                        WhereString(filter, "削除 IS NULL");
+                        filter = WhereString(filter, "削除 IS NULL");
                         break;
                     case 2:
-                        WhereString(filter, "削除 IS NOT NULL");
+                        filter = WhereString(filter, "削除 IS NOT NULL");
                         break;
                 }
 
-                string query = string.IsNullOrEmpty(filter) ? "SELECT * FROM V発注管理 ORDER BY 発注コード DESC" : "SELECT * FROM V発注管理 WHERE " + filter + " ORDER BY 発注コード DESC";
+                string sql = "select * from (" +
+                    "SELECT T発注.発注コード, T発注.発注版数 AS 版, " +
+                    "CONVERT(nvarchar, T発注.発注日, 111) AS 発注日, T発注.発注者名, T発注.購買コード, M仕入先.仕入先名, " +
+                    "T発注.仕入先担当者名 AS 担当者名, { fn REPLACE(STR(CONVERT(bit, T発注.確定日時), 1), '1', '■') } AS 確定, " +
+                    "{ fn REPLACE(STR(CONVERT(bit, T発注.承認日時), 1), '1', '■') } AS 承認, " +
+                    "CASE WHEN 状態コード = 4 THEN '■' ELSE NULL END AS 送信," +
+                    "CASE WHEN V発注_入庫状況.入庫状況 = 2 THEN '■' WHEN V発注_入庫状況.入庫状況 = 1 THEN '□' ELSE '' END AS 入庫状況 ," +
+                    "CASE WHEN T発注.無効日時 IS NOT NULL THEN '■' ELSE NULL END AS 削除, " +
+                    "{ fn REPLACE(STR(CONVERT(bit, T発注.無効日時), 1), '1', '■') } AS 削除2 " +
+                    "FROM T発注 INNER JOIN Ｖ発注_最大版数 ON T発注.発注コード = Ｖ発注_最大版数.発注コード AND T発注.発注版数 = Ｖ発注_最大版数.発注版数 " +
+                    "INNER JOIN V発注_入庫状況 ON T発注.発注コード = V発注_入庫状況.発注コード AND T発注.発注版数 = V発注_入庫状況.発注版数 " +
+                    "LEFT OUTER JOIN Vファックス送信_最新 ON T発注.発注コード = Vファックス送信_最新.送信文書コード AND T発注.発注版数 = Vファックス送信_最新.送信文書版数 " +
+                    "LEFT OUTER JOIN V発注_完了 ON T発注.発注コード = V発注_完了.発注コード AND T発注.発注版数 = V発注_完了.発注版数 " +
+                    "LEFT OUTER JOIN M仕入先 ON T発注.仕入先コード = M仕入先.仕入先コード " +
+                    "LEFT OUTER JOIN M社員 ON T発注.発注者コード = M社員.社員コード" +
+                    ") T ";
 
+
+                string query = string.IsNullOrEmpty(filter) ?
+                    sql + "ORDER BY 発注コード DESC" : sql + " WHERE " + filter + " ORDER BY 発注コード DESC";
+
+                //string query = string.IsNullOrEmpty(filter) ?
+                //"select * from V発注管理 ORDER BY 発注コード DESC" : "select * from V発注管理 WHERE " + filter + " ORDER BY 発注コード DESC";
 
                 Connect();
                 DataGridUtils.SetDataGridView(cn, query, this.dataGridView1);
+
 
                 MyApi myapi = new MyApi();
                 int xSize, ySize, intpixel, twipperdot;
@@ -325,7 +349,7 @@ namespace u_net
 
                 //0列目はaccessでは行ヘッダのため、ずらす
                 //dataGridView1.Columns[0].Width = 500 / twipperdot;
-                dataGridView1.Columns[0].Width = 1400 / twipperdot; //1150
+                dataGridView1.Columns[0].Width = 1600 / twipperdot; //1150
                 dataGridView1.Columns[1].Width = 300 / twipperdot;
                 dataGridView1.Columns[2].Width = 1300 / twipperdot;
                 dataGridView1.Columns[3].Width = 1400 / twipperdot;
@@ -354,43 +378,46 @@ namespace u_net
                 dataGridView1.SuspendLayout();
 
                 // 行ヘッダーに行番号を表示する
-                for (int i = 0; i < dataGridView1.Rows.Count; i++)
-                {
-                    dataGridView1.Rows[i].HeaderCell.Value = (i + 1).ToString();
-                }
+                //for (int i = 0; i < dataGridView1.Rows.Count; i++)
+                //{
+                //    dataGridView1.Rows[i].HeaderCell.Value = (i + 1).ToString();
+                //}
 
-                // 列1と列2のセルの背景色を設定
-                for (int i = 0; i < dataGridView1.Rows.Count; i++)
-                {
-                    dataGridView1.Rows[i].Cells[1].Style.BackColor = Color.FromArgb(250, 250, 150);
-                    dataGridView1.Rows[i].Cells[2].Style.BackColor = Color.FromArgb(250, 250, 150);
-                }
+                // 列1と列2のセルの背景色を設定  load時に行ってるので不要
+                //for (int i = 0; i < dataGridView1.Rows.Count; i++)
+                //{
+                //    dataGridView1.Rows[i].Cells[0].Style.BackColor = Color.FromArgb(250, 250, 150);
+                //    dataGridView1.Rows[i].Cells[1].Style.BackColor = Color.FromArgb(250, 250, 150);
+                //}
 
                 // 列11の値に応じてセルの値とスタイルを設定
-                for (int i = 0; i < dataGridView1.Rows.Count; i++)
-                {
-                    if (dataGridView1.Rows[i].Cells[11].Value != null &&
-                        !string.IsNullOrEmpty(dataGridView1.Rows[i].Cells[11].Value.ToString()))
-                    {
-                        int value = int.Parse(dataGridView1.Rows[i].Cells[11].Value.ToString());
+                //直接SQLに埋め込んだので不要　＝＞　数値を文字列に変換していたので、datagridviewに登録時に変換エラーになるため
+                //for (int i = 0; i < dataGridView1.Rows.Count; i++)
+                //{
 
-                        if (value == 2)
-                        {
-                            dataGridView1.Rows[i].Cells[11].Value = "■";
-                        }
-                        else if (value == 1)
-                        {
-                            dataGridView1.Rows[i].Cells[11].Value = "□";
-                        }
-                        else
-                        {
-                            dataGridView1.Rows[i].Cells[11].Value = "";
-                        }
 
-                        dataGridView1.Columns[10].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-                        dataGridView1.Columns[11].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-                    }
-                }
+                //    if (dataGridView1.Rows[i].Cells[10].Value != null &&
+                //        !string.IsNullOrEmpty(dataGridView1.Rows[i].Cells[10].Value.ToString()))
+                //    {
+                //        int value = int.Parse(dataGridView1.Rows[i].Cells[10].Value.ToString());
+
+                //        if (value == 2)
+                //        {
+                //            dataGridView1.Rows[i].Cells[10].Value = "■";
+                //        }
+                //        else if (value == 1)
+                //        {
+                //            dataGridView1.Rows[i].Cells[10].Value = "□";
+                //        }
+                //        else
+                //        {
+                //            dataGridView1.Rows[i].Cells[10].Value = DBNull.Value;
+                //        }
+
+                //        dataGridView1.Columns[9].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+                //        dataGridView1.Columns[10].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+                //    }
+                //}
 
                 // カーソルを復元する
                 if (dataGridView1.SelectedCells.Count > 0)
@@ -412,8 +439,7 @@ namespace u_net
             }
         }
 
-        private void DataGridView1_CellPainting(object sender,
-    DataGridViewCellPaintingEventArgs e)
+        private void DataGridView1_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
             //列ヘッダーかどうか調べる
             if (e.ColumnIndex < 0 && e.RowIndex >= 0)
@@ -443,10 +469,10 @@ namespace u_net
         //ダブルクリックで発注フォームを開く　発注コードを渡す
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-           
-           if (e.RowIndex >= 0) // ヘッダー行でない場合
+
+            if (e.RowIndex >= 0) // ヘッダー行でない場合
             {
-           
+
                 //    F_発注 fm = new F_発注();
 
                 //発注フォームができたら受入る変数をセットする
@@ -504,7 +530,6 @@ namespace u_net
                 dataGridView.FirstDisplayedScrollingRowIndex = 0; // 先頭行を表示
             }
         }
-
 
 
         private void Form_KeyDown(object sender, KeyEventArgs e)
@@ -594,20 +619,22 @@ namespace u_net
         private void コマンド抽出_Click(object sender, EventArgs e)
         {
             dataGridView1.Focus();
-            //F_発注管理_抽出 form = new F_発注管理_抽出();
-            //form.ShowDialog();
+            F_発注管理_抽出 form = new F_発注管理_抽出();
+            form.ShowDialog();
         }
 
 
 
         private void コマンド初期化_Click(object sender, EventArgs e)
         {
+            FunctionClass fn = new FunctionClass();
+            fn.DoWait("初期化しています...");
             InitializeFilter();
             DoUpdate();
             Cleargrid(dataGridView1);
 
             dataGridView1.Focus(); // DataGridViewにフォーカスを設定
-
+            fn.WaitForm.Close();
             //MessageBox.Show("現在開発中です。", "初期化マンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
@@ -730,8 +757,9 @@ namespace u_net
 
         private void コマンド入庫履歴_Click(object sender, EventArgs e)
         {
-            //F_入庫履歴 fm = new F_入庫履歴();
-            //fm.ShowDialog();
+            F_入庫履歴 fm = new F_入庫履歴();
+            fm.ShowDialog();
         }
+                
     }
 }

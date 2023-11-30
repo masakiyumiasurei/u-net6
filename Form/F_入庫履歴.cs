@@ -45,9 +45,6 @@ namespace u_net
             FunctionClass fn = new FunctionClass();
             fn.DoWait("しばらくお待ちください...");
 
-            LocalSetting localSetting = new LocalSetting();
-            localSetting.LoadPlace(CommonConstants.LoginUserCode, this);
-
             MyApi myapi = new MyApi();
             int xSize, ySize, intpixel, twipperdot;
 
@@ -72,6 +69,9 @@ namespace u_net
             int screenWidth = Screen.PrimaryScreen.Bounds.Width; // プライマリスクリーンの幅
             x = (screenWidth - this.Width) / 2;
             this.Location = new Point(x, y);
+
+            //LocalSetting localSetting = new LocalSetting();
+            //localSetting.LoadPlace(CommonConstants.LoginUserCode, this);
 
             if (!SetRelay())
             {
@@ -101,6 +101,7 @@ namespace u_net
                         this.発注版数.Text = objForm.CurrentEdition;
                         this.発注コード.Focus();
                         this.発注コード.Text = objForm.CurrentCode;
+                        this.発注日.Text = DateTime.Now.ToString("yyyy-MM-dd");
                         relaySet = true;
                     }
                 }
@@ -203,8 +204,8 @@ namespace u_net
 
         private void F_入出庫履歴_FormClosing(object sender, FormClosingEventArgs e)
         {
-            LocalSetting test = new LocalSetting();
-            test.SavePlace(CommonConstants.LoginUserCode, this);
+            //LocalSetting test = new LocalSetting();
+            //test.SavePlace(CommonConstants.LoginUserCode, this);
         }
 
         private void コマンド入庫_Click(object sender, EventArgs e)
@@ -224,7 +225,7 @@ namespace u_net
 
         private void 発注コード_Validated(object sender, EventArgs e)
         {
-            if (DispGrid(OriginalClass.Nz(this.発注コード.Text,"").ToString(),1))
+            if (DispGrid(OriginalClass.Nz(this.発注コード.Text, "").ToString(), 1))
             {
                 return;
             }
@@ -241,8 +242,8 @@ namespace u_net
 
                 Connect();
                 DataGridUtils.SetDataGridView(cn, query, this.dataGridView1);
-                            
-                 return true;
+
+                return true;
             }
             catch (Exception ex)
             {

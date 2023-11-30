@@ -310,6 +310,7 @@
             MinimizeBox = false;
             Name = "F_発注管理";
             Text = "発注管理";
+            FormClosing += F_発注管理_FormClosing;
             Load += Form_Load;
             KeyDown += Form_KeyDown;
             panel1.ResumeLayout(false);

@@ -2709,13 +2709,15 @@ namespace u_net.Public
 
 
         public static string WhereString(string bodyString, string addString)
-        {
+        {           
+
             if (string.IsNullOrEmpty(addString))
                 return bodyString;
 
             if (string.IsNullOrEmpty(bodyString))
             {
-                return "(" + addString + ")";
+                bodyString = "(" + addString + ")";
+                return bodyString;
             }
             else
             {
@@ -2727,9 +2729,10 @@ namespace u_net.Public
                 {
                     return bodyString;
                 }
+
             }
         }
-        
+
         //外部システムを起動する
         public static void GetShell(string para)
         {

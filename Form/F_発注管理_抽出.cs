@@ -29,9 +29,7 @@ namespace u_net
         }
 
         private void Form_Load(object sender, EventArgs e)
-        {
-            LocalSetting localSetting = new LocalSetting();
-            localSetting.LoadPlace(CommonConstants.LoginUserCode, this);
+        {            
 
             foreach (Control control in Controls)
             {
@@ -72,10 +70,10 @@ namespace u_net
                 this.発注コード終了.Text = fn.Zn(frmTarget.str発注コード終了).ToString();
                 this.発注者名.Text = fn.Zn(frmTarget.str発注者名).ToString();
 
-                if (Convert.ToDouble(frmTarget.dtm発注日開始) != 0)
+                if (frmTarget.dtm発注日開始 != DateTime.MinValue)
                     this.発注日開始.Text = frmTarget.dtm発注日開始.ToString();
 
-                if (Convert.ToDouble(frmTarget.dtm発注日終了) != 0)
+                if (frmTarget.dtm発注日終了 != DateTime.MinValue)
                     this.発注日終了.Text = frmTarget.dtm発注日終了.ToString();
 
                 this.発注者名.Text = fn.Zn(frmTarget.str発注者名).ToString();
@@ -95,8 +93,7 @@ namespace u_net
                         購買データ抽出指定3.Checked = true;
                         break;
 
-                    default:
-                        // intComposedChipMount の値に対応するラジオボタンがない場合の処理
+                    default:                       
                         break;
                 }
 
@@ -112,8 +109,7 @@ namespace u_net
                         InventoryButton3.Checked = true;
                         break;
 
-                    default:
-                        // intComposedChipMount の値に対応するラジオボタンがない場合の処理
+                    default:                        
                         break;
                 }
 
@@ -129,8 +125,7 @@ namespace u_net
                         DeletedButton3.Checked = true;
                         break;
 
-                    default:
-                        // intComposedChipMount の値に対応するラジオボタンがない場合の処理
+                    default:                        
                         break;
                 }
             }
@@ -176,9 +171,10 @@ namespace u_net
                     frmTarget.lng購買指定 = 0;
                 }
 
+                //ここだけオプション値が異なる　注意
                 if (InventoryButton1.Checked)
                 {
-                    frmTarget.lng入庫状況指定 = 1;
+                    frmTarget.lng入庫状況指定 = 0;
                 }
                 else if (InventoryButton2.Checked)
                 {
@@ -186,7 +182,7 @@ namespace u_net
                 }
                 else if (InventoryButton3.Checked)
                 {
-                    frmTarget.lng入庫状況指定 = 0;
+                    frmTarget.lng入庫状況指定 = 3;
                 }
 
                 if (DeletedButton1.Checked)
@@ -466,8 +462,8 @@ namespace u_net
 
         private void F_発注管理_抽出_FormClosing(object sender, FormClosingEventArgs e)
         {
-            LocalSetting test = new LocalSetting();
-            test.SavePlace(CommonConstants.LoginUserCode, this);
+            //LocalSetting test = new LocalSetting();
+            //test.SavePlace(CommonConstants.LoginUserCode, this);
         }
 
 
