@@ -37,7 +37,7 @@
             // 
             this.gcMultiRow1.Location = new System.Drawing.Point(0, 0);
             this.gcMultiRow1.Name = "gcMultiRow1";
-            this.gcMultiRow1.Size = new System.Drawing.Size(750, 200);
+            this.gcMultiRow1.Size = new System.Drawing.Size(860, 200);
             this.gcMultiRow1.TabIndex = 0;
             this.gcMultiRow1.Template = this.受注明細テンプレート1;
             this.gcMultiRow1.Text = "gcMultiRow1";
@@ -48,7 +48,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.gcMultiRow1);
             this.Name = "受注明細";
-            this.Size = new System.Drawing.Size(750, 200);
+            this.Size = new System.Drawing.Size(860, 200);
             ((System.ComponentModel.ISupportInitialize)(this.gcMultiRow1)).EndInit();
             this.ResumeLayout(false);
 

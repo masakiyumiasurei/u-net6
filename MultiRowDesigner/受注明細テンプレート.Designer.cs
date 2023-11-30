@@ -29,6 +29,51 @@
 		/// </summary>
         private void InitializeComponent()
         {
+            GrapeCity.Win.MultiRow.CellStyle cellStyle25 = new GrapeCity.Win.MultiRow.CellStyle();
+            GrapeCity.Win.MultiRow.Border border23 = new GrapeCity.Win.MultiRow.Border();
+            GrapeCity.Win.MultiRow.CellStyle cellStyle26 = new GrapeCity.Win.MultiRow.CellStyle();
+            GrapeCity.Win.MultiRow.Border border24 = new GrapeCity.Win.MultiRow.Border();
+            GrapeCity.Win.MultiRow.CellStyle cellStyle27 = new GrapeCity.Win.MultiRow.CellStyle();
+            GrapeCity.Win.MultiRow.Border border25 = new GrapeCity.Win.MultiRow.Border();
+            GrapeCity.Win.MultiRow.CellStyle cellStyle28 = new GrapeCity.Win.MultiRow.CellStyle();
+            GrapeCity.Win.MultiRow.Border border26 = new GrapeCity.Win.MultiRow.Border();
+            GrapeCity.Win.MultiRow.CellStyle cellStyle29 = new GrapeCity.Win.MultiRow.CellStyle();
+            GrapeCity.Win.MultiRow.Border border27 = new GrapeCity.Win.MultiRow.Border();
+            GrapeCity.Win.MultiRow.CellStyle cellStyle30 = new GrapeCity.Win.MultiRow.CellStyle();
+            GrapeCity.Win.MultiRow.Border border28 = new GrapeCity.Win.MultiRow.Border();
+            GrapeCity.Win.MultiRow.CellStyle cellStyle31 = new GrapeCity.Win.MultiRow.CellStyle();
+            GrapeCity.Win.MultiRow.Border border29 = new GrapeCity.Win.MultiRow.Border();
+            GrapeCity.Win.MultiRow.CellStyle cellStyle32 = new GrapeCity.Win.MultiRow.CellStyle();
+            GrapeCity.Win.MultiRow.Border border30 = new GrapeCity.Win.MultiRow.Border();
+            GrapeCity.Win.MultiRow.CellStyle cellStyle33 = new GrapeCity.Win.MultiRow.CellStyle();
+            GrapeCity.Win.MultiRow.Border border31 = new GrapeCity.Win.MultiRow.Border();
+            GrapeCity.Win.MultiRow.CellStyle cellStyle34 = new GrapeCity.Win.MultiRow.CellStyle();
+            GrapeCity.Win.MultiRow.Border border32 = new GrapeCity.Win.MultiRow.Border();
+            GrapeCity.Win.MultiRow.CellStyle cellStyle35 = new GrapeCity.Win.MultiRow.CellStyle();
+            GrapeCity.Win.MultiRow.Border border33 = new GrapeCity.Win.MultiRow.Border();
+            GrapeCity.Win.MultiRow.CellStyle cellStyle36 = new GrapeCity.Win.MultiRow.CellStyle();
+            GrapeCity.Win.MultiRow.Border border34 = new GrapeCity.Win.MultiRow.Border();
+            GrapeCity.Win.MultiRow.CellStyle cellStyle37 = new GrapeCity.Win.MultiRow.CellStyle();
+            GrapeCity.Win.MultiRow.Border border35 = new GrapeCity.Win.MultiRow.Border();
+            GrapeCity.Win.MultiRow.CellStyle cellStyle38 = new GrapeCity.Win.MultiRow.CellStyle();
+            GrapeCity.Win.MultiRow.Border border36 = new GrapeCity.Win.MultiRow.Border();
+            GrapeCity.Win.MultiRow.CellStyle cellStyle39 = new GrapeCity.Win.MultiRow.CellStyle();
+            GrapeCity.Win.MultiRow.Border border37 = new GrapeCity.Win.MultiRow.Border();
+            GrapeCity.Win.MultiRow.CellStyle cellStyle40 = new GrapeCity.Win.MultiRow.CellStyle();
+            GrapeCity.Win.MultiRow.Border border38 = new GrapeCity.Win.MultiRow.Border();
+            GrapeCity.Win.MultiRow.CellStyle cellStyle41 = new GrapeCity.Win.MultiRow.CellStyle();
+            GrapeCity.Win.MultiRow.Border border39 = new GrapeCity.Win.MultiRow.Border();
+            GrapeCity.Win.MultiRow.CellStyle cellStyle42 = new GrapeCity.Win.MultiRow.CellStyle();
+            GrapeCity.Win.MultiRow.Border border40 = new GrapeCity.Win.MultiRow.Border();
+            GrapeCity.Win.MultiRow.CellStyle cellStyle43 = new GrapeCity.Win.MultiRow.CellStyle();
+            GrapeCity.Win.MultiRow.Border border41 = new GrapeCity.Win.MultiRow.Border();
+            GrapeCity.Win.MultiRow.CellStyle cellStyle44 = new GrapeCity.Win.MultiRow.CellStyle();
+            GrapeCity.Win.MultiRow.Border border42 = new GrapeCity.Win.MultiRow.Border();
+            GrapeCity.Win.MultiRow.CellStyle cellStyle45 = new GrapeCity.Win.MultiRow.CellStyle();
+            GrapeCity.Win.MultiRow.Border border43 = new GrapeCity.Win.MultiRow.Border();
+            GrapeCity.Win.MultiRow.CellStyle cellStyle46 = new GrapeCity.Win.MultiRow.CellStyle();
+            GrapeCity.Win.MultiRow.Border border44 = new GrapeCity.Win.MultiRow.Border();
+            GrapeCity.Win.MultiRow.CellStyle cellStyle24 = new GrapeCity.Win.MultiRow.CellStyle();
             this.columnHeaderSection1 = new GrapeCity.Win.MultiRow.ColumnHeaderSection();
             this.columnHeaderCell1 = new GrapeCity.Win.MultiRow.ColumnHeaderCell();
             this.columnHeaderCell2 = new GrapeCity.Win.MultiRow.ColumnHeaderCell();
@@ -42,36 +87,16 @@
             this.columnHeaderCell10 = new GrapeCity.Win.MultiRow.ColumnHeaderCell();
             this.columnHeaderCell11 = new GrapeCity.Win.MultiRow.ColumnHeaderCell();
             this.columnHeaderCell12 = new GrapeCity.Win.MultiRow.ColumnHeaderCell();
-            this.columnHeaderCell13 = new GrapeCity.Win.MultiRow.ColumnHeaderCell();
-            this.columnHeaderCell14 = new GrapeCity.Win.MultiRow.ColumnHeaderCell();
-            this.columnHeaderCell15 = new GrapeCity.Win.MultiRow.ColumnHeaderCell();
-            this.columnHeaderCell16 = new GrapeCity.Win.MultiRow.ColumnHeaderCell();
-            this.columnHeaderCell17 = new GrapeCity.Win.MultiRow.ColumnHeaderCell();
-            this.columnHeaderCell18 = new GrapeCity.Win.MultiRow.ColumnHeaderCell();
-            this.columnHeaderCell19 = new GrapeCity.Win.MultiRow.ColumnHeaderCell();
             this.columnHeaderCell20 = new GrapeCity.Win.MultiRow.ColumnHeaderCell();
             this.columnHeaderCell21 = new GrapeCity.Win.MultiRow.ColumnHeaderCell();
-            this.columnHeaderCell22 = new GrapeCity.Win.MultiRow.ColumnHeaderCell();
-            this.columnHeaderCell23 = new GrapeCity.Win.MultiRow.ColumnHeaderCell();
-            this.columnHeaderCell24 = new GrapeCity.Win.MultiRow.ColumnHeaderCell();
             this.columnHeaderCell25 = new GrapeCity.Win.MultiRow.ColumnHeaderCell();
             this.columnHeaderCell26 = new GrapeCity.Win.MultiRow.ColumnHeaderCell();
             this.columnHeaderCell27 = new GrapeCity.Win.MultiRow.ColumnHeaderCell();
-            this.columnHeaderCell28 = new GrapeCity.Win.MultiRow.ColumnHeaderCell();
-            this.columnHeaderCell29 = new GrapeCity.Win.MultiRow.ColumnHeaderCell();
             this.columnHeaderCell30 = new GrapeCity.Win.MultiRow.ColumnHeaderCell();
             this.columnHeaderCell31 = new GrapeCity.Win.MultiRow.ColumnHeaderCell();
-            this.columnHeaderCell32 = new GrapeCity.Win.MultiRow.ColumnHeaderCell();
-            this.columnHeaderCell33 = new GrapeCity.Win.MultiRow.ColumnHeaderCell();
-            this.columnHeaderCell34 = new GrapeCity.Win.MultiRow.ColumnHeaderCell();
-            this.columnHeaderCell35 = new GrapeCity.Win.MultiRow.ColumnHeaderCell();
-            this.columnHeaderCell36 = new GrapeCity.Win.MultiRow.ColumnHeaderCell();
-            this.columnHeaderCell37 = new GrapeCity.Win.MultiRow.ColumnHeaderCell();
-            this.columnHeaderCell38 = new GrapeCity.Win.MultiRow.ColumnHeaderCell();
-            this.columnHeaderCell39 = new GrapeCity.Win.MultiRow.ColumnHeaderCell();
-            this.columnHeaderCell40 = new GrapeCity.Win.MultiRow.ColumnHeaderCell();
             this.cornerHeaderCell1 = new GrapeCity.Win.MultiRow.CornerHeaderCell();
-            this.textBoxCell1 = new GrapeCity.Win.MultiRow.TextBoxCell();
+            this.columnHeaderCell13 = new GrapeCity.Win.MultiRow.ColumnHeaderCell();
+            this.cornerHeaderCell2 = new GrapeCity.Win.MultiRow.CornerHeaderCell();
             this.textBoxCell2 = new GrapeCity.Win.MultiRow.TextBoxCell();
             this.textBoxCell3 = new GrapeCity.Win.MultiRow.TextBoxCell();
             this.textBoxCell4 = new GrapeCity.Win.MultiRow.TextBoxCell();
@@ -83,35 +108,44 @@
             this.textBoxCell10 = new GrapeCity.Win.MultiRow.TextBoxCell();
             this.textBoxCell11 = new GrapeCity.Win.MultiRow.TextBoxCell();
             this.textBoxCell12 = new GrapeCity.Win.MultiRow.TextBoxCell();
-            this.textBoxCell13 = new GrapeCity.Win.MultiRow.TextBoxCell();
-            this.textBoxCell14 = new GrapeCity.Win.MultiRow.TextBoxCell();
-            this.textBoxCell15 = new GrapeCity.Win.MultiRow.TextBoxCell();
             this.textBoxCell16 = new GrapeCity.Win.MultiRow.TextBoxCell();
-            this.textBoxCell17 = new GrapeCity.Win.MultiRow.TextBoxCell();
-            this.textBoxCell18 = new GrapeCity.Win.MultiRow.TextBoxCell();
-            this.textBoxCell19 = new GrapeCity.Win.MultiRow.TextBoxCell();
-            this.textBoxCell20 = new GrapeCity.Win.MultiRow.TextBoxCell();
             this.textBoxCell21 = new GrapeCity.Win.MultiRow.TextBoxCell();
-            this.textBoxCell22 = new GrapeCity.Win.MultiRow.TextBoxCell();
             this.textBoxCell23 = new GrapeCity.Win.MultiRow.TextBoxCell();
-            this.textBoxCell24 = new GrapeCity.Win.MultiRow.TextBoxCell();
-            this.textBoxCell25 = new GrapeCity.Win.MultiRow.TextBoxCell();
             this.textBoxCell26 = new GrapeCity.Win.MultiRow.TextBoxCell();
             this.textBoxCell27 = new GrapeCity.Win.MultiRow.TextBoxCell();
             this.textBoxCell28 = new GrapeCity.Win.MultiRow.TextBoxCell();
             this.textBoxCell29 = new GrapeCity.Win.MultiRow.TextBoxCell();
-            this.textBoxCell30 = new GrapeCity.Win.MultiRow.TextBoxCell();
             this.textBoxCell31 = new GrapeCity.Win.MultiRow.TextBoxCell();
-            this.textBoxCell32 = new GrapeCity.Win.MultiRow.TextBoxCell();
-            this.textBoxCell33 = new GrapeCity.Win.MultiRow.TextBoxCell();
-            this.textBoxCell34 = new GrapeCity.Win.MultiRow.TextBoxCell();
-            this.textBoxCell35 = new GrapeCity.Win.MultiRow.TextBoxCell();
-            this.textBoxCell36 = new GrapeCity.Win.MultiRow.TextBoxCell();
-            this.textBoxCell37 = new GrapeCity.Win.MultiRow.TextBoxCell();
-            this.textBoxCell38 = new GrapeCity.Win.MultiRow.TextBoxCell();
-            this.textBoxCell39 = new GrapeCity.Win.MultiRow.TextBoxCell();
-            this.textBoxCell40 = new GrapeCity.Win.MultiRow.TextBoxCell();
-            this.rowHeaderCell1 = new GrapeCity.Win.MultiRow.RowHeaderCell();
+            this.textBoxCell13 = new GrapeCity.Win.MultiRow.TextBoxCell();
+            this.buttonCell1 = new GrapeCity.Win.MultiRow.ButtonCell();
+            this.受注区分 = new GrapeCity.Win.MultiRow.ComboBoxCell();
+            // 
+            // Row
+            // 
+            this.Row.Cells.Add(this.textBoxCell2);
+            this.Row.Cells.Add(this.textBoxCell3);
+            this.Row.Cells.Add(this.textBoxCell4);
+            this.Row.Cells.Add(this.textBoxCell5);
+            this.Row.Cells.Add(this.textBoxCell6);
+            this.Row.Cells.Add(this.textBoxCell7);
+            this.Row.Cells.Add(this.textBoxCell8);
+            this.Row.Cells.Add(this.textBoxCell9);
+            this.Row.Cells.Add(this.textBoxCell10);
+            this.Row.Cells.Add(this.textBoxCell11);
+            this.Row.Cells.Add(this.textBoxCell12);
+            this.Row.Cells.Add(this.textBoxCell16);
+            this.Row.Cells.Add(this.textBoxCell21);
+            this.Row.Cells.Add(this.textBoxCell23);
+            this.Row.Cells.Add(this.textBoxCell26);
+            this.Row.Cells.Add(this.textBoxCell27);
+            this.Row.Cells.Add(this.textBoxCell28);
+            this.Row.Cells.Add(this.textBoxCell29);
+            this.Row.Cells.Add(this.textBoxCell31);
+            this.Row.Cells.Add(this.textBoxCell13);
+            this.Row.Cells.Add(this.buttonCell1);
+            this.Row.Cells.Add(this.受注区分);
+            this.Row.Height = 84;
+            this.Row.Width = 860;
             // 
             // columnHeaderSection1
             // 
@@ -127,625 +161,488 @@
             this.columnHeaderSection1.Cells.Add(this.columnHeaderCell10);
             this.columnHeaderSection1.Cells.Add(this.columnHeaderCell11);
             this.columnHeaderSection1.Cells.Add(this.columnHeaderCell12);
-            this.columnHeaderSection1.Cells.Add(this.columnHeaderCell13);
-            this.columnHeaderSection1.Cells.Add(this.columnHeaderCell14);
-            this.columnHeaderSection1.Cells.Add(this.columnHeaderCell15);
-            this.columnHeaderSection1.Cells.Add(this.columnHeaderCell16);
-            this.columnHeaderSection1.Cells.Add(this.columnHeaderCell17);
-            this.columnHeaderSection1.Cells.Add(this.columnHeaderCell18);
-            this.columnHeaderSection1.Cells.Add(this.columnHeaderCell19);
             this.columnHeaderSection1.Cells.Add(this.columnHeaderCell20);
             this.columnHeaderSection1.Cells.Add(this.columnHeaderCell21);
-            this.columnHeaderSection1.Cells.Add(this.columnHeaderCell22);
-            this.columnHeaderSection1.Cells.Add(this.columnHeaderCell23);
-            this.columnHeaderSection1.Cells.Add(this.columnHeaderCell24);
             this.columnHeaderSection1.Cells.Add(this.columnHeaderCell25);
             this.columnHeaderSection1.Cells.Add(this.columnHeaderCell26);
             this.columnHeaderSection1.Cells.Add(this.columnHeaderCell27);
-            this.columnHeaderSection1.Cells.Add(this.columnHeaderCell28);
-            this.columnHeaderSection1.Cells.Add(this.columnHeaderCell29);
             this.columnHeaderSection1.Cells.Add(this.columnHeaderCell30);
             this.columnHeaderSection1.Cells.Add(this.columnHeaderCell31);
-            this.columnHeaderSection1.Cells.Add(this.columnHeaderCell32);
-            this.columnHeaderSection1.Cells.Add(this.columnHeaderCell33);
-            this.columnHeaderSection1.Cells.Add(this.columnHeaderCell34);
-            this.columnHeaderSection1.Cells.Add(this.columnHeaderCell35);
-            this.columnHeaderSection1.Cells.Add(this.columnHeaderCell36);
-            this.columnHeaderSection1.Cells.Add(this.columnHeaderCell37);
-            this.columnHeaderSection1.Cells.Add(this.columnHeaderCell38);
-            this.columnHeaderSection1.Cells.Add(this.columnHeaderCell39);
-            this.columnHeaderSection1.Cells.Add(this.columnHeaderCell40);
             this.columnHeaderSection1.Cells.Add(this.cornerHeaderCell1);
+            this.columnHeaderSection1.Cells.Add(this.columnHeaderCell13);
+            this.columnHeaderSection1.Cells.Add(this.cornerHeaderCell2);
             this.columnHeaderSection1.Height = 84;
             this.columnHeaderSection1.Name = "columnHeaderSection1";
-            this.columnHeaderSection1.Width = 840;
+            this.columnHeaderSection1.Width = 860;
             // 
             // columnHeaderCell1
             // 
-            this.columnHeaderCell1.Location = new System.Drawing.Point(40, 0);
+            this.columnHeaderCell1.Location = new System.Drawing.Point(60, 0);
             this.columnHeaderCell1.Name = "columnHeaderCell1";
             this.columnHeaderCell1.Size = new System.Drawing.Size(80, 21);
+            border23.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.DarkGray);
+            cellStyle25.Border = border23;
+            cellStyle25.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
+            cellStyle25.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
+            this.columnHeaderCell1.Style = cellStyle25;
             this.columnHeaderCell1.TabIndex = 0;
+            this.columnHeaderCell1.Value = "受注区分";
             // 
             // columnHeaderCell2
             // 
-            this.columnHeaderCell2.Location = new System.Drawing.Point(120, 0);
+            this.columnHeaderCell2.Location = new System.Drawing.Point(140, 0);
             this.columnHeaderCell2.Name = "columnHeaderCell2";
             this.columnHeaderCell2.Size = new System.Drawing.Size(80, 21);
+            border24.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.DarkGray);
+            cellStyle26.Border = border24;
+            cellStyle26.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
+            cellStyle26.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
+            this.columnHeaderCell2.Style = cellStyle26;
             this.columnHeaderCell2.TabIndex = 1;
+            this.columnHeaderCell2.Value = "売上区分";
             // 
             // columnHeaderCell3
             // 
-            this.columnHeaderCell3.Location = new System.Drawing.Point(200, 0);
+            this.columnHeaderCell3.Location = new System.Drawing.Point(220, 0);
             this.columnHeaderCell3.Name = "columnHeaderCell3";
+            this.columnHeaderCell3.ResizeMode = GrapeCity.Win.MultiRow.ResizeMode.None;
             this.columnHeaderCell3.Size = new System.Drawing.Size(80, 21);
+            border25.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.DarkGray);
+            cellStyle27.Border = border25;
+            cellStyle27.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
+            cellStyle27.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
+            this.columnHeaderCell3.Style = cellStyle27;
             this.columnHeaderCell3.TabIndex = 2;
+            this.columnHeaderCell3.Value = "処理区分";
             // 
             // columnHeaderCell4
             // 
-            this.columnHeaderCell4.Location = new System.Drawing.Point(280, 0);
+            this.columnHeaderCell4.Location = new System.Drawing.Point(300, 0);
             this.columnHeaderCell4.Name = "columnHeaderCell4";
+            this.columnHeaderCell4.ResizeMode = GrapeCity.Win.MultiRow.ResizeMode.None;
             this.columnHeaderCell4.Size = new System.Drawing.Size(80, 21);
+            border26.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.DarkGray);
+            cellStyle28.Border = border26;
+            cellStyle28.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
+            cellStyle28.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
+            this.columnHeaderCell4.Style = cellStyle28;
             this.columnHeaderCell4.TabIndex = 3;
+            this.columnHeaderCell4.Value = "数量";
             // 
             // columnHeaderCell5
             // 
-            this.columnHeaderCell5.Location = new System.Drawing.Point(360, 0);
+            this.columnHeaderCell5.Location = new System.Drawing.Point(380, 0);
             this.columnHeaderCell5.Name = "columnHeaderCell5";
+            this.columnHeaderCell5.ResizeMode = GrapeCity.Win.MultiRow.ResizeMode.None;
             this.columnHeaderCell5.Size = new System.Drawing.Size(80, 21);
+            border27.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.DarkGray);
+            cellStyle29.Border = border27;
+            cellStyle29.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
+            cellStyle29.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
+            this.columnHeaderCell5.Style = cellStyle29;
             this.columnHeaderCell5.TabIndex = 4;
+            this.columnHeaderCell5.Value = "単位";
             // 
             // columnHeaderCell6
             // 
-            this.columnHeaderCell6.Location = new System.Drawing.Point(440, 0);
+            this.columnHeaderCell6.Location = new System.Drawing.Point(460, 0);
             this.columnHeaderCell6.Name = "columnHeaderCell6";
+            this.columnHeaderCell6.ResizeMode = GrapeCity.Win.MultiRow.ResizeMode.None;
             this.columnHeaderCell6.Size = new System.Drawing.Size(80, 21);
+            border28.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.DarkGray);
+            cellStyle30.Border = border28;
+            cellStyle30.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
+            cellStyle30.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
+            this.columnHeaderCell6.Style = cellStyle30;
             this.columnHeaderCell6.TabIndex = 5;
+            this.columnHeaderCell6.Value = "単価";
             // 
             // columnHeaderCell7
             // 
-            this.columnHeaderCell7.Location = new System.Drawing.Point(520, 0);
+            this.columnHeaderCell7.Location = new System.Drawing.Point(540, 0);
             this.columnHeaderCell7.Name = "columnHeaderCell7";
+            this.columnHeaderCell7.ResizeMode = GrapeCity.Win.MultiRow.ResizeMode.None;
             this.columnHeaderCell7.Size = new System.Drawing.Size(80, 21);
+            border29.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.DarkGray);
+            cellStyle31.Border = border29;
+            cellStyle31.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
+            cellStyle31.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
+            this.columnHeaderCell7.Style = cellStyle31;
             this.columnHeaderCell7.TabIndex = 6;
+            this.columnHeaderCell7.Value = "受注金額";
             // 
             // columnHeaderCell8
             // 
-            this.columnHeaderCell8.Location = new System.Drawing.Point(600, 0);
+            this.columnHeaderCell8.Location = new System.Drawing.Point(620, 0);
             this.columnHeaderCell8.Name = "columnHeaderCell8";
+            this.columnHeaderCell8.ResizeMode = GrapeCity.Win.MultiRow.ResizeMode.None;
             this.columnHeaderCell8.Size = new System.Drawing.Size(80, 21);
+            border30.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.DarkGray);
+            cellStyle32.Border = border30;
+            cellStyle32.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
+            cellStyle32.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
+            this.columnHeaderCell8.Style = cellStyle32;
             this.columnHeaderCell8.TabIndex = 7;
+            this.columnHeaderCell8.Value = "原価";
             // 
             // columnHeaderCell9
             // 
-            this.columnHeaderCell9.Location = new System.Drawing.Point(680, 0);
+            this.columnHeaderCell9.Location = new System.Drawing.Point(700, 0);
             this.columnHeaderCell9.Name = "columnHeaderCell9";
+            this.columnHeaderCell9.ResizeMode = GrapeCity.Win.MultiRow.ResizeMode.None;
             this.columnHeaderCell9.Size = new System.Drawing.Size(80, 21);
+            border31.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.DarkGray);
+            cellStyle33.Border = border31;
+            cellStyle33.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
+            cellStyle33.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
+            this.columnHeaderCell9.Style = cellStyle33;
             this.columnHeaderCell9.TabIndex = 8;
+            this.columnHeaderCell9.Value = "原価金額";
             // 
             // columnHeaderCell10
             // 
-            this.columnHeaderCell10.Location = new System.Drawing.Point(760, 0);
+            this.columnHeaderCell10.Location = new System.Drawing.Point(780, 0);
             this.columnHeaderCell10.Name = "columnHeaderCell10";
+            this.columnHeaderCell10.ResizeMode = GrapeCity.Win.MultiRow.ResizeMode.None;
             this.columnHeaderCell10.Size = new System.Drawing.Size(80, 21);
+            border32.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.DarkGray);
+            cellStyle34.Border = border32;
+            cellStyle34.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
+            cellStyle34.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
+            this.columnHeaderCell10.Style = cellStyle34;
             this.columnHeaderCell10.TabIndex = 9;
+            this.columnHeaderCell10.Value = "粗利";
             // 
             // columnHeaderCell11
             // 
-            this.columnHeaderCell11.Location = new System.Drawing.Point(40, 21);
+            this.columnHeaderCell11.Location = new System.Drawing.Point(60, 21);
             this.columnHeaderCell11.Name = "columnHeaderCell11";
+            this.columnHeaderCell11.ResizeMode = GrapeCity.Win.MultiRow.ResizeMode.None;
             this.columnHeaderCell11.Size = new System.Drawing.Size(80, 21);
+            border33.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.DarkGray);
+            cellStyle35.Border = border33;
+            cellStyle35.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
+            cellStyle35.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
+            this.columnHeaderCell11.Style = cellStyle35;
             this.columnHeaderCell11.TabIndex = 10;
+            this.columnHeaderCell11.Value = "商品コード";
             // 
             // columnHeaderCell12
             // 
-            this.columnHeaderCell12.Location = new System.Drawing.Point(120, 21);
+            this.columnHeaderCell12.Location = new System.Drawing.Point(140, 21);
             this.columnHeaderCell12.Name = "columnHeaderCell12";
-            this.columnHeaderCell12.Size = new System.Drawing.Size(80, 21);
+            this.columnHeaderCell12.ResizeMode = GrapeCity.Win.MultiRow.ResizeMode.None;
+            this.columnHeaderCell12.Size = new System.Drawing.Size(320, 21);
+            border34.Bottom = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.DarkGray);
+            border34.Left = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.DarkGray);
+            border34.Right = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.DarkGray);
+            border34.Top = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.DarkGray);
+            cellStyle36.Border = border34;
+            cellStyle36.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
+            cellStyle36.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
+            this.columnHeaderCell12.Style = cellStyle36;
             this.columnHeaderCell12.TabIndex = 11;
-            // 
-            // columnHeaderCell13
-            // 
-            this.columnHeaderCell13.Location = new System.Drawing.Point(200, 21);
-            this.columnHeaderCell13.Name = "columnHeaderCell13";
-            this.columnHeaderCell13.Size = new System.Drawing.Size(80, 21);
-            this.columnHeaderCell13.TabIndex = 12;
-            // 
-            // columnHeaderCell14
-            // 
-            this.columnHeaderCell14.Location = new System.Drawing.Point(280, 21);
-            this.columnHeaderCell14.Name = "columnHeaderCell14";
-            this.columnHeaderCell14.Size = new System.Drawing.Size(80, 21);
-            this.columnHeaderCell14.TabIndex = 13;
-            // 
-            // columnHeaderCell15
-            // 
-            this.columnHeaderCell15.Location = new System.Drawing.Point(360, 21);
-            this.columnHeaderCell15.Name = "columnHeaderCell15";
-            this.columnHeaderCell15.Size = new System.Drawing.Size(80, 21);
-            this.columnHeaderCell15.TabIndex = 14;
-            // 
-            // columnHeaderCell16
-            // 
-            this.columnHeaderCell16.Location = new System.Drawing.Point(440, 21);
-            this.columnHeaderCell16.Name = "columnHeaderCell16";
-            this.columnHeaderCell16.Size = new System.Drawing.Size(80, 21);
-            this.columnHeaderCell16.TabIndex = 15;
-            // 
-            // columnHeaderCell17
-            // 
-            this.columnHeaderCell17.Location = new System.Drawing.Point(520, 21);
-            this.columnHeaderCell17.Name = "columnHeaderCell17";
-            this.columnHeaderCell17.Size = new System.Drawing.Size(80, 21);
-            this.columnHeaderCell17.TabIndex = 16;
-            // 
-            // columnHeaderCell18
-            // 
-            this.columnHeaderCell18.Location = new System.Drawing.Point(600, 21);
-            this.columnHeaderCell18.Name = "columnHeaderCell18";
-            this.columnHeaderCell18.Size = new System.Drawing.Size(80, 21);
-            this.columnHeaderCell18.TabIndex = 17;
-            // 
-            // columnHeaderCell19
-            // 
-            this.columnHeaderCell19.Location = new System.Drawing.Point(680, 21);
-            this.columnHeaderCell19.Name = "columnHeaderCell19";
-            this.columnHeaderCell19.Size = new System.Drawing.Size(80, 21);
-            this.columnHeaderCell19.TabIndex = 18;
+            this.columnHeaderCell12.Value = "型番";
             // 
             // columnHeaderCell20
             // 
-            this.columnHeaderCell20.Location = new System.Drawing.Point(760, 21);
+            this.columnHeaderCell20.Location = new System.Drawing.Point(460, 21);
             this.columnHeaderCell20.Name = "columnHeaderCell20";
-            this.columnHeaderCell20.Size = new System.Drawing.Size(80, 21);
+            this.columnHeaderCell20.ResizeMode = GrapeCity.Win.MultiRow.ResizeMode.None;
+            this.columnHeaderCell20.Size = new System.Drawing.Size(400, 21);
+            border35.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.DarkGray);
+            cellStyle37.Border = border35;
+            cellStyle37.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
+            cellStyle37.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
+            this.columnHeaderCell20.Style = cellStyle37;
             this.columnHeaderCell20.TabIndex = 19;
+            this.columnHeaderCell20.Value = "品名";
             // 
             // columnHeaderCell21
             // 
-            this.columnHeaderCell21.Location = new System.Drawing.Point(40, 42);
+            this.columnHeaderCell21.Location = new System.Drawing.Point(60, 42);
             this.columnHeaderCell21.Name = "columnHeaderCell21";
-            this.columnHeaderCell21.Size = new System.Drawing.Size(80, 21);
+            this.columnHeaderCell21.ResizeMode = GrapeCity.Win.MultiRow.ResizeMode.None;
+            this.columnHeaderCell21.Size = new System.Drawing.Size(160, 21);
+            border36.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.DarkGray);
+            cellStyle38.Border = border36;
+            cellStyle38.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
+            cellStyle38.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
+            this.columnHeaderCell21.Style = cellStyle38;
             this.columnHeaderCell21.TabIndex = 20;
-            // 
-            // columnHeaderCell22
-            // 
-            this.columnHeaderCell22.Location = new System.Drawing.Point(120, 42);
-            this.columnHeaderCell22.Name = "columnHeaderCell22";
-            this.columnHeaderCell22.Size = new System.Drawing.Size(80, 21);
-            this.columnHeaderCell22.TabIndex = 21;
-            // 
-            // columnHeaderCell23
-            // 
-            this.columnHeaderCell23.Location = new System.Drawing.Point(200, 42);
-            this.columnHeaderCell23.Name = "columnHeaderCell23";
-            this.columnHeaderCell23.Size = new System.Drawing.Size(80, 21);
-            this.columnHeaderCell23.TabIndex = 22;
-            // 
-            // columnHeaderCell24
-            // 
-            this.columnHeaderCell24.Location = new System.Drawing.Point(280, 42);
-            this.columnHeaderCell24.Name = "columnHeaderCell24";
-            this.columnHeaderCell24.Size = new System.Drawing.Size(80, 21);
-            this.columnHeaderCell24.TabIndex = 23;
+            this.columnHeaderCell21.Value = "顧客シリアル番号開始";
             // 
             // columnHeaderCell25
             // 
-            this.columnHeaderCell25.Location = new System.Drawing.Point(360, 42);
+            this.columnHeaderCell25.Location = new System.Drawing.Point(220, 42);
             this.columnHeaderCell25.Name = "columnHeaderCell25";
-            this.columnHeaderCell25.Size = new System.Drawing.Size(80, 21);
+            this.columnHeaderCell25.ResizeMode = GrapeCity.Win.MultiRow.ResizeMode.None;
+            this.columnHeaderCell25.Size = new System.Drawing.Size(160, 21);
+            border37.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.DarkGray);
+            cellStyle39.Border = border37;
+            cellStyle39.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
+            cellStyle39.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
+            this.columnHeaderCell25.Style = cellStyle39;
             this.columnHeaderCell25.TabIndex = 24;
+            this.columnHeaderCell25.Value = "顧客シリアル番号終了";
             // 
             // columnHeaderCell26
             // 
-            this.columnHeaderCell26.Location = new System.Drawing.Point(440, 42);
+            this.columnHeaderCell26.Location = new System.Drawing.Point(460, 42);
             this.columnHeaderCell26.Name = "columnHeaderCell26";
+            this.columnHeaderCell26.ResizeMode = GrapeCity.Win.MultiRow.ResizeMode.None;
             this.columnHeaderCell26.Size = new System.Drawing.Size(80, 21);
+            border38.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.DarkGray);
+            cellStyle40.Border = border38;
+            cellStyle40.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
+            cellStyle40.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
+            this.columnHeaderCell26.Style = cellStyle40;
             this.columnHeaderCell26.TabIndex = 25;
+            this.columnHeaderCell26.Value = "設定明細書";
             // 
             // columnHeaderCell27
             // 
-            this.columnHeaderCell27.Location = new System.Drawing.Point(520, 42);
+            this.columnHeaderCell27.Location = new System.Drawing.Point(540, 42);
             this.columnHeaderCell27.Name = "columnHeaderCell27";
+            this.columnHeaderCell27.ResizeMode = GrapeCity.Win.MultiRow.ResizeMode.None;
             this.columnHeaderCell27.Size = new System.Drawing.Size(80, 21);
+            border39.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.DarkGray);
+            cellStyle41.Border = border39;
+            cellStyle41.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
+            cellStyle41.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
+            this.columnHeaderCell27.Style = cellStyle41;
             this.columnHeaderCell27.TabIndex = 26;
-            // 
-            // columnHeaderCell28
-            // 
-            this.columnHeaderCell28.Location = new System.Drawing.Point(600, 42);
-            this.columnHeaderCell28.Name = "columnHeaderCell28";
-            this.columnHeaderCell28.Size = new System.Drawing.Size(80, 21);
-            this.columnHeaderCell28.TabIndex = 27;
-            // 
-            // columnHeaderCell29
-            // 
-            this.columnHeaderCell29.Location = new System.Drawing.Point(680, 42);
-            this.columnHeaderCell29.Name = "columnHeaderCell29";
-            this.columnHeaderCell29.Size = new System.Drawing.Size(80, 21);
-            this.columnHeaderCell29.TabIndex = 28;
+            this.columnHeaderCell27.Value = "検査成績書";
             // 
             // columnHeaderCell30
             // 
-            this.columnHeaderCell30.Location = new System.Drawing.Point(760, 42);
+            this.columnHeaderCell30.Location = new System.Drawing.Point(700, 42);
             this.columnHeaderCell30.Name = "columnHeaderCell30";
-            this.columnHeaderCell30.Size = new System.Drawing.Size(80, 21);
+            this.columnHeaderCell30.ResizeMode = GrapeCity.Win.MultiRow.ResizeMode.None;
+            this.columnHeaderCell30.Size = new System.Drawing.Size(160, 21);
+            border40.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.DarkGray);
+            cellStyle42.Border = border40;
+            cellStyle42.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
+            cellStyle42.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
+            this.columnHeaderCell30.Style = cellStyle42;
             this.columnHeaderCell30.TabIndex = 29;
+            this.columnHeaderCell30.Value = "非該当証明書";
             // 
             // columnHeaderCell31
             // 
-            this.columnHeaderCell31.Location = new System.Drawing.Point(40, 63);
+            this.columnHeaderCell31.Location = new System.Drawing.Point(60, 63);
             this.columnHeaderCell31.Name = "columnHeaderCell31";
-            this.columnHeaderCell31.Size = new System.Drawing.Size(80, 21);
+            this.columnHeaderCell31.ResizeMode = GrapeCity.Win.MultiRow.ResizeMode.None;
+            this.columnHeaderCell31.Size = new System.Drawing.Size(800, 21);
+            border41.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.DarkGray);
+            cellStyle43.Border = border41;
+            cellStyle43.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
+            cellStyle43.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
+            this.columnHeaderCell31.Style = cellStyle43;
             this.columnHeaderCell31.TabIndex = 30;
-            // 
-            // columnHeaderCell32
-            // 
-            this.columnHeaderCell32.Location = new System.Drawing.Point(120, 63);
-            this.columnHeaderCell32.Name = "columnHeaderCell32";
-            this.columnHeaderCell32.Size = new System.Drawing.Size(80, 21);
-            this.columnHeaderCell32.TabIndex = 31;
-            // 
-            // columnHeaderCell33
-            // 
-            this.columnHeaderCell33.Location = new System.Drawing.Point(200, 63);
-            this.columnHeaderCell33.Name = "columnHeaderCell33";
-            this.columnHeaderCell33.Size = new System.Drawing.Size(80, 21);
-            this.columnHeaderCell33.TabIndex = 32;
-            // 
-            // columnHeaderCell34
-            // 
-            this.columnHeaderCell34.Location = new System.Drawing.Point(280, 63);
-            this.columnHeaderCell34.Name = "columnHeaderCell34";
-            this.columnHeaderCell34.Size = new System.Drawing.Size(80, 21);
-            this.columnHeaderCell34.TabIndex = 33;
-            // 
-            // columnHeaderCell35
-            // 
-            this.columnHeaderCell35.Location = new System.Drawing.Point(360, 63);
-            this.columnHeaderCell35.Name = "columnHeaderCell35";
-            this.columnHeaderCell35.Size = new System.Drawing.Size(80, 21);
-            this.columnHeaderCell35.TabIndex = 34;
-            // 
-            // columnHeaderCell36
-            // 
-            this.columnHeaderCell36.Location = new System.Drawing.Point(440, 63);
-            this.columnHeaderCell36.Name = "columnHeaderCell36";
-            this.columnHeaderCell36.Size = new System.Drawing.Size(80, 21);
-            this.columnHeaderCell36.TabIndex = 35;
-            // 
-            // columnHeaderCell37
-            // 
-            this.columnHeaderCell37.Location = new System.Drawing.Point(520, 63);
-            this.columnHeaderCell37.Name = "columnHeaderCell37";
-            this.columnHeaderCell37.Size = new System.Drawing.Size(80, 21);
-            this.columnHeaderCell37.TabIndex = 36;
-            // 
-            // columnHeaderCell38
-            // 
-            this.columnHeaderCell38.Location = new System.Drawing.Point(600, 63);
-            this.columnHeaderCell38.Name = "columnHeaderCell38";
-            this.columnHeaderCell38.Size = new System.Drawing.Size(80, 21);
-            this.columnHeaderCell38.TabIndex = 37;
-            // 
-            // columnHeaderCell39
-            // 
-            this.columnHeaderCell39.Location = new System.Drawing.Point(680, 63);
-            this.columnHeaderCell39.Name = "columnHeaderCell39";
-            this.columnHeaderCell39.Size = new System.Drawing.Size(80, 21);
-            this.columnHeaderCell39.TabIndex = 38;
-            // 
-            // columnHeaderCell40
-            // 
-            this.columnHeaderCell40.Location = new System.Drawing.Point(760, 63);
-            this.columnHeaderCell40.Name = "columnHeaderCell40";
-            this.columnHeaderCell40.Size = new System.Drawing.Size(80, 21);
-            this.columnHeaderCell40.TabIndex = 39;
+            this.columnHeaderCell31.Value = "設定明細内容";
             // 
             // cornerHeaderCell1
             // 
             this.cornerHeaderCell1.Location = new System.Drawing.Point(0, 0);
             this.cornerHeaderCell1.Name = "cornerHeaderCell1";
-            this.cornerHeaderCell1.Size = new System.Drawing.Size(40, 84);
+            this.cornerHeaderCell1.Size = new System.Drawing.Size(30, 84);
+            border42.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.DarkGray);
+            cellStyle44.Border = border42;
+            cellStyle44.Font = new System.Drawing.Font("BIZ UDPゴシック", 8F);
+            cellStyle44.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
+            this.cornerHeaderCell1.Style = cellStyle44;
             this.cornerHeaderCell1.TabIndex = 40;
             // 
-            // textBoxCell1
+            // columnHeaderCell13
             // 
-            this.textBoxCell1.Location = new System.Drawing.Point(40, 0);
-            this.textBoxCell1.Name = "textBoxCell1";
-            this.textBoxCell1.TabIndex = 0;
+            this.columnHeaderCell13.Location = new System.Drawing.Point(620, 42);
+            this.columnHeaderCell13.Name = "columnHeaderCell13";
+            this.columnHeaderCell13.ResizeMode = GrapeCity.Win.MultiRow.ResizeMode.None;
+            this.columnHeaderCell13.Size = new System.Drawing.Size(80, 21);
+            border43.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.DarkGray);
+            cellStyle45.Border = border43;
+            cellStyle45.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
+            cellStyle45.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
+            this.columnHeaderCell13.Style = cellStyle45;
+            this.columnHeaderCell13.TabIndex = 41;
+            this.columnHeaderCell13.Value = "納入仕様書";
+            // 
+            // cornerHeaderCell2
+            // 
+            this.cornerHeaderCell2.Location = new System.Drawing.Point(30, 0);
+            this.cornerHeaderCell2.Name = "cornerHeaderCell2";
+            this.cornerHeaderCell2.Size = new System.Drawing.Size(30, 84);
+            border44.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.DarkGray);
+            cellStyle46.Border = border44;
+            cellStyle46.Font = new System.Drawing.Font("BIZ UDPゴシック", 8F);
+            cellStyle46.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
+            this.cornerHeaderCell2.Style = cellStyle46;
+            this.cornerHeaderCell2.TabIndex = 42;
+            this.cornerHeaderCell2.Value = "No";
             // 
             // textBoxCell2
             // 
-            this.textBoxCell2.Location = new System.Drawing.Point(120, 0);
+            this.textBoxCell2.Location = new System.Drawing.Point(140, 0);
             this.textBoxCell2.Name = "textBoxCell2";
             this.textBoxCell2.TabIndex = 1;
             // 
             // textBoxCell3
             // 
-            this.textBoxCell3.Location = new System.Drawing.Point(200, 0);
+            this.textBoxCell3.Location = new System.Drawing.Point(220, 0);
             this.textBoxCell3.Name = "textBoxCell3";
             this.textBoxCell3.TabIndex = 2;
             // 
             // textBoxCell4
             // 
-            this.textBoxCell4.Location = new System.Drawing.Point(280, 0);
+            this.textBoxCell4.Location = new System.Drawing.Point(300, 0);
             this.textBoxCell4.Name = "textBoxCell4";
             this.textBoxCell4.TabIndex = 3;
             // 
             // textBoxCell5
             // 
-            this.textBoxCell5.Location = new System.Drawing.Point(360, 0);
+            this.textBoxCell5.Location = new System.Drawing.Point(380, 0);
             this.textBoxCell5.Name = "textBoxCell5";
             this.textBoxCell5.TabIndex = 4;
             // 
             // textBoxCell6
             // 
-            this.textBoxCell6.Location = new System.Drawing.Point(440, 0);
+            this.textBoxCell6.DataField = "単価";
+            this.textBoxCell6.Location = new System.Drawing.Point(460, 0);
             this.textBoxCell6.Name = "textBoxCell6";
             this.textBoxCell6.TabIndex = 5;
             // 
             // textBoxCell7
             // 
-            this.textBoxCell7.Location = new System.Drawing.Point(520, 0);
+            this.textBoxCell7.Location = new System.Drawing.Point(540, 0);
             this.textBoxCell7.Name = "textBoxCell7";
             this.textBoxCell7.TabIndex = 6;
             // 
             // textBoxCell8
             // 
-            this.textBoxCell8.Location = new System.Drawing.Point(600, 0);
+            this.textBoxCell8.Location = new System.Drawing.Point(620, 0);
             this.textBoxCell8.Name = "textBoxCell8";
             this.textBoxCell8.TabIndex = 7;
             // 
             // textBoxCell9
             // 
-            this.textBoxCell9.Location = new System.Drawing.Point(680, 0);
+            this.textBoxCell9.Location = new System.Drawing.Point(700, 0);
             this.textBoxCell9.Name = "textBoxCell9";
             this.textBoxCell9.TabIndex = 8;
             // 
             // textBoxCell10
             // 
-            this.textBoxCell10.Location = new System.Drawing.Point(760, 0);
+            this.textBoxCell10.Location = new System.Drawing.Point(780, 0);
             this.textBoxCell10.Name = "textBoxCell10";
             this.textBoxCell10.TabIndex = 9;
             // 
             // textBoxCell11
             // 
-            this.textBoxCell11.Location = new System.Drawing.Point(40, 21);
+            this.textBoxCell11.DataField = "受注コード";
+            this.textBoxCell11.Location = new System.Drawing.Point(60, 21);
             this.textBoxCell11.Name = "textBoxCell11";
             this.textBoxCell11.TabIndex = 10;
             // 
             // textBoxCell12
             // 
-            this.textBoxCell12.Location = new System.Drawing.Point(120, 21);
+            this.textBoxCell12.DataField = "型番";
+            this.textBoxCell12.Location = new System.Drawing.Point(140, 21);
             this.textBoxCell12.Name = "textBoxCell12";
+            this.textBoxCell12.Size = new System.Drawing.Size(320, 21);
             this.textBoxCell12.TabIndex = 11;
-            // 
-            // textBoxCell13
-            // 
-            this.textBoxCell13.Location = new System.Drawing.Point(200, 21);
-            this.textBoxCell13.Name = "textBoxCell13";
-            this.textBoxCell13.TabIndex = 12;
-            // 
-            // textBoxCell14
-            // 
-            this.textBoxCell14.Location = new System.Drawing.Point(280, 21);
-            this.textBoxCell14.Name = "textBoxCell14";
-            this.textBoxCell14.TabIndex = 13;
-            // 
-            // textBoxCell15
-            // 
-            this.textBoxCell15.Location = new System.Drawing.Point(360, 21);
-            this.textBoxCell15.Name = "textBoxCell15";
-            this.textBoxCell15.TabIndex = 14;
             // 
             // textBoxCell16
             // 
-            this.textBoxCell16.Location = new System.Drawing.Point(440, 21);
+            this.textBoxCell16.DataField = "品名";
+            this.textBoxCell16.Location = new System.Drawing.Point(460, 21);
             this.textBoxCell16.Name = "textBoxCell16";
+            this.textBoxCell16.Size = new System.Drawing.Size(400, 21);
             this.textBoxCell16.TabIndex = 15;
-            // 
-            // textBoxCell17
-            // 
-            this.textBoxCell17.Location = new System.Drawing.Point(520, 21);
-            this.textBoxCell17.Name = "textBoxCell17";
-            this.textBoxCell17.TabIndex = 16;
-            // 
-            // textBoxCell18
-            // 
-            this.textBoxCell18.Location = new System.Drawing.Point(600, 21);
-            this.textBoxCell18.Name = "textBoxCell18";
-            this.textBoxCell18.TabIndex = 17;
-            // 
-            // textBoxCell19
-            // 
-            this.textBoxCell19.Location = new System.Drawing.Point(680, 21);
-            this.textBoxCell19.Name = "textBoxCell19";
-            this.textBoxCell19.TabIndex = 18;
-            // 
-            // textBoxCell20
-            // 
-            this.textBoxCell20.Location = new System.Drawing.Point(760, 21);
-            this.textBoxCell20.Name = "textBoxCell20";
-            this.textBoxCell20.TabIndex = 19;
             // 
             // textBoxCell21
             // 
-            this.textBoxCell21.Location = new System.Drawing.Point(40, 42);
+            this.textBoxCell21.Location = new System.Drawing.Point(60, 42);
             this.textBoxCell21.Name = "textBoxCell21";
+            this.textBoxCell21.Size = new System.Drawing.Size(160, 21);
             this.textBoxCell21.TabIndex = 20;
-            // 
-            // textBoxCell22
-            // 
-            this.textBoxCell22.Location = new System.Drawing.Point(120, 42);
-            this.textBoxCell22.Name = "textBoxCell22";
-            this.textBoxCell22.TabIndex = 21;
             // 
             // textBoxCell23
             // 
-            this.textBoxCell23.Location = new System.Drawing.Point(200, 42);
+            this.textBoxCell23.Location = new System.Drawing.Point(220, 42);
             this.textBoxCell23.Name = "textBoxCell23";
+            this.textBoxCell23.Size = new System.Drawing.Size(160, 21);
             this.textBoxCell23.TabIndex = 22;
-            // 
-            // textBoxCell24
-            // 
-            this.textBoxCell24.Location = new System.Drawing.Point(280, 42);
-            this.textBoxCell24.Name = "textBoxCell24";
-            this.textBoxCell24.TabIndex = 23;
-            // 
-            // textBoxCell25
-            // 
-            this.textBoxCell25.Location = new System.Drawing.Point(360, 42);
-            this.textBoxCell25.Name = "textBoxCell25";
-            this.textBoxCell25.TabIndex = 24;
             // 
             // textBoxCell26
             // 
-            this.textBoxCell26.Location = new System.Drawing.Point(440, 42);
+            this.textBoxCell26.Location = new System.Drawing.Point(460, 42);
             this.textBoxCell26.Name = "textBoxCell26";
             this.textBoxCell26.TabIndex = 25;
             // 
             // textBoxCell27
             // 
-            this.textBoxCell27.Location = new System.Drawing.Point(520, 42);
+            this.textBoxCell27.Location = new System.Drawing.Point(540, 42);
             this.textBoxCell27.Name = "textBoxCell27";
             this.textBoxCell27.TabIndex = 26;
             // 
             // textBoxCell28
             // 
-            this.textBoxCell28.Location = new System.Drawing.Point(600, 42);
+            this.textBoxCell28.Location = new System.Drawing.Point(620, 42);
             this.textBoxCell28.Name = "textBoxCell28";
             this.textBoxCell28.TabIndex = 27;
             // 
             // textBoxCell29
             // 
-            this.textBoxCell29.Location = new System.Drawing.Point(680, 42);
+            this.textBoxCell29.Location = new System.Drawing.Point(700, 42);
             this.textBoxCell29.Name = "textBoxCell29";
+            this.textBoxCell29.Size = new System.Drawing.Size(160, 21);
             this.textBoxCell29.TabIndex = 28;
-            // 
-            // textBoxCell30
-            // 
-            this.textBoxCell30.Location = new System.Drawing.Point(760, 42);
-            this.textBoxCell30.Name = "textBoxCell30";
-            this.textBoxCell30.TabIndex = 29;
             // 
             // textBoxCell31
             // 
-            this.textBoxCell31.Location = new System.Drawing.Point(40, 63);
+            this.textBoxCell31.Location = new System.Drawing.Point(60, 63);
             this.textBoxCell31.Name = "textBoxCell31";
+            this.textBoxCell31.Size = new System.Drawing.Size(800, 21);
             this.textBoxCell31.TabIndex = 30;
             // 
-            // textBoxCell32
+            // textBoxCell13
             // 
-            this.textBoxCell32.Location = new System.Drawing.Point(120, 63);
-            this.textBoxCell32.Name = "textBoxCell32";
-            this.textBoxCell32.TabIndex = 31;
+            this.textBoxCell13.DataField = "明細番号";
+            this.textBoxCell13.Location = new System.Drawing.Point(30, 0);
+            this.textBoxCell13.Name = "textBoxCell13";
+            this.textBoxCell13.Size = new System.Drawing.Size(30, 84);
+            this.textBoxCell13.TabIndex = 41;
             // 
-            // textBoxCell33
+            // buttonCell1
             // 
-            this.textBoxCell33.Location = new System.Drawing.Point(200, 63);
-            this.textBoxCell33.Name = "textBoxCell33";
-            this.textBoxCell33.TabIndex = 32;
+            this.buttonCell1.ButtonCommand = GrapeCity.Win.MultiRow.RowActionButtonCommands.Remove;
+            this.buttonCell1.Location = new System.Drawing.Point(0, 0);
+            this.buttonCell1.Name = "buttonCell1";
+            this.buttonCell1.Size = new System.Drawing.Size(30, 84);
+            cellStyle24.BackColor = System.Drawing.Color.White;
+            cellStyle24.ImeMode = System.Windows.Forms.ImeMode.Off;
+            cellStyle24.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            cellStyle24.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
+            this.buttonCell1.Style = cellStyle24;
+            this.buttonCell1.TabIndex = 42;
+            this.buttonCell1.Value = "×";
             // 
-            // textBoxCell34
+            // 受注区分
             // 
-            this.textBoxCell34.Location = new System.Drawing.Point(280, 63);
-            this.textBoxCell34.Name = "textBoxCell34";
-            this.textBoxCell34.TabIndex = 33;
-            // 
-            // textBoxCell35
-            // 
-            this.textBoxCell35.Location = new System.Drawing.Point(360, 63);
-            this.textBoxCell35.Name = "textBoxCell35";
-            this.textBoxCell35.TabIndex = 34;
-            // 
-            // textBoxCell36
-            // 
-            this.textBoxCell36.Location = new System.Drawing.Point(440, 63);
-            this.textBoxCell36.Name = "textBoxCell36";
-            this.textBoxCell36.TabIndex = 35;
-            // 
-            // textBoxCell37
-            // 
-            this.textBoxCell37.Location = new System.Drawing.Point(520, 63);
-            this.textBoxCell37.Name = "textBoxCell37";
-            this.textBoxCell37.TabIndex = 36;
-            // 
-            // textBoxCell38
-            // 
-            this.textBoxCell38.Location = new System.Drawing.Point(600, 63);
-            this.textBoxCell38.Name = "textBoxCell38";
-            this.textBoxCell38.TabIndex = 37;
-            // 
-            // textBoxCell39
-            // 
-            this.textBoxCell39.Location = new System.Drawing.Point(680, 63);
-            this.textBoxCell39.Name = "textBoxCell39";
-            this.textBoxCell39.TabIndex = 38;
-            // 
-            // textBoxCell40
-            // 
-            this.textBoxCell40.Location = new System.Drawing.Point(760, 63);
-            this.textBoxCell40.Name = "textBoxCell40";
-            this.textBoxCell40.TabIndex = 39;
-            // 
-            // rowHeaderCell1
-            // 
-            this.rowHeaderCell1.Location = new System.Drawing.Point(0, 0);
-            this.rowHeaderCell1.Name = "rowHeaderCell1";
-            this.rowHeaderCell1.Size = new System.Drawing.Size(40, 84);
-            this.rowHeaderCell1.TabIndex = 40;
+            this.受注区分.DataField = "受注区分コード";
+            this.受注区分.DisplayMember = "受注区分";
+            this.受注区分.Location = new System.Drawing.Point(60, 0);
+            this.受注区分.Name = "受注区分";
+            this.受注区分.TabIndex = 43;
+            this.受注区分.ValueMember = "受注区分コード";
             // 
             // 受注明細テンプレート
             // 
             this.ColumnHeaders.AddRange(new GrapeCity.Win.MultiRow.ColumnHeaderSection[] {
-                        this.columnHeaderSection1});
+            this.columnHeaderSection1});
             this.Height = 168;
-            // 
-            // Row
-            // 
-            this.Row.Cells.Add(this.textBoxCell1);
-            this.Row.Cells.Add(this.textBoxCell2);
-            this.Row.Cells.Add(this.textBoxCell3);
-            this.Row.Cells.Add(this.textBoxCell4);
-            this.Row.Cells.Add(this.textBoxCell5);
-            this.Row.Cells.Add(this.textBoxCell6);
-            this.Row.Cells.Add(this.textBoxCell7);
-            this.Row.Cells.Add(this.textBoxCell8);
-            this.Row.Cells.Add(this.textBoxCell9);
-            this.Row.Cells.Add(this.textBoxCell10);
-            this.Row.Cells.Add(this.textBoxCell11);
-            this.Row.Cells.Add(this.textBoxCell12);
-            this.Row.Cells.Add(this.textBoxCell13);
-            this.Row.Cells.Add(this.textBoxCell14);
-            this.Row.Cells.Add(this.textBoxCell15);
-            this.Row.Cells.Add(this.textBoxCell16);
-            this.Row.Cells.Add(this.textBoxCell17);
-            this.Row.Cells.Add(this.textBoxCell18);
-            this.Row.Cells.Add(this.textBoxCell19);
-            this.Row.Cells.Add(this.textBoxCell20);
-            this.Row.Cells.Add(this.textBoxCell21);
-            this.Row.Cells.Add(this.textBoxCell22);
-            this.Row.Cells.Add(this.textBoxCell23);
-            this.Row.Cells.Add(this.textBoxCell24);
-            this.Row.Cells.Add(this.textBoxCell25);
-            this.Row.Cells.Add(this.textBoxCell26);
-            this.Row.Cells.Add(this.textBoxCell27);
-            this.Row.Cells.Add(this.textBoxCell28);
-            this.Row.Cells.Add(this.textBoxCell29);
-            this.Row.Cells.Add(this.textBoxCell30);
-            this.Row.Cells.Add(this.textBoxCell31);
-            this.Row.Cells.Add(this.textBoxCell32);
-            this.Row.Cells.Add(this.textBoxCell33);
-            this.Row.Cells.Add(this.textBoxCell34);
-            this.Row.Cells.Add(this.textBoxCell35);
-            this.Row.Cells.Add(this.textBoxCell36);
-            this.Row.Cells.Add(this.textBoxCell37);
-            this.Row.Cells.Add(this.textBoxCell38);
-            this.Row.Cells.Add(this.textBoxCell39);
-            this.Row.Cells.Add(this.textBoxCell40);
-            this.Row.Cells.Add(this.rowHeaderCell1);
-            this.Row.Height = 84;
-            this.Row.Width = 840;
-            this.Width = 840;
+            this.Width = 860;
+
         }
         
 
@@ -764,36 +661,14 @@
         private GrapeCity.Win.MultiRow.ColumnHeaderCell columnHeaderCell10;
         private GrapeCity.Win.MultiRow.ColumnHeaderCell columnHeaderCell11;
         private GrapeCity.Win.MultiRow.ColumnHeaderCell columnHeaderCell12;
-        private GrapeCity.Win.MultiRow.ColumnHeaderCell columnHeaderCell13;
-        private GrapeCity.Win.MultiRow.ColumnHeaderCell columnHeaderCell14;
-        private GrapeCity.Win.MultiRow.ColumnHeaderCell columnHeaderCell15;
-        private GrapeCity.Win.MultiRow.ColumnHeaderCell columnHeaderCell16;
-        private GrapeCity.Win.MultiRow.ColumnHeaderCell columnHeaderCell17;
-        private GrapeCity.Win.MultiRow.ColumnHeaderCell columnHeaderCell18;
-        private GrapeCity.Win.MultiRow.ColumnHeaderCell columnHeaderCell19;
         private GrapeCity.Win.MultiRow.ColumnHeaderCell columnHeaderCell20;
         private GrapeCity.Win.MultiRow.ColumnHeaderCell columnHeaderCell21;
-        private GrapeCity.Win.MultiRow.ColumnHeaderCell columnHeaderCell22;
-        private GrapeCity.Win.MultiRow.ColumnHeaderCell columnHeaderCell23;
-        private GrapeCity.Win.MultiRow.ColumnHeaderCell columnHeaderCell24;
         private GrapeCity.Win.MultiRow.ColumnHeaderCell columnHeaderCell25;
         private GrapeCity.Win.MultiRow.ColumnHeaderCell columnHeaderCell26;
         private GrapeCity.Win.MultiRow.ColumnHeaderCell columnHeaderCell27;
-        private GrapeCity.Win.MultiRow.ColumnHeaderCell columnHeaderCell28;
-        private GrapeCity.Win.MultiRow.ColumnHeaderCell columnHeaderCell29;
         private GrapeCity.Win.MultiRow.ColumnHeaderCell columnHeaderCell30;
         private GrapeCity.Win.MultiRow.ColumnHeaderCell columnHeaderCell31;
-        private GrapeCity.Win.MultiRow.ColumnHeaderCell columnHeaderCell32;
-        private GrapeCity.Win.MultiRow.ColumnHeaderCell columnHeaderCell33;
-        private GrapeCity.Win.MultiRow.ColumnHeaderCell columnHeaderCell34;
-        private GrapeCity.Win.MultiRow.ColumnHeaderCell columnHeaderCell35;
-        private GrapeCity.Win.MultiRow.ColumnHeaderCell columnHeaderCell36;
-        private GrapeCity.Win.MultiRow.ColumnHeaderCell columnHeaderCell37;
-        private GrapeCity.Win.MultiRow.ColumnHeaderCell columnHeaderCell38;
-        private GrapeCity.Win.MultiRow.ColumnHeaderCell columnHeaderCell39;
-        private GrapeCity.Win.MultiRow.ColumnHeaderCell columnHeaderCell40;
         private GrapeCity.Win.MultiRow.CornerHeaderCell cornerHeaderCell1;
-        private GrapeCity.Win.MultiRow.TextBoxCell textBoxCell1;
         private GrapeCity.Win.MultiRow.TextBoxCell textBoxCell2;
         private GrapeCity.Win.MultiRow.TextBoxCell textBoxCell3;
         private GrapeCity.Win.MultiRow.TextBoxCell textBoxCell4;
@@ -805,35 +680,18 @@
         private GrapeCity.Win.MultiRow.TextBoxCell textBoxCell10;
         private GrapeCity.Win.MultiRow.TextBoxCell textBoxCell11;
         private GrapeCity.Win.MultiRow.TextBoxCell textBoxCell12;
-        private GrapeCity.Win.MultiRow.TextBoxCell textBoxCell13;
-        private GrapeCity.Win.MultiRow.TextBoxCell textBoxCell14;
-        private GrapeCity.Win.MultiRow.TextBoxCell textBoxCell15;
         private GrapeCity.Win.MultiRow.TextBoxCell textBoxCell16;
-        private GrapeCity.Win.MultiRow.TextBoxCell textBoxCell17;
-        private GrapeCity.Win.MultiRow.TextBoxCell textBoxCell18;
-        private GrapeCity.Win.MultiRow.TextBoxCell textBoxCell19;
-        private GrapeCity.Win.MultiRow.TextBoxCell textBoxCell20;
         private GrapeCity.Win.MultiRow.TextBoxCell textBoxCell21;
-        private GrapeCity.Win.MultiRow.TextBoxCell textBoxCell22;
         private GrapeCity.Win.MultiRow.TextBoxCell textBoxCell23;
-        private GrapeCity.Win.MultiRow.TextBoxCell textBoxCell24;
-        private GrapeCity.Win.MultiRow.TextBoxCell textBoxCell25;
         private GrapeCity.Win.MultiRow.TextBoxCell textBoxCell26;
         private GrapeCity.Win.MultiRow.TextBoxCell textBoxCell27;
         private GrapeCity.Win.MultiRow.TextBoxCell textBoxCell28;
         private GrapeCity.Win.MultiRow.TextBoxCell textBoxCell29;
-        private GrapeCity.Win.MultiRow.TextBoxCell textBoxCell30;
         private GrapeCity.Win.MultiRow.TextBoxCell textBoxCell31;
-        private GrapeCity.Win.MultiRow.TextBoxCell textBoxCell32;
-        private GrapeCity.Win.MultiRow.TextBoxCell textBoxCell33;
-        private GrapeCity.Win.MultiRow.TextBoxCell textBoxCell34;
-        private GrapeCity.Win.MultiRow.TextBoxCell textBoxCell35;
-        private GrapeCity.Win.MultiRow.TextBoxCell textBoxCell36;
-        private GrapeCity.Win.MultiRow.TextBoxCell textBoxCell37;
-        private GrapeCity.Win.MultiRow.TextBoxCell textBoxCell38;
-        private GrapeCity.Win.MultiRow.TextBoxCell textBoxCell39;
-        private GrapeCity.Win.MultiRow.TextBoxCell textBoxCell40;
-        private GrapeCity.Win.MultiRow.RowHeaderCell rowHeaderCell1;
-        
+        private GrapeCity.Win.MultiRow.ColumnHeaderCell columnHeaderCell13;
+        private GrapeCity.Win.MultiRow.CornerHeaderCell cornerHeaderCell2;
+        private GrapeCity.Win.MultiRow.TextBoxCell textBoxCell13;
+        private GrapeCity.Win.MultiRow.ButtonCell buttonCell1;
+        private GrapeCity.Win.MultiRow.ComboBoxCell 受注区分;
     }
 }
