@@ -30,6 +30,10 @@
     <Compile Include="MultiRowDesigner\発注明細.Designer.cs" />
     <Compile Include="MultiRowDesigner\発注明細テンプレート.cs" />
     <Compile Include="MultiRowDesigner\発注明細テンプレート.Designer.cs" />
+    <Compile Include="MultiRowDesigner\製品明細.cs" />
+    <Compile Include="MultiRowDesigner\製品明細.Designer.cs" />
+    <Compile Include="MultiRowDesigner\製品明細テンプレート.cs" />
+    <Compile Include="MultiRowDesigner\製品明細テンプレート.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
