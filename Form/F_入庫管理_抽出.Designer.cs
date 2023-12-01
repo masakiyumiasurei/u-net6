@@ -499,12 +499,14 @@
             this.Controls.Add(this.抽出ボタン);
             this.Controls.Add(this.削除指定);
             this.Controls.Add(this.label5);
+            this.KeyPreview = true;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "F_入庫管理_抽出";
             this.Text = "F_入庫管理_抽出";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.F_入庫管理_抽出_FormClosing);
             this.Load += new System.EventHandler(this.Form_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.F_入庫管理_抽出_KeyDown);
             this.削除指定.ResumeLayout(false);
             this.削除指定.PerformLayout();
             this.棚卸指定.ResumeLayout(false);
