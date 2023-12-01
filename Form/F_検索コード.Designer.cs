@@ -54,6 +54,7 @@
             検索コード.Size = new Size(284, 27);
             検索コード.TabIndex = 2;
             検索コード.Enter += 検索コード_Enter;
+            検索コード.KeyDown += 検索コード_KeyDown;
             検索コード.KeyPress += 検索コード_KeyPress;
             // 
             // 検索ボタン

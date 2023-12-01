@@ -168,6 +168,7 @@ namespace u_net
 
             //LocalSetting localSetting = new LocalSetting();
             //localSetting.LoadPlace(CommonConstants.LoginUserCode, this);
+            this.dataGridView1.Focus();
 
             InitializeFilter();
             DoUpdate();
@@ -439,6 +440,16 @@ namespace u_net
             }
         }
 
+        public override void SearchCode(string codeString)
+        {
+            // 検索コード保持
+            strSearchCode = codeString;
+
+            str発注コード開始 = strSearchCode;
+            str発注コード終了 = strSearchCode;
+            DoUpdate();
+        }
+
         private void DataGridView1_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
             //列ヘッダーかどうか調べる
@@ -527,6 +538,7 @@ namespace u_net
             if (dataGridView.Rows.Count > 0)
             {
                 dataGridView.Rows[0].Selected = true;
+                dataGridView.CurrentCell = dataGridView.Rows[0].Cells[0];
                 dataGridView.FirstDisplayedScrollingRowIndex = 0; // 先頭行を表示
             }
         }
@@ -642,9 +654,8 @@ namespace u_net
         private void コマンド検索_Click(object sender, EventArgs e)
         {
             dataGridView1.Focus(); // DataGridViewにフォーカスを設定
-
-            str検索コード = "ORD";
-            F_検索コード form = new F_検索コード(this, str検索コード);
+                        
+            F_検索コード form = new F_検索コード(this, "ORD");
             form.ShowDialog();
         }
 

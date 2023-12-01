@@ -394,11 +394,19 @@ namespace u_net.Public
                     return string.Empty;
 
                 int intHeaderLen = HeaderString.Length;
+
+                if (!AbbreviatedCode.StartsWith(HeaderString, StringComparison.Ordinal))
+                {
+                    AbbreviatedCode = HeaderString + AbbreviatedCode;
+                }
+
                 string strBody;
 
+                //整数部分だけを取り出す
+                string numericPart = new string(AbbreviatedCode.Skip(intHeaderLen).ToArray());
 
-                strBody = Math.Abs(long.Parse(AbbreviatedCode.Substring(intHeaderLen))).ToString("00000000");
-                return HeaderString + strBody.Substring(0, 8);
+                strBody = Math.Abs(long.Parse(numericPart)).ToString("00000000");
+                return HeaderString + strBody;//.Substring(0, 8);
             }
             catch (Exception)
             {
@@ -424,9 +432,11 @@ namespace u_net.Public
 
 
 
-        public static void AdjustRange(Control control1, Control control2)
+        public static void AdjustRange(Control control1, Control control2, Control inputctl)
         {
             // エラーハンドリングを追加
+            //accessではactivecontrolをcontrol1と比較していたが、C#では更新イベントではactivcontrolが次のコントロールに
+            //変わるため、第3引数として、現在入力したコントロールを入れることとした。
             try
             {
                 Form frmOn = control1.FindForm(); // コントロールが所属するフォーム
@@ -437,7 +447,7 @@ namespace u_net.Public
                 if (ctlCurrent.Parent != ctlTarget.Parent)
                     return;
 
-                if (frmOn.ActiveControl.Name == ctlCurrent.Name)
+                if (inputctl.Name == ctlCurrent.Name)
                 {
                     ctlCurrent = control1;
                     ctlTarget = control2;
@@ -448,17 +458,21 @@ namespace u_net.Public
                     ctlTarget = control1;
                 }
 
-                // どちらかのコントロール値が null のときは両方の値を null に設定する
+                // どちらかのコントロール値が null のときは両方の値を同値にする
                 if (ctlCurrent.Text == "" || ctlTarget.Text == "")
                 {
                     ctlTarget.Text = ctlCurrent.Text;
                 }
 
                 // コントロール1の値 <= コントロール2の値 とする
-                if (Convert.ToDouble(control1.Text) > Convert.ToDouble(control2.Text))
+                int comparisonResult = string.Compare(control1.Text, control2.Text);
+                
+                if (comparisonResult > 0)
                 {
+                    // control1.Text が control2.Text より大きい
                     ctlTarget.Text = ctlCurrent.Text;
                 }
+                                
             }
             catch (FormatException)
             {
