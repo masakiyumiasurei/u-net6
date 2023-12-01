@@ -29,12 +29,12 @@ namespace u_net
         }
 
         private void Form_Load(object sender, EventArgs e)
-        {            
+        {
 
-            foreach (Control control in Controls)
-            {
-                control.PreviewKeyDown += OriginalClass.ValidateCheck;
-            }
+            //foreach (Control control in Controls)
+            //{
+            //    control.PreviewKeyDown += OriginalClass.ValidateCheck;
+            //}
 
             try
             {
@@ -57,6 +57,12 @@ namespace u_net
 
                 OriginalClass ofn = new OriginalClass();
                 ofn.SetComboBox(仕入先名, sql);
+
+
+                sql = "SELECT 氏名 as Display, 氏名 as Value FROM M社員 ORDER BY [ふりがな] ";
+
+                ofn.SetComboBox(発注者名, sql);
+
 
                 //開いているフォームのインスタンスを作成する
                 F_発注管理 frmTarget = Application.OpenForms.OfType<F_発注管理>().FirstOrDefault();
@@ -93,23 +99,23 @@ namespace u_net
                         購買データ抽出指定3.Checked = true;
                         break;
 
-                    default:                       
+                    default:
                         break;
                 }
 
                 switch (frmTarget.lng入庫状況指定)
                 {
-                    case 1:
+                    case 0:
                         InventoryButton1.Checked = true;
                         break;
                     case 2:
                         InventoryButton2.Checked = true;
                         break;
-                    case 0:
+                    case 3:
                         InventoryButton3.Checked = true;
                         break;
 
-                    default:                        
+                    default:
                         break;
                 }
 
@@ -125,7 +131,7 @@ namespace u_net
                         DeletedButton3.Checked = true;
                         break;
 
-                    default:                        
+                    default:
                         break;
                 }
             }
@@ -243,7 +249,7 @@ namespace u_net
         private F_カレンダー dateSelectionForm;
         private void 発注日開始_Leave(object sender, EventArgs e)
         {
-            FunctionClass.AdjustRange(発注日開始, 発注日終了);
+            FunctionClass.AdjustRange(発注日開始, 発注日終了, sender as Control);
         }
 
         private void 発注日開始_DoubleClick(object sender, EventArgs e)
@@ -257,6 +263,7 @@ namespace u_net
 
                 // フォームAの日付コントロールに選択した日付を設定
                 発注日開始.Text = selectedDate;
+                FunctionClass.AdjustRange(発注日開始, 発注日終了, 発注日開始);
             }
         }
 
@@ -271,12 +278,13 @@ namespace u_net
 
                 // フォームAの日付コントロールに選択した日付を設定
                 発注日開始.Text = selectedDate;
+                FunctionClass.AdjustRange(発注日開始, 発注日終了, 発注日開始);
             }
         }
 
         private void 発注日終了_Leave(object sender, EventArgs e)
         {
-            FunctionClass.AdjustRange(発注日開始, 発注日終了);
+            FunctionClass.AdjustRange(発注日開始, 発注日終了, sender as Control);
         }
 
         private void 発注日終了_DoubleClick(object sender, EventArgs e)
@@ -290,6 +298,7 @@ namespace u_net
 
                 // フォームAの日付コントロールに選択した日付を設定
                 発注日終了.Text = selectedDate;
+                FunctionClass.AdjustRange(発注日開始, 発注日終了, 発注日終了);
             }
         }
 
@@ -304,166 +313,136 @@ namespace u_net
 
                 // フォームAの日付コントロールに選択した日付を設定
                 発注日終了.Text = selectedDate;
+                FunctionClass.AdjustRange(発注日開始, 発注日終了, 発注日終了);
             }
         }
 
-        private void 発注コード終了_KeyDown(object sender, KeyEventArgs e)
+        private void Form_KeyDown(object sender, KeyEventArgs e)
         {
-            // 入力された値がエラー値の場合、textプロパティが設定できなくなるときの対処
-            try
-            {
-                switch (e.KeyCode)
-                {
-                    case Keys.Return:
-                        string strCode = ((Control)sender).Text;
-                        if (string.IsNullOrEmpty(strCode))
-                            return;
+            bool intShiftDown = (Control.ModifierKeys & Keys.Shift) == Keys.Shift;
 
-                        strCode = FunctionClass.FormatCode("ORD", strCode);
-                        if (strCode != ((Control)sender).Text)
+            if (intShiftDown)
+            {
+                Debug.Print(Name + " - Shiftキーが押されました");
+            }
+
+            switch (e.KeyCode)
+            {
+                case Keys.Return:
+                    SelectNextControl(ActiveControl, true, true, true, true);
+                    break;
+
+                case Keys.Space: //コンボボックスならドロップダウン
+                    {
+                        Control activeControl = this.ActiveControl;
+                        if (activeControl is System.Windows.Forms.ComboBox)
                         {
-                            ((Control)sender).Text = strCode;
+                            System.Windows.Forms.ComboBox activeComboBox = (System.Windows.Forms.ComboBox)activeControl;
+                            activeComboBox.DroppedDown = true;
                         }
                         break;
-                }
+                    }
             }
-            catch (Exception ex)
+        }
+
+        private void 発注コード開始_Validating(object sender, CancelEventArgs e)
+        {
+            string strCode = ((Control)sender).Text;
+            if (string.IsNullOrEmpty(strCode))
+                return;
+
+            strCode = FunctionClass.FormatCode("ORD", strCode);
+            if (strCode != ((Control)sender).Text)
             {
-                Console.WriteLine(ex.Message);
+                ((Control)sender).Text = strCode;
             }
+
+            FunctionClass.AdjustRange(発注コード開始, 発注コード終了, sender as Control);
         }
 
-        private void 購買コード開始_KeyDown(object sender, KeyEventArgs e)
+        private void 発注コード終了_Validating(object sender, CancelEventArgs e)
         {
-            try
+            string strCode = ((Control)sender).Text;
+            if (string.IsNullOrEmpty(strCode))
+                return;
+
+            strCode = FunctionClass.FormatCode("ORD", strCode);
+            if (strCode != ((Control)sender).Text)
             {
-                switch (e.KeyCode)
-                {
-                    case Keys.Return:
-                        string strCode = ((Control)sender).Text;
-                        if (string.IsNullOrEmpty(strCode))
-                            return;
-
-                        strCode = FunctionClass.FormatCode("BUY", strCode);
-                        if (strCode != ((Control)sender).Text)
-                        {
-                            ((Control)sender).Text = strCode;
-                        }
-                        break;
-                }
+                ((Control)sender).Text = strCode;
             }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-        }
 
-        private void 購買コード開始_Leave(object sender, EventArgs e)
-        {
-            FunctionClass.AdjustRange(購買コード開始, 購買コード終了);
-        }
-
-        private void 購買コード終了_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                switch (e.KeyCode)
-                {
-                    case Keys.Return:
-                        string strCode = ((Control)sender).Text;
-                        if (string.IsNullOrEmpty(strCode))
-                            return;
-
-                        strCode = FunctionClass.FormatCode("BUY", strCode);
-                        if (strCode != ((Control)sender).Text)
-                        {
-                            ((Control)sender).Text = strCode;
-                        }
-                        break;
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-        }
-
-        private void 購買コード終了_Leave(object sender, EventArgs e)
-        {
-            FunctionClass.AdjustRange(購買コード開始, 購買コード終了);
-        }
-
-        private void 仕入先コード_Validated(object sender, EventArgs e)
-        {
-            Connect();
-            //仕入先名.Text = FunctionClass.GetSupplierName(cn, 仕入先コード.Text);
-        }
-
-        private void 仕入先コード_DoubleClick(object sender, EventArgs e)
-        {
-            Connect();
-
-            SearchForm = new F_検索();
-            SearchForm.FilterName = "仕入先名フリガナ";
-            if (SearchForm.ShowDialog() == DialogResult.OK)
-            {
-                string SelectedCode = SearchForm.SelectedCode;
-
-                string str1 = FunctionClass.GetSupplierName(cn, SelectedCode);
-                仕入先名.Text = str1;
-                仕入先コード.Text = SelectedCode;
-            }
-        }
-
-        private void 仕入先コード_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Space)
-            {
-                Connect();
-
-                SearchForm = new F_検索();
-                SearchForm.FilterName = "仕入先名フリガナ";
-                if (SearchForm.ShowDialog() == DialogResult.OK)
-                {
-                    string SelectedCode = SearchForm.SelectedCode;
-
-                    string str1 = FunctionClass.GetSupplierName(cn, SelectedCode);
-                    仕入先名.Text = str1;
-                    仕入先コード.Text = SelectedCode;
-                }
-            }
-        }
-
-
-
-        private void 仕入先名_TextChanged(object sender, EventArgs e)
-        {
-            仕入先コード.Text = null;
-        }
-
-        private F_検索 SearchForm;
-        private void 仕入先コード検索ボタン_Click(object sender, EventArgs e)
-        {
-            Connect();
-
-            SearchForm = new F_検索();
-            SearchForm.FilterName = "仕入先名フリガナ";
-            if (SearchForm.ShowDialog() == DialogResult.OK)
-            {
-                string SelectedCode = SearchForm.SelectedCode;
-
-
-                string str1 = FunctionClass.GetSupplierName(cn, SelectedCode);
-                仕入先名.Text = str1;
-                仕入先コード.Text = SelectedCode;
-
-            }
+            FunctionClass.AdjustRange(発注コード開始, 発注コード終了, sender as Control);
         }
 
         private void F_発注管理_抽出_FormClosing(object sender, FormClosingEventArgs e)
         {
             //LocalSetting test = new LocalSetting();
             //test.SavePlace(CommonConstants.LoginUserCode, this);
+        }
+
+        private void 購買コード開始_Validating(object sender, CancelEventArgs e)
+        {
+            string strCode = ((Control)sender).Text;
+            if (string.IsNullOrEmpty(strCode))
+                return;
+
+            strCode = FunctionClass.FormatCode("BUY", strCode);
+            if (strCode != ((Control)sender).Text)
+            {
+                ((Control)sender).Text = strCode;
+            }
+
+            FunctionClass.AdjustRange(購買コード開始, 購買コード終了, sender as Control);
+        }
+        private void 購買コード終了_Validating(object sender, CancelEventArgs e)
+        {
+            string strCode = ((Control)sender).Text;
+            if (string.IsNullOrEmpty(strCode))
+                return;
+
+            strCode = FunctionClass.FormatCode("BUY", strCode);
+            if (strCode != ((Control)sender).Text)
+            {
+                ((Control)sender).Text = strCode;
+            }
+
+            FunctionClass.AdjustRange(購買コード開始, 購買コード終了, sender as Control);
+        }
+        private void 発注者名_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Text = "■発注者を選択します。";
+        }
+
+        private void 発注コード開始_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Text = "■■発注コード範囲の始点を指定します。";
+        }
+
+        private void 発注コード終了_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Text = "■発注コード範囲の終点を指定します。";
+        }
+
+        private void 発注日開始_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Text = "■発注日を指定します。";
+        }
+
+        private void 発注日終了_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Text = "■発注日を指定します。";
+        }
+
+        private void 購買コード開始_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Text = "■発注コード範囲の始点を指定します。";
+        }
+
+
+        private void 購買コード終了_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Text = "■発注コード範囲の終点を指定します。";
         }
 
 

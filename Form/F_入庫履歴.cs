@@ -45,31 +45,6 @@ namespace u_net
             FunctionClass fn = new FunctionClass();
             fn.DoWait("しばらくお待ちください...");
 
-            MyApi myapi = new MyApi();
-            int xSize, ySize, intpixel, twipperdot;
-
-            //1インチ当たりのピクセル数 アクセスのサイズの引数がtwipなのでピクセルに変換する除算値を求める
-            intpixel = myapi.GetLogPixel();
-            twipperdot = myapi.GetTwipPerDot(intpixel);
-
-            intWindowHeight = this.Height;
-            intWindowWidth = this.Width;
-
-
-            myapi.GetFullScreen(out xSize, out ySize);
-
-            int x = 10, y = 10;
-
-            this.Size = new Size(this.Width, ySize * myapi.GetTwipPerDot(intpixel) - 1200);
-            //accessのmovesizeメソッドの引数の座標単位はtwipなので以下で
-
-            this.Size = new Size(this.Width, ySize - 1200 / twipperdot);
-
-            this.StartPosition = FormStartPosition.Manual; // 手動で位置を指定
-            int screenWidth = Screen.PrimaryScreen.Bounds.Width; // プライマリスクリーンの幅
-            x = (screenWidth - this.Width) / 2;
-            this.Location = new Point(x, y);
-
             //LocalSetting localSetting = new LocalSetting();
             //localSetting.LoadPlace(CommonConstants.LoginUserCode, this);
 
@@ -80,6 +55,8 @@ namespace u_net
                 fn.WaitForm.Close();
                 this.Close();
             }
+            //validatedでは実行されないので  版数番号は何故か１を返していた。コメントで修正していたので、これが正しい模様
+            DispGrid(OriginalClass.Nz(this.発注コード.Text, "").ToString(), 1);
 
             fn.WaitForm.Close();
         }
@@ -115,7 +92,57 @@ namespace u_net
             }
         }
 
+        private bool DispGrid(string codeString, int editionNumber)
+        {
+            try
+            {
+                string query = $"SELECT CONVERT(nvarchar, T入庫.入庫日, 111) AS 入庫日, T入庫.入庫コード, M社員.氏名 AS 入庫者名, T入庫.摘要 " +
+                                $"FROM T入庫 LEFT OUTER JOIN M社員 ON T入庫.入庫者コード = M社員.社員コード " +
+                                $"WHERE T入庫.発注コード = N'{codeString}' AND T入庫.発注版数 = {editionNumber} " +
+                                $"ORDER BY T入庫.入庫日, T入庫.入庫コード";
 
+                Connect();
+                DataGridUtils.SetDataGridView(cn, query, this.dataGridView1);
+
+                MyApi myapi = new MyApi();
+                int xSize, ySize, intpixel, twipperdot;
+
+                //1インチ当たりのピクセル数 アクセスのサイズの引数がtwipなのでピクセルに変換する除算値を求める
+                intpixel = myapi.GetLogPixel();
+                twipperdot = myapi.GetTwipPerDot(intpixel);
+
+                intWindowHeight = this.Height;
+                intWindowWidth = this.Width;
+
+
+                myapi.GetFullScreen(out xSize, out ySize);
+
+                int x = 10, y = 10;
+
+                this.Size = new Size(this.Width, ySize * myapi.GetTwipPerDot(intpixel) - 1200);
+                //accessのmovesizeメソッドの引数の座標単位はtwipなので以下で
+
+                this.Size = new Size(this.Width, ySize - 1200 / twipperdot);
+
+                this.StartPosition = FormStartPosition.Manual; // 手動で位置を指定
+                int screenWidth = Screen.PrimaryScreen.Bounds.Width; // プライマリスクリーンの幅
+                x = (screenWidth - this.Width) / 2;
+                this.Location = new Point(x, y);
+
+                dataGridView1.Columns[0].Width = 1400 / twipperdot; //1150
+                dataGridView1.Columns[1].Width = 1600 / twipperdot;
+                dataGridView1.Columns[2].Width = 2000 / twipperdot;
+                dataGridView1.Columns[3].Width = 6000 / twipperdot;
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this.Name + "_Form_DispGrid - " + ex.Message);
+                Console.WriteLine("エラー: " + ex.Message);
+                return false;
+            }
+        }
         private void Form_Resize(object sender, EventArgs e)
         {
             try
@@ -231,26 +258,7 @@ namespace u_net
             }
         }
 
-        private bool DispGrid(string codeString, int editionNumber)
-        {
-            try
-            {
-                string query = $"SELECT CONVERT(nvarchar, T入庫.入庫日, 111) AS 入庫日, T入庫.入庫コード, M社員.氏名 AS 入庫者名, T入庫.摘要 " +
-                                $"FROM T入庫 LEFT OUTER JOIN M社員 ON T入庫.入庫者コード = M社員.社員コード " +
-                                $"WHERE T入庫.発注コード = N'{codeString}' AND T入庫.発注版数 = {editionNumber} " +
-                                $"ORDER BY T入庫.入庫日, T入庫.入庫コード";
 
-                Connect();
-                DataGridUtils.SetDataGridView(cn, query, this.dataGridView1);
-
-                return true;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("エラー: " + ex.Message);
-                return false;
-            }
-        }
 
     }
 }
