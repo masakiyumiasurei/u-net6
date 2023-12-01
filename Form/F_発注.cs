@@ -37,6 +37,7 @@ namespace u_net
             InitializeComponent();
 
         }
+
         public void Connect()
         {
             Connection connectionInfo = new Connection();
@@ -81,10 +82,6 @@ namespace u_net
             //1インチ当たりのピクセル数 アクセスのサイズの引数がtwipなのでピクセルに変換する除算値を求める
             intpixel = myapi.GetLogPixel();
             twipperdot = myapi.GetTwipPerDot(intpixel);
-
-
-
-
 
             try
             {
@@ -210,7 +207,6 @@ namespace u_net
             }
         }
 
-        
         private void コマンド登録_Click(object sender, EventArgs e)
         {
 
@@ -260,7 +256,6 @@ namespace u_net
 
         }
 
-
         private bool ErrCheck()
         {
             //入力確認    
@@ -268,7 +263,6 @@ namespace u_net
             //if (!FunctionClass.IsError(this.版数)) return false;
             return true;
         }
-
 
 
         private void ChangedData(bool isChanged)
@@ -299,7 +293,6 @@ namespace u_net
             //// RoHSの状態表示を更新する
             //ShowRohsStatus();
         }
-
 
         private void コマンド新規_Click(object sender, EventArgs e)
         {
@@ -381,78 +374,6 @@ namespace u_net
 
         Bye_コマンド新規_Click:
             return;
-        }
-
-
-
-        private void DispGrid(string codeString)
-        {
-            try
-            {
-
-                Connect();
-
-                using (SqlCommand command = new SqlCommand("SP部品使用先", cn))
-                {
-                    command.CommandType = CommandType.StoredProcedure;
-                    command.Parameters.AddWithValue("@PartsCode", codeString);
-
-                    using (SqlDataAdapter adapter = new SqlDataAdapter(command))
-                    {
-                        DataTable dataTable = new DataTable();
-                        adapter.Fill(dataTable);
-
-                        // DataGridViewを設定していると仮定
-                        //部品使用先.DataSource = dataTable;
-
-                        if (dataTable.Rows.Count <= 0)
-                        {
-                            // データがない場合はDataGridViewにダミーデータを表示する
-                            dataTable.Rows.Add();
-                        }
-
-                        //部品使用先.Columns[部品使用先.ColumnCount - 1].Selected = true;
-                    }
-                }
-
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error in DispGrid: " + ex.Message);
-            }
-        }
-
-        private void ShowRohsStatus()
-        {
-    //        if (this.Rohs2ProvisionalRegisteredStatusCode.Checked)
-    //        {
-    //            this.RohsStatusCode.SelectedValue = 5;
-    //            // this.RohsStatusName = "仮RoHS2";
-    //        }
-    //        else
-    //        {
-    //            if ((Rohs2ChemSherpaStatusCode.SelectedValue != null && (int)Rohs2ChemSherpaStatusCode.SelectedValue == 2) ||
-    //(Rohs2JampAisStatusCode.SelectedValue != null && (int)Rohs2JampAisStatusCode.SelectedValue == 2) ||
-    //(Rohs2NonInclusionCertificationStatusCode.SelectedValue != null && (int)Rohs2NonInclusionCertificationStatusCode.SelectedValue == 1) ||
-    //(Rohs2DocumentStatusCode.SelectedValue != null && (int)Rohs2DocumentStatusCode.SelectedValue == 2))
-    //            {
-    //                this.RohsStatusCode.SelectedValue = 2;
-    //                // this.RohsStatusName = "RoHS2";
-    //            }
-    //            else if ((Rohs1ChemSherpaStatusCode.SelectedValue != null && (int)Rohs1ChemSherpaStatusCode.SelectedValue == 2) ||
-    //     (JampAis.SelectedValue != null && (int)JampAis.SelectedValue == 2) ||
-    //     (非含有証明書.SelectedValue != null && (byte)非含有証明書.SelectedValue == 1) ||
-    //     (RoHS資料.SelectedValue != null && (Int16)RoHS資料.SelectedValue == 2))
-    //            {
-    //                this.RohsStatusCode.SelectedValue = 6;
-    //                // this.RohsStatusName = "RoHS2非対応";
-    //            }
-    //            else
-    //            {
-    //                this.RohsStatusCode.SelectedValue = 3;
-    //                // this.RohsStatusName = "RoHS1非対応";
-    //            }
-    //        }
         }
 
         private void コマンド読込_Click(object sender, EventArgs e)
@@ -537,11 +458,6 @@ namespace u_net
             }
         }
 
-
-
-
-
-
         private void コマンド承認_Click(object sender, EventArgs e)
         {
             MessageBox.Show("現在開発中です。", "承認コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -551,7 +467,6 @@ namespace u_net
         {
             MessageBox.Show("現在開発中です。", "確定コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
-
 
 
         private void 改版ボタン_Click(object sender, EventArgs e)
@@ -608,7 +523,7 @@ namespace u_net
 
             }
         }
-        private void コマンドメーカー_Click(object sender, EventArgs e)
+        private void コマンド送信_Click(object sender, EventArgs e)
         {
             try
             {
@@ -638,32 +553,10 @@ namespace u_net
             }
         }
 
-
-        private void コマンド入出庫_Click(object sender, EventArgs e)
+        private void コマンド購買_Click(object sender, EventArgs e)
         {
             try
             {
-
-                F_入出庫履歴 targetform = new F_入出庫履歴();
-
-                targetform.args = 発注コード.Text;
-                targetform.ShowDialog();
-
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error in コマンドメーカー_Click: " + ex.Message);
-            }
-        }
-
-
-
-        private void コマンド履歴_Click(object sender, EventArgs e)
-        {
-            try
-            {
-
-
                 //F_部品履歴 targetform = new F_部品履歴();
 
                 //targetform.args = CurrentCode;
@@ -680,7 +573,7 @@ namespace u_net
 
         private F_検索 SearchForm;
 
-        private void メーカーコード検索ボタン_Click(object sender, EventArgs e)
+        private void 発注日選択ボタン_Click(object sender, EventArgs e)
         {
             //SearchForm = new F_検索();
             //SearchForm.FilterName = "メーカー名フリガナ";
@@ -696,68 +589,6 @@ namespace u_net
 
             //}
         }
-
-
-
-
-
-        private bool AddHistory(SqlConnection connection, string codeString, int editionNumber)
-        {
-            try
-            {
-                using (SqlCommand cmd = new SqlCommand("SP部品履歴追加", connection))
-                {
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.Add("@strCode", SqlDbType.VarChar).Value = codeString;
-                    cmd.Parameters.Add("@intEdition", SqlDbType.Int).Value = editionNumber;
-                    cmd.ExecuteNonQuery(); // ストアドプロシージャを実行
-                }
-
-                return true; // 成功
-            }
-            catch (Exception ex)
-            {
-                Debug.Print(this.Name + "_AddHistory - " + ex.Message);
-                return false; // 失敗
-            }
-            finally
-            {
-                if (connection.State == ConnectionState.Open)
-                {
-                    connection.Close(); // 接続を閉じる
-                }
-            }
-        }
-
-        private void 資料ボタン_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                //if (ActiveControl == 資料ボタン)
-                //{
-                //    GetNextControl(資料ボタン, false).Focus();
-                //}
-
-                //string strCode = 発注コード.Text;
-                //if (string.IsNullOrEmpty(strCode))
-                //{
-                //    MessageBox.Show("部品コードを入力してください。", "警告", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                //    発注コード.Focus();
-                //}
-                //else
-                //{
-                //    //F_部品_資料添付 targetform = new F_部品_資料添付();
-
-                //    //targetform.args = strCode;
-                //    //targetform.ShowDialog();
-                //}
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
 
         private void コマンド削除_Click(object sender, EventArgs e)
         {
@@ -818,59 +649,6 @@ namespace u_net
             }
         }
 
-
-        public bool DeleteData(SqlConnection cn, string codeString, int editionNumber = -1, bool completed = false)
-        {
-            SqlTransaction transaction = null;
-            try
-            {
-                //string strKey = "部品コード='" + codeString + "'";
-                //string strSQL;
-                bool deleteData = false;
-
-                //transaction = cn.BeginTransaction();
-
-                //if (completed)
-                //{
-                //    strSQL = "DELETE FROM M部品 WHERE " + strKey;
-                //    using (SqlCommand cmd = new SqlCommand(strSQL, cn, transaction))
-                //    {
-                //        cmd.ExecuteNonQuery();
-                //    }
-                //}
-                //else
-                //{
-                //    strSQL = "UPDATE M部品 SET 無効日時 = GETDATE() WHERE " + strKey;
-                //    using (SqlCommand cmd = new SqlCommand(strSQL, cn, transaction))
-                //    {
-                //        cmd.ExecuteNonQuery();
-                //    }
-                //}
-
-                //using (SqlCommand cmd = new SqlCommand("SPユニット管理", cn, transaction))
-                //{
-                //    cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                //    cmd.Parameters.Add(new SqlParameter("@PartsCode", codeString));
-                //    cmd.ExecuteNonQuery();
-                //}
-
-                //// トランザクションをコミット
-                //transaction.Commit();
-
-                //deleteData = true;
-                return deleteData;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error in DeleteData: " + ex.Message);
-                if (transaction != null)
-                {
-                    transaction.Rollback();
-                }
-                return false;
-            }
-        }
-
         private void コマンド複写_Click(object sender, EventArgs e)
         {
             try
@@ -901,7 +679,7 @@ namespace u_net
                 //DispGrid(this.CurrentCode);
 
                 // RoHS対応状態の表示を更新する
-                ShowRohsStatus();
+                //ShowRohsStatus();
             }
             catch (Exception ex)
             {
@@ -913,8 +691,12 @@ namespace u_net
             }
         }
 
+        private void コマンド部品_Click(object sender, EventArgs e)
+        {
 
-        private void コマンド仕入先_Click(object sender, EventArgs e)
+        }
+
+        private void コマンド発注書_Click(object sender, EventArgs e)
         {
             try
             {
@@ -977,360 +759,19 @@ namespace u_net
             }
         }
 
-
         private void コマンド終了_Click(object sender, EventArgs e)
         {
-
-
             Close(); // フォームを閉じる
         }
 
-
-
-        //private void UpdatePurGrid()
-        //{
-        //■現在未使用
-        //登録後の処理として、購買フォームが開いている場合はグリッドを更新する
-        //    try
-        //    {
-        //        // 購買フォームが開いているかを確認
-        //        if (Application.OpenForms["購買"] == null)
-        //        {
-        //            return;
-        //        }
-
-        //        // 購買フォームのグリッドを取得
-        //        Form frmPurchase = Application.OpenForms["購買"];
-        //        MSHierarchicalFlexGridLib.MSHFlexGrid obj1 = (MSHierarchicalFlexGridLib.MSHFlexGrid)frmPurchase.Controls["objGrid"];
-
-        //        if (obj1 != null)
-        //        {
-        //            int currentRow = obj1.row;
-        //            string supplierCode = OriginalClass.Nz(仕入先1コード.Text,null);
-        //            string supplierName = OriginalClass.Nz(Supplier1Name.Text, null);
-        //            string productName = OriginalClass.Nz(品名.Text, null);
-        //            string modelNumber = OriginalClass.Nz(型番.Text, null);
-        //            double unitPrice = OriginalClass.Nz(仕入先1単価.Text, null);
-
-        //            if (obj1.TextMatrix[currentRow, 5] != supplierCode)
-        //            {
-        //                obj1.TextMatrix[currentRow, 5] = supplierCode;
-        //                obj1.TextMatrix[currentRow, 6] = supplierName;
-        //                frmPurchase.GetType().GetMethod("ChangedControl").Invoke(frmPurchase, new object[] { true });
-        //            }
-
-        //            obj1.TextMatrix[currentRow, 8] = productName;
-        //            obj1.TextMatrix[currentRow, 9] = modelNumber;
-        //            obj1.TextMatrix[currentRow, 13] = unitPrice.ToString("###,###,##0.00");
-
-        //            frmPurchase.GetType().GetMethod("CalcAmount").Invoke(frmPurchase, new object[] { currentRow });
-        //            frmPurchase.GetType().GetProperty("bleGridUpdated").SetValue(frmPurchase, true, null);
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Debug.Print(Name + "_UpdatedPurGrid - " + ex.Message);
-        //    }
-        //}
-
-
-        private bool LoadData(Form formObject, string codeString, int editionNumber = 0)
+        private void 仕入先選択ボタン_Click(object sender, EventArgs e)
         {
-            try
-            {
-                Connect();
 
-                string strSQL;
-                if (editionNumber == 0)
-                {
-                    strSQL = "SELECT * FROM V部品読込 WHERE 部品コード ='" + codeString + "'";
-                }
-                else
-                {
-                    strSQL = "SELECT * FROM V部品読込 WHERE 部品コード ='" + codeString + "' AND 部品版数= " + editionNumber;
-                }
-
-                //using (SqlCommand cmd = new SqlCommand(strSQL, connection))
-                //{
-                //    cmd.Parameters.AddWithValue("@CodeString", codeString);
-                //    if (editionNumber != 0)
-                //    {
-                //        cmd.Parameters.AddWithValue("@EditionNumber", editionNumber);
-                //    }
-
-                //    DataTable dataTable = new DataTable();
-                //    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-                //    adapter.Fill(dataTable);
-
-                //    if (dataTable.Rows.Count > 0)
-                //    {
-                //DataRow row = dataTable.Rows[0];
-                VariableSet.SetTable2Form(this, strSQL, cn);
-
-
-                if (!string.IsNullOrEmpty(this.無効日時.Text))
-                {
-                    this.削除.Text = "■";
-                }
-
-                return true;
-                //}
-
-
-
-
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-                // エラーハンドリングが必要に応じて行われるべきです
-                return false;
-            }
-        }
-        private int CheckParts(SqlConnection connectionObject, string codeString, int edition = 0)
-        {
-            try
-            {
-                string strKey;
-                string strSQL;
-                int recordCount = 0;
-
-                if (string.IsNullOrEmpty(codeString))
-                    return 0;
-
-                if (edition == 0)
-                {
-                    strKey = "部品コード = '" + codeString + "'";
-                }
-                else
-                {
-                    strKey = "部品コード = '" + codeString + "' and 版数 = " + edition;
-                }
-
-                strSQL = "SELECT COUNT(*) FROM M部品 WHERE " + strKey;
-
-                using (SqlCommand cmd = new SqlCommand(strSQL, connectionObject))
-                {
-                    connectionObject.Open();
-                    recordCount = Convert.ToInt32(cmd.ExecuteScalar());
-                    connectionObject.Close();
-                }
-
-                return recordCount;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-                // エラーハンドリングが必要に応じて行われるべきです
-                return 0;
-            }
         }
 
-
-        private bool IsError(Control controlObject)
+        private void テストコマンド_Click(object sender, EventArgs e)
         {
-            try
-            {
 
-
-
-                object varValue = controlObject.Text;
-                string controlName = controlObject.Name;
-
-                switch (controlName)
-                {
-                    case "部品コード":
-                    case "品名":
-                        //if (string.IsNullOrEmpty(varValue.ToString()))
-                        //{
-                        //    MessageBox.Show(controlName + "を入力してください.", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                        //    return true;
-                        //}
-                        break;
-                    case "型番":
-                        //if (Cancel)
-                        //{
-                        //if (string.IsNullOrEmpty(varValue.ToString()))
-                        //{
-                        //    MessageBox.Show(controlName + "を入力してください.", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                        //    return true;
-                        //}
-                        //}
-                        // 重複チェックなどを行う必要があれば、ここに追加してください。
-                        //DataTable rs1 = null;
-                        //string strPartsList = null;
-
-                        //if (DetectRepeatedParts(varValue.ToString(), CurrentCode, ref rs1))
-                        //{
-                        //    if (rs1.Rows.Count > 0)
-                        //    {
-                        //        foreach (DataRow row in rs1.Rows)
-                        //        {
-                        //            strPartsList += row[0].ToString() + " ： ";
-                        //            strPartsList += row[1].ToString() + " ： ";
-                        //            strPartsList += row[2].ToString() + Environment.NewLine;
-                        //        }
-
-                        //        MessageBox.Show($"入力された型番は既に登録されています。{Environment.NewLine}{strPartsList}", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                        //        return true;
-                        //    }
-
-                        //}
-                        break;
-                    case "メーカーコード":
-                        //if (string.IsNullOrEmpty(varValue.ToString()))
-                        //{
-                        //    MessageBox.Show(controlName + "を入力してください.", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                        //    return true;
-                        //}
-                        //else
-                        //{
-                        //    string str1 = FunctionClass.GetMakerName(cn, controlObject.Text.ToString());
-                        //    string str2 = FunctionClass.GetMakerShortName(cn, controlObject.Text.ToString());
-                        //    if (string.IsNullOrEmpty(str1) || string.IsNullOrEmpty(str2))
-                        //    {
-                        //        return true;
-                        //    }
-                        //    else
-                        //    {
-                        //        MakerName.Text = str1;
-                        //        購買コード.Text = str2;
-                        //    }
-                        //}
-
-                        break;
-                    case "仕入先1単価":
-                    case "仕入先2単価":
-                    case "仕入先3単価":
-                        //if (!string.IsNullOrEmpty(varValue.ToString()))
-                        //{
-                        //    if (!FunctionClass.IsLimit_N(varValue, 8, 2, controlName))
-                        //    {
-                        //        return true;
-                        //    }
-                        //}
-                        break;
-                    case "分類コード":
-                        //if (string.IsNullOrEmpty(varValue.ToString()))
-                        //{
-                        //    MessageBox.Show(controlName + "を入力してください.", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                        //    return true;
-                        //}
-                        //GroupNumber.Text = 発注者コード.Text;
-                        break;
-                    case "形状分類コード":
-                        //if (string.IsNullOrEmpty(varValue.ToString()))
-                        //{
-                        //    MessageBox.Show("形状分類を指定してください.", "情報", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        //    return true;
-                        //}
-                        //FormGroupShortName.Text = 形状分類コード.Text;
-                        break;
-                    case "入数":
-                        //if (!FunctionClass.IsLimit_N(varValue, 8, 0, controlName))
-                        //{
-                        //    return true;
-                        //}
-                        break;
-                    case "単位数量":
-                        //if (!FunctionClass.IsLimit_N(varValue, 8, 0, controlName))
-                        //{
-                        //    return true;
-                        //}
-                        break;
-                    case "StandardDeliveryDay":
-                        // カスタムのチェックロジックが必要であればここに追加してください。
-                        break;
-                    case "CalcInventoryCode":
-                        //if (string.IsNullOrEmpty(varValue.ToString()))
-                        //{
-                        //    MessageBox.Show("在庫計算を指定してください.", "情報", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        //    return true;
-                        //}
-                        break;
-                    case "受入検査ランク":
-                        //if (string.IsNullOrEmpty(varValue.ToString()))
-                        //{
-                        //    MessageBox.Show("受入検査ランクを指定してください.", "情報", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        //    return true;
-                        //}
-                        break;
-                    case "ロス率":
-                        //if (!FunctionClass.IsLimit_N(varValue, 8, 7, controlName))
-                        //{
-                        //    return true;
-                        //}
-                        break;
-                    case "Rohs1ChemSherpaStatusCode":
-                    case "JampAis":
-                    case "非含有証明書":
-                    case "RoHS資料":
-                    case "Rohs2ChemSherpaStatusCode":
-                    case "Rohs2JampAisStatusCode":
-                    case "Rohs2NonInclusionCertificationStatusCode":
-                    case "Rohs2DocumentStatusCode":
-                        //if (string.IsNullOrEmpty(varValue.ToString()))
-                        //{
-                        //    MessageBox.Show("[" + controlObject.Tag + "]を入力してください.", "情報", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        //    return true;
-                        //}
-                        break;
-                    case "ChemSherpaVersion":
-                        // カスタムのチェックロジックが必要であればここに追加してください。
-                        break;
-                    case "在庫数量":
-                        //if (!FunctionClass.IsLimit_N(varValue, 8, 0, controlName))
-                        //{
-                        //    return true;
-                        //}
-                        break;
-                    default:
-                        // 他のコントロールに対するエラーチェックロジックを追加してください。
-                        break;
-                }
-
-                return false;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-                // エラーハンドリングが必要に応じて行われるべきです
-                return true;
-            }
-        }
-
-
-        public bool DetectRepeatedParts(string ModelString, string ExCodeString, ref DataTable recordsetObject)
-        {
-            bool detectRepeatedParts = false;
-
-            try
-            {
-
-                //Connect();
-
-                //using (SqlCommand command = new SqlCommand("SP部品重複検出", cn))
-                //{
-                //    command.CommandType = CommandType.StoredProcedure;
-                //    command.Parameters.Add("@strModel", SqlDbType.VarChar).Value = ModelString;
-                //    command.Parameters.Add("@strExCode", SqlDbType.VarChar).Value = ExCodeString;
-
-                //    using (SqlDataAdapter adapter = new SqlDataAdapter(command))
-                //    {
-                //        recordsetObject = new DataTable();
-                //        adapter.Fill(recordsetObject);
-                //    }
-                //    detectRepeatedParts = true;
-                //}
-
-            }
-            catch (Exception ex)
-            {
-                // エラーハンドリング
-                Console.WriteLine("DetectRepeatedPartsエラー: " + ex.Message);
-            }
-
-            return detectRepeatedParts;
         }
 
         private void UpdatedControl(Control controlObject)
@@ -1438,23 +879,6 @@ namespace u_net
             }
         }
 
-
-
-
-        private void 部品使用先_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-
-        }
-
-        private void 部品集合参照ボタン_Click(object sender, EventArgs e)
-        {
-
-        }
-
-
-
-
-
         private void Form_KeyDown(object sender, KeyEventArgs e)
         {
 
@@ -1492,9 +916,14 @@ namespace u_net
                     if (コマンド削除.Enabled) コマンド削除_Click(sender, e);
                     break;
                 case Keys.F5:
-                    if (コマンド発注書.Enabled) コマンド仕入先_Click(sender, e);
+                    if (コマンド発注書.Enabled) コマンド発注書_Click(sender, e);
                     break;
-
+                case Keys.F6:
+                    if (コマンド発注書.Enabled) コマンド部品_Click(sender, e);
+                    break;
+                case Keys.F7:
+                    if (コマンド発注書.Enabled) コマンド購買_Click(sender, e);
+                    break;
 
                 case Keys.F9:
                     if (コマンド承認.Enabled) コマンド承認_Click(sender, e);
@@ -1511,1099 +940,136 @@ namespace u_net
             }
         }
 
-        private void CalcInventoryCode_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        private void 発注コード_Validated(object sender, EventArgs e)
         {
-            if (IsError(sender as Control) == true) e.Cancel = true;
+            //UpdatedControl(sender as Control);
         }
 
-        private void CalcInventoryCode_SelectedIndexChanged(object sender, EventArgs e)
+        private void 発注コード_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            ChangedData(true);
+            //if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
-        private void CalcInventoryCode_KeyPress(object sender, KeyPressEventArgs e)
+        private void 発注コード_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (e.KeyChar == ' ')
-            {
-                ComboBox comboBox = sender as ComboBox;
-                if (comboBox != null)
-                {
-                    comboBox.DroppedDown = true;
-                }
-                e.Handled = true;
-            }
+            //FunctionClass.LimitText(sender as Control, 8);
         }
 
-        private void ChemSherpaVersion_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        private void 発注コード_KeyDown(object sender, KeyEventArgs e)
         {
-            if (IsError(sender as Control) == true) e.Cancel = true;
-
-        }
-
-        private void ChemSherpaVersion_TextChanged(object sender, EventArgs e)
-        {
-            ChangedData(true);
-        }
-
-        private void JampAis_Validating(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            if (IsError(sender as Control) == true) e.Cancel = true;
-        }
-
-        private void JampAis_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            ChangedData(true);
-        }
-
-        private void JampAis_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == ' ')
-            {
-                ComboBox comboBox = sender as ComboBox;
-                if (comboBox != null)
-                {
-                    comboBox.DroppedDown = true;
-                }
-                e.Handled = true;
-            }
-        }
-
-        private void Rohs1ChemSherpaStatusCode_Validating(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            if (IsError(sender as Control) == true) e.Cancel = true;
-        }
-
-        private void Rohs1ChemSherpaStatusCode_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            ChangedData(true);
-        }
-
-        private void Rohs1ChemSherpaStatusCode_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == ' ')
-            {
-                ComboBox comboBox = sender as ComboBox;
-                if (comboBox != null)
-                {
-                    comboBox.DroppedDown = true;
-                }
-                e.Handled = true;
-            }
-        }
-
-        private void Rohs2ChemSherpaStatusCode_Validating(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            if (IsError(sender as Control) == true) e.Cancel = true;
-        }
-
-        private void Rohs2ChemSherpaStatusCode_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            ChangedData(true);
-        }
-
-        private void Rohs2ChemSherpaStatusCode_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == ' ')
-            {
-                ComboBox comboBox = sender as ComboBox;
-                if (comboBox != null)
-                {
-                    comboBox.DroppedDown = true;
-                }
-                e.Handled = true;
-            }
-        }
-
-        private void Rohs2DocumentStatusCode_Validating(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            if (IsError(sender as Control) == true) e.Cancel = true;
-        }
-
-        private void Rohs2DocumentStatusCode_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            ChangedData(true);
-        }
-
-        private void Rohs2DocumentStatusCode_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == ' ')
-            {
-                ComboBox comboBox = sender as ComboBox;
-                if (comboBox != null)
-                {
-                    comboBox.DroppedDown = true;
-                }
-                e.Handled = true;
-            }
-        }
-
-        private void Rohs2JampAisStatusCode_Validating(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            if (IsError(sender as Control) == true) e.Cancel = true;
-        }
-
-        private void Rohs2JampAisStatusCode_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            ChangedData(true);
-        }
-
-        private void Rohs2JampAisStatusCode_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == ' ')
-            {
-                ComboBox comboBox = sender as ComboBox;
-                if (comboBox != null)
-                {
-                    comboBox.DroppedDown = true;
-                }
-                e.Handled = true;
-            }
-        }
-
-        private void Rohs2NonInclusionCertificationStatusCode_Validating(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            if (IsError(sender as Control) == true) e.Cancel = true;
-        }
-
-        private void Rohs2NonInclusionCertificationStatusCode_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            ChangedData(true);
-        }
-
-        private void Rohs2NonInclusionCertificationStatusCode_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == ' ')
-            {
-                ComboBox comboBox = sender as ComboBox;
-                if (comboBox != null)
-                {
-                    comboBox.DroppedDown = true;
-                }
-                e.Handled = true;
-            }
-        }
-
-        private void Rohs2ProvisionalRegisteredStatusCode_Validated(object sender, EventArgs e)
-        {
-            ChangedData(true);
-        }
-
-        private void RoHS資料_Validating(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            if (IsError(sender as Control) == true) e.Cancel = true;
-        }
-
-        private void RoHS資料_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            ChangedData(true);
-        }
-
-        private void RoHS資料_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == ' ')
-            {
-                ComboBox comboBox = sender as ComboBox;
-                if (comboBox != null)
-                {
-                    comboBox.DroppedDown = true;
-                }
-                e.Handled = true;
-            }
-        }
-
-        private void ShelfNumber_Validated(object sender, EventArgs e)
-        {
-            UpdatedControl(sender as Control);
-        }
-
-        private void ShelfNumber_Validating(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            if (IsError(sender as Control) == true) e.Cancel = true;
-        }
-
-        private void ShelfNumber_TextChanged(object sender, EventArgs e)
-        {
-            FunctionClass.LimitText(sender as Control, 10);
-            ChangedData(true);
-        }
-
-        private void StandardDeliveryDay_Validated(object sender, EventArgs e)
-        {
-            UpdatedControl(sender as Control);
-        }
-
-        private void StandardDeliveryDay_Validating(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            if (IsError(sender as Control) == true) e.Cancel = true;
-        }
-
-        private void StandardDeliveryDay_TextChanged(object sender, EventArgs e)
-        {
-            ChangedData(true);
-        }
-
-        private void メーカーコード_Validating(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            if (IsError(sender as Control) == true) e.Cancel = true;
-        }
-
-        private void メーカーコード_TextChanged(object sender, EventArgs e)
-        {
-            FunctionClass.LimitText(sender as Control, 8);
-            ChangedData(true);
-        }
-
-        private void メーカーコード_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Return)
-            {
-                TextBox textBox = (TextBox)sender;
-                string formattedCode = textBox.Text.Trim().PadLeft(8, '0');
-
-                if (formattedCode != textBox.Text || string.IsNullOrEmpty(textBox.Text))
-                {
-                    textBox.Text = formattedCode;
-                    UpdatedControl(sender as Control);
-                }
-            }
-        }
-
-        private void メーカーコード_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == ' ')
-            {
-                メーカーコード検索ボタン_Click(sender, e);
-                e.Handled = true; // イベントの処理が完了したことを示す
-            }
-        }
-
-        private void ロス率_Validated(object sender, EventArgs e)
-        {
-            UpdatedControl(sender as Control);
-        }
-
-        private void ロス率_Validating(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            if (IsError(sender as Control) == true) e.Cancel = true;
-        }
-
-        private void ロス率_TextChanged(object sender, EventArgs e)
-        {
-            ChangedData(true);
-        }
-
-        private void 型番_Validating(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            if (IsError(sender as Control) == true) e.Cancel = true;
-        }
-
-        private void 型番_TextChanged(object sender, EventArgs e)
-        {
-            FunctionClass.LimitText(sender as Control, 50);
-            ChangedData(true);
-        }
-
-        private void 形状分類コード_Validating(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            if (IsError(sender as Control) == true) e.Cancel = true;
-        }
-
-        private void 形状分類コード_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            ChangedData(true);
-        }
-
-        private void 形状分類コード_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == ' ') // スペースキーが押されたかを確認
-            {
-                if (sender is ComboBox comboBox)
-                {
-                    comboBox.DroppedDown = true; // コンボボックスのドロップダウンを開く
-                    e.Handled = true; // イベントの処理が完了したことを示す
-                }
-            }
-        }
-
-        private void InventoryAmount_Validated(object sender, EventArgs e)
-        {
-            UpdatedControl(sender as Control);
-        }
-
-        private void InventoryAmount_Validating(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            DialogResult result = MessageBox.Show("在庫数量はシステムにより更新されます。\n通常、ユーザーが更新することはありません。\n\n更新しますか？", "在庫数量", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-            if (result == DialogResult.No)
-            {
-                e.Cancel = true;
-            }
-            else
-            {
-                if (IsError(sender as Control) == true) e.Cancel = true;
-            }
-        }
-
-        private void InventoryAmount_TextChanged(object sender, EventArgs e)
-        {
-            ChangedData(true);
-        }
-
-        private void 仕入先1コード_Validated(object sender, EventArgs e)
-        {
-            UpdatedControl(sender as Control);
-        }
-
-        private void 仕入先1コード_Validating(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            if (IsError(sender as Control) == true) e.Cancel = true;
-        }
-
-        private void 仕入先1コード_TextChanged(object sender, EventArgs e)
-        {
-            FunctionClass.LimitText(sender as Control, 8);
-            ChangedData(true);
-        }
-
-        private void 仕入先1コード_Enter(object sender, EventArgs e)
-        {
-            selected_frame = 1;
-            //toolStripStatusLabel2.Text = "■仕入先コードを入力します。　■8文字まで入力可。　■[space]キーで検索ウィンドウを開きます。";
-        }
-
-        private void 仕入先1コード_Leave(object sender, EventArgs e)
-        {
-
-            //toolStripStatusLabel2.Text = "各種項目の説明";
-        }
-
-        private void 仕入先1コード_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Return)
-            {
-                Control control = (Control)sender;
-                string strCode = control.Text.Trim();
-
-                if (string.IsNullOrEmpty(strCode))
-                {
-                    return;
-                }
-
-                strCode = strCode.PadLeft(8, '0');
-
-                if (strCode != control.Text)
-                {
-                    control.Text = strCode;
-                    UpdatedControl(sender as Control);
-                }
-            }
-        }
-
-        private void 仕入先1コード_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == (char)Keys.Space)
-            {
-                仕入先1コード検索ボタン_Click(sender, e);
-            }
-
-
-        }
-
-
-        private void 仕入先2コード_Validated(object sender, EventArgs e)
-        {
-            UpdatedControl(sender as Control);
-        }
-
-        private void 仕入先2コード_Validating(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            if (IsError(sender as Control) == true) e.Cancel = true;
-        }
-
-        private void 仕入先2コード_TextChanged(object sender, EventArgs e)
-        {
-            FunctionClass.LimitText(sender as Control, 8);
-            ChangedData(true);
-        }
-
-        private void 仕入先2コード_Enter(object sender, EventArgs e)
-        {
-            selected_frame = 2;
-            //toolStripStatusLabel2.Text = "■仕入先コードを入力します。　■8文字まで入力可。　■[space]キーで検索ウィンドウを開きます。";
-        }
-
-        private void 仕入先2コード_Leave(object sender, EventArgs e)
-        {
-
-            //toolStripStatusLabel2.Text = "各種項目の説明";
-        }
-
-        private void 仕入先2コード_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Return)
-            {
-                Control control = (Control)sender;
-                string strCode = control.Text.Trim();
-
-                if (string.IsNullOrEmpty(strCode))
-                {
-                    return;
-                }
-
-                strCode = strCode.PadLeft(8, '0');
-
-                if (strCode != control.Text)
-                {
-                    control.Text = strCode;
-                    UpdatedControl(sender as Control);
-                }
-            }
-        }
-
-        private void 仕入先2コード_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == (char)Keys.Space)
-            {
-                仕入先2コード検索ボタン_Click(sender, e);
-            }
-
-
-        }
-
-        private void 仕入先3コード_Validated(object sender, EventArgs e)
-        {
-            UpdatedControl(sender as Control);
-        }
-
-        private void 仕入先3コード_Validating(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            if (IsError(sender as Control) == true) e.Cancel = true;
-        }
-
-        private void 仕入先3コード_TextChanged(object sender, EventArgs e)
-        {
-            FunctionClass.LimitText(sender as Control, 8);
-            ChangedData(true);
-        }
-
-        private void 仕入先3コード_Enter(object sender, EventArgs e)
-        {
-            selected_frame = 3;
-            //toolStripStatusLabel2.Text = "■仕入先コードを入力します。　■8文字まで入力可。　■[space]キーで検索ウィンドウを開きます。";
-        }
-
-        private void 仕入先3コード_Leave(object sender, EventArgs e)
-        {
-
-            //toolStripStatusLabel2.Text = "各種項目の説明";
-        }
-
-        private void 仕入先3コード_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Return)
-            {
-                Control control = (Control)sender;
-                string strCode = control.Text.Trim();
-
-                if (string.IsNullOrEmpty(strCode))
-                {
-                    return;
-                }
-
-                strCode = strCode.PadLeft(8, '0');
-
-                if (strCode != control.Text)
-                {
-                    control.Text = strCode;
-                    UpdatedControl(sender as Control);
-                }
-            }
-        }
-
-        private void 仕入先3コード_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == (char)Keys.Space)
-            {
-                仕入先3コード検索ボタン_Click(sender, e);
-            }
-
-
-        }
-
-
-
-
-
-
-        private void 仕入先1コード検索ボタン_Click(object sender, EventArgs e)
-        {
-            //SearchForm = new F_検索();
-            //SearchForm.FilterName = "仕入先名フリガナ";
-            //if (SearchForm.ShowDialog() == DialogResult.OK)
+            //if (e.KeyCode == Keys.Return)
             //{
-            //    string SelectedCode = SearchForm.SelectedCode;
-
-            //    仕入先1コード.Text = SelectedCode;
-            //    UpdatedControl(仕入先1コード);
+            //    ComboBox comboBox = sender as ComboBox;
+            //    if (comboBox != null)
+            //    {
+            //        string strCode = comboBox.Text.Trim();
+            //        if (!string.IsNullOrEmpty(strCode))
+            //        {
+            //            strCode = strCode.PadLeft(8, '0');
+            //            if (strCode != comboBox.Text)
+            //            {
+            //                comboBox.Text = strCode;
+            //                部品コード_Validated(sender, e);
+            //            }
+            //        }
+            //    }
             //}
         }
 
-        private void 仕入先2コード検索ボタン_Click(object sender, EventArgs e)
+        private void 発注コード_Enter(object sender, EventArgs e)
         {
-            //SearchForm = new F_検索();
-            //SearchForm.FilterName = "仕入先名フリガナ";
-            //if (SearchForm.ShowDialog() == DialogResult.OK)
-            //{
-            //    string SelectedCode = SearchForm.SelectedCode;
-
-            //    仕入先2コード.Text = SelectedCode;
-            //    UpdatedControl(仕入先2コード);
-            //}
-        }
-
-        private void 仕入先3コード検索ボタン_Click(object sender, EventArgs e)
-        {
-            //SearchForm = new F_検索();
-            //SearchForm.FilterName = "仕入先名フリガナ";
-            //if (SearchForm.ShowDialog() == DialogResult.OK)
-            //{
-            //    string SelectedCode = SearchForm.SelectedCode;
-
-            //    仕入先3コード.Text = SelectedCode;
-            //    UpdatedControl(仕入先3コード);
-            //}
-        }
-
-        private void 仕入先1フレーム_Enter(object sender, EventArgs e)
-        {
-            //仕入先1コード.Focus();
-        }
-
-        private void 仕入先2フレーム_Enter(object sender, EventArgs e)
-        {
-            //仕入先2コード.Focus();
-        }
-
-        private void 仕入先3フレーム_Enter(object sender, EventArgs e)
-        {
-            //仕入先3コード.Focus();
-
-        }
-
-        private void 仕入先1単価_Validating(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            if (IsError(sender as Control) == true) e.Cancel = true;
-        }
-
-        private void 仕入先1単価_TextChanged(object sender, EventArgs e)
-        {
-            ChangedData(true);
-        }
-
-        private void 仕入先1単価_Enter(object sender, EventArgs e)
-        {
-            selected_frame = 1;
-            //toolStripStatusLabel2.Text = "単価が不明であるときは何も入力しないでください。　■数値全体で8桁まで、少数部は2桁まで入力できます。";
-        }
-
-        private void 仕入先1単価_Leave(object sender, EventArgs e)
-        {
-
-            //toolStripStatusLabel2.Text = "各種項目の説明";
-        }
-
-        private void 仕入先2単価_Validating(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            if (IsError(sender as Control) == true) e.Cancel = true;
-        }
-
-        private void 仕入先2単価_TextChanged(object sender, EventArgs e)
-        {
-            ChangedData(true);
-        }
-
-        private void 仕入先2単価_Enter(object sender, EventArgs e)
-        {
-            selected_frame = 2;
-            //toolStripStatusLabel2.Text = "単価が不明であるときは何も入力しないでください。　■数値全体で8桁まで、少数部は2桁まで入力できます。";
-        }
-
-        private void 仕入先2単価_Leave(object sender, EventArgs e)
-        {
-
-            //toolStripStatusLabel2.Text = "各種項目の説明";
-        }
-
-        private void 仕入先3単価_Validating(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            if (IsError(sender as Control) == true) e.Cancel = true;
-        }
-
-        private void 仕入先3単価_TextChanged(object sender, EventArgs e)
-        {
-            ChangedData(true);
-        }
-
-        private void 仕入先3単価_Enter(object sender, EventArgs e)
-        {
-            selected_frame = 3;
-            //toolStripStatusLabel2.Text = "単価が不明であるときは何も入力しないでください。　■数値全体で8桁まで、少数部は2桁まで入力できます。";
-        }
-
-        private void 仕入先3単価_Leave(object sender, EventArgs e)
-        {
-
-            //toolStripStatusLabel2.Text = "各種項目の説明";
-        }
-
-        private void 受入検査ランク_Validating(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            if (IsError(sender as Control) == true) e.Cancel = true;
-        }
-
-        private void 受入検査ランク_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            ChangedData(true);
-        }
-
-        private void 受入検査ランク_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == (char)Keys.Space)
-            {
-                ComboBox comboBox = sender as ComboBox;
-                if (comboBox != null)
-                {
-                    comboBox.DroppedDown = true;
-                }
-                e.KeyChar = (char)0;
-            }
-        }
-
-        private void 単位数量_Validated(object sender, EventArgs e)
-        {
-            UpdatedControl(sender as Control);
-        }
-
-        private void 単位数量_Validating(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            if (IsError(sender as Control) == true) e.Cancel = true;
-        }
-
-        private void 単位数量_TextChanged(object sender, EventArgs e)
-        {
-            ChangedData(true);
-        }
-
-        private void 入数_Validated(object sender, EventArgs e)
-        {
-            UpdatedControl(sender as Control);
-        }
-
-        private void 入数_Validating(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            if (IsError(sender as Control) == true) e.Cancel = true;
-        }
-
-        private void 入数_TextChanged(object sender, EventArgs e)
-        {
-            ChangedData(true);
-        }
-
-        private void 廃止_Validated(object sender, EventArgs e)
-        {
-            ChangedData(true);
-        }
-
-        private void 非含有証明書_Validating(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            if (IsError(sender as Control) == true) e.Cancel = true;
-        }
-
-        private void 非含有証明書_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            ChangedData(true);
-        }
-
-        private void 非含有証明書_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == (char)Keys.Space)
-            {
-                ComboBox comboBox = sender as ComboBox;
-                if (comboBox != null)
-                {
-                    comboBox.DroppedDown = true;
-                }
-                e.KeyChar = (char)0;
-            }
-        }
-
-        private void 備考_Validating(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            if (IsError(sender as Control) == true) e.Cancel = true;
-        }
-
-        private void 備考_TextChanged(object sender, EventArgs e)
-        {
-            FunctionClass.LimitText(sender as Control, 4000);
-            ChangedData(true);
-        }
-
-        private void 品名_Validating(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            if (IsError(sender as Control) == true) e.Cancel = true;
-        }
-
-        private void 品名_TextChanged(object sender, EventArgs e)
-        {
-            FunctionClass.LimitText(sender as Control, 50);
-            ChangedData(true);
-        }
-
-        private void 部品コード_Validated(object sender, EventArgs e)
-        {
-            UpdatedControl(sender as Control);
-        }
-
-        private void 部品コード_Validating(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            if (IsError(sender as Control) == true) e.Cancel = true;
-        }
-
-        private void 部品コード_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            FunctionClass.LimitText(sender as Control, 8);
+            toolStripStatusLabel2.Text = "■発注コードを入力します。";
         }
 
-        private void 部品コード_KeyDown(object sender, KeyEventArgs e)
+        private void 発注コード_Leave(object sender, EventArgs e)
         {
-            if (e.KeyCode == Keys.Return)
-            {
-                ComboBox comboBox = sender as ComboBox;
-                if (comboBox != null)
-                {
-                    string strCode = comboBox.Text.Trim();
-                    if (!string.IsNullOrEmpty(strCode))
-                    {
-                        strCode = strCode.PadLeft(8, '0');
-                        if (strCode != comboBox.Text)
-                        {
-                            comboBox.Text = strCode;
-                            部品コード_Validated(sender, e);
-                        }
-                    }
-                }
-            }
+            toolStripStatusLabel2.Text = "各種項目の説明";
         }
 
-
-
-
-        private void 分類コード_Validating(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            if (IsError(sender as Control) == true) e.Cancel = true;
-        }
-
-        private void 分類コード_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            //GroupName.Text = ((DataRowView)発注者コード.SelectedItem)?.Row.Field<String>("Display2")?.ToString();
-            //ChangedData(true);
-        }
-
-        private void 分類コード_TextChanged(object sender, EventArgs e)
-        {
-            if (発注者コード.SelectedValue == null)
-            {
-                //GroupName.Text = null;
-            }
-        }
-
-        private void 分類コード_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == (char)Keys.Space)
-            {
-                ComboBox comboBox = sender as ComboBox;
-                if (comboBox != null)
-                {
-                    comboBox.DroppedDown = true;
-                }
-                e.KeyChar = (char)0;
-            }
-        }
-
-        private void 分類コード_DrawItem(object sender, DrawItemEventArgs e)
-        {
-            OriginalClass.SetComboBoxAppearance((ComboBox)sender, e, new int[] { 50, 500 }, new string[] { "Display", "Display2" });
-            発注者コード.Invalidate();
-            発注者コード.DroppedDown = true;
-        }
-
-        private void 部品コード_Enter(object sender, EventArgs e)
-        {
-            //toolStripStatusLabel2.Text = "■読み込む部品データの部品コードを入力します。";
-        }
-
-        private void 部品コード_Leave(object sender, EventArgs e)
-        {
-            //toolStripStatusLabel2.Text = "各種項目の説明";
-        }
-
-        private void 品名_Enter(object sender, EventArgs e)
-        {
-            //toolStripStatusLabel2.Text = "■全角で25文字まで入力可。　■機種依存文字は入力できません。";
-        }
-
-        private void 品名_Leave(object sender, EventArgs e)
-        {
-            //toolStripStatusLabel2.Text = "各種項目の説明";
-        }
-
-        private void 型番_Enter(object sender, EventArgs e)
-        {
-            //toolStripStatusLabel2.Text = "■半角50文字まで入力可。　■機種依存文字は入力できません。";
-        }
-
-        private void 型番_Leave(object sender, EventArgs e)
-        {
-            //toolStripStatusLabel2.Text = "各種項目の説明";
-        }
-
-        private void メーカーコード_Enter(object sender, EventArgs e)
-        {
-            //toolStripStatusLabel2.Text = "■メーカーコードを入力します。　■8文字まで入力可。　■[space]キーで検索ウィンドウを開きます。";
-        }
-
-        private void メーカーコード_Leave(object sender, EventArgs e)
-        {
-            //toolStripStatusLabel2.Text = "各種項目の説明";
-        }
-
-        private void 分類コード_Enter(object sender, EventArgs e)
-        {
-            //toolStripStatusLabel2.Text = "■[space]キーでドロップダウンリストを開きます。";
-        }
-
-        private void 分類コード_Leave(object sender, EventArgs e)
-        {
-            //toolStripStatusLabel2.Text = "各種項目の説明";
-        }
-
-        private void 形状分類コード_Enter(object sender, EventArgs e)
-        {
-            //toolStripStatusLabel2.Text = "■[space]キーでドロップダウンリストを開きます。";
-        }
-
-        private void 形状分類コード_Leave(object sender, EventArgs e)
-        {
-            //toolStripStatusLabel2.Text = "各種項目の説明";
-        }
-
-        private void JampAis_Enter(object sender, EventArgs e)
-        {
-            //toolStripStatusLabel2.Text = "■在庫部品について、RoHSの対応状況を入力します。　■[space]キーでドロップダウンリストを表示します。";
-        }
-
-        private void JampAis_Leave(object sender, EventArgs e)
+        private void 発注日_Enter(object sender, EventArgs e)
         {
-            //toolStripStatusLabel2.Text = "各種項目の説明";
+            toolStripStatusLabel2.Text = "■[space]キーでカレンダーを参照できます。　■未来の日付は入力できません。";
         }
 
-        private void 非含有証明書_Enter(object sender, EventArgs e)
+        private void 発注日_Leave(object sender, EventArgs e)
         {
-            //toolStripStatusLabel2.Text = "■RoHS指令に基づく非含有証明書の進捗状況を選択します。　■[space]キーでドロップダウンリストを表示します。";
+            toolStripStatusLabel2.Text = "各種項目の説明";
         }
 
-        private void 非含有証明書_Leave(object sender, EventArgs e)
+        private void 発注日_KeyDown(object sender, KeyEventArgs e)
         {
-            //toolStripStatusLabel2.Text = "各種項目の説明";
-        }
-
-        private void RoHS資料_Enter(object sender, EventArgs e)
-        {
-            //toolStripStatusLabel2.Text = "■RoHSに関する資料の有無を入力します。　■[space]キーでドロップダウンリストを表示します。";
-        }
-
-        private void RoHS資料_Leave(object sender, EventArgs e)
-        {
-            //toolStripStatusLabel2.Text = "各種項目の説明";
-        }
-
-        private void Rohs1ChemSherpaStatusCode_Enter(object sender, EventArgs e)
-        {
-            //toolStripStatusLabel2.Text = "■RoHS1のchemSHERPAデータの入手状況を入力します。　■[space]キーでドロップダウンリストを表示します。";
-        }
-        private void Rohs1ChemSherpaStatusCode_Leave(object sender, EventArgs e)
-        {
-            //toolStripStatusLabel2.Text = "各種項目の説明";
-        }
-
-        private void Rohs2JampAisStatusCode_Enter(object sender, EventArgs e)
-        {
-            //toolStripStatusLabel2.Text = "■在庫部品について、RoHSの対応状況を入力します。　■[space]キーでドロップダウンリストを表示します。";
-        }
-
-        private void Rohs2JampAisStatusCode_Leave(object sender, EventArgs e)
-        {
-            //toolStripStatusLabel2.Text = "各種項目の説明";
-        }
-
-        private void Rohs2NonInclusionCertificationStatusCode_Enter(object sender, EventArgs e)
-        {
-            //toolStripStatusLabel2.Text = "■RoHS指令に基づく非含有証明書の進捗状況を選択します。　■[space]キーでドロップダウンリストを表示します。";
-        }
-
-        private void Rohs2NonInclusionCertificationStatusCode_Leave(object sender, EventArgs e)
-        {
-            //toolStripStatusLabel2.Text = "各種項目の説明";
-        }
-
-        private void Rohs2DocumentStatusCode_Enter(object sender, EventArgs e)
-        {
-            //toolStripStatusLabel2.Text = "■RoHSに関する資料の有無を入力します。　■[space]キーでドロップダウンリストを表示します。";
-        }
-
-        private void Rohs2DocumentStatusCode_Leave(object sender, EventArgs e)
-        {
-            //toolStripStatusLabel2.Text = "各種項目の説明";
-        }
-
-        private void Rohs2ChemSherpaStatusCode_Enter(object sender, EventArgs e)
-        {
-            //toolStripStatusLabel2.Text = "■RoHS2のchemSHERPAデータの入手状況を入力します。　■[space]キーでドロップダウンリストを表示します。";
-        }
-
-        private void Rohs2ChemSherpaStatusCode_Leave(object sender, EventArgs e)
-        {
-            //toolStripStatusLabel2.Text = "各種項目の説明";
-        }
-
-        private void ChemSherpaVersion_Enter(object sender, EventArgs e)
-        {
-            //toolStripStatusLabel2.Text = "■入手したchemSHERPAのバージョンを入力します。　■10文字まで入力可。";
-        }
-
-        private void ChemSherpaVersion_Leave(object sender, EventArgs e)
-        {
-            //toolStripStatusLabel2.Text = "各種項目の説明";
-        }
-
-        private void 入数_Enter(object sender, EventArgs e)
-        {
-            //toolStripStatusLabel2.Text = "■含まれる部品の数量です。購買時にこの値によって除算されます。";
-        }
-
-        private void 入数_Leave(object sender, EventArgs e)
-        {
-            //toolStripStatusLabel2.Text = "各種項目の説明";
-        }
-
-        private void 単位数量_Enter(object sender, EventArgs e)
-        {
-            //toolStripStatusLabel2.Text = "■発注可能な最低数量です。";
-        }
-
-        private void 単位数量_Leave(object sender, EventArgs e)
-        {
-            //toolStripStatusLabel2.Text = "各種項目の説明";
-        }
 
-        private void StandardDeliveryDay_Enter(object sender, EventArgs e)
-        {
-            //toolStripStatusLabel2.Text = "■部品の標準納期を入力します。単位は[日]で入力してください。";
-        }
-
-        private void StandardDeliveryDay_Leave(object sender, EventArgs e)
-        {
-            //toolStripStatusLabel2.Text = "各種項目の説明";
         }
 
-        private void ShelfNumber_Enter(object sender, EventArgs e)
+        private void 仕入先コード_Enter(object sender, EventArgs e)
         {
-            //toolStripStatusLabel2.Text = "■部品が保管されている棚番号です。";
+            toolStripStatusLabel2.Text = "■仕入先コードを入力します。　■コードは８桁で先頭の 0 は省略できます。";
         }
 
-        private void ShelfNumber_Leave(object sender, EventArgs e)
+        private void 仕入先コード_Leave(object sender, EventArgs e)
         {
-            //toolStripStatusLabel2.Text = "各種項目の説明";
+            toolStripStatusLabel2.Text = "各種項目の説明";
         }
 
-        private void CalcInventoryCode_Enter(object sender, EventArgs e)
+        private void 仕入先担当者名_Enter(object sender, EventArgs e)
         {
-            //toolStripStatusLabel2.Text = "■[space]キーでドロップダウンリストを表示します。";
+            toolStripStatusLabel2.Text = "■仕入先の担当者名を入力します。　■全角１０文字まで入力できます。";
         }
 
-        private void CalcInventoryCode_Leave(object sender, EventArgs e)
+        private void 仕入先担当者名_Leave(object sender, EventArgs e)
         {
-            //toolStripStatusLabel2.Text = "各種項目の説明";
+            toolStripStatusLabel2.Text = "各種項目の説明";
         }
 
-        private void ロス率_Enter(object sender, EventArgs e)
+        private void 発注版数_Enter(object sender, EventArgs e)
         {
-            //toolStripStatusLabel2.Text = "■在庫のロス率を係数で入力します。　■少数部は7桁まで入力できますが、表示は3桁です。";
+            toolStripStatusLabel2.Text = "■発注データの版数を入力します。　■通常、旧版を参照するときに入力します。";
         }
 
-        private void ロス率_Leave(object sender, EventArgs e)
+        private void 発注版数_Leave(object sender, EventArgs e)
         {
-            //toolStripStatusLabel2.Text = "各種項目の説明";
+            toolStripStatusLabel2.Text = "各種項目の説明";
         }
 
-        private void 受入検査ランク_Enter(object sender, EventArgs e)
+        private void 摘要_Enter(object sender, EventArgs e)
         {
-            //toolStripStatusLabel2.Text = "■[space]キーでドロップダウンリストを表示します。";
+            toolStripStatusLabel2.Text = "■発注書の摘要欄に表示する文章を入力します。";
         }
 
-        private void 受入検査ランク_Leave(object sender, EventArgs e)
+        private void 摘要_Leave(object sender, EventArgs e)
         {
-            //toolStripStatusLabel2.Text = "各種項目の説明";
+            toolStripStatusLabel2.Text = "各種項目の説明";
         }
 
         private void 備考_Enter(object sender, EventArgs e)
         {
-            //toolStripStatusLabel2.Text = "■全角2000文字まで入力できます。";
+            toolStripStatusLabel2.Text = "■業務連絡事項を入力します。発注書には反映されません。";
         }
 
         private void 備考_Leave(object sender, EventArgs e)
         {
-            //toolStripStatusLabel2.Text = "各種項目の説明";
+            toolStripStatusLabel2.Text = "各種項目の説明";
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void 在庫管理_Enter(object sender, EventArgs e)
         {
-
+            toolStripStatusLabel2.Text = "■在庫管理を行う場合はチェックを入れます。";
         }
 
-        private void 購買コード_TextChanged(object sender, EventArgs e)
+        private void 在庫管理_Leave(object sender, EventArgs e)
         {
-
+            toolStripStatusLabel2.Text = "各種項目の説明";
         }
 
-        private void 仕入先選択ボタン_Click(object sender, EventArgs e)
+        private void NoCredit_Enter(object sender, EventArgs e)
         {
-
+            toolStripStatusLabel2.Text = "■振込を行う必要が無いときのみチェックを入れてください。";
         }
 
-        private void NoCredit_CheckedChanged(object sender, EventArgs e)
+        private void NoCredit_Leave(object sender, EventArgs e)
         {
-
+            toolStripStatusLabel2.Text = "各種項目の説明";
         }
 
-        private void 注釈3_ラベル_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Supplier2Name_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void SupplierSendMethodCodeフレーム_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void 仕入先電話番号_TextChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }
