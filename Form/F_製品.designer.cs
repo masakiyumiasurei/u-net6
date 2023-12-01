@@ -121,6 +121,7 @@ namespace u_net
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.製品明細1 = new MultiRowDesigner.製品明細();
             this.panel1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -1072,7 +1073,7 @@ namespace u_net
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1,
             this.toolStripStatusLabel2});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 499);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 612);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 19, 0);
             this.statusStrip1.Size = new System.Drawing.Size(1036, 22);
@@ -1090,10 +1091,19 @@ namespace u_net
             this.toolStripStatusLabel2.Size = new System.Drawing.Size(89, 17);
             this.toolStripStatusLabel2.Text = "各種項目の説明";
             // 
+            // 製品明細1
+            // 
+            this.製品明細1.Location = new System.Drawing.Point(9, 247);
+            this.製品明細1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.製品明細1.Name = "製品明細1";
+            this.製品明細1.Size = new System.Drawing.Size(1015, 366);
+            this.製品明細1.TabIndex = 10196;
+            // 
             // F_製品
             // 
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(1036, 521);
+            this.ClientSize = new System.Drawing.Size(1036, 634);
+            this.Controls.Add(this.製品明細1);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.SupersededDate);
             this.Controls.Add(this.汎用キー1);
@@ -1307,6 +1317,7 @@ namespace u_net
         private StatusStrip statusStrip1;
         private ToolStripStatusLabel toolStripStatusLabel1;
         private ToolStripStatusLabel toolStripStatusLabel2;
+        private MultiRowDesigner.製品明細 製品明細1;
     }
 }
 
