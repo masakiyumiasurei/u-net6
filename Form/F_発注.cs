@@ -16,6 +16,11 @@ using System.Windows.Forms;
 using Newtonsoft.Json.Linq;
 using System.Drawing.Imaging;
 using System.Drawing.Printing;
+using Microsoft.IdentityModel.Tokens;
+using System.Data.Common;
+using static u_net.CommonConstants;
+using Microsoft.Identity.Client.NativeInterop;
+using GrapeCity.Win.MultiRow;
 
 namespace u_net
 {
@@ -28,14 +33,119 @@ namespace u_net
         private string BASE_CAPTION = "発注";
         private int selected_frame = 0;
 
-        public F_発注()
+        public F_発注(string openargs)
         {
             this.Text = "発注";       // ウィンドウタイトルを設定
             this.MaximizeBox = false;  // 最大化ボタンを無効化
             this.MinimizeBox = false; //最小化ボタンを無効化
+            args = openargs;
 
             InitializeComponent();
 
+        }
+        public string CurrentCode
+        {
+            get
+            {
+                return string.IsNullOrEmpty(発注コード.Text) ? "" : 発注コード.Text;
+            }
+        }
+        public int CurrentEdition
+        {
+            get
+            {
+                int result;
+                return int.TryParse(発注版数.Text, out result) ? result : 0;
+            }
+        }
+
+        public bool InvManageOn
+        {
+            get           
+            {                
+                return 在庫管理.Checked ;
+            }
+        }
+        public bool IsApproved
+        {
+            get
+            {
+                return !string.IsNullOrEmpty(承認日時.Text) && !string.IsNullOrEmpty(承認者コード.Text) ? true:
+                    false;
+                
+            }
+        }
+        public bool IsChanged
+        {
+            get
+            {
+                return コマンド登録.Enabled;
+            }
+        }
+
+        public string IsCompleted
+        {
+            get
+            {
+                return string.IsNullOrEmpty(入庫状況.Text) ? "" : 入庫状況.Text;
+            }
+        }
+
+        public bool IsDecided
+        {
+            get
+            {
+                return !string.IsNullOrEmpty(確定日時.Text)  ? true : false;
+            }
+        }
+
+        public bool IsDeleted
+        {
+            get
+            {
+                return !string.IsNullOrEmpty(削除.Text) ? true : false;
+            }
+        }
+
+        public bool IsLastEdition
+        {
+            get
+            {
+                int lastEdition = GetLastEdition(cn, CurrentCode);
+                return CurrentEdition == lastEdition;
+            }
+        }
+        public bool IsLotOrder
+        {
+            get
+            {
+                return !string.IsNullOrEmpty(購買コード.Text) ? true : false;
+            }
+        }
+
+        public bool IsNewData
+        {
+            get
+            {
+                return !コマンド新規.Enabled;
+            }
+        }
+
+        private bool IsReceived
+        {
+            get
+            {
+                return !string.IsNullOrEmpty(OriginalClass.Nz(入庫状況.Text,""));
+            }
+        }
+
+        private bool PurchasingUserLogin
+        {
+            //ログオンユーザーが購買担当かどうかを取得します
+            get
+            {
+                return LoginUserCode == "080" || LoginUserCode == "006";
+            }
         }
 
         public void Connect()
@@ -83,6 +193,11 @@ namespace u_net
             intpixel = myapi.GetLogPixel();
             twipperdot = myapi.GetTwipPerDot(intpixel);
 
+            OriginalClass ofn = new OriginalClass();
+            ofn.SetComboBox(発注版数, "SELECT 発注コード as Display ,発注コード as Value FROM V発注_最新版 ORDER BY 発注コード DESC");
+
+
+
             try
             {
                 this.SuspendLayout();
@@ -93,15 +208,23 @@ namespace u_net
 
                 if (string.IsNullOrEmpty(args))
                 {
-                    コマンド新規_Click(sender, e);
+                    // 新規モードへ
+                    if (!GoNewMode())
+                    {
+                        throw new Exception("初期化に失敗しました。");
+                    }
                 }
                 else
                 {
-                    コマンド読込_Click(sender, e);
+                    // 修正モードへ
+                    if (!GoModifyMode())
+                    {
+                        throw new Exception("初期化に失敗しました。");
+                    }
                     if (!string.IsNullOrEmpty(args))
                     {
                         this.発注コード.Text = args;
-                        UpdatedControl(発注コード);
+                        UpdatedControl("発注コード");
                     }
                 }
                 // 成功時の処理
@@ -116,6 +239,103 @@ namespace u_net
             {
                 this.ResumeLayout();
                 fn.WaitForm.Close();
+            }
+        }
+
+        private void SetEditions(string code)
+        {
+            OriginalClass ofn = new OriginalClass();
+            ofn.SetComboBox(発注版数, "SELECT 発注版数 as Display,発注版数 as Value FROM T発注 where 発注コード='" + code + "' ORDER BY 発注版数 DESC");
+        }
+        private bool GoNewMode()
+        {
+            try
+            {
+                // 各コントロール値を初期化
+                VariableSet.SetControls(this);
+
+                Connect();
+
+                発注コード.Text = FunctionClass.採番(cn, CH_ORDER).ToString();
+                SetEditions(発注コード.Text);
+                発注版数.Text = "1";
+                発注日.Text = DateTime.Now.ToString("yyyy/MM/dd");
+                発注者コード.Text = LoginUserCode;
+                在庫管理.Checked = false;
+                NoCredit.Checked = false;
+                UpdatedControl("発注者コード");
+
+                // 明細部の初期化
+                //string strSQL = "SELECT * FROM V発注明細 WHERE 発注コード='" + CurrentCode + "' ORDER BY 明細番号";
+                //LoadDetails(strSQL, SubForm, SubDatabase, "発注明細");
+
+                // ヘッダ部動作制御
+                LockData(this, false);
+                発注日.Focus();
+                発注コード.Enabled = false;
+                発注版数.Enabled = false;
+                改版ボタン.Enabled = false;
+                コマンド新規.Enabled = false;
+                コマンド読込.Enabled = true;
+                コマンド複写.Enabled = false;
+                コマンド削除.Enabled = false;
+                コマンド発注書.Enabled = false;
+                コマンド送信.Enabled = false;
+                コマンド購買.Enabled = false;
+                コマンド承認.Enabled = false;
+                コマンド確定.Enabled = false;
+                コマンド登録.Enabled = false;
+
+                // 明細部動作制御
+                SubForm.AllowAdditions = true;
+                SubForm.AllowDeletions = true;
+                SubForm.AllowEdits = true;
+                // .品名.Locked = InvManageOn;
+                // .型番.Locked = InvManageOn;
+                // .メーカー名.Locked = InvManageOn;
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"{this.Name}_GoNewMode - {ex.GetType().Name} : {ex.Message}");
+                return false;
+            }
+        }
+
+        private bool GoModifyMode()
+        {
+            try
+            {
+                bool result = false;
+
+                // 各コントロールの値をクリア
+                VariableSet.SetControls(this);
+
+                // 編集による変更がない状態へ遷移
+                //ChangedData(false);
+
+                this.仕入先コード.Enabled = true;
+                this.仕入先コード.Focus();
+                // 仕入先コードコントロールが使用可能になってから LockData を呼び出す
+                //FunctionClass.LockData(this, true, "仕入先コード");
+                this.コマンド新規.Enabled = true;
+                this.コマンド修正.Enabled = false;
+                this.コマンド複写.Enabled = false;
+                this.コマンド登録.Enabled = false;
+                this.Text = BASE_CAPTION;
+                //if (!string.IsNullOrEmpty(this.削除日時.Text))
+                //{
+                //    this.削除.Text = "■";
+                //}
+
+                result = true;
+                return result;
+            }
+            catch (Exception ex)
+            {
+                Debug.Print(this.Name + "_GoModifyMode - " + ex.Message);
+                return false;
             }
         }
 
@@ -190,22 +410,9 @@ namespace u_net
                 MessageBox.Show(ex.Message, "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+               
 
-        public bool IsChanged
-        {
-            get
-            {
-                return コマンド登録.Enabled;
-            }
-        }
-
-        public bool IsNewData
-        {
-            get
-            {
-                return !コマンド新規.Enabled;
-            }
-        }
+   
 
         private void コマンド登録_Click(object sender, EventArgs e)
         {
@@ -256,6 +463,43 @@ namespace u_net
 
         }
 
+        public int GetLastEdition(SqlConnection connectionObject, string code)
+        {
+            //最終版数を返す
+
+            int lastEdition = 0;
+
+            try
+            {
+                using (SqlCommand command = new SqlCommand("SELECT 最新版数 FROM V発注_最新版 WHERE 発注コード=@Code", connectionObject))
+                {
+                    command.Parameters.AddWithValue("@Code", code);
+
+                    connectionObject.Open();
+                    object result = command.ExecuteScalar();
+
+                    if (result != null && result != DBNull.Value)
+                    {
+                        lastEdition = Convert.ToInt32(result);
+                    }
+                    else
+                    {
+                        lastEdition = -1;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error in GetLastEdition: " + ex.Message);
+                // Handle the exception as needed.
+            }
+            finally
+            {
+                connectionObject.Close();
+            }
+
+            return lastEdition;
+        }
         private bool ErrCheck()
         {
             //入力確認    
@@ -278,20 +522,20 @@ namespace u_net
                 this.Text = BASE_CAPTION;
             }
 
+            // キー情報を表示するコントロールを制御する
             // コードにフォーカスがある状態でサブフォームから呼び出されたときの対処
-            //if (this.ActiveControl == this.発注コード)
-            //{
-            //    this.品名.Focus();
-            //}
+            
+            if (ActiveControl == 発注コード) 発注日.Focus();
+            発注コード.Enabled = !IsChanged;
+            if (ActiveControl == 発注版数) 発注日.Focus();
+            発注版数.Enabled = !IsChanged;
 
-            //this.発注コード.Enabled = !isChanged;
-            //this.改版ボタン.Enabled = !isChanged;
-            //// this.コマンド複写.Enabled = !isChanged; // コマンド複写についての情報が提供されていないためコメントアウト
-            //this.コマンド削除.Enabled = !isChanged;
-            //this.コマンド登録.Enabled = isChanged;
-
-            //// RoHSの状態表示を更新する
-            //ShowRohsStatus();
+            コマンド複写.Enabled = !IsChanged;
+            コマンド削除.Enabled = !IsChanged;
+            コマンド発注書.Enabled = !IsChanged;
+            if (IsChanged) コマンド送信.Enabled = false;
+            if (IsChanged) コマンド確定.Enabled = true;
+            コマンド登録.Enabled = IsChanged;
         }
 
         private void コマンド新規_Click(object sender, EventArgs e)
@@ -656,11 +900,10 @@ namespace u_net
 
                 //this.品名.Focus();
                 ChangedData(true);
-
+                
                 Connect();
 
-                // 以下、初期値の設定
-                //string code = FunctionClass.採番(cn, "PAR");
+                string code = FunctionClass.採番(cn, CH_ORDER);
                 //発注コード.Text = code.Substring(Math.Max(0, code.Length - 8));
                 //this.版数.Text = 1.ToString();
                 //this.InventoryAmount.Text = 0.ToString();
@@ -774,110 +1017,157 @@ namespace u_net
 
         }
 
-        private void UpdatedControl(Control controlObject)
+        public bool LoadHeader()
         {
             try
             {
                 Connect();
 
-                switch (controlObject.Name)
+                string strSQL;
+
+                strSQL = "SELECT * FROM V発注ヘッダ WHERE 発注コード='" + CurrentCode + "' AND 発注版数= " + CurrentEdition;
+
+                VariableSet.SetTable2Form(this, strSQL, cn);
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("読み込み時エラーです" + ex.Message, "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+        }
+
+        public bool LoadDetails(string strSQL, GcMultiRow multiRow)
+        {                        
+            try
+            {
+                Connect();
+                               
+                using (SqlCommand command = new SqlCommand(strSQL, cn))
                 {
-                    case "部品コード":
+                    using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+                    {
+                        DataTable dataTable = new DataTable();
+                        adapter.Fill(dataTable);
+                        multiRow.DataSource = dataTable;
+                    }
+                }
+                return  true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("読み込み時エラーです" + ex.Message, "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return false;
+        }
 
-                        FunctionClass fn = new FunctionClass();
-                        fn.DoWait("読み込んでいます...");
+        private void UpdatedControl(string controlName)
+        {
+            try
+            {
+                object varParm = null; // varParm の型が VBA の Variant に相当するものになる
 
+                switch (controlName)
+                {
+                    case "発注コード":
+                        SetEditions(発注コード.Text);
 
-                        //                    string query = "SELECT M部品.部品コード, ISNULL([V部品履歴_最終版数].最終版数, 0) + 1 AS 版数 " +
-                        //"FROM M部品 LEFT OUTER JOIN [V部品履歴_最終版数] " +
-                        //"ON M部品.部品コード = [V部品履歴_最終版数].部品コード " +
-                        //"WHERE M部品.部品コード BETWEEN '@StartCode' AND '@EndCode' " +
-                        //"ORDER BY M部品.部品コード DESC";
+                        if (args == "")
+                        {
+                            Connect();
+                            string sql = "SELECT 最新版数 FROM V発注_最新版 where 発注コード='" + CurrentCode + "'";
+                            発注版数.Text = OriginalClass.GetScalar<string>(cn, sql);
+                            cn.Close();
+                        }
 
-                        //                    using (SqlCommand command = new SqlCommand(query, cn))
-                        //                    {
-                        //                        int parsedCode = int.Parse(部品コード.Text);
-                        //                        command.Parameters.AddWithValue("@StartCode", parsedCode - 10);
-                        //                        command.Parameters.AddWithValue("@EndCode", parsedCode + 10);
+                        if (!LoadHeader()) return;
+                        
 
-                        //                        SqlDataAdapter adapter = new SqlDataAdapter(command);
-                        //                        DataTable dataTable = new DataTable();
+                        string strSQL = "SELECT * FROM V発注明細 WHERE 発注コード='" + CurrentCode +
+                                         "' AND 発注版数=" + CurrentEdition + " ORDER BY 明細番号";
+                       //明細表示
+                         if(!LoadDetails(strSQL, this.発注明細1.Detail)) return;
 
-                        //                        adapter.Fill(dataTable);
+                        FunctionClass.LockData(this, IsDecided || IsDeleted, "発注コード", "発注版数");
 
-                        //                        // 部品コードのソースにDataTableを設定
-                        //                        部品コード.DataSource = dataTable;
-                        //                        部品コード.DisplayMember = "Value";
-                        //                        部品コード.ValueMember = "Key";
+                        発注版数.Enabled = true;
 
-                        //                        //版数.Text = 部品コード.V
-                        //                    }
+                        if (IsLastEdition && IsApproved && !IsDeleted)
+                        {
+                            改版ボタン.Enabled = (!IsReceived) || PurchasingUserLogin;
+                        }
+                        else
+                        {
+                            改版ボタン.Enabled = false;
+                        }
 
-                        //string query = "select max(版数) as 最終版数 from M部品履歴 where 部品コード='" + 発注コード.Text + "' group by 部品コード";
+                        SubForm.AllowAdditions = !IsDecided && !IsDeleted;
+                        SubForm.AllowDeletions = !IsDecided && !IsDeleted;
+                        SubForm.AllowEdits = !IsDecided && !IsDeleted;
+                        コマンド複写.Enabled = true;
+                        コマンド削除.Enabled = IsLastEdition && !IsDeleted;
+                        コマンド発注書.Enabled = true;
+                        コマンド送信.Enabled = IsApproved;
+                        コマンド部品.Enabled = true;
+                        コマンド購買.Enabled = IsLotOrder;
+                        コマンド承認.Enabled = IsDecided && !IsApproved && !IsDeleted;
+                        コマンド確定.Enabled = !IsApproved && !IsDeleted;
 
-                        //using (SqlCommand command = new SqlCommand(query, cn))
-                        //{
-                        //    SqlDataAdapter adapter = new SqlDataAdapter(command);
-                        //    DataTable dataTable = new DataTable();
-                        //    adapter.Fill(dataTable);
-                        //    if (dataTable.Rows.Count > 0)
-                        //    {
-                        //        版数.Text = dataTable.Rows[0]["最終版数"].ToString();
-                        //    }
-                        //}
-
-
-                        //// 内容の表示
-                        //LoadData(this, 発注コード.Text);
-                        //// 使用先の表示
-                        //DispGrid(発注コード.Text);
-                        //// 動作制御
-                        //改版ボタン.Enabled = true;
-                        //// コマンド複写.Enabled = true;
-                        //コマンド削除.Enabled = true;
-                        //コマンド部品.Enabled = true;
-                        //コマンド購買.Enabled = !(CurrentEdition <= 1);
-
-                        ChangedData(false);
-
-                        fn.WaitForm.Close();
                         break;
-                    case "仕入先1コード":
-                        // 仕入先コードからの関連情報表示
-                        //Supplier1Name.Text = FunctionClass.GetSupplierName(cn, controlObject.Text.ToString());
+
+                    case "発注版数":
+                        LoadHeader(this, CurrentCode, CurrentEdition);
+                        strSQL = "SELECT * FROM V発注明細 WHERE 発注コード='" + CurrentCode +
+                                 "' AND 発注版数=" + CurrentEdition + " ORDER BY 明細番号";
+                        LoadDetails(strSQL, SubForm, SubDatabase, "発注明細");
+
+                        LockData(this, IsDecided || IsDeleted, "発注コード", "発注版数");
+
+                        if (IsLastEdition && IsApproved && !IsDeleted)
+                        {
+                            改版ボタン.Enabled = (!IsReceived) || PurchasingUserLogin;
+                        }
+                        else
+                        {
+                            改版ボタン.Enabled = false;
+                        }
+
+                        SubForm.AllowAdditions = !IsDecided && !IsDeleted;
+                        SubForm.AllowDeletions = !IsDecided && !IsDeleted;
+                        SubForm.AllowEdits = !IsDecided && !IsDeleted;
+                        コマンド複写.Enabled = true;
+                        コマンド削除.Enabled = IsLastEdition && !IsDeleted;
+                        コマンド発注書.Enabled = true;
+                        コマンド送信.Enabled = IsApproved;
+                        コマンド部品.Enabled = true;
+                        コマンド購買.Enabled = !string.IsNullOrEmpty(購買コード.Value);
+                        コマンド承認.Enabled = IsDecided && !IsApproved && !IsDeleted;
+                        コマンド確定.Enabled = !IsApproved && !IsDeleted;
+
                         break;
-                    case "仕入先2コード":
-                        // 仕入先コードからの関連情報表示
-                        //SupplierSendMethodCode.Text = FunctionClass.GetSupplierName(cn, controlObject.Text.ToString());
+
+                    case "発注日":
                         break;
-                    case "仕入先3コード":
-                        // 仕入先コードからの関連情報表示
-                        //Supplier3Name.Text = FunctionClass.GetSupplierName(cn, controlObject.Text.ToString());
+
+                    case "発注者コード":
+                        発注者名.Value = 発注者コード.Column(1);
                         break;
-                    case "入数":
-                    case "単位数量":
-                        //int parsedValue = int.Parse(controlObject.Text);
-                        //if (parsedValue < 1)
-                        //{
-                        //    controlObject.Text = 1.ToString();
-                        //}
+
+                    case "仕入先コード":
+                        SetSupplier(varParm.ToString());
                         break;
-                    case "ロス率":
-                        //controlObject.Text = float.Parse(controlObject.Text.ToString()).ToString();
-                        // Me.Controls(ControlName).Value = Me.Controls(ControlName).Value / 100;
+
+                    case "在庫管理":
                         break;
                 }
             }
             catch (Exception ex)
             {
-                Debug.Print(Name + "_UpdatedControl - " + ex.Message);
-            }
-            finally
-            {
-
-
+                Debug.Print(this.Name + "_UpdatedControl - " + ex.GetType().ToString() + " : " + ex.Message);
             }
         }
+
 
         private void Form_KeyDown(object sender, KeyEventArgs e)
         {
