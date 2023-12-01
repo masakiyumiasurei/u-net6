@@ -312,10 +312,12 @@
             this.Controls.Add(this.担当者名);
             this.Controls.Add(this.メーカー名);
             this.Controls.Add(this.label5);
+            this.KeyPreview = true;
             this.Name = "F_メーカー管理_抽出";
             this.Text = "F_メーカー管理_抽出";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.F_メーカー管理_抽出_FormClosing);
             this.Load += new System.EventHandler(this.Form_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.F_メーカー管理_抽出_KeyDown);
             this.Deleted.ResumeLayout(false);
             this.Deleted.PerformLayout();
             this.ResumeLayout(false);

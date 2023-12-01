@@ -155,12 +155,14 @@
             this.Controls.Add(this.label6);
             this.Controls.Add(this.キャンセルボタン);
             this.Controls.Add(this.抽出ボタン);
+            this.KeyPreview = true;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "F_売上一覧_区分別_抽出";
             this.Text = "F_売上一覧_区分別_抽出";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.F_売上一覧_区分別_抽出_FormClosing);
             this.Load += new System.EventHandler(this.Form_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.F_売上一覧_区分別_抽出_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();
 

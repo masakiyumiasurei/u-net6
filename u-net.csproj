@@ -18,14 +18,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Remove="Form\F_入庫.cs" />
-    <Compile Remove="Form\F_入庫.designer.cs" />
     <Compile Remove="Form\F_製品.cs" />
     <Compile Remove="Form\F_製品.designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Remove="Form\F_入庫.resx" />
     <EmbeddedResource Remove="Form\F_製品.resx" />
   </ItemGroup>
 
