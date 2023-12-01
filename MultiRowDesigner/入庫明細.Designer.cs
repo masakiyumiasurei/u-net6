@@ -1,6 +1,6 @@
 ﻿namespace MultiRowDesigner
 {
-    partial class 受注明細
+    partial class 入庫明細
     {
         /// <summary> 
         /// 必要なデザイナー変数です。
@@ -29,28 +29,27 @@
         private void InitializeComponent()
         {
             this.gcMultiRow1 = new GrapeCity.Win.MultiRow.GcMultiRow();
-            this.受注明細テンプレート1 = new MultiRowDesigner.受注明細テンプレート();
+            this.入庫明細テンプレート1 = new MultiRowDesigner.入庫明細テンプレート();
             ((System.ComponentModel.ISupportInitialize)(this.gcMultiRow1)).BeginInit();
             this.SuspendLayout();
             // 
             // gcMultiRow1
             // 
-            this.gcMultiRow1.BackColor = System.Drawing.Color.White;
             this.gcMultiRow1.EditMode = GrapeCity.Win.MultiRow.EditMode.EditOnEnter;
             this.gcMultiRow1.Location = new System.Drawing.Point(0, 0);
             this.gcMultiRow1.Name = "gcMultiRow1";
-            this.gcMultiRow1.Size = new System.Drawing.Size(870, 290);
+            this.gcMultiRow1.Size = new System.Drawing.Size(860, 200);
             this.gcMultiRow1.TabIndex = 0;
-            this.gcMultiRow1.Template = this.受注明細テンプレート1;
+            this.gcMultiRow1.Template = this.入庫明細テンプレート1;
             this.gcMultiRow1.Text = "gcMultiRow1";
             // 
-            // 受注明細
+            // 入庫明細
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.gcMultiRow1);
-            this.Name = "受注明細";
-            this.Size = new System.Drawing.Size(870, 286);
+            this.Name = "入庫明細";
+            this.Size = new System.Drawing.Size(860, 200);
             ((System.ComponentModel.ISupportInitialize)(this.gcMultiRow1)).EndInit();
             this.ResumeLayout(false);
 
@@ -59,6 +58,6 @@
         #endregion
 
         private GrapeCity.Win.MultiRow.GcMultiRow gcMultiRow1;
-        private 受注明細テンプレート 受注明細テンプレート1;
+        private 入庫明細テンプレート 入庫明細テンプレート1;
     }
 }

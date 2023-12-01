@@ -554,12 +554,14 @@
             this.Controls.Add(this.形状名);
             this.Controls.Add(this.対象部品名);
             this.Controls.Add(this.label5);
+            this.KeyPreview = true;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "F_部品管理_抽出";
             this.Text = "F_部品管理_抽出";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.F_部品管理_抽出_FormClosing);
             this.Load += new System.EventHandler(this.Form_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.F_部品管理_抽出_KeyDown);
             this.削除指定.ResumeLayout(false);
             this.削除指定.PerformLayout();
             this.廃止指定.ResumeLayout(false);

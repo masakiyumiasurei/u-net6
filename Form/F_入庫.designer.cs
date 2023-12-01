@@ -29,7 +29,6 @@ namespace u_net
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.コマンド終了 = new System.Windows.Forms.Button();
             this.コマンド登録 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -41,7 +40,7 @@ namespace u_net
             this.コマンド承認 = new System.Windows.Forms.Button();
             this.コマンド削除 = new System.Windows.Forms.Button();
             this.コマンド複写 = new System.Windows.Forms.Button();
-            this.コマンド読込 = new System.Windows.Forms.Button();
+            this.コマンド修正 = new System.Windows.Forms.Button();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -70,18 +69,13 @@ namespace u_net
             this.dataGridViewTextBoxColumn25 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn26 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn27 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.M部品分類bindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.M部品形状bindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.rohsStatusCodebindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.label32 = new System.Windows.Forms.Label();
-            this.ChemSherpaVersion = new System.Windows.Forms.TextBox();
             this.コマンド = new System.Windows.Forms.Button();
             this.摘要 = new System.Windows.Forms.TextBox();
             this.摘要_ラベル = new System.Windows.Forms.Label();
             this.入庫者名 = new System.Windows.Forms.TextBox();
             this.入庫者コード = new System.Windows.Forms.ComboBox();
             this.入庫者コード_ラベル = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.入庫日 = new System.Windows.Forms.TextBox();
             this.入庫日_ラベル = new System.Windows.Forms.Label();
             this.SupplierCloseDay = new System.Windows.Forms.TextBox();
             this.締日_ラベル = new System.Windows.Forms.Label();
@@ -131,9 +125,6 @@ namespace u_net
             this.無効者コード = new System.Windows.Forms.TextBox();
             this.無効日時 = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.M部品分類bindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.M部品形状bindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rohsStatusCodebindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // コマンド終了
@@ -206,7 +197,6 @@ namespace u_net
             this.コマンド注文書.TabIndex = 1010;
             this.コマンド注文書.TabStop = false;
             this.コマンド注文書.UseVisualStyleBackColor = true;
-            this.コマンド注文書.Click += new System.EventHandler(this.コマンド入出庫_Click);
             // 
             // コマンド仕入先
             // 
@@ -221,7 +211,7 @@ namespace u_net
             this.コマンド仕入先.TabStop = false;
             this.コマンド仕入先.Text = "仕入先";
             this.コマンド仕入先.UseVisualStyleBackColor = true;
-            this.コマンド仕入先.Click += new System.EventHandler(this.コマンドメーカー_Click);
+            this.コマンド仕入先.Click += new System.EventHandler(this.コマンド仕入先_Click);
             // 
             // コマンド発注
             // 
@@ -236,7 +226,7 @@ namespace u_net
             this.コマンド発注.TabStop = false;
             this.コマンド発注.Text = "発注参照";
             this.コマンド発注.UseVisualStyleBackColor = true;
-            this.コマンド発注.Click += new System.EventHandler(this.コマンド仕入先_Click);
+            this.コマンド発注.Click += new System.EventHandler(this.コマンド発注_Click);
             // 
             // コマンド確定
             // 
@@ -302,20 +292,20 @@ namespace u_net
             this.コマンド複写.UseVisualStyleBackColor = true;
             this.コマンド複写.Click += new System.EventHandler(this.コマンド複写_Click);
             // 
-            // コマンド読込
+            // コマンド修正
             // 
-            this.コマンド読込.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.コマンド読込.ForeColor = System.Drawing.Color.Blue;
-            this.コマンド読込.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.コマンド読込.Location = new System.Drawing.Point(75, 5);
-            this.コマンド読込.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.コマンド読込.Name = "コマンド読込";
-            this.コマンド読込.Size = new System.Drawing.Size(70, 20);
-            this.コマンド読込.TabIndex = 1003;
-            this.コマンド読込.TabStop = false;
-            this.コマンド読込.Text = "読込";
-            this.コマンド読込.UseVisualStyleBackColor = true;
-            this.コマンド読込.Click += new System.EventHandler(this.コマンド読込_Click);
+            this.コマンド修正.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.コマンド修正.ForeColor = System.Drawing.Color.Blue;
+            this.コマンド修正.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.コマンド修正.Location = new System.Drawing.Point(75, 5);
+            this.コマンド修正.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.コマンド修正.Name = "コマンド修正";
+            this.コマンド修正.Size = new System.Drawing.Size(70, 20);
+            this.コマンド修正.TabIndex = 1003;
+            this.コマンド修正.TabStop = false;
+            this.コマンド修正.Text = "修正";
+            this.コマンド修正.UseVisualStyleBackColor = true;
+            this.コマンド修正.Click += new System.EventHandler(this.コマンド修正_Click);
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -447,49 +437,6 @@ namespace u_net
             // 
             this.dataGridViewTextBoxColumn27.Name = "dataGridViewTextBoxColumn27";
             // 
-            // M部品分類bindingSource
-            // 
-            this.M部品分類bindingSource.DataMember = "M部品分類";
-            this.M部品分類bindingSource.Sort = "分類記号";
-            // 
-            // M部品形状bindingSource
-            // 
-            this.M部品形状bindingSource.DataMember = "M部品形状";
-            // 
-            // rohsStatusCodebindingSource
-            // 
-            this.rohsStatusCodebindingSource.DataMember = "RohsStatusCode";
-            // 
-            // label32
-            // 
-            this.label32.AllowDrop = true;
-            this.label32.AutoEllipsis = true;
-            this.label32.Font = new System.Drawing.Font("BIZ UDゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label32.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label32.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label32.Location = new System.Drawing.Point(10, 745);
-            this.label32.Margin = new System.Windows.Forms.Padding(0);
-            this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(123, 17);
-            this.label32.TabIndex = 52;
-            this.label32.Text = "chemSHERPA Ver.";
-            this.label32.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // ChemSherpaVersion
-            // 
-            this.ChemSherpaVersion.BackColor = System.Drawing.Color.White;
-            this.ChemSherpaVersion.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.ChemSherpaVersion.ImeMode = System.Windows.Forms.ImeMode.Off;
-            this.ChemSherpaVersion.Location = new System.Drawing.Point(160, 745);
-            this.ChemSherpaVersion.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.ChemSherpaVersion.Name = "ChemSherpaVersion";
-            this.ChemSherpaVersion.Size = new System.Drawing.Size(139, 20);
-            this.ChemSherpaVersion.TabIndex = 53;
-            this.ChemSherpaVersion.TextChanged += new System.EventHandler(this.ChemSherpaVersion_TextChanged);
-            this.ChemSherpaVersion.Enter += new System.EventHandler(this.ChemSherpaVersion_Enter);
-            this.ChemSherpaVersion.Leave += new System.EventHandler(this.ChemSherpaVersion_Leave);
-            this.ChemSherpaVersion.Validating += new System.ComponentModel.CancelEventHandler(this.ChemSherpaVersion_Validating);
-            // 
             // コマンド
             // 
             this.コマンド.Enabled = false;
@@ -503,7 +450,6 @@ namespace u_net
             this.コマンド.TabIndex = 1011;
             this.コマンド.TabStop = false;
             this.コマンド.UseVisualStyleBackColor = true;
-            this.コマンド.Click += new System.EventHandler(this.コマンド履歴_Click);
             // 
             // 摘要
             // 
@@ -533,17 +479,16 @@ namespace u_net
             // 
             // 入庫者名
             // 
-            this.入庫者名.BackColor = System.Drawing.SystemColors.Control;
+            this.入庫者名.BackColor = System.Drawing.SystemColors.Window;
             this.入庫者名.Enabled = false;
             this.入庫者名.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.入庫者名.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.入庫者名.Location = new System.Drawing.Point(151, 94);
+            this.入庫者名.Location = new System.Drawing.Point(178, 94);
             this.入庫者名.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.入庫者名.Name = "入庫者名";
-            this.入庫者名.Size = new System.Drawing.Size(202, 20);
+            this.入庫者名.Size = new System.Drawing.Size(175, 20);
             this.入庫者名.TabIndex = 10129;
             this.入庫者名.TabStop = false;
-            this.入庫者名.Visible = false;
             // 
             // 入庫者コード
             // 
@@ -555,7 +500,7 @@ namespace u_net
             this.入庫者コード.Location = new System.Drawing.Point(107, 93);
             this.入庫者コード.MaxDropDownItems = 9;
             this.入庫者コード.Name = "入庫者コード";
-            this.入庫者コード.Size = new System.Drawing.Size(40, 21);
+            this.入庫者コード.Size = new System.Drawing.Size(65, 21);
             this.入庫者コード.TabIndex = 6;
             // 
             // 入庫者コード_ラベル
@@ -573,18 +518,16 @@ namespace u_net
             this.入庫者コード_ラベル.Text = "入庫者(&M)";
             this.入庫者コード_ラベル.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // textBox2
+            // 入庫日
             // 
-            this.textBox2.BackColor = System.Drawing.Color.White;
-            this.textBox2.Enabled = false;
-            this.textBox2.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBox2.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.textBox2.Location = new System.Drawing.Point(107, 71);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(116, 20);
-            this.textBox2.TabIndex = 4;
-            this.textBox2.Visible = false;
+            this.入庫日.BackColor = System.Drawing.Color.White;
+            this.入庫日.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.入庫日.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.入庫日.Location = new System.Drawing.Point(107, 71);
+            this.入庫日.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.入庫日.Name = "入庫日";
+            this.入庫日.Size = new System.Drawing.Size(116, 20);
+            this.入庫日.TabIndex = 4;
             // 
             // 入庫日_ラベル
             // 
@@ -603,8 +546,7 @@ namespace u_net
             // 
             // SupplierCloseDay
             // 
-            this.SupplierCloseDay.BackColor = System.Drawing.SystemColors.Control;
-            this.SupplierCloseDay.Enabled = false;
+            this.SupplierCloseDay.BackColor = System.Drawing.SystemColors.Window;
             this.SupplierCloseDay.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.SupplierCloseDay.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.SupplierCloseDay.Location = new System.Drawing.Point(453, 94);
@@ -613,7 +555,6 @@ namespace u_net
             this.SupplierCloseDay.Size = new System.Drawing.Size(85, 20);
             this.SupplierCloseDay.TabIndex = 10128;
             this.SupplierCloseDay.TabStop = false;
-            this.SupplierCloseDay.Visible = false;
             // 
             // 締日_ラベル
             // 
@@ -635,8 +576,7 @@ namespace u_net
             // 
             // 仕入先名
             // 
-            this.仕入先名.BackColor = System.Drawing.SystemColors.Control;
-            this.仕入先名.Enabled = false;
+            this.仕入先名.BackColor = System.Drawing.SystemColors.Window;
             this.仕入先名.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.仕入先名.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.仕入先名.Location = new System.Drawing.Point(453, 71);
@@ -645,7 +585,6 @@ namespace u_net
             this.仕入先名.Size = new System.Drawing.Size(306, 20);
             this.仕入先名.TabIndex = 10125;
             this.仕入先名.TabStop = false;
-            this.仕入先名.Visible = false;
             // 
             // 仕入先コード_ラベル
             // 
@@ -658,8 +597,7 @@ namespace u_net
             // 
             // 仕入先コード
             // 
-            this.仕入先コード.BackColor = System.Drawing.SystemColors.Control;
-            this.仕入先コード.Enabled = false;
+            this.仕入先コード.BackColor = System.Drawing.SystemColors.Window;
             this.仕入先コード.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.仕入先コード.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.仕入先コード.Location = new System.Drawing.Point(453, 48);
@@ -668,7 +606,6 @@ namespace u_net
             this.仕入先コード.Size = new System.Drawing.Size(202, 20);
             this.仕入先コード.TabIndex = 10123;
             this.仕入先コード.TabStop = false;
-            this.仕入先コード.Visible = false;
             // 
             // 発注日選択ボタン
             // 
@@ -697,7 +634,6 @@ namespace u_net
             // 
             this.入庫コードラベル.AllowDrop = true;
             this.入庫コードラベル.AutoEllipsis = true;
-            this.入庫コードラベル.Enabled = false;
             this.入庫コードラベル.Font = new System.Drawing.Font("BIZ UDゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.入庫コードラベル.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.入庫コードラベル.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -726,8 +662,7 @@ namespace u_net
             // 
             // 購買コード
             // 
-            this.購買コード.BackColor = System.Drawing.SystemColors.Control;
-            this.購買コード.Enabled = false;
+            this.購買コード.BackColor = System.Drawing.SystemColors.Window;
             this.購買コード.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.購買コード.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.購買コード.Location = new System.Drawing.Point(453, 169);
@@ -736,7 +671,6 @@ namespace u_net
             this.購買コード.Size = new System.Drawing.Size(202, 20);
             this.購買コード.TabIndex = 10145;
             this.購買コード.TabStop = false;
-            this.購買コード.Visible = false;
             // 
             // 購買コード_ラベル
             // 
@@ -758,8 +692,7 @@ namespace u_net
             // 
             // 仕入先担当者名
             // 
-            this.仕入先担当者名.BackColor = System.Drawing.SystemColors.Control;
-            this.仕入先担当者名.Enabled = false;
+            this.仕入先担当者名.BackColor = System.Drawing.SystemColors.Window;
             this.仕入先担当者名.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.仕入先担当者名.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.仕入先担当者名.Location = new System.Drawing.Point(453, 145);
@@ -768,7 +701,6 @@ namespace u_net
             this.仕入先担当者名.Size = new System.Drawing.Size(306, 20);
             this.仕入先担当者名.TabIndex = 10142;
             this.仕入先担当者名.TabStop = false;
-            this.仕入先担当者名.Visible = false;
             // 
             // 窓口電話番号_ラベル
             // 
@@ -781,8 +713,7 @@ namespace u_net
             // 
             // 仕入先窓口電話番号
             // 
-            this.仕入先窓口電話番号.BackColor = System.Drawing.SystemColors.Control;
-            this.仕入先窓口電話番号.Enabled = false;
+            this.仕入先窓口電話番号.BackColor = System.Drawing.SystemColors.Window;
             this.仕入先窓口電話番号.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.仕入先窓口電話番号.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.仕入先窓口電話番号.Location = new System.Drawing.Point(453, 119);
@@ -791,7 +722,6 @@ namespace u_net
             this.仕入先窓口電話番号.Size = new System.Drawing.Size(202, 20);
             this.仕入先窓口電話番号.TabIndex = 10140;
             this.仕入先窓口電話番号.TabStop = false;
-            this.仕入先窓口電話番号.Visible = false;
             // 
             // 発注コード
             // 
@@ -832,7 +762,7 @@ namespace u_net
             // 
             // 発注版数
             // 
-            this.発注版数.BackColor = System.Drawing.SystemColors.Control;
+            this.発注版数.BackColor = System.Drawing.SystemColors.Window;
             this.発注版数.Enabled = false;
             this.発注版数.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.発注版数.ImeMode = System.Windows.Forms.ImeMode.NoControl;
@@ -842,7 +772,6 @@ namespace u_net
             this.発注版数.Size = new System.Drawing.Size(46, 20);
             this.発注版数.TabIndex = 10148;
             this.発注版数.TabStop = false;
-            this.発注版数.Visible = false;
             // 
             // 集計年月
             // 
@@ -902,8 +831,7 @@ namespace u_net
             // 
             // TaxRate
             // 
-            this.TaxRate.BackColor = System.Drawing.Color.White;
-            this.TaxRate.Enabled = false;
+            this.TaxRate.BackColor = System.Drawing.SystemColors.Window;
             this.TaxRate.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.TaxRate.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.TaxRate.Location = new System.Drawing.Point(107, 246);
@@ -911,7 +839,6 @@ namespace u_net
             this.TaxRate.Name = "TaxRate";
             this.TaxRate.Size = new System.Drawing.Size(116, 20);
             this.TaxRate.TabIndex = 16;
-            this.TaxRate.Visible = false;
             // 
             // 消費税率_ラベル
             // 
@@ -948,8 +875,7 @@ namespace u_net
             // 
             // シリーズ名
             // 
-            this.シリーズ名.BackColor = System.Drawing.SystemColors.Control;
-            this.シリーズ名.Enabled = false;
+            this.シリーズ名.BackColor = System.Drawing.SystemColors.Window;
             this.シリーズ名.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.シリーズ名.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.シリーズ名.Location = new System.Drawing.Point(453, 197);
@@ -958,12 +884,10 @@ namespace u_net
             this.シリーズ名.Size = new System.Drawing.Size(202, 20);
             this.シリーズ名.TabIndex = 10152;
             this.シリーズ名.TabStop = false;
-            this.シリーズ名.Visible = false;
             // 
             // ロット番号1
             // 
-            this.ロット番号1.BackColor = System.Drawing.SystemColors.Control;
-            this.ロット番号1.Enabled = false;
+            this.ロット番号1.BackColor = System.Drawing.SystemColors.Window;
             this.ロット番号1.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.ロット番号1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.ロット番号1.Location = new System.Drawing.Point(453, 222);
@@ -972,12 +896,10 @@ namespace u_net
             this.ロット番号1.Size = new System.Drawing.Size(85, 20);
             this.ロット番号1.TabIndex = 10153;
             this.ロット番号1.TabStop = false;
-            this.ロット番号1.Visible = false;
             // 
             // ロット番号2
             // 
-            this.ロット番号2.BackColor = System.Drawing.SystemColors.Control;
-            this.ロット番号2.Enabled = false;
+            this.ロット番号2.BackColor = System.Drawing.SystemColors.Window;
             this.ロット番号2.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.ロット番号2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.ロット番号2.Location = new System.Drawing.Point(570, 223);
@@ -986,7 +908,6 @@ namespace u_net
             this.ロット番号2.Size = new System.Drawing.Size(85, 20);
             this.ロット番号2.TabIndex = 10154;
             this.ロット番号2.TabStop = false;
-            this.ロット番号2.Visible = false;
             // 
             // label1
             // 
@@ -1008,7 +929,7 @@ namespace u_net
             // 
             // 棚卸コード
             // 
-            this.棚卸コード.BackColor = System.Drawing.SystemColors.Control;
+            this.棚卸コード.BackColor = System.Drawing.SystemColors.Window;
             this.棚卸コード.Enabled = false;
             this.棚卸コード.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.棚卸コード.ImeMode = System.Windows.Forms.ImeMode.NoControl;
@@ -1018,7 +939,6 @@ namespace u_net
             this.棚卸コード.Size = new System.Drawing.Size(161, 20);
             this.棚卸コード.TabIndex = 10164;
             this.棚卸コード.TabStop = false;
-            this.棚卸コード.Visible = false;
             // 
             // label6
             // 
@@ -1031,7 +951,7 @@ namespace u_net
             // 
             // 削除
             // 
-            this.削除.BackColor = System.Drawing.SystemColors.Control;
+            this.削除.BackColor = System.Drawing.SystemColors.Window;
             this.削除.Enabled = false;
             this.削除.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.削除.ImeMode = System.Windows.Forms.ImeMode.NoControl;
@@ -1041,11 +961,10 @@ namespace u_net
             this.削除.Size = new System.Drawing.Size(30, 20);
             this.削除.TabIndex = 10162;
             this.削除.TabStop = false;
-            this.削除.Visible = false;
             // 
             // 確定
             // 
-            this.確定.BackColor = System.Drawing.SystemColors.Control;
+            this.確定.BackColor = System.Drawing.SystemColors.Window;
             this.確定.Enabled = false;
             this.確定.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.確定.ImeMode = System.Windows.Forms.ImeMode.NoControl;
@@ -1055,7 +974,6 @@ namespace u_net
             this.確定.Size = new System.Drawing.Size(30, 20);
             this.確定.TabIndex = 10161;
             this.確定.TabStop = false;
-            this.確定.Visible = false;
             // 
             // label7
             // 
@@ -1077,7 +995,7 @@ namespace u_net
             // 
             // 登録者コード
             // 
-            this.登録者コード.BackColor = System.Drawing.SystemColors.Control;
+            this.登録者コード.BackColor = System.Drawing.SystemColors.Window;
             this.登録者コード.Enabled = false;
             this.登録者コード.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.登録者コード.ImeMode = System.Windows.Forms.ImeMode.NoControl;
@@ -1087,7 +1005,6 @@ namespace u_net
             this.登録者コード.Size = new System.Drawing.Size(40, 20);
             this.登録者コード.TabIndex = 10158;
             this.登録者コード.TabStop = false;
-            this.登録者コード.Visible = false;
             // 
             // label9
             // 
@@ -1100,7 +1017,7 @@ namespace u_net
             // 
             // 登録日時
             // 
-            this.登録日時.BackColor = System.Drawing.SystemColors.Control;
+            this.登録日時.BackColor = System.Drawing.SystemColors.Window;
             this.登録日時.Enabled = false;
             this.登録日時.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.登録日時.ImeMode = System.Windows.Forms.ImeMode.NoControl;
@@ -1110,11 +1027,10 @@ namespace u_net
             this.登録日時.Size = new System.Drawing.Size(161, 20);
             this.登録日時.TabIndex = 10156;
             this.登録日時.TabStop = false;
-            this.登録日時.Visible = false;
             // 
             // 登録者名
             // 
-            this.登録者名.BackColor = System.Drawing.SystemColors.Control;
+            this.登録者名.BackColor = System.Drawing.SystemColors.Window;
             this.登録者名.Enabled = false;
             this.登録者名.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.登録者名.ImeMode = System.Windows.Forms.ImeMode.NoControl;
@@ -1124,7 +1040,6 @@ namespace u_net
             this.登録者名.Size = new System.Drawing.Size(122, 20);
             this.登録者名.TabIndex = 10166;
             this.登録者名.TabStop = false;
-            this.登録者名.Visible = false;
             // 
             // 確定日時
             // 
@@ -1185,7 +1100,7 @@ namespace u_net
             // F_入庫
             // 
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(1036, 621);
+            this.ClientSize = new System.Drawing.Size(1036, 525);
             this.Controls.Add(this.無効者コード);
             this.Controls.Add(this.無効日時);
             this.Controls.Add(this.確定者コード);
@@ -1228,7 +1143,7 @@ namespace u_net
             this.Controls.Add(this.入庫者名);
             this.Controls.Add(this.入庫者コード);
             this.Controls.Add(this.入庫者コード_ラベル);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.入庫日);
             this.Controls.Add(this.入庫日_ラベル);
             this.Controls.Add(this.SupplierCloseDay);
             this.Controls.Add(this.締日_ラベル);
@@ -1240,8 +1155,6 @@ namespace u_net
             this.Controls.Add(this.入庫コード);
             this.Controls.Add(this.入庫コードラベル);
             this.Controls.Add(this.仕入先2_ラベル);
-            this.Controls.Add(this.label32);
-            this.Controls.Add(this.ChemSherpaVersion);
             this.Controls.Add(this.コマンド終了);
             this.Controls.Add(this.コマンド登録);
             this.Controls.Add(this.コマンド);
@@ -1252,7 +1165,7 @@ namespace u_net
             this.Controls.Add(this.コマンド承認);
             this.Controls.Add(this.コマンド削除);
             this.Controls.Add(this.コマンド複写);
-            this.Controls.Add(this.コマンド読込);
+            this.Controls.Add(this.コマンド修正);
             this.Controls.Add(this.panel1);
             this.ImeMode = System.Windows.Forms.ImeMode.Off;
             this.KeyPreview = true;
@@ -1264,9 +1177,6 @@ namespace u_net
             this.Load += new System.EventHandler(this.Form_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form_KeyDown);
             this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.M部品分類bindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.M部品形状bindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rohsStatusCodebindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1320,7 +1230,7 @@ namespace u_net
         private System.Windows.Forms.Button コマンド承認;
         private System.Windows.Forms.Button コマンド削除;
         private System.Windows.Forms.Button コマンド複写;
-        private System.Windows.Forms.Button コマンド読込;
+        private System.Windows.Forms.Button コマンド修正;
         private uiDataSetTableAdapters.M単位TableAdapter m単位TableAdapter;
         private uiDataSetTableAdapters.ComboBoxManufactureFlowTableAdapter comboBoxManufactureFlowTableAdapter;
         private uiDataSetTableAdapters.ComboBox売上区分TableAdapter comboBox売上区分TableAdapter;
@@ -1351,22 +1261,17 @@ namespace u_net
         private DataGridViewTextBoxColumn 構成番号DataGridViewTextBoxColumn;
         private uiDataSetTableAdapters.combBoxMシリーズTableAdapter combBoxMシリーズTableAdapter;
         private uiDataSetTableAdapters.TableAdapterManager tableAdapterManager;
-        private Label label32;
-        private TextBox ChemSherpaVersion;
         private newDataSetTableAdapters.M部品形状TableAdapter m部品形状TableAdapter;
         private newDataSet newDataSet;
         private newDataSetTableAdapters.M部品分類TableAdapter m部品分類TableAdapter;
         private newDataSetTableAdapters.RohsStatusCodeTableAdapter rohsStatusCodeTableAdapter;
-        private BindingSource M部品形状bindingSource;
-        private BindingSource M部品分類bindingSource;
-        private BindingSource rohsStatusCodebindingSource;
         private Button コマンド;
         private TextBox 摘要;
         private Label 摘要_ラベル;
         private TextBox 入庫者名;
         private ComboBox 入庫者コード;
         private Label 入庫者コード_ラベル;
-        private TextBox textBox2;
+        private TextBox 入庫日;
         private Label 入庫日_ラベル;
         private TextBox SupplierCloseDay;
         private Label 締日_ラベル;

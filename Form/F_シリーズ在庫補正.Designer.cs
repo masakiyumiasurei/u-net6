@@ -285,9 +285,11 @@
             this.Controls.Add(this.今日の日付);
             this.Controls.Add(this.キャンセルボタン);
             this.Controls.Add(this.補正実行ボタン);
+            this.KeyPreview = true;
             this.Name = "F_シリーズ在庫補正";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.F_シリーズ在庫補正_FormClosing);
             this.Load += new System.EventHandler(this.Form_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.F_シリーズ在庫補正_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();
 

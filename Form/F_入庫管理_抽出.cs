@@ -32,9 +32,9 @@ namespace u_net
         {
 
 
-            string LoginUserCode = "000";//テスト用 ログインユーザを実行中にどのように管理するか決まったら修正
-            LocalSetting localSetting = new LocalSetting();
-            localSetting.LoadPlace(LoginUserCode, this);
+            //string LoginUserCode = "000";//テスト用 ログインユーザを実行中にどのように管理するか決まったら修正
+            //LocalSetting localSetting = new LocalSetting();
+            //localSetting.LoadPlace(LoginUserCode, this);
 
             foreach (Control control in Controls)
             {
@@ -391,9 +391,19 @@ namespace u_net
 
         private void F_入庫管理_抽出_FormClosing(object sender, FormClosingEventArgs e)
         {
-            string LoginUserCode = "000";//テスト用 ログインユーザを実行中にどのように管理するか決まったら修正
-            LocalSetting test = new LocalSetting();
-            test.SavePlace(LoginUserCode, this);
+            //string LoginUserCode = "000";//テスト用 ログインユーザを実行中にどのように管理するか決まったら修正
+            //LocalSetting test = new LocalSetting();
+            //test.SavePlace(LoginUserCode, this);
+        }
+
+        private void F_入庫管理_抽出_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Return:
+                    SelectNextControl(ActiveControl, true, true, true, true);
+                    break;
+            }
         }
     }
 }

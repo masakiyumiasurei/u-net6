@@ -32,9 +32,9 @@ namespace u_net
         {
 
 
-            string LoginUserCode = CommonConstants.LoginUserCode;//テスト用 ログインユーザを実行中にどのように管理するか決まったら修正
-            LocalSetting localSetting = new LocalSetting();
-            localSetting.LoadPlace(LoginUserCode, this);
+            //string LoginUserCode = CommonConstants.LoginUserCode;//テスト用 ログインユーザを実行中にどのように管理するか決まったら修正
+            //LocalSetting localSetting = new LocalSetting();
+            //localSetting.LoadPlace(LoginUserCode, this);
 
             foreach (Control control in Controls)
             {
@@ -138,9 +138,9 @@ namespace u_net
 
         private void F_売上一覧_区分別_抽出_FormClosing(object sender, FormClosingEventArgs e)
         {
-            string LoginUserCode = CommonConstants.LoginUserCode;//テスト用 ログインユーザを実行中にどのように管理するか決まったら修正
-            LocalSetting test = new LocalSetting();
-            test.SavePlace(LoginUserCode, this);
+            //string LoginUserCode = CommonConstants.LoginUserCode;//テスト用 ログインユーザを実行中にどのように管理するか決まったら修正
+            //LocalSetting test = new LocalSetting();
+            //test.SavePlace(LoginUserCode, this);
         }
 
         private void 売上地区コード_SelectedIndexChanged(object sender, EventArgs e)
@@ -180,6 +180,16 @@ namespace u_net
             if (担当者コード.SelectedValue == null)
             {
                 担当者名.Text = null;
+            }
+        }
+
+        private void F_売上一覧_区分別_抽出_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Return:
+                    SelectNextControl(ActiveControl, true, true, true, true);
+                    break;
             }
         }
     }

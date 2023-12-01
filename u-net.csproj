@@ -18,25 +18,27 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Remove="Form\F_入庫.cs" />
-    <Compile Remove="Form\F_入庫.designer.cs" />
-    <Compile Remove="Form\F_発注.cs" />
-    <Compile Remove="Form\F_発注.designer.cs" />
     <Compile Remove="Form\F_製品.cs" />
     <Compile Remove="Form\F_製品.designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Remove="Form\F_入庫.resx" />
-    <EmbeddedResource Remove="Form\F_発注.resx" />
     <EmbeddedResource Remove="Form\F_製品.resx" />
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Include="MultiRowDesigner\入庫明細.cs" />
+    <Compile Include="MultiRowDesigner\入庫明細.Designer.cs" />
+    <Compile Include="MultiRowDesigner\入庫明細テンプレート.cs" />
+    <Compile Include="MultiRowDesigner\入庫明細テンプレート.Designer.cs" />
     <Compile Include="MultiRowDesigner\受注明細.cs" />
     <Compile Include="MultiRowDesigner\受注明細.Designer.cs" />
     <Compile Include="MultiRowDesigner\受注明細テンプレート.cs" />
     <Compile Include="MultiRowDesigner\受注明細テンプレート.Designer.cs" />
+    <Compile Include="MultiRowDesigner\発注明細.cs" />
+    <Compile Include="MultiRowDesigner\発注明細.Designer.cs" />
+    <Compile Include="MultiRowDesigner\発注明細テンプレート.cs" />
+    <Compile Include="MultiRowDesigner\発注明細テンプレート.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -44,7 +46,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="MultiRowDesigner\入庫明細.resx" />
+    <EmbeddedResource Include="MultiRowDesigner\入庫明細テンプレート.resx" />
     <EmbeddedResource Include="MultiRowDesigner\受注明細.resx" />
+    <EmbeddedResource Include="MultiRowDesigner\発注明細.resx" />
+    <EmbeddedResource Include="MultiRowDesigner\発注明細テンプレート.resx" />
   </ItemGroup>
 
   <ItemGroup>

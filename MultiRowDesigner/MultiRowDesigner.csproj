@@ -39,6 +39,24 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="入庫明細.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="入庫明細.Designer.cs">
+      <DependentUpon>入庫明細.cs</DependentUpon>
+    </Compile>
+    <Compile Include="入庫明細テンプレート.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="入庫明細テンプレート.designer.cs">
+      <DependentUpon>入庫明細テンプレート.cs</DependentUpon>
+    </Compile>
+    <Compile Include="発注明細.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="発注明細.Designer.cs">
+      <DependentUpon>発注明細.cs</DependentUpon>
+    </Compile>
     <Compile Include="受注明細.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -50,6 +68,12 @@
     </Compile>
     <Compile Include="受注明細テンプレート.designer.cs">
       <DependentUpon>受注明細テンプレート.cs</DependentUpon>
+    </Compile>
+    <Compile Include="発注明細テンプレート.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="発注明細テンプレート.designer.cs">
+      <DependentUpon>発注明細テンプレート.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -69,11 +93,23 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="入庫明細.resx">
+      <DependentUpon>入庫明細.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="入庫明細テンプレート.resx">
+      <DependentUpon>入庫明細テンプレート.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="発注明細.resx">
+      <DependentUpon>発注明細.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="受注明細.resx">
       <DependentUpon>受注明細.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="受注明細テンプレート.resx">
       <DependentUpon>受注明細テンプレート.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="発注明細テンプレート.resx">
+      <DependentUpon>発注明細テンプレート.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

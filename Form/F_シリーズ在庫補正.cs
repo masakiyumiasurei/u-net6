@@ -38,9 +38,9 @@ namespace u_net
         private void Form_Load(object sender, EventArgs e)
         {
 
-            string LoginUserCode = "000";//テスト用 ログインユーザを実行中にどのように管理するか決まったら修正
-            LocalSetting localSetting = new LocalSetting();
-            localSetting.LoadPlace(LoginUserCode, this);
+            //string LoginUserCode = "000";//テスト用 ログインユーザを実行中にどのように管理するか決まったら修正
+            //LocalSetting localSetting = new LocalSetting();
+            //localSetting.LoadPlace(LoginUserCode, this);
 
             try
             {
@@ -75,9 +75,9 @@ namespace u_net
 
         private void F_シリーズ在庫補正_FormClosing(object sender, FormClosingEventArgs e)
         {
-            string LoginUserCode = "000";//テスト用 ログインユーザを実行中にどのように管理するか決まったら修正
-            LocalSetting test = new LocalSetting();
-            test.SavePlace(LoginUserCode, this);
+            //string LoginUserCode = "000";//テスト用 ログインユーザを実行中にどのように管理するか決まったら修正
+            //LocalSetting test = new LocalSetting();
+            //test.SavePlace(LoginUserCode, this);
         }
 
         private void 補正数量減少ボタン_Click(object sender, EventArgs e)
@@ -178,6 +178,14 @@ namespace u_net
            
         }
 
-
+        private void F_シリーズ在庫補正_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Return:
+                    SelectNextControl(ActiveControl, true, true, true, true);
+                    break;
+            }
+        }
     }
 }
