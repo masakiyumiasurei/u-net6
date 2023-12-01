@@ -493,7 +493,6 @@ namespace u_net
             // 入庫者コード
             // 
             this.入庫者コード.BackColor = System.Drawing.Color.White;
-            this.入庫者コード.Enabled = false;
             this.入庫者コード.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.入庫者コード.FormattingEnabled = true;
             this.入庫者コード.ImeMode = System.Windows.Forms.ImeMode.Disable;
@@ -726,7 +725,7 @@ namespace u_net
             // 発注コード
             // 
             this.発注コード.BackColor = System.Drawing.Color.White;
-            this.発注コード.Enabled = false;
+            this.発注コード.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.発注コード.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.発注コード.FormattingEnabled = true;
             this.発注コード.ImeMode = System.Windows.Forms.ImeMode.Disable;
@@ -735,6 +734,12 @@ namespace u_net
             this.発注コード.Name = "発注コード";
             this.発注コード.Size = new System.Drawing.Size(139, 21);
             this.発注コード.TabIndex = 8;
+            this.発注コード.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.発注コード_DrawItem);
+            this.発注コード.SelectedIndexChanged += new System.EventHandler(this.発注コード_SelectedIndexChanged);
+            this.発注コード.TextChanged += new System.EventHandler(this.発注コード_TextChanged);
+            this.発注コード.KeyDown += new System.Windows.Forms.KeyEventHandler(this.発注コード_KeyDown);
+            this.発注コード.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.発注コード_KeyPress);
+            this.発注コード.Validating += new System.ComponentModel.CancelEventHandler(this.発注コード_Validating);
             // 
             // 発注コード_ラベル
             // 
@@ -776,7 +781,6 @@ namespace u_net
             // 集計年月
             // 
             this.集計年月.BackColor = System.Drawing.Color.White;
-            this.集計年月.Enabled = false;
             this.集計年月.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.集計年月.FormattingEnabled = true;
             this.集計年月.ImeMode = System.Windows.Forms.ImeMode.Disable;
@@ -804,7 +808,6 @@ namespace u_net
             // 支払年月
             // 
             this.支払年月.BackColor = System.Drawing.Color.White;
-            this.支払年月.Enabled = false;
             this.支払年月.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.支払年月.FormattingEnabled = true;
             this.支払年月.ImeMode = System.Windows.Forms.ImeMode.Disable;

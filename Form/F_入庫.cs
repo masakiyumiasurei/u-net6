@@ -165,6 +165,15 @@ namespace u_net
             intpixel = myapi.GetLogPixel();
             twipperdot = myapi.GetTwipPerDot(intpixel);
 
+           
+
+
+            OriginalClass ofn = new OriginalClass();
+            ofn.SetComboBox(発注コード, " SELECT 発注コード as Display,発注版数 as Display2, Format(発注日,'yyyy/MM/dd') as Display3, 仕入先名 as Display4, 仕入先担当者名 as Display5, 発注コード as Value FROM V入庫_発注コード選択 ORDER BY 発注コード");
+            発注コード.DrawMode = DrawMode.OwnerDrawFixed;
+
+
+
 
 
             try
@@ -377,10 +386,17 @@ namespace u_net
                 {
                     case DialogResult.Yes:
                         // エラーチェック
-                        if (!ErrCheck())
+                        foreach (Control control in Controls)
                         {
-                            return;
+                            if (control is TextBox || control is ComboBox || control is CheckBox)
+                            {
+                                if (IsError(control))
+                                {
+                                    return;
+                                }
+                            }
                         }
+
                         // 登録処理
                         if (!SaveData())
                         {
@@ -510,8 +526,16 @@ namespace u_net
                     {
                         case DialogResult.Yes:
                             // エラーチェック
-                            if (!ErrCheck())
-                                goto Bye_コマンド新規_Click;
+                            foreach (Control control in Controls)
+                            {
+                                if (control is TextBox || control is ComboBox || control is CheckBox)
+                                {
+                                    if (IsError(control))
+                                    {
+                                        goto Bye_コマンド新規_Click;
+                                    }
+                                }
+                            }
 
                             // 登録処理
                             if (!SaveData())
@@ -550,13 +574,7 @@ namespace u_net
             }
         }
 
-        private bool ErrCheck()
-        {
-            //入力確認    
-            if (!FunctionClass.IsError(this.入庫コード)) return false;
-            return true;
-        }
-
+     
         private bool SaveData()
         {
 
@@ -634,6 +652,268 @@ namespace u_net
             }
         }
 
+        private bool IsError(Control controlObject)
+        {
+            try
+            {
+
+                Connect();
+
+                object varValue = controlObject.Text; // Valueプロパティの代わりにTextプロパティを使用
+                switch (controlObject.Name)
+                {
+                    case "入庫日":
+                        if (string.IsNullOrEmpty(varValue?.ToString()))
+                        {
+                            MessageBox.Show(controlObject.Name + " を入力してください。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            goto Exit_IsError;
+                        }
+                        if (!DateTime.TryParse(varValue.ToString(), out DateTime inputDate))
+                        {
+                            MessageBox.Show("日付を入力してください。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            goto Exit_IsError;
+                        }
+                        if (DateTime.Now < inputDate)
+                        {
+                            MessageBox.Show("未来の日付は入力できません。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            goto Exit_IsError;
+                        }
+                        break;
+                    case "入庫者コード":
+                        if (string.IsNullOrEmpty(varValue?.ToString()))
+                        {
+                            MessageBox.Show(controlObject.Name + " を入力してください。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            goto Exit_IsError;
+                        }
+                        break;
+                    case "発注コード":
+                        if (IsNewData)
+                        {
+                            if (string.IsNullOrEmpty((発注コード.SelectedItem as DataRowView)?.Row["Display2"]?.ToString() ?? null))
+                            {
+                                MessageBox.Show("指定された発注データは登録されていないか、既に完了しています。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                                goto Exit_IsError;
+                            }
+                        }
+                        break;
+                    case "集計年月":
+                        if (string.IsNullOrEmpty(varValue?.ToString()))
+                        {
+                            MessageBox.Show("[" + controlObject.Name + "]を入力してください。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            goto Exit_IsError;
+                        }
+                        if (!DateTime.TryParse(varValue.ToString(), out DateTime dateValue1))
+                        {
+                            MessageBox.Show("日付を入力してください。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            goto Exit_IsError;
+                        }
+                        break;
+                    case "支払年月":
+                        if (string.IsNullOrEmpty(varValue?.ToString()))
+                        {
+                            MessageBox.Show("[" + controlObject.Name + "]を入力してください。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            goto Exit_IsError;
+                        }
+                        if (!DateTime.TryParse(varValue.ToString(), out DateTime dateValue2))
+                        {
+                            MessageBox.Show("日付を入力してください。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            goto Exit_IsError;
+                        }
+                        if (FunctionClass.IsClosedPayment(cn,dateValue2)){
+                            MessageBox.Show("指定された支払月は締め切られているため、入力できません。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            goto Exit_IsError;
+                        }
+                        break;
+
+                }
+
+                return false;
+
+            Exit_IsError:
+                return true;
+
+            }
+            catch (Exception ex)
+            {
+                Debug.Print("IsError - " + ex.Message);
+                return true;
+            }
+        }
+
+
+
+
+        private void ChangedData(bool isChanged)
+        {
+            if (ActiveControl == null) return;
+
+            if (isChanged)
+            {
+                this.Text = BASE_CAPTION + "*";
+            }
+            else
+            {
+                this.Text = BASE_CAPTION;
+            }
+
+            // コードにフォーカスがある状態でサブフォームから呼び出されたときの対処
+            if (this.ActiveControl == this.入庫コード)
+            {
+                this.入庫日.Focus();
+            }
+
+            this.入庫コード.Enabled = !isChanged;
+            this.コマンド複写.Enabled = !isChanged;
+            this.コマンド削除.Enabled = !isChanged;
+            this.コマンド登録.Enabled = isChanged;
+
+
+        }
+
+
+        public void UpdatedControl(Control controlObject)
+        {
+            try
+            {
+      
+                var varValue = controlObject.Text;
+                string strSQL;
+                DateTime dat1;
+                Connect();
+
+                switch (controlObject.Name)
+                {
+                    case "入庫コード":
+                        // ヘッダ部の表示
+                        LoadHeader(this, this.CurrentCode);
+
+                        // 明細部の表示
+                        //strSQL = "SELECT * FROM V入庫明細 " +
+                        //    $"WHERE 入庫コード='{this.CurrentCode}' " +
+                        //    "ORDER BY 明細番号";
+                        //LoadDetails(strSQL, SubForm, SubDatabase, "入庫明細");
+
+                        // 動作制御
+                        FunctionClass.LockData(this, this.IsDecided || this.IsDeleted || this.IsCompleted, "入庫コード");
+                        this.コマンド複写.Enabled = true;
+                        this.コマンド削除.Enabled = !(this.IsDeleted || this.IsCompleted);
+                        //SubForm.AllowAdditions = !(this.IsDeleted || this.IsCompleted);
+                        //SubForm.AllowDeletions = !(this.IsDeleted || this.IsCompleted);
+                        //SubForm.AllowEdits = !(this.IsDeleted || this.IsCompleted);
+                        break;
+                    case "入庫日":
+                        // 集計年月と支払年月を入力する
+                        if (!string.IsNullOrEmpty(controlObject.Text) && !string.IsNullOrEmpty(this.SupplierCloseDay.Text))
+                        {
+                            dat1 = Convert.ToDateTime(controlObject.Text);
+                            int SupplierCloseDayInt;
+                            int.TryParse(SupplierCloseDay.Text, out SupplierCloseDayInt);
+                            this.集計年月.Text = FunctionClass.GetAddupMonth(cn,dat1, SupplierCloseDayInt);
+                            dat1 = FunctionClass.GetPayDay(cn,DateTime.Parse(集計年月.Text));
+                            this.支払年月.Text = $"{dat1.Year}/{dat1.Month.ToString("D2")}";
+                        }
+
+                        // 適用する消費税率を入力する
+                        this.TaxRate.Text = FunctionClass.GetTaxRate(cn,DateTime.Parse(controlObject.Text)).ToString();
+                        break;
+                    case "発注コード":
+                        FunctionClass fn = new FunctionClass();
+                        fn.DoWait("発注データ読み込み中...");
+
+
+                        this.発注版数.Text = (発注コード.SelectedItem as DataRowView)?.Row["Display2"]?.ToString() ?? null;
+
+                        // 集計年月と支払年月を入力する
+                        if (!string.IsNullOrEmpty(this.入庫日.Text) && !string.IsNullOrEmpty(this.SupplierCloseDay.Text))
+                        {
+                            dat1 = Convert.ToDateTime(this.入庫日.Text);
+                            int SupplierCloseDayInt;
+                            int.TryParse(SupplierCloseDay.Text, out SupplierCloseDayInt);
+                            this.集計年月.Text = FunctionClass.GetAddupMonth(cn, dat1, SupplierCloseDayInt);
+                            dat1 = FunctionClass.GetPayDay(cn, DateTime.Parse(集計年月.Text));
+                            this.支払年月.Text = $"{dat1.Year}/{dat1.Month.ToString("D2")}";
+                        }
+
+                        // 発注データからリレー入力する
+                        //if (!SetDetails(this.CurrentCode, controlObject.Text, this.発注版数.Text))
+                        //{
+                        //    MessageBox.Show("発注データの呼び出しに失敗しました。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        //}
+
+                        fn.WaitForm.Close();
+                        break;
+                    case "集計年月":
+                        // 入力文字が削除されたとき以外は書式を整える
+                        if (!string.IsNullOrEmpty(varValue))
+                        {
+                            this.集計年月.Text = $"{Convert.ToDateTime(varValue).Year}/{Convert.ToDateTime(varValue).Month.ToString("D2")}";
+                            dat1 = FunctionClass.GetPayDay(cn, DateTime.Parse(集計年月.Text));
+                            this.支払年月.Text = $"{dat1.Year}/{dat1.Month.ToString("D2")}";
+                        }
+                        break;
+                    case "支払年月":
+                        // 入力文字が削除されたとき以外は書式を整える
+                        if (!string.IsNullOrEmpty(varValue))
+                        {
+                            this.支払年月.Text = $"{Convert.ToDateTime(varValue).Year}/{Convert.ToDateTime(varValue).Month.ToString("D2")}";
+                        }
+                        if (string.IsNullOrEmpty(this.集計年月.Text))
+                        {
+                            this.集計年月.Text = MonthAdd(-1, varValue);
+                        }
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.Print($"{this.Name}_UpdatedControl - {ex.Message}");
+            }
+            finally
+            {
+             
+          
+            }
+        }
+
+
+        private bool LoadHeader(Form formObject, string codeString)
+        {
+            try
+            {
+                Connect();
+
+                string strSQL;
+
+                strSQL = "SELECT * FROM V入庫ヘッダ WHERE 入庫コード ='" + codeString + "'";
+      
+
+             
+                VariableSet.SetTable2Form(this, strSQL, cn);
+
+
+
+                return true;
+          
+
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                // エラーハンドリングが必要に応じて行われるべきです
+                return false;
+            }
+        }
+
+
+        public string MonthAdd(long number, string TargetMonth)
+        {
+            DateTime dtmNew = DateTime.Parse(TargetMonth + "/1");
+            dtmNew = dtmNew.AddMonths((int)number);
+
+            return dtmNew.ToString("yyyy/MM");
+        }
+
         private void コマンド修正_Click(object sender, EventArgs e)
         {
 
@@ -681,19 +961,72 @@ namespace u_net
             Close(); // フォームを閉じる
         }
 
+        private void 発注コード_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            発注版数.Text = (発注コード.SelectedItem as DataRowView)?.Row["Display2"]?.ToString() ?? null;
+
+            UpdatedControl(sender as Control);
+
+        }
 
 
+        private void 発注コード_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            OriginalClass.SetComboBoxAppearance((ComboBox)sender, e, new int[] { 140,20,100,300,200 }, new string[] { "Display", "Display2","Display3","Display4","Display5" });
+            発注コード.Invalidate();
+            発注コード.DroppedDown = true;
+        }
 
+        private void 発注コード_TextChanged(object sender, EventArgs e)
+        {
 
+            if (発注コード.SelectedValue == null)
+            {
+                発注版数.Text = null;
+            }
+            ChangedData(true);
+        }
 
+        private void 発注コード_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (IsError(sender as Control) == true) e.Cancel = true;
+        }
 
+        private void 発注コード_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Space)
+            {
+                ComboBox comboBox = sender as ComboBox;
+                if (comboBox != null)
+                {
+                    comboBox.DroppedDown = true;
+                }
+                e.KeyChar = (char)0;
+            }
+        }
 
-
-
-
-
-
-
-
+        private void 発注コード_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Return)
+                {
+                    string strCode = ActiveControl.Text;
+                    if (strCode == "") return;
+                    strCode = FunctionClass.FormatCode("ORD", strCode);
+                    if (strCode != (ActiveControl as dynamic).Value)
+                    {
+                        // Text プロパティで値を設定後、キーコードはリセットしておく
+                        ActiveControl.Text = strCode;
+                        e.SuppressKeyPress = true;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // エラーハンドリング（エラーが発生した場合の処理）
+                Debug.Print($"{nameof(発注コード_KeyDown)} - {ex.Message}");
+            }
+        }
     }
 }
