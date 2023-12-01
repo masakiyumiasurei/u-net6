@@ -253,7 +253,7 @@ namespace u_net
         private F_カレンダー dateSelectionForm;
         private void 入庫日開始_Leave(object sender, EventArgs e)
         {
-            FunctionClass.AdjustRange(入庫日開始, 入庫日終了);
+            FunctionClass.AdjustRange(入庫日開始, 入庫日終了, sender as Control);
         }
 
         private void 入庫日開始_DoubleClick(object sender, EventArgs e)
@@ -286,7 +286,7 @@ namespace u_net
 
         private void 入庫日終了_Leave(object sender, EventArgs e)
         {
-            FunctionClass.AdjustRange(入庫日開始, 入庫日終了);
+            FunctionClass.AdjustRange(入庫日開始, 入庫日終了, sender as Control);
         }
 
         private void 入庫日終了_DoubleClick(object sender, EventArgs e)

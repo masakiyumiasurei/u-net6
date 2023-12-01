@@ -282,7 +282,7 @@
             label4.Margin = new Padding(0);
             label4.Name = "label4";
             label4.Size = new Size(114, 23);
-            label4.TabIndex = 14;
+            label4.TabIndex = 11;
             label4.Text = "仕入先名(&S)";
             label4.TextAlign = ContentAlignment.MiddleLeft;
             // 
@@ -297,7 +297,7 @@
             label11.Margin = new Padding(0);
             label11.Name = "label11";
             label11.Size = new Size(90, 23);
-            label11.TabIndex = 12;
+            label11.TabIndex = 8;
             label11.Text = "購買コード(&K)";
             label11.TextAlign = ContentAlignment.MiddleLeft;
             // 
@@ -323,7 +323,7 @@
             発注コード開始.Size = new Size(184, 20);
             発注コード開始.TabIndex = 1;
             発注コード開始.Enter += 発注コード開始_Enter;
-            発注コード開始.KeyDown += 発注コード_KeyDown;
+            発注コード開始.Validating += 発注コード開始_Validating;
             // 
             // label9
             // 
@@ -429,7 +429,7 @@
             発注コード終了.Size = new Size(184, 20);
             発注コード終了.TabIndex = 2;
             発注コード終了.Enter += 発注コード終了_Enter;
-            発注コード終了.KeyDown += 発注コード_KeyDown;
+            発注コード終了.Validating += 発注コード終了_Validating;
             // 
             // 購買コード終了
             // 
@@ -438,9 +438,8 @@
             購買コード終了.Location = new Point(361, 122);
             購買コード終了.Name = "購買コード終了";
             購買コード終了.Size = new Size(184, 20);
-            購買コード終了.TabIndex = 21011;
+            購買コード終了.TabIndex = 10;
             購買コード終了.Enter += 購買コード終了_Enter;
-            購買コード終了.KeyDown += 購買コード終了_KeyDown;
             購買コード終了.Validating += 購買コード終了_Validating;
             // 
             // label7
@@ -465,9 +464,8 @@
             購買コード開始.Location = new Point(148, 122);
             購買コード開始.Name = "購買コード開始";
             購買コード開始.Size = new Size(184, 20);
-            購買コード開始.TabIndex = 21010;
+            購買コード開始.TabIndex = 9;
             購買コード開始.Enter += 購買コード開始_Enter;
-            購買コード開始.KeyDown += 購買コード開始_KeyDown;
             購買コード開始.Validating += 購買コード開始_Validating;
             // 
             // 仕入先名
@@ -480,7 +478,7 @@
             仕入先名.Margin = new Padding(3, 4, 3, 4);
             仕入先名.Name = "仕入先名";
             仕入先名.Size = new Size(397, 21);
-            仕入先名.TabIndex = 21013;
+            仕入先名.TabIndex = 12;
             // 
             // statusStrip1
             // 
@@ -532,6 +530,7 @@
             Controls.Add(抽出ボタン);
             Controls.Add(削除指定);
             Controls.Add(label5);
+            KeyPreview = true;
             Margin = new Padding(3, 4, 3, 4);
             MaximizeBox = false;
             MinimizeBox = false;
@@ -539,6 +538,7 @@
             Text = "発注管理 - 抽出";
             FormClosing += F_発注管理_抽出_FormClosing;
             Load += Form_Load;
+            KeyDown += Form_KeyDown;
             削除指定.ResumeLayout(false);
             削除指定.PerformLayout();
             入庫状況指定.ResumeLayout(false);
