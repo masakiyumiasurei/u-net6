@@ -66,6 +66,13 @@ namespace u_net
         DataTable dt = new DataTable();
         SqlDataAdapter adapter = new SqlDataAdapter();
 
+        public string SupplierCode
+        {
+            get
+            {
+                return Nz(仕入先コード.Text);
+            }
+        }
 
         // 現在の入庫コードを取得するプロパティ
         public string CurrentCode
@@ -169,10 +176,39 @@ namespace u_net
 
 
             OriginalClass ofn = new OriginalClass();
+
+            
+            ofn.SetComboBox(入庫コード, " SELECT 入庫コード as Display, 入庫コード as Value FROM T入庫 WHERE(発注コード IS NOT NULL) ORDER BY 入庫コード DESC");
+
+            ofn.SetComboBox(入庫者コード, " SELECT 社員コード AS Display, 氏名 AS Display2, 社員コード as Value FROM M社員 WHERE(退社 IS NULL) AND(部 <> N'社長') AND(ふりがな <> N'ん') ORDER BY ふりがな");
+            入庫者コード.DrawMode = DrawMode.OwnerDrawFixed;
+
+
             ofn.SetComboBox(発注コード, " SELECT 発注コード as Display,発注版数 as Display2, Format(発注日,'yyyy/MM/dd') as Display3, 仕入先名 as Display4, 仕入先担当者名 as Display5, 発注コード as Value FROM V入庫_発注コード選択 ORDER BY 発注コード");
             発注コード.DrawMode = DrawMode.OwnerDrawFixed;
 
+            ofn.SetComboBox(集計年月, " SELECT 集計年月 as Display, 集計年月 as Value FROM V集計年月");
+            
+            Connect();
 
+            using (SqlCommand cmd = new SqlCommand("SP支払年月入力", cn))
+            {
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                // レコードセットを設定
+                DataTable dataTable = new DataTable();
+                dataTable.Load(reader);
+
+
+                支払年月.DisplayMember = "支払年月";
+                支払年月.ValueMember = "支払年月";
+                支払年月.DataSource = dataTable;
+
+
+
+            }
 
 
 
@@ -611,7 +647,7 @@ namespace u_net
 
                     string strwhere = " 入庫コード='" + this.入庫コード.Text + "'";
 
-                    if (!DataUpdater.UpdateOrInsertDataFrom(this, cn, "T入庫", strwhere, "入庫コード", transaction))
+                    if (!RegTrans(CurrentCode))
                     {
 
 
@@ -651,6 +687,73 @@ namespace u_net
                 }
             }
         }
+
+
+        private bool RegTrans(string codeString)
+        {
+            Connect();
+            SqlTransaction transaction = cn.BeginTransaction();
+            {
+
+                try
+                {
+
+                    string strwhere = "入庫コード='" + this.入庫コード.Text + "'";
+                    // ヘッダ部の登録
+                    if (!DataUpdater.UpdateOrInsertDataFrom(this, cn, "T入庫", strwhere, "入庫コード", transaction))
+                    {
+                        transaction.Rollback();  // 変更をキャンセル
+                        return false; ;
+                    }
+
+                        // 明細部の登録
+                        //string strKey = $"入庫コード='{codeString}'";
+                        //if (!SaveDetails(SubForm, "T入庫明細", strKey))
+                        //{
+                        //    objConnection.RollbackTrans();  // 変更をキャンセル
+                        //    return 0;
+                        //}
+
+                        // 入庫データ登録後に部品の在庫を更新する
+                        // ここでいう在庫とはシステムが管理している実在庫のことである
+                        if (!UpdateStock())
+                        {
+                            transaction.Rollback();  // 変更をキャンセル
+                            return false;
+                        }
+
+
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    Debug.Print($"{Name}_RegTrans - {ex.GetType().ToString()} : {ex.Message}");
+                    transaction.Rollback();
+                    return false;
+
+                }
+            }
+        }
+
+        private bool UpdateStock()
+        {
+            try
+            {
+                Connect();
+                using (SqlCommand cmd = new SqlCommand("SP部品在庫数量更新", cn))
+                {
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    cmd.ExecuteNonQuery();
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Debug.Print($"{Name}_UpdateStock - {ex.GetType().ToString()} : {ex.Message}");
+                return false;
+            }
+        }
+
 
         private bool IsError(Control controlObject)
         {
@@ -916,27 +1019,243 @@ namespace u_net
 
         private void コマンド修正_Click(object sender, EventArgs e)
         {
+            try
+            {
+                Cursor.Current = Cursors.WaitCursor;
+                this.SuspendLayout();
 
+                Connect();
+
+                if (!IsChanged)
+                {
+                    if (IsNewData && !string.IsNullOrEmpty(CurrentCode))
+                    {
+                        if (!FunctionClass.ReturnCode(cn, CurrentCode))
+                        {
+                            MessageBox.Show("エラーのためコードは破棄されました。" + Environment.NewLine +
+                                            "入庫コード　：　" + CurrentCode,
+                                            "修正コマンド", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        }
+                    }
+
+                    if (!GoModifyMode())
+                    {
+                        MessageBox.Show("エラーのため修正モードへ移行できません。", "修正コマンド", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
+
+                    return;
+                }
+
+                var result = MessageBox.Show("変更内容を登録しますか？", "修正コマンド", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+
+                switch (result)
+                {
+                    case DialogResult.Yes:
+                        // エラーチェック
+                        foreach (Control control in Controls)
+                        {
+                            if (control is TextBox || control is ComboBox || control is CheckBox)
+                            {
+                                if (IsError(control))
+                                {
+                                    return;
+                                }
+                            }
+                        }
+
+                        if (!SaveData())
+                        {
+                            MessageBox.Show("エラーのため登録できません。", "修正コマンド", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            return;
+                        }
+                        break;
+
+                    case DialogResult.No:
+                        if (IsNewData && !string.IsNullOrEmpty(CurrentCode))
+                        {
+                            if (!FunctionClass.ReturnCode(cn, CurrentCode))
+                            {
+                                MessageBox.Show("エラーのためコードは破棄されました。" + Environment.NewLine +
+                                                "入庫コード　：　" + CurrentCode,
+                                                "修正コマンド", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            }
+                        }
+                        break;
+
+                    case DialogResult.Cancel:
+                        return;
+                }
+
+                if (!GoModifyMode())
+                {
+                    MessageBox.Show("エラーのため修正モードへ移行できません。", "修正コマンド", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("エラーのため修正モードへ移行できません。", "修正コマンド", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            finally
+            {
+                this.ResumeLayout();
+                Cursor.Current = Cursors.Default;
+            }
         }
 
         private void コマンド複写_Click(object sender, EventArgs e)
         {
-
+            MessageBox.Show("現在開発中です。", "複写コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void コマンド削除_Click(object sender, EventArgs e)
         {
 
+            Connect();
+
+            try
+            {
+                string strMsg;
+
+                // 削除するかどうか判断を仰ぐ
+                strMsg = $"入庫コード　：　{CurrentCode}{Environment.NewLine}{Environment.NewLine}このデータを削除しますか？";
+                if (MessageBox.Show(strMsg, "削除コマンド", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                    return;
+
+                // 削除済みかどうかを調べ、削除済みであれば何もしない
+                if (DataIsDeleted(CurrentCode))
+                {
+                    MessageBox.Show("現在のデータは既に削除されています。", "削除コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    コマンド削除.Enabled = false;
+                    return;
+                }
+
+                // ログインユーザーが表示データの登録ユーザーでなければ認証する
+                if (CommonConstants.LoginUserCode != InputUserCode)
+                {
+                    using (var authenticationForm = new F_認証())
+                    {
+                        authenticationForm.args = InputUserCode;
+                        authenticationForm.ShowDialog();
+
+                        if (string.IsNullOrEmpty(CommonConstants.strCertificateCode))
+                        {
+                            MessageBox.Show("認証できません。" + Environment.NewLine + "削除はキャンセルされました。", "削除コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            return;
+                        }
+                    }
+                }
+
+                // 削除処理
+                if (DeleteData(cn, CurrentCode))
+                {
+                    MessageBox.Show("削除しました。", "削除コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    // 棚卸中かどうかを確認する
+                    if (FunctionClass.IsInventory(cn))
+                    {
+                        Close();
+                    }
+                    else
+                    {
+                        // 棚卸中でなければ新規モードへ移行する
+              
+                        if (!GoNewMode())
+                        {
+                            MessageBox.Show($"エラーのため新規モードへ移行できません。{Environment.NewLine}[{Name}]を終了します。", "削除コマンド", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            Close();
+                        }
+        
+                    }
+                }
+                else
+                {
+                    MessageBox.Show($"削除できませんでした。{Environment.NewLine}{Environment.NewLine}入庫コード　：　{CurrentCode}", "削除コマンド", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.Print($"{Name}_コマンド削除_Click - {ex.GetType().ToString()} : {ex.Message}");
+            }
+        }
+
+
+        private bool DataIsDeleted(string codeString)
+        {
+            try
+            {
+
+                Connect();
+
+                string strKey = $"入庫コード='{codeString}' AND 無効日時 IS NOT NULL";
+                string strSQL = $"SELECT * FROM T入庫 WHERE {strKey}";
+
+                using (var cmd = new SqlCommand(strSQL, cn))
+                using (var reader = cmd.ExecuteReader())
+                {
+                    return reader.HasRows;
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.Print($"{Name}_DataIsDeleted - {ex.GetType().ToString()} : {ex.Message}");
+                return false;
+            }
+        }
+
+        private bool DeleteData(SqlConnection connectionObject, string codeString)
+        {
+            try
+            {
+                string strKey = $"入庫コード='{codeString}'";
+
+                using (var cmd = new SqlCommand($"UPDATE T入庫 SET 無効日時=GETDATE() WHERE {strKey}", connectionObject))
+                {
+                    connectionObject.Open();
+                    cmd.ExecuteNonQuery();
+                }
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Debug.Print($"{Name}_DeleteData - {ex.GetType().ToString()} : {ex.Message}");
+
+                if (connectionObject.State == ConnectionState.Open)
+                {
+                    connectionObject.Close();
+                }
+
+                return false;
+            }
+            finally
+            {
+                if (connectionObject.State == ConnectionState.Open)
+                {
+                    connectionObject.Close();
+                }
+            }
         }
 
         private void コマンド発注_Click(object sender, EventArgs e)
         {
-
+            if (IsNull(発注コード.Text))
+            {
+                F_発注 targetform = new F_発注();
+                targetform.ShowDialog();
+            }
+            else
+            {
+                F_発注 targetform = new F_発注();
+                targetform.args = 発注コード.Text;
+                targetform.ShowDialog();
+            }
         }
 
         private void コマンド仕入先_Click(object sender, EventArgs e)
         {
-
+            F_仕入先 targetform = new F_仕入先();
+            targetform.args = SupplierCode;
+            targetform.ShowDialog();
         }
 
         private void コマンド承認_Click(object sender, EventArgs e)
@@ -944,14 +1263,166 @@ namespace u_net
 
         }
 
+        private bool IsErrorDetails(string codeString)
+        {
+            try
+            {
+                Connect();
+
+                bool isErrorDetails = true;
+
+
+                //string strSQL = "SELECT COUNT(*) FROM YourTable WHERE 買掛区分 = ''";
+                //using (SqlCommand command = new SqlCommand(strSQL, cn))
+                //{
+                //    int recordCount = (int)command.ExecuteScalar();
+                //    MessageBox.Show(recordCount.ToString());
+                //}
+
+                isErrorDetails = false;
+                
+
+                return isErrorDetails;
+            }
+            catch (Exception ex)
+            {
+                Debug.Print(this.Name + "_IsErrorDetails - " + ex.HResult + " : " + ex.Message);
+                return true; // エラーが発生した場合もエラーとして扱います
+            }
+        }
+
         private void コマンド確定_Click(object sender, EventArgs e)
         {
 
+            FunctionClass fn = new FunctionClass();
+            fn.DoWait("確定しています...");
+
+            Connect();
+
+            try
+            {
+                object var1 = null;
+                object var2 = null;
+
+
+                // 未確定の場合エラーチェックを行う
+                if (!IsDecided)
+                {
+                    // エラーチェック
+                    foreach (Control control in Controls)
+                    {
+                        if (control is TextBox || control is ComboBox || control is CheckBox)
+                        {
+                            if (IsError(control))
+                            {
+                                return;
+                            }
+                        }
+                    }
+                }
+
+
+
+                // 新規データ時の処理
+                if (IsNewData)
+                {
+                    登録日時.Text = FunctionClass.GetServerDate(cn).ToString();
+                    登録者コード.Text = CommonConstants.LoginUserCode;
+                    登録者名.Text = CommonConstants.LoginUserFullName;
+                }
+
+                // 値を退避させる
+                var1 = 確定日時.Text;
+                var2 = 確定者コード.Text;
+
+                // 値をセットする
+                if (IsDecided)
+                {
+                    確定日時.Text = null;
+                    確定者コード.Text = null;
+                }
+                else
+                {
+                    確定日時.Text = FunctionClass.GetServerDate(cn).ToString();
+                    確定者コード.Text = CommonConstants.LoginUserCode; ;
+                }
+
+                // サーバーへ登録する
+                if (RegTrans(CurrentCode))
+                {
+                    ChangedData(false);
+                    // 新規モードのときは修正モードへ移行する
+                    if (IsNewData)
+                    {
+                        コマンド新規.Enabled = true;
+                        コマンド修正.Enabled = false;
+                    }
+                }
+                else
+                {
+                    // 新規モードのときは登録情報を戻す
+                    if (IsNewData)
+                    {
+                        登録日時.Text = null;
+                        登録者コード.Text = null;
+                        登録者名.Text = null;
+                    }
+                    確定日時.Text = var1.ToString();
+                    確定者コード.Text = var2.ToString();
+                    MessageBox.Show("登録できませんでした。", "確定コマンド", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+
+                // 確定状態では入庫数量変更不可にする
+                //SubForm.入庫数量.Locked = 確定日時.Text != null;
+            }
+            catch (Exception ex)
+            {
+                Debug.Print(this.Name + "_コマンド確定_Click - " + ex.GetType().ToString() + " : " + ex.Message);
+            }
+            finally
+            {
+                fn.WaitForm.Close();
+            }
         }
 
         private void コマンド登録_Click(object sender, EventArgs e)
         {
 
+            FunctionClass fn = new FunctionClass();
+            fn.DoWait("登録しています...");
+
+            try
+            {
+
+
+                this.SuspendLayout();
+
+                if (SaveData())
+                {
+                    ChangedData(false);
+
+                    // 新規モードのときは修正モードへ移行する
+                    if (IsNewData)
+                    {
+                        this.コマンド新規.Enabled = true;
+                        this.コマンド修正.Enabled = false;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("登録できませんでした。", "登録コマンド", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("エラーが発生しました。", "登録コマンド", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                fn.WaitForm.Close();
+                this.ResumeLayout();
+
+            }
         }
 
         private void コマンド終了_Click(object sender, EventArgs e)
@@ -1026,6 +1497,183 @@ namespace u_net
             {
                 // エラーハンドリング（エラーが発生した場合の処理）
                 Debug.Print($"{nameof(発注コード_KeyDown)} - {ex.Message}");
+            }
+        }
+
+        private void 入庫者コード_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            入庫者名.Text = (入庫者コード.SelectedItem as DataRowView)?.Row["Display2"]?.ToString() ?? null;
+
+            UpdatedControl(sender as Control);
+        }
+
+        private void 入庫者コード_TextChanged(object sender, EventArgs e)
+        {
+            if (入庫者コード.SelectedValue == null)
+            {
+                入庫者名.Text = null;
+            }
+            ChangedData(true);
+        }
+
+        private void 入庫者コード_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            OriginalClass.SetComboBoxAppearance((ComboBox)sender, e, new int[] { 50,150 }, new string[] { "Display", "Display2" });
+            入庫者コード.Invalidate();
+            入庫者コード.DroppedDown = true;
+        }
+
+        private void 入庫者コード_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (IsError(sender as Control) == true) e.Cancel = true;
+        }
+
+        private void 入庫コード_KeyDown(object sender, KeyEventArgs e)
+        {
+            string strCode;
+
+            switch (e.KeyCode)
+            {
+                case Keys.Return:
+                    strCode = ActiveControl.Text;
+                    if (string.IsNullOrEmpty(strCode))
+                        return;
+
+                    strCode = FunctionClass.FormatCode("STR", strCode);
+                    if (strCode != Nz(ActiveControl.Text))
+                    {
+                        入庫コード.Text = strCode;
+                    }
+                    break;
+            }
+        }
+
+        private void 入庫コード_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == ' ') // スペースキーが押されたかを確認
+            {
+                if (sender is ComboBox comboBox)
+                {
+                    comboBox.DroppedDown = true; // コンボボックスのドロップダウンを開く
+                    e.Handled = true; // イベントの処理が完了したことを示す
+                }
+            }
+        }
+
+        private void 入庫コード_TextChanged(object sender, EventArgs e)
+        {
+            FunctionClass.LimitText(sender as Control, 11);
+
+        }
+
+        private void 入庫コード_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (IsError(sender as Control) == true) e.Cancel = true;
+        }
+
+        private void 入庫コード_Validated(object sender, EventArgs e)
+        {
+            UpdatedControl(sender as Control);
+        }
+
+        private void 集計年月_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UpdatedControl(sender as Control);
+        }
+
+        private void 集計年月_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (IsError(sender as Control) == true) e.Cancel = true;
+        }
+
+        private void 集計年月_TextChanged(object sender, EventArgs e)
+        {
+            ChangedData(true);
+        }
+
+        private void 集計年月_Enter(object sender, EventArgs e)
+        {
+            MessageBox.Show("通常、支払年月を変更することはありません。" + Environment.NewLine +
+                    "変更するときは、適切であると判断できる値を入力してください。",
+                    "警告", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+        
+        }
+
+        private void 支払年月_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UpdatedControl(sender as Control);
+        }
+
+        private void 支払年月_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (IsError(sender as Control) == true) e.Cancel = true;
+        }
+
+        private void 支払年月_TextChanged(object sender, EventArgs e)
+        {
+            ChangedData(true);
+        }
+
+        private void 支払年月_Enter(object sender, EventArgs e)
+        {
+            MessageBox.Show("通常、支払年月を変更することはありません。" + Environment.NewLine +
+                    "変更するときは、適切であると判断できる値を入力してください。",
+                    "警告", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+        }
+
+        private void 摘要_TextChanged(object sender, EventArgs e)
+        {
+            FunctionClass.LimitText(sender as Control, 200);
+            ChangedData(true);
+        }
+
+        private void 摘要_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (IsError(sender as Control) == true) e.Cancel = true;
+        }
+
+        private void 摘要_Validated(object sender, EventArgs e)
+        {
+            UpdatedControl(sender as Control);
+        }
+
+        private void 入庫日_TextChanged(object sender, EventArgs e)
+        {
+            ChangedData(true);
+        }
+
+        private void 入庫日_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (IsError(sender as Control) == true) e.Cancel = true;
+        }
+
+        private void 入庫日_Validated(object sender, EventArgs e)
+        {
+            UpdatedControl(sender as Control);
+        }
+
+        private void 入庫日_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == ' ')
+            {
+                入庫日選択ボタン_Click(sender, e);
+                e.Handled = true; // イベントの処理が完了したことを示す
+            }
+        }
+
+        private F_カレンダー dateSelectionForm;
+
+        private void 入庫日選択ボタン_Click(object sender, EventArgs e)
+        {
+            // 日付選択フォームを作成し表示
+            dateSelectionForm = new F_カレンダー();
+            if (dateSelectionForm.ShowDialog() == DialogResult.OK)
+            {
+                // 日付選択フォームから選択した日付を取得
+                string selectedDate = dateSelectionForm.SelectedDate;
+
+                // フォームAの日付コントロールに選択した日付を設定
+                入庫日.Text = selectedDate;
             }
         }
     }
