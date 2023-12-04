@@ -14,6 +14,7 @@ using TextBox = System.Windows.Forms.TextBox;
 using ComboBox = System.Windows.Forms.ComboBox;
 using System.Drawing.Imaging;
 using System.Drawing.Printing;
+using GrapeCity.Win.MultiRow;
 
 namespace u_net.Public
 {
@@ -136,11 +137,6 @@ namespace u_net.Public
 
         }
 
-
-
-
-
-
         public static void SetControls(Control control)
         {
             foreach (Control childControl in control.Controls)
@@ -160,6 +156,23 @@ namespace u_net.Public
                     checkBox.Checked = false; // CheckBoxのチェックを外す
                 }
             }
+        }
+
+        public static bool SetTable2Details(GcMultiRow multiRow, string sourceSQL, SqlConnection cn)
+        {
+            if (string.IsNullOrWhiteSpace(sourceSQL) || cn == null) return false; // クエリまたは接続が無効な場合は何もしない
+
+            using (SqlCommand command = new SqlCommand(sourceSQL, cn))
+            {
+                using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+                {
+                    DataTable dataTable = new DataTable();
+                    adapter.Fill(dataTable);
+                    multiRow.DataSource = dataTable;
+                }
+            }
+
+            return true;
         }
 
     }

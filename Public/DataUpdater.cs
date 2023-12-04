@@ -154,9 +154,14 @@ namespace u_net.Public
                     // 指定された条件で既存のデータを検索
                     adapter.Fill(dataSet, tableName);
 
-                    // 明細行数分データを登録 (編集行を除く為、RowCountを-1しているが、別の方法を検討した方がよさそう)
-                    for (int i = 0; i < multiRow.RowCount -1; i++)
+                    // 明細行数分データを登録
+                    for (int i = 0; i < multiRow.RowCount; i++)
                     {
+                        if(multiRow.Rows[i].IsNewRow == true)
+                        {
+                            //新規行の場合は、処理をスキップ
+                            continue;
+                        }
                         DataRow newRow = dataSet.Tables[0].NewRow();
                         SetControlValuesMultiRow(multiRow.Rows[i].Cells, newRow, connection, tableName, ukname, transaction);
                         dataSet.Tables[0].Rows.Add(newRow);
