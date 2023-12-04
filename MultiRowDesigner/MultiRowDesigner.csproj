@@ -51,6 +51,12 @@
     <Compile Include="入庫明細テンプレート.designer.cs">
       <DependentUpon>入庫明細テンプレート.cs</DependentUpon>
     </Compile>
+    <Compile Include="製品明細.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="製品明細.Designer.cs">
+      <DependentUpon>製品明細.cs</DependentUpon>
+    </Compile>
     <Compile Include="発注明細.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -74,6 +80,12 @@
     </Compile>
     <Compile Include="発注明細テンプレート.designer.cs">
       <DependentUpon>発注明細テンプレート.cs</DependentUpon>
+    </Compile>
+    <Compile Include="製品明細テンプレート.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="製品明細テンプレート.designer.cs">
+      <DependentUpon>製品明細テンプレート.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -99,6 +111,9 @@
     <EmbeddedResource Include="入庫明細テンプレート.resx">
       <DependentUpon>入庫明細テンプレート.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="製品明細.resx">
+      <DependentUpon>製品明細.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="発注明細.resx">
       <DependentUpon>発注明細.cs</DependentUpon>
     </EmbeddedResource>
@@ -110,6 +125,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="発注明細テンプレート.resx">
       <DependentUpon>発注明細テンプレート.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="製品明細テンプレート.resx">
+      <DependentUpon>製品明細テンプレート.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
