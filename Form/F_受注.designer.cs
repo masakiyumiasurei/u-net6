@@ -82,7 +82,6 @@ namespace u_net
             label17 = new Label();
             受注版数 = new ComboBox();
             受注日選択ボタン = new Button();
-            受注日 = new TextBox();
             入社年月日_ラベル = new Label();
             注文番号 = new TextBox();
             label1 = new Label();
@@ -115,9 +114,7 @@ namespace u_net
             顧客名 = new TextBox();
             顧客担当者名 = new TextBox();
             ClientCode = new ComboBox();
-            受注納期 = new TextBox();
             受注納期選択ボタン = new Button();
-            出荷予定日 = new TextBox();
             出荷予定日選択ボタン = new Button();
             納品書送付コード = new ComboBox();
             納品書送付 = new TextBox();
@@ -126,14 +123,17 @@ namespace u_net
             発送方法コード = new ComboBox();
             発送方法 = new TextBox();
             label21 = new Label();
-            textBox9 = new TextBox();
-            comboBox5 = new ComboBox();
+            自社担当者名 = new TextBox();
+            自社担当者コード = new ComboBox();
             label6 = new Label();
             label22 = new Label();
             改訂履歴 = new TextBox();
             label23 = new Label();
             ProductionNotice = new TextBox();
             受注明細1 = new MultiRowDesigner.受注明細();
+            受注日 = new MaskedTextBox();
+            受注納期 = new MaskedTextBox();
+            出荷予定日 = new MaskedTextBox();
             panel1.SuspendLayout();
             statusStrip1.SuspendLayout();
             SuspendLayout();
@@ -162,6 +162,7 @@ namespace u_net
             コマンド登録.TabIndex = 1;
             コマンド登録.Text = "登録";
             コマンド登録.UseVisualStyleBackColor = true;
+            コマンド登録.Click += コマンド登録_Click;
             // 
             // panel1
             // 
@@ -444,7 +445,7 @@ namespace u_net
             // statusStrip1
             // 
             statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1, toolStripStatusLabel2 });
-            statusStrip1.Location = new Point(0, 622);
+            statusStrip1.Location = new Point(0, 689);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Padding = new Padding(1, 0, 19, 0);
             statusStrip1.Size = new Size(1195, 22);
@@ -555,23 +556,11 @@ namespace u_net
             // 
             受注日選択ボタン.Location = new Point(275, 100);
             受注日選択ボタン.Name = "受注日選択ボタン";
-            受注日選択ボタン.Size = new Size(21, 22);
+            受注日選択ボタン.Size = new Size(21, 21);
             受注日選択ボタン.TabIndex = 248;
             受注日選択ボタン.Text = "▼";
             受注日選択ボタン.UseVisualStyleBackColor = true;
             受注日選択ボタン.Click += 受注日選択ボタン_Click;
-            // 
-            // 受注日
-            // 
-            受注日.BackColor = Color.White;
-            受注日.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            受注日.Location = new Point(125, 100);
-            受注日.Margin = new Padding(3, 2, 3, 2);
-            受注日.Multiline = true;
-            受注日.Name = "受注日";
-            受注日.ReadOnly = true;
-            受注日.Size = new Size(150, 22);
-            受注日.TabIndex = 247;
             // 
             // 入社年月日_ラベル
             // 
@@ -969,7 +958,7 @@ namespace u_net
             // 
             顧客コード検索ボタン.Location = new Point(275, 150);
             顧客コード検索ボタン.Name = "顧客コード検索ボタン";
-            顧客コード検索ボタン.Size = new Size(21, 22);
+            顧客コード検索ボタン.Size = new Size(21, 21);
             顧客コード検索ボタン.TabIndex = 10024;
             顧客コード検索ボタン.Text = "▼";
             顧客コード検索ボタン.UseVisualStyleBackColor = true;
@@ -1011,45 +1000,21 @@ namespace u_net
             ClientCode.Size = new Size(400, 21);
             ClientCode.TabIndex = 10027;
             // 
-            // 受注納期
-            // 
-            受注納期.BackColor = Color.White;
-            受注納期.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            受注納期.Location = new Point(125, 250);
-            受注納期.Margin = new Padding(3, 2, 3, 2);
-            受注納期.Multiline = true;
-            受注納期.Name = "受注納期";
-            受注納期.ReadOnly = true;
-            受注納期.Size = new Size(150, 22);
-            受注納期.TabIndex = 10028;
-            // 
             // 受注納期選択ボタン
             // 
             受注納期選択ボタン.Location = new Point(275, 250);
             受注納期選択ボタン.Name = "受注納期選択ボタン";
-            受注納期選択ボタン.Size = new Size(21, 22);
+            受注納期選択ボタン.Size = new Size(21, 21);
             受注納期選択ボタン.TabIndex = 10029;
             受注納期選択ボタン.Text = "▼";
             受注納期選択ボタン.UseVisualStyleBackColor = true;
             受注納期選択ボタン.Click += 受注納期選択ボタン_Click;
             // 
-            // 出荷予定日
-            // 
-            出荷予定日.BackColor = Color.White;
-            出荷予定日.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            出荷予定日.Location = new Point(125, 275);
-            出荷予定日.Margin = new Padding(3, 2, 3, 2);
-            出荷予定日.Multiline = true;
-            出荷予定日.Name = "出荷予定日";
-            出荷予定日.ReadOnly = true;
-            出荷予定日.Size = new Size(150, 22);
-            出荷予定日.TabIndex = 10030;
-            // 
             // 出荷予定日選択ボタン
             // 
             出荷予定日選択ボタン.Location = new Point(275, 275);
             出荷予定日選択ボタン.Name = "出荷予定日選択ボタン";
-            出荷予定日選択ボタン.Size = new Size(21, 22);
+            出荷予定日選択ボタン.Size = new Size(21, 21);
             出荷予定日選択ボタン.TabIndex = 10031;
             出荷予定日選択ボタン.Text = "▼";
             出荷予定日選択ボタン.UseVisualStyleBackColor = true;
@@ -1059,14 +1024,17 @@ namespace u_net
             // 
             納品書送付コード.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             納品書送付コード.AutoCompleteSource = AutoCompleteSource.ListItems;
+            納品書送付コード.DrawMode = DrawMode.OwnerDrawFixed;
             納品書送付コード.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             納品書送付コード.FormattingEnabled = true;
             納品書送付コード.ImeMode = ImeMode.NoControl;
             納品書送付コード.Location = new Point(125, 300);
             納品書送付コード.Margin = new Padding(4, 3, 4, 3);
             納品書送付コード.Name = "納品書送付コード";
-            納品書送付コード.Size = new Size(60, 21);
+            納品書送付コード.Size = new Size(60, 22);
             納品書送付コード.TabIndex = 10032;
+            納品書送付コード.DrawItem += 納品書送付コード_DrawItem;
+            納品書送付コード.SelectedIndexChanged += 納品書送付コード_SelectedIndexChanged;
             // 
             // 納品書送付
             // 
@@ -1084,14 +1052,17 @@ namespace u_net
             // 
             請求書送付コード.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             請求書送付コード.AutoCompleteSource = AutoCompleteSource.ListItems;
+            請求書送付コード.DrawMode = DrawMode.OwnerDrawFixed;
             請求書送付コード.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             請求書送付コード.FormattingEnabled = true;
             請求書送付コード.ImeMode = ImeMode.NoControl;
             請求書送付コード.Location = new Point(125, 325);
             請求書送付コード.Margin = new Padding(4, 3, 4, 3);
             請求書送付コード.Name = "請求書送付コード";
-            請求書送付コード.Size = new Size(60, 21);
+            請求書送付コード.Size = new Size(60, 22);
             請求書送付コード.TabIndex = 10034;
+            請求書送付コード.DrawItem += 請求書送付コード_DrawItem;
+            請求書送付コード.SelectedIndexChanged += 請求書送付コード_SelectedIndexChanged;
             // 
             // 請求書送付
             // 
@@ -1109,14 +1080,17 @@ namespace u_net
             // 
             発送方法コード.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             発送方法コード.AutoCompleteSource = AutoCompleteSource.ListItems;
+            発送方法コード.DrawMode = DrawMode.OwnerDrawFixed;
             発送方法コード.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             発送方法コード.FormattingEnabled = true;
             発送方法コード.ImeMode = ImeMode.NoControl;
             発送方法コード.Location = new Point(125, 350);
             発送方法コード.Margin = new Padding(4, 3, 4, 3);
             発送方法コード.Name = "発送方法コード";
-            発送方法コード.Size = new Size(60, 21);
+            発送方法コード.Size = new Size(60, 22);
             発送方法コード.TabIndex = 10036;
+            発送方法コード.DrawItem += 発送方法コード_DrawItem;
+            発送方法コード.SelectedIndexChanged += 発送方法コード_SelectedIndexChanged;
             // 
             // 発送方法
             // 
@@ -1145,30 +1119,33 @@ namespace u_net
             label21.Text = "自社担当者";
             label21.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // textBox9
+            // 自社担当者名
             // 
-            textBox9.BackColor = Color.White;
-            textBox9.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            textBox9.Location = new Point(765, 100);
-            textBox9.Margin = new Padding(3, 2, 3, 2);
-            textBox9.Multiline = true;
-            textBox9.Name = "textBox9";
-            textBox9.ReadOnly = true;
-            textBox9.Size = new Size(150, 22);
-            textBox9.TabIndex = 10040;
+            自社担当者名.BackColor = Color.White;
+            自社担当者名.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            自社担当者名.Location = new Point(765, 100);
+            自社担当者名.Margin = new Padding(3, 2, 3, 2);
+            自社担当者名.Multiline = true;
+            自社担当者名.Name = "自社担当者名";
+            自社担当者名.ReadOnly = true;
+            自社担当者名.Size = new Size(150, 22);
+            自社担当者名.TabIndex = 10040;
             // 
-            // comboBox5
+            // 自社担当者コード
             // 
-            comboBox5.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            comboBox5.AutoCompleteSource = AutoCompleteSource.ListItems;
-            comboBox5.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            comboBox5.FormattingEnabled = true;
-            comboBox5.ImeMode = ImeMode.NoControl;
-            comboBox5.Location = new Point(700, 100);
-            comboBox5.Margin = new Padding(4, 3, 4, 3);
-            comboBox5.Name = "comboBox5";
-            comboBox5.Size = new Size(60, 21);
-            comboBox5.TabIndex = 10039;
+            自社担当者コード.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            自社担当者コード.AutoCompleteSource = AutoCompleteSource.ListItems;
+            自社担当者コード.DrawMode = DrawMode.OwnerDrawFixed;
+            自社担当者コード.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            自社担当者コード.FormattingEnabled = true;
+            自社担当者コード.ImeMode = ImeMode.NoControl;
+            自社担当者コード.Location = new Point(700, 100);
+            自社担当者コード.Margin = new Padding(4, 3, 4, 3);
+            自社担当者コード.Name = "自社担当者コード";
+            自社担当者コード.Size = new Size(60, 22);
+            自社担当者コード.TabIndex = 10039;
+            自社担当者コード.DrawItem += 自社担当者コード_DrawItem;
+            自社担当者コード.SelectedIndexChanged += 自社担当者コード_SelectedIndexChanged;
             // 
             // label6
             // 
@@ -1241,26 +1218,59 @@ namespace u_net
             // 
             // 受注明細1
             // 
-            受注明細1.Location = new Point(10, 393);
+            受注明細1.Location = new Point(10, 380);
             受注明細1.Margin = new Padding(5, 3, 5, 3);
             受注明細1.Name = "受注明細1";
-            受注明細1.Size = new Size(1200, 200);
+            受注明細1.Size = new Size(1170, 300);
             受注明細1.TabIndex = 10046;
+            // 
+            // 受注日
+            // 
+            受注日.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            受注日.Location = new Point(125, 100);
+            受注日.Mask = "0000/00/00";
+            受注日.Name = "受注日";
+            受注日.Size = new Size(150, 21);
+            受注日.TabIndex = 10047;
+            受注日.ValidatingType = typeof(DateTime);
+            // 
+            // 受注納期
+            // 
+            受注納期.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            受注納期.Location = new Point(125, 250);
+            受注納期.Mask = "0000/00/00";
+            受注納期.Name = "受注納期";
+            受注納期.Size = new Size(150, 21);
+            受注納期.TabIndex = 10048;
+            受注納期.ValidatingType = typeof(DateTime);
+            // 
+            // 出荷予定日
+            // 
+            出荷予定日.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            出荷予定日.Location = new Point(125, 275);
+            出荷予定日.Mask = "0000/00/00";
+            出荷予定日.Name = "出荷予定日";
+            出荷予定日.Size = new Size(150, 21);
+            出荷予定日.TabIndex = 10049;
+            出荷予定日.ValidatingType = typeof(DateTime);
             // 
             // F_受注
             // 
             AutoScaleDimensions = new SizeF(8F, 12F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
-            ClientSize = new Size(1195, 644);
+            ClientSize = new Size(1195, 711);
+            Controls.Add(出荷予定日);
+            Controls.Add(受注納期);
+            Controls.Add(受注日);
             Controls.Add(受注明細1);
             Controls.Add(ProductionNotice);
             Controls.Add(label23);
             Controls.Add(改訂履歴);
             Controls.Add(label22);
             Controls.Add(label6);
-            Controls.Add(textBox9);
-            Controls.Add(comboBox5);
+            Controls.Add(自社担当者名);
+            Controls.Add(自社担当者コード);
             Controls.Add(label21);
             Controls.Add(発送方法);
             Controls.Add(発送方法コード);
@@ -1269,9 +1279,7 @@ namespace u_net
             Controls.Add(納品書送付);
             Controls.Add(納品書送付コード);
             Controls.Add(出荷予定日選択ボタン);
-            Controls.Add(出荷予定日);
             Controls.Add(受注納期選択ボタン);
-            Controls.Add(受注納期);
             Controls.Add(ClientCode);
             Controls.Add(顧客担当者名);
             Controls.Add(顧客名);
@@ -1303,7 +1311,6 @@ namespace u_net
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(受注日選択ボタン);
-            Controls.Add(受注日);
             Controls.Add(入社年月日_ラベル);
             Controls.Add(受注版数);
             Controls.Add(label17);
@@ -1389,7 +1396,6 @@ namespace u_net
         private Label label17;
         private ComboBox 受注版数;
         private Button 受注日選択ボタン;
-        private TextBox 受注日;
         private Label 入社年月日_ラベル;
         private TextBox 注文番号;
         private Label label1;
@@ -1422,9 +1428,7 @@ namespace u_net
         private TextBox 顧客名;
         private TextBox 顧客担当者名;
         private ComboBox ClientCode;
-        private TextBox 受注納期;
         private Button 受注納期選択ボタン;
-        private TextBox 出荷予定日;
         private Button 出荷予定日選択ボタン;
         private ComboBox 納品書送付コード;
         private TextBox 納品書送付;
@@ -1433,14 +1437,17 @@ namespace u_net
         private ComboBox 発送方法コード;
         private TextBox 発送方法;
         private Label label21;
-        private TextBox textBox9;
-        private ComboBox comboBox5;
+        private TextBox 自社担当者名;
+        private ComboBox 自社担当者コード;
         private Label label6;
         private Label label22;
         private TextBox 改訂履歴;
         private Label label23;
         private TextBox ProductionNotice;
         private MultiRowDesigner.受注明細 受注明細1;
+        private MaskedTextBox 受注日;
+        private MaskedTextBox 受注納期;
+        private MaskedTextBox 出荷予定日;
     }
 }
 

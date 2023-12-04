@@ -10,7 +10,6 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using u_net.Public;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 using System.Data.Common;
 using GrapeCity.Win.MultiRow;
 using System.ComponentModel;
@@ -28,6 +27,13 @@ namespace u_net
         public string varOpenArgs = "";
         private bool setCombo = true;
 
+        public bool IsNewData
+        {
+            get
+            {
+                return !コマンド新規.Enabled;
+            }
+        }
 
         public string CurrentCode
         {
@@ -90,10 +96,18 @@ namespace u_net
 
             ofn.SetComboBox(受注コード, "SELECT A.受注コード AS Value, A.受注コード, { fn REPLACE(STR(CONVERT(bit, T受注.無効日), 1, 0), '1', '×') } AS 削除 " +
                 "FROM T受注 INNER JOIN (SELECT TOP 100 受注コード, MAX(受注版数) AS 最新版数 FROM T受注 GROUP BY 受注コード ORDER BY T受注.受注コード DESC) A ON T受注.受注コード = A.受注コード AND T受注.受注版数 = A.最新版数 ORDER BY A.受注コード DESC");
+            ofn.SetComboBox(受注版数, "SELECT 1 as value, 1 as 受注版数, '' AS 承認");
+            ofn.SetComboBox(納品書送付コード, "SELECT right(replace(str(納品書送付コード),' ','0'),2) AS Value, right(replace(str(納品書送付コード),' ','0'),2) AS Display, 送付処理 AS Display2 FROM M納品書送付処理");
+            ofn.SetComboBox(請求書送付コード, "SELECT right(replace(str(請求書送付コード),' ','0'),2) AS Value, right(replace(str(請求書送付コード),' ','0'),2) AS Display, 送付処理 AS Display2 FROM M請求書送付処理");
+            ofn.SetComboBox(発送方法コード, "SELECT right(replace(str(発送方法コード),  ' ','0'),2) AS Value, right(replace(str(発送方法コード),  ' ','0'),2) AS Display, 発送方法 AS Display2 FROM M発送方法");
+            ofn.SetComboBox(自社担当者コード, "SELECT 社員コード AS Value, 社員コード AS Display, 氏名 AS Display2 FROM M社員 WHERE (退社 IS NULL) AND (部 = N'営業部') AND (削除日時 IS NULL) AND ([パート] = 0) ORDER BY ふりがな");
 
             try
             {
                 this.SuspendLayout();
+
+                // 作業用テーブルを開く
+                Connect();
 
                 // 登録モードの分岐
                 if (string.IsNullOrEmpty(varOpenArgs))
@@ -138,34 +152,38 @@ namespace u_net
         {
             try
             {
-                // 各コントロール値を初期化
+                //ヘッダ部を初期化する
                 VariableSet.SetControls(this);
-
-                Connect();
-
                 this.受注コード.Text = FunctionClass.採番(cn, "A");
-                this.受注版数.Text = "1";
-                this.受注日.Text = DateTime.Now.ToString("yyyy/MM/dd");
-                //string code = FunctionClass.GetNewCode(cn, CommonConstants.CH_SUPPLIER);
-                //this.仕入先コード.Text = code.Substring(code.Length - 8);
-                //// 
-                //this.Revision.Text = "1";
-                //this.支払先専用.SelectedValue = 0;
-                //this.CloseDay.SelectedValue = 20;
+                this.受注版数.SelectedIndex = 0;
+                this.受注日.Text = DateTime.Now.ToString();
+                this.発送方法コード.SelectedValue = "01";
+                //出荷情報初期化
 
-                //// 編集による変更がない状態へ遷移する
-                //ChangedData(false);
+                //未変更状態にする
+                ChangedData(false);
 
-                //// ヘッダ部動作制御
-                //this.仕入先コード.Enabled = false;
-                //this.コマンド新規.Enabled = false;
-                //this.コマンド修正.Enabled = true;
-                //this.コマンド複写.Enabled = false;
-                //this.コマンド削除.Enabled = false;
-                //this.コマンドメール.Enabled = false;
-                //// this.コマンド承認.Enabled = false;
-                //// this.コマンド確定.Enabled = false;
-                //this.コマンド登録.Enabled = false;
+                //明細部を初期化する
+                LoadDetails(this.受注明細1.Detail, this.CurrentCode, this.CurrentEdition);
+
+                //ヘッダ部を制御する
+                FunctionClass.LockData(this, false);
+                this.受注日.Focus();
+                this.受注コード.Enabled = false;
+                this.受注版数.Enabled = false;
+                this.改版ボタン.Enabled = false;
+                //this.受注承認ボタン.Enabled = false;
+                //this.否認ボタン.Enabled = false;
+                //this.受注完了承認ボタン.Enabled = false;
+                this.コマンド新規.Enabled = false;
+                this.コマンド読込.Enabled = true;
+                this.コマンド複写.Enabled = false;
+                this.コマンド削除.Enabled = false;
+                this.コマンド承認.Enabled = false;
+                this.コマンド確定.Enabled = false;
+                this.コマンド登録.Enabled = false;
+
+                //明細部を制御する
 
                 return true;
             }
@@ -174,6 +192,67 @@ namespace u_net
                 Debug.Print(this.Name + "_GoNewMode - " + ex.Message);
                 return false;
             }
+        }
+
+        private bool GoModifyMode()
+        {
+            try
+            {
+                //各コントロール値をクリア
+                VariableSet.SetControls(this);
+
+
+                // 未変更状態にする
+                ChangedData(false);
+
+                //LockData()
+
+                this.受注コード.Enabled = true;
+                this.受注版数.Enabled = true;
+                this.受注コード.Focus();
+                this.コマンド新規.Enabled = true;
+                this.コマンド読込.Enabled = false;
+                this.コマンド複写.Enabled = false;
+                this.コマンド登録.Enabled = false;
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Debug.Print(this.Name + "_GoModifyMode - " + ex.Message);
+                return false;
+            }
+        }
+
+        private void ChangedData(bool dataChanged)
+        {
+            if (dataChanged)
+            {
+                this.Text = this.Text.Replace("*", "") + "*";
+            }
+            else
+            {
+                this.Text = this.Text.Replace("*", "");
+            }
+
+            // コードにフォーカスがある状態でサブフォームから呼び出されたときの対処
+            if (this.ActiveControl == this.受注コード)
+            {
+                this.注文番号.Focus();
+            }
+
+            受注版数.Enabled = !dataChanged;
+            コマンド複写.Enabled = !dataChanged;
+            コマンド削除.Enabled = !dataChanged;
+
+            if (dataChanged)
+            {
+                コマンド承認.Enabled = false;
+                コマンド確定.Enabled = true;
+                //受注承認ボタン.Enabled = false;
+            }
+
+            コマンド登録.Enabled = dataChanged;
         }
 
         private void UpdatedControl(Control controlObject)
@@ -300,6 +379,48 @@ namespace u_net
             return loadDetails;
         }
 
+        private bool SaveData()
+        {
+            Connect();
+            DateTime dtmNow = FunctionClass.GetServerDate(cn);
+
+            //明細部の受注コードと受注版数を更新する
+            受注明細1.UpdateCodeAndEdition(this.CurrentCode, this.CurrentEdition);
+
+            using (SqlTransaction transaction = cn.BeginTransaction())
+            {
+                try
+                {
+                    string strwhere = " 受注コード='" + this.受注コード.Text + "' and 受注版数=" + this.受注版数.Text;
+
+                    //ヘッダ部の登録
+                    if (!DataUpdater.UpdateOrInsertDataFrom(this, cn, "T受注", strwhere, "受注コード", transaction))
+                    {
+                        throw new Exception("Error:UpdateOrInsertDataFrom");
+                    }
+                    //明細部の登録
+                    if (!DataUpdater.UpdateOrInsertDetails(this.受注明細1.Detail, cn, "受注明細", strwhere, "受注コード", transaction))
+                    {
+                        throw new Exception("Error:UpdateOrInsertDetails");
+                    }
+
+                    // トランザクションをコミット
+                    transaction.Commit();
+
+                    return true;
+
+                }
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                    コマンド登録.Enabled = true;
+                    MessageBox.Show("データの保存中にエラーが発生しました: " + ex.Message, "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    return false;
+                }
+            }
+        }
+
         private void コマンド終了_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -399,6 +520,57 @@ namespace u_net
             受注版数.DroppedDown = true;
         }
 
+        private void 納品書送付コード_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            OriginalClass.SetComboBoxAppearance((ComboBox)sender, e, new int[] { 50, 130 }, new string[] { "Display", "Display2" });
+            納品書送付コード.Invalidate();
+            納品書送付コード.DroppedDown = true;
+        }
+
+        private void 請求書送付コード_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            OriginalClass.SetComboBoxAppearance((ComboBox)sender, e, new int[] { 50, 130 }, new string[] { "Display", "Display2" });
+            請求書送付コード.Invalidate();
+            請求書送付コード.DroppedDown = true;
+        }
+
+        private void 納品書送付コード_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            納品書送付.Text = ((DataRowView)納品書送付コード.SelectedItem)?.Row.Field<String>("Display2")?.ToString();
+            ChangedData(true);
+        }
+
+        private void 請求書送付コード_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            請求書送付.Text = ((DataRowView)請求書送付コード.SelectedItem)?.Row.Field<String>("Display2")?.ToString();
+            ChangedData(true);
+        }
+
+        private void 発送方法コード_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            発送方法.Text = ((DataRowView)発送方法コード.SelectedItem)?.Row.Field<String>("Display2")?.ToString();
+            ChangedData(true);
+        }
+        private void 発送方法コード_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            OriginalClass.SetComboBoxAppearance((ComboBox)sender, e, new int[] { 50, 130 }, new string[] { "Display", "Display2" });
+            発送方法コード.Invalidate();
+            発送方法コード.DroppedDown = true;
+        }
+
+        private void 自社担当者コード_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            自社担当者名.Text = ((DataRowView)自社担当者コード.SelectedItem)?.Row.Field<String>("Display2")?.ToString();
+            ChangedData(true);
+        }
+
+        private void 自社担当者コード_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            OriginalClass.SetComboBoxAppearance((ComboBox)sender, e, new int[] { 50, 150 }, new string[] { "Display", "Display2" });
+            自社担当者コード.Invalidate();
+            自社担当者コード.DroppedDown = true;
+        }
+
         private void 備考_Enter(object sender, EventArgs e)
         {
             this.toolStripStatusLabel2.Text = "■全角１００文字まで入力できます。";
@@ -446,7 +618,53 @@ namespace u_net
             }
         }
 
+        private void コマンド登録_Click(object sender, EventArgs e)
+        {
+            object varSaved1 = null; // 承認日時保存用
+            object varSaved2 = null; // 承認者コード保存用
 
+            this.DoubleBuffered = true;
+
+            if (ActiveControl == コマンド登録)
+            {
+                GetNextControl(コマンド登録, false).Focus();
+            }
+
+            // 登録時におけるエラーチェック
+            //if (!ErrCheck())
+            //{
+            //    goto Bye_コマンド登録_Click;
+            //}
+
+            FunctionClass fn = new FunctionClass();
+            fn.DoWait("登録しています...");
+
+            if (SaveData())
+            {
+                ChangedData(false);
+
+                // 新規モードのときは読込モードへ移行する
+                if (IsNewData)
+                {
+                    //受注コードのソースを更新する
+                    //版数のソースを更新する
+                    UpdateEditionList(this.CurrentCode);
+                    コマンド新規.Enabled = true;
+                    コマンド読込.Enabled = false;
+                }
+
+                fn.WaitForm.Close();
+                MessageBox.Show("登録を完了しました", "登録コマンド", MessageBoxButtons.OK);
+            }
+            else
+            {
+                fn.WaitForm.Close();
+                MessageBox.Show("登録できませんでした。", "登録コマンド", MessageBoxButtons.OK);
+            }
+
+        Bye_コマンド登録_Click:
+            return;
+        }
     }
 }
 
