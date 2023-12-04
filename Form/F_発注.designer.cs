@@ -71,7 +71,6 @@ namespace u_net
             dataGridViewTextBoxColumn26 = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn27 = new DataGridViewTextBoxColumn();
             発注コードラベル = new Label();
-            仕入先2_ラベル = new Label();
             版数_ラベル = new Label();
             発注コード = new ComboBox();
             発注日選択ボタン = new Button();
@@ -133,7 +132,6 @@ namespace u_net
             テストコマンド = new Button();
             無効日時 = new TextBox();
             無効者コード = new TextBox();
-            発注明細1 = new MultiRowDesigner.発注明細();
             statusStrip1 = new StatusStrip();
             toolStripStatusLabel1 = new ToolStripStatusLabel();
             toolStripStatusLabel2 = new ToolStripStatusLabel();
@@ -486,21 +484,6 @@ namespace u_net
             発注コードラベル.Text = "発注コード(&C)";
             発注コードラベル.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // 仕入先2_ラベル
-            // 
-            仕入先2_ラベル.AllowDrop = true;
-            仕入先2_ラベル.AutoEllipsis = true;
-            仕入先2_ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            仕入先2_ラベル.ForeColor = SystemColors.ActiveCaptionText;
-            仕入先2_ラベル.ImageAlign = ContentAlignment.MiddleLeft;
-            仕入先2_ラベル.Location = new Point(15, 50);
-            仕入先2_ラベル.Margin = new Padding(0);
-            仕入先2_ラベル.Name = "仕入先2_ラベル";
-            仕入先2_ラベル.Size = new Size(132, 17);
-            仕入先2_ラベル.TabIndex = 201;
-            仕入先2_ラベル.Text = "仕入先2";
-            仕入先2_ラベル.TextAlign = ContentAlignment.MiddleLeft;
-            // 
             // 版数_ラベル
             // 
             版数_ラベル.Location = new Point(253, 50);
@@ -528,6 +511,7 @@ namespace u_net
             // 
             // 発注日選択ボタン
             // 
+            発注日選択ボタン.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             発注日選択ボタン.Location = new Point(228, 71);
             発注日選択ボタン.Margin = new Padding(4);
             発注日選択ボタン.Name = "発注日選択ボタン";
@@ -732,6 +716,7 @@ namespace u_net
             // 
             // 仕入先選択ボタン
             // 
+            仕入先選択ボタン.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             仕入先選択ボタン.Location = new Point(228, 117);
             仕入先選択ボタン.Margin = new Padding(4);
             仕入先選択ボタン.Name = "仕入先選択ボタン";
@@ -1323,17 +1308,9 @@ namespace u_net
             無効者コード.TabStop = false;
             無効者コード.Visible = false;
             // 
-            // 発注明細1
-            // 
-            発注明細1.Location = new Point(10, 358);
-            発注明細1.Margin = new Padding(4);
-            発注明細1.Name = "発注明細1";
-            発注明細1.Size = new Size(1003, 250);
-            発注明細1.TabIndex = 10116;
-            // 
             // statusStrip1
             // 
-            statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1, toolStripStatusLabel2 });
+            statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1 });
             statusStrip1.Location = new Point(0, 611);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Padding = new Padding(1, 0, 19, 0);
@@ -1344,7 +1321,8 @@ namespace u_net
             // toolStripStatusLabel1
             // 
             toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            toolStripStatusLabel1.Size = new Size(0, 20);
+            toolStripStatusLabel1.Size = new Size(111, 20);
+            toolStripStatusLabel1.Text = "各種項目の説明";
             // 
             // toolStripStatusLabel2
             // 
@@ -1372,7 +1350,6 @@ namespace u_net
             ClientSize = new Size(1036, 636);
             Controls.Add(入庫状況);
             Controls.Add(statusStrip1);
-            Controls.Add(発注明細1);
             Controls.Add(無効者コード);
             Controls.Add(無効日時);
             Controls.Add(テストコマンド);
@@ -1445,7 +1422,6 @@ namespace u_net
             Controls.Add(コマンド複写);
             Controls.Add(コマンド読込);
             Controls.Add(発注コードラベル);
-            Controls.Add(仕入先2_ラベル);
             Controls.Add(版数_ラベル);
             Controls.Add(panel1);
             ImeMode = ImeMode.Off;
@@ -1493,16 +1469,11 @@ namespace u_net
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn25;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn26;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn27;
-        private CalendarColumn calendarColumn1;
 
-
-        private CalendarColumn calendarColumn2;
-        private CalendarColumn calendarColumn3;
         private System.Windows.Forms.Button コマンド終了;
         private System.Windows.Forms.Button コマンド登録;
         private System.Windows.Forms.DataGridViewTextBoxColumn 日誌IDDataGridViewTextBoxColumn;
 
-        private CalendarColumn 登録日;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button コマンド新規;
         private System.Windows.Forms.Button コマンド購買;
@@ -1514,47 +1485,14 @@ namespace u_net
         private System.Windows.Forms.Button コマンド削除;
         private System.Windows.Forms.Button コマンド複写;
         private System.Windows.Forms.Button コマンド読込;
-        private uiDataSetTableAdapters.M単位TableAdapter m単位TableAdapter;
-        private uiDataSetTableAdapters.ComboBoxManufactureFlowTableAdapter comboBoxManufactureFlowTableAdapter;
-        private uiDataSetTableAdapters.ComboBox売上区分TableAdapter comboBox売上区分TableAdapter;
-        private uiDataSetTableAdapters.M商品分類TableAdapter m商品分類TableAdapter;
-        private uiDataSetTableAdapters.CombBox商品コードTableAdapter combBox商品コードTableAdapter;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgv商品コード;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgvRevision;
-        private System.Windows.Forms.DataGridViewTextBoxColumn 明細番号;
-        private System.Windows.Forms.DataGridViewTextBoxColumn 型式番号;
-        private System.Windows.Forms.DataGridViewTextBoxColumn 型式名;
-        private System.Windows.Forms.DataGridViewTextBoxColumn 定価;
-        private System.Windows.Forms.DataGridViewTextBoxColumn 原価;
-        private System.Windows.Forms.DataGridViewTextBoxColumn 機能;
-        private System.Windows.Forms.DataGridViewTextBoxColumn 構成番号;
+
         private System.Windows.Forms.Label 発注コードラベル;
 
-        private uiDataSet uiDataSet;
-        private uiDataSetTableAdapters.M商品TableAdapter m商品TableAdapter;
-        private uiDataSetTableAdapters.V商品ヘッダTableAdapter v商品ヘッダTableAdapter;
-        private uiDataSetTableAdapters.M商品明細TableAdapter M商品明細TableAdapter;
-        private DataGridViewTextBoxColumn 商品コードDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn revisionDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn 明細番号DataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn 型式番号DataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn 型式名DataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn 定価DataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn 原価DataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn 機能DataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn 構成番号DataGridViewTextBoxColumn;
-        private uiDataSetTableAdapters.combBoxMシリーズTableAdapter combBoxMシリーズTableAdapter;
-        private uiDataSetTableAdapters.TableAdapterManager tableAdapterManager;
-        private Label 仕入先2_ラベル;
         private Label 版数_ラベル;
         private ComboBox 発注コード;
         private Button 発注日選択ボタン;
         private Button 改版ボタン;
         private TextBox 購買コード;
-        private newDataSetTableAdapters.M部品形状TableAdapter m部品形状TableAdapter;
-        private newDataSet newDataSet;
-        private newDataSetTableAdapters.M部品分類TableAdapter m部品分類TableAdapter;
-        private newDataSetTableAdapters.RohsStatusCodeTableAdapter rohsStatusCodeTableAdapter;
         private ComboBox 発注版数;
         private Label 購買コード_ラベル;
         private TextBox シリーズ名;
@@ -1613,7 +1551,8 @@ namespace u_net
         private TextBox 無効者コード;
         private MultiRowDesigner.発注明細 発注明細1;
         private StatusStrip statusStrip1;
-        private ToolStripStatusLabel toolStripStatusLabel1;
+        internal ToolStripStatusLabel toolStripStatusLabel1;
+        //private ToolStripStatusLabel toolStripStatusLabel1;
         private ToolStripStatusLabel toolStripStatusLabel2;
         private TextBox 入庫状況;
     }
