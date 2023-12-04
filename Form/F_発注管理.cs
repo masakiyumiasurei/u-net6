@@ -680,7 +680,7 @@ namespace u_net
 
         private void コマンド発注_Click(object sender, EventArgs e)
         {
-            F_発注 fm = new F_発注();
+            F_発注 fm = new F_発注(CurrentCode + ","+ CurrentEdition);
             fm.ShowDialog();
         }
 
