@@ -37,7 +37,7 @@ namespace MultiRowDesigner
 
             switch (gcMultiRow1.CurrentCell)
             {
-                //ボタン
+                //ボタンClick時の処理
                 case ButtonCell:
                     switch (e.CellName)
                     {
@@ -59,7 +59,7 @@ namespace MultiRowDesigner
 
             switch (gcMultiRow1.CurrentCell)
             {
-                //テキストボックス
+                //テキストボックスEnter時の処理
                 case TextBoxCell:
                     switch (e.CellName)
                     {
@@ -109,7 +109,7 @@ namespace MultiRowDesigner
                     }
                     break;
 
-                //コンボボックス
+                //コンボボックスEnter時の処理
                 case ComboBoxCell:
                     switch (e.CellName)
                     {
