@@ -133,6 +133,7 @@ namespace u_net.Public
             }
         }
 
+
         public static bool UpdateOrInsertDetails(GcMultiRow multiRow, SqlConnection connection, string tableName, string condition,
             string ukname, SqlTransaction transaction)
         {
@@ -140,7 +141,7 @@ namespace u_net.Public
             {
                 
                 string selectQuery = $"SELECT * FROM {tableName} WHERE {condition}";
-                string deleteQuery = $"DELETE * FROM {tableName} WHERE {condition}";
+                string deleteQuery = $"DELETE FROM {tableName} WHERE {condition}";
                 using (SqlCommand selectCommand = new SqlCommand(selectQuery, connection, transaction))
                 using (SqlCommand deleteCommand = new SqlCommand(deleteQuery, connection, transaction))
                 using (SqlDataAdapter adapter = new SqlDataAdapter(selectCommand))
@@ -153,8 +154,8 @@ namespace u_net.Public
                     // 指定された条件で既存のデータを検索
                     adapter.Fill(dataSet, tableName);
 
-                    // 明細行数分データを登録
-                    for (int i = 0; i < multiRow.RowCount; i++)
+                    // 明細行数分データを登録 (編集行を除く為、RowCountを-1しているが、別の方法を検討した方がよさそう)
+                    for (int i = 0; i < multiRow.RowCount -1; i++)
                     {
                         DataRow newRow = dataSet.Tables[0].NewRow();
                         SetControlValuesMultiRow(multiRow.Rows[i].Cells, newRow, connection, tableName, ukname, transaction);
@@ -181,7 +182,7 @@ namespace u_net.Public
         {
             foreach (Cell cell in cells)
             {
-                if (!(cell is TextBoxCell) && !(cell is ComboBoxCell) && !(cell is CheckBoxCell) && !(cell is NumericUpDownCell))
+                if (!(cell is RowHeaderCell) && !(cell is TextBoxCell) && !(cell is ComboBoxCell) && !(cell is CheckBoxCell) && !(cell is NumericUpDownCell))
                 {
                     continue;
                 }
@@ -191,6 +192,13 @@ namespace u_net.Public
 
                 switch (cell)
                 {
+                    case RowHeaderCell rowHeaderCell:
+                        if (!string.IsNullOrEmpty(rowHeaderCell.DisplayText))
+                        {
+                            controlValue = rowHeaderCell.DisplayText;
+                        }
+                        break;
+
                     case TextBoxCell textBoxCell:
                         if (!string.IsNullOrEmpty(textBoxCell.Value.ToString()))
                         {
@@ -199,11 +207,10 @@ namespace u_net.Public
                         break;
 
                     case ComboBoxCell comboBoxCell:
-                        // ComboBoxCellではTextとSelectedValueが存在せず、Valueに統合されている？要検証
                         if (cell.Name == ukname)
                         {
                             //controlValue = comboBox.Text;
-                            controlValue = comboBoxCell.Value;
+                            controlValue = comboBoxCell.DisplayText;
                         }
                         else
                         {
