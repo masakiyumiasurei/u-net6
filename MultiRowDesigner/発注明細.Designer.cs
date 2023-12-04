@@ -42,6 +42,8 @@
             this.gcMultiRow1.TabIndex = 0;
             this.gcMultiRow1.Template = this.発注明細テンプレート1;
             this.gcMultiRow1.Text = "gcMultiRow1";
+            this.gcMultiRow1.CellEnter += new System.EventHandler<GrapeCity.Win.MultiRow.CellEventArgs>(this.gcMultiRow1_CellEnter);
+            this.gcMultiRow1.CellContentClick += new System.EventHandler<GrapeCity.Win.MultiRow.CellEventArgs>(this.gcMultiRow1_CellContentClick);
             // 
             // 発注明細
             // 

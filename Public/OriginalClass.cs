@@ -15,6 +15,7 @@ using ComboBox = System.Windows.Forms.ComboBox;
 using System.Drawing.Imaging;
 using System.Drawing.Printing;
 using GrapeCity.Win.MultiRow;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace u_net.Public
 {
@@ -302,7 +303,29 @@ namespace u_net.Public
 
         }
 
+        //SQLの結果を返す 返す型が不明なのでジェネリックで定義する
+        public static T GetScalar<T>(SqlConnection connection, string sql)
+        {
+            T result =  default(T);
 
+            try
+            {
+                using (SqlCommand command = new SqlCommand(sql, connection))
+                {
+                    object scalarResult = command.ExecuteScalar();
+                    if (scalarResult != DBNull.Value)
+                    {
+                        result = (T)Convert.ChangeType(scalarResult, typeof(T));
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error executing SQL query: {ex.Message}");
+            }
+
+            return result;
+        }
 
     }
 }

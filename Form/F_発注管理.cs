@@ -680,8 +680,8 @@ namespace u_net
 
         private void コマンド発注_Click(object sender, EventArgs e)
         {
-            //T_発注 fm = new T_発注();
-            //fm.ShowDialog();
+            F_発注 fm = new F_発注(CurrentCode + ","+ CurrentEdition);
+            fm.ShowDialog();
         }
 
 
@@ -755,8 +755,8 @@ namespace u_net
 
                 // 入庫フォーム側でリレー入力を行う                
 
-                //T_入庫 fm = new T_入庫();
-                //fm.ShowDialog();
+                F_入庫 fm = new F_入庫();
+                fm.ShowDialog();
 
             }
             catch (Exception ex)

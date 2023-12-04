@@ -1556,71 +1556,71 @@ namespace u_net
 
         private void 製品コード_Enter(object sender, EventArgs e)
         {
-            toolStripStatusLabel2.Text = "■読み込む製品データのコードを入力します。　■半角８文字まで入力でき、上位０は省略可能です。";
+            toolStripStatusLabel1.Text = "■読み込む製品データのコードを入力します。　■半角８文字まで入力でき、上位０は省略可能です。";
         }
 
         private void 製品コード_Leave(object sender, EventArgs e)
         {
-            toolStripStatusLabel2.Text = "各種項目の説明";
+            toolStripStatusLabel1.Text = "各種項目の説明";
         }
 
         private void 品名_Enter(object sender, EventArgs e)
         {
-            toolStripStatusLabel2.Text = "■カタログ等に記載される製品の品名を入力します。　■全角３０文字まで入力できます。";
+            toolStripStatusLabel1.Text = "■カタログ等に記載される製品の品名を入力します。　■全角３０文字まで入力できます。";
         }
 
         private void 品名_Leave(object sender, EventArgs e)
         {
-            toolStripStatusLabel2.Text = "各種項目の説明";
+            toolStripStatusLabel1.Text = "各種項目の説明";
         }
 
         private void シリーズ名_Enter(object sender, EventArgs e)
         {
-            toolStripStatusLabel2.Text = "■製品のシリーズ名を入力します。シリーズ名は機種名とも呼ばれます。　■半角３０文字まで入力できます。";
+            toolStripStatusLabel1.Text = "■製品のシリーズ名を入力します。シリーズ名は機種名とも呼ばれます。　■半角３０文字まで入力できます。";
         }
 
         private void シリーズ名_Leave(object sender, EventArgs e)
         {
-            toolStripStatusLabel2.Text = "各種項目の説明";
+            toolStripStatusLabel1.Text = "各種項目の説明";
         }
 
         private void 識別コード_Enter(object sender, EventArgs e)
         {
-            toolStripStatusLabel2.Text = "■指導書No.の一部を入力します。　■半角20文字まで入力できます。";
+            toolStripStatusLabel1.Text = "■指導書No.の一部を入力します。　■半角20文字まで入力できます。";
         }
 
         private void 識別コード_Leave(object sender, EventArgs e)
         {
-            toolStripStatusLabel2.Text = "各種項目の説明";
+            toolStripStatusLabel1.Text = "各種項目の説明";
         }
 
         private void RoHS対応_Enter(object sender, EventArgs e)
         {
-            toolStripStatusLabel2.Text = "■本製品がRoHSに対応しているかどうかを示します。";
+            toolStripStatusLabel1.Text = "■本製品がRoHSに対応しているかどうかを示します。";
         }
 
         private void RoHS対応_Leave(object sender, EventArgs e)
         {
-            toolStripStatusLabel2.Text = "各種項目の説明";
+            toolStripStatusLabel1.Text = "各種項目の説明";
         }
         private void 備考_Enter(object sender, EventArgs e)
         {
-            toolStripStatusLabel2.Text = "■全角２００文字まで入力できます。";
+            toolStripStatusLabel1.Text = "■全角２００文字まで入力できます。";
         }
 
         private void 備考_Leave(object sender, EventArgs e)
         {
-            toolStripStatusLabel2.Text = "各種項目の説明";
+            toolStripStatusLabel1.Text = "各種項目の説明";
         }
 
         private void 製品版数_Enter(object sender, EventArgs e)
         {
-            toolStripStatusLabel2.Text = "■参照する受注データの版数を選択します。　■入力欄から改版することはできません。";
+            toolStripStatusLabel1.Text = "■参照する受注データの版数を選択します。　■入力欄から改版することはできません。";
         }
 
         private void 製品版数_Leave(object sender, EventArgs e)
         {
-            toolStripStatusLabel2.Text = "各種項目の説明";
+            toolStripStatusLabel1.Text = "各種項目の説明";
         }
         private void ChemSherpaVersion_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
@@ -1635,12 +1635,12 @@ namespace u_net
 
         private void ChemSherpaVersion_Enter(object sender, EventArgs e)
         {
-            toolStripStatusLabel2.Text = "■入手したchemSHERPAのバージョンを入力します。　■10文字まで入力可。";
+            toolStripStatusLabel1.Text = "■入手したchemSHERPAのバージョンを入力します。　■10文字まで入力可。";
         }
 
         private void ChemSherpaVersion_Leave(object sender, EventArgs e)
         {
-            toolStripStatusLabel2.Text = "各種項目の説明";
+            toolStripStatusLabel1.Text = "各種項目の説明";
         }
 
     }

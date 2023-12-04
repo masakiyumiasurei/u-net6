@@ -44,6 +44,7 @@
     <EmbeddedResource Include="MultiRowDesigner\入庫明細.resx" />
     <EmbeddedResource Include="MultiRowDesigner\入庫明細テンプレート.resx" />
     <EmbeddedResource Include="MultiRowDesigner\受注明細.resx" />
+    <EmbeddedResource Include="MultiRowDesigner\受注明細テンプレート.resx" />
     <EmbeddedResource Include="MultiRowDesigner\発注明細.resx" />
     <EmbeddedResource Include="MultiRowDesigner\発注明細テンプレート.resx" />
   </ItemGroup>
