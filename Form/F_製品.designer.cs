@@ -120,8 +120,7 @@ namespace u_net
             this.SupersededDate = new System.Windows.Forms.TextBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.製品明細1 = new MultiRowDesigner.製品明細();
+            this.製品明細1 = new MultiRowDesigner.製品明細(this);
             this.panel1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -1071,9 +1070,8 @@ namespace u_net
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel1,
-            this.toolStripStatusLabel2});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 612);
+            this.toolStripStatusLabel1});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 627);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 19, 0);
             this.statusStrip1.Size = new System.Drawing.Size(1036, 22);
@@ -1083,26 +1081,21 @@ namespace u_net
             // toolStripStatusLabel1
             // 
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 17);
-            // 
-            // toolStripStatusLabel2
-            // 
-            this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            this.toolStripStatusLabel2.Size = new System.Drawing.Size(89, 17);
-            this.toolStripStatusLabel2.Text = "各種項目の説明";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(89, 17);
+            this.toolStripStatusLabel1.Text = "各種項目の説明";
             // 
             // 製品明細1
             // 
-            this.製品明細1.Location = new System.Drawing.Point(9, 247);
+            this.製品明細1.Location = new System.Drawing.Point(8, 250);
             this.製品明細1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.製品明細1.Name = "製品明細1";
-            this.製品明細1.Size = new System.Drawing.Size(1015, 366);
+            this.製品明細1.Size = new System.Drawing.Size(1015, 371);
             this.製品明細1.TabIndex = 10196;
             // 
             // F_製品
             // 
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(1036, 634);
+            this.ClientSize = new System.Drawing.Size(1036, 649);
             this.Controls.Add(this.製品明細1);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.SupersededDate);
@@ -1211,16 +1204,11 @@ namespace u_net
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn25;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn26;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn27;
-        private CalendarColumn calendarColumn1;
 
-
-        private CalendarColumn calendarColumn2;
-        private CalendarColumn calendarColumn3;
         private System.Windows.Forms.Button コマンド終了;
         private System.Windows.Forms.Button コマンド登録;
         private System.Windows.Forms.DataGridViewTextBoxColumn 日誌IDDataGridViewTextBoxColumn;
 
-        private CalendarColumn 登録日;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button コマンド新規;
         private System.Windows.Forms.Button コマンド廃止;
@@ -1231,40 +1219,7 @@ namespace u_net
         private System.Windows.Forms.Button コマンド削除;
         private System.Windows.Forms.Button コマンド複写;
         private System.Windows.Forms.Button コマンド読込;
-        private uiDataSetTableAdapters.M単位TableAdapter m単位TableAdapter;
-        private uiDataSetTableAdapters.ComboBoxManufactureFlowTableAdapter comboBoxManufactureFlowTableAdapter;
-        private uiDataSetTableAdapters.ComboBox売上区分TableAdapter comboBox売上区分TableAdapter;
-        private uiDataSetTableAdapters.M商品分類TableAdapter m商品分類TableAdapter;
-        private uiDataSetTableAdapters.CombBox商品コードTableAdapter combBox商品コードTableAdapter;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgv商品コード;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgvRevision;
-        private System.Windows.Forms.DataGridViewTextBoxColumn 明細番号;
-        private System.Windows.Forms.DataGridViewTextBoxColumn 型式番号;
-        private System.Windows.Forms.DataGridViewTextBoxColumn 型式名;
-        private System.Windows.Forms.DataGridViewTextBoxColumn 定価;
-        private System.Windows.Forms.DataGridViewTextBoxColumn 原価;
-        private System.Windows.Forms.DataGridViewTextBoxColumn 機能;
-        private System.Windows.Forms.DataGridViewTextBoxColumn 構成番号;
 
-        private uiDataSet uiDataSet;
-        private uiDataSetTableAdapters.M商品TableAdapter m商品TableAdapter;
-        private uiDataSetTableAdapters.V商品ヘッダTableAdapter v商品ヘッダTableAdapter;
-        private uiDataSetTableAdapters.M商品明細TableAdapter M商品明細TableAdapter;
-        private DataGridViewTextBoxColumn 商品コードDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn revisionDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn 明細番号DataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn 型式番号DataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn 型式名DataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn 定価DataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn 原価DataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn 機能DataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn 構成番号DataGridViewTextBoxColumn;
-        private uiDataSetTableAdapters.combBoxMシリーズTableAdapter combBoxMシリーズTableAdapter;
-        private uiDataSetTableAdapters.TableAdapterManager tableAdapterManager;
-        private newDataSetTableAdapters.M部品形状TableAdapter m部品形状TableAdapter;
-        private newDataSet newDataSet;
-        private newDataSetTableAdapters.M部品分類TableAdapter m部品分類TableAdapter;
-        private newDataSetTableAdapters.RohsStatusCodeTableAdapter rohsStatusCodeTableAdapter;
         private Button コマンドツール;
         private TextBox 備考;
         private Label 備考_ラベル;
@@ -1315,9 +1270,8 @@ namespace u_net
         private TextBox 汎用キー1;
         private TextBox SupersededDate;
         private StatusStrip statusStrip1;
-        private ToolStripStatusLabel toolStripStatusLabel1;
-        private ToolStripStatusLabel toolStripStatusLabel2;
         private MultiRowDesigner.製品明細 製品明細1;
+        internal ToolStripStatusLabel toolStripStatusLabel1;
     }
 }
 
