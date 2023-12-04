@@ -978,22 +978,22 @@ namespace u_net
 
         private void 発注コード_Enter(object sender, EventArgs e)
         {
-            toolStripStatusLabel2.Text = "■発注コードを入力します。";
+            toolStripStatusLabel1.Text = "■発注コードを入力します。";
         }
 
         private void 発注コード_Leave(object sender, EventArgs e)
         {
-            toolStripStatusLabel2.Text = "各種項目の説明";
+            toolStripStatusLabel1.Text = "各種項目の説明";
         }
 
         private void 発注日_Enter(object sender, EventArgs e)
         {
-            toolStripStatusLabel2.Text = "■[space]キーでカレンダーを参照できます。　■未来の日付は入力できません。";
+            toolStripStatusLabel1.Text = "■[space]キーでカレンダーを参照できます。　■未来の日付は入力できません。";
         }
 
         private void 発注日_Leave(object sender, EventArgs e)
         {
-            toolStripStatusLabel2.Text = "各種項目の説明";
+            toolStripStatusLabel1.Text = "各種項目の説明";
         }
 
         private void 発注日_KeyDown(object sender, KeyEventArgs e)
@@ -1003,72 +1003,72 @@ namespace u_net
 
         private void 仕入先コード_Enter(object sender, EventArgs e)
         {
-            toolStripStatusLabel2.Text = "■仕入先コードを入力します。　■コードは８桁で先頭の 0 は省略できます。";
+            toolStripStatusLabel1.Text = "■仕入先コードを入力します。　■コードは８桁で先頭の 0 は省略できます。";
         }
 
         private void 仕入先コード_Leave(object sender, EventArgs e)
         {
-            toolStripStatusLabel2.Text = "各種項目の説明";
+            toolStripStatusLabel1.Text = "各種項目の説明";
         }
 
         private void 仕入先担当者名_Enter(object sender, EventArgs e)
         {
-            toolStripStatusLabel2.Text = "■仕入先の担当者名を入力します。　■全角１０文字まで入力できます。";
+            toolStripStatusLabel1.Text = "■仕入先の担当者名を入力します。　■全角１０文字まで入力できます。";
         }
 
         private void 仕入先担当者名_Leave(object sender, EventArgs e)
         {
-            toolStripStatusLabel2.Text = "各種項目の説明";
+            toolStripStatusLabel1.Text = "各種項目の説明";
         }
 
         private void 発注版数_Enter(object sender, EventArgs e)
         {
-            toolStripStatusLabel2.Text = "■発注データの版数を入力します。　■通常、旧版を参照するときに入力します。";
+            toolStripStatusLabel1.Text = "■発注データの版数を入力します。　■通常、旧版を参照するときに入力します。";
         }
 
         private void 発注版数_Leave(object sender, EventArgs e)
         {
-            toolStripStatusLabel2.Text = "各種項目の説明";
+            toolStripStatusLabel1.Text = "各種項目の説明";
         }
 
         private void 摘要_Enter(object sender, EventArgs e)
         {
-            toolStripStatusLabel2.Text = "■発注書の摘要欄に表示する文章を入力します。";
+            toolStripStatusLabel1.Text = "■発注書の摘要欄に表示する文章を入力します。";
         }
 
         private void 摘要_Leave(object sender, EventArgs e)
         {
-            toolStripStatusLabel2.Text = "各種項目の説明";
+            toolStripStatusLabel1.Text = "各種項目の説明";
         }
 
         private void 備考_Enter(object sender, EventArgs e)
         {
-            toolStripStatusLabel2.Text = "■業務連絡事項を入力します。発注書には反映されません。";
+            toolStripStatusLabel1.Text = "■業務連絡事項を入力します。発注書には反映されません。";
         }
 
         private void 備考_Leave(object sender, EventArgs e)
         {
-            toolStripStatusLabel2.Text = "各種項目の説明";
+            toolStripStatusLabel1.Text = "各種項目の説明";
         }
 
         private void 在庫管理_Enter(object sender, EventArgs e)
         {
-            toolStripStatusLabel2.Text = "■在庫管理を行う場合はチェックを入れます。";
+            toolStripStatusLabel1.Text = "■在庫管理を行う場合はチェックを入れます。";
         }
 
         private void 在庫管理_Leave(object sender, EventArgs e)
         {
-            toolStripStatusLabel2.Text = "各種項目の説明";
+            toolStripStatusLabel1.Text = "各種項目の説明";
         }
 
         private void NoCredit_Enter(object sender, EventArgs e)
         {
-            toolStripStatusLabel2.Text = "■振込を行う必要が無いときのみチェックを入れてください。";
+            toolStripStatusLabel1.Text = "■振込を行う必要が無いときのみチェックを入れてください。";
         }
 
         private void NoCredit_Leave(object sender, EventArgs e)
         {
-            toolStripStatusLabel2.Text = "各種項目の説明";
+            toolStripStatusLabel1.Text = "各種項目の説明";
         }
 
     }
