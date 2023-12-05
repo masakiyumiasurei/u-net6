@@ -508,8 +508,8 @@ namespace u_net
             this.ユニットコード.Name = "ユニットコード";
             this.ユニットコード.Size = new System.Drawing.Size(139, 21);
             this.ユニットコード.TabIndex = 2;
-            this.ユニットコード.Enter += new System.EventHandler(this.製品コード_Enter);
-            this.ユニットコード.Leave += new System.EventHandler(this.製品コード_Leave);
+            this.ユニットコード.Enter += new System.EventHandler(this.ユニットコード_Enter);
+            this.ユニットコード.Leave += new System.EventHandler(this.ユニットコード_Leave);
             // 
             // ユニットコードラベル
             // 
@@ -679,8 +679,6 @@ namespace u_net
             this.ユニット版数.Name = "ユニット版数";
             this.ユニット版数.Size = new System.Drawing.Size(54, 21);
             this.ユニット版数.TabIndex = 4;
-            this.ユニット版数.Enter += new System.EventHandler(this.製品版数_Enter);
-            this.ユニット版数.Leave += new System.EventHandler(this.製品版数_Leave);
             // 
             // label1
             // 
@@ -713,8 +711,8 @@ namespace u_net
             this.型番.Name = "型番";
             this.型番.Size = new System.Drawing.Size(204, 20);
             this.型番.TabIndex = 10;
-            this.型番.Enter += new System.EventHandler(this.シリーズ名_Enter);
-            this.型番.Leave += new System.EventHandler(this.シリーズ名_Leave);
+            this.型番.Enter += new System.EventHandler(this.型番_Enter);
+            this.型番.Leave += new System.EventHandler(this.型番_Leave);
             // 
             // RoHS対応
             // 
@@ -954,7 +952,7 @@ namespace u_net
             // 
             // ユニット明細1
             // 
-            this.ユニット明細1.Location = new System.Drawing.Point(9, 196);
+            this.ユニット明細1.Location = new System.Drawing.Point(5, 195);
             this.ユニット明細1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ユニット明細1.Name = "ユニット明細1";
             this.ユニット明細1.Size = new System.Drawing.Size(1003, 369);
@@ -1116,7 +1114,6 @@ namespace u_net
         private TextBox 更新者名;
         private TextBox 更新者コード;
         private StatusStrip statusStrip1;
-        //private MultiRowDesigner.ユニット明細 ユニット明細1;
         internal ToolStripStatusLabel toolStripStatusLabel1;
         private CheckBox 廃止;
         private Label label5;
