@@ -29,6 +29,7 @@ namespace u_net
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(F_発注));
             コマンド終了 = new Button();
             コマンド登録 = new Button();
             panel1 = new Panel();
@@ -42,34 +43,6 @@ namespace u_net
             コマンド削除 = new Button();
             コマンド複写 = new Button();
             コマンド読込 = new Button();
-            dataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn2 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn3 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn4 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn5 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn6 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn7 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn8 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn9 = new DataGridViewTextBoxColumn();
-            日誌IDDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn10 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn11 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn12 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn13 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn14 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn15 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn16 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn17 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn18 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn19 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn20 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn21 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn22 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn23 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn24 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn25 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn26 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn27 = new DataGridViewTextBoxColumn();
             発注コードラベル = new Label();
             版数_ラベル = new Label();
             発注コード = new ComboBox();
@@ -136,6 +109,7 @@ namespace u_net
             toolStripStatusLabel1 = new ToolStripStatusLabel();
             toolStripStatusLabel2 = new ToolStripStatusLabel();
             入庫状況 = new TextBox();
+            発注明細1 = new MultiRowDesigner.発注明細();
             panel1.SuspendLayout();
             statusStrip1.SuspendLayout();
             SuspendLayout();
@@ -339,136 +313,6 @@ namespace u_net
             コマンド読込.UseVisualStyleBackColor = true;
             コマンド読込.Click += コマンド読込_Click;
             // 
-            // dataGridViewTextBoxColumn1
-            // 
-            dataGridViewTextBoxColumn1.DataPropertyName = "商品コード";
-            dataGridViewTextBoxColumn1.HeaderText = "商品コード";
-            dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            dataGridViewTextBoxColumn2.DataPropertyName = "Revision";
-            dataGridViewTextBoxColumn2.HeaderText = "Revision";
-            dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            dataGridViewTextBoxColumn3.DataPropertyName = "明細番号";
-            dataGridViewTextBoxColumn3.HeaderText = "明細番号";
-            dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            dataGridViewTextBoxColumn4.DataPropertyName = "型式番号";
-            dataGridViewTextBoxColumn4.HeaderText = "型式番号";
-            dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            dataGridViewTextBoxColumn5.DataPropertyName = "型式名";
-            dataGridViewTextBoxColumn5.HeaderText = "型式名";
-            dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            // 
-            // dataGridViewTextBoxColumn6
-            // 
-            dataGridViewTextBoxColumn6.DataPropertyName = "定価";
-            dataGridViewTextBoxColumn6.HeaderText = "定価";
-            dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            // 
-            // dataGridViewTextBoxColumn7
-            // 
-            dataGridViewTextBoxColumn7.DataPropertyName = "原価";
-            dataGridViewTextBoxColumn7.HeaderText = "原価";
-            dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
-            // 
-            // dataGridViewTextBoxColumn8
-            // 
-            dataGridViewTextBoxColumn8.DataPropertyName = "機能";
-            dataGridViewTextBoxColumn8.HeaderText = "機能";
-            dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
-            // 
-            // dataGridViewTextBoxColumn9
-            // 
-            dataGridViewTextBoxColumn9.DataPropertyName = "構成番号";
-            dataGridViewTextBoxColumn9.HeaderText = "構成番号";
-            dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
-            // 
-            // 日誌IDDataGridViewTextBoxColumn
-            // 
-            日誌IDDataGridViewTextBoxColumn.Name = "日誌IDDataGridViewTextBoxColumn";
-            // 
-            // dataGridViewTextBoxColumn10
-            // 
-            dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
-            // 
-            // dataGridViewTextBoxColumn11
-            // 
-            dataGridViewTextBoxColumn11.Name = "dataGridViewTextBoxColumn11";
-            // 
-            // dataGridViewTextBoxColumn12
-            // 
-            dataGridViewTextBoxColumn12.Name = "dataGridViewTextBoxColumn12";
-            // 
-            // dataGridViewTextBoxColumn13
-            // 
-            dataGridViewTextBoxColumn13.Name = "dataGridViewTextBoxColumn13";
-            // 
-            // dataGridViewTextBoxColumn14
-            // 
-            dataGridViewTextBoxColumn14.Name = "dataGridViewTextBoxColumn14";
-            // 
-            // dataGridViewTextBoxColumn15
-            // 
-            dataGridViewTextBoxColumn15.Name = "dataGridViewTextBoxColumn15";
-            // 
-            // dataGridViewTextBoxColumn16
-            // 
-            dataGridViewTextBoxColumn16.Name = "dataGridViewTextBoxColumn16";
-            // 
-            // dataGridViewTextBoxColumn17
-            // 
-            dataGridViewTextBoxColumn17.Name = "dataGridViewTextBoxColumn17";
-            // 
-            // dataGridViewTextBoxColumn18
-            // 
-            dataGridViewTextBoxColumn18.Name = "dataGridViewTextBoxColumn18";
-            // 
-            // dataGridViewTextBoxColumn19
-            // 
-            dataGridViewTextBoxColumn19.Name = "dataGridViewTextBoxColumn19";
-            // 
-            // dataGridViewTextBoxColumn20
-            // 
-            dataGridViewTextBoxColumn20.Name = "dataGridViewTextBoxColumn20";
-            // 
-            // dataGridViewTextBoxColumn21
-            // 
-            dataGridViewTextBoxColumn21.Name = "dataGridViewTextBoxColumn21";
-            // 
-            // dataGridViewTextBoxColumn22
-            // 
-            dataGridViewTextBoxColumn22.Name = "dataGridViewTextBoxColumn22";
-            // 
-            // dataGridViewTextBoxColumn23
-            // 
-            dataGridViewTextBoxColumn23.Name = "dataGridViewTextBoxColumn23";
-            // 
-            // dataGridViewTextBoxColumn24
-            // 
-            dataGridViewTextBoxColumn24.Name = "dataGridViewTextBoxColumn24";
-            // 
-            // dataGridViewTextBoxColumn25
-            // 
-            dataGridViewTextBoxColumn25.Name = "dataGridViewTextBoxColumn25";
-            // 
-            // dataGridViewTextBoxColumn26
-            // 
-            dataGridViewTextBoxColumn26.Name = "dataGridViewTextBoxColumn26";
-            // 
-            // dataGridViewTextBoxColumn27
-            // 
-            dataGridViewTextBoxColumn27.Name = "dataGridViewTextBoxColumn27";
-            // 
             // 発注コードラベル
             // 
             発注コードラベル.AllowDrop = true;
@@ -486,6 +330,7 @@ namespace u_net
             // 
             // 版数_ラベル
             // 
+            版数_ラベル.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             版数_ラベル.Location = new Point(253, 50);
             版数_ラベル.Name = "版数_ラベル";
             版数_ラベル.Size = new Size(54, 23);
@@ -526,7 +371,7 @@ namespace u_net
             // 
             改版ボタン.Enabled = false;
             改版ボタン.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            改版ボタン.Location = new Point(275, 70);
+            改版ボタン.Location = new Point(296, 70);
             改版ボタン.Margin = new Padding(4);
             改版ボタン.Name = "改版ボタン";
             改版ボタン.RightToLeft = RightToLeft.Yes;
@@ -565,9 +410,10 @@ namespace u_net
             // 
             // 購買コード_ラベル
             // 
-            購買コード_ラベル.Location = new Point(366, 50);
+            購買コード_ラベル.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            購買コード_ラベル.Location = new Point(383, 50);
             購買コード_ラベル.Name = "購買コード_ラベル";
-            購買コード_ラベル.Size = new Size(72, 23);
+            購買コード_ラベル.Size = new Size(57, 23);
             購買コード_ラベル.TabIndex = 10064;
             購買コード_ラベル.Text = "購買コード";
             // 
@@ -587,17 +433,19 @@ namespace u_net
             // 
             // シリーズ名_ラベル
             // 
-            シリーズ名_ラベル.Location = new Point(366, 73);
+            シリーズ名_ラベル.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            シリーズ名_ラベル.Location = new Point(383, 73);
             シリーズ名_ラベル.Name = "シリーズ名_ラベル";
-            シリーズ名_ラベル.Size = new Size(72, 23);
+            シリーズ名_ラベル.Size = new Size(57, 23);
             シリーズ名_ラベル.TabIndex = 10066;
             シリーズ名_ラベル.Text = "シリーズ名";
             // 
             // ロット番号_ラベル
             // 
-            ロット番号_ラベル.Location = new Point(366, 96);
+            ロット番号_ラベル.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            ロット番号_ラベル.Location = new Point(383, 96);
             ロット番号_ラベル.Name = "ロット番号_ラベル";
-            ロット番号_ラベル.Size = new Size(72, 23);
+            ロット番号_ラベル.Size = new Size(57, 23);
             ロット番号_ラベル.TabIndex = 10067;
             ロット番号_ラベル.Text = "ロット番号";
             // 
@@ -669,7 +517,7 @@ namespace u_net
             発注者コード.Location = new Point(108, 93);
             発注者コード.MaxDropDownItems = 9;
             発注者コード.Name = "発注者コード";
-            発注者コード.Size = new Size(40, 21);
+            発注者コード.Size = new Size(61, 21);
             発注者コード.TabIndex = 8;
             // 
             // 発注者名
@@ -678,7 +526,7 @@ namespace u_net
             発注者名.Enabled = false;
             発注者名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             発注者名.ImeMode = ImeMode.NoControl;
-            発注者名.Location = new Point(152, 94);
+            発注者名.Location = new Point(175, 94);
             発注者名.Margin = new Padding(3, 2, 3, 2);
             発注者名.Name = "発注者名";
             発注者名.Size = new Size(202, 20);
@@ -1344,10 +1192,19 @@ namespace u_net
             入庫状況.TabIndex = 10118;
             入庫状況.TabStop = false;
             // 
+            // 発注明細1
+            // 
+            発注明細1.Location = new Point(5, 361);
+            発注明細1.Margin = new Padding(4, 5, 4, 5);
+            発注明細1.Name = "発注明細1";
+            発注明細1.Size = new Size(1031, 245);
+            発注明細1.TabIndex = 10119;
+            // 
             // F_発注
             // 
             BackColor = SystemColors.Control;
             ClientSize = new Size(1036, 636);
+            Controls.Add(発注明細1);
             Controls.Add(入庫状況);
             Controls.Add(statusStrip1);
             Controls.Add(無効者コード);
@@ -1424,6 +1281,7 @@ namespace u_net
             Controls.Add(発注コードラベル);
             Controls.Add(版数_ラベル);
             Controls.Add(panel1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             ImeMode = ImeMode.Off;
             KeyPreview = true;
             MaximizeBox = false;
@@ -1442,37 +1300,9 @@ namespace u_net
 
         #endregion
 
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn11;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn12;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn13;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn14;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn15;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn16;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn17;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn18;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn19;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn20;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn21;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn22;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn23;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn24;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn25;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn26;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn27;
 
         private System.Windows.Forms.Button コマンド終了;
         private System.Windows.Forms.Button コマンド登録;
-        private System.Windows.Forms.DataGridViewTextBoxColumn 日誌IDDataGridViewTextBoxColumn;
 
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button コマンド新規;
@@ -1549,12 +1379,13 @@ namespace u_net
         private Button テストコマンド;
         private TextBox 無効日時;
         private TextBox 無効者コード;
-        private MultiRowDesigner.発注明細 発注明細1;
+        //private MultiRowDesigner.発注明細 発注明細1;
         private StatusStrip statusStrip1;
         internal ToolStripStatusLabel toolStripStatusLabel1;
         //private ToolStripStatusLabel toolStripStatusLabel1;
         private ToolStripStatusLabel toolStripStatusLabel2;
         private TextBox 入庫状況;
+        private MultiRowDesigner.発注明細 発注明細1;
     }
 }
 
