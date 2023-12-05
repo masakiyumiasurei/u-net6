@@ -39,6 +39,12 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="商品明細.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="商品明細.Designer.cs">
+      <DependentUpon>商品明細.cs</DependentUpon>
+    </Compile>
     <Compile Include="ユニット明細テンプレート.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -62,6 +68,12 @@
     </Compile>
     <Compile Include="入庫明細テンプレート.designer.cs">
       <DependentUpon>入庫明細テンプレート.cs</DependentUpon>
+    </Compile>
+    <Compile Include="商品明細テンプレート.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="商品明細テンプレート.designer.cs">
+      <DependentUpon>商品明細テンプレート.cs</DependentUpon>
     </Compile>
     <Compile Include="製品明細.cs">
       <SubType>UserControl</SubType>
@@ -117,6 +129,9 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="商品明細.resx">
+      <DependentUpon>商品明細.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ユニット明細テンプレート.resx">
       <DependentUpon>ユニット明細テンプレート.cs</DependentUpon>
     </EmbeddedResource>
@@ -128,6 +143,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="入庫明細テンプレート.resx">
       <DependentUpon>入庫明細テンプレート.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="商品明細テンプレート.resx">
+      <DependentUpon>商品明細テンプレート.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="製品明細.resx">
       <DependentUpon>製品明細.cs</DependentUpon>
