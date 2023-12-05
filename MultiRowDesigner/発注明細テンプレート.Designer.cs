@@ -407,6 +407,7 @@
             this.明細削除ボタン.Name = "明細削除ボタン";
             this.明細削除ボタン.Size = new System.Drawing.Size(25, 34);
             cellStyle1.BackColor = System.Drawing.Color.White;
+            cellStyle1.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
             cellStyle1.ImeMode = System.Windows.Forms.ImeMode.Off;
             cellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlText;
             cellStyle1.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
