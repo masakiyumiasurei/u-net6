@@ -16,6 +16,7 @@ using System.Windows.Forms;
 using Newtonsoft.Json.Linq;
 using System.Drawing.Imaging;
 using System.Drawing.Printing;
+using GrapeCity.Win.MultiRow;
 
 namespace u_net
 {
@@ -290,7 +291,7 @@ namespace u_net
 
                 // 明細部の初期化
                 strSQL = "SELECT * FROM T入庫明細 WHERE 入庫コード='" + this.CurrentCode + "' ORDER BY 明細番号";
-                //LoadDetails(strSQL, SubForm, SubDatabase, "入庫明細");
+                VariableSet.SetTable2Details(入庫明細1.Detail, strSQL, cn);
 
                 // ヘッダ部動作制御
                 FunctionClass.LockData(this, false);
@@ -353,15 +354,14 @@ namespace u_net
             try
             {
                 bool success = false;
+                string strSQL = "";
 
                 // 各コントロール値をクリア
                 VariableSet.SetControls(this);
 
-                // 入庫明細の削除
-                //SubDatabase.Execute("DELETE FROM 入庫明細");
-
-                // 入庫明細の再読み込み
-                //this.SubForm.Form.Requery();
+                // 明細部の初期化
+                strSQL = "SELECT * FROM T入庫明細 WHERE 入庫コード='" + this.CurrentCode + "' ORDER BY 明細番号";
+                VariableSet.SetTable2Details(入庫明細1.Detail, strSQL, cn);
 
                 // rsWork.Requery がコメントアウトされているため、必要に応じて適切な実装を行う
 
@@ -706,17 +706,16 @@ namespace u_net
                         return false; ;
                     }
 
-                        // 明細部の登録
-                        //string strKey = $"入庫コード='{codeString}'";
-                        //if (!SaveDetails(SubForm, "T入庫明細", strKey))
-                        //{
-                        //    objConnection.RollbackTrans();  // 変更をキャンセル
-                        //    return 0;
-                        //}
+                    // 明細部の登録
+                    if (!DataUpdater.UpdateOrInsertDetails(this.入庫明細1.Detail, cn, "T入庫明細", strwhere, "入庫コード", transaction))
+                    {
+                        transaction.Rollback();  // 変更をキャンセル
+                        return false; ;
+                    }
 
-                        // 入庫データ登録後に部品の在庫を更新する
-                        // ここでいう在庫とはシステムが管理している実在庫のことである
-                        if (!UpdateStock())
+                    // 入庫データ登録後に部品の在庫を更新する
+                    // ここでいう在庫とはシステムが管理している実在庫のことである
+                    if (!UpdateStock())
                         {
                             transaction.Rollback();  // 変更をキャンセル
                             return false;
@@ -891,10 +890,10 @@ namespace u_net
                         LoadHeader(this, this.CurrentCode);
 
                         // 明細部の表示
-                        //strSQL = "SELECT * FROM V入庫明細 " +
-                        //    $"WHERE 入庫コード='{this.CurrentCode}' " +
-                        //    "ORDER BY 明細番号";
-                        //LoadDetails(strSQL, SubForm, SubDatabase, "入庫明細");
+                        strSQL = "SELECT * FROM V入庫明細 " +
+                            $"WHERE 入庫コード='{this.CurrentCode}' " +
+                            "ORDER BY 明細番号";
+                        VariableSet.SetTable2Details(入庫明細1.Detail, strSQL, cn);
 
                         // 動作制御
                         FunctionClass.LockData(this, this.IsDecided || this.IsDeleted || this.IsCompleted, "入庫コード");
@@ -920,6 +919,8 @@ namespace u_net
                         this.TaxRate.Text = FunctionClass.GetTaxRate(cn,DateTime.Parse(controlObject.Text)).ToString();
                         break;
                     case "発注コード":
+                        if (発注コード.SelectedIndex == -1) return;
+
                         FunctionClass fn = new FunctionClass();
                         fn.DoWait("発注データ読み込み中...");
 
@@ -938,10 +939,12 @@ namespace u_net
                         }
 
                         // 発注データからリレー入力する
-                        //if (!SetDetails(this.CurrentCode, controlObject.Text, this.発注版数.Text))
-                        //{
-                        //    MessageBox.Show("発注データの呼び出しに失敗しました。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                        //}
+                        strSQL = $"SELECT '{CurrentCode}' AS 入庫コード, * FROM V入庫明細_発注 " +
+                               $"WHERE 発注コード='{発注コード.Text}' AND 発注版数={発注版数.Text} ORDER BY 発注明細番号";
+                        if (!VariableSet.SetTable2Details(入庫明細1.Detail, strSQL, cn))
+                        {
+                            MessageBox.Show("発注データの呼び出しに失敗しました。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        }
 
                         fn.WaitForm.Close();
                         break;
@@ -1007,6 +1010,8 @@ namespace u_net
                 return false;
             }
         }
+
+       
 
 
         public string MonthAdd(long number, string TargetMonth)
@@ -1240,13 +1245,12 @@ namespace u_net
         {
             if (IsNull(発注コード.Text))
             {
-                F_発注 targetform = new F_発注();
+                F_発注 targetform = new F_発注(null);
                 targetform.ShowDialog();
             }
             else
             {
-                F_発注 targetform = new F_発注();
-                targetform.args = 発注コード.Text;
+                F_発注 targetform = new F_発注(発注コード.Text);
                 targetform.ShowDialog();
             }
         }
@@ -1260,35 +1264,35 @@ namespace u_net
 
         private void コマンド承認_Click(object sender, EventArgs e)
         {
-
+            IsErrorDetails();
         }
 
-        private bool IsErrorDetails(string codeString)
+       
+
+        private void IsErrorDetails()
         {
-            try
+            // 仮にGridViewが入庫明細1という名前であると仮定
+            GcMultiRow multiRow = 入庫明細1.Detail; // yourDataGridViewControlは実際のコントロールに置き換える
+
+            int emptyCount = 0;
+
+            for (int i = 0; i < multiRow.RowCount; i++)
             {
-                Connect();
+                if (multiRow.Rows[i].IsNewRow == true)
+                {
+                    //新規行の場合は、処理をスキップ
+                    continue;
+                }
+                // 買掛区分の列が0番目であると仮定
+                if (string.IsNullOrEmpty(multiRow.Rows[i].Cells["買掛区分"].DisplayText))
+                {
+                    emptyCount++;
+                }
 
-                bool isErrorDetails = true;
-
-
-                //string strSQL = "SELECT COUNT(*) FROM YourTable WHERE 買掛区分 = ''";
-                //using (SqlCommand command = new SqlCommand(strSQL, cn))
-                //{
-                //    int recordCount = (int)command.ExecuteScalar();
-                //    MessageBox.Show(recordCount.ToString());
-                //}
-
-                isErrorDetails = false;
-                
-
-                return isErrorDetails;
+     
             }
-            catch (Exception ex)
-            {
-                Debug.Print(this.Name + "_IsErrorDetails - " + ex.HResult + " : " + ex.Message);
-                return true; // エラーが発生した場合もエラーとして扱います
-            }
+
+            MessageBox.Show($"買掛区分が空のレコード数: {emptyCount}");
         }
 
         private void コマンド確定_Click(object sender, EventArgs e)
@@ -1675,6 +1679,16 @@ namespace u_net
                 // フォームAの日付コントロールに選択した日付を設定
                 入庫日.Text = selectedDate;
             }
+        }
+
+        private void 発注コード_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Text = "■発注書の注文番号（発注コード）を入力します。　■先頭のキーワード及び 0 は省略できます。　■入庫登録された発注データは表示されません。";
+        }
+
+        private void 発注コード_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Text = "各種項目の説明";
         }
     }
 }
