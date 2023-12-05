@@ -1238,17 +1238,17 @@ namespace u_net
 
         private void コマンド発注_Click(object sender, EventArgs e)
         {
-            if (IsNull(発注コード.Text))
-            {
-                F_発注 targetform = new F_発注();
-                targetform.ShowDialog();
-            }
-            else
-            {
-                F_発注 targetform = new F_発注();
-                targetform.args = 発注コード.Text;
-                targetform.ShowDialog();
-            }
+            //if (IsNull(発注コード.Text))
+            //{
+            //    F_発注 targetform = new F_発注();
+            //    targetform.ShowDialog();
+            //}
+            //else
+            //{
+            //    F_発注 targetform = new F_発注();
+            //    targetform.args = 発注コード.Text;
+            //    targetform.ShowDialog();
+            //}
         }
 
         private void コマンド仕入先_Click(object sender, EventArgs e)
