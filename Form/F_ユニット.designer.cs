@@ -109,6 +109,8 @@ namespace u_net
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.廃止 = new System.Windows.Forms.CheckBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.ユニット明細1 = new MultiRowDesigner.ユニット明細();
             this.panel1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -559,7 +561,7 @@ namespace u_net
             this.無効者コード.BackColor = System.Drawing.SystemColors.Control;
             this.無効者コード.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.無効者コード.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.無効者コード.Location = new System.Drawing.Point(491, 146);
+            this.無効者コード.Location = new System.Drawing.Point(595, 121);
             this.無効者コード.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.無効者コード.Name = "無効者コード";
             this.無効者コード.ReadOnly = true;
@@ -738,7 +740,7 @@ namespace u_net
             this.識別コード.Location = new System.Drawing.Point(122, 120);
             this.識別コード.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.識別コード.Name = "識別コード";
-            this.識別コード.Size = new System.Drawing.Size(234, 20);
+            this.識別コード.Size = new System.Drawing.Size(72, 20);
             this.識別コード.TabIndex = 12;
             this.識別コード.Enter += new System.EventHandler(this.識別コード_Enter);
             this.識別コード.Leave += new System.EventHandler(this.識別コード_Leave);
@@ -750,7 +752,7 @@ namespace u_net
             this.label2.Font = new System.Drawing.Font("BIZ UDゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label2.Location = new System.Drawing.Point(357, 120);
+            this.label2.Location = new System.Drawing.Point(195, 120);
             this.label2.Margin = new System.Windows.Forms.Padding(0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(49, 20);
@@ -833,7 +835,7 @@ namespace u_net
             this.確定者コード.Enabled = false;
             this.確定者コード.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.確定者コード.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.確定者コード.Location = new System.Drawing.Point(336, 146);
+            this.確定者コード.Location = new System.Drawing.Point(440, 121);
             this.確定者コード.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.確定者コード.Name = "確定者コード";
             this.確定者コード.ReadOnly = true;
@@ -847,7 +849,7 @@ namespace u_net
             this.承認者名.BackColor = System.Drawing.SystemColors.Control;
             this.承認者名.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.承認者名.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.承認者名.Location = new System.Drawing.Point(440, 146);
+            this.承認者名.Location = new System.Drawing.Point(544, 121);
             this.承認者名.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.承認者名.Name = "承認者名";
             this.承認者名.ReadOnly = true;
@@ -861,7 +863,7 @@ namespace u_net
             this.承認者コード.BackColor = System.Drawing.SystemColors.Control;
             this.承認者コード.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.承認者コード.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.承認者コード.Location = new System.Drawing.Point(388, 146);
+            this.承認者コード.Location = new System.Drawing.Point(492, 121);
             this.承認者コード.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.承認者コード.Name = "承認者コード";
             this.承認者コード.ReadOnly = true;
@@ -911,7 +913,7 @@ namespace u_net
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 627);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 568);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 19, 0);
             this.statusStrip1.Size = new System.Drawing.Size(1036, 22);
@@ -935,10 +937,35 @@ namespace u_net
             this.廃止.TabIndex = 16;
             this.廃止.UseVisualStyleBackColor = true;
             // 
+            // label5
+            // 
+            this.label5.AllowDrop = true;
+            this.label5.AutoEllipsis = true;
+            this.label5.Font = new System.Drawing.Font("BIZ UDゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label5.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label5.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label5.Location = new System.Drawing.Point(150, 147);
+            this.label5.Margin = new System.Windows.Forms.Padding(0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(280, 20);
+            this.label5.TabIndex = 10196;
+            this.label5.Text = "※RoHS対応情報は保存時に更新されます。";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // ユニット明細1
+            // 
+            this.ユニット明細1.Location = new System.Drawing.Point(9, 196);
+            this.ユニット明細1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ユニット明細1.Name = "ユニット明細1";
+            this.ユニット明細1.Size = new System.Drawing.Size(1003, 369);
+            this.ユニット明細1.TabIndex = 10197;
+            // 
             // F_ユニット
             // 
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(1036, 649);
+            this.ClientSize = new System.Drawing.Size(1036, 590);
+            this.Controls.Add(this.ユニット明細1);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.廃止);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.更新者名);
@@ -1089,9 +1116,11 @@ namespace u_net
         private TextBox 更新者名;
         private TextBox 更新者コード;
         private StatusStrip statusStrip1;
-        //private MultiRowDesigner.製品明細 製品明細1;
+        //private MultiRowDesigner.ユニット明細 ユニット明細1;
         internal ToolStripStatusLabel toolStripStatusLabel1;
         private CheckBox 廃止;
+        private Label label5;
+        private MultiRowDesigner.ユニット明細 ユニット明細1;
     }
 }
 
