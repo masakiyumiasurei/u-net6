@@ -129,11 +129,13 @@ namespace u_net
             this.承認 = new System.Windows.Forms.TextBox();
             this.完了 = new System.Windows.Forms.TextBox();
             this.無効 = new System.Windows.Forms.TextBox();
+            this.購買明細1 = new MultiRowDesigner.購買明細();
             this.panel1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.タブ.SuspendLayout();
             this.製品構成ページ.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.購買部品ページ.SuspendLayout();
             this.発注処理ページ.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -721,7 +723,7 @@ namespace u_net
             this.購買形式一覧1.Margin = new System.Windows.Forms.Padding(4);
             this.購買形式一覧1.Name = "購買形式一覧1";
             this.購買形式一覧1.Size = new System.Drawing.Size(303, 288);
-            this.購買形式一覧1.TabIndex = 21;
+            this.購買形式一覧1.TabIndex = 18;
             // 
             // 購買形式_ラベル
             // 
@@ -779,6 +781,7 @@ namespace u_net
             // 
             // 購買部品ページ
             // 
+            this.購買部品ページ.Controls.Add(this.購買明細1);
             this.購買部品ページ.Location = new System.Drawing.Point(4, 24);
             this.購買部品ページ.Name = "購買部品ページ";
             this.購買部品ページ.Padding = new System.Windows.Forms.Padding(3);
@@ -823,7 +826,7 @@ namespace u_net
             this.発注書送信ボタン.Margin = new System.Windows.Forms.Padding(4);
             this.発注書送信ボタン.Name = "発注書送信ボタン";
             this.発注書送信ボタン.Size = new System.Drawing.Size(136, 24);
-            this.発注書送信ボタン.TabIndex = 24;
+            this.発注書送信ボタン.TabIndex = 25;
             this.発注書送信ボタン.TabStop = false;
             this.発注書送信ボタン.Text = "ファックス送信(&F)";
             this.発注書送信ボタン.UseVisualStyleBackColor = true;
@@ -835,7 +838,7 @@ namespace u_net
             this.発注書印刷ボタン.Margin = new System.Windows.Forms.Padding(4);
             this.発注書印刷ボタン.Name = "発注書印刷ボタン";
             this.発注書印刷ボタン.Size = new System.Drawing.Size(136, 24);
-            this.発注書印刷ボタン.TabIndex = 23;
+            this.発注書印刷ボタン.TabIndex = 24;
             this.発注書印刷ボタン.TabStop = false;
             this.発注書印刷ボタン.Text = "印　刷(&P)";
             this.発注書印刷ボタン.UseVisualStyleBackColor = true;
@@ -851,7 +854,7 @@ namespace u_net
             this.購買仕入先_ラベル.Margin = new System.Windows.Forms.Padding(0);
             this.購買仕入先_ラベル.Name = "購買仕入先_ラベル";
             this.購買仕入先_ラベル.Size = new System.Drawing.Size(100, 17);
-            this.購買仕入先_ラベル.TabIndex = 21;
+            this.購買仕入先_ラベル.TabIndex = 22;
             this.購買仕入先_ラベル.Text = "発注元(&O)";
             this.購買仕入先_ラベル.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -1245,6 +1248,14 @@ namespace u_net
             this.無効.TabIndex = 10226;
             this.無効.TabStop = false;
             // 
+            // 購買明細1
+            // 
+            this.購買明細1.Location = new System.Drawing.Point(6, 5);
+            this.購買明細1.Margin = new System.Windows.Forms.Padding(4);
+            this.購買明細1.Name = "購買明細1";
+            this.購買明細1.Size = new System.Drawing.Size(855, 302);
+            this.購買明細1.TabIndex = 21;
+            // 
             // F_購買
             // 
             this.BackColor = System.Drawing.SystemColors.Control;
@@ -1321,6 +1332,7 @@ namespace u_net
             this.タブ.ResumeLayout(false);
             this.製品構成ページ.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.購買部品ページ.ResumeLayout(false);
             this.発注処理ページ.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -1432,6 +1444,7 @@ namespace u_net
         private Label 購買仕入先_ラベル;
         private Label 購買形式_ラベル;
         private MultiRowDesigner.購買形式一覧 購買形式一覧1;
+        private MultiRowDesigner.購買明細 購買明細1;
     }
 }
 
