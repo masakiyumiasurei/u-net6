@@ -26,5 +26,56 @@ namespace MultiRowDesigner
             InitializeComponent();
         }
 
+        private void gcMultiRow1_CellClick(object sender, CellEventArgs e)
+        {
+            switch (gcMultiRow1.CurrentCell)
+            {
+
+                case ButtonCell:
+                    switch (e.CellName)
+                    {
+                        case "メーカー名ボタン":
+                            
+                            break;
+
+                        case "型番ボタン":
+
+                            break;
+
+                        case "納期ボタン":
+
+                            break;
+
+                        case "買掛区分ボタン":
+
+                            break;
+
+                        case "品名ボタン":
+
+                            break;
+
+                        case "部品コードボタン":
+                   
+                            break;
+
+                    }
+                    break;
+            }
+        }
+
+        private void gcMultiRow1_CellValidating(object sender, CellValidatingEventArgs e)
+        {
+
+        }
+
+        private void gcMultiRow1_CellValidated(object sender, CellEventArgs e)
+        {
+
+        }
+
+        private void gcMultiRow1_CellEnter(object sender, CellEventArgs e)
+        {
+
+        }
     }
 }

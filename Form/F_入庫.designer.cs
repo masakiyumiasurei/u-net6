@@ -124,7 +124,12 @@ namespace u_net
             this.確定者コード = new System.Windows.Forms.TextBox();
             this.無効者コード = new System.Windows.Forms.TextBox();
             this.無効日時 = new System.Windows.Forms.TextBox();
+            this.入庫明細1 = new MultiRowDesigner.入庫明細();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.panel1.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // コマンド終了
@@ -754,8 +759,10 @@ namespace u_net
             this.発注コード.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.発注コード_DrawItem);
             this.発注コード.SelectedIndexChanged += new System.EventHandler(this.発注コード_SelectedIndexChanged);
             this.発注コード.TextChanged += new System.EventHandler(this.発注コード_TextChanged);
+            this.発注コード.Enter += new System.EventHandler(this.発注コード_Enter);
             this.発注コード.KeyDown += new System.Windows.Forms.KeyEventHandler(this.発注コード_KeyDown);
             this.発注コード.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.発注コード_KeyPress);
+            this.発注コード.Leave += new System.EventHandler(this.発注コード_Leave);
             this.発注コード.Validating += new System.ComponentModel.CancelEventHandler(this.発注コード_Validating);
             // 
             // 発注コード_ラベル
@@ -1125,10 +1132,43 @@ namespace u_net
             this.無効日時.TabStop = false;
             this.無効日時.Visible = false;
             // 
+            // 入庫明細1
+            // 
+            this.入庫明細1.Location = new System.Drawing.Point(9, 275);
+            this.入庫明細1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.入庫明細1.Name = "入庫明細1";
+            this.入庫明細1.Size = new System.Drawing.Size(1003, 250);
+            this.入庫明細1.TabIndex = 10171;
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel1,
+            this.toolStripStatusLabel2});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 539);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 19, 0);
+            this.statusStrip1.Size = new System.Drawing.Size(1036, 22);
+            this.statusStrip1.TabIndex = 10172;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 17);
+            // 
+            // toolStripStatusLabel2
+            // 
+            this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
+            this.toolStripStatusLabel2.Size = new System.Drawing.Size(89, 17);
+            this.toolStripStatusLabel2.Text = "各種項目の説明";
+            // 
             // F_入庫
             // 
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(1036, 525);
+            this.ClientSize = new System.Drawing.Size(1036, 561);
+            this.Controls.Add(this.statusStrip1);
+            this.Controls.Add(this.入庫明細1);
             this.Controls.Add(this.無効者コード);
             this.Controls.Add(this.無効日時);
             this.Controls.Add(this.確定者コード);
@@ -1205,6 +1245,8 @@ namespace u_net
             this.Load += new System.EventHandler(this.Form_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form_KeyDown);
             this.panel1.ResumeLayout(false);
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1348,6 +1390,10 @@ namespace u_net
         private TextBox 確定者コード;
         private TextBox 無効者コード;
         private TextBox 無効日時;
+        private MultiRowDesigner.入庫明細 入庫明細1;
+        private StatusStrip statusStrip1;
+        private ToolStripStatusLabel toolStripStatusLabel1;
+        private ToolStripStatusLabel toolStripStatusLabel2;
     }
 }
 
