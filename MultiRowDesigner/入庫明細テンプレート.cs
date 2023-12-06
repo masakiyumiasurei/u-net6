@@ -31,6 +31,7 @@ namespace MultiRowDesigner
 
             ofn.SetComboBox(買掛区分, "SELECT 買掛区分 as Display,買掛区分コード as Display2, 買掛明細コード as Display3 , 買掛区分コード as Value FROM V買掛区分");
             ofn.SetComboBox(買掛区分コード設定, "SELECT 買掛区分 as Display,買掛区分コード as Display2, 買掛明細コード as Display3 , 買掛区分コード as Value FROM V買掛区分");
+
         }
     }
 }

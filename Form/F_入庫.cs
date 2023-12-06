@@ -845,7 +845,7 @@ namespace u_net
 
 
 
-        private void ChangedData(bool isChanged)
+        internal void ChangedData(bool isChanged)
         {
             if (ActiveControl == null) return;
 
@@ -939,7 +939,7 @@ namespace u_net
                         }
 
                         // 発注データからリレー入力する
-                        strSQL = $"SELECT '{CurrentCode}' AS 入庫コード, * FROM V入庫明細_発注 " +
+                        strSQL = $"SELECT '{CurrentCode}' AS 入庫コード,発注明細番号 as 明細番号, * FROM V入庫明細_発注 " +
                                $"WHERE 発注コード='{発注コード.Text}' AND 発注版数={発注版数.Text} ORDER BY 発注明細番号";
                         if (!VariableSet.SetTable2Details(入庫明細1.Detail, strSQL, cn))
                         {

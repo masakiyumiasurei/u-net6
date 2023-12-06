@@ -124,7 +124,7 @@ namespace u_net
             this.確定者コード = new System.Windows.Forms.TextBox();
             this.無効者コード = new System.Windows.Forms.TextBox();
             this.無効日時 = new System.Windows.Forms.TextBox();
-            this.入庫明細1 = new MultiRowDesigner.入庫明細();
+            this.入庫明細1 = new MultiRowDesigner.入庫明細(this);
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
@@ -1350,7 +1350,7 @@ namespace u_net
         private Label 仕入先コード_ラベル;
         private TextBox 仕入先コード;
         private Button 入庫日選択ボタン;
-        private ComboBox 入庫コード;
+        internal ComboBox 入庫コード;
         private Label 入庫コードラベル;
         private Label 仕入先2_ラベル;
         private TextBox 購買コード;
