@@ -50,6 +50,10 @@
     <Compile Include="MultiRowDesigner\購買明細.Designer.cs" />
     <Compile Include="MultiRowDesigner\購買明細テンプレート.cs" />
     <Compile Include="MultiRowDesigner\購買明細テンプレート.Designer.cs" />
+    <Compile Include="MultiRowDesigner\購買発注先.cs" />
+    <Compile Include="MultiRowDesigner\購買発注先.Designer.cs" />
+    <Compile Include="MultiRowDesigner\購買発注先テンプレート.cs" />
+    <Compile Include="MultiRowDesigner\購買発注先テンプレート.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -69,6 +73,7 @@
     <EmbeddedResource Include="MultiRowDesigner\購買形式一覧テンプレート.resx" />
     <EmbeddedResource Include="MultiRowDesigner\購買明細.resx" />
     <EmbeddedResource Include="MultiRowDesigner\購買明細テンプレート.resx" />
+    <EmbeddedResource Include="MultiRowDesigner\購買発注先テンプレート.resx" />
   </ItemGroup>
 
   <ItemGroup>
