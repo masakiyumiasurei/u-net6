@@ -92,7 +92,7 @@
             // 
             this.シリーズ名.BackColor = System.Drawing.Color.White;
             this.シリーズ名.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.シリーズ名.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
+            this.シリーズ名.ImeMode = System.Windows.Forms.ImeMode.Off;
             this.シリーズ名.Location = new System.Drawing.Point(119, 39);
             this.シリーズ名.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.シリーズ名.Multiline = true;
@@ -104,6 +104,7 @@
             // 
             this.品名.BackColor = System.Drawing.Color.White;
             this.品名.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.品名.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
             this.品名.Location = new System.Drawing.Point(119, 17);
             this.品名.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.品名.Multiline = true;
@@ -315,7 +316,7 @@
             this.指導書変更.BackColor = System.Drawing.Color.White;
             this.指導書変更.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.指導書変更.FormattingEnabled = true;
-            this.指導書変更.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.指導書変更.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.指導書変更.Location = new System.Drawing.Point(119, 62);
             this.指導書変更.Name = "指導書変更";
             this.指導書変更.Size = new System.Drawing.Size(122, 21);
@@ -356,7 +357,7 @@
             this.更新者名.BackColor = System.Drawing.Color.White;
             this.更新者名.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.更新者名.FormattingEnabled = true;
-            this.更新者名.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.更新者名.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.更新者名.Location = new System.Drawing.Point(119, 257);
             this.更新者名.Name = "更新者名";
             this.更新者名.Size = new System.Drawing.Size(183, 21);
@@ -366,6 +367,7 @@
             // 
             this.更新日開始.BackColor = System.Drawing.Color.White;
             this.更新日開始.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.更新日開始.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.更新日開始.Location = new System.Drawing.Point(119, 234);
             this.更新日開始.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.更新日開始.Multiline = true;
@@ -377,6 +379,7 @@
             // 
             this.更新日終了.BackColor = System.Drawing.Color.White;
             this.更新日終了.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.更新日終了.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.更新日終了.Location = new System.Drawing.Point(266, 234);
             this.更新日終了.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.更新日終了.Multiline = true;
@@ -522,7 +525,7 @@
             this.非含有証明書.BackColor = System.Drawing.Color.White;
             this.非含有証明書.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.非含有証明書.FormattingEnabled = true;
-            this.非含有証明書.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.非含有証明書.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.非含有証明書.Location = new System.Drawing.Point(121, 146);
             this.非含有証明書.Name = "非含有証明書";
             this.非含有証明書.Size = new System.Drawing.Size(122, 21);
