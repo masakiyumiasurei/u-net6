@@ -184,6 +184,7 @@
             cellStyle19.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
             this.構成番号ボタン.Style = cellStyle19;
             this.構成番号ボタン.TabIndex = 0;
+            this.構成番号ボタン.TabStop = false;
             this.構成番号ボタン.Value = "構成番号";
             // 
             // 行番号ボタン
@@ -198,6 +199,7 @@
             cellStyle20.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
             this.行番号ボタン.Style = cellStyle20;
             this.行番号ボタン.TabIndex = 1;
+            this.行番号ボタン.TabStop = false;
             this.行番号ボタン.Value = "No";
             // 
             // 削除ボタン
@@ -212,6 +214,7 @@
             cellStyle21.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
             this.削除ボタン.Style = cellStyle21;
             this.削除ボタン.TabIndex = 2;
+            this.削除ボタン.TabStop = false;
             // 
             // 置換不可ボタン
             // 
@@ -225,6 +228,7 @@
             cellStyle22.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
             this.置換不可ボタン.Style = cellStyle22;
             this.置換不可ボタン.TabIndex = 3;
+            this.置換不可ボタン.TabStop = false;
             this.置換不可ボタン.Value = "換×";
             // 
             // 部品コードボタン
@@ -239,6 +243,7 @@
             cellStyle23.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
             this.部品コードボタン.Style = cellStyle23;
             this.部品コードボタン.TabIndex = 4;
+            this.部品コードボタン.TabStop = false;
             this.部品コードボタン.Value = "部品コード";
             // 
             // 廃止ボタン
@@ -253,6 +258,7 @@
             cellStyle24.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
             this.廃止ボタン.Style = cellStyle24;
             this.廃止ボタン.TabIndex = 5;
+            this.廃止ボタン.TabStop = false;
             this.廃止ボタン.Value = "廃";
             // 
             // RoHSボタン
@@ -267,6 +273,7 @@
             cellStyle25.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
             this.RoHSボタン.Style = cellStyle25;
             this.RoHSボタン.TabIndex = 6;
+            this.RoHSボタン.TabStop = false;
             this.RoHSボタン.Value = "Ro";
             // 
             // chemSHERPAバージョンボタン
@@ -281,6 +288,7 @@
             cellStyle26.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
             this.chemSHERPAバージョンボタン.Style = cellStyle26;
             this.chemSHERPAバージョンボタン.TabIndex = 7;
+            this.chemSHERPAバージョンボタン.TabStop = false;
             this.chemSHERPAバージョンボタン.Value = "chemV";
             // 
             // 形状ボタン
@@ -295,6 +303,7 @@
             cellStyle27.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
             this.形状ボタン.Style = cellStyle27;
             this.形状ボタン.TabIndex = 8;
+            this.形状ボタン.TabStop = false;
             this.形状ボタン.Value = "形状";
             // 
             // 品名ボタン
@@ -309,6 +318,7 @@
             cellStyle28.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
             this.品名ボタン.Style = cellStyle28;
             this.品名ボタン.TabIndex = 9;
+            this.品名ボタン.TabStop = false;
             this.品名ボタン.Value = "品　名";
             // 
             // 型番ボタン
@@ -323,6 +333,7 @@
             cellStyle29.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
             this.型番ボタン.Style = cellStyle29;
             this.型番ボタン.TabIndex = 10;
+            this.型番ボタン.TabStop = false;
             this.型番ボタン.Value = "型　番";
             // 
             // メーカー名ボタン
@@ -337,6 +348,7 @@
             cellStyle30.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
             this.メーカー名ボタン.Style = cellStyle30;
             this.メーカー名ボタン.TabIndex = 11;
+            this.メーカー名ボタン.TabStop = false;
             this.メーカー名ボタン.Value = "メーカー名";
             // 
             // 仕入先名ボタン
@@ -351,6 +363,7 @@
             cellStyle31.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
             this.仕入先名ボタン.Style = cellStyle31;
             this.仕入先名ボタン.TabIndex = 12;
+            this.仕入先名ボタン.TabStop = false;
             this.仕入先名ボタン.Value = "仕入先名";
             // 
             // 単価ボタン
@@ -365,6 +378,7 @@
             cellStyle32.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
             this.単価ボタン.Style = cellStyle32;
             this.単価ボタン.TabIndex = 13;
+            this.単価ボタン.TabStop = false;
             this.単価ボタン.Value = "単価";
             // 
             // 入数ボタン
@@ -379,6 +393,7 @@
             cellStyle33.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
             this.入数ボタン.Style = cellStyle33;
             this.入数ボタン.TabIndex = 14;
+            this.入数ボタン.TabStop = false;
             this.入数ボタン.Value = "入数";
             // 
             // 変更操作ボタン
@@ -393,6 +408,7 @@
             cellStyle34.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
             this.変更操作ボタン.Style = cellStyle34;
             this.変更操作ボタン.TabIndex = 15;
+            this.変更操作ボタン.TabStop = false;
             this.変更操作ボタン.Value = "操作";
             // 
             // 変更内容ボタン
@@ -407,6 +423,7 @@
             cellStyle35.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
             this.変更内容ボタン.Style = cellStyle35;
             this.変更内容ボタン.TabIndex = 16;
+            this.変更内容ボタン.TabStop = false;
             this.変更内容ボタン.Value = "変更内容";
             // 
             // columnFooterSection1

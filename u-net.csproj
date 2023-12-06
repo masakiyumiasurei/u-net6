@@ -42,6 +42,18 @@
     <Compile Include="MultiRowDesigner\製品明細.Designer.cs" />
     <Compile Include="MultiRowDesigner\製品明細テンプレート.cs" />
     <Compile Include="MultiRowDesigner\製品明細テンプレート.Designer.cs" />
+    <Compile Include="MultiRowDesigner\購買形式一覧.cs" />
+    <Compile Include="MultiRowDesigner\購買形式一覧.Designer.cs" />
+    <Compile Include="MultiRowDesigner\購買形式一覧テンプレート.cs" />
+    <Compile Include="MultiRowDesigner\購買形式一覧テンプレート.Designer.cs" />
+    <Compile Include="MultiRowDesigner\購買明細.cs" />
+    <Compile Include="MultiRowDesigner\購買明細.Designer.cs" />
+    <Compile Include="MultiRowDesigner\購買明細テンプレート.cs" />
+    <Compile Include="MultiRowDesigner\購買明細テンプレート.Designer.cs" />
+    <Compile Include="MultiRowDesigner\購買発注先.cs" />
+    <Compile Include="MultiRowDesigner\購買発注先.Designer.cs" />
+    <Compile Include="MultiRowDesigner\購買発注先テンプレート.cs" />
+    <Compile Include="MultiRowDesigner\購買発注先テンプレート.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -57,6 +69,11 @@
     <EmbeddedResource Include="MultiRowDesigner\商品明細.resx" />
     <EmbeddedResource Include="MultiRowDesigner\発注明細.resx" />
     <EmbeddedResource Include="MultiRowDesigner\発注明細テンプレート.resx" />
+    <EmbeddedResource Include="MultiRowDesigner\購買形式一覧.resx" />
+    <EmbeddedResource Include="MultiRowDesigner\購買形式一覧テンプレート.resx" />
+    <EmbeddedResource Include="MultiRowDesigner\購買明細.resx" />
+    <EmbeddedResource Include="MultiRowDesigner\購買明細テンプレート.resx" />
+    <EmbeddedResource Include="MultiRowDesigner\購買発注先テンプレート.resx" />
   </ItemGroup>
 
   <ItemGroup>
@@ -77,7 +94,16 @@
 
   <ItemGroup>
     <Compile Update="Form\F_システム.cs" />
+    <Compile Update="Form\F_購買.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Form\F_ユニット.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Form\F_ユニット管理.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Form\F_ユニット管理_抽出.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Form\F_製品管理_抽出.cs">

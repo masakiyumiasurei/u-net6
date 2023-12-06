@@ -1,6 +1,6 @@
 ﻿namespace u_net
 {
-    partial class F_製品管理_抽出
+    partial class F_ユニット管理_抽出
     {
         /// <summary>
         /// Required designer variable.
@@ -28,11 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.シリーズ名_ラベル = new System.Windows.Forms.Label();
+            this.型番_ラベル = new System.Windows.Forms.Label();
             this.シリーズ名 = new System.Windows.Forms.TextBox();
             this.品名 = new System.Windows.Forms.TextBox();
             this.品名_ラベル = new System.Windows.Forms.Label();
-            this.指導書変更_ラベル = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.確定指定Button3 = new System.Windows.Forms.RadioButton();
             this.確定指定Button2 = new System.Windows.Forms.RadioButton();
@@ -48,7 +47,6 @@
             this.抽出ボタン = new System.Windows.Forms.Button();
             this.キャンセルボタン = new System.Windows.Forms.Button();
             this.更新日開始選択ボタン = new System.Windows.Forms.Button();
-            this.指導書変更 = new System.Windows.Forms.ComboBox();
             this.更新者名_ラベル = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.更新者名 = new System.Windows.Forms.ComboBox();
@@ -73,20 +71,20 @@
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // シリーズ名_ラベル
+            // 型番_ラベル
             // 
-            this.シリーズ名_ラベル.AllowDrop = true;
-            this.シリーズ名_ラベル.AutoEllipsis = true;
-            this.シリーズ名_ラベル.Font = new System.Drawing.Font("BIZ UDゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.シリーズ名_ラベル.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.シリーズ名_ラベル.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.シリーズ名_ラベル.Location = new System.Drawing.Point(17, 39);
-            this.シリーズ名_ラベル.Margin = new System.Windows.Forms.Padding(0);
-            this.シリーズ名_ラベル.Name = "シリーズ名_ラベル";
-            this.シリーズ名_ラベル.Size = new System.Drawing.Size(95, 19);
-            this.シリーズ名_ラベル.TabIndex = 3;
-            this.シリーズ名_ラベル.Text = "シリーズ名(&S)";
-            this.シリーズ名_ラベル.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.型番_ラベル.AllowDrop = true;
+            this.型番_ラベル.AutoEllipsis = true;
+            this.型番_ラベル.Font = new System.Drawing.Font("BIZ UDゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.型番_ラベル.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.型番_ラベル.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.型番_ラベル.Location = new System.Drawing.Point(17, 39);
+            this.型番_ラベル.Margin = new System.Windows.Forms.Padding(0);
+            this.型番_ラベル.Name = "型番_ラベル";
+            this.型番_ラベル.Size = new System.Drawing.Size(95, 19);
+            this.型番_ラベル.TabIndex = 3;
+            this.型番_ラベル.Text = "型番(&M)";
+            this.型番_ラベル.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // シリーズ名
             // 
@@ -127,21 +125,6 @@
             this.品名_ラベル.Text = "品名(&P)";
             this.品名_ラベル.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // 指導書変更_ラベル
-            // 
-            this.指導書変更_ラベル.AllowDrop = true;
-            this.指導書変更_ラベル.AutoEllipsis = true;
-            this.指導書変更_ラベル.Font = new System.Drawing.Font("BIZ UDゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.指導書変更_ラベル.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.指導書変更_ラベル.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.指導書変更_ラベル.Location = new System.Drawing.Point(17, 62);
-            this.指導書変更_ラベル.Margin = new System.Windows.Forms.Padding(0);
-            this.指導書変更_ラベル.Name = "指導書変更_ラベル";
-            this.指導書変更_ラベル.Size = new System.Drawing.Size(95, 21);
-            this.指導書変更_ラベル.TabIndex = 5;
-            this.指導書変更_ラベル.Text = "指導書変更(&G)";
-            this.指導書変更_ラベル.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.確定指定Button3);
@@ -151,7 +134,7 @@
             this.groupBox3.Location = new System.Drawing.Point(17, 286);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(374, 50);
-            this.groupBox3.TabIndex = 15;
+            this.groupBox3.TabIndex = 14;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "確定指定(&D)";
             // 
@@ -197,7 +180,7 @@
             this.groupBox4.Location = new System.Drawing.Point(17, 350);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(374, 50);
-            this.groupBox4.TabIndex = 16;
+            this.groupBox4.TabIndex = 15;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "承認指定(&A)";
             // 
@@ -243,7 +226,7 @@
             this.groupBox5.Location = new System.Drawing.Point(17, 415);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(374, 50);
-            this.groupBox5.TabIndex = 17;
+            this.groupBox5.TabIndex = 16;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "削除指定(&D)";
             // 
@@ -285,7 +268,7 @@
             this.抽出ボタン.Location = new System.Drawing.Point(190, 482);
             this.抽出ボタン.Name = "抽出ボタン";
             this.抽出ボタン.Size = new System.Drawing.Size(102, 24);
-            this.抽出ボタン.TabIndex = 18;
+            this.抽出ボタン.TabIndex = 17;
             this.抽出ボタン.Text = "抽出(&O)";
             this.抽出ボタン.UseVisualStyleBackColor = true;
             this.抽出ボタン.Click += new System.EventHandler(this.抽出ボタン_Click);
@@ -295,7 +278,7 @@
             this.キャンセルボタン.Location = new System.Drawing.Point(299, 482);
             this.キャンセルボタン.Name = "キャンセルボタン";
             this.キャンセルボタン.Size = new System.Drawing.Size(102, 24);
-            this.キャンセルボタン.TabIndex = 19;
+            this.キャンセルボタン.TabIndex = 18;
             this.キャンセルボタン.Text = "キャンセル(&X)";
             this.キャンセルボタン.UseVisualStyleBackColor = true;
             this.キャンセルボタン.MouseClick += new System.Windows.Forms.MouseEventHandler(this.キャンセルボタン_MouseClick);
@@ -311,17 +294,6 @@
             this.更新日開始選択ボタン.Text = "▼";
             this.更新日開始選択ボタン.UseVisualStyleBackColor = true;
             // 
-            // 指導書変更
-            // 
-            this.指導書変更.BackColor = System.Drawing.Color.White;
-            this.指導書変更.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.指導書変更.FormattingEnabled = true;
-            this.指導書変更.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.指導書変更.Location = new System.Drawing.Point(119, 62);
-            this.指導書変更.Name = "指導書変更";
-            this.指導書変更.Size = new System.Drawing.Size(122, 21);
-            this.指導書変更.TabIndex = 6;
-            // 
             // 更新者名_ラベル
             // 
             this.更新者名_ラベル.AllowDrop = true;
@@ -333,7 +305,7 @@
             this.更新者名_ラベル.Margin = new System.Windows.Forms.Padding(0);
             this.更新者名_ラベル.Name = "更新者名_ラベル";
             this.更新者名_ラベル.Size = new System.Drawing.Size(95, 21);
-            this.更新者名_ラベル.TabIndex = 21010;
+            this.更新者名_ラベル.TabIndex = 12;
             this.更新者名_ラベル.Text = "更新者名(&N)";
             this.更新者名_ラベル.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -348,7 +320,7 @@
             this.label2.Margin = new System.Windows.Forms.Padding(0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(95, 21);
-            this.label2.TabIndex = 11;
+            this.label2.TabIndex = 9;
             this.label2.Text = "更新日(&U)";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -361,7 +333,7 @@
             this.更新者名.Location = new System.Drawing.Point(119, 257);
             this.更新者名.Name = "更新者名";
             this.更新者名.Size = new System.Drawing.Size(183, 21);
-            this.更新者名.TabIndex = 14;
+            this.更新者名.TabIndex = 13;
             // 
             // 更新日開始
             // 
@@ -373,7 +345,7 @@
             this.更新日開始.Multiline = true;
             this.更新日開始.Name = "更新日開始";
             this.更新日開始.Size = new System.Drawing.Size(102, 19);
-            this.更新日開始.TabIndex = 12;
+            this.更新日開始.TabIndex = 10;
             // 
             // 更新日終了
             // 
@@ -385,7 +357,7 @@
             this.更新日終了.Multiline = true;
             this.更新日終了.Name = "更新日終了";
             this.更新日終了.Size = new System.Drawing.Size(102, 19);
-            this.更新日終了.TabIndex = 13;
+            this.更新日終了.TabIndex = 11;
             // 
             // 更新日終了選択ボタン
             // 
@@ -419,10 +391,10 @@
             this.groupBox2.Controls.Add(this.廃止指定Button2);
             this.groupBox2.Controls.Add(this.廃止指定Button1);
             this.groupBox2.Font = new System.Drawing.Font("BIZ UDゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.groupBox2.Location = new System.Drawing.Point(17, 177);
+            this.groupBox2.Location = new System.Drawing.Point(17, 164);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(374, 50);
-            this.groupBox2.TabIndex = 10;
+            this.groupBox2.TabIndex = 8;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "廃止指定(&B)";
             // 
@@ -465,10 +437,10 @@
             this.groupBox1.Controls.Add(this.RoHS対応Button2);
             this.groupBox1.Controls.Add(this.RoHS対応Button1);
             this.groupBox1.Font = new System.Drawing.Font("BIZ UDゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.groupBox1.Location = new System.Drawing.Point(17, 89);
+            this.groupBox1.Location = new System.Drawing.Point(17, 72);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(374, 50);
-            this.groupBox1.TabIndex = 7;
+            this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "RoHS対応(&R)";
             // 
@@ -512,11 +484,11 @@
             this.非含有証明書_ラベル.Font = new System.Drawing.Font("BIZ UDゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.非含有証明書_ラベル.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.非含有証明書_ラベル.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.非含有証明書_ラベル.Location = new System.Drawing.Point(17, 146);
+            this.非含有証明書_ラベル.Location = new System.Drawing.Point(17, 132);
             this.非含有証明書_ラベル.Margin = new System.Windows.Forms.Padding(0);
             this.非含有証明書_ラベル.Name = "非含有証明書_ラベル";
             this.非含有証明書_ラベル.Size = new System.Drawing.Size(95, 21);
-            this.非含有証明書_ラベル.TabIndex = 8;
+            this.非含有証明書_ラベル.TabIndex = 6;
             this.非含有証明書_ラベル.Text = "非含有証明書(&C)";
             this.非含有証明書_ラベル.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -526,12 +498,12 @@
             this.非含有証明書.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.非含有証明書.FormattingEnabled = true;
             this.非含有証明書.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.非含有証明書.Location = new System.Drawing.Point(121, 146);
+            this.非含有証明書.Location = new System.Drawing.Point(121, 132);
             this.非含有証明書.Name = "非含有証明書";
             this.非含有証明書.Size = new System.Drawing.Size(122, 21);
-            this.非含有証明書.TabIndex = 9;
+            this.非含有証明書.TabIndex = 7;
             // 
-            // F_製品管理_抽出
+            // F_ユニット管理_抽出
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -547,20 +519,18 @@
             this.Controls.Add(this.更新者名);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.更新者名_ラベル);
-            this.Controls.Add(this.指導書変更);
             this.Controls.Add(this.更新日開始選択ボタン);
             this.Controls.Add(this.キャンセルボタン);
             this.Controls.Add(this.抽出ボタン);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
-            this.Controls.Add(this.指導書変更_ラベル);
-            this.Controls.Add(this.シリーズ名_ラベル);
+            this.Controls.Add(this.型番_ラベル);
             this.Controls.Add(this.シリーズ名);
             this.Controls.Add(this.品名);
             this.Controls.Add(this.品名_ラベル);
-            this.Name = "F_製品管理_抽出";
-            this.Text = "製品管理_抽出";
+            this.Name = "F_ユニット管理_抽出";
+            this.Text = "ユニット管理_抽出";
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.groupBox4.ResumeLayout(false);
@@ -580,11 +550,10 @@
 
         private ComboBox 更新者名;
         private Label label9;
-        private Label シリーズ名_ラベル;
+        private Label 型番_ラベル;
         private TextBox シリーズ名;
         private TextBox 品名;
         private Label 品名_ラベル;
-        private Label 指導書変更_ラベル;
         private Label label2;
         private TextBox 更新日終了;
         private GroupBox groupBox3;
@@ -602,7 +571,6 @@
         private Button 抽出ボタン;
         private Button キャンセルボタン;
         private Button 更新日開始選択ボタン;
-        private ComboBox 指導書変更;
         private Label 更新者名_ラベル;
         private TextBox 更新日開始;
         private Button 更新日終了選択ボタン;
