@@ -37,14 +37,13 @@
             // 
             this.gcMultiRow1.EditMode = GrapeCity.Win.MultiRow.EditMode.EditOnEnter;
             this.gcMultiRow1.Location = new System.Drawing.Point(0, 0);
-            this.gcMultiRow1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gcMultiRow1.Margin = new System.Windows.Forms.Padding(4);
             this.gcMultiRow1.Name = "gcMultiRow1";
             this.gcMultiRow1.Size = new System.Drawing.Size(302, 287);
             this.gcMultiRow1.TabIndex = 0;
             this.gcMultiRow1.Template = this.購買形式一覧テンプレート1;
             this.gcMultiRow1.TemplateScaleSize = new System.Drawing.SizeF(1.166667F, 1.25F);
             this.gcMultiRow1.Text = "gcMultiRow1";
-            this.gcMultiRow1.CellEnter += new System.EventHandler<GrapeCity.Win.MultiRow.CellEventArgs>(this.gcMultiRow1_CellEnter);
             // 
             // 購買形式一覧テンプレート1
             // 
@@ -61,7 +60,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.gcMultiRow1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "購買形式一覧";
             this.Size = new System.Drawing.Size(303, 288);
             ((System.ComponentModel.ISupportInitialize)(this.gcMultiRow1)).EndInit();
