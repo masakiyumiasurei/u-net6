@@ -77,6 +77,9 @@
 
   <ItemGroup>
     <Compile Update="Form\F_システム.cs" />
+    <Compile Update="Form\F_購買.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Form\F_ユニット.cs">
       <SubType>Form</SubType>
     </Compile>
