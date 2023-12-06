@@ -33,14 +33,14 @@ namespace u_net
             this.コマンド登録 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.コマンド新規 = new System.Windows.Forms.Button();
-            this.コマンド部品定数表 = new System.Windows.Forms.Button();
-            this.コマンド部品表 = new System.Windows.Forms.Button();
             this.コマンド部品 = new System.Windows.Forms.Button();
+            this.コマンド製品 = new System.Windows.Forms.Button();
+            this.コマンド購買部品表 = new System.Windows.Forms.Button();
             this.コマンド確定 = new System.Windows.Forms.Button();
             this.コマンド承認 = new System.Windows.Forms.Button();
             this.コマンド削除 = new System.Windows.Forms.Button();
             this.コマンド複写 = new System.Windows.Forms.Button();
-            this.コマンド読込 = new System.Windows.Forms.Button();
+            this.コマンド修正 = new System.Windows.Forms.Button();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -69,7 +69,7 @@ namespace u_net
             this.dataGridViewTextBoxColumn25 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn26 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn27 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.コマンドツール = new System.Windows.Forms.Button();
+            this.コマンドファックス = new System.Windows.Forms.Button();
             this.購買者名_ラベル = new System.Windows.Forms.Label();
             this.購買日 = new System.Windows.Forms.TextBox();
             this.購買日_ラベル = new System.Windows.Forms.Label();
@@ -89,6 +89,8 @@ namespace u_net
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.タブ = new System.Windows.Forms.TabControl();
             this.製品構成ページ = new System.Windows.Forms.TabPage();
+            this.購買形式一覧1 = new MultiRowDesigner.購買形式一覧();
+            this.購買形式_ラベル = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.ユニット構成_ラベル = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
@@ -127,7 +129,6 @@ namespace u_net
             this.承認 = new System.Windows.Forms.TextBox();
             this.完了 = new System.Windows.Forms.TextBox();
             this.無効 = new System.Windows.Forms.TextBox();
-            this.購買形式_ラベル = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.タブ.SuspendLayout();
@@ -179,7 +180,6 @@ namespace u_net
             // コマンド新規
             // 
             this.コマンド新規.BackColor = System.Drawing.SystemColors.Control;
-            this.コマンド新規.Enabled = false;
             this.コマンド新規.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.コマンド新規.ForeColor = System.Drawing.Color.Blue;
             this.コマンド新規.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
@@ -193,50 +193,53 @@ namespace u_net
             this.コマンド新規.UseVisualStyleBackColor = false;
             this.コマンド新規.Click += new System.EventHandler(this.コマンド新規_Click);
             // 
-            // コマンド部品定数表
-            // 
-            this.コマンド部品定数表.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.コマンド部品定数表.ForeColor = System.Drawing.Color.Blue;
-            this.コマンド部品定数表.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.コマンド部品定数表.Location = new System.Drawing.Point(440, 5);
-            this.コマンド部品定数表.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.コマンド部品定数表.Name = "コマンド部品定数表";
-            this.コマンド部品定数表.Size = new System.Drawing.Size(70, 20);
-            this.コマンド部品定数表.TabIndex = 1010;
-            this.コマンド部品定数表.TabStop = false;
-            this.コマンド部品定数表.Text = "部品定数表";
-            this.コマンド部品定数表.UseVisualStyleBackColor = true;
-            this.コマンド部品定数表.Click += new System.EventHandler(this.コマンド部品定数表_Click);
-            // 
-            // コマンド部品表
-            // 
-            this.コマンド部品表.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.コマンド部品表.ForeColor = System.Drawing.Color.Blue;
-            this.コマンド部品表.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.コマンド部品表.Location = new System.Drawing.Point(370, 5);
-            this.コマンド部品表.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.コマンド部品表.Name = "コマンド部品表";
-            this.コマンド部品表.Size = new System.Drawing.Size(70, 20);
-            this.コマンド部品表.TabIndex = 1009;
-            this.コマンド部品表.TabStop = false;
-            this.コマンド部品表.Text = "部品表";
-            this.コマンド部品表.UseVisualStyleBackColor = true;
-            this.コマンド部品表.Click += new System.EventHandler(this.コマンド部品表_Click);
-            // 
             // コマンド部品
             // 
+            this.コマンド部品.Enabled = false;
             this.コマンド部品.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.コマンド部品.ForeColor = System.Drawing.Color.Blue;
             this.コマンド部品.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.コマンド部品.Location = new System.Drawing.Point(300, 5);
+            this.コマンド部品.Location = new System.Drawing.Point(440, 5);
             this.コマンド部品.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.コマンド部品.Name = "コマンド部品";
             this.コマンド部品.Size = new System.Drawing.Size(70, 20);
-            this.コマンド部品.TabIndex = 1008;
+            this.コマンド部品.TabIndex = 1010;
             this.コマンド部品.TabStop = false;
-            this.コマンド部品.Text = "部品参照";
+            this.コマンド部品.Text = "部品";
             this.コマンド部品.UseVisualStyleBackColor = true;
-            this.コマンド部品.Click += new System.EventHandler(this.コマンド部品_Click);
+            this.コマンド部品.Click += new System.EventHandler(this.コマンド部品定数表_Click);
+            // 
+            // コマンド製品
+            // 
+            this.コマンド製品.Enabled = false;
+            this.コマンド製品.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.コマンド製品.ForeColor = System.Drawing.Color.Blue;
+            this.コマンド製品.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.コマンド製品.Location = new System.Drawing.Point(370, 5);
+            this.コマンド製品.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.コマンド製品.Name = "コマンド製品";
+            this.コマンド製品.Size = new System.Drawing.Size(70, 20);
+            this.コマンド製品.TabIndex = 1009;
+            this.コマンド製品.TabStop = false;
+            this.コマンド製品.Text = "製品参照";
+            this.コマンド製品.UseVisualStyleBackColor = true;
+            this.コマンド製品.Click += new System.EventHandler(this.コマンド部品表_Click);
+            // 
+            // コマンド購買部品表
+            // 
+            this.コマンド購買部品表.Enabled = false;
+            this.コマンド購買部品表.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.コマンド購買部品表.ForeColor = System.Drawing.Color.Blue;
+            this.コマンド購買部品表.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.コマンド購買部品表.Location = new System.Drawing.Point(300, 5);
+            this.コマンド購買部品表.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.コマンド購買部品表.Name = "コマンド購買部品表";
+            this.コマンド購買部品表.Size = new System.Drawing.Size(70, 20);
+            this.コマンド購買部品表.TabIndex = 1008;
+            this.コマンド購買部品表.TabStop = false;
+            this.コマンド購買部品表.Text = "部品表";
+            this.コマンド購買部品表.UseVisualStyleBackColor = true;
+            this.コマンド購買部品表.Click += new System.EventHandler(this.コマンド部品_Click);
             // 
             // コマンド確定
             // 
@@ -302,20 +305,21 @@ namespace u_net
             this.コマンド複写.UseVisualStyleBackColor = true;
             this.コマンド複写.Click += new System.EventHandler(this.コマンド複写_Click);
             // 
-            // コマンド読込
+            // コマンド修正
             // 
-            this.コマンド読込.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.コマンド読込.ForeColor = System.Drawing.Color.Blue;
-            this.コマンド読込.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.コマンド読込.Location = new System.Drawing.Point(75, 5);
-            this.コマンド読込.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.コマンド読込.Name = "コマンド読込";
-            this.コマンド読込.Size = new System.Drawing.Size(70, 20);
-            this.コマンド読込.TabIndex = 1003;
-            this.コマンド読込.TabStop = false;
-            this.コマンド読込.Text = "読込";
-            this.コマンド読込.UseVisualStyleBackColor = true;
-            this.コマンド読込.Click += new System.EventHandler(this.コマンド読込_Click);
+            this.コマンド修正.Enabled = false;
+            this.コマンド修正.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.コマンド修正.ForeColor = System.Drawing.Color.Blue;
+            this.コマンド修正.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.コマンド修正.Location = new System.Drawing.Point(75, 5);
+            this.コマンド修正.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.コマンド修正.Name = "コマンド修正";
+            this.コマンド修正.Size = new System.Drawing.Size(70, 20);
+            this.コマンド修正.TabIndex = 1003;
+            this.コマンド修正.TabStop = false;
+            this.コマンド修正.Text = "修正";
+            this.コマンド修正.UseVisualStyleBackColor = true;
+            this.コマンド修正.Click += new System.EventHandler(this.コマンド読込_Click);
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -447,20 +451,20 @@ namespace u_net
             // 
             this.dataGridViewTextBoxColumn27.Name = "dataGridViewTextBoxColumn27";
             // 
-            // コマンドツール
+            // コマンドファックス
             // 
-            this.コマンドツール.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.コマンドツール.ForeColor = System.Drawing.Color.Blue;
-            this.コマンドツール.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.コマンドツール.Location = new System.Drawing.Point(510, 5);
-            this.コマンドツール.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.コマンドツール.Name = "コマンドツール";
-            this.コマンドツール.Size = new System.Drawing.Size(70, 20);
-            this.コマンドツール.TabIndex = 1011;
-            this.コマンドツール.TabStop = false;
-            this.コマンドツール.Text = "ツール";
-            this.コマンドツール.UseVisualStyleBackColor = true;
-            this.コマンドツール.Click += new System.EventHandler(this.コマンドツール_Click);
+            this.コマンドファックス.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.コマンドファックス.ForeColor = System.Drawing.Color.Blue;
+            this.コマンドファックス.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.コマンドファックス.Location = new System.Drawing.Point(510, 5);
+            this.コマンドファックス.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.コマンドファックス.Name = "コマンドファックス";
+            this.コマンドファックス.Size = new System.Drawing.Size(70, 20);
+            this.コマンドファックス.TabIndex = 1011;
+            this.コマンドファックス.TabStop = false;
+            this.コマンドファックス.Text = "FAX管理";
+            this.コマンドファックス.UseVisualStyleBackColor = true;
+            this.コマンドファックス.Click += new System.EventHandler(this.コマンドツール_Click);
             // 
             // 購買者名_ラベル
             // 
@@ -698,6 +702,7 @@ namespace u_net
             // 
             // 製品構成ページ
             // 
+            this.製品構成ページ.Controls.Add(this.購買形式一覧1);
             this.製品構成ページ.Controls.Add(this.購買形式_ラベル);
             this.製品構成ページ.Controls.Add(this.label6);
             this.製品構成ページ.Controls.Add(this.ユニット構成_ラベル);
@@ -709,6 +714,29 @@ namespace u_net
             this.製品構成ページ.TabIndex = 0;
             this.製品構成ページ.Text = "　　　製品構成(&M)　　　";
             this.製品構成ページ.UseVisualStyleBackColor = true;
+            // 
+            // 購買形式一覧1
+            // 
+            this.購買形式一覧1.Location = new System.Drawing.Point(6, 25);
+            this.購買形式一覧1.Margin = new System.Windows.Forms.Padding(4);
+            this.購買形式一覧1.Name = "購買形式一覧1";
+            this.購買形式一覧1.Size = new System.Drawing.Size(303, 288);
+            this.購買形式一覧1.TabIndex = 21;
+            // 
+            // 購買形式_ラベル
+            // 
+            this.購買形式_ラベル.AllowDrop = true;
+            this.購買形式_ラベル.AutoEllipsis = true;
+            this.購買形式_ラベル.Font = new System.Drawing.Font("BIZ UDゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.購買形式_ラベル.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.購買形式_ラベル.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.購買形式_ラベル.Location = new System.Drawing.Point(6, 5);
+            this.購買形式_ラベル.Margin = new System.Windows.Forms.Padding(0);
+            this.購買形式_ラベル.Name = "購買形式_ラベル";
+            this.購買形式_ラベル.Size = new System.Drawing.Size(100, 17);
+            this.購買形式_ラベル.TabIndex = 17;
+            this.購買形式_ラベル.Text = "購買形式(&S)";
+            this.購買形式_ラベル.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label6
             // 
@@ -909,6 +937,8 @@ namespace u_net
             this.購買申請コード.Name = "購買申請コード";
             this.購買申請コード.Size = new System.Drawing.Size(139, 21);
             this.購買申請コード.TabIndex = 8;
+            this.購買申請コード.Enter += new System.EventHandler(this.購買申請コード_Enter);
+            this.購買申請コード.Leave += new System.EventHandler(this.購買申請コード_Leave);
             // 
             // 製品コード
             // 
@@ -924,6 +954,8 @@ namespace u_net
             this.製品コード.Name = "製品コード";
             this.製品コード.Size = new System.Drawing.Size(78, 21);
             this.製品コード.TabIndex = 10;
+            this.製品コード.Enter += new System.EventHandler(this.製品コード_Enter);
+            this.製品コード.Leave += new System.EventHandler(this.製品コード_Leave);
             // 
             // 製品名
             // 
@@ -1067,6 +1099,8 @@ namespace u_net
             this.買掛区分.Name = "買掛区分";
             this.買掛区分.Size = new System.Drawing.Size(136, 21);
             this.買掛区分.TabIndex = 16;
+            this.買掛区分.Enter += new System.EventHandler(this.買掛区分_Enter);
+            this.買掛区分.Leave += new System.EventHandler(this.買掛区分_Leave);
             // 
             // 備考_ラベル
             // 
@@ -1211,21 +1245,6 @@ namespace u_net
             this.無効.TabIndex = 10226;
             this.無効.TabStop = false;
             // 
-            // 購買形式_ラベル
-            // 
-            this.購買形式_ラベル.AllowDrop = true;
-            this.購買形式_ラベル.AutoEllipsis = true;
-            this.購買形式_ラベル.Font = new System.Drawing.Font("BIZ UDゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.購買形式_ラベル.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.購買形式_ラベル.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.購買形式_ラベル.Location = new System.Drawing.Point(6, 5);
-            this.購買形式_ラベル.Margin = new System.Windows.Forms.Padding(0);
-            this.購買形式_ラベル.Name = "購買形式_ラベル";
-            this.購買形式_ラベル.Size = new System.Drawing.Size(100, 17);
-            this.購買形式_ラベル.TabIndex = 17;
-            this.購買形式_ラベル.Text = "購買形式(&S)";
-            this.購買形式_ラベル.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
             // F_購買
             // 
             this.BackColor = System.Drawing.SystemColors.Control;
@@ -1278,15 +1297,15 @@ namespace u_net
             this.Controls.Add(this.仕入先2_ラベル);
             this.Controls.Add(this.コマンド終了);
             this.Controls.Add(this.コマンド登録);
-            this.Controls.Add(this.コマンドツール);
-            this.Controls.Add(this.コマンド部品定数表);
-            this.Controls.Add(this.コマンド部品表);
+            this.Controls.Add(this.コマンドファックス);
             this.Controls.Add(this.コマンド部品);
+            this.Controls.Add(this.コマンド製品);
+            this.Controls.Add(this.コマンド購買部品表);
             this.Controls.Add(this.コマンド確定);
             this.Controls.Add(this.コマンド承認);
             this.Controls.Add(this.コマンド削除);
             this.Controls.Add(this.コマンド複写);
-            this.Controls.Add(this.コマンド読込);
+            this.Controls.Add(this.コマンド修正);
             this.Controls.Add(this.panel1);
             this.ImeMode = System.Windows.Forms.ImeMode.Off;
             this.KeyPreview = true;
@@ -1344,16 +1363,16 @@ namespace u_net
 
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button コマンド新規;
-        private System.Windows.Forms.Button コマンド部品定数表;
-        private System.Windows.Forms.Button コマンド部品表;
         private System.Windows.Forms.Button コマンド部品;
+        private System.Windows.Forms.Button コマンド製品;
+        private System.Windows.Forms.Button コマンド購買部品表;
         private System.Windows.Forms.Button コマンド確定;
         private System.Windows.Forms.Button コマンド承認;
         private System.Windows.Forms.Button コマンド削除;
         private System.Windows.Forms.Button コマンド複写;
-        private System.Windows.Forms.Button コマンド読込;
+        private System.Windows.Forms.Button コマンド修正;
 
-        private Button コマンドツール;
+        private Button コマンドファックス;
         private Label 購買者名_ラベル;
         private TextBox 購買日;
         private Label 購買日_ラベル;
@@ -1412,6 +1431,7 @@ namespace u_net
         private Button 発注書印刷ボタン;
         private Label 購買仕入先_ラベル;
         private Label 購買形式_ラベル;
+        private MultiRowDesigner.購買形式一覧 購買形式一覧1;
     }
 }
 
