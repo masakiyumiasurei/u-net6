@@ -61,36 +61,24 @@ namespace MultiRowDesigner
                     case TextBoxCell:
                         switch (e.CellName)
                         {
-                            case "明細削除ボタン":
-                                //objForm.toolStripStatusLabel1.Text = "■明細行の削除または取消を行います。";
+                            case "型式名":
+                                objForm.toolStripStatusLabel1.Text = "■半角４８文字まで入力できます。　■英数字は半角文字で入力し、半角カタカナは使用しないでください。";
+                                break;
+                            case "定価":
+                                objForm.toolStripStatusLabel1.Text = "■型式ごとの定価を設定します。　■マイナス価格を設定することも可能です。";
+                                break;
+                            case "機能":
+                                objForm.toolStripStatusLabel1.Text = "■全角２５文字まで入力できます。";
+                                break;
+                            case "型式番号":
+                                objForm.toolStripStatusLabel1.Text = "■型式名を順序付けるための番号です。入力はできません。";
                                 break;
                             case "構成番号":
-                                //objForm.toolStripStatusLabel1.Text = "■半角１０文字まで入力できます。　■ユニット内での構成番号の重複はできません。";
-                                break;
-                            case "部品コード":
-                                //objForm.toolStripStatusLabel1.Text = "■部品コードを入力するか、[space]キー押下またはダブルクリックで部品選択ウィンドウを表示します。";
-                                break;
-                            case "型番":
-                                //objForm.toolStripStatusLabel1.Text = "■半角５０文字まで入力できます。";
-                                break;
-                            case "メーカー名":
-                                //objForm.toolStripStatusLabel1.Text = "■全角２５文字まで入力できます。";
+                                objForm.toolStripStatusLabel1.Text = "■１～９９までの構成番号を入力します。　■商品構成時、番号順に構成され、同一番号のものは同時に構成できなくなります。";
                                 break;
                             default:
-                                //objForm.toolStripStatusLabel1.Text = "各種項目の説明";
+                                objForm.toolStripStatusLabel1.Text = "各種項目の説明";
                                 break;
-                        }
-                        break;
-
-                    case ComboBoxCell:
-                        switch (e.CellName)
-                        {
-                            case "変更操作コード":
-                                //objForm.toolStripStatusLabel1.Text = "■改版時に入力します。変更操作を選択してください。";
-                                break;
-                            default:
-                                break;
-
                         }
                         break;
 
