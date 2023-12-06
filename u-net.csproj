@@ -18,6 +18,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Include="MultiRowDesigner\ユニット明細.cs" />
+    <Compile Include="MultiRowDesigner\ユニット明細.Designer.cs" />
+    <Compile Include="MultiRowDesigner\ユニット明細テンプレート.cs" />
+    <Compile Include="MultiRowDesigner\ユニット明細テンプレート.Designer.cs" />
     <Compile Include="MultiRowDesigner\入庫明細.cs" />
     <Compile Include="MultiRowDesigner\入庫明細.Designer.cs" />
     <Compile Include="MultiRowDesigner\入庫明細テンプレート.cs" />
@@ -26,6 +30,10 @@
     <Compile Include="MultiRowDesigner\受注明細.Designer.cs" />
     <Compile Include="MultiRowDesigner\受注明細テンプレート.cs" />
     <Compile Include="MultiRowDesigner\受注明細テンプレート.Designer.cs" />
+    <Compile Include="MultiRowDesigner\商品明細.cs" />
+    <Compile Include="MultiRowDesigner\商品明細.Designer.cs" />
+    <Compile Include="MultiRowDesigner\商品明細テンプレート.cs" />
+    <Compile Include="MultiRowDesigner\商品明細テンプレート.Designer.cs" />
     <Compile Include="MultiRowDesigner\発注明細.cs" />
     <Compile Include="MultiRowDesigner\発注明細.Designer.cs" />
     <Compile Include="MultiRowDesigner\発注明細テンプレート.cs" />
@@ -41,10 +49,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="MultiRowDesigner\ユニット明細.resx" />
     <EmbeddedResource Include="MultiRowDesigner\入庫明細.resx" />
     <EmbeddedResource Include="MultiRowDesigner\入庫明細テンプレート.resx" />
     <EmbeddedResource Include="MultiRowDesigner\受注明細.resx" />
     <EmbeddedResource Include="MultiRowDesigner\受注明細テンプレート.resx" />
+    <EmbeddedResource Include="MultiRowDesigner\商品明細.resx" />
     <EmbeddedResource Include="MultiRowDesigner\発注明細.resx" />
     <EmbeddedResource Include="MultiRowDesigner\発注明細テンプレート.resx" />
   </ItemGroup>
@@ -67,6 +77,15 @@
 
   <ItemGroup>
     <Compile Update="Form\F_システム.cs" />
+    <Compile Update="Form\F_ユニット.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Form\F_製品管理_抽出.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Form\F_製品管理.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Form\F_売上一覧_区分別_抽出.cs">
       <SubType>Form</SubType>
     </Compile>

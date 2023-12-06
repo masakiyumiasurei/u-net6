@@ -205,7 +205,7 @@ namespace u_net.Public
                         break;
 
                     case TextBoxCell textBoxCell:
-                        if (!string.IsNullOrEmpty(textBoxCell.Value.ToString()))
+                        if (!string.IsNullOrEmpty(textBoxCell.DisplayText))
                         {
                             controlValue = textBoxCell.Value;
                         }
