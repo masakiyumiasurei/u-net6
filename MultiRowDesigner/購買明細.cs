@@ -39,7 +39,7 @@ namespace MultiRowDesigner
                         switch (e.CellName)
                         {
                             case "発注納期":
-                                objForm.toolStripStatusLabel1.Text = "■ダブルクリックするか、[space]キーを押してカレンダーを開くことができます。";
+                                objForm.toolStripStatusLabel1.Text = "■部品の発注納期を入力します。　■カレンダーから選択するには入力欄をダブルクリックします。";
                                 break;
                             default:
                                 objForm.toolStripStatusLabel1.Text = "各種項目の説明";
