@@ -54,7 +54,7 @@ namespace u_net
             シリーズ名 = new TextBox();
             シリーズ名_ラベル = new Label();
             ロット番号_ラベル = new Label();
-            textBox1 = new TextBox();
+            ロット番号 = new TextBox();
             発注日_ラベル = new Label();
             発注日 = new TextBox();
             発注者_ラベル = new Label();
@@ -168,7 +168,7 @@ namespace u_net
             コマンド新規.TabIndex = 1002;
             コマンド新規.TabStop = false;
             コマンド新規.Text = "新規";
-            コマンド新規.UseVisualStyleBackColor = false;
+            コマンド新規.UseVisualStyleBackColor = true;
             コマンド新規.Click += コマンド新規_Click;
             // 
             // コマンド購買
@@ -449,19 +449,19 @@ namespace u_net
             ロット番号_ラベル.TabIndex = 10067;
             ロット番号_ラベル.Text = "ロット番号";
             // 
-            // textBox1
+            // ロット番号
             // 
-            textBox1.BackColor = SystemColors.Window;
-            textBox1.Enabled = false;
-            textBox1.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            textBox1.ImeMode = ImeMode.NoControl;
-            textBox1.Location = new Point(444, 94);
-            textBox1.Margin = new Padding(3, 2, 3, 2);
-            textBox1.Name = "textBox1";
-            textBox1.ReadOnly = true;
-            textBox1.Size = new Size(193, 20);
-            textBox1.TabIndex = 10068;
-            textBox1.TabStop = false;
+            ロット番号.BackColor = SystemColors.Window;
+            ロット番号.Enabled = false;
+            ロット番号.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            ロット番号.ImeMode = ImeMode.NoControl;
+            ロット番号.Location = new Point(444, 94);
+            ロット番号.Margin = new Padding(3, 2, 3, 2);
+            ロット番号.Name = "ロット番号";
+            ロット番号.ReadOnly = true;
+            ロット番号.Size = new Size(193, 20);
+            ロット番号.TabIndex = 10068;
+            ロット番号.TabStop = false;
             // 
             // 発注日_ラベル
             // 
@@ -519,6 +519,7 @@ namespace u_net
             発注者コード.Name = "発注者コード";
             発注者コード.Size = new Size(61, 21);
             発注者コード.TabIndex = 8;
+            発注者コード.DrawItem += 発注者コード_DrawItem;
             // 
             // 発注者名
             // 
@@ -1257,7 +1258,7 @@ namespace u_net
             Controls.Add(発注者_ラベル);
             Controls.Add(発注日);
             Controls.Add(発注日_ラベル);
-            Controls.Add(textBox1);
+            Controls.Add(ロット番号);
             Controls.Add(ロット番号_ラベル);
             Controls.Add(シリーズ名_ラベル);
             Controls.Add(シリーズ名);
@@ -1328,7 +1329,7 @@ namespace u_net
         private TextBox シリーズ名;
         private Label シリーズ名_ラベル;
         private Label ロット番号_ラベル;
-        private TextBox textBox1;
+        private TextBox ロット番号;
         private Label 発注日_ラベル;
         private TextBox 発注日;
         private Label 発注者_ラベル;

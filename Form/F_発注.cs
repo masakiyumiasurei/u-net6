@@ -24,6 +24,8 @@ using GrapeCity.Win.MultiRow;
 using System.Threading.Channels;
 using Pao.Reports;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
+using System.Transactions;
+using MultiRowDesigner;
 
 namespace u_net
 {
@@ -152,6 +154,15 @@ namespace u_net
             }
         }
 
+        private bool IsOrderByOn
+        {
+            get
+            {
+                発注明細 frmTarget = Application.OpenForms.OfType<発注明細>().FirstOrDefault();
+                return frmTarget.sortFlg;
+            }
+        }
+
         public void Connect()
         {
             Connection connectionInfo = new Connection();
@@ -197,7 +208,10 @@ namespace u_net
             //twipperdot = myapi.GetTwipPerDot(intpixel);
 
             OriginalClass ofn = new OriginalClass();
-            ofn.SetComboBox(発注版数, "SELECT 発注コード as Display ,発注コード as Value FROM V発注_最新版 ORDER BY 発注コード DESC");
+            ofn.SetComboBox(発注コード, "SELECT 発注コード as Display ,発注コード as Value FROM V発注_最新版 ORDER BY 発注コード DESC");
+
+            string sql = "SELECT 氏名 as Display ,社員コード as Value FROM M社員 WHERE (退社 IS NULL) AND (削除日時 IS NULL) ORDER BY ふりがな";
+            ofn.SetComboBox(発注者コード, sql);
 
             try
             {
@@ -236,7 +250,6 @@ namespace u_net
                         string codeString = args.Substring(0, indexOfComma).Trim();
                         発注コード.Text = codeString;
 
-
                         UpdatedControl("発注コード");
                     }
                 }
@@ -260,6 +273,7 @@ namespace u_net
             OriginalClass ofn = new OriginalClass();
             ofn.SetComboBox(発注版数, "SELECT 発注版数 as Display,発注版数 as Value FROM T発注 where 発注コード='" + code + "' ORDER BY 発注版数 DESC");
         }
+
         private bool GoNewMode()
         {
             try
@@ -278,10 +292,9 @@ namespace u_net
                 NoCredit.Checked = false;
                 UpdatedControl("発注者コード");
 
-                //下のLoadDetailsとLockDataはUpdateControlで実行されるので不要か
                 // 明細部の初期化
-                //string strSQL = "SELECT * FROM V発注明細 WHERE 発注コード='" + CurrentCode + "' ORDER BY 明細番号";
-                //LoadDetails(strSQL, SubForm, SubDatabase, "発注明細");
+                string strSQL = "SELECT * FROM V発注明細 WHERE 発注コード='" + CurrentCode + "' ORDER BY 明細番号";
+                if (!LoadDetails(strSQL, 発注明細1.Detail)) return false;
 
                 // ヘッダ部動作制御
                 FunctionClass.LockData(this, false);
@@ -301,9 +314,9 @@ namespace u_net
                 コマンド登録.Enabled = false;
 
                 // 明細部動作制御
-                //SubForm.AllowAdditions = true;
-                //SubForm.AllowDeletions = true;
-                //SubForm.AllowEdits = true;
+                発注明細1.Detail.ReadOnly = false;
+                発注明細1.Detail.AllowUserToDeleteRows = true;
+
 
                 return true;
             }
@@ -323,10 +336,6 @@ namespace u_net
                 // 各コントロールの値をクリア
                 VariableSet.SetControls(this);
 
-                // 編集による変更がない状態へ遷移
-                //ChangedData(false);
-
-
                 this.発注コード.Enabled = true;
                 this.発注コード.Focus();
 
@@ -336,7 +345,9 @@ namespace u_net
                 this.コマンド複写.Enabled = false;
                 this.コマンド確定.Enabled = false;
                 this.コマンド登録.Enabled = false;
-                //this.Text = BASE_CAPTION;                
+
+                // 編集による変更がない状態へ遷移
+                ChangedData(false);
 
                 result = true;
                 return result;
@@ -350,10 +361,8 @@ namespace u_net
 
         private void Form_Unload(object sender, FormClosingEventArgs e)
         {
-
-            string LoginUserCode = CommonConstants.LoginUserCode;//テスト用 ログインユーザを実行中にどのように管理するか決まったら修正
-            LocalSetting test = new LocalSetting();
-            test.SavePlace(LoginUserCode, this);
+            LocalSetting ls = new LocalSetting();
+            ls.SavePlace(LoginUserCode, this);
 
             try
             {
@@ -429,36 +438,27 @@ namespace u_net
             }
 
             //明細部のエラーチェック
-            //if (IsErrorDetails())
-            //{ 
-
-            //}
-
+            if (IsErrorDetails()) return;
+            
             // 並び替えチェック
 
-            //if (IsOrderByOn)
-            //{
-            //    if (MessageBox.Show("明細行が並べ替えられています。\n並べ替えを解除して登録しますか？", "登録コマンド", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-            //    {
+            if (IsOrderByOn)
+            {
+                if (MessageBox.Show("明細行が並べ替えられています。\n並べ替えを解除して登録しますか？", "登録コマンド", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
             //        SubForm.CancelOrderBy();
-            //    }
-            //    else
-            //    {
-            //        goto Bye_コマンド登録_Click;
-            //    }
-            //}
-
-            //if (!ErrCheck())
-            //{
-            //    goto Bye_コマンド登録_Click;
-            //}
+                }
+                else
+                {
+                    goto Bye_コマンド登録_Click;
+                }
+            }
 
             FunctionClass fn = new FunctionClass();
             fn.DoWait("登録しています...");
 
-
             // 登録処理
-            if (SaveData(CurrentCode,CurrentEdition))
+            if (SaveData(CurrentCode, CurrentEdition))
             {
                 // 登録に成功した
                 ChangedData(false); // データ変更取り消し
@@ -546,8 +546,8 @@ namespace u_net
                     }
 
                     // 明細部の登録
-                    string strKey = $"発注コード='{codeString}' AND 発注版数={editionNumber}";
-                    if (!SaveDetails("T発注明細", strKey, cn, transaction))
+
+                    if (!SaveDetails(codeString, editionNumber, cn, transaction))
                     {
                         transaction.Rollback();  // 変更をキャンセル
                         return false;
@@ -608,7 +608,7 @@ namespace u_net
 
             }
             catch (Exception ex)
-            {               
+            {
                 コマンド登録.Enabled = true;
                 MessageBox.Show("データの保存中にエラーが発生しました: " + ex.Message, "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
@@ -757,11 +757,11 @@ namespace u_net
                     case "在庫管理":
                         //マルチロウのカウント取得
 
-                        //if (Cancel == 0 && 0 < this.発注明細1)
-                        //{
-                        //    MessageBox.Show("入力済みの発注部品に対して在庫管理の有無を変更することはできません。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                        //    goto Exit_IsError;
-                        //}
+                        if (Cancel == false && this.発注明細1.Detail.RowCount > 0)
+                        {
+                            MessageBox.Show("入力済みの発注部品に対して在庫管理の有無を変更することはできません。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            goto Exit_IsError;
+                        }
                         break;
                 }
 
@@ -792,6 +792,60 @@ namespace u_net
             }
         }
 
+        private bool IsErrorData(string exFieldName1, string exFieldName2 = null)
+        {
+            try
+            {
+                foreach (Control control in Controls)
+                {
+                    if ((control is TextBox || control is ComboBox) && control.Visible)
+                    {
+                        if (control.Name != exFieldName1 && control.Name != exFieldName2)
+                        {
+                            if (IsError(control, true))
+                            {
+                                control.Focus();
+                                return true;
+                            }
+                        }
+                    }
+                }
+                // 明細行数のチェック
+                if (IsErrorDetails())
+                {
+                    return true;
+                }
+
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"{GetType().Name}_IsErrorData - {ex.GetType().Name} : {ex.Message}");
+                return true;
+            }
+        }
+
+        private bool IsErrorDetails()
+        {
+            try
+            {
+                int count = 発注明細1.Detail.RowCount;
+
+                if (count == 0)
+                {
+                    MessageBox.Show("明細行を1行以上入力してください。", "発注明細", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    発注明細1.Detail.Focus();
+                    return true;
+                }
+
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"{GetType().Name}_IsErrorDetails - {ex.GetType().Name} : {ex.Message}");
+                return true;
+            }
+        }
         private void ChangedData(bool isChanged)
         {
             if (ActiveControl == null) return;
@@ -900,7 +954,7 @@ namespace u_net
 
                         // 登録処理   accessのソースでは何故かこのような条件式になっていた　引数がおかしいので、必ずエラーが起こる仕様　という事でエラーメッセージを返す
                         //if (!SaveData(IsNewData, CurrentCode))
-                                                    
+
                         {
                             MessageBox.Show("エラーのため登録できません。", "修正コマンド", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                             return;
@@ -1001,14 +1055,14 @@ namespace u_net
                     this.承認者コード.Text = strCertificateCode;
                     this.承認者名.Text = FunctionClass.GetUserFullName(cn, strCertificateCode);
                 }
-                                
-                if (RegTrans(this.CurrentCode, this.CurrentEdition,cn))
-                {                    
+
+                if (RegTrans(this.CurrentCode, this.CurrentEdition, cn))
+                {
                     blnNewParts = false;
                 }
                 else
                 {
-                    
+
                     this.承認日時.Text = varSaved1.ToString();
                     this.承認者コード.Text = varSaved2.ToString();
                     this.承認者名.Text = varSaved3.ToString();
@@ -1020,7 +1074,7 @@ namespace u_net
                 this.コマンド確定.Enabled = !this.IsApproved;
 
             Bye_コマンド承認_Click:
-                
+
                 return;
             }
             catch (Exception ex)
@@ -1048,50 +1102,99 @@ namespace u_net
                 }
 
 
-                MessageBox.Show("部品の改版機能は未完成です。\n履歴に登録される情報は完全ではありません。", "改版", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-
-                if (MessageBox.Show("改版しますか？\n\n・旧版データは履歴コマンドから参照できます。\n・最新版の部品データが有効になります。\n・この操作を元に戻すことはできません。",
-                                    "改版", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                if (IsLotOrder)
                 {
-                    return;
+                    DialogResult result = MessageBox.Show("この発注データは購買処理により作成されています。\n"
+                        + "本バージョンには改版後の在庫計算に問題があります。\n"
+                        + "在庫に関係しない箇所の変更であれば問題ありません。\n\n"
+                        + "改版しますか？", "改版", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                    if (result == DialogResult.No)
+                    {
+                        return;
+                    }
                 }
 
+                if (CopyData(CurrentCode, CurrentEdition + 1))
+                {
+                    ChangedData(true);
 
-                FunctionClass fn = new FunctionClass();
-                fn.DoWait("改版しています...");
+                    // ヘッダ部制御
+                    FunctionClass.LockData(this, false);
+                    発注日.Focus();
+                    改版ボタン.Enabled = false;
+                    コマンド新規.Enabled = false;
+                    コマンド読込.Enabled = true;
+                    コマンド承認.Enabled = false;
 
-                CommonConnect();
-
-                //if (SaveData(CurrentCode,CurrentEdition))
-                //{
-                //    if (AddHistory(cn, this.CurrentCode, this.CurrentEdition))
-                //    {
-                //        //this.部品コード.Requery;
-                //        // ■ なぜかRequeryしてもColumn(1)がNULLとなるので、版数を+1する
-                //        this.版数.Text = (Convert.ToInt32(this.CurrentEdition) + 1).ToString();
-                //        this.コマンド購買.Enabled = true;
-
-                //        fn.WaitForm.Close();
-                //    }
-                //    else
-                //    {
-                //        fn.WaitForm.Close();
-                //        MessageBox.Show("改版できませんでした。", "改版", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                //    }
-                //}
-                //else
-                //{
-                //    fn.WaitForm.Close();
-                //    MessageBox.Show("改版できませんでした。", "改版", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                //}
+                    // 明細部制御
+                    //SubForm.AllowAdditions = true;
+                    //SubForm.AllowDeletions = true;
+                    //SubForm.AllowEdits = true;
+                }
             }
             catch (Exception ex)
             {
-                Debug.Print(this.Name + "_改版ボタン_Click - " + ex.Message);
-                MessageBox.Show("エラーが発生しました。", BASE_CAPTION, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Debug.Print(this.Name + "_ChangeVersionButton_Click - " + ex.Message);
+                MessageBox.Show("エラーが発生しました。", "改版", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             }
         }
+
+        private bool CopyData(string codeString, int editionNumber)
+        {
+            try
+            {
+                //accessはローカルテーブルのため、不要
+                //Connect();
+                //string strSQL = $"UPDATE 発注明細 SET 発注コード='{codeString}', 発注版数={editionNumber}";
+                //SqlCommand command = new SqlCommand(strSQL, cn);
+                //command.ExecuteNonQuery();
+
+
+                発注コード.Text = codeString;
+                SetEditions(codeString);
+                発注版数.Text = editionNumber.ToString();
+
+                発注日.Text = DateTime.Now.ToString();
+
+                //'複写のときのみ購買情報を削除する
+                //→改版時は購買情報を残すことにする
+
+                if (editionNumber == 1)
+                {
+                    在庫管理.Checked = false;
+                    NoCredit.Checked = false;
+                    購買コード.Text = null;
+                    シリーズ名.Text = null;
+                    ロット番号.Text = null;
+                }
+
+                登録日時.Text = null;
+                登録者コード.Text = null;
+                登録者名.Text = null;
+                確定日時.Text = null;
+                送信.Text = string.Empty;
+                入庫状況.Text = string.Empty;
+                承認日時.Text = null;
+                承認者コード.Text = null;
+                承認者名.Text = null;
+                無効日時.Text = null;
+                入庫状況.Text = null;
+
+                // 注意　後で入れる
+                //  発注明細1.回答納期.Value = null;
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("エラーが発生しました。", "改版", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+        }
+
+
         private void コマンド送信_Click(object sender, EventArgs e)
         {
             FunctionClass fn = new FunctionClass();
@@ -1541,9 +1644,10 @@ namespace u_net
 
                         if (args == "")
                         {
+                            //argsが設定されていなければ版数を最新版とする
                             Connect();
-                            string sql = "SELECT 最新版数 FROM V発注_最新版 where 発注コード='" + CurrentCode + "'";
-                            発注版数.Text = OriginalClass.GetScalar<string>(cn, sql);
+                            string mysql = "SELECT 最新版数 FROM V発注_最新版 where 発注コード='" + CurrentCode + "'";
+                            発注版数.Text = OriginalClass.GetScalar<string>(cn, mysql);
                             cn.Close();
                         }
 
@@ -1553,7 +1657,7 @@ namespace u_net
                         string strSQL = "SELECT * FROM V発注明細 WHERE 発注コード='" + CurrentCode +
                                          "' AND 発注版数=" + CurrentEdition + " ORDER BY 明細番号";
                         //明細表示
-                        //      if (!LoadDetails(strSQL, this.発注明細1.Detail)) return;
+                        if (!LoadDetails(strSQL, this.発注明細1.Detail)) return;
 
                         FunctionClass.LockData(this, IsDecided || IsDeleted, "発注コード", "発注版数");
 
@@ -1567,10 +1671,10 @@ namespace u_net
                         {
                             改版ボタン.Enabled = false;
                         }
-                        //編集モードの確認　大馬さんに確認する
-                        //SubForm.AllowAdditions = !IsDecided && !IsDeleted;
-                        //SubForm.AllowDeletions = !IsDecided && !IsDeleted;
-                        //SubForm.AllowEdits = !IsDecided && !IsDeleted;
+                        //編集モードの　
+                        発注明細1.Detail.ReadOnly = false;
+                        発注明細1.Detail.AllowUserToDeleteRows = true;
+
                         コマンド複写.Enabled = true;
                         コマンド削除.Enabled = IsLastEdition && !IsDeleted;
                         コマンド発注書.Enabled = true;
@@ -1618,11 +1722,15 @@ namespace u_net
                         break;
 
                     case "発注者コード":
-                        //   発注者名.Text = 発注者コード.Column(1);
+                        Connect();
+                        string sql = $"SELECT 氏名  FROM M社員 WHERE 社員コード= {発注者コード.Text}";
+                        発注版数.Text = OriginalClass.GetScalar<string>(cn, sql);
+                        cn.Close();
+
                         break;
 
                     case "仕入先コード":
-                        //  SetSupplier(varParm.ToString());
+                        SetSupplier(varParm.ToString());
                         break;
 
                     case "在庫管理":
@@ -1634,6 +1742,42 @@ namespace u_net
                 Debug.Print(this.Name + "_UpdatedControl - " + ex.GetType().ToString() + " : " + ex.Message);
             }
         }
+
+
+        private void SetSupplier(string supplierCode)
+        {
+            try
+            {
+                Connect();
+
+                string sql = "SELECT 仕入先名, 担当者名 + ISNULL('・' + 担当者名2, '') + ISNULL('・' + 担当者名3, '') AS 仕入先担当者名, " +
+                             "REPLACE(窓口電話番号1 + '-' + 窓口電話番号2 + '-' + 窓口電話番号3, ' ', '') AS 仕入先電話番号, " +
+                             "REPLACE(窓口ファックス番号1 + '-' + 窓口ファックス番号2 + '-' + 窓口ファックス番号3, ' ', '') AS 仕入先ファックス番号 " +
+                             "FROM M仕入先 WHERE (仕入先コード = @SupplierCode)";
+
+                using (SqlCommand command = new SqlCommand(sql, cn))
+                {
+                    command.Parameters.AddWithValue("@SupplierCode", supplierCode);
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            // フォームのコントロールに値を設定
+                            仕入先名.Text = reader["仕入先名"].ToString();
+                            仕入先担当者名.Text = reader["仕入先担当者名"].ToString();
+                            仕入先電話番号.Text = reader["仕入先電話番号"].ToString();
+                            仕入先ファックス番号.Text = reader["仕入先ファックス番号"].ToString();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"SetSupplier - {ex.GetType().Name} : {ex.Message}");
+            }
+        }
+
 
         private void Form_KeyDown(object sender, KeyEventArgs e)
         {
@@ -1836,5 +1980,12 @@ namespace u_net
             toolStripStatusLabel1.Text = "各種項目の説明";
         }
 
-    }
+        private void 発注者コード_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            OriginalClass.SetComboBoxAppearance((ComboBox)sender, e, new int[] { 50, 500 }, new string[] { "Display", "Display2" });
+            発注者コード.Invalidate();
+            発注者コード.DroppedDown = true;
+        }
+                
+}
 }

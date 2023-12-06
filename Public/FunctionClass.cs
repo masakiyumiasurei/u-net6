@@ -1726,9 +1726,7 @@ namespace u_net.Public
             string supplierName = "";
 
             try
-            {
-               
-
+            {               
                     string strSQL = "SELECT * FROM M仕入先 WHERE 仕入先コード = @SupplierCode";
                     using (SqlCommand cmd = new SqlCommand(strSQL, connection))
                     {
