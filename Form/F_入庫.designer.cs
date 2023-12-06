@@ -83,7 +83,7 @@ namespace u_net
             this.仕入先名 = new System.Windows.Forms.TextBox();
             this.仕入先コード_ラベル = new System.Windows.Forms.Label();
             this.仕入先コード = new System.Windows.Forms.TextBox();
-            this.発注日選択ボタン = new System.Windows.Forms.Button();
+            this.入庫日選択ボタン = new System.Windows.Forms.Button();
             this.入庫コード = new System.Windows.Forms.ComboBox();
             this.入庫コードラベル = new System.Windows.Forms.Label();
             this.仕入先2_ラベル = new System.Windows.Forms.Label();
@@ -124,7 +124,12 @@ namespace u_net
             this.確定者コード = new System.Windows.Forms.TextBox();
             this.無効者コード = new System.Windows.Forms.TextBox();
             this.無効日時 = new System.Windows.Forms.TextBox();
+            this.入庫明細1 = new MultiRowDesigner.入庫明細(this);
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.panel1.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // コマンド終了
@@ -462,6 +467,9 @@ namespace u_net
             this.摘要.Name = "摘要";
             this.摘要.Size = new System.Drawing.Size(246, 45);
             this.摘要.TabIndex = 14;
+            this.摘要.TextChanged += new System.EventHandler(this.摘要_TextChanged);
+            this.摘要.Validating += new System.ComponentModel.CancelEventHandler(this.摘要_Validating);
+            this.摘要.Validated += new System.EventHandler(this.摘要_Validated);
             // 
             // 摘要_ラベル
             // 
@@ -501,6 +509,10 @@ namespace u_net
             this.入庫者コード.Name = "入庫者コード";
             this.入庫者コード.Size = new System.Drawing.Size(65, 21);
             this.入庫者コード.TabIndex = 6;
+            this.入庫者コード.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.入庫者コード_DrawItem);
+            this.入庫者コード.SelectedIndexChanged += new System.EventHandler(this.入庫者コード_SelectedIndexChanged);
+            this.入庫者コード.TextChanged += new System.EventHandler(this.入庫者コード_TextChanged);
+            this.入庫者コード.Validating += new System.ComponentModel.CancelEventHandler(this.入庫者コード_Validating);
             // 
             // 入庫者コード_ラベル
             // 
@@ -527,6 +539,10 @@ namespace u_net
             this.入庫日.Name = "入庫日";
             this.入庫日.Size = new System.Drawing.Size(116, 20);
             this.入庫日.TabIndex = 4;
+            this.入庫日.TextChanged += new System.EventHandler(this.入庫日_TextChanged);
+            this.入庫日.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.入庫日_KeyPress);
+            this.入庫日.Validating += new System.ComponentModel.CancelEventHandler(this.入庫日_Validating);
+            this.入庫日.Validated += new System.EventHandler(this.入庫日_Validated);
             // 
             // 入庫日_ラベル
             // 
@@ -606,16 +622,17 @@ namespace u_net
             this.仕入先コード.TabIndex = 10123;
             this.仕入先コード.TabStop = false;
             // 
-            // 発注日選択ボタン
+            // 入庫日選択ボタン
             // 
-            this.発注日選択ボタン.Location = new System.Drawing.Point(270, 71);
-            this.発注日選択ボタン.Margin = new System.Windows.Forms.Padding(4);
-            this.発注日選択ボタン.Name = "発注日選択ボタン";
-            this.発注日選択ボタン.Size = new System.Drawing.Size(20, 20);
-            this.発注日選択ボタン.TabIndex = 10122;
-            this.発注日選択ボタン.TabStop = false;
-            this.発注日選択ボタン.Text = "▼";
-            this.発注日選択ボタン.UseVisualStyleBackColor = true;
+            this.入庫日選択ボタン.Location = new System.Drawing.Point(270, 71);
+            this.入庫日選択ボタン.Margin = new System.Windows.Forms.Padding(4);
+            this.入庫日選択ボタン.Name = "入庫日選択ボタン";
+            this.入庫日選択ボタン.Size = new System.Drawing.Size(20, 20);
+            this.入庫日選択ボタン.TabIndex = 10122;
+            this.入庫日選択ボタン.TabStop = false;
+            this.入庫日選択ボタン.Text = "▼";
+            this.入庫日選択ボタン.UseVisualStyleBackColor = true;
+            this.入庫日選択ボタン.Click += new System.EventHandler(this.入庫日選択ボタン_Click);
             // 
             // 入庫コード
             // 
@@ -628,6 +645,11 @@ namespace u_net
             this.入庫コード.Name = "入庫コード";
             this.入庫コード.Size = new System.Drawing.Size(139, 21);
             this.入庫コード.TabIndex = 2;
+            this.入庫コード.TextChanged += new System.EventHandler(this.入庫コード_TextChanged);
+            this.入庫コード.KeyDown += new System.Windows.Forms.KeyEventHandler(this.入庫コード_KeyDown);
+            this.入庫コード.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.入庫コード_KeyPress);
+            this.入庫コード.Validating += new System.ComponentModel.CancelEventHandler(this.入庫コード_Validating);
+            this.入庫コード.Validated += new System.EventHandler(this.入庫コード_Validated);
             // 
             // 入庫コードラベル
             // 
@@ -737,8 +759,10 @@ namespace u_net
             this.発注コード.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.発注コード_DrawItem);
             this.発注コード.SelectedIndexChanged += new System.EventHandler(this.発注コード_SelectedIndexChanged);
             this.発注コード.TextChanged += new System.EventHandler(this.発注コード_TextChanged);
+            this.発注コード.Enter += new System.EventHandler(this.発注コード_Enter);
             this.発注コード.KeyDown += new System.Windows.Forms.KeyEventHandler(this.発注コード_KeyDown);
             this.発注コード.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.発注コード_KeyPress);
+            this.発注コード.Leave += new System.EventHandler(this.発注コード_Leave);
             this.発注コード.Validating += new System.ComponentModel.CancelEventHandler(this.発注コード_Validating);
             // 
             // 発注コード_ラベル
@@ -789,6 +813,10 @@ namespace u_net
             this.集計年月.Name = "集計年月";
             this.集計年月.Size = new System.Drawing.Size(139, 21);
             this.集計年月.TabIndex = 10;
+            this.集計年月.SelectedIndexChanged += new System.EventHandler(this.集計年月_SelectedIndexChanged);
+            this.集計年月.TextChanged += new System.EventHandler(this.集計年月_TextChanged);
+            this.集計年月.Enter += new System.EventHandler(this.集計年月_Enter);
+            this.集計年月.Validating += new System.ComponentModel.CancelEventHandler(this.集計年月_Validating);
             // 
             // 集計年月_ラベル
             // 
@@ -816,6 +844,10 @@ namespace u_net
             this.支払年月.Name = "支払年月";
             this.支払年月.Size = new System.Drawing.Size(139, 21);
             this.支払年月.TabIndex = 12;
+            this.支払年月.SelectedIndexChanged += new System.EventHandler(this.支払年月_SelectedIndexChanged);
+            this.支払年月.TextChanged += new System.EventHandler(this.支払年月_TextChanged);
+            this.支払年月.Enter += new System.EventHandler(this.支払年月_Enter);
+            this.支払年月.Validating += new System.ComponentModel.CancelEventHandler(this.支払年月_Validating);
             // 
             // 支払年月_ラベル
             // 
@@ -1100,10 +1132,43 @@ namespace u_net
             this.無効日時.TabStop = false;
             this.無効日時.Visible = false;
             // 
+            // 入庫明細1
+            // 
+            this.入庫明細1.Location = new System.Drawing.Point(9, 275);
+            this.入庫明細1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.入庫明細1.Name = "入庫明細1";
+            this.入庫明細1.Size = new System.Drawing.Size(1003, 250);
+            this.入庫明細1.TabIndex = 10171;
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel1,
+            this.toolStripStatusLabel2});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 539);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 19, 0);
+            this.statusStrip1.Size = new System.Drawing.Size(1036, 22);
+            this.statusStrip1.TabIndex = 10172;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 17);
+            // 
+            // toolStripStatusLabel2
+            // 
+            this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
+            this.toolStripStatusLabel2.Size = new System.Drawing.Size(89, 17);
+            this.toolStripStatusLabel2.Text = "各種項目の説明";
+            // 
             // F_入庫
             // 
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(1036, 525);
+            this.ClientSize = new System.Drawing.Size(1036, 561);
+            this.Controls.Add(this.statusStrip1);
+            this.Controls.Add(this.入庫明細1);
             this.Controls.Add(this.無効者コード);
             this.Controls.Add(this.無効日時);
             this.Controls.Add(this.確定者コード);
@@ -1154,7 +1219,7 @@ namespace u_net
             this.Controls.Add(this.仕入先名);
             this.Controls.Add(this.仕入先コード_ラベル);
             this.Controls.Add(this.仕入先コード);
-            this.Controls.Add(this.発注日選択ボタン);
+            this.Controls.Add(this.入庫日選択ボタン);
             this.Controls.Add(this.入庫コード);
             this.Controls.Add(this.入庫コードラベル);
             this.Controls.Add(this.仕入先2_ラベル);
@@ -1180,6 +1245,8 @@ namespace u_net
             this.Load += new System.EventHandler(this.Form_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form_KeyDown);
             this.panel1.ResumeLayout(false);
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1282,8 +1349,8 @@ namespace u_net
         private TextBox 仕入先名;
         private Label 仕入先コード_ラベル;
         private TextBox 仕入先コード;
-        private Button 発注日選択ボタン;
-        private ComboBox 入庫コード;
+        private Button 入庫日選択ボタン;
+        internal ComboBox 入庫コード;
         private Label 入庫コードラベル;
         private Label 仕入先2_ラベル;
         private TextBox 購買コード;
@@ -1323,6 +1390,10 @@ namespace u_net
         private TextBox 確定者コード;
         private TextBox 無効者コード;
         private TextBox 無効日時;
+        private MultiRowDesigner.入庫明細 入庫明細1;
+        private StatusStrip statusStrip1;
+        private ToolStripStatusLabel toolStripStatusLabel1;
+        private ToolStripStatusLabel toolStripStatusLabel2;
     }
 }
 

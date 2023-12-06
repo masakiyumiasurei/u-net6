@@ -1021,7 +1021,7 @@ namespace u_net
 
         private void 品名_Enter(object sender, EventArgs e)
         {
-            this.toolStripStatusLabel2.Text = "■受注時などに表示される商品の品名です。　■全角２４文字まで入力できます。";
+            this.toolStripStatusLabel1.Text = "■受注時などに表示される商品の品名です。　■全角２４文字まで入力できます。";
         }
 
         private void 商品分類コード_SelectedIndexChanged(object sender, EventArgs e)
@@ -1136,7 +1136,7 @@ namespace u_net
 
         private void 商品名_Enter(object sender, EventArgs e)
         {
-            this.toolStripStatusLabel2.Text = "■半角４０文字まで入力できます。";
+            this.toolStripStatusLabel1.Text = "■半角４０文字まで入力できます。";
         }
 
         private void シリーズコード_TextChanged(object sender, EventArgs e)
@@ -1160,12 +1160,12 @@ namespace u_net
 
         private void シリーズコード_Enter(object sender, EventArgs e)
         {
-            this.toolStripStatusLabel2.Text = "■この欄を入力すると自動的に在庫管理対象となります。　■半角２０文字まで入力できます。　■[space]キーでドロップダウンリストを表示します。";
+            this.toolStripStatusLabel1.Text = "■この欄を入力すると自動的に在庫管理対象となります。　■半角２０文字まで入力できます。　■[space]キーでドロップダウンリストを表示します。";
         }
 
         private void 商品分類コード_Enter(object sender, EventArgs e)
         {
-            this.toolStripStatusLabel2.Text = "■商品が所属する分類を指定します。";
+            this.toolStripStatusLabel1.Text = "■商品が所属する分類を指定します。";
         }
 
         private void 商品分類コード_TextChanged(object sender, EventArgs e)
@@ -1182,7 +1182,7 @@ namespace u_net
 
         private void 売上区分コード_Enter(object sender, EventArgs e)
         {
-            this.toolStripStatusLabel2.Text = "■この商品の売上区分を選択します。　■この入力値は受注入力時の初期値になります。";
+            this.toolStripStatusLabel1.Text = "■この商品の売上区分を選択します。　■この入力値は受注入力時の初期値になります。";
         }
 
         private void FlowCategoryCode_TextChanged(object sender, EventArgs e)
@@ -1199,7 +1199,7 @@ namespace u_net
 
         private void ClientName_Enter(object sender, EventArgs e)
         {
-            this.toolStripStatusLabel2.Text = "■受注時に初期設定される依頼主です。　■全角100文字まで入力できます。";
+            this.toolStripStatusLabel1.Text = "■受注時に初期設定される依頼主です。　■全角100文字まで入力できます。";
         }
 
         private void ClientName_TextChanged(object sender, EventArgs e)
@@ -1210,7 +1210,7 @@ namespace u_net
 
         private void Discontinued_Enter(object sender, EventArgs e)
         {
-            this.toolStripStatusLabel2.Text = "■この商品を出荷する際、顧客シリアルが必要な時に指定します。";
+            this.toolStripStatusLabel1.Text = "■この商品を出荷する際、顧客シリアルが必要な時に指定します。";
         }
 
         private void Discontinued_CheckedChanged(object sender, EventArgs e)
@@ -1227,7 +1227,7 @@ namespace u_net
 
         private void 備考_Enter(object sender, EventArgs e)
         {
-            this.toolStripStatusLabel2.Text = "■全角１００文字まで入力できます。";
+            this.toolStripStatusLabel1.Text = "■全角１００文字まで入力できます。";
         }
 
         private void IsUnit_CheckedChanged(object sender, EventArgs e)
@@ -1297,10 +1297,10 @@ namespace u_net
             {
                 case "型式名":
                     dataGridView1.ImeMode = System.Windows.Forms.ImeMode.Off;
-                    this.toolStripStatusLabel2.Text = "■半角４８文字まで入力できます。　■英数字は半角文字で入力し、半角カタカナは使用しないでください。";
+                    this.toolStripStatusLabel1.Text = "■半角４８文字まで入力できます。　■英数字は半角文字で入力し、半角カタカナは使用しないでください。";
                     break;
                 case "定価":
-                    this.toolStripStatusLabel2.Text = "■型式ごとの定価を設定します。　■マイナス価格を設定することも可能です。";
+                    this.toolStripStatusLabel1.Text = "■型式ごとの定価を設定します。　■マイナス価格を設定することも可能です。";
                     dataGridView1.ImeMode = ImeMode.Disable;
                     break;
 
@@ -1310,7 +1310,7 @@ namespace u_net
 
                 case "機能":
                     dataGridView1.ImeMode = ImeMode.Hiragana;
-                    this.toolStripStatusLabel2.Text = "■全角２５文字まで入力できます。";
+                    this.toolStripStatusLabel1.Text = "■全角２５文字まで入力できます。";
                     break;
 
                 default:
