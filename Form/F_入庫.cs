@@ -890,7 +890,7 @@ namespace u_net
                         LoadHeader(this, this.CurrentCode);
 
                         // 明細部の表示
-                        strSQL = "SELECT * FROM V入庫明細 " +
+                        strSQL = "SELECT *,IIf(発注残数量=0,'■','') as 全入庫 FROM V入庫明細 " +
                             $"WHERE 入庫コード='{this.CurrentCode}' " +
                             "ORDER BY 明細番号";
                         VariableSet.SetTable2Details(入庫明細1.Detail, strSQL, cn);
@@ -939,7 +939,7 @@ namespace u_net
                         }
 
                         // 発注データからリレー入力する
-                        strSQL = $"SELECT '{CurrentCode}' AS 入庫コード,発注明細番号 as 明細番号, * FROM V入庫明細_発注 " +
+                        strSQL = $"SELECT '{CurrentCode}' AS 入庫コード,発注明細番号 as 明細番号, *,IIf(発注残数量=0,'■','') as 全入庫 FROM V入庫明細_発注 " +
                                $"WHERE 発注コード='{発注コード.Text}' AND 発注版数={発注版数.Text} ORDER BY 発注明細番号";
                         if (!VariableSet.SetTable2Details(入庫明細1.Detail, strSQL, cn))
                         {
@@ -996,7 +996,12 @@ namespace u_net
              
                 VariableSet.SetTable2Form(this, strSQL, cn);
 
+                if (!string.IsNullOrEmpty(入庫日.Text))
+                {
+                    DateTime tempDate = DateTime.Parse(入庫日.Text);
+                    入庫日.Text = tempDate.ToString("yyyy/MM/dd");
 
+                }
 
                 return true;
           

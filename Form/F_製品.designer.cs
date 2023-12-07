@@ -120,7 +120,7 @@ namespace u_net
             this.SupersededDate = new System.Windows.Forms.TextBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.製品明細1 = new MultiRowDesigner.製品明細(this);
+            this.製品明細1 = new MultiRowDesigner.製品明細();
             this.panel1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -1071,7 +1071,7 @@ namespace u_net
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 627);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 592);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 19, 0);
             this.statusStrip1.Size = new System.Drawing.Size(1036, 22);
@@ -1086,16 +1086,16 @@ namespace u_net
             // 
             // 製品明細1
             // 
-            this.製品明細1.Location = new System.Drawing.Point(8, 250);
-            this.製品明細1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.製品明細1.Location = new System.Drawing.Point(9, 248);
+            this.製品明細1.Margin = new System.Windows.Forms.Padding(4);
             this.製品明細1.Name = "製品明細1";
-            this.製品明細1.Size = new System.Drawing.Size(1015, 371);
+            this.製品明細1.Size = new System.Drawing.Size(1015, 348);
             this.製品明細1.TabIndex = 10196;
             // 
             // F_製品
             // 
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(1036, 649);
+            this.ClientSize = new System.Drawing.Size(1036, 614);
             this.Controls.Add(this.製品明細1);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.SupersededDate);
@@ -1270,8 +1270,9 @@ namespace u_net
         private TextBox 汎用キー1;
         private TextBox SupersededDate;
         private StatusStrip statusStrip1;
-        private MultiRowDesigner.製品明細 製品明細1;
+        //private MultiRowDesigner.製品明細 製品明細1;
         internal ToolStripStatusLabel toolStripStatusLabel1;
+        private MultiRowDesigner.製品明細 製品明細1;
     }
 }
 

@@ -16,6 +16,7 @@ using System.ComponentModel;
 using System.DirectoryServices;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using System.Globalization;
 
 namespace u_net
 {
@@ -27,11 +28,21 @@ namespace u_net
         public string varOpenArgs = "";
         private bool setCombo = true;
 
+        private string BASE_CAPTION = "受注（製図指図書）";
+
         public bool IsNewData
         {
             get
             {
                 return !コマンド新規.Enabled;
+            }
+        }
+
+        public bool IsChanged
+        {
+            get
+            {
+                return コマンド登録.Enabled;
             }
         }
 
@@ -160,11 +171,8 @@ namespace u_net
                 this.発送方法コード.SelectedValue = "01";
                 //出荷情報初期化
 
-                //未変更状態にする
-                ChangedData(false);
-
                 //明細部を初期化する
-                LoadDetails(this.受注明細1.Detail, this.CurrentCode, this.CurrentEdition);
+                LoadDetails(this.受注明細1.Detail, this.CurrentCode);
 
                 //ヘッダ部を制御する
                 FunctionClass.LockData(this, false);
@@ -200,12 +208,11 @@ namespace u_net
             {
                 //各コントロール値をクリア
                 VariableSet.SetControls(this);
-
+                LoadDetails(this.受注明細1.Detail, this.CurrentCode);
 
                 // 未変更状態にする
                 ChangedData(false);
-
-                //LockData()
+                FunctionClass.LockData(this, true, "受注コード");
 
                 this.受注コード.Enabled = true;
                 this.受注版数.Enabled = true;
@@ -379,46 +386,198 @@ namespace u_net
             return loadDetails;
         }
 
-        private bool SaveData()
+        private bool RegTrans(string codeString, int editionNumber, bool Approved = false)
         {
             Connect();
             DateTime dtmNow = FunctionClass.GetServerDate(cn);
 
             //明細部の受注コードと受注版数を更新する
-            受注明細1.UpdateCodeAndEdition(this.CurrentCode, this.CurrentEdition);
+            受注明細1.UpdateCodeAndEdition(codeString, editionNumber);
 
             using (SqlTransaction transaction = cn.BeginTransaction())
             {
                 try
                 {
-                    string strwhere = " 受注コード='" + this.受注コード.Text + "' and 受注版数=" + this.受注版数.Text;
+                    string strwhere = " 受注コード='" + codeString + "' and 受注版数=" + editionNumber;
 
-                    //ヘッダ部の登録
+                    // ヘッダ部の登録
                     if (!DataUpdater.UpdateOrInsertDataFrom(this, cn, "T受注", strwhere, "受注コード", transaction))
                     {
-                        throw new Exception("Error:UpdateOrInsertDataFrom");
+                        transaction.Rollback(); // 変更をキャンセル
+                        return false;
                     }
-                    //明細部の登録
+                    // 明細部の登録
                     if (!DataUpdater.UpdateOrInsertDetails(this.受注明細1.Detail, cn, "受注明細", strwhere, "受注コード", transaction))
                     {
-                        throw new Exception("Error:UpdateOrInsertDetails");
+                        transaction.Rollback(); // 変更をキャンセル
+                        return false;
+                    }
+
+                    // 承認登録されたとき
+                    if (Approved)
+                    {
+                        //// 改版データが承認されたときは旧版を無効にする
+                        //if (1 < editionNumber)
+                        //{
+                        //    string strKey = "受注コード='" + codeString + "' AND 受注版数=" + (editionNumber - 1);
+                        //    // ■以下のステートメント実行に対するエラー対策を実装するべき
+                        //    transaction.Execute("UPDATE T受注 SET 無効日=GETDATE() WHERE " + strKey);
+                        //}
+
+                        //// 承認後処理
+                        //if (!ApprovedData(codeString, editionNumber))
+                        //{
+                        //    transaction.Rollback(); // 変更をキャンセル
+                        //    goto Bye_RegTrans;
+                        //}
                     }
 
                     // トランザクションをコミット
                     transaction.Commit();
-
                     return true;
 
                 }
                 catch (Exception ex)
                 {
-                    transaction.Rollback();
-                    コマンド登録.Enabled = true;
-                    MessageBox.Show("データの保存中にエラーが発生しました: " + ex.Message, "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
+                    transaction.Rollback(); // 変更をキャンセル
+                    Debug.Print(this.Name + "_RegTrans - " + ex.Message);
                     return false;
                 }
             }
+        }
+
+        private void コマンド新規_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void コマンド読込_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.DoubleBuffered = true;
+
+                Connect();
+
+                //変更されていないときの処理
+                if (!this.IsChanged)
+                {
+                    // 新規モードで且つコードが取得済みのときはコードを戻す
+                    if (this.IsNewData && !string.IsNullOrEmpty(this.CurrentCode) && this.CurrentEdition == 1)
+                    {
+                        // 採番された番号を戻す
+                        if (!FunctionClass.Recycle(cn, this.CurrentCode))
+                        {
+                            MessageBox.Show("エラーのためコードは破棄されました。" + Environment.NewLine +
+                                "受注コード　：　" + this.CurrentCode, "読込コマンド", MessageBoxButtons.OK);
+                        }
+                    }
+
+                    // 読込モードへ移行する
+                    if (!GoModifyMode())
+                    {
+                        goto Err_コマンド読込_Click;
+                    }
+
+                    goto Bye_コマンド読込_Click;
+                }
+
+                // 変更されているときは登録確認を行う
+                var intRes = MessageBox.Show("変更内容を登録しますか？" + Environment.NewLine +
+                    "※確定操作は登録後実行してください。", "読込コマンド", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                switch (intRes)
+                {
+                    case DialogResult.Yes:
+                        // 確定機能が追加されたため、ここでは登録するだけで確定はしない
+                        // If IsErrorData("受注コード", "受注版数") Then GoTo Bye_コマンド読込_Click
+                        // 登録処理
+                        if (!RegTrans(this.CurrentCode, this.CurrentEdition))
+                        {
+                            MessageBox.Show("エラーのため登録できません。", "読込コマンド", MessageBoxButtons.OK);
+                            goto Bye_コマンド読込_Click;
+                        }
+                        break;
+                    case DialogResult.No:
+                        // 新規モードで且つコードが取得済みのときはコードを戻す
+                        if (this.IsNewData && !string.IsNullOrEmpty(this.CurrentCode) && this.CurrentEdition == 1)
+                        {
+                            // 採番された番号を戻す
+                            if (!FunctionClass.Recycle(cn, this.CurrentCode))
+                            {
+                                MessageBox.Show("エラーのためコードは破棄されました。" + Environment.NewLine +
+                                "受注コード　：　" + this.CurrentCode, "読込コマンド", MessageBoxButtons.OK);
+                            }
+                        }
+                        break;
+                    case DialogResult.Cancel:
+                        goto Bye_コマンド読込_Click;
+                        break;
+                }
+
+                // 読込モードへ移行する
+                if (!GoModifyMode())
+                {
+                    goto Err_コマンド読込_Click;
+                }
+            }
+            catch (Exception ex)
+            {
+                goto Err_コマンド読込_Click;
+            }
+
+        Bye_コマンド読込_Click:
+            return;
+
+        Err_コマンド読込_Click:
+            MessageBox.Show("エラーが発生しました。" + Environment.NewLine +
+                "[ " + BASE_CAPTION + " ]を終了します。", "読込コマンド", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            this.Close();
+        }
+
+        private void コマンド登録_Click(object sender, EventArgs e)
+        {
+            object varSaved1 = null; // 承認日時保存用
+            object varSaved2 = null; // 承認者コード保存用
+
+            this.DoubleBuffered = true;
+
+            if (ActiveControl == コマンド登録)
+            {
+                GetNextControl(コマンド登録, false).Focus();
+            }
+
+            // 登録時におけるエラーチェック
+            //if (!ErrCheck())
+            //{
+            //    goto Bye_コマンド登録_Click;
+            //}
+
+            FunctionClass fn = new FunctionClass();
+            fn.DoWait("登録しています...");
+
+            if (RegTrans(this.CurrentCode, this.CurrentEdition))
+            {
+                ChangedData(false);
+
+                // 新規モードのときは読込モードへ移行する
+                if (IsNewData)
+                {
+                    //受注コードのソースを更新する
+                    //版数のソースを更新する
+                    UpdateEditionList(this.CurrentCode);
+                    コマンド新規.Enabled = true;
+                    コマンド読込.Enabled = false;
+                }
+
+                fn.WaitForm.Close();
+                MessageBox.Show("登録を完了しました", "登録コマンド", MessageBoxButtons.OK);
+            }
+            else
+            {
+                fn.WaitForm.Close();
+                MessageBox.Show("登録できませんでした。", "登録コマンド", MessageBoxButtons.OK);
+            }
+
         }
 
         private void コマンド終了_Click(object sender, EventArgs e)
@@ -451,7 +610,7 @@ namespace u_net
                     if (コマンド読込.Enabled)
                     {
                         コマンド読込.Focus();
-                        //コマンド修正_Click(this, EventArgs.Empty); // クリックイベントを呼び出す
+                        コマンド読込_Click(this, EventArgs.Empty); // クリックイベントを呼び出す
                     }
                     break;
                 case Keys.F3:
@@ -488,13 +647,13 @@ namespace u_net
                     if (コマンド登録.Enabled)
                     {
                         コマンド登録.Focus();
-                        //コマンド登録_Click(this, EventArgs.Empty); // クリックイベントを呼び出す
+                        コマンド登録_Click(this, EventArgs.Empty); // クリックイベントを呼び出す
                     }
                     break;
                 case Keys.F12:
                     if (コマンド終了.Enabled)
                     {
-                        //コマンド終了_Click(this, EventArgs.Empty); // クリックイベントを呼び出す
+                        コマンド終了_Click(this, EventArgs.Empty); // クリックイベントを呼び出す
                     }
                     break;
             }
@@ -518,6 +677,19 @@ namespace u_net
             OriginalClass.SetComboBoxAppearance((ComboBox)sender, e, new int[] { 50, 50 }, new string[] { "受注版数", "承認" });
             受注版数.Invalidate();
             受注版数.DroppedDown = true;
+        }
+
+        private void 顧客コード検索ボタン_Click(object sender, EventArgs e)
+        {
+            F_検索 SearchForm = new F_検索();
+            SearchForm.FilterName = "顧客名フリガナ";
+            if (SearchForm.ShowDialog() == DialogResult.OK)
+            {
+                string SelectedCode = SearchForm.SelectedCode;
+
+                顧客コード.Text = SelectedCode;
+                UpdatedControl(顧客コード);
+            }
         }
 
         private void 納品書送付コード_DrawItem(object sender, DrawItemEventArgs e)
@@ -616,54 +788,6 @@ namespace u_net
                 // 日付コントロールに選択した日付を設定
                 出荷予定日.Text = selectedDate;
             }
-        }
-
-        private void コマンド登録_Click(object sender, EventArgs e)
-        {
-            object varSaved1 = null; // 承認日時保存用
-            object varSaved2 = null; // 承認者コード保存用
-
-            this.DoubleBuffered = true;
-
-            if (ActiveControl == コマンド登録)
-            {
-                GetNextControl(コマンド登録, false).Focus();
-            }
-
-            // 登録時におけるエラーチェック
-            //if (!ErrCheck())
-            //{
-            //    goto Bye_コマンド登録_Click;
-            //}
-
-            FunctionClass fn = new FunctionClass();
-            fn.DoWait("登録しています...");
-
-            if (SaveData())
-            {
-                ChangedData(false);
-
-                // 新規モードのときは読込モードへ移行する
-                if (IsNewData)
-                {
-                    //受注コードのソースを更新する
-                    //版数のソースを更新する
-                    UpdateEditionList(this.CurrentCode);
-                    コマンド新規.Enabled = true;
-                    コマンド読込.Enabled = false;
-                }
-
-                fn.WaitForm.Close();
-                MessageBox.Show("登録を完了しました", "登録コマンド", MessageBoxButtons.OK);
-            }
-            else
-            {
-                fn.WaitForm.Close();
-                MessageBox.Show("登録できませんでした。", "登録コマンド", MessageBoxButtons.OK);
-            }
-
-        Bye_コマンド登録_Click:
-            return;
         }
     }
 }
