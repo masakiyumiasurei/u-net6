@@ -69,6 +69,7 @@
     <EmbeddedResource Include="MultiRowDesigner\商品明細.resx" />
     <EmbeddedResource Include="MultiRowDesigner\発注明細.resx" />
     <EmbeddedResource Include="MultiRowDesigner\発注明細テンプレート.resx" />
+    <EmbeddedResource Include="MultiRowDesigner\製品明細.resx" />
     <EmbeddedResource Include="MultiRowDesigner\購買形式一覧.resx" />
     <EmbeddedResource Include="MultiRowDesigner\購買形式一覧テンプレート.resx" />
     <EmbeddedResource Include="MultiRowDesigner\購買明細.resx" />
