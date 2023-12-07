@@ -101,6 +101,12 @@
 
   <ItemGroup>
     <Compile Update="Form\F_システム.cs" />
+    <Compile Update="Form\F_部品集合管理_抽出.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Form\F_部品集合管理.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Form\F_部品集合.cs">
       <SubType>Form</SubType>
     </Compile>
