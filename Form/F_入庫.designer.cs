@@ -124,10 +124,11 @@ namespace u_net
             this.確定者コード = new System.Windows.Forms.TextBox();
             this.無効者コード = new System.Windows.Forms.TextBox();
             this.無効日時 = new System.Windows.Forms.TextBox();
-            this.入庫明細1 = new MultiRowDesigner.入庫明細(this);
+            this.入庫明細1 = new MultiRowDesigner.入庫明細();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -1135,7 +1136,7 @@ namespace u_net
             // 入庫明細1
             // 
             this.入庫明細1.Location = new System.Drawing.Point(9, 275);
-            this.入庫明細1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.入庫明細1.Margin = new System.Windows.Forms.Padding(4);
             this.入庫明細1.Name = "入庫明細1";
             this.入庫明細1.Size = new System.Drawing.Size(1003, 250);
             this.入庫明細1.TabIndex = 10171;
@@ -1163,10 +1164,24 @@ namespace u_net
             this.toolStripStatusLabel2.Size = new System.Drawing.Size(89, 17);
             this.toolStripStatusLabel2.Text = "各種項目の説明";
             // 
+            // comboBox1
+            // 
+            this.comboBox1.BackColor = System.Drawing.Color.White;
+            this.comboBox1.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.comboBox1.Font = new System.Drawing.Font("BIZ UDゴシック", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.comboBox1.Location = new System.Drawing.Point(560, 332);
+            this.comboBox1.MaxDropDownItems = 9;
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(142, 26);
+            this.comboBox1.TabIndex = 10173;
+            // 
             // F_入庫
             // 
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1036, 561);
+            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.入庫明細1);
             this.Controls.Add(this.無効者コード);
@@ -1394,6 +1409,7 @@ namespace u_net
         private StatusStrip statusStrip1;
         private ToolStripStatusLabel toolStripStatusLabel1;
         private ToolStripStatusLabel toolStripStatusLabel2;
+        private ComboBox comboBox1;
     }
 }
 
