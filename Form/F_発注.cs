@@ -27,6 +27,7 @@ using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 using System.Transactions;
 using MultiRowDesigner;
 
+
 namespace u_net
 {
     public partial class F_発注 : Form
@@ -1612,7 +1613,7 @@ namespace u_net
             try
             {
                 Connect();
-
+                
                 using (SqlCommand command = new SqlCommand(strSQL, cn))
                 {
                     using (SqlDataAdapter adapter = new SqlDataAdapter(command))

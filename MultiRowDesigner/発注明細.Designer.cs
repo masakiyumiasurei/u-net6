@@ -1,4 +1,7 @@
-﻿namespace MultiRowDesigner
+﻿using System.Drawing;
+using System.Windows.Forms;
+
+namespace MultiRowDesigner
 {
     partial class 発注明細
     {
@@ -44,6 +47,8 @@
             gcMultiRow1.Template = 発注明細テンプレート1;
             gcMultiRow1.TemplateScaleSize = new SizeF(1.33333337F, 1.66666663F);
             gcMultiRow1.Text = "gcMultiRow1";
+            gcMultiRow1.RowsAdding += gcMultiRow1_RowsAdding;
+            gcMultiRow1.RowsAdded += gcMultiRow1_RowsAdded;
             gcMultiRow1.CellEnter += gcMultiRow1_CellEnter;
             gcMultiRow1.CellContentClick += gcMultiRow1_CellContentClick;
             gcMultiRow1.Sorted += gcMultiRow1_Sorted;
