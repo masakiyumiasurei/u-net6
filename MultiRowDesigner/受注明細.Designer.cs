@@ -35,6 +35,7 @@
             // 
             // gcMultiRow1
             // 
+            this.gcMultiRow1.AllowUserToReverseSelect = true;
             this.gcMultiRow1.BackColor = System.Drawing.Color.White;
             this.gcMultiRow1.EditMode = GrapeCity.Win.MultiRow.EditMode.EditOnEnter;
             this.gcMultiRow1.Location = new System.Drawing.Point(0, 0);

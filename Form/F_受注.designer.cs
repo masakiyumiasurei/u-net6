@@ -299,6 +299,7 @@ namespace u_net
             コマンド読込.TabIndex = 3;
             コマンド読込.Text = "読込";
             コマンド読込.UseVisualStyleBackColor = true;
+            コマンド読込.Click += コマンド読込_Click;
             // 
             // コマンド新規
             // 
@@ -311,6 +312,7 @@ namespace u_net
             コマンド新規.TabIndex = 2;
             コマンド新規.Text = "新規";
             コマンド新規.UseVisualStyleBackColor = true;
+            コマンド新規.Click += コマンド新規_Click;
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -962,6 +964,7 @@ namespace u_net
             顧客コード検索ボタン.TabIndex = 10024;
             顧客コード検索ボタン.Text = "▼";
             顧客コード検索ボタン.UseVisualStyleBackColor = true;
+            顧客コード検索ボタン.Click += 顧客コード検索ボタン_Click;
             // 
             // 顧客名
             // 
