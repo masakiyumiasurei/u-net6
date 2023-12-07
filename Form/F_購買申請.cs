@@ -265,8 +265,8 @@ namespace u_net
                 this.購買申請コード.Text = FunctionClass.採番(cn, "PUR");
                 this.購買申請版数.Text = "1";
 
-                // 購買申請コードのインデックス設定
-                this.購買申請コード.SelectedIndex = 0;
+                ////// 購買申請コードのインデックス設定
+                ////// this.購買申請コード.SelectedIndex = 0;
 
                 // 編集による変更がない状態へ遷移する
                 //ChangedData(false);
