@@ -39,6 +39,12 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="部品集合明細.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="部品集合明細.Designer.cs">
+      <DependentUpon>部品集合明細.cs</DependentUpon>
+    </Compile>
     <Compile Include="購買発注先.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -147,6 +153,12 @@
     <Compile Include="購買発注先テンプレート.designer.cs">
       <DependentUpon>購買発注先テンプレート.cs</DependentUpon>
     </Compile>
+    <Compile Include="部品集合明細テンプレート.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="部品集合明細テンプレート.designer.cs">
+      <DependentUpon>部品集合明細テンプレート.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="GrapeCity.Framework.InputMan.v34, Version=3.4.4802.2017, Culture=neutral, PublicKeyToken=fdd90f5c44b73170" />
@@ -165,6 +177,9 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="部品集合明細.resx">
+      <DependentUpon>部品集合明細.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="購買発注先.resx">
       <DependentUpon>購買発注先.cs</DependentUpon>
     </EmbeddedResource>
@@ -218,6 +233,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="購買発注先テンプレート.resx">
       <DependentUpon>購買発注先テンプレート.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="部品集合明細テンプレート.resx">
+      <DependentUpon>部品集合明細テンプレート.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
