@@ -46,39 +46,29 @@
             表示件数ラベル = new Label();
             label2 = new Label();
             dataGridView1 = new DataGridView();
+            受注コードボタン = new DataGridViewButtonColumn();
+            版数ボタン = new DataGridViewButtonColumn();
+            登録日ボタン = new DataGridViewButtonColumn();
+            承認依頼者名ボタン = new DataGridViewButtonColumn();
+            出荷予定日ボタン = new DataGridViewButtonColumn();
+            受注納期ボタン = new DataGridViewButtonColumn();
+            顧客コードボタン = new DataGridViewButtonColumn();
+            承認者名ボタン = new DataGridViewButtonColumn();
+            承認日ボタン = new DataGridViewButtonColumn();
             newDataSet = new newDataSet();
             panel2 = new Panel();
+            抽出表示ボタン = new Button();
+            次ページボタン = new Button();
+            前ページボタン = new Button();
             本日登録分ボタン = new Button();
             前日登録分ボタン = new Button();
             検索ボタン = new Button();
             履歴トグル = new Button();
-            受注コードボタン = new Button();
-            版数ボタン = new Button();
-            登録日ボタン = new Button();
-            承認依頼者名ボタン = new Button();
-            出荷予定日ボタン = new Button();
-            受注納期ボタン = new Button();
-            顧客コードボタン = new Button();
-            承認者名ボタン = new Button();
-            承認日ボタン = new Button();
-            コード = new TextBox();
-            版数 = new TextBox();
-            登録日 = new TextBox();
-            承認依頼者名 = new TextBox();
-            出荷予定日 = new TextBox();
-            受注納期 = new TextBox();
-            顧客コード = new TextBox();
-            承認者名 = new TextBox();
-            承認日 = new TextBox();
-            承認者コード = new TextBox();
-            無効日 = new TextBox();
             label4 = new Label();
             承認情報 = new ComboBox();
             検索コードラベル = new Label();
             検索コード = new TextBox();
-            前ページボタン = new Button();
-            次ページボタン = new Button();
-            抽出表示ボタン = new Button();
+            無効日 = new TextBox();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)newDataSet).BeginInit();
@@ -104,7 +94,7 @@
             panel1.Location = new Point(0, 0);
             panel1.Margin = new Padding(4, 2, 4, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(882, 32);
+            panel1.Size = new Size(879, 32);
             panel1.TabIndex = 83;
             // 
             // button4
@@ -301,18 +291,77 @@
             dataGridView1.AllowUserToAddRows = false;
             dataGridView1.AllowUserToDeleteRows = false;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(0, 65);
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { 受注コードボタン, 版数ボタン, 登録日ボタン, 承認依頼者名ボタン, 出荷予定日ボタン, 受注納期ボタン, 顧客コードボタン, 承認者名ボタン, 承認日ボタン });
+            dataGridView1.Location = new Point(6, 67);
             dataGridView1.Margin = new Padding(3, 2, 3, 2);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
             dataGridView1.RowTemplate.Height = 29;
-            dataGridView1.Size = new Size(1054, 358);
+            dataGridView1.Size = new Size(804, 358);
             dataGridView1.TabIndex = 87;
             dataGridView1.CellClick += dataGridView1_CellClick;
             dataGridView1.CellDoubleClick += dataGridView1_CellDoubleClick;
             dataGridView1.CellPainting += DataGridView1_CellPainting;
             dataGridView1.Sorted += dataGridView1_Sorted;
             dataGridView1.KeyDown += dataGridView1_KeyDown;
+            // 
+            // 受注コードボタン
+            // 
+            受注コードボタン.HeaderText = "受注コード";
+            受注コードボタン.Name = "受注コードボタン";
+            受注コードボタン.ReadOnly = true;
+            受注コードボタン.Width = 80;
+            // 
+            // 版数ボタン
+            // 
+            版数ボタン.HeaderText = "版";
+            版数ボタン.Name = "版数ボタン";
+            版数ボタン.ReadOnly = true;
+            版数ボタン.Width = 20;
+            // 
+            // 登録日ボタン
+            // 
+            登録日ボタン.HeaderText = "登録日";
+            登録日ボタン.Name = "登録日ボタン";
+            登録日ボタン.ReadOnly = true;
+            登録日ボタン.Width = 80;
+            // 
+            // 承認依頼者名ボタン
+            // 
+            承認依頼者名ボタン.HeaderText = "承認依頼者名";
+            承認依頼者名ボタン.Name = "承認依頼者名ボタン";
+            承認依頼者名ボタン.ReadOnly = true;
+            // 
+            // 出荷予定日ボタン
+            // 
+            出荷予定日ボタン.HeaderText = "出荷予定日";
+            出荷予定日ボタン.Name = "出荷予定日ボタン";
+            出荷予定日ボタン.ReadOnly = true;
+            // 
+            // 受注納期ボタン
+            // 
+            受注納期ボタン.HeaderText = "受注納期";
+            受注納期ボタン.Name = "受注納期ボタン";
+            受注納期ボタン.ReadOnly = true;
+            // 
+            // 顧客コードボタン
+            // 
+            顧客コードボタン.HeaderText = "顧客コード";
+            顧客コードボタン.Name = "顧客コードボタン";
+            顧客コードボタン.ReadOnly = true;
+            // 
+            // 承認者名ボタン
+            // 
+            承認者名ボタン.HeaderText = "承認者名";
+            承認者名ボタン.Name = "承認者名ボタン";
+            承認者名ボタン.ReadOnly = true;
+            // 
+            // 承認日ボタン
+            // 
+            承認日ボタン.HeaderText = "承認日";
+            承認日ボタン.Name = "承認日ボタン";
+            承認日ボタン.ReadOnly = true;
+            承認日ボタン.Width = 80;
             // 
             // newDataSet
             // 
@@ -332,8 +381,39 @@
             panel2.Location = new Point(0, 421);
             panel2.Margin = new Padding(3, 2, 3, 2);
             panel2.Name = "panel2";
-            panel2.Size = new Size(882, 28);
+            panel2.Size = new Size(879, 28);
             panel2.TabIndex = 88;
+            // 
+            // 抽出表示ボタン
+            // 
+            抽出表示ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            抽出表示ボタン.ForeColor = Color.Red;
+            抽出表示ボタン.Location = new Point(631, 4);
+            抽出表示ボタン.Name = "抽出表示ボタン";
+            抽出表示ボタン.Size = new Size(75, 23);
+            抽出表示ボタン.TabIndex = 89;
+            抽出表示ボタン.Text = "抽出表示";
+            抽出表示ボタン.UseVisualStyleBackColor = true;
+            // 
+            // 次ページボタン
+            // 
+            次ページボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            次ページボタン.Location = new Point(580, 4);
+            次ページボタン.Name = "次ページボタン";
+            次ページボタン.Size = new Size(45, 23);
+            次ページボタン.TabIndex = 88;
+            次ページボタン.Text = "↓";
+            次ページボタン.UseVisualStyleBackColor = true;
+            // 
+            // 前ページボタン
+            // 
+            前ページボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            前ページボタン.Location = new Point(528, 4);
+            前ページボタン.Name = "前ページボタン";
+            前ページボタン.Size = new Size(46, 23);
+            前ページボタン.TabIndex = 87;
+            前ページボタン.Text = "↑";
+            前ページボタン.UseVisualStyleBackColor = true;
             // 
             // 本日登録分ボタン
             // 
@@ -379,203 +459,6 @@
             履歴トグル.Text = "履歴モード";
             履歴トグル.UseVisualStyleBackColor = true;
             // 
-            // 受注コードボタン
-            // 
-            受注コードボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            受注コードボタン.Location = new Point(0, 66);
-            受注コードボタン.Margin = new Padding(3, 2, 3, 2);
-            受注コードボタン.Name = "受注コードボタン";
-            受注コードボタン.Size = new Size(75, 26);
-            受注コードボタン.TabIndex = 0;
-            受注コードボタン.Text = "受注コード";
-            受注コードボタン.UseVisualStyleBackColor = true;
-            // 
-            // 版数ボタン
-            // 
-            版数ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            版数ボタン.Location = new Point(73, 66);
-            版数ボタン.Margin = new Padding(3, 2, 3, 2);
-            版数ボタン.Name = "版数ボタン";
-            版数ボタン.Size = new Size(36, 26);
-            版数ボタン.TabIndex = 7;
-            版数ボタン.Text = "版";
-            版数ボタン.UseVisualStyleBackColor = true;
-            // 
-            // 登録日ボタン
-            // 
-            登録日ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            登録日ボタン.Location = new Point(107, 66);
-            登録日ボタン.Margin = new Padding(3, 2, 3, 2);
-            登録日ボタン.Name = "登録日ボタン";
-            登録日ボタン.Size = new Size(76, 26);
-            登録日ボタン.TabIndex = 1;
-            登録日ボタン.Text = "登録日";
-            登録日ボタン.UseVisualStyleBackColor = true;
-            // 
-            // 承認依頼者名ボタン
-            // 
-            承認依頼者名ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            承認依頼者名ボタン.Location = new Point(178, 66);
-            承認依頼者名ボタン.Margin = new Padding(3, 2, 3, 2);
-            承認依頼者名ボタン.Name = "承認依頼者名ボタン";
-            承認依頼者名ボタン.Size = new Size(85, 26);
-            承認依頼者名ボタン.TabIndex = 3;
-            承認依頼者名ボタン.Text = "承認依頼者名";
-            承認依頼者名ボタン.UseVisualStyleBackColor = true;
-            // 
-            // 出荷予定日ボタン
-            // 
-            出荷予定日ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            出荷予定日ボタン.Location = new Point(260, 66);
-            出荷予定日ボタン.Margin = new Padding(3, 2, 3, 2);
-            出荷予定日ボタン.Name = "出荷予定日ボタン";
-            出荷予定日ボタン.Size = new Size(89, 26);
-            出荷予定日ボタン.TabIndex = 8;
-            出荷予定日ボタン.Text = "出荷予定日";
-            出荷予定日ボタン.UseVisualStyleBackColor = true;
-            // 
-            // 受注納期ボタン
-            // 
-            受注納期ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            受注納期ボタン.Location = new Point(347, 66);
-            受注納期ボタン.Margin = new Padding(3, 2, 3, 2);
-            受注納期ボタン.Name = "受注納期ボタン";
-            受注納期ボタン.Size = new Size(94, 26);
-            受注納期ボタン.TabIndex = 2;
-            受注納期ボタン.Text = "受注納期";
-            受注納期ボタン.UseVisualStyleBackColor = true;
-            // 
-            // 顧客コードボタン
-            // 
-            顧客コードボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            顧客コードボタン.Location = new Point(439, 66);
-            顧客コードボタン.Margin = new Padding(3, 2, 3, 2);
-            顧客コードボタン.Name = "顧客コードボタン";
-            顧客コードボタン.Size = new Size(88, 26);
-            顧客コードボタン.TabIndex = 6;
-            顧客コードボタン.Text = "顧客コード";
-            顧客コードボタン.UseVisualStyleBackColor = true;
-            // 
-            // 承認者名ボタン
-            // 
-            承認者名ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            承認者名ボタン.Location = new Point(525, 66);
-            承認者名ボタン.Margin = new Padding(3, 2, 3, 2);
-            承認者名ボタン.Name = "承認者名ボタン";
-            承認者名ボタン.Size = new Size(75, 26);
-            承認者名ボタン.TabIndex = 5;
-            承認者名ボタン.Text = "承認者名";
-            承認者名ボタン.UseVisualStyleBackColor = true;
-            // 
-            // 承認日ボタン
-            // 
-            承認日ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            承認日ボタン.Location = new Point(598, 66);
-            承認日ボタン.Margin = new Padding(3, 2, 3, 2);
-            承認日ボタン.Name = "承認日ボタン";
-            承認日ボタン.Size = new Size(75, 26);
-            承認日ボタン.TabIndex = 4;
-            承認日ボタン.Text = "承認日";
-            承認日ボタン.UseVisualStyleBackColor = true;
-            // 
-            // コード
-            // 
-            コード.Enabled = false;
-            コード.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            コード.Location = new Point(0, 93);
-            コード.Name = "コード";
-            コード.Size = new Size(75, 21);
-            コード.TabIndex = 0;
-            // 
-            // 版数
-            // 
-            版数.Enabled = false;
-            版数.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            版数.Location = new Point(73, 93);
-            版数.Name = "版数";
-            版数.Size = new Size(36, 21);
-            版数.TabIndex = 7;
-            // 
-            // 登録日
-            // 
-            登録日.Enabled = false;
-            登録日.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            登録日.Location = new Point(108, 93);
-            登録日.Name = "登録日";
-            登録日.Size = new Size(74, 21);
-            登録日.TabIndex = 1;
-            // 
-            // 承認依頼者名
-            // 
-            承認依頼者名.Enabled = false;
-            承認依頼者名.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            承認依頼者名.Location = new Point(178, 93);
-            承認依頼者名.Name = "承認依頼者名";
-            承認依頼者名.Size = new Size(84, 21);
-            承認依頼者名.TabIndex = 6;
-            // 
-            // 出荷予定日
-            // 
-            出荷予定日.Enabled = false;
-            出荷予定日.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            出荷予定日.Location = new Point(260, 93);
-            出荷予定日.Name = "出荷予定日";
-            出荷予定日.Size = new Size(89, 21);
-            出荷予定日.TabIndex = 3;
-            // 
-            // 受注納期
-            // 
-            受注納期.Enabled = false;
-            受注納期.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            受注納期.Location = new Point(347, 93);
-            受注納期.Name = "受注納期";
-            受注納期.Size = new Size(94, 21);
-            受注納期.TabIndex = 2;
-            // 
-            // 顧客コード
-            // 
-            顧客コード.Enabled = false;
-            顧客コード.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            顧客コード.Location = new Point(439, 93);
-            顧客コード.Name = "顧客コード";
-            顧客コード.Size = new Size(88, 21);
-            顧客コード.TabIndex = 5;
-            // 
-            // 承認者名
-            // 
-            承認者名.Enabled = false;
-            承認者名.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            承認者名.Location = new Point(525, 93);
-            承認者名.Name = "承認者名";
-            承認者名.Size = new Size(75, 21);
-            承認者名.TabIndex = 8;
-            // 
-            // 承認日
-            // 
-            承認日.Enabled = false;
-            承認日.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            承認日.Location = new Point(598, 93);
-            承認日.Name = "承認日";
-            承認日.Size = new Size(75, 21);
-            承認日.TabIndex = 10;
-            // 
-            // 承認者コード
-            // 
-            承認者コード.Enabled = false;
-            承認者コード.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            承認者コード.Location = new Point(673, 93);
-            承認者コード.Name = "承認者コード";
-            承認者コード.Size = new Size(18, 21);
-            承認者コード.TabIndex = 9;
-            // 
-            // 無効日
-            // 
-            無効日.Enabled = false;
-            無効日.Location = new Point(0, 93);
-            無効日.Name = "無効日";
-            無効日.Size = new Size(691, 23);
-            無効日.TabIndex = 0;
-            // 
             // label4
             // 
             label4.AutoSize = true;
@@ -613,66 +496,25 @@
             検索コード.Size = new Size(88, 19);
             検索コード.TabIndex = 1;
             // 
-            // 前ページボタン
+            // 無効日
             // 
-            前ページボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            前ページボタン.Location = new Point(528, 4);
-            前ページボタン.Name = "前ページボタン";
-            前ページボタン.Size = new Size(46, 23);
-            前ページボタン.TabIndex = 87;
-            前ページボタン.Text = "↑";
-            前ページボタン.UseVisualStyleBackColor = true;
-            // 
-            // 次ページボタン
-            // 
-            次ページボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            次ページボタン.Location = new Point(580, 4);
-            次ページボタン.Name = "次ページボタン";
-            次ページボタン.Size = new Size(45, 23);
-            次ページボタン.TabIndex = 88;
-            次ページボタン.Text = "↓";
-            次ページボタン.UseVisualStyleBackColor = true;
-            // 
-            // 抽出表示ボタン
-            // 
-            抽出表示ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            抽出表示ボタン.ForeColor = Color.Red;
-            抽出表示ボタン.Location = new Point(631, 4);
-            抽出表示ボタン.Name = "抽出表示ボタン";
-            抽出表示ボタン.Size = new Size(75, 23);
-            抽出表示ボタン.TabIndex = 89;
-            抽出表示ボタン.Text = "抽出表示";
-            抽出表示ボタン.UseVisualStyleBackColor = true;
+            無効日.Enabled = false;
+            無効日.Location = new Point(6, 90);
+            無効日.Multiline = true;
+            無効日.Name = "無効日";
+            無効日.Size = new Size(804, 30);
+            無効日.TabIndex = 0;
             // 
             // F_承認管理
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(882, 449);
+            ClientSize = new Size(879, 449);
             Controls.Add(検索コード);
             Controls.Add(検索コードラベル);
             Controls.Add(承認情報);
             Controls.Add(label4);
             Controls.Add(無効日);
-            Controls.Add(承認者コード);
-            Controls.Add(承認日);
-            Controls.Add(承認者名);
-            Controls.Add(顧客コード);
-            Controls.Add(受注納期);
-            Controls.Add(出荷予定日);
-            Controls.Add(承認依頼者名);
-            Controls.Add(登録日);
-            Controls.Add(版数);
-            Controls.Add(コード);
-            Controls.Add(承認日ボタン);
-            Controls.Add(承認者名ボタン);
-            Controls.Add(顧客コードボタン);
-            Controls.Add(受注納期ボタン);
-            Controls.Add(出荷予定日ボタン);
-            Controls.Add(承認依頼者名ボタン);
-            Controls.Add(登録日ボタン);
-            Controls.Add(版数ボタン);
-            Controls.Add(受注コードボタン);
             Controls.Add(履歴トグル);
             Controls.Add(検索ボタン);
             Controls.Add(前日登録分ボタン);
@@ -834,26 +676,6 @@
         private Button 前日登録分ボタン;
         private Button 検索ボタン;
         private Button 履歴トグル;
-        private Button 受注コードボタン;
-        private Button 版数ボタン;
-        private Button 登録日ボタン;
-        private Button 承認依頼者名ボタン;
-        private Button 出荷予定日ボタン;
-        private Button 受注納期ボタン;
-        private Button 顧客コードボタン;
-        private Button 承認者名ボタン;
-        private Button 承認日ボタン;
-        private TextBox コード;
-        private TextBox 版数;
-        private TextBox 登録日;
-        private TextBox 承認依頼者名;
-        private TextBox 出荷予定日;
-        private TextBox 受注納期;
-        private TextBox 顧客コード;
-        private TextBox 承認者名;
-        private TextBox 承認日;
-        private TextBox 承認者コード;
-        private TextBox 無効日;
         private Label label4;
         private ComboBox 承認情報;
         private Label 検索コードラベル;
@@ -861,5 +683,15 @@
         private Button 抽出表示ボタン;
         private Button 次ページボタン;
         private Button 前ページボタン;
+        private DataGridViewButtonColumn 受注コードボタン;
+        private DataGridViewButtonColumn 版数ボタン;
+        private DataGridViewButtonColumn 登録日ボタン;
+        private DataGridViewButtonColumn 承認依頼者名ボタン;
+        private DataGridViewButtonColumn 出荷予定日ボタン;
+        private DataGridViewButtonColumn 受注納期ボタン;
+        private DataGridViewButtonColumn 顧客コードボタン;
+        private DataGridViewButtonColumn 承認者名ボタン;
+        private DataGridViewButtonColumn 承認日ボタン;
+        private TextBox 無効日;
     }
 }

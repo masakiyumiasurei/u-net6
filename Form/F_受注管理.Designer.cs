@@ -46,45 +46,32 @@
             表示件数ラベル = new Label();
             label2 = new Label();
             dataGridView1 = new DataGridView();
+            受注コードボタン = new DataGridViewButtonColumn();
+            版数ボタン = new DataGridViewButtonColumn();
+            受注日ボタン = new DataGridViewButtonColumn();
+            出荷予定日ボタン = new DataGridViewButtonColumn();
+            受注納期ボタン = new DataGridViewButtonColumn();
+            注文番号ボタン = new DataGridViewButtonColumn();
+            顧客名ボタン = new DataGridViewButtonColumn();
+            自社担当者名ボタン = new DataGridViewButtonColumn();
+            受注金額ボタン = new DataGridViewCheckBoxColumn();
+            進捗状況ボタン = new DataGridViewButtonColumn();
             newDataSet = new newDataSet();
             panel2 = new Panel();
+            label1 = new Label();
+            textBox3 = new TextBox();
+            label3 = new Label();
+            textBox2 = new TextBox();
+            合計金額ラベル = new Label();
+            textBox1 = new TextBox();
+            合計数量ラベル = new Label();
             初期表示ボタン = new Button();
             本日受注分ボタン = new Button();
             前日受注分ボタン = new Button();
             前ページボタン = new Button();
             次ページボタン = new Button();
             履歴トグル = new Button();
-            受注コードボタン = new Button();
-            版数ボタン = new Button();
-            受注日ボタン = new Button();
-            出荷予定日ボタン = new Button();
-            受注納期ボタン = new Button();
-            注文番号ボタン = new Button();
-            顧客名ボタン = new Button();
-            自社担当者名ボタン = new Button();
-            受注金額ボタン = new Button();
-            進捗状況ボタン = new Button();
-            受注コード = new TextBox();
-            受注版数 = new TextBox();
-            受注日 = new TextBox();
-            出荷予定日 = new TextBox();
-            受注納期 = new TextBox();
-            注文番号 = new TextBox();
-            顧客名 = new TextBox();
-            自社担当者名 = new TextBox();
-            税込受注金額 = new TextBox();
-            確定 = new TextBox();
-            承認 = new TextBox();
-            出荷完了日 = new TextBox();
-            完了承認者コード = new TextBox();
             無効日 = new TextBox();
-            合計数量ラベル = new Label();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
-            合計金額ラベル = new Label();
-            textBox3 = new TextBox();
-            label3 = new Label();
-            label1 = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)newDataSet).BeginInit();
@@ -110,7 +97,7 @@
             panel1.Location = new Point(0, 0);
             panel1.Margin = new Padding(4, 2, 4, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1054, 32);
+            panel1.Size = new Size(974, 32);
             panel1.TabIndex = 83;
             // 
             // button4
@@ -306,18 +293,84 @@
             dataGridView1.AllowUserToAddRows = false;
             dataGridView1.AllowUserToDeleteRows = false;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { 受注コードボタン, 版数ボタン, 受注日ボタン, 出荷予定日ボタン, 受注納期ボタン, 注文番号ボタン, 顧客名ボタン, 自社担当者名ボタン, 受注金額ボタン, 進捗状況ボタン });
             dataGridView1.Location = new Point(0, 65);
             dataGridView1.Margin = new Padding(3, 2, 3, 2);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
             dataGridView1.RowTemplate.Height = 29;
-            dataGridView1.Size = new Size(1054, 358);
+            dataGridView1.Size = new Size(967, 358);
             dataGridView1.TabIndex = 87;
             dataGridView1.CellClick += dataGridView1_CellClick;
             dataGridView1.CellDoubleClick += dataGridView1_CellDoubleClick;
             dataGridView1.CellPainting += DataGridView1_CellPainting;
             dataGridView1.Sorted += dataGridView1_Sorted;
             dataGridView1.KeyDown += dataGridView1_KeyDown;
+            // 
+            // 受注コードボタン
+            // 
+            受注コードボタン.HeaderText = "受注コード";
+            受注コードボタン.Name = "受注コードボタン";
+            受注コードボタン.ReadOnly = true;
+            受注コードボタン.Text = " ";
+            受注コードボタン.Width = 80;
+            // 
+            // 版数ボタン
+            // 
+            版数ボタン.HeaderText = "版";
+            版数ボタン.Name = "版数ボタン";
+            版数ボタン.ReadOnly = true;
+            版数ボタン.Width = 25;
+            // 
+            // 受注日ボタン
+            // 
+            受注日ボタン.HeaderText = "受注日";
+            受注日ボタン.Name = "受注日ボタン";
+            受注日ボタン.ReadOnly = true;
+            受注日ボタン.Width = 80;
+            // 
+            // 出荷予定日ボタン
+            // 
+            出荷予定日ボタン.HeaderText = "出荷予定日";
+            出荷予定日ボタン.Name = "出荷予定日ボタン";
+            出荷予定日ボタン.ReadOnly = true;
+            // 
+            // 受注納期ボタン
+            // 
+            受注納期ボタン.HeaderText = "受注納期";
+            受注納期ボタン.Name = "受注納期ボタン";
+            受注納期ボタン.ReadOnly = true;
+            // 
+            // 注文番号ボタン
+            // 
+            注文番号ボタン.HeaderText = "注文番号";
+            注文番号ボタン.Name = "注文番号ボタン";
+            注文番号ボタン.ReadOnly = true;
+            // 
+            // 顧客名ボタン
+            // 
+            顧客名ボタン.HeaderText = "顧　客　名";
+            顧客名ボタン.Name = "顧客名ボタン";
+            顧客名ボタン.ReadOnly = true;
+            顧客名ボタン.Width = 150;
+            // 
+            // 自社担当者名ボタン
+            // 
+            自社担当者名ボタン.HeaderText = "担当者名";
+            自社担当者名ボタン.Name = "自社担当者名ボタン";
+            自社担当者名ボタン.ReadOnly = true;
+            // 
+            // 受注金額ボタン
+            // 
+            受注金額ボタン.HeaderText = "受注金額";
+            受注金額ボタン.Name = "受注金額ボタン";
+            受注金額ボタン.ReadOnly = true;
+            // 
+            // 進捗状況ボタン
+            // 
+            進捗状況ボタン.HeaderText = "進捗";
+            進捗状況ボタン.Name = "進捗状況ボタン";
+            進捗状況ボタン.ReadOnly = true;
             // 
             // newDataSet
             // 
@@ -341,8 +394,68 @@
             panel2.Location = new Point(0, 421);
             panel2.Margin = new Padding(3, 2, 3, 2);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1054, 28);
+            panel2.Size = new Size(974, 28);
             panel2.TabIndex = 88;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(751, 6);
+            label1.Name = "label1";
+            label1.Size = new Size(216, 15);
+            label1.TabIndex = 93;
+            label1.Text = "※合計金額に未承認データは含まれません。";
+            // 
+            // textBox3
+            // 
+            textBox3.Location = new Point(637, 4);
+            textBox3.Margin = new Padding(3, 2, 3, 2);
+            textBox3.Name = "textBox3";
+            textBox3.Size = new Size(88, 23);
+            textBox3.TabIndex = 3;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(552, 6);
+            label3.Name = "label3";
+            label3.Size = new Size(79, 15);
+            label3.TabIndex = 91;
+            label3.Text = "税込合計金額";
+            // 
+            // textBox2
+            // 
+            textBox2.Location = new Point(436, 4);
+            textBox2.Margin = new Padding(3, 2, 3, 2);
+            textBox2.Name = "textBox2";
+            textBox2.Size = new Size(88, 23);
+            textBox2.TabIndex = 2;
+            // 
+            // 合計金額ラベル
+            // 
+            合計金額ラベル.AutoSize = true;
+            合計金額ラベル.Location = new Point(375, 6);
+            合計金額ラベル.Name = "合計金額ラベル";
+            合計金額ラベル.Size = new Size(55, 15);
+            合計金額ラベル.TabIndex = 89;
+            合計金額ラベル.Text = "合計金額";
+            // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(268, 4);
+            textBox1.Margin = new Padding(3, 2, 3, 2);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(88, 23);
+            textBox1.TabIndex = 1;
+            // 
+            // 合計数量ラベル
+            // 
+            合計数量ラベル.AutoSize = true;
+            合計数量ラベル.Location = new Point(207, 6);
+            合計数量ラベル.Name = "合計数量ラベル";
+            合計数量ラベル.Size = new Size(55, 15);
+            合計数量ラベル.TabIndex = 87;
+            合計数量ラベル.Text = "合計数量";
             // 
             // 初期表示ボタン
             // 
@@ -410,330 +523,21 @@
             履歴トグル.Text = "履歴モード";
             履歴トグル.UseVisualStyleBackColor = true;
             // 
-            // 受注コードボタン
-            // 
-            受注コードボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            受注コードボタン.Location = new Point(0, 66);
-            受注コードボタン.Margin = new Padding(3, 2, 3, 2);
-            受注コードボタン.Name = "受注コードボタン";
-            受注コードボタン.Size = new Size(75, 26);
-            受注コードボタン.TabIndex = 0;
-            受注コードボタン.Text = "受注コード";
-            受注コードボタン.UseVisualStyleBackColor = true;
-            // 
-            // 版数ボタン
-            // 
-            版数ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            版数ボタン.Location = new Point(73, 66);
-            版数ボタン.Margin = new Padding(3, 2, 3, 2);
-            版数ボタン.Name = "版数ボタン";
-            版数ボタン.Size = new Size(44, 26);
-            版数ボタン.TabIndex = 8;
-            版数ボタン.Text = "版";
-            版数ボタン.UseVisualStyleBackColor = true;
-            // 
-            // 受注日ボタン
-            // 
-            受注日ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            受注日ボタン.Location = new Point(115, 66);
-            受注日ボタン.Margin = new Padding(3, 2, 3, 2);
-            受注日ボタン.Name = "受注日ボタン";
-            受注日ボタン.Size = new Size(75, 26);
-            受注日ボタン.TabIndex = 1;
-            受注日ボタン.Text = "受注日";
-            受注日ボタン.UseVisualStyleBackColor = true;
-            // 
-            // 出荷予定日ボタン
-            // 
-            出荷予定日ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            出荷予定日ボタン.Location = new Point(188, 66);
-            出荷予定日ボタン.Margin = new Padding(3, 2, 3, 2);
-            出荷予定日ボタン.Name = "出荷予定日ボタン";
-            出荷予定日ボタン.Size = new Size(75, 26);
-            出荷予定日ボタン.TabIndex = 3;
-            出荷予定日ボタン.Text = "出荷予定日";
-            出荷予定日ボタン.UseVisualStyleBackColor = true;
-            // 
-            // 受注納期ボタン
-            // 
-            受注納期ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            受注納期ボタン.Location = new Point(260, 66);
-            受注納期ボタン.Margin = new Padding(3, 2, 3, 2);
-            受注納期ボタン.Name = "受注納期ボタン";
-            受注納期ボタン.Size = new Size(89, 26);
-            受注納期ボタン.TabIndex = 2;
-            受注納期ボタン.Text = "受注納期";
-            受注納期ボタン.UseVisualStyleBackColor = true;
-            // 
-            // 注文番号ボタン
-            // 
-            注文番号ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            注文番号ボタン.Location = new Point(347, 66);
-            注文番号ボタン.Margin = new Padding(3, 2, 3, 2);
-            注文番号ボタン.Name = "注文番号ボタン";
-            注文番号ボタン.Size = new Size(139, 26);
-            注文番号ボタン.TabIndex = 4;
-            注文番号ボタン.Text = "注文番号";
-            注文番号ボタン.UseVisualStyleBackColor = true;
-            // 
-            // 顧客名ボタン
-            // 
-            顧客名ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            顧客名ボタン.Location = new Point(484, 66);
-            顧客名ボタン.Margin = new Padding(3, 2, 3, 2);
-            顧客名ボタン.Name = "顧客名ボタン";
-            顧客名ボタン.Size = new Size(251, 26);
-            顧客名ボタン.TabIndex = 5;
-            顧客名ボタン.Text = "顧　　客　　名";
-            顧客名ボタン.UseVisualStyleBackColor = true;
-            // 
-            // 自社担当者名ボタン
-            // 
-            自社担当者名ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            自社担当者名ボタン.Location = new Point(733, 66);
-            自社担当者名ボタン.Margin = new Padding(3, 2, 3, 2);
-            自社担当者名ボタン.Name = "自社担当者名ボタン";
-            自社担当者名ボタン.Size = new Size(75, 26);
-            自社担当者名ボタン.TabIndex = 7;
-            自社担当者名ボタン.Text = "担当者名";
-            自社担当者名ボタン.UseVisualStyleBackColor = true;
-            // 
-            // 受注金額ボタン
-            // 
-            受注金額ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            受注金額ボタン.Location = new Point(806, 66);
-            受注金額ボタン.Margin = new Padding(3, 2, 3, 2);
-            受注金額ボタン.Name = "受注金額ボタン";
-            受注金額ボタン.Size = new Size(75, 26);
-            受注金額ボタン.TabIndex = 9;
-            受注金額ボタン.Text = "受注金額";
-            受注金額ボタン.UseVisualStyleBackColor = true;
-            // 
-            // 進捗状況ボタン
-            // 
-            進捗状況ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            進捗状況ボタン.Location = new Point(879, 66);
-            進捗状況ボタン.Margin = new Padding(3, 2, 3, 2);
-            進捗状況ボタン.Name = "進捗状況ボタン";
-            進捗状況ボタン.Size = new Size(75, 26);
-            進捗状況ボタン.TabIndex = 6;
-            進捗状況ボタン.Text = "進捗";
-            進捗状況ボタン.UseVisualStyleBackColor = true;
-            // 
-            // 受注コード
-            // 
-            受注コード.Enabled = false;
-            受注コード.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            受注コード.Location = new Point(0, 93);
-            受注コード.Name = "受注コード";
-            受注コード.Size = new Size(75, 21);
-            受注コード.TabIndex = 0;
-            // 
-            // 受注版数
-            // 
-            受注版数.Enabled = false;
-            受注版数.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            受注版数.Location = new Point(73, 93);
-            受注版数.Name = "受注版数";
-            受注版数.Size = new Size(44, 21);
-            受注版数.TabIndex = 9;
-            // 
-            // 受注日
-            // 
-            受注日.Enabled = false;
-            受注日.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            受注日.Location = new Point(115, 93);
-            受注日.Name = "受注日";
-            受注日.Size = new Size(75, 21);
-            受注日.TabIndex = 1;
-            // 
-            // 出荷予定日
-            // 
-            出荷予定日.Enabled = false;
-            出荷予定日.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            出荷予定日.Location = new Point(188, 93);
-            出荷予定日.Name = "出荷予定日";
-            出荷予定日.Size = new Size(75, 21);
-            出荷予定日.TabIndex = 3;
-            // 
-            // 受注納期
-            // 
-            受注納期.Enabled = false;
-            受注納期.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            受注納期.Location = new Point(260, 93);
-            受注納期.Name = "受注納期";
-            受注納期.Size = new Size(89, 21);
-            受注納期.TabIndex = 2;
-            // 
-            // 注文番号
-            // 
-            注文番号.Enabled = false;
-            注文番号.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            注文番号.Location = new Point(347, 93);
-            注文番号.Name = "注文番号";
-            注文番号.Size = new Size(139, 21);
-            注文番号.TabIndex = 4;
-            // 
-            // 顧客名
-            // 
-            顧客名.Enabled = false;
-            顧客名.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            顧客名.Location = new Point(484, 93);
-            顧客名.Name = "顧客名";
-            顧客名.Size = new Size(251, 21);
-            顧客名.TabIndex = 5;
-            // 
-            // 自社担当者名
-            // 
-            自社担当者名.Enabled = false;
-            自社担当者名.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            自社担当者名.Location = new Point(733, 93);
-            自社担当者名.Name = "自社担当者名";
-            自社担当者名.Size = new Size(75, 21);
-            自社担当者名.TabIndex = 8;
-            // 
-            // 税込受注金額
-            // 
-            税込受注金額.Enabled = false;
-            税込受注金額.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            税込受注金額.Location = new Point(806, 93);
-            税込受注金額.Name = "税込受注金額";
-            税込受注金額.Size = new Size(75, 21);
-            税込受注金額.TabIndex = 13;
-            // 
-            // 確定
-            // 
-            確定.Enabled = false;
-            確定.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            確定.Location = new Point(879, 93);
-            確定.Name = "確定";
-            確定.Size = new Size(18, 21);
-            確定.TabIndex = 14;
-            // 
-            // 承認
-            // 
-            承認.Enabled = false;
-            承認.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            承認.Location = new Point(898, 93);
-            承認.Name = "承認";
-            承認.Size = new Size(18, 21);
-            承認.TabIndex = 10;
-            // 
-            // 出荷完了日
-            // 
-            出荷完了日.Enabled = false;
-            出荷完了日.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            出荷完了日.Location = new Point(917, 93);
-            出荷完了日.Name = "出荷完了日";
-            出荷完了日.Size = new Size(18, 21);
-            出荷完了日.TabIndex = 11;
-            // 
-            // 完了承認者コード
-            // 
-            完了承認者コード.Enabled = false;
-            完了承認者コード.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            完了承認者コード.Location = new Point(936, 93);
-            完了承認者コード.Name = "完了承認者コード";
-            完了承認者コード.Size = new Size(18, 21);
-            完了承認者コード.TabIndex = 12;
-            // 
             // 無効日
             // 
             無効日.Enabled = false;
-            無効日.Location = new Point(-9, 91);
+            無効日.Location = new Point(0, 88);
+            無効日.Multiline = true;
             無効日.Name = "無効日";
-            無効日.Size = new Size(954, 23);
+            無効日.Size = new Size(967, 31);
             無効日.TabIndex = 0;
-            // 
-            // 合計数量ラベル
-            // 
-            合計数量ラベル.AutoSize = true;
-            合計数量ラベル.Location = new Point(207, 6);
-            合計数量ラベル.Name = "合計数量ラベル";
-            合計数量ラベル.Size = new Size(55, 15);
-            合計数量ラベル.TabIndex = 87;
-            合計数量ラベル.Text = "合計数量";
-            // 
-            // textBox1
-            // 
-            textBox1.Location = new Point(268, 4);
-            textBox1.Margin = new Padding(3, 2, 3, 2);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(88, 23);
-            textBox1.TabIndex = 1;
-            // 
-            // textBox2
-            // 
-            textBox2.Location = new Point(436, 4);
-            textBox2.Margin = new Padding(3, 2, 3, 2);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(88, 23);
-            textBox2.TabIndex = 2;
-            // 
-            // 合計金額ラベル
-            // 
-            合計金額ラベル.AutoSize = true;
-            合計金額ラベル.Location = new Point(375, 6);
-            合計金額ラベル.Name = "合計金額ラベル";
-            合計金額ラベル.Size = new Size(55, 15);
-            合計金額ラベル.TabIndex = 89;
-            合計金額ラベル.Text = "合計金額";
-            // 
-            // textBox3
-            // 
-            textBox3.Location = new Point(637, 4);
-            textBox3.Margin = new Padding(3, 2, 3, 2);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(88, 23);
-            textBox3.TabIndex = 3;
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Location = new Point(552, 6);
-            label3.Name = "label3";
-            label3.Size = new Size(79, 15);
-            label3.TabIndex = 91;
-            label3.Text = "税込合計金額";
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(751, 6);
-            label1.Name = "label1";
-            label1.Size = new Size(216, 15);
-            label1.TabIndex = 93;
-            label1.Text = "※合計金額に未承認データは含まれません。";
             // 
             // F_受注管理
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1054, 449);
+            ClientSize = new Size(974, 449);
             Controls.Add(無効日);
-            Controls.Add(完了承認者コード);
-            Controls.Add(出荷完了日);
-            Controls.Add(承認);
-            Controls.Add(確定);
-            Controls.Add(税込受注金額);
-            Controls.Add(自社担当者名);
-            Controls.Add(顧客名);
-            Controls.Add(注文番号);
-            Controls.Add(受注納期);
-            Controls.Add(出荷予定日);
-            Controls.Add(受注日);
-            Controls.Add(受注版数);
-            Controls.Add(受注コード);
-            Controls.Add(進捗状況ボタン);
-            Controls.Add(受注金額ボタン);
-            Controls.Add(自社担当者名ボタン);
-            Controls.Add(顧客名ボタン);
-            Controls.Add(注文番号ボタン);
-            Controls.Add(受注納期ボタン);
-            Controls.Add(出荷予定日ボタン);
-            Controls.Add(受注日ボタン);
-            Controls.Add(版数ボタン);
-            Controls.Add(受注コードボタン);
             Controls.Add(履歴トグル);
             Controls.Add(次ページボタン);
             Controls.Add(前ページボタン);
@@ -899,29 +703,6 @@
         private Button 前ページボタン;
         private Button 次ページボタン;
         private Button 履歴トグル;
-        private Button 受注コードボタン;
-        private Button 版数ボタン;
-        private Button 受注日ボタン;
-        private Button 出荷予定日ボタン;
-        private Button 受注納期ボタン;
-        private Button 注文番号ボタン;
-        private Button 顧客名ボタン;
-        private Button 自社担当者名ボタン;
-        private Button 受注金額ボタン;
-        private Button 進捗状況ボタン;
-        private TextBox 受注コード;
-        private TextBox 受注版数;
-        private TextBox 受注日;
-        private TextBox 出荷予定日;
-        private TextBox 受注納期;
-        private TextBox 注文番号;
-        private TextBox 顧客名;
-        private TextBox 自社担当者名;
-        private TextBox 税込受注金額;
-        private TextBox 確定;
-        private TextBox 承認;
-        private TextBox 出荷完了日;
-        private TextBox 完了承認者コード;
         private TextBox 無効日;
         private Label label1;
         private TextBox textBox3;
@@ -930,5 +711,15 @@
         private Label 合計金額ラベル;
         private TextBox textBox1;
         private Label 合計数量ラベル;
+        private DataGridViewButtonColumn 受注コードボタン;
+        private DataGridViewButtonColumn 版数ボタン;
+        private DataGridViewButtonColumn 受注日ボタン;
+        private DataGridViewButtonColumn 出荷予定日ボタン;
+        private DataGridViewButtonColumn 受注納期ボタン;
+        private DataGridViewButtonColumn 注文番号ボタン;
+        private DataGridViewButtonColumn 顧客名ボタン;
+        private DataGridViewButtonColumn 自社担当者名ボタン;
+        private DataGridViewCheckBoxColumn 受注金額ボタン;
+        private DataGridViewButtonColumn 進捗状況ボタン;
     }
 }
