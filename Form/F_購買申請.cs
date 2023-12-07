@@ -265,6 +265,9 @@ namespace u_net
                 this.購買申請コード.Text = FunctionClass.採番(cn, "PUR");
                 this.購買申請版数.Text = "1";
 
+                // 購買申請コードのインデックス設定
+                this.購買申請コード.SelectedIndex = 0;
+
                 // 編集による変更がない状態へ遷移する
                 //ChangedData(false);
 
@@ -1154,7 +1157,7 @@ namespace u_net
             }
             catch (Exception ex)
             {
-                Console.WriteLine("SaveHeader - " + ex.Message);
+                Debug.Print("SaveHeader - " + ex.Message);
                 return false;
             }
 
@@ -1916,7 +1919,10 @@ namespace u_net
 
         private void 購買申請コード_Enter(object sender, EventArgs e)
         {
-
+            // ・Access
+            //If Me.購買申請コード.RowSource = "" Then
+            //    Me.購買申請コード.RowSource  = "SELECT 購買申請コード FROM T購買申請 ORDER BY 購買申請コード DESC"
+            //End If
         }
 
         private void 購買申請コード_KeyDown(object sender, KeyEventArgs e)
@@ -2339,9 +2345,6 @@ namespace u_net
 
         private void 商品コード_DrawItem(object sender, DrawItemEventArgs e)
         {
-            //OriginalClass.SetComboBoxAppearance((ComboBox)sender, e, new int[] { 50, 100, 500 }, new string[] { "Display", "Display2", "Display3" });
-            //商品コード.Invalidate();
-            //商品コード.DroppedDown = true;
             OriginalClass.SetComboBoxAppearance((ComboBox)sender, e, new int[] { 100, 300, 500 }, new string[] { "Display", "Display2", "Display3" });
             商品コード.Invalidate();
             商品コード.DroppedDown = true;
@@ -2358,8 +2361,9 @@ namespace u_net
         {
             if (setCombo) return;
             //商品名.Text = ((DataRowView)申請者コード.SelectedItem)?.Row.Field<String>("Display2")?.ToString();
-            商品名.Text = ((DataRowView)商品コード.SelectedItem)?.Row.Field<String>("Display2")?.ToString();
             //シリーズ名.Text = ((DataRowView)申請者コード.SelectedItem)?.Row.Field<String>("Display3")?.ToString();
+            商品名.Text = ((DataRowView)商品コード.SelectedItem)?.Row.Field<String>("Display2")?.ToString();
+            シリーズ名.Text = ((DataRowView)商品コード.SelectedItem)?.Row.Field<String>("Display3")?.ToString();
             ChangedData(true);
         }
     }
