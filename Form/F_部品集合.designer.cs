@@ -106,6 +106,7 @@ namespace u_net
             this.確定日時 = new System.Windows.Forms.TextBox();
             this.承認日時 = new System.Windows.Forms.TextBox();
             this.無効日時 = new System.Windows.Forms.TextBox();
+            this.部品集合明細1 = new MultiRowDesigner.部品集合明細();
             this.panel1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -713,7 +714,7 @@ namespace u_net
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 568);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 558);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 19, 0);
             this.statusStrip1.Size = new System.Drawing.Size(869, 22);
@@ -894,10 +895,19 @@ namespace u_net
             this.無効日時.TabStop = false;
             this.無効日時.Visible = false;
             // 
+            // 部品集合明細1
+            // 
+            this.部品集合明細1.Location = new System.Drawing.Point(9, 192);
+            this.部品集合明細1.Margin = new System.Windows.Forms.Padding(4);
+            this.部品集合明細1.Name = "部品集合明細1";
+            this.部品集合明細1.Size = new System.Drawing.Size(856, 359);
+            this.部品集合明細1.TabIndex = 11;
+            // 
             // F_部品集合
             // 
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(869, 590);
+            this.ClientSize = new System.Drawing.Size(869, 580);
+            this.Controls.Add(this.部品集合明細1);
             this.Controls.Add(this.無効日時);
             this.Controls.Add(this.承認日時);
             this.Controls.Add(this.確定日時);
@@ -1044,6 +1054,7 @@ namespace u_net
         private TextBox 確定日時;
         private TextBox 承認日時;
         private TextBox 無効日時;
+        private MultiRowDesigner.部品集合明細 部品集合明細1;
     }
 }
 
