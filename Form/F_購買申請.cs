@@ -181,7 +181,8 @@ namespace u_net
             OriginalClass ofn = new OriginalClass();
             ofn.SetComboBox(購買申請コード, "SELECT 購買申請コード as Display,購買申請コード as Value FROM T購買申請 ORDER BY 購買申請コード DESC");
             ofn.SetComboBox(購買申請版数, "SELECT 購買申請版数 as Display , 購買申請版数 as Value FROM T購買申請 ORDER BY 購買申請版数 DESC");
-            ofn.SetComboBox(商品コード, "SELECT 商品コード as Display,商品名 as Display2, シリーズ名 as Display3, 商品コード as Value FROM M商品 ORDER BY 商品コード DESC");
+            ofn.SetComboBox(商品コード, "SELECT 商品コード as Display, 商品名 as Display2, シリーズ名 as Display3, 商品コード as Value FROM M商品 ORDER BY 商品コード DESC");
+            //ofn.SetComboBox(商品コード, "SELECT M商品.商品コード as Display, M商品.商品名 as Display2, Mシリーズ.シリーズ名 as Display3, - CONVERT (int, CONVERT (bit, ISNULL(M商品.シリーズコード, 0))) AS 在庫管理値 FROM M商品 LEFT OUTER JOIN Mシリーズ ON M商品.シリーズコード = Mシリーズ.シリーズコード ORDER BY M商品.商品名");
             商品コード.DrawMode = DrawMode.OwnerDrawFixed;
             ofn.SetComboBox(申請者コード, "SELECT [社員コード] as Display, 氏名 as Display2 ,社員コード as Value FROM M社員 WHERE (退社 IS NULL) AND (削除日時 IS NULL) AND (ふりがな <> N'ん') ORDER BY ふりがな");
             申請者コード.DrawMode = DrawMode.OwnerDrawFixed;
@@ -1392,19 +1393,6 @@ namespace u_net
             }
         }
 
-        private void コマンド印刷_Click(object sender, EventArgs e)
-        {
-            // デスクトップフォルダのパスを取得
-            string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-
-            // 画面のキャプチャをデスクトップに保存
-            string screenshotFileName = "screenshot.png";
-            string screenshotFilePath = Path.Combine(desktopPath, screenshotFileName);
-            OriginalClass.CaptureActiveForm(screenshotFilePath);
-
-            // 印刷ダイアログを表示
-            OriginalClass.PrintScreen(screenshotFilePath);
-        }
 
 
         private void コマンド承認_Click(object sender, EventArgs e)
@@ -2354,7 +2342,9 @@ namespace u_net
             //OriginalClass.SetComboBoxAppearance((ComboBox)sender, e, new int[] { 50, 100, 500 }, new string[] { "Display", "Display2", "Display3" });
             //商品コード.Invalidate();
             //商品コード.DroppedDown = true;
-
+            OriginalClass.SetComboBoxAppearance((ComboBox)sender, e, new int[] { 100, 300, 500 }, new string[] { "Display", "Display2", "Display3" });
+            商品コード.Invalidate();
+            商品コード.DroppedDown = true;
         }
 
         private void 申請者コード_SelectedIndexChanged(object sender, EventArgs e)
@@ -2367,7 +2357,8 @@ namespace u_net
         private void 商品コード_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (setCombo) return;
-            商品名.Text = ((DataRowView)申請者コード.SelectedItem)?.Row.Field<String>("Display2")?.ToString();
+            //商品名.Text = ((DataRowView)申請者コード.SelectedItem)?.Row.Field<String>("Display2")?.ToString();
+            商品名.Text = ((DataRowView)商品コード.SelectedItem)?.Row.Field<String>("Display2")?.ToString();
             //シリーズ名.Text = ((DataRowView)申請者コード.SelectedItem)?.Row.Field<String>("Display3")?.ToString();
             ChangedData(true);
         }

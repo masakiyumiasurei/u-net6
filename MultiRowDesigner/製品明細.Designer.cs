@@ -38,21 +38,34 @@
             this.gcMultiRow1.BackColor = System.Drawing.Color.White;
             this.gcMultiRow1.EditMode = GrapeCity.Win.MultiRow.EditMode.EditOnEnter;
             this.gcMultiRow1.Location = new System.Drawing.Point(0, 0);
+            this.gcMultiRow1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.gcMultiRow1.Name = "gcMultiRow1";
-            this.gcMultiRow1.Size = new System.Drawing.Size(870, 290);
+            this.gcMultiRow1.Size = new System.Drawing.Size(1015, 343);
             this.gcMultiRow1.TabIndex = 0;
             this.gcMultiRow1.Template = this.製品明細テンプレート1;
+            this.gcMultiRow1.TemplateScaleSize = new System.Drawing.SizeF(1.166667F, 1.25F);
             this.gcMultiRow1.Text = "gcMultiRow1";
             this.gcMultiRow1.CellEnter += new System.EventHandler<GrapeCity.Win.MultiRow.CellEventArgs>(this.gcMultiRow1_CellEnter);
             this.gcMultiRow1.CellContentClick += new System.EventHandler<GrapeCity.Win.MultiRow.CellEventArgs>(this.gcMultiRow1_CellContentClick);
             // 
+            // 製品明細テンプレート1
+            // 
+            this.製品明細テンプレート1.Height = 65;
+            // 
+            // 
+            // 
+            this.製品明細テンプレート1.Row.Height = 17;
+            this.製品明細テンプレート1.Row.Width = 1297;
+            this.製品明細テンプレート1.Width = 1297;
+            // 
             // 製品明細
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.gcMultiRow1);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "製品明細";
-            this.Size = new System.Drawing.Size(870, 286);
+            this.Size = new System.Drawing.Size(1015, 344);
             ((System.ComponentModel.ISupportInitialize)(this.gcMultiRow1)).EndInit();
             this.ResumeLayout(false);
 

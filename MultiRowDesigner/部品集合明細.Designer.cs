@@ -1,6 +1,6 @@
 ﻿namespace MultiRowDesigner
 {
-    partial class 購買発注先
+    partial class 部品集合明細
     {
         /// <summary> 
         /// 必要なデザイナー変数です。
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.gcMultiRow1 = new GrapeCity.Win.MultiRow.GcMultiRow();
-            this.購買発注先テンプレート1 = new MultiRowDesigner.購買発注先テンプレート();
+            this.部品集合明細テンプレート1 = new MultiRowDesigner.部品集合明細テンプレート();
             ((System.ComponentModel.ISupportInitialize)(this.gcMultiRow1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -37,33 +37,34 @@
             // 
             this.gcMultiRow1.EditMode = GrapeCity.Win.MultiRow.EditMode.EditOnEnter;
             this.gcMultiRow1.Location = new System.Drawing.Point(0, 0);
-            this.gcMultiRow1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gcMultiRow1.Margin = new System.Windows.Forms.Padding(4);
             this.gcMultiRow1.Name = "gcMultiRow1";
-            this.gcMultiRow1.Size = new System.Drawing.Size(855, 275);
+            this.gcMultiRow1.Size = new System.Drawing.Size(856, 357);
             this.gcMultiRow1.TabIndex = 0;
-            this.gcMultiRow1.Template = this.購買発注先テンプレート1;
+            this.gcMultiRow1.Template = this.部品集合明細テンプレート1;
             this.gcMultiRow1.TemplateScaleSize = new System.Drawing.SizeF(1.166667F, 1.25F);
             this.gcMultiRow1.Text = "gcMultiRow1";
+            this.gcMultiRow1.CellEnter += new System.EventHandler<GrapeCity.Win.MultiRow.CellEventArgs>(this.gcMultiRow1_CellEnter);
             this.gcMultiRow1.CellContentClick += new System.EventHandler<GrapeCity.Win.MultiRow.CellEventArgs>(this.gcMultiRow1_CellContentClick);
             // 
-            // 購買発注先テンプレート1
+            // 部品集合明細テンプレート1
             // 
-            this.購買発注先テンプレート1.Height = 70;
+            this.部品集合明細テンプレート1.Height = 82;
             // 
             // 
             // 
-            this.購買発注先テンプレート1.Row.Height = 22;
-            this.購買発注先テンプレート1.Row.Width = 858;
-            this.購買発注先テンプレート1.Width = 858;
+            this.部品集合明細テンプレート1.Row.Height = 34;
+            this.部品集合明細テンプレート1.Row.Width = 840;
+            this.部品集合明細テンプレート1.Width = 840;
             // 
-            // 購買発注先
+            // 部品集合明細
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.gcMultiRow1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.Name = "購買発注先";
-            this.Size = new System.Drawing.Size(857, 277);
+            this.Margin = new System.Windows.Forms.Padding(4);
+            this.Name = "部品集合明細";
+            this.Size = new System.Drawing.Size(856, 359);
             ((System.ComponentModel.ISupportInitialize)(this.gcMultiRow1)).EndInit();
             this.ResumeLayout(false);
 
@@ -72,6 +73,6 @@
         #endregion
 
         private GrapeCity.Win.MultiRow.GcMultiRow gcMultiRow1;
-        private 購買発注先テンプレート 購買発注先テンプレート1;
+        private 部品集合明細テンプレート 部品集合明細テンプレート1;
     }
 }

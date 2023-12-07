@@ -95,6 +95,7 @@ namespace u_net
             this.ユニット構成_ラベル = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.購買部品ページ = new System.Windows.Forms.TabPage();
+            this.購買明細1 = new MultiRowDesigner.購買明細();
             this.発注処理ページ = new System.Windows.Forms.TabPage();
             this.label7 = new System.Windows.Forms.Label();
             this.発注書送信ボタン = new System.Windows.Forms.Button();
@@ -129,7 +130,7 @@ namespace u_net
             this.承認 = new System.Windows.Forms.TextBox();
             this.完了 = new System.Windows.Forms.TextBox();
             this.無効 = new System.Windows.Forms.TextBox();
-            this.購買明細1 = new MultiRowDesigner.購買明細();
+            this.購買発注先1 = new MultiRowDesigner.購買発注先();
             this.panel1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.タブ.SuspendLayout();
@@ -790,8 +791,17 @@ namespace u_net
             this.購買部品ページ.Text = "　　　購買部品(&B)　　　";
             this.購買部品ページ.UseVisualStyleBackColor = true;
             // 
+            // 購買明細1
+            // 
+            this.購買明細1.Location = new System.Drawing.Point(6, 5);
+            this.購買明細1.Margin = new System.Windows.Forms.Padding(4);
+            this.購買明細1.Name = "購買明細1";
+            this.購買明細1.Size = new System.Drawing.Size(855, 302);
+            this.購買明細1.TabIndex = 21;
+            // 
             // 発注処理ページ
             // 
+            this.発注処理ページ.Controls.Add(this.購買発注先1);
             this.発注処理ページ.Controls.Add(this.label7);
             this.発注処理ページ.Controls.Add(this.発注書送信ボタン);
             this.発注処理ページ.Controls.Add(this.発注書印刷ボタン);
@@ -1248,13 +1258,13 @@ namespace u_net
             this.無効.TabIndex = 10226;
             this.無効.TabStop = false;
             // 
-            // 購買明細1
+            // 購買発注先1
             // 
-            this.購買明細1.Location = new System.Drawing.Point(6, 5);
-            this.購買明細1.Margin = new System.Windows.Forms.Padding(4);
-            this.購買明細1.Name = "購買明細1";
-            this.購買明細1.Size = new System.Drawing.Size(855, 302);
-            this.購買明細1.TabIndex = 21;
+            this.購買発注先1.Location = new System.Drawing.Point(6, 36);
+            this.購買発注先1.Margin = new System.Windows.Forms.Padding(4);
+            this.購買発注先1.Name = "購買発注先1";
+            this.購買発注先1.Size = new System.Drawing.Size(857, 277);
+            this.購買発注先1.TabIndex = 23;
             // 
             // F_購買
             // 
@@ -1445,6 +1455,7 @@ namespace u_net
         private Label 購買形式_ラベル;
         private MultiRowDesigner.購買形式一覧 購買形式一覧1;
         private MultiRowDesigner.購買明細 購買明細1;
+        private MultiRowDesigner.購買発注先 購買発注先1;
     }
 }
 

@@ -222,7 +222,7 @@ namespace u_net
             コマンド印刷.TabIndex = 1011;
             コマンド印刷.TabStop = false;
             コマンド印刷.UseVisualStyleBackColor = true;
-            コマンド印刷.Click += コマンド印刷_Click;
+
             // 
             // button3
             // 
