@@ -37,20 +37,33 @@
             // 
             this.gcMultiRow1.EditMode = GrapeCity.Win.MultiRow.EditMode.EditOnEnter;
             this.gcMultiRow1.Location = new System.Drawing.Point(0, 0);
+            this.gcMultiRow1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.gcMultiRow1.Name = "gcMultiRow1";
-            this.gcMultiRow1.Size = new System.Drawing.Size(860, 295);
+            this.gcMultiRow1.Size = new System.Drawing.Size(855, 275);
             this.gcMultiRow1.TabIndex = 0;
             this.gcMultiRow1.Template = this.購買発注先テンプレート1;
+            this.gcMultiRow1.TemplateScaleSize = new System.Drawing.SizeF(1.166667F, 1.25F);
             this.gcMultiRow1.Text = "gcMultiRow1";
             this.gcMultiRow1.CellContentClick += new System.EventHandler<GrapeCity.Win.MultiRow.CellEventArgs>(this.gcMultiRow1_CellContentClick);
             // 
+            // 購買発注先テンプレート1
+            // 
+            this.購買発注先テンプレート1.Height = 70;
+            // 
+            // 
+            // 
+            this.購買発注先テンプレート1.Row.Height = 22;
+            this.購買発注先テンプレート1.Row.Width = 858;
+            this.購買発注先テンプレート1.Width = 858;
+            // 
             // 購買発注先
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.gcMultiRow1);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "購買発注先";
-            this.Size = new System.Drawing.Size(860, 295);
+            this.Size = new System.Drawing.Size(857, 277);
             ((System.ComponentModel.ISupportInitialize)(this.gcMultiRow1)).EndInit();
             this.ResumeLayout(false);
 
