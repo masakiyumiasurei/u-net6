@@ -29,50 +29,51 @@
 		/// </summary>
         private void InitializeComponent()
         {
-            GrapeCity.Win.MultiRow.CellStyle cellStyle22 = new GrapeCity.Win.MultiRow.CellStyle();
-            GrapeCity.Win.MultiRow.Border border1 = new GrapeCity.Win.MultiRow.Border();
-            GrapeCity.Win.MultiRow.CellStyle cellStyle23 = new GrapeCity.Win.MultiRow.CellStyle();
-            GrapeCity.Win.MultiRow.Border border2 = new GrapeCity.Win.MultiRow.Border();
-            GrapeCity.Win.MultiRow.CellStyle cellStyle24 = new GrapeCity.Win.MultiRow.CellStyle();
-            GrapeCity.Win.MultiRow.Border border3 = new GrapeCity.Win.MultiRow.Border();
             GrapeCity.Win.MultiRow.CellStyle cellStyle25 = new GrapeCity.Win.MultiRow.CellStyle();
-            GrapeCity.Win.MultiRow.Border border4 = new GrapeCity.Win.MultiRow.Border();
+            GrapeCity.Win.MultiRow.Border border1 = new GrapeCity.Win.MultiRow.Border();
             GrapeCity.Win.MultiRow.CellStyle cellStyle26 = new GrapeCity.Win.MultiRow.CellStyle();
-            GrapeCity.Win.MultiRow.Border border5 = new GrapeCity.Win.MultiRow.Border();
+            GrapeCity.Win.MultiRow.Border border2 = new GrapeCity.Win.MultiRow.Border();
             GrapeCity.Win.MultiRow.CellStyle cellStyle27 = new GrapeCity.Win.MultiRow.CellStyle();
-            GrapeCity.Win.MultiRow.Border border6 = new GrapeCity.Win.MultiRow.Border();
+            GrapeCity.Win.MultiRow.Border border3 = new GrapeCity.Win.MultiRow.Border();
             GrapeCity.Win.MultiRow.CellStyle cellStyle28 = new GrapeCity.Win.MultiRow.CellStyle();
-            GrapeCity.Win.MultiRow.Border border7 = new GrapeCity.Win.MultiRow.Border();
+            GrapeCity.Win.MultiRow.Border border4 = new GrapeCity.Win.MultiRow.Border();
             GrapeCity.Win.MultiRow.CellStyle cellStyle29 = new GrapeCity.Win.MultiRow.CellStyle();
-            GrapeCity.Win.MultiRow.Border border8 = new GrapeCity.Win.MultiRow.Border();
+            GrapeCity.Win.MultiRow.Border border5 = new GrapeCity.Win.MultiRow.Border();
             GrapeCity.Win.MultiRow.CellStyle cellStyle30 = new GrapeCity.Win.MultiRow.CellStyle();
-            GrapeCity.Win.MultiRow.Border border9 = new GrapeCity.Win.MultiRow.Border();
+            GrapeCity.Win.MultiRow.Border border6 = new GrapeCity.Win.MultiRow.Border();
             GrapeCity.Win.MultiRow.CellStyle cellStyle31 = new GrapeCity.Win.MultiRow.CellStyle();
-            GrapeCity.Win.MultiRow.Border border10 = new GrapeCity.Win.MultiRow.Border();
+            GrapeCity.Win.MultiRow.Border border7 = new GrapeCity.Win.MultiRow.Border();
             GrapeCity.Win.MultiRow.CellStyle cellStyle32 = new GrapeCity.Win.MultiRow.CellStyle();
-            GrapeCity.Win.MultiRow.Border border11 = new GrapeCity.Win.MultiRow.Border();
+            GrapeCity.Win.MultiRow.Border border8 = new GrapeCity.Win.MultiRow.Border();
             GrapeCity.Win.MultiRow.CellStyle cellStyle33 = new GrapeCity.Win.MultiRow.CellStyle();
-            GrapeCity.Win.MultiRow.Border border12 = new GrapeCity.Win.MultiRow.Border();
+            GrapeCity.Win.MultiRow.Border border9 = new GrapeCity.Win.MultiRow.Border();
             GrapeCity.Win.MultiRow.CellStyle cellStyle34 = new GrapeCity.Win.MultiRow.CellStyle();
-            GrapeCity.Win.MultiRow.Border border13 = new GrapeCity.Win.MultiRow.Border();
+            GrapeCity.Win.MultiRow.Border border10 = new GrapeCity.Win.MultiRow.Border();
             GrapeCity.Win.MultiRow.CellStyle cellStyle35 = new GrapeCity.Win.MultiRow.CellStyle();
-            GrapeCity.Win.MultiRow.Border border14 = new GrapeCity.Win.MultiRow.Border();
+            GrapeCity.Win.MultiRow.Border border11 = new GrapeCity.Win.MultiRow.Border();
             GrapeCity.Win.MultiRow.CellStyle cellStyle36 = new GrapeCity.Win.MultiRow.CellStyle();
-            GrapeCity.Win.MultiRow.Border border15 = new GrapeCity.Win.MultiRow.Border();
+            GrapeCity.Win.MultiRow.Border border12 = new GrapeCity.Win.MultiRow.Border();
             GrapeCity.Win.MultiRow.CellStyle cellStyle37 = new GrapeCity.Win.MultiRow.CellStyle();
-            GrapeCity.Win.MultiRow.Border border16 = new GrapeCity.Win.MultiRow.Border();
+            GrapeCity.Win.MultiRow.Border border13 = new GrapeCity.Win.MultiRow.Border();
             GrapeCity.Win.MultiRow.CellStyle cellStyle38 = new GrapeCity.Win.MultiRow.CellStyle();
-            GrapeCity.Win.MultiRow.Border border17 = new GrapeCity.Win.MultiRow.Border();
+            GrapeCity.Win.MultiRow.Border border14 = new GrapeCity.Win.MultiRow.Border();
             GrapeCity.Win.MultiRow.CellStyle cellStyle39 = new GrapeCity.Win.MultiRow.CellStyle();
-            GrapeCity.Win.MultiRow.Border border18 = new GrapeCity.Win.MultiRow.Border();
+            GrapeCity.Win.MultiRow.Border border15 = new GrapeCity.Win.MultiRow.Border();
             GrapeCity.Win.MultiRow.CellStyle cellStyle40 = new GrapeCity.Win.MultiRow.CellStyle();
-            GrapeCity.Win.MultiRow.Border border19 = new GrapeCity.Win.MultiRow.Border();
+            GrapeCity.Win.MultiRow.Border border16 = new GrapeCity.Win.MultiRow.Border();
             GrapeCity.Win.MultiRow.CellStyle cellStyle41 = new GrapeCity.Win.MultiRow.CellStyle();
-            GrapeCity.Win.MultiRow.Border border20 = new GrapeCity.Win.MultiRow.Border();
+            GrapeCity.Win.MultiRow.Border border17 = new GrapeCity.Win.MultiRow.Border();
             GrapeCity.Win.MultiRow.CellStyle cellStyle42 = new GrapeCity.Win.MultiRow.CellStyle();
-            GrapeCity.Win.MultiRow.Border border21 = new GrapeCity.Win.MultiRow.Border();
+            GrapeCity.Win.MultiRow.Border border18 = new GrapeCity.Win.MultiRow.Border();
             GrapeCity.Win.MultiRow.CellStyle cellStyle43 = new GrapeCity.Win.MultiRow.CellStyle();
+            GrapeCity.Win.MultiRow.Border border19 = new GrapeCity.Win.MultiRow.Border();
+            GrapeCity.Win.MultiRow.CellStyle cellStyle44 = new GrapeCity.Win.MultiRow.CellStyle();
+            GrapeCity.Win.MultiRow.Border border20 = new GrapeCity.Win.MultiRow.Border();
+            GrapeCity.Win.MultiRow.CellStyle cellStyle45 = new GrapeCity.Win.MultiRow.CellStyle();
+            GrapeCity.Win.MultiRow.Border border21 = new GrapeCity.Win.MultiRow.Border();
+            GrapeCity.Win.MultiRow.CellStyle cellStyle46 = new GrapeCity.Win.MultiRow.CellStyle();
             GrapeCity.Win.MultiRow.Border border22 = new GrapeCity.Win.MultiRow.Border();
+            GrapeCity.Win.MultiRow.InputMan.DropDownButton dropDownButton1 = new GrapeCity.Win.MultiRow.InputMan.DropDownButton();
             GrapeCity.Win.MultiRow.CellStyle cellStyle1 = new GrapeCity.Win.MultiRow.CellStyle();
             GrapeCity.Win.MultiRow.CellStyle cellStyle2 = new GrapeCity.Win.MultiRow.CellStyle();
             GrapeCity.Win.MultiRow.CellStyle cellStyle3 = new GrapeCity.Win.MultiRow.CellStyle();
@@ -99,8 +100,12 @@
             GrapeCity.Win.MultiRow.CellStyle cellStyle21 = new GrapeCity.Win.MultiRow.CellStyle();
             GrapeCity.Win.MultiRow.Border border23 = new GrapeCity.Win.MultiRow.Border();
             GrapeCity.Win.MultiRow.MathStatistics mathStatistics1 = new GrapeCity.Win.MultiRow.MathStatistics();
-            GrapeCity.Win.MultiRow.CellStyle cellStyle44 = new GrapeCity.Win.MultiRow.CellStyle();
-            GrapeCity.Win.MultiRow.CellStyle cellStyle45 = new GrapeCity.Win.MultiRow.CellStyle();
+            GrapeCity.Win.MultiRow.CellStyle cellStyle47 = new GrapeCity.Win.MultiRow.CellStyle();
+            GrapeCity.Win.MultiRow.CellStyle cellStyle48 = new GrapeCity.Win.MultiRow.CellStyle();
+            GrapeCity.Win.MultiRow.Border border24 = new GrapeCity.Win.MultiRow.Border();
+            GrapeCity.Win.MultiRow.CellStyle cellStyle22 = new GrapeCity.Win.MultiRow.CellStyle();
+            GrapeCity.Win.MultiRow.CellStyle cellStyle23 = new GrapeCity.Win.MultiRow.CellStyle();
+            GrapeCity.Win.MultiRow.CellStyle cellStyle24 = new GrapeCity.Win.MultiRow.CellStyle();
             this.columnHeaderSection1 = new GrapeCity.Win.MultiRow.ColumnHeaderSection();
             this.columnHeaderCell1 = new GrapeCity.Win.MultiRow.ColumnHeaderCell();
             this.columnHeaderCell2 = new GrapeCity.Win.MultiRow.ColumnHeaderCell();
@@ -124,19 +129,20 @@
             this.cornerHeaderCell1 = new GrapeCity.Win.MultiRow.CornerHeaderCell();
             this.columnHeaderCell13 = new GrapeCity.Win.MultiRow.ColumnHeaderCell();
             this.cornerHeaderCell2 = new GrapeCity.Win.MultiRow.CornerHeaderCell();
+            this.test = new GrapeCity.Win.MultiRow.ComboBoxCell();
+            this.test2 = new GrapeCity.Win.MultiRow.InputMan.GcComboBoxCell(false);
             this.商品コード = new GrapeCity.Win.MultiRow.TextBoxCell();
             this.型番 = new GrapeCity.Win.MultiRow.TextBoxCell();
             this.品名 = new GrapeCity.Win.MultiRow.TextBoxCell();
             this.CustomerSerialNumberFrom = new GrapeCity.Win.MultiRow.TextBoxCell();
             this.CustomerSerialNumberTo = new GrapeCity.Win.MultiRow.TextBoxCell();
             this.備考 = new GrapeCity.Win.MultiRow.TextBoxCell();
-            this.明細番号 = new GrapeCity.Win.MultiRow.TextBoxCell();
             this.明細削除ボタン = new GrapeCity.Win.MultiRow.ButtonCell();
-            this.受注区分 = new GrapeCity.Win.MultiRow.ComboBoxCell();
-            this.売上区分 = new GrapeCity.Win.MultiRow.ComboBoxCell();
-            this.処理区分 = new GrapeCity.Win.MultiRow.ComboBoxCell();
+            this.受注区分コード = new GrapeCity.Win.MultiRow.ComboBoxCell();
+            this.売上区分コード = new GrapeCity.Win.MultiRow.ComboBoxCell();
+            this.ラインコード = new GrapeCity.Win.MultiRow.ComboBoxCell();
             this.数量 = new GrapeCity.Win.MultiRow.NumericUpDownCell();
-            this.単位 = new GrapeCity.Win.MultiRow.ComboBoxCell();
+            this.単位コード = new GrapeCity.Win.MultiRow.ComboBoxCell();
             this.単価 = new GrapeCity.Win.MultiRow.NumericUpDownCell();
             this.受注金額 = new GrapeCity.Win.MultiRow.SummaryCell();
             this.原価 = new GrapeCity.Win.MultiRow.NumericUpDownCell();
@@ -149,6 +155,10 @@
             this.columnFooterSection1 = new GrapeCity.Win.MultiRow.ColumnFooterSection();
             this.summaryCell3 = new GrapeCity.Win.MultiRow.SummaryCell();
             this.labelCell1 = new GrapeCity.Win.MultiRow.LabelCell();
+            this.受注コード = new GrapeCity.Win.MultiRow.TextBoxCell();
+            this.受注版数 = new GrapeCity.Win.MultiRow.NumericUpDownCell();
+            this.明細番号 = new GrapeCity.Win.MultiRow.RowHeaderCell();
+            ((System.ComponentModel.ISupportInitialize)(this.test2)).BeginInit();
             // 
             // Row
             // 
@@ -158,13 +168,12 @@
             this.Row.Cells.Add(this.CustomerSerialNumberFrom);
             this.Row.Cells.Add(this.CustomerSerialNumberTo);
             this.Row.Cells.Add(this.備考);
-            this.Row.Cells.Add(this.明細番号);
             this.Row.Cells.Add(this.明細削除ボタン);
-            this.Row.Cells.Add(this.受注区分);
-            this.Row.Cells.Add(this.売上区分);
-            this.Row.Cells.Add(this.処理区分);
+            this.Row.Cells.Add(this.受注区分コード);
+            this.Row.Cells.Add(this.売上区分コード);
+            this.Row.Cells.Add(this.ラインコード);
             this.Row.Cells.Add(this.数量);
-            this.Row.Cells.Add(this.単位);
+            this.Row.Cells.Add(this.単位コード);
             this.Row.Cells.Add(this.単価);
             this.Row.Cells.Add(this.受注金額);
             this.Row.Cells.Add(this.原価);
@@ -174,6 +183,9 @@
             this.Row.Cells.Add(this.InspectionReport);
             this.Row.Cells.Add(this.Specification);
             this.Row.Cells.Add(this.ParameterSheet);
+            this.Row.Cells.Add(this.受注コード);
+            this.Row.Cells.Add(this.受注版数);
+            this.Row.Cells.Add(this.明細番号);
             this.Row.Height = 84;
             this.Row.Width = 860;
             // 
@@ -201,6 +213,8 @@
             this.columnHeaderSection1.Cells.Add(this.cornerHeaderCell1);
             this.columnHeaderSection1.Cells.Add(this.columnHeaderCell13);
             this.columnHeaderSection1.Cells.Add(this.cornerHeaderCell2);
+            this.columnHeaderSection1.Cells.Add(this.test);
+            this.columnHeaderSection1.Cells.Add(this.test2);
             this.columnHeaderSection1.Height = 84;
             this.columnHeaderSection1.Name = "columnHeaderSection1";
             this.columnHeaderSection1.Width = 860;
@@ -212,10 +226,10 @@
             this.columnHeaderCell1.SelectionMode = GrapeCity.Win.MultiRow.MultiRowSelectionMode.None;
             this.columnHeaderCell1.Size = new System.Drawing.Size(80, 21);
             border1.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.DarkGray);
-            cellStyle22.Border = border1;
-            cellStyle22.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
-            cellStyle22.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
-            this.columnHeaderCell1.Style = cellStyle22;
+            cellStyle25.Border = border1;
+            cellStyle25.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
+            cellStyle25.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
+            this.columnHeaderCell1.Style = cellStyle25;
             this.columnHeaderCell1.TabIndex = 0;
             this.columnHeaderCell1.Value = "受注区分";
             // 
@@ -226,10 +240,10 @@
             this.columnHeaderCell2.SelectionMode = GrapeCity.Win.MultiRow.MultiRowSelectionMode.None;
             this.columnHeaderCell2.Size = new System.Drawing.Size(80, 21);
             border2.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.DarkGray);
-            cellStyle23.Border = border2;
-            cellStyle23.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
-            cellStyle23.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
-            this.columnHeaderCell2.Style = cellStyle23;
+            cellStyle26.Border = border2;
+            cellStyle26.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
+            cellStyle26.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
+            this.columnHeaderCell2.Style = cellStyle26;
             this.columnHeaderCell2.TabIndex = 1;
             this.columnHeaderCell2.Value = "売上区分";
             // 
@@ -241,10 +255,10 @@
             this.columnHeaderCell3.SelectionMode = GrapeCity.Win.MultiRow.MultiRowSelectionMode.None;
             this.columnHeaderCell3.Size = new System.Drawing.Size(80, 21);
             border3.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.DarkGray);
-            cellStyle24.Border = border3;
-            cellStyle24.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
-            cellStyle24.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
-            this.columnHeaderCell3.Style = cellStyle24;
+            cellStyle27.Border = border3;
+            cellStyle27.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
+            cellStyle27.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
+            this.columnHeaderCell3.Style = cellStyle27;
             this.columnHeaderCell3.TabIndex = 2;
             this.columnHeaderCell3.Value = "処理区分";
             // 
@@ -256,10 +270,10 @@
             this.columnHeaderCell4.SelectionMode = GrapeCity.Win.MultiRow.MultiRowSelectionMode.None;
             this.columnHeaderCell4.Size = new System.Drawing.Size(80, 21);
             border4.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.DarkGray);
-            cellStyle25.Border = border4;
-            cellStyle25.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
-            cellStyle25.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
-            this.columnHeaderCell4.Style = cellStyle25;
+            cellStyle28.Border = border4;
+            cellStyle28.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
+            cellStyle28.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
+            this.columnHeaderCell4.Style = cellStyle28;
             this.columnHeaderCell4.TabIndex = 3;
             this.columnHeaderCell4.Value = "数量";
             // 
@@ -271,10 +285,10 @@
             this.columnHeaderCell5.SelectionMode = GrapeCity.Win.MultiRow.MultiRowSelectionMode.None;
             this.columnHeaderCell5.Size = new System.Drawing.Size(80, 21);
             border5.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.DarkGray);
-            cellStyle26.Border = border5;
-            cellStyle26.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
-            cellStyle26.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
-            this.columnHeaderCell5.Style = cellStyle26;
+            cellStyle29.Border = border5;
+            cellStyle29.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
+            cellStyle29.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
+            this.columnHeaderCell5.Style = cellStyle29;
             this.columnHeaderCell5.TabIndex = 4;
             this.columnHeaderCell5.Value = "単位";
             // 
@@ -286,10 +300,10 @@
             this.columnHeaderCell6.SelectionMode = GrapeCity.Win.MultiRow.MultiRowSelectionMode.None;
             this.columnHeaderCell6.Size = new System.Drawing.Size(80, 21);
             border6.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.DarkGray);
-            cellStyle27.Border = border6;
-            cellStyle27.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
-            cellStyle27.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
-            this.columnHeaderCell6.Style = cellStyle27;
+            cellStyle30.Border = border6;
+            cellStyle30.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
+            cellStyle30.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
+            this.columnHeaderCell6.Style = cellStyle30;
             this.columnHeaderCell6.TabIndex = 5;
             this.columnHeaderCell6.Value = "単価";
             // 
@@ -301,10 +315,10 @@
             this.columnHeaderCell7.SelectionMode = GrapeCity.Win.MultiRow.MultiRowSelectionMode.None;
             this.columnHeaderCell7.Size = new System.Drawing.Size(80, 21);
             border7.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.DarkGray);
-            cellStyle28.Border = border7;
-            cellStyle28.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
-            cellStyle28.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
-            this.columnHeaderCell7.Style = cellStyle28;
+            cellStyle31.Border = border7;
+            cellStyle31.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
+            cellStyle31.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
+            this.columnHeaderCell7.Style = cellStyle31;
             this.columnHeaderCell7.TabIndex = 6;
             this.columnHeaderCell7.Value = "受注金額";
             // 
@@ -316,10 +330,10 @@
             this.columnHeaderCell8.SelectionMode = GrapeCity.Win.MultiRow.MultiRowSelectionMode.None;
             this.columnHeaderCell8.Size = new System.Drawing.Size(80, 21);
             border8.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.DarkGray);
-            cellStyle29.Border = border8;
-            cellStyle29.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
-            cellStyle29.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
-            this.columnHeaderCell8.Style = cellStyle29;
+            cellStyle32.Border = border8;
+            cellStyle32.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
+            cellStyle32.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
+            this.columnHeaderCell8.Style = cellStyle32;
             this.columnHeaderCell8.TabIndex = 7;
             this.columnHeaderCell8.Value = "原価";
             // 
@@ -331,10 +345,10 @@
             this.columnHeaderCell9.SelectionMode = GrapeCity.Win.MultiRow.MultiRowSelectionMode.None;
             this.columnHeaderCell9.Size = new System.Drawing.Size(80, 21);
             border9.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.DarkGray);
-            cellStyle30.Border = border9;
-            cellStyle30.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
-            cellStyle30.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
-            this.columnHeaderCell9.Style = cellStyle30;
+            cellStyle33.Border = border9;
+            cellStyle33.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
+            cellStyle33.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
+            this.columnHeaderCell9.Style = cellStyle33;
             this.columnHeaderCell9.TabIndex = 8;
             this.columnHeaderCell9.Value = "原価金額";
             // 
@@ -346,10 +360,10 @@
             this.columnHeaderCell10.SelectionMode = GrapeCity.Win.MultiRow.MultiRowSelectionMode.None;
             this.columnHeaderCell10.Size = new System.Drawing.Size(80, 21);
             border10.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.DarkGray);
-            cellStyle31.Border = border10;
-            cellStyle31.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
-            cellStyle31.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
-            this.columnHeaderCell10.Style = cellStyle31;
+            cellStyle34.Border = border10;
+            cellStyle34.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
+            cellStyle34.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
+            this.columnHeaderCell10.Style = cellStyle34;
             this.columnHeaderCell10.TabIndex = 9;
             this.columnHeaderCell10.Value = "粗利";
             // 
@@ -361,10 +375,10 @@
             this.columnHeaderCell11.SelectionMode = GrapeCity.Win.MultiRow.MultiRowSelectionMode.None;
             this.columnHeaderCell11.Size = new System.Drawing.Size(80, 21);
             border11.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.DarkGray);
-            cellStyle32.Border = border11;
-            cellStyle32.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
-            cellStyle32.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
-            this.columnHeaderCell11.Style = cellStyle32;
+            cellStyle35.Border = border11;
+            cellStyle35.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
+            cellStyle35.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
+            this.columnHeaderCell11.Style = cellStyle35;
             this.columnHeaderCell11.TabIndex = 10;
             this.columnHeaderCell11.Value = "商品コード";
             // 
@@ -379,10 +393,10 @@
             border12.Left = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.DarkGray);
             border12.Right = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.DarkGray);
             border12.Top = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.DarkGray);
-            cellStyle33.Border = border12;
-            cellStyle33.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
-            cellStyle33.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
-            this.columnHeaderCell12.Style = cellStyle33;
+            cellStyle36.Border = border12;
+            cellStyle36.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
+            cellStyle36.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
+            this.columnHeaderCell12.Style = cellStyle36;
             this.columnHeaderCell12.TabIndex = 11;
             this.columnHeaderCell12.Value = "型番";
             // 
@@ -394,10 +408,10 @@
             this.columnHeaderCell20.SelectionMode = GrapeCity.Win.MultiRow.MultiRowSelectionMode.None;
             this.columnHeaderCell20.Size = new System.Drawing.Size(400, 21);
             border13.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.DarkGray);
-            cellStyle34.Border = border13;
-            cellStyle34.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
-            cellStyle34.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
-            this.columnHeaderCell20.Style = cellStyle34;
+            cellStyle37.Border = border13;
+            cellStyle37.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
+            cellStyle37.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
+            this.columnHeaderCell20.Style = cellStyle37;
             this.columnHeaderCell20.TabIndex = 19;
             this.columnHeaderCell20.Value = "品名";
             // 
@@ -409,10 +423,10 @@
             this.columnHeaderCell21.SelectionMode = GrapeCity.Win.MultiRow.MultiRowSelectionMode.None;
             this.columnHeaderCell21.Size = new System.Drawing.Size(160, 21);
             border14.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.DarkGray);
-            cellStyle35.Border = border14;
-            cellStyle35.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
-            cellStyle35.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
-            this.columnHeaderCell21.Style = cellStyle35;
+            cellStyle38.Border = border14;
+            cellStyle38.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
+            cellStyle38.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
+            this.columnHeaderCell21.Style = cellStyle38;
             this.columnHeaderCell21.TabIndex = 20;
             this.columnHeaderCell21.Value = "顧客シリアル番号開始";
             // 
@@ -424,10 +438,10 @@
             this.columnHeaderCell25.SelectionMode = GrapeCity.Win.MultiRow.MultiRowSelectionMode.None;
             this.columnHeaderCell25.Size = new System.Drawing.Size(160, 21);
             border15.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.DarkGray);
-            cellStyle36.Border = border15;
-            cellStyle36.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
-            cellStyle36.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
-            this.columnHeaderCell25.Style = cellStyle36;
+            cellStyle39.Border = border15;
+            cellStyle39.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
+            cellStyle39.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
+            this.columnHeaderCell25.Style = cellStyle39;
             this.columnHeaderCell25.TabIndex = 24;
             this.columnHeaderCell25.Value = "顧客シリアル番号終了";
             // 
@@ -439,10 +453,10 @@
             this.columnHeaderCell26.SelectionMode = GrapeCity.Win.MultiRow.MultiRowSelectionMode.None;
             this.columnHeaderCell26.Size = new System.Drawing.Size(120, 21);
             border16.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.DarkGray);
-            cellStyle37.Border = border16;
-            cellStyle37.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
-            cellStyle37.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
-            this.columnHeaderCell26.Style = cellStyle37;
+            cellStyle40.Border = border16;
+            cellStyle40.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
+            cellStyle40.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
+            this.columnHeaderCell26.Style = cellStyle40;
             this.columnHeaderCell26.TabIndex = 25;
             this.columnHeaderCell26.Value = "設定明細書";
             // 
@@ -454,10 +468,10 @@
             this.columnHeaderCell27.SelectionMode = GrapeCity.Win.MultiRow.MultiRowSelectionMode.None;
             this.columnHeaderCell27.Size = new System.Drawing.Size(120, 21);
             border17.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.DarkGray);
-            cellStyle38.Border = border17;
-            cellStyle38.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
-            cellStyle38.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
-            this.columnHeaderCell27.Style = cellStyle38;
+            cellStyle41.Border = border17;
+            cellStyle41.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
+            cellStyle41.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
+            this.columnHeaderCell27.Style = cellStyle41;
             this.columnHeaderCell27.TabIndex = 26;
             this.columnHeaderCell27.Value = "検査成績書";
             // 
@@ -469,10 +483,10 @@
             this.columnHeaderCell30.SelectionMode = GrapeCity.Win.MultiRow.MultiRowSelectionMode.None;
             this.columnHeaderCell30.Size = new System.Drawing.Size(120, 21);
             border18.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.DarkGray);
-            cellStyle39.Border = border18;
-            cellStyle39.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
-            cellStyle39.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
-            this.columnHeaderCell30.Style = cellStyle39;
+            cellStyle42.Border = border18;
+            cellStyle42.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
+            cellStyle42.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
+            this.columnHeaderCell30.Style = cellStyle42;
             this.columnHeaderCell30.TabIndex = 29;
             this.columnHeaderCell30.Value = "非該当証明書";
             // 
@@ -484,10 +498,10 @@
             this.columnHeaderCell31.SelectionMode = GrapeCity.Win.MultiRow.MultiRowSelectionMode.None;
             this.columnHeaderCell31.Size = new System.Drawing.Size(800, 21);
             border19.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.DarkGray);
-            cellStyle40.Border = border19;
-            cellStyle40.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
-            cellStyle40.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
-            this.columnHeaderCell31.Style = cellStyle40;
+            cellStyle43.Border = border19;
+            cellStyle43.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
+            cellStyle43.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
+            this.columnHeaderCell31.Style = cellStyle43;
             this.columnHeaderCell31.TabIndex = 30;
             this.columnHeaderCell31.Value = "設定明細内容";
             // 
@@ -498,10 +512,10 @@
             this.cornerHeaderCell1.SelectionMode = GrapeCity.Win.MultiRow.MultiRowSelectionMode.None;
             this.cornerHeaderCell1.Size = new System.Drawing.Size(30, 84);
             border20.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.DarkGray);
-            cellStyle41.Border = border20;
-            cellStyle41.Font = new System.Drawing.Font("BIZ UDPゴシック", 8F);
-            cellStyle41.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
-            this.cornerHeaderCell1.Style = cellStyle41;
+            cellStyle44.Border = border20;
+            cellStyle44.Font = new System.Drawing.Font("BIZ UDPゴシック", 8F);
+            cellStyle44.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
+            this.cornerHeaderCell1.Style = cellStyle44;
             this.cornerHeaderCell1.TabIndex = 40;
             // 
             // columnHeaderCell13
@@ -512,10 +526,10 @@
             this.columnHeaderCell13.SelectionMode = GrapeCity.Win.MultiRow.MultiRowSelectionMode.None;
             this.columnHeaderCell13.Size = new System.Drawing.Size(120, 21);
             border21.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.DarkGray);
-            cellStyle42.Border = border21;
-            cellStyle42.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
-            cellStyle42.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
-            this.columnHeaderCell13.Style = cellStyle42;
+            cellStyle45.Border = border21;
+            cellStyle45.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
+            cellStyle45.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
+            this.columnHeaderCell13.Style = cellStyle45;
             this.columnHeaderCell13.TabIndex = 41;
             this.columnHeaderCell13.Value = "納入仕様書";
             // 
@@ -526,12 +540,28 @@
             this.cornerHeaderCell2.SelectionMode = GrapeCity.Win.MultiRow.MultiRowSelectionMode.None;
             this.cornerHeaderCell2.Size = new System.Drawing.Size(30, 84);
             border22.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.DarkGray);
-            cellStyle43.Border = border22;
-            cellStyle43.Font = new System.Drawing.Font("BIZ UDPゴシック", 8F);
-            cellStyle43.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
-            this.cornerHeaderCell2.Style = cellStyle43;
+            cellStyle46.Border = border22;
+            cellStyle46.Font = new System.Drawing.Font("BIZ UDPゴシック", 8F);
+            cellStyle46.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
+            this.cornerHeaderCell2.Style = cellStyle46;
             this.cornerHeaderCell2.TabIndex = 42;
             this.cornerHeaderCell2.Value = "No";
+            // 
+            // test
+            // 
+            this.test.Location = new System.Drawing.Point(380, 21);
+            this.test.Name = "test";
+            this.test.TabIndex = 43;
+            // 
+            // test2
+            // 
+            this.test2.Location = new System.Drawing.Point(500, 21);
+            this.test2.Name = "test2";
+            this.test2.ShortcutKeys.AddRange(new GrapeCity.Win.MultiRow.InputMan.ShortcutDictionaryEntry[] {
+            new GrapeCity.Win.MultiRow.InputMan.ShortcutDictionaryEntry(System.Windows.Forms.Keys.F2, "ShortcutClear"),
+            new GrapeCity.Win.MultiRow.InputMan.ShortcutDictionaryEntry(((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Return))), "ApplyRecommendedValue")});
+            this.test2.SideButtons.Add(dropDownButton1);
+            this.test2.TabIndex = 44;
             // 
             // 商品コード
             // 
@@ -592,14 +622,6 @@
             this.備考.Style = cellStyle6;
             this.備考.TabIndex = 30;
             // 
-            // 明細番号
-            // 
-            this.明細番号.DataField = "明細番号";
-            this.明細番号.Location = new System.Drawing.Point(30, 0);
-            this.明細番号.Name = "明細番号";
-            this.明細番号.Size = new System.Drawing.Size(30, 84);
-            this.明細番号.TabIndex = 41;
-            // 
             // 明細削除ボタン
             // 
             this.明細削除ボタン.ButtonCommand = GrapeCity.Win.MultiRow.RowActionButtonCommands.Remove;
@@ -614,35 +636,35 @@
             this.明細削除ボタン.TabIndex = 42;
             this.明細削除ボタン.Value = "×";
             // 
-            // 受注区分
+            // 受注区分コード
             // 
-            this.受注区分.DataField = "受注区分コード";
-            this.受注区分.Location = new System.Drawing.Point(60, 0);
-            this.受注区分.Name = "受注区分";
+            this.受注区分コード.DataField = "受注区分コード";
+            this.受注区分コード.Location = new System.Drawing.Point(60, 0);
+            this.受注区分コード.Name = "受注区分コード";
             cellStyle8.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
             cellStyle8.SelectionForeColor = System.Drawing.Color.Black;
-            this.受注区分.Style = cellStyle8;
-            this.受注区分.TabIndex = 43;
+            this.受注区分コード.Style = cellStyle8;
+            this.受注区分コード.TabIndex = 43;
             // 
-            // 売上区分
+            // 売上区分コード
             // 
-            this.売上区分.DataField = "売上区分コード";
-            this.売上区分.Location = new System.Drawing.Point(140, 0);
-            this.売上区分.Name = "売上区分";
+            this.売上区分コード.DataField = "売上区分コード";
+            this.売上区分コード.Location = new System.Drawing.Point(140, 0);
+            this.売上区分コード.Name = "売上区分コード";
             cellStyle9.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
             cellStyle9.SelectionForeColor = System.Drawing.Color.Black;
-            this.売上区分.Style = cellStyle9;
-            this.売上区分.TabIndex = 44;
+            this.売上区分コード.Style = cellStyle9;
+            this.売上区分コード.TabIndex = 44;
             // 
-            // 処理区分
+            // ラインコード
             // 
-            this.処理区分.DataField = "ラインコード";
-            this.処理区分.Location = new System.Drawing.Point(220, 0);
-            this.処理区分.Name = "処理区分";
+            this.ラインコード.DataField = "ラインコード";
+            this.ラインコード.Location = new System.Drawing.Point(220, 0);
+            this.ラインコード.Name = "ラインコード";
             cellStyle10.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
             cellStyle10.SelectionForeColor = System.Drawing.Color.Black;
-            this.処理区分.Style = cellStyle10;
-            this.処理区分.TabIndex = 45;
+            this.ラインコード.Style = cellStyle10;
+            this.ラインコード.TabIndex = 45;
             // 
             // 数量
             // 
@@ -658,15 +680,15 @@
             this.数量.TabIndex = 46;
             this.数量.ThousandsSeparator = true;
             // 
-            // 単位
+            // 単位コード
             // 
-            this.単位.DataField = "単位コード";
-            this.単位.Location = new System.Drawing.Point(380, 0);
-            this.単位.Name = "単位";
+            this.単位コード.DataField = "単位コード";
+            this.単位コード.Location = new System.Drawing.Point(380, 0);
+            this.単位コード.Name = "単位コード";
             cellStyle12.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
             cellStyle12.SelectionForeColor = System.Drawing.Color.Black;
-            this.単位.Style = cellStyle12;
-            this.単位.TabIndex = 47;
+            this.単位コード.Style = cellStyle12;
+            this.単位コード.TabIndex = 47;
             // 
             // 単価
             // 
@@ -686,6 +708,7 @@
             // 
             expression1.ExpressionString = "数量 * 単価";
             this.受注金額.Calculation = expression1;
+            this.受注金額.Enabled = false;
             this.受注金額.Location = new System.Drawing.Point(540, 0);
             this.受注金額.Name = "受注金額";
             cellStyle14.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
@@ -796,11 +819,11 @@
             this.summaryCell3.Location = new System.Drawing.Point(420, 0);
             this.summaryCell3.Name = "summaryCell3";
             this.summaryCell3.Size = new System.Drawing.Size(120, 21);
-            cellStyle44.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
-            cellStyle44.Format = "N0";
-            cellStyle44.ImeMode = System.Windows.Forms.ImeMode.Off;
-            cellStyle44.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleRight;
-            this.summaryCell3.Style = cellStyle44;
+            cellStyle47.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
+            cellStyle47.Format = "N0";
+            cellStyle47.ImeMode = System.Windows.Forms.ImeMode.Off;
+            cellStyle47.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleRight;
+            this.summaryCell3.Style = cellStyle47;
             this.summaryCell3.TabIndex = 0;
             // 
             // labelCell1
@@ -808,12 +831,49 @@
             this.labelCell1.Location = new System.Drawing.Point(300, 0);
             this.labelCell1.Name = "labelCell1";
             this.labelCell1.Size = new System.Drawing.Size(120, 21);
-            cellStyle45.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
-            cellStyle45.ImeMode = System.Windows.Forms.ImeMode.Off;
-            cellStyle45.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleRight;
-            this.labelCell1.Style = cellStyle45;
+            cellStyle48.Border = border24;
+            cellStyle48.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
+            cellStyle48.ImeMode = System.Windows.Forms.ImeMode.Off;
+            cellStyle48.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleRight;
+            this.labelCell1.Style = cellStyle48;
             this.labelCell1.TabIndex = 1;
             this.labelCell1.Value = "受注合計金額:";
+            // 
+            // 受注コード
+            // 
+            this.受注コード.DataField = "受注コード";
+            this.受注コード.Location = new System.Drawing.Point(660, 63);
+            this.受注コード.Name = "受注コード";
+            cellStyle22.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
+            this.受注コード.Style = cellStyle22;
+            this.受注コード.TabIndex = 57;
+            // 
+            // 受注版数
+            // 
+            this.受注版数.DataField = "受注版数";
+            this.受注版数.InterceptArrowKeys = false;
+            this.受注版数.Location = new System.Drawing.Point(740, 63);
+            this.受注版数.Name = "受注版数";
+            this.受注版数.ShowSpinButton = GrapeCity.Win.MultiRow.CellButtonVisibility.NotShown;
+            this.受注版数.ShowSpinButtonInEditState = false;
+            cellStyle23.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
+            cellStyle23.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleRight;
+            this.受注版数.Style = cellStyle23;
+            this.受注版数.TabIndex = 58;
+            this.受注版数.ThousandsSeparator = true;
+            // 
+            // 明細番号
+            // 
+            this.明細番号.Location = new System.Drawing.Point(30, 0);
+            this.明細番号.Name = "明細番号";
+            this.明細番号.ShowIndicator = false;
+            this.明細番号.ShowRowError = false;
+            this.明細番号.Size = new System.Drawing.Size(30, 84);
+            cellStyle24.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
+            cellStyle24.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
+            this.明細番号.Style = cellStyle24;
+            this.明細番号.TabIndex = 59;
+            this.明細番号.ValueFormat = "%1%";
             // 
             // 受注明細テンプレート
             // 
@@ -823,6 +883,7 @@
             this.columnHeaderSection1});
             this.Height = 189;
             this.Width = 860;
+            ((System.ComponentModel.ISupportInitialize)(this.test2)).EndInit();
 
         }
         
@@ -858,13 +919,12 @@
         private GrapeCity.Win.MultiRow.TextBoxCell 備考;
         private GrapeCity.Win.MultiRow.ColumnHeaderCell columnHeaderCell13;
         private GrapeCity.Win.MultiRow.CornerHeaderCell cornerHeaderCell2;
-        private GrapeCity.Win.MultiRow.TextBoxCell 明細番号;
         private GrapeCity.Win.MultiRow.ButtonCell 明細削除ボタン;
-        private GrapeCity.Win.MultiRow.ComboBoxCell 受注区分;
-        private GrapeCity.Win.MultiRow.ComboBoxCell 売上区分;
-        private GrapeCity.Win.MultiRow.ComboBoxCell 処理区分;
+        private GrapeCity.Win.MultiRow.ComboBoxCell 受注区分コード;
+        private GrapeCity.Win.MultiRow.ComboBoxCell 売上区分コード;
+        private GrapeCity.Win.MultiRow.ComboBoxCell ラインコード;
         private GrapeCity.Win.MultiRow.NumericUpDownCell 数量;
-        private GrapeCity.Win.MultiRow.ComboBoxCell 単位;
+        private GrapeCity.Win.MultiRow.ComboBoxCell 単位コード;
         private GrapeCity.Win.MultiRow.NumericUpDownCell 単価;
         private GrapeCity.Win.MultiRow.SummaryCell 受注金額;
         private GrapeCity.Win.MultiRow.NumericUpDownCell 原価;
@@ -877,5 +937,10 @@
         private GrapeCity.Win.MultiRow.ColumnFooterSection columnFooterSection1;
         private GrapeCity.Win.MultiRow.SummaryCell summaryCell3;
         private GrapeCity.Win.MultiRow.LabelCell labelCell1;
+        private GrapeCity.Win.MultiRow.TextBoxCell 受注コード;
+        private GrapeCity.Win.MultiRow.NumericUpDownCell 受注版数;
+        private GrapeCity.Win.MultiRow.RowHeaderCell 明細番号;
+        private GrapeCity.Win.MultiRow.ComboBoxCell test;
+        private GrapeCity.Win.MultiRow.InputMan.GcComboBoxCell test2;
     }
 }
