@@ -222,7 +222,6 @@ namespace u_net
             コマンド印刷.TabIndex = 1011;
             コマンド印刷.TabStop = false;
             コマンド印刷.UseVisualStyleBackColor = true;
-
             // 
             // button3
             // 
@@ -926,6 +925,7 @@ namespace u_net
             シリーズ名.Location = new Point(150, 195);
             シリーズ名.Margin = new Padding(3, 2, 3, 2);
             シリーズ名.Name = "シリーズ名";
+            シリーズ名.ReadOnly = true;
             シリーズ名.Size = new Size(364, 21);
             シリーズ名.TabIndex = 7;
             // 
