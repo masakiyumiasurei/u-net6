@@ -71,6 +71,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "入庫明細";
             this.Size = new System.Drawing.Size(1003, 250);
+            this.Load += new System.EventHandler(this.入庫明細_Load);
             ((System.ComponentModel.ISupportInitialize)(this.gcMultiRow1)).EndInit();
             this.ResumeLayout(false);
 
