@@ -178,7 +178,10 @@ namespace u_net
 
             OriginalClass ofn = new OriginalClass();
 
-            
+            //入庫明細用
+            ofn.SetComboBox(買掛区分コード設定, "SELECT 買掛区分 as Display,買掛区分コード as Display2, 買掛明細コード as Display3 , 買掛区分コード as Value FROM V買掛区分");
+            買掛区分コード設定.DrawMode = DrawMode.OwnerDrawFixed;
+
             ofn.SetComboBox(入庫コード, " SELECT 入庫コード as Display, 入庫コード as Value FROM T入庫 WHERE(発注コード IS NOT NULL) ORDER BY 入庫コード DESC");
 
             ofn.SetComboBox(入庫者コード, " SELECT 社員コード AS Display, 氏名 AS Display2, 社員コード as Value FROM M社員 WHERE(退社 IS NULL) AND(部 <> N'社長') AND(ふりがな <> N'ん') ORDER BY ふりがな");
@@ -703,14 +706,14 @@ namespace u_net
                     if (!DataUpdater.UpdateOrInsertDataFrom(this, cn, "T入庫", strwhere, "入庫コード", transaction))
                     {
                         transaction.Rollback();  // 変更をキャンセル
-                        return false; ;
+                        return false; 
                     }
 
                     // 明細部の登録
                     if (!DataUpdater.UpdateOrInsertDetails(this.入庫明細1.Detail, cn, "T入庫明細", strwhere, "入庫コード", transaction))
                     {
                         transaction.Rollback();  // 変更をキャンセル
-                        return false; ;
+                        return false; 
                     }
 
                     // 入庫データ登録後に部品の在庫を更新する
@@ -1695,5 +1698,33 @@ namespace u_net
         {
             toolStripStatusLabel2.Text = "各種項目の説明";
         }
+
+        private void 買掛区分コード設定_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            for (int i = 0; i < 入庫明細1.Detail.RowCount; i++)
+            {
+                if (入庫明細1.Detail.Rows[i].IsNewRow == true)
+                {
+                    //新規行の場合は、処理をスキップ
+                    continue;
+                }
+
+                入庫明細1.Detail.Rows[i].Cells["買掛区分コード"].Value = ((DataRowView)買掛区分コード設定.SelectedItem)?.Row.Field<String>("Display2")?.ToString();
+                入庫明細1.Detail.Rows[i].Cells["買掛明細コード"].Value = ((DataRowView)買掛区分コード設定.SelectedItem)?.Row.Field<Int16?>("Display3")?.ToString();
+
+
+            }
+        }
+
+        private void 買掛区分コード設定_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            OriginalClass.SetComboBoxAppearance((ComboBox)sender, e, new int[] { 200, 0, 0}, new string[] { "Display", "Display2","Display3" });
+            買掛区分コード設定.Invalidate();
+            買掛区分コード設定.DroppedDown = true;
+        }
+
+
+
+
     }
 }
