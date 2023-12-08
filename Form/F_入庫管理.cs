@@ -505,12 +505,40 @@ namespace u_net
 
         private void コマンド入庫_Click(object sender, EventArgs e)
         {
+            if (dataGridView1.SelectedRows.Count > 0)
+            {
+                // DataGridView1で選択された行が存在する場合
+                string selectedData = dataGridView1.SelectedRows[0].Cells[0].Value.ToString(); // 1列目のデータを取得
 
+                // 入庫フォームを作成し、引数を設定して表示
+                F_入庫 targetform = new F_入庫();
+                targetform.args = selectedData;
+                targetform.ShowDialog();
+            }
+            else
+            {
+                // ユーザーが行を選択していない場合のエラーハンドリング
+                MessageBox.Show("行が選択されていません。");
+            }
         }
 
         private void コマンド発注_Click(object sender, EventArgs e)
         {
+            if (dataGridView1.SelectedRows.Count > 0)
+            {
+                // DataGridView1で選択された行が存在する場合
+                string selectedData = dataGridView1.SelectedRows[0].Cells[5].Value.ToString() + "," + dataGridView1.SelectedRows[0].Cells[6].Value.ToString();
 
+                // 発注フォームを作成し、引数を設定して表示
+                F_発注 targetform = new F_発注();
+                targetform.args = selectedData;
+                targetform.ShowDialog();
+            }
+            else
+            {
+                // ユーザーが行を選択していない場合のエラーハンドリング
+                MessageBox.Show("行が選択されていません。");
+            }
         }
 
         private void コマンド印刷_Click(object sender, EventArgs e)
