@@ -153,10 +153,12 @@
             // 
             // 分類記号
             // 
-            this.分類記号.DropDownHeight = 225;
+            this.分類記号.DropDownHeight = 390;
+            this.分類記号.DropDownWidth = 431;
             this.分類記号.Font = new System.Drawing.Font("BIZ UDゴシック", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.分類記号.FormattingEnabled = true;
             this.分類記号.IntegralHeight = false;
+            this.分類記号.ItemHeight = 13;
             this.分類記号.Location = new System.Drawing.Point(104, 11);
             this.分類記号.Name = "分類記号";
             this.分類記号.Size = new System.Drawing.Size(41, 21);
