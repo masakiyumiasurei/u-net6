@@ -1196,7 +1196,7 @@ namespace u_net
             // 発注明細1
             // 
             発注明細1.AutoScroll = true;
-            発注明細1.Location = new Point(0, 361);
+            発注明細1.Location = new Point(5, 361);
             発注明細1.Margin = new Padding(4, 5, 4, 5);
             発注明細1.Name = "発注明細1";
             発注明細1.Size = new Size(1584, 338);
@@ -1289,7 +1289,7 @@ namespace u_net
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "F_発注";
-            Text = " ";
+            Text = " 発注";
             FormClosing += Form_Unload;
             Load += Form_Load;
             KeyDown += Form_KeyDown;
