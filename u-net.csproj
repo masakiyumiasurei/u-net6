@@ -165,8 +165,6 @@
     </Compile>
     
     <Compile Update="Form\F_シリーズ在庫補正.cs" />
-    
-    <Compile Update="Form\F_メイン.cs" />
     <Compile Update="Form\F_入出庫履歴.cs" />
     <Compile Update="Form\F_シリーズ在庫参照.cs" />
     <Compile Update="Form\F_入庫管理.cs" />

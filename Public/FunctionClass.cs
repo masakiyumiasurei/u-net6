@@ -1686,11 +1686,11 @@ namespace u_net.Public
 
 
 
-        public static long GetStock(SqlConnection connection,DateTime appointedDate, string codeString)
+        public static int GetStock(SqlConnection connection,DateTime appointedDate, string codeString)
         {
             // 理論在庫を取得する関数
 
-            long stock = 0;
+            int stock = 0;
 
             try
             {
@@ -1704,7 +1704,7 @@ namespace u_net.Public
 
                         cmd.ExecuteNonQuery();
 
-                        stock = (long)cmd.Parameters["@Stock"].Value;
+                        stock = (int)cmd.Parameters["@Stock"].Value;
                     }
                 
             }
@@ -1726,9 +1726,7 @@ namespace u_net.Public
             string supplierName = "";
 
             try
-            {
-               
-
+            {               
                     string strSQL = "SELECT * FROM M仕入先 WHERE 仕入先コード = @SupplierCode";
                     using (SqlCommand cmd = new SqlCommand(strSQL, connection))
                     {
@@ -1974,7 +1972,8 @@ namespace u_net.Public
                     else
                     {
                         string strMsg = "未入力欄があります。" + Environment.NewLine + Environment.NewLine + controlName;
-                        Console.WriteLine(strMsg);
+                        MessageBox.Show(strMsg, "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        
                         return false; // エラー
                     }
                 }
@@ -1983,21 +1982,21 @@ namespace u_net.Public
                 if (strValue.Contains("\""))
                 {
                     string strMsg = "項目中に \" を含むことはできません。" + Environment.NewLine + Environment.NewLine + controlName;
-                    Console.WriteLine(strMsg);
+                    MessageBox.Show(strMsg, "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false; // エラー
                 }
 
                 if (strValue.Contains("'"))
                 {
                     string strMsg = "項目中に ' を含むことはできません。" + Environment.NewLine + Environment.NewLine + controlName;
-                    Console.WriteLine(strMsg);
+                    MessageBox.Show(strMsg, "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false; // エラー
                 }
 
                 if (strValue.Length > limitLength)
                 {
                     string strMsg = "項目の長さ(" + strValue.Length + ")が制限(" + limitLength + ")を越えています。" + Environment.NewLine + Environment.NewLine + controlName;
-                    Console.WriteLine(strMsg);
+                    MessageBox.Show(strMsg, "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false; // エラー
                 }
 
@@ -2033,7 +2032,7 @@ namespace u_net.Public
                 if (!isNumeric)
                 {
                     msgString = "数値を入力してください。";
-                    Console.WriteLine(msgString);
+                    MessageBox.Show(msgString, "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false;
                 }
 
@@ -2042,7 +2041,7 @@ namespace u_net.Public
                 if (Math.Abs(numericValue) >= 範囲[int整数 - 1])
                 {
                     msgString = "整数部が大きすぎます。（桁制限= " + int整数 + ") " + controlName;
-                    Console.WriteLine(msgString);
+                    MessageBox.Show(msgString, "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false;
                 }
 
@@ -2052,7 +2051,7 @@ namespace u_net.Public
                     if (decimalLength < targetValue.ToString().Length - int点位置 - 1)
                     {
                         msgString = "小数部が大きすぎます。（桁制限= " + decimalLength + ") " + controlName;
-                        Console.WriteLine(msgString);
+                        MessageBox.Show(msgString, "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return false;
                     }
                 }

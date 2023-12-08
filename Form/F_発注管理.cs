@@ -484,12 +484,9 @@ namespace u_net
             if (e.RowIndex >= 0) // ヘッダー行でない場合
             {
 
-                //    F_発注 fm = new F_発注();
-
-                //発注フォームができたら受入る変数をセットする
-                //    fm.args = CurrentCode;
-                //    fm.args = CurrentEdition;
-                //    fm.ShowDialog();
+                F_発注 fm = new F_発注();
+                fm.args = $"{CurrentCode} , {CurrentEdition}";
+                fm.ShowDialog();
             }
         }
 
@@ -596,10 +593,9 @@ namespace u_net
                                 // DataGridView1で選択された行が存在する場合
                                 string selectedData = dataGridView1.SelectedRows[0].Cells[0].Value.ToString(); // 1列目のデータを取得
 
-                                // 発注フォームを作成し、引数を設定して表示
-                                //F_発注 targetform = new F_発注();
-                                //targetform.args = selectedData;
-                                //targetform.ShowDialog();
+                                F_発注 fm = new F_発注();
+                                fm.args = $"{CurrentCode} , {CurrentEdition}";
+                                fm.ShowDialog();
                             }
                             else
                             {
@@ -680,7 +676,8 @@ namespace u_net
 
         private void コマンド発注_Click(object sender, EventArgs e)
         {
-            F_発注 fm = new F_発注(CurrentCode + ","+ CurrentEdition);
+            F_発注 fm = new F_発注();
+            fm.args= $"{CurrentCode} , {CurrentEdition}";
             fm.ShowDialog();
         }
 
