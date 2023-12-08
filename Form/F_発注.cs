@@ -40,12 +40,12 @@ namespace u_net
         private int selected_frame = 0;
         public bool blnNewParts = true;
 
-        public F_発注(string? openargs)
+        public F_発注()
         {
             this.Text = "発注";       // ウィンドウタイトルを設定
             this.MaximizeBox = false;  // 最大化ボタンを無効化
             this.MinimizeBox = false; //最小化ボタンを無効化
-            args = string.IsNullOrEmpty(openargs) ? "" : openargs;
+          //  args = string.IsNullOrEmpty(openargs) ? "" : openargs;
 
             InitializeComponent();
 
