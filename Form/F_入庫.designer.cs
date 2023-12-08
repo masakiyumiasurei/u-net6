@@ -128,7 +128,7 @@ namespace u_net
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.買掛区分コード設定 = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -1164,24 +1164,26 @@ namespace u_net
             this.toolStripStatusLabel2.Size = new System.Drawing.Size(89, 17);
             this.toolStripStatusLabel2.Text = "各種項目の説明";
             // 
-            // comboBox1
+            // 買掛区分コード設定
             // 
-            this.comboBox1.BackColor = System.Drawing.Color.White;
-            this.comboBox1.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.comboBox1.Font = new System.Drawing.Font("BIZ UDゴシック", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.comboBox1.Location = new System.Drawing.Point(560, 332);
-            this.comboBox1.MaxDropDownItems = 9;
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(142, 26);
-            this.comboBox1.TabIndex = 10173;
+            this.買掛区分コード設定.BackColor = System.Drawing.Color.White;
+            this.買掛区分コード設定.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.買掛区分コード設定.Font = new System.Drawing.Font("BIZ UDゴシック", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.買掛区分コード設定.FormattingEnabled = true;
+            this.買掛区分コード設定.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.買掛区分コード設定.Location = new System.Drawing.Point(560, 332);
+            this.買掛区分コード設定.MaxDropDownItems = 9;
+            this.買掛区分コード設定.Name = "買掛区分コード設定";
+            this.買掛区分コード設定.Size = new System.Drawing.Size(142, 26);
+            this.買掛区分コード設定.TabIndex = 10173;
+            this.買掛区分コード設定.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.買掛区分コード設定_DrawItem);
+            this.買掛区分コード設定.SelectedIndexChanged += new System.EventHandler(this.買掛区分コード設定_SelectedIndexChanged);
             // 
             // F_入庫
             // 
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1036, 561);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.買掛区分コード設定);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.入庫明細1);
             this.Controls.Add(this.無効者コード);
@@ -1409,7 +1411,7 @@ namespace u_net
         private StatusStrip statusStrip1;
         private ToolStripStatusLabel toolStripStatusLabel1;
         private ToolStripStatusLabel toolStripStatusLabel2;
-        private ComboBox comboBox1;
+        private ComboBox 買掛区分コード設定;
     }
 }
 
