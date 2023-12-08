@@ -20,8 +20,7 @@ namespace u_net
         private Control previousControl;
         private SqlConnection cn;
         private SqlTransaction tx;
-        private string BASE_CAPTION = "検索";
-
+        private string BASE_CAPTION = "部品選択";
 
         private object objArgs;
         private int intWindowHeight;   // 現在保持している高さ
@@ -29,20 +28,14 @@ namespace u_net
         private TextBox objArgs1;      // 保存用オブジェクト１
         //private MSHierarchicalFlexGridLib.MSHFlexGrid objArgs2; // 保存用オブジェクト２
 
-
-
         public string FilterName;
         private int FilterNumber = 1;
         public string SelectedCode;
-
-
-
 
         public F_部品選択()
         {
             InitializeComponent();
         }
-
 
         public void Connect()
         {
@@ -51,11 +44,6 @@ namespace u_net
             cn = new SqlConnection(connectionString);
             cn.Open();
         }
-
-
- 
-
-
 
         private void Filtering(object filterNumber, string FilterName)
         {
@@ -131,9 +119,9 @@ namespace u_net
             }
 
             
-            SqlDataAdapter adapter = new SqlDataAdapter(query, cn);
-            DataTable dataTable = new DataTable();
-            adapter.Fill(dataTable);
+            //SqlDataAdapter adapter = new SqlDataAdapter(query, cn);
+            //DataTable dataTable = new DataTable();
+            //adapter.Fill(dataTable);
 
             // DataGridViewにデータをバインド
             //リスト.DataSource = dataTable;
@@ -143,7 +131,7 @@ namespace u_net
             //表示件数.Text = リスト.RowCount.ToString();
 
             //選択ボタンをEnable=falseにする
-            Enable_Switch();
+            //Enable_Switch();
 
             //リスト.Focus(); // トグルボタンがクリックされた場合の処理
 
@@ -180,20 +168,18 @@ namespace u_net
             
         }
 
-
-
         public void Form_Load(object sender, EventArgs e)
         {
 
             MyApi myapi = new MyApi();
 
-            if (string.IsNullOrEmpty(FilterName))
-            {
-                MessageBox.Show("呼び出しに失敗しました。\n管理者に連絡してください。", this.Name, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                DialogResult = DialogResult.Cancel;
-                this.Close();
+            //if (string.IsNullOrEmpty(FilterName))
+            //{
+            //    MessageBox.Show("呼び出しに失敗しました。\n管理者に連絡してください。", this.Name, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            //    DialogResult = DialogResult.Cancel;
+            //    this.Close();
                
-            }
+            //}
 
             // ウィンドウサイズを調整する
             //int lngX, lngy;
@@ -213,25 +199,9 @@ namespace u_net
             // 一覧を表示する
             Filtering(FilterNumber, FilterName);
 
-            //列幅を自動調整する
-            //リスト.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
-
-            //選択範囲を行全体に設定
-            //リスト.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-
-            //if (リスト.RowCount > 0)
-            //{
-            //    リスト.Rows[0].Selected = true;
-            //}
-
-            //リスト.ReadOnly = true;
-            //リスト.AllowUserToAddRows = false;
-            //リスト.AllowUserToDeleteRows = false;
-
             toolStripStatusLabel1.Text = "■確定するには、確定したい項目をダブルクリックするか、選択後[Enter]キーを押下します。　■[Function]キーあるいは←→キーで抽出条件を変更します。";
 
         }
-
 
         private void F_検索_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -239,129 +209,6 @@ namespace u_net
             LocalSetting test = new LocalSetting();
             test.SavePlace(LoginUserCode, this);
         }
-
-
-        //private void Form_Resize(object sender, EventArgs e)
-        //{
-        //    this.SuspendLayout();
-        //    リスト.Height += (this.Height - intWindowHeight);
-        //    リスト.Width += (this.Width - intWindowWidth);
-        //    intWindowHeight = this.Height;
-        //    intWindowWidth = this.Width;
-        //    this.ResumeLayout();
-        //}
-
-        private void リスト_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
-        {
-            try
-            {
-                //switch (objArgs.GetType().Name)
-                //{
-                //    case "TextBox":
-                //        objArgs1.Text = リスト.Value;
-                //        break;
-                //    case "MSHFlexGrid":
-                //        objArgs2.text = リスト.Value;
-                //        break;
-                //}
-
-
-                if (e.RowIndex >= 0)
-                {
-                    //DataGridViewRow selectedRow = リスト.Rows[e.RowIndex];
-
-                    // 選択した行の各セルの値を取得
-                    //string column1Value = selectedRow.Cells[0].Value.ToString(); // 0は列のインデックス
-
-                    //SelectedCode = column1Value;
-
-                    DialogResult = DialogResult.OK;
-                    Close();
-                }
-
-
-
-            }
-            catch (Exception ex)
-            {
-                if (ex.HResult == 2135)
-                {
-                    MessageBox.Show("入力できない状態にあるため、設定できません。", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                }
-                else
-                {
-                    Console.WriteLine(this.Name + "_リスト_CellMouseDoubleClick - " + ex.HResult + " : " + ex.Message);
-                }
-            }
-        }
-
-        private void リスト_KeyDown(object sender, KeyEventArgs e)
-        {
-            switch (e.KeyCode)
-            {
-                case Keys.Enter:
-                    //if (リスト.SelectedRows.Count > 0)
-                    //{
-                    //    // 選択されている行を取得
-                    //    //DataGridViewRow selectedRow = リスト.SelectedRows[0];
-
-                    //    // 選択した行の各セルの値を取得
-                    //    string column1Value = selectedRow.Cells[0].Value.ToString(); // 0は列のインデックス
-
-                    //    SelectedCode = column1Value;
-
-                    //    DialogResult = DialogResult.OK;
-                    //    Close();
-                    //}
-                    break;
-                case Keys.Right:
-                    FilterNumber = (FilterNumber % 12) + 1;
-                    Filtering(FilterNumber, FilterName);
-                    break;
-                case Keys.Left:
-                    FilterNumber = (FilterNumber + (12 - 2)) % 12 + 1;
-                    Filtering(FilterNumber, FilterName);
-                    break;
-                case Keys.F1:
-                    フィルタ_ア_Click(sender,e);
-                    break;
-                case Keys.F2:
-                    フィルタ_カ_Click(sender, e);
-                    break;
-                case Keys.F3:
-                    フィルタ_サ_Click(sender, e);
-                    break;
-                case Keys.F4:
-                    フィルタ_タ_Click(sender, e);
-                    break;
-                case Keys.F5:
-                    フィルタ_ナ_Click(sender, e);
-                    break;
-                case Keys.F6:
-                    フィルタ_ハ_Click(sender, e);
-                    break;
-                case Keys.F7:
-                    フィルタ_マ_Click(sender, e);
-                    break;
-                case Keys.F8:
-                    フィルタ_ヤ_Click(sender, e);
-                    break;
-                case Keys.F9:
-                    フィルタ_ラ_Click(sender, e);
-                    break;
-                case Keys.F10:
-                    フィルタ_ワ_Click(sender, e);
-                    break;
-                case Keys.F11:
-                    フィルタ_abc_Click(sender, e);
-                    break;
-                case Keys.F12:
-                    フィルタ_全て_Click(sender, e);
-                    break;
-                
-            }
-        }
-
 
         private void キャンセルボタン_Click(object sender, EventArgs e)
         {
@@ -438,88 +285,8 @@ namespace u_net
 
         }
 
-       
-
-        private void フィルタ_ア_Click(object sender, EventArgs e)
-        {
-            FilterNumber = 1;
-            Filtering(FilterNumber, FilterName);
-        }
-
-        private void フィルタ_カ_Click(object sender, EventArgs e)
-        {
-            FilterNumber = 2;
-            Filtering(FilterNumber, FilterName);
-        }
-
-        private void フィルタ_サ_Click(object sender, EventArgs e)
-        {
-            FilterNumber = 3;
-            Filtering(FilterNumber, FilterName);
-        }
-
-        private void フィルタ_タ_Click(object sender, EventArgs e)
-        {
-            FilterNumber = 4;
-            Filtering(FilterNumber, FilterName);
-        }
-
-        private void フィルタ_ナ_Click(object sender, EventArgs e)
-        {
-            FilterNumber = 5;
-            Filtering(FilterNumber, FilterName);
-        }
-
-        private void フィルタ_ハ_Click(object sender, EventArgs e)
-        {
-            FilterNumber = 6;
-            Filtering(FilterNumber, FilterName);
-        }
-
-        private void フィルタ_マ_Click(object sender, EventArgs e)
-        {
-            FilterNumber = 7;
-            Filtering(FilterNumber, FilterName);
-        }
-
-        private void フィルタ_ヤ_Click(object sender, EventArgs e)
-        {
-            FilterNumber = 8;
-            Filtering(FilterNumber, FilterName);
-        }
-
-        private void フィルタ_ラ_Click(object sender, EventArgs e)
-        {
-            FilterNumber = 9;
-            Filtering(FilterNumber, FilterName);
-        }
-
-        private void フィルタ_ワ_Click(object sender, EventArgs e)
-        {
-            FilterNumber = 10;
-            Filtering(FilterNumber, FilterName);
-        }
-
-        private void フィルタ_abc_Click(object sender, EventArgs e)
-        {
-            FilterNumber = 11;
-            Filtering(FilterNumber, FilterName);
-        }
-
-        private void フィルタ_全て_Click(object sender, EventArgs e)
-        {
-            FilterNumber = 12;
-            Filtering(FilterNumber, FilterName);
-        }
-
         
     }
-
-
-
-
-
-
 
 }
 
