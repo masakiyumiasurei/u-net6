@@ -39,6 +39,18 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="発注明細.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="発注明細.Designer.cs">
+      <DependentUpon>発注明細.cs</DependentUpon>
+    </Compile>
+    <Compile Include="発注明細テンプレート.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="発注明細テンプレート.designer.cs">
+      <DependentUpon>発注明細テンプレート.cs</DependentUpon>
+    </Compile>
     <Compile Include="部品集合明細.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -105,12 +117,6 @@
     <Compile Include="製品明細.Designer.cs">
       <DependentUpon>製品明細.cs</DependentUpon>
     </Compile>
-    <Compile Include="発注明細.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="発注明細.Designer.cs">
-      <DependentUpon>発注明細.cs</DependentUpon>
-    </Compile>
     <Compile Include="受注明細.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -122,12 +128,6 @@
     </Compile>
     <Compile Include="受注明細テンプレート.designer.cs">
       <DependentUpon>受注明細テンプレート.cs</DependentUpon>
-    </Compile>
-    <Compile Include="発注明細テンプレート.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="発注明細テンプレート.designer.cs">
-      <DependentUpon>発注明細テンプレート.cs</DependentUpon>
     </Compile>
     <Compile Include="製品明細テンプレート.cs">
       <SubType>Component</SubType>
@@ -177,6 +177,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="発注明細.resx">
+      <DependentUpon>発注明細.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="発注明細テンプレート.resx">
+      <DependentUpon>発注明細テンプレート.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="部品集合明細.resx">
       <DependentUpon>部品集合明細.cs</DependentUpon>
     </EmbeddedResource>
@@ -210,17 +216,11 @@
     <EmbeddedResource Include="製品明細.resx">
       <DependentUpon>製品明細.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="発注明細.resx">
-      <DependentUpon>発注明細.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="受注明細.resx">
       <DependentUpon>受注明細.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="受注明細テンプレート.resx">
       <DependentUpon>受注明細テンプレート.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="発注明細テンプレート.resx">
-      <DependentUpon>発注明細テンプレート.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="製品明細テンプレート.resx">
       <DependentUpon>製品明細テンプレート.cs</DependentUpon>
