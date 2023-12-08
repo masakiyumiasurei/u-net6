@@ -440,14 +440,14 @@ namespace u_net
 
             //明細部のエラーチェック
             if (IsErrorDetails()) return;
-            
+
             // 並び替えチェック
 
             if (IsOrderByOn)
             {
                 if (MessageBox.Show("明細行が並べ替えられています。\n並べ替えを解除して登録しますか？", "登録コマンド", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-            //        SubForm.CancelOrderBy();
+                    //        SubForm.CancelOrderBy();
                 }
                 else
                 {
@@ -847,7 +847,8 @@ namespace u_net
                 return true;
             }
         }
-        private void ChangedData(bool isChanged)
+
+        public void ChangedData(bool isChanged)
         {
             if (ActiveControl == null) return;
 
@@ -1613,7 +1614,7 @@ namespace u_net
             try
             {
                 Connect();
-                
+
                 using (SqlCommand command = new SqlCommand(strSQL, cn))
                 {
                     using (SqlDataAdapter adapter = new SqlDataAdapter(command))
@@ -1987,6 +1988,6 @@ namespace u_net
             発注者コード.Invalidate();
             発注者コード.DroppedDown = true;
         }
-                
-}
+
+    }
 }

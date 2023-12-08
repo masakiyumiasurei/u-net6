@@ -1160,10 +1160,10 @@ namespace u_net
             // statusStrip1
             // 
             statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1 });
-            statusStrip1.Location = new Point(0, 611);
+            statusStrip1.Location = new Point(0, 704);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Padding = new Padding(1, 0, 19, 0);
-            statusStrip1.Size = new Size(1036, 25);
+            statusStrip1.Size = new Size(1035, 25);
             statusStrip1.TabIndex = 10117;
             statusStrip1.Text = "statusStrip1";
             // 
@@ -1195,16 +1195,17 @@ namespace u_net
             // 
             // 発注明細1
             // 
-            発注明細1.Location = new Point(5, 361);
+            発注明細1.AutoScroll = true;
+            発注明細1.Location = new Point(0, 361);
             発注明細1.Margin = new Padding(4, 5, 4, 5);
             発注明細1.Name = "発注明細1";
-            発注明細1.Size = new Size(1031, 245);
+            発注明細1.Size = new Size(1584, 338);
             発注明細1.TabIndex = 10119;
             // 
             // F_発注
             // 
             BackColor = SystemColors.Control;
-            ClientSize = new Size(1036, 636);
+            ClientSize = new Size(1035, 729);
             Controls.Add(発注明細1);
             Controls.Add(入庫状況);
             Controls.Add(statusStrip1);
@@ -1380,13 +1381,14 @@ namespace u_net
         internal Button テストコマンド;
         internal TextBox 無効日時;
         internal TextBox 無効者コード;
-        //internal MultiRowDesigner.発注明細 発注明細1;
+
         internal StatusStrip statusStrip1;
         internal ToolStripStatusLabel toolStripStatusLabel1;
         //internal ToolStripStatusLabel toolStripStatusLabel1;
         internal ToolStripStatusLabel toolStripStatusLabel2;
         internal TextBox 入庫状況;
-        internal MultiRowDesigner.発注明細 発注明細1;
+        //internal MultiRowDesigner.発注明細 発注明細1;
+        private MultiRowDesigner.発注明細 発注明細1;
     }
 }
 
