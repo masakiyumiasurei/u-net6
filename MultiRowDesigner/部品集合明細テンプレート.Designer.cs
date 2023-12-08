@@ -398,6 +398,7 @@
             cellStyle5.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
             this.明細番号.Style = cellStyle5;
             this.明細番号.TabIndex = 4;
+            this.明細番号.TabStop = false;
             // 
             // 購買対象
             // 
