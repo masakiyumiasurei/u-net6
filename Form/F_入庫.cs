@@ -1254,12 +1254,13 @@ namespace u_net
         {
             if (IsNull(発注コード.Text))
             {
-                F_発注 targetform = new F_発注(null);
+                F_発注 targetform = new F_発注();
                 targetform.ShowDialog();
             }
             else
             {
-                F_発注 targetform = new F_発注(発注コード.Text);
+                F_発注 targetform = new F_発注();
+                targetform.args = 発注コード.Text + "," + 発注版数.Text;
                 targetform.ShowDialog();
             }
         }
