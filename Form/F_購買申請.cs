@@ -265,9 +265,6 @@ namespace u_net
                 this.購買申請コード.Text = FunctionClass.採番(cn, "PUR");
                 this.購買申請版数.Text = "1";
 
-                ////// 購買申請コードのインデックス設定
-                ////// this.購買申請コード.SelectedIndex = 0;
-
                 // 編集による変更がない状態へ遷移する
                 //ChangedData(false);
 
@@ -1016,7 +1013,7 @@ namespace u_net
                 transaction = cn.BeginTransaction();
 
                 // Header registration
-                if (!SaveHeader(this, code, edition))
+                if (!SaveHeader(this, code, edition, transaction))
                 {
                     transaction.Rollback();
                     goto Bye_RegTrans;
@@ -1121,40 +1118,43 @@ namespace u_net
             return success;
         }
 
-        private bool SaveHeader(Form inputForm, string code, int edition)
+        private bool SaveHeader(Form inputForm, string code, int edition, SqlTransaction transaction)
         {
             try
             {
                 string strKey = $"購買申請コード='{code}' AND 購買申請版数={edition}";
-                string strSQL = $"SELECT * FROM T購買申請 WHERE {strKey}";
+                //string strSQL = $"SELECT * FROM T購買申請 WHERE {strKey}";
 
-                Connect();
+                //if (!DataUpdater.UpdateOrInsertDataFrom(this, cn, "M仕入先", strwhere, "仕入先コード", transaction)){ }
+                DataUpdater.UpdateOrInsertDataFrom(this, cn, "T購買申請", strKey, "購買申請コード", transaction);
 
-                using (SqlDataAdapter adapter = new SqlDataAdapter(strSQL, cn))
-                {
-                    using (DataTable dataTable = new DataTable())
-                    {
-                        adapter.Fill(dataTable);
+                    //Connect();
 
-                        if (dataTable.Rows.Count == 0)
-                        {
-                            // New record
-                            DataRow newRow = dataTable.NewRow();
-                            VariableSet.SetForm2Table(inputForm, newRow, "", "");
-                            dataTable.Rows.Add(newRow);
-                        }
-                        else
-                        {
-                            // Existing record
-                            DataRow existingRow = dataTable.Rows[0];
-                            VariableSet.SetForm2Table(inputForm, existingRow, "購買申請コード", "購買申請版数");
-                        }
+                    //using (SqlDataAdapter adapter = new SqlDataAdapter(strSQL, cn))
+                    //{
+                    //    using (DataTable dataTable = new DataTable())
+                    //    {
+                    //        adapter.Fill(dataTable);
 
-                        SqlCommandBuilder commandBuilder = new SqlCommandBuilder(adapter);
-                        adapter.Update(dataTable);
-                    }
+                    //        if (dataTable.Rows.Count == 0)
+                    //        {
+                    //            // New record
+                    //            DataRow newRow = dataTable.NewRow();
+                    //            VariableSet.SetForm2Table(inputForm, newRow, "", "");
+                    //            dataTable.Rows.Add(newRow);
+                    //        }
+                    //        else
+                    //        {
+                    //            // Existing record
+                    //            DataRow existingRow = dataTable.Rows[0];
+                    //            VariableSet.SetForm2Table(inputForm, existingRow, "購買申請コード", "購買申請版数");
+                    //        }
+
+                    //        SqlCommandBuilder commandBuilder = new SqlCommandBuilder(adapter);
+                    //        adapter.Update(dataTable);
+                    //    }
+                    //}
                 }
-            }
             catch (Exception ex)
             {
                 Debug.Print("SaveHeader - " + ex.Message);
