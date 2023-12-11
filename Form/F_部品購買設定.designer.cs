@@ -103,6 +103,8 @@ namespace u_net
             this.承認日時 = new System.Windows.Forms.TextBox();
             this.無効日時 = new System.Windows.Forms.TextBox();
             this.部品集合版数 = new System.Windows.Forms.TextBox();
+            this.部品購買設定明細1 = new MultiRowDesigner.部品購買設定明細();
+            this.label5 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -684,7 +686,7 @@ namespace u_net
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 558);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 509);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 19, 0);
             this.statusStrip1.Size = new System.Drawing.Size(869, 22);
@@ -848,10 +850,35 @@ namespace u_net
             this.部品集合版数.TabIndex = 10208;
             this.部品集合版数.TabStop = false;
             // 
+            // 部品購買設定明細1
+            // 
+            this.部品購買設定明細1.Location = new System.Drawing.Point(9, 174);
+            this.部品購買設定明細1.Margin = new System.Windows.Forms.Padding(4);
+            this.部品購買設定明細1.Name = "部品購買設定明細1";
+            this.部品購買設定明細1.Size = new System.Drawing.Size(856, 302);
+            this.部品購買設定明細1.TabIndex = 10209;
+            // 
+            // label5
+            // 
+            this.label5.AllowDrop = true;
+            this.label5.AutoEllipsis = true;
+            this.label5.Font = new System.Drawing.Font("BIZ UDゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label5.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label5.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label5.Location = new System.Drawing.Point(9, 480);
+            this.label5.Margin = new System.Windows.Forms.Padding(0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(634, 21);
+            this.label5.TabIndex = 10210;
+            this.label5.Text = "※購買指定部品を変更した時点で設定内容が有効となり、登録操作は必要ありません。";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // F_部品購買設定
             // 
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(869, 580);
+            this.ClientSize = new System.Drawing.Size(869, 531);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.部品購買設定明細1);
             this.Controls.Add(this.部品集合版数);
             this.Controls.Add(this.無効日時);
             this.Controls.Add(this.承認日時);
@@ -992,6 +1019,8 @@ namespace u_net
         private TextBox 承認日時;
         private TextBox 無効日時;
         private TextBox 部品集合版数;
+        private MultiRowDesigner.部品購買設定明細 部品購買設定明細1;
+        private Label label5;
     }
 }
 
