@@ -91,6 +91,11 @@ namespace u_net.Public
                     // グループボックス内のコントロールに再帰的にアクセスする
                     SetControlValues(groupBox.Controls, reader);
                 }
+                else if (control is Panel panel)
+                {
+                    // パネル内のコントロールに再帰的にアクセスする
+                    SetControlValues(panel.Controls, reader);
+                }
                 else
                 {
                     if (!(control is TextBox) && !(control is ComboBox) && !(control is CheckBox) && !(control is MaskedTextBox))
