@@ -235,11 +235,14 @@ namespace u_net
                     }
 
                     // 新規モードへ移行
-                    if (GoNewMode())
+                    if (!GoNewMode())
                     {
-                        
+                    
+                        MessageBox.Show("入庫は使用できません。", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        return;
                     }
-                    else
+
+                    if (!SetRelay())
                     {
                         MessageBox.Show("入庫は使用できません。", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         return;
@@ -270,6 +273,21 @@ namespace u_net
         }
 
 
+
+        private bool SetRelay()
+        {
+            bool result = false;
+
+            F_発注管理? f_発注管理 = Application.OpenForms.OfType<F_発注管理>().FirstOrDefault();
+
+            if(f_発注管理 != null)
+            {
+                発注コード.Text = f_発注管理.CurrentCode;
+            }
+
+
+            return true;
+        }
         public bool GoNewMode()
         {
             try
@@ -1725,8 +1743,14 @@ namespace u_net
             買掛区分コード設定.DroppedDown = true;
         }
 
+        private void 買掛区分コード設定_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Text = "■現在表示されている明細行全ての買掛区分欄に入力値を設定し、更新します。既存値は破棄されます。";
+        }
 
-
-
+        private void 買掛区分コード設定_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Text = "各種項目の説明";
+        }
     }
 }
