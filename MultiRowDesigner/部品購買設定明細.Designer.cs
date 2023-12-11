@@ -37,21 +37,34 @@
             // 
             this.gcMultiRow1.EditMode = GrapeCity.Win.MultiRow.EditMode.EditOnEnter;
             this.gcMultiRow1.Location = new System.Drawing.Point(0, 0);
+            this.gcMultiRow1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.gcMultiRow1.Name = "gcMultiRow1";
-            this.gcMultiRow1.Size = new System.Drawing.Size(734, 286);
+            this.gcMultiRow1.Size = new System.Drawing.Size(815, 296);
             this.gcMultiRow1.TabIndex = 0;
             this.gcMultiRow1.Template = this.部品購買設定明細テンプレート1;
+            this.gcMultiRow1.TemplateScaleSize = new System.Drawing.SizeF(1.166667F, 1.25F);
             this.gcMultiRow1.Text = "gcMultiRow1";
             this.gcMultiRow1.CellEnter += new System.EventHandler<GrapeCity.Win.MultiRow.CellEventArgs>(this.gcMultiRow1_CellEnter);
             this.gcMultiRow1.CellContentClick += new System.EventHandler<GrapeCity.Win.MultiRow.CellEventArgs>(this.gcMultiRow1_CellContentClick);
             // 
+            // 部品購買設定明細テンプレート1
+            // 
+            this.部品購買設定明細テンプレート1.Height = 96;
+            // 
+            // 
+            // 
+            this.部品購買設定明細テンプレート1.Row.Height = 72;
+            this.部品購買設定明細テンプレート1.Row.Width = 779;
+            this.部品購買設定明細テンプレート1.Width = 779;
+            // 
             // 部品購買設定明細
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.gcMultiRow1);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "部品購買設定明細";
-            this.Size = new System.Drawing.Size(734, 287);
+            this.Size = new System.Drawing.Size(814, 295);
             ((System.ComponentModel.ISupportInitialize)(this.gcMultiRow1)).EndInit();
             this.ResumeLayout(false);
 
