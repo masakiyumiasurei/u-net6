@@ -53,36 +53,67 @@ namespace MultiRowDesigner
 
         private void gcMultiRow1_CellContentButtonClick(object sender, CellEventArgs e)
         {
+
             switch (e.CellName)
             {
                 case "メーカー名ボタン":
-                    int idx = gcMultiRow1.CurrentRow.Cells["メーカー名"].CellIndex;
-                    gcMultiRow1.CurrentCellPosition = new CellPosition(0, idx);
+                    int col = gcMultiRow1.CurrentRow.Cells["メーカー名"].CellIndex;
+                    int row = 0;
+                    if(gcMultiRow1.CurrentRow.Index > 0)
+                    {
+                        row = gcMultiRow1.CurrentRow.Index;
+                    }
+                    gcMultiRow1.CurrentCellPosition = new CellPosition(row, col);
                     break;
 
                 case "型番ボタン":
-                    int idx2 = gcMultiRow1.CurrentRow.Cells["型番"].CellIndex;
-                    gcMultiRow1.CurrentCellPosition = new CellPosition(0, idx2);
+                    int col2 = gcMultiRow1.CurrentRow.Cells["型番"].CellIndex;
+                    int row2 = 0;
+                    if (gcMultiRow1.CurrentRow.Index > 0)
+                    {
+                        row2 = gcMultiRow1.CurrentRow.Index;
+                    }
+                    gcMultiRow1.CurrentCellPosition = new CellPosition(row2, col2);
                     break;
 
                 case "納期ボタン":
-                    int idx3 = gcMultiRow1.CurrentRow.Cells["納期"].CellIndex;
-                    gcMultiRow1.CurrentCellPosition = new CellPosition(0, idx3);
+                    int col3 = gcMultiRow1.CurrentRow.Cells["納期"].CellIndex;
+                    int row3 = 0;
+                    if (gcMultiRow1.CurrentRow.Index > 0)
+                    {
+                        row3 = gcMultiRow1.CurrentRow.Index;
+                    }
+                    gcMultiRow1.CurrentCellPosition = new CellPosition(row3, col3);
                     break;
 
                 case "買掛区分ボタン":
-                    int idx4 = gcMultiRow1.CurrentRow.Cells["買掛区分"].CellIndex;
-                    gcMultiRow1.CurrentCellPosition = new CellPosition(0, idx4);
+                    int col4 = gcMultiRow1.CurrentRow.Cells["買掛区分"].CellIndex;
+                    int row4 = 0;
+                    if (gcMultiRow1.CurrentRow.Index > 0)
+                    {
+                        row4 = gcMultiRow1.CurrentRow.Index;
+                    }
+                    gcMultiRow1.CurrentCellPosition = new CellPosition(row4, col4);
                     break;
 
                 case "品名ボタン":
-                    int idx5 = gcMultiRow1.CurrentRow.Cells["品名"].CellIndex;
-                    gcMultiRow1.CurrentCellPosition = new CellPosition(0, idx5);
+                    int col5 = gcMultiRow1.CurrentRow.Cells["品名"].CellIndex;
+                    int row5 = 0;
+                    if (gcMultiRow1.CurrentRow.Index > 0)
+                    {
+                        row5 = gcMultiRow1.CurrentRow.Index;
+                    }
+                    gcMultiRow1.CurrentCellPosition = new CellPosition(row5, col5);
                     break;
 
                 case "部品コードボタン":
-                    int idx6 = gcMultiRow1.CurrentRow.Cells["部品コード"].CellIndex;
-                    gcMultiRow1.CurrentCellPosition = new CellPosition(0, idx6);
+                    int col6 = gcMultiRow1.CurrentRow.Cells["部品コード"].CellIndex;
+                    int row6 = 0;
+                    if (gcMultiRow1.CurrentRow.Index > 0)
+                    {
+                        row6 = gcMultiRow1.CurrentRow.Index;
+                    }
+                    gcMultiRow1.CurrentCellPosition = new CellPosition(row6, col6);
                     break;
 
             }
@@ -467,7 +498,7 @@ namespace MultiRowDesigner
         }
 
         private void gcMultiRow1_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
-        {
+       {
             gcMultiRow1.EndEdit();
 
             if (e.KeyCode == Keys.Return)
@@ -487,11 +518,15 @@ namespace MultiRowDesigner
                     }
                 }
             }
+
         }
 
+
+
+        private F_部品選択 codeSelectionForm;
         private void gcMultiRow1_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar == ' ')
+          if (e.KeyChar == ' ')
             {
                 if (gcMultiRow1.CurrentCell.RowIndex == null || gcMultiRow1.CurrentCell.CellIndex == null) return;
 
@@ -504,16 +539,25 @@ namespace MultiRowDesigner
                         break;
 
                     case "部品コード":
-                        //F_部品選択が必要
+                        e.Handled = true;
+
+
+                        codeSelectionForm = new F_部品選択();
+                        if (codeSelectionForm.ShowDialog() == DialogResult.OK)
+                        {
+                            string selectedCode = codeSelectionForm.SelectedCode;
+
+                            gcMultiRow1.CurrentCell.Value = selectedCode;
+                            gcMultiRow1.CurrentCellPosition = new CellPosition(gcMultiRow1.CurrentRow.Index, gcMultiRow1.CurrentRow.Cells["品名"].CellIndex);
+                        }
                         break;
 
-
+                  
 
                 }
             }
 
         }
 
-        
     }
 }

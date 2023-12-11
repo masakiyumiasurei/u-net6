@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.表示件数 = new System.Windows.Forms.TextBox();
             this.コマンドキャンセル = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -97,7 +98,7 @@
             this.コマンド確定.Size = new System.Drawing.Size(102, 24);
             this.コマンド確定.TabIndex = 3;
             this.コマンド確定.Text = "確 定";
-            this.コマンド確定.Click += new System.EventHandler(this.検索ボタン_Click);
+            this.コマンド確定.Click += new System.EventHandler(this.コマンド確定_Click);
             // 
             // statusStrip1
             // 
@@ -121,11 +122,12 @@
             this.部品指定方法.Controls.Add(this.ページ分類抽出);
             this.部品指定方法.Controls.Add(this.ページ型番抽出);
             this.部品指定方法.Controls.Add(this.ページ追加条件);
-            this.部品指定方法.Location = new System.Drawing.Point(13, 13);
+            this.部品指定方法.Location = new System.Drawing.Point(12, 12);
             this.部品指定方法.Name = "部品指定方法";
             this.部品指定方法.SelectedIndex = 0;
             this.部品指定方法.Size = new System.Drawing.Size(618, 70);
             this.部品指定方法.TabIndex = 112;
+            this.部品指定方法.SelectedIndexChanged += new System.EventHandler(this.部品指定方法_SelectedIndexChanged);
             // 
             // ページ分類抽出
             // 
@@ -150,6 +152,7 @@
             this.対象部品名.Size = new System.Drawing.Size(450, 21);
             this.対象部品名.TabIndex = 3;
             this.対象部品名.TabStop = false;
+            this.対象部品名.KeyDown += new System.Windows.Forms.KeyEventHandler(this.対象部品名_KeyDown);
             // 
             // 分類記号
             // 
@@ -163,6 +166,10 @@
             this.分類記号.Name = "分類記号";
             this.分類記号.Size = new System.Drawing.Size(41, 21);
             this.分類記号.TabIndex = 2;
+            this.分類記号.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.分類記号_DrawItem);
+            this.分類記号.SelectedIndexChanged += new System.EventHandler(this.分類記号_SelectedIndexChanged);
+            this.分類記号.TextChanged += new System.EventHandler(this.分類記号_TextChanged);
+            this.分類記号.KeyDown += new System.Windows.Forms.KeyEventHandler(this.分類記号_KeyDown);
             // 
             // 分類記号_ラベル
             // 
@@ -194,6 +201,7 @@
             this.検索ボタン.Size = new System.Drawing.Size(59, 21);
             this.検索ボタン.TabIndex = 3;
             this.検索ボタン.Text = "検索";
+            this.検索ボタン.Click += new System.EventHandler(this.検索ボタン_Click_1);
             // 
             // 型番文字列
             // 
@@ -201,10 +209,10 @@
             this.型番文字列.Font = new System.Drawing.Font("BIZ UDゴシック", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.型番文字列.Location = new System.Drawing.Point(119, 11);
             this.型番文字列.Name = "型番文字列";
-            this.型番文字列.ReadOnly = true;
             this.型番文字列.Size = new System.Drawing.Size(335, 21);
             this.型番文字列.TabIndex = 2;
             this.型番文字列.TabStop = false;
+            this.型番文字列.KeyDown += new System.Windows.Forms.KeyEventHandler(this.型番文字列_KeyDown);
             // 
             // 型番文字列_ラベル
             // 
@@ -247,6 +255,8 @@
             this.RoHS対応.Name = "RoHS対応";
             this.RoHS対応.Size = new System.Drawing.Size(136, 21);
             this.RoHS対応.TabIndex = 2;
+            this.RoHS対応.SelectedIndexChanged += new System.EventHandler(this.RoHS対応_SelectedIndexChanged);
+            this.RoHS対応.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RoHS対応_KeyDown);
             // 
             // RoHS対応_ラベル
             // 
@@ -262,9 +272,15 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(17, 85);
             this.dataGridView1.Name = "dataGridView1";
+            dataGridViewCellStyle1.Format = "N2";
+            dataGridViewCellStyle1.NullValue = null;
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.RowTemplate.Height = 25;
             this.dataGridView1.Size = new System.Drawing.Size(610, 293);
             this.dataGridView1.TabIndex = 113;
+            this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
+            this.dataGridView1.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.DataGridView1_CellPainting);
+            this.dataGridView1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataGridView1_KeyDown);
             // 
             // 注釈2_ラベル
             // 
@@ -287,8 +303,8 @@
             this.Controls.Add(this.コマンドキャンセル);
             this.Controls.Add(this.表示件数);
             this.Name = "F_部品選択";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.F_検索_FormClosing);
             this.Load += new System.EventHandler(this.Form_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.F_部品選択_KeyDown);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.部品指定方法.ResumeLayout(false);

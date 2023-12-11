@@ -314,15 +314,15 @@ namespace u_net
         {
             //if (e.Button != MouseButtons.Left) return; // 左ボタンのダブルクリック以外は無視
 
-            //if (e.RowIndex >= 0) // ヘッダー行でない場合
-            //{
-            //    string selectedData = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString(); // 1列目のデータを取得
+            if (e.RowIndex >= 0) // ヘッダー行でない場合
+            {
+                string selectedData = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString(); // 1列目のデータを取得
 
-            //    F_入庫 targetform = new F_入庫();
+                F_入庫 targetform = new F_入庫();
 
-            //    targetform.args = selectedData;
-            //    targetform.ShowDialog();
-            //}
+                targetform.args = selectedData;
+                targetform.ShowDialog();
+            }
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)

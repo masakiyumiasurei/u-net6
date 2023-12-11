@@ -256,6 +256,7 @@ namespace u_net
                         return;
                     }
                     入庫コード.Text = args;
+                    UpdatedControl(入庫コード);
                 }
                 // 成功時の処理
                 return;
@@ -917,13 +918,15 @@ namespace u_net
                             "ORDER BY 明細番号";
                         VariableSet.SetTable2Details(入庫明細1.Detail, strSQL, cn);
 
+                        ChangedData(false);
+
                         // 動作制御
                         FunctionClass.LockData(this, this.IsDecided || this.IsDeleted || this.IsCompleted, "入庫コード");
                         this.コマンド複写.Enabled = true;
                         this.コマンド削除.Enabled = !(this.IsDeleted || this.IsCompleted);
-                        //SubForm.AllowAdditions = !(this.IsDeleted || this.IsCompleted);
-                        //SubForm.AllowDeletions = !(this.IsDeleted || this.IsCompleted);
-                        //SubForm.AllowEdits = !(this.IsDeleted || this.IsCompleted);
+                        入庫明細1.Detail.AllowUserToAddRows = !(this.IsDeleted || this.IsCompleted);
+                        入庫明細1.Detail.AllowUserToDeleteRows = !(this.IsDeleted || this.IsCompleted);
+                        入庫明細1.Detail.ReadOnly = (this.IsDeleted || this.IsCompleted);
                         break;
                     case "入庫日":
                         // 集計年月と支払年月を入力する
@@ -969,6 +972,8 @@ namespace u_net
                         }
 
                         fn.WaitForm.Close();
+
+                        ChangedData(false);
                         break;
                     case "集計年月":
                         // 入力文字が削除されたとき以外は書式を整える
@@ -991,6 +996,9 @@ namespace u_net
                         }
                         break;
                 }
+
+                
+
             }
             catch (Exception ex)
             {

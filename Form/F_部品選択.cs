@@ -28,9 +28,13 @@ namespace u_net
         private TextBox objArgs1;      // 保存用オブジェクト１
         //private MSHierarchicalFlexGridLib.MSHFlexGrid objArgs2; // 保存用オブジェクト２
 
-        public string FilterName;
-        private int FilterNumber = 1;
+        public string str型番;
+        public string str分類記号;
+        public long? lngRoHS対応;
         public string SelectedCode;
+        public bool bleDontAfterUpdate;
+        public bool bleDontKeyUp;
+        public bool bleloading;
 
         public F_部品選択()
         {
@@ -45,170 +49,213 @@ namespace u_net
             cn.Open();
         }
 
-        private void Filtering(object filterNumber, string FilterName)
-        {
-            // リストを指定条件で更新する
-            // filterNumber - 抽出番号
-            // FilterName   - 抽出対象となるフィールド名
-            Connect();
-            string strFilter = "";
-            string query = "";
-
-            switch (filterNumber)
-            {
-                case 1:
-                    strFilter = "WHERE " + FilterName + " like '[アイウエオ]%'";
-                    break;
-                case 2:
-                    strFilter = "WHERE " + FilterName + " like '[カキクケコガギグゲゴ]%'";
-                    break;
-                case 3:
-                    strFilter = "WHERE " + FilterName + " like '[サシスセソザジズゼゾ]%'";
-                    break;
-                case 4:
-                    strFilter = "WHERE " + FilterName + " like '[タチツテトダヂヅデド]%'";
-                    break;
-                case 5:
-                    strFilter = "WHERE " + FilterName + " like '[ナニヌネノ]%'";
-                    break;
-                case 6:
-                    strFilter = "WHERE " + FilterName + " like '[ハヒフヘホバビブベボパピプペポ]%'";
-                    break;
-                case 7:
-                    strFilter = "WHERE " + FilterName + " like '[マミムメモ]%'";
-                    break;
-                case 8:
-                    strFilter = "WHERE " + FilterName + " like '[ヤユヨ]%'";
-                    break;
-                case 9:
-                    strFilter = "WHERE " + FilterName + " like '[ラリルレロ]%'";
-                    break;
-                case 10:
-                    strFilter = "WHERE " + FilterName + " like '[ワヲン]%'";
-                    break;
-                case 11:
-                    strFilter = "WHERE " + FilterName + " like '[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ]%'";
-                    break;
-                case 12:
-                    strFilter = "";
-                    break;
-                default:
-                    MessageBox.Show("不正な呼び出しが行われました.", "Filtering", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    break;
-            }
-
-            // 一覧のソースを設定する
-            // 各ソースに対応するビューが必要
-            switch (FilterName)
-            {
-                case "申請顧客名フリガナ":
-                    query = "SELECT 顧客コード, 顧客名, 顧客担当者名 FROM V顧客検索_申請 " + strFilter + " ORDER BY " + FilterName + ";";
-                    break;
-                case "顧客名フリガナ":
-                    query = "SELECT 顧客コード, 顧客名, 顧客担当者名, 無効 FROM V顧客検索 " + strFilter + " ORDER BY " + FilterName + ";";
-                    break;
-                case "仕入先名フリガナ":
-                    query = "SELECT 仕入先コード, 仕入先名, 電話番号 FROM V仕入先検索 " + strFilter + " ORDER BY " + FilterName + ";";
-                    break;
-                case "メーカー名フリガナ":
-                    query = "SELECT メーカーコード, メーカー名, 電話番号 FROM uv_メーカー検索 " + strFilter + " ORDER BY " + FilterName + ";";
-                    break;
-                case "支払先名フリガナ":
-                    query = "SELECT 支払先コード, 支払先名, 電話番号 FROM V支払先検索 " + strFilter + " ORDER BY " + FilterName + ";";
-                    break;
-            }
-
-            
-            //SqlDataAdapter adapter = new SqlDataAdapter(query, cn);
-            //DataTable dataTable = new DataTable();
-            //adapter.Fill(dataTable);
-
-            // DataGridViewにデータをバインド
-            //リスト.DataSource = dataTable;
-
-
-            // 件数を表示する
-            //表示件数.Text = リスト.RowCount.ToString();
-
-            //選択ボタンをEnable=falseにする
-            //Enable_Switch();
-
-            //リスト.Focus(); // トグルボタンがクリックされた場合の処理
-
-            //if (リスト.RowCount > 0)
-            //{
-            //    リスト.Rows[0].Selected = true;
-            //}
-
-
-            // 値が確定済みであれば何もしない
-            //switch (objArgs.GetType().Name)
-            //{
-            //    case "TextBox":
-            //        if (objArgs1.Text != null)
-            //        {
-            //            return;
-            //        }
-            //        break;
-            //    case "MSHFlexGrid":
-            //        if (objArgs2.Text != null)
-            //        {
-            //            return;
-            //        }
-            //        break;
-            //}
-
-            // 値が未確定であれば各抽出リストの一番目の項目を選択する
-            //if (リスト.RowCount > 0)
-            //{
-            //    リスト.Selected[1] = true;
-            //    リスト.Value = リスト.Column[0, 1];
-            //}
-
-            
-        }
-
+       
         public void Form_Load(object sender, EventArgs e)
         {
+            bleloading = true;
 
             MyApi myapi = new MyApi();
+            int xSize, ySize, intpixel, twipperdot;
 
-            //if (string.IsNullOrEmpty(FilterName))
-            //{
-            //    MessageBox.Show("呼び出しに失敗しました。\n管理者に連絡してください。", this.Name, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            //    DialogResult = DialogResult.Cancel;
-            //    this.Close();
-               
-            //}
+            //1インチ当たりのピクセル数 アクセスのサイズの引数がtwipなのでピクセルに変換する除算値を求める
+            intpixel = myapi.GetLogPixel();
+            twipperdot = myapi.GetTwipPerDot(intpixel);
 
-            // ウィンドウサイズを調整する
-            //int lngX, lngy;
-            //myapi.GetFullScreen(out lngX, out lngy);
-            //intWindowHeight = this.Height;
-            //intWindowWidth = this.Width;
-            //this.Width = intWindowWidth;
-            //this.Height = lngy * myapi.GetTwipPerDot(myapi.GetLogPixel()) - 1200;
-            //Form_Resize(sender, e);
+            intWindowHeight = this.Height;
+            intWindowWidth = this.Width;
 
-            //実行中フォーム起動
-            string LoginUserCode = "000";//テスト用 ログインユーザを実行中にどのように管理するか決まったら修正
-            LocalSetting localSetting = new LocalSetting();
-            localSetting.LoadPlace(LoginUserCode, this);
+            // DataGridViewの設定
+            dataGridView1.AllowUserToResizeColumns = true;
+            dataGridView1.Font = new Font("MS ゴシック", 10);
+            dataGridView1.DefaultCellStyle.SelectionBackColor = Color.FromArgb(210, 210, 255);
+            dataGridView1.DefaultCellStyle.SelectionForeColor = Color.Black;
+            dataGridView1.GridColor = Color.FromArgb(230, 230, 230);
+            dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font("MS ゴシック", 9);
+            dataGridView1.DefaultCellStyle.Font = new Font("MS ゴシック", 10);
+            dataGridView1.DefaultCellStyle.ForeColor = Color.Black;
 
 
-            // 一覧を表示する
-            Filtering(FilterNumber, FilterName);
+            myapi.GetFullScreen(out xSize, out ySize);
 
-            toolStripStatusLabel1.Text = "■確定するには、確定したい項目をダブルクリックするか、選択後[Enter]キーを押下します。　■[Function]キーあるいは←→キーで抽出条件を変更します。";
+            int x = 10, y = 10;
+
+            this.Size = new Size(this.Width, ySize * myapi.GetTwipPerDot(intpixel) - 1200);
+            //accessのmovesizeメソッドの引数の座標単位はtwipなので以下で
+
+            this.Size = new Size(this.Width, ySize - 1200 / twipperdot);
+
+            this.StartPosition = FormStartPosition.Manual; // 手動で位置を指定
+            int screenWidth = Screen.PrimaryScreen.Bounds.Width; // プライマリスクリーンの幅
+            x = (screenWidth - this.Width) / 2;
+            this.Location = new Point(x, y);
+
+
+            dataGridView1.ReadOnly = true;
+            dataGridView1.AllowUserToAddRows = false;
+            dataGridView1.AllowUserToDeleteRows = false;
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+
+            OriginalClass ofn = new OriginalClass();
+
+            ofn.SetComboBox(分類記号, "SELECT 分類記号 as Display, 対象部品名 as Display2, 分類記号 as Value FROM M部品分類 ORDER BY 分類記号");
+            分類記号.DrawMode = DrawMode.OwnerDrawFixed;
+
+            this.RoHS対応.DataSource = new KeyValuePair<int, String>[] {
+                new KeyValuePair<int, String>(1, "対応している"),
+                new KeyValuePair<int, String>(2, "対応していない"),
+                new KeyValuePair<int, String>(0, "指定しない"),
+            };
+            this.RoHS対応.DisplayMember = "Value";
+            this.RoHS対応.ValueMember = "Key";
+
+
+            RoHS対応.SelectedValue = 1;
+            lngRoHS対応 = 1;
+
+            分類記号.SelectedIndex = -1;
+            分類記号.Focus();
+
+            bleloading = false;
 
         }
 
-        private void F_検索_FormClosing(object sender, FormClosingEventArgs e)
+        private void DoDecide(string codeString)
         {
-            string LoginUserCode = "000";//テスト用 ログインユーザを実行中にどのように管理するか決まったら修正
-            LocalSetting test = new LocalSetting();
-            test.SavePlace(LoginUserCode, this);
+            SelectedCode = codeString;
+
+            DialogResult = DialogResult.OK;
+            Close();
+
+
         }
+
+        private void SetSource()
+        {
+            if (bleloading) return;
+
+            try
+            {
+                string whereStr = "1=1";
+                int lngCount = 0;
+
+                dataGridView1.SuspendLayout();
+
+                // 第１条件指定（分類と型番はOR検索）
+                if (!string.IsNullOrEmpty(str分類記号))
+                {
+                    whereStr += " AND 分類記号 = '" + str分類記号 + "'";
+                }
+                else if (!string.IsNullOrEmpty(str型番))
+                {
+                    whereStr += " AND 型番 LIKE '%" + str型番 + "%'";
+                }
+                else
+                {
+                    // 第１条件が指定されていないときは何もしない
+                    return;
+                }
+
+                // 第２条件指定（RoHS対応はAND検索）
+                switch (lngRoHS対応)
+                {
+                    case 1:
+                        whereStr += " AND (RohsStatusSign = '１' OR RohsStatusSign = '２' OR RohsStatusSign = '仮')";
+                        break;
+                    case 2:
+                        whereStr += " AND (RohsStatusSign <> '１' AND RohsStatusSign <> '２' AND RohsStatusSign <> '仮')";
+                        break;
+                }
+
+                string strSQL = "SELECT 部品コード, 廃止, 品名, 型番, メーカー名, RohsStatusSign" +
+                                " FROM V部品選択 WHERE " + whereStr + " ORDER BY 型番";
+
+                Connect();
+                using (SqlCommand command = new SqlCommand(strSQL, cn))
+                using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+                {
+                    DataTable dataTable = new DataTable();
+                    adapter.Fill(dataTable);
+
+                    if (dataTable.Rows.Count == 0)
+                    {
+                        MessageBox.Show("指定された条件に合致する部品はありません。", "検索結果", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return;
+                    }
+
+                    dataGridView1.DataSource = dataTable;
+                    dataGridView1.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
+                    dataGridView1.ResumeLayout();
+
+                    lngCount = dataGridView1.Rows.Count - 1; // FixedRowsの分を除外
+                    dataGridView1.Visible = true;
+                    dataGridView1.Focus();
+                }
+
+                表示件数.Text = lngCount.ToString();
+
+
+
+
+
+                MyApi myapi = new MyApi();
+                int xSize, ySize, intpixel, twipperdot;
+
+                //1インチ当たりのピクセル数 アクセスのサイズの引数がtwipなのでピクセルに変換する除算値を求める
+                intpixel = myapi.GetLogPixel();
+                twipperdot = myapi.GetTwipPerDot(intpixel);
+
+                intWindowHeight = this.Height;
+                intWindowWidth = this.Width;
+
+                // DataGridViewの設定
+
+                //0列目はaccessでは行ヘッダのため、ずらす
+                //dataGridView1.Columns[0].Width = 500 / twipperdot;
+                dataGridView1.Columns[0].Width = 1000 / twipperdot; 
+                dataGridView1.Columns[1].Width = 350 / twipperdot;
+                dataGridView1.Columns[2].Width = 3250 / twipperdot;
+                dataGridView1.Columns[3].Width = 3250 / twipperdot;
+                dataGridView1.Columns[4].Width = 1200 / twipperdot;
+                dataGridView1.Columns[5].Width = 400 / twipperdot;
+
+
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
+
+        private void DataGridView1_CellPainting(object sender,
+    DataGridViewCellPaintingEventArgs e)
+        {
+            //列ヘッダーかどうか調べる
+            if (e.ColumnIndex < 0 && e.RowIndex >= 0)
+            {
+                dataGridView1.SuspendLayout();
+                //セルを描画する
+                e.Paint(e.ClipBounds, DataGridViewPaintParts.All);
+
+                //行番号を描画する範囲を決定する
+                //e.AdvancedBorderStyleやe.CellStyle.Paddingは無視
+                Rectangle indexRect = e.CellBounds;
+                indexRect.Inflate(-2, -2);
+                //行番号を描画する
+                TextRenderer.DrawText(e.Graphics,
+                    (e.RowIndex + 1).ToString(),
+                    e.CellStyle.Font,
+                    indexRect,
+                    e.CellStyle.ForeColor,
+                    TextFormatFlags.Right | TextFormatFlags.VerticalCenter);
+                //描画が完了したことを知らせる
+                e.Handled = true;
+                dataGridView1.ResumeLayout();
+
+            }
+        }
+
 
         private void キャンセルボタン_Click(object sender, EventArgs e)
         {
@@ -217,75 +264,288 @@ namespace u_net
             this.Close();
         }
 
-        private void 検索ボタン_Click(object sender, EventArgs e)
+
+
+        private void 分類記号_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //リスト.Focus();
-            // "顧客検索設定" フォームを開く
-            //Form searchForm = new Form();
-            //searchForm.Show();
+            対象部品名.Text = ((DataRowView)分類記号.SelectedItem)?.Row.Field<String>("Display2")?.ToString();
+
+
+            str分類記号 = 分類記号.Text;
+            str型番 = "";
+            型番文字列.Text = null;
+
+            if (bleDontAfterUpdate)
+            {
+                bleDontAfterUpdate = false;
+                return;
+            }
+
+            bleDontKeyUp = false;
+            
+            SetSource();
+            
+            
         }
 
-        private void Enable_Switch()
+        private void 分類記号_TextChanged(object sender, EventArgs e)
         {
-
-            //フィルタ_ア.Enabled = true;
-            //フィルタ_カ.Enabled = true;
-            //フィルタ_サ.Enabled = true;
-            //フィルタ_タ.Enabled = true;
-            //フィルタ_ナ.Enabled = true;
-            //フィルタ_ハ.Enabled = true;
-            //フィルタ_マ.Enabled = true;
-            //フィルタ_ヤ.Enabled = true;
-            //フィルタ_ラ.Enabled = true;
-            //フィルタ_ワ.Enabled = true;
-            //フィルタ_abc.Enabled = true;
-            //フィルタ_全て.Enabled = true;
-
-            //switch (FilterNumber)
-            //{
-            //    case 1:
-            //        フィルタ_ア.Enabled = false;
-            //        break;
-            //    case 2:
-            //        フィルタ_カ.Enabled = false;
-            //        break;
-            //    case 3:
-            //        フィルタ_サ.Enabled = false;
-            //        break;
-            //    case 4:
-            //        フィルタ_タ.Enabled = false;
-            //        break;
-            //    case 5:
-            //        フィルタ_ナ.Enabled = false;
-            //        break;
-            //    case 6:
-            //        フィルタ_ハ.Enabled = false;
-            //        break;
-            //    case 7:
-            //        フィルタ_マ.Enabled = false;
-            //        break;
-            //    case 8:
-            //        フィルタ_ヤ.Enabled = false;
-            //        break;
-            //    case 9:
-            //        フィルタ_ラ.Enabled = false;
-            //        break;
-            //    case 10:
-            //        フィルタ_ワ.Enabled = false;
-            //        break;
-            //    case 11:
-            //        フィルタ_abc.Enabled = false;
-            //        break;
-            //    case 12:
-            //        フィルタ_全て.Enabled = false;
-            //        break;
-            //}
-
-
-
+            if (分類記号.SelectedValue == null)
+            {
+                対象部品名.Text = null;
+            }
         }
 
-        
+    
+        private void 分類記号_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            OriginalClass.SetComboBoxAppearance((ComboBox)sender, e, new int[] { 50, 500 }, new string[] { "Display", "Display2" });
+            分類記号.Invalidate();
+            分類記号.DroppedDown = true;
+        }
+
+        private void 部品指定方法_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (部品指定方法.SelectedIndex)
+            {
+                case 0:
+                    分類記号.Focus();
+                    break;
+                case 1:
+                    型番文字列.Focus();
+                    break;
+                case 2:
+                    RoHS対応.Focus();
+                    break;
+            }
+        }
+
+        private void F_部品選択_KeyDown(object sender, KeyEventArgs e)
+        {
+            int keyCode = (int)e.KeyCode;
+
+            // vbKeyLeft または vbKeyRight 以外のキーが押された場合
+            switch (keyCode)
+            {
+                case (int)Keys.Left:
+                    部品指定方法.SelectedIndex = ((部品指定方法.SelectedIndex + 1) + (3 - 2)) % 3;
+                    e.Handled = true;
+                    break;
+                case (int)Keys.Right:
+                    部品指定方法.SelectedIndex = (部品指定方法.SelectedIndex + 1) % 3;
+                    e.Handled = true;
+                    break;
+                
+            }
+        }
+
+        private void dataGridView1_KeyDown(object sender, KeyEventArgs e)
+        {
+            int keyCode = (int)e.KeyCode;
+
+            // vbKeyLeft または vbKeyRight が押された場合
+            if (keyCode == (int)Keys.Left || keyCode == (int)Keys.Right)
+            {
+                // 抽出指定タブにフォーカスがなければフォーカスを移す
+                e.Handled = true;
+
+                switch (部品指定方法.SelectedIndex)
+                {
+                    case 0:
+                        分類記号.Focus();
+                        break;
+                    case 1:
+                        型番文字列.Focus();
+                        break;
+                    case 2:
+                        RoHS対応.Focus();
+                        break;
+                }
+
+                return;
+            }
+
+            // vbKeyLeft または vbKeyRight 以外のキーが押された場合
+            switch (keyCode)
+            {
+                case (int)Keys.Left:
+                    部品指定方法.SelectedIndex = ((部品指定方法.SelectedIndex + 1) + (3 - 2)) % 3;
+                    e.Handled = true;
+                    break;
+                case (int)Keys.Right:
+                    部品指定方法.SelectedIndex = (部品指定方法.SelectedIndex + 1) % 3;
+                    e.Handled = true;
+                    break;
+            }
+
+            if(keyCode == (int)Keys.Return)
+            {
+                if (bleDontKeyUp)
+                {
+                    bleDontKeyUp = false;
+                }
+                else
+                {
+                    if (dataGridView1.SelectedRows.Count > 0)
+                    {
+                        // DataGridView1で選択された行が存在する場合
+                        string selectedData = dataGridView1.SelectedRows[0].Cells[0].Value.ToString(); // 1列目のデータを取得
+                        DoDecide(selectedData);
+                    }
+
+                }
+            }
+        }
+
+        private void 分類記号_KeyDown(object sender, KeyEventArgs e)
+        {
+            int keyCode = (int)e.KeyCode;
+
+            // vbKeyLeft または vbKeyRight 以外のキーが押された場合
+            switch (keyCode)
+            {
+                case (int)Keys.Left:
+                    部品指定方法.SelectedIndex = ((部品指定方法.SelectedIndex + 1) + (3 - 2)) % 3;
+                    e.Handled = true;
+                    break;
+                case (int)Keys.Right:
+                    部品指定方法.SelectedIndex = (部品指定方法.SelectedIndex + 1) % 3;
+                    e.Handled = true;
+                    break;
+                case (int)Keys.Return:
+                    e.Handled = true;
+                    str分類記号 = 分類記号.Text;
+                    str型番 = ""; // 分類条件が指定されたら型番条件は却下
+                    型番文字列.Text = null;
+                    bleDontAfterUpdate = true;
+                    bleDontKeyUp = true;
+                    分類記号.SelectedValue = str分類記号;
+                    SetSource();
+                    break;
+                case (int)Keys.Space:
+                    e.Handled = true;
+                    ComboBox comboBox = sender as ComboBox;
+                    if (comboBox != null)
+                    {
+                        comboBox.DroppedDown = true;
+                    }
+                    break;
+            }
+        }
+
+        private void 型番文字列_KeyDown(object sender, KeyEventArgs e)
+        {
+            int keyCode = (int)e.KeyCode;
+
+            // vbKeyLeft または vbKeyRight 以外のキーが押された場合
+            switch (keyCode)
+            {
+                case (int)Keys.Left:
+                    部品指定方法.SelectedIndex = ((部品指定方法.SelectedIndex + 1) + (3 - 2)) % 3;
+                    e.Handled = true;
+                    break;
+                case (int)Keys.Right:
+                    部品指定方法.SelectedIndex = (部品指定方法.SelectedIndex + 1) % 3;
+                    e.Handled = true;
+                    break;
+                case (int)Keys.Return:
+                    str分類記号 = ""; // 型番条件が指定されたら分類条件は却下
+                    this.分類記号.Text = null; // Nullを設定
+                    this.対象部品名.Text = null; // Nullを設定
+                    str型番 = this.型番文字列.Text;
+                    bleDontKeyUp = true;
+                    SetSource();
+                    break;
+            }
+        }
+
+        private void RoHS対応_KeyDown(object sender, KeyEventArgs e)
+        {
+            int keyCode = (int)e.KeyCode;
+
+            // vbKeyLeft または vbKeyRight 以外のキーが押された場合
+            switch (keyCode)
+            {
+                case (int)Keys.Left:
+                    部品指定方法.SelectedIndex = ((部品指定方法.SelectedIndex + 1) + (3 - 2)) % 3;
+                    e.Handled = true;
+                    break;
+                case (int)Keys.Right:
+                    部品指定方法.SelectedIndex = (部品指定方法.SelectedIndex + 1) % 3;
+                    e.Handled = true;
+                    break;
+                case (int)Keys.Return:
+                    bleDontAfterUpdate = true;
+                    bleDontKeyUp = true;
+                    e.Handled = true;
+                    break;
+                case (int)Keys.Space:
+                    ComboBox combo = sender as ComboBox;
+                    combo.DroppedDown = true;
+                    e.Handled = true;
+                    break;
+            }
+        }
+
+        private void 対象部品名_KeyDown(object sender, KeyEventArgs e)
+        {
+            int keyCode = (int)e.KeyCode;
+
+            // vbKeyLeft または vbKeyRight 以外のキーが押された場合
+            switch (keyCode)
+            {
+                case (int)Keys.Left:
+                    部品指定方法.SelectedIndex = ((部品指定方法.SelectedIndex + 1) + (3 - 2)) % 3;
+                    e.Handled = true;
+                    break;
+                case (int)Keys.Right:
+                    部品指定方法.SelectedIndex = (部品指定方法.SelectedIndex + 1) % 3;
+                    e.Handled = true;
+                    break;
+            }
+        }
+
+        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0) // ヘッダー行でない場合
+            {
+                string selectedData = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString(); // 1列目のデータを取得
+                DoDecide(selectedData);
+            }
+        }
+
+        private void コマンド確定_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count > 0)
+            {
+                // DataGridView1で選択された行が存在する場合
+                string selectedData = dataGridView1.SelectedRows[0].Cells[0].Value.ToString(); // 1列目のデータを取得
+                DoDecide(selectedData);
+            }
+        }
+
+        private void RoHS対応_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (this.RoHS対応.SelectedItem != null)
+            {
+                KeyValuePair<int, string> selectedValue = (KeyValuePair<int, string>)this.RoHS対応.SelectedItem;
+                lngRoHS対応 = selectedValue.Key;
+            }
+
+            SetSource();
+        }
+
+    
+        private void 検索ボタン_Click_1(object sender, EventArgs e)
+        {
+            str分類記号 = "";
+            分類記号.Text = null;
+            対象部品名.Text = null;
+            str型番 = 型番文字列.Text?.ToString();
+            bleDontKeyUp = false;
+            SetSource();
+
+        }
     }
 
 }
