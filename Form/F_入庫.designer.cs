@@ -1178,6 +1178,8 @@ namespace u_net
             this.買掛区分コード設定.TabIndex = 10173;
             this.買掛区分コード設定.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.買掛区分コード設定_DrawItem);
             this.買掛区分コード設定.SelectedIndexChanged += new System.EventHandler(this.買掛区分コード設定_SelectedIndexChanged);
+            this.買掛区分コード設定.Enter += new System.EventHandler(this.買掛区分コード設定_Enter);
+            this.買掛区分コード設定.Leave += new System.EventHandler(this.買掛区分コード設定_Leave);
             // 
             // F_入庫
             // 
@@ -1409,8 +1411,8 @@ namespace u_net
         private TextBox 無効日時;
         private MultiRowDesigner.入庫明細 入庫明細1;
         private StatusStrip statusStrip1;
-        private ToolStripStatusLabel toolStripStatusLabel1;
-        private ToolStripStatusLabel toolStripStatusLabel2;
+        internal ToolStripStatusLabel toolStripStatusLabel1;
+        internal ToolStripStatusLabel toolStripStatusLabel2;
         private ComboBox 買掛区分コード設定;
     }
 }

@@ -381,9 +381,42 @@ namespace MultiRowDesigner
 
                     break;
 
+                case "発注明細番号":
+                    f_入庫.toolStripStatusLabel2.Text = "■発注データの明細番号（No.）です。";
+                    break;
+
+                case "部品コード":
+                    f_入庫.toolStripStatusLabel2.Text = "■部品コードを入力します。　■[Space]キーあるいはダブルクリックで部品を選択できます。";
+                    break;
+
+                case "買掛区分":
+                    f_入庫.toolStripStatusLabel2.Text = "■入庫明細に対する買掛区分を選択します。";
+                    break;
+
             }
         }
 
+        private void gcMultiRow1_CellLeave(object sender, CellEventArgs e)
+        {
+            F_入庫? f_入庫 = Application.OpenForms.OfType<F_入庫>().FirstOrDefault();
+
+            switch (e.CellName)
+            {
+                case "発注明細番号":
+                    f_入庫.toolStripStatusLabel2.Text = "各種項目の説明";
+                    break;
+
+                case "部品コード":
+                    f_入庫.toolStripStatusLabel2.Text = "各種項目の説明";
+                    break;
+
+                case "買掛区分":
+                    f_入庫.toolStripStatusLabel2.Text = "各種項目の説明";
+                    break;
+
+            }
+
+        }
 
 
         private void gcMultiRow1_EditingControlShowing(object sender, EditingControlShowingEventArgs e)
