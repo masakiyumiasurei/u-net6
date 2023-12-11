@@ -38,6 +38,7 @@ namespace MultiRowDesigner
             // 
             // gcMultiRow1
             // 
+            gcMultiRow1.AllowRowMove = true;
             gcMultiRow1.EditMode = GrapeCity.Win.MultiRow.EditMode.EditOnEnter;
             gcMultiRow1.Location = new Point(-4, 0);
             gcMultiRow1.Margin = new Padding(4, 5, 4, 5);

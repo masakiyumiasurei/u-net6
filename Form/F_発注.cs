@@ -26,12 +26,19 @@ using Pao.Reports;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 using System.Transactions;
 using MultiRowDesigner;
-
+using System.Runtime.InteropServices;
 
 namespace u_net
 {
     public partial class F_発注 : Form
     {
+        //使用するか
+        [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+        public static extern IntPtr SendMessage(IntPtr hWnd, uint Msg, IntPtr wParam, IntPtr lParam);
+        // WM_UNDOメッセージの定義
+        private const int WM_UNDO = 0x0304;
+
+
         private Control previousControl;
         private SqlConnection cn;
         private SqlTransaction tx;
@@ -315,8 +322,9 @@ namespace u_net
                 コマンド登録.Enabled = false;
 
                 // 明細部動作制御
-                発注明細1.Detail.ReadOnly = false;
                 発注明細1.Detail.AllowUserToDeleteRows = true;
+                発注明細1.Detail.ReadOnly = false;
+                発注明細1.Detail.AllowUserToAddRows = true;
 
 
                 return true;
@@ -360,7 +368,7 @@ namespace u_net
             }
         }
 
-        
+
 
         private void コマンド登録_Click(object sender, EventArgs e)
         {
@@ -379,7 +387,8 @@ namespace u_net
             {
                 if (MessageBox.Show("明細行が並べ替えられています。\n並べ替えを解除して登録しますか？", "登録コマンド", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    //        SubForm.CancelOrderBy();
+                    発注明細 SubForm = Application.OpenForms.OfType<発注明細>().FirstOrDefault();
+                    SubForm.CancelOrderBy();
                 }
                 else
                 {
@@ -688,7 +697,6 @@ namespace u_net
                         break;
 
                     case "在庫管理":
-                        //マルチロウのカウント取得
 
                         if (Cancel == false && this.発注明細1.Detail.RowCount > 0)
                         {
@@ -705,14 +713,22 @@ namespace u_net
                 isError = true;
                 if (Cancel) return true; // Cancel が true の場合は処理しない
 
-                //if (this.RecordSource == "")
+                Cancel = true;
+
+                //me.RecordSourceがどこのレコードソースか不明のため
+
+                //if (string.IsNullOrEmpty(this.RecordSource))
                 //{
-                //    // lngRet = SendMessage(this.hwnd, WM_UNDO, 0, 0);
-                //    // 未実装
+                //    // RecordSourceが空の場合はWM_UNDOメッセージを送信
+                //    SendMessage(this.Handle, WM_UNDO, IntPtr.Zero, IntPtr.Zero);
                 //}
                 //else
                 //{
-                //    this.ActiveControl.Undo();
+                // RecordSourceが空でない場合はActiveControlのUndoメソッドを呼び出す
+                if (this.ActiveControl is TextBox textBox)
+                {
+                    textBox.Undo();
+                }
                 //}
 
                 return isError;
@@ -724,6 +740,7 @@ namespace u_net
                 return true;
             }
         }
+
 
         private bool IsErrorData(string exFieldName1, string exFieldName2 = null)
         {
@@ -1022,7 +1039,104 @@ namespace u_net
 
         private void コマンド確定_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("現在開発中です。", "確定コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            発注明細 SubForm = Application.OpenForms.OfType<発注明細>().FirstOrDefault();
+            FunctionClass fn = new FunctionClass();
+            try
+            {
+                object varSaved = null; // 確定日保存用（エラー発生時の対策）
+
+                if (this.NoCredit.Checked == true && !this.IsDecided)
+                {
+                    DialogResult result = MessageBox.Show("振込処理は行われません。 本当によろしいですか？",
+                        "確定コマンド", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                    if (result == DialogResult.Yes)
+                    {
+                        // Yesの場合の処理
+                        //access に何も記載がなかった
+                    }
+                    else
+                    {
+                        goto Bye_コマンド確定_Click;
+                    }
+                }
+
+                // 登録時におけるエラーチェック
+
+                if (!this.IsDecided && this.IsErrorData("発注コード", "発注版数"))
+                {
+                    goto Bye_コマンド確定_Click;
+                }
+
+                // 明細行が並べ替えられているときはその旨を知らせる
+                if (IsOrderByOn)
+                {
+                    if (MessageBox.Show("明細行が並べ替えられています。 並べ替えを解除して登録しますか？",
+                        "確定コマンド", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+
+                        SubForm.CancelOrderBy();
+                    }
+                    else
+                    {
+                        goto Bye_コマンド確定_Click;
+                    }
+                }
+
+                // 登録前の確定日を保存しておく
+                varSaved = this.確定日時.Text;
+                Connect();
+                // 確定日を設定する
+                if (this.IsDecided)
+                {
+                    this.確定日時.Text = null;
+                }
+                else
+                {
+                    this.確定日時.Text = FunctionClass.GetServerDate(cn).ToString();
+                }
+
+                fn.DoWait("登録しています...");
+
+                // 表示データを登録する
+                if (SaveData(this.CurrentCode, this.CurrentEdition))
+                {
+                    ChangedData(false);
+                    blnNewParts = false;
+
+                    // 新規モードのときは修正モードへ移行する
+                    if (this.IsNewData)
+                    {
+                        this.コマンド新規.Enabled = true;
+                        this.コマンド読込.Enabled = false;
+                    }
+
+                    this.コマンド承認.Enabled = this.IsDecided;
+                }
+                else
+                {
+                    this.確定日時.Text = varSaved?.ToString();
+                    MessageBox.Show("確定できませんでした。", "確定コマンド", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+
+                // 確定状態によって動作を制御する
+
+                FunctionClass.LockData(this, this.IsDecided || this.IsDeleted, "発注コード", "発注版数");
+                発注明細1.Detail.AllowUserToDeleteRows = !this.IsDecided;
+                発注明細1.Detail.ReadOnly = this.IsDecided;
+                発注明細1.Detail.AllowUserToAddRows = !this.IsDecided;
+
+            Bye_コマンド確定_Click:
+                fn.WaitForm.Close();
+                return;
+            }
+            catch (Exception ex)
+            {
+                Debug.Print(this.Name + "_コマンド確定_Click - " + ex.Message);
+                MessageBox.Show("エラーが発生しました。確定コマンドは取り消されました。", "確定コマンド", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                fn.WaitForm.Close();
+                return;
+            }
         }
 
 
@@ -1062,9 +1176,9 @@ namespace u_net
                     コマンド承認.Enabled = false;
 
                     // 明細部制御
-                    //SubForm.AllowAdditions = true;
-                    //SubForm.AllowDeletions = true;
-                    //SubForm.AllowEdits = true;
+                    発注明細1.Detail.AllowUserToAddRows = true;
+                    発注明細1.Detail.AllowUserToDeleteRows = true;
+                    発注明細1.Detail.ReadOnly = false; //readonlyなのでaccessと真偽が逆になる   
                 }
             }
             catch (Exception ex)
@@ -1080,10 +1194,6 @@ namespace u_net
             try
             {
                 //accessはローカルテーブルのため、不要
-                //Connect();
-                //string strSQL = $"UPDATE 発注明細 SET 発注コード='{codeString}', 発注版数={editionNumber}";
-                //SqlCommand command = new SqlCommand(strSQL, cn);
-                //command.ExecuteNonQuery();
 
 
                 発注コード.Text = codeString;
@@ -1116,7 +1226,7 @@ namespace u_net
                 無効日時.Text = null;
                 入庫状況.Text = null;
 
-                // 注意　後で入れる
+                // 注意　後で入れる 不要？
                 //  発注明細1.回答納期.Value = null;
 
                 return true;
@@ -1213,19 +1323,14 @@ namespace u_net
 
         private void 発注日選択ボタン_Click(object sender, EventArgs e)
         {
-            //SearchForm = new F_検索();
-            //SearchForm.FilterName = "メーカー名フリガナ";
-            //if (SearchForm.ShowDialog() == DialogResult.OK)
-            //{
-            //    string SelectedCode = SearchForm.SelectedCode;
+            F_カレンダー dateSelectionForm = new F_カレンダー();
+            if (dateSelectionForm.ShowDialog() == DialogResult.OK)
+            {
+                // 日付選択フォームから選択した日付を取得
+                string selectedDate = dateSelectionForm.SelectedDate;
 
-            //    メーカーコード.Text = SelectedCode;
-            //    string str1 = FunctionClass.GetMakerName(cn, SelectedCode);
-            //    string str2 = FunctionClass.GetMakerShortName(cn, SelectedCode);
-            //    MakerName.Text = str1;
-            //    購買コード.Text = str2;
-
-            //}
+                発注日.Text = selectedDate;
+            }
         }
 
         private void コマンド削除_Click(object sender, EventArgs e)
@@ -1492,15 +1597,16 @@ namespace u_net
         {
             LocalSetting ls = new LocalSetting();
             ls.SavePlace(LoginUserCode, this);
+            発注明細 frmTarget = Application.OpenForms.OfType<発注明細>().FirstOrDefault();
 
             try
             {
                 Connect();
-                
+
                 // データへの変更されたときの処理
                 if (IsChanged)
                 {
-                   var intRes = MessageBox.Show("変更内容を登録しますか？", "確認", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                    var intRes = MessageBox.Show("変更内容を登録しますか？", "確認", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
                     switch (intRes)
                     {
                         case DialogResult.Yes:
@@ -1508,48 +1614,72 @@ namespace u_net
                             if (IsErrorDetails())
                             {
                                 e.Cancel = true;
-                                    return;
+                                return;
                             }
                             //// 明細行が並べ替えられているときはその旨を知らせる
                             if (IsOrderByOn)
                             {
-                            //    if (MessageBox.Show("エラーのため登録できませんでした。" + Environment.NewLine +
-                            //                        "強制終了しますか？", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
-                            //    {
-                            //        return;
+                                if (MessageBox.Show("明細行が並べ替えられています。" + Environment.NewLine +
+                                                    "並べ替えを解除して登録しますか？", "登録コマンド", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                                {
+                                    frmTarget.CancelOrderBy();
+
                                 }
+                            }
+                            if (SaveData(CurrentCode, CurrentEdition))
+                            {
+                                blnNewParts = false;
+                                return;
+                            }
+                            else
+                            {
+                                if (MessageBox.Show("登録できませんでした。" + Environment.NewLine + Environment.NewLine +
+                                 "強制終了しますか？", "エラー", MessageBoxButtons.YesNo,
+                                 MessageBoxIcon.Exclamation) == DialogResult.Yes)
+                                {
+                                    return;
+                                }
+                                else
+                                {
+                                    e.Cancel = true;
+                                    return;
+                                }
+                            }
 
                             break;
                         case DialogResult.No:
-                            // 新規コードを取得していたときはコードを戻す
-                            //if (IsNewData && !string.IsNullOrEmpty(CurrentCode) && CurrentEdition == 1)
-                            //{
-                            //    if (!FunctionClass.ReturnCode(cn, "PAR" + CurrentCode))
-                            //    {
-                            //        MessageBox.Show("エラーのためコードは破棄されました。" + Environment.NewLine +
-                            //                        "部品コード　：　" + CurrentCode, "警告", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                            //    }
-                            //}
+
+                            //accessではメッセージボックスがNOの処理は何も書いてなかった
+
                             break;
                         case DialogResult.Cancel:
+                            e.Cancel = true;
                             return;
                     }
                     // 新規モードで且つコードが取得済みのときはコードを戻す
-                    //if (IsNewData && !string.IsNullOrEmpty(CurrentCode) && CurrentEdition == 1)
-                    //{
-                    //    // 採番された番号を戻す
-                    //    if (!FunctionClass.ReturnCode(cn, "PAR" + CurrentCode))
-                    //    {
-                    //        MessageBox.Show("エラーのためコードは破棄されました。" + Environment.NewLine + Environment.NewLine +
-                    //                        "部品コード　：　" + CurrentCode, "警告", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    //    }
-                    //}
+                    if (IsNewData && !string.IsNullOrEmpty(CurrentCode) && CurrentEdition == 1)
+                    {
+                        // 採番された番号を戻す
+                        if (!FunctionClass.Recycle(cn, CurrentCode))
+                        {
+                            MessageBox.Show("エラーのためコードは破棄されました。" + Environment.NewLine + Environment.NewLine +
+                                            "発注コード　：　" + CurrentCode, "警告", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        }
+                    }
                     return;
                 }
 
-                // 修正されているときは登録確認を行う
-   
+                Form targetForm = Application.OpenForms["F_部品選択"];
+                if (targetForm != null)
+                {
+                    targetForm.Close();
+                }
 
+                Form targetForm2 = Application.OpenForms["F_発注履歴"];
+                if (targetForm2 != null)
+                {
+                    targetForm2.Close();
+                }
 
             }
             catch (Exception ex)
@@ -1561,7 +1691,15 @@ namespace u_net
 
         private void 仕入先選択ボタン_Click(object sender, EventArgs e)
         {
+            SearchForm = new F_検索();
+            SearchForm.FilterName = "仕入先名フリガナ";
+            if (SearchForm.ShowDialog() == DialogResult.OK)
+            {
+                string SelectedCode = SearchForm.SelectedCode;
 
+                仕入先コード.Text = SelectedCode;
+                UpdatedControl("仕入先コード");
+            }
         }
 
         private void テストコマンド_Click(object sender, EventArgs e)
@@ -1676,9 +1814,11 @@ namespace u_net
                         {
                             改版ボタン.Enabled = false;
                         }
-                        //編集モードの　
-                        発注明細1.Detail.ReadOnly = false;
-                        発注明細1.Detail.AllowUserToDeleteRows = true;
+
+                        //編集モード
+                        発注明細1.Detail.AllowUserToAddRows = (!IsDecided && !IsDeleted);
+                        発注明細1.Detail.AllowUserToDeleteRows = (!IsDecided && !IsDeleted);
+                        発注明細1.Detail.ReadOnly = (IsDecided || IsDeleted); //readonlyなのでaccessと真偽が逆になる                                                                       
 
                         コマンド複写.Enabled = true;
                         コマンド削除.Enabled = IsLastEdition && !IsDeleted;
@@ -1695,8 +1835,8 @@ namespace u_net
                         if (!LoadHeader()) return;
                         strSQL = "SELECT * FROM V発注明細 WHERE 発注コード='" + CurrentCode +
                                  "' AND 発注版数=" + CurrentEdition + " ORDER BY 明細番号";
-
-                        //  if (!LoadDetails(strSQL, this.発注明細1.Detail)) return;
+                        Connect();
+                        if (!VariableSet.SetTable2Details(this.発注明細1.Detail, strSQL, cn)) return;
 
                         FunctionClass.LockData(this, IsDecided || IsDeleted, "発注コード", "発注版数");
 
@@ -1709,9 +1849,10 @@ namespace u_net
                             改版ボタン.Enabled = false;
                         }
 
-                        //SubForm.AllowAdditions = !IsDecided && !IsDeleted;
-                        //SubForm.AllowDeletions = !IsDecided && !IsDeleted;
-                        //SubForm.AllowEdits = !IsDecided && !IsDeleted;
+                        発注明細1.Detail.AllowUserToAddRows = (!IsDecided && !IsDeleted);
+                        発注明細1.Detail.AllowUserToDeleteRows = (!IsDecided && !IsDeleted);
+                        発注明細1.Detail.ReadOnly = (IsDecided || IsDeleted);
+
                         コマンド複写.Enabled = true;
                         コマンド削除.Enabled = IsLastEdition && !IsDeleted;
                         コマンド発注書.Enabled = true;
@@ -1856,12 +1997,16 @@ namespace u_net
 
         private void 発注コード_Validated(object sender, EventArgs e)
         {
-            //UpdatedControl(sender as Control);
+            UpdatedControl("発注コード");
         }
 
         private void 発注コード_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            //if (IsError(sender as Control) == true) e.Cancel = true;
+            if (IsError(sender as Control, false) == true) e.Cancel = true;
+        }
+        private void 発注コード_TextChanged(object sender, EventArgs e)
+        {
+            FunctionClass.LimitText(((TextBox)sender), 11);
         }
 
         private void 発注コード_SelectedIndexChanged(object sender, EventArgs e)
@@ -1871,23 +2016,23 @@ namespace u_net
 
         private void 発注コード_KeyDown(object sender, KeyEventArgs e)
         {
-            //if (e.KeyCode == Keys.Return)
-            //{
-            //    ComboBox comboBox = sender as ComboBox;
-            //    if (comboBox != null)
-            //    {
-            //        string strCode = comboBox.Text.Trim();
-            //        if (!string.IsNullOrEmpty(strCode))
-            //        {
-            //            strCode = strCode.PadLeft(8, '0');
-            //            if (strCode != comboBox.Text)
-            //            {
-            //                comboBox.Text = strCode;
-            //                部品コード_Validated(sender, e);
-            //            }
-            //        }
-            //    }
-            //}
+            if (e.KeyCode == Keys.Return)
+            {
+                ComboBox comboBox = sender as ComboBox;
+                if (comboBox != null)
+                {
+                    string strCode = this.ActiveControl.Text;
+                    if (string.IsNullOrEmpty(strCode))
+                        return;
+
+                    strCode = FunctionClass.FormatCode(CH_ORDER, strCode);
+
+                    if (strCode != this.ActiveControl.Text)
+                    {
+                        this.ActiveControl.Text = strCode;
+                    }
+                }
+            }
         }
 
         private void 発注コード_Enter(object sender, EventArgs e)
@@ -1992,5 +2137,174 @@ namespace u_net
             発注者コード.DroppedDown = true;
         }
 
+        private void 備考_DoubleClick(object sender, EventArgs e)
+        {
+            //エラーとなっている
+        }
+
+        private void 在庫管理_CheckedChanged(object sender, EventArgs e)
+        {
+            ChangedData(true);
+        }
+
+        private void 在庫管理_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (IsError(sender as Control, false) == true) e.Cancel = true;
+        }
+
+        private void 仕入先コード_TextChanged(object sender, EventArgs e)
+        {
+            FunctionClass.LimitText(((TextBox)sender), 8);
+            ChangedData(true);
+        }
+
+        private void 仕入先コード_Validated(object sender, EventArgs e)
+        {
+            UpdatedControl("仕入先コード");
+        }
+
+        private void 仕入先コード_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (IsError(sender as Control, false) == true) e.Cancel = true;
+        }
+
+        private void 仕入先コード_DoubleClick(object sender, EventArgs e)
+        {
+            this.仕入先選択ボタン_Click(sender, e);
+        }
+
+        private void 仕入先コード_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Return)
+            {
+                Control control = (Control)sender;
+                string strCode = control.Text.Trim();
+
+                if (string.IsNullOrEmpty(strCode))
+                {
+                    return;
+                }
+
+                strCode = strCode.PadLeft(8, '0');
+
+                //if (strCode != control.Text)
+                //{
+                //    control.Text = strCode;
+                //    UpdatedControl("仕入先コード");
+                //}
+            }
+        }
+
+        private void 仕入先コード_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            switch (e.KeyChar)
+            {
+                case (char)Keys.Space:
+                    仕入先選択ボタン_Click(sender, e);
+                    break;
+            }
+        }
+
+        private void 仕入先担当者名_TextChanged(object sender, EventArgs e)
+        {
+            FunctionClass.LimitText(((TextBox)sender), 64);
+            ChangedData(true);
+        }
+
+        private void 仕入先担当者名_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (IsError(sender as Control, false) == true) e.Cancel = true;
+        }
+
+        private void 摘要_TextChanged(object sender, EventArgs e)
+        {
+            FunctionClass.LimitText(((TextBox)sender), 2000);
+            ChangedData(true);
+        }
+
+        private void 摘要_Validated(object sender, EventArgs e)
+        {
+            UpdatedControl("摘要");
+        }
+
+        private void 摘要_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (IsError(sender as Control, false) == true) e.Cancel = true;
+        }
+
+        private void 発注者コード_TextChanged(object sender, EventArgs e)
+        {
+            ChangedData(true);
+        }
+
+        private void 発注者コード_Validated(object sender, EventArgs e)
+        {
+            UpdatedControl("発注者コード");
+        }
+
+        private void 発注者コード_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (IsError(sender as Control, false) == true) e.Cancel = true;
+        }
+
+        private void 発注者コード_Enter(object sender, EventArgs e)
+        {
+            //何のための処理か？？
+            int listCount = 発注者コード.Items.Count;
+        }
+
+        private void 発注日_Validated(object sender, EventArgs e)
+        {
+            UpdatedControl("発注日");
+        }
+
+        private void 発注日_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (IsError(sender as Control, false) == true) e.Cancel = true;
+        }
+
+        private void 発注日_TextChanged(object sender, EventArgs e)
+        {
+            FunctionClass.LimitText(((TextBox)sender), 10);
+            ChangedData(true);
+        }
+
+        private void 発注日_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            switch (e.KeyChar)
+            {
+                case (char)Keys.Space:
+                    発注日選択ボタン_Click(sender, e);
+                    break;
+            }
+
+        }
+
+        private void 発注版数_Validated(object sender, EventArgs e)
+        {
+            UpdatedControl("発注版数");
+        }
+
+        private void 発注版数_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (IsError(sender as Control, false) == true) e.Cancel = true;
+        }
+
+        private void 備考_Validated(object sender, EventArgs e)
+        {
+            UpdatedControl("備考");
+        }
+
+        private void 備考_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (IsError(sender as Control, false) == true) e.Cancel = true;
+        }
+
+        private void 備考_TextChanged(object sender, EventArgs e)
+        {
+            FunctionClass.LimitText(((TextBox)sender), 2000);
+            ChangedData(true);
+        }
     }
 }
+

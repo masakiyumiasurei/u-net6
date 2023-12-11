@@ -348,6 +348,7 @@ namespace u_net
             発注コード.Size = new Size(139, 21);
             発注コード.TabIndex = 2;
             発注コード.SelectedIndexChanged += 発注コード_SelectedIndexChanged;
+            発注コード.TextChanged += 発注コード_TextChanged;
             発注コード.Enter += 発注コード_Enter;
             発注コード.KeyDown += 発注コード_KeyDown;
             発注コード.Leave += 発注コード_Leave;
@@ -407,6 +408,8 @@ namespace u_net
             発注版数.TabIndex = 4;
             発注版数.Enter += 発注版数_Enter;
             発注版数.Leave += 発注版数_Leave;
+            発注版数.Validating += 発注版数_Validating;
+            発注版数.Validated += 発注版数_Validated;
             // 
             // 購買コード_ラベル
             // 
@@ -488,9 +491,13 @@ namespace u_net
             発注日.Name = "発注日";
             発注日.Size = new Size(116, 20);
             発注日.TabIndex = 6;
+            発注日.TextChanged += 発注日_TextChanged;
             発注日.Enter += 発注日_Enter;
             発注日.KeyDown += 発注日_KeyDown;
+            発注日.KeyPress += 発注日_KeyPress;
             発注日.Leave += 発注日_Leave;
+            発注日.Validating += 発注日_Validating;
+            発注日.Validated += 発注日_Validated;
             // 
             // 発注者_ラベル
             // 
@@ -520,6 +527,10 @@ namespace u_net
             発注者コード.Size = new Size(61, 21);
             発注者コード.TabIndex = 8;
             発注者コード.DrawItem += 発注者コード_DrawItem;
+            発注者コード.TextChanged += 発注者コード_TextChanged;
+            発注者コード.Enter += 発注者コード_Enter;
+            発注者コード.Validating += 発注者コード_Validating;
+            発注者コード.Validated += 発注者コード_Validated;
             // 
             // 発注者名
             // 
@@ -545,8 +556,14 @@ namespace u_net
             仕入先コード.Name = "仕入先コード";
             仕入先コード.Size = new Size(116, 20);
             仕入先コード.TabIndex = 10;
+            仕入先コード.TextChanged += 仕入先コード_TextChanged;
+            仕入先コード.DoubleClick += 仕入先コード_DoubleClick;
             仕入先コード.Enter += 仕入先コード_Enter;
+            仕入先コード.KeyDown += 仕入先コード_KeyDown;
+            仕入先コード.KeyPress += 仕入先コード_KeyPress;
             仕入先コード.Leave += 仕入先コード_Leave;
+            仕入先コード.Validating += 仕入先コード_Validating;
+            仕入先コード.Validated += 仕入先コード_Validated;
             // 
             // 仕入先_ラベル
             // 
@@ -598,8 +615,10 @@ namespace u_net
             仕入先担当者名.Name = "仕入先担当者名";
             仕入先担当者名.Size = new Size(199, 20);
             仕入先担当者名.TabIndex = 12;
+            仕入先担当者名.TextChanged += 仕入先担当者名_TextChanged;
             仕入先担当者名.Enter += 仕入先担当者名_Enter;
             仕入先担当者名.Leave += 仕入先担当者名_Leave;
+            仕入先担当者名.Validating += 仕入先担当者名_Validating;
             // 
             // 担当者名_ラベル
             // 
@@ -641,8 +660,11 @@ namespace u_net
             摘要.Name = "摘要";
             摘要.Size = new Size(720, 84);
             摘要.TabIndex = 14;
+            摘要.TextChanged += 摘要_TextChanged;
             摘要.Enter += 摘要_Enter;
             摘要.Leave += 摘要_Leave;
+            摘要.Validating += 摘要_Validating;
+            摘要.Validated += 摘要_Validated;
             // 
             // 備考
             // 
@@ -655,8 +677,12 @@ namespace u_net
             備考.Name = "備考";
             備考.Size = new Size(720, 44);
             備考.TabIndex = 16;
+            備考.TextChanged += 備考_TextChanged;
+            備考.DoubleClick += 備考_DoubleClick;
             備考.Enter += 備考_Enter;
             備考.Leave += 備考_Leave;
+            備考.Validating += 備考_Validating;
+            備考.Validated += 備考_Validated;
             // 
             // 備考_ラベル
             // 
@@ -815,8 +841,10 @@ namespace u_net
             在庫管理.Size = new Size(15, 14);
             在庫管理.TabIndex = 18;
             在庫管理.UseVisualStyleBackColor = true;
+            在庫管理.CheckedChanged += 在庫管理_CheckedChanged;
             在庫管理.Enter += 在庫管理_Enter;
             在庫管理.Leave += 在庫管理_Leave;
+            在庫管理.Validating += 在庫管理_Validating;
             // 
             // NoCredit
             // 
