@@ -47,6 +47,7 @@ namespace u_net
             get
             {
                 return 確認者コード3.Text != null;
+
             }
         }
 
@@ -181,8 +182,13 @@ namespace u_net
             OriginalClass ofn = new OriginalClass();
             ofn.SetComboBox(購買申請コード, "SELECT 購買申請コード as Display,購買申請コード as Value FROM T購買申請 ORDER BY 購買申請コード DESC");
             ofn.SetComboBox(購買申請版数, "SELECT 購買申請版数 as Display , 購買申請版数 as Value FROM T購買申請 ORDER BY 購買申請版数 DESC");
-            ofn.SetComboBox(商品コード, "SELECT 商品コード as Display, 商品名 as Display2, シリーズ名 as Display3, 商品コード as Value FROM M商品 ORDER BY 商品コード DESC");
-            //ofn.SetComboBox(商品コード, "SELECT M商品.商品コード as Display, M商品.商品名 as Display2, Mシリーズ.シリーズ名 as Display3, - CONVERT (int, CONVERT (bit, ISNULL(M商品.シリーズコード, 0))) AS 在庫管理値 FROM M商品 LEFT OUTER JOIN Mシリーズ ON M商品.シリーズコード = Mシリーズ.シリーズコード ORDER BY M商品.商品名");
+            //ofn.SetComboBox(商品コード, "SELECT 商品コード as Display, 商品名 as Display2, シリーズ名 as Display3, 商品コード as Value FROM M商品 ORDER BY 商品コード DESC");
+            ofn.SetComboBox(商品コード, "SELECT M商品.商品コード as Display " 
+                                          + " , M商品.商品名 as Display2 " 
+                                          + " , Mシリーズ.シリーズ名 as Display3 " 
+                                          + " , CASE WHEN M商品.シリーズコード IS NULL THEN 0 ELSE 1 END as Display4 " 
+                                          + " , M商品.商品コード as Value " 
+                                       + " FROM M商品 LEFT OUTER JOIN Mシリーズ ON M商品.シリーズコード = Mシリーズ.シリーズコード ORDER BY M商品.商品名");
             商品コード.DrawMode = DrawMode.OwnerDrawFixed;
             ofn.SetComboBox(申請者コード, "SELECT [社員コード] as Display, 氏名 as Display2 ,社員コード as Value FROM M社員 WHERE (退社 IS NULL) AND (削除日時 IS NULL) AND (ふりがな <> N'ん') ORDER BY ふりがな");
             申請者コード.DrawMode = DrawMode.OwnerDrawFixed;
@@ -250,6 +256,19 @@ namespace u_net
                 fn.WaitForm.Close();
             }
         }
+        private void LockCtl()
+        {
+            this.シリーズ名.ReadOnly = true;
+            this.登録日時.ReadOnly = true;
+            this.登録者コード.ReadOnly = true;
+            this.登録者名.ReadOnly = true;
+            this.確認_営業部.ReadOnly = true;
+            this.Scheduled.ReadOnly = true;
+            this.完了.ReadOnly = true;
+            this.削除.ReadOnly = true;
+            this.確認_製造部.ReadOnly = true;
+            this.終了入力.ReadOnly = true;
+        }
 
         private bool GoNewMode()
         {
@@ -286,7 +305,9 @@ namespace u_net
 
                 //インターフェースを制御する
                 FunctionClass.LockData(this, false);
-                //this.申請者コード.Focus();
+                // 個別にReadOnlyを設定
+                LockCtl();
+                this.申請者コード.Focus();
                 this.購買申請コード.Enabled = false;
                 this.購買申請版数.Enabled = false;
                 this.コマンド新規.Enabled = false;
@@ -553,6 +574,8 @@ namespace u_net
                 this.購買申請コード.Focus();
                 // 購買申請コードコントロールが使用可能になってから LockData を呼び出す
                 FunctionClass.LockData(this, true, "購買申請コード", "購買申請版数");
+                // 個別にReadOnlyを設定
+                LockCtl();
                 this.コマンド新規.Enabled = true;
                 this.コマンド読込.Enabled = false;
                 this.コマンド複写.Enabled = true;
@@ -825,6 +848,9 @@ namespace u_net
 
                 // ヘッダ部制御
                 FunctionClass.LockData(this, false);
+
+                // 個別にReadOnlyを設定
+                LockCtl();
 
                 // データが変更されたことにする
                 ChangedData(true);
@@ -1323,6 +1349,8 @@ namespace u_net
                     ChangedData(true);
                     // ヘッダ部制御
                     FunctionClass.LockData(this, false);
+                    // 個別にReadOnlyを設定
+                    LockCtl();
                     申請日.Focus();
                     コマンド新規.Enabled = false;
                     コマンド読込.Enabled = true;
@@ -1468,6 +1496,8 @@ namespace u_net
                 if (RegTrans(CurrentCode, CurrentEdition))
                 {
                     FunctionClass.LockData(this, IsDecided);
+                    // 個別にReadOnlyを設定
+                    LockCtl();
                     コマンド改版.Enabled = IsApproved;
                     終了ボタン.Enabled = IsApproved && (!IsDeleted);
                 }
@@ -1734,6 +1764,8 @@ namespace u_net
 
                         // インターフェースを制御する
                         FunctionClass.LockData(this, IsDecided || IsDeleted, "購買申請コード", "購買申請版数");
+                        // 個別にReadOnlyを設定
+                        LockCtl();
                         コマンド複写.Enabled = true;
                         コマンド削除.Enabled = !IsCompleted;
                         コマンド改版.Enabled = IsApproved && !IsCompleted && !IsEnd && !IsDeleted;
@@ -1750,6 +1782,8 @@ namespace u_net
 
                         // インターフェースを制御する
                         FunctionClass.LockData(this, IsDecided || IsDeleted, "購買申請コード", "購買申請版数");
+                        // 個別にReadOnlyを設定
+                        LockCtl();
                         コマンド複写.Enabled = true;
                         コマンド削除.Enabled = !IsCompleted;
                         コマンド改版.Enabled = IsApproved && !IsCompleted && !IsEnd && !IsDeleted;
@@ -1877,6 +1911,8 @@ namespace u_net
                 if (RegTrans(this.CurrentCode, this.CurrentEdition))
                 {
                     FunctionClass.LockData(this, this.IsDecided);
+                    // 個別にReadOnlyを設定
+                    LockCtl();
                     this.終了ボタン.Enabled = this.IsApproved && (!this.IsDeleted);
                 }
                 else
@@ -2338,14 +2374,15 @@ namespace u_net
 
         private void 申請者コード_DrawItem(object sender, DrawItemEventArgs e)
         {
-            OriginalClass.SetComboBoxAppearance((ComboBox)sender, e, new int[] { 50, 500 }, new string[] { "Display", "Display2" });
+            OriginalClass.SetComboBoxAppearance((ComboBox)sender, e, new int[] { 50, 300 }, new string[] { "Display", "Display2" });
             申請者コード.Invalidate();
             申請者コード.DroppedDown = true;
         }
 
         private void 商品コード_DrawItem(object sender, DrawItemEventArgs e)
         {
-            OriginalClass.SetComboBoxAppearance((ComboBox)sender, e, new int[] { 100, 300, 500 }, new string[] { "Display", "Display2", "Display3" });
+            //OriginalClass.SetComboBoxAppearance((ComboBox)sender, e, new int[] { 100, 300, 500 }, new string[] { "Display", "Display2", "Display3" });
+            OriginalClass.SetComboBoxAppearance((ComboBox)sender, e, new int[] { 100, 300, 300, 50 }, new string[] { "Display", "Display2", "Display3", "Display4" });
             商品コード.Invalidate();
             商品コード.DroppedDown = true;
         }
