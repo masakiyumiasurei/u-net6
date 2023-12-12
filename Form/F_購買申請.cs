@@ -183,12 +183,10 @@ namespace u_net
             ofn.SetComboBox(購買申請コード, "SELECT 購買申請コード as Display,購買申請コード as Value FROM T購買申請 ORDER BY 購買申請コード DESC");
             ofn.SetComboBox(購買申請版数, "SELECT 購買申請版数 as Display , 購買申請版数 as Value FROM T購買申請 ORDER BY 購買申請版数 DESC");
             //ofn.SetComboBox(商品コード, "SELECT 商品コード as Display, 商品名 as Display2, シリーズ名 as Display3, 商品コード as Value FROM M商品 ORDER BY 商品コード DESC");
-            ofn.SetComboBox(商品コード, "SELECT M商品.商品コード as Display " 
-                                          + " , M商品.商品名 as Display2 " 
-                                          + " , Mシリーズ.シリーズ名 as Display3 " 
-                                          + " , CASE WHEN M商品.シリーズコード IS NULL THEN 0 ELSE 1 END as Display4 " 
-                                          + " , M商品.商品コード as Value " 
-                                       + " FROM M商品 LEFT OUTER JOIN Mシリーズ ON M商品.シリーズコード = Mシリーズ.シリーズコード ORDER BY M商品.商品名");
+            // ofn.SetComboBox(商品コード, "SELECT M商品.商品コード as Display , M商品.商品名 as Display2 , Mシリーズ.シリーズ名 as Display3 , CASE WHEN M商品.シリーズコード IS NULL THEN 0 ELSE 1 END as Display4 " 
+            //                               + " , M商品.商品コード as Value " 
+            //                               +" FROM M商品 LEFT OUTER JOIN Mシリーズ ON M商品.シリーズコード = Mシリーズ.シリーズコード ORDER BY M商品.商品名");
+            ofn.SetComboBox(商品コード, "SELECT M商品.商品コード  as Display, M商品.商品名  as Display2, Mシリーズ.シリーズ名  as Display3, - CONVERT (int, CONVERT (bit, ISNULL(M商品.シリーズコード, 0)))  as Display4, 商品コード as Value FROM M商品 LEFT OUTER JOIN Mシリーズ ON M商品.シリーズコード = Mシリーズ.シリーズコード ORDER BY M商品.商品名");
             商品コード.DrawMode = DrawMode.OwnerDrawFixed;
             ofn.SetComboBox(申請者コード, "SELECT [社員コード] as Display, 氏名 as Display2 ,社員コード as Value FROM M社員 WHERE (退社 IS NULL) AND (削除日時 IS NULL) AND (ふりがな <> N'ん') ORDER BY ふりがな");
             申請者コード.DrawMode = DrawMode.OwnerDrawFixed;
@@ -288,7 +286,8 @@ namespace u_net
                 //ChangedData(false);
 
                 // データを初期化する
-                this.申請日.Text = DateTime.Now.Date.ToString();
+                //this.申請日.Text = DateTime.Now.Date.ToString();
+                this.申請日.Text = FunctionClass.GetServerDate(cn).ToString("yyyy/MM/dd");
                 this.申請者コード.Text = CommonConstants.LoginUserCode;
                 this.申請者名.Text = ((DataRowView)申請者コード.SelectedItem)?.Row.Field<String>("Display2")?.ToString();
                 this.確認日時3.Text = null;
@@ -840,11 +839,14 @@ namespace u_net
 
             fn.DoWait("複写しています...");
 
+            Connect();
+
             // 複写に成功すればインターフェースを更新する
             if (CopyData(FunctionClass.採番(cn, "PUR"), 1))
             {
                 // 申請日を設定（■専務の要望により、申請日の初期値は改版時と異なる）
-                this.申請日.Text = DateTime.Today.ToString();
+                //this.申請日.Text = DateTime.Today.ToString();
+                this.申請日.Text = FunctionClass.GetServerDate(cn).ToString("yyyy/MM/dd");
 
                 // ヘッダ部制御
                 FunctionClass.LockData(this, false);
@@ -1470,6 +1472,8 @@ namespace u_net
                 }
                 while (string.IsNullOrEmpty(strCertificateCode));
 
+
+                this.確認_営業部.Text = "■";
 
 
                 fn.DoWait("しばらくお待ちください...");
@@ -2382,7 +2386,7 @@ namespace u_net
         private void 商品コード_DrawItem(object sender, DrawItemEventArgs e)
         {
             //OriginalClass.SetComboBoxAppearance((ComboBox)sender, e, new int[] { 100, 300, 500 }, new string[] { "Display", "Display2", "Display3" });
-            OriginalClass.SetComboBoxAppearance((ComboBox)sender, e, new int[] { 100, 300, 300, 50 }, new string[] { "Display", "Display2", "Display3", "Display4" });
+            OriginalClass.SetComboBoxAppearance((ComboBox)sender, e, new int[] { 100, 300, 300, 0 }, new string[] { "Display", "Display2", "Display3", "Display4" });
             商品コード.Invalidate();
             商品コード.DroppedDown = true;
         }
