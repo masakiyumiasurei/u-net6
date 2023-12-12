@@ -30,6 +30,7 @@ namespace u_net
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(F_受注));
             コマンド終了 = new Button();
             コマンド登録 = new Button();
             panel1 = new Panel();
@@ -131,11 +132,95 @@ namespace u_net
             label23 = new Label();
             ProductionNotice = new TextBox();
             受注明細1 = new MultiRowDesigner.受注明細();
-            受注日 = new MaskedTextBox();
-            受注納期 = new MaskedTextBox();
-            出荷予定日 = new MaskedTextBox();
+            受注日 = new TextBox();
+            受注納期 = new TextBox();
+            出荷予定日 = new TextBox();
+            panel2 = new Panel();
+            完了承認者コード = new TextBox();
+            承認者コード = new TextBox();
+            否認ボタン = new Button();
+            受注承認ボタン = new Button();
+            受注完了承認ボタン = new Button();
+            Page2 = new Panel();
+            請求予定日選択ボタン = new Button();
+            ProductionPlanned = new TextBox();
+            無効日 = new TextBox();
+            承認日時 = new TextBox();
+            ManufacturingCompletionApprovedDate = new TextBox();
+            確定者コード = new TextBox();
+            確定日時 = new TextBox();
+            label52 = new Label();
+            label51 = new Label();
+            label50 = new Label();
+            label49 = new Label();
+            label48 = new Label();
+            label47 = new Label();
+            税端数処理 = new ComboBox();
+            TaxCalcCode = new ComboBox();
+            請求コード = new TextBox();
+            label46 = new Label();
+            label45 = new Label();
+            label44 = new Label();
+            TaxRate = new TextBox();
+            label43 = new Label();
+            label42 = new Label();
+            請求予定日 = new TextBox();
+            帳端処理 = new CheckBox();
+            出荷情報 = new GroupBox();
+            InvoiceNote = new TextBox();
+            PackingSlipNote = new TextBox();
+            label41 = new Label();
+            label40 = new Label();
+            InvoiceFax = new TextBox();
+            ReceiptComment = new TextBox();
+            InvoiceInput = new TextBox();
+            InvoiceFaxCode = new ComboBox();
+            ReceiptCommentCode = new ComboBox();
+            InvoiceInputCode = new ComboBox();
+            PackingSlipInputCode = new ComboBox();
+            PaymentConfirmation = new CheckBox();
+            InvoiceFaxToNumber = new TextBox();
+            InvoiceFaxToContact = new TextBox();
+            InvoiceFaxToName = new TextBox();
+            PackingSlipInput = new TextBox();
+            label32 = new Label();
+            label33 = new Label();
+            label34 = new Label();
+            label35 = new Label();
+            label36 = new Label();
+            label37 = new Label();
+            label38 = new Label();
+            label39 = new Label();
+            発送先 = new GroupBox();
+            Email作成ボタン = new Button();
+            発送先メールアドレス = new TextBox();
+            発送先担当者名 = new TextBox();
+            発送先FAX = new TextBox();
+            発送先TEL = new TextBox();
+            発送先住所2 = new TextBox();
+            発送先住所1 = new TextBox();
+            label31 = new Label();
+            label30 = new Label();
+            label29 = new Label();
+            label28 = new Label();
+            label27 = new Label();
+            label26 = new Label();
+            発送先郵便番号 = new MaskedTextBox();
+            label25 = new Label();
+            発送先名 = new TextBox();
+            label24 = new Label();
+            発送先選択 = new GroupBox();
+            発送先3 = new RadioButton();
+            発送先2 = new RadioButton();
+            発送先1 = new RadioButton();
+            戻るボタン = new Button();
             panel1.SuspendLayout();
             statusStrip1.SuspendLayout();
+            panel2.SuspendLayout();
+            Page2.SuspendLayout();
+            出荷情報.SuspendLayout();
+            発送先.SuspendLayout();
+            発送先選択.SuspendLayout();
             SuspendLayout();
             // 
             // コマンド終了
@@ -182,7 +267,7 @@ namespace u_net
             panel1.Location = new Point(0, 1);
             panel1.Margin = new Padding(4, 3, 4, 3);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1468, 42);
+            panel1.Size = new Size(1180, 42);
             panel1.TabIndex = 81;
             // 
             // コマンド在庫
@@ -197,6 +282,7 @@ namespace u_net
             コマンド在庫.TabIndex = 11;
             コマンド在庫.Text = "在庫";
             コマンド在庫.UseVisualStyleBackColor = true;
+            コマンド在庫.Click += コマンド在庫_Click;
             // 
             // コマンド全在庫
             // 
@@ -210,6 +296,7 @@ namespace u_net
             コマンド全在庫.TabIndex = 10;
             コマンド全在庫.Text = "全在庫";
             コマンド全在庫.UseVisualStyleBackColor = true;
+            コマンド全在庫.Click += コマンド全在庫_Click;
             // 
             // コマンド商品
             // 
@@ -223,6 +310,7 @@ namespace u_net
             コマンド商品.TabIndex = 9;
             コマンド商品.Text = "商品";
             コマンド商品.UseVisualStyleBackColor = true;
+            コマンド商品.Click += コマンド商品_Click;
             // 
             // コマンド顧客
             // 
@@ -236,6 +324,7 @@ namespace u_net
             コマンド顧客.TabIndex = 8;
             コマンド顧客.Text = "顧客";
             コマンド顧客.UseVisualStyleBackColor = true;
+            コマンド顧客.Click += コマンド顧客_Click;
             // 
             // コマンド確定
             // 
@@ -249,6 +338,7 @@ namespace u_net
             コマンド確定.TabIndex = 7;
             コマンド確定.Text = "確定";
             コマンド確定.UseVisualStyleBackColor = true;
+            コマンド確定.Click += コマンド確定_Click;
             // 
             // コマンド承認
             // 
@@ -262,6 +352,7 @@ namespace u_net
             コマンド承認.TabIndex = 6;
             コマンド承認.Text = "承認";
             コマンド承認.UseVisualStyleBackColor = true;
+            コマンド承認.Click += コマンド承認_Click;
             // 
             // コマンド削除
             // 
@@ -274,6 +365,7 @@ namespace u_net
             コマンド削除.TabIndex = 5;
             コマンド削除.Text = "削除";
             コマンド削除.UseVisualStyleBackColor = true;
+            コマンド削除.Click += コマンド削除_Click;
             // 
             // コマンド複写
             // 
@@ -286,6 +378,7 @@ namespace u_net
             コマンド複写.TabIndex = 4;
             コマンド複写.Text = "複写";
             コマンド複写.UseVisualStyleBackColor = true;
+            コマンド複写.Click += コマンド複写_Click;
             // 
             // コマンド読込
             // 
@@ -318,151 +411,208 @@ namespace u_net
             // 
             dataGridViewTextBoxColumn1.DataPropertyName = "商品コード";
             dataGridViewTextBoxColumn1.HeaderText = "商品コード";
+            dataGridViewTextBoxColumn1.MinimumWidth = 6;
             dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            dataGridViewTextBoxColumn1.Width = 125;
             // 
             // dataGridViewTextBoxColumn2
             // 
             dataGridViewTextBoxColumn2.DataPropertyName = "Revision";
             dataGridViewTextBoxColumn2.HeaderText = "Revision";
+            dataGridViewTextBoxColumn2.MinimumWidth = 6;
             dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            dataGridViewTextBoxColumn2.Width = 125;
             // 
             // dataGridViewTextBoxColumn3
             // 
             dataGridViewTextBoxColumn3.DataPropertyName = "明細番号";
             dataGridViewTextBoxColumn3.HeaderText = "明細番号";
+            dataGridViewTextBoxColumn3.MinimumWidth = 6;
             dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            dataGridViewTextBoxColumn3.Width = 125;
             // 
             // dataGridViewTextBoxColumn4
             // 
             dataGridViewTextBoxColumn4.DataPropertyName = "型式番号";
             dataGridViewTextBoxColumn4.HeaderText = "型式番号";
+            dataGridViewTextBoxColumn4.MinimumWidth = 6;
             dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            dataGridViewTextBoxColumn4.Width = 125;
             // 
             // dataGridViewTextBoxColumn5
             // 
             dataGridViewTextBoxColumn5.DataPropertyName = "型式名";
             dataGridViewTextBoxColumn5.HeaderText = "型式名";
+            dataGridViewTextBoxColumn5.MinimumWidth = 6;
             dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            dataGridViewTextBoxColumn5.Width = 125;
             // 
             // dataGridViewTextBoxColumn6
             // 
             dataGridViewTextBoxColumn6.DataPropertyName = "定価";
             dataGridViewTextBoxColumn6.HeaderText = "定価";
+            dataGridViewTextBoxColumn6.MinimumWidth = 6;
             dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            dataGridViewTextBoxColumn6.Width = 125;
             // 
             // dataGridViewTextBoxColumn7
             // 
             dataGridViewTextBoxColumn7.DataPropertyName = "原価";
             dataGridViewTextBoxColumn7.HeaderText = "原価";
+            dataGridViewTextBoxColumn7.MinimumWidth = 6;
             dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            dataGridViewTextBoxColumn7.Width = 125;
             // 
             // dataGridViewTextBoxColumn8
             // 
             dataGridViewTextBoxColumn8.DataPropertyName = "機能";
             dataGridViewTextBoxColumn8.HeaderText = "機能";
+            dataGridViewTextBoxColumn8.MinimumWidth = 6;
             dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
+            dataGridViewTextBoxColumn8.Width = 125;
             // 
             // dataGridViewTextBoxColumn9
             // 
             dataGridViewTextBoxColumn9.DataPropertyName = "構成番号";
             dataGridViewTextBoxColumn9.HeaderText = "構成番号";
+            dataGridViewTextBoxColumn9.MinimumWidth = 6;
             dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
+            dataGridViewTextBoxColumn9.Width = 125;
             // 
             // 日誌IDDataGridViewTextBoxColumn
             // 
+            日誌IDDataGridViewTextBoxColumn.MinimumWidth = 6;
             日誌IDDataGridViewTextBoxColumn.Name = "日誌IDDataGridViewTextBoxColumn";
+            日誌IDDataGridViewTextBoxColumn.Width = 125;
             // 
             // dataGridViewTextBoxColumn10
             // 
+            dataGridViewTextBoxColumn10.MinimumWidth = 6;
             dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
+            dataGridViewTextBoxColumn10.Width = 125;
             // 
             // dataGridViewTextBoxColumn11
             // 
+            dataGridViewTextBoxColumn11.MinimumWidth = 6;
             dataGridViewTextBoxColumn11.Name = "dataGridViewTextBoxColumn11";
+            dataGridViewTextBoxColumn11.Width = 125;
             // 
             // dataGridViewTextBoxColumn12
             // 
+            dataGridViewTextBoxColumn12.MinimumWidth = 6;
             dataGridViewTextBoxColumn12.Name = "dataGridViewTextBoxColumn12";
+            dataGridViewTextBoxColumn12.Width = 125;
             // 
             // dataGridViewTextBoxColumn13
             // 
+            dataGridViewTextBoxColumn13.MinimumWidth = 6;
             dataGridViewTextBoxColumn13.Name = "dataGridViewTextBoxColumn13";
+            dataGridViewTextBoxColumn13.Width = 125;
             // 
             // dataGridViewTextBoxColumn14
             // 
+            dataGridViewTextBoxColumn14.MinimumWidth = 6;
             dataGridViewTextBoxColumn14.Name = "dataGridViewTextBoxColumn14";
+            dataGridViewTextBoxColumn14.Width = 125;
             // 
             // dataGridViewTextBoxColumn15
             // 
+            dataGridViewTextBoxColumn15.MinimumWidth = 6;
             dataGridViewTextBoxColumn15.Name = "dataGridViewTextBoxColumn15";
+            dataGridViewTextBoxColumn15.Width = 125;
             // 
             // dataGridViewTextBoxColumn16
             // 
+            dataGridViewTextBoxColumn16.MinimumWidth = 6;
             dataGridViewTextBoxColumn16.Name = "dataGridViewTextBoxColumn16";
+            dataGridViewTextBoxColumn16.Width = 125;
             // 
             // dataGridViewTextBoxColumn17
             // 
+            dataGridViewTextBoxColumn17.MinimumWidth = 6;
             dataGridViewTextBoxColumn17.Name = "dataGridViewTextBoxColumn17";
+            dataGridViewTextBoxColumn17.Width = 125;
             // 
             // dataGridViewTextBoxColumn18
             // 
+            dataGridViewTextBoxColumn18.MinimumWidth = 6;
             dataGridViewTextBoxColumn18.Name = "dataGridViewTextBoxColumn18";
+            dataGridViewTextBoxColumn18.Width = 125;
             // 
             // dataGridViewTextBoxColumn19
             // 
+            dataGridViewTextBoxColumn19.MinimumWidth = 6;
             dataGridViewTextBoxColumn19.Name = "dataGridViewTextBoxColumn19";
+            dataGridViewTextBoxColumn19.Width = 125;
             // 
             // dataGridViewTextBoxColumn20
             // 
+            dataGridViewTextBoxColumn20.MinimumWidth = 6;
             dataGridViewTextBoxColumn20.Name = "dataGridViewTextBoxColumn20";
+            dataGridViewTextBoxColumn20.Width = 125;
             // 
             // dataGridViewTextBoxColumn21
             // 
+            dataGridViewTextBoxColumn21.MinimumWidth = 6;
             dataGridViewTextBoxColumn21.Name = "dataGridViewTextBoxColumn21";
+            dataGridViewTextBoxColumn21.Width = 125;
             // 
             // dataGridViewTextBoxColumn22
             // 
+            dataGridViewTextBoxColumn22.MinimumWidth = 6;
             dataGridViewTextBoxColumn22.Name = "dataGridViewTextBoxColumn22";
+            dataGridViewTextBoxColumn22.Width = 125;
             // 
             // dataGridViewTextBoxColumn23
             // 
+            dataGridViewTextBoxColumn23.MinimumWidth = 6;
             dataGridViewTextBoxColumn23.Name = "dataGridViewTextBoxColumn23";
+            dataGridViewTextBoxColumn23.Width = 125;
             // 
             // dataGridViewTextBoxColumn24
             // 
+            dataGridViewTextBoxColumn24.MinimumWidth = 6;
             dataGridViewTextBoxColumn24.Name = "dataGridViewTextBoxColumn24";
+            dataGridViewTextBoxColumn24.Width = 125;
             // 
             // dataGridViewTextBoxColumn25
             // 
+            dataGridViewTextBoxColumn25.MinimumWidth = 6;
             dataGridViewTextBoxColumn25.Name = "dataGridViewTextBoxColumn25";
+            dataGridViewTextBoxColumn25.Width = 125;
             // 
             // dataGridViewTextBoxColumn26
             // 
+            dataGridViewTextBoxColumn26.MinimumWidth = 6;
             dataGridViewTextBoxColumn26.Name = "dataGridViewTextBoxColumn26";
+            dataGridViewTextBoxColumn26.Width = 125;
             // 
             // dataGridViewTextBoxColumn27
             // 
+            dataGridViewTextBoxColumn27.MinimumWidth = 6;
             dataGridViewTextBoxColumn27.Name = "dataGridViewTextBoxColumn27";
+            dataGridViewTextBoxColumn27.Width = 125;
             // 
             // statusStrip1
             // 
+            statusStrip1.ImageScalingSize = new Size(20, 20);
             statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1, toolStripStatusLabel2 });
-            statusStrip1.Location = new Point(0, 689);
+            statusStrip1.Location = new Point(0, 748);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Padding = new Padding(1, 0, 19, 0);
-            statusStrip1.Size = new Size(1195, 22);
+            statusStrip1.Size = new Size(1184, 26);
             statusStrip1.TabIndex = 110;
             statusStrip1.Text = "statusStrip1";
             // 
             // toolStripStatusLabel1
             // 
             toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            toolStripStatusLabel1.Size = new Size(0, 17);
+            toolStripStatusLabel1.Size = new Size(0, 20);
             // 
             // toolStripStatusLabel2
             // 
             toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            toolStripStatusLabel2.Size = new Size(89, 17);
+            toolStripStatusLabel2.Size = new Size(111, 20);
             toolStripStatusLabel2.Text = "各種項目の説明";
             // 
             // 確定
@@ -550,9 +700,10 @@ namespace u_net
             受注版数.Location = new Point(348, 50);
             受注版数.Margin = new Padding(4, 3, 4, 3);
             受注版数.Name = "受注版数";
-            受注版数.Size = new Size(60, 22);
+            受注版数.Size = new Size(60, 25);
             受注版数.TabIndex = 190;
             受注版数.DrawItem += 受注版数_DrawItem;
+            受注版数.SelectedIndexChanged += 受注版数_SelectedIndexChanged;
             // 
             // 受注日選択ボタン
             // 
@@ -574,7 +725,7 @@ namespace u_net
             入社年月日_ラベル.Location = new Point(2, 100);
             入社年月日_ラベル.Margin = new Padding(0);
             入社年月日_ラベル.Name = "入社年月日_ラベル";
-            入社年月日_ラベル.Size = new Size(120, 22);
+            入社年月日_ラベル.Size = new Size(120, 21);
             入社年月日_ラベル.TabIndex = 246;
             入社年月日_ラベル.Text = "受注日";
             入社年月日_ラベル.TextAlign = ContentAlignment.MiddleLeft;
@@ -748,6 +899,7 @@ namespace u_net
             改版ボタン.TabStop = false;
             改版ボタン.Text = "改版";
             改版ボタン.UseVisualStyleBackColor = true;
+            改版ボタン.Click += 改版ボタン_Click;
             // 
             // 発送先登録ボタン
             // 
@@ -761,6 +913,7 @@ namespace u_net
             発送先登録ボタン.TabStop = false;
             発送先登録ボタン.Text = "発送先登録";
             発送先登録ボタン.UseVisualStyleBackColor = true;
+            発送先登録ボタン.Click += 発送先登録ボタン_Click;
             // 
             // 受注コード
             // 
@@ -772,11 +925,13 @@ namespace u_net
             受注コード.ImeMode = ImeMode.Off;
             受注コード.Location = new Point(125, 50);
             受注コード.Name = "受注コード";
-            受注コード.Size = new Size(150, 22);
+            受注コード.Size = new Size(150, 25);
             受注コード.TabIndex = 10010;
             受注コード.ValueMember = "分類コード";
             受注コード.DrawItem += 受注コード_DrawItem;
             受注コード.SelectedIndexChanged += 受注コード_SelectedIndexChanged;
+            受注コード.TextChanged += 受注コード_TextChanged;
+            受注コード.KeyPress += 受注コード_KeyPress;
             // 
             // 状態
             // 
@@ -1000,7 +1155,7 @@ namespace u_net
             ClientCode.Location = new Point(125, 225);
             ClientCode.Margin = new Padding(4, 3, 4, 3);
             ClientCode.Name = "ClientCode";
-            ClientCode.Size = new Size(400, 21);
+            ClientCode.Size = new Size(400, 25);
             ClientCode.TabIndex = 10027;
             // 
             // 受注納期選択ボタン
@@ -1034,7 +1189,7 @@ namespace u_net
             納品書送付コード.Location = new Point(125, 300);
             納品書送付コード.Margin = new Padding(4, 3, 4, 3);
             納品書送付コード.Name = "納品書送付コード";
-            納品書送付コード.Size = new Size(60, 22);
+            納品書送付コード.Size = new Size(60, 25);
             納品書送付コード.TabIndex = 10032;
             納品書送付コード.DrawItem += 納品書送付コード_DrawItem;
             納品書送付コード.SelectedIndexChanged += 納品書送付コード_SelectedIndexChanged;
@@ -1062,7 +1217,7 @@ namespace u_net
             請求書送付コード.Location = new Point(125, 325);
             請求書送付コード.Margin = new Padding(4, 3, 4, 3);
             請求書送付コード.Name = "請求書送付コード";
-            請求書送付コード.Size = new Size(60, 22);
+            請求書送付コード.Size = new Size(60, 25);
             請求書送付コード.TabIndex = 10034;
             請求書送付コード.DrawItem += 請求書送付コード_DrawItem;
             請求書送付コード.SelectedIndexChanged += 請求書送付コード_SelectedIndexChanged;
@@ -1090,7 +1245,7 @@ namespace u_net
             発送方法コード.Location = new Point(125, 350);
             発送方法コード.Margin = new Padding(4, 3, 4, 3);
             発送方法コード.Name = "発送方法コード";
-            発送方法コード.Size = new Size(60, 22);
+            発送方法コード.Size = new Size(60, 25);
             発送方法コード.TabIndex = 10036;
             発送方法コード.DrawItem += 発送方法コード_DrawItem;
             発送方法コード.SelectedIndexChanged += 発送方法コード_SelectedIndexChanged;
@@ -1145,7 +1300,7 @@ namespace u_net
             自社担当者コード.Location = new Point(700, 100);
             自社担当者コード.Margin = new Padding(4, 3, 4, 3);
             自社担当者コード.Name = "自社担当者コード";
-            自社担当者コード.Size = new Size(60, 22);
+            自社担当者コード.Size = new Size(60, 25);
             自社担当者コード.TabIndex = 10039;
             自社担当者コード.DrawItem += 自社担当者コード_DrawItem;
             自社担当者コード.SelectedIndexChanged += 自社担当者コード_SelectedIndexChanged;
@@ -1224,45 +1379,1193 @@ namespace u_net
             受注明細1.Location = new Point(10, 380);
             受注明細1.Margin = new Padding(5, 3, 5, 3);
             受注明細1.Name = "受注明細1";
-            受注明細1.Size = new Size(1170, 300);
+            受注明細1.Size = new Size(900, 300);
             受注明細1.TabIndex = 10046;
             // 
             // 受注日
             // 
             受注日.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             受注日.Location = new Point(125, 100);
-            受注日.Mask = "0000/00/00";
             受注日.Name = "受注日";
-            受注日.Size = new Size(150, 21);
+            受注日.Size = new Size(150, 24);
             受注日.TabIndex = 10047;
-            受注日.ValidatingType = typeof(DateTime);
+            受注日.TextChanged += 受注日_TextChanged;
+            受注日.Validating += 受注日_Validating;
             // 
             // 受注納期
             // 
             受注納期.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             受注納期.Location = new Point(125, 250);
-            受注納期.Mask = "0000/00/00";
             受注納期.Name = "受注納期";
-            受注納期.Size = new Size(150, 21);
+            受注納期.Size = new Size(150, 24);
             受注納期.TabIndex = 10048;
-            受注納期.ValidatingType = typeof(DateTime);
             // 
             // 出荷予定日
             // 
             出荷予定日.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             出荷予定日.Location = new Point(125, 275);
-            出荷予定日.Mask = "0000/00/00";
             出荷予定日.Name = "出荷予定日";
-            出荷予定日.Size = new Size(150, 21);
+            出荷予定日.Size = new Size(150, 24);
             出荷予定日.TabIndex = 10049;
-            出荷予定日.ValidatingType = typeof(DateTime);
+            // 
+            // panel2
+            // 
+            panel2.AutoScroll = true;
+            panel2.BackColor = Color.FromArgb(150, 150, 150);
+            panel2.Controls.Add(完了承認者コード);
+            panel2.Controls.Add(承認者コード);
+            panel2.Controls.Add(否認ボタン);
+            panel2.Controls.Add(受注承認ボタン);
+            panel2.Controls.Add(受注完了承認ボタン);
+            panel2.Location = new Point(2, 698);
+            panel2.Margin = new Padding(4, 3, 4, 3);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(1180, 42);
+            panel2.TabIndex = 82;
+            // 
+            // 完了承認者コード
+            // 
+            完了承認者コード.BackColor = Color.Black;
+            完了承認者コード.BorderStyle = BorderStyle.None;
+            完了承認者コード.Cursor = Cursors.IBeam;
+            完了承認者コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            完了承認者コード.Location = new Point(755, 8);
+            完了承認者コード.Margin = new Padding(3, 2, 3, 2);
+            完了承認者コード.Multiline = true;
+            完了承認者コード.Name = "完了承認者コード";
+            完了承認者コード.ReadOnly = true;
+            完了承認者コード.Size = new Size(25, 25);
+            完了承認者コード.TabIndex = 35;
+            // 
+            // 承認者コード
+            // 
+            承認者コード.BackColor = Color.Black;
+            承認者コード.BorderStyle = BorderStyle.None;
+            承認者コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            承認者コード.Location = new Point(421, 8);
+            承認者コード.Margin = new Padding(3, 2, 3, 2);
+            承認者コード.Multiline = true;
+            承認者コード.Name = "承認者コード";
+            承認者コード.ReadOnly = true;
+            承認者コード.Size = new Size(25, 25);
+            承認者コード.TabIndex = 34;
+            // 
+            // 否認ボタン
+            // 
+            否認ボタン.Enabled = false;
+            否認ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            否認ボタン.ImageAlign = ContentAlignment.BottomLeft;
+            否認ボタン.Location = new Point(550, 6);
+            否認ボタン.Margin = new Padding(1, 0, 0, 0);
+            否認ボタン.Name = "否認ボタン";
+            否認ボタン.Size = new Size(100, 25);
+            否認ボタン.TabIndex = 7;
+            否認ボタン.Text = "否認";
+            否認ボタン.UseVisualStyleBackColor = true;
+            // 
+            // 受注承認ボタン
+            // 
+            受注承認ボタン.Enabled = false;
+            受注承認ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            受注承認ボタン.ImageAlign = ContentAlignment.BottomLeft;
+            受注承認ボタン.Location = new Point(450, 6);
+            受注承認ボタン.Margin = new Padding(1, 0, 0, 0);
+            受注承認ボタン.Name = "受注承認ボタン";
+            受注承認ボタン.Size = new Size(100, 25);
+            受注承認ボタン.TabIndex = 6;
+            受注承認ボタン.Text = "承認";
+            受注承認ボタン.UseVisualStyleBackColor = true;
+            // 
+            // 受注完了承認ボタン
+            // 
+            受注完了承認ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            受注完了承認ボタン.ImageAlign = ContentAlignment.BottomLeft;
+            受注完了承認ボタン.Location = new Point(650, 6);
+            受注完了承認ボタン.Margin = new Padding(1, 0, 0, 0);
+            受注完了承認ボタン.Name = "受注完了承認ボタン";
+            受注完了承認ボタン.Size = new Size(100, 25);
+            受注完了承認ボタン.TabIndex = 1;
+            受注完了承認ボタン.Text = "完了承認";
+            受注完了承認ボタン.UseVisualStyleBackColor = true;
+            // 
+            // Page2
+            // 
+            Page2.AutoScroll = true;
+            Page2.BackColor = SystemColors.Control;
+            Page2.Controls.Add(請求予定日選択ボタン);
+            Page2.Controls.Add(ProductionPlanned);
+            Page2.Controls.Add(無効日);
+            Page2.Controls.Add(承認日時);
+            Page2.Controls.Add(ManufacturingCompletionApprovedDate);
+            Page2.Controls.Add(確定者コード);
+            Page2.Controls.Add(確定日時);
+            Page2.Controls.Add(label52);
+            Page2.Controls.Add(label51);
+            Page2.Controls.Add(label50);
+            Page2.Controls.Add(label49);
+            Page2.Controls.Add(label48);
+            Page2.Controls.Add(label47);
+            Page2.Controls.Add(税端数処理);
+            Page2.Controls.Add(TaxCalcCode);
+            Page2.Controls.Add(請求コード);
+            Page2.Controls.Add(label46);
+            Page2.Controls.Add(label45);
+            Page2.Controls.Add(label44);
+            Page2.Controls.Add(TaxRate);
+            Page2.Controls.Add(label43);
+            Page2.Controls.Add(label42);
+            Page2.Controls.Add(請求予定日);
+            Page2.Controls.Add(帳端処理);
+            Page2.Controls.Add(出荷情報);
+            Page2.Controls.Add(発送先);
+            Page2.Controls.Add(発送先選択);
+            Page2.Controls.Add(戻るボタン);
+            Page2.Location = new Point(0, 42);
+            Page2.Margin = new Padding(4, 3, 4, 3);
+            Page2.Name = "Page2";
+            Page2.Size = new Size(1180, 650);
+            Page2.TabIndex = 10050;
+            Page2.Visible = false;
+            // 
+            // 請求予定日選択ボタン
+            // 
+            請求予定日選択ボタン.Location = new Point(871, 50);
+            請求予定日選択ボタン.Name = "請求予定日選択ボタン";
+            請求予定日選択ボタン.Size = new Size(21, 21);
+            請求予定日選択ボタン.TabIndex = 10072;
+            請求予定日選択ボタン.Text = "▼";
+            請求予定日選択ボタン.UseVisualStyleBackColor = true;
+            請求予定日選択ボタン.Click += 請求予定日選択ボタン_Click;
+            // 
+            // ProductionPlanned
+            // 
+            ProductionPlanned.BackColor = Color.White;
+            ProductionPlanned.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            ProductionPlanned.ImeMode = ImeMode.Hiragana;
+            ProductionPlanned.Location = new Point(715, 350);
+            ProductionPlanned.Margin = new Padding(3, 2, 3, 2);
+            ProductionPlanned.Multiline = true;
+            ProductionPlanned.Name = "ProductionPlanned";
+            ProductionPlanned.Size = new Size(150, 22);
+            ProductionPlanned.TabIndex = 10071;
+            ProductionPlanned.TabStop = false;
+            ProductionPlanned.Visible = false;
+            // 
+            // 無効日
+            // 
+            無効日.BackColor = Color.White;
+            無効日.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            無効日.ImeMode = ImeMode.Hiragana;
+            無効日.Location = new Point(715, 325);
+            無効日.Margin = new Padding(3, 2, 3, 2);
+            無効日.Multiline = true;
+            無効日.Name = "無効日";
+            無効日.Size = new Size(150, 22);
+            無効日.TabIndex = 10070;
+            無効日.TabStop = false;
+            無効日.Visible = false;
+            // 
+            // 承認日時
+            // 
+            承認日時.BackColor = Color.White;
+            承認日時.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            承認日時.ImeMode = ImeMode.Hiragana;
+            承認日時.Location = new Point(715, 275);
+            承認日時.Margin = new Padding(3, 2, 3, 2);
+            承認日時.Multiline = true;
+            承認日時.Name = "承認日時";
+            承認日時.Size = new Size(150, 22);
+            承認日時.TabIndex = 10069;
+            承認日時.TabStop = false;
+            承認日時.Visible = false;
+            // 
+            // ManufacturingCompletionApprovedDate
+            // 
+            ManufacturingCompletionApprovedDate.BackColor = Color.White;
+            ManufacturingCompletionApprovedDate.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            ManufacturingCompletionApprovedDate.ImeMode = ImeMode.Hiragana;
+            ManufacturingCompletionApprovedDate.Location = new Point(715, 300);
+            ManufacturingCompletionApprovedDate.Margin = new Padding(3, 2, 3, 2);
+            ManufacturingCompletionApprovedDate.Multiline = true;
+            ManufacturingCompletionApprovedDate.Name = "ManufacturingCompletionApprovedDate";
+            ManufacturingCompletionApprovedDate.Size = new Size(150, 22);
+            ManufacturingCompletionApprovedDate.TabIndex = 10068;
+            ManufacturingCompletionApprovedDate.TabStop = false;
+            ManufacturingCompletionApprovedDate.Visible = false;
+            // 
+            // 確定者コード
+            // 
+            確定者コード.BackColor = Color.White;
+            確定者コード.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            確定者コード.ImeMode = ImeMode.Hiragana;
+            確定者コード.Location = new Point(715, 250);
+            確定者コード.Margin = new Padding(3, 2, 3, 2);
+            確定者コード.Multiline = true;
+            確定者コード.Name = "確定者コード";
+            確定者コード.Size = new Size(150, 22);
+            確定者コード.TabIndex = 10067;
+            確定者コード.TabStop = false;
+            確定者コード.Visible = false;
+            // 
+            // 確定日時
+            // 
+            確定日時.BackColor = Color.White;
+            確定日時.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            確定日時.ImeMode = ImeMode.Hiragana;
+            確定日時.Location = new Point(715, 225);
+            確定日時.Margin = new Padding(3, 2, 3, 2);
+            確定日時.Multiline = true;
+            確定日時.Name = "確定日時";
+            確定日時.Size = new Size(150, 22);
+            確定日時.TabIndex = 10066;
+            確定日時.TabStop = false;
+            確定日時.Visible = false;
+            // 
+            // label52
+            // 
+            label52.AllowDrop = true;
+            label52.AutoEllipsis = true;
+            label52.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            label52.ForeColor = SystemColors.ActiveCaptionText;
+            label52.ImageAlign = ContentAlignment.MiddleLeft;
+            label52.Location = new Point(575, 350);
+            label52.Margin = new Padding(0);
+            label52.Name = "label52";
+            label52.Size = new Size(140, 22);
+            label52.TabIndex = 10065;
+            label52.Text = "生産計画";
+            label52.TextAlign = ContentAlignment.MiddleLeft;
+            label52.Visible = false;
+            // 
+            // label51
+            // 
+            label51.AllowDrop = true;
+            label51.AutoEllipsis = true;
+            label51.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            label51.ForeColor = SystemColors.ActiveCaptionText;
+            label51.ImageAlign = ContentAlignment.MiddleLeft;
+            label51.Location = new Point(575, 325);
+            label51.Margin = new Padding(0);
+            label51.Name = "label51";
+            label51.Size = new Size(140, 22);
+            label51.TabIndex = 10064;
+            label51.Text = "無効日時";
+            label51.TextAlign = ContentAlignment.MiddleLeft;
+            label51.Visible = false;
+            // 
+            // label50
+            // 
+            label50.AllowDrop = true;
+            label50.AutoEllipsis = true;
+            label50.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            label50.ForeColor = SystemColors.ActiveCaptionText;
+            label50.ImageAlign = ContentAlignment.MiddleLeft;
+            label50.Location = new Point(575, 300);
+            label50.Margin = new Padding(0);
+            label50.Name = "label50";
+            label50.Size = new Size(140, 22);
+            label50.TabIndex = 10063;
+            label50.Text = "完了日時";
+            label50.TextAlign = ContentAlignment.MiddleLeft;
+            label50.Visible = false;
+            // 
+            // label49
+            // 
+            label49.AllowDrop = true;
+            label49.AutoEllipsis = true;
+            label49.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            label49.ForeColor = SystemColors.ActiveCaptionText;
+            label49.ImageAlign = ContentAlignment.MiddleLeft;
+            label49.Location = new Point(575, 275);
+            label49.Margin = new Padding(0);
+            label49.Name = "label49";
+            label49.Size = new Size(140, 22);
+            label49.TabIndex = 10062;
+            label49.Text = "承認日時";
+            label49.TextAlign = ContentAlignment.MiddleLeft;
+            label49.Visible = false;
+            // 
+            // label48
+            // 
+            label48.AllowDrop = true;
+            label48.AutoEllipsis = true;
+            label48.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            label48.ForeColor = SystemColors.ActiveCaptionText;
+            label48.ImageAlign = ContentAlignment.MiddleLeft;
+            label48.Location = new Point(575, 250);
+            label48.Margin = new Padding(0);
+            label48.Name = "label48";
+            label48.Size = new Size(140, 22);
+            label48.TabIndex = 10061;
+            label48.Text = "確定者コード";
+            label48.TextAlign = ContentAlignment.MiddleLeft;
+            label48.Visible = false;
+            // 
+            // label47
+            // 
+            label47.AllowDrop = true;
+            label47.AutoEllipsis = true;
+            label47.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            label47.ForeColor = SystemColors.ActiveCaptionText;
+            label47.ImageAlign = ContentAlignment.MiddleLeft;
+            label47.Location = new Point(575, 225);
+            label47.Margin = new Padding(0);
+            label47.Name = "label47";
+            label47.Size = new Size(140, 22);
+            label47.TabIndex = 10060;
+            label47.Text = "確定日時";
+            label47.TextAlign = ContentAlignment.MiddleLeft;
+            label47.Visible = false;
+            // 
+            // 税端数処理
+            // 
+            税端数処理.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            税端数処理.AutoCompleteSource = AutoCompleteSource.ListItems;
+            税端数処理.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            税端数処理.FormattingEnabled = true;
+            税端数処理.ImeMode = ImeMode.NoControl;
+            税端数処理.Location = new Point(715, 125);
+            税端数処理.Margin = new Padding(4, 3, 4, 3);
+            税端数処理.Name = "税端数処理";
+            税端数処理.Size = new Size(150, 25);
+            税端数処理.TabIndex = 10059;
+            税端数処理.Enter += 税端数処理_Enter;
+            // 
+            // TaxCalcCode
+            // 
+            TaxCalcCode.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            TaxCalcCode.AutoCompleteSource = AutoCompleteSource.ListItems;
+            TaxCalcCode.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            TaxCalcCode.FormattingEnabled = true;
+            TaxCalcCode.ImeMode = ImeMode.NoControl;
+            TaxCalcCode.Location = new Point(715, 100);
+            TaxCalcCode.Margin = new Padding(4, 3, 4, 3);
+            TaxCalcCode.Name = "TaxCalcCode";
+            TaxCalcCode.Size = new Size(150, 25);
+            TaxCalcCode.TabIndex = 10058;
+            TaxCalcCode.Enter += TaxCalcCode_Enter;
+            // 
+            // 請求コード
+            // 
+            請求コード.BackColor = Color.White;
+            請求コード.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            請求コード.ImeMode = ImeMode.Hiragana;
+            請求コード.Location = new Point(715, 150);
+            請求コード.Margin = new Padding(3, 2, 3, 2);
+            請求コード.Multiline = true;
+            請求コード.Name = "請求コード";
+            請求コード.Size = new Size(150, 22);
+            請求コード.TabIndex = 10057;
+            // 
+            // label46
+            // 
+            label46.AllowDrop = true;
+            label46.AutoEllipsis = true;
+            label46.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            label46.ForeColor = SystemColors.ActiveCaptionText;
+            label46.ImageAlign = ContentAlignment.MiddleLeft;
+            label46.Location = new Point(575, 150);
+            label46.Margin = new Padding(0);
+            label46.Name = "label46";
+            label46.Size = new Size(140, 22);
+            label46.TabIndex = 10056;
+            label46.Text = "請求コード";
+            label46.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // label45
+            // 
+            label45.AllowDrop = true;
+            label45.AutoEllipsis = true;
+            label45.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            label45.ForeColor = SystemColors.ActiveCaptionText;
+            label45.ImageAlign = ContentAlignment.MiddleLeft;
+            label45.Location = new Point(575, 125);
+            label45.Margin = new Padding(0);
+            label45.Name = "label45";
+            label45.Size = new Size(140, 22);
+            label45.TabIndex = 10055;
+            label45.Text = "税端数処理";
+            label45.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // label44
+            // 
+            label44.AllowDrop = true;
+            label44.AutoEllipsis = true;
+            label44.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            label44.ForeColor = SystemColors.ActiveCaptionText;
+            label44.ImageAlign = ContentAlignment.MiddleLeft;
+            label44.Location = new Point(575, 100);
+            label44.Margin = new Padding(0);
+            label44.Name = "label44";
+            label44.Size = new Size(140, 22);
+            label44.TabIndex = 10054;
+            label44.Text = "税額計算方法";
+            label44.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // TaxRate
+            // 
+            TaxRate.BackColor = Color.White;
+            TaxRate.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            TaxRate.ImeMode = ImeMode.Hiragana;
+            TaxRate.Location = new Point(715, 75);
+            TaxRate.Margin = new Padding(3, 2, 3, 2);
+            TaxRate.Multiline = true;
+            TaxRate.Name = "TaxRate";
+            TaxRate.Size = new Size(150, 22);
+            TaxRate.TabIndex = 10053;
+            // 
+            // label43
+            // 
+            label43.AllowDrop = true;
+            label43.AutoEllipsis = true;
+            label43.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            label43.ForeColor = SystemColors.ActiveCaptionText;
+            label43.ImageAlign = ContentAlignment.MiddleLeft;
+            label43.Location = new Point(575, 75);
+            label43.Margin = new Padding(0);
+            label43.Name = "label43";
+            label43.Size = new Size(140, 22);
+            label43.TabIndex = 10052;
+            label43.Text = "適用消費税率";
+            label43.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // label42
+            // 
+            label42.AllowDrop = true;
+            label42.AutoEllipsis = true;
+            label42.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            label42.ForeColor = SystemColors.ActiveCaptionText;
+            label42.ImageAlign = ContentAlignment.MiddleLeft;
+            label42.Location = new Point(600, 50);
+            label42.Margin = new Padding(0);
+            label42.Name = "label42";
+            label42.Size = new Size(115, 22);
+            label42.TabIndex = 10051;
+            label42.Text = "請求予定日";
+            label42.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // 請求予定日
+            // 
+            請求予定日.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            請求予定日.Location = new Point(715, 50);
+            請求予定日.Name = "請求予定日";
+            請求予定日.Size = new Size(150, 24);
+            請求予定日.TabIndex = 10050;
+            請求予定日.Enter += 請求予定日_Enter;
+            // 
+            // 帳端処理
+            // 
+            帳端処理.AutoSize = true;
+            帳端処理.Location = new Point(575, 55);
+            帳端処理.Name = "帳端処理";
+            帳端処理.Size = new Size(18, 17);
+            帳端処理.TabIndex = 10014;
+            帳端処理.UseVisualStyleBackColor = true;
+            帳端処理.CheckedChanged += 端数処理_CheckedChanged;
+            // 
+            // 出荷情報
+            // 
+            出荷情報.Controls.Add(InvoiceNote);
+            出荷情報.Controls.Add(PackingSlipNote);
+            出荷情報.Controls.Add(label41);
+            出荷情報.Controls.Add(label40);
+            出荷情報.Controls.Add(InvoiceFax);
+            出荷情報.Controls.Add(ReceiptComment);
+            出荷情報.Controls.Add(InvoiceInput);
+            出荷情報.Controls.Add(InvoiceFaxCode);
+            出荷情報.Controls.Add(ReceiptCommentCode);
+            出荷情報.Controls.Add(InvoiceInputCode);
+            出荷情報.Controls.Add(PackingSlipInputCode);
+            出荷情報.Controls.Add(PaymentConfirmation);
+            出荷情報.Controls.Add(InvoiceFaxToNumber);
+            出荷情報.Controls.Add(InvoiceFaxToContact);
+            出荷情報.Controls.Add(InvoiceFaxToName);
+            出荷情報.Controls.Add(PackingSlipInput);
+            出荷情報.Controls.Add(label32);
+            出荷情報.Controls.Add(label33);
+            出荷情報.Controls.Add(label34);
+            出荷情報.Controls.Add(label35);
+            出荷情報.Controls.Add(label36);
+            出荷情報.Controls.Add(label37);
+            出荷情報.Controls.Add(label38);
+            出荷情報.Controls.Add(label39);
+            出荷情報.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            出荷情報.Location = new Point(10, 390);
+            出荷情報.Name = "出荷情報";
+            出荷情報.Size = new Size(1013, 248);
+            出荷情報.TabIndex = 10013;
+            出荷情報.TabStop = false;
+            出荷情報.Text = "出荷情報";
+            // 
+            // InvoiceNote
+            // 
+            InvoiceNote.BackColor = Color.White;
+            InvoiceNote.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            InvoiceNote.ImeMode = ImeMode.Hiragana;
+            InvoiceNote.Location = new Point(640, 75);
+            InvoiceNote.Margin = new Padding(3, 2, 3, 2);
+            InvoiceNote.Multiline = true;
+            InvoiceNote.Name = "InvoiceNote";
+            InvoiceNote.Size = new Size(350, 22);
+            InvoiceNote.TabIndex = 10038;
+            InvoiceNote.Enter += InvoiceNote_Enter;
+            // 
+            // PackingSlipNote
+            // 
+            PackingSlipNote.BackColor = Color.White;
+            PackingSlipNote.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            PackingSlipNote.ImeMode = ImeMode.Hiragana;
+            PackingSlipNote.Location = new Point(640, 50);
+            PackingSlipNote.Margin = new Padding(3, 2, 3, 2);
+            PackingSlipNote.Multiline = true;
+            PackingSlipNote.Name = "PackingSlipNote";
+            PackingSlipNote.Size = new Size(350, 22);
+            PackingSlipNote.TabIndex = 10037;
+            PackingSlipNote.Enter += PackingSlipNote_Enter;
+            // 
+            // label41
+            // 
+            label41.AllowDrop = true;
+            label41.AutoEllipsis = true;
+            label41.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            label41.ForeColor = SystemColors.ActiveCaptionText;
+            label41.ImageAlign = ContentAlignment.MiddleLeft;
+            label41.Location = new Point(500, 75);
+            label41.Margin = new Padding(0);
+            label41.Name = "label41";
+            label41.Size = new Size(140, 22);
+            label41.TabIndex = 10036;
+            label41.Text = "送り状記載内容";
+            label41.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // label40
+            // 
+            label40.AllowDrop = true;
+            label40.AutoEllipsis = true;
+            label40.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            label40.ForeColor = SystemColors.ActiveCaptionText;
+            label40.ImageAlign = ContentAlignment.MiddleLeft;
+            label40.Location = new Point(500, 50);
+            label40.Margin = new Padding(0);
+            label40.Name = "label40";
+            label40.Size = new Size(140, 22);
+            label40.TabIndex = 10035;
+            label40.Text = "伝票記載内容";
+            label40.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // InvoiceFax
+            // 
+            InvoiceFax.BackColor = Color.White;
+            InvoiceFax.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            InvoiceFax.ImeMode = ImeMode.Hiragana;
+            InvoiceFax.Location = new Point(235, 125);
+            InvoiceFax.Margin = new Padding(3, 2, 3, 2);
+            InvoiceFax.Multiline = true;
+            InvoiceFax.Name = "InvoiceFax";
+            InvoiceFax.ReadOnly = true;
+            InvoiceFax.Size = new Size(100, 22);
+            InvoiceFax.TabIndex = 10034;
+            // 
+            // ReceiptComment
+            // 
+            ReceiptComment.BackColor = Color.White;
+            ReceiptComment.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            ReceiptComment.ImeMode = ImeMode.Hiragana;
+            ReceiptComment.Location = new Point(235, 100);
+            ReceiptComment.Margin = new Padding(3, 2, 3, 2);
+            ReceiptComment.Multiline = true;
+            ReceiptComment.Name = "ReceiptComment";
+            ReceiptComment.ReadOnly = true;
+            ReceiptComment.Size = new Size(150, 22);
+            ReceiptComment.TabIndex = 10033;
+            // 
+            // InvoiceInput
+            // 
+            InvoiceInput.BackColor = Color.White;
+            InvoiceInput.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            InvoiceInput.ImeMode = ImeMode.Hiragana;
+            InvoiceInput.Location = new Point(235, 75);
+            InvoiceInput.Margin = new Padding(3, 2, 3, 2);
+            InvoiceInput.Multiline = true;
+            InvoiceInput.Name = "InvoiceInput";
+            InvoiceInput.ReadOnly = true;
+            InvoiceInput.Size = new Size(150, 22);
+            InvoiceInput.TabIndex = 10032;
+            // 
+            // InvoiceFaxCode
+            // 
+            InvoiceFaxCode.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            InvoiceFaxCode.AutoCompleteSource = AutoCompleteSource.ListItems;
+            InvoiceFaxCode.DrawMode = DrawMode.OwnerDrawFixed;
+            InvoiceFaxCode.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            InvoiceFaxCode.FormattingEnabled = true;
+            InvoiceFaxCode.ImeMode = ImeMode.NoControl;
+            InvoiceFaxCode.Location = new Point(150, 125);
+            InvoiceFaxCode.Margin = new Padding(4, 3, 4, 3);
+            InvoiceFaxCode.Name = "InvoiceFaxCode";
+            InvoiceFaxCode.Size = new Size(80, 25);
+            InvoiceFaxCode.TabIndex = 10031;
+            InvoiceFaxCode.DrawItem += InvoiceFaxCode_DrawItem;
+            InvoiceFaxCode.SelectedIndexChanged += InvoiceFaxCode_SelectedIndexChanged;
+            InvoiceFaxCode.Enter += InvoiceFaxCode_Enter;
+            // 
+            // ReceiptCommentCode
+            // 
+            ReceiptCommentCode.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            ReceiptCommentCode.AutoCompleteSource = AutoCompleteSource.ListItems;
+            ReceiptCommentCode.DrawMode = DrawMode.OwnerDrawFixed;
+            ReceiptCommentCode.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            ReceiptCommentCode.FormattingEnabled = true;
+            ReceiptCommentCode.ImeMode = ImeMode.NoControl;
+            ReceiptCommentCode.Location = new Point(150, 100);
+            ReceiptCommentCode.Margin = new Padding(4, 3, 4, 3);
+            ReceiptCommentCode.Name = "ReceiptCommentCode";
+            ReceiptCommentCode.Size = new Size(80, 25);
+            ReceiptCommentCode.TabIndex = 10030;
+            ReceiptCommentCode.DrawItem += ReceiptCommentCode_DrawItem;
+            ReceiptCommentCode.SelectedIndexChanged += ReceiptCommentCode_SelectedIndexChanged;
+            ReceiptCommentCode.Enter += ReceiptCommentCode_Enter;
+            // 
+            // InvoiceInputCode
+            // 
+            InvoiceInputCode.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            InvoiceInputCode.AutoCompleteSource = AutoCompleteSource.ListItems;
+            InvoiceInputCode.DrawMode = DrawMode.OwnerDrawFixed;
+            InvoiceInputCode.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            InvoiceInputCode.FormattingEnabled = true;
+            InvoiceInputCode.ImeMode = ImeMode.NoControl;
+            InvoiceInputCode.Location = new Point(150, 75);
+            InvoiceInputCode.Margin = new Padding(4, 3, 4, 3);
+            InvoiceInputCode.Name = "InvoiceInputCode";
+            InvoiceInputCode.Size = new Size(80, 25);
+            InvoiceInputCode.TabIndex = 10029;
+            InvoiceInputCode.DrawItem += InvoiceInputCode_DrawItem;
+            InvoiceInputCode.SelectedIndexChanged += InvoiceInputCode_SelectedIndexChanged;
+            InvoiceInputCode.Enter += InvoiceInputCode_Enter;
+            // 
+            // PackingSlipInputCode
+            // 
+            PackingSlipInputCode.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            PackingSlipInputCode.AutoCompleteSource = AutoCompleteSource.ListItems;
+            PackingSlipInputCode.DrawMode = DrawMode.OwnerDrawFixed;
+            PackingSlipInputCode.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            PackingSlipInputCode.FormattingEnabled = true;
+            PackingSlipInputCode.ImeMode = ImeMode.NoControl;
+            PackingSlipInputCode.Location = new Point(150, 50);
+            PackingSlipInputCode.Margin = new Padding(4, 3, 4, 3);
+            PackingSlipInputCode.Name = "PackingSlipInputCode";
+            PackingSlipInputCode.Size = new Size(80, 25);
+            PackingSlipInputCode.TabIndex = 10028;
+            PackingSlipInputCode.DrawItem += PackingSlipInputCode_DrawItem;
+            PackingSlipInputCode.SelectedIndexChanged += PackingSlipInputCode_SelectedIndexChanged;
+            PackingSlipInputCode.Enter += PackingSlipInputCode_Enter;
+            // 
+            // PaymentConfirmation
+            // 
+            PaymentConfirmation.AutoSize = true;
+            PaymentConfirmation.Location = new Point(150, 25);
+            PaymentConfirmation.Name = "PaymentConfirmation";
+            PaymentConfirmation.Size = new Size(18, 17);
+            PaymentConfirmation.TabIndex = 267;
+            PaymentConfirmation.UseVisualStyleBackColor = true;
+            // 
+            // InvoiceFaxToNumber
+            // 
+            InvoiceFaxToNumber.BackColor = Color.White;
+            InvoiceFaxToNumber.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            InvoiceFaxToNumber.ImeMode = ImeMode.Hiragana;
+            InvoiceFaxToNumber.Location = new Point(150, 200);
+            InvoiceFaxToNumber.Margin = new Padding(3, 2, 3, 2);
+            InvoiceFaxToNumber.Multiline = true;
+            InvoiceFaxToNumber.Name = "InvoiceFaxToNumber";
+            InvoiceFaxToNumber.Size = new Size(350, 22);
+            InvoiceFaxToNumber.TabIndex = 265;
+            InvoiceFaxToNumber.Enter += InvoiceFaxToNumber_Enter;
+            // 
+            // InvoiceFaxToContact
+            // 
+            InvoiceFaxToContact.BackColor = Color.White;
+            InvoiceFaxToContact.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            InvoiceFaxToContact.ImeMode = ImeMode.Hiragana;
+            InvoiceFaxToContact.Location = new Point(150, 175);
+            InvoiceFaxToContact.Margin = new Padding(3, 2, 3, 2);
+            InvoiceFaxToContact.Multiline = true;
+            InvoiceFaxToContact.Name = "InvoiceFaxToContact";
+            InvoiceFaxToContact.Size = new Size(350, 22);
+            InvoiceFaxToContact.TabIndex = 264;
+            InvoiceFaxToContact.Enter += InvoiceFaxToContact_Enter;
+            // 
+            // InvoiceFaxToName
+            // 
+            InvoiceFaxToName.BackColor = Color.White;
+            InvoiceFaxToName.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            InvoiceFaxToName.ImeMode = ImeMode.Hiragana;
+            InvoiceFaxToName.Location = new Point(150, 150);
+            InvoiceFaxToName.Margin = new Padding(3, 2, 3, 2);
+            InvoiceFaxToName.Multiline = true;
+            InvoiceFaxToName.Name = "InvoiceFaxToName";
+            InvoiceFaxToName.Size = new Size(350, 22);
+            InvoiceFaxToName.TabIndex = 263;
+            InvoiceFaxToName.Enter += InvoiceFaxToName_Enter;
+            // 
+            // PackingSlipInput
+            // 
+            PackingSlipInput.BackColor = Color.White;
+            PackingSlipInput.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            PackingSlipInput.ImeMode = ImeMode.Hiragana;
+            PackingSlipInput.Location = new Point(235, 50);
+            PackingSlipInput.Margin = new Padding(3, 2, 3, 2);
+            PackingSlipInput.Multiline = true;
+            PackingSlipInput.Name = "PackingSlipInput";
+            PackingSlipInput.ReadOnly = true;
+            PackingSlipInput.Size = new Size(150, 22);
+            PackingSlipInput.TabIndex = 262;
+            // 
+            // label32
+            // 
+            label32.AllowDrop = true;
+            label32.AutoEllipsis = true;
+            label32.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            label32.ForeColor = SystemColors.ActiveCaptionText;
+            label32.ImageAlign = ContentAlignment.MiddleLeft;
+            label32.Location = new Point(10, 200);
+            label32.Margin = new Padding(0);
+            label32.Name = "label32";
+            label32.Size = new Size(140, 22);
+            label32.TabIndex = 259;
+            label32.Text = "FAX送付先FAX番号";
+            label32.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // label33
+            // 
+            label33.AllowDrop = true;
+            label33.AutoEllipsis = true;
+            label33.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            label33.ForeColor = SystemColors.ActiveCaptionText;
+            label33.ImageAlign = ContentAlignment.MiddleLeft;
+            label33.Location = new Point(10, 175);
+            label33.Margin = new Padding(0);
+            label33.Name = "label33";
+            label33.Size = new Size(140, 22);
+            label33.TabIndex = 258;
+            label33.Text = "FAX送付先担当者名";
+            label33.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // label34
+            // 
+            label34.AllowDrop = true;
+            label34.AutoEllipsis = true;
+            label34.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            label34.ForeColor = SystemColors.ActiveCaptionText;
+            label34.ImageAlign = ContentAlignment.MiddleLeft;
+            label34.Location = new Point(10, 150);
+            label34.Margin = new Padding(0);
+            label34.Name = "label34";
+            label34.Size = new Size(140, 22);
+            label34.TabIndex = 257;
+            label34.Text = "FAX送付先名";
+            label34.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // label35
+            // 
+            label35.AllowDrop = true;
+            label35.AutoEllipsis = true;
+            label35.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            label35.ForeColor = SystemColors.ActiveCaptionText;
+            label35.ImageAlign = ContentAlignment.MiddleLeft;
+            label35.Location = new Point(10, 125);
+            label35.Margin = new Padding(0);
+            label35.Name = "label35";
+            label35.Size = new Size(140, 22);
+            label35.TabIndex = 256;
+            label35.Text = "送り状FAX送付";
+            label35.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // label36
+            // 
+            label36.AllowDrop = true;
+            label36.AutoEllipsis = true;
+            label36.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            label36.ForeColor = SystemColors.ActiveCaptionText;
+            label36.ImageAlign = ContentAlignment.MiddleLeft;
+            label36.Location = new Point(10, 100);
+            label36.Margin = new Padding(0);
+            label36.Name = "label36";
+            label36.Size = new Size(140, 22);
+            label36.TabIndex = 255;
+            label36.Text = "直送依頼表示";
+            label36.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // label37
+            // 
+            label37.AllowDrop = true;
+            label37.AutoEllipsis = true;
+            label37.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            label37.ForeColor = SystemColors.ActiveCaptionText;
+            label37.ImageAlign = ContentAlignment.MiddleLeft;
+            label37.Location = new Point(10, 75);
+            label37.Margin = new Padding(0);
+            label37.Name = "label37";
+            label37.Size = new Size(140, 22);
+            label37.TabIndex = 254;
+            label37.Text = "送り状記載";
+            label37.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // label38
+            // 
+            label38.AllowDrop = true;
+            label38.AutoEllipsis = true;
+            label38.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            label38.ForeColor = SystemColors.ActiveCaptionText;
+            label38.ImageAlign = ContentAlignment.MiddleLeft;
+            label38.Location = new Point(10, 50);
+            label38.Margin = new Padding(0);
+            label38.Name = "label38";
+            label38.Size = new Size(140, 22);
+            label38.TabIndex = 252;
+            label38.Text = "伝票記載指示";
+            label38.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // label39
+            // 
+            label39.AllowDrop = true;
+            label39.AutoEllipsis = true;
+            label39.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            label39.ForeColor = SystemColors.ActiveCaptionText;
+            label39.ImageAlign = ContentAlignment.MiddleLeft;
+            label39.Location = new Point(10, 25);
+            label39.Margin = new Padding(0);
+            label39.Name = "label39";
+            label39.Size = new Size(140, 22);
+            label39.TabIndex = 250;
+            label39.Text = "入金確認依頼";
+            label39.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // 発送先
+            // 
+            発送先.Controls.Add(Email作成ボタン);
+            発送先.Controls.Add(発送先メールアドレス);
+            発送先.Controls.Add(発送先担当者名);
+            発送先.Controls.Add(発送先FAX);
+            発送先.Controls.Add(発送先TEL);
+            発送先.Controls.Add(発送先住所2);
+            発送先.Controls.Add(発送先住所1);
+            発送先.Controls.Add(label31);
+            発送先.Controls.Add(label30);
+            発送先.Controls.Add(label29);
+            発送先.Controls.Add(label28);
+            発送先.Controls.Add(label27);
+            発送先.Controls.Add(label26);
+            発送先.Controls.Add(発送先郵便番号);
+            発送先.Controls.Add(label25);
+            発送先.Controls.Add(発送先名);
+            発送先.Controls.Add(label24);
+            発送先.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            発送先.Location = new Point(10, 125);
+            発送先.Name = "発送先";
+            発送先.Size = new Size(515, 247);
+            発送先.TabIndex = 10012;
+            発送先.TabStop = false;
+            発送先.Text = "発送先";
+            // 
+            // Email作成ボタン
+            // 
+            Email作成ボタン.BackColor = SystemColors.ButtonFace;
+            Email作成ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            Email作成ボタン.Image = (Image)resources.GetObject("Email作成ボタン.Image");
+            Email作成ボタン.Location = new Point(480, 200);
+            Email作成ボタン.Margin = new Padding(3, 2, 3, 2);
+            Email作成ボタン.Name = "Email作成ボタン";
+            Email作成ボタン.Size = new Size(20, 20);
+            Email作成ボタン.TabIndex = 266;
+            Email作成ボタン.UseVisualStyleBackColor = false;
+            Email作成ボタン.Click += Email作成ボタン_Click;
+            // 
+            // 発送先メールアドレス
+            // 
+            発送先メールアドレス.BackColor = Color.White;
+            発送先メールアドレス.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            発送先メールアドレス.ImeMode = ImeMode.Hiragana;
+            発送先メールアドレス.Location = new Point(150, 200);
+            発送先メールアドレス.Margin = new Padding(3, 2, 3, 2);
+            発送先メールアドレス.Multiline = true;
+            発送先メールアドレス.Name = "発送先メールアドレス";
+            発送先メールアドレス.Size = new Size(324, 22);
+            発送先メールアドレス.TabIndex = 265;
+            // 
+            // 発送先担当者名
+            // 
+            発送先担当者名.BackColor = Color.White;
+            発送先担当者名.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            発送先担当者名.ImeMode = ImeMode.Hiragana;
+            発送先担当者名.Location = new Point(150, 175);
+            発送先担当者名.Margin = new Padding(3, 2, 3, 2);
+            発送先担当者名.Multiline = true;
+            発送先担当者名.Name = "発送先担当者名";
+            発送先担当者名.Size = new Size(350, 22);
+            発送先担当者名.TabIndex = 264;
+            発送先担当者名.Enter += 発送先担当者名_Enter;
+            // 
+            // 発送先FAX
+            // 
+            発送先FAX.BackColor = Color.White;
+            発送先FAX.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            発送先FAX.ImeMode = ImeMode.Hiragana;
+            発送先FAX.Location = new Point(150, 150);
+            発送先FAX.Margin = new Padding(3, 2, 3, 2);
+            発送先FAX.Multiline = true;
+            発送先FAX.Name = "発送先FAX";
+            発送先FAX.Size = new Size(150, 22);
+            発送先FAX.TabIndex = 263;
+            // 
+            // 発送先TEL
+            // 
+            発送先TEL.BackColor = Color.White;
+            発送先TEL.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            発送先TEL.ImeMode = ImeMode.Hiragana;
+            発送先TEL.Location = new Point(150, 125);
+            発送先TEL.Margin = new Padding(3, 2, 3, 2);
+            発送先TEL.Multiline = true;
+            発送先TEL.Name = "発送先TEL";
+            発送先TEL.Size = new Size(150, 22);
+            発送先TEL.TabIndex = 262;
+            // 
+            // 発送先住所2
+            // 
+            発送先住所2.BackColor = Color.White;
+            発送先住所2.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            発送先住所2.ImeMode = ImeMode.Hiragana;
+            発送先住所2.Location = new Point(150, 100);
+            発送先住所2.Margin = new Padding(3, 2, 3, 2);
+            発送先住所2.Multiline = true;
+            発送先住所2.Name = "発送先住所2";
+            発送先住所2.Size = new Size(350, 22);
+            発送先住所2.TabIndex = 261;
+            発送先住所2.Enter += 発送先住所2_Enter;
+            // 
+            // 発送先住所1
+            // 
+            発送先住所1.BackColor = Color.White;
+            発送先住所1.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            発送先住所1.ImeMode = ImeMode.Hiragana;
+            発送先住所1.Location = new Point(150, 75);
+            発送先住所1.Margin = new Padding(3, 2, 3, 2);
+            発送先住所1.Multiline = true;
+            発送先住所1.Name = "発送先住所1";
+            発送先住所1.Size = new Size(350, 22);
+            発送先住所1.TabIndex = 260;
+            発送先住所1.Enter += 発送先住所1_Enter;
+            // 
+            // label31
+            // 
+            label31.AllowDrop = true;
+            label31.AutoEllipsis = true;
+            label31.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            label31.ForeColor = SystemColors.ActiveCaptionText;
+            label31.ImageAlign = ContentAlignment.MiddleLeft;
+            label31.Location = new Point(10, 200);
+            label31.Margin = new Padding(0);
+            label31.Name = "label31";
+            label31.Size = new Size(140, 22);
+            label31.TabIndex = 259;
+            label31.Text = "メールアドレス";
+            label31.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // label30
+            // 
+            label30.AllowDrop = true;
+            label30.AutoEllipsis = true;
+            label30.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            label30.ForeColor = SystemColors.ActiveCaptionText;
+            label30.ImageAlign = ContentAlignment.MiddleLeft;
+            label30.Location = new Point(10, 175);
+            label30.Margin = new Padding(0);
+            label30.Name = "label30";
+            label30.Size = new Size(140, 22);
+            label30.TabIndex = 258;
+            label30.Text = "担当者名";
+            label30.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // label29
+            // 
+            label29.AllowDrop = true;
+            label29.AutoEllipsis = true;
+            label29.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            label29.ForeColor = SystemColors.ActiveCaptionText;
+            label29.ImageAlign = ContentAlignment.MiddleLeft;
+            label29.Location = new Point(10, 150);
+            label29.Margin = new Padding(0);
+            label29.Name = "label29";
+            label29.Size = new Size(140, 22);
+            label29.TabIndex = 257;
+            label29.Text = "ファックス番号";
+            label29.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // label28
+            // 
+            label28.AllowDrop = true;
+            label28.AutoEllipsis = true;
+            label28.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            label28.ForeColor = SystemColors.ActiveCaptionText;
+            label28.ImageAlign = ContentAlignment.MiddleLeft;
+            label28.Location = new Point(10, 125);
+            label28.Margin = new Padding(0);
+            label28.Name = "label28";
+            label28.Size = new Size(120, 22);
+            label28.TabIndex = 256;
+            label28.Text = "電話番号";
+            label28.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // label27
+            // 
+            label27.AllowDrop = true;
+            label27.AutoEllipsis = true;
+            label27.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            label27.ForeColor = SystemColors.ActiveCaptionText;
+            label27.ImageAlign = ContentAlignment.MiddleLeft;
+            label27.Location = new Point(10, 100);
+            label27.Margin = new Padding(0);
+            label27.Name = "label27";
+            label27.Size = new Size(120, 22);
+            label27.TabIndex = 255;
+            label27.Text = "建物名";
+            label27.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // label26
+            // 
+            label26.AllowDrop = true;
+            label26.AutoEllipsis = true;
+            label26.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            label26.ForeColor = SystemColors.ActiveCaptionText;
+            label26.ImageAlign = ContentAlignment.MiddleLeft;
+            label26.Location = new Point(10, 75);
+            label26.Margin = new Padding(0);
+            label26.Name = "label26";
+            label26.Size = new Size(120, 22);
+            label26.TabIndex = 254;
+            label26.Text = "住所";
+            label26.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // 発送先郵便番号
+            // 
+            発送先郵便番号.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            発送先郵便番号.Location = new Point(150, 50);
+            発送先郵便番号.Mask = "000-0000";
+            発送先郵便番号.Name = "発送先郵便番号";
+            発送先郵便番号.Size = new Size(100, 24);
+            発送先郵便番号.TabIndex = 253;
+            発送先郵便番号.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
+            // 
+            // label25
+            // 
+            label25.AllowDrop = true;
+            label25.AutoEllipsis = true;
+            label25.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            label25.ForeColor = SystemColors.ActiveCaptionText;
+            label25.ImageAlign = ContentAlignment.MiddleLeft;
+            label25.Location = new Point(10, 50);
+            label25.Margin = new Padding(0);
+            label25.Name = "label25";
+            label25.Size = new Size(120, 22);
+            label25.TabIndex = 252;
+            label25.Text = "郵便番号";
+            label25.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // 発送先名
+            // 
+            発送先名.BackColor = Color.White;
+            発送先名.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            発送先名.ImeMode = ImeMode.Hiragana;
+            発送先名.Location = new Point(150, 25);
+            発送先名.Margin = new Padding(3, 2, 3, 2);
+            発送先名.Multiline = true;
+            発送先名.Name = "発送先名";
+            発送先名.Size = new Size(350, 22);
+            発送先名.TabIndex = 251;
+            発送先名.Enter += 発送先名_Enter;
+            // 
+            // label24
+            // 
+            label24.AllowDrop = true;
+            label24.AutoEllipsis = true;
+            label24.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            label24.ForeColor = SystemColors.ActiveCaptionText;
+            label24.ImageAlign = ContentAlignment.MiddleLeft;
+            label24.Location = new Point(10, 25);
+            label24.Margin = new Padding(0);
+            label24.Name = "label24";
+            label24.Size = new Size(140, 22);
+            label24.TabIndex = 250;
+            label24.Text = "名前";
+            label24.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // 発送先選択
+            // 
+            発送先選択.Controls.Add(発送先3);
+            発送先選択.Controls.Add(発送先2);
+            発送先選択.Controls.Add(発送先1);
+            発送先選択.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            発送先選択.Location = new Point(10, 50);
+            発送先選択.Name = "発送先選択";
+            発送先選択.Size = new Size(515, 62);
+            発送先選択.TabIndex = 10011;
+            発送先選択.TabStop = false;
+            発送先選択.Text = "発送先選択";
+            // 
+            // 発送先3
+            // 
+            発送先3.AutoSize = true;
+            発送先3.Location = new Point(250, 25);
+            発送先3.Name = "発送先3";
+            発送先3.Size = new Size(93, 21);
+            発送先3.TabIndex = 2;
+            発送先3.Text = "発送先3";
+            発送先3.UseVisualStyleBackColor = true;
+            // 
+            // 発送先2
+            // 
+            発送先2.AutoSize = true;
+            発送先2.Location = new Point(125, 25);
+            発送先2.Name = "発送先2";
+            発送先2.Size = new Size(93, 21);
+            発送先2.TabIndex = 1;
+            発送先2.Text = "発送先2";
+            発送先2.UseVisualStyleBackColor = true;
+            // 
+            // 発送先1
+            // 
+            発送先1.AutoSize = true;
+            発送先1.Checked = true;
+            発送先1.Location = new Point(10, 25);
+            発送先1.Name = "発送先1";
+            発送先1.Size = new Size(91, 21);
+            発送先1.TabIndex = 0;
+            発送先1.TabStop = true;
+            発送先1.Text = "発送先1";
+            発送先1.UseVisualStyleBackColor = true;
+            // 
+            // 戻るボタン
+            // 
+            戻るボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            戻るボタン.ImageAlign = ContentAlignment.BottomLeft;
+            戻るボタン.Location = new Point(985, 18);
+            戻るボタン.Margin = new Padding(3, 2, 3, 2);
+            戻るボタン.Name = "戻るボタン";
+            戻るボタン.Size = new Size(80, 30);
+            戻るボタン.TabIndex = 10010;
+            戻るボタン.TabStop = false;
+            戻るボタン.Text = "戻る";
+            戻るボタン.UseVisualStyleBackColor = true;
+            戻るボタン.Click += 戻るボタン_Click;
             // 
             // F_受注
             // 
-            AutoScaleDimensions = new SizeF(8F, 12F);
-            AutoScaleMode = AutoScaleMode.Font;
+            AutoScaleMode = AutoScaleMode.None;
+            AutoScroll = true;
             BackColor = SystemColors.Control;
-            ClientSize = new Size(1195, 711);
+            ClientSize = new Size(1184, 774);
+            Controls.Add(Page2);
+            Controls.Add(panel2);
             Controls.Add(出荷予定日);
             Controls.Add(受注納期);
             Controls.Add(受注日);
@@ -1334,6 +2637,16 @@ namespace u_net
             panel1.ResumeLayout(false);
             statusStrip1.ResumeLayout(false);
             statusStrip1.PerformLayout();
+            panel2.ResumeLayout(false);
+            panel2.PerformLayout();
+            Page2.ResumeLayout(false);
+            Page2.PerformLayout();
+            出荷情報.ResumeLayout(false);
+            出荷情報.PerformLayout();
+            発送先.ResumeLayout(false);
+            発送先.PerformLayout();
+            発送先選択.ResumeLayout(false);
+            発送先選択.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -1390,7 +2703,7 @@ namespace u_net
         private Button コマンド読込;
         private StatusStrip statusStrip1;
         private ToolStripStatusLabel toolStripStatusLabel1;
-        private ToolStripStatusLabel toolStripStatusLabel2;
+        public ToolStripStatusLabel toolStripStatusLabel2;
         private TextBox 確定;
         private Label label15;
         private TextBox 備考;
@@ -1448,9 +2761,88 @@ namespace u_net
         private Label label23;
         private TextBox ProductionNotice;
         private MultiRowDesigner.受注明細 受注明細1;
-        private MaskedTextBox 受注日;
-        private MaskedTextBox 受注納期;
-        private MaskedTextBox 出荷予定日;
+        private TextBox 受注日;
+        private TextBox 受注納期;
+        private TextBox 出荷予定日;
+        private Panel panel2;
+        private Button 否認ボタン;
+        private Button 受注承認ボタン;
+        private Button 受注完了承認ボタン;
+        private TextBox 承認者コード;
+        private TextBox 完了承認者コード;
+        private Panel Page2;
+        private Button 戻るボタン;
+        private GroupBox 発送先選択;
+        private RadioButton 発送先1;
+        private RadioButton 発送先2;
+        private RadioButton 発送先3;
+        private GroupBox 発送先;
+        private Label label25;
+        private TextBox 発送先名;
+        private Label label24;
+        private MaskedTextBox 発送先郵便番号;
+        private Label label30;
+        private Label label29;
+        private Label label28;
+        private Label label27;
+        private Label label26;
+        private TextBox 発送先住所2;
+        private TextBox 発送先住所1;
+        private Label label31;
+        private TextBox 発送先TEL;
+        private TextBox 発送先FAX;
+        private TextBox 発送先メールアドレス;
+        private TextBox 発送先担当者名;
+        private Button Email作成ボタン;
+        private GroupBox 出荷情報;
+        private TextBox InvoiceFaxToNumber;
+        private TextBox InvoiceFaxToContact;
+        private TextBox InvoiceFaxToName;
+        private TextBox PackingSlipInput;
+        private Label label32;
+        private Label label33;
+        private Label label34;
+        private Label label35;
+        private Label label36;
+        private Label label37;
+        private Label label38;
+        private Label label39;
+        private CheckBox PaymentConfirmation;
+        private TextBox InvoiceFax;
+        private TextBox ReceiptComment;
+        private TextBox InvoiceInput;
+        private ComboBox InvoiceFaxCode;
+        private ComboBox ReceiptCommentCode;
+        private ComboBox InvoiceInputCode;
+        private ComboBox PackingSlipInputCode;
+        private TextBox InvoiceNote;
+        private TextBox PackingSlipNote;
+        private Label label41;
+        private Label label40;
+        private Label label42;
+        private TextBox 請求予定日;
+        private CheckBox 帳端処理;
+        private TextBox TaxRate;
+        private Label label43;
+        private Label label46;
+        private Label label45;
+        private Label label44;
+        private ComboBox 税端数処理;
+        private ComboBox TaxCalcCode;
+        private TextBox 請求コード;
+        private Label label52;
+        private Label label51;
+        private Label label50;
+        private Label label49;
+        private Label label48;
+        private Label label47;
+        private TextBox ProductionPlanned;
+        private TextBox 無効日;
+        private TextBox 承認日時;
+        private TextBox ManufacturingCompletionApprovedDate;
+        private TextBox 確定者コード;
+        private TextBox 確定日時;
+        private Button 請求予定日選択ボタン;
     }
 }
 
