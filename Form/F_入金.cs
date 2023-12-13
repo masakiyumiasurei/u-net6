@@ -617,61 +617,6 @@ namespace u_net
             MessageBox.Show("現在開発中です。", "確定コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        private void 改版ボタン_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                //if (this.ActiveControl == this.改版ボタン)
-                //{
-                //    GetNextControl(改版ボタン, false).Focus();
-                //}
-
-
-                MessageBox.Show("部品の改版機能は未完成です。\n履歴に登録される情報は完全ではありません。", "改版", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-
-                if (MessageBox.Show("改版しますか？\n\n・旧版データは履歴コマンドから参照できます。\n・最新版の部品データが有効になります。\n・この操作を元に戻すことはできません。",
-                                    "改版", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
-                {
-                    return;
-                }
-
-
-                FunctionClass fn = new FunctionClass();
-                fn.DoWait("改版しています...");
-
-                CommonConnect();
-
-                if (SaveData())
-                {
-                    //if (AddHistory(cn, this.CurrentCode, this.CurrentEdition))
-                    //{
-                    //    //this.部品コード.Requery;
-                    //    // ■ なぜかRequeryしてもColumn(1)がNULLとなるので、版数を+1する
-                    //    this.版数.Text = (Convert.ToInt32(this.CurrentEdition) + 1).ToString();
-                    //    this.コマンドツール.Enabled = true;
-
-                    //    fn.WaitForm.Close();
-                    //}
-                    //else
-                    //{
-                    //    fn.WaitForm.Close();
-                    //    MessageBox.Show("改版できませんでした。", "改版", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    //}
-                }
-                else
-                {
-                    fn.WaitForm.Close();
-                    MessageBox.Show("改版できませんでした。", "改版", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                }
-            }
-            catch (Exception ex)
-            {
-                Debug.Print(this.Name + "_改版ボタン_Click - " + ex.Message);
-                MessageBox.Show("エラーが発生しました。", BASE_CAPTION, MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-            }
-        }
-
         private void コマンド部品表_Click(object sender, EventArgs e)
         {
             try
@@ -946,16 +891,6 @@ namespace u_net
             }
         }
 
-        private void ユニットコード_Enter(object sender, EventArgs e)
-        {
-            toolStripStatusLabel1.Text = "■読み込むユニットデータのコードを入力します。　■半角８文字まで入力でき、上位０は省略可能です。";
-        }
-
-        private void ユニットコード_Leave(object sender, EventArgs e)
-        {
-            toolStripStatusLabel1.Text = "各種項目の説明";
-        }
-
         private void 品名_Enter(object sender, EventArgs e)
         {
             toolStripStatusLabel1.Text = "■全角２５文字まで入力できます。";
@@ -986,15 +921,54 @@ namespace u_net
             toolStripStatusLabel1.Text = "各種項目の説明";
         }
 
-        private void RoHS対応_Enter(object sender, EventArgs e)
+        private void 入金日_Enter(object sender, EventArgs e)
         {
-            toolStripStatusLabel1.Text = "■本ユニットがRoHSに対応しているかどうかを示します。";
+            toolStripStatusLabel1.Text = "■日付をyyyy/mm/ddの形式で入力します。　■[space]キーでカレンダーを表示します。";
         }
 
-        private void RoHS対応_Leave(object sender, EventArgs e)
+        private void 入金日_Leave(object sender, EventArgs e)
         {
             toolStripStatusLabel1.Text = "各種項目の説明";
         }
 
+        private void 顧客コード_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "■入金した顧客の顧客コードを入力します。　■[space]キーで検索ウィンドウを表示します。";
+        }
+
+        private void 顧客コード_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "各種項目の説明";
+        }
+
+        private void 売掛年月_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "■入金対象となる売掛年月を入力します。　■年月をyyyy/mm形式で入力します。";
+        }
+
+        private void 売掛年月_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "各種項目の説明";
+        }
+
+        private void 領収証但書_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "■領収書の但し書欄へ表示する内容を入力します。　■全角20文字まで入力できます。";
+        }
+
+        private void 領収証但書_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "各種項目の説明";
+        }
+
+        private void 送付状摘要_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "■領収書を送付する送付状の摘要内容を入力します。";
+        }
+
+        private void 送付状摘要_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "各種項目の説明";
+        }
     }
 }

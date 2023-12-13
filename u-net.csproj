@@ -26,6 +26,10 @@
     <Compile Include="MultiRowDesigner\入庫明細.Designer.cs" />
     <Compile Include="MultiRowDesigner\入庫明細テンプレート.cs" />
     <Compile Include="MultiRowDesigner\入庫明細テンプレート.Designer.cs" />
+    <Compile Include="MultiRowDesigner\入金明細.cs" />
+    <Compile Include="MultiRowDesigner\入金明細.Designer.cs" />
+    <Compile Include="MultiRowDesigner\入金明細テンプレート.cs" />
+    <Compile Include="MultiRowDesigner\入金明細テンプレート.Designer.cs" />
     <Compile Include="MultiRowDesigner\受注明細.cs" />
     <Compile Include="MultiRowDesigner\受注明細.Designer.cs" />
     <Compile Include="MultiRowDesigner\受注明細テンプレート.cs" />
