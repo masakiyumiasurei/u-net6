@@ -343,6 +343,7 @@ namespace u_net
             // 
             購買申請コード.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             購買申請コード.AutoCompleteSource = AutoCompleteSource.ListItems;
+            購買申請コード.BackColor = Color.Yellow;
             購買申請コード.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             購買申請コード.FormattingEnabled = true;
             購買申請コード.ImeMode = ImeMode.NoControl;
@@ -401,6 +402,7 @@ namespace u_net
             // 
             購買申請版数.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             購買申請版数.AutoCompleteSource = AutoCompleteSource.ListItems;
+            購買申請版数.BackColor = Color.Yellow;
             購買申請版数.DropDownStyle = ComboBoxStyle.DropDownList;
             購買申請版数.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             購買申請版数.FormattingEnabled = true;
