@@ -205,8 +205,7 @@ namespace u_net
             this.閉じるボタン.Name = "閉じるボタン";
             this.閉じるボタン.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.閉じるボタン.Size = new System.Drawing.Size(102, 27);
-            this.閉じるボタン.TabIndex = 5;
-            this.閉じるボタン.TabStop = false;
+            this.閉じるボタン.TabIndex = 3;
             this.閉じるボタン.Text = "閉じる";
             this.閉じるボタン.UseVisualStyleBackColor = true;
             this.閉じるボタン.Click += new System.EventHandler(this.閉じるボタン_Click);
@@ -236,8 +235,7 @@ namespace u_net
             this.構成番号検索ボタン.Name = "構成番号検索ボタン";
             this.構成番号検索ボタン.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.構成番号検索ボタン.Size = new System.Drawing.Size(170, 44);
-            this.構成番号検索ボタン.TabIndex = 10196;
-            this.構成番号検索ボタン.TabStop = false;
+            this.構成番号検索ボタン.TabIndex = 1;
             this.構成番号検索ボタン.Text = "構成番号検索";
             this.構成番号検索ボタン.UseVisualStyleBackColor = true;
             this.構成番号検索ボタン.Click += new System.EventHandler(this.構成番号検索ボタン_Click);
@@ -250,8 +248,7 @@ namespace u_net
             this.全印刷ボタン.Name = "全印刷ボタン";
             this.全印刷ボタン.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.全印刷ボタン.Size = new System.Drawing.Size(170, 44);
-            this.全印刷ボタン.TabIndex = 10197;
-            this.全印刷ボタン.TabStop = false;
+            this.全印刷ボタン.TabIndex = 2;
             this.全印刷ボタン.Text = "全印刷";
             this.全印刷ボタン.UseVisualStyleBackColor = true;
             this.全印刷ボタン.Click += new System.EventHandler(this.全印刷ボタン_Click);
