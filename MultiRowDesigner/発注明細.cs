@@ -743,7 +743,7 @@ namespace MultiRowDesigner
 
                     // 入庫数量が発注数量を超えた場合、確認する。
                     if (string.IsNullOrEmpty(gcMultiRow1.Rows[gcMultiRow1.CurrentCell.RowIndex].Cells["発注残数量"].Value?.ToString()) || string.IsNullOrEmpty(gcMultiRow1.Rows[gcMultiRow1.CurrentCell.RowIndex].Cells["入庫数量"].Value?.ToString())) return;
-                    if (Math.Abs(Convert.ToDecimal(gcMultiRow1.Rows[gcMultiRow1.CurrentCell.RowIndex].Cells["発注残数量"].Value)) < Math.Abs(Convert.ToDecimal(gcMultiRow1.Rows[gcMultiRow1.CurrentCell.RowIndex].Cells["入庫数量"].Value)) - Math.Abs(varPre入庫数量))
+                  //  if (Math.Abs(Convert.ToDecimal(gcMultiRow1.Rows[gcMultiRow1.CurrentCell.RowIndex].Cells["発注残数量"].Value)) < Math.Abs(Convert.ToDecimal(gcMultiRow1.Rows[gcMultiRow1.CurrentCell.RowIndex].Cells["入庫数量"].Value)) - Math.Abs(varPre入庫数量))
                     {
                         DialogResult result = MessageBox.Show("入庫数量が発注残数量を超えています。\nよろしいですか？", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
@@ -755,7 +755,7 @@ namespace MultiRowDesigner
                     }
 
                     // 発注残数量を更新する
-                    gcMultiRow1.Rows[gcMultiRow1.CurrentCell.RowIndex].Cells["発注残数量"].Value = Convert.ToDecimal(gcMultiRow1.Rows[gcMultiRow1.CurrentCell.RowIndex].Cells["発注残数量"].Value) - (Convert.ToDecimal(gcMultiRow1.Rows[gcMultiRow1.CurrentCell.RowIndex].Cells["入庫数量"].Value) - Math.Abs(varPre入庫数量));
+                    //gcMultiRow1.Rows[gcMultiRow1.CurrentCell.RowIndex].Cells["発注残数量"].Value = Convert.ToDecimal(gcMultiRow1.Rows[gcMultiRow1.CurrentCell.RowIndex].Cells["発注残数量"].Value) - (Convert.ToDecimal(gcMultiRow1.Rows[gcMultiRow1.CurrentCell.RowIndex].Cells["入庫数量"].Value) - Math.Abs(varPre入庫数量));
 
                     if (Convert.ToDecimal(gcMultiRow1.Rows[gcMultiRow1.CurrentCell.RowIndex].Cells["発注残数量"].Value.ToString()) == 0)
                     {
@@ -778,11 +778,13 @@ namespace MultiRowDesigner
                     break;
 
                 case "買掛区分":
-                    if (IsError(gcMultiRow1.CurrentCell) == true) e.Cancel = true;
+                    //修正
+                   // if (IsError(gcMultiRow1.CurrentCell) == true) e.Cancel = true;
                     break;
 
                 case "入庫単価":
-                    if (IsError(gcMultiRow1.CurrentCell) == true) e.Cancel = true;
+                    //修正
+                   // if (IsError(gcMultiRow1.CurrentCell) == true) e.Cancel = true;  
                     break;
 
             }

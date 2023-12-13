@@ -44,6 +44,7 @@
             gcMultiRow1.Template = 商品明細テンプレート1;
             gcMultiRow1.TemplateScaleSize = new SizeF(1.166667F, 1.25F);
             gcMultiRow1.Text = "gcMultiRow1";
+            gcMultiRow1.CellValidating += gcMultiRow1_CellValidating;
             gcMultiRow1.CellValueChanged += gcMultiRow1_CellValueChanged;
             gcMultiRow1.CellFormatting += gcMultiRow1_CellFormatting;
             gcMultiRow1.CellEnter += gcMultiRow1_CellEnter;

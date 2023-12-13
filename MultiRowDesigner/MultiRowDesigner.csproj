@@ -44,6 +44,30 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="入金明細.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="入金明細.Designer.cs">
+      <DependentUpon>入金明細.cs</DependentUpon>
+    </Compile>
+    <Compile Include="入金明細テンプレート.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="入金明細テンプレート.designer.cs">
+      <DependentUpon>入金明細テンプレート.cs</DependentUpon>
+    </Compile>
+    <Compile Include="製品明細参照.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="製品明細参照.Designer.cs">
+      <DependentUpon>製品明細参照.cs</DependentUpon>
+    </Compile>
+    <Compile Include="製品明細参照テンプレート.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="製品明細参照テンプレート.designer.cs">
+      <DependentUpon>製品明細参照テンプレート.cs</DependentUpon>
+    </Compile>
     <Compile Include="部品購買設定明細.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -197,6 +221,18 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="入金明細.resx">
+      <DependentUpon>入金明細.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="入金明細テンプレート.resx">
+      <DependentUpon>入金明細テンプレート.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="製品明細参照.resx">
+      <DependentUpon>製品明細参照.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="製品明細参照テンプレート.resx">
+      <DependentUpon>製品明細参照テンプレート.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="部品購買設定明細.resx">
       <DependentUpon>部品購買設定明細.cs</DependentUpon>
