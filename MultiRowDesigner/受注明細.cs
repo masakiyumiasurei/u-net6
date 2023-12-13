@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using GrapeCity.Win.BarCode.ValueType;
 using GrapeCity.Win.MultiRow;
+using GrapeCity.Win.MultiRow.InputMan;
 using u_net;
 using u_net.Public;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace MultiRowDesigner
 {
@@ -58,6 +58,10 @@ namespace MultiRowDesigner
                     comboBox.DrawMode = DrawMode.OwnerDrawFixed;
                     comboBox.DrawItem -= ラインコード_DrawItem;
                     comboBox.DrawItem += ラインコード_DrawItem;
+                }
+                else
+                {
+                    comboBox.DrawMode = DrawMode.Normal;
                 }
 
             }
@@ -114,37 +118,8 @@ namespace MultiRowDesigner
         private void ラインコード_DrawItem(object sender, DrawItemEventArgs e)
         {
             ComboBoxEditingControl combo = sender as ComboBoxEditingControl;
+
             OriginalClass.SetComboBoxAppearance(combo, e, new int[] { 50, 150 }, new string[] { "Display", "Display2" });
-        }
-
-        private void gcMultiRow1_CellValidating(object sender, CellValidatingEventArgs e)
-        {
-            gcMultiRow1.EndEdit();
-            //gcMultiRow1.CancelEdit();
-            //e.Cancel = true;
-
-            switch (e.CellName)
-            {
-                case "受注区分コード":
-                case "売上区分コード":
-                case "ラインコード":
-                case "型番":
-                case "品名":
-                case "単位コード":
-                case "数量":
-                case "単価":
-                case "SettingSheet":
-                case "InspectionReport":
-                case "Specification":
-                case "ParameterSheet":
-                case "備考":
-                case "シリアル番号付加":
-                case "CustomerSerialNumberFrom":
-                case "CustomerSerialNumberTo":
-                    if (IsError(gcMultiRow1.CurrentCell) == true) e.Cancel = true;
-                    break;
-
-            }
         }
 
         private void gcMultiRow1_CellEnter(object sender, CellEventArgs e)
@@ -210,6 +185,44 @@ namespace MultiRowDesigner
             }
         }
 
+
+        private void gcMultiRow1_CellValidating(object sender, CellValidatingEventArgs e)
+        {
+            switch (e.CellName)
+            {
+                case "受注区分コード":
+                case "売上区分コード":
+                case "ラインコード":
+                case "型番":
+                case "品名":
+                case "単位コード":
+                case "数量":
+                case "単価":
+                case "SettingSheet":
+                case "InspectionReport":
+                case "Specification":
+                case "ParameterSheet":
+                case "備考":
+                case "シリアル番号付加":
+                case "CustomerSerialNumberFrom":
+                case "CustomerSerialNumberTo":
+                    GcMultiRow grid = (GcMultiRow)sender;
+                    // セルが編集中の場合
+                    if (grid.IsCurrentCellInEditMode)
+                    {
+                        // 編集用コントロールに不正な文字列が設定されている場合
+                        if (IsError(grid.EditingControl, e.CellName) == true)
+                        {
+                            // 元の値に戻す
+                            grid.EditingControl.Text = gcMultiRow1.CurrentCell.DisplayText;
+                            e.Cancel = true;
+                        }
+                    }
+                    break;
+
+            }
+        }
+
         /// <summary>
         /// 明細部の受注コードと受注版数を更新する
         /// </summary>
@@ -224,7 +237,7 @@ namespace MultiRowDesigner
             }
         }
 
-        private bool IsError(Cell controlObject)
+        private bool IsError(Control controlObject, string cellName)
         {
             try
             {
@@ -232,13 +245,13 @@ namespace MultiRowDesigner
                 bool isError = false;
 
 
-                string varValue = controlObject.DisplayText;
-                switch (controlObject.Name)
+                string varValue = controlObject.Text;
+                switch (cellName)
                 {
                     case "受注区分コード":
                         if (string.IsNullOrEmpty(varValue))
                         {
-                            MessageBox.Show("受注区分を選択してください。", controlObject.Name, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            MessageBox.Show("受注区分を選択してください。", cellName, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                             return true;
                         }
                         break;
@@ -252,7 +265,7 @@ namespace MultiRowDesigner
                     case "ラインコード":
                         if (string.IsNullOrEmpty(varValue))
                         {
-                            MessageBox.Show("処理区分を選択してください。", controlObject.Name, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            MessageBox.Show("処理区分を選択してください。", cellName, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                             return true;
                         }
                         break;
@@ -261,21 +274,21 @@ namespace MultiRowDesigner
                     case "単位コード":
                         if (string.IsNullOrEmpty(varValue))
                         {
-                            MessageBox.Show(controlObject.Name + "を入力してください。", controlObject.Name, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            MessageBox.Show(cellName + "を入力してください。", cellName, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                             return true;
                         }
                         break;
                     case "数量":
-                        if (!FunctionClass.IsLimit_N(varValue, 7, 0, controlObject.Name))
+                        if (!FunctionClass.IsLimit_N(varValue, 7, 0, cellName))
                             return true;
-                        if((int)controlObject.Value < 1)
+                        if (int.Parse(varValue) < 1)
                         {
-                            MessageBox.Show(" 1 以上の値を入力してください。", controlObject.Name, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            MessageBox.Show(" 1 以上の値を入力してください。", cellName, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                             return true;
                         }
                         break;
                     case "単価":
-                        if (!FunctionClass.IsLimit_N(varValue, 9, 2, controlObject.Name))
+                        if (!FunctionClass.IsLimit_N(varValue, 9, 2, cellName))
                             return true;
                         break;
                     case "SettingSheet":
@@ -353,9 +366,6 @@ namespace MultiRowDesigner
                 return true;
             }
         }
-
-        
-
 
     }
 }
