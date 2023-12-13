@@ -16,6 +16,10 @@ using System.Windows.Forms;
 using Newtonsoft.Json.Linq;
 using System.Drawing.Imaging;
 using System.Drawing.Printing;
+using static u_net.CommonConstants;
+using static u_net.Public.FunctionClass;
+using Microsoft.Identity.Client.NativeInterop;
+using System.Data.Common;
 
 namespace u_net
 {
@@ -27,7 +31,10 @@ namespace u_net
         public string args = "";
         private string BASE_CAPTION = "部品集合";
         private int selected_frame = 0;
-
+        public bool IsDirty = false;
+        private int intWindowHeight = 0;
+        private int intWindowWidth = 0;
+        private bool blnEmergency = false;
         public F_部品集合()
         {
             this.Text = "部品集合";       // ウィンドウタイトルを設定
@@ -37,6 +44,53 @@ namespace u_net
             InitializeComponent();
 
         }
+
+        public string CurrentCode
+        {
+            get
+            {
+                return string.IsNullOrEmpty(部品集合コード.Text) ? "" : 部品集合コード.Text;
+            }
+        }
+        public int CurrentEdition
+        {
+            get
+            {
+                int result;
+                return int.TryParse(部品集合版数.Text, out result) ? result : 0;
+            }
+        }
+        public bool IsApproved
+        {
+            get
+            {
+                return !string.IsNullOrEmpty(承認日時.Text) && !string.IsNullOrEmpty(承認者コード.Text) ? true :
+                    false;
+
+            }
+        }
+        public bool IsDecided
+        {
+            get
+            {
+                return !string.IsNullOrEmpty(確定日時.Text) ? true : false;
+            }
+        }
+        public bool IsDeleted
+        {
+            get
+            {
+                return !string.IsNullOrEmpty(無効日時.Text) ? true : false;
+            }
+        }
+        public bool IsNewData
+        {
+            get
+            {
+                return !コマンド新規.Enabled;
+            }
+        }
+
         public void Connect()
         {
             Connection connectionInfo = new Connection();
@@ -85,22 +139,34 @@ namespace u_net
             {
                 this.SuspendLayout();
 
-                int intWindowHeight = this.Height;
-                int intWindowWidth = this.Width;
+                intWindowHeight = this.Height;
+                intWindowWidth = this.Width;
 
 
                 if (string.IsNullOrEmpty(args))
                 {
-                    コマンド新規_Click(sender, e);
+                    if (!GoNewMode())
+                    {
+                        throw new Exception("初期化に失敗しました。");
+                    }
                 }
                 else
                 {
-                    //コマンド読込_Click(sender, e);
-                    //if (!string.IsNullOrEmpty(args))
-                    //{
-                    //    this.部品コード.Text = args;
-                    //    UpdatedControl(部品コード);
-                    //}
+                    // 修正モードへ
+                    if (!GoModifyMode())
+                    {
+                        throw new Exception("初期化に失敗しました。");
+                    }
+
+                    // ','を区切り文字としてvarOpenArgsを分割
+                    string[] argsArray = args.Split(',');
+
+                    // 部品集合版数を整数に変換して部品集合版数のTextBoxに設定
+                    this.部品集合版数.Text = argsArray.Length > 1 ? argsArray[1].Trim() : "";
+
+                    // 部品集合コードを部品集合コードのTextBoxに設定
+                    this.部品集合コード.Text = argsArray.Length > 0 ? argsArray[0].Trim() : "";
+
                 }
                 // 成功時の処理
                 return;
@@ -117,69 +183,382 @@ namespace u_net
             }
         }
 
+        private bool GoNewMode()
+        {
+            try
+            {
+                // 各コントロール値を初期化
+                VariableSet.SetControls(this);
+
+                Connect();
+
+                部品集合コード.Text = FunctionClass.採番(cn, CH_ORDER).ToString();
+                部品集合版数.Text = "1";
+
+                // 明細部の初期化
+                string strSQL = "SELECT * FROM V部品集合明細 WHERE 部品集合コード='" + CurrentCode + "' ORDER BY 明細番号";
+                VariableSet.SetTable2Details(部品集合明細1.Detail, strSQL, cn);
+
+                // ヘッダ部動作制御
+                FunctionClass.LockData(this, false);
+                集合名.Focus();
+                部品集合コード.Enabled = false;
+                部品集合版数.Enabled = false;
+
+                コマンド新規.Enabled = false;
+                コマンド修正.Enabled = true;
+                コマンド複写.Enabled = false;
+                コマンド削除.Enabled = false;
+                コマンド編集.Enabled = false;
+                コマンド改版.Enabled = false;
+
+                コマンド承認.Enabled = false;
+                コマンド確定.Enabled = false;
+                コマンド登録.Enabled = false;
+
+                // 明細部動作制御
+                部品集合明細1.Detail.AllowUserToDeleteRows = true;
+                部品集合明細1.Detail.ReadOnly = false;
+                部品集合明細1.Detail.AllowUserToAddRows = true;
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"{this.Name}_GoNewMode - {ex.GetType().Name} : {ex.Message}");
+                return false;
+            }
+        }
+
+        private bool GoModifyMode()
+        {
+            try
+            {
+                Connect();
+                bool success = false;
+                string strSQL = "";
+
+                // 各コントロール値をクリア
+                VariableSet.SetControls(this);
+
+                // 明細部の初期化
+                strSQL = "SELECT * FROM V部品集合明細 WHERE 部品集合コード='" + this.CurrentCode +
+                    "' AND 部品集合版数= " + CurrentEdition + " ORDER BY 明細番号";
+                VariableSet.SetTable2Details(部品集合明細1.Detail, strSQL, cn);
+
+                this.部品集合コード.Enabled = true;
+                this.部品集合コード.Focus();
+
+                LockData(this, true, "部品集合コード", "部品集合版数");
+
+                this.コマンド新規.Enabled = true;
+                this.コマンド修正.Enabled = false;
+                this.コマンド複写.Enabled = false;
+                this.コマンド確定.Enabled = false;
+                this.コマンド登録.Enabled = false;
+
+                success = true;
+                return success;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(this.Name + "_GoModifyMode - " + ex.Message);
+                return false;
+            }
+        }
+
+        private void UpdateEditionList()
+        {
+            OriginalClass ofn = new OriginalClass();
+
+            //日付はbitにコンバードできないのでエラーになる
+            string strSQL = "SELECT 部品集合版数 AS Value, " +
+                    "{ fn REPLACE(STR(CONVERT(bit, 承認日時), 1, 0), '1', '■') } AS Display FROM M部品集合 " +
+                    $"WHERE 部品集合コード = N'{CurrentCode}' ORDER BY 部品集合版数 DESC";
+            ofn.SetComboBox(部品集合版数, strSQL);
+        }
+
+        private void UpdatedControl(Control controlObject)
+        {
+            FunctionClass fn = new FunctionClass();
+            try
+            {
+                string strSQL;
+
+                switch (controlObject.Name)
+                {
+                    case "部品集合コード":
+                        Connect();
+
+                        fn.DoWait("読み込んでいます...");
+
+                        // 版数のソース更新
+                        UpdateEditionList();
+
+                        // OpenArgsが設定されていなければ版数を最新版とする
+                        // 開いてからコードを変えて読み込むときはOpenArgsはnullに
+                        // 設定されているため、最新版となる
+                        if (string.IsNullOrEmpty(args))
+                        {
+                            Connect();
+                            string mysql = "SELECT max(部品集合版数) FROM M部品集合 where 発注コード='" + CurrentCode + "'";
+                            部品集合版数.Text = OriginalClass.GetScalar<string>(cn, mysql);
+                            cn.Close();
+                        }
+
+                        // ヘッダ部の表示
+                        if (!LoadHeader()) throw new Exception("初期化に失敗しました。");
+
+                        // 明細部の表示
+                        strSQL = $"SELECT * FROM V部品集合明細 WHERE 部品集合コード='{this.CurrentCode}' AND " +
+                            $"部品集合版数={this.CurrentEdition} ORDER BY 明細番号";
+                        //明細表示
+                        if (!VariableSet.SetTable2Details(部品集合明細1.Detail, strSQL, cn))
+                            throw new Exception("初期化に失敗しました。");
+
+                        // 動作を制御する
+                        LockData(this, this.IsDecided, "部品集合コード");
+                        this.部品集合版数.Enabled = true;
+                        this.部品集合版数.Enabled = false; // 版数を編集可にする
+
+                        部品集合明細1.Detail.AllowUserToAddRows = !this.IsDecided;
+                        部品集合明細1.Detail.AllowUserToDeleteRows = !this.IsDecided;
+                        部品集合明細1.Detail.ReadOnly = this.IsDecided;
+                        this.コマンド複写.Enabled = !this.IsDirty;
+                        this.コマンド削除.Enabled = true;
+                        this.コマンド改版.Enabled = this.IsApproved && (!this.IsDeleted);
+                        this.コマンド承認.Enabled = this.IsDecided && (!this.IsDeleted);
+                        this.コマンド確定.Enabled = (!this.IsApproved) && (!this.IsDeleted);
+                        break;
+
+                    case "部品集合版数":
+                        fn.DoWait("読み込んでいます...");
+
+                        // ヘッダ部の表示
+                        if (!LoadHeader()) throw new Exception("初期化に失敗しました。");
+
+                        // 明細部の表示
+                        strSQL = $"SELECT * FROM V部品集合明細 WHERE 部品集合コード='{this.CurrentCode}' AND 部品集合版数={this.CurrentEdition} ORDER BY 明細番号";
+                        if (!VariableSet.SetTable2Details(部品集合明細1.Detail, strSQL, cn))
+                            throw new Exception("初期化に失敗しました。");
+
+                        // 動作を制御する
+                        LockData(this, this.IsDecided, "部品集合コード", "部品集合版数");
+                        部品集合明細1.Detail.AllowUserToAddRows = !this.IsDecided;
+                        部品集合明細1.Detail.AllowUserToDeleteRows = !this.IsDecided;
+                        部品集合明細1.Detail.ReadOnly = !this.IsDecided;
+
+                        this.コマンド複写.Enabled = !this.IsDirty;
+                        this.コマンド削除.Enabled = true;
+                        this.コマンド改版.Enabled = this.IsApproved && (!this.IsDeleted);
+                        this.コマンド承認.Enabled = this.IsDecided && (!this.IsDeleted);
+                        this.コマンド確定.Enabled = (!this.IsApproved) && (!this.IsDeleted);
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.Print(this.Name + "_UpdatedControl - " + ex.Message);
+            }
+            finally
+            {
+                fn.WaitForm.Close();
+            }
+        }
+
+        public bool LoadHeader()
+        {
+            try
+            {
+                Connect();
+                string strSQL;
+                strSQL = "SELECT * FROM V部品集合ヘッダ WHERE 部品集合コード='" + CurrentCode + "' AND 部品集合版数= " + CurrentEdition;
+
+                if (!VariableSet.SetTable2Form(this, strSQL, cn)) return false;
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("読み込み時エラーです" + ex.Message, "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+        }
+
+        private bool IsError(Control controlObject, bool cancel)
+        {
+            try
+            {
+                object varValue;
+
+                // 対象コントロールがアクティブコントロールのときはTextプロパティをチェックする
+                // そうでないときはValueプロパティをチェックする
+                if (controlObject == ActiveControl)
+                {
+                    FunctionClass fn = new FunctionClass();
+                    varValue = fn.Zn(controlObject.Text, "");
+                }
+                else
+                {
+                    varValue = controlObject.Text; // Value プロパティについては、対象コントロールの型によって適切なプロパティを使うべきです
+                }
+
+                switch (controlObject.Name)
+                {
+                    case "集合名":
+                        if (varValue == null || string.IsNullOrEmpty(varValue.ToString()))
+                        {
+                            MessageBox.Show(controlObject.Name + "を入力してください。", "警告",
+                                MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            return true;
+                        }
+                        break;
+
+                    case "分類コード":
+                        if (varValue == null || string.IsNullOrEmpty(varValue.ToString()))
+                        {
+                            MessageBox.Show("集合分類を選択してください。", "警告",
+                                MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            return true;
+                        }
+                        break;
+                }
+
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"{controlObject.Name}_IsError - {ex.GetType().Name}: {ex.Message}");
+                return true;
+            }
+        }
+
+        private bool IsErrorData(string? exFieldName1 = null, string? exFieldName2 = null)
+        {
+            try
+            {
+                foreach (Control control in Controls)
+                {
+                    if ((control is TextBox || control is ComboBox) && control.Visible)
+                    {
+                        if (control.Name != exFieldName1 && control.Name != exFieldName2)
+                        {
+                            if (IsError(control, true))
+                            {
+                                control.Focus();
+                                return true;
+                            }
+                        }
+                    }
+                }
+                // 明細行数のチェック
+                if (IsErrorDetails())
+                {
+                    return true;
+                }
+
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"{GetType().Name}_IsErrorData - {ex.GetType().Name} : {ex.Message}");
+                return true;
+            }
+        }
+
+        private bool IsErrorDetails()
+        {
+            try
+            {
+                int count = 部品集合明細1.Detail.RowCount;
+
+                if (count == 0)
+                {
+                    MessageBox.Show("明細行を1行以上入力してください。", "部品集合明細", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    部品集合明細1.Detail.Focus();
+                    return true;
+                }
+
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"{GetType().Name}_IsErrorDetails - {ex.GetType().Name} : {ex.Message}");
+                return true;
+            }
+        }
         private void Form_Unload(object sender, FormClosingEventArgs e)
         {
-            string LoginUserCode = CommonConstants.LoginUserCode;//テスト用 ログインユーザを実行中にどのように管理するか決まったら修正
+            // 緊急事態のときは強制終了する
+            if (blnEmergency) return;
+            string LoginUserCode = CommonConstants.LoginUserCode;
             LocalSetting test = new LocalSetting();
             test.SavePlace(LoginUserCode, this);
 
             try
             {
-
                 Connect();
 
-                // データへの変更がないときの処理
-                //if (!IsChanged)
-                //{
+                // 変更されていないとき
+                if (!IsDirty)
+                {
                     // 新規モードで且つコードが取得済みのときはコードを戻す
-                    //if (IsNewData && !string.IsNullOrEmpty(CurrentCode) && CurrentEdition == 1)
-                    //{
-                    //    // 採番された番号を戻す
-                    //    if (!FunctionClass.ReturnCode(cn, "PAR" + CurrentCode))
-                    //    {
-                    //        MessageBox.Show("エラーのためコードは破棄されました。" + Environment.NewLine + Environment.NewLine +
-                    //                        "部品コード　：　" + CurrentCode, "警告", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    //    }
-                    //}
-                    //return;
-                //}
+                    if (this.IsNewData && !string.IsNullOrEmpty(this.CurrentCode) && this.CurrentEdition == 1)
+                    {
+                        // 採番された番号を戻す
+                        if (!ReturnCode(cn,"PTG" + this.CurrentCode))
+                        {
+                            MessageBox.Show("エラーのためコードは破棄されました。" + Environment.NewLine +
+                                            "部品集合コード　：　" + this.CurrentCode, "警告", 
+                                            MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        }
+                    }
+                    return;
+                }
 
                 // 修正されているときは登録確認を行う
-                var intRes = MessageBox.Show("変更内容を登録しますか？", "確認", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
-                switch (intRes)
+                DialogResult result = MessageBox.Show("変更内容を登録しますか？", "確認", 
+                    MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                switch (result)
                 {
                     case DialogResult.Yes:
-                        // エラーチェック
-                        if (!ErrCheck())
-                        {
-                            return;
-                        }
-                        // 登録処理
+                      
                         if (!SaveData())
                         {
                             if (MessageBox.Show("エラーのため登録できませんでした。" + Environment.NewLine +
-                                                "強制終了しますか？", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                                                "強制終了しますか？", "エラー", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
                             {
+                                e.Cancel = true;                                
                                 return;
                             }
                         }
                         break;
+
                     case DialogResult.No:
-                        // 新規コードを取得していたときはコードを戻す
-                        //if (IsNewData && !string.IsNullOrEmpty(CurrentCode) && CurrentEdition == 1)
-                        //{
-                        //    if (!FunctionClass.ReturnCode(cn, "PAR" + CurrentCode))
-                        //    {
-                        //        MessageBox.Show("エラーのためコードは破棄されました。" + Environment.NewLine +
-                        //                        "部品コード　：　" + CurrentCode, "警告", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                        //    }
-                        //}
+                        // 新規モードで且つコードが取得済みのときはコードを戻す
+                        if (this.IsNewData && !string.IsNullOrEmpty(this.CurrentCode) && this.CurrentEdition == 1)
+                        {
+                            // 採番された番号を戻す
+                            if (!ReturnCode(cn,"PTG" + this.CurrentCode))
+                            {
+                                MessageBox.Show("エラーのためコードは破棄されました。" + Environment.NewLine +
+                                                "部品集合コード　：　" + this.CurrentCode, "警告", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            }
+                        }
                         break;
+
                     case DialogResult.Cancel:
-                        return;
+                        e.Cancel = true;
+                        break;
                 }
 
-
+                // 部品選択フォームが開かれていれば閉じる
+                F_部品選択 form = (F_部品選択)Application.OpenForms["F_部品選択"];
+                if (form != null)
+                {
+                    form.Close();
+                }
+           
             }
             catch (Exception ex)
             {
@@ -188,45 +567,31 @@ namespace u_net
             }
         }
 
-        //public bool IsChanged
-        //{
-        //    get
-        //    {
-        //        return コマンド登録.Enabled;
-        //    }
-        //}
+        private string GetHeadUserCode(string userCode)
+        {
+            //指定されたユーザー（コード）が所属する部の長のユーザーコードを得る
+            string headUserCode = "";
+            Connect();
 
-        //public bool IsNewData
-        //{
-        //    get
-        //    {
-        //        return !コマンド新規.Enabled;
-        //    }
-        //}
+            string strSQL = "SELECT 社員コード FROM M社員 WHERE " +
+                            "ユーザグループ１=(" +
+                            $"SELECT ユーザグループ１ FROM M社員 WHERE 社員コード='{userCode}') " +
+                            "AND (" +
+                            "ユーザグループ２ = 'Director' " +
+                            "OR ユーザグループ２ = 'Boarder' " +
+                            "OR ユーザグループ２ = 'President')";
 
-        //public string CurrentCode
-        //{
-        //    get
-        //    {
-        //        return string.IsNullOrEmpty(部品コード.Text) ? "" : 部品コード.Text;
-        //    }
-        //}
+            using (SqlCommand command = new SqlCommand(strSQL, cn))
+            using (SqlDataReader reader = command.ExecuteReader())
+            {
+                if (reader.Read())
+                {
+                    headUserCode = reader["社員コード"].ToString();
+                }
+            }
 
-        //public int CurrentEdition
-        //{
-        //    get
-        //    {
-        //        return string.IsNullOrEmpty(版数.Text) ? 0 : int.Parse(版数.Text);
-        //    }
-        //}
-
-        //public bool IsIncluded
-        //{
-        //    get
-        //    {
-        //        return !string.IsNullOrEmpty(部品集合コード.Text);
-        //    }
-        //}
+            return headUserCode;
+        }
 
         private bool SaveData()
         {
@@ -236,85 +601,58 @@ namespace u_net
             {
                 try
                 {
+                    DateTime dteNow = DateTime.Now;
+                    Control objControl1 = null;
+                    Control objControl2 = null;
+                    Control objControl3 = null;
+                    Control objControl4 = null;
+                    Control objControl5 = null;
+                    Control objControl6 = null;
+                    object varSaved1 = null;
+                    object varSaved2 = null;
+                    object varSaved3 = null;
+                    object varSaved4 = null;
+                    object varSaved5 = null;
+                    object varSaved6 = null;
+                    DateTime dtmNow = FunctionClass.GetServerDate(cn);
 
-                    //DateTime dteNow = DateTime.Now;
-                    //Control objControl1 = null;
-                    //Control objControl2 = null;
-                    //Control objControl3 = null;
-                    //Control objControl4 = null;
-                    //Control objControl5 = null;
-                    //Control objControl6 = null;
-                    //object varSaved1 = null;
-                    //object varSaved2 = null;
-                    //object varSaved3 = null;
-                    //object varSaved4 = null;
-                    //object varSaved5 = null;
-                    //object varSaved6 = null;
+                    if (IsNewData)
+                    {
+                        objControl1 = this.作成日時;
+                        objControl2 = this.作成者コード;
+                        objControl3 = this.作成者名;
+                        varSaved1 = objControl1.Text;
+                        varSaved2 = objControl2.Text;
+                        varSaved3 = objControl3.Text;
+                        objControl1.Text = dteNow.ToString();
+                        objControl2.Text = CommonConstants.LoginUserCode;
+                        objControl3.Text = CommonConstants.LoginUserFullName;
+                    }
 
-                    //if (IsNewData)
-                    //{
-                        //objControl1 = this.作成日時;
-                        //objControl2 = this.作成者コード;
-                        //objControl3 = this.CreatorName;
-                        //varSaved1 = objControl1.Text;
-                        //varSaved2 = objControl2.Text;
-                        //varSaved3 = objControl3.Text;
-                        //objControl1.Text = dteNow.ToString(); // ここでDateTimeをstringに変換して設定
-                        //objControl2.Text = CommonConstants.LoginUserCode;
-                        //objControl3.Text = CommonConstants.LoginUserFullName;
-                    //}
+                    objControl4 = this.更新日時;
+                    objControl5 = this.更新者コード;
+                    objControl6 = this.更新者名;
 
-                    //objControl4 = this.更新日時;
-                    //objControl5 = this.更新者コード;
-                    //objControl6 = this.UpdaterName;
+                    varSaved4 = objControl4.Text;
+                    varSaved5 = objControl5.Text;
+                    varSaved6 = objControl6.Text;
 
-                    //varSaved4 = objControl4.Text;
-                    //varSaved5 = objControl5.Text;
-                    //varSaved6 = objControl6.Text;
+                    objControl4.Text = dteNow.ToString();
+                    objControl5.Text = CommonConstants.LoginUserCode;
+                    objControl6.Text = CommonConstants.LoginUserFullName;
 
-                    //objControl4.Text = dteNow.ToString(); // ここでDateTimeをstringに変換して設定
-                    //objControl5.Text = CommonConstants.LoginUserCode;
-                    //objControl6.Text = CommonConstants.LoginUserFullName;
+                    if (RegTrans(CurrentCode, CurrentEdition, cn))
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        objControl1.Text = varSaved1.ToString();
+                        objControl2.Text = varSaved2.ToString();
+                        objControl3.Text = varSaved3.ToString();
+                        return false;
+                    }
 
-
-                    //string strwhere = " 部品コード='" + this.部品コード.Text + "'";
-
-                    //if (!DataUpdater.UpdateOrInsertDataFrom(this, cn, "M部品", strwhere, "部品コード", transaction))
-                    //{
-
-
-                    //    if (IsNewData)
-                    //    {
-                    //        objControl1.Text = varSaved1.ToString();
-                    //        objControl2.Text = varSaved2.ToString();
-                    //        objControl3.Text = varSaved3.ToString();
-
-                    //    }
-
-                    //    objControl4.Text = varSaved4.ToString();
-                    //    objControl5.Text = varSaved5.ToString();
-                    //    objControl6.Text = varSaved6.ToString();
-
-                    //    return false;
-                    //}
-
-                    // トランザクションをコミット
-                    transaction.Commit();
-
-
-                    //部品コード.Enabled = true;
-
-                    // 新規モードのときは修正モードへ移行する
-                    //if (IsNewData)
-                    //{
-                    //    コマンド新規.Enabled = true;
-                    //}
-
-                    //コマンド複写.Enabled = true;
-                    //コマンド削除.Enabled = true;
-                    //コマンド登録.Enabled = false;
-
-                    return true;
                 }
                 catch (Exception ex)
                 {
@@ -324,16 +662,114 @@ namespace u_net
             }
         }
 
+        private bool RegTrans(string codeString, int editionNumber, SqlConnection cn, bool UpdatePreEdition = false)
+        {
+            try
+            {
+                Connect();
+                string strKey = "";
+
+                SqlTransaction transaction = cn.BeginTransaction();
+
+                // ヘッダ部の登録
+                if (!SaveHeader(codeString, editionNumber, cn, transaction))
+                {
+                    transaction.Rollback(); // 変更をキャンセル
+                    return false;
+                }
+
+                // 明細部の登録                    
+
+                if (!SaveDetails(codeString, editionNumber, cn, transaction))
+                {
+                    transaction.Rollback(); // 変更をキャンセル
+                    return false;
+                }
+
+                // 前版データの更新処理
+                if (UpdatePreEdition)
+                {
+                    string sql;
+                    strKey = $"部品集合コード='{codeString}' AND 部品集合版数={editionNumber - 1}";
+                    if (IsApproved)
+                    {
+                        sql = $"UPDATE M部品集合 SET 無効日時=GETDATE(),無効者コード='{this.承認者コード.Text}' WHERE {strKey}";
+                    }
+                    else
+                    {
+                        sql = $"UPDATE M部品集合 SET 無効日時=NULL,無効者コード=NULL WHERE {strKey}";
+                    }
+
+                    SqlCommand cmd = new SqlCommand(sql, cn);
+                    cmd.ExecuteNonQuery();
+                }
+
+                transaction.Commit(); // トランザクション完了
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"{nameof(RegTrans)} - {ex.GetType().Name}: {ex.Message}");
+                return false;
+            }
+            finally
+            {
+                cn.Close();
+            }
+        }
+
+        private bool SaveHeader(string codeString, int editionNumber, SqlConnection cn, SqlTransaction transaction)
+        {
+            try
+            {
+                string strwhere = " 部品集合コード='" + codeString + "' and 部品集合版数=" + editionNumber;
+
+
+                if (!DataUpdater.UpdateOrInsertDataFrom(this, cn, "M部品集合", strwhere, "部品集合コード", transaction))
+                {
+                    //保存できなかった時の処理 catchで対応する
+                    throw new Exception();
+                }
+
+                return true;
+
+            }
+            catch (Exception ex)
+            {
+                コマンド登録.Enabled = true;
+                MessageBox.Show("データの保存中にエラーが発生しました: " + ex.Message, "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                return false;
+            }
+        }
+
+        public bool SaveDetails(string codeString, int editionNumber, SqlConnection cn, SqlTransaction transaction)
+        {
+            try
+            {
+                editionNumber = editionNumber - 1;
+                string strwhere = $"部品集合コード= {codeString} AND 部品集合版数= {editionNumber}";
+                //明細部の登録
+                if (!DataUpdater.UpdateOrInsertDetails(this.部品集合明細1.Detail, cn, "M部品集合明細", strwhere, "部品集合コード", transaction))
+                {
+                    //保存できなかった時の処理                    
+                    throw new Exception();
+                }
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("データの保存中にエラーが発生しました: " + ex.Message, "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+        }
+
         private void コマンド登録_Click(object sender, EventArgs e)
         {
-
-            //if (this.ActiveControl == this.コマンド登録)
-            //{
-            //    GetNextControl(コマンド登録, false).Focus();
-            //}
-
-            // エラーチェック
-            if (!ErrCheck())
+            // エラーチェック accessにはなかったが
+            if (!IsErrorData())
             {
                 goto Bye_コマンド登録_Click;
             }
@@ -348,15 +784,13 @@ namespace u_net
                 // 登録に成功した
                 ChangedData(false); // データ変更取り消し
 
-                //if (this.IsNewData)
-                //{
-                //    // 新規モードのとき
-                //    this.コマンド新規.Enabled = true;
-                //    this.コマンド読込.Enabled = false;
-                //    this.コマンド廃止.Enabled = true;
-                //}
-                // UpdatePurGridの呼び出し
-                // Call UpdatePurGrid();
+                if (this.IsNewData)
+                {
+                    // 新規モードのとき
+                    this.コマンド新規.Enabled = true;
+                    this.コマンド修正.Enabled = false;
+                }
+                this.コマンド確定.Enabled = true;
                 fn.WaitForm.Close();
                 MessageBox.Show("登録を完了しました", "登録コマンド", MessageBoxButtons.OK);
             }
@@ -373,6 +807,40 @@ namespace u_net
 
         }
 
+        private bool SetDefaultDetails()
+        {
+            //明細の変更　DB接続は不要　後で修正する
+            //try
+            //{
+            //    using (SqlCommand cmd = new SqlCommand("UPDATE 部品集合明細 SET 購買対象=-1 WHERE 明細番号=1", cn))
+            //    {
+            //        cmd.ExecuteNonQuery();
+            //    }
+
+            //    return true;
+            //}
+            //catch (Exception ex)
+            //{
+            //    Debug.Print($"{nameof(SetDefaultDetails)} - {ex.Message}");
+            return false;
+            //}
+        }
+
+        private void Form_Resize(object sender, EventArgs e)
+        {
+            try
+            {
+                this.部品集合明細1.Height += (this.Height - intWindowHeight);
+                this.部品集合明細1.Width += (this.Width - intWindowWidth);
+                intWindowHeight = this.Height;
+                intWindowWidth = this.Width;
+
+            }
+            catch (Exception ex)
+            {
+                Debug.Print($"{nameof(Form_Resize)} - {ex.Message}");
+            }
+        }
         private bool ErrCheck()
         {
             //入力確認    
@@ -383,31 +851,40 @@ namespace u_net
 
         private void ChangedData(bool isChanged)
         {
-            if (ActiveControl == null) return;
-
-            if (isChanged)
+            try
             {
-                this.Text = BASE_CAPTION + "*";
+                IsDirty = isChanged;
+
+                if (ActiveControl == null) return;
+
+                if (isChanged)
+                {
+                    this.Text = BASE_CAPTION + "*";
+                }
+                else
+                {
+                    this.Text = BASE_CAPTION;
+                }
+
+                if (this.ActiveControl == this.部品集合明細1) this.集合名.Focus();
+                if (this.ActiveControl == this.部品集合コード) this.集合名.Focus();
+                this.部品集合コード.Enabled = !isChanged;
+                if (this.ActiveControl == this.部品集合版数) this.集合名.Focus();
+                this.部品集合版数.Enabled = !isChanged;
+                this.コマンド複写.Enabled = !isChanged;
+                this.コマンド削除.Enabled = !isChanged;
+
+                if (isChanged)
+                {
+                    this.コマンド承認.Enabled = false;
+                    this.コマンド確定.Enabled = true;
+                }
+                this.コマンド登録.Enabled = isChanged;
             }
-            else
+            catch (Exception ex)
             {
-                this.Text = BASE_CAPTION;
+                Console.WriteLine("部品集合_ChangedData: " + ex.Message);
             }
-
-            // コードにフォーカスがある状態でサブフォームから呼び出されたときの対処
-            //if (this.ActiveControl == this.部品コード)
-            //{
-            //    this.品名.Focus();
-            //}
-
-            //this.部品コード.Enabled = !isChanged;
-            //this.改版ボタン.Enabled = !isChanged;
-            //// this.コマンド複写.Enabled = !isChanged; // コマンド複写についての情報が提供されていないためコメントアウト
-            //this.コマンド削除.Enabled = !isChanged;
-            //this.コマンド登録.Enabled = isChanged;
-
-            // RoHSの状態表示を更新する
-            ShowRohsStatus();
         }
 
         private void コマンド新規_Click(object sender, EventArgs e)
@@ -483,7 +960,7 @@ namespace u_net
             }
             finally
             {
-                
+
                 this.DoubleBuffered = false;
                 Cursor.Current = Cursors.Default;
             }
@@ -492,128 +969,211 @@ namespace u_net
             return;
         }
 
-        private void ShowRohsStatus()
+
+        private void コマンド承認_Click(object sender, EventArgs e)
         {
-    //        if (this.Rohs2ProvisionalRegisteredStatusCode.Checked)
-    //        {
-    //            this.RohsStatusCode.SelectedValue = 5;
-    //            // this.RohsStatusName = "仮RoHS2";
-    //        }
-    //        else
-    //        {
-    //            if ((Rohs2ChemSherpaStatusCode.SelectedValue != null && (int)Rohs2ChemSherpaStatusCode.SelectedValue == 2) ||
-    //(Rohs2JampAisStatusCode.SelectedValue != null && (int)Rohs2JampAisStatusCode.SelectedValue == 2) ||
-    //(Rohs2NonInclusionCertificationStatusCode.SelectedValue != null && (int)Rohs2NonInclusionCertificationStatusCode.SelectedValue == 1) ||
-    //(Rohs2DocumentStatusCode.SelectedValue != null && (int)Rohs2DocumentStatusCode.SelectedValue == 2))
-    //            {
-    //                this.RohsStatusCode.SelectedValue = 2;
-    //                // this.RohsStatusName = "RoHS2";
-    //            }
-    //            else if ((Rohs1ChemSherpaStatusCode.SelectedValue != null && (int)Rohs1ChemSherpaStatusCode.SelectedValue == 2) ||
-    //     (JampAis.SelectedValue != null && (int)JampAis.SelectedValue == 2) ||
-    //     (非含有証明書.SelectedValue != null && (byte)非含有証明書.SelectedValue == 1) ||
-    //     (RoHS資料.SelectedValue != null && (Int16)RoHS資料.SelectedValue == 2))
-    //            {
-    //                this.RohsStatusCode.SelectedValue = 6;
-    //                // this.RohsStatusName = "RoHS2非対応";
-    //            }
-    //            else
-    //            {
-    //                this.RohsStatusCode.SelectedValue = 3;
-    //                // this.RohsStatusName = "RoHS1非対応";
-    //            }
-    //        }
-        }
-
-        private void コマンド読込_Click(object sender, EventArgs e)
-        {
-            if (!AskSave()) { return; }
-
-
-            // strOpenArgsがどのように設定されているかに依存します。
-            // もしstrOpenArgsに関連する処理が必要な場合はここに追加してください。
-
-            // 各コントロールの値をクリア
-            VariableSet.SetControls(this);
-
-            // コントロールを操作
-            //部品コード.Enabled = true;
-            //部品コード.Focus();
-            //改版ボタン.Enabled = false;
-            //コマンド新規.Enabled = true;
-            //コマンド読込.Enabled = false;
-            //コマンド廃止.Enabled = false;
-            //コマンド登録.Enabled = false;
-        }
-
-        private bool AskSave()
-        {
+            FunctionClass fn =new FunctionClass();
             try
             {
+                string strAppUserCode;      // 承認ユーザーコード
+                string strHeadCode;         // 部長のユーザーコード
+                object varSaved1;
+                object varSaved2;
+
+                // 承認を取り消す場合は確認する
+                if (IsApproved)
+                {
+                    if (MessageBox.Show("承認を取り消します。" + Environment.NewLine + Environment.NewLine +
+                                        "承認を取り消すと購買設定が初期化されます。" + Environment.NewLine +
+                                        "承認の取り消しは問題ないと判断できる場合のみ実行してください。" + Environment.NewLine +
+                                        "通常、承認後の修正は改版したデータを修正します。", "承認コマンド",
+                                        MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                    {
+                        goto Bye_コマンド承認_Click;
+                    }
+                }
+
+                // ログインユーザーが発信者の長でないときは認証する
+                strHeadCode = GetHeadUserCode(更新者コード.Text);
+                if (LoginUserCode == strHeadCode)
+                {
+                    strAppUserCode = LoginUserCode;
+                }
+                else
+                {
+                    // 認証する
+                    F_認証 fm = new F_認証();
+                    fm.args = strHeadCode;
+                    fm.ShowDialog();
+
+                    // 認証フォームが閉じていれば、認証不成立となる
+                    if (string.IsNullOrEmpty(strCertificateCode))
+                    {
+                        MessageBox.Show("認証できませんでした。" + Environment.NewLine +
+                                        "承認はできません。", "承認コマンド", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        goto Bye_コマンド承認_Click;
+                    }
+
+                    strAppUserCode = strCertificateCode;
+                }
+
+                // 承認状況に応じて購買対象情報を更新する
+                if (IsApproved)
+                {
+                    if (!InitBuyParts())
+                    {
+                        MessageBox.Show("購買対象設定を初期化できませんでした。", "承認コマンド", 
+                            MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        goto Bye_コマンド承認_Click;
+                    }
+                }
+                else
+                {
+                    if (!SetDefaultDetails())
+                    {
+                        MessageBox.Show("初期購買対象部品を設定できませんでした。", "承認コマンド", 
+                            MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        goto Bye_コマンド承認_Click;
+                    }
+                }
+
+                fn.DoWait("承認しています...");
+                // 承認情報を設定する前に現在の情報を保存しておく
+                varSaved1 = 承認日時.Text;
+                varSaved2 = 承認者コード.Text;
+
                 Connect();
+                // 承認情報を設定する
+                if (IsApproved)
+                {
+                    承認日時.Text = null;
+                    承認者コード.Text = null;
+                }
+                else
+                {
+                    承認日時.Text = GetServerDate(cn).ToString();
+                    承認者コード.Text = strAppUserCode;
+                }
 
-                DialogResult response;
-                //bool isNewData = IsNewData; // 仮定されたIsNewDataプロパティの取得
-                //string currentCode = CurrentCode; // 仮定されたCurrentCodeプロパティの取得
+                // 表示されている内容で登録する
+                
+                if (RegTrans(CurrentCode, CurrentEdition,cn, CurrentEdition > 1))
+                {
+                    //部品集合版数の更新
+                    UpdateEditionList();
+                    コマンド改版.Enabled = IsApproved;
+                    コマンド確定.Enabled = !IsApproved;
+                }
+                else
+                {
+                    承認日時.Text = varSaved1.ToString();
+                    承認者コード.Text = varSaved2.ToString();
+                    MessageBox.Show("登録できませんでした。", "承認コマンド",
+                        MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
 
-                //if (コマンド登録.Enabled)
-                //{
-                //    response = MessageBox.Show("変更内容を登録しますか？", "質問", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+            Bye_コマンド承認_Click:
+                fn.WaitForm.Close();
+                return;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"{Name}_コマンド承認_Click - {ex.GetType().Name}: {ex.Message}");
 
-                //    switch (response)
-                //    {
-                //        case DialogResult.Yes:
-                //            if (SaveData())
-                //            {
-                //                // 保存が成功した場合の処理
-                //                return true;
-                //            }
-                //            else
-                //            {
-                //                return false;
-                //            }
-                //        case DialogResult.No:
-                //            break;
-                //        case DialogResult.Cancel:
-                //            return false;
-                //    }
-                //}
+                // エラーが発生した場合の処理
+                MessageBox.Show("エラーが発生しました。" + Environment.NewLine +
+                                ex.Message, "承認コマンド", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                fn.WaitForm.Close();
+                
+            }
+        }
 
-                // 登録しない場合
-                //if (isNewData)
-                //{
-                //    if (!string.IsNullOrEmpty(currentCode))
-                //    {
-                //        // 部品コードが採番された場合、番号を戻す処理
-                //        if (FunctionClass.Recycle(cn, "PAR" + currentCode))
-                //        {
-                //            MessageBox.Show("部品コードは破棄されました。" + Environment.NewLine + Environment.NewLine +
-                //                            "部品コード： " + currentCode, "通知", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                //        }
-                //        else
-                //        {
-                //            MessageBox.Show("部品コードを戻す際にエラーが発生しました。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                //        }
-                //    }
-                //}
+
+        private bool InitBuyParts()
+        {
+            //部品集合明細はローカル、、、あとで明細の修正する
+            try
+            {
+                // 購買対象設定を初期化するためのSQL文
+                string strSQL = "UPDATE 部品集合明細 SET 購買対象=0";
+
+                // Connect メソッドでインスタンス化された connection オブジェクトを使用
+                using (SqlCommand command = new SqlCommand(strSQL, cn))
+                {
+                    // SQLコマンドを実行
+                    command.ExecuteNonQuery();
+                }
 
                 return true;
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error in AskSave: " + ex.Message);
+                // エラーハンドリング: 例外が発生した場合にエラーをログに記録し、適切に処理する
+                Debug.WriteLine($"Error in InitBuyParts: {ex.Message}");
                 return false;
             }
         }
 
-        private void コマンド承認_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("現在開発中です。", "承認コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
 
         private void コマンド確定_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("現在開発中です。", "確定コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            FunctionClass fn = new FunctionClass();
+            try
+            {
+                if (!IsDecided)
+                {
+                    if (IsErrorData("部品集合コード", "部品集合版数"))
+                        return;
+                }
+
+                fn.DoWait("登録しています...");
+
+                // 登録前の確定日を保存しておく
+                object varSaved = 確定日時.Text;
+
+                // 確定日を設定する
+                確定日時.Text = IsDecided ? null : GetServerDate(cn).ToString();
+
+                // 表示データを登録する
+                if (SaveData())
+                {
+                    //部品集合版数の更新
+                    UpdateEditionList();
+                    ChangedData(false);
+
+                    // 新規モードのときは修正モードへ移行する
+                    if (IsNewData)
+                    {
+                        コマンド新規.Enabled = true;
+                        コマンド修正.Enabled = false;
+                    }
+
+                    コマンド承認.Enabled = IsDecided;
+                }
+                else
+                {
+                    確定日時.Text = varSaved.ToString();
+                    MessageBox.Show("登録できませんでした。", "確定コマンド", 
+                        MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+
+                // 確定状態によって動作を制御する
+                LockData(this, IsDecided, "部品集合コード", "部品集合版数");
+                部品集合明細1.Detail.AllowUserToAddRows = !this.IsDecided;
+                部品集合明細1.Detail.AllowUserToDeleteRows = !this.IsDecided;
+                部品集合明細1.Detail.ReadOnly = this.IsDecided;
+                
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"{Name}_コマンド確定_Click - {ex.GetType().Name}: {ex.Message}");
+                MessageBox.Show(ex.Message, "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                fn.WaitForm.Close();
+                Close();                
+            }
         }
 
         private void 改版ボタン_Click(object sender, EventArgs e)
@@ -673,17 +1233,52 @@ namespace u_net
 
         private void コマンド改版_Click(object sender, EventArgs e)
         {
+            try
+            {
+                if (ActiveControl == コマンド改版)
+                    コマンド改版.Focus();              
 
+                // 複写に成功すればインターフェースを更新する
+                if (CopyData(CurrentCode, CurrentEdition + 1))
+                {
+                    // 変更された
+                    ChangedData(true);
+
+                    // ヘッダ部制御
+                    LockData(this, false);
+                    集合名.Focus();
+
+                    コマンド新規.Enabled = false;
+                    コマンド修正.Enabled = true;
+                    コマンド編集.Enabled = false;
+                    コマンド改版.Enabled = false;
+                    コマンド承認.Enabled = false;
+
+                    // 明細部制御
+                    部品集合明細1.Detail.AllowUserToAddRows = true;
+                    部品集合明細1.Detail.AllowUserToDeleteRows = true;
+                    部品集合明細1.Detail.ReadOnly = false;
+                    
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"{Name}_コマンド改版_Click - {ex.GetType().Name}: {ex.Message}");
+                MessageBox.Show("エラーが発生しました。", "改版コマンド", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }            
         }
 
         private void コマンド部品_Click(object sender, EventArgs e)
         {
-
+            //F_部品 fm = new F_部品();
+            //fm.args = PartsCode;
+            //fm.ShowDialog();
         }
 
         private void コマンドユニット管理_Click(object sender, EventArgs e)
         {
-
+            F_ユニット管理 fm=new F_ユニット管理();
+            fm.ShowDialog();
         }
 
         private F_検索 SearchForm;
@@ -691,101 +1286,186 @@ namespace u_net
         private void コマンド削除_Click(object sender, EventArgs e)
         {
             try
-            {
-                //if (ActiveControl == this.コマンド削除)
-                //{
-                //    GetNextControl(コマンド削除, false).Focus();
-                //}
+            {               
+                object varSaved1 = null; // 無効日時保存用
+                object varSaved2 = null; // 無効者コード保存用
+                DialogResult intRes;
 
-                //if (IsIncluded)
-                //{
-                //    MessageBox.Show("この部品は部品集合に構成されているため、削除できません。\n削除するには対象となる部品集合から構成を解除する必要があります。",
-                //        "削除コマンド", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                //    return;
-                //}
+                if (IsDeleted)
+                {
+                    intRes = MessageBox.Show($"部品集合：{CurrentCode}（第 {CurrentEdition} 版）{Environment.NewLine}{Environment.NewLine}" +
+                        "この部品集合データは削除されています。{Environment.NewLine}{Environment.NewLine}" +
+                        "復元しますか？", "削除コマンド", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-                //string strMsg = "部品コード　：　" + this.CurrentCode + "\n\nこのデータを削除しますか？\n削除後、管理者により復元することができます。";
+                    if (intRes == DialogResult.No)
+                        return;
+                }
+                else
+                {
+                    if (!IsApproved && CurrentEdition > 1)
+                    {
+                        intRes = MessageBox.Show($"部品集合：{CurrentCode}（第 {CurrentEdition} 版）{Environment.NewLine}{Environment.NewLine}" +
+                            "この部品集合データは改版中です。{Environment.NewLine}" +
+                            "前版に戻しますか？{Environment.NewLine}{Environment.NewLine}" +
+                            "[はい]を選択した場合、第 {CurrentEdition} 版のデータは完全に削除され、復元することはできません。{Environment.NewLine}" +
+                            "[いいえ]を選択した場合、全ての版に対して削除され、再度削除コマンドを実行することにより復元することができます。{Environment.NewLine}",
+                            "削除コマンド", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
 
-                //if (MessageBox.Show(strMsg, "削除コマンド", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
-                //    return;
+                        if (intRes == DialogResult.Cancel)
+                            return;
 
-                //OpenForm("認証", CommonConstants.USER_CODE_TECH);
+                        if (intRes == DialogResult.Yes)
+                        {
+                            // 完全削除（前版に戻す）
+                            if (DeleteData(CurrentCode, CurrentEdition))
+                            {
+                                MessageBox.Show("削除しました。", "削除コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                //while (string.IsNullOrEmpty(certificateCode))
-                //{
-                //    if (SysCmd(acSysCmdGetObjectState, acForm, "認証") == 0)
-                //    {
-                //        MessageBox.Show("削除はキャンセルされました。", "削除コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                //        return;
-                //    }
+                                // 削除後、前版データを表示する
+                                
+                                部品集合版数.Focus();
+                                部品集合版数.Text = (CurrentEdition - 1).ToString();
+                            }
+                            else
+                            {
+                                MessageBox.Show("削除できませんでした。", "削除コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        intRes = MessageBox.Show($"部品集合：{CurrentCode}（第 {CurrentEdition} 版）{Environment.NewLine}{Environment.NewLine}" +
+                            "この部品集合データを削除します。{Environment.NewLine}" +
+                            "削除後、再度削除コマンドを実行することにより復元することができます。{Environment.NewLine}{Environment.NewLine}" +
+                            "削除しますか？", "削除コマンド", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-                //    Application.DoEvents();
-                //}
+                        if (intRes == DialogResult.No)
+                            return;
+                    }
+                }
 
-                // 部品情報削除
-                FunctionClass fn = new FunctionClass();
-                fn.DoWait("削除しています...");
+                // 削除情報設定
+                varSaved1 = 無効日時.Text;
+                varSaved2 = 無効者コード.Text;
 
-                Connect();
+                if (IsDeleted)
+                {
+                    無効日時.Text = null;
+                    無効者コード.Text = null;
+                }
+                else
+                {
+                    無効日時.Text = GetServerDate(cn).ToString();
+                    無効者コード.Text = strCertificateCode;
+                }
 
-                // 削除に成功すれば新規モードへ移行する
-                //if (DeleteData(cn, CurrentCode, CurrentEdition))
-                //{
-                //    fn.WaitForm.Close();
-                //    MessageBox.Show("削除しました。\n部品コード　：　" + this.CurrentCode, "削除コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                //    コマンド新規_Click(sender, e);
-                //}
-                //else
-                //{
-                //    fn.WaitForm.Close();
-                //    MessageBox.Show("削除できませんでした。\n部品コード　：　" + this.CurrentCode, "削除コマンド", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                //}
+                // 表示データを登録する
+                if (RegTrans(CurrentCode, CurrentEdition,cn))
+                {
+                    // 登録成功（修正モードで呼び出した状態にならないといけない）
+                    // 発注コード.Enabled = true;
+                    // コマンド複写.Enabled = true;
+                    // コマンド削除.Enabled = true;
+                    // コマンド承認.Enabled = IsDecided;
+                    // コマンド登録.Enabled = false;
+                }
+                else
+                {
+                    // 登録失敗
+                    無効日時.Text= varSaved1.ToString();
+                    無効者コード.Text = varSaved2.ToString();
+                    MessageBox.Show("削除できませんでした。", "削除コマンド", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error in コマンド削除_Click: " + ex.Message);
+                Console.WriteLine($"{Name}_コマンド削除_Click - {ex.GetType().Name}: {ex.Message}");
             }
         }
+    
 
-        private void コマンド複写_Click(object sender, EventArgs e)
+        private bool DeleteData(string codeString, int editionNumber)
         {
             try
             {
-
-                //this.品名.Focus();
-                ChangedData(true);
+                string strKey = $"部品集合コード='{codeString}' AND 部品集合版数={editionNumber}";
 
                 Connect();
+                using (SqlTransaction transaction = cn.BeginTransaction())
+                {
+                    try
+                    {
+                        // 部品集合データを削除
+                        using (SqlCommand command1 = new SqlCommand($"DELETE FROM M部品集合 WHERE {strKey}", cn, transaction))
+                        {
+                            command1.ExecuteNonQuery();
+                        }
+                        // 部品集合明細データを削除
+                        using (SqlCommand command2 = new SqlCommand($"DELETE FROM M部品集合明細 WHERE {strKey}", cn, transaction))
+                        {
+                            command2.ExecuteNonQuery();
+                        }
 
-                // 以下、初期値の設定
-                //string code = FunctionClass.採番(cn, "PAR");
-                //部品コード.Text = code.Substring(Math.Max(0, code.Length - 8));
-                //this.版数.Text = 1.ToString();
-                //this.InventoryAmount.Text = 0.ToString();
-                //this.作成日時.Text = null;
-                //this.作成者コード.Text = null;
-                //this.CreatorName.Text = null;
-                //this.更新日時.Text = null;
-                //this.更新者コード.Text = null;
-                //this.UpdaterName.Text = null;
+                        transaction.Commit(); // トランザクションのコミット
+                        return true;
+                    }
+                    catch (Exception ex)
+                    {
+                        transaction.Rollback(); // トランザクションのロールバック
+                        Debug.WriteLine($"Error in DeleteData: {ex.Message}");
+                        MessageBox.Show("エラーが発生しました。" + Environment.NewLine + Environment.NewLine +
+                                ex.Message, "削除コマンド", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return false;
+                    }
+                }
 
-                // インターフェース更新
-                //this.コマンド新規.Enabled = false;
-                //this.コマンド読込.Enabled = true;
-
-                // 使用先の表示
-                //DispGrid(this.CurrentCode);
-
-                // RoHS対応状態の表示を更新する
-                ShowRohsStatus();
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "複写コマンド", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Debug.WriteLine($"Error in DeleteData: {ex.Message}");
+                return false;
             }
-            finally
-            {
+        }
 
+
+        private bool CopyData(string codeString, int editionNumber)
+        {
+            try
+            {
+                Connect();
+                // 明細部のキー情報を設定する（同時に購買対象設定を初期化する）
+                string strSQL = $"UPDATE 部品集合明細 SET 購買対象=0, " +
+                                $"部品集合コード='{codeString}', 部品集合版数={editionNumber}";
+                using (SqlCommand command = new SqlCommand(strSQL, cn))
+                {
+                    command.ExecuteNonQuery();
+                }
+
+                // キー情報を設定する
+                this.部品集合コード.Text = codeString;
+                this.部品集合版数.Text = editionNumber.ToString();
+
+                // 初期値を設定する
+                this.作成日時.Text = null;
+                this.作成者コード.Text = null;
+                this.作成者名.Text = null;
+                this.更新日時.Text = null;
+                this.更新者コード.Text = null;
+                this.更新者名.Text = null;
+                this.確定日時.Text = null;
+                this.確定者コード.Text = null;
+                this.承認日時.Text = null;
+                this.承認者コード.Text = null;
+                this.無効日時.Text = null;
+                this.無効者コード.Text = null;
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                // エラーハンドリング: 例外が発生した場合にエラーをログに記録し、適切に処理する
+                Debug.WriteLine($"{this.Name}_CopyData - {ex.Message}");
+                return false;
             }
         }
 
@@ -814,50 +1494,59 @@ namespace u_net
                 case Keys.Return:
                     SelectNextControl(ActiveControl, true, true, true, true);
                     break;
-
+                case Keys.Space: //コンボボックスならドロップダウン
+                    {
+                        Control activeControl = this.ActiveControl;
+                        if (activeControl is System.Windows.Forms.ComboBox)
+                        {
+                            System.Windows.Forms.ComboBox activeComboBox = (System.Windows.Forms.ComboBox)activeControl;
+                            activeComboBox.DroppedDown = true;
+                        }
+                    }
+                    break;
                 case Keys.F1:
-                    //if (コマンド新規.Enabled)
-                    //{
-                    //    コマンド新規.Focus();
-                    //    コマンド新規_Click(sender, e);
-                    //}
+                    if (コマンド新規.Enabled)
+                    {
+                        コマンド新規.Focus();
+                        コマンド新規_Click(sender, e);
+                    }
                     break;
                 case Keys.F2:
-                    //if (コマンド読込.Enabled)
-                    //{
-                    //    コマンド読込.Focus();
-                    //    コマンド読込_Click(sender, e);
-                    //}
+                    if (コマンド修正.Enabled)
+                    {
+                        コマンド修正.Focus();
+                        コマンド修正_Click(sender, e);
+                    }
                     break;
                 case Keys.F3:
-                    //if (コマンド複写.Enabled) コマンド複写_Click(sender, e);
+                    if (コマンド複写.Enabled) コマンド複写_Click(sender, e);
                     break;
                 case Keys.F4:
-                    //if (コマンド削除.Enabled) コマンド削除_Click(sender, e);
+                    if (コマンド削除.Enabled) コマンド削除_Click(sender, e);
                     break;
                 case Keys.F5:
-                    //if (コマンドユニット.Enabled) コマンドユニット_Click(sender, e);
+                    if (コマンド編集.Enabled) コマンド編集_Click(sender, e);
                     break;
                 case Keys.F6:
-                    //if (コマンドユニット表.Enabled) コマンドユニット表_Click(sender, e);
+                    if (コマンド改版.Enabled) コマンド改版_Click(sender, e);
                     break;
                 case Keys.F7:
-                    //if (コマンド廃止.Enabled) コマンド廃止_Click(sender, e);
+                    if (コマンド部品.Enabled) コマンド部品_Click(sender, e);
                     break;
                 case Keys.F8:
-                    //if (コマンドツール.Enabled) コマンドツール_Click(sender, e);
+                    if (コマンドユニット管理.Enabled) コマンドユニット管理_Click(sender, e);
                     break;
                 case Keys.F9:
-                    //if (コマンド承認.Enabled) コマンド承認_Click(sender, e);
+                    if (コマンド承認.Enabled) コマンド承認_Click(sender, e);
                     break;
                 case Keys.F10:
-                    //if (コマンド確定.Enabled) コマンド確定_Click(sender, e);
+                    if (コマンド確定.Enabled) コマンド確定_Click(sender, e);
                     break;
                 case Keys.F11:
                     if (コマンド登録.Enabled) コマンド登録_Click(sender, e);
                     break;
                 case Keys.F12:
-                    //if (コマンド終了.Enabled) コマンド終了_Click(sender, e);
+                    if (コマンド終了.Enabled) コマンド終了_Click(sender, e);
                     break;
             }
         }
@@ -892,6 +1581,131 @@ namespace u_net
             toolStripStatusLabel1.Text = "各種項目の説明";
         }
 
+        private void コマンド修正_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Connect();
+                DialogResult intRes;
 
+                // 変更されていないとき
+                if (!IsDirty)
+                {
+                    // 新規モードで且つコードが取得済みのときはコードを戻す
+                    if (IsNewData && CurrentCode != "" && CurrentEdition == 1)
+                    {
+                        // 採番された番号を戻す
+                        if (!ReturnCode(cn, "PTG" + CurrentCode))
+                        {
+                            MessageBox.Show("エラーのためコードは破棄されました。" + Environment.NewLine +
+                                            "部品集合コード　：　" + CurrentCode, "修正コマンド", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        }
+                    }
+
+                    // 修正モードへ移行する
+                    if (!GoModifyMode())
+                        goto Bye_コマンド修正_Click;
+                }
+
+                // 変更されているときは登録確認を行う
+                intRes = MessageBox.Show("変更内容を登録しますか？", "修正コマンド", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                switch (intRes)
+                {
+                    case DialogResult.Yes:
+                        // エラーチェック
+                        // if (IsErrorData("製品コード", "製品版数"))
+                        //     return;
+
+                        // 登録処理
+                        if (!SaveData())
+                        {
+                            MessageBox.Show("エラーのため登録できません。", "修正コマンド", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            goto Bye_コマンド修正_Click;
+                        }
+                        break;
+
+                    case DialogResult.No:
+                        // 新規モードで且つコードが取得済みのときはコードを戻す
+                        if (IsNewData && CurrentCode != "" && CurrentEdition == 1)
+                        {
+                            // 採番された番号を戻す
+                            if (!ReturnCode(cn, "PTG" + CurrentCode))
+                            {
+                                MessageBox.Show("エラーのためコードは破棄されました。" + Environment.NewLine +
+                                                "部品集合コード　：　" + CurrentCode, "修正コマンド", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            }
+                        }
+                        break;
+
+                    case DialogResult.Cancel:
+                        return;
+                }
+
+                // 修正モードへ移行する
+                if (!GoModifyMode())
+                    goto Bye_コマンド修正_Click;
+
+                Bye_コマンド修正_Click:
+                
+                return;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"{Name}_コマンド修正_Click - {ex.GetType().Name}: {ex.Message}");
+
+                // エラーが発生した場合の処理
+                if (MessageBox.Show("エラーが発生しました。" + Environment.NewLine +
+                                    "管理者に連絡してください。" + Environment.NewLine + Environment.NewLine +
+                                    "強制終了しますか？", "修正コマンド", MessageBoxButtons.YesNo, MessageBoxIcon.Error) == DialogResult.Yes)
+                {                    
+                    Close();
+                }
+            }
+        }
+
+        private void コマンド複写_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (ActiveControl == コマンド複写)
+                    コマンド複写.Focus();
+                Connect();               
+
+                // 複写に成功すればインターフェースを更新する
+                string newCode = 採番(cn, "PTG").Substring(8);
+                if (CopyData(newCode, 1))
+                {
+                    // 変更された
+                    ChangedData(true);
+
+                    // ヘッダ部制御
+                    LockData(this, false);
+                    集合名.Focus();
+                    コマンド新規.Enabled = false;
+                    コマンド修正.Enabled = true;
+                    コマンド編集.Enabled = false;
+                    コマンド改版.Enabled = false;
+                    コマンド承認.Enabled = false;
+
+                    // 明細部制御
+                    // 明細部動作制御
+                    部品集合明細1.Detail.AllowUserToDeleteRows = true;
+                    部品集合明細1.Detail.ReadOnly = false;
+                    部品集合明細1.Detail.AllowUserToAddRows = true;
+                                        
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"{Name}_コマンド複写_Click - {ex.GetType().Name}: {ex.Message}");
+
+                // エラーが発生した場合の処理
+                MessageBox.Show("エラーが発生しました。", "複写コマンド", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                
+            }
+        }
     }
 }

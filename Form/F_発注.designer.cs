@@ -493,7 +493,6 @@ namespace u_net
             発注日.TabIndex = 6;
             発注日.TextChanged += 発注日_TextChanged;
             発注日.Enter += 発注日_Enter;
-            発注日.KeyDown += 発注日_KeyDown;
             発注日.KeyPress += 発注日_KeyPress;
             発注日.Leave += 発注日_Leave;
             発注日.Validating += 発注日_Validating;
@@ -856,6 +855,8 @@ namespace u_net
             NoCredit.UseVisualStyleBackColor = true;
             NoCredit.Enter += NoCredit_Enter;
             NoCredit.Leave += NoCredit_Leave;
+            NoCredit.Validating += NoCredit_Validating;
+            NoCredit.Validated += NoCredit_Validated;
             // 
             // 登録者_ラベル
             // 
@@ -1188,17 +1189,17 @@ namespace u_net
             // statusStrip1
             // 
             statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1 });
-            statusStrip1.Location = new Point(0, 704);
+            statusStrip1.Location = new Point(0, 707);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Padding = new Padding(1, 0, 19, 0);
-            statusStrip1.Size = new Size(1035, 25);
+            statusStrip1.Size = new Size(1035, 22);
             statusStrip1.TabIndex = 10117;
             statusStrip1.Text = "statusStrip1";
             // 
             // toolStripStatusLabel1
             // 
             toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            toolStripStatusLabel1.Size = new Size(111, 20);
+            toolStripStatusLabel1.Size = new Size(89, 17);
             toolStripStatusLabel1.Text = "各種項目の説明";
             // 
             // toolStripStatusLabel2

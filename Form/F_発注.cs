@@ -345,6 +345,11 @@ namespace u_net
                 // 各コントロールの値をクリア
                 VariableSet.SetControls(this);
 
+                // 明細部の初期化
+                string strSQL = "SELECT * FROM V発注明細 WHERE 発注コード='" + CurrentCode +
+                                         "' AND 発注版数=" + CurrentEdition + " ORDER BY 明細番号";
+                VariableSet.SetTable2Details(発注明細1.Detail, strSQL, cn);
+
                 this.発注コード.Enabled = true;
                 this.発注コード.Focus();
 
@@ -544,8 +549,7 @@ namespace u_net
                     //保存できなかった時の処理 catchで対応する
                     throw new Exception();
                 }
-
-                transaction.Commit();
+                                
                 return true;
 
             }
@@ -1530,8 +1534,9 @@ namespace u_net
 
         private void コマンド部品_Click(object sender, EventArgs e)
         {
+            発注明細 subform = Application.OpenForms.OfType<発注明細>().FirstOrDefault();
             F_部品 fm = new F_部品();
-            //fm.args=          発注明細のカレントレコードを渡す
+            fm.args = subform.CurrentPartsCode;          //発注明細のカレントレコードを渡す
             fm.ShowDialog();
         }
 
@@ -2055,8 +2060,14 @@ namespace u_net
             toolStripStatusLabel1.Text = "各種項目の説明";
         }
 
-        private void 発注日_KeyDown(object sender, KeyEventArgs e)
+        private void 発注日_KeyPress(object sender, KeyPressEventArgs e)
         {
+            switch (e.KeyChar)
+            {
+                case (char)Keys.Space:
+                    発注日選択ボタン_Click(sender, e);
+                    break;
+            }
 
         }
 
@@ -2269,16 +2280,7 @@ namespace u_net
             ChangedData(true);
         }
 
-        private void 発注日_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            switch (e.KeyChar)
-            {
-                case (char)Keys.Space:
-                    発注日選択ボタン_Click(sender, e);
-                    break;
-            }
 
-        }
 
         private void 発注版数_Validated(object sender, EventArgs e)
         {
@@ -2304,6 +2306,16 @@ namespace u_net
         {
             FunctionClass.LimitText(((TextBox)sender), 2000);
             ChangedData(true);
+        }
+
+        private void NoCredit_Validated(object sender, EventArgs e)
+        {
+            ChangedData(true);
+        }
+
+        private void NoCredit_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (IsError(sender as Control, false) == true) e.Cancel = true;
         }
     }
 }

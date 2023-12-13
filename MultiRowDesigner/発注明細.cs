@@ -88,6 +88,7 @@ namespace MultiRowDesigner
         private void gcMultiRow1_Sorted(object sender, EventArgs e)
         {
             sortFlg = true;
+            NumberDetails("明細番号");
         }
 
         private void NumberDetails(string fieldName, long start = 1)
@@ -561,81 +562,59 @@ namespace MultiRowDesigner
             }
         }
 
-        private void gcMultiRow1_CellContentClick(object sender, CellEventArgs e)
-        {
-
-            //switch(gcMultiRow1.CurrentCell)
-            //{
-            //    //ボタンClick時の処理
-            //    case ButtonCell:
-            //        switch (e.CellName)
-            //        {
-            //            case "明細削除ボタン":
-            //                MessageBox.Show("削除します。", "削除", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            //                break;
-            //            default:
-            //                break;
-            //        }
-            //        break;
-
-            //    default:
-            //        break;
-            //}
-
-        }
 
         private void gcMultiRow1_CellEnter(object sender, CellEventArgs e)
         {
+            F_発注? parentform = Application.OpenForms.OfType<F_発注>().FirstOrDefault();
 
-            //switch(gcMultiRow1.CurrentCell)
+            //switch (gcMultiRow1.CurrentCell)
             //{
             //    //テキストボックスEnter時の処理
             //    case TextBoxCell:
-            //        switch (e.CellName)
-            //        {
-            //            case "部品コード":
-            //                this.f_発注.toolStripStatusLabel1.Text = "■部品コードを8文字以内で入力します。　■ダブルクリックするか、[space]キーを押して部品選択ウィンドウを表示します。　■マウスの左ボタンを押しながら右ボタンをクリックすると入力履歴を表示します。";
-            //                break;
-            //            case "品名":
-            //                this.f_発注.toolStripStatusLabel1.Text = "■全角２５文字まで入力できます。";
-            //                break;
-            //            case "型番":
-            //                this.f_発注.toolStripStatusLabel1.Text = "■半角５０文字まで入力できます。";
-            //                break;
-            //            case "メーカー名":
-            //                this.f_発注.toolStripStatusLabel1.Text = "■全角２５文字まで入力できます。";
-            //                break;
-            //            case "入数":
-            //                this.f_発注.toolStripStatusLabel1.Text = "■部品の現在の入数です。　■修正は出来ません。";
-            //                break;
-            //            case "発注納期":
-            //                this.f_発注.toolStripStatusLabel1.Text = "■ダブルクリックするか、[space]キーを押してカレンダーを開くことができます。";
-            //                break;
-            //            case "必要数量":
-            //                this.f_発注.toolStripStatusLabel1.Text = "■実際に必要な数量を入力します。";
-            //                break;
-            //            case "発注数量":
-            //                this.f_発注.toolStripStatusLabel1.Text = "■仕入先に発注する数量を入力します。　■在庫管理する場合は自動的に計算されます。";
-            //                break;
-            //            case "発注単価":
-            //                this.f_発注.toolStripStatusLabel1.Text = "";
-            //                break;
-            //            case "回答納期":
-            //                this.f_発注.toolStripStatusLabel1.Text = "■ダブルクリックするか、[space]キーを押してカレンダーを開くことができます。";
-            //                break;
-            //            case "買掛区分":
-            //                this.f_発注.toolStripStatusLabel1.Text = "■買掛区分を選択します。　■確定後入力するには入力欄をダブルクリックしてください。";
-            //                break;
-            //            default:
-            //                this.f_発注.toolStripStatusLabel1.Text = "各種項目の説明";
-            //                break;
-            //        }
-            //        break;
+            switch (e.CellName)
+            {
+                case "部品コード":
+                    parentform.toolStripStatusLabel1.Text = "■部品コードを8文字以内で入力します。　■ダブルクリックするか、[space]キーを押して部品選択ウィンドウを表示します。　■マウスの左ボタンを押しながら右ボタンをクリックすると入力履歴を表示します。";
+                    break;
+                case "品名":
+                    parentform.toolStripStatusLabel1.Text = "■全角２５文字まで入力できます。";
+                    break;
+                case "型番":
+                    parentform.toolStripStatusLabel1.Text = "■半角５０文字まで入力できます。";
+                    break;
+                case "メーカー名":
+                    parentform.toolStripStatusLabel1.Text = "■全角２５文字まで入力できます。";
+                    break;
+                case "入数":
+                    parentform.toolStripStatusLabel1.Text = "■部品の現在の入数です。　■修正は出来ません。";
+                    break;
+                case "発注納期":
+                    parentform.toolStripStatusLabel1.Text = "■ダブルクリックするか、[space]キーを押してカレンダーを開くことができます。";
+                    break;
+                case "必要数量":
+                    parentform.toolStripStatusLabel1.Text = "■実際に必要な数量を入力します。";
+                    break;
+                case "発注数量":
+                    parentform.toolStripStatusLabel1.Text = "■仕入先に発注する数量を入力します。　■在庫管理する場合は自動的に計算されます。";
+                    break;
+                case "発注単価":
+                    parentform.toolStripStatusLabel1.Text = "";
+                    break;
+                case "回答納期":
+                    parentform.toolStripStatusLabel1.Text = "■ダブルクリックするか、[space]キーを押してカレンダーを開くことができます。";
+                    break;
+                case "買掛区分":
+                    parentform.toolStripStatusLabel1.Text = "■買掛区分を選択します。　■確定後入力するには入力欄をダブルクリックしてください。";
+                    break;
+                default:
+                    parentform.toolStripStatusLabel1.Text = "各種項目の説明";
+                    break;
+            }
+            //break;
 
             //    default:
             //        break;
             //}
-
         }
 
         private void gcMultiRow1_RowsAdded(object sender, RowsAddedEventArgs e)
@@ -713,7 +692,6 @@ namespace MultiRowDesigner
 
             if (e.KeyCode == Keys.Return)
             {
-
                 if (gcMultiRow1.CurrentCell.RowIndex == null || gcMultiRow1.CurrentCell.CellIndex == null) return;
 
                 if (gcMultiRow1.CurrentCell.Name == "部品コード")
@@ -752,59 +730,62 @@ namespace MultiRowDesigner
 
         private void gcMultiRow1_CellValidating(object sender, CellValidatingEventArgs e)
         {
-            //BeforeUpdateの処理
-            //   gcMultiRow1.EndEdit();
+            //更新前の値の取得
+            object oldValue = e.FormattedValue;
 
-            //switch (e.CellName)
-            //{
-            //    case "メーカー名":
-            //        if (IsError(gcMultiRow1.CurrentCell) == true) e.Cancel = true;
+            // BeforeUpdateの処理
+            gcMultiRow1.EndEdit();
 
-            //        // 入庫数量が発注数量を超えた場合、確認する。
-            //        if (string.IsNullOrEmpty(gcMultiRow1.Rows[gcMultiRow1.CurrentCell.RowIndex].Cells["発注残数量"].Value?.ToString()) || string.IsNullOrEmpty(gcMultiRow1.Rows[gcMultiRow1.CurrentCell.RowIndex].Cells["入庫数量"].Value?.ToString())) return;
-            //        if (Math.Abs(Convert.ToDecimal(gcMultiRow1.Rows[gcMultiRow1.CurrentCell.RowIndex].Cells["発注残数量"].Value)) < Math.Abs(Convert.ToDecimal(gcMultiRow1.Rows[gcMultiRow1.CurrentCell.RowIndex].Cells["入庫数量"].Value)) - Math.Abs(varPre入庫数量))
-            //        {
-            //            DialogResult result = MessageBox.Show("入庫数量が発注残数量を超えています。\nよろしいですか？", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            switch (e.CellName)
+            {
+                case "メーカー名":
+                    if (IsError(gcMultiRow1.CurrentCell,false) == true) e.Cancel = true;
 
-            //            if (result == DialogResult.No)
-            //            {
-            //                e.Cancel = true;
-            //                return;
-            //            }
-            //        }
+                    // 入庫数量が発注数量を超えた場合、確認する。
+                    if (string.IsNullOrEmpty(gcMultiRow1.Rows[gcMultiRow1.CurrentCell.RowIndex].Cells["発注残数量"].Value?.ToString()) || string.IsNullOrEmpty(gcMultiRow1.Rows[gcMultiRow1.CurrentCell.RowIndex].Cells["入庫数量"].Value?.ToString())) return;
+                    if (Math.Abs(Convert.ToDecimal(gcMultiRow1.Rows[gcMultiRow1.CurrentCell.RowIndex].Cells["発注残数量"].Value)) < Math.Abs(Convert.ToDecimal(gcMultiRow1.Rows[gcMultiRow1.CurrentCell.RowIndex].Cells["入庫数量"].Value)) - Math.Abs(varPre入庫数量))
+                    {
+                        DialogResult result = MessageBox.Show("入庫数量が発注残数量を超えています。\nよろしいですか？", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-            //        // 発注残数量を更新する
-            //        gcMultiRow1.Rows[gcMultiRow1.CurrentCell.RowIndex].Cells["発注残数量"].Value = Convert.ToDecimal(gcMultiRow1.Rows[gcMultiRow1.CurrentCell.RowIndex].Cells["発注残数量"].Value) - (Convert.ToDecimal(gcMultiRow1.Rows[gcMultiRow1.CurrentCell.RowIndex].Cells["入庫数量"].Value) - Math.Abs(varPre入庫数量));
+                        if (result == DialogResult.No)
+                        {
+                            e.Cancel = true;
+                            return;
+                        }
+                    }
 
-            //        if (Convert.ToDecimal(gcMultiRow1.Rows[gcMultiRow1.CurrentCell.RowIndex].Cells["発注残数量"].Value.ToString()) == 0)
-            //        {
-            //            gcMultiRow1.Rows[gcMultiRow1.CurrentCell.RowIndex].Cells["全入庫"].Value = "■";
-            //        }
-            //        else
-            //        {
-            //            gcMultiRow1.Rows[gcMultiRow1.CurrentCell.RowIndex].Cells["全入庫"].Value = "";
-            //        }
+                    // 発注残数量を更新する
+                    gcMultiRow1.Rows[gcMultiRow1.CurrentCell.RowIndex].Cells["発注残数量"].Value = Convert.ToDecimal(gcMultiRow1.Rows[gcMultiRow1.CurrentCell.RowIndex].Cells["発注残数量"].Value) - (Convert.ToDecimal(gcMultiRow1.Rows[gcMultiRow1.CurrentCell.RowIndex].Cells["入庫数量"].Value) - Math.Abs(varPre入庫数量));
 
-            //        if (Convert.ToDecimal(gcMultiRow1.Rows[gcMultiRow1.CurrentCell.RowIndex].Cells["発注残数量"].Value.ToString()) < 0)
-            //        {
-            //            gcMultiRow1.Rows[gcMultiRow1.CurrentCell.RowIndex].Cells["発注残数量"].Style.ForeColor = Color.Red;
-            //        }
-            //        else
-            //        {
-            //            gcMultiRow1.Rows[gcMultiRow1.CurrentCell.RowIndex].Cells["発注残数量"].Style.ForeColor = Color.Black;
-            //        }
+                    if (Convert.ToDecimal(gcMultiRow1.Rows[gcMultiRow1.CurrentCell.RowIndex].Cells["発注残数量"].Value.ToString()) == 0)
+                    {
+                        gcMultiRow1.Rows[gcMultiRow1.CurrentCell.RowIndex].Cells["全入庫"].Value = "■";
+                    }
+                    else
+                    {
+                        gcMultiRow1.Rows[gcMultiRow1.CurrentCell.RowIndex].Cells["全入庫"].Value = "";
+                    }
 
-            //        break;
+                    if (Convert.ToDecimal(gcMultiRow1.Rows[gcMultiRow1.CurrentCell.RowIndex].Cells["発注残数量"].Value.ToString()) < 0)
+                    {
+                        gcMultiRow1.Rows[gcMultiRow1.CurrentCell.RowIndex].Cells["発注残数量"].Style.ForeColor = Color.Red;
+                    }
+                    else
+                    {
+                        gcMultiRow1.Rows[gcMultiRow1.CurrentCell.RowIndex].Cells["発注残数量"].Style.ForeColor = Color.Black;
+                    }
 
-            //    case "買掛区分":
-            //        if (IsError(gcMultiRow1.CurrentCell) == true) e.Cancel = true;
-            //        break;
+                    break;
 
-            //    case "入庫単価":
-            //        if (IsError(gcMultiRow1.CurrentCell) == true) e.Cancel = true;
-            //        break;
+                case "買掛区分":
+                    if (IsError(gcMultiRow1.CurrentCell) == true) e.Cancel = true;
+                    break;
 
-            //}
+                case "入庫単価":
+                    if (IsError(gcMultiRow1.CurrentCell) == true) e.Cancel = true;
+                    break;
+
+            }
 
         }
 
@@ -824,12 +805,12 @@ namespace MultiRowDesigner
         {
             gcMultiRow1.ShortcutKeyManager.Unregister(Keys.Enter);
             gcMultiRow1.ShortcutKeyManager.Register(SelectionActions.MoveToNextCell, Keys.Enter);
-
         }
 
 
         private void gcMultiRow1_CellContentButtonClick(object sender, CellEventArgs e)
         {
+            F_発注? Parentform = Application.OpenForms.OfType<F_発注>().FirstOrDefault();
             switch (e.CellName)
             {
                 case "メーカー名ボタン":
@@ -862,7 +843,18 @@ namespace MultiRowDesigner
                     int idx6 = gcMultiRow1.Rows[0].Cells["部品コード"].CellIndex;
                     gcMultiRow1.CurrentCellPosition = new CellPosition(0, idx6);
                     break;
+                case "明細削除ボタン":
+                    DialogResult intRes;
+                    object intNumber = gcMultiRow1.CurrentRow.Cells["行番号"].Value;
+                    string message = $"明細行 (行番号：{intNumber}) を削除しますか？";
+                    intRes = MessageBox.Show(message, "発注書コマンド", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
 
+                    if (intRes == DialogResult.Yes)
+                    {
+                        Parentform.ChangedData(true);
+                        NumberDetails("行番号");
+                    }
+                    break;
             }
         }
 
