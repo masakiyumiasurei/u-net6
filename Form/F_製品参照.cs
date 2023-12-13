@@ -1586,7 +1586,7 @@ namespace u_net
 
         private void 識別コード_Enter(object sender, EventArgs e)
         {
-            toolStripStatusLabel1.Text = "■指導書No.の一部を入力します。　■半角20文字まで入力できます。";
+            toolStripStatusLabel1.Text = "■指導書No.の一部を入力します。　■半角７文字まで入力できます。";
         }
 
         private void 識別コード_Leave(object sender, EventArgs e)
@@ -1619,26 +1619,6 @@ namespace u_net
         }
 
         private void 製品版数_Leave(object sender, EventArgs e)
-        {
-            toolStripStatusLabel1.Text = "各種項目の説明";
-        }
-        private void ChemSherpaVersion_Validating(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            if (IsError(sender as Control) == true) e.Cancel = true;
-
-        }
-
-        private void ChemSherpaVersion_TextChanged(object sender, EventArgs e)
-        {
-            ChangedData(true);
-        }
-
-        private void ChemSherpaVersion_Enter(object sender, EventArgs e)
-        {
-            toolStripStatusLabel1.Text = "■入手したchemSHERPAのバージョンを入力します。　■10文字まで入力可。";
-        }
-
-        private void ChemSherpaVersion_Leave(object sender, EventArgs e)
         {
             toolStripStatusLabel1.Text = "各種項目の説明";
         }

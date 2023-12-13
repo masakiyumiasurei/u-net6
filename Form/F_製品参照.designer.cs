@@ -117,6 +117,7 @@ namespace u_net
             this.識別コード = new System.Windows.Forms.TextBox();
             this.廃止 = new System.Windows.Forms.CheckBox();
             this.廃止_ラベル = new System.Windows.Forms.Label();
+            this.製品明細参照1 = new MultiRowDesigner.製品明細参照();
             this.panel1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -1041,10 +1042,19 @@ namespace u_net
             this.廃止_ラベル.TabIndex = 16;
             this.廃止_ラベル.Text = "廃止(&A)";
             // 
+            // 製品明細参照1
+            // 
+            this.製品明細参照1.Location = new System.Drawing.Point(10, 270);
+            this.製品明細参照1.Margin = new System.Windows.Forms.Padding(4);
+            this.製品明細参照1.Name = "製品明細参照1";
+            this.製品明細参照1.Size = new System.Drawing.Size(946, 299);
+            this.製品明細参照1.TabIndex = 10198;
+            // 
             // F_製品参照
             // 
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(970, 614);
+            this.Controls.Add(this.製品明細参照1);
             this.Controls.Add(this.廃止);
             this.Controls.Add(this.廃止_ラベル);
             this.Controls.Add(this.label13);
@@ -1214,6 +1224,7 @@ namespace u_net
         private TextBox 識別コード;
         private CheckBox 廃止;
         private Label 廃止_ラベル;
+        private MultiRowDesigner.製品明細参照 製品明細参照1;
     }
 }
 
