@@ -49,6 +49,7 @@
             gcMultiRow1.CellValidating += gcMultiRow1_CellValidating;
             gcMultiRow1.CellEnter += gcMultiRow1_CellEnter;
             gcMultiRow1.EditingControlShowing += gcMultiRow1_EditingControlShowing;
+            gcMultiRow1.CellContentButtonClick += gcMultiRow1_CellContentButtonClick;
             // 
             // 受注明細テンプレート1
             // 

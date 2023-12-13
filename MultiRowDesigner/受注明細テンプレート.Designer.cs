@@ -619,7 +619,6 @@
             // 
             // 明細削除ボタン
             // 
-            this.明細削除ボタン.ButtonCommand = GrapeCity.Win.MultiRow.RowActionButtonCommands.Remove;
             this.明細削除ボタン.FlatAppearance.BorderColor = System.Drawing.Color.DarkGray;
             this.明細削除ボタン.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.明細削除ボタン.Location = new System.Drawing.Point(0, 0);
@@ -820,6 +819,7 @@
             this.受注合計.Calculation = mathStatistics1;
             this.受注合計.Location = new System.Drawing.Point(380, 0);
             this.受注合計.Name = "受注合計";
+            this.受注合計.Size = new System.Drawing.Size(100, 21);
             cellStyle47.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
             cellStyle47.Format = "N0";
             cellStyle47.ImeMode = System.Windows.Forms.ImeMode.Off;
@@ -842,9 +842,8 @@
             // 
             // labelCell2
             // 
-            this.labelCell2.Location = new System.Drawing.Point(460, 0);
+            this.labelCell2.Location = new System.Drawing.Point(480, 0);
             this.labelCell2.Name = "labelCell2";
-            this.labelCell2.Size = new System.Drawing.Size(100, 21);
             cellStyle49.Border = border26;
             cellStyle49.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
             cellStyle49.ImeMode = System.Windows.Forms.ImeMode.Off;
@@ -859,6 +858,7 @@
             this.税込合計金額.Calculation = expression4;
             this.税込合計金額.Location = new System.Drawing.Point(740, 0);
             this.税込合計金額.Name = "税込合計金額";
+            this.税込合計金額.Size = new System.Drawing.Size(100, 21);
             cellStyle50.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
             cellStyle50.Format = "N0";
             cellStyle50.ImeMode = System.Windows.Forms.ImeMode.Off;

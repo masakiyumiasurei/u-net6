@@ -367,5 +367,25 @@ namespace MultiRowDesigner
             }
         }
 
+        private void gcMultiRow1_CellContentButtonClick(object sender, CellEventArgs e)
+        {
+            GcMultiRow gcMultiRow = sender as GcMultiRow;
+
+            switch (e.CellName)
+            {
+                case "明細削除ボタン":
+                    // 新規行の場合、何もしない
+                    if (gcMultiRow.Rows[e.RowIndex].IsNewRow == true) return;
+
+                    // 削除確認
+                    if (MessageBox.Show("明細行(" + (e.RowIndex +1) + ")を削除しますか？", "承認コマンド", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        gcMultiRow.Rows.RemoveAt(e.RowIndex);
+                    }
+
+                    break;
+            }
+            
+        }
     }
 }

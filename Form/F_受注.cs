@@ -607,6 +607,16 @@ namespace u_net
                         SetTotalAmount(string.IsNullOrEmpty(this.TaxRate.Text) ? 0m : decimal.Parse(this.TaxRate.Text));
 
                         break;
+                    case "請求予定日":
+                        if (string.IsNullOrEmpty(this.請求予定日.Text))
+                        {
+                            this.TaxRate.Text = FunctionClass.GetTaxRate(cn, DateTime.Now).ToString("0.##");
+                        }
+                        else
+                        {
+                            this.TaxRate.Text = FunctionClass.GetTaxRate(cn, DateTime.Parse(this.請求予定日.Text)).ToString("0.##");
+                        }
+                        break;
                 }
             }
             catch (Exception ex)
@@ -1458,7 +1468,7 @@ namespace u_net
                 GetNextControl(コマンド全在庫, false).Focus();
             }
 
-            Form form = new F_シリーズ在庫参照();
+            F_シリーズ在庫参照 form = new F_シリーズ在庫参照();
             form.Show();
         }
 
@@ -1469,8 +1479,9 @@ namespace u_net
                 GetNextControl(コマンド在庫, false).Focus();
             }
 
-            //Form form = new F_シリーズ危険在庫警告();
-            //form.Show();
+            F_シリーズ危険在庫警告 form = new F_シリーズ危険在庫警告();
+            form.args = this.CurrentCode + ',' + this.CurrentEdition;
+            form.Show();
         }
 
         private void コマンド承認_Click(object sender, EventArgs e)
@@ -1969,6 +1980,65 @@ namespace u_net
             受注版数.DroppedDown = true;
         }
 
+        private void 受注日_Validating(object sender, CancelEventArgs e)
+        {
+            if (IsError(sender as Control) == true) e.Cancel = true;
+        }
+
+        private void 受注日_Validated(object sender, EventArgs e)
+        {
+            UpdatedControl((Control)sender);
+        }
+
+        private void 受注日_TextChanged(object sender, EventArgs e)
+        {
+            ChangedData(true);
+        }
+
+        private void 受注日_DoubleClick(object sender, EventArgs e)
+        {
+            // 日付選択フォームを作成し表示
+            F_カレンダー calendar = new F_カレンダー();
+            if (calendar.ShowDialog() == DialogResult.OK)
+            {
+                // 日付選択フォームから選択した日付を取得
+                string selectedDate = calendar.SelectedDate;
+
+                // 日付コントロールに選択した日付を設定
+                受注日.Text = selectedDate;
+            }
+        }
+
+        private void 受注日選択ボタン_Click(object sender, EventArgs e)
+        {
+            // 日付選択フォームを作成し表示
+            F_カレンダー calendar = new F_カレンダー();
+            if (calendar.ShowDialog() == DialogResult.OK)
+            {
+                // 日付選択フォームから選択した日付を取得
+                string selectedDate = calendar.SelectedDate;
+
+                // 日付コントロールに選択した日付を設定
+                受注日.Text = selectedDate;
+            }
+        }
+
+        private void 注文番号_Validating(object sender, CancelEventArgs e)
+        {
+            if (IsError(sender as Control) == true) e.Cancel = true;
+        }
+
+        private void 注文番号_TextChanged(object sender, EventArgs e)
+        {
+            //FunctionClass.LimitText(((ComboBox)sender), 30);
+            //ChangedData(true);
+        }
+
+        private void 注文番号_Validated(object sender, EventArgs e)
+        {
+            UpdatedControl((Control)sender);
+        }
+
         private void 顧客コード検索ボタン_Click(object sender, EventArgs e)
         {
             F_検索 SearchForm = new F_検索();
@@ -2042,19 +2112,6 @@ namespace u_net
             this.toolStripStatusLabel2.Text = "■全角１００文字まで入力できます。";
         }
 
-        private void 受注日選択ボタン_Click(object sender, EventArgs e)
-        {
-            // 日付選択フォームを作成し表示
-            F_カレンダー calendar = new F_カレンダー();
-            if (calendar.ShowDialog() == DialogResult.OK)
-            {
-                // 日付選択フォームから選択した日付を取得
-                string selectedDate = calendar.SelectedDate;
-
-                // 日付コントロールに選択した日付を設定
-                受注日.Text = selectedDate;
-            }
-        }
 
         private void 受注納期選択ボタン_Click(object sender, EventArgs e)
         {
@@ -2087,12 +2144,14 @@ namespace u_net
         private void 戻るボタン_Click(object sender, EventArgs e)
         {
             // Accessの「GoToPage 1」の代わり
+            this.Page1.Show();
             this.Page2.Hide();
         }
 
         private void 発送先登録ボタン_Click(object sender, EventArgs e)
         {
             // Accessの「GoToPage 2」の代わり
+            this.Page1.Hide();
             this.Page2.Show();
         }
 
@@ -2271,17 +2330,6 @@ namespace u_net
             this.toolStripStatusLabel2.Text = "■顧客の担当者名を入力。　■全角46文字まで入力できます。　■敬称は不要です。";
         }
 
-
-
-        private void 受注日_Validating(object sender, CancelEventArgs e)
-        {
-            if (IsError(sender as Control) == true) e.Cancel = true;
-        }
-
-        private void 受注日_TextChanged(object sender, EventArgs e)
-        {
-            ChangedData(true);
-        }
 
         private bool IsError(Control controlObject)
         {
