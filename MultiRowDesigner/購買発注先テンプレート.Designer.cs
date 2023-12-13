@@ -31,8 +31,18 @@
         {
             GrapeCity.Win.MultiRow.CellStyle cellStyle11 = new GrapeCity.Win.MultiRow.CellStyle();
             GrapeCity.Win.MultiRow.CellStyle cellStyle12 = new GrapeCity.Win.MultiRow.CellStyle();
-            GrapeCity.Win.MultiRow.Border border9 = new GrapeCity.Win.MultiRow.Border();
             GrapeCity.Win.MultiRow.CellStyle cellStyle13 = new GrapeCity.Win.MultiRow.CellStyle();
+            GrapeCity.Win.MultiRow.CellStyle cellStyle14 = new GrapeCity.Win.MultiRow.CellStyle();
+            GrapeCity.Win.MultiRow.CellStyle cellStyle15 = new GrapeCity.Win.MultiRow.CellStyle();
+            GrapeCity.Win.MultiRow.CellStyle cellStyle16 = new GrapeCity.Win.MultiRow.CellStyle();
+            GrapeCity.Win.MultiRow.CellStyle cellStyle17 = new GrapeCity.Win.MultiRow.CellStyle();
+            GrapeCity.Win.MultiRow.CellStyle cellStyle18 = new GrapeCity.Win.MultiRow.CellStyle();
+            GrapeCity.Win.MultiRow.CellStyle cellStyle19 = new GrapeCity.Win.MultiRow.CellStyle();
+            GrapeCity.Win.MultiRow.CellStyle cellStyle20 = new GrapeCity.Win.MultiRow.CellStyle();
+            GrapeCity.Win.MultiRow.CellStyle cellStyle21 = new GrapeCity.Win.MultiRow.CellStyle();
+            GrapeCity.Win.MultiRow.CellStyle cellStyle22 = new GrapeCity.Win.MultiRow.CellStyle();
+            GrapeCity.Win.MultiRow.Border border9 = new GrapeCity.Win.MultiRow.Border();
+            GrapeCity.Win.MultiRow.CellStyle cellStyle23 = new GrapeCity.Win.MultiRow.CellStyle();
             GrapeCity.Win.MultiRow.CellStyle cellStyle1 = new GrapeCity.Win.MultiRow.CellStyle();
             GrapeCity.Win.MultiRow.Border border1 = new GrapeCity.Win.MultiRow.Border();
             GrapeCity.Win.MultiRow.CellStyle cellStyle2 = new GrapeCity.Win.MultiRow.CellStyle();
@@ -52,18 +62,18 @@
             GrapeCity.Win.MultiRow.CellStyle cellStyle9 = new GrapeCity.Win.MultiRow.CellStyle();
             GrapeCity.Win.MultiRow.Border border8 = new GrapeCity.Win.MultiRow.Border();
             GrapeCity.Win.MultiRow.CellStyle cellStyle10 = new GrapeCity.Win.MultiRow.CellStyle();
-            GrapeCity.Win.MultiRow.CellStyle cellStyle14 = new GrapeCity.Win.MultiRow.CellStyle();
-            GrapeCity.Win.MultiRow.CellStyle cellStyle15 = new GrapeCity.Win.MultiRow.CellStyle();
-            GrapeCity.Win.MultiRow.CellStyle cellStyle16 = new GrapeCity.Win.MultiRow.CellStyle();
-            GrapeCity.Win.MultiRow.CellStyle cellStyle17 = new GrapeCity.Win.MultiRow.CellStyle();
-            GrapeCity.Win.MultiRow.CellStyle cellStyle18 = new GrapeCity.Win.MultiRow.CellStyle();
-            GrapeCity.Win.MultiRow.CellStyle cellStyle19 = new GrapeCity.Win.MultiRow.CellStyle();
-            GrapeCity.Win.MultiRow.CellStyle cellStyle20 = new GrapeCity.Win.MultiRow.CellStyle();
-            GrapeCity.Win.MultiRow.CellStyle cellStyle21 = new GrapeCity.Win.MultiRow.CellStyle();
-            GrapeCity.Win.MultiRow.CellStyle cellStyle22 = new GrapeCity.Win.MultiRow.CellStyle();
-            GrapeCity.Win.MultiRow.CellStyle cellStyle23 = new GrapeCity.Win.MultiRow.CellStyle();
             this.columnHeaderSection1 = new GrapeCity.Win.MultiRow.ColumnHeaderSection();
+            this.コマンドボタン = new GrapeCity.Win.MultiRow.ButtonCell();
+            this.置換不可指定ボタン = new GrapeCity.Win.MultiRow.ButtonCell();
             this.buttonCell1 = new GrapeCity.Win.MultiRow.ButtonCell();
+            this.発注コードボタン = new GrapeCity.Win.MultiRow.ButtonCell();
+            this.発注日ボタン = new GrapeCity.Win.MultiRow.ButtonCell();
+            this.仕入先名ボタン = new GrapeCity.Win.MultiRow.ButtonCell();
+            this.電話番号ボタン = new GrapeCity.Win.MultiRow.ButtonCell();
+            this.ファックス番号ボタン = new GrapeCity.Win.MultiRow.ButtonCell();
+            this.担当者名ボタン = new GrapeCity.Win.MultiRow.ButtonCell();
+            this.発注者名ボタン = new GrapeCity.Win.MultiRow.ButtonCell();
+            this.テストボタン = new GrapeCity.Win.MultiRow.ButtonCell();
             this.発注者名設定_ラベル = new GrapeCity.Win.MultiRow.TextBoxCell();
             this.発注者コード統一 = new GrapeCity.Win.MultiRow.ComboBoxCell();
             this.明細番号 = new GrapeCity.Win.MultiRow.RowHeaderCell();
@@ -76,16 +86,6 @@
             this.ファックス番号 = new GrapeCity.Win.MultiRow.TextBoxCell();
             this.担当者名 = new GrapeCity.Win.MultiRow.TextBoxCell();
             this.発注者コード = new GrapeCity.Win.MultiRow.ComboBoxCell();
-            this.明細番号ボタン = new GrapeCity.Win.MultiRow.HeaderCell();
-            this.チェックボタン = new GrapeCity.Win.MultiRow.HeaderCell();
-            this.発注コードボタン = new GrapeCity.Win.MultiRow.HeaderCell();
-            this.発注日ボタン = new GrapeCity.Win.MultiRow.HeaderCell();
-            this.仕入先名ボタン = new GrapeCity.Win.MultiRow.HeaderCell();
-            this.電話番号ボタン = new GrapeCity.Win.MultiRow.HeaderCell();
-            this.テストコマンド = new GrapeCity.Win.MultiRow.HeaderCell();
-            this.ファックス番号ボタン = new GrapeCity.Win.MultiRow.HeaderCell();
-            this.担当者名ボタン = new GrapeCity.Win.MultiRow.HeaderCell();
-            this.発注者名ボタン = new GrapeCity.Win.MultiRow.HeaderCell();
             // 
             // Row
             // 
@@ -104,46 +104,197 @@
             // 
             // columnHeaderSection1
             // 
+            this.columnHeaderSection1.Cells.Add(this.コマンドボタン);
+            this.columnHeaderSection1.Cells.Add(this.置換不可指定ボタン);
             this.columnHeaderSection1.Cells.Add(this.buttonCell1);
-            this.columnHeaderSection1.Cells.Add(this.発注者名設定_ラベル);
-            this.columnHeaderSection1.Cells.Add(this.発注者コード統一);
-            this.columnHeaderSection1.Cells.Add(this.明細番号ボタン);
-            this.columnHeaderSection1.Cells.Add(this.チェックボタン);
             this.columnHeaderSection1.Cells.Add(this.発注コードボタン);
             this.columnHeaderSection1.Cells.Add(this.発注日ボタン);
             this.columnHeaderSection1.Cells.Add(this.仕入先名ボタン);
             this.columnHeaderSection1.Cells.Add(this.電話番号ボタン);
-            this.columnHeaderSection1.Cells.Add(this.テストコマンド);
             this.columnHeaderSection1.Cells.Add(this.ファックス番号ボタン);
             this.columnHeaderSection1.Cells.Add(this.担当者名ボタン);
             this.columnHeaderSection1.Cells.Add(this.発注者名ボタン);
+            this.columnHeaderSection1.Cells.Add(this.テストボタン);
+            this.columnHeaderSection1.Cells.Add(this.発注者名設定_ラベル);
+            this.columnHeaderSection1.Cells.Add(this.発注者コード統一);
             this.columnHeaderSection1.Height = 48;
             this.columnHeaderSection1.Name = "columnHeaderSection1";
             this.columnHeaderSection1.Width = 858;
+            // 
+            // コマンドボタン
+            // 
+            this.コマンドボタン.Location = new System.Drawing.Point(0, 26);
+            this.コマンドボタン.Name = "コマンドボタン";
+            this.コマンドボタン.Size = new System.Drawing.Size(34, 22);
+            cellStyle11.BackColor = System.Drawing.SystemColors.Control;
+            cellStyle11.Font = new System.Drawing.Font("BIZ UDPゴシック", 8F);
+            cellStyle11.ImeMode = System.Windows.Forms.ImeMode.Off;
+            cellStyle11.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            cellStyle11.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
+            this.コマンドボタン.Style = cellStyle11;
+            this.コマンドボタン.TabIndex = 0;
+            this.コマンドボタン.TabStop = false;
+            this.コマンドボタン.Value = "No.";
+            // 
+            // 置換不可指定ボタン
+            // 
+            this.置換不可指定ボタン.Location = new System.Drawing.Point(34, 26);
+            this.置換不可指定ボタン.Name = "置換不可指定ボタン";
+            this.置換不可指定ボタン.Size = new System.Drawing.Size(22, 22);
+            cellStyle12.BackColor = System.Drawing.SystemColors.Control;
+            cellStyle12.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
+            cellStyle12.ImeMode = System.Windows.Forms.ImeMode.Off;
+            cellStyle12.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            cellStyle12.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
+            this.置換不可指定ボタン.Style = cellStyle12;
+            this.置換不可指定ボタン.TabIndex = 1;
+            this.置換不可指定ボタン.TabStop = false;
+            this.置換不可指定ボタン.Value = "✓";
             // 
             // buttonCell1
             // 
             this.buttonCell1.Location = new System.Drawing.Point(56, 26);
             this.buttonCell1.Name = "buttonCell1";
             this.buttonCell1.Size = new System.Drawing.Size(22, 22);
-            cellStyle11.BackColor = System.Drawing.SystemColors.Control;
-            cellStyle11.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
-            cellStyle11.Image = ((System.Drawing.Image)(resources.GetObject("cellStyle11.Image")));
-            cellStyle11.ImeMode = System.Windows.Forms.ImeMode.Off;
-            cellStyle11.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            cellStyle11.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
-            this.buttonCell1.Style = cellStyle11;
+            cellStyle13.BackColor = System.Drawing.SystemColors.Control;
+            cellStyle13.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
+            cellStyle13.Image = ((System.Drawing.Image)(resources.GetObject("cellStyle13.Image")));
+            cellStyle13.ImeMode = System.Windows.Forms.ImeMode.Off;
+            cellStyle13.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            cellStyle13.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
+            this.buttonCell1.Style = cellStyle13;
             this.buttonCell1.TabIndex = 2;
             this.buttonCell1.TabStop = false;
+            // 
+            // 発注コードボタン
+            // 
+            this.発注コードボタン.Location = new System.Drawing.Point(78, 26);
+            this.発注コードボタン.Name = "発注コードボタン";
+            this.発注コードボタン.Size = new System.Drawing.Size(82, 22);
+            cellStyle14.BackColor = System.Drawing.SystemColors.Control;
+            cellStyle14.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
+            cellStyle14.ImeMode = System.Windows.Forms.ImeMode.Off;
+            cellStyle14.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            cellStyle14.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
+            this.発注コードボタン.Style = cellStyle14;
+            this.発注コードボタン.TabIndex = 3;
+            this.発注コードボタン.TabStop = false;
+            this.発注コードボタン.Value = "発注コード";
+            // 
+            // 発注日ボタン
+            // 
+            this.発注日ボタン.Location = new System.Drawing.Point(160, 26);
+            this.発注日ボタン.Name = "発注日ボタン";
+            this.発注日ボタン.Size = new System.Drawing.Size(82, 22);
+            cellStyle15.BackColor = System.Drawing.SystemColors.Control;
+            cellStyle15.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
+            cellStyle15.ImeMode = System.Windows.Forms.ImeMode.Off;
+            cellStyle15.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            cellStyle15.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
+            this.発注日ボタン.Style = cellStyle15;
+            this.発注日ボタン.TabIndex = 4;
+            this.発注日ボタン.TabStop = false;
+            this.発注日ボタン.Value = "発注日";
+            // 
+            // 仕入先名ボタン
+            // 
+            this.仕入先名ボタン.Location = new System.Drawing.Point(242, 26);
+            this.仕入先名ボタン.Name = "仕入先名ボタン";
+            this.仕入先名ボタン.Size = new System.Drawing.Size(228, 22);
+            cellStyle16.BackColor = System.Drawing.SystemColors.Control;
+            cellStyle16.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
+            cellStyle16.ImeMode = System.Windows.Forms.ImeMode.Off;
+            cellStyle16.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            cellStyle16.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
+            this.仕入先名ボタン.Style = cellStyle16;
+            this.仕入先名ボタン.TabIndex = 5;
+            this.仕入先名ボタン.TabStop = false;
+            this.仕入先名ボタン.Value = "仕入先名";
+            // 
+            // 電話番号ボタン
+            // 
+            this.電話番号ボタン.Location = new System.Drawing.Point(470, 26);
+            this.電話番号ボタン.Name = "電話番号ボタン";
+            this.電話番号ボタン.Size = new System.Drawing.Size(92, 22);
+            cellStyle17.BackColor = System.Drawing.SystemColors.Control;
+            cellStyle17.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
+            cellStyle17.ImeMode = System.Windows.Forms.ImeMode.Off;
+            cellStyle17.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            cellStyle17.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
+            this.電話番号ボタン.Style = cellStyle17;
+            this.電話番号ボタン.TabIndex = 6;
+            this.電話番号ボタン.TabStop = false;
+            this.電話番号ボタン.Value = "電話番号";
+            // 
+            // ファックス番号ボタン
+            // 
+            this.ファックス番号ボタン.Location = new System.Drawing.Point(562, 26);
+            this.ファックス番号ボタン.Name = "ファックス番号ボタン";
+            this.ファックス番号ボタン.Size = new System.Drawing.Size(92, 22);
+            cellStyle18.BackColor = System.Drawing.SystemColors.Control;
+            cellStyle18.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
+            cellStyle18.ImeMode = System.Windows.Forms.ImeMode.Off;
+            cellStyle18.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            cellStyle18.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
+            this.ファックス番号ボタン.Style = cellStyle18;
+            this.ファックス番号ボタン.TabIndex = 7;
+            this.ファックス番号ボタン.TabStop = false;
+            this.ファックス番号ボタン.Value = "ファックス番号";
+            // 
+            // 担当者名ボタン
+            // 
+            this.担当者名ボタン.Location = new System.Drawing.Point(654, 26);
+            this.担当者名ボタン.Name = "担当者名ボタン";
+            this.担当者名ボタン.Size = new System.Drawing.Size(102, 22);
+            cellStyle19.BackColor = System.Drawing.SystemColors.Control;
+            cellStyle19.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
+            cellStyle19.ImeMode = System.Windows.Forms.ImeMode.Off;
+            cellStyle19.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            cellStyle19.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
+            this.担当者名ボタン.Style = cellStyle19;
+            this.担当者名ボタン.TabIndex = 8;
+            this.担当者名ボタン.TabStop = false;
+            this.担当者名ボタン.Value = "担当者名";
+            // 
+            // 発注者名ボタン
+            // 
+            this.発注者名ボタン.Location = new System.Drawing.Point(756, 26);
+            this.発注者名ボタン.Name = "発注者名ボタン";
+            this.発注者名ボタン.Size = new System.Drawing.Size(102, 22);
+            cellStyle20.BackColor = System.Drawing.SystemColors.Control;
+            cellStyle20.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
+            cellStyle20.ImeMode = System.Windows.Forms.ImeMode.Off;
+            cellStyle20.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            cellStyle20.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
+            this.発注者名ボタン.Style = cellStyle20;
+            this.発注者名ボタン.TabIndex = 9;
+            this.発注者名ボタン.TabStop = false;
+            this.発注者名ボタン.Value = "発注者名";
+            // 
+            // テストボタン
+            // 
+            this.テストボタン.Location = new System.Drawing.Point(488, 2);
+            this.テストボタン.Name = "テストボタン";
+            this.テストボタン.Size = new System.Drawing.Size(68, 20);
+            cellStyle21.BackColor = System.Drawing.SystemColors.Control;
+            cellStyle21.Font = new System.Drawing.Font("BIZ UDPゴシック", 8F);
+            cellStyle21.ImeMode = System.Windows.Forms.ImeMode.Off;
+            cellStyle21.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            cellStyle21.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
+            this.テストボタン.Style = cellStyle21;
+            this.テストボタン.TabIndex = 10;
+            this.テストボタン.TabStop = false;
+            this.テストボタン.Value = "テスト";
+            this.テストボタン.Visible = false;
             // 
             // 発注者名設定_ラベル
             // 
             this.発注者名設定_ラベル.Location = new System.Drawing.Point(672, 2);
             this.発注者名設定_ラベル.Name = "発注者名設定_ラベル";
             this.発注者名設定_ラベル.Size = new System.Drawing.Size(84, 20);
-            cellStyle12.Border = border9;
-            cellStyle12.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
-            this.発注者名設定_ラベル.Style = cellStyle12;
+            cellStyle22.Border = border9;
+            cellStyle22.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
+            this.発注者名設定_ラベル.Style = cellStyle22;
             this.発注者名設定_ラベル.TabIndex = 11;
             this.発注者名設定_ラベル.Value = "発注者名設定";
             // 
@@ -154,10 +305,10 @@
             this.発注者コード統一.Location = new System.Drawing.Point(756, 2);
             this.発注者コード統一.Name = "発注者コード統一";
             this.発注者コード統一.Size = new System.Drawing.Size(102, 20);
-            cellStyle13.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
-            cellStyle13.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            cellStyle13.SelectionForeColor = System.Drawing.Color.Black;
-            this.発注者コード統一.Style = cellStyle13;
+            cellStyle23.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
+            cellStyle23.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            cellStyle23.SelectionForeColor = System.Drawing.Color.Black;
+            this.発注者コード統一.Style = cellStyle23;
             this.発注者コード統一.TabIndex = 2;
             this.発注者コード統一.ValueMember = "発注者名";
             // 
@@ -307,146 +458,6 @@
             this.発注者コード.TabStop = false;
             this.発注者コード.ValueMember = "発注者コード";
             // 
-            // 明細番号ボタン
-            // 
-            this.明細番号ボタン.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.明細番号ボタン.Location = new System.Drawing.Point(0, 26);
-            this.明細番号ボタン.Name = "明細番号ボタン";
-            this.明細番号ボタン.Size = new System.Drawing.Size(34, 22);
-            cellStyle14.BackColor = System.Drawing.Color.Transparent;
-            cellStyle14.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
-            cellStyle14.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
-            this.明細番号ボタン.Style = cellStyle14;
-            this.明細番号ボタン.TabIndex = 12;
-            this.明細番号ボタン.TabStop = false;
-            this.明細番号ボタン.Value = "No";
-            // 
-            // チェックボタン
-            // 
-            this.チェックボタン.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.チェックボタン.Location = new System.Drawing.Point(34, 26);
-            this.チェックボタン.Name = "チェックボタン";
-            this.チェックボタン.Size = new System.Drawing.Size(22, 22);
-            cellStyle15.BackColor = System.Drawing.Color.Transparent;
-            cellStyle15.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
-            cellStyle15.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
-            this.チェックボタン.Style = cellStyle15;
-            this.チェックボタン.TabIndex = 13;
-            this.チェックボタン.TabStop = false;
-            this.チェックボタン.Value = "✓";
-            // 
-            // 発注コードボタン
-            // 
-            this.発注コードボタン.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.発注コードボタン.Location = new System.Drawing.Point(78, 26);
-            this.発注コードボタン.Name = "発注コードボタン";
-            this.発注コードボタン.Size = new System.Drawing.Size(82, 22);
-            cellStyle16.BackColor = System.Drawing.Color.Transparent;
-            cellStyle16.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
-            cellStyle16.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
-            this.発注コードボタン.Style = cellStyle16;
-            this.発注コードボタン.TabIndex = 14;
-            this.発注コードボタン.TabStop = false;
-            this.発注コードボタン.Value = "発注コード";
-            // 
-            // 発注日ボタン
-            // 
-            this.発注日ボタン.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.発注日ボタン.Location = new System.Drawing.Point(160, 26);
-            this.発注日ボタン.Name = "発注日ボタン";
-            this.発注日ボタン.Size = new System.Drawing.Size(82, 22);
-            cellStyle17.BackColor = System.Drawing.Color.Transparent;
-            cellStyle17.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
-            cellStyle17.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
-            this.発注日ボタン.Style = cellStyle17;
-            this.発注日ボタン.TabIndex = 15;
-            this.発注日ボタン.TabStop = false;
-            this.発注日ボタン.Value = "発注日";
-            // 
-            // 仕入先名ボタン
-            // 
-            this.仕入先名ボタン.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.仕入先名ボタン.Location = new System.Drawing.Point(242, 26);
-            this.仕入先名ボタン.Name = "仕入先名ボタン";
-            this.仕入先名ボタン.Size = new System.Drawing.Size(228, 22);
-            cellStyle18.BackColor = System.Drawing.Color.Transparent;
-            cellStyle18.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
-            cellStyle18.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
-            this.仕入先名ボタン.Style = cellStyle18;
-            this.仕入先名ボタン.TabIndex = 16;
-            this.仕入先名ボタン.TabStop = false;
-            this.仕入先名ボタン.Value = "仕入先名";
-            // 
-            // 電話番号ボタン
-            // 
-            this.電話番号ボタン.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.電話番号ボタン.Location = new System.Drawing.Point(470, 26);
-            this.電話番号ボタン.Name = "電話番号ボタン";
-            this.電話番号ボタン.Size = new System.Drawing.Size(92, 22);
-            cellStyle19.BackColor = System.Drawing.Color.Transparent;
-            cellStyle19.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
-            cellStyle19.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
-            this.電話番号ボタン.Style = cellStyle19;
-            this.電話番号ボタン.TabIndex = 17;
-            this.電話番号ボタン.TabStop = false;
-            this.電話番号ボタン.Value = "電話番号";
-            // 
-            // テストコマンド
-            // 
-            this.テストコマンド.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.テストコマンド.Location = new System.Drawing.Point(488, 2);
-            this.テストコマンド.Name = "テストコマンド";
-            this.テストコマンド.Size = new System.Drawing.Size(68, 22);
-            cellStyle20.BackColor = System.Drawing.Color.Transparent;
-            cellStyle20.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
-            cellStyle20.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
-            this.テストコマンド.Style = cellStyle20;
-            this.テストコマンド.TabIndex = 18;
-            this.テストコマンド.TabStop = false;
-            this.テストコマンド.Value = "テスト";
-            // 
-            // ファックス番号ボタン
-            // 
-            this.ファックス番号ボタン.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.ファックス番号ボタン.Location = new System.Drawing.Point(562, 26);
-            this.ファックス番号ボタン.Name = "ファックス番号ボタン";
-            this.ファックス番号ボタン.Size = new System.Drawing.Size(92, 22);
-            cellStyle21.BackColor = System.Drawing.Color.Transparent;
-            cellStyle21.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
-            cellStyle21.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
-            this.ファックス番号ボタン.Style = cellStyle21;
-            this.ファックス番号ボタン.TabIndex = 19;
-            this.ファックス番号ボタン.TabStop = false;
-            this.ファックス番号ボタン.Value = "ファックス番号";
-            // 
-            // 担当者名ボタン
-            // 
-            this.担当者名ボタン.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.担当者名ボタン.Location = new System.Drawing.Point(654, 26);
-            this.担当者名ボタン.Name = "担当者名ボタン";
-            this.担当者名ボタン.Size = new System.Drawing.Size(102, 22);
-            cellStyle22.BackColor = System.Drawing.Color.Transparent;
-            cellStyle22.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
-            cellStyle22.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
-            this.担当者名ボタン.Style = cellStyle22;
-            this.担当者名ボタン.TabIndex = 20;
-            this.担当者名ボタン.TabStop = false;
-            this.担当者名ボタン.Value = "担当者名";
-            // 
-            // 発注者名ボタン
-            // 
-            this.発注者名ボタン.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.発注者名ボタン.Location = new System.Drawing.Point(756, 26);
-            this.発注者名ボタン.Name = "発注者名ボタン";
-            this.発注者名ボタン.Size = new System.Drawing.Size(102, 22);
-            cellStyle23.BackColor = System.Drawing.Color.Transparent;
-            cellStyle23.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
-            cellStyle23.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
-            this.発注者名ボタン.Style = cellStyle23;
-            this.発注者名ボタン.TabIndex = 21;
-            this.発注者名ボタン.TabStop = false;
-            this.発注者名ボタン.Value = "発注者名";
-            // 
             // 購買発注先テンプレート
             // 
             this.ColumnHeaders.AddRange(new GrapeCity.Win.MultiRow.ColumnHeaderSection[] {
@@ -460,7 +471,17 @@
         #endregion
 
         private GrapeCity.Win.MultiRow.ColumnHeaderSection columnHeaderSection1;
+        private GrapeCity.Win.MultiRow.ButtonCell コマンドボタン;
+        private GrapeCity.Win.MultiRow.ButtonCell 置換不可指定ボタン;
         private GrapeCity.Win.MultiRow.ButtonCell buttonCell1;
+        private GrapeCity.Win.MultiRow.ButtonCell 発注コードボタン;
+        private GrapeCity.Win.MultiRow.ButtonCell 発注日ボタン;
+        private GrapeCity.Win.MultiRow.ButtonCell 仕入先名ボタン;
+        private GrapeCity.Win.MultiRow.ButtonCell 電話番号ボタン;
+        private GrapeCity.Win.MultiRow.ButtonCell ファックス番号ボタン;
+        private GrapeCity.Win.MultiRow.ButtonCell 担当者名ボタン;
+        private GrapeCity.Win.MultiRow.ButtonCell 発注者名ボタン;
+        private GrapeCity.Win.MultiRow.ButtonCell テストボタン;
         private GrapeCity.Win.MultiRow.TextBoxCell 発注者名設定_ラベル;
         private GrapeCity.Win.MultiRow.ComboBoxCell 発注者コード統一;
         private GrapeCity.Win.MultiRow.RowHeaderCell 明細番号;
@@ -473,15 +494,5 @@
         private GrapeCity.Win.MultiRow.TextBoxCell ファックス番号;
         private GrapeCity.Win.MultiRow.TextBoxCell 担当者名;
         private GrapeCity.Win.MultiRow.ComboBoxCell 発注者コード;
-        private GrapeCity.Win.MultiRow.HeaderCell 明細番号ボタン;
-        private GrapeCity.Win.MultiRow.HeaderCell チェックボタン;
-        private GrapeCity.Win.MultiRow.HeaderCell 発注コードボタン;
-        private GrapeCity.Win.MultiRow.HeaderCell 発注日ボタン;
-        private GrapeCity.Win.MultiRow.HeaderCell 仕入先名ボタン;
-        private GrapeCity.Win.MultiRow.HeaderCell 電話番号ボタン;
-        private GrapeCity.Win.MultiRow.HeaderCell テストコマンド;
-        private GrapeCity.Win.MultiRow.HeaderCell ファックス番号ボタン;
-        private GrapeCity.Win.MultiRow.HeaderCell 担当者名ボタン;
-        private GrapeCity.Win.MultiRow.HeaderCell 発注者名ボタン;
     }
 }
