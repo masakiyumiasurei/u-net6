@@ -9,9 +9,9 @@ using GrapeCity.Win.MultiRow;
 
 namespace MultiRowDesigner
 {
-    public sealed partial class 購買形式一覧テンプレート : Template
+    public sealed partial class 購買型式一覧テンプレート : Template
     {
-        public 購買形式一覧テンプレート()
+        public 購買型式一覧テンプレート()
         {
             InitializeComponent();
         }

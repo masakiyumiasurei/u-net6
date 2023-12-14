@@ -1,6 +1,6 @@
 ﻿namespace MultiRowDesigner
 {
-    partial class 購買形式一覧
+    partial class 購買型式一覧
     {
         /// <summary> 
         /// 必要なデザイナー変数です。
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.gcMultiRow1 = new GrapeCity.Win.MultiRow.GcMultiRow();
-            this.購買形式一覧テンプレート1 = new MultiRowDesigner.購買形式一覧テンプレート();
+            this.購買形式一覧テンプレート1 = new MultiRowDesigner.購買型式一覧テンプレート();
             ((System.ComponentModel.ISupportInitialize)(this.gcMultiRow1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -71,6 +71,6 @@
         #endregion
 
         private GrapeCity.Win.MultiRow.GcMultiRow gcMultiRow1;
-        private 購買形式一覧テンプレート 購買形式一覧テンプレート1;
+        private 購買型式一覧テンプレート 購買形式一覧テンプレート1;
     }
 }
