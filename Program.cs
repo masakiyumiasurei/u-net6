@@ -21,7 +21,7 @@ namespace u_net
             // Application.Run(new F_シリーズ());
 
             //Application.Run(new F_売上一覧_担当者別());
-            Application.Run(new F_ユニット部品一括変更());
+            Application.Run(new F_部品集合());
             //Application.Run(new F_部品管理());
 
         }
