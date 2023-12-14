@@ -31,6 +31,10 @@
     <Compile Include="MultiRowDesigner\ユニット明細.Designer.cs" />
     <Compile Include="MultiRowDesigner\ユニット明細テンプレート.cs" />
     <Compile Include="MultiRowDesigner\ユニット明細テンプレート.Designer.cs" />
+    <Compile Include="MultiRowDesigner\ユニット明細参照.cs" />
+    <Compile Include="MultiRowDesigner\ユニット明細参照.Designer.cs" />
+    <Compile Include="MultiRowDesigner\ユニット明細参照テンプレート.cs" />
+    <Compile Include="MultiRowDesigner\ユニット明細参照テンプレート.Designer.cs" />
     <Compile Include="MultiRowDesigner\入庫明細.cs" />
     <Compile Include="MultiRowDesigner\入庫明細.Designer.cs" />
     <Compile Include="MultiRowDesigner\入庫明細テンプレート.cs" />
@@ -87,6 +91,7 @@
 
   <ItemGroup>
     <EmbeddedResource Include="MultiRowDesigner\ユニット明細.resx" />
+    <EmbeddedResource Include="MultiRowDesigner\ユニット明細参照テンプレート.resx" />
     <EmbeddedResource Include="MultiRowDesigner\入庫明細.resx" />
     <EmbeddedResource Include="MultiRowDesigner\入庫明細テンプレート.resx" />
     <EmbeddedResource Include="MultiRowDesigner\受注明細.resx" />
