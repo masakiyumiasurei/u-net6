@@ -151,7 +151,7 @@
             this.Row.Cells.Add(this.ユニット版数);
             this.Row.Cells.Add(this.削除対象);
             this.Row.Height = 246;
-            this.Row.Width = 1499;
+            this.Row.Width = 1459;
             // 
             // columnHeaderSection1
             // 
@@ -173,7 +173,7 @@
             this.columnHeaderSection1.Cells.Add(this.変更内容ボタン);
             this.columnHeaderSection1.Height = 24;
             this.columnHeaderSection1.Name = "columnHeaderSection1";
-            this.columnHeaderSection1.Width = 1499;
+            this.columnHeaderSection1.Width = 1459;
             // 
             // 構成番号ボタン
             // 
@@ -422,7 +422,7 @@
             this.columnFooterSection1.Cells.Add(this.textBoxCell3);
             this.columnFooterSection1.Height = 25;
             this.columnFooterSection1.Name = "columnFooterSection1";
-            this.columnFooterSection1.Width = 1499;
+            this.columnFooterSection1.Width = 1459;
             // 
             // textBoxCell1
             // 
@@ -675,7 +675,7 @@
             // 
             this.ユニットコード.DataField = "ユニットコード";
             this.ユニットコード.Enabled = false;
-            this.ユニットコード.Location = new System.Drawing.Point(1469, 0);
+            this.ユニットコード.Location = new System.Drawing.Point(1370, 0);
             this.ユニットコード.Name = "ユニットコード";
             this.ユニットコード.ReadOnly = true;
             this.ユニットコード.Size = new System.Drawing.Size(10, 20);
@@ -692,7 +692,7 @@
             // 
             this.ユニット版数.DataField = "ユニット版数";
             this.ユニット版数.Enabled = false;
-            this.ユニット版数.Location = new System.Drawing.Point(1479, 0);
+            this.ユニット版数.Location = new System.Drawing.Point(1380, 0);
             this.ユニット版数.Name = "ユニット版数";
             this.ユニット版数.ReadOnly = true;
             this.ユニット版数.Size = new System.Drawing.Size(10, 20);
@@ -709,7 +709,7 @@
             // 
             this.削除対象.DataField = "削除対象";
             this.削除対象.Enabled = false;
-            this.削除対象.Location = new System.Drawing.Point(1489, 0);
+            this.削除対象.Location = new System.Drawing.Point(1390, 0);
             this.削除対象.Name = "削除対象";
             this.削除対象.ReadOnly = true;
             this.削除対象.Size = new System.Drawing.Size(10, 20);
@@ -729,7 +729,7 @@
             this.ColumnHeaders.AddRange(new GrapeCity.Win.MultiRow.ColumnHeaderSection[] {
             this.columnHeaderSection1});
             this.Height = 295;
-            this.Width = 1499;
+            this.Width = 1459;
 
         }
 
