@@ -107,7 +107,7 @@ namespace MultiRowDesigner
             // 
             // columnHeaderSection1
             // 
-            this.columnHeaderSection1.Cells.Add(this.削除ボタン);
+            //this.columnHeaderSection1.Cells.Add(this.削除ボタン);
             this.columnHeaderSection1.Cells.Add(this.明細行選択ボタン);
             this.columnHeaderSection1.Cells.Add(this.明細番号ボタン);
             this.columnHeaderSection1.Cells.Add(this.buttonCell1);

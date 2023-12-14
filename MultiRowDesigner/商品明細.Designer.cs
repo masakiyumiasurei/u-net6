@@ -1,4 +1,7 @@
-﻿namespace MultiRowDesigner
+﻿using System.Drawing;
+using System.Windows.Forms;
+
+namespace MultiRowDesigner
 {
     partial class 商品明細
     {

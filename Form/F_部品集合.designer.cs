@@ -466,6 +466,7 @@ namespace u_net
             集合名.Name = "集合名";
             集合名.Size = new Size(476, 20);
             集合名.TabIndex = 6;
+            集合名.TextChanged += 集合名_TextChanged;
             集合名.Enter += 集合名_Enter;
             集合名.Leave += 集合名_Leave;
             // 
@@ -636,6 +637,7 @@ namespace u_net
             部品集合版数.Name = "部品集合版数";
             部品集合版数.Size = new Size(54, 21);
             部品集合版数.TabIndex = 4;
+            部品集合版数.SelectedIndexChanged += 部品集合版数_SelectedIndexChanged;
             // 
             // label1
             // 
@@ -737,6 +739,7 @@ namespace u_net
             部品集合コード.Name = "部品集合コード";
             部品集合コード.Size = new Size(139, 20);
             部品集合コード.TabIndex = 2;
+            部品集合コード.Validated += 部品集合コード_Validated;
             // 
             // 集合分類
             // 
@@ -762,6 +765,7 @@ namespace u_net
             備考.Name = "備考";
             備考.Size = new Size(476, 65);
             備考.TabIndex = 10;
+            備考.TextChanged += 備考_TextChanged;
             備考.Enter += 備考_Enter;
             備考.Leave += 備考_Leave;
             // 
@@ -778,6 +782,8 @@ namespace u_net
             分類コード.Name = "分類コード";
             分類コード.Size = new Size(48, 21);
             分類コード.TabIndex = 8;
+            分類コード.DrawItem += 分類コード_DrawItem;
+            分類コード.SelectedIndexChanged += 分類コード_SelectedIndexChanged;
             分類コード.Enter += 分類コード_Enter;
             分類コード.Leave += 分類コード_Leave;
             // 

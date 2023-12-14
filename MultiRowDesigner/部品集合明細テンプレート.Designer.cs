@@ -325,7 +325,6 @@
             // 
             // 明細削除ボタン
             // 
-            this.明細削除ボタン.ButtonCommand = GrapeCity.Win.MultiRow.RowActionButtonCommands.Remove;
             this.明細削除ボタン.Location = new System.Drawing.Point(0, 0);
             this.明細削除ボタン.Name = "明細削除ボタン";
             this.明細削除ボタン.Size = new System.Drawing.Size(21, 34);
@@ -340,6 +339,7 @@
             // 
             // 行挿入ボタン
             // 
+            this.行挿入ボタン.ButtonCommand = GrapeCity.Win.MultiRow.RowActionButtonCommands.Insert;
             this.行挿入ボタン.Location = new System.Drawing.Point(21, 0);
             this.行挿入ボタン.Name = "行挿入ボタン";
             this.行挿入ボタン.Size = new System.Drawing.Size(21, 34);
@@ -355,6 +355,7 @@
             // 
             // 行移動上ボタン
             // 
+            this.行移動上ボタン.ButtonCommand = GrapeCity.Win.MultiRow.NavigationButtonCommands.MoveToPreviousRow;
             this.行移動上ボタン.Location = new System.Drawing.Point(42, 0);
             this.行移動上ボタン.Name = "行移動上ボタン";
             this.行移動上ボタン.Size = new System.Drawing.Size(21, 34);
@@ -370,6 +371,7 @@
             // 
             // 行移動下ボタン
             // 
+            this.行移動下ボタン.ButtonCommand = GrapeCity.Win.MultiRow.NavigationButtonCommands.MoveToNextRow;
             this.行移動下ボタン.Location = new System.Drawing.Point(63, 0);
             this.行移動下ボタン.Name = "行移動下ボタン";
             this.行移動下ボタン.Size = new System.Drawing.Size(21, 34);
