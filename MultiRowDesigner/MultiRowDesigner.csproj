@@ -239,6 +239,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ユニット明細参照テンプレート.resx">
       <DependentUpon>ユニット明細参照テンプレート.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="入金明細.resx">
       <DependentUpon>入金明細.cs</DependentUpon>
