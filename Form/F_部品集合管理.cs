@@ -44,6 +44,22 @@ namespace u_net
             InitializeComponent();
         }
 
+        public string CurrentCode
+        {
+            get
+            {
+                return string.IsNullOrEmpty(dataGridView1.SelectedRows[0].Cells[0].Value.ToString()) ? ""
+                    : dataGridView1.SelectedRows[0].Cells[0].Value.ToString();
+            }
+        }
+        public int CurrentEdition
+        {
+            get
+            {
+                int result;
+                return int.TryParse(dataGridView1.SelectedRows[0].Cells[1].Value.ToString(), out result) ? result : 0  ;   //int.TryParse(部品集合版数.Text, out result) ? result : 0;
+            }
+        }
         public void Connect()
         {
             Connection connectionInfo = new Connection();
@@ -145,10 +161,10 @@ namespace u_net
             {
                 if (this.Height > 800)
                 {
-                    dataGridView1.Height = dataGridView1.Height + (this.Height - intWindowHeight);
+                    dataGridView1.Height = dataGridView1.Height + (this.Height - IntWindowHeight);
                     IntWindowHeight = this.Height;  // 高さ保存
 
-                    dataGridView1.Width = dataGridView1.Width + (this.Width - intWindowWidth);
+                    dataGridView1.Width = dataGridView1.Width + (this.Width - IntWindowWidth);
                     IntWindowWidth = this.Width;    // 幅保存
                 }
             }
@@ -390,7 +406,7 @@ namespace u_net
 
         private void コマンド抽出_Click(object sender, EventArgs e)
         {
-            //dataGridView1.Focus();
+            dataGridView1.Focus();
             F_製品管理_抽出 form = new F_製品管理_抽出();
             form.ShowDialog();
         }
@@ -429,24 +445,7 @@ namespace u_net
             MessageBox.Show("現在開発中です。\n コードで検索するときに使用します。", "検索コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        private void コマンド製品_Click(object sender, EventArgs e)
-        {
-            //if (dataGridView1.SelectedRows.Count > 0)
-            //{
-            //    // DataGridView1で選択された行が存在する場合
-            //    string selectedData = dataGridView1.SelectedRows[0].Cells[0].Value.ToString(); // 1列目のデータを取得
-
-            //    // 仕入先フォームを作成し、引数を設定して表示
-            //    F_仕入先 targetform = new F_仕入先();
-            //    targetform.args = selectedData;
-            //    targetform.ShowDialog();
-            //}
-            //else
-            //{
-            //    // ユーザーが行を選択していない場合のエラーハンドリング
-            //    MessageBox.Show("行が選択されていません。");
-            //}
-        }
+        
 
         private void Form_KeyDown(object sender, KeyEventArgs e)
         {
@@ -520,7 +519,6 @@ namespace u_net
         }
 
         private bool ascending = true;
-
         private void dataGridView1_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             //if (dataGridView1.Columns[e.ColumnIndex].Name == "仕入先名")
@@ -536,12 +534,8 @@ namespace u_net
             //    ascending = !ascending;
             //}
         }
-                
 
-        private void コマンド指導書設定_Click(object sender, EventArgs e)
-        {
-
-        }
+              
 
         private void コマンド保守_Click(object sender, EventArgs e)
         {
@@ -561,7 +555,9 @@ namespace u_net
 
         private void コマンド部品購買設定_Click(object sender, EventArgs e)
         {
-
+            F_部品購買設定 fm =new F_部品購買設定();
+            fm.args = $"{CurrentCode}, {CurrentEdition}";
+            fm.ShowDialog();
         }
 
         private void コマンド参照_Click(object sender, EventArgs e)

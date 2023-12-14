@@ -117,7 +117,6 @@
             コマンドF7.TabIndex = 10;
             コマンドF7.TabStop = false;
             コマンドF7.UseVisualStyleBackColor = true;
-            コマンドF7.Click += コマンド指導書設定_Click;
             // 
             // コマンド参照
             // 

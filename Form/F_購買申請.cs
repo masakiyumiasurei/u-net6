@@ -46,7 +46,6 @@ namespace u_net
         {
             get
             {
-                //return 確認者コード3.Text != null;
                 return !string.IsNullOrEmpty(確認者コード3.Text);
 
             }
@@ -122,7 +121,7 @@ namespace u_net
         {
             get
             {
-                return 確認者コード3.Text != null;
+                return !string.IsNullOrEmpty(確認者コード3.Text);
             }
         }
 
@@ -130,7 +129,7 @@ namespace u_net
         {
             get
             {
-                return 終了入力.Text != null;
+                return !string.IsNullOrEmpty(終了入力.Text);
             }
         }
 
@@ -367,6 +366,7 @@ namespace u_net
                         break;
                     case "申請者コード":
                         if (varValue == null || varValue.Equals(DBNull.Value))
+                        ////if (string.IsNullOrEmpty(varValue.ToString())|| varValue.Equals(DBNull.Value))
                         {
                             MessageBox.Show("申請者を選択してください。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                             goto Exit_IsError;
@@ -374,6 +374,7 @@ namespace u_net
                         break;
                     case "申請日":
                         if (varValue == null || varValue.Equals(DBNull.Value))
+                        ////if (string.IsNullOrEmpty(varValue.ToString()) || varValue.Equals(DBNull.Value))
                         {
                             MessageBox.Show("申請日を入力してください。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                             goto Exit_IsError;
@@ -392,6 +393,7 @@ namespace u_net
                     case "ロット番号1":
                     case "ロット番号2":
                         if (varValue == null || varValue.Equals(DBNull.Value))
+                        ////if (string.IsNullOrEmpty(varValue.ToString()) || varValue.Equals(DBNull.Value))
                             goto Bye_IsError;
                         if (!IsLimit_N(varValue, 7, 2, controlObject.Name))
                             goto Exit_IsError;
@@ -403,22 +405,44 @@ namespace u_net
                         }
                         break;
                     case "数量":
-                        if (varValue == null || varValue.Equals(DBNull.Value))
+                        //if (varValue == null || varValue.Equals(DBNull.Value))
+                        //{
+                        //    MessageBox.Show(controlObject.Name + " を入力してください。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        //    goto Exit_IsError;
+                        //}
+                        //if (!IsLimit_N(varValue, 14, 0, controlObject.Name))
+                        //    goto Exit_IsError;
+                        // 承認時確認
+                        if (cancel) 
                         {
-                            MessageBox.Show(controlObject.Name + " を入力してください。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                            goto Exit_IsError;
+                            if (string.IsNullOrEmpty(varValue.ToString()) || varValue.Equals(DBNull.Value))
+                            {
+                                MessageBox.Show(controlObject.Name + " を入力してください。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                                goto Exit_IsError;
+                            }
+                            if (!IsLimit_N(varValue, 14, 0, controlObject.Name))
+                                goto Exit_IsError;
                         }
-                        if (!IsLimit_N(varValue, 14, 0, controlObject.Name))
-                            goto Exit_IsError;
                         break;
                     case "材料単価":
-                        if (varValue == null || varValue.Equals(DBNull.Value))
+                        //if (varValue == null || varValue.Equals(DBNull.Value))
+                        //{
+                        //    MessageBox.Show(controlObject.Name + " を入力してください。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        //    goto Exit_IsError;
+                        //}
+                        //if (!IsLimit_N(varValue, 14, 2, controlObject.Name))
+                        //    goto Exit_IsError;
+                        // 承認時確認
+                        if (true) 
                         {
-                            MessageBox.Show(controlObject.Name + " を入力してください。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                            goto Exit_IsError;
+                            if (string.IsNullOrEmpty(varValue.ToString()) || varValue.Equals(DBNull.Value))
+                            {
+                                MessageBox.Show(controlObject.Name + " を入力してください。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                                goto Exit_IsError;
+                            }
+                            if (!IsLimit_N(varValue, 14, 2, controlObject.Name))
+                                goto Exit_IsError;
                         }
-                        if (!IsLimit_N(varValue, 14, 2, controlObject.Name))
-                            goto Exit_IsError;
                         break;
                     case "購買納期":
                         if (varValue == null || varValue.Equals(DBNull.Value))
@@ -481,7 +505,8 @@ namespace u_net
             Exit_IsError:
                 result = true;
                 if (cancel)
-                    return false;
+                    //return false;
+                    return result;
 
                 cancel = true;
 
@@ -1149,38 +1174,9 @@ namespace u_net
             try
             {
                 string strKey = $"購買申請コード='{code}' AND 購買申請版数={edition}";
-                //string strSQL = $"SELECT * FROM T購買申請 WHERE {strKey}";
 
-                //if (!DataUpdater.UpdateOrInsertDataFrom(this, cn, "M仕入先", strwhere, "仕入先コード", transaction)){ }
                 DataUpdater.UpdateOrInsertDataFrom(this, cn, "T購買申請", strKey, "購買申請コード", transaction);
-
-                    //Connect();
-
-                    //using (SqlDataAdapter adapter = new SqlDataAdapter(strSQL, cn))
-                    //{
-                    //    using (DataTable dataTable = new DataTable())
-                    //    {
-                    //        adapter.Fill(dataTable);
-
-                    //        if (dataTable.Rows.Count == 0)
-                    //        {
-                    //            // New record
-                    //            DataRow newRow = dataTable.NewRow();
-                    //            VariableSet.SetForm2Table(inputForm, newRow, "", "");
-                    //            dataTable.Rows.Add(newRow);
-                    //        }
-                    //        else
-                    //        {
-                    //            // Existing record
-                    //            DataRow existingRow = dataTable.Rows[0];
-                    //            VariableSet.SetForm2Table(inputForm, existingRow, "購買申請コード", "購買申請版数");
-                    //        }
-
-                    //        SqlCommandBuilder commandBuilder = new SqlCommandBuilder(adapter);
-                    //        adapter.Update(dataTable);
-                    //    }
-                    //}
-                }
+            }
             catch (Exception ex)
             {
                 Debug.Print("SaveHeader - " + ex.Message);
@@ -1498,7 +1494,6 @@ namespace u_net
                 {
                     確認日時3.Text = FunctionClass.GetServerDate(cn).ToString();
                     確認者コード3.Text = CommonConstants.LoginUserCode;
-                    // 承認にチェック■を入れる
                     確認_営業部.Text = "■";
                 }
 
@@ -1529,7 +1524,8 @@ namespace u_net
             }
             finally
             {
-                fn.WaitForm.Close();
+                if (fn.WaitForm != null)
+                    fn.WaitForm.Close();
             }
 
         Bye_コマンド承認_Click:
@@ -1954,7 +1950,8 @@ namespace u_net
             }
             finally
             {
-                fn.WaitForm.Close();
+                if (fn.WaitForm != null)
+                    fn.WaitForm.Close();
             }
         }
 
@@ -1980,10 +1977,10 @@ namespace u_net
 
         private void 購買申請コード_Enter(object sender, EventArgs e)
         {
-            // ・Access
-            //If Me.購買申請コード.RowSource = "" Then
-            //    Me.購買申請コード.RowSource  = "SELECT 購買申請コード FROM T購買申請 ORDER BY 購買申請コード DESC"
-            //End If
+            ////// ・Access
+            //////If Me.購買申請コード.RowSource = "" Then
+            //////    Me.購買申請コード.RowSource  = "SELECT 購買申請コード FROM T購買申請 ORDER BY 購買申請コード DESC"
+            //////End If
         }
 
         private void 購買申請コード_KeyDown(object sender, KeyEventArgs e)
@@ -2052,6 +2049,8 @@ namespace u_net
             {
                 object var1 = this.終了日時.Text;
                 object var2 = this.終了者コード.Text;
+                // 終了入力用
+                object var3 = this.終了入力.Text;
 
                 Connect();
 
@@ -2069,12 +2068,14 @@ namespace u_net
                 {
                     this.終了日時.Text = null;
                     this.終了者コード.Text = null;
+                    this.終了入力.Text = null;
                 }
                 else
                 {
                     // 適切な GetServerDate メソッドと LoginUserCode メソッドを呼び出してください
                     this.終了日時.Text = FunctionClass.GetServerDate(cn).ToString(); // 適切なメソッドを呼び出す
                     this.終了者コード.Text = CommonConstants.LoginUserCode; // 適切なメソッドを呼び出す
+                    this.終了入力.Text = "■";
                 }
 
                 // 適切な RegTrans メソッドを呼び出してください
@@ -2087,6 +2088,7 @@ namespace u_net
                 {
                     this.終了日時.Text = var1.ToString();
                     this.終了者コード.Text = var2.ToString();
+                    this.終了入力.Text = var3.ToString();
                     MessageBox.Show("登録できませんでした。\n操作は取り消されました。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
             }
@@ -2408,7 +2410,6 @@ namespace u_net
 
         private void 商品コード_DrawItem(object sender, DrawItemEventArgs e)
         {
-            //OriginalClass.SetComboBoxAppearance((ComboBox)sender, e, new int[] { 100, 300, 500 }, new string[] { "Display", "Display2", "Display3" });
             OriginalClass.SetComboBoxAppearance((ComboBox)sender, e, new int[] { 100, 300, 300, 0 }, new string[] { "Display", "Display2", "Display3", "Display4" });
             商品コード.Invalidate();
             商品コード.DroppedDown = true;
@@ -2424,8 +2425,6 @@ namespace u_net
         private void 商品コード_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (setCombo) return;
-            //商品名.Text = ((DataRowView)申請者コード.SelectedItem)?.Row.Field<String>("Display2")?.ToString();
-            //シリーズ名.Text = ((DataRowView)申請者コード.SelectedItem)?.Row.Field<String>("Display3")?.ToString();
             商品名.Text = ((DataRowView)商品コード.SelectedItem)?.Row.Field<String>("Display2")?.ToString();
             シリーズ名.Text = ((DataRowView)商品コード.SelectedItem)?.Row.Field<String>("Display3")?.ToString();
             ChangedData(true);
