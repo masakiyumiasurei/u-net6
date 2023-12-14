@@ -29,12 +29,10 @@
 		/// </summary>
         private void InitializeComponent()
         {
-            GrapeCity.Win.MultiRow.CellStyle cellStyle13 = new GrapeCity.Win.MultiRow.CellStyle();
-            GrapeCity.Win.MultiRow.CellStyle cellStyle14 = new GrapeCity.Win.MultiRow.CellStyle();
             GrapeCity.Win.MultiRow.CellStyle cellStyle15 = new GrapeCity.Win.MultiRow.CellStyle();
-            GrapeCity.Win.MultiRow.Border border13 = new GrapeCity.Win.MultiRow.Border();
             GrapeCity.Win.MultiRow.CellStyle cellStyle16 = new GrapeCity.Win.MultiRow.CellStyle();
             GrapeCity.Win.MultiRow.CellStyle cellStyle17 = new GrapeCity.Win.MultiRow.CellStyle();
+            GrapeCity.Win.MultiRow.Border border15 = new GrapeCity.Win.MultiRow.Border();
             GrapeCity.Win.MultiRow.CellStyle cellStyle18 = new GrapeCity.Win.MultiRow.CellStyle();
             GrapeCity.Win.MultiRow.CellStyle cellStyle19 = new GrapeCity.Win.MultiRow.CellStyle();
             GrapeCity.Win.MultiRow.CellStyle cellStyle20 = new GrapeCity.Win.MultiRow.CellStyle();
@@ -43,14 +41,16 @@
             GrapeCity.Win.MultiRow.CellStyle cellStyle23 = new GrapeCity.Win.MultiRow.CellStyle();
             GrapeCity.Win.MultiRow.CellStyle cellStyle24 = new GrapeCity.Win.MultiRow.CellStyle();
             GrapeCity.Win.MultiRow.CellStyle cellStyle25 = new GrapeCity.Win.MultiRow.CellStyle();
-            GrapeCity.Win.MultiRow.Border border14 = new GrapeCity.Win.MultiRow.Border();
             GrapeCity.Win.MultiRow.CellStyle cellStyle26 = new GrapeCity.Win.MultiRow.CellStyle();
-            GrapeCity.Win.MultiRow.Border border15 = new GrapeCity.Win.MultiRow.Border();
             GrapeCity.Win.MultiRow.CellStyle cellStyle27 = new GrapeCity.Win.MultiRow.CellStyle();
-            GrapeCity.Win.MultiRow.CellStyle cellStyle28 = new GrapeCity.Win.MultiRow.CellStyle();
             GrapeCity.Win.MultiRow.Border border16 = new GrapeCity.Win.MultiRow.Border();
-            GrapeCity.Win.MultiRow.CellStyle cellStyle29 = new GrapeCity.Win.MultiRow.CellStyle();
+            GrapeCity.Win.MultiRow.CellStyle cellStyle28 = new GrapeCity.Win.MultiRow.CellStyle();
             GrapeCity.Win.MultiRow.Border border17 = new GrapeCity.Win.MultiRow.Border();
+            GrapeCity.Win.MultiRow.CellStyle cellStyle29 = new GrapeCity.Win.MultiRow.CellStyle();
+            GrapeCity.Win.MultiRow.CellStyle cellStyle30 = new GrapeCity.Win.MultiRow.CellStyle();
+            GrapeCity.Win.MultiRow.Border border18 = new GrapeCity.Win.MultiRow.Border();
+            GrapeCity.Win.MultiRow.CellStyle cellStyle31 = new GrapeCity.Win.MultiRow.CellStyle();
+            GrapeCity.Win.MultiRow.Border border19 = new GrapeCity.Win.MultiRow.Border();
             GrapeCity.Win.MultiRow.CellStyle cellStyle1 = new GrapeCity.Win.MultiRow.CellStyle();
             GrapeCity.Win.MultiRow.Border border1 = new GrapeCity.Win.MultiRow.Border();
             GrapeCity.Win.MultiRow.CellStyle cellStyle2 = new GrapeCity.Win.MultiRow.CellStyle();
@@ -76,6 +76,10 @@
             GrapeCity.Win.MultiRow.Border border11 = new GrapeCity.Win.MultiRow.Border();
             GrapeCity.Win.MultiRow.CellStyle cellStyle12 = new GrapeCity.Win.MultiRow.CellStyle();
             GrapeCity.Win.MultiRow.Border border12 = new GrapeCity.Win.MultiRow.Border();
+            GrapeCity.Win.MultiRow.CellStyle cellStyle13 = new GrapeCity.Win.MultiRow.CellStyle();
+            GrapeCity.Win.MultiRow.Border border13 = new GrapeCity.Win.MultiRow.Border();
+            GrapeCity.Win.MultiRow.CellStyle cellStyle14 = new GrapeCity.Win.MultiRow.CellStyle();
+            GrapeCity.Win.MultiRow.Border border14 = new GrapeCity.Win.MultiRow.Border();
             this.columnHeaderSection1 = new GrapeCity.Win.MultiRow.ColumnHeaderSection();
             this.明細番号ボタン = new GrapeCity.Win.MultiRow.ButtonCell();
             this.部品コードボタン = new GrapeCity.Win.MultiRow.ButtonCell();
@@ -106,6 +110,8 @@
             this.単価 = new GrapeCity.Win.MultiRow.TextBoxCell();
             this.summaryCell1 = new GrapeCity.Win.MultiRow.SummaryCell();
             this.TaxRate = new GrapeCity.Win.MultiRow.TextBoxCell();
+            this.購買コード = new GrapeCity.Win.MultiRow.TextBoxCell();
+            this.単位数量 = new GrapeCity.Win.MultiRow.TextBoxCell();
             // 
             // Row
             // 
@@ -121,6 +127,8 @@
             this.Row.Cells.Add(this.単価);
             this.Row.Cells.Add(this.summaryCell1);
             this.Row.Cells.Add(this.TaxRate);
+            this.Row.Cells.Add(this.購買コード);
+            this.Row.Cells.Add(this.単位数量);
             this.Row.Height = 34;
             this.Row.Width = 986;
             // 
@@ -152,12 +160,12 @@
             this.明細番号ボタン.Location = new System.Drawing.Point(0, 22);
             this.明細番号ボタン.Name = "明細番号ボタン";
             this.明細番号ボタン.Size = new System.Drawing.Size(34, 44);
-            cellStyle13.BackColor = System.Drawing.SystemColors.Control;
-            cellStyle13.Font = new System.Drawing.Font("BIZ UDPゴシック", 8F);
-            cellStyle13.ImeMode = System.Windows.Forms.ImeMode.Off;
-            cellStyle13.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            cellStyle13.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
-            this.明細番号ボタン.Style = cellStyle13;
+            cellStyle15.BackColor = System.Drawing.SystemColors.Control;
+            cellStyle15.Font = new System.Drawing.Font("BIZ UDPゴシック", 8F);
+            cellStyle15.ImeMode = System.Windows.Forms.ImeMode.Off;
+            cellStyle15.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            cellStyle15.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
+            this.明細番号ボタン.Style = cellStyle15;
             this.明細番号ボタン.TabIndex = 0;
             this.明細番号ボタン.TabStop = false;
             this.明細番号ボタン.Value = "No.";
@@ -167,12 +175,12 @@
             this.部品コードボタン.Location = new System.Drawing.Point(34, 22);
             this.部品コードボタン.Name = "部品コードボタン";
             this.部品コードボタン.Size = new System.Drawing.Size(78, 44);
-            cellStyle14.BackColor = System.Drawing.SystemColors.Control;
-            cellStyle14.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
-            cellStyle14.ImeMode = System.Windows.Forms.ImeMode.Off;
-            cellStyle14.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            cellStyle14.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
-            this.部品コードボタン.Style = cellStyle14;
+            cellStyle16.BackColor = System.Drawing.SystemColors.Control;
+            cellStyle16.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
+            cellStyle16.ImeMode = System.Windows.Forms.ImeMode.Off;
+            cellStyle16.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            cellStyle16.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
+            this.部品コードボタン.Style = cellStyle16;
             this.部品コードボタン.TabIndex = 1;
             this.部品コードボタン.TabStop = false;
             this.部品コードボタン.Value = "部品コード";
@@ -182,9 +190,9 @@
             this.注釈_ラベル.Location = new System.Drawing.Point(0, 0);
             this.注釈_ラベル.Name = "注釈_ラベル";
             this.注釈_ラベル.Size = new System.Drawing.Size(300, 22);
-            cellStyle15.Border = border13;
-            cellStyle15.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
-            this.注釈_ラベル.Style = cellStyle15;
+            cellStyle17.Border = border15;
+            cellStyle17.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
+            this.注釈_ラベル.Style = cellStyle17;
             this.注釈_ラベル.TabIndex = 2;
             this.注釈_ラベル.Value = "※発注数量は発注納期設定後計算されます。";
             // 
@@ -193,12 +201,12 @@
             this.品名ボタン.Location = new System.Drawing.Point(112, 22);
             this.品名ボタン.Name = "品名ボタン";
             this.品名ボタン.Size = new System.Drawing.Size(238, 22);
-            cellStyle16.BackColor = System.Drawing.SystemColors.Control;
-            cellStyle16.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
-            cellStyle16.ImeMode = System.Windows.Forms.ImeMode.Off;
-            cellStyle16.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            cellStyle16.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
-            this.品名ボタン.Style = cellStyle16;
+            cellStyle18.BackColor = System.Drawing.SystemColors.Control;
+            cellStyle18.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
+            cellStyle18.ImeMode = System.Windows.Forms.ImeMode.Off;
+            cellStyle18.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            cellStyle18.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
+            this.品名ボタン.Style = cellStyle18;
             this.品名ボタン.TabIndex = 3;
             this.品名ボタン.TabStop = false;
             this.品名ボタン.Value = "品名";
@@ -208,12 +216,12 @@
             this.型番ボタン.Location = new System.Drawing.Point(112, 44);
             this.型番ボタン.Name = "型番ボタン";
             this.型番ボタン.Size = new System.Drawing.Size(238, 22);
-            cellStyle17.BackColor = System.Drawing.SystemColors.Control;
-            cellStyle17.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
-            cellStyle17.ImeMode = System.Windows.Forms.ImeMode.Off;
-            cellStyle17.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            cellStyle17.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
-            this.型番ボタン.Style = cellStyle17;
+            cellStyle19.BackColor = System.Drawing.SystemColors.Control;
+            cellStyle19.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
+            cellStyle19.ImeMode = System.Windows.Forms.ImeMode.Off;
+            cellStyle19.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            cellStyle19.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
+            this.型番ボタン.Style = cellStyle19;
             this.型番ボタン.TabIndex = 4;
             this.型番ボタン.TabStop = false;
             this.型番ボタン.Value = "型番";
@@ -223,12 +231,12 @@
             this.仕入先名ボタン.Location = new System.Drawing.Point(350, 22);
             this.仕入先名ボタン.Name = "仕入先名ボタン";
             this.仕入先名ボタン.Size = new System.Drawing.Size(126, 44);
-            cellStyle18.BackColor = System.Drawing.SystemColors.Control;
-            cellStyle18.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
-            cellStyle18.ImeMode = System.Windows.Forms.ImeMode.Off;
-            cellStyle18.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            cellStyle18.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
-            this.仕入先名ボタン.Style = cellStyle18;
+            cellStyle20.BackColor = System.Drawing.SystemColors.Control;
+            cellStyle20.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
+            cellStyle20.ImeMode = System.Windows.Forms.ImeMode.Off;
+            cellStyle20.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            cellStyle20.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
+            this.仕入先名ボタン.Style = cellStyle20;
             this.仕入先名ボタン.TabIndex = 5;
             this.仕入先名ボタン.TabStop = false;
             this.仕入先名ボタン.Value = "仕入先名";
@@ -238,12 +246,12 @@
             this.発注納期ボタン.Location = new System.Drawing.Point(476, 22);
             this.発注納期ボタン.Name = "発注納期ボタン";
             this.発注納期ボタン.Size = new System.Drawing.Size(78, 44);
-            cellStyle19.BackColor = System.Drawing.SystemColors.Control;
-            cellStyle19.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
-            cellStyle19.ImeMode = System.Windows.Forms.ImeMode.Off;
-            cellStyle19.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            cellStyle19.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
-            this.発注納期ボタン.Style = cellStyle19;
+            cellStyle21.BackColor = System.Drawing.SystemColors.Control;
+            cellStyle21.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
+            cellStyle21.ImeMode = System.Windows.Forms.ImeMode.Off;
+            cellStyle21.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            cellStyle21.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
+            this.発注納期ボタン.Style = cellStyle21;
             this.発注納期ボタン.TabIndex = 6;
             this.発注納期ボタン.TabStop = false;
             this.発注納期ボタン.Value = "発注納期";
@@ -253,12 +261,12 @@
             this.在庫数量ボタン.Location = new System.Drawing.Point(554, 22);
             this.在庫数量ボタン.Name = "在庫数量ボタン";
             this.在庫数量ボタン.Size = new System.Drawing.Size(78, 44);
-            cellStyle20.BackColor = System.Drawing.SystemColors.Control;
-            cellStyle20.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
-            cellStyle20.ImeMode = System.Windows.Forms.ImeMode.Off;
-            cellStyle20.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            cellStyle20.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
-            this.在庫数量ボタン.Style = cellStyle20;
+            cellStyle22.BackColor = System.Drawing.SystemColors.Control;
+            cellStyle22.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
+            cellStyle22.ImeMode = System.Windows.Forms.ImeMode.Off;
+            cellStyle22.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            cellStyle22.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
+            this.在庫数量ボタン.Style = cellStyle22;
             this.在庫数量ボタン.TabIndex = 7;
             this.在庫数量ボタン.TabStop = false;
             this.在庫数量ボタン.Value = "在庫数量";
@@ -268,13 +276,13 @@
             this.必要数量ボタン.Location = new System.Drawing.Point(632, 22);
             this.必要数量ボタン.Name = "必要数量ボタン";
             this.必要数量ボタン.Size = new System.Drawing.Size(48, 44);
-            cellStyle21.BackColor = System.Drawing.SystemColors.Control;
-            cellStyle21.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
-            cellStyle21.ImeMode = System.Windows.Forms.ImeMode.Off;
-            cellStyle21.Multiline = GrapeCity.Win.MultiRow.MultiRowTriState.True;
-            cellStyle21.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            cellStyle21.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
-            this.必要数量ボタン.Style = cellStyle21;
+            cellStyle23.BackColor = System.Drawing.SystemColors.Control;
+            cellStyle23.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
+            cellStyle23.ImeMode = System.Windows.Forms.ImeMode.Off;
+            cellStyle23.Multiline = GrapeCity.Win.MultiRow.MultiRowTriState.True;
+            cellStyle23.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            cellStyle23.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
+            this.必要数量ボタン.Style = cellStyle23;
             this.必要数量ボタン.TabIndex = 8;
             this.必要数量ボタン.TabStop = false;
             this.必要数量ボタン.Value = "必要\r\n数量";
@@ -284,12 +292,12 @@
             this.発注数量ボタン.Location = new System.Drawing.Point(680, 22);
             this.発注数量ボタン.Name = "発注数量ボタン";
             this.発注数量ボタン.Size = new System.Drawing.Size(78, 44);
-            cellStyle22.BackColor = System.Drawing.SystemColors.Control;
-            cellStyle22.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
-            cellStyle22.ImeMode = System.Windows.Forms.ImeMode.Off;
-            cellStyle22.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            cellStyle22.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
-            this.発注数量ボタン.Style = cellStyle22;
+            cellStyle24.BackColor = System.Drawing.SystemColors.Control;
+            cellStyle24.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
+            cellStyle24.ImeMode = System.Windows.Forms.ImeMode.Off;
+            cellStyle24.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            cellStyle24.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
+            this.発注数量ボタン.Style = cellStyle24;
             this.発注数量ボタン.TabIndex = 9;
             this.発注数量ボタン.TabStop = false;
             this.発注数量ボタン.Value = "発注数量";
@@ -299,12 +307,12 @@
             this.単価ボタン.Location = new System.Drawing.Point(758, 22);
             this.単価ボタン.Name = "単価ボタン";
             this.単価ボタン.Size = new System.Drawing.Size(78, 44);
-            cellStyle23.BackColor = System.Drawing.SystemColors.Control;
-            cellStyle23.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
-            cellStyle23.ImeMode = System.Windows.Forms.ImeMode.Off;
-            cellStyle23.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            cellStyle23.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
-            this.単価ボタン.Style = cellStyle23;
+            cellStyle25.BackColor = System.Drawing.SystemColors.Control;
+            cellStyle25.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
+            cellStyle25.ImeMode = System.Windows.Forms.ImeMode.Off;
+            cellStyle25.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            cellStyle25.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
+            this.単価ボタン.Style = cellStyle25;
             this.単価ボタン.TabIndex = 10;
             this.単価ボタン.TabStop = false;
             this.単価ボタン.Value = "単価";
@@ -314,12 +322,12 @@
             this.金額ボタン.Location = new System.Drawing.Point(836, 22);
             this.金額ボタン.Name = "金額ボタン";
             this.金額ボタン.Size = new System.Drawing.Size(98, 44);
-            cellStyle24.BackColor = System.Drawing.SystemColors.Control;
-            cellStyle24.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
-            cellStyle24.ImeMode = System.Windows.Forms.ImeMode.Off;
-            cellStyle24.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            cellStyle24.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
-            this.金額ボタン.Style = cellStyle24;
+            cellStyle26.BackColor = System.Drawing.SystemColors.Control;
+            cellStyle26.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
+            cellStyle26.ImeMode = System.Windows.Forms.ImeMode.Off;
+            cellStyle26.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            cellStyle26.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
+            this.金額ボタン.Style = cellStyle26;
             this.金額ボタン.TabIndex = 11;
             this.金額ボタン.TabStop = false;
             this.金額ボタン.Value = "金額";
@@ -329,9 +337,9 @@
             this.発注納期統一_ラベル.Location = new System.Drawing.Point(389, 0);
             this.発注納期統一_ラベル.Name = "発注納期統一_ラベル";
             this.発注納期統一_ラベル.Size = new System.Drawing.Size(77, 22);
-            cellStyle25.Border = border14;
-            cellStyle25.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
-            this.発注納期統一_ラベル.Style = cellStyle25;
+            cellStyle27.Border = border16;
+            cellStyle27.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
+            this.発注納期統一_ラベル.Style = cellStyle27;
             this.発注納期統一_ラベル.TabIndex = 14;
             this.発注納期統一_ラベル.Value = "発注納期統一";
             // 
@@ -340,12 +348,12 @@
             this.発注納期統一.Location = new System.Drawing.Point(476, 2);
             this.発注納期統一.Name = "発注納期統一";
             this.発注納期統一.Size = new System.Drawing.Size(78, 18);
-            cellStyle26.BackColor = System.Drawing.SystemColors.Window;
-            border15.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
-            cellStyle26.Border = border15;
-            cellStyle26.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
-            cellStyle26.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.発注納期統一.Style = cellStyle26;
+            cellStyle28.BackColor = System.Drawing.SystemColors.Window;
+            border17.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
+            cellStyle28.Border = border17;
+            cellStyle28.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
+            cellStyle28.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.発注納期統一.Style = cellStyle28;
             this.発注納期統一.TabIndex = 15;
             // 
             // 発注納期選択ボタン
@@ -353,12 +361,12 @@
             this.発注納期選択ボタン.Location = new System.Drawing.Point(558, 2);
             this.発注納期選択ボタン.Name = "発注納期選択ボタン";
             this.発注納期選択ボタン.Size = new System.Drawing.Size(18, 18);
-            cellStyle27.BackColor = System.Drawing.SystemColors.Control;
-            cellStyle27.Font = new System.Drawing.Font("BIZ UDPゴシック", 7.5F);
-            cellStyle27.ImeMode = System.Windows.Forms.ImeMode.Off;
-            cellStyle27.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            cellStyle27.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
-            this.発注納期選択ボタン.Style = cellStyle27;
+            cellStyle29.BackColor = System.Drawing.SystemColors.Control;
+            cellStyle29.Font = new System.Drawing.Font("BIZ UDPゴシック", 7.5F);
+            cellStyle29.ImeMode = System.Windows.Forms.ImeMode.Off;
+            cellStyle29.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            cellStyle29.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
+            this.発注納期選択ボタン.Style = cellStyle29;
             this.発注納期選択ボタン.TabIndex = 16;
             this.発注納期選択ボタン.TabStop = false;
             this.発注納期選択ボタン.Value = "▼";
@@ -368,9 +376,9 @@
             this.発注数量設定_ラベル.Location = new System.Drawing.Point(593, 0);
             this.発注数量設定_ラベル.Name = "発注数量設定_ラベル";
             this.発注数量設定_ラベル.Size = new System.Drawing.Size(77, 22);
-            cellStyle28.Border = border16;
-            cellStyle28.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
-            this.発注数量設定_ラベル.Style = cellStyle28;
+            cellStyle30.Border = border18;
+            cellStyle30.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
+            this.発注数量設定_ラベル.Style = cellStyle30;
             this.発注数量設定_ラベル.TabIndex = 12;
             this.発注数量設定_ラベル.Value = "発注数量設定";
             // 
@@ -379,12 +387,12 @@
             this.発注数量統一.Location = new System.Drawing.Point(680, 2);
             this.発注数量統一.Name = "発注数量統一";
             this.発注数量統一.Size = new System.Drawing.Size(78, 18);
-            cellStyle29.BackColor = System.Drawing.SystemColors.Window;
-            border17.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
-            cellStyle29.Border = border17;
-            cellStyle29.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
-            cellStyle29.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.発注数量統一.Style = cellStyle29;
+            cellStyle31.BackColor = System.Drawing.SystemColors.Window;
+            border19.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
+            cellStyle31.Border = border19;
+            cellStyle31.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
+            cellStyle31.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.発注数量統一.Style = cellStyle31;
             this.発注数量統一.TabIndex = 13;
             // 
             // 明細番号
@@ -549,6 +557,40 @@
             this.TaxRate.Style = cellStyle12;
             this.TaxRate.TabIndex = 12;
             // 
+            // 購買コード
+            // 
+            this.購買コード.DataField = "購買コード";
+            this.購買コード.Enabled = false;
+            this.購買コード.Location = new System.Drawing.Point(810, 0);
+            this.購買コード.Name = "購買コード";
+            this.購買コード.ReadOnly = true;
+            this.購買コード.Size = new System.Drawing.Size(10, 34);
+            border13.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
+            cellStyle13.Border = border13;
+            cellStyle13.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
+            cellStyle13.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
+            this.購買コード.Style = cellStyle13;
+            this.購買コード.TabIndex = 13;
+            this.購買コード.TabStop = false;
+            this.購買コード.Visible = false;
+            // 
+            // 単位数量
+            // 
+            this.単位数量.DataField = "単位数量";
+            this.単位数量.Enabled = false;
+            this.単位数量.Location = new System.Drawing.Point(788, 0);
+            this.単位数量.Name = "単位数量";
+            this.単位数量.ReadOnly = true;
+            this.単位数量.Size = new System.Drawing.Size(10, 34);
+            border14.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
+            cellStyle14.Border = border14;
+            cellStyle14.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
+            cellStyle14.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
+            this.単位数量.Style = cellStyle14;
+            this.単位数量.TabIndex = 14;
+            this.単位数量.TabStop = false;
+            this.単位数量.Visible = false;
+            // 
             // 購買明細テンプレート
             // 
             this.ColumnHeaders.AddRange(new GrapeCity.Win.MultiRow.ColumnHeaderSection[] {
@@ -591,5 +633,7 @@
         private GrapeCity.Win.MultiRow.TextBoxCell 単価;
         private GrapeCity.Win.MultiRow.SummaryCell summaryCell1;
         private GrapeCity.Win.MultiRow.TextBoxCell TaxRate;
+        private GrapeCity.Win.MultiRow.TextBoxCell 購買コード;
+        private GrapeCity.Win.MultiRow.TextBoxCell 単位数量;
     }
 }
