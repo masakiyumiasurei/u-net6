@@ -109,7 +109,7 @@ namespace u_net
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.廃止 = new System.Windows.Forms.CheckBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.ユニット明細1 = new MultiRowDesigner.ユニット明細();
+            this.ユニット明細参照1 = new MultiRowDesigner.ユニット明細参照();
             this.panel1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -937,19 +937,19 @@ namespace u_net
             this.label5.Text = "※RoHS対応情報は保存時に更新されます。";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // ユニット明細1
+            // ユニット明細参照1
             // 
-            this.ユニット明細1.Location = new System.Drawing.Point(5, 195);
-            this.ユニット明細1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.ユニット明細1.Name = "ユニット明細1";
-            this.ユニット明細1.Size = new System.Drawing.Size(1003, 369);
-            this.ユニット明細1.TabIndex = 10197;
+            this.ユニット明細参照1.Location = new System.Drawing.Point(5, 195);
+            this.ユニット明細参照1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ユニット明細参照1.Name = "ユニット明細参照1";
+            this.ユニット明細参照1.Size = new System.Drawing.Size(1003, 369);
+            this.ユニット明細参照1.TabIndex = 10197;
             // 
             // F_ユニット参照
             // 
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1036, 590);
-            this.Controls.Add(this.ユニット明細1);
+            this.Controls.Add(this.ユニット明細参照1);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.廃止);
             this.Controls.Add(this.statusStrip1);
@@ -1102,7 +1102,7 @@ namespace u_net
         internal ToolStripStatusLabel toolStripStatusLabel1;
         private CheckBox 廃止;
         private Label label5;
-        private MultiRowDesigner.ユニット明細 ユニット明細1;
+        private MultiRowDesigner.ユニット明細参照 ユニット明細参照1;
     }
 }
 
