@@ -1474,7 +1474,7 @@ namespace u_net
                 }
                 while (string.IsNullOrEmpty(strCertificateCode));
 
-                //fn.DoWait("しばらくお待ちください...");
+                fn.DoWait("しばらくお待ちください...");
 
                 var1 = 確認日時3.Text;
                 var2 = 確認者コード3.Text;
