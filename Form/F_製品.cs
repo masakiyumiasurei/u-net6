@@ -143,7 +143,7 @@ namespace u_net
             get
             {
                 int productVersion = string.IsNullOrEmpty(製品版数.Text?.ToString()) ? 0 : Int32.Parse(製品版数.Text);
-                int maxVersion = string.IsNullOrEmpty(((DataRowView)製品コード.SelectedItem)?.Row.Field<String>("Display2")?.ToString()) ? 0 : Int32.Parse(((DataRowView)製品コード.SelectedItem)?.Row.Field<String>("Display2")?.ToString());
+                int maxVersion = string.IsNullOrEmpty(((DataRowView)製品コード.SelectedItem)?.Row.Field<Int16>("Display3").ToString()) ? 0 : Int32.Parse(((DataRowView)製品コード.SelectedItem)?.Row.Field<Int16>("Display3").ToString());
                 return productVersion == maxVersion;
             }
         }
@@ -157,7 +157,7 @@ namespace u_net
         // IsNull関数の代用
         private bool IsNull(object value)
         {
-            return value == null || Convert.IsDBNull(value);
+            return value == null || Convert.IsDBNull(value) || string.IsNullOrEmpty((string?)value);
         }
 
         //SqlConnection cn = new SqlConnection();
@@ -467,11 +467,14 @@ namespace u_net
                 品名.Focus();
             }
 
+            IsDirty = isChanged;
+
             製品版数.Enabled = !isChanged;
             コマンド複写.Enabled = !isChanged;
             コマンド削除.Enabled = !isChanged;
             コマンドユニット表.Enabled = !isChanged;
             コマンド廃止.Enabled = !isChanged;
+            コマンドツール.Enabled = !isChanged;
 
             if (isChanged && !IsApproved)
             {
@@ -545,7 +548,7 @@ namespace u_net
                         // 設定されているため、最新版となる
                         if (string.IsNullOrEmpty(args))
                         {
-                            this.製品版数.Text = ((DataRowView)製品コード.SelectedItem)?.Row.Field<String>("Display2")?.ToString();
+                            this.製品版数.Text = ((DataRowView)製品コード.SelectedItem)?.Row.Field<String>("Display3")?.ToString();
                         }
 
                         // ヘッダ部の表示
@@ -570,6 +573,9 @@ namespace u_net
 
                         // 状態の表示
                         SetEditionStatus();
+
+                        ChangedData(false);
+
 
                         // 動作を制御する
                         FunctionClass.LockData(this, this.IsDecided || this.IsDeleted, "製品コード");
@@ -615,6 +621,8 @@ namespace u_net
                         // 状態の表示
                         SetEditionStatus();
 
+                        ChangedData(false);
+
                         // 動作を制御する
                         FunctionClass.LockData(this, this.IsDecided || this.IsDeleted, "製品コード", "製品版数");
                         this.改版ボタン.Enabled = this.IsLatestEdition && this.IsApproved;
@@ -651,7 +659,7 @@ namespace u_net
 
 
             ofn.SetComboBox(製品版数, "SELECT 製品版数 AS Value, 製品版数 AS Display, " +
-                    "CONVERT(bit, 承認日時) AS Display2 " +
+                    "{ fn REPLACE(STR(CONVERT(bit, 承認日時), 1, 0), '1', '■') } AS Display2 " +
                     "FROM M製品 " +
                     "WHERE (製品コード = '" + codeString + "') " +
                     "ORDER BY 製品版数 DESC");
@@ -848,11 +856,11 @@ namespace u_net
                     }
 
                     // 明細部の登録
-                    if (!DataUpdater.UpdateOrInsertDetails(this.製品明細1.Detail, cn, "M製品明細", strwhere, "製品コード", transaction))
-                    {
-                        transaction.Rollback();  // 変更をキャンセル
-                        return false;
-                    }
+                    //if (!DataUpdater.UpdateOrInsertDetails(this.製品明細1.Detail, cn, "M製品明細", strwhere, "製品コード", transaction))
+                    //{
+                    //    transaction.Rollback();  // 変更をキャンセル
+                    //    return false;
+                    //}
 
                     // 前版データの更新処理
                     if (updatePreEdition)
@@ -1696,119 +1704,319 @@ namespace u_net
 
 
 
-        //未着手
         private void コマンド削除_Click(object sender, EventArgs e)
         {
+            Connect();
+
             try
             {
-                if (ActiveControl == this.コマンド削除)
+                // エラーハンドリングはC#のtry-catch構文を使用する
+                string strHeadCode;       // 部長の社員コード
+                object varSaved1 = null;  // 無効日時保存用
+                object varSaved2 = null;  // 無効者コード保存用
+
+                if (IsApproved)
                 {
-                    GetNextControl(コマンド削除, false).Focus();
-                }
+                    // 承認されているときは版数に関係なくデータを無効化する
+                    DialogResult intRes = MessageBox.Show(
+                        $"製品コード　：　{CurrentCode}{Environment.NewLine}" +
+                        $"版数　：　{CurrentEdition}{Environment.NewLine}{Environment.NewLine}" +
+                        $"この承認済み製品データを削除します。{Environment.NewLine}" +
+                        $"削除後参照のみ可能となります。{Environment.NewLine}" +
+                        $"承認済みデータを削除すると運用上問題が生じることがあります。{Environment.NewLine}{Environment.NewLine}" +
+                        $"削除しますか？",
+                        "削除コマンド",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Question);
 
-                //if (IsIncluded)
-                //{
-                //    MessageBox.Show("この部品は部品集合に構成されているため、削除できません。\n削除するには対象となる部品集合から構成を解除する必要があります。",
-                //        "削除コマンド", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                //    return;
-                //}
+                    if (intRes == DialogResult.No)
+                        return;
 
-                //string strMsg = "部品コード　：　" + this.CurrentCode + "\n\nこのデータを削除しますか？\n削除後、管理者により復元することができます。";
+                    // 認証処理
+                    strHeadCode = CommonConstants.USER_CODE_TECH; // 承認者を指定する
 
-                //if (MessageBox.Show(strMsg, "削除コマンド", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
-                //    return;
-
-                //OpenForm("認証", CommonConstants.USER_CODE_TECH);
-
-                //while (string.IsNullOrEmpty(certificateCode))
-                //{
-                //    if (SysCmd(acSysCmdGetObjectState, acForm, "認証") == 0)
-                //    {
-                //        MessageBox.Show("削除はキャンセルされました。", "削除コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                //        return;
-                //    }
-
-                //    Application.DoEvents();
-                //}
-
-                // 部品情報削除
-                FunctionClass fn = new FunctionClass();
-                fn.DoWait("削除しています...");
-
-                Connect();
-
-                // 削除に成功すれば新規モードへ移行する
-                //if (DeleteData(cn, CurrentCode, CurrentEdition))
-                //{
-                //    fn.WaitForm.Close();
-                //    MessageBox.Show("削除しました。\n部品コード　：　" + this.CurrentCode, "削除コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                //    コマンド新規_Click(sender, e);
-                //}
-                //else
-                //{
-                //    fn.WaitForm.Close();
-                //    MessageBox.Show("削除できませんでした。\n部品コード　：　" + this.CurrentCode, "削除コマンド", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                //}
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error in コマンド削除_Click: " + ex.Message);
-            }
-        }
-        //未着手
-        public bool DeleteData(SqlConnection cn, string codeString, int editionNumber = -1, bool completed = false)
-        {
-            SqlTransaction transaction = null;
-            try
-            {
-                string strKey = "部品コード='" + codeString + "'";
-                string strSQL;
-                bool deleteData = false;
-
-                transaction = cn.BeginTransaction();
-
-                if (completed)
-                {
-                    strSQL = "DELETE FROM M部品 WHERE " + strKey;
-                    using (SqlCommand cmd = new SqlCommand(strSQL, cn, transaction))
+                    // ログオンユーザーが指定ユーザーなら認証者コードにユーザーコードを設定する
+                    if (CommonConstants.LoginUserCode != strHeadCode)
                     {
-                        cmd.ExecuteNonQuery();
+
+                    }
+                    else
+                    {
+                        using (var authenticationForm = new F_認証())
+                        {
+                            authenticationForm.args = strHeadCode;
+                            authenticationForm.ShowDialog();
+
+                            if (string.IsNullOrEmpty(CommonConstants.strCertificateCode))
+                            {
+                                MessageBox.Show("認証に失敗しました。" + Environment.NewLine + "実行できません。", "削除コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                return;
+                            }
+                        }
+                    }
+
+                    // 削除情報設定
+                    varSaved1 = 無効日時.Text;
+                    varSaved2 = 無効者コード.Text;
+
+                    if (IsDeleted)
+                    {
+                        無効日時.Text = null;
+                        無効者コード.Text = null;
+                    }
+                    else
+                    {
+                        // ここにGetServerDateのC#版の処理を追加
+                        無効日時.Text = FunctionClass.GetServerDate(cn).ToString();
+                        無効者コード.Text = CommonConstants.strCertificateCode;
+                    }
+
+                    // 表示データを登録する
+                    if (RegTrans(CurrentCode, CurrentEdition,false))
+                    {
+                        if (IsDeleted)
+                            MessageBox.Show("削除されました。", "削除コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        else
+                            MessageBox.Show("削除は取り消されました。", "削除コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        // 登録失敗
+                        無効日時.Text = varSaved1.ToString();
+                        無効者コード.Text = varSaved2.ToString();
+                        MessageBox.Show("エラー発生により処理は取り消されました。", "削除コマンド", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     }
                 }
                 else
                 {
-                    strSQL = "UPDATE M部品 SET 無効日時 = GETDATE() WHERE " + strKey;
-                    using (SqlCommand cmd = new SqlCommand(strSQL, cn, transaction))
+                    // 承認されていないときは版数により処理が異なる
+                    // 対象データが確定されているときは意思を確認する
+                    if (IsDecided)
                     {
-                        cmd.ExecuteNonQuery();
+                        if (MessageBox.Show(
+                            "この製品データは確定されています。" + Environment.NewLine +
+                            "通常、確定済みのデータを削除することはありません。" + Environment.NewLine + Environment.NewLine +
+                            "続行しますか？",
+                            "削除コマンド", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                        {
+                            return;
+                        }
+                    }
+
+                    // 他のユーザーによって承認されているかどうか確認する
+                    if (IsApprovedS(cn, CurrentCode, CurrentEdition))
+                    {
+                        MessageBox.Show("このデータは他のユーザーにより承認されたため、削除できません。",
+                            "削除コマンド", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        return;
+                    }
+
+                    if (CurrentEdition == 1)
+                    {
+                        // 指定版数データを完全削除する
+                        if (MessageBox.Show(
+                            $"製品コード　：　{CurrentCode}{Environment.NewLine}" +
+                            $"版数　：　{CurrentEdition}{Environment.NewLine}{Environment.NewLine}" +
+                            $"この製品データを削除します。{Environment.NewLine}" +
+                            $"削除後参照することはできません。{Environment.NewLine}" +
+                            $"また、この処理を取り消すことはできません。{Environment.NewLine}{Environment.NewLine}" +
+                            $"削除しますか？",
+                            "削除コマンド", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                        {
+                            return;
+                        }
+
+                        if (DeleteData(cn, CurrentCode, CurrentEdition))
+                        {
+                            MessageBox.Show("削除しました。", "削除コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            // 新規モードへ移行する
+                            if (!GoNewMode())
+                            {
+                                MessageBox.Show($"エラーのため新規モードへ移行できません。{Environment.NewLine}" +
+                                                $"[{Name}]画面を終了します。",
+                                    "削除コマンド", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                                Close();
+                            }
+
+                        }
+                        else
+                        {
+                            MessageBox.Show("エラー発生により処理は取り消されました。",
+                                "削除コマンド", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        }
+                    }
+                    else
+                    {
+                        // 指定版数データを完全削除し、前版を有効にする
+                        if (MessageBox.Show(
+                            $"製品コード　：　{CurrentCode}{Environment.NewLine}" +
+                            $"版数　：　{CurrentEdition}{Environment.NewLine}{Environment.NewLine}" +
+                            $"この製品データを削除し、前版に戻します。{Environment.NewLine}" +
+                            $"この処理を取り消すことはできません。{Environment.NewLine}{Environment.NewLine}" +
+                            $"削除しますか？",
+                            "削除コマンド", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                        {
+                            return;
+                        }
+
+                        if (UndoRevise(cn, CurrentCode, CurrentEdition))
+                        {
+                            MessageBox.Show("改版を取り消しました。", "削除コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            // 前版を表示する
+                            製品版数.Focus();
+                            製品版数.Text = (CurrentEdition - 1).ToString();
+                        }
+                        else
+                        {
+                            MessageBox.Show("エラー発生により処理は取り消されました。",
+                                "削除コマンド", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        }
                     }
                 }
-
-                using (SqlCommand cmd = new SqlCommand("SPユニット管理", cn, transaction))
-                {
-                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                    cmd.Parameters.Add(new SqlParameter("@PartsCode", codeString));
-                    cmd.ExecuteNonQuery();
-                }
-
-                // トランザクションをコミット
-                transaction.Commit();
-
-                deleteData = true;
-                return deleteData;
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error in DeleteData: " + ex.Message);
-                if (transaction != null)
-                {
-                    transaction.Rollback();
-                }
-                return false;
+                MessageBox.Show($"エラーが発生しました: {ex.Message}", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-      
-        
+
+        private bool IsApprovedS(SqlConnection connection, string codeString, int editionNumber)
+        {
+            bool isApproved;
+
+            using (SqlCommand cmd = new SqlCommand())
+            {
+                // SQLコマンドの構築
+                string strKey = $"製品コード = '{codeString}' AND 製品版数 = {editionNumber} AND 承認日時 IS NULL";
+                string strSQL = $"SELECT COUNT(*) FROM M製品 WHERE {strKey}";
+
+                // SQLコマンドを設定
+                cmd.CommandText = strSQL;
+                cmd.Connection = connection;
+
+                // サーバーへの問い合わせ実行
+
+                int count = (int)cmd.ExecuteScalar();
+
+                // 結果の判定
+                isApproved = count == 0;
+            }
+
+            return isApproved;
+        }
+
+        private bool DeleteData(SqlConnection connection, string codeString, int editionNumber)
+        {
+            bool success = false;
+            SqlTransaction transaction = null;
+
+            try
+            {
+
+                // 他のユーザーによって承認されているかどうか確認する
+                string strKey = $"製品コード = '{codeString}' AND 製品版数 = {editionNumber} AND 承認日時 IS NULL";
+                string strSQL1 = $"SELECT COUNT(*) FROM M製品 WHERE {strKey}";
+
+                using (SqlCommand cmdCheck = new SqlCommand(strSQL1, connection))
+                {
+                    int count = (int)cmdCheck.ExecuteScalar();
+
+                    if (count > 0)
+                    {
+                        // 承認されていない場合にのみ削除処理を実行
+                        string strSQL2 = $"DELETE FROM M製品 WHERE {strKey}";
+                        string strSQL3 = $"DELETE FROM M製品明細 WHERE {strKey}";
+
+                        using (SqlCommand cmdDelete1 = new SqlCommand(strSQL2, connection))
+                        using (SqlCommand cmdDelete2 = new SqlCommand(strSQL3, connection))
+                        {
+                            transaction = connection.BeginTransaction();
+
+                            cmdDelete1.Transaction = transaction;
+                            cmdDelete2.Transaction = transaction;
+
+                            // 削除処理実行
+                            cmdDelete1.ExecuteNonQuery();
+                            cmdDelete2.ExecuteNonQuery();
+
+                            // トランザクションのコミット
+                            transaction.Commit();
+
+                            success = true;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // エラーが発生した場合の処理
+                if (transaction != null)
+                {
+                    // トランザクションのロールバック
+                    transaction.Rollback();
+                }
+
+                Console.WriteLine($"DeleteData - Error: {ex.Message}");
+            }
+
+            return success;
+        }
+
+        private bool UndoRevise(SqlConnection connection, string codeString, int editionNumber)
+        {
+            bool success = false;
+            SqlTransaction transaction = null;
+
+            try
+            {
+
+                // 対象版数のデータを削除
+                string strKey1 = $"製品コード = '{codeString}' AND 製品版数 = {editionNumber}";
+                string strSQL1 = $"DELETE FROM M製品明細 WHERE {strKey1}";
+                string strSQL2 = $"DELETE FROM M製品 WHERE {strKey1}";
+
+                // 前版に戻すための更新クエリ
+                string strKey2 = $"製品コード = '{codeString}' AND 製品版数 = {editionNumber - 1}";
+                string strSQL3 = $"UPDATE M製品 SET 無効日時 = NULL, 無効者コード = NULL WHERE {strKey2}";
+
+                using (SqlCommand cmdDelete1 = new SqlCommand(strSQL1, connection))
+                using (SqlCommand cmdDelete2 = new SqlCommand(strSQL2, connection))
+                using (SqlCommand cmdUpdate = new SqlCommand(strSQL3, connection))
+                {
+                    transaction = connection.BeginTransaction();
+
+                    cmdDelete1.Transaction = transaction;
+                    cmdDelete2.Transaction = transaction;
+                    cmdUpdate.Transaction = transaction;
+
+                    // 削除処理と更新処理を実行
+                    cmdDelete1.ExecuteNonQuery();
+                    cmdDelete2.ExecuteNonQuery();
+                    cmdUpdate.ExecuteNonQuery();
+
+                    // トランザクションのコミット
+                    transaction.Commit();
+
+                    success = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                // エラーが発生した場合の処理
+                if (transaction != null)
+                {
+                    // トランザクションのロールバック
+                    transaction.Rollback();
+                }
+
+                Console.WriteLine($"UndoRevise - Error: {ex.Message}");
+            }
+
+
+            return success;
+        }
 
 
         //未着手
@@ -1926,7 +2134,7 @@ namespace u_net
                 if (無効日時.Text != null)
                     return false;
 
-                Me.無効日時.Value = FunctionClass.GetServerDate(cn);
+                無効日時.Text = FunctionClass.GetServerDate(cn).ToString();
                 if (RegTrans(codeString, editionNumber,false))
                 {
                     return true;
@@ -2060,7 +2268,7 @@ namespace u_net
             if (e.KeyCode == Keys.Return)
             {
 
-                string strCode = 製品コード.ToString();
+                string strCode = 製品コード.Text.ToString();
                 string formattedCode = strCode.Trim().PadLeft(8, '0');
 
                 if (formattedCode != strCode || string.IsNullOrEmpty(strCode))
@@ -2072,7 +2280,7 @@ namespace u_net
         }
         private void 製品コード_SelectedIndexChanged(object sender, EventArgs e)
         {
-            製品版数.Text = ((DataRowView)製品コード.SelectedItem)?.Row.Field<String>("Display2")?.ToString();
+            製品版数.Text = ((DataRowView)製品コード.SelectedItem)?.Row.Field<Int16>("Display3").ToString();
             UpdatedControl(sender as Control);
         }
 
@@ -2195,7 +2403,50 @@ namespace u_net
 
         private void 品名_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (IsError(sender as Control) == true) e.Cancel = true;
+            //if (IsError(sender as Control) == true) e.Cancel = true;
+            
+        }
+
+        private void 確定日時_TextChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(確定日時.Text))
+            {
+                確定日時.BackColor = Color.Black;
+                確定日時.ForeColor = Color.Black;
+            }
+            else
+            {
+                確定日時.BackColor = Color.Red;
+                確定日時.ForeColor = Color.Red;
+            }
+        }
+
+        private void 承認日時_TextChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(承認日時.Text))
+            {
+                承認日時.BackColor = Color.Black;
+                承認日時.ForeColor = Color.Black;
+            }
+            else
+            {
+                承認日時.BackColor = Color.Red;
+                承認日時.ForeColor = Color.Red;
+            }
+        }
+
+        private void 廃止_TextChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(廃止.Text))
+            {
+                廃止.BackColor = Color.Black;
+                廃止.ForeColor = Color.Black;
+            }
+            else
+            {
+                廃止.BackColor = Color.Red;
+                廃止.ForeColor = Color.Red;
+            }
         }
     }
 }

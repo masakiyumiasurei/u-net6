@@ -876,6 +876,7 @@ namespace u_net
             this.確定日時.Size = new System.Drawing.Size(20, 20);
             this.確定日時.TabIndex = 10179;
             this.確定日時.TabStop = false;
+            this.確定日時.TextChanged += new System.EventHandler(this.確定日時_TextChanged);
             // 
             // 廃止
             // 
@@ -890,6 +891,7 @@ namespace u_net
             this.廃止.Size = new System.Drawing.Size(20, 20);
             this.廃止.TabIndex = 10180;
             this.廃止.TabStop = false;
+            this.廃止.TextChanged += new System.EventHandler(this.廃止_TextChanged);
             this.廃止.Validated += new System.EventHandler(this.廃止_Validated);
             // 
             // 承認日時
@@ -905,6 +907,7 @@ namespace u_net
             this.承認日時.Size = new System.Drawing.Size(20, 20);
             this.承認日時.TabIndex = 10181;
             this.承認日時.TabStop = false;
+            this.承認日時.TextChanged += new System.EventHandler(this.承認日時_TextChanged);
             // 
             // 確定者コード
             // 
