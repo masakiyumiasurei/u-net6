@@ -167,7 +167,7 @@ namespace MultiRowDesigner
         {
             try
             {
-                Connect()
+                Connect();
                 // 登録済みの部品集合グループに対して指定部品が存在するかどうかを返す
                 using (SqlCommand cmd = new SqlCommand())
                 {
