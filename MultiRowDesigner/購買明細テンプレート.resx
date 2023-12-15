@@ -153,12 +153,6 @@
   <metadata name="TaxRate.AnnotationCreatedTime" type="System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value />
   </metadata>
-  <metadata name="購買コード.AnnotationCreatedTime" type="System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value />
-  </metadata>
-  <metadata name="単位数量.AnnotationCreatedTime" type="System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value />
-  </metadata>
   <metadata name="明細番号ボタン.AnnotationCreatedTime" type="System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value />
   </metadata>
