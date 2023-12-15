@@ -53,12 +53,14 @@
             GrapeCity.Win.MultiRow.CellStyle cellStyle2 = new GrapeCity.Win.MultiRow.CellStyle();
             GrapeCity.Win.MultiRow.CellStyle cellStyle3 = new GrapeCity.Win.MultiRow.CellStyle();
             GrapeCity.Win.MultiRow.Border border1 = new GrapeCity.Win.MultiRow.Border();
+            GrapeCity.Win.MultiRow.TextLengthValidator textLengthValidator1 = new GrapeCity.Win.MultiRow.TextLengthValidator();
             GrapeCity.Win.MultiRow.CellStyle cellStyle4 = new GrapeCity.Win.MultiRow.CellStyle();
             GrapeCity.Win.MultiRow.Border border2 = new GrapeCity.Win.MultiRow.Border();
             GrapeCity.Win.MultiRow.CellStyle cellStyle5 = new GrapeCity.Win.MultiRow.CellStyle();
             GrapeCity.Win.MultiRow.Border border3 = new GrapeCity.Win.MultiRow.Border();
             GrapeCity.Win.MultiRow.CellStyle cellStyle6 = new GrapeCity.Win.MultiRow.CellStyle();
             GrapeCity.Win.MultiRow.Border border4 = new GrapeCity.Win.MultiRow.Border();
+            GrapeCity.Win.MultiRow.TextLengthValidator textLengthValidator2 = new GrapeCity.Win.MultiRow.TextLengthValidator();
             GrapeCity.Win.MultiRow.CellStyle cellStyle7 = new GrapeCity.Win.MultiRow.CellStyle();
             GrapeCity.Win.MultiRow.Border border5 = new GrapeCity.Win.MultiRow.Border();
             GrapeCity.Win.MultiRow.CellStyle cellStyle8 = new GrapeCity.Win.MultiRow.CellStyle();
@@ -438,6 +440,10 @@
             cellStyle3.ImeMode = System.Windows.Forms.ImeMode.Off;
             this.型式名.Style = cellStyle3;
             this.型式名.TabIndex = 3;
+            textLengthValidator1.EncodingCodePage = 1200;
+            textLengthValidator1.LengthUnit = GrapeCity.Win.MultiRow.LengthUnit.Byte;
+            textLengthValidator1.MaximumLength = 16;
+            this.型式名.Validators.Add(textLengthValidator1);
             // 
             // 改版中
             // 
@@ -477,6 +483,10 @@
             cellStyle6.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.ユニットコード.Style = cellStyle6;
             this.ユニットコード.TabIndex = 4;
+            textLengthValidator2.EncodingCodePage = 1200;
+            textLengthValidator2.LengthUnit = GrapeCity.Win.MultiRow.LengthUnit.Byte;
+            textLengthValidator2.MaximumLength = 8;
+            this.ユニットコード.Validators.Add(textLengthValidator2);
             // 
             // 品名
             // 
