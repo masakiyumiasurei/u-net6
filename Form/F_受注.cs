@@ -1170,6 +1170,359 @@ namespace u_net
             return warning;
         }
 
+
+        private bool IsError(Control controlObject)
+        {
+            try
+            {
+
+                Connect();
+
+                object varValue = controlObject.Text; // Valueプロパティの代わりにTextプロパティを使用
+                DateTime inputDate;
+                DateTime date1;
+                string str1;
+
+                switch (controlObject.Name)
+                {
+                    case "受注日":
+                        if (!DateTime.TryParse(varValue.ToString(), out inputDate))
+                        {
+                            MessageBox.Show("日付以外は入力できません。", controlObject.Name, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            goto Exit_IsError;
+                        }
+                        if (DateTime.Now < inputDate)
+                        {
+                            MessageBox.Show("未来日付は入力できません。", controlObject.Name, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            goto Exit_IsError;
+                        }
+                        if (!string.IsNullOrEmpty(this.出荷予定日.Text) && !DateTime.TryParse(this.出荷予定日.Text, out date1))
+                        {
+                            if (date1 < inputDate)
+                            {
+                                MessageBox.Show("出荷予定日以降の日付は入力できません。", controlObject.Name, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                                goto Exit_IsError;
+                            }
+                        }
+                        if (!string.IsNullOrEmpty(this.受注納期.Text) && !DateTime.TryParse(this.受注納期.Text, out date1))
+                        {
+                            if (date1 < inputDate)
+                            {
+                                MessageBox.Show("受注納期以降の日付は入力できません。", controlObject.Name, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                                goto Exit_IsError;
+                            }
+                        }
+                        break;
+                    case "注文番号":
+                        if (string.IsNullOrEmpty(varValue?.ToString()))
+                        {
+                            MessageBox.Show(controlObject.Name + " を入力してください。", controlObject.Name, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            goto Exit_IsError;
+                        }
+                        break;
+                    case "顧客コード":
+                        str1 = GetCustomerName(cn, varValue?.ToString());
+                        if (string.IsNullOrEmpty(str1))
+                        {
+                            MessageBox.Show("有効な顧客コードではありません。", controlObject.Name, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            goto Exit_IsError;
+                        }
+                        else
+                        {
+                            this.顧客名.Text = str1;
+                        }
+                        break;
+                    case "顧客担当者名":
+                        if (!FunctionClass.IsLimit(varValue, 30, false, controlObject.Name))
+                            goto Exit_IsError;
+                        break;
+                    case "受注納期":
+                        if (string.IsNullOrEmpty(varValue?.ToString()))
+                        {
+                            MessageBox.Show(controlObject.Name + " を入力してください。", controlObject.Name, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            goto Exit_IsError;
+                        }
+                        if (!DateTime.TryParse(varValue.ToString(), out inputDate))
+                        {
+                            MessageBox.Show("日付を入力してください。", controlObject.Name, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            goto Exit_IsError;
+                        }
+                        if (!string.IsNullOrEmpty(this.受注日.Text) && !DateTime.TryParse(this.受注日.Text, out date1))
+                        {
+                            if (inputDate < date1)
+                            {
+                                MessageBox.Show("受注日以降（受注日含む）の日付を入力してください。", controlObject.Name, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                                goto Exit_IsError;
+                            }
+                        }
+                        if (!string.IsNullOrEmpty(this.出荷予定日.Text) && !DateTime.TryParse(this.出荷予定日.Text, out date1))
+                        {
+                            if (inputDate < date1)
+                            {
+                                MessageBox.Show("出荷予定日以前の日付は入力できません。", controlObject.Name, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                                goto Exit_IsError;
+                            }
+                        }
+                        break;
+                    case "出荷予定日":
+                        if (string.IsNullOrEmpty(varValue?.ToString()))
+                        {
+                            MessageBox.Show(controlObject.Name + " を入力してください。", controlObject.Name, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            goto Exit_IsError;
+                        }
+                        if (!DateTime.TryParse(varValue.ToString(), out inputDate))
+                        {
+                            MessageBox.Show("日付を入力してください。", controlObject.Name, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            goto Exit_IsError;
+                        }
+                        if (!string.IsNullOrEmpty(this.受注日.Text) && !DateTime.TryParse(this.受注日.Text, out date1))
+                        {
+                            if (inputDate < date1)
+                            {
+                                MessageBox.Show("受注日以降（受注日含む）の日付を入力してください。", controlObject.Name, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                                goto Exit_IsError;
+                            }
+                        }
+                        if (!string.IsNullOrEmpty(this.受注納期.Text) && !DateTime.TryParse(this.受注納期.Text, out date1))
+                        {
+                            if (date1 < inputDate)
+                            {
+                                MessageBox.Show("受注納期以前の日付を入力してください。", controlObject.Name, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                                goto Exit_IsError;
+                            }
+                        }
+                        break;
+                    case "納品書送付コード":
+                    case "請求書送付コード":
+                    case "発送方法コード":
+                        if (!FunctionClass.IsLimit_N(varValue, 2, 0, controlObject.Name))
+                            goto Exit_IsError;
+                        break;
+                    case "自社担当者コード":
+                        if (string.IsNullOrEmpty(varValue?.ToString()))
+                        {
+                            MessageBox.Show(controlObject.Name + " を入力してください。", controlObject.Name, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            goto Exit_IsError;
+                        }
+                        break;
+                    case "PackingSlipInputCode":
+                        if (string.IsNullOrEmpty(varValue?.ToString()))
+                        {
+                            MessageBox.Show("伝票記載指示を入力してください。", "伝票記載指示", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            goto Exit_IsError;
+                        }
+                        else
+                        {
+                            if (this.PackingSlipInputCode.Text == "02" || this.PackingSlipInputCode.Text == "03" || this.PackingSlipInputCode.Text == "06")
+                            {
+                                MessageBox.Show("選択できません。", "伝票記載指示", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                                goto Exit_IsError;
+                            }
+                        }
+                        break;
+                    case "PackingSlipNote":
+                        // 納品書の記載が必要のときは入力必須
+                        if (this.PackingSlipInputCode.Text != "04" && string.IsNullOrEmpty(varValue?.ToString()))
+                        {
+                            MessageBox.Show("伝票記載内容を入力してください。", "伝票記載内容", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            goto Exit_IsError;
+                        }
+
+                        // 納品書の記載が不要のときは入力を取り消す
+                        if (this.PackingSlipInputCode.Text == "04" && !string.IsNullOrEmpty(varValue?.ToString()))
+                        {
+                            goto Exit_IsError;
+                        }
+                        break;
+                    case "InvoiceInputCode":
+                        if (string.IsNullOrEmpty(varValue?.ToString()))
+                        {
+                            MessageBox.Show("送り状記載指示を入力してください。", "送り状記載指示", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            goto Exit_IsError;
+                        }
+                        break;
+                    case "InvoiceNote":
+                        // 送り状の記載が必要のときは入力必須
+                        if (this.InvoiceInputCode.Text == "01" && string.IsNullOrEmpty(varValue?.ToString()))
+                        {
+                            MessageBox.Show("送り状記載内容を入力してください。", "送り状記載内容", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            goto Exit_IsError;
+                        }
+
+                        // 送り状の記載が不要のときは入力を取り消す
+                        if (this.InvoiceInputCode.Text == "02" && !string.IsNullOrEmpty(varValue?.ToString()))
+                        {
+                            goto Exit_IsError;
+                        }
+                        break;
+                    case "InvoiceFaxCode":
+                        if (string.IsNullOrEmpty(varValue?.ToString()))
+                        {
+                            MessageBox.Show("送り状FAX送付指示を入力してください。", "送り状FAX送付指示", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            goto Exit_IsError;
+                        }
+                        break;
+                    case "InvoiceFaxToName":
+                        // 送り状FAX送付が必要のときは入力必須
+                        if (this.InvoiceFaxCode.Text == "01" && string.IsNullOrEmpty(varValue?.ToString()))
+                        {
+                            MessageBox.Show("送り状FAXの宛先情報を入力してください。", "送り状FAX", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            goto Exit_IsError;
+                        }
+
+                        // 送り状FAX送付が不要のときは入力を取り消す
+                        if (this.InvoiceFaxCode.Text == "02" && !string.IsNullOrEmpty(varValue?.ToString()))
+                        {
+                            goto Exit_IsError;
+                        }
+                        break;
+                    case "請求予定日":
+                        if (this.帳端処理.Checked)
+                        {
+                            if (!DateTime.TryParse(varValue.ToString(), out inputDate))
+                            {
+                                MessageBox.Show("日付を入力してください。", controlObject.Name, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                                goto Exit_IsError;
+                            }
+                            if (!string.IsNullOrEmpty(varValue?.ToString()))
+                            {
+                                // 受注納期以前の日付を許可するが、完了承認しないと請求には反映しない
+                                if (!string.IsNullOrEmpty(this.受注納期.Text) && !DateTime.TryParse(this.受注納期.Text, out date1))
+                                {
+                                    if (inputDate < date1)
+                                    {
+                                        if (MessageBox.Show("請求予定日に受注納期以前の日付が入力されています。" + Environment.NewLine +
+                                                        "請求は受注処理が完了承認されてから行われます。" + Environment.NewLine + Environment.NewLine +
+                                                        "続行しますか？", controlObject.Name, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                                        {
+                                            goto Exit_IsError;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        break;
+                    case "TaxCalcCode":
+                    case "税端数処理":
+                        if (string.IsNullOrEmpty(varValue?.ToString()))
+                        {
+                            MessageBox.Show(controlObject.Name + " を入力してください。", controlObject.Name, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            goto Exit_IsError;
+                        }
+                        break;
+                    case "発送先名":
+                        if (!FunctionClass.IsLimit(varValue, 50, false, controlObject.Name))
+                            goto Exit_IsError;
+                        break;
+                    case "発送先郵便番号":
+                        if (string.IsNullOrEmpty(varValue?.ToString()))
+                        {
+                            MessageBox.Show(controlObject.Name + " を入力してください。", controlObject.Name, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            goto Exit_IsError;
+                        }
+                        break;
+                    case "発送先住所1":
+                        if (!FunctionClass.IsLimit(varValue, 100, false, controlObject.Name))
+                            goto Exit_IsError;
+                        break;
+                    case "発送先住所2":
+                        if (!FunctionClass.IsLimit(varValue, 100, true, controlObject.Name))
+                            goto Exit_IsError;
+                        break;
+                    case "発送先TEL":
+                        if (!FunctionClass.IsLimit(varValue, 20, false, controlObject.Name))
+                            goto Exit_IsError;
+                        break;
+                    case "発送先FAX":
+                        if (!FunctionClass.IsLimit(varValue, 20, true, controlObject.Name))
+                            goto Exit_IsError;
+                        break;
+                    case "発送先メールアドレス":
+                        if (!FunctionClass.IsLimit(varValue, 50, true, controlObject.Name))
+                            goto Exit_IsError;
+                        break;
+                    case "発送先担当者名":
+                        if (!FunctionClass.IsLimit(varValue, 40, false, controlObject.Name))
+                            goto Exit_IsError;
+                        break;
+                }
+
+                return false;
+
+            Exit_IsError:
+                if (controlObject is TextBox textBox)
+                {
+                    textBox.Undo();
+                }
+
+                return true;
+
+            }
+            catch (Exception ex)
+            {
+                Debug.Print("IsError - " + ex.Message);
+                return true;
+            }
+        }
+
+        /// <summary>
+        /// 顧客コードから顧客名を得る（受注用）
+        /// </summary>
+        /// <param name="connection"></param>
+        /// <param name="customerCode"></param>
+        /// <returns></returns>
+        public static string GetCustomerName(SqlConnection connection, string customerCode)
+        {
+            // 顧客コードから顧客名を取得する関数
+
+            // 顧客名を格納する変数
+            string customerName = "";
+
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = connection;
+                    //connection.Open();
+
+                    // SQLクエリを構築
+                    string query = "SELECT * FROM M顧客 WHERE 顧客コード = @CustomerCode AND 取引開始日 IS NOT NULL AND GETDATE()<=ExpirationDate";
+                    cmd.CommandText = query;
+                    cmd.Parameters.AddWithValue("@CustomerCode", customerCode);
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            // レコードが存在する場合、顧客名を取得
+                            string customerName1 = reader["顧客名"].ToString();
+                            string customerName2 = reader["顧客名2"].ToString();
+
+                            if (!string.IsNullOrEmpty(customerName2))
+                            {
+                                // 顧客名2が存在する場合、顧客名1と結合
+                                customerName = customerName1 + " " + customerName2;
+                            }
+                            else
+                            {
+                                // 顧客名2が存在しない場合、顧客名1のみを使用
+                                customerName = customerName1;
+                            }
+                        }
+                    }
+                }
+
+                //connection.Close();
+            }
+            catch (Exception ex)
+            {
+                // エラーハンドリングを行うか、エラーログを記録するなどの処理をここに追加できます
+                Console.WriteLine("GetCustomerName - " + ex.Message);
+            }
+
+            return customerName;
+        }
+
         private void コマンド新規_Click(object sender, EventArgs e)
         {
             try
@@ -1954,7 +2307,7 @@ namespace u_net
 
         private void 受注コード_TextChanged(object sender, EventArgs e)
         {
-            FunctionClass.LimitText(((ComboBox)sender), 9);
+            FunctionClass.LimitText(((Control)sender), 9);
         }
 
         private void 受注コード_KeyPress(object sender, KeyPressEventArgs e)
@@ -1982,7 +2335,11 @@ namespace u_net
 
         private void 受注日_Validating(object sender, CancelEventArgs e)
         {
-            if (IsError(sender as Control) == true) e.Cancel = true;
+            TextBox textBox = (TextBox)sender;
+
+            if (textBox.Modified == false) return;
+
+            if (IsError(textBox) == true) e.Cancel = true;
         }
 
         private void 受注日_Validated(object sender, EventArgs e)
@@ -1997,46 +2354,108 @@ namespace u_net
 
         private void 受注日_DoubleClick(object sender, EventArgs e)
         {
-            // 日付選択フォームを作成し表示
-            F_カレンダー calendar = new F_カレンダー();
-            if (calendar.ShowDialog() == DialogResult.OK)
-            {
-                // 日付選択フォームから選択した日付を取得
-                string selectedDate = calendar.SelectedDate;
+            受注日選択ボタン_Click(this, EventArgs.Empty);
+        }
 
-                // 日付コントロールに選択した日付を設定
-                受注日.Text = selectedDate;
+        private void 受注日_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Space:
+                    受注日選択ボタン_Click(this, EventArgs.Empty);
+                    break;
             }
         }
 
         private void 受注日選択ボタン_Click(object sender, EventArgs e)
         {
-            // 日付選択フォームを作成し表示
-            F_カレンダー calendar = new F_カレンダー();
-            if (calendar.ShowDialog() == DialogResult.OK)
+            if (this.IsApproved)
             {
-                // 日付選択フォームから選択した日付を取得
-                string selectedDate = calendar.SelectedDate;
+                this.受注日.Focus();
+            }
+            else
+            {
+                // 日付選択フォームを作成し表示
+                F_カレンダー calendar = new F_カレンダー();
+                if (calendar.ShowDialog() == DialogResult.OK)
+                {
+                    // 日付選択フォームから選択した日付を取得
+                    string selectedDate = calendar.SelectedDate;
 
-                // 日付コントロールに選択した日付を設定
-                受注日.Text = selectedDate;
+                    // 日付コントロールに選択した日付を設定
+                    受注日.Text = selectedDate;
+                }
             }
         }
 
         private void 注文番号_Validating(object sender, CancelEventArgs e)
         {
-            if (IsError(sender as Control) == true) e.Cancel = true;
+            TextBox textBox = (TextBox)sender;
+
+            if (textBox.Modified == false) return;
+
+            if (IsError(textBox) == true) e.Cancel = true;
         }
 
         private void 注文番号_TextChanged(object sender, EventArgs e)
         {
-            //FunctionClass.LimitText(((ComboBox)sender), 30);
-            //ChangedData(true);
+            FunctionClass.LimitText(((Control)sender), 30);
+            ChangedData(true);
         }
 
         private void 注文番号_Validated(object sender, EventArgs e)
         {
             UpdatedControl((Control)sender);
+        }
+
+        private void 顧客コード_Validating(object sender, CancelEventArgs e)
+        {
+            TextBox textBox = (TextBox)sender;
+
+            if (textBox.Modified == false) return;
+
+            if (IsError(textBox) == true) e.Cancel = true;
+        }
+
+        private void 顧客コード_Validated(object sender, EventArgs e)
+        {
+            UpdatedControl((Control)sender);
+        }
+
+        private void 顧客コード_TextChanged(object sender, EventArgs e)
+        {
+            FunctionClass.LimitText(((Control)sender), 8);
+            ChangedData(true);
+        }
+
+        private void 顧客コード_DoubleClick(object sender, EventArgs e)
+        {
+            if (this.IsApproved)
+            {
+                MessageBox.Show("承認後の修正はできません。", this.ActiveControl.Name, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                顧客コード検索ボタン_Click(this, EventArgs.Empty);
+            }
+        }
+
+        private void 顧客コード_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Space:
+                    顧客コード検索ボタン_Click(this, EventArgs.Empty);
+                    break;
+                case Keys.Enter:
+                    string strCode = this.ActiveControl.Text;
+                    if (string.IsNullOrEmpty(strCode))
+                        return;
+                    strCode = strCode.PadLeft(8, '0');
+
+                    this.ActiveControl.Text = strCode;
+                    break;
+            }
         }
 
         private void 顧客コード検索ボタン_Click(object sender, EventArgs e)
@@ -2050,6 +2469,25 @@ namespace u_net
                 顧客コード.Text = SelectedCode;
                 UpdatedControl(顧客コード);
             }
+        }
+
+        private void 受注納期_Validated(object sender, EventArgs e)
+        {
+            UpdatedControl((Control)sender);
+        }
+
+        private void 受注納期_Validating(object sender, CancelEventArgs e)
+        {
+            TextBox textBox = (TextBox)sender;
+
+            if (textBox.Modified == false) return;
+
+            if (IsError(textBox) == true) e.Cancel = true;
+        }
+
+        private void 受注納期_TextChanged(object sender, EventArgs e)
+        {
+            ChangedData(true);
         }
 
         private void 納品書送付コード_DrawItem(object sender, DrawItemEventArgs e)
@@ -2106,12 +2544,6 @@ namespace u_net
             自社担当者コード.Invalidate();
             自社担当者コード.DroppedDown = true;
         }
-
-        private void 備考_Enter(object sender, EventArgs e)
-        {
-            this.toolStripStatusLabel2.Text = "■全角１００文字まで入力できます。";
-        }
-
 
         private void 受注納期選択ボタン_Click(object sender, EventArgs e)
         {
@@ -2250,6 +2682,76 @@ namespace u_net
             this.受注明細1.Detail.ColumnFooters[0].Cells["消費税率"].Value = taxRate;
         }
 
+        private void 受注コード_Enter(object sender, EventArgs e)
+        {
+            this.toolStripStatusLabel2.Text = "■9文字入力。　■入力された受注コードを検索します。　■既存の受注に対する受注コードの変更はできません。";
+        }
+
+        private void 受注日_Enter(object sender, EventArgs e)
+        {
+            this.toolStripStatusLabel2.Text = "■西暦部分は2桁で入力。「/」は必要。　■[+]キー、[-]キーで1日増減。　■[space]キーでカレンダー表示。";
+        }
+
+        private void 注文番号_Enter(object sender, EventArgs e)
+        {
+            this.toolStripStatusLabel2.Text = "■英数字は原則として半角で入力。　■複数入力するときは\"/\"で区切ります。　■半角30文字まで入力できます。";
+        }
+
+        private void 顧客コード_Enter(object sender, EventArgs e)
+        {
+            this.toolStripStatusLabel2.Text = "■８文字まで入力できます。　■[space]キーで顧客検索画面を表示します。　■発送先及び自社担当者名は自動的に更新されます。";
+        }
+
+        private void 顧客担当者名_Enter(object sender, EventArgs e)
+        {
+            this.toolStripStatusLabel2.Text = "■顧客の担当者名を入力。　■全角25文字まで入力できます。　■敬称は不要です。";
+        }
+
+        private void 受注納期_Enter(object sender, EventArgs e)
+        {
+            this.toolStripStatusLabel2.Text = "■西暦部分は2桁で入力。「/」は必要。　■[+]キー、[-]キーで1日増減。　■[space]キーでカレンダー表示。";
+        }
+
+        private void 出荷予定日_Enter(object sender, EventArgs e)
+        {
+            this.toolStripStatusLabel2.Text = "■西暦部分は2桁で入力。「/」は必要。　■[+]キー、[-]キーで1日増減。　■[space]キーでカレンダー表示。";
+        }
+
+        private void 納品書送付コード_Enter(object sender, EventArgs e)
+        {
+            this.toolStripStatusLabel2.Text = "■2文字入力。　■[space]キーで選択。";
+        }
+
+        private void 請求書送付コード_Enter(object sender, EventArgs e)
+        {
+            this.toolStripStatusLabel2.Text = "■2文字入力。　■[space]キーで選択。";
+        }
+
+        private void 発送方法コード_Enter(object sender, EventArgs e)
+        {
+            this.toolStripStatusLabel2.Text = "■2文字入力。　■[space]キーで選択。";
+        }
+
+        private void 自社担当者コード_Enter(object sender, EventArgs e)
+        {
+            this.toolStripStatusLabel2.Text = "■3字入力。　■[space]キーで選択。";
+        }
+
+        private void 備考_Enter(object sender, EventArgs e)
+        {
+            this.toolStripStatusLabel2.Text = "■文字数制限はありません。　■この欄への入力内容は生産ライン上では表示されません。";
+        }
+
+        private void 改訂履歴_Enter(object sender, EventArgs e)
+        {
+            this.toolStripStatusLabel2.Text = "■文字数制限はありません。　■この欄への入力内容は生産ライン上では表示されません。";
+        }
+
+        private void ProductionNotice_Enter(object sender, EventArgs e)
+        {
+            this.toolStripStatusLabel2.Text = "■全角280文字まで入力できます。";
+        }
+
         private void 発送先名_Enter(object sender, EventArgs e)
         {
             this.toolStripStatusLabel2.Text = "■全角２９文字まで入力できます。　■敬称は不要。";
@@ -2330,292 +2832,31 @@ namespace u_net
             this.toolStripStatusLabel2.Text = "■顧客の担当者名を入力。　■全角46文字まで入力できます。　■敬称は不要です。";
         }
 
-
-        private bool IsError(Control controlObject)
+        private void 納品書送付コード_Validating(object sender, CancelEventArgs e)
         {
-            try
-            {
+            ComboBox comboBox = (ComboBox)sender;
 
-                Connect();
+            //if (comboBox.Modified == false) return;
 
-                object varValue = controlObject.Text; // Valueプロパティの代わりにTextプロパティを使用
-                DateTime inputDate;
-                DateTime date1;
-                string str1;
+            if (IsError(comboBox) == true) e.Cancel = true;
+        }
 
-                switch (controlObject.Name)
-                {
-                    case "受注日":
-                        if (!DateTime.TryParse(varValue.ToString(), out inputDate))
-                        {
-                            MessageBox.Show("日付以外は入力できません。", controlObject.Name, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                            return true;
-                        }
-                        if (DateTime.Now < inputDate)
-                        {
-                            MessageBox.Show("未来日付は入力できません。", controlObject.Name, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                            return true;
-                        }
-                        if (!string.IsNullOrEmpty(this.出荷予定日.Text) && !DateTime.TryParse(this.出荷予定日.Text, out date1))
-                        {
-                            if (date1 < inputDate)
-                            {
-                                MessageBox.Show("出荷予定日以降の日付は入力できません。", controlObject.Name, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                                return true;
-                            }
-                        }
-                        if (!string.IsNullOrEmpty(this.受注納期.Text) && !DateTime.TryParse(this.受注納期.Text, out date1))
-                        {
-                            if (date1 < inputDate)
-                            {
-                                MessageBox.Show("受注納期以降の日付は入力できません。", controlObject.Name, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                                return true;
-                            }
-                        }
-                        break;
-                    case "注文番号":
-                        if (string.IsNullOrEmpty(varValue?.ToString()))
-                        {
-                            MessageBox.Show(controlObject.Name + " を入力してください。", controlObject.Name, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                            return true;
-                        }
-                        break;
-                    case "顧客コード":
-                        str1 = FunctionClass.GetCustomerName(cn, varValue?.ToString());
-                        if (string.IsNullOrEmpty(str1))
-                        {
-                            MessageBox.Show("有効な顧客コードではありません。", controlObject.Name, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                            return true;
-                        }
-                        else
-                        {
-                            this.顧客名.Text = str1;
-                        }
-                        break;
-                    case "顧客担当者名":
-                        if (!FunctionClass.IsLimit(varValue, 30, false, controlObject.Name))
-                            return true;
-                        break;
-                    case "受注納期":
-                        if (string.IsNullOrEmpty(varValue?.ToString()))
-                        {
-                            MessageBox.Show(controlObject.Name + " を入力してください。", controlObject.Name, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                            return true;
-                        }
-                        if (!DateTime.TryParse(varValue.ToString(), out inputDate))
-                        {
-                            MessageBox.Show("日付を入力してください。", controlObject.Name, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                            return true;
-                        }
-                        if (!string.IsNullOrEmpty(this.受注日.Text) && !DateTime.TryParse(this.受注日.Text, out date1))
-                        {
-                            if (inputDate < date1)
-                            {
-                                MessageBox.Show("受注日以降（受注日含む）の日付を入力してください。", controlObject.Name, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                                return true;
-                            }
-                        }
-                        if (!string.IsNullOrEmpty(this.出荷予定日.Text) && !DateTime.TryParse(this.出荷予定日.Text, out date1))
-                        {
-                            if (inputDate < date1)
-                            {
-                                MessageBox.Show("出荷予定日以前の日付は入力できません。", controlObject.Name, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                                return true;
-                            }
-                        }
-                        break;
-                    case "出荷予定日":
-                        if (string.IsNullOrEmpty(varValue?.ToString()))
-                        {
-                            MessageBox.Show(controlObject.Name + " を入力してください。", controlObject.Name, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                            return true;
-                        }
-                        if (!DateTime.TryParse(varValue.ToString(), out inputDate))
-                        {
-                            MessageBox.Show("日付を入力してください。", controlObject.Name, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                            return true;
-                        }
-                        if (!string.IsNullOrEmpty(this.受注日.Text) && !DateTime.TryParse(this.受注日.Text, out date1))
-                        {
-                            if (inputDate < date1)
-                            {
-                                MessageBox.Show("受注日以降（受注日含む）の日付を入力してください。", controlObject.Name, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                                return true;
-                            }
-                        }
-                        if (!string.IsNullOrEmpty(this.受注納期.Text) && !DateTime.TryParse(this.受注納期.Text, out date1))
-                        {
-                            if (date1 < inputDate)
-                            {
-                                MessageBox.Show("受注納期以前の日付を入力してください。", controlObject.Name, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                                return true;
-                            }
-                        }
-                        break;
-                    case "納品書送付コード":
-                    case "請求書送付コード":
-                    case "発送方法コード":
-                        if (!FunctionClass.IsLimit_N(varValue, 2, 0, controlObject.Name))
-                            return true;
-                        break;
-                    case "自社担当者コード":
-                        if (string.IsNullOrEmpty(varValue?.ToString()))
-                        {
-                            MessageBox.Show(controlObject.Name + " を入力してください。", controlObject.Name, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                            return true;
-                        }
-                        break;
-                    case "PackingSlipInputCode":
-                        if (string.IsNullOrEmpty(varValue?.ToString()))
-                        {
-                            MessageBox.Show("伝票記載指示を入力してください。", "伝票記載指示", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                            return true;
-                        }
-                        else
-                        {
-                            if (this.PackingSlipInputCode.Text == "02" || this.PackingSlipInputCode.Text == "03" || this.PackingSlipInputCode.Text == "06")
-                            {
-                                MessageBox.Show("選択できません。", "伝票記載指示", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                                return true;
-                            }
-                        }
-                        break;
-                    case "PackingSlipNote":
-                        // 納品書の記載が必要のときは入力必須
-                        if (this.PackingSlipInputCode.Text != "04" && string.IsNullOrEmpty(varValue?.ToString()))
-                        {
-                            MessageBox.Show("伝票記載内容を入力してください。", "伝票記載内容", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                            return true;
-                        }
+        private void 請求書送付コード_Validating(object sender, CancelEventArgs e)
+        {
+            ComboBox comboBox = (ComboBox)sender;
 
-                        // 納品書の記載が不要のときは入力を取り消す
-                        if (this.PackingSlipInputCode.Text == "04" && !string.IsNullOrEmpty(varValue?.ToString()))
-                        {
-                            return true;
-                        }
-                        break;
-                    case "InvoiceInputCode":
-                        if (string.IsNullOrEmpty(varValue?.ToString()))
-                        {
-                            MessageBox.Show("送り状記載指示を入力してください。", "送り状記載指示", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                            return true;
-                        }
-                        break;
-                    case "InvoiceNote":
-                        // 送り状の記載が必要のときは入力必須
-                        if (this.InvoiceInputCode.Text == "01" && string.IsNullOrEmpty(varValue?.ToString()))
-                        {
-                            MessageBox.Show("送り状記載内容を入力してください。", "送り状記載内容", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                            return true;
-                        }
+            //if (comboBox.Modified == false) return;
 
-                        // 送り状の記載が不要のときは入力を取り消す
-                        if (this.InvoiceInputCode.Text == "02" && !string.IsNullOrEmpty(varValue?.ToString()))
-                        {
-                            return true;
-                        }
-                        break;
-                    case "InvoiceFaxCode":
-                        if (string.IsNullOrEmpty(varValue?.ToString()))
-                        {
-                            MessageBox.Show("送り状FAX送付指示を入力してください。", "送り状FAX送付指示", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                            return true;
-                        }
-                        break;
-                    case "InvoiceFaxToName":
-                        // 送り状FAX送付が必要のときは入力必須
-                        if (this.InvoiceFaxCode.Text == "01" && string.IsNullOrEmpty(varValue?.ToString()))
-                        {
-                            MessageBox.Show("送り状FAXの宛先情報を入力してください。", "送り状FAX", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                            return true;
-                        }
+            if (IsError(comboBox) == true) e.Cancel = true;
+        }
 
-                        // 送り状FAX送付が不要のときは入力を取り消す
-                        if (this.InvoiceFaxCode.Text == "02" && !string.IsNullOrEmpty(varValue?.ToString()))
-                        {
-                            return true;
-                        }
-                        break;
-                    case "請求予定日":
-                        if (this.帳端処理.Checked)
-                        {
-                            if (!DateTime.TryParse(varValue.ToString(), out inputDate))
-                            {
-                                MessageBox.Show("日付を入力してください。", controlObject.Name, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                                return true;
-                            }
-                            if (!string.IsNullOrEmpty(varValue?.ToString()))
-                            {
-                                // 受注納期以前の日付を許可するが、完了承認しないと請求には反映しない
-                                if (!string.IsNullOrEmpty(this.受注納期.Text) && !DateTime.TryParse(this.受注納期.Text, out date1))
-                                {
-                                    if (inputDate < date1)
-                                    {
-                                        if (MessageBox.Show("請求予定日に受注納期以前の日付が入力されています。" + Environment.NewLine +
-                                                        "請求は受注処理が完了承認されてから行われます。" + Environment.NewLine + Environment.NewLine +
-                                                        "続行しますか？", controlObject.Name, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
-                                        {
-                                            return true;
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                        break;
-                    case "TaxCalcCode":
-                    case "税端数処理":
-                        if (string.IsNullOrEmpty(varValue?.ToString()))
-                        {
-                            MessageBox.Show(controlObject.Name + " を入力してください。", controlObject.Name, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                            return true;
-                        }
-                        break;
-                    case "発送先名":
-                        if (!FunctionClass.IsLimit(varValue, 50, false, controlObject.Name))
-                            return true;
-                        break;
-                    case "発送先郵便番号":
-                        if (string.IsNullOrEmpty(varValue?.ToString()))
-                        {
-                            MessageBox.Show(controlObject.Name + " を入力してください。", controlObject.Name, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                            return true;
-                        }
-                        break;
-                    case "発送先住所1":
-                        if (!FunctionClass.IsLimit(varValue, 100, false, controlObject.Name))
-                            return true;
-                        break;
-                    case "発送先住所2":
-                        if (!FunctionClass.IsLimit(varValue, 100, true, controlObject.Name))
-                            return true;
-                        break;
-                    case "発送先TEL":
-                        if (!FunctionClass.IsLimit(varValue, 20, false, controlObject.Name))
-                            return true;
-                        break;
-                    case "発送先FAX":
-                        if (!FunctionClass.IsLimit(varValue, 20, true, controlObject.Name))
-                            return true;
-                        break;
-                    case "発送先メールアドレス":
-                        if (!FunctionClass.IsLimit(varValue, 50, true, controlObject.Name))
-                            return true;
-                        break;
-                    case "発送先担当者名":
-                        if (!FunctionClass.IsLimit(varValue, 40, false, controlObject.Name))
-                            return true;
-                        break;
-                }
+        private void 発送方法コード_Validating(object sender, CancelEventArgs e)
+        {
+            ComboBox comboBox = (ComboBox)sender;
 
-                return false;
+            //if (comboBox.Modified == false) return;
 
-
-            }
-            catch (Exception ex)
-            {
-                Debug.Print("IsError - " + ex.Message);
-                return true;
-            }
+            if (IsError(comboBox) == true) e.Cancel = true;
         }
 
 

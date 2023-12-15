@@ -1230,6 +1230,7 @@ namespace u_net
             発注明細1.Name = "発注明細1";
             発注明細1.Size = new Size(1584, 338);
             発注明細1.TabIndex = 10119;
+            発注明細1.Resize += Form_Resize;
             // 
             // F_発注
             // 

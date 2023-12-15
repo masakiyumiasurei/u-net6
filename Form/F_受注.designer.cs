@@ -610,10 +610,10 @@ namespace u_net
             // 
             statusStrip1.ImageScalingSize = new Size(20, 20);
             statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1, toolStripStatusLabel2 });
-            statusStrip1.Location = new Point(0, 752);
+            statusStrip1.Location = new Point(0, 740);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Padding = new Padding(1, 0, 19, 0);
-            statusStrip1.Size = new Size(1184, 22);
+            statusStrip1.Size = new Size(2380, 22);
             statusStrip1.TabIndex = 110;
             statusStrip1.Text = "statusStrip1";
             // 
@@ -748,7 +748,7 @@ namespace u_net
             Page2.Controls.Add(発送先);
             Page2.Controls.Add(発送先選択);
             Page2.Controls.Add(戻るボタン);
-            Page2.Location = new Point(0, 42);
+            Page2.Location = new Point(1200, 42);
             Page2.Margin = new Padding(4, 3, 4, 3);
             Page2.Name = "Page2";
             Page2.Size = new Size(1180, 650);
@@ -772,9 +772,8 @@ namespace u_net
             ProductionPlanned.ImeMode = ImeMode.Hiragana;
             ProductionPlanned.Location = new Point(715, 350);
             ProductionPlanned.Margin = new Padding(3, 2, 3, 2);
-            ProductionPlanned.Multiline = true;
             ProductionPlanned.Name = "ProductionPlanned";
-            ProductionPlanned.Size = new Size(150, 22);
+            ProductionPlanned.Size = new Size(150, 21);
             ProductionPlanned.TabIndex = 10071;
             ProductionPlanned.TabStop = false;
             ProductionPlanned.Visible = false;
@@ -786,9 +785,8 @@ namespace u_net
             無効日.ImeMode = ImeMode.Hiragana;
             無効日.Location = new Point(715, 325);
             無効日.Margin = new Padding(3, 2, 3, 2);
-            無効日.Multiline = true;
             無効日.Name = "無効日";
-            無効日.Size = new Size(150, 22);
+            無効日.Size = new Size(150, 21);
             無効日.TabIndex = 10070;
             無効日.TabStop = false;
             無効日.Visible = false;
@@ -800,9 +798,8 @@ namespace u_net
             承認日時.ImeMode = ImeMode.Hiragana;
             承認日時.Location = new Point(715, 275);
             承認日時.Margin = new Padding(3, 2, 3, 2);
-            承認日時.Multiline = true;
             承認日時.Name = "承認日時";
-            承認日時.Size = new Size(150, 22);
+            承認日時.Size = new Size(150, 21);
             承認日時.TabIndex = 10069;
             承認日時.TabStop = false;
             承認日時.Visible = false;
@@ -814,9 +811,8 @@ namespace u_net
             ManufacturingCompletionApprovedDate.ImeMode = ImeMode.Hiragana;
             ManufacturingCompletionApprovedDate.Location = new Point(715, 300);
             ManufacturingCompletionApprovedDate.Margin = new Padding(3, 2, 3, 2);
-            ManufacturingCompletionApprovedDate.Multiline = true;
             ManufacturingCompletionApprovedDate.Name = "ManufacturingCompletionApprovedDate";
-            ManufacturingCompletionApprovedDate.Size = new Size(150, 22);
+            ManufacturingCompletionApprovedDate.Size = new Size(150, 21);
             ManufacturingCompletionApprovedDate.TabIndex = 10068;
             ManufacturingCompletionApprovedDate.TabStop = false;
             ManufacturingCompletionApprovedDate.Visible = false;
@@ -828,9 +824,8 @@ namespace u_net
             確定者コード.ImeMode = ImeMode.Hiragana;
             確定者コード.Location = new Point(715, 250);
             確定者コード.Margin = new Padding(3, 2, 3, 2);
-            確定者コード.Multiline = true;
             確定者コード.Name = "確定者コード";
-            確定者コード.Size = new Size(150, 22);
+            確定者コード.Size = new Size(150, 21);
             確定者コード.TabIndex = 10067;
             確定者コード.TabStop = false;
             確定者コード.Visible = false;
@@ -842,9 +837,8 @@ namespace u_net
             確定日時.ImeMode = ImeMode.Hiragana;
             確定日時.Location = new Point(715, 225);
             確定日時.Margin = new Padding(3, 2, 3, 2);
-            確定日時.Multiline = true;
             確定日時.Name = "確定日時";
-            確定日時.Size = new Size(150, 22);
+            確定日時.Size = new Size(150, 21);
             確定日時.TabIndex = 10066;
             確定日時.TabStop = false;
             確定日時.Visible = false;
@@ -980,9 +974,8 @@ namespace u_net
             請求コード.ImeMode = ImeMode.Hiragana;
             請求コード.Location = new Point(715, 150);
             請求コード.Margin = new Padding(3, 2, 3, 2);
-            請求コード.Multiline = true;
             請求コード.Name = "請求コード";
-            請求コード.Size = new Size(150, 22);
+            請求コード.Size = new Size(150, 21);
             請求コード.TabIndex = 10057;
             // 
             // label46
@@ -1037,9 +1030,8 @@ namespace u_net
             TaxRate.ImeMode = ImeMode.Hiragana;
             TaxRate.Location = new Point(715, 75);
             TaxRate.Margin = new Padding(3, 2, 3, 2);
-            TaxRate.Multiline = true;
             TaxRate.Name = "TaxRate";
-            TaxRate.Size = new Size(150, 22);
+            TaxRate.Size = new Size(150, 21);
             TaxRate.TabIndex = 10053;
             // 
             // label43
@@ -1132,9 +1124,8 @@ namespace u_net
             InvoiceNote.ImeMode = ImeMode.Hiragana;
             InvoiceNote.Location = new Point(640, 75);
             InvoiceNote.Margin = new Padding(3, 2, 3, 2);
-            InvoiceNote.Multiline = true;
             InvoiceNote.Name = "InvoiceNote";
-            InvoiceNote.Size = new Size(350, 22);
+            InvoiceNote.Size = new Size(350, 21);
             InvoiceNote.TabIndex = 50;
             InvoiceNote.Enter += InvoiceNote_Enter;
             // 
@@ -1145,9 +1136,8 @@ namespace u_net
             PackingSlipNote.ImeMode = ImeMode.Hiragana;
             PackingSlipNote.Location = new Point(640, 50);
             PackingSlipNote.Margin = new Padding(3, 2, 3, 2);
-            PackingSlipNote.Multiline = true;
             PackingSlipNote.Name = "PackingSlipNote";
-            PackingSlipNote.Size = new Size(350, 22);
+            PackingSlipNote.Size = new Size(350, 21);
             PackingSlipNote.TabIndex = 49;
             PackingSlipNote.Enter += PackingSlipNote_Enter;
             // 
@@ -1188,10 +1178,9 @@ namespace u_net
             InvoiceFax.ImeMode = ImeMode.Hiragana;
             InvoiceFax.Location = new Point(235, 125);
             InvoiceFax.Margin = new Padding(3, 2, 3, 2);
-            InvoiceFax.Multiline = true;
             InvoiceFax.Name = "InvoiceFax";
             InvoiceFax.ReadOnly = true;
-            InvoiceFax.Size = new Size(100, 22);
+            InvoiceFax.Size = new Size(100, 21);
             InvoiceFax.TabIndex = 45;
             InvoiceFax.TabStop = false;
             // 
@@ -1202,10 +1191,9 @@ namespace u_net
             ReceiptComment.ImeMode = ImeMode.Hiragana;
             ReceiptComment.Location = new Point(235, 100);
             ReceiptComment.Margin = new Padding(3, 2, 3, 2);
-            ReceiptComment.Multiline = true;
             ReceiptComment.Name = "ReceiptComment";
             ReceiptComment.ReadOnly = true;
-            ReceiptComment.Size = new Size(150, 22);
+            ReceiptComment.Size = new Size(150, 21);
             ReceiptComment.TabIndex = 43;
             ReceiptComment.TabStop = false;
             // 
@@ -1216,10 +1204,9 @@ namespace u_net
             InvoiceInput.ImeMode = ImeMode.Hiragana;
             InvoiceInput.Location = new Point(235, 75);
             InvoiceInput.Margin = new Padding(3, 2, 3, 2);
-            InvoiceInput.Multiline = true;
             InvoiceInput.Name = "InvoiceInput";
             InvoiceInput.ReadOnly = true;
-            InvoiceInput.Size = new Size(150, 22);
+            InvoiceInput.Size = new Size(150, 21);
             InvoiceInput.TabIndex = 41;
             InvoiceInput.TabStop = false;
             // 
@@ -1307,9 +1294,8 @@ namespace u_net
             InvoiceFaxToNumber.ImeMode = ImeMode.Hiragana;
             InvoiceFaxToNumber.Location = new Point(150, 200);
             InvoiceFaxToNumber.Margin = new Padding(3, 2, 3, 2);
-            InvoiceFaxToNumber.Multiline = true;
             InvoiceFaxToNumber.Name = "InvoiceFaxToNumber";
-            InvoiceFaxToNumber.Size = new Size(350, 22);
+            InvoiceFaxToNumber.Size = new Size(350, 21);
             InvoiceFaxToNumber.TabIndex = 48;
             InvoiceFaxToNumber.Enter += InvoiceFaxToNumber_Enter;
             // 
@@ -1320,9 +1306,8 @@ namespace u_net
             InvoiceFaxToContact.ImeMode = ImeMode.Hiragana;
             InvoiceFaxToContact.Location = new Point(150, 175);
             InvoiceFaxToContact.Margin = new Padding(3, 2, 3, 2);
-            InvoiceFaxToContact.Multiline = true;
             InvoiceFaxToContact.Name = "InvoiceFaxToContact";
-            InvoiceFaxToContact.Size = new Size(350, 22);
+            InvoiceFaxToContact.Size = new Size(350, 21);
             InvoiceFaxToContact.TabIndex = 47;
             InvoiceFaxToContact.Enter += InvoiceFaxToContact_Enter;
             // 
@@ -1333,9 +1318,8 @@ namespace u_net
             InvoiceFaxToName.ImeMode = ImeMode.Hiragana;
             InvoiceFaxToName.Location = new Point(150, 150);
             InvoiceFaxToName.Margin = new Padding(3, 2, 3, 2);
-            InvoiceFaxToName.Multiline = true;
             InvoiceFaxToName.Name = "InvoiceFaxToName";
-            InvoiceFaxToName.Size = new Size(350, 22);
+            InvoiceFaxToName.Size = new Size(350, 21);
             InvoiceFaxToName.TabIndex = 46;
             InvoiceFaxToName.Enter += InvoiceFaxToName_Enter;
             // 
@@ -1346,10 +1330,9 @@ namespace u_net
             PackingSlipInput.ImeMode = ImeMode.Hiragana;
             PackingSlipInput.Location = new Point(235, 50);
             PackingSlipInput.Margin = new Padding(3, 2, 3, 2);
-            PackingSlipInput.Multiline = true;
             PackingSlipInput.Name = "PackingSlipInput";
             PackingSlipInput.ReadOnly = true;
-            PackingSlipInput.Size = new Size(150, 22);
+            PackingSlipInput.Size = new Size(150, 21);
             PackingSlipInput.TabIndex = 39;
             PackingSlipInput.TabStop = false;
             // 
@@ -1521,9 +1504,8 @@ namespace u_net
             発送先メールアドレス.ImeMode = ImeMode.Hiragana;
             発送先メールアドレス.Location = new Point(150, 200);
             発送先メールアドレス.Margin = new Padding(3, 2, 3, 2);
-            発送先メールアドレス.Multiline = true;
             発送先メールアドレス.Name = "発送先メールアドレス";
-            発送先メールアドレス.Size = new Size(324, 22);
+            発送先メールアドレス.Size = new Size(324, 21);
             発送先メールアドレス.TabIndex = 30;
             // 
             // 発送先担当者名
@@ -1533,9 +1515,8 @@ namespace u_net
             発送先担当者名.ImeMode = ImeMode.Hiragana;
             発送先担当者名.Location = new Point(150, 175);
             発送先担当者名.Margin = new Padding(3, 2, 3, 2);
-            発送先担当者名.Multiline = true;
             発送先担当者名.Name = "発送先担当者名";
-            発送先担当者名.Size = new Size(350, 22);
+            発送先担当者名.Size = new Size(350, 21);
             発送先担当者名.TabIndex = 29;
             発送先担当者名.Enter += 発送先担当者名_Enter;
             // 
@@ -1546,9 +1527,8 @@ namespace u_net
             発送先FAX.ImeMode = ImeMode.Hiragana;
             発送先FAX.Location = new Point(150, 150);
             発送先FAX.Margin = new Padding(3, 2, 3, 2);
-            発送先FAX.Multiline = true;
             発送先FAX.Name = "発送先FAX";
-            発送先FAX.Size = new Size(150, 22);
+            発送先FAX.Size = new Size(150, 21);
             発送先FAX.TabIndex = 28;
             // 
             // 発送先TEL
@@ -1558,9 +1538,8 @@ namespace u_net
             発送先TEL.ImeMode = ImeMode.Hiragana;
             発送先TEL.Location = new Point(150, 125);
             発送先TEL.Margin = new Padding(3, 2, 3, 2);
-            発送先TEL.Multiline = true;
             発送先TEL.Name = "発送先TEL";
-            発送先TEL.Size = new Size(150, 22);
+            発送先TEL.Size = new Size(150, 21);
             発送先TEL.TabIndex = 27;
             // 
             // 発送先住所2
@@ -1570,9 +1549,8 @@ namespace u_net
             発送先住所2.ImeMode = ImeMode.Hiragana;
             発送先住所2.Location = new Point(150, 100);
             発送先住所2.Margin = new Padding(3, 2, 3, 2);
-            発送先住所2.Multiline = true;
             発送先住所2.Name = "発送先住所2";
-            発送先住所2.Size = new Size(350, 22);
+            発送先住所2.Size = new Size(350, 21);
             発送先住所2.TabIndex = 26;
             発送先住所2.Enter += 発送先住所2_Enter;
             // 
@@ -1583,9 +1561,8 @@ namespace u_net
             発送先住所1.ImeMode = ImeMode.Hiragana;
             発送先住所1.Location = new Point(150, 75);
             発送先住所1.Margin = new Padding(3, 2, 3, 2);
-            発送先住所1.Multiline = true;
             発送先住所1.Name = "発送先住所1";
-            発送先住所1.Size = new Size(350, 22);
+            発送先住所1.Size = new Size(350, 21);
             発送先住所1.TabIndex = 25;
             発送先住所1.Enter += 発送先住所1_Enter;
             // 
@@ -1711,9 +1688,8 @@ namespace u_net
             発送先名.ImeMode = ImeMode.Hiragana;
             発送先名.Location = new Point(150, 25);
             発送先名.Margin = new Padding(3, 2, 3, 2);
-            発送先名.Multiline = true;
             発送先名.Name = "発送先名";
-            発送先名.Size = new Size(350, 22);
+            発送先名.Size = new Size(350, 21);
             発送先名.TabIndex = 23;
             発送先名.Enter += 発送先名_Enter;
             // 
@@ -1773,6 +1749,7 @@ namespace u_net
             発送先1.Name = "発送先1";
             発送先1.Size = new Size(76, 18);
             発送先1.TabIndex = 0;
+            発送先1.TabStop = true;
             発送先1.Text = "発送先1";
             発送先1.UseVisualStyleBackColor = true;
             // 
@@ -1861,6 +1838,7 @@ namespace u_net
             出荷予定日.Name = "出荷予定日";
             出荷予定日.Size = new Size(150, 21);
             出荷予定日.TabIndex = 11;
+            出荷予定日.Enter += 出荷予定日_Enter;
             // 
             // 受注納期
             // 
@@ -1869,6 +1847,10 @@ namespace u_net
             受注納期.Name = "受注納期";
             受注納期.Size = new Size(150, 21);
             受注納期.TabIndex = 10;
+            受注納期.TextChanged += 受注納期_TextChanged;
+            受注納期.Enter += 受注納期_Enter;
+            受注納期.Validating += 受注納期_Validating;
+            受注納期.Validated += 受注納期_Validated;
             // 
             // 受注日
             // 
@@ -1879,6 +1861,8 @@ namespace u_net
             受注日.TabIndex = 3;
             受注日.TextChanged += 受注日_TextChanged;
             受注日.DoubleClick += 受注日_DoubleClick;
+            受注日.Enter += 受注日_Enter;
+            受注日.KeyDown += 受注日_KeyDown;
             受注日.Validating += 受注日_Validating;
             受注日.Validated += 受注日_Validated;
             // 
@@ -1901,6 +1885,7 @@ namespace u_net
             ProductionNotice.Name = "ProductionNotice";
             ProductionNotice.Size = new Size(377, 72);
             ProductionNotice.TabIndex = 20;
+            ProductionNotice.Enter += ProductionNotice_Enter;
             // 
             // label23
             // 
@@ -1928,6 +1913,7 @@ namespace u_net
             改訂履歴.Name = "改訂履歴";
             改訂履歴.Size = new Size(377, 72);
             改訂履歴.TabIndex = 19;
+            改訂履歴.Enter += 改訂履歴_Enter;
             // 
             // label22
             // 
@@ -1965,10 +1951,9 @@ namespace u_net
             自社担当者名.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             自社担当者名.Location = new Point(767, 55);
             自社担当者名.Margin = new Padding(3, 2, 3, 2);
-            自社担当者名.Multiline = true;
             自社担当者名.Name = "自社担当者名";
             自社担当者名.ReadOnly = true;
-            自社担当者名.Size = new Size(150, 22);
+            自社担当者名.Size = new Size(150, 21);
             自社担当者名.TabIndex = 10068;
             自社担当者名.TabStop = false;
             // 
@@ -1987,6 +1972,7 @@ namespace u_net
             自社担当者コード.TabIndex = 17;
             自社担当者コード.DrawItem += 自社担当者コード_DrawItem;
             自社担当者コード.SelectedIndexChanged += 自社担当者コード_SelectedIndexChanged;
+            自社担当者コード.Enter += 自社担当者コード_Enter;
             // 
             // label21
             // 
@@ -2009,9 +1995,8 @@ namespace u_net
             発送方法.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             発送方法.Location = new Point(192, 305);
             発送方法.Margin = new Padding(3, 2, 3, 2);
-            発送方法.Multiline = true;
             発送方法.Name = "発送方法";
-            発送方法.Size = new Size(150, 22);
+            発送方法.Size = new Size(150, 21);
             発送方法.TabIndex = 10098;
             // 
             // 発送方法コード
@@ -2029,6 +2014,8 @@ namespace u_net
             発送方法コード.TabIndex = 16;
             発送方法コード.DrawItem += 発送方法コード_DrawItem;
             発送方法コード.SelectedIndexChanged += 発送方法コード_SelectedIndexChanged;
+            発送方法コード.Enter += 発送方法コード_Enter;
+            発送方法コード.Validating += 発送方法コード_Validating;
             // 
             // 請求書送付
             // 
@@ -2036,9 +2023,8 @@ namespace u_net
             請求書送付.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             請求書送付.Location = new Point(192, 280);
             請求書送付.Margin = new Padding(3, 2, 3, 2);
-            請求書送付.Multiline = true;
             請求書送付.Name = "請求書送付";
-            請求書送付.Size = new Size(150, 22);
+            請求書送付.Size = new Size(150, 21);
             請求書送付.TabIndex = 10097;
             // 
             // 請求書送付コード
@@ -2056,6 +2042,8 @@ namespace u_net
             請求書送付コード.TabIndex = 15;
             請求書送付コード.DrawItem += 請求書送付コード_DrawItem;
             請求書送付コード.SelectedIndexChanged += 請求書送付コード_SelectedIndexChanged;
+            請求書送付コード.Enter += 請求書送付コード_Enter;
+            請求書送付コード.Validating += 請求書送付コード_Validating;
             // 
             // 納品書送付
             // 
@@ -2063,9 +2051,8 @@ namespace u_net
             納品書送付.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             納品書送付.Location = new Point(192, 255);
             納品書送付.Margin = new Padding(3, 2, 3, 2);
-            納品書送付.Multiline = true;
             納品書送付.Name = "納品書送付";
-            納品書送付.Size = new Size(150, 22);
+            納品書送付.Size = new Size(150, 21);
             納品書送付.TabIndex = 10096;
             // 
             // 納品書送付コード
@@ -2083,6 +2070,8 @@ namespace u_net
             納品書送付コード.TabIndex = 14;
             納品書送付コード.DrawItem += 納品書送付コード_DrawItem;
             納品書送付コード.SelectedIndexChanged += 納品書送付コード_SelectedIndexChanged;
+            納品書送付コード.Enter += 納品書送付コード_Enter;
+            納品書送付コード.Validating += 納品書送付コード_Validating;
             // 
             // 出荷予定日選択ボタン
             // 
@@ -2126,10 +2115,10 @@ namespace u_net
             顧客担当者名.ImeMode = ImeMode.Hiragana;
             顧客担当者名.Location = new Point(127, 155);
             顧客担当者名.Margin = new Padding(3, 2, 3, 2);
-            顧客担当者名.Multiline = true;
             顧客担当者名.Name = "顧客担当者名";
-            顧客担当者名.Size = new Size(400, 22);
+            顧客担当者名.Size = new Size(400, 21);
             顧客担当者名.TabIndex = 7;
+            顧客担当者名.Enter += 顧客担当者名_Enter;
             // 
             // 顧客名
             // 
@@ -2138,9 +2127,8 @@ namespace u_net
             顧客名.ImeMode = ImeMode.Hiragana;
             顧客名.Location = new Point(127, 130);
             顧客名.Margin = new Padding(3, 2, 3, 2);
-            顧客名.Multiline = true;
             顧客名.Name = "顧客名";
-            顧客名.Size = new Size(400, 22);
+            顧客名.Size = new Size(400, 21);
             顧客名.TabIndex = 6;
             顧客名.TabStop = false;
             // 
@@ -2161,11 +2149,15 @@ namespace u_net
             顧客コード.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             顧客コード.Location = new Point(127, 105);
             顧客コード.Margin = new Padding(3, 2, 3, 2);
-            顧客コード.Multiline = true;
             顧客コード.Name = "顧客コード";
-            顧客コード.ReadOnly = true;
-            顧客コード.Size = new Size(150, 22);
+            顧客コード.Size = new Size(150, 21);
             顧客コード.TabIndex = 5;
+            顧客コード.TextChanged += 顧客コード_TextChanged;
+            顧客コード.DoubleClick += 顧客コード_DoubleClick;
+            顧客コード.Enter += 顧客コード_Enter;
+            顧客コード.KeyDown += 顧客コード_KeyDown;
+            顧客コード.Validating += 顧客コード_Validating;
+            顧客コード.Validated += 顧客コード_Validated;
             // 
             // label20
             // 
@@ -2332,6 +2324,7 @@ namespace u_net
             受注コード.DrawItem += 受注コード_DrawItem;
             受注コード.SelectedIndexChanged += 受注コード_SelectedIndexChanged;
             受注コード.TextChanged += 受注コード_TextChanged;
+            受注コード.Enter += 受注コード_Enter;
             受注コード.KeyPress += 受注コード_KeyPress;
             // 
             // 発送先登録ボタン
@@ -2367,9 +2360,8 @@ namespace u_net
             削除.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             削除.Location = new Point(922, 25);
             削除.Margin = new Padding(3, 2, 3, 2);
-            削除.Multiline = true;
             削除.Name = "削除";
-            削除.Size = new Size(25, 23);
+            削除.Size = new Size(25, 20);
             削除.TabIndex = 10084;
             削除.TabStop = false;
             // 
@@ -2379,9 +2371,8 @@ namespace u_net
             在庫締め.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             在庫締め.Location = new Point(847, 25);
             在庫締め.Margin = new Padding(3, 2, 3, 2);
-            在庫締め.Multiline = true;
             在庫締め.Name = "在庫締め";
-            在庫締め.Size = new Size(25, 23);
+            在庫締め.Size = new Size(25, 20);
             在庫締め.TabIndex = 10083;
             在庫締め.TabStop = false;
             // 
@@ -2391,9 +2382,8 @@ namespace u_net
             完了承認.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             完了承認.Location = new Point(772, 25);
             完了承認.Margin = new Padding(3, 2, 3, 2);
-            完了承認.Multiline = true;
             完了承認.Name = "完了承認";
-            完了承認.Size = new Size(25, 23);
+            完了承認.Size = new Size(25, 20);
             完了承認.TabIndex = 10082;
             完了承認.TabStop = false;
             // 
@@ -2445,9 +2435,8 @@ namespace u_net
             生産計画.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             生産計画.Location = new Point(697, 25);
             生産計画.Margin = new Padding(3, 2, 3, 2);
-            生産計画.Multiline = true;
             生産計画.Name = "生産計画";
-            生産計画.Size = new Size(25, 23);
+            生産計画.Size = new Size(25, 20);
             生産計画.TabIndex = 10078;
             生産計画.TabStop = false;
             // 
@@ -2471,9 +2460,8 @@ namespace u_net
             承認.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             承認.Location = new Point(622, 25);
             承認.Margin = new Padding(3, 2, 3, 2);
-            承認.Multiline = true;
             承認.Name = "承認";
-            承認.Size = new Size(25, 23);
+            承認.Size = new Size(25, 20);
             承認.TabIndex = 10076;
             承認.TabStop = false;
             // 
@@ -2569,9 +2557,8 @@ namespace u_net
             確定.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             確定.Location = new Point(547, 25);
             確定.Margin = new Padding(3, 2, 3, 2);
-            確定.Multiline = true;
             確定.Name = "確定";
-            確定.Size = new Size(25, 23);
+            確定.Size = new Size(25, 20);
             確定.TabIndex = 10069;
             確定.TabStop = false;
             // 
@@ -2596,11 +2583,11 @@ namespace u_net
             注文番号.ImeMode = ImeMode.Hiragana;
             注文番号.Location = new Point(127, 80);
             注文番号.Margin = new Padding(3, 2, 3, 2);
-            注文番号.Multiline = true;
             注文番号.Name = "注文番号";
-            注文番号.Size = new Size(250, 22);
+            注文番号.Size = new Size(250, 21);
             注文番号.TabIndex = 4;
             注文番号.TextChanged += 注文番号_TextChanged;
+            注文番号.Enter += 注文番号_Enter;
             注文番号.Validating += 注文番号_Validating;
             注文番号.Validated += 注文番号_Validated;
             // 
