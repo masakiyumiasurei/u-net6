@@ -18,6 +18,15 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="Form\F_商品OLD.cs" />
+    <Compile Remove="Form\F_商品OLD.designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="Form\F_商品OLD.resx" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Include="MultiRowDesigner\ユニット明細.cs" />
     <Compile Include="MultiRowDesigner\ユニット明細.Designer.cs" />
     <Compile Include="MultiRowDesigner\ユニット明細テンプレート.cs" />
