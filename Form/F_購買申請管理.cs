@@ -313,7 +313,8 @@ namespace u_net
             // Update the list
             if (!DoUpdate())
             {
-                MessageBox.Show($"Initialization failed. [{Name}] will be closed.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //MessageBox.Show($"Initialization failed. [{Name}] will be closed.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"初期化に失敗しました。[{Name}]を終了します。", "初期処理", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 // Assuming this is a Form, close it
                 Close();
                 return;
