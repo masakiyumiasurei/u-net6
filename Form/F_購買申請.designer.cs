@@ -141,6 +141,7 @@ namespace u_net
             // 
             コマンド登録.Enabled = false;
             コマンド登録.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            コマンド登録.ForeColor = Color.Blue;
             コマンド登録.ImageAlign = ContentAlignment.BottomLeft;
             コマンド登録.Location = new Point(725, 5);
             コマンド登録.Margin = new Padding(3, 2, 3, 2);
@@ -168,6 +169,7 @@ namespace u_net
             // 
             コマンド削除.Enabled = false;
             コマンド削除.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            コマンド削除.ForeColor = Color.Red;
             コマンド削除.ImageAlign = ContentAlignment.BottomLeft;
             コマンド削除.Location = new Point(306, 4);
             コマンド削除.Margin = new Padding(3, 2, 3, 2);
@@ -184,6 +186,7 @@ namespace u_net
             コマンド新規.BackColor = SystemColors.Control;
             コマンド新規.Enabled = false;
             コマンド新規.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            コマンド新規.ForeColor = Color.Blue;
             コマンド新規.ImageAlign = ContentAlignment.BottomLeft;
             コマンド新規.Location = new Point(5, 5);
             コマンド新規.Margin = new Padding(3, 2, 3, 2);
@@ -256,6 +259,7 @@ namespace u_net
             // 
             コマンド承認.Enabled = false;
             コマンド承認.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            コマンド承認.ForeColor = Color.Blue;
             コマンド承認.ImageAlign = ContentAlignment.BottomLeft;
             コマンド承認.Location = new Point(585, 5);
             コマンド承認.Margin = new Padding(3, 2, 3, 2);
@@ -271,6 +275,7 @@ namespace u_net
             // 
             コマンド改版.Enabled = false;
             コマンド改版.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            コマンド改版.ForeColor = Color.Blue;
             コマンド改版.ImageAlign = ContentAlignment.BottomLeft;
             コマンド改版.Location = new Point(215, 5);
             コマンド改版.Margin = new Padding(3, 2, 3, 2);
@@ -286,6 +291,7 @@ namespace u_net
             // 
             コマンド複写.Enabled = false;
             コマンド複写.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            コマンド複写.ForeColor = Color.Blue;
             コマンド複写.ImageAlign = ContentAlignment.BottomLeft;
             コマンド複写.Location = new Point(145, 5);
             コマンド複写.Margin = new Padding(3, 2, 3, 2);
@@ -337,6 +343,7 @@ namespace u_net
             // 
             購買申請コード.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             購買申請コード.AutoCompleteSource = AutoCompleteSource.ListItems;
+            購買申請コード.BackColor = Color.Yellow;
             購買申請コード.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             購買申請コード.FormattingEnabled = true;
             購買申請コード.ImeMode = ImeMode.NoControl;
@@ -395,6 +402,7 @@ namespace u_net
             // 
             購買申請版数.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             購買申請版数.AutoCompleteSource = AutoCompleteSource.ListItems;
+            購買申請版数.BackColor = Color.Yellow;
             購買申請版数.DropDownStyle = ComboBoxStyle.DropDownList;
             購買申請版数.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             購買申請版数.FormattingEnabled = true;
@@ -528,6 +536,7 @@ namespace u_net
             材料単価.Name = "材料単価";
             材料単価.Size = new Size(100, 21);
             材料単価.TabIndex = 11;
+            材料単価.TextAlign = HorizontalAlignment.Right;
             材料単価.TextChanged += 材料単価_TextChanged;
             材料単価.Validating += 材料単価_Validating;
             材料単価.Validated += 材料単価_Validated;
@@ -793,7 +802,7 @@ namespace u_net
             申請日.Name = "申請日";
             申請日.Size = new Size(131, 21);
             申請日.TabIndex = 2;
-            申請日.TextChanged += 申請日_TextChanged;
+            申請日.TextChanged += 申請者コード_TextChanged;
             申請日.KeyPress += 申請日_KeyPress;
             申請日.MouseDoubleClick += 申請日_MouseDoubleClick;
             申請日.Validating += 申請日_Validating;
@@ -831,6 +840,7 @@ namespace u_net
             数量.Name = "数量";
             数量.Size = new Size(100, 21);
             数量.TabIndex = 10;
+            数量.TextAlign = HorizontalAlignment.Right;
             数量.TextChanged += 数量_TextChanged;
             数量.Validating += 数量_Validating;
             数量.Validated += 数量_Validated;
@@ -900,6 +910,7 @@ namespace u_net
             ロット番号2.Name = "ロット番号2";
             ロット番号2.Size = new Size(100, 21);
             ロット番号2.TabIndex = 9;
+            ロット番号2.TextAlign = HorizontalAlignment.Right;
             ロット番号2.TextChanged += ロット番号2_TextChanged;
             ロット番号2.Validating += ロット番号2_Validating;
             ロット番号2.Validated += ロット番号2_Validated;
@@ -913,6 +924,7 @@ namespace u_net
             ロット番号1.Name = "ロット番号1";
             ロット番号1.Size = new Size(100, 21);
             ロット番号1.TabIndex = 8;
+            ロット番号1.TextAlign = HorizontalAlignment.Right;
             ロット番号1.TextChanged += ロット番号1_TextChanged;
             ロット番号1.Validating += ロット番号1_Validating;
             ロット番号1.Validated += ロット番号1_Validated;
@@ -976,7 +988,7 @@ namespace u_net
             ロット番号2_ラベル.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             ロット番号2_ラベル.ForeColor = SystemColors.ActiveCaptionText;
             ロット番号2_ラベル.ImageAlign = ContentAlignment.MiddleLeft;
-            ロット番号2_ラベル.Location = new Point(255, 220);
+            ロット番号2_ラベル.Location = new Point(254, 220);
             ロット番号2_ラベル.Margin = new Padding(0);
             ロット番号2_ラベル.Name = "ロット番号2_ラベル";
             ロット番号2_ラベル.Size = new Size(20, 22);
@@ -1003,7 +1015,7 @@ namespace u_net
             // 
             終了入力.BackColor = SystemColors.Control;
             終了入力.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            終了入力.Location = new Point(636, 270);
+            終了入力.Location = new Point(635, 270);
             終了入力.Margin = new Padding(3, 2, 3, 2);
             終了入力.Multiline = true;
             終了入力.Name = "終了入力";

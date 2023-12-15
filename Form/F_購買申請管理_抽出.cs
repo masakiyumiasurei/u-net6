@@ -14,6 +14,7 @@ namespace u_net
 {
     public partial class F_購買申請管理_抽出 : Form
     {
+        private F_購買申請管理 frmTarget;
 
         public F_購買申請管理_抽出()
         {
@@ -34,42 +35,41 @@ namespace u_net
             {
 
                 // 対象フォームが読み込まれていないときはすぐに終了する
-                if (Application.OpenForms["F_仕入先管理"] == null)
+                if (Application.OpenForms["F_購買申請管理"] == null)
                 {
-                    MessageBox.Show("[仕入先管理]画面が起動していない状態では実行できません。", "警告", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    MessageBox.Show("[購買申請管理]画面が起動していない状態では実行できません。", "警告", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     this.Close();
                     return;
                 }
 
                 //開いているフォームのインスタンスを作成する
-                F_仕入先管理 frmTarget = Application.OpenForms.OfType<F_仕入先管理>().FirstOrDefault();
+                F_購買申請管理 frmTarget = Application.OpenForms.OfType<F_購買申請管理>().FirstOrDefault();
 
-                // F_仕入先管理クラスからデータを取得し、現在のフォームのコントロールに設定
-                this.基本型式名.Text = frmTarget.str仕入先名;
-                シリーズ名.Text = frmTarget.str仕入先名フリガナ;
-
-                switch (frmTarget.lng削除指定)
-                {
-                    case 1:
-                        削除指定Button1.Checked = true;
-                        break;
-                    case 2:
-                        削除指定Button2.Checked = true;
-                        break;
-                    case 0:
-                        削除指定Button3.Checked = true;
-                        break;
-
-                    default:
-                        // intComposedChipMount の値に対応するラジオボタンがない場合の処理
-                        break;
-                }
+                if (frmTarget.dtm申請日開始.ToString() != "")
+                    this.申請日開始.Text = this.申請日開始.Text = frmTarget.dtm申請日開始.ToString();
+                if (frmTarget.dtm申請日終了.ToString() != "")
+                    this.申請日終了.Text = this.申請日終了.Text = frmTarget.dtm申請日終了.ToString();
+                if (frmTarget.dtm購買納期開始.ToString() != "")
+                    this.購買納期開始.Text = this.購買納期開始.Text = frmTarget.dtm購買納期開始.ToString();
+                if (frmTarget.dtm購買納期終了.ToString() != "")
+                    this.購買納期終了.Text = this.購買納期終了.Text = frmTarget.dtm購買納期終了.ToString();
+                if (frmTarget.dtm出荷予定日開始.ToString() != "")
+                    this.出荷予定日開始.Text = this.出荷予定日開始.Text = frmTarget.dtm出荷予定日開始.ToString();
+                if (frmTarget.dtm出荷予定日終了.ToString() != "")
+                    this.出荷予定日終了.Text = this.出荷予定日終了.Text = frmTarget.dtm出荷予定日終了.ToString();
+                //this.基本型式名.Text = FunctionClass.Zn(frmTarget.str基本型式名);
+                //this.シリーズ名.Text = FunctionClass.Zn(frmTarget.strシリーズ名);
+                //this.申請者コード.Text = FunctionClass.Zn(frmTarget.str申請者コード);
+                //this.承認指定.Text = FunctionClass.Zn(frmTarget.lng承認指定);
+                //this.終了指定.Text = FunctionClass.Zn(frmTarget.lng終了指定);
+                //this.完了指定.Text = FunctionClass.Zn(frmTarget.lng完了指定);
+                //this.削除指定.Text = FunctionClass.Zn(frmTarget.lng削除指定);
 
             }
             catch (Exception ex)
             {
                 // 例外処理が必要な場合はここで処理を追加
-                MessageBox.Show("エラーが発生しました: " + ex.Message, "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("_Form_Load - " + ex.Message, "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -77,49 +77,56 @@ namespace u_net
         {
             try
             {
-                F_仕入先管理? frmTarget = Application.OpenForms.OfType<F_仕入先管理>().FirstOrDefault();
-                //F_仕入先管理 frmTarget = new F_仕入先管理();
+                //Application.DoEvents(); // Mimic On Error Resume Next
 
-                // frmTarget.仕入先コード = Nz(仕入先コード.Text);
-                frmTarget.str仕入先名 = Nz(基本型式名.Text);
-                frmTarget.str仕入先名フリガナ = Nz(シリーズ名.Text);
+                Application.DoEvents();
 
+                FunctionClass fn = new FunctionClass();
+                fn.DoWait("しばらくお待ちください...");
 
-                if (削除指定Button1.Checked)
+                ////
+                frmTarget = new F_購買申請管理();
+
+                frmTarget.dtm申請日開始 = DateTime.Parse(Nz(申請日開始.Text));
+                frmTarget.dtm申請日終了 = DateTime.Parse(Nz(申請日終了.Text));
+                frmTarget.dtm購買納期開始 = DateTime.Parse(Nz(購買納期開始.Text));
+                frmTarget.dtm購買納期終了 = DateTime.Parse(Nz(購買納期終了.Text));
+                frmTarget.dtm出荷予定日開始 = DateTime.Parse(Nz(出荷予定日開始.Text));
+                frmTarget.dtm出荷予定日終了 = DateTime.Parse(Nz(出荷予定日終了.Text));
+                frmTarget.str基本型式名 = Nz(基本型式名.Text);
+                frmTarget.strシリーズ名 = Nz(シリーズ名.Text);
+                frmTarget.str申請者コード = Nz(申請者コード.Text);
+                // frm.str申請者名 = Nz(申請者名.Value);
+
+                // testのため退避
+                ////frmTarget.lng承認指定 = Nz(Convert.ToInt32(承認指定.Text));
+                ////frmTarget.lng終了指定 = Nz(Convert.ToInt32(終了指定.Text));
+                ////frmTarget.lng完了指定 = Nz(Convert.ToInt32(完了指定.Text));
+                ////frmTarget.lng削除指定 = Nz(Convert.ToInt32(削除指定.Text));
+
+                // test(ダミーの値)
+                frmTarget.lng承認指定 = 0;
+                frmTarget.lng終了指定 = 0;
+                frmTarget.lng完了指定 = 0;
+                frmTarget.lng削除指定 = 0;
+
+                ////((F_購買申請管理)this.Owner).DoUpdate();
+
+                if (!frmTarget.DoUpdate())
                 {
-                    frmTarget.lng削除指定 = 1;
-                }
-                else if (削除指定Button2.Checked)
-                {
-                    frmTarget.lng削除指定 = 2;
-                }
-                else if (削除指定Button3.Checked)
-                {
-                    frmTarget.lng削除指定 = 0;
-                }
-
-                long cnt = frmTarget.DoUpdate();
-
-                if (cnt == 0)
-                {
-                    MessageBox.Show("抽出条件に一致するデータはありません。", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+                    MessageBox.Show("抽出処理は失敗しました。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     return;
                 }
-                else if (cnt < 0)
+
+                if (frmTarget.appEXT)
                 {
-                    MessageBox.Show("エラーが発生したため、抽出できませんでした。", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    MessageBox.Show("抽出条件に一致するデータはありません。", "情報", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.Close();
                     return;
                 }
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine(this.Name + "_抽出ボタン_Click - " + ex.Message);
-                MessageBox.Show("エラーが発生しました。", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
-                //this.Painting = true;
                 this.Close();
             }
         }
@@ -129,47 +136,441 @@ namespace u_net
             this.Close();
         }
 
+
+
         private F_検索 SearchForm;
-        private void 仕入先選択ボタン_Click(object sender, EventArgs e)
+
+        private void 購買納期開始_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            SearchForm = new F_検索();
-            SearchForm.FilterName = "仕入先名フリガナ";
-            if (SearchForm.ShowDialog() == DialogResult.OK)
+            try
             {
-                string SelectedCode = SearchForm.SelectedCode;
-                申請日開始.Text = SelectedCode;
+                F_カレンダー form = new F_カレンダー();
+                // objParent に購買納期開始の参照を設定
+                sender = this.購買納期開始;
+
+                // カレンダーフォームを作成して表示
+                form.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                // エラーが発生した場合の処理
+                MessageBox.Show($"エラーが発生しました: {ex.Message}", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        private void 仕入先コード_DoubleClick(object sender, EventArgs e)
+        private void 購買納期開始_KeyPress(object sender, KeyPressEventArgs e)
         {
-            SearchForm = new F_検索();
-            SearchForm.FilterName = "仕入先名フリガナ";
-            if (SearchForm.ShowDialog() == DialogResult.OK)
+            if (e.KeyChar == ' ')
             {
-                string SelectedCode = SearchForm.SelectedCode;
-                申請日開始.Text = SelectedCode;
+                // 日付選択フォームを作成し表示
+                F_カレンダー form = new F_カレンダー();
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                    // 日付選択フォームから選択した日付を取得
+                    string selectedDate = form.SelectedDate;
+
+                    // フォームAの日付コントロールに選択した日付を設定
+                    購買納期開始.Text = selectedDate;
+                }
             }
         }
-        private void 仕入先コード_Click(object sender, EventArgs e)
+
+        private void 購買納期開始_Leave(object sender, EventArgs e)
         {
-            SearchForm = new F_検索();
-            SearchForm.FilterName = "仕入先名フリガナ";
-            if (SearchForm.ShowDialog() == DialogResult.OK)
+            FunctionClass.AdjustRange(購買納期開始, 購買納期終了, sender as Control);
+        }
+
+        private void 購買納期開始選択_MouseClick(object sender, MouseEventArgs e)
+        {
+            try
             {
-                string SelectedCode = SearchForm.SelectedCode;
-                申請日開始.Text = SelectedCode;
+                F_カレンダー form = new F_カレンダー();
+                //// objParent に購買納期開始の参照を設定
+                //sender = this.購買納期開始;
+
+                //// カレンダーフォームを作成して表示
+                //form.ShowDialog();
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                    // 日付選択フォームから選択した日付を取得
+                    string selectedDate = form.SelectedDate;
+
+                    // フォームAの日付コントロールに選択した日付を設定
+                    購買納期開始.Text = selectedDate;
+                }
+            }
+            catch (Exception ex)
+            {
+                // エラーが発生した場合の処理
+                MessageBox.Show($"エラーが発生しました: {ex.Message}", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        private void 仕入先コード_Validated(object sender, EventArgs e)
+
+        private void 購買納期終了_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            Connect();
-            this.基本型式名.Text = FunctionClass.GetSupplierName(cn, Nz(this.申請日開始.Text));
+            try
+            {
+                F_カレンダー form = new F_カレンダー();
+                // objParent に購買納期開始の参照を設定
+                sender = this.購買納期終了;
+
+                // カレンダーフォームを作成して表示
+                form.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                // エラーが発生した場合の処理
+                MessageBox.Show($"エラーが発生しました: {ex.Message}", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
-        private void 仕入先コード_TextChanged(object sender, EventArgs e)
+
+        private void 購買納期終了_KeyPress(object sender, KeyPressEventArgs e)
         {
-            Connect();
-            this.基本型式名.Text = FunctionClass.GetSupplierName(cn, Nz(this.申請日開始.Text));
+            if (e.KeyChar == ' ')
+            {
+                // 日付選択フォームを作成し表示
+                F_カレンダー form = new F_カレンダー();
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                    // 日付選択フォームから選択した日付を取得
+                    string selectedDate = form.SelectedDate;
+
+                    // フォームAの日付コントロールに選択した日付を設定
+                    購買納期終了.Text = selectedDate;
+                }
+            }
+        }
+
+        private void 購買納期終了_Leave(object sender, EventArgs e)
+        {
+            FunctionClass.AdjustRange(購買納期開始, 購買納期終了, sender as Control);
+        }
+
+        private void 購買納期終了選択_MouseClick(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                F_カレンダー form = new F_カレンダー();
+                //// objParent に購買納期開始の参照を設定
+                //sender = this.購買納期終了;
+
+                //// カレンダーフォームを作成して表示
+                //form.ShowDialog();
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                    // 日付選択フォームから選択した日付を取得
+                    string selectedDate = form.SelectedDate;
+
+                    // フォームAの日付コントロールに選択した日付を設定
+                    購買納期終了.Text = selectedDate;
+                }
+            }
+            catch (Exception ex)
+            {
+                // エラーが発生した場合の処理
+                MessageBox.Show($"エラーが発生しました: {ex.Message}", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void 出荷予定日開始_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                F_カレンダー form = new F_カレンダー();
+                // objParent に購買納期開始の参照を設定
+                sender = this.出荷予定日開始;
+
+                // カレンダーフォームを作成して表示
+                form.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                // エラーが発生した場合の処理
+                MessageBox.Show($"エラーが発生しました: {ex.Message}", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void 出荷予定日開始_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == ' ')
+            {
+                // 日付選択フォームを作成し表示
+                F_カレンダー form = new F_カレンダー();
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                    // 日付選択フォームから選択した日付を取得
+                    string selectedDate = form.SelectedDate;
+
+                    // フォームAの日付コントロールに選択した日付を設定
+                    出荷予定日開始.Text = selectedDate;
+                }
+            }
+        }
+
+        private void 出荷予定日開始_Leave(object sender, EventArgs e)
+        {
+            FunctionClass.AdjustRange(出荷予定日開始, 出荷予定日終了, sender as Control);
+        }
+
+        private void 出荷予定日開始選択_MouseClick(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                F_カレンダー form = new F_カレンダー();
+                //// objParent に購買納期開始の参照を設定
+                //sender = this.出荷予定日開始;
+
+                //// カレンダーフォームを作成して表示
+                //form.ShowDialog();
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                    // 日付選択フォームから選択した日付を取得
+                    string selectedDate = form.SelectedDate;
+
+                    // フォームAの日付コントロールに選択した日付を設定
+                    出荷予定日開始.Text = selectedDate;
+                }
+            }
+            catch (Exception ex)
+            {
+                // エラーが発生した場合の処理
+                MessageBox.Show($"エラーが発生しました: {ex.Message}", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void 出荷予定日終了_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                F_カレンダー form = new F_カレンダー();
+                // objParent に購買納期開始の参照を設定
+                sender = this.出荷予定日終了;
+
+                // カレンダーフォームを作成して表示
+                form.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                // エラーが発生した場合の処理
+                MessageBox.Show($"エラーが発生しました: {ex.Message}", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void 出荷予定日終了_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == ' ')
+            {
+                // 日付選択フォームを作成し表示
+                F_カレンダー form = new F_カレンダー();
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                    // 日付選択フォームから選択した日付を取得
+                    string selectedDate = form.SelectedDate;
+
+                    // フォームAの日付コントロールに選択した日付を設定
+                    出荷予定日終了.Text = selectedDate;
+                }
+            }
+        }
+
+        private void 出荷予定日終了_Leave(object sender, EventArgs e)
+        {
+            FunctionClass.AdjustRange(出荷予定日開始, 出荷予定日終了, sender as Control);
+        }
+
+        private void 出荷予定日終了選択_MouseClick(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                F_カレンダー form = new F_カレンダー();
+                //// objParent に購買納期開始の参照を設定
+                //sender = this.出荷予定日終了;
+
+                //// カレンダーフォームを作成して表示
+                //form.ShowDialog();
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                    // 日付選択フォームから選択した日付を取得
+                    string selectedDate = form.SelectedDate;
+
+                    // フォームAの日付コントロールに選択した日付を設定
+                    出荷予定日終了.Text = selectedDate;
+                }
+            }
+            catch (Exception ex)
+            {
+                // エラーが発生した場合の処理
+                MessageBox.Show($"エラーが発生しました: {ex.Message}", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void 申請者コード_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                // 申請者コードのリストのアイテム数を取得
+                int listCount = this.申請者コード.Items.Count;
+
+                // 取得したアイテム数を使って必要な処理を実行
+                // 例: メッセージボックスに表示するなど
+                Console.WriteLine($"申請者コードのリストアイテム数: {listCount}");
+            }
+            catch (Exception ex)
+            {
+                // エラー処理
+                Console.WriteLine("エラーが発生しました: " + ex.Message);
+            }
+        }
+
+        private void 申請日開始_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                F_カレンダー form = new F_カレンダー();
+                // objParent に申請日開始の参照を設定
+                sender = this.申請日開始;
+
+                // カレンダーフォームを作成して表示
+                form.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                // エラーが発生した場合の処理
+                MessageBox.Show($"エラーが発生しました: {ex.Message}", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void 申請日開始_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            F_カレンダー form = new F_カレンダー();
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                // objParent に申請日開始の参照を設定
+                sender = this.申請日開始;
+
+                // 日付選択フォームから選択した日付を取得
+                string selectedDate = form.SelectedDate;
+
+                // フォームAの日付コントロールに選択した日付を設定
+                申請日開始.Text = selectedDate;
+            }
+
+            if (e.KeyChar == ' ')
+            {
+                // 日付選択フォームを作成し表示
+                //F_カレンダー form = new F_カレンダー();
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                    // objParent に申請日開始の参照を設定
+                    sender = this.申請日開始;
+
+                    // 日付選択フォームから選択した日付を取得
+                    string selectedDate = form.SelectedDate;
+
+                    // フォームAの日付コントロールに選択した日付を設定
+                    申請日開始.Text = selectedDate;
+                }
+            }
+        }
+
+        private void 申請日開始_Leave(object sender, EventArgs e)
+        {
+            FunctionClass.AdjustRange(申請日開始, 申請日終了, sender as Control);
+        }
+
+        private void 申請日開始選択_MouseClick(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                F_カレンダー form = new F_カレンダー();
+                //// objParent に購買納期開始の参照を設定
+                //sender = this.申請日開始;
+
+                //// カレンダーフォームを作成して表示
+                //form.ShowDialog();
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                    // 日付選択フォームから選択した日付を取得
+                    string selectedDate = form.SelectedDate;
+
+                    // フォームAの日付コントロールに選択した日付を設定
+                    申請日開始.Text = selectedDate;
+                }
+            }
+            catch (Exception ex)
+            {
+                // エラーが発生した場合の処理
+                MessageBox.Show($"エラーが発生しました: {ex.Message}", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void 申請日終了_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                F_カレンダー form = new F_カレンダー();
+                // objParent に申請日終了の参照を設定
+                sender = this.申請日終了;
+
+                // カレンダーフォームを作成して表示
+                form.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                // エラーが発生した場合の処理
+                MessageBox.Show($"エラーが発生しました: {ex.Message}", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void 申請日終了_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == ' ')
+            {
+                // 日付選択フォームを作成し表示
+                F_カレンダー form = new F_カレンダー();
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                    // objParent に申請日終了の参照を設定
+                    sender = this.申請日終了;
+
+                    // 日付選択フォームから選択した日付を取得
+                    string selectedDate = form.SelectedDate;
+
+                    // フォームAの日付コントロールに選択した日付を設定
+                    申請日終了.Text = selectedDate;
+                }
+            }
+        }
+
+        private void 申請日終了_Leave(object sender, EventArgs e)
+        {
+            FunctionClass.AdjustRange(申請日開始, 申請日終了, sender as Control);
+        }
+
+        private void 申請日終了選択_MouseClick(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                F_カレンダー form = new F_カレンダー();
+                //// objParent に申請日終了の参照を設定
+                //sender = this.申請日終了;
+
+                //// カレンダーフォームを作成して表示
+                //form.ShowDialog();
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                    // 日付選択フォームから選択した日付を取得
+                    string selectedDate = form.SelectedDate;
+
+                    // フォームAの日付コントロールに選択した日付を設定
+                    申請日終了.Text = selectedDate;
+                }
+            }
+            catch (Exception ex)
+            {
+                // エラーが発生した場合の処理
+                MessageBox.Show($"エラーが発生しました: {ex.Message}", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         // Nz メソッドの代替
@@ -180,43 +581,6 @@ namespace u_net
                 return default(T);
             }
             return value;
-        }
-        private void 仕入先コード_KeyDown(object sender, KeyEventArgs e)
-        {
-            // 入力された値がエラー値の場合、Textプロパティが設定できなくなるときの対処
-            try
-            {
-                switch (e.KeyCode)
-                {
-                    case Keys.Return:
-                        string strCode = ((Control)sender).Text;
-                        if (string.IsNullOrEmpty(strCode)) return;
-
-                        strCode = strCode.PadLeft(8, '0');
-                        if (strCode != ((Control)sender).Text)
-                        {
-                            ((Control)sender).Text = strCode;
-                        }
-                        break;
-                }
-            }
-            catch (Exception ex)
-            {
-                // エラーハンドリング: 例外が発生した場合に処理を行う
-                Console.WriteLine("エラーが発生しました: " + ex.Message);
-            }
-        }
-
-        private void 仕入先参照ボタン_Click(object sender, EventArgs e)
-        {
-            F_仕入先 fm = new F_仕入先();
-            fm.args = this.申請日開始.Text;
-            fm.ShowDialog();
-        }
-
-        private void Discontinued_Enter(object sender, EventArgs e)
-        {
-
         }
     }
 }

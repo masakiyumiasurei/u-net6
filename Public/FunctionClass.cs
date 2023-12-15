@@ -233,6 +233,8 @@ namespace u_net.Public
             }
         }
 
+
+
         //取得したコードをリサイクルテーブルへ戻す 登録処理を中断した時用
         public static bool ReturnCode(SqlConnection connection, string codeString)
         {
@@ -2777,7 +2779,17 @@ namespace u_net.Public
             }
         }
 
-
+        public static DateTime DateConvert(DateTime inputDate)
+        {
+            if (inputDate < DateTime.Now)
+            {
+                return inputDate.AddYears(1);
+            }
+            else
+            {
+                return inputDate;
+            }
+        }
 
 
 

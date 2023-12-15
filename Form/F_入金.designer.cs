@@ -70,15 +70,14 @@ namespace u_net
             this.dataGridViewTextBoxColumn26 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn27 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.コマンドF8 = new System.Windows.Forms.Button();
-            this.廃止_ラベル = new System.Windows.Forms.Label();
-            this.型番_ラベル = new System.Windows.Forms.Label();
-            this.品名 = new System.Windows.Forms.TextBox();
-            this.品名_ラベル = new System.Windows.Forms.Label();
-            this.ユニットコード = new System.Windows.Forms.ComboBox();
-            this.ユニットコードラベル = new System.Windows.Forms.Label();
+            this.領収証但書_ラベル = new System.Windows.Forms.Label();
+            this.顧客コード_ラベル = new System.Windows.Forms.Label();
+            this.入金日 = new System.Windows.Forms.TextBox();
+            this.入金日_ラベル = new System.Windows.Forms.Label();
+            this.入金コードラベル = new System.Windows.Forms.Label();
             this.仕入先2_ラベル = new System.Windows.Forms.Label();
-            this.識別コード_ラベル = new System.Windows.Forms.Label();
-            this.RoHS対応_ラベル = new System.Windows.Forms.Label();
+            this.識別名_ラベル = new System.Windows.Forms.Label();
+            this.売掛年月_ラベル = new System.Windows.Forms.Label();
             this.更新日時 = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -86,20 +85,24 @@ namespace u_net
             this.label9 = new System.Windows.Forms.Label();
             this.登録日時 = new System.Windows.Forms.TextBox();
             this.作成者名 = new System.Windows.Forms.TextBox();
-            this.ユニット版数 = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.改版ボタン = new System.Windows.Forms.Button();
-            this.型番 = new System.Windows.Forms.TextBox();
-            this.RoHS対応 = new System.Windows.Forms.TextBox();
-            this.識別コード = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
+            this.顧客コード = new System.Windows.Forms.TextBox();
+            this.顧客名 = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.更新者名 = new System.Windows.Forms.TextBox();
             this.更新者コード = new System.Windows.Forms.TextBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.廃止 = new System.Windows.Forms.CheckBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.入金コード = new System.Windows.Forms.TextBox();
+            this.売掛年月 = new System.Windows.Forms.TextBox();
+            this.領収証但書 = new System.Windows.Forms.TextBox();
+            this.送付状摘要_ラベル = new System.Windows.Forms.Label();
+            this.送付状摘要 = new System.Windows.Forms.TextBox();
+            this.領収コード_ラベル = new System.Windows.Forms.Label();
+            this.請求コードラベル = new System.Windows.Forms.Label();
+            this.領収コード = new System.Windows.Forms.TextBox();
+            this.請求コード = new System.Windows.Forms.TextBox();
+            this.入金明細1 = new MultiRowDesigner.入金明細();
             this.panel1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -141,7 +144,7 @@ namespace u_net
             this.panel1.Location = new System.Drawing.Point(0, 1);
             this.panel1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1036, 42);
+            this.panel1.Size = new System.Drawing.Size(901, 42);
             this.panel1.TabIndex = 81;
             // 
             // コマンド新規
@@ -430,90 +433,77 @@ namespace u_net
             this.コマンドF8.UseVisualStyleBackColor = true;
             this.コマンドF8.Click += new System.EventHandler(this.コマンドツール_Click);
             // 
-            // 廃止_ラベル
+            // 領収証但書_ラベル
             // 
-            this.廃止_ラベル.AllowDrop = true;
-            this.廃止_ラベル.AutoEllipsis = true;
-            this.廃止_ラベル.Font = new System.Drawing.Font("BIZ UDゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.廃止_ラベル.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.廃止_ラベル.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.廃止_ラベル.Location = new System.Drawing.Point(9, 173);
-            this.廃止_ラベル.Margin = new System.Windows.Forms.Padding(0);
-            this.廃止_ラベル.Name = "廃止_ラベル";
-            this.廃止_ラベル.Size = new System.Drawing.Size(95, 42);
-            this.廃止_ラベル.TabIndex = 15;
-            this.廃止_ラベル.Text = "廃止(&A)";
+            this.領収証但書_ラベル.AllowDrop = true;
+            this.領収証但書_ラベル.AutoEllipsis = true;
+            this.領収証但書_ラベル.Font = new System.Drawing.Font("BIZ UDゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.領収証但書_ラベル.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.領収証但書_ラベル.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.領収証但書_ラベル.Location = new System.Drawing.Point(9, 173);
+            this.領収証但書_ラベル.Margin = new System.Windows.Forms.Padding(0);
+            this.領収証但書_ラベル.Name = "領収証但書_ラベル";
+            this.領収証但書_ラベル.Size = new System.Drawing.Size(95, 17);
+            this.領収証但書_ラベル.TabIndex = 11;
+            this.領収証但書_ラベル.Text = "領収証但書(&N)";
             // 
-            // 型番_ラベル
+            // 顧客コード_ラベル
             // 
-            this.型番_ラベル.AllowDrop = true;
-            this.型番_ラベル.AutoEllipsis = true;
-            this.型番_ラベル.Font = new System.Drawing.Font("BIZ UDゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.型番_ラベル.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.型番_ラベル.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.型番_ラベル.Location = new System.Drawing.Point(9, 96);
-            this.型番_ラベル.Margin = new System.Windows.Forms.Padding(0);
-            this.型番_ラベル.Name = "型番_ラベル";
-            this.型番_ラベル.Size = new System.Drawing.Size(100, 17);
-            this.型番_ラベル.TabIndex = 8;
-            this.型番_ラベル.Text = "型番(&M)";
-            this.型番_ラベル.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.顧客コード_ラベル.AllowDrop = true;
+            this.顧客コード_ラベル.AutoEllipsis = true;
+            this.顧客コード_ラベル.Font = new System.Drawing.Font("BIZ UDゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.顧客コード_ラベル.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.顧客コード_ラベル.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.顧客コード_ラベル.Location = new System.Drawing.Point(9, 96);
+            this.顧客コード_ラベル.Margin = new System.Windows.Forms.Padding(0);
+            this.顧客コード_ラベル.Name = "顧客コード_ラベル";
+            this.顧客コード_ラベル.Size = new System.Drawing.Size(100, 17);
+            this.顧客コード_ラベル.TabIndex = 5;
+            this.顧客コード_ラベル.Text = "顧客コード(&U)";
+            this.顧客コード_ラベル.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // 品名
+            // 入金日
             // 
-            this.品名.BackColor = System.Drawing.Color.White;
-            this.品名.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.品名.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
-            this.品名.Location = new System.Drawing.Point(122, 71);
-            this.品名.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.品名.Name = "品名";
-            this.品名.Size = new System.Drawing.Size(403, 20);
-            this.品名.TabIndex = 7;
-            this.品名.Enter += new System.EventHandler(this.品名_Enter);
-            this.品名.Leave += new System.EventHandler(this.品名_Leave);
+            this.入金日.BackColor = System.Drawing.Color.White;
+            this.入金日.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.入金日.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.入金日.Location = new System.Drawing.Point(122, 71);
+            this.入金日.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.入金日.Name = "入金日";
+            this.入金日.Size = new System.Drawing.Size(102, 20);
+            this.入金日.TabIndex = 4;
+            this.入金日.Enter += new System.EventHandler(this.入金日_Enter);
+            this.入金日.Leave += new System.EventHandler(this.入金日_Leave);
             // 
-            // 品名_ラベル
+            // 入金日_ラベル
             // 
-            this.品名_ラベル.AllowDrop = true;
-            this.品名_ラベル.AutoEllipsis = true;
-            this.品名_ラベル.Font = new System.Drawing.Font("BIZ UDゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.品名_ラベル.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.品名_ラベル.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.品名_ラベル.Location = new System.Drawing.Point(9, 73);
-            this.品名_ラベル.Margin = new System.Windows.Forms.Padding(0);
-            this.品名_ラベル.Name = "品名_ラベル";
-            this.品名_ラベル.Size = new System.Drawing.Size(100, 17);
-            this.品名_ラベル.TabIndex = 6;
-            this.品名_ラベル.Text = "品名(&N)";
-            this.品名_ラベル.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.入金日_ラベル.AllowDrop = true;
+            this.入金日_ラベル.AutoEllipsis = true;
+            this.入金日_ラベル.Font = new System.Drawing.Font("BIZ UDゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.入金日_ラベル.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.入金日_ラベル.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.入金日_ラベル.Location = new System.Drawing.Point(9, 73);
+            this.入金日_ラベル.Margin = new System.Windows.Forms.Padding(0);
+            this.入金日_ラベル.Name = "入金日_ラベル";
+            this.入金日_ラベル.Size = new System.Drawing.Size(100, 17);
+            this.入金日_ラベル.TabIndex = 3;
+            this.入金日_ラベル.Text = "入金日(&D)";
+            this.入金日_ラベル.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // ユニットコード
+            // 入金コードラベル
             // 
-            this.ユニットコード.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(153)))));
-            this.ユニットコード.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.ユニットコード.FormattingEnabled = true;
-            this.ユニットコード.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.ユニットコード.Location = new System.Drawing.Point(122, 48);
-            this.ユニットコード.Name = "ユニットコード";
-            this.ユニットコード.Size = new System.Drawing.Size(139, 21);
-            this.ユニットコード.TabIndex = 2;
-            this.ユニットコード.Enter += new System.EventHandler(this.ユニットコード_Enter);
-            this.ユニットコード.Leave += new System.EventHandler(this.ユニットコード_Leave);
-            // 
-            // ユニットコードラベル
-            // 
-            this.ユニットコードラベル.AllowDrop = true;
-            this.ユニットコードラベル.AutoEllipsis = true;
-            this.ユニットコードラベル.Font = new System.Drawing.Font("BIZ UDゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.ユニットコードラベル.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.ユニットコードラベル.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.ユニットコードラベル.Location = new System.Drawing.Point(9, 50);
-            this.ユニットコードラベル.Margin = new System.Windows.Forms.Padding(0);
-            this.ユニットコードラベル.Name = "ユニットコードラベル";
-            this.ユニットコードラベル.Size = new System.Drawing.Size(108, 17);
-            this.ユニットコードラベル.TabIndex = 1;
-            this.ユニットコードラベル.Text = "ユニットコード(&C)";
-            this.ユニットコードラベル.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.入金コードラベル.AllowDrop = true;
+            this.入金コードラベル.AutoEllipsis = true;
+            this.入金コードラベル.Font = new System.Drawing.Font("BIZ UDゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.入金コードラベル.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.入金コードラベル.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.入金コードラベル.Location = new System.Drawing.Point(9, 50);
+            this.入金コードラベル.Margin = new System.Windows.Forms.Padding(0);
+            this.入金コードラベル.Name = "入金コードラベル";
+            this.入金コードラベル.Size = new System.Drawing.Size(108, 17);
+            this.入金コードラベル.TabIndex = 1;
+            this.入金コードラベル.Text = "入金コード(&C)";
+            this.入金コードラベル.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // 仕入先2_ラベル
             // 
@@ -530,35 +520,35 @@ namespace u_net
             this.仕入先2_ラベル.Text = "仕入先2";
             this.仕入先2_ラベル.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // 識別コード_ラベル
+            // 識別名_ラベル
             // 
-            this.識別コード_ラベル.AllowDrop = true;
-            this.識別コード_ラベル.AutoEllipsis = true;
-            this.識別コード_ラベル.Font = new System.Drawing.Font("BIZ UDゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.識別コード_ラベル.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.識別コード_ラベル.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.識別コード_ラベル.Location = new System.Drawing.Point(9, 121);
-            this.識別コード_ラベル.Margin = new System.Windows.Forms.Padding(0);
-            this.識別コード_ラベル.Name = "識別コード_ラベル";
-            this.識別コード_ラベル.Size = new System.Drawing.Size(100, 17);
-            this.識別コード_ラベル.TabIndex = 11;
-            this.識別コード_ラベル.Text = "識別コード(&D)";
-            this.識別コード_ラベル.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.識別名_ラベル.AllowDrop = true;
+            this.識別名_ラベル.AutoEllipsis = true;
+            this.識別名_ラベル.Font = new System.Drawing.Font("BIZ UDゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.識別名_ラベル.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.識別名_ラベル.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.識別名_ラベル.Location = new System.Drawing.Point(9, 121);
+            this.識別名_ラベル.Margin = new System.Windows.Forms.Padding(0);
+            this.識別名_ラベル.Name = "識別名_ラベル";
+            this.識別名_ラベル.Size = new System.Drawing.Size(100, 17);
+            this.識別名_ラベル.TabIndex = 7;
+            this.識別名_ラベル.Text = "顧客名";
+            this.識別名_ラベル.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // RoHS対応_ラベル
+            // 売掛年月_ラベル
             // 
-            this.RoHS対応_ラベル.AllowDrop = true;
-            this.RoHS対応_ラベル.AutoEllipsis = true;
-            this.RoHS対応_ラベル.Font = new System.Drawing.Font("BIZ UDゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.RoHS対応_ラベル.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.RoHS対応_ラベル.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.RoHS対応_ラベル.Location = new System.Drawing.Point(9, 147);
-            this.RoHS対応_ラベル.Margin = new System.Windows.Forms.Padding(0);
-            this.RoHS対応_ラベル.Name = "RoHS対応_ラベル";
-            this.RoHS対応_ラベル.Size = new System.Drawing.Size(100, 17);
-            this.RoHS対応_ラベル.TabIndex = 13;
-            this.RoHS対応_ラベル.Text = "RoHS対応(&R)";
-            this.RoHS対応_ラベル.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.売掛年月_ラベル.AllowDrop = true;
+            this.売掛年月_ラベル.AutoEllipsis = true;
+            this.売掛年月_ラベル.Font = new System.Drawing.Font("BIZ UDゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.売掛年月_ラベル.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.売掛年月_ラベル.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.売掛年月_ラベル.Location = new System.Drawing.Point(9, 147);
+            this.売掛年月_ラベル.Margin = new System.Windows.Forms.Padding(0);
+            this.売掛年月_ラベル.Name = "売掛年月_ラベル";
+            this.売掛年月_ラベル.Size = new System.Drawing.Size(100, 17);
+            this.売掛年月_ラベル.TabIndex = 9;
+            this.売掛年月_ラベル.Text = "売掛年月(&M)";
+            this.売掛年月_ラベル.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // 更新日時
             // 
@@ -566,7 +556,7 @@ namespace u_net
             this.更新日時.Enabled = false;
             this.更新日時.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.更新日時.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.更新日時.Location = new System.Drawing.Point(810, 94);
+            this.更新日時.Location = new System.Drawing.Point(727, 94);
             this.更新日時.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.更新日時.Name = "更新日時";
             this.更新日時.ReadOnly = true;
@@ -576,7 +566,7 @@ namespace u_net
             // 
             // label6
             // 
-            this.label6.Location = new System.Drawing.Point(738, 95);
+            this.label6.Location = new System.Drawing.Point(655, 95);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(72, 17);
             this.label6.TabIndex = 10163;
@@ -585,7 +575,7 @@ namespace u_net
             // 
             // label8
             // 
-            this.label8.Location = new System.Drawing.Point(738, 72);
+            this.label8.Location = new System.Drawing.Point(655, 72);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(72, 17);
             this.label8.TabIndex = 10159;
@@ -598,7 +588,7 @@ namespace u_net
             this.作成者コード.Enabled = false;
             this.作成者コード.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.作成者コード.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.作成者コード.Location = new System.Drawing.Point(810, 70);
+            this.作成者コード.Location = new System.Drawing.Point(727, 70);
             this.作成者コード.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.作成者コード.Name = "作成者コード";
             this.作成者コード.ReadOnly = true;
@@ -608,7 +598,7 @@ namespace u_net
             // 
             // label9
             // 
-            this.label9.Location = new System.Drawing.Point(738, 50);
+            this.label9.Location = new System.Drawing.Point(655, 50);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(72, 17);
             this.label9.TabIndex = 10157;
@@ -621,7 +611,7 @@ namespace u_net
             this.登録日時.Enabled = false;
             this.登録日時.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.登録日時.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.登録日時.Location = new System.Drawing.Point(810, 48);
+            this.登録日時.Location = new System.Drawing.Point(727, 48);
             this.登録日時.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.登録日時.Name = "登録日時";
             this.登録日時.ReadOnly = true;
@@ -635,7 +625,7 @@ namespace u_net
             this.作成者名.Enabled = false;
             this.作成者名.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.作成者名.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.作成者名.Location = new System.Drawing.Point(849, 70);
+            this.作成者名.Location = new System.Drawing.Point(766, 70);
             this.作成者名.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.作成者名.Name = "作成者名";
             this.作成者名.ReadOnly = true;
@@ -643,99 +633,36 @@ namespace u_net
             this.作成者名.TabIndex = 10166;
             this.作成者名.TabStop = false;
             // 
-            // ユニット版数
+            // 顧客コード
             // 
-            this.ユニット版数.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(153)))));
-            this.ユニット版数.Enabled = false;
-            this.ユニット版数.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.ユニット版数.FormattingEnabled = true;
-            this.ユニット版数.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.ユニット版数.Location = new System.Drawing.Point(338, 48);
-            this.ユニット版数.Name = "ユニット版数";
-            this.ユニット版数.Size = new System.Drawing.Size(54, 21);
-            this.ユニット版数.TabIndex = 4;
+            this.顧客コード.BackColor = System.Drawing.Color.White;
+            this.顧客コード.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.顧客コード.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.顧客コード.Location = new System.Drawing.Point(122, 95);
+            this.顧客コード.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.顧客コード.Name = "顧客コード";
+            this.顧客コード.Size = new System.Drawing.Size(102, 20);
+            this.顧客コード.TabIndex = 6;
+            this.顧客コード.Enter += new System.EventHandler(this.顧客コード_Enter);
+            this.顧客コード.Leave += new System.EventHandler(this.顧客コード_Leave);
             // 
-            // label1
+            // 顧客名
             // 
-            this.label1.Location = new System.Drawing.Point(292, 50);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(54, 17);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "版数(&E)";
-            // 
-            // 改版ボタン
-            // 
-            this.改版ボタン.Location = new System.Drawing.Point(406, 46);
-            this.改版ボタン.Margin = new System.Windows.Forms.Padding(4);
-            this.改版ボタン.Name = "改版ボタン";
-            this.改版ボタン.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.改版ボタン.Size = new System.Drawing.Size(55, 23);
-            this.改版ボタン.TabIndex = 5;
-            this.改版ボタン.TabStop = false;
-            this.改版ボタン.Text = "改版";
-            this.改版ボタン.UseVisualStyleBackColor = true;
-            this.改版ボタン.Click += new System.EventHandler(this.改版ボタン_Click);
-            // 
-            // 型番
-            // 
-            this.型番.BackColor = System.Drawing.Color.White;
-            this.型番.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.型番.ImeMode = System.Windows.Forms.ImeMode.Off;
-            this.型番.Location = new System.Drawing.Point(122, 95);
-            this.型番.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.型番.Name = "型番";
-            this.型番.Size = new System.Drawing.Size(204, 20);
-            this.型番.TabIndex = 10;
-            this.型番.Enter += new System.EventHandler(this.型番_Enter);
-            this.型番.Leave += new System.EventHandler(this.型番_Leave);
-            // 
-            // RoHS対応
-            // 
-            this.RoHS対応.BackColor = System.Drawing.SystemColors.Window;
-            this.RoHS対応.Enabled = false;
-            this.RoHS対応.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.RoHS対応.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.RoHS対応.Location = new System.Drawing.Point(122, 147);
-            this.RoHS対応.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.RoHS対応.Name = "RoHS対応";
-            this.RoHS対応.ReadOnly = true;
-            this.RoHS対応.Size = new System.Drawing.Size(20, 20);
-            this.RoHS対応.TabIndex = 14;
-            this.RoHS対応.TabStop = false;
-            this.RoHS対応.Enter += new System.EventHandler(this.RoHS対応_Enter);
-            this.RoHS対応.Leave += new System.EventHandler(this.RoHS対応_Leave);
-            // 
-            // 識別コード
-            // 
-            this.識別コード.BackColor = System.Drawing.Color.White;
-            this.識別コード.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.識別コード.ImeMode = System.Windows.Forms.ImeMode.Off;
-            this.識別コード.Location = new System.Drawing.Point(122, 120);
-            this.識別コード.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.識別コード.Name = "識別コード";
-            this.識別コード.Size = new System.Drawing.Size(72, 20);
-            this.識別コード.TabIndex = 12;
-            this.識別コード.Enter += new System.EventHandler(this.識別コード_Enter);
-            this.識別コード.Leave += new System.EventHandler(this.識別コード_Leave);
-            // 
-            // label2
-            // 
-            this.label2.AllowDrop = true;
-            this.label2.AutoEllipsis = true;
-            this.label2.Font = new System.Drawing.Font("BIZ UDゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label2.Location = new System.Drawing.Point(195, 120);
-            this.label2.Margin = new System.Windows.Forms.Padding(0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(49, 20);
-            this.label2.TabIndex = 10174;
-            this.label2.Text = "-04**";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.顧客名.BackColor = System.Drawing.Color.White;
+            this.顧客名.Enabled = false;
+            this.顧客名.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.顧客名.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.顧客名.Location = new System.Drawing.Point(122, 120);
+            this.顧客名.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.顧客名.Name = "顧客名";
+            this.顧客名.Size = new System.Drawing.Size(409, 20);
+            this.顧客名.TabIndex = 8;
+            this.顧客名.Enter += new System.EventHandler(this.識別コード_Enter);
+            this.顧客名.Leave += new System.EventHandler(this.識別コード_Leave);
             // 
             // label7
             // 
-            this.label7.Location = new System.Drawing.Point(738, 120);
+            this.label7.Location = new System.Drawing.Point(655, 120);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(72, 17);
             this.label7.TabIndex = 10187;
@@ -748,7 +675,7 @@ namespace u_net
             this.更新者名.Enabled = false;
             this.更新者名.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.更新者名.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.更新者名.Location = new System.Drawing.Point(849, 118);
+            this.更新者名.Location = new System.Drawing.Point(766, 118);
             this.更新者名.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.更新者名.Name = "更新者名";
             this.更新者名.ReadOnly = true;
@@ -762,7 +689,7 @@ namespace u_net
             this.更新者コード.Enabled = false;
             this.更新者コード.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.更新者コード.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.更新者コード.Location = new System.Drawing.Point(810, 118);
+            this.更新者コード.Location = new System.Drawing.Point(727, 118);
             this.更新者コード.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.更新者コード.Name = "更新者コード";
             this.更新者コード.ReadOnly = true;
@@ -774,10 +701,10 @@ namespace u_net
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 568);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 491);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 19, 0);
-            this.statusStrip1.Size = new System.Drawing.Size(1036, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(900, 22);
             this.statusStrip1.TabIndex = 10195;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -787,17 +714,6 @@ namespace u_net
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(89, 17);
             this.toolStripStatusLabel1.Text = "各種項目の説明";
             // 
-            // 廃止
-            // 
-            this.廃止.AutoSize = true;
-            this.廃止.Cursor = System.Windows.Forms.Cursors.SizeAll;
-            this.廃止.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.廃止.Location = new System.Drawing.Point(122, 173);
-            this.廃止.Name = "廃止";
-            this.廃止.Size = new System.Drawing.Size(15, 14);
-            this.廃止.TabIndex = 16;
-            this.廃止.UseVisualStyleBackColor = true;
-            // 
             // label5
             // 
             this.label5.AllowDrop = true;
@@ -805,31 +721,163 @@ namespace u_net
             this.label5.Font = new System.Drawing.Font("BIZ UDゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label5.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label5.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label5.Location = new System.Drawing.Point(150, 147);
+            this.label5.Location = new System.Drawing.Point(230, 144);
             this.label5.Margin = new System.Windows.Forms.Padding(0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(280, 20);
             this.label5.TabIndex = 10196;
-            this.label5.Text = "※RoHS対応情報は保存時に更新されます。";
+            this.label5.Text = "※年/月の形式で入力してください。";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // 入金コード
+            // 
+            this.入金コード.BackColor = System.Drawing.Color.White;
+            this.入金コード.Enabled = false;
+            this.入金コード.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.入金コード.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.入金コード.Location = new System.Drawing.Point(122, 48);
+            this.入金コード.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.入金コード.Name = "入金コード";
+            this.入金コード.Size = new System.Drawing.Size(102, 20);
+            this.入金コード.TabIndex = 2;
+            // 
+            // 売掛年月
+            // 
+            this.売掛年月.BackColor = System.Drawing.Color.White;
+            this.売掛年月.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.売掛年月.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.売掛年月.Location = new System.Drawing.Point(122, 144);
+            this.売掛年月.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.売掛年月.Name = "売掛年月";
+            this.売掛年月.Size = new System.Drawing.Size(102, 20);
+            this.売掛年月.TabIndex = 10;
+            this.売掛年月.Enter += new System.EventHandler(this.売掛年月_Enter);
+            this.売掛年月.Leave += new System.EventHandler(this.売掛年月_Leave);
+            // 
+            // 領収証但書
+            // 
+            this.領収証但書.BackColor = System.Drawing.Color.White;
+            this.領収証但書.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.領収証但書.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
+            this.領収証但書.Location = new System.Drawing.Point(122, 169);
+            this.領収証但書.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.領収証但書.Name = "領収証但書";
+            this.領収証但書.Size = new System.Drawing.Size(409, 20);
+            this.領収証但書.TabIndex = 12;
+            this.領収証但書.Enter += new System.EventHandler(this.領収証但書_Enter);
+            this.領収証但書.Leave += new System.EventHandler(this.領収証但書_Leave);
+            // 
+            // 送付状摘要_ラベル
+            // 
+            this.送付状摘要_ラベル.AllowDrop = true;
+            this.送付状摘要_ラベル.AutoEllipsis = true;
+            this.送付状摘要_ラベル.Font = new System.Drawing.Font("BIZ UDゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.送付状摘要_ラベル.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.送付状摘要_ラベル.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.送付状摘要_ラベル.Location = new System.Drawing.Point(9, 197);
+            this.送付状摘要_ラベル.Margin = new System.Windows.Forms.Padding(0);
+            this.送付状摘要_ラベル.Name = "送付状摘要_ラベル";
+            this.送付状摘要_ラベル.Size = new System.Drawing.Size(95, 17);
+            this.送付状摘要_ラベル.TabIndex = 13;
+            this.送付状摘要_ラベル.Text = "送付状摘要(&E)";
+            // 
+            // 送付状摘要
+            // 
+            this.送付状摘要.BackColor = System.Drawing.SystemColors.Window;
+            this.送付状摘要.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.送付状摘要.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
+            this.送付状摘要.Location = new System.Drawing.Point(122, 196);
+            this.送付状摘要.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.送付状摘要.Multiline = true;
+            this.送付状摘要.Name = "送付状摘要";
+            this.送付状摘要.Size = new System.Drawing.Size(409, 65);
+            this.送付状摘要.TabIndex = 14;
+            this.送付状摘要.Enter += new System.EventHandler(this.送付状摘要_Enter);
+            this.送付状摘要.Leave += new System.EventHandler(this.送付状摘要_Leave);
+            // 
+            // 領収コード_ラベル
+            // 
+            this.領収コード_ラベル.AllowDrop = true;
+            this.領収コード_ラベル.AutoEllipsis = true;
+            this.領収コード_ラベル.Font = new System.Drawing.Font("BIZ UDゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.領収コード_ラベル.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.領収コード_ラベル.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.領収コード_ラベル.Location = new System.Drawing.Point(9, 267);
+            this.領収コード_ラベル.Margin = new System.Windows.Forms.Padding(0);
+            this.領収コード_ラベル.Name = "領収コード_ラベル";
+            this.領収コード_ラベル.Size = new System.Drawing.Size(100, 17);
+            this.領収コード_ラベル.TabIndex = 10197;
+            this.領収コード_ラベル.Text = "領収コード";
+            this.領収コード_ラベル.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // 請求コードラベル
+            // 
+            this.請求コードラベル.AllowDrop = true;
+            this.請求コードラベル.AutoEllipsis = true;
+            this.請求コードラベル.Font = new System.Drawing.Font("BIZ UDゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.請求コードラベル.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.請求コードラベル.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.請求コードラベル.Location = new System.Drawing.Point(9, 295);
+            this.請求コードラベル.Margin = new System.Windows.Forms.Padding(0);
+            this.請求コードラベル.Name = "請求コードラベル";
+            this.請求コードラベル.Size = new System.Drawing.Size(100, 17);
+            this.請求コードラベル.TabIndex = 10198;
+            this.請求コードラベル.Text = "請求コード";
+            this.請求コードラベル.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // 領収コード
+            // 
+            this.領収コード.BackColor = System.Drawing.Color.White;
+            this.領収コード.Enabled = false;
+            this.領収コード.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.領収コード.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.領収コード.Location = new System.Drawing.Point(122, 267);
+            this.領収コード.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.領収コード.Name = "領収コード";
+            this.領収コード.Size = new System.Drawing.Size(102, 20);
+            this.領収コード.TabIndex = 10199;
+            // 
+            // 請求コード
+            // 
+            this.請求コード.BackColor = System.Drawing.Color.White;
+            this.請求コード.Enabled = false;
+            this.請求コード.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.請求コード.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.請求コード.Location = new System.Drawing.Point(122, 293);
+            this.請求コード.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.請求コード.Name = "請求コード";
+            this.請求コード.Size = new System.Drawing.Size(102, 20);
+            this.請求コード.TabIndex = 10200;
+            // 
+            // 入金明細1
+            // 
+            this.入金明細1.Location = new System.Drawing.Point(9, 323);
+            this.入金明細1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.入金明細1.Name = "入金明細1";
+            this.入金明細1.Size = new System.Drawing.Size(879, 159);
+            this.入金明細1.TabIndex = 10201;
             // 
             // F_入金
             // 
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(1036, 590);
+            this.ClientSize = new System.Drawing.Size(900, 513);
+            this.Controls.Add(this.入金明細1);
+            this.Controls.Add(this.請求コード);
+            this.Controls.Add(this.領収コード);
+            this.Controls.Add(this.請求コードラベル);
+            this.Controls.Add(this.領収コード_ラベル);
+            this.Controls.Add(this.送付状摘要);
+            this.Controls.Add(this.送付状摘要_ラベル);
+            this.Controls.Add(this.領収証但書);
+            this.Controls.Add(this.売掛年月);
+            this.Controls.Add(this.入金コード);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.廃止);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.更新者名);
             this.Controls.Add(this.更新者コード);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.識別コード);
-            this.Controls.Add(this.RoHS対応);
-            this.Controls.Add(this.型番);
-            this.Controls.Add(this.改版ボタン);
-            this.Controls.Add(this.ユニット版数);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.顧客名);
+            this.Controls.Add(this.顧客コード);
             this.Controls.Add(this.作成者名);
             this.Controls.Add(this.更新日時);
             this.Controls.Add(this.label6);
@@ -837,14 +885,13 @@ namespace u_net
             this.Controls.Add(this.作成者コード);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.登録日時);
-            this.Controls.Add(this.RoHS対応_ラベル);
-            this.Controls.Add(this.識別コード_ラベル);
-            this.Controls.Add(this.廃止_ラベル);
-            this.Controls.Add(this.型番_ラベル);
-            this.Controls.Add(this.品名);
-            this.Controls.Add(this.品名_ラベル);
-            this.Controls.Add(this.ユニットコード);
-            this.Controls.Add(this.ユニットコードラベル);
+            this.Controls.Add(this.売掛年月_ラベル);
+            this.Controls.Add(this.識別名_ラベル);
+            this.Controls.Add(this.領収証但書_ラベル);
+            this.Controls.Add(this.顧客コード_ラベル);
+            this.Controls.Add(this.入金日);
+            this.Controls.Add(this.入金日_ラベル);
+            this.Controls.Add(this.入金コードラベル);
             this.Controls.Add(this.仕入先2_ラベル);
             this.Controls.Add(this.コマンド終了);
             this.Controls.Add(this.コマンド登録);
@@ -921,15 +968,14 @@ namespace u_net
         private System.Windows.Forms.Button コマンド読込;
 
         private Button コマンドF8;
-        private Label 廃止_ラベル;
-        private Label 型番_ラベル;
-        private TextBox 品名;
-        private Label 品名_ラベル;
-        private ComboBox ユニットコード;
-        private Label ユニットコードラベル;
+        private Label 領収証但書_ラベル;
+        private Label 顧客コード_ラベル;
+        private TextBox 入金日;
+        private Label 入金日_ラベル;
+        private Label 入金コードラベル;
         private Label 仕入先2_ラベル;
-        private Label 識別コード_ラベル;
-        private Label RoHS対応_ラベル;
+        private Label 識別名_ラベル;
+        private Label 売掛年月_ラベル;
         private TextBox 更新日時;
         private Label label6;
         private Label label8;
@@ -937,20 +983,24 @@ namespace u_net
         private Label label9;
         private TextBox 登録日時;
         private TextBox 作成者名;
-        private ComboBox ユニット版数;
-        private Label label1;
-        private Button 改版ボタン;
-        private TextBox 型番;
-        private TextBox RoHS対応;
-        private TextBox 識別コード;
-        private Label label2;
+        private TextBox 顧客コード;
+        private TextBox 顧客名;
         private Label label7;
         private TextBox 更新者名;
         private TextBox 更新者コード;
         private StatusStrip statusStrip1;
         internal ToolStripStatusLabel toolStripStatusLabel1;
-        private CheckBox 廃止;
         private Label label5;
+        private TextBox 入金コード;
+        private TextBox 売掛年月;
+        private TextBox 領収証但書;
+        private Label 送付状摘要_ラベル;
+        private TextBox 送付状摘要;
+        private Label 領収コード_ラベル;
+        private Label 請求コードラベル;
+        private TextBox 領収コード;
+        private TextBox 請求コード;
+        private MultiRowDesigner.入金明細 入金明細1;
     }
 }
 

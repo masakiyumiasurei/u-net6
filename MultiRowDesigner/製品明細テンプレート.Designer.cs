@@ -144,10 +144,10 @@
             // 
             // columnHeaderSection1
             // 
-            this.columnHeaderSection1.Cells.Add(this.型式名ボタン);
-            this.columnHeaderSection1.Cells.Add(this.明細番号ボタン);
-            this.columnHeaderSection1.Cells.Add(this.明細行選択ボタン);
             this.columnHeaderSection1.Cells.Add(this.削除ボタン);
+            this.columnHeaderSection1.Cells.Add(this.明細行選択ボタン);
+            this.columnHeaderSection1.Cells.Add(this.明細番号ボタン);
+            this.columnHeaderSection1.Cells.Add(this.型式名ボタン);
             this.columnHeaderSection1.Cells.Add(this.ユニットコードボタン);
             this.columnHeaderSection1.Cells.Add(this.ユニット版数ボタン);
             this.columnHeaderSection1.Cells.Add(this.改版中ボタン);
@@ -664,8 +664,22 @@
 
         private GrapeCity.Win.MultiRow.ColumnHeaderSection columnHeaderSection1;
         private GrapeCity.Win.MultiRow.ColumnFooterSection columnFooterSection1;
+        private GrapeCity.Win.MultiRow.ButtonCell 削除ボタン;
+        private GrapeCity.Win.MultiRow.ButtonCell 明細行選択ボタン;
         private GrapeCity.Win.MultiRow.ButtonCell 明細削除ボタン;
         private GrapeCity.Win.MultiRow.ButtonCell 選択;
+        private GrapeCity.Win.MultiRow.ButtonCell 明細番号ボタン;
+        private GrapeCity.Win.MultiRow.ButtonCell 型式名ボタン;
+        private GrapeCity.Win.MultiRow.ButtonCell ユニットコードボタン;
+        private GrapeCity.Win.MultiRow.ButtonCell ユニット版数ボタン;
+        private GrapeCity.Win.MultiRow.ButtonCell 改版中ボタン;
+        private GrapeCity.Win.MultiRow.ButtonCell 品名ボタン;
+        private GrapeCity.Win.MultiRow.ButtonCell 型番ボタン;
+        private GrapeCity.Win.MultiRow.ButtonCell RoHS対応ボタン;
+        private GrapeCity.Win.MultiRow.ButtonCell 非含有証明書ボタン;
+        private GrapeCity.Win.MultiRow.ButtonCell ユニット材料費ボタン;
+        private GrapeCity.Win.MultiRow.ButtonCell 変更操作ボタン;
+        private GrapeCity.Win.MultiRow.ButtonCell 変更内容ボタン;
         private GrapeCity.Win.MultiRow.TextBoxCell 型式名;
         private GrapeCity.Win.MultiRow.TextBoxCell 改版中;
         private GrapeCity.Win.MultiRow.TextBoxCell ユニット版数;
