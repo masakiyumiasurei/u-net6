@@ -33,6 +33,11 @@
             GrapeCity.Win.MultiRow.CellStyle cellStyle9 = new GrapeCity.Win.MultiRow.CellStyle();
             GrapeCity.Win.MultiRow.CellStyle cellStyle10 = new GrapeCity.Win.MultiRow.CellStyle();
             GrapeCity.Win.MultiRow.CellStyle cellStyle11 = new GrapeCity.Win.MultiRow.CellStyle();
+            GrapeCity.Win.MultiRow.CellStyle cellStyle12 = new GrapeCity.Win.MultiRow.CellStyle();
+            GrapeCity.Win.MultiRow.Border border7 = new GrapeCity.Win.MultiRow.Border();
+            GrapeCity.Win.MultiRow.MathStatistics mathStatistics1 = new GrapeCity.Win.MultiRow.MathStatistics();
+            GrapeCity.Win.MultiRow.CellStyle cellStyle13 = new GrapeCity.Win.MultiRow.CellStyle();
+            GrapeCity.Win.MultiRow.Border border8 = new GrapeCity.Win.MultiRow.Border();
             GrapeCity.Win.MultiRow.CellStyle cellStyle1 = new GrapeCity.Win.MultiRow.CellStyle();
             GrapeCity.Win.MultiRow.Border border1 = new GrapeCity.Win.MultiRow.Border();
             GrapeCity.Win.MultiRow.CellStyle cellStyle2 = new GrapeCity.Win.MultiRow.CellStyle();
@@ -40,11 +45,6 @@
             GrapeCity.Win.MultiRow.Border border2 = new GrapeCity.Win.MultiRow.Border();
             GrapeCity.Win.MultiRow.CellStyle cellStyle4 = new GrapeCity.Win.MultiRow.CellStyle();
             GrapeCity.Win.MultiRow.Border border3 = new GrapeCity.Win.MultiRow.Border();
-            GrapeCity.Win.MultiRow.CellStyle cellStyle12 = new GrapeCity.Win.MultiRow.CellStyle();
-            GrapeCity.Win.MultiRow.Border border7 = new GrapeCity.Win.MultiRow.Border();
-            GrapeCity.Win.MultiRow.MathStatistics mathStatistics1 = new GrapeCity.Win.MultiRow.MathStatistics();
-            GrapeCity.Win.MultiRow.CellStyle cellStyle13 = new GrapeCity.Win.MultiRow.CellStyle();
-            GrapeCity.Win.MultiRow.Border border8 = new GrapeCity.Win.MultiRow.Border();
             GrapeCity.Win.MultiRow.CellStyle cellStyle5 = new GrapeCity.Win.MultiRow.CellStyle();
             GrapeCity.Win.MultiRow.Border border4 = new GrapeCity.Win.MultiRow.Border();
             GrapeCity.Win.MultiRow.CellStyle cellStyle6 = new GrapeCity.Win.MultiRow.CellStyle();
@@ -52,17 +52,17 @@
             GrapeCity.Win.MultiRow.CellStyle cellStyle7 = new GrapeCity.Win.MultiRow.CellStyle();
             GrapeCity.Win.MultiRow.Border border6 = new GrapeCity.Win.MultiRow.Border();
             this.columnHeaderSection1 = new GrapeCity.Win.MultiRow.ColumnHeaderSection();
-            this.columnFooterSection1 = new GrapeCity.Win.MultiRow.ColumnFooterSection();
             this.明細番号ボタン = new GrapeCity.Win.MultiRow.ButtonCell();
             this.買掛区分ボタン = new GrapeCity.Win.MultiRow.ButtonCell();
             this.摘要ボタン = new GrapeCity.Win.MultiRow.ButtonCell();
             this.支払金額ボタン = new GrapeCity.Win.MultiRow.ButtonCell();
+            this.columnFooterSection1 = new GrapeCity.Win.MultiRow.ColumnFooterSection();
+            this.合計金額_ラベル = new GrapeCity.Win.MultiRow.TextBoxCell();
+            this.合計金額 = new GrapeCity.Win.MultiRow.SummaryCell();
             this.明細番号 = new GrapeCity.Win.MultiRow.RowHeaderCell();
             this.買掛区分 = new GrapeCity.Win.MultiRow.ComboBoxCell();
             this.摘要 = new GrapeCity.Win.MultiRow.TextBoxCell();
             this.支払金額 = new GrapeCity.Win.MultiRow.TextBoxCell();
-            this.合計金額_ラベル = new GrapeCity.Win.MultiRow.TextBoxCell();
-            this.合計金額 = new GrapeCity.Win.MultiRow.SummaryCell();
             this.買掛区分コード = new GrapeCity.Win.MultiRow.TextBoxCell();
             this.買掛明細コード = new GrapeCity.Win.MultiRow.TextBoxCell();
             this.支払コード = new GrapeCity.Win.MultiRow.TextBoxCell();
@@ -88,14 +88,6 @@
             this.columnHeaderSection1.Height = 21;
             this.columnHeaderSection1.Name = "columnHeaderSection1";
             this.columnHeaderSection1.Width = 680;
-            // 
-            // columnFooterSection1
-            // 
-            this.columnFooterSection1.Cells.Add(this.合計金額_ラベル);
-            this.columnFooterSection1.Cells.Add(this.合計金額);
-            this.columnFooterSection1.Height = 27;
-            this.columnFooterSection1.Name = "columnFooterSection1";
-            this.columnFooterSection1.Width = 680;
             // 
             // 明細番号ボタン
             // 
@@ -157,6 +149,40 @@
             this.支払金額ボタン.TabStop = false;
             this.支払金額ボタン.Value = "金額";
             // 
+            // columnFooterSection1
+            // 
+            this.columnFooterSection1.Cells.Add(this.合計金額_ラベル);
+            this.columnFooterSection1.Cells.Add(this.合計金額);
+            this.columnFooterSection1.Height = 27;
+            this.columnFooterSection1.Name = "columnFooterSection1";
+            this.columnFooterSection1.Width = 680;
+            // 
+            // 合計金額_ラベル
+            // 
+            this.合計金額_ラベル.Location = new System.Drawing.Point(472, 3);
+            this.合計金額_ラベル.Name = "合計金額_ラベル";
+            this.合計金額_ラベル.Size = new System.Drawing.Size(72, 20);
+            cellStyle12.Border = border7;
+            cellStyle12.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
+            this.合計金額_ラベル.Style = cellStyle12;
+            this.合計金額_ラベル.TabIndex = 0;
+            this.合計金額_ラベル.Value = "合計金額";
+            // 
+            // 合計金額
+            // 
+            mathStatistics1.CellName = "支払金額";
+            this.合計金額.Calculation = mathStatistics1;
+            this.合計金額.Location = new System.Drawing.Point(544, 3);
+            this.合計金額.Name = "合計金額";
+            this.合計金額.Size = new System.Drawing.Size(136, 20);
+            border8.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
+            cellStyle13.Border = border8;
+            cellStyle13.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
+            cellStyle13.Format = "N0";
+            cellStyle13.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.合計金額.Style = cellStyle13;
+            this.合計金額.TabIndex = 1;
+            // 
             // 明細番号
             // 
             this.明細番号.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -210,35 +236,11 @@
             border3.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
             cellStyle4.Border = border3;
             cellStyle4.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
+            cellStyle4.Format = "N0";
             cellStyle4.ImageAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleLeft;
             cellStyle4.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.支払金額.Style = cellStyle4;
             this.支払金額.TabIndex = 3;
-            // 
-            // 合計金額_ラベル
-            // 
-            this.合計金額_ラベル.Location = new System.Drawing.Point(472, 3);
-            this.合計金額_ラベル.Name = "合計金額_ラベル";
-            this.合計金額_ラベル.Size = new System.Drawing.Size(72, 20);
-            cellStyle12.Border = border7;
-            cellStyle12.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
-            this.合計金額_ラベル.Style = cellStyle12;
-            this.合計金額_ラベル.TabIndex = 0;
-            this.合計金額_ラベル.Value = "合計金額";
-            // 
-            // 合計金額
-            // 
-            mathStatistics1.CellName = "支払金額";
-            this.合計金額.Calculation = mathStatistics1;
-            this.合計金額.Location = new System.Drawing.Point(544, 3);
-            this.合計金額.Name = "合計金額";
-            this.合計金額.Size = new System.Drawing.Size(136, 20);
-            border8.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
-            cellStyle13.Border = border8;
-            cellStyle13.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
-            cellStyle13.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.合計金額.Style = cellStyle13;
-            this.合計金額.TabIndex = 1;
             // 
             // 買掛区分コード
             // 
