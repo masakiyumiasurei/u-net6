@@ -442,7 +442,7 @@ namespace u_net
             return true;
         }
 
-        private void ChangedData(bool isChanged)
+        public void ChangedData(bool isChanged)
         {
             if (ActiveControl == null) return;
 
@@ -584,6 +584,7 @@ namespace u_net
                         製品明細1.Detail.AllowUserToAddRows = !this.IsDecided;
                         製品明細1.Detail.AllowUserToDeleteRows = !this.IsDecided;
                         製品明細1.Detail.ReadOnly = this.IsDecided;
+                    
                         this.コマンド複写.Enabled = !this.IsDirty;
                         this.コマンド削除.Enabled = this.IsLatestEdition;
                         this.コマンドユニット表.Enabled = !this.IsDirty;
@@ -629,6 +630,7 @@ namespace u_net
                         製品明細1.Detail.AllowUserToAddRows = !this.IsDecided;
                         製品明細1.Detail.AllowUserToDeleteRows = !this.IsDecided;
                         製品明細1.Detail.ReadOnly = this.IsDecided;
+                      
                         this.コマンド複写.Enabled = !this.IsDirty;
                         this.コマンド削除.Enabled = this.IsLatestEdition;
                         this.コマンドユニット表.Enabled = !this.IsDirty;
@@ -640,8 +642,9 @@ namespace u_net
                         break;
                 }
 
-
                 
+
+
             }
             catch (Exception ex)
             {
@@ -810,7 +813,7 @@ namespace u_net
 
 
                     // 登録処理
-                    if (RegTrans(CurrentCode,CurrentEdition,false))
+                    if (RegTrans(CurrentCode,CurrentEdition,false, transaction))
                     {
                         return true;
                     }
@@ -838,10 +841,10 @@ namespace u_net
             }
         }
 
-        private bool RegTrans(string codeString,int editionNumber,bool updatePreEdition)
+        private bool RegTrans(string codeString,int editionNumber,bool updatePreEdition, SqlTransaction transaction)
         {
             Connect();
-            SqlTransaction transaction = cn.BeginTransaction();
+            
             {
 
                 try
@@ -875,7 +878,7 @@ namespace u_net
                             sql = $"UPDATE M製品 SET 無効日時=NULL, 無効者コード=NULL WHERE 製品コード='{codeString}' AND 製品版数={editionNumber - 1}";
                         }
 
-                        using (SqlCommand cmd = new SqlCommand(sql, cn))
+                        using (SqlCommand cmd = new SqlCommand(sql, cn, transaction))
                         {
                             cmd.ExecuteNonQuery();
                         }
@@ -885,13 +888,13 @@ namespace u_net
                     if (IsApproved)
                     {
                         // 対象製品の型式マスタを更新する
-                        if (!UpdateModelMaster(CurrentCode, CurrentEdition,cn))
+                        if (!UpdateModelMaster(CurrentCode, CurrentEdition,cn,transaction))
                         {
                             transaction.Rollback(); // 変更をキャンセル
                             return false;
                         }
                     }
-
+                    
                     transaction.Commit();
 
                     return true;
@@ -906,16 +909,17 @@ namespace u_net
             }
         }
 
-        private bool UpdateModelMaster(string productCode, int productEdition, SqlConnection cn)
+        private bool UpdateModelMaster(string productCode, int productEdition, SqlConnection cn, SqlTransaction transaction)
         {
             var result = false;
-
+            
             try
             {
                 using (SqlCommand cmd = new SqlCommand())
                 {
                     cmd.Connection = cn;
                     cmd.CommandType = CommandType.Text;
+                    cmd.Transaction = transaction;
 
                     // 旧データを削除する
                     string strSQLDelete = "DELETE FROM M製品型式 WHERE 製品コード = @ProductCode AND 製品版数 = @ProductEdition";
@@ -1562,20 +1566,22 @@ namespace u_net
                     承認者コード.Text = CommonConstants.strCertificateCode;
                     承認者名.Text = FunctionClass.GetUserFullName(cn, CommonConstants.strCertificateCode);
                 }
+                SqlTransaction transaction = cn.BeginTransaction();
 
                 // サーバーへ登録する
-                if (RegTrans(CurrentCode, CurrentEdition, 1 < CurrentEdition))
+                if (RegTrans(CurrentCode, CurrentEdition, 1 < CurrentEdition, transaction))
                 {
                     // 版数のソース更新
                     UpdateEditionList(CurrentCode);
 
                     // 承認されたときは製品型式マスタを更新する
-                    if (IsApproved)
-                    {
-                        if (!UpdateModelMaster(CurrentCode, CurrentEdition, cn))
-                            fn.WaitForm.Close();
-                        return;
-                    }
+                    //RegTrans内で行っているのでコメントアウト
+                    //if (IsApproved)
+                    //{
+                    //    if (!UpdateModelMaster(CurrentCode, CurrentEdition, cn,transaction))
+                    //        fn.WaitForm.Close();
+                    //    return;
+                    //}
 
                     SetEditionStatus(); // 状態の表示
                     ChangedData(false);
@@ -1770,9 +1776,10 @@ namespace u_net
                         無効日時.Text = FunctionClass.GetServerDate(cn).ToString();
                         無効者コード.Text = CommonConstants.strCertificateCode;
                     }
+                    SqlTransaction transaction = cn.BeginTransaction();
 
                     // 表示データを登録する
-                    if (RegTrans(CurrentCode, CurrentEdition,false))
+                    if (RegTrans(CurrentCode, CurrentEdition,false,transaction))
                     {
                         if (IsDeleted)
                             MessageBox.Show("削除されました。", "削除コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -2135,7 +2142,10 @@ namespace u_net
                     return false;
 
                 無効日時.Text = FunctionClass.GetServerDate(cn).ToString();
-                if (RegTrans(codeString, editionNumber,false))
+
+
+                SqlTransaction transaction = cn.BeginTransaction();
+                if (RegTrans(codeString, editionNumber,false,transaction))
                 {
                     return true;
                 }
@@ -2368,6 +2378,8 @@ namespace u_net
         private void シリーズ名_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
 
+            if (シリーズ名.Modified == false) return;
+
             if (IsError(sender as Control) == true) e.Cancel = true;
 
 
@@ -2381,6 +2393,9 @@ namespace u_net
 
         private void 識別コード_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
+
+            if (識別コード.Modified == false) return;
+
             if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
@@ -2403,8 +2418,11 @@ namespace u_net
 
         private void 品名_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            //if (IsError(sender as Control) == true) e.Cancel = true;
-            
+
+            if (品名.Modified == false)
+                return;
+            if (IsError(sender as Control) == true) e.Cancel = true;
+
         }
 
         private void 確定日時_TextChanged(object sender, EventArgs e)

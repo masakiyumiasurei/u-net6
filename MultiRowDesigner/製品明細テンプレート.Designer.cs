@@ -47,18 +47,21 @@
             GrapeCity.Win.MultiRow.Border border15 = new GrapeCity.Win.MultiRow.Border();
             GrapeCity.Win.MultiRow.CellStyle cellStyle33 = new GrapeCity.Win.MultiRow.CellStyle();
             GrapeCity.Win.MultiRow.Border border16 = new GrapeCity.Win.MultiRow.Border();
+            GrapeCity.Win.MultiRow.MathStatistics mathStatistics1 = new GrapeCity.Win.MultiRow.MathStatistics();
+            GrapeCity.Win.MultiRow.MultiRowCondition multiRowCondition1 = new GrapeCity.Win.MultiRow.MultiRowCondition();
             GrapeCity.Win.MultiRow.CellStyle cellStyle34 = new GrapeCity.Win.MultiRow.CellStyle();
-            GrapeCity.Win.MultiRow.Border border17 = new GrapeCity.Win.MultiRow.Border();
             GrapeCity.Win.MultiRow.CellStyle cellStyle1 = new GrapeCity.Win.MultiRow.CellStyle();
             GrapeCity.Win.MultiRow.CellStyle cellStyle2 = new GrapeCity.Win.MultiRow.CellStyle();
             GrapeCity.Win.MultiRow.CellStyle cellStyle3 = new GrapeCity.Win.MultiRow.CellStyle();
             GrapeCity.Win.MultiRow.Border border1 = new GrapeCity.Win.MultiRow.Border();
+            GrapeCity.Win.MultiRow.TextLengthValidator textLengthValidator1 = new GrapeCity.Win.MultiRow.TextLengthValidator();
             GrapeCity.Win.MultiRow.CellStyle cellStyle4 = new GrapeCity.Win.MultiRow.CellStyle();
             GrapeCity.Win.MultiRow.Border border2 = new GrapeCity.Win.MultiRow.Border();
             GrapeCity.Win.MultiRow.CellStyle cellStyle5 = new GrapeCity.Win.MultiRow.CellStyle();
             GrapeCity.Win.MultiRow.Border border3 = new GrapeCity.Win.MultiRow.Border();
             GrapeCity.Win.MultiRow.CellStyle cellStyle6 = new GrapeCity.Win.MultiRow.CellStyle();
             GrapeCity.Win.MultiRow.Border border4 = new GrapeCity.Win.MultiRow.Border();
+            GrapeCity.Win.MultiRow.TextLengthValidator textLengthValidator2 = new GrapeCity.Win.MultiRow.TextLengthValidator();
             GrapeCity.Win.MultiRow.CellStyle cellStyle7 = new GrapeCity.Win.MultiRow.CellStyle();
             GrapeCity.Win.MultiRow.Border border5 = new GrapeCity.Win.MultiRow.Border();
             GrapeCity.Win.MultiRow.CellStyle cellStyle8 = new GrapeCity.Win.MultiRow.CellStyle();
@@ -97,8 +100,8 @@
             this.変更内容ボタン = new GrapeCity.Win.MultiRow.HeaderCell();
             this.columnFooterSection1 = new GrapeCity.Win.MultiRow.ColumnFooterSection();
             this.textBoxCell1 = new GrapeCity.Win.MultiRow.TextBoxCell();
-            this.製品材料費 = new GrapeCity.Win.MultiRow.TextBoxCell();
             this.textBoxCell3 = new GrapeCity.Win.MultiRow.TextBoxCell();
+            this.製品材料費 = new GrapeCity.Win.MultiRow.SummaryCell();
             this.明細削除ボタン = new GrapeCity.Win.MultiRow.ButtonCell();
             this.選択 = new GrapeCity.Win.MultiRow.ButtonCell();
             this.型式名 = new GrapeCity.Win.MultiRow.TextBoxCell();
@@ -356,8 +359,8 @@
             // columnFooterSection1
             // 
             this.columnFooterSection1.Cells.Add(this.textBoxCell1);
-            this.columnFooterSection1.Cells.Add(this.製品材料費);
             this.columnFooterSection1.Cells.Add(this.textBoxCell3);
+            this.columnFooterSection1.Cells.Add(this.製品材料費);
             this.columnFooterSection1.Height = 27;
             this.columnFooterSection1.Name = "columnFooterSection1";
             this.columnFooterSection1.Width = 1297;
@@ -373,28 +376,32 @@
             this.textBoxCell1.TabIndex = 0;
             this.textBoxCell1.Value = "製品材料費";
             // 
-            // 製品材料費
-            // 
-            this.製品材料費.Location = new System.Drawing.Point(118, 4);
-            this.製品材料費.Name = "製品材料費";
-            this.製品材料費.ReadOnly = true;
-            this.製品材料費.Size = new System.Drawing.Size(102, 17);
-            border16.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
-            cellStyle33.Border = border16;
-            cellStyle33.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
-            this.製品材料費.Style = cellStyle33;
-            this.製品材料費.TabIndex = 1;
-            // 
             // textBoxCell3
             // 
             this.textBoxCell3.Location = new System.Drawing.Point(236, 4);
             this.textBoxCell3.Name = "textBoxCell3";
             this.textBoxCell3.Size = new System.Drawing.Size(530, 17);
-            cellStyle34.Border = border17;
-            cellStyle34.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
-            this.textBoxCell3.Style = cellStyle34;
+            cellStyle33.Border = border16;
+            cellStyle33.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
+            this.textBoxCell3.Style = cellStyle33;
             this.textBoxCell3.TabIndex = 2;
             this.textBoxCell3.Value = "※材料費が不明なユニットが登録されている場合、製品材料費は表示されません。";
+            // 
+            // 製品材料費
+            // 
+            mathStatistics1.CellName = "ユニット材料費";
+            multiRowCondition1.CellName = "削除対象";
+            multiRowCondition1.Items.Add(new GrapeCity.Win.MultiRow.MultiRowConditionItem(GrapeCity.Win.MultiRow.ConditionalCellStyleOperator.NotEquals, "1", ""));
+            mathStatistics1.Conditions.Add(multiRowCondition1);
+            this.製品材料費.Calculation = mathStatistics1;
+            this.製品材料費.Location = new System.Drawing.Point(118, 4);
+            this.製品材料費.Name = "製品材料費";
+            this.製品材料費.Size = new System.Drawing.Size(108, 21);
+            cellStyle34.Format = "N2";
+            cellStyle34.ImeMode = System.Windows.Forms.ImeMode.Off;
+            cellStyle34.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleRight;
+            this.製品材料費.Style = cellStyle34;
+            this.製品材料費.TabIndex = 3;
             // 
             // 明細削除ボタン
             // 
@@ -438,6 +445,10 @@
             cellStyle3.ImeMode = System.Windows.Forms.ImeMode.Off;
             this.型式名.Style = cellStyle3;
             this.型式名.TabIndex = 3;
+            textLengthValidator1.EncodingCodePage = 1200;
+            textLengthValidator1.LengthUnit = GrapeCity.Win.MultiRow.LengthUnit.TextElement;
+            textLengthValidator1.MinimumLength = 16;
+            this.型式名.Validators.Add(textLengthValidator1);
             // 
             // 改版中
             // 
@@ -477,6 +488,10 @@
             cellStyle6.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.ユニットコード.Style = cellStyle6;
             this.ユニットコード.TabIndex = 4;
+            textLengthValidator2.EncodingCodePage = 1200;
+            textLengthValidator2.LengthUnit = GrapeCity.Win.MultiRow.LengthUnit.TextElement;
+            textLengthValidator2.MaximumLength = 8;
+            this.ユニットコード.Validators.Add(textLengthValidator2);
             // 
             // 品名
             // 
@@ -541,7 +556,9 @@
             border9.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
             cellStyle11.Border = border9;
             cellStyle11.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
+            cellStyle11.Format = "N2";
             cellStyle11.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            cellStyle11.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleRight;
             this.ユニット材料費.Style = cellStyle11;
             this.ユニット材料費.TabIndex = 11;
             this.ユニット材料費.TabStop = false;
@@ -661,7 +678,6 @@
         private GrapeCity.Win.MultiRow.TextBoxCell 変更内容;
         private GrapeCity.Win.MultiRow.ComboBoxCell 変更操作コード;
         private GrapeCity.Win.MultiRow.TextBoxCell textBoxCell1;
-        private GrapeCity.Win.MultiRow.TextBoxCell 製品材料費;
         private GrapeCity.Win.MultiRow.TextBoxCell textBoxCell3;
         private GrapeCity.Win.MultiRow.RowHeaderCell 明細番号;
         private GrapeCity.Win.MultiRow.HeaderCell 型式名ボタン;
@@ -681,5 +697,6 @@
         private GrapeCity.Win.MultiRow.TextBoxCell 製品コード;
         private GrapeCity.Win.MultiRow.TextBoxCell 製品版数;
         private GrapeCity.Win.MultiRow.TextBoxCell 削除対象;
+        private GrapeCity.Win.MultiRow.SummaryCell 製品材料費;
     }
 }

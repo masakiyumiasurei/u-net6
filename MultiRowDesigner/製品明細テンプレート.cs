@@ -28,7 +28,7 @@ namespace MultiRowDesigner
             Connect();
             OriginalClass ofn = new OriginalClass();
 
-            ofn.SetComboBox(変更操作コード, "SELECT 変更操作 as Display,変更コード as Value FROM M変更表示");
+            ofn.SetComboBox(変更操作コード, "SELECT 変更操作 as Display,削除操作 as Display2,変更コード as Value FROM M変更表示");
 
 
         }

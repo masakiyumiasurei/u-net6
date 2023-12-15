@@ -1235,7 +1235,7 @@ namespace u_net
         private Label シリーズ_ラベル;
         private TextBox 品名;
         private Label 品名_ラベル;
-        private ComboBox 製品コード;
+        internal ComboBox 製品コード;
         private Label 製品コードラベル;
         private Label 仕入先2_ラベル;
         private Label 識別コード_ラベル;
@@ -1250,7 +1250,7 @@ namespace u_net
         private TextBox 作成日時;
         private TextBox 作成者名;
         private TextBox 無効者コード;
-        private ComboBox 製品版数;
+        internal ComboBox 製品版数;
         private Label label1;
         private Button 改版ボタン;
         private TextBox シリーズ名;

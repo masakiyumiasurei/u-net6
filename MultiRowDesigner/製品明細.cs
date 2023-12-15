@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using GrapeCity.Win.MultiRow;
 using u_net;
+using u_net.Public;
 
 namespace MultiRowDesigner
 {
@@ -22,9 +23,74 @@ namespace MultiRowDesigner
             }
         }
 
+        private SqlConnection? cn;
+        public void Connect()
+        {
+            Connection connectionInfo = new Connection();
+            string connectionString = connectionInfo.Getconnect();
+            cn = new SqlConnection(connectionString);
+            cn.Open();
+        }
+
         public 製品明細()
         {
             InitializeComponent();
+        }
+
+        private void 製品明細_Load(object sender, EventArgs e)
+        {
+            gcMultiRow1.ShortcutKeyManager.Unregister(Keys.Enter);
+            gcMultiRow1.ShortcutKeyManager.Register(SelectionActions.MoveToNextCell, Keys.Enter);
+
+            gcMultiRow1.AllowRowMove = true;
+        }
+
+        private void gcMultiRow1_RowsRemoved(object sender, RowsRemovedEventArgs e)
+        {
+            F_製品? f_製品 = Application.OpenForms.OfType<F_製品>().FirstOrDefault();
+
+            for (int i = 0; i < gcMultiRow1.RowCount; i++)
+            {
+                if (gcMultiRow1.Rows[i].IsNewRow == true)
+                {
+                    //新規行の場合は、処理をスキップ
+                    continue;
+                }
+
+                gcMultiRow1.Rows[i].Cells["明細番号"].Value = i + 1;
+                gcMultiRow1.Rows[i].Cells["製品コード"].Value = f_製品.製品コード.Text;
+                gcMultiRow1.Rows[i].Cells["製品版数"].Value = f_製品.製品版数.Text;
+
+            }
+
+            f_製品.ChangedData(true);
+        }
+
+        private void gcMultiRow1_RowsAdded(object sender, RowsAddedEventArgs e)
+        {
+            F_製品? f_製品 = Application.OpenForms.OfType<F_製品>().FirstOrDefault();
+
+            for (int i = 0; i < gcMultiRow1.RowCount; i++)
+            {
+                if (gcMultiRow1.Rows[i].IsNewRow == true)
+                {
+                    //新規行の場合は、処理をスキップ
+                    continue;
+                }
+
+                gcMultiRow1.Rows[i].Cells["明細番号"].Value = i + 1;
+                gcMultiRow1.Rows[i].Cells["製品コード"].Value = f_製品.製品コード.Text;
+                gcMultiRow1.Rows[i].Cells["製品版数"].Value = f_製品.製品版数.Text;
+
+            }
+
+            f_製品.ChangedData(true);
+        }
+
+        private void gcMultiRow1_ModifiedChanged(object sender, EventArgs e)
+        {
+            F_製品? f_製品 = Application.OpenForms.OfType<F_製品>().FirstOrDefault();
+            f_製品.ChangedData(true);
         }
 
         private void gcMultiRow1_CellContentClick(object sender, CellEventArgs e)
@@ -37,8 +103,28 @@ namespace MultiRowDesigner
                     switch (e.CellName)
                     {
                         case "明細削除ボタン":
-                            MessageBox.Show("削除します。", "削除", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
+                            if (gcMultiRow1.CurrentRow.IsNewRow == true)
+                            {
+                                //新規行の場合は、処理をスキップ
+                                MessageBox.Show("新規行は削除できません。", "削除", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                                return;
+                            }
+
+                            if(gcMultiRow1.ReadOnly == true)
+                            {
+                                MessageBox.Show("編集はできません。", "削除", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                                return;
+                            }
+
+                            DialogResult result = MessageBox.Show($"明細行 ({gcMultiRow1.CurrentRow.Cells["明細番号"].Value} を削除しますか？", "明細行削除", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                            if (result == DialogResult.No)
+                            {
+                                return;
+                            }
                             break;
+                                
                         default:
                             break;
                     }
@@ -124,5 +210,254 @@ namespace MultiRowDesigner
 
         }
 
+
+        private bool IsError(Cell controlObject)
+        {
+            try
+            {
+                // エラーチェック
+                bool isError = false;
+
+
+                object varValue = controlObject.Value;
+                switch (controlObject.Name)
+                {
+                    case "型式名":
+                    case "ユニットコード":
+                        if (varValue == null)
+                        {
+                            MessageBox.Show($"[{controlObject.Name}] を入力してください。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            goto Exit_IsError;
+                        }
+                        break;
+    
+                }
+
+                return false; // エラーなしの場合
+
+            Exit_IsError:
+                // エラー発生後の処理
+                isError = true;
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"{Name}_IsError - {ex.Message}");
+                return true;
+            }
+        }
+
+        private void gcMultiRow1_CellValidating(object sender, CellValidatingEventArgs e)
+        {
+            gcMultiRow1.EndEdit();
+            //gcMultiRow1.CancelEdit();
+            //e.Cancel = true;
+
+            switch (e.CellName)
+            {
+                case "ユニットコード":
+                    if (IsError(gcMultiRow1.CurrentCell) == true) e.Cancel = true;
+                    break;
+
+                case "型式名":
+                    if (IsError(gcMultiRow1.CurrentCell) == true) e.Cancel = true;
+                    break;
+
+            }
+        }
+
+        private void gcMultiRow1_CellValidated(object sender, CellEventArgs e)
+        {
+
+            switch (e.CellName)
+            {
+
+
+                case "ユニットコード":
+                    UpdatedControl(gcMultiRow1.CurrentCell);
+                    break;
+                case "型式名":
+                    UpdatedControl(gcMultiRow1.CurrentCell);
+                    break;
+
+            }
+        }
+
+        private void UpdatedControl(Cell controlObject)
+        {
+            Connect();
+
+            try
+            {
+                // UpdatedControlの本体
+
+                object varParm = controlObject.Value;
+                switch (controlObject.Name)
+                {
+                    case "ユニットコード":
+                        string strKey = $"ユニットコード='{varParm}'";
+                        string strSQL = $"SELECT * " +
+                                        $"FROM V_製品_ユニット更新 " +
+                                        $"WHERE {strKey}";
+
+
+                        using (SqlCommand command = new SqlCommand(strSQL, cn))
+                        {
+                            using (SqlDataReader reader = command.ExecuteReader())
+                            {
+                                if (reader.Read())
+                                {
+                                    gcMultiRow1.CurrentRow.Cells["ユニット版数"].Value = reader["ユニット版数"].ToString();
+                                    gcMultiRow1.CurrentRow.Cells["改版中"].Value = reader["改版中"].ToString();
+                                    gcMultiRow1.CurrentRow.Cells["品名"].Value = reader["品名"].ToString();
+                                    gcMultiRow1.CurrentRow.Cells["型番"].Value = reader["型番"].ToString();
+                                    gcMultiRow1.CurrentRow.Cells["RohsStatusSign"].Value = reader["RohsStatusSign"].ToString();
+                                    gcMultiRow1.CurrentRow.Cells["ユニット材料費"].Value = reader["ユニット材料費"].ToString();
+
+
+                                }
+                            }
+                        }
+
+                        break;
+
+
+
+                 
+                }
+
+
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"{Name}_UpdatedControl - {ex.Message}");
+            }
+        }
+
+
+
+        private void gcMultiRow1_EditingControlShowing(object sender, EditingControlShowingEventArgs e)
+        {
+
+            TextBoxEditingControl textBox = e.Control as TextBoxEditingControl;
+            ComboBoxEditingControl comboBox = e.Control as ComboBoxEditingControl;
+            if (textBox != null)
+            {
+                textBox.PreviewKeyDown -= gcMultiRow1_PreviewKeyDown;
+                textBox.PreviewKeyDown += gcMultiRow1_PreviewKeyDown;
+                textBox.KeyPress -= new KeyPressEventHandler(gcMultiRow1_KeyPress);
+                textBox.KeyPress += new KeyPressEventHandler(gcMultiRow1_KeyPress);
+            }
+            else if (comboBox != null)
+            {
+                if (gcMultiRow1.CurrentCell.Name == "変更操作コード")
+                {
+                    comboBox.DrawMode = DrawMode.OwnerDrawFixed;
+                    comboBox.DrawItem -= 変更操作コード_DrawItem;
+                    comboBox.DrawItem += 変更操作コード_DrawItem;
+                    comboBox.SelectedIndexChanged -= 変更操作コード_SelectedIndexChanged;
+                    comboBox.SelectedIndexChanged += 変更操作コード_SelectedIndexChanged;
+                }
+
+            }
+        }
+
+        private void 変更操作コード_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            ComboBoxEditingControl combo = sender as ComboBoxEditingControl;
+            OriginalClass.SetComboBoxAppearance(combo, e, new int[] { 50, 0 }, new string[] { "Display", "Display2" });
+
+        }
+
+        private void 変更操作コード_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ComboBoxEditingControl combo = sender as ComboBoxEditingControl;
+            gcMultiRow1.CurrentRow.Cells["削除対象"].Value = ((DataRowView)combo.SelectedItem)?.Row.Field<byte>("Display2").ToString();
+
+
+
+        }
+
+
+        private void gcMultiRow1_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            gcMultiRow1.EndEdit();
+
+            if (e.KeyCode == Keys.Return)
+            {
+
+                if (gcMultiRow1.CurrentCell.RowIndex == null || gcMultiRow1.CurrentCell.CellIndex == null) return;
+
+                if (gcMultiRow1.CurrentCell.Name == "ユニットコード")
+                {
+
+                    string strCode = gcMultiRow1.CurrentCell.Value.ToString();
+                    string formattedCode = strCode.Trim().PadLeft(8, '0');
+
+                    if (formattedCode != strCode || string.IsNullOrEmpty(strCode))
+                    {
+                        gcMultiRow1.CurrentCell.Value = formattedCode;
+                    }
+                }
+            }
+
+        }
+
+
+
+        //private F_ユニット選択 codeSelectionForm;
+        private void gcMultiRow1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == ' ')
+            {
+                if (gcMultiRow1.CurrentCell.RowIndex == null || gcMultiRow1.CurrentCell.CellIndex == null) return;
+
+                switch (gcMultiRow1.CurrentCell.Name)
+                {
+                    case "ユニットコード":
+                        e.Handled = true;
+
+
+                        //codeSelectionForm = new F_ユニット選択();
+                        //if (codeSelectionForm.ShowDialog() == DialogResult.OK)
+                        //{
+                        //    string selectedCode = codeSelectionForm.SelectedCode;
+
+                        //    gcMultiRow1.CurrentCell.Value = selectedCode;
+                        //    gcMultiRow1.CurrentCellPosition = new CellPosition(gcMultiRow1.CurrentRow.Index, gcMultiRow1.CurrentRow.Cells["品名"].CellIndex);
+                        //}
+                        break;
+
+
+
+                }
+            }
+
+        }
+
+        private void gcMultiRow1_CellDoubleClick(object sender, CellEventArgs e)
+        {
+            if (gcMultiRow1.CurrentCell.RowIndex == null || gcMultiRow1.CurrentCell.CellIndex == null) return;
+
+            switch (gcMultiRow1.CurrentCell.Name)
+            {
+                case "ユニットコード":
+
+                    //codeSelectionForm = new F_ユニット選択();
+                    //if (codeSelectionForm.ShowDialog() == DialogResult.OK)
+                    //{
+                    //    string selectedCode = codeSelectionForm.SelectedCode;
+
+                    //    gcMultiRow1.CurrentCell.Value = selectedCode;
+                    //    gcMultiRow1.CurrentCellPosition = new CellPosition(gcMultiRow1.CurrentRow.Index, gcMultiRow1.CurrentRow.Cells["品名"].CellIndex);
+                    //}
+                    break;
+
+
+
+            }
+        }
     }
 }
