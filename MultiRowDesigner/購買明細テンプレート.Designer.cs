@@ -488,6 +488,7 @@
             border7.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
             cellStyle7.Border = border7;
             cellStyle7.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
+            cellStyle7.Format = "N0";
             cellStyle7.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.在庫数量.Style = cellStyle7;
             this.在庫数量.TabIndex = 7;
@@ -501,6 +502,7 @@
             border8.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
             cellStyle8.Border = border8;
             cellStyle8.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
+            cellStyle8.Format = "N0";
             cellStyle8.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.必要数量.Style = cellStyle8;
             this.必要数量.TabIndex = 8;
@@ -514,6 +516,7 @@
             border9.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
             cellStyle9.Border = border9;
             cellStyle9.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
+            cellStyle9.Format = "N0";
             cellStyle9.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.発注数量.Style = cellStyle9;
             this.発注数量.TabIndex = 9;
@@ -527,6 +530,7 @@
             border10.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
             cellStyle10.Border = border10;
             cellStyle10.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
+            cellStyle10.Format = "N0";
             cellStyle10.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.単価.Style = cellStyle10;
             this.単価.TabIndex = 10;
@@ -541,6 +545,7 @@
             border11.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
             cellStyle11.Border = border11;
             cellStyle11.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
+            cellStyle11.Format = "N0";
             cellStyle11.ImeMode = System.Windows.Forms.ImeMode.Off;
             this.summaryCell1.Style = cellStyle11;
             this.summaryCell1.TabIndex = 11;
