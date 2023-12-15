@@ -185,6 +185,26 @@ namespace MultiRowDesigner
             }
         }
 
+        private void gcMultiRow1_CellContentButtonClick(object sender, CellEventArgs e)
+        {
+            GcMultiRow gcMultiRow = sender as GcMultiRow;
+
+            switch (e.CellName)
+            {
+                case "明細削除ボタン":
+                    // 新規行の場合、何もしない
+                    if (gcMultiRow.Rows[e.RowIndex].IsNewRow == true) return;
+
+                    // 削除確認
+                    if (MessageBox.Show("明細行(" + (e.RowIndex + 1) + ")を削除しますか？", "承認コマンド", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        gcMultiRow.Rows.RemoveAt(e.RowIndex);
+                    }
+
+                    break;
+            }
+
+        }
 
         private void gcMultiRow1_CellValidating(object sender, CellValidatingEventArgs e)
         {
@@ -210,6 +230,9 @@ namespace MultiRowDesigner
                     // セルが編集中の場合
                     if (grid.IsCurrentCellInEditMode)
                     {
+                        // 値が変更されていなければエラーチェックを行わない
+                        if (grid.EditingControl.Text == gcMultiRow1.CurrentCell.DisplayText) return;
+
                         // 編集用コントロールに不正な文字列が設定されている場合
                         if (IsError(grid.EditingControl, e.CellName) == true)
                         {
@@ -367,25 +390,8 @@ namespace MultiRowDesigner
             }
         }
 
-        private void gcMultiRow1_CellContentButtonClick(object sender, CellEventArgs e)
-        {
-            GcMultiRow gcMultiRow = sender as GcMultiRow;
 
-            switch (e.CellName)
-            {
-                case "明細削除ボタン":
-                    // 新規行の場合、何もしない
-                    if (gcMultiRow.Rows[e.RowIndex].IsNewRow == true) return;
 
-                    // 削除確認
-                    if (MessageBox.Show("明細行(" + (e.RowIndex +1) + ")を削除しますか？", "承認コマンド", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                    {
-                        gcMultiRow.Rows.RemoveAt(e.RowIndex);
-                    }
 
-                    break;
-            }
-            
-        }
     }
 }
