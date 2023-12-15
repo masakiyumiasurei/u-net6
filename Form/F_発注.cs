@@ -46,6 +46,8 @@ namespace u_net
         private string BASE_CAPTION = "発注";
         private int selected_frame = 0;
         public bool blnNewParts = true;
+        public int intWindowHeight = 0;
+        public int intWindowWidth = 0;
 
         public F_発注()
         {
@@ -225,8 +227,8 @@ namespace u_net
             {
                 this.SuspendLayout();
 
-                int intWindowHeight = this.Height;
-                int intWindowWidth = this.Width;
+                 intWindowHeight = this.Height;
+                 intWindowWidth = this.Width;
 
 
                 if (string.IsNullOrEmpty(args))
@@ -549,7 +551,7 @@ namespace u_net
                     //保存できなかった時の処理 catchで対応する
                     throw new Exception();
                 }
-                                
+
                 return true;
 
             }
@@ -1929,7 +1931,21 @@ namespace u_net
             }
         }
 
+        private void Form_Resize(object sender, EventArgs e)
+        {
+            try
+            {
+                this.発注明細1.Height += (this.Height - intWindowHeight);
+                this.発注明細1.Width += (this.Width - intWindowWidth);
+                intWindowHeight = this.Height;
+                intWindowWidth = this.Width;
 
+            }
+            catch (Exception ex)
+            {
+                Debug.Print($"{nameof(Form_Resize)} - {ex.Message}");
+            }
+        }
         private void Form_KeyDown(object sender, KeyEventArgs e)
         {
 

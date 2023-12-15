@@ -50,6 +50,8 @@ namespace MultiRowDesigner
                             break;
                         default:
                             break;
+
+
                     }
                     break;
 
@@ -105,7 +107,7 @@ namespace MultiRowDesigner
 
         }
 
-        private bool SetModelNumber()
+        public bool SetModelNumber()
         {
             try
             {
@@ -173,7 +175,7 @@ namespace MultiRowDesigner
             e.Row.Cells["dgv明細番号"].Value = detailNumber.ToString();
         }
 
-        private void NumberDetails(string fieldName, long start = 1)
+        public void NumberDetails(string fieldName, long start = 1)
         {
             //明細番号を振り直す
             // FieldName - 番号を格納するフィールド名
@@ -239,7 +241,7 @@ namespace MultiRowDesigner
         }
 
         //セルの変更前の処理
-        private void dataGridView1_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
+        private void gcMultiRow1_CellValidating(object sender, CellValidatingEventArgs e)
         {
             F_商品 objForm = (F_商品)Application.OpenForms["F_商品"];
 
@@ -247,10 +249,10 @@ namespace MultiRowDesigner
                 return;
 
             // セルの変更前の値を取得
-            object previousValue = gcMultiRow1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
+            object previousValue = gcMultiRow1.Rows[e.RowIndex].Cells[e.CellIndex].Value;
 
-            string columnName = gcMultiRow1.Columns[e.ColumnIndex].Name;
-            string? newValue = e.FormattedValue.ToString(); // 変更後の値
+            string columnName = gcMultiRow1.Columns[e.CellIndex].Name;
+            string newValue = e.FormattedValue.ToString(); // 変更後の値
 
 
             switch (columnName)

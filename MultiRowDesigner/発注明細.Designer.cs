@@ -52,10 +52,13 @@ namespace MultiRowDesigner
             gcMultiRow1.RowsAdded += gcMultiRow1_RowsAdded;
             gcMultiRow1.RowsRemoved += gcMultiRow1_RowsRemoved;
             gcMultiRow1.CellValidating += gcMultiRow1_CellValidating;
+            gcMultiRow1.CellValueChanged += gcMultiRow1_CellValueChanged;
             gcMultiRow1.CellEnter += gcMultiRow1_CellEnter;
+            gcMultiRow1.CellDoubleClick += gcMultiRow1_CellDoubleClick;
             gcMultiRow1.CellContentClick += gcMultiRow1_CellContentButtonClick;
             gcMultiRow1.Sorted += gcMultiRow1_Sorted;
             gcMultiRow1.ModifiedChanged += gcMultiRow1_ModifiedChanged;
+            gcMultiRow1.PreviewKeyDown += gcMultiRow1_PreviewKeyDown;
             // 
             // 発注明細テンプレート1
             // 

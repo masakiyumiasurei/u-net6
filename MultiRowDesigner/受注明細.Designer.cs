@@ -28,33 +28,48 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.gcMultiRow1 = new GrapeCity.Win.MultiRow.GcMultiRow();
-            this.受注明細テンプレート1 = new MultiRowDesigner.受注明細テンプレート();
-            ((System.ComponentModel.ISupportInitialize)(this.gcMultiRow1)).BeginInit();
-            this.SuspendLayout();
+            gcMultiRow1 = new GrapeCity.Win.MultiRow.GcMultiRow();
+            受注明細テンプレート1 = new 受注明細テンプレート();
+            ((System.ComponentModel.ISupportInitialize)gcMultiRow1).BeginInit();
+            SuspendLayout();
             // 
             // gcMultiRow1
             // 
-            this.gcMultiRow1.AllowUserToReverseSelect = true;
-            this.gcMultiRow1.BackColor = System.Drawing.Color.White;
-            this.gcMultiRow1.EditMode = GrapeCity.Win.MultiRow.EditMode.EditOnEnter;
-            this.gcMultiRow1.Location = new System.Drawing.Point(0, 0);
-            this.gcMultiRow1.Name = "gcMultiRow1";
-            this.gcMultiRow1.Size = new System.Drawing.Size(870, 290);
-            this.gcMultiRow1.TabIndex = 0;
-            this.gcMultiRow1.Template = this.受注明細テンプレート1;
-            this.gcMultiRow1.Text = "gcMultiRow1";
+            gcMultiRow1.AllowUserToReverseSelect = true;
+            gcMultiRow1.AllowUserToZoom = false;
+            gcMultiRow1.BackColor = Color.White;
+            gcMultiRow1.EditMode = GrapeCity.Win.MultiRow.EditMode.EditOnEnter;
+            gcMultiRow1.HorizontalScrollBarMode = GrapeCity.Win.MultiRow.ScrollBarMode.Automatic;
+            gcMultiRow1.Location = new Point(0, 0);
+            gcMultiRow1.Name = "gcMultiRow1";
+            gcMultiRow1.Size = new Size(880, 300);
+            gcMultiRow1.TabIndex = 0;
+            gcMultiRow1.Template = 受注明細テンプレート1;
+            gcMultiRow1.Text = "gcMultiRow1";
+            gcMultiRow1.CellValidating += gcMultiRow1_CellValidating;
+            gcMultiRow1.CellEnter += gcMultiRow1_CellEnter;
+            gcMultiRow1.EditingControlShowing += gcMultiRow1_EditingControlShowing;
+            gcMultiRow1.CellContentButtonClick += gcMultiRow1_CellContentButtonClick;
+            // 
+            // 受注明細テンプレート1
+            // 
+            受注明細テンプレート1.Height = 189;
+            // 
+            // 
+            // 
+            受注明細テンプレート1.Row.Height = 84;
+            受注明細テンプレート1.Row.Width = 860;
+            受注明細テンプレート1.Width = 860;
             // 
             // 受注明細
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.gcMultiRow1);
-            this.Name = "受注明細";
-            this.Size = new System.Drawing.Size(870, 286);
-            ((System.ComponentModel.ISupportInitialize)(this.gcMultiRow1)).EndInit();
-            this.ResumeLayout(false);
-
+            AutoScaleMode = AutoScaleMode.None;
+            Controls.Add(gcMultiRow1);
+            Name = "受注明細";
+            Size = new Size(880, 300);
+            Load += 受注明細_Load;
+            ((System.ComponentModel.ISupportInitialize)gcMultiRow1).EndInit();
+            ResumeLayout(false);
         }
 
         #endregion

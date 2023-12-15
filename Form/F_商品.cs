@@ -16,6 +16,7 @@ using GrapeCity.Win.MultiRow;
 using System.ComponentModel;
 using System.DirectoryServices;
 using Microsoft.EntityFrameworkCore.Metadata;
+using MultiRowDesigner;
 
 namespace u_net
 {
@@ -306,9 +307,8 @@ namespace u_net
             objControl6.Text = CommonConstants.LoginUserFullName;
 
             //管理情報の設定
-            if (!SetModelNumber()) return false;
-
-
+            商品明細 frmTarget = Application.OpenForms.OfType<商品明細>().FirstOrDefault();
+            if (!frmTarget.SetModelNumber()) return false;
 
             SqlTransaction transaction = cn.BeginTransaction();
             {
@@ -593,21 +593,21 @@ namespace u_net
             try
             {
                 // DataGridView内の各行にアクセス
-                foreach (DataGridViewRow row in dataGridView1.Rows)
-                {
-                    // 行が新しい行を示す場合など、データ行でない場合は無視
-                    if (!row.IsNewRow)
-                    {
-                        // 商品コードカラムのセルを取得
-                        DataGridViewCell productCodeCell = row.Cells["dgv商品コード"]; // カラム名に応じて変更
+                //foreach (GcMultiRow row in 商品明細1.Rows)
+                //{
+                //    // 行が新しい行を示す場合など、データ行でない場合は無視
+                //    if (!row.IsNewRow)
+                //    {
+                //        // 商品コードカラムのセルを取得
+                //        DataGridViewCell productCodeCell = row.Cells["dgv商品コード"]; // カラム名に応じて変更
 
-                        if (productCodeCell != null)
-                        {
-                            // 商品コードカラムのセルの値を新しい商品コードに変更
-                            productCodeCell.Value = codeString;
-                        }
-                    }
-                }
+                //        if (productCodeCell != null)
+                //        {
+                //            // 商品コードカラムのセルの値を新しい商品コードに変更
+                //            productCodeCell.Value = codeString;
+                //        }
+                //    }
+                //}
                 // コントロールのフィールドを初期化
                 商品コード.Text = codeString;
                 作成日時.Text = null;
@@ -619,7 +619,7 @@ namespace u_net
                 削除.Text = null;
 
                 //明細行のリセット
-                detailNumber = 1;
+                //detailNumber = 1;
 
 
                 return true;
@@ -1076,19 +1076,7 @@ namespace u_net
                     break;
             }
         }
-        private void button1_Click(object sender, EventArgs e)
-        {
-            dataGridView1.CurrentCell = dataGridView1[7, 2];
-            // dataGridView1[6, 2].Selected = true;
-
-            BindingSource bindingSource = (BindingSource)dataGridView1.DataSource;
-            DataTable dataTable = ((DataView)bindingSource.List).Table;
-
-            dataTable.DefaultView.Sort = "明細番号";
-
-            bindingSource.ResetBindings(false);
-
-        }
+        
 
         private void 商品名_TextChanged(object sender, EventArgs e)
         {
@@ -1197,9 +1185,6 @@ namespace u_net
             if (this.ActiveControl != null)
                 ChangedData(true);
         }
-
-
-
 
 
         public bool DetectRepeatedID(int currentNumber, string targetID, string exName)

@@ -1,6 +1,6 @@
 ﻿namespace MultiRowDesigner
 {
-    partial class 購買形式一覧
+    partial class 入金明細
     {
         /// <summary> 
         /// 必要なデザイナー変数です。
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.gcMultiRow1 = new GrapeCity.Win.MultiRow.GcMultiRow();
-            this.購買形式一覧テンプレート1 = new MultiRowDesigner.購買形式一覧テンプレート();
+            this.入金明細テンプレート1 = new MultiRowDesigner.入金明細テンプレート();
             ((System.ComponentModel.ISupportInitialize)(this.gcMultiRow1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -37,32 +37,21 @@
             // 
             this.gcMultiRow1.EditMode = GrapeCity.Win.MultiRow.EditMode.EditOnEnter;
             this.gcMultiRow1.Location = new System.Drawing.Point(0, 0);
-            this.gcMultiRow1.Margin = new System.Windows.Forms.Padding(4);
             this.gcMultiRow1.Name = "gcMultiRow1";
-            this.gcMultiRow1.Size = new System.Drawing.Size(302, 287);
+            this.gcMultiRow1.Size = new System.Drawing.Size(860, 295);
             this.gcMultiRow1.TabIndex = 0;
-            this.gcMultiRow1.Template = this.購買形式一覧テンプレート1;
-            this.gcMultiRow1.TemplateScaleSize = new System.Drawing.SizeF(1.166667F, 1.25F);
+            this.gcMultiRow1.Template = this.入金明細テンプレート1;
             this.gcMultiRow1.Text = "gcMultiRow1";
+            this.gcMultiRow1.CellEnter += new System.EventHandler<GrapeCity.Win.MultiRow.CellEventArgs>(this.gcMultiRow1_CellEnter);
+            this.gcMultiRow1.CellContentClick += new System.EventHandler<GrapeCity.Win.MultiRow.CellEventArgs>(this.gcMultiRow1_CellContentClick);
             // 
-            // 購買形式一覧テンプレート1
+            // 入金明細
             // 
-            this.購買形式一覧テンプレート1.Height = 38;
-            // 
-            // 
-            // 
-            this.購買形式一覧テンプレート1.Row.Height = 17;
-            this.購買形式一覧テンプレート1.Row.Width = 285;
-            this.購買形式一覧テンプレート1.Width = 285;
-            // 
-            // 購買形式一覧
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.gcMultiRow1);
-            this.Margin = new System.Windows.Forms.Padding(4);
-            this.Name = "購買形式一覧";
-            this.Size = new System.Drawing.Size(303, 288);
+            this.Name = "入金明細";
+            this.Size = new System.Drawing.Size(860, 295);
             ((System.ComponentModel.ISupportInitialize)(this.gcMultiRow1)).EndInit();
             this.ResumeLayout(false);
 
@@ -71,6 +60,6 @@
         #endregion
 
         private GrapeCity.Win.MultiRow.GcMultiRow gcMultiRow1;
-        private 購買形式一覧テンプレート 購買形式一覧テンプレート1;
+        private 入金明細テンプレート 入金明細テンプレート1;
     }
 }

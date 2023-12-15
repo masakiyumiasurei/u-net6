@@ -34,11 +34,11 @@
             出荷予定日1ラベル = new Label();
             label1 = new Label();
             シリーズ名 = new TextBox();
-            intComposedChipMount = new GroupBox();
+            終了指定 = new GroupBox();
             承認指定button3 = new RadioButton();
             承認指定button2 = new RadioButton();
             承認指定button1 = new RadioButton();
-            Deleted = new GroupBox();
+            完了指定 = new GroupBox();
             削除指定Button3 = new RadioButton();
             削除指定Button2 = new RadioButton();
             削除指定Button1 = new RadioButton();
@@ -62,31 +62,31 @@
             label5 = new Label();
             申請者コード_ラベル = new Label();
             申請者コード = new ComboBox();
-            groupBox1 = new GroupBox();
+            削除指定 = new GroupBox();
             radioButton1 = new RadioButton();
             radioButton2 = new RadioButton();
             radioButton3 = new RadioButton();
             確定指定Button1 = new RadioButton();
             確定指定Button2 = new RadioButton();
             確定指定Button3 = new RadioButton();
-            Discontinued = new GroupBox();
-            intComposedChipMount.SuspendLayout();
-            Deleted.SuspendLayout();
-            groupBox1.SuspendLayout();
-            Discontinued.SuspendLayout();
+            承認指定 = new GroupBox();
+            終了指定.SuspendLayout();
+            完了指定.SuspendLayout();
+            削除指定.SuspendLayout();
+            承認指定.SuspendLayout();
             SuspendLayout();
             // 
             // label7
             // 
             label7.AllowDrop = true;
             label7.AutoEllipsis = true;
-            label7.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label7.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             label7.ForeColor = SystemColors.ActiveCaptionText;
             label7.ImageAlign = ContentAlignment.MiddleLeft;
-            label7.Location = new Point(25, 110);
+            label7.Location = new Point(16, 110);
             label7.Margin = new Padding(0);
             label7.Name = "label7";
-            label7.Size = new Size(85, 17);
+            label7.Size = new Size(111, 17);
             label7.TabIndex = 3;
             label7.Text = "基本型式名(&N)";
             label7.TextAlign = ContentAlignment.MiddleLeft;
@@ -113,20 +113,18 @@
             申請日開始.Name = "申請日開始";
             申請日開始.Size = new Size(160, 23);
             申請日開始.TabIndex = 0;
-            申請日開始.Click += 仕入先コード_Click;
-            申請日開始.TextChanged += 仕入先コード_TextChanged;
-            申請日開始.DoubleClick += 仕入先コード_DoubleClick;
-            申請日開始.KeyDown += 仕入先コード_KeyDown;
-            申請日開始.Validated += 仕入先コード_Validated;
+            申請日開始.KeyPress += 申請日開始_KeyPress;
+            申請日開始.Leave += 申請日開始_Leave;
+            申請日開始.MouseDoubleClick += 申請日開始_MouseDoubleClick;
             // 
             // 出荷予定日1ラベル
             // 
             出荷予定日1ラベル.AllowDrop = true;
             出荷予定日1ラベル.AutoEllipsis = true;
-            出荷予定日1ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            出荷予定日1ラベル.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             出荷予定日1ラベル.ForeColor = SystemColors.ActiveCaptionText;
             出荷予定日1ラベル.ImageAlign = ContentAlignment.MiddleLeft;
-            出荷予定日1ラベル.Location = new Point(25, 20);
+            出荷予定日1ラベル.Location = new Point(16, 20);
             出荷予定日1ラベル.Margin = new Padding(0);
             出荷予定日1ラベル.Name = "出荷予定日1ラベル";
             出荷予定日1ラベル.Size = new Size(87, 17);
@@ -138,13 +136,13 @@
             // 
             label1.AllowDrop = true;
             label1.AutoEllipsis = true;
-            label1.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             label1.ForeColor = SystemColors.ActiveCaptionText;
             label1.ImageAlign = ContentAlignment.MiddleLeft;
-            label1.Location = new Point(25, 140);
+            label1.Location = new Point(16, 140);
             label1.Margin = new Padding(0);
             label1.Name = "label1";
-            label1.Size = new Size(85, 17);
+            label1.Size = new Size(100, 17);
             label1.TabIndex = 5;
             label1.Text = "シリーズ名(&R)";
             label1.TextAlign = ContentAlignment.MiddleLeft;
@@ -161,26 +159,25 @@
             シリーズ名.Size = new Size(413, 23);
             シリーズ名.TabIndex = 13;
             // 
-            // intComposedChipMount
+            // 終了指定
             // 
-            intComposedChipMount.Controls.Add(承認指定button3);
-            intComposedChipMount.Controls.Add(承認指定button2);
-            intComposedChipMount.Controls.Add(承認指定button1);
-            intComposedChipMount.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            intComposedChipMount.Location = new Point(25, 293);
-            intComposedChipMount.Name = "intComposedChipMount";
-            intComposedChipMount.Size = new Size(525, 63);
-            intComposedChipMount.TabIndex = 205;
-            intComposedChipMount.TabStop = false;
-            intComposedChipMount.Text = "終了指定(&E)";
-            intComposedChipMount.Visible = false;
+            終了指定.Controls.Add(承認指定button3);
+            終了指定.Controls.Add(承認指定button2);
+            終了指定.Controls.Add(承認指定button1);
+            終了指定.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            終了指定.Location = new Point(16, 293);
+            終了指定.Name = "終了指定";
+            終了指定.Size = new Size(525, 63);
+            終了指定.TabIndex = 205;
+            終了指定.TabStop = false;
+            終了指定.Text = "終了指定(&E)";
             // 
             // 承認指定button3
             // 
             承認指定button3.AutoSize = true;
             承認指定button3.Location = new Point(347, 22);
             承認指定button3.Name = "承認指定button3";
-            承認指定button3.Size = new Size(83, 16);
+            承認指定button3.Size = new Size(93, 18);
             承認指定button3.TabIndex = 204;
             承認指定button3.TabStop = true;
             承認指定button3.Text = "指定しない";
@@ -191,7 +188,7 @@
             承認指定button2.AutoSize = true;
             承認指定button2.Location = new Point(195, 22);
             承認指定button2.Name = "承認指定button2";
-            承認指定button2.Size = new Size(95, 16);
+            承認指定button2.Size = new Size(106, 18);
             承認指定button2.TabIndex = 2;
             承認指定button2.TabStop = true;
             承認指定button2.Text = "終了している";
@@ -202,31 +199,31 @@
             承認指定button1.AutoSize = true;
             承認指定button1.Location = new Point(30, 22);
             承認指定button1.Name = "承認指定button1";
-            承認指定button1.Size = new Size(107, 16);
+            承認指定button1.Size = new Size(121, 18);
             承認指定button1.TabIndex = 1;
             承認指定button1.TabStop = true;
             承認指定button1.Text = "終了していない";
             承認指定button1.UseVisualStyleBackColor = true;
             // 
-            // Deleted
+            // 完了指定
             // 
-            Deleted.Controls.Add(削除指定Button3);
-            Deleted.Controls.Add(削除指定Button2);
-            Deleted.Controls.Add(削除指定Button1);
-            Deleted.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            Deleted.Location = new Point(25, 373);
-            Deleted.Name = "Deleted";
-            Deleted.Size = new Size(525, 63);
-            Deleted.TabIndex = 207;
-            Deleted.TabStop = false;
-            Deleted.Text = "完了指定(&F)";
+            完了指定.Controls.Add(削除指定Button3);
+            完了指定.Controls.Add(削除指定Button2);
+            完了指定.Controls.Add(削除指定Button1);
+            完了指定.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            完了指定.Location = new Point(16, 373);
+            完了指定.Name = "完了指定";
+            完了指定.Size = new Size(525, 63);
+            完了指定.TabIndex = 207;
+            完了指定.TabStop = false;
+            完了指定.Text = "完了指定(&F)";
             // 
             // 削除指定Button3
             // 
             削除指定Button3.AutoSize = true;
             削除指定Button3.Location = new Point(347, 22);
             削除指定Button3.Name = "削除指定Button3";
-            削除指定Button3.Size = new Size(83, 16);
+            削除指定Button3.Size = new Size(93, 18);
             削除指定Button3.TabIndex = 204;
             削除指定Button3.TabStop = true;
             削除指定Button3.Text = "指定しない";
@@ -237,7 +234,7 @@
             削除指定Button2.AutoSize = true;
             削除指定Button2.Location = new Point(195, 22);
             削除指定Button2.Name = "削除指定Button2";
-            削除指定Button2.Size = new Size(95, 16);
+            削除指定Button2.Size = new Size(106, 18);
             削除指定Button2.TabIndex = 2;
             削除指定Button2.TabStop = true;
             削除指定Button2.Text = "完了している";
@@ -248,7 +245,7 @@
             削除指定Button1.AutoSize = true;
             削除指定Button1.Location = new Point(30, 22);
             削除指定Button1.Name = "削除指定Button1";
-            削除指定Button1.Size = new Size(107, 16);
+            削除指定Button1.Size = new Size(121, 18);
             削除指定Button1.TabIndex = 1;
             削除指定Button1.TabStop = true;
             削除指定Button1.Text = "完了していない";
@@ -256,6 +253,7 @@
             // 
             // 抽出ボタン
             // 
+            抽出ボタン.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             抽出ボタン.Location = new Point(311, 539);
             抽出ボタン.Name = "抽出ボタン";
             抽出ボタン.Size = new Size(114, 23);
@@ -266,6 +264,7 @@
             // 
             // キャンセルボタン
             // 
+            キャンセルボタン.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             キャンセルボタン.Location = new Point(430, 539);
             キャンセルボタン.Name = "キャンセルボタン";
             キャンセルボタン.Size = new Size(114, 23);
@@ -285,7 +284,7 @@
             申請日開始選択.TabStop = false;
             申請日開始選択.Text = "▼";
             申請日開始選択.UseVisualStyleBackColor = true;
-            申請日開始選択.Click += 仕入先選択ボタン_Click;
+            申請日開始選択.MouseClick += 申請日開始選択_MouseClick;
             // 
             // 申請日終了選択
             // 
@@ -298,7 +297,7 @@
             申請日終了選択.TabStop = false;
             申請日終了選択.Text = "▼";
             申請日終了選択.UseVisualStyleBackColor = true;
-            申請日終了選択.Click += 仕入先参照ボタン_Click;
+            申請日終了選択.MouseClick += 申請日終了選択_MouseClick;
             // 
             // 出荷予定日2ラベル
             // 
@@ -325,6 +324,9 @@
             申請日終了.Name = "申請日終了";
             申請日終了.Size = new Size(160, 23);
             申請日終了.TabIndex = 2;
+            申請日終了.KeyPress += 申請日終了_KeyPress;
+            申請日終了.Leave += 申請日終了_Leave;
+            申請日終了.MouseDoubleClick += 申請日終了_MouseDoubleClick;
             // 
             // 購買納期終了
             // 
@@ -336,6 +338,9 @@
             購買納期終了.Name = "購買納期終了";
             購買納期終了.Size = new Size(160, 23);
             購買納期終了.TabIndex = 6;
+            購買納期終了.KeyPress += 購買納期終了_KeyPress;
+            購買納期終了.Leave += 購買納期終了_Leave;
+            購買納期終了.MouseDoubleClick += 購買納期終了_MouseDoubleClick;
             // 
             // label2
             // 
@@ -363,6 +368,7 @@
             購買納期終了選択.TabStop = false;
             購買納期終了選択.Text = "▼";
             購買納期終了選択.UseVisualStyleBackColor = true;
+            購買納期終了選択.MouseClick += 購買納期終了選択_MouseClick;
             // 
             // 購買納期開始選択
             // 
@@ -375,6 +381,7 @@
             購買納期開始選択.TabStop = false;
             購買納期開始選択.Text = "▼";
             購買納期開始選択.UseVisualStyleBackColor = true;
+            購買納期開始選択.MouseClick += 購買納期開始選択_MouseClick;
             // 
             // 購買納期開始
             // 
@@ -386,15 +393,18 @@
             購買納期開始.Name = "購買納期開始";
             購買納期開始.Size = new Size(160, 23);
             購買納期開始.TabIndex = 4;
+            購買納期開始.KeyPress += 購買納期開始_KeyPress;
+            購買納期開始.Leave += 購買納期開始_Leave;
+            購買納期開始.MouseDoubleClick += 購買納期開始_MouseDoubleClick;
             // 
             // label3
             // 
             label3.AllowDrop = true;
             label3.AutoEllipsis = true;
-            label3.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label3.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             label3.ForeColor = SystemColors.ActiveCaptionText;
             label3.ImageAlign = ContentAlignment.MiddleLeft;
-            label3.Location = new Point(25, 50);
+            label3.Location = new Point(16, 50);
             label3.Margin = new Padding(0);
             label3.Name = "label3";
             label3.Size = new Size(87, 17);
@@ -412,6 +422,9 @@
             出荷予定日終了.Name = "出荷予定日終了";
             出荷予定日終了.Size = new Size(160, 23);
             出荷予定日終了.TabIndex = 10;
+            出荷予定日終了.KeyPress += 出荷予定日終了_KeyPress;
+            出荷予定日終了.Leave += 出荷予定日終了_Leave;
+            出荷予定日終了.MouseDoubleClick += 出荷予定日終了_MouseDoubleClick;
             // 
             // label4
             // 
@@ -439,6 +452,7 @@
             出荷予定日終了選択.TabStop = false;
             出荷予定日終了選択.Text = "▼";
             出荷予定日終了選択.UseVisualStyleBackColor = true;
+            出荷予定日終了選択.MouseClick += 出荷予定日終了選択_MouseClick;
             // 
             // 出荷予定日開始選択
             // 
@@ -451,6 +465,7 @@
             出荷予定日開始選択.TabStop = false;
             出荷予定日開始選択.Text = "▼";
             出荷予定日開始選択.UseVisualStyleBackColor = true;
+            出荷予定日開始選択.MouseClick += 出荷予定日開始選択_MouseClick;
             // 
             // 出荷予定日開始
             // 
@@ -462,18 +477,21 @@
             出荷予定日開始.Name = "出荷予定日開始";
             出荷予定日開始.Size = new Size(160, 23);
             出荷予定日開始.TabIndex = 8;
+            出荷予定日開始.KeyPress += 出荷予定日開始_KeyPress;
+            出荷予定日開始.Leave += 出荷予定日開始_Leave;
+            出荷予定日開始.MouseDoubleClick += 出荷予定日開始_MouseDoubleClick;
             // 
             // label5
             // 
             label5.AllowDrop = true;
             label5.AutoEllipsis = true;
-            label5.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label5.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             label5.ForeColor = SystemColors.ActiveCaptionText;
             label5.ImageAlign = ContentAlignment.MiddleLeft;
-            label5.Location = new Point(25, 80);
+            label5.Location = new Point(16, 80);
             label5.Margin = new Padding(0);
             label5.Name = "label5";
-            label5.Size = new Size(87, 17);
+            label5.Size = new Size(111, 17);
             label5.TabIndex = 10020;
             label5.Text = "出荷予定日(&S)";
             label5.TextAlign = ContentAlignment.MiddleLeft;
@@ -482,13 +500,13 @@
             // 
             申請者コード_ラベル.AllowDrop = true;
             申請者コード_ラベル.AutoEllipsis = true;
-            申請者コード_ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            申請者コード_ラベル.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             申請者コード_ラベル.ForeColor = SystemColors.ActiveCaptionText;
             申請者コード_ラベル.ImageAlign = ContentAlignment.MiddleLeft;
-            申請者コード_ラベル.Location = new Point(25, 170);
+            申請者コード_ラベル.Location = new Point(16, 170);
             申請者コード_ラベル.Margin = new Padding(0);
             申請者コード_ラベル.Name = "申請者コード_ラベル";
-            申請者コード_ラベル.Size = new Size(85, 17);
+            申請者コード_ラベル.Size = new Size(100, 17);
             申請者コード_ラベル.TabIndex = 10026;
             申請者コード_ラベル.Text = "申請者名(&M)";
             申請者コード_ラベル.TextAlign = ContentAlignment.MiddleLeft;
@@ -500,26 +518,27 @@
             申請者コード.Name = "申請者コード";
             申請者コード.Size = new Size(188, 23);
             申請者コード.TabIndex = 14;
+            申請者コード.Enter += 申請者コード_Enter;
             // 
-            // groupBox1
+            // 削除指定
             // 
-            groupBox1.Controls.Add(radioButton1);
-            groupBox1.Controls.Add(radioButton2);
-            groupBox1.Controls.Add(radioButton3);
-            groupBox1.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            groupBox1.Location = new Point(25, 453);
-            groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(525, 63);
-            groupBox1.TabIndex = 208;
-            groupBox1.TabStop = false;
-            groupBox1.Text = "削除指定(&L)";
+            削除指定.Controls.Add(radioButton1);
+            削除指定.Controls.Add(radioButton2);
+            削除指定.Controls.Add(radioButton3);
+            削除指定.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            削除指定.Location = new Point(16, 453);
+            削除指定.Name = "削除指定";
+            削除指定.Size = new Size(525, 63);
+            削除指定.TabIndex = 208;
+            削除指定.TabStop = false;
+            削除指定.Text = "削除指定(&L)";
             // 
             // radioButton1
             // 
             radioButton1.AutoSize = true;
             radioButton1.Location = new Point(347, 22);
             radioButton1.Name = "radioButton1";
-            radioButton1.Size = new Size(83, 16);
+            radioButton1.Size = new Size(93, 18);
             radioButton1.TabIndex = 204;
             radioButton1.TabStop = true;
             radioButton1.Text = "指定しない";
@@ -530,7 +549,7 @@
             radioButton2.AutoSize = true;
             radioButton2.Location = new Point(195, 22);
             radioButton2.Name = "radioButton2";
-            radioButton2.Size = new Size(95, 16);
+            radioButton2.Size = new Size(106, 18);
             radioButton2.TabIndex = 2;
             radioButton2.TabStop = true;
             radioButton2.Text = "削除している";
@@ -541,7 +560,7 @@
             radioButton3.AutoSize = true;
             radioButton3.Location = new Point(30, 22);
             radioButton3.Name = "radioButton3";
-            radioButton3.Size = new Size(107, 16);
+            radioButton3.Size = new Size(121, 18);
             radioButton3.TabIndex = 1;
             radioButton3.TabStop = true;
             radioButton3.Text = "削除していない";
@@ -552,7 +571,7 @@
             確定指定Button1.AutoSize = true;
             確定指定Button1.Location = new Point(30, 22);
             確定指定Button1.Name = "確定指定Button1";
-            確定指定Button1.Size = new Size(107, 16);
+            確定指定Button1.Size = new Size(121, 18);
             確定指定Button1.TabIndex = 1;
             確定指定Button1.TabStop = true;
             確定指定Button1.Text = "承認していない";
@@ -563,7 +582,7 @@
             確定指定Button2.AutoSize = true;
             確定指定Button2.Location = new Point(195, 22);
             確定指定Button2.Name = "確定指定Button2";
-            確定指定Button2.Size = new Size(95, 16);
+            確定指定Button2.Size = new Size(106, 18);
             確定指定Button2.TabIndex = 2;
             確定指定Button2.TabStop = true;
             確定指定Button2.Text = "承認している";
@@ -574,33 +593,32 @@
             確定指定Button3.AutoSize = true;
             確定指定Button3.Location = new Point(347, 22);
             確定指定Button3.Name = "確定指定Button3";
-            確定指定Button3.Size = new Size(83, 16);
+            確定指定Button3.Size = new Size(93, 18);
             確定指定Button3.TabIndex = 204;
             確定指定Button3.TabStop = true;
             確定指定Button3.Text = "指定しない";
             確定指定Button3.UseVisualStyleBackColor = true;
             // 
-            // Discontinued
+            // 承認指定
             // 
-            Discontinued.Controls.Add(確定指定Button3);
-            Discontinued.Controls.Add(確定指定Button2);
-            Discontinued.Controls.Add(確定指定Button1);
-            Discontinued.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            Discontinued.Location = new Point(25, 213);
-            Discontinued.Name = "Discontinued";
-            Discontinued.Size = new Size(525, 63);
-            Discontinued.TabIndex = 203;
-            Discontinued.TabStop = false;
-            Discontinued.Text = "承認指定(&A)";
-            Discontinued.Visible = false;
-            Discontinued.Enter += Discontinued_Enter;
+            承認指定.Controls.Add(確定指定Button3);
+            承認指定.Controls.Add(確定指定Button2);
+            承認指定.Controls.Add(確定指定Button1);
+            承認指定.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            承認指定.Location = new Point(16, 213);
+            承認指定.Name = "承認指定";
+            承認指定.Size = new Size(525, 63);
+            承認指定.TabIndex = 203;
+            承認指定.TabStop = false;
+            承認指定.Text = "承認指定(&A)";
             // 
             // F_購買申請管理_抽出
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(577, 589);
-            Controls.Add(groupBox1);
+            Controls.Add(基本型式名);
+            Controls.Add(削除指定);
             Controls.Add(申請者コード);
             Controls.Add(申請者コード_ラベル);
             Controls.Add(出荷予定日終了);
@@ -621,26 +639,25 @@
             Controls.Add(申請日開始選択);
             Controls.Add(キャンセルボタン);
             Controls.Add(抽出ボタン);
-            Controls.Add(Deleted);
-            Controls.Add(intComposedChipMount);
-            Controls.Add(Discontinued);
+            Controls.Add(完了指定);
+            Controls.Add(終了指定);
+            Controls.Add(承認指定);
             Controls.Add(label1);
             Controls.Add(シリーズ名);
             Controls.Add(label7);
-            Controls.Add(基本型式名);
             Controls.Add(申請日開始);
             Controls.Add(出荷予定日1ラベル);
             Name = "F_購買申請管理_抽出";
             Text = "購買申請管理_抽出";
             Load += Form_Load;
-            intComposedChipMount.ResumeLayout(false);
-            intComposedChipMount.PerformLayout();
-            Deleted.ResumeLayout(false);
-            Deleted.PerformLayout();
-            groupBox1.ResumeLayout(false);
-            groupBox1.PerformLayout();
-            Discontinued.ResumeLayout(false);
-            Discontinued.PerformLayout();
+            終了指定.ResumeLayout(false);
+            終了指定.PerformLayout();
+            完了指定.ResumeLayout(false);
+            完了指定.PerformLayout();
+            削除指定.ResumeLayout(false);
+            削除指定.PerformLayout();
+            承認指定.ResumeLayout(false);
+            承認指定.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -657,11 +674,11 @@
         private TextBox シリーズ名;
         private Label label2;
         private TextBox 更新日終了;
-        private GroupBox intComposedChipMount;
+        private GroupBox 終了指定;
         private RadioButton 承認指定button3;
         private RadioButton 承認指定button2;
         private RadioButton 承認指定button1;
-        private GroupBox Deleted;
+        private GroupBox 完了指定;
         private RadioButton 削除指定Button3;
         private RadioButton 削除指定Button2;
         private RadioButton 削除指定Button1;
@@ -684,13 +701,13 @@
         private Label label5;
         private Label 申請者コード_ラベル;
         private ComboBox 申請者コード;
-        private GroupBox groupBox1;
+        private GroupBox 削除指定;
         private RadioButton radioButton1;
         private RadioButton radioButton2;
         private RadioButton radioButton3;
         private RadioButton 確定指定Button1;
         private RadioButton 確定指定Button2;
         private RadioButton 確定指定Button3;
-        private GroupBox Discontinued;
+        private GroupBox 承認指定;
     }
 }

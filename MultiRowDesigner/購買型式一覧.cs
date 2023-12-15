@@ -11,7 +11,7 @@ using GrapeCity.Win.MultiRow;
 
 namespace MultiRowDesigner
 {
-    public partial class 購買形式一覧 : UserControl
+    public partial class 購買型式一覧 : UserControl
     {
         public GcMultiRow Detail
         {
@@ -21,7 +21,7 @@ namespace MultiRowDesigner
             }
         }
 
-        public 購買形式一覧()
+        public 購買型式一覧()
         {
             InitializeComponent();
         }

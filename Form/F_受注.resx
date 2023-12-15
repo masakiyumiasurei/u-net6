@@ -123,7 +123,28 @@
   <metadata name="notifyIcon1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>248, 189</value>
   </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="Email作成ボタン.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABsAAAAYCAYAAAALQIb7AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        vAAADrwBlbxySQAAAz1JREFUSEvNlPtLk1EYx/sP6of+hQiKxMykRkURQQVBERhGmRpBhXYxTcVueFmu
+        3e/zncuyG0Y3UooCi0BNpUwz56VNm6O1zGmSa9PNfXvOOxcTNrVmlwMf3u28z3k+533OZQHgwZ/FS/gw
+        +MWGvyb7MmT/L2QsYDwG2PjwXDPK2AB/DEwQoVxRZV5MBtwYHf0Ma58ZneZWvOts5Z+zEYrrfd+Bka+f
+        puWMIvNhbGwI9Q11kCkvQU5cvlJOcPzTaNJDZ1BCrZVNw8CpUVFpgIp+ny8qRN3zx1P5mCiijHUG4HTa
+        KKkO+9P24uSpLIjEpSgqOYfi0vO4KCqmCYih0SoIOY9aI4FcJoRKUYZiEm3ctA4KlRiBwHfKF1rDKLIB
+        +3uYaJYFhbnIzjmGAxn7sGXrZmzfsRXHThzF06e1sA3YCCthQZ+lA9f0UghzjoBTCLFr5zYo1VL4/WNT
+        ollkVddNNDsJblVXofp2FQ2WQKtT4GHNHbhcHykuvHmhL8pDiiAOqqLTSE/dgwoqt883RxlbH4msDF1d
+        bdTHmocvy3RYnxcTHhfumpS4kHkQNzkZ0tNSUM5p4Pf9oqy7u536WPNhfHwMVqsFbW0daH9rDtJOvGnF
+        QH83PO5vGHRYkJl1iNZRFsuX+WH/6KSddwPHs6XILeCQm1+OnDw9zpxToP5lCx/ldrtoXY/ELrP2O2hb
+        G5C89yz2ZYiRklqG1IxL0HN36Gx94KOGR5zIOn6YPw5zktkGelF5lYOGNoTD0Ud9web2TOLho0ZoDDUw
+        mOqg1j+BsfIZXCNsiwfbpN+N3LwTNFY+N5ndbuEP6en8bNTW3kNPbw9hRvOrNty4XUOyami5+yS7C53x
+        Aeobm+jLzHxcU/MLJKfshkReRjL3lGgG2eCgnT+UK1Yux9JlSyDYIIBg/RokCdYgfnUiViQkIC5hFb1f
+        xT+T1ibx71lcfGIcFi1eiBLhBbCdGrwjI8oYE/B6R2mXtcBYoaXbowRSmiVDJhdBSZNQ0Y0Rjlwp+hkj
+        lgqhoBvm1esGysVkISLKWP3Zy/looZxRZeEBrAS/CytdeK4ZZfPJv5Wxjj8FK6k/JGN/ItV9vvARAQwP
+        O/AD4d4a/w4r/TgAAAAASUVORK5CYII=
+</value>
+  </data>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>31</value>
+    <value>55</value>
   </metadata>
 </root>
