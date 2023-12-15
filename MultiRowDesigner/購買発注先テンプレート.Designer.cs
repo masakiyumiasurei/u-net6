@@ -386,6 +386,7 @@
             border4.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
             cellStyle5.Border = border4;
             cellStyle5.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
+            cellStyle5.Format = "d";
             cellStyle5.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.発注日.Style = cellStyle5;
             this.発注日.TabIndex = 4;

@@ -163,6 +163,9 @@
   <metadata name="発注者コード.AnnotationCreatedTime" type="System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value />
   </metadata>
+  <metadata name="購買コード.AnnotationCreatedTime" type="System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </metadata>
   <metadata name="コマンドボタン.AnnotationCreatedTime" type="System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value />
   </metadata>
