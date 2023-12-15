@@ -36,6 +36,11 @@ namespace MultiRowDesigner
             GrapeCity.Win.MultiRow.CellStyle cellStyle16 = new GrapeCity.Win.MultiRow.CellStyle();
             GrapeCity.Win.MultiRow.CellStyle cellStyle17 = new GrapeCity.Win.MultiRow.CellStyle();
             GrapeCity.Win.MultiRow.CellStyle cellStyle18 = new GrapeCity.Win.MultiRow.CellStyle();
+            GrapeCity.Win.MultiRow.CellStyle cellStyle19 = new GrapeCity.Win.MultiRow.CellStyle();
+            GrapeCity.Win.MultiRow.CellStyle cellStyle20 = new GrapeCity.Win.MultiRow.CellStyle();
+            GrapeCity.Win.MultiRow.CellStyle cellStyle21 = new GrapeCity.Win.MultiRow.CellStyle();
+            GrapeCity.Win.MultiRow.CellStyle cellStyle22 = new GrapeCity.Win.MultiRow.CellStyle();
+            GrapeCity.Win.MultiRow.CellStyle cellStyle23 = new GrapeCity.Win.MultiRow.CellStyle();
             GrapeCity.Win.MultiRow.CellStyle cellStyle1 = new GrapeCity.Win.MultiRow.CellStyle();
             GrapeCity.Win.MultiRow.CellStyle cellStyle2 = new GrapeCity.Win.MultiRow.CellStyle();
             GrapeCity.Win.MultiRow.CellStyle cellStyle3 = new GrapeCity.Win.MultiRow.CellStyle();
@@ -44,12 +49,16 @@ namespace MultiRowDesigner
             GrapeCity.Win.MultiRow.Border border1 = new GrapeCity.Win.MultiRow.Border();
             GrapeCity.Win.MultiRow.CellStyle cellStyle6 = new GrapeCity.Win.MultiRow.CellStyle();
             GrapeCity.Win.MultiRow.Border border2 = new GrapeCity.Win.MultiRow.Border();
+            GrapeCity.Win.MultiRow.TextLengthValidator textLengthValidator1 = new GrapeCity.Win.MultiRow.TextLengthValidator();
             GrapeCity.Win.MultiRow.CellStyle cellStyle7 = new GrapeCity.Win.MultiRow.CellStyle();
             GrapeCity.Win.MultiRow.Border border3 = new GrapeCity.Win.MultiRow.Border();
+            GrapeCity.Win.MultiRow.TextLengthValidator textLengthValidator2 = new GrapeCity.Win.MultiRow.TextLengthValidator();
             GrapeCity.Win.MultiRow.CellStyle cellStyle8 = new GrapeCity.Win.MultiRow.CellStyle();
             GrapeCity.Win.MultiRow.Border border4 = new GrapeCity.Win.MultiRow.Border();
+            GrapeCity.Win.MultiRow.TextLengthValidator textLengthValidator3 = new GrapeCity.Win.MultiRow.TextLengthValidator();
             GrapeCity.Win.MultiRow.CellStyle cellStyle9 = new GrapeCity.Win.MultiRow.CellStyle();
             GrapeCity.Win.MultiRow.Border border5 = new GrapeCity.Win.MultiRow.Border();
+            GrapeCity.Win.MultiRow.TextLengthValidator textLengthValidator4 = new GrapeCity.Win.MultiRow.TextLengthValidator();
             GrapeCity.Win.MultiRow.CellStyle cellStyle10 = new GrapeCity.Win.MultiRow.CellStyle();
             GrapeCity.Win.MultiRow.Border border6 = new GrapeCity.Win.MultiRow.Border();
             GrapeCity.Win.MultiRow.CellStyle cellStyle11 = new GrapeCity.Win.MultiRow.CellStyle();
@@ -57,17 +66,17 @@ namespace MultiRowDesigner
             GrapeCity.Win.MultiRow.CellStyle cellStyle12 = new GrapeCity.Win.MultiRow.CellStyle();
             GrapeCity.Win.MultiRow.Border border8 = new GrapeCity.Win.MultiRow.Border();
             GrapeCity.Win.MultiRow.CellStyle cellStyle13 = new GrapeCity.Win.MultiRow.CellStyle();
-            GrapeCity.Win.MultiRow.CellStyle cellStyle19 = new GrapeCity.Win.MultiRow.CellStyle();
-            GrapeCity.Win.MultiRow.CellStyle cellStyle20 = new GrapeCity.Win.MultiRow.CellStyle();
-            GrapeCity.Win.MultiRow.CellStyle cellStyle21 = new GrapeCity.Win.MultiRow.CellStyle();
-            GrapeCity.Win.MultiRow.CellStyle cellStyle22 = new GrapeCity.Win.MultiRow.CellStyle();
-            GrapeCity.Win.MultiRow.CellStyle cellStyle23 = new GrapeCity.Win.MultiRow.CellStyle();
             this.columnHeaderSection1 = new GrapeCity.Win.MultiRow.ColumnHeaderSection();
             this.明細番号ボタン = new GrapeCity.Win.MultiRow.ButtonCell();
             this.型式名ボタン = new GrapeCity.Win.MultiRow.ButtonCell();
             this.定価ボタン = new GrapeCity.Win.MultiRow.ButtonCell();
             this.原価ボタン = new GrapeCity.Win.MultiRow.ButtonCell();
             this.型式番号ボタン = new GrapeCity.Win.MultiRow.ButtonCell();
+            this.機能ボタン = new GrapeCity.Win.MultiRow.ButtonCell();
+            this.削除ボタン = new GrapeCity.Win.MultiRow.ButtonCell();
+            this.明細行選択ボタン = new GrapeCity.Win.MultiRow.ButtonCell();
+            this.buttonCell1 = new GrapeCity.Win.MultiRow.ButtonCell();
+            this.buttonCell2 = new GrapeCity.Win.MultiRow.ButtonCell();
             this.明細削除ボタン = new GrapeCity.Win.MultiRow.ButtonCell();
             this.行挿入ボタン = new GrapeCity.Win.MultiRow.ButtonCell();
             this.行移動上ボタン = new GrapeCity.Win.MultiRow.ButtonCell();
@@ -81,11 +90,6 @@ namespace MultiRowDesigner
             this.構成番号 = new GrapeCity.Win.MultiRow.TextBoxCell();
             this.商品コード = new GrapeCity.Win.MultiRow.TextBoxCell();
             this.選択 = new GrapeCity.Win.MultiRow.ButtonCell();
-            this.機能ボタン = new GrapeCity.Win.MultiRow.ButtonCell();
-            this.削除ボタン = new GrapeCity.Win.MultiRow.ButtonCell();
-            this.明細行選択ボタン = new GrapeCity.Win.MultiRow.ButtonCell();
-            this.buttonCell1 = new GrapeCity.Win.MultiRow.ButtonCell();
-            this.buttonCell2 = new GrapeCity.Win.MultiRow.ButtonCell();
             // 
             // Row
             // 
@@ -203,6 +207,82 @@ namespace MultiRowDesigner
             this.型式番号ボタン.Value = "MN";
             this.型式番号ボタン.Visible = false;
             // 
+            // 機能ボタン
+            // 
+            this.機能ボタン.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.機能ボタン.Location = new System.Drawing.Point(396, 0);
+            this.機能ボタン.Name = "機能ボタン";
+            this.機能ボタン.Size = new System.Drawing.Size(326, 21);
+            cellStyle19.BackColor = System.Drawing.SystemColors.Control;
+            cellStyle19.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
+            cellStyle19.ImeMode = System.Windows.Forms.ImeMode.Off;
+            cellStyle19.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            cellStyle19.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
+            this.機能ボタン.Style = cellStyle19;
+            this.機能ボタン.TabIndex = 10;
+            this.機能ボタン.TabStop = false;
+            this.機能ボタン.Value = "機　能";
+            // 
+            // 削除ボタン
+            // 
+            this.削除ボタン.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.削除ボタン.Location = new System.Drawing.Point(0, 0);
+            this.削除ボタン.Name = "削除ボタン";
+            this.削除ボタン.Size = new System.Drawing.Size(21, 21);
+            cellStyle20.BackColor = System.Drawing.SystemColors.Control;
+            cellStyle20.Font = new System.Drawing.Font("BIZ UDPゴシック", 8F);
+            cellStyle20.ImeMode = System.Windows.Forms.ImeMode.Off;
+            cellStyle20.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            cellStyle20.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
+            this.削除ボタン.Style = cellStyle20;
+            this.削除ボタン.TabIndex = 11;
+            this.削除ボタン.TabStop = false;
+            // 
+            // 明細行選択ボタン
+            // 
+            this.明細行選択ボタン.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.明細行選択ボタン.Location = new System.Drawing.Point(21, 0);
+            this.明細行選択ボタン.Name = "明細行選択ボタン";
+            this.明細行選択ボタン.Size = new System.Drawing.Size(17, 21);
+            cellStyle21.BackColor = System.Drawing.SystemColors.Control;
+            cellStyle21.Font = new System.Drawing.Font("BIZ UDPゴシック", 8F);
+            cellStyle21.ImeMode = System.Windows.Forms.ImeMode.Off;
+            cellStyle21.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            cellStyle21.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
+            this.明細行選択ボタン.Style = cellStyle21;
+            this.明細行選択ボタン.TabIndex = 12;
+            this.明細行選択ボタン.TabStop = false;
+            // 
+            // buttonCell1
+            // 
+            this.buttonCell1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.buttonCell1.Location = new System.Drawing.Point(38, 0);
+            this.buttonCell1.Name = "buttonCell1";
+            this.buttonCell1.Size = new System.Drawing.Size(17, 21);
+            cellStyle22.BackColor = System.Drawing.SystemColors.Control;
+            cellStyle22.Font = new System.Drawing.Font("BIZ UDPゴシック", 8F);
+            cellStyle22.ImeMode = System.Windows.Forms.ImeMode.Off;
+            cellStyle22.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            cellStyle22.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
+            this.buttonCell1.Style = cellStyle22;
+            this.buttonCell1.TabIndex = 13;
+            this.buttonCell1.TabStop = false;
+            // 
+            // buttonCell2
+            // 
+            this.buttonCell2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.buttonCell2.Location = new System.Drawing.Point(55, 0);
+            this.buttonCell2.Name = "buttonCell2";
+            this.buttonCell2.Size = new System.Drawing.Size(17, 21);
+            cellStyle23.BackColor = System.Drawing.SystemColors.Control;
+            cellStyle23.Font = new System.Drawing.Font("BIZ UDPゴシック", 8F);
+            cellStyle23.ImeMode = System.Windows.Forms.ImeMode.Off;
+            cellStyle23.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            cellStyle23.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
+            this.buttonCell2.Style = cellStyle23;
+            this.buttonCell2.TabIndex = 14;
+            this.buttonCell2.TabStop = false;
+            // 
             // 明細削除ボタン
             // 
             this.明細削除ボタン.ButtonCommand = GrapeCity.Win.MultiRow.RowActionButtonCommands.Remove;
@@ -294,6 +374,10 @@ namespace MultiRowDesigner
             cellStyle6.ImeMode = System.Windows.Forms.ImeMode.Off;
             this.型式名.Style = cellStyle6;
             this.型式名.TabIndex = 1;
+            textLengthValidator1.EncodingCodePage = 1200;
+            textLengthValidator1.LengthUnit = GrapeCity.Win.MultiRow.LengthUnit.Byte;
+            textLengthValidator1.MaximumLength = 48;
+            this.型式名.Validators.Add(textLengthValidator1);
             // 
             // 定価
             // 
@@ -304,9 +388,14 @@ namespace MultiRowDesigner
             border3.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
             cellStyle7.Border = border3;
             cellStyle7.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
+            cellStyle7.Format = "N0";
             cellStyle7.ImeMode = System.Windows.Forms.ImeMode.Off;
             this.定価.Style = cellStyle7;
             this.定価.TabIndex = 2;
+            textLengthValidator2.EncodingCodePage = 1200;
+            textLengthValidator2.LengthUnit = GrapeCity.Win.MultiRow.LengthUnit.Byte;
+            textLengthValidator2.MaximumLength = 10;
+            this.定価.Validators.Add(textLengthValidator2);
             // 
             // 原価
             // 
@@ -317,9 +406,14 @@ namespace MultiRowDesigner
             border4.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
             cellStyle8.Border = border4;
             cellStyle8.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
+            cellStyle8.Format = "N0";
             cellStyle8.ImeMode = System.Windows.Forms.ImeMode.Off;
             this.原価.Style = cellStyle8;
             this.原価.TabIndex = 3;
+            textLengthValidator3.EncodingCodePage = 1200;
+            textLengthValidator3.LengthUnit = GrapeCity.Win.MultiRow.LengthUnit.Byte;
+            textLengthValidator3.MaximumLength = 10;
+            this.原価.Validators.Add(textLengthValidator3);
             // 
             // 機能
             // 
@@ -333,6 +427,10 @@ namespace MultiRowDesigner
             cellStyle9.ImeMode = System.Windows.Forms.ImeMode.Off;
             this.機能.Style = cellStyle9;
             this.機能.TabIndex = 4;
+            textLengthValidator4.EncodingCodePage = 1200;
+            textLengthValidator4.LengthUnit = GrapeCity.Win.MultiRow.LengthUnit.Byte;
+            textLengthValidator4.MaximumLength = 50;
+            this.機能.Validators.Add(textLengthValidator4);
             // 
             // 型式番号
             // 
@@ -403,82 +501,6 @@ namespace MultiRowDesigner
             this.選択.TabStop = false;
             this.選択.Value = "▶";
             this.選択.Visible = false;
-            // 
-            // 機能ボタン
-            // 
-            this.機能ボタン.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.機能ボタン.Location = new System.Drawing.Point(396, 0);
-            this.機能ボタン.Name = "機能ボタン";
-            this.機能ボタン.Size = new System.Drawing.Size(326, 21);
-            cellStyle19.BackColor = System.Drawing.SystemColors.Control;
-            cellStyle19.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
-            cellStyle19.ImeMode = System.Windows.Forms.ImeMode.Off;
-            cellStyle19.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            cellStyle19.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
-            this.機能ボタン.Style = cellStyle19;
-            this.機能ボタン.TabIndex = 10;
-            this.機能ボタン.TabStop = false;
-            this.機能ボタン.Value = "機　能";
-            // 
-            // 削除ボタン
-            // 
-            this.削除ボタン.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.削除ボタン.Location = new System.Drawing.Point(0, 0);
-            this.削除ボタン.Name = "削除ボタン";
-            this.削除ボタン.Size = new System.Drawing.Size(21, 21);
-            cellStyle20.BackColor = System.Drawing.SystemColors.Control;
-            cellStyle20.Font = new System.Drawing.Font("BIZ UDPゴシック", 8F);
-            cellStyle20.ImeMode = System.Windows.Forms.ImeMode.Off;
-            cellStyle20.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            cellStyle20.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
-            this.削除ボタン.Style = cellStyle20;
-            this.削除ボタン.TabIndex = 11;
-            this.削除ボタン.TabStop = false;
-            // 
-            // 明細行選択ボタン
-            // 
-            this.明細行選択ボタン.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.明細行選択ボタン.Location = new System.Drawing.Point(21, 0);
-            this.明細行選択ボタン.Name = "明細行選択ボタン";
-            this.明細行選択ボタン.Size = new System.Drawing.Size(17, 21);
-            cellStyle21.BackColor = System.Drawing.SystemColors.Control;
-            cellStyle21.Font = new System.Drawing.Font("BIZ UDPゴシック", 8F);
-            cellStyle21.ImeMode = System.Windows.Forms.ImeMode.Off;
-            cellStyle21.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            cellStyle21.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
-            this.明細行選択ボタン.Style = cellStyle21;
-            this.明細行選択ボタン.TabIndex = 12;
-            this.明細行選択ボタン.TabStop = false;
-            // 
-            // buttonCell1
-            // 
-            this.buttonCell1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.buttonCell1.Location = new System.Drawing.Point(38, 0);
-            this.buttonCell1.Name = "buttonCell1";
-            this.buttonCell1.Size = new System.Drawing.Size(17, 21);
-            cellStyle22.BackColor = System.Drawing.SystemColors.Control;
-            cellStyle22.Font = new System.Drawing.Font("BIZ UDPゴシック", 8F);
-            cellStyle22.ImeMode = System.Windows.Forms.ImeMode.Off;
-            cellStyle22.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            cellStyle22.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
-            this.buttonCell1.Style = cellStyle22;
-            this.buttonCell1.TabIndex = 13;
-            this.buttonCell1.TabStop = false;
-            // 
-            // buttonCell2
-            // 
-            this.buttonCell2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.buttonCell2.Location = new System.Drawing.Point(55, 0);
-            this.buttonCell2.Name = "buttonCell2";
-            this.buttonCell2.Size = new System.Drawing.Size(17, 21);
-            cellStyle23.BackColor = System.Drawing.SystemColors.Control;
-            cellStyle23.Font = new System.Drawing.Font("BIZ UDPゴシック", 8F);
-            cellStyle23.ImeMode = System.Windows.Forms.ImeMode.Off;
-            cellStyle23.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            cellStyle23.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
-            this.buttonCell2.Style = cellStyle23;
-            this.buttonCell2.TabIndex = 14;
-            this.buttonCell2.TabStop = false;
             // 
             // 商品明細テンプレート
             // 
