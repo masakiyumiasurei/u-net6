@@ -28,15 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(F_製品管理));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(F_支払管理));
             this.panel1 = new System.Windows.Forms.Panel();
-            this.コマンドF11 = new System.Windows.Forms.Button();
-            this.コマンド指導書変更有り = new System.Windows.Forms.Button();
-            this.コマンド指導書設定 = new System.Windows.Forms.Button();
-            this.コマンド製品 = new System.Windows.Forms.Button();
-            this.コマンド材料費 = new System.Windows.Forms.Button();
-            this.コマンド参照用 = new System.Windows.Forms.Button();
-            this.コマンドF10 = new System.Windows.Forms.Button();
+            this.コマンド入出力 = new System.Windows.Forms.Button();
+            this.コマンド承認 = new System.Windows.Forms.Button();
+            this.コマンドF7 = new System.Windows.Forms.Button();
+            this.コマンド支払 = new System.Windows.Forms.Button();
+            this.コマンドF6 = new System.Windows.Forms.Button();
+            this.コマンド印刷 = new System.Windows.Forms.Button();
+            this.コマンド保守 = new System.Windows.Forms.Button();
             this.コマンド初期化 = new System.Windows.Forms.Button();
             this.コマンド検索 = new System.Windows.Forms.Button();
             this.コマンド抽出 = new System.Windows.Forms.Button();
@@ -55,13 +55,13 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.panel1.Controls.Add(this.コマンドF11);
-            this.panel1.Controls.Add(this.コマンド指導書変更有り);
-            this.panel1.Controls.Add(this.コマンド指導書設定);
-            this.panel1.Controls.Add(this.コマンド製品);
-            this.panel1.Controls.Add(this.コマンド材料費);
-            this.panel1.Controls.Add(this.コマンド参照用);
-            this.panel1.Controls.Add(this.コマンドF10);
+            this.panel1.Controls.Add(this.コマンド入出力);
+            this.panel1.Controls.Add(this.コマンド承認);
+            this.panel1.Controls.Add(this.コマンドF7);
+            this.panel1.Controls.Add(this.コマンド支払);
+            this.panel1.Controls.Add(this.コマンドF6);
+            this.panel1.Controls.Add(this.コマンド印刷);
+            this.panel1.Controls.Add(this.コマンド保守);
             this.panel1.Controls.Add(this.コマンド初期化);
             this.panel1.Controls.Add(this.コマンド検索);
             this.panel1.Controls.Add(this.コマンド抽出);
@@ -74,107 +74,108 @@
             this.panel1.Size = new System.Drawing.Size(1054, 32);
             this.panel1.TabIndex = 83;
             // 
-            // コマンドF11
+            // コマンド入出力
             // 
-            this.コマンドF11.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.コマンドF11.ForeColor = System.Drawing.Color.Blue;
-            this.コマンドF11.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.コマンドF11.Location = new System.Drawing.Point(713, 4);
-            this.コマンドF11.Margin = new System.Windows.Forms.Padding(0, 2, 0, 2);
-            this.コマンドF11.Name = "コマンドF11";
-            this.コマンドF11.Size = new System.Drawing.Size(70, 22);
-            this.コマンドF11.TabIndex = 12;
-            this.コマンドF11.TabStop = false;
-            this.コマンドF11.UseVisualStyleBackColor = true;
+            this.コマンド入出力.Enabled = false;
+            this.コマンド入出力.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.コマンド入出力.ForeColor = System.Drawing.Color.Blue;
+            this.コマンド入出力.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.コマンド入出力.Location = new System.Drawing.Point(713, 4);
+            this.コマンド入出力.Margin = new System.Windows.Forms.Padding(0, 2, 0, 2);
+            this.コマンド入出力.Name = "コマンド入出力";
+            this.コマンド入出力.Size = new System.Drawing.Size(70, 22);
+            this.コマンド入出力.TabIndex = 12;
+            this.コマンド入出力.TabStop = false;
+            this.コマンド入出力.Text = "入出力";
+            this.コマンド入出力.UseVisualStyleBackColor = true;
             // 
-            // コマンド指導書変更有り
+            // コマンド承認
             // 
-            this.コマンド指導書変更有り.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.コマンド指導書変更有り.ForeColor = System.Drawing.Color.Blue;
-            this.コマンド指導書変更有り.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.コマンド指導書変更有り.Location = new System.Drawing.Point(496, 4);
-            this.コマンド指導書変更有り.Margin = new System.Windows.Forms.Padding(0, 2, 0, 2);
-            this.コマンド指導書変更有り.Name = "コマンド指導書変更有り";
-            this.コマンド指導書変更有り.Size = new System.Drawing.Size(70, 22);
-            this.コマンド指導書変更有り.TabIndex = 11;
-            this.コマンド指導書変更有り.TabStop = false;
-            this.コマンド指導書変更有り.Text = "指変更有";
-            this.コマンド指導書変更有り.UseVisualStyleBackColor = true;
-            this.コマンド指導書変更有り.Click += new System.EventHandler(this.コマンド指導書変更有り_Click);
+            this.コマンド承認.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.コマンド承認.ForeColor = System.Drawing.Color.Blue;
+            this.コマンド承認.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.コマンド承認.Location = new System.Drawing.Point(496, 4);
+            this.コマンド承認.Margin = new System.Windows.Forms.Padding(0, 2, 0, 2);
+            this.コマンド承認.Name = "コマンド承認";
+            this.コマンド承認.Size = new System.Drawing.Size(70, 22);
+            this.コマンド承認.TabIndex = 11;
+            this.コマンド承認.TabStop = false;
+            this.コマンド承認.Text = "承認";
+            this.コマンド承認.UseVisualStyleBackColor = true;
+            this.コマンド承認.Click += new System.EventHandler(this.コマンド承認_Click);
             // 
-            // コマンド指導書設定
+            // コマンドF7
             // 
-            this.コマンド指導書設定.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.コマンド指導書設定.ForeColor = System.Drawing.Color.Blue;
-            this.コマンド指導書設定.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.コマンド指導書設定.Location = new System.Drawing.Point(428, 4);
-            this.コマンド指導書設定.Margin = new System.Windows.Forms.Padding(0, 2, 0, 2);
-            this.コマンド指導書設定.Name = "コマンド指導書設定";
-            this.コマンド指導書設定.Size = new System.Drawing.Size(70, 22);
-            this.コマンド指導書設定.TabIndex = 10;
-            this.コマンド指導書設定.TabStop = false;
-            this.コマンド指導書設定.Text = "指設定";
-            this.コマンド指導書設定.UseVisualStyleBackColor = true;
-            this.コマンド指導書設定.Click += new System.EventHandler(this.コマンド指導書設定_Click);
+            this.コマンドF7.Enabled = false;
+            this.コマンドF7.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.コマンドF7.ForeColor = System.Drawing.Color.Blue;
+            this.コマンドF7.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.コマンドF7.Location = new System.Drawing.Point(428, 4);
+            this.コマンドF7.Margin = new System.Windows.Forms.Padding(0, 2, 0, 2);
+            this.コマンドF7.Name = "コマンドF7";
+            this.コマンドF7.Size = new System.Drawing.Size(70, 22);
+            this.コマンドF7.TabIndex = 10;
+            this.コマンドF7.TabStop = false;
+            this.コマンドF7.UseVisualStyleBackColor = true;
             // 
-            // コマンド製品
+            // コマンド支払
             // 
-            this.コマンド製品.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.コマンド製品.ForeColor = System.Drawing.Color.Blue;
-            this.コマンド製品.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.コマンド製品.Location = new System.Drawing.Point(291, 4);
-            this.コマンド製品.Margin = new System.Windows.Forms.Padding(0, 2, 0, 2);
-            this.コマンド製品.Name = "コマンド製品";
-            this.コマンド製品.Size = new System.Drawing.Size(70, 22);
-            this.コマンド製品.TabIndex = 9;
-            this.コマンド製品.TabStop = false;
-            this.コマンド製品.Text = "製品";
-            this.コマンド製品.UseVisualStyleBackColor = true;
-            this.コマンド製品.Click += new System.EventHandler(this.コマンド製品_Click);
+            this.コマンド支払.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.コマンド支払.ForeColor = System.Drawing.Color.Blue;
+            this.コマンド支払.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.コマンド支払.Location = new System.Drawing.Point(291, 4);
+            this.コマンド支払.Margin = new System.Windows.Forms.Padding(0, 2, 0, 2);
+            this.コマンド支払.Name = "コマンド支払";
+            this.コマンド支払.Size = new System.Drawing.Size(70, 22);
+            this.コマンド支払.TabIndex = 9;
+            this.コマンド支払.TabStop = false;
+            this.コマンド支払.Text = "支払";
+            this.コマンド支払.UseVisualStyleBackColor = true;
+            this.コマンド支払.Click += new System.EventHandler(this.コマンド支払_Click);
             // 
-            // コマンド材料費
+            // コマンドF6
             // 
-            this.コマンド材料費.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.コマンド材料費.ForeColor = System.Drawing.Color.Blue;
-            this.コマンド材料費.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.コマンド材料費.Location = new System.Drawing.Point(360, 4);
-            this.コマンド材料費.Margin = new System.Windows.Forms.Padding(0, 2, 0, 2);
-            this.コマンド材料費.Name = "コマンド材料費";
-            this.コマンド材料費.Size = new System.Drawing.Size(70, 22);
-            this.コマンド材料費.TabIndex = 8;
-            this.コマンド材料費.TabStop = false;
-            this.コマンド材料費.Text = "材料費";
-            this.コマンド材料費.UseVisualStyleBackColor = true;
-            this.コマンド材料費.Click += new System.EventHandler(this.コマンド材料費_Click);
+            this.コマンドF6.Enabled = false;
+            this.コマンドF6.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.コマンドF6.ForeColor = System.Drawing.Color.Blue;
+            this.コマンドF6.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.コマンドF6.Location = new System.Drawing.Point(360, 4);
+            this.コマンドF6.Margin = new System.Windows.Forms.Padding(0, 2, 0, 2);
+            this.コマンドF6.Name = "コマンドF6";
+            this.コマンドF6.Size = new System.Drawing.Size(70, 22);
+            this.コマンドF6.TabIndex = 8;
+            this.コマンドF6.TabStop = false;
+            this.コマンドF6.UseVisualStyleBackColor = true;
             // 
-            // コマンド参照用
+            // コマンド印刷
             // 
-            this.コマンド参照用.Enabled = false;
-            this.コマンド参照用.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.コマンド参照用.ForeColor = System.Drawing.Color.Blue;
-            this.コマンド参照用.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.コマンド参照用.Location = new System.Drawing.Point(577, 4);
-            this.コマンド参照用.Margin = new System.Windows.Forms.Padding(0, 2, 0, 2);
-            this.コマンド参照用.Name = "コマンド参照用";
-            this.コマンド参照用.Size = new System.Drawing.Size(70, 22);
-            this.コマンド参照用.TabIndex = 7;
-            this.コマンド参照用.TabStop = false;
-            this.コマンド参照用.Text = "参照用";
-            this.コマンド参照用.UseVisualStyleBackColor = true;
+            this.コマンド印刷.Enabled = false;
+            this.コマンド印刷.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.コマンド印刷.ForeColor = System.Drawing.Color.Blue;
+            this.コマンド印刷.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.コマンド印刷.Location = new System.Drawing.Point(577, 4);
+            this.コマンド印刷.Margin = new System.Windows.Forms.Padding(0, 2, 0, 2);
+            this.コマンド印刷.Name = "コマンド印刷";
+            this.コマンド印刷.Size = new System.Drawing.Size(70, 22);
+            this.コマンド印刷.TabIndex = 7;
+            this.コマンド印刷.TabStop = false;
+            this.コマンド印刷.Text = "印刷";
+            this.コマンド印刷.UseVisualStyleBackColor = true;
             // 
-            // コマンドF10
+            // コマンド保守
             // 
-            this.コマンドF10.Enabled = false;
-            this.コマンドF10.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.コマンドF10.ForeColor = System.Drawing.Color.Blue;
-            this.コマンドF10.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.コマンドF10.Location = new System.Drawing.Point(645, 4);
-            this.コマンドF10.Margin = new System.Windows.Forms.Padding(0, 2, 0, 2);
-            this.コマンドF10.Name = "コマンドF10";
-            this.コマンドF10.Size = new System.Drawing.Size(70, 22);
-            this.コマンドF10.TabIndex = 6;
-            this.コマンドF10.TabStop = false;
-            this.コマンドF10.UseVisualStyleBackColor = true;
+            this.コマンド保守.Enabled = false;
+            this.コマンド保守.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.コマンド保守.ForeColor = System.Drawing.Color.Blue;
+            this.コマンド保守.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.コマンド保守.Location = new System.Drawing.Point(645, 4);
+            this.コマンド保守.Margin = new System.Windows.Forms.Padding(0, 2, 0, 2);
+            this.コマンド保守.Name = "コマンド保守";
+            this.コマンド保守.Size = new System.Drawing.Size(70, 22);
+            this.コマンド保守.TabIndex = 6;
+            this.コマンド保守.TabStop = false;
+            this.コマンド保守.Text = "保守";
+            this.コマンド保守.UseVisualStyleBackColor = true;
             // 
             // コマンド初期化
             // 
@@ -302,7 +303,7 @@
             this.panel2.Size = new System.Drawing.Size(1054, 27);
             this.panel2.TabIndex = 88;
             // 
-            // F_製品管理
+            // F_支払管理
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -312,7 +313,7 @@
             this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.Name = "F_製品管理";
+            this.Name = "F_支払管理";
             this.Text = "製品管理";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form_KeyDown);
             this.panel1.ResumeLayout(false);
@@ -325,12 +326,12 @@
 
         #endregion
         private Panel panel1;
-        private Button コマンド指導書変更有り;
-        private Button コマンド指導書設定;
-        private Button コマンド製品;
-        private Button コマンド材料費;
-        private Button コマンド参照用;
-        private Button コマンドF10;
+        private Button コマンド承認;
+        private Button コマンドF7;
+        private Button コマンド支払;
+        private Button コマンドF6;
+        private Button コマンド印刷;
+        private Button コマンド保守;
         private Button コマンド初期化;
         private Button コマンド抽出;
         private Button コマンド更新;
@@ -468,6 +469,6 @@
         //private newDataSetTableAdapters.Qメーカー管理TableAdapter qメーカー管理TableAdapter;
         private Panel panel2;
         private Button コマンド検索;
-        private Button コマンドF11;
+        private Button コマンド入出力;
     }
 }
