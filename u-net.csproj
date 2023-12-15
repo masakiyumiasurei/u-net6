@@ -51,6 +51,10 @@
     <Compile Include="MultiRowDesigner\商品明細.Designer.cs" />
     <Compile Include="MultiRowDesigner\商品明細テンプレート.cs" />
     <Compile Include="MultiRowDesigner\商品明細テンプレート.Designer.cs" />
+    <Compile Include="MultiRowDesigner\支払明細.cs" />
+    <Compile Include="MultiRowDesigner\支払明細.Designer.cs" />
+    <Compile Include="MultiRowDesigner\支払明細テンプレート.cs" />
+    <Compile Include="MultiRowDesigner\支払明細テンプレート.Designer.cs" />
     <Compile Include="MultiRowDesigner\発注明細.cs" />
     <Compile Include="MultiRowDesigner\発注明細.Designer.cs" />
     <Compile Include="MultiRowDesigner\発注明細テンプレート.cs" />
@@ -98,6 +102,7 @@
     <EmbeddedResource Include="MultiRowDesigner\受注明細テンプレート.resx" />
     <EmbeddedResource Include="MultiRowDesigner\商品明細.resx" />
     <EmbeddedResource Include="MultiRowDesigner\商品明細テンプレート.resx" />
+    <EmbeddedResource Include="MultiRowDesigner\支払明細.resx" />
     <EmbeddedResource Include="MultiRowDesigner\発注明細.resx" />
     <EmbeddedResource Include="MultiRowDesigner\発注明細テンプレート.resx" />
     <EmbeddedResource Include="MultiRowDesigner\製品明細.resx" />
@@ -130,6 +135,9 @@
 
   <ItemGroup>
     <Compile Update="Form\F_システム.cs" />
+    <Compile Update="Form\F_支払.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Form\F_ユニット参照.cs">
       <SubType>Form</SubType>
     </Compile>
