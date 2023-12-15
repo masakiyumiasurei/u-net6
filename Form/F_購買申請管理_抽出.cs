@@ -77,12 +77,15 @@ namespace u_net
         {
             try
             {
-                Application.DoEvents(); // Mimic On Error Resume Next
+                //Application.DoEvents(); // Mimic On Error Resume Next
 
                 Application.DoEvents();
 
                 FunctionClass fn = new FunctionClass();
                 fn.DoWait("しばらくお待ちください...");
+
+                ////
+                frmTarget = new F_購買申請管理();
 
                 frmTarget.dtm申請日開始 = DateTime.Parse(Nz(申請日開始.Text));
                 frmTarget.dtm申請日終了 = DateTime.Parse(Nz(申請日終了.Text));
@@ -94,10 +97,20 @@ namespace u_net
                 frmTarget.strシリーズ名 = Nz(シリーズ名.Text);
                 frmTarget.str申請者コード = Nz(申請者コード.Text);
                 // frm.str申請者名 = Nz(申請者名.Value);
-                frmTarget.lng承認指定 = Nz(Convert.ToInt32(承認指定.Text));
-                frmTarget.lng終了指定 = Nz(Convert.ToInt32(終了指定.Text));
-                frmTarget.lng完了指定 = Nz(Convert.ToInt32(完了指定.Text));
-                frmTarget.lng削除指定 = Nz(Convert.ToInt32(削除指定.Text));
+
+                // testのため退避
+                ////frmTarget.lng承認指定 = Nz(Convert.ToInt32(承認指定.Text));
+                ////frmTarget.lng終了指定 = Nz(Convert.ToInt32(終了指定.Text));
+                ////frmTarget.lng完了指定 = Nz(Convert.ToInt32(完了指定.Text));
+                ////frmTarget.lng削除指定 = Nz(Convert.ToInt32(削除指定.Text));
+
+                // test(ダミーの値)
+                frmTarget.lng承認指定 = 0;
+                frmTarget.lng終了指定 = 0;
+                frmTarget.lng完了指定 = 0;
+                frmTarget.lng削除指定 = 0;
+
+                ////((F_購買申請管理)this.Owner).DoUpdate();
 
                 if (!frmTarget.DoUpdate())
                 {
