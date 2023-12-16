@@ -190,8 +190,6 @@ namespace u_net
 
 
             OriginalClass ofn = new OriginalClass();
-
-
             ofn.SetComboBox(製品コード, "SELECT A.製品コード as Value, A.製品コード as Display, A.最新版数 as Display3, { fn REPLACE(STR(CONVERT(bit, M製品.無効日時), 1, 0), '1', '×') } AS Display2 FROM M製品 INNER JOIN (SELECT 製品コード, MAX(製品版数) AS 最新版数 FROM M製品 GROUP BY 製品コード) A ON M製品.製品コード = A.製品コード AND M製品.製品版数 = A.最新版数 ORDER BY A.製品コード DESC");
             製品コード.DrawMode = DrawMode.OwnerDrawFixed;
 
@@ -296,7 +294,7 @@ namespace u_net
                 // 明細部動作制御
                 製品明細1.Detail.AllowUserToAddRows = true;
                 製品明細1.Detail.AllowUserToDeleteRows = true;
-                製品明細1.Detail.ReadOnly = true;
+                製品明細1.Detail.ReadOnly = false;
 
                 success = true;
                 return success;
@@ -584,7 +582,7 @@ namespace u_net
                         製品明細1.Detail.AllowUserToAddRows = !this.IsDecided;
                         製品明細1.Detail.AllowUserToDeleteRows = !this.IsDecided;
                         製品明細1.Detail.ReadOnly = this.IsDecided;
-                    
+
                         this.コマンド複写.Enabled = !this.IsDirty;
                         this.コマンド削除.Enabled = this.IsLatestEdition;
                         this.コマンドユニット表.Enabled = !this.IsDirty;
@@ -630,7 +628,7 @@ namespace u_net
                         製品明細1.Detail.AllowUserToAddRows = !this.IsDecided;
                         製品明細1.Detail.AllowUserToDeleteRows = !this.IsDecided;
                         製品明細1.Detail.ReadOnly = this.IsDecided;
-                      
+
                         this.コマンド複写.Enabled = !this.IsDirty;
                         this.コマンド削除.Enabled = this.IsLatestEdition;
                         this.コマンドユニット表.Enabled = !this.IsDirty;
@@ -642,7 +640,11 @@ namespace u_net
                         break;
                 }
 
-                
+
+                //テスト用
+                製品明細1.Detail.AllowUserToAddRows = true;
+                製品明細1.Detail.AllowUserToDeleteRows = true;
+                製品明細1.Detail.ReadOnly = false;
 
 
             }
@@ -762,7 +764,7 @@ namespace u_net
         {
 
             Connect();
-            SqlTransaction transaction = cn.BeginTransaction();
+            
             {
                 try
                 {
@@ -811,9 +813,9 @@ namespace u_net
                     objControl5.Text = CommonConstants.LoginUserCode;
                     objControl6.Text = CommonConstants.LoginUserFullName;
 
-
+                    
                     // 登録処理
-                    if (RegTrans(CurrentCode,CurrentEdition,false, transaction))
+                    if (RegTrans(CurrentCode,CurrentEdition,false))
                     {
                         return true;
                     }
@@ -841,10 +843,10 @@ namespace u_net
             }
         }
 
-        private bool RegTrans(string codeString,int editionNumber,bool updatePreEdition, SqlTransaction transaction)
+        private bool RegTrans(string codeString,int editionNumber,bool updatePreEdition)
         {
             Connect();
-            
+            SqlTransaction transaction = cn.BeginTransaction();
             {
 
                 try
@@ -859,11 +861,11 @@ namespace u_net
                     }
 
                     // 明細部の登録
-                    //if (!DataUpdater.UpdateOrInsertDetails(this.製品明細1.Detail, cn, "M製品明細", strwhere, "製品コード", transaction))
-                    //{
-                    //    transaction.Rollback();  // 変更をキャンセル
-                    //    return false;
-                    //}
+                    if (!DataUpdater.UpdateOrInsertDetails(this.製品明細1.Detail, cn, "M製品明細", strwhere, "製品コード", transaction))
+                    {
+                        transaction.Rollback();  // 変更をキャンセル
+                        return false;
+                    }
 
                     // 前版データの更新処理
                     if (updatePreEdition)
@@ -1120,7 +1122,7 @@ namespace u_net
                     // 明細部制御
                     製品明細1.Detail.AllowUserToAddRows = true;
                     製品明細1.Detail.AllowUserToDeleteRows = true;
-                    製品明細1.Detail.ReadOnly = true;
+                    製品明細1.Detail.ReadOnly = false;
                 }
             }
             catch (Exception ex)
@@ -1275,7 +1277,7 @@ namespace u_net
                 {
                     case DialogResult.Yes:
                         // エラーチェック
-                        if (ErrCheck())
+                        if (!ErrCheck())
                         {
                             return;
                         }
@@ -1433,14 +1435,16 @@ namespace u_net
                 object varSaved2 = null;  // 確定者コード保存用（エラー発生時の対策）
 
 
+                fn.DoWait("確定しています...");
+
                 // エラーチェック
-                if (ErrCheck())
+                if (!ErrCheck())
                 {
                     return;
                 };
 
                 
-                fn.DoWait("廃止しています...");
+                
 
                 // 登録前の確定日を保存しておく
                 varSaved1 = 確定日時.Text;
@@ -1480,8 +1484,8 @@ namespace u_net
 
                     コマンド承認.Enabled = IsDecided;
 
-                    製品明細1.Detail.AllowUserToAddRows = IsDecided;
-                    製品明細1.Detail.AllowUserToDeleteRows = IsDecided;
+                    製品明細1.Detail.AllowUserToAddRows = !IsDecided;
+                    製品明細1.Detail.AllowUserToDeleteRows = !IsDecided;
                     製品明細1.Detail.ReadOnly = IsDecided;
                 }
                 else
@@ -1566,10 +1570,10 @@ namespace u_net
                     承認者コード.Text = CommonConstants.strCertificateCode;
                     承認者名.Text = FunctionClass.GetUserFullName(cn, CommonConstants.strCertificateCode);
                 }
-                SqlTransaction transaction = cn.BeginTransaction();
+         
 
                 // サーバーへ登録する
-                if (RegTrans(CurrentCode, CurrentEdition, 1 < CurrentEdition, transaction))
+                if (RegTrans(CurrentCode, CurrentEdition, 1 < CurrentEdition))
                 {
                     // 版数のソース更新
                     UpdateEditionList(CurrentCode);
@@ -1639,7 +1643,7 @@ namespace u_net
                     // 明細部制御
                     製品明細1.Detail.AllowUserToAddRows = true;
                     製品明細1.Detail.AllowUserToDeleteRows = true;
-                    製品明細1.Detail.ReadOnly = true;
+                    製品明細1.Detail.ReadOnly = false;
                 }
             }
             catch (Exception ex)
@@ -1684,6 +1688,9 @@ namespace u_net
                     {
                         コマンド新規.Enabled = true;
                         コマンド読込.Enabled = false;
+
+                        OriginalClass ofn = new OriginalClass();
+                        ofn.SetComboBox(製品コード, "SELECT A.製品コード as Value, A.製品コード as Display, A.最新版数 as Display3, { fn REPLACE(STR(CONVERT(bit, M製品.無効日時), 1, 0), '1', '×') } AS Display2 FROM M製品 INNER JOIN (SELECT 製品コード, MAX(製品版数) AS 最新版数 FROM M製品 GROUP BY 製品コード) A ON M製品.製品コード = A.製品コード AND M製品.製品版数 = A.最新版数 ORDER BY A.製品コード DESC");
                     }
 
                     if (!IsApproved)
@@ -1776,10 +1783,10 @@ namespace u_net
                         無効日時.Text = FunctionClass.GetServerDate(cn).ToString();
                         無効者コード.Text = CommonConstants.strCertificateCode;
                     }
-                    SqlTransaction transaction = cn.BeginTransaction();
+              
 
                     // 表示データを登録する
-                    if (RegTrans(CurrentCode, CurrentEdition,false,transaction))
+                    if (RegTrans(CurrentCode, CurrentEdition,false))
                     {
                         if (IsDeleted)
                             MessageBox.Show("削除されました。", "削除コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -2144,8 +2151,8 @@ namespace u_net
                 無効日時.Text = FunctionClass.GetServerDate(cn).ToString();
 
 
-                SqlTransaction transaction = cn.BeginTransaction();
-                if (RegTrans(codeString, editionNumber,false,transaction))
+        
+                if (RegTrans(codeString, editionNumber,false))
                 {
                     return true;
                 }
@@ -2176,7 +2183,7 @@ namespace u_net
                 {
                     case DialogResult.Yes:
                         // エラーチェック
-                        if (ErrCheck())
+                        if (!ErrCheck())
                             return false;
 
                         // 登録処理

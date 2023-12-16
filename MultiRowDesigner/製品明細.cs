@@ -60,6 +60,7 @@ namespace MultiRowDesigner
                 gcMultiRow1.Rows[i].Cells["明細番号"].Value = i + 1;
                 gcMultiRow1.Rows[i].Cells["製品コード"].Value = f_製品.製品コード.Text;
                 gcMultiRow1.Rows[i].Cells["製品版数"].Value = f_製品.製品版数.Text;
+                
 
             }
 
@@ -117,14 +118,13 @@ namespace MultiRowDesigner
                                 return;
                             }
 
-                            DialogResult result = MessageBox.Show($"明細行 ({gcMultiRow1.CurrentRow.Cells["明細番号"].Value} を削除しますか？", "明細行削除", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-                            if (result == DialogResult.No)
+                            if (MessageBox.Show("明細行(" + (e.RowIndex + 1) + ")を削除しますか？", "承認コマンド", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                             {
-                                return;
+                                gcMultiRow1.Rows.RemoveAt(e.RowIndex);
                             }
                             break;
-                                
+                        
+
                         default:
                             break;
                     }
@@ -184,7 +184,12 @@ namespace MultiRowDesigner
                         case "変更内容":
                             objForm.toolStripStatusLabel1.Text = "■全角文字で30文字まで入力できます。";
                             break;
-                        
+                        case "カレント":
+                            int row = gcMultiRow1.CurrentRow.Index;
+                            int col = gcMultiRow1.CurrentRow.Cells["型式名"].CellIndex;
+                            gcMultiRow1.CurrentCellPosition = new CellPosition(row, col);
+                            break;
+
                         default:
                             objForm.toolStripStatusLabel1.Text = "各種項目の説明";
                             break;
@@ -374,7 +379,8 @@ namespace MultiRowDesigner
         private void 変更操作コード_SelectedIndexChanged(object sender, EventArgs e)
         {
             ComboBoxEditingControl combo = sender as ComboBoxEditingControl;
-            gcMultiRow1.CurrentRow.Cells["削除対象"].Value = ((DataRowView)combo.SelectedItem)?.Row.Field<byte>("Display2").ToString();
+            if (combo.SelectedIndex < 0) return;
+            gcMultiRow1.CurrentRow.Cells["削除対象"].Value = ((DataRowView)combo.SelectedItem)?.Row.Field<bool>("Display2").ToString() ;
 
 
 
@@ -407,7 +413,7 @@ namespace MultiRowDesigner
 
 
 
-        //private F_ユニット選択 codeSelectionForm;
+        private F_ユニット選択 codeSelectionForm;
         private void gcMultiRow1_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == ' ')
@@ -420,14 +426,14 @@ namespace MultiRowDesigner
                         e.Handled = true;
 
 
-                        //codeSelectionForm = new F_ユニット選択();
-                        //if (codeSelectionForm.ShowDialog() == DialogResult.OK)
-                        //{
-                        //    string selectedCode = codeSelectionForm.SelectedCode;
+                        codeSelectionForm = new F_ユニット選択();
+                        if (codeSelectionForm.ShowDialog() == DialogResult.OK)
+                        {
+                            string selectedCode = codeSelectionForm.SelectedCode;
 
-                        //    gcMultiRow1.CurrentCell.Value = selectedCode;
-                        //    gcMultiRow1.CurrentCellPosition = new CellPosition(gcMultiRow1.CurrentRow.Index, gcMultiRow1.CurrentRow.Cells["品名"].CellIndex);
-                        //}
+                            gcMultiRow1.CurrentCell.Value = selectedCode;
+                            gcMultiRow1.CurrentCellPosition = new CellPosition(gcMultiRow1.CurrentRow.Index, gcMultiRow1.CurrentRow.Cells["品名"].CellIndex);
+                        }
                         break;
 
 
@@ -445,19 +451,52 @@ namespace MultiRowDesigner
             {
                 case "ユニットコード":
 
-                    //codeSelectionForm = new F_ユニット選択();
-                    //if (codeSelectionForm.ShowDialog() == DialogResult.OK)
-                    //{
-                    //    string selectedCode = codeSelectionForm.SelectedCode;
+                    codeSelectionForm = new F_ユニット選択();
+                    if (codeSelectionForm.ShowDialog() == DialogResult.OK)
+                    {
+                        string selectedCode = codeSelectionForm.SelectedCode;
 
-                    //    gcMultiRow1.CurrentCell.Value = selectedCode;
-                    //    gcMultiRow1.CurrentCellPosition = new CellPosition(gcMultiRow1.CurrentRow.Index, gcMultiRow1.CurrentRow.Cells["品名"].CellIndex);
-                    //}
+                        gcMultiRow1.CurrentCell.Value = selectedCode;
+                        gcMultiRow1.CurrentCellPosition = new CellPosition(gcMultiRow1.CurrentRow.Index, gcMultiRow1.CurrentRow.Cells["品名"].CellIndex);
+                    }
                     break;
 
 
 
             }
+        }
+
+        private void gcMultiRow1_RowDragMoveCompleted(object sender, DragMoveCompletedEventArgs e)
+        {
+            gcMultiRow1.EndEdit();
+
+            F_製品? f_製品 = Application.OpenForms.OfType<F_製品>().FirstOrDefault();
+
+            for (int i = 0; i < gcMultiRow1.RowCount; i++)
+            {
+                if (gcMultiRow1.Rows[i].IsNewRow == true)
+                {
+                    //新規行の場合は、処理をスキップ
+                    continue;
+                }
+
+                gcMultiRow1.Rows[i].Cells["明細番号"].Value = i + 1;
+                gcMultiRow1.Rows[i].Cells["製品コード"].Value = f_製品.製品コード.Text;
+                gcMultiRow1.Rows[i].Cells["製品版数"].Value = f_製品.製品版数.Text;
+
+            }
+
+            f_製品.ChangedData(true);
+        }
+
+        private void gcMultiRow1_RowEnter(object sender, CellEventArgs e)
+        {
+            gcMultiRow1.CurrentRow.Cells["カレント"].Style.BackColor = Color.DeepPink;
+        }
+
+        private void gcMultiRow1_RowLeave(object sender, CellEventArgs e)
+        {
+            gcMultiRow1.CurrentRow.Cells["カレント"].Style.BackColor = Color.White;
         }
     }
 }
