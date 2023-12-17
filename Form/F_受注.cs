@@ -18,7 +18,6 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System.Globalization;
 using System.Security.Cryptography;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 using Microsoft.VisualBasic;
 using System.Threading.Channels;
 
@@ -207,7 +206,7 @@ namespace u_net
 
             ofn.SetComboBox(受注コード, "SELECT A.受注コード AS Value, A.最新版数, A.受注コード AS Display, { fn REPLACE(STR(CONVERT(bit, T受注.無効日), 1, 0), '1', '×') } AS Display2 " +
                 "FROM T受注 INNER JOIN (SELECT TOP 100 受注コード, MAX(受注版数) AS 最新版数 FROM T受注 GROUP BY 受注コード ORDER BY T受注.受注コード DESC) A ON T受注.受注コード = A.受注コード AND T受注.受注版数 = A.最新版数 ORDER BY A.受注コード DESC");
-            ofn.SetComboBox(受注版数, "SELECT 1 AS Value, 1 AS Display, '' AS Display2");
+            
             ofn.SetComboBox(ClientCode, "SELECT Code AS Value, Name AS Display FROM ClientDataSource");
             ofn.SetComboBox(納品書送付コード, "SELECT right(replace(str(納品書送付コード),' ','0'),2) AS Value, right(replace(str(納品書送付コード),' ','0'),2) AS Display, 送付処理 AS Display2 FROM M納品書送付処理");
             ofn.SetComboBox(請求書送付コード, "SELECT right(replace(str(請求書送付コード),' ','0'),2) AS Value, right(replace(str(請求書送付コード),' ','0'),2) AS Display, 送付処理 AS Display2 FROM M請求書送付処理");
@@ -294,7 +293,11 @@ namespace u_net
                 //ヘッダ部を初期化する
                 VariableSet.SetControls(this);
                 this.受注コード.Text = FunctionClass.採番(cn, "A");
+
+                OriginalClass ofn = new OriginalClass();
+                ofn.SetComboBox(受注版数, "SELECT 1 AS Value, 1 AS Display, '' AS Display2");
                 this.受注版数.SelectedIndex = 0;
+
                 this.受注日.Text = DateTime.Now.ToString("yyyy/MM/dd");
                 this.発送方法コード.SelectedValue = "01";
                 this.発送方法.Text = ((DataRowView)発送方法コード.SelectedItem)?.Row.Field<String>("Display2")?.ToString();
@@ -388,6 +391,10 @@ namespace u_net
             {
                 this.注文番号.Focus();
             }
+            if(this.ActiveControl == this.受注版数)
+            {
+                this.注文番号.Focus();
+            }
 
             受注版数.Enabled = !dataChanged;
             コマンド複写.Enabled = !dataChanged;
@@ -405,12 +412,12 @@ namespace u_net
 
         private void UpdatedControl(Control controlObject)
         {
+            FunctionClass fn = new FunctionClass();
+            OriginalClass ofn = new OriginalClass();
+            string sqlQuery = "";
+
             try
             {
-                FunctionClass fn = new FunctionClass();
-                OriginalClass ofn = new OriginalClass();
-                string sqlQuery = "";
-
                 switch (controlObject.Name)
                 {
                     case "受注コード":
@@ -470,6 +477,7 @@ namespace u_net
 
                         // 端数チェック
                         this.帳端処理.Checked = !string.IsNullOrEmpty(this.請求予定日.Text);
+                        this.請求予定日ラベル.Enabled = !string.IsNullOrEmpty(this.請求予定日.Text);
                         this.請求予定日.Enabled = !string.IsNullOrEmpty(this.請求予定日.Text);
                         this.請求予定日選択ボタン.Enabled = !string.IsNullOrEmpty(this.請求予定日.Text);
                         this.改版ボタン.Enabled = !this.IsInvalid &&
@@ -542,6 +550,7 @@ namespace u_net
 
                         // 端数チェック
                         this.帳端処理.Checked = !string.IsNullOrEmpty(this.請求予定日.Text);
+                        this.請求予定日ラベル.Enabled = !string.IsNullOrEmpty(this.請求予定日.Text);
                         this.請求予定日.Enabled = !string.IsNullOrEmpty(this.請求予定日.Text);
                         this.請求予定日選択ボタン.Enabled = !string.IsNullOrEmpty(this.請求予定日.Text);
                         this.改版ボタン.Enabled = !this.IsInvalid &&
@@ -583,7 +592,7 @@ namespace u_net
                         this.ClientCode.SelectedIndex = -1;
 
                         // 発送先を設定する
-                        SetAddress(controlObject.Text, int.Parse(this.発送先選択.Text));
+                        SetAddress(controlObject.Text, GetShipNumber());
 
                         break;
 
@@ -617,11 +626,87 @@ namespace u_net
                             this.TaxRate.Text = FunctionClass.GetTaxRate(cn, DateTime.Parse(this.請求予定日.Text)).ToString("0.##");
                         }
                         break;
+                    case "自社担当者コード":
+                        自社担当者名.Text = ((DataRowView)自社担当者コード.SelectedItem)?.Row.Field<String>("Display2")?.ToString();
+                        break;
+                    case "PackingSlipInputCode":
+                        if (this.PackingSlipInputCode.Text == "04")
+                        {
+                            this.PackingSlipNote.Text = "";
+                        }
+                        break;
+                    case "InvoiceInputCode":
+                        if (this.InvoiceInputCode.Text == "02")
+                        {
+                            this.InvoiceNote.Text = "";
+                        }
+                        break;
+                    case "ReceiptCommentCode":
+                        if (this.ReceiptCommentCode.Text == "02")
+                        {
+                            this.ReceiptComment.Text = "";
+                        }
+                        break;
+                    case "InvoiceFaxCode":
+                        if (this.InvoiceFaxCode.Text == "02")
+                        {
+                            this.InvoiceFaxToName.Text = "";
+                            this.InvoiceFaxToContact.Text = "";
+                            this.InvoiceFaxToNumber.Text = "";
+                        }
+                        break;
+                    case "帳端処理":
+                        ChangedData(true);
+                        if (this.帳端処理.Checked)
+                        {
+                            if (string.IsNullOrEmpty(this.請求予定日.Text))
+                            {
+                                this.TaxRate.Text = FunctionClass.GetTaxRate(cn, DateTime.Now).ToString("0.##");
+                            }
+                            else
+                            {
+                                this.TaxRate.Text = FunctionClass.GetTaxRate(cn, DateTime.Parse(this.請求予定日.Text)).ToString("0.##");
+                            }
+
+                            this.請求予定日ラベル.Enabled = true;
+                            this.請求予定日.Enabled = true;
+                            this.請求予定日選択ボタン.Enabled = true;
+                            this.請求予定日.Focus();
+                        }
+                        else
+                        {
+                            this.請求予定日.Text = "";
+
+                            if (string.IsNullOrEmpty(this.受注納期.Text))
+                            {
+                                this.TaxRate.Text = FunctionClass.GetTaxRate(cn, DateTime.Now).ToString("0.##");
+                            }
+                            else
+                            {
+                                this.TaxRate.Text = FunctionClass.GetTaxRate(cn, DateTime.Parse(this.受注納期.Text)).ToString("0.##");
+                            }
+
+                            this.請求予定日ラベル.Enabled = false;
+                            this.請求予定日.Enabled = false;
+                            this.請求予定日選択ボタン.Enabled = false;
+                        }
+                        break;
+                    case "税端数処理":
+                        // 合計欄を更新する
+                        SetTotalAmount(string.IsNullOrEmpty(this.TaxRate.Text) ? 0m : decimal.Parse(this.TaxRate.Text));
+                        break;
                 }
             }
             catch (Exception ex)
             {
                 Debug.Print(this.Name + "_UpdatedControl - " + ex.Message);
+            }
+            finally
+            {
+                if (fn.WaitForm != null)
+                {
+                    fn.WaitForm.Close();
+                }
             }
         }
 
@@ -746,6 +831,13 @@ namespace u_net
                         請求予定日.Text = tempDate.ToString("yyyy/MM/dd");
                     }
                 }
+
+                this.確定.Text = string.IsNullOrEmpty(確定日時.Text) ? "" : "■";
+                this.承認.Text = string.IsNullOrEmpty(承認者コード.Text) ? "" : "■";
+                this.生産計画.Text = string.IsNullOrEmpty(ProductionPlanned.Text?.Replace("0", "")) ? "" : "■";
+                this.完了.Text = string.IsNullOrEmpty(完了承認者コード.Text) ? "" : "■";
+                //this.在庫締め.Text = string.IsNullOrEmpty(確定日時.Text) ? "" : "■";
+                this.削除.Text = string.IsNullOrEmpty(無効日.Text) ? "" : "■";
 
                 loadHeader = true;
             }
@@ -960,8 +1052,8 @@ namespace u_net
                             this.顧客担当者名.Text = dataTable.Rows[0]["顧客担当者名"].ToString();
                             this.自社担当者コード.SelectedValue = dataTable.Rows[0]["自社担当者コード"].ToString();
                             this.自社担当者名.Text = dataTable.Rows[0]["自社担当者名"].ToString();
-                            this.TaxCalcCode.SelectedValue = dataTable.Rows[0]["TaxCalcCode"].ToString();
-                            this.税端数処理.SelectedValue = dataTable.Rows[0]["税端数処理"].ToString();
+                            this.TaxCalcCode.SelectedValue = dataTable.Rows[0]["TaxCalcCode"];
+                            this.税端数処理.SelectedValue = dataTable.Rows[0]["税端数処理"];
                             this.納品書送付コード.SelectedValue = dataTable.Rows[0]["納品書送付コード"].ToString();
                             //this.納品書送付.Text = 納品書送付コード.Column(1);
                             this.請求書送付コード.SelectedValue = dataTable.Rows[0]["請求書送付コード"].ToString();
@@ -1086,6 +1178,22 @@ namespace u_net
             }
         }
 
+        private int GetShipNumber()
+        {
+            if (発送先1.Checked == true)
+            {
+                return 1;
+            }
+            if (発送先2.Checked == true)
+            {
+                return 2;
+            }
+            if (発送先3.Checked == true)
+            {
+                return 3;
+            }
+            return 0;
+        }
         /// <summary>
         /// 指定された顧客コード・発送先番号から発送先に関する情報を設定する
         /// </summary>
@@ -1473,8 +1581,6 @@ namespace u_net
         /// <returns></returns>
         public static string GetCustomerName(SqlConnection connection, string customerCode)
         {
-            // 顧客コードから顧客名を取得する関数
-
             // 顧客名を格納する変数
             string customerName = "";
 
@@ -1483,7 +1589,6 @@ namespace u_net
                 using (SqlCommand cmd = new SqlCommand())
                 {
                     cmd.Connection = connection;
-                    //connection.Open();
 
                     // SQLクエリを構築
                     string query = "SELECT * FROM M顧客 WHERE 顧客コード = @CustomerCode AND 取引開始日 IS NOT NULL AND GETDATE()<=ExpirationDate";
@@ -1512,7 +1617,6 @@ namespace u_net
                     }
                 }
 
-                //connection.Close();
             }
             catch (Exception ex)
             {
@@ -1521,6 +1625,16 @@ namespace u_net
             }
 
             return customerName;
+        }
+
+        /// <summary>
+        /// 合計欄を更新する
+        /// </summary>
+        /// <param name="taxRate"></param>
+        private void SetTotalAmount(decimal taxRate)
+        {
+            // 明細部の消費税を更新する
+            this.受注明細1.Detail.ColumnFooters[0].Cells["消費税率"].Value = taxRate;
         }
 
         private void コマンド新規_Click(object sender, EventArgs e)
@@ -1543,7 +1657,7 @@ namespace u_net
                     switch (intRes)
                     {
                         case DialogResult.Yes:
-                            //if (!ErrCheck()) return;
+                            
                             // 登録処理
                             if (!RegTrans(this.CurrentCode, this.CurrentEdition))
                             {
@@ -2057,7 +2171,10 @@ namespace u_net
             }
             finally
             {
-                fn.WaitForm.Close();
+                if (fn.WaitForm != null)
+                {
+                    fn.WaitForm.Close();
+                }
             }
         }
 
@@ -2072,12 +2189,6 @@ namespace u_net
             {
                 GetNextControl(コマンド登録, false).Focus();
             }
-
-            // 登録時におけるエラーチェック
-            //if (!ErrCheck())
-            //{
-            //    goto Bye_コマンド登録_Click;
-            //}
 
             FunctionClass fn = new FunctionClass();
             fn.DoWait("登録しています...");
@@ -2349,6 +2460,7 @@ namespace u_net
 
         private void 受注日_TextChanged(object sender, EventArgs e)
         {
+            if (setCombo) return;
             ChangedData(true);
         }
 
@@ -2399,6 +2511,7 @@ namespace u_net
 
         private void 注文番号_TextChanged(object sender, EventArgs e)
         {
+            if (setCombo) return;
             FunctionClass.LimitText(((Control)sender), 30);
             ChangedData(true);
         }
@@ -2424,23 +2537,17 @@ namespace u_net
 
         private void 顧客コード_TextChanged(object sender, EventArgs e)
         {
+            if (setCombo) return;
             FunctionClass.LimitText(((Control)sender), 8);
             ChangedData(true);
         }
 
         private void 顧客コード_DoubleClick(object sender, EventArgs e)
         {
-            if (this.IsApproved)
-            {
-                MessageBox.Show("承認後の修正はできません。", this.ActiveControl.Name, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            }
-            else
-            {
-                顧客コード検索ボタン_Click(this, EventArgs.Empty);
-            }
+            顧客コード検索ボタン_Click(this, EventArgs.Empty);
         }
 
-        private void 顧客コード_KeyDown(object sender, KeyEventArgs e)
+        private void 顧客コード_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
             switch (e.KeyCode)
             {
@@ -2452,23 +2559,80 @@ namespace u_net
                     if (string.IsNullOrEmpty(strCode))
                         return;
                     strCode = strCode.PadLeft(8, '0');
+                    this.顧客コード.Text = strCode;
 
-                    this.ActiveControl.Text = strCode;
+                    if (IsError(this.顧客コード) == true)
+                    {
+                        顧客コード.Undo();
+                    }
                     break;
             }
         }
 
         private void 顧客コード検索ボタン_Click(object sender, EventArgs e)
         {
-            F_検索 SearchForm = new F_検索();
-            SearchForm.FilterName = "顧客名フリガナ";
-            if (SearchForm.ShowDialog() == DialogResult.OK)
+            if (this.IsApproved)
             {
-                string SelectedCode = SearchForm.SelectedCode;
-
-                顧客コード.Text = SelectedCode;
-                UpdatedControl(顧客コード);
+                MessageBox.Show("承認後の修正はできません。", this.ActiveControl.Name, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
+            else
+            {
+                F_検索 SearchForm = new F_検索();
+                SearchForm.FilterName = "顧客名フリガナ";
+                if (SearchForm.ShowDialog() == DialogResult.OK)
+                {
+                    string SelectedCode = SearchForm.SelectedCode;
+
+                    顧客コード.Text = SelectedCode;
+
+                    if (IsError(顧客コード) == true)
+                    {
+                        // エラー時は値を元に戻す
+                        顧客コード.Undo();
+                    }
+                    else
+                    {
+                        UpdatedControl(顧客コード);
+                    }
+                }
+            }
+        }
+
+        private void 顧客担当者名_TextChanged(object sender, EventArgs e)
+        {
+            if (setCombo) return;
+            FunctionClass.LimitText(((Control)sender), 50);
+            ChangedData(true);
+        }
+
+        private void 顧客担当者名_Validating(object sender, CancelEventArgs e)
+        {
+            TextBox textBox = (TextBox)sender;
+
+            if (textBox.Modified == false) return;
+
+            if (IsError(textBox) == true) e.Cancel = true;
+        }
+
+        private void 顧客担当者名_Validated(object sender, EventArgs e)
+        {
+            UpdatedControl((Control)sender);
+        }
+
+        private void ClientCode_TextChanged(object sender, EventArgs e)
+        {
+            if (setCombo) return;
+            ChangedData(true);
+        }
+
+        private void ClientCode_Validating(object sender, CancelEventArgs e)
+        {
+            if (IsError((Control)sender) == true) e.Cancel = true;
+        }
+
+        private void ClientCode_Validated(object sender, EventArgs e)
+        {
+            UpdatedControl((Control)sender);
         }
 
         private void 受注納期_Validated(object sender, EventArgs e)
@@ -2487,7 +2651,107 @@ namespace u_net
 
         private void 受注納期_TextChanged(object sender, EventArgs e)
         {
+            if (setCombo) return;
             ChangedData(true);
+        }
+
+        private void 受注納期_DoubleClick(object sender, EventArgs e)
+        {
+            if (this.IsApproved)
+            {
+                MessageBox.Show("承認後の修正はできません。", this.ActiveControl.Name, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                受注納期選択ボタン_Click(this, EventArgs.Empty);
+            }
+        }
+
+        private void 受注納期_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Space:
+                    受注納期選択ボタン_Click(this, EventArgs.Empty);
+                    break;
+            }
+        }
+
+        private void 受注納期選択ボタン_Click(object sender, EventArgs e)
+        {
+            if (this.IsApproved)
+            {
+                MessageBox.Show("承認後の修正はできません。", this.ActiveControl.Name, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                // 日付選択フォームを作成し表示
+                F_カレンダー calendar = new F_カレンダー();
+                if (calendar.ShowDialog() == DialogResult.OK)
+                {
+                    // 日付選択フォームから選択した日付を取得
+                    string selectedDate = calendar.SelectedDate;
+
+                    // 日付コントロールに選択した日付を設定
+                    受注納期.Text = selectedDate;
+                }
+            }
+        }
+
+        private void 出荷予定日_Validating(object sender, CancelEventArgs e)
+        {
+            TextBox textBox = (TextBox)sender;
+
+            if (textBox.Modified == false) return;
+
+            if (IsError(textBox) == true) e.Cancel = true;
+        }
+
+        private void 出荷予定日_Validated(object sender, EventArgs e)
+        {
+            UpdatedControl((Control)sender);
+        }
+
+        private void 出荷予定日_TextChanged(object sender, EventArgs e)
+        {
+            if (setCombo) return;
+            ChangedData(true);
+        }
+
+        private void 出荷予定日_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Space:
+                    出荷予定日選択ボタン_Click(this, EventArgs.Empty);
+                    break;
+            }
+        }
+
+        private void 出荷予定日_DoubleClick(object sender, EventArgs e)
+        {
+            出荷予定日選択ボタン_Click(this, EventArgs.Empty);
+        }
+
+        private void 出荷予定日選択ボタン_Click(object sender, EventArgs e)
+        {
+            if (this.IsApproved)
+            {
+                MessageBox.Show("承認後の修正はできません。", "出荷予定日", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                // 日付選択フォームを作成し表示
+                F_カレンダー calendar = new F_カレンダー();
+                if (calendar.ShowDialog() == DialogResult.OK)
+                {
+                    // 日付選択フォームから選択した日付を取得
+                    string selectedDate = calendar.SelectedDate;
+
+                    // 日付コントロールに選択した日付を設定
+                    出荷予定日.Text = selectedDate;
+                }
+            }
         }
 
         private void 納品書送付コード_DrawItem(object sender, DrawItemEventArgs e)
@@ -2497,18 +2761,29 @@ namespace u_net
             納品書送付コード.DroppedDown = true;
         }
 
-        private void 請求書送付コード_DrawItem(object sender, DrawItemEventArgs e)
-        {
-            OriginalClass.SetComboBoxAppearance((ComboBox)sender, e, new int[] { 50, 130 }, new string[] { "Display", "Display2" });
-            請求書送付コード.Invalidate();
-            請求書送付コード.DroppedDown = true;
-        }
-
         private void 納品書送付コード_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (setCombo) return;
             納品書送付.Text = ((DataRowView)納品書送付コード.SelectedItem)?.Row.Field<String>("Display2")?.ToString();
             ChangedData(true);
+        }
+
+        private void 納品書送付コード_TextChanged(object sender, EventArgs e)
+        {
+            if (setCombo) return;
+            ChangedData(true);
+        }
+
+        private void 納品書送付コード_Validating(object sender, CancelEventArgs e)
+        {
+            if (IsError((Control)sender) == true) e.Cancel = true;
+        }
+
+        private void 請求書送付コード_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            OriginalClass.SetComboBoxAppearance((ComboBox)sender, e, new int[] { 50, 130 }, new string[] { "Display", "Display2" });
+            請求書送付コード.Invalidate();
+            請求書送付コード.DroppedDown = true;
         }
 
         private void 請求書送付コード_SelectedIndexChanged(object sender, EventArgs e)
@@ -2518,12 +2793,17 @@ namespace u_net
             ChangedData(true);
         }
 
-        private void 発送方法コード_SelectedIndexChanged(object sender, EventArgs e)
+        private void 請求書送付コード_TextChanged(object sender, EventArgs e)
         {
             if (setCombo) return;
-            発送方法.Text = ((DataRowView)発送方法コード.SelectedItem)?.Row.Field<String>("Display2")?.ToString();
             ChangedData(true);
         }
+
+        private void 請求書送付コード_Validating(object sender, CancelEventArgs e)
+        {
+            if (IsError((Control)sender) == true) e.Cancel = true;
+        }
+
         private void 発送方法コード_DrawItem(object sender, DrawItemEventArgs e)
         {
             OriginalClass.SetComboBoxAppearance((ComboBox)sender, e, new int[] { 50, 130 }, new string[] { "Display", "Display2" });
@@ -2531,11 +2811,22 @@ namespace u_net
             発送方法コード.DroppedDown = true;
         }
 
-        private void 自社担当者コード_SelectedIndexChanged(object sender, EventArgs e)
+        private void 発送方法コード_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (setCombo) return;
-            自社担当者名.Text = ((DataRowView)自社担当者コード.SelectedItem)?.Row.Field<String>("Display2")?.ToString();
+            発送方法.Text = ((DataRowView)発送方法コード.SelectedItem)?.Row.Field<String>("Display2")?.ToString();
             ChangedData(true);
+        }
+
+        private void 発送方法コード_TextChanged(object sender, EventArgs e)
+        {
+            if (setCombo) return;
+            ChangedData(true);
+        }
+
+        private void 発送方法コード_Validating(object sender, CancelEventArgs e)
+        {
+            if (IsError((Control)sender) == true) e.Cancel = true;
         }
 
         private void 自社担当者コード_DrawItem(object sender, DrawItemEventArgs e)
@@ -2545,39 +2836,78 @@ namespace u_net
             自社担当者コード.DroppedDown = true;
         }
 
-        private void 受注納期選択ボタン_Click(object sender, EventArgs e)
+        private void 自社担当者コード_TextChanged(object sender, EventArgs e)
         {
-            // 日付選択フォームを作成し表示
-            F_カレンダー calendar = new F_カレンダー();
-            if (calendar.ShowDialog() == DialogResult.OK)
-            {
-                // 日付選択フォームから選択した日付を取得
-                string selectedDate = calendar.SelectedDate;
-
-                // 日付コントロールに選択した日付を設定
-                受注納期.Text = selectedDate;
-            }
+            if (setCombo) return;
+            FunctionClass.LimitText(((Control)sender), 3);
+            ChangedData(true);
         }
 
-        private void 出荷予定日選択ボタン_Click(object sender, EventArgs e)
+        private void 自社担当者コード_Validating(object sender, CancelEventArgs e)
         {
-            // 日付選択フォームを作成し表示
-            F_カレンダー calendar = new F_カレンダー();
-            if (calendar.ShowDialog() == DialogResult.OK)
-            {
-                // 日付選択フォームから選択した日付を取得
-                string selectedDate = calendar.SelectedDate;
-
-                // 日付コントロールに選択した日付を設定
-                出荷予定日.Text = selectedDate;
-            }
+            if (IsError((Control)sender) == true) e.Cancel = true;
         }
 
-        private void 戻るボタン_Click(object sender, EventArgs e)
+        private void 自社担当者コード_Validated(object sender, EventArgs e)
         {
-            // Accessの「GoToPage 1」の代わり
-            this.Page1.Show();
-            this.Page2.Hide();
+            UpdatedControl((Control)sender);
+        }
+
+        private void 備考_Validating(object sender, CancelEventArgs e)
+        {
+            TextBox textBox = (TextBox)sender;
+
+            if (textBox.Modified == false) return;
+
+            if (IsError(textBox) == true) e.Cancel = true;
+        }
+
+        private void 備考_Validated(object sender, EventArgs e)
+        {
+            UpdatedControl((Control)sender);
+        }
+
+        private void 備考_TextChanged(object sender, EventArgs e)
+        {
+            ChangedData(true);
+        }
+
+        private void 改訂履歴_Validating(object sender, CancelEventArgs e)
+        {
+            TextBox textBox = (TextBox)sender;
+
+            if (textBox.Modified == false) return;
+
+            if (IsError(textBox) == true) e.Cancel = true;
+        }
+
+        private void 改訂履歴_Validated(object sender, EventArgs e)
+        {
+            UpdatedControl((Control)sender);
+        }
+
+        private void 改訂履歴_TextChanged(object sender, EventArgs e)
+        {
+            ChangedData(true);
+        }
+
+        private void ProductionNotice_Validating(object sender, CancelEventArgs e)
+        {
+            TextBox textBox = (TextBox)sender;
+
+            if (textBox.Modified == false) return;
+
+            if (IsError(textBox) == true) e.Cancel = true;
+        }
+
+        private void ProductionNotice_Validated(object sender, EventArgs e)
+        {
+            UpdatedControl((Control)sender);
+        }
+
+        private void ProductionNotice_TextChanged(object sender, EventArgs e)
+        {
+            ChangedData(true);
         }
 
         private void 発送先登録ボタン_Click(object sender, EventArgs e)
@@ -2585,6 +2915,160 @@ namespace u_net
             // Accessの「GoToPage 2」の代わり
             this.Page1.Hide();
             this.Page2.Show();
+        }
+
+        private void 発送先名_Validating(object sender, CancelEventArgs e)
+        {
+            TextBox textBox = (TextBox)sender;
+
+            if (textBox.Modified == false) return;
+
+            if (IsError(textBox) == true) e.Cancel = true;
+        }
+
+        private void 発送先名_Validated(object sender, EventArgs e)
+        {
+            UpdatedControl((Control)sender);
+        }
+
+        private void 発送先名_TextChanged(object sender, EventArgs e)
+        {
+            FunctionClass.LimitText(((Control)sender), 58);
+            ChangedData(true);
+        }
+
+        private void 発送先郵便番号_Validating(object sender, CancelEventArgs e)
+        {
+            MaskedTextBox textBox = (MaskedTextBox)sender;
+
+            if (textBox.Modified == false) return;
+
+            if (IsError(textBox) == true) e.Cancel = true;
+        }
+
+        private void 発送先郵便番号_Validated(object sender, EventArgs e)
+        {
+            UpdatedControl((Control)sender);
+        }
+
+        private void 発送先郵便番号_TextChanged(object sender, EventArgs e)
+        {
+            FunctionClass.LimitText(((Control)sender), 11);
+            ChangedData(true);
+        }
+
+        private void 発送先住所1_Validating(object sender, CancelEventArgs e)
+        {
+            TextBox textBox = (TextBox)sender;
+
+            if (textBox.Modified == false) return;
+
+            if (IsError(textBox) == true) e.Cancel = true;
+        }
+
+        private void 発送先住所1_Validated(object sender, EventArgs e)
+        {
+            UpdatedControl((Control)sender);
+        }
+
+        private void 発送先住所1_TextChanged(object sender, EventArgs e)
+        {
+            ChangedData(true);
+        }
+
+        private void 発送先住所2_Validating(object sender, CancelEventArgs e)
+        {
+            TextBox textBox = (TextBox)sender;
+
+            if (textBox.Modified == false) return;
+
+            if (IsError(textBox) == true) e.Cancel = true;
+        }
+
+        private void 発送先住所2_Validated(object sender, EventArgs e)
+        {
+            UpdatedControl((Control)sender);
+        }
+
+        private void 発送先住所2_TextChanged(object sender, EventArgs e)
+        {
+            ChangedData(true);
+        }
+
+        private void 発送先TEL_Validating(object sender, CancelEventArgs e)
+        {
+            TextBox textBox = (TextBox)sender;
+
+            if (textBox.Modified == false) return;
+
+            if (IsError(textBox) == true) e.Cancel = true;
+        }
+
+        private void 発送先TEL_Validated(object sender, EventArgs e)
+        {
+            UpdatedControl((Control)sender);
+        }
+
+        private void 発送先TEL_TextChanged(object sender, EventArgs e)
+        {
+            ChangedData(true);
+        }
+
+        private void 発送先FAX_Validating(object sender, CancelEventArgs e)
+        {
+            TextBox textBox = (TextBox)sender;
+
+            if (textBox.Modified == false) return;
+
+            if (IsError(textBox) == true) e.Cancel = true;
+        }
+
+        private void 発送先FAX_Validated(object sender, EventArgs e)
+        {
+            UpdatedControl((Control)sender);
+        }
+
+        private void 発送先FAX_TextChanged(object sender, EventArgs e)
+        {
+            ChangedData(true);
+        }
+
+        private void 発送先担当者名_Validating(object sender, CancelEventArgs e)
+        {
+            TextBox textBox = (TextBox)sender;
+
+            if (textBox.Modified == false) return;
+
+            if (IsError(textBox) == true) e.Cancel = true;
+        }
+
+        private void 発送先担当者名_Validated(object sender, EventArgs e)
+        {
+            UpdatedControl((Control)sender);
+        }
+
+        private void 発送先担当者名_TextChanged(object sender, EventArgs e)
+        {
+            ChangedData(true);
+        }
+
+        private void 発送先メールアドレス_Validating(object sender, CancelEventArgs e)
+        {
+            TextBox textBox = (TextBox)sender;
+
+            if (textBox.Modified == false) return;
+
+            if (IsError(textBox) == true) e.Cancel = true;
+        }
+
+        private void 発送先メールアドレス_Validated(object sender, EventArgs e)
+        {
+            UpdatedControl((Control)sender);
+        }
+
+        private void 発送先メールアドレス_TextChanged(object sender, EventArgs e)
+        {
+            ChangedData(true);
         }
 
         private void Email作成ボタン_Click(object sender, EventArgs e)
@@ -2601,6 +3085,11 @@ namespace u_net
             }
         }
 
+        private void PaymentConfirmation_CheckedChanged(object sender, EventArgs e)
+        {
+            ChangedData(true);
+        }
+
         private void PackingSlipInputCode_DrawItem(object sender, DrawItemEventArgs e)
         {
             OriginalClass.SetComboBoxAppearance((ComboBox)sender, e, new int[] { 50, 160 }, new string[] { "Display", "Display2" });
@@ -2612,6 +3101,21 @@ namespace u_net
         {
             if (setCombo) return;
             PackingSlipInput.Text = ((DataRowView)PackingSlipInputCode.SelectedItem)?.Row.Field<String>("Display2")?.ToString();
+        }
+
+        private void PackingSlipInputCode_Validating(object sender, CancelEventArgs e)
+        {
+            if (IsError((Control)sender) == true) e.Cancel = true;
+        }
+
+        private void PackingSlipInputCode_Validated(object sender, EventArgs e)
+        {
+            UpdatedControl((Control)sender);
+        }
+
+        private void PackingSlipInputCode_TextChanged(object sender, EventArgs e)
+        {
+            if (setCombo) return;
             ChangedData(true);
         }
 
@@ -2626,6 +3130,21 @@ namespace u_net
         {
             if (setCombo) return;
             InvoiceInput.Text = ((DataRowView)InvoiceInputCode.SelectedItem)?.Row.Field<String>("Display2")?.ToString();
+        }
+
+        private void InvoiceInputCode_Validating(object sender, CancelEventArgs e)
+        {
+            if (IsError((Control)sender) == true) e.Cancel = true;
+        }
+
+        private void InvoiceInputCode_Validated(object sender, EventArgs e)
+        {
+            UpdatedControl((Control)sender);
+        }
+
+        private void InvoiceInputCode_TextChanged(object sender, EventArgs e)
+        {
+            if (setCombo) return;
             ChangedData(true);
         }
 
@@ -2640,6 +3159,21 @@ namespace u_net
         {
             if (setCombo) return;
             ReceiptComment.Text = ((DataRowView)ReceiptCommentCode.SelectedItem)?.Row.Field<String>("Display2")?.ToString();
+        }
+
+        private void ReceiptCommentCode_Validating(object sender, CancelEventArgs e)
+        {
+            if (IsError((Control)sender) == true) e.Cancel = true;
+        }
+
+        private void ReceiptCommentCode_Validated(object sender, EventArgs e)
+        {
+            UpdatedControl((Control)sender);
+        }
+
+        private void ReceiptCommentCode_TextChanged(object sender, EventArgs e)
+        {
+            if (setCombo) return;
             ChangedData(true);
         }
 
@@ -2654,6 +3188,121 @@ namespace u_net
         {
             if (setCombo) return;
             InvoiceFax.Text = ((DataRowView)InvoiceFaxCode.SelectedItem)?.Row.Field<String>("Display2")?.ToString();
+        }
+
+        private void InvoiceFaxCode_Validating(object sender, CancelEventArgs e)
+        {
+            if (IsError((Control)sender) == true) e.Cancel = true;
+        }
+
+        private void InvoiceFaxCode_Validated(object sender, EventArgs e)
+        {
+            UpdatedControl((Control)sender);
+        }
+
+        private void InvoiceFaxCode_TextChanged(object sender, EventArgs e)
+        {
+            if (setCombo) return;
+            ChangedData(true);
+        }
+
+        private void InvoiceFaxToName_Validating(object sender, CancelEventArgs e)
+        {
+            TextBox textBox = (TextBox)sender;
+
+            if (textBox.Modified == false) return;
+
+            if (IsError(textBox) == true) e.Cancel = true;
+        }
+
+        private void InvoiceFaxToName_Validated(object sender, EventArgs e)
+        {
+            UpdatedControl((Control)sender);
+        }
+
+        private void InvoiceFaxToName_TextChanged(object sender, EventArgs e)
+        {
+            FunctionClass.LimitText(((Control)sender), 100);
+            ChangedData(true);
+        }
+
+        private void InvoiceFaxToContact_Validating(object sender, CancelEventArgs e)
+        {
+            TextBox textBox = (TextBox)sender;
+
+            if (textBox.Modified == false) return;
+
+            if (IsError(textBox) == true) e.Cancel = true;
+        }
+
+        private void InvoiceFaxToContact_Validated(object sender, EventArgs e)
+        {
+            UpdatedControl((Control)sender);
+        }
+
+        private void InvoiceFaxToContact_TextChanged(object sender, EventArgs e)
+        {
+            FunctionClass.LimitText(((Control)sender), 44);
+            ChangedData(true);
+        }
+
+        private void InvoiceFaxToNumber_Validating(object sender, CancelEventArgs e)
+        {
+            TextBox textBox = (TextBox)sender;
+
+            if (textBox.Modified == false) return;
+
+            if (IsError(textBox) == true) e.Cancel = true;
+        }
+
+        private void InvoiceFaxToNumber_Validated(object sender, EventArgs e)
+        {
+            UpdatedControl((Control)sender);
+        }
+
+        private void InvoiceFaxToNumber_TextChanged(object sender, EventArgs e)
+        {
+            FunctionClass.LimitText(((Control)sender), 20);
+            ChangedData(true);
+        }
+
+        private void PackingSlipNote_Validating(object sender, CancelEventArgs e)
+        {
+            TextBox textBox = (TextBox)sender;
+
+            if (textBox.Modified == false) return;
+
+            if (IsError(textBox) == true) e.Cancel = true;
+        }
+
+        private void PackingSlipNote_Validated(object sender, EventArgs e)
+        {
+            UpdatedControl((Control)sender);
+        }
+
+        private void PackingSlipNote_TextChanged(object sender, EventArgs e)
+        {
+            FunctionClass.LimitText(((Control)sender), 120);
+            ChangedData(true);
+        }
+
+        private void InvoiceNote_Validating(object sender, CancelEventArgs e)
+        {
+            TextBox textBox = (TextBox)sender;
+
+            if (textBox.Modified == false) return;
+
+            if (IsError(textBox) == true) e.Cancel = true;
+        }
+
+        private void InvoiceNote_Validated(object sender, EventArgs e)
+        {
+            UpdatedControl((Control)sender);
+        }
+
+        private void InvoiceNote_TextChanged(object sender, EventArgs e)
+        {
+            FunctionClass.LimitText(((Control)sender), 92);
             ChangedData(true);
         }
 
@@ -2662,24 +3311,98 @@ namespace u_net
             UpdatedControl((Control)sender);
         }
 
-        private void 請求予定日選択ボタン_Click(object sender, EventArgs e)
+        private void 請求予定日_Validating(object sender, CancelEventArgs e)
         {
-            // 日付選択フォームを作成し表示
-            F_カレンダー calendar = new F_カレンダー();
-            if (calendar.ShowDialog() == DialogResult.OK)
-            {
-                // 日付選択フォームから選択した日付を取得
-                string selectedDate = calendar.SelectedDate;
+            TextBox textBox = (TextBox)sender;
 
-                // 日付コントロールに選択した日付を設定
-                請求予定日.Text = selectedDate;
+            if (textBox.Modified == false) return;
+
+            if (IsError(textBox) == true) e.Cancel = true;
+        }
+
+        private void 請求予定日_Validated(object sender, EventArgs e)
+        {
+            UpdatedControl((Control)sender);
+        }
+
+        private void 請求予定日_TextChanged(object sender, EventArgs e)
+        {
+            ChangedData(true);
+        }
+
+        private void 請求予定日_DoubleClick(object sender, EventArgs e)
+        {
+            請求予定日選択ボタン_Click(this, EventArgs.Empty);
+        }
+
+        private void 請求予定日_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Space:
+                    請求予定日選択ボタン_Click(this, EventArgs.Empty);
+                    break;
             }
         }
 
-        private void SetTotalAmount(decimal taxRate)
+        private void 請求予定日選択ボタン_Click(object sender, EventArgs e)
         {
-            // 明細部の消費税を更新する
-            this.受注明細1.Detail.ColumnFooters[0].Cells["消費税率"].Value = taxRate;
+            if (this.IsApproved)
+            {
+                MessageBox.Show("承認後の修正はできません。", "請求予定日", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                // 日付選択フォームを作成し表示
+                F_カレンダー calendar = new F_カレンダー();
+                if (calendar.ShowDialog() == DialogResult.OK)
+                {
+                    // 日付選択フォームから選択した日付を取得
+                    string selectedDate = calendar.SelectedDate;
+
+                    // 日付コントロールに選択した日付を設定
+                    請求予定日.Text = selectedDate;
+                }
+            }
+        }
+
+        private void TaxCalcCode_Validating(object sender, CancelEventArgs e)
+        {
+            if (IsError((Control)sender) == true) e.Cancel = true;
+        }
+
+        private void TaxCalcCode_Validated(object sender, EventArgs e)
+        {
+            UpdatedControl((Control)sender);
+        }
+
+        private void TaxCalcCode_TextChanged(object sender, EventArgs e)
+        {
+            if (setCombo) return;
+            ChangedData(true);
+        }
+
+        private void 税端数処理_Validating(object sender, CancelEventArgs e)
+        {
+            if (IsError((Control)sender) == true) e.Cancel = true;
+        }
+
+        private void 税端数処理_Validated(object sender, EventArgs e)
+        {
+            UpdatedControl((Control)sender);
+        }
+
+        private void 税端数処理_TextChanged(object sender, EventArgs e)
+        {
+            if (setCombo) return;
+            ChangedData(true);
+        }
+
+        private void 戻るボタン_Click(object sender, EventArgs e)
+        {
+            // Accessの「GoToPage 1」の代わり
+            this.Page1.Show();
+            this.Page2.Hide();
         }
 
         private void 受注コード_Enter(object sender, EventArgs e)
@@ -2831,34 +3554,6 @@ namespace u_net
         {
             this.toolStripStatusLabel2.Text = "■顧客の担当者名を入力。　■全角46文字まで入力できます。　■敬称は不要です。";
         }
-
-        private void 納品書送付コード_Validating(object sender, CancelEventArgs e)
-        {
-            ComboBox comboBox = (ComboBox)sender;
-
-            //if (comboBox.Modified == false) return;
-
-            if (IsError(comboBox) == true) e.Cancel = true;
-        }
-
-        private void 請求書送付コード_Validating(object sender, CancelEventArgs e)
-        {
-            ComboBox comboBox = (ComboBox)sender;
-
-            //if (comboBox.Modified == false) return;
-
-            if (IsError(comboBox) == true) e.Cancel = true;
-        }
-
-        private void 発送方法コード_Validating(object sender, CancelEventArgs e)
-        {
-            ComboBox comboBox = (ComboBox)sender;
-
-            //if (comboBox.Modified == false) return;
-
-            if (IsError(comboBox) == true) e.Cancel = true;
-        }
-
 
     }
 }
