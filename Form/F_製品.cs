@@ -214,7 +214,7 @@ namespace u_net
                         this.Close();
                     }
                 }
-                else // 読込
+                else // 読込se
                 {
                     if (!GoModifyMode())
                     {
@@ -2108,10 +2108,13 @@ namespace u_net
         }
 
 
-        //未着手
+
         private void コマンドツール_Click(object sender, EventArgs e)
         {
+            F_製品_ツール targetform = new F_製品_ツール();
 
+            targetform.args = CurrentCode;
+            targetform.ShowDialog();
         }
         //未着手
         private void コマンドユニット_Click(object sender, EventArgs e)
