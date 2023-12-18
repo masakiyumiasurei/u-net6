@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <PrintDefine>
-<PrintSetting Name="レポート定義ファイル" Ver="9.2.4" >
+<PrintSetting Name="レポート定義ファイル" Ver="9.2.0" >
 <PrintAttrs>
 <FontAttr AttrName="Font1" Name="ＭＳ Ｐゴシック" Size="10" />
 <FontAttr AttrName="Font2" Name="ＭＳ Ｐゴシック" Size="16" Color="White" Bold="True" />
@@ -42,21 +42,19 @@
 <LineAttr AttrName="Line31" Width="0.1" />
 </PrintAttrs>
 <Paper Size="A4" Direction="False" />
-<Design FontAttr="Font1" LineAttr="Line1" GridWidth="2" DesignScale="100" GridFit="True" ObjLock="False" X="0" Y="0" Width="210" Height="297" DisplayRepeatObject="False" RepeatObjectColor="Silver" ImageSizeType="Clip" />
+<Design FontAttr="Font1" LineAttr="Line1" GridWidth="2" DesignScale="125" GridFit="True" ObjLock="False" X="0" Y="0" Width="210" Height="297" DisplayRepeatObject="False" RepeatObjectColor="Silver" ImageSizeType="Clip" />
 </PrintSetting>
 <PrintObjects>
 <Square Name="Square1" X="10" Y="35" Width="190" Height="5" LineAttr="Line1" R="0" >
 </Square>
 <Line Name="Line7" StartX="238" StartY="82" EndX="226" EndY="82" LineAttr="Line1" />
-<Text Name="明細番号" X="10" Y="40" Width="7" Height="5" Text="*明細番号*" Align="Left" VAlign="Middle" FontAttr="Font1" LineAttr="Line2" IntervalY="5" Repeat="49" />
+<Text Name="明細番号" X="10" Y="40" Width="7" Height="5" Text="*明細番号*" Align="Right" VAlign="Middle" FontAttr="Font1" LineAttr="Line2" IntervalY="5" Repeat="49" />
 <Text Name="Text40" X="85" Y="10" Width="40" Height="7.8" Text="ユニット表" BackColor="Black" Align="Center" VAlign="Middle" FontAttr="Font2" />
-<Text Name="識別コード" X="17" Y="12" Width="30" Height="5.1" Text="*識別コード*" Align="Left" VAlign="Top" FontAttr="Font1" />
-<Text Name="発注版数表示" X="126" Y="12" Width="40" Height="6.1" Text="(確認用)" Align="Left" VAlign="Middle" FontAttr="Font3" />
+<Text Name="確認表示" X="126" Y="12" Width="40" Height="6.1" Text="*確認表示*" Align="Left" VAlign="Middle" FontAttr="Font3" />
 <Text Name="Text71" X="10" Y="35" Width="7" Height="5" Text="No." BackColor="Black" Align="Center" VAlign="Middle" FontAttr="Font4" LineAttr="Line6" />
 <Text Name="型式名" X="17" Y="40" Width="18" Height="5" Text="*型式名*" Align="Left" VAlign="Middle" FontAttr="Font5" LineAttr="Line7" IntervalY="5" Repeat="49" />
 <Text Name="出力日時" X="10" Y="287" Width="60" Height="4" Text="*出力日時*" Align="Left" VAlign="Top" FontAttr="Font5" />
-<Text Name="ページ" X="160" Y="287" Width="40" Height="4" Text="*ページ*" Align="Right" VAlign="Top" FontAttr="Font5" />
-<Text Name="ページ総数" X="50" Y="12" Width="25" Height="5" Text="*ページ総数*" Align="Left" VAlign="Top" FontAttr="Font1" />
+<Text Name="ページ" X="158" Y="287" Width="40" Height="4" Text="*ページ*" Align="Left" VAlign="Top" FontAttr="Font5" />
 <Text Name="Text61" X="10" Y="19" Width="30" Height="5" Text="製品コード" BackColor="LightGray" Align="Left" VAlign="Middle" FontAttr="Font1" LineAttr="Line11" Repeat="17" />
 <Text Name="Text62" X="70" Y="19" Width="30" Height="5" Text="製品版数" BackColor="LightGray" Align="Left" VAlign="Middle" FontAttr="Font1" LineAttr="Line12" Repeat="17" />
 <Text Name="Text63" X="115" Y="19" Width="30" Height="5" Text="指導書No." BackColor="LightGray" Align="Left" VAlign="Middle" FontAttr="Font1" LineAttr="Line13" Repeat="17" />

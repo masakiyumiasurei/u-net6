@@ -45,26 +45,90 @@ namespace u_net
                 //開いているフォームのインスタンスを作成する
                 F_購買申請管理 frmTarget = Application.OpenForms.OfType<F_購買申請管理>().FirstOrDefault();
 
-                if (frmTarget.dtm申請日開始.ToString() != "")
-                    this.申請日開始.Text = this.申請日開始.Text = frmTarget.dtm申請日開始.ToString();
-                if (frmTarget.dtm申請日終了.ToString() != "")
-                    this.申請日終了.Text = this.申請日終了.Text = frmTarget.dtm申請日終了.ToString();
-                if (frmTarget.dtm購買納期開始.ToString() != "")
-                    this.購買納期開始.Text = this.購買納期開始.Text = frmTarget.dtm購買納期開始.ToString();
-                if (frmTarget.dtm購買納期終了.ToString() != "")
-                    this.購買納期終了.Text = this.購買納期終了.Text = frmTarget.dtm購買納期終了.ToString();
-                if (frmTarget.dtm出荷予定日開始.ToString() != "")
-                    this.出荷予定日開始.Text = this.出荷予定日開始.Text = frmTarget.dtm出荷予定日開始.ToString();
-                if (frmTarget.dtm出荷予定日終了.ToString() != "")
-                    this.出荷予定日終了.Text = this.出荷予定日終了.Text = frmTarget.dtm出荷予定日終了.ToString();
-                //this.基本型式名.Text = FunctionClass.Zn(frmTarget.str基本型式名);
-                //this.シリーズ名.Text = FunctionClass.Zn(frmTarget.strシリーズ名);
-                //this.申請者コード.Text = FunctionClass.Zn(frmTarget.str申請者コード);
-                //this.承認指定.Text = FunctionClass.Zn(frmTarget.lng承認指定);
-                //this.終了指定.Text = FunctionClass.Zn(frmTarget.lng終了指定);
-                //this.完了指定.Text = FunctionClass.Zn(frmTarget.lng完了指定);
-                //this.削除指定.Text = FunctionClass.Zn(frmTarget.lng削除指定);
 
+                if (frmTarget.dtm申請日開始 != DateTime.MinValue)
+                    this.申請日開始.Text = frmTarget.dtm申請日開始.ToString("yyyy/MM/dd");
+                if (frmTarget.dtm申請日終了 != DateTime.MinValue)
+                    this.申請日終了.Text = frmTarget.dtm申請日終了.ToString("yyyy/MM/dd");
+                if (frmTarget.dtm購買納期開始 != DateTime.MinValue)
+                    this.購買納期開始.Text = frmTarget.dtm購買納期開始.ToString("yyyy/MM/dd");
+                if (frmTarget.dtm購買納期終了 != DateTime.MinValue)
+                    this.購買納期終了.Text = frmTarget.dtm購買納期終了.ToString("yyyy/MM/dd");
+                if (frmTarget.dtm出荷予定日開始 != DateTime.MinValue)
+                    this.出荷予定日開始.Text = frmTarget.dtm出荷予定日開始.ToString("yyyy/MM/dd");
+                if (frmTarget.dtm出荷予定日終了 != DateTime.MinValue)
+                    this.出荷予定日終了.Text = frmTarget.dtm出荷予定日終了.ToString("yyyy/MM/dd");
+
+                this.基本型式名.Text = Nz(frmTarget.str基本型式名);
+                this.シリーズ名.Text = Nz(frmTarget.strシリーズ名);
+
+                // コンボボックスの設定
+                OriginalClass ofn = new OriginalClass();
+                ofn.SetComboBox(申請者コード, "SELECT 氏名 as Display, 社員コード as Display2, 社員コード as Value FROM M社員 WHERE (ふりがな <> N'ん') ORDER BY ふりがな");
+                if (string.IsNullOrEmpty(frmTarget.str申請者コード))
+                {
+                    申請者コード.SelectedIndex = -1;
+                }
+                else
+                {
+                    申請者コード.SelectedValue = frmTarget.str申請者コード;
+                }
+
+                // 承認指定
+                if (frmTarget.lng承認指定 == 1)
+                {
+                    this.承認指定Button1.Checked = true;
+                }
+                else if (frmTarget.lng承認指定 == 2)
+                {
+                    this.承認指定Button2.Checked = true;
+                }
+                else if (frmTarget.lng承認指定 == 0)
+                {
+                    this.承認指定Button3.Checked = true;
+                }
+
+                // 終了指定
+                if (frmTarget.lng終了指定 == 1)
+                {
+                    this.終了指定Button1.Checked = true;
+                }
+                else if (frmTarget.lng終了指定 == 2)
+                {
+                    this.終了指定Button2.Checked = true;
+                }
+                else if (frmTarget.lng終了指定 == 0)
+                {
+                    this.終了指定Button3.Checked = true;
+                }
+
+                // 完了指定
+                if (frmTarget.lng完了指定 == 1)
+                {
+                    this.完了指定Button1.Checked = true;
+                }
+                else if (frmTarget.lng完了指定 == 2)
+                {
+                    this.完了指定Button2.Checked = true;
+                }
+                else if (frmTarget.lng完了指定 == 0)
+                {
+                    this.完了指定Button3.Checked = true;
+                }
+
+                // 削除指定
+                if (frmTarget.lng削除指定 == 1)
+                {
+                    this.削除指定Button1.Checked = true;
+                }
+                else if (frmTarget.lng削除指定 == 2)
+                {
+                    this.削除指定Button2.Checked = true;
+                }
+                else if (frmTarget.lng削除指定 == 0)
+                {
+                    this.削除指定Button3.Checked = true;
+                }
             }
             catch (Exception ex)
             {
@@ -77,40 +141,97 @@ namespace u_net
         {
             try
             {
-                //Application.DoEvents(); // Mimic On Error Resume Next
 
                 Application.DoEvents();
 
                 FunctionClass fn = new FunctionClass();
                 fn.DoWait("しばらくお待ちください...");
 
-                ////
-                F_購買申請管理 frmTarget = Application.OpenForms.OfType<F_購買申請管理>().FirstOrDefault();
+                F_購買申請管理? frmTarget = Application.OpenForms.OfType<F_購買申請管理>().FirstOrDefault();
 
-                frmTarget.dtm申請日開始 = DateTime.Parse(Nz(申請日開始.Text));
-                frmTarget.dtm申請日終了 = DateTime.Parse(Nz(申請日終了.Text));
-                frmTarget.dtm購買納期開始 = DateTime.Parse(Nz(購買納期開始.Text));
-                frmTarget.dtm購買納期終了 = DateTime.Parse(Nz(購買納期終了.Text));
-                frmTarget.dtm出荷予定日開始 = DateTime.Parse(Nz(出荷予定日開始.Text));
-                frmTarget.dtm出荷予定日終了 = DateTime.Parse(Nz(出荷予定日終了.Text));
+                if (!string.IsNullOrEmpty(申請日開始.Text))
+                    frmTarget.dtm申請日開始 = Nz(DateTime.Parse(申請日開始.Text));
+
+                if (!string.IsNullOrEmpty(申請日終了.Text))
+                    frmTarget.dtm申請日終了 = Nz(DateTime.Parse(申請日終了.Text));
+
+                if (!string.IsNullOrEmpty(購買納期開始.Text))
+                    frmTarget.dtm購買納期開始 = Nz(DateTime.Parse(購買納期開始.Text));
+
+                if (!string.IsNullOrEmpty(購買納期終了.Text))
+                    frmTarget.dtm購買納期終了 = Nz(DateTime.Parse(購買納期終了.Text));
+
+                if (!string.IsNullOrEmpty(出荷予定日開始.Text))
+                    frmTarget.dtm出荷予定日開始 = Nz(DateTime.Parse(出荷予定日開始.Text));
+
+                if (!string.IsNullOrEmpty(出荷予定日終了.Text))
+                    frmTarget.dtm出荷予定日終了 = Nz(DateTime.Parse(出荷予定日終了.Text));
+
                 frmTarget.str基本型式名 = Nz(基本型式名.Text);
                 frmTarget.strシリーズ名 = Nz(シリーズ名.Text);
                 frmTarget.str申請者コード = Nz(申請者コード.Text);
-                // frm.str申請者名 = Nz(申請者名.Value);
+                if (申請者コード.SelectedIndex != -1)
+                {
+                    frmTarget.str申請者コード = 申請者コード.SelectedValue.ToString();
+                    frmTarget.str申請者名 = Nz(申請者コード.Text);
+                }
 
-                // testのため退避
-                ////frmTarget.lng承認指定 = Nz(Convert.ToInt32(承認指定.Text));
-                ////frmTarget.lng終了指定 = Nz(Convert.ToInt32(終了指定.Text));
-                ////frmTarget.lng完了指定 = Nz(Convert.ToInt32(完了指定.Text));
-                ////frmTarget.lng削除指定 = Nz(Convert.ToInt32(削除指定.Text));
 
-                // test(ダミーの値)
-                frmTarget.lng承認指定 = 0;
-                frmTarget.lng終了指定 = 0;
-                frmTarget.lng完了指定 = 0;
-                frmTarget.lng削除指定 = 0;
+                // 承認指定
+                if (承認指定Button1.Checked)
+                {
+                    frmTarget.lng承認指定 = 1;
+                }
+                else if (承認指定Button2.Checked)
+                {
+                    frmTarget.lng承認指定 = 2;
+                }
+                else if (承認指定Button3.Checked)
+                {
+                    frmTarget.lng承認指定 = 0;
+                }
 
-                ////((F_購買申請管理)this.Owner).DoUpdate();
+                // 終了指定
+                if (終了指定Button1.Checked)
+                {
+                    frmTarget.lng終了指定 = 1;
+                }
+                else if (終了指定Button2.Checked)
+                {
+                    frmTarget.lng終了指定 = 2;
+                }
+                else if (終了指定Button3.Checked)
+                {
+                    frmTarget.lng終了指定 = 0;
+                }
+
+                // 完了指定
+                if (完了指定Button1.Checked)
+                {
+                    frmTarget.lng完了指定 = 1;
+                }
+                else if (完了指定Button2.Checked)
+                {
+                    frmTarget.lng完了指定 = 2;
+                }
+                else if (完了指定Button3.Checked)
+                {
+                    frmTarget.lng完了指定 = 0;
+                }
+
+                // 削除指定
+                if (削除指定Button1.Checked)
+                {
+                    frmTarget.lng削除指定 = 1;
+                }
+                else if (削除指定Button2.Checked)
+                {
+                    frmTarget.lng削除指定 = 2;
+                }
+                else if (削除指定Button3.Checked)
+                {
+                    frmTarget.lng削除指定 = 0;
+                }
 
                 if (!frmTarget.DoUpdate())
                 {
@@ -124,6 +245,8 @@ namespace u_net
                     this.Close();
                     return;
                 }
+
+                //fn.WaitForm.Close();
             }
             finally
             {
@@ -571,6 +694,13 @@ namespace u_net
                 // エラーが発生した場合の処理
                 MessageBox.Show($"エラーが発生しました: {ex.Message}", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void 申請者コード_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            OriginalClass.SetComboBoxAppearance((ComboBox)sender, e, new int[] { 200, 0 }, new string[] { "Display", "Display2" });
+            申請者コード.Invalidate();
+            申請者コード.DroppedDown = true;
         }
 
         // Nz メソッドの代替

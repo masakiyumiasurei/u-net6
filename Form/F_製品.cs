@@ -16,6 +16,9 @@ using System.Windows.Forms;
 using Newtonsoft.Json.Linq;
 using System.Drawing.Imaging;
 using System.Drawing.Printing;
+using System.Text;
+using Pao.Reports;
+using GrapeCity.Win.MultiRow;
 
 namespace u_net
 {
@@ -729,9 +732,12 @@ namespace u_net
                 if (CurrentEdition == Convert.ToInt32(製品版数.Text))
                 {
                     状態.Text = "最新版";
+                    状態.ForeColor = Color.Red;
                 }
                 else
                 {
+                    状態.ForeColor = Color.Black;
+
                     if (製品版数.GetItemText(製品版数.Items[0]) == "")
                     {
                         状態.Text = "改版中";
@@ -781,9 +787,18 @@ namespace u_net
                 {
                     廃止表示.BringToFront();
                 }
-                
+
 
                 VariableSet.SetTable2Form(this, strSQL, cn);
+
+                if (状態.Text == "最新版")
+                {
+                    状態.ForeColor = Color.Red;
+                }
+                else
+                {
+                    状態.ForeColor = Color.Black;
+                }
 
                 return true;
 
@@ -2108,7 +2123,6 @@ namespace u_net
         }
 
 
-
         private void コマンドツール_Click(object sender, EventArgs e)
         {
             F_製品_ツール targetform = new F_製品_ツール();
@@ -2176,39 +2190,165 @@ namespace u_net
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error in コマンド仕入先_Click: " + ex.Message);
+                Console.WriteLine("Error in コマンドユニット_Click: " + ex.Message);
             }
         }
 
-        //未着手
         private void コマンドユニット表_Click(object sender, EventArgs e)
         {
-            try
-            {
+            IReport paoRep = ReportCreator.GetPreview();
 
-                if (this.ActiveControl == this.コマンドユニット表)
+            paoRep.LoadDefFile("../../../Reports/ユニット表.prepd");
+
+            Connect();
+
+            DataRowCollection Vユニット表;
+
+            string sqlQuery = "SELECT * FROM Vユニット表 where 製品コード='" + CurrentCode + "' and 製品版数=" + CurrentEdition + " ORDER BY 明細番号";
+
+            using (SqlCommand command = new SqlCommand(sqlQuery, cn))
+            {
+                using (SqlDataAdapter adapter = new SqlDataAdapter(command))
                 {
-                    GetNextControl(コマンドユニット表, false).Focus();
+                    DataSet dataSet = new DataSet();
+
+                    adapter.Fill(dataSet);
+
+                    Vユニット表 = dataSet.Tables[0].Rows;
+
+                }
+            }
+
+            //最大行数
+            int maxRow = 49;
+            //現在の行
+            int CurRow = 0;
+            //行数
+            int RowCount = maxRow;
+            if (Vユニット表.Count > 0)
+            {
+                RowCount = Vユニット表.Count;
+            }
+
+            int page = 1;
+            double maxPage = Math.Ceiling((double)RowCount / maxRow);
+
+            DateTime now = DateTime.Now;
+
+            int lenB;
+
+            //描画すべき行がある限りページを増やす
+            while (RowCount > 0)
+            {
+                RowCount -= maxRow;
+
+                paoRep.PageStart();
+
+                //ヘッダー
+                paoRep.Write("製品コード",製品コード.Text != "" ? 製品コード.Text : " ");
+                paoRep.Write("製品版数", 製品版数.Text != "" ? 製品版数.Text : " ");
+                paoRep.Write("製品名", 品名.Text != "" ? 品名.Text : " ");
+                paoRep.Write("シリーズ名", シリーズ名.Text != "" ? シリーズ名.Text : " ");
+
+                if(製品明細1.Detail.SortOrder != 0)
+                {
+                    paoRep.Write("確認表示","（確認用）");
+                }
+                else
+                {
+                    paoRep.Write("確認表示", "");
                 }
 
-                //string strCode = this.メーカーコード.Text;
-                //if (string.IsNullOrEmpty(strCode))
-                //{
-                //    MessageBox.Show("メーカーコードを入力してください。", BASE_CAPTION, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                //    this.メーカーコード.Focus();
-                //}
-                //else
-                //{
-                //    F_メーカー targetform = new F_メーカー();
+                if (string.IsNullOrEmpty(識別コード.Text))
+                {
+                    paoRep.Write("指導所番号", " ");
+                }
+                else
+                {
+                    string 指導書番号 = $"{識別コード.Text}-04{page:D2}";
+                    paoRep.Write("指導書番号", 指導書番号);
+                }
 
-                //    targetform.args = strCode;
-                //    targetform.ShowDialog();
-                //}
+                //フッダー
+                paoRep.Write("出力日時", "出力日時：" + now.ToString("yyyy/MM/dd HH:mm:ss"));
+                paoRep.Write("ページ", ("ページ： " + page + "/" + maxPage).ToString());
+
+                //明細
+                for (var i = 0; i < maxRow; i++)
+                {
+                    if (CurRow >= Vユニット表.Count) break;
+
+                    DataRow targetRow = Vユニット表[CurRow];
+
+                    paoRep.Write("明細番号", targetRow["明細番号"].ToString() != "" ? targetRow["明細番号"].ToString() : " ", i + 1);
+                    paoRep.Write("型式名", targetRow["型式名"].ToString() != "" ? targetRow["型式名"].ToString() : " ", i + 1);
+                    paoRep.Write("ユニットコード", targetRow["ユニットコード"].ToString() != "" ? targetRow["ユニットコード"].ToString() : " ", i + 1);
+                    paoRep.Write("ユニット版数", targetRow["ユニット版数"].ToString() != "" ? targetRow["ユニット版数"].ToString() : " ", i + 1);
+                    paoRep.Write("品名", targetRow["品名"].ToString() != "" ? targetRow["品名"].ToString() : " ", i + 1);
+                    paoRep.Write("型番", targetRow["型番"].ToString() != "" ? targetRow["型番"].ToString() : " ", i + 1);
+                    paoRep.Write("ユニット指導書番号", targetRow["ユニット指導書番号"].ToString() != "" ? targetRow["ユニット指導書番号"].ToString() : " ", i + 1);
+
+
+                    paoRep.z_Objects.SetObject("型式名", i + 1);
+                    lenB = Encoding.Default.GetBytes(targetRow["型式名"].ToString()).Length;
+                    if (10 < lenB)
+                    {
+                        paoRep.z_Objects.z_Text.z_FontAttr.Size = 6;
+                    }
+                    else
+                    {
+                        paoRep.z_Objects.z_Text.z_FontAttr.Size = 9;
+                    }
+
+                    paoRep.z_Objects.SetObject("品名", i + 1);
+                    lenB = Encoding.Default.GetBytes(targetRow["品名"].ToString()).Length;
+                    if (28 < lenB)
+                    {
+                        paoRep.z_Objects.z_Text.z_FontAttr.Size = 6;
+                    }
+                    else
+                    {
+                        paoRep.z_Objects.z_Text.z_FontAttr.Size = 9;
+                    }
+
+                    paoRep.z_Objects.SetObject("型番", i + 1);
+                    lenB = Encoding.Default.GetBytes(targetRow["型番"].ToString()).Length;
+                    if (26 < lenB)
+                    {
+                        paoRep.z_Objects.z_Text.z_FontAttr.Size = 7;
+                    }
+                    else
+                    {
+                        paoRep.z_Objects.z_Text.z_FontAttr.Size = 9;
+                    }
+
+                    paoRep.z_Objects.SetObject("ユニット指導書番号", i + 1);
+                    lenB = Encoding.Default.GetBytes(targetRow["ユニット指導書番号"].ToString()).Length;
+                    if (26 < lenB)
+                    {
+                        paoRep.z_Objects.z_Text.z_FontAttr.Size = 6;
+                    }
+                    else
+                    {
+                        paoRep.z_Objects.z_Text.z_FontAttr.Size = 8;
+                    }
+
+
+
+                    CurRow++;
+
+
+                }
+
+                page++;
+
+                paoRep.PageEnd();
+
             }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error in コマンドメーカー_Click: " + ex.Message);
-            }
+
+
+
+            paoRep.Output();
         }
 
         private void コマンド終了_Click(object sender, EventArgs e)

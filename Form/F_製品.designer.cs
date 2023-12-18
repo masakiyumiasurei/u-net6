@@ -971,7 +971,6 @@ namespace u_net
             // 状態
             // 
             this.状態.BackColor = System.Drawing.SystemColors.Control;
-            this.状態.Enabled = false;
             this.状態.Font = new System.Drawing.Font("BIZ UDゴシック", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.状態.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.状態.Location = new System.Drawing.Point(549, 122);
