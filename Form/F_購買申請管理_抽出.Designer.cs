@@ -179,7 +179,6 @@
             終了指定Button3.Name = "終了指定Button3";
             終了指定Button3.Size = new Size(93, 18);
             終了指定Button3.TabIndex = 204;
-            終了指定Button3.TabStop = true;
             終了指定Button3.Text = "指定しない";
             終了指定Button3.UseVisualStyleBackColor = true;
             // 
@@ -190,7 +189,6 @@
             終了指定Button2.Name = "終了指定Button2";
             終了指定Button2.Size = new Size(106, 18);
             終了指定Button2.TabIndex = 2;
-            終了指定Button2.TabStop = true;
             終了指定Button2.Text = "終了している";
             終了指定Button2.UseVisualStyleBackColor = true;
             // 
@@ -201,7 +199,6 @@
             終了指定Button1.Name = "終了指定Button1";
             終了指定Button1.Size = new Size(121, 18);
             終了指定Button1.TabIndex = 1;
-            終了指定Button1.TabStop = true;
             終了指定Button1.Text = "終了していない";
             終了指定Button1.UseVisualStyleBackColor = true;
             // 
@@ -225,7 +222,6 @@
             完了指定Button3.Name = "完了指定Button3";
             完了指定Button3.Size = new Size(93, 18);
             完了指定Button3.TabIndex = 204;
-            完了指定Button3.TabStop = true;
             完了指定Button3.Text = "指定しない";
             完了指定Button3.UseVisualStyleBackColor = true;
             // 
@@ -236,7 +232,6 @@
             完了指定Button2.Name = "完了指定Button2";
             完了指定Button2.Size = new Size(106, 18);
             完了指定Button2.TabIndex = 2;
-            完了指定Button2.TabStop = true;
             完了指定Button2.Text = "完了している";
             完了指定Button2.UseVisualStyleBackColor = true;
             // 
@@ -247,7 +242,6 @@
             完了指定Button1.Name = "完了指定Button1";
             完了指定Button1.Size = new Size(121, 18);
             完了指定Button1.TabIndex = 1;
-            完了指定Button1.TabStop = true;
             完了指定Button1.Text = "完了していない";
             完了指定Button1.UseVisualStyleBackColor = true;
             // 
@@ -513,11 +507,15 @@
             // 
             // 申請者コード
             // 
+            申請者コード.AutoCompleteSource = AutoCompleteSource.FileSystem;
+            申請者コード.DrawMode = DrawMode.OwnerDrawFixed;
             申請者コード.FormattingEnabled = true;
+            申請者コード.ImeMode = ImeMode.Disable;
             申請者コード.Location = new Point(116, 170);
             申請者コード.Name = "申請者コード";
-            申請者コード.Size = new Size(188, 23);
+            申請者コード.Size = new Size(188, 24);
             申請者コード.TabIndex = 14;
+            申請者コード.DrawItem += 申請者コード_DrawItem;
             申請者コード.Enter += 申請者コード_Enter;
             // 
             // 削除指定
@@ -540,7 +538,6 @@
             削除指定Button3.Name = "削除指定Button3";
             削除指定Button3.Size = new Size(93, 18);
             削除指定Button3.TabIndex = 204;
-            削除指定Button3.TabStop = true;
             削除指定Button3.Text = "指定しない";
             削除指定Button3.UseVisualStyleBackColor = true;
             // 
@@ -551,7 +548,6 @@
             削除指定Button2.Name = "削除指定Button2";
             削除指定Button2.Size = new Size(106, 18);
             削除指定Button2.TabIndex = 2;
-            削除指定Button2.TabStop = true;
             削除指定Button2.Text = "削除している";
             削除指定Button2.UseVisualStyleBackColor = true;
             // 
@@ -562,7 +558,6 @@
             削除指定Button1.Name = "削除指定Button1";
             削除指定Button1.Size = new Size(121, 18);
             削除指定Button1.TabIndex = 1;
-            削除指定Button1.TabStop = true;
             削除指定Button1.Text = "削除していない";
             削除指定Button1.UseVisualStyleBackColor = true;
             // 
@@ -573,7 +568,6 @@
             承認指定Button1.Name = "承認指定Button1";
             承認指定Button1.Size = new Size(121, 18);
             承認指定Button1.TabIndex = 1;
-            承認指定Button1.TabStop = true;
             承認指定Button1.Text = "承認していない";
             承認指定Button1.UseVisualStyleBackColor = true;
             // 
@@ -584,7 +578,6 @@
             承認指定Button2.Name = "承認指定Button2";
             承認指定Button2.Size = new Size(106, 18);
             承認指定Button2.TabIndex = 2;
-            承認指定Button2.TabStop = true;
             承認指定Button2.Text = "承認している";
             承認指定Button2.UseVisualStyleBackColor = true;
             // 
@@ -595,7 +588,6 @@
             承認指定Button3.Name = "承認指定Button3";
             承認指定Button3.Size = new Size(93, 18);
             承認指定Button3.TabIndex = 204;
-            承認指定Button3.TabStop = true;
             承認指定Button3.Text = "指定しない";
             承認指定Button3.UseVisualStyleBackColor = true;
             // 
