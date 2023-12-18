@@ -425,7 +425,7 @@ namespace u_net
 
                     string strwhere = " メーカーコード='" + this.メーカーコード.Text + "' and Revision=" + this.Revision.Text;
 
-                    if (!DataUpdater.UpdateOrInsertDataFrom(this, cn, "Mメーカー", strwhere, "メーカーコード", transaction))
+                    if (!DataUpdater.UpdateOrInsertDataFrom(this, cn, "Mメーカー", strwhere, "メーカーコード", transaction, "Revision"))
                     {
                         //transaction.Rollback(); 関数内でロールバック入れた
 

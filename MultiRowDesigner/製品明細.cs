@@ -287,6 +287,9 @@ namespace MultiRowDesigner
                     break;
 
             }
+
+            F_製品? f_製品 = Application.OpenForms.OfType<F_製品>().FirstOrDefault();
+            f_製品.ChangedData(true);
         }
 
         private void UpdatedControl(Cell controlObject)

@@ -754,7 +754,34 @@ namespace u_net
 
                 strSQL = "SELECT * FROM V製品ヘッダ WHERE 製品コード ='" + codeString + "' and 製品版数 = " + editionNumber;
 
+    
+                if (string.IsNullOrEmpty(確定日時.Text))
+                {
+                    確定表示.SendToBack();
+                }
+                else
+                {
+                    確定表示.BringToFront();
+                }
+ 
+                if (string.IsNullOrEmpty(承認日時.Text))
+                {
+                    承認表示.SendToBack();
+                }
+                else
+                {
+                    承認表示.BringToFront();
+                }
 
+                if (SupersededDate == null || string.IsNullOrEmpty(SupersededDate.Text))
+                {
+                    廃止表示.SendToBack();
+                }
+                else
+                {
+                    廃止表示.BringToFront();
+                }
+                
 
                 VariableSet.SetTable2Form(this, strSQL, cn);
 
@@ -1796,10 +1823,6 @@ namespace u_net
                     // ログオンユーザーが指定ユーザーなら認証者コードにユーザーコードを設定する
                     if (CommonConstants.LoginUserCode != strHeadCode)
                     {
-
-                    }
-                    else
-                    {
                         using (var authenticationForm = new F_認証())
                         {
                             authenticationForm.args = strHeadCode;
@@ -1923,9 +1946,14 @@ namespace u_net
                         {
                             MessageBox.Show("改版を取り消しました。", "削除コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+                            
+
                             // 前版を表示する
                             製品版数.Focus();
                             製品版数.Text = (CurrentEdition - 1).ToString();
+
+                            // 版数のソース更新
+                            UpdateEditionList(this.CurrentCode);
                         }
                         else
                         {
@@ -1984,6 +2012,8 @@ namespace u_net
 
                     if (count > 0)
                     {
+                        strKey = $"製品コード = '{codeString}' AND 製品版数 = {editionNumber} ";
+
                         // 承認されていない場合にのみ削除処理を実行
                         string strSQL2 = $"DELETE FROM M製品 WHERE {strKey}";
                         string strSQL3 = $"DELETE FROM M製品明細 WHERE {strKey}";
@@ -2481,13 +2511,11 @@ namespace u_net
         {
             if (string.IsNullOrEmpty(確定日時.Text))
             {
-                確定日時.BackColor = Color.Black;
-                確定日時.ForeColor = Color.Black;
+                確定表示.SendToBack();
             }
             else
             {
-                確定日時.BackColor = Color.Red;
-                確定日時.ForeColor = Color.Red;
+                確定表示.BringToFront();
             }
         }
 
@@ -2495,28 +2523,24 @@ namespace u_net
         {
             if (string.IsNullOrEmpty(承認日時.Text))
             {
-                承認日時.BackColor = Color.Black;
-                承認日時.ForeColor = Color.Black;
+                承認表示.SendToBack();
             }
             else
             {
-                承認日時.BackColor = Color.Red;
-                承認日時.ForeColor = Color.Red;
+                承認表示.BringToFront();
             }
         }
 
 
         private void SupersededDate_TextChanged(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(SupersededDate.Text))
+            if (SupersededDate == null || string.IsNullOrEmpty(SupersededDate.Text))
             {
-                廃止.BackColor = Color.Black;
-                廃止.ForeColor = Color.Black;
+                廃止表示.SendToBack();
             }
             else
             {
-                廃止.BackColor = Color.Red;
-                廃止.ForeColor = Color.Red;
+                廃止表示.BringToFront();
             }
         }
     }
