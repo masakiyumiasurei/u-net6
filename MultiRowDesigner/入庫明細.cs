@@ -161,8 +161,8 @@ namespace MultiRowDesigner
        
         private void gcMultiRow1_ModifiedChanged(object sender, EventArgs e)
         {
-            F_入庫? f_入庫 = Application.OpenForms.OfType<F_入庫>().FirstOrDefault();
-            f_入庫.ChangedData(true);
+            //F_入庫? f_入庫 = Application.OpenForms.OfType<F_入庫>().FirstOrDefault();
+            //f_入庫.ChangedData(true);
         }
 
 
