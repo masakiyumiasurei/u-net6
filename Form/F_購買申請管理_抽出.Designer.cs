@@ -35,13 +35,13 @@
             label1 = new Label();
             シリーズ名 = new TextBox();
             終了指定 = new GroupBox();
-            承認指定button3 = new RadioButton();
-            承認指定button2 = new RadioButton();
-            承認指定button1 = new RadioButton();
+            終了指定Button3 = new RadioButton();
+            終了指定Button2 = new RadioButton();
+            終了指定Button1 = new RadioButton();
             完了指定 = new GroupBox();
-            削除指定Button3 = new RadioButton();
-            削除指定Button2 = new RadioButton();
-            削除指定Button1 = new RadioButton();
+            完了指定Button3 = new RadioButton();
+            完了指定Button2 = new RadioButton();
+            完了指定Button1 = new RadioButton();
             抽出ボタン = new Button();
             キャンセルボタン = new Button();
             申請日開始選択 = new Button();
@@ -63,12 +63,12 @@
             申請者コード_ラベル = new Label();
             申請者コード = new ComboBox();
             削除指定 = new GroupBox();
-            radioButton1 = new RadioButton();
-            radioButton2 = new RadioButton();
-            radioButton3 = new RadioButton();
-            確定指定Button1 = new RadioButton();
-            確定指定Button2 = new RadioButton();
-            確定指定Button3 = new RadioButton();
+            削除指定Button3 = new RadioButton();
+            削除指定Button2 = new RadioButton();
+            削除指定Button1 = new RadioButton();
+            承認指定Button1 = new RadioButton();
+            承認指定Button2 = new RadioButton();
+            承認指定Button3 = new RadioButton();
             承認指定 = new GroupBox();
             終了指定.SuspendLayout();
             完了指定.SuspendLayout();
@@ -161,9 +161,9 @@
             // 
             // 終了指定
             // 
-            終了指定.Controls.Add(承認指定button3);
-            終了指定.Controls.Add(承認指定button2);
-            終了指定.Controls.Add(承認指定button1);
+            終了指定.Controls.Add(終了指定Button3);
+            終了指定.Controls.Add(終了指定Button2);
+            終了指定.Controls.Add(終了指定Button1);
             終了指定.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             終了指定.Location = new Point(16, 293);
             終了指定.Name = "終了指定";
@@ -172,44 +172,44 @@
             終了指定.TabStop = false;
             終了指定.Text = "終了指定(&E)";
             // 
-            // 承認指定button3
+            // 終了指定Button3
             // 
-            承認指定button3.AutoSize = true;
-            承認指定button3.Location = new Point(347, 22);
-            承認指定button3.Name = "承認指定button3";
-            承認指定button3.Size = new Size(93, 18);
-            承認指定button3.TabIndex = 204;
-            承認指定button3.TabStop = true;
-            承認指定button3.Text = "指定しない";
-            承認指定button3.UseVisualStyleBackColor = true;
+            終了指定Button3.AutoSize = true;
+            終了指定Button3.Location = new Point(347, 22);
+            終了指定Button3.Name = "終了指定Button3";
+            終了指定Button3.Size = new Size(93, 18);
+            終了指定Button3.TabIndex = 204;
+            終了指定Button3.TabStop = true;
+            終了指定Button3.Text = "指定しない";
+            終了指定Button3.UseVisualStyleBackColor = true;
             // 
-            // 承認指定button2
+            // 終了指定Button2
             // 
-            承認指定button2.AutoSize = true;
-            承認指定button2.Location = new Point(195, 22);
-            承認指定button2.Name = "承認指定button2";
-            承認指定button2.Size = new Size(106, 18);
-            承認指定button2.TabIndex = 2;
-            承認指定button2.TabStop = true;
-            承認指定button2.Text = "終了している";
-            承認指定button2.UseVisualStyleBackColor = true;
+            終了指定Button2.AutoSize = true;
+            終了指定Button2.Location = new Point(195, 22);
+            終了指定Button2.Name = "終了指定Button2";
+            終了指定Button2.Size = new Size(106, 18);
+            終了指定Button2.TabIndex = 2;
+            終了指定Button2.TabStop = true;
+            終了指定Button2.Text = "終了している";
+            終了指定Button2.UseVisualStyleBackColor = true;
             // 
-            // 承認指定button1
+            // 終了指定Button1
             // 
-            承認指定button1.AutoSize = true;
-            承認指定button1.Location = new Point(30, 22);
-            承認指定button1.Name = "承認指定button1";
-            承認指定button1.Size = new Size(121, 18);
-            承認指定button1.TabIndex = 1;
-            承認指定button1.TabStop = true;
-            承認指定button1.Text = "終了していない";
-            承認指定button1.UseVisualStyleBackColor = true;
+            終了指定Button1.AutoSize = true;
+            終了指定Button1.Location = new Point(30, 22);
+            終了指定Button1.Name = "終了指定Button1";
+            終了指定Button1.Size = new Size(121, 18);
+            終了指定Button1.TabIndex = 1;
+            終了指定Button1.TabStop = true;
+            終了指定Button1.Text = "終了していない";
+            終了指定Button1.UseVisualStyleBackColor = true;
             // 
             // 完了指定
             // 
-            完了指定.Controls.Add(削除指定Button3);
-            完了指定.Controls.Add(削除指定Button2);
-            完了指定.Controls.Add(削除指定Button1);
+            完了指定.Controls.Add(完了指定Button3);
+            完了指定.Controls.Add(完了指定Button2);
+            完了指定.Controls.Add(完了指定Button1);
             完了指定.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             完了指定.Location = new Point(16, 373);
             完了指定.Name = "完了指定";
@@ -218,38 +218,38 @@
             完了指定.TabStop = false;
             完了指定.Text = "完了指定(&F)";
             // 
-            // 削除指定Button3
+            // 完了指定Button3
             // 
-            削除指定Button3.AutoSize = true;
-            削除指定Button3.Location = new Point(347, 22);
-            削除指定Button3.Name = "削除指定Button3";
-            削除指定Button3.Size = new Size(93, 18);
-            削除指定Button3.TabIndex = 204;
-            削除指定Button3.TabStop = true;
-            削除指定Button3.Text = "指定しない";
-            削除指定Button3.UseVisualStyleBackColor = true;
+            完了指定Button3.AutoSize = true;
+            完了指定Button3.Location = new Point(347, 22);
+            完了指定Button3.Name = "完了指定Button3";
+            完了指定Button3.Size = new Size(93, 18);
+            完了指定Button3.TabIndex = 204;
+            完了指定Button3.TabStop = true;
+            完了指定Button3.Text = "指定しない";
+            完了指定Button3.UseVisualStyleBackColor = true;
             // 
-            // 削除指定Button2
+            // 完了指定Button2
             // 
-            削除指定Button2.AutoSize = true;
-            削除指定Button2.Location = new Point(195, 22);
-            削除指定Button2.Name = "削除指定Button2";
-            削除指定Button2.Size = new Size(106, 18);
-            削除指定Button2.TabIndex = 2;
-            削除指定Button2.TabStop = true;
-            削除指定Button2.Text = "完了している";
-            削除指定Button2.UseVisualStyleBackColor = true;
+            完了指定Button2.AutoSize = true;
+            完了指定Button2.Location = new Point(195, 22);
+            完了指定Button2.Name = "完了指定Button2";
+            完了指定Button2.Size = new Size(106, 18);
+            完了指定Button2.TabIndex = 2;
+            完了指定Button2.TabStop = true;
+            完了指定Button2.Text = "完了している";
+            完了指定Button2.UseVisualStyleBackColor = true;
             // 
-            // 削除指定Button1
+            // 完了指定Button1
             // 
-            削除指定Button1.AutoSize = true;
-            削除指定Button1.Location = new Point(30, 22);
-            削除指定Button1.Name = "削除指定Button1";
-            削除指定Button1.Size = new Size(121, 18);
-            削除指定Button1.TabIndex = 1;
-            削除指定Button1.TabStop = true;
-            削除指定Button1.Text = "完了していない";
-            削除指定Button1.UseVisualStyleBackColor = true;
+            完了指定Button1.AutoSize = true;
+            完了指定Button1.Location = new Point(30, 22);
+            完了指定Button1.Name = "完了指定Button1";
+            完了指定Button1.Size = new Size(121, 18);
+            完了指定Button1.TabIndex = 1;
+            完了指定Button1.TabStop = true;
+            完了指定Button1.Text = "完了していない";
+            完了指定Button1.UseVisualStyleBackColor = true;
             // 
             // 抽出ボタン
             // 
@@ -522,9 +522,9 @@
             // 
             // 削除指定
             // 
-            削除指定.Controls.Add(radioButton1);
-            削除指定.Controls.Add(radioButton2);
-            削除指定.Controls.Add(radioButton3);
+            削除指定.Controls.Add(削除指定Button3);
+            削除指定.Controls.Add(削除指定Button2);
+            削除指定.Controls.Add(削除指定Button1);
             削除指定.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             削除指定.Location = new Point(16, 453);
             削除指定.Name = "削除指定";
@@ -533,77 +533,77 @@
             削除指定.TabStop = false;
             削除指定.Text = "削除指定(&L)";
             // 
-            // radioButton1
+            // 削除指定Button3
             // 
-            radioButton1.AutoSize = true;
-            radioButton1.Location = new Point(347, 22);
-            radioButton1.Name = "radioButton1";
-            radioButton1.Size = new Size(93, 18);
-            radioButton1.TabIndex = 204;
-            radioButton1.TabStop = true;
-            radioButton1.Text = "指定しない";
-            radioButton1.UseVisualStyleBackColor = true;
+            削除指定Button3.AutoSize = true;
+            削除指定Button3.Location = new Point(347, 22);
+            削除指定Button3.Name = "削除指定Button3";
+            削除指定Button3.Size = new Size(93, 18);
+            削除指定Button3.TabIndex = 204;
+            削除指定Button3.TabStop = true;
+            削除指定Button3.Text = "指定しない";
+            削除指定Button3.UseVisualStyleBackColor = true;
             // 
-            // radioButton2
+            // 削除指定Button2
             // 
-            radioButton2.AutoSize = true;
-            radioButton2.Location = new Point(195, 22);
-            radioButton2.Name = "radioButton2";
-            radioButton2.Size = new Size(106, 18);
-            radioButton2.TabIndex = 2;
-            radioButton2.TabStop = true;
-            radioButton2.Text = "削除している";
-            radioButton2.UseVisualStyleBackColor = true;
+            削除指定Button2.AutoSize = true;
+            削除指定Button2.Location = new Point(195, 22);
+            削除指定Button2.Name = "削除指定Button2";
+            削除指定Button2.Size = new Size(106, 18);
+            削除指定Button2.TabIndex = 2;
+            削除指定Button2.TabStop = true;
+            削除指定Button2.Text = "削除している";
+            削除指定Button2.UseVisualStyleBackColor = true;
             // 
-            // radioButton3
+            // 削除指定Button1
             // 
-            radioButton3.AutoSize = true;
-            radioButton3.Location = new Point(30, 22);
-            radioButton3.Name = "radioButton3";
-            radioButton3.Size = new Size(121, 18);
-            radioButton3.TabIndex = 1;
-            radioButton3.TabStop = true;
-            radioButton3.Text = "削除していない";
-            radioButton3.UseVisualStyleBackColor = true;
+            削除指定Button1.AutoSize = true;
+            削除指定Button1.Location = new Point(30, 22);
+            削除指定Button1.Name = "削除指定Button1";
+            削除指定Button1.Size = new Size(121, 18);
+            削除指定Button1.TabIndex = 1;
+            削除指定Button1.TabStop = true;
+            削除指定Button1.Text = "削除していない";
+            削除指定Button1.UseVisualStyleBackColor = true;
             // 
-            // 確定指定Button1
+            // 承認指定Button1
             // 
-            確定指定Button1.AutoSize = true;
-            確定指定Button1.Location = new Point(30, 22);
-            確定指定Button1.Name = "確定指定Button1";
-            確定指定Button1.Size = new Size(121, 18);
-            確定指定Button1.TabIndex = 1;
-            確定指定Button1.TabStop = true;
-            確定指定Button1.Text = "承認していない";
-            確定指定Button1.UseVisualStyleBackColor = true;
+            承認指定Button1.AutoSize = true;
+            承認指定Button1.Location = new Point(30, 22);
+            承認指定Button1.Name = "承認指定Button1";
+            承認指定Button1.Size = new Size(121, 18);
+            承認指定Button1.TabIndex = 1;
+            承認指定Button1.TabStop = true;
+            承認指定Button1.Text = "承認していない";
+            承認指定Button1.UseVisualStyleBackColor = true;
             // 
-            // 確定指定Button2
+            // 承認指定Button2
             // 
-            確定指定Button2.AutoSize = true;
-            確定指定Button2.Location = new Point(195, 22);
-            確定指定Button2.Name = "確定指定Button2";
-            確定指定Button2.Size = new Size(106, 18);
-            確定指定Button2.TabIndex = 2;
-            確定指定Button2.TabStop = true;
-            確定指定Button2.Text = "承認している";
-            確定指定Button2.UseVisualStyleBackColor = true;
+            承認指定Button2.AutoSize = true;
+            承認指定Button2.Location = new Point(195, 22);
+            承認指定Button2.Name = "承認指定Button2";
+            承認指定Button2.Size = new Size(106, 18);
+            承認指定Button2.TabIndex = 2;
+            承認指定Button2.TabStop = true;
+            承認指定Button2.Text = "承認している";
+            承認指定Button2.UseVisualStyleBackColor = true;
             // 
-            // 確定指定Button3
+            // 承認指定Button3
             // 
-            確定指定Button3.AutoSize = true;
-            確定指定Button3.Location = new Point(347, 22);
-            確定指定Button3.Name = "確定指定Button3";
-            確定指定Button3.Size = new Size(93, 18);
-            確定指定Button3.TabIndex = 204;
-            確定指定Button3.TabStop = true;
-            確定指定Button3.Text = "指定しない";
-            確定指定Button3.UseVisualStyleBackColor = true;
+            承認指定Button3.AutoSize = true;
+            承認指定Button3.Location = new Point(347, 22);
+            承認指定Button3.Name = "承認指定Button3";
+            承認指定Button3.Size = new Size(93, 18);
+            承認指定Button3.TabIndex = 204;
+            承認指定Button3.TabStop = true;
+            承認指定Button3.Text = "指定しない";
+            承認指定Button3.UseVisualStyleBackColor = true;
             // 
             // 承認指定
             // 
-            承認指定.Controls.Add(確定指定Button3);
-            承認指定.Controls.Add(確定指定Button2);
-            承認指定.Controls.Add(確定指定Button1);
+            承認指定.Controls.Add(承認指定Button3);
+            承認指定.Controls.Add(承認指定Button2);
+            承認指定.Controls.Add(承認指定Button1);
             承認指定.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             承認指定.Location = new Point(16, 213);
             承認指定.Name = "承認指定";
@@ -675,13 +675,13 @@
         private Label label2;
         private TextBox 更新日終了;
         private GroupBox 終了指定;
-        private RadioButton 承認指定button3;
-        private RadioButton 承認指定button2;
-        private RadioButton 承認指定button1;
+        private RadioButton 終了指定Button3;
+        private RadioButton 終了指定Button2;
+        private RadioButton 終了指定Button1;
         private GroupBox 完了指定;
-        private RadioButton 削除指定Button3;
-        private RadioButton 削除指定Button2;
-        private RadioButton 削除指定Button1;
+        private RadioButton 完了指定Button3;
+        private RadioButton 完了指定Button2;
+        private RadioButton 完了指定Button1;
         private Button 抽出ボタン;
         private Button キャンセルボタン;
         private Button 申請日開始選択;
@@ -702,12 +702,12 @@
         private Label 申請者コード_ラベル;
         private ComboBox 申請者コード;
         private GroupBox 削除指定;
-        private RadioButton radioButton1;
-        private RadioButton radioButton2;
-        private RadioButton radioButton3;
-        private RadioButton 確定指定Button1;
-        private RadioButton 確定指定Button2;
-        private RadioButton 確定指定Button3;
+        private RadioButton 削除指定Button3;
+        private RadioButton 削除指定Button2;
+        private RadioButton 削除指定Button1;
+        private RadioButton 承認指定Button1;
+        private RadioButton 承認指定Button2;
+        private RadioButton 承認指定Button3;
         private GroupBox 承認指定;
     }
 }
