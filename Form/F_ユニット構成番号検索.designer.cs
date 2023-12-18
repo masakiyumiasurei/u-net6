@@ -73,10 +73,12 @@ namespace u_net
             this.空き検索ボタン = new System.Windows.Forms.Button();
             this.末尾検索ボタン = new System.Windows.Forms.Button();
             this.対象ユニット_ラベル = new System.Windows.Forms.Label();
-            this.対象ユニット = new System.Windows.Forms.ListBox();
             this.検索結果_ラベル = new System.Windows.Forms.Label();
-            this.検索結果 = new System.Windows.Forms.ListBox();
+            this.対象ユニット = new System.Windows.Forms.DataGridView();
+            this.検索結果 = new System.Windows.Forms.DataGridView();
             this.statusStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.対象ユニット)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.検索結果)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridViewTextBoxColumn1
@@ -285,7 +287,6 @@ namespace u_net
             // 製品版数
             // 
             this.製品版数.BackColor = System.Drawing.SystemColors.Window;
-            this.製品版数.Enabled = false;
             this.製品版数.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.製品版数.FormattingEnabled = true;
             this.製品版数.ImeMode = System.Windows.Forms.ImeMode.Disable;
@@ -322,7 +323,7 @@ namespace u_net
             this.statusStrip1.Location = new System.Drawing.Point(0, 526);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 19, 0);
-            this.statusStrip1.Size = new System.Drawing.Size(659, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(679, 22);
             this.statusStrip1.TabIndex = 10195;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -334,7 +335,7 @@ namespace u_net
             // 
             // 閉じるボタン
             // 
-            this.閉じるボタン.Location = new System.Drawing.Point(538, 11);
+            this.閉じるボタン.Location = new System.Drawing.Point(556, 11);
             this.閉じるボタン.Margin = new System.Windows.Forms.Padding(4);
             this.閉じるボタン.Name = "閉じるボタン";
             this.閉じるボタン.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -342,6 +343,7 @@ namespace u_net
             this.閉じるボタン.TabIndex = 12;
             this.閉じるボタン.Text = "閉じる(&X)";
             this.閉じるボタン.UseVisualStyleBackColor = true;
+            this.閉じるボタン.Click += new System.EventHandler(this.閉じるボタン_Click);
             // 
             // 製品コード
             // 
@@ -364,6 +366,7 @@ namespace u_net
             this.重複検索ボタン.TabIndex = 5;
             this.重複検索ボタン.Text = "重複検索(&D)";
             this.重複検索ボタン.UseVisualStyleBackColor = true;
+            this.重複検索ボタン.Click += new System.EventHandler(this.重複検索ボタン_Click);
             // 
             // 空き検索ボタン
             // 
@@ -375,6 +378,7 @@ namespace u_net
             this.空き検索ボタン.TabIndex = 6;
             this.空き検索ボタン.Text = "空き検索(&G)";
             this.空き検索ボタン.UseVisualStyleBackColor = true;
+            this.空き検索ボタン.Click += new System.EventHandler(this.空き検索ボタン_Click);
             // 
             // 末尾検索ボタン
             // 
@@ -386,6 +390,7 @@ namespace u_net
             this.末尾検索ボタン.TabIndex = 7;
             this.末尾検索ボタン.Text = "末尾検索(&L)";
             this.末尾検索ボタン.UseVisualStyleBackColor = true;
+            this.末尾検索ボタン.Click += new System.EventHandler(this.末尾検索ボタン_Click);
             // 
             // 対象ユニット_ラベル
             // 
@@ -402,15 +407,6 @@ namespace u_net
             this.対象ユニット_ラベル.Text = "対象ユニット(&U)";
             this.対象ユニット_ラベル.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // 対象ユニット
-            // 
-            this.対象ユニット.FormattingEnabled = true;
-            this.対象ユニット.ItemHeight = 15;
-            this.対象ユニット.Location = new System.Drawing.Point(18, 134);
-            this.対象ユニット.Name = "対象ユニット";
-            this.対象ユニット.Size = new System.Drawing.Size(478, 379);
-            this.対象ユニット.TabIndex = 9;
-            // 
             // 検索結果_ラベル
             // 
             this.検索結果_ラベル.AllowDrop = true;
@@ -426,22 +422,31 @@ namespace u_net
             this.検索結果_ラベル.Text = "検索結果(&F)";
             this.検索結果_ラベル.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // 対象ユニット
+            // 
+            this.対象ユニット.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.対象ユニット.Location = new System.Drawing.Point(18, 134);
+            this.対象ユニット.Name = "対象ユニット";
+            this.対象ユニット.RowTemplate.Height = 25;
+            this.対象ユニット.Size = new System.Drawing.Size(479, 379);
+            this.対象ユニット.TabIndex = 10196;
+            // 
             // 検索結果
             // 
-            this.検索結果.FormattingEnabled = true;
-            this.検索結果.ItemHeight = 15;
+            this.検索結果.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.検索結果.Location = new System.Drawing.Point(503, 104);
             this.検索結果.Name = "検索結果";
-            this.検索結果.Size = new System.Drawing.Size(147, 409);
-            this.検索結果.TabIndex = 11;
+            this.検索結果.RowTemplate.Height = 25;
+            this.検索結果.Size = new System.Drawing.Size(164, 409);
+            this.検索結果.TabIndex = 10197;
             // 
             // F_ユニット構成番号検索
             // 
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(659, 548);
+            this.ClientSize = new System.Drawing.Size(679, 548);
             this.Controls.Add(this.検索結果);
-            this.Controls.Add(this.検索結果_ラベル);
             this.Controls.Add(this.対象ユニット);
+            this.Controls.Add(this.検索結果_ラベル);
             this.Controls.Add(this.対象ユニット_ラベル);
             this.Controls.Add(this.末尾検索ボタン);
             this.Controls.Add(this.空き検索ボタン);
@@ -467,6 +472,8 @@ namespace u_net
             this.Load += new System.EventHandler(this.Form_Load);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.対象ユニット)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.検索結果)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -519,9 +526,9 @@ namespace u_net
         private Button 空き検索ボタン;
         private Button 末尾検索ボタン;
         private Label 対象ユニット_ラベル;
-        private ListBox 対象ユニット;
         private Label 検索結果_ラベル;
-        private ListBox 検索結果;
+        private DataGridView 対象ユニット;
+        private DataGridView 検索結果;
     }
 }
 

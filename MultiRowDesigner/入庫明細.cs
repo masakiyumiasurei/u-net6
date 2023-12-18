@@ -312,6 +312,8 @@ namespace MultiRowDesigner
                     break;
 
             }
+            F_入庫? f_入庫 = Application.OpenForms.OfType<F_入庫>().FirstOrDefault();
+            f_入庫.ChangedData(true);
         }
 
         private void UpdatedControl(Cell controlObject)
@@ -499,7 +501,7 @@ namespace MultiRowDesigner
 
         private void gcMultiRow1_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
        {
-            gcMultiRow1.EndEdit();
+            //gcMultiRow1.EndEdit();
 
             if (e.KeyCode == Keys.Return)
             {
