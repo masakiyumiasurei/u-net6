@@ -382,14 +382,14 @@ namespace u_net
                 else
                 {
                     // Handle the error or logging as needed
-                    Console.WriteLine($"{nameof(F_購買申請管理)}_DoUpdate - An error occurred during update.");
+                    Debug.WriteLine($"{nameof(F_購買申請管理)}_DoUpdate - An error occurred during update.");
                     return false;
                 }
             }
             catch (Exception ex)
             {
                 // Handle the exception or logging as needed
-                Console.WriteLine($"{nameof(F_購買申請管理)}_DoUpdate - {ex.GetType().Name}: {ex.Message}");
+                Debug.WriteLine($"{nameof(F_購買申請管理)}_DoUpdate - {ex.GetType().Name}: {ex.Message}");
                 return false;
             }
             finally
@@ -745,12 +745,16 @@ namespace u_net
             try
             {
                 購買申請明細.Focus();
-                objParent = this;
-
                 gridobject.SuspendLayout();
-                gridobject.ResumeLayout(false);
-                if (!SetGrid()) throw new Exception();
-                if (!FormatGrid()) throw new Exception();
+                ////objParent = this;
+                if (SetGrid() && FormatGrid())
+                {
+                    
+                }
+                else
+                {
+                    Debug.WriteLine($"{nameof(F_購買申請管理)}_コマンド更新_Click - An error occurred during update.");
+                }
             }
             catch (Exception ex)
             {
@@ -759,8 +763,7 @@ namespace u_net
             }
             finally
             {
-                gridobject.SuspendLayout();
-                gridobject.ResumeLayout(true);
+                gridobject.ResumeLayout();
             }
         }
 
