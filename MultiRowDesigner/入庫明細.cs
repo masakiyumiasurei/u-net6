@@ -501,7 +501,7 @@ namespace MultiRowDesigner
 
         private void gcMultiRow1_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
        {
-            gcMultiRow1.EndEdit();
+            //gcMultiRow1.EndEdit();
 
             if (e.KeyCode == Keys.Return)
             {
