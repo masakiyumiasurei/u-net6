@@ -499,6 +499,7 @@
             cellStyle5.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
             cellStyle5.ImageAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.TopLeft;
             cellStyle5.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
+            cellStyle5.Multiline = GrapeCity.Win.MultiRow.MultiRowTriState.True;
             this.メーカー名.Style = cellStyle5;
             this.メーカー名.TabIndex = 5;
             textLengthValidator3.LengthUnit = GrapeCity.Win.MultiRow.LengthUnit.TextElement;
@@ -574,11 +575,12 @@
             // 
             // 買掛区分
             // 
-            this.買掛区分.DataField = "買掛区分コード";
+            this.買掛区分.DataField = "買掛区分";
             this.買掛区分.DisplayMember = "買掛区分";
+            this.買掛区分.DropDownStyle = GrapeCity.Win.MultiRow.MultiRowComboBoxStyle.DropDown;
             this.買掛区分.Location = new System.Drawing.Point(1002, 8);
             this.買掛区分.Name = "買掛区分";
-            this.買掛区分.Size = new System.Drawing.Size(122, 20);
+            this.買掛区分.Size = new System.Drawing.Size(122, 17);
             cellStyle11.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
             cellStyle11.SelectionForeColor = System.Drawing.Color.Black;
             this.買掛区分.Style = cellStyle11;
@@ -597,7 +599,6 @@
             // 
             // 行番号
             // 
-            this.行番号.DataField = "行番号";
             this.行番号.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.行番号.Location = new System.Drawing.Point(25, 0);
             this.行番号.Name = "行番号";
@@ -610,6 +611,7 @@
             cellStyle12.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
             this.行番号.Style = cellStyle12;
             this.行番号.TabIndex = 1;
+            this.行番号.ValueFormat = "%1%";
             // 
             // 買掛明細コード
             // 
@@ -657,10 +659,10 @@
             // 発注コード
             // 
             this.発注コード.DataField = "発注コード";
-            this.発注コード.Location = new System.Drawing.Point(1160, 8);
+            this.発注コード.Location = new System.Drawing.Point(1138, 8);
             this.発注コード.Name = "発注コード";
             this.発注コード.ReadOnly = true;
-            this.発注コード.Size = new System.Drawing.Size(18, 17);
+            this.発注コード.Size = new System.Drawing.Size(20, 17);
             border14.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
             cellStyle16.Border = border14;
             cellStyle16.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
@@ -687,10 +689,10 @@
             // 明細番号
             // 
             this.明細番号.DataField = "明細番号";
-            this.明細番号.Location = new System.Drawing.Point(1133, 5);
+            this.明細番号.Location = new System.Drawing.Point(1167, 5);
             this.明細番号.Name = "明細番号";
             this.明細番号.ReadOnly = true;
-            this.明細番号.Size = new System.Drawing.Size(18, 17);
+            this.明細番号.Size = new System.Drawing.Size(25, 17);
             border16.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
             cellStyle18.Border = border16;
             cellStyle18.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);

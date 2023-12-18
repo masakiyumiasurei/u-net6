@@ -1535,6 +1535,13 @@ namespace u_net
         {
             F_部品 fm = new F_部品();
             fm.args = 発注明細1.CurrentPartsCode;          //発注明細のカレントレコードを渡す
+            if (fm.args=="")
+            {
+                MessageBox.Show("明細を選択してください。","コマンド部品", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            
+            
             fm.ShowDialog();
         }
 

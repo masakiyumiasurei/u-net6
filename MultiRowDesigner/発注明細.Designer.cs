@@ -40,7 +40,7 @@ namespace MultiRowDesigner
             // 
             gcMultiRow1.AllowRowMove = true;
             gcMultiRow1.EditMode = GrapeCity.Win.MultiRow.EditMode.EditOnEnter;
-            gcMultiRow1.Location = new Point(-5, 0);
+            gcMultiRow1.Location = new Point(0, 0);
             gcMultiRow1.Margin = new Padding(5);
             gcMultiRow1.Name = "gcMultiRow1";
             gcMultiRow1.Size = new Size(1518, 333);
@@ -49,11 +49,11 @@ namespace MultiRowDesigner
             gcMultiRow1.TemplateScaleSize = new SizeF(1.33333349F, 1.66666675F);
             gcMultiRow1.Text = "gcMultiRow1";
             gcMultiRow1.RowsAdding += gcMultiRow1_RowsAdding;
-            gcMultiRow1.RowsAdded += gcMultiRow1_RowsAdded;
             gcMultiRow1.RowsRemoved += gcMultiRow1_RowsRemoved;
             gcMultiRow1.CellValidating += gcMultiRow1_CellValidating;
             gcMultiRow1.CellValidated += gcMultiRow1_CellValidated;
             gcMultiRow1.CellEnter += gcMultiRow1_CellEnter;
+            gcMultiRow1.DefaultValuesNeeded += gcMultiRow1_DefaultValuesNeeded;
             gcMultiRow1.EditingControlShowing += gcMultiRow1_EditingControlShowing;
             gcMultiRow1.CellDoubleClick += gcMultiRow1_CellDoubleClick;
             gcMultiRow1.CellContentClick += gcMultiRow1_CellContentButtonClick;
@@ -80,7 +80,7 @@ namespace MultiRowDesigner
             Controls.Add(gcMultiRow1);
             Margin = new Padding(5);
             Name = "発注明細";
-            Size = new Size(1514, 333);
+            Size = new Size(1497, 316);
             Load += 発注明細_Load;
             ((System.ComponentModel.ISupportInitialize)gcMultiRow1).EndInit();
             ResumeLayout(false);
