@@ -865,7 +865,7 @@ namespace u_net
 
                     string strwhere = "製品コード='" + codeString + "' and 製品版数 =" + editionNumber;
                     // ヘッダ部の登録
-                    if (!DataUpdater.UpdateOrInsertDataFrom(this, cn, "M製品", strwhere, "製品コード", transaction))
+                    if (!DataUpdater.UpdateOrInsertDataFrom(this, cn, "M製品", strwhere, "製品コード", transaction,"製品版数"))
                     {
                         transaction.Rollback();  // 変更をキャンセル
                         return false;
@@ -1239,6 +1239,11 @@ namespace u_net
                         //新規行の場合は、処理をスキップ
                         continue;
                     }
+
+                    if(string.IsNullOrEmpty(製品明細1.Detail.Rows[i].Cells["削除対象"].Value?.ToString()))
+                        {
+                            製品明細1.Detail.Rows[i].Cells["削除対象"].Value = false;
+                        }
 
                     if (Convert.ToBoolean(製品明細1.Detail.Rows[i].Cells["削除対象"].Value))
                     {
