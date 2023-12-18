@@ -891,7 +891,6 @@ namespace u_net
             this.廃止.Size = new System.Drawing.Size(20, 20);
             this.廃止.TabIndex = 10180;
             this.廃止.TabStop = false;
-            this.廃止.TextChanged += new System.EventHandler(this.廃止_TextChanged);
             this.廃止.Validated += new System.EventHandler(this.廃止_Validated);
             // 
             // 承認日時
@@ -1074,6 +1073,7 @@ namespace u_net
             this.SupersededDate.TabIndex = 10194;
             this.SupersededDate.TabStop = false;
             this.SupersededDate.Visible = false;
+            this.SupersededDate.TextChanged += new System.EventHandler(this.SupersededDate_TextChanged);
             // 
             // statusStrip1
             // 

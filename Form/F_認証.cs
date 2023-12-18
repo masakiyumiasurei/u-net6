@@ -80,6 +80,10 @@ namespace u_net
             {
                 CommonConstants.strCertificateCode = strEmployeeCode;
             }
+            else
+            {
+                CommonConstants.strCertificateCode = null;
+            }
         }
 
         private void Form_KeyDown(object sender, KeyEventArgs e)
@@ -342,12 +346,14 @@ namespace u_net
 
         private void ログイン_end()
         {
-            //If Forms.Count >= 4 Then
-            //    If Not LoginUserCode = "" Then
-            //        DoCmd.Close acForm, "認証", acSavePrompt
-            //        Exit Sub
-            //    End If
-            //End If
+            int openFormCount = Application.OpenForms.Count;
+
+            if(openFormCount >= 2 && !string.IsNullOrEmpty(CommonConstants.LoginUserCode))
+            {
+                this.Close();
+                return;
+            }
+
 
             MessageBox.Show("システムを終了します。", CommonConstants.STR_APPTITLE, MessageBoxButtons.OK);
 
