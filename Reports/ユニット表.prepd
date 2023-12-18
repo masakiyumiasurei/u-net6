@@ -3,101 +3,43 @@
 <PrintSetting Name="レポート定義ファイル" Ver="9.2.4" >
 <PrintAttrs>
 <FontAttr AttrName="Font1" Name="ＭＳ Ｐゴシック" Size="10" />
-<FontAttr AttrName="Font2" Name="ＭＳ Ｐゴシック" Size="12" />
-<FontAttr AttrName="Font3" Name="ＭＳ Ｐゴシック" Size="16" Color="White" Bold="True" />
-<FontAttr AttrName="Font4" Name="ＭＳ Ｐゴシック" Size="14" />
+<FontAttr AttrName="Font2" Name="ＭＳ Ｐゴシック" Size="16" Color="White" Bold="True" />
+<FontAttr AttrName="Font3" Name="ＭＳ Ｐゴシック" Size="14" />
+<FontAttr AttrName="Font4" Name="ＭＳ Ｐゴシック" Size="9" Color="White" />
 <FontAttr AttrName="Font5" Name="ＭＳ Ｐゴシック" Size="9" />
-<FontAttr AttrName="Font6" Name="ＭＳ Ｐゴシック" Size="9" Color="White" />
-<FontAttr AttrName="Font7" Name="ＭＳ Ｐゴシック" Size="10" Color="White" />
-<FontAttr AttrName="Font8" Name="ＭＳ Ｐゴシック" Size="7" Color="White" />
-<FontAttr AttrName="Font9" Name="ＭＳ Ｐゴシック" Size="8" Color="White" />
-<FontAttr AttrName="Font10" Name="ＭＳ Ｐゴシック" Size="8" />
+<FontAttr AttrName="Font6" Name="ＭＳ Ｐゴシック" Size="8" Color="White" />
+<FontAttr AttrName="Font7" Name="ＭＳ Ｐゴシック" Size="8" />
 <LineAttr AttrName="Line1" Width="0.3" />
 <LineAttr AttrName="Line2" Width="0.1" />
 <LineAttr AttrName="Line3" Color="Transparent" Width="0" />
 <LineAttr AttrName="Line4" Color="Transparent" Width="0" />
 <LineAttr AttrName="Line5" Color="Transparent" Width="0" />
-<LineAttr AttrName="Line6" Color="Transparent" Width="0" />
-<LineAttr AttrName="Line7" Color="Transparent" Width="0" />
+<LineAttr AttrName="Line6" Color="White" Width="0.1" />
+<LineAttr AttrName="Line7" Width="0.1" />
 <LineAttr AttrName="Line8" Color="Transparent" Width="0" />
 <LineAttr AttrName="Line9" Color="Transparent" Width="0" />
 <LineAttr AttrName="Line10" Color="Transparent" Width="0" />
-<LineAttr AttrName="Line11" Color="Transparent" Width="0" />
-<LineAttr AttrName="Line12" Color="Transparent" Width="0" />
-<LineAttr AttrName="Line13" Color="Transparent" Width="0" />
-<LineAttr AttrName="Line14" Color="Transparent" Width="0" />
-<LineAttr AttrName="Line15" Color="Transparent" Width="0" />
-<LineAttr AttrName="Line16" Color="Transparent" Width="0" />
-<LineAttr AttrName="Line17" Color="Transparent" Width="0" />
-<LineAttr AttrName="Line18" Color="Transparent" Width="0" />
-<LineAttr AttrName="Line19" Color="Transparent" Width="0" />
-<LineAttr AttrName="Line20" Color="Transparent" Width="0" />
-<LineAttr AttrName="Line21" Color="Transparent" Width="0" />
-<LineAttr AttrName="Line22" Color="Transparent" Width="0" />
-<LineAttr AttrName="Line23" Color="Transparent" Width="0" />
-<LineAttr AttrName="Line24" Color="Transparent" Width="0" />
-<LineAttr AttrName="Line25" Color="Transparent" Width="0" />
-<LineAttr AttrName="Line26" Color="Transparent" Width="0" />
-<LineAttr AttrName="Line27" Color="Transparent" Width="0" />
-<LineAttr AttrName="Line28" Color="Transparent" Width="0" />
-<LineAttr AttrName="Line29" Color="Transparent" Width="0" />
-<LineAttr AttrName="Line30" Color="Transparent" Width="0" />
-<LineAttr AttrName="Line31" Color="Transparent" Width="0" />
-<LineAttr AttrName="Line32" Color="Transparent" Width="0" />
-<LineAttr AttrName="Line33" Color="Transparent" Width="0" />
-<LineAttr AttrName="Line34" Color="White" Width="0.1" />
-<LineAttr AttrName="Line35" Color="White" Width="0.1" />
-<LineAttr AttrName="Line36" Color="White" Width="0.1" />
-<LineAttr AttrName="Line37" Color="White" Width="0.1" />
-<LineAttr AttrName="Line38" Color="White" Width="0.1" />
-<LineAttr AttrName="Line39" Color="White" Width="0.1" />
-<LineAttr AttrName="Line40" Color="White" Width="0.1" />
-<LineAttr AttrName="Line41" Color="White" Width="0.1" />
-<LineAttr AttrName="Line42" Color="White" Width="0.1" />
-<LineAttr AttrName="Line43" Width="0.1" />
-<LineAttr AttrName="Line44" Width="0.1" />
-<LineAttr AttrName="Line45" Width="0.1" />
-<LineAttr AttrName="Line46" Width="0.1" />
-<LineAttr AttrName="Line47" Width="0.1" />
-<LineAttr AttrName="Line48" Width="0.1" />
-<LineAttr AttrName="Line49" Width="0.1" />
-<LineAttr AttrName="Line50" Width="0.1" />
-<LineAttr AttrName="Line51" Width="0.1" />
-<LineAttr AttrName="Line52" Color="Transparent" Width="0" />
-<LineAttr AttrName="Line53" Color="Transparent" Width="0" />
-<LineAttr AttrName="Line54" Color="Transparent" Width="0" />
-<LineAttr AttrName="Line55" Color="Transparent" Width="0" />
-<LineAttr AttrName="Line56" Color="Transparent" Width="0" />
-<LineAttr AttrName="Line57" Color="Transparent" Width="0" />
-<LineAttr AttrName="Line58" Color="Transparent" Width="0" />
-<LineAttr AttrName="Line59" Color="Transparent" Width="0" />
-<LineAttr AttrName="Line60" Color="Transparent" Width="0" />
-<LineAttr AttrName="Line61" Color="Transparent" Width="0" />
-<LineAttr AttrName="Line62" Width="0.1" />
-<LineAttr AttrName="Line63" Width="0.1" />
-<LineAttr AttrName="Line64" Width="0.1" />
-<LineAttr AttrName="Line65" Width="0.1" />
-<LineAttr AttrName="Line66" Width="0.1" />
-<LineAttr AttrName="Line67" Width="0.1" />
-<LineAttr AttrName="Line68" Width="0.1" />
-<LineAttr AttrName="Line69" Width="0.1" />
-<LineAttr AttrName="Line70" Width="0.1" />
-<LineAttr AttrName="Line71" Width="0.1" />
-<LineAttr AttrName="Line72" Color="White" Width="0.1" />
-<LineAttr AttrName="Line73" Color="White" Width="0.1" />
-<LineAttr AttrName="Line74" Color="White" Width="0.1" />
-<LineAttr AttrName="Line75" Color="White" Width="0.1" />
-<LineAttr AttrName="Line76" Color="White" Width="0.1" />
-<LineAttr AttrName="Line77" Color="White" Width="0.1" />
-<LineAttr AttrName="Line78" Width="0.1" />
-<LineAttr AttrName="Line79" Width="0.1" />
-<LineAttr AttrName="Line80" Width="0.1" />
-<LineAttr AttrName="Line81" Width="0.1" />
-<LineAttr AttrName="Line82" Width="0.1" />
-<LineAttr AttrName="Line83" Width="0.1" />
-<LineAttr AttrName="Line84" Width="0.1" />
-<LineAttr AttrName="Line85" Color="Transparent" Width="0" />
-<LineAttr AttrName="Line86" Color="Transparent" Width="0" />
+<LineAttr AttrName="Line11" Width="0.1" />
+<LineAttr AttrName="Line12" Width="0.1" />
+<LineAttr AttrName="Line13" Width="0.1" />
+<LineAttr AttrName="Line14" Width="0.1" />
+<LineAttr AttrName="Line15" Width="0.1" />
+<LineAttr AttrName="Line16" Width="0.1" />
+<LineAttr AttrName="Line17" Width="0.1" />
+<LineAttr AttrName="Line18" Width="0.1" />
+<LineAttr AttrName="Line19" Width="0.1" />
+<LineAttr AttrName="Line20" Width="0.1" />
+<LineAttr AttrName="Line21" Color="White" Width="0.1" />
+<LineAttr AttrName="Line22" Color="White" Width="0.1" />
+<LineAttr AttrName="Line23" Color="White" Width="0.1" />
+<LineAttr AttrName="Line24" Color="White" Width="0.1" />
+<LineAttr AttrName="Line25" Color="White" Width="0.1" />
+<LineAttr AttrName="Line26" Color="White" Width="0.1" />
+<LineAttr AttrName="Line27" Width="0.1" />
+<LineAttr AttrName="Line28" Width="0.1" />
+<LineAttr AttrName="Line29" Width="0.1" />
+<LineAttr AttrName="Line30" Width="0.1" />
+<LineAttr AttrName="Line31" Width="0.1" />
 </PrintAttrs>
 <Paper Size="A4" Direction="False" />
 <Design FontAttr="Font1" LineAttr="Line1" GridWidth="2" DesignScale="100" GridFit="True" ObjLock="False" X="0" Y="0" Width="210" Height="297" DisplayRepeatObject="False" RepeatObjectColor="Silver" ImageSizeType="Clip" />
@@ -107,34 +49,34 @@
 </Square>
 <Line Name="Line7" StartX="238" StartY="82" EndX="226" EndY="82" LineAttr="Line1" />
 <Text Name="明細番号" X="10" Y="40" Width="7" Height="5" Text="*明細番号*" Align="Left" VAlign="Middle" FontAttr="Font1" LineAttr="Line2" IntervalY="5" Repeat="49" />
-<Text Name="Text40" X="85" Y="10" Width="40" Height="7.8" Text="ユニット表" BackColor="Black" Align="Center" VAlign="Middle" FontAttr="Font3" />
+<Text Name="Text40" X="85" Y="10" Width="40" Height="7.8" Text="ユニット表" BackColor="Black" Align="Center" VAlign="Middle" FontAttr="Font2" />
 <Text Name="識別コード" X="17" Y="12" Width="30" Height="5.1" Text="*識別コード*" Align="Left" VAlign="Top" FontAttr="Font1" />
-<Text Name="発注版数表示" X="126" Y="12" Width="40" Height="6.1" Text="(確認用)" Align="Left" VAlign="Middle" FontAttr="Font4" />
-<Text Name="Text71" X="10" Y="35" Width="7" Height="5" Text="No." BackColor="Black" Align="Center" VAlign="Middle" FontAttr="Font6" LineAttr="Line34" />
-<Text Name="型式名" X="17" Y="40" Width="18" Height="5" Text="*型式名*" Align="Left" VAlign="Middle" FontAttr="Font5" LineAttr="Line43" IntervalY="5" Repeat="49" />
+<Text Name="発注版数表示" X="126" Y="12" Width="40" Height="6.1" Text="(確認用)" Align="Left" VAlign="Middle" FontAttr="Font3" />
+<Text Name="Text71" X="10" Y="35" Width="7" Height="5" Text="No." BackColor="Black" Align="Center" VAlign="Middle" FontAttr="Font4" LineAttr="Line6" />
+<Text Name="型式名" X="17" Y="40" Width="18" Height="5" Text="*型式名*" Align="Left" VAlign="Middle" FontAttr="Font5" LineAttr="Line7" IntervalY="5" Repeat="49" />
 <Text Name="出力日時" X="10" Y="287" Width="60" Height="4" Text="*出力日時*" Align="Left" VAlign="Top" FontAttr="Font5" />
-<Text Name="ページ" X="158" Y="287" Width="40" Height="4" Text="*ページ*" Align="Left" VAlign="Top" FontAttr="Font5" />
+<Text Name="ページ" X="160" Y="287" Width="40" Height="4" Text="*ページ*" Align="Right" VAlign="Top" FontAttr="Font5" />
 <Text Name="ページ総数" X="50" Y="12" Width="25" Height="5" Text="*ページ総数*" Align="Left" VAlign="Top" FontAttr="Font1" />
-<Text Name="Text61" X="10" Y="19" Width="30" Height="5" Text="製品コード" BackColor="LightGray" Align="Left" VAlign="Middle" FontAttr="Font1" LineAttr="Line62" Repeat="17" />
-<Text Name="Text62" X="70" Y="19" Width="30" Height="5" Text="製品版数" BackColor="LightGray" Align="Left" VAlign="Middle" FontAttr="Font1" LineAttr="Line63" Repeat="17" />
-<Text Name="Text63" X="115" Y="19" Width="30" Height="5" Text="指導書No." BackColor="LightGray" Align="Left" VAlign="Middle" FontAttr="Font1" LineAttr="Line64" Repeat="17" />
-<Text Name="Text64" X="10" Y="24" Width="30" Height="5" Text="品名" BackColor="LightGray" Align="Left" VAlign="Middle" FontAttr="Font1" LineAttr="Line65" Repeat="17" />
-<Text Name="Text65" X="10" Y="29" Width="30" Height="5" Text="シリーズ名" BackColor="LightGray" Align="Left" VAlign="Middle" FontAttr="Font1" LineAttr="Line66" Repeat="17" />
-<Text Name="製品コード" X="40" Y="19" Width="30" Height="5" Text="*製品コード*" Align="Left" VAlign="Middle" FontAttr="Font1" LineAttr="Line67" Repeat="17" />
-<Text Name="製品版数" X="100" Y="19" Width="15" Height="5" Text="*製品版数*" Align="Left" VAlign="Middle" FontAttr="Font1" LineAttr="Line68" Repeat="17" />
-<Text Name="指導書番号" X="145" Y="19" Width="55" Height="5" Text="*指導書番号*" Align="Left" VAlign="Middle" FontAttr="Font1" LineAttr="Line69" Repeat="17" />
-<Text Name="製品名" X="40" Y="24" Width="160" Height="5" Text="*製品名*" Align="Left" VAlign="Middle" FontAttr="Font1" LineAttr="Line70" Repeat="17" />
-<Text Name="シリーズ名" X="40" Y="29" Width="160" Height="5" Text="*シリーズ名*" Align="Left" VAlign="Middle" FontAttr="Font1" LineAttr="Line71" Repeat="17" />
-<Text Name="Text71" X="17" Y="35" Width="18" Height="5" Text="型式名" BackColor="Black" Align="Center" VAlign="Middle" FontAttr="Font6" LineAttr="Line72" />
-<Text Name="Text72" X="35" Y="35" Width="14" Height="5" Text="Uコード" BackColor="Black" Align="Center" VAlign="Middle" FontAttr="Font9" LineAttr="Line73" />
-<Text Name="Text73" X="49" Y="35" Width="5" Height="5" Text="版" BackColor="Black" Align="Right" VAlign="Middle" FontAttr="Font9" LineAttr="Line74" />
-<Text Name="Text74" X="54" Y="35" Width="55" Height="5" Text="ユニット品名" BackColor="Black" Align="Center" VAlign="Middle" FontAttr="Font6" LineAttr="Line75" />
-<Text Name="Text75" X="109" Y="35" Width="49" Height="5" Text="ユニット型番" BackColor="Black" Align="Center" VAlign="Middle" FontAttr="Font6" LineAttr="Line76" />
-<Text Name="Text76" X="158" Y="35" Width="42.2" Height="5" Text="指導書No." BackColor="Black" Align="Center" VAlign="Middle" FontAttr="Font6" LineAttr="Line77" />
-<Text Name="ユニットコード" X="35" Y="40" Width="14" Height="5" Text="*ユニットコード*" Align="Left" VAlign="Middle" FontAttr="Font10" LineAttr="Line78" IntervalY="5" Repeat="49" />
-<Text Name="ユニット版数" X="49" Y="40" Width="5" Height="5" Text="*ユニット版数*" Align="Left" VAlign="Middle" FontAttr="Font10" LineAttr="Line79" IntervalY="5" Repeat="49" />
-<Text Name="品名" X="54" Y="40" Width="55" Height="5" Text="*品名*" Align="Left" VAlign="Middle" FontAttr="Font5" LineAttr="Line80" IntervalY="5" Repeat="49" />
-<Text Name="型番" X="109" Y="40" Width="49" Height="5" Text="*型番*" Align="Left" VAlign="Middle" FontAttr="Font5" LineAttr="Line81" IntervalY="5" Repeat="49" />
-<Text Name="ユニット指導書番号" X="158" Y="40" Width="42" Height="5" Text="*ユニット指導書番号*" Align="Left" VAlign="Middle" FontAttr="Font10" LineAttr="Line82" IntervalY="5" Repeat="49" />
+<Text Name="Text61" X="10" Y="19" Width="30" Height="5" Text="製品コード" BackColor="LightGray" Align="Left" VAlign="Middle" FontAttr="Font1" LineAttr="Line11" Repeat="17" />
+<Text Name="Text62" X="70" Y="19" Width="30" Height="5" Text="製品版数" BackColor="LightGray" Align="Left" VAlign="Middle" FontAttr="Font1" LineAttr="Line12" Repeat="17" />
+<Text Name="Text63" X="115" Y="19" Width="30" Height="5" Text="指導書No." BackColor="LightGray" Align="Left" VAlign="Middle" FontAttr="Font1" LineAttr="Line13" Repeat="17" />
+<Text Name="Text64" X="10" Y="24" Width="30" Height="5" Text="品名" BackColor="LightGray" Align="Left" VAlign="Middle" FontAttr="Font1" LineAttr="Line14" Repeat="17" />
+<Text Name="Text65" X="10" Y="29" Width="30" Height="5" Text="シリーズ名" BackColor="LightGray" Align="Left" VAlign="Middle" FontAttr="Font1" LineAttr="Line15" Repeat="17" />
+<Text Name="製品コード" X="40" Y="19" Width="30" Height="5" Text="*製品コード*" Align="Left" VAlign="Middle" FontAttr="Font1" LineAttr="Line16" Repeat="17" />
+<Text Name="製品版数" X="100" Y="19" Width="15" Height="5" Text="*製品版数*" Align="Left" VAlign="Middle" FontAttr="Font1" LineAttr="Line17" Repeat="17" />
+<Text Name="指導書番号" X="145" Y="19" Width="55" Height="5" Text="*指導書番号*" Align="Left" VAlign="Middle" FontAttr="Font1" LineAttr="Line18" Repeat="17" />
+<Text Name="製品名" X="40" Y="24" Width="160" Height="5" Text="*製品名*" Align="Left" VAlign="Middle" FontAttr="Font1" LineAttr="Line19" Repeat="17" />
+<Text Name="シリーズ名" X="40" Y="29" Width="160" Height="5" Text="*シリーズ名*" Align="Left" VAlign="Middle" FontAttr="Font1" LineAttr="Line20" Repeat="17" />
+<Text Name="Text71" X="17" Y="35" Width="18" Height="5" Text="型式名" BackColor="Black" Align="Center" VAlign="Middle" FontAttr="Font4" LineAttr="Line21" />
+<Text Name="Text72" X="35" Y="35" Width="14" Height="5" Text="Uコード" BackColor="Black" Align="Center" VAlign="Middle" FontAttr="Font6" LineAttr="Line22" />
+<Text Name="Text73" X="49" Y="35" Width="5" Height="5" Text="版" BackColor="Black" Align="Right" VAlign="Middle" FontAttr="Font6" LineAttr="Line23" />
+<Text Name="Text74" X="54" Y="35" Width="55" Height="5" Text="ユニット品名" BackColor="Black" Align="Center" VAlign="Middle" FontAttr="Font4" LineAttr="Line24" />
+<Text Name="Text75" X="109" Y="35" Width="49" Height="5" Text="ユニット型番" BackColor="Black" Align="Center" VAlign="Middle" FontAttr="Font4" LineAttr="Line25" />
+<Text Name="Text76" X="158" Y="35" Width="42.2" Height="5" Text="指導書No." BackColor="Black" Align="Center" VAlign="Middle" FontAttr="Font4" LineAttr="Line26" />
+<Text Name="ユニットコード" X="35" Y="40" Width="14" Height="5" Text="*ユニットコード*" Align="Left" VAlign="Middle" FontAttr="Font7" LineAttr="Line27" IntervalY="5" Repeat="49" />
+<Text Name="ユニット版数" X="49" Y="40" Width="5" Height="5" Text="*ユニット版数*" Align="Left" VAlign="Middle" FontAttr="Font7" LineAttr="Line28" IntervalY="5" Repeat="49" />
+<Text Name="品名" X="54" Y="40" Width="55" Height="5" Text="*品名*" Align="Left" VAlign="Middle" FontAttr="Font5" LineAttr="Line29" IntervalY="5" Repeat="49" />
+<Text Name="型番" X="109" Y="40" Width="49" Height="5" Text="*型番*" Align="Left" VAlign="Middle" FontAttr="Font5" LineAttr="Line30" IntervalY="5" Repeat="49" />
+<Text Name="ユニット指導書番号" X="158" Y="40" Width="42" Height="5" Text="*ユニット指導書番号*" Align="Left" VAlign="Middle" FontAttr="Font7" LineAttr="Line31" IntervalY="5" Repeat="49" />
 </PrintObjects>
 </PrintDefine>
