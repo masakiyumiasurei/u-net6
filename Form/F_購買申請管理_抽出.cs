@@ -85,7 +85,7 @@ namespace u_net
                 fn.DoWait("しばらくお待ちください...");
 
                 ////
-                frmTarget = new F_購買申請管理();
+                F_購買申請管理 frmTarget = Application.OpenForms.OfType<F_購買申請管理>().FirstOrDefault();
 
                 frmTarget.dtm申請日開始 = DateTime.Parse(Nz(申請日開始.Text));
                 frmTarget.dtm申請日終了 = DateTime.Parse(Nz(申請日終了.Text));
