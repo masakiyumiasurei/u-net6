@@ -105,6 +105,10 @@ namespace u_net.Public
                             {
                                 controlValue = textBox.Text;
                             }
+                            else
+                            {
+                                controlValue = DBNull.Value;
+                            }
                             break;
 
                         case ComboBox comboBox:
@@ -126,6 +130,10 @@ namespace u_net.Public
                             if (!string.IsNullOrEmpty(maskedtextBox.Text))
                             {
                                 controlValue = maskedtextBox.Text;
+                            }
+                            else
+                            {
+                                controlValue = DBNull.Value;
                             }
                             break;
                     }
@@ -207,12 +215,20 @@ namespace u_net.Public
                         {
                             controlValue = rowHeaderCell.DisplayText;
                         }
+                        else
+                        {
+                            controlValue = DBNull.Value;
+                        }
                         break;
 
                     case TextBoxCell textBoxCell:
                         if (!string.IsNullOrEmpty(textBoxCell.DisplayText))
                         {
                             controlValue = textBoxCell.Value;
+                        }
+                        else
+                        {
+                            controlValue = DBNull.Value;
                         }
                         break;
 

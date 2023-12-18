@@ -1446,6 +1446,11 @@ namespace u_net
                     {
                         this.コマンド新規.Enabled = true;
                         this.コマンド修正.Enabled = false;
+
+
+                        OriginalClass ofn = new OriginalClass();
+                        ofn.SetComboBox(入庫コード, " SELECT 入庫コード as Display, 入庫コード as Value FROM T入庫 WHERE(発注コード IS NOT NULL) ORDER BY 入庫コード DESC");
+
                     }
                 }
                 else

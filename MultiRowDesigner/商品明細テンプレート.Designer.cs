@@ -52,8 +52,10 @@ namespace MultiRowDesigner
             GrapeCity.Win.MultiRow.TextLengthValidator textLengthValidator1 = new GrapeCity.Win.MultiRow.TextLengthValidator();
             GrapeCity.Win.MultiRow.CellStyle cellStyle7 = new GrapeCity.Win.MultiRow.CellStyle();
             GrapeCity.Win.MultiRow.Border border3 = new GrapeCity.Win.MultiRow.Border();
+            GrapeCity.Win.MultiRow.TextLengthValidator textLengthValidator2 = new GrapeCity.Win.MultiRow.TextLengthValidator();
             GrapeCity.Win.MultiRow.CellStyle cellStyle8 = new GrapeCity.Win.MultiRow.CellStyle();
             GrapeCity.Win.MultiRow.Border border4 = new GrapeCity.Win.MultiRow.Border();
+            GrapeCity.Win.MultiRow.TextLengthValidator textLengthValidator3 = new GrapeCity.Win.MultiRow.TextLengthValidator();
             GrapeCity.Win.MultiRow.CellStyle cellStyle9 = new GrapeCity.Win.MultiRow.CellStyle();
             GrapeCity.Win.MultiRow.Border border5 = new GrapeCity.Win.MultiRow.Border();
             GrapeCity.Win.MultiRow.TextLengthValidator textLengthValidator2 = new GrapeCity.Win.MultiRow.TextLengthValidator();
@@ -72,11 +74,6 @@ namespace MultiRowDesigner
             this.定価ボタン = new GrapeCity.Win.MultiRow.ButtonCell();
             this.原価ボタン = new GrapeCity.Win.MultiRow.ButtonCell();
             this.型式番号ボタン = new GrapeCity.Win.MultiRow.ButtonCell();
-            this.機能ボタン = new GrapeCity.Win.MultiRow.ButtonCell();
-            this.削除ボタン = new GrapeCity.Win.MultiRow.ButtonCell();
-            this.明細行選択ボタン = new GrapeCity.Win.MultiRow.ButtonCell();
-            this.buttonCell1 = new GrapeCity.Win.MultiRow.ButtonCell();
-            this.buttonCell2 = new GrapeCity.Win.MultiRow.ButtonCell();
             this.明細削除ボタン = new GrapeCity.Win.MultiRow.ButtonCell();
             this.行挿入ボタン = new GrapeCity.Win.MultiRow.ButtonCell();
             this.行移動上ボタン = new GrapeCity.Win.MultiRow.ButtonCell();
@@ -394,6 +391,10 @@ namespace MultiRowDesigner
             cellStyle7.ImeMode = System.Windows.Forms.ImeMode.Off;
             this.定価.Style = cellStyle7;
             this.定価.TabIndex = 2;
+            textLengthValidator2.EncodingCodePage = 1200;
+            textLengthValidator2.LengthUnit = GrapeCity.Win.MultiRow.LengthUnit.Byte;
+            textLengthValidator2.MaximumLength = 10;
+            this.定価.Validators.Add(textLengthValidator2);
             // 
             // 原価
             // 
@@ -408,6 +409,10 @@ namespace MultiRowDesigner
             cellStyle8.ImeMode = System.Windows.Forms.ImeMode.Off;
             this.原価.Style = cellStyle8;
             this.原価.TabIndex = 3;
+            textLengthValidator3.EncodingCodePage = 1200;
+            textLengthValidator3.LengthUnit = GrapeCity.Win.MultiRow.LengthUnit.Byte;
+            textLengthValidator3.MaximumLength = 10;
+            this.原価.Validators.Add(textLengthValidator3);
             // 
             // 機能
             // 

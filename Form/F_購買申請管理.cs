@@ -118,53 +118,53 @@ namespace u_net
                 // 申請日指定
                 if (dtm申請日開始 != DateTime.MinValue && dtm申請日終了 != DateTime.MinValue)
                 {
-                    FunctionClass.WhereString(strFilter, $"'{dtm申請日開始}'<=申請日 and 申請日<='{dtm申請日終了}'");
+                    strFilter = FunctionClass.WhereString(strFilter, $"'{dtm申請日開始}'<=申請日 and 申請日<='{dtm申請日終了}'");
                 }
 
                 // 購買納期指定
                 if (dtm購買納期開始 != DateTime.MinValue && dtm購買納期終了 != DateTime.MinValue)
                 {
-                    FunctionClass.WhereString(strFilter, $"'{dtm購買納期開始}'<=購買納期 and 購買納期<='{dtm購買納期終了}'");
+                    strFilter = FunctionClass.WhereString(strFilter, $"'{dtm購買納期開始}'<=購買納期 and 購買納期<='{dtm購買納期終了}'");
                 }
 
                 // 出荷予定日指定
                 if (dtm出荷予定日開始 != DateTime.MinValue && dtm出荷予定日終了 != DateTime.MinValue)
                 {
-                    FunctionClass.WhereString(strFilter, $"'{dtm出荷予定日開始}'<=出荷予定日 and 出荷予定日<='{dtm出荷予定日終了}'");
+                    strFilter = FunctionClass.WhereString(strFilter, $"'{dtm出荷予定日開始}'<=出荷予定日 and 出荷予定日<='{dtm出荷予定日終了}'");
                 }
 
                 // 基本型式名指定
                 if (!string.IsNullOrEmpty(str基本型式名))
                 {
-                    FunctionClass.WhereString(strFilter, $"基本型式名 LIKE '%{str基本型式名}%'");
+                    strFilter = FunctionClass.WhereString(strFilter, $"基本型式名 LIKE '%{str基本型式名}%'");
                 }
 
                 // シリーズ名指定
                 if (!string.IsNullOrEmpty(strシリーズ名))
                 {
-                    FunctionClass.WhereString(strFilter, $"シリーズ名 LIKE '%{strシリーズ名}%'");
+                    strFilter = FunctionClass.WhereString(strFilter, $"シリーズ名 LIKE '%{strシリーズ名}%'");
                 }
 
                 // 申請者コード
                 if (!string.IsNullOrEmpty(str申請者コード))
                 {
-                    FunctionClass.WhereString(strFilter, $"申請者コード = '{str申請者コード}'");
+                    strFilter = FunctionClass.WhereString(strFilter, $"申請者コード = '{str申請者コード}'");
                 }
 
                 // 申請者名
                 if (!string.IsNullOrEmpty(str申請者名))
                 {
-                    FunctionClass.WhereString(strFilter, $"申請者名 LIKE '%{str申請者名}%'");
+                    strFilter = FunctionClass.WhereString(strFilter, $"申請者名 LIKE '%{str申請者名}%'");
                 }
 
                 // 承認指定
                 switch (lng承認指定)
                 {
                     case 1:
-                        FunctionClass.WhereString(strFilter, "承認 IS NULL");
+                        strFilter = FunctionClass.WhereString(strFilter, "承認 IS NULL");
                         break;
                     case 2:
-                        FunctionClass.WhereString(strFilter, "承認 IS NOT NULL");
+                        strFilter = FunctionClass.WhereString(strFilter, "承認 IS NOT NULL");
                         break;
                 }
 
@@ -172,10 +172,10 @@ namespace u_net
                 switch (lng終了指定)
                 {
                     case 1:
-                        FunctionClass.WhereString(strFilter, "終了 IS NULL");
+                        strFilter = FunctionClass.WhereString(strFilter, "終了 IS NULL");
                         break;
                     case 2:
-                        FunctionClass.WhereString(strFilter, "終了 IS NOT NULL");
+                        strFilter = FunctionClass.WhereString(strFilter, "終了 IS NOT NULL");
                         break;
                 }
 
@@ -183,10 +183,10 @@ namespace u_net
                 switch (lng完了指定)
                 {
                     case 1:
-                        FunctionClass.WhereString(strFilter, "完了 IS NULL");
+                        strFilter = FunctionClass.WhereString(strFilter, "完了 IS NULL");
                         break;
                     case 2:
-                        FunctionClass.WhereString(strFilter, "完了 IS NOT NULL");
+                        strFilter = FunctionClass.WhereString(strFilter, "完了 IS NOT NULL");
                         break;
                 }
 
@@ -194,10 +194,10 @@ namespace u_net
                 switch (lng削除指定)
                 {
                     case 1:
-                        FunctionClass.WhereString(strFilter, "削除 IS NULL");
+                        strFilter = FunctionClass.WhereString(strFilter, "削除 IS NULL");
                         break;
                     case 2:
-                        FunctionClass.WhereString(strFilter, "削除 IS NOT NULL");
+                        strFilter = FunctionClass.WhereString(strFilter, "削除 IS NOT NULL");
                         break;
                 }
 
@@ -313,7 +313,8 @@ namespace u_net
             // Update the list
             if (!DoUpdate())
             {
-                MessageBox.Show($"Initialization failed. [{Name}] will be closed.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //MessageBox.Show($"Initialization failed. [{Name}] will be closed.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"初期化に失敗しました。[{Name}]を終了します。", "初期処理", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 // Assuming this is a Form, close it
                 Close();
                 return;
@@ -956,8 +957,6 @@ namespace u_net
             this.lng完了指定 = 0;
 
             DateTime currentDate = DateTime.Now;
-            DateTime dtm購買納期開始;
-            DateTime dtm購買納期終了;
 
             if (currentDate.Day >= 21)
             {
@@ -984,8 +983,6 @@ namespace u_net
             this.lng完了指定 = 0;
 
             DateTime currentDate = DateTime.Now;
-            DateTime dtm購買納期開始;
-            DateTime dtm購買納期終了;
 
             if (currentDate.Day >= 21)
             {
@@ -1012,8 +1009,6 @@ namespace u_net
             this.lng完了指定 = 0;
 
             DateTime currentDate = DateTime.Now;
-            DateTime dtm購買納期開始;
-            DateTime dtm購買納期終了;
 
             if (currentDate.Day >= 21)
             {
@@ -1040,8 +1035,6 @@ namespace u_net
             this.lng完了指定 = 0;
 
             DateTime currentDate = DateTime.Now;
-            DateTime dtm購買納期開始;
-            DateTime dtm購買納期終了;
 
             if (currentDate.Day >= 21)
             {
@@ -1068,8 +1061,6 @@ namespace u_net
             this.lng完了指定 = 0;
 
             DateTime currentDate = DateTime.Now;
-            DateTime dtm購買納期開始;
-            DateTime dtm購買納期終了;
 
             if (currentDate.Day >= 21)
             {

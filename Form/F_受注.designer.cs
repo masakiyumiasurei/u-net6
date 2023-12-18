@@ -104,7 +104,7 @@ namespace u_net
             label44 = new Label();
             TaxRate = new TextBox();
             label43 = new Label();
-            label42 = new Label();
+            請求予定日ラベル = new Label();
             請求予定日 = new TextBox();
             帳端処理 = new CheckBox();
             出荷情報 = new GroupBox();
@@ -196,7 +196,7 @@ namespace u_net
             改版ボタン = new Button();
             削除 = new TextBox();
             在庫締め = new TextBox();
-            完了承認 = new TextBox();
+            完了 = new TextBox();
             label8 = new Label();
             label7 = new Label();
             label5 = new Label();
@@ -610,10 +610,10 @@ namespace u_net
             // 
             statusStrip1.ImageScalingSize = new Size(20, 20);
             statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1, toolStripStatusLabel2 });
-            statusStrip1.Location = new Point(0, 740);
+            statusStrip1.Location = new Point(0, 752);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Padding = new Padding(1, 0, 19, 0);
-            statusStrip1.Size = new Size(2380, 22);
+            statusStrip1.Size = new Size(1184, 22);
             statusStrip1.TabIndex = 110;
             statusStrip1.Text = "statusStrip1";
             // 
@@ -661,6 +661,7 @@ namespace u_net
             完了承認者コード.ReadOnly = true;
             完了承認者コード.Size = new Size(25, 25);
             完了承認者コード.TabIndex = 35;
+            完了承認者コード.TabStop = false;
             // 
             // 承認者コード
             // 
@@ -674,6 +675,7 @@ namespace u_net
             承認者コード.ReadOnly = true;
             承認者コード.Size = new Size(25, 25);
             承認者コード.TabIndex = 34;
+            承認者コード.TabStop = false;
             // 
             // 否認ボタン
             // 
@@ -741,14 +743,14 @@ namespace u_net
             Page2.Controls.Add(label44);
             Page2.Controls.Add(TaxRate);
             Page2.Controls.Add(label43);
-            Page2.Controls.Add(label42);
+            Page2.Controls.Add(請求予定日ラベル);
             Page2.Controls.Add(請求予定日);
             Page2.Controls.Add(帳端処理);
             Page2.Controls.Add(出荷情報);
             Page2.Controls.Add(発送先);
             Page2.Controls.Add(発送先選択);
             Page2.Controls.Add(戻るボタン);
-            Page2.Location = new Point(1200, 42);
+            Page2.Location = new Point(0, 42);
             Page2.Margin = new Padding(4, 3, 4, 3);
             Page2.Name = "Page2";
             Page2.Size = new Size(1180, 650);
@@ -757,6 +759,7 @@ namespace u_net
             // 
             // 請求予定日選択ボタン
             // 
+            請求予定日選択ボタン.Enabled = false;
             請求予定日選択ボタン.Location = new Point(871, 50);
             請求予定日選択ボタン.Name = "請求予定日選択ボタン";
             請求予定日選択ボタン.Size = new Size(21, 21);
@@ -951,7 +954,11 @@ namespace u_net
             税端数処理.Name = "税端数処理";
             税端数処理.Size = new Size(150, 21);
             税端数処理.TabIndex = 10059;
+            税端数処理.TabStop = false;
+            税端数処理.TextChanged += 税端数処理_TextChanged;
             税端数処理.Enter += 税端数処理_Enter;
+            税端数処理.Validating += 税端数処理_Validating;
+            税端数処理.Validated += 税端数処理_Validated;
             // 
             // TaxCalcCode
             // 
@@ -965,7 +972,11 @@ namespace u_net
             TaxCalcCode.Name = "TaxCalcCode";
             TaxCalcCode.Size = new Size(150, 21);
             TaxCalcCode.TabIndex = 10058;
+            TaxCalcCode.TabStop = false;
+            TaxCalcCode.TextChanged += TaxCalcCode_TextChanged;
             TaxCalcCode.Enter += TaxCalcCode_Enter;
+            TaxCalcCode.Validating += TaxCalcCode_Validating;
+            TaxCalcCode.Validated += TaxCalcCode_Validated;
             // 
             // 請求コード
             // 
@@ -977,6 +988,7 @@ namespace u_net
             請求コード.Name = "請求コード";
             請求コード.Size = new Size(150, 21);
             請求コード.TabIndex = 10057;
+            請求コード.TabStop = false;
             // 
             // label46
             // 
@@ -1033,6 +1045,7 @@ namespace u_net
             TaxRate.Name = "TaxRate";
             TaxRate.Size = new Size(150, 21);
             TaxRate.TabIndex = 10053;
+            TaxRate.TabStop = false;
             // 
             // label43
             // 
@@ -1049,29 +1062,36 @@ namespace u_net
             label43.Text = "適用消費税率";
             label43.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // label42
+            // 請求予定日ラベル
             // 
-            label42.AllowDrop = true;
-            label42.AutoEllipsis = true;
-            label42.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            label42.ForeColor = SystemColors.ActiveCaptionText;
-            label42.ImageAlign = ContentAlignment.MiddleLeft;
-            label42.Location = new Point(600, 50);
-            label42.Margin = new Padding(0);
-            label42.Name = "label42";
-            label42.Size = new Size(115, 22);
-            label42.TabIndex = 10051;
-            label42.Text = "請求予定日";
-            label42.TextAlign = ContentAlignment.MiddleLeft;
+            請求予定日ラベル.AllowDrop = true;
+            請求予定日ラベル.AutoEllipsis = true;
+            請求予定日ラベル.Enabled = false;
+            請求予定日ラベル.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            請求予定日ラベル.ForeColor = SystemColors.ActiveCaptionText;
+            請求予定日ラベル.ImageAlign = ContentAlignment.MiddleLeft;
+            請求予定日ラベル.Location = new Point(600, 50);
+            請求予定日ラベル.Margin = new Padding(0);
+            請求予定日ラベル.Name = "請求予定日ラベル";
+            請求予定日ラベル.Size = new Size(115, 22);
+            請求予定日ラベル.TabIndex = 10051;
+            請求予定日ラベル.Text = "請求予定日";
+            請求予定日ラベル.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // 請求予定日
             // 
+            請求予定日.Enabled = false;
             請求予定日.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             請求予定日.Location = new Point(715, 50);
             請求予定日.Name = "請求予定日";
             請求予定日.Size = new Size(150, 21);
-            請求予定日.TabIndex = 10050;
+            請求予定日.TabIndex = 33;
+            請求予定日.TextChanged += 請求予定日_TextChanged;
+            請求予定日.DoubleClick += 請求予定日_DoubleClick;
             請求予定日.Enter += 請求予定日_Enter;
+            請求予定日.KeyDown += 請求予定日_KeyDown;
+            請求予定日.Validating += 請求予定日_Validating;
+            請求予定日.Validated += 請求予定日_Validated;
             // 
             // 帳端処理
             // 
@@ -1127,7 +1147,10 @@ namespace u_net
             InvoiceNote.Name = "InvoiceNote";
             InvoiceNote.Size = new Size(350, 21);
             InvoiceNote.TabIndex = 50;
+            InvoiceNote.TextChanged += InvoiceNote_TextChanged;
             InvoiceNote.Enter += InvoiceNote_Enter;
+            InvoiceNote.Validating += InvoiceNote_Validating;
+            InvoiceNote.Validated += InvoiceNote_Validated;
             // 
             // PackingSlipNote
             // 
@@ -1139,7 +1162,10 @@ namespace u_net
             PackingSlipNote.Name = "PackingSlipNote";
             PackingSlipNote.Size = new Size(350, 21);
             PackingSlipNote.TabIndex = 49;
+            PackingSlipNote.TextChanged += PackingSlipNote_TextChanged;
             PackingSlipNote.Enter += PackingSlipNote_Enter;
+            PackingSlipNote.Validating += PackingSlipNote_Validating;
+            PackingSlipNote.Validated += PackingSlipNote_Validated;
             // 
             // label41
             // 
@@ -1225,7 +1251,10 @@ namespace u_net
             InvoiceFaxCode.TabIndex = 44;
             InvoiceFaxCode.DrawItem += InvoiceFaxCode_DrawItem;
             InvoiceFaxCode.SelectedIndexChanged += InvoiceFaxCode_SelectedIndexChanged;
+            InvoiceFaxCode.TextChanged += InvoiceFaxCode_TextChanged;
             InvoiceFaxCode.Enter += InvoiceFaxCode_Enter;
+            InvoiceFaxCode.Validating += InvoiceFaxCode_Validating;
+            InvoiceFaxCode.Validated += InvoiceFaxCode_Validated;
             // 
             // ReceiptCommentCode
             // 
@@ -1242,7 +1271,10 @@ namespace u_net
             ReceiptCommentCode.TabIndex = 42;
             ReceiptCommentCode.DrawItem += ReceiptCommentCode_DrawItem;
             ReceiptCommentCode.SelectedIndexChanged += ReceiptCommentCode_SelectedIndexChanged;
+            ReceiptCommentCode.TextChanged += ReceiptCommentCode_TextChanged;
             ReceiptCommentCode.Enter += ReceiptCommentCode_Enter;
+            ReceiptCommentCode.Validating += ReceiptCommentCode_Validating;
+            ReceiptCommentCode.Validated += ReceiptCommentCode_Validated;
             // 
             // InvoiceInputCode
             // 
@@ -1259,7 +1291,10 @@ namespace u_net
             InvoiceInputCode.TabIndex = 40;
             InvoiceInputCode.DrawItem += InvoiceInputCode_DrawItem;
             InvoiceInputCode.SelectedIndexChanged += InvoiceInputCode_SelectedIndexChanged;
+            InvoiceInputCode.TextChanged += InvoiceInputCode_TextChanged;
             InvoiceInputCode.Enter += InvoiceInputCode_Enter;
+            InvoiceInputCode.Validating += InvoiceInputCode_Validating;
+            InvoiceInputCode.Validated += InvoiceInputCode_Validated;
             // 
             // PackingSlipInputCode
             // 
@@ -1276,7 +1311,10 @@ namespace u_net
             PackingSlipInputCode.TabIndex = 38;
             PackingSlipInputCode.DrawItem += PackingSlipInputCode_DrawItem;
             PackingSlipInputCode.SelectedIndexChanged += PackingSlipInputCode_SelectedIndexChanged;
+            PackingSlipInputCode.TextChanged += PackingSlipInputCode_TextChanged;
             PackingSlipInputCode.Enter += PackingSlipInputCode_Enter;
+            PackingSlipInputCode.Validating += PackingSlipInputCode_Validating;
+            PackingSlipInputCode.Validated += PackingSlipInputCode_Validated;
             // 
             // PaymentConfirmation
             // 
@@ -1286,6 +1324,7 @@ namespace u_net
             PaymentConfirmation.Size = new Size(15, 14);
             PaymentConfirmation.TabIndex = 37;
             PaymentConfirmation.UseVisualStyleBackColor = true;
+            PaymentConfirmation.CheckedChanged += PaymentConfirmation_CheckedChanged;
             // 
             // InvoiceFaxToNumber
             // 
@@ -1297,7 +1336,10 @@ namespace u_net
             InvoiceFaxToNumber.Name = "InvoiceFaxToNumber";
             InvoiceFaxToNumber.Size = new Size(350, 21);
             InvoiceFaxToNumber.TabIndex = 48;
+            InvoiceFaxToNumber.TextChanged += InvoiceFaxToNumber_TextChanged;
             InvoiceFaxToNumber.Enter += InvoiceFaxToNumber_Enter;
+            InvoiceFaxToNumber.Validating += InvoiceFaxToNumber_Validating;
+            InvoiceFaxToNumber.Validated += InvoiceFaxToNumber_Validated;
             // 
             // InvoiceFaxToContact
             // 
@@ -1309,7 +1351,10 @@ namespace u_net
             InvoiceFaxToContact.Name = "InvoiceFaxToContact";
             InvoiceFaxToContact.Size = new Size(350, 21);
             InvoiceFaxToContact.TabIndex = 47;
+            InvoiceFaxToContact.TextChanged += InvoiceFaxToContact_TextChanged;
             InvoiceFaxToContact.Enter += InvoiceFaxToContact_Enter;
+            InvoiceFaxToContact.Validating += InvoiceFaxToContact_Validating;
+            InvoiceFaxToContact.Validated += InvoiceFaxToContact_Validated;
             // 
             // InvoiceFaxToName
             // 
@@ -1321,7 +1366,10 @@ namespace u_net
             InvoiceFaxToName.Name = "InvoiceFaxToName";
             InvoiceFaxToName.Size = new Size(350, 21);
             InvoiceFaxToName.TabIndex = 46;
+            InvoiceFaxToName.TextChanged += InvoiceFaxToName_TextChanged;
             InvoiceFaxToName.Enter += InvoiceFaxToName_Enter;
+            InvoiceFaxToName.Validating += InvoiceFaxToName_Validating;
+            InvoiceFaxToName.Validated += InvoiceFaxToName_Validated;
             // 
             // PackingSlipInput
             // 
@@ -1507,6 +1555,9 @@ namespace u_net
             発送先メールアドレス.Name = "発送先メールアドレス";
             発送先メールアドレス.Size = new Size(324, 21);
             発送先メールアドレス.TabIndex = 30;
+            発送先メールアドレス.TextChanged += 発送先メールアドレス_TextChanged;
+            発送先メールアドレス.Validating += 発送先メールアドレス_Validating;
+            発送先メールアドレス.Validated += 発送先メールアドレス_Validated;
             // 
             // 発送先担当者名
             // 
@@ -1518,7 +1569,10 @@ namespace u_net
             発送先担当者名.Name = "発送先担当者名";
             発送先担当者名.Size = new Size(350, 21);
             発送先担当者名.TabIndex = 29;
+            発送先担当者名.TextChanged += 発送先担当者名_TextChanged;
             発送先担当者名.Enter += 発送先担当者名_Enter;
+            発送先担当者名.Validating += 発送先担当者名_Validating;
+            発送先担当者名.Validated += 発送先担当者名_Validated;
             // 
             // 発送先FAX
             // 
@@ -1530,6 +1584,9 @@ namespace u_net
             発送先FAX.Name = "発送先FAX";
             発送先FAX.Size = new Size(150, 21);
             発送先FAX.TabIndex = 28;
+            発送先FAX.TextChanged += 発送先FAX_TextChanged;
+            発送先FAX.Validating += 発送先FAX_Validating;
+            発送先FAX.Validated += 発送先FAX_Validated;
             // 
             // 発送先TEL
             // 
@@ -1541,6 +1598,9 @@ namespace u_net
             発送先TEL.Name = "発送先TEL";
             発送先TEL.Size = new Size(150, 21);
             発送先TEL.TabIndex = 27;
+            発送先TEL.TextChanged += 発送先TEL_TextChanged;
+            発送先TEL.Validating += 発送先TEL_Validating;
+            発送先TEL.Validated += 発送先TEL_Validated;
             // 
             // 発送先住所2
             // 
@@ -1552,7 +1612,10 @@ namespace u_net
             発送先住所2.Name = "発送先住所2";
             発送先住所2.Size = new Size(350, 21);
             発送先住所2.TabIndex = 26;
+            発送先住所2.TextChanged += 発送先住所2_TextChanged;
             発送先住所2.Enter += 発送先住所2_Enter;
+            発送先住所2.Validating += 発送先住所2_Validating;
+            発送先住所2.Validated += 発送先住所2_Validated;
             // 
             // 発送先住所1
             // 
@@ -1564,7 +1627,10 @@ namespace u_net
             発送先住所1.Name = "発送先住所1";
             発送先住所1.Size = new Size(350, 21);
             発送先住所1.TabIndex = 25;
+            発送先住所1.TextChanged += 発送先住所1_TextChanged;
             発送先住所1.Enter += 発送先住所1_Enter;
+            発送先住所1.Validating += 発送先住所1_Validating;
+            発送先住所1.Validated += 発送先住所1_Validated;
             // 
             // label31
             // 
@@ -1665,6 +1731,9 @@ namespace u_net
             発送先郵便番号.Size = new Size(100, 21);
             発送先郵便番号.TabIndex = 24;
             発送先郵便番号.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
+            発送先郵便番号.TextChanged += 発送先郵便番号_TextChanged;
+            発送先郵便番号.Validating += 発送先郵便番号_Validating;
+            発送先郵便番号.Validated += 発送先郵便番号_Validated;
             // 
             // label25
             // 
@@ -1691,7 +1760,10 @@ namespace u_net
             発送先名.Name = "発送先名";
             発送先名.Size = new Size(350, 21);
             発送先名.TabIndex = 23;
+            発送先名.TextChanged += 発送先名_TextChanged;
             発送先名.Enter += 発送先名_Enter;
+            発送先名.Validating += 発送先名_Validating;
+            発送先名.Validated += 発送先名_Validated;
             // 
             // label24
             // 
@@ -1808,7 +1880,7 @@ namespace u_net
             Page1.Controls.Add(改版ボタン);
             Page1.Controls.Add(削除);
             Page1.Controls.Add(在庫締め);
-            Page1.Controls.Add(完了承認);
+            Page1.Controls.Add(完了);
             Page1.Controls.Add(label8);
             Page1.Controls.Add(label7);
             Page1.Controls.Add(label5);
@@ -1838,7 +1910,12 @@ namespace u_net
             出荷予定日.Name = "出荷予定日";
             出荷予定日.Size = new Size(150, 21);
             出荷予定日.TabIndex = 11;
+            出荷予定日.TextChanged += 出荷予定日_TextChanged;
+            出荷予定日.DoubleClick += 出荷予定日_DoubleClick;
             出荷予定日.Enter += 出荷予定日_Enter;
+            出荷予定日.KeyDown += 出荷予定日_KeyDown;
+            出荷予定日.Validating += 出荷予定日_Validating;
+            出荷予定日.Validated += 出荷予定日_Validated;
             // 
             // 受注納期
             // 
@@ -1848,7 +1925,9 @@ namespace u_net
             受注納期.Size = new Size(150, 21);
             受注納期.TabIndex = 10;
             受注納期.TextChanged += 受注納期_TextChanged;
+            受注納期.DoubleClick += 受注納期_DoubleClick;
             受注納期.Enter += 受注納期_Enter;
+            受注納期.KeyDown += 受注納期_KeyDown;
             受注納期.Validating += 受注納期_Validating;
             受注納期.Validated += 受注納期_Validated;
             // 
@@ -1885,7 +1964,10 @@ namespace u_net
             ProductionNotice.Name = "ProductionNotice";
             ProductionNotice.Size = new Size(377, 72);
             ProductionNotice.TabIndex = 20;
+            ProductionNotice.TextChanged += ProductionNotice_TextChanged;
             ProductionNotice.Enter += ProductionNotice_Enter;
+            ProductionNotice.Validating += ProductionNotice_Validating;
+            ProductionNotice.Validated += ProductionNotice_Validated;
             // 
             // label23
             // 
@@ -1913,7 +1995,10 @@ namespace u_net
             改訂履歴.Name = "改訂履歴";
             改訂履歴.Size = new Size(377, 72);
             改訂履歴.TabIndex = 19;
+            改訂履歴.TextChanged += 改訂履歴_TextChanged;
             改訂履歴.Enter += 改訂履歴_Enter;
+            改訂履歴.Validating += 改訂履歴_Validating;
+            改訂履歴.Validated += 改訂履歴_Validated;
             // 
             // label22
             // 
@@ -1971,8 +2056,10 @@ namespace u_net
             自社担当者コード.Size = new Size(60, 22);
             自社担当者コード.TabIndex = 17;
             自社担当者コード.DrawItem += 自社担当者コード_DrawItem;
-            自社担当者コード.SelectedIndexChanged += 自社担当者コード_SelectedIndexChanged;
+            自社担当者コード.TextChanged += 自社担当者コード_TextChanged;
             自社担当者コード.Enter += 自社担当者コード_Enter;
+            自社担当者コード.Validating += 自社担当者コード_Validating;
+            自社担当者コード.Validated += 自社担当者コード_Validated;
             // 
             // label21
             // 
@@ -2014,6 +2101,7 @@ namespace u_net
             発送方法コード.TabIndex = 16;
             発送方法コード.DrawItem += 発送方法コード_DrawItem;
             発送方法コード.SelectedIndexChanged += 発送方法コード_SelectedIndexChanged;
+            発送方法コード.TextChanged += 発送方法コード_TextChanged;
             発送方法コード.Enter += 発送方法コード_Enter;
             発送方法コード.Validating += 発送方法コード_Validating;
             // 
@@ -2042,6 +2130,7 @@ namespace u_net
             請求書送付コード.TabIndex = 15;
             請求書送付コード.DrawItem += 請求書送付コード_DrawItem;
             請求書送付コード.SelectedIndexChanged += 請求書送付コード_SelectedIndexChanged;
+            請求書送付コード.TextChanged += 請求書送付コード_TextChanged;
             請求書送付コード.Enter += 請求書送付コード_Enter;
             請求書送付コード.Validating += 請求書送付コード_Validating;
             // 
@@ -2070,6 +2159,7 @@ namespace u_net
             納品書送付コード.TabIndex = 14;
             納品書送付コード.DrawItem += 納品書送付コード_DrawItem;
             納品書送付コード.SelectedIndexChanged += 納品書送付コード_SelectedIndexChanged;
+            納品書送付コード.TextChanged += 納品書送付コード_TextChanged;
             納品書送付コード.Enter += 納品書送付コード_Enter;
             納品書送付コード.Validating += 納品書送付コード_Validating;
             // 
@@ -2107,6 +2197,9 @@ namespace u_net
             ClientCode.Name = "ClientCode";
             ClientCode.Size = new Size(400, 21);
             ClientCode.TabIndex = 9;
+            ClientCode.TextChanged += ClientCode_TextChanged;
+            ClientCode.Validating += ClientCode_Validating;
+            ClientCode.Validated += ClientCode_Validated;
             // 
             // 顧客担当者名
             // 
@@ -2118,7 +2211,10 @@ namespace u_net
             顧客担当者名.Name = "顧客担当者名";
             顧客担当者名.Size = new Size(400, 21);
             顧客担当者名.TabIndex = 7;
+            顧客担当者名.TextChanged += 顧客担当者名_TextChanged;
             顧客担当者名.Enter += 顧客担当者名_Enter;
+            顧客担当者名.Validating += 顧客担当者名_Validating;
+            顧客担当者名.Validated += 顧客担当者名_Validated;
             // 
             // 顧客名
             // 
@@ -2155,7 +2251,7 @@ namespace u_net
             顧客コード.TextChanged += 顧客コード_TextChanged;
             顧客コード.DoubleClick += 顧客コード_DoubleClick;
             顧客コード.Enter += 顧客コード_Enter;
-            顧客コード.KeyDown += 顧客コード_KeyDown;
+            顧客コード.PreviewKeyDown += 顧客コード_PreviewKeyDown;
             顧客コード.Validating += 顧客コード_Validating;
             顧客コード.Validated += 顧客コード_Validated;
             // 
@@ -2361,6 +2457,7 @@ namespace u_net
             削除.Location = new Point(922, 25);
             削除.Margin = new Padding(3, 2, 3, 2);
             削除.Name = "削除";
+            削除.ReadOnly = true;
             削除.Size = new Size(25, 20);
             削除.TabIndex = 10084;
             削除.TabStop = false;
@@ -2372,20 +2469,22 @@ namespace u_net
             在庫締め.Location = new Point(847, 25);
             在庫締め.Margin = new Padding(3, 2, 3, 2);
             在庫締め.Name = "在庫締め";
+            在庫締め.ReadOnly = true;
             在庫締め.Size = new Size(25, 20);
             在庫締め.TabIndex = 10083;
             在庫締め.TabStop = false;
             // 
-            // 完了承認
+            // 完了
             // 
-            完了承認.BackColor = SystemColors.Control;
-            完了承認.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            完了承認.Location = new Point(772, 25);
-            完了承認.Margin = new Padding(3, 2, 3, 2);
-            完了承認.Name = "完了承認";
-            完了承認.Size = new Size(25, 20);
-            完了承認.TabIndex = 10082;
-            完了承認.TabStop = false;
+            完了.BackColor = SystemColors.Control;
+            完了.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            完了.Location = new Point(772, 25);
+            完了.Margin = new Padding(3, 2, 3, 2);
+            完了.Name = "完了";
+            完了.ReadOnly = true;
+            完了.Size = new Size(25, 20);
+            完了.TabIndex = 10082;
+            完了.TabStop = false;
             // 
             // label8
             // 
@@ -2436,6 +2535,7 @@ namespace u_net
             生産計画.Location = new Point(697, 25);
             生産計画.Margin = new Padding(3, 2, 3, 2);
             生産計画.Name = "生産計画";
+            生産計画.ReadOnly = true;
             生産計画.Size = new Size(25, 20);
             生産計画.TabIndex = 10078;
             生産計画.TabStop = false;
@@ -2461,6 +2561,7 @@ namespace u_net
             承認.Location = new Point(622, 25);
             承認.Margin = new Padding(3, 2, 3, 2);
             承認.Name = "承認";
+            承認.ReadOnly = true;
             承認.Size = new Size(25, 20);
             承認.TabIndex = 10076;
             承認.TabStop = false;
@@ -2558,6 +2659,7 @@ namespace u_net
             確定.Location = new Point(547, 25);
             確定.Margin = new Padding(3, 2, 3, 2);
             確定.Name = "確定";
+            確定.ReadOnly = true;
             確定.Size = new Size(25, 20);
             確定.TabIndex = 10069;
             確定.TabStop = false;
@@ -2602,7 +2704,10 @@ namespace u_net
             備考.Name = "備考";
             備考.Size = new Size(377, 72);
             備考.TabIndex = 18;
+            備考.TextChanged += 備考_TextChanged;
             備考.Enter += 備考_Enter;
+            備考.Validating += 備考_Validating;
+            備考.Validated += 備考_Validated;
             // 
             // label4
             // 
@@ -2765,7 +2870,7 @@ namespace u_net
         private TextBox PackingSlipNote;
         private Label label41;
         private Label label40;
-        private Label label42;
+        private Label 請求予定日ラベル;
         private TextBox 請求予定日;
         private CheckBox 帳端処理;
         private TextBox TaxRate;
@@ -2830,7 +2935,7 @@ namespace u_net
         private Button 改版ボタン;
         private TextBox 削除;
         private TextBox 在庫締め;
-        private TextBox 完了承認;
+        private TextBox 完了;
         private Label label8;
         private Label label7;
         private Label label5;

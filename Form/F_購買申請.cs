@@ -253,6 +253,7 @@ namespace u_net
         }
         private void LockCtl()
         {
+            this.申請者名.ReadOnly = true;
             this.シリーズ名.ReadOnly = true;
             this.登録日時.ReadOnly = true;
             this.登録者コード.ReadOnly = true;
@@ -365,17 +366,15 @@ namespace u_net
                         // Implement CheckPurchase logic here if needed
                         break;
                     case "申請者コード":
-                        if (varValue == null || varValue.Equals(DBNull.Value))
-                        ////if (string.IsNullOrEmpty(varValue.ToString())|| varValue.Equals(DBNull.Value))
+                        if (string.IsNullOrEmpty(varValue.ToString()) || varValue.Equals(DBNull.Value))
                         {
                             MessageBox.Show("申請者を選択してください。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                             goto Exit_IsError;
                         }
                         break;
                     case "申請日":
-                        if (varValue == null || varValue.Equals(DBNull.Value))
-                        ////if (string.IsNullOrEmpty(varValue.ToString()) || varValue.Equals(DBNull.Value))
-                        {
+                        if (string.IsNullOrEmpty(varValue.ToString()) || varValue.Equals(DBNull.Value))
+                            {
                             MessageBox.Show("申請日を入力してください。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                             goto Exit_IsError;
                         }
@@ -392,12 +391,11 @@ namespace u_net
                         break;
                     case "ロット番号1":
                     case "ロット番号2":
-                        if (varValue == null || varValue.Equals(DBNull.Value))
-                        ////if (string.IsNullOrEmpty(varValue.ToString()) || varValue.Equals(DBNull.Value))
-                            goto Bye_IsError;
+                        if (string.IsNullOrEmpty(varValue.ToString()) || varValue.Equals(DBNull.Value))
+                                goto Bye_IsError;
                         if (!IsLimit_N(varValue, 7, 2, controlObject.Name))
                             goto Exit_IsError;
-                        if ((int)varValue < 0)
+                        if(int.Parse(varValue.ToString()) < 0)
                         {
                             string strMsg = "正数値を入力してください。" + Environment.NewLine + Environment.NewLine + controlObject.Name;
                             MessageBox.Show(strMsg, "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -405,47 +403,25 @@ namespace u_net
                         }
                         break;
                     case "数量":
-                        //if (varValue == null || varValue.Equals(DBNull.Value))
-                        //{
-                        //    MessageBox.Show(controlObject.Name + " を入力してください。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                        //    goto Exit_IsError;
-                        //}
-                        //if (!IsLimit_N(varValue, 14, 0, controlObject.Name))
-                        //    goto Exit_IsError;
-                        // 承認時確認
-                        if (cancel) 
+                        if (string.IsNullOrEmpty(varValue.ToString()) || varValue.Equals(DBNull.Value))
                         {
-                            if (string.IsNullOrEmpty(varValue.ToString()) || varValue.Equals(DBNull.Value))
-                            {
-                                MessageBox.Show(controlObject.Name + " を入力してください。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                                goto Exit_IsError;
-                            }
-                            if (!IsLimit_N(varValue, 14, 0, controlObject.Name))
-                                goto Exit_IsError;
+                            MessageBox.Show(controlObject.Name + " を入力してください。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            goto Exit_IsError;
                         }
+                        if (!IsLimit_N(varValue, 14, 0, controlObject.Name))
+                            goto Exit_IsError;
                         break;
                     case "材料単価":
-                        //if (varValue == null || varValue.Equals(DBNull.Value))
-                        //{
-                        //    MessageBox.Show(controlObject.Name + " を入力してください。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                        //    goto Exit_IsError;
-                        //}
-                        //if (!IsLimit_N(varValue, 14, 2, controlObject.Name))
-                        //    goto Exit_IsError;
-                        // 承認時確認
-                        if (true) 
+                        if (string.IsNullOrEmpty(varValue.ToString()) || varValue.Equals(DBNull.Value))
                         {
-                            if (string.IsNullOrEmpty(varValue.ToString()) || varValue.Equals(DBNull.Value))
-                            {
-                                MessageBox.Show(controlObject.Name + " を入力してください。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                                goto Exit_IsError;
-                            }
-                            if (!IsLimit_N(varValue, 14, 2, controlObject.Name))
-                                goto Exit_IsError;
+                            MessageBox.Show(controlObject.Name + " を入力してください。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            goto Exit_IsError;
                         }
+                        if (!IsLimit_N(varValue, 14, 2, controlObject.Name))
+                            goto Exit_IsError;
                         break;
                     case "購買納期":
-                        if (varValue == null || varValue.Equals(DBNull.Value))
+                        if (string.IsNullOrEmpty(varValue.ToString()) || varValue.Equals(DBNull.Value))
                             goto Bye_IsError;
                         if (!DateTime.TryParse(varValue.ToString(), out DateTime purchaseDate))
                         {
@@ -469,7 +445,7 @@ namespace u_net
                         }
                         break;
                     case "出荷予定日":
-                        if (varValue == null || varValue.Equals(DBNull.Value))
+                        if (string.IsNullOrEmpty(varValue.ToString()) || varValue.Equals(DBNull.Value))
                         {
                             MessageBox.Show(controlObject.Name + " を入力してください。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                             goto Exit_IsError;
@@ -2156,12 +2132,20 @@ namespace u_net
 
         private void 購買申請版数_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            IsError(this.ActiveControl, e.Cancel);
+            TextBox textBox = (TextBox)sender;
+
+            if (textBox.Modified == false) return;
+
+            if (IsError(textBox, false) == true) e.Cancel = true;
         }
 
         private void 申請日_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            IsError(this.ActiveControl, e.Cancel);
+            TextBox textBox = (TextBox)sender;
+
+            if (textBox.Modified == false) return;
+
+            if (IsError(textBox, false) == true) e.Cancel = true;
         }
 
         private void 出荷予定日_Validated(object sender, EventArgs e)
@@ -2171,7 +2155,11 @@ namespace u_net
 
         private void 出荷予定日_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            IsError(this.ActiveControl, e.Cancel);
+            TextBox textBox = (TextBox)sender;
+
+            if (textBox.Modified == false) return;
+
+            if (IsError(textBox, false) == true) e.Cancel = true;
         }
 
         private void 出荷予定日_TextChanged(object sender, EventArgs e)
@@ -2240,7 +2228,11 @@ namespace u_net
 
         private void 商品名_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            IsError(this.ActiveControl, e.Cancel);
+            TextBox textBox = (TextBox)sender;
+
+            if (textBox.Modified == false) return;
+
+            if (IsError(textBox, false) == true) e.Cancel = true;
         }
 
         private void 商品名_TextChanged(object sender, EventArgs e)
@@ -2329,7 +2321,11 @@ namespace u_net
 
         private void 数量_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            IsError(this.ActiveControl, e.Cancel);
+            TextBox textBox = (TextBox)sender;
+
+            if (textBox.Modified == false) return;
+
+            if (IsError(textBox, false) == true) e.Cancel = true;
         }
 
         private void 数量_TextChanged(object sender, EventArgs e)
@@ -2345,7 +2341,11 @@ namespace u_net
 
         private void 備考_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            IsError(this.ActiveControl, e.Cancel);
+            TextBox textBox = (TextBox)sender;
+
+            if (textBox.Modified == false) return;
+
+            if (IsError(textBox, false) == true) e.Cancel = true;
         }
 
         private void 備考_TextChanged(object sender, EventArgs e)
@@ -2356,17 +2356,29 @@ namespace u_net
 
         private void ロット番号1_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            IsError(this.ActiveControl, e.Cancel);
+            TextBox textBox = (TextBox)sender;
+
+            if (textBox.Modified == false) return;
+
+            if (IsError(textBox, false) == true) e.Cancel = true;
         }
 
         private void ロット番号2_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            IsError(this.ActiveControl, e.Cancel);
+            TextBox textBox = (TextBox)sender;
+
+            if (textBox.Modified == false) return;
+
+            if (IsError(textBox, false) == true) e.Cancel = true;
         }
 
         private void 材料単価_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            IsError(this.ActiveControl, e.Cancel);
+            TextBox textBox = (TextBox)sender;
+
+            if (textBox.Modified == false) return;
+
+            if (IsError(textBox, false) == true) e.Cancel = true;
         }
 
         private void 購買納期_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -2398,7 +2410,11 @@ namespace u_net
 
         private void 購買納期_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            IsError(this.ActiveControl, e.Cancel);
+            TextBox textBox = (TextBox)sender;
+
+            if (textBox.Modified == false) return;
+
+            if (IsError(textBox, false) == true) e.Cancel = true;
         }
 
         private void 申請者コード_DrawItem(object sender, DrawItemEventArgs e)

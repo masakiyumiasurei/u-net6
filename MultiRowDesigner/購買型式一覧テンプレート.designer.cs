@@ -191,6 +191,7 @@
             border4.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
             cellStyle4.Border = border4;
             cellStyle4.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
+            cellStyle4.Format = "N0";
             cellStyle4.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.購買数量.Style = cellStyle4;
             this.購買数量.TabIndex = 3;

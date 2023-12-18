@@ -89,7 +89,7 @@ namespace u_net
             this.label8 = new System.Windows.Forms.Label();
             this.作成者コード = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.登録日時 = new System.Windows.Forms.TextBox();
+            this.作成日時 = new System.Windows.Forms.TextBox();
             this.作成者名 = new System.Windows.Forms.TextBox();
             this.製品版数 = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -462,8 +462,7 @@ namespace u_net
             this.備考.Name = "備考";
             this.備考.Size = new System.Drawing.Size(580, 65);
             this.備考.TabIndex = 16;
-            this.備考.Enter += new System.EventHandler(this.備考_Enter);
-            this.備考.Leave += new System.EventHandler(this.備考_Leave);
+            this.備考.TextChanged += new System.EventHandler(this.備考_TextChanged);
             // 
             // 備考_ラベル
             // 
@@ -490,6 +489,10 @@ namespace u_net
             this.SeriesCode.Name = "SeriesCode";
             this.SeriesCode.Size = new System.Drawing.Size(139, 21);
             this.SeriesCode.TabIndex = 9;
+            this.SeriesCode.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.SeriesCode_DrawItem);
+            this.SeriesCode.SelectedIndexChanged += new System.EventHandler(this.SeriesCode_SelectedIndexChanged);
+            this.SeriesCode.TextChanged += new System.EventHandler(this.SeriesCode_TextChanged);
+            this.SeriesCode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SeriesCode_KeyDown);
             // 
             // シリーズ_ラベル
             // 
@@ -516,8 +519,8 @@ namespace u_net
             this.品名.Name = "品名";
             this.品名.Size = new System.Drawing.Size(403, 20);
             this.品名.TabIndex = 7;
-            this.品名.Enter += new System.EventHandler(this.品名_Enter);
-            this.品名.Leave += new System.EventHandler(this.品名_Leave);
+            this.品名.TextChanged += new System.EventHandler(this.品名_TextChanged);
+            this.品名.Validating += new System.ComponentModel.CancelEventHandler(this.品名_Validating);
             // 
             // 品名_ラベル
             // 
@@ -544,8 +547,10 @@ namespace u_net
             this.製品コード.Name = "製品コード";
             this.製品コード.Size = new System.Drawing.Size(139, 21);
             this.製品コード.TabIndex = 2;
-            this.製品コード.Enter += new System.EventHandler(this.製品コード_Enter);
-            this.製品コード.Leave += new System.EventHandler(this.製品コード_Leave);
+            this.製品コード.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.製品コード_DrawItem);
+            this.製品コード.SelectedIndexChanged += new System.EventHandler(this.製品コード_SelectedIndexChanged);
+            this.製品コード.TextChanged += new System.EventHandler(this.製品コード_TextChanged);
+            this.製品コード.KeyDown += new System.Windows.Forms.KeyEventHandler(this.製品コード_KeyDown);
             // 
             // 製品コードラベル
             // 
@@ -699,19 +704,19 @@ namespace u_net
             this.label9.Text = "作成日時";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // 登録日時
+            // 作成日時
             // 
-            this.登録日時.BackColor = System.Drawing.SystemColors.Window;
-            this.登録日時.Enabled = false;
-            this.登録日時.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.登録日時.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.登録日時.Location = new System.Drawing.Point(795, 48);
-            this.登録日時.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.登録日時.Name = "登録日時";
-            this.登録日時.ReadOnly = true;
-            this.登録日時.Size = new System.Drawing.Size(161, 20);
-            this.登録日時.TabIndex = 10156;
-            this.登録日時.TabStop = false;
+            this.作成日時.BackColor = System.Drawing.SystemColors.Window;
+            this.作成日時.Enabled = false;
+            this.作成日時.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.作成日時.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.作成日時.Location = new System.Drawing.Point(795, 48);
+            this.作成日時.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.作成日時.Name = "作成日時";
+            this.作成日時.ReadOnly = true;
+            this.作成日時.Size = new System.Drawing.Size(161, 20);
+            this.作成日時.TabIndex = 10156;
+            this.作成日時.TabStop = false;
             // 
             // 作成者名
             // 
@@ -738,8 +743,9 @@ namespace u_net
             this.製品版数.Name = "製品版数";
             this.製品版数.Size = new System.Drawing.Size(54, 21);
             this.製品版数.TabIndex = 4;
-            this.製品版数.Enter += new System.EventHandler(this.製品版数_Enter);
-            this.製品版数.Leave += new System.EventHandler(this.製品版数_Leave);
+            this.製品版数.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.製品版数_DrawItem);
+            this.製品版数.SelectedIndexChanged += new System.EventHandler(this.製品版数_SelectedIndexChanged);
+            this.製品版数.TextChanged += new System.EventHandler(this.製品版数_TextChanged);
             // 
             // label1
             // 
@@ -772,8 +778,8 @@ namespace u_net
             this.シリーズ名.Name = "シリーズ名";
             this.シリーズ名.Size = new System.Drawing.Size(261, 20);
             this.シリーズ名.TabIndex = 10;
-            this.シリーズ名.Enter += new System.EventHandler(this.シリーズ名_Enter);
-            this.シリーズ名.Leave += new System.EventHandler(this.シリーズ名_Leave);
+            this.シリーズ名.TextChanged += new System.EventHandler(this.シリーズ名_TextChanged);
+            this.シリーズ名.Validating += new System.ComponentModel.CancelEventHandler(this.シリーズ名_Validating);
             // 
             // RoHS対応
             // 
@@ -788,8 +794,6 @@ namespace u_net
             this.RoHS対応.Size = new System.Drawing.Size(20, 20);
             this.RoHS対応.TabIndex = 14;
             this.RoHS対応.TabStop = false;
-            this.RoHS対応.Enter += new System.EventHandler(this.RoHS対応_Enter);
-            this.RoHS対応.Leave += new System.EventHandler(this.RoHS対応_Leave);
             // 
             // 識別コード
             // 
@@ -801,8 +805,8 @@ namespace u_net
             this.識別コード.Name = "識別コード";
             this.識別コード.Size = new System.Drawing.Size(234, 20);
             this.識別コード.TabIndex = 12;
-            this.識別コード.Enter += new System.EventHandler(this.識別コード_Enter);
-            this.識別コード.Leave += new System.EventHandler(this.識別コード_Leave);
+            this.識別コード.TextChanged += new System.EventHandler(this.識別コード_TextChanged);
+            this.識別コード.Validating += new System.ComponentModel.CancelEventHandler(this.識別コード_Validating);
             // 
             // label2
             // 
@@ -872,6 +876,7 @@ namespace u_net
             this.確定日時.Size = new System.Drawing.Size(20, 20);
             this.確定日時.TabIndex = 10179;
             this.確定日時.TabStop = false;
+            this.確定日時.TextChanged += new System.EventHandler(this.確定日時_TextChanged);
             // 
             // 廃止
             // 
@@ -886,6 +891,8 @@ namespace u_net
             this.廃止.Size = new System.Drawing.Size(20, 20);
             this.廃止.TabIndex = 10180;
             this.廃止.TabStop = false;
+            this.廃止.TextChanged += new System.EventHandler(this.廃止_TextChanged);
+            this.廃止.Validated += new System.EventHandler(this.廃止_Validated);
             // 
             // 承認日時
             // 
@@ -900,6 +907,7 @@ namespace u_net
             this.承認日時.Size = new System.Drawing.Size(20, 20);
             this.承認日時.TabIndex = 10181;
             this.承認日時.TabStop = false;
+            this.承認日時.TextChanged += new System.EventHandler(this.承認日時_TextChanged);
             // 
             // 確定者コード
             // 
@@ -1133,7 +1141,7 @@ namespace u_net
             this.Controls.Add(this.label8);
             this.Controls.Add(this.作成者コード);
             this.Controls.Add(this.label9);
-            this.Controls.Add(this.登録日時);
+            this.Controls.Add(this.作成日時);
             this.Controls.Add(this.RoHS対応_ラベル);
             this.Controls.Add(this.無効者コード);
             this.Controls.Add(this.識別コード_ラベル);
@@ -1227,7 +1235,7 @@ namespace u_net
         private Label シリーズ_ラベル;
         private TextBox 品名;
         private Label 品名_ラベル;
-        private ComboBox 製品コード;
+        internal ComboBox 製品コード;
         private Label 製品コードラベル;
         private Label 仕入先2_ラベル;
         private Label 識別コード_ラベル;
@@ -1239,10 +1247,10 @@ namespace u_net
         private Label label8;
         private TextBox 作成者コード;
         private Label label9;
-        private TextBox 登録日時;
+        private TextBox 作成日時;
         private TextBox 作成者名;
         private TextBox 無効者コード;
-        private ComboBox 製品版数;
+        internal ComboBox 製品版数;
         private Label label1;
         private Button 改版ボタン;
         private TextBox シリーズ名;

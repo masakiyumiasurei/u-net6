@@ -58,10 +58,12 @@
             GrapeCity.Win.MultiRow.Border border1 = new GrapeCity.Win.MultiRow.Border();
             GrapeCity.Win.MultiRow.CellStyle cellStyle4 = new GrapeCity.Win.MultiRow.CellStyle();
             GrapeCity.Win.MultiRow.Border border2 = new GrapeCity.Win.MultiRow.Border();
+            GrapeCity.Win.MultiRow.TextLengthValidator textLengthValidator1 = new GrapeCity.Win.MultiRow.TextLengthValidator();
             GrapeCity.Win.MultiRow.CellStyle cellStyle5 = new GrapeCity.Win.MultiRow.CellStyle();
             GrapeCity.Win.MultiRow.Border border3 = new GrapeCity.Win.MultiRow.Border();
             GrapeCity.Win.MultiRow.CellStyle cellStyle6 = new GrapeCity.Win.MultiRow.CellStyle();
             GrapeCity.Win.MultiRow.Border border4 = new GrapeCity.Win.MultiRow.Border();
+            GrapeCity.Win.MultiRow.TextLengthValidator textLengthValidator2 = new GrapeCity.Win.MultiRow.TextLengthValidator();
             GrapeCity.Win.MultiRow.CellStyle cellStyle7 = new GrapeCity.Win.MultiRow.CellStyle();
             GrapeCity.Win.MultiRow.Border border5 = new GrapeCity.Win.MultiRow.Border();
             GrapeCity.Win.MultiRow.CellStyle cellStyle8 = new GrapeCity.Win.MultiRow.CellStyle();
@@ -85,6 +87,7 @@
             GrapeCity.Win.MultiRow.CellStyle cellStyle17 = new GrapeCity.Win.MultiRow.CellStyle();
             GrapeCity.Win.MultiRow.CellStyle cellStyle18 = new GrapeCity.Win.MultiRow.CellStyle();
             GrapeCity.Win.MultiRow.Border border15 = new GrapeCity.Win.MultiRow.Border();
+            GrapeCity.Win.MultiRow.TextLengthValidator textLengthValidator3 = new GrapeCity.Win.MultiRow.TextLengthValidator();
             GrapeCity.Win.MultiRow.CellStyle cellStyle19 = new GrapeCity.Win.MultiRow.CellStyle();
             GrapeCity.Win.MultiRow.Border border16 = new GrapeCity.Win.MultiRow.Border();
             GrapeCity.Win.MultiRow.CellStyle cellStyle20 = new GrapeCity.Win.MultiRow.CellStyle();
@@ -539,6 +542,10 @@
             cellStyle4.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
             this.構成番号.Style = cellStyle4;
             this.構成番号.TabIndex = 3;
+            textLengthValidator1.EncodingCodePage = 1200;
+            textLengthValidator1.LengthUnit = GrapeCity.Win.MultiRow.LengthUnit.Byte;
+            textLengthValidator1.MaximumLength = 10;
+            this.構成番号.Validators.Add(textLengthValidator1);
             // 
             // 置換不可
             // 
@@ -565,6 +572,10 @@
             cellStyle6.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
             this.部品コード.Style = cellStyle6;
             this.部品コード.TabIndex = 5;
+            textLengthValidator2.EncodingCodePage = 1200;
+            textLengthValidator2.LengthUnit = GrapeCity.Win.MultiRow.LengthUnit.Byte;
+            textLengthValidator2.MaximumLength = 8;
+            this.部品コード.Validators.Add(textLengthValidator2);
             // 
             // 廃止
             // 
@@ -679,6 +690,7 @@
             border13.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
             cellStyle15.Border = border13;
             cellStyle15.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
+            cellStyle15.Format = "N0";
             cellStyle15.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
             this.単価.Style = cellStyle15;
             this.単価.TabIndex = 14;
@@ -692,6 +704,7 @@
             border14.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
             cellStyle16.Border = border14;
             cellStyle16.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
+            cellStyle16.Format = "N0";
             cellStyle16.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
             this.入数.Style = cellStyle16;
             this.入数.TabIndex = 15;
@@ -721,6 +734,10 @@
             cellStyle18.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
             this.変更内容.Style = cellStyle18;
             this.変更内容.TabIndex = 17;
+            textLengthValidator3.EncodingCodePage = 1200;
+            textLengthValidator3.LengthUnit = GrapeCity.Win.MultiRow.LengthUnit.Byte;
+            textLengthValidator3.MaximumLength = 60;
+            this.変更内容.Validators.Add(textLengthValidator3);
             // 
             // ユニットコード
             // 
