@@ -151,6 +151,7 @@ namespace u_net
             label34 = new Label();
             合計金額 = new TextBox();
             label35 = new Label();
+            見積明細1 = new MultiRowDesigner.見積明細();
             panel1.SuspendLayout();
             statusStrip1.SuspendLayout();
             SuspendLayout();
@@ -331,151 +332,208 @@ namespace u_net
             // 
             dataGridViewTextBoxColumn1.DataPropertyName = "商品コード";
             dataGridViewTextBoxColumn1.HeaderText = "商品コード";
+            dataGridViewTextBoxColumn1.MinimumWidth = 6;
             dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            dataGridViewTextBoxColumn1.Width = 125;
             // 
             // dataGridViewTextBoxColumn2
             // 
             dataGridViewTextBoxColumn2.DataPropertyName = "Revision";
             dataGridViewTextBoxColumn2.HeaderText = "Revision";
+            dataGridViewTextBoxColumn2.MinimumWidth = 6;
             dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            dataGridViewTextBoxColumn2.Width = 125;
             // 
             // dataGridViewTextBoxColumn3
             // 
             dataGridViewTextBoxColumn3.DataPropertyName = "明細番号";
             dataGridViewTextBoxColumn3.HeaderText = "明細番号";
+            dataGridViewTextBoxColumn3.MinimumWidth = 6;
             dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            dataGridViewTextBoxColumn3.Width = 125;
             // 
             // dataGridViewTextBoxColumn4
             // 
             dataGridViewTextBoxColumn4.DataPropertyName = "型式番号";
             dataGridViewTextBoxColumn4.HeaderText = "型式番号";
+            dataGridViewTextBoxColumn4.MinimumWidth = 6;
             dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            dataGridViewTextBoxColumn4.Width = 125;
             // 
             // dataGridViewTextBoxColumn5
             // 
             dataGridViewTextBoxColumn5.DataPropertyName = "型式名";
             dataGridViewTextBoxColumn5.HeaderText = "型式名";
+            dataGridViewTextBoxColumn5.MinimumWidth = 6;
             dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            dataGridViewTextBoxColumn5.Width = 125;
             // 
             // dataGridViewTextBoxColumn6
             // 
             dataGridViewTextBoxColumn6.DataPropertyName = "定価";
             dataGridViewTextBoxColumn6.HeaderText = "定価";
+            dataGridViewTextBoxColumn6.MinimumWidth = 6;
             dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            dataGridViewTextBoxColumn6.Width = 125;
             // 
             // dataGridViewTextBoxColumn7
             // 
             dataGridViewTextBoxColumn7.DataPropertyName = "原価";
             dataGridViewTextBoxColumn7.HeaderText = "原価";
+            dataGridViewTextBoxColumn7.MinimumWidth = 6;
             dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            dataGridViewTextBoxColumn7.Width = 125;
             // 
             // dataGridViewTextBoxColumn8
             // 
             dataGridViewTextBoxColumn8.DataPropertyName = "機能";
             dataGridViewTextBoxColumn8.HeaderText = "機能";
+            dataGridViewTextBoxColumn8.MinimumWidth = 6;
             dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
+            dataGridViewTextBoxColumn8.Width = 125;
             // 
             // dataGridViewTextBoxColumn9
             // 
             dataGridViewTextBoxColumn9.DataPropertyName = "構成番号";
             dataGridViewTextBoxColumn9.HeaderText = "構成番号";
+            dataGridViewTextBoxColumn9.MinimumWidth = 6;
             dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
+            dataGridViewTextBoxColumn9.Width = 125;
             // 
             // 日誌IDDataGridViewTextBoxColumn
             // 
+            日誌IDDataGridViewTextBoxColumn.MinimumWidth = 6;
             日誌IDDataGridViewTextBoxColumn.Name = "日誌IDDataGridViewTextBoxColumn";
+            日誌IDDataGridViewTextBoxColumn.Width = 125;
             // 
             // dataGridViewTextBoxColumn10
             // 
+            dataGridViewTextBoxColumn10.MinimumWidth = 6;
             dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
+            dataGridViewTextBoxColumn10.Width = 125;
             // 
             // dataGridViewTextBoxColumn11
             // 
+            dataGridViewTextBoxColumn11.MinimumWidth = 6;
             dataGridViewTextBoxColumn11.Name = "dataGridViewTextBoxColumn11";
+            dataGridViewTextBoxColumn11.Width = 125;
             // 
             // dataGridViewTextBoxColumn12
             // 
+            dataGridViewTextBoxColumn12.MinimumWidth = 6;
             dataGridViewTextBoxColumn12.Name = "dataGridViewTextBoxColumn12";
+            dataGridViewTextBoxColumn12.Width = 125;
             // 
             // dataGridViewTextBoxColumn13
             // 
+            dataGridViewTextBoxColumn13.MinimumWidth = 6;
             dataGridViewTextBoxColumn13.Name = "dataGridViewTextBoxColumn13";
+            dataGridViewTextBoxColumn13.Width = 125;
             // 
             // dataGridViewTextBoxColumn14
             // 
+            dataGridViewTextBoxColumn14.MinimumWidth = 6;
             dataGridViewTextBoxColumn14.Name = "dataGridViewTextBoxColumn14";
+            dataGridViewTextBoxColumn14.Width = 125;
             // 
             // dataGridViewTextBoxColumn15
             // 
+            dataGridViewTextBoxColumn15.MinimumWidth = 6;
             dataGridViewTextBoxColumn15.Name = "dataGridViewTextBoxColumn15";
+            dataGridViewTextBoxColumn15.Width = 125;
             // 
             // dataGridViewTextBoxColumn16
             // 
+            dataGridViewTextBoxColumn16.MinimumWidth = 6;
             dataGridViewTextBoxColumn16.Name = "dataGridViewTextBoxColumn16";
+            dataGridViewTextBoxColumn16.Width = 125;
             // 
             // dataGridViewTextBoxColumn17
             // 
+            dataGridViewTextBoxColumn17.MinimumWidth = 6;
             dataGridViewTextBoxColumn17.Name = "dataGridViewTextBoxColumn17";
+            dataGridViewTextBoxColumn17.Width = 125;
             // 
             // dataGridViewTextBoxColumn18
             // 
+            dataGridViewTextBoxColumn18.MinimumWidth = 6;
             dataGridViewTextBoxColumn18.Name = "dataGridViewTextBoxColumn18";
+            dataGridViewTextBoxColumn18.Width = 125;
             // 
             // dataGridViewTextBoxColumn19
             // 
+            dataGridViewTextBoxColumn19.MinimumWidth = 6;
             dataGridViewTextBoxColumn19.Name = "dataGridViewTextBoxColumn19";
+            dataGridViewTextBoxColumn19.Width = 125;
             // 
             // dataGridViewTextBoxColumn20
             // 
+            dataGridViewTextBoxColumn20.MinimumWidth = 6;
             dataGridViewTextBoxColumn20.Name = "dataGridViewTextBoxColumn20";
+            dataGridViewTextBoxColumn20.Width = 125;
             // 
             // dataGridViewTextBoxColumn21
             // 
+            dataGridViewTextBoxColumn21.MinimumWidth = 6;
             dataGridViewTextBoxColumn21.Name = "dataGridViewTextBoxColumn21";
+            dataGridViewTextBoxColumn21.Width = 125;
             // 
             // dataGridViewTextBoxColumn22
             // 
+            dataGridViewTextBoxColumn22.MinimumWidth = 6;
             dataGridViewTextBoxColumn22.Name = "dataGridViewTextBoxColumn22";
+            dataGridViewTextBoxColumn22.Width = 125;
             // 
             // dataGridViewTextBoxColumn23
             // 
+            dataGridViewTextBoxColumn23.MinimumWidth = 6;
             dataGridViewTextBoxColumn23.Name = "dataGridViewTextBoxColumn23";
+            dataGridViewTextBoxColumn23.Width = 125;
             // 
             // dataGridViewTextBoxColumn24
             // 
+            dataGridViewTextBoxColumn24.MinimumWidth = 6;
             dataGridViewTextBoxColumn24.Name = "dataGridViewTextBoxColumn24";
+            dataGridViewTextBoxColumn24.Width = 125;
             // 
             // dataGridViewTextBoxColumn25
             // 
+            dataGridViewTextBoxColumn25.MinimumWidth = 6;
             dataGridViewTextBoxColumn25.Name = "dataGridViewTextBoxColumn25";
+            dataGridViewTextBoxColumn25.Width = 125;
             // 
             // dataGridViewTextBoxColumn26
             // 
+            dataGridViewTextBoxColumn26.MinimumWidth = 6;
             dataGridViewTextBoxColumn26.Name = "dataGridViewTextBoxColumn26";
+            dataGridViewTextBoxColumn26.Width = 125;
             // 
             // dataGridViewTextBoxColumn27
             // 
+            dataGridViewTextBoxColumn27.MinimumWidth = 6;
             dataGridViewTextBoxColumn27.Name = "dataGridViewTextBoxColumn27";
+            dataGridViewTextBoxColumn27.Width = 125;
             // 
             // statusStrip1
             // 
+            statusStrip1.ImageScalingSize = new Size(20, 20);
             statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1, toolStripStatusLabel2 });
-            statusStrip1.Location = new Point(0, 703);
+            statusStrip1.Location = new Point(0, 836);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Padding = new Padding(1, 0, 19, 0);
-            statusStrip1.Size = new Size(1195, 22);
+            statusStrip1.Size = new Size(1269, 26);
             statusStrip1.TabIndex = 110;
             statusStrip1.Text = "statusStrip1";
             // 
             // toolStripStatusLabel1
             // 
             toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            toolStripStatusLabel1.Size = new Size(0, 17);
+            toolStripStatusLabel1.Size = new Size(0, 20);
             // 
             // toolStripStatusLabel2
             // 
             toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            toolStripStatusLabel2.Size = new Size(89, 17);
+            toolStripStatusLabel2.Size = new Size(111, 20);
             toolStripStatusLabel2.Text = "各種項目の説明";
             // 
             // 確定
@@ -550,7 +608,7 @@ namespace u_net
             見積版数.Location = new Point(421, 50);
             見積版数.Margin = new Padding(4, 3, 4, 3);
             見積版数.Name = "見積版数";
-            見積版数.Size = new Size(60, 22);
+            見積版数.Size = new Size(60, 25);
             見積版数.TabIndex = 1;
             見積版数.DrawItem += 受注版数_DrawItem;
             // 
@@ -888,7 +946,7 @@ namespace u_net
             納入場所.Location = new Point(125, 300);
             納入場所.Margin = new Padding(4, 3, 4, 3);
             納入場所.Name = "納入場所";
-            納入場所.Size = new Size(261, 21);
+            納入場所.Size = new Size(261, 25);
             納入場所.TabIndex = 14;
             // 
             // ファックス番号
@@ -925,7 +983,7 @@ namespace u_net
             担当者コード.Location = new Point(125, 100);
             担当者コード.Margin = new Padding(4, 3, 4, 3);
             担当者コード.Name = "担当者コード";
-            担当者コード.Size = new Size(60, 21);
+            担当者コード.Size = new Size(60, 25);
             担当者コード.TabIndex = 4;
             // 
             // 担当者名
@@ -950,7 +1008,7 @@ namespace u_net
             支払条件.Location = new Point(125, 325);
             支払条件.Margin = new Padding(4, 3, 4, 3);
             支払条件.Name = "支払条件";
-            支払条件.Size = new Size(261, 21);
+            支払条件.Size = new Size(261, 25);
             支払条件.TabIndex = 15;
             // 
             // 有効期間
@@ -963,7 +1021,7 @@ namespace u_net
             有効期間.Location = new Point(125, 350);
             有効期間.Margin = new Padding(4, 3, 4, 3);
             有効期間.Name = "有効期間";
-            有効期間.Size = new Size(261, 21);
+            有効期間.Size = new Size(261, 25);
             有効期間.TabIndex = 16;
             // 
             // label21
@@ -991,7 +1049,7 @@ namespace u_net
             合計金額表示.Location = new Point(461, 375);
             合計金額表示.Margin = new Padding(4, 3, 4, 3);
             合計金額表示.Name = "合計金額表示";
-            合計金額表示.Size = new Size(138, 21);
+            合計金額表示.Size = new Size(138, 25);
             合計金額表示.TabIndex = 18;
             // 
             // label6
@@ -1100,7 +1158,7 @@ namespace u_net
             要承認.Location = new Point(125, 375);
             要承認.Margin = new Padding(4, 3, 4, 3);
             要承認.Name = "要承認";
-            要承認.Size = new Size(171, 21);
+            要承認.Size = new Size(171, 25);
             要承認.TabIndex = 17;
             // 
             // label5
@@ -1508,12 +1566,20 @@ namespace u_net
             label35.Text = "※端数は四捨五入されます。";
             label35.TextAlign = ContentAlignment.MiddleLeft;
             // 
+            // 見積明細1
+            // 
+            見積明細1.Location = new Point(12, 459);
+            見積明細1.Name = "見積明細1";
+            見積明細1.Size = new Size(1131, 375);
+            見積明細1.TabIndex = 10080;
+            // 
             // F_見積
             // 
-            AutoScaleDimensions = new SizeF(8F, 12F);
+            AutoScaleDimensions = new SizeF(10F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
-            ClientSize = new Size(1195, 725);
+            ClientSize = new Size(1269, 862);
+            Controls.Add(見積明細1);
             Controls.Add(label35);
             Controls.Add(合計金額);
             Controls.Add(label34);
@@ -1736,6 +1802,7 @@ namespace u_net
         private Label label34;
         private TextBox 合計金額;
         private Label label35;
+        private MultiRowDesigner.見積明細 見積明細1;
     }
 }
 
