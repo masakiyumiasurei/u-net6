@@ -335,13 +335,15 @@ namespace MultiRowDesigner
                     {
                         if (reader.Read())
                         {
-                            gcMultiRow1.CurrentRow.Cells["部品コード"].Value = reader["部品コード"].ToString();
+                            
                             gcMultiRow1.CurrentRow.Cells["品名"].Value = reader["品名"].ToString();
                             gcMultiRow1.CurrentRow.Cells["型番"].Value = reader["型番"].ToString();
                             gcMultiRow1.CurrentRow.Cells["メーカー名"].Value = reader["メーカー名"].ToString();
                             gcMultiRow1.CurrentRow.Cells["発注単価"].Value = Convert.ToDecimal(reader["発注単価"]);
                             gcMultiRow1.CurrentRow.Cells["入数"].Value = Convert.ToInt32(reader["入数"]);
                             gcMultiRow1.CurrentRow.Cells["単位数量"].Value = Convert.ToInt32(reader["単位数量"]);
+
+                            gcMultiRow1.CurrentRow.Cells["部品コード"].Value = reader["部品コード"].ToString();
                         }
                     }
                 }
@@ -1025,9 +1027,19 @@ namespace MultiRowDesigner
                     case "発注単価":
                         break;
                     case "発注納期":
-                        gcMultiRow1.CurrentRow.Cells["発注納期"].Value = FunctionClass.DateConvert((DateTime)gcMultiRow1.CurrentRow.Cells["発注納期"].Value).ToString();
-                        UpdatedControl(gcMultiRow1.CurrentCell);
+                        object value = gcMultiRow1.CurrentRow.Cells["発注納期"].Value;
 
+                        if (value != DBNull.Value)
+                        {
+                            // DBNullでない場合、DateTimeに変換して処理
+                            gcMultiRow1.CurrentRow.Cells["発注納期"].Value = FunctionClass.DateConvert((DateTime)value).ToString();
+                        }
+                        else
+                        {
+                            // DBNullの場合　 空文字列を設定
+                            gcMultiRow1.CurrentRow.Cells["発注納期"].Value = "";  
+                        }
+                        UpdatedControl(gcMultiRow1.CurrentCell);
 
                         break;
                     case "必要数量":
