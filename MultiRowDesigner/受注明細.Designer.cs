@@ -42,7 +42,7 @@
             gcMultiRow1.HorizontalScrollBarMode = GrapeCity.Win.MultiRow.ScrollBarMode.Automatic;
             gcMultiRow1.Location = new Point(0, 0);
             gcMultiRow1.Name = "gcMultiRow1";
-            gcMultiRow1.Size = new Size(880, 300);
+            gcMultiRow1.Size = new Size(905, 300);
             gcMultiRow1.TabIndex = 0;
             gcMultiRow1.Template = 受注明細テンプレート1;
             gcMultiRow1.Text = "gcMultiRow1";
@@ -66,7 +66,7 @@
             AutoScaleMode = AutoScaleMode.None;
             Controls.Add(gcMultiRow1);
             Name = "受注明細";
-            Size = new Size(880, 300);
+            Size = new Size(905, 300);
             Load += 受注明細_Load;
             ((System.ComponentModel.ISupportInitialize)gcMultiRow1).EndInit();
             ResumeLayout(false);

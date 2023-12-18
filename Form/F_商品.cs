@@ -111,7 +111,7 @@ namespace u_net
             ofn.SetComboBox(商品コード, "SELECT M商品.商品コード as Display ,M商品.商品コード as Value FROM M商品 INNER JOIN M商品明細 ON M商品.商品コード = M商品明細.商品コード " +
                                         "GROUP BY M商品.商品コード ORDER BY M商品.商品コード DESC");
 
-            setCombo = false;
+
 
             int intWindowHeight = this.Height;
             int intWindowWidth = this.Width;
@@ -137,7 +137,9 @@ namespace u_net
                     }
                     if (!string.IsNullOrEmpty(args))
                     {
+
                         this.商品コード.Text = args;
+                        UpdatedControl();
                     }
                     ChangedData(false);
                 }
@@ -156,6 +158,7 @@ namespace u_net
             }
             finally
             {
+                setCombo = false;
                 this.ResumeLayout();
             }
         }
@@ -307,8 +310,8 @@ namespace u_net
             objControl6.Text = CommonConstants.LoginUserFullName;
 
             //管理情報の設定
-            商品明細 frmTarget = Application.OpenForms.OfType<商品明細>().FirstOrDefault();
-            if (!frmTarget.SetModelNumber()) return false;
+            // 商品明細 frmTarget = Application.OpenForms.OfType<商品明細>().FirstOrDefault();
+            if (!商品明細1.SetModelNumber()) return false;
 
             SqlTransaction transaction = cn.BeginTransaction();
             {
@@ -331,10 +334,6 @@ namespace u_net
                         transaction.Rollback();  // 変更をキャンセル
                         return false;
                     }
-
-                    string sql = "DELETE FROM M商品明細 WHERE " + strwhere;
-                    SqlCommand command = new SqlCommand(sql, cn, transaction);
-                    command.ExecuteNonQuery();
 
                     //foreach (DataGridViewRow row in dataGridView1.Rows)
                     //{
@@ -848,7 +847,7 @@ namespace u_net
         private void コマンド確定_Click(object sender, EventArgs e)
         {
             MessageBox.Show("確定コマンドは使えません。", "確定コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }             
+        }
 
 
         // コントロールがフォーカスを受け取ったとき、前回のフォーカスを記憶
@@ -871,7 +870,7 @@ namespace u_net
         }
 
         //商品明細の型式番号と構成番号を設定する 同一の商品コード内での連番　と型式名ごとの番号
- 
+
 
         public void ChangedData(bool dataChanged)
         {
@@ -988,7 +987,10 @@ namespace u_net
             if (this.ActiveControl == null) return;
             if (this.商品分類コード.SelectedItem != null)
             {
-                分類内容.Text = (商品分類コード.SelectedItem as DataRowView)["分類内容"].ToString();
+                Connect();
+                string sql = $"SELECT 分類名 FROM M商品分類 WHERE 商品分類コード= {商品分類コード.Text}";
+                分類内容.Text = OriginalClass.GetScalar<string>(cn, sql);
+                cn.Close();
             }
         }
 
@@ -1017,7 +1019,7 @@ namespace u_net
                 //V商品ヘッダにrevisionカラムがないため
                 this.Revision.Text = "1";
 
-                string strSQL2= "SELECT * FROM M商品明細 WHERE 商品コード='" + CurrentCode + "'";
+                string strSQL2 = "SELECT * FROM M商品明細 WHERE 商品コード='" + CurrentCode + "'";
                 VariableSet.SetTable2Details(商品明細1.Detail, strSQL2, cn);
 
                 //何故かdatagridviewに反映しない？
@@ -1076,7 +1078,7 @@ namespace u_net
                     break;
             }
         }
-        
+
 
         private void 商品名_TextChanged(object sender, EventArgs e)
         {
@@ -1195,42 +1197,45 @@ namespace u_net
             // ExName        - 除外する型式名
             //               - 検出結果　True->重複あり False->重複なし
 
+            //商品明細側に記載したため未使用
+
             bool hasDuplicate = false;
 
-            try
-            {
-                Connect();
-                string query = "SELECT * FROM 商品明細 WHERE 明細番号 <> ? AND 型式名 = ? AND 型式名 <> ?";
+            //try
+            //{
+            //    Connect();
+            //    string query = "SELECT * FROM 商品明細 " +
+            //        "WHERE 明細番号 <> @currentNumber AND 型式名 = @targetID AND 型式名 <> @exName";
+            //    using (SqlCommand cmd = new SqlCommand(query, cn))
+            //    {
+            //        cmd.Parameters.AddWithValue("@currentNumber", currentNumber);
+            //        cmd.Parameters.AddWithValue("@targetID", targetID);
+            //        cmd.Parameters.AddWithValue("@exName", exName);
 
-                {
-                    cmd.Parameters.AddWithValue("@currentNumber", currentNumber);
-                    cmd.Parameters.AddWithValue("@targetID", targetID);
-                    cmd.Parameters.AddWithValue("@exName", exName);
+            //        using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+            //        {
+            //            DataTable dataTable = new DataTable();
+            //            adapter.Fill(dataTable);
 
-                    using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
-                    {
-                        DataTable dataTable = new DataTable();
-                        adapter.Fill(dataTable);
-
-                        if (dataTable.Rows.Count > 0)
-                        {
-                            hasDuplicate = true;
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error: " + ex.Message);
-            }
+            //            if (dataTable.Rows.Count > 0)
+            //            {
+            //                hasDuplicate = true;
+            //            }
+            //        }
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    Console.WriteLine("Error: " + ex.Message);
+            //}
 
             return hasDuplicate;
         }
 
-        
-  
 
-      
+
+
+
 
         //private void 明細削除ボタン_Click(object sender, DataGridViewCellEventArgs e)
         //{

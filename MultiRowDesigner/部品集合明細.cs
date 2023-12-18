@@ -139,21 +139,17 @@ namespace MultiRowDesigner
         {
             //重複をチェックする
             try
-            {
-                // Assuming gcMultiRow1 is the name of your MultiRow control
+            {                
                 foreach (var row in gcMultiRow1.Rows)
-                {
-                    // Assuming "部品コード" is the name of the column containing part codes
+                {                    
                     var partCodeCellValue = row.Cells["部品コード"].Value?.ToString();
 
                     if (partCodeCellValue != null && partCodeCellValue.Equals(partCode))
-                    {
-                        // Part code already exists in the MultiRow
+                    {                        
                         return true;
                     }
                 }
-
-                // Part code does not exist in the MultiRow
+                                
                 return false;
             }
             catch (Exception ex)

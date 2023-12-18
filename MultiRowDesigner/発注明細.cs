@@ -23,7 +23,7 @@ namespace MultiRowDesigner
     {
         public bool sortFlg = false;
         private DataTable dataTable = new DataTable();
-        private DataGridView multiRow = new DataGridView();
+
         private SqlConnection cn;
 
 
@@ -64,6 +64,59 @@ namespace MultiRowDesigner
             cn = new SqlConnection(connectionString);
             cn.Open();
         }
+
+        private void 発注明細_Load(object sender, EventArgs e)
+        {
+            gcMultiRow1.ShortcutKeyManager.Unregister(Keys.Enter);
+            gcMultiRow1.ShortcutKeyManager.Register(SelectionActions.MoveToNextCell, Keys.Enter);
+        }
+
+        private void gcMultiRow1_EditingControlShowing(object sender, EditingControlShowingEventArgs e)
+        {
+
+            TextBoxEditingControl textBox = e.Control as TextBoxEditingControl;
+            ComboBoxEditingControl comboBox = e.Control as ComboBoxEditingControl;
+            if (textBox != null)
+            {
+                textBox.PreviewKeyDown -= gcMultiRow1_PreviewKeyDown;
+                textBox.PreviewKeyDown += gcMultiRow1_PreviewKeyDown;
+                textBox.KeyPress -= new KeyPressEventHandler(gcMultiRow1_KeyPress);
+                textBox.KeyPress += new KeyPressEventHandler(gcMultiRow1_KeyPress);
+            }
+            else if (comboBox != null)
+            {
+                comboBox.PreviewKeyDown -= gcMultiRow1_PreviewKeyDown;
+                comboBox.PreviewKeyDown += gcMultiRow1_PreviewKeyDown;
+                comboBox.KeyPress -= new KeyPressEventHandler(gcMultiRow1_KeyPress);
+                comboBox.KeyPress += new KeyPressEventHandler(gcMultiRow1_KeyPress);
+
+                if (gcMultiRow1.CurrentCell.Name == "買掛区分")
+                {
+                    comboBox.DrawMode = DrawMode.OwnerDrawFixed;
+                    comboBox.DrawItem -= 買掛区分_DrawItem;
+                    comboBox.DrawItem += 買掛区分_DrawItem;
+                    comboBox.SelectedIndexChanged -= 買掛区分_SelectedIndexChanged;
+                    comboBox.SelectedIndexChanged += 買掛区分_SelectedIndexChanged;
+                }
+                else
+                {
+                    comboBox.DrawMode = DrawMode.Normal;
+                }
+            }
+        }
+
+        private void 買掛区分_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            ComboBoxEditingControl combo = sender as ComboBoxEditingControl;
+            OriginalClass.SetComboBoxAppearance(combo, e, new int[] { 150, 0, 0 }, new string[] { "Display", "Display2", "Display3" });
+        }
+
+        private void 買掛区分_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ComboBoxEditingControl combo = sender as ComboBoxEditingControl;
+            gcMultiRow1.CurrentRow.Cells["買掛区分コード"].Value = ((DataRowView)combo.SelectedItem)?.Row.Field<String>("Display2")?.ToString();
+            gcMultiRow1.CurrentRow.Cells["買掛明細コード"].Value = ((DataRowView)combo.SelectedItem)?.Row.Field<Int16?>("Display3")?.ToString();
+        }
         public void CancelOrderBy()
         {
             try
@@ -101,20 +154,26 @@ namespace MultiRowDesigner
 
             try
             {
-                DataTable dataTable = (DataTable)multiRow.DataSource;
+                DataTable dataTable = (DataTable)gcMultiRow1.DataSource;
 
                 if (dataTable != null)
                 {
+                    int rowcnt = 1;
                     // DataTable をループしてフィールドの値を更新
                     for (int i = 0; i < dataTable.Rows.Count; i++)
                     {
+                        // 行の状態が Deleted の時は次の行へ
+                        if (dataTable.Rows[i].RowState == DataRowState.Deleted)
+                        {
+                            continue;
+                        }
+
                         // 特定のフィールド（fieldName）の値を更新
-                        dataTable.Rows[i][fieldName] = i + 1;
+                        dataTable.Rows[i][fieldName] = rowcnt;
+                        rowcnt++;
                     }
 
-                    // DataGridView を再描画  おまじない的に．．．
-                    multiRow.DataSource = null; // データソースを一度解除
-                    multiRow.DataSource = dataTable; // 更新した DataTable を再セット
+                    gcMultiRow1.DataSource = dataTable; // 更新した DataTable を再セット
                 }
                 else
                 {
@@ -183,7 +242,7 @@ namespace MultiRowDesigner
         {
             try
             {
-                DataTable dataTable = (DataTable)multiRow.DataSource;
+                DataTable dataTable = (DataTable)gcMultiRow1.DataSource;
 
                 if (dataTable != null)
                 {
@@ -196,8 +255,8 @@ namespace MultiRowDesigner
                     }
 
                     // DataGridView を再描画  おまじない的に．．．
-                    multiRow.DataSource = null; // データソースを一度解除
-                    multiRow.DataSource = dataTable; // 更新した DataTable を再セット
+                    gcMultiRow1.DataSource = null; // データソースを一度解除
+                    gcMultiRow1.DataSource = dataTable; // 更新した DataTable を再セット
                 }
                 else
                 {
@@ -276,12 +335,13 @@ namespace MultiRowDesigner
                     {
                         if (reader.Read())
                         {
-                            gcMultiRow1.Rows[0].Cells["品名"].Value = reader["品名"].ToString();
-                            gcMultiRow1.Rows[0].Cells["型番"].Value = reader["型番"].ToString();
-                            gcMultiRow1.Rows[0].Cells["メーカー名"].Value = reader["メーカー名"].ToString();
-                            gcMultiRow1.Rows[0].Cells["発注単価"].Value = Convert.ToDecimal(reader["発注単価"]);
-                            gcMultiRow1.Rows[0].Cells["入数"].Value = Convert.ToInt32(reader["入数"]);
-                            gcMultiRow1.Rows[0].Cells["単位数量"].Value = Convert.ToInt32(reader["単位数量"]);
+                            gcMultiRow1.CurrentRow.Cells["部品コード"].Value = reader["部品コード"].ToString();
+                            gcMultiRow1.CurrentRow.Cells["品名"].Value = reader["品名"].ToString();
+                            gcMultiRow1.CurrentRow.Cells["型番"].Value = reader["型番"].ToString();
+                            gcMultiRow1.CurrentRow.Cells["メーカー名"].Value = reader["メーカー名"].ToString();
+                            gcMultiRow1.CurrentRow.Cells["発注単価"].Value = Convert.ToDecimal(reader["発注単価"]);
+                            gcMultiRow1.CurrentRow.Cells["入数"].Value = Convert.ToInt32(reader["入数"]);
+                            gcMultiRow1.CurrentRow.Cells["単位数量"].Value = Convert.ToInt32(reader["単位数量"]);
                         }
                     }
                 }
@@ -571,26 +631,6 @@ namespace MultiRowDesigner
             return isErrorData;
         }
 
-        private void gcMultiRow1_EditingControlShowing(object sender, EditingControlShowingEventArgs e)
-        {
-
-            TextBoxEditingControl textBox = e.Control as TextBoxEditingControl;
-            ComboBoxEditingControl comboBox = e.Control as ComboBoxEditingControl;
-            if (textBox != null)
-            {
-                textBox.PreviewKeyDown -= gcMultiRow1_PreviewKeyDown;
-                textBox.PreviewKeyDown += gcMultiRow1_PreviewKeyDown;
-                textBox.KeyPress -= new KeyPressEventHandler(gcMultiRow1_KeyPress);
-                textBox.KeyPress += new KeyPressEventHandler(gcMultiRow1_KeyPress);
-            }
-            else if (comboBox != null)
-            {
-                comboBox.PreviewKeyDown -= gcMultiRow1_PreviewKeyDown;
-                comboBox.PreviewKeyDown += gcMultiRow1_PreviewKeyDown;
-                comboBox.KeyPress -= new KeyPressEventHandler(gcMultiRow1_KeyPress);
-                comboBox.KeyPress += new KeyPressEventHandler(gcMultiRow1_KeyPress);
-            }
-        }
 
 
         private void gcMultiRow1_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
@@ -614,45 +654,7 @@ namespace MultiRowDesigner
             }
         }
 
-        private void gcMultiRow1_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            //spaceキー
-            if (e.KeyChar == ' ')
-            {
-                if (gcMultiRow1.CurrentCell.RowIndex == null || gcMultiRow1.CurrentCell.CellIndex == null) return;
 
-                switch (gcMultiRow1.CurrentCell.Name)
-                {
-                    case "買掛区分":
-                        ComboBoxEditingControl combo = sender as ComboBoxEditingControl;
-                        combo.DroppedDown = true;
-                        e.Handled = true;
-                        break;
-
-                    case "部品コード":
-                        F_部品選択 form = new F_部品選択();
-                        if (form.ShowDialog() == DialogResult.OK)
-                        {
-                            string selectedCode = form.SelectedCode;
-
-                            gcMultiRow1.CurrentCell.Value = selectedCode;
-                            gcMultiRow1.CurrentCellPosition =
-                                new CellPosition(gcMultiRow1.CurrentRow.Index, gcMultiRow1.CurrentRow.Cells["部品コード"].CellIndex);
-                        }
-                        break;
-
-                    case "発注納期":
-                        F_カレンダー fm = new F_カレンダー();
-                        if (fm.ShowDialog() == DialogResult.OK)
-                        {
-                            // 日付選択フォームから選択した日付を取得
-                            string selectedDate = fm.SelectedDate;
-                            gcMultiRow1.CurrentCell.Value = selectedDate;
-                        }
-                        break;
-                }
-            }
-        }
 
         private void gcMultiRow1_CellValidating(object sender, CellValidatingEventArgs e)
         {
@@ -679,6 +681,9 @@ namespace MultiRowDesigner
                     // セルが編集中の場合
                     if (grid.IsCurrentCellInEditMode)
                     {
+                        // 値が変更されていなければエラーチェックを行わない
+                        if (grid.EditingControl.Text == gcMultiRow1.CurrentCell.DisplayText) return;
+
                         // 編集用コントロールに不正な文字列が設定されている場合
                         if (IsError(grid.EditingControl, false) == true)
                         {
@@ -794,22 +799,12 @@ namespace MultiRowDesigner
                 return true;
             }
         }
-        private void gcMultiRow1_ModifiedChanged(object sender, EventArgs e)
-        {
-            F_発注? Parentform = Application.OpenForms.OfType<F_発注>().FirstOrDefault();
-            Parentform.ChangedData(true);
-        }
 
         private void gcMultiRow1_RowsRemoved(object sender, RowsRemovedEventArgs e)
         {
             F_発注? Parentform = Application.OpenForms.OfType<F_発注>().FirstOrDefault();
             Parentform.ChangedData(true);
-        }
-
-        private void 発注明細_Load(object sender, EventArgs e)
-        {
-            gcMultiRow1.ShortcutKeyManager.Unregister(Keys.Enter);
-            gcMultiRow1.ShortcutKeyManager.Register(SelectionActions.MoveToNextCell, Keys.Enter);
+            NumberDetails("明細番号");
         }
 
 
@@ -877,7 +872,136 @@ namespace MultiRowDesigner
             }
         }
 
-        private void gcMultiRow1_CellValueChanged(object sender, CellEventArgs e)
+
+
+        private void gcMultiRow1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            F_カレンダー fm = new F_カレンダー();
+            //spaceキー
+            if (e.KeyChar == ' ')
+            {
+                if (gcMultiRow1.CurrentCell.RowIndex == null || gcMultiRow1.CurrentCell.CellIndex == null) return;
+
+                switch (gcMultiRow1.CurrentCell.Name)
+                {
+                    case "買掛区分":
+                        ComboBoxEditingControl combo = sender as ComboBoxEditingControl;
+                        combo.DroppedDown = true;
+                        e.Handled = true;
+                        break;
+
+                    case "部品コード":
+                        e.Handled = true;　//スペースの本来の挙動（空白入力）を制御する
+                        F_部品選択 form = new F_部品選択();
+                        if (form.ShowDialog() == DialogResult.OK)
+                        {
+                            string selectedCode = form.SelectedCode;
+
+                            gcMultiRow1.CurrentCell.Value = selectedCode;
+                            //次のセルに変更しないと値が反映しないため
+                            gcMultiRow1.CurrentCellPosition =
+                                new CellPosition(gcMultiRow1.CurrentRow.Index, gcMultiRow1.CurrentRow.Cells["品名"].CellIndex);
+                        }
+                        break;
+
+                    case "発注納期":
+                        e.Handled = true;　//スペースの本来の挙動（空白入力）を制御する
+                        
+                        if (fm.ShowDialog() == DialogResult.OK)
+                        {
+                            // 日付選択フォームから選択した日付を取得
+                            string selectedDate = fm.SelectedDate;
+                            gcMultiRow1.CurrentCell.Value = selectedDate;
+                            gcMultiRow1.CurrentCellPosition =
+                                new CellPosition(gcMultiRow1.CurrentRow.Index, gcMultiRow1.CurrentRow.Cells["必要数量"].CellIndex);
+                        }
+                        break;
+                    case "回答納期":
+                        e.Handled = true;　//スペースの本来の挙動（空白入力）を制御する
+                        
+                        if (fm.ShowDialog() == DialogResult.OK)
+                        {
+                            // 日付選択フォームから選択した日付を取得
+                            string selectedDate = fm.SelectedDate;
+                            gcMultiRow1.CurrentCell.Value = selectedDate;
+                            gcMultiRow1.CurrentCellPosition =
+                                new CellPosition(gcMultiRow1.CurrentRow.Index, gcMultiRow1.CurrentRow.Cells["買掛区分"].CellIndex);
+                        }
+                        break;
+                }
+            }
+        }
+        private void gcMultiRow1_CellDoubleClick(object sender, CellEventArgs e)
+        {
+            F_カレンダー fm = new F_カレンダー();
+            F_発注? parentform = Application.OpenForms.OfType<F_発注>().FirstOrDefault();
+            switch (e.CellName)
+            {
+                case "部品コード":
+
+                    F_部品選択 form = new F_部品選択();
+                    if (form.ShowDialog() == DialogResult.OK)
+                    {
+                        string selectedCode = form.SelectedCode;
+
+                        gcMultiRow1.CurrentCell.Value = selectedCode;
+                        gcMultiRow1.CurrentCellPosition =
+                            new CellPosition(gcMultiRow1.CurrentRow.Index, gcMultiRow1.CurrentRow.Cells["品名"].CellIndex);
+                    }
+
+                    break;
+
+                case "買掛区分":
+                    if (!parentform.IsDecided)
+                    {
+                        ComboBoxEditingControl combo = sender as ComboBoxEditingControl;
+                        combo.DroppedDown = true;
+                    }
+                    else
+                    {
+                        if (parentform.IsApproved)
+                        {
+                            MessageBox.Show("この発注データは承認されています。\n承認後の区分設定はできません。",
+                                            parentform.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        }
+                        else
+                        {
+                            //F_発注_買掛区分設定 fm = new 発注_買掛区分設定();
+                            // F_発注_買掛区分設定 のOPEN処理　完成したら記載する
+                        }
+                    }
+                    break;
+                case "発注納期":
+                    
+                    if (fm.ShowDialog() == DialogResult.OK)
+                    {
+                        // 日付選択フォームから選択した日付を取得
+                        string selectedDate = fm.SelectedDate;
+                        gcMultiRow1.CurrentCell.Value = selectedDate;
+
+                        gcMultiRow1.CurrentCellPosition =
+                                new CellPosition(gcMultiRow1.CurrentRow.Index, gcMultiRow1.CurrentRow.Cells["必要数量"].CellIndex);
+                    }
+                    break;
+                case "回答納期":
+
+                    if (fm.ShowDialog() == DialogResult.OK)
+                    {
+                        // 日付選択フォームから選択した日付を取得
+                        string selectedDate = fm.SelectedDate;
+                        gcMultiRow1.CurrentCell.Value = selectedDate;
+
+                        gcMultiRow1.CurrentCellPosition =
+                                new CellPosition(gcMultiRow1.CurrentRow.Index, gcMultiRow1.CurrentRow.Cells["買掛区分"].CellIndex);
+                    }
+                    break;
+                default:
+
+                    break;
+            }
+        }
+
+        private void gcMultiRow1_CellValidated(object sender, CellEventArgs e)
         {
             //各項目のChangeイベント
             if (e.RowIndex >= 0 && e.CellIndex >= 0)
@@ -886,7 +1010,7 @@ namespace MultiRowDesigner
                 {
                     case "メーカー名":
 
-                      //  FunctionClass.LimitText(gcMultiRow1.CurrentCell, 50);
+                        //  FunctionClass.LimitText(gcMultiRow1.CurrentCell, 50);
                         break;
                     case "回答納期":
                         break;
@@ -919,61 +1043,6 @@ namespace MultiRowDesigner
                 F_発注? Parentform = Application.OpenForms.OfType<F_発注>().FirstOrDefault();
                 Parentform.ChangedData(true);
 
-            }
-        }
-
-        private void gcMultiRow1_CellDoubleClick(object sender, CellEventArgs e)
-        {
-            F_発注? parentform = Application.OpenForms.OfType<F_発注>().FirstOrDefault();
-            switch (e.CellName)
-            {
-                case "部品コード":
-                    F_部品選択 form = new F_部品選択();
-                    if (form.ShowDialog() == DialogResult.OK)
-                    {
-                        string selectedCode = form.SelectedCode;
-
-                        gcMultiRow1.CurrentCell.Value = selectedCode;
-                        gcMultiRow1.CurrentCellPosition =
-                            new CellPosition(gcMultiRow1.CurrentRow.Index, gcMultiRow1.CurrentRow.Cells["部品コード"].CellIndex);
-                    }
-
-                    break;
-
-                case "買掛区分":
-                    if (!parentform.IsDecided)
-                    {
-                        ComboBoxEditingControl combo = sender as ComboBoxEditingControl;
-                        combo.DroppedDown = true;
-                    }
-                    else
-                    {
-                        if (parentform.IsApproved)
-                        {
-                            MessageBox.Show("この発注データは承認されています。\n承認後の区分設定はできません。",
-                                            parentform.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                        }
-                        else
-                        {
-                            //F_発注_買掛区分設定 fm = new 発注_買掛区分設定();
-
-                            // F_発注_買掛区分設定 のOPEN処理　完成したら記載する
-
-                        }
-                    }
-                    break;
-                case "発注納期":
-                    F_カレンダー fm = new F_カレンダー();
-                    if (fm.ShowDialog() == DialogResult.OK)
-                    {
-                        // 日付選択フォームから選択した日付を取得
-                        string selectedDate = fm.SelectedDate;
-                        gcMultiRow1.CurrentCell.Value = selectedDate;
-                    }
-                    break;
-                default:
-
-                    break;
             }
         }
     }

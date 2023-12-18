@@ -1,7 +1,7 @@
 ﻿namespace MultiRowDesigner
 {          
     [System.ComponentModel.ToolboxItem(true)]
-    partial class 受注明細テンプレート
+    partial class 見積明細テンプレート
     {
         /// <summary> 
         /// 必要なデザイナ変数です。

@@ -529,17 +529,17 @@ namespace u_net
             // statusStrip1
             // 
             statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1 });
-            statusStrip1.Location = new Point(0, 622);
+            statusStrip1.Location = new Point(0, 667);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Padding = new Padding(1, 0, 19, 0);
-            statusStrip1.Size = new Size(939, 22);
+            statusStrip1.Size = new Size(1007, 25);
             statusStrip1.TabIndex = 110;
             statusStrip1.Text = "statusStrip1";
             // 
             // toolStripStatusLabel1
             // 
             toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            toolStripStatusLabel1.Size = new Size(89, 17);
+            toolStripStatusLabel1.Size = new Size(111, 20);
             toolStripStatusLabel1.Text = "各種項目の説明";
             // 
             // 売上区分コード
@@ -1309,7 +1309,7 @@ namespace u_net
             商品明細1.Location = new Point(0, 434);
             商品明細1.Margin = new Padding(5, 3, 5, 3);
             商品明細1.Name = "商品明細1";
-            商品明細1.Size = new Size(939, 185);
+            商品明細1.Size = new Size(964, 230);
             商品明細1.TabIndex = 189;
             // 
             // F_商品
@@ -1317,7 +1317,7 @@ namespace u_net
             AutoScaleDimensions = new SizeF(8F, 12F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
-            ClientSize = new Size(939, 644);
+            ClientSize = new Size(1007, 692);
             Controls.Add(商品明細1);
             Controls.Add(label21);
             Controls.Add(label20);

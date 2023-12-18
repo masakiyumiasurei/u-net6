@@ -14,7 +14,7 @@ namespace MultiRowDesigner
 {
     public partial class 商品明細 : UserControl
     {
-        private DataGridView multiRow = new DataGridView();
+
         private SqlConnection cn;
         public GcMultiRow Detail
         {
@@ -35,29 +35,45 @@ namespace MultiRowDesigner
             cn = new SqlConnection(connectionString);
             cn.Open();
         }
+        private void 商品明細_Load(object sender, EventArgs e)
+        {
+            gcMultiRow1.ShortcutKeyManager.Unregister(Keys.Enter);
+            gcMultiRow1.ShortcutKeyManager.Register(SelectionActions.MoveToNextCell, Keys.Enter);
+        }
 
+        private void gcMultiRow1_CellContentButtonClick(object sender, CellEventArgs e)
+        {
+            GcMultiRow gcMultiRow = sender as GcMultiRow;
+
+            switch (e.CellName)
+            {
+                case "明細削除ボタン":
+                    // 新規行の場合、何もしない
+                    if (gcMultiRow.Rows[e.RowIndex].IsNewRow == true) return;
+
+                    // 削除確認
+                    if (MessageBox.Show("明細行(" + (e.RowIndex + 1) + ")を削除しますか？", "承認コマンド", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        gcMultiRow.Rows.RemoveAt(e.RowIndex);
+                    }
+
+                    break;
+
+                case "行移動上ボタン":
+
+                    NumberDetails("明細番号");
+                    break;
+
+                case "行移動下ボタン":
+
+                    NumberDetails("明細番号");
+                    break;
+
+            }
+
+        }
         private void gcMultiRow1_CellContentClick(object sender, CellEventArgs e)
         {
-
-            switch (gcMultiRow1.CurrentCell)
-            {
-                //ボタンClick時の処理
-                case ButtonCell:
-                    switch (e.CellName)
-                    {
-                        case "明細削除ボタン":
-                            MessageBox.Show("削除します。", "削除", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                            break;
-                        default:
-                            break;
-
-
-                    }
-                    break;
-
-                default:
-                    break;
-            }
 
         }
 
@@ -104,7 +120,6 @@ namespace MultiRowDesigner
                         break;
                 }
             }
-
         }
 
         public bool SetModelNumber()
@@ -122,23 +137,20 @@ namespace MultiRowDesigner
                         continue;
                     }
 
+                    string 型式名 = gcMultiRow1.Rows[i].Cells["型式名"].Value as string;
+
+                    if (!string.IsNullOrEmpty(型式名) && 型式名 != "---")
                     {
-                        string 型式名 = gcMultiRow1.Rows[i].Cells["型式名"].Value as string;
 
-                        if (!string.IsNullOrEmpty(型式名) && 型式名 != "---")
-                        {
-
-                            gcMultiRow1.Rows[i].Cells["型式番号"].Value = lngi;
-                            gcMultiRow1.Rows[i].Cells["構成番号"].Value = DBNull.Value;
-                            lngi++;
-                        }
-                        else
-                        {
-                            gcMultiRow1.Rows[i].Cells["構成番号"].Value = lngi;
-                        }
+                        gcMultiRow1.Rows[i].Cells["型式番号"].Value = lngi;
+                        gcMultiRow1.Rows[i].Cells["構成番号"].Value = DBNull.Value;
+                        lngi++;
+                    }
+                    else
+                    {
+                        gcMultiRow1.Rows[i].Cells["構成番号"].Value = lngi;
                     }
                 }
-
                 return true;
             }
             catch (Exception ex)
@@ -151,28 +163,79 @@ namespace MultiRowDesigner
         private void gcMultiRow1_CellFormatting(object sender, CellFormattingEventArgs e)
         {
             //セルがマイナスの場合の処理
+            // ヘッダーセルの場合は無視
 
-            if (e.RowIndex < 0) // ヘッダーセルの場合は無視
+            if (gcMultiRow1.Rows.Count == 0 || e.RowIndex < 0 || e.RowIndex >= gcMultiRow1.Rows.Count)
                 return;
+
+            // 行が存在しない場合は処理をスキップ
+            if (gcMultiRow1.Rows.Count == 0)
+                return;
+
             // セルの値を取得
-            object cellValue = gcMultiRow1[e.CellIndex, e.RowIndex].Value;
+            // object cellValue = gcMultiRow1[e.CellIndex, e.RowIndex].Value;
+
             string columnName = gcMultiRow1.Columns[e.CellIndex].Name;
 
             // セルの値が数値で、かつマイナスの場合
-            if (cellValue is int intValue && intValue < 0 && (columnName == "定価" || columnName == "原価"))
+            if (!gcMultiRow1.Rows[e.RowIndex].IsNewRow && (columnName == "定価" || columnName == "原価")
+                && e.Value != null && e.Value != DBNull.Value)
             {
-                // 赤色のフォントを設定
-                e.CellStyle.ForeColor = Color.Red;
+                if (Convert.ToDecimal(e.Value) < 0)
+                {
+                    // 赤色のフォントを設定
+                    e.CellStyle.ForeColor = Color.Red;
+                }
             }
         }
 
-        private int detailNumber = 1; // 最初の連番
-        private void gcMultiRow1_DefaultValuesNeeded(object sender, RowEventArgs e)
+        private void gcMultiRow1_RowsAdded(object sender, RowsAddedEventArgs e)
         {
-            F_商品 objForm = (F_商品)Application.OpenForms["F_商品"];
-            e.Row.Cells["dgv商品コード"].Value = objForm.商品コード.Text; //Convert.ToInt32(this.顧客ID);
-            e.Row.Cells["dgvRevision"].Value = objForm.Revision.Text;
-            e.Row.Cells["dgv明細番号"].Value = detailNumber.ToString();
+            F_商品 form = Application.OpenForms.OfType<F_商品>().FirstOrDefault();
+
+            for (int i = 0; i < gcMultiRow1.RowCount; i++)
+            {
+                if (gcMultiRow1.Rows[i].IsNewRow == true)
+                {
+                    //新規行の場合は、処理をスキップ
+                    continue;
+                }
+
+                gcMultiRow1.Rows[i].Cells["明細番号"].Value = i + 1;
+                gcMultiRow1.Rows[i].Cells["商品コード"].Value = form.商品コード.Text;
+                gcMultiRow1.Rows[i].Cells["Revision"].Value = form.Revision.Text;
+
+            }
+        }
+        private void gcMultiRow1_RowLeave(object sender, CellEventArgs e)
+        {
+            MessageBox.Show("leave");
+            NumberDetails("明細番号");
+        }
+        private void gcMultiRow1_RowEnter(object sender, CellEventArgs e)
+        {
+            MessageBox.Show("enter");
+            //  NumberDetails("明細番号");
+        }
+        private void gcMultiRow1_RowsRemoved(object sender, RowsRemovedEventArgs e)
+        {
+            F_商品? form = Application.OpenForms.OfType<F_商品>().FirstOrDefault();
+            form.ChangedData(true);
+            NumberDetails("明細番号");
+        }
+
+        private void gcMultiRow1_RowDragMoveCompleted(object sender, DragMoveCompletedEventArgs e)
+        {
+            //行変更しても実行されない
+            F_商品? form = Application.OpenForms.OfType<F_商品>().FirstOrDefault();
+            form.ChangedData(true);
+            NumberDetails("明細番号");
+        }
+        private void gcMultiRow1_ModifiedChanged(object sender, EventArgs e)
+        {
+            F_商品? form = Application.OpenForms.OfType<F_商品>().FirstOrDefault();
+            form.ChangedData(true);
+
         }
 
         public void NumberDetails(string fieldName, long start = 1)
@@ -183,20 +246,29 @@ namespace MultiRowDesigner
 
             try
             {
-                DataTable dataTable = (DataTable)multiRow.DataSource;
+                DataTable dataTable = (DataTable)gcMultiRow1.DataSource;
 
                 if (dataTable != null)
                 {
+                    int rowcnt = 1;
                     // DataTable をループしてフィールドの値を更新
                     for (int i = 0; i < dataTable.Rows.Count; i++)
                     {
+                        // 行の状態が Deleted の時は次の行へ
+                        if (dataTable.Rows[i].RowState == DataRowState.Deleted)
+                        {
+                            continue;
+                        }
                         // 特定のフィールド（fieldName）の値を更新
-                        dataTable.Rows[i][fieldName] = i + 1;
+                        dataTable.Rows[i][fieldName] = rowcnt;
+                        MessageBox.Show(rowcnt + ": " + (string)dataTable.Rows[i]["型式名"]);
+                        rowcnt++;
+
                     }
 
-                    // DataGridView を再描画  おまじない的に．．．
-                    multiRow.DataSource = null; // データソースを一度解除
-                    multiRow.DataSource = dataTable; // 更新した DataTable を再セット
+                    // multiRow を再描画  おまじない的に．．．
+                    //gcMultiRow1.DataSource = null; // データソースを一度解除
+                    gcMultiRow1.DataSource = dataTable; // 更新した DataTable を再セット
                 }
                 else
                 {
@@ -252,7 +324,7 @@ namespace MultiRowDesigner
             object previousValue = gcMultiRow1.Rows[e.RowIndex].Cells[e.CellIndex].Value;
 
             string columnName = gcMultiRow1.Columns[e.CellIndex].Name;
-            string newValue = e.FormattedValue.ToString(); // 変更後の値
+            string newValue = e.FormattedValue?.ToString() ?? ""; // 変更後の値
 
 
             switch (columnName)
@@ -264,15 +336,17 @@ namespace MultiRowDesigner
                     if (string.IsNullOrWhiteSpace(newValue))
                     {
                         e.Cancel = true;
-                        MessageBox.Show(columnName + " を入力してください。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        MessageBox.Show(columnName + " を入力してください。", "エラー",
+                            MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         return;
                     }
 
                     // ここで重複チェックを実行するメソッドを呼び出す
-                    if (objForm.DetectRepeatedID(currentNumber, previousValue as string, "---"))
+                    if (DetectRepeatedID(currentNumber, newValue as string, "---"))
                     {
                         e.Cancel = true;
-                        MessageBox.Show("型式名が重複しています。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        MessageBox.Show("型式名が重複しています。", "エラー",
+                            MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     }
 
                     break;
@@ -290,18 +364,48 @@ namespace MultiRowDesigner
 
                 case "原価":
                     // コメントアウトしていた
-
                     break;
 
                 case "機能":
                     // コメントアウトしていた
-
                     break;
-
             }
         }
 
+        private bool DetectRepeatedID(int currentNumber, string targetID, string exName)
+        {
+            bool result = false;
 
+            try
+            {
+                //foreach (DataRow row in dataTable.Rows)
 
+                foreach (var row in gcMultiRow1.Rows)
+                {
+                    if (row.IsNewRow)
+                    {
+                        // 新規行の場合はスキップ
+                        continue;
+                    }
+
+                    int rowNumber = Convert.ToInt32(row.Cells["明細番号"]?.Value);
+                    string rowTargetID = Convert.ToString(row.Cells["型式名"]?.Value);
+
+                    if (rowNumber != currentNumber && rowTargetID == targetID && rowTargetID != exName)
+                    {
+                        result = true;
+                        break;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+            }
+
+            return result;
+        }
+
+       
     }
 }
