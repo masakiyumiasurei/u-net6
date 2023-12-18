@@ -269,10 +269,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Reports\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Reference Include="Pao.Reports">
       <HintPath>lib\Pao.Reports.dll</HintPath>
     </Reference>

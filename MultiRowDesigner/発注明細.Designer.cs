@@ -40,24 +40,26 @@ namespace MultiRowDesigner
             // 
             gcMultiRow1.AllowRowMove = true;
             gcMultiRow1.EditMode = GrapeCity.Win.MultiRow.EditMode.EditOnEnter;
-            gcMultiRow1.Location = new Point(-4, 0);
-            gcMultiRow1.Margin = new Padding(4);
+            gcMultiRow1.Location = new Point(-5, 0);
+            gcMultiRow1.Margin = new Padding(5);
             gcMultiRow1.Name = "gcMultiRow1";
-            gcMultiRow1.Size = new Size(1328, 250);
+            gcMultiRow1.Size = new Size(1518, 333);
             gcMultiRow1.TabIndex = 0;
             gcMultiRow1.Template = 発注明細テンプレート1;
-            gcMultiRow1.TemplateScaleSize = new SizeF(1.16666675F, 1.25F);
+            gcMultiRow1.TemplateScaleSize = new SizeF(1.33333349F, 1.66666675F);
             gcMultiRow1.Text = "gcMultiRow1";
             gcMultiRow1.RowsAdding += gcMultiRow1_RowsAdding;
             gcMultiRow1.RowsAdded += gcMultiRow1_RowsAdded;
             gcMultiRow1.RowsRemoved += gcMultiRow1_RowsRemoved;
             gcMultiRow1.CellValidating += gcMultiRow1_CellValidating;
-            gcMultiRow1.CellValueChanged += gcMultiRow1_CellValueChanged;
+            gcMultiRow1.CellValidated += gcMultiRow1_CellValidated;
             gcMultiRow1.CellEnter += gcMultiRow1_CellEnter;
+            gcMultiRow1.EditingControlShowing += gcMultiRow1_EditingControlShowing;
             gcMultiRow1.CellDoubleClick += gcMultiRow1_CellDoubleClick;
             gcMultiRow1.CellContentClick += gcMultiRow1_CellContentButtonClick;
+            gcMultiRow1.CellContentButtonClick += gcMultiRow1_CellContentButtonClick;
             gcMultiRow1.Sorted += gcMultiRow1_Sorted;
-            gcMultiRow1.ModifiedChanged += gcMultiRow1_ModifiedChanged;
+            gcMultiRow1.KeyPress += gcMultiRow1_KeyPress;
             gcMultiRow1.PreviewKeyDown += gcMultiRow1_PreviewKeyDown;
             // 
             // 発注明細テンプレート1
@@ -72,13 +74,13 @@ namespace MultiRowDesigner
             // 
             // 発注明細
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoScroll = true;
             Controls.Add(gcMultiRow1);
-            Margin = new Padding(4);
+            Margin = new Padding(5);
             Name = "発注明細";
-            Size = new Size(1325, 250);
+            Size = new Size(1514, 333);
             Load += 発注明細_Load;
             ((System.ComponentModel.ISupportInitialize)gcMultiRow1).EndInit();
             ResumeLayout(false);

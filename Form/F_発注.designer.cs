@@ -151,7 +151,7 @@ namespace u_net
             panel1.Location = new Point(0, 1);
             panel1.Margin = new Padding(4, 3, 4, 3);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1036, 42);
+            panel1.Size = new Size(1515, 42);
             panel1.TabIndex = 81;
             // 
             // コマンド新規
@@ -523,7 +523,7 @@ namespace u_net
             発注者コード.Location = new Point(108, 93);
             発注者コード.MaxDropDownItems = 9;
             発注者コード.Name = "発注者コード";
-            発注者コード.Size = new Size(61, 21);
+            発注者コード.Size = new Size(116, 21);
             発注者コード.TabIndex = 8;
             発注者コード.DrawItem += 発注者コード_DrawItem;
             発注者コード.TextChanged += 発注者コード_TextChanged;
@@ -537,10 +537,10 @@ namespace u_net
             発注者名.Enabled = false;
             発注者名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             発注者名.ImeMode = ImeMode.NoControl;
-            発注者名.Location = new Point(175, 94);
+            発注者名.Location = new Point(228, 94);
             発注者名.Margin = new Padding(3, 2, 3, 2);
             発注者名.Name = "発注者名";
-            発注者名.Size = new Size(202, 20);
+            発注者名.Size = new Size(149, 20);
             発注者名.TabIndex = 10069;
             発注者名.TabStop = false;
             発注者名.Visible = false;
@@ -1189,17 +1189,17 @@ namespace u_net
             // statusStrip1
             // 
             statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1 });
-            statusStrip1.Location = new Point(0, 707);
+            statusStrip1.Location = new Point(0, 696);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Padding = new Padding(1, 0, 19, 0);
-            statusStrip1.Size = new Size(1035, 22);
+            statusStrip1.Size = new Size(1515, 25);
             statusStrip1.TabIndex = 10117;
             statusStrip1.Text = "statusStrip1";
             // 
             // toolStripStatusLabel1
             // 
             toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            toolStripStatusLabel1.Size = new Size(89, 17);
+            toolStripStatusLabel1.Size = new Size(111, 20);
             toolStripStatusLabel1.Text = "各種項目の説明";
             // 
             // toolStripStatusLabel2
@@ -1225,17 +1225,17 @@ namespace u_net
             // 発注明細1
             // 
             発注明細1.AutoScroll = true;
-            発注明細1.Location = new Point(5, 361);
+            発注明細1.Location = new Point(0, 349);
             発注明細1.Margin = new Padding(4, 5, 4, 5);
             発注明細1.Name = "発注明細1";
-            発注明細1.Size = new Size(1584, 338);
+            発注明細1.Size = new Size(1515, 336);
             発注明細1.TabIndex = 10119;
             発注明細1.Resize += Form_Resize;
             // 
             // F_発注
             // 
             BackColor = SystemColors.Control;
-            ClientSize = new Size(1035, 729);
+            ClientSize = new Size(1515, 721);
             Controls.Add(発注明細1);
             Controls.Add(入庫状況);
             Controls.Add(statusStrip1);

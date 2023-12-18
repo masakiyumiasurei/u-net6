@@ -18,6 +18,12 @@ namespace MultiRowDesigner
         public 発注明細テンプレート()
         {
             InitializeComponent();
+
+            Connect();
+            OriginalClass ofn = new OriginalClass();
+
+            ofn.SetComboBox(買掛区分, "SELECT 買掛区分 as Display,買掛区分コード as Display2, 買掛明細コード as Display3 , 買掛区分コード as Value FROM V買掛区分");
+
         }
 
         public void Connect()

@@ -168,8 +168,7 @@ namespace u_net
         {
             get
             {
-                発注明細 frmTarget = Application.OpenForms.OfType<発注明細>().FirstOrDefault();
-                return frmTarget.sortFlg;
+                return 発注明細1.sortFlg;
             }
         }
 
@@ -227,8 +226,8 @@ namespace u_net
             {
                 this.SuspendLayout();
 
-                 intWindowHeight = this.Height;
-                 intWindowWidth = this.Width;
+                intWindowHeight = this.Height;
+                intWindowWidth = this.Width;
 
 
                 if (string.IsNullOrEmpty(args))
@@ -275,6 +274,7 @@ namespace u_net
             {
                 this.ResumeLayout();
                 fn.WaitForm.Close();
+                this.Focus();
             }
         }
 
@@ -394,8 +394,7 @@ namespace u_net
             {
                 if (MessageBox.Show("明細行が並べ替えられています。\n並べ替えを解除して登録しますか？", "登録コマンド", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    発注明細 SubForm = Application.OpenForms.OfType<発注明細>().FirstOrDefault();
-                    SubForm.CancelOrderBy();
+                    発注明細1.CancelOrderBy();
                 }
                 else
                 {
@@ -568,7 +567,7 @@ namespace u_net
         {
             try
             {
-                string strwhere = $"発注コード= {codeString} AND 発注版数= {editionNumber}";
+                string strwhere = $"発注コード= '{codeString}' AND 発注版数= {editionNumber}";
                 //明細部の登録
                 if (!DataUpdater.UpdateOrInsertDetails(this.発注明細1.Detail, cn, "T発注明細", strwhere, "発注コード", transaction))
                 {
@@ -820,16 +819,16 @@ namespace u_net
             // コードにフォーカスがある状態でサブフォームから呼び出されたときの対処
 
             if (ActiveControl == 発注コード) 発注日.Focus();
-            発注コード.Enabled = !IsChanged;
+            発注コード.Enabled = !isChanged;
             if (ActiveControl == 発注版数) 発注日.Focus();
-            発注版数.Enabled = !IsChanged;
+            発注版数.Enabled = !isChanged;
 
-            コマンド複写.Enabled = !IsChanged;
-            コマンド削除.Enabled = !IsChanged;
-            コマンド発注書.Enabled = !IsChanged;
-            if (IsChanged) コマンド送信.Enabled = false;
-            if (IsChanged) コマンド確定.Enabled = true;
-            コマンド登録.Enabled = IsChanged;
+            コマンド複写.Enabled = !isChanged;
+            コマンド削除.Enabled = !isChanged;
+            コマンド発注書.Enabled = !isChanged;
+            if (isChanged) コマンド送信.Enabled = false;
+            if (isChanged) コマンド確定.Enabled = true;
+            コマンド登録.Enabled = isChanged;
         }
 
         private void コマンド新規_Click(object sender, EventArgs e)
@@ -1045,7 +1044,6 @@ namespace u_net
 
         private void コマンド確定_Click(object sender, EventArgs e)
         {
-            発注明細 SubForm = Application.OpenForms.OfType<発注明細>().FirstOrDefault();
             FunctionClass fn = new FunctionClass();
             try
             {
@@ -1081,7 +1079,7 @@ namespace u_net
                         "確定コマンド", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
 
-                        SubForm.CancelOrderBy();
+                        発注明細1.CancelOrderBy();
                     }
                     else
                     {
@@ -1509,7 +1507,6 @@ namespace u_net
         {
             try
             {
-
                 Connect();
 
                 string code = FunctionClass.採番(cn, CH_ORDER);
@@ -1536,9 +1533,8 @@ namespace u_net
 
         private void コマンド部品_Click(object sender, EventArgs e)
         {
-            発注明細 subform = Application.OpenForms.OfType<発注明細>().FirstOrDefault();
             F_部品 fm = new F_部品();
-            fm.args = subform.CurrentPartsCode;          //発注明細のカレントレコードを渡す
+            fm.args = 発注明細1.CurrentPartsCode;          //発注明細のカレントレコードを渡す
             fm.ShowDialog();
         }
 
@@ -1604,7 +1600,6 @@ namespace u_net
         {
             LocalSetting ls = new LocalSetting();
             ls.SavePlace(LoginUserCode, this);
-            発注明細 frmTarget = Application.OpenForms.OfType<発注明細>().FirstOrDefault();
 
             try
             {
@@ -1629,7 +1624,7 @@ namespace u_net
                                 if (MessageBox.Show("明細行が並べ替えられています。" + Environment.NewLine +
                                                     "並べ替えを解除して登録しますか？", "登録コマンド", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
                                 {
-                                    frmTarget.CancelOrderBy();
+                                    発注明細1.CancelOrderBy();
 
                                 }
                             }
@@ -1811,6 +1806,7 @@ namespace u_net
 
                         FunctionClass.LockData(this, IsDecided || IsDeleted, "発注コード", "発注版数");
 
+                        ChangedData(false);
                         発注版数.Enabled = true;
 
                         if (IsLastEdition && IsApproved && !IsDeleted)
@@ -1846,6 +1842,7 @@ namespace u_net
                         if (!VariableSet.SetTable2Details(this.発注明細1.Detail, strSQL, cn)) return;
 
                         FunctionClass.LockData(this, IsDecided || IsDeleted, "発注コード", "発注版数");
+                        ChangedData(false);
 
                         if (IsLastEdition && IsApproved && !IsDeleted)
                         {
@@ -2027,7 +2024,7 @@ namespace u_net
         }
         private void 発注コード_TextChanged(object sender, EventArgs e)
         {
-            FunctionClass.LimitText(((TextBox)sender), 11);
+            FunctionClass.LimitText(sender as Control, 11);
         }
 
         private void 発注コード_SelectedIndexChanged(object sender, EventArgs e)

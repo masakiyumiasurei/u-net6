@@ -253,7 +253,8 @@ namespace u_net
                     "FROM M商品 LEFT OUTER JOIN ItemCode_ComposedMountChip ON M商品.商品コード = ItemCode_ComposedMountChip.ItemCode " +
                     "LEFT OUTER JOIN Mシリーズ ON M商品.シリーズコード = Mシリーズ.シリーズコード " +
                     "LEFT OUTER JOIN M社員 ON M商品.更新者コード = M社員.社員コード) AS T " +
-                    "WHERE " + filter;
+                    "WHERE " + filter +
+                    " order by 商品コード DESC";
 
                 Connect();
                 DataGridUtils.SetDataGridView(cn, query, this.dataGridView1);
