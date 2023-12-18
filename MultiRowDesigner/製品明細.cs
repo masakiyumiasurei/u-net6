@@ -90,8 +90,8 @@ namespace MultiRowDesigner
 
         private void gcMultiRow1_ModifiedChanged(object sender, EventArgs e)
         {
-            F_製品? f_製品 = Application.OpenForms.OfType<F_製品>().FirstOrDefault();
-            f_製品.ChangedData(true);
+            //F_製品? f_製品 = Application.OpenForms.OfType<F_製品>().FirstOrDefault();
+            //f_製品.ChangedData(true);
         }
 
         private void gcMultiRow1_CellContentClick(object sender, CellEventArgs e)
@@ -287,6 +287,9 @@ namespace MultiRowDesigner
                     break;
 
             }
+
+            F_製品? f_製品 = Application.OpenForms.OfType<F_製品>().FirstOrDefault();
+            f_製品.ChangedData(true);
         }
 
         private void UpdatedControl(Cell controlObject)
@@ -354,6 +357,12 @@ namespace MultiRowDesigner
                 textBox.PreviewKeyDown += gcMultiRow1_PreviewKeyDown;
                 textBox.KeyPress -= new KeyPressEventHandler(gcMultiRow1_KeyPress);
                 textBox.KeyPress += new KeyPressEventHandler(gcMultiRow1_KeyPress);
+
+                if (gcMultiRow1.CurrentCell.Name == "ユニットコード")
+                {
+                    textBox.DoubleClick -= gcMultiRow1_CellDoubleClick;
+                    textBox.DoubleClick += gcMultiRow1_CellDoubleClick;
+                }
             }
             else if (comboBox != null)
             {
@@ -365,6 +374,29 @@ namespace MultiRowDesigner
                     comboBox.SelectedIndexChanged -= 変更操作コード_SelectedIndexChanged;
                     comboBox.SelectedIndexChanged += 変更操作コード_SelectedIndexChanged;
                 }
+
+            }
+        }
+
+        private void gcMultiRow1_CellDoubleClick(object sender, EventArgs e)
+        {
+            if (gcMultiRow1.CurrentCell.RowIndex == null || gcMultiRow1.CurrentCell.CellIndex == null) return;
+
+            switch (gcMultiRow1.CurrentCell.Name)
+            {
+                case "ユニットコード":
+
+                    codeSelectionForm = new F_ユニット選択();
+                    if (codeSelectionForm.ShowDialog() == DialogResult.OK)
+                    {
+                        string selectedCode = codeSelectionForm.SelectedCode;
+
+                        gcMultiRow1.CurrentCell.Value = selectedCode;
+                        gcMultiRow1.CurrentCellPosition = new CellPosition(gcMultiRow1.CurrentRow.Index, gcMultiRow1.CurrentRow.Cells["品名"].CellIndex);
+                    }
+                    break;
+
+
 
             }
         }
@@ -443,28 +475,7 @@ namespace MultiRowDesigner
 
         }
 
-        private void gcMultiRow1_CellDoubleClick(object sender, CellEventArgs e)
-        {
-            if (gcMultiRow1.CurrentCell.RowIndex == null || gcMultiRow1.CurrentCell.CellIndex == null) return;
-
-            switch (gcMultiRow1.CurrentCell.Name)
-            {
-                case "ユニットコード":
-
-                    codeSelectionForm = new F_ユニット選択();
-                    if (codeSelectionForm.ShowDialog() == DialogResult.OK)
-                    {
-                        string selectedCode = codeSelectionForm.SelectedCode;
-
-                        gcMultiRow1.CurrentCell.Value = selectedCode;
-                        gcMultiRow1.CurrentCellPosition = new CellPosition(gcMultiRow1.CurrentRow.Index, gcMultiRow1.CurrentRow.Cells["品名"].CellIndex);
-                    }
-                    break;
-
-
-
-            }
-        }
+        
 
         private void gcMultiRow1_RowDragMoveCompleted(object sender, DragMoveCompletedEventArgs e)
         {
@@ -498,5 +509,7 @@ namespace MultiRowDesigner
         {
             gcMultiRow1.CurrentRow.Cells["カレント"].Style.BackColor = Color.White;
         }
+
+        
     }
 }

@@ -68,6 +68,18 @@
     <Compile Include="入金明細テンプレート.designer.cs">
       <DependentUpon>入金明細テンプレート.cs</DependentUpon>
     </Compile>
+    <Compile Include="受注明細テンプレート.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="受注明細テンプレート.designer.cs">
+      <DependentUpon>受注明細テンプレート.cs</DependentUpon>
+    </Compile>
+    <Compile Include="見積明細.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="見積明細.Designer.cs">
+      <DependentUpon>見積明細.cs</DependentUpon>
+    </Compile>
     <Compile Include="支払明細.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -188,11 +200,11 @@
     <Compile Include="受注明細.Designer.cs">
       <DependentUpon>受注明細.cs</DependentUpon>
     </Compile>
-    <Compile Include="受注明細テンプレート.cs">
+    <Compile Include="見積明細テンプレート.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="受注明細テンプレート.designer.cs">
-      <DependentUpon>受注明細テンプレート.cs</DependentUpon>
+    <Compile Include="見積明細テンプレート.designer.cs">
+      <DependentUpon>見積明細テンプレート.cs</DependentUpon>
     </Compile>
     <Compile Include="製品明細テンプレート.cs">
       <SubType>Component</SubType>
@@ -259,6 +271,12 @@
     <EmbeddedResource Include="入金明細テンプレート.resx">
       <DependentUpon>入金明細テンプレート.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="受注明細テンプレート.resx">
+      <DependentUpon>受注明細テンプレート.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="見積明細.resx">
+      <DependentUpon>見積明細.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="支払明細.resx">
       <DependentUpon>支払明細.cs</DependentUpon>
     </EmbeddedResource>
@@ -320,8 +338,8 @@
     <EmbeddedResource Include="受注明細.resx">
       <DependentUpon>受注明細.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="受注明細テンプレート.resx">
-      <DependentUpon>受注明細テンプレート.cs</DependentUpon>
+    <EmbeddedResource Include="見積明細テンプレート.resx">
+      <DependentUpon>見積明細テンプレート.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="製品明細テンプレート.resx">
       <DependentUpon>製品明細テンプレート.cs</DependentUpon>

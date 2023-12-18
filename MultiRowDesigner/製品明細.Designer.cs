@@ -53,7 +53,6 @@
             this.gcMultiRow1.RowEnter += new System.EventHandler<GrapeCity.Win.MultiRow.CellEventArgs>(this.gcMultiRow1_RowEnter);
             this.gcMultiRow1.RowLeave += new System.EventHandler<GrapeCity.Win.MultiRow.CellEventArgs>(this.gcMultiRow1_RowLeave);
             this.gcMultiRow1.EditingControlShowing += new System.EventHandler<GrapeCity.Win.MultiRow.EditingControlShowingEventArgs>(this.gcMultiRow1_EditingControlShowing);
-            this.gcMultiRow1.CellDoubleClick += new System.EventHandler<GrapeCity.Win.MultiRow.CellEventArgs>(this.gcMultiRow1_CellDoubleClick);
             this.gcMultiRow1.CellContentClick += new System.EventHandler<GrapeCity.Win.MultiRow.CellEventArgs>(this.gcMultiRow1_CellContentClick);
             this.gcMultiRow1.ModifiedChanged += new System.EventHandler(this.gcMultiRow1_ModifiedChanged);
             this.gcMultiRow1.RowDragMoveCompleted += new System.EventHandler<GrapeCity.Win.MultiRow.DragMoveCompletedEventArgs>(this.gcMultiRow1_RowDragMoveCompleted);

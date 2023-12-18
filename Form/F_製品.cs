@@ -437,6 +437,13 @@ namespace u_net
             if (!FunctionClass.IsError(this.品名)) return false;
             if (!FunctionClass.IsError(this.シリーズ名)) return false;
             if (!FunctionClass.IsError(this.識別コード)) return false;
+
+            if((IsDecided && 製品明細1.Detail.RowCount < 1) || (!IsDecided && 製品明細1.Detail.RowCount <= 1))
+            {
+                MessageBox.Show("１つ以上の明細が必要です。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return false;
+            }
+
             return true;
         }
 
@@ -572,7 +579,7 @@ namespace u_net
                         // 状態の表示
                         SetEditionStatus();
 
-                        ChangedData(false);
+                        
 
 
                         // 動作を制御する
@@ -582,6 +589,8 @@ namespace u_net
                         製品明細1.Detail.AllowUserToAddRows = !this.IsDecided;
                         製品明細1.Detail.AllowUserToDeleteRows = !this.IsDecided;
                         製品明細1.Detail.ReadOnly = this.IsDecided;
+
+                        ChangedData(false);
 
                         this.コマンド複写.Enabled = !this.IsDirty;
                         this.コマンド削除.Enabled = this.IsLatestEdition;
@@ -620,7 +629,7 @@ namespace u_net
                         // 状態の表示
                         SetEditionStatus();
 
-                        ChangedData(false);
+                        
 
                         // 動作を制御する
                         FunctionClass.LockData(this, this.IsDecided || this.IsDeleted, "製品コード", "製品版数");
@@ -628,6 +637,8 @@ namespace u_net
                         製品明細1.Detail.AllowUserToAddRows = !this.IsDecided;
                         製品明細1.Detail.AllowUserToDeleteRows = !this.IsDecided;
                         製品明細1.Detail.ReadOnly = this.IsDecided;
+
+                        ChangedData(false);
 
                         this.コマンド複写.Enabled = !this.IsDirty;
                         this.コマンド削除.Enabled = this.IsLatestEdition;
@@ -642,9 +653,9 @@ namespace u_net
 
 
                 //テスト用
-                製品明細1.Detail.AllowUserToAddRows = true;
-                製品明細1.Detail.AllowUserToDeleteRows = true;
-                製品明細1.Detail.ReadOnly = false;
+                //製品明細1.Detail.AllowUserToAddRows = true;
+                //製品明細1.Detail.AllowUserToDeleteRows = true;
+                //製品明細1.Detail.ReadOnly = false;
 
 
             }
@@ -743,7 +754,34 @@ namespace u_net
 
                 strSQL = "SELECT * FROM V製品ヘッダ WHERE 製品コード ='" + codeString + "' and 製品版数 = " + editionNumber;
 
+    
+                if (string.IsNullOrEmpty(確定日時.Text))
+                {
+                    確定表示.SendToBack();
+                }
+                else
+                {
+                    確定表示.BringToFront();
+                }
+ 
+                if (string.IsNullOrEmpty(承認日時.Text))
+                {
+                    承認表示.SendToBack();
+                }
+                else
+                {
+                    承認表示.BringToFront();
+                }
 
+                if (SupersededDate == null || string.IsNullOrEmpty(SupersededDate.Text))
+                {
+                    廃止表示.SendToBack();
+                }
+                else
+                {
+                    廃止表示.BringToFront();
+                }
+                
 
                 VariableSet.SetTable2Form(this, strSQL, cn);
 
@@ -854,7 +892,7 @@ namespace u_net
 
                     string strwhere = "製品コード='" + codeString + "' and 製品版数 =" + editionNumber;
                     // ヘッダ部の登録
-                    if (!DataUpdater.UpdateOrInsertDataFrom(this, cn, "M製品", strwhere, "製品コード", transaction))
+                    if (!DataUpdater.UpdateOrInsertDataFrom(this, cn, "M製品", strwhere, "製品コード", transaction,"製品版数"))
                     {
                         transaction.Rollback();  // 変更をキャンセル
                         return false;
@@ -931,41 +969,62 @@ namespace u_net
                     cmd.ExecuteNonQuery();
 
                     // 型式一覧を取得する
-                    string strSQLSelect = "SELECT 型式名 FROM 製品明細 WHERE 削除対象 = FALSE ORDER BY 型式名 DESC";
-                    cmd.CommandText = strSQLSelect;
-                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    //string strSQLSelect = "SELECT 型式名 FROM 製品明細 WHERE 削除対象 = FALSE ORDER BY 型式名 DESC";
+                    //cmd.CommandText = strSQLSelect;
+                    //using (SqlDataReader reader = cmd.ExecuteReader())
+                    //{
+
+                    if (製品明細1.Detail.RowCount < 1)
                     {
-                        if (!reader.HasRows)
-                        {
-                            Console.WriteLine("製品マスタの明細データがありません。不正なデータです。");
-                            return result;
-                        }
-
-                        // 製品型式マスタに登録
-                        string strSQLInsert = "INSERT INTO M製品型式 (製品コード, 製品版数, 明細番号, 型式名) VALUES (@ProductCode, @ProductEdition, @DetailNumber, @ModelName)";
-                        cmd.CommandText = strSQLInsert;
-                        int detailNumber = 0;
-                        string modelName = "";
-
-                        while (reader.Read())
-                        {
-                            string currentModelName = reader["型式名"].ToString();
-
-                            if (currentModelName != modelName)
-                            {
-                                detailNumber++;
-                                modelName = currentModelName;
-
-                                cmd.Parameters.Clear();
-                                cmd.Parameters.AddWithValue("@ProductCode", productCode);
-                                cmd.Parameters.AddWithValue("@ProductEdition", productEdition);
-                                cmd.Parameters.AddWithValue("@DetailNumber", detailNumber);
-                                cmd.Parameters.AddWithValue("@ModelName", modelName);
-
-                                cmd.ExecuteNonQuery();
-                            }
-                        }
+                        Console.WriteLine("製品マスタの明細データがありません。不正なデータです。");
+                        return result;
                     }
+
+                    // 製品型式マスタに登録
+                    string strSQLInsert = "INSERT INTO M製品型式 (製品コード, 製品版数, 明細番号, 型式名) VALUES (@ProductCode, @ProductEdition, @DetailNumber, @ModelName)";
+                    cmd.CommandText = strSQLInsert;
+                    int detailNumber = 0;
+                    string modelName = "";
+
+
+                    for (int i = 0; i < 製品明細1.Detail.RowCount; i++)
+                    {
+                        if (製品明細1.Detail.Rows[i].IsNewRow == true)
+                        {
+                            //新規行の場合は、処理をスキップ
+                            continue;
+                        }
+
+                        if(string.IsNullOrEmpty(製品明細1.Detail.Rows[i].Cells["削除対象"].Value?.ToString()))
+                        {
+                            製品明細1.Detail.Rows[i].Cells["削除対象"].Value = false;
+                        }
+
+                        if((bool)製品明細1.Detail.Rows[i].Cells["削除対象"].Value)
+                        {
+                            continue;
+                        }
+                        
+                        string currentModelName = 製品明細1.Detail.Rows[i].Cells["型式名"].Value.ToString();
+
+
+                        if (currentModelName != modelName)
+                        {
+                            detailNumber++;
+                            modelName = currentModelName;
+
+                            cmd.Parameters.Clear();
+                            cmd.Parameters.AddWithValue("@ProductCode", productCode);
+                            cmd.Parameters.AddWithValue("@ProductEdition", productEdition);
+                            cmd.Parameters.AddWithValue("@DetailNumber", detailNumber);
+                            cmd.Parameters.AddWithValue("@ModelName", modelName);
+
+                            cmd.ExecuteNonQuery();
+                        }
+
+                    }
+
+              
 
                     result = true; // 成功
                 }
@@ -1088,6 +1147,8 @@ namespace u_net
 
         private void 改版ボタン_Click(object sender, EventArgs e)
         {
+
+            FunctionClass fn = new FunctionClass();
             try
             {
                 bool isErrorOccurred = false;
@@ -1103,7 +1164,7 @@ namespace u_net
                 }
 
 
-                FunctionClass fn = new FunctionClass();
+                
                 fn.DoWait("改版しています...");
 
                 CommonConnect();
@@ -1130,6 +1191,10 @@ namespace u_net
                 Debug.Print(this.Name + "_改版ボタン_Click - " + ex.Message);
                 MessageBox.Show("エラーが発生しました。", BASE_CAPTION, MessageBoxButtons.OK, MessageBoxIcon.Error);
 
+            }
+            finally
+            {
+                fn.WaitForm.Close();
             }
         }
 
@@ -1170,6 +1235,8 @@ namespace u_net
                 this.承認日時.Text = null;
                 this.承認者コード.Text = null;
                 this.承認者名.Text = null;
+                this.廃止.Text = null;
+                this.SupersededDate = null;
 
                 return true;
             }
@@ -1199,6 +1266,11 @@ namespace u_net
                         //新規行の場合は、処理をスキップ
                         continue;
                     }
+
+                    if(string.IsNullOrEmpty(製品明細1.Detail.Rows[i].Cells["削除対象"].Value?.ToString()))
+                        {
+                            製品明細1.Detail.Rows[i].Cells["削除対象"].Value = false;
+                        }
 
                     if (Convert.ToBoolean(製品明細1.Detail.Rows[i].Cells["削除対象"].Value))
                     {
@@ -1367,10 +1439,6 @@ namespace u_net
                 // ログオンユーザーが指定ユーザーなら認証者コードにユーザーコードを設定する
                 if (CommonConstants.LoginUserCode != strHeadCode)
                 {
-
-                }
-                else
-                {
                     using (var authenticationForm = new F_認証())
                     {
                         authenticationForm.args = strHeadCode;
@@ -1390,15 +1458,18 @@ namespace u_net
 
                 // 値を退避させる
                 var var1 = this.SupersededDate.Text;
+                var var2 = this.廃止.Text;
 
                 // 値をセットする
                 if (this.IsAbolished)
                 {
                     this.SupersededDate.Text = null;
+                    this.廃止.Text = null;
                 }
                 else
                 {
                     this.SupersededDate.Text = FunctionClass.GetServerDate(cn).ToString("yyyy/MM/dd");
+                    this.廃止.Text = "-1";
                 }
 
                 if (SaveData())
@@ -1411,6 +1482,7 @@ namespace u_net
                 else
                 {
                     this.SupersededDate.Text = var1;
+                    this.廃止.Text = var2;
                     MessageBox.Show("登録できませんでした。", "製品", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
 
@@ -1469,11 +1541,13 @@ namespace u_net
                     // 版数のソース更新
                     UpdateEditionList(CurrentCode);
 
-                    ChangedData(false);
+                    
                     FunctionClass.LockData(this, IsDecided || IsDeleted, "製品コード", "製品版数");
 
                     // RoHS対応状況を表示する
                     RoHS対応.Text = GetRohsStatus();
+
+                    
 
                     // 新規モードのときは修正モードへ移行する
                     if (IsNewData)
@@ -1487,6 +1561,8 @@ namespace u_net
                     製品明細1.Detail.AllowUserToAddRows = !IsDecided;
                     製品明細1.Detail.AllowUserToDeleteRows = !IsDecided;
                     製品明細1.Detail.ReadOnly = IsDecided;
+
+                    ChangedData(false);
                 }
                 else
                 {
@@ -1530,11 +1606,7 @@ namespace u_net
                 string strHeadCode = CommonConstants.USER_CODE_TECH; // 承認者を指定する
 
                 // ログオンユーザーが指定ユーザーなら認証者コードにユーザーコードを設定する
-                if (CommonConstants.LoginUserCode != strHeadCode)
-                {
-
-                }
-                else
+                if (CommonConstants.LoginUserCode != strHeadCode)   
                 {
                     using (var authenticationForm = new F_認証())
                     {
@@ -1751,10 +1823,6 @@ namespace u_net
                     // ログオンユーザーが指定ユーザーなら認証者コードにユーザーコードを設定する
                     if (CommonConstants.LoginUserCode != strHeadCode)
                     {
-
-                    }
-                    else
-                    {
                         using (var authenticationForm = new F_認証())
                         {
                             authenticationForm.args = strHeadCode;
@@ -1878,9 +1946,14 @@ namespace u_net
                         {
                             MessageBox.Show("改版を取り消しました。", "削除コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+                            
+
                             // 前版を表示する
                             製品版数.Focus();
                             製品版数.Text = (CurrentEdition - 1).ToString();
+
+                            // 版数のソース更新
+                            UpdateEditionList(this.CurrentCode);
                         }
                         else
                         {
@@ -1939,6 +2012,8 @@ namespace u_net
 
                     if (count > 0)
                     {
+                        strKey = $"製品コード = '{codeString}' AND 製品版数 = {editionNumber} ";
+
                         // 承認されていない場合にのみ削除処理を実行
                         string strSQL2 = $"DELETE FROM M製品 WHERE {strKey}";
                         string strSQL3 = $"DELETE FROM M製品明細 WHERE {strKey}";
@@ -2436,13 +2511,11 @@ namespace u_net
         {
             if (string.IsNullOrEmpty(確定日時.Text))
             {
-                確定日時.BackColor = Color.Black;
-                確定日時.ForeColor = Color.Black;
+                確定表示.SendToBack();
             }
             else
             {
-                確定日時.BackColor = Color.Red;
-                確定日時.ForeColor = Color.Red;
+                確定表示.BringToFront();
             }
         }
 
@@ -2450,27 +2523,24 @@ namespace u_net
         {
             if (string.IsNullOrEmpty(承認日時.Text))
             {
-                承認日時.BackColor = Color.Black;
-                承認日時.ForeColor = Color.Black;
+                承認表示.SendToBack();
             }
             else
             {
-                承認日時.BackColor = Color.Red;
-                承認日時.ForeColor = Color.Red;
+                承認表示.BringToFront();
             }
         }
 
-        private void 廃止_TextChanged(object sender, EventArgs e)
+
+        private void SupersededDate_TextChanged(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(廃止.Text))
+            if (SupersededDate == null || string.IsNullOrEmpty(SupersededDate.Text))
             {
-                廃止.BackColor = Color.Black;
-                廃止.ForeColor = Color.Black;
+                廃止表示.SendToBack();
             }
             else
             {
-                廃止.BackColor = Color.Red;
-                廃止.ForeColor = Color.Red;
+                廃止表示.BringToFront();
             }
         }
     }

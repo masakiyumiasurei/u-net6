@@ -121,6 +121,9 @@ namespace u_net
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.製品明細1 = new MultiRowDesigner.製品明細();
+            this.承認表示 = new System.Windows.Forms.TextBox();
+            this.廃止表示 = new System.Windows.Forms.TextBox();
+            this.確定表示 = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -891,7 +894,6 @@ namespace u_net
             this.廃止.Size = new System.Drawing.Size(20, 20);
             this.廃止.TabIndex = 10180;
             this.廃止.TabStop = false;
-            this.廃止.TextChanged += new System.EventHandler(this.廃止_TextChanged);
             this.廃止.Validated += new System.EventHandler(this.廃止_Validated);
             // 
             // 承認日時
@@ -1074,6 +1076,7 @@ namespace u_net
             this.SupersededDate.TabIndex = 10194;
             this.SupersededDate.TabStop = false;
             this.SupersededDate.Visible = false;
+            this.SupersededDate.TextChanged += new System.EventHandler(this.SupersededDate_TextChanged);
             // 
             // statusStrip1
             // 
@@ -1099,6 +1102,48 @@ namespace u_net
             this.製品明細1.Name = "製品明細1";
             this.製品明細1.Size = new System.Drawing.Size(1015, 348);
             this.製品明細1.TabIndex = 10196;
+            // 
+            // 承認表示
+            // 
+            this.承認表示.BackColor = System.Drawing.Color.Red;
+            this.承認表示.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.承認表示.Enabled = false;
+            this.承認表示.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.承認表示.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.承認表示.Location = new System.Drawing.Point(585, 71);
+            this.承認表示.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.承認表示.Name = "承認表示";
+            this.承認表示.Size = new System.Drawing.Size(20, 20);
+            this.承認表示.TabIndex = 10199;
+            this.承認表示.TabStop = false;
+            // 
+            // 廃止表示
+            // 
+            this.廃止表示.BackColor = System.Drawing.Color.Red;
+            this.廃止表示.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.廃止表示.Enabled = false;
+            this.廃止表示.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.廃止表示.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.廃止表示.Location = new System.Drawing.Point(585, 94);
+            this.廃止表示.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.廃止表示.Name = "廃止表示";
+            this.廃止表示.Size = new System.Drawing.Size(20, 20);
+            this.廃止表示.TabIndex = 10198;
+            this.廃止表示.TabStop = false;
+            // 
+            // 確定表示
+            // 
+            this.確定表示.BackColor = System.Drawing.Color.Red;
+            this.確定表示.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.確定表示.Enabled = false;
+            this.確定表示.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.確定表示.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.確定表示.Location = new System.Drawing.Point(585, 48);
+            this.確定表示.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.確定表示.Name = "確定表示";
+            this.確定表示.Size = new System.Drawing.Size(20, 20);
+            this.確定表示.TabIndex = 10197;
+            this.確定表示.TabStop = false;
             // 
             // F_製品
             // 
@@ -1166,6 +1211,9 @@ namespace u_net
             this.Controls.Add(this.コマンド複写);
             this.Controls.Add(this.コマンド読込);
             this.Controls.Add(this.panel1);
+            this.Controls.Add(this.承認表示);
+            this.Controls.Add(this.廃止表示);
+            this.Controls.Add(this.確定表示);
             this.ImeMode = System.Windows.Forms.ImeMode.Off;
             this.KeyPreview = true;
             this.MaximizeBox = false;
@@ -1281,6 +1329,9 @@ namespace u_net
         //private MultiRowDesigner.製品明細 製品明細1;
         internal ToolStripStatusLabel toolStripStatusLabel1;
         private MultiRowDesigner.製品明細 製品明細1;
+        private TextBox 承認表示;
+        private TextBox 廃止表示;
+        private TextBox 確定表示;
     }
 }
 
