@@ -27,6 +27,7 @@ using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 using System.Transactions;
 using MultiRowDesigner;
 using System.Runtime.InteropServices;
+using System.Text;
 
 namespace u_net
 {
@@ -1573,16 +1574,18 @@ namespace u_net
 
                 fn.DoWait("発注書を作成しています...");
 
-                string param = $" -sv:{ServerInstanceName.Replace(" ", "_")} -pv:porder,{CurrentCode.TrimEnd().Replace(" ", "_")}," +
-                    $"{CurrentEdition.ToString().Replace(" ", "_")}";
-                param = $" -user:{LoginUserName}{param}";
+                //注意　レポート出力テストのため外部システムの実行をコメント
 
-                FunctionClass.GetShell(param);
+                //string param = $" -sv:{ServerInstanceName.Replace(" ", "_")} -pv:porder,{CurrentCode.TrimEnd().Replace(" ", "_")}," +
+                //    $"{CurrentEdition.ToString().Replace(" ", "_")}";
+                //param = $" -user:{LoginUserName}{param}";
+                //FunctionClass.GetShell(param);
 
             Bye_コマンド発注書_Click:
 
                 fn.WaitForm.Close();
 
+                発注書印刷();
                 //if (SysCmd(acSysCmdGetObjectState, acReport, "発注書") == acObjStateOpen)
                 //{
                 //    DoCmd.SelectObject(acReport, "発注書");
@@ -1595,6 +1598,161 @@ namespace u_net
                 MessageBox.Show("エラーが発生しました。", "発注書コマンド", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             }
+        }
+
+        private void 発注書印刷()
+        {
+
+            IReport paoRep = ReportCreator.GetPreview();
+
+            paoRep.LoadDefFile("../../../Reports/発注書.prepd");
+
+            Connect();
+
+            DataRowCollection V発注書;
+
+            string sqlQuery = "SELECT * FROM V発注書   where 発注コード='" + CurrentCode +
+                "' and 発注版数=" + CurrentEdition + " ORDER BY 発注コード, 明細番号";
+
+            using (SqlCommand command = new SqlCommand(sqlQuery, cn))
+            {
+                using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+                {
+                    DataSet dataSet = new DataSet();
+
+                    adapter.Fill(dataSet);
+
+                    V発注書 = dataSet.Tables[0].Rows;
+                }
+            }
+
+            //最大行数
+            int maxRow = 17;
+            //現在の行
+            int CurRow = 0;
+            //行数
+            int RowCount = maxRow;
+
+            if (V発注書.Count > 0)
+            {
+                RowCount = V発注書.Count;
+            }
+
+            int page = 1;
+            double maxPage = Math.Ceiling((double)RowCount / maxRow);
+
+            DateTime now = DateTime.Now;
+
+            int lenB;
+
+            //描画すべき行がある限りページを増やす
+            while (RowCount > 0)
+            {
+                RowCount -= maxRow;
+
+                paoRep.PageStart();
+
+                //ヘッダー
+                paoRep.Write("仕入先名", 仕入先名.Text != "" ? 仕入先名.Text : " ");
+                paoRep.Write("発注コード", 発注コード.Text != "" ? 発注コード.Text : " ");
+                paoRep.Write("発注日", 発注日.Text != "" ? 発注日.Text : " ");
+                paoRep.Write("仕入先コード", 仕入先コード.Text != "" ? 仕入先コード.Text : " ");
+                paoRep.Write("発注日", 発注日.Text != "" ? 発注日.Text : " ");
+                paoRep.Write("ファックス番号", 仕入先ファックス番号.Text != "" ? 仕入先ファックス番号.Text : " ");
+                paoRep.Write("担当者名", 仕入先担当者名.Text != "" ? 仕入先担当者名.Text : " ");
+                paoRep.Write("購買コード", 購買コード.Text != "" ? 購買コード.Text : " ");
+                paoRep.Write("シリーズ名", シリーズ名.Text != "" ? シリーズ名.Text : " ");
+                paoRep.Write("ロット番号", ロット番号.Text != "" ? ロット番号.Text : " ");
+                paoRep.Write("無効日時", 無効日時.Text != "" ? 無効日時.Text : " ");
+                paoRep.Write("承認者名", 承認者名.Text != "" ? 承認者名.Text : " ");
+                paoRep.Write("発注者名", 発注者名.Text != "" ? 発注者名.Text : " ");
+                paoRep.Write("無効日時表示", 無効日時.Text != "" ? "＜この注文書は無効です。＞" : " ");
+                paoRep.Write("発注版数表示", int.TryParse(発注版数.Text, out int version) && version > 1 ?
+                    "（第 " + 発注版数.Text + " 版）" : " ");
+
+                //隠しボックスだが不要　とりあえず置いておく
+                paoRep.Write("発注版数", " ");
+
+                //フッダー
+                paoRep.Write("摘要", 摘要.Text != "" ? 摘要.Text : " ");
+                paoRep.Write("Now", now.ToString("yyyy年M月d日"));
+                paoRep.Write("ページ番号", (page + "/" + maxPage + " ページ").ToString());
+
+                //明細
+                for (var i = 0; i < maxRow; i++)
+                {
+                    if (CurRow >= V発注書.Count) break;
+
+                    DataRow targetRow = V発注書[CurRow];
+
+                    paoRep.Write("明細番号", (CurRow + 1).ToString(), i + 1);  //連番にしたい時はこちら。明細番号は歯抜けがあるので
+                    //paoRep.Write("明細番号", targetRow["明細番号"].ToString() != "" ? targetRow["明細番号"].ToString() : " ", i + 1);
+                    paoRep.Write("部品コード", targetRow["部品コード"].ToString() != "" ? targetRow["部品コード"].ToString() : " ", i + 1);                    
+                    paoRep.Write("品名", targetRow["品名"].ToString() != "" ? targetRow["品名"].ToString() : " ", i + 1);
+                    paoRep.Write("型番", targetRow["型番"].ToString() != "" ? targetRow["型番"].ToString() : " ", i + 1);
+                    paoRep.Write("RoHS", targetRow["RoHS"].ToString() != "" ? targetRow["RoHS"].ToString() : " ", i + 1);
+                    paoRep.Write("メーカー名", targetRow["メーカー名"].ToString() != "" ? targetRow["メーカー名"].ToString() : " ", i + 1);
+                    paoRep.Write("発注数量", targetRow["発注数量"].ToString() != "" ? targetRow["発注数量"].ToString() : " ", i + 1);
+
+                    decimal 発注単価 = 0;
+                    string 表示単価 = "";
+                    if (decimal.TryParse(targetRow["発注単価"].ToString(), out 発注単価))
+                    {
+                         表示単価 = 発注単価.ToString("N2");                        
+                    }
+                    
+                    paoRep.Write("発注単価", 表示単価, i + 1);
+
+                    paoRep.Write("発注納期", targetRow["発注納期"].ToString() != "" ? ((DateTime)targetRow["発注納期"]).ToString("yyyy/M/d") : " ", i + 1);
+                    paoRep.Write("回答納期", targetRow["回答納期"].ToString() != "" ? ((DateTime)targetRow["回答納期"]).ToString("yyyy/M/d") : " ", i + 1);
+
+                   
+                    paoRep.z_Objects.SetObject("品名", i + 1);
+                    lenB = Encoding.Default.GetBytes(targetRow["品名"].ToString()).Length;
+                    if (lenB <= 40)
+                    {
+                        paoRep.z_Objects.z_Text.z_FontAttr.Size = 10;
+                    }                    
+                    else
+                    {
+                        paoRep.z_Objects.z_Text.z_FontAttr.Size = 8;
+                    }
+
+
+                    paoRep.z_Objects.SetObject("型番", i + 1);
+                    lenB = Encoding.Default.GetBytes(targetRow["型番"].ToString()).Length;
+                    if (lenB <= 40)
+                    {
+                        paoRep.z_Objects.z_Text.z_FontAttr.Size = 10;
+                    }
+                    else
+                    {
+                        paoRep.z_Objects.z_Text.z_FontAttr.Size = 8;
+                    }
+
+
+                    paoRep.z_Objects.SetObject("メーカー名", i + 1);
+                    lenB = Encoding.Default.GetBytes(targetRow["メーカー名"].ToString()).Length;
+                    if ( lenB<=28)
+                    {
+                        paoRep.z_Objects.z_Text.z_FontAttr.Size = 10;
+                    }                    
+                    else
+                    {
+                        paoRep.z_Objects.z_Text.z_FontAttr.Size = 7;
+                    }                                        
+
+                    CurRow++;
+
+                }
+
+                page++;
+
+                paoRep.PageEnd();
+
+            }
+            paoRep.Output();
+
         }
 
 

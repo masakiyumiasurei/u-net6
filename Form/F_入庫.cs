@@ -173,7 +173,7 @@ namespace u_net
             intpixel = myapi.GetLogPixel();
             twipperdot = myapi.GetTwipPerDot(intpixel);
 
-           
+
 
 
             OriginalClass ofn = new OriginalClass();
@@ -192,7 +192,7 @@ namespace u_net
             発注コード.DrawMode = DrawMode.OwnerDrawFixed;
 
             ofn.SetComboBox(集計年月, " SELECT 集計年月 as Display, 集計年月 as Value FROM V集計年月");
-            
+
             Connect();
 
             using (SqlCommand cmd = new SqlCommand("SP支払年月入力", cn))
@@ -237,7 +237,7 @@ namespace u_net
                     // 新規モードへ移行
                     if (!GoNewMode())
                     {
-                    
+
                         MessageBox.Show("入庫は使用できません。", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         return;
                     }
@@ -281,7 +281,7 @@ namespace u_net
 
             F_発注管理? f_発注管理 = Application.OpenForms.OfType<F_発注管理>().FirstOrDefault();
 
-            if(f_発注管理 != null)
+            if (f_発注管理 != null)
             {
                 発注コード.Text = f_発注管理.CurrentCode;
             }
@@ -359,7 +359,7 @@ namespace u_net
             DateTime date1 = Convert.ToDateTime(this.入庫日.Text);
 
             // 適用する消費税率を入力する（■入庫日＝検収日としている）
-            this.TaxRate.Text = FunctionClass.GetTaxRate(cn,date1).ToString("0.##");
+            this.TaxRate.Text = FunctionClass.GetTaxRate(cn, date1).ToString("0.##");
 
             // GetAddupMonth および GetPayDay 関数の実装が提供されていないため、コメントアウトしています
             /*
@@ -503,7 +503,7 @@ namespace u_net
                     "強制終了します。" + Environment.NewLine + Environment.NewLine +
                     $"{ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-   
+
             }
         }
 
@@ -564,7 +564,7 @@ namespace u_net
             }
         }
 
-        
+
 
         private void コマンド新規_Click(object sender, EventArgs e)
         {
@@ -619,11 +619,11 @@ namespace u_net
                     goto Err_コマンド新規_Click;
 
                 Bye_コマンド新規_Click:
-                    Cursor.Current = Cursors.Default;
-                    return;
+                Cursor.Current = Cursors.Default;
+                return;
 
-                Err_コマンド新規_Click:
-                    MessageBox.Show("エラーのため新規モードへ移行できません。", "新規コマンド", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            Err_コマンド新規_Click:
+                MessageBox.Show("エラーのため新規モードへ移行できません。", "新規コマンド", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
             catch (Exception ex)
             {
@@ -632,7 +632,7 @@ namespace u_net
             }
         }
 
-     
+
         private bool SaveData()
         {
 
@@ -664,7 +664,7 @@ namespace u_net
                         objControl3.Text = CommonConstants.LoginUserFullName;
                     }
 
-                   
+
 
 
                     string strwhere = " 入庫コード='" + this.入庫コード.Text + "'";
@@ -725,23 +725,23 @@ namespace u_net
                     if (!DataUpdater.UpdateOrInsertDataFrom(this, cn, "T入庫", strwhere, "入庫コード", transaction))
                     {
                         transaction.Rollback();  // 変更をキャンセル
-                        return false; 
+                        return false;
                     }
 
                     // 明細部の登録
                     if (!DataUpdater.UpdateOrInsertDetails(this.入庫明細1.Detail, cn, "T入庫明細", strwhere, "入庫コード", transaction))
                     {
                         transaction.Rollback();  // 変更をキャンセル
-                        return false; 
+                        return false;
                     }
 
                     // 入庫データ登録後に部品の在庫を更新する
                     // ここでいう在庫とはシステムが管理している実在庫のことである
                     if (!UpdateStock())
-                        {
-                            transaction.Rollback();  // 変更をキャンセル
-                            return false;
-                        }
+                    {
+                        transaction.Rollback();  // 変更をキャンセル
+                        return false;
+                    }
 
                     transaction.Commit();
 
@@ -844,7 +844,8 @@ namespace u_net
                             MessageBox.Show("日付を入力してください。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                             goto Exit_IsError;
                         }
-                        if (FunctionClass.IsClosedPayment(cn,dateValue2)){
+                        if (FunctionClass.IsClosedPayment(cn, dateValue2))
+                        {
                             MessageBox.Show("指定された支払月は締め切られているため、入力できません。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                             goto Exit_IsError;
                         }
@@ -900,7 +901,7 @@ namespace u_net
         {
             try
             {
-      
+
                 var varValue = controlObject.Text;
                 string strSQL;
                 DateTime dat1;
@@ -935,13 +936,13 @@ namespace u_net
                             dat1 = Convert.ToDateTime(controlObject.Text);
                             int SupplierCloseDayInt;
                             int.TryParse(SupplierCloseDay.Text, out SupplierCloseDayInt);
-                            this.集計年月.Text = FunctionClass.GetAddupMonth(cn,dat1, SupplierCloseDayInt);
-                            dat1 = FunctionClass.GetPayDay(cn,DateTime.Parse(集計年月.Text));
+                            this.集計年月.Text = FunctionClass.GetAddupMonth(cn, dat1, SupplierCloseDayInt);
+                            dat1 = FunctionClass.GetPayDay(cn, DateTime.Parse(集計年月.Text));
                             this.支払年月.Text = $"{dat1.Year}/{dat1.Month.ToString("D2")}";
                         }
 
                         // 適用する消費税率を入力する
-                        this.TaxRate.Text = FunctionClass.GetTaxRate(cn,DateTime.Parse(controlObject.Text)).ToString();
+                        this.TaxRate.Text = FunctionClass.GetTaxRate(cn, DateTime.Parse(controlObject.Text)).ToString();
                         break;
                     case "発注コード":
                         if (発注コード.SelectedIndex == -1) return;
@@ -997,7 +998,7 @@ namespace u_net
                         break;
                 }
 
-                
+
 
             }
             catch (Exception ex)
@@ -1006,8 +1007,8 @@ namespace u_net
             }
             finally
             {
-             
-          
+
+
             }
         }
 
@@ -1021,9 +1022,9 @@ namespace u_net
                 string strSQL;
 
                 strSQL = "SELECT * FROM V入庫ヘッダ WHERE 入庫コード ='" + codeString + "'";
-      
 
-             
+
+
                 VariableSet.SetTable2Form(this, strSQL, cn);
 
                 if (!string.IsNullOrEmpty(入庫日.Text))
@@ -1034,7 +1035,7 @@ namespace u_net
                 }
 
                 return true;
-          
+
 
 
             }
@@ -1046,7 +1047,7 @@ namespace u_net
             }
         }
 
-       
+
 
 
         public string MonthAdd(long number, string TargetMonth)
@@ -1198,13 +1199,13 @@ namespace u_net
                     else
                     {
                         // 棚卸中でなければ新規モードへ移行する
-              
+
                         if (!GoNewMode())
                         {
                             MessageBox.Show($"エラーのため新規モードへ移行できません。{Environment.NewLine}[{Name}]を終了します。", "削除コマンド", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                             Close();
                         }
-        
+
                     }
                 }
                 else
@@ -1280,7 +1281,7 @@ namespace u_net
         {
             if (IsNull(発注コード.Text))
             {
-                F_発注 targetform = new F_発注();                
+                F_発注 targetform = new F_発注();
                 targetform.ShowDialog();
             }
             else
@@ -1303,7 +1304,7 @@ namespace u_net
             IsErrorDetails();
         }
 
-       
+
 
         private void IsErrorDetails()
         {
@@ -1325,7 +1326,7 @@ namespace u_net
                     emptyCount++;
                 }
 
-     
+
             }
 
             MessageBox.Show($"買掛区分が空のレコード数: {emptyCount}");
@@ -1488,7 +1489,7 @@ namespace u_net
 
         private void 発注コード_DrawItem(object sender, DrawItemEventArgs e)
         {
-            OriginalClass.SetComboBoxAppearance((ComboBox)sender, e, new int[] { 140,20,100,300,200 }, new string[] { "Display", "Display2","Display3","Display4","Display5" });
+            OriginalClass.SetComboBoxAppearance((ComboBox)sender, e, new int[] { 140, 20, 100, 300, 200 }, new string[] { "Display", "Display2", "Display3", "Display4", "Display5" });
             発注コード.Invalidate();
             発注コード.DroppedDown = true;
         }
@@ -1563,7 +1564,7 @@ namespace u_net
 
         private void 入庫者コード_DrawItem(object sender, DrawItemEventArgs e)
         {
-            OriginalClass.SetComboBoxAppearance((ComboBox)sender, e, new int[] { 50,150 }, new string[] { "Display", "Display2" });
+            OriginalClass.SetComboBoxAppearance((ComboBox)sender, e, new int[] { 50, 150 }, new string[] { "Display", "Display2" });
             入庫者コード.Invalidate();
             入庫者コード.DroppedDown = true;
         }
@@ -1641,7 +1642,7 @@ namespace u_net
             MessageBox.Show("通常、支払年月を変更することはありません。" + Environment.NewLine +
                     "変更するときは、適切であると判断できる値を入力してください。",
                     "警告", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-        
+
         }
 
         private void 支払年月_SelectedIndexChanged(object sender, EventArgs e)
@@ -1751,7 +1752,7 @@ namespace u_net
 
         private void 買掛区分コード設定_DrawItem(object sender, DrawItemEventArgs e)
         {
-            OriginalClass.SetComboBoxAppearance((ComboBox)sender, e, new int[] { 200, 0, 0}, new string[] { "Display", "Display2","Display3" });
+            OriginalClass.SetComboBoxAppearance((ComboBox)sender, e, new int[] { 200, 0, 0 }, new string[] { "Display", "Display2", "Display3" });
             買掛区分コード設定.Invalidate();
             買掛区分コード設定.DroppedDown = true;
         }
