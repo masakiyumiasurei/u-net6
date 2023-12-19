@@ -35,7 +35,7 @@
             this.コマンド確定 = new System.Windows.Forms.Button();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.部品指定方法 = new System.Windows.Forms.TabControl();
+            this.ユニット指定 = new System.Windows.Forms.TabControl();
             this.ページ型番指定 = new System.Windows.Forms.TabPage();
             this.検索ボタン = new System.Windows.Forms.Button();
             this.型番文字列 = new System.Windows.Forms.TextBox();
@@ -46,7 +46,7 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.注釈2_ラベル = new System.Windows.Forms.Label();
             this.statusStrip1.SuspendLayout();
-            this.部品指定方法.SuspendLayout();
+            this.ユニット指定.SuspendLayout();
             this.ページ型番指定.SuspendLayout();
             this.ページ追加条件.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -111,16 +111,16 @@
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(89, 17);
             this.toolStripStatusLabel1.Text = "各種項目の説明";
             // 
-            // 部品指定方法
+            // ユニット指定
             // 
-            this.部品指定方法.Controls.Add(this.ページ型番指定);
-            this.部品指定方法.Controls.Add(this.ページ追加条件);
-            this.部品指定方法.Location = new System.Drawing.Point(12, 12);
-            this.部品指定方法.Name = "部品指定方法";
-            this.部品指定方法.SelectedIndex = 0;
-            this.部品指定方法.Size = new System.Drawing.Size(618, 70);
-            this.部品指定方法.TabIndex = 112;
-            this.部品指定方法.SelectedIndexChanged += new System.EventHandler(this.部品指定方法_SelectedIndexChanged);
+            this.ユニット指定.Controls.Add(this.ページ型番指定);
+            this.ユニット指定.Controls.Add(this.ページ追加条件);
+            this.ユニット指定.Location = new System.Drawing.Point(12, 12);
+            this.ユニット指定.Name = "ユニット指定";
+            this.ユニット指定.SelectedIndex = 0;
+            this.ユニット指定.Size = new System.Drawing.Size(618, 70);
+            this.ユニット指定.TabIndex = 112;
+            this.ユニット指定.SelectedIndexChanged += new System.EventHandler(this.ユニット指定_SelectedIndexChanged);
             // 
             // ページ型番指定
             // 
@@ -140,9 +140,9 @@
             this.検索ボタン.Font = new System.Drawing.Font("BIZ UDゴシック", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.検索ボタン.Location = new System.Drawing.Point(460, 11);
             this.検索ボタン.Name = "検索ボタン";
-            this.検索ボタン.Size = new System.Drawing.Size(59, 21);
+            this.検索ボタン.Size = new System.Drawing.Size(71, 21);
             this.検索ボタン.TabIndex = 3;
-            this.検索ボタン.Text = "検索";
+            this.検索ボタン.Text = "検索(&S)";
             this.検索ボタン.Click += new System.EventHandler(this.検索ボタン_Click);
             // 
             // 型番文字列
@@ -227,7 +227,7 @@
             this.ClientSize = new System.Drawing.Size(635, 475);
             this.Controls.Add(this.注釈2_ラベル);
             this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.部品指定方法);
+            this.Controls.Add(this.ユニット指定);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.コマンド確定);
             this.Controls.Add(this.label1);
@@ -235,10 +235,10 @@
             this.Controls.Add(this.表示件数);
             this.Name = "F_ユニット選択";
             this.Load += new System.EventHandler(this.Form_Load);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.F_部品選択_KeyDown);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.F_ユニット選択_KeyDown);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
-            this.部品指定方法.ResumeLayout(false);
+            this.ユニット指定.ResumeLayout(false);
             this.ページ型番指定.ResumeLayout(false);
             this.ページ型番指定.PerformLayout();
             this.ページ追加条件.ResumeLayout(false);
@@ -256,7 +256,7 @@
         private Button コマンド確定;
         private StatusStrip statusStrip1;
         private ToolStripStatusLabel toolStripStatusLabel1;
-        private TabControl 部品指定方法;
+        private TabControl ユニット指定;
         private TabPage ページ追加条件;
         private TabPage ページ型番指定;
         private DataGridView dataGridView1;

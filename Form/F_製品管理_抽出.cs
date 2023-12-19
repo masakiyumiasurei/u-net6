@@ -46,9 +46,8 @@ namespace u_net
                 //開いているフォームのインスタンスを作成する
                 F_製品管理 frmTarget = Application.OpenForms.OfType<F_製品管理>().FirstOrDefault();
 
-                // F_仕入先管理クラスからデータを取得し、現在のフォームのコントロールに設定
-                this.シリーズ名.Text = frmTarget.str仕入先名;
-                //仕入先名フリガナ.Text = frmTarget.str仕入先名フリガナ;
+
+
 
                 switch (frmTarget.lng削除指定)
                 {
@@ -82,9 +81,7 @@ namespace u_net
                 F_製品管理? frmTarget = Application.OpenForms.OfType<F_製品管理>().FirstOrDefault();
                 //F_仕入先管理 frmTarget = new F_仕入先管理();
 
-                // frmTarget.仕入先コード = Nz(仕入先コード.Text);
-                frmTarget.str仕入先名 = Nz(シリーズ名.Text);
-                //frmTarget.str仕入先名フリガナ = Nz(仕入先名フリガナ.Text);
+
 
 
                 if (削除指定Button1.Checked)

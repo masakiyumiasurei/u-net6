@@ -138,34 +138,33 @@ namespace u_net
 
                 dataGridView1.SuspendLayout();
 
-                // 第１条件指定（分類と型番はOR検索）
-                if (!string.IsNullOrEmpty(str分類記号))
-                {
-                    whereStr += " AND 分類記号 = '" + str分類記号 + "'";
-                }
-                else if (!string.IsNullOrEmpty(str型番))
+
+
+
+                // 第１条件指定
+                if (!string.IsNullOrEmpty(str型番))
                 {
                     whereStr += " AND 型番 LIKE '%" + str型番 + "%'";
                 }
-                else
-                {
-                    // 第１条件が指定されていないときは何もしない
-                    return;
-                }
+
+
 
                 // 第２条件指定（RoHS対応はAND検索）
                 switch (lngRoHS対応)
                 {
                     case 1:
-                        whereStr += " AND (RohsStatusSign = '１' OR RohsStatusSign = '２' OR RohsStatusSign = '仮')";
+                        whereStr += " AND (RohsStatusSign = '１' OR RohsStatusSign = '２')";
                         break;
                     case 2:
-                        whereStr += " AND (RohsStatusSign <> '１' AND RohsStatusSign <> '２' AND RohsStatusSign <> '仮')";
+                        whereStr += " AND (RohsStatusSign <> '１' AND RohsStatusSign <> '２')";
                         break;
                 }
 
-                string strSQL = "SELECT 部品コード, 廃止, 品名, 型番, メーカー名, RohsStatusSign" +
-                                " FROM V部品選択 WHERE " + whereStr + " ORDER BY 型番";
+
+
+
+                string strSQL = "SELECT *" +
+                                " FROM Vユニット選択 WHERE " + whereStr + " ORDER BY 型番";
 
                 Connect();
                 using (SqlCommand command = new SqlCommand(strSQL, cn))
@@ -176,7 +175,7 @@ namespace u_net
 
                     if (dataTable.Rows.Count == 0)
                     {
-                        MessageBox.Show("指定された条件に合致する部品はありません。", "検索結果", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("指定された条件に合致するユニットはありません。", "検索結果", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         return;
                     }
 
@@ -210,11 +209,11 @@ namespace u_net
                 //0列目はaccessでは行ヘッダのため、ずらす
                 //dataGridView1.Columns[0].Width = 500 / twipperdot;
                 dataGridView1.Columns[0].Width = 1000 / twipperdot; 
-                dataGridView1.Columns[1].Width = 350 / twipperdot;
-                dataGridView1.Columns[2].Width = 3250 / twipperdot;
-                dataGridView1.Columns[3].Width = 3250 / twipperdot;
-                dataGridView1.Columns[4].Width = 1200 / twipperdot;
-                dataGridView1.Columns[5].Width = 400 / twipperdot;
+                dataGridView1.Columns[1].Width = 300 / twipperdot;
+                dataGridView1.Columns[2].Width = 300 / twipperdot;
+                dataGridView1.Columns[3].Width = 3150 / twipperdot;
+                dataGridView1.Columns[4].Width = 3150 / twipperdot;
+                dataGridView1.Columns[5].Width = 300 / twipperdot;
 
 
 
@@ -261,9 +260,35 @@ namespace u_net
             this.Close();
         }
 
-        private void 部品指定方法_SelectedIndexChanged(object sender, EventArgs e)
+        private void コマンド確定_Click(object sender, EventArgs e)
         {
-            switch (部品指定方法.SelectedIndex)
+            if (dataGridView1.SelectedRows.Count > 0)
+            {
+                // DataGridView1で選択された行が存在する場合
+                string selectedData = dataGridView1.SelectedRows[0].Cells[0].Value.ToString(); // 1列目のデータを取得
+                DoDecide(selectedData);
+            }
+        }
+
+        private void 検索ボタン_Click(object sender, EventArgs e)
+        {
+            str型番 = 型番文字列.Text?.ToString();
+            //bleDontKeyUp = false;
+            SetSource();
+        }
+
+
+
+
+
+
+
+
+
+
+        private void ユニット指定_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (ユニット指定.SelectedIndex)
             {
                 case 0:
                     型番文字列.Focus();
@@ -274,24 +299,7 @@ namespace u_net
             }
         }
 
-        private void F_部品選択_KeyDown(object sender, KeyEventArgs e)
-        {
-            int keyCode = (int)e.KeyCode;
 
-            // vbKeyLeft または vbKeyRight 以外のキーが押された場合
-            switch (keyCode)
-            {
-                case (int)Keys.Left:
-                    部品指定方法.SelectedIndex = ((部品指定方法.SelectedIndex + 1) + (3 - 2)) % 3;
-                    e.Handled = true;
-                    break;
-                case (int)Keys.Right:
-                    部品指定方法.SelectedIndex = (部品指定方法.SelectedIndex + 1) % 3;
-                    e.Handled = true;
-                    break;
-                
-            }
-        }
 
         private void dataGridView1_KeyDown(object sender, KeyEventArgs e)
         {
@@ -303,7 +311,7 @@ namespace u_net
                 // 抽出指定タブにフォーカスがなければフォーカスを移す
                 e.Handled = true;
 
-                switch (部品指定方法.SelectedIndex)
+                switch (ユニット指定.SelectedIndex)
                 {
                     case 0:
                         型番文字列.Focus();
@@ -320,11 +328,11 @@ namespace u_net
             switch (keyCode)
             {
                 case (int)Keys.Left:
-                    部品指定方法.SelectedIndex = ((部品指定方法.SelectedIndex + 1) + (3 - 2)) % 3;
+                    ユニット指定.SelectedIndex = ((ユニット指定.SelectedIndex + 1) + (3 - 2)) % 3;
                     e.Handled = true;
                     break;
                 case (int)Keys.Right:
-                    部品指定方法.SelectedIndex = (部品指定方法.SelectedIndex + 1) % 3;
+                    ユニット指定.SelectedIndex = (ユニット指定.SelectedIndex + 1) % 3;
                     e.Handled = true;
                     break;
             }
@@ -355,20 +363,12 @@ namespace u_net
             // vbKeyLeft または vbKeyRight 以外のキーが押された場合
             switch (keyCode)
             {
-                case (int)Keys.Left:
-                    部品指定方法.SelectedIndex = ((部品指定方法.SelectedIndex + 1) + (3 - 2)) % 3;
-                    e.Handled = true;
-                    break;
-                case (int)Keys.Right:
-                    部品指定方法.SelectedIndex = (部品指定方法.SelectedIndex + 1) % 3;
-                    e.Handled = true;
-                    break;
                 case (int)Keys.Return:
-                    str分類記号 = ""; // 型番条件が指定されたら分類条件は却下
-                    str型番 = this.型番文字列.Text;
-                    bleDontKeyUp = true;
+                    str型番 = 型番文字列.Text.ToString();
                     SetSource();
+                    e.Handled = true;
                     break;
+
             }
         }
 
@@ -380,11 +380,11 @@ namespace u_net
             switch (keyCode)
             {
                 case (int)Keys.Left:
-                    部品指定方法.SelectedIndex = ((部品指定方法.SelectedIndex + 1) + (3 - 2)) % 3;
+                    ユニット指定.SelectedIndex = ((ユニット指定.SelectedIndex + 1) + (3 - 2)) % 3;
                     e.Handled = true;
                     break;
                 case (int)Keys.Right:
-                    部品指定方法.SelectedIndex = (部品指定方法.SelectedIndex + 1) % 3;
+                    ユニット指定.SelectedIndex = (ユニット指定.SelectedIndex + 1) % 3;
                     e.Handled = true;
                     break;
                 case (int)Keys.Return:
@@ -410,15 +410,7 @@ namespace u_net
             }
         }
 
-        private void コマンド確定_Click(object sender, EventArgs e)
-        {
-            if (dataGridView1.SelectedRows.Count > 0)
-            {
-                // DataGridView1で選択された行が存在する場合
-                string selectedData = dataGridView1.SelectedRows[0].Cells[0].Value.ToString(); // 1列目のデータを取得
-                DoDecide(selectedData);
-            }
-        }
+        
 
         private void RoHS対応_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -431,12 +423,23 @@ namespace u_net
             SetSource();
         }
 
-        private void 検索ボタン_Click(object sender, EventArgs e)
+        private void F_ユニット選択_KeyDown(object sender, KeyEventArgs e)
         {
-            str分類記号 = "";
-            str型番 = 型番文字列.Text?.ToString();
-            bleDontKeyUp = false;
-            SetSource();
+            int keyCode = (int)e.KeyCode;
+
+            // vbKeyLeft または vbKeyRight 以外のキーが押された場合
+            switch (keyCode)
+            {
+                case (int)Keys.Left:
+                    ユニット指定.SelectedIndex = ((ユニット指定.SelectedIndex + 1) + (3 - 2)) % 3;
+                    e.Handled = true;
+                    break;
+                case (int)Keys.Right:
+                    ユニット指定.SelectedIndex = (ユニット指定.SelectedIndex + 1) % 3;
+                    e.Handled = true;
+                    break;
+
+            }
         }
     }
 
