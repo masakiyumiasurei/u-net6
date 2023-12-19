@@ -44,7 +44,7 @@
             削除指定Button2 = new RadioButton();
             受注完了承認 = new GroupBox();
             削除指定Button1 = new RadioButton();
-            checkBox2 = new CheckBox();
+            受注完了承認指定 = new CheckBox();
             出荷済みラベル = new RadioButton();
             未出荷ラベル = new RadioButton();
             出荷日ラベル = new Label();
@@ -54,8 +54,8 @@
             出荷完了日2ラベル = new Label();
             出荷完了日2選択ボタン = new Button();
             出荷 = new GroupBox();
-            checkBox1 = new CheckBox();
-            checkBox3 = new CheckBox();
+            出荷指定 = new CheckBox();
+            受注承認指定 = new CheckBox();
             承認済みラベル = new RadioButton();
             未承認ラベル = new RadioButton();
             受注承認 = new GroupBox();
@@ -114,11 +114,10 @@
             受注日1.Name = "受注日1";
             受注日1.Size = new Size(160, 23);
             受注日1.TabIndex = 2;
-            受注日1.Click += this.仕入先コード_Click;
-            受注日1.TextChanged += this.仕入先コード_TextChanged;
-            受注日1.DoubleClick += this.仕入先コード_DoubleClick;
-            受注日1.KeyDown += this.仕入先コード_KeyDown;
-            受注日1.Validated += this.仕入先コード_Validated;
+            受注日1.KeyPress += 受注日1_KeyPress;
+            受注日1.Leave += 受注日1_Leave;
+            受注日1.MouseDoubleClick += 受注日1_MouseDoubleClick;
+            受注日1.Validating += 受注日1_Validating;
             // 
             // 受注コード1ラベル
             // 
@@ -145,6 +144,10 @@
             出荷予定日1.Name = "出荷予定日1";
             出荷予定日1.Size = new Size(160, 23);
             出荷予定日1.TabIndex = 6;
+            出荷予定日1.KeyPress += 出荷予定日1_KeyPress;
+            出荷予定日1.Leave += 出荷予定日1_Leave;
+            出荷予定日1.MouseDoubleClick += 出荷予定日1_MouseDoubleClick;
+            出荷予定日1.Validating += 出荷予定日1_Validating;
             // 
             // 受注日1ラベル
             // 
@@ -171,6 +174,10 @@
             受注納期1.Name = "受注納期1";
             受注納期1.Size = new Size(160, 23);
             受注納期1.TabIndex = 10;
+            受注納期1.KeyPress += 受注納期1_KeyPress;
+            受注納期1.Leave += 受注納期1_Leave;
+            受注納期1.MouseDoubleClick += 受注納期1_MouseDoubleClick;
+            受注納期1.Validating += 受注納期1_Validating;
             // 
             // 出荷予定日1ラベル
             // 
@@ -197,6 +204,10 @@
             受注コード1.Name = "受注コード1";
             受注コード1.Size = new Size(189, 23);
             受注コード1.TabIndex = 0;
+            受注コード1.KeyDown += 受注コード1_KeyDown;
+            受注コード1.KeyPress += 受注コード1_KeyPress;
+            受注コード1.Leave += 受注コード1_Leave;
+            受注コード1.Validating += 受注コード1_Validating;
             // 
             // キャンセルボタン
             // 
@@ -207,7 +218,7 @@
             キャンセルボタン.TabIndex = 20;
             キャンセルボタン.Text = "キャンセル";
             キャンセルボタン.UseVisualStyleBackColor = true;
-            キャンセルボタン.MouseClick += this.キャンセルボタン_MouseClick;
+            キャンセルボタン.MouseClick += キャンセルボタン_MouseClick;
             // 
             // 抽出ボタン
             // 
@@ -218,7 +229,7 @@
             抽出ボタン.TabIndex = 19;
             抽出ボタン.Text = "抽出";
             抽出ボタン.UseVisualStyleBackColor = true;
-            抽出ボタン.Click += this.抽出ボタン_Click;
+            抽出ボタン.Click += 抽出ボタン_Click;
             // 
             // radioButton3
             // 
@@ -288,14 +299,15 @@
             削除指定Button1.Text = "承認済み";
             削除指定Button1.UseVisualStyleBackColor = true;
             // 
-            // checkBox2
+            // 受注完了承認指定
             // 
-            checkBox2.AutoSize = true;
-            checkBox2.Location = new Point(12, 448);
-            checkBox2.Name = "checkBox2";
-            checkBox2.Size = new Size(15, 14);
-            checkBox2.TabIndex = 28;
-            checkBox2.UseVisualStyleBackColor = true;
+            受注完了承認指定.AutoSize = true;
+            受注完了承認指定.Location = new Point(12, 448);
+            受注完了承認指定.Name = "受注完了承認指定";
+            受注完了承認指定.Size = new Size(15, 14);
+            受注完了承認指定.TabIndex = 28;
+            受注完了承認指定.UseVisualStyleBackColor = true;
+            受注完了承認指定.Validated += 受注完了承認指定_Validated;
             // 
             // 出荷済みラベル
             // 
@@ -345,6 +357,8 @@
             出荷完了日1.Name = "出荷完了日1";
             出荷完了日1.Size = new Size(86, 23);
             出荷完了日1.TabIndex = 24;
+            出荷完了日1.KeyPress += 出荷完了日1_KeyPress;
+            出荷完了日1.Leave += 出荷完了日1_Leave;
             // 
             // 出荷完了日1選択ボタン
             // 
@@ -358,6 +372,7 @@
             出荷完了日1選択ボタン.TabStop = false;
             出荷完了日1選択ボタン.Text = "▼";
             出荷完了日1選択ボタン.UseVisualStyleBackColor = true;
+            出荷完了日1選択ボタン.Click += 出荷完了日1選択ボタン_Click;
             // 
             // 出荷完了日2
             // 
@@ -370,6 +385,8 @@
             出荷完了日2.Name = "出荷完了日2";
             出荷完了日2.Size = new Size(86, 23);
             出荷完了日2.TabIndex = 26;
+            出荷完了日2.KeyPress += 出荷完了日2_KeyPress;
+            出荷完了日2.Leave += 出荷完了日2_Leave;
             // 
             // 出荷完了日2ラベル
             // 
@@ -398,6 +415,7 @@
             出荷完了日2選択ボタン.TabStop = false;
             出荷完了日2選択ボタン.Text = "▼";
             出荷完了日2選択ボタン.UseVisualStyleBackColor = true;
+            出荷完了日2選択ボタン.Click += 出荷完了日2選択ボタン_Click;
             // 
             // 出荷
             // 
@@ -417,24 +435,27 @@
             出荷.TabStop = false;
             出荷.Text = "出荷指定";
             出荷.Visible = false;
+            出荷.Validating += 出荷_Validating;
             // 
-            // checkBox1
+            // 出荷指定
             // 
-            checkBox1.AutoSize = true;
-            checkBox1.Location = new Point(12, 325);
-            checkBox1.Name = "checkBox1";
-            checkBox1.Size = new Size(15, 14);
-            checkBox1.TabIndex = 22;
-            checkBox1.UseVisualStyleBackColor = true;
+            出荷指定.AutoSize = true;
+            出荷指定.Location = new Point(12, 325);
+            出荷指定.Name = "出荷指定";
+            出荷指定.Size = new Size(15, 14);
+            出荷指定.TabIndex = 22;
+            出荷指定.UseVisualStyleBackColor = true;
+            出荷指定.Validated += 出荷指定_Validated;
             // 
-            // checkBox3
+            // 受注承認指定
             // 
-            checkBox3.AutoSize = true;
-            checkBox3.Location = new Point(12, 271);
-            checkBox3.Name = "checkBox3";
-            checkBox3.Size = new Size(15, 14);
-            checkBox3.TabIndex = 20;
-            checkBox3.UseVisualStyleBackColor = true;
+            受注承認指定.AutoSize = true;
+            受注承認指定.Location = new Point(12, 271);
+            受注承認指定.Name = "受注承認指定";
+            受注承認指定.Size = new Size(15, 14);
+            受注承認指定.TabIndex = 20;
+            受注承認指定.UseVisualStyleBackColor = true;
+            受注承認指定.Validated += 受注承認指定_Validated;
             // 
             // 承認済みラベル
             // 
@@ -482,6 +503,7 @@
             顧客コード検索ボタン.TabStop = false;
             顧客コード検索ボタン.Text = "▼";
             顧客コード検索ボタン.UseVisualStyleBackColor = true;
+            顧客コード検索ボタン.Click += 顧客コード検索ボタン_Click;
             // 
             // 自社担当者名
             // 
@@ -502,6 +524,7 @@
             自社担当者コード.Name = "自社担当者コード";
             自社担当者コード.Size = new Size(56, 23);
             自社担当者コード.TabIndex = 18;
+            自社担当者コード.Validated += 自社担当者コード_Validated;
             // 
             // 顧客名
             // 
@@ -526,6 +549,11 @@
             顧客コード.Name = "顧客コード";
             顧客コード.Size = new Size(160, 23);
             顧客コード.TabIndex = 15;
+            顧客コード.TextChanged += 顧客コード_TextChanged;
+            顧客コード.KeyDown += 顧客コード_KeyDown;
+            顧客コード.KeyPress += 顧客コード_KeyPress;
+            顧客コード.MouseDoubleClick += 顧客コード_MouseDoubleClick;
+            顧客コード.Validating += 顧客コード_Validating;
             // 
             // 自社担当者名ラベル
             // 
@@ -598,6 +626,7 @@
             注文番号.Name = "注文番号";
             注文番号.Size = new Size(347, 23);
             注文番号.TabIndex = 14;
+            注文番号.KeyPress += 注文番号_KeyPress;
             // 
             // 受注納期2選択ボタン
             // 
@@ -610,6 +639,7 @@
             受注納期2選択ボタン.TabStop = false;
             受注納期2選択ボタン.Text = "▼";
             受注納期2選択ボタン.UseVisualStyleBackColor = true;
+            受注納期2選択ボタン.Click += 受注納期2選択ボタン_Click;
             // 
             // 出荷予定日2選択ボタン
             // 
@@ -622,6 +652,7 @@
             出荷予定日2選択ボタン.TabStop = false;
             出荷予定日2選択ボタン.Text = "▼";
             出荷予定日2選択ボタン.UseVisualStyleBackColor = true;
+            出荷予定日2選択ボタン.Click += 出荷予定日2選択ボタン_Click;
             // 
             // 受注日2選択ボタン
             // 
@@ -634,7 +665,7 @@
             受注日2選択ボタン.TabStop = false;
             受注日2選択ボタン.Text = "▼";
             受注日2選択ボタン.UseVisualStyleBackColor = true;
-            受注日2選択ボタン.Click += this.仕入先参照ボタン_Click;
+            受注日2選択ボタン.Click += 受注日2選択ボタン_Click;
             // 
             // label4
             // 
@@ -661,6 +692,10 @@
             受注納期2.Name = "受注納期2";
             受注納期2.Size = new Size(160, 23);
             受注納期2.TabIndex = 12;
+            受注納期2.KeyPress += 受注納期2_KeyPress;
+            受注納期2.Leave += 受注納期2_Leave;
+            受注納期2.MouseDoubleClick += 受注納期2_MouseDoubleClick;
+            受注納期2.Validating += 受注納期2_Validating;
             // 
             // 出荷予定日2
             // 
@@ -672,6 +707,10 @@
             出荷予定日2.Name = "出荷予定日2";
             出荷予定日2.Size = new Size(160, 23);
             出荷予定日2.TabIndex = 8;
+            出荷予定日2.KeyPress += 出荷予定日2_KeyPress;
+            出荷予定日2.Leave += 出荷予定日2_Leave;
+            出荷予定日2.MouseDoubleClick += 出荷予定日2_MouseDoubleClick;
+            出荷予定日2.Validating += 出荷予定日2_Validating;
             // 
             // 受注日2
             // 
@@ -683,6 +722,9 @@
             受注日2.Name = "受注日2";
             受注日2.Size = new Size(160, 23);
             受注日2.TabIndex = 4;
+            受注日2.Leave += 受注日2_Leave;
+            受注日2.MouseDoubleClick += 受注日2_MouseDoubleClick;
+            受注日2.Validating += 受注日2_Validating;
             // 
             // 出荷予定日2ラベル
             // 
@@ -725,6 +767,7 @@
             受注納期1選択ボタン.TabStop = false;
             受注納期1選択ボタン.Text = "▼";
             受注納期1選択ボタン.UseVisualStyleBackColor = true;
+            受注納期1選択ボタン.Click += 受注納期1選択ボタン_Click;
             // 
             // 出荷予定日1選択ボタン
             // 
@@ -737,6 +780,7 @@
             出荷予定日1選択ボタン.TabStop = false;
             出荷予定日1選択ボタン.Text = "▼";
             出荷予定日1選択ボタン.UseVisualStyleBackColor = true;
+            出荷予定日1選択ボタン.Click += 出荷予定日1選択ボタン_Click;
             // 
             // 受注日1選択ボタン
             // 
@@ -749,7 +793,7 @@
             受注日1選択ボタン.TabStop = false;
             受注日1選択ボタン.Text = "▼";
             受注日1選択ボタン.UseVisualStyleBackColor = true;
-            受注日1選択ボタン.Click += this.仕入先選択ボタン_Click;
+            受注日1選択ボタン.Click += 受注日1選択ボタン_Click;
             // 
             // 受注コード2
             // 
@@ -761,6 +805,10 @@
             受注コード2.Name = "受注コード2";
             受注コード2.Size = new Size(189, 23);
             受注コード2.TabIndex = 1;
+            受注コード2.KeyDown += 受注コード2_KeyDown;
+            受注コード2.KeyPress += 受注コード2_KeyPress;
+            受注コード2.Leave += 受注コード2_Leave;
+            受注コード2.Validating += 受注コード2_Validating;
             // 
             // 受注コード2ラベル
             // 
@@ -782,9 +830,9 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(577, 639);
-            Controls.Add(checkBox3);
-            Controls.Add(checkBox2);
-            Controls.Add(checkBox1);
+            Controls.Add(受注承認指定);
+            Controls.Add(受注完了承認指定);
+            Controls.Add(出荷指定);
             Controls.Add(受注コード2);
             Controls.Add(受注コード2ラベル);
             Controls.Add(受注コード1);
@@ -825,7 +873,7 @@
             Controls.Add(受注コード1ラベル);
             Name = "F_受注管理_抽出";
             Text = "受注管理_抽出";
-            Load += this.Form_Load;
+            Load += Form_Load;
             削除.ResumeLayout(false);
             削除.PerformLayout();
             受注完了承認.ResumeLayout(false);
@@ -858,7 +906,7 @@
         private RadioButton 削除指定Button2;
         private GroupBox 受注完了承認;
         private RadioButton 削除指定Button1;
-        private CheckBox checkBox2;
+        private CheckBox 受注完了承認指定;
         private RadioButton 出荷済みラベル;
         private RadioButton 未出荷ラベル;
         private Label 出荷日ラベル;
@@ -868,8 +916,8 @@
         private Label 出荷完了日2ラベル;
         private Button 出荷完了日2選択ボタン;
         private GroupBox 出荷;
-        private CheckBox checkBox1;
-        private CheckBox checkBox3;
+        private CheckBox 出荷指定;
+        private CheckBox 受注承認指定;
         private RadioButton 承認済みラベル;
         private RadioButton 未承認ラベル;
         private GroupBox 受注承認;
