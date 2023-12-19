@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Transactions;
 using System.Windows.Forms;
+using GrapeCity.Win.MultiRow;
 using Microsoft.Data.SqlClient;
 using u_net.Public;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
@@ -508,27 +509,29 @@ namespace u_net
             {
                 TotalMoney = 0;
 
-                bool result = false;
                 Connect();
 
                 // 描画を抑止する
                 gridobject.SuspendLayout();
 
-                // 行番号を表示する
-                //for (int row = 0; row < gridobject.Rows.Count; row++)
-                //{
-                //    if (Convert.ToInt32(gridobject.Rows[row].Cells[9].Value) <= Convert.ToInt32(gridobject.Rows[row].Cells[10].Value))
-                //    {
-                //        for (int row2 = 0; row2 < gridobject.Rows.Count; row2++)
-                //        {
-                //            if (gridobject.Rows[row].Cells[13].Value == "■" && gridobject.Rows[row].Cells[17].Value != "■" &&
-                //                gridobject.Rows[row].Cells[10].Value != "")
-                //            {
-                //                TotalMoney = TotalMoney + Convert.ToInt32(gridobject.Rows[row].Cells[10].Value);
-                //            }
-                //        }
-                //    }
-                //}
+                // 合計金額を求める(行および列の初期値は0)
+                for (int row = 0; row < gridobject.Rows.Count; row++)
+                {
+                    // 承認のチェック
+                    if (gridobject.Rows[row].Cells[12].Value.ToString() == "■")
+                    {
+                        // 削除のチェック
+                        if (gridobject.Rows[row].Cells[16].Value.ToString() != "■")
+                        {
+                            // 小計のチェック
+                            if (gridobject.Rows[row].Cells[10].Value.ToString() != "")
+                            {
+                                // 合計金額
+                                TotalMoney += Convert.ToInt32(gridobject.Rows[row].Cells[10].Value);
+                            }
+                        }
+                    }
+                }
 
                 // カーソル位置の復元などの後処理
                 gridobject.ResumeLayout();
@@ -566,14 +569,22 @@ namespace u_net
                     transaction.Commit();
                 }
 
-                合計金額.Text = TotalMoney.ToString();
+                Debug.Print(TotalMoney.ToString());
+                合計金額.Text = TotalMoney.ToString("#,0");
 
                 if (dataTable.Rows.Count > 0)
                 {
                     decimal 消費税率 = Convert.ToDecimal(dataTable.Rows[0]["消費税率"]);
 
-                    // TotalMoneyと消費税率を使って計算
-                    decimal 税込合計金額 = TotalMoney * (1 + 消費税率);
+                    // 税込合計金額の計算
+                    decimal TotalMoneyIncludingTax = TotalMoney * (1 + 消費税率);
+
+                    Debug.Print(TotalMoneyIncludingTax.ToString());
+
+                    // 端数を切り捨てて表示
+                    ////税込合計金額.Text = Math.Floor(TotalMoneyIncludingTax).ToString("#,0");
+                    string[] tmp = TotalMoneyIncludingTax.ToString("#,0").Split(".");
+                    税込合計金額.Text = tmp[0];
                 }
                 return true;
             }

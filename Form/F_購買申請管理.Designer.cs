@@ -253,6 +253,7 @@
             表示件数.Name = "表示件数";
             表示件数.Size = new Size(88, 23);
             表示件数.TabIndex = 0;
+            表示件数.TextAlign = HorizontalAlignment.Right;
             // 
             // label1
             // 
@@ -318,6 +319,7 @@
             税込合計金額.Name = "税込合計金額";
             税込合計金額.Size = new Size(88, 23);
             税込合計金額.TabIndex = 2;
+            税込合計金額.TextAlign = HorizontalAlignment.Right;
             // 
             // label4
             // 
@@ -335,6 +337,7 @@
             合計金額.Name = "合計金額";
             合計金額.Size = new Size(88, 23);
             合計金額.TabIndex = 1;
+            合計金額.TextAlign = HorizontalAlignment.Right;
             // 
             // label3
             // 
