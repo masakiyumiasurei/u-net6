@@ -44,34 +44,6 @@ namespace u_net
             コマンド複写 = new Button();
             コマンド読込 = new Button();
             コマンド新規 = new Button();
-            dataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn2 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn3 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn4 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn5 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn6 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn7 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn8 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn9 = new DataGridViewTextBoxColumn();
-            日誌IDDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn10 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn11 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn12 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn13 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn14 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn15 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn16 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn17 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn18 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn19 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn20 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn21 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn22 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn23 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn24 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn25 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn26 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn27 = new DataGridViewTextBoxColumn();
             statusStrip1 = new StatusStrip();
             toolStripStatusLabel1 = new ToolStripStatusLabel();
             toolStripStatusLabel2 = new ToolStripStatusLabel();
@@ -83,6 +55,7 @@ namespace u_net
             受注承認ボタン = new Button();
             受注完了承認ボタン = new Button();
             Page2 = new Panel();
+            登録日 = new TextBox();
             請求予定日選択ボタン = new Button();
             ProductionPlanned = new TextBox();
             無効日 = new TextBox();
@@ -133,6 +106,7 @@ namespace u_net
             label38 = new Label();
             label39 = new Label();
             発送先 = new GroupBox();
+            発送先郵便番号 = new TextBox();
             Email作成ボタン = new Button();
             発送先メールアドレス = new TextBox();
             発送先担当者名 = new TextBox();
@@ -146,7 +120,6 @@ namespace u_net
             label28 = new Label();
             label27 = new Label();
             label26 = new Label();
-            発送先郵便番号 = new MaskedTextBox();
             label25 = new Label();
             発送先名 = new TextBox();
             label24 = new Label();
@@ -162,7 +135,7 @@ namespace u_net
             受注明細1 = new MultiRowDesigner.受注明細();
             ProductionNotice = new TextBox();
             label23 = new Label();
-            改訂履歴 = new TextBox();
+            改版履歴 = new TextBox();
             label22 = new Label();
             label6 = new Label();
             自社担当者名 = new TextBox();
@@ -366,6 +339,7 @@ namespace u_net
             // コマンド削除
             // 
             コマンド削除.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            コマンド削除.ForeColor = Color.Red;
             コマンド削除.ImageAlign = ContentAlignment.BottomLeft;
             コマンド削除.Location = new Point(199, 6);
             コマンド削除.Margin = new Padding(1, 0, 0, 0);
@@ -380,6 +354,7 @@ namespace u_net
             // コマンド複写
             // 
             コマンド複写.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            コマンド複写.ForeColor = Color.Blue;
             コマンド複写.ImageAlign = ContentAlignment.BottomLeft;
             コマンド複写.Location = new Point(134, 6);
             コマンド複写.Margin = new Padding(1, 0, 0, 0);
@@ -409,6 +384,7 @@ namespace u_net
             // コマンド新規
             // 
             コマンド新規.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            コマンド新規.ForeColor = Color.Blue;
             コマンド新規.ImageAlign = ContentAlignment.BottomLeft;
             コマンド新規.Location = new Point(3, 6);
             コマンド新規.Margin = new Padding(1, 0, 0, 0);
@@ -420,212 +396,26 @@ namespace u_net
             コマンド新規.UseVisualStyleBackColor = true;
             コマンド新規.Click += コマンド新規_Click;
             // 
-            // dataGridViewTextBoxColumn1
-            // 
-            dataGridViewTextBoxColumn1.DataPropertyName = "商品コード";
-            dataGridViewTextBoxColumn1.HeaderText = "商品コード";
-            dataGridViewTextBoxColumn1.MinimumWidth = 6;
-            dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            dataGridViewTextBoxColumn1.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            dataGridViewTextBoxColumn2.DataPropertyName = "Revision";
-            dataGridViewTextBoxColumn2.HeaderText = "Revision";
-            dataGridViewTextBoxColumn2.MinimumWidth = 6;
-            dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            dataGridViewTextBoxColumn2.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            dataGridViewTextBoxColumn3.DataPropertyName = "明細番号";
-            dataGridViewTextBoxColumn3.HeaderText = "明細番号";
-            dataGridViewTextBoxColumn3.MinimumWidth = 6;
-            dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            dataGridViewTextBoxColumn3.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            dataGridViewTextBoxColumn4.DataPropertyName = "型式番号";
-            dataGridViewTextBoxColumn4.HeaderText = "型式番号";
-            dataGridViewTextBoxColumn4.MinimumWidth = 6;
-            dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            dataGridViewTextBoxColumn4.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            dataGridViewTextBoxColumn5.DataPropertyName = "型式名";
-            dataGridViewTextBoxColumn5.HeaderText = "型式名";
-            dataGridViewTextBoxColumn5.MinimumWidth = 6;
-            dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            dataGridViewTextBoxColumn5.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn6
-            // 
-            dataGridViewTextBoxColumn6.DataPropertyName = "定価";
-            dataGridViewTextBoxColumn6.HeaderText = "定価";
-            dataGridViewTextBoxColumn6.MinimumWidth = 6;
-            dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            dataGridViewTextBoxColumn6.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn7
-            // 
-            dataGridViewTextBoxColumn7.DataPropertyName = "原価";
-            dataGridViewTextBoxColumn7.HeaderText = "原価";
-            dataGridViewTextBoxColumn7.MinimumWidth = 6;
-            dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
-            dataGridViewTextBoxColumn7.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn8
-            // 
-            dataGridViewTextBoxColumn8.DataPropertyName = "機能";
-            dataGridViewTextBoxColumn8.HeaderText = "機能";
-            dataGridViewTextBoxColumn8.MinimumWidth = 6;
-            dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
-            dataGridViewTextBoxColumn8.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn9
-            // 
-            dataGridViewTextBoxColumn9.DataPropertyName = "構成番号";
-            dataGridViewTextBoxColumn9.HeaderText = "構成番号";
-            dataGridViewTextBoxColumn9.MinimumWidth = 6;
-            dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
-            dataGridViewTextBoxColumn9.Width = 125;
-            // 
-            // 日誌IDDataGridViewTextBoxColumn
-            // 
-            日誌IDDataGridViewTextBoxColumn.MinimumWidth = 6;
-            日誌IDDataGridViewTextBoxColumn.Name = "日誌IDDataGridViewTextBoxColumn";
-            日誌IDDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn10
-            // 
-            dataGridViewTextBoxColumn10.MinimumWidth = 6;
-            dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
-            dataGridViewTextBoxColumn10.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn11
-            // 
-            dataGridViewTextBoxColumn11.MinimumWidth = 6;
-            dataGridViewTextBoxColumn11.Name = "dataGridViewTextBoxColumn11";
-            dataGridViewTextBoxColumn11.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn12
-            // 
-            dataGridViewTextBoxColumn12.MinimumWidth = 6;
-            dataGridViewTextBoxColumn12.Name = "dataGridViewTextBoxColumn12";
-            dataGridViewTextBoxColumn12.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn13
-            // 
-            dataGridViewTextBoxColumn13.MinimumWidth = 6;
-            dataGridViewTextBoxColumn13.Name = "dataGridViewTextBoxColumn13";
-            dataGridViewTextBoxColumn13.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn14
-            // 
-            dataGridViewTextBoxColumn14.MinimumWidth = 6;
-            dataGridViewTextBoxColumn14.Name = "dataGridViewTextBoxColumn14";
-            dataGridViewTextBoxColumn14.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn15
-            // 
-            dataGridViewTextBoxColumn15.MinimumWidth = 6;
-            dataGridViewTextBoxColumn15.Name = "dataGridViewTextBoxColumn15";
-            dataGridViewTextBoxColumn15.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn16
-            // 
-            dataGridViewTextBoxColumn16.MinimumWidth = 6;
-            dataGridViewTextBoxColumn16.Name = "dataGridViewTextBoxColumn16";
-            dataGridViewTextBoxColumn16.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn17
-            // 
-            dataGridViewTextBoxColumn17.MinimumWidth = 6;
-            dataGridViewTextBoxColumn17.Name = "dataGridViewTextBoxColumn17";
-            dataGridViewTextBoxColumn17.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn18
-            // 
-            dataGridViewTextBoxColumn18.MinimumWidth = 6;
-            dataGridViewTextBoxColumn18.Name = "dataGridViewTextBoxColumn18";
-            dataGridViewTextBoxColumn18.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn19
-            // 
-            dataGridViewTextBoxColumn19.MinimumWidth = 6;
-            dataGridViewTextBoxColumn19.Name = "dataGridViewTextBoxColumn19";
-            dataGridViewTextBoxColumn19.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn20
-            // 
-            dataGridViewTextBoxColumn20.MinimumWidth = 6;
-            dataGridViewTextBoxColumn20.Name = "dataGridViewTextBoxColumn20";
-            dataGridViewTextBoxColumn20.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn21
-            // 
-            dataGridViewTextBoxColumn21.MinimumWidth = 6;
-            dataGridViewTextBoxColumn21.Name = "dataGridViewTextBoxColumn21";
-            dataGridViewTextBoxColumn21.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn22
-            // 
-            dataGridViewTextBoxColumn22.MinimumWidth = 6;
-            dataGridViewTextBoxColumn22.Name = "dataGridViewTextBoxColumn22";
-            dataGridViewTextBoxColumn22.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn23
-            // 
-            dataGridViewTextBoxColumn23.MinimumWidth = 6;
-            dataGridViewTextBoxColumn23.Name = "dataGridViewTextBoxColumn23";
-            dataGridViewTextBoxColumn23.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn24
-            // 
-            dataGridViewTextBoxColumn24.MinimumWidth = 6;
-            dataGridViewTextBoxColumn24.Name = "dataGridViewTextBoxColumn24";
-            dataGridViewTextBoxColumn24.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn25
-            // 
-            dataGridViewTextBoxColumn25.MinimumWidth = 6;
-            dataGridViewTextBoxColumn25.Name = "dataGridViewTextBoxColumn25";
-            dataGridViewTextBoxColumn25.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn26
-            // 
-            dataGridViewTextBoxColumn26.MinimumWidth = 6;
-            dataGridViewTextBoxColumn26.Name = "dataGridViewTextBoxColumn26";
-            dataGridViewTextBoxColumn26.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn27
-            // 
-            dataGridViewTextBoxColumn27.MinimumWidth = 6;
-            dataGridViewTextBoxColumn27.Name = "dataGridViewTextBoxColumn27";
-            dataGridViewTextBoxColumn27.Width = 125;
-            // 
             // statusStrip1
             // 
             statusStrip1.ImageScalingSize = new Size(20, 20);
             statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1, toolStripStatusLabel2 });
-            statusStrip1.Location = new Point(0, 752);
+            statusStrip1.Location = new Point(0, 748);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Padding = new Padding(1, 0, 19, 0);
-            statusStrip1.Size = new Size(1184, 22);
+            statusStrip1.Size = new Size(1184, 26);
             statusStrip1.TabIndex = 110;
             statusStrip1.Text = "statusStrip1";
             // 
             // toolStripStatusLabel1
             // 
             toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            toolStripStatusLabel1.Size = new Size(0, 17);
+            toolStripStatusLabel1.Size = new Size(0, 20);
             // 
             // toolStripStatusLabel2
             // 
             toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            toolStripStatusLabel2.Size = new Size(89, 17);
+            toolStripStatusLabel2.Size = new Size(111, 20);
             toolStripStatusLabel2.Text = "各種項目の説明";
             // 
             // notifyIcon1
@@ -722,6 +512,7 @@ namespace u_net
             // 
             Page2.AutoScroll = true;
             Page2.BackColor = SystemColors.Control;
+            Page2.Controls.Add(登録日);
             Page2.Controls.Add(請求予定日選択ボタン);
             Page2.Controls.Add(ProductionPlanned);
             Page2.Controls.Add(無効日);
@@ -757,6 +548,19 @@ namespace u_net
             Page2.TabIndex = 10050;
             Page2.Visible = false;
             // 
+            // 登録日
+            // 
+            登録日.BackColor = Color.White;
+            登録日.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            登録日.ImeMode = ImeMode.Hiragana;
+            登録日.Location = new Point(715, 197);
+            登録日.Margin = new Padding(3, 2, 3, 2);
+            登録日.Name = "登録日";
+            登録日.Size = new Size(150, 24);
+            登録日.TabIndex = 10073;
+            登録日.TabStop = false;
+            登録日.Visible = false;
+            // 
             // 請求予定日選択ボタン
             // 
             請求予定日選択ボタン.Enabled = false;
@@ -776,7 +580,7 @@ namespace u_net
             ProductionPlanned.Location = new Point(715, 350);
             ProductionPlanned.Margin = new Padding(3, 2, 3, 2);
             ProductionPlanned.Name = "ProductionPlanned";
-            ProductionPlanned.Size = new Size(150, 21);
+            ProductionPlanned.Size = new Size(150, 24);
             ProductionPlanned.TabIndex = 10071;
             ProductionPlanned.TabStop = false;
             ProductionPlanned.Visible = false;
@@ -789,7 +593,7 @@ namespace u_net
             無効日.Location = new Point(715, 325);
             無効日.Margin = new Padding(3, 2, 3, 2);
             無効日.Name = "無効日";
-            無効日.Size = new Size(150, 21);
+            無効日.Size = new Size(150, 24);
             無効日.TabIndex = 10070;
             無効日.TabStop = false;
             無効日.Visible = false;
@@ -802,7 +606,7 @@ namespace u_net
             承認日時.Location = new Point(715, 275);
             承認日時.Margin = new Padding(3, 2, 3, 2);
             承認日時.Name = "承認日時";
-            承認日時.Size = new Size(150, 21);
+            承認日時.Size = new Size(150, 24);
             承認日時.TabIndex = 10069;
             承認日時.TabStop = false;
             承認日時.Visible = false;
@@ -815,7 +619,7 @@ namespace u_net
             ManufacturingCompletionApprovedDate.Location = new Point(715, 300);
             ManufacturingCompletionApprovedDate.Margin = new Padding(3, 2, 3, 2);
             ManufacturingCompletionApprovedDate.Name = "ManufacturingCompletionApprovedDate";
-            ManufacturingCompletionApprovedDate.Size = new Size(150, 21);
+            ManufacturingCompletionApprovedDate.Size = new Size(150, 24);
             ManufacturingCompletionApprovedDate.TabIndex = 10068;
             ManufacturingCompletionApprovedDate.TabStop = false;
             ManufacturingCompletionApprovedDate.Visible = false;
@@ -828,7 +632,7 @@ namespace u_net
             確定者コード.Location = new Point(715, 250);
             確定者コード.Margin = new Padding(3, 2, 3, 2);
             確定者コード.Name = "確定者コード";
-            確定者コード.Size = new Size(150, 21);
+            確定者コード.Size = new Size(150, 24);
             確定者コード.TabIndex = 10067;
             確定者コード.TabStop = false;
             確定者コード.Visible = false;
@@ -841,7 +645,7 @@ namespace u_net
             確定日時.Location = new Point(715, 225);
             確定日時.Margin = new Padding(3, 2, 3, 2);
             確定日時.Name = "確定日時";
-            確定日時.Size = new Size(150, 21);
+            確定日時.Size = new Size(150, 24);
             確定日時.TabIndex = 10066;
             確定日時.TabStop = false;
             確定日時.Visible = false;
@@ -952,7 +756,7 @@ namespace u_net
             税端数処理.Location = new Point(715, 125);
             税端数処理.Margin = new Padding(4, 3, 4, 3);
             税端数処理.Name = "税端数処理";
-            税端数処理.Size = new Size(150, 21);
+            税端数処理.Size = new Size(150, 25);
             税端数処理.TabIndex = 10059;
             税端数処理.TabStop = false;
             税端数処理.TextChanged += 税端数処理_TextChanged;
@@ -970,7 +774,7 @@ namespace u_net
             TaxCalcCode.Location = new Point(715, 100);
             TaxCalcCode.Margin = new Padding(4, 3, 4, 3);
             TaxCalcCode.Name = "TaxCalcCode";
-            TaxCalcCode.Size = new Size(150, 21);
+            TaxCalcCode.Size = new Size(150, 25);
             TaxCalcCode.TabIndex = 10058;
             TaxCalcCode.TabStop = false;
             TaxCalcCode.TextChanged += TaxCalcCode_TextChanged;
@@ -982,11 +786,11 @@ namespace u_net
             // 
             請求コード.BackColor = Color.White;
             請求コード.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            請求コード.ImeMode = ImeMode.Hiragana;
+            請求コード.ImeMode = ImeMode.NoControl;
             請求コード.Location = new Point(715, 150);
             請求コード.Margin = new Padding(3, 2, 3, 2);
             請求コード.Name = "請求コード";
-            請求コード.Size = new Size(150, 21);
+            請求コード.Size = new Size(150, 24);
             請求コード.TabIndex = 10057;
             請求コード.TabStop = false;
             // 
@@ -1043,7 +847,7 @@ namespace u_net
             TaxRate.Location = new Point(715, 75);
             TaxRate.Margin = new Padding(3, 2, 3, 2);
             TaxRate.Name = "TaxRate";
-            TaxRate.Size = new Size(150, 21);
+            TaxRate.Size = new Size(150, 24);
             TaxRate.TabIndex = 10053;
             TaxRate.TabStop = false;
             // 
@@ -1084,7 +888,7 @@ namespace u_net
             請求予定日.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             請求予定日.Location = new Point(715, 50);
             請求予定日.Name = "請求予定日";
-            請求予定日.Size = new Size(150, 21);
+            請求予定日.Size = new Size(150, 24);
             請求予定日.TabIndex = 33;
             請求予定日.TextChanged += 請求予定日_TextChanged;
             請求予定日.DoubleClick += 請求予定日_DoubleClick;
@@ -1098,7 +902,7 @@ namespace u_net
             帳端処理.AutoSize = true;
             帳端処理.Location = new Point(575, 55);
             帳端処理.Name = "帳端処理";
-            帳端処理.Size = new Size(15, 14);
+            帳端処理.Size = new Size(18, 17);
             帳端処理.TabIndex = 10014;
             帳端処理.UseVisualStyleBackColor = true;
             帳端処理.CheckedChanged += 端数処理_CheckedChanged;
@@ -1145,7 +949,7 @@ namespace u_net
             InvoiceNote.Location = new Point(640, 75);
             InvoiceNote.Margin = new Padding(3, 2, 3, 2);
             InvoiceNote.Name = "InvoiceNote";
-            InvoiceNote.Size = new Size(350, 21);
+            InvoiceNote.Size = new Size(350, 24);
             InvoiceNote.TabIndex = 50;
             InvoiceNote.TextChanged += InvoiceNote_TextChanged;
             InvoiceNote.Enter += InvoiceNote_Enter;
@@ -1160,7 +964,7 @@ namespace u_net
             PackingSlipNote.Location = new Point(640, 50);
             PackingSlipNote.Margin = new Padding(3, 2, 3, 2);
             PackingSlipNote.Name = "PackingSlipNote";
-            PackingSlipNote.Size = new Size(350, 21);
+            PackingSlipNote.Size = new Size(350, 24);
             PackingSlipNote.TabIndex = 49;
             PackingSlipNote.TextChanged += PackingSlipNote_TextChanged;
             PackingSlipNote.Enter += PackingSlipNote_Enter;
@@ -1206,7 +1010,7 @@ namespace u_net
             InvoiceFax.Margin = new Padding(3, 2, 3, 2);
             InvoiceFax.Name = "InvoiceFax";
             InvoiceFax.ReadOnly = true;
-            InvoiceFax.Size = new Size(100, 21);
+            InvoiceFax.Size = new Size(100, 24);
             InvoiceFax.TabIndex = 45;
             InvoiceFax.TabStop = false;
             // 
@@ -1219,7 +1023,7 @@ namespace u_net
             ReceiptComment.Margin = new Padding(3, 2, 3, 2);
             ReceiptComment.Name = "ReceiptComment";
             ReceiptComment.ReadOnly = true;
-            ReceiptComment.Size = new Size(150, 21);
+            ReceiptComment.Size = new Size(150, 24);
             ReceiptComment.TabIndex = 43;
             ReceiptComment.TabStop = false;
             // 
@@ -1232,7 +1036,7 @@ namespace u_net
             InvoiceInput.Margin = new Padding(3, 2, 3, 2);
             InvoiceInput.Name = "InvoiceInput";
             InvoiceInput.ReadOnly = true;
-            InvoiceInput.Size = new Size(150, 21);
+            InvoiceInput.Size = new Size(150, 24);
             InvoiceInput.TabIndex = 41;
             InvoiceInput.TabStop = false;
             // 
@@ -1243,11 +1047,11 @@ namespace u_net
             InvoiceFaxCode.DrawMode = DrawMode.OwnerDrawFixed;
             InvoiceFaxCode.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             InvoiceFaxCode.FormattingEnabled = true;
-            InvoiceFaxCode.ImeMode = ImeMode.NoControl;
+            InvoiceFaxCode.ImeMode = ImeMode.Disable;
             InvoiceFaxCode.Location = new Point(150, 125);
             InvoiceFaxCode.Margin = new Padding(4, 3, 4, 3);
             InvoiceFaxCode.Name = "InvoiceFaxCode";
-            InvoiceFaxCode.Size = new Size(80, 22);
+            InvoiceFaxCode.Size = new Size(80, 25);
             InvoiceFaxCode.TabIndex = 44;
             InvoiceFaxCode.DrawItem += InvoiceFaxCode_DrawItem;
             InvoiceFaxCode.SelectedIndexChanged += InvoiceFaxCode_SelectedIndexChanged;
@@ -1263,11 +1067,11 @@ namespace u_net
             ReceiptCommentCode.DrawMode = DrawMode.OwnerDrawFixed;
             ReceiptCommentCode.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             ReceiptCommentCode.FormattingEnabled = true;
-            ReceiptCommentCode.ImeMode = ImeMode.NoControl;
+            ReceiptCommentCode.ImeMode = ImeMode.Disable;
             ReceiptCommentCode.Location = new Point(150, 100);
             ReceiptCommentCode.Margin = new Padding(4, 3, 4, 3);
             ReceiptCommentCode.Name = "ReceiptCommentCode";
-            ReceiptCommentCode.Size = new Size(80, 22);
+            ReceiptCommentCode.Size = new Size(80, 25);
             ReceiptCommentCode.TabIndex = 42;
             ReceiptCommentCode.DrawItem += ReceiptCommentCode_DrawItem;
             ReceiptCommentCode.SelectedIndexChanged += ReceiptCommentCode_SelectedIndexChanged;
@@ -1283,11 +1087,11 @@ namespace u_net
             InvoiceInputCode.DrawMode = DrawMode.OwnerDrawFixed;
             InvoiceInputCode.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             InvoiceInputCode.FormattingEnabled = true;
-            InvoiceInputCode.ImeMode = ImeMode.NoControl;
+            InvoiceInputCode.ImeMode = ImeMode.Disable;
             InvoiceInputCode.Location = new Point(150, 75);
             InvoiceInputCode.Margin = new Padding(4, 3, 4, 3);
             InvoiceInputCode.Name = "InvoiceInputCode";
-            InvoiceInputCode.Size = new Size(80, 22);
+            InvoiceInputCode.Size = new Size(80, 25);
             InvoiceInputCode.TabIndex = 40;
             InvoiceInputCode.DrawItem += InvoiceInputCode_DrawItem;
             InvoiceInputCode.SelectedIndexChanged += InvoiceInputCode_SelectedIndexChanged;
@@ -1303,11 +1107,11 @@ namespace u_net
             PackingSlipInputCode.DrawMode = DrawMode.OwnerDrawFixed;
             PackingSlipInputCode.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             PackingSlipInputCode.FormattingEnabled = true;
-            PackingSlipInputCode.ImeMode = ImeMode.NoControl;
+            PackingSlipInputCode.ImeMode = ImeMode.Disable;
             PackingSlipInputCode.Location = new Point(150, 50);
             PackingSlipInputCode.Margin = new Padding(4, 3, 4, 3);
             PackingSlipInputCode.Name = "PackingSlipInputCode";
-            PackingSlipInputCode.Size = new Size(80, 22);
+            PackingSlipInputCode.Size = new Size(80, 25);
             PackingSlipInputCode.TabIndex = 38;
             PackingSlipInputCode.DrawItem += PackingSlipInputCode_DrawItem;
             PackingSlipInputCode.SelectedIndexChanged += PackingSlipInputCode_SelectedIndexChanged;
@@ -1321,7 +1125,7 @@ namespace u_net
             PaymentConfirmation.AutoSize = true;
             PaymentConfirmation.Location = new Point(150, 25);
             PaymentConfirmation.Name = "PaymentConfirmation";
-            PaymentConfirmation.Size = new Size(15, 14);
+            PaymentConfirmation.Size = new Size(18, 17);
             PaymentConfirmation.TabIndex = 37;
             PaymentConfirmation.UseVisualStyleBackColor = true;
             PaymentConfirmation.CheckedChanged += PaymentConfirmation_CheckedChanged;
@@ -1330,11 +1134,11 @@ namespace u_net
             // 
             InvoiceFaxToNumber.BackColor = Color.White;
             InvoiceFaxToNumber.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            InvoiceFaxToNumber.ImeMode = ImeMode.Hiragana;
+            InvoiceFaxToNumber.ImeMode = ImeMode.Disable;
             InvoiceFaxToNumber.Location = new Point(150, 200);
             InvoiceFaxToNumber.Margin = new Padding(3, 2, 3, 2);
             InvoiceFaxToNumber.Name = "InvoiceFaxToNumber";
-            InvoiceFaxToNumber.Size = new Size(350, 21);
+            InvoiceFaxToNumber.Size = new Size(350, 24);
             InvoiceFaxToNumber.TabIndex = 48;
             InvoiceFaxToNumber.TextChanged += InvoiceFaxToNumber_TextChanged;
             InvoiceFaxToNumber.Enter += InvoiceFaxToNumber_Enter;
@@ -1349,7 +1153,7 @@ namespace u_net
             InvoiceFaxToContact.Location = new Point(150, 175);
             InvoiceFaxToContact.Margin = new Padding(3, 2, 3, 2);
             InvoiceFaxToContact.Name = "InvoiceFaxToContact";
-            InvoiceFaxToContact.Size = new Size(350, 21);
+            InvoiceFaxToContact.Size = new Size(350, 24);
             InvoiceFaxToContact.TabIndex = 47;
             InvoiceFaxToContact.TextChanged += InvoiceFaxToContact_TextChanged;
             InvoiceFaxToContact.Enter += InvoiceFaxToContact_Enter;
@@ -1364,7 +1168,7 @@ namespace u_net
             InvoiceFaxToName.Location = new Point(150, 150);
             InvoiceFaxToName.Margin = new Padding(3, 2, 3, 2);
             InvoiceFaxToName.Name = "InvoiceFaxToName";
-            InvoiceFaxToName.Size = new Size(350, 21);
+            InvoiceFaxToName.Size = new Size(350, 24);
             InvoiceFaxToName.TabIndex = 46;
             InvoiceFaxToName.TextChanged += InvoiceFaxToName_TextChanged;
             InvoiceFaxToName.Enter += InvoiceFaxToName_Enter;
@@ -1380,7 +1184,7 @@ namespace u_net
             PackingSlipInput.Margin = new Padding(3, 2, 3, 2);
             PackingSlipInput.Name = "PackingSlipInput";
             PackingSlipInput.ReadOnly = true;
-            PackingSlipInput.Size = new Size(150, 21);
+            PackingSlipInput.Size = new Size(150, 24);
             PackingSlipInput.TabIndex = 39;
             PackingSlipInput.TabStop = false;
             // 
@@ -1506,6 +1310,7 @@ namespace u_net
             // 
             // 発送先
             // 
+            発送先.Controls.Add(発送先郵便番号);
             発送先.Controls.Add(Email作成ボタン);
             発送先.Controls.Add(発送先メールアドレス);
             発送先.Controls.Add(発送先担当者名);
@@ -1519,7 +1324,6 @@ namespace u_net
             発送先.Controls.Add(label28);
             発送先.Controls.Add(label27);
             発送先.Controls.Add(label26);
-            発送先.Controls.Add(発送先郵便番号);
             発送先.Controls.Add(label25);
             発送先.Controls.Add(発送先名);
             発送先.Controls.Add(label24);
@@ -1530,6 +1334,20 @@ namespace u_net
             発送先.TabIndex = 51;
             発送先.TabStop = false;
             発送先.Text = "発送先";
+            // 
+            // 発送先郵便番号
+            // 
+            発送先郵便番号.BackColor = Color.White;
+            発送先郵便番号.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            発送先郵便番号.ImeMode = ImeMode.Disable;
+            発送先郵便番号.Location = new Point(150, 50);
+            発送先郵便番号.Margin = new Padding(3, 2, 3, 2);
+            発送先郵便番号.Name = "発送先郵便番号";
+            発送先郵便番号.Size = new Size(150, 24);
+            発送先郵便番号.TabIndex = 260;
+            発送先郵便番号.TextChanged += 発送先郵便番号_TextChanged;
+            発送先郵便番号.Validating += 発送先郵便番号_Validating;
+            発送先郵便番号.Validated += 発送先郵便番号_Validated;
             // 
             // Email作成ボタン
             // 
@@ -1549,11 +1367,11 @@ namespace u_net
             // 
             発送先メールアドレス.BackColor = Color.White;
             発送先メールアドレス.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            発送先メールアドレス.ImeMode = ImeMode.Hiragana;
+            発送先メールアドレス.ImeMode = ImeMode.Alpha;
             発送先メールアドレス.Location = new Point(150, 200);
             発送先メールアドレス.Margin = new Padding(3, 2, 3, 2);
             発送先メールアドレス.Name = "発送先メールアドレス";
-            発送先メールアドレス.Size = new Size(324, 21);
+            発送先メールアドレス.Size = new Size(324, 24);
             発送先メールアドレス.TabIndex = 30;
             発送先メールアドレス.TextChanged += 発送先メールアドレス_TextChanged;
             発送先メールアドレス.Validating += 発送先メールアドレス_Validating;
@@ -1567,7 +1385,7 @@ namespace u_net
             発送先担当者名.Location = new Point(150, 175);
             発送先担当者名.Margin = new Padding(3, 2, 3, 2);
             発送先担当者名.Name = "発送先担当者名";
-            発送先担当者名.Size = new Size(350, 21);
+            発送先担当者名.Size = new Size(350, 24);
             発送先担当者名.TabIndex = 29;
             発送先担当者名.TextChanged += 発送先担当者名_TextChanged;
             発送先担当者名.Enter += 発送先担当者名_Enter;
@@ -1578,11 +1396,11 @@ namespace u_net
             // 
             発送先FAX.BackColor = Color.White;
             発送先FAX.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            発送先FAX.ImeMode = ImeMode.Hiragana;
+            発送先FAX.ImeMode = ImeMode.Disable;
             発送先FAX.Location = new Point(150, 150);
             発送先FAX.Margin = new Padding(3, 2, 3, 2);
             発送先FAX.Name = "発送先FAX";
-            発送先FAX.Size = new Size(150, 21);
+            発送先FAX.Size = new Size(150, 24);
             発送先FAX.TabIndex = 28;
             発送先FAX.TextChanged += 発送先FAX_TextChanged;
             発送先FAX.Validating += 発送先FAX_Validating;
@@ -1592,11 +1410,11 @@ namespace u_net
             // 
             発送先TEL.BackColor = Color.White;
             発送先TEL.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            発送先TEL.ImeMode = ImeMode.Hiragana;
+            発送先TEL.ImeMode = ImeMode.Disable;
             発送先TEL.Location = new Point(150, 125);
             発送先TEL.Margin = new Padding(3, 2, 3, 2);
             発送先TEL.Name = "発送先TEL";
-            発送先TEL.Size = new Size(150, 21);
+            発送先TEL.Size = new Size(150, 24);
             発送先TEL.TabIndex = 27;
             発送先TEL.TextChanged += 発送先TEL_TextChanged;
             発送先TEL.Validating += 発送先TEL_Validating;
@@ -1610,7 +1428,7 @@ namespace u_net
             発送先住所2.Location = new Point(150, 100);
             発送先住所2.Margin = new Padding(3, 2, 3, 2);
             発送先住所2.Name = "発送先住所2";
-            発送先住所2.Size = new Size(350, 21);
+            発送先住所2.Size = new Size(350, 24);
             発送先住所2.TabIndex = 26;
             発送先住所2.TextChanged += 発送先住所2_TextChanged;
             発送先住所2.Enter += 発送先住所2_Enter;
@@ -1625,7 +1443,7 @@ namespace u_net
             発送先住所1.Location = new Point(150, 75);
             発送先住所1.Margin = new Padding(3, 2, 3, 2);
             発送先住所1.Name = "発送先住所1";
-            発送先住所1.Size = new Size(350, 21);
+            発送先住所1.Size = new Size(350, 24);
             発送先住所1.TabIndex = 25;
             発送先住所1.TextChanged += 発送先住所1_TextChanged;
             発送先住所1.Enter += 発送先住所1_Enter;
@@ -1722,19 +1540,6 @@ namespace u_net
             label26.Text = "住所";
             label26.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // 発送先郵便番号
-            // 
-            発送先郵便番号.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            発送先郵便番号.Location = new Point(150, 50);
-            発送先郵便番号.Mask = "000-0000";
-            発送先郵便番号.Name = "発送先郵便番号";
-            発送先郵便番号.Size = new Size(100, 21);
-            発送先郵便番号.TabIndex = 24;
-            発送先郵便番号.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
-            発送先郵便番号.TextChanged += 発送先郵便番号_TextChanged;
-            発送先郵便番号.Validating += 発送先郵便番号_Validating;
-            発送先郵便番号.Validated += 発送先郵便番号_Validated;
-            // 
             // label25
             // 
             label25.AllowDrop = true;
@@ -1758,7 +1563,7 @@ namespace u_net
             発送先名.Location = new Point(150, 25);
             発送先名.Margin = new Padding(3, 2, 3, 2);
             発送先名.Name = "発送先名";
-            発送先名.Size = new Size(350, 21);
+            発送先名.Size = new Size(350, 24);
             発送先名.TabIndex = 23;
             発送先名.TextChanged += 発送先名_TextChanged;
             発送先名.Enter += 発送先名_Enter;
@@ -1798,20 +1603,22 @@ namespace u_net
             発送先3.AutoSize = true;
             発送先3.Location = new Point(250, 25);
             発送先3.Name = "発送先3";
-            発送先3.Size = new Size(78, 18);
+            発送先3.Size = new Size(93, 21);
             発送先3.TabIndex = 2;
             発送先3.Text = "発送先3";
             発送先3.UseVisualStyleBackColor = true;
+            発送先3.CheckedChanged += 発送先3_CheckedChanged;
             // 
             // 発送先2
             // 
             発送先2.AutoSize = true;
             発送先2.Location = new Point(125, 25);
             発送先2.Name = "発送先2";
-            発送先2.Size = new Size(78, 18);
+            発送先2.Size = new Size(93, 21);
             発送先2.TabIndex = 1;
             発送先2.Text = "発送先2";
             発送先2.UseVisualStyleBackColor = true;
+            発送先2.CheckedChanged += 発送先2_CheckedChanged;
             // 
             // 発送先1
             // 
@@ -1819,11 +1626,12 @@ namespace u_net
             発送先1.Checked = true;
             発送先1.Location = new Point(10, 25);
             発送先1.Name = "発送先1";
-            発送先1.Size = new Size(76, 18);
+            発送先1.Size = new Size(91, 21);
             発送先1.TabIndex = 0;
             発送先1.TabStop = true;
             発送先1.Text = "発送先1";
             発送先1.UseVisualStyleBackColor = true;
+            発送先1.CheckedChanged += 発送先1_CheckedChanged;
             // 
             // 戻るボタン
             // 
@@ -1846,7 +1654,7 @@ namespace u_net
             Page1.Controls.Add(受注明細1);
             Page1.Controls.Add(ProductionNotice);
             Page1.Controls.Add(label23);
-            Page1.Controls.Add(改訂履歴);
+            Page1.Controls.Add(改版履歴);
             Page1.Controls.Add(label22);
             Page1.Controls.Add(label6);
             Page1.Controls.Add(自社担当者名);
@@ -1908,7 +1716,7 @@ namespace u_net
             出荷予定日.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             出荷予定日.Location = new Point(127, 230);
             出荷予定日.Name = "出荷予定日";
-            出荷予定日.Size = new Size(150, 21);
+            出荷予定日.Size = new Size(150, 24);
             出荷予定日.TabIndex = 11;
             出荷予定日.TextChanged += 出荷予定日_TextChanged;
             出荷予定日.DoubleClick += 出荷予定日_DoubleClick;
@@ -1922,7 +1730,7 @@ namespace u_net
             受注納期.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             受注納期.Location = new Point(127, 205);
             受注納期.Name = "受注納期";
-            受注納期.Size = new Size(150, 21);
+            受注納期.Size = new Size(150, 24);
             受注納期.TabIndex = 10;
             受注納期.TextChanged += 受注納期_TextChanged;
             受注納期.DoubleClick += 受注納期_DoubleClick;
@@ -1936,7 +1744,7 @@ namespace u_net
             受注日.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             受注日.Location = new Point(127, 55);
             受注日.Name = "受注日";
-            受注日.Size = new Size(150, 21);
+            受注日.Size = new Size(150, 24);
             受注日.TabIndex = 3;
             受注日.TextChanged += 受注日_TextChanged;
             受注日.DoubleClick += 受注日_DoubleClick;
@@ -1984,21 +1792,21 @@ namespace u_net
             label23.Text = "生産指示";
             label23.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // 改訂履歴
+            // 改版履歴
             // 
-            改訂履歴.BackColor = Color.White;
-            改訂履歴.Font = new Font("BIZ UDゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            改訂履歴.ImeMode = ImeMode.Hiragana;
-            改訂履歴.Location = new Point(702, 155);
-            改訂履歴.Margin = new Padding(3, 2, 3, 2);
-            改訂履歴.Multiline = true;
-            改訂履歴.Name = "改訂履歴";
-            改訂履歴.Size = new Size(377, 72);
-            改訂履歴.TabIndex = 19;
-            改訂履歴.TextChanged += 改訂履歴_TextChanged;
-            改訂履歴.Enter += 改訂履歴_Enter;
-            改訂履歴.Validating += 改訂履歴_Validating;
-            改訂履歴.Validated += 改訂履歴_Validated;
+            改版履歴.BackColor = Color.White;
+            改版履歴.Font = new Font("BIZ UDゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            改版履歴.ImeMode = ImeMode.Hiragana;
+            改版履歴.Location = new Point(702, 155);
+            改版履歴.Margin = new Padding(3, 2, 3, 2);
+            改版履歴.Multiline = true;
+            改版履歴.Name = "改版履歴";
+            改版履歴.Size = new Size(377, 72);
+            改版履歴.TabIndex = 19;
+            改版履歴.TextChanged += 改訂履歴_TextChanged;
+            改版履歴.Enter += 改訂履歴_Enter;
+            改版履歴.Validating += 改訂履歴_Validating;
+            改版履歴.Validated += 改訂履歴_Validated;
             // 
             // label22
             // 
@@ -2027,7 +1835,7 @@ namespace u_net
             label6.Name = "label6";
             label6.Size = new Size(120, 22);
             label6.TabIndex = 10100;
-            label6.Text = "改訂履歴";
+            label6.Text = "改版履歴";
             label6.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // 自社担当者名
@@ -2038,7 +1846,7 @@ namespace u_net
             自社担当者名.Margin = new Padding(3, 2, 3, 2);
             自社担当者名.Name = "自社担当者名";
             自社担当者名.ReadOnly = true;
-            自社担当者名.Size = new Size(150, 21);
+            自社担当者名.Size = new Size(150, 24);
             自社担当者名.TabIndex = 10068;
             自社担当者名.TabStop = false;
             // 
@@ -2053,7 +1861,7 @@ namespace u_net
             自社担当者コード.Location = new Point(702, 55);
             自社担当者コード.Margin = new Padding(4, 3, 4, 3);
             自社担当者コード.Name = "自社担当者コード";
-            自社担当者コード.Size = new Size(60, 22);
+            自社担当者コード.Size = new Size(60, 25);
             自社担当者コード.TabIndex = 17;
             自社担当者コード.DrawItem += 自社担当者コード_DrawItem;
             自社担当者コード.TextChanged += 自社担当者コード_TextChanged;
@@ -2083,7 +1891,7 @@ namespace u_net
             発送方法.Location = new Point(192, 305);
             発送方法.Margin = new Padding(3, 2, 3, 2);
             発送方法.Name = "発送方法";
-            発送方法.Size = new Size(150, 21);
+            発送方法.Size = new Size(150, 24);
             発送方法.TabIndex = 10098;
             // 
             // 発送方法コード
@@ -2097,7 +1905,7 @@ namespace u_net
             発送方法コード.Location = new Point(127, 305);
             発送方法コード.Margin = new Padding(4, 3, 4, 3);
             発送方法コード.Name = "発送方法コード";
-            発送方法コード.Size = new Size(60, 22);
+            発送方法コード.Size = new Size(60, 25);
             発送方法コード.TabIndex = 16;
             発送方法コード.DrawItem += 発送方法コード_DrawItem;
             発送方法コード.SelectedIndexChanged += 発送方法コード_SelectedIndexChanged;
@@ -2112,7 +1920,7 @@ namespace u_net
             請求書送付.Location = new Point(192, 280);
             請求書送付.Margin = new Padding(3, 2, 3, 2);
             請求書送付.Name = "請求書送付";
-            請求書送付.Size = new Size(150, 21);
+            請求書送付.Size = new Size(150, 24);
             請求書送付.TabIndex = 10097;
             // 
             // 請求書送付コード
@@ -2126,7 +1934,7 @@ namespace u_net
             請求書送付コード.Location = new Point(127, 280);
             請求書送付コード.Margin = new Padding(4, 3, 4, 3);
             請求書送付コード.Name = "請求書送付コード";
-            請求書送付コード.Size = new Size(60, 22);
+            請求書送付コード.Size = new Size(60, 25);
             請求書送付コード.TabIndex = 15;
             請求書送付コード.DrawItem += 請求書送付コード_DrawItem;
             請求書送付コード.SelectedIndexChanged += 請求書送付コード_SelectedIndexChanged;
@@ -2141,7 +1949,7 @@ namespace u_net
             納品書送付.Location = new Point(192, 255);
             納品書送付.Margin = new Padding(3, 2, 3, 2);
             納品書送付.Name = "納品書送付";
-            納品書送付.Size = new Size(150, 21);
+            納品書送付.Size = new Size(150, 24);
             納品書送付.TabIndex = 10096;
             // 
             // 納品書送付コード
@@ -2155,7 +1963,7 @@ namespace u_net
             納品書送付コード.Location = new Point(127, 255);
             納品書送付コード.Margin = new Padding(4, 3, 4, 3);
             納品書送付コード.Name = "納品書送付コード";
-            納品書送付コード.Size = new Size(60, 22);
+            納品書送付コード.Size = new Size(60, 25);
             納品書送付コード.TabIndex = 14;
             納品書送付コード.DrawItem += 納品書送付コード_DrawItem;
             納品書送付コード.SelectedIndexChanged += 納品書送付コード_SelectedIndexChanged;
@@ -2195,7 +2003,7 @@ namespace u_net
             ClientCode.Location = new Point(127, 180);
             ClientCode.Margin = new Padding(4, 3, 4, 3);
             ClientCode.Name = "ClientCode";
-            ClientCode.Size = new Size(400, 21);
+            ClientCode.Size = new Size(400, 25);
             ClientCode.TabIndex = 9;
             ClientCode.TextChanged += ClientCode_TextChanged;
             ClientCode.Validating += ClientCode_Validating;
@@ -2209,7 +2017,7 @@ namespace u_net
             顧客担当者名.Location = new Point(127, 155);
             顧客担当者名.Margin = new Padding(3, 2, 3, 2);
             顧客担当者名.Name = "顧客担当者名";
-            顧客担当者名.Size = new Size(400, 21);
+            顧客担当者名.Size = new Size(400, 24);
             顧客担当者名.TabIndex = 7;
             顧客担当者名.TextChanged += 顧客担当者名_TextChanged;
             顧客担当者名.Enter += 顧客担当者名_Enter;
@@ -2224,7 +2032,7 @@ namespace u_net
             顧客名.Location = new Point(127, 130);
             顧客名.Margin = new Padding(3, 2, 3, 2);
             顧客名.Name = "顧客名";
-            顧客名.Size = new Size(400, 21);
+            顧客名.Size = new Size(400, 24);
             顧客名.TabIndex = 6;
             顧客名.TabStop = false;
             // 
@@ -2246,7 +2054,7 @@ namespace u_net
             顧客コード.Location = new Point(127, 105);
             顧客コード.Margin = new Padding(3, 2, 3, 2);
             顧客コード.Name = "顧客コード";
-            顧客コード.Size = new Size(150, 21);
+            顧客コード.Size = new Size(150, 24);
             顧客コード.TabIndex = 5;
             顧客コード.TextChanged += 顧客コード_TextChanged;
             顧客コード.DoubleClick += 顧客コード_DoubleClick;
@@ -2415,7 +2223,7 @@ namespace u_net
             受注コード.ImeMode = ImeMode.Off;
             受注コード.Location = new Point(127, 5);
             受注コード.Name = "受注コード";
-            受注コード.Size = new Size(150, 22);
+            受注コード.Size = new Size(150, 25);
             受注コード.TabIndex = 0;
             受注コード.DrawItem += 受注コード_DrawItem;
             受注コード.SelectedIndexChanged += 受注コード_SelectedIndexChanged;
@@ -2458,7 +2266,7 @@ namespace u_net
             削除.Margin = new Padding(3, 2, 3, 2);
             削除.Name = "削除";
             削除.ReadOnly = true;
-            削除.Size = new Size(25, 20);
+            削除.Size = new Size(25, 24);
             削除.TabIndex = 10084;
             削除.TabStop = false;
             // 
@@ -2470,7 +2278,7 @@ namespace u_net
             在庫締め.Margin = new Padding(3, 2, 3, 2);
             在庫締め.Name = "在庫締め";
             在庫締め.ReadOnly = true;
-            在庫締め.Size = new Size(25, 20);
+            在庫締め.Size = new Size(25, 24);
             在庫締め.TabIndex = 10083;
             在庫締め.TabStop = false;
             // 
@@ -2482,7 +2290,7 @@ namespace u_net
             完了.Margin = new Padding(3, 2, 3, 2);
             完了.Name = "完了";
             完了.ReadOnly = true;
-            完了.Size = new Size(25, 20);
+            完了.Size = new Size(25, 24);
             完了.TabIndex = 10082;
             完了.TabStop = false;
             // 
@@ -2536,7 +2344,7 @@ namespace u_net
             生産計画.Margin = new Padding(3, 2, 3, 2);
             生産計画.Name = "生産計画";
             生産計画.ReadOnly = true;
-            生産計画.Size = new Size(25, 20);
+            生産計画.Size = new Size(25, 24);
             生産計画.TabIndex = 10078;
             生産計画.TabStop = false;
             // 
@@ -2562,7 +2370,7 @@ namespace u_net
             承認.Margin = new Padding(3, 2, 3, 2);
             承認.Name = "承認";
             承認.ReadOnly = true;
-            承認.Size = new Size(25, 20);
+            承認.Size = new Size(25, 24);
             承認.TabIndex = 10076;
             承認.TabStop = false;
             // 
@@ -2632,7 +2440,7 @@ namespace u_net
             受注版数.Location = new Point(350, 5);
             受注版数.Margin = new Padding(4, 3, 4, 3);
             受注版数.Name = "受注版数";
-            受注版数.Size = new Size(60, 22);
+            受注版数.Size = new Size(60, 25);
             受注版数.TabIndex = 1;
             受注版数.DrawItem += 受注版数_DrawItem;
             受注版数.SelectedIndexChanged += 受注版数_SelectedIndexChanged;
@@ -2660,7 +2468,7 @@ namespace u_net
             確定.Margin = new Padding(3, 2, 3, 2);
             確定.Name = "確定";
             確定.ReadOnly = true;
-            確定.Size = new Size(25, 20);
+            確定.Size = new Size(25, 24);
             確定.TabIndex = 10069;
             確定.TabStop = false;
             // 
@@ -2686,7 +2494,7 @@ namespace u_net
             注文番号.Location = new Point(127, 80);
             注文番号.Margin = new Padding(3, 2, 3, 2);
             注文番号.Name = "注文番号";
-            注文番号.Size = new Size(250, 21);
+            注文番号.Size = new Size(250, 24);
             注文番号.TabIndex = 4;
             注文番号.TextChanged += 注文番号_TextChanged;
             注文番号.Enter += 注文番号_Enter;
@@ -2763,43 +2571,10 @@ namespace u_net
 
         #endregion
 
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn11;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn12;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn13;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn14;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn15;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn16;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn17;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn18;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn19;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn20;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn21;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn22;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn23;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn24;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn25;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn26;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn27;
-        private CalendarColumn calendarColumn1;
-
-
-        private CalendarColumn calendarColumn2;
-        private CalendarColumn calendarColumn3;
         private Button コマンド終了;
         private Button コマンド登録;
         private DataGridViewTextBoxColumn 日誌IDDataGridViewTextBoxColumn;
 
-        private CalendarColumn 登録日;
         private Panel panel1;
         private Button コマンド新規;
         private Button コマンド在庫;
@@ -2831,7 +2606,6 @@ namespace u_net
         private Label label25;
         private TextBox 発送先名;
         private Label label24;
-        private MaskedTextBox 発送先郵便番号;
         private Label label30;
         private Label label29;
         private Label label28;
@@ -2901,7 +2675,7 @@ namespace u_net
         private MultiRowDesigner.受注明細 受注明細1;
         private TextBox ProductionNotice;
         private Label label23;
-        private TextBox 改訂履歴;
+        private TextBox 改版履歴;
         private Label label22;
         private Label label6;
         private TextBox 自社担当者名;
@@ -2953,6 +2727,8 @@ namespace u_net
         private TextBox 注文番号;
         private TextBox 備考;
         private Label label4;
+        private TextBox 発送先郵便番号;
+        private TextBox 登録日;
     }
 }
 

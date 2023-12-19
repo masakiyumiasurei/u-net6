@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using GrapeCity.Win.BarCode.ValueType;
 using GrapeCity.Win.MultiRow;
 using GrapeCity.Win.MultiRow.InputMan;
+using Microsoft.Identity.Client.NativeInterop;
 using u_net;
 using u_net.Public;
 
@@ -42,15 +43,11 @@ namespace MultiRowDesigner
             ComboBoxEditingControl comboBox = e.Control as ComboBoxEditingControl;
             if (textBox != null)
             {
-                textBox.PreviewKeyDown -= gcMultiRow1_PreviewKeyDown;
-                textBox.PreviewKeyDown += gcMultiRow1_PreviewKeyDown;
                 textBox.KeyPress -= new KeyPressEventHandler(gcMultiRow1_KeyPress);
                 textBox.KeyPress += new KeyPressEventHandler(gcMultiRow1_KeyPress);
             }
             else if (comboBox != null)
             {
-                comboBox.PreviewKeyDown -= gcMultiRow1_PreviewKeyDown;
-                comboBox.PreviewKeyDown += gcMultiRow1_PreviewKeyDown;
                 comboBox.KeyPress -= new KeyPressEventHandler(gcMultiRow1_KeyPress);
                 comboBox.KeyPress += new KeyPressEventHandler(gcMultiRow1_KeyPress);
                 if (gcMultiRow1.CurrentCell.Name == "ラインコード")
@@ -64,29 +61,6 @@ namespace MultiRowDesigner
                     comboBox.DrawMode = DrawMode.Normal;
                 }
 
-            }
-        }
-
-        private void gcMultiRow1_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
-        {
-            gcMultiRow1.EndEdit();
-
-            if (e.KeyCode == Keys.Return)
-            {
-
-                if (gcMultiRow1.CurrentCell.RowIndex == null || gcMultiRow1.CurrentCell.CellIndex == null) return;
-
-                if (gcMultiRow1.CurrentCell.Name == "部品コード")
-                {
-
-                    string strCode = gcMultiRow1.CurrentCell.Value.ToString();
-                    string formattedCode = strCode.Trim().PadLeft(8, '0');
-
-                    if (formattedCode != strCode || string.IsNullOrEmpty(strCode))
-                    {
-                        gcMultiRow1.CurrentCell.Value = formattedCode;
-                    }
-                }
             }
         }
 
@@ -390,8 +364,18 @@ namespace MultiRowDesigner
             }
         }
 
-
-
-
+        private void gcMultiRow1_DefaultValuesNeeded(object sender, RowEventArgs e)
+        {
+            e.Row.Cells["受注区分コード"].Value = 1;
+            e.Row.Cells["売上区分コード"].Value = 1;
+            e.Row.Cells["数量"].Value = 1;
+            e.Row.Cells["単位コード"].Value = 1;
+            e.Row.Cells["単価"].Value = 0;
+            e.Row.Cells["原価"].Value = 0;
+            e.Row.Cells["SettingSheet"].Value = "02";
+            e.Row.Cells["InspectionReport"].Value = "02";
+            e.Row.Cells["Specification"].Value = "02";
+            e.Row.Cells["ParameterSheet"].Value = "02";
+        }
     }
 }
