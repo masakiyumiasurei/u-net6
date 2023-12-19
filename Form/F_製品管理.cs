@@ -32,7 +32,12 @@ namespace u_net
         public long lng削除指定 { get; set; }
         public string strKey1 { get; set; }
 
+        public bool blnShiftOn = false;
+
+        public bool blnCurrent = false;
+
         public string strSearchCode = "";
+
 
 
         public string CurrentCode
@@ -96,6 +101,12 @@ namespace u_net
             fn.DoWait("しばらくお待ちください...");
 
 
+            //実行中フォーム起動
+            string LoginUserCode = CommonConstants.LoginUserCode;
+            LocalSetting localSetting = new LocalSetting();
+            localSetting.LoadPlace(LoginUserCode, this);
+
+
             MyApi myapi = new MyApi();
             int xSize, ySize, intpixel, twipperdot;
 
@@ -116,7 +127,7 @@ namespace u_net
             dataGridView1.DefaultCellStyle.Font = new Font("MS ゴシック", 10);
             dataGridView1.DefaultCellStyle.ForeColor = Color.Black;
 
-            
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
 
             myapi.GetFullScreen(out xSize, out ySize);
@@ -137,6 +148,15 @@ namespace u_net
             DoUpdate();
             fn.WaitForm.Close();
         }
+
+
+        private void F_製品管理_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            string LoginUserCode = CommonConstants.LoginUserCode;//テスト用 ログインユーザを実行中にどのように管理するか決まったら修正
+            LocalSetting test = new LocalSetting();
+            test.SavePlace(LoginUserCode, this);
+        }
+     
 
 
         public int DoUpdate()
@@ -374,153 +394,202 @@ namespace u_net
             }
         }
 
-  
-        //未着手
+
+
         private void dataGridView1_KeyDown(object sender, KeyEventArgs e)
         {
-            // Shiftキーが押されているときは何もしない
-            if (e.Shift)
+            Form_KeyDown(sender, e);
+        }
+
+
+        private void Form_KeyDown(object sender, KeyEventArgs e)
+        {
+
+            switch (e.KeyCode)
             {
-                e.SuppressKeyPress = true;
+                case Keys.Return:
+                    if (this.ActiveControl == this.dataGridView1)
+                    {
+                        if (dataGridView1.SelectedRows.Count > 0)
+                        {
+                            // DataGridView1で選択された行が存在する場合
+                            string selectedData = dataGridView1.SelectedRows[0].Cells[0].Value.ToString(); // 1列目のデータを取得
+                            string selectedEdition = dataGridView1.SelectedRows[0].Cells[1].Value.ToString();
+
+                            F_製品 targetform = new F_製品();
+                            targetform.args = selectedData + "," + selectedEdition;
+                            targetform.ShowDialog();
+                        }
+                        else
+                        {
+                            // ユーザーが行を選択していない場合のエラーハンドリング
+                            MessageBox.Show("行が選択されていません。");
+                        }
+                    }
+                    break;
+                    
+                case Keys.ShiftKey:
+                    blnShiftOn = true;
+                    ShiftChange(blnShiftOn);
+                    break;
+
+                case Keys.F1:
+                    RunFunction(1, blnShiftOn);
+                    break;
+                case Keys.F2:
+                    RunFunction(2, blnShiftOn);
+                    break;
+                case Keys.F3:
+                    RunFunction(3, blnShiftOn);
+                    break;
+                case Keys.F4:
+                    RunFunction(4, blnShiftOn);
+                    break;
+                case Keys.F5:
+                    RunFunction(5, blnShiftOn);
+                    break;
+                case Keys.F6:
+                    RunFunction(6, blnShiftOn);
+                    break;
+                case Keys.F7:
+                    RunFunction(7, blnShiftOn);
+                    break;
+                case Keys.F8:
+                    RunFunction(8, blnShiftOn);
+                    break;
+                case Keys.F9:
+                    RunFunction(9, blnShiftOn);
+                    break;
+                case Keys.F10:
+                    RunFunction(10, blnShiftOn);
+                    break;
+                case Keys.F11:
+                    RunFunction(11, blnShiftOn);
+                    break;
+                case Keys.F12:
+                    RunFunction(12, blnShiftOn);
+                    break;
             }
         }
 
-        //未着手
+        private void dataGridView1_KeyUp(object sender, KeyEventArgs e)
+        {
+            F_製品管理_KeyUp(sender, e);
+        }
+
+        private void F_製品管理_KeyUp(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.ShiftKey)
+            {
+                blnShiftOn = false;
+                ShiftChange(blnShiftOn);
+            }
+        }
+
+
+
+        private void ShiftChange(bool shiftOn)
+        {
+
+            if (shiftOn == blnCurrent) return;
+
+            if (shiftOn)
+            {
+                コマンド抽出.Text = "キー抽出";
+                コマンド検索.Text = "";
+                コマンド初期化.Text = "";
+                コマンド更新.Text = "";
+                コマンド製品.Text = "キー設定";
+                コマンド材料費.Text = "";
+                コマンド指導書設定.Text = "";
+                コマンド指導書変更有り.Text = "";
+                コマンド参照用.Text = "";
+                コマンド終了.Text = "";
+
+            }
+            else
+            {
+
+                コマンド抽出.Text = "抽出";
+                コマンド検索.Text = "検索";
+                コマンド初期化.Text = "初期化";
+                コマンド更新.Text = "更新";
+                コマンド製品.Text = "製品";
+                コマンド材料費.Text = "材料費";
+                コマンド指導書設定.Text = "指導設定";
+                コマンド指導書変更有り.Text = "指変更有";
+                コマンド参照用.Text = "参照用";
+                コマンド終了.Text = "終了";
+
+            }
+
+            blnCurrent = shiftOn;
+
+        }
+
+
+        private void RunFunction(int functionNumber , bool ShiftOn)
+        {
+            dataGridView1.Focus();
+            blnShiftOn = false;
+            ShiftChange(blnShiftOn);
+
+        }
+
+
+        
+
+
+        private void コマンド検索_Click(object sender, EventArgs e)
+        {
+            RunFunction(2, blnShiftOn);
+        }
+
+        private void コマンド更新_Click(object sender, EventArgs e)
+        {
+            RunFunction(4, blnShiftOn);
+        }
+
+        private void コマンド材料費_Click(object sender, EventArgs e)
+        {
+            RunFunction(6, blnShiftOn);
+        }
+
+        private void コマンド参照用_Click(object sender, EventArgs e)
+        {
+            RunFunction(9, blnShiftOn);
+        }
+
+        private void コマンド指導書設定_Click(object sender, EventArgs e)
+        {
+            RunFunction(7, blnShiftOn);
+        }
+
+        private void コマンド指導書変更有り_Click(object sender, EventArgs e)
+        {
+            RunFunction(8, blnShiftOn);
+        }
 
         private void コマンド終了_Click(object sender, EventArgs e)
         {
-            LocalSetting test = new LocalSetting();
-            test.SavePlace(CommonConstants.LoginUserCode, this);
-            this.Close();
-        }
-        //未着手
-        private void コマンド抽出_Click(object sender, EventArgs e)
-        {
-            //dataGridView1.Focus();
-            F_製品管理_抽出 form = new F_製品管理_抽出();
-            //form.ShowDialog();
+            RunFunction(12, blnShiftOn);
         }
 
-        //未着手
         private void コマンド初期化_Click(object sender, EventArgs e)
         {
-            InitializeFilter();
-            DoUpdate();
-            //Cleargrid(dataGridView1);
+            RunFunction(3, blnShiftOn);
         }
 
-        //未着手
-        private void コマンド更新_Click(object sender, EventArgs e)
-        {
-
-            DoUpdate();
-            //Cleargrid(dataGridView1);
-
-        }
-        //未着手
-        private void コマンド検索_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("現在開発中です。\n コードで検索するときに使用します。", "検索コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
-        //未着手
         private void コマンド製品_Click(object sender, EventArgs e)
         {
-            //if (dataGridView1.SelectedRows.Count > 0)
-            //{
-            //    // DataGridView1で選択された行が存在する場合
-            //    string selectedData = dataGridView1.SelectedRows[0].Cells[0].Value.ToString(); // 1列目のデータを取得
-
-            //    // 仕入先フォームを作成し、引数を設定して表示
-            //    F_仕入先 targetform = new F_仕入先();
-            //    targetform.args = selectedData;
-            //    targetform.ShowDialog();
-            //}
-            //else
-            //{
-            //    // ユーザーが行を選択していない場合のエラーハンドリング
-            //    MessageBox.Show("行が選択されていません。");
-            //}
+            RunFunction(5, blnShiftOn);
         }
-        //未着手
-        private void Form_KeyDown(object sender, KeyEventArgs e)
+
+        private void コマンド抽出_Click(object sender, EventArgs e)
         {
-            try
-            {
-
-                switch (e.KeyCode)
-                {
-                    case Keys.F1:
-                        //if (this.コマンド抽出.Enabled) コマンド抽出_Click(null, null);
-                        break;
-                    case Keys.F2:
-                        //if (this.コマンド検索.Enabled) コマンド検索_Click(null, null);
-                        break;
-                    case Keys.F3:
-                        //if (this.コマンド初期化.Enabled) コマンド初期化_Click(null, null);
-                        break;
-                    case Keys.F4:
-                        //if (this.コマンド更新.Enabled) コマンド更新_Click(null, null);
-                        break;
-                    case Keys.F5:
-                        //if (this.コマンド仕入先.Enabled) コマンド仕入先_Click(null, null);
-                        break;
-                    case Keys.F6:
-                    //if (this.コマンドメール.Enabled) コマンドメール_Click(null, null);
-                    //break;
-                    case Keys.F9:
-                        //if (this.コマンド印刷.Enabled) コマンド印刷_Click(null, null);
-                        break;
-                    case Keys.F10:
-                        //if (this.コマンド入出力.Enabled) コマンド入出力_Click(null, null);
-                        break;
-                    case Keys.F11:
-                    //if (this.コマンド入出力.Enabled) コマンド入出力_Click(null, null);
-                    //break;
-                    case Keys.F12:
-                        //if (this.コマンド終了.Enabled) コマンド終了_Click(null, null);
-                        break;
-                    case Keys.Return:
-                        //if (this.ActiveControl == this.dataGridView1)
-                        //{
-                        //    if (dataGridView1.SelectedRows.Count > 0)
-                        //    {
-                        //        // DataGridView1で選択された行が存在する場合
-                        //        string selectedData = dataGridView1.SelectedRows[0].Cells[0].Value.ToString(); // 1列目のデータを取得
-
-                        //        // 仕入先フォームを作成し、引数を設定して表示
-                        //        F_仕入先 targetform = new F_仕入先();
-                        //        targetform.args = selectedData;
-                        //        targetform.ShowDialog();
-                        //    }
-                        //    else
-                        //    {
-                        //        // ユーザーが行を選択していない場合のエラーハンドリング
-                        //        MessageBox.Show("行が選択されていません。");
-                        //    }
-                        //}
-                        break;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("KeyDown - " + ex.Message);
-            }
+            RunFunction(1, blnShiftOn);
         }
 
-        //未着手
-        private void コマンド材料費_Click(object sender, EventArgs e)
-        {
 
-        }
-        //未着手
-        private void コマンド指導書設定_Click(object sender, EventArgs e)
-        {
-
-        }
-        //未着手
-        private void コマンド指導書変更有り_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }
