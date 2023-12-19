@@ -466,6 +466,8 @@ namespace u_net
             this.備考.Size = new System.Drawing.Size(580, 65);
             this.備考.TabIndex = 16;
             this.備考.TextChanged += new System.EventHandler(this.備考_TextChanged);
+            this.備考.Enter += new System.EventHandler(this.備考_Enter);
+            this.備考.Leave += new System.EventHandler(this.備考_Leave);
             // 
             // 備考_ラベル
             // 
@@ -523,6 +525,8 @@ namespace u_net
             this.品名.Size = new System.Drawing.Size(403, 20);
             this.品名.TabIndex = 7;
             this.品名.TextChanged += new System.EventHandler(this.品名_TextChanged);
+            this.品名.Enter += new System.EventHandler(this.品名_Enter);
+            this.品名.Leave += new System.EventHandler(this.品名_Leave);
             this.品名.Validating += new System.ComponentModel.CancelEventHandler(this.品名_Validating);
             // 
             // 品名_ラベル
@@ -553,7 +557,9 @@ namespace u_net
             this.製品コード.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.製品コード_DrawItem);
             this.製品コード.SelectedIndexChanged += new System.EventHandler(this.製品コード_SelectedIndexChanged);
             this.製品コード.TextChanged += new System.EventHandler(this.製品コード_TextChanged);
+            this.製品コード.Enter += new System.EventHandler(this.製品コード_Enter);
             this.製品コード.KeyDown += new System.Windows.Forms.KeyEventHandler(this.製品コード_KeyDown);
+            this.製品コード.Leave += new System.EventHandler(this.製品コード_Leave);
             // 
             // 製品コードラベル
             // 
@@ -749,6 +755,8 @@ namespace u_net
             this.製品版数.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.製品版数_DrawItem);
             this.製品版数.SelectedIndexChanged += new System.EventHandler(this.製品版数_SelectedIndexChanged);
             this.製品版数.TextChanged += new System.EventHandler(this.製品版数_TextChanged);
+            this.製品版数.Enter += new System.EventHandler(this.製品版数_Enter);
+            this.製品版数.Leave += new System.EventHandler(this.製品版数_Leave);
             // 
             // label1
             // 
@@ -782,6 +790,8 @@ namespace u_net
             this.シリーズ名.Size = new System.Drawing.Size(261, 20);
             this.シリーズ名.TabIndex = 10;
             this.シリーズ名.TextChanged += new System.EventHandler(this.シリーズ名_TextChanged);
+            this.シリーズ名.Enter += new System.EventHandler(this.シリーズ名_Enter);
+            this.シリーズ名.Leave += new System.EventHandler(this.シリーズ名_Leave);
             this.シリーズ名.Validating += new System.ComponentModel.CancelEventHandler(this.シリーズ名_Validating);
             // 
             // RoHS対応
@@ -809,6 +819,8 @@ namespace u_net
             this.識別コード.Size = new System.Drawing.Size(234, 20);
             this.識別コード.TabIndex = 12;
             this.識別コード.TextChanged += new System.EventHandler(this.識別コード_TextChanged);
+            this.識別コード.Enter += new System.EventHandler(this.識別コード_Enter);
+            this.識別コード.Leave += new System.EventHandler(this.識別コード_Leave);
             this.識別コード.Validating += new System.ComponentModel.CancelEventHandler(this.識別コード_Validating);
             // 
             // label2

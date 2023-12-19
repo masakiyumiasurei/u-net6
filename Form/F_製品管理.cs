@@ -16,24 +16,40 @@ namespace u_net
 {
     public partial class F_製品管理 : MidForm
     {
-        public string str検索コード = CommonConstants.CH_MAKER;
-        public string str仕入先コード開始 = "";
-        public string str仕入先コード終了 = "";
-        public string str仕入先名フリガナ = "";
-        public string str仕入先名 = "";
-        public string str窓口電話番号 = "";
-        public string str窓口ファックス番号 = "";
-        public string str担当者名 = "";
-        public int lng削除指定 = 0;
-        //public DateTime dtm更新日開始 = DateTime.MinValue;
-        //public DateTime dtm更新日終了 = DateTime.MinValue;
-        //public string str更新者名 = "";
+        public string str製品コード開始 { get; set; }
+        public string str製品コード終了 { get; set; }
+        public string str品名 { get; set; }
+        public string strシリーズ名 { get; set; }
+        public long lng指導書変更 { get; set; }
+        public long lngRoHS対応 { get; set; }
+        public long lng非含有証明書 { get; set; }
+        public DateTime dtm更新日開始 { get; set; }
+        public DateTime dtm更新日終了 { get; set; }
+        public string str更新者名 { get; set; }
+        public long lng確定指定 { get; set; }
+        public long lng承認指定 { get; set; }
+        public long lng廃止指定 { get; set; }
+        public long lng削除指定 { get; set; }
+        public string strKey1 { get; set; }
+
         public string strSearchCode = "";
 
-        //public int intComposedChipMount = 0;
-        //public int intIsUnit = 0;
-        //public int lngDiscontinued = 0;
 
+        public string CurrentCode
+        {
+            get
+            {
+                return dataGridView1.SelectedRows[0].Cells[0].Value.ToString();
+            }
+        }
+
+        public int CurrentEdition
+        {
+            get
+            {
+                return Int32.Parse(dataGridView1.SelectedRows[0].Cells[1].Value.ToString());
+            }
+        }
 
         int intWindowHeight = 0;
         int intWindowWidth = 0;
@@ -53,37 +69,32 @@ namespace u_net
             cn.Open();
         }
 
-        public override void SearchCode(string codeString)
-        {
-            strSearchCode = codeString;
-            str仕入先コード開始 = strSearchCode;
-            str仕入先コード終了 = strSearchCode;
-            if (DoUpdate() == -1)
-            {
-                MessageBox.Show("エラーが発生しました。");
-            }
 
-        }
 
         private void InitializeFilter()
         {
-            this.str仕入先名 = "";
-            this.str担当者名 = "";
-            this.str仕入先コード開始 = "";
-            this.str仕入先コード終了 = "";
-            this.str窓口電話番号 = "";
-            this.str窓口ファックス番号 = "";
-            this.lng削除指定 = 1;
+            str製品コード開始 = "";
+            str製品コード終了 = "";
+            str品名 = "";
+            strシリーズ名 = "";
+            lng指導書変更 = 0;
+            lngRoHS対応 = 1;
+            lng非含有証明書 = 0;
+            dtm更新日開始 = DateTime.MinValue;
+            dtm更新日終了 = DateTime.MinValue;
+            str更新者名 = "";
+            lng確定指定 = 0;
+            lng承認指定 = 0;
+            lng廃止指定 = 1;
+            lng削除指定 = 1;
+            strKey1 = "";
         }
-
+        
         private void Form_Load(object sender, EventArgs e)
         {
             FunctionClass fn = new FunctionClass();
             fn.DoWait("しばらくお待ちください...");
-            //実行中フォーム起動
-            //string LoginUserCode = "000";//テスト用 ログインユーザを実行中にどのように管理するか決まったら修正
-            LocalSetting localSetting = new LocalSetting();
-            localSetting.LoadPlace(CommonConstants.LoginUserCode, this);
+
 
             MyApi myapi = new MyApi();
             int xSize, ySize, intpixel, twipperdot;
@@ -96,31 +107,17 @@ namespace u_net
             intWindowWidth = this.Width;
 
             // DataGridViewの設定
-            //dataGridView1.AllowUserToResizeColumns = true;
-            //dataGridView1.Font = new Font("MS ゴシック", 10);
-            //dataGridView1.DefaultCellStyle.SelectionBackColor = Color.FromArgb(210, 210, 255);
-            //dataGridView1.DefaultCellStyle.SelectionForeColor = Color.Black;
-            //dataGridView1.GridColor = Color.FromArgb(230, 230, 230);
-            //dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font("MS ゴシック", 9);
-            //dataGridView1.DefaultCellStyle.Font = new Font("MS ゴシック", 10);
-            //dataGridView1.DefaultCellStyle.ForeColor = Color.Black;
+            dataGridView1.AllowUserToResizeColumns = true;
+            dataGridView1.Font = new Font("MS ゴシック", 10);
+            dataGridView1.DefaultCellStyle.SelectionBackColor = Color.FromArgb(210, 210, 255);
+            dataGridView1.DefaultCellStyle.SelectionForeColor = Color.Black;
+            dataGridView1.GridColor = Color.FromArgb(230, 230, 230);
+            dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font("MS ゴシック", 9);
+            dataGridView1.DefaultCellStyle.Font = new Font("MS ゴシック", 10);
+            dataGridView1.DefaultCellStyle.ForeColor = Color.Black;
 
-            //dataGridView1.Columns[0].DefaultCellStyle.BackColor = Color.FromArgb(255, 255, 200); // 薄い黄色
-            //dataGridView1.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            
 
-
-            //0列目はaccessでは行ヘッダのため、ずらす
-            //dataGridView1.Columns[0].Width = 500 / twipperdot;
-            //dataGridView1.Columns[0].Width = 1100 / twipperdot; //1150
-            //dataGridView1.Columns[1].Width = 300 / twipperdot;
-            //dataGridView1.Columns[2].Width = 5000;
-            //dataGridView1.Columns[3].Width = 0 / twipperdot;
-            //dataGridView1.Columns[4].Width = 2000 / twipperdot;
-            //dataGridView1.Columns[5].Width = 1500 / twipperdot;
-            //dataGridView1.Columns[6].Width = 1500 / twipperdot;
-            //dataGridView1.Columns[7].Width = 2200 / twipperdot;//1300
-            //dataGridView1.Columns[8].Width = 1500 / twipperdot;
-            //dataGridView1.Columns[9].Width = 300 / twipperdot;
 
             myapi.GetFullScreen(out xSize, out ySize);
 
@@ -138,43 +135,23 @@ namespace u_net
 
             InitializeFilter();
             DoUpdate();
-            //Cleargrid(dataGridView1);
             fn.WaitForm.Close();
         }
 
-        private void Form_Resize(object sender, EventArgs e)
-        {
-            try
-            {
-                if (this.Height > 800)
-                {
-                    //dataGridView1.Height = dataGridView1.Height + (this.Height - intWindowHeight);
-                    intWindowHeight = this.Height;  // 高さ保存
-
-                    //dataGridView1.Width = dataGridView1.Width + (this.Width - intWindowWidth);
-                    intWindowWidth = this.Width;    // 幅保存
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(this.Name + "_Form_Resize - " + ex.Message);
-            }
-        }
 
         public int DoUpdate()
         {
             int result = -1;
             try
             {
-                result = Filtering();
-                //   DrawGrid();
+                result = GridSet();
                 if (result >= 0)
                 {
-                    //this.表示件数.Text = result.ToString();
+                    this.表示件数.Text = result.ToString();
                 }
                 else
                 {
-                    //this.表示件数.Text = null; // Nullの代わりにC#ではnullを使用
+                    this.表示件数.Text = null; 
                 }
             }
             catch (Exception ex)
@@ -185,38 +162,110 @@ namespace u_net
 
             return result;
         }
-
-        private int Filtering()
+ 
+        private int GridSet()
         {
             try
             {
                 string filter = string.Empty;
 
-                // 仕入先コード指定
-                if (!string.IsNullOrEmpty(str仕入先コード開始))
+                // 品名指定
+                if (!string.IsNullOrEmpty(str品名))
                 {
-                    filter += string.Format("(仕入先コード BETWEEN '{0}' AND '{1}') AND ",
-                                                                  str仕入先コード開始, str仕入先コード終了);
+                    filter += string.Format("品名 LIKE '%{0}%' AND ", str品名);
                 }
 
-                // 仕入先名指定
-                if (!string.IsNullOrEmpty(str仕入先名))
+                // シリーズ名指定
+                if (!string.IsNullOrEmpty(strシリーズ名))
                 {
-                    filter += string.Format("仕入先名 LIKE '%{0}%' AND ", str仕入先名);
+                    filter += string.Format("シリーズ名 LIKE '%{0}%' AND ", strシリーズ名);
                 }
 
-                // 担当者名指定
-                if (!string.IsNullOrEmpty(str担当者名))
+                // 指導書変更指定
+                switch (lng指導書変更)
                 {
-                    filter += string.Format("担当者名 LIKE '%{0}%' AND ", str担当者名);
+                    case 1:
+                        filter += "指導書変更 IS NOT NULL AND ";
+                        break;
+                    case 2:
+                        filter += "指導書変更 IS NOT AND ";
+                        break;
                 }
 
-                // 担当者メールアドレス指定
-                if (!string.IsNullOrEmpty(str仕入先名フリガナ))
+                // RoHS対応指定
+                switch (lngRoHS対応)
                 {
-                    filter += string.Format("仕入先名フリガナ LIKE '%{0}%' AND ", str仕入先名フリガナ);
+                    case 1:
+                        filter += "(RohsStatusSign = '１' OR RohsStatusSign = '２') AND ";
+                        break;
+                    case 2:
+                        filter += "(NOT (RohsStatusSign = '１' OR RohsStatusSign = '２')) AND ";
+                        break;
                 }
 
+                // 非含有証明書指定
+                switch (lng確定指定)
+                {
+                    case 1:
+                        filter += "非含有証明書 = '○' AND ";
+                        break;
+                    case 2:
+                        filter += "非含有証明書 = '△' AND ";
+                        break;
+                    case 3:
+                        filter += "非含有証明書 = '？' AND ";
+                        break;
+                    case 4:
+                        filter += "非含有証明書 IS  NULL AND ";
+                        break;
+                }
+
+
+
+                // 更新日時
+                if (dtm更新日開始 != DateTime.MinValue && dtm更新日終了 != DateTime.MinValue)
+                {
+                    filter += "'" + dtm更新日開始 + "' <= 更新日時 AND 更新日時 <= '" + dtm更新日終了 + "' AND ";
+                }
+                // 更新者名
+                if (!string.IsNullOrEmpty(str更新者名))
+                {
+                    filter += "更新者名 = '" + str更新者名 + "' AND ";
+                }
+
+
+                // 確定指定
+                switch (lng確定指定)
+                {
+                    case 1:
+                        filter += "確定 IS NULL AND ";
+                        break;
+                    case 2:
+                        filter += "確定 IS NOT NULL AND ";
+                        break;
+                }
+
+                // 承認指定
+                switch (lng承認指定)
+                {
+                    case 1:
+                        filter += "承認 IS NULL AND ";
+                        break;
+                    case 2:
+                        filter += "承認 IS NOT NULL AND ";
+                        break;
+                }
+
+                // 廃止指定
+                switch (lng廃止指定)
+                {
+                    case 1:
+                        filter += "廃止 IS NULL AND ";
+                        break;
+                    case 2:
+                        filter += "廃止 IS NOT NULL AND ";
+                        break;
+                }
 
                 // 削除
                 switch (lng削除指定)
@@ -228,15 +277,22 @@ namespace u_net
                         filter += "削除 IS NOT NULL AND ";
                         break;
                 }
+
+                // 汎用キー1指定
+                if (!string.IsNullOrEmpty(strKey1))
+                {
+                    filter += string.Format("汎用キー1 LIKE '%{0}%' AND ", strKey1);
+                }
+
                 if (!string.IsNullOrEmpty(filter))
                 {
                     filter = filter.Substring(0, filter.Length - 5); // 最後の " AND " を削除
                 }
 
-                string query = "SELECT * FROM V仕入先管理 WHERE 1=1 AND " + filter + " ORDER BY 仕入先コード DESC ";
+                string query = "SELECT * FROM V製品一覧 WHERE 1=1 AND " + filter + " ORDER BY 製品コード DESC ";
 
                 Connect();
-                //DataGridUtils.SetDataGridView(cn, query, this.dataGridView1);
+                DataGridUtils.SetDataGridView(cn, query, this.dataGridView1);
 
 
                 MyApi myapi = new MyApi();
@@ -250,25 +306,27 @@ namespace u_net
                 intWindowWidth = this.Width;
 
                 //// DataGridViewの設定
-                //dataGridView1.Columns[0].DefaultCellStyle.BackColor = Color.FromArgb(255, 255, 200); // 薄い黄色
-
-                //dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-                //dataGridView1.ColumnHeadersHeight = 25;
+                dataGridView1.Columns[0].DefaultCellStyle.BackColor = Color.FromArgb(255, 255, 200); // 薄い黄色
+                dataGridView1.Columns[1].DefaultCellStyle.BackColor = Color.FromArgb(255, 255, 200);
 
                 //0列目はaccessでは行ヘッダのため、ずらす
 
-                //dataGridView1.Columns[0].Width = 1100 / twipperdot; //1150
-                //dataGridView1.Columns[1].Width = 310 / twipperdot;
-                //dataGridView1.Columns[2].Width = 5000 / twipperdot;
-                //dataGridView1.Columns[3].Visible = false;
-                //dataGridView1.Columns[4].Width = 2000 / twipperdot;
-                //dataGridView1.Columns[5].Width = 1500 / twipperdot;
-                //dataGridView1.Columns[6].Width = 1500 / twipperdot;
-                //dataGridView1.Columns[7].Width = 2200 / twipperdot;//1300
-                //dataGridView1.Columns[8].Width = 1500 / twipperdot;
-                //dataGridView1.Columns[9].Width = 310 / twipperdot;
+                dataGridView1.Columns[0].Width = 1200 / twipperdot; 
+                dataGridView1.Columns[1].Width = 400 / twipperdot;
+                dataGridView1.Columns[2].Width = 3400 / twipperdot;
+                dataGridView1.Columns[3].Width = 3400 / twipperdot;
+                dataGridView1.Columns[4].Width = 400 / twipperdot;
+                dataGridView1.Columns[5].Width = 400 / twipperdot;
+                dataGridView1.Columns[6].Width = 400 / twipperdot;
+                dataGridView1.Columns[7].Width = 400 / twipperdot;
+                dataGridView1.Columns[8].Width = 2200 / twipperdot;
+                dataGridView1.Columns[9].Width = 1500 / twipperdot;
+                dataGridView1.Columns[10].Width = 400 / twipperdot;
+                dataGridView1.Columns[11].Width = 400 / twipperdot;
+                dataGridView1.Columns[12].Width = 400 / twipperdot;
 
-                //return dataGridView1.RowCount;
+
+                return dataGridView1.RowCount;
                 return 0;
             }
             catch (Exception ex)
@@ -303,49 +361,21 @@ namespace u_net
             }
         }
 
-        //ダブルクリックで仕入先フォームを開く　仕入先コードを渡す
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            //if (e.Button != MouseButtons.Left) return; // 左ボタンのダブルクリック以外は無視
 
             if (e.RowIndex >= 0) // ヘッダー行でない場合
             {
-                //string selectedData = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString(); // 1列目のデータを取得
 
-                F_仕入先 targetform = new F_仕入先();
+                F_製品 targetform = new F_製品();
 
-                //targetform.args = selectedData;
+                targetform.args = CurrentCode + "," + CurrentEdition;
                 targetform.ShowDialog();
             }
         }
 
-        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex >= 0) // ヘッダー行でない場合
-            {
-                //dataGridView1.ClearSelection();
-                //dataGridView1.Rows[e.RowIndex].Selected = true;
-            }
-        }
-
-        private bool sorting;
-
-        private void dataGridView1_Sorted(object sender, EventArgs e)
-        {
-            if (!sorting)
-            {
-                sorting = true;
-
-                // DataGridViewのソートが完了したら、先頭行を選択する
-                //if (dataGridView1.Rows.Count > 0)
-                //{
-                //    Cleargrid(dataGridView1);
-                //}
-
-                sorting = false;
-            }
-        }
-
+  
+        //未着手
         private void dataGridView1_KeyDown(object sender, KeyEventArgs e)
         {
             // Shiftキーが押されているときは何もしない
@@ -355,17 +385,7 @@ namespace u_net
             }
         }
 
-        //選択行をクリアして先頭を表示して先頭行を選択
-        private void Cleargrid(DataGridView dataGridView)
-        {
-            //dataGridView.ClearSelection();
-
-            //if (dataGridView.Rows.Count > 0)
-            //{
-            //    dataGridView.Rows[0].Selected = true;
-            //    dataGridView.FirstDisplayedScrollingRowIndex = 0; // 先頭行を表示
-            //}
-        }
+        //未着手
 
         private void コマンド終了_Click(object sender, EventArgs e)
         {
@@ -373,7 +393,7 @@ namespace u_net
             test.SavePlace(CommonConstants.LoginUserCode, this);
             this.Close();
         }
-
+        //未着手
         private void コマンド抽出_Click(object sender, EventArgs e)
         {
             //dataGridView1.Focus();
@@ -381,13 +401,7 @@ namespace u_net
             //form.ShowDialog();
         }
 
-        private void コマンド入出力_Click(object sender, EventArgs e)
-        {
-            //dataGridView1.Focus(); // DataGridViewにフォーカスを設定
-
-            MessageBox.Show("現在開発中です。", "入出力コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
-
+        //未着手
         private void コマンド初期化_Click(object sender, EventArgs e)
         {
             InitializeFilter();
@@ -395,13 +409,7 @@ namespace u_net
             //Cleargrid(dataGridView1);
         }
 
-        private void コマンド全表示_Click(object sender, EventArgs e)
-        {
-            InitializeFilter();
-            DoUpdate();
-            //Cleargrid(dataGridView1);
-        }
-
+        //未着手
         private void コマンド更新_Click(object sender, EventArgs e)
         {
 
@@ -409,12 +417,12 @@ namespace u_net
             //Cleargrid(dataGridView1);
 
         }
-
+        //未着手
         private void コマンド検索_Click(object sender, EventArgs e)
         {
             MessageBox.Show("現在開発中です。\n コードで検索するときに使用します。", "検索コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
-
+        //未着手
         private void コマンド製品_Click(object sender, EventArgs e)
         {
             //if (dataGridView1.SelectedRows.Count > 0)
@@ -433,7 +441,7 @@ namespace u_net
             //    MessageBox.Show("行が選択されていません。");
             //}
         }
-
+        //未着手
         private void Form_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -499,41 +507,17 @@ namespace u_net
             }
         }
 
-        private void F_仕入先管理_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            string LoginUserCode = "000";//テスト用 ログインユーザを実行中にどのように管理するか決まったら修正
-            LocalSetting test = new LocalSetting();
-            test.SavePlace(LoginUserCode, this);
-        }
-
-        private bool ascending = true;
-
-        private void dataGridView1_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
-        {
-            //if (dataGridView1.Columns[e.ColumnIndex].Name == "仕入先名")
-            //{
-            //    if (ascending)
-            //    {
-            //        dataGridView1.Sort(dataGridView1.Columns["仕入先名フリガナ"], System.ComponentModel.ListSortDirection.Ascending);
-            //    }
-            //    else
-            //    {
-            //        dataGridView1.Sort(dataGridView1.Columns["仕入先名フリガナ"], System.ComponentModel.ListSortDirection.Descending);
-            //    }
-            //    ascending = !ascending;
-            //}
-        }
-
+        //未着手
         private void コマンド材料費_Click(object sender, EventArgs e)
         {
 
         }
-
+        //未着手
         private void コマンド指導書設定_Click(object sender, EventArgs e)
         {
 
         }
-
+        //未着手
         private void コマンド指導書変更有り_Click(object sender, EventArgs e)
         {
 

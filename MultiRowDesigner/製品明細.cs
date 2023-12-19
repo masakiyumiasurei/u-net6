@@ -306,7 +306,7 @@ namespace MultiRowDesigner
                     case "ユニットコード":
                         string strKey = $"ユニットコード='{varParm}'";
                         string strSQL = $"SELECT * " +
-                                        $"FROM V_製品_ユニット更新 " +
+                                        $"FROM V製品_ユニット更新 " +
                                         $"WHERE {strKey}";
 
 
@@ -437,6 +437,7 @@ namespace MultiRowDesigner
                     if (formattedCode != strCode || string.IsNullOrEmpty(strCode))
                     {
                         gcMultiRow1.CurrentCell.Value = formattedCode;
+
                     }
                 }
             }
