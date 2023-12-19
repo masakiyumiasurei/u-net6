@@ -28,6 +28,7 @@ using System.Transactions;
 using MultiRowDesigner;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Diagnostics.Eventing.Reader;
 
 namespace u_net
 {
@@ -546,7 +547,7 @@ namespace u_net
 
                 }
 
-                if (!DataUpdater.UpdateOrInsertDataFrom(this, cn, "T発注", strwhere, "発注コード", transaction))
+                if (!DataUpdater.UpdateOrInsertDataFrom(this, cn, "T発注", strwhere, "発注コード", transaction, "発注版数"))
                 {
                     //保存できなかった時の処理 catchで対応する
                     throw new Exception();
@@ -703,7 +704,7 @@ namespace u_net
                         break;
 
                     case "在庫管理":
-
+                        //アクセスでは　Me.SubForm.Form.RecordCount　となっており、オブジェクトエラーになっている！RecordCountは使えない
                         if (Cancel == false && this.発注明細1.Detail.RowCount > 0)
                         {
                             MessageBox.Show("入力済みの発注部品に対して在庫管理の有無を変更することはできません。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -731,10 +732,11 @@ namespace u_net
                 //else
                 //{
                 // RecordSourceが空でない場合はActiveControlのUndoメソッドを呼び出す
-                if (this.ActiveControl is TextBox textBox)
+                if (controlObject is TextBox textBox)
                 {
                     textBox.Undo();
                 }
+
                 //}
 
                 return isError;
@@ -1131,6 +1133,8 @@ namespace u_net
                 発注明細1.Detail.ReadOnly = this.IsDecided;
                 発注明細1.Detail.AllowUserToAddRows = !this.IsDecided;
 
+                チェック();
+
             Bye_コマンド確定_Click:
                 fn.WaitForm.Close();
                 return;
@@ -1198,13 +1202,29 @@ namespace u_net
         {
             try
             {
-                //accessはローカルテーブルのため、不要
+                // 明細部の初期設定
+                DataTable dataTable = (DataTable)発注明細1.Detail.DataSource;
+                if (dataTable != null)
+                {
+                    for (int i = 0; i < dataTable.Rows.Count; i++)
+                    {
+                        // 行の状態が Deleted の時は次の行へ
+                        if (dataTable.Rows[i].RowState == DataRowState.Deleted)
+                        {
+                            continue;
+                        }
+                        dataTable.Rows[i]["発注コード"] = codeString;
+                        dataTable.Rows[i]["発注版数"] = editionNumber;
+                        dataTable.Rows[i]["回答納期"] = DBNull.Value;
+                    }
+                    発注明細1.Detail.DataSource = dataTable; // 更新した DataTable を再セット
+                }
+
 
 
                 発注コード.Text = codeString;
                 SetEditions(codeString);
                 発注版数.Text = editionNumber.ToString();
-
                 発注日.Text = DateTime.Now.ToString();
 
                 //'複写のときのみ購買情報を削除する
@@ -1231,8 +1251,8 @@ namespace u_net
                 無効日時.Text = null;
                 入庫状況.Text = null;
 
-                // 注意　後で入れる 不要？
-                //  発注明細1.回答納期.Value = null;
+                チェック();
+
 
                 return true;
             }
@@ -1242,7 +1262,6 @@ namespace u_net
                 return false;
             }
         }
-
 
         private void コマンド送信_Click(object sender, EventArgs e)
         {
@@ -1512,15 +1531,26 @@ namespace u_net
 
                 string code = FunctionClass.採番(cn, CH_ORDER);
 
-                ChangedData(true);
-                FunctionClass.LockData(this, false);
-                this.発注日.Focus();
+                if (CopyData(code, 1))
+                {
+                    ChangedData(true);
+                    FunctionClass.LockData(this, false);
+                    this.発注日.Focus();
 
-                this.改版ボタン.Enabled = false;
-                this.コマンド新規.Enabled = false;
-                this.コマンド読込.Enabled = true;
-                this.コマンド承認.Enabled = false;
+                    this.改版ボタン.Enabled = false;
+                    this.コマンド新規.Enabled = false;
+                    this.コマンド読込.Enabled = true;
+                    this.コマンド承認.Enabled = false;
 
+                    // 明細部制御
+                    発注明細1.Detail.AllowUserToAddRows = true;
+                    発注明細1.Detail.AllowUserToDeleteRows = true;
+                    発注明細1.Detail.ReadOnly = false; //readonlyなのでaccessと真偽が逆になる   
+                }
+                else
+                {
+                    throw new InvalidOperationException("CopyData時:エラー"); ;
+                }
             }
             catch (Exception ex)
             {
@@ -1536,13 +1566,13 @@ namespace u_net
         {
             F_部品 fm = new F_部品();
             fm.args = 発注明細1.CurrentPartsCode;          //発注明細のカレントレコードを渡す
-            if (fm.args=="")
+            if (fm.args == "")
             {
-                MessageBox.Show("明細を選択してください。","コマンド部品", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("明細を選択してください。", "コマンド部品", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            
-            
+
+
             fm.ShowDialog();
         }
 
@@ -1574,22 +1604,18 @@ namespace u_net
 
                 fn.DoWait("発注書を作成しています...");
 
-                //注意　レポート出力テストのため外部システムの実行をコメント
+            //注意　レポート出力テストのため外部システムの実行をコメント
 
-                //string param = $" -sv:{ServerInstanceName.Replace(" ", "_")} -pv:porder,{CurrentCode.TrimEnd().Replace(" ", "_")}," +
-                //    $"{CurrentEdition.ToString().Replace(" ", "_")}";
-                //param = $" -user:{LoginUserName}{param}";
-                //FunctionClass.GetShell(param);
+            //string param = $" -sv:{ServerInstanceName.Replace(" ", "_")} -pv:porder,{CurrentCode.TrimEnd().Replace(" ", "_")}," +
+            //    $"{CurrentEdition.ToString().Replace(" ", "_")}";
+            //param = $" -user:{LoginUserName}{param}";
+            //FunctionClass.GetShell(param);
 
             Bye_コマンド発注書_Click:
 
                 fn.WaitForm.Close();
 
                 発注書印刷();
-                //if (SysCmd(acSysCmdGetObjectState, acReport, "発注書") == acObjStateOpen)
-                //{
-                //    DoCmd.SelectObject(acReport, "発注書");
-                //}
 
                 return;
             }
@@ -1687,7 +1713,7 @@ namespace u_net
 
                     paoRep.Write("明細番号", (CurRow + 1).ToString(), i + 1);  //連番にしたい時はこちら。明細番号は歯抜けがあるので
                     //paoRep.Write("明細番号", targetRow["明細番号"].ToString() != "" ? targetRow["明細番号"].ToString() : " ", i + 1);
-                    paoRep.Write("部品コード", targetRow["部品コード"].ToString() != "" ? targetRow["部品コード"].ToString() : " ", i + 1);                    
+                    paoRep.Write("部品コード", targetRow["部品コード"].ToString() != "" ? targetRow["部品コード"].ToString() : " ", i + 1);
                     paoRep.Write("品名", targetRow["品名"].ToString() != "" ? targetRow["品名"].ToString() : " ", i + 1);
                     paoRep.Write("型番", targetRow["型番"].ToString() != "" ? targetRow["型番"].ToString() : " ", i + 1);
                     paoRep.Write("RoHS", targetRow["RoHS"].ToString() != "" ? targetRow["RoHS"].ToString() : " ", i + 1);
@@ -1698,21 +1724,21 @@ namespace u_net
                     string 表示単価 = "";
                     if (decimal.TryParse(targetRow["発注単価"].ToString(), out 発注単価))
                     {
-                         表示単価 = 発注単価.ToString("N2");                        
+                        表示単価 = 発注単価.ToString("N2");
                     }
-                    
+
                     paoRep.Write("発注単価", 表示単価, i + 1);
 
                     paoRep.Write("発注納期", targetRow["発注納期"].ToString() != "" ? ((DateTime)targetRow["発注納期"]).ToString("yyyy/M/d") : " ", i + 1);
                     paoRep.Write("回答納期", targetRow["回答納期"].ToString() != "" ? ((DateTime)targetRow["回答納期"]).ToString("yyyy/M/d") : " ", i + 1);
 
-                   
+
                     paoRep.z_Objects.SetObject("品名", i + 1);
                     lenB = Encoding.Default.GetBytes(targetRow["品名"].ToString()).Length;
                     if (lenB <= 40)
                     {
                         paoRep.z_Objects.z_Text.z_FontAttr.Size = 10;
-                    }                    
+                    }
                     else
                     {
                         paoRep.z_Objects.z_Text.z_FontAttr.Size = 8;
@@ -1733,14 +1759,14 @@ namespace u_net
 
                     paoRep.z_Objects.SetObject("メーカー名", i + 1);
                     lenB = Encoding.Default.GetBytes(targetRow["メーカー名"].ToString()).Length;
-                    if ( lenB<=28)
+                    if (lenB <= 28)
                     {
                         paoRep.z_Objects.z_Text.z_FontAttr.Size = 10;
-                    }                    
+                    }
                     else
                     {
                         paoRep.z_Objects.z_Text.z_FontAttr.Size = 7;
-                    }                                        
+                    }
 
                     CurRow++;
 
@@ -1874,6 +1900,57 @@ namespace u_net
 
         }
 
+        public void チェック()
+        {
+            if (string.IsNullOrEmpty(確定日時.Text))
+            {
+                確定.Text = "";
+            }
+            else
+            {
+                確定.Text = "■";
+            }
+
+            if (string.IsNullOrEmpty(承認日時.Text))
+            {
+                承認.Text = "";
+            }
+            else
+            {
+                承認.Text = "■";
+            }
+
+            if (IsCompleted == "2")
+            {
+                入庫状況表示.Text = "■";
+            }
+            else if (IsCompleted == "1")
+            {
+                入庫状況表示.Text = "□";
+            }
+            else
+            {
+                入庫状況表示.Text = "";
+            }
+
+            if (送信.Text == "4")
+            {
+                送信.Text = "■";
+            }
+            else
+            {
+                送信.Text = "";
+            }
+
+            if (string.IsNullOrEmpty(無効日時.Text))
+            {
+                削除.Text = "";
+            }
+            else
+            {
+                削除.Text = "■";
+            }
+        }
         public bool LoadHeader()
         {
             try
@@ -1886,27 +1963,7 @@ namespace u_net
 
                 if (!VariableSet.SetTable2Form(this, strSQL, cn)) return false;
 
-                if (IsCompleted == "2")
-                {
-                    入庫状況表示.Text = "■";
-                }
-                else if (IsCompleted == "1")
-                {
-                    入庫状況表示.Text = "□";
-                }
-                else
-                {
-                    入庫状況表示.Text = "";
-                }
-
-                if (送信.Text == "4")
-                {
-                    送信.Text = "■";
-                }
-                else
-                {
-                    送信.Text = "";
-                }
+                チェック();
 
                 return true;
             }
@@ -2299,15 +2356,7 @@ namespace u_net
             toolStripStatusLabel1.Text = "各種項目の説明";
         }
 
-        private void 在庫管理_Enter(object sender, EventArgs e)
-        {
-            toolStripStatusLabel1.Text = "■在庫管理を行う場合はチェックを入れます。";
-        }
 
-        private void 在庫管理_Leave(object sender, EventArgs e)
-        {
-            toolStripStatusLabel1.Text = "各種項目の説明";
-        }
 
         private void NoCredit_Enter(object sender, EventArgs e)
         {
@@ -2336,9 +2385,41 @@ namespace u_net
             ChangedData(true);
         }
 
+        bool isEntering = true;
+        bool originalValue = false;
+        private void 在庫管理_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "■在庫管理を行う場合はチェックを入れます。";
+            // Enter イベント発生時に現在の値を保存
+            isEntering = true;
+            originalValue = 在庫管理.Checked;
+        }
+
+        private void 在庫管理_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "各種項目の説明";
+        }
         private void 在庫管理_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (IsError(sender as Control, false) == true) e.Cancel = true;
+            if (IsError(sender as Control, false) == true)
+            {
+                if (isEntering)
+                {
+                    // 変更前の値と現在の値を比較し、エラーがある場合は元に戻す
+                    if (在庫管理.Checked != originalValue)
+                    {
+                        在庫管理.Checked = originalValue;
+                        //e.Cancel = true; // 逃げれなくなるのでコメント
+                    }
+
+                    // Enter イベントの処理が完了したのでフラグをリセット
+                    isEntering = false;
+                }
+                else
+                {
+                    // 通常の Validating イベントの処理をここに記述
+                }
+            }
         }
 
         private void 仕入先コード_TextChanged(object sender, EventArgs e)

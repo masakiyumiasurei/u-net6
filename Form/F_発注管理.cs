@@ -702,8 +702,8 @@ namespace u_net
             {
                 dataGridView1.Focus();
 
-                if (dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[5].Value == null ||
-                    string.IsNullOrEmpty(dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[5].Value.ToString()))
+                if (dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[4].Value == null ||
+                    string.IsNullOrEmpty(dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[4].Value.ToString()))
                 {
                     MessageBox.Show("選択データは購買データとの関連性がないため、参照することはできません。", "購買コマンド", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     return;

@@ -29,6 +29,7 @@ namespace u_net
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(F_発注));
             コマンド終了 = new Button();
             コマンド登録 = new Button();
@@ -110,6 +111,7 @@ namespace u_net
             toolStripStatusLabel2 = new ToolStripStatusLabel();
             入庫状況 = new TextBox();
             発注明細1 = new MultiRowDesigner.発注明細();
+            toolTip1 = new ToolTip(components);
             panel1.SuspendLayout();
             statusStrip1.SuspendLayout();
             SuspendLayout();
@@ -198,6 +200,7 @@ namespace u_net
             コマンド部品.TabIndex = 1010;
             コマンド部品.TabStop = false;
             コマンド部品.Text = "部品参照";
+            toolTip1.SetToolTip(コマンド部品, "選択部品の参照");
             コマンド部品.UseVisualStyleBackColor = true;
             コマンド部品.Click += コマンド部品_Click;
             // 
@@ -214,6 +217,7 @@ namespace u_net
             コマンド送信.TabIndex = 1009;
             コマンド送信.TabStop = false;
             コマンド送信.Text = "送信";
+            toolTip1.SetToolTip(コマンド送信, "発注書のファックス送信");
             コマンド送信.UseVisualStyleBackColor = true;
             コマンド送信.Click += コマンド送信_Click;
             // 
@@ -230,6 +234,7 @@ namespace u_net
             コマンド発注書.TabIndex = 1008;
             コマンド発注書.TabStop = false;
             コマンド発注書.Text = "発注書";
+            toolTip1.SetToolTip(コマンド発注書, "発注書プレビュー");
             コマンド発注書.UseVisualStyleBackColor = true;
             コマンド発注書.Click += コマンド発注書_Click;
             // 
@@ -1192,7 +1197,7 @@ namespace u_net
             statusStrip1.Location = new Point(0, 696);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Padding = new Padding(1, 0, 19, 0);
-            statusStrip1.Size = new Size(1515, 25);
+            statusStrip1.Size = new Size(1344, 25);
             statusStrip1.TabIndex = 10117;
             statusStrip1.Text = "statusStrip1";
             // 
@@ -1225,17 +1230,22 @@ namespace u_net
             // 発注明細1
             // 
             発注明細1.AutoScroll = true;
+            発注明細1.Font = new Font("Yu Gothic UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             発注明細1.Location = new Point(0, 349);
             発注明細1.Margin = new Padding(4, 5, 4, 5);
             発注明細1.Name = "発注明細1";
-            発注明細1.Size = new Size(1515, 336);
+            発注明細1.Size = new Size(1344, 336);
             発注明細1.TabIndex = 10119;
             発注明細1.Resize += Form_Resize;
+            // 
+            // toolTip1
+            // 
+            toolTip1.ToolTipTitle = "仕入先担当者名";
             // 
             // F_発注
             // 
             BackColor = SystemColors.Control;
-            ClientSize = new Size(1515, 721);
+            ClientSize = new Size(1344, 721);
             Controls.Add(発注明細1);
             Controls.Add(入庫状況);
             Controls.Add(statusStrip1);
@@ -1419,6 +1429,7 @@ namespace u_net
         internal TextBox 入庫状況;
         //internal MultiRowDesigner.発注明細 発注明細1;
         private MultiRowDesigner.発注明細 発注明細1;
+        private ToolTip toolTip1;
     }
 }
 
