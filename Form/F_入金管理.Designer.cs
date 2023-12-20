@@ -247,29 +247,30 @@
             // 
             // 表示件数
             // 
+            表示件数.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             表示件数.Location = new Point(72, 4);
             表示件数.Margin = new Padding(3, 2, 3, 2);
             表示件数.Name = "表示件数";
-            表示件数.Size = new Size(88, 23);
+            表示件数.Size = new Size(88, 19);
             表示件数.TabIndex = 84;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(6, 6);
+            label1.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.Location = new Point(7, 8);
             label1.Name = "label1";
-            label1.Size = new Size(63, 14);
+            label1.Size = new Size(53, 12);
             label1.TabIndex = 85;
             label1.Text = "表示件数";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            label2.Location = new Point(164, 6);
+            label2.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label2.Location = new Point(166, 8);
             label2.Name = "label2";
-            label2.Size = new Size(21, 14);
+            label2.Size = new Size(17, 12);
             label2.TabIndex = 86;
             label2.Text = "件";
             // 
