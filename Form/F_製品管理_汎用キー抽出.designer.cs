@@ -279,26 +279,26 @@ namespace u_net
             // 
             // F_製品管理_汎用キー抽出
             // 
-            BackColor = SystemColors.Control;
-            ClientSize = new Size(392, 233);
-            Controls.Add(抽出ボタン);
-            Controls.Add(groupBox1);
-            Controls.Add(キャンセルボタン);
-            Controls.Add(statusStrip1);
-            ImeMode = ImeMode.Off;
-            KeyPreview = true;
-            MaximizeBox = false;
-            MinimizeBox = false;
-            Name = "F_製品管理_汎用キー抽出";
-            Text = " ";
-            FormClosing += Form_Unload;
-            Load += Form_Load;
-            statusStrip1.ResumeLayout(false);
-            statusStrip1.PerformLayout();
-            groupBox1.ResumeLayout(false);
-            groupBox1.PerformLayout();
-            ResumeLayout(false);
-            PerformLayout();
+            this.BackColor = System.Drawing.SystemColors.Control;
+            this.ClientSize = new System.Drawing.Size(392, 233);
+            this.Controls.Add(this.抽出ボタン);
+            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.キャンセルボタン);
+            this.Controls.Add(this.statusStrip1);
+            this.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.KeyPreview = true;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.Name = "F_製品管理_汎用キー抽出";
+            this.Text = " ";
+            this.Load += new System.EventHandler(this.Form_Load);
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         #endregion
