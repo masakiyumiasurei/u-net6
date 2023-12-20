@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(F_製品管理));
             this.panel1 = new System.Windows.Forms.Panel();
             this.コマンドF11 = new System.Windows.Forms.Button();
@@ -47,6 +48,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel2.SuspendLayout();
@@ -149,7 +151,6 @@
             // 
             // コマンド参照用
             // 
-            this.コマンド参照用.Enabled = false;
             this.コマンド参照用.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.コマンド参照用.ForeColor = System.Drawing.Color.Blue;
             this.コマンド参照用.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
@@ -291,6 +292,8 @@
             this.dataGridView1.TabIndex = 87;
             this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
             this.dataGridView1.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.DataGridView1_CellPainting);
+            this.dataGridView1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataGridView1_KeyDown);
+            this.dataGridView1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.dataGridView1_KeyUp);
             // 
             // panel2
             // 
@@ -316,8 +319,10 @@
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "F_製品管理";
             this.Text = "製品管理";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.F_製品管理_FormClosing);
             this.Load += new System.EventHandler(this.Form_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form_KeyDown);
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.F_製品管理_KeyUp);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.panel2.ResumeLayout(false);
@@ -472,5 +477,6 @@
         private Panel panel2;
         private Button コマンド検索;
         private Button コマンドF11;
+        private ToolTip toolTip1;
     }
 }

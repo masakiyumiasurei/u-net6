@@ -258,6 +258,7 @@
             // 
             // 抽出ボタン
             // 
+            抽出ボタン.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             抽出ボタン.Location = new Point(187, 319);
             抽出ボタン.Name = "抽出ボタン";
             抽出ボタン.Size = new Size(102, 24);
@@ -268,6 +269,7 @@
             // 
             // キャンセルボタン
             // 
+            キャンセルボタン.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             キャンセルボタン.Location = new Point(296, 319);
             キャンセルボタン.Name = "キャンセルボタン";
             キャンセルボタン.Size = new Size(102, 24);
