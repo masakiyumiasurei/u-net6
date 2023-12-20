@@ -214,7 +214,7 @@ namespace MultiRowDesigner
         }
         private void gcMultiRow1_RowEnter(object sender, CellEventArgs e)
         {
-            MessageBox.Show("enter");
+            //MessageBox.Show("enter");
             //  NumberDetails("明細番号");
         }
         private void gcMultiRow1_RowsRemoved(object sender, RowsRemovedEventArgs e)

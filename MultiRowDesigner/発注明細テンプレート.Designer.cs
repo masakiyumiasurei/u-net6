@@ -251,6 +251,7 @@
             this.部品コードボタン.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.部品コードボタン.Location = new System.Drawing.Point(50, 0);
             this.部品コードボタン.Name = "部品コードボタン";
+            this.部品コードボタン.Office2007Style = GrapeCity.Win.MultiRow.Office2007Style.Silver;
             this.部品コードボタン.Size = new System.Drawing.Size(69, 44);
             cellStyle25.BackColor = System.Drawing.Color.Transparent;
             cellStyle25.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);

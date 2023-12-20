@@ -74,6 +74,15 @@ namespace MultiRowDesigner
             this.定価ボタン = new GrapeCity.Win.MultiRow.ButtonCell();
             this.原価ボタン = new GrapeCity.Win.MultiRow.ButtonCell();
             this.型式番号ボタン = new GrapeCity.Win.MultiRow.ButtonCell();
+
+
+            this.機能ボタン = new GrapeCity.Win.MultiRow.ButtonCell();
+            this.削除ボタン = new GrapeCity.Win.MultiRow.ButtonCell();
+            this.明細行選択ボタン = new GrapeCity.Win.MultiRow.ButtonCell();
+            this.buttonCell1 = new GrapeCity.Win.MultiRow.ButtonCell();
+            this.buttonCell2 = new GrapeCity.Win.MultiRow.ButtonCell();
+
+
             this.明細削除ボタン = new GrapeCity.Win.MultiRow.ButtonCell();
             this.行挿入ボタン = new GrapeCity.Win.MultiRow.ButtonCell();
             this.行移動上ボタン = new GrapeCity.Win.MultiRow.ButtonCell();

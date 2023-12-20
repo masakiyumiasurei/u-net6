@@ -1108,7 +1108,7 @@ namespace u_net
                 // 表示データを登録する
                 if (SaveData(this.CurrentCode, this.CurrentEdition))
                 {
-                    ChangedData(false);
+                    
                     blnNewParts = false;
 
                     // 新規モードのときは修正モードへ移行する
@@ -1132,7 +1132,7 @@ namespace u_net
                 発注明細1.Detail.AllowUserToDeleteRows = !this.IsDecided;
                 発注明細1.Detail.ReadOnly = this.IsDecided;
                 発注明細1.Detail.AllowUserToAddRows = !this.IsDecided;
-
+                ChangedData(false);
                 チェック();
 
             Bye_コマンド確定_Click:
@@ -2002,8 +2002,7 @@ namespace u_net
         {
             try
             {
-                object varParm = null; // varParm の型が VBA の Variant に相当するものになる
-
+                
                 switch (controlName)
                 {
                     case "発注コード":
@@ -2102,7 +2101,7 @@ namespace u_net
                         break;
 
                     case "仕入先コード":
-                        SetSupplier(varParm.ToString());
+                        SetSupplier(仕入先コード.Text);
                         break;
 
                     case "在庫管理":
@@ -2261,15 +2260,15 @@ namespace u_net
                 ComboBox comboBox = sender as ComboBox;
                 if (comboBox != null)
                 {
-                    string strCode = this.ActiveControl.Text;
+                    string strCode = this.発注コード.Text;
                     if (string.IsNullOrEmpty(strCode))
                         return;
 
                     strCode = FunctionClass.FormatCode(CH_ORDER, strCode);
 
-                    if (strCode != this.ActiveControl.Text)
+                    if (strCode != this.発注コード.Text)
                     {
-                        this.ActiveControl.Text = strCode;
+                        this.発注コード.Text = strCode;
                     }
                 }
             }
