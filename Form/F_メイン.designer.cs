@@ -150,7 +150,7 @@ namespace u_net
             // 
             コマンド終了.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             コマンド終了.ForeColor = Color.Red;
-            コマンド終了.Location = new Point(493, 462);
+            コマンド終了.Location = new Point(507, 462);
             コマンド終了.Margin = new Padding(3, 2, 3, 2);
             コマンド終了.Name = "コマンド終了";
             コマンド終了.Size = new Size(93, 36);
@@ -165,7 +165,7 @@ namespace u_net
             ログインユーザー名.BackColor = Color.Black;
             ログインユーザー名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             ログインユーザー名.ForeColor = Color.White;
-            ログインユーザー名.Location = new Point(200, 455);
+            ログインユーザー名.Location = new Point(214, 455);
             ログインユーザー名.Margin = new Padding(3, 2, 3, 2);
             ログインユーザー名.Multiline = true;
             ログインユーザー名.Name = "ログインユーザー名";
@@ -179,7 +179,7 @@ namespace u_net
             // 
             ログインボタン.Font = new Font("Yu Gothic UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
             ログインボタン.ForeColor = Color.Black;
-            ログインボタン.Location = new Point(394, 461);
+            ログインボタン.Location = new Point(408, 461);
             ログインボタン.Name = "ログインボタン";
             ログインボタン.Size = new Size(93, 36);
             ログインボタン.TabIndex = 10003;
@@ -192,7 +192,7 @@ namespace u_net
             日付.BackColor = Color.Black;
             日付.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             日付.ForeColor = Color.White;
-            日付.Location = new Point(200, 482);
+            日付.Location = new Point(214, 482);
             日付.Margin = new Padding(3, 2, 3, 2);
             日付.Multiline = true;
             日付.Name = "日付";
@@ -220,7 +220,7 @@ namespace u_net
             // 
             ユーアイホームボタン.Font = new Font("Yu Gothic UI Light", 11.25F, FontStyle.Underline, GraphicsUnit.Point);
             ユーアイホームボタン.ForeColor = Color.Blue;
-            ユーアイホームボタン.Location = new Point(2, 462);
+            ユーアイホームボタン.Location = new Point(16, 462);
             ユーアイホームボタン.Margin = new Padding(3, 2, 3, 2);
             ユーアイホームボタン.Name = "ユーアイホームボタン";
             ユーアイホームボタン.Size = new Size(93, 36);
@@ -235,7 +235,7 @@ namespace u_net
             // 
             システム設定ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             システム設定ボタン.ForeColor = Color.Red;
-            システム設定ボタン.Location = new Point(101, 462);
+            システム設定ボタン.Location = new Point(115, 462);
             システム設定ボタン.Margin = new Padding(3, 2, 3, 2);
             システム設定ボタン.Name = "システム設定ボタン";
             システム設定ボタン.Size = new Size(93, 36);
@@ -250,14 +250,13 @@ namespace u_net
             statusStrip1.Location = new Point(0, 514);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Padding = new Padding(1, 0, 19, 0);
-            statusStrip1.Size = new Size(597, 22);
+            statusStrip1.Size = new Size(636, 22);
             statusStrip1.TabIndex = 10001;
             statusStrip1.Text = "statusStrip1";
             // 
             // 共通
             // 
             共通.BackColor = SystemColors.Control;
-            共通.BackgroundImage = (Image)resources.GetObject("共通.BackgroundImage");
             共通.BackgroundImageLayout = ImageLayout.None;
             共通.Controls.Add(マスタメンテボタン);
             共通.Controls.Add(休日ボタン);
@@ -280,7 +279,7 @@ namespace u_net
             共通.Controls.Add(社員管理ボタン);
             共通.Location = new Point(4, 24);
             共通.Name = "共通";
-            共通.Size = new Size(577, 380);
+            共通.Size = new Size(612, 380);
             共通.TabIndex = 5;
             共通.Text = "共通";
             // 
@@ -422,6 +421,7 @@ namespace u_net
             会社情報ボタン.TabStop = false;
             会社情報ボタン.Text = "会社情報";
             会社情報ボタン.UseVisualStyleBackColor = true;
+            会社情報ボタン.Click += 会社情報ボタン_Click;
             // 
             // 教育訓練資料ボタン
             // 
@@ -564,7 +564,7 @@ namespace u_net
             文書資料.Location = new Point(4, 24);
             文書資料.Name = "文書資料";
             文書資料.Padding = new Padding(3);
-            文書資料.Size = new Size(577, 380);
+            文書資料.Size = new Size(612, 380);
             文書資料.TabIndex = 4;
             文書資料.Text = "文書資料";
             // 
@@ -713,7 +713,7 @@ namespace u_net
             管理.Location = new Point(4, 24);
             管理.Name = "管理";
             管理.Padding = new Padding(3);
-            管理.Size = new Size(577, 380);
+            管理.Size = new Size(612, 380);
             管理.TabIndex = 3;
             管理.Text = "管理";
             // 
@@ -916,7 +916,7 @@ namespace u_net
             技術.Location = new Point(4, 24);
             技術.Name = "技術";
             技術.Padding = new Padding(3);
-            技術.Size = new Size(577, 380);
+            技術.Size = new Size(612, 380);
             技術.TabIndex = 2;
             技術.Text = "技術";
             // 
@@ -1095,7 +1095,7 @@ namespace u_net
             製造.Location = new Point(4, 24);
             製造.Name = "製造";
             製造.Padding = new Padding(3);
-            製造.Size = new Size(577, 380);
+            製造.Size = new Size(612, 380);
             製造.TabIndex = 1;
             製造.Text = "製造";
             // 
@@ -1125,6 +1125,7 @@ namespace u_net
             発注入力ボタン.TabStop = false;
             発注入力ボタン.Text = "発注入力";
             発注入力ボタン.UseVisualStyleBackColor = true;
+            発注入力ボタン.Click += 発注入力ボタン_Click;
             // 
             // 発注管理ボタン
             // 
@@ -1138,6 +1139,7 @@ namespace u_net
             発注管理ボタン.TabStop = false;
             発注管理ボタン.Text = "発注管理";
             発注管理ボタン.UseVisualStyleBackColor = true;
+            発注管理ボタン.Click += 発注管理ボタン_Click;
             // 
             // 棚卸作業ボタン
             // 
@@ -1338,7 +1340,7 @@ namespace u_net
             販売.Location = new Point(4, 24);
             販売.Name = "販売";
             販売.Padding = new Padding(3);
-            販売.Size = new Size(577, 380);
+            販売.Size = new Size(612, 380);
             販売.TabIndex = 0;
             販売.Text = "販売";
             // 
@@ -1410,6 +1412,7 @@ namespace u_net
             受注管理ボタン.TabStop = false;
             受注管理ボタン.Text = "受注管理";
             受注管理ボタン.UseVisualStyleBackColor = true;
+            受注管理ボタン.Click += 受注管理ボタン_Click;
             // 
             // 承認管理ボタン
             // 
@@ -1423,6 +1426,7 @@ namespace u_net
             承認管理ボタン.TabStop = false;
             承認管理ボタン.Text = "変更承認";
             承認管理ボタン.UseVisualStyleBackColor = true;
+            承認管理ボタン.Click += 承認管理ボタン_Click;
             // 
             // 見積入力ボタン
             // 
@@ -1436,6 +1440,7 @@ namespace u_net
             見積入力ボタン.TabStop = false;
             見積入力ボタン.Text = "見積入力";
             見積入力ボタン.UseVisualStyleBackColor = true;
+            見積入力ボタン.Click += 見積入力ボタン_Click;
             // 
             // 見積管理ボタン
             // 
@@ -1449,6 +1454,7 @@ namespace u_net
             見積管理ボタン.TabStop = false;
             見積管理ボタン.Text = "見積管理";
             見積管理ボタン.UseVisualStyleBackColor = true;
+            見積管理ボタン.Click += 見積管理ボタン_Click;
             // 
             // 商品構成ボタン
             // 
@@ -1462,6 +1468,7 @@ namespace u_net
             商品構成ボタン.TabStop = false;
             商品構成ボタン.Text = "価格参照";
             商品構成ボタン.UseVisualStyleBackColor = true;
+            商品構成ボタン.Click += 商品構成ボタン_Click;
             // 
             // 購買申請入力ボタン
             // 
@@ -1475,6 +1482,7 @@ namespace u_net
             購買申請入力ボタン.TabStop = false;
             購買申請入力ボタン.Text = "購買申請入力";
             購買申請入力ボタン.UseVisualStyleBackColor = true;
+            購買申請入力ボタン.Click += 購買申請入力ボタン_Click;
             // 
             // 購買申請管理ボタン
             // 
@@ -1488,6 +1496,7 @@ namespace u_net
             購買申請管理ボタン.TabStop = false;
             購買申請管理ボタン.Text = "購買申請管理";
             購買申請管理ボタン.UseVisualStyleBackColor = true;
+            購買申請管理ボタン.Click += 購買申請管理ボタン_Click;
             // 
             // 商品登録ボタン
             // 
@@ -1660,20 +1669,20 @@ namespace u_net
             tabControl1.Controls.Add(文書資料);
             tabControl1.Controls.Add(共通);
             tabControl1.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            tabControl1.ItemSize = new Size(90, 20);
-            tabControl1.Location = new Point(0, 49);
+            tabControl1.ItemSize = new Size(80, 20);
+            tabControl1.Location = new Point(4, 49);
             tabControl1.Name = "tabControl1";
             tabControl1.Padding = new Point(1, 3);
             tabControl1.SelectedIndex = 0;
             tabControl1.ShowToolTips = true;
-            tabControl1.Size = new Size(585, 408);
+            tabControl1.Size = new Size(620, 408);
             tabControl1.SizeMode = TabSizeMode.Fixed;
             tabControl1.TabIndex = 10002;
             // 
             // F_メイン
             // 
             BackColor = SystemColors.Control;
-            ClientSize = new Size(597, 536);
+            ClientSize = new Size(636, 536);
             Controls.Add(システム設定ボタン);
             Controls.Add(ユーアイホームボタン);
             Controls.Add(label23);
