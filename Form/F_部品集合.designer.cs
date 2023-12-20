@@ -560,6 +560,7 @@ namespace u_net
             // 
             // label6
             // 
+            label6.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             label6.Location = new Point(626, 95);
             label6.Name = "label6";
             label6.Size = new Size(72, 17);
@@ -569,6 +570,7 @@ namespace u_net
             // 
             // label8
             // 
+            label8.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             label8.Location = new Point(626, 72);
             label8.Name = "label8";
             label8.Size = new Size(72, 17);
@@ -592,6 +594,7 @@ namespace u_net
             // 
             // label9
             // 
+            label9.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             label9.Location = new Point(626, 50);
             label9.Name = "label9";
             label9.Size = new Size(72, 17);
@@ -678,6 +681,7 @@ namespace u_net
             // 
             // label7
             // 
+            label7.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             label7.Location = new Point(626, 120);
             label7.Name = "label7";
             label7.Size = new Size(72, 17);
@@ -725,6 +729,7 @@ namespace u_net
             // 
             // toolStripStatusLabel1
             // 
+            toolStripStatusLabel1.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             toolStripStatusLabel1.Size = new Size(89, 17);
             toolStripStatusLabel1.Text = "各種項目の説明";
@@ -789,6 +794,7 @@ namespace u_net
             // 
             // label2
             // 
+            label2.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             label2.Location = new Point(626, 146);
             label2.Name = "label2";
             label2.Size = new Size(54, 17);
@@ -826,6 +832,7 @@ namespace u_net
             // 
             // label3
             // 
+            label3.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             label3.Location = new Point(712, 146);
             label3.Name = "label3";
             label3.Size = new Size(54, 17);
@@ -849,6 +856,7 @@ namespace u_net
             // 
             // label4
             // 
+            label4.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             label4.Location = new Point(788, 146);
             label4.Name = "label4";
             label4.Size = new Size(54, 17);
@@ -967,7 +975,7 @@ namespace u_net
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "F_部品集合";
-            Text = " ";
+            Text = "部品集合";
             FormClosing += Form_Unload;
             Load += Form_Load;
             KeyDown += Form_KeyDown;
