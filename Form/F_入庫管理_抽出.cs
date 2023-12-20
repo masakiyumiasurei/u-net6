@@ -81,7 +81,7 @@ namespace u_net
                 集計年月.Text = frmTarget.str集計年月;
                 支払年月.Text = frmTarget.str支払年月;
                 発注コード.Text = frmTarget.str発注コード;
-                
+
                 仕入先名.Text = frmTarget.str仕入先名;
                 仕入先コード.Text = frmTarget.str仕入先コード;
 
@@ -150,7 +150,7 @@ namespace u_net
             {
                 F_入庫管理? frmTarget = Application.OpenForms.OfType<F_入庫管理>().FirstOrDefault();
 
-                if(!string.IsNullOrEmpty(入庫日開始.Text))
+                if (!string.IsNullOrEmpty(入庫日開始.Text))
                 {
                     frmTarget.dtm入庫日開始 = Nz(DateTime.Parse(入庫日開始.Text));
                 }
@@ -158,7 +158,7 @@ namespace u_net
                 {
                     frmTarget.dtm入庫日終了 = Nz(DateTime.Parse(入庫日終了.Text));
                 }
-                
+
                 frmTarget.str入庫者名 = Nz(入庫者名.Text);
                 frmTarget.str集計年月 = Nz(集計年月.Text);
                 frmTarget.str支払年月 = Nz(支払年月.Text);
@@ -334,7 +334,7 @@ namespace u_net
             {
                 string SelectedCode = SearchForm.SelectedCode;
 
-                
+
                 string str1 = FunctionClass.GetSupplierName(cn, SelectedCode);
                 仕入先名.Text = str1;
                 仕入先コード.Text = SelectedCode;
@@ -354,7 +354,7 @@ namespace u_net
                 {
                     string SelectedCode = SearchForm.SelectedCode;
 
-                    
+
                     string str1 = FunctionClass.GetSupplierName(cn, SelectedCode);
                     仕入先名.Text = str1;
                     仕入先コード.Text = SelectedCode;
@@ -381,7 +381,7 @@ namespace u_net
             {
                 string SelectedCode = SearchForm.SelectedCode;
 
-                
+
                 string str1 = FunctionClass.GetSupplierName(cn, SelectedCode);
                 仕入先名.Text = str1;
                 仕入先コード.Text = SelectedCode;
