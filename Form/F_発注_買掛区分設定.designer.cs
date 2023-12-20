@@ -294,6 +294,7 @@ namespace u_net
             買掛区分.Name = "買掛区分";
             買掛区分.Size = new Size(172, 21);
             買掛区分.TabIndex = 14;
+            買掛区分.SelectedIndexChanged += 買掛区分_SelectedIndexChanged;
             買掛区分.Enter += 買掛区分_Enter;
             買掛区分.Leave += 買掛区分_Leave;
             // 
@@ -550,7 +551,7 @@ namespace u_net
             MinimizeBox = false;
             Name = "F_発注_買掛区分設定";
             Text = " ";
-            //FormClosing += Form_Unload;
+            FormClosed += F_発注_買掛区分設定_FormClosed;
             Load += Form_Load;
             statusStrip1.ResumeLayout(false);
             statusStrip1.PerformLayout();

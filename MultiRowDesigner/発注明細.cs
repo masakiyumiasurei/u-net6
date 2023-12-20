@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.Common;
 using System.Data.SqlClient;
+using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -859,11 +860,11 @@ namespace MultiRowDesigner
             NumberDetails("明細番号");
         }
 
-
+        
         private void gcMultiRow1_CellContentButtonClick(object sender, CellEventArgs e)
         {
-            GcMultiRow gcMultiRow = sender as GcMultiRow;
-            F_発注? Parentform = Application.OpenForms.OfType<F_発注>().FirstOrDefault();
+            GcMultiRow gcMultiRow = sender as GcMultiRow;            
+            F_発注? parentform = Application.OpenForms.OfType<F_発注>().FirstOrDefault();
             switch (e.CellName)
             {
                 case "行番号ボタン":
@@ -916,10 +917,55 @@ namespace MultiRowDesigner
                     if (MessageBox.Show("明細行(" + (e.RowIndex + 1) + ")を削除しますか？", "承認コマンド", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
                         gcMultiRow.Rows.RemoveAt(e.RowIndex);
-                        Parentform.ChangedData(true);
+                        parentform.ChangedData(true);
                         NumberDetails("行番号");
                     }
 
+                    break;
+                case "買掛区分修正ボタン":
+                    
+                    if (!parentform.IsDecided)
+                    {
+                        //コンボボックスのダブルクリックイベントではこうなっていた
+                        //ComboBoxEditingControl combo = sender as ComboBoxEditingControl;
+                        //combo.DroppedDown = true;
+                    }
+                    else
+                    {
+                        if (parentform.IsApproved)
+                        {
+                            MessageBox.Show("この発注データは承認されています。\n承認後の区分設定はできません。",
+                                            parentform.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        }
+                        else
+                        {
+                            F_発注_買掛区分設定 form = new F_発注_買掛区分設定();
+                            //form.ShowDialog();
+                            if (parentform.buttonCnt == 0)
+                            {
+                                form.ShowDialog();
+
+                                return;
+                            }
+                            else
+                            {
+                                //元に戻す
+                                parentform.buttonCnt = 0;
+                            }    
+                                
+                            
+                            //{
+                                //区分の各種値はF_発注_買掛区分設定でセットする
+
+                                //string selectedCode = form.SelectedCode;
+
+                                //gcMultiRow1.CurrentRow.Cells["買掛区分"].Value = selectedCode;
+
+                                //gcMultiRow1.CurrentCellPosition =
+                                //    new CellPosition(gcMultiRow1.CurrentRow.Index, gcMultiRow1.CurrentRow.Cells["品名"].CellIndex);
+                            //}
+                        }
+                    }
                     break;
             }
         }
@@ -1065,7 +1111,7 @@ namespace MultiRowDesigner
                         }
                     }
                     break;
-                case "買掛区分":
+                case "買掛区分":　//コンボボックスはダブルクリックイベントがきかないため移動
                     if (!parentform.IsDecided)
                     {
                         ComboBoxEditingControl combo = sender as ComboBoxEditingControl;

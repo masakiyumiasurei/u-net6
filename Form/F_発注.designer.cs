@@ -528,7 +528,7 @@ namespace u_net
             発注者コード.Location = new Point(108, 93);
             発注者コード.MaxDropDownItems = 9;
             発注者コード.Name = "発注者コード";
-            発注者コード.Size = new Size(116, 21);
+            発注者コード.Size = new Size(83, 21);
             発注者コード.TabIndex = 8;
             発注者コード.DrawItem += 発注者コード_DrawItem;
             発注者コード.TextChanged += 発注者コード_TextChanged;
@@ -542,13 +542,13 @@ namespace u_net
             発注者名.Enabled = false;
             発注者名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             発注者名.ImeMode = ImeMode.NoControl;
-            発注者名.Location = new Point(228, 94);
+            発注者名.Location = new Point(197, 94);
             発注者名.Margin = new Padding(3, 2, 3, 2);
             発注者名.Name = "発注者名";
-            発注者名.Size = new Size(149, 20);
+            発注者名.ReadOnly = true;
+            発注者名.Size = new Size(180, 20);
             発注者名.TabIndex = 10069;
             発注者名.TabStop = false;
-            発注者名.Visible = false;
             // 
             // 仕入先コード
             // 
@@ -1433,7 +1433,7 @@ namespace u_net
         internal ToolStripStatusLabel toolStripStatusLabel2;
         internal TextBox 入庫状況;
         //internal MultiRowDesigner.発注明細 発注明細1;
-        private MultiRowDesigner.発注明細 発注明細1;
+        public MultiRowDesigner.発注明細 発注明細1;
         private ToolTip toolTip1;
     }
 }
