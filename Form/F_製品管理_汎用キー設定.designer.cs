@@ -29,345 +29,344 @@ namespace u_net
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.日誌IDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn16 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn17 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn18 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn19 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn20 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn21 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn22 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn24 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn25 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn26 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn27 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.キャンセルボタン = new System.Windows.Forms.Button();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.汎用キー1 = new System.Windows.Forms.TextBox();
-            this.汎用キー1_ラベル = new System.Windows.Forms.Label();
-            this.OKボタン = new System.Windows.Forms.Button();
-            this.コード_ラベル = new System.Windows.Forms.Label();
-            this.コード = new System.Windows.Forms.TextBox();
-            this.版数_ラベル = new System.Windows.Forms.Label();
-            this.版数 = new System.Windows.Forms.TextBox();
-            this.statusStrip1.SuspendLayout();
-            this.groupBox1.SuspendLayout();
-            this.SuspendLayout();
+            dataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn2 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn3 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn4 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn5 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn6 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn7 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn8 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn9 = new DataGridViewTextBoxColumn();
+            日誌IDDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn10 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn11 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn12 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn13 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn14 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn15 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn16 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn17 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn18 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn19 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn20 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn21 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn22 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn23 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn24 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn25 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn26 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn27 = new DataGridViewTextBoxColumn();
+            キャンセルボタン = new Button();
+            statusStrip1 = new StatusStrip();
+            toolStripStatusLabel1 = new ToolStripStatusLabel();
+            groupBox1 = new GroupBox();
+            汎用キー1 = new TextBox();
+            汎用キー1_ラベル = new Label();
+            OKボタン = new Button();
+            コード_ラベル = new Label();
+            コード = new TextBox();
+            版数_ラベル = new Label();
+            版数 = new TextBox();
+            statusStrip1.SuspendLayout();
+            groupBox1.SuspendLayout();
+            SuspendLayout();
             // 
             // dataGridViewTextBoxColumn1
             // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "商品コード";
-            this.dataGridViewTextBoxColumn1.HeaderText = "商品コード";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            dataGridViewTextBoxColumn1.DataPropertyName = "商品コード";
+            dataGridViewTextBoxColumn1.HeaderText = "商品コード";
+            dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
             // 
             // dataGridViewTextBoxColumn2
             // 
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "Revision";
-            this.dataGridViewTextBoxColumn2.HeaderText = "Revision";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            dataGridViewTextBoxColumn2.DataPropertyName = "Revision";
+            dataGridViewTextBoxColumn2.HeaderText = "Revision";
+            dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
             // 
             // dataGridViewTextBoxColumn3
             // 
-            this.dataGridViewTextBoxColumn3.DataPropertyName = "明細番号";
-            this.dataGridViewTextBoxColumn3.HeaderText = "明細番号";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            dataGridViewTextBoxColumn3.DataPropertyName = "明細番号";
+            dataGridViewTextBoxColumn3.HeaderText = "明細番号";
+            dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
             // 
             // dataGridViewTextBoxColumn4
             // 
-            this.dataGridViewTextBoxColumn4.DataPropertyName = "型式番号";
-            this.dataGridViewTextBoxColumn4.HeaderText = "型式番号";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            dataGridViewTextBoxColumn4.DataPropertyName = "型式番号";
+            dataGridViewTextBoxColumn4.HeaderText = "型式番号";
+            dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
             // 
             // dataGridViewTextBoxColumn5
             // 
-            this.dataGridViewTextBoxColumn5.DataPropertyName = "型式名";
-            this.dataGridViewTextBoxColumn5.HeaderText = "型式名";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            dataGridViewTextBoxColumn5.DataPropertyName = "型式名";
+            dataGridViewTextBoxColumn5.HeaderText = "型式名";
+            dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
             // 
             // dataGridViewTextBoxColumn6
             // 
-            this.dataGridViewTextBoxColumn6.DataPropertyName = "定価";
-            this.dataGridViewTextBoxColumn6.HeaderText = "定価";
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            dataGridViewTextBoxColumn6.DataPropertyName = "定価";
+            dataGridViewTextBoxColumn6.HeaderText = "定価";
+            dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
             // 
             // dataGridViewTextBoxColumn7
             // 
-            this.dataGridViewTextBoxColumn7.DataPropertyName = "原価";
-            this.dataGridViewTextBoxColumn7.HeaderText = "原価";
-            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            dataGridViewTextBoxColumn7.DataPropertyName = "原価";
+            dataGridViewTextBoxColumn7.HeaderText = "原価";
+            dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
             // 
             // dataGridViewTextBoxColumn8
             // 
-            this.dataGridViewTextBoxColumn8.DataPropertyName = "機能";
-            this.dataGridViewTextBoxColumn8.HeaderText = "機能";
-            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
+            dataGridViewTextBoxColumn8.DataPropertyName = "機能";
+            dataGridViewTextBoxColumn8.HeaderText = "機能";
+            dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
             // 
             // dataGridViewTextBoxColumn9
             // 
-            this.dataGridViewTextBoxColumn9.DataPropertyName = "構成番号";
-            this.dataGridViewTextBoxColumn9.HeaderText = "構成番号";
-            this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
+            dataGridViewTextBoxColumn9.DataPropertyName = "構成番号";
+            dataGridViewTextBoxColumn9.HeaderText = "構成番号";
+            dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
             // 
             // 日誌IDDataGridViewTextBoxColumn
             // 
-            this.日誌IDDataGridViewTextBoxColumn.Name = "日誌IDDataGridViewTextBoxColumn";
+            日誌IDDataGridViewTextBoxColumn.Name = "日誌IDDataGridViewTextBoxColumn";
             // 
             // dataGridViewTextBoxColumn10
             // 
-            this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
+            dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
             // 
             // dataGridViewTextBoxColumn11
             // 
-            this.dataGridViewTextBoxColumn11.Name = "dataGridViewTextBoxColumn11";
+            dataGridViewTextBoxColumn11.Name = "dataGridViewTextBoxColumn11";
             // 
             // dataGridViewTextBoxColumn12
             // 
-            this.dataGridViewTextBoxColumn12.Name = "dataGridViewTextBoxColumn12";
+            dataGridViewTextBoxColumn12.Name = "dataGridViewTextBoxColumn12";
             // 
             // dataGridViewTextBoxColumn13
             // 
-            this.dataGridViewTextBoxColumn13.Name = "dataGridViewTextBoxColumn13";
+            dataGridViewTextBoxColumn13.Name = "dataGridViewTextBoxColumn13";
             // 
             // dataGridViewTextBoxColumn14
             // 
-            this.dataGridViewTextBoxColumn14.Name = "dataGridViewTextBoxColumn14";
+            dataGridViewTextBoxColumn14.Name = "dataGridViewTextBoxColumn14";
             // 
             // dataGridViewTextBoxColumn15
             // 
-            this.dataGridViewTextBoxColumn15.Name = "dataGridViewTextBoxColumn15";
+            dataGridViewTextBoxColumn15.Name = "dataGridViewTextBoxColumn15";
             // 
             // dataGridViewTextBoxColumn16
             // 
-            this.dataGridViewTextBoxColumn16.Name = "dataGridViewTextBoxColumn16";
+            dataGridViewTextBoxColumn16.Name = "dataGridViewTextBoxColumn16";
             // 
             // dataGridViewTextBoxColumn17
             // 
-            this.dataGridViewTextBoxColumn17.Name = "dataGridViewTextBoxColumn17";
+            dataGridViewTextBoxColumn17.Name = "dataGridViewTextBoxColumn17";
             // 
             // dataGridViewTextBoxColumn18
             // 
-            this.dataGridViewTextBoxColumn18.Name = "dataGridViewTextBoxColumn18";
+            dataGridViewTextBoxColumn18.Name = "dataGridViewTextBoxColumn18";
             // 
             // dataGridViewTextBoxColumn19
             // 
-            this.dataGridViewTextBoxColumn19.Name = "dataGridViewTextBoxColumn19";
+            dataGridViewTextBoxColumn19.Name = "dataGridViewTextBoxColumn19";
             // 
             // dataGridViewTextBoxColumn20
             // 
-            this.dataGridViewTextBoxColumn20.Name = "dataGridViewTextBoxColumn20";
+            dataGridViewTextBoxColumn20.Name = "dataGridViewTextBoxColumn20";
             // 
             // dataGridViewTextBoxColumn21
             // 
-            this.dataGridViewTextBoxColumn21.Name = "dataGridViewTextBoxColumn21";
+            dataGridViewTextBoxColumn21.Name = "dataGridViewTextBoxColumn21";
             // 
             // dataGridViewTextBoxColumn22
             // 
-            this.dataGridViewTextBoxColumn22.Name = "dataGridViewTextBoxColumn22";
+            dataGridViewTextBoxColumn22.Name = "dataGridViewTextBoxColumn22";
             // 
             // dataGridViewTextBoxColumn23
             // 
-            this.dataGridViewTextBoxColumn23.Name = "dataGridViewTextBoxColumn23";
+            dataGridViewTextBoxColumn23.Name = "dataGridViewTextBoxColumn23";
             // 
             // dataGridViewTextBoxColumn24
             // 
-            this.dataGridViewTextBoxColumn24.Name = "dataGridViewTextBoxColumn24";
+            dataGridViewTextBoxColumn24.Name = "dataGridViewTextBoxColumn24";
             // 
             // dataGridViewTextBoxColumn25
             // 
-            this.dataGridViewTextBoxColumn25.Name = "dataGridViewTextBoxColumn25";
+            dataGridViewTextBoxColumn25.Name = "dataGridViewTextBoxColumn25";
             // 
             // dataGridViewTextBoxColumn26
             // 
-            this.dataGridViewTextBoxColumn26.Name = "dataGridViewTextBoxColumn26";
+            dataGridViewTextBoxColumn26.Name = "dataGridViewTextBoxColumn26";
             // 
             // dataGridViewTextBoxColumn27
             // 
-            this.dataGridViewTextBoxColumn27.Name = "dataGridViewTextBoxColumn27";
+            dataGridViewTextBoxColumn27.Name = "dataGridViewTextBoxColumn27";
             // 
             // キャンセルボタン
             // 
-            this.キャンセルボタン.Font = new System.Drawing.Font("Yu Gothic UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.キャンセルボタン.Location = new System.Drawing.Point(270, 180);
-            this.キャンセルボタン.Margin = new System.Windows.Forms.Padding(4);
-            this.キャンセルボタン.Name = "キャンセルボタン";
-            this.キャンセルボタン.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.キャンセルボタン.Size = new System.Drawing.Size(102, 27);
-            this.キャンセルボタン.TabIndex = 4;
-            this.キャンセルボタン.Text = "キャンセル";
-            this.キャンセルボタン.UseVisualStyleBackColor = true;
-            this.キャンセルボタン.Click += new System.EventHandler(this.キャンセルボタン_Click);
+            キャンセルボタン.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            キャンセルボタン.Location = new Point(270, 180);
+            キャンセルボタン.Margin = new Padding(4);
+            キャンセルボタン.Name = "キャンセルボタン";
+            キャンセルボタン.RightToLeft = RightToLeft.Yes;
+            キャンセルボタン.Size = new Size(102, 27);
+            キャンセルボタン.TabIndex = 4;
+            キャンセルボタン.Text = "キャンセル";
+            キャンセルボタン.UseVisualStyleBackColor = true;
+            キャンセルボタン.Click += キャンセルボタン_Click;
             // 
             // statusStrip1
             // 
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel1});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 211);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 19, 0);
-            this.statusStrip1.Size = new System.Drawing.Size(392, 22);
-            this.statusStrip1.TabIndex = 10195;
-            this.statusStrip1.Text = "statusStrip1";
+            statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1 });
+            statusStrip1.Location = new Point(0, 211);
+            statusStrip1.Name = "statusStrip1";
+            statusStrip1.Padding = new Padding(1, 0, 19, 0);
+            statusStrip1.Size = new Size(392, 22);
+            statusStrip1.TabIndex = 10195;
+            statusStrip1.Text = "statusStrip1";
             // 
             // toolStripStatusLabel1
             // 
-            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(89, 17);
-            this.toolStripStatusLabel1.Text = "各種項目の説明";
+            toolStripStatusLabel1.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            toolStripStatusLabel1.Size = new Size(89, 17);
+            toolStripStatusLabel1.Text = "各種項目の説明";
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.汎用キー1);
-            this.groupBox1.Controls.Add(this.汎用キー1_ラベル);
-            this.groupBox1.Location = new System.Drawing.Point(11, 38);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(361, 135);
-            this.groupBox1.TabIndex = 10198;
-            this.groupBox1.TabStop = false;
+            groupBox1.Controls.Add(汎用キー1);
+            groupBox1.Controls.Add(汎用キー1_ラベル);
+            groupBox1.Location = new Point(11, 38);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new Size(361, 135);
+            groupBox1.TabIndex = 10198;
+            groupBox1.TabStop = false;
             // 
             // 汎用キー1
             // 
-            this.汎用キー1.BackColor = System.Drawing.Color.White;
-            this.汎用キー1.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.汎用キー1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.汎用キー1.Location = new System.Drawing.Point(109, 17);
-            this.汎用キー1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.汎用キー1.Name = "汎用キー1";
-            this.汎用キー1.Size = new System.Drawing.Size(246, 20);
-            this.汎用キー1.TabIndex = 2;
-            this.汎用キー1.Enter += new System.EventHandler(this.汎用キー1_Enter);
-            this.汎用キー1.Leave += new System.EventHandler(this.汎用キー1_Leave);
+            汎用キー1.BackColor = Color.White;
+            汎用キー1.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            汎用キー1.ImeMode = ImeMode.NoControl;
+            汎用キー1.Location = new Point(109, 17);
+            汎用キー1.Margin = new Padding(3, 2, 3, 2);
+            汎用キー1.Name = "汎用キー1";
+            汎用キー1.Size = new Size(246, 20);
+            汎用キー1.TabIndex = 2;
+            汎用キー1.Enter += 汎用キー1_Enter;
+            汎用キー1.Leave += 汎用キー1_Leave;
             // 
             // 汎用キー1_ラベル
             // 
-            this.汎用キー1_ラベル.AllowDrop = true;
-            this.汎用キー1_ラベル.AutoEllipsis = true;
-            this.汎用キー1_ラベル.Font = new System.Drawing.Font("BIZ UDゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.汎用キー1_ラベル.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.汎用キー1_ラベル.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.汎用キー1_ラベル.Location = new System.Drawing.Point(10, 19);
-            this.汎用キー1_ラベル.Margin = new System.Windows.Forms.Padding(0);
-            this.汎用キー1_ラベル.Name = "汎用キー1_ラベル";
-            this.汎用キー1_ラベル.Size = new System.Drawing.Size(92, 17);
-            this.汎用キー1_ラベル.TabIndex = 1;
-            this.汎用キー1_ラベル.Text = "汎用キー1(&K)";
-            this.汎用キー1_ラベル.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            汎用キー1_ラベル.AllowDrop = true;
+            汎用キー1_ラベル.AutoEllipsis = true;
+            汎用キー1_ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            汎用キー1_ラベル.ForeColor = SystemColors.ActiveCaptionText;
+            汎用キー1_ラベル.ImageAlign = ContentAlignment.MiddleLeft;
+            汎用キー1_ラベル.Location = new Point(10, 19);
+            汎用キー1_ラベル.Margin = new Padding(0);
+            汎用キー1_ラベル.Name = "汎用キー1_ラベル";
+            汎用キー1_ラベル.Size = new Size(92, 17);
+            汎用キー1_ラベル.TabIndex = 1;
+            汎用キー1_ラベル.Text = "汎用キー1(&K)";
+            汎用キー1_ラベル.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // OKボタン
             // 
-            this.OKボタン.Font = new System.Drawing.Font("Yu Gothic UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.OKボタン.Location = new System.Drawing.Point(160, 180);
-            this.OKボタン.Margin = new System.Windows.Forms.Padding(4);
-            this.OKボタン.Name = "OKボタン";
-            this.OKボタン.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.OKボタン.Size = new System.Drawing.Size(102, 27);
-            this.OKボタン.TabIndex = 3;
-            this.OKボタン.Text = "OK";
-            this.OKボタン.UseVisualStyleBackColor = true;
-            this.OKボタン.Click += new System.EventHandler(this.OKボタン_Click);
+            OKボタン.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            OKボタン.Location = new Point(160, 180);
+            OKボタン.Margin = new Padding(4);
+            OKボタン.Name = "OKボタン";
+            OKボタン.RightToLeft = RightToLeft.Yes;
+            OKボタン.Size = new Size(102, 27);
+            OKボタン.TabIndex = 3;
+            OKボタン.Text = "OK";
+            OKボタン.UseVisualStyleBackColor = true;
+            OKボタン.Click += OKボタン_Click;
             // 
             // コード_ラベル
             // 
-            this.コード_ラベル.AllowDrop = true;
-            this.コード_ラベル.AutoEllipsis = true;
-            this.コード_ラベル.Font = new System.Drawing.Font("BIZ UDゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.コード_ラベル.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.コード_ラベル.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.コード_ラベル.Location = new System.Drawing.Point(11, 9);
-            this.コード_ラベル.Margin = new System.Windows.Forms.Padding(0);
-            this.コード_ラベル.Name = "コード_ラベル";
-            this.コード_ラベル.Size = new System.Drawing.Size(102, 17);
-            this.コード_ラベル.TabIndex = 10199;
-            this.コード_ラベル.Text = "コード";
-            this.コード_ラベル.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            コード_ラベル.AllowDrop = true;
+            コード_ラベル.AutoEllipsis = true;
+            コード_ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            コード_ラベル.ForeColor = SystemColors.ActiveCaptionText;
+            コード_ラベル.ImageAlign = ContentAlignment.MiddleLeft;
+            コード_ラベル.Location = new Point(11, 9);
+            コード_ラベル.Margin = new Padding(0);
+            コード_ラベル.Name = "コード_ラベル";
+            コード_ラベル.Size = new Size(102, 17);
+            コード_ラベル.TabIndex = 10199;
+            コード_ラベル.Text = "コード";
+            コード_ラベル.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // コード
             // 
-            this.コード.BackColor = System.Drawing.Color.White;
-            this.コード.Enabled = false;
-            this.コード.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.コード.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.コード.Location = new System.Drawing.Point(113, 8);
-            this.コード.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.コード.Name = "コード";
-            this.コード.ReadOnly = true;
-            this.コード.Size = new System.Drawing.Size(128, 20);
-            this.コード.TabIndex = 10200;
-            this.コード.TabStop = false;
+            コード.BackColor = Color.White;
+            コード.Enabled = false;
+            コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            コード.ImeMode = ImeMode.NoControl;
+            コード.Location = new Point(113, 8);
+            コード.Margin = new Padding(3, 2, 3, 2);
+            コード.Name = "コード";
+            コード.ReadOnly = true;
+            コード.Size = new Size(128, 20);
+            コード.TabIndex = 10200;
+            コード.TabStop = false;
             // 
             // 版数_ラベル
             // 
-            this.版数_ラベル.AllowDrop = true;
-            this.版数_ラベル.AutoEllipsis = true;
-            this.版数_ラベル.Font = new System.Drawing.Font("BIZ UDゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.版数_ラベル.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.版数_ラベル.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.版数_ラベル.Location = new System.Drawing.Point(264, 9);
-            this.版数_ラベル.Margin = new System.Windows.Forms.Padding(0);
-            this.版数_ラベル.Name = "版数_ラベル";
-            this.版数_ラベル.Size = new System.Drawing.Size(40, 17);
-            this.版数_ラベル.TabIndex = 10201;
-            this.版数_ラベル.Text = "版数";
-            this.版数_ラベル.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            版数_ラベル.AllowDrop = true;
+            版数_ラベル.AutoEllipsis = true;
+            版数_ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            版数_ラベル.ForeColor = SystemColors.ActiveCaptionText;
+            版数_ラベル.ImageAlign = ContentAlignment.MiddleLeft;
+            版数_ラベル.Location = new Point(264, 9);
+            版数_ラベル.Margin = new Padding(0);
+            版数_ラベル.Name = "版数_ラベル";
+            版数_ラベル.Size = new Size(40, 17);
+            版数_ラベル.TabIndex = 10201;
+            版数_ラベル.Text = "版数";
+            版数_ラベル.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // 版数
             // 
-            this.版数.BackColor = System.Drawing.Color.White;
-            this.版数.Enabled = false;
-            this.版数.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.版数.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.版数.Location = new System.Drawing.Point(304, 8);
-            this.版数.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.版数.Name = "版数";
-            this.版数.ReadOnly = true;
-            this.版数.Size = new System.Drawing.Size(34, 20);
-            this.版数.TabIndex = 10202;
-            this.版数.TabStop = false;
+            版数.BackColor = Color.White;
+            版数.Enabled = false;
+            版数.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            版数.ImeMode = ImeMode.NoControl;
+            版数.Location = new Point(304, 8);
+            版数.Margin = new Padding(3, 2, 3, 2);
+            版数.Name = "版数";
+            版数.ReadOnly = true;
+            版数.Size = new Size(34, 20);
+            版数.TabIndex = 10202;
+            版数.TabStop = false;
             // 
             // F_製品管理_汎用キー設定
             // 
-            this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(392, 233);
-            this.Controls.Add(this.版数);
-            this.Controls.Add(this.版数_ラベル);
-            this.Controls.Add(this.コード);
-            this.Controls.Add(this.コード_ラベル);
-            this.Controls.Add(this.OKボタン);
-            this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.キャンセルボタン);
-            this.Controls.Add(this.statusStrip1);
-            this.ImeMode = System.Windows.Forms.ImeMode.Off;
-            this.KeyPreview = true;
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
-            this.Name = "F_製品管理_汎用キー設定";
-            this.Text = " ";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form_Unload);
-            this.Load += new System.EventHandler(this.Form_Load);
-            this.statusStrip1.ResumeLayout(false);
-            this.statusStrip1.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            BackColor = SystemColors.Control;
+            ClientSize = new Size(392, 233);
+            Controls.Add(版数);
+            Controls.Add(版数_ラベル);
+            Controls.Add(コード);
+            Controls.Add(コード_ラベル);
+            Controls.Add(OKボタン);
+            Controls.Add(groupBox1);
+            Controls.Add(キャンセルボタン);
+            Controls.Add(statusStrip1);
+            ImeMode = ImeMode.Off;
+            KeyPreview = true;
+            MaximizeBox = false;
+            MinimizeBox = false;
+            Name = "F_製品管理_汎用キー設定";
+            Text = " ";
+            FormClosing += Form_Unload;
+            Load += Form_Load;
+            statusStrip1.ResumeLayout(false);
+            statusStrip1.PerformLayout();
+            groupBox1.ResumeLayout(false);
+            groupBox1.PerformLayout();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
