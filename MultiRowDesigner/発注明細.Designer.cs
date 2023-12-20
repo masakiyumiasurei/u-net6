@@ -43,7 +43,7 @@ namespace MultiRowDesigner
             gcMultiRow1.Location = new Point(0, 0);
             gcMultiRow1.Margin = new Padding(5);
             gcMultiRow1.Name = "gcMultiRow1";
-            gcMultiRow1.Size = new Size(1518, 333);
+            gcMultiRow1.Size = new Size(1516, 405);
             gcMultiRow1.TabIndex = 0;
             gcMultiRow1.Template = 発注明細テンプレート1;
             gcMultiRow1.TemplateScaleSize = new SizeF(1.33333349F, 1.66666675F);
@@ -80,7 +80,7 @@ namespace MultiRowDesigner
             Controls.Add(gcMultiRow1);
             Margin = new Padding(5);
             Name = "発注明細";
-            Size = new Size(1497, 316);
+            Size = new Size(1516, 405);
             Load += 発注明細_Load;
             ((System.ComponentModel.ISupportInitialize)gcMultiRow1).EndInit();
             ResumeLayout(false);

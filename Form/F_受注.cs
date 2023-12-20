@@ -29,6 +29,7 @@ namespace u_net
 
         private SqlConnection cn;
         private bool setCombo = true;
+        private string tmpCCode = ""; // 依頼主コード退避用
 
         private string BASE_CAPTION = "受注（製図指図書）";
 
@@ -206,7 +207,7 @@ namespace u_net
 
             ofn.SetComboBox(受注コード, "SELECT A.受注コード AS Value, A.最新版数, A.受注コード AS Display, { fn REPLACE(STR(CONVERT(bit, T受注.無効日), 1, 0), '1', '×') } AS Display2 " +
                 "FROM T受注 INNER JOIN (SELECT TOP 100 受注コード, MAX(受注版数) AS 最新版数 FROM T受注 GROUP BY 受注コード ORDER BY T受注.受注コード DESC) A ON T受注.受注コード = A.受注コード AND T受注.受注版数 = A.最新版数 ORDER BY A.受注コード DESC");
-            
+
             ofn.SetComboBox(ClientCode, "SELECT Code AS Value, Name AS Display FROM ClientDataSource");
             ofn.SetComboBox(納品書送付コード, "SELECT right(replace(str(納品書送付コード),' ','0'),2) AS Value, right(replace(str(納品書送付コード),' ','0'),2) AS Display, 送付処理 AS Display2 FROM M納品書送付処理");
             ofn.SetComboBox(請求書送付コード, "SELECT right(replace(str(請求書送付コード),' ','0'),2) AS Value, right(replace(str(請求書送付コード),' ','0'),2) AS Display, 送付処理 AS Display2 FROM M請求書送付処理");
@@ -391,7 +392,7 @@ namespace u_net
             {
                 this.注文番号.Focus();
             }
-            if(this.ActiveControl == this.受注版数)
+            if (this.ActiveControl == this.受注版数)
             {
                 this.注文番号.Focus();
             }
@@ -468,7 +469,14 @@ namespace u_net
                         }
                         sqlQuery += " ORDER BY OrderNumber";
                         ofn.SetComboBox(this.ClientCode, sqlQuery);
-                        this.ClientCode.SelectedIndex = -1;
+                        if (string.IsNullOrEmpty(this.tmpCCode))
+                        {
+                            this.ClientCode.SelectedIndex = -1;
+                        }
+                        else
+                        {
+                            this.ClientCode.SelectedValue = this.tmpCCode;
+                        }
 
                         // 動作の制御
                         FunctionClass.LockData(this, this.IsDecided || this.IsInvalid, "受注コード");
@@ -541,7 +549,14 @@ namespace u_net
                         }
                         sqlQuery += " ORDER BY OrderNumber";
                         ofn.SetComboBox(this.ClientCode, sqlQuery);
-                        this.ClientCode.SelectedIndex = -1;
+                        if (string.IsNullOrEmpty(this.tmpCCode))
+                        {
+                            this.ClientCode.SelectedIndex = -1;
+                        }
+                        else
+                        {
+                            this.ClientCode.SelectedValue = this.tmpCCode;
+                        }
 
                         // 動作の制御
                         FunctionClass.LockData(this, this.IsDecided || this.IsInvalid, "受注コード");
@@ -800,6 +815,9 @@ namespace u_net
                 strSQL = "SELECT * FROM V受注ヘッダ WHERE 受注コード='" + codeString + "' AND 受注版数=" + editionNumber;
                 VariableSet.SetTable2Form(this, strSQL, cn);
 
+                // 後述の依頼主のデータソース更新処理により、コードがリセットされてしまう為退避
+                this.tmpCCode = this.ClientCode.SelectedValue?.ToString();
+
                 if (!string.IsNullOrEmpty(受注日.Text))
                 {
                     if (DateTime.TryParse(this.受注日.Text, out DateTime tempDate))
@@ -829,6 +847,14 @@ namespace u_net
                     if (DateTime.TryParse(this.請求予定日.Text, out DateTime tempDate))
                     {
                         請求予定日.Text = tempDate.ToString("yyyy/MM/dd");
+                    }
+                }
+
+                if (!string.IsNullOrEmpty(TaxRate.Text))
+                {
+                    if (decimal.TryParse(this.TaxRate.Text, out decimal tempRate))
+                    {
+                        TaxRate.Text = tempRate.ToString("0.##");
                     }
                 }
 
@@ -890,8 +916,10 @@ namespace u_net
             Connect();
             DateTime dtmNow = FunctionClass.GetServerDate(cn);
 
+            this.登録日.Text = dtmNow.ToString("yyyy/MM/dd HH:dd:ss");
+
             //明細部の受注コードと受注版数を更新する
-            受注明細1.UpdateCodeAndEdition(codeString, editionNumber);
+            this.受注明細1.UpdateCodeAndEdition(codeString, editionNumber);
 
             using (SqlTransaction transaction = cn.BeginTransaction())
             {
@@ -900,7 +928,7 @@ namespace u_net
                     string strwhere = " 受注コード='" + codeString + "' and 受注版数=" + editionNumber;
 
                     // ヘッダ部の登録
-                    if (!DataUpdater.UpdateOrInsertDataFrom(this, cn, "T受注", strwhere, "受注コード", transaction))
+                    if (!DataUpdater.UpdateOrInsertDataFrom(this, cn, "T受注", strwhere, "受注コード", transaction, "受注版数"))
                     {
                         transaction.Rollback(); // 変更をキャンセル
                         return false;
@@ -1304,7 +1332,7 @@ namespace u_net
                             MessageBox.Show("未来日付は入力できません。", controlObject.Name, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                             goto Exit_IsError;
                         }
-                        if (!string.IsNullOrEmpty(this.出荷予定日.Text) && !DateTime.TryParse(this.出荷予定日.Text, out date1))
+                        if (!string.IsNullOrEmpty(this.出荷予定日.Text) && DateTime.TryParse(this.出荷予定日.Text, out date1))
                         {
                             if (date1 < inputDate)
                             {
@@ -1312,7 +1340,7 @@ namespace u_net
                                 goto Exit_IsError;
                             }
                         }
-                        if (!string.IsNullOrEmpty(this.受注納期.Text) && !DateTime.TryParse(this.受注納期.Text, out date1))
+                        if (!string.IsNullOrEmpty(this.受注納期.Text) && DateTime.TryParse(this.受注納期.Text, out date1))
                         {
                             if (date1 < inputDate)
                             {
@@ -1355,7 +1383,7 @@ namespace u_net
                             MessageBox.Show("日付を入力してください。", controlObject.Name, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                             goto Exit_IsError;
                         }
-                        if (!string.IsNullOrEmpty(this.受注日.Text) && !DateTime.TryParse(this.受注日.Text, out date1))
+                        if (!string.IsNullOrEmpty(this.受注日.Text) && DateTime.TryParse(this.受注日.Text, out date1))
                         {
                             if (inputDate < date1)
                             {
@@ -1363,7 +1391,7 @@ namespace u_net
                                 goto Exit_IsError;
                             }
                         }
-                        if (!string.IsNullOrEmpty(this.出荷予定日.Text) && !DateTime.TryParse(this.出荷予定日.Text, out date1))
+                        if (!string.IsNullOrEmpty(this.出荷予定日.Text) && DateTime.TryParse(this.出荷予定日.Text, out date1))
                         {
                             if (inputDate < date1)
                             {
@@ -1383,7 +1411,7 @@ namespace u_net
                             MessageBox.Show("日付を入力してください。", controlObject.Name, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                             goto Exit_IsError;
                         }
-                        if (!string.IsNullOrEmpty(this.受注日.Text) && !DateTime.TryParse(this.受注日.Text, out date1))
+                        if (!string.IsNullOrEmpty(this.受注日.Text) && DateTime.TryParse(this.受注日.Text, out date1))
                         {
                             if (inputDate < date1)
                             {
@@ -1391,7 +1419,7 @@ namespace u_net
                                 goto Exit_IsError;
                             }
                         }
-                        if (!string.IsNullOrEmpty(this.受注納期.Text) && !DateTime.TryParse(this.受注納期.Text, out date1))
+                        if (!string.IsNullOrEmpty(this.受注納期.Text) && DateTime.TryParse(this.受注納期.Text, out date1))
                         {
                             if (date1 < inputDate)
                             {
@@ -1439,7 +1467,8 @@ namespace u_net
                         // 納品書の記載が不要のときは入力を取り消す
                         if (this.PackingSlipInputCode.Text == "04" && !string.IsNullOrEmpty(varValue?.ToString()))
                         {
-                            goto Exit_IsError;
+                            this.PackingSlipNote.Text = "";
+                            return true;
                         }
                         break;
                     case "InvoiceInputCode":
@@ -1460,7 +1489,8 @@ namespace u_net
                         // 送り状の記載が不要のときは入力を取り消す
                         if (this.InvoiceInputCode.Text == "02" && !string.IsNullOrEmpty(varValue?.ToString()))
                         {
-                            goto Exit_IsError;
+                            this.InvoiceNote.Text = "";
+                            return true;
                         }
                         break;
                     case "InvoiceFaxCode":
@@ -1471,6 +1501,8 @@ namespace u_net
                         }
                         break;
                     case "InvoiceFaxToName":
+                    case "InvoiceFaxToContact":
+                    case "InvoiceFaxToNumber":
                         // 送り状FAX送付が必要のときは入力必須
                         if (this.InvoiceFaxCode.Text == "01" && string.IsNullOrEmpty(varValue?.ToString()))
                         {
@@ -1481,7 +1513,8 @@ namespace u_net
                         // 送り状FAX送付が不要のときは入力を取り消す
                         if (this.InvoiceFaxCode.Text == "02" && !string.IsNullOrEmpty(varValue?.ToString()))
                         {
-                            goto Exit_IsError;
+                            ((TextBox)controlObject).Text = "";
+                            return true;
                         }
                         break;
                     case "請求予定日":
@@ -1495,7 +1528,7 @@ namespace u_net
                             if (!string.IsNullOrEmpty(varValue?.ToString()))
                             {
                                 // 受注納期以前の日付を許可するが、完了承認しないと請求には反映しない
-                                if (!string.IsNullOrEmpty(this.受注納期.Text) && !DateTime.TryParse(this.受注納期.Text, out date1))
+                                if (!string.IsNullOrEmpty(this.受注納期.Text) && DateTime.TryParse(this.受注納期.Text, out date1))
                                 {
                                     if (inputDate < date1)
                                     {
@@ -1657,7 +1690,7 @@ namespace u_net
                     switch (intRes)
                     {
                         case DialogResult.Yes:
-                            
+
                             // 登録処理
                             if (!RegTrans(this.CurrentCode, this.CurrentEdition))
                             {
@@ -1912,9 +1945,8 @@ namespace u_net
                 GetNextControl(コマンド顧客, false).Focus();
             }
 
-            //F_顧客 form = new F_顧客();
-            //form.args = this.顧客コード.text;
-            //form.Show();
+            string param = $" -sv:{CommonConstants.ServerInstanceName} -open:customer," + this.顧客コード.Text;
+            FunctionClass.GetShell(param);
         }
 
         private void コマンド商品_Click(object sender, EventArgs e)
@@ -2021,9 +2053,9 @@ namespace u_net
                     // 在庫の警告を表示する
                     if (CheckWarning(this.CurrentCode, this.CurrentEdition))
                     {
-                        //Form form = new F_シリーズ危険在庫警告();
-                        //form.args = this.CurrentCode + "," + this.CurrentEdition
-                        //form.Show();
+                        F_シリーズ危険在庫警告 form = new F_シリーズ危険在庫警告();
+                        form.args = this.CurrentCode + "," + this.CurrentEdition;
+                        form.Show();
                     }
                 }
                 else
@@ -2315,6 +2347,14 @@ namespace u_net
                     }
                     break;
                 case Keys.Return:
+                    // 複数行入力可能な項目はEnterでフォーカス移動させない
+                    switch (this.ActiveControl.Name)
+                    {
+                        case "備考":
+                        case "改版履歴":
+                        case "ProductionNotice":
+                            return;
+                    }
                     SelectNextControl(ActiveControl, true, true, true, true);
                     break;
                 case Keys.F1:
@@ -2496,6 +2536,8 @@ namespace u_net
 
                     // 日付コントロールに選択した日付を設定
                     受注日.Text = selectedDate;
+                    受注日.Modified = true;
+                    受注日.Focus();
                 }
             }
         }
@@ -2694,6 +2736,8 @@ namespace u_net
 
                     // 日付コントロールに選択した日付を設定
                     受注納期.Text = selectedDate;
+                    受注納期.Modified = true;
+                    受注納期.Focus();
                 }
             }
         }
@@ -2750,6 +2794,8 @@ namespace u_net
 
                     // 日付コントロールに選択した日付を設定
                     出荷予定日.Text = selectedDate;
+                    出荷予定日.Modified = true;
+                    出荷予定日.Focus();
                 }
             }
         }
@@ -2917,6 +2963,27 @@ namespace u_net
             this.Page2.Show();
         }
 
+        private void 発送先1_CheckedChanged(object sender, EventArgs e)
+        {
+            ChangedData(true);
+            SetAddress(this.顧客コード.Text, GetShipNumber());
+            this.発送先名.Focus();
+        }
+
+        private void 発送先2_CheckedChanged(object sender, EventArgs e)
+        {
+            ChangedData(true);
+            SetAddress(this.顧客コード.Text, GetShipNumber());
+            this.発送先名.Focus();
+        }
+
+        private void 発送先3_CheckedChanged(object sender, EventArgs e)
+        {
+            ChangedData(true);
+            SetAddress(this.顧客コード.Text, GetShipNumber());
+            this.発送先名.Focus();
+        }
+
         private void 発送先名_Validating(object sender, CancelEventArgs e)
         {
             TextBox textBox = (TextBox)sender;
@@ -2939,7 +3006,7 @@ namespace u_net
 
         private void 発送先郵便番号_Validating(object sender, CancelEventArgs e)
         {
-            MaskedTextBox textBox = (MaskedTextBox)sender;
+            TextBox textBox = (TextBox)sender;
 
             if (textBox.Modified == false) return;
 
@@ -3362,6 +3429,8 @@ namespace u_net
 
                     // 日付コントロールに選択した日付を設定
                     請求予定日.Text = selectedDate;
+                    請求予定日.Modified = true;
+                    請求予定日.Focus();
                 }
             }
         }

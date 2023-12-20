@@ -48,7 +48,7 @@ namespace MultiRowDesigner
                     // 選択された行がない場合の処理
                     return "";
                 }
-                                
+
             }
         }
 
@@ -109,7 +109,7 @@ namespace MultiRowDesigner
 
                 textBox.DoubleClick -= gcMultiRow1_CellDoubleClick;
                 textBox.DoubleClick += gcMultiRow1_CellDoubleClick;
-                
+
             }
             else if (comboBox != null)
             {
@@ -131,7 +131,7 @@ namespace MultiRowDesigner
                     comboBox.DrawItem += 買掛区分_DrawItem;
                     comboBox.SelectedIndexChanged -= 買掛区分_SelectedIndexChanged;
                     comboBox.SelectedIndexChanged += 買掛区分_SelectedIndexChanged;
-                    
+
                 }
                 else
                 {
@@ -1027,10 +1027,10 @@ namespace MultiRowDesigner
 
         private void gcMultiRow1_CellDoubleClick(object sender, EventArgs e)
         {
-                     
+
             F_カレンダー fm = new F_カレンダー();
             F_発注? parentform = Application.OpenForms.OfType<F_発注>().FirstOrDefault();
-            
+
             switch (gcMultiRow1.CurrentCell.Name)
             {
                 case "部品コード":

@@ -29,6 +29,7 @@ namespace u_net
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(F_発注));
             コマンド終了 = new Button();
             コマンド登録 = new Button();
@@ -110,6 +111,7 @@ namespace u_net
             toolStripStatusLabel2 = new ToolStripStatusLabel();
             入庫状況 = new TextBox();
             発注明細1 = new MultiRowDesigner.発注明細();
+            toolTip1 = new ToolTip(components);
             panel1.SuspendLayout();
             statusStrip1.SuspendLayout();
             SuspendLayout();
@@ -198,6 +200,7 @@ namespace u_net
             コマンド部品.TabIndex = 1010;
             コマンド部品.TabStop = false;
             コマンド部品.Text = "部品参照";
+            toolTip1.SetToolTip(コマンド部品, "選択部品の参照");
             コマンド部品.UseVisualStyleBackColor = true;
             コマンド部品.Click += コマンド部品_Click;
             // 
@@ -214,6 +217,7 @@ namespace u_net
             コマンド送信.TabIndex = 1009;
             コマンド送信.TabStop = false;
             コマンド送信.Text = "送信";
+            toolTip1.SetToolTip(コマンド送信, "発注書のファックス送信");
             コマンド送信.UseVisualStyleBackColor = true;
             コマンド送信.Click += コマンド送信_Click;
             // 
@@ -230,6 +234,7 @@ namespace u_net
             コマンド発注書.TabIndex = 1008;
             コマンド発注書.TabStop = false;
             コマンド発注書.Text = "発注書";
+            toolTip1.SetToolTip(コマンド発注書, "発注書プレビュー");
             コマンド発注書.UseVisualStyleBackColor = true;
             コマンド発注書.Click += コマンド発注書_Click;
             // 
@@ -835,6 +840,7 @@ namespace u_net
             // 在庫管理
             // 
             在庫管理.AutoSize = true;
+            在庫管理.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             在庫管理.Location = new Point(108, 309);
             在庫管理.Name = "在庫管理";
             在庫管理.Size = new Size(15, 14);
@@ -848,6 +854,7 @@ namespace u_net
             // NoCredit
             // 
             NoCredit.AutoSize = true;
+            NoCredit.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             NoCredit.Location = new Point(108, 329);
             NoCredit.Name = "NoCredit";
             NoCredit.Size = new Size(15, 14);
@@ -1065,12 +1072,12 @@ namespace u_net
             // 
             SupplierSendMethodCode.BackColor = Color.White;
             SupplierSendMethodCode.Enabled = false;
-            SupplierSendMethodCode.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            SupplierSendMethodCode.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             SupplierSendMethodCode.ImeMode = ImeMode.NoControl;
             SupplierSendMethodCode.Location = new Point(850, 224);
             SupplierSendMethodCode.Margin = new Padding(3, 2, 3, 2);
             SupplierSendMethodCode.Name = "SupplierSendMethodCode";
-            SupplierSendMethodCode.Size = new Size(52, 20);
+            SupplierSendMethodCode.Size = new Size(52, 19);
             SupplierSendMethodCode.TabIndex = 10108;
             SupplierSendMethodCode.TabStop = false;
             SupplierSendMethodCode.Visible = false;
@@ -1079,12 +1086,12 @@ namespace u_net
             // 
             SupplierSendMethodName.BackColor = Color.White;
             SupplierSendMethodName.Enabled = false;
-            SupplierSendMethodName.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            SupplierSendMethodName.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             SupplierSendMethodName.ImeMode = ImeMode.NoControl;
             SupplierSendMethodName.Location = new Point(913, 224);
             SupplierSendMethodName.Margin = new Padding(3, 2, 3, 2);
             SupplierSendMethodName.Name = "SupplierSendMethodName";
-            SupplierSendMethodName.Size = new Size(104, 20);
+            SupplierSendMethodName.Size = new Size(104, 19);
             SupplierSendMethodName.TabIndex = 10109;
             SupplierSendMethodName.TabStop = false;
             SupplierSendMethodName.Visible = false;
@@ -1093,12 +1100,12 @@ namespace u_net
             // 
             確定日時.BackColor = SystemColors.Control;
             確定日時.Enabled = false;
-            確定日時.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            確定日時.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             確定日時.ImeMode = ImeMode.NoControl;
             確定日時.Location = new Point(836, 165);
             確定日時.Margin = new Padding(3, 2, 3, 2);
             確定日時.Name = "確定日時";
-            確定日時.Size = new Size(138, 20);
+            確定日時.Size = new Size(138, 19);
             確定日時.TabIndex = 10110;
             確定日時.TabStop = false;
             確定日時.Visible = false;
@@ -1107,12 +1114,12 @@ namespace u_net
             // 
             承認日時.BackColor = SystemColors.Control;
             承認日時.Enabled = false;
-            承認日時.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            承認日時.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             承認日時.ImeMode = ImeMode.NoControl;
             承認日時.Location = new Point(836, 191);
             承認日時.Margin = new Padding(3, 2, 3, 2);
             承認日時.Name = "承認日時";
-            承認日時.Size = new Size(44, 20);
+            承認日時.Size = new Size(44, 19);
             承認日時.TabIndex = 10111;
             承認日時.TabStop = false;
             承認日時.Visible = false;
@@ -1121,12 +1128,12 @@ namespace u_net
             // 
             承認者コード.BackColor = SystemColors.Control;
             承認者コード.Enabled = false;
-            承認者コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            承認者コード.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             承認者コード.ImeMode = ImeMode.NoControl;
             承認者コード.Location = new Point(883, 191);
             承認者コード.Margin = new Padding(3, 2, 3, 2);
             承認者コード.Name = "承認者コード";
-            承認者コード.Size = new Size(40, 20);
+            承認者コード.Size = new Size(40, 19);
             承認者コード.TabIndex = 10112;
             承認者コード.TabStop = false;
             承認者コード.Visible = false;
@@ -1135,23 +1142,24 @@ namespace u_net
             // 
             承認者名.BackColor = SystemColors.Control;
             承認者名.Enabled = false;
-            承認者名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            承認者名.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             承認者名.ImeMode = ImeMode.NoControl;
             承認者名.Location = new Point(926, 191);
             承認者名.Margin = new Padding(3, 2, 3, 2);
             承認者名.Name = "承認者名";
-            承認者名.Size = new Size(48, 20);
+            承認者名.Size = new Size(48, 19);
             承認者名.TabIndex = 10113;
             承認者名.TabStop = false;
             承認者名.Visible = false;
             // 
             // テストコマンド
             // 
+            テストコマンド.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             テストコマンド.Location = new Point(906, 304);
             テストコマンド.Margin = new Padding(4);
             テストコマンド.Name = "テストコマンド";
             テストコマンド.RightToLeft = RightToLeft.Yes;
-            テストコマンド.Size = new Size(80, 23);
+            テストコマンド.Size = new Size(92, 23);
             テストコマンド.TabIndex = 22;
             テストコマンド.Text = "承認者テスト";
             テストコマンド.UseVisualStyleBackColor = true;
@@ -1162,12 +1170,12 @@ namespace u_net
             // 
             無効日時.BackColor = SystemColors.Control;
             無効日時.Enabled = false;
-            無効日時.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            無効日時.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             無効日時.ImeMode = ImeMode.NoControl;
             無効日時.Location = new Point(836, 255);
             無効日時.Margin = new Padding(3, 2, 3, 2);
             無効日時.Name = "無効日時";
-            無効日時.Size = new Size(138, 20);
+            無効日時.Size = new Size(138, 19);
             無効日時.TabIndex = 10114;
             無効日時.TabStop = false;
             無効日時.Visible = false;
@@ -1176,12 +1184,12 @@ namespace u_net
             // 
             無効者コード.BackColor = SystemColors.Control;
             無効者コード.Enabled = false;
-            無効者コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            無効者コード.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             無効者コード.ImeMode = ImeMode.NoControl;
             無効者コード.Location = new Point(836, 279);
             無効者コード.Margin = new Padding(3, 2, 3, 2);
             無効者コード.Name = "無効者コード";
-            無効者コード.Size = new Size(44, 20);
+            無効者コード.Size = new Size(44, 19);
             無効者コード.TabIndex = 10115;
             無効者コード.TabStop = false;
             無効者コード.Visible = false;
@@ -1189,17 +1197,18 @@ namespace u_net
             // statusStrip1
             // 
             statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1 });
-            statusStrip1.Location = new Point(0, 696);
+            statusStrip1.Location = new Point(0, 601);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Padding = new Padding(1, 0, 19, 0);
-            statusStrip1.Size = new Size(1515, 25);
+            statusStrip1.Size = new Size(1155, 22);
             statusStrip1.TabIndex = 10117;
             statusStrip1.Text = "statusStrip1";
             // 
             // toolStripStatusLabel1
             // 
+            toolStripStatusLabel1.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            toolStripStatusLabel1.Size = new Size(111, 20);
+            toolStripStatusLabel1.Size = new Size(89, 17);
             toolStripStatusLabel1.Text = "各種項目の説明";
             // 
             // toolStripStatusLabel2
@@ -1212,30 +1221,35 @@ namespace u_net
             // 
             入庫状況.BackColor = SystemColors.Window;
             入庫状況.Enabled = false;
-            入庫状況.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            入庫状況.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             入庫状況.ImeMode = ImeMode.NoControl;
             入庫状況.Location = new Point(1004, 144);
             入庫状況.Margin = new Padding(3, 2, 3, 2);
             入庫状況.Name = "入庫状況";
             入庫状況.ReadOnly = true;
-            入庫状況.Size = new Size(20, 20);
+            入庫状況.Size = new Size(20, 19);
             入庫状況.TabIndex = 10118;
             入庫状況.TabStop = false;
             // 
             // 発注明細1
             // 
             発注明細1.AutoScroll = true;
-            発注明細1.Location = new Point(0, 349);
+            発注明細1.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            発注明細1.Location = new Point(10, 351);
             発注明細1.Margin = new Padding(4, 5, 4, 5);
             発注明細1.Name = "発注明細1";
-            発注明細1.Size = new Size(1515, 336);
+            発注明細1.Size = new Size(1141, 248);
             発注明細1.TabIndex = 10119;
             発注明細1.Resize += Form_Resize;
+            // 
+            // toolTip1
+            // 
+            toolTip1.ToolTipTitle = "仕入先担当者名";
             // 
             // F_発注
             // 
             BackColor = SystemColors.Control;
-            ClientSize = new Size(1515, 721);
+            ClientSize = new Size(1155, 623);
             Controls.Add(発注明細1);
             Controls.Add(入庫状況);
             Controls.Add(statusStrip1);
@@ -1313,6 +1327,7 @@ namespace u_net
             Controls.Add(発注コードラベル);
             Controls.Add(版数_ラベル);
             Controls.Add(panel1);
+            Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             Icon = (Icon)resources.GetObject("$this.Icon");
             ImeMode = ImeMode.Off;
             KeyPreview = true;
@@ -1419,6 +1434,7 @@ namespace u_net
         internal TextBox 入庫状況;
         //internal MultiRowDesigner.発注明細 発注明細1;
         private MultiRowDesigner.発注明細 発注明細1;
+        private ToolTip toolTip1;
     }
 }
 

@@ -35,11 +35,9 @@
             // 
             // gcMultiRow1
             // 
-            gcMultiRow1.AllowUserToReverseSelect = true;
             gcMultiRow1.AllowUserToZoom = false;
             gcMultiRow1.BackColor = Color.White;
             gcMultiRow1.EditMode = GrapeCity.Win.MultiRow.EditMode.EditOnEnter;
-            gcMultiRow1.HorizontalScrollBarMode = GrapeCity.Win.MultiRow.ScrollBarMode.Automatic;
             gcMultiRow1.Location = new Point(0, 0);
             gcMultiRow1.Name = "gcMultiRow1";
             gcMultiRow1.Size = new Size(905, 300);
@@ -48,6 +46,7 @@
             gcMultiRow1.Text = "gcMultiRow1";
             gcMultiRow1.CellValidating += gcMultiRow1_CellValidating;
             gcMultiRow1.CellEnter += gcMultiRow1_CellEnter;
+            gcMultiRow1.DefaultValuesNeeded += gcMultiRow1_DefaultValuesNeeded;
             gcMultiRow1.EditingControlShowing += gcMultiRow1_EditingControlShowing;
             gcMultiRow1.CellContentButtonClick += gcMultiRow1_CellContentButtonClick;
             // 
