@@ -913,7 +913,7 @@ namespace u_net
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "F_入金";
-            Text = " ";
+            Text = "入金";
             FormClosing += Form_Unload;
             Load += Form_Load;
             KeyDown += Form_KeyDown;
