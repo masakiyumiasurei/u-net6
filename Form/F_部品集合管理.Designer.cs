@@ -325,6 +325,8 @@
             Margin = new Padding(3, 2, 3, 2);
             Name = "F_部品集合管理";
             Text = "部品集合管理";
+            FormClosed += F_部品集合管理_FormClosed;
+            Load += Form_Load;
             KeyDown += Form_KeyDown;
             Resize += Form_Resize;
             panel1.ResumeLayout(false);

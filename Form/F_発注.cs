@@ -29,6 +29,7 @@ using MultiRowDesigner;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Diagnostics.Eventing.Reader;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace u_net
 {
@@ -50,7 +51,7 @@ namespace u_net
         public bool blnNewParts = true;
         public int intWindowHeight = 0;
         public int intWindowWidth = 0;
-
+        public int buttonCnt = 0; //何故か明細のボタンクリックで2回買掛区分編集フォームが開くため
         public F_発注()
         {
             this.Text = "発注";       // ウィンドウタイトルを設定
@@ -1108,7 +1109,7 @@ namespace u_net
                 // 表示データを登録する
                 if (SaveData(this.CurrentCode, this.CurrentEdition))
                 {
-                    ChangedData(false);
+
                     blnNewParts = false;
 
                     // 新規モードのときは修正モードへ移行する
@@ -1132,7 +1133,7 @@ namespace u_net
                 発注明細1.Detail.AllowUserToDeleteRows = !this.IsDecided;
                 発注明細1.Detail.ReadOnly = this.IsDecided;
                 発注明細1.Detail.AllowUserToAddRows = !this.IsDecided;
-
+                ChangedData(false);
                 チェック();
 
             Bye_コマンド確定_Click:
@@ -2002,7 +2003,6 @@ namespace u_net
         {
             try
             {
-                object varParm = null; // varParm の型が VBA の Variant に相当するものになる
 
                 switch (controlName)
                 {
@@ -2096,13 +2096,13 @@ namespace u_net
                     case "発注者コード":
                         Connect();
                         string sql = $"SELECT 氏名  FROM M社員 WHERE 社員コード= {発注者コード.Text}";
-                        発注版数.Text = OriginalClass.GetScalar<string>(cn, sql);
+                        発注者名.Text = OriginalClass.GetScalar<string>(cn, sql);
                         cn.Close();
 
                         break;
 
                     case "仕入先コード":
-                        SetSupplier(varParm.ToString());
+                        SetSupplier(仕入先コード.Text);
                         break;
 
                     case "在庫管理":
@@ -2261,15 +2261,15 @@ namespace u_net
                 ComboBox comboBox = sender as ComboBox;
                 if (comboBox != null)
                 {
-                    string strCode = this.ActiveControl.Text;
+                    string strCode = this.発注コード.Text;
                     if (string.IsNullOrEmpty(strCode))
                         return;
 
                     strCode = FunctionClass.FormatCode(CH_ORDER, strCode);
 
-                    if (strCode != this.ActiveControl.Text)
+                    if (strCode != this.発注コード.Text)
                     {
-                        this.ActiveControl.Text = strCode;
+                        this.発注コード.Text = strCode;
                     }
                 }
             }
@@ -2285,26 +2285,7 @@ namespace u_net
             toolStripStatusLabel1.Text = "各種項目の説明";
         }
 
-        private void 発注日_Enter(object sender, EventArgs e)
-        {
-            toolStripStatusLabel1.Text = "■[space]キーでカレンダーを参照できます。　■未来の日付は入力できません。";
-        }
 
-        private void 発注日_Leave(object sender, EventArgs e)
-        {
-            toolStripStatusLabel1.Text = "各種項目の説明";
-        }
-
-        private void 発注日_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            switch (e.KeyChar)
-            {
-                case (char)Keys.Space:
-                    発注日選択ボタン_Click(sender, e);
-                    break;
-            }
-
-        }
 
         private void 仕入先コード_Enter(object sender, EventArgs e)
         {
@@ -2523,6 +2504,30 @@ namespace u_net
             int listCount = 発注者コード.Items.Count;
         }
 
+        string tmpdate = "";
+        private void 発注日_Enter(object sender, EventArgs e)
+        {
+            tmpdate = 発注日.Text;
+            toolStripStatusLabel1.Text = "■[space]キーでカレンダーを参照できます。　■未来の日付は入力できません。";
+        }
+
+        private void 発注日_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "各種項目の説明";
+        }
+
+        private void 発注日_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            switch (e.KeyChar)
+            {
+                case (char)Keys.Space:
+                    e.Handled = true;
+                    発注日選択ボタン_Click(sender, e);
+                    break;
+            }
+
+        }
+
         private void 発注日_Validated(object sender, EventArgs e)
         {
             UpdatedControl("発注日");
@@ -2530,7 +2535,14 @@ namespace u_net
 
         private void 発注日_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (IsError(sender as Control, false) == true) e.Cancel = true;
+            if (発注日.Text != tmpdate)
+            {
+                if (IsError(sender as Control, false) == true)
+                {                
+                    発注日.Text = tmpdate;
+                    e.Cancel = true; // 逃がさない
+                }
+            }
         }
 
         private void 発注日_TextChanged(object sender, EventArgs e)

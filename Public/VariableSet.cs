@@ -155,6 +155,7 @@ namespace u_net.Public
                 else if (childControl is ComboBox comboBox)
                 {
                     comboBox.SelectedIndex = -1; // ComboBoxの選択をクリア
+                    comboBox.Text= null;
                 }
                 else if (childControl is CheckBox checkBox)
                 {
