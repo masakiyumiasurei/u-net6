@@ -291,7 +291,6 @@ namespace u_net
             this.MinimizeBox = false;
             this.Name = "F_製品管理_汎用キー抽出";
             this.Text = " ";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form_Unload);
             this.Load += new System.EventHandler(this.Form_Load);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();

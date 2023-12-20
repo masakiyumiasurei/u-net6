@@ -549,7 +549,8 @@ namespace u_net
 
                     if (shiftOn)
                     {
-                        //DoCmd.OpenForm("製品管理_汎用キー抽出", acNormal);
+                        F_製品管理_汎用キー抽出 targetform = new F_製品管理_汎用キー抽出();
+                        targetform.ShowDialog();
                     }
                     else
                     {
@@ -635,7 +636,9 @@ namespace u_net
            
                     if (!shiftOn)
                     {
-                        //DoCmd.OpenForm("製品材料費参照", acNormal, , , , , CurrentCode + "," + CurrentEdition);
+                        F_製品材料費参照 targetform = new F_製品材料費参照();
+                        targetform.args = CurrentCode + "," + CurrentEdition;
+                        targetform.ShowDialog();
                     }
 
                     break;
