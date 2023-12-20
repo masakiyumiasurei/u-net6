@@ -97,7 +97,7 @@
             this.入金明細番号ボタン.Name = "入金明細番号ボタン";
             this.入金明細番号ボタン.Size = new System.Drawing.Size(27, 21);
             cellStyle9.BackColor = System.Drawing.SystemColors.Control;
-            cellStyle9.Font = new System.Drawing.Font("BIZ UDPゴシック", 8F);
+            cellStyle9.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
             cellStyle9.ImeMode = System.Windows.Forms.ImeMode.Off;
             cellStyle9.SelectionForeColor = System.Drawing.SystemColors.ControlText;
             cellStyle9.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
@@ -207,7 +207,7 @@
             cellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(204)))), ((int)(((byte)(255)))));
             border1.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
             cellStyle1.Border = border1;
-            cellStyle1.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
+            cellStyle1.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
             this.明細番号.Style = cellStyle1;
             this.明細番号.TabIndex = 0;
             this.明細番号.TabStop = false;
@@ -234,7 +234,7 @@
             this.領収証出力コード.Location = new System.Drawing.Point(47, 0);
             this.領収証出力コード.Name = "領収証出力コード";
             this.領収証出力コード.Size = new System.Drawing.Size(82, 17);
-            cellStyle3.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
+            cellStyle3.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
             cellStyle3.SelectionForeColor = System.Drawing.Color.Black;
             this.領収証出力コード.Style = cellStyle3;
             this.領収証出力コード.TabIndex = 1;
@@ -245,7 +245,7 @@
             this.入金区分コード.Location = new System.Drawing.Point(129, 0);
             this.入金区分コード.Name = "入金区分コード";
             this.入金区分コード.Size = new System.Drawing.Size(102, 17);
-            cellStyle4.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
+            cellStyle4.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
             cellStyle4.SelectionForeColor = System.Drawing.Color.Black;
             this.入金区分コード.Style = cellStyle4;
             this.入金区分コード.TabIndex = 2;
@@ -256,7 +256,7 @@
             this.備考コード.Location = new System.Drawing.Point(231, 0);
             this.備考コード.Name = "備考コード";
             this.備考コード.Size = new System.Drawing.Size(68, 17);
-            cellStyle5.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
+            cellStyle5.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
             cellStyle5.SelectionForeColor = System.Drawing.Color.Black;
             this.備考コード.Style = cellStyle5;
             this.備考コード.TabIndex = 3;
@@ -269,7 +269,7 @@
             this.備考.Size = new System.Drawing.Size(296, 17);
             border2.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
             cellStyle6.Border = border2;
-            cellStyle6.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
+            cellStyle6.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
             cellStyle6.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
             this.備考.Style = cellStyle6;
             this.備考.TabIndex = 4;
@@ -282,7 +282,7 @@
             this.入金金額.Size = new System.Drawing.Size(112, 17);
             border3.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
             cellStyle7.Border = border3;
-            cellStyle7.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
+            cellStyle7.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
             cellStyle7.Format = "N0";
             cellStyle7.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.入金金額.Style = cellStyle7;
