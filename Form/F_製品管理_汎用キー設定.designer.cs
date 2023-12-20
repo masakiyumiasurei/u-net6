@@ -244,16 +244,17 @@ namespace u_net
             // 
             // 汎用キー1
             // 
-            汎用キー1.BackColor = Color.White;
-            汎用キー1.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            汎用キー1.ImeMode = ImeMode.NoControl;
-            汎用キー1.Location = new Point(109, 17);
-            汎用キー1.Margin = new Padding(3, 2, 3, 2);
-            汎用キー1.Name = "汎用キー1";
-            汎用キー1.Size = new Size(246, 20);
-            汎用キー1.TabIndex = 2;
-            汎用キー1.Enter += 汎用キー1_Enter;
-            汎用キー1.Leave += 汎用キー1_Leave;
+            this.汎用キー1.BackColor = System.Drawing.Color.White;
+            this.汎用キー1.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.汎用キー1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.汎用キー1.Location = new System.Drawing.Point(109, 17);
+            this.汎用キー1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.汎用キー1.Name = "汎用キー1";
+            this.汎用キー1.Size = new System.Drawing.Size(246, 20);
+            this.汎用キー1.TabIndex = 2;
+            this.汎用キー1.TextChanged += new System.EventHandler(this.汎用キー1_TextChanged);
+            this.汎用キー1.Enter += new System.EventHandler(this.汎用キー1_Enter);
+            this.汎用キー1.Leave += new System.EventHandler(this.汎用キー1_Leave);
             // 
             // 汎用キー1_ラベル
             // 
@@ -343,30 +344,30 @@ namespace u_net
             // 
             // F_製品管理_汎用キー設定
             // 
-            BackColor = SystemColors.Control;
-            ClientSize = new Size(392, 233);
-            Controls.Add(版数);
-            Controls.Add(版数_ラベル);
-            Controls.Add(コード);
-            Controls.Add(コード_ラベル);
-            Controls.Add(OKボタン);
-            Controls.Add(groupBox1);
-            Controls.Add(キャンセルボタン);
-            Controls.Add(statusStrip1);
-            ImeMode = ImeMode.Off;
-            KeyPreview = true;
-            MaximizeBox = false;
-            MinimizeBox = false;
-            Name = "F_製品管理_汎用キー設定";
-            Text = " ";
-            FormClosing += Form_Unload;
-            Load += Form_Load;
-            statusStrip1.ResumeLayout(false);
-            statusStrip1.PerformLayout();
-            groupBox1.ResumeLayout(false);
-            groupBox1.PerformLayout();
-            ResumeLayout(false);
-            PerformLayout();
+            this.BackColor = System.Drawing.SystemColors.Control;
+            this.ClientSize = new System.Drawing.Size(392, 233);
+            this.Controls.Add(this.版数);
+            this.Controls.Add(this.版数_ラベル);
+            this.Controls.Add(this.コード);
+            this.Controls.Add(this.コード_ラベル);
+            this.Controls.Add(this.OKボタン);
+            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.キャンセルボタン);
+            this.Controls.Add(this.statusStrip1);
+            this.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.KeyPreview = true;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.Name = "F_製品管理_汎用キー設定";
+            this.Text = " ";
+            this.Load += new System.EventHandler(this.Form_Load);
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         #endregion

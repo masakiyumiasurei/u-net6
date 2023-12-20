@@ -1528,13 +1528,13 @@ namespace u_net
             {
                 if (e.KeyCode == Keys.Return)
                 {
-                    string strCode = ActiveControl.Text;
+                    string strCode = 発注コード.Text;
                     if (strCode == "") return;
                     strCode = FunctionClass.FormatCode("ORD", strCode);
-                    if (strCode != (ActiveControl as dynamic).Value)
+                    if (strCode != 発注コード.Text)
                     {
                         // Text プロパティで値を設定後、キーコードはリセットしておく
-                        ActiveControl.Text = strCode;
+                        発注コード.Text = strCode;
                         e.SuppressKeyPress = true;
                     }
                 }
@@ -1581,12 +1581,12 @@ namespace u_net
             switch (e.KeyCode)
             {
                 case Keys.Return:
-                    strCode = ActiveControl.Text;
+                    strCode = 入庫コード.Text;
                     if (string.IsNullOrEmpty(strCode))
                         return;
 
                     strCode = FunctionClass.FormatCode("STR", strCode);
-                    if (strCode != Nz(ActiveControl.Text))
+                    if (strCode != Nz(入庫コード.Text))
                     {
                         入庫コード.Text = strCode;
                     }
