@@ -28,225 +28,224 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.表示件数 = new System.Windows.Forms.TextBox();
-            this.コマンドキャンセル = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.コマンド確定 = new System.Windows.Forms.Button();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.ユニット指定 = new System.Windows.Forms.TabControl();
-            this.ページ型番指定 = new System.Windows.Forms.TabPage();
-            this.検索ボタン = new System.Windows.Forms.Button();
-            this.型番文字列 = new System.Windows.Forms.TextBox();
-            this.型番文字列_ラベル = new System.Windows.Forms.Label();
-            this.ページ追加条件 = new System.Windows.Forms.TabPage();
-            this.RoHS対応 = new System.Windows.Forms.ComboBox();
-            this.RoHS対応_ラベル = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.注釈2_ラベル = new System.Windows.Forms.Label();
-            this.statusStrip1.SuspendLayout();
-            this.ユニット指定.SuspendLayout();
-            this.ページ型番指定.SuspendLayout();
-            this.ページ追加条件.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            this.SuspendLayout();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            表示件数 = new TextBox();
+            コマンドキャンセル = new Button();
+            label1 = new Label();
+            コマンド確定 = new Button();
+            statusStrip1 = new StatusStrip();
+            toolStripStatusLabel1 = new ToolStripStatusLabel();
+            ユニット指定 = new TabControl();
+            ページ型番指定 = new TabPage();
+            検索ボタン = new Button();
+            型番文字列 = new TextBox();
+            型番文字列_ラベル = new Label();
+            ページ追加条件 = new TabPage();
+            RoHS対応 = new ComboBox();
+            RoHS対応_ラベル = new Label();
+            dataGridView1 = new DataGridView();
+            注釈2_ラベル = new Label();
+            statusStrip1.SuspendLayout();
+            ユニット指定.SuspendLayout();
+            ページ型番指定.SuspendLayout();
+            ページ追加条件.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            SuspendLayout();
             // 
             // 表示件数
             // 
-            this.表示件数.BackColor = System.Drawing.SystemColors.Window;
-            this.表示件数.Enabled = false;
-            this.表示件数.Font = new System.Drawing.Font("BIZ UDゴシック", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.表示件数.Location = new System.Drawing.Point(85, 387);
-            this.表示件数.Name = "表示件数";
-            this.表示件数.ReadOnly = true;
-            this.表示件数.Size = new System.Drawing.Size(100, 21);
-            this.表示件数.TabIndex = 0;
-            this.表示件数.TabStop = false;
+            表示件数.BackColor = SystemColors.Window;
+            表示件数.Enabled = false;
+            表示件数.Font = new Font("BIZ UDゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            表示件数.Location = new Point(85, 387);
+            表示件数.Name = "表示件数";
+            表示件数.ReadOnly = true;
+            表示件数.Size = new Size(100, 21);
+            表示件数.TabIndex = 0;
+            表示件数.TabStop = false;
             // 
             // コマンドキャンセル
             // 
-            this.コマンドキャンセル.Font = new System.Drawing.Font("BIZ UDゴシック", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.コマンドキャンセル.Location = new System.Drawing.Point(512, 420);
-            this.コマンドキャンセル.Name = "コマンドキャンセル";
-            this.コマンドキャンセル.Size = new System.Drawing.Size(102, 24);
-            this.コマンドキャンセル.TabIndex = 4;
-            this.コマンドキャンセル.Text = "キャンセル";
-            this.コマンドキャンセル.Click += new System.EventHandler(this.キャンセルボタン_Click);
+            コマンドキャンセル.Font = new Font("BIZ UDゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            コマンドキャンセル.Location = new Point(512, 420);
+            コマンドキャンセル.Name = "コマンドキャンセル";
+            コマンドキャンセル.Size = new Size(102, 24);
+            コマンドキャンセル.TabIndex = 4;
+            コマンドキャンセル.Text = "キャンセル";
+            コマンドキャンセル.Click += キャンセルボタン_Click;
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("BIZ UDゴシック", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(19, 390);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(63, 14);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "表示件数";
+            label1.AutoSize = true;
+            label1.Font = new Font("BIZ UDゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.Location = new Point(19, 390);
+            label1.Name = "label1";
+            label1.Size = new Size(63, 14);
+            label1.TabIndex = 2;
+            label1.Text = "表示件数";
             // 
             // コマンド確定
             // 
-            this.コマンド確定.Font = new System.Drawing.Font("BIZ UDゴシック", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.コマンド確定.Location = new System.Drawing.Point(392, 420);
-            this.コマンド確定.Name = "コマンド確定";
-            this.コマンド確定.Size = new System.Drawing.Size(102, 24);
-            this.コマンド確定.TabIndex = 3;
-            this.コマンド確定.Text = "確 定";
-            this.コマンド確定.Click += new System.EventHandler(this.コマンド確定_Click);
+            コマンド確定.Font = new Font("BIZ UDゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            コマンド確定.Location = new Point(392, 420);
+            コマンド確定.Name = "コマンド確定";
+            コマンド確定.Size = new Size(102, 24);
+            コマンド確定.TabIndex = 3;
+            コマンド確定.Text = "確 定";
+            コマンド確定.Click += コマンド確定_Click;
             // 
             // statusStrip1
             // 
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel1});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 453);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 19, 0);
-            this.statusStrip1.Size = new System.Drawing.Size(635, 22);
-            this.statusStrip1.TabIndex = 111;
-            this.statusStrip1.Text = "statusStrip1";
+            statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1 });
+            statusStrip1.Location = new Point(0, 453);
+            statusStrip1.Name = "statusStrip1";
+            statusStrip1.Padding = new Padding(1, 0, 19, 0);
+            statusStrip1.Size = new Size(635, 22);
+            statusStrip1.TabIndex = 111;
+            statusStrip1.Text = "statusStrip1";
             // 
             // toolStripStatusLabel1
             // 
-            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(89, 17);
-            this.toolStripStatusLabel1.Text = "各種項目の説明";
+            toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            toolStripStatusLabel1.Size = new Size(89, 17);
+            toolStripStatusLabel1.Text = "各種項目の説明";
             // 
             // ユニット指定
             // 
-            this.ユニット指定.Controls.Add(this.ページ型番指定);
-            this.ユニット指定.Controls.Add(this.ページ追加条件);
-            this.ユニット指定.Location = new System.Drawing.Point(12, 12);
-            this.ユニット指定.Name = "ユニット指定";
-            this.ユニット指定.SelectedIndex = 0;
-            this.ユニット指定.Size = new System.Drawing.Size(618, 70);
-            this.ユニット指定.TabIndex = 112;
-            this.ユニット指定.SelectedIndexChanged += new System.EventHandler(this.ユニット指定_SelectedIndexChanged);
+            ユニット指定.Controls.Add(ページ型番指定);
+            ユニット指定.Controls.Add(ページ追加条件);
+            ユニット指定.Location = new Point(12, 12);
+            ユニット指定.Name = "ユニット指定";
+            ユニット指定.SelectedIndex = 0;
+            ユニット指定.Size = new Size(618, 70);
+            ユニット指定.TabIndex = 112;
+            ユニット指定.SelectedIndexChanged += ユニット指定_SelectedIndexChanged;
             // 
             // ページ型番指定
             // 
-            this.ページ型番指定.Controls.Add(this.検索ボタン);
-            this.ページ型番指定.Controls.Add(this.型番文字列);
-            this.ページ型番指定.Controls.Add(this.型番文字列_ラベル);
-            this.ページ型番指定.Location = new System.Drawing.Point(4, 24);
-            this.ページ型番指定.Name = "ページ型番指定";
-            this.ページ型番指定.Padding = new System.Windows.Forms.Padding(3);
-            this.ページ型番指定.Size = new System.Drawing.Size(610, 42);
-            this.ページ型番指定.TabIndex = 1;
-            this.ページ型番指定.Text = "型番指定";
-            this.ページ型番指定.UseVisualStyleBackColor = true;
+            ページ型番指定.Controls.Add(検索ボタン);
+            ページ型番指定.Controls.Add(型番文字列);
+            ページ型番指定.Controls.Add(型番文字列_ラベル);
+            ページ型番指定.Location = new Point(4, 24);
+            ページ型番指定.Name = "ページ型番指定";
+            ページ型番指定.Padding = new Padding(3);
+            ページ型番指定.Size = new Size(610, 42);
+            ページ型番指定.TabIndex = 1;
+            ページ型番指定.Text = "型番指定";
+            ページ型番指定.UseVisualStyleBackColor = true;
             // 
             // 検索ボタン
             // 
-            this.検索ボタン.Font = new System.Drawing.Font("BIZ UDゴシック", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.検索ボタン.Location = new System.Drawing.Point(460, 11);
-            this.検索ボタン.Name = "検索ボタン";
-            this.検索ボタン.Size = new System.Drawing.Size(71, 21);
-            this.検索ボタン.TabIndex = 3;
-            this.検索ボタン.Text = "検索(&S)";
-            this.検索ボタン.Click += new System.EventHandler(this.検索ボタン_Click);
+            検索ボタン.Font = new Font("BIZ UDゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            検索ボタン.Location = new Point(460, 11);
+            検索ボタン.Name = "検索ボタン";
+            検索ボタン.Size = new Size(71, 21);
+            検索ボタン.TabIndex = 3;
+            検索ボタン.Text = "検索(&S)";
+            検索ボタン.Click += 検索ボタン_Click;
             // 
             // 型番文字列
             // 
-            this.型番文字列.BackColor = System.Drawing.SystemColors.Window;
-            this.型番文字列.Font = new System.Drawing.Font("BIZ UDゴシック", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.型番文字列.Location = new System.Drawing.Point(119, 11);
-            this.型番文字列.Name = "型番文字列";
-            this.型番文字列.Size = new System.Drawing.Size(335, 21);
-            this.型番文字列.TabIndex = 1;
-            this.型番文字列.KeyDown += new System.Windows.Forms.KeyEventHandler(this.型番文字列_KeyDown);
+            型番文字列.BackColor = SystemColors.Window;
+            型番文字列.Font = new Font("BIZ UDゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            型番文字列.Location = new Point(119, 11);
+            型番文字列.Name = "型番文字列";
+            型番文字列.Size = new Size(335, 21);
+            型番文字列.TabIndex = 1;
+            型番文字列.KeyDown += 型番文字列_KeyDown;
             // 
             // 型番文字列_ラベル
             // 
-            this.型番文字列_ラベル.Font = new System.Drawing.Font("BIZ UDゴシック", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.型番文字列_ラベル.Location = new System.Drawing.Point(13, 14);
-            this.型番文字列_ラベル.Name = "型番文字列_ラベル";
-            this.型番文字列_ラベル.Size = new System.Drawing.Size(100, 17);
-            this.型番文字列_ラベル.TabIndex = 1;
-            this.型番文字列_ラベル.Text = "型番文字列(&M)";
+            型番文字列_ラベル.Font = new Font("BIZ UDゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            型番文字列_ラベル.Location = new Point(13, 14);
+            型番文字列_ラベル.Name = "型番文字列_ラベル";
+            型番文字列_ラベル.Size = new Size(100, 17);
+            型番文字列_ラベル.TabIndex = 1;
+            型番文字列_ラベル.Text = "型番文字列(&M)";
             // 
             // ページ追加条件
             // 
-            this.ページ追加条件.Controls.Add(this.RoHS対応);
-            this.ページ追加条件.Controls.Add(this.RoHS対応_ラベル);
-            this.ページ追加条件.Location = new System.Drawing.Point(4, 24);
-            this.ページ追加条件.Name = "ページ追加条件";
-            this.ページ追加条件.Padding = new System.Windows.Forms.Padding(3);
-            this.ページ追加条件.Size = new System.Drawing.Size(610, 42);
-            this.ページ追加条件.TabIndex = 0;
-            this.ページ追加条件.Text = "追加条件";
-            this.ページ追加条件.UseVisualStyleBackColor = true;
+            ページ追加条件.Controls.Add(RoHS対応);
+            ページ追加条件.Controls.Add(RoHS対応_ラベル);
+            ページ追加条件.Location = new Point(4, 24);
+            ページ追加条件.Name = "ページ追加条件";
+            ページ追加条件.Padding = new Padding(3);
+            ページ追加条件.Size = new Size(610, 42);
+            ページ追加条件.TabIndex = 0;
+            ページ追加条件.Text = "追加条件";
+            ページ追加条件.UseVisualStyleBackColor = true;
             // 
             // RoHS対応
             // 
-            this.RoHS対応.DropDownHeight = 225;
-            this.RoHS対応.Font = new System.Drawing.Font("BIZ UDゴシック", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.RoHS対応.FormattingEnabled = true;
-            this.RoHS対応.IntegralHeight = false;
-            this.RoHS対応.Location = new System.Drawing.Point(104, 11);
-            this.RoHS対応.Name = "RoHS対応";
-            this.RoHS対応.Size = new System.Drawing.Size(136, 21);
-            this.RoHS対応.TabIndex = 2;
-            this.RoHS対応.SelectedIndexChanged += new System.EventHandler(this.RoHS対応_SelectedIndexChanged);
-            this.RoHS対応.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RoHS対応_KeyDown);
+            RoHS対応.DropDownHeight = 225;
+            RoHS対応.Font = new Font("BIZ UDゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            RoHS対応.FormattingEnabled = true;
+            RoHS対応.IntegralHeight = false;
+            RoHS対応.Location = new Point(104, 11);
+            RoHS対応.Name = "RoHS対応";
+            RoHS対応.Size = new Size(136, 21);
+            RoHS対応.TabIndex = 2;
+            RoHS対応.SelectedIndexChanged += RoHS対応_SelectedIndexChanged;
+            RoHS対応.KeyDown += RoHS対応_KeyDown;
             // 
             // RoHS対応_ラベル
             // 
-            this.RoHS対応_ラベル.Font = new System.Drawing.Font("BIZ UDゴシック", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.RoHS対応_ラベル.Location = new System.Drawing.Point(13, 14);
-            this.RoHS対応_ラベル.Name = "RoHS対応_ラベル";
-            this.RoHS対応_ラベル.Size = new System.Drawing.Size(88, 17);
-            this.RoHS対応_ラベル.TabIndex = 1;
-            this.RoHS対応_ラベル.Text = "RoHS対応(&R)";
+            RoHS対応_ラベル.Font = new Font("BIZ UDゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            RoHS対応_ラベル.Location = new Point(13, 14);
+            RoHS対応_ラベル.Name = "RoHS対応_ラベル";
+            RoHS対応_ラベル.Size = new Size(88, 17);
+            RoHS対応_ラベル.TabIndex = 1;
+            RoHS対応_ラベル.Text = "RoHS対応(&R)";
             // 
             // dataGridView1
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(17, 85);
-            this.dataGridView1.Name = "dataGridView1";
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Location = new Point(17, 85);
+            dataGridView1.Name = "dataGridView1";
             dataGridViewCellStyle1.Format = "N2";
             dataGridViewCellStyle1.NullValue = null;
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.dataGridView1.RowTemplate.Height = 25;
-            this.dataGridView1.Size = new System.Drawing.Size(610, 293);
-            this.dataGridView1.TabIndex = 113;
-            this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
-            this.dataGridView1.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.DataGridView1_CellPainting);
-            this.dataGridView1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataGridView1_KeyDown);
+            dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridView1.RowTemplate.Height = 25;
+            dataGridView1.Size = new Size(610, 293);
+            dataGridView1.TabIndex = 113;
+            dataGridView1.CellDoubleClick += dataGridView1_CellDoubleClick;
+            dataGridView1.CellPainting += DataGridView1_CellPainting;
+            dataGridView1.KeyDown += dataGridView1_KeyDown;
             // 
             // 注釈2_ラベル
             // 
-            this.注釈2_ラベル.Font = new System.Drawing.Font("BIZ UDゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.注釈2_ラベル.Location = new System.Drawing.Point(19, 422);
-            this.注釈2_ラベル.Name = "注釈2_ラベル";
-            this.注釈2_ラベル.Size = new System.Drawing.Size(348, 28);
-            this.注釈2_ラベル.TabIndex = 115;
-            this.注釈2_ラベル.Text = "※承認されていないユニットは選択できません。";
+            注釈2_ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            注釈2_ラベル.Location = new Point(19, 422);
+            注釈2_ラベル.Name = "注釈2_ラベル";
+            注釈2_ラベル.Size = new Size(348, 28);
+            注釈2_ラベル.TabIndex = 115;
+            注釈2_ラベル.Text = "※承認されていないユニットは選択できません。";
             // 
             // F_ユニット選択
             // 
-            this.ClientSize = new System.Drawing.Size(635, 475);
-            this.Controls.Add(this.注釈2_ラベル);
-            this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.ユニット指定);
-            this.Controls.Add(this.statusStrip1);
-            this.Controls.Add(this.コマンド確定);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.コマンドキャンセル);
-            this.Controls.Add(this.表示件数);
-            this.Name = "F_ユニット選択";
-            this.Load += new System.EventHandler(this.Form_Load);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.F_ユニット選択_KeyDown);
-            this.statusStrip1.ResumeLayout(false);
-            this.statusStrip1.PerformLayout();
-            this.ユニット指定.ResumeLayout(false);
-            this.ページ型番指定.ResumeLayout(false);
-            this.ページ型番指定.PerformLayout();
-            this.ページ追加条件.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
-    }
+            ClientSize = new Size(635, 475);
+            Controls.Add(注釈2_ラベル);
+            Controls.Add(dataGridView1);
+            Controls.Add(ユニット指定);
+            Controls.Add(statusStrip1);
+            Controls.Add(コマンド確定);
+            Controls.Add(label1);
+            Controls.Add(コマンドキャンセル);
+            Controls.Add(表示件数);
+            Name = "F_ユニット選択";
+            Text = "ユニット選択";
+            Load += Form_Load;
+            KeyDown += F_ユニット選択_KeyDown;
+            statusStrip1.ResumeLayout(false);
+            statusStrip1.PerformLayout();
+            ユニット指定.ResumeLayout(false);
+            ページ型番指定.ResumeLayout(false);
+            ページ型番指定.PerformLayout();
+            ページ追加条件.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
+        }
 
 
         #endregion

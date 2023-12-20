@@ -48,18 +48,18 @@
             // 
             // 品名_ラベル
             // 
-            this.品名_ラベル.AllowDrop = true;
-            this.品名_ラベル.AutoEllipsis = true;
-            this.品名_ラベル.Font = new System.Drawing.Font("BIZ UDゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.品名_ラベル.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.品名_ラベル.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.品名_ラベル.Location = new System.Drawing.Point(17, 39);
-            this.品名_ラベル.Margin = new System.Windows.Forms.Padding(0);
-            this.品名_ラベル.Name = "品名_ラベル";
-            this.品名_ラベル.Size = new System.Drawing.Size(95, 19);
-            this.品名_ラベル.TabIndex = 5;
-            this.品名_ラベル.Text = "品名";
-            this.品名_ラベル.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            品名_ラベル.AllowDrop = true;
+            品名_ラベル.AutoEllipsis = true;
+            品名_ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            品名_ラベル.ForeColor = SystemColors.ActiveCaptionText;
+            品名_ラベル.ImageAlign = ContentAlignment.MiddleLeft;
+            品名_ラベル.Location = new Point(17, 39);
+            品名_ラベル.Margin = new Padding(0);
+            品名_ラベル.Name = "品名_ラベル";
+            品名_ラベル.Size = new Size(95, 19);
+            品名_ラベル.TabIndex = 5;
+            品名_ラベル.Text = "品名";
+            品名_ラベル.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // 品名
             // 
@@ -77,18 +77,18 @@
             // 
             // 製品コード_ラベル
             // 
-            this.製品コード_ラベル.AllowDrop = true;
-            this.製品コード_ラベル.AutoEllipsis = true;
-            this.製品コード_ラベル.Font = new System.Drawing.Font("BIZ UDゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.製品コード_ラベル.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.製品コード_ラベル.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.製品コード_ラベル.Location = new System.Drawing.Point(17, 17);
-            this.製品コード_ラベル.Margin = new System.Windows.Forms.Padding(0);
-            this.製品コード_ラベル.Name = "製品コード_ラベル";
-            this.製品コード_ラベル.Size = new System.Drawing.Size(95, 19);
-            this.製品コード_ラベル.TabIndex = 1;
-            this.製品コード_ラベル.Text = "製品コード(&C)";
-            this.製品コード_ラベル.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            製品コード_ラベル.AllowDrop = true;
+            製品コード_ラベル.AutoEllipsis = true;
+            製品コード_ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            製品コード_ラベル.ForeColor = SystemColors.ActiveCaptionText;
+            製品コード_ラベル.ImageAlign = ContentAlignment.MiddleLeft;
+            製品コード_ラベル.Location = new Point(17, 17);
+            製品コード_ラベル.Margin = new Padding(0);
+            製品コード_ラベル.Name = "製品コード_ラベル";
+            製品コード_ラベル.Size = new Size(95, 19);
+            製品コード_ラベル.TabIndex = 1;
+            製品コード_ラベル.Text = "製品コード(&C)";
+            製品コード_ラベル.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // 閉じるボタン
             // 
@@ -129,33 +129,33 @@
             // 
             // 製品版数_ラベル
             // 
-            this.製品版数_ラベル.AllowDrop = true;
-            this.製品版数_ラベル.AutoEllipsis = true;
-            this.製品版数_ラベル.Font = new System.Drawing.Font("BIZ UDゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.製品版数_ラベル.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.製品版数_ラベル.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.製品版数_ラベル.Location = new System.Drawing.Point(237, 17);
-            this.製品版数_ラベル.Margin = new System.Windows.Forms.Padding(0);
-            this.製品版数_ラベル.Name = "製品版数_ラベル";
-            this.製品版数_ラベル.Size = new System.Drawing.Size(49, 19);
-            this.製品版数_ラベル.TabIndex = 3;
-            this.製品版数_ラベル.Text = "版数(&E)";
-            this.製品版数_ラベル.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            製品版数_ラベル.AllowDrop = true;
+            製品版数_ラベル.AutoEllipsis = true;
+            製品版数_ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            製品版数_ラベル.ForeColor = SystemColors.ActiveCaptionText;
+            製品版数_ラベル.ImageAlign = ContentAlignment.MiddleLeft;
+            製品版数_ラベル.Location = new Point(237, 17);
+            製品版数_ラベル.Margin = new Padding(0);
+            製品版数_ラベル.Name = "製品版数_ラベル";
+            製品版数_ラベル.Size = new Size(49, 19);
+            製品版数_ラベル.TabIndex = 3;
+            製品版数_ラベル.Text = "版数(&E)";
+            製品版数_ラベル.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // シリーズ名_ラベル
             // 
-            this.シリーズ名_ラベル.AllowDrop = true;
-            this.シリーズ名_ラベル.AutoEllipsis = true;
-            this.シリーズ名_ラベル.Font = new System.Drawing.Font("BIZ UDゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.シリーズ名_ラベル.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.シリーズ名_ラベル.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.シリーズ名_ラベル.Location = new System.Drawing.Point(17, 62);
-            this.シリーズ名_ラベル.Margin = new System.Windows.Forms.Padding(0);
-            this.シリーズ名_ラベル.Name = "シリーズ名_ラベル";
-            this.シリーズ名_ラベル.Size = new System.Drawing.Size(95, 19);
-            this.シリーズ名_ラベル.TabIndex = 7;
-            this.シリーズ名_ラベル.Text = "シリーズ名";
-            this.シリーズ名_ラベル.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            シリーズ名_ラベル.AllowDrop = true;
+            シリーズ名_ラベル.AutoEllipsis = true;
+            シリーズ名_ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            シリーズ名_ラベル.ForeColor = SystemColors.ActiveCaptionText;
+            シリーズ名_ラベル.ImageAlign = ContentAlignment.MiddleLeft;
+            シリーズ名_ラベル.Location = new Point(17, 62);
+            シリーズ名_ラベル.Margin = new Padding(0);
+            シリーズ名_ラベル.Name = "シリーズ名_ラベル";
+            シリーズ名_ラベル.Size = new Size(95, 19);
+            シリーズ名_ラベル.TabIndex = 7;
+            シリーズ名_ラベル.Text = "シリーズ名";
+            シリーズ名_ラベル.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // シリーズ名
             // 
@@ -173,33 +173,33 @@
             // 
             // 型式一覧_ラベル
             // 
-            this.型式一覧_ラベル.AllowDrop = true;
-            this.型式一覧_ラベル.AutoEllipsis = true;
-            this.型式一覧_ラベル.Font = new System.Drawing.Font("BIZ UDゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.型式一覧_ラベル.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.型式一覧_ラベル.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.型式一覧_ラベル.Location = new System.Drawing.Point(17, 87);
-            this.型式一覧_ラベル.Margin = new System.Windows.Forms.Padding(0);
-            this.型式一覧_ラベル.Name = "型式一覧_ラベル";
-            this.型式一覧_ラベル.Size = new System.Drawing.Size(95, 19);
-            this.型式一覧_ラベル.TabIndex = 9;
-            this.型式一覧_ラベル.Text = "型式一覧(&M)";
-            this.型式一覧_ラベル.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            型式一覧_ラベル.AllowDrop = true;
+            型式一覧_ラベル.AutoEllipsis = true;
+            型式一覧_ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            型式一覧_ラベル.ForeColor = SystemColors.ActiveCaptionText;
+            型式一覧_ラベル.ImageAlign = ContentAlignment.MiddleLeft;
+            型式一覧_ラベル.Location = new Point(17, 87);
+            型式一覧_ラベル.Margin = new Padding(0);
+            型式一覧_ラベル.Name = "型式一覧_ラベル";
+            型式一覧_ラベル.Size = new Size(95, 19);
+            型式一覧_ラベル.TabIndex = 9;
+            型式一覧_ラベル.Text = "型式一覧(&M)";
+            型式一覧_ラベル.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // 型番_ラベル
             // 
-            this.型番_ラベル.AllowDrop = true;
-            this.型番_ラベル.AutoEllipsis = true;
-            this.型番_ラベル.Font = new System.Drawing.Font("BIZ UDゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.型番_ラベル.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.型番_ラベル.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.型番_ラベル.Location = new System.Drawing.Point(17, 374);
-            this.型番_ラベル.Margin = new System.Windows.Forms.Padding(0);
-            this.型番_ラベル.Name = "型番_ラベル";
-            this.型番_ラベル.Size = new System.Drawing.Size(95, 19);
-            this.型番_ラベル.TabIndex = 11;
-            this.型番_ラベル.Text = "型番";
-            this.型番_ラベル.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            型番_ラベル.AllowDrop = true;
+            型番_ラベル.AutoEllipsis = true;
+            型番_ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            型番_ラベル.ForeColor = SystemColors.ActiveCaptionText;
+            型番_ラベル.ImageAlign = ContentAlignment.MiddleLeft;
+            型番_ラベル.Location = new Point(17, 374);
+            型番_ラベル.Margin = new Padding(0);
+            型番_ラベル.Name = "型番_ラベル";
+            型番_ラベル.Size = new Size(95, 19);
+            型番_ラベル.TabIndex = 11;
+            型番_ラベル.Text = "型番";
+            型番_ラベル.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // 型番
             // 
@@ -217,18 +217,18 @@
             // 
             // 材料費合計_ラベル
             // 
-            this.材料費合計_ラベル.AllowDrop = true;
-            this.材料費合計_ラベル.AutoEllipsis = true;
-            this.材料費合計_ラベル.Font = new System.Drawing.Font("BIZ UDゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.材料費合計_ラベル.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.材料費合計_ラベル.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.材料費合計_ラベル.Location = new System.Drawing.Point(17, 401);
-            this.材料費合計_ラベル.Margin = new System.Windows.Forms.Padding(0);
-            this.材料費合計_ラベル.Name = "材料費合計_ラベル";
-            this.材料費合計_ラベル.Size = new System.Drawing.Size(95, 19);
-            this.材料費合計_ラベル.TabIndex = 13;
-            this.材料費合計_ラベル.Text = "材料費合計";
-            this.材料費合計_ラベル.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            材料費合計_ラベル.AllowDrop = true;
+            材料費合計_ラベル.AutoEllipsis = true;
+            材料費合計_ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            材料費合計_ラベル.ForeColor = SystemColors.ActiveCaptionText;
+            材料費合計_ラベル.ImageAlign = ContentAlignment.MiddleLeft;
+            材料費合計_ラベル.Location = new Point(17, 401);
+            材料費合計_ラベル.Margin = new Padding(0);
+            材料費合計_ラベル.Name = "材料費合計_ラベル";
+            材料費合計_ラベル.Size = new Size(95, 19);
+            材料費合計_ラベル.TabIndex = 13;
+            材料費合計_ラベル.Text = "材料費合計";
+            材料費合計_ラベル.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // 材料費合計
             // 

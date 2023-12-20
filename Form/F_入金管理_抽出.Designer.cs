@@ -32,6 +32,7 @@
             入金日開始 = new TextBox();
             入金コード1ラベル = new Label();
             請求指定 = new GroupBox();
+            radioButton1 = new RadioButton();
             削除指定Button2 = new RadioButton();
             削除指定Button1 = new RadioButton();
             抽出ボタン = new Button();
@@ -43,6 +44,7 @@
             入金日1ラベル = new Label();
             入金区分コード = new ComboBox();
             削除指定 = new GroupBox();
+            radioButton4 = new RadioButton();
             radioButton2 = new RadioButton();
             radioButton3 = new RadioButton();
             label6 = new Label();
@@ -56,8 +58,6 @@
             label1 = new Label();
             入金金額開始 = new TextBox();
             label2 = new Label();
-            radioButton1 = new RadioButton();
-            radioButton4 = new RadioButton();
             請求指定.SuspendLayout();
             削除指定.SuspendLayout();
             SuspendLayout();
@@ -118,6 +118,17 @@
             請求指定.TabIndex = 207;
             請求指定.TabStop = false;
             請求指定.Text = "請求指定(&B)";
+            // 
+            // radioButton1
+            // 
+            radioButton1.AutoSize = true;
+            radioButton1.Location = new Point(341, 22);
+            radioButton1.Name = "radioButton1";
+            radioButton1.Size = new Size(95, 18);
+            radioButton1.TabIndex = 3;
+            radioButton1.TabStop = true;
+            radioButton1.Text = "指定しない";
+            radioButton1.UseVisualStyleBackColor = true;
             // 
             // 削除指定Button2
             // 
@@ -250,6 +261,17 @@
             削除指定.TabIndex = 208;
             削除指定.TabStop = false;
             削除指定.Text = "削除指定(&R)";
+            // 
+            // radioButton4
+            // 
+            radioButton4.AutoSize = true;
+            radioButton4.Location = new Point(341, 22);
+            radioButton4.Name = "radioButton4";
+            radioButton4.Size = new Size(95, 18);
+            radioButton4.TabIndex = 4;
+            radioButton4.TabStop = true;
+            radioButton4.Text = "指定しない";
+            radioButton4.UseVisualStyleBackColor = true;
             // 
             // radioButton2
             // 
@@ -415,28 +437,6 @@
             label2.Text = "入金金額(&A)";
             label2.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // radioButton1
-            // 
-            radioButton1.AutoSize = true;
-            radioButton1.Location = new Point(341, 22);
-            radioButton1.Name = "radioButton1";
-            radioButton1.Size = new Size(95, 18);
-            radioButton1.TabIndex = 3;
-            radioButton1.TabStop = true;
-            radioButton1.Text = "指定しない";
-            radioButton1.UseVisualStyleBackColor = true;
-            // 
-            // radioButton4
-            // 
-            radioButton4.AutoSize = true;
-            radioButton4.Location = new Point(341, 22);
-            radioButton4.Name = "radioButton4";
-            radioButton4.Size = new Size(95, 18);
-            radioButton4.TabIndex = 4;
-            radioButton4.TabStop = true;
-            radioButton4.Text = "指定しない";
-            radioButton4.UseVisualStyleBackColor = true;
-            // 
             // F_入金管理_抽出
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -467,7 +467,7 @@
             Controls.Add(入金日開始);
             Controls.Add(入金コード1ラベル);
             Name = "F_入金管理_抽出";
-            Text = "入金管理_抽出";
+            Text = "入金管理 - 抽出";
             Load += Form_Load;
             請求指定.ResumeLayout(false);
             請求指定.PerformLayout();
