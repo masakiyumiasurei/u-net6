@@ -248,8 +248,8 @@ namespace u_net
         {
 
             if (dateSelectionForm.ShowDialog() == DialogResult.OK)
-            {               
-                string selectedDate = dateSelectionForm.SelectedDate;               
+            {
+                string selectedDate = dateSelectionForm.SelectedDate;
                 更新日終了.Text = selectedDate;
             }
         }

@@ -444,6 +444,7 @@
             Controls.Add(集合分類_ラベル);
             Name = "F_部品集合管理_抽出";
             Text = "部品集合管理_抽出";
+            Load += Form_Load;
             groupBox3.ResumeLayout(false);
             groupBox3.PerformLayout();
             groupBox4.ResumeLayout(false);
