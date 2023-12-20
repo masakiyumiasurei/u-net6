@@ -175,7 +175,7 @@
             確定指定Button2.Location = new Point(130, 22);
             確定指定Button2.Margin = new Padding(4, 2, 4, 2);
             確定指定Button2.Name = "確定指定Button2";
-            確定指定Button2.Size = new Size(94, 16);
+            確定指定Button2.Size = new Size(95, 16);
             確定指定Button2.TabIndex = 2;
             確定指定Button2.TabStop = true;
             確定指定Button2.Text = "確定している";
@@ -226,7 +226,7 @@
             承認指定button2.Location = new Point(130, 22);
             承認指定button2.Margin = new Padding(4, 2, 4, 2);
             承認指定button2.Name = "承認指定button2";
-            承認指定button2.Size = new Size(94, 16);
+            承認指定button2.Size = new Size(95, 16);
             承認指定button2.TabIndex = 2;
             承認指定button2.TabStop = true;
             承認指定button2.Text = "承認している";
@@ -277,7 +277,7 @@
             削除指定Button2.Location = new Point(130, 22);
             削除指定Button2.Margin = new Padding(4, 2, 4, 2);
             削除指定Button2.Name = "削除指定Button2";
-            削除指定Button2.Size = new Size(94, 16);
+            削除指定Button2.Size = new Size(95, 16);
             削除指定Button2.TabIndex = 2;
             削除指定Button2.TabStop = true;
             削除指定Button2.Text = "削除している";
@@ -321,8 +321,9 @@
             // 
             // 更新日開始選択ボタン
             // 
+            更新日開始選択ボタン.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             更新日開始選択ボタン.Location = new Point(222, 232);
-            更新日開始選択ボタン.Margin = new Padding(4, 4, 4, 4);
+            更新日開始選択ボタン.Margin = new Padding(4);
             更新日開始選択ボタン.Name = "更新日開始選択ボタン";
             更新日開始選択ボタン.Size = new Size(21, 21);
             更新日開始選択ボタン.TabIndex = 21008;
@@ -410,8 +411,9 @@
             // 
             // 更新日終了選択ボタン
             // 
+            更新日終了選択ボタン.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             更新日終了選択ボタン.Location = new Point(370, 232);
-            更新日終了選択ボタン.Margin = new Padding(4, 4, 4, 4);
+            更新日終了選択ボタン.Margin = new Padding(4);
             更新日終了選択ボタン.Name = "更新日終了選択ボタン";
             更新日終了選択ボタン.Size = new Size(21, 21);
             更新日終了選択ボタン.TabIndex = 21016;
@@ -467,7 +469,7 @@
             廃止指定Button2.Location = new Point(130, 22);
             廃止指定Button2.Margin = new Padding(4, 2, 4, 2);
             廃止指定Button2.Name = "廃止指定Button2";
-            廃止指定Button2.Size = new Size(94, 16);
+            廃止指定Button2.Size = new Size(95, 16);
             廃止指定Button2.TabIndex = 2;
             廃止指定Button2.TabStop = true;
             廃止指定Button2.Text = "廃止している";
@@ -530,7 +532,7 @@
             RoHS対応Button1.Location = new Point(6, 22);
             RoHS対応Button1.Margin = new Padding(4, 2, 4, 2);
             RoHS対応Button1.Name = "RoHS対応Button1";
-            RoHS対応Button1.Size = new Size(94, 16);
+            RoHS対応Button1.Size = new Size(95, 16);
             RoHS対応Button1.TabIndex = 1;
             RoHS対応Button1.TabStop = true;
             RoHS対応Button1.Text = "対応している";
@@ -546,7 +548,7 @@
             非含有証明書_ラベル.Location = new Point(18, 146);
             非含有証明書_ラベル.Margin = new Padding(0);
             非含有証明書_ラベル.Name = "非含有証明書_ラベル";
-            非含有証明書_ラベル.Size = new Size(94, 21);
+            非含有証明書_ラベル.Size = new Size(99, 21);
             非含有証明書_ラベル.TabIndex = 8;
             非含有証明書_ラベル.Text = "非含有証明書(&C)";
             非含有証明書_ラベル.TextAlign = ContentAlignment.MiddleLeft;
