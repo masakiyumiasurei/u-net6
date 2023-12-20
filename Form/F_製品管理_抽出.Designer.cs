@@ -310,6 +310,7 @@
             this.更新日開始選択ボタン.TabStop = false;
             this.更新日開始選択ボタン.Text = "▼";
             this.更新日開始選択ボタン.UseVisualStyleBackColor = true;
+            this.更新日開始選択ボタン.Click += new System.EventHandler(this.更新日開始選択_Click);
             // 
             // 指導書変更
             // 
@@ -374,6 +375,9 @@
             this.更新日開始.Name = "更新日開始";
             this.更新日開始.Size = new System.Drawing.Size(102, 19);
             this.更新日開始.TabIndex = 12;
+            this.更新日開始.DoubleClick += new System.EventHandler(this.更新日開始_DoubleClick);
+            this.更新日開始.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.更新日開始_KeyPress);
+            this.更新日開始.Leave += new System.EventHandler(this.更新日開始_Leave);
             // 
             // 更新日終了
             // 
@@ -386,6 +390,9 @@
             this.更新日終了.Name = "更新日終了";
             this.更新日終了.Size = new System.Drawing.Size(102, 19);
             this.更新日終了.TabIndex = 13;
+            this.更新日終了.DoubleClick += new System.EventHandler(this.更新日終了_DoubleClick);
+            this.更新日終了.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.更新日終了_KeyPress);
+            this.更新日終了.Leave += new System.EventHandler(this.更新日終了_Leave);
             // 
             // 更新日終了選択ボタン
             // 
@@ -397,6 +404,7 @@
             this.更新日終了選択ボタン.TabStop = false;
             this.更新日終了選択ボタン.Text = "▼";
             this.更新日終了選択ボタン.UseVisualStyleBackColor = true;
+            this.更新日終了選択ボタン.Click += new System.EventHandler(this.更新日終了選択_Click);
             // 
             // label1
             // 
@@ -561,6 +569,7 @@
             this.Controls.Add(this.品名_ラベル);
             this.Name = "F_製品管理_抽出";
             this.Text = "製品管理_抽出";
+            this.Load += new System.EventHandler(this.Form_Load);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.groupBox4.ResumeLayout(false);

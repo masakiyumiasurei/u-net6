@@ -252,6 +252,7 @@ namespace u_net
             this.汎用キー1.Name = "汎用キー1";
             this.汎用キー1.Size = new System.Drawing.Size(246, 20);
             this.汎用キー1.TabIndex = 2;
+            this.汎用キー1.TextChanged += new System.EventHandler(this.汎用キー1_TextChanged);
             this.汎用キー1.Enter += new System.EventHandler(this.汎用キー1_Enter);
             this.汎用キー1.Leave += new System.EventHandler(this.汎用キー1_Leave);
             // 
@@ -359,7 +360,6 @@ namespace u_net
             this.MinimizeBox = false;
             this.Name = "F_製品管理_汎用キー設定";
             this.Text = " ";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form_Unload);
             this.Load += new System.EventHandler(this.Form_Load);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();

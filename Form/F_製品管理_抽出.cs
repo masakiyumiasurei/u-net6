@@ -43,10 +43,116 @@ namespace u_net
                     return;
                 }
 
+
+                OriginalClass ofn = new OriginalClass();
+
+                ofn.SetComboBox(更新者名, "SELECT 氏名 as Value , 氏名 as Display FROM M社員 WHERE (退社 IS NULL) AND ([パート] = 0) AND (ふりがな <> N'ん') OR (退社 IS NULL) AND ([パート] IS NULL) AND (ふりがな <> N'ん') ORDER BY ふりがな");
+
+
+                this.指導書変更.DataSource = new KeyValuePair<long, String>[] {
+                    new KeyValuePair<long, String>(1, "変更している"),
+                    new KeyValuePair<long, String>(2, "変更していない"),
+                    new KeyValuePair<long, String>(0, "指定しない"),
+                };
+                this.指導書変更.DisplayMember = "Value";
+                this.指導書変更.ValueMember = "Key";
+
+
+                this.非含有証明書.DataSource = new KeyValuePair<long, String>[] {
+                    new KeyValuePair<long, String>(1, "返却済み"),
+                    new KeyValuePair<long, String>(2, "未返却"),
+                    new KeyValuePair<long, String>(3, "未提出"),
+                    new KeyValuePair<long, String>(4, "不明"),
+                    new KeyValuePair<long, String>(0, "指定しない"),
+                };
+                this.非含有証明書.DisplayMember = "Value";
+                this.非含有証明書.ValueMember = "Key";
+
+
                 //開いているフォームのインスタンスを作成する
                 F_製品管理 frmTarget = Application.OpenForms.OfType<F_製品管理>().FirstOrDefault();
 
+                品名.Text = frmTarget.str品名;
+                シリーズ名.Text = frmTarget.strシリーズ名;
+                指導書変更.SelectedValue = frmTarget.lng指導書変更;
 
+                switch (frmTarget.lngRoHS対応)
+                {
+                    case 1:
+                        RoHS対応Button1.Checked = true;
+                        break;
+                    case 2:
+                        RoHS対応Button2.Checked = true;
+                        break;
+                    case 0:
+                        RoHS対応Button3.Checked = true;
+                        break;
+
+                    default:
+    
+                        break;
+                }
+
+                非含有証明書.SelectedValue = frmTarget.lng非含有証明書;
+
+
+                if (frmTarget.dtm更新日開始 != DateTime.MinValue)
+                    更新日開始.Text = frmTarget.dtm更新日開始.ToString();
+                if (frmTarget.dtm更新日終了 != DateTime.MinValue)
+                    更新日終了.Text = frmTarget.dtm更新日終了.ToString();
+                更新者名.Text = frmTarget.str更新者名;
+
+
+                switch (frmTarget.lng廃止指定)
+                {
+                    case 1:
+                        廃止指定Button1.Checked = true;
+                        break;
+                    case 2:
+                        廃止指定Button2.Checked = true;
+                        break;
+                    case 0:
+                        廃止指定Button3.Checked = true;
+                        break;
+
+                    default:
+
+                        break;
+                }
+
+                switch (frmTarget.lng確定指定)
+                {
+                    case 1:
+                        確定指定Button1.Checked = true;
+                        break;
+                    case 2:
+                        確定指定Button2.Checked = true;
+                        break;
+                    case 0:
+                        確定指定Button3.Checked = true;
+                        break;
+
+                    default:
+
+                        break;
+                }
+
+                switch (frmTarget.lng承認指定)
+                {
+                    case 1:
+                        承認指定button1.Checked = true;
+                        break;
+                    case 2:
+                        承認指定button2.Checked = true;
+                        break;
+                    case 0:
+                        承認指定button3.Checked = true;
+                        break;
+
+                    default:
+
+                        break;
+                }
 
 
                 switch (frmTarget.lng削除指定)
@@ -62,7 +168,7 @@ namespace u_net
                         break;
 
                     default:
-                        // intComposedChipMount の値に対応するラジオボタンがない場合の処理
+          
                         break;
                 }
 
@@ -79,10 +185,74 @@ namespace u_net
             try
             {
                 F_製品管理? frmTarget = Application.OpenForms.OfType<F_製品管理>().FirstOrDefault();
-                //F_仕入先管理 frmTarget = new F_仕入先管理();
 
 
+                frmTarget.str品名 = Nz(品名.Text);
+                frmTarget.strシリーズ名 = Nz(シリーズ名.Text);
 
+                frmTarget.lng指導書変更 = 指導書変更.SelectedValue != null ? Convert.ToInt64(指導書変更.SelectedValue) : 0;
+
+                if (RoHS対応Button1.Checked)
+                {
+                    frmTarget.lngRoHS対応 = 1;
+                }
+                else if (RoHS対応Button2.Checked)
+                {
+                    frmTarget.lngRoHS対応 = 2;
+                }
+                else if (RoHS対応Button3.Checked)
+                {
+                    frmTarget.lngRoHS対応 = 0;
+                }
+
+                frmTarget.lng非含有証明書 = 非含有証明書.SelectedValue != null ? Convert.ToInt64(非含有証明書.SelectedValue) : 0;
+
+                frmTarget.dtm更新日開始 = string.IsNullOrEmpty(更新日開始.Text) ?
+                   DateTime.MinValue : DateTime.Parse(更新日開始.Text);
+
+                frmTarget.dtm更新日終了 = string.IsNullOrEmpty(更新日終了.Text) ?
+                    DateTime.MinValue : DateTime.Parse(更新日終了.Text);
+
+                frmTarget.str更新者名 = Nz(更新者名.Text);
+
+                if (確定指定Button1.Checked)
+                {
+                    frmTarget.lng確定指定 = 1;
+                }
+                else if (確定指定Button2.Checked)
+                {
+                    frmTarget.lng確定指定 = 2;
+                }
+                else if (確定指定Button3.Checked)
+                {
+                    frmTarget.lng確定指定 = 0;
+                }
+
+                if (承認指定button1.Checked)
+                {
+                    frmTarget.lng承認指定 = 1;
+                }
+                else if (承認指定button2.Checked)
+                {
+                    frmTarget.lng承認指定 = 2;
+                }
+                else if (承認指定button3.Checked)
+                {
+                    frmTarget.lng承認指定 = 0;
+                }
+
+                if (廃止指定Button1.Checked)
+                {
+                    frmTarget.lng廃止指定 = 1;
+                }
+                else if (廃止指定Button2.Checked)
+                {
+                    frmTarget.lng廃止指定 = 2;
+                }
+                else if (廃止指定Button3.Checked)
+                {
+                    frmTarget.lng廃止指定 = 0;
+                }
 
                 if (削除指定Button1.Checked)
                 {
@@ -96,6 +266,8 @@ namespace u_net
                 {
                     frmTarget.lng削除指定 = 0;
                 }
+
+
 
                 long cnt = frmTarget.DoUpdate();
 
@@ -128,48 +300,6 @@ namespace u_net
             this.Close();
         }
 
-        private F_検索 SearchForm;
-        //private void 仕入先選択ボタン_Click(object sender, EventArgs e)
-        //{
-        //    SearchForm = new F_検索();
-        //    SearchForm.FilterName = "仕入先名フリガナ";
-        //    if (SearchForm.ShowDialog() == DialogResult.OK)
-        //    {
-        //        string SelectedCode = SearchForm.SelectedCode;
-        //        品名.Text = SelectedCode;
-        //    }
-        //}
-
-        //private void 仕入先コード_DoubleClick(object sender, EventArgs e)
-        //{
-        //    SearchForm = new F_検索();
-        //    SearchForm.FilterName = "仕入先名フリガナ";
-        //    if (SearchForm.ShowDialog() == DialogResult.OK)
-        //    {
-        //        string SelectedCode = SearchForm.SelectedCode;
-        //        品名.Text = SelectedCode;
-        //    }
-        //}
-        //private void 仕入先コード_Click(object sender, EventArgs e)
-        //{
-        //    SearchForm = new F_検索();
-        //    SearchForm.FilterName = "仕入先名フリガナ";
-        //    if (SearchForm.ShowDialog() == DialogResult.OK)
-        //    {
-        //        string SelectedCode = SearchForm.SelectedCode;
-        //        品名.Text = SelectedCode;
-        //    }
-        //}
-        //private void 仕入先コード_Validated(object sender, EventArgs e)
-        //{
-        //    Connect();
-        //    this.シリーズ名.Text = FunctionClass.GetSupplierName(cn, Nz(this.品名.Text));
-        //}
-        //private void 仕入先コード_TextChanged(object sender, EventArgs e)
-        //{
-        //    Connect();
-        //    this.シリーズ名.Text = FunctionClass.GetSupplierName(cn, Nz(this.品名.Text));
-        //}
 
         // Nz メソッドの代替
         private T Nz<T>(T value)
@@ -181,42 +311,114 @@ namespace u_net
             return value;
         }
 
-        private void 仕入先コード_KeyDown(object sender, KeyEventArgs e)
-        {
-            // 入力された値がエラー値の場合、Textプロパティが設定できなくなるときの対処
-            try
-            {
-                switch (e.KeyCode)
-                {
-                    case Keys.Return:
-                        string strCode = ((Control)sender).Text;
-                        if (string.IsNullOrEmpty(strCode)) return;
 
-                        strCode = strCode.PadLeft(8, '0');
-                        if (strCode != ((Control)sender).Text)
-                        {
-                            ((Control)sender).Text = strCode;
-                        }
-                        break;
-                }
-            }
-            catch (Exception ex)
+
+
+        private F_カレンダー dateSelectionForm;
+
+        
+
+        private void 更新日開始選択_Click(object sender, EventArgs e)
+        {
+            // 日付選択フォームを作成し表示
+            dateSelectionForm = new F_カレンダー();
+            if (dateSelectionForm.ShowDialog() == DialogResult.OK)
             {
-                // エラーハンドリング: 例外が発生した場合に処理を行う
-                Console.WriteLine("エラーが発生しました: " + ex.Message);
+                // 日付選択フォームから選択した日付を取得
+                string selectedDate = dateSelectionForm.SelectedDate;
+
+                // フォームAの日付コントロールに選択した日付を設定
+                更新日開始.Text = selectedDate;
             }
         }
 
-        //private void 仕入先参照ボタン_Click(object sender, EventArgs e)
-        //{
-        //    F_仕入先 fm = new F_仕入先();
-        //    fm.args = this.品名.Text;
-        //    fm.ShowDialog();
-        //}
-
-        private void キャンセルボタン_Click(object sender, EventArgs e)
+        private void 更新日開始_DoubleClick(object sender, EventArgs e)
         {
-            this.Close();
+            // 日付選択フォームを作成し表示
+            dateSelectionForm = new F_カレンダー();
+            if (dateSelectionForm.ShowDialog() == DialogResult.OK)
+            {
+                // 日付選択フォームから選択した日付を取得
+                string selectedDate = dateSelectionForm.SelectedDate;
+
+                // フォームAの日付コントロールに選択した日付を設定
+                更新日開始.Text = selectedDate;
+            }
+        }
+
+        private void 更新日開始_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if(e.KeyChar == ' ')
+            {
+                // 日付選択フォームを作成し表示
+                dateSelectionForm = new F_カレンダー();
+                if (dateSelectionForm.ShowDialog() == DialogResult.OK)
+                {
+                    // 日付選択フォームから選択した日付を取得
+                    string selectedDate = dateSelectionForm.SelectedDate;
+
+                    // フォームAの日付コントロールに選択した日付を設定
+                    更新日開始.Text = selectedDate;
+                }
+            }
+        }
+
+
+
+
+        private void 更新日終了選択_Click(object sender, EventArgs e)
+        {
+            // 日付選択フォームを作成し表示
+            dateSelectionForm = new F_カレンダー();
+            if (dateSelectionForm.ShowDialog() == DialogResult.OK)
+            {
+                // 日付選択フォームから選択した日付を取得
+                string selectedDate = dateSelectionForm.SelectedDate;
+
+                // フォームAの日付コントロールに選択した日付を設定
+                更新日終了.Text = selectedDate;
+            }
+        }
+
+        private void 更新日終了_DoubleClick(object sender, EventArgs e)
+        {
+            // 日付選択フォームを作成し表示
+            dateSelectionForm = new F_カレンダー();
+            if (dateSelectionForm.ShowDialog() == DialogResult.OK)
+            {
+                // 日付選択フォームから選択した日付を取得
+                string selectedDate = dateSelectionForm.SelectedDate;
+
+                // フォームAの日付コントロールに選択した日付を設定
+                更新日終了.Text = selectedDate;
+            }
+        }
+
+        private void 更新日終了_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if(e.KeyChar == ' ')
+            {
+                // 日付選択フォームを作成し表示
+                dateSelectionForm = new F_カレンダー();
+                if (dateSelectionForm.ShowDialog() == DialogResult.OK)
+                {
+                    // 日付選択フォームから選択した日付を取得
+                    string selectedDate = dateSelectionForm.SelectedDate;
+
+                    // フォームAの日付コントロールに選択した日付を設定
+                    更新日終了.Text = selectedDate;
+                }
+            }
+        }
+
+        private void 更新日開始_Leave(object sender, EventArgs e)
+        {
+            FunctionClass.AdjustRange(更新日開始, 更新日終了, sender as Control);
+        }
+
+        private void 更新日終了_Leave(object sender, EventArgs e)
+        {
+            FunctionClass.AdjustRange(更新日開始, 更新日終了, sender as Control);
         }
     }
 }

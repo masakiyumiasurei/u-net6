@@ -66,6 +66,13 @@ namespace u_net
             InitializeComponent();
         }
 
+
+        private string Nz(object value)
+        {
+            return value == null ? "" : value.ToString();
+        }
+
+
         public void Connect()
         {
             Connection connectionInfo = new Connection();
@@ -528,16 +535,258 @@ namespace u_net
         }
 
 
-        private void RunFunction(int functionNumber , bool ShiftOn)
+        private void RunFunction(int functionNumber , bool shiftOn)
         {
+
             dataGridView1.Focus();
+
+            FunctionClass fn = new FunctionClass();
+
+            switch (functionNumber)
+            {
+                case 1:
+                    if (!コマンド抽出.Enabled) return;
+
+                    if (shiftOn)
+                    {
+                        //DoCmd.OpenForm("製品管理_汎用キー抽出", acNormal);
+                    }
+                    else
+                    {
+                        F_製品管理_抽出 targetform = new F_製品管理_抽出();
+                        targetform.ShowDialog();
+                    }
+
+                    break;
+
+                case 2:
+                    if (!コマンド検索.Enabled) return;
+
+                    if (!shiftOn)
+                        MessageBox.Show("現在開発中です。", "検索コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    break;
+
+                case 3:
+                    if (!コマンド初期化.Enabled) return;
+
+                    if (!shiftOn)
+                    {
+
+                        fn.DoWait("初期化しています...");
+
+                        // 初期抽出条件を設定する
+                        InitializeFilter();
+
+                        // リストを更新する
+                        if (DoUpdate() == -1)
+                            MessageBox.Show("エラーが発生しました。", "初期化コマンド", MessageBoxButtons.OK);
+
+                        fn.WaitForm.Close();
+           
+                    }
+                    break;
+
+                case 4:
+                    if (!コマンド更新.Enabled) return;
+          
+                    if (!shiftOn)
+                    {
+            
+                        fn.DoWait("更新しています...");
+
+                        if (DoUpdate() == -1)
+                            MessageBox.Show("更新できませんでした。", "更新コマンド", MessageBoxButtons.OK);
+
+                        fn.WaitForm.Close();
+              
+                    }
+                    break;
+
+                case 5:
+                    if (!コマンド製品.Enabled) return;
+       
+                    if (shiftOn)
+                    {
+                        OpenConfigKey();
+                    } 
+                    else
+                    {
+                        if (dataGridView1.SelectedRows.Count > 0)
+                        {
+                            // DataGridView1で選択された行が存在する場合
+                            string selectedData = dataGridView1.SelectedRows[0].Cells[0].Value.ToString(); // 1列目のデータを取得
+                            string selectedEdition = dataGridView1.SelectedRows[0].Cells[1].Value.ToString();
+
+                            F_製品 targetform = new F_製品();
+                            targetform.args = selectedData + "," + selectedEdition;
+                            targetform.ShowDialog();
+                        }
+                        else
+                        {
+                            // ユーザーが行を選択していない場合のエラーハンドリング
+                            MessageBox.Show("行が選択されていません。");
+                        }
+                    }
+                        
+                    break;
+
+                case 6:
+                    if (!コマンド材料費.Enabled) return;
+           
+                    if (!shiftOn)
+                    {
+                        //DoCmd.OpenForm("製品材料費参照", acNormal, , , , , CurrentCode + "," + CurrentEdition);
+                    }
+
+                    break;
+
+                case 7:
+                    if (!コマンド指導書設定.Enabled) return;
+        
+                    if (!shiftOn)
+                    {
+
+                        if (dataGridView1.SelectedRows.Count > 0)
+                        {
+                            // DataGridView1で選択された行が存在する場合
+                            string selectedData = dataGridView1.SelectedRows[0].Cells[4].Value.ToString();
+
+
+                            if (selectedData == "")
+                            {
+                                if (SetGuideChanged(-1, CurrentCode, CurrentEdition))
+                                {
+                                    dataGridView1.SelectedRows[0].Cells[4].Value = "■";
+                                }
+                            }
+                            else
+                            {
+                                if (SetGuideChanged(0, CurrentCode, CurrentEdition))
+                                {
+                                    dataGridView1.SelectedRows[0].Cells[4].Value = "";
+                                }
+                            }
+
+                        }
+
+                       
+                    }
+                    break;
+
+                case 8:
+                    if (!コマンド指導書変更有り.Enabled) return;
+             
+                    if (!shiftOn)
+                    {
+               
+                        fn.DoWait("しばらくお待ちください...");
+
+                        lng指導書変更 = 1;
+
+                        if (DoUpdate() == -1)
+                            MessageBox.Show("エラーが発生したため、抽出できませんでした。", "コマンド指導書変更有り", MessageBoxButtons.OK);
+                    }
+                    break;
+
+                case 9:
+                    if (!コマンド参照用.Enabled) return;
+       
+                    if (!shiftOn)
+                    {
+                        //OpenForm("製品参照", objGrid1.TextMatrix(objGrid1.row, 1) + "," + objGrid1.TextMatrix(objGrid1.row, 2));
+                    }
+
+                    break;
+
+                case 10:
+               
+                    break;
+
+                case 11:
+               
+                    break;
+
+                case 12:
+                    if (!コマンド終了.Enabled) return;
+
+                    if (!shiftOn)
+                        Close();
+                    break;
+
+                default:
+                
+                    break;
+            }
+
+
+
+            
             blnShiftOn = false;
             ShiftChange(blnShiftOn);
 
         }
 
 
-        
+        private bool SetGuideChanged(int value, string code, int edition)
+        {
+            bool success = false;
+
+            try
+            {
+                Connect();
+
+                string strSQL = $"UPDATE M製品 SET 指導書変更 = {value} " +
+                                $"WHERE 製品コード = '{code}' AND 製品版数 = {edition}";
+
+                using (SqlCommand cmd = new SqlCommand(strSQL, cn))
+                {
+                    cmd.ExecuteNonQuery();
+                }
+
+                success = true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"{this.GetType().Name}_SetGuideChanged - {ex.GetType().Name}: {ex.Message}");
+            }
+
+            return success;
+        }
+
+        private void OpenConfigKey()
+        {
+            F_製品管理_汎用キー設定 targetform = new F_製品管理_汎用キー設定();
+            targetform.strCode = CurrentCode;
+            targetform.intEdition = CurrentEdition;
+            targetform.ShowDialog();
+        }
+
+        public void UpdateRow()
+        {
+            try
+            {
+                Connect();
+
+                string strKey = $"製品コード='{CurrentCode}' AND 版={CurrentEdition}";
+                string strSQL = $"SELECT * FROM V製品一覧 WHERE {strKey}";
+
+                using (SqlCommand cmd = new SqlCommand(strSQL, cn))
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        for (int lngi = 0; lngi < dataGridView1.RowCount; lngi++)
+                        {
+                            dataGridView1.SelectedRows[0].Cells[lngi].Value = Nz(reader[lngi]);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"{GetType().Name}_UpdateRow - {ex.GetType().Name}: {ex.Message}");
+            }
+        }
 
 
         private void コマンド検索_Click(object sender, EventArgs e)
