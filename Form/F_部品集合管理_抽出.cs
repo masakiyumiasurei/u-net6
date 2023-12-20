@@ -14,6 +14,7 @@ namespace u_net
 {
     public partial class F_部品集合管理_抽出 : Form
     {
+        F_カレンダー dateSelectionForm = new F_カレンダー();
 
         public F_部品集合管理_抽出()
         {
@@ -29,12 +30,19 @@ namespace u_net
             cn = new SqlConnection(connectionString);
             cn.Open();
         }
-
+        private T Nz<T>(T value)
+        {
+            if (value == null)
+            {
+                return default(T);
+            }
+            return value;
+        }
         private void Form_Load(object sender, EventArgs e)
         {
+            OriginalClass ofn = new OriginalClass();
             try
             {
-
                 // 対象フォームが読み込まれていないときはすぐに終了する
                 if (Application.OpenForms["F_部品集合管理"] == null)
                 {
@@ -43,34 +51,76 @@ namespace u_net
                     return;
                 }
 
+                ofn.SetComboBox(分類名, "SELECT 分類記号 as Display,対象部品名 as Display2,分類記号 as Value FROM M部品分類 ORDER BY 分類記号");
+                分類名.DrawMode = DrawMode.OwnerDrawFixed;
+
                 //開いているフォームのインスタンスを作成する
                 F_部品集合管理 frmTarget = Application.OpenForms.OfType<F_部品集合管理>().FirstOrDefault();
 
-                // F_仕入先管理クラスからデータを取得し、現在のフォームのコントロールに設定
-                //this.シリーズ名.Text = frmTarget.str仕入先名;
-                //仕入先名フリガナ.Text = frmTarget.str仕入先名フリガナ;
+                this.分類名.Text = frmTarget.str分類名;
+                this.集合名.Text = frmTarget.str集合名;
+
+                if (frmTarget.dtm更新日開始 != DateTime.MinValue)
+                    this.更新日開始.Text = frmTarget.dtm更新日開始.ToString();
+
+                if (frmTarget.dtm更新日終了 != DateTime.MinValue)
+                    this.更新日終了.Text = frmTarget.dtm更新日終了.ToString();
+
+                this.更新者名.Text = frmTarget.str更新者名;
+
+
+                switch (frmTarget.lng確定指定)
+                {
+                    case 1:
+                        確定指定Button1.Checked = true;
+                        break;
+                    case 2:
+                        確定指定Button2.Checked = true;
+                        break;
+                    case 0:
+                        確定指定Button3.Checked = true;
+                        break;
+
+                    default:
+                        break;
+                }
+
+                switch (frmTarget.lng承認指定)
+                {
+                    case 1:
+                        承認指定button1.Checked = true;
+                        break;
+                    case 2:
+                        承認指定button2.Checked = true;
+                        break;
+                    case 0:
+                        承認指定button3.Checked = true;
+                        break;
+
+                    default:
+                        break;
+                }
 
                 switch (frmTarget.lng削除指定)
                 {
                     case 1:
-                        //削除指定Button1.Checked = true;
+                        削除指定Button1.Checked = true;
                         break;
                     case 2:
-                        //削除指定Button2.Checked = true;
+                        削除指定Button2.Checked = true;
                         break;
                     case 0:
-                        //削除指定Button3.Checked = true;
+                        削除指定Button3.Checked = true;
                         break;
 
                     default:
-                        // intComposedChipMount の値に対応するラジオボタンがない場合の処理
+
                         break;
                 }
 
             }
             catch (Exception ex)
             {
-                // 例外処理が必要な場合はここで処理を追加
                 MessageBox.Show("エラーが発生しました: " + ex.Message, "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -80,25 +130,51 @@ namespace u_net
             try
             {
                 F_部品集合管理? frmTarget = Application.OpenForms.OfType<F_部品集合管理>().FirstOrDefault();
-                //F_仕入先管理 frmTarget = new F_仕入先管理();
 
-                // frmTarget.仕入先コード = Nz(仕入先コード.Text);
-                //frmTarget.str仕入先名 = Nz(シリーズ名.Text);
-                //frmTarget.str仕入先名フリガナ = Nz(仕入先名フリガナ.Text);
+                frmTarget.str分類名 = Nz(分類名.Text);
+                frmTarget.str集合名 = Nz(集合名.Text);
+                frmTarget.dtm更新日開始 = Nz(DateTime.Parse(更新日開始.Text));
+                frmTarget.dtm更新日終了 = Nz(DateTime.Parse(更新日終了.Text));
+                frmTarget.str更新者名 = Nz(更新者名.Text);
 
+                if (確定指定Button1.Checked)
+                {
+                    frmTarget.lng確定指定 = 1;
+                }
+                else if (確定指定Button2.Checked)
+                {
+                    frmTarget.lng確定指定 = 2;
+                }
+                else if (確定指定Button3.Checked)
+                {
+                    frmTarget.lng確定指定 = 0;
+                }
 
-                //if (削除指定Button1.Checked)
-                //{
-                //    frmTarget.lng削除指定 = 1;
-                //}
-                //else if (削除指定Button2.Checked)
-                //{
-                //    frmTarget.lng削除指定 = 2;
-                //}
-                //else if (削除指定Button3.Checked)
-                //{
-                //    frmTarget.lng削除指定 = 0;
-                //}
+                if (承認指定button1.Checked)
+                {
+                    frmTarget.lng承認指定 = 1;
+                }
+                else if (承認指定button2.Checked)
+                {
+                    frmTarget.lng承認指定 = 2;
+                }
+                else if (承認指定button3.Checked)
+                {
+                    frmTarget.lng承認指定 = 0;
+                }
+
+                if (削除指定Button1.Checked)
+                {
+                    frmTarget.lng削除指定 = 1;
+                }
+                else if (削除指定Button2.Checked)
+                {
+                    frmTarget.lng削除指定 = 2;
+                }
+                else if (削除指定Button3.Checked)
+                {
+                    frmTarget.lng削除指定 = 0;
+                }
 
                 long cnt = frmTarget.DoUpdate();
 
@@ -141,6 +217,63 @@ namespace u_net
         private void 分類名_Leave(object sender, EventArgs e)
         {
             toolStripStatusLabel1.Text = "各種項目の説明";
+        }
+
+        private void 分類名_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            分類内容.Text = (分類名.SelectedItem as DataRowView)?.Row.Field<String>("Display2")?.ToString() ?? null;
+        }
+
+        private void 分類名_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            OriginalClass.SetComboBoxAppearance((ComboBox)sender, e, new int[] { 50, 500 }, new string[] { "Display", "Display2" });
+            分類名.Invalidate();
+            分類名.DroppedDown = true;
+        }
+
+        private void 更新日開始選択ボタン_Click(object sender, EventArgs e)
+        {
+            if (dateSelectionForm.ShowDialog() == DialogResult.OK)
+            {
+                // 日付選択フォームから選択した日付を取得
+                string selectedDate = dateSelectionForm.SelectedDate;
+
+                // フォームAの日付コントロールに選択した日付を設定
+                更新日開始.Text = selectedDate;
+
+            }
+        }
+
+        private void 更新日終了選択ボタン_Click(object sender, EventArgs e)
+        {
+
+            if (dateSelectionForm.ShowDialog() == DialogResult.OK)
+            {               
+                string selectedDate = dateSelectionForm.SelectedDate;               
+                更新日終了.Text = selectedDate;
+            }
+        }
+
+        private void 更新日開始_DoubleClick(object sender, EventArgs e)
+        {
+            if (dateSelectionForm.ShowDialog() == DialogResult.OK)
+            {
+                // 日付選択フォームから選択した日付を取得
+                string selectedDate = dateSelectionForm.SelectedDate;
+
+                // フォームAの日付コントロールに選択した日付を設定
+                更新日開始.Text = selectedDate;
+
+            }
+        }
+
+        private void 更新日終了_DoubleClick(object sender, EventArgs e)
+        {
+            if (dateSelectionForm.ShowDialog() == DialogResult.OK)
+            {
+                string selectedDate = dateSelectionForm.SelectedDate;
+                更新日終了.Text = selectedDate;
+            }
         }
     }
 }

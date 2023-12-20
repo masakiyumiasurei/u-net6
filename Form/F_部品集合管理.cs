@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.Data.SqlClient;
+using Pao.Reports;
 using u_net.Public;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
@@ -424,13 +425,7 @@ namespace u_net
             DoUpdate();
             Cleargrid(dataGridView1);
         }
-
-        private void コマンド全表示_Click(object sender, EventArgs e)
-        {
-            InitializeFilter();
-            DoUpdate();
-            Cleargrid(dataGridView1);
-        }
+                
 
         private void コマンド更新_Click(object sender, EventArgs e)
         {
@@ -442,7 +437,8 @@ namespace u_net
 
         private void コマンド検索_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("現在開発中です。\n コードで検索するときに使用します。", "検索コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("現在開発中です。\n コードで検索するときに使用します。",
+                "検索コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         
@@ -545,12 +541,17 @@ namespace u_net
 
         private void コマンド印刷_Click(object sender, EventArgs e)
         {
+            IReport paoRep = ReportCreator.GetPreview();
+
+            paoRep.LoadDefFile("../../../Reports/部品集合管理.prepd");
 
         }
 
         private void コマンド印刷明細_Click(object sender, EventArgs e)
         {
+            IReport paoRep = ReportCreator.GetPreview();
 
+            paoRep.LoadDefFile("../../../Reports/部品集合明細一覧.prepd");
         }
 
         private void コマンド部品購買設定_Click(object sender, EventArgs e)
@@ -562,7 +563,9 @@ namespace u_net
 
         private void コマンド参照_Click(object sender, EventArgs e)
         {
-
+            F_部品集合 fm = new F_部品集合();
+            fm.args = $"{CurrentCode}, {CurrentEdition}";
+            fm.ShowDialog();
         }
     }
 }

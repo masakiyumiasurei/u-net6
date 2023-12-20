@@ -256,6 +256,8 @@
             this.部品コードボタン.Name = "部品コードボタン";
             this.部品コードボタン.Office2007Style = GrapeCity.Win.MultiRow.Office2007Style.Silver;
             this.部品コードボタン.Size = new System.Drawing.Size(69, 44);
+            this.部品コードボタン.SortCellName = "部品コード";
+            this.部品コードボタン.SortMode = GrapeCity.Win.MultiRow.SortMode.Automatic;
             cellStyle26.BackColor = System.Drawing.Color.Transparent;
             cellStyle26.Font = new System.Drawing.Font("BIZ UDゴシック", 9F);
             cellStyle26.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
@@ -270,6 +272,8 @@
             this.品名ボタン.Location = new System.Drawing.Point(119, 0);
             this.品名ボタン.Name = "品名ボタン";
             this.品名ボタン.Size = new System.Drawing.Size(312, 22);
+            this.品名ボタン.SortCellName = "品名";
+            this.品名ボタン.SortMode = GrapeCity.Win.MultiRow.SortMode.Automatic;
             cellStyle27.BackColor = System.Drawing.Color.Transparent;
             cellStyle27.Font = new System.Drawing.Font("BIZ UDゴシック", 9F);
             cellStyle27.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
@@ -284,6 +288,8 @@
             this.型番ボタン.Location = new System.Drawing.Point(119, 22);
             this.型番ボタン.Name = "型番ボタン";
             this.型番ボタン.Size = new System.Drawing.Size(312, 22);
+            this.型番ボタン.SortCellName = "型番";
+            this.型番ボタン.SortMode = GrapeCity.Win.MultiRow.SortMode.Automatic;
             cellStyle28.BackColor = System.Drawing.Color.Transparent;
             cellStyle28.Font = new System.Drawing.Font("BIZ UDゴシック", 9F);
             cellStyle28.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
@@ -298,6 +304,8 @@
             this.メーカー名ボタン.Location = new System.Drawing.Point(431, 0);
             this.メーカー名ボタン.Name = "メーカー名ボタン";
             this.メーカー名ボタン.Size = new System.Drawing.Size(126, 44);
+            this.メーカー名ボタン.SortCellName = "メーカー名";
+            this.メーカー名ボタン.SortMode = GrapeCity.Win.MultiRow.SortMode.Automatic;
             cellStyle29.BackColor = System.Drawing.Color.Transparent;
             cellStyle29.Font = new System.Drawing.Font("BIZ UDゴシック", 9F);
             cellStyle29.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
@@ -312,6 +320,8 @@
             this.入数ボタン.Location = new System.Drawing.Point(557, 0);
             this.入数ボタン.Name = "入数ボタン";
             this.入数ボタン.Size = new System.Drawing.Size(58, 44);
+            this.入数ボタン.SortCellName = "入数";
+            this.入数ボタン.SortMode = GrapeCity.Win.MultiRow.SortMode.Automatic;
             cellStyle30.BackColor = System.Drawing.Color.Transparent;
             cellStyle30.Font = new System.Drawing.Font("BIZ UDゴシック", 9F);
             cellStyle30.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
@@ -326,6 +336,8 @@
             this.発注納期ボタン.Location = new System.Drawing.Point(615, 0);
             this.発注納期ボタン.Name = "発注納期ボタン";
             this.発注納期ボタン.Size = new System.Drawing.Size(78, 44);
+            this.発注納期ボタン.SortCellName = "発注納期";
+            this.発注納期ボタン.SortMode = GrapeCity.Win.MultiRow.SortMode.Automatic;
             cellStyle31.BackColor = System.Drawing.Color.Transparent;
             cellStyle31.Font = new System.Drawing.Font("BIZ UDゴシック", 9F);
             cellStyle31.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
@@ -340,6 +352,8 @@
             this.必要数量ボタン.Location = new System.Drawing.Point(693, 0);
             this.必要数量ボタン.Name = "必要数量ボタン";
             this.必要数量ボタン.Size = new System.Drawing.Size(58, 44);
+            this.必要数量ボタン.SortCellName = "必要数量";
+            this.必要数量ボタン.SortMode = GrapeCity.Win.MultiRow.SortMode.Automatic;
             cellStyle32.BackColor = System.Drawing.Color.Transparent;
             cellStyle32.Font = new System.Drawing.Font("BIZ UDゴシック", 9F);
             cellStyle32.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
@@ -354,6 +368,8 @@
             this.発注数量ボタン.Location = new System.Drawing.Point(751, 0);
             this.発注数量ボタン.Name = "発注数量ボタン";
             this.発注数量ボタン.Size = new System.Drawing.Size(58, 44);
+            this.発注数量ボタン.SortCellName = "発注数量";
+            this.発注数量ボタン.SortMode = GrapeCity.Win.MultiRow.SortMode.Automatic;
             cellStyle33.BackColor = System.Drawing.Color.Transparent;
             cellStyle33.Font = new System.Drawing.Font("BIZ UDゴシック", 9F);
             cellStyle33.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
@@ -368,6 +384,8 @@
             this.発注単価ボタン.Location = new System.Drawing.Point(809, 0);
             this.発注単価ボタン.Name = "発注単価ボタン";
             this.発注単価ボタン.Size = new System.Drawing.Size(115, 44);
+            this.発注単価ボタン.SortCellName = "発注単価";
+            this.発注単価ボタン.SortMode = GrapeCity.Win.MultiRow.SortMode.Automatic;
             cellStyle34.BackColor = System.Drawing.Color.Transparent;
             cellStyle34.Font = new System.Drawing.Font("BIZ UDゴシック", 9F);
             cellStyle34.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
@@ -382,6 +400,8 @@
             this.headerCell1.Location = new System.Drawing.Point(924, 0);
             this.headerCell1.Name = "headerCell1";
             this.headerCell1.Size = new System.Drawing.Size(78, 44);
+            this.headerCell1.SortCellName = "回答納期";
+            this.headerCell1.SortMode = GrapeCity.Win.MultiRow.SortMode.Automatic;
             cellStyle35.BackColor = System.Drawing.Color.Transparent;
             cellStyle35.Font = new System.Drawing.Font("BIZ UDゴシック", 9F);
             cellStyle35.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
@@ -396,6 +416,8 @@
             this.買掛区分ボタン.Location = new System.Drawing.Point(1002, 0);
             this.買掛区分ボタン.Name = "買掛区分ボタン";
             this.買掛区分ボタン.Size = new System.Drawing.Size(122, 44);
+            this.買掛区分ボタン.SortCellName = "買掛区分";
+            this.買掛区分ボタン.SortMode = GrapeCity.Win.MultiRow.SortMode.Automatic;
             cellStyle36.BackColor = System.Drawing.Color.Transparent;
             cellStyle36.Font = new System.Drawing.Font("BIZ UDゴシック", 9F);
             cellStyle36.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
