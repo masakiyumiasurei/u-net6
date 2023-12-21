@@ -44,6 +44,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="業務日報明細実績.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="業務日報明細実績.Designer.cs">
+      <DependentUpon>業務日報明細実績.cs</DependentUpon>
+    </Compile>
     <Compile Include="ユニット明細参照.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -73,6 +79,12 @@
     </Compile>
     <Compile Include="受注明細テンプレート.designer.cs">
       <DependentUpon>受注明細テンプレート.cs</DependentUpon>
+    </Compile>
+    <Compile Include="業務日報明細実績テンプレート.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="業務日報明細実績テンプレート.designer.cs">
+      <DependentUpon>業務日報明細実績テンプレート.cs</DependentUpon>
     </Compile>
     <Compile Include="見積明細.cs">
       <SubType>UserControl</SubType>
@@ -258,6 +270,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="業務日報明細実績.resx">
+      <DependentUpon>業務日報明細実績.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ユニット明細参照.resx">
       <DependentUpon>ユニット明細参照.cs</DependentUpon>
     </EmbeddedResource>
@@ -273,6 +288,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="受注明細テンプレート.resx">
       <DependentUpon>受注明細テンプレート.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="業務日報明細実績テンプレート.resx">
+      <DependentUpon>業務日報明細実績テンプレート.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="見積明細.resx">
       <DependentUpon>見積明細.cs</DependentUpon>
