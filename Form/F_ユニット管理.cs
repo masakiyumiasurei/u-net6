@@ -81,7 +81,7 @@ namespace u_net
             FunctionClass fn = new FunctionClass();
             fn.DoWait("しばらくお待ちください...");
             //実行中フォーム起動
-            //string LoginUserCode = "000";//テスト用 ログインユーザを実行中にどのように管理するか決まったら修正
+            //string LoginUserCode = CommonConstants.LoginUserCode;
             LocalSetting localSetting = new LocalSetting();
             localSetting.LoadPlace(CommonConstants.LoginUserCode, this);
 
@@ -501,7 +501,7 @@ namespace u_net
 
         private void F_仕入先管理_FormClosing(object sender, FormClosingEventArgs e)
         {
-            string LoginUserCode = "000";//テスト用 ログインユーザを実行中にどのように管理するか決まったら修正
+            string LoginUserCode = CommonConstants.LoginUserCode;
             LocalSetting test = new LocalSetting();
             test.SavePlace(LoginUserCode, this);
         }

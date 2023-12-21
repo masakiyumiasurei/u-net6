@@ -135,6 +135,9 @@ namespace u_net
             dataGridView1.DefaultCellStyle.ForeColor = Color.Black;
 
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridView1.AllowUserToAddRows = false;
+            dataGridView1.AllowUserToDeleteRows = false;
+            dataGridView1.ReadOnly = true;
 
 
             myapi.GetFullScreen(out xSize, out ySize);
