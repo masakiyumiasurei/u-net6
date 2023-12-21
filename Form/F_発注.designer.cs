@@ -335,12 +335,13 @@ namespace u_net
             // 
             // 版数_ラベル
             // 
-            版数_ラベル.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            版数_ラベル.Location = new Point(253, 50);
+            版数_ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            版数_ラベル.Location = new Point(252, 49);
             版数_ラベル.Name = "版数_ラベル";
-            版数_ラベル.Size = new Size(54, 23);
+            版数_ラベル.Size = new Size(54, 19);
             版数_ラベル.TabIndex = 3;
             版数_ラベル.Text = "版数(&E)";
+            版数_ラベル.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // 発注コード
             // 
@@ -376,7 +377,7 @@ namespace u_net
             // 改版ボタン
             // 
             改版ボタン.Enabled = false;
-            改版ボタン.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            改版ボタン.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             改版ボタン.Location = new Point(296, 70);
             改版ボタン.Margin = new Padding(4);
             改版ボタン.Name = "改版ボタン";
