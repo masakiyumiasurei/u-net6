@@ -22,7 +22,7 @@ namespace u_net
         private void Form_Load(object sender, EventArgs e)
         {
 
-            //string LoginUserCode = "000";//テスト用 ログインユーザを実行中にどのように管理するか決まったら修正
+            //string LoginUserCode = CommonConstants.LoginUserCode;
             //LocalSetting localSetting = new LocalSetting();
             //localSetting.LoadPlace(LoginUserCode, this);
 
@@ -324,7 +324,7 @@ namespace u_net
 
         private void F_部品管理_抽出_FormClosing(object sender, FormClosingEventArgs e)
         {
-            //string LoginUserCode = "000";//テスト用 ログインユーザを実行中にどのように管理するか決まったら修正
+            //string LoginUserCode = CommonConstants.LoginUserCode;
             //LocalSetting test = new LocalSetting();
             //test.SavePlace(LoginUserCode, this);
         }

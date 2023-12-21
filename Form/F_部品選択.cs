@@ -75,6 +75,7 @@ namespace u_net
             dataGridView1.DefaultCellStyle.ForeColor = Color.Black;
 
 
+
             myapi.GetFullScreen(out xSize, out ySize);
 
             int x = 10, y = 10;
