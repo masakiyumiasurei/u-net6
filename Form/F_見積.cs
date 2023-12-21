@@ -22,11 +22,13 @@ namespace u_net
 {
     public partial class F_見積 : Form
     {
-        private Control? previousControl;
+        public string varOpenArgs = ""; // オープン時引数保存用
+
         private SqlConnection cn;
-        private SqlTransaction tx;
-        public string varOpenArgs = "";
         private bool setCombo = true;
+        private string tmpCCode = ""; // 依頼主コード退避用
+
+        private string BASE_CAPTION = "見積";
 
 
         public string CurrentCode
@@ -48,7 +50,7 @@ namespace u_net
 
         public F_見積()
         {
-            this.Text = "受注（製図指図書）";       // ウィンドウタイトルを設定
+            this.Text = "見積";       // ウィンドウタイトルを設定
             this.MaximizeBox = false;  // 最大化ボタンを無効化
             this.MinimizeBox = false; //最小化ボタンを無効化
 
@@ -77,28 +79,61 @@ namespace u_net
                 control.PreviewKeyDown += OriginalClass.ValidateCheck;
             }
 
+            //実行中フォーム起動
             FunctionClass fn = new FunctionClass();
             fn.DoWait("しばらくお待ちください...");
-
-
-            //実行中フォーム起動
-            LocalSetting localSetting = new LocalSetting();
-            localSetting.LoadPlace(CommonConstants.LoginUserCode, this);
 
             //コンボボックスの設定
             OriginalClass ofn = new OriginalClass();
 
-            //ofn.SetComboBox(見積コード, "SELECT A.受注コード AS Value, A.受注コード, { fn REPLACE(STR(CONVERT(bit, T受注.無効日), 1, 0), '1', '×') } AS 削除 " +
-            //    "FROM T受注 INNER JOIN (SELECT TOP 100 受注コード, MAX(受注版数) AS 最新版数 FROM T受注 GROUP BY 受注コード ORDER BY T受注.受注コード DESC) A ON T受注.受注コード = A.受注コード AND T受注.受注版数 = A.最新版数 ORDER BY A.受注コード DESC");
+            ofn.SetComboBox(担当者コード, "SELECT 社員コード AS Value, 社員コード AS Display, 氏名 AS Display2 FROM M社員 WHERE (退社 IS NULL) AND ([パート] = 0) AND (削除日時 IS NULL) AND (ふりがな <> N'ん') ORDER BY ふりがな");
+
+            this.納入場所.DataSource = new KeyValuePair<String, String>[] {
+                new KeyValuePair<String, String>("御社指定場所", "御社指定場所"),
+            };
+            this.納入場所.DisplayMember = "Value";
+            this.納入場所.ValueMember = "Key";
+
+            this.支払条件.DataSource = new KeyValuePair<String, String>[] {
+                new KeyValuePair<String, String>("従来どおり", "従来どおり"),
+                new KeyValuePair<String, String>("別途打ち合わせ", "別途打ち合わせ"),
+            };
+            this.支払条件.DisplayMember = "Value";
+            this.支払条件.ValueMember = "Key";
+
+            this.有効期間.DataSource = new KeyValuePair<String, String>[] {
+                new KeyValuePair<String, String>("3ヶ月", "3ヶ月"),
+                new KeyValuePair<String, String>("1ヶ月", "1ヶ月"),
+                new KeyValuePair<String, String>("2週間", "2週間"),
+            };
+            this.有効期間.DisplayMember = "Value";
+            this.有効期間.ValueMember = "Key";
+
+            this.要承認.DataSource = new KeyValuePair<Int16, String>[] {
+                new KeyValuePair<Int16, String>(1, "必要"),
+                new KeyValuePair<Int16, String>(0, "不要"),
+            };
+            this.要承認.DisplayMember = "Value";
+            this.要承認.ValueMember = "Key";
+
+            this.合計金額表示.DataSource = new KeyValuePair<Int16, String>[] {
+                new KeyValuePair<Int16, String>(1, "表示する"),
+                new KeyValuePair<Int16, String>(0, "表示しない"),
+            };
+            this.合計金額表示.DisplayMember = "Value";
+            this.合計金額表示.ValueMember = "Key";
 
             try
             {
                 this.SuspendLayout();
 
-                // 登録モードの分岐
+                // データベース接続
+                Connect();
+
+                // 入力モードの分岐
                 if (string.IsNullOrEmpty(varOpenArgs))
                 {
-                    // 新規モードへ
+                    // 新規
                     if (!GoNewMode())
                     {
                         throw new Exception("初期化に失敗しました。");
@@ -106,21 +141,17 @@ namespace u_net
                 }
                 else
                 {
-                    // 修正モードへ
-                    //if (!GoModifyMode())
-                    //{
-                    //    throw new Exception("初期化に失敗しました。");
-                    //}
-                    //if (!string.IsNullOrEmpty(args))
-                    //{
-                    //    //this.仕入先コード.SelectedValue = args;
-                    //    this.仕入先コード.Text = args;
-                    //    UpdatedControl(this.仕入先コード);
-                    //    ChangedData(false);
+                    // 読込
+                    if (!GoModifyMode())
+                    {
+                        throw new Exception("初期化に失敗しました。");
+                    }
 
-                    //}
+                    this.見積コード.Text = varOpenArgs.Substring(varOpenArgs.IndexOf(','));
+                    this.見積版数.Text = varOpenArgs.Substring(varOpenArgs.IndexOf(',') + 1);
+
+                    varOpenArgs = string.Empty;
                 }
-                varOpenArgs = null;
             }
             catch (Exception ex)
             {
@@ -129,8 +160,14 @@ namespace u_net
             finally
             {
                 setCombo = false;
-                this.ResumeLayout();
+
+                // ウィンドウを配置する
+                LocalSetting localSetting = new LocalSetting();
+                localSetting.LoadPlace(CommonConstants.LoginUserCode, this);
+
                 fn.WaitForm.Close();
+
+                this.ResumeLayout();
             }
         }
 
@@ -143,29 +180,38 @@ namespace u_net
 
                 Connect();
 
-                this.見積コード.Text = FunctionClass.採番(cn, "A");
+                this.見積コード.Text = FunctionClass.採番(cn, CommonConstants.CH_ESTIMATE);
                 this.見積版数.Text = "1";
                 this.見積日.Text = DateTime.Now.ToString("yyyy/MM/dd");
-                //string code = FunctionClass.GetNewCode(cn, CommonConstants.CH_SUPPLIER);
-                //this.仕入先コード.Text = code.Substring(code.Length - 8);
-                //// 
-                //this.Revision.Text = "1";
-                //this.支払先専用.SelectedValue = 0;
-                //this.CloseDay.SelectedValue = 20;
+                this.担当者コード.SelectedValue = CommonConstants.LoginUserCode;
+                this.要承認.SelectedValue = (Int16)0;
+                this.合計金額表示.SelectedValue = (Int16)1;
 
-                //// 編集による変更がない状態へ遷移する
-                //ChangedData(false);
+                // Call 担当者コード_AfterUpdate ↓に置き換え
+                this.担当者名.Text = ((DataRowView)担当者コード.SelectedItem)?.Row.Field<String>("Display2")?.ToString();
 
-                //// ヘッダ部動作制御
-                //this.仕入先コード.Enabled = false;
-                //this.コマンド新規.Enabled = false;
-                //this.コマンド修正.Enabled = true;
-                //this.コマンド複写.Enabled = false;
-                //this.コマンド削除.Enabled = false;
-                //this.コマンドメール.Enabled = false;
-                //// this.コマンド承認.Enabled = false;
-                //// this.コマンド確定.Enabled = false;
-                //this.コマンド登録.Enabled = false;
+                //明細部を初期化
+                LoadDetails(this.見積明細1.Detail, this.CurrentCode);
+
+                //ヘッダ部を制御
+                FunctionClass.LockData(this, false);
+
+                this.見積日.Focus();
+                this.見積コード.Enabled = false;
+                this.見積版数.Enabled = false;
+                this.改版ボタン.Enabled = false;
+                this.コマンド新規.Enabled = false;
+                this.コマンド読込.Enabled = true;
+                this.コマンド複写.Enabled = false;
+                this.コマンド削除.Enabled = false;
+                this.コマンド見積書.Enabled = false;
+                this.コマンド送信.Enabled = false;
+                this.コマンド承認.Enabled = false;
+                this.コマンド確定.Enabled = false;
+                this.コマンド登録.Enabled = false;
+
+                //明細部を制御する
+                見積明細1.Detail.Enabled = true;
 
                 return true;
             }
@@ -174,6 +220,61 @@ namespace u_net
                 Debug.Print(this.Name + "_GoNewMode - " + ex.Message);
                 return false;
             }
+        }
+
+        private bool GoModifyMode()
+        {
+            try
+            {
+                //各コントロール値をクリア
+                VariableSet.SetControls(this);
+                //LoadDetails(this.受注明細1.Detail, this.CurrentCode);
+
+                //// 未変更状態にする
+                //ChangedData(false);
+                //FunctionClass.LockData(this, true, "受注コード");
+
+                //this.受注コード.Enabled = true;
+                //this.受注版数.Enabled = true;
+                //this.受注コード.Focus();
+                //this.コマンド新規.Enabled = true;
+                //this.コマンド読込.Enabled = false;
+                //this.コマンド複写.Enabled = false;
+                //this.コマンド登録.Enabled = false;
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Debug.Print(this.Name + "_GoModifyMode - " + ex.Message);
+                return false;
+            }
+        }
+
+        public void ChangedData(bool isChanged)
+        {
+            if (isChanged)
+            {
+                this.Text = this.Text.Replace("*", "") + "*";
+            }
+            else
+            {
+                this.Text = this.Text.Replace("*", "");
+            }
+
+            // キー情報を表示するコントロールを制御する
+            // コードにフォーカスがある状態でサブフォームから呼び出されたときの対処
+            if (this.ActiveControl == this.見積コード) this.見積日.Focus();
+            this.見積コード.Enabled = !isChanged;
+            if (this.ActiveControl == this.見積版数) this.見積日.Focus();
+            this.見積版数.Enabled = !isChanged;
+
+            this.コマンド複写.Enabled = !isChanged;
+            this.コマンド削除.Enabled = !isChanged;
+            this.コマンド見積書.Enabled = !isChanged;
+            if (isChanged) this.コマンド送信.Enabled = false;
+            if (isChanged) this.コマンド確定.Enabled = true;
+            this.コマンド登録.Enabled = isChanged;
         }
 
         private void UpdatedControl(Control controlObject)
@@ -240,8 +341,8 @@ namespace u_net
         /// ヘッダ部を読み込む
         /// </summary>
         /// <param name="formObject"></param>
-        /// <param name="codeString">受注コード</param>
-        /// <param name="editionNumber">受注版数</param>
+        /// <param name="codeString">見積コード</param>
+        /// <param name="editionNumber">見積版数</param>
         /// <returns></returns>
         public bool LoadHeader(Form formObject, string codeString, int editionNumber = -1)
         {
@@ -268,8 +369,8 @@ namespace u_net
         /// 明細部を読み込む
         /// </summary>
         /// <param name="multiRow"></param>
-        /// <param name="codeString">受注コード</param>
-        /// <param name="editionNumber">受注版数</param>
+        /// <param name="codeString">見積コード</param>
+        /// <param name="editionNumber">見積版数</param>
         /// <returns></returns>
         public bool LoadDetails(GcMultiRow multiRow, string codeString, int editionNumber = -1)
         {
@@ -280,7 +381,7 @@ namespace u_net
             {
                 Connect();
 
-                strSQL = "SELECT * FROM V受注明細 WHERE 受注コード='" + CurrentCode + "' AND 受注版数=" + CurrentEdition + " ORDER BY 明細番号";
+                strSQL = "SELECT * FROM T見積明細 WHERE 見積コード='" + CurrentCode + "' AND 見積版数=" + CurrentEdition + " ORDER BY 行番号";
 
                 using (SqlCommand command = new SqlCommand(strSQL, cn))
                 {
@@ -298,6 +399,11 @@ namespace u_net
                 Debug.Print(this.Name + "_LoadDetails - " + ex.Message);
             }
             return loadDetails;
+        }
+
+        private void コマンド読込_Click(object sender, EventArgs e)
+        {
+
         }
 
         private void コマンド終了_Click(object sender, EventArgs e)
@@ -373,38 +479,13 @@ namespace u_net
                 case Keys.F12:
                     if (コマンド終了.Enabled)
                     {
-                        //コマンド終了_Click(this, EventArgs.Empty); // クリックイベントを呼び出す
+                        コマンド終了_Click(this, EventArgs.Empty); // クリックイベントを呼び出す
                     }
                     break;
             }
         }
 
-        private void 受注コード_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (setCombo) return;
-            UpdatedControl((Control)sender);
-        }
-
-        private void 受注コード_DrawItem(object sender, DrawItemEventArgs e)
-        {
-            OriginalClass.SetComboBoxAppearance((ComboBox)sender, e, new int[] { 300, 50 }, new string[] { "受注コード", "削除" });
-            見積コード.Invalidate();
-            //見積コード.DroppedDown = true;
-        }
-
-        private void 受注版数_DrawItem(object sender, DrawItemEventArgs e)
-        {
-            OriginalClass.SetComboBoxAppearance((ComboBox)sender, e, new int[] { 50, 50 }, new string[] { "受注版数", "承認" });
-            見積版数.Invalidate();
-            見積版数.DroppedDown = true;
-        }
-
-        private void 備考_Enter(object sender, EventArgs e)
-        {
-            this.toolStripStatusLabel2.Text = "■全角１００文字まで入力できます。";
-        }
-
-        private void 受注日選択ボタン_Click(object sender, EventArgs e)
+        private void 見積日選択ボタン_Click(object sender, EventArgs e)
         {
             // 日付選択フォームを作成し表示
             F_カレンダー calendar = new F_カレンダー();
@@ -418,32 +499,33 @@ namespace u_net
             }
         }
 
-        private void 受注納期選択ボタン_Click(object sender, EventArgs e)
+        private void 担当者コード_DrawItem(object sender, DrawItemEventArgs e)
         {
-            // 日付選択フォームを作成し表示
-            F_カレンダー calendar = new F_カレンダー();
-            if (calendar.ShowDialog() == DialogResult.OK)
-            {
-                // 日付選択フォームから選択した日付を取得
-                string selectedDate = calendar.SelectedDate;
-
-                // 日付コントロールに選択した日付を設定
-                ファックス番号.Text = selectedDate;
-            }
+            OriginalClass.SetComboBoxAppearance((ComboBox)sender, e, new int[] { 50, 130 }, new string[] { "Display", "Display2" });
+            担当者コード.Invalidate();
+            担当者コード.DroppedDown = true;
         }
 
-        private void 出荷予定日選択ボタン_Click(object sender, EventArgs e)
+        private void 担当者コード_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // 日付選択フォームを作成し表示
-            F_カレンダー calendar = new F_カレンダー();
-            if (calendar.ShowDialog() == DialogResult.OK)
-            {
-                // 日付選択フォームから選択した日付を取得
-                string selectedDate = calendar.SelectedDate;
+            if (setCombo) return;
+            担当者名.Text = ((DataRowView)担当者コード.SelectedItem)?.Row.Field<String>("Display2")?.ToString();
+            ChangedData(true);
+        }
 
-                // 日付コントロールに選択した日付を設定
-                納期.Text = selectedDate;
-            }
+        private void 見積コード_Validating(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void 見積コード_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 見積コード_TextChanged(object sender, EventArgs e)
+        {
+            FunctionClass.LimitText(((Control)sender), 11);
         }
     }
 }
