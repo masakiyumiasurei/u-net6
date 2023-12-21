@@ -77,7 +77,7 @@ namespace u_net
             this.str受注コード1 = codeString;
             this.str受注コード2 = codeString;
             ////Filtering;
-            Filtering();
+            DoUpdate();
         }
 
         //全表示設定
@@ -148,6 +148,8 @@ namespace u_net
             //////ウィンドウサイズを調整する
             ////ls.LoadPlace(CommonConstants.LoginUserCode, this);
 
+            ////F_受注管理 frmTarget = Application.OpenForms.OfType<F_受注管理>().FirstOrDefault();
+
             FunctionClass fn = new FunctionClass();
             fn.DoWait("しばらくお待ちください...");
             //実行中フォーム起動
@@ -208,6 +210,8 @@ namespace u_net
 
             ////setall();
             InitializeFilter();
+            this.ble受注完了承認指定 = true;
+            this.byt受注完了承認 = 2;
             DoUpdate();
             Cleargrid(dataGridView1);
             fn.WaitForm.Close();
@@ -314,10 +318,10 @@ namespace u_net
                     switch (byt受注承認)
                     {
                         case 1:
-                            FunctionClass.WhereString(strWhere, "承認者コード is not null");
+                            strWhere = FunctionClass.WhereString(strWhere, "承認者コード is not null");
                             break;
                         case 2:
-                            FunctionClass.WhereString(strWhere, "承認者コード is null");
+                            strWhere = FunctionClass.WhereString(strWhere, "承認者コード is null");
                             break;
                     }
                 }
@@ -329,15 +333,15 @@ namespace u_net
                         case 1:
                             if (Convert.ToDouble(dte出荷完了日1) == 0)
                             {
-                                FunctionClass.WhereString(strWhere, "出荷完了日 is not null");
+                                strWhere = FunctionClass.WhereString(strWhere, "出荷完了日 is not null");
                             }
                             else
                             {
-                                FunctionClass.WhereString(strWhere, "'" + dte出荷完了日1 + "'<=出荷完了日 and 出荷完了日<='" + dte出荷完了日2 + "'");
+                                strWhere = FunctionClass.WhereString(strWhere, "'" + dte出荷完了日1 + "'<=出荷完了日 and 出荷完了日<='" + dte出荷完了日2 + "'");
                             }
                             break;
                         case 2:
-                            FunctionClass.WhereString(strWhere, "出荷完了日 is null");
+                            strWhere = FunctionClass.WhereString(strWhere, "出荷完了日 is null");
                             break;
                     }
                 }
@@ -347,10 +351,10 @@ namespace u_net
                     switch (byt受注完了承認)
                     {
                         case 1:
-                            FunctionClass.WhereString(strWhere, "完了承認者コード is not null");
+                            strWhere = FunctionClass.WhereString(strWhere, "完了承認者コード is not null");
                             break;
                         case 2:
-                            FunctionClass.WhereString(strWhere, "完了承認者コード is null");
+                            strWhere = FunctionClass.WhereString(strWhere, "完了承認者コード is null");
                             break;
                     }
                 }
@@ -360,16 +364,16 @@ namespace u_net
                     switch (byt無効日)
                     {
                         case 1:
-                            FunctionClass.WhereString(strWhere, "無効日 is not null");
+                            strWhere = FunctionClass.WhereString(strWhere, "無効日 is not null");
                             break;
                         case 2:
-                            FunctionClass.WhereString(strWhere, "無効日 is null");
+                            strWhere = FunctionClass.WhereString(strWhere, "無効日 is null");
                             break;
                     }
                 }
 
                 //改版依頼中の受注データは表示しない
-                FunctionClass.WhereString(strWhere, "not(1<受注版数 and 承認者コード is null)");
+                strWhere = FunctionClass.WhereString(strWhere, "not(1<受注版数 and 承認者コード is null)");
 
                 //frmSub.ServerFilter = strWhere;
 
@@ -393,12 +397,12 @@ namespace u_net
                 //frmSub.OrderBy = frmSub.OrderBy;
                 //frmSub.OrderByOn = true;
 
-                string query1 = "SELECT TOP(1)受注コード, 受注版数 AS 版, 受注日, 出荷予定日, 受注納期, 注文番号, 顧客名, 自社担当者名, 受注金額 "
-                                         + " , CASE WHEN 確定日時 IS NOT NULL THEN '■' ELSE '' END AS 確定 "
-                                         + " , CASE WHEN 承認者コード IS NOT NULL THEN '■' ELSE '' END AS 承認 " 
-                                         + " , CASE WHEN 出荷完了日 IS NOT NULL THEN '■' ELSE '' END AS 出荷 " 
-                                         + " , CASE WHEN 完了承認者コード IS NOT NULL THEN '■' ELSE '' END AS 完了 "
-                                         + " FROM V受注管理 ";
+                string query1 = "SELECT TOP(1)受注コード, 受注版数 AS 版, 受注日, 出荷予定日, 受注納期, 注文番号, 顧客名, 自社担当者名, 受注金額 " + 
+                                           " , CASE WHEN 確定日時 IS NOT NULL THEN '■' ELSE '' END AS 確定 " + 
+                                           " , CASE WHEN 承認者コード IS NOT NULL THEN '■' ELSE '' END AS 承認 " + 
+                                           " , CASE WHEN 出荷完了日 IS NOT NULL THEN '■' ELSE '' END AS 出荷 " + 
+                                           " , CASE WHEN 完了承認者コード IS NOT NULL THEN '■' ELSE '' END AS 完了 " + 
+                                           " FROM V受注管理 ";
                 string query2 = "";
                 // SQL文の構築
                 if (string.IsNullOrEmpty(strWhere))
@@ -636,6 +640,9 @@ namespace u_net
             //    F_受注管理出力 form = new F_受注管理出力();
             //    form.ShowDialog();
             //}
+            this.dataGridView1.Focus();
+            F_受注管理出力 form = new F_受注管理出力();
+            form.ShowDialog();
         }
 
         private void コマンド初期化_Click(object sender, EventArgs e)
@@ -645,13 +652,18 @@ namespace u_net
                 //if (frmSub != null)
                 //{
                 //    frmSub.Focus(); // サブフォームにフォーカスを設定
-
                 //    // 初期化処理
                 //    InitializeFilter();
                 //    ble受注完了承認指定 = true;
                 //    byt受注完了承認 = 2;
                 //    Filtering();
                 //}
+
+                this.dataGridView1.Focus();
+                InitializeFilter();
+                ble受注完了承認指定 = true;
+                byt受注完了承認 = 2;
+                DoUpdate();
             }
             catch (Exception ex)
             {
@@ -669,6 +681,9 @@ namespace u_net
             //    InitializeFilter();
             //    Filtering();
             //}
+            this.dataGridView1.Focus();
+            InitializeFilter();
+            DoUpdate();
         }
 
         private void コマンド更新_Click(object sender, EventArgs e)
@@ -678,6 +693,8 @@ namespace u_net
             //    frmSub.Focus(); // サブフォームにフォーカスを設定
             //    frmSub.Requery(); // サブフォームを再クエリ
             //}
+            this.dataGridView1.Focus();
+            DoUpdate();
         }
 
         private void コマンド検索_Click(object sender, EventArgs e)
@@ -690,6 +707,9 @@ namespace u_net
             //    F_検索コード form = new F_検索コード(this, "");
             //    form.ShowDialog();
             //}
+            this.dataGridView1.Focus();
+            F_検索コード form = new F_検索コード(this, "");
+            form.ShowDialog();
         }
 
         private void Form_KeyDown(int KeyCode, int Shift)
@@ -734,7 +754,6 @@ namespace u_net
                 //}
 
                 ////Filtering;
-                Filtering();
             }
             catch (Exception ex)
             {
@@ -753,6 +772,10 @@ namespace u_net
             //    F_受注 form = new F_受注();
             //    form.ShowDialog();
             //}
+            this.dataGridView1.Focus();
+            F_受注 form = new F_受注();
+            form.ShowDialog();
+
         }
 
         private void コマンド顧客_Click(object sender, EventArgs e)
@@ -887,6 +910,30 @@ namespace u_net
                 //    // フィルタリング処理
                 //    Filtering();
                 //}
+
+                // サブフォームにフォーカスを設定
+                this.dataGridView1.Focus();
+
+                Connect();
+                // 初期化処理
+                InitializeFilter();
+
+                // 前日の日付を取得
+                DateTime dtePrevious = DateTime.Today.AddDays(-1);
+
+                // 営業日が見つかるまで前日の日付を更新
+                FunctionClass func = new FunctionClass();
+                while (func.OfficeClosed(cn, dtePrevious) == 1)
+                {
+                    dtePrevious = dtePrevious.AddDays(-1);
+                }
+
+                // 受注日を更新
+                this.dte受注日1 = dtePrevious;
+                this.dte受注日2 = dtePrevious;
+
+                // フィルタリング処理
+                DoUpdate();
             }
             catch (Exception ex)
             {
@@ -912,6 +959,17 @@ namespace u_net
                 //    // フィルタリング処理
                 //    Filtering();
                 //}
+                this.dataGridView1.Focus();
+
+                // 初期化処理
+                InitializeFilter();
+
+                // 本日の日付を設定
+                this.dte受注日1 = DateTime.Today;
+                this.dte受注日2 = DateTime.Today;
+
+                // フィルタリング処理
+                DoUpdate();
             }
             catch (Exception ex)
             {
@@ -933,6 +991,13 @@ namespace u_net
                 //    // フィルタリング処理
                 //    Filtering();
                 //}
+
+                this.dataGridView1.Focus();
+                // 履歴表示を更新
+                //this.ble履歴表示 = this.履歴トグル.Text;
+
+                // フィルタリング処理
+                DoUpdate();
             }
             catch (Exception ex)
             {

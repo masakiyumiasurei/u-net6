@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading.Channels;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using u_net.Public;
@@ -52,12 +53,13 @@ namespace u_net
                 {
                     受注コード1.Text = frmTarget.str受注コード1;
                     受注コード2.Text = frmTarget.str受注コード2;
-                    if (Convert.ToDouble(frmTarget.dte受注日1) != 0)
+                    //if (Convert.ToDouble(frmTarget.dte受注日1) != 0)
+                    if (frmTarget.dte受注日1 != DateTime.MinValue)
                     {
                         受注日1.Text = frmTarget.dte受注日1.ToString();
                     }
 
-                    if (Convert.ToDouble(frmTarget.dte受注日2) != 0)
+                    if (frmTarget.dte受注日2 != DateTime.MinValue)
                     {
                         受注日2.Text = frmTarget.dte受注日2.ToString();
                     }
@@ -83,12 +85,13 @@ namespace u_net
 
                     // 出荷_AfterUpdate についてはコメントアウトしているため、必要に応じて処理を追加する
 
-                    if (Convert.ToDouble(frmTarget.dte出荷完了日1.ToString()) != 0)
+                    //if (Convert.ToDouble(frmTarget.dte出荷完了日1.ToString()) != 0)
+                    if (frmTarget.dte出荷完了日1 != DateTime.MinValue)
                     {
                         出荷完了日1.Text = frmTarget.dte出荷完了日1.ToString();
                     }
 
-                    if (Convert.ToDouble(frmTarget.dte出荷完了日2.ToString()) != 0)
+                    if (frmTarget.dte出荷完了日2 != DateTime.MinValue)
                     {
                         出荷完了日2.Text = frmTarget.dte出荷完了日2.ToString();
                     }
@@ -108,7 +111,8 @@ namespace u_net
             }
         }
 
-        private bool IsError(Control controlObject, ref int Cancel)
+        //private bool IsError(Control controlObject, ref int Cancel)
+        private bool IsError(Control controlObject)
         {
             bool isError = false;
 
@@ -337,8 +341,15 @@ namespace u_net
 
         private void 受注コード1_Validating(object sender, CancelEventArgs e)
         {
+            ////TextBox textBox = (TextBox)sender;
+            //////IsError(this.ActiveControl, Cancel);
+
             TextBox textBox = (TextBox)sender;
-            //IsError(this.ActiveControl, Cancel);
+
+            if (textBox.Modified == false) return;
+
+            if (IsError(textBox) == true) e.Cancel = true;
+
         }
 
         private void 受注コード1_KeyDown(object sender, KeyEventArgs e)
@@ -377,7 +388,7 @@ namespace u_net
                 int keyAscii = ChangeBig(e.KeyChar);
 
                 // イベントを処理したことを示す
-                e.Handled = true;
+                //e.Handled = true;
             }
             catch (Exception ex)
             {
@@ -394,7 +405,8 @@ namespace u_net
 
         private void 受注コード1_Leave(object sender, EventArgs e)
         {
-            FunctionClass.AdjustRange(this.受注コード1, this.受注コード2, null);
+            //FunctionClass.AdjustRange(this.受注コード1, this.受注コード2, null);
+            FunctionClass.AdjustRange(this.受注コード1, this.受注コード2, this.受注コード1);
         }
 
         private void 受注コード2_Validating(object sender, CancelEventArgs e)
@@ -441,7 +453,8 @@ namespace u_net
 
         private void 受注コード2_Leave(object sender, EventArgs e)
         {
-            FunctionClass.AdjustRange(this.受注コード1, this.受注コード2, null);
+            //FunctionClass.AdjustRange(this.受注コード1, this.受注コード2, null);
+            FunctionClass.AdjustRange(this.受注コード1, this.受注コード2, this.受注コード2);
         }
 
         private void 受注完了承認指定_Validated(object sender, EventArgs e)
@@ -463,11 +476,15 @@ namespace u_net
 
         private void 受注日1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            // objParent に受注日1の参照を設定
-            sender = this.受注日1;
-
             F_カレンダー form = new F_カレンダー();
-            form.ShowDialog();
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                // 日付選択フォームから選択した日付を取得
+                string selectedDate = form.SelectedDate;
+
+                // フォームAの日付コントロールに選択した日付を設定
+                受注日1.Text = selectedDate;
+            }
         }
 
         private void 受注日1_KeyPress(object sender, KeyPressEventArgs e)
@@ -487,11 +504,15 @@ namespace u_net
 
         private void 受注日1選択ボタン_Click(object sender, EventArgs e)
         {
-            // objParent に受注日1の参照を設定
-            sender = this.受注日1;
-
             F_カレンダー form = new F_カレンダー();
-            form.ShowDialog();
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                // 日付選択フォームから選択した日付を取得
+                string selectedDate = form.SelectedDate;
+
+                // フォームAの日付コントロールに選択した日付を設定
+                受注日1.Text = selectedDate;
+            }
         }
 
         private void 受注日2_Validating(object sender, CancelEventArgs e)
@@ -502,11 +523,15 @@ namespace u_net
 
         private void 受注日2_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            // objParent に受注日2の参照を設定
-            sender = this.受注日2;
-
             F_カレンダー form = new F_カレンダー();
-            form.ShowDialog();
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                // 日付選択フォームから選択した日付を取得
+                string selectedDate = form.SelectedDate;
+
+                // フォームAの日付コントロールに選択した日付を設定
+                受注日2.Text = selectedDate;
+            }
         }
 
         private void 受注日2_Leave(object sender, EventArgs e)
@@ -531,11 +556,15 @@ namespace u_net
 
         private void 受注納期1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            // objParent に受注納期1の参照を設定
-            sender = this.受注納期1;
-
             F_カレンダー form = new F_カレンダー();
-            form.ShowDialog();
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                // 日付選択フォームから選択した日付を取得
+                string selectedDate = form.SelectedDate;
+
+                // フォームAの日付コントロールに選択した日付を設定
+                受注納期1.Text = selectedDate;
+            }
         }
 
         private void 受注納期1_KeyPress(object sender, KeyPressEventArgs e)
@@ -565,11 +594,15 @@ namespace u_net
 
         private void 受注納期2_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            // objParent に受注納期2の参照を設定
-            sender = this.受注納期2;
-
             F_カレンダー form = new F_カレンダー();
-            form.ShowDialog();
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                // 日付選択フォームから選択した日付を取得
+                string selectedDate = form.SelectedDate;
+
+                // フォームAの日付コントロールに選択した日付を設定
+                受注納期2.Text = selectedDate;
+            }
         }
 
         private void 受注納期2_KeyPress(object sender, KeyPressEventArgs e)
@@ -666,11 +699,20 @@ namespace u_net
 
         private void 出荷予定日1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            // objParent に出荷予定日1の参照を設定
-            sender = this.出荷予定日1;
+            ////// objParent に出荷予定日1の参照を設定
+            ////sender = this.出荷予定日1;
 
+            ////F_カレンダー form = new F_カレンダー();
+            ////form.ShowDialog();
             F_カレンダー form = new F_カレンダー();
-            form.ShowDialog();
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                // 日付選択フォームから選択した日付を取得
+                string selectedDate = form.SelectedDate;
+
+                // フォームAの日付コントロールに選択した日付を設定
+                出荷予定日1.Text = selectedDate;
+            }
         }
 
         private void 出荷予定日1_KeyPress(object sender, KeyPressEventArgs e)
@@ -700,11 +742,20 @@ namespace u_net
 
         private void 出荷予定日2_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            // objParent に出荷予定日2の参照を設定
-            sender = this.出荷予定日2;
+            ////// objParent に出荷予定日2の参照を設定
+            ////sender = this.出荷予定日2;
 
+            ////F_カレンダー form = new F_カレンダー();
+            ////form.ShowDialog();
             F_カレンダー form = new F_カレンダー();
-            form.ShowDialog();
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                // 日付選択フォームから選択した日付を取得
+                string selectedDate = form.SelectedDate;
+
+                // フォームAの日付コントロールに選択した日付を設定
+                出荷予定日2.Text = selectedDate;
+            }
         }
 
         private void 出荷予定日2_KeyPress(object sender, KeyPressEventArgs e)
