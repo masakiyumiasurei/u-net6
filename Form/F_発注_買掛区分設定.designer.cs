@@ -216,7 +216,7 @@ namespace u_net
             // 
             // キャンセルボタン
             // 
-            キャンセルボタン.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            キャンセルボタン.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             キャンセルボタン.Location = new Point(270, 271);
             キャンセルボタン.Margin = new Padding(4);
             キャンセルボタン.Name = "キャンセルボタン";
@@ -239,6 +239,7 @@ namespace u_net
             // 
             // toolStripStatusLabel1
             // 
+            toolStripStatusLabel1.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             toolStripStatusLabel1.Size = new Size(89, 17);
             toolStripStatusLabel1.Text = "各種項目の説明";
@@ -526,7 +527,7 @@ namespace u_net
             // 
             // OKボタン
             // 
-            OKボタン.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            OKボタン.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             OKボタン.Location = new Point(160, 271);
             OKボタン.Margin = new Padding(4);
             OKボタン.Name = "OKボタン";
