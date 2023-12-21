@@ -49,8 +49,9 @@ namespace u_net
         {
             get
             {
-                return string.IsNullOrEmpty(dataGridView1.SelectedRows[0].Cells[0].Value.ToString()) ? ""
-                    : dataGridView1.SelectedRows[0].Cells[0].Value.ToString();
+                
+                return string.IsNullOrEmpty(dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value?.ToString()) ? ""                    
+                    : dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value?.ToString();
             }
         }
         public int CurrentEdition
@@ -58,7 +59,7 @@ namespace u_net
             get
             {
                 int result;
-                return int.TryParse(dataGridView1.SelectedRows[0].Cells[1].Value.ToString(), out result) ? result : 0;   //int.TryParse(部品集合版数.Text, out result) ? result : 0;
+                return int.TryParse(dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[1].Value?.ToString(), out result) ? result : 0;   //int.TryParse(部品集合版数.Text, out result) ? result : 0;
             }
         }
         public void Connect()
@@ -110,31 +111,19 @@ namespace u_net
             IntWindowWidth = this.Width;
 
             // DataGridViewの設定
-            //dataGridView1.AllowUserToResizeColumns = true;
-            //dataGridView1.Font = new Font("MS ゴシック", 10);
-            //dataGridView1.DefaultCellStyle.SelectionBackColor = Color.FromArgb(210, 210, 255);
-            //dataGridView1.DefaultCellStyle.SelectionForeColor = Color.Black;
-            //dataGridView1.GridColor = Color.FromArgb(230, 230, 230);
-            //dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font("MS ゴシック", 9);
-            //dataGridView1.DefaultCellStyle.Font = new Font("MS ゴシック", 10);
-            //dataGridView1.DefaultCellStyle.ForeColor = Color.Black;
+            dataGridView1.AllowUserToResizeColumns = true;
+            dataGridView1.Font = new Font("MS ゴシック", 10);
+            dataGridView1.DefaultCellStyle.SelectionBackColor = Color.FromArgb(210, 210, 255);
+            dataGridView1.DefaultCellStyle.SelectionForeColor = Color.Black;
+            dataGridView1.GridColor = Color.FromArgb(230, 230, 230);
+            dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font("MS ゴシック", 9);
+            dataGridView1.DefaultCellStyle.Font = new Font("MS ゴシック", 10);
+            dataGridView1.DefaultCellStyle.ForeColor = Color.Black;
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
             //dataGridView1.Columns[0].DefaultCellStyle.BackColor = Color.FromArgb(255, 255, 200); // 薄い黄色
             //dataGridView1.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
 
-
-            //0列目はaccessでは行ヘッダのため、ずらす
-            //dataGridView1.Columns[0].Width = 500 / twipperdot;
-            //dataGridView1.Columns[0].Width = 1100 / twipperdot; //1150
-            //dataGridView1.Columns[1].Width = 300 / twipperdot;
-            //dataGridView1.Columns[2].Width = 5000;
-            //dataGridView1.Columns[3].Width = 0 / twipperdot;
-            //dataGridView1.Columns[4].Width = 2000 / twipperdot;
-            //dataGridView1.Columns[5].Width = 1500 / twipperdot;
-            //dataGridView1.Columns[6].Width = 1500 / twipperdot;
-            //dataGridView1.Columns[7].Width = 2200 / twipperdot;//1300
-            //dataGridView1.Columns[8].Width = 1500 / twipperdot;
-            //dataGridView1.Columns[9].Width = 300 / twipperdot;
 
             myapi.GetFullScreen(out xSize, out ySize);
 
@@ -342,10 +331,10 @@ namespace u_net
             if (e.RowIndex >= 0) // ヘッダー行でない場合
             {
                 string selectedData = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString(); // 1列目のデータを取得
-
+                string selectedData2 = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
                 F_部品集合 targetform = new F_部品集合();
-
-                targetform.args = selectedData;
+                targetform.args = $"{selectedData}, {selectedData2}";
+                //targetform.args = selectedData;
                 targetform.ShowDialog();
             }
         }
@@ -445,67 +434,67 @@ namespace u_net
 
         private void Form_KeyDown(object sender, KeyEventArgs e)
         {
-            try
-            {
+            //try
+            //{
 
-                switch (e.KeyCode)
-                {
-                    case Keys.F1:
-                        //if (this.コマンド抽出.Enabled) コマンド抽出_Click(null, null);
-                        break;
-                    case Keys.F2:
-                        //if (this.コマンド検索.Enabled) コマンド検索_Click(null, null);
-                        break;
-                    case Keys.F3:
-                        //if (this.コマンド初期化.Enabled) コマンド初期化_Click(null, null);
-                        break;
-                    case Keys.F4:
-                        //if (this.コマンド更新.Enabled) コマンド更新_Click(null, null);
-                        break;
-                    case Keys.F5:
-                        //if (this.コマンド仕入先.Enabled) コマンド仕入先_Click(null, null);
-                        break;
-                    case Keys.F6:
-                    //if (this.コマンドメール.Enabled) コマンドメール_Click(null, null);
-                    //break;
-                    case Keys.F9:
-                        //if (this.コマンド印刷.Enabled) コマンド印刷_Click(null, null);
-                        break;
-                    case Keys.F10:
-                        //if (this.コマンド入出力.Enabled) コマンド入出力_Click(null, null);
-                        break;
-                    case Keys.F11:
-                    //if (this.コマンド入出力.Enabled) コマンド入出力_Click(null, null);
-                    //break;
-                    case Keys.F12:
-                        //if (this.コマンド終了.Enabled) コマンド終了_Click(null, null);
-                        break;
-                    case Keys.Return:
-                        //if (this.ActiveControl == this.dataGridView1)
-                        //{
-                        //    if (dataGridView1.SelectedRows.Count > 0)
-                        //    {
-                        //        // DataGridView1で選択された行が存在する場合
-                        //        string selectedData = dataGridView1.SelectedRows[0].Cells[0].Value.ToString(); // 1列目のデータを取得
+            //    switch (e.KeyCode)
+            //    {
+            //        case Keys.F1:
+            //            //if (this.コマンド抽出.Enabled) コマンド抽出_Click(null, null);
+            //            break;
+            //        case Keys.F2:
+            //            //if (this.コマンド検索.Enabled) コマンド検索_Click(null, null);
+            //            break;
+            //        case Keys.F3:
+            //            //if (this.コマンド初期化.Enabled) コマンド初期化_Click(null, null);
+            //            break;
+            //        case Keys.F4:
+            //            //if (this.コマンド更新.Enabled) コマンド更新_Click(null, null);
+            //            break;
+            //        case Keys.F5:
+            //            //if (this.コマンド仕入先.Enabled) コマンド仕入先_Click(null, null);
+            //            break;
+            //        case Keys.F6:
+            //        //if (this.コマンドメール.Enabled) コマンドメール_Click(null, null);
+            //        //break;
+            //        case Keys.F9:
+            //            //if (this.コマンド印刷.Enabled) コマンド印刷_Click(null, null);
+            //            break;
+            //        case Keys.F10:
+            //            //if (this.コマンド入出力.Enabled) コマンド入出力_Click(null, null);
+            //            break;
+            //        case Keys.F11:
+            //        //if (this.コマンド入出力.Enabled) コマンド入出力_Click(null, null);
+            //        //break;
+            //        case Keys.F12:
+            //            //if (this.コマンド終了.Enabled) コマンド終了_Click(null, null);
+            //            break;
+            //        case Keys.Return:
+            //            //if (this.ActiveControl == this.dataGridView1)
+            //            //{
+            //            //    if (dataGridView1.SelectedRows.Count > 0)
+            //            //    {
+            //            //        // DataGridView1で選択された行が存在する場合
+            //            //        string selectedData = dataGridView1.SelectedRows[0].Cells[0].Value.ToString(); // 1列目のデータを取得
 
-                        //        // 仕入先フォームを作成し、引数を設定して表示
-                        //        F_仕入先 targetform = new F_仕入先();
-                        //        targetform.args = selectedData;
-                        //        targetform.ShowDialog();
-                        //    }
-                        //    else
-                        //    {
-                        //        // ユーザーが行を選択していない場合のエラーハンドリング
-                        //        MessageBox.Show("行が選択されていません。");
-                        //    }
-                        //}
-                        break;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("KeyDown - " + ex.Message);
-            }
+            //            //        // 仕入先フォームを作成し、引数を設定して表示
+            //            //        F_仕入先 targetform = new F_仕入先();
+            //            //        targetform.args = selectedData;
+            //            //        targetform.ShowDialog();
+            //            //    }
+            //            //    else
+            //            //    {
+            //            //        // ユーザーが行を選択していない場合のエラーハンドリング
+            //            //        MessageBox.Show("行が選択されていません。");
+            //            //    }
+            //            //}
+            //            break;
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show("KeyDown - " + ex.Message);
+            //}
         }     
 
         private bool ascending = true;
@@ -524,8 +513,6 @@ namespace u_net
             //    ascending = !ascending;
             //}
         }
-
-
 
         private void コマンド保守_Click(object sender, EventArgs e)
         {
@@ -550,16 +537,37 @@ namespace u_net
 
         private void コマンド部品購買設定_Click(object sender, EventArgs e)
         {
-            F_部品購買設定 fm = new F_部品購買設定();
-            fm.args = $"{CurrentCode}, {CurrentEdition}";
-            fm.ShowDialog();
+            if (dataGridView1.SelectedRows.Count > 0)
+            {
+                F_部品購買設定 fm = new F_部品購買設定();
+                string selectedData = dataGridView1.SelectedRows[0].Cells[0].Value.ToString(); // 1列目のデータを取得
+                string selectedData2 = dataGridView1.SelectedRows[0].Cells[1].Value.ToString();
+
+                fm.args = $"{selectedData}, {selectedData2}";
+                fm.ShowDialog();
+            }
+            else
+            {
+                // ユーザーが行を選択していない場合のエラーハンドリング
+                MessageBox.Show("行が選択されていません。");
+            }
         }
 
         private void コマンド参照_Click(object sender, EventArgs e)
         {
-            F_部品集合 fm = new F_部品集合();
-            fm.args = $"{CurrentCode}, {CurrentEdition}";
-            fm.ShowDialog();
+            if (dataGridView1.SelectedRows.Count > 0)
+            {
+                string selectedData = dataGridView1.SelectedRows[0].Cells[0].Value.ToString(); // 1列目のデータを取得
+                string selectedData2 = dataGridView1.SelectedRows[0].Cells[1].Value.ToString();
+                F_部品集合 fm = new F_部品集合();
+                fm.args = $"{selectedData}, {selectedData2}";
+                fm.ShowDialog();
+            }
+            else
+            {
+                // ユーザーが行を選択していない場合のエラーハンドリング
+                MessageBox.Show("行が選択されていません。");
+            }
         }
 
         private void F_部品集合管理_FormClosed(object sender, FormClosedEventArgs e)
