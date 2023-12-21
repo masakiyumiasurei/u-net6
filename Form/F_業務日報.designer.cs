@@ -93,6 +93,8 @@ namespace u_net
             登録者名 = new TextBox();
             確定日時 = new TextBox();
             確定者名 = new TextBox();
+            状況 = new ListBox();
+            業務日報明細実績1 = new MultiRowDesigner.業務日報明細実績();
             panel1.SuspendLayout();
             statusStrip1.SuspendLayout();
             SuspendLayout();
@@ -422,7 +424,7 @@ namespace u_net
             確定_ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             確定_ラベル.ForeColor = SystemColors.ActiveCaptionText;
             確定_ラベル.ImageAlign = ContentAlignment.MiddleLeft;
-            確定_ラベル.Location = new Point(9, 97);
+            確定_ラベル.Location = new Point(9, 99);
             確定_ラベル.Margin = new Padding(0);
             確定_ラベル.Name = "確定_ラベル";
             確定_ラベル.Size = new Size(100, 17);
@@ -458,8 +460,8 @@ namespace u_net
             日付.Name = "日付";
             日付.Size = new Size(136, 21);
             日付.TabIndex = 2;
-            日付.Enter += ユニットコード_Enter;
-            日付.Leave += ユニットコード_Leave;
+            日付.Enter += 日付_Enter;
+            日付.Leave += 日付_Leave;
             // 
             // 日付_ラベル
             // 
@@ -498,7 +500,7 @@ namespace u_net
             日報コード_ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             日報コード_ラベル.ForeColor = SystemColors.ActiveCaptionText;
             日報コード_ラベル.ImageAlign = ContentAlignment.MiddleLeft;
-            日報コード_ラベル.Location = new Point(9, 121);
+            日報コード_ラベル.Location = new Point(9, 124);
             日報コード_ラベル.Margin = new Padding(0);
             日報コード_ラベル.Name = "日報コード_ラベル";
             日報コード_ラベル.Size = new Size(100, 20);
@@ -514,7 +516,7 @@ namespace u_net
             登録日_ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             登録日_ラベル.ForeColor = SystemColors.ActiveCaptionText;
             登録日_ラベル.ImageAlign = ContentAlignment.MiddleLeft;
-            登録日_ラベル.Location = new Point(9, 147);
+            登録日_ラベル.Location = new Point(9, 150);
             登録日_ラベル.Margin = new Padding(0);
             登録日_ラベル.Name = "登録日_ラベル";
             登録日_ラベル.Size = new Size(100, 20);
@@ -528,15 +530,13 @@ namespace u_net
             日報コード.BackColor = Color.White;
             日報コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             日報コード.ImeMode = ImeMode.NoControl;
-            日報コード.Location = new Point(122, 120);
+            日報コード.Location = new Point(122, 123);
             日報コード.Margin = new Padding(3, 2, 3, 2);
             日報コード.Name = "日報コード";
             日報コード.ReadOnly = true;
             日報コード.Size = new Size(136, 20);
             日報コード.TabIndex = 7;
             日報コード.Visible = false;
-            日報コード.Enter += 識別コード_Enter;
-            日報コード.Leave += 識別コード_Leave;
             // 
             // 確定コード
             // 
@@ -545,7 +545,7 @@ namespace u_net
             確定コード.Enabled = false;
             確定コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             確定コード.ImeMode = ImeMode.NoControl;
-            確定コード.Location = new Point(122, 96);
+            確定コード.Location = new Point(122, 98);
             確定コード.Margin = new Padding(3, 2, 3, 2);
             確定コード.Name = "確定コード";
             確定コード.Size = new Size(20, 20);
@@ -591,7 +591,7 @@ namespace u_net
             label5.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             label5.ForeColor = Color.Red;
             label5.ImageAlign = ContentAlignment.MiddleLeft;
-            label5.Location = new Point(216, 196);
+            label5.Location = new Point(216, 205);
             label5.Margin = new Padding(0);
             label5.Name = "label5";
             label5.Size = new Size(444, 20);
@@ -625,6 +625,8 @@ namespace u_net
             社員コード.Name = "社員コード";
             社員コード.Size = new Size(136, 21);
             社員コード.TabIndex = 4;
+            社員コード.Enter += 社員コード_Enter;
+            社員コード.Leave += 社員コード_Leave;
             // 
             // 日付旧
             // 
@@ -661,7 +663,7 @@ namespace u_net
             登録日.BackColor = Color.White;
             登録日.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             登録日.ImeMode = ImeMode.NoControl;
-            登録日.Location = new Point(122, 147);
+            登録日.Location = new Point(122, 150);
             登録日.Margin = new Padding(3, 2, 3, 2);
             登録日.Name = "登録日";
             登録日.ReadOnly = true;
@@ -676,7 +678,7 @@ namespace u_net
             登録者名_ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             登録者名_ラベル.ForeColor = SystemColors.ActiveCaptionText;
             登録者名_ラベル.ImageAlign = ContentAlignment.MiddleLeft;
-            登録者名_ラベル.Location = new Point(9, 173);
+            登録者名_ラベル.Location = new Point(9, 177);
             登録者名_ラベル.Margin = new Padding(0);
             登録者名_ラベル.Name = "登録者名_ラベル";
             登録者名_ラベル.Size = new Size(100, 20);
@@ -690,7 +692,7 @@ namespace u_net
             登録者コード.BackColor = Color.White;
             登録者コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             登録者コード.ImeMode = ImeMode.NoControl;
-            登録者コード.Location = new Point(122, 174);
+            登録者コード.Location = new Point(122, 178);
             登録者コード.Margin = new Padding(3, 2, 3, 2);
             登録者コード.Name = "登録者コード";
             登録者コード.ReadOnly = true;
@@ -703,7 +705,7 @@ namespace u_net
             登録者名.BackColor = Color.White;
             登録者名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             登録者名.ImeMode = ImeMode.NoControl;
-            登録者名.Location = new Point(164, 174);
+            登録者名.Location = new Point(164, 178);
             登録者名.Margin = new Padding(3, 2, 3, 2);
             登録者名.Name = "登録者名";
             登録者名.ReadOnly = true;
@@ -741,10 +743,31 @@ namespace u_net
             確定者名.TabStop = false;
             確定者名.Visible = false;
             // 
+            // 状況
+            // 
+            状況.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            状況.FormattingEnabled = true;
+            状況.Location = new Point(331, 50);
+            状況.Name = "状況";
+            状況.Size = new Size(534, 147);
+            状況.TabIndex = 13;
+            状況.Enter += 状況_Enter;
+            状況.Leave += 状況_Leave;
+            // 
+            // 業務日報明細実績1
+            // 
+            業務日報明細実績1.Location = new Point(9, 229);
+            業務日報明細実績1.Margin = new Padding(4, 4, 4, 4);
+            業務日報明細実績1.Name = "業務日報明細実績1";
+            業務日報明細実績1.Size = new Size(856, 221);
+            業務日報明細実績1.TabIndex = 21014;
+            // 
             // F_業務日報
             // 
             BackColor = SystemColors.Control;
             ClientSize = new Size(1036, 590);
+            Controls.Add(業務日報明細実績1);
+            Controls.Add(状況);
             Controls.Add(確定者名);
             Controls.Add(確定日時);
             Controls.Add(登録者名);
@@ -864,6 +887,8 @@ namespace u_net
         private TextBox 登録者名;
         private TextBox 確定日時;
         private TextBox 確定者名;
+        private ListBox 状況;
+        private MultiRowDesigner.業務日報明細実績 業務日報明細実績1;
     }
 }
 
