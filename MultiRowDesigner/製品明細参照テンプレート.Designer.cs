@@ -128,7 +128,7 @@
             this.Row.Cells.Add(this.製品コード);
             this.Row.Cells.Add(this.製品版数);
             this.Row.Cells.Add(this.削除対象);
-            this.Row.Height = 17;
+            this.Row.Height = 21;
             this.Row.Width = 1259;
             // 
             // columnHeaderSection1
@@ -357,7 +357,7 @@
             this.製品材料費.Size = new System.Drawing.Size(102, 17);
             border16.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
             cellStyle29.Border = border16;
-            cellStyle29.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
+            cellStyle29.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
             this.製品材料費.Style = cellStyle29;
             this.製品材料費.TabIndex = 1;
             // 
@@ -375,16 +375,15 @@
             // 型式名
             // 
             this.型式名.DataField = "型式名";
-            this.型式名.Location = new System.Drawing.Point(24, 0);
+            this.型式名.Location = new System.Drawing.Point(24, 2);
             this.型式名.Name = "型式名";
             this.型式名.Size = new System.Drawing.Size(112, 17);
             border1.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
             cellStyle1.Border = border1;
-            cellStyle1.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
+            cellStyle1.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
             cellStyle1.ImeMode = System.Windows.Forms.ImeMode.Off;
             this.型式名.Style = cellStyle1;
             this.型式名.TabIndex = 1;
-            textLengthValidator1.EncodingCodePage = 1200;
             textLengthValidator1.LengthUnit = GrapeCity.Win.MultiRow.LengthUnit.Byte;
             textLengthValidator1.MaximumLength = 16;
             this.型式名.Validators.Add(textLengthValidator1);
@@ -392,12 +391,12 @@
             // 改版中
             // 
             this.改版中.DataField = "改版中";
-            this.改版中.Location = new System.Drawing.Point(235, 0);
+            this.改版中.Location = new System.Drawing.Point(235, 2);
             this.改版中.Name = "改版中";
             this.改版中.Size = new System.Drawing.Size(21, 17);
             border2.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
             cellStyle2.Border = border2;
-            cellStyle2.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
+            cellStyle2.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
             cellStyle2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.改版中.Style = cellStyle2;
             this.改版中.TabIndex = 6;
@@ -406,12 +405,12 @@
             // ユニット版数
             // 
             this.ユニット版数.DataField = "ユニット版数";
-            this.ユニット版数.Location = new System.Drawing.Point(214, 0);
+            this.ユニット版数.Location = new System.Drawing.Point(214, 2);
             this.ユニット版数.Name = "ユニット版数";
             this.ユニット版数.Size = new System.Drawing.Size(21, 17);
             border3.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
             cellStyle3.Border = border3;
-            cellStyle3.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
+            cellStyle3.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
             cellStyle3.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.ユニット版数.Style = cellStyle3;
             this.ユニット版数.TabIndex = 3;
@@ -419,16 +418,15 @@
             // ユニットコード
             // 
             this.ユニットコード.DataField = "ユニットコード";
-            this.ユニットコード.Location = new System.Drawing.Point(136, 0);
+            this.ユニットコード.Location = new System.Drawing.Point(136, 2);
             this.ユニットコード.Name = "ユニットコード";
             this.ユニットコード.Size = new System.Drawing.Size(78, 17);
             border4.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
             cellStyle4.Border = border4;
-            cellStyle4.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
+            cellStyle4.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
             cellStyle4.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.ユニットコード.Style = cellStyle4;
             this.ユニットコード.TabIndex = 2;
-            textLengthValidator2.EncodingCodePage = 1200;
             textLengthValidator2.LengthUnit = GrapeCity.Win.MultiRow.LengthUnit.Byte;
             textLengthValidator2.MaximumLength = 8;
             this.ユニットコード.Validators.Add(textLengthValidator2);
@@ -436,12 +434,12 @@
             // 品名
             // 
             this.品名.DataField = "品名";
-            this.品名.Location = new System.Drawing.Point(256, 0);
+            this.品名.Location = new System.Drawing.Point(256, 2);
             this.品名.Name = "品名";
             this.品名.Size = new System.Drawing.Size(224, 17);
             border5.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
             cellStyle5.Border = border5;
-            cellStyle5.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
+            cellStyle5.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
             cellStyle5.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.品名.Style = cellStyle5;
             this.品名.TabIndex = 4;
@@ -449,12 +447,12 @@
             // 型番
             // 
             this.型番.DataField = "型番";
-            this.型番.Location = new System.Drawing.Point(480, 0);
+            this.型番.Location = new System.Drawing.Point(480, 2);
             this.型番.Name = "型番";
             this.型番.Size = new System.Drawing.Size(224, 17);
             border6.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
             cellStyle6.Border = border6;
-            cellStyle6.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
+            cellStyle6.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
             cellStyle6.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.型番.Style = cellStyle6;
             this.型番.TabIndex = 5;
@@ -462,12 +460,12 @@
             // RohsStatusSign
             // 
             this.RohsStatusSign.DataField = "RoHS対応";
-            this.RohsStatusSign.Location = new System.Drawing.Point(704, 0);
+            this.RohsStatusSign.Location = new System.Drawing.Point(704, 2);
             this.RohsStatusSign.Name = "RohsStatusSign";
             this.RohsStatusSign.Size = new System.Drawing.Size(24, 17);
             border7.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
             cellStyle7.Border = border7;
-            cellStyle7.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
+            cellStyle7.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
             cellStyle7.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.RohsStatusSign.Style = cellStyle7;
             this.RohsStatusSign.TabIndex = 9;
@@ -476,12 +474,12 @@
             // 非含有証明書
             // 
             this.非含有証明書.DataField = "非含有証明書";
-            this.非含有証明書.Location = new System.Drawing.Point(728, 0);
+            this.非含有証明書.Location = new System.Drawing.Point(728, 2);
             this.非含有証明書.Name = "非含有証明書";
             this.非含有証明書.Size = new System.Drawing.Size(21, 17);
             border8.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
             cellStyle8.Border = border8;
-            cellStyle8.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
+            cellStyle8.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
             cellStyle8.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.非含有証明書.Style = cellStyle8;
             this.非含有証明書.TabIndex = 10;
@@ -490,12 +488,12 @@
             // ユニット材料費
             // 
             this.ユニット材料費.DataField = "ユニット材料費";
-            this.ユニット材料費.Location = new System.Drawing.Point(749, 0);
+            this.ユニット材料費.Location = new System.Drawing.Point(749, 2);
             this.ユニット材料費.Name = "ユニット材料費";
             this.ユニット材料費.Size = new System.Drawing.Size(88, 17);
             border9.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
             cellStyle9.Border = border9;
-            cellStyle9.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
+            cellStyle9.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
             cellStyle9.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.ユニット材料費.Style = cellStyle9;
             this.ユニット材料費.TabIndex = 11;
@@ -504,12 +502,12 @@
             // 変更内容
             // 
             this.変更内容.DataField = "変更内容";
-            this.変更内容.Location = new System.Drawing.Point(885, 0);
+            this.変更内容.Location = new System.Drawing.Point(885, 2);
             this.変更内容.Name = "変更内容";
             this.変更内容.Size = new System.Drawing.Size(374, 17);
             border10.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
             cellStyle10.Border = border10;
-            cellStyle10.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
+            cellStyle10.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
             cellStyle10.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
             this.変更内容.Style = cellStyle10;
             this.変更内容.TabIndex = 13;
@@ -519,10 +517,10 @@
             // 
             this.変更操作コード.DataField = "変更操作コード";
             this.変更操作コード.DisplayMember = "変更操作";
-            this.変更操作コード.Location = new System.Drawing.Point(837, 0);
+            this.変更操作コード.Location = new System.Drawing.Point(837, 2);
             this.変更操作コード.Name = "変更操作コード";
             this.変更操作コード.Size = new System.Drawing.Size(48, 17);
-            cellStyle11.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
+            cellStyle11.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
             cellStyle11.ImeMode = System.Windows.Forms.ImeMode.Disable;
             cellStyle11.SelectionForeColor = System.Drawing.Color.Black;
             this.変更操作コード.Style = cellStyle11;
@@ -532,7 +530,7 @@
             // 明細番号
             // 
             this.明細番号.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.明細番号.Location = new System.Drawing.Point(0, 0);
+            this.明細番号.Location = new System.Drawing.Point(0, 2);
             this.明細番号.Name = "明細番号";
             this.明細番号.ShowIndicator = false;
             this.明細番号.ShowRowError = false;
@@ -540,7 +538,7 @@
             cellStyle12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(204)))), ((int)(((byte)(255)))));
             border11.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
             cellStyle12.Border = border11;
-            cellStyle12.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
+            cellStyle12.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
             this.明細番号.Style = cellStyle12;
             this.明細番号.TabIndex = 10000;
             this.明細番号.TabStop = false;
@@ -549,7 +547,7 @@
             // 
             this.製品コード.DataField = "製品コード";
             this.製品コード.Enabled = false;
-            this.製品コード.Location = new System.Drawing.Point(1074, 0);
+            this.製品コード.Location = new System.Drawing.Point(1074, 2);
             this.製品コード.Name = "製品コード";
             this.製品コード.ReadOnly = true;
             this.製品コード.Size = new System.Drawing.Size(10, 17);
@@ -566,7 +564,7 @@
             // 
             this.製品版数.DataField = "製品版数";
             this.製品版数.Enabled = false;
-            this.製品版数.Location = new System.Drawing.Point(1084, 0);
+            this.製品版数.Location = new System.Drawing.Point(1084, 2);
             this.製品版数.Name = "製品版数";
             this.製品版数.ReadOnly = true;
             this.製品版数.Size = new System.Drawing.Size(10, 17);
@@ -583,7 +581,7 @@
             // 
             this.削除対象.DataField = "削除対象";
             this.削除対象.Enabled = false;
-            this.削除対象.Location = new System.Drawing.Point(1094, 0);
+            this.削除対象.Location = new System.Drawing.Point(1094, 2);
             this.削除対象.Name = "削除対象";
             this.削除対象.ReadOnly = true;
             this.削除対象.Size = new System.Drawing.Size(10, 17);
@@ -602,7 +600,7 @@
             this.columnFooterSection1});
             this.ColumnHeaders.AddRange(new GrapeCity.Win.MultiRow.ColumnHeaderSection[] {
             this.columnHeaderSection1});
-            this.Height = 65;
+            this.Height = 69;
             this.Width = 1259;
 
         }

@@ -161,7 +161,7 @@
             this.明細番号ボタン.Name = "明細番号ボタン";
             this.明細番号ボタン.Size = new System.Drawing.Size(34, 44);
             cellStyle15.BackColor = System.Drawing.SystemColors.Control;
-            cellStyle15.Font = new System.Drawing.Font("BIZ UDPゴシック", 8F);
+            cellStyle15.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
             cellStyle15.ImeMode = System.Windows.Forms.ImeMode.Off;
             cellStyle15.SelectionForeColor = System.Drawing.SystemColors.ControlText;
             cellStyle15.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
@@ -351,7 +351,7 @@
             cellStyle28.BackColor = System.Drawing.SystemColors.Window;
             border17.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
             cellStyle28.Border = border17;
-            cellStyle28.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
+            cellStyle28.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
             cellStyle28.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.発注納期統一.Style = cellStyle28;
             this.発注納期統一.TabIndex = 15;
@@ -390,7 +390,7 @@
             cellStyle31.BackColor = System.Drawing.SystemColors.Window;
             border19.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
             cellStyle31.Border = border19;
-            cellStyle31.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
+            cellStyle31.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
             cellStyle31.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.発注数量統一.Style = cellStyle31;
             this.発注数量統一.TabIndex = 13;
@@ -407,7 +407,7 @@
             cellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(204)))), ((int)(((byte)(255)))));
             border1.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
             cellStyle1.Border = border1;
-            cellStyle1.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
+            cellStyle1.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
             cellStyle1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.明細番号.Style = cellStyle1;
             this.明細番号.TabIndex = 1;
@@ -421,7 +421,7 @@
             cellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(153)))));
             border2.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
             cellStyle2.Border = border2;
-            cellStyle2.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
+            cellStyle2.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
             cellStyle2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.部品コード.Style = cellStyle2;
             this.部品コード.TabIndex = 2;
@@ -434,7 +434,7 @@
             this.品名.Size = new System.Drawing.Size(238, 17);
             border3.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
             cellStyle3.Border = border3;
-            cellStyle3.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
+            cellStyle3.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
             cellStyle3.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.品名.Style = cellStyle3;
             this.品名.TabIndex = 3;
@@ -447,7 +447,7 @@
             this.型番.Size = new System.Drawing.Size(238, 17);
             border4.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
             cellStyle4.Border = border4;
-            cellStyle4.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
+            cellStyle4.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
             cellStyle4.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             cellStyle4.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleRight;
             this.型番.Style = cellStyle4;
@@ -461,7 +461,7 @@
             this.仕入先名.Size = new System.Drawing.Size(126, 34);
             border5.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
             cellStyle5.Border = border5;
-            cellStyle5.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
+            cellStyle5.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
             cellStyle5.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.仕入先名.Style = cellStyle5;
             this.仕入先名.TabIndex = 5;
@@ -474,7 +474,7 @@
             this.発注納期.Size = new System.Drawing.Size(78, 34);
             border6.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
             cellStyle6.Border = border6;
-            cellStyle6.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
+            cellStyle6.Font = new System.Drawing.Font("BIZ UDゴシック", 9F);
             cellStyle6.Format = "N0";
             cellStyle6.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.発注納期.Style = cellStyle6;
@@ -488,7 +488,7 @@
             this.在庫数量.Size = new System.Drawing.Size(78, 34);
             border7.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
             cellStyle7.Border = border7;
-            cellStyle7.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
+            cellStyle7.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
             cellStyle7.Format = "N0";
             cellStyle7.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.在庫数量.Style = cellStyle7;
@@ -502,7 +502,7 @@
             this.必要数量.Size = new System.Drawing.Size(48, 34);
             border8.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
             cellStyle8.Border = border8;
-            cellStyle8.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
+            cellStyle8.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
             cellStyle8.Format = "N0";
             cellStyle8.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.必要数量.Style = cellStyle8;
@@ -516,7 +516,7 @@
             this.発注数量.Size = new System.Drawing.Size(78, 34);
             border9.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
             cellStyle9.Border = border9;
-            cellStyle9.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
+            cellStyle9.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
             cellStyle9.Format = "N0";
             cellStyle9.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.発注数量.Style = cellStyle9;
@@ -530,7 +530,7 @@
             this.単価.Size = new System.Drawing.Size(78, 34);
             border10.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
             cellStyle10.Border = border10;
-            cellStyle10.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
+            cellStyle10.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
             cellStyle10.Format = "N0";
             cellStyle10.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.単価.Style = cellStyle10;
@@ -545,7 +545,7 @@
             this.summaryCell1.Size = new System.Drawing.Size(98, 34);
             border11.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
             cellStyle11.Border = border11;
-            cellStyle11.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
+            cellStyle11.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
             cellStyle11.Format = "N0";
             cellStyle11.ImeMode = System.Windows.Forms.ImeMode.Off;
             this.summaryCell1.Style = cellStyle11;

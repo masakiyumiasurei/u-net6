@@ -58,7 +58,6 @@ namespace MultiRowDesigner
             GrapeCity.Win.MultiRow.TextLengthValidator textLengthValidator3 = new GrapeCity.Win.MultiRow.TextLengthValidator();
             GrapeCity.Win.MultiRow.CellStyle cellStyle9 = new GrapeCity.Win.MultiRow.CellStyle();
             GrapeCity.Win.MultiRow.Border border5 = new GrapeCity.Win.MultiRow.Border();
-            //GrapeCity.Win.MultiRow.TextLengthValidator textLengthValidator2 = new GrapeCity.Win.MultiRow.TextLengthValidator();
             GrapeCity.Win.MultiRow.CellStyle cellStyle10 = new GrapeCity.Win.MultiRow.CellStyle();
             GrapeCity.Win.MultiRow.Border border6 = new GrapeCity.Win.MultiRow.Border();
             GrapeCity.Win.MultiRow.CellStyle cellStyle11 = new GrapeCity.Win.MultiRow.CellStyle();
@@ -74,15 +73,11 @@ namespace MultiRowDesigner
             this.定価ボタン = new GrapeCity.Win.MultiRow.ButtonCell();
             this.原価ボタン = new GrapeCity.Win.MultiRow.ButtonCell();
             this.型式番号ボタン = new GrapeCity.Win.MultiRow.ButtonCell();
-
-
             this.機能ボタン = new GrapeCity.Win.MultiRow.ButtonCell();
             this.削除ボタン = new GrapeCity.Win.MultiRow.ButtonCell();
             this.明細行選択ボタン = new GrapeCity.Win.MultiRow.ButtonCell();
             this.buttonCell1 = new GrapeCity.Win.MultiRow.ButtonCell();
             this.buttonCell2 = new GrapeCity.Win.MultiRow.ButtonCell();
-
-
             this.明細削除ボタン = new GrapeCity.Win.MultiRow.ButtonCell();
             this.行挿入ボタン = new GrapeCity.Win.MultiRow.ButtonCell();
             this.行移動上ボタン = new GrapeCity.Win.MultiRow.ButtonCell();
@@ -152,7 +147,7 @@ namespace MultiRowDesigner
             // 型式名ボタン
             // 
             this.型式名ボタン.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.型式名ボタン.Location = new System.Drawing.Point(96, 0);
+            this.型式名ボタン.Location = new System.Drawing.Point(106, 0);
             this.型式名ボタン.Name = "型式名ボタン";
             this.型式名ボタン.Size = new System.Drawing.Size(136, 21);
             cellStyle16.BackColor = System.Drawing.SystemColors.Control;
@@ -297,6 +292,7 @@ namespace MultiRowDesigner
             this.明細削除ボタン.Name = "明細削除ボタン";
             this.明細削除ボタン.Size = new System.Drawing.Size(21, 17);
             cellStyle1.BackColor = System.Drawing.Color.White;
+            cellStyle1.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
             cellStyle1.ImeMode = System.Windows.Forms.ImeMode.Off;
             cellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlText;
             cellStyle1.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
@@ -365,7 +361,7 @@ namespace MultiRowDesigner
             cellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(204)))), ((int)(((byte)(255)))));
             border1.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
             cellStyle5.Border = border1;
-            cellStyle5.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
+            cellStyle5.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
             this.明細番号.Style = cellStyle5;
             this.明細番号.TabIndex = 4;
             this.明細番号.TabStop = false;
@@ -378,11 +374,10 @@ namespace MultiRowDesigner
             this.型式名.Size = new System.Drawing.Size(136, 17);
             border2.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
             cellStyle6.Border = border2;
-            cellStyle6.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
+            cellStyle6.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
             cellStyle6.ImeMode = System.Windows.Forms.ImeMode.Off;
             this.型式名.Style = cellStyle6;
             this.型式名.TabIndex = 1;
-            textLengthValidator1.EncodingCodePage = 1200;
             textLengthValidator1.LengthUnit = GrapeCity.Win.MultiRow.LengthUnit.TextElement;
             textLengthValidator1.MaximumLength = 48;
             this.型式名.Validators.Add(textLengthValidator1);
@@ -395,14 +390,13 @@ namespace MultiRowDesigner
             this.定価.Size = new System.Drawing.Size(82, 17);
             border3.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
             cellStyle7.Border = border3;
-            cellStyle7.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
+            cellStyle7.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
             cellStyle7.Format = "N0";
             cellStyle7.ImeMode = System.Windows.Forms.ImeMode.Off;
             this.定価.Style = cellStyle7;
             this.定価.TabIndex = 2;
-            textLengthValidator2.EncodingCodePage = 1200;
-            textLengthValidator2.LengthUnit = GrapeCity.Win.MultiRow.LengthUnit.Byte;
-            textLengthValidator2.MaximumLength = 10;
+            textLengthValidator2.LengthUnit = GrapeCity.Win.MultiRow.LengthUnit.TextElement;
+            textLengthValidator2.MaximumLength = 50;
             this.定価.Validators.Add(textLengthValidator2);
             // 
             // 原価
@@ -413,12 +407,11 @@ namespace MultiRowDesigner
             this.原価.Size = new System.Drawing.Size(82, 17);
             border4.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
             cellStyle8.Border = border4;
-            cellStyle8.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
+            cellStyle8.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
             cellStyle8.Format = "N0";
             cellStyle8.ImeMode = System.Windows.Forms.ImeMode.Off;
             this.原価.Style = cellStyle8;
             this.原価.TabIndex = 3;
-            textLengthValidator3.EncodingCodePage = 1200;
             textLengthValidator3.LengthUnit = GrapeCity.Win.MultiRow.LengthUnit.Byte;
             textLengthValidator3.MaximumLength = 10;
             this.原価.Validators.Add(textLengthValidator3);
@@ -431,13 +424,10 @@ namespace MultiRowDesigner
             this.機能.Size = new System.Drawing.Size(326, 17);
             border5.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
             cellStyle9.Border = border5;
-            cellStyle9.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
+            cellStyle9.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
             cellStyle9.ImeMode = System.Windows.Forms.ImeMode.Off;
             this.機能.Style = cellStyle9;
             this.機能.TabIndex = 4;
-            textLengthValidator2.EncodingCodePage = 1200;
-            textLengthValidator2.LengthUnit = GrapeCity.Win.MultiRow.LengthUnit.TextElement;
-            textLengthValidator2.MaximumLength = 50;
             this.機能.Validators.Add(textLengthValidator2);
             // 
             // 型式番号
