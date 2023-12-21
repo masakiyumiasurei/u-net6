@@ -151,17 +151,18 @@
             // 
             // コマンド参照用
             // 
-            コマンド参照用.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            コマンド参照用.ForeColor = Color.Blue;
-            コマンド参照用.ImageAlign = ContentAlignment.BottomLeft;
-            コマンド参照用.Location = new Point(577, 4);
-            コマンド参照用.Margin = new Padding(0, 2, 0, 2);
-            コマンド参照用.Name = "コマンド参照用";
-            コマンド参照用.Size = new Size(70, 22);
-            コマンド参照用.TabIndex = 7;
-            コマンド参照用.TabStop = false;
-            コマンド参照用.Text = "参照用";
-            コマンド参照用.UseVisualStyleBackColor = true;
+            this.コマンド参照用.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.コマンド参照用.ForeColor = System.Drawing.Color.Blue;
+            this.コマンド参照用.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.コマンド参照用.Location = new System.Drawing.Point(577, 4);
+            this.コマンド参照用.Margin = new System.Windows.Forms.Padding(0, 2, 0, 2);
+            this.コマンド参照用.Name = "コマンド参照用";
+            this.コマンド参照用.Size = new System.Drawing.Size(70, 22);
+            this.コマンド参照用.TabIndex = 7;
+            this.コマンド参照用.TabStop = false;
+            this.コマンド参照用.Text = "参照用";
+            this.コマンド参照用.UseVisualStyleBackColor = true;
+            this.コマンド参照用.Click += new System.EventHandler(this.コマンド参照用_Click);
             // 
             // コマンドF10
             // 

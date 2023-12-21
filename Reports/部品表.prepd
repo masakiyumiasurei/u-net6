@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <PrintDefine>
-<PrintSetting Name="レポート定義ファイル" Ver="9.2.4" >
+<PrintSetting Name="レポート定義ファイル" Ver="9.2.0" >
 <PrintAttrs>
 <FontAttr AttrName="Font1" Name="ＭＳ Ｐゴシック" Size="10" />
 <FontAttr AttrName="Font2" Name="ＭＳ Ｐゴシック" Size="16" Color="White" Bold="True" />
@@ -57,7 +57,6 @@
 <Line Name="Line7" StartX="238" StartY="82" EndX="226" EndY="82" LineAttr="Line1" />
 <Text Name="明細番号" X="10" Y="41" Width="10" Height="5" Text="*明細番号*" BackColor="LightGray" Align="Left" VAlign="Middle" FontAttr="Font1" LineAttr="Line2" IntervalY="5" Repeat="49" />
 <Text Name="Text40" X="85" Y="10" Width="40" Height="8" Text="部 品 表" BackColor="Black" Align="Center" VAlign="Middle" FontAttr="Font2" />
-<Text Name="識別コード" X="46" Y="12" Width="20" Height="5" Text="*識別コード*" Align="Left" VAlign="Middle" FontAttr="Font1" LineAttr="Line4" />
 <Text Name="コメント" X="126" Y="12" Width="66" Height="6" Text="*コメント*" Align="Left" VAlign="Middle" FontAttr="Font3" />
 <Text Name="Text71" X="10" Y="36" Width="10" Height="5" Text="No." BackColor="Black" Align="Center" VAlign="Middle" FontAttr="Font4" LineAttr="Line6" />
 <Text Name="出力日時" X="10" Y="288" Width="60" Height="4" Text="*出力日時*" Align="Left" VAlign="Top" FontAttr="Font5" />
@@ -66,12 +65,10 @@
 <Text Name="Text62" X="64" Y="20" Width="10" Height="5" Text="版数" BackColor="LightGray" Align="Left" VAlign="Middle" FontAttr="Font1" LineAttr="Line10" Repeat="17" />
 <Text Name="Text64" X="10" Y="25" Width="24" Height="5" Text="ユニット品名" BackColor="LightGray" Align="Left" VAlign="Middle" FontAttr="Font1" LineAttr="Line11" Repeat="17" />
 <Text Name="Text65" X="10" Y="30" Width="24" Height="5" Text="ユニット型番" BackColor="LightGray" Align="Left" VAlign="Middle" FontAttr="Font1" LineAttr="Line12" Repeat="17" />
-<Text Name="製品コード" X="34" Y="20" Width="30" Height="5" Text="*製品コード*" Align="Left" VAlign="Middle" FontAttr="Font1" LineAttr="Line13" Repeat="17" />
+<Text Name="ユニットコード" X="34" Y="20" Width="30" Height="5" Text="*ユニットコード*" Align="Left" VAlign="Middle" FontAttr="Font1" LineAttr="Line13" Repeat="17" />
 <Text Name="ユニット版数" X="74" Y="20" Width="17" Height="5" Text="*ユニット版数*" Align="Left" VAlign="Middle" FontAttr="Font1" LineAttr="Line14" Repeat="17" />
 <Text Name="ユニット品名" X="34" Y="25" Width="95" Height="5" Text="*ユニット品名*" Align="Left" VAlign="Middle" FontAttr="Font1" LineAttr="Line15" Repeat="17" />
 <Text Name="Text71" X="20" Y="36" Width="20" Height="5" Text="構成番号" BackColor="Black" Align="Center" VAlign="Middle" FontAttr="Font4" LineAttr="Line16" />
-<Text Name="Text32" X="26" Y="12" Width="20" Height="5" Text="識別コード" BackColor="LightGray" Align="Left" VAlign="Middle" FontAttr="Font1" LineAttr="Line17" Repeat="17" />
-<Text Name="無効日時" X="126" Y="20" Width="30" Height="3.8" Text="*無効日時*" Align="Left" VAlign="Middle" FontAttr="Font1" />
 <Text Name="ユニット型番" X="34" Y="30" Width="95" Height="5" Text="*ユニット型番*" Align="Left" VAlign="Middle" FontAttr="Font1" LineAttr="Line19" Repeat="17" />
 <Text Name="Text35" X="129" Y="25" Width="24" Height="5" Text="指導書No." BackColor="LightGray" Align="Left" VAlign="Middle" FontAttr="Font1" LineAttr="Line20" Repeat="17" />
 <Text Name="ページコード" X="153" Y="25" Width="47" Height="5" Text="*ページコード*" Align="Left" VAlign="Middle" FontAttr="Font1" LineAttr="Line21" Repeat="17" />
@@ -90,6 +87,6 @@
 <Text Name="型番" X="113" Y="41" Width="58" Height="5" Text="*型番*" Align="Left" VAlign="Middle" FontAttr="Font1" LineAttr="Line34" IntervalY="5" Repeat="49" />
 <Text Name="メーカー名" X="171" Y="41" Width="17" Height="5" Text="*メーカー名*" Align="Left" VAlign="Middle" FontAttr="Font7" LineAttr="Line35" IntervalY="5" Repeat="49" />
 <Text Name="変更" X="188" Y="41" Width="12" Height="5" Text="*変更*" Align="Left" VAlign="Middle" FontAttr="Font7" LineAttr="Line36" IntervalY="5" Repeat="49" />
-<Text Name="削除対象" X="10" Y="41" Width="178" Height="5" Text="*削除対象*" Align="Left" VAlign="Middle" FontAttr="Font8" IntervalY="5" Repeat="49" />
+<Text Name="削除対象" X="10" Y="41" Width="178" Height="5" Text="------------------------------------------------------------------------------------------------" Align="Left" VAlign="Middle" FontAttr="Font8" IntervalY="5" Repeat="49" />
 </PrintObjects>
 </PrintDefine>

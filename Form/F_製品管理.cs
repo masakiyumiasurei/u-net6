@@ -696,7 +696,21 @@ namespace u_net
        
                     if (!shiftOn)
                     {
-                        //OpenForm("製品参照", objGrid1.TextMatrix(objGrid1.row, 1) + "," + objGrid1.TextMatrix(objGrid1.row, 2));
+                        if (dataGridView1.SelectedRows.Count > 0)
+                        {
+                            // DataGridView1で選択された行が存在する場合
+                            string selectedData = dataGridView1.SelectedRows[0].Cells[0].Value.ToString(); // 1列目のデータを取得
+                            string selectedEdition = dataGridView1.SelectedRows[0].Cells[1].Value.ToString();
+
+                            F_製品参照 targetform = new F_製品参照();
+                            targetform.args = selectedData + "," + selectedEdition;
+                            targetform.ShowDialog();
+                        }
+                        else
+                        {
+                            // ユーザーが行を選択していない場合のエラーハンドリング
+                            MessageBox.Show("行が選択されていません。");
+                        }
                     }
 
                     break;

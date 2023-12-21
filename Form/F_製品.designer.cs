@@ -1352,7 +1352,7 @@ namespace u_net
         private StatusStrip statusStrip1;
         //private MultiRowDesigner.製品明細 製品明細1;
         internal ToolStripStatusLabel toolStripStatusLabel1;
-        private MultiRowDesigner.製品明細 製品明細1;
+        internal MultiRowDesigner.製品明細 製品明細1;
         private TextBox 承認表示;
         private TextBox 廃止表示;
         private TextBox 確定表示;
