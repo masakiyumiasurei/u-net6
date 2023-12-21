@@ -162,6 +162,7 @@
             this.コマンド参照用.TabStop = false;
             this.コマンド参照用.Text = "参照用";
             this.コマンド参照用.UseVisualStyleBackColor = true;
+            this.コマンド参照用.Click += new System.EventHandler(this.コマンド参照用_Click);
             // 
             // コマンドF10
             // 

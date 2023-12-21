@@ -45,8 +45,9 @@
             GrapeCity.Win.MultiRow.Border border15 = new GrapeCity.Win.MultiRow.Border();
             GrapeCity.Win.MultiRow.CellStyle cellStyle29 = new GrapeCity.Win.MultiRow.CellStyle();
             GrapeCity.Win.MultiRow.Border border16 = new GrapeCity.Win.MultiRow.Border();
+            GrapeCity.Win.MultiRow.MathStatistics mathStatistics1 = new GrapeCity.Win.MultiRow.MathStatistics();
+            GrapeCity.Win.MultiRow.MultiRowCondition multiRowCondition1 = new GrapeCity.Win.MultiRow.MultiRowCondition();
             GrapeCity.Win.MultiRow.CellStyle cellStyle30 = new GrapeCity.Win.MultiRow.CellStyle();
-            GrapeCity.Win.MultiRow.Border border17 = new GrapeCity.Win.MultiRow.Border();
             GrapeCity.Win.MultiRow.CellStyle cellStyle1 = new GrapeCity.Win.MultiRow.CellStyle();
             GrapeCity.Win.MultiRow.Border border1 = new GrapeCity.Win.MultiRow.Border();
             GrapeCity.Win.MultiRow.TextLengthValidator textLengthValidator1 = new GrapeCity.Win.MultiRow.TextLengthValidator();
@@ -93,15 +94,15 @@
             this.変更内容ボタン = new GrapeCity.Win.MultiRow.ButtonCell();
             this.columnFooterSection1 = new GrapeCity.Win.MultiRow.ColumnFooterSection();
             this.textBoxCell1 = new GrapeCity.Win.MultiRow.TextBoxCell();
-            this.製品材料費 = new GrapeCity.Win.MultiRow.TextBoxCell();
             this.textBoxCell3 = new GrapeCity.Win.MultiRow.TextBoxCell();
+            this.製品材料費 = new GrapeCity.Win.MultiRow.SummaryCell();
             this.型式名 = new GrapeCity.Win.MultiRow.TextBoxCell();
             this.改版中 = new GrapeCity.Win.MultiRow.TextBoxCell();
             this.ユニット版数 = new GrapeCity.Win.MultiRow.TextBoxCell();
             this.ユニットコード = new GrapeCity.Win.MultiRow.TextBoxCell();
             this.品名 = new GrapeCity.Win.MultiRow.TextBoxCell();
             this.型番 = new GrapeCity.Win.MultiRow.TextBoxCell();
-            this.RohsStatusSign = new GrapeCity.Win.MultiRow.TextBoxCell();
+            this.RoHS対応 = new GrapeCity.Win.MultiRow.TextBoxCell();
             this.非含有証明書 = new GrapeCity.Win.MultiRow.TextBoxCell();
             this.ユニット材料費 = new GrapeCity.Win.MultiRow.TextBoxCell();
             this.変更内容 = new GrapeCity.Win.MultiRow.TextBoxCell();
@@ -119,7 +120,7 @@
             this.Row.Cells.Add(this.ユニットコード);
             this.Row.Cells.Add(this.品名);
             this.Row.Cells.Add(this.型番);
-            this.Row.Cells.Add(this.RohsStatusSign);
+            this.Row.Cells.Add(this.RoHS対応);
             this.Row.Cells.Add(this.非含有証明書);
             this.Row.Cells.Add(this.ユニット材料費);
             this.Row.Cells.Add(this.変更内容);
@@ -332,8 +333,8 @@
             // columnFooterSection1
             // 
             this.columnFooterSection1.Cells.Add(this.textBoxCell1);
-            this.columnFooterSection1.Cells.Add(this.製品材料費);
             this.columnFooterSection1.Cells.Add(this.textBoxCell3);
+            this.columnFooterSection1.Cells.Add(this.製品材料費);
             this.columnFooterSection1.Height = 27;
             this.columnFooterSection1.Name = "columnFooterSection1";
             this.columnFooterSection1.Width = 1259;
@@ -349,28 +350,33 @@
             this.textBoxCell1.TabIndex = 0;
             this.textBoxCell1.Value = "製品材料費";
             // 
-            // 製品材料費
-            // 
-            this.製品材料費.Location = new System.Drawing.Point(111, 4);
-            this.製品材料費.Name = "製品材料費";
-            this.製品材料費.ReadOnly = true;
-            this.製品材料費.Size = new System.Drawing.Size(102, 17);
-            border16.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
-            cellStyle29.Border = border16;
-            cellStyle29.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
-            this.製品材料費.Style = cellStyle29;
-            this.製品材料費.TabIndex = 1;
-            // 
             // textBoxCell3
             // 
             this.textBoxCell3.Location = new System.Drawing.Point(229, 4);
             this.textBoxCell3.Name = "textBoxCell3";
             this.textBoxCell3.Size = new System.Drawing.Size(530, 17);
-            cellStyle30.Border = border17;
-            cellStyle30.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
-            this.textBoxCell3.Style = cellStyle30;
+            cellStyle29.Border = border16;
+            cellStyle29.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
+            this.textBoxCell3.Style = cellStyle29;
             this.textBoxCell3.TabIndex = 2;
             this.textBoxCell3.Value = "※材料費が不明なユニットが登録されている場合、製品材料費は表示されません。";
+            // 
+            // 製品材料費
+            // 
+            mathStatistics1.CellName = "ユニット材料費";
+            multiRowCondition1.CellName = "削除対象";
+            multiRowCondition1.Items.Add(new GrapeCity.Win.MultiRow.MultiRowConditionItem(GrapeCity.Win.MultiRow.ConditionalCellStyleOperator.NotEquals, "1", ""));
+            mathStatistics1.Conditions.Add(multiRowCondition1);
+            this.製品材料費.Calculation = mathStatistics1;
+            this.製品材料費.Location = new System.Drawing.Point(111, 3);
+            this.製品材料費.Name = "製品材料費";
+            this.製品材料費.Size = new System.Drawing.Size(108, 21);
+            cellStyle30.Font = new System.Drawing.Font("BIZ UDゴシック", 9F);
+            cellStyle30.Format = "N2";
+            cellStyle30.ImeMode = System.Windows.Forms.ImeMode.Off;
+            cellStyle30.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleRight;
+            this.製品材料費.Style = cellStyle30;
+            this.製品材料費.TabIndex = 3;
             // 
             // 型式名
             // 
@@ -384,7 +390,6 @@
             cellStyle1.ImeMode = System.Windows.Forms.ImeMode.Off;
             this.型式名.Style = cellStyle1;
             this.型式名.TabIndex = 1;
-            textLengthValidator1.EncodingCodePage = 1200;
             textLengthValidator1.LengthUnit = GrapeCity.Win.MultiRow.LengthUnit.Byte;
             textLengthValidator1.MaximumLength = 16;
             this.型式名.Validators.Add(textLengthValidator1);
@@ -428,7 +433,6 @@
             cellStyle4.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.ユニットコード.Style = cellStyle4;
             this.ユニットコード.TabIndex = 2;
-            textLengthValidator2.EncodingCodePage = 1200;
             textLengthValidator2.LengthUnit = GrapeCity.Win.MultiRow.LengthUnit.Byte;
             textLengthValidator2.MaximumLength = 8;
             this.ユニットコード.Validators.Add(textLengthValidator2);
@@ -459,19 +463,19 @@
             this.型番.Style = cellStyle6;
             this.型番.TabIndex = 5;
             // 
-            // RohsStatusSign
+            // RoHS対応
             // 
-            this.RohsStatusSign.DataField = "RoHS対応";
-            this.RohsStatusSign.Location = new System.Drawing.Point(704, 0);
-            this.RohsStatusSign.Name = "RohsStatusSign";
-            this.RohsStatusSign.Size = new System.Drawing.Size(24, 17);
+            this.RoHS対応.DataField = "RoHS対応";
+            this.RoHS対応.Location = new System.Drawing.Point(704, 0);
+            this.RoHS対応.Name = "RoHS対応";
+            this.RoHS対応.Size = new System.Drawing.Size(24, 17);
             border7.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
             cellStyle7.Border = border7;
             cellStyle7.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
             cellStyle7.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.RohsStatusSign.Style = cellStyle7;
-            this.RohsStatusSign.TabIndex = 9;
-            this.RohsStatusSign.TabStop = false;
+            this.RoHS対応.Style = cellStyle7;
+            this.RoHS対応.TabIndex = 9;
+            this.RoHS対応.TabStop = false;
             // 
             // 非含有証明書
             // 
@@ -496,7 +500,9 @@
             border9.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
             cellStyle9.Border = border9;
             cellStyle9.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
+            cellStyle9.Format = "N2";
             cellStyle9.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            cellStyle9.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleRight;
             this.ユニット材料費.Style = cellStyle9;
             this.ユニット材料費.TabIndex = 11;
             this.ユニット材料費.TabStop = false;
@@ -630,17 +636,17 @@
         private GrapeCity.Win.MultiRow.TextBoxCell ユニットコード;
         private GrapeCity.Win.MultiRow.TextBoxCell 品名;
         private GrapeCity.Win.MultiRow.TextBoxCell 型番;
-        private GrapeCity.Win.MultiRow.TextBoxCell RohsStatusSign;
+        private GrapeCity.Win.MultiRow.TextBoxCell RoHS対応;
         private GrapeCity.Win.MultiRow.TextBoxCell 非含有証明書;
         private GrapeCity.Win.MultiRow.TextBoxCell ユニット材料費;
         private GrapeCity.Win.MultiRow.TextBoxCell 変更内容;
         private GrapeCity.Win.MultiRow.ComboBoxCell 変更操作コード;
         private GrapeCity.Win.MultiRow.TextBoxCell textBoxCell1;
-        private GrapeCity.Win.MultiRow.TextBoxCell 製品材料費;
         private GrapeCity.Win.MultiRow.TextBoxCell textBoxCell3;
         private GrapeCity.Win.MultiRow.RowHeaderCell 明細番号;
         private GrapeCity.Win.MultiRow.TextBoxCell 製品コード;
         private GrapeCity.Win.MultiRow.TextBoxCell 製品版数;
         private GrapeCity.Win.MultiRow.TextBoxCell 削除対象;
+        private GrapeCity.Win.MultiRow.SummaryCell 製品材料費;
     }
 }

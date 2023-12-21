@@ -293,16 +293,16 @@
             // RoHS対応ボタン
             // 
             this.RoHS対応ボタン.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.RoHS対応ボタン.Location = new System.Drawing.Point(746, 0);
+            this.RoHS対応ボタン.Location = new System.Drawing.Point(743, 0);
             this.RoHS対応ボタン.Name = "RoHS対応ボタン";
-            this.RoHS対応ボタン.Size = new System.Drawing.Size(22, 21);
+            this.RoHS対応ボタン.Size = new System.Drawing.Size(26, 21);
             cellStyle28.BackColor = System.Drawing.Color.Transparent;
             cellStyle28.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
             cellStyle28.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
             this.RoHS対応ボタン.Style = cellStyle28;
             this.RoHS対応ボタン.TabIndex = 23;
             this.RoHS対応ボタン.TabStop = false;
-            this.RoHS対応ボタン.Value = "E";
+            this.RoHS対応ボタン.Value = "Ro";
             // 
             // 非含有証明書ボタン
             // 
