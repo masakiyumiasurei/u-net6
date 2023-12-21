@@ -95,7 +95,7 @@
             this.明細番号ボタン.Name = "明細番号ボタン";
             this.明細番号ボタン.Size = new System.Drawing.Size(34, 21);
             cellStyle8.BackColor = System.Drawing.SystemColors.Control;
-            cellStyle8.Font = new System.Drawing.Font("BIZ UDPゴシック", 8F);
+            cellStyle8.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
             cellStyle8.ImeMode = System.Windows.Forms.ImeMode.Off;
             cellStyle8.SelectionForeColor = System.Drawing.SystemColors.ControlText;
             cellStyle8.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
@@ -163,7 +163,7 @@
             this.合計金額_ラベル.Name = "合計金額_ラベル";
             this.合計金額_ラベル.Size = new System.Drawing.Size(72, 20);
             cellStyle12.Border = border7;
-            cellStyle12.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
+            cellStyle12.Font = new System.Drawing.Font("BIZ UDゴシック", 9F);
             this.合計金額_ラベル.Style = cellStyle12;
             this.合計金額_ラベル.TabIndex = 0;
             this.合計金額_ラベル.Value = "合計金額";
@@ -177,7 +177,7 @@
             this.合計金額.Size = new System.Drawing.Size(136, 20);
             border8.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
             cellStyle13.Border = border8;
-            cellStyle13.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
+            cellStyle13.Font = new System.Drawing.Font("BIZ UDゴシック", 9F);
             cellStyle13.Format = "N0";
             cellStyle13.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.合計金額.Style = cellStyle13;
@@ -194,7 +194,7 @@
             cellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(204)))), ((int)(((byte)(255)))));
             border1.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
             cellStyle1.Border = border1;
-            cellStyle1.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
+            cellStyle1.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
             cellStyle1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.明細番号.Style = cellStyle1;
             this.明細番号.TabIndex = 0;
@@ -207,7 +207,7 @@
             this.買掛区分.Location = new System.Drawing.Point(34, 0);
             this.買掛区分.Name = "買掛区分";
             this.買掛区分.Size = new System.Drawing.Size(170, 17);
-            cellStyle2.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
+            cellStyle2.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
             cellStyle2.ImeMode = System.Windows.Forms.ImeMode.Disable;
             cellStyle2.SelectionForeColor = System.Drawing.Color.Black;
             this.買掛区分.Style = cellStyle2;
@@ -221,7 +221,7 @@
             this.摘要.Size = new System.Drawing.Size(340, 17);
             border2.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
             cellStyle3.Border = border2;
-            cellStyle3.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
+            cellStyle3.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
             cellStyle3.ImageAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleLeft;
             cellStyle3.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
             this.摘要.Style = cellStyle3;
@@ -235,7 +235,7 @@
             this.支払金額.Size = new System.Drawing.Size(136, 17);
             border3.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
             cellStyle4.Border = border3;
-            cellStyle4.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
+            cellStyle4.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
             cellStyle4.Format = "N0";
             cellStyle4.ImageAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleLeft;
             cellStyle4.ImeMode = System.Windows.Forms.ImeMode.Disable;
