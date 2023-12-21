@@ -405,7 +405,7 @@ namespace u_net
             {
                 コマンド承認.Enabled = false;
                 コマンド確定.Enabled = true;
-                //受注承認ボタン.Enabled = false;
+                受注承認ボタン.Enabled = false;
             }
 
             コマンド登録.Enabled = dataChanged;

@@ -17,6 +17,8 @@ namespace MultiRowDesigner
 {
     public partial class 見積明細 : UserControl
     {
+        public bool IsOrderByOn = false; // 現在のデータが並べ替えられているかどうかを取得する
+        
         public GcMultiRow Detail
         {
             get
@@ -34,6 +36,7 @@ namespace MultiRowDesigner
         {
             gcMultiRow1.ShortcutKeyManager.Unregister(Keys.Enter);
             gcMultiRow1.ShortcutKeyManager.Register(SelectionActions.MoveToNextCell, Keys.Enter);
+
         }
 
         private void gcMultiRow1_EditingControlShowing(object sender, EditingControlShowingEventArgs e)
@@ -44,33 +47,13 @@ namespace MultiRowDesigner
             {
                 textBox.PreviewKeyDown -= gcMultiRow1_PreviewKeyDown;
                 textBox.PreviewKeyDown += gcMultiRow1_PreviewKeyDown;
-                textBox.KeyPress -= new KeyPressEventHandler(gcMultiRow1_KeyPress);
-                textBox.KeyPress += new KeyPressEventHandler(gcMultiRow1_KeyPress);
-            }
-            else if (comboBox != null)
-            {
-                comboBox.PreviewKeyDown -= gcMultiRow1_PreviewKeyDown;
-                comboBox.PreviewKeyDown += gcMultiRow1_PreviewKeyDown;
-                comboBox.KeyPress -= new KeyPressEventHandler(gcMultiRow1_KeyPress);
-                comboBox.KeyPress += new KeyPressEventHandler(gcMultiRow1_KeyPress);
-                if (gcMultiRow1.CurrentCell.Name == "ラインコード")
-                {
-                    comboBox.DrawMode = DrawMode.OwnerDrawFixed;
-                    comboBox.DrawItem -= ラインコード_DrawItem;
-                    comboBox.DrawItem += ラインコード_DrawItem;
-                }
-                else
-                {
-                    comboBox.DrawMode = DrawMode.Normal;
-                }
-
+                textBox.TextChanged -= gcMultiRow1_TextChanged;
+                textBox.TextChanged += gcMultiRow1_TextChanged;
             }
         }
 
         private void gcMultiRow1_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
-            gcMultiRow1.EndEdit();
-
             if (e.KeyCode == Keys.Return)
             {
 
@@ -90,96 +73,59 @@ namespace MultiRowDesigner
             }
         }
 
-        private void gcMultiRow1_KeyPress(object sender, KeyPressEventArgs e)
+        private void gcMultiRow1_TextChanged(object sender, EventArgs e)
         {
-            if (e.KeyChar == ' ')
-            {
-                if (gcMultiRow1.CurrentCell.RowIndex == null || gcMultiRow1.CurrentCell.CellIndex == null) return;
+            Control control = sender as Control;
+            F_見積 ParentForm = (F_見積)Application.OpenForms["F_見積"];
 
-                switch (gcMultiRow1.CurrentCell.Name)
-                {
-                    case "受注区分コード":
-                    case "売上区分コード":
-                    case "ラインコード":
-                    case "単位コード":
-                    case "SettingSheet":
-                    case "InspectionReport":
-                    case "Specification":
-                    case "ParameterSheet":
-                        ComboBoxEditingControl combo = sender as ComboBoxEditingControl;
-                        combo.DroppedDown = true;
-                        e.Handled = true;
-                        break;
-                }
+            switch (gcMultiRow1.CurrentCell.Name)
+            {
+                case "品名":
+                    FunctionClass.LimitText(control, 44);
+                    break;
+                case "型番":
+                    FunctionClass.LimitText(control, 44);
+                    break;
+                case "明細備考":
+                    FunctionClass.LimitText(control, 44);
+                    break;
+
             }
 
-        }
-
-        private void ラインコード_DrawItem(object sender, DrawItemEventArgs e)
-        {
-            ComboBoxEditingControl combo = sender as ComboBoxEditingControl;
-
-            OriginalClass.SetComboBoxAppearance(combo, e, new int[] { 50, 150 }, new string[] { "Display", "Display2" });
+            ParentForm.ChangedData(true);
         }
 
         private void gcMultiRow1_CellEnter(object sender, CellEventArgs e)
         {
-            F_受注 objForm = (F_受注)Application.OpenForms["F_受注"];
+            F_見積 ParentForm = (F_見積)Application.OpenForms["F_見積"];
 
-            if (objForm != null)
+            if (ParentForm != null)
             {
-                switch (gcMultiRow1.CurrentCell)
+                switch (e.CellName)
                 {
-                    //テキストボックスEnter時の処理
-                    case TextBoxCell:
-                        switch (e.CellName)
-                        {
-                            case "受注区分":
-                                objForm.toolStripStatusLabel2.Text = "■[space]キーで選択。";
-                                break;
-                            case "売上区分":
-                                objForm.toolStripStatusLabel2.Text = "■[space]キーで選択。";
-                                break;
-                            case "処理区分":
-                                objForm.toolStripStatusLabel2.Text = "■[space]キーで選択。";
-                                break;
-                            case "単位コード":
-                                objForm.toolStripStatusLabel2.Text = "■[space]キーで選択。";
-                                break;
-                            case "商品コード":
-                                objForm.toolStripStatusLabel2.Text = "■商品コードを入力あるいは商品を選択します。　■商品を選択するには入力欄をダブルクリックするか[space]キーを押すと表示される商品選択ダイアログから選択してください。";
-                                break;
-                            case "型番":
-                                objForm.toolStripStatusLabel2.Text = "■半角４８文字まで入力できます。";
-                                break;
-                            case "CustomerSerialNumberFrom":
-                                objForm.toolStripStatusLabel2.Text = "■顧客シリアル番号の開始番号を入力してください。";
-                                break;
-                            case "CustomerSerialNumberTo":
-                                objForm.toolStripStatusLabel2.Text = "■顧客シリアル番号の終了番号を入力してください。";
-                                break;
-                            case "SettingSheet":
-                                objForm.toolStripStatusLabel2.Text = "■[space]キーで選択。";
-                                break;
-                            case "InspectionReport":
-                                objForm.toolStripStatusLabel2.Text = "■[space]キーで選択。";
-                                break;
-                            case "Specification":
-                                objForm.toolStripStatusLabel2.Text = "■[space]キーで選択。";
-                                break;
-                            case "ParameterSheet":
-                                objForm.toolStripStatusLabel2.Text = "■[space]キーで選択。";
-                                break;
-                            case "備考":
-                                objForm.toolStripStatusLabel2.Text = "■設定明細内容を入力。■全角８２文字まで入力できます。";
-                                break;
-                            default:
-                                objForm.toolStripStatusLabel2.Text = "各種項目の説明";
-                                break;
-                        }
+                    case "明細削除ボタン":
+                        ParentForm.toolStripStatusLabel2.Text = "■明細行を削除します。";
                         break;
-
+                    case "行番号":
+                        ParentForm.toolStripStatusLabel2.Text = "■入力できません。";
+                        break;
+                    case "品名":
+                        ParentForm.toolStripStatusLabel2.Text = "■最大入力文字数は22文字（全角文字）です。";
+                        break;
+                    case "型番":
+                        ParentForm.toolStripStatusLabel2.Text = "■最大入力文字数は44文字（半角文字）です。";
+                        break;
+                    case "数量":
+                        ParentForm.toolStripStatusLabel2.Text = "■見積品の数量を入力します。";
+                        break;
+                    case "単位":
+                        ParentForm.toolStripStatusLabel2.Text = "■数量の単位を入力します。";
+                        break;
+                    case "明細備考":
+                        ParentForm.toolStripStatusLabel2.Text = "■最大入力文字数は22文字（全角文字）です。";
+                        break;
                     default:
+                        ParentForm.toolStripStatusLabel2.Text = "各種項目の説明";
                         break;
                 }
             }
@@ -191,6 +137,18 @@ namespace MultiRowDesigner
 
             switch (e.CellName)
             {
+                case "行番号ボタン":
+                    if (IsOrderByOn)
+                    {
+                        DialogResult result = MessageBox.Show("並べ替えを解除してもよろしいですか？",
+                            "並べ替え解除", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                        if (result == DialogResult.Yes)
+                        {
+                            CancelOrderBy();
+                        }
+                    }
+                    break;
                 case "明細削除ボタン":
                     // 新規行の場合、何もしない
                     if (gcMultiRow.Rows[e.RowIndex].IsNewRow == true) return;
@@ -198,7 +156,11 @@ namespace MultiRowDesigner
                     // 削除確認
                     if (MessageBox.Show("明細行(" + (e.RowIndex + 1) + ")を削除しますか？", "承認コマンド", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
+                        F_見積 ParentForm = (F_見積)Application.OpenForms["F_見積"];
+
                         gcMultiRow.Rows.RemoveAt(e.RowIndex);
+
+                        ParentForm.ChangedData(true);
                     }
 
                     break;
@@ -206,26 +168,28 @@ namespace MultiRowDesigner
 
         }
 
+        private void gcMultiRow1_DefaultValuesNeeded(object sender, RowEventArgs e)
+        {
+            e.Row.Cells["数量"].Value = 0;
+            e.Row.Cells["単位"].Value = "台";
+            e.Row.Cells["標準単価"].Value = 0;
+            e.Row.Cells["単価"].Value = 0;
+
+            // 新規行に初期ソート順を設定
+            decimal maxValues = this.gcMultiRow1.Rows.Max<Row, Decimal>(row => (Decimal)row.Cells["初期ソート順"].Value) + 1m;
+            e.Row.Cells["初期ソート順"].Value = maxValues;
+        }
+
         private void gcMultiRow1_CellValidating(object sender, CellValidatingEventArgs e)
         {
             switch (e.CellName)
             {
-                case "受注区分コード":
-                case "売上区分コード":
-                case "ラインコード":
-                case "型番":
                 case "品名":
-                case "単位コード":
+                case "型番":
                 case "数量":
                 case "単価":
-                case "SettingSheet":
-                case "InspectionReport":
-                case "Specification":
-                case "ParameterSheet":
-                case "備考":
-                case "シリアル番号付加":
-                case "CustomerSerialNumberFrom":
-                case "CustomerSerialNumberTo":
+                case "単位":
+                case "標準単価":
                     GcMultiRow grid = (GcMultiRow)sender;
                     // セルが編集中の場合
                     if (grid.IsCurrentCellInEditMode)
@@ -247,16 +211,44 @@ namespace MultiRowDesigner
         }
 
         /// <summary>
-        /// 明細部の受注コードと受注版数を更新する
+        /// 明細部の見積コードと見積版数を更新する
         /// </summary>
-        /// <param name="code">受注コード</param>
-        /// <param name="edition">受注版数</param>
+        /// <param name="code">見積コード</param>
+        /// <param name="edition">見積版数</param>
         public void UpdateCodeAndEdition(string code, int edition)
         {
             for (int i = 0; i < Detail.RowCount - 1; i++)
             {
-                Detail.Rows[i].Cells["受注コード"].Value = code;
-                Detail.Rows[i].Cells["受注版数"].Value = edition;
+                Detail.Rows[i].Cells["見積コード"].Value = code;
+                Detail.Rows[i].Cells["見積版数"].Value = edition;
+            }
+        }
+
+        public void CancelOrderBy()
+        {
+            try
+            {
+                // 明細並び順を元に戻す
+                this.gcMultiRow1.Sort("初期ソート順");
+
+                // 明細ヘッダー部のソートマークを元に戻す
+                foreach (ColumnHeaderSection section in this.gcMultiRow1.ColumnHeaders)
+                {
+                    foreach (Cell cell in section.Cells)
+                    {
+                        if (cell is ColumnHeaderCell)
+                        {
+                            ColumnHeaderCell columnHeaderCell = cell as ColumnHeaderCell;
+                            columnHeaderCell.SortGlyphDirection = System.Windows.Forms.SortOrder.None;
+                        }
+                    }
+                }
+
+                this.IsOrderByOn = false;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"CancelOrderBy - {ex.GetType().Name}: {ex.Message}");
             }
         }
 
@@ -271,113 +263,37 @@ namespace MultiRowDesigner
                 string varValue = controlObject.Text;
                 switch (cellName)
                 {
-                    case "受注区分コード":
+                    case "品名":
                         if (string.IsNullOrEmpty(varValue))
                         {
-                            MessageBox.Show("受注区分を選択してください。", cellName, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                            return true;
-                        }
-                        break;
-                    case "売上区分コード":
-                        if (string.IsNullOrEmpty(varValue))
-                        {
-                            MessageBox.Show("売上区分を選択してください。", "入力", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                            return true;
-                        }
-                        break;
-                    case "ラインコード":
-                        if (string.IsNullOrEmpty(varValue))
-                        {
-                            MessageBox.Show("処理区分を選択してください。", cellName, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            MessageBox.Show(cellName + "を入力してください。", "見積", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                             return true;
                         }
                         break;
                     case "型番":
-                    case "品名":
-                    case "単位コード":
-                        if (string.IsNullOrEmpty(varValue))
-                        {
-                            MessageBox.Show(cellName + "を入力してください。", cellName, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                            return true;
-                        }
+                        // 必須としない
                         break;
                     case "数量":
-                        if (!FunctionClass.IsLimit_N(varValue, 7, 0, cellName))
-                            return true;
-                        if (int.Parse(varValue) < 1)
-                        {
-                            MessageBox.Show(" 1 以上の値を入力してください。", cellName, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                            return true;
-                        }
-                        break;
                     case "単価":
-                        if (!FunctionClass.IsLimit_N(varValue, 9, 2, cellName))
-                            return true;
-                        break;
-                    case "SettingSheet":
                         if (string.IsNullOrEmpty(varValue))
                         {
-                            MessageBox.Show("設定明細書の処理を入力してください。", "設定明細書の処理", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            MessageBox.Show(cellName + "を入力してください。", "見積", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            return true;
+                        }
+                        if (OriginalClass.IsNumeric(varValue) == false)
+                        {
+                            MessageBox.Show("数字を入力してください。", "見積", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
                             return true;
                         }
                         break;
-                    case "InspectionReport":
-                        if (string.IsNullOrEmpty(varValue))
-                        {
-                            MessageBox.Show("検査成績書の処理を入力してください。", "検査成績書の処理", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                            return true;
-                        }
+                    case "単位":
+                        // 必須としない
                         break;
-                    case "Specification":
-                        if (string.IsNullOrEmpty(varValue))
-                        {
-                            MessageBox.Show("納入仕様書の処理を入力してください。", "納入仕様書の処理", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                            return true;
-                        }
+                    case "標準単価":
+                        // 必須としない
                         break;
-                    case "ParameterSheet":
-                        if (string.IsNullOrEmpty(varValue))
-                        {
-                            MessageBox.Show("非該当証明書の処理を入力してください。", "非該当証明書の処理", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                            return true;
-                        }
-                        break;
-                    case "備考":
-                        if (gcMultiRow1.CurrentRow.Cells["SettingSheet"].DisplayText == "01" && string.IsNullOrEmpty(varValue))
-                        {
-                            MessageBox.Show("設定明細内容を入力してください。", "設定明細内容", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                            return true;
-                        }
-                        break;
-                    case "シリアル番号付加":
-                        if (string.IsNullOrEmpty(varValue))
-                        {
-                            MessageBox.Show("シリアル番号の指示を選択してください。", "入力", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                            return true;
-                        }
-                        break;
-                    case "CustomerSerialNumberFrom":
-                        if ((bool?)gcMultiRow1.CurrentRow.Cells["CustomerSerialNumberRequired"].Value == true
-                            && (gcMultiRow1.CurrentRow.Cells["ラインコード"].Value?.ToString() == "001" || gcMultiRow1.CurrentRow.Cells["ラインコード"].Value?.ToString() == "005"))
-                        {
-                            if (string.IsNullOrEmpty(varValue))
-                            {
-                                MessageBox.Show("顧客シリアル番号を入力してください。", "顧客シリアル番号", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                                return true;
-                            }
-                        }
-                        break;
-                    case "CustomerSerialNumberTo":
-                        if ((bool?)gcMultiRow1.CurrentRow.Cells["CustomerSerialNumberRequired"].Value == true
-                            && (gcMultiRow1.CurrentRow.Cells["ラインコード"].Value?.ToString() == "001" || gcMultiRow1.CurrentRow.Cells["ラインコード"].Value?.ToString() == "005"))
-                        {
-                            if (string.IsNullOrEmpty(varValue))
-                            {
-                                MessageBox.Show("顧客シリアル番号を入力してください。", "顧客シリアル番号", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                                return true;
-                            }
-                        }
-                        break;
+
                 }
 
                 return false; // エラーなしの場合
@@ -390,8 +306,10 @@ namespace MultiRowDesigner
             }
         }
 
-
-
+        private void gcMultiRow1_Sorted(object sender, EventArgs e)
+        {
+            this.IsOrderByOn = true;
+        }
 
     }
 }

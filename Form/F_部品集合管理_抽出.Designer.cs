@@ -280,7 +280,6 @@
             // 
             // 更新日開始選択ボタン
             // 
-            更新日開始選択ボタン.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             更新日開始選択ボタン.Location = new Point(225, 60);
             更新日開始選択ボタン.Margin = new Padding(4);
             更新日開始選択ボタン.Name = "更新日開始選択ボタン";
@@ -289,6 +288,7 @@
             更新日開始選択ボタン.TabStop = false;
             更新日開始選択ボタン.Text = "▼";
             更新日開始選択ボタン.UseVisualStyleBackColor = true;
+            更新日開始選択ボタン.Click += 更新日開始選択ボタン_Click;
             // 
             // 更新者名_ラベル
             // 
@@ -316,6 +316,7 @@
             更新日開始.Name = "更新日開始";
             更新日開始.Size = new Size(102, 19);
             更新日開始.TabIndex = 6;
+            更新日開始.DoubleClick += 更新日開始_DoubleClick;
             // 
             // 更新日終了
             // 
@@ -328,10 +329,10 @@
             更新日終了.Name = "更新日終了";
             更新日終了.Size = new Size(102, 19);
             更新日終了.TabIndex = 7;
+            更新日終了.DoubleClick += 更新日終了_DoubleClick;
             // 
             // 更新日終了選択ボタン
             // 
-            更新日終了選択ボタン.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             更新日終了選択ボタン.Location = new Point(377, 60);
             更新日終了選択ボタン.Margin = new Padding(4);
             更新日終了選択ボタン.Name = "更新日終了選択ボタン";
@@ -340,6 +341,7 @@
             更新日終了選択ボタン.TabStop = false;
             更新日終了選択ボタン.Text = "▼";
             更新日終了選択ボタン.UseVisualStyleBackColor = true;
+            更新日終了選択ボタン.Click += 更新日終了選択ボタン_Click;
             // 
             // label1
             // 
@@ -368,6 +370,8 @@
             分類名.Name = "分類名";
             分類名.Size = new Size(48, 21);
             分類名.TabIndex = 2;
+            分類名.DrawItem += 分類名_DrawItem;
+            分類名.SelectedIndexChanged += 分類名_SelectedIndexChanged;
             分類名.Enter += 分類名_Enter;
             分類名.Leave += 分類名_Leave;
             // 
@@ -439,7 +443,8 @@
             Controls.Add(分類内容);
             Controls.Add(集合分類_ラベル);
             Name = "F_部品集合管理_抽出";
-            Text = "部品集合管理 - 抽出";
+            Text = "部品集合管理_抽出";
+            Load += Form_Load;
             groupBox3.ResumeLayout(false);
             groupBox3.PerformLayout();
             groupBox4.ResumeLayout(false);

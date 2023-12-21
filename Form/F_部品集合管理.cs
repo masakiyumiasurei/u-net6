@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.Data.SqlClient;
+using Pao.Reports;
 using u_net.Public;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
@@ -57,7 +58,7 @@ namespace u_net
             get
             {
                 int result;
-                return int.TryParse(dataGridView1.SelectedRows[0].Cells[1].Value.ToString(), out result) ? result : 0  ;   //int.TryParse(部品集合版数.Text, out result) ? result : 0;
+                return int.TryParse(dataGridView1.SelectedRows[0].Cells[1].Value.ToString(), out result) ? result : 0;   //int.TryParse(部品集合版数.Text, out result) ? result : 0;
             }
         }
         public void Connect()
@@ -407,7 +408,7 @@ namespace u_net
         private void コマンド抽出_Click(object sender, EventArgs e)
         {
             dataGridView1.Focus();
-            F_製品管理_抽出 form = new F_製品管理_抽出();
+            F_部品集合管理_抽出 form = new F_部品集合管理_抽出();
             form.ShowDialog();
         }
 
@@ -425,12 +426,6 @@ namespace u_net
             Cleargrid(dataGridView1);
         }
 
-        private void コマンド全表示_Click(object sender, EventArgs e)
-        {
-            InitializeFilter();
-            DoUpdate();
-            Cleargrid(dataGridView1);
-        }
 
         private void コマンド更新_Click(object sender, EventArgs e)
         {
@@ -442,10 +437,11 @@ namespace u_net
 
         private void コマンド検索_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("現在開発中です。\n コードで検索するときに使用します。", "検索コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("現在開発中です。\n コードで検索するときに使用します。",
+                "検索コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        
+
 
         private void Form_KeyDown(object sender, KeyEventArgs e)
         {
@@ -510,13 +506,7 @@ namespace u_net
             {
                 MessageBox.Show("KeyDown - " + ex.Message);
             }
-        }
-
-        private void F_仕入先管理_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            LocalSetting ls = new LocalSetting();
-            ls.SavePlace(CommonConstants.LoginUserCode, this);
-        }
+        }     
 
         private bool ascending = true;
         private void dataGridView1_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -535,34 +525,47 @@ namespace u_net
             //}
         }
 
-              
+
 
         private void コマンド保守_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("現在開発中です。\n コードで検索するときに使用します。",
+            MessageBox.Show("現在開発中です。",
                 "保守コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void コマンド印刷_Click(object sender, EventArgs e)
         {
+            IReport paoRep = ReportCreator.GetPreview();
+
+            paoRep.LoadDefFile("../../../Reports/部品集合管理.prepd");
 
         }
 
         private void コマンド印刷明細_Click(object sender, EventArgs e)
         {
+            IReport paoRep = ReportCreator.GetPreview();
 
+            paoRep.LoadDefFile("../../../Reports/部品集合明細一覧.prepd");
         }
 
         private void コマンド部品購買設定_Click(object sender, EventArgs e)
         {
-            F_部品購買設定 fm =new F_部品購買設定();
+            F_部品購買設定 fm = new F_部品購買設定();
             fm.args = $"{CurrentCode}, {CurrentEdition}";
             fm.ShowDialog();
         }
 
         private void コマンド参照_Click(object sender, EventArgs e)
         {
+            F_部品集合 fm = new F_部品集合();
+            fm.args = $"{CurrentCode}, {CurrentEdition}";
+            fm.ShowDialog();
+        }
 
+        private void F_部品集合管理_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            LocalSetting ls = new LocalSetting();
+            ls.SavePlace(CommonConstants.LoginUserCode, this);
         }
     }
 }

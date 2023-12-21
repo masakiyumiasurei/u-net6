@@ -12,6 +12,7 @@ using GrapeCity.Win.BarCode.ValueType;
 using Microsoft.Data.SqlClient;
 using Microsoft.IdentityModel.Tokens;
 using u_net.Public;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace u_net
@@ -72,14 +73,15 @@ namespace u_net
             //検索コード保持
             this.str検索コード = codeString;
 
-            SetAll();
+            InitializeFilter();
             this.str受注コード1 = codeString;
             this.str受注コード2 = codeString;
+            ////Filtering;
             Filtering();
         }
 
         //全表示設定
-        private void SetAll()
+        private void InitializeFilter()
         {
             str受注コード1 = "";
             str受注コード2 = "";
@@ -102,7 +104,8 @@ namespace u_net
             ble受注完了承認指定 = false;
             byt受注完了承認 = 1;
             byt無効日 = 2;
-            ble履歴表示 = bool.Parse(履歴トグル.Text);
+            //ble履歴表示 = bool.Parse(履歴トグル.Text);
+            ble履歴表示 = false;
         }
 
         public void SetRecordSource(Form formObject, string whereString)
@@ -141,9 +144,73 @@ namespace u_net
 
         private void Form_Load(object sender, EventArgs e)
         {
-            LocalSetting ls = new LocalSetting();
-            //ウィンドウサイズを調整する
-            ls.LoadPlace(CommonConstants.LoginUserCode, this);
+            ////LocalSetting ls = new LocalSetting();
+            //////ウィンドウサイズを調整する
+            ////ls.LoadPlace(CommonConstants.LoginUserCode, this);
+
+            FunctionClass fn = new FunctionClass();
+            fn.DoWait("しばらくお待ちください...");
+            //実行中フォーム起動
+            //string LoginUserCode = "000";//テスト用 ログインユーザを実行中にどのように管理するか決まったら修正
+            LocalSetting localSetting = new LocalSetting();
+            localSetting.LoadPlace(CommonConstants.LoginUserCode, this);
+
+            MyApi myapi = new MyApi();
+            int xSize, ySize, intpixel, twipperdot;
+
+            //1インチ当たりのピクセル数 アクセスのサイズの引数がtwipなのでピクセルに変換する除算値を求める
+            intpixel = myapi.GetLogPixel();
+            twipperdot = myapi.GetTwipPerDot(intpixel);
+
+            intWindowHeight = this.Height;
+            intWindowWidth = this.Width;
+
+            // DataGridViewの設定
+            dataGridView1.AllowUserToResizeColumns = true;
+            dataGridView1.Font = new Font("MS ゴシック", 10);
+            dataGridView1.DefaultCellStyle.SelectionBackColor = Color.FromArgb(210, 210, 255);
+            dataGridView1.DefaultCellStyle.SelectionForeColor = Color.Black;
+            dataGridView1.GridColor = Color.FromArgb(230, 230, 230);
+            dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font("MS ゴシック", 9);
+            dataGridView1.DefaultCellStyle.Font = new Font("MS ゴシック", 10);
+            dataGridView1.DefaultCellStyle.ForeColor = Color.Black;
+
+            //dataGridView1.Columns[0].DefaultCellStyle.BackColor = Color.FromArgb(255, 255, 200); // 薄い黄色
+            //dataGridView1.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+
+
+            //0列目はaccessでは行ヘッダのため、ずらす
+            //dataGridView1.Columns[0].Width = 500 / twipperdot;
+            //dataGridView1.Columns[0].Width = 1100 / twipperdot; //1150
+            //dataGridView1.Columns[1].Width = 300 / twipperdot;
+            //dataGridView1.Columns[2].Width = 5000;
+            //dataGridView1.Columns[3].Width = 0 / twipperdot;
+            //dataGridView1.Columns[4].Width = 2000 / twipperdot;
+            //dataGridView1.Columns[5].Width = 1500 / twipperdot;
+            //dataGridView1.Columns[6].Width = 1500 / twipperdot;
+            //dataGridView1.Columns[7].Width = 2200 / twipperdot;//1300
+            //dataGridView1.Columns[8].Width = 1500 / twipperdot;
+            //dataGridView1.Columns[9].Width = 300 / twipperdot;
+
+            myapi.GetFullScreen(out xSize, out ySize);
+
+            int x = 10, y = 10;
+
+            this.Size = new Size(this.Width, ySize * myapi.GetTwipPerDot(intpixel) - 1200);
+            //accessのmovesizeメソッドの引数の座標単位はtwipなので以下で
+
+            this.Size = new Size(this.Width, ySize - 1200 / twipperdot);
+
+            this.StartPosition = FormStartPosition.Manual; // 手動で位置を指定
+            int screenWidth = Screen.PrimaryScreen.Bounds.Width; // プライマリスクリーンの幅
+            x = (screenWidth - this.Width) / 2;
+            this.Location = new Point(x, y);
+
+            ////setall();
+            InitializeFilter();
+            DoUpdate();
+            Cleargrid(dataGridView1);
+            fn.WaitForm.Close();
         }
 
         private void Form_Resize(object sender, EventArgs e)
@@ -177,14 +244,16 @@ namespace u_net
             int result = -1;
             try
             {
-                //result = Filtering();
+                result = Filtering();
                 //   DrawGrid();
                 if (result >= 0)
                 {
+                    //this.表示件数.Text = result.ToString();
                     this.有効件数.Text = result.ToString();
                 }
                 else
                 {
+                    //this.表示件数.Text = null; // Nullの代わりにC#ではnullを使用
                     this.有効件数.Text = null; // Nullの代わりにC#ではnullを使用
                 }
             }
@@ -197,7 +266,8 @@ namespace u_net
             return result;
         }
 
-        private void Filtering()
+        //private void Filtering()
+        private int Filtering()
         {
             try
             {
@@ -323,6 +393,78 @@ namespace u_net
                 //frmSub.OrderBy = frmSub.OrderBy;
                 //frmSub.OrderByOn = true;
 
+                string query1 = "SELECT TOP(1)受注コード, 受注版数 AS 版, 受注日, 出荷予定日, 受注納期, 注文番号, 顧客名, 自社担当者名, 受注金額 "
+                                         + " , CASE WHEN 確定日時 IS NOT NULL THEN '■' ELSE '' END AS 確定 "
+                                         + " , CASE WHEN 承認者コード IS NOT NULL THEN '■' ELSE '' END AS 承認 " 
+                                         + " , CASE WHEN 出荷完了日 IS NOT NULL THEN '■' ELSE '' END AS 出荷 " 
+                                         + " , CASE WHEN 完了承認者コード IS NOT NULL THEN '■' ELSE '' END AS 完了 "
+                                         + " FROM V受注管理 ";
+                string query2 = "";
+                // SQL文の構築
+                if (string.IsNullOrEmpty(strWhere))
+                {
+                    query2 = query1 + " ORDER BY 受注コード DESC";
+                }
+                else
+                {
+                    query2 = query1 + $" WHERE {strWhere} ORDER BY 受注コード DESC";
+                }
+
+                Connect();
+                DataGridUtils.SetDataGridView(cn, query2, this.dataGridView1);
+
+                ////DataTable dt = new DataTable();
+                ////using (SqlCommand command = new SqlCommand(query2, cn))
+                ////{
+                ////    using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+                ////    {
+                ////        adapter.Fill(dt);
+                ////    }
+                ////}
+
+                ////if (dt.Rows.Count <= 0)
+                ////{
+                ////    //appEXT = true;
+                ////    this.dataGridView1.DataSource = null;
+                ////}
+                ////else
+                ////{
+                ////    this.dataGridView1.DataSource = dt;
+                ////    //appEXT = false;
+                ////}
+
+                MyApi myapi = new MyApi();
+                int xSize, ySize, intpixel, twipperdot;
+
+                // 1インチ当たりのピクセル数 アクセスのサイズの引数がtwipなのでピクセルに変換する除算値を求める
+                intpixel = myapi.GetLogPixel();
+                twipperdot = myapi.GetTwipPerDot(intpixel);
+
+                intWindowHeight = this.Height;
+                intWindowWidth = this.Width;
+
+                // DataGridViewの設定
+                dataGridView1.Columns[0].DefaultCellStyle.BackColor = Color.FromArgb(255, 255, 200); // 薄い黄色
+                dataGridView1.Columns[1].DefaultCellStyle.BackColor = Color.FromArgb(255, 255, 200); // 薄い黄色
+
+                dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+                dataGridView1.ColumnHeadersHeight = 25;
+
+                // 0列目はaccessでは行ヘッダのため、ずらす
+                dataGridView1.Columns[0].Width = 1800 / twipperdot;
+                dataGridView1.Columns[1].Width = 400 / twipperdot;
+                dataGridView1.Columns[2].Width = 2000 / twipperdot;
+                dataGridView1.Columns[3].Width = 2000 / twipperdot;
+                dataGridView1.Columns[4].Width = 2000 / twipperdot;
+                dataGridView1.Columns[5].Width = 1500 / twipperdot;
+                dataGridView1.Columns[6].Width = 1500 / twipperdot;
+                dataGridView1.Columns[7].Width = 2200 / twipperdot;
+                dataGridView1.Columns[8].Width = 1500 / twipperdot;
+                dataGridView1.Columns[9].Width = 400 / twipperdot;
+                dataGridView1.Columns[10].Width = 400 / twipperdot;
+                dataGridView1.Columns[11].Width = 400 / twipperdot;
+                dataGridView1.Columns[12].Width = 400 / twipperdot;
+
                 if (strWhere == "")
                 {
                     初期表示ボタン.ForeColor = Color.FromArgb(255, 0, 0);
@@ -355,16 +497,17 @@ namespace u_net
                         前日受注分ボタン.ForeColor = Color.FromArgb(0, 0, 0);
                     }
                 }
+                return dataGridView1.RowCount;
+                //return 1;
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Filtering - " + ex.Message);
-                //return -1;
+                return -1;
             }
         }
 
-        private void DataGridView1_CellPainting(object sender,
-    DataGridViewCellPaintingEventArgs e)
+        private void DataGridView1_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
             //列ヘッダーかどうか調べる
             if (e.ColumnIndex < 0 && e.RowIndex >= 0)
@@ -472,6 +615,10 @@ namespace u_net
                 //    F_受注管理_抽出 form = new F_受注管理_抽出();
                 //    form.ShowDialog();
                 //}
+                this.dataGridView1.Focus(); // サブフォームにフォーカスを設定
+                // 受注管理_抽出フォームを開く
+                F_受注管理_抽出 form = new F_受注管理_抽出();
+                form.ShowDialog();
             }
             catch (Exception ex)
             {
@@ -500,7 +647,7 @@ namespace u_net
                 //    frmSub.Focus(); // サブフォームにフォーカスを設定
 
                 //    // 初期化処理
-                //    SetAll();
+                //    InitializeFilter();
                 //    ble受注完了承認指定 = true;
                 //    byt受注完了承認 = 2;
                 //    Filtering();
@@ -519,7 +666,7 @@ namespace u_net
             //    frmSub.Focus(); // サブフォームにフォーカスを設定
 
             //    // 全表示処理
-            //    SetAll();
+            //    InitializeFilter();
             //    Filtering();
             //}
         }
@@ -574,7 +721,7 @@ namespace u_net
                 intWindowWidth = this.Width;
 
                 // 初期設定
-                SetAll();
+                InitializeFilter();
                 this.ble受注完了承認指定 = true;
                 this.byt受注完了承認 = 2;
 
@@ -586,6 +733,7 @@ namespace u_net
                 //    frmSub.CurrentOrder.ForeColor = System.Drawing.Color.FromArgb(0, 0, 255);
                 //}
 
+                ////Filtering;
                 Filtering();
             }
             catch (Exception ex)
@@ -680,7 +828,7 @@ namespace u_net
                 //    frmSub.Focus(); // サブフォームにフォーカスを設定
 
                 //    // 初期表示処理
-                //    SetAll();
+                //    InitializeFilter();
                 //    ble受注完了承認指定 = true;
                 //    byt受注完了承認 = 2;
                 //    Filtering();
@@ -721,7 +869,7 @@ namespace u_net
 
                 //    Connect();
                 //    // 初期化処理
-                //    SetAll();
+                //    InitializeFilter();
 
                 //    // 前日の日付を取得
                 //    DateTime dtePrevious = DateTime.Today.AddDays(-1);
@@ -755,7 +903,7 @@ namespace u_net
                 //    frmSub.Focus(); // サブフォームにフォーカスを設定
 
                 //    // 初期化処理
-                //    SetAll();
+                //    InitializeFilter();
 
                 //    // 本日の日付を設定
                 //    this.dte受注日1 = DateTime.Today;

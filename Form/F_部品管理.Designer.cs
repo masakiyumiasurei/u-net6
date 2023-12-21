@@ -240,11 +240,11 @@
             // 
             // 表示件数
             // 
-            表示件数.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            表示件数.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             表示件数.Location = new Point(72, 4);
             表示件数.Margin = new Padding(3, 2, 3, 2);
             表示件数.Name = "表示件数";
-            表示件数.Size = new Size(88, 19);
+            表示件数.Size = new Size(88, 20);
             表示件数.TabIndex = 84;
             // 
             // label1
