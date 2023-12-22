@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(F_入金管理));
             panel1 = new Panel();
             コマンド顧客 = new Button();
@@ -47,6 +48,7 @@
             label2 = new Label();
             dataGridView1 = new DataGridView();
             panel2 = new Panel();
+            toolTip1 = new ToolTip(components);
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel2.SuspendLayout();
@@ -85,6 +87,7 @@
             コマンド顧客.Size = new Size(70, 22);
             コマンド顧客.TabIndex = 6;
             コマンド顧客.Text = "顧客";
+            toolTip1.SetToolTip(コマンド顧客, "顧客データの参照");
             コマンド顧客.UseVisualStyleBackColor = true;
             コマンド顧客.Click += コマンド購買_Click;
             // 
@@ -99,6 +102,7 @@
             コマンド領収解除.Size = new Size(70, 22);
             コマンド領収解除.TabIndex = 10;
             コマンド領収解除.Text = "領収解除";
+            toolTip1.SetToolTip(コマンド領収解除, "選択入金データの領収済みを解除します。");
             コマンド領収解除.UseVisualStyleBackColor = true;
             コマンド領収解除.Click += コマンド入庫_Click;
             // 
@@ -113,6 +117,7 @@
             コマンド領収書.Size = new Size(70, 22);
             コマンド領収書.TabIndex = 5;
             コマンド領収書.Text = "領収書";
+            toolTip1.SetToolTip(コマンド領収書, "領収書のプレビュー");
             コマンド領収書.UseVisualStyleBackColor = true;
             コマンド領収書.Click += コマンド入庫履歴_Click;
             // 
@@ -127,6 +132,7 @@
             コマンド入金.Size = new Size(70, 22);
             コマンド入金.TabIndex = 4;
             コマンド入金.Text = "入金";
+            toolTip1.SetToolTip(コマンド入金, "入金データの参照");
             コマンド入金.UseVisualStyleBackColor = true;
             コマンド入金.Click += コマンド発注_Click;
             // 
@@ -157,6 +163,7 @@
             コマンド操作切替.Size = new Size(70, 22);
             コマンド操作切替.TabIndex = 7;
             コマンド操作切替.Text = "操作切替";
+            toolTip1.SetToolTip(コマンド操作切替, "操作の切り替え");
             コマンド操作切替.UseVisualStyleBackColor = true;
             コマンド操作切替.Click += コマンド保守_Click;
             // 
@@ -171,6 +178,7 @@
             コマンド更新.Size = new Size(70, 22);
             コマンド更新.TabIndex = 3;
             コマンド更新.Text = "更新";
+            toolTip1.SetToolTip(コマンド更新, "最新の情報に更新");
             コマンド更新.UseVisualStyleBackColor = true;
             コマンド更新.Click += コマンド更新_Click;
             // 
@@ -185,6 +193,7 @@
             コマンド初期化.Size = new Size(70, 22);
             コマンド初期化.TabIndex = 2;
             コマンド初期化.Text = "初期化";
+            toolTip1.SetToolTip(コマンド初期化, "抽出条件の初期化");
             コマンド初期化.UseVisualStyleBackColor = true;
             コマンド初期化.Click += コマンド初期化_Click;
             // 
@@ -199,6 +208,7 @@
             コマンド検索.Size = new Size(70, 22);
             コマンド検索.TabIndex = 1;
             コマンド検索.Text = "検索";
+            toolTip1.SetToolTip(コマンド検索, "全文検索");
             コマンド検索.UseVisualStyleBackColor = true;
             コマンド検索.Click += コマンド検索_Click;
             // 
@@ -213,6 +223,7 @@
             コマンド抽出.Size = new Size(70, 22);
             コマンド抽出.TabIndex = 0;
             コマンド抽出.Text = "抽出";
+            toolTip1.SetToolTip(コマンド抽出, "抽出条件の設定");
             コマンド抽出.UseVisualStyleBackColor = true;
             コマンド抽出.Click += コマンド抽出_Click;
             // 
@@ -229,6 +240,7 @@
             コマンド印刷.TabIndex = 8;
             コマンド印刷.TabStop = false;
             コマンド印刷.Text = "印刷";
+            toolTip1.SetToolTip(コマンド印刷, "画面の印刷プレビュー");
             コマンド印刷.UseVisualStyleBackColor = true;
             コマンド印刷.Click += コマンド印刷_Click;
             // 
@@ -242,6 +254,7 @@
             コマンド終了.Size = new Size(70, 22);
             コマンド終了.TabIndex = 11;
             コマンド終了.Text = "終了";
+            toolTip1.SetToolTip(コマンド終了, "終了");
             コマンド終了.UseVisualStyleBackColor = true;
             コマンド終了.Click += コマンド終了_Click;
             // 
@@ -474,5 +487,6 @@
         private Panel panel2;
         private Button コマンド検索;
         private Button コマンド顧客;
+        private ToolTip toolTip1;
     }
 }

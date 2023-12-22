@@ -2132,68 +2132,25 @@ namespace u_net
             targetform.args = CurrentCode;
             targetform.ShowDialog();
         }
-        //未着手
+  
         private void コマンドユニット_Click(object sender, EventArgs e)
         {
-            try
+            
+            F_ユニット targetform = new F_ユニット();
+
+            if(製品明細1.Detail.CurrentRow != null)
             {
-                if (selected_frame == 1)
-                {
-                    //string code = OriginalClass.Nz(仕入先1コード.Text, null);
-                    //if (string.IsNullOrEmpty(code))
-                    //{
-                    //    MessageBox.Show("仕入先1を入力してください。", "警告", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    //    仕入先1コード.Focus();
-                    //}
-                    //else
-                    //{
-                    //    F_仕入先 targetform = new F_仕入先();
+                string args = 製品明細1.Detail.CurrentRow.Cells["ユニットコード"].Value?.ToString() + "," + 製品明細1.Detail.CurrentRow.Cells["ユニット版数"].Value?.ToString();
 
-                    //    targetform.args = code;
-                    //    targetform.ShowDialog();
-                    //}
-                }
-                else if (selected_frame == 2)
+                if(args != ",")
                 {
-                    //string code = OriginalClass.Nz(仕入先2コード.Text, null);
-                    //if (string.IsNullOrEmpty(code))
-                    //{
-                    //    MessageBox.Show("仕入先2を入力してください。", "警告", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    //    仕入先2コード.Focus();
-                    //}
-                    //else
-                    //{
-                    //    F_仕入先 targetform = new F_仕入先();
-
-                    //    targetform.args = code;
-                    //    targetform.ShowDialog();
-                    //}
+                    targetform.args = args;
                 }
-                else if (selected_frame == 3)
-                {
-                    //string code = OriginalClass.Nz(仕入先3コード.Text, null);
-                    //if (string.IsNullOrEmpty(code))
-                    //{
-                    //    MessageBox.Show("仕入先3を入力してください。", "警告", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    //    仕入先3コード.Focus();
-                    //}
-                    //else
-                    //{
-                    //    F_仕入先 targetform = new F_仕入先();
-
-                    //    targetform.args = code;
-                    //    targetform.ShowDialog();
-                    //}
-                }
-                else
-                {
-                    MessageBox.Show("参照する仕入先を選択してください。", "警告", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                }
+ 
             }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error in コマンドユニット_Click: " + ex.Message);
-            }
+
+            targetform.ShowDialog();
+            
         }
 
         private void コマンドユニット表_Click(object sender, EventArgs e)

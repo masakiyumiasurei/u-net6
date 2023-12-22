@@ -18,6 +18,7 @@ using System.Drawing.Imaging;
 using System.Drawing.Printing;
 using Pao.Reports;
 using GrapeCity.Win.MultiRow;
+using System.Text;
 
 namespace u_net
 {
@@ -1944,7 +1945,191 @@ namespace u_net
 
         private void コマンド部品定数表_Click(object sender, EventArgs e)
         {
-       
+            var intRes = MessageBox.Show("部品単価を表示しますか？", "部品定数表コマンド", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+            bool bleShowPrice;
+
+            switch (intRes)
+            {
+                case DialogResult.Yes:
+                    bleShowPrice = true;
+                    break;
+                case DialogResult.No:
+                    bleShowPrice = false;
+                    break;
+                default:
+                    return;
+            }
+
+
+
+
+            IReport paoRep = ReportCreator.GetPreview();
+
+            paoRep.LoadDefFile("../../../Reports/部品定数表.prepd");
+
+            Connect();
+
+            F_ユニット? f_ユニット = Application.OpenForms.OfType<F_ユニット>().FirstOrDefault();
+
+            DataRowCollection V部品定数表;
+
+            string sqlQuery = "SELECT * FROM V部品定数表 where ユニットコード='" + CurrentCode + "' and ユニット版数=" + CurrentEdition + " ORDER BY 品名,型番";
+
+            using (SqlCommand command = new SqlCommand(sqlQuery, cn))
+            {
+                using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+                {
+                    DataSet dataSet = new DataSet();
+
+                    adapter.Fill(dataSet);
+
+                    V部品定数表 = dataSet.Tables[0].Rows;
+
+                }
+            }
+
+            //最大行数
+            int maxRow = 26;
+            //現在の行
+            int CurRow = 0;
+            //行数
+            int RowCount = maxRow;
+            if (V部品定数表.Count > 0)
+            {
+                RowCount = V部品定数表.Count;
+            }
+
+            int page = 1;
+            double maxPage = Math.Ceiling((double)RowCount / maxRow);
+
+            DateTime now = DateTime.Now;
+
+            int lenB;
+
+            //描画すべき行がある限りページを増やす
+            while (RowCount > 0)
+            {
+                RowCount -= maxRow;
+
+                paoRep.PageStart();
+
+                //ヘッダー
+                paoRep.Write("シリーズ名", " ");
+                paoRep.Write("ロット数量", " ");
+                paoRep.Write("ロット番号", " ");
+                paoRep.Write("売上区分", " ");
+                paoRep.Write("発注納期", " ");
+                paoRep.Write("発注日", " ");
+
+                paoRep.Write("ユニットコード", V部品定数表[0]["ユニットコード"].ToString() != "" ? V部品定数表[0]["ユニットコード"].ToString() : " ");
+                paoRep.Write("ユニット版数", V部品定数表[0]["ユニット版数"].ToString() != "" ? V部品定数表[0]["ユニット版数"].ToString() : " ");
+                paoRep.Write("ユニット品名", V部品定数表[0]["ユニット品名"].ToString() != "" ? V部品定数表[0]["ユニット品名"].ToString() : " ");
+                paoRep.Write("ユニット型番", V部品定数表[0]["ユニット型番"].ToString() != "" ? V部品定数表[0]["ユニット型番"].ToString() : " ");
+
+                paoRep.Write("承認日時", V部品定数表[0]["承認日時"].ToString() != "" ? V部品定数表[0]["承認日時"].ToString() : " ");
+
+
+
+                //フッダー
+                paoRep.Write("出力日時", "出力日時：" + now.ToString("yyyy/MM/dd HH:mm:ss"));
+                paoRep.Write("ページ", ("ページ： " + page + "/" + maxPage).ToString());
+
+                //明細
+                for (var i = 0; i < maxRow; i++)
+                {
+                    if (CurRow >= V部品定数表.Count) break;
+
+                    DataRow targetRow = V部品定数表[CurRow];
+
+                    paoRep.Write("明細番号", (CurRow + 1).ToString(), i + 1);
+                    paoRep.Write("部品置換", targetRow["部品置換"].ToString() != "" ? targetRow["部品置換"].ToString() : " ", i + 1);
+                    paoRep.Write("形状", targetRow["形状"].ToString() != "" ? targetRow["形状"].ToString() : " ", i + 1);
+                    paoRep.Write("部品コード", targetRow["部品コード"].ToString() != "" ? targetRow["部品コード"].ToString() : " ", i + 1);
+                    paoRep.Write("品名", targetRow["品名"].ToString() != "" ? targetRow["品名"].ToString() : " ", i + 1);
+                    paoRep.Write("型番", targetRow["型番"].ToString() != "" ? targetRow["型番"].ToString() : " ", i + 1);
+                    paoRep.Write("メーカー名", targetRow["メーカー名"].ToString() != "" ? targetRow["メーカー名"].ToString() : " ", i + 1);
+                    paoRep.Write("ShelfNumber", targetRow["ShelfNumber"].ToString() != "" ? targetRow["ShelfNumber"].ToString() : " ", i + 1);
+                    paoRep.Write("仕入先名", targetRow["仕入先名"].ToString() != "" ? targetRow["仕入先名"].ToString() : " ", i + 1);
+                    paoRep.Write("定数", targetRow["定数"].ToString() != "" ? targetRow["定数"].ToString() : " ", i + 1);
+                    if (bleShowPrice)
+                    {
+                        paoRep.Write("部品単価", targetRow["部品単価"].ToString() != "" ? targetRow["部品単価"].ToString() : " ", i + 1);
+                    }
+                    else
+                    {
+                        paoRep.Write("部品単価", " ", i + 1);
+                    }
+
+                    paoRep.Write("発注コード", " ", i + 1);
+                    paoRep.Write("発注数量", " ", i + 1);
+                    paoRep.Write("出庫数量１", "／", i + 1);
+                    paoRep.Write("確認１", " ", i + 1);
+                    paoRep.Write("出庫数量２", "／", i + 1);
+                    paoRep.Write("確認２", " ", i + 1);
+
+
+
+                    paoRep.z_Objects.SetObject("品名", i + 1);
+                    lenB = Encoding.Default.GetBytes(targetRow["品名"].ToString()).Length;
+                    if (26 < lenB)
+                    {
+                        paoRep.z_Objects.z_Text.z_FontAttr.Size = 6;
+                    }
+                    else if (20 < lenB)
+                    {
+                        paoRep.z_Objects.z_Text.z_FontAttr.Size = 8;
+                    }
+                    else
+                    {
+                        paoRep.z_Objects.z_Text.z_FontAttr.Size = 10;
+                    }
+
+                    paoRep.z_Objects.SetObject("型番", i + 1);
+                    lenB = Encoding.Default.GetBytes(targetRow["型番"].ToString()).Length;
+                    if (40 < lenB)
+                    {
+                        paoRep.z_Objects.z_Text.z_FontAttr.Size = 6;
+                    }
+                    else if (26 < lenB)
+                    {
+                        paoRep.z_Objects.z_Text.z_FontAttr.Size = 8;
+                    }
+                    else
+                    {
+                        paoRep.z_Objects.z_Text.z_FontAttr.Size = 10;
+                    }
+
+                    paoRep.z_Objects.SetObject("仕入先名", i + 1);
+                    lenB = Encoding.Default.GetBytes(targetRow["仕入先名"].ToString()).Length;
+                    if (16 < lenB)
+                    {
+                        paoRep.z_Objects.z_Text.z_FontAttr.Size = 5;
+                    }
+                    else if (10 < lenB)
+                    {
+                        paoRep.z_Objects.z_Text.z_FontAttr.Size = 7;
+                    }
+                    else
+                    {
+                        paoRep.z_Objects.z_Text.z_FontAttr.Size = 10;
+                    }
+
+
+                    CurRow++;
+
+
+                }
+
+                page++;
+
+                paoRep.PageEnd();
+
+
+
+            }
+
+
+            paoRep.Output();
         }
 
 
