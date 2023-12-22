@@ -692,7 +692,7 @@ namespace u_net
             {
                 int stPriority = 100; // RoHSの対応状況を優先的に選定するための番号
 
-                if (製品明細1.Detail.RowCount == 0)
+                if ((IsDecided && 製品明細1.Detail.RowCount < 1) || (!IsDecided && 製品明細1.Detail.RowCount <= 1))
                 {
                     stPriority = 1;
                     return "×";
@@ -700,6 +700,8 @@ namespace u_net
 
                 for (int i = 0; i < 製品明細1.Detail.RowCount; i++)
                 {
+                    if (製品明細1.Detail.Rows[i].IsNewRow) continue;
+
                     if (!Convert.ToBoolean(製品明細1.Detail.Rows[i].Cells["削除対象"].Value))
                     {
                         int priority = Convert.ToInt32(製品明細1.Detail.Rows[i].Cells["RohsStatusPriority"].Value);

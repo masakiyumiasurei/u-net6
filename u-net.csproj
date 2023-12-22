@@ -99,6 +99,7 @@
 
   <ItemGroup>
     <EmbeddedResource Include="MultiRowDesigner\ユニット明細.resx" />
+    <EmbeddedResource Include="MultiRowDesigner\ユニット明細参照.resx" />
     <EmbeddedResource Include="MultiRowDesigner\ユニット明細参照テンプレート.resx" />
     <EmbeddedResource Include="MultiRowDesigner\入庫明細.resx" />
     <EmbeddedResource Include="MultiRowDesigner\入庫明細テンプレート.resx" />

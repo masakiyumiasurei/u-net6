@@ -118,7 +118,7 @@ namespace MultiRowDesigner
                                 return;
                             }
 
-                            if (MessageBox.Show("明細行(" + (e.RowIndex + 1) + ")を削除しますか？", "承認コマンド", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                            if (MessageBox.Show("明細行(" + (e.RowIndex + 1) + ")を削除しますか？", "明細行削除", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                             {
                                 gcMultiRow1.Rows.RemoveAt(e.RowIndex);
                             }
