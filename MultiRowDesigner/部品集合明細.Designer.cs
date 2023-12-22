@@ -35,6 +35,7 @@
             // 
             // gcMultiRow1
             // 
+            gcMultiRow1.AllowRowMove = true;
             gcMultiRow1.EditMode = GrapeCity.Win.MultiRow.EditMode.EditOnEnter;
             gcMultiRow1.Location = new Point(0, 0);
             gcMultiRow1.Margin = new Padding(5);
@@ -45,6 +46,7 @@
             gcMultiRow1.TemplateScaleSize = new SizeF(1.33333373F, 1.66666675F);
             gcMultiRow1.Text = "gcMultiRow1";
             gcMultiRow1.CellValidating += gcMultiRow1_CellValidating;
+            gcMultiRow1.CellValidated += gcMultiRow1_CellValidated;
             gcMultiRow1.CellEnter += gcMultiRow1_CellEnter;
             gcMultiRow1.DefaultValuesNeeded += gcMultiRow1_DefaultValuesNeeded;
             gcMultiRow1.EditingControlShowing += gcMultiRow1_EditingControlShowing;

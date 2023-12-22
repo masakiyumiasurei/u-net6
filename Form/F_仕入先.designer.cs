@@ -29,6 +29,7 @@ namespace u_net
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(F_仕入先));
             コマンド終了 = new Button();
             コマンド登録 = new Button();
@@ -182,6 +183,7 @@ namespace u_net
             label33 = new Label();
             label40 = new Label();
             振込手数料上限金額 = new TextBox();
+            toolTip1 = new ToolTip(components);
             panel1.SuspendLayout();
             groupBox1.SuspendLayout();
             statusStrip1.SuspendLayout();
@@ -203,6 +205,7 @@ namespace u_net
             コマンド終了.TabIndex = 1021;
             コマンド終了.TabStop = false;
             コマンド終了.Text = "終了";
+            toolTip1.SetToolTip(コマンド終了, "終了");
             コマンド終了.UseVisualStyleBackColor = true;
             コマンド終了.Click += コマンド終了_Click;
             // 
@@ -259,6 +262,7 @@ namespace u_net
             コマンド印刷.TabIndex = 1011;
             コマンド印刷.TabStop = false;
             コマンド印刷.Text = "印刷";
+            toolTip1.SetToolTip(コマンド印刷, "画面イメージの印刷");
             コマンド印刷.UseVisualStyleBackColor = true;
             コマンド印刷.Click += コマンド印刷_Click;
             // 
@@ -301,6 +305,7 @@ namespace u_net
             コマンドメーカー.TabIndex = 1008;
             コマンドメーカー.TabStop = false;
             コマンドメーカー.Text = "メーカー";
+            toolTip1.SetToolTip(コマンドメーカー, "メーカー参照");
             コマンドメーカー.UseVisualStyleBackColor = true;
             コマンドメーカー.Click += コマンドメーカー_Click;
             // 
@@ -1298,22 +1303,22 @@ namespace u_net
             // statusStrip1
             // 
             statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1, toolStripStatusLabel2 });
-            statusStrip1.Location = new Point(0, 771);
+            statusStrip1.Location = new Point(0, 774);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Padding = new Padding(1, 0, 19, 0);
-            statusStrip1.Size = new Size(876, 25);
+            statusStrip1.Size = new Size(876, 22);
             statusStrip1.TabIndex = 10001;
             statusStrip1.Text = "statusStrip1";
             // 
             // toolStripStatusLabel1
             // 
             toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            toolStripStatusLabel1.Size = new Size(0, 20);
+            toolStripStatusLabel1.Size = new Size(0, 17);
             // 
             // toolStripStatusLabel2
             // 
             toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            toolStripStatusLabel2.Size = new Size(111, 20);
+            toolStripStatusLabel2.Size = new Size(89, 17);
             toolStripStatusLabel2.Text = "各種項目の説明";
             // 
             // tabControl1
@@ -1385,10 +1390,10 @@ namespace u_net
             基本.Controls.Add(電話番号2);
             基本.Controls.Add(電話番号1);
             基本.Controls.Add(住所2);
-            基本.Location = new Point(4, 29);
+            基本.Location = new Point(4, 24);
             基本.Name = "基本";
             基本.Padding = new Padding(3);
-            基本.Size = new Size(858, 686);
+            基本.Size = new Size(858, 691);
             基本.TabIndex = 0;
             基本.Text = "基本";
             // 
@@ -1731,10 +1736,10 @@ namespace u_net
             支払.Controls.Add(label33);
             支払.Controls.Add(label40);
             支払.Controls.Add(振込手数料上限金額);
-            支払.Location = new Point(4, 29);
+            支払.Location = new Point(4, 24);
             支払.Name = "支払";
             支払.Padding = new Padding(3);
-            支払.Size = new Size(858, 686);
+            支払.Size = new Size(858, 691);
             支払.TabIndex = 1;
             支払.Text = "支払";
             // 
@@ -2566,6 +2571,7 @@ namespace u_net
 
         private MaskedTextBox 郵便番号;
         private MaskedTextBox 窓口郵便番号;
+        private ToolTip toolTip1;
     }
 }
 

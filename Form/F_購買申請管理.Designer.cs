@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(F_購買申請管理));
             panel1 = new Panel();
             button4 = new Button();
@@ -58,6 +59,7 @@
             翌々月ボタン = new Button();
             Next3Button = new Button();
             Next4Button = new Button();
+            toolTip1 = new ToolTip(components);
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)購買申請明細).BeginInit();
             panel2.SuspendLayout();
@@ -120,6 +122,7 @@
             コマンド購買申請.Size = new Size(70, 22);
             コマンド購買申請.TabIndex = 1;
             コマンド購買申請.Text = "購申請";
+            toolTip1.SetToolTip(コマンド購買申請, "購買申請データ参照");
             コマンド購買申請.UseVisualStyleBackColor = true;
             コマンド購買申請.Click += コマンド購買申請_Click_1;
             // 
@@ -146,6 +149,7 @@
             コマンド入出力.Size = new Size(70, 22);
             コマンド入出力.TabIndex = 9;
             コマンド入出力.Text = "入出力";
+            toolTip1.SetToolTip(コマンド入出力, "データ入出力");
             コマンド入出力.UseVisualStyleBackColor = true;
             コマンド入出力.Click += コマンド入出力_Click;
             // 
@@ -160,6 +164,7 @@
             コマンド保守.Size = new Size(70, 22);
             コマンド保守.TabIndex = 8;
             コマンド保守.Text = "保守";
+            toolTip1.SetToolTip(コマンド保守, "保守");
             コマンド保守.UseVisualStyleBackColor = true;
             コマンド保守.Click += コマンド保守_Click;
             // 
@@ -174,6 +179,7 @@
             コマンド更新.Size = new Size(70, 22);
             コマンド更新.TabIndex = 10;
             コマンド更新.Text = "更新";
+            toolTip1.SetToolTip(コマンド更新, "表示更新");
             コマンド更新.UseVisualStyleBackColor = true;
             コマンド更新.Click += コマンド更新_Click;
             // 
@@ -188,6 +194,7 @@
             コマンド初期化.Size = new Size(70, 22);
             コマンド初期化.TabIndex = 4;
             コマンド初期化.Text = "初期化";
+            toolTip1.SetToolTip(コマンド初期化, "抽出初期化");
             コマンド初期化.UseVisualStyleBackColor = true;
             コマンド初期化.Click += コマンド初期化_Click;
             // 
@@ -202,6 +209,7 @@
             コマンド検索.Size = new Size(70, 22);
             コマンド検索.TabIndex = 3;
             コマンド検索.Text = "検索";
+            toolTip1.SetToolTip(コマンド検索, "コード検索");
             コマンド検索.UseVisualStyleBackColor = true;
             コマンド検索.Click += コマンド検索_Click;
             // 
@@ -216,6 +224,7 @@
             コマンド抽出.Size = new Size(70, 22);
             コマンド抽出.TabIndex = 2;
             コマンド抽出.Text = "抽出";
+            toolTip1.SetToolTip(コマンド抽出, "抽出設定");
             コマンド抽出.UseVisualStyleBackColor = true;
             コマンド抽出.Click += コマンド抽出_Click;
             // 
@@ -230,6 +239,7 @@
             コマンド印刷.Size = new Size(70, 22);
             コマンド印刷.TabIndex = 5;
             コマンド印刷.Text = "印刷";
+            toolTip1.SetToolTip(コマンド印刷, "表示リスト印刷");
             コマンド印刷.UseVisualStyleBackColor = true;
             コマンド印刷.Click += コマンド印刷_Click;
             // 
@@ -243,6 +253,7 @@
             コマンド終了.Size = new Size(70, 22);
             コマンド終了.TabIndex = 0;
             コマンド終了.Text = "終了";
+            toolTip1.SetToolTip(コマンド終了, "終了");
             コマンド終了.UseVisualStyleBackColor = true;
             コマンド終了.Click += コマンド終了_Click;
             // 
@@ -609,5 +620,6 @@
         private Label label4;
         private TextBox 合計金額;
         private Label label3;
+        private ToolTip toolTip1;
     }
 }

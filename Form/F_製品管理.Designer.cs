@@ -101,6 +101,7 @@
             コマンド指導書変更有り.TabIndex = 11;
             コマンド指導書変更有り.TabStop = false;
             コマンド指導書変更有り.Text = "指変更有";
+            toolTip1.SetToolTip(コマンド指導書変更有り, "指導書変更有りデータの抽出");
             コマンド指導書変更有り.UseVisualStyleBackColor = true;
             コマンド指導書変更有り.Click += コマンド指導書変更有り_Click;
             // 
@@ -116,6 +117,7 @@
             コマンド指導書設定.TabIndex = 10;
             コマンド指導書設定.TabStop = false;
             コマンド指導書設定.Text = "指設定";
+            toolTip1.SetToolTip(コマンド指導書設定, "指導書変更の設定");
             コマンド指導書設定.UseVisualStyleBackColor = true;
             コマンド指導書設定.Click += コマンド指導書設定_Click;
             // 
@@ -131,6 +133,7 @@
             コマンド製品.TabIndex = 9;
             コマンド製品.TabStop = false;
             コマンド製品.Text = "製品";
+            toolTip1.SetToolTip(コマンド製品, "■選択されている製品を参照します。");
             コマンド製品.UseVisualStyleBackColor = true;
             コマンド製品.Click += コマンド製品_Click;
             // 
@@ -146,23 +149,24 @@
             コマンド材料費.TabIndex = 8;
             コマンド材料費.TabStop = false;
             コマンド材料費.Text = "材料費";
+            toolTip1.SetToolTip(コマンド材料費, "■製品の材料費を参照します。");
             コマンド材料費.UseVisualStyleBackColor = true;
             コマンド材料費.Click += コマンド材料費_Click;
             // 
             // コマンド参照用
             // 
-            this.コマンド参照用.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.コマンド参照用.ForeColor = System.Drawing.Color.Blue;
-            this.コマンド参照用.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.コマンド参照用.Location = new System.Drawing.Point(577, 4);
-            this.コマンド参照用.Margin = new System.Windows.Forms.Padding(0, 2, 0, 2);
-            this.コマンド参照用.Name = "コマンド参照用";
-            this.コマンド参照用.Size = new System.Drawing.Size(70, 22);
-            this.コマンド参照用.TabIndex = 7;
-            this.コマンド参照用.TabStop = false;
-            this.コマンド参照用.Text = "参照用";
-            this.コマンド参照用.UseVisualStyleBackColor = true;
-            this.コマンド参照用.Click += new System.EventHandler(this.コマンド参照用_Click);
+            コマンド参照用.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            コマンド参照用.ForeColor = Color.Blue;
+            コマンド参照用.ImageAlign = ContentAlignment.BottomLeft;
+            コマンド参照用.Location = new Point(577, 4);
+            コマンド参照用.Margin = new Padding(0, 2, 0, 2);
+            コマンド参照用.Name = "コマンド参照用";
+            コマンド参照用.Size = new Size(70, 22);
+            コマンド参照用.TabIndex = 7;
+            コマンド参照用.TabStop = false;
+            コマンド参照用.Text = "参照用";
+            コマンド参照用.UseVisualStyleBackColor = true;
+            コマンド参照用.Click += コマンド参照用_Click;
             // 
             // コマンドF10
             // 
@@ -190,6 +194,7 @@
             コマンド初期化.TabIndex = 4;
             コマンド初期化.TabStop = false;
             コマンド初期化.Text = "初期化";
+            toolTip1.SetToolTip(コマンド初期化, "抽出条件の初期化");
             コマンド初期化.UseVisualStyleBackColor = true;
             コマンド初期化.Click += コマンド初期化_Click;
             // 
@@ -205,6 +210,7 @@
             コマンド検索.TabIndex = 3;
             コマンド検索.TabStop = false;
             コマンド検索.Text = "検索";
+            toolTip1.SetToolTip(コマンド検索, "コードによる検索");
             コマンド検索.UseVisualStyleBackColor = true;
             コマンド検索.Click += コマンド検索_Click;
             // 
@@ -220,6 +226,7 @@
             コマンド抽出.TabIndex = 2;
             コマンド抽出.TabStop = false;
             コマンド抽出.Text = "抽出";
+            toolTip1.SetToolTip(コマンド抽出, "抽出条件の設定");
             コマンド抽出.UseVisualStyleBackColor = true;
             コマンド抽出.Click += コマンド抽出_Click;
             // 
@@ -235,6 +242,7 @@
             コマンド更新.TabIndex = 1;
             コマンド更新.TabStop = false;
             コマンド更新.Text = "更新";
+            toolTip1.SetToolTip(コマンド更新, "最新の情報に更新");
             コマンド更新.UseVisualStyleBackColor = true;
             コマンド更新.Click += コマンド更新_Click;
             // 
@@ -249,6 +257,7 @@
             コマンド終了.TabIndex = 0;
             コマンド終了.TabStop = false;
             コマンド終了.Text = "終了";
+            toolTip1.SetToolTip(コマンド終了, "終了");
             コマンド終了.UseVisualStyleBackColor = true;
             コマンド終了.Click += コマンド終了_Click;
             // 

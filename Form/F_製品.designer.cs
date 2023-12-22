@@ -29,6 +29,7 @@ namespace u_net
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             コマンド終了 = new Button();
             コマンド登録 = new Button();
             panel1 = new Panel();
@@ -124,6 +125,7 @@ namespace u_net
             承認表示 = new TextBox();
             廃止表示 = new TextBox();
             確定表示 = new TextBox();
+            toolTip1 = new ToolTip(components);
             panel1.SuspendLayout();
             statusStrip1.SuspendLayout();
             SuspendLayout();
@@ -139,6 +141,7 @@ namespace u_net
             コマンド終了.TabIndex = 1021;
             コマンド終了.TabStop = false;
             コマンド終了.Text = "終了";
+            toolTip1.SetToolTip(コマンド終了, "終了");
             コマンド終了.UseVisualStyleBackColor = true;
             コマンド終了.Click += コマンド終了_Click;
             // 
@@ -197,6 +200,7 @@ namespace u_net
             コマンド廃止.TabIndex = 1010;
             コマンド廃止.TabStop = false;
             コマンド廃止.Text = "廃止";
+            toolTip1.SetToolTip(コマンド廃止, "■製品を廃止します。");
             コマンド廃止.UseVisualStyleBackColor = true;
             コマンド廃止.Click += コマンド廃止_Click;
             // 
@@ -212,6 +216,7 @@ namespace u_net
             コマンドユニット表.TabIndex = 1009;
             コマンドユニット表.TabStop = false;
             コマンドユニット表.Text = "ユニット表";
+            toolTip1.SetToolTip(コマンドユニット表, "■ユニット表をプレビューします。");
             コマンドユニット表.UseVisualStyleBackColor = true;
             コマンドユニット表.Click += コマンドユニット表_Click;
             // 
@@ -227,6 +232,7 @@ namespace u_net
             コマンドユニット.TabIndex = 1008;
             コマンドユニット.TabStop = false;
             コマンドユニット.Text = "ユニット";
+            toolTip1.SetToolTip(コマンドユニット, "選択ユニットの参照");
             コマンドユニット.UseVisualStyleBackColor = true;
             コマンドユニット.Click += コマンドユニット_Click;
             // 
@@ -451,6 +457,7 @@ namespace u_net
             コマンドツール.TabIndex = 1011;
             コマンドツール.TabStop = false;
             コマンドツール.Text = "ツール";
+            toolTip1.SetToolTip(コマンドツール, "■ツールメニューを開きます。");
             コマンドツール.UseVisualStyleBackColor = true;
             コマンドツール.Click += コマンドツール_Click;
             // 
@@ -782,6 +789,7 @@ namespace u_net
             改版ボタン.TabIndex = 5;
             改版ボタン.TabStop = false;
             改版ボタン.Text = "改版";
+            toolTip1.SetToolTip(改版ボタン, "表示データの改版");
             改版ボタン.UseVisualStyleBackColor = true;
             改版ボタン.Click += 改版ボタン_Click;
             // 
@@ -884,6 +892,7 @@ namespace u_net
             変更ボタン.TabIndex = 10178;
             変更ボタン.TabStop = false;
             変更ボタン.Text = "変更";
+            toolTip1.SetToolTip(変更ボタン, "表示データを変更できるようになります。");
             変更ボタン.UseVisualStyleBackColor = true;
             変更ボタン.Click += 変更ボタン_Click;
             // 
@@ -1356,6 +1365,7 @@ namespace u_net
         private TextBox 承認表示;
         private TextBox 廃止表示;
         private TextBox 確定表示;
+        private ToolTip toolTip1;
     }
 }
 

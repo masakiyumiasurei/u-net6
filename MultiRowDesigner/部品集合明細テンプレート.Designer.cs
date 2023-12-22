@@ -351,6 +351,7 @@
             this.明細削除ボタン.Style = cellStyle1;
             this.明細削除ボタン.TabIndex = 0;
             this.明細削除ボタン.TabStop = false;
+            this.明細削除ボタン.ToolTipText = "明細削除";
             this.明細削除ボタン.Value = "×";
             // 
             // 行挿入ボタン
@@ -367,6 +368,7 @@
             this.行挿入ボタン.Style = cellStyle2;
             this.行挿入ボタン.TabIndex = 1;
             this.行挿入ボタン.TabStop = false;
+            this.行挿入ボタン.ToolTipText = "行挿入";
             this.行挿入ボタン.Value = "▶";
             // 
             // 行移動上ボタン
@@ -460,6 +462,7 @@
             this.部品参照ボタン.Style = cellStyle8;
             this.部品参照ボタン.TabIndex = 7;
             this.部品参照ボタン.TabStop = false;
+            this.部品参照ボタン.ToolTipText = "部品参照";
             this.部品参照ボタン.Value = "...";
             // 
             // 廃止表示

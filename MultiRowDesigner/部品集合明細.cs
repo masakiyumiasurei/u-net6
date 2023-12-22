@@ -22,6 +22,8 @@ namespace MultiRowDesigner
         private DataTable dataTable = new DataTable();
         private DataGridView multiRow = new DataGridView();
         private SqlConnection cn;
+        public bool validatedflg = false;
+       
         public GcMultiRow Detail
         {
             get
@@ -59,8 +61,8 @@ namespace MultiRowDesigner
         {
             F_部品集合 ParentForm = Application.OpenForms.OfType<F_部品集合>().FirstOrDefault();
 
-            e.Row.Cells["発注コード"].Value = ParentForm.CurrentCode;
-            e.Row.Cells["発注版数"].Value = ParentForm.CurrentEdition;
+            e.Row.Cells["部品集合コード"].Value = ParentForm.CurrentCode;
+            e.Row.Cells["部品集合版数"].Value = ParentForm.CurrentEdition;
         }
 
         private void gcMultiRow1_EditingControlShowing(object sender, EditingControlShowingEventArgs e)
@@ -142,12 +144,17 @@ namespace MultiRowDesigner
                     {
                         string selectedCode = form.SelectedCode;
 
-                        gcMultiRow1.CurrentCell.Value = selectedCode;
+                        gcMultiRow1.CurrentRow.Cells["部品コード"].Value = selectedCode;
 
+                        //品名にセル移動した時にvaledatedを実行しないようにするため
+                        validatedflg = true;
                         UpdatedControl(gcMultiRow1.CurrentCell);
 
+                        // gcMultiRow1.EndEdit(); EndEditでは自分自身が変わらない
                         gcMultiRow1.CurrentCellPosition =
-                            new CellPosition(gcMultiRow1.CurrentRow.Index, gcMultiRow1.CurrentRow.Cells["品名"].CellIndex);
+                           new CellPosition(gcMultiRow1.CurrentRow.Index, gcMultiRow1.CurrentRow.Cells["品名"].CellIndex);
+                        GrapeCity.Win.MultiRow.EditingActions.CommitRow.Execute(gcMultiRow1);
+                        gcMultiRow1.EndEdit();
                     }
 
                     break;
@@ -215,21 +222,24 @@ namespace MultiRowDesigner
                 string varValue = controlObject.Text;
                 switch (cellName)
                 {
-                    case "受注区分コード":
-                        if (string.IsNullOrEmpty(varValue))
+                    case "部品コード":
+                        if (string.IsNullOrEmpty(gcMultiRow1.CurrentCell.DisplayText))
                         {
-                            MessageBox.Show("受注区分を選択してください。", cellName, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            MessageBox.Show("部品コードを選択してください。", "部品コード", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                             return true;
                         }
-                        break;
-                    case "売上区分コード":
-                        if (string.IsNullOrEmpty(varValue))
+                        if (PartsIsExist(varValue))
                         {
-                            MessageBox.Show("売上区分を選択してください。", "入力", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            MessageBox.Show($"部品コード{varValue}は既に存在するため入力できません。", cellName, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                             return true;
                         }
-                        break;
+                        if (RegedParts(varValue))
+                        {
+                            return true;
+                        }
 
+                        break;
+                    
                 }
 
                 return false; // エラーなしの場合
@@ -338,6 +348,7 @@ namespace MultiRowDesigner
 
         private void UpdatedControl(Cell cell)
         {
+            F_部品集合? parentform = Application.OpenForms.OfType<F_部品集合>().FirstOrDefault();
             try
             {
                 switch (cell.Name)
@@ -357,19 +368,20 @@ namespace MultiRowDesigner
                             {
                                 if (reader.Read())
                                 {
-                                    if (Convert.ToInt32(reader["廃止"])==0)
+                                    if (Convert.ToInt32(reader["廃止"]) == 0)
                                     {
                                         gcMultiRow1.CurrentRow.Cells["廃止表示"].Value = DBNull.Value;
                                     }
                                     else
                                     {
                                         gcMultiRow1.CurrentRow.Cells["廃止表示"].Value = "■";
-                                    }    
+                                    }
                                     gcMultiRow1.CurrentRow.Cells["廃止"].Value = reader["廃止"];
                                     gcMultiRow1.CurrentRow.Cells["分類記号"].Value = reader["分類記号"];
                                     gcMultiRow1.CurrentRow.Cells["品名"].Value = reader["品名"];
                                     gcMultiRow1.CurrentRow.Cells["型番"].Value = reader["型番"];
                                     gcMultiRow1.CurrentRow.Cells["メーカー名"].Value = reader["メーカー名"];
+                                   // parentform.ChangedData(true);
                                 }
                             }
                         }
@@ -387,9 +399,22 @@ namespace MultiRowDesigner
 
         private void gcMultiRow1_CellContentButtonClick(object sender, CellEventArgs e)
         {
-
+            F_部品集合? parentform = Application.OpenForms.OfType<F_部品集合>().FirstOrDefault();
             switch (e.CellName)
             {
+                case "明細削除ボタン":
+                    // 新規行の場合、何もしない
+                    if (gcMultiRow1.Rows[e.RowIndex].IsNewRow == true) return;
+
+                    // 削除確認
+                    if (MessageBox.Show("明細行(" + (e.RowIndex + 1) + ")を削除しますか？", "明細削除", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        gcMultiRow1.Rows.RemoveAt(e.RowIndex);
+                        parentform.ChangedData(true);
+                        NumberDetails("明細番号");
+                    }
+
+                    break;
                 case "メーカー名ボタン":
                     int col = gcMultiRow1.CurrentRow.Cells["メーカー名"].CellIndex;
                     int row = 0;
@@ -438,22 +463,8 @@ namespace MultiRowDesigner
         {
             switch (e.CellName)
             {
-                case "受注区分コード":
-                case "売上区分コード":
-                case "ラインコード":
-                case "型番":
-                case "品名":
-                case "単位コード":
-                case "数量":
-                case "単価":
-                case "SettingSheet":
-                case "InspectionReport":
-                case "Specification":
-                case "ParameterSheet":
-                case "備考":
-                case "シリアル番号付加":
-                case "CustomerSerialNumberFrom":
-                case "CustomerSerialNumberTo":
+                case "部品コード":
+
                     GcMultiRow grid = (GcMultiRow)sender;
                     // セルが編集中の場合
                     if (grid.IsCurrentCellInEditMode)
@@ -468,15 +479,27 @@ namespace MultiRowDesigner
                             grid.EditingControl.Text = gcMultiRow1.CurrentCell.DisplayText;
                             e.Cancel = true;
                         }
+
                     }
                     break;
-
             }
         }
 
+        private void gcMultiRow1_CellValidated(object sender, CellEventArgs e)
+        {
+            if(validatedflg)
+            {
+                validatedflg = false;
+                return;
+            }
+            switch (e.CellName)
+            {
+                case "部品コード":
 
+                    UpdatedControl(gcMultiRow1.CurrentRow.Cells["部品コード"]);
 
-
-
+                    break;
+            }
+        }
     }
 }

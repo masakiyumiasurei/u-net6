@@ -6,12 +6,12 @@
 <FontAttr AttrName="Font2" Name="ＭＳ Ｐゴシック" Size="16" />
 <FontAttr AttrName="Font3" Name="ＭＳ Ｐゴシック" Size="9" />
 <LineAttr AttrName="Line1" Width="0.3" />
-<LineAttr AttrName="Line2" Width="0.6" />
+<LineAttr AttrName="Line2" Color="Transparent" Width="0" />
 <LineAttr AttrName="Line3" Color="Transparent" Width="0" />
 <LineAttr AttrName="Line4" Color="Transparent" Width="0" />
-<LineAttr AttrName="Line5" Color="Transparent" Width="0" />
+<LineAttr AttrName="Line5" Color="Silver" Width="0.1" />
 <LineAttr AttrName="Line6" Color="Silver" Width="0.1" />
-<LineAttr AttrName="Line7" Color="Silver" Width="0.1" />
+<LineAttr AttrName="Line7" Color="Transparent" Width="0" />
 <LineAttr AttrName="Line8" Color="Transparent" Width="0" />
 <LineAttr AttrName="Line9" Color="Transparent" Width="0" />
 <LineAttr AttrName="Line10" Color="Transparent" Width="0" />
@@ -27,29 +27,6 @@
 <LineAttr AttrName="Line20" Color="Transparent" Width="0" />
 <LineAttr AttrName="Line21" Color="Transparent" Width="0" />
 <LineAttr AttrName="Line22" Color="Transparent" Width="0" />
-<LineAttr AttrName="Line23" Color="Transparent" Width="0" />
-<LineAttr AttrName="Line24" Color="Transparent" Width="0" />
-<LineAttr AttrName="Line25" Color="Transparent" Width="0" />
-<LineAttr AttrName="Line26" Color="Transparent" Width="0" />
-<LineAttr AttrName="Line27" Color="Transparent" Width="0" />
-<LineAttr AttrName="Line28" Color="Transparent" Width="0" />
-<LineAttr AttrName="Line29" Color="Transparent" Width="0" />
-<LineAttr AttrName="Line30" Color="Transparent" Width="0" />
-<LineAttr AttrName="Line31" Color="Transparent" Width="0" />
-<LineAttr AttrName="Line32" Color="Transparent" Width="0" />
-<LineAttr AttrName="Line33" Color="Transparent" Width="0" />
-<LineAttr AttrName="Line34" Color="Transparent" Width="0" />
-<LineAttr AttrName="Line35" Color="Transparent" Width="0" />
-<LineAttr AttrName="Line36" Color="Transparent" Width="0" />
-<LineAttr AttrName="Line37" Color="Transparent" Width="0" />
-<LineAttr AttrName="Line38" Color="Transparent" Width="0" />
-<LineAttr AttrName="Line39" Color="Transparent" Width="0" />
-<LineAttr AttrName="Line40" Color="Transparent" Width="0" />
-<LineAttr AttrName="Line41" Color="Transparent" Width="0" />
-<LineAttr AttrName="Line42" Color="Transparent" Width="0" />
-<LineAttr AttrName="Line43" Color="Transparent" Width="0" />
-<LineAttr AttrName="Line44" Color="Transparent" Width="0" />
-<LineAttr AttrName="Line45" Color="Transparent" Width="0" />
 </PrintAttrs>
 <Paper Size="A4" Direction="False" />
 <Design FontAttr="Font1" LineAttr="Line1" GridWidth="2" DesignScale="100" GridFit="True" ObjLock="False" X="0" Y="0" Width="210" Height="297" DisplayRepeatObject="False" RepeatObjectColor="Silver" ImageSizeType="Clip" />
@@ -58,10 +35,10 @@
 <Text Name="Text40" X="15" Y="12" Width="179.9" Height="7.2" Text="部品集合一覧" Align="Center" VAlign="Middle" FontAttr="Font2" />
 <Text Name="出力日時" X="35" Y="288" Width="57" Height="4.3" Text="*出力日時*" Align="Left" VAlign="Middle" FontAttr="Font3" />
 <Text Name="ページ" X="154" Y="288" Width="40" Height="4.3" Text="*ページ*" Align="Right" VAlign="Middle" FontAttr="Font3" />
-<Text Name="Text32" X="15" Y="21" Width="23" Height="6" Text="集合分類" BackColor="Silver" Align="Left" VAlign="Middle" FontAttr="Font1" LineAttr="Line6" />
+<Text Name="Text32" X="15" Y="21" Width="23" Height="6" Text="集合分類" BackColor="Silver" Align="Left" VAlign="Middle" FontAttr="Font1" LineAttr="Line5" />
 <Line Name="Line2" StartX="15" StartY="10" EndX="195" EndY="10" LineAttr="Line1" />
 <Line Name="Line3" StartX="15" StartY="20" EndX="195" EndY="20" LineAttr="Line1" />
-<Text Name="Text37" X="38" Y="21" Width="156.8" Height="6" Text="GP" BackColor="Silver" Align="Left" VAlign="Middle" FontAttr="Font1" LineAttr="Line7" />
+<Text Name="Text37" X="38" Y="21" Width="156.8" Height="6" Text="GP" BackColor="Silver" Align="Left" VAlign="Middle" FontAttr="Font1" LineAttr="Line6" />
 <Text Name="Text38" X="15" Y="288" Width="20" Height="4.3" Text="出力日時 ：" Align="Left" VAlign="Middle" FontAttr="Font3" />
 <Text Name="Text39" X="15" Y="28" Width="30" Height="5" Text="部品集合コード" Align="Left" VAlign="Middle" FontAttr="Font1" />
 <Line Name="Line6" StartX="15" StartY="32.8" EndX="194" EndY="32.8" LineAttr="Line1" />
@@ -79,6 +56,6 @@
 <Text Name="確定" X="179" Y="33" Width="5" Height="6" Text="*確定*" Align="Center" VAlign="Middle" FontAttr="Font1" IntervalY="6" Repeat="42" />
 <Text Name="承認" X="184" Y="33" Width="5" Height="6" Text="*承認*" Align="Center" VAlign="Middle" FontAttr="Font1" IntervalY="6" Repeat="42" />
 <Text Name="削除" X="189" Y="33" Width="5" Height="6" Text="*削除*" Align="Center" VAlign="Middle" FontAttr="Font1" IntervalY="6" Repeat="42" />
-<Line Name="Line13" StartX="15" StartY="39" EndX="194" EndY="39" LineAttr="Line1" />
+<Line Name="横罫線" StartX="15" StartY="39" EndX="194" EndY="39" LineAttr="Line1" IntervalY="6" Repeat="42" />
 </PrintObjects>
 </PrintDefine>
