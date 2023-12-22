@@ -640,6 +640,7 @@ namespace u_net
             部品集合版数.Name = "部品集合版数";
             部品集合版数.Size = new Size(54, 21);
             部品集合版数.TabIndex = 4;
+            部品集合版数.DrawItem += 部品集合版数_DrawItem;
             部品集合版数.SelectedIndexChanged += 部品集合版数_SelectedIndexChanged;
             // 
             // label1
@@ -723,7 +724,7 @@ namespace u_net
             statusStrip1.Location = new Point(0, 558);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Padding = new Padding(1, 0, 19, 0);
-            statusStrip1.Size = new Size(869, 22);
+            statusStrip1.Size = new Size(1053, 22);
             statusStrip1.TabIndex = 10195;
             statusStrip1.Text = "statusStrip1";
             // 
@@ -911,16 +912,17 @@ namespace u_net
             // 
             // 部品集合明細1
             // 
+            部品集合明細1.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             部品集合明細1.Location = new Point(9, 192);
-            部品集合明細1.Margin = new Padding(4);
+            部品集合明細1.Margin = new Padding(4, 4, 4, 4);
             部品集合明細1.Name = "部品集合明細1";
-            部品集合明細1.Size = new Size(856, 359);
+            部品集合明細1.Size = new Size(1017, 359);
             部品集合明細1.TabIndex = 11;
             // 
             // F_部品集合
             // 
             BackColor = SystemColors.Control;
-            ClientSize = new Size(869, 580);
+            ClientSize = new Size(1053, 580);
             Controls.Add(部品集合明細1);
             Controls.Add(無効日時);
             Controls.Add(承認日時);

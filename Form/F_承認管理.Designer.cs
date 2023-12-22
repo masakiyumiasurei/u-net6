@@ -46,15 +46,6 @@
             表示件数ラベル = new Label();
             label2 = new Label();
             dataGridView1 = new DataGridView();
-            受注コードボタン = new DataGridViewButtonColumn();
-            版数ボタン = new DataGridViewButtonColumn();
-            登録日ボタン = new DataGridViewButtonColumn();
-            承認依頼者名ボタン = new DataGridViewButtonColumn();
-            出荷予定日ボタン = new DataGridViewButtonColumn();
-            受注納期ボタン = new DataGridViewButtonColumn();
-            顧客コードボタン = new DataGridViewButtonColumn();
-            承認者名ボタン = new DataGridViewButtonColumn();
-            承認日ボタン = new DataGridViewButtonColumn();
             newDataSet = new newDataSet();
             panel2 = new Panel();
             抽出表示ボタン = new Button();
@@ -68,7 +59,6 @@
             承認情報 = new ComboBox();
             検索コードラベル = new Label();
             検索コード = new TextBox();
-            無効日 = new TextBox();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)newDataSet).BeginInit();
@@ -133,7 +123,7 @@
             コマンド受注.TabIndex = 1;
             コマンド受注.Text = "受注";
             コマンド受注.UseVisualStyleBackColor = true;
-            コマンド受注.Click += コマンド商品_Click;
+            コマンド受注.Click += コマンド受注_Click;
             // 
             // コマンド顧客
             // 
@@ -147,6 +137,7 @@
             コマンド顧客.TabIndex = 6;
             コマンド顧客.Text = "顧客";
             コマンド顧客.UseVisualStyleBackColor = true;
+            コマンド顧客.Click += コマンド顧客_Click;
             // 
             // コマンド更新
             // 
@@ -160,7 +151,7 @@
             コマンド更新.TabIndex = 10;
             コマンド更新.Text = "更新";
             コマンド更新.UseVisualStyleBackColor = true;
-            コマンド更新.Click += コマンド保守_Click;
+            コマンド更新.Click += コマンド更新_Click;
             // 
             // コマンド確認
             // 
@@ -174,7 +165,6 @@
             コマンド確認.TabIndex = 11;
             コマンド確認.Text = "確認";
             コマンド確認.UseVisualStyleBackColor = true;
-            コマンド確認.Click += コマンド更新_Click;
             // 
             // コマンド取消
             // 
@@ -188,7 +178,6 @@
             コマンド取消.TabIndex = 5;
             コマンド取消.Text = "取消";
             コマンド取消.UseVisualStyleBackColor = true;
-            コマンド取消.Click += コマンド全表示_Click;
             // 
             // コマンド削除
             // 
@@ -202,7 +191,6 @@
             コマンド削除.TabIndex = 4;
             コマンド削除.Text = "削除";
             コマンド削除.UseVisualStyleBackColor = true;
-            コマンド削除.Click += コマンド初期化_Click;
             // 
             // コマンド修正
             // 
@@ -216,7 +204,6 @@
             コマンド修正.TabIndex = 3;
             コマンド修正.Text = "修正";
             コマンド修正.UseVisualStyleBackColor = true;
-            コマンド修正.Click += コマンド検索_Click;
             // 
             // コマンド新規
             // 
@@ -230,7 +217,6 @@
             コマンド新規.TabIndex = 2;
             コマンド新規.Text = "新規";
             コマンド新規.UseVisualStyleBackColor = true;
-            コマンド新規.Click += コマンド抽出_Click;
             // 
             // コマンド複写
             // 
@@ -243,7 +229,6 @@
             コマンド複写.TabIndex = 9;
             コマンド複写.Text = "複写";
             コマンド複写.UseVisualStyleBackColor = true;
-            コマンド複写.Click += コマンド入出力_Click;
             // 
             // コマンド終了
             // 
@@ -291,7 +276,6 @@
             dataGridView1.AllowUserToAddRows = false;
             dataGridView1.AllowUserToDeleteRows = false;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { 受注コードボタン, 版数ボタン, 登録日ボタン, 承認依頼者名ボタン, 出荷予定日ボタン, 受注納期ボタン, 顧客コードボタン, 承認者名ボタン, 承認日ボタン });
             dataGridView1.Location = new Point(6, 67);
             dataGridView1.Margin = new Padding(3, 2, 3, 2);
             dataGridView1.Name = "dataGridView1";
@@ -304,64 +288,6 @@
             dataGridView1.CellPainting += DataGridView1_CellPainting;
             dataGridView1.Sorted += dataGridView1_Sorted;
             dataGridView1.KeyDown += dataGridView1_KeyDown;
-            // 
-            // 受注コードボタン
-            // 
-            受注コードボタン.HeaderText = "受注コード";
-            受注コードボタン.Name = "受注コードボタン";
-            受注コードボタン.ReadOnly = true;
-            受注コードボタン.Width = 80;
-            // 
-            // 版数ボタン
-            // 
-            版数ボタン.HeaderText = "版";
-            版数ボタン.Name = "版数ボタン";
-            版数ボタン.ReadOnly = true;
-            版数ボタン.Width = 20;
-            // 
-            // 登録日ボタン
-            // 
-            登録日ボタン.HeaderText = "登録日";
-            登録日ボタン.Name = "登録日ボタン";
-            登録日ボタン.ReadOnly = true;
-            登録日ボタン.Width = 80;
-            // 
-            // 承認依頼者名ボタン
-            // 
-            承認依頼者名ボタン.HeaderText = "承認依頼者名";
-            承認依頼者名ボタン.Name = "承認依頼者名ボタン";
-            承認依頼者名ボタン.ReadOnly = true;
-            // 
-            // 出荷予定日ボタン
-            // 
-            出荷予定日ボタン.HeaderText = "出荷予定日";
-            出荷予定日ボタン.Name = "出荷予定日ボタン";
-            出荷予定日ボタン.ReadOnly = true;
-            // 
-            // 受注納期ボタン
-            // 
-            受注納期ボタン.HeaderText = "受注納期";
-            受注納期ボタン.Name = "受注納期ボタン";
-            受注納期ボタン.ReadOnly = true;
-            // 
-            // 顧客コードボタン
-            // 
-            顧客コードボタン.HeaderText = "顧客コード";
-            顧客コードボタン.Name = "顧客コードボタン";
-            顧客コードボタン.ReadOnly = true;
-            // 
-            // 承認者名ボタン
-            // 
-            承認者名ボタン.HeaderText = "承認者名";
-            承認者名ボタン.Name = "承認者名ボタン";
-            承認者名ボタン.ReadOnly = true;
-            // 
-            // 承認日ボタン
-            // 
-            承認日ボタン.HeaderText = "承認日";
-            承認日ボタン.Name = "承認日ボタン";
-            承認日ボタン.ReadOnly = true;
-            承認日ボタン.Width = 80;
             // 
             // newDataSet
             // 
@@ -394,6 +320,7 @@
             抽出表示ボタン.TabIndex = 89;
             抽出表示ボタン.Text = "抽出表示";
             抽出表示ボタン.UseVisualStyleBackColor = true;
+            抽出表示ボタン.Click += 抽出表示ボタン_Click;
             // 
             // 次ページボタン
             // 
@@ -404,6 +331,7 @@
             次ページボタン.TabIndex = 88;
             次ページボタン.Text = "↓";
             次ページボタン.UseVisualStyleBackColor = true;
+            次ページボタン.Click += 次ページボタン_Click;
             // 
             // 前ページボタン
             // 
@@ -414,6 +342,7 @@
             前ページボタン.TabIndex = 87;
             前ページボタン.Text = "↑";
             前ページボタン.UseVisualStyleBackColor = true;
+            前ページボタン.Click += 前ページボタン_Click;
             // 
             // 本日登録分ボタン
             // 
@@ -425,6 +354,7 @@
             本日登録分ボタン.TabIndex = 3;
             本日登録分ボタン.Text = "本日変更分";
             本日登録分ボタン.UseVisualStyleBackColor = true;
+            本日登録分ボタン.Click += 本日登録分ボタン_Click;
             // 
             // 前日登録分ボタン
             // 
@@ -436,6 +366,7 @@
             前日登録分ボタン.TabIndex = 4;
             前日登録分ボタン.Text = "前日変更分";
             前日登録分ボタン.UseVisualStyleBackColor = true;
+            前日登録分ボタン.Click += 前日登録分ボタン_Click;
             // 
             // 検索ボタン
             // 
@@ -447,6 +378,7 @@
             検索ボタン.TabIndex = 2;
             検索ボタン.Text = "検索";
             検索ボタン.UseVisualStyleBackColor = true;
+            検索ボタン.Click += 検索ボタン_Click;
             // 
             // 履歴トグル
             // 
@@ -458,6 +390,7 @@
             履歴トグル.TabIndex = 5;
             履歴トグル.Text = "履歴モード";
             履歴トグル.UseVisualStyleBackColor = true;
+            履歴トグル.Validating += 履歴トグル_Validating;
             // 
             // label4
             // 
@@ -495,15 +428,8 @@
             検索コード.Name = "検索コード";
             検索コード.Size = new Size(88, 19);
             検索コード.TabIndex = 1;
-            // 
-            // 無効日
-            // 
-            無効日.Enabled = false;
-            無効日.Location = new Point(6, 90);
-            無効日.Multiline = true;
-            無効日.Name = "無効日";
-            無効日.Size = new Size(804, 30);
-            無効日.TabIndex = 0;
+            検索コード.KeyDown += 検索コード_KeyDown;
+            検索コード.KeyPress += 検索コード_KeyPress;
             // 
             // F_承認管理
             // 
@@ -514,7 +440,6 @@
             Controls.Add(検索コードラベル);
             Controls.Add(承認情報);
             Controls.Add(label4);
-            Controls.Add(無効日);
             Controls.Add(履歴トグル);
             Controls.Add(検索ボタン);
             Controls.Add(前日登録分ボタン);
@@ -683,15 +608,5 @@
         private Button 抽出表示ボタン;
         private Button 次ページボタン;
         private Button 前ページボタン;
-        private DataGridViewButtonColumn 受注コードボタン;
-        private DataGridViewButtonColumn 版数ボタン;
-        private DataGridViewButtonColumn 登録日ボタン;
-        private DataGridViewButtonColumn 承認依頼者名ボタン;
-        private DataGridViewButtonColumn 出荷予定日ボタン;
-        private DataGridViewButtonColumn 受注納期ボタン;
-        private DataGridViewButtonColumn 顧客コードボタン;
-        private DataGridViewButtonColumn 承認者名ボタン;
-        private DataGridViewButtonColumn 承認日ボタン;
-        private TextBox 無効日;
     }
 }

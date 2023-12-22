@@ -151,6 +151,7 @@ namespace u_net
             dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font("MS ゴシック", 9);
             dataGridView1.DefaultCellStyle.Font = new Font("MS ゴシック", 10);
             dataGridView1.DefaultCellStyle.ForeColor = Color.Black;
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
             myapi.GetFullScreen(out xSize, out ySize);
 

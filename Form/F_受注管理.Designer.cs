@@ -91,6 +91,7 @@
             // 
             // コマンド入力
             // 
+            コマンド入力.Enabled = false;
             コマンド入力.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             コマンド入力.ForeColor = Color.Blue;
             コマンド入力.ImageAlign = ContentAlignment.BottomLeft;
@@ -116,6 +117,7 @@
             // 
             // コマンド生産
             // 
+            コマンド生産.Enabled = false;
             コマンド生産.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             コマンド生産.ForeColor = Color.Blue;
             コマンド生産.ImageAlign = ContentAlignment.BottomLeft;
@@ -326,7 +328,7 @@
             label1.AutoSize = true;
             label1.Location = new Point(751, 6);
             label1.Name = "label1";
-            label1.Size = new Size(216, 15);
+            label1.Size = new Size(217, 15);
             label1.TabIndex = 93;
             label1.Text = "※合計金額に未承認データは含まれません。";
             // 

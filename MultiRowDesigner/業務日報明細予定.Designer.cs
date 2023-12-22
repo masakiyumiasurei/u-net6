@@ -1,6 +1,6 @@
 ﻿namespace MultiRowDesigner
 {
-    partial class 部品集合明細
+    partial class 業務日報明細予定
     {
         /// <summary> 
         /// 必要なデザイナー変数です。
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             gcMultiRow1 = new GrapeCity.Win.MultiRow.GcMultiRow();
-            部品集合明細テンプレート1 = new 部品集合明細テンプレート();
+            業務日報明細予定テンプレート1 = new 業務日報明細予定テンプレート();
             ((System.ComponentModel.ISupportInitialize)gcMultiRow1).BeginInit();
             SuspendLayout();
             // 
@@ -37,39 +37,34 @@
             // 
             gcMultiRow1.EditMode = GrapeCity.Win.MultiRow.EditMode.EditOnEnter;
             gcMultiRow1.Location = new Point(0, 0);
-            gcMultiRow1.Margin = new Padding(5);
+            gcMultiRow1.Margin = new Padding(4);
             gcMultiRow1.Name = "gcMultiRow1";
-            gcMultiRow1.Size = new Size(1167, 476);
+            gcMultiRow1.Size = new Size(856, 79);
             gcMultiRow1.TabIndex = 0;
-            gcMultiRow1.Template = 部品集合明細テンプレート1;
-            gcMultiRow1.TemplateScaleSize = new SizeF(1.33333373F, 1.66666675F);
+            gcMultiRow1.Template = 業務日報明細予定テンプレート1;
+            gcMultiRow1.TemplateScaleSize = new SizeF(1.16666663F, 1.25F);
             gcMultiRow1.Text = "gcMultiRow1";
-            gcMultiRow1.CellValidating += gcMultiRow1_CellValidating;
             gcMultiRow1.CellEnter += gcMultiRow1_CellEnter;
-            gcMultiRow1.DefaultValuesNeeded += gcMultiRow1_DefaultValuesNeeded;
-            gcMultiRow1.EditingControlShowing += gcMultiRow1_EditingControlShowing;
             gcMultiRow1.CellContentClick += gcMultiRow1_CellContentClick;
-            gcMultiRow1.CellContentButtonClick += gcMultiRow1_CellContentButtonClick;
             // 
-            // 部品集合明細テンプレート1
+            // 業務日報明細予定テンプレート1
             // 
-            部品集合明細テンプレート1.Height = 82;
-            // 
+            業務日報明細予定テンプレート1.Height = 38;
             // 
             // 
-            部品集合明細テンプレート1.Row.Height = 34;
-            部品集合明細テンプレート1.Row.Width = 840;
-            部品集合明細テンプレート1.Width = 840;
             // 
-            // 部品集合明細
+            業務日報明細予定テンプレート1.Row.Height = 17;
+            業務日報明細予定テンプレート1.Row.Width = 736;
+            業務日報明細予定テンプレート1.Width = 736;
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            // 業務日報明細予定
+            // 
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(gcMultiRow1);
-            Margin = new Padding(5);
-            Name = "部品集合明細";
-            Size = new Size(1168, 479);
-            Load += 部品集合明細_Load;
+            Margin = new Padding(4);
+            Name = "業務日報明細予定";
+            Size = new Size(856, 79);
             ((System.ComponentModel.ISupportInitialize)gcMultiRow1).EndInit();
             ResumeLayout(false);
         }
@@ -77,6 +72,6 @@
         #endregion
 
         private GrapeCity.Win.MultiRow.GcMultiRow gcMultiRow1;
-        private 部品集合明細テンプレート 部品集合明細テンプレート1;
+        private 業務日報明細予定テンプレート 業務日報明細予定テンプレート1;
     }
 }

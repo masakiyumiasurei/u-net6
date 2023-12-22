@@ -21,6 +21,9 @@ using static u_net.Public.FunctionClass;
 using Microsoft.Identity.Client.NativeInterop;
 using System.Data.Common;
 using MultiRowDesigner;
+using GrapeCity.Win.MultiRow;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using ComboBox = System.Windows.Forms.ComboBox;
 
 namespace u_net
 {
@@ -36,6 +39,7 @@ namespace u_net
         private int intWindowHeight = 0;
         private int intWindowWidth = 0;
         private bool blnEmergency = false;
+        private bool combosetFlg = true;
         public F_部品集合()
         {
             this.Text = "部品集合";       // ウィンドウタイトルを設定
@@ -78,7 +82,7 @@ namespace u_net
             }
         }
         public bool IsDecided
-        {
+        {  //確定日時がnullじゃなかったらture
             get
             {
                 return !string.IsNullOrEmpty(確定日時.Text) ? true : false;
@@ -121,6 +125,35 @@ namespace u_net
         DataTable dt = new DataTable();
         SqlDataAdapter adapter = new SqlDataAdapter();
 
+        public void チェック()
+        {
+            if (string.IsNullOrEmpty(確定日時.Text))
+            {
+                確定.Text = "";
+            }
+            else
+            {
+                確定.Text = "■";
+            }
+
+            if (string.IsNullOrEmpty(承認日時.Text))
+            {
+                承認.Text = "";
+            }
+            else
+            {
+                承認.Text = "■";
+            }
+
+            if (string.IsNullOrEmpty(無効日時.Text))
+            {
+                削除.Text = "";
+            }
+            else
+            {
+                削除.Text = "■";
+            }
+        }
         private void Form_Load(object sender, EventArgs e)
         {
             foreach (Control control in Controls)
@@ -179,6 +212,10 @@ namespace u_net
                     // 部品集合コードを部品集合コードのTextBoxに設定
                     this.部品集合コード.Text = argsArray.Length > 0 ? argsArray[0].Trim() : "";
 
+                    UpdatedControl(this.部品集合コード);
+                    チェック();
+                    combosetFlg = false;
+                    this.コマンド複写.Enabled = true;
                 }
                 // 成功時の処理
                 return;
@@ -190,6 +227,7 @@ namespace u_net
             }
             finally
             {
+                ChangedData(false);
                 this.ResumeLayout();
                 fn.WaitForm.Close();
             }
@@ -284,8 +322,8 @@ namespace u_net
             OriginalClass ofn = new OriginalClass();
 
             //日付はbitにコンバードできないのでエラーになる
-            string strSQL = "SELECT 部品集合版数 AS Value, " +
-                    "{ fn REPLACE(STR(CONVERT(bit, 承認日時), 1, 0), '1', '■') } AS Display FROM M部品集合 " +
+            string strSQL = "SELECT 部品集合版数 AS Value, 部品集合版数 AS Display, " +
+                    "{ fn REPLACE(STR(CONVERT(bit, 承認日時), 1, 0), '1', '■') } AS Display2 FROM M部品集合 " +
                     $"WHERE 部品集合コード = N'{CurrentCode}' ORDER BY 部品集合版数 DESC";
             ofn.SetComboBox(部品集合版数, strSQL);
         }
@@ -301,7 +339,7 @@ namespace u_net
                 {
                     case "部品集合コード":
                         Connect();
-
+                        combosetFlg = true;
                         fn.DoWait("読み込んでいます...");
 
                         // 版数のソース更新
@@ -322,8 +360,11 @@ namespace u_net
                         if (!LoadHeader()) throw new Exception("初期化に失敗しました。");
 
                         // 明細部の表示
-                        strSQL = $"SELECT * FROM V部品集合明細 WHERE 部品集合コード='{this.CurrentCode}' AND " +
+                        strSQL = $"SELECT *, case WHEN 廃止 <> 0 THEN '■' ELSE NULL END AS 廃止表示, " +
+                            $" case WHEN 購買対象 <> 0 THEN '■' else null end as 購買対象表示 " +
+                            $" FROM V部品集合明細 WHERE 部品集合コード='{this.CurrentCode}' AND " +
                             $"部品集合版数={this.CurrentEdition} ORDER BY 明細番号";
+
                         //明細表示
                         if (!VariableSet.SetTable2Details(部品集合明細1.Detail, strSQL, cn))
                             throw new Exception("初期化に失敗しました。");
@@ -451,7 +492,7 @@ namespace u_net
             {
                 foreach (Control control in Controls)
                 {
-                    if ((control is TextBox || control is ComboBox) && control.Visible)
+                    if ((control is System.Windows.Forms.TextBox || control is ComboBox) && control.Visible)
                     {
                         if (control.Name != exFieldName1 && control.Name != exFieldName2)
                         {
@@ -609,76 +650,75 @@ namespace u_net
         {
 
             Connect();
-            SqlTransaction transaction = cn.BeginTransaction();
+
+            try
             {
-                try
+                DateTime dteNow = DateTime.Now;
+                Control objControl1 = null;
+                Control objControl2 = null;
+                Control objControl3 = null;
+                Control objControl4 = null;
+                Control objControl5 = null;
+                Control objControl6 = null;
+                object varSaved1 = null;
+                object varSaved2 = null;
+                object varSaved3 = null;
+                object varSaved4 = null;
+                object varSaved5 = null;
+                object varSaved6 = null;
+                DateTime dtmNow = FunctionClass.GetServerDate(cn);
+
+                if (IsNewData)
                 {
-                    DateTime dteNow = DateTime.Now;
-                    Control objControl1 = null;
-                    Control objControl2 = null;
-                    Control objControl3 = null;
-                    Control objControl4 = null;
-                    Control objControl5 = null;
-                    Control objControl6 = null;
-                    object varSaved1 = null;
-                    object varSaved2 = null;
-                    object varSaved3 = null;
-                    object varSaved4 = null;
-                    object varSaved5 = null;
-                    object varSaved6 = null;
-                    DateTime dtmNow = FunctionClass.GetServerDate(cn);
-
-                    if (IsNewData)
-                    {
-                        objControl1 = this.作成日時;
-                        objControl2 = this.作成者コード;
-                        objControl3 = this.作成者名;
-                        varSaved1 = objControl1.Text;
-                        varSaved2 = objControl2.Text;
-                        varSaved3 = objControl3.Text;
-                        objControl1.Text = dteNow.ToString();
-                        objControl2.Text = CommonConstants.LoginUserCode;
-                        objControl3.Text = CommonConstants.LoginUserFullName;
-                    }
-
-                    objControl4 = this.更新日時;
-                    objControl5 = this.更新者コード;
-                    objControl6 = this.更新者名;
-
-                    varSaved4 = objControl4.Text;
-                    varSaved5 = objControl5.Text;
-                    varSaved6 = objControl6.Text;
-
-                    objControl4.Text = dteNow.ToString();
-                    objControl5.Text = CommonConstants.LoginUserCode;
-                    objControl6.Text = CommonConstants.LoginUserFullName;
-
-                    if (RegTrans(CurrentCode, CurrentEdition, cn))
-                    {
-                        return true;
-                    }
-                    else
-                    {
-                        objControl1.Text = varSaved1.ToString();
-                        objControl2.Text = varSaved2.ToString();
-                        objControl3.Text = varSaved3.ToString();
-                        return false;
-                    }
-
+                    objControl1 = this.作成日時;
+                    objControl2 = this.作成者コード;
+                    objControl3 = this.作成者名;
+                    varSaved1 = objControl1.Text;
+                    varSaved2 = objControl2.Text;
+                    varSaved3 = objControl3.Text;
+                    objControl1.Text = dtmNow.ToString();
+                    objControl2.Text = CommonConstants.LoginUserCode;
+                    objControl3.Text = CommonConstants.LoginUserFullName;
                 }
-                catch (Exception ex)
+
+                objControl4 = this.更新日時;
+                objControl5 = this.更新者コード;
+                objControl6 = this.更新者名;
+
+                varSaved4 = objControl4.Text;
+                varSaved5 = objControl5.Text;
+                varSaved6 = objControl6.Text;
+
+                objControl4.Text = dtmNow.ToString();
+                objControl5.Text = CommonConstants.LoginUserCode;
+                objControl6.Text = CommonConstants.LoginUserFullName;
+
+                if (RegTrans(CurrentCode, CurrentEdition, cn))
                 {
-                    Console.WriteLine("Error in SaveData: " + ex.Message);
+                    return true;
+                }
+                else
+                {
+
+                    objControl1.Text = varSaved1?.ToString();
+                    objControl2.Text = varSaved2?.ToString();
+                    objControl3.Text = varSaved3?.ToString();
                     return false;
                 }
+
             }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error in SaveData: " + ex.Message);
+                return false;
+            }
+
         }
 
         private bool RegTrans(string codeString, int editionNumber, SqlConnection cn, bool UpdatePreEdition = false)
         {
             try
             {
-                Connect();
                 string strKey = "";
 
                 SqlTransaction transaction = cn.BeginTransaction();
@@ -717,6 +757,10 @@ namespace u_net
                 }
 
                 transaction.Commit(); // トランザクション完了
+                if (!UpdateManager())
+                {
+                    Console.WriteLine("_RegTrans - 管理リストは更新できません。");
+                }
                 return true;
             }
             catch (Exception ex)
@@ -730,6 +774,35 @@ namespace u_net
             }
         }
 
+        public bool UpdateManager()
+        {
+            bool result = false;
+
+            try
+            {
+                // 対象のフォームが読み込まれているかチェック
+                if (Application.OpenForms["F_部品集合管理"] == null)
+                {
+                    return result;
+                }
+
+                // 対象のフォームのインスタンスを取得
+                F_部品集合管理 frmManager = (F_部品集合管理)Application.OpenForms["F_部品集合管理"];
+
+                // UpdateOnプロパティをtrueに設定
+                frmManager.UpdateOn = true;
+                frmManager.DoUpdate();
+                result = true;
+            }
+            catch (Exception ex)
+            {
+                // エラーログ出力（この例ではコンソールに出力）
+                Console.WriteLine($"{this.GetType().Name}_UpdateManager - {ex.GetType().Name} : {ex.Message}");
+            }
+
+            return result;
+        }
+
         private bool SaveHeader(string codeString, int editionNumber, SqlConnection cn, SqlTransaction transaction)
         {
             try
@@ -737,7 +810,7 @@ namespace u_net
                 string strwhere = " 部品集合コード='" + codeString + "' and 部品集合版数=" + editionNumber;
 
 
-                if (!DataUpdater.UpdateOrInsertDataFrom(this, cn, "M部品集合", strwhere, "部品集合コード", transaction))
+                if (!DataUpdater.UpdateOrInsertDataFrom(this, cn, "M部品集合", strwhere, "部品集合コード", transaction, "部品集合版数"))
                 {
                     //保存できなかった時の処理 catchで対応する
                     throw new Exception();
@@ -759,7 +832,6 @@ namespace u_net
         {
             try
             {
-                editionNumber = editionNumber - 1;
                 string strwhere = $"部品集合コード= {codeString} AND 部品集合版数= {editionNumber}";
                 //明細部の登録
                 if (!DataUpdater.UpdateOrInsertDetails(this.部品集合明細1.Detail, cn, "M部品集合明細", strwhere, "部品集合コード", transaction))
@@ -781,9 +853,10 @@ namespace u_net
         private void コマンド登録_Click(object sender, EventArgs e)
         {
             // エラーチェック accessにはなかったが
-            if (!IsErrorData())
+            if (IsErrorData())
             {
-                goto Bye_コマンド登録_Click;
+                MessageBox.Show("登録できませんでした。", "登録コマンド", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
             }
 
             FunctionClass fn = new FunctionClass();
@@ -811,32 +884,13 @@ namespace u_net
                 // 登録に失敗したとき
                 fn.WaitForm.Close();
                 //this.コマンド登録.Enabled = true;
+
                 MessageBox.Show("登録できませんでした。", "登録コマンド", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
 
-        Bye_コマンド登録_Click:
             return;
-
         }
 
-        private bool SetDefaultDetails()
-        {
-            //明細の変更　DB接続は不要　後で修正する
-            //try
-            //{
-            //    using (SqlCommand cmd = new SqlCommand("UPDATE 部品集合明細 SET 購買対象=-1 WHERE 明細番号=1", cn))
-            //    {
-            //        cmd.ExecuteNonQuery();
-            //    }
-
-            //    return true;
-            //}
-            //catch (Exception ex)
-            //{
-            //    Debug.Print($"{nameof(SetDefaultDetails)} - {ex.Message}");
-            return false;
-            //}
-        }
 
         private void Form_Resize(object sender, EventArgs e)
         {
@@ -1052,6 +1106,7 @@ namespace u_net
                     UpdateEditionList();
                     コマンド改版.Enabled = IsApproved;
                     コマンド確定.Enabled = !IsApproved;
+                    チェック();
                 }
                 else
                 {
@@ -1062,7 +1117,7 @@ namespace u_net
                 }
 
             Bye_コマンド承認_Click:
-                fn.WaitForm.Close();
+                if (fn.WaitForm != null) fn.WaitForm.Close();
                 return;
             }
             catch (Exception ex)
@@ -1072,32 +1127,69 @@ namespace u_net
                 // エラーが発生した場合の処理
                 MessageBox.Show("エラーが発生しました。" + Environment.NewLine +
                                 ex.Message, "承認コマンド", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                fn.WaitForm.Close();
-
+                if (fn.WaitForm != null) fn.WaitForm.Close();
             }
         }
 
-
-        private bool InitBuyParts()
+        private bool SetDefaultDetails()
         {
-            //部品集合明細はローカル、、、あとで明細の修正する
+            //明細の変更　DB接続は不要　後で修正する
             try
             {
-                // 購買対象設定を初期化するためのSQL文
-                string strSQL = "UPDATE 部品集合明細 SET 購買対象=0";
-
-                // Connect メソッドでインスタンス化された connection オブジェクトを使用
-                using (SqlCommand command = new SqlCommand(strSQL, cn))
+                DataTable dataTable = (DataTable)部品集合明細1.Detail.DataSource;
+                if (dataTable != null)
                 {
-                    // SQLコマンドを実行
-                    command.ExecuteNonQuery();
+                    for (int i = 0; i < dataTable.Rows.Count; i++)
+                    {
+                        // 行の状態が Deleted の時は次の行へ
+                        if (dataTable.Rows[i].RowState == DataRowState.Deleted)
+                        {
+                            continue;
+                        }
+
+                        if (Convert.ToInt32(dataTable.Rows[i]["明細番号"]) == 1)
+                        {
+                            dataTable.Rows[i]["購買対象"] = -1;
+                        }
+                    }
+                    部品集合明細1.Detail.DataSource = dataTable; // 更新した DataTable を再セット
                 }
 
                 return true;
             }
             catch (Exception ex)
             {
-                // エラーハンドリング: 例外が発生した場合にエラーをログに記録し、適切に処理する
+                Debug.Print($"{nameof(SetDefaultDetails)} - {ex.Message}");
+                return false;
+            }
+        }
+
+        private bool InitBuyParts()
+        {
+            try
+            {
+                DataTable dataTable = (DataTable)部品集合明細1.Detail.DataSource;
+                if (dataTable != null)
+                {
+                    for (int i = 0; i < dataTable.Rows.Count; i++)
+                    {
+                        // 行の状態が Deleted の時は次の行へ
+                        if (dataTable.Rows[i].RowState == DataRowState.Deleted)
+                        {
+                            continue;
+                        }
+
+                        dataTable.Rows[i]["購買対象"] = 0;
+
+                    }
+
+                    部品集合明細1.Detail.DataSource = dataTable; // 更新した DataTable を再セット
+                }
+
+                return true;
+            }
+            catch (Exception ex)
+            {
                 Debug.WriteLine($"Error in InitBuyParts: {ex.Message}");
                 return false;
             }
@@ -1120,6 +1212,7 @@ namespace u_net
                 // 登録前の確定日を保存しておく
                 object varSaved = 確定日時.Text;
 
+                Connect();
                 // 確定日を設定する
                 確定日時.Text = IsDecided ? null : GetServerDate(cn).ToString();
 
@@ -1128,7 +1221,6 @@ namespace u_net
                 {
                     //部品集合版数の更新
                     UpdateEditionList();
-                    ChangedData(false);
 
                     // 新規モードのときは修正モードへ移行する
                     if (IsNewData)
@@ -1151,7 +1243,8 @@ namespace u_net
                 部品集合明細1.Detail.AllowUserToAddRows = !this.IsDecided;
                 部品集合明細1.Detail.AllowUserToDeleteRows = !this.IsDecided;
                 部品集合明細1.Detail.ReadOnly = this.IsDecided;
-
+                ChangedData(false);
+                チェック();
             }
             catch (Exception ex)
             {
@@ -1161,64 +1254,10 @@ namespace u_net
             finally
             {
                 fn.WaitForm.Close();
-                Close();
-            }
-        }
-
-        private void 改版ボタン_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                //if (this.ActiveControl == this.改版ボタン)
-                //{
-                //    GetNextControl(改版ボタン, false).Focus();
-                //}
-
-
-                MessageBox.Show("部品の改版機能は未完成です。\n履歴に登録される情報は完全ではありません。", "改版", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-
-                if (MessageBox.Show("改版しますか？\n\n・旧版データは履歴コマンドから参照できます。\n・最新版の部品データが有効になります。\n・この操作を元に戻すことはできません。",
-                                    "改版", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
-                {
-                    return;
-                }
-
-
-                FunctionClass fn = new FunctionClass();
-                fn.DoWait("改版しています...");
-
-                CommonConnect();
-
-                if (SaveData())
-                {
-                    //if (AddHistory(cn, this.CurrentCode, this.CurrentEdition))
-                    //{
-                    //    //this.部品コード.Requery;
-                    //    // ■ なぜかRequeryしてもColumn(1)がNULLとなるので、版数を+1する
-                    //    this.版数.Text = (Convert.ToInt32(this.CurrentEdition) + 1).ToString();
-                    //    this.コマンドツール.Enabled = true;
-
-                    //    fn.WaitForm.Close();
-                    //}
-                    //else
-                    //{
-                    //    fn.WaitForm.Close();
-                    //    MessageBox.Show("改版できませんでした。", "改版", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    //}
-                }
-                else
-                {
-                    fn.WaitForm.Close();
-                    MessageBox.Show("改版できませんでした。", "改版", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                }
-            }
-            catch (Exception ex)
-            {
-                Debug.Print(this.Name + "_改版ボタン_Click - " + ex.Message);
-                MessageBox.Show("エラーが発生しました。", BASE_CAPTION, MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             }
         }
+
 
         private void コマンド改版_Click(object sender, EventArgs e)
         {
@@ -1242,6 +1281,7 @@ namespace u_net
                     コマンド編集.Enabled = false;
                     コマンド改版.Enabled = false;
                     コマンド承認.Enabled = false;
+                    this.部品集合版数.Enabled = false;
 
                     // 明細部制御
                     部品集合明細1.Detail.AllowUserToAddRows = true;
@@ -1259,10 +1299,10 @@ namespace u_net
 
         private void コマンド部品_Click(object sender, EventArgs e)
         {
-            部品集合明細 subform = Application.OpenForms.OfType<部品集合明細>().FirstOrDefault();
+            //部品集合明細 subform = Application.OpenForms.OfType<部品集合明細>().FirstOrDefault();
             F_部品 fm = new F_部品();
 
-            fm.args = subform.PartsCode;
+            fm.args = 部品集合明細1.PartsCode;
             fm.ShowDialog();
         }
 
@@ -1339,6 +1379,8 @@ namespace u_net
                 varSaved1 = 無効日時.Text;
                 varSaved2 = 無効者コード.Text;
 
+                Connect();
+
                 if (IsDeleted)
                 {
                     無効日時.Text = null;
@@ -1346,8 +1388,10 @@ namespace u_net
                 }
                 else
                 {
+
                     無効日時.Text = GetServerDate(cn).ToString();
                     無効者コード.Text = strCertificateCode;
+
                 }
 
                 // 表示データを登録する
@@ -1367,6 +1411,7 @@ namespace u_net
                     無効者コード.Text = varSaved2.ToString();
                     MessageBox.Show("削除できませんでした。", "削除コマンド", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
+                チェック();
             }
             catch (Exception ex)
             {
@@ -1423,14 +1468,27 @@ namespace u_net
         {
             try
             {
-                Connect();
+                //Connect();
                 // 明細部のキー情報を設定する（同時に購買対象設定を初期化する）
-                string strSQL = $"UPDATE 部品集合明細 SET 購買対象=0, " +
-                                $"部品集合コード='{codeString}', 部品集合版数={editionNumber}";
-                using (SqlCommand command = new SqlCommand(strSQL, cn))
+
+                // 明細部の初期設定
+                DataTable dataTable = (DataTable)部品集合明細1.Detail.DataSource;
+                if (dataTable != null)
                 {
-                    command.ExecuteNonQuery();
+                    for (int i = 0; i < dataTable.Rows.Count; i++)
+                    {
+                        // 行の状態が Deleted の時は次の行へ
+                        if (dataTable.Rows[i].RowState == DataRowState.Deleted)
+                        {
+                            continue;
+                        }
+                        dataTable.Rows[i]["部品集合コード"] = codeString;
+                        dataTable.Rows[i]["部品集合版数"] = editionNumber;
+                        dataTable.Rows[i]["購買対象"] = 0;
+                    }
+                    部品集合明細1.Detail.DataSource = dataTable; // 更新した DataTable を再セット
                 }
+
 
                 // キー情報を設定する
                 this.部品集合コード.Text = codeString;
@@ -1659,12 +1717,16 @@ namespace u_net
         {
             try
             {
+                combosetFlg = true;
+
                 if (ActiveControl == コマンド複写)
                     コマンド複写.Focus();
                 Connect();
 
                 // 複写に成功すればインターフェースを更新する
-                string newCode = 採番(cn, "PTG").Substring(8);
+                string original = 採番(cn, "PTG");
+                string newCode = original.Substring(original.Length - 8);
+
                 if (CopyData(newCode, 1))
                 {
                     // 変更された
@@ -1678,6 +1740,7 @@ namespace u_net
                     コマンド編集.Enabled = false;
                     コマンド改版.Enabled = false;
                     コマンド承認.Enabled = false;
+                    部品集合版数.Enabled = false;
 
                     // 明細部制御
                     // 明細部動作制御
@@ -1702,23 +1765,25 @@ namespace u_net
 
         private void 集合名_TextChanged(object sender, EventArgs e)
         {
-            FunctionClass.LimitText(((TextBox)sender), 50);
+            FunctionClass.LimitText(((System.Windows.Forms.TextBox)sender), 50);
             ChangedData(true);
         }
 
         private void 備考_TextChanged(object sender, EventArgs e)
         {
-            FunctionClass.LimitText(((TextBox)sender), 500);
+            FunctionClass.LimitText((System.Windows.Forms.TextBox)sender, 500);
             ChangedData(true);
         }
 
         private void 部品集合コード_Validated(object sender, EventArgs e)
         {
+            if (部品集合コード.Modified == false) return;
             UpdatedControl(this.部品集合コード);
         }
 
         private void 部品集合版数_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (combosetFlg) return;
             UpdatedControl(this.部品集合版数);
         }
 
@@ -1727,7 +1792,7 @@ namespace u_net
             OriginalClass.SetComboBoxAppearance((ComboBox)sender, e, new int[] { 50, 500 }, new string[] { "Display", "Display2" });
             分類コード.Invalidate();
             分類コード.DroppedDown = true;
-        }       
+        }
 
         private void 分類コード_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -1736,6 +1801,13 @@ namespace u_net
             集合分類.Text = OriginalClass.GetScalar<string>(cn, sql);
             cn.Close();
             ChangedData(true);
+        }
+
+        private void 部品集合版数_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            OriginalClass.SetComboBoxAppearance((ComboBox)sender, e, new int[] { 50, 100 }, new string[] { "Display", "Display2" });
+            部品集合版数.Invalidate();
+            部品集合版数.DroppedDown = true;
         }
     }
 }
