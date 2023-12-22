@@ -651,11 +651,9 @@ namespace u_net
                     paoRep.Write("確定", targetRow["確定"].ToString() != "" ? targetRow["確定"].ToString() : " ", i + 1);
                     paoRep.Write("承認", targetRow["承認"].ToString() != "" ? targetRow["承認"].ToString() : " ", i + 1);
                     paoRep.Write("削除", targetRow["削除"].ToString() != "" ? targetRow["削除"].ToString() : " ", i + 1);
+                    paoRep.Write("横罫線", i + 1);
 
-                   // paoRep.Write("Line13", i + 1);
-                    paoRep.z_Objects.SetObject("Line13", i + 1);
-                    paoRep.z_Objects.z_Line.X = 15;
-                    paoRep.z_Objects.z_Line.EndX=194;
+
                     CurRow++;
 
                 }

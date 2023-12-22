@@ -56,6 +56,6 @@
 <Text Name="確定" X="179" Y="33" Width="5" Height="6" Text="*確定*" Align="Center" VAlign="Middle" FontAttr="Font1" IntervalY="6" Repeat="42" />
 <Text Name="承認" X="184" Y="33" Width="5" Height="6" Text="*承認*" Align="Center" VAlign="Middle" FontAttr="Font1" IntervalY="6" Repeat="42" />
 <Text Name="削除" X="189" Y="33" Width="5" Height="6" Text="*削除*" Align="Center" VAlign="Middle" FontAttr="Font1" IntervalY="6" Repeat="42" />
-<Line Name="Line13" StartX="15" StartY="39" EndX="194" EndY="39" LineAttr="Line1" IntervalY="6" RepeatXYBoth="True" Repeat="42" />
+<Line Name="横罫線" StartX="15" StartY="39" EndX="194" EndY="39" LineAttr="Line1" IntervalY="6" Repeat="42" />
 </PrintObjects>
 </PrintDefine>
