@@ -28,346 +28,360 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.品名 = new System.Windows.Forms.TextBox();
-            this.品名_ラベル = new System.Windows.Forms.Label();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.確定指定Button3 = new System.Windows.Forms.RadioButton();
-            this.確定指定Button2 = new System.Windows.Forms.RadioButton();
-            this.確定指定Button1 = new System.Windows.Forms.RadioButton();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.承認指定button3 = new System.Windows.Forms.RadioButton();
-            this.承認指定button2 = new System.Windows.Forms.RadioButton();
-            this.承認指定button1 = new System.Windows.Forms.RadioButton();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.削除指定Button3 = new System.Windows.Forms.RadioButton();
-            this.削除指定Button2 = new System.Windows.Forms.RadioButton();
-            this.削除指定Button1 = new System.Windows.Forms.RadioButton();
-            this.抽出ボタン = new System.Windows.Forms.Button();
-            this.キャンセルボタン = new System.Windows.Forms.Button();
-            this.更新日開始選択ボタン = new System.Windows.Forms.Button();
-            this.更新者名_ラベル = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.更新日開始 = new System.Windows.Forms.TextBox();
-            this.非含有証明書_ラベル = new System.Windows.Forms.Label();
-            this.非含有証明書 = new System.Windows.Forms.ComboBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.groupBox3.SuspendLayout();
-            this.groupBox4.SuspendLayout();
-            this.groupBox5.SuspendLayout();
-            this.SuspendLayout();
+            components = new System.ComponentModel.Container();
+            品名 = new TextBox();
+            振込指定_ラベル = new Label();
+            groupBox3 = new GroupBox();
+            確定指定Button3 = new RadioButton();
+            確定指定Button2 = new RadioButton();
+            確定指定Button1 = new RadioButton();
+            groupBox4 = new GroupBox();
+            承認指定button3 = new RadioButton();
+            承認指定button2 = new RadioButton();
+            承認指定button1 = new RadioButton();
+            groupBox5 = new GroupBox();
+            削除指定Button3 = new RadioButton();
+            削除指定Button2 = new RadioButton();
+            削除指定Button1 = new RadioButton();
+            抽出ボタン = new Button();
+            キャンセルボタン = new Button();
+            支払先選択ボタン = new Button();
+            更新者名_ラベル = new Label();
+            支払先コード_ラベル = new Label();
+            支払コード = new TextBox();
+            支払年月日_ラベル = new Label();
+            支払年月日 = new ComboBox();
+            振込指定 = new ComboBox();
+            toolTip1 = new ToolTip(components);
+            支払先参照ボタン = new Button();
+            groupBox3.SuspendLayout();
+            groupBox4.SuspendLayout();
+            groupBox5.SuspendLayout();
+            SuspendLayout();
             // 
             // 品名
             // 
-            this.品名.BackColor = System.Drawing.Color.White;
-            this.品名.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.品名.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
-            this.品名.Location = new System.Drawing.Point(121, 96);
-            this.品名.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.品名.Multiline = true;
-            this.品名.Name = "品名";
-            this.品名.Size = new System.Drawing.Size(277, 20);
-            this.品名.TabIndex = 2;
+            品名.BackColor = Color.White;
+            品名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            品名.ImeMode = ImeMode.Hiragana;
+            品名.Location = new Point(121, 96);
+            品名.Margin = new Padding(3, 2, 3, 2);
+            品名.Multiline = true;
+            品名.Name = "品名";
+            品名.Size = new Size(277, 20);
+            品名.TabIndex = 8;
             // 
-            // 品名_ラベル
+            // 振込指定_ラベル
             // 
-            this.品名_ラベル.AllowDrop = true;
-            this.品名_ラベル.AutoEllipsis = true;
-            this.品名_ラベル.Font = new System.Drawing.Font("BIZ UDゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.品名_ラベル.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.品名_ラベル.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.品名_ラベル.Location = new System.Drawing.Point(17, 44);
-            this.品名_ラベル.Margin = new System.Windows.Forms.Padding(0);
-            this.品名_ラベル.Name = "品名_ラベル";
-            this.品名_ラベル.Size = new System.Drawing.Size(95, 21);
-            this.品名_ラベル.TabIndex = 1;
-            this.品名_ラベル.Text = "品名(&P)";
-            this.品名_ラベル.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            振込指定_ラベル.AllowDrop = true;
+            振込指定_ラベル.AutoEllipsis = true;
+            振込指定_ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            振込指定_ラベル.ForeColor = SystemColors.ActiveCaptionText;
+            振込指定_ラベル.ImageAlign = ContentAlignment.MiddleLeft;
+            振込指定_ラベル.Location = new Point(17, 44);
+            振込指定_ラベル.Margin = new Padding(0);
+            振込指定_ラベル.Name = "振込指定_ラベル";
+            振込指定_ラベル.Size = new Size(95, 21);
+            振込指定_ラベル.TabIndex = 3;
+            振込指定_ラベル.Text = "振込指定(&T)";
+            振込指定_ラベル.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.確定指定Button3);
-            this.groupBox3.Controls.Add(this.確定指定Button2);
-            this.groupBox3.Controls.Add(this.確定指定Button1);
-            this.groupBox3.Font = new System.Drawing.Font("BIZ UDゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.groupBox3.Location = new System.Drawing.Point(17, 126);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(374, 50);
-            this.groupBox3.TabIndex = 14;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "確定指定(&D)";
+            groupBox3.Controls.Add(確定指定Button3);
+            groupBox3.Controls.Add(確定指定Button2);
+            groupBox3.Controls.Add(確定指定Button1);
+            groupBox3.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            groupBox3.Location = new Point(17, 126);
+            groupBox3.Name = "groupBox3";
+            groupBox3.Size = new Size(374, 50);
+            groupBox3.TabIndex = 14;
+            groupBox3.TabStop = false;
+            groupBox3.Text = "確定指定(&D)";
             // 
             // 確定指定Button3
             // 
-            this.確定指定Button3.AutoSize = true;
-            this.確定指定Button3.Location = new System.Drawing.Point(249, 22);
-            this.確定指定Button3.Name = "確定指定Button3";
-            this.確定指定Button3.Size = new System.Drawing.Size(83, 16);
-            this.確定指定Button3.TabIndex = 204;
-            this.確定指定Button3.TabStop = true;
-            this.確定指定Button3.Text = "指定しない";
-            this.確定指定Button3.UseVisualStyleBackColor = true;
+            確定指定Button3.AutoSize = true;
+            確定指定Button3.Location = new Point(249, 22);
+            確定指定Button3.Name = "確定指定Button3";
+            確定指定Button3.Size = new Size(83, 16);
+            確定指定Button3.TabIndex = 204;
+            確定指定Button3.TabStop = true;
+            確定指定Button3.Text = "指定しない";
+            確定指定Button3.UseVisualStyleBackColor = true;
             // 
             // 確定指定Button2
             // 
-            this.確定指定Button2.AutoSize = true;
-            this.確定指定Button2.Location = new System.Drawing.Point(129, 22);
-            this.確定指定Button2.Name = "確定指定Button2";
-            this.確定指定Button2.Size = new System.Drawing.Size(95, 16);
-            this.確定指定Button2.TabIndex = 2;
-            this.確定指定Button2.TabStop = true;
-            this.確定指定Button2.Text = "確定している";
-            this.確定指定Button2.UseVisualStyleBackColor = true;
+            確定指定Button2.AutoSize = true;
+            確定指定Button2.Location = new Point(129, 22);
+            確定指定Button2.Name = "確定指定Button2";
+            確定指定Button2.Size = new Size(95, 16);
+            確定指定Button2.TabIndex = 2;
+            確定指定Button2.TabStop = true;
+            確定指定Button2.Text = "確定している";
+            確定指定Button2.UseVisualStyleBackColor = true;
             // 
             // 確定指定Button1
             // 
-            this.確定指定Button1.AutoSize = true;
-            this.確定指定Button1.Location = new System.Drawing.Point(6, 22);
-            this.確定指定Button1.Name = "確定指定Button1";
-            this.確定指定Button1.Size = new System.Drawing.Size(107, 16);
-            this.確定指定Button1.TabIndex = 1;
-            this.確定指定Button1.TabStop = true;
-            this.確定指定Button1.Text = "確定していない";
-            this.確定指定Button1.UseVisualStyleBackColor = true;
+            確定指定Button1.AutoSize = true;
+            確定指定Button1.Location = new Point(6, 22);
+            確定指定Button1.Name = "確定指定Button1";
+            確定指定Button1.Size = new Size(107, 16);
+            確定指定Button1.TabIndex = 1;
+            確定指定Button1.TabStop = true;
+            確定指定Button1.Text = "確定していない";
+            確定指定Button1.UseVisualStyleBackColor = true;
             // 
             // groupBox4
             // 
-            this.groupBox4.Controls.Add(this.承認指定button3);
-            this.groupBox4.Controls.Add(this.承認指定button2);
-            this.groupBox4.Controls.Add(this.承認指定button1);
-            this.groupBox4.Font = new System.Drawing.Font("BIZ UDゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.groupBox4.Location = new System.Drawing.Point(17, 190);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(374, 50);
-            this.groupBox4.TabIndex = 15;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "承認指定(&A)";
+            groupBox4.Controls.Add(承認指定button3);
+            groupBox4.Controls.Add(承認指定button2);
+            groupBox4.Controls.Add(承認指定button1);
+            groupBox4.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            groupBox4.Location = new Point(17, 190);
+            groupBox4.Name = "groupBox4";
+            groupBox4.Size = new Size(374, 50);
+            groupBox4.TabIndex = 15;
+            groupBox4.TabStop = false;
+            groupBox4.Text = "承認指定(&A)";
             // 
             // 承認指定button3
             // 
-            this.承認指定button3.AutoSize = true;
-            this.承認指定button3.Location = new System.Drawing.Point(249, 22);
-            this.承認指定button3.Name = "承認指定button3";
-            this.承認指定button3.Size = new System.Drawing.Size(83, 16);
-            this.承認指定button3.TabIndex = 204;
-            this.承認指定button3.TabStop = true;
-            this.承認指定button3.Text = "指定しない";
-            this.承認指定button3.UseVisualStyleBackColor = true;
+            承認指定button3.AutoSize = true;
+            承認指定button3.Location = new Point(249, 22);
+            承認指定button3.Name = "承認指定button3";
+            承認指定button3.Size = new Size(83, 16);
+            承認指定button3.TabIndex = 204;
+            承認指定button3.TabStop = true;
+            承認指定button3.Text = "指定しない";
+            承認指定button3.UseVisualStyleBackColor = true;
             // 
             // 承認指定button2
             // 
-            this.承認指定button2.AutoSize = true;
-            this.承認指定button2.Location = new System.Drawing.Point(129, 22);
-            this.承認指定button2.Name = "承認指定button2";
-            this.承認指定button2.Size = new System.Drawing.Size(95, 16);
-            this.承認指定button2.TabIndex = 2;
-            this.承認指定button2.TabStop = true;
-            this.承認指定button2.Text = "承認している";
-            this.承認指定button2.UseVisualStyleBackColor = true;
+            承認指定button2.AutoSize = true;
+            承認指定button2.Location = new Point(129, 22);
+            承認指定button2.Name = "承認指定button2";
+            承認指定button2.Size = new Size(95, 16);
+            承認指定button2.TabIndex = 2;
+            承認指定button2.TabStop = true;
+            承認指定button2.Text = "承認している";
+            承認指定button2.UseVisualStyleBackColor = true;
             // 
             // 承認指定button1
             // 
-            this.承認指定button1.AutoSize = true;
-            this.承認指定button1.Location = new System.Drawing.Point(6, 22);
-            this.承認指定button1.Name = "承認指定button1";
-            this.承認指定button1.Size = new System.Drawing.Size(107, 16);
-            this.承認指定button1.TabIndex = 1;
-            this.承認指定button1.TabStop = true;
-            this.承認指定button1.Text = "承認していない";
-            this.承認指定button1.UseVisualStyleBackColor = true;
+            承認指定button1.AutoSize = true;
+            承認指定button1.Location = new Point(6, 22);
+            承認指定button1.Name = "承認指定button1";
+            承認指定button1.Size = new Size(107, 16);
+            承認指定button1.TabIndex = 1;
+            承認指定button1.TabStop = true;
+            承認指定button1.Text = "承認していない";
+            承認指定button1.UseVisualStyleBackColor = true;
             // 
             // groupBox5
             // 
-            this.groupBox5.Controls.Add(this.削除指定Button3);
-            this.groupBox5.Controls.Add(this.削除指定Button2);
-            this.groupBox5.Controls.Add(this.削除指定Button1);
-            this.groupBox5.Font = new System.Drawing.Font("BIZ UDゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.groupBox5.Location = new System.Drawing.Point(17, 255);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(374, 50);
-            this.groupBox5.TabIndex = 16;
-            this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "削除指定(&D)";
+            groupBox5.Controls.Add(削除指定Button3);
+            groupBox5.Controls.Add(削除指定Button2);
+            groupBox5.Controls.Add(削除指定Button1);
+            groupBox5.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            groupBox5.Location = new Point(17, 255);
+            groupBox5.Name = "groupBox5";
+            groupBox5.Size = new Size(374, 50);
+            groupBox5.TabIndex = 16;
+            groupBox5.TabStop = false;
+            groupBox5.Text = "削除指定(&D)";
             // 
             // 削除指定Button3
             // 
-            this.削除指定Button3.AutoSize = true;
-            this.削除指定Button3.Location = new System.Drawing.Point(249, 22);
-            this.削除指定Button3.Name = "削除指定Button3";
-            this.削除指定Button3.Size = new System.Drawing.Size(83, 16);
-            this.削除指定Button3.TabIndex = 204;
-            this.削除指定Button3.TabStop = true;
-            this.削除指定Button3.Text = "指定しない";
-            this.削除指定Button3.UseVisualStyleBackColor = true;
+            削除指定Button3.AutoSize = true;
+            削除指定Button3.Location = new Point(249, 22);
+            削除指定Button3.Name = "削除指定Button3";
+            削除指定Button3.Size = new Size(83, 16);
+            削除指定Button3.TabIndex = 204;
+            削除指定Button3.TabStop = true;
+            削除指定Button3.Text = "指定しない";
+            削除指定Button3.UseVisualStyleBackColor = true;
             // 
             // 削除指定Button2
             // 
-            this.削除指定Button2.AutoSize = true;
-            this.削除指定Button2.Location = new System.Drawing.Point(129, 22);
-            this.削除指定Button2.Name = "削除指定Button2";
-            this.削除指定Button2.Size = new System.Drawing.Size(95, 16);
-            this.削除指定Button2.TabIndex = 2;
-            this.削除指定Button2.TabStop = true;
-            this.削除指定Button2.Text = "削除している";
-            this.削除指定Button2.UseVisualStyleBackColor = true;
+            削除指定Button2.AutoSize = true;
+            削除指定Button2.Location = new Point(129, 22);
+            削除指定Button2.Name = "削除指定Button2";
+            削除指定Button2.Size = new Size(95, 16);
+            削除指定Button2.TabIndex = 2;
+            削除指定Button2.TabStop = true;
+            削除指定Button2.Text = "削除している";
+            削除指定Button2.UseVisualStyleBackColor = true;
             // 
             // 削除指定Button1
             // 
-            this.削除指定Button1.AutoSize = true;
-            this.削除指定Button1.Location = new System.Drawing.Point(6, 22);
-            this.削除指定Button1.Name = "削除指定Button1";
-            this.削除指定Button1.Size = new System.Drawing.Size(107, 16);
-            this.削除指定Button1.TabIndex = 1;
-            this.削除指定Button1.TabStop = true;
-            this.削除指定Button1.Text = "削除していない";
-            this.削除指定Button1.UseVisualStyleBackColor = true;
+            削除指定Button1.AutoSize = true;
+            削除指定Button1.Location = new Point(6, 22);
+            削除指定Button1.Name = "削除指定Button1";
+            削除指定Button1.Size = new Size(107, 16);
+            削除指定Button1.TabIndex = 1;
+            削除指定Button1.TabStop = true;
+            削除指定Button1.Text = "削除していない";
+            削除指定Button1.UseVisualStyleBackColor = true;
             // 
             // 抽出ボタン
             // 
-            this.抽出ボタン.Location = new System.Drawing.Point(190, 322);
-            this.抽出ボタン.Name = "抽出ボタン";
-            this.抽出ボタン.Size = new System.Drawing.Size(102, 24);
-            this.抽出ボタン.TabIndex = 17;
-            this.抽出ボタン.Text = "抽出(&O)";
-            this.抽出ボタン.UseVisualStyleBackColor = true;
-            this.抽出ボタン.Click += new System.EventHandler(this.抽出ボタン_Click);
+            抽出ボタン.Location = new Point(190, 322);
+            抽出ボタン.Name = "抽出ボタン";
+            抽出ボタン.Size = new Size(102, 24);
+            抽出ボタン.TabIndex = 9;
+            抽出ボタン.Text = "抽出(&O)";
+            抽出ボタン.UseVisualStyleBackColor = true;
+            抽出ボタン.Click += 抽出ボタン_Click;
             // 
             // キャンセルボタン
             // 
-            this.キャンセルボタン.Location = new System.Drawing.Point(299, 322);
-            this.キャンセルボタン.Name = "キャンセルボタン";
-            this.キャンセルボタン.Size = new System.Drawing.Size(102, 24);
-            this.キャンセルボタン.TabIndex = 18;
-            this.キャンセルボタン.Text = "キャンセル(&X)";
-            this.キャンセルボタン.UseVisualStyleBackColor = true;
-            this.キャンセルボタン.MouseClick += new System.Windows.Forms.MouseEventHandler(this.キャンセルボタン_MouseClick);
+            キャンセルボタン.Location = new Point(299, 322);
+            キャンセルボタン.Name = "キャンセルボタン";
+            キャンセルボタン.Size = new Size(102, 24);
+            キャンセルボタン.TabIndex = 10;
+            キャンセルボタン.Text = "キャンセル(&X)";
+            キャンセルボタン.UseVisualStyleBackColor = true;
+            キャンセルボタン.MouseClick += キャンセルボタン_MouseClick;
             // 
-            // 更新日開始選択ボタン
+            // 支払先選択ボタン
             // 
-            this.更新日開始選択ボタン.Location = new System.Drawing.Point(227, 69);
-            this.更新日開始選択ボタン.Margin = new System.Windows.Forms.Padding(4);
-            this.更新日開始選択ボタン.Name = "更新日開始選択ボタン";
-            this.更新日開始選択ボタン.Size = new System.Drawing.Size(21, 21);
-            this.更新日開始選択ボタン.TabIndex = 21008;
-            this.更新日開始選択ボタン.TabStop = false;
-            this.更新日開始選択ボタン.Text = "▼";
-            this.更新日開始選択ボタン.UseVisualStyleBackColor = true;
+            支払先選択ボタン.Location = new Point(227, 69);
+            支払先選択ボタン.Margin = new Padding(4);
+            支払先選択ボタン.Name = "支払先選択ボタン";
+            支払先選択ボタン.Size = new Size(21, 21);
+            支払先選択ボタン.TabIndex = 21008;
+            支払先選択ボタン.TabStop = false;
+            支払先選択ボタン.Text = "▼";
+            支払先選択ボタン.UseVisualStyleBackColor = true;
             // 
             // 更新者名_ラベル
             // 
-            this.更新者名_ラベル.AllowDrop = true;
-            this.更新者名_ラベル.AutoEllipsis = true;
-            this.更新者名_ラベル.Font = new System.Drawing.Font("BIZ UDゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.更新者名_ラベル.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.更新者名_ラベル.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.更新者名_ラベル.Location = new System.Drawing.Point(17, 96);
-            this.更新者名_ラベル.Margin = new System.Windows.Forms.Padding(0);
-            this.更新者名_ラベル.Name = "更新者名_ラベル";
-            this.更新者名_ラベル.Size = new System.Drawing.Size(95, 20);
-            this.更新者名_ラベル.TabIndex = 12;
-            this.更新者名_ラベル.Text = "更新者名(&N)";
-            this.更新者名_ラベル.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            更新者名_ラベル.AllowDrop = true;
+            更新者名_ラベル.AutoEllipsis = true;
+            更新者名_ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            更新者名_ラベル.ForeColor = SystemColors.ActiveCaptionText;
+            更新者名_ラベル.ImageAlign = ContentAlignment.MiddleLeft;
+            更新者名_ラベル.Location = new Point(17, 96);
+            更新者名_ラベル.Margin = new Padding(0);
+            更新者名_ラベル.Name = "更新者名_ラベル";
+            更新者名_ラベル.Size = new Size(95, 20);
+            更新者名_ラベル.TabIndex = 7;
+            更新者名_ラベル.Text = "支払先名(&N)";
+            更新者名_ラベル.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // label2
+            // 支払先コード_ラベル
             // 
-            this.label2.AllowDrop = true;
-            this.label2.AutoEllipsis = true;
-            this.label2.Font = new System.Drawing.Font("BIZ UDゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label2.Location = new System.Drawing.Point(17, 70);
-            this.label2.Margin = new System.Windows.Forms.Padding(0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(95, 20);
-            this.label2.TabIndex = 9;
-            this.label2.Text = "更新日(&U)";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            支払先コード_ラベル.AllowDrop = true;
+            支払先コード_ラベル.AutoEllipsis = true;
+            支払先コード_ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            支払先コード_ラベル.ForeColor = SystemColors.ActiveCaptionText;
+            支払先コード_ラベル.ImageAlign = ContentAlignment.MiddleLeft;
+            支払先コード_ラベル.Location = new Point(17, 70);
+            支払先コード_ラベル.Margin = new Padding(0);
+            支払先コード_ラベル.Name = "支払先コード_ラベル";
+            支払先コード_ラベル.Size = new Size(95, 20);
+            支払先コード_ラベル.TabIndex = 9;
+            支払先コード_ラベル.Text = "支払先コード(&C)";
+            支払先コード_ラベル.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // 更新日開始
+            // 支払コード
             // 
-            this.更新日開始.BackColor = System.Drawing.Color.White;
-            this.更新日開始.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.更新日開始.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.更新日開始.Location = new System.Drawing.Point(121, 70);
-            this.更新日開始.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.更新日開始.Multiline = true;
-            this.更新日開始.Name = "更新日開始";
-            this.更新日開始.Size = new System.Drawing.Size(102, 20);
-            this.更新日開始.TabIndex = 10;
+            支払コード.BackColor = Color.White;
+            支払コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            支払コード.ImeMode = ImeMode.Disable;
+            支払コード.Location = new Point(121, 70);
+            支払コード.Margin = new Padding(3, 2, 3, 2);
+            支払コード.Multiline = true;
+            支払コード.Name = "支払コード";
+            支払コード.Size = new Size(102, 20);
+            支払コード.TabIndex = 6;
             // 
-            // 非含有証明書_ラベル
+            // 支払年月日_ラベル
             // 
-            this.非含有証明書_ラベル.AllowDrop = true;
-            this.非含有証明書_ラベル.AutoEllipsis = true;
-            this.非含有証明書_ラベル.Font = new System.Drawing.Font("BIZ UDゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.非含有証明書_ラベル.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.非含有証明書_ラベル.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.非含有証明書_ラベル.Location = new System.Drawing.Point(17, 17);
-            this.非含有証明書_ラベル.Margin = new System.Windows.Forms.Padding(0);
-            this.非含有証明書_ラベル.Name = "非含有証明書_ラベル";
-            this.非含有証明書_ラベル.Size = new System.Drawing.Size(95, 21);
-            this.非含有証明書_ラベル.TabIndex = 6;
-            this.非含有証明書_ラベル.Text = "非含有証明書(&C)";
-            this.非含有証明書_ラベル.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            支払年月日_ラベル.AllowDrop = true;
+            支払年月日_ラベル.AutoEllipsis = true;
+            支払年月日_ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            支払年月日_ラベル.ForeColor = SystemColors.ActiveCaptionText;
+            支払年月日_ラベル.ImageAlign = ContentAlignment.MiddleLeft;
+            支払年月日_ラベル.Location = new Point(17, 17);
+            支払年月日_ラベル.Margin = new Padding(0);
+            支払年月日_ラベル.Name = "支払年月日_ラベル";
+            支払年月日_ラベル.Size = new Size(95, 21);
+            支払年月日_ラベル.TabIndex = 1;
+            支払年月日_ラベル.Text = "支払年月日(&M)";
+            支払年月日_ラベル.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // 非含有証明書
+            // 支払年月日
             // 
-            this.非含有証明書.BackColor = System.Drawing.Color.White;
-            this.非含有証明書.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.非含有証明書.FormattingEnabled = true;
-            this.非含有証明書.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.非含有証明書.Location = new System.Drawing.Point(121, 17);
-            this.非含有証明書.Name = "非含有証明書";
-            this.非含有証明書.Size = new System.Drawing.Size(122, 21);
-            this.非含有証明書.TabIndex = 7;
+            支払年月日.BackColor = Color.White;
+            支払年月日.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            支払年月日.FormattingEnabled = true;
+            支払年月日.ImeMode = ImeMode.Disable;
+            支払年月日.Location = new Point(121, 17);
+            支払年月日.Name = "支払年月日";
+            支払年月日.Size = new Size(122, 21);
+            支払年月日.TabIndex = 2;
             // 
-            // comboBox1
+            // 振込指定
             // 
-            this.comboBox1.BackColor = System.Drawing.Color.White;
-            this.comboBox1.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.comboBox1.Location = new System.Drawing.Point(121, 44);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(122, 21);
-            this.comboBox1.TabIndex = 21009;
+            振込指定.BackColor = Color.White;
+            振込指定.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            振込指定.FormattingEnabled = true;
+            振込指定.ImeMode = ImeMode.Disable;
+            振込指定.Location = new Point(121, 44);
+            振込指定.Name = "振込指定";
+            振込指定.Size = new Size(122, 21);
+            振込指定.TabIndex = 4;
+            // 
+            // 支払先参照ボタン
+            // 
+            支払先参照ボタン.Location = new Point(250, 69);
+            支払先参照ボタン.Margin = new Padding(4);
+            支払先参照ボタン.Name = "支払先参照ボタン";
+            支払先参照ボタン.Size = new Size(21, 21);
+            支払先参照ボタン.TabIndex = 21010;
+            支払先参照ボタン.TabStop = false;
+            支払先参照ボタン.Text = "▶";
+            支払先参照ボタン.UseVisualStyleBackColor = true;
             // 
             // F_支払管理_抽出
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(410, 356);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.非含有証明書);
-            this.Controls.Add(this.非含有証明書_ラベル);
-            this.Controls.Add(this.更新日開始);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.更新者名_ラベル);
-            this.Controls.Add(this.更新日開始選択ボタン);
-            this.Controls.Add(this.キャンセルボタン);
-            this.Controls.Add(this.抽出ボタン);
-            this.Controls.Add(this.groupBox5);
-            this.Controls.Add(this.groupBox4);
-            this.Controls.Add(this.groupBox3);
-            this.Controls.Add(this.品名);
-            this.Controls.Add(this.品名_ラベル);
-            this.Name = "F_支払管理_抽出";
-            this.Text = "支払管理_抽出";
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
-            this.groupBox5.ResumeLayout(false);
-            this.groupBox5.PerformLayout();
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(410, 356);
+            Controls.Add(支払先参照ボタン);
+            Controls.Add(振込指定);
+            Controls.Add(支払年月日);
+            Controls.Add(支払年月日_ラベル);
+            Controls.Add(支払コード);
+            Controls.Add(支払先コード_ラベル);
+            Controls.Add(更新者名_ラベル);
+            Controls.Add(支払先選択ボタン);
+            Controls.Add(キャンセルボタン);
+            Controls.Add(抽出ボタン);
+            Controls.Add(groupBox5);
+            Controls.Add(groupBox4);
+            Controls.Add(groupBox3);
+            Controls.Add(品名);
+            Controls.Add(振込指定_ラベル);
+            Name = "F_支払管理_抽出";
+            Text = "支払管理_抽出";
+            groupBox3.ResumeLayout(false);
+            groupBox3.PerformLayout();
+            groupBox4.ResumeLayout(false);
+            groupBox4.PerformLayout();
+            groupBox5.ResumeLayout(false);
+            groupBox5.PerformLayout();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
         private Label label9;
         private TextBox 品名;
-        private Label 品名_ラベル;
-        private Label label2;
+        private Label 振込指定_ラベル;
+        private Label 支払先コード_ラベル;
         private GroupBox groupBox3;
         private RadioButton 確定指定Button3;
         private RadioButton 確定指定Button2;
@@ -382,11 +396,13 @@
         private RadioButton 削除指定Button1;
         private Button 抽出ボタン;
         private Button キャンセルボタン;
-        private Button 更新日開始選択ボタン;
+        private Button 支払先選択ボタン;
         private Label 更新者名_ラベル;
-        private TextBox 更新日開始;
-        private Label 非含有証明書_ラベル;
-        private ComboBox 非含有証明書;
-        private ComboBox comboBox1;
+        private TextBox 支払コード;
+        private Label 支払年月日_ラベル;
+        private ComboBox 支払年月日;
+        private ComboBox 振込指定;
+        private ToolTip toolTip1;
+        private Button 支払先参照ボタン;
     }
 }

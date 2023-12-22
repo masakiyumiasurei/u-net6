@@ -29,6 +29,7 @@ namespace u_net
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             コマンド終了 = new Button();
             コマンド登録 = new Button();
             panel1 = new Panel();
@@ -131,6 +132,7 @@ namespace u_net
             承認 = new TextBox();
             完了 = new TextBox();
             無効 = new TextBox();
+            toolTip1 = new ToolTip(components);
             panel1.SuspendLayout();
             statusStrip1.SuspendLayout();
             タブ.SuspendLayout();
@@ -151,6 +153,7 @@ namespace u_net
             コマンド終了.TabIndex = 1021;
             コマンド終了.TabStop = false;
             コマンド終了.Text = "終了";
+            toolTip1.SetToolTip(コマンド終了, "購買終了");
             コマンド終了.UseVisualStyleBackColor = true;
             コマンド終了.Click += コマンド終了_Click;
             // 
@@ -167,6 +170,7 @@ namespace u_net
             コマンド登録.TabIndex = 1020;
             コマンド登録.TabStop = false;
             コマンド登録.Text = "登録";
+            toolTip1.SetToolTip(コマンド登録, "表示データ登録");
             コマンド登録.UseVisualStyleBackColor = true;
             コマンド登録.Click += コマンド登録_Click;
             // 
@@ -193,6 +197,7 @@ namespace u_net
             コマンド新規.TabIndex = 1002;
             コマンド新規.TabStop = false;
             コマンド新規.Text = "新規";
+            toolTip1.SetToolTip(コマンド新規, "新規データ入力");
             コマンド新規.UseVisualStyleBackColor = false;
             コマンド新規.Click += コマンド新規_Click;
             // 
@@ -225,6 +230,7 @@ namespace u_net
             コマンド製品.TabIndex = 1009;
             コマンド製品.TabStop = false;
             コマンド製品.Text = "製品参照";
+            toolTip1.SetToolTip(コマンド製品, "製品へ");
             コマンド製品.UseVisualStyleBackColor = true;
             コマンド製品.Click += コマンド部品表_Click;
             // 
@@ -241,6 +247,7 @@ namespace u_net
             コマンド購買部品表.TabIndex = 1008;
             コマンド購買部品表.TabStop = false;
             コマンド購買部品表.Text = "部品表";
+            toolTip1.SetToolTip(コマンド購買部品表, "購買部品表プレビュー");
             コマンド購買部品表.UseVisualStyleBackColor = true;
             コマンド購買部品表.Click += コマンド部品_Click;
             // 
@@ -257,6 +264,7 @@ namespace u_net
             コマンド確定.TabIndex = 1007;
             コマンド確定.TabStop = false;
             コマンド確定.Text = "確定";
+            toolTip1.SetToolTip(コマンド確定, "表示データ確定");
             コマンド確定.UseVisualStyleBackColor = true;
             コマンド確定.Click += コマンド確定_Click;
             // 
@@ -273,6 +281,7 @@ namespace u_net
             コマンド承認.TabIndex = 1006;
             コマンド承認.TabStop = false;
             コマンド承認.Text = "承認";
+            toolTip1.SetToolTip(コマンド承認, "表示データ承認");
             コマンド承認.UseVisualStyleBackColor = true;
             コマンド承認.Click += コマンド承認_Click;
             // 
@@ -289,6 +298,7 @@ namespace u_net
             コマンド削除.TabIndex = 1005;
             コマンド削除.TabStop = false;
             コマンド削除.Text = "削除";
+            toolTip1.SetToolTip(コマンド削除, "表示データ削除");
             コマンド削除.UseVisualStyleBackColor = true;
             コマンド削除.Click += コマンド削除_Click;
             // 
@@ -305,6 +315,7 @@ namespace u_net
             コマンド複写.TabIndex = 1004;
             コマンド複写.TabStop = false;
             コマンド複写.Text = "複写";
+            toolTip1.SetToolTip(コマンド複写, "表示データ複写");
             コマンド複写.UseVisualStyleBackColor = true;
             コマンド複写.Click += コマンド複写_Click;
             // 
@@ -321,6 +332,7 @@ namespace u_net
             コマンド修正.TabIndex = 1003;
             コマンド修正.TabStop = false;
             コマンド修正.Text = "修正";
+            toolTip1.SetToolTip(コマンド修正, "既存データ参照");
             コマンド修正.UseVisualStyleBackColor = true;
             コマンド修正.Click += コマンド読込_Click;
             // 
@@ -466,6 +478,7 @@ namespace u_net
             コマンドファックス.TabIndex = 1011;
             コマンドファックス.TabStop = false;
             コマンドファックス.Text = "FAX管理";
+            toolTip1.SetToolTip(コマンドファックス, "ファックス管理参照");
             コマンドファックス.UseVisualStyleBackColor = true;
             コマンドファックス.Click += コマンドツール_Click;
             // 
@@ -1461,6 +1474,7 @@ namespace u_net
         private MultiRowDesigner.購買型式一覧 購買型式一覧1;
         private MultiRowDesigner.購買明細 購買明細1;
         private MultiRowDesigner.購買発注先 購買発注先1;
+        private ToolTip toolTip1;
     }
 }
 

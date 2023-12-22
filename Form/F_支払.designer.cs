@@ -29,6 +29,7 @@ namespace u_net
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             コマンド終了 = new Button();
             コマンド登録 = new Button();
             panel1 = new Panel();
@@ -117,6 +118,7 @@ namespace u_net
             承認日時 = new TextBox();
             label2 = new Label();
             支払明細1 = new MultiRowDesigner.支払明細();
+            toolTip1 = new ToolTip(components);
             panel1.SuspendLayout();
             statusStrip1.SuspendLayout();
             SuspendLayout();
@@ -826,6 +828,7 @@ namespace u_net
             支払先参照ボタン.TabIndex = 10200;
             支払先参照ボタン.TabStop = false;
             支払先参照ボタン.Text = "▶";
+            toolTip1.SetToolTip(支払先参照ボタン, "支払先参照");
             支払先参照ボタン.UseVisualStyleBackColor = true;
             // 
             // 支払先担当者名_ラベル
@@ -1215,6 +1218,7 @@ namespace u_net
         private TextBox 承認日時;
         private Label label2;
         private MultiRowDesigner.支払明細 支払明細1;
+        private ToolTip toolTip1;
     }
 }
 
