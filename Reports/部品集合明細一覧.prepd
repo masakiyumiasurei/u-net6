@@ -45,29 +45,29 @@
 <Text Name="Text40" X="15" Y="12" Width="179.9" Height="7.2" Text="部品集合明細一覧" Align="Center" VAlign="Middle" FontAttr="Font2" />
 <Text Name="出力日時" X="35" Y="288" Width="60" Height="4" Text="*出力日時*" Align="Left" VAlign="Top" FontAttr="Font3" />
 <Text Name="ページ" X="122" Y="288" Width="78" Height="4" Text="*ページ*" Align="Right" VAlign="Top" FontAttr="Font3" />
-<Text Name="集合分類ラベル" X="15" Y="23" Width="23" Height="6" Text="集合分類" BackColor="Silver" Align="Left" VAlign="Middle" FontAttr="Font1" LineAttr="Line6" />
+<Text Name="集合分類ラベル" X="15" Y="23" Width="23" Height="6" Text="*集合分類ラベル*" BackColor="Silver" Align="Left" VAlign="Middle" FontAttr="Font1" LineAttr="Line6" />
 <Line Name="Line2" StartX="15" StartY="10" EndX="195" EndY="10" LineAttr="Line2" />
 <Line Name="Line3" StartX="15" StartY="20" EndX="195" EndY="20" LineAttr="Line2" />
 <Text Name="GPラベル" X="38" Y="23" Width="156.8" Height="6" Text="GP" BackColor="Silver" Align="Left" VAlign="Middle" FontAttr="Font1" LineAttr="Line7" />
 <Text Name="Text38" X="15" Y="288" Width="20" Height="4" Text="出力日時" Align="Left" VAlign="Top" FontAttr="Font3" />
-<Text Name="部品集合コードラベル" X="15" Y="31" Width="30" Height="5" Text="部品集合コード" Align="Left" VAlign="Middle" FontAttr="Font1" />
+<Text Name="部品集合コードラベル" X="15" Y="31" Width="30" Height="5" Text="*部品集合コードラベル*" Align="Left" VAlign="Middle" FontAttr="Font1" />
 <Text Name="部品集合コード" X="45" Y="31" Width="17" Height="5" Text="*部品集合コード*" Align="Left" VAlign="Middle" FontAttr="Font1" />
-<Text Name="第ラベル" X="62" Y="31" Width="8" Height="5" Text="（第" Align="Right" VAlign="Middle" FontAttr="Font1" />
-<Text Name="版ラベル" X="76" Y="31" Width="8" Height="5" Text="版）" Align="Left" VAlign="Middle" FontAttr="Font1" />
+<Text Name="第ラベル" X="62" Y="31" Width="8" Height="5" Text="*（第*" Align="Right" VAlign="Middle" FontAttr="Font1" />
+<Text Name="版ラベル" X="76" Y="31" Width="8" Height="5" Text="*版）*" Align="Left" VAlign="Middle" FontAttr="Font1" />
 <Text Name="部品集合版数" X="70" Y="31" Width="6" Height="5" Text="*部品集合版数*" Align="Left" VAlign="Middle" FontAttr="Font1" />
-<Text Name="集合名ラベル" X="85" Y="31" Width="17" Height="5" Text="集合名" Align="Left" VAlign="Middle" FontAttr="Font1" />
+<Text Name="集合名ラベル" X="85" Y="31" Width="17" Height="5" Text="*集合名ラベル*" Align="Left" VAlign="Middle" FontAttr="Font1" />
 <Line Name="横罫線1" StartX="15" StartY="36" EndX="84" EndY="36" LineAttr="Line2" />
 <Line Name="横罫線2" StartX="85" StartY="36" EndX="195" EndY="36" LineAttr="Line2" />
 <Text Name="集合名" X="102" Y="31" Width="75.9" Height="5" Text="*集合名*" Align="Left" VAlign="Middle" FontAttr="Font1" />
-<Text Name="承認ラベル" X="178" Y="31" Width="12" Height="5" Text="承認" Align="Left" VAlign="Middle" FontAttr="Font1" />
+<Text Name="承認ラベル" X="178" Y="31" Width="12" Height="5" Text="*承認ラベル*" Align="Left" VAlign="Middle" FontAttr="Font1" />
 <Text Name="承認" X="190" Y="31" Width="5" Height="5" Text="*承認*" Align="Left" VAlign="Middle" FontAttr="Font1" />
-<Text Name="Text16" X="15" Y="37" Width="10" Height="5" Text="No" Align="Right" VAlign="Middle" FontAttr="Font1" />
-<Text Name="Text17" X="26" Y="37" Width="6" Height="5" Text="購" Align="Center" VAlign="Middle" FontAttr="Font1" />
-<Text Name="Text18" X="33" Y="37" Width="20" Height="5" Text="部品コード" Align="Left" VAlign="Middle" FontAttr="Font1" />
-<Text Name="Text19" X="54" Y="37" Width="6" Height="5" Text="廃" Align="Center" VAlign="Middle" FontAttr="Font1" />
-<Text Name="Text20" X="61" Y="37" Width="10" Height="5" Text="分類" Align="Left" VAlign="Middle" FontAttr="Font1" />
-<Text Name="Text21" X="72" Y="37" Width="60" Height="5" Text="型番" Align="Left" VAlign="Middle" FontAttr="Font1" />
-<Text Name="Text22" X="133" Y="37" Width="62" Height="5" Text="メーカー名" Align="Left" VAlign="Middle" FontAttr="Font1" />
+<Text Name="Noラベル" X="15" Y="37" Width="10" Height="5" Text="*Noラベル*" Align="Right" VAlign="Middle" FontAttr="Font1" />
+<Text Name="購ラベル" X="26" Y="37" Width="6" Height="5" Text="*購ラベル*" Align="Center" VAlign="Middle" FontAttr="Font1" />
+<Text Name="部品コードラベル" X="33" Y="37" Width="20" Height="5" Text="*部品コード*" Align="Left" VAlign="Middle" FontAttr="Font1" />
+<Text Name="廃ラベル" X="54" Y="37" Width="6" Height="5" Text="*廃ラベル*" Align="Center" VAlign="Middle" FontAttr="Font1" />
+<Text Name="分類ラベル" X="61" Y="37" Width="10" Height="5" Text="*分類ラベル*" Align="Left" VAlign="Middle" FontAttr="Font1" />
+<Text Name="型番ラベル" X="72" Y="37" Width="60" Height="5" Text="*型番ラベル*" Align="Left" VAlign="Middle" FontAttr="Font1" />
+<Text Name="メーカー名ラベル" X="133" Y="37" Width="62" Height="5" Text="*メーカー名ラベル*" Align="Left" VAlign="Middle" FontAttr="Font1" />
 <Line Name="横罫線3" StartX="15" StartY="42" EndX="25" EndY="42" LineAttr="Line1" />
 <Line Name="横罫線4" StartX="26" StartY="42" EndX="32" EndY="42" LineAttr="Line1" />
 <Line Name="横罫線5" StartX="33" StartY="42" EndX="53" EndY="42" LineAttr="Line1" />

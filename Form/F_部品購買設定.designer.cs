@@ -137,7 +137,6 @@ namespace u_net
             コマンド登録.TabStop = false;
             コマンド登録.Text = "登録";
             コマンド登録.UseVisualStyleBackColor = true;
-            コマンド登録.Click += コマンド登録_Click;
             // 
             // panel1
             // 
@@ -164,7 +163,6 @@ namespace u_net
             コマンド新規.TabStop = false;
             コマンド新規.Text = "新規";
             コマンド新規.UseVisualStyleBackColor = false;
-            コマンド新規.Click += コマンド新規_Click;
             // 
             // コマンド部品
             // 
@@ -180,7 +178,6 @@ namespace u_net
             コマンド部品.TabStop = false;
             コマンド部品.Text = "部品参照";
             コマンド部品.UseVisualStyleBackColor = true;
-            コマンド部品.Click += コマンド部品_Click;
             // 
             // コマンド改版
             // 
@@ -196,7 +193,6 @@ namespace u_net
             コマンド改版.TabStop = false;
             コマンド改版.Text = "改版";
             コマンド改版.UseVisualStyleBackColor = true;
-            コマンド改版.Click += コマンド改版_Click;
             // 
             // コマンド編集
             // 
@@ -212,7 +208,6 @@ namespace u_net
             コマンド編集.TabStop = false;
             コマンド編集.Text = "編集";
             コマンド編集.UseVisualStyleBackColor = true;
-            コマンド編集.Click += コマンド編集_Click;
             // 
             // コマンド確定
             // 
@@ -228,7 +223,6 @@ namespace u_net
             コマンド確定.TabStop = false;
             コマンド確定.Text = "確定";
             コマンド確定.UseVisualStyleBackColor = true;
-            コマンド確定.Click += コマンド確定_Click;
             // 
             // コマンド承認
             // 
@@ -244,7 +238,6 @@ namespace u_net
             コマンド承認.TabStop = false;
             コマンド承認.Text = "承認";
             コマンド承認.UseVisualStyleBackColor = true;
-            コマンド承認.Click += コマンド承認_Click;
             // 
             // コマンド削除
             // 
@@ -260,7 +253,6 @@ namespace u_net
             コマンド削除.TabStop = false;
             コマンド削除.Text = "削除";
             コマンド削除.UseVisualStyleBackColor = true;
-            コマンド削除.Click += コマンド削除_Click;
             // 
             // コマンド複写
             // 
@@ -276,7 +268,6 @@ namespace u_net
             コマンド複写.TabStop = false;
             コマンド複写.Text = "複写";
             コマンド複写.UseVisualStyleBackColor = true;
-            コマンド複写.Click += コマンド複写_Click;
             // 
             // コマンド読込
             // 
@@ -292,7 +283,6 @@ namespace u_net
             コマンド読込.TabStop = false;
             コマンド読込.Text = "読込";
             コマンド読込.UseVisualStyleBackColor = true;
-            コマンド読込.Click += コマンド読込_Click;
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -438,7 +428,6 @@ namespace u_net
             コマンドユニット管理.TabStop = false;
             コマンドユニット管理.Text = "ユ管参照";
             コマンドユニット管理.UseVisualStyleBackColor = true;
-            コマンドユニット管理.Click += コマンドユニット管理_Click;
             // 
             // 集合名
             // 
@@ -769,9 +758,9 @@ namespace u_net
             // label3
             // 
             label3.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label3.Location = new Point(712, 146);
+            label3.Location = new Point(724, 146);
             label3.Name = "label3";
-            label3.Size = new Size(54, 17);
+            label3.Size = new Size(35, 16);
             label3.TabIndex = 10201;
             label3.Text = "承認";
             label3.TextAlign = ContentAlignment.MiddleLeft;
@@ -793,9 +782,9 @@ namespace u_net
             // label4
             // 
             label4.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label4.Location = new Point(788, 146);
+            label4.Location = new Point(802, 146);
             label4.Name = "label4";
-            label4.Size = new Size(54, 17);
+            label4.Size = new Size(34, 17);
             label4.TabIndex = 10203;
             label4.Text = "削除";
             label4.TextAlign = ContentAlignment.MiddleLeft;
@@ -861,10 +850,11 @@ namespace u_net
             // 
             // 部品購買設定明細1
             // 
+            部品購買設定明細1.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             部品購買設定明細1.Location = new Point(9, 174);
-            部品購買設定明細1.Margin = new Padding(4);
+            部品購買設定明細1.Margin = new Padding(4, 4, 4, 4);
             部品購買設定明細1.Name = "部品購買設定明細1";
-            部品購買設定明細1.Size = new Size(856, 302);
+            部品購買設定明細1.Size = new Size(860, 302);
             部品購買設定明細1.TabIndex = 10209;
             // 
             // label5
@@ -938,7 +928,6 @@ namespace u_net
             MinimizeBox = false;
             Name = "F_部品購買設定";
             Text = "部品購買設定";
-            FormClosing += Form_Unload;
             Load += Form_Load;
             KeyDown += Form_KeyDown;
             panel1.ResumeLayout(false);

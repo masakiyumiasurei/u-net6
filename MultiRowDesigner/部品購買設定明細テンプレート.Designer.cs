@@ -29,14 +29,14 @@
 		/// </summary>
         private void InitializeComponent()
         {
-            GrapeCity.Win.MultiRow.CellStyle cellStyle12 = new GrapeCity.Win.MultiRow.CellStyle();
-            GrapeCity.Win.MultiRow.CellStyle cellStyle13 = new GrapeCity.Win.MultiRow.CellStyle();
             GrapeCity.Win.MultiRow.CellStyle cellStyle14 = new GrapeCity.Win.MultiRow.CellStyle();
             GrapeCity.Win.MultiRow.CellStyle cellStyle15 = new GrapeCity.Win.MultiRow.CellStyle();
             GrapeCity.Win.MultiRow.CellStyle cellStyle16 = new GrapeCity.Win.MultiRow.CellStyle();
             GrapeCity.Win.MultiRow.CellStyle cellStyle17 = new GrapeCity.Win.MultiRow.CellStyle();
             GrapeCity.Win.MultiRow.CellStyle cellStyle18 = new GrapeCity.Win.MultiRow.CellStyle();
             GrapeCity.Win.MultiRow.CellStyle cellStyle19 = new GrapeCity.Win.MultiRow.CellStyle();
+            GrapeCity.Win.MultiRow.CellStyle cellStyle20 = new GrapeCity.Win.MultiRow.CellStyle();
+            GrapeCity.Win.MultiRow.CellStyle cellStyle21 = new GrapeCity.Win.MultiRow.CellStyle();
             GrapeCity.Win.MultiRow.CellStyle cellStyle1 = new GrapeCity.Win.MultiRow.CellStyle();
             GrapeCity.Win.MultiRow.Border border1 = new GrapeCity.Win.MultiRow.Border();
             GrapeCity.Win.MultiRow.CellStyle cellStyle2 = new GrapeCity.Win.MultiRow.CellStyle();
@@ -57,6 +57,10 @@
             GrapeCity.Win.MultiRow.Border border8 = new GrapeCity.Win.MultiRow.Border();
             GrapeCity.Win.MultiRow.CellStyle cellStyle11 = new GrapeCity.Win.MultiRow.CellStyle();
             GrapeCity.Win.MultiRow.Border border9 = new GrapeCity.Win.MultiRow.Border();
+            GrapeCity.Win.MultiRow.CellStyle cellStyle12 = new GrapeCity.Win.MultiRow.CellStyle();
+            GrapeCity.Win.MultiRow.Border border10 = new GrapeCity.Win.MultiRow.Border();
+            GrapeCity.Win.MultiRow.CellStyle cellStyle13 = new GrapeCity.Win.MultiRow.CellStyle();
+            GrapeCity.Win.MultiRow.Border border11 = new GrapeCity.Win.MultiRow.Border();
             this.columnHeaderSection1 = new GrapeCity.Win.MultiRow.ColumnHeaderSection();
             this.購買対象_ラベル = new GrapeCity.Win.MultiRow.HeaderCell();
             this.部品コード_ラベル = new GrapeCity.Win.MultiRow.HeaderCell();
@@ -67,30 +71,34 @@
             this.メーカー名_ラベル = new GrapeCity.Win.MultiRow.HeaderCell();
             this.明細番号ボタン = new GrapeCity.Win.MultiRow.HeaderCell();
             this.明細番号 = new GrapeCity.Win.MultiRow.RowHeaderCell();
-            this.購買対象 = new GrapeCity.Win.MultiRow.TextBoxCell();
+            this.購買対象表示 = new GrapeCity.Win.MultiRow.TextBoxCell();
             this.購買指定ボタン = new GrapeCity.Win.MultiRow.ButtonCell();
             this.部品コード = new GrapeCity.Win.MultiRow.TextBoxCell();
-            this.廃止 = new GrapeCity.Win.MultiRow.TextBoxCell();
+            this.廃止表示 = new GrapeCity.Win.MultiRow.TextBoxCell();
             this.部品参照ボタン = new GrapeCity.Win.MultiRow.ButtonCell();
             this.分類記号 = new GrapeCity.Win.MultiRow.TextBoxCell();
             this.型番 = new GrapeCity.Win.MultiRow.TextBoxCell();
             this.メーカー名 = new GrapeCity.Win.MultiRow.TextBoxCell();
             this.部品集合コード = new GrapeCity.Win.MultiRow.TextBoxCell();
             this.部品集合版数 = new GrapeCity.Win.MultiRow.TextBoxCell();
+            this.購買対象 = new GrapeCity.Win.MultiRow.TextBoxCell();
+            this.廃止 = new GrapeCity.Win.MultiRow.TextBoxCell();
             // 
             // Row
             // 
             this.Row.Cells.Add(this.明細番号);
-            this.Row.Cells.Add(this.購買対象);
+            this.Row.Cells.Add(this.購買対象表示);
             this.Row.Cells.Add(this.購買指定ボタン);
             this.Row.Cells.Add(this.部品コード);
-            this.Row.Cells.Add(this.廃止);
+            this.Row.Cells.Add(this.廃止表示);
             this.Row.Cells.Add(this.部品参照ボタン);
             this.Row.Cells.Add(this.分類記号);
             this.Row.Cells.Add(this.型番);
             this.Row.Cells.Add(this.メーカー名);
             this.Row.Cells.Add(this.部品集合コード);
             this.Row.Cells.Add(this.部品集合版数);
+            this.Row.Cells.Add(this.購買対象);
+            this.Row.Cells.Add(this.廃止);
             this.Row.Height = 34;
             this.Row.Width = 779;
             // 
@@ -114,10 +122,10 @@
             this.購買対象_ラベル.Location = new System.Drawing.Point(24, 0);
             this.購買対象_ラベル.Name = "購買対象_ラベル";
             this.購買対象_ラベル.Size = new System.Drawing.Size(57, 24);
-            cellStyle12.BackColor = System.Drawing.Color.Transparent;
-            cellStyle12.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
-            cellStyle12.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
-            this.購買対象_ラベル.Style = cellStyle12;
+            cellStyle14.BackColor = System.Drawing.Color.Transparent;
+            cellStyle14.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
+            cellStyle14.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
+            this.購買対象_ラベル.Style = cellStyle14;
             this.購買対象_ラベル.TabIndex = 3;
             this.購買対象_ラベル.TabStop = false;
             this.購買対象_ラベル.Value = "購指定";
@@ -128,10 +136,10 @@
             this.部品コード_ラベル.Location = new System.Drawing.Point(81, 0);
             this.部品コード_ラベル.Name = "部品コード_ラベル";
             this.部品コード_ラベル.Size = new System.Drawing.Size(82, 24);
-            cellStyle13.BackColor = System.Drawing.Color.Transparent;
-            cellStyle13.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
-            cellStyle13.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
-            this.部品コード_ラベル.Style = cellStyle13;
+            cellStyle15.BackColor = System.Drawing.Color.Transparent;
+            cellStyle15.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
+            cellStyle15.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
+            this.部品コード_ラベル.Style = cellStyle15;
             this.部品コード_ラベル.TabIndex = 4;
             this.部品コード_ラベル.TabStop = false;
             this.部品コード_ラベル.Value = "部品コード";
@@ -142,10 +150,10 @@
             this.部品参照_ラベル.Location = new System.Drawing.Point(163, 0);
             this.部品参照_ラベル.Name = "部品参照_ラベル";
             this.部品参照_ラベル.Size = new System.Drawing.Size(24, 24);
-            cellStyle14.BackColor = System.Drawing.Color.Transparent;
-            cellStyle14.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
-            cellStyle14.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
-            this.部品参照_ラベル.Style = cellStyle14;
+            cellStyle16.BackColor = System.Drawing.Color.Transparent;
+            cellStyle16.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
+            cellStyle16.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
+            this.部品参照_ラベル.Style = cellStyle16;
             this.部品参照_ラベル.TabIndex = 5;
             this.部品参照_ラベル.TabStop = false;
             this.部品参照_ラベル.Value = "参";
@@ -156,10 +164,10 @@
             this.廃止_ラベル.Location = new System.Drawing.Point(187, 0);
             this.廃止_ラベル.Name = "廃止_ラベル";
             this.廃止_ラベル.Size = new System.Drawing.Size(24, 24);
-            cellStyle15.BackColor = System.Drawing.Color.Transparent;
-            cellStyle15.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
-            cellStyle15.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
-            this.廃止_ラベル.Style = cellStyle15;
+            cellStyle17.BackColor = System.Drawing.Color.Transparent;
+            cellStyle17.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
+            cellStyle17.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
+            this.廃止_ラベル.Style = cellStyle17;
             this.廃止_ラベル.TabIndex = 6;
             this.廃止_ラベル.TabStop = false;
             this.廃止_ラベル.Value = "廃";
@@ -170,10 +178,10 @@
             this.分類記号_ラベル.Location = new System.Drawing.Point(211, 0);
             this.分類記号_ラベル.Name = "分類記号_ラベル";
             this.分類記号_ラベル.Size = new System.Drawing.Size(24, 24);
-            cellStyle16.BackColor = System.Drawing.Color.Transparent;
-            cellStyle16.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
-            cellStyle16.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
-            this.分類記号_ラベル.Style = cellStyle16;
+            cellStyle18.BackColor = System.Drawing.Color.Transparent;
+            cellStyle18.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
+            cellStyle18.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
+            this.分類記号_ラベル.Style = cellStyle18;
             this.分類記号_ラベル.TabIndex = 7;
             this.分類記号_ラベル.TabStop = false;
             this.分類記号_ラベル.Value = "類";
@@ -184,10 +192,10 @@
             this.型番_ラベル.Location = new System.Drawing.Point(235, 0);
             this.型番_ラベル.Name = "型番_ラベル";
             this.型番_ラベル.Size = new System.Drawing.Size(272, 24);
-            cellStyle17.BackColor = System.Drawing.Color.Transparent;
-            cellStyle17.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
-            cellStyle17.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
-            this.型番_ラベル.Style = cellStyle17;
+            cellStyle19.BackColor = System.Drawing.Color.Transparent;
+            cellStyle19.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
+            cellStyle19.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
+            this.型番_ラベル.Style = cellStyle19;
             this.型番_ラベル.TabIndex = 8;
             this.型番_ラベル.TabStop = false;
             this.型番_ラベル.Value = "型　番";
@@ -198,10 +206,10 @@
             this.メーカー名_ラベル.Location = new System.Drawing.Point(507, 0);
             this.メーカー名_ラベル.Name = "メーカー名_ラベル";
             this.メーカー名_ラベル.Size = new System.Drawing.Size(272, 24);
-            cellStyle18.BackColor = System.Drawing.Color.Transparent;
-            cellStyle18.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
-            cellStyle18.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
-            this.メーカー名_ラベル.Style = cellStyle18;
+            cellStyle20.BackColor = System.Drawing.Color.Transparent;
+            cellStyle20.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
+            cellStyle20.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
+            this.メーカー名_ラベル.Style = cellStyle20;
             this.メーカー名_ラベル.TabIndex = 9;
             this.メーカー名_ラベル.TabStop = false;
             this.メーカー名_ラベル.Value = "メーカー名";
@@ -212,10 +220,10 @@
             this.明細番号ボタン.Location = new System.Drawing.Point(0, 0);
             this.明細番号ボタン.Name = "明細番号ボタン";
             this.明細番号ボタン.Size = new System.Drawing.Size(24, 24);
-            cellStyle19.BackColor = System.Drawing.Color.Transparent;
-            cellStyle19.Font = new System.Drawing.Font("BIZ UDPゴシック", 7F);
-            cellStyle19.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
-            this.明細番号ボタン.Style = cellStyle19;
+            cellStyle21.BackColor = System.Drawing.Color.Transparent;
+            cellStyle21.Font = new System.Drawing.Font("BIZ UDPゴシック", 7F);
+            cellStyle21.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
+            this.明細番号ボタン.Style = cellStyle21;
             this.明細番号ボタン.TabIndex = 10;
             this.明細番号ボタン.TabStop = false;
             this.明細番号ボタン.Value = "No";
@@ -237,19 +245,18 @@
             this.明細番号.TabIndex = 0;
             this.明細番号.TabStop = false;
             // 
-            // 購買対象
+            // 購買対象表示
             // 
-            this.購買対象.DataField = "購買対象";
-            this.購買対象.Location = new System.Drawing.Point(58, 0);
-            this.購買対象.Name = "購買対象";
-            this.購買対象.Size = new System.Drawing.Size(23, 34);
+            this.購買対象表示.Location = new System.Drawing.Point(58, 0);
+            this.購買対象表示.Name = "購買対象表示";
+            this.購買対象表示.Size = new System.Drawing.Size(23, 34);
             border2.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
             cellStyle2.Border = border2;
             cellStyle2.Font = new System.Drawing.Font("BIZ UDPゴシック", 9.75F);
             cellStyle2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.購買対象.Style = cellStyle2;
-            this.購買対象.TabIndex = 2;
-            this.購買対象.TabStop = false;
+            this.購買対象表示.Style = cellStyle2;
+            this.購買対象表示.TabIndex = 2;
+            this.購買対象表示.TabStop = false;
             // 
             // 購買指定ボタン
             // 
@@ -279,18 +286,18 @@
             this.部品コード.Style = cellStyle4;
             this.部品コード.TabIndex = 1;
             // 
-            // 廃止
+            // 廃止表示
             // 
-            this.廃止.DataField = "廃止";
-            this.廃止.Location = new System.Drawing.Point(187, 0);
-            this.廃止.Name = "廃止";
-            this.廃止.Size = new System.Drawing.Size(24, 34);
+            this.廃止表示.DataField = "廃止";
+            this.廃止表示.Location = new System.Drawing.Point(187, 0);
+            this.廃止表示.Name = "廃止表示";
+            this.廃止表示.Size = new System.Drawing.Size(24, 34);
             border4.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
             cellStyle5.Border = border4;
             cellStyle5.Font = new System.Drawing.Font("BIZ UDPゴシック", 9.75F);
             cellStyle5.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.廃止.Style = cellStyle5;
-            this.廃止.TabIndex = 2;
+            this.廃止表示.Style = cellStyle5;
+            this.廃止表示.TabIndex = 2;
             // 
             // 部品参照ボタン
             // 
@@ -380,6 +387,35 @@
             this.部品集合版数.TabStop = false;
             this.部品集合版数.Visible = false;
             // 
+            // 購買対象
+            // 
+            this.購買対象.DataField = "購買対象";
+            this.購買対象.Location = new System.Drawing.Point(378, 0);
+            this.購買対象.Name = "購買対象";
+            this.購買対象.Size = new System.Drawing.Size(23, 34);
+            border10.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
+            cellStyle12.Border = border10;
+            cellStyle12.Font = new System.Drawing.Font("BIZ UDPゴシック", 9.75F);
+            cellStyle12.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.購買対象.Style = cellStyle12;
+            this.購買対象.TabIndex = 8;
+            this.購買対象.TabStop = false;
+            this.購買対象.Visible = false;
+            // 
+            // 廃止
+            // 
+            this.廃止.DataField = "廃止";
+            this.廃止.Location = new System.Drawing.Point(411, 0);
+            this.廃止.Name = "廃止";
+            this.廃止.Size = new System.Drawing.Size(24, 34);
+            border11.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
+            cellStyle13.Border = border11;
+            cellStyle13.Font = new System.Drawing.Font("BIZ UDPゴシック", 9.75F);
+            cellStyle13.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.廃止.Style = cellStyle13;
+            this.廃止.TabIndex = 9;
+            this.廃止.Visible = false;
+            // 
             // 部品購買設定明細テンプレート
             // 
             this.ColumnHeaders.AddRange(new GrapeCity.Win.MultiRow.ColumnHeaderSection[] {
@@ -401,16 +437,18 @@
         private GrapeCity.Win.MultiRow.HeaderCell 型番_ラベル;
         private GrapeCity.Win.MultiRow.HeaderCell メーカー名_ラベル;
         private GrapeCity.Win.MultiRow.RowHeaderCell 明細番号;
-        private GrapeCity.Win.MultiRow.TextBoxCell 購買対象;
+        private GrapeCity.Win.MultiRow.TextBoxCell 購買対象表示;
         private GrapeCity.Win.MultiRow.ButtonCell 購買指定ボタン;
         private GrapeCity.Win.MultiRow.HeaderCell 明細番号ボタン;
         private GrapeCity.Win.MultiRow.TextBoxCell 部品コード;
-        private GrapeCity.Win.MultiRow.TextBoxCell 廃止;
+        private GrapeCity.Win.MultiRow.TextBoxCell 廃止表示;
         private GrapeCity.Win.MultiRow.ButtonCell 部品参照ボタン;
         private GrapeCity.Win.MultiRow.TextBoxCell 分類記号;
         private GrapeCity.Win.MultiRow.TextBoxCell 型番;
         private GrapeCity.Win.MultiRow.TextBoxCell メーカー名;
         private GrapeCity.Win.MultiRow.TextBoxCell 部品集合コード;
         private GrapeCity.Win.MultiRow.TextBoxCell 部品集合版数;
+        private GrapeCity.Win.MultiRow.TextBoxCell 購買対象;
+        private GrapeCity.Win.MultiRow.TextBoxCell 廃止;
     }
 }

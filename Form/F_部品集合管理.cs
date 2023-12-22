@@ -653,9 +653,7 @@ namespace u_net
                     paoRep.Write("削除", targetRow["削除"].ToString() != "" ? targetRow["削除"].ToString() : " ", i + 1);
                     paoRep.Write("横罫線", i + 1);
 
-
                     CurRow++;
-
                 }
 
                 page++;
@@ -672,6 +670,144 @@ namespace u_net
             IReport paoRep = ReportCreator.GetPreview();
 
             paoRep.LoadDefFile("../../../Reports/部品集合明細一覧.prepd");
+
+            Connect();
+
+            //  DataRowCollection report;
+            DataTable dt = new DataTable();
+            string sqlQuery = "SELECT * FROM V部品集合明細一覧 WHERE 1=1 and 部品集合コード='00000002' " + filterString;
+
+            using (SqlCommand command = new SqlCommand(sqlQuery, cn))
+            {
+                using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+                {                    
+                    adapter.Fill(dt);
+                    //int cnt = dt.Rows.Count;
+                }
+            }
+
+            //最大行数
+            int maxRow = 40;
+            //現在の行
+            int CurRow = 0;
+            //行数
+            int RowCount = maxRow;
+
+            if (dt.Rows.Count > 0)
+            {
+                RowCount = dt.Rows.Count;
+            }
+
+            int page = 1;
+            double maxPage = Math.Ceiling((double)RowCount / maxRow);
+
+            DateTime now = DateTime.Now;
+
+            int lenB;
+            int i = 0;
+            //描画すべき行がある限りページを増やす
+            while (RowCount > 0)
+            {
+                RowCount -= maxRow;
+                paoRep.PageStart();                                
+
+                //フッダー
+
+                paoRep.Write("出力日時", now.ToString("yyyy年M月d日"));
+                paoRep.Write("ページ", (page + "/" + maxPage + " ページ").ToString());
+
+
+                // 1つ目のループ: GP をグループヘッダーとしてグループ化
+                var distinctGPs = dt.AsEnumerable().Select(row => row["GP"].ToString()).Distinct();
+
+                //GPヘッダー明細                
+                   // for (var i = 0; i < maxRow; i++)
+                foreach (var gp in distinctGPs)
+                {
+                    if (CurRow >= dt.Rows.Count) break;
+
+                    paoRep.Write("集合分類ラベル", "集合分類", i + 1);
+                    paoRep.Write("GPラベル", gp.ToString() != "" ? gp.ToString() : " ", i + 1);
+                   
+                    //i++;
+
+
+                    // 2つ目のループ: 部品集合コードを第2のグループヘッダーとしてグループ化
+                    var distinctPartSets = dt.AsEnumerable().Where(row => row["GP"].ToString() == gp)
+                                                             .Select(row => row["部品集合コード"].ToString()).Distinct();
+                    
+
+                    foreach (var partSet in distinctPartSets)
+                    {
+                        DataRow syugoudRow = dt.AsEnumerable()
+                        .FirstOrDefault(row => row["部品集合コード"].ToString() == partSet);
+
+                        paoRep.Write("部品集合コードラベル", "部品集合コード", i + 1);
+                        paoRep.Write("第ラベル", "部品集合コード", i + 1);
+                        paoRep.Write("第ラベル", "（第", i + 1);
+                        paoRep.Write("版ラベル", "版）", i + 1);
+                        paoRep.Write("集合名ラベル", "集合名", i + 1);
+                        paoRep.Write("承認ラベル", "承認", i + 1);
+
+                        paoRep.Write("部品集合コード", syugoudRow["部品集合コード"].ToString() != "" ? syugoudRow["部品集合コード"].ToString() : " ", i + 1);
+                        paoRep.Write("部品集合版数", syugoudRow["部品集合版数"].ToString() != "" ? syugoudRow["部品集合版数"].ToString() : " ", i + 1);
+                        paoRep.Write("集合名", syugoudRow["集合名"].ToString() != "" ? syugoudRow["集合名"].ToString() : " ", i + 1);
+                        paoRep.Write("承認", syugoudRow["承認"].ToString() != "" ? syugoudRow["承認"].ToString() : " ", i + 1);
+                        paoRep.Write("横罫線1", i + 1);
+                        paoRep.Write("横罫線2", i + 1);
+                       
+                        //i++;
+
+                        paoRep.Write("Noラベル", "No", i + 1);
+                        paoRep.Write("購ラベル", "購", i + 1);
+                        paoRep.Write("部品コードラベル", "部品コード", i + 1);
+                        paoRep.Write("廃ラベル", "廃", i + 1);
+                        paoRep.Write("分類ラベル", "分類", i + 1);
+                        paoRep.Write("型番ラベル", "型番", i + 1);
+                        paoRep.Write("メーカー名ラベル", "メーカー名", i + 1);
+
+                       // i++;
+
+                        // 3つ目のループ: 同一の部品集合コードに関連する明細行を処理
+                        var meisaiRow = dt.AsEnumerable().Where(row => row["GP"].ToString() == gp && row["部品集合コード"].ToString() == partSet).ToList();
+
+
+                        //for (int i = 0; i < targetRow.Count; i++)
+                        foreach (DataRow targetRow in meisaiRow)                            
+                        {
+                            //DataRow targetRow = dt.Rows[CurRow];
+
+                            //paoRep.Write("明細番号", (CurRow + 1).ToString(), i + 1);  //連番にしたい時はこちら。明細番号は歯抜けがあるので
+                            paoRep.Write("明細番号", targetRow["明細番号"].ToString() != "" ? targetRow["明細番号"].ToString() : " ", i + 1);
+                            paoRep.Write("購買対象", targetRow["購買対象"].ToString() != "" ? targetRow["購買対象"].ToString() : " ", i + 1);
+                            paoRep.Write("部品コード", targetRow["部品コード"].ToString() != "" ? targetRow["部品コード"].ToString() : " ", i + 1);
+                            paoRep.Write("廃止", targetRow["廃止"].ToString() != "" ? targetRow["廃止"].ToString() : " ", i + 1);
+                            paoRep.Write("部品分類", targetRow["部品分類"].ToString() != "" ? targetRow["部品分類"].ToString() : " ", i + 1);
+                            paoRep.Write("型番", targetRow["型番"].ToString() != "" ? targetRow["型番"].ToString() : " ", i + 1);
+                            paoRep.Write("メーカー名", targetRow["メーカー名"].ToString() != "" ? targetRow["メーカー名"].ToString() : " ", i + 1);
+
+
+                            paoRep.Write("横罫線3", i + 1);
+                            paoRep.Write("横罫線4", i + 1);
+                            paoRep.Write("横罫線5", i + 1);
+                            paoRep.Write("横罫線6", i + 1);
+                            paoRep.Write("横罫線7", i + 1);
+                            paoRep.Write("横罫線8", i + 1);
+                            paoRep.Write("横罫線9", i + 1);
+
+                            i++;
+                            CurRow++;
+                        }
+                    }
+                }
+
+                page++;
+
+                paoRep.PageEnd();
+
+            }
+            paoRep.Output();
+
         }
 
     }
