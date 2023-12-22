@@ -397,7 +397,7 @@ namespace u_net
                 //frmSub.OrderBy = frmSub.OrderBy;
                 //frmSub.OrderByOn = true;
 
-                string query1 = "SELECT TOP(1)受注コード, 受注版数 AS 版, 受注日, 出荷予定日, 受注納期, 注文番号, 顧客名, 自社担当者名, 受注金額 " + 
+                string query1 = "SELECT 受注コード, 受注版数 AS 版, 受注日, 出荷予定日, 受注納期, 注文番号, 顧客名, 自社担当者名, 受注金額 " + 
                                            " , CASE WHEN 確定日時 IS NOT NULL THEN '■' ELSE '' END AS 確定 " + 
                                            " , CASE WHEN 承認者コード IS NOT NULL THEN '■' ELSE '' END AS 承認 " + 
                                            " , CASE WHEN 出荷完了日 IS NOT NULL THEN '■' ELSE '' END AS 出荷 " + 
@@ -416,26 +416,6 @@ namespace u_net
 
                 Connect();
                 DataGridUtils.SetDataGridView(cn, query2, this.dataGridView1);
-
-                ////DataTable dt = new DataTable();
-                ////using (SqlCommand command = new SqlCommand(query2, cn))
-                ////{
-                ////    using (SqlDataAdapter adapter = new SqlDataAdapter(command))
-                ////    {
-                ////        adapter.Fill(dt);
-                ////    }
-                ////}
-
-                ////if (dt.Rows.Count <= 0)
-                ////{
-                ////    //appEXT = true;
-                ////    this.dataGridView1.DataSource = null;
-                ////}
-                ////else
-                ////{
-                ////    this.dataGridView1.DataSource = dt;
-                ////    //appEXT = false;
-                ////}
 
                 MyApi myapi = new MyApi();
                 int xSize, ySize, intpixel, twipperdot;
