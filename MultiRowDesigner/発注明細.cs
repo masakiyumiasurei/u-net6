@@ -914,7 +914,7 @@ namespace MultiRowDesigner
                     if (gcMultiRow.Rows[e.RowIndex].IsNewRow == true) return;
 
                     // 削除確認
-                    if (MessageBox.Show("明細行(" + (e.RowIndex + 1) + ")を削除しますか？", "承認コマンド", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    if (MessageBox.Show("明細行(" + (e.RowIndex + 1) + ")を削除しますか？", "明細削除", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
                         gcMultiRow.Rows.RemoveAt(e.RowIndex);
                         parentform.ChangedData(true);

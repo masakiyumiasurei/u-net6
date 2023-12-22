@@ -49,8 +49,8 @@ namespace u_net
         {
             get
             {
-                
-                return string.IsNullOrEmpty(dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value?.ToString()) ? ""                    
+
+                return string.IsNullOrEmpty(dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value?.ToString()) ? ""
                     : dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value?.ToString();
             }
         }
@@ -254,6 +254,8 @@ namespace u_net
                 //    filter = filter.Substring(0, filter.Length - 5); // 最後の " AND " を削除
                 //}
 
+                //レポート用
+                filterString = filter;
                 string query = "SELECT * FROM V部品集合管理 WHERE 1=1 " + filter + " ORDER BY 部品集合コード DESC ";
 
                 Connect();
@@ -495,7 +497,7 @@ namespace u_net
             //{
             //    MessageBox.Show("KeyDown - " + ex.Message);
             //}
-        }     
+        }
 
         private bool ascending = true;
         private void dataGridView1_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -520,20 +522,7 @@ namespace u_net
                 "保守コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        private void コマンド印刷_Click(object sender, EventArgs e)
-        {
-            IReport paoRep = ReportCreator.GetPreview();
 
-            paoRep.LoadDefFile("../../../Reports/部品集合管理.prepd");
-
-        }
-
-        private void コマンド印刷明細_Click(object sender, EventArgs e)
-        {
-            IReport paoRep = ReportCreator.GetPreview();
-
-            paoRep.LoadDefFile("../../../Reports/部品集合明細一覧.prepd");
-        }
 
         private void コマンド部品購買設定_Click(object sender, EventArgs e)
         {
@@ -575,5 +564,117 @@ namespace u_net
             LocalSetting ls = new LocalSetting();
             ls.SavePlace(CommonConstants.LoginUserCode, this);
         }
+
+        private void コマンド印刷_Click(object sender, EventArgs e)
+        {
+            IReport paoRep = ReportCreator.GetPreview();
+            paoRep.LoadDefFile("../../../Reports/部品集合一覧.prepd");
+
+            Connect();
+
+            DataRowCollection report;
+
+            string sqlQuery = "SELECT * FROM V部品集合管理 WHERE 1=1 " + filterString;
+
+            using (SqlCommand command = new SqlCommand(sqlQuery, cn))
+            {
+                using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+                {
+                    DataSet dataSet = new DataSet();
+
+                    adapter.Fill(dataSet);
+
+                    report = dataSet.Tables[0].Rows;
+                }
+            }
+
+            //最大行数
+            int maxRow = 37;
+            //現在の行
+            int CurRow = 0;
+            //行数
+            int RowCount = maxRow;
+
+            if (report.Count > 0)
+            {
+                RowCount = report.Count;
+            }
+
+            int page = 1;
+            double maxPage = Math.Ceiling((double)RowCount / maxRow);
+
+            DateTime now = DateTime.Now;
+
+            int lenB;
+
+            //描画すべき行がある限りページを増やす
+            while (RowCount > 0)
+            {
+                RowCount -= maxRow;
+
+                paoRep.PageStart();
+
+                //ヘッダー
+
+                //paoRep.Write("ファックス番号", 仕入先ファックス番号.Text != "" ? 仕入先ファックス番号.Text : " ");
+                //paoRep.Write("担当者名", 仕入先担当者名.Text != "" ? 仕入先担当者名.Text : " ");
+                //paoRep.Write("購買コード", 購買コード.Text != "" ? 購買コード.Text : " ");
+                //paoRep.Write("シリーズ名", シリーズ名.Text != "" ? シリーズ名.Text : " ");
+                //paoRep.Write("ロット番号", ロット番号.Text != "" ? ロット番号.Text : " ");
+                //paoRep.Write("無効日時", 無効日時.Text != "" ? 無効日時.Text : " ");
+                //paoRep.Write("承認者名", 承認者名.Text != "" ? 承認者名.Text : " ");
+                //paoRep.Write("発注者名", 発注者名.Text != "" ? 発注者名.Text : " ");
+                //paoRep.Write("無効日時表示", 無効日時.Text != "" ? "＜この注文書は無効です。＞" : " ");
+                //paoRep.Write("発注版数表示", int.TryParse(発注版数.Text, out int version) && version > 1 ?
+                //    "（第 " + 発注版数.Text + " 版）" : " ");
+
+
+
+                //フッダー
+
+                paoRep.Write("出力日時", now.ToString("yyyy年M月d日"));
+                paoRep.Write("ページ", (page + "/" + maxPage + " ページ").ToString());
+
+                //明細
+                for (var i = 0; i < maxRow; i++)
+                {
+                    if (CurRow >= report.Count) break;
+
+                    DataRow targetRow = report[CurRow];
+
+                    //paoRep.Write("明細番号", (CurRow + 1).ToString(), i + 1);  //連番にしたい時はこちら。明細番号は歯抜けがあるので
+                    paoRep.Write("部品集合コード", targetRow["部品集合コード"].ToString() != "" ? targetRow["部品集合コード"].ToString() : " ", i + 1);
+                    paoRep.Write("版数", targetRow["部品集合版数"].ToString() != "" ? $"({targetRow["部品集合版数"].ToString()})" : " ", i + 1);
+                    paoRep.Write("集合名", targetRow["集合名"].ToString() != "" ? targetRow["集合名"].ToString() : " ", i + 1);
+                    paoRep.Write("更新日時", targetRow["更新日時"].ToString() != "" ? targetRow["更新日時"].ToString() : " ", i + 1);
+                    paoRep.Write("更新者名", targetRow["更新者名"].ToString() != "" ? targetRow["更新者名"].ToString() : " ", i + 1);
+                    paoRep.Write("確定", targetRow["確定"].ToString() != "" ? targetRow["確定"].ToString() : " ", i + 1);
+                    paoRep.Write("承認", targetRow["承認"].ToString() != "" ? targetRow["承認"].ToString() : " ", i + 1);
+                    paoRep.Write("削除", targetRow["削除"].ToString() != "" ? targetRow["削除"].ToString() : " ", i + 1);
+
+                   // paoRep.Write("Line13", i + 1);
+                    paoRep.z_Objects.SetObject("Line13", i + 1);
+                    paoRep.z_Objects.z_Line.X = 15;
+                    paoRep.z_Objects.z_Line.EndX=194;
+                    CurRow++;
+
+                }
+
+                page++;
+
+                paoRep.PageEnd();
+
+            }
+            paoRep.Output();
+
+        }
+
+        private void コマンド印刷明細_Click(object sender, EventArgs e)
+        {
+            IReport paoRep = ReportCreator.GetPreview();
+
+            paoRep.LoadDefFile("../../../Reports/部品集合明細一覧.prepd");
+        }
+
     }
 }

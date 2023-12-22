@@ -915,7 +915,7 @@ namespace u_net
             return true;
         }
 
-        private void ChangedData(bool isChanged)
+        public void ChangedData(bool isChanged)
         {
             try
             {
