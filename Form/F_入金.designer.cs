@@ -29,6 +29,7 @@ namespace u_net
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             コマンド終了 = new Button();
             コマンド登録 = new Button();
             panel1 = new Panel();
@@ -103,6 +104,7 @@ namespace u_net
             領収コード = new TextBox();
             請求コード = new TextBox();
             入金明細1 = new MultiRowDesigner.入金明細();
+            toolTip1 = new ToolTip(components);
             panel1.SuspendLayout();
             statusStrip1.SuspendLayout();
             SuspendLayout();
@@ -191,6 +193,7 @@ namespace u_net
             コマンド領収書.TabIndex = 1009;
             コマンド領収書.TabStop = false;
             コマンド領収書.Text = "領収書";
+            toolTip1.SetToolTip(コマンド領収書, "領収書の印刷プレビュー");
             コマンド領収書.UseVisualStyleBackColor = true;
             コマンド領収書.Click += コマンド部品表_Click;
             // 
@@ -1003,6 +1006,7 @@ namespace u_net
         private TextBox 領収コード;
         private TextBox 請求コード;
         private MultiRowDesigner.入金明細 入金明細1;
+        private ToolTip toolTip1;
     }
 }
 
