@@ -496,6 +496,7 @@
             this.ユニット材料費.DataField = "ユニット材料費";
             this.ユニット材料費.Location = new System.Drawing.Point(749, 2);
             this.ユニット材料費.Name = "ユニット材料費";
+            this.ユニット材料費.ReadOnly = true;
             this.ユニット材料費.Size = new System.Drawing.Size(88, 17);
             border9.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
             cellStyle9.Border = border9;

@@ -29,6 +29,7 @@ namespace u_net
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             コマンド終了 = new Button();
             コマンド登録 = new Button();
             panel1 = new Panel();
@@ -110,6 +111,7 @@ namespace u_net
             廃止 = new CheckBox();
             label5 = new Label();
             ユニット明細参照1 = new MultiRowDesigner.ユニット明細参照();
+            toolTip1 = new ToolTip(components);
             panel1.SuspendLayout();
             statusStrip1.SuspendLayout();
             SuspendLayout();
@@ -125,6 +127,7 @@ namespace u_net
             コマンド終了.TabIndex = 1021;
             コマンド終了.TabStop = false;
             コマンド終了.Text = "終了";
+            toolTip1.SetToolTip(コマンド終了, "終了");
             コマンド終了.UseVisualStyleBackColor = true;
             コマンド終了.Click += コマンド終了_Click;
             // 
@@ -141,6 +144,7 @@ namespace u_net
             コマンド登録.TabIndex = 1020;
             コマンド登録.TabStop = false;
             コマンド登録.Text = "登録";
+            toolTip1.SetToolTip(コマンド登録, "ユニットデータの確定");
             コマンド登録.UseVisualStyleBackColor = true;
             コマンド登録.Click += コマンド登録_Click;
             // 
@@ -168,6 +172,7 @@ namespace u_net
             コマンド新規.TabIndex = 1002;
             コマンド新規.TabStop = false;
             コマンド新規.Text = "新規";
+            toolTip1.SetToolTip(コマンド新規, "ユニットデータの新規作成");
             コマンド新規.UseVisualStyleBackColor = false;
             コマンド新規.Click += コマンド新規_Click;
             // 
@@ -183,6 +188,7 @@ namespace u_net
             コマンド部品定数表.TabIndex = 1010;
             コマンド部品定数表.TabStop = false;
             コマンド部品定数表.Text = "部品定数表";
+            toolTip1.SetToolTip(コマンド部品定数表, "部品定数表のプレビュー");
             コマンド部品定数表.UseVisualStyleBackColor = true;
             コマンド部品定数表.Click += コマンド部品定数表_Click;
             // 
@@ -199,6 +205,7 @@ namespace u_net
             コマンド部品表.TabIndex = 1009;
             コマンド部品表.TabStop = false;
             コマンド部品表.Text = "部品表";
+            toolTip1.SetToolTip(コマンド部品表, "部品表のプレビュー");
             コマンド部品表.UseVisualStyleBackColor = true;
             コマンド部品表.Click += コマンド部品表_Click;
             // 
@@ -214,6 +221,7 @@ namespace u_net
             コマンド部品.TabIndex = 1008;
             コマンド部品.TabStop = false;
             コマンド部品.Text = "部品参照";
+            toolTip1.SetToolTip(コマンド部品, "選択明細行の部品参照");
             コマンド部品.UseVisualStyleBackColor = true;
             コマンド部品.Click += コマンド部品_Click;
             // 
@@ -246,6 +254,7 @@ namespace u_net
             コマンド承認.TabIndex = 1006;
             コマンド承認.TabStop = false;
             コマンド承認.Text = "承認";
+            toolTip1.SetToolTip(コマンド承認, "ユニットデータの承認");
             コマンド承認.UseVisualStyleBackColor = true;
             コマンド承認.Click += コマンド承認_Click;
             // 
@@ -262,6 +271,7 @@ namespace u_net
             コマンド削除.TabIndex = 1005;
             コマンド削除.TabStop = false;
             コマンド削除.Text = "削除";
+            toolTip1.SetToolTip(コマンド削除, "ユニットデータの削除");
             コマンド削除.UseVisualStyleBackColor = true;
             コマンド削除.Click += コマンド削除_Click;
             // 
@@ -278,6 +288,7 @@ namespace u_net
             コマンド複写.TabIndex = 1004;
             コマンド複写.TabStop = false;
             コマンド複写.Text = "複写";
+            toolTip1.SetToolTip(コマンド複写, "ユニットデータの複写");
             コマンド複写.UseVisualStyleBackColor = true;
             コマンド複写.Click += コマンド複写_Click;
             // 
@@ -293,6 +304,7 @@ namespace u_net
             コマンド読込.TabIndex = 1003;
             コマンド読込.TabStop = false;
             コマンド読込.Text = "読込";
+            toolTip1.SetToolTip(コマンド読込, "ユニットデータの読込");
             コマンド読込.UseVisualStyleBackColor = true;
             コマンド読込.Click += コマンド読込_Click;
             // 
@@ -438,6 +450,7 @@ namespace u_net
             コマンドツール.TabIndex = 1011;
             コマンドツール.TabStop = false;
             コマンドツール.Text = "ツール";
+            toolTip1.SetToolTip(コマンドツール, "各種ツールの使用");
             コマンドツール.UseVisualStyleBackColor = true;
             コマンドツール.Click += コマンドツール_Click;
             // 
@@ -1101,6 +1114,7 @@ namespace u_net
         private CheckBox 廃止;
         private Label label5;
         private MultiRowDesigner.ユニット明細参照 ユニット明細参照1;
+        private ToolTip toolTip1;
     }
 }
 

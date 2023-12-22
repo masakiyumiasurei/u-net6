@@ -29,6 +29,7 @@ namespace u_net
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(F_社員));
             コマンド終了 = new Button();
             コマンド登録 = new Button();
@@ -160,6 +161,7 @@ namespace u_net
             statusStrip1 = new StatusStrip();
             toolStripStatusLabel1 = new ToolStripStatusLabel();
             toolStripStatusLabel2 = new ToolStripStatusLabel();
+            toolTip1 = new ToolTip(components);
             panel1.SuspendLayout();
             tabControl1.SuspendLayout();
             ページ55.SuspendLayout();
@@ -586,6 +588,7 @@ namespace u_net
             Email作成ボタン.Name = "Email作成ボタン";
             Email作成ボタン.Size = new Size(35, 20);
             Email作成ボタン.TabIndex = 257;
+            toolTip1.SetToolTip(Email作成ボタン, "E-mailを作成します");
             Email作成ボタン.UseVisualStyleBackColor = true;
             // 
             // 削除日時
@@ -735,6 +738,7 @@ namespace u_net
             退社年月日選択ボタン.Size = new Size(21, 20);
             退社年月日選択ボタン.TabIndex = 246;
             退社年月日選択ボタン.Text = "▼";
+            toolTip1.SetToolTip(退社年月日選択ボタン, "カレンダーから日付を選択");
             退社年月日選択ボタン.UseVisualStyleBackColor = true;
             退社年月日選択ボタン.Click += 退社年月日選択ボタン_Click;
             // 
@@ -745,6 +749,7 @@ namespace u_net
             入社年月日選択ボタン.Size = new Size(21, 20);
             入社年月日選択ボタン.TabIndex = 245;
             入社年月日選択ボタン.Text = "▼";
+            toolTip1.SetToolTip(入社年月日選択ボタン, "カレンダーから日付を選択");
             入社年月日選択ボタン.UseVisualStyleBackColor = true;
             入社年月日選択ボタン.Click += 入社年月日選択ボタン_Click;
             // 
@@ -1942,6 +1947,7 @@ namespace u_net
         private StatusStrip statusStrip1;
         private ToolStripStatusLabel toolStripStatusLabel1;
         private ToolStripStatusLabel toolStripStatusLabel2;
+        private ToolTip toolTip1;
     }
 }
 

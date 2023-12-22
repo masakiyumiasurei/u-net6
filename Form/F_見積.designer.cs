@@ -147,6 +147,7 @@ namespace u_net
             label32 = new Label();
             見積コード = new TextBox();
             見積明細1 = new MultiRowDesigner.見積明細();
+            toolTip1 = new ToolTip(components);
             panel1.SuspendLayout();
             statusStrip1.SuspendLayout();
             SuspendLayout();
@@ -209,6 +210,7 @@ namespace u_net
             文書グループ登録ボタン.Size = new Size(70, 25);
             文書グループ登録ボタン.TabIndex = 6;
             文書グループ登録ボタン.Text = "リンク";
+            toolTip1.SetToolTip(文書グループ登録ボタン, "文書グループの登録");
             文書グループ登録ボタン.UseVisualStyleBackColor = true;
             // 
             // button
@@ -234,6 +236,7 @@ namespace u_net
             コマンド送信.Size = new Size(70, 25);
             コマンド送信.TabIndex = 8;
             コマンド送信.Text = "送信";
+            toolTip1.SetToolTip(コマンド送信, "見積書のファックス送信");
             コマンド送信.UseVisualStyleBackColor = true;
             // 
             // コマンド見積書
@@ -247,6 +250,7 @@ namespace u_net
             コマンド見積書.Size = new Size(70, 25);
             コマンド見積書.TabIndex = 7;
             コマンド見積書.Text = "見積書";
+            toolTip1.SetToolTip(コマンド見積書, "見積書プレビュー");
             コマンド見積書.UseVisualStyleBackColor = true;
             // 
             // コマンド確定
@@ -612,6 +616,7 @@ namespace u_net
             見積版数.Name = "見積版数";
             見積版数.Size = new Size(60, 21);
             見積版数.TabIndex = 1;
+            toolTip1.SetToolTip(見積版数, "版数");
             // 
             // 見積日選択ボタン
             // 
@@ -951,6 +956,7 @@ namespace u_net
             納入場所.Name = "納入場所";
             納入場所.Size = new Size(261, 21);
             納入場所.TabIndex = 14;
+            toolTip1.SetToolTip(納入場所, "納入場所");
             // 
             // ファックス番号
             // 
@@ -963,6 +969,7 @@ namespace u_net
             ファックス番号.ReadOnly = true;
             ファックス番号.Size = new Size(242, 22);
             ファックス番号.TabIndex = 12;
+            toolTip1.SetToolTip(ファックス番号, "顧客のファックス番号");
             // 
             // 納期
             // 
@@ -975,6 +982,7 @@ namespace u_net
             納期.ReadOnly = true;
             納期.Size = new Size(242, 22);
             納期.TabIndex = 13;
+            toolTip1.SetToolTip(納期, "納期");
             // 
             // 担当者コード
             // 
@@ -989,6 +997,7 @@ namespace u_net
             担当者コード.Name = "担当者コード";
             担当者コード.Size = new Size(60, 22);
             担当者コード.TabIndex = 4;
+            toolTip1.SetToolTip(担当者コード, "担当者名");
             担当者コード.DrawItem += 担当者コード_DrawItem;
             担当者コード.SelectedIndexChanged += 担当者コード_SelectedIndexChanged;
             // 
@@ -1016,6 +1025,7 @@ namespace u_net
             支払条件.Name = "支払条件";
             支払条件.Size = new Size(261, 21);
             支払条件.TabIndex = 15;
+            toolTip1.SetToolTip(支払条件, "支払条件");
             // 
             // 有効期間
             // 
@@ -1029,6 +1039,7 @@ namespace u_net
             有効期間.Name = "有効期間";
             有効期間.Size = new Size(261, 21);
             有効期間.TabIndex = 16;
+            toolTip1.SetToolTip(有効期間, "有効期間");
             // 
             // label21
             // 
@@ -1057,6 +1068,7 @@ namespace u_net
             合計金額表示.Name = "合計金額表示";
             合計金額表示.Size = new Size(138, 21);
             合計金額表示.TabIndex = 18;
+            toolTip1.SetToolTip(合計金額表示, "合計金額の表示有無");
             // 
             // label6
             // 
@@ -1126,6 +1138,7 @@ namespace u_net
             備考.Name = "備考";
             備考.Size = new Size(804, 54);
             備考.TabIndex = 19;
+            toolTip1.SetToolTip(備考, "備考");
             // 
             // 電話番号
             // 
@@ -1138,6 +1151,7 @@ namespace u_net
             電話番号.ReadOnly = true;
             電話番号.Size = new Size(242, 22);
             電話番号.TabIndex = 11;
+            toolTip1.SetToolTip(電話番号, "顧客の電話番号");
             // 
             // label3
             // 
@@ -1166,6 +1180,7 @@ namespace u_net
             要承認.Name = "要承認";
             要承認.Size = new Size(171, 21);
             要承認.TabIndex = 17;
+            toolTip1.SetToolTip(要承認, "承認の要/不要");
             // 
             // label5
             // 
@@ -1742,6 +1757,7 @@ namespace u_net
         private Label label32;
         private TextBox 見積コード;
         private MultiRowDesigner.見積明細 見積明細1;
+        private ToolTip toolTip1;
     }
 }
 

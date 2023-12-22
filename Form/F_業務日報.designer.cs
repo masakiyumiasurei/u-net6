@@ -95,6 +95,9 @@ namespace u_net
             確定者名 = new TextBox();
             状況 = new ListBox();
             業務日報明細実績1 = new MultiRowDesigner.業務日報明細実績();
+            業務日報明細予定1 = new MultiRowDesigner.業務日報明細予定();
+            label1 = new Label();
+            本日の一言 = new TextBox();
             panel1.SuspendLayout();
             statusStrip1.SuspendLayout();
             SuspendLayout();
@@ -135,7 +138,7 @@ namespace u_net
             panel1.Location = new Point(0, 1);
             panel1.Margin = new Padding(4, 3, 4, 3);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1036, 42);
+            panel1.Size = new Size(889, 42);
             panel1.TabIndex = 81;
             // 
             // コマンド新規
@@ -570,10 +573,10 @@ namespace u_net
             // statusStrip1
             // 
             statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1 });
-            statusStrip1.Location = new Point(0, 568);
+            statusStrip1.Location = new Point(0, 620);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Padding = new Padding(1, 0, 19, 0);
-            statusStrip1.Size = new Size(1036, 22);
+            statusStrip1.Size = new Size(888, 22);
             statusStrip1.TabIndex = 10195;
             statusStrip1.Text = "statusStrip1";
             // 
@@ -757,15 +760,53 @@ namespace u_net
             // 業務日報明細実績1
             // 
             業務日報明細実績1.Location = new Point(9, 229);
-            業務日報明細実績1.Margin = new Padding(4, 4, 4, 4);
+            業務日報明細実績1.Margin = new Padding(4);
             業務日報明細実績1.Name = "業務日報明細実績1";
             業務日報明細実績1.Size = new Size(856, 221);
-            業務日報明細実績1.TabIndex = 21014;
+            業務日報明細実績1.TabIndex = 14;
+            // 
+            // 業務日報明細予定1
+            // 
+            業務日報明細予定1.Location = new Point(9, 450);
+            業務日報明細予定1.Margin = new Padding(4);
+            業務日報明細予定1.Name = "業務日報明細予定1";
+            業務日報明細予定1.Size = new Size(856, 79);
+            業務日報明細予定1.TabIndex = 15;
+            // 
+            // label1
+            // 
+            label1.AllowDrop = true;
+            label1.AutoEllipsis = true;
+            label1.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.ForeColor = SystemColors.ActiveCaptionText;
+            label1.ImageAlign = ContentAlignment.MiddleLeft;
+            label1.Location = new Point(9, 543);
+            label1.Margin = new Padding(0);
+            label1.Name = "label1";
+            label1.Size = new Size(100, 21);
+            label1.TabIndex = 16;
+            label1.Text = "本日の一言(&W)";
+            label1.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // 本日の一言
+            // 
+            本日の一言.BackColor = SystemColors.Window;
+            本日の一言.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            本日の一言.ImeMode = ImeMode.Hiragana;
+            本日の一言.Location = new Point(122, 543);
+            本日の一言.Margin = new Padding(3, 2, 3, 2);
+            本日の一言.Multiline = true;
+            本日の一言.Name = "本日の一言";
+            本日の一言.Size = new Size(743, 34);
+            本日の一言.TabIndex = 17;
             // 
             // F_業務日報
             // 
             BackColor = SystemColors.Control;
-            ClientSize = new Size(1036, 590);
+            ClientSize = new Size(888, 642);
+            Controls.Add(本日の一言);
+            Controls.Add(label1);
+            Controls.Add(業務日報明細予定1);
             Controls.Add(業務日報明細実績1);
             Controls.Add(状況);
             Controls.Add(確定者名);
@@ -889,6 +930,9 @@ namespace u_net
         private TextBox 確定者名;
         private ListBox 状況;
         private MultiRowDesigner.業務日報明細実績 業務日報明細実績1;
+        private MultiRowDesigner.業務日報明細予定 業務日報明細予定1;
+        private Label label1;
+        private TextBox 本日の一言;
     }
 }
 

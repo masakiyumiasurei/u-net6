@@ -11,7 +11,7 @@ using GrapeCity.Win.MultiRow;
 
 namespace MultiRowDesigner
 {
-    public partial class 業務日報明細実績 : UserControl
+    public partial class 業務日報明細予定 : UserControl
     {
         public GcMultiRow Detail
         {
@@ -21,7 +21,7 @@ namespace MultiRowDesigner
             }
         }
 
-        public 業務日報明細実績()
+        public 業務日報明細予定()
         {
             InitializeComponent();
         }
@@ -62,13 +62,10 @@ namespace MultiRowDesigner
                         switch (e.CellName)
                         {
                             case "項目コード":
-                                objForm.toolStripStatusLabel1.Text = "■実績項目を選択します。　■[space]キーでドロップダウンリストが表示されます。";
+                                objForm.toolStripStatusLabel1.Text = "■予定項目を選択します。　■[space]キーでドロップダウンリストが表示されます。";
                                 break;
-                            case "実績内容":
-                                objForm.toolStripStatusLabel1.Text = "■実績内容を入力または選択します。　■40文字まで入力可。（全角換算）　■[space]キーで過去の入力履歴を表示します。";
-                                break;
-                            case "変更操作コード":
-                                objForm.toolStripStatusLabel1.Text = "■改版時に入力します。変更操作を選択してください。";
+                            case "予定内容":
+                                objForm.toolStripStatusLabel1.Text = "■予定内容を入力または選択します。　■40文字まで入力可。（全角換算）　■[space]キーで過去の入力履歴を表示します。";
                                 break;
                             default:
                                 break;

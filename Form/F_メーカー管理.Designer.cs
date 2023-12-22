@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(F_メーカー管理));
             panel1 = new Panel();
             button4 = new Button();
@@ -47,6 +48,7 @@
             label2 = new Label();
             dataGridView1 = new DataGridView();
             panel2 = new Panel();
+            toolTip1 = new ToolTip(components);
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel2.SuspendLayout();
@@ -109,6 +111,7 @@
             コマンドメーカー.Size = new Size(70, 22);
             コマンドメーカー.TabIndex = 9;
             コマンドメーカー.Text = "メーカー";
+            toolTip1.SetToolTip(コマンドメーカー, "メーカーの参照");
             コマンドメーカー.UseVisualStyleBackColor = true;
             コマンドメーカー.Click += コマンドメーカー_Click;
             // 
@@ -123,6 +126,7 @@
             コマンドメール.Size = new Size(70, 22);
             コマンドメール.TabIndex = 8;
             コマンドメール.Text = "メール";
+            toolTip1.SetToolTip(コマンドメール, "Eメールの作成");
             コマンドメール.UseVisualStyleBackColor = true;
             コマンドメール.Click += コマンドメール_Click;
             // 
@@ -137,6 +141,7 @@
             コマンド印刷.Size = new Size(70, 22);
             コマンド印刷.TabIndex = 7;
             コマンド印刷.Text = "印刷";
+            toolTip1.SetToolTip(コマンド印刷, "印刷プレビュー");
             コマンド印刷.UseVisualStyleBackColor = true;
             コマンド印刷.Click += コマンド印刷_Click;
             // 
@@ -165,6 +170,7 @@
             コマンド全表示.Size = new Size(70, 22);
             コマンド全表示.TabIndex = 5;
             コマンド全表示.Text = "全表示";
+            toolTip1.SetToolTip(コマンド全表示, "全データの表示");
             コマンド全表示.UseVisualStyleBackColor = true;
             コマンド全表示.Click += コマンド全表示_Click;
             // 
@@ -179,6 +185,7 @@
             コマンド初期化.Size = new Size(70, 22);
             コマンド初期化.TabIndex = 4;
             コマンド初期化.Text = "初期化";
+            toolTip1.SetToolTip(コマンド初期化, "抽出条件の初期化");
             コマンド初期化.UseVisualStyleBackColor = true;
             コマンド初期化.Click += コマンド初期化_Click;
             // 
@@ -192,7 +199,9 @@
             コマンド検索.Name = "コマンド検索";
             コマンド検索.Size = new Size(70, 22);
             コマンド検索.TabIndex = 3;
+            コマンド検索.Tag = "抽出条件の初期化";
             コマンド検索.Text = "検索";
+            toolTip1.SetToolTip(コマンド検索, "コード検索");
             コマンド検索.UseVisualStyleBackColor = true;
             コマンド検索.Click += コマンド検索_Click;
             // 
@@ -207,6 +216,7 @@
             コマンド抽出.Size = new Size(70, 22);
             コマンド抽出.TabIndex = 2;
             コマンド抽出.Text = "抽出";
+            toolTip1.SetToolTip(コマンド抽出, "抽出設定");
             コマンド抽出.UseVisualStyleBackColor = true;
             コマンド抽出.Click += コマンド抽出_Click;
             // 
@@ -221,6 +231,7 @@
             コマンド更新.Size = new Size(70, 22);
             コマンド更新.TabIndex = 1;
             コマンド更新.Text = "更新";
+            toolTip1.SetToolTip(コマンド更新, "最新の情報に更新");
             コマンド更新.UseVisualStyleBackColor = true;
             コマンド更新.Click += コマンド更新_Click;
             // 
@@ -234,6 +245,7 @@
             コマンド終了.Size = new Size(70, 22);
             コマンド終了.TabIndex = 0;
             コマンド終了.Text = "終了";
+            toolTip1.SetToolTip(コマンド終了, "終了");
             コマンド終了.UseVisualStyleBackColor = true;
             コマンド終了.Click += コマンド終了_Click;
             // 
@@ -464,5 +476,6 @@
         //private newDataSetTableAdapters.Qメーカー管理TableAdapter qメーカー管理TableAdapter;
         private Panel panel2;
         private Button コマンド検索;
+        private ToolTip toolTip1;
     }
 }
