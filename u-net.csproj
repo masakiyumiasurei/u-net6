@@ -55,6 +55,10 @@
     <Compile Include="MultiRowDesigner\支払明細.Designer.cs" />
     <Compile Include="MultiRowDesigner\支払明細テンプレート.cs" />
     <Compile Include="MultiRowDesigner\支払明細テンプレート.Designer.cs" />
+    <Compile Include="MultiRowDesigner\業務日報明細予定.cs" />
+    <Compile Include="MultiRowDesigner\業務日報明細予定.Designer.cs" />
+    <Compile Include="MultiRowDesigner\業務日報明細予定テンプレート.cs" />
+    <Compile Include="MultiRowDesigner\業務日報明細予定テンプレート.Designer.cs" />
     <Compile Include="MultiRowDesigner\業務日報明細実績.cs" />
     <Compile Include="MultiRowDesigner\業務日報明細実績.Designer.cs" />
     <Compile Include="MultiRowDesigner\業務日報明細実績テンプレート.cs" />
@@ -111,6 +115,8 @@
     <EmbeddedResource Include="MultiRowDesigner\商品明細.resx" />
     <EmbeddedResource Include="MultiRowDesigner\商品明細テンプレート.resx" />
     <EmbeddedResource Include="MultiRowDesigner\支払明細.resx" />
+    <EmbeddedResource Include="MultiRowDesigner\業務日報明細予定.resx" />
+    <EmbeddedResource Include="MultiRowDesigner\業務日報明細実績.resx" />
     <EmbeddedResource Include="MultiRowDesigner\発注明細.resx" />
     <EmbeddedResource Include="MultiRowDesigner\発注明細テンプレート.resx" />
     <EmbeddedResource Include="MultiRowDesigner\製品明細.resx" />
