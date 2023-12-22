@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(F_承認管理));
             panel1 = new Panel();
             button4 = new Button();
@@ -59,6 +60,7 @@
             承認情報 = new ComboBox();
             検索コードラベル = new Label();
             検索コード = new TextBox();
+            toolTip1 = new ToolTip(components);
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)newDataSet).BeginInit();
@@ -319,6 +321,7 @@
             抽出表示ボタン.Size = new Size(75, 23);
             抽出表示ボタン.TabIndex = 89;
             抽出表示ボタン.Text = "抽出表示";
+            toolTip1.SetToolTip(抽出表示ボタン, "抽出条件を設定します");
             抽出表示ボタン.UseVisualStyleBackColor = true;
             抽出表示ボタン.Click += 抽出表示ボタン_Click;
             // 
@@ -330,6 +333,7 @@
             次ページボタン.Size = new Size(45, 23);
             次ページボタン.TabIndex = 88;
             次ページボタン.Text = "↓";
+            toolTip1.SetToolTip(次ページボタン, "次ページへスクロールします");
             次ページボタン.UseVisualStyleBackColor = true;
             次ページボタン.Click += 次ページボタン_Click;
             // 
@@ -341,6 +345,7 @@
             前ページボタン.Size = new Size(46, 23);
             前ページボタン.TabIndex = 87;
             前ページボタン.Text = "↑";
+            toolTip1.SetToolTip(前ページボタン, "前ページへスクロールします");
             前ページボタン.UseVisualStyleBackColor = true;
             前ページボタン.Click += 前ページボタン_Click;
             // 
@@ -353,6 +358,7 @@
             本日登録分ボタン.Size = new Size(75, 22);
             本日登録分ボタン.TabIndex = 3;
             本日登録分ボタン.Text = "本日変更分";
+            toolTip1.SetToolTip(本日登録分ボタン, "本日受注分を抽出");
             本日登録分ボタン.UseVisualStyleBackColor = true;
             本日登録分ボタン.Click += 本日登録分ボタン_Click;
             // 
@@ -365,6 +371,7 @@
             前日登録分ボタン.Size = new Size(75, 22);
             前日登録分ボタン.TabIndex = 4;
             前日登録分ボタン.Text = "前日変更分";
+            toolTip1.SetToolTip(前日登録分ボタン, "前日登録分を抽出");
             前日登録分ボタン.UseVisualStyleBackColor = true;
             前日登録分ボタン.Click += 前日登録分ボタン_Click;
             // 
@@ -377,6 +384,7 @@
             検索ボタン.Size = new Size(47, 22);
             検索ボタン.TabIndex = 2;
             検索ボタン.Text = "検索";
+            toolTip1.SetToolTip(検索ボタン, "コードで検索します");
             検索ボタン.UseVisualStyleBackColor = true;
             検索ボタン.Click += 検索ボタン_Click;
             // 
@@ -389,6 +397,7 @@
             履歴トグル.Size = new Size(75, 22);
             履歴トグル.TabIndex = 5;
             履歴トグル.Text = "履歴モード";
+            toolTip1.SetToolTip(履歴トグル, "履歴モードのON/OFF");
             履歴トグル.UseVisualStyleBackColor = true;
             履歴トグル.Validating += 履歴トグル_Validating;
             // 
@@ -428,6 +437,7 @@
             検索コード.Name = "検索コード";
             検索コード.Size = new Size(88, 19);
             検索コード.TabIndex = 1;
+            toolTip1.SetToolTip(検索コード, "検索したい受注コードを入力します");
             検索コード.KeyDown += 検索コード_KeyDown;
             検索コード.KeyPress += 検索コード_KeyPress;
             // 
@@ -608,5 +618,6 @@
         private Button 抽出表示ボタン;
         private Button 次ページボタン;
         private Button 前ページボタン;
+        private ToolTip toolTip1;
     }
 }
