@@ -38,15 +38,15 @@
             受注コード1 = new TextBox();
             キャンセルボタン = new Button();
             抽出ボタン = new Button();
-            radioButton3 = new RadioButton();
-            radioButton2 = new RadioButton();
+            削除済み = new RadioButton();
+            未削除 = new RadioButton();
             削除 = new GroupBox();
-            削除指定Button2 = new RadioButton();
+            未完了承認 = new RadioButton();
             受注完了承認 = new GroupBox();
-            削除指定Button1 = new RadioButton();
+            完了承認済み = new RadioButton();
             受注完了承認指定 = new CheckBox();
-            出荷済みラベル = new RadioButton();
-            未出荷ラベル = new RadioButton();
+            出荷済み = new RadioButton();
+            未出荷 = new RadioButton();
             出荷日ラベル = new Label();
             出荷完了日1 = new TextBox();
             出荷完了日1選択ボタン = new Button();
@@ -56,8 +56,8 @@
             出荷 = new GroupBox();
             出荷指定 = new CheckBox();
             受注承認指定 = new CheckBox();
-            承認済みラベル = new RadioButton();
-            未承認ラベル = new RadioButton();
+            承認済み = new RadioButton();
+            未承認 = new RadioButton();
             受注承認 = new GroupBox();
             顧客コード検索ボタン = new Button();
             自社担当者名 = new TextBox();
@@ -231,32 +231,32 @@
             抽出ボタン.UseVisualStyleBackColor = true;
             抽出ボタン.Click += 抽出ボタン_Click;
             // 
-            // radioButton3
+            // 削除済み
             // 
-            radioButton3.AutoSize = true;
-            radioButton3.Location = new Point(30, 22);
-            radioButton3.Name = "radioButton3";
-            radioButton3.Size = new Size(81, 18);
-            radioButton3.TabIndex = 1;
-            radioButton3.TabStop = true;
-            radioButton3.Text = "削除済み";
-            radioButton3.UseVisualStyleBackColor = true;
+            削除済み.AutoSize = true;
+            削除済み.Location = new Point(30, 22);
+            削除済み.Name = "削除済み";
+            削除済み.Size = new Size(81, 18);
+            削除済み.TabIndex = 1;
+            削除済み.TabStop = true;
+            削除済み.Text = "削除済み";
+            削除済み.UseVisualStyleBackColor = true;
             // 
-            // radioButton2
+            // 未削除
             // 
-            radioButton2.AutoSize = true;
-            radioButton2.Location = new Point(169, 22);
-            radioButton2.Name = "radioButton2";
-            radioButton2.Size = new Size(67, 18);
-            radioButton2.TabIndex = 2;
-            radioButton2.TabStop = true;
-            radioButton2.Text = "未削除";
-            radioButton2.UseVisualStyleBackColor = true;
+            未削除.AutoSize = true;
+            未削除.Location = new Point(169, 22);
+            未削除.Name = "未削除";
+            未削除.Size = new Size(67, 18);
+            未削除.TabIndex = 2;
+            未削除.TabStop = true;
+            未削除.Text = "未削除";
+            未削除.UseVisualStyleBackColor = true;
             // 
             // 削除
             // 
-            削除.Controls.Add(radioButton2);
-            削除.Controls.Add(radioButton3);
+            削除.Controls.Add(未削除);
+            削除.Controls.Add(削除済み);
             削除.Font = new Font("BIZ UDゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             削除.Location = new Point(25, 511);
             削除.Name = "削除";
@@ -265,21 +265,21 @@
             削除.TabStop = false;
             削除.Text = "削除指定";
             // 
-            // 削除指定Button2
+            // 未完了承認
             // 
-            削除指定Button2.AutoSize = true;
-            削除指定Button2.Location = new Point(169, 22);
-            削除指定Button2.Name = "削除指定Button2";
-            削除指定Button2.Size = new Size(67, 18);
-            削除指定Button2.TabIndex = 2;
-            削除指定Button2.TabStop = true;
-            削除指定Button2.Text = "未承認";
-            削除指定Button2.UseVisualStyleBackColor = true;
+            未完了承認.AutoSize = true;
+            未完了承認.Location = new Point(169, 22);
+            未完了承認.Name = "未完了承認";
+            未完了承認.Size = new Size(67, 18);
+            未完了承認.TabIndex = 2;
+            未完了承認.TabStop = true;
+            未完了承認.Text = "未承認";
+            未完了承認.UseVisualStyleBackColor = true;
             // 
             // 受注完了承認
             // 
-            受注完了承認.Controls.Add(削除指定Button2);
-            受注完了承認.Controls.Add(削除指定Button1);
+            受注完了承認.Controls.Add(未完了承認);
+            受注完了承認.Controls.Add(完了承認済み);
             受注完了承認.Font = new Font("BIZ UDゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             受注完了承認.Location = new Point(25, 448);
             受注完了承認.Name = "受注完了承認";
@@ -288,16 +288,16 @@
             受注完了承認.TabStop = false;
             受注完了承認.Text = "受注完了承認指定";
             // 
-            // 削除指定Button1
+            // 完了承認済み
             // 
-            削除指定Button1.AutoSize = true;
-            削除指定Button1.Location = new Point(30, 22);
-            削除指定Button1.Name = "削除指定Button1";
-            削除指定Button1.Size = new Size(81, 18);
-            削除指定Button1.TabIndex = 1;
-            削除指定Button1.TabStop = true;
-            削除指定Button1.Text = "承認済み";
-            削除指定Button1.UseVisualStyleBackColor = true;
+            完了承認済み.AutoSize = true;
+            完了承認済み.Location = new Point(30, 22);
+            完了承認済み.Name = "完了承認済み";
+            完了承認済み.Size = new Size(81, 18);
+            完了承認済み.TabIndex = 1;
+            完了承認済み.TabStop = true;
+            完了承認済み.Text = "承認済み";
+            完了承認済み.UseVisualStyleBackColor = true;
             // 
             // 受注完了承認指定
             // 
@@ -309,39 +309,39 @@
             受注完了承認指定.UseVisualStyleBackColor = true;
             受注完了承認指定.Validated += 受注完了承認指定_Validated;
             // 
-            // 出荷済みラベル
+            // 出荷済み
             // 
-            出荷済みラベル.AutoSize = true;
-            出荷済みラベル.Location = new Point(30, 22);
-            出荷済みラベル.Name = "出荷済みラベル";
-            出荷済みラベル.Size = new Size(81, 18);
-            出荷済みラベル.TabIndex = 1;
-            出荷済みラベル.TabStop = true;
-            出荷済みラベル.Text = "出荷済み";
-            出荷済みラベル.UseVisualStyleBackColor = true;
+            出荷済み.AutoSize = true;
+            出荷済み.Location = new Point(30, 22);
+            出荷済み.Name = "出荷済み";
+            出荷済み.Size = new Size(81, 18);
+            出荷済み.TabIndex = 1;
+            出荷済み.TabStop = true;
+            出荷済み.Text = "出荷済み";
+            出荷済み.UseVisualStyleBackColor = true;
             // 
-            // 未出荷ラベル
+            // 未出荷
             // 
-            未出荷ラベル.AutoSize = true;
-            未出荷ラベル.Location = new Point(30, 84);
-            未出荷ラベル.Name = "未出荷ラベル";
-            未出荷ラベル.Size = new Size(67, 18);
-            未出荷ラベル.TabIndex = 2;
-            未出荷ラベル.TabStop = true;
-            未出荷ラベル.Text = "未出荷";
-            未出荷ラベル.UseVisualStyleBackColor = true;
+            未出荷.AutoSize = true;
+            未出荷.Location = new Point(30, 84);
+            未出荷.Name = "未出荷";
+            未出荷.Size = new Size(67, 18);
+            未出荷.TabIndex = 2;
+            未出荷.TabStop = true;
+            未出荷.Text = "未出荷";
+            未出荷.UseVisualStyleBackColor = true;
             // 
             // 出荷日ラベル
             // 
             出荷日ラベル.AllowDrop = true;
             出荷日ラベル.AutoEllipsis = true;
-            出荷日ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            出荷日ラベル.Font = new Font("BIZ UDゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             出荷日ラベル.ForeColor = SystemColors.ActiveCaptionText;
             出荷日ラベル.ImageAlign = ContentAlignment.MiddleLeft;
-            出荷日ラベル.Location = new Point(62, 51);
+            出荷日ラベル.Location = new Point(69, 47);
             出荷日ラベル.Margin = new Padding(0);
             出荷日ラベル.Name = "出荷日ラベル";
-            出荷日ラベル.Size = new Size(85, 17);
+            出荷日ラベル.Size = new Size(50, 28);
             出荷日ラベル.TabIndex = 10035;
             出荷日ラベル.Text = "出荷日";
             出荷日ラベル.TextAlign = ContentAlignment.MiddleLeft;
@@ -395,7 +395,7 @@
             出荷完了日2ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             出荷完了日2ラベル.ForeColor = SystemColors.ActiveCaptionText;
             出荷完了日2ラベル.ImageAlign = ContentAlignment.MiddleLeft;
-            出荷完了日2ラベル.Location = new Point(244, 51);
+            出荷完了日2ラベル.Location = new Point(246, 52);
             出荷完了日2ラベル.Margin = new Padding(0);
             出荷完了日2ラベル.Name = "出荷完了日2ラベル";
             出荷完了日2ラベル.Size = new Size(21, 17);
@@ -425,8 +425,8 @@
             出荷.Controls.Add(出荷完了日1選択ボタン);
             出荷.Controls.Add(出荷完了日1);
             出荷.Controls.Add(出荷日ラベル);
-            出荷.Controls.Add(未出荷ラベル);
-            出荷.Controls.Add(出荷済みラベル);
+            出荷.Controls.Add(未出荷);
+            出荷.Controls.Add(出荷済み);
             出荷.Font = new Font("BIZ UDゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             出荷.Location = new Point(25, 325);
             出荷.Name = "出荷";
@@ -434,8 +434,6 @@
             出荷.TabIndex = 205;
             出荷.TabStop = false;
             出荷.Text = "出荷指定";
-            出荷.Visible = false;
-            出荷.Validating += 出荷_Validating;
             // 
             // 出荷指定
             // 
@@ -457,32 +455,32 @@
             受注承認指定.UseVisualStyleBackColor = true;
             受注承認指定.Validated += 受注承認指定_Validated;
             // 
-            // 承認済みラベル
+            // 承認済み
             // 
-            承認済みラベル.AutoSize = true;
-            承認済みラベル.Location = new Point(30, 22);
-            承認済みラベル.Name = "承認済みラベル";
-            承認済みラベル.Size = new Size(81, 18);
-            承認済みラベル.TabIndex = 1;
-            承認済みラベル.TabStop = true;
-            承認済みラベル.Text = "承認済み";
-            承認済みラベル.UseVisualStyleBackColor = true;
+            承認済み.AutoSize = true;
+            承認済み.Location = new Point(30, 22);
+            承認済み.Name = "承認済み";
+            承認済み.Size = new Size(81, 18);
+            承認済み.TabIndex = 1;
+            承認済み.TabStop = true;
+            承認済み.Text = "承認済み";
+            承認済み.UseVisualStyleBackColor = true;
             // 
-            // 未承認ラベル
+            // 未承認
             // 
-            未承認ラベル.AutoSize = true;
-            未承認ラベル.Location = new Point(169, 22);
-            未承認ラベル.Name = "未承認ラベル";
-            未承認ラベル.Size = new Size(67, 18);
-            未承認ラベル.TabIndex = 2;
-            未承認ラベル.TabStop = true;
-            未承認ラベル.Text = "未承認";
-            未承認ラベル.UseVisualStyleBackColor = true;
+            未承認.AutoSize = true;
+            未承認.Location = new Point(169, 22);
+            未承認.Name = "未承認";
+            未承認.Size = new Size(67, 18);
+            未承認.TabIndex = 2;
+            未承認.TabStop = true;
+            未承認.Text = "未承認";
+            未承認.UseVisualStyleBackColor = true;
             // 
             // 受注承認
             // 
-            受注承認.Controls.Add(未承認ラベル);
-            受注承認.Controls.Add(承認済みラベル);
+            受注承認.Controls.Add(未承認);
+            受注承認.Controls.Add(承認済み);
             受注承認.Font = new Font("BIZ UDゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             受注承認.Location = new Point(25, 271);
             受注承認.Name = "受注承認";
@@ -490,7 +488,6 @@
             受注承認.TabIndex = 203;
             受注承認.TabStop = false;
             受注承認.Text = "受注承認指定";
-            受注承認.Visible = false;
             // 
             // 顧客コード検索ボタン
             // 
@@ -900,15 +897,15 @@
         private TextBox 受注コード1;
         private Button キャンセルボタン;
         private Button 抽出ボタン;
-        private RadioButton radioButton3;
-        private RadioButton radioButton2;
+        private RadioButton 削除済み;
+        private RadioButton 未削除;
         private GroupBox 削除;
-        private RadioButton 削除指定Button2;
+        private RadioButton 未完了承認;
         private GroupBox 受注完了承認;
-        private RadioButton 削除指定Button1;
+        private RadioButton 完了承認済み;
         private CheckBox 受注完了承認指定;
-        private RadioButton 出荷済みラベル;
-        private RadioButton 未出荷ラベル;
+        private RadioButton 出荷済み;
+        private RadioButton 未出荷;
         private Label 出荷日ラベル;
         private TextBox 出荷完了日1;
         private Button 出荷完了日1選択ボタン;
@@ -918,8 +915,8 @@
         private GroupBox 出荷;
         private CheckBox 出荷指定;
         private CheckBox 受注承認指定;
-        private RadioButton 承認済みラベル;
-        private RadioButton 未承認ラベル;
+        private RadioButton 承認済み;
+        private RadioButton 未承認;
         private GroupBox 受注承認;
         private Button 顧客コード検索ボタン;
         private TextBox 自社担当者名;

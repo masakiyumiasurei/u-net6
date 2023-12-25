@@ -24,7 +24,6 @@
 
   <ItemGroup>
     <EmbeddedResource Remove="Form\F_商品OLD.resx" />
-    <EmbeddedResource Remove="Form\F_地区マスタ.resx" />
   </ItemGroup>
 
   <ItemGroup>

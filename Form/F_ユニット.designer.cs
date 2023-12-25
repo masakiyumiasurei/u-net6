@@ -1166,7 +1166,7 @@ namespace u_net
         private Label label3;
         private Label label4;
         private Label label10;
-        private TextBox 確定日時;
+        internal TextBox 確定日時;
         private TextBox 承認日時;
         private TextBox 確定者コード;
         private TextBox 承認者名;
@@ -1179,7 +1179,7 @@ namespace u_net
         internal ToolStripStatusLabel toolStripStatusLabel1;
         private CheckBox 廃止;
         private Label label5;
-        private MultiRowDesigner.ユニット明細 ユニット明細1;
+        internal MultiRowDesigner.ユニット明細 ユニット明細1;
         private TextBox 承認表示;
         private TextBox 削除表示;
         private TextBox 確定表示;
