@@ -125,7 +125,7 @@
             this.Row.Cells.Add(this.単位);
             this.Row.Cells.Add(this.初期ソート順);
             this.Row.Height = 42;
-            this.Row.Width = 950;
+            this.Row.Width = 1000;
             // 
             // columnHeaderSection1
             // 
@@ -141,7 +141,7 @@
             this.columnHeaderSection1.Cells.Add(this.行番号ボタン);
             this.columnHeaderSection1.Height = 42;
             this.columnHeaderSection1.Name = "columnHeaderSection1";
-            this.columnHeaderSection1.Width = 950;
+            this.columnHeaderSection1.Width = 1000;
             // 
             // columnHeaderCell4
             // 
@@ -175,11 +175,11 @@
             // 
             // columnHeaderCell6
             // 
-            this.columnHeaderCell6.Location = new System.Drawing.Point(640, 0);
+            this.columnHeaderCell6.Location = new System.Drawing.Point(660, 0);
             this.columnHeaderCell6.Name = "columnHeaderCell6";
             this.columnHeaderCell6.ResizeMode = GrapeCity.Win.MultiRow.ResizeMode.None;
             this.columnHeaderCell6.SelectionMode = GrapeCity.Win.MultiRow.MultiRowSelectionMode.None;
-            this.columnHeaderCell6.Size = new System.Drawing.Size(80, 42);
+            this.columnHeaderCell6.Size = new System.Drawing.Size(100, 42);
             border5.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.DarkGray);
             cellStyle17.Border = border5;
             cellStyle17.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
@@ -190,11 +190,11 @@
             // 
             // columnHeaderCell7
             // 
-            this.columnHeaderCell7.Location = new System.Drawing.Point(720, 0);
+            this.columnHeaderCell7.Location = new System.Drawing.Point(760, 0);
             this.columnHeaderCell7.Name = "columnHeaderCell7";
             this.columnHeaderCell7.ResizeMode = GrapeCity.Win.MultiRow.ResizeMode.None;
             this.columnHeaderCell7.SelectionMode = GrapeCity.Win.MultiRow.MultiRowSelectionMode.None;
-            this.columnHeaderCell7.Size = new System.Drawing.Size(90, 42);
+            this.columnHeaderCell7.Size = new System.Drawing.Size(100, 42);
             border6.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.DarkGray);
             cellStyle18.Border = border6;
             cellStyle18.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
@@ -205,7 +205,7 @@
             // 
             // columnHeaderCell10
             // 
-            this.columnHeaderCell10.Location = new System.Drawing.Point(810, 0);
+            this.columnHeaderCell10.Location = new System.Drawing.Point(860, 0);
             this.columnHeaderCell10.Name = "columnHeaderCell10";
             this.columnHeaderCell10.ResizeMode = GrapeCity.Win.MultiRow.ResizeMode.None;
             this.columnHeaderCell10.SelectionMode = GrapeCity.Win.MultiRow.MultiRowSelectionMode.None;
@@ -274,7 +274,7 @@
             this.columnHeaderCell8.Name = "columnHeaderCell8";
             this.columnHeaderCell8.ResizeMode = GrapeCity.Win.MultiRow.ResizeMode.None;
             this.columnHeaderCell8.SelectionMode = GrapeCity.Win.MultiRow.MultiRowSelectionMode.None;
-            this.columnHeaderCell8.Size = new System.Drawing.Size(80, 42);
+            this.columnHeaderCell8.Size = new System.Drawing.Size(100, 42);
             border11.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.DarkGray);
             cellStyle23.Border = border11;
             cellStyle23.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
@@ -361,11 +361,11 @@
             this.単価.DataField = "単価";
             this.単価.DecimalPlaces = 2;
             this.単価.InterceptArrowKeys = false;
-            this.単価.Location = new System.Drawing.Point(640, 0);
+            this.単価.Location = new System.Drawing.Point(660, 0);
             this.単価.Name = "単価";
             this.単価.ShowSpinButton = GrapeCity.Win.MultiRow.CellButtonVisibility.NotShown;
             this.単価.ShowSpinButtonInEditState = false;
-            this.単価.Size = new System.Drawing.Size(80, 42);
+            this.単価.Size = new System.Drawing.Size(100, 42);
             cellStyle5.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
             cellStyle5.Format = "N2";
             cellStyle5.ImeMode = System.Windows.Forms.ImeMode.Disable;
@@ -378,9 +378,9 @@
             // 
             expression1.ExpressionString = "数量 * 単価";
             this.金額.Calculation = expression1;
-            this.金額.Location = new System.Drawing.Point(720, 0);
+            this.金額.Location = new System.Drawing.Point(760, 0);
             this.金額.Name = "金額";
-            this.金額.Size = new System.Drawing.Size(90, 42);
+            this.金額.Size = new System.Drawing.Size(100, 42);
             cellStyle6.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
             cellStyle6.Format = "N0";
             cellStyle6.ImeMode = System.Windows.Forms.ImeMode.Disable;
@@ -399,7 +399,7 @@
             this.columnFooterSection1.Cells.Add(this.summaryCell1);
             this.columnFooterSection1.Height = 21;
             this.columnFooterSection1.Name = "columnFooterSection1";
-            this.columnFooterSection1.Width = 950;
+            this.columnFooterSection1.Width = 1000;
             // 
             // 合計金額
             // 
@@ -474,7 +474,7 @@
             // 見積コード
             // 
             this.見積コード.DataField = "見積コード";
-            this.見積コード.Location = new System.Drawing.Point(870, 21);
+            this.見積コード.Location = new System.Drawing.Point(920, 21);
             this.見積コード.Name = "見積コード";
             this.見積コード.Size = new System.Drawing.Size(40, 21);
             cellStyle11.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
@@ -487,7 +487,7 @@
             // 
             this.見積版数.DataField = "見積版数";
             this.見積版数.InterceptArrowKeys = false;
-            this.見積版数.Location = new System.Drawing.Point(910, 21);
+            this.見積版数.Location = new System.Drawing.Point(960, 21);
             this.見積版数.Name = "見積版数";
             this.見積版数.ShowSpinButton = GrapeCity.Win.MultiRow.CellButtonVisibility.NotShown;
             this.見積版数.ShowSpinButtonInEditState = false;
@@ -502,7 +502,7 @@
             // 
             // 明細番号
             // 
-            this.明細番号.Location = new System.Drawing.Point(840, 21);
+            this.明細番号.Location = new System.Drawing.Point(890, 21);
             this.明細番号.Name = "明細番号";
             this.明細番号.SelectionMode = GrapeCity.Win.MultiRow.MultiRowSelectionMode.None;
             this.明細番号.ShowIndicator = false;
@@ -529,7 +529,7 @@
             this.標準単価.Name = "標準単価";
             this.標準単価.ShowSpinButton = GrapeCity.Win.MultiRow.CellButtonVisibility.NotShown;
             this.標準単価.ShowSpinButtonInEditState = false;
-            this.標準単価.Size = new System.Drawing.Size(80, 42);
+            this.標準単価.Size = new System.Drawing.Size(100, 42);
             cellStyle7.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
             cellStyle7.Format = "N0";
             cellStyle7.ImeMode = System.Windows.Forms.ImeMode.Disable;
@@ -561,7 +561,7 @@
             // 明細備考
             // 
             this.明細備考.DataField = "明細備考";
-            this.明細備考.Location = new System.Drawing.Point(810, 0);
+            this.明細備考.Location = new System.Drawing.Point(860, 0);
             this.明細備考.Name = "明細備考";
             this.明細備考.Size = new System.Drawing.Size(140, 42);
             cellStyle9.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
@@ -586,7 +586,7 @@
             // 初期ソート順
             // 
             this.初期ソート順.InterceptArrowKeys = false;
-            this.初期ソート順.Location = new System.Drawing.Point(910, 0);
+            this.初期ソート順.Location = new System.Drawing.Point(960, 0);
             this.初期ソート順.Name = "初期ソート順";
             this.初期ソート順.ShowSpinButton = GrapeCity.Win.MultiRow.CellButtonVisibility.NotShown;
             this.初期ソート順.ShowSpinButtonInEditState = false;
@@ -611,7 +611,7 @@
             this.ColumnHeaders.AddRange(new GrapeCity.Win.MultiRow.ColumnHeaderSection[] {
             this.columnHeaderSection1});
             this.Height = 105;
-            this.Width = 950;
+            this.Width = 1000;
 
         }
         
