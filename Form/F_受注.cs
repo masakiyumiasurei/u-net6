@@ -336,7 +336,9 @@ namespace u_net
                 this.コマンド登録.Enabled = false;
 
                 //明細部を制御する
-                受注明細1.Detail.Enabled = true;
+                受注明細1.Detail.AllowUserToAddRows = true;
+                受注明細1.Detail.AllowUserToDeleteRows = true;
+                受注明細1.Detail.ReadOnly = false; //readonlyなのでaccessと真偽が逆になる 
 
                 return true;
             }
@@ -481,7 +483,9 @@ namespace u_net
                         // 動作の制御
                         FunctionClass.LockData(this, this.IsDecided || this.IsInvalid, "受注コード");
                         this.受注版数.Enabled = true; // 版数を編集可にする
-                        this.受注明細1.Detail.Enabled = !(this.IsDecided || this.IsInvalid);
+                        受注明細1.Detail.AllowUserToAddRows = !(this.IsDecided || this.IsInvalid);
+                        受注明細1.Detail.AllowUserToDeleteRows = !(this.IsDecided || this.IsInvalid);
+                        受注明細1.Detail.ReadOnly = (this.IsDecided || this.IsInvalid); //readonlyなのでaccessと真偽が逆になる 
 
                         // 端数チェック
                         this.帳端処理.Checked = !string.IsNullOrEmpty(this.請求予定日.Text);
@@ -561,7 +565,9 @@ namespace u_net
                         // 動作の制御
                         FunctionClass.LockData(this, this.IsDecided || this.IsInvalid, "受注コード");
                         this.受注版数.Enabled = true; // 版数を編集可にする
-                        this.受注明細1.Detail.Enabled = !this.IsDecided && !this.IsInvalid;
+                        受注明細1.Detail.AllowUserToAddRows = !this.IsDecided && !this.IsInvalid;
+                        受注明細1.Detail.AllowUserToDeleteRows = !this.IsDecided && !this.IsInvalid;
+                        受注明細1.Detail.ReadOnly = !(!this.IsDecided && !this.IsInvalid); //readonlyなのでaccessと真偽が逆になる 
 
                         // 端数チェック
                         this.帳端処理.Checked = !string.IsNullOrEmpty(this.請求予定日.Text);
@@ -2048,7 +2054,9 @@ namespace u_net
                     this.否認ボタン.Enabled = !this.IsApproved;
                     this.コマンド承認.Enabled = !this.IsApproved;
                     this.コマンド確定.Enabled = !this.IsApproved;
-                    this.受注明細1.Detail.Enabled = !IsApproved;
+                    受注明細1.Detail.AllowUserToAddRows = !IsApproved;
+                    受注明細1.Detail.AllowUserToDeleteRows = !IsApproved;
+                    受注明細1.Detail.ReadOnly = IsApproved; //readonlyなのでaccessと真偽が逆になる 
 
                     // 在庫の警告を表示する
                     if (CheckWarning(this.CurrentCode, this.CurrentEdition))
@@ -2155,7 +2163,9 @@ namespace u_net
                     this.改版ボタン.Enabled = IsApproved;
                     this.受注承認ボタン.Enabled = IsDecided && !IsApproved;
                     this.否認ボタン.Enabled = IsDecided && !IsApproved;
-                    this.受注明細1.Detail.Enabled = !IsDecided;
+                    this.受注明細1.Detail.AllowUserToAddRows = !IsDecided;
+                    this.受注明細1.Detail.AllowUserToDeleteRows = !IsDecided;
+                    this.受注明細1.Detail.ReadOnly = IsDecided; //readonlyなのでaccessと真偽が逆になる 
 
                     if (IsNewData)
                     {
@@ -2317,7 +2327,9 @@ namespace u_net
                     }
 
                     // 明細部制御
-                    this.受注明細1.Enabled = true;
+                    受注明細1.Detail.AllowUserToAddRows = true;
+                    受注明細1.Detail.AllowUserToDeleteRows = true;
+                    受注明細1.Detail.ReadOnly = false; //readonlyなのでaccessと真偽が逆になる 
                 }
                 else
                 {
@@ -3623,7 +3635,6 @@ namespace u_net
         {
             this.toolStripStatusLabel2.Text = "■顧客の担当者名を入力。　■全角46文字まで入力できます。　■敬称は不要です。";
         }
-
     }
 }
 
