@@ -74,12 +74,14 @@ namespace MultiRowDesigner
                                     return;
                                 }
 
-                                // 購買対象を設定する処理
-                                // ここでデータベースの更新処理を行います。
-                                // ...
+                                gcMultiRow1.CurrentRow.Cells["購買対象"].Value = false;
 
-                                // その他の処理
-                                // ...
+                                
+
+
+
+
+
 
                             }
                             catch (Exception ex)

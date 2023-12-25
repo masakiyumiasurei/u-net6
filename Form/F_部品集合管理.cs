@@ -675,7 +675,10 @@ namespace u_net
 
             //  DataRowCollection report;
             DataTable dt = new DataTable();
-            string sqlQuery = "SELECT * FROM V部品集合明細一覧 WHERE 1=1 and 部品集合コード='00000002' " + filterString;
+            DataTable dt2 = new DataTable();
+            DataTable dt3 = new DataTable();
+            //string sqlQuery = "SELECT * FROM V部品集合明細一覧 WHERE 1=1 and 部品集合コード between '00000001' and '00000047'" + filterString;
+            string sqlQuery = "SELECT * FROM V部品集合明細一覧 WHERE 1=1 " + filterString;
 
             using (SqlCommand command = new SqlCommand(sqlQuery, cn))
             {
@@ -686,35 +689,62 @@ namespace u_net
                 }
             }
 
-            //最大行数
-            int maxRow = 40;
+             sqlQuery = "SELECT 部品集合コード FROM V部品集合明細一覧 WHERE 1=1 " + filterString + " group by 部品集合コード";
+
+            using (SqlCommand command = new SqlCommand(sqlQuery, cn))
+            {
+                using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+                {
+                    adapter.Fill(dt2);
+                    //int cnt = dt.Rows.Count;
+                }
+            }
+            sqlQuery = "SELECT GP FROM V部品集合明細一覧 WHERE 1=1 " + filterString + " group by GP";
+
+            using (SqlCommand command = new SqlCommand(sqlQuery, cn))
+            {
+                using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+                {
+                    adapter.Fill(dt3);
+                    //int cnt = dt.Rows.Count;
+                }
+            }
+
+            //1ページの最大行数
+            int maxRow = 41;
             //現在の行
             int CurRow = 0;
-            //行数
-            int RowCount = maxRow;
 
-            if (dt.Rows.Count > 0)
+            //印字する残行数
+            int RowCount = 0;
+
+            int cnt = dt?.Rows.Count ?? 0;
+            int cnt2 = dt2?.Rows.Count ?? 0;
+            int cnt3 = dt3?.Rows.Count ?? 0;
+
+            if (cnt + cnt2 + cnt3 > 0)
             {
-                RowCount = dt.Rows.Count;
+                RowCount = cnt + cnt2 + cnt3;
+            }
+            else
+            {
+                RowCount = maxRow;
             }
 
             int page = 1;
             double maxPage = Math.Ceiling((double)RowCount / maxRow);
 
             DateTime now = DateTime.Now;
-
+           // int rownum = 0; //行の番号　*6した値を行のY座標とする
             int lenB;
             int i = 0;
             //描画すべき行がある限りページを増やす
             while (RowCount > 0)
             {
+               // pageStart:
+                i = 0;
                 RowCount -= maxRow;
-                paoRep.PageStart();                                
-
-                //フッダー
-
-                paoRep.Write("出力日時", now.ToString("yyyy年M月d日"));
-                paoRep.Write("ページ", (page + "/" + maxPage + " ページ").ToString());
+                paoRep.PageStart();                
 
 
                 // 1つ目のループ: GP をグループヘッダーとしてグループ化
@@ -728,19 +758,55 @@ namespace u_net
 
                     paoRep.Write("集合分類ラベル", "集合分類", i + 1);
                     paoRep.Write("GPラベル", gp.ToString() != "" ? gp.ToString() : " ", i + 1);
-                   
-                    //i++;
 
+                   i++;
+                    
+                   // paoRep.z_Objects.SetObject("集合分類ラベル", i + 1);
 
                     // 2つ目のループ: 部品集合コードを第2のグループヘッダーとしてグループ化
                     var distinctPartSets = dt.AsEnumerable().Where(row => row["GP"].ToString() == gp)
                                                              .Select(row => row["部品集合コード"].ToString()).Distinct();
-                    
+
+                    if (i >= maxRow)
+                    {
+                        //フッダー
+                        paoRep.Write("出力日時", now.ToString("yyyy年M月d日"));
+                        paoRep.Write("ページ", (page +  " ページ").ToString());
+
+                        paoRep.PageEnd();
+                        page++;
+                        i = 0;
+                        RowCount -= maxRow;
+                        paoRep.PageStart();
+                        paoRep.Write("集合分類ラベル", "", 1);
+                        paoRep.Write("GPラベル", "", 1);
+
+                    }
 
                     foreach (var partSet in distinctPartSets)
                     {
+                        if (CurRow >= dt.Rows.Count) break;
+                        //i++;
                         DataRow syugoudRow = dt.AsEnumerable()
                         .FirstOrDefault(row => row["部品集合コード"].ToString() == partSet);
+
+                        // 3つ目のループ: 同一の部品集合コードに関連する明細行を処理  途中で改ページしないようにする
+                        var meisaiRow = dt.AsEnumerable().Where(row => row["GP"].ToString() == gp && row["部品集合コード"].ToString() == partSet).ToList();
+
+                        if (i >= maxRow || meisaiRow.Count > (maxRow - i-2))
+                        {
+                            //フッダー
+                            paoRep.Write("出力日時", now.ToString("yyyy年M月d日"));
+                            paoRep.Write("ページ", (page + " ページ").ToString());
+
+                            paoRep.PageEnd();
+                            page++;
+                            i = 0;
+                            RowCount -= maxRow;
+                            paoRep.PageStart();
+                            paoRep.Write("集合分類ラベル", "", 1);
+                            paoRep.Write("GPラベル", "", 1);
+                        }
 
                         paoRep.Write("部品集合コードラベル", "部品集合コード", i + 1);
                         paoRep.Write("第ラベル", "部品集合コード", i + 1);
@@ -756,7 +822,7 @@ namespace u_net
                         paoRep.Write("横罫線1", i + 1);
                         paoRep.Write("横罫線2", i + 1);
                        
-                        //i++;
+                        i++;
 
                         paoRep.Write("Noラベル", "No", i + 1);
                         paoRep.Write("購ラベル", "購", i + 1);
@@ -766,15 +832,13 @@ namespace u_net
                         paoRep.Write("型番ラベル", "型番", i + 1);
                         paoRep.Write("メーカー名ラベル", "メーカー名", i + 1);
 
-                       // i++;
+                        i++;
 
-                        // 3つ目のループ: 同一の部品集合コードに関連する明細行を処理
-                        var meisaiRow = dt.AsEnumerable().Where(row => row["GP"].ToString() == gp && row["部品集合コード"].ToString() == partSet).ToList();
-
-
+            
                         //for (int i = 0; i < targetRow.Count; i++)
                         foreach (DataRow targetRow in meisaiRow)                            
                         {
+                            if (CurRow >= dt.Rows.Count) break;
                             //DataRow targetRow = dt.Rows[CurRow];
 
                             //paoRep.Write("明細番号", (CurRow + 1).ToString(), i + 1);  //連番にしたい時はこちら。明細番号は歯抜けがあるので
@@ -797,15 +861,41 @@ namespace u_net
 
                             i++;
                             CurRow++;
+                            
+                            if (i >= maxRow)
+                            {
+                                //フッダー
+                                paoRep.Write("出力日時", now.ToString("yyyy年M月d日"));
+                                paoRep.Write("ページ", (page + " ページ").ToString());
+                                
+                                paoRep.PageEnd();
+                                page++;
+                                i = 0;
+                                RowCount -= maxRow;
+                                paoRep.PageStart();
+                                paoRep.Write("集合分類ラベル", "", 1);
+                                paoRep.Write("GPラベル", "", 1);
+
+                            }
+
                         }
+                       // i = i + 2; //部品集合コードの2行分下に移動
+
                     }
+                    //i++;  //GPヘッダー行分　下に移動
                 }
 
                 page++;
 
+                paoRep.Write("出力日時", now.ToString("yyyy年M月d日"));
+                paoRep.Write("ページ", (page + " ページ").ToString());
+
                 paoRep.PageEnd();
 
             }
+
+            //最終ページフッダー
+            
             paoRep.Output();
 
         }
