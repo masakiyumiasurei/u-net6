@@ -156,8 +156,11 @@ namespace u_net
                     if (!VariableSet.SetTable2Form(this, strSQL, cn)) throw new Exception();
 
 
-                    strSQL = "SELECT * FROM V部品集合明細 WHERE 部品集合コード='" + codeString +
-                                         "' AND 部品集合版数=" + editionString + " ORDER BY 明細番号";
+                    strSQL = $"SELECT *, case WHEN 廃止 <> 0 THEN '■' ELSE NULL END AS 廃止表示, " +
+                            $" case WHEN 購買対象 <> 0 THEN '■' else null end as 購買対象表示 " +
+                            $" FROM V部品集合明細 WHERE 部品集合コード='{codeString}' AND " +
+                            $"部品集合版数={editionString} ORDER BY 明細番号";
+                                                           
                     //明細表示
                     if (!LoadDetails(strSQL, this.部品購買設定明細1.Detail)) throw new Exception();
 
