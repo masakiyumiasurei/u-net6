@@ -42,7 +42,6 @@ namespace MultiRowDesigner
             gcMultiRow1.ShortcutKeyManager.Unregister(Keys.Enter);
             gcMultiRow1.ShortcutKeyManager.Register(SelectionActions.MoveToNextCell, Keys.Enter);
 
-            gcMultiRow1.AllowRowMove = true;
         }
 
         private void gcMultiRow1_RowsRemoved(object sender, RowsRemovedEventArgs e)
@@ -480,23 +479,26 @@ namespace MultiRowDesigner
 
         private void gcMultiRow1_RowDragMoveCompleted(object sender, DragMoveCompletedEventArgs e)
         {
-            gcMultiRow1.EndEdit();
 
             F_製品? f_製品 = Application.OpenForms.OfType<F_製品>().FirstOrDefault();
 
-            for (int i = 0; i < gcMultiRow1.RowCount; i++)
+            gcMultiRow1.BeginInvoke(() =>
             {
-                if (gcMultiRow1.Rows[i].IsNewRow == true)
+                for (int i = 0; i < gcMultiRow1.RowCount; i++)
                 {
-                    //新規行の場合は、処理をスキップ
-                    continue;
+                    if (gcMultiRow1.Rows[i].IsNewRow == true)
+                    {
+                        //新規行の場合は、処理をスキップ
+                        continue;
+                    }
+
+                    gcMultiRow1.Rows[i].Cells["明細番号"].Value = i + 1;
+                    gcMultiRow1.Rows[i].Cells["製品コード"].Value = f_製品.製品コード.Text;
+                    gcMultiRow1.Rows[i].Cells["製品版数"].Value = f_製品.製品版数.Text;
+
                 }
 
-                gcMultiRow1.Rows[i].Cells["明細番号"].Value = i + 1;
-                gcMultiRow1.Rows[i].Cells["製品コード"].Value = f_製品.製品コード.Text;
-                gcMultiRow1.Rows[i].Cells["製品版数"].Value = f_製品.製品版数.Text;
-
-            }
+            });
 
             f_製品.ChangedData(true);
         }

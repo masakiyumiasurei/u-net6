@@ -163,7 +163,7 @@ namespace u_net
                 // 入庫者名指定
                 if (dtm入庫日開始 != DateTime.MinValue && dtm入庫日終了 != DateTime.MinValue)
                 {
-                    filter += string.Format("'{0}'<=入庫日 AND 入庫日<='{1}' AND ",dtm入庫日開始.ToString("yyyy/MM"), dtm入庫日終了.ToString("yyyy/MM"));
+                    filter += string.Format("'{0}'<=入庫日 AND 入庫日<='{1}' AND ",dtm入庫日開始.ToString("yyyy/MM/dd"), dtm入庫日終了.ToString("yyyy/MM/dd"));
                 }
 
 
@@ -358,14 +358,7 @@ namespace u_net
             }
         }
 
-        private void dataGridView1_KeyDown(object sender, KeyEventArgs e)
-        {
-            // Shiftキーが押されているときは何もしない
-            if (e.Shift)
-            {
-                e.SuppressKeyPress = true;
-            }
-        }
+
 
         //選択行をクリアして先頭を表示して先頭行を選択
         private void Cleargrid(DataGridView dataGridView)

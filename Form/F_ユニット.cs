@@ -2515,7 +2515,8 @@ namespace u_net
         }
 
         private void ユニットコード_DrawItem(object sender, DrawItemEventArgs e)
-        {
+        { 
+
             OriginalClass.SetComboBoxAppearance((ComboBox)sender, e, new int[] { 100, 30 }, new string[] { "Display", "Display2" });
             ユニットコード.Invalidate();
             ユニットコード.DroppedDown = true;

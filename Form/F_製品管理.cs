@@ -234,7 +234,7 @@ namespace u_net
                 }
 
                 // 非含有証明書指定
-                switch (lng確定指定)
+                switch (lng非含有証明書)
                 {
                     case 1:
                         filter += "非含有証明書 = '○' AND ";
@@ -357,7 +357,7 @@ namespace u_net
 
 
                 return dataGridView1.RowCount;
-                return 0;
+
             }
             catch (Exception ex)
             {

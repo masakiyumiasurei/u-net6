@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             型番_ラベル = new Label();
-            シリーズ名 = new TextBox();
+            型番 = new TextBox();
             品名 = new TextBox();
             品名_ラベル = new Label();
             groupBox3 = new GroupBox();
@@ -86,17 +86,16 @@
             型番_ラベル.Text = "型番(&M)";
             型番_ラベル.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // シリーズ名
+            // 型番
             // 
-            シリーズ名.BackColor = Color.White;
-            シリーズ名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            シリーズ名.ImeMode = ImeMode.Off;
-            シリーズ名.Location = new Point(119, 39);
-            シリーズ名.Margin = new Padding(3, 2, 3, 2);
-            シリーズ名.Multiline = true;
-            シリーズ名.Name = "シリーズ名";
-            シリーズ名.Size = new Size(277, 19);
-            シリーズ名.TabIndex = 4;
+            型番.BackColor = Color.White;
+            型番.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            型番.ImeMode = ImeMode.Off;
+            型番.Location = new Point(119, 39);
+            型番.Margin = new Padding(3, 2, 3, 2);
+            型番.Name = "型番";
+            型番.Size = new Size(277, 20);
+            型番.TabIndex = 4;
             // 
             // 品名
             // 
@@ -105,9 +104,8 @@
             品名.ImeMode = ImeMode.Hiragana;
             品名.Location = new Point(119, 17);
             品名.Margin = new Padding(3, 2, 3, 2);
-            品名.Multiline = true;
             品名.Name = "品名";
-            品名.Size = new Size(277, 19);
+            品名.Size = new Size(277, 20);
             品名.TabIndex = 2;
             // 
             // 品名_ラベル
@@ -293,6 +291,7 @@
             更新日開始選択ボタン.TabStop = false;
             更新日開始選択ボタン.Text = "▼";
             更新日開始選択ボタン.UseVisualStyleBackColor = true;
+            更新日開始選択ボタン.Click += 更新日開始選択_Click;
             // 
             // 更新者名_ラベル
             // 
@@ -342,10 +341,12 @@
             更新日開始.ImeMode = ImeMode.Disable;
             更新日開始.Location = new Point(119, 234);
             更新日開始.Margin = new Padding(3, 2, 3, 2);
-            更新日開始.Multiline = true;
             更新日開始.Name = "更新日開始";
-            更新日開始.Size = new Size(102, 19);
+            更新日開始.Size = new Size(102, 20);
             更新日開始.TabIndex = 10;
+            更新日開始.DoubleClick += 更新日開始_DoubleClick;
+            更新日開始.KeyPress += 更新日開始_KeyPress;
+            更新日開始.Leave += 更新日開始_Leave;
             // 
             // 更新日終了
             // 
@@ -354,10 +355,12 @@
             更新日終了.ImeMode = ImeMode.Disable;
             更新日終了.Location = new Point(266, 234);
             更新日終了.Margin = new Padding(3, 2, 3, 2);
-            更新日終了.Multiline = true;
             更新日終了.Name = "更新日終了";
-            更新日終了.Size = new Size(102, 19);
+            更新日終了.Size = new Size(102, 20);
             更新日終了.TabIndex = 11;
+            更新日終了.DoubleClick += 更新日終了_DoubleClick;
+            更新日終了.KeyPress += 更新日終了_KeyPress;
+            更新日終了.Leave += 更新日終了_Leave;
             // 
             // 更新日終了選択ボタン
             // 
@@ -369,6 +372,7 @@
             更新日終了選択ボタン.TabStop = false;
             更新日終了選択ボタン.Text = "▼";
             更新日終了選択ボタン.UseVisualStyleBackColor = true;
+            更新日終了選択ボタン.Click += 更新日終了選択_Click;
             // 
             // label1
             // 
@@ -526,11 +530,12 @@
             Controls.Add(groupBox4);
             Controls.Add(groupBox3);
             Controls.Add(型番_ラベル);
-            Controls.Add(シリーズ名);
+            Controls.Add(型番);
             Controls.Add(品名);
             Controls.Add(品名_ラベル);
             Name = "F_ユニット管理_抽出";
             Text = "ユニット管理 - 抽出";
+            Load += Form_Load;
             groupBox3.ResumeLayout(false);
             groupBox3.PerformLayout();
             groupBox4.ResumeLayout(false);
@@ -550,7 +555,7 @@
         private ComboBox 更新者名;
         private Label label9;
         private Label 型番_ラベル;
-        private TextBox シリーズ名;
+        private TextBox 型番;
         private TextBox 品名;
         private Label 品名_ラベル;
         private Label label2;

@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.Data.SqlClient;
+using Pao.Reports;
 using u_net.Public;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
@@ -16,23 +17,23 @@ namespace u_net
 {
     public partial class F_ユニット管理 : MidForm
     {
-        public string str検索コード = CommonConstants.CH_MAKER;
-        public string str仕入先コード開始 = "";
-        public string str仕入先コード終了 = "";
-        public string str仕入先名フリガナ = "";
-        public string str仕入先名 = "";
-        public string str窓口電話番号 = "";
-        public string str窓口ファックス番号 = "";
-        public string str担当者名 = "";
-        public int lng削除指定 = 0;
-        //public DateTime dtm更新日開始 = DateTime.MinValue;
-        //public DateTime dtm更新日終了 = DateTime.MinValue;
-        //public string str更新者名 = "";
+
+
         public string strSearchCode = "";
 
-        //public int intComposedChipMount = 0;
-        //public int intIsUnit = 0;
-        //public int lngDiscontinued = 0;
+        public string strユニットコード開始 { get; set; }
+        public string strユニットコード終了 { get; set; }
+        public string str品名 { get; set; }
+        public string str型番 { get; set; }
+        public long lngRoHS対応 { get; set; }
+        public long lng非含有証明書 { get; set; }
+        public DateTime dtm更新日開始 { get; set; }
+        public DateTime dtm更新日終了 { get; set; }
+        public string str更新者名 { get; set; }
+        public long lng確定指定 { get; set; }
+        public long lng承認指定 { get; set; }
+        public long lng削除指定 { get; set; }
+        public long lng廃止指定 { get; set; }
 
 
         int intWindowHeight = 0;
@@ -53,37 +54,58 @@ namespace u_net
             cn.Open();
         }
 
-        public override void SearchCode(string codeString)
+        public string CurrentCode
         {
-            strSearchCode = codeString;
-            str仕入先コード開始 = strSearchCode;
-            str仕入先コード終了 = strSearchCode;
-            if (DoUpdate() == -1)
+            get
             {
-                MessageBox.Show("エラーが発生しました。");
+                return dataGridView1.SelectedRows[0].Cells[0].Value.ToString();
             }
+        }
 
+        public string CurrentEdition
+        {
+            get
+            {
+                return dataGridView1.SelectedRows[0].Cells[1].Value.ToString();
+            }
+        }
+
+        public string CurrentAbolition
+        {
+            get
+            {
+                return dataGridView1.SelectedRows[0].Cells[6].Value.ToString();
+            }
         }
 
         private void InitializeFilter()
         {
-            this.str仕入先名 = "";
-            this.str担当者名 = "";
-            this.str仕入先コード開始 = "";
-            this.str仕入先コード終了 = "";
-            this.str窓口電話番号 = "";
-            this.str窓口ファックス番号 = "";
-            this.lng削除指定 = 1;
+            strユニットコード開始 = "";
+            strユニットコード終了 = "";
+            str品名 = "";
+            str型番 = "";
+            lng廃止指定 = 0;
+            lngRoHS対応 = 1;
+            lng非含有証明書 = 0;
+            dtm更新日開始 = DateTime.MinValue;
+            dtm更新日終了 = DateTime.MinValue;
+            str更新者名 = "";
+            lng確定指定 = 0;
+            lng承認指定 = 0;
+            lng削除指定 = 1;
         }
 
         private void Form_Load(object sender, EventArgs e)
         {
             FunctionClass fn = new FunctionClass();
             fn.DoWait("しばらくお待ちください...");
+
+
             //実行中フォーム起動
-            //string LoginUserCode = CommonConstants.LoginUserCode;
+            string LoginUserCode = CommonConstants.LoginUserCode;
             LocalSetting localSetting = new LocalSetting();
-            localSetting.LoadPlace(CommonConstants.LoginUserCode, this);
+            localSetting.LoadPlace(LoginUserCode, this);
+
 
             MyApi myapi = new MyApi();
             int xSize, ySize, intpixel, twipperdot;
@@ -96,31 +118,20 @@ namespace u_net
             intWindowWidth = this.Width;
 
             // DataGridViewの設定
-            //dataGridView1.AllowUserToResizeColumns = true;
-            //dataGridView1.Font = new Font("MS ゴシック", 10);
-            //dataGridView1.DefaultCellStyle.SelectionBackColor = Color.FromArgb(210, 210, 255);
-            //dataGridView1.DefaultCellStyle.SelectionForeColor = Color.Black;
-            //dataGridView1.GridColor = Color.FromArgb(230, 230, 230);
-            //dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font("MS ゴシック", 9);
-            //dataGridView1.DefaultCellStyle.Font = new Font("MS ゴシック", 10);
-            //dataGridView1.DefaultCellStyle.ForeColor = Color.Black;
+            dataGridView1.AllowUserToResizeColumns = true;
+            dataGridView1.Font = new Font("MS ゴシック", 10);
+            dataGridView1.DefaultCellStyle.SelectionBackColor = Color.FromArgb(210, 210, 255);
+            dataGridView1.DefaultCellStyle.SelectionForeColor = Color.Black;
+            dataGridView1.GridColor = Color.FromArgb(230, 230, 230);
+            dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font("MS ゴシック", 9);
+            dataGridView1.DefaultCellStyle.Font = new Font("MS ゴシック", 10);
+            dataGridView1.DefaultCellStyle.ForeColor = Color.Black;
 
-            //dataGridView1.Columns[0].DefaultCellStyle.BackColor = Color.FromArgb(255, 255, 200); // 薄い黄色
-            //dataGridView1.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridView1.AllowUserToAddRows = false;
+            dataGridView1.AllowUserToDeleteRows = false;
+            dataGridView1.ReadOnly = true;
 
-
-            //0列目はaccessでは行ヘッダのため、ずらす
-            //dataGridView1.Columns[0].Width = 500 / twipperdot;
-            //dataGridView1.Columns[0].Width = 1100 / twipperdot; //1150
-            //dataGridView1.Columns[1].Width = 300 / twipperdot;
-            //dataGridView1.Columns[2].Width = 5000;
-            //dataGridView1.Columns[3].Width = 0 / twipperdot;
-            //dataGridView1.Columns[4].Width = 2000 / twipperdot;
-            //dataGridView1.Columns[5].Width = 1500 / twipperdot;
-            //dataGridView1.Columns[6].Width = 1500 / twipperdot;
-            //dataGridView1.Columns[7].Width = 2200 / twipperdot;//1300
-            //dataGridView1.Columns[8].Width = 1500 / twipperdot;
-            //dataGridView1.Columns[9].Width = 300 / twipperdot;
 
             myapi.GetFullScreen(out xSize, out ySize);
 
@@ -138,43 +149,34 @@ namespace u_net
 
             InitializeFilter();
             DoUpdate();
-            //Cleargrid(dataGridView1);
             fn.WaitForm.Close();
+
         }
 
-        private void Form_Resize(object sender, EventArgs e)
+
+        private void F_ユニット管理_FormClosing(object sender, FormClosingEventArgs e)
         {
-            try
-            {
-                if (this.Height > 800)
-                {
-                    //dataGridView1.Height = dataGridView1.Height + (this.Height - intWindowHeight);
-                    intWindowHeight = this.Height;  // 高さ保存
-
-                    //dataGridView1.Width = dataGridView1.Width + (this.Width - intWindowWidth);
-                    intWindowWidth = this.Width;    // 幅保存
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(this.Name + "_Form_Resize - " + ex.Message);
-            }
+            string LoginUserCode = CommonConstants.LoginUserCode;//テスト用 ログインユーザを実行中にどのように管理するか決まったら修正
+            LocalSetting test = new LocalSetting();
+            test.SavePlace(LoginUserCode, this);
         }
+
+
 
         public int DoUpdate()
         {
             int result = -1;
             try
             {
-                result = Filtering();
-                //   DrawGrid();
+                result = GridSet();
+
                 if (result >= 0)
                 {
-                    //this.表示件数.Text = result.ToString();
+                    this.表示件数.Text = result.ToString();
                 }
                 else
                 {
-                    //this.表示件数.Text = null; // Nullの代わりにC#ではnullを使用
+                    this.表示件数.Text = null; // Nullの代わりにC#ではnullを使用
                 }
             }
             catch (Exception ex)
@@ -186,36 +188,109 @@ namespace u_net
             return result;
         }
 
-        private int Filtering()
+        private int GridSet()
         {
             try
             {
                 string filter = string.Empty;
 
-                // 仕入先コード指定
-                if (!string.IsNullOrEmpty(str仕入先コード開始))
+
+
+
+
+                // 品名指定
+                if (!string.IsNullOrEmpty(str品名))
                 {
-                    filter += string.Format("(仕入先コード BETWEEN '{0}' AND '{1}') AND ",
-                                                                  str仕入先コード開始, str仕入先コード終了);
+                    filter += string.Format("品名 LIKE '%{0}%' AND ", str品名);
                 }
 
-                // 仕入先名指定
-                if (!string.IsNullOrEmpty(str仕入先名))
+                // 型番指定
+                if (!string.IsNullOrEmpty(str型番))
                 {
-                    filter += string.Format("仕入先名 LIKE '%{0}%' AND ", str仕入先名);
+                    filter += string.Format("型番 LIKE '%{0}%' AND ", str型番);
                 }
 
-                // 担当者名指定
-                if (!string.IsNullOrEmpty(str担当者名))
+
+                // RoHS対応指定
+                switch (lngRoHS対応)
                 {
-                    filter += string.Format("担当者名 LIKE '%{0}%' AND ", str担当者名);
+                    case 1:
+                        filter += "(RohsStatusSign = '１' OR RohsStatusSign = '２') AND ";
+                        break;
+                    case 2:
+                        filter += "(NOT (RohsStatusSign = '１' OR RohsStatusSign = '２')) AND ";
+                        break;
                 }
 
-                // 担当者メールアドレス指定
-                if (!string.IsNullOrEmpty(str仕入先名フリガナ))
+                // 非含有証明書指定
+                switch (lng非含有証明書)
                 {
-                    filter += string.Format("仕入先名フリガナ LIKE '%{0}%' AND ", str仕入先名フリガナ);
+                    case 1:
+                        filter += "非含有証明書 = '○' AND ";
+                        break;
+                    case 2:
+                        filter += "非含有証明書 = '△' AND ";
+                        break;
+                    case 3:
+                        filter += "非含有証明書 = '？' AND ";
+                        break;
+                    case 4:
+                        filter += "非含有証明書 IS  NULL AND ";
+                        break;
                 }
+
+
+
+                // 更新日指定
+                if (dtm更新日開始 != DateTime.MinValue && dtm更新日終了 != DateTime.MinValue)
+                {
+                    filter += string.Format("'{0}'<=更新日時 AND 更新日時<='{1}' AND ", dtm更新日開始.ToString("yyyy/MM/dd"), dtm更新日終了.ToString("yyyy/MM/dd"));
+                }
+
+
+                // 更新者名指定
+                if (!string.IsNullOrEmpty(str更新者名))
+                {
+                    filter += string.Format("更新者名 = '{0}' AND ", str更新者名);
+                }
+
+
+
+                // 確定
+                switch (lng確定指定)
+                {
+                    case 1:
+                        filter += "確定 IS NULL AND ";
+                        break;
+                    case 2:
+                        filter += "確定 IS NOT NULL AND ";
+                        break;
+                }
+
+                // 承認
+                switch (lng承認指定)
+                {
+                    case 1:
+                        filter += "承認 IS NULL AND ";
+                        break;
+                    case 2:
+                        filter += "承認 IS NOT NULL AND ";
+                        break;
+                }
+
+
+
+                // 廃止
+                switch (lng廃止指定)
+                {
+                    case 1:
+                        filter += "廃止 IS NULL AND ";
+                        break;
+                    case 2:
+                        filter += "廃止 IS NOT NULL AND ";
+                        break;
+                }
+
 
 
                 // 削除
@@ -228,15 +303,16 @@ namespace u_net
                         filter += "削除 IS NOT NULL AND ";
                         break;
                 }
+
                 if (!string.IsNullOrEmpty(filter))
                 {
                     filter = filter.Substring(0, filter.Length - 5); // 最後の " AND " を削除
                 }
 
-                string query = "SELECT * FROM V仕入先管理 WHERE 1=1 AND " + filter + " ORDER BY 仕入先コード DESC ";
+                string query = "SELECT * FROM Vユニット管理 WHERE 1=1 AND " + filter + " ORDER BY ユニットコード DESC ";
 
                 Connect();
-                //DataGridUtils.SetDataGridView(cn, query, this.dataGridView1);
+                DataGridUtils.SetDataGridView(cn, query, this.dataGridView1);
 
 
                 MyApi myapi = new MyApi();
@@ -250,26 +326,27 @@ namespace u_net
                 intWindowWidth = this.Width;
 
                 //// DataGridViewの設定
-                //dataGridView1.Columns[0].DefaultCellStyle.BackColor = Color.FromArgb(255, 255, 200); // 薄い黄色
+                dataGridView1.Columns[0].DefaultCellStyle.BackColor = Color.FromArgb(255, 255, 200); // 薄い黄色
+                dataGridView1.Columns[1].DefaultCellStyle.BackColor = Color.FromArgb(255, 255, 200); // 薄い黄色
 
-                //dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-                //dataGridView1.ColumnHeadersHeight = 25;
 
                 //0列目はaccessでは行ヘッダのため、ずらす
 
-                //dataGridView1.Columns[0].Width = 1100 / twipperdot; //1150
-                //dataGridView1.Columns[1].Width = 310 / twipperdot;
-                //dataGridView1.Columns[2].Width = 5000 / twipperdot;
-                //dataGridView1.Columns[3].Visible = false;
-                //dataGridView1.Columns[4].Width = 2000 / twipperdot;
-                //dataGridView1.Columns[5].Width = 1500 / twipperdot;
-                //dataGridView1.Columns[6].Width = 1500 / twipperdot;
-                //dataGridView1.Columns[7].Width = 2200 / twipperdot;//1300
-                //dataGridView1.Columns[8].Width = 1500 / twipperdot;
-                //dataGridView1.Columns[9].Width = 310 / twipperdot;
+                dataGridView1.Columns[0].Width = 1200 / twipperdot;
+                dataGridView1.Columns[1].Width = 400 / twipperdot;
+                dataGridView1.Columns[2].Width = 3400 / twipperdot;
+                dataGridView1.Columns[3].Width = 3400 / twipperdot;
+                dataGridView1.Columns[4].Width = 400 / twipperdot;
+                dataGridView1.Columns[5].Width = 400 / twipperdot;
+                dataGridView1.Columns[6].Width = 400 / twipperdot;
+                dataGridView1.Columns[7].Width = 2200 / twipperdot;
+                dataGridView1.Columns[8].Width = 1500 / twipperdot;
+                dataGridView1.Columns[9].Width = 400 / twipperdot;
+                dataGridView1.Columns[10].Width = 400 / twipperdot;
+                dataGridView1.Columns[11].Width = 400 / twipperdot;
 
-                //return dataGridView1.RowCount;
-                return 0;
+                return dataGridView1.RowCount;
+
             }
             catch (Exception ex)
             {
@@ -306,133 +383,23 @@ namespace u_net
         //ダブルクリックで仕入先フォームを開く　仕入先コードを渡す
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            //if (e.Button != MouseButtons.Left) return; // 左ボタンのダブルクリック以外は無視
-
             if (e.RowIndex >= 0) // ヘッダー行でない場合
             {
-                //string selectedData = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString(); // 1列目のデータを取得
 
-                F_仕入先 targetform = new F_仕入先();
+                F_ユニット targetform = new F_ユニット();
 
-                //targetform.args = selectedData;
+                targetform.args = CurrentCode + "," + CurrentEdition;
                 targetform.ShowDialog();
             }
         }
 
-        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex >= 0) // ヘッダー行でない場合
-            {
-                //dataGridView1.ClearSelection();
-                //dataGridView1.Rows[e.RowIndex].Selected = true;
-            }
-        }
 
-        private bool sorting;
-
-        private void dataGridView1_Sorted(object sender, EventArgs e)
-        {
-            if (!sorting)
-            {
-                sorting = true;
-
-                // DataGridViewのソートが完了したら、先頭行を選択する
-                //if (dataGridView1.Rows.Count > 0)
-                //{
-                //    Cleargrid(dataGridView1);
-                //}
-
-                sorting = false;
-            }
-        }
 
         private void dataGridView1_KeyDown(object sender, KeyEventArgs e)
         {
-            // Shiftキーが押されているときは何もしない
-            if (e.Shift)
-            {
-                e.SuppressKeyPress = true;
-            }
+            Form_KeyDown(sender, e);
         }
 
-        //選択行をクリアして先頭を表示して先頭行を選択
-        private void Cleargrid(DataGridView dataGridView)
-        {
-            //dataGridView.ClearSelection();
-
-            //if (dataGridView.Rows.Count > 0)
-            //{
-            //    dataGridView.Rows[0].Selected = true;
-            //    dataGridView.FirstDisplayedScrollingRowIndex = 0; // 先頭行を表示
-            //}
-        }
-
-        private void コマンド終了_Click(object sender, EventArgs e)
-        {
-            LocalSetting test = new LocalSetting();
-            test.SavePlace(CommonConstants.LoginUserCode, this);
-            this.Close();
-        }
-
-        private void コマンド抽出_Click(object sender, EventArgs e)
-        {
-            //dataGridView1.Focus();
-            //F_ユニット管理_抽出 form = new F_ユニット管理_抽出();
-            //form.ShowDialog();
-        }
-
-        private void コマンド入出力_Click(object sender, EventArgs e)
-        {
-            //dataGridView1.Focus(); // DataGridViewにフォーカスを設定
-
-            MessageBox.Show("現在開発中です。", "入出力コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
-
-        private void コマンド初期化_Click(object sender, EventArgs e)
-        {
-            InitializeFilter();
-            DoUpdate();
-            //Cleargrid(dataGridView1);
-        }
-
-        private void コマンド全表示_Click(object sender, EventArgs e)
-        {
-            InitializeFilter();
-            DoUpdate();
-            //Cleargrid(dataGridView1);
-        }
-
-        private void コマンド更新_Click(object sender, EventArgs e)
-        {
-
-            DoUpdate();
-            //Cleargrid(dataGridView1);
-
-        }
-
-        private void コマンド検索_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("現在開発中です。\n コードで検索するときに使用します。", "検索コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
-
-        private void コマンドユニット_Click(object sender, EventArgs e)
-        {
-            //if (dataGridView1.SelectedRows.Count > 0)
-            //{
-            //    // DataGridView1で選択された行が存在する場合
-            //    string selectedData = dataGridView1.SelectedRows[0].Cells[0].Value.ToString(); // 1列目のデータを取得
-
-            //    // 仕入先フォームを作成し、引数を設定して表示
-            //    F_仕入先 targetform = new F_仕入先();
-            //    targetform.args = selectedData;
-            //    targetform.ShowDialog();
-            //}
-            //else
-            //{
-            //    // ユーザーが行を選択していない場合のエラーハンドリング
-            //    MessageBox.Show("行が選択されていません。");
-            //}
-        }
 
         private void Form_KeyDown(object sender, KeyEventArgs e)
         {
@@ -442,54 +409,52 @@ namespace u_net
                 switch (e.KeyCode)
                 {
                     case Keys.F1:
-                        //if (this.コマンド抽出.Enabled) コマンド抽出_Click(null, null);
+                        if (this.コマンド抽出.Enabled) コマンド抽出_Click(null, null);
                         break;
                     case Keys.F2:
-                        //if (this.コマンド検索.Enabled) コマンド検索_Click(null, null);
+                        if (this.コマンド検索.Enabled) コマンド検索_Click(null, null);
                         break;
                     case Keys.F3:
-                        //if (this.コマンド初期化.Enabled) コマンド初期化_Click(null, null);
+                        if (this.コマンド初期化.Enabled) コマンド初期化_Click(null, null);
                         break;
                     case Keys.F4:
-                        //if (this.コマンド更新.Enabled) コマンド更新_Click(null, null);
+                        if (this.コマンド更新.Enabled) コマンド更新_Click(null, null);
                         break;
                     case Keys.F5:
-                        //if (this.コマンド仕入先.Enabled) コマンド仕入先_Click(null, null);
+                        if (this.コマンドユニット.Enabled) コマンドユニット_Click(null, null);
                         break;
                     case Keys.F6:
-                    //if (this.コマンドメール.Enabled) コマンドメール_Click(null, null);
-                    //break;
+                        if (this.コマンド部品表.Enabled) コマンド部品表_Click(null, null);
+                        break;
+                    case Keys.F7:
+                        if (this.コマンド廃止指定.Enabled) コマンド廃止指定_Click(null, null);
+                        break;
                     case Keys.F9:
-                        //if (this.コマンド印刷.Enabled) コマンド印刷_Click(null, null);
+                        if (this.コマンド参照用.Enabled) コマンド参照用_Click(null, null);
                         break;
-                    case Keys.F10:
-                        //if (this.コマンド入出力.Enabled) コマンド入出力_Click(null, null);
-                        break;
-                    case Keys.F11:
-                    //if (this.コマンド入出力.Enabled) コマンド入出力_Click(null, null);
-                    //break;
                     case Keys.F12:
-                        //if (this.コマンド終了.Enabled) コマンド終了_Click(null, null);
+                        if (this.コマンド終了.Enabled) コマンド終了_Click(null, null);
                         break;
                     case Keys.Return:
-                        //if (this.ActiveControl == this.dataGridView1)
-                        //{
-                        //    if (dataGridView1.SelectedRows.Count > 0)
-                        //    {
-                        //        // DataGridView1で選択された行が存在する場合
-                        //        string selectedData = dataGridView1.SelectedRows[0].Cells[0].Value.ToString(); // 1列目のデータを取得
+                        if (this.ActiveControl == this.dataGridView1)
+                        {
+                            if (dataGridView1.SelectedRows.Count > 0)
+                            {
+                                // DataGridView1で選択された行が存在する場合
+                                string selectedCode = dataGridView1.SelectedRows[0].Cells[0].Value.ToString(); // 1列目のデータを取得
+                                string selectedEdition = dataGridView1.SelectedRows[0].Cells[1].Value.ToString();
 
-                        //        // 仕入先フォームを作成し、引数を設定して表示
-                        //        F_仕入先 targetform = new F_仕入先();
-                        //        targetform.args = selectedData;
-                        //        targetform.ShowDialog();
-                        //    }
-                        //    else
-                        //    {
-                        //        // ユーザーが行を選択していない場合のエラーハンドリング
-                        //        MessageBox.Show("行が選択されていません。");
-                        //    }
-                        //}
+
+                                F_ユニット targetform = new F_ユニット();
+                                targetform.args = selectedCode + "," + selectedEdition;
+                                targetform.ShowDialog();
+                            }
+                            else
+                            {
+                                // ユーザーが行を選択していない場合のエラーハンドリング
+                                MessageBox.Show("行が選択されていません。");
+                            }
+                        }
                         break;
                 }
             }
@@ -499,45 +464,277 @@ namespace u_net
             }
         }
 
-        private void F_仕入先管理_FormClosing(object sender, FormClosingEventArgs e)
+
+
+
+        private void コマンド抽出_Click(object sender, EventArgs e)
         {
-            string LoginUserCode = CommonConstants.LoginUserCode;
-            LocalSetting test = new LocalSetting();
-            test.SavePlace(LoginUserCode, this);
+            dataGridView1.Focus();
+            F_ユニット管理_抽出 form = new F_ユニット管理_抽出();
+            form.ShowDialog();
         }
 
-        private bool ascending = true;
-
-        private void dataGridView1_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        private void コマンド検索_Click(object sender, EventArgs e)
         {
-            //if (dataGridView1.Columns[e.ColumnIndex].Name == "仕入先名")
-            //{
-            //    if (ascending)
-            //    {
-            //        dataGridView1.Sort(dataGridView1.Columns["仕入先名フリガナ"], System.ComponentModel.ListSortDirection.Ascending);
-            //    }
-            //    else
-            //    {
-            //        dataGridView1.Sort(dataGridView1.Columns["仕入先名フリガナ"], System.ComponentModel.ListSortDirection.Descending);
-            //    }
-            //    ascending = !ascending;
-            //}
+            MessageBox.Show("現在開発中です。\n コードで検索するときに使用します。", "検索コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        private void コマンド材料費_Click(object sender, EventArgs e)
+
+
+        private void コマンド初期化_Click(object sender, EventArgs e)
         {
+            FunctionClass fn = new FunctionClass();
+
+            fn.DoWait("初期化しています...");
+
+            // 初期抽出条件を設定する
+            InitializeFilter();
+
+            // リストを更新する
+            if (DoUpdate() == -1)
+                MessageBox.Show("エラーが発生しました。", "初期化コマンド", MessageBoxButtons.OK);
+
+            fn.WaitForm.Close();
+        }
+
+
+        private void コマンド更新_Click(object sender, EventArgs e)
+        {
+            FunctionClass fn = new FunctionClass();
+
+            fn.DoWait("更新しています...");
+
+
+            // リストを更新する
+            if (DoUpdate() == -1)
+                MessageBox.Show("更新できませんでした。", "更新コマンド", MessageBoxButtons.OK);
+
+            fn.WaitForm.Close();
 
         }
 
-        private void コマンド指導書設定_Click(object sender, EventArgs e)
-        {
 
+        private void コマンドユニット_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count > 0)
+            {
+                // DataGridView1で選択された行が存在する場合
+                string selectedCode = dataGridView1.SelectedRows[0].Cells[0].Value.ToString(); // 1列目のデータを取得
+                string selectedEdition = dataGridView1.SelectedRows[0].Cells[1].Value.ToString();
+
+
+                F_ユニット targetform = new F_ユニット();
+                targetform.args = selectedCode + "," + selectedEdition;
+                targetform.ShowDialog();
+            }
+            else
+            {
+                // ユーザーが行を選択していない場合のエラーハンドリング
+                MessageBox.Show("行が選択されていません。");
+            }
         }
 
-        private void コマンド指導書変更有り_Click(object sender, EventArgs e)
+        private void コマンド部品表_Click(object sender, EventArgs e)
         {
+            IReport paoRep = ReportCreator.GetPreview();
 
+            paoRep.LoadDefFile("../../../Reports/部品表.prepd");
+
+            Connect();
+
+
+            DataRowCollection V部品表;
+
+            string sqlQuery = "SELECT * FROM V部品表 where ユニットコード='" + CurrentCode + "' and ユニット版数=" + CurrentEdition + " ORDER BY 明細番号";
+
+            using (SqlCommand command = new SqlCommand(sqlQuery, cn))
+            {
+                using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+                {
+                    DataSet dataSet = new DataSet();
+
+                    adapter.Fill(dataSet);
+
+                    V部品表 = dataSet.Tables[0].Rows;
+
+                }
+            }
+
+            //最大行数
+            int maxRow = 49;
+            //現在の行
+            int CurRow = 0;
+            //行数
+            int RowCount = maxRow;
+            if (V部品表.Count > 0)
+            {
+                RowCount = V部品表.Count;
+            }
+
+            int page = 1;
+            double maxPage = Math.Ceiling((double)RowCount / maxRow);
+
+            DateTime now = DateTime.Now;
+
+            int lenB;
+
+            //描画すべき行がある限りページを増やす
+            while (RowCount > 0)
+            {
+                RowCount -= maxRow;
+
+                paoRep.PageStart();
+
+                //ヘッダー
+                paoRep.Write("ユニットコード", V部品表[0]["ユニットコード"].ToString() != "" ? V部品表[0]["ユニットコード"].ToString() : " ");
+                paoRep.Write("ユニット版数", V部品表[0]["ユニット版数"].ToString() != "" ? V部品表[0]["ユニット版数"].ToString() : " ");
+                paoRep.Write("ユニット品名", V部品表[0]["ユニット品名"].ToString() != "" ? V部品表[0]["ユニット品名"].ToString() : " ");
+                paoRep.Write("ユニット型番", V部品表[0]["ユニット型番"].ToString() != "" ? V部品表[0]["ユニット型番"].ToString() : " ");
+
+                paoRep.Write("承認日時", V部品表[0]["承認日時"].ToString() != "" ? V部品表[0]["承認日時"].ToString() : " ");
+
+                if (!string.IsNullOrEmpty(V部品表[0]["無効日時"].ToString()))
+                {
+                    paoRep.Write("コメント", "（削除済み）");
+                }
+                else
+                {
+                    paoRep.Write("コメント", "");
+                }
+
+                if (string.IsNullOrEmpty(V部品表[0]["識別コード"].ToString()))
+                {
+                    paoRep.Write("ページコード", " ");
+                }
+                else
+                {
+                    string ページコード = $"{V部品表[0]["識別コード"].ToString()}-04{page:D2}";
+                    paoRep.Write("ページコード", ページコード);
+                }
+
+                //フッダー
+                paoRep.Write("出力日時", "出力日時：" + now.ToString("yyyy/MM/dd HH:mm:ss"));
+                paoRep.Write("ページ", ("ページ： " + page + "/" + maxPage).ToString());
+
+                //明細
+                for (var i = 0; i < maxRow; i++)
+                {
+                    if (CurRow >= V部品表.Count) break;
+
+                    DataRow targetRow = V部品表[CurRow];
+
+                    paoRep.Write("明細番号", targetRow["明細番号"].ToString() != "" ? targetRow["明細番号"].ToString() : " ", i + 1);
+                    paoRep.Write("構成番号", targetRow["構成番号"].ToString() != "" ? targetRow["構成番号"].ToString() : " ", i + 1);
+                    paoRep.Write("形状", targetRow["形状"].ToString() != "" ? targetRow["形状"].ToString() : " ", i + 1);
+                    paoRep.Write("部品コード", targetRow["部品コード"].ToString() != "" ? targetRow["部品コード"].ToString() : " ", i + 1);
+                    paoRep.Write("品名", targetRow["品名"].ToString() != "" ? targetRow["品名"].ToString() : " ", i + 1);
+                    paoRep.Write("型番", targetRow["型番"].ToString() != "" ? targetRow["型番"].ToString() : " ", i + 1);
+                    paoRep.Write("メーカー名", targetRow["メーカー名"].ToString() != "" ? targetRow["メーカー名"].ToString() : " ", i + 1);
+                    paoRep.Write("変更", targetRow["変更"].ToString() != "" ? targetRow["変更"].ToString() : " ", i + 1);
+
+                    if (targetRow["削除対象"].ToString() == "1")
+                    {
+                        paoRep.Write("削除対象", "------------------------------------------------------------------------------------------------", i + 1);
+                    }
+                    else
+                    {
+                        paoRep.Write("削除対象", "", i + 1);
+                    }
+
+                    CurRow++;
+
+
+                }
+
+                page++;
+
+                paoRep.PageEnd();
+
+
+
+            }
+
+
+            paoRep.Output();
         }
+
+        private void コマンド廃止指定_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count > 0)
+            {
+                // DataGridView1で選択された行が存在する場合
+                string selectedData = CurrentAbolition;
+
+
+                if (selectedData == "")
+                {
+                    if (SetAbolitionChanged(-1, CurrentCode, CurrentEdition))
+                    {
+                        dataGridView1.SelectedRows[0].Cells[6].Value = "■";
+                    }
+                }
+                else
+                {
+                    if (SetAbolitionChanged(0, CurrentCode, CurrentEdition))
+                    {
+                        dataGridView1.SelectedRows[0].Cells[6].Value = "";
+                    }
+                }
+
+            }
+        }
+
+        private bool SetAbolitionChanged(int value, string code, string edition)
+        {
+            bool success = false;
+
+            try
+            {
+                Connect();
+
+                string strSQL = $"UPDATE Mユニット SET 廃止 = {value} " +
+                                $"WHERE ユニットコード = '{code}' AND ユニット版数 = {edition}";
+
+                using (SqlCommand cmd = new SqlCommand(strSQL, cn))
+                {
+                    cmd.ExecuteNonQuery();
+                }
+
+                success = true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"{this.GetType().Name}_SetAbolitionChanged - {ex.GetType().Name}: {ex.Message}");
+            }
+
+            return success;
+        }
+
+        private void コマンド参照用_Click(object sender, EventArgs e)
+        {
+            F_ユニット参照 targetform = new F_ユニット参照();
+
+            targetform.args = CurrentCode + "," + CurrentEdition;
+            targetform.ShowDialog();
+        }
+
+
+
+
+
+
+
+        private void コマンド終了_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+
+
+
+
+
+
 
         private void コマンド参照用_Enter(object sender, EventArgs e)
         {
@@ -548,5 +745,7 @@ namespace u_net
         {
             //toolStripStatusLabel1.Text = "各種項目の説明";
         }
+
+       
     }
 }

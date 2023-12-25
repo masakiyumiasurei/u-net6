@@ -298,6 +298,7 @@ namespace u_net
                 製品明細1.Detail.AllowUserToAddRows = true;
                 製品明細1.Detail.AllowUserToDeleteRows = true;
                 製品明細1.Detail.ReadOnly = false;
+                製品明細1.Detail.AllowRowMove = true;
 
                 success = true;
                 return success;
@@ -592,6 +593,7 @@ namespace u_net
                         製品明細1.Detail.AllowUserToAddRows = !this.IsDecided;
                         製品明細1.Detail.AllowUserToDeleteRows = !this.IsDecided;
                         製品明細1.Detail.ReadOnly = this.IsDecided;
+                        製品明細1.Detail.AllowRowMove = !IsDecided;
 
                         ChangedData(false);
 
@@ -640,6 +642,7 @@ namespace u_net
                         製品明細1.Detail.AllowUserToAddRows = !this.IsDecided;
                         製品明細1.Detail.AllowUserToDeleteRows = !this.IsDecided;
                         製品明細1.Detail.ReadOnly = this.IsDecided;
+                        製品明細1.Detail.AllowRowMove = !IsDecided;
 
                         ChangedData(false);
 
@@ -1201,6 +1204,7 @@ namespace u_net
                     製品明細1.Detail.AllowUserToAddRows = true;
                     製品明細1.Detail.AllowUserToDeleteRows = true;
                     製品明細1.Detail.ReadOnly = false;
+                    製品明細1.Detail.AllowRowMove = true;
                 }
             }
             catch (Exception ex)
@@ -1578,6 +1582,7 @@ namespace u_net
                     製品明細1.Detail.AllowUserToAddRows = !IsDecided;
                     製品明細1.Detail.AllowUserToDeleteRows = !IsDecided;
                     製品明細1.Detail.ReadOnly = IsDecided;
+                    製品明細1.Detail.AllowRowMove = !IsDecided;
 
                     ChangedData(false);
                 }
@@ -1733,6 +1738,7 @@ namespace u_net
                     製品明細1.Detail.AllowUserToAddRows = true;
                     製品明細1.Detail.AllowUserToDeleteRows = true;
                     製品明細1.Detail.ReadOnly = false;
+                    製品明細1.Detail.AllowRowMove = true;
                 }
             }
             catch (Exception ex)

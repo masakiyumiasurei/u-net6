@@ -99,7 +99,6 @@
             コマンドF8.TabIndex = 11;
             コマンドF8.TabStop = false;
             コマンドF8.UseVisualStyleBackColor = true;
-            コマンドF8.Click += コマンド指導書変更有り_Click;
             // 
             // コマンド廃止指定
             // 
@@ -114,7 +113,7 @@
             コマンド廃止指定.TabStop = false;
             コマンド廃止指定.Text = "廃止指定";
             コマンド廃止指定.UseVisualStyleBackColor = true;
-            コマンド廃止指定.Click += コマンド指導書設定_Click;
+            コマンド廃止指定.Click += コマンド廃止指定_Click;
             // 
             // コマンドユニット
             // 
@@ -144,11 +143,10 @@
             コマンド部品表.TabStop = false;
             コマンド部品表.Text = "部品表";
             コマンド部品表.UseVisualStyleBackColor = true;
-            コマンド部品表.Click += コマンド材料費_Click;
+            コマンド部品表.Click += コマンド部品表_Click;
             // 
             // コマンド参照用
             // 
-            コマンド参照用.Enabled = false;
             コマンド参照用.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             コマンド参照用.ForeColor = Color.Blue;
             コマンド参照用.ImageAlign = ContentAlignment.BottomLeft;
@@ -160,6 +158,7 @@
             コマンド参照用.TabStop = false;
             コマンド参照用.Text = "参照用";
             コマンド参照用.UseVisualStyleBackColor = true;
+            コマンド参照用.Click += コマンド参照用_Click;
             コマンド参照用.Enter += コマンド参照用_Enter;
             コマンド参照用.Leave += コマンド参照用_Leave;
             // 
@@ -292,6 +291,9 @@
             dataGridView1.RowTemplate.Height = 29;
             dataGridView1.Size = new Size(1054, 440);
             dataGridView1.TabIndex = 87;
+            dataGridView1.CellDoubleClick += dataGridView1_CellDoubleClick;
+            dataGridView1.CellPainting += DataGridView1_CellPainting;
+            dataGridView1.KeyDown += dataGridView1_KeyDown;
             // 
             // panel2
             // 
@@ -317,6 +319,8 @@
             Margin = new Padding(3, 2, 3, 2);
             Name = "F_ユニット管理";
             Text = "ユニット管理";
+            FormClosing += F_ユニット管理_FormClosing;
+            Load += Form_Load;
             KeyDown += Form_KeyDown;
             panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();

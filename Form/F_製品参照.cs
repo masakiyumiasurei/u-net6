@@ -297,6 +297,7 @@ namespace u_net
                 製品明細参照1.Detail.AllowUserToAddRows = true;
                 製品明細参照1.Detail.AllowUserToDeleteRows = true;
                 製品明細参照1.Detail.ReadOnly = false;
+                製品明細参照1.Detail.AllowRowMove = true;
 
                 success = true;
                 return success;
@@ -546,6 +547,7 @@ namespace u_net
                         製品明細参照1.Detail.AllowUserToAddRows = !this.IsDecided;
                         製品明細参照1.Detail.AllowUserToDeleteRows = !this.IsDecided;
                         製品明細参照1.Detail.ReadOnly = this.IsDecided;
+                        製品明細参照1.Detail.AllowRowMove = !IsDecided;
 
                         ChangedData(false);
 
@@ -601,6 +603,7 @@ namespace u_net
                         製品明細参照1.Detail.AllowUserToAddRows = !this.IsDecided;
                         製品明細参照1.Detail.AllowUserToDeleteRows = !this.IsDecided;
                         製品明細参照1.Detail.ReadOnly = this.IsDecided;
+                        製品明細参照1.Detail.AllowRowMove = !IsDecided;
 
                         ChangedData(false);
 
@@ -1374,6 +1377,7 @@ namespace u_net
                     製品明細参照1.Detail.AllowUserToAddRows = !IsDecided;
                     製品明細参照1.Detail.AllowUserToDeleteRows = !IsDecided;
                     製品明細参照1.Detail.ReadOnly = IsDecided;
+                    製品明細参照1.Detail.AllowRowMove = !IsDecided;
 
                     ChangedData(false);
                 }
@@ -1529,6 +1533,7 @@ namespace u_net
                     製品明細参照1.Detail.AllowUserToAddRows = true;
                     製品明細参照1.Detail.AllowUserToDeleteRows = true;
                     製品明細参照1.Detail.ReadOnly = false;
+                    製品明細参照1.Detail.AllowRowMove = true;
                 }
             }
             catch (Exception ex)
@@ -2080,7 +2085,20 @@ namespace u_net
    
         private void コマンドユニット_Click(object sender, EventArgs e)
         {
-            
+            F_ユニット参照 targetform = new F_ユニット参照();
+
+            if (製品明細参照1.Detail.CurrentRow != null)
+            {
+                string args = 製品明細参照1.Detail.CurrentRow.Cells["ユニットコード"].Value?.ToString() + "," + 製品明細参照1.Detail.CurrentRow.Cells["ユニット版数"].Value?.ToString();
+
+                if (args != ",")
+                {
+                    targetform.args = args;
+                }
+
+            }
+
+            targetform.ShowDialog();
         }
 
         private void コマンドユニット表_Click(object sender, EventArgs e)

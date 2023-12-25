@@ -50,9 +50,9 @@ namespace u_net
             DateToElements();
 
             //実行中フォーム起動
-            string LoginUserCode = CommonConstants.LoginUserCode;
-            LocalSetting localSetting = new LocalSetting();
-            localSetting.LoadPlace(LoginUserCode, this);
+            //string LoginUserCode = CommonConstants.LoginUserCode;
+            //LocalSetting localSetting = new LocalSetting();
+            //localSetting.LoadPlace(LoginUserCode, this);
 
 
         }
@@ -60,9 +60,9 @@ namespace u_net
 
         private void F_カレンダー_FormClosing(object sender, FormClosingEventArgs e)
         {
-            string LoginUserCode = CommonConstants.LoginUserCode;
-            LocalSetting test = new LocalSetting();
-            test.SavePlace(LoginUserCode, this);
+            //string LoginUserCode = CommonConstants.LoginUserCode;
+            //LocalSetting test = new LocalSetting();
+            //test.SavePlace(LoginUserCode, this);
         }
 
         private void DateToElements()

@@ -28,301 +28,298 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label9 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.担当者名 = new System.Windows.Forms.TextBox();
-            this.メーカー名 = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.更新日開始 = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.更新日終了 = new System.Windows.Forms.TextBox();
-            this.Deleted = new System.Windows.Forms.GroupBox();
-            this.DeletedButton3 = new System.Windows.Forms.RadioButton();
-            this.DeletedButton2 = new System.Windows.Forms.RadioButton();
-            this.DeletedButton1 = new System.Windows.Forms.RadioButton();
-            this.抽出ボタン = new System.Windows.Forms.Button();
-            this.キャンセルボタン = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
-            this.担当者メールアドレス = new System.Windows.Forms.TextBox();
-            this.更新者名 = new System.Windows.Forms.TextBox();
-            this.更新日終了選択 = new System.Windows.Forms.Button();
-            this.更新日開始選択 = new System.Windows.Forms.Button();
-            this.Deleted.SuspendLayout();
-            this.SuspendLayout();
+            label9 = new Label();
+            label7 = new Label();
+            担当者名 = new TextBox();
+            メーカー名 = new TextBox();
+            label5 = new Label();
+            label1 = new Label();
+            更新日開始 = new TextBox();
+            label2 = new Label();
+            更新日終了 = new TextBox();
+            Deleted = new GroupBox();
+            DeletedButton3 = new RadioButton();
+            DeletedButton2 = new RadioButton();
+            DeletedButton1 = new RadioButton();
+            抽出ボタン = new Button();
+            キャンセルボタン = new Button();
+            label3 = new Label();
+            担当者メールアドレス = new TextBox();
+            更新者名 = new TextBox();
+            更新日終了選択 = new Button();
+            更新日開始選択 = new Button();
+            Deleted.SuspendLayout();
+            SuspendLayout();
             // 
             // label9
             // 
-            this.label9.AllowDrop = true;
-            this.label9.AutoEllipsis = true;
-            this.label9.Font = new System.Drawing.Font("BIZ UDゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label9.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label9.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label9.Location = new System.Drawing.Point(24, 148);
-            this.label9.Margin = new System.Windows.Forms.Padding(0);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(85, 17);
-            this.label9.TabIndex = 8;
-            this.label9.Text = "更新者名(&N)";
-            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            label9.AllowDrop = true;
+            label9.AutoEllipsis = true;
+            label9.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label9.ForeColor = SystemColors.ActiveCaptionText;
+            label9.ImageAlign = ContentAlignment.MiddleLeft;
+            label9.Location = new Point(24, 148);
+            label9.Margin = new Padding(0);
+            label9.Name = "label9";
+            label9.Size = new Size(85, 17);
+            label9.TabIndex = 8;
+            label9.Text = "更新者名(&N)";
+            label9.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // label7
             // 
-            this.label7.AllowDrop = true;
-            this.label7.AutoEllipsis = true;
-            this.label7.Font = new System.Drawing.Font("BIZ UDゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label7.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label7.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label7.Location = new System.Drawing.Point(24, 58);
-            this.label7.Margin = new System.Windows.Forms.Padding(0);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(85, 17);
-            this.label7.TabIndex = 3;
-            this.label7.Text = "担当者名(&C)";
-            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            label7.AllowDrop = true;
+            label7.AutoEllipsis = true;
+            label7.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label7.ForeColor = SystemColors.ActiveCaptionText;
+            label7.ImageAlign = ContentAlignment.MiddleLeft;
+            label7.Location = new Point(24, 58);
+            label7.Margin = new Padding(0);
+            label7.Name = "label7";
+            label7.Size = new Size(85, 17);
+            label7.TabIndex = 3;
+            label7.Text = "担当者名(&C)";
+            label7.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // 担当者名
             // 
-            this.担当者名.BackColor = System.Drawing.Color.White;
-            this.担当者名.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.担当者名.Location = new System.Drawing.Point(175, 53);
-            this.担当者名.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.担当者名.Name = "担当者名";
-            this.担当者名.Size = new System.Drawing.Size(413, 20);
-            this.担当者名.TabIndex = 2;
+            担当者名.BackColor = Color.White;
+            担当者名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            担当者名.Location = new Point(175, 53);
+            担当者名.Margin = new Padding(3, 2, 3, 2);
+            担当者名.Name = "担当者名";
+            担当者名.Size = new Size(413, 20);
+            担当者名.TabIndex = 2;
             // 
             // メーカー名
             // 
-            this.メーカー名.BackColor = System.Drawing.Color.White;
-            this.メーカー名.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.メーカー名.Location = new System.Drawing.Point(175, 20);
-            this.メーカー名.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.メーカー名.Name = "メーカー名";
-            this.メーカー名.Size = new System.Drawing.Size(413, 20);
-            this.メーカー名.TabIndex = 1;
+            メーカー名.BackColor = Color.White;
+            メーカー名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            メーカー名.Location = new Point(175, 20);
+            メーカー名.Margin = new Padding(3, 2, 3, 2);
+            メーカー名.Name = "メーカー名";
+            メーカー名.Size = new Size(413, 20);
+            メーカー名.TabIndex = 1;
             // 
             // label5
             // 
-            this.label5.AllowDrop = true;
-            this.label5.AutoEllipsis = true;
-            this.label5.Font = new System.Drawing.Font("BIZ UDゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label5.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label5.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label5.Location = new System.Drawing.Point(27, 23);
-            this.label5.Margin = new System.Windows.Forms.Padding(0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(87, 17);
-            this.label5.TabIndex = 1;
-            this.label5.Text = "メーカー名(&M)";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            label5.AllowDrop = true;
+            label5.AutoEllipsis = true;
+            label5.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label5.ForeColor = SystemColors.ActiveCaptionText;
+            label5.ImageAlign = ContentAlignment.MiddleLeft;
+            label5.Location = new Point(27, 23);
+            label5.Margin = new Padding(0);
+            label5.Name = "label5";
+            label5.Size = new Size(87, 17);
+            label5.TabIndex = 1;
+            label5.Text = "メーカー名(&M)";
+            label5.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // label1
             // 
-            this.label1.AllowDrop = true;
-            this.label1.AutoEllipsis = true;
-            this.label1.Font = new System.Drawing.Font("BIZ UDゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label1.Location = new System.Drawing.Point(24, 117);
-            this.label1.Margin = new System.Windows.Forms.Padding(0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(85, 17);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "更新日(&U)";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            label1.AllowDrop = true;
+            label1.AutoEllipsis = true;
+            label1.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.ForeColor = SystemColors.ActiveCaptionText;
+            label1.ImageAlign = ContentAlignment.MiddleLeft;
+            label1.Location = new Point(24, 117);
+            label1.Margin = new Padding(0);
+            label1.Name = "label1";
+            label1.Size = new Size(85, 17);
+            label1.TabIndex = 5;
+            label1.Text = "更新日(&U)";
+            label1.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // 更新日開始
             // 
-            this.更新日開始.BackColor = System.Drawing.Color.White;
-            this.更新日開始.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.更新日開始.Location = new System.Drawing.Point(175, 119);
-            this.更新日開始.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.更新日開始.Multiline = true;
-            this.更新日開始.Name = "更新日開始";
-            this.更新日開始.Size = new System.Drawing.Size(160, 23);
-            this.更新日開始.TabIndex = 4;
+            更新日開始.BackColor = Color.White;
+            更新日開始.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            更新日開始.Location = new Point(175, 119);
+            更新日開始.Margin = new Padding(3, 2, 3, 2);
+            更新日開始.Name = "更新日開始";
+            更新日開始.Size = new Size(160, 20);
+            更新日開始.TabIndex = 4;
             // 
             // label2
             // 
-            this.label2.AllowDrop = true;
-            this.label2.AutoEllipsis = true;
-            this.label2.Font = new System.Drawing.Font("BIZ UDゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label2.Location = new System.Drawing.Point(370, 121);
-            this.label2.Margin = new System.Windows.Forms.Padding(0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(27, 16);
-            this.label2.TabIndex = 202;
-            this.label2.Text = "～";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            label2.AllowDrop = true;
+            label2.AutoEllipsis = true;
+            label2.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label2.ForeColor = SystemColors.ActiveCaptionText;
+            label2.ImageAlign = ContentAlignment.MiddleLeft;
+            label2.Location = new Point(370, 121);
+            label2.Margin = new Padding(0);
+            label2.Name = "label2";
+            label2.Size = new Size(27, 16);
+            label2.TabIndex = 202;
+            label2.Text = "～";
+            label2.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // 更新日終了
             // 
-            this.更新日終了.BackColor = System.Drawing.Color.White;
-            this.更新日終了.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.更新日終了.Location = new System.Drawing.Point(397, 120);
-            this.更新日終了.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.更新日終了.Multiline = true;
-            this.更新日終了.Name = "更新日終了";
-            this.更新日終了.Size = new System.Drawing.Size(160, 23);
-            this.更新日終了.TabIndex = 5;
+            更新日終了.BackColor = Color.White;
+            更新日終了.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            更新日終了.Location = new Point(397, 120);
+            更新日終了.Margin = new Padding(3, 2, 3, 2);
+            更新日終了.Name = "更新日終了";
+            更新日終了.Size = new Size(160, 20);
+            更新日終了.TabIndex = 5;
             // 
             // Deleted
             // 
-            this.Deleted.Controls.Add(this.DeletedButton3);
-            this.Deleted.Controls.Add(this.DeletedButton2);
-            this.Deleted.Controls.Add(this.DeletedButton1);
-            this.Deleted.Location = new System.Drawing.Point(39, 313);
-            this.Deleted.Name = "Deleted";
-            this.Deleted.Size = new System.Drawing.Size(525, 63);
-            this.Deleted.TabIndex = 207;
-            this.Deleted.TabStop = false;
-            this.Deleted.Text = "削除指定(&D)";
+            Deleted.Controls.Add(DeletedButton3);
+            Deleted.Controls.Add(DeletedButton2);
+            Deleted.Controls.Add(DeletedButton1);
+            Deleted.Location = new Point(39, 313);
+            Deleted.Name = "Deleted";
+            Deleted.Size = new Size(525, 63);
+            Deleted.TabIndex = 207;
+            Deleted.TabStop = false;
+            Deleted.Text = "削除指定(&D)";
             // 
             // DeletedButton3
             // 
-            this.DeletedButton3.AutoSize = true;
-            this.DeletedButton3.Location = new System.Drawing.Point(347, 22);
-            this.DeletedButton3.Name = "DeletedButton3";
-            this.DeletedButton3.Size = new System.Drawing.Size(77, 19);
-            this.DeletedButton3.TabIndex = 204;
-            this.DeletedButton3.TabStop = true;
-            this.DeletedButton3.Text = "指定しない";
-            this.DeletedButton3.UseVisualStyleBackColor = true;
+            DeletedButton3.AutoSize = true;
+            DeletedButton3.Location = new Point(347, 22);
+            DeletedButton3.Name = "DeletedButton3";
+            DeletedButton3.Size = new Size(77, 19);
+            DeletedButton3.TabIndex = 204;
+            DeletedButton3.TabStop = true;
+            DeletedButton3.Text = "指定しない";
+            DeletedButton3.UseVisualStyleBackColor = true;
             // 
             // DeletedButton2
             // 
-            this.DeletedButton2.AutoSize = true;
-            this.DeletedButton2.Location = new System.Drawing.Point(195, 22);
-            this.DeletedButton2.Name = "DeletedButton2";
-            this.DeletedButton2.Size = new System.Drawing.Size(85, 19);
-            this.DeletedButton2.TabIndex = 2;
-            this.DeletedButton2.TabStop = true;
-            this.DeletedButton2.Text = "削除している";
-            this.DeletedButton2.UseVisualStyleBackColor = true;
+            DeletedButton2.AutoSize = true;
+            DeletedButton2.Location = new Point(195, 22);
+            DeletedButton2.Name = "DeletedButton2";
+            DeletedButton2.Size = new Size(85, 19);
+            DeletedButton2.TabIndex = 2;
+            DeletedButton2.TabStop = true;
+            DeletedButton2.Text = "削除している";
+            DeletedButton2.UseVisualStyleBackColor = true;
             // 
             // DeletedButton1
             // 
-            this.DeletedButton1.AutoSize = true;
-            this.DeletedButton1.Location = new System.Drawing.Point(30, 22);
-            this.DeletedButton1.Name = "DeletedButton1";
-            this.DeletedButton1.Size = new System.Drawing.Size(96, 19);
-            this.DeletedButton1.TabIndex = 1;
-            this.DeletedButton1.TabStop = true;
-            this.DeletedButton1.Text = "削除していない";
-            this.DeletedButton1.UseVisualStyleBackColor = true;
+            DeletedButton1.AutoSize = true;
+            DeletedButton1.Location = new Point(30, 22);
+            DeletedButton1.Name = "DeletedButton1";
+            DeletedButton1.Size = new Size(96, 19);
+            DeletedButton1.TabIndex = 1;
+            DeletedButton1.TabStop = true;
+            DeletedButton1.Text = "削除していない";
+            DeletedButton1.UseVisualStyleBackColor = true;
             // 
             // 抽出ボタン
             // 
-            this.抽出ボタン.Location = new System.Drawing.Point(263, 406);
-            this.抽出ボタン.Name = "抽出ボタン";
-            this.抽出ボタン.Size = new System.Drawing.Size(114, 23);
-            this.抽出ボタン.TabIndex = 208;
-            this.抽出ボタン.Text = "抽出(&O)";
-            this.抽出ボタン.UseVisualStyleBackColor = true;
-            this.抽出ボタン.Click += new System.EventHandler(this.抽出ボタン_Click);
+            抽出ボタン.Location = new Point(263, 406);
+            抽出ボタン.Name = "抽出ボタン";
+            抽出ボタン.Size = new Size(114, 23);
+            抽出ボタン.TabIndex = 208;
+            抽出ボタン.Text = "抽出(&O)";
+            抽出ボタン.UseVisualStyleBackColor = true;
+            抽出ボタン.Click += 抽出ボタン_Click;
             // 
             // キャンセルボタン
             // 
-            this.キャンセルボタン.Location = new System.Drawing.Point(386, 406);
-            this.キャンセルボタン.Name = "キャンセルボタン";
-            this.キャンセルボタン.Size = new System.Drawing.Size(114, 23);
-            this.キャンセルボタン.TabIndex = 209;
-            this.キャンセルボタン.Text = "キャンセル(&X)";
-            this.キャンセルボタン.UseVisualStyleBackColor = true;
-            this.キャンセルボタン.MouseClick += new System.Windows.Forms.MouseEventHandler(this.キャンセルボタン_MouseClick);
+            キャンセルボタン.Location = new Point(386, 406);
+            キャンセルボタン.Name = "キャンセルボタン";
+            キャンセルボタン.Size = new Size(114, 23);
+            キャンセルボタン.TabIndex = 209;
+            キャンセルボタン.Text = "キャンセル(&X)";
+            キャンセルボタン.UseVisualStyleBackColor = true;
+            キャンセルボタン.MouseClick += キャンセルボタン_MouseClick;
             // 
             // label3
             // 
-            this.label3.AllowDrop = true;
-            this.label3.AutoEllipsis = true;
-            this.label3.Font = new System.Drawing.Font("BIZ UDゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label3.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label3.Location = new System.Drawing.Point(24, 90);
-            this.label3.Margin = new System.Windows.Forms.Padding(0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(151, 17);
-            this.label3.TabIndex = 210;
-            this.label3.Text = "担当者メールアドレス(&A)";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            label3.AllowDrop = true;
+            label3.AutoEllipsis = true;
+            label3.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label3.ForeColor = SystemColors.ActiveCaptionText;
+            label3.ImageAlign = ContentAlignment.MiddleLeft;
+            label3.Location = new Point(24, 90);
+            label3.Margin = new Padding(0);
+            label3.Name = "label3";
+            label3.Size = new Size(151, 17);
+            label3.TabIndex = 210;
+            label3.Text = "担当者メールアドレス(&A)";
+            label3.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // 担当者メールアドレス
             // 
-            this.担当者メールアドレス.BackColor = System.Drawing.Color.White;
-            this.担当者メールアドレス.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.担当者メールアドレス.Location = new System.Drawing.Point(175, 88);
-            this.担当者メールアドレス.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.担当者メールアドレス.Name = "担当者メールアドレス";
-            this.担当者メールアドレス.Size = new System.Drawing.Size(413, 20);
-            this.担当者メールアドレス.TabIndex = 3;
+            担当者メールアドレス.BackColor = Color.White;
+            担当者メールアドレス.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            担当者メールアドレス.Location = new Point(175, 88);
+            担当者メールアドレス.Margin = new Padding(3, 2, 3, 2);
+            担当者メールアドレス.Name = "担当者メールアドレス";
+            担当者メールアドレス.Size = new Size(413, 20);
+            担当者メールアドレス.TabIndex = 3;
             // 
             // 更新者名
             // 
-            this.更新者名.BackColor = System.Drawing.Color.White;
-            this.更新者名.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.更新者名.Location = new System.Drawing.Point(175, 153);
-            this.更新者名.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.更新者名.Name = "更新者名";
-            this.更新者名.Size = new System.Drawing.Size(413, 20);
-            this.更新者名.TabIndex = 6;
+            更新者名.BackColor = Color.White;
+            更新者名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            更新者名.Location = new Point(175, 153);
+            更新者名.Margin = new Padding(3, 2, 3, 2);
+            更新者名.Name = "更新者名";
+            更新者名.Size = new Size(413, 20);
+            更新者名.TabIndex = 6;
             // 
             // 更新日終了選択
             // 
-            this.更新日終了選択.Location = new System.Drawing.Point(559, 120);
-            this.更新日終了選択.Margin = new System.Windows.Forms.Padding(4);
-            this.更新日終了選択.Name = "更新日終了選択";
-            this.更新日終了選択.Size = new System.Drawing.Size(29, 23);
-            this.更新日終了選択.TabIndex = 211;
-            this.更新日終了選択.Text = "▼";
-            this.更新日終了選択.UseVisualStyleBackColor = true;
-            this.更新日終了選択.Click += new System.EventHandler(this.更新日終了選択_Click);
+            更新日終了選択.Location = new Point(559, 120);
+            更新日終了選択.Margin = new Padding(4);
+            更新日終了選択.Name = "更新日終了選択";
+            更新日終了選択.Size = new Size(29, 23);
+            更新日終了選択.TabIndex = 211;
+            更新日終了選択.Text = "▼";
+            更新日終了選択.UseVisualStyleBackColor = true;
+            更新日終了選択.Click += 更新日終了選択_Click;
             // 
             // 更新日開始選択
             // 
-            this.更新日開始選択.Location = new System.Drawing.Point(337, 120);
-            this.更新日開始選択.Margin = new System.Windows.Forms.Padding(4);
-            this.更新日開始選択.Name = "更新日開始選択";
-            this.更新日開始選択.Size = new System.Drawing.Size(29, 23);
-            this.更新日開始選択.TabIndex = 212;
-            this.更新日開始選択.Text = "▼";
-            this.更新日開始選択.UseVisualStyleBackColor = true;
-            this.更新日開始選択.Click += new System.EventHandler(this.更新日開始選択_Click);
+            更新日開始選択.Location = new Point(337, 120);
+            更新日開始選択.Margin = new Padding(4);
+            更新日開始選択.Name = "更新日開始選択";
+            更新日開始選択.Size = new Size(29, 23);
+            更新日開始選択.TabIndex = 212;
+            更新日開始選択.Text = "▼";
+            更新日開始選択.UseVisualStyleBackColor = true;
+            更新日開始選択.Click += 更新日開始選択_Click;
             // 
             // F_メーカー管理_抽出
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(612, 438);
-            this.Controls.Add(this.更新日開始選択);
-            this.Controls.Add(this.更新日終了選択);
-            this.Controls.Add(this.更新者名);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.担当者メールアドレス);
-            this.Controls.Add(this.キャンセルボタン);
-            this.Controls.Add(this.抽出ボタン);
-            this.Controls.Add(this.Deleted);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.更新日終了);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.更新日開始);
-            this.Controls.Add(this.label9);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.担当者名);
-            this.Controls.Add(this.メーカー名);
-            this.Controls.Add(this.label5);
-            this.KeyPreview = true;
-            this.Name = "F_メーカー管理_抽出";
-            this.Text = "F_メーカー管理_抽出";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.F_メーカー管理_抽出_FormClosing);
-            this.Load += new System.EventHandler(this.Form_Load);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.F_メーカー管理_抽出_KeyDown);
-            this.Deleted.ResumeLayout(false);
-            this.Deleted.PerformLayout();
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(612, 438);
+            Controls.Add(更新日開始選択);
+            Controls.Add(更新日終了選択);
+            Controls.Add(更新者名);
+            Controls.Add(label3);
+            Controls.Add(担当者メールアドレス);
+            Controls.Add(キャンセルボタン);
+            Controls.Add(抽出ボタン);
+            Controls.Add(Deleted);
+            Controls.Add(label2);
+            Controls.Add(更新日終了);
+            Controls.Add(label1);
+            Controls.Add(更新日開始);
+            Controls.Add(label9);
+            Controls.Add(label7);
+            Controls.Add(担当者名);
+            Controls.Add(メーカー名);
+            Controls.Add(label5);
+            KeyPreview = true;
+            Name = "F_メーカー管理_抽出";
+            Text = "F_メーカー管理_抽出";
+            FormClosing += F_メーカー管理_抽出_FormClosing;
+            Load += Form_Load;
+            KeyDown += F_メーカー管理_抽出_KeyDown;
+            Deleted.ResumeLayout(false);
+            Deleted.PerformLayout();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion

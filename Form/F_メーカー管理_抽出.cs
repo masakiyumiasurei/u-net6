@@ -49,9 +49,9 @@ namespace u_net
                 担当者名.Text = frmTarget.str担当者名;
                 担当者メールアドレス.Text = frmTarget.str担当者メールアドレス;
                 if (frmTarget.dtm更新日開始 != DateTime.MinValue)
-                    更新日開始.Text = frmTarget.dtm更新日開始.ToString();
+                    更新日開始.Text = frmTarget.dtm更新日開始.ToString("yyyy/MM/dd");
                 if (frmTarget.dtm更新日終了 != DateTime.MinValue)
-                    更新日終了.Text = frmTarget.dtm更新日終了.ToString();
+                    更新日終了.Text = frmTarget.dtm更新日終了.ToString("yyyy/MM/dd");
                 更新者名.Text = frmTarget.str更新者名;
 
  

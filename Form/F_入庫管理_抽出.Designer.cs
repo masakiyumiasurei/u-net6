@@ -444,7 +444,6 @@
             入庫日終了.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             入庫日終了.Location = new Point(392, 22);
             入庫日終了.Margin = new Padding(3, 2, 3, 2);
-            入庫日終了.Multiline = true;
             入庫日終了.Name = "入庫日終了";
             入庫日終了.Size = new Size(160, 20);
             入庫日終了.TabIndex = 3;
@@ -457,7 +456,6 @@
             入庫日開始.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             入庫日開始.Location = new Point(168, 22);
             入庫日開始.Margin = new Padding(3, 2, 3, 2);
-            入庫日開始.Multiline = true;
             入庫日開始.Name = "入庫日開始";
             入庫日開始.Size = new Size(160, 20);
             入庫日開始.TabIndex = 2;

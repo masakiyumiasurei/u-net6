@@ -95,9 +95,8 @@
             シリーズ名.ImeMode = ImeMode.Off;
             シリーズ名.Location = new Point(119, 39);
             シリーズ名.Margin = new Padding(4, 2, 4, 2);
-            シリーズ名.Multiline = true;
             シリーズ名.Name = "シリーズ名";
-            シリーズ名.Size = new Size(277, 19);
+            シリーズ名.Size = new Size(277, 20);
             シリーズ名.TabIndex = 4;
             // 
             // 品名
@@ -107,9 +106,8 @@
             品名.ImeMode = ImeMode.Hiragana;
             品名.Location = new Point(119, 18);
             品名.Margin = new Padding(4, 2, 4, 2);
-            品名.Multiline = true;
             品名.Name = "品名";
-            品名.Size = new Size(277, 19);
+            品名.Size = new Size(277, 20);
             品名.TabIndex = 2;
             // 
             // 品名_ラベル
@@ -321,15 +319,15 @@
             // 
             // 更新日開始選択ボタン
             // 
-            this.更新日開始選択ボタン.Location = new System.Drawing.Point(222, 233);
-            this.更新日開始選択ボタン.Margin = new System.Windows.Forms.Padding(4);
-            this.更新日開始選択ボタン.Name = "更新日開始選択ボタン";
-            this.更新日開始選択ボタン.Size = new System.Drawing.Size(21, 21);
-            this.更新日開始選択ボタン.TabIndex = 21008;
-            this.更新日開始選択ボタン.TabStop = false;
-            this.更新日開始選択ボタン.Text = "▼";
-            this.更新日開始選択ボタン.UseVisualStyleBackColor = true;
-            this.更新日開始選択ボタン.Click += new System.EventHandler(this.更新日開始選択_Click);
+            更新日開始選択ボタン.Location = new Point(222, 233);
+            更新日開始選択ボタン.Margin = new Padding(4);
+            更新日開始選択ボタン.Name = "更新日開始選択ボタン";
+            更新日開始選択ボタン.Size = new Size(21, 21);
+            更新日開始選択ボタン.TabIndex = 21008;
+            更新日開始選択ボタン.TabStop = false;
+            更新日開始選択ボタン.Text = "▼";
+            更新日開始選択ボタン.UseVisualStyleBackColor = true;
+            更新日開始選択ボタン.Click += 更新日開始選択_Click;
             // 
             // 指導書変更
             // 
@@ -387,45 +385,43 @@
             // 
             // 更新日開始
             // 
-            this.更新日開始.BackColor = System.Drawing.Color.White;
-            this.更新日開始.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.更新日開始.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.更新日開始.Location = new System.Drawing.Point(119, 234);
-            this.更新日開始.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.更新日開始.Multiline = true;
-            this.更新日開始.Name = "更新日開始";
-            this.更新日開始.Size = new System.Drawing.Size(102, 19);
-            this.更新日開始.TabIndex = 12;
-            this.更新日開始.DoubleClick += new System.EventHandler(this.更新日開始_DoubleClick);
-            this.更新日開始.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.更新日開始_KeyPress);
-            this.更新日開始.Leave += new System.EventHandler(this.更新日開始_Leave);
+            更新日開始.BackColor = Color.White;
+            更新日開始.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            更新日開始.ImeMode = ImeMode.Disable;
+            更新日開始.Location = new Point(119, 234);
+            更新日開始.Margin = new Padding(3, 2, 3, 2);
+            更新日開始.Name = "更新日開始";
+            更新日開始.Size = new Size(102, 20);
+            更新日開始.TabIndex = 12;
+            更新日開始.DoubleClick += 更新日開始_DoubleClick;
+            更新日開始.KeyPress += 更新日開始_KeyPress;
+            更新日開始.Leave += 更新日開始_Leave;
             // 
             // 更新日終了
             // 
-            this.更新日終了.BackColor = System.Drawing.Color.White;
-            this.更新日終了.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.更新日終了.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.更新日終了.Location = new System.Drawing.Point(266, 234);
-            this.更新日終了.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.更新日終了.Multiline = true;
-            this.更新日終了.Name = "更新日終了";
-            this.更新日終了.Size = new System.Drawing.Size(102, 19);
-            this.更新日終了.TabIndex = 13;
-            this.更新日終了.DoubleClick += new System.EventHandler(this.更新日終了_DoubleClick);
-            this.更新日終了.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.更新日終了_KeyPress);
-            this.更新日終了.Leave += new System.EventHandler(this.更新日終了_Leave);
+            更新日終了.BackColor = Color.White;
+            更新日終了.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            更新日終了.ImeMode = ImeMode.Disable;
+            更新日終了.Location = new Point(266, 234);
+            更新日終了.Margin = new Padding(3, 2, 3, 2);
+            更新日終了.Name = "更新日終了";
+            更新日終了.Size = new Size(102, 20);
+            更新日終了.TabIndex = 13;
+            更新日終了.DoubleClick += 更新日終了_DoubleClick;
+            更新日終了.KeyPress += 更新日終了_KeyPress;
+            更新日終了.Leave += 更新日終了_Leave;
             // 
             // 更新日終了選択ボタン
             // 
-            this.更新日終了選択ボタン.Location = new System.Drawing.Point(370, 233);
-            this.更新日終了選択ボタン.Margin = new System.Windows.Forms.Padding(4);
-            this.更新日終了選択ボタン.Name = "更新日終了選択ボタン";
-            this.更新日終了選択ボタン.Size = new System.Drawing.Size(21, 21);
-            this.更新日終了選択ボタン.TabIndex = 21016;
-            this.更新日終了選択ボタン.TabStop = false;
-            this.更新日終了選択ボタン.Text = "▼";
-            this.更新日終了選択ボタン.UseVisualStyleBackColor = true;
-            this.更新日終了選択ボタン.Click += new System.EventHandler(this.更新日終了選択_Click);
+            更新日終了選択ボタン.Location = new Point(370, 233);
+            更新日終了選択ボタン.Margin = new Padding(4);
+            更新日終了選択ボタン.Name = "更新日終了選択ボタン";
+            更新日終了選択ボタン.Size = new Size(21, 21);
+            更新日終了選択ボタン.TabIndex = 21016;
+            更新日終了選択ボタン.TabStop = false;
+            更新日終了選択ボタン.Text = "▼";
+            更新日終了選択ボタン.UseVisualStyleBackColor = true;
+            更新日終了選択ボタン.Click += 更新日終了選択_Click;
             // 
             // label1
             // 
@@ -573,48 +569,47 @@
             // 
             // F_製品管理_抽出
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(410, 550);
-            this.Controls.Add(this.非含有証明書);
-            this.Controls.Add(this.非含有証明書_ラベル);
-            this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.更新日終了選択ボタン);
-            this.Controls.Add(this.更新日終了);
-            this.Controls.Add(this.更新日開始);
-            this.Controls.Add(this.更新者名);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.更新者名_ラベル);
-            this.Controls.Add(this.指導書変更);
-            this.Controls.Add(this.更新日開始選択ボタン);
-            this.Controls.Add(this.キャンセルボタン);
-            this.Controls.Add(this.抽出ボタン);
-            this.Controls.Add(this.groupBox5);
-            this.Controls.Add(this.groupBox4);
-            this.Controls.Add(this.groupBox3);
-            this.Controls.Add(this.指導書変更_ラベル);
-            this.Controls.Add(this.シリーズ名_ラベル);
-            this.Controls.Add(this.シリーズ名);
-            this.Controls.Add(this.品名);
-            this.Controls.Add(this.品名_ラベル);
-            this.Name = "F_製品管理_抽出";
-            this.Text = "製品管理_抽出";
-            this.Load += new System.EventHandler(this.Form_Load);
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
-            this.groupBox5.ResumeLayout(false);
-            this.groupBox5.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(410, 550);
+            Controls.Add(非含有証明書);
+            Controls.Add(非含有証明書_ラベル);
+            Controls.Add(groupBox1);
+            Controls.Add(groupBox2);
+            Controls.Add(label1);
+            Controls.Add(更新日終了選択ボタン);
+            Controls.Add(更新日終了);
+            Controls.Add(更新日開始);
+            Controls.Add(更新者名);
+            Controls.Add(label2);
+            Controls.Add(更新者名_ラベル);
+            Controls.Add(指導書変更);
+            Controls.Add(更新日開始選択ボタン);
+            Controls.Add(キャンセルボタン);
+            Controls.Add(抽出ボタン);
+            Controls.Add(groupBox5);
+            Controls.Add(groupBox4);
+            Controls.Add(groupBox3);
+            Controls.Add(指導書変更_ラベル);
+            Controls.Add(シリーズ名_ラベル);
+            Controls.Add(シリーズ名);
+            Controls.Add(品名);
+            Controls.Add(品名_ラベル);
+            Name = "F_製品管理_抽出";
+            Text = "製品管理_抽出";
+            Load += Form_Load;
+            groupBox3.ResumeLayout(false);
+            groupBox3.PerformLayout();
+            groupBox4.ResumeLayout(false);
+            groupBox4.PerformLayout();
+            groupBox5.ResumeLayout(false);
+            groupBox5.PerformLayout();
+            groupBox2.ResumeLayout(false);
+            groupBox2.PerformLayout();
+            groupBox1.ResumeLayout(false);
+            groupBox1.PerformLayout();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion

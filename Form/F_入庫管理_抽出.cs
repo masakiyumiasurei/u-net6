@@ -74,9 +74,9 @@ namespace u_net
 
                 // F_入庫管理クラスからデータを取得し、現在のフォームのコントロールに設定
                 if (frmTarget.dtm入庫日開始 != DateTime.MinValue)
-                    入庫日開始.Text = frmTarget.dtm入庫日開始.ToString();
+                    入庫日開始.Text = frmTarget.dtm入庫日開始.ToString("yyyy/MM/dd");
                 if (frmTarget.dtm入庫日終了 != DateTime.MinValue)
-                    入庫日終了.Text = frmTarget.dtm入庫日終了.ToString();
+                    入庫日終了.Text = frmTarget.dtm入庫日終了.ToString("yyyy/MM/dd");
                 入庫者名.Text = frmTarget.str入庫者名;
                 集計年月.Text = frmTarget.str集計年月;
                 支払年月.Text = frmTarget.str支払年月;

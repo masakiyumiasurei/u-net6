@@ -42,7 +42,6 @@ namespace MultiRowDesigner
             gcMultiRow1.ShortcutKeyManager.Unregister(Keys.Enter);
             gcMultiRow1.ShortcutKeyManager.Register(SelectionActions.MoveToNextCell, Keys.Enter);
 
-            gcMultiRow1.AllowRowMove = true;
         }
 
         private void gcMultiRow1_RowsRemoved(object sender, RowsRemovedEventArgs e)

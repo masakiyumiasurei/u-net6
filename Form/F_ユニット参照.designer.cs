@@ -86,7 +86,7 @@ namespace u_net
             label8 = new Label();
             作成者コード = new TextBox();
             label9 = new Label();
-            登録日時 = new TextBox();
+            作成日時 = new TextBox();
             作成者名 = new TextBox();
             ユニット版数 = new ComboBox();
             label1 = new Label();
@@ -108,10 +108,13 @@ namespace u_net
             更新者コード = new TextBox();
             statusStrip1 = new StatusStrip();
             toolStripStatusLabel1 = new ToolStripStatusLabel();
+            this.ユニット明細参照1 = new MultiRowDesigner.ユニット明細参照();
             廃止 = new CheckBox();
             label5 = new Label();
-            ユニット明細参照1 = new MultiRowDesigner.ユニット明細参照();
             toolTip1 = new ToolTip(components);
+            承認表示 = new TextBox();
+            削除表示 = new TextBox();
+            確定表示 = new TextBox();
             panel1.SuspendLayout();
             statusStrip1.SuspendLayout();
             SuspendLayout();
@@ -130,6 +133,14 @@ namespace u_net
             toolTip1.SetToolTip(コマンド終了, "終了");
             コマンド終了.UseVisualStyleBackColor = true;
             コマンド終了.Click += コマンド終了_Click;
+            // 
+            // ユニット明細参照1
+            // 
+            this.ユニット明細参照1.Location = new System.Drawing.Point(5, 195);
+            this.ユニット明細参照1.Margin = new System.Windows.Forms.Padding(4);
+            this.ユニット明細参照1.Name = "ユニット明細参照1";
+            this.ユニット明細参照1.Size = new System.Drawing.Size(1200, 369);
+            this.ユニット明細参照1.TabIndex = 10197;
             // 
             // コマンド登録
             // 
@@ -440,6 +451,7 @@ namespace u_net
             // 
             // コマンドツール
             // 
+            コマンドツール.Enabled = false;
             コマンドツール.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             コマンドツール.ForeColor = Color.Blue;
             コマンドツール.ImageAlign = ContentAlignment.BottomLeft;
@@ -493,6 +505,7 @@ namespace u_net
             品名.Name = "品名";
             品名.Size = new Size(403, 20);
             品名.TabIndex = 7;
+            品名.TextChanged += 品名_TextChanged;
             品名.Enter += 品名_Enter;
             品名.Leave += 品名_Leave;
             // 
@@ -521,7 +534,11 @@ namespace u_net
             ユニットコード.Name = "ユニットコード";
             ユニットコード.Size = new Size(139, 21);
             ユニットコード.TabIndex = 2;
+            ユニットコード.DrawItem += ユニットコード_DrawItem;
+            ユニットコード.SelectedIndexChanged += ユニットコード_SelectedIndexChanged;
+            ユニットコード.TextChanged += ユニットコード_TextChanged;
             ユニットコード.Enter += ユニットコード_Enter;
+            ユニットコード.KeyDown += ユニットコード_KeyDown;
             ユニットコード.Leave += ユニットコード_Leave;
             // 
             // ユニットコードラベル
@@ -653,19 +670,19 @@ namespace u_net
             label9.Text = "作成日時";
             label9.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // 登録日時
+            // 作成日時
             // 
-            登録日時.BackColor = SystemColors.Window;
-            登録日時.Enabled = false;
-            登録日時.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            登録日時.ImeMode = ImeMode.NoControl;
-            登録日時.Location = new Point(810, 48);
-            登録日時.Margin = new Padding(3, 2, 3, 2);
-            登録日時.Name = "登録日時";
-            登録日時.ReadOnly = true;
-            登録日時.Size = new Size(161, 20);
-            登録日時.TabIndex = 10156;
-            登録日時.TabStop = false;
+            作成日時.BackColor = SystemColors.Window;
+            作成日時.Enabled = false;
+            作成日時.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            作成日時.ImeMode = ImeMode.NoControl;
+            作成日時.Location = new Point(810, 48);
+            作成日時.Margin = new Padding(3, 2, 3, 2);
+            作成日時.Name = "作成日時";
+            作成日時.ReadOnly = true;
+            作成日時.Size = new Size(161, 20);
+            作成日時.TabIndex = 10156;
+            作成日時.TabStop = false;
             // 
             // 作成者名
             // 
@@ -692,6 +709,9 @@ namespace u_net
             ユニット版数.Name = "ユニット版数";
             ユニット版数.Size = new Size(54, 21);
             ユニット版数.TabIndex = 4;
+            ユニット版数.DrawItem += ユニット版数_DrawItem;
+            ユニット版数.SelectedIndexChanged += ユニット版数_SelectedIndexChanged;
+            ユニット版数.TextChanged += ユニット版数_TextChanged;
             // 
             // label1
             // 
@@ -711,6 +731,7 @@ namespace u_net
             型番.Name = "型番";
             型番.Size = new Size(204, 20);
             型番.TabIndex = 10;
+            型番.TextChanged += 型番_TextChanged;
             型番.Enter += 型番_Enter;
             型番.Leave += 型番_Leave;
             // 
@@ -740,6 +761,7 @@ namespace u_net
             識別コード.Name = "識別コード";
             識別コード.Size = new Size(72, 20);
             識別コード.TabIndex = 12;
+            識別コード.TextChanged += 識別コード_TextChanged;
             識別コード.Enter += 識別コード_Enter;
             識別コード.Leave += 識別コード_Leave;
             // 
@@ -764,7 +786,7 @@ namespace u_net
             label3.Name = "label3";
             label3.Size = new Size(40, 17);
             label3.TabIndex = 10177;
-            label3.Text = "廃止";
+            label3.Text = "削除";
             label3.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // label4
@@ -798,6 +820,7 @@ namespace u_net
             確定日時.Size = new Size(20, 20);
             確定日時.TabIndex = 10179;
             確定日時.TabStop = false;
+            確定日時.TextChanged += 確定日時_TextChanged;
             // 
             // 無効日時
             // 
@@ -812,6 +835,7 @@ namespace u_net
             無効日時.Size = new Size(20, 20);
             無効日時.TabIndex = 10180;
             無効日時.TabStop = false;
+            無効日時.TextChanged += 無効日時_TextChanged;
             // 
             // 承認日時
             // 
@@ -826,6 +850,7 @@ namespace u_net
             承認日時.Size = new Size(20, 20);
             承認日時.TabIndex = 10181;
             承認日時.TabStop = false;
+            承認日時.TextChanged += 承認日時_TextChanged;
             // 
             // 確定者コード
             // 
@@ -933,6 +958,7 @@ namespace u_net
             廃止.Size = new Size(15, 14);
             廃止.TabIndex = 16;
             廃止.UseVisualStyleBackColor = true;
+            廃止.CheckedChanged += 廃止_CheckedChanged;
             // 
             // label5
             // 
@@ -949,20 +975,54 @@ namespace u_net
             label5.Text = "※RoHS対応情報は保存時に更新されます。";
             label5.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // ユニット明細参照1
+            // 承認表示
             // 
-            ユニット明細参照1.Location = new Point(5, 195);
-            ユニット明細参照1.Margin = new Padding(4, 4, 4, 4);
-            ユニット明細参照1.Name = "ユニット明細参照1";
-            ユニット明細参照1.Size = new Size(1003, 369);
-            ユニット明細参照1.TabIndex = 10197;
+            承認表示.BackColor = Color.Red;
+            承認表示.BorderStyle = BorderStyle.FixedSingle;
+            承認表示.Enabled = false;
+            承認表示.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            承認表示.ImeMode = ImeMode.NoControl;
+            承認表示.Location = new Point(600, 72);
+            承認表示.Margin = new Padding(3, 2, 3, 2);
+            承認表示.Name = "承認表示";
+            承認表示.Size = new Size(20, 20);
+            承認表示.TabIndex = 10199;
+            承認表示.TabStop = false;
+            // 
+            // 削除表示
+            // 
+            削除表示.BackColor = Color.Red;
+            削除表示.BorderStyle = BorderStyle.FixedSingle;
+            削除表示.Enabled = false;
+            削除表示.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            削除表示.ImeMode = ImeMode.NoControl;
+            削除表示.Location = new Point(600, 95);
+            削除表示.Margin = new Padding(3, 2, 3, 2);
+            削除表示.Name = "削除表示";
+            削除表示.Size = new Size(20, 20);
+            削除表示.TabIndex = 10198;
+            削除表示.TabStop = false;
+            // 
+            // 確定表示
+            // 
+            確定表示.BackColor = Color.Red;
+            確定表示.BorderStyle = BorderStyle.FixedSingle;
+            確定表示.Enabled = false;
+            確定表示.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            確定表示.ImeMode = ImeMode.NoControl;
+            確定表示.Location = new Point(600, 49);
+            確定表示.Margin = new Padding(3, 2, 3, 2);
+            確定表示.Name = "確定表示";
+            確定表示.Size = new Size(20, 20);
+            確定表示.TabIndex = 10197;
+            確定表示.TabStop = false;
             // 
             // F_ユニット参照
             // 
             BackColor = SystemColors.Control;
             ClientSize = new Size(1036, 590);
-            Controls.Add(ユニット明細参照1);
             Controls.Add(label5);
+            Controls.Add(ユニット明細参照1);
             Controls.Add(廃止);
             Controls.Add(statusStrip1);
             Controls.Add(更新者名);
@@ -974,9 +1034,6 @@ namespace u_net
             Controls.Add(承認日時);
             Controls.Add(無効日時);
             Controls.Add(確定日時);
-            Controls.Add(label3);
-            Controls.Add(label4);
-            Controls.Add(label10);
             Controls.Add(label2);
             Controls.Add(識別コード);
             Controls.Add(RoHS対応);
@@ -989,7 +1046,7 @@ namespace u_net
             Controls.Add(label8);
             Controls.Add(作成者コード);
             Controls.Add(label9);
-            Controls.Add(登録日時);
+            Controls.Add(作成日時);
             Controls.Add(RoHS対応_ラベル);
             Controls.Add(無効者コード);
             Controls.Add(識別コード_ラベル);
@@ -1012,6 +1069,12 @@ namespace u_net
             Controls.Add(コマンド複写);
             Controls.Add(コマンド読込);
             Controls.Add(panel1);
+            Controls.Add(承認表示);
+            Controls.Add(削除表示);
+            Controls.Add(確定表示);
+            Controls.Add(label3);
+            Controls.Add(label4);
+            Controls.Add(label10);
             ImeMode = ImeMode.Off;
             KeyPreview = true;
             MaximizeBox = false;
@@ -1078,7 +1141,7 @@ namespace u_net
         private Label 型番_ラベル;
         private TextBox 品名;
         private Label 品名_ラベル;
-        private ComboBox ユニットコード;
+        internal ComboBox ユニットコード;
         private Label ユニットコードラベル;
         private Label 仕入先2_ラベル;
         private Label 識別コード_ラベル;
@@ -1088,10 +1151,10 @@ namespace u_net
         private Label label8;
         private TextBox 作成者コード;
         private Label label9;
-        private TextBox 登録日時;
+        private TextBox 作成日時;
         private TextBox 作成者名;
         private TextBox 無効者コード;
-        private ComboBox ユニット版数;
+        internal ComboBox ユニット版数;
         private Label label1;
         private TextBox 型番;
         private TextBox RoHS対応;
@@ -1115,6 +1178,9 @@ namespace u_net
         private Label label5;
         private MultiRowDesigner.ユニット明細参照 ユニット明細参照1;
         private ToolTip toolTip1;
+        private TextBox 承認表示;
+        private TextBox 削除表示;
+        private TextBox 確定表示;
     }
 }
 
