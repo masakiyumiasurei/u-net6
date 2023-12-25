@@ -97,13 +97,22 @@ namespace u_net
             商品コード = new ListBox();
             型式名 = new ListBox();
             型番_ラベル = new Label();
-            gcjpAddress1 = new GrapeCity.Win.JPAddress.GcJPAddress();
             型番 = new TextBox();
             定価_ラベル = new Label();
             定価 = new TextBox();
             売値掛率 = new TextBox();
             売値掛率_ラベル = new Label();
             label2 = new Label();
+            単価_ラベル = new Label();
+            原価_ラベル = new Label();
+            粗利_ラベル = new Label();
+            単価 = new TextBox();
+            原価 = new TextBox();
+            粗利 = new TextBox();
+            確定済単価_ラベル = new Label();
+            確定済単価 = new TextBox();
+            確定ボタン = new Button();
+            閉じるボタン = new Button();
             ((System.ComponentModel.ISupportInitialize)M商品BindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)uiDataSet).BeginInit();
             ((System.ComponentModel.ISupportInitialize)comboBox売上区分bindingSource).BeginInit();
@@ -303,7 +312,7 @@ namespace u_net
             // statusStrip1
             // 
             statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1 });
-            statusStrip1.Location = new Point(0, 469);
+            statusStrip1.Location = new Point(0, 514);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Padding = new Padding(1, 0, 19, 0);
             statusStrip1.Size = new Size(746, 22);
@@ -324,7 +333,7 @@ namespace u_net
             label17.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             label17.ForeColor = SystemColors.ActiveCaptionText;
             label17.ImageAlign = ContentAlignment.MiddleLeft;
-            label17.Location = new Point(514, 362);
+            label17.Location = new Point(507, 357);
             label17.Margin = new Padding(0);
             label17.Name = "label17";
             label17.Size = new Size(195, 37);
@@ -339,7 +348,6 @@ namespace u_net
             分類内容.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             分類内容.Location = new Point(146, 35);
             分類内容.Margin = new Padding(3, 2, 3, 2);
-            分類内容.Multiline = true;
             分類内容.Name = "分類内容";
             分類内容.ReadOnly = true;
             分類内容.Size = new Size(170, 20);
@@ -364,7 +372,8 @@ namespace u_net
             商品分類名.TabIndex = 4;
             商品分類名.SelectedIndexChanged += 商品分類コード_SelectedIndexChanged;
             商品分類名.TextChanged += 商品分類コード_TextChanged;
-            商品分類名.Enter += 商品分類コード_Enter;
+            商品分類名.Enter += 商品分類名_Enter;
+            商品分類名.Leave += 商品分類名_Leave;
             // 
             // v商品ヘッダBindingSource
             // 
@@ -461,11 +470,12 @@ namespace u_net
             掛率有効.AutoSize = true;
             掛率有効.CheckAlign = ContentAlignment.MiddleRight;
             掛率有効.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            掛率有効.Location = new Point(379, 389);
+            掛率有効.Location = new Point(276, 387);
             掛率有効.Margin = new Padding(4, 3, 4, 3);
             掛率有効.Name = "掛率有効";
             掛率有効.Size = new Size(15, 14);
             掛率有効.TabIndex = 12;
+            掛率有効.TabStop = false;
             掛率有効.UseVisualStyleBackColor = true;
             掛率有効.CheckedChanged += 掛率有効_CheckedChanged;
             // 
@@ -476,7 +486,7 @@ namespace u_net
             掛率有効_ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             掛率有効_ラベル.ForeColor = SystemColors.ActiveCaptionText;
             掛率有効_ラベル.ImageAlign = ContentAlignment.MiddleLeft;
-            掛率有効_ラベル.Location = new Point(309, 362);
+            掛率有効_ラベル.Location = new Point(295, 383);
             掛率有効_ラベル.Margin = new Padding(0);
             掛率有効_ラベル.Name = "掛率有効_ラベル";
             掛率有効_ラベル.Size = new Size(67, 20);
@@ -491,10 +501,11 @@ namespace u_net
             顧客コード.ImeMode = ImeMode.Disable;
             顧客コード.Location = new Point(94, 10);
             顧客コード.Margin = new Padding(3, 2, 3, 2);
-            顧客コード.Multiline = true;
             顧客コード.Name = "顧客コード";
             顧客コード.Size = new Size(82, 20);
             顧客コード.TabIndex = 2;
+            顧客コード.Enter += 顧客コード_Enter;
+            顧客コード.Leave += 顧客コード_Leave;
             // 
             // 顧客名
             // 
@@ -502,7 +513,6 @@ namespace u_net
             顧客名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             顧客名.Location = new Point(201, 10);
             顧客名.Margin = new Padding(3, 2, 3, 2);
-            顧客名.Multiline = true;
             顧客名.Name = "顧客名";
             顧客名.ReadOnly = true;
             顧客名.Size = new Size(537, 20);
@@ -579,10 +589,11 @@ namespace u_net
             型番.ImeMode = ImeMode.Off;
             型番.Location = new Point(94, 335);
             型番.Margin = new Padding(3, 2, 3, 2);
-            型番.Multiline = true;
             型番.Name = "型番";
             型番.Size = new Size(340, 20);
             型番.TabIndex = 7;
+            型番.Enter += 型番_Enter;
+            型番.Leave += 型番_Leave;
             // 
             // 定価_ラベル
             // 
@@ -621,10 +632,11 @@ namespace u_net
             売値掛率.ImeMode = ImeMode.Off;
             売値掛率.Location = new Point(94, 383);
             売値掛率.Margin = new Padding(3, 2, 3, 2);
-            売値掛率.Multiline = true;
             売値掛率.Name = "売値掛率";
             売値掛率.Size = new Size(136, 20);
             売値掛率.TabIndex = 9;
+            売値掛率.Enter += 売値掛率_Enter;
+            売値掛率.Leave += 売値掛率_Leave;
             // 
             // 売値掛率_ラベル
             // 
@@ -651,17 +663,171 @@ namespace u_net
             label2.Location = new Point(230, 383);
             label2.Margin = new Padding(0);
             label2.Name = "label2";
-            label2.Size = new Size(24, 20);
+            label2.Size = new Size(47, 20);
             label2.TabIndex = 21012;
-            label2.Text = "％";
+            label2.Text = "％  ー";
             label2.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // F_商品構成
+            // 単価_ラベル
+            // 
+            単価_ラベル.AllowDrop = true;
+            単価_ラベル.AutoEllipsis = true;
+            単価_ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            単価_ラベル.ForeColor = SystemColors.ActiveCaptionText;
+            単価_ラベル.ImageAlign = ContentAlignment.MiddleLeft;
+            単価_ラベル.Location = new Point(10, 407);
+            単価_ラベル.Margin = new Padding(0);
+            単価_ラベル.Name = "単価_ラベル";
+            単価_ラベル.Size = new Size(82, 20);
+            単価_ラベル.TabIndex = 21013;
+            単価_ラベル.Text = "単価";
+            単価_ラベル.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // 原価_ラベル
+            // 
+            原価_ラベル.AllowDrop = true;
+            原価_ラベル.AutoEllipsis = true;
+            原価_ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            原価_ラベル.ForeColor = SystemColors.ActiveCaptionText;
+            原価_ラベル.ImageAlign = ContentAlignment.MiddleLeft;
+            原価_ラベル.Location = new Point(10, 431);
+            原価_ラベル.Margin = new Padding(0);
+            原価_ラベル.Name = "原価_ラベル";
+            原価_ラベル.Size = new Size(82, 20);
+            原価_ラベル.TabIndex = 21014;
+            原価_ラベル.Text = "原価";
+            原価_ラベル.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // 粗利_ラベル
+            // 
+            粗利_ラベル.AllowDrop = true;
+            粗利_ラベル.AutoEllipsis = true;
+            粗利_ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            粗利_ラベル.ForeColor = SystemColors.ActiveCaptionText;
+            粗利_ラベル.ImageAlign = ContentAlignment.MiddleLeft;
+            粗利_ラベル.Location = new Point(10, 455);
+            粗利_ラベル.Margin = new Padding(0);
+            粗利_ラベル.Name = "粗利_ラベル";
+            粗利_ラベル.Size = new Size(82, 20);
+            粗利_ラベル.TabIndex = 21015;
+            粗利_ラベル.Text = "粗利";
+            粗利_ラベル.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // 単価
+            // 
+            単価.BackColor = Color.White;
+            単価.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            単価.ImeMode = ImeMode.Disable;
+            単価.Location = new Point(94, 407);
+            単価.Margin = new Padding(3, 2, 3, 2);
+            単価.Multiline = true;
+            単価.Name = "単価";
+            単価.Size = new Size(136, 20);
+            単価.TabIndex = 21016;
+            単価.TabStop = false;
+            単価.Enter += 単価_Enter;
+            単価.Leave += 単価_Leave;
+            // 
+            // 原価
+            // 
+            原価.BackColor = Color.White;
+            原価.Enabled = false;
+            原価.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            原価.ImeMode = ImeMode.NoControl;
+            原価.Location = new Point(94, 431);
+            原価.Margin = new Padding(3, 2, 3, 2);
+            原価.Multiline = true;
+            原価.Name = "原価";
+            原価.ReadOnly = true;
+            原価.Size = new Size(136, 20);
+            原価.TabIndex = 21017;
+            原価.TabStop = false;
+            // 
+            // 粗利
+            // 
+            粗利.BackColor = Color.White;
+            粗利.Enabled = false;
+            粗利.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            粗利.ImeMode = ImeMode.NoControl;
+            粗利.Location = new Point(94, 455);
+            粗利.Margin = new Padding(3, 2, 3, 2);
+            粗利.Multiline = true;
+            粗利.Name = "粗利";
+            粗利.ReadOnly = true;
+            粗利.Size = new Size(136, 20);
+            粗利.TabIndex = 21018;
+            粗利.TabStop = false;
+            // 
+            // 確定済単価_ラベル
+            // 
+            確定済単価_ラベル.AllowDrop = true;
+            確定済単価_ラベル.AutoEllipsis = true;
+            確定済単価_ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            確定済単価_ラベル.ForeColor = SystemColors.ActiveCaptionText;
+            確定済単価_ラベル.ImageAlign = ContentAlignment.MiddleLeft;
+            確定済単価_ラベル.Location = new Point(244, 406);
+            確定済単価_ラベル.Margin = new Padding(0);
+            確定済単価_ラベル.Name = "確定済単価_ラベル";
+            確定済単価_ラベル.Size = new Size(67, 20);
+            確定済単価_ラベル.TabIndex = 21019;
+            確定済単価_ラベル.Text = "確定済単価";
+            確定済単価_ラベル.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // 確定済単価
+            // 
+            確定済単価.BackColor = Color.White;
+            確定済単価.Enabled = false;
+            確定済単価.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            確定済単価.ImeMode = ImeMode.NoControl;
+            確定済単価.Location = new Point(314, 406);
+            確定済単価.Margin = new Padding(3, 2, 3, 2);
+            確定済単価.Multiline = true;
+            確定済単価.Name = "確定済単価";
+            確定済単価.ReadOnly = true;
+            確定済単価.Size = new Size(136, 20);
+            確定済単価.TabIndex = 21020;
+            確定済単価.TabStop = false;
+            // 
+            // 確定ボタン
+            // 
+            確定ボタン.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            確定ボタン.Location = new Point(528, 481);
+            確定ボタン.Margin = new Padding(4, 2, 4, 2);
+            確定ボタン.Name = "確定ボタン";
+            確定ボタン.Size = new Size(102, 24);
+            確定ボタン.TabIndex = 10;
+            確定ボタン.Text = "確定(&O)";
+            確定ボタン.UseVisualStyleBackColor = true;
+            確定ボタン.Click += 確定ボタン_Click;
+            // 
+            // 閉じるボタン
+            // 
+            閉じるボタン.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            閉じるボタン.Location = new Point(636, 481);
+            閉じるボタン.Margin = new Padding(4, 2, 4, 2);
+            閉じるボタン.Name = "閉じるボタン";
+            閉じるボタン.Size = new Size(102, 24);
+            閉じるボタン.TabIndex = 11;
+            閉じるボタン.Text = "閉じる(&X)";
+            閉じるボタン.UseVisualStyleBackColor = true;
+            閉じるボタン.Click += 閉じるボタン_Click;
+            // 
+            // F_商品構成2
             // 
             AutoScaleDimensions = new SizeF(8F, 12F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
-            ClientSize = new Size(746, 491);
+            ClientSize = new Size(746, 536);
+            Controls.Add(閉じるボタン);
+            Controls.Add(確定ボタン);
+            Controls.Add(確定済単価);
+            Controls.Add(確定済単価_ラベル);
+            Controls.Add(粗利);
+            Controls.Add(原価);
+            Controls.Add(単価);
+            Controls.Add(粗利_ラベル);
+            Controls.Add(原価_ラベル);
+            Controls.Add(単価_ラベル);
             Controls.Add(label2);
             Controls.Add(売値掛率_ラベル);
             Controls.Add(売値掛率);
@@ -687,7 +853,7 @@ namespace u_net
             Icon = (Icon)resources.GetObject("$this.Icon");
             KeyPreview = true;
             Margin = new Padding(3, 2, 3, 2);
-            Name = "F_商品構成";
+            Name = "F_商品構成2";
             Text = "商品構成";
             Load += Form_Load;
             ((System.ComponentModel.ISupportInitialize)M商品BindingSource).EndInit();
@@ -784,13 +950,22 @@ namespace u_net
         private ListBox 商品コード;
         private ListBox 型式名;
         private Label 型番_ラベル;
-        private GrapeCity.Win.JPAddress.GcJPAddress gcjpAddress1;
         private TextBox 型番;
         private Label 定価_ラベル;
         private TextBox 定価;
         private TextBox 売値掛率;
         private Label 売値掛率_ラベル;
         private Label label2;
+        private Label 単価_ラベル;
+        private Label 原価_ラベル;
+        private Label 粗利_ラベル;
+        private TextBox 単価;
+        private TextBox 原価;
+        private TextBox 粗利;
+        private Label 確定済単価_ラベル;
+        private TextBox 確定済単価;
+        private Button 確定ボタン;
+        private Button 閉じるボタン;
     }
 }
 

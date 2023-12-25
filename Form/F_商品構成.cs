@@ -89,7 +89,7 @@ namespace u_net
 
                 if (string.IsNullOrEmpty(args))
                 {
-                        return;
+                    return;
                 }
                 else
                 {
@@ -136,11 +136,6 @@ namespace u_net
             }
         }
 
-        private void 商品分類コード_Enter(object sender, EventArgs e)
-        {
-            this.toolStripStatusLabel1.Text = "■商品が所属する分類を指定します。";
-        }
-
         private void 商品分類コード_TextChanged(object sender, EventArgs e)
         {
 
@@ -151,13 +146,64 @@ namespace u_net
 
         }
 
-
-        private void pictureBox1_Paint(object sender, PaintEventArgs e)
+        private void 確定ボタン_Click(object sender, EventArgs e)
         {
-            var point1 = new Point(10, 20);
-            var point2 = new Point(200, 150);
 
-            e.Graphics.DrawLine(Pens.Red, point1, point2);
+        }
+
+        private void 閉じるボタン_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 顧客コード_Enter(object sender, EventArgs e)
+        {
+            this.toolStripStatusLabel1.Text = "■8文字入力。　■[Space]キーで顧客検索。";
+        }
+
+        private void 顧客コード_Leave(object sender, EventArgs e)
+        {
+            this.toolStripStatusLabel1.Text = "各種項目の説明";
+        }
+
+        private void 商品分類名_Enter(object sender, EventArgs e)
+        {
+            this.toolStripStatusLabel1.Text = "■表示する商品の分類を選択してください。　■[space]キーでドロップダウンリストを表示します。";
+        }
+
+        private void 商品分類名_Leave(object sender, EventArgs e)
+        {
+            this.toolStripStatusLabel1.Text = "各種項目の説明";
+        }
+
+        private void 型番_Enter(object sender, EventArgs e)
+        {
+            this.toolStripStatusLabel1.Text = "■半角48文字入力可。";
+        }
+
+        private void 型番_Leave(object sender, EventArgs e)
+        {
+            this.toolStripStatusLabel1.Text = "各種項目の説明";
+        }
+
+        private void 売値掛率_Enter(object sender, EventArgs e)
+        {
+            this.toolStripStatusLabel1.Text = "■百分率で指定します。%記号は付けません。";
+        }
+
+        private void 売値掛率_Leave(object sender, EventArgs e)
+        {
+            this.toolStripStatusLabel1.Text = "各種項目の説明";
+        }
+
+        private void 単価_Enter(object sender, EventArgs e)
+        {
+            this.toolStripStatusLabel1.Text = "■商品の単価を入力します。　■入力金額の端数は切り捨てられます。";
+        }
+
+        private void 単価_Leave(object sender, EventArgs e)
+        {
+            this.toolStripStatusLabel1.Text = "各種項目の説明";
         }
     }
 }
