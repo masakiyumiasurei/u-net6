@@ -378,7 +378,7 @@ namespace u_net
             }
         }
 
-        private void ChangedData(bool dataChanged)
+        public void ChangedData(bool dataChanged)
         {
             if (dataChanged)
             {
@@ -665,7 +665,7 @@ namespace u_net
                     case "ReceiptCommentCode":
                         if (this.ReceiptCommentCode.Text == "02")
                         {
-                            this.ReceiptComment.Text = "";
+                            //this.ReceiptComment.Text = "";
                         }
                         break;
                     case "InvoiceFaxCode":
@@ -1333,6 +1333,7 @@ namespace u_net
                             MessageBox.Show("日付以外は入力できません。", controlObject.Name, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                             goto Exit_IsError;
                         }
+                        ((TextBox)controlObject).Text = inputDate.ToString("yyyy/MM/dd");
                         if (DateTime.Now < inputDate)
                         {
                             MessageBox.Show("未来日付は入力できません。", controlObject.Name, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -1374,7 +1375,15 @@ namespace u_net
                             this.顧客名.Text = str1;
                         }
                         break;
-                    case "顧客担当者名":
+                    case "ClientCode":
+                        if (((ComboBox)controlObject).FindStringExact(varValue?.ToString()) == -1)
+                        {
+                            MessageBox.Show("指定した項目はリストにありません。", controlObject.Name, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            ((ComboBox)controlObject).DroppedDown = true;
+                            goto Exit_IsError;
+                        }
+                        break;
+                    case "依頼主名":
                         if (!FunctionClass.IsLimit(varValue, 30, false, controlObject.Name))
                             goto Exit_IsError;
                         break;
@@ -1389,6 +1398,7 @@ namespace u_net
                             MessageBox.Show("日付を入力してください。", controlObject.Name, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                             goto Exit_IsError;
                         }
+                        ((TextBox)controlObject).Text = inputDate.ToString("yyyy/MM/dd");
                         if (!string.IsNullOrEmpty(this.受注日.Text) && DateTime.TryParse(this.受注日.Text, out date1))
                         {
                             if (inputDate < date1)
@@ -1417,6 +1427,7 @@ namespace u_net
                             MessageBox.Show("日付を入力してください。", controlObject.Name, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                             goto Exit_IsError;
                         }
+                        ((TextBox)controlObject).Text = inputDate.ToString("yyyy/MM/dd");
                         if (!string.IsNullOrEmpty(this.受注日.Text) && DateTime.TryParse(this.受注日.Text, out date1))
                         {
                             if (inputDate < date1)
@@ -1437,6 +1448,12 @@ namespace u_net
                     case "納品書送付コード":
                     case "請求書送付コード":
                     case "発送方法コード":
+                        if (((ComboBox)controlObject).FindStringExact(varValue?.ToString()) == -1)
+                        {
+                            //MessageBox.Show("指定した項目はリストにありません。", controlObject.Name, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            ((ComboBox)controlObject).DroppedDown = true;
+                            goto Exit_IsError;
+                        }
                         if (!FunctionClass.IsLimit_N(varValue, 2, 0, controlObject.Name))
                             goto Exit_IsError;
                         break;
@@ -1448,6 +1465,12 @@ namespace u_net
                         }
                         break;
                     case "PackingSlipInputCode":
+                        if (((ComboBox)controlObject).FindStringExact(varValue?.ToString()) == -1)
+                        {
+                            //MessageBox.Show("指定した項目はリストにありません。", controlObject.Name, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            ((ComboBox)controlObject).DroppedDown = true;
+                            goto Exit_IsError;
+                        }
                         if (string.IsNullOrEmpty(varValue?.ToString()))
                         {
                             MessageBox.Show("伝票記載指示を入力してください。", "伝票記載指示", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -1460,6 +1483,40 @@ namespace u_net
                                 MessageBox.Show("選択できません。", "伝票記載指示", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                                 goto Exit_IsError;
                             }
+                        }
+                        break;
+                    case "InvoiceInputCode":
+                        if (((ComboBox)controlObject).FindStringExact(varValue?.ToString()) == -1)
+                        {
+                            //MessageBox.Show("指定した項目はリストにありません。", controlObject.Name, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            ((ComboBox)controlObject).DroppedDown = true;
+                            goto Exit_IsError;
+                        }
+                        if (string.IsNullOrEmpty(varValue?.ToString()))
+                        {
+                            MessageBox.Show("送り状記載指示を入力してください。", "送り状記載指示", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            goto Exit_IsError;
+                        }
+                        break;
+                    case "ReceiptCommentCode":
+                        if (((ComboBox)controlObject).FindStringExact(varValue?.ToString()) == -1)
+                        {
+                            //MessageBox.Show("指定した項目はリストにありません。", controlObject.Name, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            ((ComboBox)controlObject).DroppedDown = true;
+                            goto Exit_IsError;
+                        }
+                        break;
+                    case "InvoiceFaxCode":
+                        if (((ComboBox)controlObject).FindStringExact(varValue?.ToString()) == -1)
+                        {
+                            //MessageBox.Show("指定した項目はリストにありません。", controlObject.Name, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            ((ComboBox)controlObject).DroppedDown = true;
+                            goto Exit_IsError;
+                        }
+                        if (string.IsNullOrEmpty(varValue?.ToString()))
+                        {
+                            MessageBox.Show("送り状FAX送付指示を入力してください。", "送り状FAX送付指示", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            goto Exit_IsError;
                         }
                         break;
                     case "PackingSlipNote":
@@ -1477,13 +1534,7 @@ namespace u_net
                             return true;
                         }
                         break;
-                    case "InvoiceInputCode":
-                        if (string.IsNullOrEmpty(varValue?.ToString()))
-                        {
-                            MessageBox.Show("送り状記載指示を入力してください。", "送り状記載指示", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                            goto Exit_IsError;
-                        }
-                        break;
+                    
                     case "InvoiceNote":
                         // 送り状の記載が必要のときは入力必須
                         if (this.InvoiceInputCode.Text == "01" && string.IsNullOrEmpty(varValue?.ToString()))
@@ -1497,13 +1548,6 @@ namespace u_net
                         {
                             this.InvoiceNote.Text = "";
                             return true;
-                        }
-                        break;
-                    case "InvoiceFaxCode":
-                        if (string.IsNullOrEmpty(varValue?.ToString()))
-                        {
-                            MessageBox.Show("送り状FAX送付指示を入力してください。", "送り状FAX送付指示", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                            goto Exit_IsError;
                         }
                         break;
                     case "InvoiceFaxToName":
@@ -1531,6 +1575,7 @@ namespace u_net
                                 MessageBox.Show("日付を入力してください。", controlObject.Name, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                                 goto Exit_IsError;
                             }
+                            ((TextBox)controlObject).Text = inputDate.ToString("yyyy/MM/dd");
                             if (!string.IsNullOrEmpty(varValue?.ToString()))
                             {
                                 // 受注納期以前の日付を許可するが、完了承認しないと請求には反映しない
@@ -2364,7 +2409,6 @@ namespace u_net
                     {
                         case "備考":
                         case "改版履歴":
-                        case "ProductionNotice":
                             return;
                     }
                     SelectNextControl(ActiveControl, true, true, true, true);
@@ -3634,6 +3678,11 @@ namespace u_net
         private void InvoiceNote_Enter(object sender, EventArgs e)
         {
             this.toolStripStatusLabel2.Text = "■顧客の担当者名を入力。　■全角46文字まで入力できます。　■敬称は不要です。";
+        }
+
+        private void 請求コード_Validated(object sender, EventArgs e)
+        {
+            請求コード.Text = 請求コード.Text.PadLeft(8, '0');
         }
     }
 }

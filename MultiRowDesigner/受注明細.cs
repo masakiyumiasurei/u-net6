@@ -45,6 +45,10 @@ namespace MultiRowDesigner
             {
                 textBox.KeyPress -= new KeyPressEventHandler(gcMultiRow1_KeyPress);
                 textBox.KeyPress += new KeyPressEventHandler(gcMultiRow1_KeyPress);
+                textBox.TextChanged -= gcMultiRow1_TextChanged;
+                textBox.TextChanged += gcMultiRow1_TextChanged;
+                textBox.GotFocus -= gcMultiRow1_GotFocus;
+                textBox.GotFocus += gcMultiRow1_GotFocus;
             }
             else if (comboBox != null)
             {
@@ -63,6 +67,58 @@ namespace MultiRowDesigner
 
             }
         }
+
+        private void gcMultiRow1_TextChanged(object sender, EventArgs e)
+        {
+            Control control = sender as Control;
+
+            switch (gcMultiRow1.CurrentCell.Name)
+            {
+                case "型番":
+                    FunctionClass.LimitText(control, 48);
+                    break;
+                case "品名":
+                    FunctionClass.LimitText(control, 48);
+                    break;
+                case "CustomerSerialNumberFrom":
+                    FunctionClass.LimitText(control, 20);
+                    break;
+                case "CustomerSerialNumberTo":
+                    FunctionClass.LimitText(control, 20);
+                    break;
+                case "備考":
+                    FunctionClass.LimitText(control, 164);
+                    break;
+
+            }
+
+            //フォーカスインしただけで変更状態になってしまう為コメントアウト、Validatingイベント内に記載
+            //ParentForm.ChangedData(true);
+        }
+
+        private void gcMultiRow1_GotFocus(object sender, EventArgs e)
+        {
+            TextBox control = sender as TextBox;
+
+            switch (gcMultiRow1.CurrentCell.Name)
+            {
+                case "備考":
+                    if (gcMultiRow1.CurrentRow.Cells["SettingSheet"].Value?.ToString() == "02")
+                    {
+                        control.ReadOnly = true;
+                    }
+                    else
+                    {
+                        control.ReadOnly = false;
+                    }
+                    break;
+
+            }
+
+            //フォーカスインしただけで変更状態になってしまう為コメントアウト、Validatingイベント内に記載
+            //ParentForm.ChangedData(true);
+        }
+
 
         private void gcMultiRow1_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -182,6 +238,8 @@ namespace MultiRowDesigner
 
         private void gcMultiRow1_CellValidating(object sender, CellValidatingEventArgs e)
         {
+            GcMultiRow grid = (GcMultiRow)sender;
+
             switch (e.CellName)
             {
                 case "受注区分コード":
@@ -200,7 +258,7 @@ namespace MultiRowDesigner
                 case "シリアル番号付加":
                 case "CustomerSerialNumberFrom":
                 case "CustomerSerialNumberTo":
-                    GcMultiRow grid = (GcMultiRow)sender;
+                    
                     // セルが編集中の場合
                     if (grid.IsCurrentCellInEditMode)
                     {
@@ -217,6 +275,13 @@ namespace MultiRowDesigner
                     }
                     break;
 
+            }
+
+            // 値が変更されていれば変更済みとして処理
+            if (grid.EditingControl != null && grid.EditingControl.Text != gcMultiRow1.CurrentCell.DisplayText)
+            {
+                F_受注 ParentForm = (F_受注)Application.OpenForms["F_受注"];
+                ParentForm.ChangedData(true);
             }
         }
 
@@ -317,7 +382,7 @@ namespace MultiRowDesigner
                         }
                         break;
                     case "備考":
-                        if (gcMultiRow1.CurrentRow.Cells["SettingSheet"].DisplayText == "01" && string.IsNullOrEmpty(varValue))
+                        if (gcMultiRow1.CurrentRow.Cells["SettingSheet"].Value?.ToString() == "01" && string.IsNullOrEmpty(varValue))
                         {
                             MessageBox.Show("設定明細内容を入力してください。", "設定明細内容", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                             return true;
