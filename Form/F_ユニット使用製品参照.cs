@@ -67,14 +67,6 @@ namespace u_net
                 control.PreviewKeyDown += OriginalClass.ValidateCheck;
             }
 
-            FunctionClass fn = new FunctionClass();
-            fn.DoWait("しばらくお待ちください...");
-
-            //実行中フォーム起動
-            string LoginUserCode = CommonConstants.LoginUserCode;//テスト用 ログインユーザを実行中にどのように管理するか決まったら修正
-            LocalSetting localSetting = new LocalSetting();
-            localSetting.LoadPlace(LoginUserCode, this);
-
             MyApi myapi = new MyApi();
             int xSize, ySize, intpixel, twipperdot;
 
@@ -82,220 +74,76 @@ namespace u_net
             intpixel = myapi.GetLogPixel();
             twipperdot = myapi.GetTwipPerDot(intpixel);
 
-            try
+            // DataGridViewの設定
+            dataGridView1.AllowUserToResizeColumns = true;
+            dataGridView1.Font = new Font("MS ゴシック", 10);
+            dataGridView1.DefaultCellStyle.SelectionBackColor = Color.FromArgb(210, 210, 255);
+            dataGridView1.DefaultCellStyle.SelectionForeColor = Color.Black;
+            dataGridView1.GridColor = Color.FromArgb(230, 230, 230);
+            dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font("MS ゴシック", 9);
+            dataGridView1.DefaultCellStyle.Font = new Font("MS ゴシック", 10);
+            dataGridView1.DefaultCellStyle.ForeColor = Color.Black;
+
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridView1.AllowUserToAddRows = false;
+            dataGridView1.AllowUserToDeleteRows = false;
+            dataGridView1.ReadOnly = true;
+
+            string query = "SELECT 製品コード,版数,品名,シリーズ名,承認 FROM Vユニット使用先 WHERE ユニットコード='" + args + "'";
+
+            Connect();
+            DataGridUtils.SetDataGridView(cn, query, this.dataGridView1);
+
+            if(dataGridView1.RowCount == 0)
             {
-                this.SuspendLayout();
-
-                int intWindowHeight = this.Height;
-                int intWindowWidth = this.Width;
-
-
-                if (string.IsNullOrEmpty(args))
-                {
-                    //コマンド新規_Click(sender, e);
-                }
-                else
-                {
-                    //コマンド読込_Click(sender, e);
-                    //if (!string.IsNullOrEmpty(args))
-                    //{
-                    //    this.部品コード.Text = args;
-                    //    UpdatedControl(部品コード);
-                    //}
-                }
-                // 成功時の処理
-                return;
+                MessageBox.Show("対象となる製品はありません。", "使用製品参照", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                Close();
             }
-            catch (Exception ex)
+
+            dataGridView1.Columns[0].Width = 1100 / twipperdot;
+            dataGridView1.Columns[1].Width = 400 / twipperdot;
+            dataGridView1.Columns[2].Width = 3000 / twipperdot;
+            dataGridView1.Columns[3].Width = 3000 / twipperdot;
+            dataGridView1.Columns[4].Width = 400 / twipperdot;
+
+
+        }
+
+
+        private void DataGridView1_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+            //列ヘッダーかどうか調べる
+            if (e.ColumnIndex < 0 && e.RowIndex >= 0)
             {
-                MessageBox.Show("初期化に失敗しました。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                this.Close();
-            }
-            finally
-            {
-                this.ResumeLayout();
-                fn.WaitForm.Close();
+                //dataGridView1.SuspendLayout();
+                //セルを描画する
+                e.Paint(e.ClipBounds, DataGridViewPaintParts.All);
+
+                //行番号を描画する範囲を決定する
+                //e.AdvancedBorderStyleやe.CellStyle.Paddingは無視
+                Rectangle indexRect = e.CellBounds;
+                indexRect.Inflate(-2, -2);
+
+                //行番号を描画する
+                TextRenderer.DrawText(e.Graphics, (e.RowIndex + 1).ToString(), e.CellStyle.Font, indexRect,
+                    e.CellStyle.ForeColor, TextFormatFlags.Right | TextFormatFlags.VerticalCenter);
+
+                //描画が完了したことを知らせる
+                e.Handled = true;
+                //dataGridView1.ResumeLayout();
+
             }
         }
 
         private void Form_Unload(object sender, FormClosingEventArgs e)
         {
-            string LoginUserCode = CommonConstants.LoginUserCode;//テスト用 ログインユーザを実行中にどのように管理するか決まったら修正
-            LocalSetting test = new LocalSetting();
-            test.SavePlace(LoginUserCode, this);
-
-            try
-            {
-
-                Connect();
-
-                // データへの変更がないときの処理
-                //if (!IsChanged)
-                //{
-                    // 新規モードで且つコードが取得済みのときはコードを戻す
-                    //if (IsNewData && !string.IsNullOrEmpty(CurrentCode) && CurrentEdition == 1)
-                    //{
-                    //    // 採番された番号を戻す
-                    //    if (!FunctionClass.ReturnCode(cn, "PAR" + CurrentCode))
-                    //    {
-                    //        MessageBox.Show("エラーのためコードは破棄されました。" + Environment.NewLine + Environment.NewLine +
-                    //                        "部品コード　：　" + CurrentCode, "警告", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    //    }
-                    //}
-                    //return;
-                //}
-
-                // 修正されているときは登録確認を行う
-                var intRes = MessageBox.Show("変更内容を登録しますか？", "確認", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
-                switch (intRes)
-                {
-                    case DialogResult.Yes:
-                        // エラーチェック
-                        if (!ErrCheck())
-                        {
-                            return;
-                        }
-                        // 登録処理
-                        if (!SaveData())
-                        {
-                            if (MessageBox.Show("エラーのため登録できませんでした。" + Environment.NewLine +
-                                                "強制終了しますか？", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
-                            {
-                                return;
-                            }
-                        }
-                        break;
-                    case DialogResult.No:
-                        // 新規コードを取得していたときはコードを戻す
-                        //if (IsNewData && !string.IsNullOrEmpty(CurrentCode) && CurrentEdition == 1)
-                        //{
-                        //    if (!FunctionClass.ReturnCode(cn, "PAR" + CurrentCode))
-                        //    {
-                        //        MessageBox.Show("エラーのためコードは破棄されました。" + Environment.NewLine +
-                        //                        "部品コード　：　" + CurrentCode, "警告", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                        //    }
-                        //}
-                        break;
-                    case DialogResult.Cancel:
-                        return;
-                }
-
-
-            }
-            catch (Exception ex)
-            {
-                Debug.Print(Name + "_Unload - " + ex.Message);
-                MessageBox.Show(ex.Message, "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            
         }
 
-        private bool SaveData()
-        {
-
-            Connect();
-            SqlTransaction transaction = cn.BeginTransaction();
-            {
-                try
-                {
-
-                    //DateTime dteNow = DateTime.Now;
-                    //Control objControl1 = null;
-                    //Control objControl2 = null;
-                    //Control objControl3 = null;
-                    //Control objControl4 = null;
-                    //Control objControl5 = null;
-                    //Control objControl6 = null;
-                    //object varSaved1 = null;
-                    //object varSaved2 = null;
-                    //object varSaved3 = null;
-                    //object varSaved4 = null;
-                    //object varSaved5 = null;
-                    //object varSaved6 = null;
-
-                    //if (IsNewData)
-                    //{
-                        //objControl1 = this.作成日時;
-                        //objControl2 = this.作成者コード;
-                        //objControl3 = this.CreatorName;
-                        //varSaved1 = objControl1.Text;
-                        //varSaved2 = objControl2.Text;
-                        //varSaved3 = objControl3.Text;
-                        //objControl1.Text = dteNow.ToString(); // ここでDateTimeをstringに変換して設定
-                        //objControl2.Text = CommonConstants.LoginUserCode;
-                        //objControl3.Text = CommonConstants.LoginUserFullName;
-                    //}
-
-                    //objControl4 = this.更新日時;
-                    //objControl5 = this.更新者コード;
-                    //objControl6 = this.UpdaterName;
-
-                    //varSaved4 = objControl4.Text;
-                    //varSaved5 = objControl5.Text;
-                    //varSaved6 = objControl6.Text;
-
-                    //objControl4.Text = dteNow.ToString(); // ここでDateTimeをstringに変換して設定
-                    //objControl5.Text = CommonConstants.LoginUserCode;
-                    //objControl6.Text = CommonConstants.LoginUserFullName;
-
-
-                    //string strwhere = " 部品コード='" + this.部品コード.Text + "'";
-
-                    //if (!DataUpdater.UpdateOrInsertDataFrom(this, cn, "M部品", strwhere, "部品コード", transaction))
-                    //{
-
-
-                    //    if (IsNewData)
-                    //    {
-                    //        objControl1.Text = varSaved1.ToString();
-                    //        objControl2.Text = varSaved2.ToString();
-                    //        objControl3.Text = varSaved3.ToString();
-
-                    //    }
-
-                    //    objControl4.Text = varSaved4.ToString();
-                    //    objControl5.Text = varSaved5.ToString();
-                    //    objControl6.Text = varSaved6.ToString();
-
-                    //    return false;
-                    //}
-
-                    // トランザクションをコミット
-                    transaction.Commit();
-
-
-                    //部品コード.Enabled = true;
-
-                    // 新規モードのときは修正モードへ移行する
-                    //if (IsNewData)
-                    //{
-                    //    コマンド新規.Enabled = true;
-                    //}
-
-                    //コマンド複写.Enabled = true;
-                    //コマンド削除.Enabled = true;
-                    //コマンド登録.Enabled = false;
-
-                    return true;
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine("Error in SaveData: " + ex.Message);
-                    return false;
-                }
-            }
-        }
-
-        private bool ErrCheck()
-        {
-            //入力確認    
-            //if (!FunctionClass.IsError(this.部品コード)) return false;
-            //if (!FunctionClass.IsError(this.版数)) return false;
-            return true;
-        }
 
         private void 閉じるボタン_Click(object sender, EventArgs e)
         {
-
+            Close();
         }
     }
 }

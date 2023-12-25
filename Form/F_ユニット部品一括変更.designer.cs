@@ -93,6 +93,7 @@ namespace u_net
             imageList1 = new ImageList(components);
             label1 = new Label();
             変更先部品 = new GroupBox();
+            変更先メーカー省略名 = new TextBox();
             変更先廃止 = new TextBox();
             変更先廃止_ラベル = new Label();
             変更先非含有証明書 = new TextBox();
@@ -569,6 +570,7 @@ namespace u_net
             変更元部品コード選択ボタン.TabIndex = 3;
             変更元部品コード選択ボタン.Text = "▼";
             変更元部品コード選択ボタン.UseVisualStyleBackColor = true;
+            変更元部品コード選択ボタン.Click += 変更元部品コード選択ボタン_Click;
             // 
             // 変更元部品コード
             // 
@@ -580,6 +582,9 @@ namespace u_net
             変更元部品コード.Name = "変更元部品コード";
             変更元部品コード.Size = new Size(102, 20);
             変更元部品コード.TabIndex = 2;
+            変更元部品コード.TextChanged += 変更元部品コード_TextChanged;
+            変更元部品コード.KeyDown += 変更元部品コード_KeyDown;
+            変更元部品コード.Validated += 変更元部品コード_Validated;
             // 
             // 部品コード_ラベル
             // 
@@ -627,12 +632,15 @@ namespace u_net
             // 変更記録更新
             // 
             変更記録更新.AutoSize = true;
+            変更記録更新.Checked = true;
+            変更記録更新.CheckState = CheckState.Checked;
             変更記録更新.Location = new Point(20, 331);
             変更記録更新.Name = "変更記録更新";
             変更記録更新.Size = new Size(142, 19);
             変更記録更新.TabIndex = 43;
             変更記録更新.Text = "変更記録を更新する(&U)";
             変更記録更新.UseVisualStyleBackColor = true;
+            変更記録更新.CheckedChanged += 変更記録更新_CheckedChanged;
             // 
             // 変更操作_ラベル
             // 
@@ -687,6 +695,7 @@ namespace u_net
             変更内容.Name = "変更内容";
             変更内容.Size = new Size(510, 20);
             変更内容.TabIndex = 47;
+            変更内容.TextChanged += 変更内容_TextChanged;
             // 
             // imageList1
             // 
@@ -711,6 +720,7 @@ namespace u_net
             // 
             // 変更先部品
             // 
+            変更先部品.Controls.Add(変更先メーカー省略名);
             変更先部品.Controls.Add(変更先廃止);
             変更先部品.Controls.Add(変更先廃止_ラベル);
             変更先部品.Controls.Add(変更先非含有証明書);
@@ -738,6 +748,20 @@ namespace u_net
             変更先部品.TabIndex = 10199;
             変更先部品.TabStop = false;
             変更先部品.Text = "変更先";
+            // 
+            // 変更先メーカー省略名
+            // 
+            変更先メーカー省略名.BackColor = Color.White;
+            変更先メーカー省略名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            変更先メーカー省略名.ImeMode = ImeMode.Disable;
+            変更先メーカー省略名.Location = new Point(218, 197);
+            変更先メーカー省略名.Margin = new Padding(3, 2, 3, 2);
+            変更先メーカー省略名.Name = "変更先メーカー省略名";
+            変更先メーカー省略名.ReadOnly = true;
+            変更先メーカー省略名.Size = new Size(82, 20);
+            変更先メーカー省略名.TabIndex = 25;
+            変更先メーカー省略名.TabStop = false;
+            変更先メーカー省略名.Visible = false;
             // 
             // 変更先廃止
             // 
@@ -1000,6 +1024,7 @@ namespace u_net
             変更先部品コード選択ボタン.TabIndex = 24;
             変更先部品コード選択ボタン.Text = "▼";
             変更先部品コード選択ボタン.UseVisualStyleBackColor = true;
+            変更先部品コード選択ボタン.Click += 変更先部品コード選択ボタン_Click;
             // 
             // 変更先部品コード
             // 
@@ -1011,6 +1036,9 @@ namespace u_net
             変更先部品コード.Name = "変更先部品コード";
             変更先部品コード.Size = new Size(102, 20);
             変更先部品コード.TabIndex = 23;
+            変更先部品コード.TextChanged += 変更先部品コード_TextChanged;
+            変更先部品コード.KeyDown += 変更先部品コード_KeyDown;
+            変更先部品コード.Validated += 変更先部品コード_Validated;
             // 
             // 変更先部品コード_ラベル
             // 
@@ -1147,6 +1175,7 @@ namespace u_net
         private Button 変更先部品コード選択ボタン;
         private TextBox 変更先部品コード;
         private Label 変更先部品コード_ラベル;
+        private TextBox 変更先メーカー省略名;
     }
 }
 

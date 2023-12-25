@@ -201,7 +201,7 @@ namespace u_net
             statusStrip1.Location = new Point(0, 240);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Padding = new Padding(1, 0, 19, 0);
-            statusStrip1.Size = new Size(554, 22);
+            statusStrip1.Size = new Size(588, 22);
             statusStrip1.TabIndex = 10195;
             statusStrip1.Text = "statusStrip1";
             // 
@@ -214,7 +214,7 @@ namespace u_net
             // 閉じるボタン
             // 
             閉じるボタン.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            閉じるボタン.Location = new Point(431, 204);
+            閉じるボタン.Location = new Point(470, 204);
             閉じるボタン.Margin = new Padding(4);
             閉じるボタン.Name = "閉じるボタン";
             閉じるボタン.RightToLeft = RightToLeft.Yes;
@@ -230,13 +230,14 @@ namespace u_net
             dataGridView1.Location = new Point(7, 7);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowTemplate.Height = 25;
-            dataGridView1.Size = new Size(531, 190);
+            dataGridView1.Size = new Size(569, 190);
             dataGridView1.TabIndex = 1;
+            dataGridView1.CellPainting += DataGridView1_CellPainting;
             // 
             // F_ユニット使用製品参照
             // 
             BackColor = SystemColors.Control;
-            ClientSize = new Size(554, 262);
+            ClientSize = new Size(588, 262);
             Controls.Add(dataGridView1);
             Controls.Add(閉じるボタン);
             Controls.Add(statusStrip1);

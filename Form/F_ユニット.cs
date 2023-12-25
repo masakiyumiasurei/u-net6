@@ -1799,10 +1799,10 @@ namespace u_net
 
         private void コマンドツール_Click(object sender, EventArgs e)
         {
-            //F_ユニット_ツール targetform = new F_ユニット_ツール();
+            F_ユニット_ツール targetform = new F_ユニット_ツール();
 
-            //targetform.args = CurrentCode;
-            //targetform.ShowDialog();
+            targetform.args = CurrentCode;
+            targetform.ShowDialog();
         }
 
 
@@ -2418,7 +2418,68 @@ namespace u_net
         }
 
 
+        public long ChangeParts(string source, string destination, string name, string model, string maker,
+            long price, string form, long pieces, string roHS, string ncc, string abolition, bool changeLog,
+            string operation, string note)
+        {
+            try
+            {
+                long recordsAffected = 0;
 
+                foreach(Row row in ユニット明細1.Detail.Rows)
+                {
+                    if (row.Cells["部品コード"].Value.ToString() == source)
+                    {
+                        row.Cells["部品コード"].Value = destination;
+                        row.Cells["品名"].Value = name;
+                        row.Cells["型番"].Value = model;
+                        row.Cells["メーカー名"].Value = maker;
+                        row.Cells["単価"].Value = price;
+                        row.Cells["形状名"].Value = form;
+                        row.Cells["入数"].Value = pieces;
+                        row.Cells["RohsStatusSign"].Value = roHS;
+                        row.Cells["非含有証明書"].Value = ncc;
+                        row.Cells["廃止"].Value = abolition;
+                        if (changeLog)
+                        {
+                            if (operation == "")
+                            {
+                                row.Cells["変更操作コード"].Value = DBNull.Value;
+                            }
+                            else
+                            {
+                                row.Cells["変更操作コード"].Value = operation;
+                            }
+
+                            if(note == "")
+                            {
+                                row.Cells["変更内容"].Value = DBNull.Value;
+                            }
+                            else
+                            {
+                                row.Cells["変更内容"].Value = note;
+                            }
+                        }
+
+
+                        row.Cells["ユニット材料費"].Value = price/pieces;
+
+
+                        recordsAffected++;
+                    }
+
+                }
+                
+
+                return recordsAffected;
+            }
+            catch (Exception ex)
+            {
+                // 例外処理の方法によって、エラーメッセージの表示やログへの書き込みなどを適切に行う必要があります。
+                Debug.WriteLine($"ChangeParts - {ex.Message}");
+                return -1;
+            }
+        }
 
 
 

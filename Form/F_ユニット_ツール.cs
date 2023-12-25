@@ -88,17 +88,42 @@ namespace u_net
 
         private void 部品一括変更ボタン_Click(object sender, EventArgs e)
         {
+            F_ユニット? f_ユニット = Application.OpenForms.OfType<F_ユニット>().FirstOrDefault();
+
+            if (f_ユニット.IsDecided)
+            {
+                MessageBox.Show("確定されているので、データを変更できません。", "ツールコマンド", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+
+            F_ユニット部品一括変更 targetform = new F_ユニット部品一括変更();
+
+            targetform.ShowDialog();
 
         }
 
         private void 使用製品検索ボタン_Click(object sender, EventArgs e)
         {
+            F_ユニット使用製品参照 targetform = new F_ユニット使用製品参照();
 
+            targetform.args = strUnitCode;
+            targetform.ShowDialog();
         }
 
         private void 材料費の強制取得ボタン_Click(object sender, EventArgs e)
         {
+            try
+            {
+                F_ユニット? f_ユニット = Application.OpenForms.OfType<F_ユニット>().FirstOrDefault();
 
+                MessageBox.Show("現在の材料費は　" + f_ユニット.ユニット明細1.Detail.ColumnFooters[0].Cells["製品材料費"].Value.ToString() + "　円です。", "ツールコマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("エラーのため取得できませんでした。", "ツールコマンド", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
         }
     }
 }
