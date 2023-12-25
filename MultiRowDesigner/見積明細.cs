@@ -18,7 +18,7 @@ namespace MultiRowDesigner
     public partial class 見積明細 : UserControl
     {
         public bool IsOrderByOn = false; // 現在のデータが並べ替えられているかどうかを取得する
-        
+
         public GcMultiRow Detail
         {
             get
@@ -76,8 +76,7 @@ namespace MultiRowDesigner
         private void gcMultiRow1_TextChanged(object sender, EventArgs e)
         {
             Control control = sender as Control;
-            F_見積 ParentForm = (F_見積)Application.OpenForms["F_見積"];
-
+            
             switch (gcMultiRow1.CurrentCell.Name)
             {
                 case "品名":
@@ -92,7 +91,8 @@ namespace MultiRowDesigner
 
             }
 
-            ParentForm.ChangedData(true);
+            //フォーカスインしただけで変更状態になってしまう為コメントアウト、Validatingイベント内に記載
+            //ParentForm.ChangedData(true);
         }
 
         private void gcMultiRow1_CellEnter(object sender, CellEventArgs e)
@@ -182,6 +182,8 @@ namespace MultiRowDesigner
 
         private void gcMultiRow1_CellValidating(object sender, CellValidatingEventArgs e)
         {
+            GcMultiRow grid = (GcMultiRow)sender;
+
             switch (e.CellName)
             {
                 case "品名":
@@ -190,7 +192,7 @@ namespace MultiRowDesigner
                 case "単価":
                 case "単位":
                 case "標準単価":
-                    GcMultiRow grid = (GcMultiRow)sender;
+                    
                     // セルが編集中の場合
                     if (grid.IsCurrentCellInEditMode)
                     {
@@ -207,6 +209,13 @@ namespace MultiRowDesigner
                     }
                     break;
 
+            }
+
+            // 値が変更されていれば変更済みとして処理
+            if (grid.EditingControl != null && grid.EditingControl.Text != gcMultiRow1.CurrentCell.DisplayText)
+            {
+                F_見積 ParentForm = (F_見積)Application.OpenForms["F_見積"];
+                ParentForm.ChangedData(true);
             }
         }
 

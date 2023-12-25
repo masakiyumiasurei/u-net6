@@ -147,7 +147,6 @@ namespace u_net
             label32 = new Label();
             見積コード = new TextBox();
             見積明細1 = new MultiRowDesigner.見積明細();
-            toolTip1 = new ToolTip(components);
             panel1.SuspendLayout();
             statusStrip1.SuspendLayout();
             SuspendLayout();
@@ -177,6 +176,7 @@ namespace u_net
             コマンド登録.TabIndex = 11;
             コマンド登録.Text = "登録";
             コマンド登録.UseVisualStyleBackColor = true;
+            コマンド登録.Click += コマンド登録_Click;
             // 
             // panel1
             // 
@@ -210,8 +210,8 @@ namespace u_net
             文書グループ登録ボタン.Size = new Size(70, 25);
             文書グループ登録ボタン.TabIndex = 6;
             文書グループ登録ボタン.Text = "リンク";
-            toolTip1.SetToolTip(文書グループ登録ボタン, "文書グループの登録");
             文書グループ登録ボタン.UseVisualStyleBackColor = true;
+            文書グループ登録ボタン.Click += 文書グループ登録ボタン_Click;
             // 
             // button
             // 
@@ -236,8 +236,8 @@ namespace u_net
             コマンド送信.Size = new Size(70, 25);
             コマンド送信.TabIndex = 8;
             コマンド送信.Text = "送信";
-            toolTip1.SetToolTip(コマンド送信, "見積書のファックス送信");
             コマンド送信.UseVisualStyleBackColor = true;
+            コマンド送信.Click += コマンド送信_Click;
             // 
             // コマンド見積書
             // 
@@ -250,8 +250,8 @@ namespace u_net
             コマンド見積書.Size = new Size(70, 25);
             コマンド見積書.TabIndex = 7;
             コマンド見積書.Text = "見積書";
-            toolTip1.SetToolTip(コマンド見積書, "見積書プレビュー");
             コマンド見積書.UseVisualStyleBackColor = true;
+            コマンド見積書.Click += コマンド見積書_Click;
             // 
             // コマンド確定
             // 
@@ -266,6 +266,7 @@ namespace u_net
             コマンド確定.TabIndex = 10;
             コマンド確定.Text = "確定";
             コマンド確定.UseVisualStyleBackColor = true;
+            コマンド確定.Click += コマンド確定_Click;
             // 
             // コマンド承認
             // 
@@ -280,6 +281,7 @@ namespace u_net
             コマンド承認.TabIndex = 4;
             コマンド承認.Text = "承認";
             コマンド承認.UseVisualStyleBackColor = true;
+            コマンド承認.Click += コマンド承認_Click;
             // 
             // コマンド削除
             // 
@@ -293,6 +295,7 @@ namespace u_net
             コマンド削除.TabIndex = 3;
             コマンド削除.Text = "削除";
             コマンド削除.UseVisualStyleBackColor = true;
+            コマンド削除.Click += コマンド削除_Click;
             // 
             // コマンド複写
             // 
@@ -306,6 +309,7 @@ namespace u_net
             コマンド複写.TabIndex = 9;
             コマンド複写.Text = "複写";
             コマンド複写.UseVisualStyleBackColor = true;
+            コマンド複写.Click += コマンド複写_Click;
             // 
             // コマンド読込
             // 
@@ -333,6 +337,7 @@ namespace u_net
             コマンド新規.TabIndex = 1;
             コマンド新規.Text = "新規";
             コマンド新規.UseVisualStyleBackColor = true;
+            コマンド新規.Click += コマンド新規_Click;
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -610,13 +615,16 @@ namespace u_net
             見積版数.AutoCompleteSource = AutoCompleteSource.ListItems;
             見積版数.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             見積版数.FormattingEnabled = true;
-            見積版数.ImeMode = ImeMode.NoControl;
+            見積版数.ImeMode = ImeMode.Disable;
             見積版数.Location = new Point(421, 50);
             見積版数.Margin = new Padding(4, 3, 4, 3);
             見積版数.Name = "見積版数";
             見積版数.Size = new Size(60, 21);
             見積版数.TabIndex = 1;
-            toolTip1.SetToolTip(見積版数, "版数");
+            見積版数.TabStop = false;
+            見積版数.Enter += 見積版数_Enter;
+            見積版数.Validating += 見積版数_Validating;
+            見積版数.Validated += 見積版数_Validated;
             // 
             // 見積日選択ボタン
             // 
@@ -624,6 +632,7 @@ namespace u_net
             見積日選択ボタン.Name = "見積日選択ボタン";
             見積日選択ボタン.Size = new Size(21, 22);
             見積日選択ボタン.TabIndex = 3;
+            見積日選択ボタン.TabStop = false;
             見積日選択ボタン.Text = "▼";
             見積日選択ボタン.UseVisualStyleBackColor = true;
             見積日選択ボタン.Click += 見積日選択ボタン_Click;
@@ -632,13 +641,14 @@ namespace u_net
             // 
             見積日.BackColor = Color.White;
             見積日.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            見積日.ImeMode = ImeMode.Disable;
             見積日.Location = new Point(125, 75);
             見積日.Margin = new Padding(3, 2, 3, 2);
             見積日.Multiline = true;
             見積日.Name = "見積日";
-            見積日.ReadOnly = true;
             見積日.Size = new Size(150, 22);
             見積日.TabIndex = 2;
+            見積日.TextChanged += 見積日_TextChanged;
             // 
             // ラベル3
             // 
@@ -666,6 +676,8 @@ namespace u_net
             件名.Name = "件名";
             件名.Size = new Size(531, 22);
             件名.TabIndex = 6;
+            件名.TextChanged += 件名_TextChanged;
+            件名.Enter += 件名_Enter;
             // 
             // label1
             // 
@@ -748,6 +760,7 @@ namespace u_net
             改版ボタン.TabStop = false;
             改版ボタン.Text = "改版";
             改版ボタン.UseVisualStyleBackColor = true;
+            改版ボタン.Click += 改版ボタン_Click;
             // 
             // label9
             // 
@@ -903,13 +916,17 @@ namespace u_net
             // 
             顧客コード.BackColor = Color.White;
             顧客コード.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            顧客コード.ImeMode = ImeMode.Disable;
             顧客コード.Location = new Point(125, 150);
             顧客コード.Margin = new Padding(3, 2, 3, 2);
             顧客コード.Multiline = true;
             顧客コード.Name = "顧客コード";
-            顧客コード.ReadOnly = true;
             顧客コード.Size = new Size(150, 22);
             顧客コード.TabIndex = 7;
+            顧客コード.TextChanged += 顧客コード_TextChanged;
+            顧客コード.Enter += 顧客コード_Enter;
+            顧客コード.Validating += 顧客コード_Validating;
+            顧客コード.Validated += 顧客コード_Validated;
             // 
             // 顧客選択ボタン
             // 
@@ -917,8 +934,10 @@ namespace u_net
             顧客選択ボタン.Name = "顧客選択ボタン";
             顧客選択ボタン.Size = new Size(21, 22);
             顧客選択ボタン.TabIndex = 9;
+            顧客選択ボタン.TabStop = false;
             顧客選択ボタン.Text = "▼";
             顧客選択ボタン.UseVisualStyleBackColor = true;
+            顧客選択ボタン.Click += 顧客選択ボタン_Click;
             // 
             // 顧客名
             // 
@@ -931,6 +950,10 @@ namespace u_net
             顧客名.Name = "顧客名";
             顧客名.Size = new Size(531, 22);
             顧客名.TabIndex = 8;
+            顧客名.TextChanged += 顧客名_TextChanged;
+            顧客名.Enter += 顧客名_Enter;
+            顧客名.Validating += 顧客名_Validating;
+            顧客名.Validated += 顧客名_Validated;
             // 
             // 顧客担当者名
             // 
@@ -943,6 +966,10 @@ namespace u_net
             顧客担当者名.Name = "顧客担当者名";
             顧客担当者名.Size = new Size(531, 22);
             顧客担当者名.TabIndex = 10;
+            顧客担当者名.TextChanged += 顧客担当者名_TextChanged;
+            顧客担当者名.Enter += 顧客担当者名_Enter;
+            顧客担当者名.Validating += 顧客担当者名_Validating;
+            顧客担当者名.Validated += 顧客担当者名_Validated;
             // 
             // 納入場所
             // 
@@ -950,26 +977,30 @@ namespace u_net
             納入場所.AutoCompleteSource = AutoCompleteSource.ListItems;
             納入場所.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             納入場所.FormattingEnabled = true;
-            納入場所.ImeMode = ImeMode.NoControl;
+            納入場所.ImeMode = ImeMode.Hiragana;
             納入場所.Location = new Point(125, 300);
             納入場所.Margin = new Padding(4, 3, 4, 3);
             納入場所.Name = "納入場所";
             納入場所.Size = new Size(261, 21);
             納入場所.TabIndex = 14;
-            toolTip1.SetToolTip(納入場所, "納入場所");
+            納入場所.TextChanged += 納入場所_TextChanged;
+            納入場所.Enter += 納入場所_Enter;
             // 
             // ファックス番号
             // 
             ファックス番号.BackColor = Color.White;
             ファックス番号.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            ファックス番号.ImeMode = ImeMode.Disable;
             ファックス番号.Location = new Point(125, 250);
             ファックス番号.Margin = new Padding(3, 2, 3, 2);
             ファックス番号.Multiline = true;
             ファックス番号.Name = "ファックス番号";
-            ファックス番号.ReadOnly = true;
             ファックス番号.Size = new Size(242, 22);
             ファックス番号.TabIndex = 12;
-            toolTip1.SetToolTip(ファックス番号, "顧客のファックス番号");
+            ファックス番号.TextChanged += ファックス番号_TextChanged;
+            ファックス番号.Enter += ファックス番号_Enter;
+            ファックス番号.Validating += ファックス番号_Validating;
+            ファックス番号.Validated += ファックス番号_Validated;
             // 
             // 納期
             // 
@@ -979,10 +1010,10 @@ namespace u_net
             納期.Margin = new Padding(3, 2, 3, 2);
             納期.Multiline = true;
             納期.Name = "納期";
-            納期.ReadOnly = true;
             納期.Size = new Size(242, 22);
             納期.TabIndex = 13;
-            toolTip1.SetToolTip(納期, "納期");
+            納期.TextChanged += 納期_TextChanged;
+            納期.Enter += 納期_Enter;
             // 
             // 担当者コード
             // 
@@ -991,20 +1022,21 @@ namespace u_net
             担当者コード.DrawMode = DrawMode.OwnerDrawFixed;
             担当者コード.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             担当者コード.FormattingEnabled = true;
-            担当者コード.ImeMode = ImeMode.NoControl;
+            担当者コード.ImeMode = ImeMode.Disable;
             担当者コード.Location = new Point(125, 100);
             担当者コード.Margin = new Padding(4, 3, 4, 3);
             担当者コード.Name = "担当者コード";
             担当者コード.Size = new Size(60, 22);
             担当者コード.TabIndex = 4;
-            toolTip1.SetToolTip(担当者コード, "担当者名");
             担当者コード.DrawItem += 担当者コード_DrawItem;
             担当者コード.SelectedIndexChanged += 担当者コード_SelectedIndexChanged;
+            担当者コード.Enter += 担当者コード_Enter;
             // 
             // 担当者名
             // 
             担当者名.BackColor = Color.White;
             担当者名.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            担当者名.ImeMode = ImeMode.Disable;
             担当者名.Location = new Point(190, 100);
             担当者名.Margin = new Padding(3, 2, 3, 2);
             担当者名.Multiline = true;
@@ -1019,13 +1051,14 @@ namespace u_net
             支払条件.AutoCompleteSource = AutoCompleteSource.ListItems;
             支払条件.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             支払条件.FormattingEnabled = true;
-            支払条件.ImeMode = ImeMode.NoControl;
+            支払条件.ImeMode = ImeMode.Hiragana;
             支払条件.Location = new Point(125, 325);
             支払条件.Margin = new Padding(4, 3, 4, 3);
             支払条件.Name = "支払条件";
             支払条件.Size = new Size(261, 21);
             支払条件.TabIndex = 15;
-            toolTip1.SetToolTip(支払条件, "支払条件");
+            支払条件.TextChanged += 支払条件_TextChanged;
+            支払条件.Enter += 支払条件_Enter;
             // 
             // 有効期間
             // 
@@ -1033,13 +1066,14 @@ namespace u_net
             有効期間.AutoCompleteSource = AutoCompleteSource.ListItems;
             有効期間.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             有効期間.FormattingEnabled = true;
-            有効期間.ImeMode = ImeMode.NoControl;
+            有効期間.ImeMode = ImeMode.Hiragana;
             有効期間.Location = new Point(125, 350);
             有効期間.Margin = new Padding(4, 3, 4, 3);
             有効期間.Name = "有効期間";
             有効期間.Size = new Size(261, 21);
             有効期間.TabIndex = 16;
-            toolTip1.SetToolTip(有効期間, "有効期間");
+            有効期間.TextChanged += 有効期間_TextChanged;
+            有効期間.Enter += 有効期間_Enter;
             // 
             // label21
             // 
@@ -1062,13 +1096,14 @@ namespace u_net
             合計金額表示.AutoCompleteSource = AutoCompleteSource.ListItems;
             合計金額表示.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             合計金額表示.FormattingEnabled = true;
-            合計金額表示.ImeMode = ImeMode.NoControl;
+            合計金額表示.ImeMode = ImeMode.Disable;
             合計金額表示.Location = new Point(461, 375);
             合計金額表示.Margin = new Padding(4, 3, 4, 3);
             合計金額表示.Name = "合計金額表示";
             合計金額表示.Size = new Size(138, 21);
             合計金額表示.TabIndex = 18;
-            toolTip1.SetToolTip(合計金額表示, "合計金額の表示有無");
+            合計金額表示.TextChanged += 合計金額表示_TextChanged;
+            合計金額表示.Enter += 合計金額表示_Enter;
             // 
             // label6
             // 
@@ -1111,6 +1146,8 @@ namespace u_net
             メモ.Name = "メモ";
             メモ.Size = new Size(313, 146);
             メモ.TabIndex = 20;
+            メモ.TextChanged += メモ_TextChanged;
+            メモ.Enter += メモ_Enter;
             // 
             // label23
             // 
@@ -1138,20 +1175,24 @@ namespace u_net
             備考.Name = "備考";
             備考.Size = new Size(804, 54);
             備考.TabIndex = 19;
-            toolTip1.SetToolTip(備考, "備考");
+            備考.TextChanged += 備考_TextChanged;
+            備考.Enter += 備考_Enter;
             // 
             // 電話番号
             // 
             電話番号.BackColor = Color.White;
             電話番号.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            電話番号.ImeMode = ImeMode.Disable;
             電話番号.Location = new Point(125, 225);
             電話番号.Margin = new Padding(3, 2, 3, 2);
             電話番号.Multiline = true;
             電話番号.Name = "電話番号";
-            電話番号.ReadOnly = true;
             電話番号.Size = new Size(242, 22);
             電話番号.TabIndex = 11;
-            toolTip1.SetToolTip(電話番号, "顧客の電話番号");
+            電話番号.TextChanged += 電話番号_TextChanged;
+            電話番号.Enter += 電話番号_Enter;
+            電話番号.Validating += 電話番号_Validating;
+            電話番号.Validated += 電話番号_Validated;
             // 
             // label3
             // 
@@ -1174,13 +1215,14 @@ namespace u_net
             要承認.AutoCompleteSource = AutoCompleteSource.ListItems;
             要承認.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             要承認.FormattingEnabled = true;
-            要承認.ImeMode = ImeMode.NoControl;
+            要承認.ImeMode = ImeMode.Disable;
             要承認.Location = new Point(125, 375);
             要承認.Margin = new Padding(4, 3, 4, 3);
             要承認.Name = "要承認";
             要承認.Size = new Size(171, 21);
             要承認.TabIndex = 17;
-            toolTip1.SetToolTip(要承認, "承認の要/不要");
+            要承認.TextChanged += 要承認_TextChanged;
+            要承認.Enter += 要承認_Enter;
             // 
             // label5
             // 
@@ -1519,11 +1561,11 @@ namespace u_net
             // 
             見積コード.BackColor = Color.White;
             見積コード.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            見積コード.ImeMode = ImeMode.Disable;
             見積コード.Location = new Point(125, 50);
             見積コード.Margin = new Padding(3, 2, 3, 2);
             見積コード.Multiline = true;
             見積コード.Name = "見積コード";
-            見積コード.ReadOnly = true;
             見積コード.Size = new Size(150, 22);
             見積コード.TabIndex = 0;
             見積コード.TextChanged += 見積コード_TextChanged;
@@ -1534,7 +1576,7 @@ namespace u_net
             // 
             見積明細1.Location = new Point(15, 460);
             見積明細1.Name = "見積明細1";
-            見積明細1.Size = new Size(1000, 350);
+            見積明細1.Size = new Size(1050, 350);
             見積明細1.TabIndex = 10080;
             // 
             // F_見積
@@ -1622,8 +1664,9 @@ namespace u_net
             Margin = new Padding(3, 2, 3, 2);
             Name = "F_見積";
             Text = "見積";
+            FormClosing += Form_Unload;
             Load += Form_Load;
-            KeyDown += F_受注_KeyDown;
+            KeyDown += F_見積_KeyDown;
             panel1.ResumeLayout(false);
             statusStrip1.ResumeLayout(false);
             statusStrip1.PerformLayout();
@@ -1757,7 +1800,6 @@ namespace u_net
         private Label label32;
         private TextBox 見積コード;
         private MultiRowDesigner.見積明細 見積明細1;
-        private ToolTip toolTip1;
     }
 }
 
