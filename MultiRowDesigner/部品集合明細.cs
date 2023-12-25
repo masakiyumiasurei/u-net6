@@ -23,7 +23,7 @@ namespace MultiRowDesigner
         private DataGridView multiRow = new DataGridView();
         private SqlConnection cn;
         public bool validatedflg = false;
-       
+
         public GcMultiRow Detail
         {
             get
@@ -142,19 +142,21 @@ namespace MultiRowDesigner
                     F_部品選択 form = new F_部品選択();
                     if (form.ShowDialog() == DialogResult.OK)
                     {
+                        gcMultiRow1.EndEdit(); //編集の終了
                         string selectedCode = form.SelectedCode;
 
-                        gcMultiRow1.CurrentRow.Cells["部品コード"].Value = selectedCode;
-
+                      //  gcMultiRow1.CurrentRow.Cells["部品コード"].Value = selectedCode;
+                        gcMultiRow1.CurrentCell.Value = selectedCode;
                         //品名にセル移動した時にvaledatedを実行しないようにするため
                         validatedflg = true;
                         UpdatedControl(gcMultiRow1.CurrentCell);
 
-                        // gcMultiRow1.EndEdit(); EndEditでは自分自身が変わらない
+                       // gcMultiRow1.SetValue(gcMultiRow1.CurrentRow.Index, "品名", "aaa");
+
                         gcMultiRow1.CurrentCellPosition =
                            new CellPosition(gcMultiRow1.CurrentRow.Index, gcMultiRow1.CurrentRow.Cells["品名"].CellIndex);
                         GrapeCity.Win.MultiRow.EditingActions.CommitRow.Execute(gcMultiRow1);
-                        gcMultiRow1.EndEdit();
+
                     }
 
                     break;
@@ -239,7 +241,7 @@ namespace MultiRowDesigner
                         }
 
                         break;
-                    
+
                 }
 
                 return false; // エラーなしの場合
@@ -381,7 +383,7 @@ namespace MultiRowDesigner
                                     gcMultiRow1.CurrentRow.Cells["品名"].Value = reader["品名"];
                                     gcMultiRow1.CurrentRow.Cells["型番"].Value = reader["型番"];
                                     gcMultiRow1.CurrentRow.Cells["メーカー名"].Value = reader["メーカー名"];
-                                   // parentform.ChangedData(true);
+                                    // parentform.ChangedData(true);
                                 }
                             }
                         }
@@ -415,6 +417,10 @@ namespace MultiRowDesigner
                     }
 
                     break;
+                case "行挿入ボタン":
+                    gcMultiRow1.Rows.Insert(e.RowIndex);
+                    break;
+
                 case "メーカー名ボタン":
                     int col = gcMultiRow1.CurrentRow.Cells["メーカー名"].CellIndex;
                     int row = 0;
@@ -487,7 +493,7 @@ namespace MultiRowDesigner
 
         private void gcMultiRow1_CellValidated(object sender, CellEventArgs e)
         {
-            if(validatedflg)
+            if (validatedflg)
             {
                 validatedflg = false;
                 return;
@@ -500,6 +506,21 @@ namespace MultiRowDesigner
 
                     break;
             }
+        }
+
+        private void gcMultiRow1_RowsAdded(object sender, RowsAddedEventArgs e)
+        {
+
+        }
+
+        private void gcMultiRow1_RowDragMoveCompleted(object sender, DragMoveCompletedEventArgs e)
+        {
+            gcMultiRow1.BeginInvoke(() =>
+            {
+                NumberDetails("明細番号");
+
+            });
+
         }
     }
 }

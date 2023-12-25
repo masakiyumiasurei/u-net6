@@ -45,6 +45,7 @@
             gcMultiRow1.Template = 部品集合明細テンプレート1;
             gcMultiRow1.TemplateScaleSize = new SizeF(1.33333373F, 1.66666675F);
             gcMultiRow1.Text = "gcMultiRow1";
+            gcMultiRow1.RowsAdded += gcMultiRow1_RowsAdded;
             gcMultiRow1.CellValidating += gcMultiRow1_CellValidating;
             gcMultiRow1.CellValidated += gcMultiRow1_CellValidated;
             gcMultiRow1.CellEnter += gcMultiRow1_CellEnter;
@@ -52,6 +53,7 @@
             gcMultiRow1.EditingControlShowing += gcMultiRow1_EditingControlShowing;
             gcMultiRow1.CellContentClick += gcMultiRow1_CellContentClick;
             gcMultiRow1.CellContentButtonClick += gcMultiRow1_CellContentButtonClick;
+            gcMultiRow1.RowDragMoveCompleted += gcMultiRow1_RowDragMoveCompleted;
             // 
             // 部品集合明細テンプレート1
             // 

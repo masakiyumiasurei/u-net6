@@ -27,6 +27,9 @@ namespace u_net
         public string args = "";
         private string BASE_CAPTION = "支払";
         private int selected_frame = 0;
+        int intWindowHeight;
+        int intWindowWidth;
+        public bool IsDirty = false;
 
         public F_支払()
         {
@@ -36,6 +39,45 @@ namespace u_net
 
             InitializeComponent();
 
+        }
+
+        public string CurrentCode
+        {
+            get
+            {
+                return string.IsNullOrEmpty(支払コード.Text) ? "" : 支払コード.Text;
+            }
+        }
+
+        public bool IsApproved
+        {
+            get
+            {
+                return !string.IsNullOrEmpty(承認日時.Text);
+
+            }
+        }
+
+        public bool IsDecided
+        {  //確定日時がnullじゃなかったらture
+            get
+            {
+                return !string.IsNullOrEmpty(確定日時.Text) ? true : false;
+            }
+        }
+        public bool IsDeleted
+        {
+            get
+            {
+                return !string.IsNullOrEmpty(無効日時.Text) ? true : false;
+            }
+        }
+        public bool IsNewData
+        {
+            get
+            {
+                return !コマンド新規.Enabled;
+            }
         }
         public void Connect()
         {
@@ -59,6 +101,36 @@ namespace u_net
         DataTable dt = new DataTable();
         SqlDataAdapter adapter = new SqlDataAdapter();
 
+        public void チェック()
+        {
+            if (string.IsNullOrEmpty(確定日時.Text))
+            {
+                確定.Text = "";
+            }
+            else
+            {
+                確定.Text = "■";
+            }
+
+            if (string.IsNullOrEmpty(承認日時.Text))
+            {
+                承認.Text = "";
+            }
+            else
+            {
+                承認.Text = "■";
+            }
+
+
+            if (string.IsNullOrEmpty(無効日時.Text))
+            {
+                削除.Text = "";
+            }
+            else
+            {
+                削除.Text = "■";
+            }
+        }
         private void Form_Load(object sender, EventArgs e)
         {
             foreach (Control control in Controls)
@@ -70,7 +142,7 @@ namespace u_net
             fn.DoWait("しばらくお待ちください...");
 
             //実行中フォーム起動
-            string LoginUserCode = CommonConstants.LoginUserCode;//テスト用 ログインユーザを実行中にどのように管理するか決まったら修正
+            string LoginUserCode = CommonConstants.LoginUserCode;
             LocalSetting localSetting = new LocalSetting();
             localSetting.LoadPlace(LoginUserCode, this);
 
@@ -131,17 +203,17 @@ namespace u_net
                 // データへの変更がないときの処理
                 //if (!IsChanged)
                 //{
-                    // 新規モードで且つコードが取得済みのときはコードを戻す
-                    //if (IsNewData && !string.IsNullOrEmpty(CurrentCode) && CurrentEdition == 1)
-                    //{
-                    //    // 採番された番号を戻す
-                    //    if (!FunctionClass.ReturnCode(cn, "PAR" + CurrentCode))
-                    //    {
-                    //        MessageBox.Show("エラーのためコードは破棄されました。" + Environment.NewLine + Environment.NewLine +
-                    //                        "部品コード　：　" + CurrentCode, "警告", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    //    }
-                    //}
-                    //return;
+                // 新規モードで且つコードが取得済みのときはコードを戻す
+                //if (IsNewData && !string.IsNullOrEmpty(CurrentCode) && CurrentEdition == 1)
+                //{
+                //    // 採番された番号を戻す
+                //    if (!FunctionClass.ReturnCode(cn, "PAR" + CurrentCode))
+                //    {
+                //        MessageBox.Show("エラーのためコードは破棄されました。" + Environment.NewLine + Environment.NewLine +
+                //                        "部品コード　：　" + CurrentCode, "警告", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                //    }
+                //}
+                //return;
                 //}
 
                 // 修正されているときは登録確認を行う
@@ -253,15 +325,15 @@ namespace u_net
 
                     //if (IsNewData)
                     //{
-                        //objControl1 = this.作成日時;
-                        //objControl2 = this.作成者コード;
-                        //objControl3 = this.CreatorName;
-                        //varSaved1 = objControl1.Text;
-                        //varSaved2 = objControl2.Text;
-                        //varSaved3 = objControl3.Text;
-                        //objControl1.Text = dteNow.ToString(); // ここでDateTimeをstringに変換して設定
-                        //objControl2.Text = CommonConstants.LoginUserCode;
-                        //objControl3.Text = CommonConstants.LoginUserFullName;
+                    //objControl1 = this.作成日時;
+                    //objControl2 = this.作成者コード;
+                    //objControl3 = this.CreatorName;
+                    //varSaved1 = objControl1.Text;
+                    //varSaved2 = objControl2.Text;
+                    //varSaved3 = objControl3.Text;
+                    //objControl1.Text = dteNow.ToString(); // ここでDateTimeをstringに変換して設定
+                    //objControl2.Text = CommonConstants.LoginUserCode;
+                    //objControl3.Text = CommonConstants.LoginUserFullName;
                     //}
 
                     //objControl4 = this.更新日時;
@@ -385,6 +457,8 @@ namespace u_net
         {
             if (ActiveControl == null) return;
 
+            IsDirty = isChanged;
+
             if (isChanged)
             {
                 this.Text = BASE_CAPTION + "*";
@@ -395,21 +469,69 @@ namespace u_net
             }
 
             // コードにフォーカスがある状態でサブフォームから呼び出されたときの対処
-            //if (this.ActiveControl == this.部品コード)
-            //{
-            //    this.品名.Focus();
-            //}
+            if (this.ActiveControl == this.支払明細1)
+            {
+                this.集計年月.Focus();
+            }
+            if (this.ActiveControl == this.支払コード)
+            {
+                this.集計年月.Focus();
+            }
+            this.支払コード.Enabled = !isChanged;
 
-            //this.部品コード.Enabled = !isChanged;
-            //this.改版ボタン.Enabled = !isChanged;
-            //// this.コマンド複写.Enabled = !isChanged; // コマンド複写についての情報が提供されていないためコメントアウト
-            //this.コマンド削除.Enabled = !isChanged;
-            //this.コマンド登録.Enabled = isChanged;
+            this.コマンド複写.Enabled = !isChanged; // コマンド複写についての情報が提供されていないためコメントアウト
+            this.コマンド削除.Enabled = !isChanged;
+            this.コマンド登録.Enabled = isChanged;
 
-            // RoHSの状態表示を更新する
-            ShowRohsStatus();
+            if (isChanged)
+            {
+                コマンド承認.Enabled = false;
+                コマンド確定.Enabled = true;
+            }
         }
 
+        private bool CopyData(string codeString)
+        {
+            try
+            {
+                // 明細部の初期設定
+                DataTable dataTable = (DataTable)支払明細1.Detail.DataSource;
+                if (dataTable != null)
+                {
+                    for (int i = 0; i < dataTable.Rows.Count; i++)
+                    {
+                        // 行の状態が Deleted の時は次の行へ
+                        if (dataTable.Rows[i].RowState == DataRowState.Deleted)
+                        {
+                            continue;
+                        }
+                        dataTable.Rows[i]["支払コード"] = codeString;
+
+                    }
+                    支払明細1.Detail.DataSource = dataTable; // 更新した DataTable を再セット
+                }
+
+
+                支払コード.Text = codeString;
+
+                削除.Text = null;
+                作成日時.Text = null;
+                作成者コード.Text = null;
+                作成者名.Text = null;
+                更新日時.Text = string.Empty;
+                更新者コード.Text = string.Empty;
+                更新者名.Text = null;
+
+                チェック();
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("エラーが発生しました。", "改版", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+        }
         private void コマンド新規_Click(object sender, EventArgs e)
         {
             try
@@ -483,7 +605,7 @@ namespace u_net
             }
             finally
             {
-                
+
                 this.DoubleBuffered = false;
                 Cursor.Current = Cursors.Default;
             }
@@ -494,57 +616,37 @@ namespace u_net
 
         private void ShowRohsStatus()
         {
-    //        if (this.Rohs2ProvisionalRegisteredStatusCode.Checked)
-    //        {
-    //            this.RohsStatusCode.SelectedValue = 5;
-    //            // this.RohsStatusName = "仮RoHS2";
-    //        }
-    //        else
-    //        {
-    //            if ((Rohs2ChemSherpaStatusCode.SelectedValue != null && (int)Rohs2ChemSherpaStatusCode.SelectedValue == 2) ||
-    //(Rohs2JampAisStatusCode.SelectedValue != null && (int)Rohs2JampAisStatusCode.SelectedValue == 2) ||
-    //(Rohs2NonInclusionCertificationStatusCode.SelectedValue != null && (int)Rohs2NonInclusionCertificationStatusCode.SelectedValue == 1) ||
-    //(Rohs2DocumentStatusCode.SelectedValue != null && (int)Rohs2DocumentStatusCode.SelectedValue == 2))
-    //            {
-    //                this.RohsStatusCode.SelectedValue = 2;
-    //                // this.RohsStatusName = "RoHS2";
-    //            }
-    //            else if ((Rohs1ChemSherpaStatusCode.SelectedValue != null && (int)Rohs1ChemSherpaStatusCode.SelectedValue == 2) ||
-    //     (JampAis.SelectedValue != null && (int)JampAis.SelectedValue == 2) ||
-    //     (非含有証明書.SelectedValue != null && (byte)非含有証明書.SelectedValue == 1) ||
-    //     (RoHS資料.SelectedValue != null && (Int16)RoHS資料.SelectedValue == 2))
-    //            {
-    //                this.RohsStatusCode.SelectedValue = 6;
-    //                // this.RohsStatusName = "RoHS2非対応";
-    //            }
-    //            else
-    //            {
-    //                this.RohsStatusCode.SelectedValue = 3;
-    //                // this.RohsStatusName = "RoHS1非対応";
-    //            }
-    //        }
+            //        if (this.Rohs2ProvisionalRegisteredStatusCode.Checked)
+            //        {
+            //            this.RohsStatusCode.SelectedValue = 5;
+            //            // this.RohsStatusName = "仮RoHS2";
+            //        }
+            //        else
+            //        {
+            //            if ((Rohs2ChemSherpaStatusCode.SelectedValue != null && (int)Rohs2ChemSherpaStatusCode.SelectedValue == 2) ||
+            //(Rohs2JampAisStatusCode.SelectedValue != null && (int)Rohs2JampAisStatusCode.SelectedValue == 2) ||
+            //(Rohs2NonInclusionCertificationStatusCode.SelectedValue != null && (int)Rohs2NonInclusionCertificationStatusCode.SelectedValue == 1) ||
+            //(Rohs2DocumentStatusCode.SelectedValue != null && (int)Rohs2DocumentStatusCode.SelectedValue == 2))
+            //            {
+            //                this.RohsStatusCode.SelectedValue = 2;
+            //                // this.RohsStatusName = "RoHS2";
+            //            }
+            //            else if ((Rohs1ChemSherpaStatusCode.SelectedValue != null && (int)Rohs1ChemSherpaStatusCode.SelectedValue == 2) ||
+            //     (JampAis.SelectedValue != null && (int)JampAis.SelectedValue == 2) ||
+            //     (非含有証明書.SelectedValue != null && (byte)非含有証明書.SelectedValue == 1) ||
+            //     (RoHS資料.SelectedValue != null && (Int16)RoHS資料.SelectedValue == 2))
+            //            {
+            //                this.RohsStatusCode.SelectedValue = 6;
+            //                // this.RohsStatusName = "RoHS2非対応";
+            //            }
+            //            else
+            //            {
+            //                this.RohsStatusCode.SelectedValue = 3;
+            //                // this.RohsStatusName = "RoHS1非対応";
+            //            }
+            //        }
         }
 
-        private void コマンド読込_Click(object sender, EventArgs e)
-        {
-            if (!AskSave()) { return; }
-
-
-            // strOpenArgsがどのように設定されているかに依存します。
-            // もしstrOpenArgsに関連する処理が必要な場合はここに追加してください。
-
-            // 各コントロールの値をクリア
-            VariableSet.SetControls(this);
-
-            // コントロールを操作
-            //部品コード.Enabled = true;
-            //部品コード.Focus();
-            //改版ボタン.Enabled = false;
-            //コマンド新規.Enabled = true;
-            //コマンド読込.Enabled = false;
-            //コマンド廃止.Enabled = false;
-            //コマンド登録.Enabled = false;
-        }
 
         private bool AskSave()
         {
@@ -787,61 +889,52 @@ namespace u_net
                     break;
 
                 case Keys.F1:
-                    //if (コマンド新規.Enabled)
-                    //{
-                    //    コマンド新規.Focus();
-                    //    コマンド新規_Click(sender, e);
-                    //}
+                    if (コマンド新規.Enabled)
+                    {
+                        コマンド新規.Focus();
+                        コマンド新規_Click(sender, e);
+                    }
                     break;
                 case Keys.F2:
-                    //if (コマンド読込.Enabled)
-                    //{
-                    //    コマンド読込.Focus();
-                    //    コマンド読込_Click(sender, e);
-                    //}
+                    if (コマンド修正.Enabled)
+                    {
+                        コマンド修正.Focus();
+                        コマンド修正_Click(sender, e);
+                    }
                     break;
                 case Keys.F3:
-                    //if (コマンド複写.Enabled) コマンド複写_Click(sender, e);
+                    if (コマンド複写.Enabled) コマンド複写_Click(sender, e);
                     break;
                 case Keys.F4:
-                    //if (コマンド削除.Enabled) コマンド削除_Click(sender, e);
+                    if (コマンド削除.Enabled) コマンド削除_Click(sender, e);
                     break;
-                case Keys.F5:
-                    //if (コマンドユニット.Enabled) コマンドユニット_Click(sender, e);
-                    break;
-                case Keys.F6:
-                    //if (コマンドユニット表.Enabled) コマンドユニット表_Click(sender, e);
-                    break;
-                case Keys.F7:
-                    //if (コマンド廃止.Enabled) コマンド廃止_Click(sender, e);
-                    break;
-                case Keys.F8:
-                    //if (コマンドツール.Enabled) コマンドツール_Click(sender, e);
-                    break;
-                case Keys.F9:
-                    //if (コマンド承認.Enabled) コマンド承認_Click(sender, e);
-                    break;
-                case Keys.F10:
-                    //if (コマンド確定.Enabled) コマンド確定_Click(sender, e);
-                    break;
+                //case Keys.F5:
+                //    if (コマンドユニット.Enabled) コマンドユニット_Click(sender, e);
+                //    break;
+                //case Keys.F6:
+                //    if (コマンドユニット表.Enabled) コマンドユニット表_Click(sender, e);
+                //    break;
+                //case Keys.F7:
+                //    if (コマンド廃止.Enabled) コマンド廃止_Click(sender, e);
+                //    break;
+                //case Keys.F8:
+                //    if (コマンドツール.Enabled) コマンドツール_Click(sender, e);
+                //    break;
+                //case Keys.F9:
+                //    if (コマンド承認.Enabled) コマンド承認_Click(sender, e);
+                //    break;
+                //case Keys.F10:
+                //    if (コマンド確定.Enabled) コマンド確定_Click(sender, e);
+                //    break;
                 case Keys.F11:
                     if (コマンド登録.Enabled) コマンド登録_Click(sender, e);
                     break;
                 case Keys.F12:
-                    //if (コマンド終了.Enabled) コマンド終了_Click(sender, e);
+                    if (コマンド終了.Enabled) コマンド終了_Click(sender, e);
                     break;
             }
         }
 
-        private void ユニットコード_Enter(object sender, EventArgs e)
-        {
-            toolStripStatusLabel1.Text = "■読み込むユニットデータのコードを入力します。　■半角８文字まで入力でき、上位０は省略可能です。";
-        }
-
-        private void ユニットコード_Leave(object sender, EventArgs e)
-        {
-            toolStripStatusLabel1.Text = "各種項目の説明";
-        }
 
         private void 集計年月_Enter(object sender, EventArgs e)
         {
@@ -881,6 +974,11 @@ namespace u_net
         private void 備考_Leave(object sender, EventArgs e)
         {
             toolStripStatusLabel1.Text = "各種項目の説明";
+        }
+
+        private void コマンド修正_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

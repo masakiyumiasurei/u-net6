@@ -41,7 +41,7 @@ namespace u_net
             コマンド承認 = new Button();
             コマンド削除 = new Button();
             コマンド複写 = new Button();
-            コマンド読込 = new Button();
+            コマンド修正 = new Button();
             dataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn2 = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn3 = new DataGridViewTextBoxColumn();
@@ -83,7 +83,7 @@ namespace u_net
             label8 = new Label();
             作成者コード = new TextBox();
             label9 = new Label();
-            登録日時 = new TextBox();
+            作成日時 = new TextBox();
             作成者名 = new TextBox();
             支払先名 = new TextBox();
             確定日時 = new TextBox();
@@ -99,7 +99,7 @@ namespace u_net
             label3 = new Label();
             確定 = new TextBox();
             承認 = new TextBox();
-            廃止 = new TextBox();
+            削除 = new TextBox();
             支払先検索ボタン = new Button();
             支払先参照ボタン = new Button();
             支払先担当者名_ラベル = new Label();
@@ -286,21 +286,21 @@ namespace u_net
             コマンド複写.UseVisualStyleBackColor = true;
             コマンド複写.Click += コマンド複写_Click;
             // 
-            // コマンド読込
+            // コマンド修正
             // 
-            コマンド読込.Enabled = false;
-            コマンド読込.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            コマンド読込.ForeColor = Color.Blue;
-            コマンド読込.ImageAlign = ContentAlignment.BottomLeft;
-            コマンド読込.Location = new Point(75, 5);
-            コマンド読込.Margin = new Padding(3, 2, 3, 2);
-            コマンド読込.Name = "コマンド読込";
-            コマンド読込.Size = new Size(70, 20);
-            コマンド読込.TabIndex = 1003;
-            コマンド読込.TabStop = false;
-            コマンド読込.Text = "読込";
-            コマンド読込.UseVisualStyleBackColor = true;
-            コマンド読込.Click += コマンド読込_Click;
+            コマンド修正.Enabled = false;
+            コマンド修正.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            コマンド修正.ForeColor = Color.Blue;
+            コマンド修正.ImageAlign = ContentAlignment.BottomLeft;
+            コマンド修正.Location = new Point(75, 5);
+            コマンド修正.Margin = new Padding(3, 2, 3, 2);
+            コマンド修正.Name = "コマンド修正";
+            コマンド修正.Size = new Size(70, 20);
+            コマンド修正.TabIndex = 1003;
+            コマンド修正.TabStop = false;
+            コマンド修正.Text = "修正";
+            コマンド修正.UseVisualStyleBackColor = true;
+            コマンド修正.Click += コマンド修正_Click;
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -601,18 +601,18 @@ namespace u_net
             label9.Text = "作成日時";
             label9.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // 登録日時
+            // 作成日時
             // 
-            登録日時.BackColor = SystemColors.Window;
-            登録日時.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            登録日時.ImeMode = ImeMode.NoControl;
-            登録日時.Location = new Point(688, 48);
-            登録日時.Margin = new Padding(3, 2, 3, 2);
-            登録日時.Name = "登録日時";
-            登録日時.ReadOnly = true;
-            登録日時.Size = new Size(161, 20);
-            登録日時.TabIndex = 10156;
-            登録日時.TabStop = false;
+            作成日時.BackColor = SystemColors.Window;
+            作成日時.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            作成日時.ImeMode = ImeMode.NoControl;
+            作成日時.Location = new Point(688, 48);
+            作成日時.Margin = new Padding(3, 2, 3, 2);
+            作成日時.Name = "作成日時";
+            作成日時.ReadOnly = true;
+            作成日時.Size = new Size(161, 20);
+            作成日時.TabIndex = 10156;
+            作成日時.TabStop = false;
             // 
             // 作成者名
             // 
@@ -794,22 +794,23 @@ namespace u_net
             承認.TabIndex = 10197;
             承認.TabStop = false;
             // 
-            // 廃止
+            // 削除
             // 
-            廃止.BackColor = SystemColors.Window;
-            廃止.Enabled = false;
-            廃止.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            廃止.ImeMode = ImeMode.NoControl;
-            廃止.Location = new Point(688, 240);
-            廃止.Margin = new Padding(3, 2, 3, 2);
-            廃止.Name = "廃止";
-            廃止.ReadOnly = true;
-            廃止.Size = new Size(20, 20);
-            廃止.TabIndex = 10198;
-            廃止.TabStop = false;
+            削除.BackColor = SystemColors.Window;
+            削除.Enabled = false;
+            削除.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            削除.ImeMode = ImeMode.NoControl;
+            削除.Location = new Point(688, 240);
+            削除.Margin = new Padding(3, 2, 3, 2);
+            削除.Name = "削除";
+            削除.ReadOnly = true;
+            削除.Size = new Size(20, 20);
+            削除.TabIndex = 10198;
+            削除.TabStop = false;
             // 
             // 支払先検索ボタン
             // 
+            支払先検索ボタン.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             支払先検索ボタン.Location = new Point(224, 71);
             支払先検索ボタン.Margin = new Padding(4);
             支払先検索ボタン.Name = "支払先検索ボタン";
@@ -821,6 +822,7 @@ namespace u_net
             // 
             // 支払先参照ボタン
             // 
+            支払先参照ボタン.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             支払先参照ボタン.Location = new Point(246, 71);
             支払先参照ボタン.Margin = new Padding(4);
             支払先参照ボタン.Name = "支払先参照ボタン";
@@ -1041,10 +1043,11 @@ namespace u_net
             // 
             // 支払明細1
             // 
+            支払明細1.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             支払明細1.Location = new Point(9, 304);
-            支払明細1.Margin = new Padding(4);
+            支払明細1.Margin = new Padding(4, 4, 4, 4);
             支払明細1.Name = "支払明細1";
-            支払明細1.Size = new Size(812, 238);
+            支払明細1.Size = new Size(816, 238);
             支払明細1.TabIndex = 10206;
             // 
             // F_支払
@@ -1069,7 +1072,7 @@ namespace u_net
             Controls.Add(支払先担当者名_ラベル);
             Controls.Add(支払先参照ボタン);
             Controls.Add(支払先検索ボタン);
-            Controls.Add(廃止);
+            Controls.Add(削除);
             Controls.Add(承認);
             Controls.Add(確定);
             Controls.Add(statusStrip1);
@@ -1089,7 +1092,7 @@ namespace u_net
             Controls.Add(label8);
             Controls.Add(作成者コード);
             Controls.Add(label9);
-            Controls.Add(登録日時);
+            Controls.Add(作成日時);
             Controls.Add(無効者コード);
             Controls.Add(支払先名_ラベル);
             Controls.Add(支払先コード);
@@ -1107,7 +1110,7 @@ namespace u_net
             Controls.Add(コマンド承認);
             Controls.Add(コマンド削除);
             Controls.Add(コマンド複写);
-            Controls.Add(コマンド読込);
+            Controls.Add(コマンド修正);
             Controls.Add(panel1);
             ImeMode = ImeMode.Off;
             KeyPreview = true;
@@ -1168,7 +1171,7 @@ namespace u_net
         private System.Windows.Forms.Button コマンド承認;
         private System.Windows.Forms.Button コマンド削除;
         private System.Windows.Forms.Button コマンド複写;
-        private System.Windows.Forms.Button コマンド読込;
+        private System.Windows.Forms.Button コマンド修正;
 
         private Button コマンドF8;
         private Label 支払先名_ラベル;
@@ -1182,7 +1185,7 @@ namespace u_net
         private Label label8;
         private TextBox 作成者コード;
         private Label label9;
-        private TextBox 登録日時;
+        private TextBox 作成日時;
         private TextBox 作成者名;
         private TextBox 無効者コード;
         private TextBox 支払先名;
@@ -1199,7 +1202,7 @@ namespace u_net
         private Label label3;
         private TextBox 確定;
         private TextBox 承認;
-        private TextBox 廃止;
+        private TextBox 削除;
         private Button 支払先検索ボタン;
         private Button 支払先参照ボタン;
         private Label 支払先担当者名_ラベル;

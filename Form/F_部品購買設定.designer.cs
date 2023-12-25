@@ -437,6 +437,7 @@ namespace u_net
             集合名.Location = new Point(122, 71);
             集合名.Margin = new Padding(3, 2, 3, 2);
             集合名.Name = "集合名";
+            集合名.ReadOnly = true;
             集合名.Size = new Size(476, 20);
             集合名.TabIndex = 4;
             // 
@@ -683,7 +684,7 @@ namespace u_net
             statusStrip1.Location = new Point(0, 509);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Padding = new Padding(1, 0, 19, 0);
-            statusStrip1.Size = new Size(869, 22);
+            statusStrip1.Size = new Size(942, 22);
             statusStrip1.TabIndex = 10195;
             statusStrip1.Text = "statusStrip1";
             // 
@@ -702,6 +703,7 @@ namespace u_net
             部品集合コード.Location = new Point(122, 49);
             部品集合コード.Margin = new Padding(3, 2, 3, 2);
             部品集合コード.Name = "部品集合コード";
+            部品集合コード.ReadOnly = true;
             部品集合コード.Size = new Size(139, 20);
             部品集合コード.TabIndex = 2;
             // 
@@ -714,6 +716,7 @@ namespace u_net
             備考.Margin = new Padding(3, 2, 3, 2);
             備考.Multiline = true;
             備考.Name = "備考";
+            備考.ReadOnly = true;
             備考.Size = new Size(476, 65);
             備考.TabIndex = 6;
             // 
@@ -854,7 +857,7 @@ namespace u_net
             部品購買設定明細1.Location = new Point(9, 174);
             部品購買設定明細1.Margin = new Padding(4, 4, 4, 4);
             部品購買設定明細1.Name = "部品購買設定明細1";
-            部品購買設定明細1.Size = new Size(860, 302);
+            部品購買設定明細1.Size = new Size(922, 302);
             部品購買設定明細1.TabIndex = 10209;
             // 
             // label5
@@ -875,7 +878,7 @@ namespace u_net
             // F_部品購買設定
             // 
             BackColor = SystemColors.Control;
-            ClientSize = new Size(869, 531);
+            ClientSize = new Size(942, 531);
             Controls.Add(label5);
             Controls.Add(部品購買設定明細1);
             Controls.Add(部品集合版数);
@@ -1004,7 +1007,7 @@ namespace u_net
         private TextBox 更新者コード;
         private StatusStrip statusStrip1;
         internal ToolStripStatusLabel toolStripStatusLabel1;
-        private TextBox 部品集合コード;
+        public TextBox 部品集合コード;
         private TextBox 備考;
         private Label label2;
         private TextBox 確定;
@@ -1015,7 +1018,7 @@ namespace u_net
         private TextBox 確定日時;
         private TextBox 承認日時;
         private TextBox 無効日時;
-        private TextBox 部品集合版数;
+        public TextBox 部品集合版数;
         private MultiRowDesigner.部品購買設定明細 部品購買設定明細1;
         private Label label5;
     }

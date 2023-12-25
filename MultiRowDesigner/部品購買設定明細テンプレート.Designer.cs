@@ -247,8 +247,10 @@
             // 
             // 購買対象表示
             // 
+            this.購買対象表示.DataField = "購買対象表示";
             this.購買対象表示.Location = new System.Drawing.Point(58, 0);
             this.購買対象表示.Name = "購買対象表示";
+            this.購買対象表示.ReadOnly = true;
             this.購買対象表示.Size = new System.Drawing.Size(23, 34);
             border2.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
             cellStyle2.Border = border2;
@@ -278,6 +280,7 @@
             this.部品コード.DataField = "部品コード";
             this.部品コード.Location = new System.Drawing.Point(81, 0);
             this.部品コード.Name = "部品コード";
+            this.部品コード.ReadOnly = true;
             this.部品コード.Size = new System.Drawing.Size(82, 34);
             border3.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
             cellStyle4.Border = border3;
@@ -288,9 +291,10 @@
             // 
             // 廃止表示
             // 
-            this.廃止表示.DataField = "廃止";
+            this.廃止表示.DataField = "廃止表示";
             this.廃止表示.Location = new System.Drawing.Point(187, 0);
             this.廃止表示.Name = "廃止表示";
+            this.廃止表示.ReadOnly = true;
             this.廃止表示.Size = new System.Drawing.Size(24, 34);
             border4.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
             cellStyle5.Border = border4;
@@ -319,6 +323,7 @@
             this.分類記号.DataField = "分類記号";
             this.分類記号.Location = new System.Drawing.Point(211, 0);
             this.分類記号.Name = "分類記号";
+            this.分類記号.ReadOnly = true;
             this.分類記号.Size = new System.Drawing.Size(24, 34);
             border5.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
             cellStyle7.Border = border5;
@@ -332,6 +337,7 @@
             this.型番.DataField = "型番";
             this.型番.Location = new System.Drawing.Point(235, 0);
             this.型番.Name = "型番";
+            this.型番.ReadOnly = true;
             this.型番.Size = new System.Drawing.Size(272, 34);
             border6.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
             cellStyle8.Border = border6;
@@ -345,6 +351,7 @@
             this.メーカー名.DataField = "メーカー名";
             this.メーカー名.Location = new System.Drawing.Point(507, 0);
             this.メーカー名.Name = "メーカー名";
+            this.メーカー名.ReadOnly = true;
             this.メーカー名.Size = new System.Drawing.Size(272, 34);
             border7.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
             cellStyle9.Border = border7;
