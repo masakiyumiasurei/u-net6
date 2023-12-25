@@ -49,7 +49,22 @@ namespace u_net
         {
             InitializeComponent();
         }
-
+        public string CurrentCode
+        {
+            // 現在選択されているデータのコードを取得する
+            get
+            {
+                return dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value?.ToString();
+            }
+        }
+        public string CurrentEdition
+        {
+            // 現在選択されているデータの版数を取得する
+            get
+            {
+                return dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[1].Value?.ToString();
+            }
+        }
         public void Connect()
         {
             Connection connectionInfo = new Connection();
@@ -90,6 +105,7 @@ namespace u_net
             ble履歴表示 = false;
         }
 
+
         static void SetRecordSource(Form formObject, string WhereString)
         {
             try
@@ -125,6 +141,9 @@ namespace u_net
 
         private void Form_Load(object sender, EventArgs e)
         {
+            FunctionClass fn = new FunctionClass();
+            fn.DoWait("しばらくお待ちください...");
+
             MyApi myapi = new MyApi();
             int xSize, ySize, intpixel, twipperdot;
 
@@ -151,19 +170,7 @@ namespace u_net
             dataGridView1.DefaultCellStyle.ForeColor = Color.Black;
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
-            // 列の幅を設定 もとは恐らくtwipのためピクセルに直す
-
-            //0列目はaccessでは行ヘッダのため、ずらす
-            //dataGridView1.Columns[0].Width = 1250 / twipperdot; //1150
-            //dataGridView1.Columns[1].Width = 500 / twipperdot;
-            //dataGridView1.Columns[2].Width = 1500 / twipperdot;
-            //dataGridView1.Columns[3].Width = 500 / twipperdot;
-            //dataGridView1.Columns[4].Width = 1350 / twipperdot;
-            //dataGridView1.Columns[5].Width = 1350 / twipperdot;
-            //dataGridView1.Columns[6].Width = 2200 / twipperdot;
-            //dataGridView1.Columns[7].Width = 1400 / twipperdot; //1300
-            //dataGridView1.Columns[8].Width = 500 / twipperdot;
-
+            // 行番号の非表示設定はdataGridView画面プロパティにおいて、RowHeadersVisible = Falseに設定している。表示時、Trueに戻すこと
 
             myapi.GetFullScreen(out xSize, out ySize);
 
@@ -180,11 +187,13 @@ namespace u_net
             this.Location = new Point(x, y);
 
             //実行中フォーム起動              
-            //LocalSetting localSetting = new LocalSetting();
-            //localSetting.LoadPlace(CommonConstants.LoginUserCode, this);
+            LocalSetting localSetting = new LocalSetting();
+            localSetting.LoadPlace(CommonConstants.LoginUserCode, this);
 
             DoUpdate();
             Cleargrid(dataGridView1);
+
+            fn.WaitForm.Close();
         }
 
         private void Form_Resize(object sender, EventArgs e)
@@ -245,17 +254,17 @@ namespace u_net
             try
             {
                 DateTime dtePrevious;
-                string strWhere = "";
-                string filter = string.Empty;
+                string strWhere = string.Empty;
 
-                if (!string.IsNullOrEmpty(strコード1))
+                if (!string.IsNullOrEmpty(strコード1) && !string.IsNullOrEmpty(strコード2))
                 {
                     strWhere = FunctionClass.WhereString(strWhere, "'" + strコード1 + "' <= コード and コード <= '" + strコード2 + "'");
                 }
 
                 if (dte登録日1 != DateTime.MinValue && dte登録日2 != DateTime.MinValue)
                 {
-                    strWhere = FunctionClass.WhereString(strWhere, "'" + dte登録日1 + "' <= 受注日 and 受注日<= '" + dte登録日2 + "'");
+                    ////strWhere = FunctionClass.WhereString(strWhere, "'" + dte登録日1 + "' <= 受注日 and 受注日<= '" + dte登録日2 + "'");
+                    strWhere = FunctionClass.WhereString(strWhere, "'" + dte登録日1 + "' <= 登録日 AND 登録日 <= '" + dte登録日2 + "'");
                 }
 
                 if (dte出荷予定日1 != DateTime.MinValue && dte出荷予定日2 != DateTime.MinValue)
@@ -338,8 +347,8 @@ namespace u_net
                 }
 
                 string query = "SELECT コード AS 受注コード, 版数 AS 版, FORMAT(登録日, 'yyyy/MM/dd') AS 登録日, 承認依頼者名, 出荷予定日 " +
-                               "     , 受注納期, 顧客コード, 承認者名, FORMAT(承認日, 'yyyy/MM/dd') AS 承認日 " +
-                               "     , CASE WHEN 承認者コード IS NOT NULL THEN '■' ELSE '' END AS 承認 " +
+                                   " , 受注納期, 顧客コード, 承認者名, FORMAT(承認日, 'yyyy/MM/dd') AS 承認日 " +
+                                   " , CASE WHEN 承認者コード IS NOT NULL THEN '■' ELSE '' END AS 承認 " +
                                "  FROM uv_承認管理_受注 ";
 
                 // SQL文の構築
@@ -372,7 +381,7 @@ namespace u_net
 
                 //0列目はaccessでは行ヘッダのため、ずらす
                 dataGridView1.Columns[0].Width = 1500 / twipperdot; //1150
-                dataGridView1.Columns[1].Width = 500 / twipperdot;
+                dataGridView1.Columns[1].Width = 400 / twipperdot;
                 dataGridView1.Columns[2].Width = 1500 / twipperdot;
                 dataGridView1.Columns[3].Width = 1800 / twipperdot;
                 dataGridView1.Columns[4].Width = 1500 / twipperdot;
@@ -380,7 +389,7 @@ namespace u_net
                 dataGridView1.Columns[6].Width = 1500 / twipperdot;
                 dataGridView1.Columns[7].Width = 1500 / twipperdot; //1300
                 dataGridView1.Columns[8].Width = 1500 / twipperdot;
-                dataGridView1.Columns[9].Width = 500 / twipperdot;
+                dataGridView1.Columns[9].Width = 400 / twipperdot;
 
                 return dataGridView1.RowCount;
 
@@ -419,8 +428,7 @@ namespace u_net
         }
 
 
-        private void DataGridView1_CellPainting(object sender,
-    DataGridViewCellPaintingEventArgs e)
+        private void DataGridView1_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
             //列ヘッダーかどうか調べる
             if (e.ColumnIndex < 0 && e.RowIndex >= 0)
@@ -447,18 +455,15 @@ namespace u_net
             }
         }
 
-        //ダブルクリックで商品フォームを開く　商品コードを渡す
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             //if (e.Button != MouseButtons.Left) return; // 左ボタンのダブルクリック以外は無視
 
             if (e.RowIndex >= 0) // ヘッダー行でない場合
             {
-                string selectedData = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString(); // 1列目のデータを取得
+                F_受注 targetform = new F_受注();
 
-                F_商品 targetform = new F_商品();
-
-                targetform.args = selectedData;
+                targetform.varOpenArgs = $"{CurrentCode} , {CurrentEdition}";
                 targetform.ShowDialog();
             }
         }
@@ -510,7 +515,11 @@ namespace u_net
                 dataGridView.FirstDisplayedScrollingRowIndex = 0; // 先頭行を表示
             }
         }
-
+        private void F_承認管理_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            LocalSetting ls = new LocalSetting();
+            ls.SavePlace(CommonConstants.LoginUserCode, this);
+        }
         private void コマンド終了_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -521,7 +530,6 @@ namespace u_net
             //frmSub.Focus();
             DoUpdate();
         }
-
 
         private void Form_KeyDown(object sender, KeyEventArgs e)
         {
@@ -548,17 +556,16 @@ namespace u_net
 
         private void コマンド受注_Click(object sender, EventArgs e)
         {
-            //frmSub.Focus();
-            dataGridView1.Focus();
-            F_受注 form = new F_受注();
-            form.ShowDialog();
+            F_受注 targetform = new F_受注();
 
+            targetform.varOpenArgs = $"{CurrentCode} , {CurrentEdition}";
+            targetform.ShowDialog();
         }
 
         private void コマンド顧客_Click(object sender, EventArgs e)
         {
             //frmSub.Focus();
-            dataGridView1.Focus();
+            ////dataGridView1.Focus();
             //F_顧客 form = new F_顧客();
             //form.ShowDialog();
         }
@@ -638,7 +645,7 @@ namespace u_net
         private void 抽出表示ボタン_Click(object sender, EventArgs e)
         {
             //frmSub.Focus();
-            dataGridView1.Focus();
+            ////dataGridView1.Focus();
             //F_受注抽出設定 form = new F_受注抽出設定();
             //form.ShowDialog();
         }
@@ -656,13 +663,14 @@ namespace u_net
 
         private void 履歴トグル_Validating(object sender, CancelEventArgs e)
         {
-            ////frmSub.Focus();
-            dataGridView1.Focus();
+            //frmSub.Focus();
+            ////dataGridView1.Focus();
 
             ble履歴表示 = 履歴トグル.Checked;
 
             ////Filtering();
             DoUpdate();
         }
+
     }
 }

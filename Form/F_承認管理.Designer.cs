@@ -253,10 +253,11 @@
             // 
             // 表示件数
             // 
+            表示件数.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             表示件数.Location = new Point(72, 4);
             表示件数.Margin = new Padding(3, 2, 3, 2);
             表示件数.Name = "表示件数";
-            表示件数.Size = new Size(88, 23);
+            表示件数.Size = new Size(88, 20);
             表示件数.TabIndex = 0;
             表示件数.TextAlign = HorizontalAlignment.Right;
             // 
@@ -289,6 +290,7 @@
             dataGridView1.Margin = new Padding(3, 2, 3, 2);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
+            dataGridView1.RowHeadersVisible = false;
             dataGridView1.RowTemplate.Height = 29;
             dataGridView1.Size = new Size(847, 358);
             dataGridView1.TabIndex = 87;
@@ -472,6 +474,7 @@
             Margin = new Padding(3, 2, 3, 2);
             Name = "F_承認管理";
             Text = "承認管理";
+            FormClosing += F_承認管理_FormClosing;
             Load += Form_Load;
             SizeChanged += Form_Resize;
             KeyDown += Form_KeyDown;
