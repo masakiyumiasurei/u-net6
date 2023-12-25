@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(F_発注管理));
             panel1 = new Panel();
             コマンド購買 = new Button();
@@ -47,6 +48,7 @@
             label2 = new Label();
             dataGridView1 = new DataGridView();
             panel2 = new Panel();
+            toolTip1 = new ToolTip(components);
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel2.SuspendLayout();
@@ -85,6 +87,7 @@
             コマンド購買.Size = new Size(70, 22);
             コマンド購買.TabIndex = 12;
             コマンド購買.Text = "購買";
+            toolTip1.SetToolTip(コマンド購買, "購買データの参照");
             コマンド購買.UseVisualStyleBackColor = true;
             コマンド購買.Click += コマンド購買_Click;
             // 
@@ -99,6 +102,7 @@
             コマンド入庫.Size = new Size(70, 22);
             コマンド入庫.TabIndex = 11;
             コマンド入庫.Text = "入庫";
+            toolTip1.SetToolTip(コマンド入庫, "入庫入力");
             コマンド入庫.UseVisualStyleBackColor = true;
             コマンド入庫.Click += コマンド入庫_Click;
             // 
@@ -113,6 +117,7 @@
             コマンド入庫履歴.Size = new Size(70, 22);
             コマンド入庫履歴.TabIndex = 10;
             コマンド入庫履歴.Text = "入庫履歴";
+            toolTip1.SetToolTip(コマンド入庫履歴, "入庫履歴の参照");
             コマンド入庫履歴.UseVisualStyleBackColor = true;
             コマンド入庫履歴.Click += コマンド入庫履歴_Click;
             // 
@@ -127,6 +132,7 @@
             コマンド発注.Size = new Size(70, 22);
             コマンド発注.TabIndex = 9;
             コマンド発注.Text = "発注";
+            toolTip1.SetToolTip(コマンド発注, "発注データの参照");
             コマンド発注.UseVisualStyleBackColor = true;
             コマンド発注.Click += コマンド発注_Click;
             // 
@@ -170,6 +176,7 @@
             コマンド更新.Size = new Size(70, 22);
             コマンド更新.TabIndex = 5;
             コマンド更新.Text = "更新";
+            toolTip1.SetToolTip(コマンド更新, "最新の情報に更新");
             コマンド更新.UseVisualStyleBackColor = true;
             コマンド更新.Click += コマンド更新_Click;
             // 
@@ -184,6 +191,7 @@
             コマンド初期化.Size = new Size(70, 22);
             コマンド初期化.TabIndex = 4;
             コマンド初期化.Text = "初期化";
+            toolTip1.SetToolTip(コマンド初期化, "抽出初期化");
             コマンド初期化.UseVisualStyleBackColor = true;
             コマンド初期化.Click += コマンド初期化_Click;
             // 
@@ -198,6 +206,7 @@
             コマンド検索.Size = new Size(70, 22);
             コマンド検索.TabIndex = 3;
             コマンド検索.Text = "検索";
+            toolTip1.SetToolTip(コマンド検索, "コード検索");
             コマンド検索.UseVisualStyleBackColor = true;
             コマンド検索.Click += コマンド検索_Click;
             // 
@@ -212,6 +221,7 @@
             コマンド抽出.Size = new Size(70, 22);
             コマンド抽出.TabIndex = 2;
             コマンド抽出.Text = "抽出";
+            toolTip1.SetToolTip(コマンド抽出, "抽出設定");
             コマンド抽出.UseVisualStyleBackColor = true;
             コマンド抽出.Click += コマンド抽出_Click;
             // 
@@ -241,6 +251,7 @@
             コマンド終了.Size = new Size(70, 22);
             コマンド終了.TabIndex = 0;
             コマンド終了.Text = "終了";
+            toolTip1.SetToolTip(コマンド終了, "終了");
             コマンド終了.UseVisualStyleBackColor = true;
             コマンド終了.Click += コマンド終了_Click;
             // 
@@ -473,5 +484,6 @@
         private Panel panel2;
         private Button コマンド検索;
         private Button コマンド購買;
+        private ToolTip toolTip1;
     }
 }

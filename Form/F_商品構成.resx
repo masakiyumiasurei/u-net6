@@ -117,8 +117,77 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <metadata name="M商品BindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>406, 17</value>
+  </metadata>
+  <metadata name="uiDataSet.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>1047, 17</value>
+  </metadata>
+  <metadata name="comboBox売上区分bindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>725, 146</value>
+  </metadata>
+  <metadata name="manufactureFlowBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>532, 60</value>
+  </metadata>
+  <metadata name="m単位BindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>150, 60</value>
+  </metadata>
+  <metadata name="newDataSet.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>248, 171</value>
+  </metadata>
+  <metadata name="combBox商品コードBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 103</value>
+  </metadata>
+  <metadata name="m商品分類BindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>769, 103</value>
+  </metadata>
+  <metadata name="mシリーズBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>294, 103</value>
+  </metadata>
+  <metadata name="M商品明細BindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>820, 17</value>
+  </metadata>
+  <metadata name="statusStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 60</value>
+  </metadata>
+  <metadata name="v商品ヘッダBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>285, 146</value>
+  </metadata>
+  <metadata name="m商品TableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>219, 17</value>
+  </metadata>
+  <metadata name="v商品ヘッダTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>991, 139</value>
+  </metadata>
+  <metadata name="combBox商品コードTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 146</value>
+  </metadata>
+  <metadata name="combBoxMシリーズTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>504, 103</value>
+  </metadata>
+  <metadata name="M単位TableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>345, 60</value>
+  </metadata>
+  <metadata name="comboBoxManufactureFlowTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>801, 60</value>
+  </metadata>
+  <metadata name="m商品分類TableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>995, 103</value>
+  </metadata>
+  <metadata name="comboBox売上区分TableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 189</value>
+  </metadata>
+  <metadata name="tableAdapterManager.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
+  </metadata>
+  <metadata name="notifyIcon1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>248, 189</value>
+  </metadata>
+  <metadata name="mshomeisaiTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>502, 172</value>
+  </metadata>
+  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>97</value>
   </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
@@ -126,21 +195,21 @@
         AAABAAIAICAQAAAAAADoAgAAJgAAABAQEAAAAAAAKAEAAA4DAAAoAAAAIAAAAEAAAAABAAQAAAAAAIAC
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAgAAAAICAAIAAAACAAIAAgIAAAICAgADAwMAAAAD/AAD/
         AAAA//8A/wAAAP8A/wD//wAA////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPAAAAAAAAAAAAAAAA
-        AAAAC/sAAAAAAAAAAAAAAAAAAA+/vwAAAAAAAAAAAAAAAAsL+/v7AAAAAAAAAAAAAAAPD7+/v78AAAAA
-        AAAAAAAA+wv7+/v7+wAAAAAAAAAAALAPv7+/v7+/AAAAAAAAAAvwC/v7+/v7+/sAAAAAAAAPDw+/v7+/
-        v7+/vwAAAAAA+w8L+/v7+/v7+/sAAAAAALD/D7+/v7+/v7+/AAAAAAvw/wv7+/v7+/v7+wAAAAAPD//w
-        D7+/v7+/v78AAAAA+w////AL+/v7+/v7AAAAAL+wD///8A+/v7+/vwAAAAAL+/AP//8L+/v7+/sAAAAA
-        D7+/sA//D7+/v7+/AAAAAAv7+wvwD/AL+/v7+wAAAAAAD7AAD7AP8A+/v78AAAAAAAAAAAAL8A/wC/v7
-        AAAAAAAAAAAAAA+wD7APvwAAAAAAAAAAAAAAC/vwAAsAAAAAAAAAAAAAAAAPAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAv/+wAA//v/+//wAAv/+/AP+/8AAPv/+//78AAP+//wC//78Av/+//7//sA+//78A/7
+        //v/+//7//v/+//7//AL//v/+//7//v/+//7//vwD/v/+//7//v/+//7//v/8Av/+//7//v/+//7//v/
+        +/AP+//7//v/+//7//v/+//wC//7//v/+//7//v/+//78A/7AAAAAAAAAAAAAAAA//AL//v/+//7//v/
+        +//7//vwD/v/+//7//v/+//7//v/8Av/+//7//v/+//7//v/+/AP+wAAAAAAAAAAAAAAAP/wC//7//v/
+        +//7//v/+//78A/7//v/+//7//v/+//7//AL//v/+//7//v/+//7//vwD/sAAAAAAAAAAAAAAAD/8Av/
+        +//7//v/+//7//v/+/AP+//7//v/+//7//v/+//wC//7//v/+//7//v/+//78A/7//v/+//7//v/+//7
+        //AL//v/+//7//v/+//7//vwD/v/+//78AAAAAAAAAAAAAv/+//7/wAAAAAAAAAAAAAP+//7//sAAAAA
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA////////
-        ///////////////P////w////4D///+AP///AA///wAD//4AAP/+AAA//AAAD/wAAAf4AAAH+AAAB/AA
-        AAfwAAAH4AAAB+AAAAfwAAAH8AAAB/AAAAf4IAAH/ngAB//+AAf//4CH///h5///+f//////////////
+        //+BgAMBAYADAAGAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAf//wAH//+AD///////////
         //8oAAAAEAAAACAAAAABAAQAAAAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAgAAAAICAAIAA
         AACAAIAAgIAAAICAgADAwMAAAAD/AAD/AAAA//8A/wAAAP8A/wD//wAA////AAAAAAAAAAAAAAAAAAAA
-        AAAAAAAAAAAAAAAAAPsAAAAAAADwv78AAAAACwD7+/sAAADw8L+/v78ACw/w+/v7+/AA//APv7+/sAAA
-        //AL+/vwAL8A/w+/v7AAC/sP8Av78AAAD7D/AA+wAAAAAAD7AAAAAAAAAAAAAAAAAAAAAAAA//8AAP//
-        AAD4/wAA8D8AAOAPAADAAwAAgAAAAAAAAAAAAAAAgAAAAIAAAADAAAAA4AAAAPkAAAD/zwAA//8AAA==
+        AAAPAA+/vwAPsAv7+/v7+/vwD7+/v7+/v7AL+/v7+/v78A8AAAAAAACwC/v7+/v7+/APAAAAAAAAsAv7
+        +/v7+/vwDwAAAAAAALAL+/v7+/v78A+/v7+/v7+wC/v7AAAAAAAPv78AAAAAAAAAAAAAAAAA//8AABAQ
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAB/wAAg/8AAA==
 </value>
   </data>
 </root>

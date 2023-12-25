@@ -55,12 +55,12 @@
             本日登録分ボタン = new Button();
             前日登録分ボタン = new Button();
             検索ボタン = new Button();
-            履歴トグル = new Button();
             label4 = new Label();
             承認情報 = new ComboBox();
             検索コードラベル = new Label();
             検索コード = new TextBox();
             toolTip1 = new ToolTip(components);
+            履歴トグル = new CheckBox();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)newDataSet).BeginInit();
@@ -157,6 +157,7 @@
             // 
             // コマンド確認
             // 
+            コマンド確認.Enabled = false;
             コマンド確認.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             コマンド確認.ForeColor = SystemColors.ControlText;
             コマンド確認.ImageAlign = ContentAlignment.BottomLeft;
@@ -170,6 +171,7 @@
             // 
             // コマンド取消
             // 
+            コマンド取消.Enabled = false;
             コマンド取消.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             コマンド取消.ForeColor = SystemColors.ControlText;
             コマンド取消.ImageAlign = ContentAlignment.BottomLeft;
@@ -183,6 +185,7 @@
             // 
             // コマンド削除
             // 
+            コマンド削除.Enabled = false;
             コマンド削除.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             コマンド削除.ForeColor = SystemColors.ControlText;
             コマンド削除.ImageAlign = ContentAlignment.BottomLeft;
@@ -196,6 +199,7 @@
             // 
             // コマンド修正
             // 
+            コマンド修正.Enabled = false;
             コマンド修正.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             コマンド修正.ForeColor = SystemColors.ControlText;
             コマンド修正.ImageAlign = ContentAlignment.BottomLeft;
@@ -209,6 +213,7 @@
             // 
             // コマンド新規
             // 
+            コマンド新規.Enabled = false;
             コマンド新規.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             コマンド新規.ForeColor = SystemColors.ControlText;
             コマンド新規.ImageAlign = ContentAlignment.BottomLeft;
@@ -222,6 +227,7 @@
             // 
             // コマンド複写
             // 
+            コマンド複写.Enabled = false;
             コマンド複写.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             コマンド複写.ImageAlign = ContentAlignment.BottomLeft;
             コマンド複写.Location = new Point(579, 4);
@@ -252,6 +258,7 @@
             表示件数.Name = "表示件数";
             表示件数.Size = new Size(88, 23);
             表示件数.TabIndex = 0;
+            表示件数.TextAlign = HorizontalAlignment.Right;
             // 
             // 表示件数ラベル
             // 
@@ -278,12 +285,12 @@
             dataGridView1.AllowUserToAddRows = false;
             dataGridView1.AllowUserToDeleteRows = false;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(6, 67);
+            dataGridView1.Location = new Point(3, 67);
             dataGridView1.Margin = new Padding(3, 2, 3, 2);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
             dataGridView1.RowTemplate.Height = 29;
-            dataGridView1.Size = new Size(804, 358);
+            dataGridView1.Size = new Size(847, 358);
             dataGridView1.TabIndex = 87;
             dataGridView1.CellClick += dataGridView1_CellClick;
             dataGridView1.CellDoubleClick += dataGridView1_CellDoubleClick;
@@ -323,6 +330,7 @@
             抽出表示ボタン.Text = "抽出表示";
             toolTip1.SetToolTip(抽出表示ボタン, "抽出条件を設定します");
             抽出表示ボタン.UseVisualStyleBackColor = true;
+            抽出表示ボタン.Visible = false;
             抽出表示ボタン.Click += 抽出表示ボタン_Click;
             // 
             // 次ページボタン
@@ -335,6 +343,7 @@
             次ページボタン.Text = "↓";
             toolTip1.SetToolTip(次ページボタン, "次ページへスクロールします");
             次ページボタン.UseVisualStyleBackColor = true;
+            次ページボタン.Visible = false;
             次ページボタン.Click += 次ページボタン_Click;
             // 
             // 前ページボタン
@@ -347,6 +356,7 @@
             前ページボタン.Text = "↑";
             toolTip1.SetToolTip(前ページボタン, "前ページへスクロールします");
             前ページボタン.UseVisualStyleBackColor = true;
+            前ページボタン.Visible = false;
             前ページボタン.Click += 前ページボタン_Click;
             // 
             // 本日登録分ボタン
@@ -388,19 +398,6 @@
             検索ボタン.UseVisualStyleBackColor = true;
             検索ボタン.Click += 検索ボタン_Click;
             // 
-            // 履歴トグル
-            // 
-            履歴トグル.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            履歴トグル.Location = new Point(609, 38);
-            履歴トグル.Margin = new Padding(3, 2, 3, 2);
-            履歴トグル.Name = "履歴トグル";
-            履歴トグル.Size = new Size(75, 22);
-            履歴トグル.TabIndex = 5;
-            履歴トグル.Text = "履歴モード";
-            toolTip1.SetToolTip(履歴トグル, "履歴モードのON/OFF");
-            履歴トグル.UseVisualStyleBackColor = true;
-            履歴トグル.Validating += 履歴トグル_Validating;
-            // 
             // label4
             // 
             label4.AutoSize = true;
@@ -441,16 +438,30 @@
             検索コード.KeyDown += 検索コード_KeyDown;
             検索コード.KeyPress += 検索コード_KeyPress;
             // 
+            // 履歴トグル
+            // 
+            履歴トグル.Appearance = Appearance.Button;
+            履歴トグル.AutoSize = true;
+            履歴トグル.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            履歴トグル.Location = new Point(610, 38);
+            履歴トグル.Margin = new Padding(3, 2, 3, 2);
+            履歴トグル.Name = "履歴トグル";
+            履歴トグル.Size = new Size(72, 22);
+            履歴トグル.TabIndex = 6;
+            履歴トグル.Text = "履歴モード";
+            履歴トグル.UseVisualStyleBackColor = true;
+            履歴トグル.Validating += 履歴トグル_Validating;
+            // 
             // F_承認管理
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(879, 449);
+            Controls.Add(履歴トグル);
             Controls.Add(検索コード);
             Controls.Add(検索コードラベル);
             Controls.Add(承認情報);
             Controls.Add(label4);
-            Controls.Add(履歴トグル);
             Controls.Add(検索ボタン);
             Controls.Add(前日登録分ボタン);
             Controls.Add(本日登録分ボタン);
@@ -610,7 +621,6 @@
         private Button 本日登録分ボタン;
         private Button 前日登録分ボタン;
         private Button 検索ボタン;
-        private Button 履歴トグル;
         private Label label4;
         private ComboBox 承認情報;
         private Label 検索コードラベル;
@@ -619,5 +629,6 @@
         private Button 次ページボタン;
         private Button 前ページボタン;
         private ToolTip toolTip1;
+        private CheckBox 履歴トグル;
     }
 }
