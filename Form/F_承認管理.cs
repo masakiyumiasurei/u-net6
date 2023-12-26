@@ -565,7 +565,6 @@ namespace u_net
         private void コマンド顧客_Click(object sender, EventArgs e)
         {
             //frmSub.Focus();
-            ////dataGridView1.Focus();
             //F_顧客 form = new F_顧客();
             //form.ShowDialog();
         }
@@ -645,7 +644,6 @@ namespace u_net
         private void 抽出表示ボタン_Click(object sender, EventArgs e)
         {
             //frmSub.Focus();
-            ////dataGridView1.Focus();
             //F_受注抽出設定 form = new F_受注抽出設定();
             //form.ShowDialog();
         }
@@ -653,7 +651,6 @@ namespace u_net
         private void 本日登録分ボタン_Click(object sender, EventArgs e)
         {
             //frmSub.Focus();
-            dataGridView1.Focus();
             SetAll();
             dte登録日1 = DateTime.Now;
             dte登録日2 = DateTime.Now;
@@ -664,11 +661,10 @@ namespace u_net
         private void 履歴トグル_Validating(object sender, CancelEventArgs e)
         {
             //frmSub.Focus();
-            ////dataGridView1.Focus();
 
             ble履歴表示 = 履歴トグル.Checked;
 
-            ////Filtering();
+            //Filtering();
             DoUpdate();
         }
 

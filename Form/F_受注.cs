@@ -20,6 +20,10 @@ using System.Globalization;
 using System.Security.Cryptography;
 using Microsoft.VisualBasic;
 using System.Threading.Channels;
+using static u_net.CommonConstants;
+using static u_net.Public.FunctionClass;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
+using System.Transactions;
 
 namespace u_net
 {
@@ -293,7 +297,7 @@ namespace u_net
             {
                 //ヘッダ部を初期化する
                 VariableSet.SetControls(this);
-                this.受注コード.Text = FunctionClass.採番(cn, "A");
+                this.受注コード.Text = 採番(cn, "A");
 
                 OriginalClass ofn = new OriginalClass();
                 ofn.SetComboBox(受注版数, "SELECT 1 AS Value, 1 AS Display, '' AS Display2");
@@ -319,7 +323,7 @@ namespace u_net
                 LoadDetails(this.受注明細1.Detail, this.CurrentCode);
 
                 //ヘッダ部を制御する
-                FunctionClass.LockData(this, false);
+                LockData(this, false);
                 this.受注日.Focus();
                 this.受注コード.Enabled = false;
                 this.受注版数.Enabled = false;
@@ -359,7 +363,7 @@ namespace u_net
 
                 // 未変更状態にする
                 ChangedData(false);
-                FunctionClass.LockData(this, true, "受注コード");
+                LockData(this, true, "受注コード");
 
                 this.受注コード.Enabled = true;
                 this.受注版数.Enabled = true;
@@ -481,7 +485,7 @@ namespace u_net
                         }
 
                         // 動作の制御
-                        FunctionClass.LockData(this, this.IsDecided || this.IsInvalid, "受注コード");
+                        LockData(this, this.IsDecided || this.IsInvalid, "受注コード");
                         this.受注版数.Enabled = true; // 版数を編集可にする
                         受注明細1.Detail.AllowUserToAddRows = !(this.IsDecided || this.IsInvalid);
                         受注明細1.Detail.AllowUserToDeleteRows = !(this.IsDecided || this.IsInvalid);
@@ -563,7 +567,7 @@ namespace u_net
                         }
 
                         // 動作の制御
-                        FunctionClass.LockData(this, this.IsDecided || this.IsInvalid, "受注コード");
+                        LockData(this, this.IsDecided || this.IsInvalid, "受注コード");
                         this.受注版数.Enabled = true; // 版数を編集可にする
                         受注明細1.Detail.AllowUserToAddRows = !this.IsDecided && !this.IsInvalid;
                         受注明細1.Detail.AllowUserToDeleteRows = !this.IsDecided && !this.IsInvalid;
@@ -624,11 +628,11 @@ namespace u_net
 
                             if (string.IsNullOrEmpty(this.受注納期.Text))
                             {
-                                this.TaxRate.Text = FunctionClass.GetTaxRate(cn, DateTime.Now).ToString("0.##");
+                                this.TaxRate.Text = GetTaxRate(cn, DateTime.Now).ToString("0.##");
                             }
                             else
                             {
-                                this.TaxRate.Text = FunctionClass.GetTaxRate(cn, DateTime.Parse(this.受注納期.Text)).ToString("0.##");
+                                this.TaxRate.Text = GetTaxRate(cn, DateTime.Parse(this.受注納期.Text)).ToString("0.##");
                             }
                         }
 
@@ -640,11 +644,11 @@ namespace u_net
                     case "請求予定日":
                         if (string.IsNullOrEmpty(this.請求予定日.Text))
                         {
-                            this.TaxRate.Text = FunctionClass.GetTaxRate(cn, DateTime.Now).ToString("0.##");
+                            this.TaxRate.Text = GetTaxRate(cn, DateTime.Now).ToString("0.##");
                         }
                         else
                         {
-                            this.TaxRate.Text = FunctionClass.GetTaxRate(cn, DateTime.Parse(this.請求予定日.Text)).ToString("0.##");
+                            this.TaxRate.Text = GetTaxRate(cn, DateTime.Parse(this.請求予定日.Text)).ToString("0.##");
                         }
                         break;
                     case "自社担当者コード":
@@ -682,11 +686,11 @@ namespace u_net
                         {
                             if (string.IsNullOrEmpty(this.請求予定日.Text))
                             {
-                                this.TaxRate.Text = FunctionClass.GetTaxRate(cn, DateTime.Now).ToString("0.##");
+                                this.TaxRate.Text = GetTaxRate(cn, DateTime.Now).ToString("0.##");
                             }
                             else
                             {
-                                this.TaxRate.Text = FunctionClass.GetTaxRate(cn, DateTime.Parse(this.請求予定日.Text)).ToString("0.##");
+                                this.TaxRate.Text = GetTaxRate(cn, DateTime.Parse(this.請求予定日.Text)).ToString("0.##");
                             }
 
                             this.請求予定日ラベル.Enabled = true;
@@ -700,11 +704,11 @@ namespace u_net
 
                             if (string.IsNullOrEmpty(this.受注納期.Text))
                             {
-                                this.TaxRate.Text = FunctionClass.GetTaxRate(cn, DateTime.Now).ToString("0.##");
+                                this.TaxRate.Text = GetTaxRate(cn, DateTime.Now).ToString("0.##");
                             }
                             else
                             {
-                                this.TaxRate.Text = FunctionClass.GetTaxRate(cn, DateTime.Parse(this.受注納期.Text)).ToString("0.##");
+                                this.TaxRate.Text = GetTaxRate(cn, DateTime.Parse(this.受注納期.Text)).ToString("0.##");
                             }
 
                             this.請求予定日ラベル.Enabled = false;
@@ -920,7 +924,7 @@ namespace u_net
         private bool RegTrans(string codeString, int editionNumber, bool Approved = false)
         {
             Connect();
-            DateTime dtmNow = FunctionClass.GetServerDate(cn);
+            DateTime dtmNow = GetServerDate(cn);
 
             this.登録日.Text = dtmNow.ToString("yyyy/MM/dd HH:dd:ss");
 
@@ -1022,6 +1026,69 @@ namespace u_net
             }
         }
 
+        private bool ApproveCompletion(string codeString, int editionNumber)
+        {
+            // トランザクション開始
+            Connect();
+            SqlTransaction transaction = cn.BeginTransaction();
+            try
+            {
+                string strKey = "受注コード ='" + codeString + "' AND 受注版数=" + editionNumber;
+                string strSQL = "SELECT * FROM T受注 WHERE " + strKey;
+
+
+                SqlCommand command = new SqlCommand(strSQL, cn);
+                SqlDataAdapter adapter = new SqlDataAdapter(command);
+
+                DataTable dataTable = new DataTable();
+                adapter.Fill(dataTable);
+
+                if (dataTable.Rows.Count > 0)
+                {
+                    if (string.IsNullOrEmpty(dataTable.Rows[0]["完了承認者コード"].ToString()))
+                    {
+                        strSQL = $"BEGIN " +
+                        $"UPDATE T受注 " +
+                        $"SET 完了承認者コード = '{LoginUserCode}' " +
+                        $"WHERE 受注コード = '{codeString}' AND 受注版数 = {editionNumber} " +
+                        $"UPDATE T受注 " +
+                        $"SET 完了承認者コード = '000', 非表示 = -1 " +
+                        $"WHERE 受注コード = '{codeString}' AND 受注版数 < {editionNumber} " +
+                        $"END";
+
+                        SqlCommand updateCommand = new SqlCommand(strSQL, cn, transaction);
+                        updateCommand.ExecuteNonQuery();
+                    }
+                    else
+                    {
+                        strSQL = $"BEGIN " +
+                        $"UPDATE T受注 " +
+                        $"SET 完了承認者コード = NULL " +
+                        $"WHERE 受注コード = '{codeString}' AND 受注版数 = {editionNumber} " +
+                        $"UPDATE T受注 " +
+                        $"SET 完了承認者コード = NULL, 非表示 = NULL " +
+                        $"WHERE 受注コード = '{codeString}' AND 受注版数 < {editionNumber} " +
+                        $"END";
+
+                        SqlCommand updateCommand = new SqlCommand(strSQL, cn, transaction);
+                        updateCommand.ExecuteNonQuery();
+                    }
+                }
+
+
+                transaction.Commit();
+                return true;
+
+            }
+            catch (Exception ex)
+            {
+                transaction.Rollback();
+
+                return false;
+            }
+
+        }
+
         /// <summary>
         /// 承認後処理
         /// </summary>
@@ -1035,8 +1102,6 @@ namespace u_net
                 bool result = false;
 
                 Connect();
-
-                cn.Open();
 
                 using (SqlCommand command = new SqlCommand("usp_出荷明細追加直接", cn, transaction))
                 {
@@ -1152,7 +1217,7 @@ namespace u_net
                     return false;
                 }
 
-                this.無効日.Text = FunctionClass.GetServerDate(cn).ToString("yyyy/MM/dd");
+                this.無効日.Text = GetServerDate(cn).ToString("yyyy/MM/dd");
                 if (RegTrans(codeString, editionNumber))
                 {
                     return true;
@@ -1384,7 +1449,7 @@ namespace u_net
                         }
                         break;
                     case "依頼主名":
-                        if (!FunctionClass.IsLimit(varValue, 30, false, controlObject.Name))
+                        if (!IsLimit(varValue, 30, false, controlObject.Name))
                             goto Exit_IsError;
                         break;
                     case "受注納期":
@@ -1454,7 +1519,7 @@ namespace u_net
                             ((ComboBox)controlObject).DroppedDown = true;
                             goto Exit_IsError;
                         }
-                        if (!FunctionClass.IsLimit_N(varValue, 2, 0, controlObject.Name))
+                        if (!IsLimit_N(varValue, 2, 0, controlObject.Name))
                             goto Exit_IsError;
                         break;
                     case "自社担当者コード":
@@ -1534,7 +1599,7 @@ namespace u_net
                             return true;
                         }
                         break;
-                    
+
                     case "InvoiceNote":
                         // 送り状の記載が必要のときは入力必須
                         if (this.InvoiceInputCode.Text == "01" && string.IsNullOrEmpty(varValue?.ToString()))
@@ -1603,7 +1668,7 @@ namespace u_net
                         }
                         break;
                     case "発送先名":
-                        if (!FunctionClass.IsLimit(varValue, 50, false, controlObject.Name))
+                        if (!IsLimit(varValue, 50, false, controlObject.Name))
                             goto Exit_IsError;
                         break;
                     case "発送先郵便番号":
@@ -1614,27 +1679,27 @@ namespace u_net
                         }
                         break;
                     case "発送先住所1":
-                        if (!FunctionClass.IsLimit(varValue, 100, false, controlObject.Name))
+                        if (!IsLimit(varValue, 100, false, controlObject.Name))
                             goto Exit_IsError;
                         break;
                     case "発送先住所2":
-                        if (!FunctionClass.IsLimit(varValue, 100, true, controlObject.Name))
+                        if (!IsLimit(varValue, 100, true, controlObject.Name))
                             goto Exit_IsError;
                         break;
                     case "発送先TEL":
-                        if (!FunctionClass.IsLimit(varValue, 20, false, controlObject.Name))
+                        if (!IsLimit(varValue, 20, false, controlObject.Name))
                             goto Exit_IsError;
                         break;
                     case "発送先FAX":
-                        if (!FunctionClass.IsLimit(varValue, 20, true, controlObject.Name))
+                        if (!IsLimit(varValue, 20, true, controlObject.Name))
                             goto Exit_IsError;
                         break;
                     case "発送先メールアドレス":
-                        if (!FunctionClass.IsLimit(varValue, 50, true, controlObject.Name))
+                        if (!IsLimit(varValue, 50, true, controlObject.Name))
                             goto Exit_IsError;
                         break;
                     case "発送先担当者名":
-                        if (!FunctionClass.IsLimit(varValue, 40, false, controlObject.Name))
+                        if (!IsLimit(varValue, 40, false, controlObject.Name))
                             goto Exit_IsError;
                         break;
                 }
@@ -1789,7 +1854,7 @@ namespace u_net
                     if (this.IsNewData && !string.IsNullOrEmpty(this.CurrentCode) && this.CurrentEdition == 1)
                     {
                         // 採番された番号を戻す
-                        if (!FunctionClass.Recycle(cn, this.CurrentCode))
+                        if (!Recycle(cn, this.CurrentCode))
                         {
                             MessageBox.Show("エラーのためコードは破棄されました。" + Environment.NewLine +
                                 "受注コード　：　" + this.CurrentCode, "読込コマンド", MessageBoxButtons.OK);
@@ -1825,7 +1890,7 @@ namespace u_net
                         if (this.IsNewData && !string.IsNullOrEmpty(this.CurrentCode) && this.CurrentEdition == 1)
                         {
                             // 採番された番号を戻す
-                            if (!FunctionClass.Recycle(cn, this.CurrentCode))
+                            if (!Recycle(cn, this.CurrentCode))
                             {
                                 MessageBox.Show("エラーのためコードは破棄されました。" + Environment.NewLine +
                                 "受注コード　：　" + this.CurrentCode, "読込コマンド", MessageBoxButtons.OK);
@@ -1899,7 +1964,7 @@ namespace u_net
                         authForm.args = this.承認者コード.Text;
                         authForm.ShowDialog();
 
-                        if (string.IsNullOrEmpty(CommonConstants.strCertificateCode))
+                        if (string.IsNullOrEmpty(strCertificateCode))
                         {
                             MessageBox.Show("削除はキャンセルされました。", "削除コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             return;
@@ -1946,10 +2011,10 @@ namespace u_net
                     // 認証
                     using (F_認証 authForm = new F_認証())
                     {
-                        authForm.args = this.承認者コード.Text;
+                        authForm.args = this.自社担当者コード.Text;
                         authForm.ShowDialog();
 
-                        if (string.IsNullOrEmpty(CommonConstants.strCertificateCode))
+                        if (string.IsNullOrEmpty(strCertificateCode))
                         {
                             MessageBox.Show("削除はキャンセルされました。", "削除コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             return;
@@ -1996,8 +2061,8 @@ namespace u_net
                 GetNextControl(コマンド顧客, false).Focus();
             }
 
-            string param = $" -sv:{CommonConstants.ServerInstanceName} -open:customer," + this.顧客コード.Text;
-            FunctionClass.GetShell(param);
+            string param = $" -sv:{ServerInstanceName} -open:customer," + this.顧客コード.Text;
+            GetShell(param);
         }
 
         private void コマンド商品_Click(object sender, EventArgs e)
@@ -2063,7 +2128,7 @@ namespace u_net
                     authForm.args = "007";
                     authForm.ShowDialog();
 
-                    if (string.IsNullOrEmpty(CommonConstants.strCertificateCode))
+                    if (string.IsNullOrEmpty(strCertificateCode))
                     {
                         MessageBox.Show("認証に失敗しました。" + Environment.NewLine + "承認はできません。", "承認コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         return;
@@ -2075,8 +2140,8 @@ namespace u_net
                 varSaved2 = this.承認者コード.Text;
                 if (string.IsNullOrEmpty(this.承認者コード.Text) || this.承認者コード.Text == "000")
                 {
-                    this.承認日時.Text = FunctionClass.GetServerDate(cn).ToString("yyyy/MM/dd");
-                    this.承認者コード.Text = CommonConstants.strCertificateCode;
+                    this.承認日時.Text = GetServerDate(cn).ToString("yyyy/MM/dd");
+                    this.承認者コード.Text = strCertificateCode;
                 }
                 else
                 {
@@ -2136,7 +2201,7 @@ namespace u_net
             {
                 Connect();
 
-                DateTime dtmNow = FunctionClass.GetServerDate(cn); // 現在の日時を取得
+                DateTime dtmNow = GetServerDate(cn); // 現在の日時を取得
                 string var確定日時 = "";
                 string var確定者コード = "";
                 bool blnDoApprove = false; // 承認処理実行フラグ
@@ -2171,10 +2236,10 @@ namespace u_net
                 else
                 {
                     this.確定日時.Text = dtmNow.ToString("yyyy/MM/dd");
-                    this.確定者コード.Text = CommonConstants.LoginUserCode;
+                    this.確定者コード.Text = LoginUserCode;
 
                     // 承認者不在を確認し、承認処理実行フラグを設定する
-                    if (FunctionClass.IsAbsence(cn, "007") >= 0)
+                    if (IsAbsence(cn, "007") >= 0)
                     {
                         blnDoApprove = true;
                     }
@@ -2192,7 +2257,7 @@ namespace u_net
                 if (RegTrans(CurrentCode, CurrentEdition, blnDoApprove))
                 {
                     ChangedData(false);
-                    FunctionClass.LockData(this, IsDecided || IsInvalid, "受注コード", "受注版数");
+                    LockData(this, IsDecided || IsInvalid, "受注コード", "受注版数");
 
                     // 新規モードのときは読込モードへ移行する
                     if (IsNewData || IsApproved)
@@ -2348,7 +2413,7 @@ namespace u_net
                     // 変更された
                     ChangedData(true);
                     // ヘッダ部制御
-                    FunctionClass.LockData(this, false);
+                    LockData(this, false);
                     this.受注日.Focus();
                     this.受注コード.Enabled = false;
                     this.受注版数.Enabled = false;
@@ -2386,6 +2451,191 @@ namespace u_net
                 Debug.Print(this.Name + "_ChangeVersionButton_Click - " + ex.Message);
                 MessageBox.Show("エラーが発生しました。", "改版", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
+            }
+        }
+
+        private void 受注承認ボタン_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string varSaved1 = ""; // 承認日時保存用
+                string varSaved2 = ""; // 承認者コード保存用
+                string strApproverCode = ""; // 承認者コード
+
+                if (this.ActiveControl == this.受注承認ボタン)
+                {
+                    GetNextControl(受注承認ボタン, false).Focus();
+                }
+
+                // 処理実行の確認
+                /*if (MessageBox.Show("承認しますか？\n承認後、元に戻すことはできません。", "承認コマンド", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                    goto Bye_受注承認ボタン_Click;*/
+
+                // 認証する
+                using (F_認証 authForm = new F_認証())
+                {
+                    authForm.args = "007";
+                    authForm.ShowDialog();
+
+                    if (string.IsNullOrEmpty(strCertificateCode))
+                    {
+                        MessageBox.Show("認証されませんでした。\n承認はできません。", "削除コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return;
+                    }
+                }
+
+                // 承認情報設定
+                varSaved1 = 承認日時.Text;
+                varSaved2 = 承認者コード.Text;
+
+                Connect();
+
+                if (Information.IsDBNull(承認者コード.Text) | 承認者コード.Text == "000")
+                {
+                    承認日時.Text = GetServerDate(cn).ToString("yyyy-MM-dd HH:mm:ss");
+                    承認者コード.Text = strCertificateCode;
+                }
+                else
+                {
+                    承認日時.Text = null;
+                    承認者コード.Text = null;
+                }
+
+                // 表示データを登録する
+                if (RegTrans(this.CurrentCode, this.CurrentEdition, true))
+                {
+                    // 版数のソースを更新する
+                    UpdateEditionList(this.CurrentCode);
+
+                    // 状態の表示
+                    SetEditionStatus();
+
+                    // インターフェース更新
+                    改版ボタン.Enabled = IsApproved;
+                    受注承認ボタン.Enabled = !IsApproved;
+                    否認ボタン.Enabled = !IsApproved;
+                    コマンド承認.Enabled = !IsApproved;
+                    コマンド確定.Enabled = !IsApproved;
+                    受注明細1.Detail.AllowUserToAddRows = !IsApproved;
+                    受注明細1.Detail.AllowUserToDeleteRows = !IsApproved;
+                    受注明細1.Detail.ReadOnly = IsApproved; //readonlyなのでaccessと真偽が逆になる 
+
+                    // 在庫の警告を表示する
+                    if (CheckWarning(CurrentCode,CurrentEdition))
+                    {
+                        F_シリーズ危険在庫警告 form = new F_シリーズ危険在庫警告();
+                        form.args = this.CurrentCode + ',' + this.CurrentEdition;
+                        form.Show();
+                    }
+                }
+                else
+                {
+                    // 登録失敗
+                    承認日時.Text = varSaved1;
+                    承認者コード.Text = varSaved2;
+                    MessageBox.Show("承認処理は取り消されました。", "承認コマンド", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.Print($"{Name}_受注承認ボタン_Click - {ex.Message}");
+            }
+        }
+
+        private void 否認ボタン_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string strMsg;
+                string strKey;
+                string strSQL;
+
+                if (this.ActiveControl == this.否認ボタン)
+                {
+                    GetNextControl(否認ボタン, false).Focus();
+                }
+
+                MessageBox.Show("この機能は定義されていません。", "否認コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+
+                //strMsg = "受注コード　：　" + 受注コード.Text + "\n" +
+                //         "承認依頼版数　：　" + 受注版数.Text + "\n\n" +
+                //         "この内容は破棄されます。\n" +
+                //         "否認しますか？";
+
+                //if (MessageBox.Show(strMsg, "否認", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                //{
+                //    DoCmd.OpenForm("認証", acNormal, null, null, null, null, "007");
+
+                //    while (strCertificateCode == "")
+                //    {
+                //        // 認証フォームが閉じていれば、認証不成立となる
+                //        if (SysCmd(acSysCmdGetObjectState, acForm, "認証") == 0)
+                //        {
+                //            MessageBox.Show("否認処理はキャンセルされました。", "否認", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //            return;
+                //        }
+                //        DoEvents();
+                //    }
+
+                //    // 仮受注データの削除
+                //    // 明細の削除はトリガで行われる
+                //    strKey = "受注コード = '" + 受注コード.Text + "' AND 受注版数 = " + 受注版数.Text;
+                //    strSQL = "DELETE 受注 WHERE " + strKey;
+
+                //    objConnection.BeginTrans();
+                //    objConnection.Execute(strSQL);
+                //    objConnection.CommitTrans();
+                //    // 破棄後、改版処理前のデータを表示
+                //}
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("否認できませんでした。\n\n" + ex.Message, "否認", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void 受注完了承認ボタン_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (this.ActiveControl == this.受注完了承認ボタン)
+                {
+                    GetNextControl(受注完了承認ボタン, false).Focus();
+                }
+
+                // 旧版の確認
+                if (IsInvalid)
+                {
+                    MessageBox.Show("この受注データは旧版です。\n承認はできません。", "承認", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
+
+                if (ApproveCompletion(CurrentCode, CurrentEdition))
+                {
+                    // コントロール更新
+                    if (IsApprovedCompletion)
+                    {
+                        完了承認者コード.Text = null;
+                        改版ボタン.Enabled = true;
+                    }
+                    else
+                    {
+                        完了承認者コード.Text = LoginUserCode;
+                        改版ボタン.Enabled = false;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("エラーが発生したため、処理は取り消されました。", "完了承認", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+                return;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"エラーが発生しました。\n\n{ex.Message}", "完了承認", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -2514,7 +2764,7 @@ namespace u_net
 
         private void 受注コード_TextChanged(object sender, EventArgs e)
         {
-            FunctionClass.LimitText(((Control)sender), 9);
+            LimitText(((Control)sender), 9);
         }
 
         private void 受注コード_KeyPress(object sender, KeyPressEventArgs e)
@@ -2524,7 +2774,7 @@ namespace u_net
                 e.Handled = true;
             }
 
-            e.KeyChar = (char)FunctionClass.ChangeBig((int)e.KeyChar);
+            e.KeyChar = (char)ChangeBig((int)e.KeyChar);
         }
 
         private void 受注版数_SelectedIndexChanged(object sender, EventArgs e)
@@ -2610,7 +2860,7 @@ namespace u_net
         private void 注文番号_TextChanged(object sender, EventArgs e)
         {
             if (setCombo) return;
-            FunctionClass.LimitText(((Control)sender), 30);
+            LimitText(((Control)sender), 30);
             ChangedData(true);
         }
 
@@ -2636,7 +2886,7 @@ namespace u_net
         private void 顧客コード_TextChanged(object sender, EventArgs e)
         {
             if (setCombo) return;
-            FunctionClass.LimitText(((Control)sender), 8);
+            LimitText(((Control)sender), 8);
             ChangedData(true);
         }
 
@@ -2699,7 +2949,7 @@ namespace u_net
         private void 顧客担当者名_TextChanged(object sender, EventArgs e)
         {
             if (setCombo) return;
-            FunctionClass.LimitText(((Control)sender), 50);
+            LimitText(((Control)sender), 50);
             ChangedData(true);
         }
 
@@ -2941,7 +3191,7 @@ namespace u_net
         private void 自社担当者コード_TextChanged(object sender, EventArgs e)
         {
             if (setCombo) return;
-            FunctionClass.LimitText(((Control)sender), 3);
+            LimitText(((Control)sender), 3);
             ChangedData(true);
         }
 
@@ -3056,7 +3306,7 @@ namespace u_net
 
         private void 発送先名_TextChanged(object sender, EventArgs e)
         {
-            FunctionClass.LimitText(((Control)sender), 58);
+            LimitText(((Control)sender), 58);
             ChangedData(true);
         }
 
@@ -3076,7 +3326,7 @@ namespace u_net
 
         private void 発送先郵便番号_TextChanged(object sender, EventArgs e)
         {
-            FunctionClass.LimitText(((Control)sender), 11);
+            LimitText(((Control)sender), 11);
             ChangedData(true);
         }
 
@@ -3345,7 +3595,7 @@ namespace u_net
 
         private void InvoiceFaxToName_TextChanged(object sender, EventArgs e)
         {
-            FunctionClass.LimitText(((Control)sender), 100);
+            LimitText(((Control)sender), 100);
             ChangedData(true);
         }
 
@@ -3365,7 +3615,7 @@ namespace u_net
 
         private void InvoiceFaxToContact_TextChanged(object sender, EventArgs e)
         {
-            FunctionClass.LimitText(((Control)sender), 44);
+            LimitText(((Control)sender), 44);
             ChangedData(true);
         }
 
@@ -3385,7 +3635,7 @@ namespace u_net
 
         private void InvoiceFaxToNumber_TextChanged(object sender, EventArgs e)
         {
-            FunctionClass.LimitText(((Control)sender), 20);
+            LimitText(((Control)sender), 20);
             ChangedData(true);
         }
 
@@ -3405,7 +3655,7 @@ namespace u_net
 
         private void PackingSlipNote_TextChanged(object sender, EventArgs e)
         {
-            FunctionClass.LimitText(((Control)sender), 120);
+            LimitText(((Control)sender), 120);
             ChangedData(true);
         }
 
@@ -3425,7 +3675,7 @@ namespace u_net
 
         private void InvoiceNote_TextChanged(object sender, EventArgs e)
         {
-            FunctionClass.LimitText(((Control)sender), 92);
+            LimitText(((Control)sender), 92);
             ChangedData(true);
         }
 
@@ -3684,6 +3934,8 @@ namespace u_net
         {
             請求コード.Text = 請求コード.Text.PadLeft(8, '0');
         }
+
+        
     }
 }
 

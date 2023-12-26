@@ -480,6 +480,7 @@ namespace u_net
             否認ボタン.TabStop = false;
             否認ボタン.Text = "否認";
             否認ボタン.UseVisualStyleBackColor = true;
+            否認ボタン.Click += 否認ボタン_Click;
             // 
             // 受注承認ボタン
             // 
@@ -494,6 +495,7 @@ namespace u_net
             受注承認ボタン.TabStop = false;
             受注承認ボタン.Text = "承認";
             受注承認ボタン.UseVisualStyleBackColor = true;
+            受注承認ボタン.Click += 受注承認ボタン_Click;
             // 
             // 受注完了承認ボタン
             // 
@@ -507,6 +509,7 @@ namespace u_net
             受注完了承認ボタン.TabStop = false;
             受注完了承認ボタン.Text = "完了承認";
             受注完了承認ボタン.UseVisualStyleBackColor = true;
+            受注完了承認ボタン.Click += 受注完了承認ボタン_Click;
             // 
             // Page2
             // 
