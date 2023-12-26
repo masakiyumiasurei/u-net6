@@ -45,31 +45,8 @@ namespace MultiRowDesigner
             ComboBoxEditingControl comboBox = e.Control as ComboBoxEditingControl;
             if (textBox != null)
             {
-                textBox.PreviewKeyDown -= gcMultiRow1_PreviewKeyDown;
-                textBox.PreviewKeyDown += gcMultiRow1_PreviewKeyDown;
                 textBox.TextChanged -= gcMultiRow1_TextChanged;
                 textBox.TextChanged += gcMultiRow1_TextChanged;
-            }
-        }
-
-        private void gcMultiRow1_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
-        {
-            if (e.KeyCode == Keys.Return)
-            {
-
-                if (gcMultiRow1.CurrentCell.RowIndex == null || gcMultiRow1.CurrentCell.CellIndex == null) return;
-
-                if (gcMultiRow1.CurrentCell.Name == "部品コード")
-                {
-
-                    string strCode = gcMultiRow1.CurrentCell.Value.ToString();
-                    string formattedCode = strCode.Trim().PadLeft(8, '0');
-
-                    if (formattedCode != strCode || string.IsNullOrEmpty(strCode))
-                    {
-                        gcMultiRow1.CurrentCell.Value = formattedCode;
-                    }
-                }
             }
         }
 
@@ -98,6 +75,8 @@ namespace MultiRowDesigner
         private void gcMultiRow1_CellEnter(object sender, CellEventArgs e)
         {
             F_見積 ParentForm = (F_見積)Application.OpenForms["F_見積"];
+
+            gcMultiRow1.BeginEdit(true);
 
             if (ParentForm != null)
             {
