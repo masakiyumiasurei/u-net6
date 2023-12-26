@@ -160,9 +160,7 @@
     <Compile Update="Form\F_支払管理_抽出.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Form\F_支払.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Update="Form\F_支払.cs" />
     <Compile Update="Form\F_ユニット参照.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -193,6 +191,7 @@
     <Compile Update="Form\F_ユニット使用製品参照.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Form\F_支払一覧_年間.cs" />
     <Compile Update="Form\F_請求処理.cs">
       <SubType>Form</SubType>
     </Compile>
