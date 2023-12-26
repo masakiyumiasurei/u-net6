@@ -157,6 +157,7 @@ namespace u_net
             コマンド終了.TabIndex = 1021;
             コマンド終了.TabStop = false;
             コマンド終了.Text = "終了";
+            toolTip1.SetToolTip(コマンド終了, "システムを終了します");
             コマンド終了.UseVisualStyleBackColor = true;
             コマンド終了.Click += コマンド終了_Click;
             // 
@@ -174,6 +175,7 @@ namespace u_net
             ログインユーザー名.TabIndex = 181;
             ログインユーザー名.TabStop = false;
             ログインユーザー名.TextAlign = HorizontalAlignment.Center;
+            toolTip1.SetToolTip(ログインユーザー名, "ログインユーザー氏名");
             // 
             // ログインボタン
             // 
@@ -200,6 +202,7 @@ namespace u_net
             日付.Size = new Size(188, 23);
             日付.TabIndex = 10004;
             日付.TextAlign = HorizontalAlignment.Center;
+            toolTip1.SetToolTip(日付, "現在の日付");
             // 
             // label23
             // 
@@ -227,6 +230,7 @@ namespace u_net
             ユーアイホームボタン.TabIndex = 10008;
             ユーアイホームボタン.TabStop = false;
             ユーアイホームボタン.Text = "UI Home";
+            toolTip1.SetToolTip(ユーアイホームボタン, "UI Homeへジャンプします");
             ユーアイホームボタン.UseVisualStyleBackColor = true;
             ユーアイホームボタン.Click += ユーアイホームボタン_Click;
             ユーアイホームボタン.MouseMove += ユーアイホームボタン_MouseMove;
@@ -1657,6 +1661,7 @@ namespace u_net
             営業部部長不在ボタン.Name = "営業部部長不在ボタン";
             営業部部長不在ボタン.Size = new Size(51, 45);
             営業部部長不在ボタン.TabIndex = 10007;
+            toolTip1.SetToolTip(営業部部長不在ボタン, "営業部部長の在席状況を切り替えます");
             営業部部長不在ボタン.UseVisualStyleBackColor = true;
             営業部部長不在ボタン.Click += 営業部部長不在ボタン_Click;
             // 

@@ -28,666 +28,670 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.閉じる = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.接続対象サーバー = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.サーバー名 = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.接続状況 = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.バージョン = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.最新バージョン = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.ランタイムバージョン = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.OS = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.コンピュータ名 = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.クライアント日時 = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.サーバー日時 = new System.Windows.Forms.TextBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.接続タイムアウト_Command = new System.Windows.Forms.TextBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.接続タイムアウト_ADO = new System.Windows.Forms.TextBox();
-            this.label14 = new System.Windows.Forms.Label();
-            this.接続タイムアウト_プロジェクト = new System.Windows.Forms.TextBox();
-            this.label15 = new System.Windows.Forms.Label();
-            this.ネットワークユーザー名 = new System.Windows.Forms.TextBox();
-            this.接続文字列 = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
-            this.接続運用ボタン = new System.Windows.Forms.Button();
-            this.セキュリティ設定ボタン = new System.Windows.Forms.Button();
-            this.サウンドテストボタン = new System.Windows.Forms.Button();
-            this.進捗状況テストボタン = new System.Windows.Forms.Button();
-            this.接続設定ボタン = new System.Windows.Forms.Button();
-            this.接続テストボタン = new System.Windows.Forms.Button();
-            this.接続テスト2ボタン = new System.Windows.Forms.Button();
-            this.label18 = new System.Windows.Forms.Label();
-            this.バージョンアップボタン = new System.Windows.Forms.Button();
-            this.管理者用バージョンアップボタン = new System.Windows.Forms.Button();
-            this.サーバー日時更新ボタン = new System.Windows.Forms.Button();
-            this.SuspendLayout();
+            components = new System.ComponentModel.Container();
+            閉じる = new Button();
+            label1 = new Label();
+            接続対象サーバー = new TextBox();
+            label2 = new Label();
+            サーバー名 = new TextBox();
+            label3 = new Label();
+            接続状況 = new TextBox();
+            label4 = new Label();
+            バージョン = new TextBox();
+            label5 = new Label();
+            最新バージョン = new TextBox();
+            label6 = new Label();
+            ランタイムバージョン = new TextBox();
+            label7 = new Label();
+            OS = new TextBox();
+            label8 = new Label();
+            コンピュータ名 = new TextBox();
+            label9 = new Label();
+            クライアント日時 = new TextBox();
+            label10 = new Label();
+            サーバー日時 = new TextBox();
+            label12 = new Label();
+            接続タイムアウト_Command = new TextBox();
+            label13 = new Label();
+            接続タイムアウト_ADO = new TextBox();
+            label14 = new Label();
+            接続タイムアウト_プロジェクト = new TextBox();
+            label15 = new Label();
+            ネットワークユーザー名 = new TextBox();
+            接続文字列 = new TextBox();
+            label11 = new Label();
+            label16 = new Label();
+            label17 = new Label();
+            接続運用ボタン = new Button();
+            セキュリティ設定ボタン = new Button();
+            サウンドテストボタン = new Button();
+            進捗状況テストボタン = new Button();
+            接続設定ボタン = new Button();
+            接続テストボタン = new Button();
+            接続テスト2ボタン = new Button();
+            label18 = new Label();
+            バージョンアップボタン = new Button();
+            管理者用バージョンアップボタン = new Button();
+            サーバー日時更新ボタン = new Button();
+            toolTip1 = new ToolTip(components);
+            SuspendLayout();
             // 
             // 閉じる
             // 
-            this.閉じる.Location = new System.Drawing.Point(573, 549);
-            this.閉じる.Name = "閉じる";
-            this.閉じる.Size = new System.Drawing.Size(114, 23);
-            this.閉じる.TabIndex = 211;
-            this.閉じる.Text = "閉じる(&X)";
-            this.閉じる.UseVisualStyleBackColor = true;
-            this.閉じる.Click += new System.EventHandler(this.閉じる_Click);
+            閉じる.Location = new Point(573, 549);
+            閉じる.Name = "閉じる";
+            閉じる.Size = new Size(114, 23);
+            閉じる.TabIndex = 211;
+            閉じる.Text = "閉じる(&X)";
+            閉じる.UseVisualStyleBackColor = true;
+            閉じる.Click += 閉じる_Click;
             // 
             // label1
             // 
-            this.label1.AllowDrop = true;
-            this.label1.AutoEllipsis = true;
-            this.label1.Font = new System.Drawing.Font("BIZ UDゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label1.Location = new System.Drawing.Point(18, 26);
-            this.label1.Margin = new System.Windows.Forms.Padding(0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(133, 17);
-            this.label1.TabIndex = 213;
-            this.label1.Text = "接続先サーバー";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            label1.AllowDrop = true;
+            label1.AutoEllipsis = true;
+            label1.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.ForeColor = SystemColors.ActiveCaptionText;
+            label1.ImageAlign = ContentAlignment.MiddleLeft;
+            label1.Location = new Point(18, 26);
+            label1.Margin = new Padding(0);
+            label1.Name = "label1";
+            label1.Size = new Size(133, 17);
+            label1.TabIndex = 213;
+            label1.Text = "接続先サーバー";
+            label1.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // 接続対象サーバー
             // 
-            this.接続対象サーバー.BackColor = System.Drawing.Color.White;
-            this.接続対象サーバー.Enabled = false;
-            this.接続対象サーバー.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.接続対象サーバー.Location = new System.Drawing.Point(169, 25);
-            this.接続対象サーバー.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.接続対象サーバー.Multiline = true;
-            this.接続対象サーバー.Name = "接続対象サーバー";
-            this.接続対象サーバー.Size = new System.Drawing.Size(275, 23);
-            this.接続対象サーバー.TabIndex = 1;
+            接続対象サーバー.BackColor = Color.White;
+            接続対象サーバー.Enabled = false;
+            接続対象サーバー.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            接続対象サーバー.Location = new Point(169, 25);
+            接続対象サーバー.Margin = new Padding(3, 2, 3, 2);
+            接続対象サーバー.Multiline = true;
+            接続対象サーバー.Name = "接続対象サーバー";
+            接続対象サーバー.Size = new Size(275, 23);
+            接続対象サーバー.TabIndex = 1;
             // 
             // label2
             // 
-            this.label2.AllowDrop = true;
-            this.label2.AutoEllipsis = true;
-            this.label2.Font = new System.Drawing.Font("BIZ UDゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label2.Location = new System.Drawing.Point(18, 53);
-            this.label2.Margin = new System.Windows.Forms.Padding(0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(133, 17);
-            this.label2.TabIndex = 215;
-            this.label2.Text = "サーバー名";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            label2.AllowDrop = true;
+            label2.AutoEllipsis = true;
+            label2.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label2.ForeColor = SystemColors.ActiveCaptionText;
+            label2.ImageAlign = ContentAlignment.MiddleLeft;
+            label2.Location = new Point(18, 53);
+            label2.Margin = new Padding(0);
+            label2.Name = "label2";
+            label2.Size = new Size(133, 17);
+            label2.TabIndex = 215;
+            label2.Text = "サーバー名";
+            label2.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // サーバー名
             // 
-            this.サーバー名.BackColor = System.Drawing.Color.White;
-            this.サーバー名.Enabled = false;
-            this.サーバー名.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.サーバー名.Location = new System.Drawing.Point(169, 52);
-            this.サーバー名.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.サーバー名.Multiline = true;
-            this.サーバー名.Name = "サーバー名";
-            this.サーバー名.Size = new System.Drawing.Size(275, 23);
-            this.サーバー名.TabIndex = 214;
+            サーバー名.BackColor = Color.White;
+            サーバー名.Enabled = false;
+            サーバー名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            サーバー名.Location = new Point(169, 52);
+            サーバー名.Margin = new Padding(3, 2, 3, 2);
+            サーバー名.Multiline = true;
+            サーバー名.Name = "サーバー名";
+            サーバー名.Size = new Size(275, 23);
+            サーバー名.TabIndex = 214;
             // 
             // label3
             // 
-            this.label3.AllowDrop = true;
-            this.label3.AutoEllipsis = true;
-            this.label3.Font = new System.Drawing.Font("BIZ UDゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label3.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label3.Location = new System.Drawing.Point(18, 80);
-            this.label3.Margin = new System.Windows.Forms.Padding(0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(133, 17);
-            this.label3.TabIndex = 217;
-            this.label3.Text = "接続状況";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            label3.AllowDrop = true;
+            label3.AutoEllipsis = true;
+            label3.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label3.ForeColor = SystemColors.ActiveCaptionText;
+            label3.ImageAlign = ContentAlignment.MiddleLeft;
+            label3.Location = new Point(18, 80);
+            label3.Margin = new Padding(0);
+            label3.Name = "label3";
+            label3.Size = new Size(133, 17);
+            label3.TabIndex = 217;
+            label3.Text = "接続状況";
+            label3.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // 接続状況
             // 
-            this.接続状況.BackColor = System.Drawing.Color.White;
-            this.接続状況.Enabled = false;
-            this.接続状況.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.接続状況.Location = new System.Drawing.Point(169, 79);
-            this.接続状況.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.接続状況.Multiline = true;
-            this.接続状況.Name = "接続状況";
-            this.接続状況.Size = new System.Drawing.Size(275, 23);
-            this.接続状況.TabIndex = 216;
+            接続状況.BackColor = Color.White;
+            接続状況.Enabled = false;
+            接続状況.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            接続状況.Location = new Point(169, 79);
+            接続状況.Margin = new Padding(3, 2, 3, 2);
+            接続状況.Multiline = true;
+            接続状況.Name = "接続状況";
+            接続状況.Size = new Size(275, 23);
+            接続状況.TabIndex = 216;
             // 
             // label4
             // 
-            this.label4.AllowDrop = true;
-            this.label4.AutoEllipsis = true;
-            this.label4.Font = new System.Drawing.Font("BIZ UDゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label4.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label4.Location = new System.Drawing.Point(18, 107);
-            this.label4.Margin = new System.Windows.Forms.Padding(0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(133, 17);
-            this.label4.TabIndex = 219;
-            this.label4.Text = "現在のバージョン";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            label4.AllowDrop = true;
+            label4.AutoEllipsis = true;
+            label4.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label4.ForeColor = SystemColors.ActiveCaptionText;
+            label4.ImageAlign = ContentAlignment.MiddleLeft;
+            label4.Location = new Point(18, 107);
+            label4.Margin = new Padding(0);
+            label4.Name = "label4";
+            label4.Size = new Size(133, 17);
+            label4.TabIndex = 219;
+            label4.Text = "現在のバージョン";
+            label4.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // バージョン
             // 
-            this.バージョン.BackColor = System.Drawing.Color.White;
-            this.バージョン.Enabled = false;
-            this.バージョン.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.バージョン.Location = new System.Drawing.Point(169, 106);
-            this.バージョン.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.バージョン.Multiline = true;
-            this.バージョン.Name = "バージョン";
-            this.バージョン.Size = new System.Drawing.Size(275, 23);
-            this.バージョン.TabIndex = 218;
+            バージョン.BackColor = Color.White;
+            バージョン.Enabled = false;
+            バージョン.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            バージョン.Location = new Point(169, 106);
+            バージョン.Margin = new Padding(3, 2, 3, 2);
+            バージョン.Multiline = true;
+            バージョン.Name = "バージョン";
+            バージョン.Size = new Size(275, 23);
+            バージョン.TabIndex = 218;
             // 
             // label5
             // 
-            this.label5.AllowDrop = true;
-            this.label5.AutoEllipsis = true;
-            this.label5.Font = new System.Drawing.Font("BIZ UDゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label5.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label5.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label5.Location = new System.Drawing.Point(18, 134);
-            this.label5.Margin = new System.Windows.Forms.Padding(0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(133, 17);
-            this.label5.TabIndex = 221;
-            this.label5.Text = "最新バージョン";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            label5.AllowDrop = true;
+            label5.AutoEllipsis = true;
+            label5.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label5.ForeColor = SystemColors.ActiveCaptionText;
+            label5.ImageAlign = ContentAlignment.MiddleLeft;
+            label5.Location = new Point(18, 134);
+            label5.Margin = new Padding(0);
+            label5.Name = "label5";
+            label5.Size = new Size(133, 17);
+            label5.TabIndex = 221;
+            label5.Text = "最新バージョン";
+            label5.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // 最新バージョン
             // 
-            this.最新バージョン.BackColor = System.Drawing.Color.White;
-            this.最新バージョン.Enabled = false;
-            this.最新バージョン.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.最新バージョン.Location = new System.Drawing.Point(169, 133);
-            this.最新バージョン.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.最新バージョン.Multiline = true;
-            this.最新バージョン.Name = "最新バージョン";
-            this.最新バージョン.Size = new System.Drawing.Size(275, 23);
-            this.最新バージョン.TabIndex = 220;
+            最新バージョン.BackColor = Color.White;
+            最新バージョン.Enabled = false;
+            最新バージョン.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            最新バージョン.Location = new Point(169, 133);
+            最新バージョン.Margin = new Padding(3, 2, 3, 2);
+            最新バージョン.Multiline = true;
+            最新バージョン.Name = "最新バージョン";
+            最新バージョン.Size = new Size(275, 23);
+            最新バージョン.TabIndex = 220;
             // 
             // label6
             // 
-            this.label6.AllowDrop = true;
-            this.label6.AutoEllipsis = true;
-            this.label6.Font = new System.Drawing.Font("BIZ UDゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label6.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label6.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label6.Location = new System.Drawing.Point(18, 269);
-            this.label6.Margin = new System.Windows.Forms.Padding(0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(133, 17);
-            this.label6.TabIndex = 231;
-            this.label6.Text = "ランタイムバージョン";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            label6.AllowDrop = true;
+            label6.AutoEllipsis = true;
+            label6.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label6.ForeColor = SystemColors.ActiveCaptionText;
+            label6.ImageAlign = ContentAlignment.MiddleLeft;
+            label6.Location = new Point(18, 269);
+            label6.Margin = new Padding(0);
+            label6.Name = "label6";
+            label6.Size = new Size(133, 17);
+            label6.TabIndex = 231;
+            label6.Text = "ランタイムバージョン";
+            label6.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // ランタイムバージョン
             // 
-            this.ランタイムバージョン.BackColor = System.Drawing.Color.White;
-            this.ランタイムバージョン.Enabled = false;
-            this.ランタイムバージョン.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.ランタイムバージョン.Location = new System.Drawing.Point(169, 268);
-            this.ランタイムバージョン.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.ランタイムバージョン.Multiline = true;
-            this.ランタイムバージョン.Name = "ランタイムバージョン";
-            this.ランタイムバージョン.Size = new System.Drawing.Size(275, 23);
-            this.ランタイムバージョン.TabIndex = 230;
+            ランタイムバージョン.BackColor = Color.White;
+            ランタイムバージョン.Enabled = false;
+            ランタイムバージョン.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            ランタイムバージョン.Location = new Point(169, 268);
+            ランタイムバージョン.Margin = new Padding(3, 2, 3, 2);
+            ランタイムバージョン.Multiline = true;
+            ランタイムバージョン.Name = "ランタイムバージョン";
+            ランタイムバージョン.Size = new Size(275, 23);
+            ランタイムバージョン.TabIndex = 230;
             // 
             // label7
             // 
-            this.label7.AllowDrop = true;
-            this.label7.AutoEllipsis = true;
-            this.label7.Font = new System.Drawing.Font("BIZ UDゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label7.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label7.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label7.Location = new System.Drawing.Point(18, 242);
-            this.label7.Margin = new System.Windows.Forms.Padding(0);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(159, 17);
-            this.label7.TabIndex = 229;
-            this.label7.Text = "オペレーティングシステム";
-            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            label7.AllowDrop = true;
+            label7.AutoEllipsis = true;
+            label7.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label7.ForeColor = SystemColors.ActiveCaptionText;
+            label7.ImageAlign = ContentAlignment.MiddleLeft;
+            label7.Location = new Point(18, 242);
+            label7.Margin = new Padding(0);
+            label7.Name = "label7";
+            label7.Size = new Size(159, 17);
+            label7.TabIndex = 229;
+            label7.Text = "オペレーティングシステム";
+            label7.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // OS
             // 
-            this.OS.BackColor = System.Drawing.Color.White;
-            this.OS.Enabled = false;
-            this.OS.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.OS.Location = new System.Drawing.Point(169, 241);
-            this.OS.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.OS.Multiline = true;
-            this.OS.Name = "OS";
-            this.OS.Size = new System.Drawing.Size(518, 23);
-            this.OS.TabIndex = 228;
+            OS.BackColor = Color.White;
+            OS.Enabled = false;
+            OS.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            OS.Location = new Point(169, 241);
+            OS.Margin = new Padding(3, 2, 3, 2);
+            OS.Multiline = true;
+            OS.Name = "OS";
+            OS.Size = new Size(518, 23);
+            OS.TabIndex = 228;
             // 
             // label8
             // 
-            this.label8.AllowDrop = true;
-            this.label8.AutoEllipsis = true;
-            this.label8.Font = new System.Drawing.Font("BIZ UDゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label8.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label8.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label8.Location = new System.Drawing.Point(18, 215);
-            this.label8.Margin = new System.Windows.Forms.Padding(0);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(133, 17);
-            this.label8.TabIndex = 227;
-            this.label8.Text = "コンピュータ名";
-            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            label8.AllowDrop = true;
+            label8.AutoEllipsis = true;
+            label8.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label8.ForeColor = SystemColors.ActiveCaptionText;
+            label8.ImageAlign = ContentAlignment.MiddleLeft;
+            label8.Location = new Point(18, 215);
+            label8.Margin = new Padding(0);
+            label8.Name = "label8";
+            label8.Size = new Size(133, 17);
+            label8.TabIndex = 227;
+            label8.Text = "コンピュータ名";
+            label8.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // コンピュータ名
             // 
-            this.コンピュータ名.BackColor = System.Drawing.Color.White;
-            this.コンピュータ名.Enabled = false;
-            this.コンピュータ名.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.コンピュータ名.Location = new System.Drawing.Point(169, 214);
-            this.コンピュータ名.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.コンピュータ名.Multiline = true;
-            this.コンピュータ名.Name = "コンピュータ名";
-            this.コンピュータ名.Size = new System.Drawing.Size(275, 23);
-            this.コンピュータ名.TabIndex = 226;
+            コンピュータ名.BackColor = Color.White;
+            コンピュータ名.Enabled = false;
+            コンピュータ名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            コンピュータ名.Location = new Point(169, 214);
+            コンピュータ名.Margin = new Padding(3, 2, 3, 2);
+            コンピュータ名.Multiline = true;
+            コンピュータ名.Name = "コンピュータ名";
+            コンピュータ名.Size = new Size(275, 23);
+            コンピュータ名.TabIndex = 226;
             // 
             // label9
             // 
-            this.label9.AllowDrop = true;
-            this.label9.AutoEllipsis = true;
-            this.label9.Font = new System.Drawing.Font("BIZ UDゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label9.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label9.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label9.Location = new System.Drawing.Point(18, 188);
-            this.label9.Margin = new System.Windows.Forms.Padding(0);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(133, 17);
-            this.label9.TabIndex = 225;
-            this.label9.Text = "クライアント日時";
-            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            label9.AllowDrop = true;
+            label9.AutoEllipsis = true;
+            label9.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label9.ForeColor = SystemColors.ActiveCaptionText;
+            label9.ImageAlign = ContentAlignment.MiddleLeft;
+            label9.Location = new Point(18, 188);
+            label9.Margin = new Padding(0);
+            label9.Name = "label9";
+            label9.Size = new Size(133, 17);
+            label9.TabIndex = 225;
+            label9.Text = "クライアント日時";
+            label9.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // クライアント日時
             // 
-            this.クライアント日時.BackColor = System.Drawing.Color.White;
-            this.クライアント日時.Enabled = false;
-            this.クライアント日時.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.クライアント日時.Location = new System.Drawing.Point(169, 187);
-            this.クライアント日時.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.クライアント日時.Multiline = true;
-            this.クライアント日時.Name = "クライアント日時";
-            this.クライアント日時.Size = new System.Drawing.Size(275, 23);
-            this.クライアント日時.TabIndex = 224;
+            クライアント日時.BackColor = Color.White;
+            クライアント日時.Enabled = false;
+            クライアント日時.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            クライアント日時.Location = new Point(169, 187);
+            クライアント日時.Margin = new Padding(3, 2, 3, 2);
+            クライアント日時.Multiline = true;
+            クライアント日時.Name = "クライアント日時";
+            クライアント日時.Size = new Size(275, 23);
+            クライアント日時.TabIndex = 224;
             // 
             // label10
             // 
-            this.label10.AllowDrop = true;
-            this.label10.AutoEllipsis = true;
-            this.label10.Font = new System.Drawing.Font("BIZ UDゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label10.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label10.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label10.Location = new System.Drawing.Point(18, 161);
-            this.label10.Margin = new System.Windows.Forms.Padding(0);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(133, 17);
-            this.label10.TabIndex = 223;
-            this.label10.Text = "サーバー日時";
-            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            label10.AllowDrop = true;
+            label10.AutoEllipsis = true;
+            label10.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label10.ForeColor = SystemColors.ActiveCaptionText;
+            label10.ImageAlign = ContentAlignment.MiddleLeft;
+            label10.Location = new Point(18, 161);
+            label10.Margin = new Padding(0);
+            label10.Name = "label10";
+            label10.Size = new Size(133, 17);
+            label10.TabIndex = 223;
+            label10.Text = "サーバー日時";
+            label10.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // サーバー日時
             // 
-            this.サーバー日時.BackColor = System.Drawing.Color.White;
-            this.サーバー日時.Enabled = false;
-            this.サーバー日時.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.サーバー日時.Location = new System.Drawing.Point(169, 160);
-            this.サーバー日時.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.サーバー日時.Multiline = true;
-            this.サーバー日時.Name = "サーバー日時";
-            this.サーバー日時.Size = new System.Drawing.Size(275, 23);
-            this.サーバー日時.TabIndex = 222;
+            サーバー日時.BackColor = Color.White;
+            サーバー日時.Enabled = false;
+            サーバー日時.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            サーバー日時.Location = new Point(169, 160);
+            サーバー日時.Margin = new Padding(3, 2, 3, 2);
+            サーバー日時.Multiline = true;
+            サーバー日時.Name = "サーバー日時";
+            サーバー日時.Size = new Size(275, 23);
+            サーバー日時.TabIndex = 222;
             // 
             // label12
             // 
-            this.label12.AllowDrop = true;
-            this.label12.AutoEllipsis = true;
-            this.label12.Font = new System.Drawing.Font("BIZ UDゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label12.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label12.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label12.Location = new System.Drawing.Point(18, 377);
-            this.label12.Margin = new System.Windows.Forms.Padding(0);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(133, 17);
-            this.label12.TabIndex = 239;
-            this.label12.Text = "接続タイムアウトC";
-            this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            label12.AllowDrop = true;
+            label12.AutoEllipsis = true;
+            label12.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label12.ForeColor = SystemColors.ActiveCaptionText;
+            label12.ImageAlign = ContentAlignment.MiddleLeft;
+            label12.Location = new Point(18, 377);
+            label12.Margin = new Padding(0);
+            label12.Name = "label12";
+            label12.Size = new Size(133, 17);
+            label12.TabIndex = 239;
+            label12.Text = "接続タイムアウトC";
+            label12.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // 接続タイムアウト_Command
             // 
-            this.接続タイムアウト_Command.BackColor = System.Drawing.Color.White;
-            this.接続タイムアウト_Command.Enabled = false;
-            this.接続タイムアウト_Command.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.接続タイムアウト_Command.Location = new System.Drawing.Point(169, 376);
-            this.接続タイムアウト_Command.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.接続タイムアウト_Command.Multiline = true;
-            this.接続タイムアウト_Command.Name = "接続タイムアウト_Command";
-            this.接続タイムアウト_Command.Size = new System.Drawing.Size(275, 23);
-            this.接続タイムアウト_Command.TabIndex = 238;
+            接続タイムアウト_Command.BackColor = Color.White;
+            接続タイムアウト_Command.Enabled = false;
+            接続タイムアウト_Command.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            接続タイムアウト_Command.Location = new Point(169, 376);
+            接続タイムアウト_Command.Margin = new Padding(3, 2, 3, 2);
+            接続タイムアウト_Command.Multiline = true;
+            接続タイムアウト_Command.Name = "接続タイムアウト_Command";
+            接続タイムアウト_Command.Size = new Size(275, 23);
+            接続タイムアウト_Command.TabIndex = 238;
             // 
             // label13
             // 
-            this.label13.AllowDrop = true;
-            this.label13.AutoEllipsis = true;
-            this.label13.Font = new System.Drawing.Font("BIZ UDゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label13.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label13.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label13.Location = new System.Drawing.Point(18, 350);
-            this.label13.Margin = new System.Windows.Forms.Padding(0);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(133, 17);
-            this.label13.TabIndex = 237;
-            this.label13.Text = "接続タイムアウトB";
-            this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            label13.AllowDrop = true;
+            label13.AutoEllipsis = true;
+            label13.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label13.ForeColor = SystemColors.ActiveCaptionText;
+            label13.ImageAlign = ContentAlignment.MiddleLeft;
+            label13.Location = new Point(18, 350);
+            label13.Margin = new Padding(0);
+            label13.Name = "label13";
+            label13.Size = new Size(133, 17);
+            label13.TabIndex = 237;
+            label13.Text = "接続タイムアウトB";
+            label13.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // 接続タイムアウト_ADO
             // 
-            this.接続タイムアウト_ADO.BackColor = System.Drawing.Color.White;
-            this.接続タイムアウト_ADO.Enabled = false;
-            this.接続タイムアウト_ADO.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.接続タイムアウト_ADO.Location = new System.Drawing.Point(169, 349);
-            this.接続タイムアウト_ADO.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.接続タイムアウト_ADO.Multiline = true;
-            this.接続タイムアウト_ADO.Name = "接続タイムアウト_ADO";
-            this.接続タイムアウト_ADO.Size = new System.Drawing.Size(275, 23);
-            this.接続タイムアウト_ADO.TabIndex = 236;
+            接続タイムアウト_ADO.BackColor = Color.White;
+            接続タイムアウト_ADO.Enabled = false;
+            接続タイムアウト_ADO.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            接続タイムアウト_ADO.Location = new Point(169, 349);
+            接続タイムアウト_ADO.Margin = new Padding(3, 2, 3, 2);
+            接続タイムアウト_ADO.Multiline = true;
+            接続タイムアウト_ADO.Name = "接続タイムアウト_ADO";
+            接続タイムアウト_ADO.Size = new Size(275, 23);
+            接続タイムアウト_ADO.TabIndex = 236;
             // 
             // label14
             // 
-            this.label14.AllowDrop = true;
-            this.label14.AutoEllipsis = true;
-            this.label14.Font = new System.Drawing.Font("BIZ UDゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label14.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label14.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label14.Location = new System.Drawing.Point(18, 323);
-            this.label14.Margin = new System.Windows.Forms.Padding(0);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(133, 17);
-            this.label14.TabIndex = 235;
-            this.label14.Text = "接続タイムアウトA";
-            this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            label14.AllowDrop = true;
+            label14.AutoEllipsis = true;
+            label14.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label14.ForeColor = SystemColors.ActiveCaptionText;
+            label14.ImageAlign = ContentAlignment.MiddleLeft;
+            label14.Location = new Point(18, 323);
+            label14.Margin = new Padding(0);
+            label14.Name = "label14";
+            label14.Size = new Size(133, 17);
+            label14.TabIndex = 235;
+            label14.Text = "接続タイムアウトA";
+            label14.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // 接続タイムアウト_プロジェクト
             // 
-            this.接続タイムアウト_プロジェクト.BackColor = System.Drawing.Color.White;
-            this.接続タイムアウト_プロジェクト.Enabled = false;
-            this.接続タイムアウト_プロジェクト.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.接続タイムアウト_プロジェクト.Location = new System.Drawing.Point(169, 322);
-            this.接続タイムアウト_プロジェクト.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.接続タイムアウト_プロジェクト.Multiline = true;
-            this.接続タイムアウト_プロジェクト.Name = "接続タイムアウト_プロジェクト";
-            this.接続タイムアウト_プロジェクト.Size = new System.Drawing.Size(275, 23);
-            this.接続タイムアウト_プロジェクト.TabIndex = 234;
+            接続タイムアウト_プロジェクト.BackColor = Color.White;
+            接続タイムアウト_プロジェクト.Enabled = false;
+            接続タイムアウト_プロジェクト.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            接続タイムアウト_プロジェクト.Location = new Point(169, 322);
+            接続タイムアウト_プロジェクト.Margin = new Padding(3, 2, 3, 2);
+            接続タイムアウト_プロジェクト.Multiline = true;
+            接続タイムアウト_プロジェクト.Name = "接続タイムアウト_プロジェクト";
+            接続タイムアウト_プロジェクト.Size = new Size(275, 23);
+            接続タイムアウト_プロジェクト.TabIndex = 234;
             // 
             // label15
             // 
-            this.label15.AllowDrop = true;
-            this.label15.AutoEllipsis = true;
-            this.label15.Font = new System.Drawing.Font("BIZ UDゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label15.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label15.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label15.Location = new System.Drawing.Point(18, 296);
-            this.label15.Margin = new System.Windows.Forms.Padding(0);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(148, 17);
-            this.label15.TabIndex = 233;
-            this.label15.Text = "ネットワークユーザー名";
-            this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            label15.AllowDrop = true;
+            label15.AutoEllipsis = true;
+            label15.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label15.ForeColor = SystemColors.ActiveCaptionText;
+            label15.ImageAlign = ContentAlignment.MiddleLeft;
+            label15.Location = new Point(18, 296);
+            label15.Margin = new Padding(0);
+            label15.Name = "label15";
+            label15.Size = new Size(148, 17);
+            label15.TabIndex = 233;
+            label15.Text = "ネットワークユーザー名";
+            label15.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // ネットワークユーザー名
             // 
-            this.ネットワークユーザー名.BackColor = System.Drawing.Color.White;
-            this.ネットワークユーザー名.Enabled = false;
-            this.ネットワークユーザー名.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.ネットワークユーザー名.Location = new System.Drawing.Point(169, 295);
-            this.ネットワークユーザー名.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.ネットワークユーザー名.Multiline = true;
-            this.ネットワークユーザー名.Name = "ネットワークユーザー名";
-            this.ネットワークユーザー名.Size = new System.Drawing.Size(275, 23);
-            this.ネットワークユーザー名.TabIndex = 232;
+            ネットワークユーザー名.BackColor = Color.White;
+            ネットワークユーザー名.Enabled = false;
+            ネットワークユーザー名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            ネットワークユーザー名.Location = new Point(169, 295);
+            ネットワークユーザー名.Margin = new Padding(3, 2, 3, 2);
+            ネットワークユーザー名.Multiline = true;
+            ネットワークユーザー名.Name = "ネットワークユーザー名";
+            ネットワークユーザー名.Size = new Size(275, 23);
+            ネットワークユーザー名.TabIndex = 232;
             // 
             // 接続文字列
             // 
-            this.接続文字列.BackColor = System.Drawing.Color.White;
-            this.接続文字列.Enabled = false;
-            this.接続文字列.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.接続文字列.Location = new System.Drawing.Point(450, 26);
-            this.接続文字列.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.接続文字列.Multiline = true;
-            this.接続文字列.Name = "接続文字列";
-            this.接続文字列.Size = new System.Drawing.Size(237, 76);
-            this.接続文字列.TabIndex = 240;
-            this.接続文字列.Visible = false;
+            接続文字列.BackColor = Color.White;
+            接続文字列.Enabled = false;
+            接続文字列.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            接続文字列.Location = new Point(450, 26);
+            接続文字列.Margin = new Padding(3, 2, 3, 2);
+            接続文字列.Multiline = true;
+            接続文字列.Name = "接続文字列";
+            接続文字列.Size = new Size(237, 76);
+            接続文字列.TabIndex = 240;
+            接続文字列.Visible = false;
             // 
             // label11
             // 
-            this.label11.AllowDrop = true;
-            this.label11.AutoEllipsis = true;
-            this.label11.Font = new System.Drawing.Font("BIZ UDゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label11.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label11.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label11.Location = new System.Drawing.Point(450, 328);
-            this.label11.Margin = new System.Windows.Forms.Padding(0);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(225, 17);
-            this.label11.TabIndex = 241;
-            this.label11.Text = "秒　※プロジェクト";
-            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            label11.AllowDrop = true;
+            label11.AutoEllipsis = true;
+            label11.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label11.ForeColor = SystemColors.ActiveCaptionText;
+            label11.ImageAlign = ContentAlignment.MiddleLeft;
+            label11.Location = new Point(450, 328);
+            label11.Margin = new Padding(0);
+            label11.Name = "label11";
+            label11.Size = new Size(225, 17);
+            label11.TabIndex = 241;
+            label11.Text = "秒　※プロジェクト";
+            label11.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // label16
             // 
-            this.label16.AllowDrop = true;
-            this.label16.AutoEllipsis = true;
-            this.label16.Font = new System.Drawing.Font("BIZ UDゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label16.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label16.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label16.Location = new System.Drawing.Point(450, 355);
-            this.label16.Margin = new System.Windows.Forms.Padding(0);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(225, 17);
-            this.label16.TabIndex = 242;
-            this.label16.Text = "秒　※接続";
-            this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            label16.AllowDrop = true;
+            label16.AutoEllipsis = true;
+            label16.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label16.ForeColor = SystemColors.ActiveCaptionText;
+            label16.ImageAlign = ContentAlignment.MiddleLeft;
+            label16.Location = new Point(450, 355);
+            label16.Margin = new Padding(0);
+            label16.Name = "label16";
+            label16.Size = new Size(225, 17);
+            label16.TabIndex = 242;
+            label16.Text = "秒　※接続";
+            label16.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // label17
             // 
-            this.label17.AllowDrop = true;
-            this.label17.AutoEllipsis = true;
-            this.label17.Font = new System.Drawing.Font("BIZ UDゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label17.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label17.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label17.Location = new System.Drawing.Point(450, 382);
-            this.label17.Margin = new System.Windows.Forms.Padding(0);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(225, 17);
-            this.label17.TabIndex = 243;
-            this.label17.Text = "秒　※コマンド";
-            this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            label17.AllowDrop = true;
+            label17.AutoEllipsis = true;
+            label17.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label17.ForeColor = SystemColors.ActiveCaptionText;
+            label17.ImageAlign = ContentAlignment.MiddleLeft;
+            label17.Location = new Point(450, 382);
+            label17.Margin = new Padding(0);
+            label17.Name = "label17";
+            label17.Size = new Size(225, 17);
+            label17.TabIndex = 243;
+            label17.Text = "秒　※コマンド";
+            label17.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // 接続運用ボタン
             // 
-            this.接続運用ボタン.Location = new System.Drawing.Point(18, 416);
-            this.接続運用ボタン.Name = "接続運用ボタン";
-            this.接続運用ボタン.Size = new System.Drawing.Size(184, 33);
-            this.接続運用ボタン.TabIndex = 244;
-            this.接続運用ボタン.Text = "運用サーバーへ接続(&M)";
-            this.接続運用ボタン.UseVisualStyleBackColor = true;
-            this.接続運用ボタン.Click += new System.EventHandler(this.接続運用ボタン_Click);
+            接続運用ボタン.Location = new Point(18, 416);
+            接続運用ボタン.Name = "接続運用ボタン";
+            接続運用ボタン.Size = new Size(184, 33);
+            接続運用ボタン.TabIndex = 244;
+            接続運用ボタン.Text = "運用サーバーへ接続(&M)";
+            接続運用ボタン.UseVisualStyleBackColor = true;
+            接続運用ボタン.Click += 接続運用ボタン_Click;
             // 
             // セキュリティ設定ボタン
             // 
-            this.セキュリティ設定ボタン.Location = new System.Drawing.Point(208, 416);
-            this.セキュリティ設定ボタン.Name = "セキュリティ設定ボタン";
-            this.セキュリティ設定ボタン.Size = new System.Drawing.Size(184, 33);
-            this.セキュリティ設定ボタン.TabIndex = 245;
-            this.セキュリティ設定ボタン.Text = "セキュリティ設定(&E)";
-            this.セキュリティ設定ボタン.UseVisualStyleBackColor = true;
+            セキュリティ設定ボタン.Location = new Point(208, 416);
+            セキュリティ設定ボタン.Name = "セキュリティ設定ボタン";
+            セキュリティ設定ボタン.Size = new Size(184, 33);
+            セキュリティ設定ボタン.TabIndex = 245;
+            セキュリティ設定ボタン.Text = "セキュリティ設定(&E)";
+            セキュリティ設定ボタン.UseVisualStyleBackColor = true;
             // 
             // サウンドテストボタン
             // 
-            this.サウンドテストボタン.Location = new System.Drawing.Point(398, 416);
-            this.サウンドテストボタン.Name = "サウンドテストボタン";
-            this.サウンドテストボタン.Size = new System.Drawing.Size(184, 33);
-            this.サウンドテストボタン.TabIndex = 246;
-            this.サウンドテストボタン.Text = "サウンドテスト(&S)";
-            this.サウンドテストボタン.UseVisualStyleBackColor = true;
-            this.サウンドテストボタン.Click += new System.EventHandler(this.サウンドテストボタン_Click);
+            サウンドテストボタン.Location = new Point(398, 416);
+            サウンドテストボタン.Name = "サウンドテストボタン";
+            サウンドテストボタン.Size = new Size(184, 33);
+            サウンドテストボタン.TabIndex = 246;
+            サウンドテストボタン.Text = "サウンドテスト(&S)";
+            サウンドテストボタン.UseVisualStyleBackColor = true;
+            サウンドテストボタン.Click += サウンドテストボタン_Click;
             // 
             // 進捗状況テストボタン
             // 
-            this.進捗状況テストボタン.Location = new System.Drawing.Point(398, 455);
-            this.進捗状況テストボタン.Name = "進捗状況テストボタン";
-            this.進捗状況テストボタン.Size = new System.Drawing.Size(184, 33);
-            this.進捗状況テストボタン.TabIndex = 249;
-            this.進捗状況テストボタン.Text = "進捗状況テスト(&P)";
-            this.進捗状況テストボタン.UseVisualStyleBackColor = true;
-            this.進捗状況テストボタン.Click += new System.EventHandler(this.進捗状況テストボタン_Click);
+            進捗状況テストボタン.Location = new Point(398, 455);
+            進捗状況テストボタン.Name = "進捗状況テストボタン";
+            進捗状況テストボタン.Size = new Size(184, 33);
+            進捗状況テストボタン.TabIndex = 249;
+            進捗状況テストボタン.Text = "進捗状況テスト(&P)";
+            進捗状況テストボタン.UseVisualStyleBackColor = true;
+            進捗状況テストボタン.Click += 進捗状況テストボタン_Click;
             // 
             // 接続設定ボタン
             // 
-            this.接続設定ボタン.Location = new System.Drawing.Point(208, 455);
-            this.接続設定ボタン.Name = "接続設定ボタン";
-            this.接続設定ボタン.Size = new System.Drawing.Size(184, 33);
-            this.接続設定ボタン.TabIndex = 248;
-            this.接続設定ボタン.Text = "接続設定(&T)";
-            this.接続設定ボタン.UseVisualStyleBackColor = true;
-            this.接続設定ボタン.Click += new System.EventHandler(this.接続設定ボタン_Click);
+            接続設定ボタン.Location = new Point(208, 455);
+            接続設定ボタン.Name = "接続設定ボタン";
+            接続設定ボタン.Size = new Size(184, 33);
+            接続設定ボタン.TabIndex = 248;
+            接続設定ボタン.Text = "接続設定(&T)";
+            接続設定ボタン.UseVisualStyleBackColor = true;
+            接続設定ボタン.Click += 接続設定ボタン_Click;
             // 
             // 接続テストボタン
             // 
-            this.接続テストボタン.Location = new System.Drawing.Point(18, 455);
-            this.接続テストボタン.Name = "接続テストボタン";
-            this.接続テストボタン.Size = new System.Drawing.Size(184, 33);
-            this.接続テストボタン.TabIndex = 247;
-            this.接続テストボタン.Text = "テストサーバー接続(&T)";
-            this.接続テストボタン.UseVisualStyleBackColor = true;
-            this.接続テストボタン.Click += new System.EventHandler(this.接続テストボタン_Click);
+            接続テストボタン.Location = new Point(18, 455);
+            接続テストボタン.Name = "接続テストボタン";
+            接続テストボタン.Size = new Size(184, 33);
+            接続テストボタン.TabIndex = 247;
+            接続テストボタン.Text = "テストサーバー接続(&T)";
+            接続テストボタン.UseVisualStyleBackColor = true;
+            接続テストボタン.Click += 接続テストボタン_Click;
             // 
             // 接続テスト2ボタン
             // 
-            this.接続テスト2ボタン.Location = new System.Drawing.Point(18, 494);
-            this.接続テスト2ボタン.Name = "接続テスト2ボタン";
-            this.接続テスト2ボタン.Size = new System.Drawing.Size(184, 33);
-            this.接続テスト2ボタン.TabIndex = 250;
-            this.接続テスト2ボタン.Text = "テスト2サーバーへ接続";
-            this.接続テスト2ボタン.UseVisualStyleBackColor = true;
-            this.接続テスト2ボタン.Click += new System.EventHandler(this.接続テスト2ボタン_Click);
+            接続テスト2ボタン.Location = new Point(18, 494);
+            接続テスト2ボタン.Name = "接続テスト2ボタン";
+            接続テスト2ボタン.Size = new Size(184, 33);
+            接続テスト2ボタン.TabIndex = 250;
+            接続テスト2ボタン.Text = "テスト2サーバーへ接続";
+            接続テスト2ボタン.UseVisualStyleBackColor = true;
+            接続テスト2ボタン.Click += 接続テスト2ボタン_Click;
             // 
             // label18
             // 
-            this.label18.AllowDrop = true;
-            this.label18.AutoEllipsis = true;
-            this.label18.Font = new System.Drawing.Font("BIZ UDゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label18.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label18.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label18.Location = new System.Drawing.Point(208, 502);
-            this.label18.Margin = new System.Windows.Forms.Padding(0);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(374, 17);
-            this.label18.TabIndex = 251;
-            this.label18.Text = "※テスト2サーバーへ接続した場合、接続先情報は無効です。";
-            this.label18.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            label18.AllowDrop = true;
+            label18.AutoEllipsis = true;
+            label18.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label18.ForeColor = SystemColors.ActiveCaptionText;
+            label18.ImageAlign = ContentAlignment.MiddleLeft;
+            label18.Location = new Point(208, 502);
+            label18.Margin = new Padding(0);
+            label18.Name = "label18";
+            label18.Size = new Size(374, 17);
+            label18.TabIndex = 251;
+            label18.Text = "※テスト2サーバーへ接続した場合、接続先情報は無効です。";
+            label18.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // バージョンアップボタン
             // 
-            this.バージョンアップボタン.Location = new System.Drawing.Point(450, 107);
-            this.バージョンアップボタン.Name = "バージョンアップボタン";
-            this.バージョンアップボタン.Size = new System.Drawing.Size(190, 23);
-            this.バージョンアップボタン.TabIndex = 252;
-            this.バージョンアップボタン.Text = "バージョンアップ(&U)";
-            this.バージョンアップボタン.UseVisualStyleBackColor = true;
-            this.バージョンアップボタン.Click += new System.EventHandler(this.バージョンアップボタン_Click);
+            バージョンアップボタン.Location = new Point(450, 107);
+            バージョンアップボタン.Name = "バージョンアップボタン";
+            バージョンアップボタン.Size = new Size(190, 23);
+            バージョンアップボタン.TabIndex = 252;
+            バージョンアップボタン.Text = "バージョンアップ(&U)";
+            toolTip1.SetToolTip(バージョンアップボタン, "クライアントバージョンアップ");
+            バージョンアップボタン.UseVisualStyleBackColor = true;
+            バージョンアップボタン.Click += バージョンアップボタン_Click;
             // 
             // 管理者用バージョンアップボタン
             // 
-            this.管理者用バージョンアップボタン.Location = new System.Drawing.Point(450, 133);
-            this.管理者用バージョンアップボタン.Name = "管理者用バージョンアップボタン";
-            this.管理者用バージョンアップボタン.Size = new System.Drawing.Size(190, 23);
-            this.管理者用バージョンアップボタン.TabIndex = 253;
-            this.管理者用バージョンアップボタン.Text = "管理者用バージョンアップ(&A)";
-            this.管理者用バージョンアップボタン.UseVisualStyleBackColor = true;
-            this.管理者用バージョンアップボタン.Click += new System.EventHandler(this.管理者用バージョンアップボタン_Click);
+            管理者用バージョンアップボタン.Location = new Point(450, 133);
+            管理者用バージョンアップボタン.Name = "管理者用バージョンアップボタン";
+            管理者用バージョンアップボタン.Size = new Size(190, 23);
+            管理者用バージョンアップボタン.TabIndex = 253;
+            管理者用バージョンアップボタン.Text = "管理者用バージョンアップ(&A)";
+            toolTip1.SetToolTip(管理者用バージョンアップボタン, "管理者専用バージョンアップ");
+            管理者用バージョンアップボタン.UseVisualStyleBackColor = true;
+            管理者用バージョンアップボタン.Click += 管理者用バージョンアップボタン_Click;
             // 
             // サーバー日時更新ボタン
             // 
-            this.サーバー日時更新ボタン.Location = new System.Drawing.Point(450, 162);
-            this.サーバー日時更新ボタン.Name = "サーバー日時更新ボタン";
-            this.サーバー日時更新ボタン.Size = new System.Drawing.Size(190, 23);
-            this.サーバー日時更新ボタン.TabIndex = 254;
-            this.サーバー日時更新ボタン.Text = "現在の日時を取得(&N)";
-            this.サーバー日時更新ボタン.UseVisualStyleBackColor = true;
-            this.サーバー日時更新ボタン.Click += new System.EventHandler(this.サーバー日時更新ボタン_Click);
+            サーバー日時更新ボタン.Location = new Point(450, 162);
+            サーバー日時更新ボタン.Name = "サーバー日時更新ボタン";
+            サーバー日時更新ボタン.Size = new Size(190, 23);
+            サーバー日時更新ボタン.TabIndex = 254;
+            サーバー日時更新ボタン.Text = "現在の日時を取得(&N)";
+            toolTip1.SetToolTip(サーバー日時更新ボタン, "サーバー日時更新");
+            サーバー日時更新ボタン.UseVisualStyleBackColor = true;
+            サーバー日時更新ボタン.Click += サーバー日時更新ボタン_Click;
             // 
             // F_システム
             // 
-            this.ClientSize = new System.Drawing.Size(708, 586);
-            this.Controls.Add(this.サーバー日時更新ボタン);
-            this.Controls.Add(this.管理者用バージョンアップボタン);
-            this.Controls.Add(this.バージョンアップボタン);
-            this.Controls.Add(this.label18);
-            this.Controls.Add(this.接続テスト2ボタン);
-            this.Controls.Add(this.進捗状況テストボタン);
-            this.Controls.Add(this.接続設定ボタン);
-            this.Controls.Add(this.接続テストボタン);
-            this.Controls.Add(this.サウンドテストボタン);
-            this.Controls.Add(this.セキュリティ設定ボタン);
-            this.Controls.Add(this.接続運用ボタン);
-            this.Controls.Add(this.label17);
-            this.Controls.Add(this.label16);
-            this.Controls.Add(this.label11);
-            this.Controls.Add(this.接続文字列);
-            this.Controls.Add(this.OS);
-            this.Controls.Add(this.label12);
-            this.Controls.Add(this.接続タイムアウト_Command);
-            this.Controls.Add(this.label13);
-            this.Controls.Add(this.接続タイムアウト_ADO);
-            this.Controls.Add(this.label14);
-            this.Controls.Add(this.接続タイムアウト_プロジェクト);
-            this.Controls.Add(this.label15);
-            this.Controls.Add(this.ネットワークユーザー名);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.ランタイムバージョン);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.コンピュータ名);
-            this.Controls.Add(this.label9);
-            this.Controls.Add(this.クライアント日時);
-            this.Controls.Add(this.label10);
-            this.Controls.Add(this.サーバー日時);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.最新バージョン);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.バージョン);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.接続状況);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.サーバー名);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.接続対象サーバー);
-            this.Controls.Add(this.閉じる);
-            this.Name = "F_システム";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.F_システム_FormClosing);
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.F_システム_FormClosed);
-            this.Load += new System.EventHandler(this.Form_Load);
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            ClientSize = new Size(708, 586);
+            Controls.Add(サーバー日時更新ボタン);
+            Controls.Add(管理者用バージョンアップボタン);
+            Controls.Add(バージョンアップボタン);
+            Controls.Add(label18);
+            Controls.Add(接続テスト2ボタン);
+            Controls.Add(進捗状況テストボタン);
+            Controls.Add(接続設定ボタン);
+            Controls.Add(接続テストボタン);
+            Controls.Add(サウンドテストボタン);
+            Controls.Add(セキュリティ設定ボタン);
+            Controls.Add(接続運用ボタン);
+            Controls.Add(label17);
+            Controls.Add(label16);
+            Controls.Add(label11);
+            Controls.Add(接続文字列);
+            Controls.Add(OS);
+            Controls.Add(label12);
+            Controls.Add(接続タイムアウト_Command);
+            Controls.Add(label13);
+            Controls.Add(接続タイムアウト_ADO);
+            Controls.Add(label14);
+            Controls.Add(接続タイムアウト_プロジェクト);
+            Controls.Add(label15);
+            Controls.Add(ネットワークユーザー名);
+            Controls.Add(label6);
+            Controls.Add(ランタイムバージョン);
+            Controls.Add(label7);
+            Controls.Add(label8);
+            Controls.Add(コンピュータ名);
+            Controls.Add(label9);
+            Controls.Add(クライアント日時);
+            Controls.Add(label10);
+            Controls.Add(サーバー日時);
+            Controls.Add(label5);
+            Controls.Add(最新バージョン);
+            Controls.Add(label4);
+            Controls.Add(バージョン);
+            Controls.Add(label3);
+            Controls.Add(接続状況);
+            Controls.Add(label2);
+            Controls.Add(サーバー名);
+            Controls.Add(label1);
+            Controls.Add(接続対象サーバー);
+            Controls.Add(閉じる);
+            Name = "F_システム";
+            FormClosing += F_システム_FormClosing;
+            FormClosed += F_システム_FormClosed;
+            Load += Form_Load;
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -736,5 +740,6 @@
         private Button バージョンアップボタン;
         private Button 管理者用バージョンアップボタン;
         private Button サーバー日時更新ボタン;
+        private ToolTip toolTip1;
     }
 }

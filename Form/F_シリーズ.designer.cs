@@ -110,6 +110,7 @@ namespace u_net
             表示件数 = new TextBox();
             label2 = new Label();
             label3 = new Label();
+            toolTip1 = new ToolTip(components);
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel1.SuspendLayout();
             statusStrip1.SuspendLayout();
@@ -125,6 +126,7 @@ namespace u_net
             コマンド終了.Size = new Size(70, 25);
             コマンド終了.TabIndex = 0;
             コマンド終了.Text = "終了";
+            toolTip1.SetToolTip(コマンド終了, "終了");
             コマンド終了.UseVisualStyleBackColor = true;
             コマンド終了.Click += コマンド終了_Click;
             // 
@@ -462,22 +464,22 @@ namespace u_net
             // statusStrip1
             // 
             statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1, toolStripStatusLabel2 });
-            statusStrip1.Location = new Point(0, 612);
+            statusStrip1.Location = new Point(0, 615);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Padding = new Padding(1, 0, 19, 0);
-            statusStrip1.Size = new Size(939, 25);
+            statusStrip1.Size = new Size(939, 22);
             statusStrip1.TabIndex = 110;
             statusStrip1.Text = "statusStrip1";
             // 
             // toolStripStatusLabel1
             // 
             toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            toolStripStatusLabel1.Size = new Size(0, 20);
+            toolStripStatusLabel1.Size = new Size(0, 17);
             // 
             // toolStripStatusLabel2
             // 
             toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            toolStripStatusLabel2.Size = new Size(111, 20);
+            toolStripStatusLabel2.Size = new Size(89, 17);
             toolStripStatusLabel2.Text = "各種項目の説明";
             // 
             // label16
@@ -750,7 +752,6 @@ namespace u_net
             Discontinued.TabIndex = 12;
             Discontinued.UseVisualStyleBackColor = true;
             Discontinued.CheckedChanged += Discontinued_CheckedChanged;
-
             // 
             // label11
             // 
@@ -1101,6 +1102,7 @@ namespace u_net
         private TextBox 表示件数;
         protected ComboBox シリーズコード;
         private TextBox test;
+        private ToolTip toolTip1;
     }
 }
 

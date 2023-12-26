@@ -284,9 +284,10 @@
             // label2
             // 
             label2.AutoSize = true;
+            label2.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             label2.Location = new Point(163, 8);
             label2.Name = "label2";
-            label2.Size = new Size(19, 15);
+            label2.Size = new Size(17, 12);
             label2.TabIndex = 86;
             label2.Text = "件";
             // 

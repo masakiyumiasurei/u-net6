@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(F_ユニット管理));
             panel1 = new Panel();
             コマンドF11 = new Button();
@@ -47,6 +48,7 @@
             label2 = new Label();
             dataGridView1 = new DataGridView();
             panel2 = new Panel();
+            toolTip1 = new ToolTip(components);
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel2.SuspendLayout();
@@ -76,6 +78,7 @@
             // 
             // コマンドF11
             // 
+            コマンドF11.Enabled = false;
             コマンドF11.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             コマンドF11.ForeColor = Color.Blue;
             コマンドF11.ImageAlign = ContentAlignment.BottomLeft;
@@ -89,6 +92,7 @@
             // 
             // コマンドF8
             // 
+            コマンドF8.Enabled = false;
             コマンドF8.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             コマンドF8.ForeColor = Color.Blue;
             コマンドF8.ImageAlign = ContentAlignment.BottomLeft;
@@ -112,6 +116,7 @@
             コマンド廃止指定.TabIndex = 10;
             コマンド廃止指定.TabStop = false;
             コマンド廃止指定.Text = "廃止指定";
+            toolTip1.SetToolTip(コマンド廃止指定, "ユニット廃止指定");
             コマンド廃止指定.UseVisualStyleBackColor = true;
             コマンド廃止指定.Click += コマンド廃止指定_Click;
             // 
@@ -127,6 +132,7 @@
             コマンドユニット.TabIndex = 9;
             コマンドユニット.TabStop = false;
             コマンドユニット.Text = "ユニット";
+            toolTip1.SetToolTip(コマンドユニット, "ユニット参照");
             コマンドユニット.UseVisualStyleBackColor = true;
             コマンドユニット.Click += コマンドユニット_Click;
             // 
@@ -142,6 +148,7 @@
             コマンド部品表.TabIndex = 8;
             コマンド部品表.TabStop = false;
             コマンド部品表.Text = "部品表";
+            toolTip1.SetToolTip(コマンド部品表, "部品表プレビュー");
             コマンド部品表.UseVisualStyleBackColor = true;
             コマンド部品表.Click += コマンド部品表_Click;
             // 
@@ -157,6 +164,7 @@
             コマンド参照用.TabIndex = 7;
             コマンド参照用.TabStop = false;
             コマンド参照用.Text = "参照用";
+            toolTip1.SetToolTip(コマンド参照用, "使用部品で表示");
             コマンド参照用.UseVisualStyleBackColor = true;
             コマンド参照用.Click += コマンド参照用_Click;
             コマンド参照用.Enter += コマンド参照用_Enter;
@@ -188,6 +196,7 @@
             コマンド初期化.TabIndex = 4;
             コマンド初期化.TabStop = false;
             コマンド初期化.Text = "初期化";
+            toolTip1.SetToolTip(コマンド初期化, "抽出条件の初期化");
             コマンド初期化.UseVisualStyleBackColor = true;
             コマンド初期化.Click += コマンド初期化_Click;
             // 
@@ -203,6 +212,7 @@
             コマンド検索.TabIndex = 3;
             コマンド検索.TabStop = false;
             コマンド検索.Text = "検索";
+            toolTip1.SetToolTip(コマンド検索, "コード検索");
             コマンド検索.UseVisualStyleBackColor = true;
             コマンド検索.Click += コマンド検索_Click;
             // 
@@ -218,6 +228,7 @@
             コマンド抽出.TabIndex = 2;
             コマンド抽出.TabStop = false;
             コマンド抽出.Text = "抽出";
+            toolTip1.SetToolTip(コマンド抽出, "抽出設定");
             コマンド抽出.UseVisualStyleBackColor = true;
             コマンド抽出.Click += コマンド抽出_Click;
             // 
@@ -233,6 +244,7 @@
             コマンド更新.TabIndex = 1;
             コマンド更新.TabStop = false;
             コマンド更新.Text = "更新";
+            toolTip1.SetToolTip(コマンド更新, "最新の情報に更新");
             コマンド更新.UseVisualStyleBackColor = true;
             コマンド更新.Click += コマンド更新_Click;
             // 
@@ -247,6 +259,7 @@
             コマンド終了.TabIndex = 0;
             コマンド終了.TabStop = false;
             コマンド終了.Text = "終了";
+            toolTip1.SetToolTip(コマンド終了, "終了");
             コマンド終了.UseVisualStyleBackColor = true;
             コマンド終了.Click += コマンド終了_Click;
             // 
@@ -273,9 +286,10 @@
             // label2
             // 
             label2.AutoSize = true;
+            label2.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             label2.Location = new Point(163, 8);
             label2.Name = "label2";
-            label2.Size = new Size(19, 15);
+            label2.Size = new Size(17, 12);
             label2.TabIndex = 86;
             label2.Text = "件";
             // 
@@ -475,5 +489,6 @@
         private Panel panel2;
         private Button コマンド検索;
         private Button コマンドF11;
+        private ToolTip toolTip1;
     }
 }
