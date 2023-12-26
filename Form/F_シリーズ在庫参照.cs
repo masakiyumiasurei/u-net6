@@ -20,7 +20,7 @@ namespace u_net
     {
         public DateTime TargetDay;
 
-        
+
 
 
         int intWindowHeight = 0;
@@ -170,7 +170,7 @@ namespace u_net
         {
 
             Connect();
-            
+
             try
             {
 
@@ -383,7 +383,7 @@ namespace u_net
 
 
 
-       
+
 
 
 
@@ -407,9 +407,9 @@ namespace u_net
             Cleargrid(dataGridView1);
         }
 
-    
 
-       
+
+
 
         private void コマンドシリーズ_Click(object sender, EventArgs e)
         {
@@ -466,7 +466,7 @@ namespace u_net
                 if (result == DialogResult.No)
                     return;
 
-                
+
                 fn.DoWait("しばらくお待ちください...");
 
 
@@ -489,7 +489,7 @@ namespace u_net
 
                 fn.WaitForm.Close();
             }
-       
+
         }
 
 
@@ -505,7 +505,7 @@ namespace u_net
 
                     command.ExecuteNonQuery();
                 }
-                
+
 
                 return 0; // 成功
             }
@@ -630,7 +630,7 @@ namespace u_net
 
         private F_カレンダー dateSelectionForm;
 
-      
+
         private void 現在日選択ボタン_Click(object sender, EventArgs e)
         {
             dateSelectionForm = new F_カレンダー();
@@ -659,6 +659,14 @@ namespace u_net
 
         }
 
-        
+        private void シリーズコード_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "■抽出表示するシリーズコードを入力します。　■全てのシリーズを表示するには何も入力しないでください。";
+        }
+
+        private void シリーズコード_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "各種項目の説明";
+        }
     }
 }
