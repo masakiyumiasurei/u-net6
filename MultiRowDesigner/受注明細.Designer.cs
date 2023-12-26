@@ -40,7 +40,7 @@
             gcMultiRow1.EditMode = GrapeCity.Win.MultiRow.EditMode.EditOnEnter;
             gcMultiRow1.Location = new Point(0, 0);
             gcMultiRow1.Name = "gcMultiRow1";
-            gcMultiRow1.Size = new Size(905, 300);
+            gcMultiRow1.Size = new Size(1100, 300);
             gcMultiRow1.TabIndex = 0;
             gcMultiRow1.Template = 受注明細テンプレート1;
             gcMultiRow1.Text = "gcMultiRow1";
@@ -57,15 +57,15 @@
             // 
             // 
             受注明細テンプレート1.Row.Height = 84;
-            受注明細テンプレート1.Row.Width = 860;
-            受注明細テンプレート1.Width = 860;
+            受注明細テンプレート1.Row.Width = 1060;
+            受注明細テンプレート1.Width = 1060;
             // 
             // 受注明細
             // 
             AutoScaleMode = AutoScaleMode.None;
             Controls.Add(gcMultiRow1);
             Name = "受注明細";
-            Size = new Size(905, 300);
+            Size = new Size(1100, 300);
             Load += 受注明細_Load;
             ((System.ComponentModel.ISupportInitialize)gcMultiRow1).EndInit();
             ResumeLayout(false);

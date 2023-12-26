@@ -29,6 +29,7 @@ namespace u_net
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             コマンド終了 = new Button();
             コマンド登録 = new Button();
             panel1 = new Panel();
@@ -119,6 +120,7 @@ namespace u_net
             終了者コード_ラベル = new Label();
             終了日時_ラベル = new Label();
             登録者コード = new TextBox();
+            toolTip1 = new ToolTip(components);
             panel1.SuspendLayout();
             statusStrip1.SuspendLayout();
             SuspendLayout();
@@ -134,6 +136,7 @@ namespace u_net
             コマンド終了.TabIndex = 1021;
             コマンド終了.TabStop = false;
             コマンド終了.Text = "終了";
+            toolTip1.SetToolTip(コマンド終了, "終了");
             コマンド終了.UseVisualStyleBackColor = true;
             コマンド終了.Click += コマンド終了_Click;
             // 
@@ -1104,6 +1107,7 @@ namespace u_net
             申請日選択ボタン.Size = new Size(20, 20);
             申請日選択ボタン.TabIndex = 3;
             申請日選択ボタン.Text = "▼";
+            toolTip1.SetToolTip(申請日選択ボタン, "カレンダーから入力します");
             申請日選択ボタン.UseVisualStyleBackColor = true;
             申請日選択ボタン.Click += 申請日選択ボタン_Click;
             // 
@@ -1114,6 +1118,7 @@ namespace u_net
             購買納期選択ボタン.Size = new Size(21, 20);
             購買納期選択ボタン.TabIndex = 13;
             購買納期選択ボタン.Text = "▼";
+            toolTip1.SetToolTip(購買納期選択ボタン, "カレンダー");
             購買納期選択ボタン.UseVisualStyleBackColor = true;
             購買納期選択ボタン.Click += 購買納期選択ボタン_Click;
             // 
@@ -1124,6 +1129,7 @@ namespace u_net
             出荷予定日選択ボタン.Size = new Size(21, 20);
             出荷予定日選択ボタン.TabIndex = 15;
             出荷予定日選択ボタン.Text = "▼";
+            toolTip1.SetToolTip(出荷予定日選択ボタン, "カレンダー");
             出荷予定日選択ボタン.UseVisualStyleBackColor = true;
             出荷予定日選択ボタン.Click += 出荷予定日選択ボタン_Click;
             // 
@@ -1558,6 +1564,7 @@ namespace u_net
         private TextBox 登録者コード;
         private Button コマンドメール;
         private Button コマンド削除;
+        private ToolTip toolTip1;
     }
 }
 

@@ -160,6 +160,7 @@ namespace u_net
             コマンド終了.Name = "コマンド終了";
             コマンド終了.Size = new Size(70, 25);
             コマンド終了.TabIndex = 0;
+            コマンド終了.TabStop = false;
             コマンド終了.Text = "終了";
             コマンド終了.UseVisualStyleBackColor = true;
             コマンド終了.Click += コマンド終了_Click;
@@ -174,6 +175,7 @@ namespace u_net
             コマンド登録.Name = "コマンド登録";
             コマンド登録.Size = new Size(70, 25);
             コマンド登録.TabIndex = 11;
+            コマンド登録.TabStop = false;
             コマンド登録.Text = "登録";
             コマンド登録.UseVisualStyleBackColor = true;
             コマンド登録.Click += コマンド登録_Click;
@@ -209,6 +211,7 @@ namespace u_net
             文書グループ登録ボタン.Name = "文書グループ登録ボタン";
             文書グループ登録ボタン.Size = new Size(70, 25);
             文書グループ登録ボタン.TabIndex = 6;
+            文書グループ登録ボタン.TabStop = false;
             文書グループ登録ボタン.Text = "リンク";
             文書グループ登録ボタン.UseVisualStyleBackColor = true;
             文書グループ登録ボタン.Click += 文書グループ登録ボタン_Click;
@@ -223,6 +226,7 @@ namespace u_net
             button.Name = "button";
             button.Size = new Size(70, 25);
             button.TabIndex = 10;
+            button.TabStop = false;
             button.UseVisualStyleBackColor = true;
             // 
             // コマンド送信
@@ -235,6 +239,7 @@ namespace u_net
             コマンド送信.Name = "コマンド送信";
             コマンド送信.Size = new Size(70, 25);
             コマンド送信.TabIndex = 8;
+            コマンド送信.TabStop = false;
             コマンド送信.Text = "送信";
             コマンド送信.UseVisualStyleBackColor = true;
             コマンド送信.Click += コマンド送信_Click;
@@ -249,6 +254,7 @@ namespace u_net
             コマンド見積書.Name = "コマンド見積書";
             コマンド見積書.Size = new Size(70, 25);
             コマンド見積書.TabIndex = 7;
+            コマンド見積書.TabStop = false;
             コマンド見積書.Text = "見積書";
             コマンド見積書.UseVisualStyleBackColor = true;
             コマンド見積書.Click += コマンド見積書_Click;
@@ -264,6 +270,7 @@ namespace u_net
             コマンド確定.Name = "コマンド確定";
             コマンド確定.Size = new Size(70, 25);
             コマンド確定.TabIndex = 10;
+            コマンド確定.TabStop = false;
             コマンド確定.Text = "確定";
             コマンド確定.UseVisualStyleBackColor = true;
             コマンド確定.Click += コマンド確定_Click;
@@ -279,6 +286,7 @@ namespace u_net
             コマンド承認.Name = "コマンド承認";
             コマンド承認.Size = new Size(70, 25);
             コマンド承認.TabIndex = 4;
+            コマンド承認.TabStop = false;
             コマンド承認.Text = "承認";
             コマンド承認.UseVisualStyleBackColor = true;
             コマンド承認.Click += コマンド承認_Click;
@@ -293,6 +301,7 @@ namespace u_net
             コマンド削除.Name = "コマンド削除";
             コマンド削除.Size = new Size(70, 25);
             コマンド削除.TabIndex = 3;
+            コマンド削除.TabStop = false;
             コマンド削除.Text = "削除";
             コマンド削除.UseVisualStyleBackColor = true;
             コマンド削除.Click += コマンド削除_Click;
@@ -307,6 +316,7 @@ namespace u_net
             コマンド複写.Name = "コマンド複写";
             コマンド複写.Size = new Size(70, 25);
             コマンド複写.TabIndex = 9;
+            コマンド複写.TabStop = false;
             コマンド複写.Text = "複写";
             コマンド複写.UseVisualStyleBackColor = true;
             コマンド複写.Click += コマンド複写_Click;
@@ -321,6 +331,7 @@ namespace u_net
             コマンド読込.Name = "コマンド読込";
             コマンド読込.Size = new Size(70, 25);
             コマンド読込.TabIndex = 2;
+            コマンド読込.TabStop = false;
             コマンド読込.Text = "読込";
             コマンド読込.UseVisualStyleBackColor = true;
             コマンド読込.Click += コマンド読込_Click;
@@ -335,6 +346,7 @@ namespace u_net
             コマンド新規.Name = "コマンド新規";
             コマンド新規.Size = new Size(70, 25);
             コマンド新規.TabIndex = 1;
+            コマンド新規.TabStop = false;
             コマンド新規.Text = "新規";
             コマンド新規.UseVisualStyleBackColor = true;
             コマンド新規.Click += コマンド新規_Click;
@@ -553,11 +565,11 @@ namespace u_net
             確定.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             確定.Location = new Point(720, 175);
             確定.Margin = new Padding(3, 2, 3, 2);
-            確定.Multiline = true;
             確定.Name = "確定";
             確定.ReadOnly = true;
-            確定.Size = new Size(25, 23);
+            確定.Size = new Size(25, 21);
             確定.TabIndex = 36;
+            確定.TabStop = false;
             // 
             // label15
             // 
@@ -644,11 +656,11 @@ namespace u_net
             見積日.ImeMode = ImeMode.Disable;
             見積日.Location = new Point(125, 75);
             見積日.Margin = new Padding(3, 2, 3, 2);
-            見積日.Multiline = true;
             見積日.Name = "見積日";
-            見積日.Size = new Size(150, 22);
+            見積日.Size = new Size(150, 21);
             見積日.TabIndex = 2;
             見積日.TextChanged += 見積日_TextChanged;
+            見積日.Validating += 見積日_Validating;
             // 
             // ラベル3
             // 
@@ -672,9 +684,8 @@ namespace u_net
             件名.ImeMode = ImeMode.Hiragana;
             件名.Location = new Point(125, 125);
             件名.Margin = new Padding(3, 2, 3, 2);
-            件名.Multiline = true;
             件名.Name = "件名";
-            件名.Size = new Size(531, 22);
+            件名.Size = new Size(531, 21);
             件名.TabIndex = 6;
             件名.TextChanged += 件名_TextChanged;
             件名.Enter += 件名_Enter;
@@ -715,11 +726,11 @@ namespace u_net
             承認.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             承認.Location = new Point(826, 175);
             承認.Margin = new Padding(3, 2, 3, 2);
-            承認.Multiline = true;
             承認.Name = "承認";
             承認.ReadOnly = true;
-            承認.Size = new Size(25, 23);
+            承認.Size = new Size(25, 21);
             承認.TabIndex = 37;
+            承認.TabStop = false;
             // 
             // label8
             // 
@@ -742,11 +753,11 @@ namespace u_net
             削除.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             削除.Location = new Point(928, 175);
             削除.Margin = new Padding(3, 2, 3, 2);
-            削除.Multiline = true;
             削除.Name = "削除";
             削除.ReadOnly = true;
-            削除.Size = new Size(25, 23);
+            削除.Size = new Size(25, 21);
             削除.TabIndex = 38;
+            削除.TabStop = false;
             // 
             // 改版ボタン
             // 
@@ -919,9 +930,8 @@ namespace u_net
             顧客コード.ImeMode = ImeMode.Disable;
             顧客コード.Location = new Point(125, 150);
             顧客コード.Margin = new Padding(3, 2, 3, 2);
-            顧客コード.Multiline = true;
             顧客コード.Name = "顧客コード";
-            顧客コード.Size = new Size(150, 22);
+            顧客コード.Size = new Size(150, 21);
             顧客コード.TabIndex = 7;
             顧客コード.TextChanged += 顧客コード_TextChanged;
             顧客コード.Enter += 顧客コード_Enter;
@@ -946,9 +956,8 @@ namespace u_net
             顧客名.ImeMode = ImeMode.Hiragana;
             顧客名.Location = new Point(125, 175);
             顧客名.Margin = new Padding(3, 2, 3, 2);
-            顧客名.Multiline = true;
             顧客名.Name = "顧客名";
-            顧客名.Size = new Size(531, 22);
+            顧客名.Size = new Size(531, 21);
             顧客名.TabIndex = 8;
             顧客名.TextChanged += 顧客名_TextChanged;
             顧客名.Enter += 顧客名_Enter;
@@ -962,9 +971,8 @@ namespace u_net
             顧客担当者名.ImeMode = ImeMode.Hiragana;
             顧客担当者名.Location = new Point(125, 200);
             顧客担当者名.Margin = new Padding(3, 2, 3, 2);
-            顧客担当者名.Multiline = true;
             顧客担当者名.Name = "顧客担当者名";
-            顧客担当者名.Size = new Size(531, 22);
+            顧客担当者名.Size = new Size(531, 21);
             顧客担当者名.TabIndex = 10;
             顧客担当者名.TextChanged += 顧客担当者名_TextChanged;
             顧客担当者名.Enter += 顧客担当者名_Enter;
@@ -993,9 +1001,8 @@ namespace u_net
             ファックス番号.ImeMode = ImeMode.Disable;
             ファックス番号.Location = new Point(125, 250);
             ファックス番号.Margin = new Padding(3, 2, 3, 2);
-            ファックス番号.Multiline = true;
             ファックス番号.Name = "ファックス番号";
-            ファックス番号.Size = new Size(242, 22);
+            ファックス番号.Size = new Size(242, 21);
             ファックス番号.TabIndex = 12;
             ファックス番号.TextChanged += ファックス番号_TextChanged;
             ファックス番号.Enter += ファックス番号_Enter;
@@ -1008,9 +1015,8 @@ namespace u_net
             納期.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             納期.Location = new Point(125, 275);
             納期.Margin = new Padding(3, 2, 3, 2);
-            納期.Multiline = true;
             納期.Name = "納期";
-            納期.Size = new Size(242, 22);
+            納期.Size = new Size(242, 21);
             納期.TabIndex = 13;
             納期.TextChanged += 納期_TextChanged;
             納期.Enter += 納期_Enter;
@@ -1035,15 +1041,16 @@ namespace u_net
             // 担当者名
             // 
             担当者名.BackColor = Color.White;
+            担当者名.Enabled = false;
             担当者名.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             担当者名.ImeMode = ImeMode.Disable;
             担当者名.Location = new Point(190, 100);
             担当者名.Margin = new Padding(3, 2, 3, 2);
-            担当者名.Multiline = true;
             担当者名.Name = "担当者名";
             担当者名.ReadOnly = true;
-            担当者名.Size = new Size(196, 22);
+            担当者名.Size = new Size(196, 21);
             担当者名.TabIndex = 5;
+            担当者名.TabStop = false;
             // 
             // 支払条件
             // 
@@ -1104,6 +1111,7 @@ namespace u_net
             合計金額表示.TabIndex = 18;
             合計金額表示.TextChanged += 合計金額表示_TextChanged;
             合計金額表示.Enter += 合計金額表示_Enter;
+            合計金額表示.Validating += 合計金額表示_Validating;
             // 
             // label6
             // 
@@ -1185,9 +1193,8 @@ namespace u_net
             電話番号.ImeMode = ImeMode.Disable;
             電話番号.Location = new Point(125, 225);
             電話番号.Margin = new Padding(3, 2, 3, 2);
-            電話番号.Multiline = true;
             電話番号.Name = "電話番号";
-            電話番号.Size = new Size(242, 22);
+            電話番号.Size = new Size(242, 21);
             電話番号.TabIndex = 11;
             電話番号.TextChanged += 電話番号_TextChanged;
             電話番号.Enter += 電話番号_Enter;
@@ -1223,6 +1230,7 @@ namespace u_net
             要承認.TabIndex = 17;
             要承認.TextChanged += 要承認_TextChanged;
             要承認.Enter += 要承認_Enter;
+            要承認.Validating += 要承認_Validating;
             // 
             // label5
             // 
@@ -1290,11 +1298,11 @@ namespace u_net
             作成者コード.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             作成者コード.Location = new Point(748, 75);
             作成者コード.Margin = new Padding(3, 2, 3, 2);
-            作成者コード.Multiline = true;
             作成者コード.Name = "作成者コード";
             作成者コード.ReadOnly = true;
-            作成者コード.Size = new Size(49, 23);
+            作成者コード.Size = new Size(49, 21);
             作成者コード.TabIndex = 23;
+            作成者コード.TabStop = false;
             // 
             // 更新者コード
             // 
@@ -1302,11 +1310,11 @@ namespace u_net
             更新者コード.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             更新者コード.Location = new Point(748, 125);
             更新者コード.Margin = new Padding(3, 2, 3, 2);
-            更新者コード.Multiline = true;
             更新者コード.Name = "更新者コード";
             更新者コード.ReadOnly = true;
-            更新者コード.Size = new Size(49, 23);
+            更新者コード.Size = new Size(49, 21);
             更新者コード.TabIndex = 26;
+            更新者コード.TabStop = false;
             // 
             // 作成者名
             // 
@@ -1314,11 +1322,11 @@ namespace u_net
             作成者名.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             作成者名.Location = new Point(803, 75);
             作成者名.Margin = new Padding(3, 2, 3, 2);
-            作成者名.Multiline = true;
             作成者名.Name = "作成者名";
             作成者名.ReadOnly = true;
-            作成者名.Size = new Size(122, 23);
+            作成者名.Size = new Size(122, 21);
             作成者名.TabIndex = 24;
+            作成者名.TabStop = false;
             // 
             // 更新者名
             // 
@@ -1326,11 +1334,11 @@ namespace u_net
             更新者名.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             更新者名.Location = new Point(803, 125);
             更新者名.Margin = new Padding(3, 2, 3, 2);
-            更新者名.Multiline = true;
             更新者名.Name = "更新者名";
             更新者名.ReadOnly = true;
-            更新者名.Size = new Size(122, 23);
+            更新者名.Size = new Size(122, 21);
             更新者名.TabIndex = 27;
+            更新者名.TabStop = false;
             // 
             // 更新日時
             // 
@@ -1338,11 +1346,11 @@ namespace u_net
             更新日時.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             更新日時.Location = new Point(748, 100);
             更新日時.Margin = new Padding(3, 2, 3, 2);
-            更新日時.Multiline = true;
             更新日時.Name = "更新日時";
             更新日時.ReadOnly = true;
-            更新日時.Size = new Size(177, 23);
+            更新日時.Size = new Size(177, 21);
             更新日時.TabIndex = 25;
+            更新日時.TabStop = false;
             // 
             // 作成日時
             // 
@@ -1350,11 +1358,11 @@ namespace u_net
             作成日時.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             作成日時.Location = new Point(748, 50);
             作成日時.Margin = new Padding(3, 2, 3, 2);
-            作成日時.Multiline = true;
             作成日時.Name = "作成日時";
             作成日時.ReadOnly = true;
-            作成日時.Size = new Size(177, 23);
+            作成日時.Size = new Size(177, 21);
             作成日時.TabIndex = 22;
+            作成日時.TabStop = false;
             // 
             // 確定日時
             // 
@@ -1362,10 +1370,9 @@ namespace u_net
             確定日時.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             確定日時.Location = new Point(479, 225);
             確定日時.Margin = new Padding(3, 2, 3, 2);
-            確定日時.Multiline = true;
             確定日時.Name = "確定日時";
             確定日時.ReadOnly = true;
-            確定日時.Size = new Size(177, 23);
+            確定日時.Size = new Size(177, 20);
             確定日時.TabIndex = 28;
             確定日時.Visible = false;
             // 
@@ -1375,10 +1382,9 @@ namespace u_net
             承認日時.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             承認日時.Location = new Point(479, 275);
             承認日時.Margin = new Padding(3, 2, 3, 2);
-            承認日時.Multiline = true;
             承認日時.Name = "承認日時";
             承認日時.ReadOnly = true;
-            承認日時.Size = new Size(177, 23);
+            承認日時.Size = new Size(177, 20);
             承認日時.TabIndex = 30;
             承認日時.Visible = false;
             // 
@@ -1388,10 +1394,9 @@ namespace u_net
             承認者名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             承認者名.Location = new Point(534, 300);
             承認者名.Margin = new Padding(3, 2, 3, 2);
-            承認者名.Multiline = true;
             承認者名.Name = "承認者名";
             承認者名.ReadOnly = true;
-            承認者名.Size = new Size(122, 23);
+            承認者名.Size = new Size(122, 20);
             承認者名.TabIndex = 32;
             承認者名.Visible = false;
             // 
@@ -1401,10 +1406,9 @@ namespace u_net
             承認者コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             承認者コード.Location = new Point(479, 300);
             承認者コード.Margin = new Padding(3, 2, 3, 2);
-            承認者コード.Multiline = true;
             承認者コード.Name = "承認者コード";
             承認者コード.ReadOnly = true;
-            承認者コード.Size = new Size(49, 23);
+            承認者コード.Size = new Size(49, 20);
             承認者コード.TabIndex = 31;
             承認者コード.Visible = false;
             // 
@@ -1414,10 +1418,9 @@ namespace u_net
             確定者コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             確定者コード.Location = new Point(479, 250);
             確定者コード.Margin = new Padding(3, 2, 3, 2);
-            確定者コード.Multiline = true;
             確定者コード.Name = "確定者コード";
             確定者コード.ReadOnly = true;
-            確定者コード.Size = new Size(49, 23);
+            確定者コード.Size = new Size(49, 20);
             確定者コード.TabIndex = 29;
             確定者コード.Visible = false;
             // 
@@ -1523,10 +1526,9 @@ namespace u_net
             削除日時.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             削除日時.Location = new Point(479, 325);
             削除日時.Margin = new Padding(3, 2, 3, 2);
-            削除日時.Multiline = true;
             削除日時.Name = "削除日時";
             削除日時.ReadOnly = true;
-            削除日時.Size = new Size(177, 23);
+            削除日時.Size = new Size(177, 20);
             削除日時.TabIndex = 33;
             削除日時.Visible = false;
             // 
@@ -1536,10 +1538,9 @@ namespace u_net
             削除者コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             削除者コード.Location = new Point(479, 350);
             削除者コード.Margin = new Padding(3, 2, 3, 2);
-            削除者コード.Multiline = true;
             削除者コード.Name = "削除者コード";
             削除者コード.ReadOnly = true;
-            削除者コード.Size = new Size(49, 23);
+            削除者コード.Size = new Size(49, 20);
             削除者コード.TabIndex = 34;
             削除者コード.Visible = false;
             // 
@@ -1564,9 +1565,8 @@ namespace u_net
             見積コード.ImeMode = ImeMode.Disable;
             見積コード.Location = new Point(125, 50);
             見積コード.Margin = new Padding(3, 2, 3, 2);
-            見積コード.Multiline = true;
             見積コード.Name = "見積コード";
-            見積コード.Size = new Size(150, 22);
+            見積コード.Size = new Size(150, 21);
             見積コード.TabIndex = 0;
             見積コード.TextChanged += 見積コード_TextChanged;
             見積コード.Validating += 見積コード_Validating;
@@ -1577,7 +1577,7 @@ namespace u_net
             見積明細1.Location = new Point(15, 460);
             見積明細1.Name = "見積明細1";
             見積明細1.Size = new Size(1050, 350);
-            見積明細1.TabIndex = 10080;
+            見積明細1.TabIndex = 21;
             // 
             // F_見積
             // 

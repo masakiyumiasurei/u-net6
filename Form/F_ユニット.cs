@@ -41,6 +41,7 @@ namespace u_net
             InitializeComponent();
 
         }
+
         public void Connect()
         {
             Connection connectionInfo = new Connection();
@@ -57,7 +58,6 @@ namespace u_net
             cn.Open();
         }
 
-
         private string Right(string value, int length)
         {
             if (value.Length <= length)
@@ -66,14 +66,14 @@ namespace u_net
                 return value.Substring(value.Length - length, length);
         }
 
-
         public bool BeDetails
         {
             get
             {
-                return 0 <ユニット明細1.Detail.RowCount;
+                return 0 < ユニット明細1.Detail.RowCount;
             }
         }
+
         public string CurrentCode
         {
             get
@@ -99,7 +99,6 @@ namespace u_net
             }
         }
 
-
         public bool IsNewData
         {
             get
@@ -107,9 +106,6 @@ namespace u_net
                 return !コマンド新規.Enabled;
             }
         }
-
-
-
 
         public bool IsApproved
         {
@@ -157,15 +153,11 @@ namespace u_net
             return value == null || Convert.IsDBNull(value) || string.IsNullOrEmpty((string?)value);
         }
 
-
-
-
         //SqlConnection cn = new SqlConnection();
         SqlCommand cmd = new SqlCommand();
         DataSet ds = new DataSet();
         DataTable dt = new DataTable();
         SqlDataAdapter adapter = new SqlDataAdapter();
-
 
         private void Form_Load(object sender, EventArgs e)
         {
@@ -174,7 +166,7 @@ namespace u_net
                 control.PreviewKeyDown += OriginalClass.ValidateCheck;
             }
 
-   
+
 
             //実行中フォーム起動
             string LoginUserCode = CommonConstants.LoginUserCode;//テスト用 ログインユーザを実行中にどのように管理するか決まったら修正
@@ -243,7 +235,6 @@ namespace u_net
 
             }
         }
-
 
         public bool GoNewMode()
         {
@@ -426,9 +417,6 @@ namespace u_net
             }
         }
 
-
-
-
         private bool ErrCheck()
         {
             //入力確認    
@@ -476,7 +464,7 @@ namespace u_net
             コマンド削除.Enabled = !isChanged;
             コマンド部品表.Enabled = !isChanged;
             コマンド部品定数表.Enabled = !isChanged;
-  
+
 
             if (isChanged && !IsApproved)
             {
@@ -486,8 +474,6 @@ namespace u_net
 
             コマンド登録.Enabled = isChanged;
         }
-
-
 
         private bool IsError(Control controlObject)
         {
@@ -565,7 +551,7 @@ namespace u_net
                         }
 
                         // RoHS対応状況を表示する
-                        this.RoHS対応表示.Text = GetRohsStatus();
+                        this.RoHS対応.Text = GetRohsStatus();
 
                         // 製品材料費を表示する 
                         //明細処理
@@ -611,9 +597,9 @@ namespace u_net
 
 
                         // RoHS対応状況を表示する
-                        this.RoHS対応表示.Text = GetRohsStatus();
+                        this.RoHS対応.Text = GetRohsStatus();
 
- 
+
 
 
                         // 動作を制御する
@@ -651,7 +637,6 @@ namespace u_net
                 fn.WaitForm.Close();
             }
         }
-
 
         private void UpdateEditionList(string codeString)
         {
@@ -704,8 +689,6 @@ namespace u_net
             return ""; // エラー時は空文字列を返す（またはエラー処理に応じて適切な値を返す）
         }
 
-
-
         private bool LoadHeader(Form formObject, string codeString, int editionNumber)
         {
             try
@@ -748,7 +731,7 @@ namespace u_net
 
                 VariableSet.SetTable2Form(this, strSQL, cn);
 
-               
+
 
                 return true;
 
@@ -924,7 +907,7 @@ namespace u_net
         {
             try
             {
-    
+
 
                 if ((IsDecided && ユニット明細1.Detail.RowCount < 1) || (!IsDecided && ユニット明細1.Detail.RowCount <= 1))
                 {
@@ -933,7 +916,7 @@ namespace u_net
 
                 int result = 0;
 
-                foreach(Row row in ユニット明細1.Detail.Rows)
+                foreach (Row row in ユニット明細1.Detail.Rows)
                 {
 
                     if (row.IsNewRow) continue;
@@ -960,7 +943,7 @@ namespace u_net
                 }
 
                 return result;
-                
+
             }
             catch (Exception ex)
             {
@@ -969,9 +952,6 @@ namespace u_net
             }
 
         }
-
-
-
 
         private void Form_KeyDown(object sender, KeyEventArgs e)
         {
@@ -1027,6 +1007,7 @@ namespace u_net
                     break;
             }
         }
+
         private void コマンド新規_Click(object sender, EventArgs e)
         {
             try
@@ -1165,6 +1146,7 @@ namespace u_net
                 return false;
             }
         }
+
         private bool ClearHistory()
         {
             try
@@ -1213,7 +1195,6 @@ namespace u_net
                 return false;
             }
         }
-
 
         private void コマンド読込_Click(object sender, EventArgs e)
         {
@@ -1335,8 +1316,6 @@ namespace u_net
             }
         }
 
-  
-
         private void コマンド確定_Click(object sender, EventArgs e)
         {
             FunctionClass fn = new FunctionClass();
@@ -1386,7 +1365,7 @@ namespace u_net
                     FunctionClass.LockData(this, IsDecided || IsDeleted, "ユニットコード", "ユニット版数");
 
                     // RoHS対応状況を表示する
-                    RoHS対応表示.Text = GetRohsStatus();
+                    RoHS対応.Text = GetRohsStatus();
 
 
 
@@ -1436,7 +1415,7 @@ namespace u_net
                 string var3 = null;
 
 
-     
+
 
                 // 認証処理
                 string strHeadCode = CommonConstants.USER_CODE_TECH; // 承認者を指定する
@@ -1509,7 +1488,6 @@ namespace u_net
 
         }
 
-
         private void コマンド複写_Click(object sender, EventArgs e)
         {
 
@@ -1556,7 +1534,6 @@ namespace u_net
 
         }
 
-
         private void コマンド登録_Click(object sender, EventArgs e)
         {
 
@@ -1578,7 +1555,7 @@ namespace u_net
                     ChangedData(false);
 
                     // RoHS対応状況を表示する
-                    RoHS対応表示.Text = GetRohsStatus();
+                    RoHS対応.Text = GetRohsStatus();
 
 
                     // 新規モードのときは修正モードへ移行する
@@ -1589,7 +1566,7 @@ namespace u_net
 
                         OriginalClass ofn = new OriginalClass();
                         ofn.SetComboBox(ユニットコード, "SELECT A.ユニットコード as Value, A.ユニットコード as Display , A.最新版数 as Display3, { fn REPLACE(STR(CONVERT(bit, Mユニット.無効日時), 1, 0), '1', '×') } AS Display2 FROM Mユニット INNER JOIN (SELECT ユニットコード, MAX(ユニット版数) AS 最新版数 FROM Mユニット GROUP BY ユニットコード) A ON Mユニット.ユニットコード = A.ユニットコード AND Mユニット.ユニット版数 = A.最新版数 ORDER BY A.ユニットコード DESC");
-         
+
                     }
 
                     if (!IsApproved)
@@ -1613,8 +1590,6 @@ namespace u_net
             }
 
         }
-
-
 
         private void コマンド削除_Click(object sender, EventArgs e)
         {
@@ -1796,7 +1771,6 @@ namespace u_net
             }
         }
 
-
         private void コマンドツール_Click(object sender, EventArgs e)
         {
             F_ユニット_ツール targetform = new F_ユニット_ツール();
@@ -1804,7 +1778,6 @@ namespace u_net
             targetform.args = CurrentCode;
             targetform.ShowDialog();
         }
-
 
         private void コマンド部品_Click(object sender, EventArgs e)
         {
@@ -1814,7 +1787,7 @@ namespace u_net
             targetform.ShowDialog();
         }
 
-        private void コマンド部品表_Click(object sender,EventArgs e)
+        private void コマンド部品表_Click(object sender, EventArgs e)
         {
             IReport paoRep = ReportCreator.GetPreview();
 
@@ -1936,7 +1909,7 @@ namespace u_net
                 paoRep.PageEnd();
 
 
-                
+
             }
 
 
@@ -2132,7 +2105,6 @@ namespace u_net
             paoRep.Output();
         }
 
-
         private bool IsApprovedS(SqlConnection connection, string codeString, int editionNumber)
         {
             bool isApproved;
@@ -2271,152 +2243,10 @@ namespace u_net
             return success;
         }
 
-
         private void コマンド終了_Click(object sender, EventArgs e)
         {
             Close(); // フォームを閉じる
         }
-
-
-        private bool InvalidateData(string codeString, int editionNumber)
-        {
-            try
-            {
-                Connect();
-
-                // 既に無効日時が設定されているときは、無効にすることはできない。
-                if (無効日時.Text != null)
-                    return false;
-
-                無効日時.Text = FunctionClass.GetServerDate(cn).ToString();
-
-
-
-                if (RegTrans(codeString, editionNumber, false))
-                {
-                    return true;
-                }
-                else
-                {
-                    無効日時.Text = null;
-                    return false;
-                }
-            }
-            catch (Exception ex)
-            {
-                Debug.Print(this.Name + "_InvalidateData - " + ex.Message);
-                return false; // 例外発生時は適切なエラー処理を行ってください
-            }
-        }
-
-        private bool AskSave(int response)
-        {
-            try
-            {
-                response = 0;
-
-                Connect();
-
-                DialogResult result = MessageBox.Show("変更内容を登録しますか？", "質問", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
-
-                switch (result)
-                {
-                    case DialogResult.Yes:
-                        // エラーチェック
-                        if (!ErrCheck())
-                            return false;
-
-                        // 登録処理
-                        if (!SaveData())
-                        {
-                            MessageBox.Show("エラーのため登録できません。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                            return false;
-                        }
-                        break;
-                    case DialogResult.No:
-                        // 新規モードでかつコードが取得済みのときはコードを戻す
-                        if (IsNewData && !string.IsNullOrEmpty(CurrentCode) && CurrentEdition == 1)
-                        {
-                            // 採番された番号を戻す
-                            if (!FunctionClass.ReturnCode(cn, "UNI" + CurrentCode))
-                            {
-                                MessageBox.Show("エラーのためコードは破棄されました。\n\nユニットコード　：　" + CurrentCode, "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                                return false;
-                            }
-                        }
-                        break;
-                    case DialogResult.Cancel:
-                        return false;
-                }
-
-                return true;
-            }
-            catch (Exception ex)
-            {
-                Debug.Print("AskSave - " + ex.Message);
-                return false;
-            }
-        }
-
-        private bool SavedRevisedEdition(string codeString, int editionNumber)
-        {
-            Connect();
-
-            try
-            {
-                // 改版データ登録時の処理
-
-                string strKey = $"ユニットコード='{codeString}' AND ユニット版数={editionNumber - 1} AND 無効日時 IS NULL";
-                string strSQL = $"SELECT COUNT(*) FROM Mユニット WHERE {strKey}";
-
-                using (SqlCommand command = new SqlCommand(strSQL, cn))
-                {
-                    int rowCount = Convert.ToInt32(command.ExecuteScalar());
-
-                    strKey = $"ユニットコード='{codeString}' AND ユニット版数={editionNumber - 1}";
-
-                    // 承認されたとき
-                    if (IsApproved)
-                    {
-                        if (rowCount > 0)
-                        {
-                            cn.Open();
-                            using (SqlCommand updateCommand = new SqlCommand($"UPDATE Mユニット SET 無効日時=GETDATE() WHERE {strKey}", cn))
-                            {
-                                updateCommand.ExecuteNonQuery();
-                            }
-                        }
-                    }
-                    else
-                    {
-                        // 承認が取り消されたとき
-                        if (rowCount == 0)
-                        {
-                            cn.Open();
-                            using (SqlCommand updateCommand = new SqlCommand($"UPDATE Mユニット SET 無効日時=NULL WHERE {strKey}", cn))
-                            {
-                                updateCommand.ExecuteNonQuery();
-                            }
-                        }
-                    }
-                }
-
-                return true;
-            }
-            catch (Exception ex)
-            {
-                Debug.Print($"{this.Name}_SavedRevisedEdition - {ex.GetType().Name} : {ex.Message}");
-                return false;
-            }
-            finally
-            {
-                if (cn.State == ConnectionState.Open)
-                {
-                    cn.Close();
-                }
-            }
-        }
-
 
         public long ChangeParts(string source, string destination, string name, string model, string maker,
             long price, string form, long pieces, string roHS, string ncc, string abolition, bool changeLog,
@@ -2426,7 +2256,7 @@ namespace u_net
             {
                 long recordsAffected = 0;
 
-                foreach(Row row in ユニット明細1.Detail.Rows)
+                foreach (Row row in ユニット明細1.Detail.Rows)
                 {
                     if (row.Cells["部品コード"].Value.ToString() == source)
                     {
@@ -2451,7 +2281,7 @@ namespace u_net
                                 row.Cells["変更操作コード"].Value = operation;
                             }
 
-                            if(note == "")
+                            if (note == "")
                             {
                                 row.Cells["変更内容"].Value = DBNull.Value;
                             }
@@ -2462,14 +2292,14 @@ namespace u_net
                         }
 
 
-                        row.Cells["ユニット材料費"].Value = price/pieces;
+                        row.Cells["ユニット材料費"].Value = price / pieces;
 
 
                         recordsAffected++;
                     }
 
                 }
-                
+
 
                 return recordsAffected;
             }
@@ -2480,8 +2310,6 @@ namespace u_net
                 return -1;
             }
         }
-
-
 
         //各コントロールの処理
         private void ユニットコード_KeyDown(object sender, KeyEventArgs e)
@@ -2499,6 +2327,7 @@ namespace u_net
 
             }
         }
+
         private void ユニットコード_SelectedIndexChanged(object sender, EventArgs e)
         {
             ユニット版数.Text = ((DataRowView)ユニットコード.SelectedItem)?.Row.Field<Int16>("Display3").ToString();
@@ -2515,7 +2344,7 @@ namespace u_net
         }
 
         private void ユニットコード_DrawItem(object sender, DrawItemEventArgs e)
-        { 
+        {
 
             OriginalClass.SetComboBoxAppearance((ComboBox)sender, e, new int[] { 100, 30 }, new string[] { "Display", "Display2" });
             ユニットコード.Invalidate();
@@ -2545,20 +2374,17 @@ namespace u_net
             ChangedData(true);
         }
 
-
         private void 識別コード_TextChanged(object sender, EventArgs e)
         {
             FunctionClass.LimitText(sender as Control, 20);
             ChangedData(true);
         }
 
-
         private void 品名_TextChanged(object sender, EventArgs e)
         {
             FunctionClass.LimitText(sender as Control, 60);
             ChangedData(true);
         }
-
 
         private void 廃止_CheckedChanged(object sender, EventArgs e)
         {
@@ -2600,16 +2426,6 @@ namespace u_net
                 削除表示.BringToFront();
             }
         }
-
-
-
-
-
-
-
-
-
-
 
         private void ユニットコード_Enter(object sender, EventArgs e)
         {
@@ -2661,6 +2477,14 @@ namespace u_net
             toolStripStatusLabel1.Text = "各種項目の説明";
         }
 
-        
+        private void コマンド部品_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "■カーソルがある明細行の登録部品を参照します。";
+        }
+
+        private void コマンド部品_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "各種項目の説明";
+        }
     }
 }

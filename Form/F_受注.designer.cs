@@ -480,6 +480,7 @@ namespace u_net
             否認ボタン.TabStop = false;
             否認ボタン.Text = "否認";
             否認ボタン.UseVisualStyleBackColor = true;
+            否認ボタン.Click += 否認ボタン_Click;
             // 
             // 受注承認ボタン
             // 
@@ -494,6 +495,7 @@ namespace u_net
             受注承認ボタン.TabStop = false;
             受注承認ボタン.Text = "承認";
             受注承認ボタン.UseVisualStyleBackColor = true;
+            受注承認ボタン.Click += 受注承認ボタン_Click;
             // 
             // 受注完了承認ボタン
             // 
@@ -507,6 +509,7 @@ namespace u_net
             受注完了承認ボタン.TabStop = false;
             受注完了承認ボタン.Text = "完了承認";
             受注完了承認ボタン.UseVisualStyleBackColor = true;
+            受注完了承認ボタン.Click += 受注完了承認ボタン_Click;
             // 
             // Page2
             // 
@@ -752,7 +755,7 @@ namespace u_net
             税端数処理.AutoCompleteSource = AutoCompleteSource.ListItems;
             税端数処理.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             税端数処理.FormattingEnabled = true;
-            税端数処理.ImeMode = ImeMode.NoControl;
+            税端数処理.ImeMode = ImeMode.Disable;
             税端数処理.Location = new Point(715, 125);
             税端数処理.Margin = new Padding(4, 3, 4, 3);
             税端数処理.Name = "税端数処理";
@@ -770,7 +773,7 @@ namespace u_net
             TaxCalcCode.AutoCompleteSource = AutoCompleteSource.ListItems;
             TaxCalcCode.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             TaxCalcCode.FormattingEnabled = true;
-            TaxCalcCode.ImeMode = ImeMode.NoControl;
+            TaxCalcCode.ImeMode = ImeMode.Disable;
             TaxCalcCode.Location = new Point(715, 100);
             TaxCalcCode.Margin = new Padding(4, 3, 4, 3);
             TaxCalcCode.Name = "TaxCalcCode";
@@ -793,6 +796,7 @@ namespace u_net
             請求コード.Size = new Size(150, 21);
             請求コード.TabIndex = 10057;
             請求コード.TabStop = false;
+            請求コード.Validated += 請求コード_Validated;
             // 
             // label46
             // 
@@ -843,7 +847,7 @@ namespace u_net
             // 
             TaxRate.BackColor = Color.White;
             TaxRate.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            TaxRate.ImeMode = ImeMode.Hiragana;
+            TaxRate.ImeMode = ImeMode.Disable;
             TaxRate.Location = new Point(715, 75);
             TaxRate.Margin = new Padding(3, 2, 3, 2);
             TaxRate.Name = "TaxRate";
@@ -886,6 +890,7 @@ namespace u_net
             // 
             請求予定日.Enabled = false;
             請求予定日.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            請求予定日.ImeMode = ImeMode.Disable;
             請求予定日.Location = new Point(715, 50);
             請求予定日.Name = "請求予定日";
             請求予定日.Size = new Size(150, 21);
@@ -937,7 +942,7 @@ namespace u_net
             出荷情報.Location = new Point(10, 390);
             出荷情報.Name = "出荷情報";
             出荷情報.Size = new Size(1013, 248);
-            出荷情報.TabIndex = 10013;
+            出荷情報.TabIndex = 3;
             出荷情報.TabStop = false;
             出荷情報.Text = "出荷情報";
             // 
@@ -1004,6 +1009,7 @@ namespace u_net
             // InvoiceFax
             // 
             InvoiceFax.BackColor = Color.White;
+            InvoiceFax.Enabled = false;
             InvoiceFax.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             InvoiceFax.ImeMode = ImeMode.Hiragana;
             InvoiceFax.Location = new Point(235, 125);
@@ -1017,6 +1023,7 @@ namespace u_net
             // ReceiptComment
             // 
             ReceiptComment.BackColor = Color.White;
+            ReceiptComment.Enabled = false;
             ReceiptComment.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             ReceiptComment.ImeMode = ImeMode.Hiragana;
             ReceiptComment.Location = new Point(235, 100);
@@ -1030,6 +1037,7 @@ namespace u_net
             // InvoiceInput
             // 
             InvoiceInput.BackColor = Color.White;
+            InvoiceInput.Enabled = false;
             InvoiceInput.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             InvoiceInput.ImeMode = ImeMode.Hiragana;
             InvoiceInput.Location = new Point(235, 75);
@@ -1178,6 +1186,7 @@ namespace u_net
             // PackingSlipInput
             // 
             PackingSlipInput.BackColor = Color.White;
+            PackingSlipInput.Enabled = false;
             PackingSlipInput.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             PackingSlipInput.ImeMode = ImeMode.Hiragana;
             PackingSlipInput.Location = new Point(235, 50);
@@ -1331,7 +1340,7 @@ namespace u_net
             発送先.Location = new Point(10, 125);
             発送先.Name = "発送先";
             発送先.Size = new Size(515, 247);
-            発送先.TabIndex = 51;
+            発送先.TabIndex = 2;
             発送先.TabStop = false;
             発送先.Text = "発送先";
             // 
@@ -1344,7 +1353,7 @@ namespace u_net
             発送先郵便番号.Margin = new Padding(3, 2, 3, 2);
             発送先郵便番号.Name = "発送先郵便番号";
             発送先郵便番号.Size = new Size(150, 21);
-            発送先郵便番号.TabIndex = 260;
+            発送先郵便番号.TabIndex = 24;
             発送先郵便番号.TextChanged += 発送先郵便番号_TextChanged;
             発送先郵便番号.Validating += 発送先郵便番号_Validating;
             発送先郵便番号.Validated += 発送先郵便番号_Validated;
@@ -1594,7 +1603,7 @@ namespace u_net
             発送先選択.Location = new Point(10, 50);
             発送先選択.Name = "発送先選択";
             発送先選択.Size = new Size(515, 62);
-            発送先選択.TabIndex = 52;
+            発送先選択.TabIndex = 1;
             発送先選択.TabStop = false;
             発送先選択.Text = "発送先選択";
             // 
@@ -1714,6 +1723,7 @@ namespace u_net
             // 出荷予定日
             // 
             出荷予定日.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            出荷予定日.ImeMode = ImeMode.Disable;
             出荷予定日.Location = new Point(127, 230);
             出荷予定日.Name = "出荷予定日";
             出荷予定日.Size = new Size(150, 21);
@@ -1728,6 +1738,7 @@ namespace u_net
             // 受注納期
             // 
             受注納期.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            受注納期.ImeMode = ImeMode.Disable;
             受注納期.Location = new Point(127, 205);
             受注納期.Name = "受注納期";
             受注納期.Size = new Size(150, 21);
@@ -1742,6 +1753,7 @@ namespace u_net
             // 受注日
             // 
             受注日.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            受注日.ImeMode = ImeMode.Disable;
             受注日.Location = new Point(127, 55);
             受注日.Name = "受注日";
             受注日.Size = new Size(150, 21);
@@ -1758,7 +1770,7 @@ namespace u_net
             受注明細1.Location = new Point(12, 335);
             受注明細1.Margin = new Padding(5, 3, 5, 3);
             受注明細1.Name = "受注明細1";
-            受注明細1.Size = new Size(900, 300);
+            受注明細1.Size = new Size(1100, 300);
             受注明細1.TabIndex = 53;
             // 
             // ProductionNotice
@@ -1841,6 +1853,7 @@ namespace u_net
             // 自社担当者名
             // 
             自社担当者名.BackColor = Color.White;
+            自社担当者名.Enabled = false;
             自社担当者名.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             自社担当者名.Location = new Point(767, 55);
             自社担当者名.Margin = new Padding(3, 2, 3, 2);
@@ -1857,7 +1870,7 @@ namespace u_net
             自社担当者コード.DrawMode = DrawMode.OwnerDrawFixed;
             自社担当者コード.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             自社担当者コード.FormattingEnabled = true;
-            自社担当者コード.ImeMode = ImeMode.NoControl;
+            自社担当者コード.ImeMode = ImeMode.Disable;
             自社担当者コード.Location = new Point(702, 55);
             自社担当者コード.Margin = new Padding(4, 3, 4, 3);
             自社担当者コード.Name = "自社担当者コード";
@@ -1887,6 +1900,7 @@ namespace u_net
             // 発送方法
             // 
             発送方法.BackColor = Color.White;
+            発送方法.Enabled = false;
             発送方法.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             発送方法.Location = new Point(192, 305);
             発送方法.Margin = new Padding(3, 2, 3, 2);
@@ -1901,7 +1915,7 @@ namespace u_net
             発送方法コード.DrawMode = DrawMode.OwnerDrawFixed;
             発送方法コード.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             発送方法コード.FormattingEnabled = true;
-            発送方法コード.ImeMode = ImeMode.NoControl;
+            発送方法コード.ImeMode = ImeMode.Disable;
             発送方法コード.Location = new Point(127, 305);
             発送方法コード.Margin = new Padding(4, 3, 4, 3);
             発送方法コード.Name = "発送方法コード";
@@ -1916,6 +1930,7 @@ namespace u_net
             // 請求書送付
             // 
             請求書送付.BackColor = Color.White;
+            請求書送付.Enabled = false;
             請求書送付.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             請求書送付.Location = new Point(192, 280);
             請求書送付.Margin = new Padding(3, 2, 3, 2);
@@ -1930,7 +1945,7 @@ namespace u_net
             請求書送付コード.DrawMode = DrawMode.OwnerDrawFixed;
             請求書送付コード.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             請求書送付コード.FormattingEnabled = true;
-            請求書送付コード.ImeMode = ImeMode.NoControl;
+            請求書送付コード.ImeMode = ImeMode.Disable;
             請求書送付コード.Location = new Point(127, 280);
             請求書送付コード.Margin = new Padding(4, 3, 4, 3);
             請求書送付コード.Name = "請求書送付コード";
@@ -1945,6 +1960,7 @@ namespace u_net
             // 納品書送付
             // 
             納品書送付.BackColor = Color.White;
+            納品書送付.Enabled = false;
             納品書送付.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             納品書送付.Location = new Point(192, 255);
             納品書送付.Margin = new Padding(3, 2, 3, 2);
@@ -1959,7 +1975,7 @@ namespace u_net
             納品書送付コード.DrawMode = DrawMode.OwnerDrawFixed;
             納品書送付コード.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             納品書送付コード.FormattingEnabled = true;
-            納品書送付コード.ImeMode = ImeMode.NoControl;
+            納品書送付コード.ImeMode = ImeMode.Disable;
             納品書送付コード.Location = new Point(127, 255);
             納品書送付コード.Margin = new Padding(4, 3, 4, 3);
             納品書送付コード.Name = "納品書送付コード";
@@ -2027,11 +2043,13 @@ namespace u_net
             // 顧客名
             // 
             顧客名.BackColor = Color.White;
+            顧客名.Enabled = false;
             顧客名.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            顧客名.ImeMode = ImeMode.Hiragana;
+            顧客名.ImeMode = ImeMode.NoControl;
             顧客名.Location = new Point(127, 130);
             顧客名.Margin = new Padding(3, 2, 3, 2);
             顧客名.Name = "顧客名";
+            顧客名.ReadOnly = true;
             顧客名.Size = new Size(400, 21);
             顧客名.TabIndex = 6;
             顧客名.TabStop = false;
@@ -2051,6 +2069,7 @@ namespace u_net
             // 
             顧客コード.BackColor = Color.White;
             顧客コード.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            顧客コード.ImeMode = ImeMode.Disable;
             顧客コード.Location = new Point(127, 105);
             顧客コード.Margin = new Padding(3, 2, 3, 2);
             顧客コード.Name = "顧客コード";
@@ -2220,7 +2239,7 @@ namespace u_net
             受注コード.DrawMode = DrawMode.OwnerDrawFixed;
             受注コード.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             受注コード.FormattingEnabled = true;
-            受注コード.ImeMode = ImeMode.Off;
+            受注コード.ImeMode = ImeMode.Disable;
             受注コード.Location = new Point(127, 5);
             受注コード.Name = "受注コード";
             受注コード.Size = new Size(150, 22);
@@ -2436,7 +2455,7 @@ namespace u_net
             受注版数.DrawMode = DrawMode.OwnerDrawFixed;
             受注版数.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             受注版数.FormattingEnabled = true;
-            受注版数.ImeMode = ImeMode.NoControl;
+            受注版数.ImeMode = ImeMode.Disable;
             受注版数.Location = new Point(350, 5);
             受注版数.Margin = new Padding(4, 3, 4, 3);
             受注版数.Name = "受注版数";
@@ -2490,7 +2509,7 @@ namespace u_net
             // 
             注文番号.BackColor = Color.White;
             注文番号.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            注文番号.ImeMode = ImeMode.Hiragana;
+            注文番号.ImeMode = ImeMode.Off;
             注文番号.Location = new Point(127, 80);
             注文番号.Margin = new Padding(3, 2, 3, 2);
             注文番号.Name = "注文番号";

@@ -74,5 +74,10 @@ namespace u_net
         {
             e.KeyChar = (char)FunctionClass.ChangeBig((int)e.KeyChar);
         }
+
+        private void 検索コード_Leave(object sender, EventArgs e)
+        {
+            this.toolStripStatusLabel1.Text = "各種項目の説明";
+        }
     }
 }

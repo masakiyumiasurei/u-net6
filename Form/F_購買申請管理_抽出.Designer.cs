@@ -98,9 +98,8 @@
             基本型式名.ImeMode = ImeMode.Hiragana;
             基本型式名.Location = new Point(116, 110);
             基本型式名.Margin = new Padding(3, 2, 3, 2);
-            基本型式名.Multiline = true;
             基本型式名.Name = "基本型式名";
-            基本型式名.Size = new Size(413, 23);
+            基本型式名.Size = new Size(413, 20);
             基本型式名.TabIndex = 12;
             // 
             // 申請日開始
@@ -109,9 +108,8 @@
             申請日開始.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             申請日開始.Location = new Point(116, 20);
             申請日開始.Margin = new Padding(3, 2, 3, 2);
-            申請日開始.Multiline = true;
             申請日開始.Name = "申請日開始";
-            申請日開始.Size = new Size(160, 23);
+            申請日開始.Size = new Size(160, 20);
             申請日開始.TabIndex = 0;
             申請日開始.KeyPress += 申請日開始_KeyPress;
             申請日開始.Leave += 申請日開始_Leave;
@@ -154,9 +152,8 @@
             シリーズ名.ImeMode = ImeMode.Hiragana;
             シリーズ名.Location = new Point(116, 140);
             シリーズ名.Margin = new Padding(3, 2, 3, 2);
-            シリーズ名.Multiline = true;
             シリーズ名.Name = "シリーズ名";
-            シリーズ名.Size = new Size(413, 23);
+            シリーズ名.Size = new Size(413, 20);
             シリーズ名.TabIndex = 13;
             // 
             // 終了指定
@@ -314,9 +311,8 @@
             申請日終了.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             申請日終了.Location = new Point(335, 20);
             申請日終了.Margin = new Padding(3, 2, 3, 2);
-            申請日終了.Multiline = true;
             申請日終了.Name = "申請日終了";
-            申請日終了.Size = new Size(160, 23);
+            申請日終了.Size = new Size(160, 20);
             申請日終了.TabIndex = 2;
             申請日終了.KeyPress += 申請日終了_KeyPress;
             申請日終了.Leave += 申請日終了_Leave;
@@ -328,9 +324,8 @@
             購買納期終了.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             購買納期終了.Location = new Point(335, 50);
             購買納期終了.Margin = new Padding(3, 2, 3, 2);
-            購買納期終了.Multiline = true;
             購買納期終了.Name = "購買納期終了";
-            購買納期終了.Size = new Size(160, 23);
+            購買納期終了.Size = new Size(160, 20);
             購買納期終了.TabIndex = 6;
             購買納期終了.KeyPress += 購買納期終了_KeyPress;
             購買納期終了.Leave += 購買納期終了_Leave;
@@ -383,9 +378,8 @@
             購買納期開始.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             購買納期開始.Location = new Point(116, 50);
             購買納期開始.Margin = new Padding(3, 2, 3, 2);
-            購買納期開始.Multiline = true;
             購買納期開始.Name = "購買納期開始";
-            購買納期開始.Size = new Size(160, 23);
+            購買納期開始.Size = new Size(160, 20);
             購買納期開始.TabIndex = 4;
             購買納期開始.KeyPress += 購買納期開始_KeyPress;
             購買納期開始.Leave += 購買納期開始_Leave;
@@ -412,9 +406,8 @@
             出荷予定日終了.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             出荷予定日終了.Location = new Point(335, 80);
             出荷予定日終了.Margin = new Padding(3, 2, 3, 2);
-            出荷予定日終了.Multiline = true;
             出荷予定日終了.Name = "出荷予定日終了";
-            出荷予定日終了.Size = new Size(160, 23);
+            出荷予定日終了.Size = new Size(160, 20);
             出荷予定日終了.TabIndex = 10;
             出荷予定日終了.KeyPress += 出荷予定日終了_KeyPress;
             出荷予定日終了.Leave += 出荷予定日終了_Leave;
@@ -467,9 +460,8 @@
             出荷予定日開始.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             出荷予定日開始.Location = new Point(116, 80);
             出荷予定日開始.Margin = new Padding(3, 2, 3, 2);
-            出荷予定日開始.Multiline = true;
             出荷予定日開始.Name = "出荷予定日開始";
-            出荷予定日開始.Size = new Size(160, 23);
+            出荷予定日開始.Size = new Size(160, 20);
             出荷予定日開始.TabIndex = 8;
             出荷予定日開始.KeyPress += 出荷予定日開始_KeyPress;
             出荷予定日開始.Leave += 出荷予定日開始_Leave;

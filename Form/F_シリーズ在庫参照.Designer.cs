@@ -43,24 +43,27 @@
             コマンド抽出 = new Button();
             コマンド印刷 = new Button();
             コマンド終了 = new Button();
-            表示件数 = new TextBox();
-            label1 = new Label();
-            label2 = new Label();
             dataGridView1 = new DataGridView();
-            panel2 = new Panel();
             シリーズコード = new ComboBox();
             現在日 = new TextBox();
             メーカーコード_ラベル = new Label();
             今日の日付 = new TextBox();
             label3 = new Label();
-            label4 = new Label();
+            抽出シリーズ_ラベル = new Label();
             シリーズ名 = new TextBox();
             現在日戻るボタン = new Button();
             現在日選択ボタン = new Button();
             現在日進むボタン = new Button();
             toolTip1 = new ToolTip(components);
+            statusStrip1 = new StatusStrip();
+            toolStripStatusLabel1 = new ToolStripStatusLabel();
+            panel2 = new Panel();
+            表示件数 = new TextBox();
+            label1 = new Label();
+            label2 = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            statusStrip1.SuspendLayout();
             panel2.SuspendLayout();
             SuspendLayout();
             // 
@@ -260,73 +263,38 @@
             コマンド終了.UseVisualStyleBackColor = true;
             コマンド終了.Click += コマンド終了_Click;
             // 
-            // 表示件数
-            // 
-            表示件数.Location = new Point(72, 4);
-            表示件数.Margin = new Padding(3, 2, 3, 2);
-            表示件数.Name = "表示件数";
-            表示件数.Size = new Size(88, 23);
-            表示件数.TabIndex = 84;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(6, 6);
-            label1.Name = "label1";
-            label1.Size = new Size(55, 15);
-            label1.TabIndex = 85;
-            label1.Text = "表示件数";
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(164, 6);
-            label2.Name = "label2";
-            label2.Size = new Size(19, 15);
-            label2.TabIndex = 86;
-            label2.Text = "件";
-            // 
             // dataGridView1
             // 
             dataGridView1.AllowUserToAddRows = false;
             dataGridView1.AllowUserToDeleteRows = false;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(0, 61);
+            dataGridView1.Location = new Point(3, 61);
             dataGridView1.Margin = new Padding(3, 2, 3, 2);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
             dataGridView1.RowTemplate.Height = 29;
-            dataGridView1.Size = new Size(1300, 535);
+            dataGridView1.Size = new Size(1032, 535);
             dataGridView1.TabIndex = 87;
             dataGridView1.CellClick += dataGridView1_CellClick;
             dataGridView1.CellDoubleClick += dataGridView1_CellDoubleClick;
             dataGridView1.CellPainting += DataGridView1_CellPainting;
             dataGridView1.Sorted += dataGridView1_Sorted;
             // 
-            // panel2
-            // 
-            panel2.Controls.Add(表示件数);
-            panel2.Controls.Add(label1);
-            panel2.Controls.Add(label2);
-            panel2.Dock = DockStyle.Bottom;
-            panel2.Location = new Point(0, 600);
-            panel2.Margin = new Padding(3, 2, 3, 2);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(1035, 27);
-            panel2.TabIndex = 88;
-            // 
             // シリーズコード
             // 
             シリーズコード.BackColor = Color.White;
             シリーズコード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             シリーズコード.FormattingEnabled = true;
-            シリーズコード.ImeMode = ImeMode.Off;
-            シリーズコード.Location = new Point(681, 35);
+            シリーズコード.ImeMode = ImeMode.Disable;
+            シリーズコード.Location = new Point(742, 35);
             シリーズコード.Name = "シリーズコード";
-            シリーズコード.Size = new Size(139, 21);
+            シリーズコード.Size = new Size(78, 21);
             シリーズコード.TabIndex = 6;
+            シリーズコード.TabStop = false;
             シリーズコード.Visible = false;
+            シリーズコード.Enter += シリーズコード_Enter;
             シリーズコード.KeyDown += シリーズコード_KeyDown;
+            シリーズコード.Leave += シリーズコード_Leave;
             // 
             // 現在日
             // 
@@ -337,6 +305,7 @@
             現在日.Name = "現在日";
             現在日.Size = new Size(139, 20);
             現在日.TabIndex = 2;
+            現在日.TabStop = false;
             現在日.Validated += 現在日_Validated;
             // 
             // メーカーコード_ラベル
@@ -346,10 +315,10 @@
             メーカーコード_ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             メーカーコード_ラベル.ForeColor = SystemColors.ActiveCaptionText;
             メーカーコード_ラベル.ImageAlign = ContentAlignment.MiddleLeft;
-            メーカーコード_ラベル.Location = new Point(5, 35);
+            メーカーコード_ラベル.Location = new Point(5, 36);
             メーカーコード_ラベル.Margin = new Padding(0);
             メーカーコード_ラベル.Name = "メーカーコード_ラベル";
-            メーカーコード_ラベル.Size = new Size(102, 17);
+            メーカーコード_ラベル.Size = new Size(68, 19);
             メーカーコード_ラベル.TabIndex = 1;
             メーカーコード_ラベル.Text = "現在日(&P)";
             メーカーコード_ラベル.TextAlign = ContentAlignment.MiddleLeft;
@@ -364,6 +333,7 @@
             今日の日付.Name = "今日の日付";
             今日の日付.Size = new Size(139, 20);
             今日の日付.TabIndex = 4;
+            今日の日付.TabStop = false;
             // 
             // label3
             // 
@@ -372,29 +342,29 @@
             label3.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             label3.ForeColor = SystemColors.ActiveCaptionText;
             label3.ImageAlign = ContentAlignment.MiddleLeft;
-            label3.Location = new Point(358, 35);
+            label3.Location = new Point(349, 36);
             label3.Margin = new Padding(0);
             label3.Name = "label3";
-            label3.Size = new Size(102, 17);
+            label3.Size = new Size(81, 17);
             label3.TabIndex = 94;
             label3.Text = "今日の日付";
             label3.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // label4
+            // 抽出シリーズ_ラベル
             // 
-            label4.AllowDrop = true;
-            label4.AutoEllipsis = true;
-            label4.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label4.ForeColor = SystemColors.ActiveCaptionText;
-            label4.ImageAlign = ContentAlignment.MiddleLeft;
-            label4.Location = new Point(604, 35);
-            label4.Margin = new Padding(0);
-            label4.Name = "label4";
-            label4.Size = new Size(102, 17);
-            label4.TabIndex = 5;
-            label4.Text = "今日の日付";
-            label4.TextAlign = ContentAlignment.MiddleLeft;
-            label4.Visible = false;
+            抽出シリーズ_ラベル.AllowDrop = true;
+            抽出シリーズ_ラベル.AutoEllipsis = true;
+            抽出シリーズ_ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            抽出シリーズ_ラベル.ForeColor = SystemColors.ActiveCaptionText;
+            抽出シリーズ_ラベル.ImageAlign = ContentAlignment.MiddleLeft;
+            抽出シリーズ_ラベル.Location = new Point(637, 38);
+            抽出シリーズ_ラベル.Margin = new Padding(0);
+            抽出シリーズ_ラベル.Name = "抽出シリーズ_ラベル";
+            抽出シリーズ_ラベル.Size = new Size(102, 17);
+            抽出シリーズ_ラベル.TabIndex = 5;
+            抽出シリーズ_ラベル.Text = "抽出シリーズ(&C)";
+            抽出シリーズ_ラベル.TextAlign = ContentAlignment.MiddleLeft;
+            抽出シリーズ_ラベル.Visible = false;
             // 
             // シリーズ名
             // 
@@ -404,7 +374,8 @@
             シリーズ名.Location = new Point(826, 35);
             シリーズ名.Margin = new Padding(3, 2, 3, 2);
             シリーズ名.Name = "シリーズ名";
-            シリーズ名.Size = new Size(139, 20);
+            シリーズ名.ReadOnly = true;
+            シリーズ名.Size = new Size(69, 20);
             シリーズ名.TabIndex = 7;
             シリーズ名.Visible = false;
             // 
@@ -456,22 +427,83 @@
             現在日進むボタン.UseVisualStyleBackColor = true;
             現在日進むボタン.Click += 現在日進むボタン_Click;
             // 
+            // statusStrip1
+            // 
+            statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1 });
+            statusStrip1.Location = new Point(0, 605);
+            statusStrip1.Name = "statusStrip1";
+            statusStrip1.Padding = new Padding(1, 0, 19, 0);
+            statusStrip1.Size = new Size(1035, 22);
+            statusStrip1.TabIndex = 10002;
+            statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripStatusLabel1
+            // 
+            toolStripStatusLabel1.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            toolStripStatusLabel1.Size = new Size(89, 17);
+            toolStripStatusLabel1.Text = "各種項目の説明";
+            // 
+            // panel2
+            // 
+            panel2.Controls.Add(表示件数);
+            panel2.Controls.Add(label1);
+            panel2.Controls.Add(label2);
+            panel2.Dock = DockStyle.Bottom;
+            panel2.Location = new Point(0, 578);
+            panel2.Margin = new Padding(3, 2, 3, 2);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(1035, 27);
+            panel2.TabIndex = 10003;
+            // 
+            // 表示件数
+            // 
+            表示件数.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            表示件数.HideSelection = false;
+            表示件数.Location = new Point(72, 4);
+            表示件数.Margin = new Padding(3, 2, 3, 2);
+            表示件数.Name = "表示件数";
+            表示件数.Size = new Size(88, 20);
+            表示件数.TabIndex = 84;
+            表示件数.TabStop = false;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.Location = new Point(7, 8);
+            label1.Name = "label1";
+            label1.Size = new Size(53, 12);
+            label1.TabIndex = 85;
+            label1.Text = "表示件数";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label2.Location = new Point(163, 8);
+            label2.Name = "label2";
+            label2.Size = new Size(17, 12);
+            label2.TabIndex = 86;
+            label2.Text = "件";
+            // 
             // F_シリーズ在庫参照
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1035, 627);
+            Controls.Add(panel2);
+            Controls.Add(statusStrip1);
             Controls.Add(現在日進むボタン);
             Controls.Add(現在日選択ボタン);
             Controls.Add(現在日戻るボタン);
             Controls.Add(シリーズコード);
             Controls.Add(シリーズ名);
-            Controls.Add(label4);
+            Controls.Add(抽出シリーズ_ラベル);
             Controls.Add(今日の日付);
             Controls.Add(label3);
             Controls.Add(現在日);
             Controls.Add(メーカーコード_ラベル);
-            Controls.Add(panel2);
             Controls.Add(dataGridView1);
             Controls.Add(panel1);
             Icon = (Icon)resources.GetObject("$this.Icon");
@@ -485,6 +517,8 @@
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            statusStrip1.ResumeLayout(false);
+            statusStrip1.PerformLayout();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
             ResumeLayout(false);
@@ -504,9 +538,6 @@
         private Button コマンド抽出;
         private Button コマンド印刷;
         private Button コマンド終了;
-        private TextBox 表示件数;
-        private Label label1;
-        private Label label2;
         private DataGridViewTextBoxColumn 受注明細コードDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn 受注コードDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn 受注版数DataGridViewTextBoxColumn;
@@ -634,19 +665,23 @@
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn60;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn61;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn62;
-        //private newDataSetTableAdapters.Qシリーズ在庫参照TableAdapter qシリーズ在庫参照TableAdapter;
-        private Panel panel2;
         private Button コマンド検索;
         private ComboBox シリーズコード;
         private TextBox 現在日;
         private Label メーカーコード_ラベル;
         private TextBox 今日の日付;
         private Label label3;
-        private Label label4;
+        private Label 抽出シリーズ_ラベル;
         private TextBox シリーズ名;
         private Button 現在日戻るボタン;
         private Button 現在日選択ボタン;
         private Button 現在日進むボタン;
         private ToolTip toolTip1;
+        private StatusStrip statusStrip1;
+        private ToolStripStatusLabel toolStripStatusLabel1;
+        private Panel panel2;
+        private TextBox 表示件数;
+        private Label label1;
+        private Label label2;
     }
 }

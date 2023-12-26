@@ -207,13 +207,14 @@ namespace u_net
             // 
             // toolStripStatusLabel1
             // 
+            toolStripStatusLabel1.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             toolStripStatusLabel1.Size = new Size(89, 17);
             toolStripStatusLabel1.Text = "各種項目の説明";
             // 
             // 閉じるボタン
             // 
-            閉じるボタン.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            閉じるボタン.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             閉じるボタン.Location = new Point(470, 204);
             閉じるボタン.Margin = new Padding(4);
             閉じるボタン.Name = "閉じるボタン";
