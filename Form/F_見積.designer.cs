@@ -147,6 +147,7 @@ namespace u_net
             label32 = new Label();
             見積コード = new TextBox();
             見積明細1 = new MultiRowDesigner.見積明細();
+            toolTip1 = new ToolTip(components);
             panel1.SuspendLayout();
             statusStrip1.SuspendLayout();
             SuspendLayout();
@@ -161,6 +162,7 @@ namespace u_net
             コマンド終了.Size = new Size(70, 25);
             コマンド終了.TabIndex = 0;
             コマンド終了.Text = "終了";
+            toolTip1.SetToolTip(コマンド終了, "終了");
             コマンド終了.UseVisualStyleBackColor = true;
             コマンド終了.Click += コマンド終了_Click;
             // 
@@ -210,6 +212,7 @@ namespace u_net
             文書グループ登録ボタン.Size = new Size(70, 25);
             文書グループ登録ボタン.TabIndex = 6;
             文書グループ登録ボタン.Text = "リンク";
+            toolTip1.SetToolTip(文書グループ登録ボタン, "文書グループの登録");
             文書グループ登録ボタン.UseVisualStyleBackColor = true;
             文書グループ登録ボタン.Click += 文書グループ登録ボタン_Click;
             // 
@@ -622,6 +625,7 @@ namespace u_net
             見積版数.Size = new Size(60, 21);
             見積版数.TabIndex = 1;
             見積版数.TabStop = false;
+            toolTip1.SetToolTip(見積版数, "版数");
             見積版数.Enter += 見積版数_Enter;
             見積版数.Validating += 見積版数_Validating;
             見積版数.Validated += 見積版数_Validated;
@@ -983,6 +987,7 @@ namespace u_net
             納入場所.Name = "納入場所";
             納入場所.Size = new Size(261, 21);
             納入場所.TabIndex = 14;
+            toolTip1.SetToolTip(納入場所, "納入場所");
             納入場所.TextChanged += 納入場所_TextChanged;
             納入場所.Enter += 納入場所_Enter;
             // 
@@ -997,6 +1002,7 @@ namespace u_net
             ファックス番号.Name = "ファックス番号";
             ファックス番号.Size = new Size(242, 22);
             ファックス番号.TabIndex = 12;
+            toolTip1.SetToolTip(ファックス番号, "顧客のファックス番号");
             ファックス番号.TextChanged += ファックス番号_TextChanged;
             ファックス番号.Enter += ファックス番号_Enter;
             ファックス番号.Validating += ファックス番号_Validating;
@@ -1012,6 +1018,7 @@ namespace u_net
             納期.Name = "納期";
             納期.Size = new Size(242, 22);
             納期.TabIndex = 13;
+            toolTip1.SetToolTip(納期, "納期");
             納期.TextChanged += 納期_TextChanged;
             納期.Enter += 納期_Enter;
             // 
@@ -1028,6 +1035,7 @@ namespace u_net
             担当者コード.Name = "担当者コード";
             担当者コード.Size = new Size(60, 22);
             担当者コード.TabIndex = 4;
+            toolTip1.SetToolTip(担当者コード, "担当者名");
             担当者コード.DrawItem += 担当者コード_DrawItem;
             担当者コード.SelectedIndexChanged += 担当者コード_SelectedIndexChanged;
             担当者コード.Enter += 担当者コード_Enter;
@@ -1057,6 +1065,7 @@ namespace u_net
             支払条件.Name = "支払条件";
             支払条件.Size = new Size(261, 21);
             支払条件.TabIndex = 15;
+            toolTip1.SetToolTip(支払条件, "支払条件");
             支払条件.TextChanged += 支払条件_TextChanged;
             支払条件.Enter += 支払条件_Enter;
             // 
@@ -1072,6 +1081,7 @@ namespace u_net
             有効期間.Name = "有効期間";
             有効期間.Size = new Size(261, 21);
             有効期間.TabIndex = 16;
+            toolTip1.SetToolTip(有効期間, "有効期間");
             有効期間.TextChanged += 有効期間_TextChanged;
             有効期間.Enter += 有効期間_Enter;
             // 
@@ -1102,6 +1112,7 @@ namespace u_net
             合計金額表示.Name = "合計金額表示";
             合計金額表示.Size = new Size(138, 21);
             合計金額表示.TabIndex = 18;
+            toolTip1.SetToolTip(合計金額表示, "合計金額の表示有無");
             合計金額表示.TextChanged += 合計金額表示_TextChanged;
             合計金額表示.Enter += 合計金額表示_Enter;
             // 
@@ -1146,6 +1157,7 @@ namespace u_net
             メモ.Name = "メモ";
             メモ.Size = new Size(313, 146);
             メモ.TabIndex = 20;
+            toolTip1.SetToolTip(メモ, "メモ");
             メモ.TextChanged += メモ_TextChanged;
             メモ.Enter += メモ_Enter;
             // 
@@ -1175,6 +1187,7 @@ namespace u_net
             備考.Name = "備考";
             備考.Size = new Size(804, 54);
             備考.TabIndex = 19;
+            toolTip1.SetToolTip(備考, "備考");
             備考.TextChanged += 備考_TextChanged;
             備考.Enter += 備考_Enter;
             // 
@@ -1189,6 +1202,7 @@ namespace u_net
             電話番号.Name = "電話番号";
             電話番号.Size = new Size(242, 22);
             電話番号.TabIndex = 11;
+            toolTip1.SetToolTip(電話番号, "顧客の電話番号");
             電話番号.TextChanged += 電話番号_TextChanged;
             電話番号.Enter += 電話番号_Enter;
             電話番号.Validating += 電話番号_Validating;
@@ -1221,6 +1235,7 @@ namespace u_net
             要承認.Name = "要承認";
             要承認.Size = new Size(171, 21);
             要承認.TabIndex = 17;
+            toolTip1.SetToolTip(要承認, "承認の要/不要");
             要承認.TextChanged += 要承認_TextChanged;
             要承認.Enter += 要承認_Enter;
             // 
@@ -1800,6 +1815,7 @@ namespace u_net
         private Label label32;
         private TextBox 見積コード;
         private MultiRowDesigner.見積明細 見積明細1;
+        private ToolTip toolTip1;
     }
 }
 

@@ -29,6 +29,7 @@ namespace u_net
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             コマンド終了 = new Button();
             コマンド登録 = new Button();
             panel1 = new Panel();
@@ -98,6 +99,8 @@ namespace u_net
             業務日報明細予定1 = new MultiRowDesigner.業務日報明細予定();
             label1 = new Label();
             本日の一言 = new TextBox();
+            toolTip1 = new ToolTip(components);
+            ログインユーザーボタン = new Button();
             panel1.SuspendLayout();
             statusStrip1.SuspendLayout();
             SuspendLayout();
@@ -113,6 +116,7 @@ namespace u_net
             コマンド終了.TabIndex = 1021;
             コマンド終了.TabStop = false;
             コマンド終了.Text = "終了";
+            toolTip1.SetToolTip(コマンド終了, "終了");
             コマンド終了.UseVisualStyleBackColor = true;
             コマンド終了.Click += コマンド終了_Click;
             // 
@@ -129,6 +133,7 @@ namespace u_net
             コマンド登録.TabIndex = 1020;
             コマンド登録.TabStop = false;
             コマンド登録.Text = "登録";
+            toolTip1.SetToolTip(コマンド登録, "登録");
             コマンド登録.UseVisualStyleBackColor = true;
             // 
             // panel1
@@ -214,6 +219,7 @@ namespace u_net
             コマンド確定.TabIndex = 1007;
             コマンド確定.TabStop = false;
             コマンド確定.Text = "確定";
+            toolTip1.SetToolTip(コマンド確定, "確定登録");
             コマンド確定.UseVisualStyleBackColor = true;
             // 
             // コマンド承認
@@ -229,6 +235,7 @@ namespace u_net
             コマンド承認.TabIndex = 1006;
             コマンド承認.TabStop = false;
             コマンド承認.Text = "承認";
+            toolTip1.SetToolTip(コマンド承認, "表示データを承認します。");
             コマンド承認.UseVisualStyleBackColor = true;
             // 
             // コマンド削除
@@ -612,6 +619,7 @@ namespace u_net
             日付選択ボタン.TabIndex = 21009;
             日付選択ボタン.TabStop = false;
             日付選択ボタン.Text = "▼";
+            toolTip1.SetToolTip(日付選択ボタン, "カレンダー");
             日付選択ボタン.UseVisualStyleBackColor = true;
             日付選択ボタン.Click += 日付選択ボタン_Click;
             // 
@@ -800,10 +808,24 @@ namespace u_net
             本日の一言.Size = new Size(743, 34);
             本日の一言.TabIndex = 17;
             // 
+            // ログインユーザーボタン
+            // 
+            ログインユーザーボタン.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            ログインユーザーボタン.Location = new Point(261, 72);
+            ログインユーザーボタン.Margin = new Padding(4);
+            ログインユーザーボタン.Name = "ログインユーザーボタン";
+            ログインユーザーボタン.Size = new Size(35, 21);
+            ログインユーザーボタン.TabIndex = 21014;
+            ログインユーザーボタン.TabStop = false;
+            ログインユーザーボタン.Text = "me";
+            toolTip1.SetToolTip(ログインユーザーボタン, "現在のユーザーに設定");
+            ログインユーザーボタン.UseVisualStyleBackColor = true;
+            // 
             // F_業務日報
             // 
             BackColor = SystemColors.Control;
             ClientSize = new Size(888, 642);
+            Controls.Add(ログインユーザーボタン);
             Controls.Add(本日の一言);
             Controls.Add(label1);
             Controls.Add(業務日報明細予定1);
@@ -933,6 +955,8 @@ namespace u_net
         private MultiRowDesigner.業務日報明細予定 業務日報明細予定1;
         private Label label1;
         private TextBox 本日の一言;
+        private ToolTip toolTip1;
+        private Button ログインユーザーボタン;
     }
 }
 
