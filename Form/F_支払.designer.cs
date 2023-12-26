@@ -1065,7 +1065,7 @@ namespace u_net
             支払明細1.Location = new Point(9, 304);
             支払明細1.Margin = new Padding(4);
             支払明細1.Name = "支払明細1";
-            支払明細1.Size = new Size(816, 238);
+            支払明細1.Size = new Size(822, 238);
             支払明細1.TabIndex = 10206;
             // 
             // F_支払
