@@ -2241,7 +2241,7 @@ namespace u_net
         }
 
         private void 発注コード_Validating(object sender, System.ComponentModel.CancelEventArgs e)
-        {
+        {           
             if (IsError(sender as Control, false) == true) e.Cancel = true;
         }
         private void 発注コード_TextChanged(object sender, EventArgs e)
@@ -2416,6 +2416,7 @@ namespace u_net
 
         private void 仕入先コード_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
+           
             if (IsError(sender as Control, false) == true) e.Cancel = true;
         }
 
@@ -2438,11 +2439,11 @@ namespace u_net
 
                 strCode = strCode.PadLeft(8, '0');
 
-                //if (strCode != control.Text)
-                //{
-                //    control.Text = strCode;
-                //    UpdatedControl("仕入先コード");
-                //}
+                if (strCode != control.Text)
+                {
+                    control.Text = strCode;
+                    UpdatedControl("仕入先コード");
+                }
             }
         }
 

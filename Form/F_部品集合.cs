@@ -229,7 +229,7 @@ namespace u_net
             {
                 ChangedData(false);
                 this.ResumeLayout();
-                fn.WaitForm.Close();
+                if (fn.WaitForm != null) fn.WaitForm.Close();
             }
         }
 
@@ -415,7 +415,7 @@ namespace u_net
             }
             finally
             {
-                fn.WaitForm.Close();
+                if (fn.WaitForm != null) fn.WaitForm.Close();
             }
         }
 
@@ -1253,7 +1253,7 @@ namespace u_net
             }
             finally
             {
-                fn.WaitForm.Close();
+                if (fn.WaitForm != null) fn.WaitForm.Close();
 
             }
         }
