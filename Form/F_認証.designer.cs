@@ -76,10 +76,9 @@ namespace u_net
             パスワード.ImeMode = ImeMode.Off;
             パスワード.Location = new Point(140, 35);
             パスワード.Margin = new Padding(3, 2, 3, 2);
-            パスワード.Multiline = true;
             パスワード.Name = "パスワード";
             パスワード.PasswordChar = '*';
-            パスワード.Size = new Size(185, 20);
+            パスワード.Size = new Size(185, 21);
             パスワード.TabIndex = 1;
             パスワード.TextChanged += パスワード_TextChanged;
             パスワード.Enter += パスワード_Enter;
@@ -163,10 +162,9 @@ namespace u_net
             確認入力.ImeMode = ImeMode.Off;
             確認入力.Location = new Point(170, 68);
             確認入力.Margin = new Padding(3, 2, 3, 2);
-            確認入力.Multiline = true;
             確認入力.Name = "確認入力";
             確認入力.PasswordChar = '*';
-            確認入力.Size = new Size(185, 20);
+            確認入力.Size = new Size(185, 21);
             確認入力.TabIndex = 3;
             確認入力.TextChanged += 確認入力_TextChanged;
             確認入力.Enter += 確認入力_Enter;
@@ -207,10 +205,9 @@ namespace u_net
             新パスワード.ImeMode = ImeMode.Off;
             新パスワード.Location = new Point(170, 43);
             新パスワード.Margin = new Padding(3, 2, 3, 2);
-            新パスワード.Multiline = true;
             新パスワード.Name = "新パスワード";
             新パスワード.PasswordChar = '*';
-            新パスワード.Size = new Size(185, 20);
+            新パスワード.Size = new Size(185, 21);
             新パスワード.TabIndex = 2;
             新パスワード.TextChanged += 新パスワード_TextChanged;
             新パスワード.Enter += 新パスワード_Enter;
