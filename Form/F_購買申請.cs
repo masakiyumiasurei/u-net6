@@ -1589,6 +1589,11 @@ namespace u_net
                         }
                     }
                 }
+
+                // フォームの情報を保存
+                LocalSetting ls = new LocalSetting();
+                ls.SavePlace(CommonConstants.LoginUserCode, this);
+
             }
             catch (Exception ex)
             {
