@@ -998,6 +998,8 @@ namespace u_net
                         break;
                 }
 
+                //テスト用
+                //入庫明細1.Detail.ReadOnly = false;
 
 
             }
@@ -1742,7 +1744,7 @@ namespace u_net
                     //新規行の場合は、処理をスキップ
                     continue;
                 }
-
+                入庫明細1.Detail.Rows[i].Cells["買掛区分"].Value = ((DataRowView)買掛区分コード設定.SelectedItem)?.Row.Field<String>("Display")?.ToString();
                 入庫明細1.Detail.Rows[i].Cells["買掛区分コード"].Value = ((DataRowView)買掛区分コード設定.SelectedItem)?.Row.Field<String>("Display2")?.ToString();
                 入庫明細1.Detail.Rows[i].Cells["買掛明細コード"].Value = ((DataRowView)買掛区分コード設定.SelectedItem)?.Row.Field<Int16?>("Display3")?.ToString();
 
