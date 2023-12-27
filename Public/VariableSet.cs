@@ -15,6 +15,7 @@ using ComboBox = System.Windows.Forms.ComboBox;
 using System.Drawing.Imaging;
 using System.Drawing.Printing;
 using GrapeCity.Win.MultiRow;
+using System.Xml.Linq;
 
 namespace u_net.Public
 {
@@ -53,9 +54,11 @@ namespace u_net.Public
         }
 
 
-        public static bool SetTable2Form(Form formObject, string sourceSQL, SqlConnection cn)
+        public static bool SetTable2Form(Form formObject, string sourceSQL, SqlConnection cn, string cmbname1="", string cmbname2="")
         {
             //タブコントロール、グループボックスにアクセスするため、再帰関数とする
+            //cmbnameはコンボボックスのテキストに登録する。selectedvalueに存在しない値を表示させるため
+                                 
             if (string.IsNullOrWhiteSpace(sourceSQL) || cn == null) return false; // クエリまたは接続が無効な場合は何もしない
 
             using (SqlCommand command = new SqlCommand(sourceSQL, cn))
@@ -66,7 +69,7 @@ namespace u_net.Public
                 {
                     reader.Read();
 
-                    SetControlValues(formObject.Controls, reader);
+                    SetControlValues(formObject.Controls, reader, cmbname1, cmbname2);
                     
                 }
             }
@@ -74,7 +77,7 @@ namespace u_net.Public
         }
 
         //タブコントロール、グループボックスにアクセスするため、再帰関数とする
-        private static void SetControlValues(Control.ControlCollection controls, SqlDataReader reader)
+        private static void SetControlValues(Control.ControlCollection controls, SqlDataReader reader, string cmbname1 = "", string cmbname2 = "")
         {
             foreach (Control control in controls)
             {
@@ -83,18 +86,18 @@ namespace u_net.Public
                     foreach (TabPage tabPage in tabControl.TabPages)
                     {
                         // タブコントロール内のコントロールに再帰的にアクセスする
-                        SetControlValues(tabPage.Controls, reader);
+                        SetControlValues(tabPage.Controls, reader, cmbname1, cmbname2);
                     }
                 }
                 else if (control is GroupBox groupBox)
                 {
                     // グループボックス内のコントロールに再帰的にアクセスする
-                    SetControlValues(groupBox.Controls, reader);
+                    SetControlValues(groupBox.Controls, reader, cmbname1, cmbname2);
                 }
                 else if (control is Panel panel)
                 {
                     // パネル内のコントロールに再帰的にアクセスする
-                    SetControlValues(panel.Controls, reader);
+                    SetControlValues(panel.Controls, reader, cmbname1, cmbname2);
                 }
                 else
                 {
@@ -113,7 +116,7 @@ namespace u_net.Public
 
                         if (reader[columnName] != DBNull.Value)
                         {
-                            SetControlValue(control, reader[columnName]);
+                            SetControlValue(control, reader[columnName],cmbname1,cmbname2);
                             break;
                         }
                     }
@@ -121,7 +124,7 @@ namespace u_net.Public
             }
         }
 
-        private static void SetControlValue(Control control, object value)
+        private static void SetControlValue(Control control, object value, string cmbname1 = "", string cmbname2 = "")
         {
             if (control is TextBox textBox)
             {
@@ -129,7 +132,15 @@ namespace u_net.Public
             }
             else if (control is ComboBox comboBox)
             {
-                comboBox.SelectedValue = value;
+                if (control.Name == cmbname1 || control.Name == cmbname2)
+                {
+                    comboBox.Text = value.ToString();
+                }
+                else
+                {
+                    comboBox.SelectedValue = value;
+                }
+                    
             }
             else if (control is CheckBox checkBox)
             {

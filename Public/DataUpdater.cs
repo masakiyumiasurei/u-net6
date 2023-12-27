@@ -15,7 +15,7 @@ namespace u_net.Public
     public class DataUpdater
     {
         public static bool UpdateOrInsertDataFrom(Form form, SqlConnection connection, string tableName, string condition,
-            string ukname, SqlTransaction transaction,string ukname2 = "")
+            string ukname, SqlTransaction transaction,string ukname2 = "", string cmbname1 = "")
         {
             try
             {
@@ -33,7 +33,7 @@ namespace u_net.Public
                         // 既存データが見つかった場合（更新モード）
                         DataRow row = dataSet.Tables[0].Rows[0];
 
-                        SetControlValues(form.Controls, row, connection, tableName, ukname, transaction, ukname2);
+                        SetControlValues(form.Controls, row, connection, tableName, ukname, transaction, ukname2 ,cmbname1);
 
                         // データベースに変更を反映
                         SqlCommandBuilder cmdBuilder = new SqlCommandBuilder(adapter);
@@ -44,7 +44,7 @@ namespace u_net.Public
                         // 既存データが見つからなかった場合（新規モード）
                         DataRow newRow = dataSet.Tables[0].NewRow();
 
-                        SetControlValues(form.Controls, newRow, connection, tableName, ukname, transaction, ukname2);
+                        SetControlValues(form.Controls, newRow, connection, tableName, ukname, transaction, ukname2, cmbname1);
 
                         dataSet.Tables[0].Rows.Add(newRow);
 
@@ -66,7 +66,7 @@ namespace u_net.Public
         }
 
         private static void SetControlValues(Control.ControlCollection controls, DataRow row, SqlConnection connection,
-            string tableName, string ukname, SqlTransaction transaction,string? ukname2)
+            string tableName, string ukname, SqlTransaction transaction,string? ukname2="", string cmbname1 = "")
         {
             foreach (Control control in controls)
             {
@@ -75,18 +75,18 @@ namespace u_net.Public
                     foreach (TabPage tabPage in tabControl.TabPages)
                     {
                         // タブコントロール内のコントロールに再帰的にアクセスする
-                        SetControlValues(tabPage.Controls, row, connection, tableName, ukname, transaction, ukname2);
+                        SetControlValues(tabPage.Controls, row, connection, tableName, ukname, transaction, ukname2, cmbname1);
                     }
                 }
                 else if (control is GroupBox groupBox)
                 {
                     // グループボックス内のコントロールに再帰的にアクセスする
-                    SetControlValues(groupBox.Controls, row, connection, tableName, ukname, transaction, ukname2);
+                    SetControlValues(groupBox.Controls, row, connection, tableName, ukname, transaction, ukname2, cmbname1);
                 }
                 else if (control is Panel panel)
                 {
                     // パネル内のコントロールに再帰的にアクセスする
-                    SetControlValues(panel.Controls, row, connection, tableName, ukname, transaction, ukname2);
+                    SetControlValues(panel.Controls, row, connection, tableName, ukname, transaction, ukname2, cmbname1);
                 }
                 else
                 {
@@ -112,7 +112,7 @@ namespace u_net.Public
                             break;
 
                         case ComboBox comboBox:
-                            if (control.Name == ukname || control.Name == ukname2)
+                            if (control.Name == ukname || control.Name == ukname2 || control.Name == cmbname1)
                             {
                                 controlValue = comboBox.Text;
                             }

@@ -228,7 +228,8 @@ namespace u_net
                         //{
                         //this.購買申請コード.Text = args;
                         //UpdatedControl(this.購買申請コード);
-                        //ChangedData(false);
+                        UpdatedControl(this.購買申請版数);
+                        ChangedData(false);
                         //}
                     }
                 }
@@ -1823,6 +1824,15 @@ namespace u_net
                 Connect();
 
                 VariableSet.SetTable2Form(this, sourceSQL, cn);
+
+                if (!string.IsNullOrEmpty(申請日.Text))
+                {
+                    if (DateTime.TryParse(this.申請日.Text, out DateTime tempDate))
+                    {
+                        申請日.Text = tempDate.ToString("yyyy/MM/dd");
+                    }
+                }
+
                 result = true;
 
                 return result;

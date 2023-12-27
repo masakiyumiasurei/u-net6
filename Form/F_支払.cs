@@ -37,6 +37,7 @@ namespace u_net
         int intWindowHeight;
         int intWindowWidth;
         public bool IsDirty = false;
+        private bool setCombo = true;
 
         public F_支払()
         {
@@ -328,6 +329,18 @@ namespace u_net
                 削除.Text = "■";
             }
         }
+
+        public void 支払コードcmb()
+        {
+            setCombo = true;
+            //
+            string str = CurrentCode;
+            OriginalClass ofn = new OriginalClass();
+            ofn.SetComboBox(支払コード, "SELECT T支払.支払コード as Display,T支払.支払コード  as Value FROM T支払 INNER JOIN T支払明細" +
+                " ON T支払.支払コード = T支払明細.支払コード GROUP BY T支払.支払コード ORDER BY T支払.支払コード DESC");
+            支払コード.Text = str;
+            setCombo = false;
+        }
         private void Form_Load(object sender, EventArgs e)
         {
             foreach (Control control in Controls)
@@ -343,15 +356,19 @@ namespace u_net
             LocalSetting localSetting = new LocalSetting();
             localSetting.LoadPlace(LoginUserCode, this);
 
-            OriginalClass ofn = new OriginalClass();
-            ofn.SetComboBox(支払コード, "SELECT T支払.支払コード as Display,T支払.支払コード  as Value FROM T支払 INNER JOIN T支払明細" +
-                " ON T支払.支払コード = T支払明細.支払コード GROUP BY T支払.支払コード ORDER BY T支払.支払コード DESC");
+            支払コードcmb();
 
-            ofn.SetComboBox(集計年月, "SELECT STR({ fn YEAR(DATEADD(month,-1,GETDATE())) }, 4, 0) + '/' + " +
-                "STR({ fn MONTH(DATEADD(month,-1,GETDATE())) }, 2, 0) AS Display," +
-                "STR({ fn YEAR(DATEADD(month,-1,GETDATE())) }, 4, 0) + '/' + STR({ fn MONTH(DATEADD(month,-1,GETDATE())) }, 2, 0) AS Value");
+            OriginalClass ofn = new OriginalClass();
+
+            string cmbsql = "select 集計年月 AS Display,集計年月 AS Value from(" +
+                "SELECT STR({ fn YEAR(DATEADD(month,-1,GETDATE())) }, 4, 0) + '/' + STR({ fn MONTH(DATEADD(month,-1,GETDATE())) }, 2, 0) AS 集計年月 " +
+                "UNION ALL SELECT STR({ fn YEAR(GETDATE()) }, 4, 0) + '/' + STR({ fn MONTH(GETDATE()) }, 2, 0) AS 集計年月 " +
+                "UNION ALL SELECT STR({ fn YEAR(DATEADD(month,1,GETDATE())) }, 4, 0) + '/' + STR({ fn MONTH(DATEADD(month,1,GETDATE())) }, 2, 0) AS 集計年月 " +
+                "UNION ALL SELECT STR({ fn YEAR(DATEADD(month,2,GETDATE())) }, 4, 0) + '/' + STR({ fn MONTH(DATEADD(month,2,GETDATE())) }, 2, 0) AS 集計年月) as T";
+            ofn.SetComboBox(集計年月, cmbsql);
 
             ofn.SetComboBox(支払年月, SP支払年月入力);
+
 
             this.振込指定.DataSource = new KeyValuePair<int, String>[] {
                new KeyValuePair<int, String>(1, "振り込む"),
@@ -397,7 +414,7 @@ namespace u_net
                     支払コード.Focus();
 
                     UpdatedControl(this.支払コード);
-                    チェック();
+
 
                 }
                 // 成功時の処理
@@ -410,6 +427,7 @@ namespace u_net
             }
             finally
             {
+                setCombo = false;
                 this.ResumeLayout();
                 if (fn.WaitForm != null) fn.WaitForm.Close();
             }
@@ -423,7 +441,7 @@ namespace u_net
                 string strSQL;
                 strSQL = "SELECT * FROM V支払読込 WHERE 支払コード='" + CurrentCode + "'";
 
-                if (!VariableSet.SetTable2Form(this, strSQL, cn)) return false;
+                if (!VariableSet.SetTable2Form(this, strSQL, cn, "集計年月", "支払年月")) return false;
 
                 return true;
             }
@@ -477,7 +495,7 @@ namespace u_net
                 Connect();
 
                 支払コード.Text = FunctionClass.採番(cn, "PAY").ToString();
-
+                AdjustPayable.Checked = false;
                 // 明細部の初期化
                 string strSQL = "SELECT * FROM T支払明細 WHERE 支払コード='" + this.CurrentCode +
                     "'  ORDER BY 明細番号";
@@ -614,9 +632,7 @@ namespace u_net
             // 登録処理
             if (SaveData())
             {
-                OriginalClass ofn = new OriginalClass();
-                ofn.SetComboBox(支払コード, "SELECT 支払コード as Display,支払コード  as Value FROM T支払 INNER JOIN T支払明細" +
-                    " ON T支払.支払コード = T支払明細.支払コード GROUP BY T支払.支払コード ORDER BY T支払.支払コード DESC");
+                支払コードcmb();
 
                 // 登録に成功した
                 ChangedData(false);
@@ -902,7 +918,7 @@ namespace u_net
                 string strwhere = " 支払コード='" + codeString + "'";
 
 
-                if (!DataUpdater.UpdateOrInsertDataFrom(this, cn, "T支払", strwhere, "支払コード", transaction))
+                if (!DataUpdater.UpdateOrInsertDataFrom(this, cn, "T支払", strwhere, "支払コード", transaction, "集計年月", "支払年月"))
                 {
                     //保存できなかった時の処理 catchで対応する
                     throw new Exception();
@@ -923,9 +939,9 @@ namespace u_net
         {
             try
             {
-                string strwhere = $"支払コード= {codeString}";
+                string strwhere = $"支払コード= '{codeString}'";
                 //明細部の登録
-                if (!DataUpdater.UpdateOrInsertDetails(this.支払明細1.Detail, cn, "T支払", strwhere, "支払コード", transaction))
+                if (!DataUpdater.UpdateOrInsertDetails(this.支払明細1.Detail, cn, "T支払明細", strwhere, "支払コード", transaction))
                 {
                     //保存できなかった時の処理                    
                     throw new Exception();
@@ -977,6 +993,8 @@ namespace u_net
 
                         this.コマンド承認.Enabled = this.IsDecided && (!this.IsDeleted);
                         this.コマンド確定.Enabled = (!this.IsApproved) && (!this.IsDeleted);
+                        ChangedData(false);
+                        チェック();
                         break;
 
                     case "支払先コード":
@@ -1037,8 +1055,10 @@ namespace u_net
                 string strAppCode3 = "";
                 string strCerCode = "";
 
-
                 // 認証処理
+                strAppCode1 = USER_CODE_MANAGE;      // 承認者1を指定する（管理部長）
+                strAppCode2 = USER_CODE_GA;          // 承認者2を指定する（業務チーム）
+
                 F_認証 fm = new F_認証();
 
                 fm.ShowDialog();
@@ -1093,6 +1113,8 @@ namespace u_net
                     // ロールバック処理をこちらに追加してください。
                     MessageBox.Show("登録できませんでした。", "承認コマンド", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
+
+                チェック();
             }
             catch (Exception ex)
             {
@@ -1134,9 +1156,7 @@ namespace u_net
                 // 登録する
                 if (RegTrans(this.CurrentCode, cn))
                 {
-                    OriginalClass ofn = new OriginalClass();
-                    ofn.SetComboBox(支払コード, "SELECT 支払コード as Display,支払コード  as Value FROM T支払 INNER JOIN T支払明細" +
-                        " ON T支払.支払コード = T支払明細.支払コード GROUP BY T支払.支払コード ORDER BY T支払.支払コード DESC");
+                    支払コードcmb();
 
                     LockData(this, IsDecided, "支払コード");
 
@@ -1240,9 +1260,7 @@ namespace u_net
 
                 if (RegTrans(this.CurrentCode, cn))
                 {
-                    OriginalClass ofn = new OriginalClass();
-                    ofn.SetComboBox(支払コード, "SELECT 支払コード as Display,支払コード  as Value FROM T支払 INNER JOIN T支払明細" +
-                        " ON T支払.支払コード = T支払明細.支払コード GROUP BY T支払.支払コード ORDER BY T支払.支払コード DESC");
+                    支払コードcmb();
 
                     LockData(this, this.IsDecided || this.IsDeleted, "支払コード");
                     支払明細1.Detail.AllowUserToAddRows = !this.IsDecided && !IsDeleted;
@@ -1444,7 +1462,7 @@ namespace u_net
                     switch (this.ActiveControl.Name)
                     {
                         case "備考":
-                        //case "メモ":
+                            //case "メモ":
                             return;
                     }
                     SelectNextControl(ActiveControl, true, true, true, true);
@@ -1546,10 +1564,12 @@ namespace u_net
             toolStripStatusLabel1.Text = "各種項目の説明";
         }
 
-        private void 支払コード_Validated(object sender, EventArgs e)
+        private void 支払コード_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (setCombo) return;
             UpdatedControl(支払コード);
         }
+
 
         private void 支払先コード_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
@@ -1660,14 +1680,20 @@ namespace u_net
             if (IsError(sender as Control, false) == true) e.Cancel = true;
         }
 
-        private void 振込指定_VisibleChanged(object sender, EventArgs e)
+        private void 振込指定_TextChanged(object sender, EventArgs e)
         {
             ChangedData(true);
         }
 
-        private void 備考_VisibleChanged(object sender, EventArgs e)
+
+        private void 備考_TextChanged(object sender, EventArgs e)
         {
             FunctionClass.LimitText(集計年月, 200);
+            ChangedData(true);
+        }
+
+        private void AdjustPayable_CheckedChanged(object sender, EventArgs e)
+        {
             ChangedData(true);
         }
     }
