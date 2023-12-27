@@ -16,25 +16,23 @@ using System.Management;
 using static u_net.Public.FunctionClass;
 using static u_net.Public.OriginalClass;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Microsoft.Identity.Client.NativeInterop;
+using Newtonsoft.Json.Linq;
 
 namespace u_net
 {
     public partial class F_売掛一覧 : MidForm
     {
-        public string str発注コード開始;
-        public string str発注コード終了;
-        public DateTime dtm発注日開始;
-        public DateTime dtm発注日終了;
-        public string str発注者名;
-        public string str購買コード開始;
-        public string str購買コード終了;
-        public string str仕入先名;
-        public string str検索コード;
-        public int lng購買指定;
-        public int lng入庫状況指定;
-        public int lng削除指定;
-        public string strSearchCode;
-        public bool orderEXT;
+
+        public string str顧客名 { get; set; }
+        public string str担当者名 { get; set; }
+        public long lng完了指定 { get; set; }
+        public string str締日 { get; set; }
+        public DateTime dtm支払日開始 { get; set; }
+        public DateTime dtm支払日終了 { get; set; }
+        public bool salEXT { get; set; }
+        public string strSortItem { get; set; }
+        public bool blnSortCondition { get; set; }
 
         private int intSelectionMode; // グリッドの選択モード        
         private int intWindowHeightMax;
@@ -52,56 +50,7 @@ namespace u_net
         {
             InitializeComponent();
         }
-        public int DataCount
-        {
-            get
-            {
-                int dataCount = dataGridView1.Rows.Count;
-                return dataCount < 0 ? 0 : dataCount;
-            }
-        }
-        public string CurrentCode
-        {
-            // 現在選択されているデータのコードを取得する
-            get
-            {
-                return dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value?.ToString();
-            }
-        }
-        public string CurrentEdition
-        {
-            // 現在選択されているデータの版数を取得する
-            get
-            {
-                return dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[1].Value?.ToString();
-            }
-        }
-        public bool IsApproved
-        {
-            // 現在選択されているデータが承認されているかどうかを取得する
-            get
-            {
-                return !string.IsNullOrEmpty(Nz(dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[9].Value?.ToString(), ""));
-            }
-        }
 
-        public string IsCompleted
-        {
-            // 現在選択されているデータが完了しているかどうかを取得する
-            get
-            {
-                return dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[11].Value?.ToString();
-            }
-        }
-
-        public bool IsDeleted
-        {
-            // 現在選択されているデータが削除されているかどうかを取得する
-            get
-            {
-                return !string.IsNullOrEmpty(Nz(dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[12].Value?.ToString(), ""));
-            }
-        }
 
 
 
@@ -113,24 +62,49 @@ namespace u_net
             cn.Open();
         }
 
-        private void InitializeFilter()
+
+
+        public int AcceptanceNotificationReceived
         {
-            str発注コード開始 = "";
-            str発注コード終了 = "";
-            dtm発注日開始 = DateTime.MinValue; // 適切な初期値に変更する必要があります
-            dtm発注日終了 = DateTime.MinValue; // 適切な初期値に変更する必要があります
-            str発注者名 = "";
-            str購買コード開始 = "";
-            str購買コード終了 = "";
-            str仕入先名 = "";
-            lng購買指定 = 0;
-            lng入庫状況指定 = 0;
-            lng削除指定 = 1;
+            get
+            {
+                return string.IsNullOrEmpty(dataGridView1.SelectedRows[0].Cells[11].Value?.ToString()) ? 0 : -1;
+            }
         }
+
+        public string CustomerCode
+        {
+            get
+            {
+                return dataGridView1.SelectedRows[0].Cells[0].Value?.ToString();
+            }
+        }
+
+
+        public DateTime SalesMonth
+        {
+            get
+            {
+                return Convert.ToDateTime(Nz(売掛年月.Text));
+            }
+        }
+
+
+        // Nz関数の代用
+        private string Nz(object value)
+        {
+            return value == null ? "" : value.ToString();
+        }
+
+        // IsNull関数の代用
+        private bool IsNull(object value)
+        {
+            return value == null || Convert.IsDBNull(value) || string.IsNullOrEmpty((string?)value);
+        }
+
+
         private void Form_Load(object sender, EventArgs e)
         {
-            FunctionClass fn = new FunctionClass();
-            fn.DoWait("しばらくお待ちください...");
 
             MyApi myapi = new MyApi();
             int xSize, ySize, intpixel, twipperdot;
@@ -152,43 +126,74 @@ namespace u_net
             dataGridView1.DefaultCellStyle.Font = new Font("MS ゴシック", 10);
             dataGridView1.DefaultCellStyle.ForeColor = Color.Black;
 
-            myapi.GetFullScreen(out xSize, out ySize);
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridView1.AllowUserToAddRows = false;
+            dataGridView1.AllowUserToDeleteRows = false;
+            dataGridView1.ReadOnly = true;
 
-            int x = 10, y = 10;
+            dataGridView2.AllowUserToResizeColumns = true;
+            dataGridView2.Font = new Font("MS ゴシック", 10);
+            dataGridView2.DefaultCellStyle.SelectionBackColor = Color.FromArgb(210, 210, 255);
+            dataGridView2.DefaultCellStyle.SelectionForeColor = Color.Black;
+            dataGridView2.GridColor = Color.FromArgb(230, 230, 230);
+            dataGridView2.ColumnHeadersDefaultCellStyle.Font = new Font("MS ゴシック", 9);
+            dataGridView2.DefaultCellStyle.Font = new Font("MS ゴシック", 10);
+            dataGridView2.DefaultCellStyle.ForeColor = Color.Black;
 
-            this.Size = new Size(this.Width, ySize * myapi.GetTwipPerDot(intpixel) - 1200);
-            //accessのmovesizeメソッドの引数の座標単位はtwipなので以下で
+            dataGridView2.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridView2.AllowUserToAddRows = false;
+            dataGridView2.AllowUserToDeleteRows = false;
+            dataGridView2.ReadOnly = true;
+            dataGridView2.Enabled = false;
 
-            this.Size = new Size(this.Width, ySize - 1200 / twipperdot);
+            // 一番左の選択列を非表示に
+            dataGridView2.RowHeadersVisible = false;
 
-            this.StartPosition = FormStartPosition.Manual; // 手動で位置を指定
-            int screenWidth = Screen.PrimaryScreen.Bounds.Width; // プライマリスクリーンの幅
-            x = (screenWidth - this.Width) / 2;
-            this.Location = new Point(x, y);
+            dataGridView2.ClearSelection();
 
-            //LocalSetting localSetting = new LocalSetting();
-            //localSetting.LoadPlace(CommonConstants.LoginUserCode, this);
-            this.dataGridView1.Focus();
 
-            InitializeFilter();
-            DoUpdate();
-            Cleargrid(dataGridView1);
 
-            fn.WaitForm.Close();
+            Connect();
+
+            using (SqlCommand cmd = new SqlCommand("SP売掛一覧_売掛年月", cn))
+            {
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                // レコードセットを設定
+                DataTable dataTable = new DataTable();
+                dataTable.Load(reader);
+
+
+                売掛年月.DisplayMember = "売掛年月";
+                売掛年月.ValueMember = "売掛年月";
+                売掛年月.DataSource = dataTable;
+
+
+
+            }
+
+            売掛年月.DrawMode = DrawMode.OwnerDrawFixed;
+
+
+
+            SetInitial();
+
+
         }
 
         private void Form_Resize(object sender, EventArgs e)
         {
             try
             {
-                if (this.Height > 800)
-                {
-                    dataGridView1.Height = dataGridView1.Height + (this.Height - intWindowHeight);
-                    intWindowHeight = this.Height;  // 高さ保存
+      
+                dataGridView1.Height = dataGridView1.Height + (this.Height - intWindowHeight);
+                intWindowHeight = this.Height;  // 高さ保存
 
-                    dataGridView1.Width = dataGridView1.Width + (this.Width - intWindowWidth);
-                    intWindowWidth = this.Width;    // 幅保存
-                }
+                dataGridView1.Width = dataGridView1.Width + (this.Width - intWindowWidth);
+                intWindowWidth = this.Width;    // 幅保存
+                
             }
             catch (Exception ex)
             {
@@ -196,259 +201,204 @@ namespace u_net
             }
         }
 
-        public int DoUpdate()
+
+        private void SetInitial()
         {
-            int result = -1;
+            lng完了指定 = 0;
+            radioButton3.Checked = true;
+            str締日 = "";
+        }
+
+
+        public bool DoUpdate()
+        {
+            if (string.IsNullOrEmpty(売掛年月.Text)) return false;
+
+            FunctionClass fn = new FunctionClass();
+            fn.DoWait("集計しています...");
+
+            bool result = true;
             try
             {
-                result = Filtering();
-                //   DrawGrid();
-                if (result >= 0)
-                {
-                    this.表示件数.Text = result.ToString();
-                    if (GridDrawn())
-                    {
-                        return result;
-                    }
-                    else
-                    {
-                        //描画処理時のエラー　何を返すか？
-                        return result;
-                    }
-                }
-                else
-                {
-                    this.表示件数.Text = null; // Nullの代わりにC#ではnullを使用
-                }
+                Filtering(SalesMonth, str顧客名, str担当者名, lng完了指定, str締日, dtm支払日開始, dtm支払日終了);
+                GetTotal();
+
             }
             catch (Exception ex)
             {
-                result = -1;
+                result = false;
                 MessageBox.Show(this.Name + "_DoUpdate - " + ex.Message);
             }
+
+            fn.WaitForm.Close();
 
             return result;
         }
 
-        private int Filtering()
+
+        private bool Filtering(DateTime salesMonth, string customerName, string coverUserName, long completedCode, string closedDay, DateTime fixedDateS, DateTime fixedDateE)
         {
+            bool success = false;
+
+            Connect();
+
             try
             {
-                string filter = string.Empty;
 
-                if (!string.IsNullOrEmpty(str発注コード開始))
+                FunctionClass fn = new FunctionClass();
+
+
+                using (SqlCommand command = new SqlCommand("SP売掛一覧_顧客別_抽出", cn))
                 {
-                    filter = WhereString(filter, "(発注コード BETWEEN '" + str発注コード開始 + "' AND '" + str発注コード終了 + "')");
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@SalesMonth", salesMonth);
+                    command.Parameters.AddWithValue("@CustomerName", fn.Zn(customerName));
+                    command.Parameters.AddWithValue("@CoverUserName", fn.Zn(coverUserName));
+                    command.Parameters.AddWithValue("@CompletedCode", fn.Zn(completedCode));
+                    command.Parameters.AddWithValue("@ClosedDay", fn.Zn(closedDay));
+                    command.Parameters.AddWithValue("@FixedDateS", (fixedDateS == DateTime.MinValue) ? null : fixedDateS);
+                    command.Parameters.AddWithValue("@FixedDateE", (fixedDateE == DateTime.MinValue) ? null : fixedDateE);
+
+
+
+                    // データベースからデータを取得して DataGridView に設定
+                    using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+                    {
+                        DataTable dataTable = new DataTable();
+                        adapter.Fill(dataTable);
+                        //dataGridView1.DataSource = dataTable;
+
+                        BindingSource bindingSource = new BindingSource();
+                        bindingSource.DataSource = dataTable;
+
+                        // DataGridView に BindingSource をバインド
+                        dataGridView1.DataSource = bindingSource;
+                    }
+
+
+                    表示件数.Text = dataGridView1.RowCount.ToString();
+
+
+                    success = true;
+
+
+                    MyApi myapi = new MyApi();
+                    int xSize, ySize, intpixel, twipperdot;
+
+                    //1インチ当たりのピクセル数 アクセスのサイズの引数がtwipなのでピクセルに変換する除算値を求める
+                    intpixel = myapi.GetLogPixel();
+                    twipperdot = myapi.GetTwipPerDot(intpixel);
+
+                    intWindowHeight = this.Height;
+                    intWindowWidth = this.Width;
+
+                    //0列目はaccessでは行ヘッダのため、ずらす
+                    dataGridView1.Columns[0].Width = 1050 / twipperdot;
+                    dataGridView1.Columns[1].Width = 3950 / twipperdot;
+                    dataGridView1.Columns[2].Width = 600 / twipperdot;
+                    dataGridView1.Columns[3].Width = 1400 / twipperdot;
+                    dataGridView1.Columns[4].Width = 1240 / twipperdot;
+                    dataGridView1.Columns[5].Width = 1240 / twipperdot;
+                    dataGridView1.Columns[6].Width = 1240 / twipperdot;
+                    dataGridView1.Columns[7].Width = 1400 / twipperdot;
+                    dataGridView1.Columns[8].Width = 330 / twipperdot;
+                    dataGridView1.Columns[9].Width = 450 / twipperdot;
+                    dataGridView1.Columns[10].Width = 1300 / twipperdot;
+                    dataGridView1.Columns[11].Width = 330 / twipperdot;
+                    dataGridView1.Columns[12].Width = 1300 / twipperdot;
+                    dataGridView1.Columns[13].Visible = false;
+
+
+                    for (int col = 3; col <= 7; col++)
+                    {
+                        dataGridView1.Columns[col].DefaultCellStyle.Format = "#,###,###,##0";
+                        dataGridView1.Columns[col].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                    }
+
+                    foreach (DataGridViewRow row in dataGridView1.Rows)
+                    {
+                        if (string.IsNullOrEmpty(row.Cells[8].Value?.ToString()) && DateTime.Parse(row.Cells[12].Value.ToString()) < DateTime.Today)
+                        {
+                            row.DefaultCellStyle.BackColor = Color.Pink;
+                        }
+                        else
+                        {
+                            row.DefaultCellStyle.BackColor = Color.White;
+                        }
+
+
+
+                    }
+
                 }
 
-                // 発注日指定
-                if (dtm発注日開始 != DateTime.MinValue && dtm発注日終了 != DateTime.MinValue)
-                {
-                    filter = WhereString(filter, "'" + dtm発注日開始 + "'<=発注日 and 発注日<='" + dtm発注日終了 + "'");
-                }
-
-                // 発注者名指定
-                if (!string.IsNullOrEmpty(str発注者名))
-                {
-                    filter = WhereString(filter, "発注者名='" + str発注者名 + "'");
-                }
-
-                // 購買コード指定
-                if (!string.IsNullOrEmpty(str購買コード開始))
-                {
-                    filter = WhereString(filter, "(購買コード BETWEEN '" + str購買コード開始 + "' AND '" + str購買コード終了 + "')");
-                }
-
-                // 仕入先名指定
-                if (!string.IsNullOrEmpty(str仕入先名))
-                {
-                    filter = WhereString(filter, "仕入先名='" + str仕入先名 + "'");
-                }
-
-                // 購買指定
-                switch (lng購買指定)
-                {
-                    case 1:
-                        filter = WhereString(filter, "購買コード IS NULL");
-                        break;
-                    case 2:
-                        filter = WhereString(filter, "購買コード IS NOT NULL");
-                        break;
-                }
-
-                // 入庫状況指定
-                switch (lng入庫状況指定)
-                {
-                    case 0:
-                        filter = WhereString(filter, "入庫状況 = '' OR 入庫状況 = '□'");
-                        //filter = WhereString(filter, "入庫状況 = 0 OR 入庫状況 = 1");
-                        break;
-                    case 2:
-                        filter = WhereString(filter, "入庫状況 = '■'");
-                        //filter = WhereString(filter, "入庫状況 = 2");
-                        break;
-                    case 3:
-                        //「指定しない」なので、存在しない値以外という条件になっている　そもそも条件自体不要なのでは。。。
-                        filter = WhereString(filter, "入庫状況 <> '20'");
-                        break;
-                }
-
-                // 削除指定
-                switch (lng削除指定)
-                {
-                    case 1:
-                        filter = WhereString(filter, "削除 IS NULL");
-                        break;
-                    case 2:
-                        filter = WhereString(filter, "削除 IS NOT NULL");
-                        break;
-                }
-
-                string sql = "select * from (" +
-                    "SELECT T発注.発注コード, T発注.発注版数 AS 版, " +
-                    "CONVERT(nvarchar, T発注.発注日, 111) AS 発注日, T発注.発注者名, T発注.購買コード, M仕入先.仕入先名, " +
-                    "T発注.仕入先担当者名 AS 担当者名, { fn REPLACE(STR(CONVERT(bit, T発注.確定日時), 1), '1', '■') } AS 確定, " +
-                    "{ fn REPLACE(STR(CONVERT(bit, T発注.承認日時), 1), '1', '■') } AS 承認, " +
-                    "CASE WHEN 状態コード = 4 THEN '■' ELSE NULL END AS 送信," +
-                    "CASE WHEN V発注_入庫状況.入庫状況 = 2 THEN '■' WHEN V発注_入庫状況.入庫状況 = 1 THEN '□' ELSE '' END AS 入庫状況 ," +
-                    "CASE WHEN T発注.無効日時 IS NOT NULL THEN '■' ELSE NULL END AS 削除, " +
-                    "{ fn REPLACE(STR(CONVERT(bit, T発注.無効日時), 1), '1', '■') } AS 削除2 " +
-                    "FROM T発注 INNER JOIN Ｖ発注_最大版数 ON T発注.発注コード = Ｖ発注_最大版数.発注コード AND T発注.発注版数 = Ｖ発注_最大版数.発注版数 " +
-                    "INNER JOIN V発注_入庫状況 ON T発注.発注コード = V発注_入庫状況.発注コード AND T発注.発注版数 = V発注_入庫状況.発注版数 " +
-                    "LEFT OUTER JOIN Vファックス送信_最新 ON T発注.発注コード = Vファックス送信_最新.送信文書コード AND T発注.発注版数 = Vファックス送信_最新.送信文書版数 " +
-                    "LEFT OUTER JOIN V発注_完了 ON T発注.発注コード = V発注_完了.発注コード AND T発注.発注版数 = V発注_完了.発注版数 " +
-                    "LEFT OUTER JOIN M仕入先 ON T発注.仕入先コード = M仕入先.仕入先コード " +
-                    "LEFT OUTER JOIN M社員 ON T発注.発注者コード = M社員.社員コード" +
-                    ") T ";
-
-
-                string query = string.IsNullOrEmpty(filter) ?
-                    sql + "ORDER BY 発注コード DESC" : sql + " WHERE " + filter + " ORDER BY 発注コード DESC";
-
-                //string query = string.IsNullOrEmpty(filter) ?
-                //"select * from V発注管理 ORDER BY 発注コード DESC" : "select * from V発注管理 WHERE " + filter + " ORDER BY 発注コード DESC";
-
-                Connect();
-                DataGridUtils.SetDataGridView(cn, query, this.dataGridView1);
-
-
-                MyApi myapi = new MyApi();
-                int xSize, ySize, intpixel, twipperdot;
-
-                //1インチ当たりのピクセル数 アクセスのサイズの引数がtwipなのでピクセルに変換する除算値を求める
-                intpixel = myapi.GetLogPixel();
-                twipperdot = myapi.GetTwipPerDot(intpixel);
-
-                intWindowHeight = this.Height;
-                intWindowWidth = this.Width;
-
-                // DataGridViewの設定
-                dataGridView1.Columns[0].DefaultCellStyle.BackColor = Color.FromArgb(255, 255, 200); // 薄い黄色
-                dataGridView1.Columns[1].DefaultCellStyle.BackColor = Color.FromArgb(255, 255, 200); // 薄い黄色
-
-                // 列の幅を設定 もとは恐らくtwipのためピクセルに直す
-
-                //0列目はaccessでは行ヘッダのため、ずらす
-                //dataGridView1.Columns[0].Width = 500 / twipperdot;
-                dataGridView1.Columns[0].Width = 1600 / twipperdot; //1150
-                dataGridView1.Columns[1].Width = 300 / twipperdot;
-                dataGridView1.Columns[2].Width = 1300 / twipperdot;
-                dataGridView1.Columns[3].Width = 1400 / twipperdot;
-                dataGridView1.Columns[4].Width = 1400 / twipperdot;
-                dataGridView1.Columns[5].Width = 3500 / twipperdot;
-                dataGridView1.Columns[6].Width = 2000 / twipperdot;
-                dataGridView1.Columns[7].Width = 400 / twipperdot;//1300
-                dataGridView1.Columns[8].Width = 400 / twipperdot;
-                dataGridView1.Columns[9].Width = 400 / twipperdot;
-                dataGridView1.Columns[10].Width = 400 / twipperdot;
-                dataGridView1.Columns[11].Width = 400 / twipperdot;
-
-                return dataGridView1.RowCount;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Filtering - " + ex.Message);
-                return -1;
+                Console.WriteLine("Error: " + ex.Message);
             }
+
+            return success;
         }
 
-        private bool GridDrawn()
+        private void GetTotal()
         {
-            try
+
+
+            dataGridView2.Columns.Clear(); // 既存の列をクリア
+
+            for (int i = 0; i < 5; i++)
             {
-                dataGridView1.SuspendLayout();
-
-                // 行ヘッダーに行番号を表示する
-                //for (int i = 0; i < dataGridView1.Rows.Count; i++)
-                //{
-                //    dataGridView1.Rows[i].HeaderCell.Value = (i + 1).ToString();
-                //}
-
-                // 列1と列2のセルの背景色を設定  load時に行ってるので不要
-                //for (int i = 0; i < dataGridView1.Rows.Count; i++)
-                //{
-                //    dataGridView1.Rows[i].Cells[0].Style.BackColor = Color.FromArgb(250, 250, 150);
-                //    dataGridView1.Rows[i].Cells[1].Style.BackColor = Color.FromArgb(250, 250, 150);
-                //}
-
-                // 列11の値に応じてセルの値とスタイルを設定
-                //直接SQLに埋め込んだので不要　＝＞　数値を文字列に変換していたので、datagridviewに登録時に変換エラーになるため
-                //for (int i = 0; i < dataGridView1.Rows.Count; i++)
-                //{
-
-
-                //    if (dataGridView1.Rows[i].Cells[10].Value != null &&
-                //        !string.IsNullOrEmpty(dataGridView1.Rows[i].Cells[10].Value.ToString()))
-                //    {
-                //        int value = int.Parse(dataGridView1.Rows[i].Cells[10].Value.ToString());
-
-                //        if (value == 2)
-                //        {
-                //            dataGridView1.Rows[i].Cells[10].Value = "■";
-                //        }
-                //        else if (value == 1)
-                //        {
-                //            dataGridView1.Rows[i].Cells[10].Value = "□";
-                //        }
-                //        else
-                //        {
-                //            dataGridView1.Rows[i].Cells[10].Value = DBNull.Value;
-                //        }
-
-                //        dataGridView1.Columns[9].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-                //        dataGridView1.Columns[10].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-                //    }
-                //}
-
-                // カーソルを復元する
-                if (dataGridView1.SelectedCells.Count > 0)
-                {
-                    DataGridViewCell firstSelectedCell = dataGridView1.SelectedCells[0];
-                    dataGridView1.CurrentCell = firstSelectedCell;
-                }
-
-                return true;
+                dataGridView2.Columns.Add($"Column{i + 1}", $"Column{i + 1}");
+                dataGridView2.Columns[i].DefaultCellStyle.Format = "#,###,###,##0";
+                dataGridView2.Columns[i].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             }
-            catch (Exception ex)
+
+            // DataGridView2 の列の表題を設定
+            dataGridView2.Columns[0].HeaderText = "売上金額";
+            dataGridView2.Columns[1].HeaderText = "回収金額";
+            dataGridView2.Columns[2].HeaderText = "手数料金額";
+            dataGridView2.Columns[3].HeaderText = "相殺金額";
+            dataGridView2.Columns[4].HeaderText = "残高金額";
+
+
+
+            // 各列の合計値を計算
+            int[] sumValues = new int[5];
+
+            for (int i = 3; i <= 7; i++) // 3列目以降を対象に
             {
-                MessageBox.Show(this.Name + "_GridDrawn - " + ex.Message);
-                return false;
+                sumValues[i - 3] = dataGridView1.Rows.Cast<DataGridViewRow>().Sum(row => Convert.ToInt32(row.Cells[i].Value));
             }
-            finally
-            {
-                dataGridView1.ResumeLayout();
-            }
+
+            // DataGridView2 に合計値を挿入
+            dataGridView2.Rows.Add(new object[] { sumValues[0], sumValues[1], sumValues[2], sumValues[3], sumValues[4] });
+
+
+
+            MyApi myapi = new MyApi();
+            int xSize, ySize, intpixel, twipperdot;
+
+            //1インチ当たりのピクセル数 アクセスのサイズの引数がtwipなのでピクセルに変換する除算値を求める
+            intpixel = myapi.GetLogPixel();
+            twipperdot = myapi.GetTwipPerDot(intpixel);
+
+            intWindowHeight = this.Height;
+            intWindowWidth = this.Width;
+
+            //0列目はaccessでは行ヘッダのため、ずらす
+            dataGridView2.Columns[0].Width = 1400 / twipperdot;
+            dataGridView2.Columns[1].Width = 1240 / twipperdot;
+            dataGridView2.Columns[2].Width = 1240 / twipperdot;
+            dataGridView2.Columns[3].Width = 1240 / twipperdot;
+            dataGridView2.Columns[4].Width = 1400 / twipperdot;
+
+            dataGridView2.ClearSelection();
+
+
         }
 
-        public override void SearchCode(string codeString)
-        {
-            // 検索コード保持
-            strSearchCode = codeString;
 
-            str発注コード開始 = strSearchCode;
-            str発注コード終了 = strSearchCode;
-            DoUpdate();
-        }
 
         private void DataGridView1_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
@@ -477,71 +427,28 @@ namespace u_net
             }
         }
 
-        //ダブルクリックで発注フォームを開く　発注コードを渡す
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-
             if (e.RowIndex >= 0) // ヘッダー行でない場合
             {
-
-                //    F_発注 fm = new F_発注();
-
-                //発注フォームができたら受入る変数をセットする
-                //    fm.args = CurrentCode;
-                //    fm.args = CurrentEdition;
-                //    fm.ShowDialog();
-            }
-        }
-
-        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex >= 0) // ヘッダー行でない場合
-            {
-                dataGridView1.ClearSelection();
-                dataGridView1.Rows[e.RowIndex].Selected = true;
-            }
-        }
-
-
-        private bool sorting;
-        private void dataGridView1_Sorted(object sender, EventArgs e)
-        {
-            if (!sorting)
-            {
-                sorting = true;
-
-                // DataGridViewのソートが完了したら、先頭行を選択する
-                if (dataGridView1.Rows.Count > 0)
+                if (string.IsNullOrEmpty(dataGridView1.SelectedRows[0].Cells[8].Value?.ToString()))
                 {
-                    Cleargrid(dataGridView1);
-
+                    F_入金 targetform = new F_入金();
+                    targetform.ShowDialog();
+                }
+                else
+                {
+                    //F_売掛明細 targetform = new F_売掛明細();
+                    //targetform.ShowDialog();
                 }
 
-                sorting = false;
+                
             }
+
         }
 
-        private void dataGridView1_KeyDown(object sender, KeyEventArgs e)
-        {
-            // Shiftキーが押されているときは何もしない
-            if (e.Shift)
-            {
-                e.SuppressKeyPress = true;
-            }
-        }
 
-        //選択行をクリアして先頭を表示して先頭行を選択
-        private void Cleargrid(DataGridView dataGridView)
-        {
-            dataGridView.ClearSelection();
 
-            if (dataGridView.Rows.Count > 0)
-            {
-                dataGridView.Rows[0].Selected = true;
-                dataGridView.CurrentCell = dataGridView.Rows[0].Cells[0];
-                dataGridView.FirstDisplayedScrollingRowIndex = 0; // 先頭行を表示
-            }
-        }
 
 
         private void Form_KeyDown(object sender, KeyEventArgs e)
@@ -564,16 +471,16 @@ namespace u_net
                         if (this.コマンド更新.Enabled) コマンド更新_Click(null, null);
                         break;
                     case Keys.F5:
-                        if (this.コマンド入金.Enabled) コマンド発注_Click(null, null);
+                        if (this.コマンド入金.Enabled) コマンド入金_Click(null, null);
                         break;
                     case Keys.F6:
-                        if (this.コマンド詳細.Enabled) コマンド購買_Click(null, null);
+                        if (this.コマンド詳細.Enabled) コマンド詳細_Click(null, null);
                         break;
                     case Keys.F7:
-                        //if (this.コマンド入庫履歴.Enabled) コマンド入庫履歴_Click(null, null);
+                        if (this.コマンド顧客.Enabled) コマンド顧客_Click(null, null);
                         break;
                     case Keys.F8:
-                        if (this.コマンド売掛資料.Enabled) コマンド入庫_Click(null, null);
+                        if (this.コマンド売掛資料.Enabled) コマンド売掛資料_Click(null, null);
                         break;
 
                     case Keys.F9:
@@ -583,31 +490,12 @@ namespace u_net
                         if (this.コマンド入出力.Enabled) コマンド入出力_Click(null, null);
                         break;
                     case Keys.F10:
-                        if (this.コマンド検収通知.Enabled) コマンド保守_Click(null, null);
+                        if (this.コマンド検収.Enabled) コマンド検収_Click(null, null);
                         break;
                     case Keys.F12:
                         if (this.コマンド終了.Enabled) コマンド終了_Click(null, null);
                         break;
-                    case Keys.Return:
-                        if (this.ActiveControl == this.dataGridView1)
-                        {
-                            if (dataGridView1.SelectedRows.Count > 0)
-                            {
-                                // DataGridView1で選択された行が存在する場合
-                                string selectedData = dataGridView1.SelectedRows[0].Cells[0].Value.ToString(); // 1列目のデータを取得
 
-                                // 発注フォームを作成し、引数を設定して表示
-                                //F_発注 targetform = new F_発注();
-                                //targetform.args = selectedData;
-                                //targetform.ShowDialog();
-                            }
-                            else
-                            {
-                                // ユーザーが行を選択していない場合のエラーハンドリング
-                                MessageBox.Show("行が選択されていません。");
-                            }
-                        }
-                        break;
                 }
             }
             catch (Exception ex)
@@ -616,161 +504,264 @@ namespace u_net
             }
         }
 
-        private void F_発注管理_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            LocalSetting test = new LocalSetting();
-            test.SavePlace(CommonConstants.LoginUserCode, this);
-        }
+
 
         private void コマンド終了_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
-
         private void コマンド抽出_Click(object sender, EventArgs e)
         {
-            dataGridView1.Focus();
-            F_発注管理_抽出 form = new F_発注管理_抽出();
-            form.ShowDialog();
+            F_売掛一覧_抽出 targetform = new F_売掛一覧_抽出();
+            targetform.ShowDialog();
         }
-
-
-
-        private void コマンド初期化_Click(object sender, EventArgs e)
-        {
-            FunctionClass fn = new FunctionClass();
-            fn.DoWait("初期化しています...");
-            InitializeFilter();
-            DoUpdate();
-            Cleargrid(dataGridView1);
-
-            dataGridView1.Focus(); // DataGridViewにフォーカスを設定
-            fn.WaitForm.Close();
-            //MessageBox.Show("現在開発中です。", "初期化マンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
-
 
         private void コマンド検索_Click(object sender, EventArgs e)
         {
-            dataGridView1.Focus(); // DataGridViewにフォーカスを設定
-
-            F_検索コード form = new F_検索コード(this, "ORD");
-            form.ShowDialog();
+            MessageBox.Show("現在開発中です。", "検索コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
+        private void コマンド初期化_Click(object sender, EventArgs e)
+        {
+            try
+            {
 
+                if (string.IsNullOrEmpty(売掛年月.Text))
+                    return;
+
+                SetInitial();
+
+                if (!DoUpdate())
+                {
+                    MessageBox.Show("初期化に失敗しました。", "初期化コマンド", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"コマンド初期化_Click エラー: {ex.Message}");
+            }
+        }
 
         private void コマンド更新_Click(object sender, EventArgs e)
         {
-            FunctionClass fn = new FunctionClass();
-            fn.DoWait("更新しています...");
-            DoUpdate();
-            Cleargrid(dataGridView1);
-            fn.WaitForm.Close();
+            try
+            {
+
+                if (string.IsNullOrEmpty(売掛年月.Text))
+                {
+                    MessageBox.Show("売掛年月を指定してください。", "更新コマンド", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    売掛年月.Focus();
+                    return;
+                }
+
+                // 確認
+                DialogResult result = MessageBox.Show("表示データを最新の情報に更新します。\nよろしいですか？", "更新コマンド", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.No)
+                    return;
+
+                if (DoUpdate())
+                {
+                    コマンド印刷.Enabled = dataGridView1.RowCount > 0;
+                }
+                else
+                {
+                    MessageBox.Show("更新に失敗しました。", "更新コマンド", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"コマンド更新_Click エラー: {ex.Message}");
+            }
         }
 
-
-        private void コマンド保守_Click(object sender, EventArgs e)
+        private void コマンド入金_Click(object sender, EventArgs e)
         {
-            dataGridView1.Focus(); // DataGridViewにフォーカスを設定
-
-            MessageBox.Show("機能が未定義のため、コマンドは使用できません。", "保守コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            F_入金 form = new F_入金();
+            form.ShowDialog();
         }
 
-        private void コマンド発注_Click(object sender, EventArgs e)
+        private void コマンド詳細_Click(object sender, EventArgs e)
         {
-            //T_発注 fm = new T_発注();
-            //fm.ShowDialog();
+
         }
 
+        private void コマンド顧客_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count > 0)
+            {
+                string selectedData = dataGridView1.SelectedRows[0].Cells[0].Value.ToString(); // 1列目のデータを取得
+
+                string trimmedAndReplaced = selectedData.TrimEnd().Replace(" ", "_");
+
+                string replacedServerInstanceName = CommonConstants.ServerInstanceName.Replace(" ", "_");
+
+                string param = $" -sv:{replacedServerInstanceName} -open:saleslistbyparentcustomer, {trimmedAndReplaced},1";
+                FunctionClass.GetShell(param);
+            }
+        }
+
+        private void コマンド売掛資料_Click(object sender, EventArgs e)
+        {
+
+        }
 
         private void コマンド印刷_Click(object sender, EventArgs e)
         {
-            dataGridView1.Focus(); // DataGridViewにフォーカスを設定
 
-            MessageBox.Show("現在開発中です。", "印刷コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
+
+
 
         private void コマンド入出力_Click(object sender, EventArgs e)
         {
-            dataGridView1.Focus(); // DataGridViewにフォーカスを設定
-
             MessageBox.Show("現在開発中です。", "入出力コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        private void コマンド購買_Click(object sender, EventArgs e)
+        private void コマンド検収_Click(object sender, EventArgs e)
         {
-            try
+            if (dataGridView1.SelectedRows.Count > 0)
             {
-                dataGridView1.Focus();
-
-                if (dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[5].Value == null ||
-                    string.IsNullOrEmpty(dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[5].Value.ToString()))
+                try
                 {
-                    MessageBox.Show("選択データは購買データとの関連性がないため、参照することはできません。", "購買コマンド", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    return;
-                }
-
-                // 購買フォーム側でリレー入力を行う
-                //T_購買 fm = new T_購買();
-                //fm.ShowDialog();
-            }
-            catch (Exception ex)
-            {
-                // エラー処理を行う場合は、ここに追加してください
-                MessageBox.Show("エラーが発生しました。\n" + ex.Message, "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-
-        private void コマンド入庫_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                dataGridView1.Focus();
-
-                // 承認されていないときは何もしない
-                if (!IsApproved)
-                {
-                    MessageBox.Show("選択データは承認されていません。\n入庫入力はできません。", "入庫コマンド", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    return;
-                }
-
-                // 削除されているときは何もしない
-                if (IsDeleted)
-                {
-                    MessageBox.Show("選択データは削除されています。\n入庫入力はできません。", "入庫コマンド", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    return;
-                }
-
-                // 完了している発注データのときは忠告(し、入庫入力するかどうか応答を得る)
-                if (IsCompleted == "■")
-                {
-                    if (MessageBox.Show($"選択データ（{CurrentCode} - 第{CurrentEdition}版）は既に完了しています。\n入庫入力はできません。", "入庫コマンド", MessageBoxButtons.OK, MessageBoxIcon.Exclamation) == DialogResult.OK)
+                    Connect();
+                    
+                    using (SqlCommand command = new SqlCommand("UpdateAcceptanceNotification", cn))
                     {
-                        return;
+                        command.CommandType = System.Data.CommandType.StoredProcedure;
+
+                        command.Parameters.AddWithValue("@CustomerCode", CustomerCode);
+                        command.Parameters.AddWithValue("@SalesMonth", SalesMonth);
+                        command.Parameters.AddWithValue("@Received", AcceptanceNotificationReceived == 0 ? -1 : 0);
+                        command.Parameters.AddWithValue("@CreateUserCode", CommonConstants.LoginUserCode);
+                        command.Parameters.AddWithValue("@CreateUserFullName", CommonConstants.LoginUserFullName);
+
+                        command.ExecuteNonQuery();
+                    }
+                    
+
+                    if (AcceptanceNotificationReceived == 0)
+                    {
+                        dataGridView1.SelectedRows[0].Cells[11].Value = "■";
+                    }
+                    else
+                    {
+                        dataGridView1.SelectedRows[0].Cells[11].Value = "";
                     }
                 }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("更新できませんでした。\n" + ex.Message, "検収通知コマンド", MessageBoxButtons.OK);
+                }
 
-                // 入庫フォーム側でリレー入力を行う                
-
-                //T_入庫 fm = new T_入庫();
-                //fm.ShowDialog();
-
-            }
-            catch (Exception ex)
-            {
-                // エラー処理を行う場合は、ここに追加してください
-                MessageBox.Show("エラーが発生しました。\n" + ex.Message, "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        private void コマンド入庫履歴_Click(object sender, EventArgs e)
+
+        private void 売掛年月_SelectedIndexChanged(object sender, EventArgs e)
         {
-            F_入庫履歴 fm = new F_入庫履歴();
-            fm.ShowDialog();
+            if (DoUpdate())
+            {
+                コマンド抽出.Enabled = true;
+                コマンド初期化.Enabled = true;
+                コマンド詳細.Enabled = true;
+                コマンド売掛資料.Enabled = 0 < dataGridView1.RowCount;
+                コマンド印刷.Enabled = 0 < dataGridView1.RowCount;
+                コマンド更新.Enabled = true;
+            }
+            else
+            {
+                MessageBox.Show("更新に失敗しました。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
         }
 
+
+        private void 売掛年月_KeyDown(object sender, KeyEventArgs e)
+        {
+
+            string strCode;
+
+            if (e.KeyCode == Keys.Return)
+            {
+                strCode = 売掛年月.Text;
+                if (string.IsNullOrEmpty(strCode))
+                    return;
+
+                strCode = strCode.Replace("0", " ").Replace("/", "/ ").Trim();
+                if (strCode != 売掛年月.Text)
+                    売掛年月.Text = strCode;
+            }
+
+        }
+
+        private void 売掛年月_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+            if (e.KeyChar == ' ')
+            {
+                ComboBox comboBox = sender as ComboBox;
+                if (comboBox != null)
+                {
+                    comboBox.DroppedDown = true;
+                }
+                e.Handled = true;
+            }
+
+        }
+
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButton1.Checked)
+            {
+                lng完了指定 = 1;
+
+                if (string.IsNullOrEmpty(売掛年月.Text)) return;
+
+                if (!DoUpdate())
+                {
+                    MessageBox.Show("更新に失敗しました。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+
+            }
+        }
+
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButton2.Checked)
+            {
+                lng完了指定 = 2;
+
+                if (string.IsNullOrEmpty(売掛年月.Text)) return;
+
+                if (!DoUpdate())
+                {
+                    MessageBox.Show("更新に失敗しました。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+
+            }
+        }
+
+        private void radioButton3_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButton3.Checked)
+            {
+                lng完了指定 = 0;
+
+                if (string.IsNullOrEmpty(売掛年月.Text)) return;
+
+                if (!DoUpdate())
+                {
+                    MessageBox.Show("更新に失敗しました。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+
+            }
+        }
+
+        private void 売掛年月_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            OriginalClass.SetComboBoxAppearance((ComboBox)sender, e, new int[] { 100, 70 }, new string[] { "売掛年月", "未回収" });
+            売掛年月.Invalidate();
+            売掛年月.DroppedDown = true;
+        }
     }
 }

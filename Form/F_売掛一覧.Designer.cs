@@ -35,7 +35,7 @@
             コマンド顧客 = new Button();
             コマンド入金 = new Button();
             コマンド入出力 = new Button();
-            コマンド検収通知 = new Button();
+            コマンド検収 = new Button();
             コマンド更新 = new Button();
             コマンド初期化 = new Button();
             コマンド検索 = new Button();
@@ -47,18 +47,19 @@
             label2 = new Label();
             dataGridView1 = new DataGridView();
             panel2 = new Panel();
+            dataGridView2 = new DataGridView();
+            label4 = new Label();
             label3 = new Label();
             売掛年月 = new ComboBox();
-            groupBox1 = new GroupBox();
-            radioButton1 = new RadioButton();
-            radioButton2 = new RadioButton();
+            完了指定 = new GroupBox();
             radioButton3 = new RadioButton();
-            label4 = new Label();
-            合計欄 = new TextBox();
+            radioButton2 = new RadioButton();
+            radioButton1 = new RadioButton();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel2.SuspendLayout();
-            groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
+            完了指定.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
@@ -69,7 +70,7 @@
             panel1.Controls.Add(コマンド顧客);
             panel1.Controls.Add(コマンド入金);
             panel1.Controls.Add(コマンド入出力);
-            panel1.Controls.Add(コマンド検収通知);
+            panel1.Controls.Add(コマンド検収);
             panel1.Controls.Add(コマンド更新);
             panel1.Controls.Add(コマンド初期化);
             panel1.Controls.Add(コマンド検索);
@@ -80,13 +81,14 @@
             panel1.Location = new Point(0, 0);
             panel1.Margin = new Padding(4, 2, 4, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(942, 32);
+            panel1.Size = new Size(946, 32);
             panel1.TabIndex = 83;
             // 
             // コマンド詳細
             // 
+            コマンド詳細.Enabled = false;
             コマンド詳細.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            コマンド詳細.ForeColor = Color.Black;
+            コマンド詳細.ForeColor = Color.Blue;
             コマンド詳細.ImageAlign = ContentAlignment.BottomLeft;
             コマンド詳細.Location = new Point(360, 4);
             コマンド詳細.Margin = new Padding(0, 2, 0, 2);
@@ -95,12 +97,13 @@
             コマンド詳細.TabIndex = 6;
             コマンド詳細.Text = "詳細";
             コマンド詳細.UseVisualStyleBackColor = true;
-            コマンド詳細.Click += コマンド購買_Click;
+            コマンド詳細.Click += コマンド詳細_Click;
             // 
             // コマンド売掛資料
             // 
+            コマンド売掛資料.Enabled = false;
             コマンド売掛資料.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            コマンド売掛資料.ForeColor = Color.Black;
+            コマンド売掛資料.ForeColor = Color.Blue;
             コマンド売掛資料.ImageAlign = ContentAlignment.BottomLeft;
             コマンド売掛資料.Location = new Point(496, 4);
             コマンド売掛資料.Margin = new Padding(0, 2, 0, 2);
@@ -109,7 +112,7 @@
             コマンド売掛資料.TabIndex = 10;
             コマンド売掛資料.Text = "売掛資料P";
             コマンド売掛資料.UseVisualStyleBackColor = true;
-            コマンド売掛資料.Click += コマンド入庫_Click;
+            コマンド売掛資料.Click += コマンド売掛資料_Click;
             // 
             // コマンド顧客
             // 
@@ -123,7 +126,7 @@
             コマンド顧客.TabIndex = 5;
             コマンド顧客.Text = "顧客";
             コマンド顧客.UseVisualStyleBackColor = true;
-            コマンド顧客.Click += コマンド入庫履歴_Click;
+            コマンド顧客.Click += コマンド顧客_Click;
             // 
             // コマンド入金
             // 
@@ -137,13 +140,13 @@
             コマンド入金.TabIndex = 4;
             コマンド入金.Text = "入金";
             コマンド入金.UseVisualStyleBackColor = true;
-            コマンド入金.Click += コマンド発注_Click;
+            コマンド入金.Click += コマンド入金_Click;
             // 
             // コマンド入出力
             // 
             コマンド入出力.Enabled = false;
             コマンド入出力.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            コマンド入出力.ForeColor = Color.Black;
+            コマンド入出力.ForeColor = Color.Blue;
             コマンド入出力.ImageAlign = ContentAlignment.BottomLeft;
             コマンド入出力.Location = new Point(715, 4);
             コマンド入出力.Margin = new Padding(0, 2, 0, 2);
@@ -154,25 +157,25 @@
             コマンド入出力.UseVisualStyleBackColor = true;
             コマンド入出力.Click += コマンド入出力_Click;
             // 
-            // コマンド検収通知
+            // コマンド検収
             // 
-            コマンド検収通知.Enabled = false;
-            コマンド検収通知.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            コマンド検収通知.ForeColor = Color.Blue;
-            コマンド検収通知.ImageAlign = ContentAlignment.BottomLeft;
-            コマンド検収通知.Location = new Point(647, 4);
-            コマンド検収通知.Margin = new Padding(0, 2, 0, 2);
-            コマンド検収通知.Name = "コマンド検収通知";
-            コマンド検収通知.Size = new Size(70, 22);
-            コマンド検収通知.TabIndex = 7;
-            コマンド検収通知.Text = "検収通知";
-            コマンド検収通知.UseVisualStyleBackColor = true;
-            コマンド検収通知.Click += コマンド保守_Click;
+            コマンド検収.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            コマンド検収.ForeColor = Color.Blue;
+            コマンド検収.ImageAlign = ContentAlignment.BottomLeft;
+            コマンド検収.Location = new Point(647, 4);
+            コマンド検収.Margin = new Padding(0, 2, 0, 2);
+            コマンド検収.Name = "コマンド検収";
+            コマンド検収.Size = new Size(70, 22);
+            コマンド検収.TabIndex = 7;
+            コマンド検収.Text = "検収通知";
+            コマンド検収.UseVisualStyleBackColor = true;
+            コマンド検収.Click += コマンド検収_Click;
             // 
             // コマンド更新
             // 
+            コマンド更新.Enabled = false;
             コマンド更新.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            コマンド更新.ForeColor = Color.Black;
+            コマンド更新.ForeColor = Color.Blue;
             コマンド更新.ImageAlign = ContentAlignment.BottomLeft;
             コマンド更新.Location = new Point(207, 4);
             コマンド更新.Margin = new Padding(0, 2, 0, 2);
@@ -185,8 +188,9 @@
             // 
             // コマンド初期化
             // 
+            コマンド初期化.Enabled = false;
             コマンド初期化.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            コマンド初期化.ForeColor = Color.Black;
+            コマンド初期化.ForeColor = Color.Blue;
             コマンド初期化.ImageAlign = ContentAlignment.BottomLeft;
             コマンド初期化.Location = new Point(139, 4);
             コマンド初期化.Margin = new Padding(0, 2, 0, 2);
@@ -199,8 +203,9 @@
             // 
             // コマンド検索
             // 
+            コマンド検索.Enabled = false;
             コマンド検索.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            コマンド検索.ForeColor = Color.Black;
+            コマンド検索.ForeColor = Color.Blue;
             コマンド検索.ImageAlign = ContentAlignment.BottomLeft;
             コマンド検索.Location = new Point(71, 4);
             コマンド検索.Margin = new Padding(0, 2, 0, 2);
@@ -213,8 +218,9 @@
             // 
             // コマンド抽出
             // 
+            コマンド抽出.Enabled = false;
             コマンド抽出.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            コマンド抽出.ForeColor = Color.Black;
+            コマンド抽出.ForeColor = Color.Blue;
             コマンド抽出.ImageAlign = ContentAlignment.BottomLeft;
             コマンド抽出.Location = new Point(3, 4);
             コマンド抽出.Margin = new Padding(0, 2, 0, 2);
@@ -229,7 +235,7 @@
             // 
             コマンド印刷.Enabled = false;
             コマンド印刷.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            コマンド印刷.ForeColor = Color.Black;
+            コマンド印刷.ForeColor = Color.Blue;
             コマンド印刷.ImageAlign = ContentAlignment.BottomLeft;
             コマンド印刷.Location = new Point(579, 4);
             コマンド印刷.Margin = new Padding(0, 2, 0, 2);
@@ -261,6 +267,7 @@
             表示件数.Name = "表示件数";
             表示件数.Size = new Size(88, 23);
             表示件数.TabIndex = 0;
+            表示件数.TextAlign = HorizontalAlignment.Right;
             // 
             // label1
             // 
@@ -294,25 +301,46 @@
             dataGridView1.RowTemplate.Height = 29;
             dataGridView1.Size = new Size(942, 498);
             dataGridView1.TabIndex = 87;
-            dataGridView1.CellClick += dataGridView1_CellClick;
             dataGridView1.CellDoubleClick += dataGridView1_CellDoubleClick;
             dataGridView1.CellPainting += DataGridView1_CellPainting;
-            dataGridView1.Sorted += dataGridView1_Sorted;
             dataGridView1.KeyDown += Form_KeyDown;
             // 
             // panel2
             // 
-            panel2.Controls.Add(合計欄);
+            panel2.Controls.Add(dataGridView2);
             panel2.Controls.Add(label4);
             panel2.Controls.Add(表示件数);
             panel2.Controls.Add(label1);
             panel2.Controls.Add(label2);
             panel2.Dock = DockStyle.Bottom;
-            panel2.Location = new Point(0, 600);
+            panel2.Location = new Point(0, 602);
             panel2.Margin = new Padding(3, 2, 3, 2);
             panel2.Name = "panel2";
-            panel2.Size = new Size(942, 56);
+            panel2.Size = new Size(946, 85);
             panel2.TabIndex = 88;
+            // 
+            // dataGridView2
+            // 
+            dataGridView2.AllowUserToAddRows = false;
+            dataGridView2.AllowUserToDeleteRows = false;
+            dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView2.Location = new Point(416, 4);
+            dataGridView2.Margin = new Padding(3, 2, 3, 2);
+            dataGridView2.Name = "dataGridView2";
+            dataGridView2.ReadOnly = true;
+            dataGridView2.RowTemplate.Height = 29;
+            dataGridView2.Size = new Size(526, 77);
+            dataGridView2.TabIndex = 91;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            label4.Location = new Point(375, 6);
+            label4.Name = "label4";
+            label4.Size = new Size(35, 14);
+            label4.TabIndex = 87;
+            label4.Text = "合計";
             // 
             // label3
             // 
@@ -331,41 +359,23 @@
             売掛年月.Name = "売掛年月";
             売掛年月.Size = new Size(121, 23);
             売掛年月.TabIndex = 0;
+            売掛年月.DrawItem += 売掛年月_DrawItem;
+            売掛年月.SelectedIndexChanged += 売掛年月_SelectedIndexChanged;
+            売掛年月.KeyDown += 売掛年月_KeyDown;
+            売掛年月.KeyPress += 売掛年月_KeyPress;
             // 
-            // groupBox1
+            // 完了指定
             // 
-            groupBox1.Controls.Add(radioButton3);
-            groupBox1.Controls.Add(radioButton2);
-            groupBox1.Controls.Add(radioButton1);
-            groupBox1.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            groupBox1.Location = new Point(273, 39);
-            groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(623, 54);
-            groupBox1.TabIndex = 90;
-            groupBox1.TabStop = false;
-            groupBox1.Text = "完了指定(&C)";
-            // 
-            // radioButton1
-            // 
-            radioButton1.AutoSize = true;
-            radioButton1.Location = new Point(18, 20);
-            radioButton1.Name = "radioButton1";
-            radioButton1.Size = new Size(175, 18);
-            radioButton1.TabIndex = 0;
-            radioButton1.TabStop = true;
-            radioButton1.Text = "完了していない売掛(&U)";
-            radioButton1.UseVisualStyleBackColor = true;
-            // 
-            // radioButton2
-            // 
-            radioButton2.AutoSize = true;
-            radioButton2.Location = new Point(218, 20);
-            radioButton2.Name = "radioButton2";
-            radioButton2.Size = new Size(158, 18);
-            radioButton2.TabIndex = 1;
-            radioButton2.TabStop = true;
-            radioButton2.Text = "完了している売掛(&E)";
-            radioButton2.UseVisualStyleBackColor = true;
+            完了指定.Controls.Add(radioButton3);
+            完了指定.Controls.Add(radioButton2);
+            完了指定.Controls.Add(radioButton1);
+            完了指定.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            完了指定.Location = new Point(273, 39);
+            完了指定.Name = "完了指定";
+            完了指定.Size = new Size(623, 54);
+            完了指定.TabIndex = 90;
+            完了指定.TabStop = false;
+            完了指定.Text = "完了指定(&C)";
             // 
             // radioButton3
             // 
@@ -377,32 +387,38 @@
             radioButton3.TabStop = true;
             radioButton3.Text = "指定しない(&N)";
             radioButton3.UseVisualStyleBackColor = true;
+            radioButton3.CheckedChanged += radioButton3_CheckedChanged;
             // 
-            // label4
+            // radioButton2
             // 
-            label4.AutoSize = true;
-            label4.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            label4.Location = new Point(440, 6);
-            label4.Name = "label4";
-            label4.Size = new Size(35, 14);
-            label4.TabIndex = 87;
-            label4.Text = "合計";
+            radioButton2.AutoSize = true;
+            radioButton2.Location = new Point(218, 20);
+            radioButton2.Name = "radioButton2";
+            radioButton2.Size = new Size(158, 18);
+            radioButton2.TabIndex = 1;
+            radioButton2.TabStop = true;
+            radioButton2.Text = "完了している売掛(&E)";
+            radioButton2.UseVisualStyleBackColor = true;
+            radioButton2.CheckedChanged += radioButton2_CheckedChanged;
             // 
-            // 合計欄
+            // radioButton1
             // 
-            合計欄.Location = new Point(481, 2);
-            合計欄.Margin = new Padding(3, 2, 3, 2);
-            合計欄.Multiline = true;
-            合計欄.Name = "合計欄";
-            合計欄.Size = new Size(458, 46);
-            合計欄.TabIndex = 1;
+            radioButton1.AutoSize = true;
+            radioButton1.Location = new Point(18, 20);
+            radioButton1.Name = "radioButton1";
+            radioButton1.Size = new Size(175, 18);
+            radioButton1.TabIndex = 0;
+            radioButton1.TabStop = true;
+            radioButton1.Text = "完了していない売掛(&U)";
+            radioButton1.UseVisualStyleBackColor = true;
+            radioButton1.CheckedChanged += radioButton1_CheckedChanged;
             // 
             // F_売掛一覧
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(942, 656);
-            Controls.Add(groupBox1);
+            ClientSize = new Size(946, 687);
+            Controls.Add(完了指定);
             Controls.Add(売掛年月);
             Controls.Add(label3);
             Controls.Add(panel2);
@@ -414,15 +430,16 @@
             MinimizeBox = false;
             Name = "F_売掛一覧";
             Text = "売掛一覧";
-            FormClosing += F_発注管理_FormClosing;
             Load += Form_Load;
             KeyDown += Form_KeyDown;
+            Resize += Form_Resize;
             panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
-            groupBox1.ResumeLayout(false);
-            groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView2).EndInit();
+            完了指定.ResumeLayout(false);
+            完了指定.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -433,7 +450,7 @@
         private Button コマンド顧客;
         private Button コマンド入金;
         private Button コマンド入出力;
-        private Button コマンド検収通知;
+        private Button コマンド検収;
         private Button コマンド更新;
         private Button コマンド初期化;
         private Button コマンド抽出;
@@ -574,12 +591,12 @@
         private Button コマンド検索;
         private Button コマンド詳細;
         private Label label3;
-        private TextBox 合計欄;
         private Label label4;
         private ComboBox 売掛年月;
-        private GroupBox groupBox1;
+        private GroupBox 完了指定;
         private RadioButton radioButton3;
         private RadioButton radioButton2;
         private RadioButton radioButton1;
+        private DataGridView dataGridView2;
     }
 }

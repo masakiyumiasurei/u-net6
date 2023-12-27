@@ -33,21 +33,39 @@ namespace u_net
             try
             {
 
-                // 対象フォームが読み込まれていないときはすぐに終了する
-                if (Application.OpenForms["F_仕入先管理"] == null)
-                {
-                    MessageBox.Show("[仕入先管理]画面が起動していない状態では実行できません。", "警告", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    this.Close();
-                    return;
-                }
+
 
                 //開いているフォームのインスタンスを作成する
-                F_仕入先管理 frmTarget = Application.OpenForms.OfType<F_仕入先管理>().FirstOrDefault();
+                F_売掛一覧 frmTarget = Application.OpenForms.OfType<F_売掛一覧>().FirstOrDefault();
 
                 // F_仕入先管理クラスからデータを取得し、現在のフォームのコントロールに設定
-                this.顧客名.Text = frmTarget.str仕入先名;
-                担当者名.Text = frmTarget.str仕入先名フリガナ;
+                this.顧客名.Text = frmTarget.str顧客名;
+                担当者名.Text = frmTarget.str担当者名;
+                締日.Text = frmTarget.str締日;
 
+
+                if (frmTarget.dtm支払日開始 != DateTime.MinValue)
+                    支払日開始.Text = frmTarget.dtm支払日開始.ToString("yyyy/MM/dd");
+                if (frmTarget.dtm支払日終了 != DateTime.MinValue)
+                    支払日終了.Text = frmTarget.dtm支払日終了.ToString("yyyy/MM/dd");
+
+
+                switch (frmTarget.lng完了指定)
+                {
+                    case 1:
+                        完了指定1.Checked = true;
+                        break;
+                    case 2:
+                        完了指定2.Checked = true;
+                        break;
+                    case 0:
+                        完了指定3.Checked = true;
+                        break;
+
+                    default:
+
+                        break;
+                }
 
             }
             catch (Exception ex)
@@ -59,26 +77,39 @@ namespace u_net
 
         private void 抽出ボタン_Click(object sender, EventArgs e)
         {
+
+
             try
             {
-                F_仕入先管理? frmTarget = Application.OpenForms.OfType<F_仕入先管理>().FirstOrDefault();
-                //F_仕入先管理 frmTarget = new F_仕入先管理();
+                F_売掛一覧? frmTarget = Application.OpenForms.OfType<F_売掛一覧>().FirstOrDefault();
 
-                // frmTarget.仕入先コード = Nz(仕入先コード.Text);
-                frmTarget.str仕入先名 = Nz(顧客名.Text);
-                frmTarget.str仕入先名フリガナ = Nz(担当者名.Text);
+                frmTarget.str顧客名 = Nz(顧客名.Text);
+                frmTarget.str担当者名 = Nz(担当者名.Text);
+                frmTarget.str締日 = Nz(締日.Text);
 
-                long cnt = frmTarget.DoUpdate();
+                frmTarget.dtm支払日開始 = string.IsNullOrEmpty(支払日開始.Text) ?
+                   DateTime.MinValue : DateTime.Parse(支払日開始.Text);
 
-                if (cnt == 0)
+                frmTarget.dtm支払日終了 = string.IsNullOrEmpty(支払日終了.Text) ?
+                    DateTime.MinValue : DateTime.Parse(支払日終了.Text);
+
+                if (完了指定1.Checked)
                 {
-                    MessageBox.Show("抽出条件に一致するデータはありません。", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                    return;
+                    frmTarget.lng完了指定 = 1;
                 }
-                else if (cnt < 0)
+                else if (完了指定2.Checked)
                 {
-                    MessageBox.Show("エラーが発生したため、抽出できませんでした。", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    frmTarget.lng完了指定 = 2;
+                }
+                else if (完了指定3.Checked)
+                {
+                    frmTarget.lng完了指定 = 0;
+                }
+
+
+                if (!frmTarget.DoUpdate())
+                {
+                    MessageBox.Show("抽出できませんでした。", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     return;
                 }
             }
@@ -99,43 +130,7 @@ namespace u_net
             this.Close();
         }
 
-        private F_検索 SearchForm;
-        private void 仕入先選択ボタン_Click(object sender, EventArgs e)
-        {
-            SearchForm = new F_検索();
-            SearchForm.FilterName = "仕入先名フリガナ";
-            if (SearchForm.ShowDialog() == DialogResult.OK)
-            {
-                string SelectedCode = SearchForm.SelectedCode;
-            }
-        }
 
-        private void 仕入先コード_DoubleClick(object sender, EventArgs e)
-        {
-            SearchForm = new F_検索();
-            SearchForm.FilterName = "仕入先名フリガナ";
-            if (SearchForm.ShowDialog() == DialogResult.OK)
-            {
-                string SelectedCode = SearchForm.SelectedCode;
-            }
-        }
-        private void 仕入先コード_Click(object sender, EventArgs e)
-        {
-            SearchForm = new F_検索();
-            SearchForm.FilterName = "仕入先名フリガナ";
-            if (SearchForm.ShowDialog() == DialogResult.OK)
-            {
-                string SelectedCode = SearchForm.SelectedCode;
-            }
-        }
-        private void 仕入先コード_Validated(object sender, EventArgs e)
-        {
-            Connect();
-        }
-        private void 仕入先コード_TextChanged(object sender, EventArgs e)
-        {
-            Connect();
-        }
 
         // Nz メソッドの代替
         private T Nz<T>(T value)
@@ -146,36 +141,119 @@ namespace u_net
             }
             return value;
         }
-        private void 仕入先コード_KeyDown(object sender, KeyEventArgs e)
-        {
-            // 入力された値がエラー値の場合、Textプロパティが設定できなくなるときの対処
-            try
-            {
-                switch (e.KeyCode)
-                {
-                    case Keys.Return:
-                        string strCode = ((Control)sender).Text;
-                        if (string.IsNullOrEmpty(strCode)) return;
 
-                        strCode = strCode.PadLeft(8, '0');
-                        if (strCode != ((Control)sender).Text)
-                        {
-                            ((Control)sender).Text = strCode;
-                        }
-                        break;
-                }
-            }
-            catch (Exception ex)
+
+
+        private F_カレンダー dateSelectionForm;
+
+
+
+        private void 支払日開始選択_Click(object sender, EventArgs e)
+        {
+            // 日付選択フォームを作成し表示
+            dateSelectionForm = new F_カレンダー();
+            if (dateSelectionForm.ShowDialog() == DialogResult.OK)
             {
-                // エラーハンドリング: 例外が発生した場合に処理を行う
-                Console.WriteLine("エラーが発生しました: " + ex.Message);
+                // 日付選択フォームから選択した日付を取得
+                string selectedDate = dateSelectionForm.SelectedDate;
+
+                // フォームAの日付コントロールに選択した日付を設定
+                支払日開始.Text = selectedDate;
+                支払日開始.Focus();
             }
         }
 
-        private void 仕入先参照ボタン_Click(object sender, EventArgs e)
+        private void 支払日開始_DoubleClick(object sender, EventArgs e)
         {
-            F_仕入先 fm = new F_仕入先();
-            fm.ShowDialog();
+            // 日付選択フォームを作成し表示
+            dateSelectionForm = new F_カレンダー();
+            if (dateSelectionForm.ShowDialog() == DialogResult.OK)
+            {
+                // 日付選択フォームから選択した日付を取得
+                string selectedDate = dateSelectionForm.SelectedDate;
+
+                // フォームAの日付コントロールに選択した日付を設定
+                支払日開始.Text = selectedDate;
+            }
+        }
+
+        private void 支払日開始_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == ' ')
+            {
+                // 日付選択フォームを作成し表示
+                dateSelectionForm = new F_カレンダー();
+                if (dateSelectionForm.ShowDialog() == DialogResult.OK)
+                {
+                    // 日付選択フォームから選択した日付を取得
+                    string selectedDate = dateSelectionForm.SelectedDate;
+
+                    // フォームAの日付コントロールに選択した日付を設定
+                    支払日開始.Text = selectedDate;
+                }
+            }
+        }
+
+
+
+
+        private void 支払日終了選択_Click(object sender, EventArgs e)
+        {
+            // 日付選択フォームを作成し表示
+            dateSelectionForm = new F_カレンダー();
+            if (dateSelectionForm.ShowDialog() == DialogResult.OK)
+            {
+                // 日付選択フォームから選択した日付を取得
+                string selectedDate = dateSelectionForm.SelectedDate;
+
+                // フォームAの日付コントロールに選択した日付を設定
+                支払日終了.Text = selectedDate;
+                支払日終了.Focus();
+            }
+        }
+
+        private void 支払日終了_DoubleClick(object sender, EventArgs e)
+        {
+            // 日付選択フォームを作成し表示
+            dateSelectionForm = new F_カレンダー();
+            if (dateSelectionForm.ShowDialog() == DialogResult.OK)
+            {
+                // 日付選択フォームから選択した日付を取得
+                string selectedDate = dateSelectionForm.SelectedDate;
+
+                // フォームAの日付コントロールに選択した日付を設定
+                支払日終了.Text = selectedDate;
+            }
+        }
+
+        private void 支払日終了_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == ' ')
+            {
+                // 日付選択フォームを作成し表示
+                dateSelectionForm = new F_カレンダー();
+                if (dateSelectionForm.ShowDialog() == DialogResult.OK)
+                {
+                    // 日付選択フォームから選択した日付を取得
+                    string selectedDate = dateSelectionForm.SelectedDate;
+
+                    // フォームAの日付コントロールに選択した日付を設定
+                    支払日終了.Text = selectedDate;
+                }
+            }
+        }
+
+
+
+
+        private void 支払日開始_Leave(object sender, EventArgs e)
+        {
+            FunctionClass.AdjustRange(支払日開始, 支払日終了, sender as Control);
+        }
+
+        private void 支払日終了_Leave(object sender, EventArgs e)
+        {
+            FunctionClass.AdjustRange(支払日開始, 支払日終了, sender as Control);
         }
     }
 }

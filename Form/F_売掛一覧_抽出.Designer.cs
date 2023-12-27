@@ -41,11 +41,11 @@
             支払日開始 = new TextBox();
             顧客名ラベル = new Label();
             完了指定 = new GroupBox();
-            radioButton2 = new RadioButton();
-            radioButton3 = new RadioButton();
+            完了指定3 = new RadioButton();
+            完了指定2 = new RadioButton();
+            完了指定1 = new RadioButton();
             label6 = new Label();
             締日 = new TextBox();
-            radioButton1 = new RadioButton();
             完了指定.SuspendLayout();
             SuspendLayout();
             // 
@@ -67,14 +67,12 @@
             // 顧客名
             // 
             顧客名.BackColor = Color.White;
-            顧客名.Enabled = false;
             顧客名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             顧客名.ImeMode = ImeMode.Hiragana;
             顧客名.Location = new Point(126, 20);
             顧客名.Margin = new Padding(3, 2, 3, 2);
-            顧客名.Multiline = true;
             顧客名.Name = "顧客名";
-            顧客名.Size = new Size(413, 23);
+            顧客名.Size = new Size(413, 20);
             顧客名.TabIndex = 0;
             // 
             // 担当者名
@@ -84,9 +82,8 @@
             担当者名.ImeMode = ImeMode.Hiragana;
             担当者名.Location = new Point(126, 50);
             担当者名.Margin = new Padding(3, 2, 3, 2);
-            担当者名.Multiline = true;
             担当者名.Name = "担当者名";
-            担当者名.Size = new Size(413, 23);
+            担当者名.Size = new Size(413, 20);
             担当者名.TabIndex = 1;
             // 
             // 抽出ボタン
@@ -132,10 +129,12 @@
             支払日終了.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             支払日終了.Location = new Point(345, 259);
             支払日終了.Margin = new Padding(3, 2, 3, 2);
-            支払日終了.Multiline = true;
             支払日終了.Name = "支払日終了";
-            支払日終了.Size = new Size(160, 23);
+            支払日終了.Size = new Size(160, 20);
             支払日終了.TabIndex = 6;
+            支払日終了.DoubleClick += 支払日終了_DoubleClick;
+            支払日終了.KeyPress += 支払日終了_KeyPress;
+            支払日終了.Leave += 支払日終了_Leave;
             // 
             // label4
             // 
@@ -163,6 +162,7 @@
             支払日終了選択ボタン.TabStop = false;
             支払日終了選択ボタン.Text = "▼";
             支払日終了選択ボタン.UseVisualStyleBackColor = true;
+            支払日終了選択ボタン.Click += 支払日終了選択_Click;
             // 
             // 支払日開始選択ボタン
             // 
@@ -175,6 +175,7 @@
             支払日開始選択ボタン.TabStop = false;
             支払日開始選択ボタン.Text = "▼";
             支払日開始選択ボタン.UseVisualStyleBackColor = true;
+            支払日開始選択ボタン.Click += 支払日開始選択_Click;
             // 
             // 支払日開始
             // 
@@ -182,10 +183,12 @@
             支払日開始.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             支払日開始.Location = new Point(126, 259);
             支払日開始.Margin = new Padding(3, 2, 3, 2);
-            支払日開始.Multiline = true;
             支払日開始.Name = "支払日開始";
-            支払日開始.Size = new Size(160, 23);
+            支払日開始.Size = new Size(160, 20);
             支払日開始.TabIndex = 4;
+            支払日開始.DoubleClick += 支払日開始_DoubleClick;
+            支払日開始.KeyPress += 支払日開始_KeyPress;
+            支払日開始.Leave += 支払日開始_Leave;
             // 
             // 顧客名ラベル
             // 
@@ -204,9 +207,9 @@
             // 
             // 完了指定
             // 
-            完了指定.Controls.Add(radioButton1);
-            完了指定.Controls.Add(radioButton2);
-            完了指定.Controls.Add(radioButton3);
+            完了指定.Controls.Add(完了指定3);
+            完了指定.Controls.Add(完了指定2);
+            完了指定.Controls.Add(完了指定1);
             完了指定.Font = new Font("BIZ UDゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             完了指定.Location = new Point(25, 88);
             完了指定.Name = "完了指定";
@@ -215,27 +218,38 @@
             完了指定.TabStop = false;
             完了指定.Text = "完了指定(&O)";
             // 
-            // radioButton2
+            // 完了指定3
             // 
-            radioButton2.AutoSize = true;
-            radioButton2.Location = new Point(34, 64);
-            radioButton2.Name = "radioButton2";
-            radioButton2.Size = new Size(158, 18);
-            radioButton2.TabIndex = 2;
-            radioButton2.TabStop = true;
-            radioButton2.Text = "完了している売掛(&E)";
-            radioButton2.UseVisualStyleBackColor = true;
+            完了指定3.AutoSize = true;
+            完了指定3.Location = new Point(34, 99);
+            完了指定3.Name = "完了指定3";
+            完了指定3.Size = new Size(116, 18);
+            完了指定3.TabIndex = 3;
+            完了指定3.TabStop = true;
+            完了指定3.Text = "指定しない(&N)";
+            完了指定3.UseVisualStyleBackColor = true;
             // 
-            // radioButton3
+            // 完了指定2
             // 
-            radioButton3.AutoSize = true;
-            radioButton3.Location = new Point(34, 29);
-            radioButton3.Name = "radioButton3";
-            radioButton3.Size = new Size(172, 18);
-            radioButton3.TabIndex = 1;
-            radioButton3.TabStop = true;
-            radioButton3.Text = "完了していない売掛(&B)";
-            radioButton3.UseVisualStyleBackColor = true;
+            完了指定2.AutoSize = true;
+            完了指定2.Location = new Point(34, 64);
+            完了指定2.Name = "完了指定2";
+            完了指定2.Size = new Size(158, 18);
+            完了指定2.TabIndex = 2;
+            完了指定2.TabStop = true;
+            完了指定2.Text = "完了している売掛(&E)";
+            完了指定2.UseVisualStyleBackColor = true;
+            // 
+            // 完了指定1
+            // 
+            完了指定1.AutoSize = true;
+            完了指定1.Location = new Point(34, 29);
+            完了指定1.Name = "完了指定1";
+            完了指定1.Size = new Size(172, 18);
+            完了指定1.TabIndex = 1;
+            完了指定1.TabStop = true;
+            完了指定1.Text = "完了していない売掛(&B)";
+            完了指定1.UseVisualStyleBackColor = true;
             // 
             // label6
             // 
@@ -258,21 +272,9 @@
             締日.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             締日.Location = new Point(126, 229);
             締日.Margin = new Padding(3, 2, 3, 2);
-            締日.Multiline = true;
             締日.Name = "締日";
-            締日.Size = new Size(106, 23);
+            締日.Size = new Size(106, 20);
             締日.TabIndex = 3;
-            // 
-            // radioButton1
-            // 
-            radioButton1.AutoSize = true;
-            radioButton1.Location = new Point(34, 99);
-            radioButton1.Name = "radioButton1";
-            radioButton1.Size = new Size(116, 18);
-            radioButton1.TabIndex = 3;
-            radioButton1.TabStop = true;
-            radioButton1.Text = "指定しない(&N)";
-            radioButton1.UseVisualStyleBackColor = true;
             // 
             // F_売掛一覧_抽出
             // 
@@ -320,10 +322,10 @@
         private TextBox 支払日開始;
         private Label 顧客名ラベル;
         private GroupBox 完了指定;
-        private RadioButton radioButton2;
-        private RadioButton radioButton3;
+        private RadioButton 完了指定2;
+        private RadioButton 完了指定1;
         private Label label6;
         private TextBox 締日;
-        private RadioButton radioButton1;
+        private RadioButton 完了指定3;
     }
 }
