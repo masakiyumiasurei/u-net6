@@ -158,7 +158,6 @@
             確定指定.TabIndex = 205;
             確定指定.TabStop = false;
             確定指定.Text = "確定指定(&E)";
-            確定指定.Visible = false;
             // 
             // 承認指定button3
             // 
@@ -426,7 +425,6 @@
             承認指定.TabIndex = 203;
             承認指定.TabStop = false;
             承認指定.Text = "承認指定(&A)";
-            承認指定.Visible = false;
             // 
             // F_見積管理_抽出
             // 

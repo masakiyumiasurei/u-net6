@@ -48,21 +48,21 @@ namespace u_net
 
                 if (frmTarget.dtm見積日開始 != DateTime.MinValue)
                 {
-                    this.見積日開始.Text = frmTarget.dtm見積日開始.ToString();
+                    this.見積日開始.Text = frmTarget.dtm見積日開始.ToShortDateString();
                 }
 
                 if (frmTarget.dtm見積日終了 != DateTime.MinValue)
                 {
-                    this.見積日終了.Text = frmTarget.dtm見積日終了.ToString();
+                    this.見積日終了.Text = frmTarget.dtm見積日終了.ToShortDateString();
                 }
 
                 this.担当者名.Text = frmTarget.str担当者名;
                 this.顧客コード.Text = frmTarget.str顧客コード;
                 this.顧客名.Text = frmTarget.str顧客名;
                 this.件名.Text = frmTarget.str件名;
-                this.確定指定.Text = frmTarget.lng確定指定.ToString();
-                this.承認指定.Text = frmTarget.lng承認指定.ToString();
-                this.削除指定.Text = frmTarget.lng削除指定.ToString();
+                //this.確定指定.Text = frmTarget.lng確定指定.ToString();
+                //this.承認指定.Text = frmTarget.lng承認指定.ToString();
+                //this.削除指定.Text = frmTarget.lng削除指定.ToString();
             }
             catch (Exception ex)
             {
@@ -144,11 +144,12 @@ namespace u_net
                 if (frmTarget.estEXT)
                 {
                     MessageBox.Show("抽出条件に一致するデータはありません。", "情報", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    frmTarget.estEXT = false;
                     this.Close();
                     return;
                 }
 
-                //fn.WaitForm.Close();
+                fn.WaitForm.Close();
             }
             finally
             {
@@ -173,25 +174,38 @@ namespace u_net
 
         private void 見積日開始_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            objParent = this.ActiveControl;
-            F_カレンダー fm = new F_カレンダー();
-            fm.ShowDialog();
+            // 日付選択フォームを作成し表示
+            F_カレンダー form = new F_カレンダー();
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                // objParent に申請日終了の参照を設定
+                sender = this.見積日開始;
+
+                // 日付選択フォームから選択した日付を取得
+                string selectedDate = form.SelectedDate;
+
+                // フォームAの日付コントロールに選択した日付を設定
+                見積日開始.Text = selectedDate;
+            }
         }
 
         private void 見積日開始_KeyPress(object sender, KeyPressEventArgs e)
         {
-            try
+            if (e.KeyChar == ' ')
             {
+                // 日付選択フォームを作成し表示
                 F_カレンダー form = new F_カレンダー();
-                // objParentにActiveControlの参照を設定
-                sender = this.ActiveControl;
-                // カレンダーフォームを作成して表示
-                form.ShowDialog();
-            }
-            catch (Exception ex)
-            {
-                // エラーが発生した場合の処理
-                MessageBox.Show($"エラーが発生しました: {ex.Message}", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                    // objParent に申請日終了の参照を設定
+                    sender = this.見積日開始;
+
+                    // 日付選択フォームから選択した日付を取得
+                    string selectedDate = form.SelectedDate;
+
+                    // フォームAの日付コントロールに選択した日付を設定
+                    見積日開始.Text = selectedDate;
+                }
             }
         }
 
@@ -202,53 +216,55 @@ namespace u_net
 
         private void 見積日開始選択ボタン_Click(object sender, EventArgs e)
         {
-            try
+            // 日付選択フォームを作成し表示
+            F_カレンダー form = new F_カレンダー();
+            if (form.ShowDialog() == DialogResult.OK)
             {
-                F_カレンダー form = new F_カレンダー();
-                // objParentに見積日開始の参照を設定
+                // objParent に見積日開始の参照を設定
                 sender = this.見積日開始;
-                // カレンダーフォームを作成して表示
-                form.ShowDialog();
-            }
-            catch (Exception ex)
-            {
-                // エラーが発生した場合の処理
-                MessageBox.Show($"エラーが発生しました: {ex.Message}", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                // 日付選択フォームから選択した日付を取得
+                string selectedDate = form.SelectedDate;
+
+                // フォームAの日付コントロールに選択した日付を設定
+                見積日開始.Text = selectedDate;
             }
         }
 
         private void 見積日終了_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            try
+            // 日付選択フォームを作成し表示
+            F_カレンダー form = new F_カレンダー();
+            if (form.ShowDialog() == DialogResult.OK)
             {
-                F_カレンダー form = new F_カレンダー();
-                // objParentにActiveControlの参照を設定
-                sender = this.ActiveControl;
-                // カレンダーフォームを作成して表示
-                form.ShowDialog();
-            }
-            catch (Exception ex)
-            {
-                // エラーが発生した場合の処理
-                MessageBox.Show($"エラーが発生しました: {ex.Message}", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+                // objParent に申請日終了の参照を設定
+                sender = this.見積日終了;
 
+                // 日付選択フォームから選択した日付を取得
+                string selectedDate = form.SelectedDate;
+
+                // フォームAの日付コントロールに選択した日付を設定
+                見積日終了.Text = selectedDate;
+            }
         }
 
         private void 見積日終了_KeyPress(object sender, KeyPressEventArgs e)
         {
-            try
+            if (e.KeyChar == ' ')
             {
+                // 日付選択フォームを作成し表示
                 F_カレンダー form = new F_カレンダー();
-                // objParentにActiveControlの参照を設定
-                sender = this.ActiveControl;
-                // カレンダーフォームを作成して表示
-                form.ShowDialog();
-            }
-            catch (Exception ex)
-            {
-                // エラーが発生した場合の処理
-                MessageBox.Show($"エラーが発生しました: {ex.Message}", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                    // objParent に申請日終了の参照を設定
+                    sender = this.見積日終了;
+
+                    // 日付選択フォームから選択した日付を取得
+                    string selectedDate = form.SelectedDate;
+
+                    // フォームAの日付コントロールに選択した日付を設定
+                    見積日終了.Text = selectedDate;
+                }
             }
         }
 
@@ -259,18 +275,18 @@ namespace u_net
 
         private void 見積日終了選択ボタン_Click(object sender, EventArgs e)
         {
-            try
+            // 日付選択フォームを作成し表示
+            F_カレンダー form = new F_カレンダー();
+            if (form.ShowDialog() == DialogResult.OK)
             {
-                F_カレンダー form = new F_カレンダー();
-                // objParentに見積日終了の参照を設定
+                // objParent に申請日終了の参照を設定
                 sender = this.見積日終了;
-                // カレンダーフォームを作成して表示
-                form.ShowDialog();
-            }
-            catch (Exception ex)
-            {
-                // エラーが発生した場合の処理
-                MessageBox.Show($"エラーが発生しました: {ex.Message}", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                // 日付選択フォームから選択した日付を取得
+                string selectedDate = form.SelectedDate;
+
+                // フォームAの日付コントロールに選択した日付を設定
+                見積日終了.Text = selectedDate;
             }
         }
 
@@ -285,18 +301,13 @@ namespace u_net
 
         private void 顧客コード選択ボタン_Click(object sender, EventArgs e)
         {
-            try
+            objParent = this;
+            F_検索 form = new F_検索();
+            form.FilterName="顧客名フリガナ";
+            if(form.ShowDialog()==DialogResult.OK)
             {
-                F_検索 form = new F_検索();
-                // objParentに顧客コードの参照を設定
-                sender = this.顧客コード;
-                // カレンダーフォームを作成して表示
-                form.ShowDialog();
-            }
-            catch (Exception ex)
-            {
-                // エラーが発生した場合の処理
-                MessageBox.Show($"エラーが発生しました: {ex.Message}", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                string SelectedCode = form.SelectedCode;
+                顧客コード.Text = SelectedCode;
             }
         }
 

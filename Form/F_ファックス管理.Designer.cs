@@ -1,6 +1,6 @@
 ﻿namespace u_net
 {
-    partial class F_見積管理
+    partial class F_ファックス管理
     {
         /// <summary>
         /// Required designer variable.
@@ -28,46 +28,46 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(F_見積管理));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(F_ファックス管理));
             panel1 = new Panel();
-            コマンド入出力 = new Button();
-            リンクボタン = new Button();
-            button = new Button();
-            コマンド見積 = new Button();
-            コマンド見積書 = new Button();
             コマンド更新 = new Button();
-            コマンド印刷 = new Button();
+            command = new Button();
+            コマンド再送 = new Button();
+            コマンド参照 = new Button();
+            コマンド表示 = new Button();
+            コマンド非表示 = new Button();
+            コマンド入出力 = new Button();
             コマンド初期化 = new Button();
             コマンド検索 = new Button();
             コマンド抽出 = new Button();
-            コマンド全表示 = new Button();
+            コマンド印刷 = new Button();
             コマンド終了 = new Button();
             表示件数 = new TextBox();
             label1 = new Label();
             label2 = new Label();
-            一覧 = new DataGridView();
+            dataGridView1 = new DataGridView();
             panel2 = new Panel();
-            toolTip1 = new ToolTip(components);
+            label3 = new Label();
+            ボタン = new Button();
             panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)一覧).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel2.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
             // 
             panel1.BackColor = SystemColors.ActiveCaption;
-            panel1.Controls.Add(コマンド入出力);
-            panel1.Controls.Add(リンクボタン);
-            panel1.Controls.Add(button);
-            panel1.Controls.Add(コマンド見積);
-            panel1.Controls.Add(コマンド見積書);
             panel1.Controls.Add(コマンド更新);
-            panel1.Controls.Add(コマンド印刷);
+            panel1.Controls.Add(command);
+            panel1.Controls.Add(コマンド再送);
+            panel1.Controls.Add(コマンド参照);
+            panel1.Controls.Add(コマンド表示);
+            panel1.Controls.Add(コマンド非表示);
+            panel1.Controls.Add(コマンド入出力);
             panel1.Controls.Add(コマンド初期化);
             panel1.Controls.Add(コマンド検索);
             panel1.Controls.Add(コマンド抽出);
-            panel1.Controls.Add(コマンド全表示);
+            panel1.Controls.Add(コマンド印刷);
             panel1.Controls.Add(コマンド終了);
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
@@ -76,13 +76,101 @@
             panel1.Size = new Size(1054, 32);
             panel1.TabIndex = 83;
             // 
+            // コマンド更新
+            // 
+            コマンド更新.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            コマンド更新.ForeColor = Color.Blue;
+            コマンド更新.ImageAlign = ContentAlignment.BottomLeft;
+            コマンド更新.Location = new Point(713, 4);
+            コマンド更新.Margin = new Padding(0, 2, 0, 2);
+            コマンド更新.Name = "コマンド更新";
+            コマンド更新.Size = new Size(70, 22);
+            コマンド更新.TabIndex = 10;
+            コマンド更新.TabStop = false;
+            コマンド更新.Text = "更新";
+            コマンド更新.UseVisualStyleBackColor = true;
+            // 
+            // command
+            // 
+            command.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            command.ForeColor = Color.Blue;
+            command.ImageAlign = ContentAlignment.BottomLeft;
+            command.Location = new Point(496, 4);
+            command.Margin = new Padding(0, 2, 0, 2);
+            command.Name = "command";
+            command.Size = new Size(70, 22);
+            command.TabIndex = 11;
+            command.TabStop = false;
+            command.UseVisualStyleBackColor = true;
+            command.Click += コマンド指導書変更有り_Click;
+            // 
+            // コマンド再送
+            // 
+            コマンド再送.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            コマンド再送.ForeColor = Color.Blue;
+            コマンド再送.ImageAlign = ContentAlignment.BottomLeft;
+            コマンド再送.Location = new Point(428, 4);
+            コマンド再送.Margin = new Padding(0, 2, 0, 2);
+            コマンド再送.Name = "コマンド再送";
+            コマンド再送.Size = new Size(70, 22);
+            コマンド再送.TabIndex = 1;
+            コマンド再送.TabStop = false;
+            コマンド再送.Text = "再送";
+            コマンド再送.UseVisualStyleBackColor = true;
+            コマンド再送.Click += コマンド指導書設定_Click;
+            // 
+            // コマンド参照
+            // 
+            コマンド参照.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            コマンド参照.ForeColor = Color.Blue;
+            コマンド参照.ImageAlign = ContentAlignment.BottomLeft;
+            コマンド参照.Location = new Point(291, 4);
+            コマンド参照.Margin = new Padding(0, 2, 0, 2);
+            コマンド参照.Name = "コマンド参照";
+            コマンド参照.Size = new Size(70, 22);
+            コマンド参照.TabIndex = 7;
+            コマンド参照.TabStop = false;
+            コマンド参照.Text = "送信元";
+            コマンド参照.UseVisualStyleBackColor = true;
+            コマンド参照.Click += コマンド製品_Click;
+            // 
+            // コマンド表示
+            // 
+            コマンド表示.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            コマンド表示.ForeColor = Color.Blue;
+            コマンド表示.ImageAlign = ContentAlignment.BottomLeft;
+            コマンド表示.Location = new Point(360, 4);
+            コマンド表示.Margin = new Padding(0, 2, 0, 2);
+            コマンド表示.Name = "コマンド表示";
+            コマンド表示.Size = new Size(70, 22);
+            コマンド表示.TabIndex = 9;
+            コマンド表示.TabStop = false;
+            コマンド表示.Text = "送信文書";
+            コマンド表示.UseVisualStyleBackColor = true;
+            コマンド表示.Click += コマンド材料費_Click;
+            // 
+            // コマンド非表示
+            // 
+            コマンド非表示.Enabled = false;
+            コマンド非表示.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            コマンド非表示.ForeColor = Color.Blue;
+            コマンド非表示.ImageAlign = ContentAlignment.BottomLeft;
+            コマンド非表示.Location = new Point(577, 4);
+            コマンド非表示.Margin = new Padding(0, 2, 0, 2);
+            コマンド非表示.Name = "コマンド非表示";
+            コマンド非表示.Size = new Size(70, 22);
+            コマンド非表示.TabIndex = 8;
+            コマンド非表示.TabStop = false;
+            コマンド非表示.Text = "非表示";
+            コマンド非表示.UseVisualStyleBackColor = true;
+            // 
             // コマンド入出力
             // 
             コマンド入出力.Enabled = false;
             コマンド入出力.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             コマンド入出力.ForeColor = Color.Black;
             コマンド入出力.ImageAlign = ContentAlignment.BottomLeft;
-            コマンド入出力.Location = new Point(713, 4);
+            コマンド入出力.Location = new Point(645, 4);
             コマンド入出力.Margin = new Padding(0, 2, 0, 2);
             コマンド入出力.Name = "コマンド入出力";
             コマンド入出力.Size = new Size(70, 22);
@@ -90,98 +178,6 @@
             コマンド入出力.TabStop = false;
             コマンド入出力.Text = "入出力";
             コマンド入出力.UseVisualStyleBackColor = true;
-            // 
-            // リンクボタン
-            // 
-            リンクボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            リンクボタン.ForeColor = Color.Blue;
-            リンクボタン.ImageAlign = ContentAlignment.BottomLeft;
-            リンクボタン.Location = new Point(496, 4);
-            リンクボタン.Margin = new Padding(0, 2, 0, 2);
-            リンクボタン.Name = "リンクボタン";
-            リンクボタン.Size = new Size(70, 22);
-            リンクボタン.TabIndex = 9;
-            リンクボタン.TabStop = false;
-            リンクボタン.Text = "リンク";
-            リンクボタン.UseVisualStyleBackColor = true;
-            リンクボタン.Click += リンクボタン_Click;
-            // 
-            // button
-            // 
-            button.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            button.ForeColor = Color.Blue;
-            button.ImageAlign = ContentAlignment.BottomLeft;
-            button.Location = new Point(428, 4);
-            button.Margin = new Padding(0, 2, 0, 2);
-            button.Name = "button";
-            button.Size = new Size(70, 22);
-            button.TabIndex = 6;
-            button.TabStop = false;
-            button.UseVisualStyleBackColor = true;
-            // 
-            // コマンド見積
-            // 
-            コマンド見積.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            コマンド見積.ForeColor = Color.Blue;
-            コマンド見積.ImageAlign = ContentAlignment.BottomLeft;
-            コマンド見積.Location = new Point(291, 4);
-            コマンド見積.Margin = new Padding(0, 2, 0, 2);
-            コマンド見積.Name = "コマンド見積";
-            コマンド見積.Size = new Size(70, 22);
-            コマンド見積.TabIndex = 1;
-            コマンド見積.TabStop = false;
-            コマンド見積.Text = "見積";
-            toolTip1.SetToolTip(コマンド見積, "見積参照");
-            コマンド見積.UseVisualStyleBackColor = true;
-            コマンド見積.Click += コマンド見積_Click;
-            // 
-            // コマンド見積書
-            // 
-            コマンド見積書.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            コマンド見積書.ForeColor = Color.Blue;
-            コマンド見積書.ImageAlign = ContentAlignment.BottomLeft;
-            コマンド見積書.Location = new Point(360, 4);
-            コマンド見積書.Margin = new Padding(0, 2, 0, 2);
-            コマンド見積書.Name = "コマンド見積書";
-            コマンド見積書.Size = new Size(70, 22);
-            コマンド見積書.TabIndex = 7;
-            コマンド見積書.TabStop = false;
-            コマンド見積書.Text = "見積書";
-            toolTip1.SetToolTip(コマンド見積書, "見積書プレビュー");
-            コマンド見積書.UseVisualStyleBackColor = true;
-            コマンド見積書.Click += コマンド見積書_Click;
-            // 
-            // コマンド更新
-            // 
-            コマンド更新.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            コマンド更新.ForeColor = Color.Blue;
-            コマンド更新.ImageAlign = ContentAlignment.BottomLeft;
-            コマンド更新.Location = new Point(577, 4);
-            コマンド更新.Margin = new Padding(0, 2, 0, 2);
-            コマンド更新.Name = "コマンド更新";
-            コマンド更新.Size = new Size(70, 22);
-            コマンド更新.TabIndex = 10;
-            コマンド更新.TabStop = false;
-            コマンド更新.Text = "更新";
-            toolTip1.SetToolTip(コマンド更新, "最新の情報に更新");
-            コマンド更新.UseVisualStyleBackColor = true;
-            // 
-            // コマンド印刷
-            // 
-            コマンド印刷.Enabled = false;
-            コマンド印刷.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            コマンド印刷.ForeColor = Color.Black;
-            コマンド印刷.ImageAlign = ContentAlignment.BottomLeft;
-            コマンド印刷.Location = new Point(645, 4);
-            コマンド印刷.Margin = new Padding(0, 2, 0, 2);
-            コマンド印刷.Name = "コマンド印刷";
-            コマンド印刷.Size = new Size(70, 22);
-            コマンド印刷.TabIndex = 5;
-            コマンド印刷.TabStop = false;
-            コマンド印刷.Text = "印刷";
-            toolTip1.SetToolTip(コマンド印刷, "印刷プレビュー");
-            コマンド印刷.UseVisualStyleBackColor = true;
-            コマンド印刷.Click += コマンド印刷_Click;
             // 
             // コマンド初期化
             // 
@@ -195,14 +191,13 @@
             コマンド初期化.TabIndex = 4;
             コマンド初期化.TabStop = false;
             コマンド初期化.Text = "初期化";
-            toolTip1.SetToolTip(コマンド初期化, "抽出条件の初期化");
             コマンド初期化.UseVisualStyleBackColor = true;
             コマンド初期化.Click += コマンド初期化_Click;
             // 
             // コマンド検索
             // 
             コマンド検索.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            コマンド検索.ForeColor = Color.Blue;
+            コマンド検索.ForeColor = Color.Black;
             コマンド検索.ImageAlign = ContentAlignment.BottomLeft;
             コマンド検索.Location = new Point(71, 4);
             コマンド検索.Margin = new Padding(0, 2, 0, 2);
@@ -211,7 +206,6 @@
             コマンド検索.TabIndex = 3;
             コマンド検索.TabStop = false;
             コマンド検索.Text = "検索";
-            toolTip1.SetToolTip(コマンド検索, "コード検索");
             コマンド検索.UseVisualStyleBackColor = true;
             コマンド検索.Click += コマンド検索_Click;
             // 
@@ -227,25 +221,23 @@
             コマンド抽出.TabIndex = 2;
             コマンド抽出.TabStop = false;
             コマンド抽出.Text = "抽出";
-            toolTip1.SetToolTip(コマンド抽出, "抽出設定");
             コマンド抽出.UseVisualStyleBackColor = true;
             コマンド抽出.Click += コマンド抽出_Click;
             // 
-            // コマンド全表示
+            // コマンド印刷
             // 
-            コマンド全表示.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            コマンド全表示.ForeColor = Color.Blue;
-            コマンド全表示.ImageAlign = ContentAlignment.BottomLeft;
-            コマンド全表示.Location = new Point(207, 4);
-            コマンド全表示.Margin = new Padding(0, 2, 0, 2);
-            コマンド全表示.Name = "コマンド全表示";
-            コマンド全表示.Size = new Size(70, 22);
-            コマンド全表示.TabIndex = 8;
-            コマンド全表示.TabStop = false;
-            コマンド全表示.Text = "全表示";
-            toolTip1.SetToolTip(コマンド全表示, "全データの表示");
-            コマンド全表示.UseVisualStyleBackColor = true;
-            コマンド全表示.Click += コマンド全表示_Click;
+            コマンド印刷.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            コマンド印刷.ForeColor = Color.Black;
+            コマンド印刷.ImageAlign = ContentAlignment.BottomLeft;
+            コマンド印刷.Location = new Point(207, 4);
+            コマンド印刷.Margin = new Padding(0, 2, 0, 2);
+            コマンド印刷.Name = "コマンド印刷";
+            コマンド印刷.Size = new Size(70, 22);
+            コマンド印刷.TabIndex = 5;
+            コマンド印刷.TabStop = false;
+            コマンド印刷.Text = "印刷";
+            コマンド印刷.UseVisualStyleBackColor = true;
+            コマンド印刷.Click += コマンド更新_Click;
             // 
             // コマンド終了
             // 
@@ -258,7 +250,6 @@
             コマンド終了.TabIndex = 0;
             コマンド終了.TabStop = false;
             コマンド終了.Text = "終了";
-            toolTip1.SetToolTip(コマンド終了, "終了");
             コマンド終了.UseVisualStyleBackColor = true;
             コマンド終了.Click += コマンド終了_Click;
             // 
@@ -291,26 +282,22 @@
             label2.TabIndex = 86;
             label2.Text = "件";
             // 
-            // 一覧
+            // dataGridView1
             // 
-            一覧.AllowUserToAddRows = false;
-            一覧.AllowUserToDeleteRows = false;
-            一覧.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            一覧.Location = new Point(0, 30);
-            一覧.Margin = new Padding(3, 2, 3, 2);
-            一覧.Name = "一覧";
-            一覧.ReadOnly = true;
-            一覧.RowTemplate.Height = 29;
-            一覧.Size = new Size(1054, 432);
-            一覧.TabIndex = 87;
-            一覧.CellEnter += 一覧_CellEnter;
-            一覧.CellLeave += 一覧_CellLeave;
-            一覧.MouseDoubleClick += 一覧_MouseDoubleClick;
-            一覧.MouseDown += 一覧_MouseDown;
-            一覧.MouseUp += 一覧_MouseUp;
+            dataGridView1.AllowUserToAddRows = false;
+            dataGridView1.AllowUserToDeleteRows = false;
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Location = new Point(0, 68);
+            dataGridView1.Margin = new Padding(3, 2, 3, 2);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.ReadOnly = true;
+            dataGridView1.RowTemplate.Height = 29;
+            dataGridView1.Size = new Size(1054, 394);
+            dataGridView1.TabIndex = 87;
             // 
             // panel2
             // 
+            panel2.Controls.Add(ボタン);
             panel2.Controls.Add(表示件数);
             panel2.Controls.Add(label1);
             panel2.Controls.Add(label2);
@@ -321,39 +308,59 @@
             panel2.Size = new Size(1054, 27);
             panel2.TabIndex = 88;
             // 
-            // F_見積管理
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            label3.Location = new Point(6, 42);
+            label3.Name = "label3";
+            label3.Size = new Size(545, 14);
+            label3.TabIndex = 87;
+            label3.Text = "※FAX送信中の状態で本ウィンドウを閉じるには[非表示]コマンドを実行してください。";
+            // 
+            // ボタン
+            // 
+            ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            ボタン.Location = new Point(897, 0);
+            ボタン.Name = "ボタン";
+            ボタン.Size = new Size(76, 26);
+            ボタン.TabIndex = 87;
+            ボタン.Text = "ログ出力";
+            ボタン.UseVisualStyleBackColor = true;
+            // 
+            // F_ファックス管理
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1054, 497);
+            Controls.Add(label3);
             Controls.Add(panel2);
-            Controls.Add(一覧);
+            Controls.Add(dataGridView1);
             Controls.Add(panel1);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(3, 2, 3, 2);
-            Name = "F_見積管理";
-            Text = "見積管理";
-            FormClosing += Form_Unload;
-            Load += Form_Load;
-            Resize += Form_Resize;
+            Name = "F_ファックス管理";
+            Text = "ファックス管理";
+            KeyDown += Form_KeyDown;
             panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)一覧).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
         private Panel panel1;
-        private Button リンクボタン;
-        private Button button;
-        private Button コマンド見積;
-        private Button コマンド見積書;
-        private Button コマンド更新;
-        private Button コマンド印刷;
+        private Button command;
+        private Button コマンド再送;
+        private Button コマンド参照;
+        private Button コマンド表示;
+        private Button コマンド非表示;
+        private Button コマンド入出力;
         private Button コマンド初期化;
         private Button コマンド抽出;
-        private Button コマンド全表示;
+        private Button コマンド印刷;
         private Button コマンド終了;
         private TextBox 表示件数;
         private Label label1;
@@ -460,7 +467,7 @@
 
         //private newDataSetTableAdapters.Vメーカー管理TableAdapter vメーカー管理TableAdapter;
 
-        private DataGridView 一覧;
+        private DataGridView dataGridView1;
         private DataGridViewTextBoxColumn 商品コードDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn 基本型式名DataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn シリーズ名DataGridViewTextBoxColumn;
@@ -488,7 +495,8 @@
         //private newDataSetTableAdapters.Qメーカー管理TableAdapter qメーカー管理TableAdapter;
         private Panel panel2;
         private Button コマンド検索;
-        private Button コマンド入出力;
-        private ToolTip toolTip1;
+        private Button コマンド更新;
+        private Label label3;
+        private Button ボタン;
     }
 }
