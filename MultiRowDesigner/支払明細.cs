@@ -287,18 +287,7 @@ namespace MultiRowDesigner
             int idx = gcMultiRow1.CurrentRow.Index;
             switch (gcMultiRow1.CurrentCell.Name)
             {
-                case "買掛区分": //コンボボックスはダブルクリックイベントがきかないため移動
-                    Connect();
-                    string str = gcMultiRow1.Rows[idx].Cells["買掛区分"].Value?.ToString();
-                    string sql = "select * from V買掛区分 where 買掛区分='" + str + "'";
-
-                    SqlCommand command = new SqlCommand(sql, cn);
-                    SqlDataReader reader = command.ExecuteReader();
-                    if (reader.Read())
-                    {
-                        gcMultiRow1.Rows[idx].Cells["買掛区分コード"].Value = reader["買掛区分コード"].ToString();
-                        gcMultiRow1.Rows[idx].Cells["買掛明細コード"].Value = Convert.ToInt16(reader["買掛明細コード"].ToString());
-                    }
+                case "買掛区分": //コンボボックスはダブルクリックイベントがきかないため移動                    
 
                     break;
             }

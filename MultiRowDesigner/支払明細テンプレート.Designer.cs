@@ -45,6 +45,7 @@
             GrapeCity.Win.MultiRow.Border border2 = new GrapeCity.Win.MultiRow.Border();
             GrapeCity.Win.MultiRow.CellStyle cellStyle4 = new GrapeCity.Win.MultiRow.CellStyle();
             GrapeCity.Win.MultiRow.Border border3 = new GrapeCity.Win.MultiRow.Border();
+            GrapeCity.Win.MultiRow.RequiredTypeValidator requiredTypeValidator1 = new GrapeCity.Win.MultiRow.RequiredTypeValidator();
             GrapeCity.Win.MultiRow.CellStyle cellStyle5 = new GrapeCity.Win.MultiRow.CellStyle();
             GrapeCity.Win.MultiRow.Border border4 = new GrapeCity.Win.MultiRow.Border();
             GrapeCity.Win.MultiRow.CellStyle cellStyle6 = new GrapeCity.Win.MultiRow.CellStyle();
@@ -242,6 +243,8 @@
             cellStyle4.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.支払金額.Style = cellStyle4;
             this.支払金額.TabIndex = 3;
+            requiredTypeValidator1.RequiredType = typeof(decimal);
+            this.支払金額.Validators.Add(requiredTypeValidator1);
             // 
             // 買掛区分コード
             // 

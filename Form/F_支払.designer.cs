@@ -120,6 +120,8 @@ namespace u_net
             label2 = new Label();
             支払明細1 = new MultiRowDesigner.支払明細();
             toolTip1 = new ToolTip(components);
+            AdjustPayable = new CheckBox();
+            label5 = new Label();
             panel1.SuspendLayout();
             statusStrip1.SuspendLayout();
             SuspendLayout();
@@ -507,7 +509,7 @@ namespace u_net
             支払コード.Name = "支払コード";
             支払コード.Size = new Size(122, 21);
             支払コード.TabIndex = 2;
-            支払コード.Validated += 支払コード_Validated;
+            支払コード.SelectedIndexChanged += 支払コード_SelectedIndexChanged;
             // 
             // 支払コードラベル
             // 
@@ -818,7 +820,7 @@ namespace u_net
             // 
             // 支払先検索ボタン
             // 
-            支払先検索ボタン.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            支払先検索ボタン.Font = new Font("Yu Gothic UI", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
             支払先検索ボタン.Location = new Point(224, 71);
             支払先検索ボタン.Margin = new Padding(4);
             支払先検索ボタン.Name = "支払先検索ボタン";
@@ -831,7 +833,7 @@ namespace u_net
             // 
             // 支払先参照ボタン
             // 
-            支払先参照ボタン.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            支払先参照ボタン.Font = new Font("Yu Gothic UI", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
             支払先参照ボタン.Location = new Point(246, 71);
             支払先参照ボタン.Margin = new Padding(4);
             支払先参照ボタン.Name = "支払先参照ボタン";
@@ -967,7 +969,7 @@ namespace u_net
             振込指定.Name = "振込指定";
             振込指定.Size = new Size(122, 21);
             振込指定.TabIndex = 14;
-            振込指定.VisibleChanged += 振込指定_VisibleChanged;
+            振込指定.TextChanged += 振込指定_TextChanged;
             振込指定.Enter += 振込指定_Enter;
             振込指定.Leave += 振込指定_Leave;
             振込指定.Validating += 振込指定_Validating;
@@ -977,13 +979,13 @@ namespace u_net
             備考.BackColor = SystemColors.Window;
             備考.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             備考.ImeMode = ImeMode.Hiragana;
-            備考.Location = new Point(122, 227);
+            備考.Location = new Point(122, 251);
             備考.Margin = new Padding(3, 2, 3, 2);
             備考.Multiline = true;
             備考.Name = "備考";
             備考.Size = new Size(340, 65);
-            備考.TabIndex = 16;
-            備考.VisibleChanged += 備考_VisibleChanged;
+            備考.TabIndex = 18;
+            備考.TextChanged += 備考_TextChanged;
             備考.Enter += 備考_Enter;
             備考.Leave += 備考_Leave;
             // 
@@ -994,11 +996,11 @@ namespace u_net
             備考_ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             備考_ラベル.ForeColor = SystemColors.ActiveCaptionText;
             備考_ラベル.ImageAlign = ContentAlignment.MiddleLeft;
-            備考_ラベル.Location = new Point(9, 227);
+            備考_ラベル.Location = new Point(9, 251);
             備考_ラベル.Margin = new Padding(0);
             備考_ラベル.Name = "備考_ラベル";
             備考_ラベル.Size = new Size(95, 42);
-            備考_ラベル.TabIndex = 15;
+            備考_ラベル.TabIndex = 17;
             備考_ラベル.Text = "備考(&R)";
             // 
             // 承認者名
@@ -1062,17 +1064,45 @@ namespace u_net
             // 
             // 支払明細1
             // 
+            支払明細1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             支払明細1.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            支払明細1.Location = new Point(9, 304);
+            支払明細1.Location = new Point(9, 325);
             支払明細1.Margin = new Padding(4, 4, 4, 4);
             支払明細1.Name = "支払明細1";
-            支払明細1.Size = new Size(822, 238);
+            支払明細1.Size = new Size(868, 217);
             支払明細1.TabIndex = 10206;
+            // 
+            // AdjustPayable
+            // 
+            AdjustPayable.AutoSize = true;
+            AdjustPayable.Location = new Point(123, 228);
+            AdjustPayable.Name = "AdjustPayable";
+            AdjustPayable.Size = new Size(15, 14);
+            AdjustPayable.TabIndex = 16;
+            AdjustPayable.UseVisualStyleBackColor = true;
+            AdjustPayable.CheckedChanged += AdjustPayable_CheckedChanged;
+            // 
+            // label5
+            // 
+            label5.AllowDrop = true;
+            label5.AutoEllipsis = true;
+            label5.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label5.ForeColor = SystemColors.ActiveCaptionText;
+            label5.ImageAlign = ContentAlignment.MiddleLeft;
+            label5.Location = new Point(9, 222);
+            label5.Margin = new Padding(0);
+            label5.Name = "label5";
+            label5.Size = new Size(100, 20);
+            label5.TabIndex = 15;
+            label5.Text = "集計値調整(&A)";
+            label5.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // F_支払
             // 
             BackColor = SystemColors.Control;
             ClientSize = new Size(877, 571);
+            Controls.Add(label5);
+            Controls.Add(AdjustPayable);
             Controls.Add(支払明細1);
             Controls.Add(承認者名);
             Controls.Add(承認者コード);
@@ -1242,6 +1272,8 @@ namespace u_net
         private Label label2;
         private MultiRowDesigner.支払明細 支払明細1;
         private ToolTip toolTip1;
+        private CheckBox AdjustPayable;
+        private Label label5;
     }
 }
 
