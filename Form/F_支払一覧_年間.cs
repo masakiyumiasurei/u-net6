@@ -174,6 +174,12 @@ namespace u_net
                 SetGrid(str集計年度, str支払区分コード);
                 AddTotalRow(dataGridView1);
 
+                if (dataGridView1.RowCount > 0)
+                {
+                    dataGridView1.Rows[0].Selected = true;
+                    dataGridView1.FirstDisplayedScrollingRowIndex = 0;
+                }
+
             }
             catch (Exception ex)
             {
@@ -249,7 +255,8 @@ namespace u_net
                         dataGridView1.Columns[col].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                     }
 
-             
+                    
+
 
                 }
 

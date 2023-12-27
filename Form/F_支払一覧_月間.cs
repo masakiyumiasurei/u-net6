@@ -161,6 +161,12 @@ namespace u_net
                 SetGrid(dtm集計年月);
                 AddTotalRow(dataGridView1);
 
+                if (dataGridView1.RowCount > 0)
+                {
+                    dataGridView1.Rows[0].Selected = true;
+                    dataGridView1.FirstDisplayedScrollingRowIndex = 0;
+                }
+
             }
             catch (Exception ex)
             {
