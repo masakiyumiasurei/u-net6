@@ -117,27 +117,45 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <metadata name="適用日ボタン.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="区分名ボタン.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="消費税率ボタン.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="statusStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>13, 44</value>
+  </metadata>
+  <metadata name="process1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>128, 44</value>
+  </metadata>
+  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>42</value>
+  </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAABAAIAICAQAAAAAADoAgAAJgAAABAQEAAAAAAAKAEAAA4DAAAoAAAAIAAAAEAAAAABAAQAAAAAAIAC
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAgAAAAICAAIAAAACAAIAAgIAAAICAgADAwMAAAAD/AAD/
         AAAA//8A/wAAAP8A/wD//wAA////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPAAAAAAAAAAAAAAAA
-        AAAAC/sAAAAAAAAAAAAAAAAAAA+/vwAAAAAAAAAAAAAAAAsL+/v7AAAAAAAAAAAAAAAPD7+/v78AAAAA
-        AAAAAAAA+wv7+/v7+wAAAAAAAAAAALAPv7+/v7+/AAAAAAAAAAvwC/v7+/v7+/sAAAAAAAAPDw+/v7+/
-        v7+/vwAAAAAA+w8L+/v7+/v7+/sAAAAAALD/D7+/v7+/v7+/AAAAAAvw/wv7+/v7+/v7+wAAAAAPD//w
-        D7+/v7+/v78AAAAA+w////AL+/v7+/v7AAAAAL+wD///8A+/v7+/vwAAAAAL+/AP//8L+/v7+/sAAAAA
-        D7+/sA//D7+/v7+/AAAAAAv7+wvwD/AL+/v7+wAAAAAAD7AAD7AP8A+/v78AAAAAAAAAAAAL8A/wC/v7
-        AAAAAAAAAAAAAA+wD7APvwAAAAAAAAAAAAAAC/vwAAsAAAAAAAAAAAAAAAAPAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAv/+wAA//v/+//wAAv/+/AP+/8AAPv/+//78AAP+//wC//78Av/+//7//sA+//78A/7
+        //v/+//7//v/+//7//AL//v/+//7//v/+//7//vwD/v/+//7//v/+//7//v/8Av/+//7//v/+//7//v/
+        +/AP+//7//v/+//7//v/+//wC//7//v/+//7//v/+//78A/7AAAAAAAAAAAAAAAA//AL//v/+//7//v/
+        +//7//vwD/v/+//7//v/+//7//v/8Av/+//7//v/+//7//v/+/AP+wAAAAAAAAAAAAAAAP/wC//7//v/
+        +//7//v/+//78A/7//v/+//7//v/+//7//AL//v/+//7//v/+//7//vwD/sAAAAAAAAAAAAAAAD/8Av/
+        +//7//v/+//7//v/+/AP+//7//v/+//7//v/+//wC//7//v/+//7//v/+//78A/7//v/+//7//v/+//7
+        //AL//v/+//7//v/+//7//vwD/v/+//78AAAAAAAAAAAAAv/+//7/wAAAAAAAAAAAAAP+//7//sAAAAA
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA////////
-        ///////////////P////w////4D///+AP///AA///wAD//4AAP/+AAA//AAAD/wAAAf4AAAH+AAAB/AA
-        AAfwAAAH4AAAB+AAAAfwAAAH8AAAB/AAAAf4IAAH/ngAB//+AAf//4CH///h5///+f//////////////
+        //+BgAMBAYADAAGAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAf//wAH//+AD///////////
         //8oAAAAEAAAACAAAAABAAQAAAAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAgAAAAICAAIAA
         AACAAIAAgIAAAICAgADAwMAAAAD/AAD/AAAA//8A/wAAAP8A/wD//wAA////AAAAAAAAAAAAAAAAAAAA
-        AAAAAAAAAAAAAAAAAPsAAAAAAADwv78AAAAACwD7+/sAAADw8L+/v78ACw/w+/v7+/AA//APv7+/sAAA
-        //AL+/vwAL8A/w+/v7AAC/sP8Av78AAAD7D/AA+wAAAAAAD7AAAAAAAAAAAAAAAAAAAAAAAA//8AAP//
-        AAD4/wAA8D8AAOAPAADAAwAAgAAAAAAAAAAAAAAAgAAAAIAAAADAAAAA4AAAAPkAAAD/zwAA//8AAA==
+        AAAPAA+/vwAPsAv7+/v7+/vwD7+/v7+/v7AL+/v7+/v78A8AAAAAAACwC/v7+/v7+/APAAAAAAAAsAv7
+        +/v7+/vwDwAAAAAAALAL+/v7+/v78A+/v7+/v7+wC/v7AAAAAAAPv78AAAAAAAAAAAAAAAAA//8AABAQ
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAB/wAAg/8AAA==
 </value>
   </data>
 </root>

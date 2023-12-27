@@ -246,7 +246,7 @@ namespace u_net
                     return;
                 }
 
-                //fn.WaitForm.Close();
+                fn.WaitForm.Close();
             }
             finally
             {
@@ -565,23 +565,10 @@ namespace u_net
 
         private void 申請日開始_KeyPress(object sender, KeyPressEventArgs e)
         {
-            F_カレンダー form = new F_カレンダー();
-            if (form.ShowDialog() == DialogResult.OK)
-            {
-                // objParent に申請日開始の参照を設定
-                sender = this.申請日開始;
-
-                // 日付選択フォームから選択した日付を取得
-                string selectedDate = form.SelectedDate;
-
-                // フォームAの日付コントロールに選択した日付を設定
-                申請日開始.Text = selectedDate;
-            }
-
             if (e.KeyChar == ' ')
             {
                 // 日付選択フォームを作成し表示
-                //F_カレンダー form = new F_カレンダー();
+                F_カレンダー form = new F_カレンダー();
                 if (form.ShowDialog() == DialogResult.OK)
                 {
                     // objParent に申請日開始の参照を設定
