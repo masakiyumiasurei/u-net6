@@ -953,6 +953,7 @@ namespace u_net
             シリーズ名.ReadOnly = true;
             シリーズ名.Size = new Size(364, 21);
             シリーズ名.TabIndex = 7;
+            シリーズ名.TabStop = false;
             // 
             // 申請者コード
             // 
