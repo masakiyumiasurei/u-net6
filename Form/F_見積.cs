@@ -227,7 +227,7 @@ namespace u_net
                         throw new Exception("初期化に失敗しました。");
                     }
 
-                    this.見積コード.Text = varOpenArgs.Substring(varOpenArgs.IndexOf(','));
+                    this.見積コード.Text = varOpenArgs.Substring(0,varOpenArgs.IndexOf(','));
                     this.見積版数.Text = varOpenArgs.Substring(varOpenArgs.IndexOf(',') + 1);
 
                     varOpenArgs = string.Empty;
@@ -568,7 +568,7 @@ namespace u_net
         {
             try
             {
-                int count = 見積明細1.Detail.RowCount;
+                int count = 見積明細1.Detail.RowCount -1;
 
                 if (count == 0)
                 {

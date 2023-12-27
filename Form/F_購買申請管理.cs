@@ -760,7 +760,7 @@ namespace u_net
                 ////objParent = this;
                 if (SetGrid() && FormatGrid())
                 {
-                    
+
                 }
                 else
                 {
