@@ -21,7 +21,6 @@ namespace u_net
     {
         const string strSecondOrder = "受注コード";
 
-        public F_受注管理サブ frmSub;
         public string str検索コード;
         public string str受注コード1;
         public string str受注コード2;
@@ -104,56 +103,15 @@ namespace u_net
             ble受注完了承認指定 = false;
             byt受注完了承認 = 1;
             byt無効日 = 2;
-            //ble履歴表示 = bool.Parse(履歴トグル.Text);
-            ble履歴表示 = false;
+            ble履歴表示 = 履歴トグル.Checked;
         }
-
-        public void SetRecordSource(Form formObject, string whereString)
-        {
-            try
-            {
-                if (this.ble履歴表示)
-                {
-                    if (string.IsNullOrEmpty(whereString))
-                    {
-                        //formObject.RecordSource = "SELECT * FROM SalesOrderList_History" + (string.IsNullOrEmpty(formObject.OrderBy) ? "" : " ORDER BY " + formObject.OrderBy);
-                    }
-                    else
-                    {
-                        //formObject.RecordSource = "SELECT * FROM SalesOrderList_History WHERE " + whereString + (string.IsNullOrEmpty(formObject.OrderBy) ? "" : " ORDER BY " + formObject.OrderBy);
-                    }
-                }
-                else
-                {
-                    if (string.IsNullOrEmpty(whereString))
-                    {
-                        //formObject.RecordSource = "SELECT * FROM SalesOrderList" + (string.IsNullOrEmpty(formObject.OrderBy) ? "" : " ORDER BY " + formObject.OrderBy);
-                    }
-                    else
-                    {
-                        //formObject.RecordSource = "SELECT * FROM SalesOrderList WHERE " + whereString + (string.IsNullOrEmpty(formObject.OrderBy) ? "" : " ORDER BY " + formObject.OrderBy);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"SetRecordSource - {ex.GetType().Name} : {ex.Message}");
-            }
-        }
-
 
         private void Form_Load(object sender, EventArgs e)
         {
-            ////LocalSetting ls = new LocalSetting();
-            //////ウィンドウサイズを調整する
-            ////ls.LoadPlace(CommonConstants.LoginUserCode, this);
-
-            ////F_受注管理 frmTarget = Application.OpenForms.OfType<F_受注管理>().FirstOrDefault();
-
             FunctionClass fn = new FunctionClass();
             fn.DoWait("しばらくお待ちください...");
             //実行中フォーム起動
-            //string LoginUserCode = "000";//テスト用 ログインユーザを実行中にどのように管理するか決まったら修正
+
             LocalSetting localSetting = new LocalSetting();
             localSetting.LoadPlace(CommonConstants.LoginUserCode, this);
 
@@ -176,23 +134,6 @@ namespace u_net
             dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font("MS ゴシック", 9);
             dataGridView1.DefaultCellStyle.Font = new Font("MS ゴシック", 10);
             dataGridView1.DefaultCellStyle.ForeColor = Color.Black;
-
-            //dataGridView1.Columns[0].DefaultCellStyle.BackColor = Color.FromArgb(255, 255, 200); // 薄い黄色
-            //dataGridView1.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-
-
-            //0列目はaccessでは行ヘッダのため、ずらす
-            //dataGridView1.Columns[0].Width = 500 / twipperdot;
-            //dataGridView1.Columns[0].Width = 1100 / twipperdot; //1150
-            //dataGridView1.Columns[1].Width = 300 / twipperdot;
-            //dataGridView1.Columns[2].Width = 5000;
-            //dataGridView1.Columns[3].Width = 0 / twipperdot;
-            //dataGridView1.Columns[4].Width = 2000 / twipperdot;
-            //dataGridView1.Columns[5].Width = 1500 / twipperdot;
-            //dataGridView1.Columns[6].Width = 1500 / twipperdot;
-            //dataGridView1.Columns[7].Width = 2200 / twipperdot;//1300
-            //dataGridView1.Columns[8].Width = 1500 / twipperdot;
-            //dataGridView1.Columns[9].Width = 300 / twipperdot;
 
             myapi.GetFullScreen(out xSize, out ySize);
 
@@ -249,17 +190,7 @@ namespace u_net
             try
             {
                 result = Filtering();
-                //   DrawGrid();
-                if (result >= 0)
-                {
-                    //this.表示件数.Text = result.ToString();
-                    this.有効件数.Text = result.ToString();
-                }
-                else
-                {
-                    //this.表示件数.Text = null; // Nullの代わりにC#ではnullを使用
-                    this.有効件数.Text = null; // Nullの代わりにC#ではnullを使用
-                }
+
             }
             catch (Exception ex)
             {
@@ -375,34 +306,22 @@ namespace u_net
                 //改版依頼中の受注データは表示しない
                 strWhere = FunctionClass.WhereString(strWhere, "not(1<受注版数 and 承認者コード is null)");
 
-                //frmSub.ServerFilter = strWhere;
+                string query1 = "SELECT 受注コード, 受注版数 AS 版, 受注日, 出荷予定日, 受注納期, 注文番号, 顧客名, 自社担当者名, FORMAT(受注金額, N'#,0') AS 受注金額 " +
+                                           " , CASE WHEN 確定日時 IS NOT NULL THEN '■' ELSE '' END AS 確定 " +
+                                           " , CASE WHEN 承認者コード IS NOT NULL THEN '■' ELSE '' END AS 承認 " +
+                                           " , CASE WHEN 出荷完了日 IS NOT NULL THEN '■' ELSE '' END AS 出荷 " +
+                                           " , CASE WHEN 完了承認者コード IS NOT NULL THEN '■' ELSE '' END AS 完了 ";
 
-                if (ble履歴表示)
+
+                if (this.ble履歴表示)
                 {
-                    //frmSub.RecordSource = "SalesOrderList_History";
-                    //this.有効件数 = FunctionClass.GetRecordCount(cn, frmSub.RecordSource, frmSub.ServerFilter + " and 無効日 is null and 承認者コード is not null");
-                    //this.合計数量 = (this.有効件数 == 0) ? 0 :DSum("受注数量", this.RecordSource, this.ServerFilter + " and 無効日 is null and 承認者コード is not null");
-                    //this.合計金額 = (this.有効件数 == 0) ? 0 :DSum("受注金額", this.RecordSource, this.ServerFilter + " and 無効日 is null and 承認者コード is not null");
-                    //this.税込合計金額 = (this.有効件数 == 0) ? 0 :DSum("税込受注金額", this.RecordSource, this.ServerFilter + " and 無効日 is null and 承認者コード is not null");
+                    query1 += " FROM SalesOrderList_History ";
                 }
                 else
                 {
-                    //frmSub.RecordSource = "SalesOrderList";
-                    //this.有効件数 = FunctionClass.GetRecordCount(cn, frmSub.RecordSource, frmSub.ServerFilter + " and 無効日 is null and 承認者コード is not null");
-                    //this.合計数量 = (this.有効件数 == 0) ? 0 :DSum("受注数量", this.RecordSource, this.ServerFilter + " and 無効日 is null and 承認者コード is not null");
-                    //this.合計金額 = (this.有効件数 == 0) ? 0 :DSum("受注金額", this.RecordSource, this.ServerFilter + " and 無効日 is null and 承認者コード is not null");
-                    //this.税込合計金額 = (this.有効件数 == 0) ? 0 :DSum("税込受注金額", this.RecordSource, this.ServerFilter + " and 無効日 is null and 承認者コード is not null");
+                    query1 += " FROM SalesOrderList ";
                 }
 
-                //frmSub.OrderBy = frmSub.OrderBy;
-                //frmSub.OrderByOn = true;
-
-                string query1 = "SELECT 受注コード, 受注版数 AS 版, 受注日, 出荷予定日, 受注納期, 注文番号, 顧客名, 自社担当者名, 受注金額 " + 
-                                           " , CASE WHEN 確定日時 IS NOT NULL THEN '■' ELSE '' END AS 確定 " + 
-                                           " , CASE WHEN 承認者コード IS NOT NULL THEN '■' ELSE '' END AS 承認 " + 
-                                           " , CASE WHEN 出荷完了日 IS NOT NULL THEN '■' ELSE '' END AS 出荷 " + 
-                                           " , CASE WHEN 完了承認者コード IS NOT NULL THEN '■' ELSE '' END AS 完了 " + 
-                                           " FROM V受注管理 ";
                 string query2 = "";
                 // SQL文の構築
                 if (string.IsNullOrEmpty(strWhere))
@@ -481,6 +400,10 @@ namespace u_net
                         前日受注分ボタン.ForeColor = Color.FromArgb(0, 0, 0);
                     }
                 }
+
+                this.有効件数.Text = dataGridView1.RowCount.ToString();
+
+
                 return dataGridView1.RowCount;
                 //return 1;
             }
@@ -527,9 +450,13 @@ namespace u_net
             {
                 string selectedData = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString(); // 1列目のデータを取得
 
-                F_商品 targetform = new F_商品();
+                if (!string.IsNullOrEmpty(dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString()))
+                {
+                    selectedData += "," + dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
+                }
+                F_受注 targetform = new F_受注();
 
-                targetform.args = selectedData;
+                targetform.varOpenArgs = selectedData;
                 targetform.ShowDialog();
             }
         }
@@ -803,39 +730,20 @@ namespace u_net
             }
         }
 
-        private void 次ページボタン_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                //if (frmSub != null)
-                //{
-                //    frmSub.Focus(); // サブフォームにフォーカスを設定
-
-                //    // Page Down キーを送信
-                //    keybd_event((byte)VK_NEXT, 0, 0, UIntPtr.Zero);
-                //    keybd_event((byte)VK_NEXT, 0, KEYEVENTF_KEYUP, UIntPtr.Zero);
-                //}
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"次ページボタンのクリック中にエラーが発生しました。\n\n{ex.GetType().Name} : {ex.Message}", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
         private void 初期表示ボタン_Click(object sender, EventArgs e)
         {
             try
             {
-                //if (frmSub != null)
-                //{
-                //    frmSub.Focus(); // サブフォームにフォーカスを設定
+                if (dataGridView1 != null)
+                {
+                    dataGridView1.Focus(); // サブフォームにフォーカスを設定
 
-                //    // 初期表示処理
-                //    InitializeFilter();
-                //    ble受注完了承認指定 = true;
-                //    byt受注完了承認 = 2;
-                //    Filtering();
-                //}
+                    // 初期表示処理
+                    InitializeFilter();
+                    ble受注完了承認指定 = true;
+                    byt受注完了承認 = 2;
+                    Filtering();
+                }
             }
             catch (Exception ex)
             {
@@ -855,10 +763,34 @@ namespace u_net
                 //    keybd_event((byte)VK_PRIOR, 0, 0, UIntPtr.Zero);
                 //    keybd_event((byte)VK_PRIOR, 0, KEYEVENTF_KEYUP, UIntPtr.Zero);
                 //}
+                dataGridView1.Focus();
+                SendKeys.SendWait("{PGUP}");
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"前ページボタンのクリック中にエラーが発生しました。\n\n{ex.GetType().Name} : {ex.Message}", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void 次ページボタン_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //if (frmSub != null)
+                //{
+                //    frmSub.Focus(); // サブフォームにフォーカスを設定
+
+                //    // Page Down キーを送信
+                //    keybd_event((byte)VK_NEXT, 0, 0, UIntPtr.Zero);
+                //    keybd_event((byte)VK_NEXT, 0, KEYEVENTF_KEYUP, UIntPtr.Zero);
+                //}
+
+                dataGridView1.Focus();
+                SendKeys.SendWait("{PGDN}");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"次ページボタンのクリック中にエラーが発生しました。\n\n{ex.GetType().Name} : {ex.Message}", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -983,6 +915,13 @@ namespace u_net
             {
                 MessageBox.Show($"履歴トグルの更新後にエラーが発生しました。\n\n{ex.GetType().Name} : {ex.Message}", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void 履歴トグル_CheckedChanged(object sender, EventArgs e)
+        {
+            dataGridView1.Focus();
+            ble履歴表示 = 履歴トグル.Checked;
+            Filtering();
         }
     }
 }

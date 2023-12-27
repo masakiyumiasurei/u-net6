@@ -110,11 +110,9 @@
             受注日1.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             受注日1.Location = new Point(126, 50);
             受注日1.Margin = new Padding(3, 2, 3, 2);
-            受注日1.Multiline = true;
             受注日1.Name = "受注日1";
-            受注日1.Size = new Size(160, 23);
+            受注日1.Size = new Size(160, 20);
             受注日1.TabIndex = 2;
-            受注日1.KeyPress += 受注日1_KeyPress;
             受注日1.Leave += 受注日1_Leave;
             受注日1.MouseDoubleClick += 受注日1_MouseDoubleClick;
             受注日1.Validating += 受注日1_Validating;
@@ -140,11 +138,9 @@
             出荷予定日1.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             出荷予定日1.Location = new Point(126, 80);
             出荷予定日1.Margin = new Padding(3, 2, 3, 2);
-            出荷予定日1.Multiline = true;
             出荷予定日1.Name = "出荷予定日1";
-            出荷予定日1.Size = new Size(160, 23);
+            出荷予定日1.Size = new Size(160, 20);
             出荷予定日1.TabIndex = 6;
-            出荷予定日1.KeyPress += 出荷予定日1_KeyPress;
             出荷予定日1.Leave += 出荷予定日1_Leave;
             出荷予定日1.MouseDoubleClick += 出荷予定日1_MouseDoubleClick;
             出荷予定日1.Validating += 出荷予定日1_Validating;
@@ -170,11 +166,9 @@
             受注納期1.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             受注納期1.Location = new Point(126, 110);
             受注納期1.Margin = new Padding(3, 2, 3, 2);
-            受注納期1.Multiline = true;
             受注納期1.Name = "受注納期1";
-            受注納期1.Size = new Size(160, 23);
+            受注納期1.Size = new Size(160, 20);
             受注納期1.TabIndex = 10;
-            受注納期1.KeyPress += 受注納期1_KeyPress;
             受注納期1.Leave += 受注納期1_Leave;
             受注納期1.MouseDoubleClick += 受注納期1_MouseDoubleClick;
             受注納期1.Validating += 受注納期1_Validating;
@@ -200,9 +194,8 @@
             受注コード1.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             受注コード1.Location = new Point(126, 20);
             受注コード1.Margin = new Padding(3, 2, 3, 2);
-            受注コード1.Multiline = true;
             受注コード1.Name = "受注コード1";
-            受注コード1.Size = new Size(189, 23);
+            受注コード1.Size = new Size(189, 20);
             受注コード1.TabIndex = 0;
             受注コード1.KeyDown += 受注コード1_KeyDown;
             受注コード1.KeyPress += 受注コード1_KeyPress;
@@ -215,7 +208,7 @@
             キャンセルボタン.Location = new Point(430, 597);
             キャンセルボタン.Name = "キャンセルボタン";
             キャンセルボタン.Size = new Size(114, 23);
-            キャンセルボタン.TabIndex = 20;
+            キャンセルボタン.TabIndex = 34;
             キャンセルボタン.Text = "キャンセル";
             キャンセルボタン.UseVisualStyleBackColor = true;
             キャンセルボタン.MouseClick += キャンセルボタン_MouseClick;
@@ -226,7 +219,7 @@
             抽出ボタン.Location = new Point(311, 597);
             抽出ボタン.Name = "抽出ボタン";
             抽出ボタン.Size = new Size(114, 23);
-            抽出ボタン.TabIndex = 19;
+            抽出ボタン.TabIndex = 33;
             抽出ボタン.Text = "抽出";
             抽出ボタン.UseVisualStyleBackColor = true;
             抽出ボタン.Click += 抽出ボタン_Click;
@@ -261,7 +254,7 @@
             削除.Location = new Point(25, 511);
             削除.Name = "削除";
             削除.Size = new Size(525, 63);
-            削除.TabIndex = 208;
+            削除.TabIndex = 32;
             削除.TabStop = false;
             削除.Text = "削除指定";
             // 
@@ -272,7 +265,6 @@
             未完了承認.Name = "未完了承認";
             未完了承認.Size = new Size(67, 18);
             未完了承認.TabIndex = 2;
-            未完了承認.TabStop = true;
             未完了承認.Text = "未承認";
             未完了承認.UseVisualStyleBackColor = true;
             // 
@@ -284,13 +276,14 @@
             受注完了承認.Location = new Point(25, 448);
             受注完了承認.Name = "受注完了承認";
             受注完了承認.Size = new Size(525, 57);
-            受注完了承認.TabIndex = 207;
+            受注完了承認.TabIndex = 29;
             受注完了承認.TabStop = false;
             受注完了承認.Text = "受注完了承認指定";
             // 
             // 完了承認済み
             // 
             完了承認済み.AutoSize = true;
+            完了承認済み.Checked = true;
             完了承認済み.Location = new Point(30, 22);
             完了承認済み.Name = "完了承認済み";
             完了承認済み.Size = new Size(81, 18);
@@ -307,11 +300,12 @@
             受注完了承認指定.Size = new Size(15, 14);
             受注完了承認指定.TabIndex = 28;
             受注完了承認指定.UseVisualStyleBackColor = true;
-            受注完了承認指定.Validated += 受注完了承認指定_Validated;
+            受注完了承認指定.CheckedChanged += 受注完了承認指定_CheckedChanged;
             // 
             // 出荷済み
             // 
             出荷済み.AutoSize = true;
+            出荷済み.Checked = true;
             出荷済み.Location = new Point(30, 22);
             出荷済み.Name = "出荷済み";
             出荷済み.Size = new Size(81, 18);
@@ -319,6 +313,7 @@
             出荷済み.TabStop = true;
             出荷済み.Text = "出荷済み";
             出荷済み.UseVisualStyleBackColor = true;
+            出荷済み.CheckedChanged += 出荷済み_CheckedChanged;
             // 
             // 未出荷
             // 
@@ -327,9 +322,9 @@
             未出荷.Name = "未出荷";
             未出荷.Size = new Size(67, 18);
             未出荷.TabIndex = 2;
-            未出荷.TabStop = true;
             未出荷.Text = "未出荷";
             未出荷.UseVisualStyleBackColor = true;
+            未出荷.CheckedChanged += 未出荷_CheckedChanged;
             // 
             // 出荷日ラベル
             // 
@@ -353,11 +348,9 @@
             出荷完了日1.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             出荷完了日1.Location = new Point(122, 50);
             出荷完了日1.Margin = new Padding(3, 2, 3, 2);
-            出荷完了日1.Multiline = true;
             出荷完了日1.Name = "出荷完了日1";
-            出荷完了日1.Size = new Size(86, 23);
+            出荷完了日1.Size = new Size(86, 20);
             出荷完了日1.TabIndex = 24;
-            出荷完了日1.KeyPress += 出荷完了日1_KeyPress;
             出荷完了日1.Leave += 出荷完了日1_Leave;
             // 
             // 出荷完了日1選択ボタン
@@ -381,11 +374,9 @@
             出荷完了日2.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             出荷完了日2.Location = new Point(268, 50);
             出荷完了日2.Margin = new Padding(3, 2, 3, 2);
-            出荷完了日2.Multiline = true;
             出荷完了日2.Name = "出荷完了日2";
-            出荷完了日2.Size = new Size(86, 23);
+            出荷完了日2.Size = new Size(86, 20);
             出荷完了日2.TabIndex = 26;
-            出荷完了日2.KeyPress += 出荷完了日2_KeyPress;
             出荷完了日2.Leave += 出荷完了日2_Leave;
             // 
             // 出荷完了日2ラベル
@@ -431,7 +422,7 @@
             出荷.Location = new Point(25, 325);
             出荷.Name = "出荷";
             出荷.Size = new Size(525, 117);
-            出荷.TabIndex = 205;
+            出荷.TabIndex = 23;
             出荷.TabStop = false;
             出荷.Text = "出荷指定";
             // 
@@ -443,7 +434,7 @@
             出荷指定.Size = new Size(15, 14);
             出荷指定.TabIndex = 22;
             出荷指定.UseVisualStyleBackColor = true;
-            出荷指定.Validated += 出荷指定_Validated;
+            出荷指定.CheckedChanged += 出荷指定_CheckedChanged;
             // 
             // 受注承認指定
             // 
@@ -453,7 +444,7 @@
             受注承認指定.Size = new Size(15, 14);
             受注承認指定.TabIndex = 20;
             受注承認指定.UseVisualStyleBackColor = true;
-            受注承認指定.Validated += 受注承認指定_Validated;
+            受注承認指定.CheckedChanged += 受注承認指定_CheckedChanged;
             // 
             // 承認済み
             // 
@@ -485,7 +476,7 @@
             受注承認.Location = new Point(25, 271);
             受注承認.Name = "受注承認";
             受注承認.Size = new Size(525, 48);
-            受注承認.TabIndex = 203;
+            受注承認.TabIndex = 21;
             受注承認.TabStop = false;
             受注承認.Text = "受注承認指定";
             // 
@@ -509,19 +500,21 @@
             自社担当者名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             自社担当者名.Location = new Point(188, 230);
             自社担当者名.Margin = new Padding(3, 2, 3, 2);
-            自社担当者名.Multiline = true;
             自社担当者名.Name = "自社担当者名";
-            自社担当者名.Size = new Size(247, 23);
+            自社担当者名.Size = new Size(247, 20);
             自社担当者名.TabIndex = 19;
+            自社担当者名.TabStop = false;
             // 
             // 自社担当者コード
             // 
+            自社担当者コード.DrawMode = DrawMode.OwnerDrawFixed;
             自社担当者コード.FormattingEnabled = true;
             自社担当者コード.Location = new Point(126, 230);
             自社担当者コード.Name = "自社担当者コード";
-            自社担当者コード.Size = new Size(56, 23);
+            自社担当者コード.Size = new Size(56, 24);
             自社担当者コード.TabIndex = 18;
-            自社担当者コード.Validated += 自社担当者コード_Validated;
+            自社担当者コード.DrawItem += 自社担当者コード_DrawItem;
+            自社担当者コード.SelectedIndexChanged += 自社担当者コード_SelectedIndexChanged;
             // 
             // 顧客名
             // 
@@ -531,10 +524,10 @@
             顧客名.ImeMode = ImeMode.Hiragana;
             顧客名.Location = new Point(126, 200);
             顧客名.Margin = new Padding(3, 2, 3, 2);
-            顧客名.Multiline = true;
             顧客名.Name = "顧客名";
-            顧客名.Size = new Size(413, 23);
+            顧客名.Size = new Size(413, 20);
             顧客名.TabIndex = 17;
+            顧客名.TabStop = false;
             // 
             // 顧客コード
             // 
@@ -542,9 +535,8 @@
             顧客コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             顧客コード.Location = new Point(126, 170);
             顧客コード.Margin = new Padding(3, 2, 3, 2);
-            顧客コード.Multiline = true;
             顧客コード.Name = "顧客コード";
-            顧客コード.Size = new Size(160, 23);
+            顧客コード.Size = new Size(160, 20);
             顧客コード.TabIndex = 15;
             顧客コード.TextChanged += 顧客コード_TextChanged;
             顧客コード.KeyDown += 顧客コード_KeyDown;
@@ -619,9 +611,8 @@
             注文番号.ImeMode = ImeMode.Hiragana;
             注文番号.Location = new Point(126, 140);
             注文番号.Margin = new Padding(3, 2, 3, 2);
-            注文番号.Multiline = true;
             注文番号.Name = "注文番号";
-            注文番号.Size = new Size(347, 23);
+            注文番号.Size = new Size(347, 20);
             注文番号.TabIndex = 14;
             注文番号.KeyPress += 注文番号_KeyPress;
             // 
@@ -685,11 +676,9 @@
             受注納期2.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             受注納期2.Location = new Point(345, 110);
             受注納期2.Margin = new Padding(3, 2, 3, 2);
-            受注納期2.Multiline = true;
             受注納期2.Name = "受注納期2";
-            受注納期2.Size = new Size(160, 23);
+            受注納期2.Size = new Size(160, 20);
             受注納期2.TabIndex = 12;
-            受注納期2.KeyPress += 受注納期2_KeyPress;
             受注納期2.Leave += 受注納期2_Leave;
             受注納期2.MouseDoubleClick += 受注納期2_MouseDoubleClick;
             受注納期2.Validating += 受注納期2_Validating;
@@ -700,11 +689,9 @@
             出荷予定日2.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             出荷予定日2.Location = new Point(345, 80);
             出荷予定日2.Margin = new Padding(3, 2, 3, 2);
-            出荷予定日2.Multiline = true;
             出荷予定日2.Name = "出荷予定日2";
-            出荷予定日2.Size = new Size(160, 23);
+            出荷予定日2.Size = new Size(160, 20);
             出荷予定日2.TabIndex = 8;
-            出荷予定日2.KeyPress += 出荷予定日2_KeyPress;
             出荷予定日2.Leave += 出荷予定日2_Leave;
             出荷予定日2.MouseDoubleClick += 出荷予定日2_MouseDoubleClick;
             出荷予定日2.Validating += 出荷予定日2_Validating;
@@ -715,9 +702,8 @@
             受注日2.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             受注日2.Location = new Point(345, 50);
             受注日2.Margin = new Padding(3, 2, 3, 2);
-            受注日2.Multiline = true;
             受注日2.Name = "受注日2";
-            受注日2.Size = new Size(160, 23);
+            受注日2.Size = new Size(160, 20);
             受注日2.TabIndex = 4;
             受注日2.Leave += 受注日2_Leave;
             受注日2.MouseDoubleClick += 受注日2_MouseDoubleClick;
@@ -798,9 +784,8 @@
             受注コード2.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             受注コード2.Location = new Point(345, 20);
             受注コード2.Margin = new Padding(3, 2, 3, 2);
-            受注コード2.Multiline = true;
             受注コード2.Name = "受注コード2";
-            受注コード2.Size = new Size(189, 23);
+            受注コード2.Size = new Size(189, 20);
             受注コード2.TabIndex = 1;
             受注コード2.KeyDown += 受注コード2_KeyDown;
             受注コード2.KeyPress += 受注コード2_KeyPress;
@@ -871,6 +856,7 @@
             Name = "F_受注管理_抽出";
             Text = "受注管理_抽出";
             Load += Form_Load;
+            KeyDown += F_受注管理_抽出_KeyDown;
             削除.ResumeLayout(false);
             削除.PerformLayout();
             受注完了承認.ResumeLayout(false);

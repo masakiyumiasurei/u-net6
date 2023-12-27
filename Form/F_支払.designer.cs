@@ -113,7 +113,7 @@ namespace u_net
             備考 = new TextBox();
             備考_ラベル = new Label();
             承認者名 = new TextBox();
-            承認コード = new TextBox();
+            承認者コード = new TextBox();
             label1 = new Label();
             承認日時 = new TextBox();
             label2 = new Label();
@@ -177,7 +177,7 @@ namespace u_net
             コマンド新規.TabIndex = 1002;
             コマンド新規.TabStop = false;
             コマンド新規.Text = "新規";
-            コマンド新規.UseVisualStyleBackColor = false;
+            コマンド新規.UseVisualStyleBackColor = true;
             コマンド新規.Click += コマンド新規_Click;
             // 
             // コマンドF7
@@ -471,6 +471,12 @@ namespace u_net
             支払先コード.Name = "支払先コード";
             支払先コード.Size = new Size(101, 20);
             支払先コード.TabIndex = 4;
+            支払先コード.TextChanged += 支払先コード_TextChanged;
+            支払先コード.DoubleClick += 支払先コード_DoubleClick;
+            支払先コード.KeyDown += 支払先コード_KeyDown;
+            支払先コード.KeyPress += 支払先コード_KeyPress;
+            支払先コード.Validating += 支払先コード_Validating;
+            支払先コード.Validated += 支払先コード_Validated;
             // 
             // 支払先コード_ラベル
             // 
@@ -500,6 +506,7 @@ namespace u_net
             支払コード.Name = "支払コード";
             支払コード.Size = new Size(122, 21);
             支払コード.TabIndex = 2;
+            支払コード.Validated += 支払コード_Validated;
             // 
             // 支払コードラベル
             // 
@@ -819,6 +826,7 @@ namespace u_net
             支払先検索ボタン.TabStop = false;
             支払先検索ボタン.Text = "▼";
             支払先検索ボタン.UseVisualStyleBackColor = true;
+            支払先検索ボタン.Click += 支払先検索ボタン_Click;
             // 
             // 支払先参照ボタン
             // 
@@ -832,6 +840,7 @@ namespace u_net
             支払先参照ボタン.Text = "▶";
             toolTip1.SetToolTip(支払先参照ボタン, "支払先参照");
             支払先参照ボタン.UseVisualStyleBackColor = true;
+            支払先参照ボタン.Click += 支払先参照ボタン_Click;
             // 
             // 支払先担当者名_ラベル
             // 
@@ -889,8 +898,11 @@ namespace u_net
             集計年月.Name = "集計年月";
             集計年月.Size = new Size(122, 21);
             集計年月.TabIndex = 10;
+            集計年月.TextChanged += 集計年月_TextChanged;
             集計年月.Enter += 集計年月_Enter;
             集計年月.Leave += 集計年月_Leave;
+            集計年月.Validating += 集計年月_Validating;
+            集計年月.Validated += 集計年月_Validated;
             // 
             // 支払年月_ラベル
             // 
@@ -920,8 +932,11 @@ namespace u_net
             支払年月.Name = "支払年月";
             支払年月.Size = new Size(122, 21);
             支払年月.TabIndex = 12;
+            支払年月.TextChanged += 支払年月_TextChanged;
             支払年月.Enter += 支払年月_Enter;
             支払年月.Leave += 支払年月_Leave;
+            支払年月.Validating += 支払年月_Validating;
+            支払年月.Validated += 支払年月_Validated;
             // 
             // 振込指定_ラベル
             // 
@@ -951,8 +966,10 @@ namespace u_net
             振込指定.Name = "振込指定";
             振込指定.Size = new Size(122, 21);
             振込指定.TabIndex = 14;
+            振込指定.VisibleChanged += 振込指定_VisibleChanged;
             振込指定.Enter += 振込指定_Enter;
             振込指定.Leave += 振込指定_Leave;
+            振込指定.Validating += 振込指定_Validating;
             // 
             // 備考
             // 
@@ -965,6 +982,7 @@ namespace u_net
             備考.Name = "備考";
             備考.Size = new Size(340, 65);
             備考.TabIndex = 16;
+            備考.VisibleChanged += 備考_VisibleChanged;
             備考.Enter += 備考_Enter;
             備考.Leave += 備考_Leave;
             // 
@@ -995,18 +1013,18 @@ namespace u_net
             承認者名.TabIndex = 10205;
             承認者名.TabStop = false;
             // 
-            // 承認コード
+            // 承認者コード
             // 
-            承認コード.BackColor = SystemColors.Window;
-            承認コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            承認コード.ImeMode = ImeMode.NoControl;
-            承認コード.Location = new Point(688, 166);
-            承認コード.Margin = new Padding(3, 2, 3, 2);
-            承認コード.Name = "承認コード";
-            承認コード.ReadOnly = true;
-            承認コード.Size = new Size(40, 20);
-            承認コード.TabIndex = 10204;
-            承認コード.TabStop = false;
+            承認者コード.BackColor = SystemColors.Window;
+            承認者コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            承認者コード.ImeMode = ImeMode.NoControl;
+            承認者コード.Location = new Point(688, 166);
+            承認者コード.Margin = new Padding(3, 2, 3, 2);
+            承認者コード.Name = "承認者コード";
+            承認者コード.ReadOnly = true;
+            承認者コード.Size = new Size(40, 20);
+            承認者コード.TabIndex = 10204;
+            承認者コード.TabStop = false;
             // 
             // label1
             // 
@@ -1045,9 +1063,9 @@ namespace u_net
             // 
             支払明細1.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             支払明細1.Location = new Point(9, 304);
-            支払明細1.Margin = new Padding(4, 4, 4, 4);
+            支払明細1.Margin = new Padding(4);
             支払明細1.Name = "支払明細1";
-            支払明細1.Size = new Size(816, 238);
+            支払明細1.Size = new Size(822, 238);
             支払明細1.TabIndex = 10206;
             // 
             // F_支払
@@ -1056,7 +1074,7 @@ namespace u_net
             ClientSize = new Size(877, 571);
             Controls.Add(支払明細1);
             Controls.Add(承認者名);
-            Controls.Add(承認コード);
+            Controls.Add(承認者コード);
             Controls.Add(label1);
             Controls.Add(承認日時);
             Controls.Add(label2);
@@ -1216,7 +1234,7 @@ namespace u_net
         private TextBox 備考;
         private Label 備考_ラベル;
         private TextBox 承認者名;
-        private TextBox 承認コード;
+        private TextBox 承認者コード;
         private Label label1;
         private TextBox 承認日時;
         private Label label2;

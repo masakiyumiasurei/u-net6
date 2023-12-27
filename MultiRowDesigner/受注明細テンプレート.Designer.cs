@@ -514,7 +514,7 @@
             this.columnHeaderCell31.Name = "columnHeaderCell31";
             this.columnHeaderCell31.ResizeMode = GrapeCity.Win.MultiRow.ResizeMode.None;
             this.columnHeaderCell31.SelectionMode = GrapeCity.Win.MultiRow.MultiRowSelectionMode.None;
-            this.columnHeaderCell31.Size = new System.Drawing.Size(820, 21);
+            this.columnHeaderCell31.Size = new System.Drawing.Size(1000, 21);
             border21.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.DarkGray);
             cellStyle45.Border = border21;
             cellStyle45.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
@@ -924,6 +924,7 @@
             this.消費税率.Style = cellStyle54;
             this.消費税率.TabIndex = 6;
             this.消費税率.ThousandsSeparator = true;
+            this.消費税率.Visible = false;
             // 
             // 受注消費税
             // 

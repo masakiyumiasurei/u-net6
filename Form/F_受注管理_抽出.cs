@@ -49,6 +49,11 @@ namespace u_net
                     return;
                 }
 
+                //コンボボックスの設定
+                OriginalClass ofn = new OriginalClass();
+                ofn.SetComboBox(自社担当者コード, "SELECT T受注.[自社担当者コード] AS Value, T受注.[自社担当者コード] AS Display, T受注.自社担当者名 AS Display2 FROM T受注 INNER JOIN V受注_最大版数 ON T受注.[受注コード] = V受注_最大版数.[受注コード] AND T受注.受注版数 = V受注_最大版数.最大版数 LEFT OUTER JOIN M社員 ON T受注.[自社担当者コード] = M社員.[社員コード] GROUP BY T受注.[自社担当者コード], T受注.自社担当者名, M社員.ふりがな ORDER BY M社員.ふりがな");
+
+
                 if (frmTarget != null)
                 {
                     受注コード1.Text = frmTarget.str受注コード1;
@@ -74,14 +79,14 @@ namespace u_net
 
                     受注承認指定.Checked = frmTarget.ble受注承認指定;
                     //受注承認.Text = frmTarget.byt受注承認.ToString();
-                    受注承認指定_Validated(受注承認指定, EventArgs.Empty);
+                    受注承認指定_CheckedChanged(受注承認指定, EventArgs.Empty);
 
                     出荷指定.Checked = frmTarget.ble出荷指定;
                     //出荷.Text = frmTarget.byt出荷.ToString();
-                    出荷指定_Validated(出荷指定, EventArgs.Empty);
+                    出荷指定_CheckedChanged(出荷指定, EventArgs.Empty);
 
                     受注完了承認指定.Checked = frmTarget.ble受注完了承認指定;
-                    受注完了承認指定_Validated(受注完了承認指定, EventArgs.Empty);
+                    受注完了承認指定_CheckedChanged(受注完了承認指定, EventArgs.Empty);
 
                     //削除.Text = frmTarget.byt無効日.ToString();
                     if (frmTarget.byt無効日 == 1)
@@ -105,15 +110,6 @@ namespace u_net
         private bool IsError(Control controlObject)
         {
             bool isError = false;
-
-            // TODO: intKeyCode の値を定義する必要があります
-
-            switch (intKeyCode)
-            {
-
-
-
-            }
 
             var varValue = controlObject.Text;
 
@@ -165,7 +161,9 @@ namespace u_net
                     break;
 
                 case "顧客コード":
-                    //this.顧客名.Text = FunctionClass.Zn(FunctionClass.GetCustomerName(Nz(varValue)));
+                    Connect();
+                    FunctionClass fn = new FunctionClass();
+                    this.顧客名.Text = fn.Zn(FunctionClass.GetCustomerName(cn, Nz(varValue))).ToString();
                     break;
             }
 
@@ -272,7 +270,7 @@ namespace u_net
                         frmTarget.dte出荷予定日2 = DateTime.MinValue;
                     }
 
-                    if (受注完了承認指定.Checked) 
+                    if (受注完了承認指定.Checked)
                     {
                         if (完了承認済み.Checked)
                         {
@@ -319,18 +317,6 @@ namespace u_net
             this.Close();
         }
 
-        private F_検索 SearchForm;
-
-        private void 顧客コード_Validating(object sender, EventArgs e)
-        {
-            TextBox textBox = (TextBox)sender;
-
-            if (textBox.Modified == false) return;
-
-            //if (IsError(textBox) == true) e.Cancel = true;
-            //IsError(this.ActiveControl, ref Cancel);
-        }
-
         private void 顧客コード_TextChanged(object sender, EventArgs e)
         {
             FunctionClass.LimitText(this.ActiveControl, 8);
@@ -338,11 +324,7 @@ namespace u_net
 
         private void 顧客コード_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            // objParent に顧客コードの参照を設定
-            sender = this.顧客コード;
-
-            F_検索 form = new F_検索();
-            form.ShowDialog();
+            顧客コード検索ボタン_Click(this, EventArgs.Empty);
         }
 
         private void 顧客コード_KeyDown(object sender, KeyEventArgs e)
@@ -373,29 +355,26 @@ namespace u_net
         {
             if (e.KeyChar == ' ')
             {
-                // 検索フォームを開く処理を呼び出す
-                F_検索 form = new F_検索();
-                form.ShowDialog();
-                // イベントを処理したことを示す
+                顧客コード検索ボタン_Click(this, EventArgs.Empty);
                 e.Handled = true;
             }
         }
 
         private void 顧客コード検索ボタン_Click(object sender, EventArgs e)
         {
-            // objParent に顧客コードの参照を設定
-            sender = this.顧客コード;
-
-            F_検索 form = new F_検索();
-            form.ShowDialog();
-        }
-
-        private void 自社担当者コード_Validated(object sender, EventArgs e)
-        {
-            object selectedValue = 自社担当者コード.SelectedValue;
-            if (selectedValue != null)
+            F_検索 SearchForm = new F_検索();
+            SearchForm.FilterName = "顧客名フリガナ";
+            if (SearchForm.ShowDialog() == DialogResult.OK)
             {
-                this.自社担当者名.Text = selectedValue.ToString();
+                string SelectedCode = SearchForm.SelectedCode;
+
+                顧客コード.Text = SelectedCode;
+                if (IsError(顧客コード) == true)
+                {
+                    // エラー時は値を元に戻す
+                    顧客コード.Undo();
+                }
+
             }
         }
 
@@ -517,17 +496,6 @@ namespace u_net
             FunctionClass.AdjustRange(this.受注コード1, this.受注コード2, this.受注コード2);
         }
 
-        private void 受注完了承認指定_Validated(object sender, EventArgs e)
-        {
-            受注完了承認.Enabled = 受注完了承認指定.Enabled;
-        }
-
-        private void 受注承認指定_Validated(object sender, EventArgs e)
-        {
-            受注承認.Enabled = 受注承認指定.Enabled;
-            受注承認.Focus();
-        }
-
         private void 受注日1_Validating(object sender, CancelEventArgs e)
         {
             TextBox textBox = (TextBox)sender;
@@ -548,16 +516,6 @@ namespace u_net
                 // フォームAの日付コントロールに選択した日付を設定
                 受注日1.Text = selectedDate;
             }
-        }
-
-        private void 受注日1_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            //switch (KeyAscii)
-            //{
-            //    case (int)Keys.Space:
-            //        受注日1選択ボタン_Click();
-            //        break;
-            //}
         }
 
         private void 受注日1_Leave(object sender, EventArgs e)
@@ -640,11 +598,6 @@ namespace u_net
             }
         }
 
-        private void 受注納期1_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            //関数.InputDate(KeyAscii, 受注納期2);
-        }
-
         private void 受注納期1_Leave(object sender, EventArgs e)
         {
             FunctionClass.範囲指定(受注納期1, 受注納期2);
@@ -685,11 +638,6 @@ namespace u_net
             }
         }
 
-        private void 受注納期2_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            //関数.InputDate(KeyAscii, 注文番号);
-        }
-
         private void 受注納期2_Leave(object sender, EventArgs e)
         {
             FunctionClass.範囲指定(受注納期1, 受注納期2);
@@ -706,34 +654,6 @@ namespace u_net
                 // フォームAの日付コントロールに選択した日付を設定
                 受注納期2.Text = selectedDate;
             }
-        }
-
-        ////private void 出荷_Validating(object sender, CancelEventArgs e)
-        ////{
-        ////    switch (出荷.Text)
-        ////    {
-        ////        case "1":
-        ////            出荷完了日1.Enabled = 出荷指定.Enabled;
-        ////            出荷完了日2.Enabled = 出荷指定.Enabled;
-        ////            出荷完了日1選択ボタン.Enabled = 出荷指定.Enabled;
-        ////            出荷完了日2選択ボタン.Enabled = 出荷指定.Enabled;
-        ////            if (出荷指定.Enabled)
-        ////            {
-        ////                出荷完了日1.Focus();
-        ////            }
-        ////            break;
-        ////        case "2":
-        ////            出荷完了日1.Enabled = false;
-        ////            出荷完了日2.Enabled = false;
-        ////            出荷完了日1選択ボタン.Enabled = false;
-        ////            出荷完了日2選択ボタン.Enabled = false;
-        ////            break;
-        ////    }
-        ////}
-
-        private void 出荷完了日1_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            //関数.InputDate(KeyAscii, 出荷完了日2);
         }
 
         private void 出荷完了日1_Leave(object sender, EventArgs e)
@@ -754,11 +674,6 @@ namespace u_net
             }
         }
 
-        private void 出荷完了日2_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            //関数.InputDate(KeyAscii, 受注完了承認指定);
-        }
-
         private void 出荷完了日2_Leave(object sender, EventArgs e)
         {
             FunctionClass.範囲指定(出荷完了日1, 出荷完了日2);
@@ -774,28 +689,6 @@ namespace u_net
 
                 // フォームAの日付コントロールに選択した日付を設定
                 出荷完了日2.Text = selectedDate;
-            }
-        }
-
-        private void 出荷指定_Validated(object sender, EventArgs e)
-        {
-            if (出荷指定.Checked)
-            {
-                出荷.Enabled = 出荷指定.Checked;
-                出荷完了日1.Enabled = 出荷指定.Checked;
-                出荷完了日2.Enabled = 出荷指定.Checked;
-                出荷完了日1選択ボタン.Enabled = 出荷指定.Checked;
-                出荷完了日2選択ボタン.Enabled = 出荷指定.Checked;
-                if (出荷指定.Checked)
-                    出荷完了日1.Focus();
-            }
-            else
-            {
-                出荷.Enabled = false;
-                出荷完了日1.Enabled = false;
-                出荷完了日2.Enabled = false;
-                出荷完了日1選択ボタン.Enabled = false;
-                出荷完了日2選択ボタン.Enabled = false;
             }
         }
 
@@ -819,11 +712,6 @@ namespace u_net
                 // フォームAの日付コントロールに選択した日付を設定
                 出荷予定日1.Text = selectedDate;
             }
-        }
-
-        private void 出荷予定日1_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            //関数.InputDate(KeyAscii, 出荷予定日2);
         }
 
         private void 出荷予定日1_Leave(object sender, EventArgs e)
@@ -866,11 +754,6 @@ namespace u_net
             }
         }
 
-        private void 出荷予定日2_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            //関数.InputDate(KeyAscii, 受注納期1);
-        }
-
         private void 出荷予定日2_Leave(object sender, EventArgs e)
         {
             FunctionClass.範囲指定(出荷予定日1, 出荷予定日2);
@@ -902,6 +785,77 @@ namespace u_net
             if (textBox.Modified == false) return;
 
             if (IsError(textBox) == true) e.Cancel = true;
+        }
+
+        private void 自社担当者コード_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            OriginalClass.SetComboBoxAppearance((ComboBox)sender, e, new int[] { 50, 150 }, new string[] { "Display", "Display2" });
+            自社担当者コード.Invalidate();
+            自社担当者コード.DroppedDown = true;
+        }
+
+        private void 自社担当者コード_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            自社担当者名.Text = ((DataRowView)自社担当者コード.SelectedItem)?.Row.Field<String>("Display2")?.ToString();
+        }
+
+        private void 受注承認指定_CheckedChanged(object sender, EventArgs e)
+        {
+            受注承認.Enabled = 受注承認指定.Checked;
+            受注承認.Focus();
+        }
+
+        private void 出荷指定_CheckedChanged(object sender, EventArgs e)
+        {
+            出荷.Enabled = 出荷指定.Checked;
+
+            出荷_AfterUpdate();
+        }
+
+        private void 出荷_AfterUpdate()
+        {
+            if (出荷済み.Checked)
+            {
+
+                出荷完了日1.Enabled = 出荷指定.Checked;
+                出荷完了日2.Enabled = 出荷指定.Checked;
+                出荷完了日1選択ボタン.Enabled = 出荷指定.Checked;
+                出荷完了日2選択ボタン.Enabled = 出荷指定.Checked;
+                if (出荷指定.Checked)
+                    出荷完了日1.Focus();
+            }
+            else
+            {
+                出荷完了日1.Enabled = false;
+                出荷完了日2.Enabled = false;
+                出荷完了日1選択ボタン.Enabled = false;
+                出荷完了日2選択ボタン.Enabled = false;
+            }
+        }
+
+        private void 受注完了承認指定_CheckedChanged(object sender, EventArgs e)
+        {
+            受注完了承認.Enabled = 受注完了承認指定.Checked;
+        }
+
+        private void 出荷済み_CheckedChanged(object sender, EventArgs e)
+        {
+            出荷_AfterUpdate();
+        }
+
+        private void 未出荷_CheckedChanged(object sender, EventArgs e)
+        {
+            出荷_AfterUpdate();
+        }
+
+        private void F_受注管理_抽出_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Return:
+                    SelectNextControl(ActiveControl, true, true, true, true);
+                    break;
+            }
         }
 
         // Nz メソッドの代替

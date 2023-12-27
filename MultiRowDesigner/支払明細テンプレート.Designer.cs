@@ -199,6 +199,7 @@
             this.明細番号.Style = cellStyle1;
             this.明細番号.TabIndex = 0;
             this.明細番号.TabStop = false;
+            this.明細番号.ValueFormat = "%1%";
             // 
             // 買掛区分
             // 

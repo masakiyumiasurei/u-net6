@@ -29,7 +29,6 @@ namespace u_net
 
         private SqlConnection cn;
         private bool setCombo = true;
-        private string tmpCCode = ""; // 依頼主コード退避用
 
         private string BASE_CAPTION = "見積";
 
@@ -154,10 +153,11 @@ namespace u_net
 
         private void Form_Load(object sender, EventArgs e)
         {
-            foreach (Control control in Controls)
-            {
-                control.PreviewKeyDown += OriginalClass.ValidateCheck;
-            }
+            // Tab移動でValidatedイベントを走らせている為コメントアウト
+            //foreach (Control control in Controls)
+            //{
+            //    control.PreviewKeyDown += OriginalClass.ValidateCheck;
+            //}
 
             //実行中フォーム起動
             FunctionClass fn = new FunctionClass();
@@ -227,7 +227,7 @@ namespace u_net
                         throw new Exception("初期化に失敗しました。");
                     }
 
-                    this.見積コード.Text = varOpenArgs.Substring(varOpenArgs.IndexOf(','));
+                    this.見積コード.Text = varOpenArgs.Substring(0,varOpenArgs.IndexOf(','));
                     this.見積版数.Text = varOpenArgs.Substring(varOpenArgs.IndexOf(',') + 1);
 
                     varOpenArgs = string.Empty;
@@ -507,6 +507,7 @@ namespace u_net
                             MessageBox.Show("日付を入力してください。", controlObject.Name, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                             goto Exit_IsError;
                         }
+                        ((TextBox)controlObject).Text = inputDate.ToString("yyyy/MM/dd");
                         if (DateTime.Now < inputDate)
                         {
                             MessageBox.Show("未来の日付は入力できません。", controlObject.Name, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -530,6 +531,15 @@ namespace u_net
                         if (string.IsNullOrEmpty(varValue?.ToString()))
                         {
                             MessageBox.Show(strName + "を入力してください。", strName, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            goto Exit_IsError;
+                        }
+                        break;
+                    case "要承認":
+                    case "合計金額表示":
+                        if (((ComboBox)controlObject).FindStringExact(varValue?.ToString()) == -1)
+                        {
+                            MessageBox.Show("指定した項目はリストにありません。", controlObject.Name, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            ((ComboBox)controlObject).DroppedDown = true;
                             goto Exit_IsError;
                         }
                         break;
@@ -558,7 +568,7 @@ namespace u_net
         {
             try
             {
-                int count = 見積明細1.Detail.RowCount;
+                int count = 見積明細1.Detail.RowCount -1;
 
                 if (count == 0)
                 {
@@ -606,6 +616,7 @@ namespace u_net
                     case "見積版数":
                         // データの読み込み
                         LoadData(this.CurrentCode, this.CurrentEdition);
+
                         break;
                     case "顧客コード":
                         // データの読み込み
@@ -614,7 +625,10 @@ namespace u_net
                     case "顧客名":
                     case "電話番号":
                     case "ファックス番号":
-                        this.顧客コード.Text = null;
+                        if (((TextBox)controlObject).Modified)
+                        {
+                            this.顧客コード.Text = null;
+                        }
                         break;
                 }
             }
@@ -896,6 +910,9 @@ namespace u_net
                 // トランザクション開始
                 SqlTransaction transaction = cn.BeginTransaction();
 
+                //明細部の受注コードと受注版数を更新する
+                this.見積明細1.UpdateCodeAndEdition(codeString, editionNumber);
+
                 try
                 {
                     // ヘッダ部の登録
@@ -1069,7 +1086,7 @@ namespace u_net
                 }
 
                 SqlCommand command = new SqlCommand("UPDATE T見積 SET " + strUpdate +
-                    ",更新日時='" + deleteTime.ToString("yyyy-MM-dd HH:mm:ss") + "',更新者コード='" + deleteUser + "' WHERE " + strKey);
+                    ",更新日時='" + deleteTime.ToString("yyyy-MM-dd HH:mm:ss") + "',更新者コード='" + deleteUser + "' WHERE " + strKey, connectionObject, transaction);
                 command.ExecuteNonQuery();
 
                 // トランザクション完了
@@ -1085,6 +1102,7 @@ namespace u_net
                 {
                     削除日時.Text = deleteTime.ToString("yyyy-MM-dd HH:mm:ss");
                     削除者コード.Text = deleteUser;
+                    削除.Text = "■";
                 }
 
                 return false;
@@ -1331,7 +1349,7 @@ namespace u_net
                 string strMsg;
                 string strMsgPlus;
                 DialogResult intRes;
-                
+
 
                 if (this.ActiveControl == this.コマンド削除)
                 {
@@ -1342,19 +1360,19 @@ namespace u_net
                 {
                     // 版数が２版以上のとき
                     strMsg = $"見積コード　：　{strCode}{Environment.NewLine}{Environment.NewLine}" +
-                             "この見積データの全ての版を削除しますか？{Environment.NewLine}" +
-                             "削除後、元に戻すことはできません。{Environment.NewLine}{Environment.NewLine}" +
-                             "[はい]を選択した場合、見積データ自体を削除します。{Environment.NewLine}" +
-                             "[いいえ]を選択した場合、（第 {intEdition} 版）のみを削除し、前版が有効になります。";
+                             $"この見積データの全ての版を削除しますか？{Environment.NewLine}" +
+                             $"削除後、元に戻すことはできません。{Environment.NewLine}{Environment.NewLine}" +
+                             $"[はい]を選択した場合、見積データ自体を削除します。{Environment.NewLine}" +
+                             $"[いいえ]を選択した場合、（第 {intEdition} 版）のみを削除し、前版が有効になります。";
                     intRes = MessageBox.Show(strMsg, "削除コマンド", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
                 }
                 else
                 {
                     // 版数が初版のとき
                     strMsg = $"見積コード　：　{strCode}{Environment.NewLine}{Environment.NewLine}" +
-                             "この見積データを削除します。{Environment.NewLine}" +
-                             "削除するには[OK]を選択してください。{Environment.NewLine}{Environment.NewLine}" +
-                             "※削除後も参照することはできますが、元に戻すことはできません。";
+                             $"この見積データを削除します。{Environment.NewLine}" +
+                             $"削除するには[OK]を選択してください。{Environment.NewLine}{Environment.NewLine}" +
+                             $"※削除後も参照することはできますが、元に戻すことはできません。";
                     intRes = MessageBox.Show(strMsg, "削除コマンド", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
                 }
 
@@ -1380,7 +1398,7 @@ namespace u_net
                                 return;
                             }
                         }
-                        
+
                     }
 
                     // 削除処理
@@ -1554,6 +1572,7 @@ namespace u_net
                     承認日時.Text = GetServerDate(cn).ToString("yyyy-MM-dd HH:mm:ss");
                     承認者コード.Text = strCertificateCode;
                     承認者名.Text = EmployeeName(cn, strCertificateCode);
+                    承認.Text = "■";
                 }
 
                 // 表示データを登録する
@@ -1645,6 +1664,7 @@ namespace u_net
                 {
                     確定日時.Text = GetServerDate(cn).ToString("yyyy-MM-dd HH:mm:ss");
                     確定者コード.Text = LoginUserCode;
+                    確定.Text = "■";
                 }
 
                 fn.DoWait("登録しています...");
@@ -1672,6 +1692,7 @@ namespace u_net
                 {
                     確定日時.Text = varSaved1;
                     確定者コード.Text = varSaved2;
+                    確定.Text = "";
                     MessageBox.Show("確定できませんでした。", "警告", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
 
@@ -1878,6 +1899,10 @@ namespace u_net
 
         private void 見積コード_Validated(object sender, EventArgs e)
         {
+            TextBox textBox = (TextBox)sender;
+
+            if (textBox.Modified == false) return;
+
             UpdatedControl((Control)sender);
         }
 
@@ -1894,6 +1919,7 @@ namespace u_net
         private void 見積版数_Validated(object sender, EventArgs e)
         {
             if (setCombo) return;
+
             UpdatedControl((Control)sender);
         }
 
@@ -1939,8 +1965,19 @@ namespace u_net
             }
         }
 
+        private void 見積日_Validating(object sender, CancelEventArgs e)
+        {
+            TextBox textBox = (TextBox)sender;
+
+            if (textBox.Modified == false) return;
+
+            if (IsError(textBox) == true) e.Cancel = true;
+        }
+
         private void 見積日_TextChanged(object sender, EventArgs e)
         {
+            if (setCombo) return;
+
             ChangedData(true);
         }
 
@@ -1974,6 +2011,7 @@ namespace u_net
 
         private void 件名_TextChanged(object sender, EventArgs e)
         {
+            if (setCombo) return;
             LimitText(((Control)sender), 48);
             ChangedData(true);
         }
@@ -1989,11 +2027,16 @@ namespace u_net
 
         private void 顧客コード_Validated(object sender, EventArgs e)
         {
+            TextBox textBox = (TextBox)sender;
+
+            if (textBox.Modified == false) return;
+
             UpdatedControl((Control)sender);
         }
 
         private void 顧客コード_TextChanged(object sender, EventArgs e)
         {
+            if (setCombo) return;
             LimitText(((Control)sender), 8);
             ChangedData(true);
         }
@@ -2038,11 +2081,16 @@ namespace u_net
 
         private void 顧客名_Validated(object sender, EventArgs e)
         {
+            TextBox textBox = (TextBox)sender;
+
+            if (textBox.Modified == false) return;
+
             UpdatedControl((Control)sender);
         }
 
         private void 顧客名_TextChanged(object sender, EventArgs e)
         {
+            if (setCombo) return;
             LimitText(((Control)sender), 120);
             ChangedData(true);
         }
@@ -2058,11 +2106,16 @@ namespace u_net
 
         private void 顧客担当者名_Validated(object sender, EventArgs e)
         {
+            TextBox textBox = (TextBox)sender;
+
+            if (textBox.Modified == false) return;
+
             UpdatedControl((Control)sender);
         }
 
         private void 顧客担当者名_TextChanged(object sender, EventArgs e)
         {
+            if (setCombo) return;
             LimitText(((Control)sender), 120);
             ChangedData(true);
         }
@@ -2078,11 +2131,16 @@ namespace u_net
 
         private void 電話番号_Validated(object sender, EventArgs e)
         {
+            TextBox textBox = (TextBox)sender;
+
+            if (textBox.Modified == false) return;
+
             UpdatedControl((Control)sender);
         }
 
         private void 電話番号_TextChanged(object sender, EventArgs e)
         {
+            if (setCombo) return;
             LimitText(((Control)sender), 20);
             ChangedData(true);
         }
@@ -2098,58 +2156,81 @@ namespace u_net
 
         private void ファックス番号_Validated(object sender, EventArgs e)
         {
+            TextBox textBox = (TextBox)sender;
+
+            if (textBox.Modified == false) return;
+
             UpdatedControl((Control)sender);
         }
 
         private void ファックス番号_TextChanged(object sender, EventArgs e)
         {
+            if (setCombo) return;
             LimitText(((Control)sender), 20);
             ChangedData(true);
         }
 
         private void 納期_TextChanged(object sender, EventArgs e)
         {
+            if (setCombo) return;
             LimitText(((Control)sender), 44);
             ChangedData(true);
         }
 
         private void 納入場所_TextChanged(object sender, EventArgs e)
         {
+            if (setCombo) return;
             LimitText(((Control)sender), 44);
             ChangedData(true);
         }
 
         private void 支払条件_TextChanged(object sender, EventArgs e)
         {
+            if (setCombo) return;
             LimitText(((Control)sender), 44);
             ChangedData(true);
         }
 
         private void 有効期間_TextChanged(object sender, EventArgs e)
         {
+            if (setCombo) return;
             LimitText(((Control)sender), 44);
             ChangedData(true);
         }
 
+        private void 要承認_Validating(object sender, CancelEventArgs e)
+        {
+            if (IsError((Control)sender) == true) e.Cancel = true;
+        }
+
         private void 要承認_TextChanged(object sender, EventArgs e)
         {
+            if (setCombo) return;
             LimitText(((Control)sender), 20);
             ChangedData(true);
         }
 
+        private void 合計金額表示_Validating(object sender, CancelEventArgs e)
+        {
+            if (IsError((Control)sender) == true) e.Cancel = true;
+        }
+
         private void 合計金額表示_TextChanged(object sender, EventArgs e)
         {
+            if (setCombo) return;
             ChangedData(true);
         }
 
         private void 備考_TextChanged(object sender, EventArgs e)
         {
+            if (setCombo) return;
             LimitText(((Control)sender), 784);
             ChangedData(true);
         }
 
         private void メモ_TextChanged(object sender, EventArgs e)
         {
+            if (setCombo) return;
             LimitText(((Control)sender), 1000);
             ChangedData(true);
         }
@@ -2234,6 +2315,7 @@ namespace u_net
             this.toolStripStatusLabel2.Text = "■入力した内容は見積書へ表示されません。　■最大入力文字数は500文字（全角文字）です。";
         }
 
+        
     }
 }
 
