@@ -22,6 +22,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.Data.Common;
 using static System.ComponentModel.Design.ObjectSelectorEditor;
 using Microsoft.Identity.Client.NativeInterop;
+using System.Runtime.ConstrainedExecution;
 
 namespace u_net
 {
@@ -343,7 +344,7 @@ namespace u_net
             localSetting.LoadPlace(LoginUserCode, this);
 
             OriginalClass ofn = new OriginalClass();
-            ofn.SetComboBox(支払コード, "SELECT 支払コード as Display,支払コード  as Value FROM T支払 INNER JOIN T支払明細" +
+            ofn.SetComboBox(支払コード, "SELECT T支払.支払コード as Display,T支払.支払コード  as Value FROM T支払 INNER JOIN T支払明細" +
                 " ON T支払.支払コード = T支払明細.支払コード GROUP BY T支払.支払コード ORDER BY T支払.支払コード DESC");
 
             ofn.SetComboBox(集計年月, "SELECT STR({ fn YEAR(DATEADD(month,-1,GETDATE())) }, 4, 0) + '/' + " +
@@ -410,7 +411,7 @@ namespace u_net
             finally
             {
                 this.ResumeLayout();
-                fn.WaitForm.Close();
+                if (fn.WaitForm != null) fn.WaitForm.Close();
             }
         }
 
@@ -473,10 +474,9 @@ namespace u_net
             {
                 // 各コントロール値を初期化
                 VariableSet.SetControls(this);
-
                 Connect();
 
-                支払コード.Text = FunctionClass.採番(cn, CH_ORDER).ToString();
+                支払コード.Text = FunctionClass.採番(cn, "PAY").ToString();
 
                 // 明細部の初期化
                 string strSQL = "SELECT * FROM T支払明細 WHERE 支払コード='" + this.CurrentCode +
@@ -486,14 +486,12 @@ namespace u_net
                 // ヘッダ部動作制御
                 FunctionClass.LockData(this, false);
                 支払先コード.Focus();
-                支払先コード.Enabled = false;
-
+                支払コード.Enabled = false;
 
                 コマンド新規.Enabled = false;
                 コマンド修正.Enabled = true;
                 コマンド複写.Enabled = false;
                 コマンド削除.Enabled = false;
-
                 コマンド登録.Enabled = false;
 
                 // 明細部動作制御
@@ -653,7 +651,7 @@ namespace u_net
             return true;
         }
 
-        private void ChangedData(bool isChanged)
+        public void ChangedData(bool isChanged)
         {
             if (ActiveControl == null) return;
 
@@ -1022,7 +1020,7 @@ namespace u_net
             }
             finally
             {
-                fn.WaitForm.Close();
+                if (fn.WaitForm != null) fn.WaitForm.Close();
             }
         }
 
@@ -1442,6 +1440,13 @@ namespace u_net
             switch (e.KeyCode)
             {
                 case Keys.Return:
+                    // 複数行入力可能な項目はEnterでフォーカス移動させない
+                    switch (this.ActiveControl.Name)
+                    {
+                        case "備考":
+                        //case "メモ":
+                            return;
+                    }
                     SelectNextControl(ActiveControl, true, true, true, true);
                     break;
                 case Keys.Space: //コンボボックスならドロップダウン
@@ -1555,6 +1560,7 @@ namespace u_net
 
         private void 支払先コード_Validated(object sender, EventArgs e)
         {
+            if (this.支払先コード.Modified == false) return;
             UpdatedControl(支払先コード);
         }
 
@@ -1571,6 +1577,7 @@ namespace u_net
             {
                 string SelectedCode = SearchForm.SelectedCode;
                 支払先コード.Text = SelectedCode;
+                UpdatedControl(支払先コード);
             }
         }
 
@@ -1603,6 +1610,7 @@ namespace u_net
             switch (e.KeyChar)
             {
                 case (char)Keys.Space:
+                    e.Handled = true;
                     支払先検索ボタン_Click(sender, e);
                     break;
             }
@@ -1611,7 +1619,7 @@ namespace u_net
         private void 支払先参照ボタン_Click(object sender, EventArgs e)
         {
             F_仕入先 fm = new F_仕入先();
-            fm.args = CurrentCode;
+            fm.args = 支払先コード.Text;
             fm.ShowDialog();
         }
 
