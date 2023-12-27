@@ -278,6 +278,7 @@ namespace u_net
             string[] arr1;
             object var1;
             string str1;
+            InitializeFilter();
 
             bool result = false;
             DataTable dt = new DataTable();
@@ -291,7 +292,7 @@ namespace u_net
                 }
 
                 // 見積日指定
-                if (Convert.ToDouble(this.dtm見積日開始) != 0 && Convert.ToDouble(this.dtm見積日終了) != 0)
+                if (this.dtm見積日開始 != DateTime.MinValue && this.dtm見積日終了 != DateTime.MinValue)
                 {
                     string dateFilter = $"見積日 BETWEEN '{this.dtm見積日開始}' AND '{this.dtm見積日終了}'";
                     FunctionClass.WhereString(strFilter, dateFilter);
@@ -389,15 +390,25 @@ namespace u_net
                     strSQL = $"SELECT * FROM V見積管理 WHERE {strFilter} ORDER BY 見積コード DESC";
                 }
 
-                using (SqlCommand command = new SqlCommand(strSQL, cn))
+                DataTable dataTable = new DataTable();
+
+                SqlTransaction transaction = cn.BeginTransaction();
                 {
-                    using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+                    using (SqlCommand command = new SqlCommand(strSQL, cn, transaction))
                     {
-                        adapter.Fill(dt);
+                        using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+                        {
+                            adapter.Fill(dataTable);
+
+                            SqlCommandBuilder commandBuilder = new SqlCommandBuilder(adapter);
+                            adapter.Update(dataTable);
+                        }
                     }
+                    // トランザクションをコミット
+                    transaction.Commit();
                 }
 
-                if (dt.Rows.Count <= 0)
+                if (dataTable.Rows.Count <= 0)
                 {
                     estEXT = true;
                     gridobject.DataSource = null;
@@ -454,8 +465,8 @@ namespace u_net
         {
             this.str見積コード開始 = "";
             this.str見積コード終了 = "";
-            this.dtm見積日開始 = DateTime.Now.AddDays(-7);
-            this.dtm見積日終了 = DateTime.Now;
+            this.dtm見積日開始 = DateTime.Now.AddDays(-7).Date;
+            this.dtm見積日終了 = DateTime.Now.Date;
             this.str担当者名 = "";
             this.str顧客名 = "";
             this.lng確定指定 = 0;
@@ -805,8 +816,8 @@ namespace u_net
         {
             一覧.Focus();
             objParent = this;
-            //F_検索コード form = new F_検索コード();
-            //form.ShowDialog();
+            F_検索コード form = new F_検索コード(sender, null);
+            form.ShowDialog();
         }
 
         private void Form_KeyDown(object sender, KeyEventArgs e, int Shift)
@@ -841,46 +852,7 @@ namespace u_net
 
         private void コマンド見積書_Click(object sender, EventArgs e)
         {
-            try
-            {
-                一覧.Focus();
-
-                Connect();
-
-                // 現在の接続先サーバーによって server を設定
-                string server = "";
-                if (cn.ConnectionString.Contains(",1436") ||
-                    cn.ConnectionString.Contains("\\unet_secondary"))
-                {
-                    server = "secondary";
-                }
-                else
-                {
-                    server = "primary";
-                }
-
-                // コマンドライン引数の作成
-                string param = $" -sv:{server.Replace(" ", "_")} -pv:estimate,{this.CurrentCode().TrimEnd().Replace(" ", "_")},{this.CurrentEdition().Replace(" ", "_")}";
-                param = $" -user:{CommonConstants.LoginUserName}{param}";
-
-                // プロセスを起動
-                using (Process process = new Process())
-                {
-                    process.StartInfo.FileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles), "Uinics", "Uinics U-net 3 Client", "unetc.exe");
-                    process.StartInfo.Arguments = param;
-                    process.StartInfo.UseShellExecute = false;
-                    process.StartInfo.RedirectStandardOutput = true;
-
-                    process.Start();
-                    process.WaitForExit();
-                }
-            }
-            catch (Exception ex)
-            {
-                // エラーが発生した場合の処理
-                Console.WriteLine("Error: " + ex.Message);
-                MessageBox.Show("エラーのため実行できません。", "見積書コマンド", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            //TODO:帳票出力
         }
 
         private void コマンド印刷_Click(object sender, EventArgs e)

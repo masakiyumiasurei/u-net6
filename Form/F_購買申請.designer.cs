@@ -121,6 +121,8 @@ namespace u_net
             終了日時_ラベル = new Label();
             登録者コード = new TextBox();
             toolTip1 = new ToolTip(components);
+            ItemRevision = new TextBox();
+            ItemRevision_ラベル = new Label();
             panel1.SuspendLayout();
             statusStrip1.SuspendLayout();
             SuspendLayout();
@@ -445,6 +447,7 @@ namespace u_net
             確認_製造部.ReadOnly = true;
             確認_製造部.Size = new Size(21, 20);
             確認_製造部.TabIndex = 29;
+            確認_製造部.TabStop = false;
             // 
             // 完了_ラベル
             // 
@@ -472,6 +475,7 @@ namespace u_net
             完了.ReadOnly = true;
             完了.Size = new Size(21, 20);
             完了.TabIndex = 30;
+            完了.TabStop = false;
             // 
             // 削除
             // 
@@ -484,6 +488,7 @@ namespace u_net
             削除.ReadOnly = true;
             削除.Size = new Size(21, 20);
             削除.TabIndex = 27;
+            削除.TabStop = false;
             // 
             // 削除_ラベル
             // 
@@ -528,6 +533,7 @@ namespace u_net
             Scheduled.ReadOnly = true;
             Scheduled.Size = new Size(21, 20);
             Scheduled.TabIndex = 36;
+            Scheduled.TabStop = false;
             // 
             // 材料単価
             // 
@@ -600,6 +606,7 @@ namespace u_net
             確認_営業部.ReadOnly = true;
             確認_営業部.Size = new Size(21, 20);
             確認_営業部.TabIndex = 28;
+            確認_営業部.TabStop = false;
             // 
             // 購買納期_ラベル
             // 
@@ -645,6 +652,7 @@ namespace u_net
             登録者名.ReadOnly = true;
             登録者名.Size = new Size(142, 20);
             登録者名.TabIndex = 22;
+            登録者名.TabStop = false;
             // 
             // 材料単価_ラベル
             // 
@@ -764,6 +772,7 @@ namespace u_net
             登録日時.ReadOnly = true;
             登録日時.Size = new Size(188, 20);
             登録日時.TabIndex = 20;
+            登録日時.TabStop = false;
             // 
             // 申請者コード_ラベル
             // 
@@ -888,6 +897,7 @@ namespace u_net
             申請者名.Name = "申請者名";
             申請者名.Size = new Size(244, 21);
             申請者名.TabIndex = 35;
+            申請者名.TabStop = false;
             // 
             // 商品名
             // 
@@ -943,6 +953,7 @@ namespace u_net
             シリーズ名.ReadOnly = true;
             シリーズ名.Size = new Size(364, 21);
             シリーズ名.TabIndex = 7;
+            シリーズ名.TabStop = false;
             // 
             // 申請者コード
             // 
@@ -1025,6 +1036,7 @@ namespace u_net
             終了入力.ReadOnly = true;
             終了入力.Size = new Size(21, 20);
             終了入力.TabIndex = 34;
+            終了入力.TabStop = false;
             // 
             // ラベル89
             // 
@@ -1106,6 +1118,7 @@ namespace u_net
             申請日選択ボタン.Name = "申請日選択ボタン";
             申請日選択ボタン.Size = new Size(20, 20);
             申請日選択ボタン.TabIndex = 3;
+            申請日選択ボタン.TabStop = false;
             申請日選択ボタン.Text = "▼";
             toolTip1.SetToolTip(申請日選択ボタン, "カレンダーから入力します");
             申請日選択ボタン.UseVisualStyleBackColor = true;
@@ -1117,6 +1130,7 @@ namespace u_net
             購買納期選択ボタン.Name = "購買納期選択ボタン";
             購買納期選択ボタン.Size = new Size(21, 20);
             購買納期選択ボタン.TabIndex = 13;
+            購買納期選択ボタン.TabStop = false;
             購買納期選択ボタン.Text = "▼";
             toolTip1.SetToolTip(購買納期選択ボタン, "カレンダー");
             購買納期選択ボタン.UseVisualStyleBackColor = true;
@@ -1128,6 +1142,7 @@ namespace u_net
             出荷予定日選択ボタン.Name = "出荷予定日選択ボタン";
             出荷予定日選択ボタン.Size = new Size(21, 20);
             出荷予定日選択ボタン.TabIndex = 15;
+            出荷予定日選択ボタン.TabStop = false;
             出荷予定日選択ボタン.Text = "▼";
             toolTip1.SetToolTip(出荷予定日選択ボタン, "カレンダー");
             出荷予定日選択ボタン.UseVisualStyleBackColor = true;
@@ -1360,11 +1375,38 @@ namespace u_net
             登録者コード.ReadOnly = true;
             登録者コード.Size = new Size(49, 20);
             登録者コード.TabIndex = 21;
+            登録者コード.TabStop = false;
+            // 
+            // ItemRevision
+            // 
+            ItemRevision.BackColor = Color.White;
+            ItemRevision.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            ItemRevision.ImeMode = ImeMode.Hiragana;
+            ItemRevision.Location = new Point(395, 500);
+            ItemRevision.Margin = new Padding(3, 2, 3, 2);
+            ItemRevision.Name = "ItemRevision";
+            ItemRevision.Size = new Size(84, 21);
+            ItemRevision.TabIndex = 10090;
+            ItemRevision.Visible = false;
+            // 
+            // ItemRevision_ラベル
+            // 
+            ItemRevision_ラベル.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            ItemRevision_ラベル.ForeColor = SystemColors.ActiveCaptionText;
+            ItemRevision_ラベル.Location = new Point(288, 500);
+            ItemRevision_ラベル.Name = "ItemRevision_ラベル";
+            ItemRevision_ラベル.Size = new Size(118, 18);
+            ItemRevision_ラベル.TabIndex = 10089;
+            ItemRevision_ラベル.Text = "ItemRevision";
+            ItemRevision_ラベル.TextAlign = ContentAlignment.MiddleLeft;
+            ItemRevision_ラベル.Visible = false;
             // 
             // F_購買申請
             // 
             BackColor = SystemColors.Control;
             ClientSize = new Size(876, 556);
+            Controls.Add(ItemRevision);
+            Controls.Add(ItemRevision_ラベル);
             Controls.Add(登録者コード);
             Controls.Add(備考);
             Controls.Add(無効者コード);
@@ -1565,6 +1607,8 @@ namespace u_net
         private Button コマンドメール;
         private Button コマンド削除;
         private ToolTip toolTip1;
+        private TextBox ItemRevision;
+        private Label ItemRevision_ラベル;
     }
 }
 

@@ -33,7 +33,7 @@
             panel1 = new Panel();
             コマンド入出力 = new Button();
             コマンド支払通知 = new Button();
-            コマンド支払入力 = new Button();
+            コマンド支払 = new Button();
             コマンド支払先 = new Button();
             コマンド明細参照 = new Button();
             コマンド印刷 = new Button();
@@ -64,7 +64,7 @@
             panel1.BackColor = SystemColors.ActiveCaption;
             panel1.Controls.Add(コマンド入出力);
             panel1.Controls.Add(コマンド支払通知);
-            panel1.Controls.Add(コマンド支払入力);
+            panel1.Controls.Add(コマンド支払);
             panel1.Controls.Add(コマンド支払先);
             panel1.Controls.Add(コマンド明細参照);
             panel1.Controls.Add(コマンド印刷);
@@ -112,25 +112,28 @@
             コマンド支払通知.Text = "支払通知";
             toolTip1.SetToolTip(コマンド支払通知, "支払通知書のプレビュー");
             コマンド支払通知.UseVisualStyleBackColor = true;
+            コマンド支払通知.Click += コマンド支払通知_Click;
             // 
-            // コマンド支払入力
+            // コマンド支払
             // 
-            コマンド支払入力.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            コマンド支払入力.ForeColor = Color.Blue;
-            コマンド支払入力.ImageAlign = ContentAlignment.BottomLeft;
-            コマンド支払入力.Location = new Point(428, 4);
-            コマンド支払入力.Margin = new Padding(0, 2, 0, 2);
-            コマンド支払入力.Name = "コマンド支払入力";
-            コマンド支払入力.Size = new Size(70, 22);
-            コマンド支払入力.TabIndex = 10;
-            コマンド支払入力.TabStop = false;
-            コマンド支払入力.Text = "支払入力";
-            toolTip1.SetToolTip(コマンド支払入力, "支払入力");
-            コマンド支払入力.UseVisualStyleBackColor = true;
-            コマンド支払入力.Click += コマンド支払入力_Click;
+            コマンド支払.Enabled = false;
+            コマンド支払.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            コマンド支払.ForeColor = Color.Blue;
+            コマンド支払.ImageAlign = ContentAlignment.BottomLeft;
+            コマンド支払.Location = new Point(428, 4);
+            コマンド支払.Margin = new Padding(0, 2, 0, 2);
+            コマンド支払.Name = "コマンド支払";
+            コマンド支払.Size = new Size(70, 22);
+            コマンド支払.TabIndex = 10;
+            コマンド支払.TabStop = false;
+            コマンド支払.Text = "支払入力";
+            toolTip1.SetToolTip(コマンド支払, "支払入力");
+            コマンド支払.UseVisualStyleBackColor = true;
+            コマンド支払.Click += コマンド支払_Click;
             // 
             // コマンド支払先
             // 
+            コマンド支払先.Enabled = false;
             コマンド支払先.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             コマンド支払先.ForeColor = Color.Blue;
             コマンド支払先.ImageAlign = ContentAlignment.BottomLeft;
@@ -147,6 +150,7 @@
             // 
             // コマンド明細参照
             // 
+            コマンド明細参照.Enabled = false;
             コマンド明細参照.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             コマンド明細参照.ForeColor = Color.Blue;
             コマンド明細参照.ImageAlign = ContentAlignment.BottomLeft;
@@ -179,6 +183,7 @@
             // 
             // コマンド保守
             // 
+            コマンド保守.Enabled = false;
             コマンド保守.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             コマンド保守.ForeColor = Color.Blue;
             コマンド保守.ImageAlign = ContentAlignment.BottomLeft;
@@ -281,6 +286,7 @@
             表示件数.Size = new Size(88, 20);
             表示件数.TabIndex = 84;
             表示件数.TabStop = false;
+            表示件数.TextAlign = HorizontalAlignment.Right;
             // 
             // label1
             // 
@@ -313,8 +319,10 @@
             dataGridView1.RowTemplate.Height = 29;
             dataGridView1.Size = new Size(1054, 440);
             dataGridView1.TabIndex = 1;
+            dataGridView1.CellClick += dataGridView1_CellClick;
             dataGridView1.CellDoubleClick += dataGridView1_CellDoubleClick;
             dataGridView1.CellPainting += DataGridView1_CellPainting;
+            dataGridView1.Sorted += dataGridView1_Sorted;
             dataGridView1.KeyDown += dataGridView1_KeyDown;
             // 
             // panel2
@@ -341,6 +349,7 @@
             コピーボタン.Text = "クリップボードへコピー";
             toolTip1.SetToolTip(コピーボタン, "選択範囲をクリップボードへコピーします");
             コピーボタン.UseVisualStyleBackColor = true;
+            コピーボタン.Click += コピーボタン_Click;
             // 
             // 集計年月_ラベル
             // 
@@ -367,6 +376,7 @@
             集計年月.Name = "集計年月";
             集計年月.Size = new Size(102, 21);
             集計年月.TabIndex = 2;
+            集計年月.SelectedIndexChanged += 集計年月_SelectedIndexChanged;
             // 
             // 月度_ラベル
             // 
@@ -414,10 +424,10 @@
             Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(3, 2, 3, 2);
             Name = "F_支払一覧_月間";
-            Text = "請求処理";
-            FormClosing += F_製品管理_FormClosing;
+            Text = "支払一覧表（月間）";
             Load += Form_Load;
             KeyDown += Form_KeyDown;
+            Resize += Form_Resize;
             panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             panel2.ResumeLayout(false);
@@ -428,7 +438,7 @@
         #endregion
         private Panel panel1;
         private Button コマンド支払通知;
-        private Button コマンド支払入力;
+        private Button コマンド支払;
         private Button コマンド支払先;
         private Button コマンド明細参照;
         private Button コマンド印刷;

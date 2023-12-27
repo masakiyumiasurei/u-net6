@@ -78,6 +78,7 @@
             // 
             // コマンド入出力
             // 
+            コマンド入出力.Enabled = false;
             コマンド入出力.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             コマンド入出力.ForeColor = Color.Black;
             コマンド入出力.ImageAlign = ContentAlignment.BottomLeft;
@@ -152,7 +153,6 @@
             // 
             // コマンド更新
             // 
-            コマンド更新.Enabled = false;
             コマンド更新.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             コマンド更新.ForeColor = Color.Blue;
             コマンド更新.ImageAlign = ContentAlignment.BottomLeft;

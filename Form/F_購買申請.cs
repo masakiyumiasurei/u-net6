@@ -228,7 +228,8 @@ namespace u_net
                         //{
                         //this.購買申請コード.Text = args;
                         //UpdatedControl(this.購買申請コード);
-                        //ChangedData(false);
+                        UpdatedControl(this.購買申請版数);
+                        ChangedData(false);
                         //}
                     }
                 }
@@ -299,6 +300,7 @@ namespace u_net
                 this.登録者名.Text = null;
                 this.無効日時.Text = null;
                 this.無効者コード.Text = null;
+                this.ItemRevision.Text = "1";
 
                 //インターフェースを制御する
                 FunctionClass.LockData(this, false);
@@ -1638,7 +1640,11 @@ namespace u_net
             switch (e.KeyCode)
             {
                 case Keys.Return:
-                    SelectNextControl(ActiveControl, true, true, true, true);
+                    // 備考でEnter押下時、フォーカス移動しないで改行する
+                    if (ActiveControl.Name != "備考")
+                    {
+                        SelectNextControl(ActiveControl, true, true, true, true);
+                    }
                     break;
 
                 case Keys.Space: //コンボボックスならドロップダウン
@@ -1818,6 +1824,15 @@ namespace u_net
                 Connect();
 
                 VariableSet.SetTable2Form(this, sourceSQL, cn);
+
+                if (!string.IsNullOrEmpty(申請日.Text))
+                {
+                    if (DateTime.TryParse(this.申請日.Text, out DateTime tempDate))
+                    {
+                        申請日.Text = tempDate.ToString("yyyy/MM/dd");
+                    }
+                }
+
                 result = true;
 
                 return result;

@@ -58,6 +58,7 @@
             label1 = new Label();
             入金金額開始 = new TextBox();
             label2 = new Label();
+            顧客コードラベル = new Label();
             請求指定.SuspendLayout();
             削除指定.SuspendLayout();
             SuspendLayout();
@@ -74,6 +75,7 @@
             顧客名.Name = "顧客名";
             顧客名.Size = new Size(413, 23);
             顧客名.TabIndex = 8;
+            顧客名.Validated += 顧客名_Validated;
             // 
             // 入金日開始
             // 
@@ -85,11 +87,8 @@
             入金日開始.Name = "入金日開始";
             入金日開始.Size = new Size(160, 23);
             入金日開始.TabIndex = 2;
-            入金日開始.Click += 仕入先コード_Click;
-            入金日開始.TextChanged += 仕入先コード_TextChanged;
-            入金日開始.DoubleClick += 仕入先コード_DoubleClick;
-            入金日開始.KeyDown += 仕入先コード_KeyDown;
-            入金日開始.Validated += 仕入先コード_Validated;
+            入金日開始.KeyPress += 入金日開始_KeyPress;
+            入金日開始.Leave += 入金日開始_Leave;
             // 
             // 入金コード1ラベル
             // 
@@ -185,7 +184,7 @@
             入金日開始選択ボタン.TabStop = false;
             入金日開始選択ボタン.Text = "▼";
             入金日開始選択ボタン.UseVisualStyleBackColor = true;
-            入金日開始選択ボタン.Click += 仕入先選択ボタン_Click;
+            入金日開始選択ボタン.Click += 入金日開始選択ボタン_Click;
             // 
             // 入金日終了選択ボタン
             // 
@@ -198,7 +197,7 @@
             入金日終了選択ボタン.TabStop = false;
             入金日終了選択ボタン.Text = "▼";
             入金日終了選択ボタン.UseVisualStyleBackColor = true;
-            入金日終了選択ボタン.Click += 仕入先参照ボタン_Click;
+            入金日終了選択ボタン.Click += 入金日終了選択ボタン_Click;
             // 
             // 出荷予定日2ラベル
             // 
@@ -225,6 +224,8 @@
             入金日終了.Name = "入金日終了";
             入金日終了.Size = new Size(160, 23);
             入金日終了.TabIndex = 4;
+            入金日終了.KeyPress += 入金日終了_KeyPress;
+            入金日終了.Leave += 入金日終了_Leave;
             // 
             // 入金日1ラベル
             // 
@@ -248,6 +249,7 @@
             入金区分コード.Name = "入金区分コード";
             入金区分コード.Size = new Size(189, 23);
             入金区分コード.TabIndex = 9;
+            入金区分コード.KeyPress += 入金区分コード_KeyPress;
             // 
             // 削除指定
             // 
@@ -335,6 +337,9 @@
             顧客コード.Name = "顧客コード";
             顧客コード.Size = new Size(160, 23);
             顧客コード.TabIndex = 6;
+            顧客コード.KeyDown += 顧客コード_KeyDown;
+            顧客コード.KeyPress += 顧客コード_KeyPress;
+            顧客コード.Validated += 顧客コード_Validated;
             // 
             // 顧客コード検索ボタン
             // 
@@ -347,6 +352,7 @@
             顧客コード検索ボタン.TabStop = false;
             顧客コード検索ボタン.Text = "▼";
             顧客コード検索ボタン.UseVisualStyleBackColor = true;
+            顧客コード検索ボタン.Click += 顧客コード検索ボタン_Click;
             // 
             // 入金コード開始
             // 
@@ -358,6 +364,8 @@
             入金コード開始.Name = "入金コード開始";
             入金コード開始.Size = new Size(189, 23);
             入金コード開始.TabIndex = 0;
+            入金コード開始.KeyDown += 入金コード開始_KeyDown;
+            入金コード開始.Leave += 入金コード開始_Leave;
             // 
             // 入金コード2ラベル
             // 
@@ -384,6 +392,8 @@
             入金コード終了.Name = "入金コード終了";
             入金コード終了.Size = new Size(189, 23);
             入金コード終了.TabIndex = 1;
+            入金コード終了.KeyDown += 入金コード終了_KeyDown;
+            入金コード終了.Leave += 入金コード終了_Leave;
             // 
             // 入金金額終了
             // 
@@ -395,6 +405,7 @@
             入金金額終了.Name = "入金金額終了";
             入金金額終了.Size = new Size(189, 23);
             入金金額終了.TabIndex = 11;
+            入金金額終了.Leave += 入金金額終了_Leave;
             // 
             // label1
             // 
@@ -421,6 +432,7 @@
             入金金額開始.Name = "入金金額開始";
             入金金額開始.Size = new Size(189, 23);
             入金金額開始.TabIndex = 10;
+            入金金額開始.Leave += 入金金額開始_Leave;
             // 
             // label2
             // 
@@ -437,11 +449,27 @@
             label2.Text = "入金金額(&A)";
             label2.TextAlign = ContentAlignment.MiddleLeft;
             // 
+            // 顧客コードラベル
+            // 
+            顧客コードラベル.AllowDrop = true;
+            顧客コードラベル.AutoEllipsis = true;
+            顧客コードラベル.Font = new Font("BIZ UDゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            顧客コードラベル.ForeColor = SystemColors.ActiveCaptionText;
+            顧客コードラベル.ImageAlign = ContentAlignment.MiddleLeft;
+            顧客コードラベル.Location = new Point(25, 80);
+            顧客コードラベル.Margin = new Padding(0);
+            顧客コードラベル.Name = "顧客コードラベル";
+            顧客コードラベル.Size = new Size(101, 17);
+            顧客コードラベル.TabIndex = 10038;
+            顧客コードラベル.Text = "顧客コード(&U)";
+            顧客コードラベル.TextAlign = ContentAlignment.MiddleLeft;
+            // 
             // F_入金管理_抽出
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(577, 406);
+            Controls.Add(顧客コードラベル);
             Controls.Add(入金金額終了);
             Controls.Add(label1);
             Controls.Add(入金金額開始);
@@ -467,7 +495,7 @@
             Controls.Add(入金日開始);
             Controls.Add(入金コード1ラベル);
             Name = "F_入金管理_抽出";
-            Text = "入金管理 - 抽出";
+            Text = "入金管理 _抽出";
             Load += Form_Load;
             請求指定.ResumeLayout(false);
             請求指定.PerformLayout();
@@ -529,5 +557,6 @@
         private CheckBox checkBox1;
         private CheckBox checkBox2;
         private CheckBox checkBox3;
+        private Label 顧客コードラベル;
     }
 }
