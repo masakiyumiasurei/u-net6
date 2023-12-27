@@ -1639,7 +1639,11 @@ namespace u_net
             switch (e.KeyCode)
             {
                 case Keys.Return:
-                    SelectNextControl(ActiveControl, true, true, true, true);
+                    // 備考でEnter押下時、フォーカス移動しないで改行する
+                    if (ActiveControl.Name != "備考")
+                    {
+                        SelectNextControl(ActiveControl, true, true, true, true);
+                    }
                     break;
 
                 case Keys.Space: //コンボボックスならドロップダウン
