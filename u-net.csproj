@@ -116,6 +116,7 @@
     <EmbeddedResource Include="MultiRowDesigner\商品明細.resx" />
     <EmbeddedResource Include="MultiRowDesigner\商品明細テンプレート.resx" />
     <EmbeddedResource Include="MultiRowDesigner\支払明細.resx" />
+    <EmbeddedResource Include="MultiRowDesigner\支払明細テンプレート.resx" />
     <EmbeddedResource Include="MultiRowDesigner\業務日報明細予定.resx" />
     <EmbeddedResource Include="MultiRowDesigner\業務日報明細実績.resx" />
     <EmbeddedResource Include="MultiRowDesigner\発注明細.resx" />

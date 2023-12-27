@@ -214,6 +214,7 @@ namespace u_net
             // コマンド登録
             // 
             コマンド登録.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            コマンド登録.ForeColor = Color.Blue;
             コマンド登録.ImageAlign = ContentAlignment.BottomLeft;
             コマンド登録.Location = new Point(680, 6);
             コマンド登録.Margin = new Padding(1, 0, 0, 0);
@@ -310,6 +311,7 @@ namespace u_net
             // 
             コマンド確定.Enabled = false;
             コマンド確定.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            コマンド確定.ForeColor = Color.Blue;
             コマンド確定.ImageAlign = ContentAlignment.BottomLeft;
             コマンド確定.Location = new Point(612, 6);
             コマンド確定.Margin = new Padding(1, 0, 0, 0);
@@ -325,6 +327,7 @@ namespace u_net
             // 
             コマンド承認.Enabled = false;
             コマンド承認.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            コマンド承認.ForeColor = Color.Blue;
             コマンド承認.ImageAlign = ContentAlignment.BottomLeft;
             コマンド承認.Location = new Point(545, 6);
             コマンド承認.Margin = new Padding(1, 0, 0, 0);
@@ -2078,6 +2081,7 @@ namespace u_net
             顧客コード.TextChanged += 顧客コード_TextChanged;
             顧客コード.DoubleClick += 顧客コード_DoubleClick;
             顧客コード.Enter += 顧客コード_Enter;
+            顧客コード.KeyPress += 顧客コード_KeyPress;
             顧客コード.PreviewKeyDown += 顧客コード_PreviewKeyDown;
             顧客コード.Validating += 顧客コード_Validating;
             顧客コード.Validated += 顧客コード_Validated;
@@ -2567,6 +2571,7 @@ namespace u_net
             Margin = new Padding(3, 2, 3, 2);
             Name = "F_受注";
             Text = "受注（製図指図書）";
+            FormClosing += Form_Unload;
             Load += Form_Load;
             KeyDown += F_受注_KeyDown;
             panel1.ResumeLayout(false);

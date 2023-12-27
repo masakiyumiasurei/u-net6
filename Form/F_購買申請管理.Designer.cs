@@ -84,7 +84,7 @@
             panel1.Location = new Point(0, 0);
             panel1.Margin = new Padding(4, 2, 4, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1330, 32);
+            panel1.Size = new Size(1349, 32);
             panel1.TabIndex = 83;
             // 
             // button4
@@ -289,12 +289,13 @@
             購買申請明細.AllowUserToAddRows = false;
             購買申請明細.AllowUserToDeleteRows = false;
             購買申請明細.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            購買申請明細.Location = new Point(0, 63);
+            購買申請明細.Location = new Point(3, 63);
             購買申請明細.Margin = new Padding(3, 2, 3, 2);
             購買申請明細.Name = "購買申請明細";
             購買申請明細.ReadOnly = true;
+            購買申請明細.RowHeadersVisible = false;
             購買申請明細.RowTemplate.Height = 29;
-            購買申請明細.Size = new Size(1330, 359);
+            購買申請明細.Size = new Size(1330, 501);
             購買申請明細.TabIndex = 1;
             購買申請明細.CellClick += dataGridView1_CellClick;
             購買申請明細.CellDoubleClick += dataGridView1_CellDoubleClick;
@@ -317,10 +318,10 @@
             panel2.Controls.Add(label1);
             panel2.Controls.Add(label2);
             panel2.Dock = DockStyle.Bottom;
-            panel2.Location = new Point(0, 422);
+            panel2.Location = new Point(0, 568);
             panel2.Margin = new Padding(3, 2, 3, 2);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1330, 27);
+            panel2.Size = new Size(1349, 27);
             panel2.TabIndex = 88;
             // 
             // 税込合計金額
@@ -440,7 +441,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1330, 449);
+            ClientSize = new Size(1349, 595);
             Controls.Add(Next4Button);
             Controls.Add(Next3Button);
             Controls.Add(翌々月ボタン);

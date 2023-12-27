@@ -147,15 +147,16 @@ namespace MultiRowDesigner
 
                       //  gcMultiRow1.CurrentRow.Cells["部品コード"].Value = selectedCode;
                         gcMultiRow1.CurrentCell.Value = selectedCode;
+
                         //品名にセル移動した時にvaledatedを実行しないようにするため
                         validatedflg = true;
                         UpdatedControl(gcMultiRow1.CurrentCell);
-
-                       // gcMultiRow1.SetValue(gcMultiRow1.CurrentRow.Index, "品名", "aaa");
+                       
 
                         gcMultiRow1.CurrentCellPosition =
                            new CellPosition(gcMultiRow1.CurrentRow.Index, gcMultiRow1.CurrentRow.Cells["品名"].CellIndex);
-                        GrapeCity.Win.MultiRow.EditingActions.CommitRow.Execute(gcMultiRow1);
+                        GrapeCity.Win.MultiRow.EditingActions.CommitRow.Execute(gcMultiRow1);                      
+
 
                     }
 

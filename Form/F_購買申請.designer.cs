@@ -121,6 +121,8 @@ namespace u_net
             終了日時_ラベル = new Label();
             登録者コード = new TextBox();
             toolTip1 = new ToolTip(components);
+            ItemRevision = new TextBox();
+            ItemRevision_ラベル = new Label();
             panel1.SuspendLayout();
             statusStrip1.SuspendLayout();
             SuspendLayout();
@@ -1361,10 +1363,36 @@ namespace u_net
             登録者コード.Size = new Size(49, 20);
             登録者コード.TabIndex = 21;
             // 
+            // ItemRevision
+            // 
+            ItemRevision.BackColor = Color.White;
+            ItemRevision.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            ItemRevision.ImeMode = ImeMode.Hiragana;
+            ItemRevision.Location = new Point(395, 500);
+            ItemRevision.Margin = new Padding(3, 2, 3, 2);
+            ItemRevision.Name = "ItemRevision";
+            ItemRevision.Size = new Size(84, 21);
+            ItemRevision.TabIndex = 10090;
+            ItemRevision.Visible = false;
+            // 
+            // ItemRevision_ラベル
+            // 
+            ItemRevision_ラベル.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            ItemRevision_ラベル.ForeColor = SystemColors.ActiveCaptionText;
+            ItemRevision_ラベル.Location = new Point(288, 500);
+            ItemRevision_ラベル.Name = "ItemRevision_ラベル";
+            ItemRevision_ラベル.Size = new Size(118, 18);
+            ItemRevision_ラベル.TabIndex = 10089;
+            ItemRevision_ラベル.Text = "ItemRevision";
+            ItemRevision_ラベル.TextAlign = ContentAlignment.MiddleLeft;
+            ItemRevision_ラベル.Visible = false;
+            // 
             // F_購買申請
             // 
             BackColor = SystemColors.Control;
             ClientSize = new Size(876, 556);
+            Controls.Add(ItemRevision);
+            Controls.Add(ItemRevision_ラベル);
             Controls.Add(登録者コード);
             Controls.Add(備考);
             Controls.Add(無効者コード);
@@ -1565,6 +1593,8 @@ namespace u_net
         private Button コマンドメール;
         private Button コマンド削除;
         private ToolTip toolTip1;
+        private TextBox ItemRevision;
+        private Label ItemRevision_ラベル;
     }
 }
 

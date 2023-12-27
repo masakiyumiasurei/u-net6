@@ -60,7 +60,7 @@
             前日受注分ボタン = new Button();
             前ページボタン = new Button();
             次ページボタン = new Button();
-            履歴トグル = new Button();
+            履歴トグル = new CheckBox();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)newDataSet).BeginInit();
@@ -86,7 +86,7 @@
             panel1.Location = new Point(0, 0);
             panel1.Margin = new Padding(4, 2, 4, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(974, 32);
+            panel1.Size = new Size(1035, 32);
             panel1.TabIndex = 83;
             // 
             // コマンド入力
@@ -285,12 +285,13 @@
             dataGridView1.AllowUserToAddRows = false;
             dataGridView1.AllowUserToDeleteRows = false;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(0, 65);
+            dataGridView1.Location = new Point(6, 65);
             dataGridView1.Margin = new Padding(3, 2, 3, 2);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
+            dataGridView1.RowHeadersVisible = false;
             dataGridView1.RowTemplate.Height = 29;
-            dataGridView1.Size = new Size(967, 358);
+            dataGridView1.Size = new Size(1005, 418);
             dataGridView1.TabIndex = 87;
             dataGridView1.CellClick += dataGridView1_CellClick;
             dataGridView1.CellDoubleClick += dataGridView1_CellDoubleClick;
@@ -317,10 +318,10 @@
             panel2.Controls.Add(表示件数ラベル);
             panel2.Controls.Add(label2);
             panel2.Dock = DockStyle.Bottom;
-            panel2.Location = new Point(0, 421);
+            panel2.Location = new Point(0, 487);
             panel2.Margin = new Padding(3, 2, 3, 2);
             panel2.Name = "panel2";
-            panel2.Size = new Size(974, 28);
+            panel2.Size = new Size(1035, 28);
             panel2.TabIndex = 88;
             // 
             // label1
@@ -328,7 +329,7 @@
             label1.AutoSize = true;
             label1.Location = new Point(751, 6);
             label1.Name = "label1";
-            label1.Size = new Size(217, 15);
+            label1.Size = new Size(216, 15);
             label1.TabIndex = 93;
             label1.Text = "※合計金額に未承認データは含まれません。";
             // 
@@ -445,21 +446,22 @@
             // 
             // 履歴トグル
             // 
+            履歴トグル.Appearance = Appearance.Button;
+            履歴トグル.AutoSize = true;
             履歴トグル.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            履歴トグル.Location = new Point(346, 38);
-            履歴トグル.Margin = new Padding(3, 2, 3, 2);
+            履歴トグル.Location = new Point(355, 37);
             履歴トグル.Name = "履歴トグル";
-            履歴トグル.Size = new Size(75, 22);
-            履歴トグル.TabIndex = 6;
+            履歴トグル.Size = new Size(72, 22);
+            履歴トグル.TabIndex = 10015;
             履歴トグル.Text = "履歴モード";
             履歴トグル.UseVisualStyleBackColor = true;
-            履歴トグル.Validated += 履歴トグル_Validated;
+            履歴トグル.CheckedChanged += 履歴トグル_CheckedChanged;
             // 
             // F_受注管理
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(974, 449);
+            ClientSize = new Size(1035, 515);
             Controls.Add(履歴トグル);
             Controls.Add(次ページボタン);
             Controls.Add(前ページボタン);
@@ -483,6 +485,7 @@
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -622,7 +625,6 @@
         private Button 前日受注分ボタン;
         private Button 前ページボタン;
         private Button 次ページボタン;
-        private Button 履歴トグル;
         private Label label1;
         private TextBox 税込合計金額;
         private Label label3;
@@ -632,5 +634,6 @@
         private Label 合計数量ラベル;
         private Button コマンド入力;
         private Button button1;
+        private CheckBox 履歴トグル;
     }
 }
