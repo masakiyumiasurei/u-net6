@@ -31,7 +31,6 @@ namespace u_net
         {
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
@@ -50,10 +49,9 @@ namespace u_net
             DataGridViewCellStyle dataGridViewCellStyle19 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle20 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle21 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(F_マスタメンテ));
             受注区分dataGrid = new DataGridView();
-            受注区分コード = new DataGridViewTextBoxColumn();
-            受注区分名 = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn2 = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn3 = new DataGridViewTextBoxColumn();
@@ -148,6 +146,8 @@ namespace u_net
             郵便番号 = new DataGridViewTextBoxColumn();
             住所１ = new DataGridViewTextBoxColumn();
             住所２ = new DataGridViewTextBoxColumn();
+            受注区分コード = new DataGridViewTextBoxColumn();
+            受注区分名 = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)受注区分dataGrid).BeginInit();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)発送方法dataGrid).BeginInit();
@@ -174,7 +174,7 @@ namespace u_net
             受注区分dataGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             受注区分dataGrid.Columns.AddRange(new DataGridViewColumn[] { 受注区分コード, 受注区分名 });
             受注区分dataGrid.EditMode = DataGridViewEditMode.EditOnEnter;
-            受注区分dataGrid.ImeMode = ImeMode.Off;
+            受注区分dataGrid.ImeMode = ImeMode.On;
             受注区分dataGrid.Location = new Point(9, 72);
             受注区分dataGrid.Margin = new Padding(4, 3, 4, 3);
             受注区分dataGrid.Name = "受注区分dataGrid";
@@ -190,24 +190,6 @@ namespace u_net
             受注区分dataGrid.Size = new Size(225, 205);
             受注区分dataGrid.TabIndex = 109;
             受注区分dataGrid.CellEnter += dataGridView1_CellEnter;
-            // 
-            // 受注区分コード
-            // 
-            受注区分コード.DataPropertyName = "受注区分コード";
-            dataGridViewCellStyle2.Format = "N0";
-            dataGridViewCellStyle2.NullValue = null;
-            受注区分コード.DefaultCellStyle = dataGridViewCellStyle2;
-            受注区分コード.HeaderText = "コード";
-            受注区分コード.Name = "受注区分コード";
-            受注区分コード.Resizable = DataGridViewTriState.True;
-            受注区分コード.Width = 70;
-            // 
-            // 受注区分名
-            // 
-            受注区分名.DataPropertyName = "受注区分名";
-            受注区分名.HeaderText = "受注区分";
-            受注区分名.Name = "受注区分名";
-            受注区分名.Width = 120;
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -572,7 +554,6 @@ namespace u_net
             label2.Size = new Size(53, 12);
             label2.TabIndex = 114;
             label2.Text = "受注区分";
-            label2.Click += label2_Click;
             // 
             // label3
             // 
@@ -609,7 +590,6 @@ namespace u_net
             label6.Size = new Size(53, 12);
             label6.TabIndex = 120;
             label6.Text = "売上区分";
-            label6.Click += label6_Click;
             // 
             // label7
             // 
@@ -619,7 +599,6 @@ namespace u_net
             label7.Size = new Size(53, 12);
             label7.TabIndex = 122;
             label7.Text = "入金区分";
-            label7.Click += label7_Click;
             // 
             // label8
             // 
@@ -629,7 +608,6 @@ namespace u_net
             label8.Size = new Size(53, 12);
             label8.TabIndex = 124;
             label8.Text = "数量単位";
-            label8.Click += label8_Click;
             // 
             // label9
             // 
@@ -639,7 +617,6 @@ namespace u_net
             label9.Size = new Size(89, 12);
             label9.TabIndex = 126;
             label9.Text = "納品書送付処理";
-            label9.Click += label9_Click;
             // 
             // label10
             // 
@@ -731,7 +708,7 @@ namespace u_net
             ラインdataGrid.RowTemplate.Height = 21;
             ラインdataGrid.Size = new Size(473, 205);
             ラインdataGrid.TabIndex = 132;
-            ラインdataGrid.CellClick += dataGridView3_CellEnter;
+            ラインdataGrid.CellEnter += dataGridView3_CellEnter;
             // 
             // ラインコード
             // 
@@ -782,7 +759,7 @@ namespace u_net
             納品書dataGrid.RowTemplate.Height = 21;
             納品書dataGrid.Size = new Size(206, 125);
             納品書dataGrid.TabIndex = 133;
-            納品書dataGrid.CellClick += dataGridView4_CellEnter;
+            納品書dataGrid.CellEnter += dataGridView4_CellEnter;
             // 
             // 納品書コード
             // 
@@ -825,7 +802,7 @@ namespace u_net
             売上区分dataGrid.RowTemplate.Height = 21;
             売上区分dataGrid.Size = new Size(225, 205);
             売上区分dataGrid.TabIndex = 134;
-            売上区分dataGrid.CellClick += dataGridView5_CellEnter;
+            売上区分dataGrid.CellEnter += dataGridView5_CellEnter;
             // 
             // 売上区分コード
             // 
@@ -869,7 +846,7 @@ namespace u_net
             入金区分dataGrid.RowTemplate.Height = 21;
             入金区分dataGrid.Size = new Size(347, 205);
             入金区分dataGrid.TabIndex = 135;
-            入金区分dataGrid.CellClick += dataGridView6_CellEnter;
+            入金区分dataGrid.CellEnter += dataGridView6_CellEnter;
             // 
             // 入金区分コード
             // 
@@ -920,7 +897,7 @@ namespace u_net
             数量単位dataGrid.RowTemplate.Height = 21;
             数量単位dataGrid.Size = new Size(186, 205);
             数量単位dataGrid.TabIndex = 136;
-            数量単位dataGrid.CellClick += dataGridView7_CellEnter;
+            数量単位dataGrid.CellEnter += dataGridView7_CellEnter;
             // 
             // 単位コード
             // 
@@ -964,7 +941,6 @@ namespace u_net
             納品書送付処理dataGrid.RowTemplate.Height = 21;
             納品書送付処理dataGrid.Size = new Size(206, 125);
             納品書送付処理dataGrid.TabIndex = 137;
-            納品書送付処理dataGrid.CellClick += dataGridView8_CellEnter;
             納品書送付処理dataGrid.CellEnter += dataGridView8_CellEnter;
             // 
             // 納品書送付コード
@@ -1008,7 +984,7 @@ namespace u_net
             請求書送付処理dataGrid.RowTemplate.Height = 21;
             請求書送付処理dataGrid.Size = new Size(206, 125);
             請求書送付処理dataGrid.TabIndex = 138;
-            請求書送付処理dataGrid.CellClick += dataGridView9_CellEnter;
+            請求書送付処理dataGrid.CellEnter += dataGridView9_CellEnter;
             // 
             // 請求書送付コード
             // 
@@ -1051,7 +1027,7 @@ namespace u_net
             営業所dataGrid.RowTemplate.Height = 21;
             営業所dataGrid.Size = new Size(772, 125);
             営業所dataGrid.TabIndex = 139;
-            営業所dataGrid.CellClick += dataGridView10_CellEnter;
+            営業所dataGrid.CellEnter += dataGridView10_CellEnter;
             // 
             // 営業所コード
             // 
@@ -1099,6 +1075,23 @@ namespace u_net
             住所２.HeaderText = "建物名";
             住所２.Name = "住所２";
             住所２.Width = 190;
+            // 
+            // 受注区分コード
+            // 
+            受注区分コード.DataPropertyName = "受注区分コード";
+            dataGridViewCellStyle2.NullValue = null;
+            受注区分コード.DefaultCellStyle = dataGridViewCellStyle2;
+            受注区分コード.HeaderText = "コード";
+            受注区分コード.Name = "受注区分コード";
+            受注区分コード.Resizable = DataGridViewTriState.True;
+            受注区分コード.Width = 70;
+            // 
+            // 受注区分名
+            // 
+            受注区分名.DataPropertyName = "受注区分名";
+            受注区分名.HeaderText = "受注区分";
+            受注区分名.Name = "受注区分名";
+            受注区分名.Width = 120;
             // 
             // F_マスタメンテ
             // 

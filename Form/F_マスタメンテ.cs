@@ -106,7 +106,6 @@ namespace u_net
             }
             catch (Exception)
             {
-                ChangedData(false);
                 MessageBox.Show("初期化に失敗しました。", "エラー");
             }
             finally
@@ -427,9 +426,6 @@ namespace u_net
 
                     MessageBox.Show("登録を完了しました");
 
-                    // 新規モードのときは修正モードへ移行する
-                    コマンド登録.Enabled = false;
-
                     return true;
 
                 }
@@ -543,20 +539,6 @@ namespace u_net
             }
         }
 
-        public void ChangedData(bool dataChanged)
-        {
-            if (dataChanged)
-            {
-                this.Text = this.Name + "*";
-            }
-            else
-            {
-                this.Text = this.Name;
-            }
-
-            this.コマンド登録.Enabled = dataChanged;
-        }
-
         private void F_マスタメンテ_KeyDown(object sender, KeyEventArgs e)
         {
             switch (e.KeyCode)
@@ -599,7 +581,7 @@ namespace u_net
                     受注区分dataGrid.ImeMode = System.Windows.Forms.ImeMode.Disable;
                     break;
                 case "受注区分名":
-                    受注区分dataGrid.ImeMode = System.Windows.Forms.ImeMode.Off;
+                    受注区分dataGrid.ImeMode = System.Windows.Forms.ImeMode.On;
                     break;
                 default:
                     // その他のカラムにエンターされた場合の処理
@@ -773,7 +755,7 @@ namespace u_net
                 case "請求書送付コード":
                     請求書送付処理dataGrid.ImeMode = System.Windows.Forms.ImeMode.Disable;
                     break;
-                case "送付処理":
+                case "送付処理2":
                     請求書送付処理dataGrid.ImeMode = System.Windows.Forms.ImeMode.On;
                     break;
                 default:
@@ -819,40 +801,6 @@ namespace u_net
 
         }
 
-        private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void label6_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label7_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label9_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dataGridView8_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void label8_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }
 
