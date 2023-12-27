@@ -1,6 +1,6 @@
 ﻿namespace u_net
 {
-    partial class F_支払管理
+    partial class F_支払明細参照
     {
         /// <summary>
         /// Required designer variable.
@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(F_支払管理));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(F_支払明細参照));
             panel1 = new Panel();
             コマンド入出力 = new Button();
-            コマンド承認 = new Button();
+            コマンドF8 = new Button();
             コマンドF7 = new Button();
-            コマンド支払 = new Button();
-            コマンドF6 = new Button();
+            コマンド発注参照 = new Button();
+            コマンド支払先参照 = new Button();
             コマンド印刷 = new Button();
             コマンド保守 = new Button();
             コマンド初期化 = new Button();
@@ -49,19 +49,31 @@
             dataGridView1 = new DataGridView();
             panel2 = new Panel();
             toolTip1 = new ToolTip(components);
+            支払先検索ボタン = new Button();
+            集計年度_ラベル = new Label();
+            集計年月 = new ComboBox();
+            支払先コード_ラベル = new Label();
+            支払区分コード = new ComboBox();
+            支払先コード = new TextBox();
+            支払区分_ラベル = new Label();
+            支払先参照ボタン = new Button();
+            支払先名 = new TextBox();
+            statusStrip1 = new StatusStrip();
+            toolStripStatusLabel1 = new ToolStripStatusLabel();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel2.SuspendLayout();
+            statusStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
             // 
             panel1.BackColor = SystemColors.ActiveCaption;
             panel1.Controls.Add(コマンド入出力);
-            panel1.Controls.Add(コマンド承認);
+            panel1.Controls.Add(コマンドF8);
             panel1.Controls.Add(コマンドF7);
-            panel1.Controls.Add(コマンド支払);
-            panel1.Controls.Add(コマンドF6);
+            panel1.Controls.Add(コマンド発注参照);
+            panel1.Controls.Add(コマンド支払先参照);
             panel1.Controls.Add(コマンド印刷);
             panel1.Controls.Add(コマンド保守);
             panel1.Controls.Add(コマンド初期化);
@@ -91,20 +103,19 @@
             コマンド入出力.Text = "入出力";
             コマンド入出力.UseVisualStyleBackColor = true;
             // 
-            // コマンド承認
+            // コマンドF8
             // 
-            コマンド承認.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            コマンド承認.ForeColor = Color.Blue;
-            コマンド承認.ImageAlign = ContentAlignment.BottomLeft;
-            コマンド承認.Location = new Point(496, 4);
-            コマンド承認.Margin = new Padding(0, 2, 0, 2);
-            コマンド承認.Name = "コマンド承認";
-            コマンド承認.Size = new Size(70, 22);
-            コマンド承認.TabIndex = 11;
-            コマンド承認.TabStop = false;
-            コマンド承認.Text = "承認";
-            コマンド承認.UseVisualStyleBackColor = true;
-            コマンド承認.Click += コマンド承認_Click;
+            コマンドF8.Enabled = false;
+            コマンドF8.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            コマンドF8.ForeColor = Color.Blue;
+            コマンドF8.ImageAlign = ContentAlignment.BottomLeft;
+            コマンドF8.Location = new Point(496, 4);
+            コマンドF8.Margin = new Padding(0, 2, 0, 2);
+            コマンドF8.Name = "コマンドF8";
+            コマンドF8.Size = new Size(70, 22);
+            コマンドF8.TabIndex = 11;
+            コマンドF8.TabStop = false;
+            コマンドF8.UseVisualStyleBackColor = true;
             // 
             // コマンドF7
             // 
@@ -120,35 +131,38 @@
             コマンドF7.TabStop = false;
             コマンドF7.UseVisualStyleBackColor = true;
             // 
-            // コマンド支払
+            // コマンド発注参照
             // 
-            コマンド支払.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            コマンド支払.ForeColor = Color.Blue;
-            コマンド支払.ImageAlign = ContentAlignment.BottomLeft;
-            コマンド支払.Location = new Point(291, 4);
-            コマンド支払.Margin = new Padding(0, 2, 0, 2);
-            コマンド支払.Name = "コマンド支払";
-            コマンド支払.Size = new Size(70, 22);
-            コマンド支払.TabIndex = 9;
-            コマンド支払.TabStop = false;
-            コマンド支払.Text = "支払";
-            toolTip1.SetToolTip(コマンド支払, "支払データ参照");
-            コマンド支払.UseVisualStyleBackColor = true;
-            コマンド支払.Click += コマンド支払_Click;
+            コマンド発注参照.Enabled = false;
+            コマンド発注参照.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            コマンド発注参照.ForeColor = Color.Blue;
+            コマンド発注参照.ImageAlign = ContentAlignment.BottomLeft;
+            コマンド発注参照.Location = new Point(291, 4);
+            コマンド発注参照.Margin = new Padding(0, 2, 0, 2);
+            コマンド発注参照.Name = "コマンド発注参照";
+            コマンド発注参照.Size = new Size(70, 22);
+            コマンド発注参照.TabIndex = 9;
+            コマンド発注参照.TabStop = false;
+            コマンド発注参照.Text = "発注";
+            toolTip1.SetToolTip(コマンド発注参照, "発注データ参照");
+            コマンド発注参照.UseVisualStyleBackColor = true;
             // 
-            // コマンドF6
+            // コマンド支払先参照
             // 
-            コマンドF6.Enabled = false;
-            コマンドF6.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            コマンドF6.ForeColor = Color.Blue;
-            コマンドF6.ImageAlign = ContentAlignment.BottomLeft;
-            コマンドF6.Location = new Point(360, 4);
-            コマンドF6.Margin = new Padding(0, 2, 0, 2);
-            コマンドF6.Name = "コマンドF6";
-            コマンドF6.Size = new Size(70, 22);
-            コマンドF6.TabIndex = 8;
-            コマンドF6.TabStop = false;
-            コマンドF6.UseVisualStyleBackColor = true;
+            コマンド支払先参照.Enabled = false;
+            コマンド支払先参照.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            コマンド支払先参照.ForeColor = Color.Blue;
+            コマンド支払先参照.ImageAlign = ContentAlignment.BottomLeft;
+            コマンド支払先参照.Location = new Point(360, 4);
+            コマンド支払先参照.Margin = new Padding(0, 2, 0, 2);
+            コマンド支払先参照.Name = "コマンド支払先参照";
+            コマンド支払先参照.Size = new Size(70, 22);
+            コマンド支払先参照.TabIndex = 8;
+            コマンド支払先参照.TabStop = false;
+            コマンド支払先参照.Text = "支払先";
+            toolTip1.SetToolTip(コマンド支払先参照, "支払先参照");
+            コマンド支払先参照.UseVisualStyleBackColor = true;
+            コマンド支払先参照.Click += コマンド明細参照_Click;
             // 
             // コマンド印刷
             // 
@@ -161,9 +175,8 @@
             コマンド印刷.Name = "コマンド印刷";
             コマンド印刷.Size = new Size(70, 22);
             コマンド印刷.TabIndex = 7;
-            コマンド印刷.TabStop = false;
             コマンド印刷.Text = "印刷";
-            toolTip1.SetToolTip(コマンド印刷, "全データ表示");
+            toolTip1.SetToolTip(コマンド印刷, "表示データの印刷");
             コマンド印刷.UseVisualStyleBackColor = true;
             // 
             // コマンド保守
@@ -242,7 +255,7 @@
             コマンド更新.TabIndex = 1;
             コマンド更新.TabStop = false;
             コマンド更新.Text = "更新";
-            toolTip1.SetToolTip(コマンド更新, "表示更新");
+            toolTip1.SetToolTip(コマンド更新, "最新の情報に更新");
             コマンド更新.UseVisualStyleBackColor = true;
             コマンド更新.Click += コマンド更新_Click;
             // 
@@ -257,6 +270,7 @@
             コマンド終了.TabIndex = 0;
             コマンド終了.TabStop = false;
             コマンド終了.Text = "終了";
+            toolTip1.SetToolTip(コマンド終了, "終了");
             コマンド終了.UseVisualStyleBackColor = true;
             コマンド終了.Click += コマンド終了_Click;
             // 
@@ -283,10 +297,9 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             label2.Location = new Point(163, 8);
             label2.Name = "label2";
-            label2.Size = new Size(17, 12);
+            label2.Size = new Size(19, 15);
             label2.TabIndex = 86;
             label2.Text = "件";
             // 
@@ -295,52 +308,207 @@
             dataGridView1.AllowUserToAddRows = false;
             dataGridView1.AllowUserToDeleteRows = false;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(0, 30);
+            dataGridView1.Location = new Point(0, 125);
             dataGridView1.Margin = new Padding(3, 2, 3, 2);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
             dataGridView1.RowTemplate.Height = 29;
             dataGridView1.Size = new Size(1054, 440);
-            dataGridView1.TabIndex = 87;
+            dataGridView1.TabIndex = 1;
+            dataGridView1.CellDoubleClick += dataGridView1_CellDoubleClick;
+            dataGridView1.CellPainting += DataGridView1_CellPainting;
+            dataGridView1.KeyDown += dataGridView1_KeyDown;
             // 
             // panel2
             // 
+            panel2.Controls.Add(statusStrip1);
             panel2.Controls.Add(表示件数);
             panel2.Controls.Add(label1);
             panel2.Controls.Add(label2);
             panel2.Dock = DockStyle.Bottom;
-            panel2.Location = new Point(0, 470);
+            panel2.Location = new Point(0, 566);
             panel2.Margin = new Padding(3, 2, 3, 2);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1054, 27);
+            panel2.Size = new Size(1054, 49);
             panel2.TabIndex = 88;
             // 
-            // F_支払管理
+            // 支払先検索ボタン
+            // 
+            支払先検索ボタン.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            支払先検索ボタン.Location = new Point(217, 67);
+            支払先検索ボタン.Margin = new Padding(4);
+            支払先検索ボタン.Name = "支払先検索ボタン";
+            支払先検索ボタン.Size = new Size(20, 20);
+            支払先検索ボタン.TabIndex = 10006;
+            支払先検索ボタン.TabStop = false;
+            支払先検索ボタン.Text = "▼";
+            toolTip1.SetToolTip(支払先検索ボタン, "支払先参照");
+            支払先検索ボタン.UseVisualStyleBackColor = true;
+            支払先検索ボタン.Click += 支払先検索ボタン_Click;
+            // 
+            // 集計年度_ラベル
+            // 
+            集計年度_ラベル.AllowDrop = true;
+            集計年度_ラベル.AutoEllipsis = true;
+            集計年度_ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            集計年度_ラベル.ForeColor = SystemColors.ActiveCaptionText;
+            集計年度_ラベル.ImageAlign = ContentAlignment.MiddleLeft;
+            集計年度_ラベル.Location = new Point(9, 41);
+            集計年度_ラベル.Margin = new Padding(0);
+            集計年度_ラベル.Name = "集計年度_ラベル";
+            集計年度_ラベル.Size = new Size(97, 20);
+            集計年度_ラベル.TabIndex = 1;
+            集計年度_ラベル.Text = "集計年度(&Y)";
+            集計年度_ラベル.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // 集計年月
+            // 
+            集計年月.BackColor = SystemColors.Window;
+            集計年月.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            集計年月.FormattingEnabled = true;
+            集計年月.ImeMode = ImeMode.Disable;
+            集計年月.Location = new Point(112, 41);
+            集計年月.Name = "集計年月";
+            集計年月.Size = new Size(102, 21);
+            集計年月.TabIndex = 2;
+            // 
+            // 支払先コード_ラベル
+            // 
+            支払先コード_ラベル.AllowDrop = true;
+            支払先コード_ラベル.AutoEllipsis = true;
+            支払先コード_ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            支払先コード_ラベル.ForeColor = SystemColors.ActiveCaptionText;
+            支払先コード_ラベル.ImageAlign = ContentAlignment.MiddleLeft;
+            支払先コード_ラベル.Location = new Point(9, 67);
+            支払先コード_ラベル.Margin = new Padding(0);
+            支払先コード_ラベル.Name = "支払先コード_ラベル";
+            支払先コード_ラベル.Size = new Size(97, 20);
+            支払先コード_ラベル.TabIndex = 3;
+            支払先コード_ラベル.Text = "支払先コード(&P)";
+            支払先コード_ラベル.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // 支払区分コード
+            // 
+            支払区分コード.BackColor = SystemColors.Window;
+            支払区分コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            支払区分コード.FormattingEnabled = true;
+            支払区分コード.ImeMode = ImeMode.Hiragana;
+            支払区分コード.Location = new Point(112, 92);
+            支払区分コード.Name = "支払区分コード";
+            支払区分コード.Size = new Size(170, 21);
+            支払区分コード.TabIndex = 6;
+            // 
+            // 支払先コード
+            // 
+            支払先コード.BackColor = Color.White;
+            支払先コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            支払先コード.ImeMode = ImeMode.Disable;
+            支払先コード.Location = new Point(112, 67);
+            支払先コード.Margin = new Padding(3, 2, 3, 2);
+            支払先コード.Name = "支払先コード";
+            支払先コード.Size = new Size(102, 20);
+            支払先コード.TabIndex = 4;
+            // 
+            // 支払区分_ラベル
+            // 
+            支払区分_ラベル.AllowDrop = true;
+            支払区分_ラベル.AutoEllipsis = true;
+            支払区分_ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            支払区分_ラベル.ForeColor = SystemColors.ActiveCaptionText;
+            支払区分_ラベル.ImageAlign = ContentAlignment.MiddleLeft;
+            支払区分_ラベル.Location = new Point(9, 93);
+            支払区分_ラベル.Margin = new Padding(0);
+            支払区分_ラベル.Name = "支払区分_ラベル";
+            支払区分_ラベル.Size = new Size(97, 20);
+            支払区分_ラベル.TabIndex = 5;
+            支払区分_ラベル.Text = "支払区分(&G)";
+            支払区分_ラベル.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // 支払先参照ボタン
+            // 
+            支払先参照ボタン.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            支払先参照ボタン.Location = new Point(239, 67);
+            支払先参照ボタン.Margin = new Padding(4);
+            支払先参照ボタン.Name = "支払先参照ボタン";
+            支払先参照ボタン.Size = new Size(20, 20);
+            支払先参照ボタン.TabIndex = 10007;
+            支払先参照ボタン.TabStop = false;
+            支払先参照ボタン.Text = "▶";
+            支払先参照ボタン.UseVisualStyleBackColor = true;
+            支払先参照ボタン.Enter += 支払先参照ボタン_Enter;
+            支払先参照ボタン.Leave += 支払先参照ボタン_Leave;
+            // 
+            // 支払先名
+            // 
+            支払先名.BackColor = Color.White;
+            支払先名.Enabled = false;
+            支払先名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            支払先名.ImeMode = ImeMode.Disable;
+            支払先名.Location = new Point(265, 67);
+            支払先名.Margin = new Padding(3, 2, 3, 2);
+            支払先名.Name = "支払先名";
+            支払先名.ReadOnly = true;
+            支払先名.Size = new Size(340, 20);
+            支払先名.TabIndex = 10008;
+            支払先名.TabStop = false;
+            // 
+            // statusStrip1
+            // 
+            statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1 });
+            statusStrip1.Location = new Point(0, 27);
+            statusStrip1.Name = "statusStrip1";
+            statusStrip1.Padding = new Padding(1, 0, 19, 0);
+            statusStrip1.Size = new Size(1054, 22);
+            statusStrip1.TabIndex = 10196;
+            statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripStatusLabel1
+            // 
+            toolStripStatusLabel1.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            toolStripStatusLabel1.Size = new Size(89, 17);
+            toolStripStatusLabel1.Text = "各種項目の説明";
+            // 
+            // F_支払明細参照
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1054, 497);
+            ClientSize = new Size(1054, 615);
+            Controls.Add(支払先名);
+            Controls.Add(支払先参照ボタン);
+            Controls.Add(支払区分_ラベル);
+            Controls.Add(支払先検索ボタン);
+            Controls.Add(支払先コード);
+            Controls.Add(支払区分コード);
+            Controls.Add(支払先コード_ラベル);
+            Controls.Add(集計年月);
+            Controls.Add(集計年度_ラベル);
             Controls.Add(panel2);
             Controls.Add(dataGridView1);
             Controls.Add(panel1);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(3, 2, 3, 2);
-            Name = "F_支払管理";
-            Text = "支払管理";
+            Name = "F_支払明細参照";
+            Text = "請求処理";
+            FormClosing += F_製品管理_FormClosing;
+            Load += Form_Load;
             KeyDown += Form_KeyDown;
             panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
+            statusStrip1.ResumeLayout(false);
+            statusStrip1.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
         private Panel panel1;
-        private Button コマンド承認;
+        private Button コマンドF8;
         private Button コマンドF7;
-        private Button コマンド支払;
-        private Button コマンドF6;
+        private Button コマンド発注参照;
+        private Button コマンド支払先参照;
         private Button コマンド印刷;
         private Button コマンド保守;
         private Button コマンド初期化;
@@ -482,5 +650,16 @@
         private Button コマンド検索;
         private Button コマンド入出力;
         private ToolTip toolTip1;
+        private Label 集計年度_ラベル;
+        internal ComboBox 集計年月;
+        private Label 支払先コード_ラベル;
+        internal ComboBox 支払区分コード;
+        private TextBox 支払先コード;
+        internal Button 支払先検索ボタン;
+        private Label 支払区分_ラベル;
+        internal Button 支払先参照ボタン;
+        private TextBox 支払先名;
+        private StatusStrip statusStrip1;
+        internal ToolStripStatusLabel toolStripStatusLabel1;
     }
 }
