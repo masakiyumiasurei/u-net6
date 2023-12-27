@@ -299,6 +299,7 @@ namespace u_net
                 this.登録者名.Text = null;
                 this.無効日時.Text = null;
                 this.無効者コード.Text = null;
+                this.ItemRevision.Text = "1";
 
                 //インターフェースを制御する
                 FunctionClass.LockData(this, false);

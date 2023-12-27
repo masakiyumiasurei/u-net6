@@ -204,7 +204,7 @@
             // 買掛区分
             // 
             this.買掛区分.DataField = "買掛区分";
-            this.買掛区分.DisplayMember = "変更操作";
+            this.買掛区分.DisplayMember = "買掛区分";
             this.買掛区分.Location = new System.Drawing.Point(34, 0);
             this.買掛区分.Name = "買掛区分";
             this.買掛区分.Size = new System.Drawing.Size(170, 17);

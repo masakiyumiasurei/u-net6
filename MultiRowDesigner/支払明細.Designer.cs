@@ -38,19 +38,18 @@
             gcMultiRow1.BackColor = Color.White;
             gcMultiRow1.EditMode = GrapeCity.Win.MultiRow.EditMode.EditOnEnter;
             gcMultiRow1.Location = new Point(0, 0);
-            gcMultiRow1.Margin = new Padding(4);
+            gcMultiRow1.Margin = new Padding(5, 5, 5, 5);
             gcMultiRow1.Name = "gcMultiRow1";
-            gcMultiRow1.Size = new Size(809, 238);
+            gcMultiRow1.Size = new Size(925, 317);
             gcMultiRow1.TabIndex = 0;
             gcMultiRow1.Template = 支払明細テンプレート1;
-            gcMultiRow1.TemplateScaleSize = new SizeF(1.166667F, 1.25F);
+            gcMultiRow1.TemplateScaleSize = new SizeF(1.33333373F, 1.66666675F);
             gcMultiRow1.Text = "gcMultiRow1";
             gcMultiRow1.CellValidating += gcMultiRow1_CellValidating;
             gcMultiRow1.CellValidated += gcMultiRow1_CellValidated;
             gcMultiRow1.CellEnter += gcMultiRow1_CellEnter;
             gcMultiRow1.DefaultValuesNeeded += gcMultiRow1_DefaultValuesNeeded;
             gcMultiRow1.EditingControlShowing += gcMultiRow1_EditingControlShowing;
-            gcMultiRow1.CellContentClick += gcMultiRow1_CellContentClick;
             // 
             // 支払明細テンプレート1
             // 
@@ -64,12 +63,12 @@
             // 
             // 支払明細
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(gcMultiRow1);
-            Margin = new Padding(4);
+            Margin = new Padding(5, 5, 5, 5);
             Name = "支払明細";
-            Size = new Size(810, 238);
+            Size = new Size(926, 317);
             ((System.ComponentModel.ISupportInitialize)gcMultiRow1).EndInit();
             ResumeLayout(false);
         }
