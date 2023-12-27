@@ -64,27 +64,122 @@ namespace u_net
         }
 
         //現在選択されているデータのコードを取得する
-        public string CurrentCode()
+        public string CurrentCode
         {
-            if (gridobject.CurrentRow != null && gridobject.Rows.Count > 0)
+            get
             {
-                // Assuming the code is in the first column (index 0)
-                return gridobject.Rows[gridobject.CurrentRow.Index].Cells[0].Value?.ToString() ?? string.Empty;
+                if (gridobject.CurrentRow != null && gridobject.Rows.Count > 0)
+                {
+                    return 購買申請明細.Rows[購買申請明細.CurrentRow.Index].Cells[0].Value.ToString() ?? string.Empty;
+                }
+                else
+                {
+                    return string.Empty;
+                }
             }
-
-            return string.Empty;
         }
 
         //現在選択されているデータの版数を取得する
-        public string CurrentEdition()
+        public string CurrentEdition
         {
-            if (gridobject.CurrentRow != null && gridobject.Rows.Count > 0)
+            get
             {
-                // Assuming the code is in the first column (index 0)
-                return gridobject.Rows[gridobject.CurrentRow.Index].Cells[1].Value?.ToString() ?? string.Empty;
+                if (gridobject.CurrentRow != null && gridobject.Rows.Count > 0)
+                {
+                    return 購買申請明細.Rows[購買申請明細.CurrentRow.Index].Cells[1].Value.ToString() ?? string.Empty;
+                }
+                else
+                {
+                    return string.Empty;
+                }
+            }
+        }
+
+        private void Form_Load(object sender, EventArgs e)
+        {
+            foreach (Control control in Controls)
+            {
+                control.PreviewKeyDown += OriginalClass.ValidateCheck;
             }
 
-            return string.Empty;
+            //実行中フォーム起動
+            FunctionClass fn = new FunctionClass();
+            fn.DoWait("しばらくお待ちください...");
+
+            LocalSetting localSetting = new LocalSetting();
+            localSetting.LoadPlace(CommonConstants.LoginUserCode, this);
+
+            MyApi myapi = new MyApi();
+            int xSize, ySize, intpixel, twipperdot;
+
+            //1インチ当たりのピクセル数 アクセスのサイズの引数がtwipなのでピクセルに変換する除算値を求める
+            intpixel = myapi.GetLogPixel();
+            twipperdot = myapi.GetTwipPerDot(intpixel);
+
+            intWindowHeight = this.Height;
+            intWindowWidth = this.Width;
+
+            gridobject = this.購買申請明細;
+
+            // DataGridViewの設定
+            gridobject.AllowUserToResizeColumns = true;
+            gridobject.Font = new Font("MS ゴシック", 9);
+            gridobject.ColumnHeadersDefaultCellStyle.Font = new Font("MS ゴシック", 9);
+            gridobject.ColumnHeadersDefaultCellStyle.WrapMode = DataGridViewTriState.False;
+            gridobject.RowsDefaultCellStyle.Font = new Font("MS ゴシック", 9);
+            gridobject.DefaultCellStyle.SelectionBackColor = Color.FromArgb(210, 210, 255);
+            gridobject.DefaultCellStyle.SelectionForeColor = Color.Black;
+            gridobject.DefaultCellStyle.WrapMode = DataGridViewTriState.False;
+            gridobject.GridColor = Color.FromArgb(230, 230, 230);
+            gridobject.CellBorderStyle = DataGridViewCellBorderStyle.Single;
+            gridobject.BackgroundColor = Color.FloralWhite;
+            gridobject.MultiSelect = false;
+            gridobject.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            gridobject.ScrollBars = ScrollBars.Both;
+            int intSelectionMode = (int)gridobject.SelectionMode;
+            gridobject.ScrollBars = ScrollBars.Both;
+
+
+            // 抽出条件を初期化する
+            InitializeFilter();
+
+            // リストを更新する
+            if (!DoUpdate())
+            {
+                //MessageBox.Show($"Initialization failed. [{Name}] will be closed.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"初期化に失敗しました。[{Name}]を終了します。", "初期処理", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                // Assuming this is a Form, close it
+                Close();
+                return;
+            }
+
+            // Redraw the grid
+            gridobject.Invalidate();
+
+            myapi.GetFullScreen(out xSize, out ySize);
+
+            int x = 10, y = 10;
+
+            this.Size = new Size(this.Width, ySize * myapi.GetTwipPerDot(intpixel) - 1200);
+            //accessのmovesizeメソッドの引数の座標単位はtwipなので以下で
+
+            this.Size = new Size(this.Width, ySize - 1200 / twipperdot);
+
+            this.StartPosition = FormStartPosition.Manual; // 手動で位置を指定
+            int screenWidth = Screen.PrimaryScreen.Bounds.Width; // プライマリスクリーンの幅
+            x = (screenWidth - this.Width) / 2;
+            this.Location = new Point(x, y);
+
+
+            fn.WaitForm.Close();
+            Cleargrid(購買申請明細);
+        }
+
+        private void Form_Unload(object sender, FormClosingEventArgs e)
+        {
+            LocalSetting ls = new LocalSetting();
+            // ウィンドウの配置情報を保存する
+            ls.SavePlace(CommonConstants.LoginUserCode, this);
         }
 
         private void InitializeFilter()
@@ -105,6 +200,38 @@ namespace u_net
             this.lng削除指定 = 1;
         }
 
+        public bool DoUpdate()
+        {
+            bool result = false;
+
+            try
+            {
+                gridobject.SuspendLayout();
+
+                if (SetGrid() && FormatGrid())
+                {
+                    return true;
+                }
+                else
+                {
+                    // Handle the error or logging as needed
+                    Debug.WriteLine($"{nameof(F_購買申請管理)}_DoUpdate - An error occurred during update.");
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                // Handle the exception or logging as needed
+                Debug.WriteLine($"{nameof(F_購買申請管理)}_DoUpdate - {ex.GetType().Name}: {ex.Message}");
+                return false;
+            }
+            finally
+            {
+                gridobject.ResumeLayout();
+            }
+        }
+
+
         private bool SetGrid()
         {
             Connect();
@@ -119,19 +246,19 @@ namespace u_net
                 // 申請日指定
                 if (dtm申請日開始 != DateTime.MinValue && dtm申請日終了 != DateTime.MinValue)
                 {
-                    strFilter = FunctionClass.WhereString(strFilter, $"'{dtm申請日開始}'<=申請日 and 申請日<='{dtm申請日終了}'");
+                    strFilter = FunctionClass.WhereString(strFilter, $"'{dtm申請日開始.ToString("yyyy/MM/dd")}'<=申請日 and 申請日<='{dtm申請日終了.ToString("yyyy/MM/dd")}'");
                 }
 
                 // 購買納期指定
                 if (dtm購買納期開始 != DateTime.MinValue && dtm購買納期終了 != DateTime.MinValue)
                 {
-                    strFilter = FunctionClass.WhereString(strFilter, $"'{dtm購買納期開始}'<=購買納期 and 購買納期<='{dtm購買納期終了}'");
+                    strFilter = FunctionClass.WhereString(strFilter, $"'{dtm購買納期開始.ToString("yyyy/MM/dd")}'<=購買納期 and 購買納期<='{dtm購買納期終了.ToString("yyyy/MM/dd")}'");
                 }
 
                 // 出荷予定日指定
                 if (dtm出荷予定日開始 != DateTime.MinValue && dtm出荷予定日終了 != DateTime.MinValue)
                 {
-                    strFilter = FunctionClass.WhereString(strFilter, $"'{dtm出荷予定日開始}'<=出荷予定日 and 出荷予定日<='{dtm出荷予定日終了}'");
+                    strFilter = FunctionClass.WhereString(strFilter, $"'{dtm出荷予定日開始.ToString("yyyy/MM/dd")}'<=出荷予定日 and 出荷予定日<='{dtm出荷予定日終了.ToString("yyyy/MM/dd")}'");
                 }
 
                 // 基本型式名指定
@@ -206,15 +333,13 @@ namespace u_net
                 if (string.IsNullOrEmpty(strFilter))
                 {
                     //strSQL = "SELECT * FROM V購買申請管理 ORDER BY 購買申請コード DESC";
-                    strSQL = "SELECT 購買申請コード,購買申請版数,申請日,購買納期,出荷予定日,基本型式名,シリーズ名,ロット番号,数量,材料単価,小計,申請者名,承認,完了,製造部確認,終了,削除 FROM V購買申請管理 ORDER BY 購買申請コード DESC";
+                    strSQL = "SELECT 購買申請コード,購買申請版数,申請日,購買納期,出荷予定日,基本型式名,シリーズ名,ロット番号,FORMAT(数量, N'#0') AS 数量,FORMAT(材料単価, N'#0') AS 材料単価,FORMAT(小計, N'#0') AS 小計,申請者名,承認,完了,製造部確認,終了,削除 FROM V購買申請管理 ORDER BY 購買申請コード DESC";
                 }
                 else
                 {
                     //strSQL = $"SELECT * FROM V購買申請管理 WHERE {strFilter} ORDER BY 購買申請コード DESC";
-                    strSQL = $"SELECT 購買申請コード,購買申請版数,申請日,購買納期,出荷予定日,基本型式名,シリーズ名,ロット番号,数量,材料単価,小計,申請者名,承認,完了,製造部確認,終了,削除 FROM V購買申請管理 WHERE {strFilter} ORDER BY 購買申請コード DESC";
+                    strSQL = $"SELECT 購買申請コード,購買申請版数,申請日,購買納期,出荷予定日,基本型式名,シリーズ名,ロット番号,FORMAT(数量, N'#0') AS 数量,FORMAT(材料単価, N'#0') AS 材料単価,FORMAT(小計, N'#0') AS 小計,申請者名,承認,完了,製造部確認,終了,削除 FROM V購買申請管理 WHERE {strFilter}  ORDER BY 購買申請コード DESC";
                 }
-
-                //cn.Open();
 
                 using (SqlCommand command = new SqlCommand(strSQL, cn))
                 {
@@ -235,10 +360,6 @@ namespace u_net
                     appEXT = false;
                 }
 
-                //gridobject.Rows.Clear();
-                //gridobject.RowCount = dt.Rows.Count + 1;
-                //gridobject.Rows[0].Frozen = true;
-
                 result = true;
             }
             catch (Exception ex)
@@ -253,144 +374,117 @@ namespace u_net
             return result;
         }
 
-        private void Form_Load(object sender, EventArgs e)
-        {
-            foreach (Control control in Controls)
-            {
-                control.PreviewKeyDown += OriginalClass.ValidateCheck;
-            }
-
-            FunctionClass fn = new FunctionClass();
-            fn.DoWait("しばらくお待ちください...");
-
-            //実行中フォーム起動
-            string LoginUserCode = "000";//テスト用 ログインユーザを実行中にどのように管理するか決まったら修正
-            LocalSetting localSetting = new LocalSetting();
-            localSetting.LoadPlace(LoginUserCode, this);
-
-            MyApi myapi = new MyApi();
-            int xSize, ySize, intpixel, twipperdot;
-
-            //1インチ当たりのピクセル数 アクセスのサイズの引数がtwipなのでピクセルに変換する除算値を求める
-            intpixel = myapi.GetLogPixel();
-            twipperdot = myapi.GetTwipPerDot(intpixel);
-
-            intWindowHeight = this.Height;
-            intWindowWidth = this.Width;
-
-            gridobject = this.購買申請明細;
-
-            // DataGridViewの設定
-            gridobject.AllowUserToResizeColumns = true;
-            gridobject.Font = new Font("BIZ UDPゴシック", 10);
-            gridobject.DefaultCellStyle = new DataGridViewCellStyle
-            {
-                BackColor = Color.FromArgb(210, 210, 255),
-                ForeColor = Color.Black,
-                SelectionBackColor = Color.FromArgb(210, 210, 255),
-                SelectionForeColor = Color.Black
-            };
-            gridobject.GridColor = Color.FromArgb(230, 230, 230);
-            gridobject.CellBorderStyle = DataGridViewCellBorderStyle.Single;
-            gridobject.BackgroundColor = Color.FloralWhite;
-            gridobject.MultiSelect = false;
-            gridobject.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            gridobject.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-            gridobject.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
-            gridobject.RowHeadersVisible = false;
-            gridobject.RowTemplate.Height = 10 + (int)gridobject.Font.Size;
-            gridobject.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            gridobject.ScrollBars = ScrollBars.Both;
-            gridobject.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
-            gridobject.RowsDefaultCellStyle.Font = new Font("BIZ UDPゴシック", 10);
-            gridobject.RowTemplate.Height = (int)(gridobject.RowTemplate.Height + 10 * gridobject.Font.Size);
-
-            gridobject.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            int intSelectionMode = (int)gridobject.SelectionMode;
-            gridobject.ScrollBars = ScrollBars.Both;
-
-
-
-            // Update the list
-            if (!DoUpdate())
-            {
-                //MessageBox.Show($"Initialization failed. [{Name}] will be closed.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                MessageBox.Show($"初期化に失敗しました。[{Name}]を終了します。", "初期処理", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                // Assuming this is a Form, close it
-                Close();
-                return;
-            }
-
-            // Redraw the grid
-            gridobject.Invalidate();
-
-            myapi.GetFullScreen(out xSize, out ySize);
-
-            int x = 10, y = 10;
-
-            this.Size = new Size(this.Width, ySize * myapi.GetTwipPerDot(intpixel) - 1200);
-            //accessのmovesizeメソッドの引数の座標単位はtwipなので以下で
-
-            this.Size = new Size(this.Width, ySize - 1200 / twipperdot);
-
-            this.StartPosition = FormStartPosition.Manual; // 手動で位置を指定
-            int screenWidth = Screen.PrimaryScreen.Bounds.Width; // プライマリスクリーンの幅
-            x = (screenWidth - this.Width) / 2;
-            this.Location = new Point(x, y);
-
-            InitializeFilter();
-            DoUpdate();
-            fn.WaitForm.Close();
-            Cleargrid(購買申請明細);
-        }
-
-        private void Form_Resize(object sender, EventArgs e)
+        public bool FormatGrid()
         {
             try
             {
-                // Assuming 購買申請明細 is a control in your form
-                購買申請明細.Height += this.Height - intWindowHeight;
-                intWindowHeight = this.Height; // Save the new height
+                TotalMoney = 0;
 
-                購買申請明細.Width += this.Width - intWindowWidth;
-                intWindowWidth = this.Width; // Save the new width
-            }
-            catch (Exception ex)
-            {
-                Debug.Print($"{Name}_Form_Resize - {ex.HResult} : {ex.Message}");
-            }
-        }
-
-        private void Form_Unload(object sender, EventArgs e)
-        {
-            string LoginUserCode = "000";
-            LocalSetting localSettingInstance = new LocalSetting();
-            localSettingInstance.SavePlace(LoginUserCode, this);
-        }
-
-        public bool DoUpdate()
-        {
-            bool result = false;
-
-            try
-            {
-                gridobject.SuspendLayout();
-
-                if (SetGrid() && FormatGrid())
+                if(gridobject.Rows.Count <= 0)
                 {
+                    合計金額.Text = "0";
+                    税込合計金額.Text = "0";
                     return true;
                 }
-                else
+
+                Connect();
+
+                // 描画を抑止する
+                gridobject.SuspendLayout();
+
+                // 合計金額を求める(行および列の初期値は0)
+                for (int row = 0; row < gridobject.Rows.Count; row++)
                 {
-                    // Handle the error or logging as needed
-                    Debug.WriteLine($"{nameof(F_購買申請管理)}_DoUpdate - An error occurred during update.");
-                    return false;
+                    // 承認のチェック
+                    if (gridobject.Rows[row].Cells[12].Value.ToString() == "■")
+                    {
+                        // 削除のチェック
+                        if (gridobject.Rows[row].Cells[16].Value.ToString() != "■")
+                        {
+                            // 小計のチェック
+                            if (gridobject.Rows[row].Cells[10].Value.ToString() != "")
+                            {
+                                // 合計金額
+                                TotalMoney += Convert.ToInt32(gridobject.Rows[row].Cells[10].Value);
+                            }
+                        }
+                    }
                 }
+
+
+
+                MyApi myapi = new MyApi();
+                int xSize, ySize, intpixel, twipperdot;
+
+                ////1インチ当たりのピクセル数 アクセスのサイズの引数がtwipなのでピクセルに変換する除算値を求める
+                intpixel = myapi.GetLogPixel();
+                twipperdot = myapi.GetTwipPerDot(intpixel);
+
+                intWindowHeight = this.Height;
+                intWindowWidth = this.Width;
+
+                //// DataGridViewの設定
+                gridobject.Columns[0].DefaultCellStyle.BackColor = Color.FromArgb(255, 255, 200); // 薄い黄色
+                gridobject.Columns[1].DefaultCellStyle.BackColor = Color.FromArgb(255, 255, 200);
+
+                //0列目はaccessでは行ヘッダのため、ずらす
+                gridobject.Columns[0].Width = 1400 / twipperdot; //購買申請コード
+                gridobject.Columns[1].Width = 400 / twipperdot; //版数
+                gridobject.Columns[2].Width = 1300 / twipperdot; //申請日
+                gridobject.Columns[3].Width = 1300 / twipperdot; //購買納期
+                gridobject.Columns[4].Width = 1300 / twipperdot; //出荷予定日
+                gridobject.Columns[5].Width = 2300 / twipperdot; //基本型式名
+                gridobject.Columns[6].Width = 1500 / twipperdot; //シリーズ名
+                gridobject.Columns[7].Width = 2000 / twipperdot; //ロット番号
+                gridobject.Columns[8].Width = 800 / twipperdot; //数量
+                gridobject.Columns[9].Width = 1200 / twipperdot; //材料単価
+                gridobject.Columns[10].Width = 1200 / twipperdot; //小計
+                gridobject.Columns[11].Width = 1200 / twipperdot; //申請者名
+                gridobject.Columns[12].Width = 300 / twipperdot; //承
+                gridobject.Columns[13].Width = 300 / twipperdot; //完
+                gridobject.Columns[14].Width = 300 / twipperdot; //製
+                gridobject.Columns[15].Width = 300 / twipperdot; //終
+                gridobject.Columns[16].Width = 300 / twipperdot; //削
+
+
+                // カーソル位置の復元などの後処理
+                gridobject.ResumeLayout();
+
+                // Retrieve 最新税率
+                string strSQL = "SELECT 消費税率 FROM T消費税 WHERE (適用日 = (SELECT MAX(適用日) AS 適用日 FROM T消費税 AS T消費税_1))";
+
+                DataTable dataTable = new DataTable();
+
+                using (SqlCommand command = new SqlCommand(strSQL, cn))
+                {
+                    using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+                    {
+                        adapter.Fill(dataTable);
+                    }
+                }
+
+                Debug.Print(TotalMoney.ToString());
+                合計金額.Text = TotalMoney.ToString("#,0");
+
+                if (dataTable.Rows.Count > 0)
+                {
+                    decimal 消費税率 = Convert.ToDecimal(dataTable.Rows[0]["消費税率"]);
+
+                    // 税込合計金額の計算
+                    decimal TotalMoneyIncludingTax = TotalMoney * (1 + 消費税率);
+
+                    Debug.Print(TotalMoneyIncludingTax.ToString());
+
+                    // 端数を切り捨てて表示
+                    ////税込合計金額.Text = Math.Floor(TotalMoneyIncludingTax).ToString("#,0");
+                    string[] tmp = TotalMoneyIncludingTax.ToString("#,0").Split(".");
+                    税込合計金額.Text = tmp[0];
+                }
+                return true;
             }
             catch (Exception ex)
             {
-                // Handle the exception or logging as needed
-                Debug.WriteLine($"{nameof(F_購買申請管理)}_DoUpdate - {ex.GetType().Name}: {ex.Message}");
+                Console.WriteLine($"{nameof(F_購買申請管理)}_FormatGrid - {ex.GetType().Name}: {ex.Message}");
                 return false;
             }
             finally
@@ -399,14 +493,188 @@ namespace u_net
             }
         }
 
-        private void FunctionKeyDown(object sender, KeyEventArgs e, int shift)
+        private void DataGridView1_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+            //列ヘッダーかどうか調べる
+            if (e.ColumnIndex < 0 && e.RowIndex >= 0)
+            {
+                購買申請明細.SuspendLayout();
+                //セルを描画する
+                e.Paint(e.ClipBounds, DataGridViewPaintParts.All);
+
+                //行番号を描画する範囲を決定する
+                //e.AdvancedBorderStyleやe.CellStyle.Paddingは無視
+                Rectangle indexRect = e.CellBounds;
+                indexRect.Inflate(-2, -2);
+                //行番号を描画する
+                TextRenderer.DrawText(e.Graphics,
+                    (e.RowIndex + 1).ToString(),
+                    e.CellStyle.Font,
+                    indexRect,
+                    e.CellStyle.ForeColor,
+                    TextFormatFlags.Right | TextFormatFlags.VerticalCenter);
+                //描画が完了したことを知らせる
+                e.Handled = true;
+                購買申請明細.ResumeLayout();
+
+            }
+        }
+
+        //ダブルクリックでメーカーフォームを開く　メーカーコードを渡す
+        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            //if (e.Button != MouseButtons.Left) return; // 左ボタンのダブルクリック以外は無視
+
+            if (e.RowIndex >= 0) // ヘッダー行でない場合
+            {
+                string selectedData = 購買申請明細.Rows[e.RowIndex].Cells[0].Value.ToString(); // 1列目のデータを取得
+                selectedData += "," + 購買申請明細.Rows[e.RowIndex].Cells[1].Value.ToString(); // 2列目のデータを取得
+
+                F_購買申請 targetform = new F_購買申請();
+
+                targetform.args = selectedData;
+                targetform.ShowDialog();
+            }
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0) // ヘッダー行でない場合
+            {
+                購買申請明細.ClearSelection();
+                購買申請明細.Rows[e.RowIndex].Selected = true;
+            }
+        }
+
+
+        private bool sorting;
+        private void dataGridView1_Sorted(object sender, EventArgs e)
+        {
+            if (!sorting)
+            {
+                sorting = true;
+
+                // DataGridViewのソートが完了したら、先頭行を選択する
+                if (購買申請明細.Rows.Count > 0)
+                {
+                    Cleargrid(購買申請明細);
+
+                }
+
+                sorting = false;
+            }
+        }
+
+        private void dataGridView1_KeyDown(object sender, KeyEventArgs e)
+        {
+            // Shiftキーが押されているときは何もしない
+            if (e.Shift)
+            {
+                e.SuppressKeyPress = true;
+            }
+        }
+
+        //選択行をクリアして先頭を表示して先頭行を選択
+        private void Cleargrid(DataGridView dataGridView)
+        {
+            dataGridView.ClearSelection();
+
+            if (dataGridView.Rows.Count > 0)
+            {
+                dataGridView.Rows[0].Selected = true;
+                dataGridView.FirstDisplayedScrollingRowIndex = 0; // 先頭行を表示
+            }
+        }
+
+        private void コマンド終了_Click(object sender, EventArgs e)
+        {
+            購買申請明細.Focus();
+            this.Close();
+        }
+
+
+        private void コマンド購買申請_Click(object sender, EventArgs e)
+        {
+            購買申請明細.Focus();
+            F_購買申請 form = new F_購買申請();
+            form.ShowDialog();
+        }
+
+        private void コマンド保守_Click(object sender, EventArgs e)
+        {
+            購買申請明細.Focus(); // DataGridViewにフォーカスを設定
+            MessageBox.Show("機能が定義されていません。", "保守コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void コマンド印刷_Click(object sender, EventArgs e)
+        {
+            購買申請明細.Focus(); // DataGridViewにフォーカスを設定
+            objParent = this;
+            MessageBox.Show("現在開発中です。", "印刷コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void コマンド抽出_Click(object sender, EventArgs e)
+        {
+            購買申請明細.Focus();
+            objParent = this;
+            F_購買申請管理_抽出 form = new F_購買申請管理_抽出();
+            form.ShowDialog();
+        }
+
+        private void コマンド入出力_Click(object sender, EventArgs e)
+        {
+            購買申請明細.Focus(); // DataGridViewにフォーカスを設定
+            objParent = this;
+            MessageBox.Show("機能が定義されていません。", "入出力コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void コマンド初期化_Click(object sender, EventArgs e)
+        {
+            購買申請明細.Focus(); // DataGridViewにフォーカスを設定
+            objParent = this;
+            MessageBox.Show("現在開発中です。", "初期化コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+
+        private void コマンド更新_Click(object sender, EventArgs e)
         {
             try
             {
-                // Shiftキー検出
-                bool shiftDown = (shift & 1) != 0;
-                if (shiftDown) Console.WriteLine(Name + " - Shiftキーが押されました");
+                購買申請明細.Focus();
+                gridobject.SuspendLayout();
+                ////objParent = this;
+                if (SetGrid() && FormatGrid())
+                {
 
+                }
+                else
+                {
+                    Debug.WriteLine($"{nameof(F_購買申請管理)}_コマンド更新_Click - An error occurred during update.");
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.Print($"{Name}_コマンド更新_Click - {ex.HResult}: {ex.Message}");
+                MessageBox.Show("更新に失敗しました。", "更新コマンド", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                gridobject.ResumeLayout();
+            }
+        }
+
+        private void コマンド検索_Click(object sender, EventArgs e)
+        {
+            購買申請明細.Focus();
+            objParent = this;
+
+            MessageBox.Show("現在開発中です。", "検索コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void F_購買申請管理_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
                 switch (e.KeyCode)
                 {
                     case Keys.Space: //コンボボックスならドロップダウン
@@ -492,6 +760,7 @@ namespace u_net
                         if (ActiveControl == 購買申請明細)
                         {
                             F_購買申請 form = new F_購買申請();
+                            form.args = CurrentCode + "," + CurrentEdition;
                             form.ShowDialog();
                         }
                         break;
@@ -501,294 +770,6 @@ namespace u_net
             {
                 Console.WriteLine($"{Name}_FunctionKeyDown - {ex.GetType().Name} : {ex.Message}");
             }
-        }
-
-        public bool FormatGrid()
-        {
-            try
-            {
-                TotalMoney = 0;
-
-                Connect();
-
-                // 描画を抑止する
-                gridobject.SuspendLayout();
-
-                // 合計金額を求める(行および列の初期値は0)
-                for (int row = 0; row < gridobject.Rows.Count; row++)
-                {
-                    // 承認のチェック
-                    if (gridobject.Rows[row].Cells[12].Value.ToString() == "■")
-                    {
-                        // 削除のチェック
-                        if (gridobject.Rows[row].Cells[16].Value.ToString() != "■")
-                        {
-                            // 小計のチェック
-                            if (gridobject.Rows[row].Cells[10].Value.ToString() != "")
-                            {
-                                // 合計金額
-                                TotalMoney += Convert.ToInt32(gridobject.Rows[row].Cells[10].Value);
-                            }
-                        }
-                    }
-                }
-
-                // カーソル位置の復元などの後処理
-                gridobject.ResumeLayout();
-
-                //SqlTransaction transaction = cn.BeginTransaction();
-
-                // Retrieve 最新税率
-                string strSQL = "SELECT 消費税率 FROM T消費税 WHERE (適用日 = (SELECT MAX(適用日) AS 適用日 FROM T消費税 AS T消費税_1))";
-
-                //using (SqlCommand command = new SqlCommand(strSQL, cn, transaction))
-                //{
-                //    command.ExecuteNonQuery();
-                //}
-
-                DataTable dataTable = new DataTable();
-
-                SqlTransaction transaction = cn.BeginTransaction();
-                {
-                    using (SqlCommand command = new SqlCommand(strSQL, cn, transaction))
-                    {
-                        command.ExecuteNonQuery();
-                    }
-
-                    using (SqlCommand command = new SqlCommand(strSQL, cn, transaction))
-                    {
-                        using (SqlDataAdapter adapter = new SqlDataAdapter(command))
-                        {
-                            adapter.Fill(dataTable);
-
-                            SqlCommandBuilder commandBuilder = new SqlCommandBuilder(adapter);
-                            adapter.Update(dataTable);
-                        }
-                    }
-                    // トランザクションをコミット
-                    transaction.Commit();
-                }
-
-                Debug.Print(TotalMoney.ToString());
-                合計金額.Text = TotalMoney.ToString("#,0");
-
-                if (dataTable.Rows.Count > 0)
-                {
-                    decimal 消費税率 = Convert.ToDecimal(dataTable.Rows[0]["消費税率"]);
-
-                    // 税込合計金額の計算
-                    decimal TotalMoneyIncludingTax = TotalMoney * (1 + 消費税率);
-
-                    Debug.Print(TotalMoneyIncludingTax.ToString());
-
-                    // 端数を切り捨てて表示
-                    ////税込合計金額.Text = Math.Floor(TotalMoneyIncludingTax).ToString("#,0");
-                    string[] tmp = TotalMoneyIncludingTax.ToString("#,0").Split(".");
-                    税込合計金額.Text = tmp[0];
-                }
-                return true;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"{nameof(F_購買申請管理)}_FormatGrid - {ex.GetType().Name}: {ex.Message}");
-                return false;
-            }
-            finally
-            {
-                gridobject.ResumeLayout();
-            }
-        }
-
-        private void DataGridView1_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
-        {
-            //列ヘッダーかどうか調べる
-            if (e.ColumnIndex < 0 && e.RowIndex >= 0)
-            {
-                購買申請明細.SuspendLayout();
-                //セルを描画する
-                e.Paint(e.ClipBounds, DataGridViewPaintParts.All);
-
-                //行番号を描画する範囲を決定する
-                //e.AdvancedBorderStyleやe.CellStyle.Paddingは無視
-                Rectangle indexRect = e.CellBounds;
-                indexRect.Inflate(-2, -2);
-                //行番号を描画する
-                TextRenderer.DrawText(e.Graphics,
-                    (e.RowIndex + 1).ToString(),
-                    e.CellStyle.Font,
-                    indexRect,
-                    e.CellStyle.ForeColor,
-                    TextFormatFlags.Right | TextFormatFlags.VerticalCenter);
-                //描画が完了したことを知らせる
-                e.Handled = true;
-                購買申請明細.ResumeLayout();
-
-            }
-        }
-
-        //ダブルクリックでメーカーフォームを開く　メーカーコードを渡す
-        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            //if (e.Button != MouseButtons.Left) return; // 左ボタンのダブルクリック以外は無視
-
-            if (e.RowIndex >= 0) // ヘッダー行でない場合
-            {
-                string selectedData = 購買申請明細.Rows[e.RowIndex].Cells[0].Value.ToString(); // 1列目のデータを取得
-
-                F_メーカー targetform = new F_メーカー();
-
-                targetform.args = selectedData;
-                targetform.ShowDialog();
-            }
-        }
-
-        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex >= 0) // ヘッダー行でない場合
-            {
-                購買申請明細.ClearSelection();
-                購買申請明細.Rows[e.RowIndex].Selected = true;
-            }
-        }
-
-
-        private bool sorting;
-        private void dataGridView1_Sorted(object sender, EventArgs e)
-        {
-            if (!sorting)
-            {
-                sorting = true;
-
-                // DataGridViewのソートが完了したら、先頭行を選択する
-                if (購買申請明細.Rows.Count > 0)
-                {
-                    Cleargrid(購買申請明細);
-
-                }
-
-                sorting = false;
-            }
-        }
-
-        private void dataGridView1_KeyDown(object sender, KeyEventArgs e)
-        {
-            // Shiftキーが押されているときは何もしない
-            if (e.Shift)
-            {
-                e.SuppressKeyPress = true;
-            }
-        }
-
-        //選択行をクリアして先頭を表示して先頭行を選択
-        private void Cleargrid(DataGridView dataGridView)
-        {
-            dataGridView.ClearSelection();
-
-            if (dataGridView.Rows.Count > 0)
-            {
-                dataGridView.Rows[0].Selected = true;
-                dataGridView.FirstDisplayedScrollingRowIndex = 0; // 先頭行を表示
-            }
-        }
-
-        private void コマンド終了_Click(object sender, EventArgs e)
-        {
-            購買申請明細.Focus();
-            this.Close();
-        }
-
-        private void コマンドメール_Click(object sender, EventArgs e)
-        {
-
-
-
-
-
-
-
-        }
-
-        private void コマンド購買申請_Click(object sender, EventArgs e)
-        {
-            購買申請明細.Focus();
-            F_購買申請 form = new F_購買申請();
-            form.ShowDialog();
-        }
-
-        private void コマンド保守_Click(object sender, EventArgs e)
-        {
-            購買申請明細.Focus(); // DataGridViewにフォーカスを設定
-            MessageBox.Show("機能が定義されていません。", "保守コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
-
-        private void コマンド印刷_Click(object sender, EventArgs e)
-        {
-            購買申請明細.Focus(); // DataGridViewにフォーカスを設定
-            objParent = this;
-            MessageBox.Show("現在開発中です。", "印刷コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
-
-        private void コマンド抽出_Click(object sender, EventArgs e)
-        {
-            購買申請明細.Focus();
-            objParent = this;
-            F_購買申請管理_抽出 form = new F_購買申請管理_抽出();
-            form.ShowDialog();
-        }
-
-        private void コマンド入出力_Click(object sender, EventArgs e)
-        {
-            購買申請明細.Focus(); // DataGridViewにフォーカスを設定
-            objParent = this;
-            MessageBox.Show("機能が定義されていません。", "入出力コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
-
-        private void コマンド初期化_Click(object sender, EventArgs e)
-        {
-            購買申請明細.Focus(); // DataGridViewにフォーカスを設定
-            objParent = this;
-            MessageBox.Show("現在開発中です。", "初期化コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
-
-
-        private void コマンド更新_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                購買申請明細.Focus();
-                gridobject.SuspendLayout();
-                ////objParent = this;
-                if (SetGrid() && FormatGrid())
-                {
-
-                }
-                else
-                {
-                    Debug.WriteLine($"{nameof(F_購買申請管理)}_コマンド更新_Click - An error occurred during update.");
-                }
-            }
-            catch (Exception ex)
-            {
-                Debug.Print($"{Name}_コマンド更新_Click - {ex.HResult}: {ex.Message}");
-                MessageBox.Show("更新に失敗しました。", "更新コマンド", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
-                gridobject.ResumeLayout();
-            }
-        }
-
-        private void コマンド検索_Click(object sender, EventArgs e)
-        {
-            購買申請明細.Focus();
-            objParent = this;
-
-            MessageBox.Show("現在開発中です。", "検索コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
-
-        private void Form_KeyDown(object sender, KeyEventArgs e, int shift)
-        {
-            FunctionKeyDown(sender, e, shift);
         }
 
         private bool ascending = true;
@@ -855,26 +836,6 @@ namespace u_net
             if (!DoUpdate())
             {
                 MessageBox.Show("抽出処理は失敗しました。", "警告", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            }
-        }
-
-        private void 購買申請明細_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            try
-            {
-                F_購買申請 form = new F_購買申請();
-
-                // 例外が発生しても処理を続行する
-                if (e.Button == MouseButtons.Left && gridobject.CurrentCell.RowIndex != -1)
-                {
-                    // 別のフォームを開く処理
-                    form.ShowDialog();
-                }
-            }
-            catch (Exception ex)
-            {
-                // 例外が発生した場合のエラーハンドリング
-                Debug.WriteLine($"Error in 購買申請明細_DoubleClick: {ex.Message}");
             }
         }
 
@@ -1098,6 +1059,7 @@ namespace u_net
             購買申請明細.Focus();
             objParent = this;
             F_購買申請 form = new F_購買申請();
+            form.args = CurrentCode + "," + CurrentEdition;
             form.ShowDialog();
         }
     }
