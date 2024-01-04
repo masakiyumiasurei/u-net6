@@ -133,12 +133,12 @@ namespace u_net
             OriginalClass ofn = new OriginalClass();
             ofn.SetComboBox(勤務地コード, "SELECT * FROM M営業所");
 
-            this.社員分類.DataSource = new KeyValuePair<int, String>[] {
+            this.パート.DataSource = new KeyValuePair<int, String>[] {
                 new KeyValuePair<int, String>(1, "パート"),
                 new KeyValuePair<int, String>(0, "正社員"),
             };
-            this.社員分類.DisplayMember = "Value";
-            this.社員分類.ValueMember = "Key";
+            this.パート.DisplayMember = "Value";
+            this.パート.ValueMember = "Key";
 
             try
             {
@@ -1367,6 +1367,11 @@ namespace u_net
                     break;
 
             }
+        }
+
+        private void Email作成ボタン_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

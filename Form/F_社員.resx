@@ -120,13 +120,23 @@
   <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>128, 44</value>
   </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="Email作成ボタン.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAEQSURBVDhPxZIxTwJBEIUXSytqvNuFio7b1cqKUjF6t8uP8C/YUlrZaaG/wL9iZehspSBBjQmd
+        EYX3jgExCrmreMlLJjPzvUw2q7YvY7MTbf0Anpb0wDjfUSy0833twmU5k/HPDJgaG67koMIiQzYPgL+Z
+        qlRvR+abVNFJdgHmaxlgrB9J0H3t4GxXFv+IM+6sMosLevA5/Blb/9hwXSPMUlFyuof5AzyRC8j8BHAp
+        TrIj1O/wS+RCOych48IhoCH649ilKXtk4N8BVKOVNnHeE3of2ma32oY71uxxJmvrA6i69VUAN+i/wa+o
+        r9mTcS4yZP8NKKLVgPlH4sOU8eIj8TuykEuKG0y0H47loK1JqRm387KOH/Qb9wAAAABJRU5ErkJggg==
+</value>
+  </data>
   <metadata name="statusStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>13, 44</value>
   </metadata>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>42</value>
   </metadata>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAABAAIAICAQAAAAAADoAgAAJgAAABAQEAAAAAAAKAEAAA4DAAAoAAAAIAAAAEAAAAABAAQAAAAAAIAC
