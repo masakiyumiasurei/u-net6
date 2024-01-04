@@ -476,7 +476,7 @@ namespace u_net
             // 
             削除.BackColor = SystemColors.Window;
             削除.Enabled = false;
-            削除.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            削除.Font = new Font("ＭＳ ゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             削除.Location = new Point(943, 200);
             削除.Margin = new Padding(3, 2, 3, 2);
             削除.Multiline = true;
@@ -503,7 +503,7 @@ namespace u_net
             // 
             更新者名.BackColor = SystemColors.Window;
             更新者名.Enabled = false;
-            更新者名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            更新者名.Font = new Font("ＭＳ ゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             更新者名.Location = new Point(1088, 140);
             更新者名.Margin = new Padding(3, 2, 3, 2);
             更新者名.Multiline = true;
@@ -515,7 +515,7 @@ namespace u_net
             // 
             更新者コード.BackColor = SystemColors.Window;
             更新者コード.Enabled = false;
-            更新者コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            更新者コード.Font = new Font("ＭＳ ゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             更新者コード.Location = new Point(943, 140);
             更新者コード.Margin = new Padding(3, 2, 3, 2);
             更新者コード.Multiline = true;
@@ -557,7 +557,7 @@ namespace u_net
             // 
             更新日時.BackColor = SystemColors.Window;
             更新日時.Enabled = false;
-            更新日時.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            更新日時.Font = new Font("ＭＳ ゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             更新日時.Location = new Point(944, 110);
             更新日時.Margin = new Padding(3, 2, 3, 2);
             更新日時.Multiline = true;
@@ -569,7 +569,7 @@ namespace u_net
             // 
             作成者名.BackColor = SystemColors.Window;
             作成者名.Enabled = false;
-            作成者名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            作成者名.Font = new Font("ＭＳ ゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             作成者名.Location = new Point(1088, 80);
             作成者名.Margin = new Padding(3, 2, 3, 2);
             作成者名.Multiline = true;
@@ -581,7 +581,7 @@ namespace u_net
             // 
             作成者コード.BackColor = SystemColors.Window;
             作成者コード.Enabled = false;
-            作成者コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            作成者コード.Font = new Font("ＭＳ ゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             作成者コード.Location = new Point(943, 80);
             作成者コード.Margin = new Padding(3, 2, 3, 2);
             作成者コード.Multiline = true;
@@ -679,11 +679,12 @@ namespace u_net
             // メーカー名
             // 
             メーカー名.BackColor = Color.White;
-            メーカー名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            メーカー名.Font = new Font("ＭＳ ゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            メーカー名.ImeMode = ImeMode.Hiragana;
             メーカー名.Location = new Point(160, 80);
             メーカー名.Margin = new Padding(3, 2, 3, 2);
             メーカー名.Name = "メーカー名";
-            メーカー名.Size = new Size(530, 20);
+            メーカー名.Size = new Size(530, 21);
             メーカー名.TabIndex = 3;
             メーカー名.TextChanged += メーカー名_TextChanged;
             メーカー名.Enter += メーカー名_Enter;
@@ -708,11 +709,12 @@ namespace u_net
             // 担当者メールアドレス
             // 
             担当者メールアドレス.BackColor = Color.White;
-            担当者メールアドレス.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            担当者メールアドレス.Font = new Font("ＭＳ ゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            担当者メールアドレス.ImeMode = ImeMode.Off;
             担当者メールアドレス.Location = new Point(160, 350);
             担当者メールアドレス.Margin = new Padding(3, 2, 3, 2);
             担当者メールアドレス.Name = "担当者メールアドレス";
-            担当者メールアドレス.Size = new Size(530, 20);
+            担当者メールアドレス.Size = new Size(530, 21);
             担当者メールアドレス.TabIndex = 25;
             担当者メールアドレス.TextChanged += 担当者メールアドレス_TextChanged;
             担当者メールアドレス.Enter += 担当者メールアドレス_Enter;
@@ -751,7 +753,8 @@ namespace u_net
             // 備考
             // 
             備考.BackColor = Color.White;
-            備考.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            備考.Font = new Font("ＭＳ ゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            備考.ImeMode = ImeMode.Hiragana;
             備考.Location = new Point(161, 540);
             備考.Margin = new Padding(3, 2, 3, 2);
             備考.Multiline = true;
@@ -810,11 +813,12 @@ namespace u_net
             // メーカーコード
             // 
             メーカーコード.BackColor = Color.FromArgb(255, 255, 153);
-            メーカーコード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            メーカーコード.Font = new Font("ＭＳ ゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            メーカーコード.ImeMode = ImeMode.Disable;
             メーカーコード.Location = new Point(160, 50);
             メーカーコード.Margin = new Padding(3, 2, 3, 2);
             メーカーコード.Name = "メーカーコード";
-            メーカーコード.Size = new Size(139, 20);
+            メーカーコード.Size = new Size(139, 21);
             メーカーコード.TabIndex = 1;
             メーカーコード.Validating += メーカーコード_Validating;
             メーカーコード.Validated += メーカーコード_Validated;
@@ -927,11 +931,12 @@ namespace u_net
             // 仕入先1
             // 
             仕入先1.BackColor = Color.White;
-            仕入先1.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            仕入先1.Font = new Font("ＭＳ ゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            仕入先1.ImeMode = ImeMode.Hiragana;
             仕入先1.Location = new Point(150, 20);
             仕入先1.Margin = new Padding(3, 2, 3, 2);
             仕入先1.Name = "仕入先1";
-            仕入先1.Size = new Size(530, 20);
+            仕入先1.Size = new Size(530, 21);
             仕入先1.TabIndex = 30;
             仕入先1.TextChanged += 仕入先1_TextChanged;
             仕入先1.Enter += 仕入先1_Enter;
@@ -941,11 +946,12 @@ namespace u_net
             // 仕入先2
             // 
             仕入先2.BackColor = Color.White;
-            仕入先2.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            仕入先2.Font = new Font("ＭＳ ゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            仕入先2.ImeMode = ImeMode.Hiragana;
             仕入先2.Location = new Point(150, 50);
             仕入先2.Margin = new Padding(3, 2, 3, 2);
             仕入先2.Name = "仕入先2";
-            仕入先2.Size = new Size(530, 20);
+            仕入先2.Size = new Size(530, 21);
             仕入先2.TabIndex = 32;
             仕入先2.TextChanged += 仕入先2_TextChanged;
             仕入先2.Enter += 仕入先2_Enter;
@@ -955,11 +961,12 @@ namespace u_net
             // 仕入先3
             // 
             仕入先3.BackColor = Color.White;
-            仕入先3.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            仕入先3.Font = new Font("ＭＳ ゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            仕入先3.ImeMode = ImeMode.Hiragana;
             仕入先3.Location = new Point(150, 80);
             仕入先3.Margin = new Padding(3, 2, 3, 2);
             仕入先3.Name = "仕入先3";
-            仕入先3.Size = new Size(530, 20);
+            仕入先3.Size = new Size(530, 21);
             仕入先3.TabIndex = 34;
             仕入先3.TextChanged += 仕入先3_TextChanged;
             仕入先3.Enter += 仕入先3_Enter;
@@ -999,11 +1006,12 @@ namespace u_net
             // メーカー名フリガナ
             // 
             メーカー名フリガナ.BackColor = Color.White;
-            メーカー名フリガナ.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            メーカー名フリガナ.Font = new Font("ＭＳ ゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            メーカー名フリガナ.ImeMode = ImeMode.Katakana;
             メーカー名フリガナ.Location = new Point(160, 110);
             メーカー名フリガナ.Margin = new Padding(3, 2, 3, 2);
             メーカー名フリガナ.Name = "メーカー名フリガナ";
-            メーカー名フリガナ.Size = new Size(530, 20);
+            メーカー名フリガナ.Size = new Size(530, 21);
             メーカー名フリガナ.TabIndex = 5;
             メーカー名フリガナ.TextChanged += メーカー名フリガナ_TextChanged;
             メーカー名フリガナ.Enter += メーカー名フリガナ_Enter;
@@ -1013,11 +1021,12 @@ namespace u_net
             // メーカー省略名
             // 
             メーカー省略名.BackColor = Color.White;
-            メーカー省略名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            メーカー省略名.Font = new Font("ＭＳ ゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            メーカー省略名.ImeMode = ImeMode.Hiragana;
             メーカー省略名.Location = new Point(160, 140);
             メーカー省略名.Margin = new Padding(3, 2, 3, 2);
             メーカー省略名.Name = "メーカー省略名";
-            メーカー省略名.Size = new Size(139, 20);
+            メーカー省略名.Size = new Size(139, 21);
             メーカー省略名.TabIndex = 7;
             メーカー省略名.TextChanged += メーカー省略名_TextChanged;
             メーカー省略名.Enter += メーカー省略名_Enter;
@@ -1027,11 +1036,12 @@ namespace u_net
             // 郵便番号
             // 
             郵便番号.BackColor = Color.White;
-            郵便番号.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            郵便番号.Font = new Font("ＭＳ ゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            郵便番号.ImeMode = ImeMode.Disable;
             郵便番号.Location = new Point(160, 170);
             郵便番号.Margin = new Padding(3, 2, 3, 2);
             郵便番号.Name = "郵便番号";
-            郵便番号.Size = new Size(201, 20);
+            郵便番号.Size = new Size(201, 21);
             郵便番号.TabIndex = 9;
             郵便番号.TextChanged += 郵便番号_TextChanged;
             郵便番号.Validated += 郵便番号_Validated;
@@ -1039,11 +1049,12 @@ namespace u_net
             // 住所1
             // 
             住所1.BackColor = Color.White;
-            住所1.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            住所1.Font = new Font("ＭＳ ゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            住所1.ImeMode = ImeMode.Hiragana;
             住所1.Location = new Point(160, 200);
             住所1.Margin = new Padding(3, 2, 3, 2);
             住所1.Name = "住所1";
-            住所1.Size = new Size(530, 20);
+            住所1.Size = new Size(530, 21);
             住所1.TabIndex = 11;
             住所1.TextChanged += 住所1_TextChanged;
             住所1.Enter += 住所1_Enter;
@@ -1053,11 +1064,12 @@ namespace u_net
             // 住所2
             // 
             住所2.BackColor = Color.White;
-            住所2.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            住所2.Font = new Font("ＭＳ ゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            住所2.ImeMode = ImeMode.Hiragana;
             住所2.Location = new Point(160, 230);
             住所2.Margin = new Padding(3, 2, 3, 2);
             住所2.Name = "住所2";
-            住所2.Size = new Size(530, 20);
+            住所2.Size = new Size(530, 21);
             住所2.TabIndex = 13;
             住所2.TextChanged += 住所2_TextChanged;
             住所2.Enter += 住所2_Enter;
@@ -1067,11 +1079,12 @@ namespace u_net
             // 電話番号1
             // 
             電話番号1.BackColor = Color.White;
-            電話番号1.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            電話番号1.Font = new Font("ＭＳ ゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            電話番号1.ImeMode = ImeMode.Disable;
             電話番号1.Location = new Point(160, 260);
             電話番号1.Margin = new Padding(3, 2, 3, 2);
             電話番号1.Name = "電話番号1";
-            電話番号1.Size = new Size(100, 20);
+            電話番号1.Size = new Size(100, 21);
             電話番号1.TabIndex = 15;
             電話番号1.TextChanged += 電話番号1_TextChanged;
             電話番号1.Validated += 電話番号1_Validated;
@@ -1079,11 +1092,12 @@ namespace u_net
             // 電話番号2
             // 
             電話番号2.BackColor = Color.White;
-            電話番号2.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            電話番号2.Font = new Font("ＭＳ ゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            電話番号2.ImeMode = ImeMode.Disable;
             電話番号2.Location = new Point(280, 260);
             電話番号2.Margin = new Padding(3, 2, 3, 2);
             電話番号2.Name = "電話番号2";
-            電話番号2.Size = new Size(100, 20);
+            電話番号2.Size = new Size(100, 21);
             電話番号2.TabIndex = 16;
             電話番号2.TextChanged += 電話番号2_TextChanged;
             電話番号2.Validated += 電話番号2_Validated;
@@ -1091,11 +1105,12 @@ namespace u_net
             // 電話番号3
             // 
             電話番号3.BackColor = Color.White;
-            電話番号3.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            電話番号3.Font = new Font("ＭＳ ゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            電話番号3.ImeMode = ImeMode.Disable;
             電話番号3.Location = new Point(400, 260);
             電話番号3.Margin = new Padding(3, 2, 3, 2);
             電話番号3.Name = "電話番号3";
-            電話番号3.Size = new Size(100, 20);
+            電話番号3.Size = new Size(100, 21);
             電話番号3.TabIndex = 17;
             電話番号3.TextChanged += 電話番号3_TextChanged;
             電話番号3.Validated += 電話番号3_Validated;
@@ -1117,18 +1132,22 @@ namespace u_net
             // 
             // ファックス番号1
             // 
+            ファックス番号1.Font = new Font("ＭＳ ゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            ファックス番号1.ImeMode = ImeMode.Disable;
             ファックス番号1.Location = new Point(160, 290);
             ファックス番号1.Name = "ファックス番号1";
-            ファックス番号1.Size = new Size(100, 23);
+            ファックス番号1.Size = new Size(100, 21);
             ファックス番号1.TabIndex = 19;
             ファックス番号1.TextChanged += FAX番号1_TextChanged;
             ファックス番号1.Validated += FAX番号1_Validated;
             // 
             // 担当者名
             // 
+            担当者名.Font = new Font("ＭＳ ゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            担当者名.ImeMode = ImeMode.Hiragana;
             担当者名.Location = new Point(160, 320);
             担当者名.Name = "担当者名";
-            担当者名.Size = new Size(530, 23);
+            担当者名.Size = new Size(530, 21);
             担当者名.TabIndex = 23;
             担当者名.TextChanged += 担当者名_TextChanged;
             担当者名.Enter += 担当者名_Enter;
@@ -1137,10 +1156,12 @@ namespace u_net
             // 
             // ウェブアドレス
             // 
+            ウェブアドレス.Font = new Font("ＭＳ ゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             ウェブアドレス.ForeColor = Color.Blue;
+            ウェブアドレス.ImeMode = ImeMode.Off;
             ウェブアドレス.Location = new Point(160, 380);
             ウェブアドレス.Name = "ウェブアドレス";
-            ウェブアドレス.Size = new Size(530, 23);
+            ウェブアドレス.Size = new Size(530, 21);
             ウェブアドレス.TabIndex = 27;
             ウェブアドレス.Click += ウェブアドレス_Click;
             ウェブアドレス.TextChanged += ウェブアドレス_TextChanged;
@@ -1158,34 +1179,40 @@ namespace u_net
             // 
             // 削除日時
             // 
+            削除日時.Font = new Font("ＭＳ ゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             削除日時.Location = new Point(944, 320);
             削除日時.Name = "削除日時";
-            削除日時.Size = new Size(100, 23);
+            削除日時.Size = new Size(100, 21);
             削除日時.TabIndex = 52;
             削除日時.Visible = false;
             // 
             // 削除者コード
             // 
+            削除者コード.Font = new Font("ＭＳ ゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             削除者コード.Location = new Point(944, 350);
             削除者コード.Name = "削除者コード";
-            削除者コード.Size = new Size(100, 23);
+            削除者コード.Size = new Size(100, 21);
             削除者コード.TabIndex = 54;
             削除者コード.Visible = false;
             // 
             // ファックス番号2
             // 
+            ファックス番号2.Font = new Font("ＭＳ ゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            ファックス番号2.ImeMode = ImeMode.Disable;
             ファックス番号2.Location = new Point(280, 290);
             ファックス番号2.Name = "ファックス番号2";
-            ファックス番号2.Size = new Size(100, 23);
+            ファックス番号2.Size = new Size(100, 21);
             ファックス番号2.TabIndex = 20;
             ファックス番号2.TextChanged += FAX番号2_TextChanged;
             ファックス番号2.Validated += FAX番号2_Validated;
             // 
             // ファックス番号3
             // 
+            ファックス番号3.Font = new Font("ＭＳ ゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            ファックス番号3.ImeMode = ImeMode.Disable;
             ファックス番号3.Location = new Point(400, 290);
             ファックス番号3.Name = "ファックス番号3";
-            ファックス番号3.Size = new Size(100, 23);
+            ファックス番号3.Size = new Size(100, 21);
             ファックス番号3.TabIndex = 21;
             ファックス番号3.TextChanged += FAX番号3_TextChanged;
             ファックス番号3.Validated += FAX番号3_Validated;
@@ -1279,7 +1306,8 @@ namespace u_net
             // 
             Revision.BackColor = SystemColors.Window;
             Revision.Enabled = false;
-            Revision.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            Revision.Font = new Font("ＭＳ ゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            Revision.ImeMode = ImeMode.Disable;
             Revision.Location = new Point(400, 50);
             Revision.Margin = new Padding(3, 2, 3, 2);
             Revision.Multiline = true;
@@ -1291,7 +1319,7 @@ namespace u_net
             // 
             ActiveDate.BackColor = SystemColors.Window;
             ActiveDate.Enabled = false;
-            ActiveDate.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            ActiveDate.Font = new Font("ＭＳ ゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             ActiveDate.Location = new Point(943, 170);
             ActiveDate.Margin = new Padding(3, 2, 3, 2);
             ActiveDate.Multiline = true;
@@ -1394,6 +1422,7 @@ namespace u_net
             Controls.Add(削除日時);
             Controls.Add(削除者コード);
             Controls.Add(panel1);
+            Font = new Font("ＭＳ ゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             KeyPreview = true;
             Name = "F_メーカー";
             Text = " ";

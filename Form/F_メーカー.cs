@@ -1275,6 +1275,8 @@ namespace u_net
 
         private void メーカーコード_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
+            if (!メーカーコード.Modified) return;
+
             FunctionClass.IsError((Control)sender);
         }
 

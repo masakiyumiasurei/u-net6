@@ -39,6 +39,7 @@ namespace u_net
         {
             MidForm parentform = (MidForm)Obj;
             parentform.SearchCode(this.検索コード.Text);
+            Close();
         }
 
         private void 検索コード_KeyDown(object sender, KeyEventArgs e)
