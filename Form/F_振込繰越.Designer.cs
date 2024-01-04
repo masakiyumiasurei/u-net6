@@ -352,6 +352,7 @@
         private Label 支払金額_ラベル;
         private ComboBox 種類コード;
         private Label 備考_ラベル;
+        private Label 繰越金額_ラベル;
         private TextBox 繰越金額;
         private TextBox 備考;
     }
