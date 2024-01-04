@@ -185,7 +185,7 @@ namespace u_net
                 if (Application.OpenForms["F_支払一覧_年間"] != null)
                 {
                     //フォームが完成したらコメント外す
-                    //    F_支払一覧_年間 objForm1 = (F_支払一覧_年間)Application.OpenForms["F_支払一覧_年間"];
+                    //F_支払一覧_年間 objForm1 = (F_支払一覧_年間)Application.OpenForms["F_支払一覧_年間"];
 
                     //if (objForm1.DataCount > 0)
                     //{
@@ -197,7 +197,7 @@ namespace u_net
                 // 支払一覧（月間）フォームの状態をチェック
                 else if (Application.OpenForms["F_支払一覧_月間"] != null)
                 {
-                    //      F_支払一覧_月間 objForm2 = (F_支払一覧_月間)Application.OpenForms["F_支払一覧_月間"];
+                          F_支払一覧_月間 objForm2 = (F_支払一覧_月間)Application.OpenForms["F_支払一覧_月間"];
 
                     //if (objForm2.DataCount > 0)
                     //{
@@ -357,7 +357,7 @@ namespace u_net
             localSetting.LoadPlace(LoginUserCode, this);
 
             支払コードcmb();
-
+            setCombo = true; //コンボのセットでsetcomboをfalseにしているので
             OriginalClass ofn = new OriginalClass();
 
             string cmbsql = "select 集計年月 AS Display,集計年月 AS Value from(" +
@@ -455,6 +455,7 @@ namespace u_net
         {
             try
             {
+                setCombo = true;
                 Connect();
                 bool success = false;
                 string strSQL = "";
@@ -475,7 +476,7 @@ namespace u_net
 
                 this.コマンド新規.Enabled = true;
                 this.コマンド修正.Enabled = false;
-
+                setCombo = false;
                 success = true;
                 return success;
             }
@@ -490,6 +491,7 @@ namespace u_net
         {
             try
             {
+                setCombo = true;
                 // 各コントロール値を初期化
                 VariableSet.SetControls(this);
                 Connect();
@@ -516,7 +518,7 @@ namespace u_net
                 支払明細1.Detail.AllowUserToDeleteRows = true;
                 支払明細1.Detail.ReadOnly = false;
                 支払明細1.Detail.AllowUserToAddRows = true;
-
+                setCombo = false;
                 return true;
             }
             catch (Exception ex)
@@ -693,7 +695,7 @@ namespace u_net
             }
             this.支払コード.Enabled = !isChanged;
 
-            this.コマンド複写.Enabled = !isChanged; // コマンド複写についての情報が提供されていないためコメントアウト
+            this.コマンド複写.Enabled = !isChanged; 
             this.コマンド削除.Enabled = !isChanged;
             this.コマンド登録.Enabled = isChanged;
 
@@ -1001,6 +1003,7 @@ namespace u_net
                         SetPayeeInfo(支払先コード.Text);
                         break;
                     case "集計年月":
+                        setCombo = true;
                         if (controlObject.Text != null)
                         {
                             DateTime dateValue;
@@ -1013,7 +1016,7 @@ namespace u_net
                         {
                             this.支払年月.Text = MonthAdd(1, controlObject.Text.ToString());
                         }
-
+                        setCombo = false;
                         break;
                     case "支払年月":
                         if (controlObject.Text != null)
@@ -1290,7 +1293,6 @@ namespace u_net
         {
             try
             {
-
                 ChangedData(true);
 
                 Connect();
@@ -1655,6 +1657,7 @@ namespace u_net
 
         private void 支払年月_TextChanged(object sender, EventArgs e)
         {
+            if (setCombo) return;
             FunctionClass.LimitText(支払年月, 7);
             ChangedData(true);
         }
@@ -1671,6 +1674,7 @@ namespace u_net
 
         private void 集計年月_TextChanged(object sender, EventArgs e)
         {
+            if (setCombo) return;
             FunctionClass.LimitText(集計年月, 7);
             ChangedData(true);
         }
@@ -1682,18 +1686,21 @@ namespace u_net
 
         private void 振込指定_TextChanged(object sender, EventArgs e)
         {
+            if (setCombo) return;
             ChangedData(true);
         }
 
 
         private void 備考_TextChanged(object sender, EventArgs e)
         {
+            if (setCombo) return;
             FunctionClass.LimitText(集計年月, 200);
             ChangedData(true);
         }
 
         private void AdjustPayable_CheckedChanged(object sender, EventArgs e)
         {
+            if (setCombo) return;
             ChangedData(true);
         }
     }

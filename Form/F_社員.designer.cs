@@ -839,12 +839,12 @@ namespace u_net
             勤務地名.Enabled = false;
             勤務地名.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             勤務地名.ForeColor = SystemColors.WindowFrame;
-            勤務地名.Location = new Point(251, 230);
+            勤務地名.Location = new Point(323, 230);
             勤務地名.Margin = new Padding(3, 2, 3, 2);
             勤務地名.Multiline = true;
             勤務地名.Name = "勤務地名";
             勤務地名.ReadOnly = true;
-            勤務地名.Size = new Size(235, 20);
+            勤務地名.Size = new Size(163, 20);
             勤務地名.TabIndex = 237;
             // 
             // 承認順序ラベル
@@ -911,7 +911,6 @@ namespace u_net
             社員コード.Margin = new Padding(3, 2, 3, 2);
             社員コード.Multiline = true;
             社員コード.Name = "社員コード";
-            社員コード.ReadOnly = true;
             社員コード.Size = new Size(135, 20);
             社員コード.TabIndex = 232;
             社員コード.TextChanged += 社員コード_TextChanged;
@@ -990,7 +989,7 @@ namespace u_net
             勤務地コード.Location = new Point(176, 230);
             勤務地コード.Margin = new Padding(4, 3, 4, 3);
             勤務地コード.Name = "勤務地コード";
-            勤務地コード.Size = new Size(68, 21);
+            勤務地コード.Size = new Size(135, 21);
             勤務地コード.TabIndex = 211;
             勤務地コード.ValueMember = "Code";
             勤務地コード.TextUpdate += 勤務地コード_TextUpdate;
@@ -1757,22 +1756,22 @@ namespace u_net
             // statusStrip1
             // 
             statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1, toolStripStatusLabel2 });
-            statusStrip1.Location = new Point(0, 570);
+            statusStrip1.Location = new Point(0, 567);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Padding = new Padding(1, 0, 19, 0);
-            statusStrip1.Size = new Size(939, 22);
+            statusStrip1.Size = new Size(939, 25);
             statusStrip1.TabIndex = 200;
             statusStrip1.Text = "statusStrip1";
             // 
             // toolStripStatusLabel1
             // 
             toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            toolStripStatusLabel1.Size = new Size(0, 17);
+            toolStripStatusLabel1.Size = new Size(0, 20);
             // 
             // toolStripStatusLabel2
             // 
             toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            toolStripStatusLabel2.Size = new Size(89, 17);
+            toolStripStatusLabel2.Size = new Size(111, 20);
             toolStripStatusLabel2.Text = "各種項目の説明";
             // 
             // F_社員

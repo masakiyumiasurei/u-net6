@@ -49,7 +49,6 @@ namespace u_net
         {
             get
             {
-
                 return string.IsNullOrEmpty(dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value?.ToString()) ? ""
                     : dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value?.ToString();
             }
@@ -91,6 +90,7 @@ namespace u_net
             lng削除指定 = 1;
         }
 
+        
         private void Form_Load(object sender, EventArgs e)
         {
             FunctionClass fn = new FunctionClass();

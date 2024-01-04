@@ -43,7 +43,7 @@ namespace MultiRowDesigner
         {
             InitializeComponent();
         }
-        public void Connect()
+        public void Connect()        
         {
             Connection connectionInfo = new Connection();
             string connectionString = connectionInfo.Getconnect();
@@ -53,6 +53,14 @@ namespace MultiRowDesigner
 
         private void 部品集合明細_Load(object sender, EventArgs e)
         {
+            //// テンプレートの作成
+            //var template1 = Template.CreateGridTemplate(2);            
+
+            //// MultiRowの設定
+            //gcMultiRow1.Template = template1;
+            //gcMultiRow1.EditMode = EditMode.EditOnEnter; // 常時入力モード
+            
+
             gcMultiRow1.ShortcutKeyManager.Unregister(Keys.Enter);
             gcMultiRow1.ShortcutKeyManager.Register(SelectionActions.MoveToNextCell, Keys.Enter);
         }
@@ -118,9 +126,14 @@ namespace MultiRowDesigner
                         F_部品選択 form = new F_部品選択();
                         if (form.ShowDialog() == DialogResult.OK)
                         {
+                            gcMultiRow1.EndEdit(); //編集の終了
                             string selectedCode = form.SelectedCode;
 
                             gcMultiRow1.CurrentCell.Value = selectedCode;
+
+                            //品名にセル移動した時にvaledatedを実行しないようにするため
+                            validatedflg = true;
+                            UpdatedControl(gcMultiRow1.CurrentCell);
 
                             //次のセルに変更しないと値が反映しないため
                             gcMultiRow1.CurrentCellPosition =
@@ -144,19 +157,18 @@ namespace MultiRowDesigner
                     {
                         gcMultiRow1.EndEdit(); //編集の終了
                         string selectedCode = form.SelectedCode;
-
-                      //  gcMultiRow1.CurrentRow.Cells["部品コード"].Value = selectedCode;
-                        gcMultiRow1.CurrentCell.Value = selectedCode;
+                        
+                       
+                        gcMultiRow1.EditingControl.Text = selectedCode; // <== 対応策
+                        
+                        gcMultiRow1.CurrentRow.Cells["部品コード"].Value = selectedCode;
 
                         //品名にセル移動した時にvaledatedを実行しないようにするため
                         validatedflg = true;
                         UpdatedControl(gcMultiRow1.CurrentCell);
-                       
 
-                        gcMultiRow1.CurrentCellPosition =
-                           new CellPosition(gcMultiRow1.CurrentRow.Index, gcMultiRow1.CurrentRow.Cells["品名"].CellIndex);
-                        GrapeCity.Win.MultiRow.EditingActions.CommitRow.Execute(gcMultiRow1);                      
-
+                        F_部品集合 ParentForm = Application.OpenForms.OfType<F_部品集合>().FirstOrDefault();
+                        ParentForm.ChangedData(true);                        
 
                     }
 
