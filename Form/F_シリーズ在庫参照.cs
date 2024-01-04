@@ -634,6 +634,12 @@ namespace u_net
         private void 現在日選択ボタン_Click(object sender, EventArgs e)
         {
             dateSelectionForm = new F_カレンダー();
+
+            if (!string.IsNullOrEmpty(現在日.Text))
+            {
+                dateSelectionForm.args = 現在日.Text;
+            }
+
             if (dateSelectionForm.ShowDialog() == DialogResult.OK)
             {
                 // 日付選択フォームから選択した日付を取得

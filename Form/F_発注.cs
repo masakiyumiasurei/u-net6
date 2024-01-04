@@ -1349,6 +1349,12 @@ namespace u_net
         private void 発注日選択ボタン_Click(object sender, EventArgs e)
         {
             F_カレンダー dateSelectionForm = new F_カレンダー();
+
+            if (!string.IsNullOrEmpty(発注日.Text))
+            {
+                dateSelectionForm.args = 発注日.Text;
+            }
+
             if (dateSelectionForm.ShowDialog() == DialogResult.OK)
             {
                 // 日付選択フォームから選択した日付を取得
