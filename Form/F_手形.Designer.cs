@@ -46,7 +46,7 @@
             支払年月 = new ComboBox();
             支払先選択ボタン = new Button();
             支払コード = new TextBox();
-            更新者名_ラベル = new Label();
+            支払先名_ラベル = new Label();
             支払先コード_ラベル = new Label();
             閉じるボタン = new Button();
             toolTip1 = new ToolTip(components);
@@ -87,7 +87,7 @@
             groupBox.Controls.Add(支払先名);
             groupBox.Controls.Add(支払先選択ボタン);
             groupBox.Controls.Add(支払コード);
-            groupBox.Controls.Add(更新者名_ラベル);
+            groupBox.Controls.Add(支払先名_ラベル);
             groupBox.Controls.Add(支払先コード_ラベル);
             groupBox.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             groupBox.Location = new Point(12, 2);
@@ -282,20 +282,20 @@
             支払コード.Size = new Size(102, 20);
             支払コード.TabIndex = 4;
             // 
-            // 更新者名_ラベル
+            // 支払先名_ラベル
             // 
-            更新者名_ラベル.AllowDrop = true;
-            更新者名_ラベル.AutoEllipsis = true;
-            更新者名_ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            更新者名_ラベル.ForeColor = SystemColors.ActiveCaptionText;
-            更新者名_ラベル.ImageAlign = ContentAlignment.MiddleLeft;
-            更新者名_ラベル.Location = new Point(13, 67);
-            更新者名_ラベル.Margin = new Padding(0);
-            更新者名_ラベル.Name = "更新者名_ラベル";
-            更新者名_ラベル.Size = new Size(95, 20);
-            更新者名_ラベル.TabIndex = 5;
-            更新者名_ラベル.Text = "支払先名(&N)";
-            更新者名_ラベル.TextAlign = ContentAlignment.MiddleLeft;
+            支払先名_ラベル.AllowDrop = true;
+            支払先名_ラベル.AutoEllipsis = true;
+            支払先名_ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            支払先名_ラベル.ForeColor = SystemColors.ActiveCaptionText;
+            支払先名_ラベル.ImageAlign = ContentAlignment.MiddleLeft;
+            支払先名_ラベル.Location = new Point(13, 67);
+            支払先名_ラベル.Margin = new Padding(0);
+            支払先名_ラベル.Name = "支払先名_ラベル";
+            支払先名_ラベル.Size = new Size(95, 20);
+            支払先名_ラベル.TabIndex = 5;
+            支払先名_ラベル.Text = "支払先名(&N)";
+            支払先名_ラベル.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // 支払先コード_ラベル
             // 
@@ -366,7 +366,7 @@
         private Button 追加ボタン;
         private Button 閉じるボタン;
         private Button 支払先選択ボタン;
-        private Label 更新者名_ラベル;
+        private Label 支払先名_ラベル;
         private TextBox 支払コード;
         private Label 支払年月_ラベル;
         private ComboBox 支払年月;
