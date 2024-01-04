@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            品名 = new TextBox();
+            支払先名 = new TextBox();
             groupBox = new GroupBox();
             備考 = new TextBox();
             手形金額 = new TextBox();
@@ -42,8 +42,8 @@
             手形明細_ラベル = new Label();
             支払先参照ボタン = new Button();
             追加ボタン = new Button();
-            支払年月日_ラベル = new Label();
-            支払年月日 = new ComboBox();
+            支払年月_ラベル = new Label();
+            支払年月 = new ComboBox();
             支払先選択ボタン = new Button();
             支払コード = new TextBox();
             更新者名_ラベル = new Label();
@@ -56,18 +56,18 @@
             statusStrip1.SuspendLayout();
             SuspendLayout();
             // 
-            // 品名
+            // 支払先名
             // 
-            品名.BackColor = Color.White;
-            品名.Enabled = false;
-            品名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            品名.ImeMode = ImeMode.NoControl;
-            品名.Location = new Point(117, 67);
-            品名.Margin = new Padding(3, 2, 3, 2);
-            品名.Name = "品名";
-            品名.ReadOnly = true;
-            品名.Size = new Size(277, 20);
-            品名.TabIndex = 6;
+            支払先名.BackColor = Color.White;
+            支払先名.Enabled = false;
+            支払先名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            支払先名.ImeMode = ImeMode.NoControl;
+            支払先名.Location = new Point(117, 67);
+            支払先名.Margin = new Padding(3, 2, 3, 2);
+            支払先名.Name = "支払先名";
+            支払先名.ReadOnly = true;
+            支払先名.Size = new Size(277, 20);
+            支払先名.TabIndex = 6;
             // 
             // groupBox
             // 
@@ -82,9 +82,9 @@
             groupBox.Controls.Add(手形明細_ラベル);
             groupBox.Controls.Add(支払先参照ボタン);
             groupBox.Controls.Add(追加ボタン);
-            groupBox.Controls.Add(支払年月日_ラベル);
-            groupBox.Controls.Add(支払年月日);
-            groupBox.Controls.Add(品名);
+            groupBox.Controls.Add(支払年月_ラベル);
+            groupBox.Controls.Add(支払年月);
+            groupBox.Controls.Add(支払先名);
             groupBox.Controls.Add(支払先選択ボタン);
             groupBox.Controls.Add(支払コード);
             groupBox.Controls.Add(更新者名_ラベル);
@@ -233,31 +233,31 @@
             追加ボタン.UseVisualStyleBackColor = true;
             追加ボタン.Click += 追加ボタン_Click;
             // 
-            // 支払年月日_ラベル
+            // 支払年月_ラベル
             // 
-            支払年月日_ラベル.AllowDrop = true;
-            支払年月日_ラベル.AutoEllipsis = true;
-            支払年月日_ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            支払年月日_ラベル.ForeColor = SystemColors.ActiveCaptionText;
-            支払年月日_ラベル.ImageAlign = ContentAlignment.MiddleLeft;
-            支払年月日_ラベル.Location = new Point(13, 15);
-            支払年月日_ラベル.Margin = new Padding(0);
-            支払年月日_ラベル.Name = "支払年月日_ラベル";
-            支払年月日_ラベル.Size = new Size(95, 21);
-            支払年月日_ラベル.TabIndex = 1;
-            支払年月日_ラベル.Text = "支払年月日(&M)";
-            支払年月日_ラベル.TextAlign = ContentAlignment.MiddleLeft;
+            支払年月_ラベル.AllowDrop = true;
+            支払年月_ラベル.AutoEllipsis = true;
+            支払年月_ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            支払年月_ラベル.ForeColor = SystemColors.ActiveCaptionText;
+            支払年月_ラベル.ImageAlign = ContentAlignment.MiddleLeft;
+            支払年月_ラベル.Location = new Point(13, 15);
+            支払年月_ラベル.Margin = new Padding(0);
+            支払年月_ラベル.Name = "支払年月_ラベル";
+            支払年月_ラベル.Size = new Size(95, 21);
+            支払年月_ラベル.TabIndex = 1;
+            支払年月_ラベル.Text = "支払年月(&M)";
+            支払年月_ラベル.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // 支払年月日
+            // 支払年月
             // 
-            支払年月日.BackColor = Color.White;
-            支払年月日.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            支払年月日.FormattingEnabled = true;
-            支払年月日.ImeMode = ImeMode.Disable;
-            支払年月日.Location = new Point(117, 15);
-            支払年月日.Name = "支払年月日";
-            支払年月日.Size = new Size(122, 21);
-            支払年月日.TabIndex = 2;
+            支払年月.BackColor = Color.White;
+            支払年月.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            支払年月.FormattingEnabled = true;
+            支払年月.ImeMode = ImeMode.Disable;
+            支払年月.Location = new Point(117, 15);
+            支払年月.Name = "支払年月";
+            支払年月.Size = new Size(122, 21);
+            支払年月.TabIndex = 2;
             // 
             // 支払先選択ボタン
             // 
@@ -360,7 +360,7 @@
 
         #endregion
         private Label label9;
-        private TextBox 品名;
+        private TextBox 支払先名;
         private Label 支払先コード_ラベル;
         private GroupBox groupBox;
         private Button 追加ボタン;
@@ -368,8 +368,8 @@
         private Button 支払先選択ボタン;
         private Label 更新者名_ラベル;
         private TextBox 支払コード;
-        private Label 支払年月日_ラベル;
-        private ComboBox 支払年月日;
+        private Label 支払年月_ラベル;
+        private ComboBox 支払年月;
         private ToolTip toolTip1;
         private Button 支払先参照ボタン;
         private Label 手形明細_ラベル;
