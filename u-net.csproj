@@ -158,6 +158,9 @@
     <Compile Update="Form\F_売掛明細.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Form\F_振込一覧.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Form\F_支払明細参照.cs" />
     <Compile Update="Form\F_支払一覧_月間.cs">
       <SubType>Form</SubType>
