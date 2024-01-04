@@ -26,8 +26,10 @@ namespace u_net
         private string myYear = DateTime.Now.Year.ToString();
         private string myMonth = DateTime.Now.Month.ToString();
         private string myDay = DateTime.Now.Day.ToString();
-        private object? cmdSelectedDay;
+        private int? cmdSelectedX;
+        private int? cmdSelectedY;
         public event EventHandler<DateTime> Selected;
+        public string args;
         public string SelectedDate { get; private set; }
 
         public F_カレンダー()
@@ -47,12 +49,19 @@ namespace u_net
                 cboMonth.Items.Add(i.ToString() + '月');
             }
 
+            if (!string.IsNullOrEmpty(args))
+            {
+                myDate = DateTime.Parse(args);
+            }
+
+
             DateToElements();
 
-            //実行中フォーム起動
-            //string LoginUserCode = CommonConstants.LoginUserCode;
-            //LocalSetting localSetting = new LocalSetting();
-            //localSetting.LoadPlace(LoginUserCode, this);
+            if(cmdSelectedY != null && cmdSelectedX != null)
+            {
+                string ControlName = "d" + cmdSelectedY + cmdSelectedX;
+                this.Controls[ControlName].Select();
+            }
 
 
         }
@@ -122,7 +131,8 @@ namespace u_net
             DayOfWeek = (int)MonthDayOne.DayOfWeek; // DayOfWeek is an enum, so cast it to int
             MonthLength = DateTime.DaysInMonth(year, month);
 
-            cmdSelectedDay = null;
+            cmdSelectedX = null;
+            cmdSelectedY = null;
             i = 1 - DayOfWeek;
             for (Y = 0; Y <= 5; Y++)
             {
@@ -142,7 +152,8 @@ namespace u_net
                 
                     if (i == day)
                     {
-                        cmdSelectedDay = btn;
+                        cmdSelectedX = X;
+                        cmdSelectedY = Y;
                     }
                     i++;
                 }
