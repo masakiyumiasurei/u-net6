@@ -48,6 +48,8 @@
             label2 = new Label();
             dataGridView1 = new DataGridView();
             panel2 = new Panel();
+            statusStrip1 = new StatusStrip();
+            toolStripStatusLabel1 = new ToolStripStatusLabel();
             toolTip1 = new ToolTip(components);
             支払先検索ボタン = new Button();
             集計年度_ラベル = new Label();
@@ -58,8 +60,6 @@
             支払区分_ラベル = new Label();
             支払先参照ボタン = new Button();
             支払先名 = new TextBox();
-            statusStrip1 = new StatusStrip();
-            toolStripStatusLabel1 = new ToolStripStatusLabel();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel2.SuspendLayout();
@@ -102,6 +102,7 @@
             コマンド入出力.TabStop = false;
             コマンド入出力.Text = "入出力";
             コマンド入出力.UseVisualStyleBackColor = true;
+            コマンド入出力.Click += コマンド入出力_Click;
             // 
             // コマンドF8
             // 
@@ -146,6 +147,7 @@
             コマンド発注参照.Text = "発注";
             toolTip1.SetToolTip(コマンド発注参照, "発注データ参照");
             コマンド発注参照.UseVisualStyleBackColor = true;
+            コマンド発注参照.Click += コマンド発注参照_Click;
             // 
             // コマンド支払先参照
             // 
@@ -162,7 +164,7 @@
             コマンド支払先参照.Text = "支払先";
             toolTip1.SetToolTip(コマンド支払先参照, "支払先参照");
             コマンド支払先参照.UseVisualStyleBackColor = true;
-            コマンド支払先参照.Click += コマンド明細参照_Click;
+            コマンド支払先参照.Click += コマンド支払先参照_Click;
             // 
             // コマンド印刷
             // 
@@ -178,6 +180,7 @@
             コマンド印刷.Text = "印刷";
             toolTip1.SetToolTip(コマンド印刷, "表示データの印刷");
             コマンド印刷.UseVisualStyleBackColor = true;
+            コマンド印刷.Click += コマンド印刷_Click;
             // 
             // コマンド保守
             // 
@@ -283,6 +286,7 @@
             表示件数.Size = new Size(88, 20);
             表示件数.TabIndex = 84;
             表示件数.TabStop = false;
+            表示件数.TextAlign = HorizontalAlignment.Right;
             // 
             // label1
             // 
@@ -315,8 +319,10 @@
             dataGridView1.RowTemplate.Height = 29;
             dataGridView1.Size = new Size(1054, 440);
             dataGridView1.TabIndex = 1;
+            dataGridView1.CellClick += dataGridView1_CellClick;
             dataGridView1.CellDoubleClick += dataGridView1_CellDoubleClick;
             dataGridView1.CellPainting += DataGridView1_CellPainting;
+            dataGridView1.Sorted += dataGridView1_Sorted;
             dataGridView1.KeyDown += dataGridView1_KeyDown;
             // 
             // panel2
@@ -331,6 +337,23 @@
             panel2.Name = "panel2";
             panel2.Size = new Size(1054, 49);
             panel2.TabIndex = 88;
+            // 
+            // statusStrip1
+            // 
+            statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1 });
+            statusStrip1.Location = new Point(0, 27);
+            statusStrip1.Name = "statusStrip1";
+            statusStrip1.Padding = new Padding(1, 0, 19, 0);
+            statusStrip1.Size = new Size(1054, 22);
+            statusStrip1.TabIndex = 10196;
+            statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripStatusLabel1
+            // 
+            toolStripStatusLabel1.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            toolStripStatusLabel1.Size = new Size(89, 17);
+            toolStripStatusLabel1.Text = "各種項目の説明";
             // 
             // 支払先検索ボタン
             // 
@@ -371,6 +394,7 @@
             集計年月.Name = "集計年月";
             集計年月.Size = new Size(102, 21);
             集計年月.TabIndex = 2;
+            集計年月.SelectedIndexChanged += 集計年月_SelectedIndexChanged;
             // 
             // 支払先コード_ラベル
             // 
@@ -397,6 +421,7 @@
             支払区分コード.Name = "支払区分コード";
             支払区分コード.Size = new Size(170, 21);
             支払区分コード.TabIndex = 6;
+            支払区分コード.SelectedIndexChanged += 支払区分コード_SelectedIndexChanged;
             // 
             // 支払先コード
             // 
@@ -408,6 +433,10 @@
             支払先コード.Name = "支払先コード";
             支払先コード.Size = new Size(102, 20);
             支払先コード.TabIndex = 4;
+            支払先コード.DoubleClick += 支払先コード_DoubleClick;
+            支払先コード.KeyDown += 支払先コード_KeyDown;
+            支払先コード.KeyPress += 支払先コード_KeyPress;
+            支払先コード.Validated += 支払先コード_Validated;
             // 
             // 支払区分_ラベル
             // 
@@ -435,6 +464,7 @@
             支払先参照ボタン.TabStop = false;
             支払先参照ボタン.Text = "▶";
             支払先参照ボタン.UseVisualStyleBackColor = true;
+            支払先参照ボタン.Click += 支払先参照ボタン_Click;
             支払先参照ボタン.Enter += 支払先参照ボタン_Enter;
             支払先参照ボタン.Leave += 支払先参照ボタン_Leave;
             // 
@@ -451,23 +481,6 @@
             支払先名.Size = new Size(340, 20);
             支払先名.TabIndex = 10008;
             支払先名.TabStop = false;
-            // 
-            // statusStrip1
-            // 
-            statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1 });
-            statusStrip1.Location = new Point(0, 27);
-            statusStrip1.Name = "statusStrip1";
-            statusStrip1.Padding = new Padding(1, 0, 19, 0);
-            statusStrip1.Size = new Size(1054, 22);
-            statusStrip1.TabIndex = 10196;
-            statusStrip1.Text = "statusStrip1";
-            // 
-            // toolStripStatusLabel1
-            // 
-            toolStripStatusLabel1.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            toolStripStatusLabel1.Size = new Size(89, 17);
-            toolStripStatusLabel1.Text = "各種項目の説明";
             // 
             // F_支払明細参照
             // 
@@ -493,6 +506,7 @@
             FormClosing += F_製品管理_FormClosing;
             Load += Form_Load;
             KeyDown += Form_KeyDown;
+            Resize += Form_Resize;
             panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             panel2.ResumeLayout(false);

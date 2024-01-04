@@ -33,7 +33,14 @@ namespace u_net
         {
             get
             {
-                return dataGridView1.CurrentRow.Cells[0].Value?.ToString();
+                if (dataGridView1.CurrentRow.Index != dataGridView1.RowCount - 1)
+                {
+                    return dataGridView1.CurrentRow.Cells[0].Value?.ToString();
+                }
+                else
+                {
+                    return "";
+                }
             }
         }
 
@@ -41,10 +48,25 @@ namespace u_net
         {
             get
             {
-                return dataGridView1.CurrentRow.Cells[1].Value?.ToString();
+                if (dataGridView1.CurrentRow.Index != dataGridView1.RowCount - 1)
+                {
+                    return dataGridView1.CurrentRow.Cells[1].Value?.ToString();
+                }
+                else
+                {
+                    return "";
+                }
             }
         }
 
+
+        public string groupCode
+        {
+            get
+            {
+                return Nz(支払区分コード.SelectedValue);
+            }
+        }
         public DateTime PayMonth
         {
             get
@@ -321,6 +343,7 @@ namespace u_net
         private void dataGridView1_Sorted(object sender, EventArgs e)
         {
             AddTotalRow(dataGridView1);
+            
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -386,6 +409,8 @@ namespace u_net
                         break;
                     case Keys.F3:
                         if (this.コマンド初期化.Enabled) コマンド初期化_Click(null, null);
+                        //datagidviewの並び替えが行われるため
+                        e.Handled = true;
                         break;
                     case Keys.F4:
                         if (this.コマンド更新.Enabled) コマンド更新_Click(null, null);
