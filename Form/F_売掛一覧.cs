@@ -438,8 +438,8 @@ namespace u_net
                 }
                 else
                 {
-                    //F_売掛明細 targetform = new F_売掛明細();
-                    //targetform.ShowDialog();
+                    F_売掛明細 targetform = new F_売掛明細();
+                    targetform.ShowDialog();
                 }
 
                 
@@ -583,7 +583,8 @@ namespace u_net
 
         private void コマンド詳細_Click(object sender, EventArgs e)
         {
-
+            F_売掛明細 targetform = new F_売掛明細();
+            targetform.ShowDialog();
         }
 
         private void コマンド顧客_Click(object sender, EventArgs e)

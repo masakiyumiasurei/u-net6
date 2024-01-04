@@ -51,6 +51,7 @@
             statusStrip1 = new StatusStrip();
             toolStripStatusLabel1 = new ToolStripStatusLabel();
             toolTip1 = new ToolTip(components);
+            顧客コード選択ボタン = new Button();
             顧客コード_ラベル = new Label();
             売掛年月 = new ComboBox();
             売掛年月_ラベル = new Label();
@@ -94,7 +95,7 @@
             panel1.Location = new Point(0, 0);
             panel1.Margin = new Padding(4, 2, 4, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1054, 32);
+            panel1.Size = new Size(865, 32);
             panel1.TabIndex = 83;
             // 
             // コマンド更新
@@ -186,6 +187,7 @@
             コマンド印刷.Text = "印刷";
             toolTip1.SetToolTip(コマンド印刷, "表示データの印刷");
             コマンド印刷.UseVisualStyleBackColor = true;
+            コマンド印刷.Click += コマンド印刷_Click;
             // 
             // コマンド入出力
             // 
@@ -201,6 +203,7 @@
             コマンド入出力.TabStop = false;
             コマンド入出力.Text = "入出力";
             コマンド入出力.UseVisualStyleBackColor = true;
+            コマンド入出力.Click += コマンド入出力_Click;
             // 
             // コマンド初期化
             // 
@@ -290,6 +293,7 @@
             表示件数.Size = new Size(88, 20);
             表示件数.TabIndex = 84;
             表示件数.TabStop = false;
+            表示件数.TextAlign = HorizontalAlignment.Right;
             // 
             // label1
             // 
@@ -320,7 +324,7 @@
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
             dataGridView1.RowTemplate.Height = 29;
-            dataGridView1.Size = new Size(1054, 440);
+            dataGridView1.Size = new Size(851, 378);
             dataGridView1.TabIndex = 1;
             dataGridView1.CellDoubleClick += dataGridView1_CellDoubleClick;
             dataGridView1.CellPainting += DataGridView1_CellPainting;
@@ -333,19 +337,19 @@
             panel2.Controls.Add(label1);
             panel2.Controls.Add(担当者名_ラベル);
             panel2.Dock = DockStyle.Bottom;
-            panel2.Location = new Point(0, 607);
+            panel2.Location = new Point(0, 550);
             panel2.Margin = new Padding(3, 2, 3, 2);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1054, 49);
+            panel2.Size = new Size(865, 50);
             panel2.TabIndex = 88;
             // 
             // statusStrip1
             // 
             statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1 });
-            statusStrip1.Location = new Point(0, 27);
+            statusStrip1.Location = new Point(0, 28);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Padding = new Padding(1, 0, 19, 0);
-            statusStrip1.Size = new Size(1054, 22);
+            statusStrip1.Size = new Size(865, 22);
             statusStrip1.TabIndex = 10196;
             statusStrip1.Text = "statusStrip1";
             // 
@@ -355,6 +359,20 @@
             toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             toolStripStatusLabel1.Size = new Size(89, 17);
             toolStripStatusLabel1.Text = "各種項目の説明";
+            // 
+            // 顧客コード選択ボタン
+            // 
+            顧客コード選択ボタン.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            顧客コード選択ボタン.Location = new Point(214, 41);
+            顧客コード選択ボタン.Margin = new Padding(4);
+            顧客コード選択ボタン.Name = "顧客コード選択ボタン";
+            顧客コード選択ボタン.Size = new Size(20, 20);
+            顧客コード選択ボタン.TabIndex = 10022;
+            顧客コード選択ボタン.TabStop = false;
+            顧客コード選択ボタン.Text = "▼";
+            toolTip1.SetToolTip(顧客コード選択ボタン, "支払先参照");
+            顧客コード選択ボタン.UseVisualStyleBackColor = true;
+            顧客コード選択ボタン.Click += 顧客コード選択ボタン_Click;
             // 
             // 顧客コード_ラベル
             // 
@@ -381,6 +399,8 @@
             売掛年月.Name = "売掛年月";
             売掛年月.Size = new Size(102, 21);
             売掛年月.TabIndex = 4;
+            売掛年月.Validating += 売掛年月_Validating;
+            売掛年月.Validated += 売掛年月_Validated;
             // 
             // 売掛年月_ラベル
             // 
@@ -407,6 +427,10 @@
             顧客コード.Name = "顧客コード";
             顧客コード.Size = new Size(102, 20);
             顧客コード.TabIndex = 2;
+            顧客コード.KeyDown += 顧客コード_KeyDown;
+            顧客コード.KeyPress += 顧客コード_KeyPress;
+            顧客コード.Validating += 顧客コード_Validating;
+            顧客コード.Validated += 顧客コード_Validated;
             // 
             // 顧客名
             // 
@@ -622,7 +646,8 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1054, 656);
+            ClientSize = new Size(865, 600);
+            Controls.Add(顧客コード選択ボタン);
             Controls.Add(残高金額);
             Controls.Add(回収金額);
             Controls.Add(売上金額);
@@ -828,5 +853,6 @@
         private TextBox 売上金額;
         private TextBox 回収金額;
         private TextBox 残高金額;
+        internal Button 顧客コード選択ボタン;
     }
 }
