@@ -349,7 +349,7 @@
             Controls.Add(閉じるボタン);
             Controls.Add(groupBox);
             Name = "F_TransferList_Others";
-            Text = "手形";
+            Text = "振込一覧 - その他";
             groupBox.ResumeLayout(false);
             groupBox.PerformLayout();
             statusStrip1.ResumeLayout(false);
