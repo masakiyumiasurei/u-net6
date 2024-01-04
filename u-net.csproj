@@ -165,6 +165,9 @@
     <Compile Update="Form\F_支払一覧_月間.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Form\F_手形.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Form\F_業務日報.cs">
       <SubType>Form</SubType>
     </Compile>
