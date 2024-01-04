@@ -32,8 +32,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(F_社員管理));
             panel1 = new Panel();
             コマンド入出力 = new Button();
-            button4 = new Button();
-            button3 = new Button();
+            コマンドF8 = new Button();
+            コマンドF7 = new Button();
             コマンド社員 = new Button();
             コマンドメール = new Button();
             コマンド印刷 = new Button();
@@ -58,8 +58,8 @@
             // 
             panel1.BackColor = SystemColors.ActiveCaption;
             panel1.Controls.Add(コマンド入出力);
-            panel1.Controls.Add(button4);
-            panel1.Controls.Add(button3);
+            panel1.Controls.Add(コマンドF8);
+            panel1.Controls.Add(コマンドF7);
             panel1.Controls.Add(コマンド社員);
             panel1.Controls.Add(コマンドメール);
             panel1.Controls.Add(コマンド印刷);
@@ -78,6 +78,7 @@
             // 
             // コマンド入出力
             // 
+            コマンド入出力.Enabled = false;
             コマンド入出力.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             コマンド入出力.ForeColor = Color.Blue;
             コマンド入出力.ImageAlign = ContentAlignment.BottomLeft;
@@ -90,29 +91,31 @@
             コマンド入出力.UseVisualStyleBackColor = true;
             コマンド入出力.Click += コマンド入出力_Click;
             // 
-            // button4
+            // コマンドF8
             // 
-            button4.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            button4.ForeColor = Color.Blue;
-            button4.ImageAlign = ContentAlignment.BottomLeft;
-            button4.Location = new Point(496, 4);
-            button4.Margin = new Padding(0, 2, 0, 2);
-            button4.Name = "button4";
-            button4.Size = new Size(70, 22);
-            button4.TabIndex = 11;
-            button4.UseVisualStyleBackColor = true;
+            コマンドF8.Enabled = false;
+            コマンドF8.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            コマンドF8.ForeColor = Color.Blue;
+            コマンドF8.ImageAlign = ContentAlignment.BottomLeft;
+            コマンドF8.Location = new Point(496, 4);
+            コマンドF8.Margin = new Padding(0, 2, 0, 2);
+            コマンドF8.Name = "コマンドF8";
+            コマンドF8.Size = new Size(70, 22);
+            コマンドF8.TabIndex = 11;
+            コマンドF8.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // コマンドF7
             // 
-            button3.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            button3.ForeColor = Color.Blue;
-            button3.ImageAlign = ContentAlignment.BottomLeft;
-            button3.Location = new Point(428, 4);
-            button3.Margin = new Padding(0, 2, 0, 2);
-            button3.Name = "button3";
-            button3.Size = new Size(70, 22);
-            button3.TabIndex = 10;
-            button3.UseVisualStyleBackColor = true;
+            コマンドF7.Enabled = false;
+            コマンドF7.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            コマンドF7.ForeColor = Color.Blue;
+            コマンドF7.ImageAlign = ContentAlignment.BottomLeft;
+            コマンドF7.Location = new Point(428, 4);
+            コマンドF7.Margin = new Padding(0, 2, 0, 2);
+            コマンドF7.Name = "コマンドF7";
+            コマンドF7.Size = new Size(70, 22);
+            コマンドF7.TabIndex = 10;
+            コマンドF7.UseVisualStyleBackColor = true;
             // 
             // コマンド社員
             // 
@@ -250,27 +253,30 @@
             // 
             // 表示件数
             // 
+            表示件数.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             表示件数.Location = new Point(72, 4);
             表示件数.Margin = new Padding(3, 2, 3, 2);
             表示件数.Name = "表示件数";
-            表示件数.Size = new Size(88, 23);
+            表示件数.Size = new Size(88, 20);
             表示件数.TabIndex = 84;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(6, 6);
+            label1.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.Location = new Point(7, 8);
             label1.Name = "label1";
-            label1.Size = new Size(55, 15);
+            label1.Size = new Size(53, 12);
             label1.TabIndex = 85;
             label1.Text = "表示件数";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(164, 6);
+            label2.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label2.Location = new Point(163, 8);
             label2.Name = "label2";
-            label2.Size = new Size(19, 15);
+            label2.Size = new Size(17, 12);
             label2.TabIndex = 86;
             label2.Text = "件";
             // 
@@ -321,8 +327,8 @@
 
         #endregion
         private Panel panel1;
-        private Button button4;
-        private Button button3;
+        private Button コマンドF8;
+        private Button コマンドF7;
         private Button コマンド社員;
         private Button コマンドメール;
         private Button コマンド印刷;

@@ -155,7 +155,7 @@ namespace u_net
             }
         }
 
-        private void キャンセルボタン_MouseClick(object sender, MouseEventArgs e)
+        private void キャンセルボタン_Click(object sender, EventArgs e)
         {
             this.Close();
         }
@@ -177,5 +177,16 @@ namespace u_net
             }
             return value;
         }
+
+        private void 氏名_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "■氏名の一部を入力します。あいまい検索されます。";
+        }
+
+        private void 氏名_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "各種項目の説明";
+        }
+
     }
 }
