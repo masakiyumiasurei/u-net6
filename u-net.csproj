@@ -158,6 +158,9 @@
     <Compile Update="Form\F_売掛明細.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Form\F_相殺.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Form\F_振込一覧.cs">
       <SubType>Form</SubType>
     </Compile>
