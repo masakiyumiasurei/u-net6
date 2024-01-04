@@ -258,22 +258,19 @@ namespace u_net
 
         private void 入庫日開始_DoubleClick(object sender, EventArgs e)
         {
-            // 日付選択フォームを作成し表示
-            dateSelectionForm = new F_カレンダー();
-            if (dateSelectionForm.ShowDialog() == DialogResult.OK)
-            {
-                // 日付選択フォームから選択した日付を取得
-                string selectedDate = dateSelectionForm.SelectedDate;
-
-                // フォームAの日付コントロールに選択した日付を設定
-                入庫日開始.Text = selectedDate;
-            }
+            入庫日開始選択ボタン_Click(sender, e);
         }
 
         private void 入庫日開始選択ボタン_Click(object sender, EventArgs e)
         {
             // 日付選択フォームを作成し表示
             dateSelectionForm = new F_カレンダー();
+
+            if (!string.IsNullOrEmpty(入庫日開始.Text))
+            {
+                dateSelectionForm.args = 入庫日開始.Text;
+            }
+
             if (dateSelectionForm.ShowDialog() == DialogResult.OK)
             {
                 // 日付選択フォームから選択した日付を取得
@@ -291,22 +288,19 @@ namespace u_net
 
         private void 入庫日終了_DoubleClick(object sender, EventArgs e)
         {
-            // 日付選択フォームを作成し表示
-            dateSelectionForm = new F_カレンダー();
-            if (dateSelectionForm.ShowDialog() == DialogResult.OK)
-            {
-                // 日付選択フォームから選択した日付を取得
-                string selectedDate = dateSelectionForm.SelectedDate;
-
-                // フォームAの日付コントロールに選択した日付を設定
-                入庫日終了.Text = selectedDate;
-            }
+            入庫日終了選択ボタン_Click(sender, e);
         }
 
         private void 入庫日終了選択ボタン_Click(object sender, EventArgs e)
         {
             // 日付選択フォームを作成し表示
             dateSelectionForm = new F_カレンダー();
+
+            if (!string.IsNullOrEmpty(入庫日終了.Text))
+            {
+                dateSelectionForm.args = 入庫日終了.Text;
+            }
+
             if (dateSelectionForm.ShowDialog() == DialogResult.OK)
             {
                 // 日付選択フォームから選択した日付を取得

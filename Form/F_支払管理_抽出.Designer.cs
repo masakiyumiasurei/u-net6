@@ -46,7 +46,7 @@
             抽出ボタン = new Button();
             キャンセルボタン = new Button();
             支払先選択ボタン = new Button();
-            更新者名_ラベル = new Label();
+            支払先名_ラベル = new Label();
             支払先コード_ラベル = new Label();
             支払先コード = new TextBox();
             支払年月日_ラベル = new Label();
@@ -278,7 +278,7 @@
             支払先選択ボタン.UseVisualStyleBackColor = true;
             支払先選択ボタン.Click += 支払先選択ボタン_Click;
             // 
-            // 更新者名_ラベル
+            // 支払先名_ラベル
             // 
             更新者名_ラベル.AllowDrop = true;
             更新者名_ラベル.AutoEllipsis = true;
@@ -403,7 +403,7 @@
             Controls.Add(支払年月日_ラベル);
             Controls.Add(支払先コード);
             Controls.Add(支払先コード_ラベル);
-            Controls.Add(更新者名_ラベル);
+            Controls.Add(支払先名_ラベル);
             Controls.Add(支払先選択ボタン);
             Controls.Add(キャンセルボタン);
             Controls.Add(抽出ボタン);
@@ -449,7 +449,7 @@
         private Button 抽出ボタン;
         private Button キャンセルボタン;
         private Button 支払先選択ボタン;
-        private Label 更新者名_ラベル;
+        private Label 支払先名_ラベル;
         private TextBox 支払先コード;
         private Label 支払年月日_ラベル;
         private ComboBox 支払年月;

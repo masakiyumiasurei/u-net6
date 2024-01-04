@@ -312,6 +312,7 @@
             Controls.Add(label5);
             KeyPreview = true;
             Name = "F_メーカー管理_抽出";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "F_メーカー管理_抽出";
             FormClosing += F_メーカー管理_抽出_FormClosing;
             Load += Form_Load;

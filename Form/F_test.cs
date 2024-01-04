@@ -71,6 +71,12 @@ namespace u_net
         {
             // 日付選択フォームを作成し表示
             dateSelectionForm = new F_カレンダー();
+
+            if (!string.IsNullOrEmpty(日付.Text))
+            {
+                dateSelectionForm.args = 日付.Text;
+            }
+
             if (dateSelectionForm.ShowDialog() == DialogResult.OK)
             {
                 // 日付選択フォームから選択した日付を取得

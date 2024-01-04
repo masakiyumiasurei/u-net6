@@ -125,6 +125,7 @@
             Controls.Add(label1);
             Margin = new Padding(3, 2, 3, 2);
             Name = "F_検索コード";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "F_検索コード";
             Load += Form_Load;
             statusStrip1.ResumeLayout(false);

@@ -162,6 +162,12 @@ namespace u_net
         {
             // 日付選択フォームを作成し表示
             dateSelectionForm = new F_カレンダー();
+
+            if (!string.IsNullOrEmpty(更新日終了.Text))
+            {
+                dateSelectionForm.args = 更新日終了.Text;
+            }
+
             if (dateSelectionForm.ShowDialog() == DialogResult.OK)
             {
                 // 日付選択フォームから選択した日付を取得
@@ -176,6 +182,12 @@ namespace u_net
         {
             // 日付選択フォームを作成し表示
             dateSelectionForm = new F_カレンダー();
+
+            if (!string.IsNullOrEmpty(更新日開始.Text))
+            {
+                dateSelectionForm.args = 更新日開始.Text;
+            }
+
             if (dateSelectionForm.ShowDialog() == DialogResult.OK)
             {
                 // 日付選択フォームから選択した日付を取得

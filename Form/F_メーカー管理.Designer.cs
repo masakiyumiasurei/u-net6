@@ -323,6 +323,7 @@
             FormClosing += F_メーカー管理_FormClosing;
             Load += Form_Load;
             KeyDown += Form_KeyDown;
+            Resize += Form_Resize;
             panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             panel2.ResumeLayout(false);

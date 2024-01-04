@@ -154,6 +154,7 @@ namespace u_net.Public
                 {
                     MessageBox.Show(controlObject.Name + " を入力してください。", controlObject.Name, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     isError = true;
+                    controlObject.Focus();
                     return false;
                 }
 

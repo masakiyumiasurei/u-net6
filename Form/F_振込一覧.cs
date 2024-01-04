@@ -14,33 +14,28 @@ using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace u_net
 {
-    public partial class F_支払一覧_年間 : MidForm
+    public partial class F_振込一覧 : MidForm
     {
-        public string str集計年度;
-        public string str支払区分コード;
+
+        public DateTime dtm集計年月 { get; set; }
+
 
         int intWindowHeight = 0;
         int intWindowWidth = 0;
 
         private Control? previousControl;
         private SqlConnection? cn;
-        public F_支払一覧_年間()
+        public F_振込一覧()
         {
             InitializeComponent();
         }
+
 
         public string PayeeCode
         {
             get
             {
-                if (dataGridView1.CurrentRow.Index != dataGridView1.RowCount - 1)
-                {
-                    return dataGridView1.CurrentRow.Cells[0].Value?.ToString();
-                }
-                else
-                {
-                    return "";
-                }
+                return dataGridView1.CurrentRow.Cells[0].Value?.ToString();
             }
         }
 
@@ -48,36 +43,7 @@ namespace u_net
         {
             get
             {
-                if (dataGridView1.CurrentRow.Index != dataGridView1.RowCount - 1)
-                {
-                    return dataGridView1.CurrentRow.Cells[1].Value?.ToString();
-                }
-                else
-                {
-                    return "";
-                }
-            }
-        }
-
-
-        public string groupCode
-        {
-            get
-            {
-                return Nz(支払区分コード.SelectedValue);
-            }
-        }
-        public DateTime PayMonth
-        {
-            get
-            {
-                int int1 = (dataGridView1.CurrentCell.ColumnIndex % 12) + 2;  // 月の調整
-                int int2 = dataGridView1.CurrentCell.ColumnIndex / 11;        // 年の調整
-
-                int selectedYear = Convert.ToInt32(str集計年度) + int2;
-                int selectedMonth = int1;
-
-                return new DateTime(selectedYear, selectedMonth, 1);
+                return dataGridView1.CurrentRow.Cells[1].Value?.ToString();
             }
         }
 
@@ -93,7 +59,6 @@ namespace u_net
             cn = new SqlConnection(connectionString);
             cn.Open();
         }
-
 
         private void Form_Load(object sender, EventArgs e)
         {
@@ -143,7 +108,7 @@ namespace u_net
 
             Connect();
 
-            using (SqlCommand cmd = new SqlCommand("SP支払年度", cn))
+            using (SqlCommand cmd = new SqlCommand("SP集計年月", cn))
             {
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
@@ -153,18 +118,16 @@ namespace u_net
                 DataTable dataTable = new DataTable();
                 dataTable.Load(reader);
 
-                集計年度.DisplayMember = "支払年度";
-                集計年度.ValueMember = "支払年度";
-                集計年度.DataSource = dataTable;
+                支払年月.DisplayMember = "年月";
+                支払年月.ValueMember = "集計年月";
+                支払年月.DataSource = dataTable;
 
 
             }
 
-            OriginalClass ofn = new OriginalClass();
-            ofn.SetComboBox(支払区分コード, "SELECT 買掛区分コード as Value, 買掛区分名 as Display, 番号 FROM M買掛区分 UNION SELECT '', '（全て）', 0 AS 番号 FROM M買掛区分 ORDER BY 番号");
-            支払区分コード.SelectedIndex = -1;
-        }
 
+
+        }
 
         private void Form_Resize(object sender, EventArgs e)
         {
@@ -185,7 +148,7 @@ namespace u_net
         }
         public bool DoUpdate()
         {
-            if (string.IsNullOrEmpty(集計年度.Text)) return false;
+            if (string.IsNullOrEmpty(支払年月.Text)) return false;
 
             FunctionClass fn = new FunctionClass();
             fn.DoWait("集計しています...");
@@ -193,7 +156,7 @@ namespace u_net
             bool result = true;
             try
             {
-                SetGrid(str集計年度, str支払区分コード);
+                SetGrid(dtm集計年月);
                 AddTotalRow(dataGridView1);
 
                 if (dataGridView1.RowCount > 0)
@@ -214,7 +177,7 @@ namespace u_net
             return result;
         }
 
-        private bool SetGrid(string yearString, string groupCode = null)
+        private bool SetGrid(DateTime PayDay, string SalesmanCode = null)
         {
             bool success = false;
 
@@ -226,11 +189,11 @@ namespace u_net
                 FunctionClass fn = new FunctionClass();
 
 
-                using (SqlCommand command = new SqlCommand("SP支払一覧_年間", cn))
+                using (SqlCommand command = new SqlCommand("SP支払一覧_月間", cn))
                 {
                     command.CommandType = CommandType.StoredProcedure;
-                    command.Parameters.AddWithValue("@PayYear", yearString);
-                    command.Parameters.AddWithValue("@GroupCode", fn.Zn(groupCode));
+                    command.Parameters.AddWithValue("@PayMonth", PayDay);
+
 
                     // データベースからデータを取得して DataGridView に設定
                     using (SqlDataAdapter adapter = new SqlDataAdapter(command))
@@ -277,7 +240,6 @@ namespace u_net
                         dataGridView1.Columns[col].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                     }
 
-                    
 
 
                 }
@@ -338,12 +300,9 @@ namespace u_net
             }
         }
 
-
-
         private void dataGridView1_Sorted(object sender, EventArgs e)
         {
             AddTotalRow(dataGridView1);
-            
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -382,6 +341,11 @@ namespace u_net
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
 
+            DialogResult result = MessageBox.Show("月間一覧上の金額は誤差が発生している可能性があります。\n続行しますか？", "支払コマンド", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.No)
+            {
+                return;
+            }
 
             F_支払 targetform = new F_支払();
             targetform.ShowDialog();
@@ -391,7 +355,6 @@ namespace u_net
         {
             Form_KeyDown(sender, e);
         }
-
 
         private void Form_KeyDown(object sender, KeyEventArgs e)
         {
@@ -409,8 +372,6 @@ namespace u_net
                         break;
                     case Keys.F3:
                         if (this.コマンド初期化.Enabled) コマンド初期化_Click(null, null);
-                        //datagidviewの並び替えが行われるため
-                        e.Handled = true;
                         break;
                     case Keys.F4:
                         if (this.コマンド更新.Enabled) コマンド更新_Click(null, null);
@@ -419,15 +380,13 @@ namespace u_net
                         if (this.コマンド支払先.Enabled) コマンド支払先_Click(null, null);
                         break;
                     case Keys.F6:
-                        if (this.コマンド支払.Enabled) コマンド支払_Click(null, null);
+                        if (this.コマンド支払通知.Enabled) コマンド締切_Click(null, null);
                         break;
                     case Keys.F7:
-                        if (this.コマンド明細参照.Enabled) コマンド明細参照_Click(null, null);
+                        if (this.コマンド締切.Enabled) コマンド支払通知_Click(null, null);
                         break;
                     case Keys.F8:
-                        if (this.コマンド支払通知.Enabled) コマンド支払通知_Click(null, null);
                         break;
-
                     case Keys.F9:
                         if (this.コマンド印刷.Enabled) コマンド印刷_Click(null, null);
                         break;
@@ -445,7 +404,6 @@ namespace u_net
                 MessageBox.Show("KeyDown - " + ex.Message);
             }
         }
-
 
         private void コマンド抽出_Click(object sender, EventArgs e)
         {
@@ -472,32 +430,29 @@ namespace u_net
                     if (dataGridView1.RowCount > 0)
                     {
                         コマンド支払先.Enabled = true;
-                        コマンド明細参照.Enabled = true;
-                        コマンド支払.Enabled = true;
+                        コマンド締切.Enabled = true;
+                        コマンド支払通知.Enabled = true;
                         // コマンド支払通知.Enabled = true;
                         コマンド印刷.Enabled = true;
                         コマンド入出力.Enabled = true;
-                        コピーボタン.Enabled = true;
                     }
                     else
                     {
-                        コマンド支払.Enabled = false;
+                        コマンド支払通知.Enabled = false;
                         コマンド支払先.Enabled = false;
                         // コマンド支払通知.Enabled = false;
                         コマンド印刷.Enabled = false;
                         コマンド入出力.Enabled = false;
-                        コピーボタン.Enabled = false;
                     }
                 }
                 else
                 {
                     MessageBox.Show("エラーが発生しました。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    コマンド支払.Enabled = false;
+                    コマンド支払通知.Enabled = false;
                     コマンド支払先.Enabled = false;
                     // コマンド支払通知.Enabled = false;
                     コマンド印刷.Enabled = false;
                     コマンド入出力.Enabled = false;
-                    コピーボタン.Enabled = false;
                 }
 
 
@@ -530,13 +485,6 @@ namespace u_net
             targetform.ShowDialog();
         }
 
-        private void コマンド明細参照_Click(object sender, EventArgs e)
-        {
-            F_支払明細参照 targetform = new F_支払明細参照();
-            targetform.ShowDialog();
-        }
-
-
         private void コマンド印刷_Click(object sender, EventArgs e)
         {
 
@@ -551,31 +499,11 @@ namespace u_net
         {
             string param = $" -user:{CommonConstants.LoginUserName}" +
                            $" -sv:{CommonConstants.ServerInstanceName.Replace(" ", "_")}" +
-                           $" -pv:payment,{PayMonth.ToString().Replace(" ", "_")}" +
+                           $" -pv:payment,{dtm集計年月.ToString().Replace(" ", "_")}" +
                            $",{PayeeCode.Replace(" ", "_")}";
             FunctionClass.GetShell(param);
         }
 
-        private void コピーボタン_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                // 選択されているセルのデータを取得
-                DataObject dataObject = dataGridView1.GetClipboardContent();
-
-                // クリップボードにコピー
-                Clipboard.SetDataObject(dataObject);
-
-                MessageBox.Show("クリップボードへコピーしました。", "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-            }
-            catch (Exception ex)
-            {
-                // コピーに失敗した場合はエラーメッセージを表示
-                Console.WriteLine("クリップボードへのコピーに失敗しました。" + ex.Message);
-
-            }
-        }
         private void コマンド入出力_Click(object sender, EventArgs e)
         {
 
@@ -603,20 +531,22 @@ namespace u_net
 
             }
         }
-        private void コマンド支払_Click(object sender, EventArgs e)
+
+        private void コマンド締切_Click(object sender, EventArgs e)
         {
 
-
-            F_支払 targetform = new F_支払();
-            targetform.ShowDialog();
         }
 
+        private void コマンド支払通知_Click_1(object sender, EventArgs e)
+        {
 
-        private void 集計年度_SelectedIndexChanged(object sender, EventArgs e)
+        }
+
+        private void 集計年月_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
             {
-                str集計年度 = 集計年度.Text;
+                dtm集計年月 = Convert.ToDateTime(支払年月.SelectedValue);
 
                 // リストを更新する
                 if (DoUpdate())
@@ -624,33 +554,30 @@ namespace u_net
                     if (dataGridView1.RowCount > 0)
                     {
                         コマンド支払先.Enabled = true;
-                        コマンド明細参照.Enabled = true;
-                        コマンド支払.Enabled = true;
+                        コマンド締切.Enabled = true;
+                        コマンド支払通知.Enabled = true;
                         // コマンド支払通知.Enabled = true;
                         コマンド印刷.Enabled = true;
                         コマンド入出力.Enabled = true;
-                        コピーボタン.Enabled = true;
                     }
                     else
                     {
-                        コマンド支払.Enabled = false;
+                        コマンド支払通知.Enabled = false;
                         コマンド支払先.Enabled = false;
                         // コマンド支払通知.Enabled = false;
                         コマンド印刷.Enabled = false;
                         コマンド入出力.Enabled = false;
-                        コピーボタン.Enabled = false;
                     }
                 }
                 else
                 {
                     MessageBox.Show("エラーが発生しました。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     コマンド支払先.Enabled = false;
-                    コマンド明細参照.Enabled = false;
-                    コマンド支払.Enabled = false;
+                    コマンド締切.Enabled = false;
+                    コマンド支払通知.Enabled = false;
                     // コマンド支払通知.Enabled = false;
                     コマンド印刷.Enabled = false;
                     コマンド入出力.Enabled = false;
-                    コピーボタン.Enabled = false;
                 }
 
 
@@ -661,60 +588,6 @@ namespace u_net
             }
         }
 
-        private void 支払区分コード_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                str支払区分コード = string.IsNullOrEmpty(支払区分コード.SelectedValue?.ToString()) ? null : 支払区分コード.SelectedValue?.ToString();
 
-                // 集計年度が指定されていないときは何もしない
-                if (string.IsNullOrEmpty(str集計年度))
-                {
-                    return;
-                }
-
-
-                // リストを更新する
-                if (DoUpdate())
-                {
-                    if (dataGridView1.RowCount > 0)
-                    {
-                        コマンド支払.Enabled = true;
-                        コマンド明細参照.Enabled = true;
-                        コマンド支払先.Enabled = true;
-                        // コマンド支払通知.Enabled = true;
-                        コマンド印刷.Enabled = true;
-                        コマンド入出力.Enabled = true;
-                        コピーボタン.Enabled = true;
-                    }
-                    else
-                    {
-                        コマンド支払.Enabled = false;
-                        コマンド明細参照.Enabled = false;
-                        コマンド支払先.Enabled = false;
-                        // コマンド支払通知.Enabled = false;
-                        コマンド印刷.Enabled = false;
-                        コマンド入出力.Enabled = false;
-                        コピーボタン.Enabled = false;
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("エラーが発生しました。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    コマンド支払.Enabled = false;
-                    コマンド支払先.Enabled = false;
-                    // コマンド支払通知.Enabled = false;
-                    コマンド印刷.Enabled = false;
-                    コマンド入出力.Enabled = false;
-                    コピーボタン.Enabled = false;
-                }
-
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"エラーが発生しました。\n{ex.Message}", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
     }
 }

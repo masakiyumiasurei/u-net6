@@ -60,6 +60,8 @@ namespace u_net
         }
         private void InitializeFilter()
         {
+            this.strメーカーコード開始 = "";
+            this.strメーカーコード終了 = "";
             this.strメーカー名 = "";
             this.str担当者名 = "";
             this.str担当者メールアドレス = "";
@@ -102,19 +104,19 @@ namespace u_net
             dataGridView1.AllowUserToDeleteRows = false;
             dataGridView1.ReadOnly = true;
 
-            myapi.GetFullScreen(out xSize, out ySize);
+            //myapi.GetFullScreen(out xSize, out ySize);
 
-            int x = 10, y = 10;
+            //int x = 10, y = 10;
 
-            this.Size = new Size(this.Width, ySize * myapi.GetTwipPerDot(intpixel) - 1200);
-            //accessのmovesizeメソッドの引数の座標単位はtwipなので以下で
+            //this.Size = new Size(this.Width, ySize * myapi.GetTwipPerDot(intpixel) - 1200);
+            ////accessのmovesizeメソッドの引数の座標単位はtwipなので以下で
 
-            this.Size = new Size(this.Width, ySize - 1200 / twipperdot);
+            //this.Size = new Size(this.Width, ySize - 1200 / twipperdot);
 
-            this.StartPosition = FormStartPosition.Manual; // 手動で位置を指定
-            int screenWidth = Screen.PrimaryScreen.Bounds.Width; // プライマリスクリーンの幅
-            x = (screenWidth - this.Width) / 2;
-            this.Location = new Point(x, y);
+            //this.StartPosition = FormStartPosition.Manual; // 手動で位置を指定
+            //int screenWidth = Screen.PrimaryScreen.Bounds.Width; // プライマリスクリーンの幅
+            //x = (screenWidth - this.Width) / 2;
+            //this.Location = new Point(x, y);
 
             InitializeFilter();
             DoUpdate();
@@ -125,14 +127,13 @@ namespace u_net
         {
             try
             {
-                if (this.Height > 800)
-                {
-                    dataGridView1.Height = dataGridView1.Height + (this.Height - intWindowHeight);
-                    intWindowHeight = this.Height;  // 高さ保存
 
-                    dataGridView1.Width = dataGridView1.Width + (this.Width - intWindowWidth);
-                    intWindowWidth = this.Width;    // 幅保存
-                }
+                dataGridView1.Height = dataGridView1.Height + (this.Height - intWindowHeight);
+                intWindowHeight = this.Height;  // 高さ保存
+
+                dataGridView1.Width = dataGridView1.Width + (this.Width - intWindowWidth);
+                intWindowWidth = this.Width;    // 幅保存
+
             }
             catch (Exception ex)
             {
@@ -374,8 +375,27 @@ namespace u_net
 
         private void コマンドメール_Click(object sender, EventArgs e)
         {
-          
 
+            if (dataGridView1.SelectedRows.Count <= 0) return;
+
+            string toEmail = dataGridView1.SelectedRows[0].Cells["担当者メールアドレス"].Value.ToString();
+
+            if (string.IsNullOrEmpty(toEmail))
+            {
+                MessageBox.Show("メールアドレスが設定されていません。", "メールコマンド", MessageBoxButtons.OK);
+                return;
+            }
+
+            // デフォルトのメールクライアントを起動して新しいメールを作成
+            try
+            {
+                string mailtoLink = "mailto:" + toEmail;
+                System.Diagnostics.Process.Start(new ProcessStartInfo(mailtoLink) { UseShellExecute = true });
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("メールを起動できませんでした。\nエラー: " + ex.Message, "メールコマンド", MessageBoxButtons.OK);
+            }
 
 
 

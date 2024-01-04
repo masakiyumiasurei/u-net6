@@ -233,6 +233,12 @@ namespace u_net
 
         private void 更新日開始選択ボタン_Click(object sender, EventArgs e)
         {
+
+            if (!string.IsNullOrEmpty(更新日開始.Text))
+            {
+                dateSelectionForm.args = 更新日開始.Text;
+            }
+
             if (dateSelectionForm.ShowDialog() == DialogResult.OK)
             {
                 // 日付選択フォームから選択した日付を取得
@@ -247,6 +253,11 @@ namespace u_net
         private void 更新日終了選択ボタン_Click(object sender, EventArgs e)
         {
 
+            if (!string.IsNullOrEmpty(更新日終了.Text))
+            {
+                dateSelectionForm.args = 更新日終了.Text;
+            }
+
             if (dateSelectionForm.ShowDialog() == DialogResult.OK)
             {
                 string selectedDate = dateSelectionForm.SelectedDate;
@@ -256,24 +267,12 @@ namespace u_net
 
         private void 更新日開始_DoubleClick(object sender, EventArgs e)
         {
-            if (dateSelectionForm.ShowDialog() == DialogResult.OK)
-            {
-                // 日付選択フォームから選択した日付を取得
-                string selectedDate = dateSelectionForm.SelectedDate;
-
-                // フォームAの日付コントロールに選択した日付を設定
-                更新日開始.Text = selectedDate;
-
-            }
+            更新日開始選択ボタン_Click(sender, e);
         }
 
         private void 更新日終了_DoubleClick(object sender, EventArgs e)
         {
-            if (dateSelectionForm.ShowDialog() == DialogResult.OK)
-            {
-                string selectedDate = dateSelectionForm.SelectedDate;
-                更新日終了.Text = selectedDate;
-            }
+            更新日終了選択ボタン_Click(sender, e);
         }
     }
 }
