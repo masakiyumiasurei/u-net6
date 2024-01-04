@@ -211,6 +211,7 @@
             // 
             // 支払先参照ボタン
             // 
+            支払先参照ボタン.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             支払先参照ボタン.Location = new Point(246, 40);
             支払先参照ボタン.Margin = new Padding(4);
             支払先参照ボタン.Name = "支払先参照ボタン";
