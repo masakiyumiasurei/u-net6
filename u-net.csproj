@@ -151,6 +151,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Form\F_振込繰越.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Form\F_システム.cs" />
     <Compile Update="Form\F_商品構成.cs">
       <SubType>Form</SubType>
