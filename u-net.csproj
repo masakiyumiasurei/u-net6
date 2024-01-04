@@ -151,6 +151,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Form\F_振込繰越.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Form\F_システム.cs" />
     <Compile Update="Form\F_商品構成.cs">
       <SubType>Form</SubType>
@@ -158,11 +161,20 @@
     <Compile Update="Form\F_売掛明細.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Form\F_TransferList_Others.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Form\F_相殺.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Form\F_振込一覧.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Form\F_支払明細参照.cs" />
     <Compile Update="Form\F_支払一覧_月間.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Form\F_手形.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Form\F_業務日報.cs">
