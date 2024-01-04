@@ -375,8 +375,27 @@ namespace u_net
 
         private void コマンドメール_Click(object sender, EventArgs e)
         {
-          
 
+            if (dataGridView1.SelectedRows.Count <= 0) return;
+
+            string toEmail = dataGridView1.SelectedRows[0].Cells["担当者メールアドレス"].Value.ToString();
+
+            if (string.IsNullOrEmpty(toEmail))
+            {
+                MessageBox.Show("メールアドレスが設定されていません。", "メールコマンド", MessageBoxButtons.OK);
+                return;
+            }
+
+            // デフォルトのメールクライアントを起動して新しいメールを作成
+            try
+            {
+                string mailtoLink = "mailto:" + toEmail;
+                System.Diagnostics.Process.Start(new ProcessStartInfo(mailtoLink) { UseShellExecute = true });
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("メールを起動できませんでした。\nエラー: " + ex.Message, "メールコマンド", MessageBoxButtons.OK);
+            }
 
 
 
