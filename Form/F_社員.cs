@@ -111,6 +111,26 @@ namespace u_net
         DataTable dt = new DataTable();
         SqlDataAdapter adapter = new SqlDataAdapter();
 
+        public void チェック()
+        {
+            if (string.IsNullOrEmpty(確定日時.Text))
+            {
+                確定.Text = "";
+            }
+            else
+            {
+                確定.Text = "■";
+            }
+
+            if (string.IsNullOrEmpty(削除日時.Text))
+            {
+                削除.Text = "";
+            }
+            else
+            {
+                削除.Text = "■";
+            }
+        }
         private void Form_Load(object sender, EventArgs e)
         {
 
@@ -125,13 +145,13 @@ namespace u_net
             this.tabControl1.TabPages.Remove(this.ページ79);
 
             //実行中フォーム起動
-            //string LoginUserCode = "000";//テスト用 ログインユーザを実行中にどのように管理するか決まったら修正
-            //LocalSetting localSetting = new LocalSetting();
-            //localSetting.LoadPlace(LoginUserCode, this);
+            string LoginUserCode = CommonConstants.LoginUserCode;
+            LocalSetting localSetting = new LocalSetting();
+            localSetting.LoadPlace(LoginUserCode, this);
 
             //コンボボックスの設定
             OriginalClass ofn = new OriginalClass();
-            ofn.SetComboBox(勤務地コード, "SELECT * FROM M営業所");
+            ofn.SetComboBox(勤務地コード, "SELECT 営業所名 Display ,営業所コード Value FROM M営業所");
 
             this.パート.DataSource = new KeyValuePair<int, String>[] {
                 new KeyValuePair<int, String>(1, "パート"),
@@ -169,6 +189,8 @@ namespace u_net
                     {
                         this.社員コード.Text = args;
                         UpdatedControl(this.社員コード);
+                        チェック();
+                        ChangedData(false);
                     }
                 }
 
@@ -300,9 +322,9 @@ namespace u_net
 
         private void Form_Unload(object sender, FormClosingEventArgs e)
         {
-            //string LoginUserCode = "000";//テスト用 ログインユーザを実行中にどのように管理するか決まったら修正
-            //LocalSetting test = new LocalSetting();
-            //test.SavePlace(LoginUserCode, this);
+            string LoginUserCode = CommonConstants.LoginUserCode;
+            LocalSetting test = new LocalSetting();
+            test.SavePlace(LoginUserCode, this);
 
             try
             {
@@ -586,13 +608,23 @@ namespace u_net
 
         private void コマンドメール_Click(object sender, EventArgs e)
         {
+            string toEmail = Convert.ToString(電子メールアドレス.Text);
             if (電子メールアドレス.Text != null)
             {
                 MessageBox.Show("電子メールアドレスを入力してください。", "メールコマンド", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 電子メールアドレス.Focus();
+                return;
             }
 
-            //メールを作成
+            try
+            {
+                string mailtoLink = "mailto:" + toEmail;
+                System.Diagnostics.Process.Start(new ProcessStartInfo(mailtoLink) { UseShellExecute = true });
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("メールを起動できませんでした。\nエラー: " + ex.Message, "メールコマンド", MessageBoxButtons.OK);
+            }
         }
 
         private void コマンド複写_Click(object sender, EventArgs e)
@@ -647,7 +679,7 @@ namespace u_net
                 //承認者名.Text = null;
                 削除日時.Text = null;
                 削除者コード.Text = null;
-
+                チェック();
                 return true;
             }
             catch (Exception ex)
@@ -659,6 +691,7 @@ namespace u_net
 
         private async void コマンド削除_Click(object sender, EventArgs e)
         {
+            FunctionClass fn = new FunctionClass();
             try
             {
                 string strCode;         // 削除するデータのコード
@@ -668,8 +701,7 @@ namespace u_net
                 string strMsgPlus;
 
                 strCode = this.CurrentCode;
-                //intEdition = this.CurrentRevision;
-                FunctionClass fn = new FunctionClass();
+                //intEdition = this.CurrentRevision;                
 
                 DialogResult intRes;
 
@@ -678,10 +710,6 @@ namespace u_net
                     GetNextControl(コマンド削除, false).Focus();
                 }
 
-
-                //if (IsDeleted)
-                //{
-                // 削除済みのため復元処理
                 strMsg = $"社員コード　：　{CurrentCode}{Environment.NewLine}{Environment.NewLine}" +
                           $"この社員データは削除されています。復元しますか？{Environment.NewLine}" +
                     $"削除/復元するには[OK]を選択してください。{Environment.NewLine}{Environment.NewLine}" +
@@ -695,98 +723,36 @@ namespace u_net
                 }
                 else
                 {
-                    //ログイン認証フォームができたら
-                    //using (var authForm = new F_認証())
-                    //{
-                    //authForm.ShowDialog();
-                    //while (strCertificateCode == "")
-                    //{
-
-                    //if (Form.ActiveForm == null || Form.ActiveForm.Name != "認証")
-                    //{
-                    //    MessageBox.Show("復元操作は取り消されました。", "削除コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    //    return;
-                    //}
-                    //Application.DoEvents();
-
-                    //}
                     Connect();
                     fn.DoWait("削除しています...");
                     if (intRes == DialogResult.Yes || intRes == DialogResult.OK)
                     {
                         if (SetDeleted(cn, strCode, -1, DateTime.Now, CommonConstants.LoginUserCode))
-                            goto Err_コマンド削除_Click;
+                            throw new Exception();
                     }
-                    else
-                        goto Err_コマンド削除_Click;
-
-
-                    //if (SetDeleted(cn, strCode, intEdition, DateTime.Now, CommonConstants.LoginUserCode))
-                    //{
-                    //    MessageBox.Show("復元しました。", "削除コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    //}
-                    //else
-                    //{
-                    //    MessageBox.Show("エラーが発生しました。復元できませんでした。", "削除コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    //}
-                    //}
                 }
-            //}
-            //else
-            //{
-            //    // 削除処理
 
-            //    strMsg = $"仕入先コード　：　{CurrentCode}{Environment.NewLine}{Environment.NewLine}" +
-            //"このデータを削除しますか？{Environment.NewLine}削除後、復元することができます。";
-
-            //    if (MessageBox.Show(strMsg, "削除コマンド", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-            //    {
-            //        //using (var authenticationForm = new F_認証())
-            //        //{
-            //        //  authenticationForm.ShowDialog();
-
-            //        //while (strCertificateCode == "")
-            //        //{
-            //        if (Form.ActiveForm == null || Form.ActiveForm.Name != "認証")
-            //        {
-            //            MessageBox.Show("削除操作は取り消されました。", "削除コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //            return;
-            //        }
-
-            //        Application.DoEvents();
-            //        // }
-
-            //        Connect();
-            //        if (SetDeleted(cn, strCode, intEdition, DateTime.Now, CommonConstants.LoginUserCode))
-            //        {
-            //            MessageBox.Show("削除しました。{Environment.NewLine}復元するには再度削除コマンドを実行してください。", "削除コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //        }
-            //        else
-            //        {
-            //            MessageBox.Show("エラーが発生しました。{Environment.NewLine}削除できませんでした。", "削除コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //        }
-            //        // }
-            //    }
-
-            //}
-
-            Bye_コマンド削除_Click:
+                if (fn.WaitForm != null) fn.WaitForm.Close();
+                Bye_コマンド削除_Click:
 
                 return;
 
-            Err_コマンド削除_Click:
-
-                return;
 
             }
             catch (Exception ex)
             {
-                MessageBox.Show(this.Name + "_コマンド削除_Click - " + ex.Message);
+                if (fn.WaitForm != null) fn.WaitForm.Close();
+                MessageBox.Show(this.Name + "エラーが発生しました。 - " + ex.Message, "削除コマンド");
             }
         }
 
         private bool SetDeleted(SqlConnection cn, string codeString, int editionNumber, DateTime deleteTime, string deleteUser)
         {
+            // 指定データへの削除のマーキング
+            // CodeString    - コード
+            // EditionNumber - 版数（■無い場合は-1を指定すること！）
+            // 戻り値        - 成功=False,失敗=True
+
             try
             {
                 string strKey;
@@ -1060,7 +1026,7 @@ namespace u_net
             return loadHeader;
         }
 
-        private bool IsError(Control controlObject, ref int Cancel)
+        private bool IsError(Control controlObject)
         {
             try
             {
@@ -1279,12 +1245,12 @@ namespace u_net
 
         private void 社員コード_Validated(object sender, EventArgs e)
         {
-            //IsError(ActiveControl, Cancel);
+            UpdatedControl(社員コード);           
         }
 
         private void 社員コード_Validating(object sender, CancelEventArgs e)
         {
-            UpdatedControl(ActiveControl);
+            IsError(社員コード);
         }
 
         private void 社員コード_TextChanged(object sender, EventArgs e)

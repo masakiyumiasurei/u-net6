@@ -54,9 +54,12 @@
             振込指定 = new ComboBox();
             toolTip1 = new ToolTip(components);
             支払先参照ボタン = new Button();
+            statusStrip1 = new StatusStrip();
+            toolStripStatusLabel1 = new ToolStripStatusLabel();
             groupBox3.SuspendLayout();
             groupBox4.SuspendLayout();
             groupBox5.SuspendLayout();
+            statusStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // 支払先名
@@ -70,6 +73,7 @@
             支払先名.Name = "支払先名";
             支払先名.Size = new Size(277, 20);
             支払先名.TabIndex = 8;
+            支払先名.TextChanged += 支払先名_TextChanged;
             // 
             // 振込指定_ラベル
             // 
@@ -189,7 +193,7 @@
             groupBox5.Size = new Size(374, 50);
             groupBox5.TabIndex = 16;
             groupBox5.TabStop = false;
-            groupBox5.Text = "削除指定(&D)";
+            groupBox5.Text = "削除指定(&R)";
             // 
             // 削除指定Button3
             // 
@@ -242,18 +246,20 @@
             キャンセルボタン.TabIndex = 10;
             キャンセルボタン.Text = "キャンセル(&X)";
             キャンセルボタン.UseVisualStyleBackColor = true;
+            キャンセルボタン.Click += キャンセルボタン_Click;
             キャンセルボタン.MouseClick += キャンセルボタン_MouseClick;
             // 
             // 支払先選択ボタン
             // 
             支払先選択ボタン.Location = new Point(227, 69);
-            支払先選択ボタン.Margin = new Padding(4);
+            支払先選択ボタン.Margin = new Padding(4, 4, 4, 4);
             支払先選択ボタン.Name = "支払先選択ボタン";
             支払先選択ボタン.Size = new Size(21, 21);
             支払先選択ボタン.TabIndex = 21008;
             支払先選択ボタン.TabStop = false;
             支払先選択ボタン.Text = "▼";
             支払先選択ボタン.UseVisualStyleBackColor = true;
+            支払先選択ボタン.Click += 支払先選択ボタン_Click;
             // 
             // 支払先名_ラベル
             // 
@@ -262,10 +268,10 @@
             支払先名_ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             支払先名_ラベル.ForeColor = SystemColors.ActiveCaptionText;
             支払先名_ラベル.ImageAlign = ContentAlignment.MiddleLeft;
-            支払先名_ラベル.Location = new Point(17, 96);
+            支払先名_ラベル.Location = new Point(19, 128);
             支払先名_ラベル.Margin = new Padding(0);
-            支払先名_ラベル.Name = "支払先名_ラベル";
-            支払先名_ラベル.Size = new Size(95, 20);
+            支払先名_ラベル.Name = "更新者名_ラベル";
+            支払先名_ラベル.Size = new Size(109, 27);
             支払先名_ラベル.TabIndex = 7;
             支払先名_ラベル.Text = "支払先名(&N)";
             支払先名_ラベル.TextAlign = ContentAlignment.MiddleLeft;
@@ -292,10 +298,13 @@
             支払先コード.ImeMode = ImeMode.Disable;
             支払先コード.Location = new Point(121, 70);
             支払先コード.Margin = new Padding(3, 2, 3, 2);
-            支払先コード.Multiline = true;
             支払先コード.Name = "支払先コード";
             支払先コード.Size = new Size(102, 20);
             支払先コード.TabIndex = 6;
+            支払先コード.DoubleClick += 支払先コード_DoubleClick;
+            支払先コード.KeyDown += 支払先コード_KeyDown;
+            支払先コード.KeyPress += 支払先コード_KeyPress;
+            支払先コード.Validated += 支払先コード_Validated;
             // 
             // 支払年月日_ラベル
             // 
@@ -309,7 +318,7 @@
             支払年月日_ラベル.Name = "支払年月日_ラベル";
             支払年月日_ラベル.Size = new Size(95, 21);
             支払年月日_ラベル.TabIndex = 1;
-            支払年月日_ラベル.Text = "支払年月日(&M)";
+            支払年月日_ラベル.Text = "支払年月(&M)";
             支払年月日_ラベル.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // 支払年月
@@ -333,23 +342,43 @@
             振込指定.Name = "振込指定";
             振込指定.Size = new Size(122, 21);
             振込指定.TabIndex = 4;
+            振込指定.Enter += 振込指定_Enter;
             // 
             // 支払先参照ボタン
             // 
             支払先参照ボタン.Location = new Point(250, 69);
-            支払先参照ボタン.Margin = new Padding(4);
+            支払先参照ボタン.Margin = new Padding(4, 4, 4, 4);
             支払先参照ボタン.Name = "支払先参照ボタン";
             支払先参照ボタン.Size = new Size(21, 21);
             支払先参照ボタン.TabIndex = 21010;
             支払先参照ボタン.TabStop = false;
             支払先参照ボタン.Text = "▶";
             支払先参照ボタン.UseVisualStyleBackColor = true;
+            支払先参照ボタン.Click += 支払先参照ボタン_Click;
+            // 
+            // statusStrip1
+            // 
+            statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1 });
+            statusStrip1.Location = new Point(0, 352);
+            statusStrip1.Name = "statusStrip1";
+            statusStrip1.Padding = new Padding(1, 0, 17, 0);
+            statusStrip1.Size = new Size(410, 22);
+            statusStrip1.TabIndex = 21011;
+            statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripStatusLabel1
+            // 
+            toolStripStatusLabel1.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            toolStripStatusLabel1.Size = new Size(89, 17);
+            toolStripStatusLabel1.Text = "各種項目の説明";
             // 
             // F_支払管理_抽出
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(410, 356);
+            ClientSize = new Size(410, 374);
+            Controls.Add(statusStrip1);
             Controls.Add(支払先参照ボタン);
             Controls.Add(振込指定);
             Controls.Add(支払年月);
@@ -366,13 +395,17 @@
             Controls.Add(支払先名);
             Controls.Add(振込指定_ラベル);
             Name = "F_支払管理_抽出";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "支払管理_抽出";
+            Load += Form_Load;
             groupBox3.ResumeLayout(false);
             groupBox3.PerformLayout();
             groupBox4.ResumeLayout(false);
             groupBox4.PerformLayout();
             groupBox5.ResumeLayout(false);
             groupBox5.PerformLayout();
+            statusStrip1.ResumeLayout(false);
+            statusStrip1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -404,5 +437,7 @@
         private ComboBox 振込指定;
         private ToolTip toolTip1;
         private Button 支払先参照ボタン;
+        private StatusStrip statusStrip1;
+        internal ToolStripStatusLabel toolStripStatusLabel1;
     }
 }
