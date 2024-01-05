@@ -90,16 +90,16 @@ namespace u_net
             }
 
             //実行中フォーム起動
-            string LoginUserCode = "000";//テスト用 ログインユーザを実行中にどのように管理するか決まったら修正
+
             LocalSetting localSetting = new LocalSetting();
-            localSetting.LoadPlace(LoginUserCode, this);
+            localSetting.LoadPlace(CommonConstants.LoginUserCode, this);
 
             MyApi myapi = new MyApi();
             int xSize, ySize, intpixel, twipperdot;
 
             //1インチ当たりのピクセル数 アクセスのサイズの引数がtwipなのでピクセルに変換する除算値を求める
-            intpixel = myapi.GetLogPixel();
-            twipperdot = myapi.GetTwipPerDot(intpixel);
+            //intpixel = myapi.GetLogPixel();
+            //twipperdot = myapi.GetTwipPerDot(intpixel);
 
             intWindowHeight = this.Height;
             intWindowWidth = this.Width;
@@ -113,37 +113,21 @@ namespace u_net
             dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font("MS ゴシック", 9);
             dataGridView1.DefaultCellStyle.Font = new Font("MS ゴシック", 10);
             dataGridView1.DefaultCellStyle.ForeColor = Color.Black;
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
-            //dataGridView1.Columns[0].DefaultCellStyle.BackColor = Color.FromArgb(255, 255, 200); // 薄い黄色
-            //dataGridView1.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            //myapi.GetFullScreen(out xSize, out ySize);
 
+            //int x = 10, y = 10;
 
-            //0列目はaccessでは行ヘッダのため、ずらす
-            //dataGridView1.Columns[0].Width = 500 / twipperdot;
-            //dataGridView1.Columns[0].Width = 1100 / twipperdot; //1150
-            //dataGridView1.Columns[1].Width = 300 / twipperdot;
-            //dataGridView1.Columns[2].Width = 5000;
-            //dataGridView1.Columns[3].Width = 0 / twipperdot;
-            //dataGridView1.Columns[4].Width = 2000 / twipperdot;
-            //dataGridView1.Columns[5].Width = 1500 / twipperdot;
-            //dataGridView1.Columns[6].Width = 1500 / twipperdot;
-            //dataGridView1.Columns[7].Width = 2200 / twipperdot;//1300
-            //dataGridView1.Columns[8].Width = 1500 / twipperdot;
-            //dataGridView1.Columns[9].Width = 300 / twipperdot;
+            //this.Size = new Size(this.Width, ySize * myapi.GetTwipPerDot(intpixel) - 1200);
+            ////accessのmovesizeメソッドの引数の座標単位はtwipなので以下で
 
-            myapi.GetFullScreen(out xSize, out ySize);
+            //this.Size = new Size(this.Width, ySize - 1200 / twipperdot);
 
-            int x = 10, y = 10;
-
-            this.Size = new Size(this.Width, ySize * myapi.GetTwipPerDot(intpixel) - 1200);
-            //accessのmovesizeメソッドの引数の座標単位はtwipなので以下で
-
-            this.Size = new Size(this.Width, ySize - 1200 / twipperdot);
-
-            this.StartPosition = FormStartPosition.Manual; // 手動で位置を指定
-            int screenWidth = Screen.PrimaryScreen.Bounds.Width; // プライマリスクリーンの幅
-            x = (screenWidth - this.Width) / 2;
-            this.Location = new Point(x, y);
+            //this.StartPosition = FormStartPosition.Manual; // 手動で位置を指定
+            //int screenWidth = Screen.PrimaryScreen.Bounds.Width; // プライマリスクリーンの幅
+            //x = (screenWidth - this.Width) / 2;
+            //this.Location = new Point(x, y);
 
             InitializeFilter();
             DoUpdate();
@@ -155,14 +139,12 @@ namespace u_net
         {
             try
             {
-                if (this.Height > 800)
-                {
-                    dataGridView1.Height = dataGridView1.Height + (this.Height - intWindowHeight);
-                    intWindowHeight = this.Height;  // 高さ保存
+                dataGridView1.Height = dataGridView1.Height + (this.Height - intWindowHeight);
+                intWindowHeight = this.Height;  // 高さ保存
 
-                    dataGridView1.Width = dataGridView1.Width + (this.Width - intWindowWidth);
-                    intWindowWidth = this.Width;    // 幅保存
-                }
+                dataGridView1.Width = dataGridView1.Width + (this.Width - intWindowWidth);
+                intWindowWidth = this.Width;    // 幅保存
+
             }
             catch (Exception ex)
             {
@@ -201,6 +183,17 @@ namespace u_net
             {
                 string filter = string.Empty;
 
+                // 社員区分
+                switch (lng社員区分)
+                {
+                    case 1:
+                        filter += "パート IS NULL AND ";
+                        break;
+                    case 2:
+                        filter += "パート IS NOT NULL AND ";
+                        break;
+                }
+
                 // 氏名指定
                 if (!string.IsNullOrEmpty(str氏名))
                 {
@@ -210,13 +203,13 @@ namespace u_net
                 // 社員コード開始指定
                 if (!string.IsNullOrEmpty(str社員コード開始))
                 {
-                    filter += string.Format("社員コード開始 LIKE '%{0}%' AND ", str社員コード開始);
+                    filter += string.Format("社員コード開始 >= '{0}' AND ", str社員コード開始);
                 }
 
                 // 社員コード終了指定
                 if (!string.IsNullOrEmpty(str社員コード終了))
                 {
-                    filter += string.Format("社員コード終了 LIKE '%{0}%' AND ", str社員コード終了);
+                    filter += string.Format("社員コード終了 <= '{0}' AND ", str社員コード終了);
                 }
 
                 // 電話番号指定
@@ -225,23 +218,23 @@ namespace u_net
                     filter += string.Format("電話番号 LIKE '%{0}%' AND ", str電話番号);
                 }
 
-
                 // 社員区分
-                switch (lng社員区分)
+                switch (lng退社指定)
                 {
-                    case 0:
-                        filter += "削除 IS NULL AND ";
-                        break;
                     case 1:
-                        filter += "削除 IS NOT NULL AND ";
+                        filter += "退社 IS NULL AND ";
+                        break;
+                    case 2:
+                        filter += "退社 IS NOT NULL AND ";
                         break;
                 }
+
                 if (!string.IsNullOrEmpty(filter))
                 {
                     filter = filter.Substring(0, filter.Length - 5); // 最後の " AND " を削除
                 }
 
-                string query = "SELECT * FROM V社員管理 WHERE 1=1 AND " + filter + " ORDER BY 社員コード DESC ";
+                string query = "SELECT * FROM V社員管理 WHERE 1=1 AND " + filter + " ORDER BY ふりがな ";
 
                 Connect();
                 DataGridUtils.SetDataGridView(cn, query, this.dataGridView1);
@@ -258,8 +251,7 @@ namespace u_net
                 intWindowWidth = this.Width;
 
                 //// DataGridViewの設定
-                dataGridView1.Columns[0].DefaultCellStyle.BackColor = Color.FromArgb(255, 255, 200); // 薄い黄色
-                                                                                                     // dataGridView1.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+                dataGridView1.Columns[0].DefaultCellStyle.BackColor = Color.FromArgb(255, 255, 200); // 薄い黄色                                                                                                  
 
                 // 列の幅を設定 もとは恐らくtwipのためピクセルに直す
 
@@ -267,16 +259,14 @@ namespace u_net
                 dataGridView1.ColumnHeadersHeight = 25;
 
                 //0列目はaccessでは行ヘッダのため、ずらす
-                dataGridView1.Columns[0].Width = 1100 / twipperdot; //1150
-                dataGridView1.Columns[1].Width = 310 / twipperdot;
-                dataGridView1.Columns[2].Width = 5000 / twipperdot;
-                dataGridView1.Columns[3].Visible = false;
-                dataGridView1.Columns[4].Width = 2000 / twipperdot;
-                dataGridView1.Columns[5].Width = 1500 / twipperdot;
-                dataGridView1.Columns[6].Width = 1500 / twipperdot;
-                dataGridView1.Columns[7].Width = 2200 / twipperdot;//1300
-                dataGridView1.Columns[8].Width = 1500 / twipperdot;
-                dataGridView1.Columns[9].Width = 310 / twipperdot;
+                dataGridView1.Columns[0].Width = 1000 / twipperdot; //1150
+                dataGridView1.Columns[1].Width = 400 / twipperdot;
+                dataGridView1.Columns[2].Width = 2000 / twipperdot;
+                dataGridView1.Columns[3].Width = 2500 / twipperdot;
+                dataGridView1.Columns[4].Width = 1900 / twipperdot;
+                dataGridView1.Columns[5].Width = 1900 / twipperdot;
+                dataGridView1.Columns[6].Width = 3000 / twipperdot;
+                dataGridView1.Columns[7].Width = 400 / twipperdot;//1300
 
                 return dataGridView1.RowCount;
             }
@@ -348,7 +338,6 @@ namespace u_net
                 if (dataGridView1.Rows.Count > 0)
                 {
                     Cleargrid(dataGridView1);
-
                 }
 
                 sorting = false;
@@ -412,6 +401,7 @@ namespace u_net
                 InitializeFilter();
                 DoUpdate();
                 Cleargrid(dataGridView1);
+                fn.WaitForm.Close();
             }
             catch (Exception ex)
             {
@@ -465,7 +455,6 @@ namespace u_net
         {
             try
             {
-
                 switch (e.KeyCode)
                 {
                     case Keys.F1:
@@ -528,31 +517,31 @@ namespace u_net
 
         private void F_社員管理_FormClosing(object sender, FormClosingEventArgs e)
         {
-            string LoginUserCode = "000";//テスト用 ログインユーザを実行中にどのように管理するか決まったら修正
-            LocalSetting test = new LocalSetting();
-            test.SavePlace(LoginUserCode, this);
-        }
-
-        private bool ascending = true;
-        private void dataGridView1_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
-        {
-            if (dataGridView1.Columns[e.ColumnIndex].Name == "仕入先名")
-            {
-                if (ascending)
-                {
-                    dataGridView1.Sort(dataGridView1.Columns["仕入先名フリガナ"], System.ComponentModel.ListSortDirection.Ascending);
-                }
-                else
-                {
-                    dataGridView1.Sort(dataGridView1.Columns["仕入先名フリガナ"], System.ComponentModel.ListSortDirection.Descending);
-                }
-                ascending = !ascending;
-            }
+            LocalSetting ls = new LocalSetting();
+            ls.SavePlace(CommonConstants.LoginUserCode, this);
         }
 
         private void コマンドメール_Click(object sender, EventArgs e)
         {
+            string toEmail = dataGridView1.SelectedRows[0].Cells["電子メールアドレス"].Value?.ToString();
 
+            if (string.IsNullOrEmpty(toEmail))
+            {
+                MessageBox.Show("メールアドレスが設定されていません。", "メールコマンド",
+                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
+                return;
+            }
+
+            try
+            {
+                string mailtoLink = "mailto:" + toEmail;
+                System.Diagnostics.Process.Start(new ProcessStartInfo(mailtoLink) { UseShellExecute = true });
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("メールを起動できませんでした。\nエラー: " + ex.Message, "メールコマンド", MessageBoxButtons.OK);
+            }
         }
 
         private void コマンド保守_Click(object sender, EventArgs e)

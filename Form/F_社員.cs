@@ -1245,7 +1245,7 @@ namespace u_net
 
         private void 社員コード_Validated(object sender, EventArgs e)
         {
-            UpdatedControl(社員コード);           
+            UpdatedControl(社員コード);
         }
 
         private void 社員コード_Validating(object sender, CancelEventArgs e)

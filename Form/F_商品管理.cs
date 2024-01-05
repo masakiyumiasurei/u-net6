@@ -65,7 +65,16 @@ namespace u_net
             FunctionClass fn = new FunctionClass();
             fn.DoWait("しばらくお待ちください...");
             //this.q商品管理TableAdapter.Fill(this.newDataSet.Q商品管理);
-           
+
+            MyApi myapi = new MyApi();
+            int xSize, ySize, intpixel, twipperdot;
+
+            //1インチ当たりのピクセル数 アクセスのサイズの引数がtwipなのでピクセルに変換する除算値を求める
+            intpixel = myapi.GetLogPixel();
+            twipperdot = myapi.GetTwipPerDot(intpixel);
+
+            intWindowHeight = this.Height;
+            intWindowWidth = this.Width;
 
             // DataGridViewの設定
             dataGridView1.AllowUserToResizeColumns = true;
@@ -80,7 +89,19 @@ namespace u_net
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             dataGridView1.ColumnHeadersHeight = 25;
 
+            myapi.GetFullScreen(out xSize, out ySize);
 
+            int x = 10, y = 10;
+
+            this.Size = new Size(this.Width, ySize * myapi.GetTwipPerDot(intpixel) - 1200);
+            //accessのmovesizeメソッドの引数の座標単位はtwipなので以下で
+
+            this.Size = new Size(this.Width, ySize - 1200 / twipperdot);
+
+            this.StartPosition = FormStartPosition.Manual; // 手動で位置を指定
+            int screenWidth = Screen.PrimaryScreen.Bounds.Width; // プライマリスクリーンの幅
+            x = (screenWidth - this.Width) / 2;
+            this.Location = new Point(x, y);
 
             //実行中フォーム起動              
             LocalSetting localSetting = new LocalSetting();
@@ -96,14 +117,13 @@ namespace u_net
         {
             try
             {
-                if (this.Height > 800)
-                {
-                    dataGridView1.Height = dataGridView1.Height + (this.Height - intWindowHeight);
-                    intWindowHeight = this.Height;  // 高さ保存
 
-                    dataGridView1.Width = dataGridView1.Width + (this.Width - intWindowWidth);
-                    intWindowWidth = this.Width;    // 幅保存
-                }
+                dataGridView1.Height = dataGridView1.Height + (this.Height - intWindowHeight);
+                intWindowHeight = this.Height;  // 高さ保存
+
+                dataGridView1.Width = dataGridView1.Width + (this.Width - intWindowWidth);
+                intWindowWidth = this.Width;    // 幅保存
+
             }
             catch (Exception ex)
             {
@@ -229,7 +249,7 @@ namespace u_net
                 MyApi myapi = new MyApi();
                 int xSize, ySize, intpixel, twipperdot;
 
-                //1インチ当たりのピクセル数 アクセスのサイズの引数がtwipなのでピクセルに変換する除算値を求める
+                ////1インチ当たりのピクセル数 アクセスのサイズの引数がtwipなのでピクセルに変換する除算値を求める
                 intpixel = myapi.GetLogPixel();
                 twipperdot = myapi.GetTwipPerDot(intpixel);
 
@@ -237,7 +257,8 @@ namespace u_net
                 intWindowWidth = this.Width;
 
                 dataGridView1.Columns[0].DefaultCellStyle.BackColor = Color.FromArgb(255, 255, 200); // 薄い黄色
-                                                                                                     // 列の幅を設定 もとは恐らくtwipのためピクセルに直す
+                
+                // 列の幅を設定 もとは恐らくtwipのためピクセルに直す
 
                 //0列目はaccessでは行ヘッダのため、ずらす
                 //dataGridView1.Columns[0].Width = 500 / twipperdot;
@@ -254,19 +275,7 @@ namespace u_net
                 dataGridView1.Columns[10].Width = 500 / twipperdot;
                 dataGridView1.Columns[11].Width = 500 / twipperdot;
 
-                myapi.GetFullScreen(out xSize, out ySize);
-
-                int x = 10, y = 10;
-
-                this.Size = new Size(this.Width, ySize * myapi.GetTwipPerDot(intpixel) - 1200);
-                //accessのmovesizeメソッドの引数の座標単位はtwipなので以下で
-
-                this.Size = new Size(this.Width, ySize - 1200 / twipperdot);
-
-                this.StartPosition = FormStartPosition.Manual; // 手動で位置を指定
-                int screenWidth = Screen.PrimaryScreen.Bounds.Width; // プライマリスクリーンの幅
-                x = (screenWidth - this.Width) / 2;
-                this.Location = new Point(x, y);
+                
 
                 return dataGridView1.RowCount;
             }

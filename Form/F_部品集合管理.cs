@@ -125,19 +125,19 @@ namespace u_net
             //dataGridView1.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
 
 
-            myapi.GetFullScreen(out xSize, out ySize);
+            //myapi.GetFullScreen(out xSize, out ySize);
 
-            int x = 10, y = 10;
+            //int x = 10, y = 10;
 
-            this.Size = new Size(this.Width, ySize * myapi.GetTwipPerDot(intpixel) - 1200);
-            //accessのmovesizeメソッドの引数の座標単位はtwipなので以下で
+            //this.Size = new Size(this.Width, ySize * myapi.GetTwipPerDot(intpixel) - 1200);
+            ////accessのmovesizeメソッドの引数の座標単位はtwipなので以下で
 
-            this.Size = new Size(this.Width, ySize - 1200 / twipperdot);
+            //this.Size = new Size(this.Width, ySize - 1200 / twipperdot);
 
-            this.StartPosition = FormStartPosition.Manual; // 手動で位置を指定
-            int screenWidth = Screen.PrimaryScreen.Bounds.Width; // プライマリスクリーンの幅
-            x = (screenWidth - this.Width) / 2;
-            this.Location = new Point(x, y);
+            //this.StartPosition = FormStartPosition.Manual; // 手動で位置を指定
+            //int screenWidth = Screen.PrimaryScreen.Bounds.Width; // プライマリスクリーンの幅
+            //x = (screenWidth - this.Width) / 2;
+            //this.Location = new Point(x, y);
 
             InitializeFilter();
             DoUpdate();
@@ -148,15 +148,13 @@ namespace u_net
         private void Form_Resize(object sender, EventArgs e)
         {
             try
-            {
-                if (this.Height > 800)
-                {
+            {                
                     dataGridView1.Height = dataGridView1.Height + (this.Height - IntWindowHeight);
                     IntWindowHeight = this.Height;  // 高さ保存
 
                     dataGridView1.Width = dataGridView1.Width + (this.Width - IntWindowWidth);
                     IntWindowWidth = this.Width;    // 幅保存
-                }
+                
             }
             catch (Exception ex)
             {

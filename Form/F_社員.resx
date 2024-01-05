@@ -63,12 +63,12 @@
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="Email作成ボタン.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAEQSURBVDhPxZIxTwJBEIUXSytqvNuFio7b1cqKUjF6t8uP8C/YUlrZaaG/wL9iZehspSBBjQmd
-        EYX3jgExCrmreMlLJjPzvUw2q7YvY7MTbf0Anpb0wDjfUSy0833twmU5k/HPDJgaG67koMIiQzYPgL+Z
-        qlRvR+abVNFJdgHmaxlgrB9J0H3t4GxXFv+IM+6sMosLevA5/Blb/9hwXSPMUlFyuof5AzyRC8j8BHAp
-        TrIj1O/wS+RCOych48IhoCH649ilKXtk4N8BVKOVNnHeE3of2ma32oY71uxxJmvrA6i69VUAN+i/wa+o
-        r9mTcS4yZP8NKKLVgPlH4sOU8eIj8TuykEuKG0y0H47loK1JqRm387KOH/Qb9wAAAABJRU5ErkJggg==
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAARBJREFUOE/F
+        kjFPAkEQhRdLK2q824WKjtvVyopSMXq3y4/wL9hSWtlpob/Av2Jl6GylIEGNCZ0RhfeOATEKuat4yUsm
+        M/O9TDarti9jsxNt/QCelvTAON9RLLTzfe3CZTmT8c8MmBobruSgwiJDNg+Av5mqVG9H5ptU0Ul2AeZr
+        GWCsH0nQfe3gbFcW/4gz7qwyiwt68Dn8GVv/2HBdI8xSUXK6h/kDPJELyPwEcClOsiPU7/BL5EI7JyHj
+        wiGgIfrj2KUpe2Tg3wFUo5U2cd4Teh/aZrfahjvW7HEma+sDqLr1VQA36L/Br6iv2ZNxLjJk/w0ootWA
+        +Ufiw5Tx4iPxO7KQS4obTLQfjuWgrUmpGbfzso4f9Bv3AAAAAElFTkSuQmCC
 </value>
   </data>
   <metadata name="statusStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">

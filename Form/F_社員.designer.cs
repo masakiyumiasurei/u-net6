@@ -845,13 +845,14 @@ namespace u_net
             勤務地名.Enabled = false;
             勤務地名.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             勤務地名.ForeColor = SystemColors.WindowFrame;
-            勤務地名.Location = new Point(323, 230);
+            勤務地名.Location = new Point(235, 186);
             勤務地名.Margin = new Padding(3, 2, 3, 2);
             勤務地名.Name = "勤務地名";
             勤務地名.ReadOnly = true;
-            勤務地名.Size = new Size(163, 20);
+            勤務地名.Size = new Size(163, 21);
             勤務地名.TabIndex = 237;
             勤務地名.TabStop = false;
+            勤務地名.Visible = false;
             // 
             // 承認順序ラベル
             // 
@@ -1736,20 +1737,20 @@ namespace u_net
             statusStrip1.Location = new Point(0, 503);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Padding = new Padding(1, 0, 19, 0);
-            statusStrip1.Size = new Size(939, 25);
+            statusStrip1.Size = new Size(939, 22);
             statusStrip1.TabIndex = 200;
             statusStrip1.Text = "statusStrip1";
             // 
             // toolStripStatusLabel1
             // 
             toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            toolStripStatusLabel1.Size = new Size(0, 20);
+            toolStripStatusLabel1.Size = new Size(0, 17);
             // 
             // toolStripStatusLabel2
             // 
             toolStripStatusLabel2.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            toolStripStatusLabel2.Size = new Size(111, 20);
+            toolStripStatusLabel2.Size = new Size(89, 17);
             toolStripStatusLabel2.Text = "各種項目の説明";
             // 
             // F_社員
