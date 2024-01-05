@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Common;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
@@ -10,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.Data.SqlClient;
 using u_net.Public;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace u_net
@@ -17,8 +19,9 @@ namespace u_net
     public partial class F_振込一覧 : MidForm
     {
 
-        public DateTime dtm集計年月 { get; set; }
+        public DateTime dtm支払年月 { get; set; }
 
+        public string str支払先コード { get; set; }
 
         int intWindowHeight = 0;
         int intWindowWidth = 0;
@@ -31,21 +34,21 @@ namespace u_net
         }
 
 
-        public string PayeeCode
+        public string CurrentCode
         {
             get
             {
-                return dataGridView1.CurrentRow.Cells[0].Value?.ToString();
+                if (dataGridView1.CurrentRow.Index != dataGridView1.RowCount - 1)
+                {
+                    return dataGridView1.CurrentRow.Cells[2].Value?.ToString();
+                }
+                else
+                {
+                    return "";
+                }
             }
         }
 
-        public string PayeeName
-        {
-            get
-            {
-                return dataGridView1.CurrentRow.Cells[1].Value?.ToString();
-            }
-        }
 
         private string Nz(object value)
         {
@@ -108,7 +111,7 @@ namespace u_net
 
             Connect();
 
-            using (SqlCommand cmd = new SqlCommand("SP集計年月", cn))
+            using (SqlCommand cmd = new SqlCommand("SP支払年月", cn))
             {
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
@@ -119,10 +122,10 @@ namespace u_net
                 dataTable.Load(reader);
 
                 支払年月.DisplayMember = "年月";
-                支払年月.ValueMember = "集計年月";
+                支払年月.ValueMember = "支払年月";
                 支払年月.DataSource = dataTable;
 
-
+                支払年月.DrawMode = DrawMode.OwnerDrawFixed;
             }
 
 
@@ -156,7 +159,7 @@ namespace u_net
             bool result = true;
             try
             {
-                SetGrid(dtm集計年月);
+                SetGrid(dtm支払年月);
                 AddTotalRow(dataGridView1);
 
                 if (dataGridView1.RowCount > 0)
@@ -189,9 +192,11 @@ namespace u_net
                 FunctionClass fn = new FunctionClass();
 
 
-                using (SqlCommand command = new SqlCommand("SP支払一覧_月間", cn))
+                string query = "SELECT * FROM BankTransferList(@PayMonth, NULL, NULL, NULL) ORDER BY 支払先名フリガナ";
+
+                using (SqlCommand command = new SqlCommand(query, cn))
                 {
-                    command.CommandType = CommandType.StoredProcedure;
+                    command.CommandType = CommandType.Text;
                     command.Parameters.AddWithValue("@PayMonth", PayDay);
 
 
@@ -227,20 +232,32 @@ namespace u_net
                     intWindowWidth = this.Width;
 
                     //0列目はaccessでは行ヘッダのため、ずらす
-                    dataGridView1.Columns[0].Width = 1100 / twipperdot;
-                    dataGridView1.Columns[1].Width = 3500 / twipperdot;
-                    dataGridView1.Columns[14].Width = 1500 / twipperdot;
+                    dataGridView1.Columns[0].Visible = false;
+                    dataGridView1.Columns[1].Visible = false;
+                    dataGridView1.Columns[2].Width = 1100 / twipperdot;
+                    dataGridView1.Columns[3].Width = 3800 / twipperdot;
+                    dataGridView1.Columns[4].Width = 300 / twipperdot;
+                    dataGridView1.Columns[5].Visible = false;
 
-
-
-                    for (int col = 2; col <= 14; col++)
+                    for (int col = 6; col <= 7; col++)
                     {
-                        dataGridView1.Columns[col].Width = 1300 / twipperdot;
+                        dataGridView1.Columns[col].Width = 1400 / twipperdot;
                         dataGridView1.Columns[col].DefaultCellStyle.Format = "#,###,###,##0";
                         dataGridView1.Columns[col].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                     }
 
+                    dataGridView1.Columns[8].Width = 300 / twipperdot;
 
+                    for (int col = 9; col <= 15; col++)
+                    {
+                        dataGridView1.Columns[col].Width = 1400 / twipperdot;
+                        dataGridView1.Columns[col].DefaultCellStyle.Format = "#,###,###,##0";
+                        dataGridView1.Columns[col].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                    }
+
+                    dataGridView1.Columns[16].Visible = false;
+                    dataGridView1.Columns[17].Visible = false;
+                    dataGridView1.Columns[18].Visible = false;
 
                 }
 
@@ -266,11 +283,13 @@ namespace u_net
 
 
                 // 合計行に表示する文字列
-                dataGridView.Rows[rowCount].Cells[0].Value = "(合計)";
+                dataGridView.Rows[rowCount].Cells[2].Value = "(合計)";
 
                 // 列ごとの合計金額を計算し、表示する
-                for (int col = 2; col <= colCount; col++)
+                for (int col = 6; col <= 15; col++)
                 {
+                    if (col == 8) continue;
+
                     long sum = 0;
 
                     // 列ごとに合計金額を計算
@@ -291,6 +310,12 @@ namespace u_net
                     // セルのフォーマットを設定して桁区切りにする
                     dataGridView.Columns[col].DefaultCellStyle.Format = "#,###,###,##0";
                     dataGridView.Columns[col].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                }
+
+                if (dataGridView.RowCount > 0)
+                {
+                    dataGridView.Rows[0].Selected = true;
+                    dataGridView.FirstDisplayedScrollingRowIndex = 0;
                 }
 
             }
@@ -340,15 +365,36 @@ namespace u_net
 
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (dataGridView1.CurrentRow.Index == dataGridView1.RowCount - 1) return;
 
-            DialogResult result = MessageBox.Show("月間一覧上の金額は誤差が発生している可能性があります。\n続行しますか？", "支払コマンド", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (result == DialogResult.No)
+            switch (dataGridView1.CurrentCell.ColumnIndex)
             {
-                return;
-            }
+                case 12:
+                    str支払先コード = CurrentCode;
+                    F_手形 targetform = new F_手形(); 
+                    targetform.ShowDialog();
+                    break;
 
-            F_支払 targetform = new F_支払();
-            targetform.ShowDialog();
+                case 13:
+                    str支払先コード = CurrentCode;
+                    F_相殺 targetform2 = new F_相殺();
+                    targetform2.ShowDialog();
+                    break;
+
+                case 14:
+                    str支払先コード = CurrentCode;
+                    F_TransferList_Others targetform3 = new F_TransferList_Others();
+                    targetform3.ShowDialog();
+                    break;
+
+                case 15:
+                    str支払先コード = CurrentCode;
+                    F_振込繰越 targetform4 = new F_振込繰越();
+                    targetform4.ShowDialog();
+                    break;
+            }
+            
+            
         }
 
         private void dataGridView1_KeyDown(object sender, KeyEventArgs e)
@@ -372,6 +418,7 @@ namespace u_net
                         break;
                     case Keys.F3:
                         if (this.コマンド初期化.Enabled) コマンド初期化_Click(null, null);
+                        e.Handled = true;
                         break;
                     case Keys.F4:
                         if (this.コマンド更新.Enabled) コマンド更新_Click(null, null);
@@ -380,15 +427,14 @@ namespace u_net
                         if (this.コマンド支払先.Enabled) コマンド支払先_Click(null, null);
                         break;
                     case Keys.F6:
-                        if (this.コマンド支払通知.Enabled) コマンド締切_Click(null, null);
+                        if (this.コマンド締切.Enabled) コマンド締切_Click(null, null);
                         break;
-                    case Keys.F7:
-                        if (this.コマンド締切.Enabled) コマンド支払通知_Click(null, null);
-                        break;
-                    case Keys.F8:
-                        break;
+
                     case Keys.F9:
                         if (this.コマンド印刷.Enabled) コマンド印刷_Click(null, null);
+                        break;
+                    case Keys.F10:
+                        if (this.コマンド保守.Enabled) コマンド保守_Click(null, null);
                         break;
                     case Keys.F11:
                         if (this.コマンド入出力.Enabled) コマンド入出力_Click(null, null);
@@ -427,30 +473,20 @@ namespace u_net
 
                 if (DoUpdate())
                 {
-                    if (dataGridView1.RowCount > 0)
-                    {
-                        コマンド支払先.Enabled = true;
-                        コマンド締切.Enabled = true;
-                        コマンド支払通知.Enabled = true;
-                        // コマンド支払通知.Enabled = true;
-                        コマンド印刷.Enabled = true;
-                        コマンド入出力.Enabled = true;
-                    }
-                    else
-                    {
-                        コマンド支払通知.Enabled = false;
-                        コマンド支払先.Enabled = false;
-                        // コマンド支払通知.Enabled = false;
-                        コマンド印刷.Enabled = false;
-                        コマンド入出力.Enabled = false;
-                    }
+
+                    コマンド支払先.Enabled = true;
+                    コマンド締切.Enabled = true;
+                    コマンド支払通知.Enabled = true;
+                    コマンド印刷.Enabled = true;
+                    コマンド入出力.Enabled = true;
+
                 }
                 else
                 {
                     MessageBox.Show("エラーが発生しました。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     コマンド支払通知.Enabled = false;
                     コマンド支払先.Enabled = false;
-                    // コマンド支払通知.Enabled = false;
+                    コマンド締切.Enabled = false;
                     コマンド印刷.Enabled = false;
                     コマンド入出力.Enabled = false;
                 }
@@ -481,28 +517,23 @@ namespace u_net
         private void コマンド支払先_Click(object sender, EventArgs e)
         {
             F_仕入先 targetform = new F_仕入先();
-            targetform.args = PayeeCode;
+            targetform.args = CurrentCode;
             targetform.ShowDialog();
         }
 
         private void コマンド印刷_Click(object sender, EventArgs e)
         {
-
+            string param = $" -user:{CommonConstants.LoginUserName}" +
+                           $" -sv:{CommonConstants.ServerInstanceName.Replace(" ", "_")}" +
+                           $" -pv:transfer,{dtm支払年月.ToString().Replace(" ", "_")}";
+            FunctionClass.GetShell(param);
         }
 
         private void コマンド保守_Click(object sender, EventArgs e)
         {
-
+            MessageBox.Show("現在開発中です。", "保守コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        private void コマンド支払通知_Click(object sender, EventArgs e)
-        {
-            string param = $" -user:{CommonConstants.LoginUserName}" +
-                           $" -sv:{CommonConstants.ServerInstanceName.Replace(" ", "_")}" +
-                           $" -pv:payment,{dtm集計年月.ToString().Replace(" ", "_")}" +
-                           $",{PayeeCode.Replace(" ", "_")}";
-            FunctionClass.GetShell(param);
-        }
 
         private void コマンド入出力_Click(object sender, EventArgs e)
         {
@@ -532,42 +563,189 @@ namespace u_net
             }
         }
 
-        private void コマンド締切_Click(object sender, EventArgs e)
-        {
 
-        }
 
         private void コマンド支払通知_Click_1(object sender, EventArgs e)
         {
-
+            string param = $" -user:{CommonConstants.LoginUserName}" +
+                           $" -sv:{CommonConstants.ServerInstanceName.Replace(" ", "_")}" +
+                           $" -pv:payment,{dtm支払年月.ToString().Replace(" ", "_")}" +
+                           $",{CurrentCode.Replace(" ", "_")}";
+            FunctionClass.GetShell(param);
         }
 
-        private void 集計年月_SelectedIndexChanged(object sender, EventArgs e)
+
+
+        private void コマンド締切_Click(object sender, EventArgs e)
         {
             try
             {
-                dtm集計年月 = Convert.ToDateTime(支払年月.SelectedValue);
+                FunctionClass fn = new FunctionClass();
+
+
+                if (string.IsNullOrEmpty(締切.Text))
+                {
+                    if (MessageBox.Show($"{dtm支払年月.ToString("yyyy/MM/dd")}の支払を締め切ります。{Environment.NewLine}{Environment.NewLine}よろしいですか？", "締切コマンド", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                    {
+                        return;
+                    }
+
+                    if (ClosePurchase(dtm支払年月, DateTime.Now, CommonConstants.LoginUserCode, CommonConstants.LoginUserFullName))
+                    {
+
+                        int idx = 支払年月.SelectedIndex;
+
+                        Connect();
+
+                        using (SqlCommand cmd = new SqlCommand("SP支払年月", cn))
+                        {
+                            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                            SqlDataReader reader = cmd.ExecuteReader();
+
+                            // レコードセットを設定
+                            DataTable dataTable = new DataTable();
+                            dataTable.Load(reader);
+
+                            支払年月.DisplayMember = "年月";
+                            支払年月.ValueMember = "支払年月";
+                            支払年月.DataSource = dataTable;
+
+                            支払年月.DrawMode = DrawMode.OwnerDrawFixed;
+                        }
+
+                        支払年月.SelectedIndex = idx;
+
+                        //締切.Text = ((DataRowView)支払年月.SelectedItem)?.Row.Field<String>("締切")?.ToString();
+
+                        MessageBox.Show($"{dtm支払年月.ToString("yyyy/MM/dd")}の支払を締め切りました。", "締切コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("エラーが発生したため、処理は取り消されました。", "締切コマンド", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
+                }
+                else
+                {
+                    if (MessageBox.Show($"{dtm支払年月.ToString("yyyy/MM/dd")}の支払は既に締め切られています。{Environment.NewLine}解除しますか？{Environment.NewLine}{Environment.NewLine}" +
+                                       $"＜注意＞{Environment.NewLine}" +
+                                       $"・解除する月が最後の支払月かどうか確認してください。{Environment.NewLine}" +
+                                       $"・最後の支払月以前の支払月を解除した場合、以降の動作は保証できません。{Environment.NewLine}" +
+                                       $"・解除後元に戻すことはできません。", "締切コマンド", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                    {
+                        return;
+                    }
+
+                    if (CancelClose(dtm支払年月))
+                    {
+
+                        int idx = 支払年月.SelectedIndex;
+
+                        Connect();
+
+                        using (SqlCommand cmd = new SqlCommand("SP支払年月", cn))
+                        {
+                            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                            SqlDataReader reader = cmd.ExecuteReader();
+
+                            // レコードセットを設定
+                            DataTable dataTable = new DataTable();
+                            dataTable.Load(reader);
+
+                            支払年月.DisplayMember = "年月";
+                            支払年月.ValueMember = "支払年月";
+                            支払年月.DataSource = dataTable;
+
+                            支払年月.DrawMode = DrawMode.OwnerDrawFixed;
+                        }
+
+                        支払年月.SelectedIndex = idx;
+
+                        //締切.Text = ((DataRowView)支払年月.SelectedItem)?.Row.Field<String>("締切")?.ToString();
+
+                        MessageBox.Show($"{dtm支払年月.ToString("yyyy/MM/dd")}の支払締めを解除しました。", "締切コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("エラーが発生したため、処理は取り消されました。", "締切コマンド", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"エラーが発生しました: {ex.Message}", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+
+        private bool ClosePurchase(DateTime closeMonth, DateTime closeDate, string operateUserCode, string operateUserFullName)
+        {
+            try
+            {
+                Connect();
+
+                using (SqlCommand objCommand = new SqlCommand("usp_ClosePurchase", cn))
+                {
+                    objCommand.CommandType = System.Data.CommandType.StoredProcedure;
+                    objCommand.Parameters.AddWithValue("@CloseMonth", closeMonth);
+                    objCommand.Parameters.AddWithValue("@CloseDate", closeDate);
+                    objCommand.Parameters.AddWithValue("@OperateDate", DateTime.Now);
+                    objCommand.Parameters.AddWithValue("@OperateUserCode", operateUserCode);
+                    objCommand.Parameters.AddWithValue("@OperateUserFullName", operateUserFullName);
+
+                    objCommand.ExecuteNonQuery();
+                }
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+        private bool CancelClose(DateTime closeMonth)
+        {
+            try
+            {
+                Connect();
+
+                using (SqlCommand objCommand = new SqlCommand("usp_CancelClosePurchase", cn))
+                {
+                    objCommand.CommandType = System.Data.CommandType.StoredProcedure;
+                    objCommand.Parameters.AddWithValue("@CloseMonth", closeMonth);
+
+                    objCommand.ExecuteNonQuery();
+                }
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+
+
+        private void 支払年月_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                dtm支払年月 = Convert.ToDateTime(支払年月.SelectedValue);
+                締切.Text = ((DataRowView)支払年月.SelectedItem)?.Row.Field<String>("締切")?.ToString();
 
                 // リストを更新する
                 if (DoUpdate())
                 {
-                    if (dataGridView1.RowCount > 0)
-                    {
-                        コマンド支払先.Enabled = true;
-                        コマンド締切.Enabled = true;
-                        コマンド支払通知.Enabled = true;
-                        // コマンド支払通知.Enabled = true;
-                        コマンド印刷.Enabled = true;
-                        コマンド入出力.Enabled = true;
-                    }
-                    else
-                    {
-                        コマンド支払通知.Enabled = false;
-                        コマンド支払先.Enabled = false;
-                        // コマンド支払通知.Enabled = false;
-                        コマンド印刷.Enabled = false;
-                        コマンド入出力.Enabled = false;
-                    }
+
+                    コマンド支払先.Enabled = true;
+                    コマンド締切.Enabled = true;
+                    コマンド支払通知.Enabled = true;
+                    コマンド印刷.Enabled = true;
+                    コマンド入出力.Enabled = true;
+
                 }
                 else
                 {
@@ -575,7 +753,6 @@ namespace u_net
                     コマンド支払先.Enabled = false;
                     コマンド締切.Enabled = false;
                     コマンド支払通知.Enabled = false;
-                    // コマンド支払通知.Enabled = false;
                     コマンド印刷.Enabled = false;
                     コマンド入出力.Enabled = false;
                 }
@@ -584,10 +761,23 @@ namespace u_net
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"集計年月_AfterUpdate エラー: {ex.Message}");
+                Console.WriteLine($"支払年月_AfterUpdate エラー: {ex.Message}");
             }
         }
 
+        private void 支払年月_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            OriginalClass.SetComboBoxAppearance((ComboBox)sender, e, new int[] { 100, 50 }, new string[] { "年月", "締切" });
+            支払年月.Invalidate();
+            支払年月.DroppedDown = true;
+        }
 
+        private void 支払年月_TextChanged(object sender, EventArgs e)
+        {
+            if (支払年月.SelectedValue == null)
+            {
+                締切.Text = null;
+            }
+        }
     }
 }
