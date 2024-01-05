@@ -359,7 +359,9 @@
             支払年月.Name = "支払年月";
             支払年月.Size = new Size(102, 21);
             支払年月.TabIndex = 2;
-            支払年月.SelectedIndexChanged += 集計年月_SelectedIndexChanged;
+            支払年月.DrawItem += 支払年月_DrawItem;
+            支払年月.SelectedIndexChanged += 支払年月_SelectedIndexChanged;
+            支払年月.TextChanged += 支払年月_TextChanged;
             // 
             // 月度_ラベル
             // 

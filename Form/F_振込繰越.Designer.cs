@@ -31,11 +31,11 @@
             components = new System.ComponentModel.Container();
             支払先名 = new TextBox();
             groupBox = new GroupBox();
+            dataGridView1 = new DataGridView();
             備考 = new TextBox();
             繰越金額 = new TextBox();
             備考_ラベル = new Label();
-            this.繰越金額_ラベル = new Label();
-            繰越明細 = new ListBox();
+            繰越金額_ラベル = new Label();
             削除ボタン = new Button();
             繰越明細_ラベル = new Label();
             支払先参照ボタン = new Button();
@@ -43,7 +43,7 @@
             支払年月_ラベル = new Label();
             支払年月 = new ComboBox();
             支払先選択ボタン = new Button();
-            支払コード = new TextBox();
+            支払先コード = new TextBox();
             支払先名_ラベル = new Label();
             支払先コード_ラベル = new Label();
             閉じるボタン = new Button();
@@ -51,6 +51,7 @@
             statusStrip1 = new StatusStrip();
             toolStripStatusLabel1 = new ToolStripStatusLabel();
             groupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             statusStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -64,16 +65,16 @@
             支払先名.Margin = new Padding(3, 2, 3, 2);
             支払先名.Name = "支払先名";
             支払先名.ReadOnly = true;
-            支払先名.Size = new Size(277, 20);
+            支払先名.Size = new Size(337, 20);
             支払先名.TabIndex = 6;
             // 
             // groupBox
             // 
+            groupBox.Controls.Add(dataGridView1);
             groupBox.Controls.Add(備考);
             groupBox.Controls.Add(繰越金額);
             groupBox.Controls.Add(備考_ラベル);
-            groupBox.Controls.Add(this.繰越金額_ラベル);
-            groupBox.Controls.Add(繰越明細);
+            groupBox.Controls.Add(繰越金額_ラベル);
             groupBox.Controls.Add(削除ボタン);
             groupBox.Controls.Add(繰越明細_ラベル);
             groupBox.Controls.Add(支払先参照ボタン);
@@ -82,25 +83,34 @@
             groupBox.Controls.Add(支払年月);
             groupBox.Controls.Add(支払先名);
             groupBox.Controls.Add(支払先選択ボタン);
-            groupBox.Controls.Add(支払コード);
+            groupBox.Controls.Add(支払先コード);
             groupBox.Controls.Add(支払先名_ラベル);
             groupBox.Controls.Add(支払先コード_ラベル);
             groupBox.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             groupBox.Location = new Point(12, 2);
             groupBox.Name = "groupBox";
-            groupBox.Size = new Size(412, 337);
+            groupBox.Size = new Size(466, 424);
             groupBox.TabIndex = 16;
             groupBox.TabStop = false;
+            // 
+            // dataGridView1
+            // 
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Location = new Point(13, 123);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.RowTemplate.Height = 25;
+            dataGridView1.Size = new Size(441, 207);
+            dataGridView1.TabIndex = 21012;
             // 
             // 備考
             // 
             備考.BackColor = Color.White;
             備考.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             備考.ImeMode = ImeMode.Hiragana;
-            備考.Location = new Point(114, 307);
+            備考.Location = new Point(116, 396);
             備考.Margin = new Padding(3, 2, 3, 2);
             備考.Name = "備考";
-            備考.Size = new Size(280, 20);
+            備考.Size = new Size(338, 20);
             備考.TabIndex = 16;
             // 
             // 繰越金額
@@ -108,7 +118,7 @@
             繰越金額.BackColor = Color.White;
             繰越金額.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             繰越金額.ImeMode = ImeMode.Disable;
-            繰越金額.Location = new Point(13, 307);
+            繰越金額.Location = new Point(13, 396);
             繰越金額.Margin = new Padding(3, 2, 3, 2);
             繰越金額.Name = "繰越金額";
             繰越金額.Size = new Size(102, 20);
@@ -121,7 +131,7 @@
             備考_ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             備考_ラベル.ForeColor = SystemColors.ActiveCaptionText;
             備考_ラベル.ImageAlign = ContentAlignment.MiddleLeft;
-            備考_ラベル.Location = new Point(118, 286);
+            備考_ラベル.Location = new Point(120, 375);
             備考_ラベル.Margin = new Padding(0);
             備考_ラベル.Name = "備考_ラベル";
             備考_ラベル.Size = new Size(276, 20);
@@ -131,32 +141,22 @@
             // 
             // 繰越金額_ラベル
             // 
-            this.繰越金額_ラベル.AllowDrop = true;
-            this.繰越金額_ラベル.AutoEllipsis = true;
-            this.繰越金額_ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            this.繰越金額_ラベル.ForeColor = SystemColors.ActiveCaptionText;
-            this.繰越金額_ラベル.ImageAlign = ContentAlignment.MiddleLeft;
-            this.繰越金額_ラベル.Location = new Point(13, 286);
-            this.繰越金額_ラベル.Margin = new Padding(0);
-            this.繰越金額_ラベル.Name = "繰越金額_ラベル";
-            this.繰越金額_ラベル.Size = new Size(102, 20);
-            this.繰越金額_ラベル.TabIndex = 13;
-            this.繰越金額_ラベル.Text = "繰越金額(&A)";
-            this.繰越金額_ラベル.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // 繰越明細
-            // 
-            繰越明細.FormattingEnabled = true;
-            繰越明細.ImeMode = ImeMode.Disable;
-            繰越明細.ItemHeight = 12;
-            繰越明細.Location = new Point(13, 123);
-            繰越明細.Name = "繰越明細";
-            繰越明細.Size = new Size(381, 124);
-            繰越明細.TabIndex = 8;
+            繰越金額_ラベル.AllowDrop = true;
+            繰越金額_ラベル.AutoEllipsis = true;
+            繰越金額_ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            繰越金額_ラベル.ForeColor = SystemColors.ActiveCaptionText;
+            繰越金額_ラベル.ImageAlign = ContentAlignment.MiddleLeft;
+            繰越金額_ラベル.Location = new Point(13, 375);
+            繰越金額_ラベル.Margin = new Padding(0);
+            繰越金額_ラベル.Name = "繰越金額_ラベル";
+            繰越金額_ラベル.Size = new Size(102, 20);
+            繰越金額_ラベル.TabIndex = 13;
+            繰越金額_ラベル.Text = "繰越金額(&A)";
+            繰越金額_ラベル.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // 削除ボタン
             // 
-            削除ボタン.Location = new Point(121, 255);
+            削除ボタン.Location = new Point(121, 344);
             削除ボタン.Name = "削除ボタン";
             削除ボタン.Size = new Size(102, 24);
             削除ボタン.TabIndex = 10;
@@ -196,7 +196,7 @@
             // 
             // 追加ボタン
             // 
-            追加ボタン.Location = new Point(13, 255);
+            追加ボタン.Location = new Point(13, 344);
             追加ボタン.Name = "追加ボタン";
             追加ボタン.Size = new Size(102, 24);
             追加ボタン.TabIndex = 9;
@@ -229,6 +229,7 @@
             支払年月.Name = "支払年月";
             支払年月.Size = new Size(122, 21);
             支払年月.TabIndex = 2;
+            支払年月.SelectedIndexChanged += 支払年月_SelectedIndexChanged;
             // 
             // 支払先選択ボタン
             // 
@@ -242,16 +243,21 @@
             支払先選択ボタン.UseVisualStyleBackColor = true;
             支払先選択ボタン.Click += 支払先選択ボタン_Click;
             // 
-            // 支払コード
+            // 支払先コード
             // 
-            支払コード.BackColor = Color.White;
-            支払コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            支払コード.ImeMode = ImeMode.Disable;
-            支払コード.Location = new Point(117, 41);
-            支払コード.Margin = new Padding(3, 2, 3, 2);
-            支払コード.Name = "支払コード";
-            支払コード.Size = new Size(102, 20);
-            支払コード.TabIndex = 4;
+            支払先コード.BackColor = Color.White;
+            支払先コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            支払先コード.ImeMode = ImeMode.Disable;
+            支払先コード.Location = new Point(117, 41);
+            支払先コード.Margin = new Padding(3, 2, 3, 2);
+            支払先コード.Name = "支払先コード";
+            支払先コード.Size = new Size(102, 20);
+            支払先コード.TabIndex = 4;
+            支払先コード.DoubleClick += 支払先コード_DoubleClick;
+            支払先コード.KeyDown += 支払先コード_KeyDown;
+            支払先コード.KeyPress += 支払先コード_KeyPress;
+            支払先コード.Validating += 支払先コード_Validating;
+            支払先コード.Validated += 支払先コード_Validated;
             // 
             // 支払先名_ラベル
             // 
@@ -286,7 +292,7 @@
             // 閉じるボタン
             // 
             閉じるボタン.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            閉じるボタン.Location = new Point(318, 345);
+            閉じるボタン.Location = new Point(376, 432);
             閉じるボタン.Name = "閉じるボタン";
             閉じるボタン.Size = new Size(102, 24);
             閉じるボタン.TabIndex = 17;
@@ -297,10 +303,10 @@
             // statusStrip1
             // 
             statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1 });
-            statusStrip1.Location = new Point(0, 373);
+            statusStrip1.Location = new Point(0, 459);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Padding = new Padding(1, 0, 19, 0);
-            statusStrip1.Size = new Size(436, 22);
+            statusStrip1.Size = new Size(490, 22);
             statusStrip1.TabIndex = 10196;
             statusStrip1.Text = "statusStrip1";
             // 
@@ -315,14 +321,17 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(436, 395);
+            ClientSize = new Size(490, 481);
             Controls.Add(statusStrip1);
             Controls.Add(閉じるボタン);
             Controls.Add(groupBox);
             Name = "F_振込繰越";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "繰越";
+            Load += Form_Load;
             groupBox.ResumeLayout(false);
             groupBox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             statusStrip1.ResumeLayout(false);
             statusStrip1.PerformLayout();
             ResumeLayout(false);
@@ -338,14 +347,13 @@
         private Button 閉じるボタン;
         private Button 支払先選択ボタン;
         private Label 支払先名_ラベル;
-        private TextBox 支払コード;
+        private TextBox 支払先コード;
         private Label 支払年月_ラベル;
         private ComboBox 支払年月;
         private ToolTip toolTip1;
         private Button 支払先参照ボタン;
         private Label 繰越明細_ラベル;
         private Button 削除ボタン;
-        private ListBox 繰越明細;
         private StatusStrip statusStrip1;
         internal ToolStripStatusLabel toolStripStatusLabel1;
         private Label 支払種類_ラベル;
@@ -355,5 +363,6 @@
         private Label 繰越金額_ラベル;
         private TextBox 繰越金額;
         private TextBox 備考;
+        private DataGridView dataGridView1;
     }
 }
