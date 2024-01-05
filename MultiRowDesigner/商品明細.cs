@@ -68,7 +68,6 @@ namespace MultiRowDesigner
 
                     NumberDetails("明細番号");
                     break;
-
             }
 
         }
@@ -207,16 +206,7 @@ namespace MultiRowDesigner
 
             }
         }
-        private void gcMultiRow1_RowLeave(object sender, CellEventArgs e)
-        {
-            MessageBox.Show("leave");
-            NumberDetails("明細番号");
-        }
-        private void gcMultiRow1_RowEnter(object sender, CellEventArgs e)
-        {
-            //MessageBox.Show("enter");
-            //  NumberDetails("明細番号");
-        }
+        
         private void gcMultiRow1_RowsRemoved(object sender, RowsRemovedEventArgs e)
         {
             F_商品? form = Application.OpenForms.OfType<F_商品>().FirstOrDefault();
@@ -226,10 +216,15 @@ namespace MultiRowDesigner
 
         private void gcMultiRow1_RowDragMoveCompleted(object sender, DragMoveCompletedEventArgs e)
         {
-            //行変更しても実行されない
             F_商品? form = Application.OpenForms.OfType<F_商品>().FirstOrDefault();
             form.ChangedData(true);
-            NumberDetails("明細番号");
+
+            //行変更後の状態で採番を行う
+            gcMultiRow1.BeginInvoke(() =>
+            {
+                NumberDetails("明細番号");
+
+            });
         }
         private void gcMultiRow1_ModifiedChanged(object sender, EventArgs e)
         {
@@ -246,34 +241,53 @@ namespace MultiRowDesigner
 
             try
             {
-                DataTable dataTable = (DataTable)gcMultiRow1.DataSource;
+                F_商品? fm = Application.OpenForms.OfType<F_商品>().FirstOrDefault();
 
-                if (dataTable != null)
+                gcMultiRow1.BeginInvoke(() =>
                 {
-                    int rowcnt = 1;
-                    // DataTable をループしてフィールドの値を更新
-                    for (int i = 0; i < dataTable.Rows.Count; i++)
+                    for (int i = 0; i < gcMultiRow1.RowCount; i++)
                     {
-                        // 行の状態が Deleted の時は次の行へ
-                        if (dataTable.Rows[i].RowState == DataRowState.Deleted)
+                        if (gcMultiRow1.Rows[i].IsNewRow == true)
                         {
+                            //新規行の場合は、処理をスキップ
                             continue;
                         }
-                        // 特定のフィールド（fieldName）の値を更新
-                        dataTable.Rows[i][fieldName] = rowcnt;
-                        MessageBox.Show(rowcnt + ": " + (string)dataTable.Rows[i]["型式名"]);
-                        rowcnt++;
 
+                        gcMultiRow1.Rows[i].Cells[fieldName].Value = i + 1;
                     }
 
-                    // multiRow を再描画  おまじない的に．．．
-                    //gcMultiRow1.DataSource = null; // データソースを一度解除
-                    gcMultiRow1.DataSource = dataTable; // 更新した DataTable を再セット
-                }
-                else
-                {
-                    Console.WriteLine("データソースがありません。");
-                }
+                });
+
+                fm.ChangedData(true);
+
+                //datasourceは変更されていない模様なので上記に修正
+
+                //DataTable dataTable = (DataTable)gcMultiRow1.DataSource;
+
+                //if (dataTable != null)
+                //{
+                //    int rowcnt = 1;
+                //    // DataTable をループしてフィールドの値を更新
+                //    for (int i = 0; i < dataTable.Rows.Count; i++)
+                //    {
+                //        // 行の状態が Deleted の時は次の行へ
+                //        if (dataTable.Rows[i].RowState == DataRowState.Deleted)
+                //        {
+                //            continue;
+                //        }
+                //        // 特定のフィールド（fieldName）の値を更新
+                //        dataTable.Rows[i][fieldName] = rowcnt;
+                //        rowcnt++;
+                //    }
+
+                //    // DataGridView を再描画  おまじない的に．．．
+                //    gcMultiRow1.DataSource = null; // データソースを一度解除
+                //    gcMultiRow1.DataSource = dataTable; // 更新した DataTable を再セット                    
+                //}
+                //else
+                //{
+                //    Console.WriteLine("データソースがありません。");
+                //}
             }
             catch (Exception ex)
             {
@@ -378,8 +392,6 @@ namespace MultiRowDesigner
 
             try
             {
-                //foreach (DataRow row in dataTable.Rows)
-
                 foreach (var row in gcMultiRow1.Rows)
                 {
                     if (row.IsNewRow)
@@ -406,6 +418,5 @@ namespace MultiRowDesigner
             return result;
         }
 
-       
     }
 }

@@ -270,6 +270,7 @@ namespace u_net
                 部品集合明細1.Detail.AllowUserToDeleteRows = true;
                 部品集合明細1.Detail.ReadOnly = false;
                 部品集合明細1.Detail.AllowUserToAddRows = true;
+                部品集合明細1.Detail.AllowRowMove = true;
 
                 return true;
             }
@@ -377,6 +378,8 @@ namespace u_net
                         部品集合明細1.Detail.AllowUserToAddRows = !this.IsDecided;
                         部品集合明細1.Detail.AllowUserToDeleteRows = !this.IsDecided;
                         部品集合明細1.Detail.ReadOnly = this.IsDecided;
+                        部品集合明細1.Detail.AllowRowMove = !this.IsDecided;
+
                         this.コマンド複写.Enabled = !this.IsDirty;
                         this.コマンド削除.Enabled = true;
                         this.コマンド改版.Enabled = this.IsApproved && (!this.IsDeleted);
@@ -400,6 +403,7 @@ namespace u_net
                         部品集合明細1.Detail.AllowUserToAddRows = !this.IsDecided;
                         部品集合明細1.Detail.AllowUserToDeleteRows = !this.IsDecided;
                         部品集合明細1.Detail.ReadOnly = !this.IsDecided;
+                        部品集合明細1.Detail.AllowRowMove = !this.IsDecided;
 
                         this.コマンド複写.Enabled = !this.IsDirty;
                         this.コマンド削除.Enabled = true;
@@ -1243,6 +1247,8 @@ namespace u_net
                 部品集合明細1.Detail.AllowUserToAddRows = !this.IsDecided;
                 部品集合明細1.Detail.AllowUserToDeleteRows = !this.IsDecided;
                 部品集合明細1.Detail.ReadOnly = this.IsDecided;
+                部品集合明細1.Detail.AllowRowMove = !this.IsDecided;
+
                 ChangedData(false);
                 チェック();
             }
@@ -1287,6 +1293,7 @@ namespace u_net
                     部品集合明細1.Detail.AllowUserToAddRows = true;
                     部品集合明細1.Detail.AllowUserToDeleteRows = true;
                     部品集合明細1.Detail.ReadOnly = false;
+                    部品集合明細1.Detail.AllowRowMove = true;
 
                 }
             }
@@ -1747,7 +1754,7 @@ namespace u_net
                     部品集合明細1.Detail.AllowUserToDeleteRows = true;
                     部品集合明細1.Detail.ReadOnly = false;
                     部品集合明細1.Detail.AllowUserToAddRows = true;
-
+                    部品集合明細1.Detail.AllowRowMove = true;
                 }
             }
             catch (Exception ex)

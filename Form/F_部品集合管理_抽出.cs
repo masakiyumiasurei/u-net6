@@ -57,7 +57,15 @@ namespace u_net
                 //開いているフォームのインスタンスを作成する
                 F_部品集合管理 frmTarget = Application.OpenForms.OfType<F_部品集合管理>().FirstOrDefault();
 
-                this.分類名.Text = frmTarget.str分類名;
+                if (string.IsNullOrEmpty(frmTarget.str分類名))
+                {
+                    this.分類名.SelectedIndex = -1;
+                }
+                else
+                {
+                    this.分類名.SelectedValue = frmTarget.str分類名;
+                }
+
                 this.集合名.Text = frmTarget.str集合名;
 
                 if (frmTarget.dtm更新日開始 != DateTime.MinValue)
@@ -133,8 +141,8 @@ namespace u_net
 
                 frmTarget.str分類名 = Nz(分類名.Text);
                 frmTarget.str集合名 = Nz(集合名.Text);
-                frmTarget.dtm更新日開始 = Nz(DateTime.Parse(更新日開始.Text));
-                frmTarget.dtm更新日終了 = Nz(DateTime.Parse(更新日終了.Text));
+                frmTarget.dtm更新日開始 = string.IsNullOrEmpty(更新日開始.Text) ? DateTime.MinValue : DateTime.Parse(更新日開始.Text);
+                frmTarget.dtm更新日終了 = string.IsNullOrEmpty(更新日終了.Text) ? DateTime.MinValue : DateTime.Parse(更新日終了.Text);
                 frmTarget.str更新者名 = Nz(更新者名.Text);
 
                 if (確定指定Button1.Checked)
@@ -193,7 +201,7 @@ namespace u_net
             catch (Exception ex)
             {
                 Debug.WriteLine(this.Name + "_抽出ボタン_Click - " + ex.Message);
-                MessageBox.Show("エラーが発生しました。", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("エラーが発生しました。" + ex.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
@@ -224,6 +232,13 @@ namespace u_net
             分類内容.Text = (分類名.SelectedItem as DataRowView)?.Row.Field<String>("Display2")?.ToString() ?? null;
         }
 
+        private void 分類名_TextChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(分類名.Text))
+            {
+                分類内容.Text = null;
+            }
+        }
         private void 分類名_DrawItem(object sender, DrawItemEventArgs e)
         {
             OriginalClass.SetComboBoxAppearance((ComboBox)sender, e, new int[] { 50, 500 }, new string[] { "Display", "Display2" });
@@ -274,5 +289,7 @@ namespace u_net
         {
             更新日終了選択ボタン_Click(sender, e);
         }
+
+        
     }
 }

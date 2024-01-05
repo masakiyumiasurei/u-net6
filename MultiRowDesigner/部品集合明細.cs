@@ -335,25 +335,24 @@ namespace MultiRowDesigner
 
             try
             {
-                DataTable dataTable = (DataTable)multiRow.DataSource;
-
-                if (dataTable != null)
+                gcMultiRow1.BeginInvoke(() =>
                 {
-                    // DataTable をループしてフィールドの値を更新
-                    for (int i = 0; i < dataTable.Rows.Count; i++)
+                    for (int i = 0; i < gcMultiRow1.RowCount; i++)
                     {
-                        // 特定のフィールド（fieldName）の値を更新
-                        dataTable.Rows[i][fieldName] = i + 1;
+                        if (gcMultiRow1.Rows[i].IsNewRow == true)
+                        {
+                            //新規行の場合は、処理をスキップ
+                            continue;
+                        }
+
+                        gcMultiRow1.Rows[i].Cells[fieldName].Value = i + 1;
                     }
 
-                    // DataGridView を再描画  おまじない的に．．．
-                    multiRow.DataSource = null; // データソースを一度解除
-                    multiRow.DataSource = dataTable; // 更新した DataTable を再セット
-                }
-                else
-                {
-                    Console.WriteLine("データソースがありません。");
-                }
+                });
+
+                F_部品集合 ParentForm = Application.OpenForms.OfType<F_部品集合>().FirstOrDefault();
+                    ParentForm.ChangedData(true);
+               
             }
             catch (Exception ex)
             {
@@ -430,9 +429,9 @@ namespace MultiRowDesigner
                     }
 
                     break;
-                case "行挿入ボタン":
-                    gcMultiRow1.Rows.Insert(e.RowIndex);
-                    break;
+                //case "行挿入ボタン":
+                //    gcMultiRow1.Rows.Insert(e.RowIndex);
+                //    break;
 
                 case "メーカー名ボタン":
                     int col = gcMultiRow1.CurrentRow.Cells["メーカー名"].CellIndex;
@@ -474,7 +473,6 @@ namespace MultiRowDesigner
                     }
                     gcMultiRow1.CurrentCellPosition = new CellPosition(row6, col6);
                     break;
-
             }
         }
 
@@ -498,7 +496,6 @@ namespace MultiRowDesigner
                             grid.EditingControl.Text = gcMultiRow1.CurrentCell.DisplayText;
                             e.Cancel = true;
                         }
-
                     }
                     break;
             }
@@ -528,12 +525,14 @@ namespace MultiRowDesigner
 
         private void gcMultiRow1_RowDragMoveCompleted(object sender, DragMoveCompletedEventArgs e)
         {
+            F_部品集合 ParentForm = Application.OpenForms.OfType<F_部品集合>().FirstOrDefault();
+            ParentForm.ChangedData(true);
+            //行変更後の値を取得するためのラムダ式
             gcMultiRow1.BeginInvoke(() =>
             {
                 NumberDetails("明細番号");
 
             });
-
         }
     }
 }

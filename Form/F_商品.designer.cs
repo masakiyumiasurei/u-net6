@@ -1306,10 +1306,11 @@ namespace u_net
             // 
             // 商品明細1
             // 
-            商品明細1.Location = new Point(0, 434);
+            商品明細1.Dock = DockStyle.Bottom;
+            商品明細1.Location = new Point(0, 437);
             商品明細1.Margin = new Padding(5, 3, 5, 3);
             商品明細1.Name = "商品明細1";
-            商品明細1.Size = new Size(964, 230);
+            商品明細1.Size = new Size(1007, 230);
             商品明細1.TabIndex = 189;
             // 
             // F_商品

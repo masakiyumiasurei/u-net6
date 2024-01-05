@@ -211,6 +211,10 @@ namespace u_net
                 コマンド確定.Enabled = false;
                 コマンド登録.Enabled = false;
 
+                商品明細1.Detail.AllowUserToAddRows = true;
+                商品明細1.Detail.AllowUserToDeleteRows = true;
+                商品明細1.Detail.ReadOnly = false;
+                商品明細1.Detail.AllowRowMove = true;
                 return true;
             }
             catch (Exception ex)
@@ -335,49 +339,8 @@ namespace u_net
                         return false;
                     }
 
-                    //foreach (DataGridViewRow row in dataGridView1.Rows)
-                    //{
-                    //    if (!row.IsNewRow)
-                    //    {
-                    //        string 商品コード = row.Cells["dgv商品コード"].Value.ToString();
-                    //        string Revision = row.Cells["dgvRevision"].Value.ToString();
-                    //        string 明細番号 = row.Cells["dgv明細番号"].Value.ToString();
-                    //        string 型式番号 = row.Cells["型式番号"].Value.ToString();
-                    //        string 型式名 = row.Cells["型式名"].Value.ToString();
-                    //        decimal 定価 = Convert.ToDecimal(row.Cells["定価"].Value); // 金額の場合、適切なデータ型に変換
-                    //        decimal 原価 = Convert.ToDecimal(row.Cells["原価"].Value); // 金額の場合、適切なデータ型に変換
-                    //        string 機能 = row.Cells["機能"].Value.ToString();
-                    //        string 構成番号 = row.Cells["構成番号"].Value.ToString();
-
-                    //        // データベースにデータを挿入
-                    //        string insertSql = "INSERT INTO M商品明細 (商品コード, Revision, 明細番号, 型式番号, 型式名, 定価, 原価, 機能, 構成番号) " +
-                    //            "VALUES (@商品コード, @Revision, @明細番号, @型式番号, @型式名, @定価, @原価, @機能, @構成番号)";
-
-
-                    //        using (SqlCommand insertCommand = new SqlCommand(insertSql, cn, transaction))
-                    //        {
-                    //            insertCommand.Parameters.AddWithValue("@商品コード", 商品コード);
-                    //            insertCommand.Parameters.AddWithValue("@Revision", Revision);
-                    //            insertCommand.Parameters.AddWithValue("@明細番号", 明細番号);
-                    //            insertCommand.Parameters.AddWithValue("@型式番号", 型式番号);
-                    //            insertCommand.Parameters.AddWithValue("@型式名", 型式名);
-                    //            insertCommand.Parameters.AddWithValue("@定価", 定価);
-                    //            insertCommand.Parameters.AddWithValue("@原価", 原価);
-                    //            insertCommand.Parameters.AddWithValue("@機能", 機能);
-                    //            insertCommand.Parameters.AddWithValue("@構成番号", 構成番号);
-
-                    //            insertCommand.ExecuteNonQuery();
-                    //        }
-                    //    }
-                    //}
-
                     // トランザクションをコミット
                     transaction.Commit();
-
-                    // DataGridViewを更新して新しいデータを表示
-                    // this.mshomeisaiTableAdapter.Fill(this.newDataSet.M商品明細, this.商品コード.Text);
-                    // データベースへの変更を適用
-                    // this.tableAdapterManager.UpdateAll(this.uiDataSet);
 
                     MessageBox.Show("登録を完了しました");
 
@@ -579,6 +542,11 @@ namespace u_net
                 // コマンド承認.Enabled = false;
                 // コマンド確定.Enabled = false;
                 コマンド登録.Enabled = true;
+
+                商品明細1.Detail.AllowUserToAddRows = true;
+                商品明細1.Detail.AllowUserToDeleteRows = true;
+                商品明細1.Detail.ReadOnly = false;
+                商品明細1.Detail.AllowRowMove = true;
             }
             else
             {
@@ -869,8 +837,6 @@ namespace u_net
             }
         }
 
-        //商品明細の型式番号と構成番号を設定する 同一の商品コード内での連番　と型式名ごとの番号
-
 
         public void ChangedData(bool dataChanged)
         {
@@ -1022,18 +988,15 @@ namespace u_net
                 string strSQL2 = "SELECT * FROM M商品明細 WHERE 商品コード='" + CurrentCode + "'";
                 VariableSet.SetTable2Details(商品明細1.Detail, strSQL2, cn);
 
-                //何故かdatagridviewに反映しない？
-                // this.M商品明細TableAdapter.Fill(this.uiDataSet.M商品明細, CurrentCode);
-
-                //this.mshomeisaiTableAdapter.Fill(this.newDataSet.M商品明細, CurrentCode);
-
-                //strSQL = "SELECT * FROM M商品明細 WHERE 商品コード='" + CurrentCode + "'";
-                //DataGridUtils.SetDataGridView(cn, strSQL, this.dataGridView1);
-
-
                 FunctionClass.LockData(this, false, "商品コード");
                 コマンド複写.Enabled = true;
                 コマンド削除.Enabled = true;
+
+                商品明細1.Detail.AllowUserToAddRows = true;
+                商品明細1.Detail.AllowUserToDeleteRows = true;
+                商品明細1.Detail.ReadOnly = false;
+                商品明細1.Detail.AllowRowMove = true;
+
                 cn.Close();
                 ChangedData(false);
             }

@@ -280,18 +280,18 @@
             // 
             // 支払先名_ラベル
             // 
-            更新者名_ラベル.AllowDrop = true;
-            更新者名_ラベル.AutoEllipsis = true;
-            更新者名_ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            更新者名_ラベル.ForeColor = SystemColors.ActiveCaptionText;
-            更新者名_ラベル.ImageAlign = ContentAlignment.MiddleLeft;
-            更新者名_ラベル.Location = new Point(19, 128);
-            更新者名_ラベル.Margin = new Padding(0);
-            更新者名_ラベル.Name = "更新者名_ラベル";
-            更新者名_ラベル.Size = new Size(109, 27);
-            更新者名_ラベル.TabIndex = 7;
-            更新者名_ラベル.Text = "支払先名(&N)";
-            更新者名_ラベル.TextAlign = ContentAlignment.MiddleLeft;
+            支払先名_ラベル.AllowDrop = true;
+            支払先名_ラベル.AutoEllipsis = true;
+            支払先名_ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            支払先名_ラベル.ForeColor = SystemColors.ActiveCaptionText;
+            支払先名_ラベル.ImageAlign = ContentAlignment.MiddleLeft;
+            支払先名_ラベル.Location = new Point(19, 128);
+            支払先名_ラベル.Margin = new Padding(0);
+            支払先名_ラベル.Name = "更新者名_ラベル";
+            支払先名_ラベル.Size = new Size(109, 27);
+            支払先名_ラベル.TabIndex = 7;
+            支払先名_ラベル.Text = "支払先名(&N)";
+            支払先名_ラベル.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // 支払先コード_ラベル
             // 
