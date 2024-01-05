@@ -303,6 +303,7 @@
             dataGridView1.TabIndex = 87;
             dataGridView1.CellDoubleClick += dataGridView1_CellDoubleClick;
             dataGridView1.CellPainting += DataGridView1_CellPainting;
+            dataGridView1.Sorted += dataGridView1_Sorted;
             dataGridView1.KeyDown += Form_KeyDown;
             // 
             // panel2

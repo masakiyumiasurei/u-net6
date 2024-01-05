@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <PrintDefine>
-<PrintSetting Name="レポート定義ファイル" Ver="9.2.4" >
+<PrintSetting Name="レポート定義ファイル" Ver="9.2.0" >
 <PrintAttrs>
 <FontAttr AttrName="Font1" Name="ＭＳ Ｐゴシック" Size="10" />
 <FontAttr AttrName="Font2" Name="ＭＳ Ｐゴシック" Size="14" />
@@ -22,17 +22,13 @@
 <LineAttr AttrName="Line14" Color="White" Width="0.1" />
 <LineAttr AttrName="Line15" Color="White" Width="0.1" />
 <LineAttr AttrName="Line16" Color="White" Width="0.1" />
-<LineAttr AttrName="Line17" Color="White" Width="0.1" />
-<LineAttr AttrName="Line18" Color="White" Width="0.1" />
+<LineAttr AttrName="Line17" Width="0.1" />
+<LineAttr AttrName="Line18" Width="0.1" />
 <LineAttr AttrName="Line19" Width="0.1" />
 <LineAttr AttrName="Line20" Width="0.1" />
-<LineAttr AttrName="Line21" Width="0.1" />
-<LineAttr AttrName="Line22" Width="0.1" />
-<LineAttr AttrName="Line23" Width="0.1" />
-<LineAttr AttrName="Line24" Width="0.1" />
 </PrintAttrs>
 <Paper Size="A4" Direction="False" />
-<Design FontAttr="Font1" LineAttr="Line1" GridWidth="2" DesignScale="100" GridFit="True" ObjLock="False" X="0" Y="0" Width="210" Height="297" DisplayRepeatObject="False" RepeatObjectColor="Silver" ImageSizeType="Clip" />
+<Design FontAttr="Font1" LineAttr="Line1" GridWidth="2" DesignScale="125" GridFit="True" ObjLock="False" X="0" Y="0" Width="210" Height="297" DisplayRepeatObject="False" RepeatObjectColor="Silver" ImageSizeType="Clip" />
 </PrintSetting>
 <PrintObjects>
 <Text Name="Text40" X="10" Y="9" Width="190" Height="7.2" Text="売掛資料" Align="Center" VAlign="Middle" FontAttr="Font2" />
@@ -41,23 +37,23 @@
 <Text Name="Text32" X="10" Y="25" Width="10" Height="5" Text="No." BackColor="Black" Align="Center" VAlign="Middle" FontAttr="Font3" LineAttr="Line5" />
 <Text Name="Text38" X="11" Y="288" Width="20" Height="4.3" Text="出力日 ：" Align="Left" VAlign="Middle" FontAttr="Font1" />
 <Text Name="Text39" X="26" Y="-12" Width="30" Height="5" Text="部品集合コード" Align="Left" VAlign="Middle" FontAttr="Font1" />
-<Text Name="売掛年月" X="33" Y="19" Width="34" Height="5" Text="*売掛年月*" Align="Center" VAlign="Middle" FontAttr="Font4" />
+<Text Name="売掛年月" X="33" Y="19" Width="34" Height="5" Text="*売掛年月*" Align="Right" VAlign="Middle" FontAttr="Font4" />
 <Text Name="Text22" X="10" Y="19" Width="23" Height="5" Text="売上年月" Align="Left" VAlign="Middle" FontAttr="Font4" />
 <Line Name="Line5" StartX="10" StartY="24" EndX="67" EndY="24" LineAttr="Line1" />
 <Text Name="Text23" X="69" Y="19" Width="23" Height="5" Text="売上件数" Align="Left" VAlign="Middle" FontAttr="Font4" />
-<Text Name="売上件数" X="92" Y="19" Width="20" Height="5" Text="*売上件数*" Align="Left" VAlign="Middle" FontAttr="Font4" />
+<Text Name="売上件数" X="92" Y="19" Width="20" Height="5" Text="*売上件数*" Align="Right" VAlign="Middle" FontAttr="Font4" />
 <Line Name="Line6" StartX="69" StartY="24" EndX="112" EndY="24" LineAttr="Line1" />
 <Text Name="Text26" X="114" Y="19" Width="30" Height="5" Text="売上金額合計" Align="Left" VAlign="Middle" FontAttr="Font4" />
-<Text Name="売上金額合計" X="144" Y="19" Width="40" Height="5" Text="*売上金額合計*" Align="Left" VAlign="Middle" FontAttr="Font4" />
+<Text Name="売上金額合計" X="144" Y="19" Width="40" Height="5" Text="*売上金額合計*" Align="Right" VAlign="Middle" FontAttr="Font4" />
 <Line Name="Line7" StartX="114" StartY="24" EndX="184" EndY="24" LineAttr="Line1" />
 <Text Name="Text28" X="20" Y="25" Width="24" Height="5" Text="顧客コード" BackColor="Black" Align="Center" VAlign="Middle" FontAttr="Font3" LineAttr="Line14" />
 <Text Name="Text29" X="44" Y="25" Width="100" Height="5" Text="顧　 客 　名" BackColor="Black" Align="Center" VAlign="Middle" FontAttr="Font3" LineAttr="Line15" />
-<Text Name="Text31" X="144" Y="25" Width="56" Height="5" Text="売上金額" BackColor="Black" Align="Center" VAlign="Middle" FontAttr="Font3" LineAttr="Line17" />
+<Text Name="Text31" X="144" Y="25" Width="56" Height="5" Text="売上金額" BackColor="Black" Align="Center" VAlign="Middle" FontAttr="Font3" LineAttr="Line16" />
 <Square Name="Square1" X="10" Y="25" Width="190" Height="5" LineAttr="Line1" R="0" >
 </Square>
-<Text Name="行番号" X="10" Y="30" Width="10" Height="5" Text="*行番号*" Align="Left" VAlign="Middle" FontAttr="Font1" LineAttr="Line19" IntervalY="5" Repeat="51" />
-<Text Name="顧客コード" X="20" Y="30" Width="24" Height="5" Text="*顧客コード*" Align="Left" VAlign="Middle" FontAttr="Font1" LineAttr="Line20" IntervalY="5" Repeat="51" />
-<Text Name="顧客名" X="44" Y="30" Width="100" Height="5" Text="*顧客名*" Align="Left" VAlign="Middle" FontAttr="Font1" LineAttr="Line21" IntervalY="5" Repeat="51" />
-<Text Name="売上金額" X="144" Y="30" Width="56" Height="5" Text="*売上金額*" Align="Left" VAlign="Middle" FontAttr="Font1" LineAttr="Line23" IntervalY="5" Repeat="51" />
+<Text Name="行番号" X="10" Y="30" Width="10" Height="5" Text="*行番号*" Align="Right" VAlign="Middle" FontAttr="Font1" LineAttr="Line17" IntervalY="5" Repeat="51" />
+<Text Name="顧客コード" X="20" Y="30" Width="24" Height="5" Text="*顧客コード*" Align="Left" VAlign="Middle" FontAttr="Font1" LineAttr="Line18" IntervalY="5" Repeat="51" />
+<Text Name="顧客名" X="44" Y="30" Width="100" Height="5" Text="*顧客名*" Align="Left" VAlign="Middle" FontAttr="Font1" LineAttr="Line19" IntervalY="5" Repeat="51" />
+<Text Name="売上金額" X="144" Y="30" Width="56" Height="5" Text="*売上金額*" Align="Right" VAlign="Middle" FontAttr="Font1" LineAttr="Line20" IntervalY="5" Repeat="51" />
 </PrintObjects>
 </PrintDefine>
