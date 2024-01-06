@@ -152,9 +152,18 @@ namespace u_net
                 {
                     frmTarget.dtm発注日開始 = Nz(DateTime.Parse(発注日開始.Text));
                 }
+                else
+                {
+                    frmTarget.dtm発注日開始 = DateTime.MinValue;
+                }
+
                 if (!string.IsNullOrEmpty(発注日終了.Text))
                 {
                     frmTarget.dtm発注日終了 = Nz(DateTime.Parse(発注日終了.Text));
+                }
+                else
+                {
+                    frmTarget.dtm発注日終了 = DateTime.MinValue;
                 }
 
                 frmTarget.str発注コード開始 = Nz(発注コード開始.Text);

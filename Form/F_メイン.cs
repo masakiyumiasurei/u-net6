@@ -849,14 +849,14 @@ namespace u_net
 
         private void 地区マスタメンテボタン_Click(object sender, EventArgs e)
         {
-            //F_地区マスタ fm = new F_地区マスタ();
-            //fm.ShowDialog();
+            F_地区マスタ fm = new F_地区マスタ();
+            fm.ShowDialog();
         }
 
         private void マスタメンテボタン_Click(object sender, EventArgs e)
         {
-            //F_マスタメンテ fm = new F_マスタメンテ();
-            //fm.ShowDialog();
+            F_マスタメンテ fm = new F_マスタメンテ();
+            fm.ShowDialog();
         }
 
         private void 休日ボタン_Click(object sender, EventArgs e)
@@ -959,8 +959,8 @@ namespace u_net
             }
 
             if (string.IsNullOrEmpty(LoginUserCode)) return;
-            //F_見積管理 fm = new F_見積管理();
-            //fm.ShowDialog();
+            F_見積管理 fm = new F_見積管理();
+            fm.ShowDialog();
         }
 
         private void 商品構成ボタン_Click(object sender, EventArgs e)

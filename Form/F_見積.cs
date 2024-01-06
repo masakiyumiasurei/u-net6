@@ -220,15 +220,17 @@ namespace u_net
                     }
                 }
                 else
-                {
+                {               
                     // 読込
                     if (!GoModifyMode())
                     {
                         throw new Exception("初期化に失敗しました。");
                     }
 
-                    this.見積コード.Text = varOpenArgs.Substring(0,varOpenArgs.IndexOf(','));
+                    this.見積コード.Text = varOpenArgs.Substring(0, varOpenArgs.IndexOf(','));
                     this.見積版数.Text = varOpenArgs.Substring(varOpenArgs.IndexOf(',') + 1);
+
+                    UpdatedControl(this.見積コード);
 
                     varOpenArgs = string.Empty;
                 }
@@ -1985,6 +1987,12 @@ namespace u_net
         {
             // 日付選択フォームを作成し表示
             F_カレンダー calendar = new F_カレンダー();
+
+            if (!string.IsNullOrEmpty(見積日.Text))
+            {
+                calendar.args = 見積日.Text;
+            }
+
             if (calendar.ShowDialog() == DialogResult.OK)
             {
                 // 日付選択フォームから選択した日付を取得
