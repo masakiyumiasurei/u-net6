@@ -187,13 +187,13 @@ namespace u_net
         {
             try
             {
-      
+
                 dataGridView1.Height = dataGridView1.Height + (this.Height - intWindowHeight);
                 intWindowHeight = this.Height;  // 高さ保存
 
                 dataGridView1.Width = dataGridView1.Width + (this.Width - intWindowWidth);
                 intWindowWidth = this.Width;    // 幅保存
-                
+
             }
             catch (Exception ex)
             {
@@ -442,13 +442,29 @@ namespace u_net
                     targetform.ShowDialog();
                 }
 
-                
+
             }
 
         }
 
 
+        private void dataGridView1_Sorted(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                if (string.IsNullOrEmpty(row.Cells[8].Value?.ToString()) && DateTime.Parse(row.Cells[12].Value.ToString()) < DateTime.Today)
+                {
+                    row.DefaultCellStyle.BackColor = Color.Pink;
+                }
+                else
+                {
+                    row.DefaultCellStyle.BackColor = Color.White;
+                }
 
+
+
+            }
+        }
 
 
         private void Form_KeyDown(object sender, KeyEventArgs e)
@@ -604,12 +620,167 @@ namespace u_net
 
         private void コマンド売掛資料_Click(object sender, EventArgs e)
         {
+            IReport paoRep = ReportCreator.GetPreview();
 
+            paoRep.LoadDefFile("../../../Reports/売上一覧表_売掛資料.prepd");
+
+            //最大行数
+            int maxRow = 51;
+            //現在の行
+            int CurRow = 0;
+            //行数
+            int RowCount = maxRow;
+            if (dataGridView1.RowCount > 0)
+            {
+                RowCount = dataGridView1.RowCount - 1;
+            }
+
+            int page = 1;
+            double maxPage = Math.Ceiling((double)RowCount / maxRow);
+
+            DateTime now = DateTime.Now;
+
+            int lenB;
+
+            //描画すべき行がある限りページを増やす
+            while (RowCount > 0)
+            {
+                RowCount -= maxRow;
+
+                paoRep.PageStart();
+
+                //ヘッダー
+                paoRep.Write("売掛年月", SalesMonth.ToString("yyyy年M月") ?? " ");
+                paoRep.Write("売上件数", dataGridView1.RowCount.ToString() ?? " ");
+                paoRep.Write("売上金額合計", string.Format("{0:#,0}", dataGridView2.Rows[0].Cells[0].Value) != "" ? string.Format("{0:#,0}", dataGridView2.Rows[0].Cells[0].Value) : " ");
+
+                //フッダー
+                paoRep.Write("現在日時", now.ToString("yyyy年M月d日"));
+                paoRep.Write("ページ表示", (page + "/" + maxPage + " ページ").ToString());
+
+                //明細
+                for (var i = 0; i < maxRow; i++)
+                {
+                    if (CurRow >= dataGridView1.RowCount) break;
+
+                    DataGridViewRow targetRow = dataGridView1.Rows[CurRow];
+
+                    paoRep.Write("行番号", (CurRow + 1).ToString(), i + 1);
+                    paoRep.Write("顧客コード", targetRow.Cells["顧客コード"].Value.ToString() != "" ? targetRow.Cells["顧客コード"].Value.ToString() : " ", i + 1);
+                    paoRep.Write("顧客名", targetRow.Cells["顧客名"].Value.ToString() != "" ? targetRow.Cells["顧客名"].Value.ToString() : " ", i + 1);
+                    paoRep.Write("売上金額", string.Format("{0:#,0}", targetRow.Cells["売上金額"].Value) != "" ? string.Format("{0:#,0}", targetRow.Cells["売上金額"].Value) : " ", i + 1);
+                   
+
+
+
+                    paoRep.z_Objects.SetObject("顧客名", i + 1);
+                    lenB = Encoding.Default.GetBytes(targetRow.Cells["顧客名"].Value.ToString()).Length;
+                    if (26 < lenB)
+                    {
+                        paoRep.z_Objects.z_Text.z_FontAttr.Size = 8;
+                    }
+                    else
+                    {
+                        paoRep.z_Objects.z_Text.z_FontAttr.Size = 10;
+                    }
+
+                    CurRow++;
+
+
+                }
+
+                page++;
+
+                paoRep.PageEnd();
+
+            }
+
+
+
+            paoRep.Output();
         }
 
         private void コマンド印刷_Click(object sender, EventArgs e)
         {
+            IReport paoRep = ReportCreator.GetPreview();
 
+            paoRep.LoadDefFile("../../../Reports/売上一覧表.prepd");
+
+            //最大行数
+            int maxRow = 51;
+            //現在の行
+            int CurRow = 0;
+            //行数
+            int RowCount = maxRow;
+            if (dataGridView1.RowCount > 0)
+            {
+                RowCount = dataGridView1.RowCount - 1;
+            }
+
+            int page = 1;
+            double maxPage = Math.Ceiling((double)RowCount / maxRow);
+
+            DateTime now = DateTime.Now;
+
+            int lenB;
+
+            //描画すべき行がある限りページを増やす
+            while (RowCount > 0)
+            {
+                RowCount -= maxRow;
+
+                paoRep.PageStart();
+
+                //ヘッダー
+                paoRep.Write("売掛年月", SalesMonth.ToString("yyyy年M月") ?? " ");
+                paoRep.Write("売上件数", dataGridView1.RowCount.ToString() ?? " ");
+                paoRep.Write("売上金額合計", string.Format("{0:#,0}", dataGridView2.Rows[0].Cells[0].Value) != "" ? string.Format("{0:#,0}", dataGridView2.Rows[0].Cells[0].Value) : " ");
+
+                //フッダー
+                paoRep.Write("現在日時", now.ToString("yyyy年M月d日"));
+                paoRep.Write("ページ表示", (page + "/" + maxPage + " ページ").ToString());
+
+                //明細
+                for (var i = 0; i < maxRow; i++)
+                {
+                    if (CurRow >= dataGridView1.RowCount) break;
+
+                    DataGridViewRow targetRow = dataGridView1.Rows[CurRow];
+
+                    paoRep.Write("行番号", (CurRow + 1).ToString(), i + 1);
+                    paoRep.Write("顧客コード", targetRow.Cells["顧客コード"].Value.ToString() != "" ? targetRow.Cells["顧客コード"].Value.ToString() : " ", i + 1);
+                    paoRep.Write("顧客名", targetRow.Cells["顧客名"].Value.ToString() != "" ? targetRow.Cells["顧客名"].Value.ToString() : " ", i + 1);
+                    paoRep.Write("担当者名", targetRow.Cells["担当者名"].Value.ToString() != "" ? targetRow.Cells["担当者名"].Value.ToString() : " ", i + 1);
+                    paoRep.Write("売上金額", string.Format("{0:#,0}", targetRow.Cells["売上金額"].Value) != "" ? string.Format("{0:#,0}", targetRow.Cells["売上金額"].Value) : " ", i + 1);
+                    paoRep.Write("支払日", targetRow.Cells["支払日"].Value.ToString() != "" ? targetRow.Cells["支払日"].Value.ToString() : " ", i + 1);
+
+
+
+                    paoRep.z_Objects.SetObject("顧客名", i + 1);
+                    lenB = Encoding.Default.GetBytes(targetRow.Cells["顧客名"].Value.ToString()).Length;
+                    if (22 < lenB)
+                    {
+                        paoRep.z_Objects.z_Text.z_FontAttr.Size = 8;
+                    }
+                    else
+                    {
+                        paoRep.z_Objects.z_Text.z_FontAttr.Size = 10;
+                    }
+
+                    CurRow++;
+
+
+                }
+
+                page++;
+
+                paoRep.PageEnd();
+
+            }
+
+
+
+            paoRep.Output();
         }
 
 
@@ -626,7 +797,7 @@ namespace u_net
                 try
                 {
                     Connect();
-                    
+
                     using (SqlCommand command = new SqlCommand("UpdateAcceptanceNotification", cn))
                     {
                         command.CommandType = System.Data.CommandType.StoredProcedure;
@@ -639,7 +810,7 @@ namespace u_net
 
                         command.ExecuteNonQuery();
                     }
-                    
+
 
                     if (AcceptanceNotificationReceived == 0)
                     {
@@ -764,5 +935,7 @@ namespace u_net
             売掛年月.Invalidate();
             売掛年月.DroppedDown = true;
         }
+
+        
     }
 }
