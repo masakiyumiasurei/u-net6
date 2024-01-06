@@ -971,7 +971,6 @@ namespace u_net
             // 
             パート.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             パート.AutoCompleteSource = AutoCompleteSource.ListItems;
-            パート.DropDownStyle = ComboBoxStyle.DropDownList;
             パート.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             パート.FormattingEnabled = true;
             パート.ImeMode = ImeMode.Disable;

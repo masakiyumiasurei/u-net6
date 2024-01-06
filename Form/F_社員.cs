@@ -153,9 +153,9 @@ namespace u_net
             OriginalClass ofn = new OriginalClass();
             ofn.SetComboBox(勤務地コード, "SELECT 営業所名 Display ,営業所コード Value FROM M営業所");
 
-            this.パート.DataSource = new KeyValuePair<int, String>[] {
-                new KeyValuePair<int, String>(1, "パート"),
-                new KeyValuePair<int, String>(0, "正社員"),
+            this.パート.DataSource = new KeyValuePair<byte, String>[] {
+                new KeyValuePair<byte, String>(0, "正社員"),
+                new KeyValuePair<byte, String>(1, "パート"),
             };
             this.パート.DisplayMember = "Value";
             this.パート.ValueMember = "Key";
@@ -269,10 +269,11 @@ namespace u_net
                 this.コマンド複写.Enabled = !isChanged;
                 this.コマンド削除.Enabled = !isChanged;
                 this.コマンドメール.Enabled = !isChanged;
+                コマンド登録.Enabled = isChanged;
                 if (IsChanged)
                 {
                     コマンド確定.Enabled = true;
-                    コマンド登録.Enabled = true;
+
                 }
                 //this.コマンド登録.Enabled = isChanged;
             }
@@ -395,18 +396,63 @@ namespace u_net
             {
                 try
                 {
-                    DateTime now = DateTime.Now;
-                    string strwhere = " 社員コード='" + this.社員コード.Text;
+                    DateTime dteNow = DateTime.Now;
+                    Control objControl1 = null;
+                    Control objControl2 = null;
+                    Control objControl3 = null;
+                    Control objControl4 = null;
+                    Control objControl5 = null;
+                    Control objControl6 = null;
+                    object varSaved1 = null;
+                    object varSaved2 = null;
+                    object varSaved3 = null;
+                    object varSaved4 = null;
+                    object varSaved5 = null;
+                    object varSaved6 = null;
+
+                    if (IsNewData)
+                    {
+                        objControl1 = this.作成日時;
+                        objControl2 = this.作成者コード;
+                        objControl3 = this.作成者名;
+                        varSaved1 = objControl1.Text;
+                        varSaved2 = objControl2.Text;
+                        varSaved3 = objControl3.Text;
+                        objControl1.Text = dteNow.ToString(); // ここでDateTimeをstringに変換して設定
+                        objControl2.Text = CommonConstants.LoginUserCode;
+                        objControl3.Text = CommonConstants.LoginUserFullName;
+                    }
+
+                    objControl4 = this.更新日時;
+                    objControl5 = this.更新者コード;
+                    objControl6 = this.更新者名;
+
+                    varSaved4 = objControl4.Text;
+                    varSaved5 = objControl5.Text;
+                    varSaved6 = objControl6.Text;
+
+                    objControl4.Text = dteNow.ToString(); // ここでDateTimeをstringに変換して設定
+                    objControl5.Text = CommonConstants.LoginUserCode;
+                    objControl6.Text = CommonConstants.LoginUserFullName;
+
+                    string strwhere = " 社員コード='" + this.社員コード.Text + "'";
 
                     if (!DataUpdater.UpdateOrInsertDataFrom(this, cn, "M社員", strwhere, "社員コード", transaction))
                     {
+                        //登録失敗
+                        if (IsNewData)
+                        {
+                            objControl1.Text = varSaved1.ToString();
+                            objControl2.Text = varSaved2.ToString();
+                            objControl3.Text = varSaved3.ToString();
+                        }
+
+                        objControl4.Text = varSaved4.ToString();
+                        objControl5.Text = varSaved5.ToString();
+                        objControl6.Text = varSaved6.ToString();
                         //transaction.Rollback(); 関数内でロールバック入れた
                         return false;
-                    }
-
-                    string sql = "DELETE FROM M社員 WHERE " + strwhere;
-                    SqlCommand command = new SqlCommand(sql, cn, transaction);
-                    command.ExecuteNonQuery();
+                    }                                        
 
                     // トランザクションをコミット
                     transaction.Commit();
@@ -609,7 +655,7 @@ namespace u_net
         private void コマンドメール_Click(object sender, EventArgs e)
         {
             string toEmail = Convert.ToString(電子メールアドレス.Text);
-            if (電子メールアドレス.Text != null)
+            if (string.IsNullOrEmpty(電子メールアドレス.Text))
             {
                 MessageBox.Show("電子メールアドレスを入力してください。", "メールコマンド", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 電子メールアドレス.Focus();
@@ -631,7 +677,11 @@ namespace u_net
         {
             try
             {
-                if (CopyData(FunctionClass.GetNewCode(cn, CommonConstants.CH_EMPLOYEE).Substring(3)))
+                CommonConnect();
+                string code = FunctionClass.GetNewCode(cn, CommonConstants.CH_EMPLOYEE);
+                code = code.Substring(code.Length - 3);
+
+                if (CopyData(code))
                 {
                     // 変更があった場合の処理
                     ChangedData(true);
@@ -645,8 +695,7 @@ namespace u_net
                     this.コマンド新規.Enabled = false;
                     this.コマンド読込.Enabled = true;
                 }
-
-                CommonConnect();
+                               
             }
             catch (Exception ex)
             {
@@ -700,8 +749,7 @@ namespace u_net
                 string strMsg;
                 string strMsgPlus;
 
-                strCode = this.CurrentCode;
-                //intEdition = this.CurrentRevision;                
+                strCode = this.CurrentCode;                
 
                 DialogResult intRes;
 
@@ -711,7 +759,7 @@ namespace u_net
                 }
 
                 strMsg = $"社員コード　：　{CurrentCode}{Environment.NewLine}{Environment.NewLine}" +
-                          $"この社員データは削除されています。復元しますか？{Environment.NewLine}" +
+                          $"この社員データを削除/復元します。{Environment.NewLine}" +
                     $"削除/復元するには[OK]を選択してください。{Environment.NewLine}{Environment.NewLine}" +
                     $"※削除後も参照することができます。";
 
@@ -730,6 +778,7 @@ namespace u_net
                         if (SetDeleted(cn, strCode, -1, DateTime.Now, CommonConstants.LoginUserCode))
                             throw new Exception();
                     }
+                    チェック();
                 }
 
                 if (fn.WaitForm != null) fn.WaitForm.Close();
@@ -756,9 +805,7 @@ namespace u_net
             try
             {
                 string strKey;
-                string strUpdate;
-                string employeename;
-                employeename = FunctionClass.EmployeeName(cn, deleteUser);
+                string strUpdate;                
 
                 bool isDeleted = false;
 
@@ -777,7 +824,6 @@ namespace u_net
                 }
                 else
                 {
-
                     strUpdate = "削除日時=@DeleteTime,削除者コード=@DeleteUser";
                 }
 
@@ -789,17 +835,13 @@ namespace u_net
                     cmd.Parameters.AddWithValue("@CodeString", codeString);
                     cmd.Parameters.AddWithValue("@EditionNumber", editionNumber);
                     cmd.Parameters.AddWithValue("@DeleteTime", deleteTime);
-                    cmd.Parameters.AddWithValue("@DeleteUser", deleteUser);
-                    cmd.Parameters.AddWithValue("@employeename", employeename);
+                    cmd.Parameters.AddWithValue("@DeleteUser", deleteUser);                    
 
                     string sql = "UPDATE M社員 SET " + strUpdate +
                                  ",更新日時=@DeleteTime,更新者コード=@DeleteUser WHERE " + strKey;
 
-
-
                     cmd.CommandText = sql;
                     cmd.ExecuteNonQuery();
-
 
                     cmd.Transaction.Commit(); // トランザクション完了
 
@@ -819,7 +861,6 @@ namespace u_net
 
                     isDeleted = false;
                 }
-
 
                 return isDeleted;
             }
@@ -877,9 +918,72 @@ namespace u_net
 
         private void コマンド確定_Click(object sender, EventArgs e)
         {
-            //MessageBox.Show("現在開発中です。", "確定コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            FunctionClass fn = new FunctionClass();
+            try
+            {
+                // ペインティングを無効にする
+                this.SuspendLayout();                
 
+                // エラーチェック
+                if (!this.IsDecided)
+                {
+                    if (IsError(社員コード)) return;
+                }
+
+                // 確定日時と確定者コードの保存
+                var varSaved1 = this.確定日時.Text;
+                var varSaved2 = this.確定者コード.Text;
+
+                // 確定情報の設定
+                if (this.IsDecided)
+                {
+                    this.確定日時.Text = null;
+                    this.確定者コード.Text = null;
+                }
+                else
+                {
+                    // GetServerDateとLoginUserCodeの適切な実装を考慮してください
+                    Connect();
+                    this.確定日時.Text = FunctionClass.GetServerDate(cn).ToString();
+                    this.確定者コード.Text = CommonConstants.LoginUserCode;
+                }
+
+                
+                fn.DoWait("登録しています...");
+
+                // データの保存と確認
+                if (SaveData())
+                {
+                    ChangedData(false);
+                    if (!IsNewData)
+                    {
+                        コマンド新規.Enabled = true;
+                        コマンド読込.Enabled = false;
+                    }
+                }
+                else
+                {
+                    this.確定日時.Text = varSaved1;
+                    this.確定者コード.Text = varSaved2;
+                    MessageBox.Show("確定できませんでした。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+                FunctionClass.LockData(this, IsDecided || IsDeleted, "社員コード");
+                fn.WaitForm.Close();
+            }
+            catch (Exception ex)
+            {
+                fn.WaitForm.Close();
+                Console.WriteLine($"エラーが発生しました: {ex.Message}");
+            }
+            finally
+            {
+                // ペインティングを再開する
+                this.ResumeLayout();
+            }
         }
+
+    
 
         private void コマンド登録_Click(object sender, EventArgs e)
         {
@@ -887,51 +991,28 @@ namespace u_net
             if (MessageBox.Show("変更内容を保存しますか？", "保存確認",
                 MessageBoxButtons.OKCancel,
                 MessageBoxIcon.Question) == DialogResult.OK)
-            {
-                //if (!ErrCheck("")) return;
+            {                
+                FunctionClass fn = new FunctionClass();
+                fn.DoWait("登録しています...");
+                if (!SaveData())
+                {
+                    fn.WaitForm.Close();
+                    return;
+                }
+                // 登録成功
+                ChangedData(false);
 
-                if (!SaveData()) return;
+                if (IsNewData)
+                {
+                    コマンド新規.Enabled = true;
+                    コマンド読込.Enabled = false;
+                }
+
+                コマンド承認.Enabled = this.IsDecided;
+                コマンド確定.Enabled = true;
+                fn.WaitForm.Close();
             }
 
-            //this.DoubleBuffered = true;
-
-            //if (ActiveControl == コマンド登録)
-            //{
-            //    GetNextControl(コマンド登録, false).Focus();
-            //}
-
-            // 登録時におけるエラーチェック
-            //if (!ErrCheck())
-            //{
-            //    goto Bye_コマンド登録_Click;
-            //}
-
-            //FunctionClass fn = new FunctionClass();
-            //fn.DoWait("登録しています...");
-
-            //if (SaveData())
-            //{
-            //    // 登録成功
-            //    ChangedData(false);
-
-            //    if (IsNewData)
-            //    {
-            //        コマンド新規.Enabled = true;
-            //        コマンド読込.Enabled = false;
-            //        //コマンド複写.Enabled = true;
-            //        //コマンド削除.Enabled = true;
-            //    }
-            //    コマンド承認.Enabled = this.IsDecided;
-            //    コマンド確定.Enabled = true;
-
-            //    fn.WaitForm.Close();
-            //    //MessageBox.Show("登録を完了しました", "登録コマンド", MessageBoxButtons.OK);
-            //}
-            //else
-            //{
-            //    fn.WaitForm.Close();
-            //    MessageBox.Show("登録できませんでした。", "登録コマンド", MessageBoxButtons.OK);
-            //}
         }
 
         private void コマンド終了_Click(object sender, EventArgs e)
@@ -956,19 +1037,7 @@ namespace u_net
                         //fn.DoWait("読み込んでいます...");
 
                         LoadData(this.CurrentCode);
-                        //LoadHeader(this, this.CurrentCode);
-                        //if (振込手数料負担コード.SelectedValue != null && 振込手数料負担コード.SelectedValue.ToString() == "3")
-                        //{
-                        //    振込手数料上限金額.Enabled = true;
-                        //}
-                        //else
-                        //{
-                        //    振込手数料上限金額.Enabled = false;
-                        //}
-
-                        //this.コマンド複写.Enabled = true;
-                        //this.コマンド削除.Enabled = true;
-                        //fn.WaitForm.Close();
+                        チェック();
                         break;
 
                     case "氏名":
@@ -1246,16 +1315,17 @@ namespace u_net
         private void 社員コード_Validated(object sender, EventArgs e)
         {
             UpdatedControl(社員コード);
+            ChangedData(false);
         }
 
         private void 社員コード_Validating(object sender, CancelEventArgs e)
         {
-            IsError(社員コード);
+            if(!IsNewData) IsError(社員コード);
         }
 
         private void 社員コード_TextChanged(object sender, EventArgs e)
         {
-            FunctionClass.LimitText(ActiveControl, 3);
+            FunctionClass.LimitText(社員コード, 3);
         }
 
         private void 勤務地コード_Validating(object sender, CancelEventArgs e)
@@ -1337,7 +1407,7 @@ namespace u_net
 
         private void Email作成ボタン_Click(object sender, EventArgs e)
         {
-
+            コマンドメール_Click(sender, e);
         }
     }
 }
