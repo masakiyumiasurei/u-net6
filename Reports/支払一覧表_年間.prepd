@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <PrintDefine>
-<PrintSetting Name="レポート定義ファイル" Ver="9.2.4" >
+<PrintSetting Name="レポート定義ファイル" Ver="9.2.0" >
 <PrintAttrs>
 <FontAttr AttrName="Font1" Name="ＭＳ Ｐゴシック" Size="9" />
 <FontAttr AttrName="Font2" Name="ＭＳ Ｐゴシック" Size="9" Color="White" />
@@ -26,14 +26,14 @@
 <LineAttr AttrName="Line16" Width="0.1" />
 <LineAttr AttrName="Line17" Width="0.1" />
 <LineAttr AttrName="Line18" Color="White" Width="0.1" />
-<LineAttr AttrName="Line19" Color="White" Width="0.1" />
-<LineAttr AttrName="Line20" Width="0.1" />
+<LineAttr AttrName="Line19" Width="0.1" />
+<LineAttr AttrName="Line20" Color="ff404040" Width="0.1" />
 <LineAttr AttrName="Line21" Color="ff404040" Width="0.1" />
-<LineAttr AttrName="Line22" Color="ff404040" Width="0.1" />
+<LineAttr AttrName="Line22" Width="0.1" />
 <LineAttr AttrName="Line23" Width="0.1" />
 <LineAttr AttrName="Line24" Width="0.1" />
-<LineAttr AttrName="Line25" Width="0.1" />
-<LineAttr AttrName="Line26" Width="0.1" />
+<LineAttr AttrName="Line25" Color="White" Width="0.1" />
+<LineAttr AttrName="Line26" Color="White" Width="0.1" />
 <LineAttr AttrName="Line27" Color="White" Width="0.1" />
 <LineAttr AttrName="Line28" Color="White" Width="0.1" />
 <LineAttr AttrName="Line29" Color="White" Width="0.1" />
@@ -45,8 +45,8 @@
 <LineAttr AttrName="Line35" Color="White" Width="0.1" />
 <LineAttr AttrName="Line36" Color="White" Width="0.1" />
 <LineAttr AttrName="Line37" Color="White" Width="0.1" />
-<LineAttr AttrName="Line38" Color="White" Width="0.1" />
-<LineAttr AttrName="Line39" Color="White" Width="0.1" />
+<LineAttr AttrName="Line38" Width="0.1" />
+<LineAttr AttrName="Line39" Width="0.1" />
 <LineAttr AttrName="Line40" Width="0.1" />
 <LineAttr AttrName="Line41" Width="0.1" />
 <LineAttr AttrName="Line42" Width="0.1" />
@@ -59,9 +59,7 @@
 <LineAttr AttrName="Line49" Width="0.1" />
 <LineAttr AttrName="Line50" Width="0.1" />
 <LineAttr AttrName="Line51" Width="0.1" />
-<LineAttr AttrName="Line52" Width="0.1" />
-<LineAttr AttrName="Line53" Width="0.1" />
-<LineAttr AttrName="Line54" Color="Transparent" Width="0.1" />
+<LineAttr AttrName="Line52" Color="Transparent" Width="0.1" />
 </PrintAttrs>
 <Paper Size="A4" Direction="True" />
 <Design FontAttr="Font1" LineAttr="Line1" GridWidth="2" DesignScale="100" GridFit="True" ObjLock="False" X="0" Y="0" Width="297" Height="210" DisplayRepeatObject="False" RepeatObjectColor="Silver" ImageSizeType="Clip" />
@@ -71,52 +69,52 @@
 <Text Name="Text29" X="7" Y="25" Width="7" Height="6" Text="No." BackColor="Black" Align="Center" VAlign="Middle" FontAttr="Font3" LineAttr="Line3" />
 <Text Name="Text46" X="6" Y="196" Width="16" Height="4" Text="出力日時：" Align="Left" VAlign="Middle" FontAttr="Font1" />
 <Text Name="出力日時" X="22" Y="196" Width="70" Height="4" Text="*出力日時*" Align="Left" VAlign="Middle" FontAttr="Font1" />
-<Text Name="行番号" X="7" Y="31" Width="7" Height="6" Text="*行番号*" Align="Left" VAlign="Middle" FontAttr="Font1" LineAttr="Line6" IntervalY="6" Repeat="27" />
+<Text Name="行番号" X="7" Y="31" Width="7" Height="6" Text="*行番号*" Align="Right" VAlign="Middle" FontAttr="Font1" LineAttr="Line6" IntervalY="6" Repeat="27" />
 <Text Name="ページ" X="248" Y="196" Width="40" Height="4" Text="*ページ*" Align="Right" VAlign="Middle" FontAttr="Font1" />
-<Text Name="合計４月" X="64" Y="17" Width="17" Height="6" Text="*合計４月*" Align="Left" VAlign="Middle" FontAttr="Font4" LineAttr="Line8" />
-<Text Name="合計５月" X="81" Y="17" Width="17" Height="6" Text="*合計５月*" Align="Left" VAlign="Middle" FontAttr="Font4" LineAttr="Line9" />
-<Text Name="合計６月" X="98" Y="17" Width="17" Height="6" Text="*合計６月*" Align="Left" VAlign="Middle" FontAttr="Font4" LineAttr="Line10" />
-<Text Name="合計７月" X="115" Y="17" Width="17" Height="6" Text="*合計７月*" Align="Left" VAlign="Middle" FontAttr="Font4" LineAttr="Line11" />
-<Text Name="合計８月" X="132" Y="17" Width="17" Height="6" Text="*合計８月*" Align="Left" VAlign="Middle" FontAttr="Font4" LineAttr="Line12" />
-<Text Name="合計９月" X="149" Y="17" Width="17" Height="6" Text="*合計９月*" Align="Left" VAlign="Middle" FontAttr="Font4" LineAttr="Line13" />
-<Text Name="合計１０月" X="166" Y="17" Width="17" Height="6" Text="*合計１０月*" Align="Left" VAlign="Middle" FontAttr="Font4" LineAttr="Line14" />
-<Text Name="合計１１月" X="183" Y="17" Width="17" Height="6" Text="*合計１１月*" Align="Left" VAlign="Middle" FontAttr="Font4" LineAttr="Line15" />
-<Text Name="合計１２月" X="200" Y="17" Width="17" Height="6" Text="*合計１２月*" Align="Left" VAlign="Middle" FontAttr="Font4" LineAttr="Line16" />
+<Text Name="合計4月" X="64" Y="17" Width="17" Height="6" Text="*合計４月*" Align="Right" VAlign="Middle" FontAttr="Font4" LineAttr="Line8" />
+<Text Name="合計5月" X="81" Y="17" Width="17" Height="6" Text="*合計５月*" Align="Right" VAlign="Middle" FontAttr="Font4" LineAttr="Line9" />
+<Text Name="合計6月" X="98" Y="17" Width="17" Height="6" Text="*合計６月*" Align="Right" VAlign="Middle" FontAttr="Font4" LineAttr="Line10" />
+<Text Name="合計7月" X="115" Y="17" Width="17" Height="6" Text="*合計７月*" Align="Right" VAlign="Middle" FontAttr="Font4" LineAttr="Line11" />
+<Text Name="合計8月" X="132" Y="17" Width="17" Height="6" Text="*合計８月*" Align="Right" VAlign="Middle" FontAttr="Font4" LineAttr="Line12" />
+<Text Name="合計9月" X="149" Y="17" Width="17" Height="6" Text="*合計９月*" Align="Right" VAlign="Middle" FontAttr="Font4" LineAttr="Line13" />
+<Text Name="合計10月" X="166" Y="17" Width="17" Height="6" Text="*合計１０月*" Align="Right" VAlign="Middle" FontAttr="Font4" LineAttr="Line14" />
+<Text Name="合計11月" X="183" Y="17" Width="17" Height="6" Text="*合計１１月*" Align="Right" VAlign="Middle" FontAttr="Font4" LineAttr="Line15" />
+<Text Name="合計12月" X="200" Y="17" Width="17" Height="6" Text="*合計１２月*" Align="Right" VAlign="Middle" FontAttr="Font4" LineAttr="Line16" />
 <Text Name="項目10" X="2217" Y="17" Width="17" Height="6" Text="*項目10*" Align="Left" VAlign="Middle" FontAttr="Font4" LineAttr="Line17" />
 <Text Name="Text18" X="14" Y="25" Width="50" Height="6" Text="支払先名" BackColor="Black" Align="Center" VAlign="Middle" FontAttr="Font3" LineAttr="Line18" />
-<Text Name="支払先名" X="14" Y="31" Width="50" Height="6" Text="*支払先名*" Align="Left" VAlign="Middle" FontAttr="Font1" LineAttr="Line20" IntervalY="6" Repeat="27" />
-<Text Name="Text46" X="7" Y="17" Width="16" Height="6" Text="支払区分" BackColor="Black" Align="Center" VAlign="Middle" FontAttr="Font2" LineAttr="Line21" />
-<Text Name="支払区分" X="23" Y="17" Width="24" Height="6" Text="*支払区分*" Align="Left" VAlign="Middle" FontAttr="Font5" LineAttr="Line22" />
-<Text Name="合計１月" X="217" Y="17" Width="17" Height="6" Text="*合計１月*" Align="Left" VAlign="Middle" FontAttr="Font4" LineAttr="Line23" />
-<Text Name="合計２月" X="234" Y="17" Width="17" Height="6" Text="*合計２月*" Align="Left" VAlign="Middle" FontAttr="Font4" LineAttr="Line24" />
-<Text Name="合計３月" X="251" Y="17" Width="17" Height="6" Text="*合計３月*" Align="Left" VAlign="Middle" FontAttr="Font4" LineAttr="Line25" />
-<Text Name="Text19" X="64" Y="25" Width="17" Height="6" Text="４月" BackColor="Black" Align="Center" VAlign="Middle" FontAttr="Font2" LineAttr="Line27" />
-<Text Name="Text27" X="81" Y="25" Width="17" Height="6" Text="５月" BackColor="Black" Align="Center" VAlign="Middle" FontAttr="Font2" LineAttr="Line28" />
-<Text Name="Text28" X="98" Y="25" Width="17" Height="6" Text="６月" BackColor="Black" Align="Center" VAlign="Middle" FontAttr="Font2" LineAttr="Line29" />
-<Text Name="Text29" X="115" Y="25" Width="17" Height="6" Text="７月" BackColor="Black" Align="Center" VAlign="Middle" FontAttr="Font2" LineAttr="Line30" />
-<Text Name="Text31" X="132" Y="25" Width="17" Height="6" Text="８月" BackColor="Black" Align="Center" VAlign="Middle" FontAttr="Font2" LineAttr="Line32" />
-<Text Name="Text32" X="251" Y="25" Width="17" Height="6" Text="３月" BackColor="Black" Align="Center" VAlign="Middle" FontAttr="Font2" LineAttr="Line33" />
-<Text Name="Text33" X="234" Y="25" Width="17" Height="6" Text="２月" BackColor="Black" Align="Center" VAlign="Middle" FontAttr="Font2" LineAttr="Line34" />
-<Text Name="Text34" X="217" Y="25" Width="17" Height="6" Text="１月" BackColor="Black" Align="Center" VAlign="Middle" FontAttr="Font2" LineAttr="Line35" />
-<Text Name="Text35" X="183" Y="25" Width="17" Height="6" Text="１１月" BackColor="Black" Align="Center" VAlign="Middle" FontAttr="Font2" LineAttr="Line36" />
-<Text Name="Text36" X="166" Y="25" Width="17" Height="6" Text="１０月" BackColor="Black" Align="Center" VAlign="Middle" FontAttr="Font2" LineAttr="Line37" />
-<Text Name="Text37" X="200" Y="25" Width="17" Height="6" Text="１２月" BackColor="Black" Align="Center" VAlign="Middle" FontAttr="Font2" LineAttr="Line38" />
-<Text Name="Text38" X="149" Y="25" Width="17" Height="6" Text="９月" BackColor="Black" Align="Center" VAlign="Middle" FontAttr="Font2" LineAttr="Line39" />
-<Text Name="Text31" X="268" Y="25" Width="22" Height="6" Text="合計" BackColor="Black" Align="Center" VAlign="Middle" FontAttr="Font2" LineAttr="Line19" />
-<Text Name="支払合計金額" X="268" Y="17" Width="22" Height="6" Text="*支払合計金額*" Align="Left" VAlign="Middle" FontAttr="Font1" LineAttr="Line26" />
-<Text Name="４月" X="64" Y="31" Width="17" Height="6" Text="*４月*" Align="Left" VAlign="Middle" FontAttr="Font1" LineAttr="Line40" IntervalY="6" Repeat="27" />
-<Text Name="５月" X="81" Y="31" Width="17" Height="6" Text="*５月*" Align="Left" VAlign="Middle" FontAttr="Font1" LineAttr="Line41" IntervalY="6" Repeat="27" />
-<Text Name="６月" X="98" Y="31" Width="17" Height="6" Text="*６月*" Align="Left" VAlign="Middle" FontAttr="Font1" LineAttr="Line42" IntervalY="6" Repeat="27" />
-<Text Name="７月" X="115" Y="31" Width="17" Height="6" Text="*７月*" Align="Left" VAlign="Middle" FontAttr="Font1" LineAttr="Line43" IntervalY="6" Repeat="27" />
-<Text Name="８月" X="132" Y="31" Width="17" Height="6" Text="*８月*" Align="Left" VAlign="Middle" FontAttr="Font1" LineAttr="Line44" IntervalY="6" Repeat="27" />
-<Text Name="９月" X="149" Y="31" Width="17" Height="6" Text="*９月*" Align="Left" VAlign="Middle" FontAttr="Font1" LineAttr="Line45" IntervalY="6" Repeat="27" />
-<Text Name="１０月" X="166" Y="31" Width="17" Height="6" Text="*１０月*" Align="Left" VAlign="Middle" FontAttr="Font1" LineAttr="Line46" IntervalY="6" Repeat="27" />
-<Text Name="１２月" X="200" Y="31" Width="17" Height="6" Text="*１２月*" Align="Left" VAlign="Middle" FontAttr="Font1" LineAttr="Line48" IntervalY="6" Repeat="27" />
-<Text Name="１月" X="217" Y="31" Width="17" Height="6" Text="*１月*" Align="Left" VAlign="Middle" FontAttr="Font1" LineAttr="Line49" IntervalY="6" Repeat="27" />
-<Text Name="２月" X="234" Y="31" Width="17" Height="6" Text="*２月*" Align="Left" VAlign="Middle" FontAttr="Font1" LineAttr="Line50" IntervalY="6" Repeat="27" />
-<Text Name="３月" X="251" Y="31" Width="17" Height="6" Text="*３月*" Align="Left" VAlign="Middle" FontAttr="Font1" LineAttr="Line51" IntervalY="6" Repeat="27" />
-<Text Name="合計" X="268" Y="31" Width="22" Height="6" Text="*合計*" Align="Left" VAlign="Middle" FontAttr="Font1" LineAttr="Line52" IntervalY="6" Repeat="27" />
-<Text Name="１１月" X="183" Y="31" Width="17" Height="6" Text="*１１月*" Align="Left" VAlign="Middle" FontAttr="Font1" LineAttr="Line53" IntervalY="6" Repeat="27" />
-<Text Name="タイトル" X="7" Y="7" Width="284" Height="6" Text="*タイトル*" Align="Center" VAlign="Middle" FontAttr="Font6" LineAttr="Line54" />
+<Text Name="支払先名" X="14" Y="31" Width="50" Height="6" Text="*支払先名*" Align="Left" VAlign="Middle" FontAttr="Font1" LineAttr="Line19" IntervalY="6" Repeat="27" />
+<Text Name="Text46" X="7" Y="17" Width="16" Height="6" Text="支払区分" BackColor="Black" Align="Center" VAlign="Middle" FontAttr="Font2" LineAttr="Line20" />
+<Text Name="支払区分" X="23" Y="17" Width="24" Height="6" Text="*支払区分*" Align="Left" VAlign="Middle" FontAttr="Font5" LineAttr="Line21" />
+<Text Name="合計1月" X="217" Y="17" Width="17" Height="6" Text="*合計１月*" Align="Right" VAlign="Middle" FontAttr="Font4" LineAttr="Line22" />
+<Text Name="合計2月" X="234" Y="17" Width="17" Height="6" Text="*合計２月*" Align="Right" VAlign="Middle" FontAttr="Font4" LineAttr="Line23" />
+<Text Name="合計3月" X="251" Y="17" Width="17" Height="6" Text="*合計３月*" Align="Right" VAlign="Middle" FontAttr="Font4" LineAttr="Line24" />
+<Text Name="Text19" X="64" Y="25" Width="17" Height="6" Text="４月" BackColor="Black" Align="Center" VAlign="Middle" FontAttr="Font2" LineAttr="Line25" />
+<Text Name="Text27" X="81" Y="25" Width="17" Height="6" Text="５月" BackColor="Black" Align="Center" VAlign="Middle" FontAttr="Font2" LineAttr="Line26" />
+<Text Name="Text28" X="98" Y="25" Width="17" Height="6" Text="６月" BackColor="Black" Align="Center" VAlign="Middle" FontAttr="Font2" LineAttr="Line27" />
+<Text Name="Text29" X="115" Y="25" Width="17" Height="6" Text="７月" BackColor="Black" Align="Center" VAlign="Middle" FontAttr="Font2" LineAttr="Line28" />
+<Text Name="Text31" X="132" Y="25" Width="17" Height="6" Text="８月" BackColor="Black" Align="Center" VAlign="Middle" FontAttr="Font2" LineAttr="Line29" />
+<Text Name="Text32" X="251" Y="25" Width="17" Height="6" Text="３月" BackColor="Black" Align="Center" VAlign="Middle" FontAttr="Font2" LineAttr="Line30" />
+<Text Name="Text33" X="234" Y="25" Width="17" Height="6" Text="２月" BackColor="Black" Align="Center" VAlign="Middle" FontAttr="Font2" LineAttr="Line31" />
+<Text Name="Text34" X="217" Y="25" Width="17" Height="6" Text="１月" BackColor="Black" Align="Center" VAlign="Middle" FontAttr="Font2" LineAttr="Line32" />
+<Text Name="Text35" X="183" Y="25" Width="17" Height="6" Text="１１月" BackColor="Black" Align="Center" VAlign="Middle" FontAttr="Font2" LineAttr="Line33" />
+<Text Name="Text36" X="166" Y="25" Width="17" Height="6" Text="１０月" BackColor="Black" Align="Center" VAlign="Middle" FontAttr="Font2" LineAttr="Line34" />
+<Text Name="Text37" X="200" Y="25" Width="17" Height="6" Text="１２月" BackColor="Black" Align="Center" VAlign="Middle" FontAttr="Font2" LineAttr="Line35" />
+<Text Name="Text38" X="149" Y="25" Width="17" Height="6" Text="９月" BackColor="Black" Align="Center" VAlign="Middle" FontAttr="Font2" LineAttr="Line36" />
+<Text Name="Text31" X="268" Y="25" Width="22" Height="6" Text="合計" BackColor="Black" Align="Center" VAlign="Middle" FontAttr="Font2" LineAttr="Line37" />
+<Text Name="支払合計金額" X="268" Y="17" Width="22" Height="6" Text="*支払合計金額*" Align="Right" VAlign="Middle" FontAttr="Font1" LineAttr="Line38" />
+<Text Name="4月" X="64" Y="31" Width="17" Height="6" Text="*４月*" Align="Right" VAlign="Middle" FontAttr="Font1" LineAttr="Line39" IntervalY="6" Repeat="27" />
+<Text Name="5月" X="81" Y="31" Width="17" Height="6" Text="*５月*" Align="Right" VAlign="Middle" FontAttr="Font1" LineAttr="Line40" IntervalY="6" Repeat="27" />
+<Text Name="6月" X="98" Y="31" Width="17" Height="6" Text="*６月*" Align="Right" VAlign="Middle" FontAttr="Font1" LineAttr="Line41" IntervalY="6" Repeat="27" />
+<Text Name="7月" X="115" Y="31" Width="17" Height="6" Text="*７月*" Align="Right" VAlign="Middle" FontAttr="Font1" LineAttr="Line42" IntervalY="6" Repeat="27" />
+<Text Name="8月" X="132" Y="31" Width="17" Height="6" Text="*８月*" Align="Right" VAlign="Middle" FontAttr="Font1" LineAttr="Line43" IntervalY="6" Repeat="27" />
+<Text Name="9月" X="149" Y="31" Width="17" Height="6" Text="*９月*" Align="Right" VAlign="Middle" FontAttr="Font1" LineAttr="Line44" IntervalY="6" Repeat="27" />
+<Text Name="10月" X="166" Y="31" Width="17" Height="6" Text="*１０月*" Align="Right" VAlign="Middle" FontAttr="Font1" LineAttr="Line45" IntervalY="6" Repeat="27" />
+<Text Name="12月" X="200" Y="31" Width="17" Height="6" Text="*１２月*" Align="Right" VAlign="Middle" FontAttr="Font1" LineAttr="Line46" IntervalY="6" Repeat="27" />
+<Text Name="1月" X="217" Y="31" Width="17" Height="6" Text="*１月*" Align="Right" VAlign="Middle" FontAttr="Font1" LineAttr="Line47" IntervalY="6" Repeat="27" />
+<Text Name="2月" X="234" Y="31" Width="17" Height="6" Text="*２月*" Align="Right" VAlign="Middle" FontAttr="Font1" LineAttr="Line48" IntervalY="6" Repeat="27" />
+<Text Name="3月" X="251" Y="31" Width="17" Height="6" Text="*３月*" Align="Right" VAlign="Middle" FontAttr="Font1" LineAttr="Line49" IntervalY="6" Repeat="27" />
+<Text Name="合計" X="268" Y="31" Width="22" Height="6" Text="*合計*" Align="Right" VAlign="Middle" FontAttr="Font1" LineAttr="Line50" IntervalY="6" Repeat="27" />
+<Text Name="11月" X="183" Y="31" Width="17" Height="6" Text="*１１月*" Align="Right" VAlign="Middle" FontAttr="Font1" LineAttr="Line51" IntervalY="6" Repeat="27" />
+<Text Name="タイトル" X="7" Y="7" Width="284" Height="6" Text="*タイトル*" Align="Center" VAlign="Middle" FontAttr="Font6" LineAttr="Line52" />
 </PrintObjects>
 </PrintDefine>

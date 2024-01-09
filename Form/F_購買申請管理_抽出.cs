@@ -242,15 +242,18 @@ namespace u_net
                 if (frmTarget.appEXT)
                 {
                     MessageBox.Show("抽出条件に一致するデータはありません。", "情報", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    this.Close();
+                    //this.Close();
+                    fn.WaitForm.Close();
                     return;
                 }
 
                 fn.WaitForm.Close();
-            }
-            finally
-            {
+            
                 this.Close();
+            }
+            catch
+            {
+
             }
         }
 
@@ -268,11 +271,22 @@ namespace u_net
             try
             {
                 F_カレンダー form = new F_カレンダー();
-                // objParent に購買納期開始の参照を設定
-                sender = this.購買納期開始;
 
-                // カレンダーフォームを作成して表示
-                form.ShowDialog();
+                if (!string.IsNullOrEmpty(購買納期開始.Text))
+                {
+                    form.args = 購買納期開始.Text;
+                }
+
+                //// カレンダーフォームを作成して表示
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                    // 日付選択フォームから選択した日付を取得
+                    string selectedDate = form.SelectedDate;
+
+                    // フォームAの日付コントロールに選択した日付を設定
+                    購買納期開始.Text = selectedDate;
+                    購買納期開始.Focus();
+                }
             }
             catch (Exception ex)
             {
@@ -285,8 +299,14 @@ namespace u_net
         {
             if (e.KeyChar == ' ')
             {
-                // 日付選択フォームを作成し表示
                 F_カレンダー form = new F_カレンダー();
+
+                if (!string.IsNullOrEmpty(購買納期開始.Text))
+                {
+                    form.args = 購買納期開始.Text;
+                }
+
+                //// カレンダーフォームを作成して表示
                 if (form.ShowDialog() == DialogResult.OK)
                 {
                     // 日付選択フォームから選択した日付を取得
@@ -294,6 +314,7 @@ namespace u_net
 
                     // フォームAの日付コントロールに選択した日付を設定
                     購買納期開始.Text = selectedDate;
+                    購買納期開始.Focus();
                 }
             }
         }
@@ -308,11 +329,13 @@ namespace u_net
             try
             {
                 F_カレンダー form = new F_カレンダー();
-                //// objParent に購買納期開始の参照を設定
-                //sender = this.購買納期開始;
+
+                if (!string.IsNullOrEmpty(購買納期開始.Text))
+                {
+                    form.args = 購買納期開始.Text;
+                }
 
                 //// カレンダーフォームを作成して表示
-                //form.ShowDialog();
                 if (form.ShowDialog() == DialogResult.OK)
                 {
                     // 日付選択フォームから選択した日付を取得
@@ -320,6 +343,7 @@ namespace u_net
 
                     // フォームAの日付コントロールに選択した日付を設定
                     購買納期開始.Text = selectedDate;
+                    購買納期開始.Focus();
                 }
             }
             catch (Exception ex)
@@ -334,11 +358,22 @@ namespace u_net
             try
             {
                 F_カレンダー form = new F_カレンダー();
-                // objParent に購買納期開始の参照を設定
-                sender = this.購買納期終了;
 
-                // カレンダーフォームを作成して表示
-                form.ShowDialog();
+                if (!string.IsNullOrEmpty(購買納期終了.Text))
+                {
+                    form.args = 購買納期終了.Text;
+                }
+
+                //// カレンダーフォームを作成して表示
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                    // 日付選択フォームから選択した日付を取得
+                    string selectedDate = form.SelectedDate;
+
+                    // フォームAの日付コントロールに選択した日付を設定
+                    購買納期終了.Text = selectedDate;
+                    購買納期終了.Focus();
+                }
             }
             catch (Exception ex)
             {
@@ -351,8 +386,14 @@ namespace u_net
         {
             if (e.KeyChar == ' ')
             {
-                // 日付選択フォームを作成し表示
                 F_カレンダー form = new F_カレンダー();
+
+                if (!string.IsNullOrEmpty(購買納期終了.Text))
+                {
+                    form.args = 購買納期終了.Text;
+                }
+
+                //// カレンダーフォームを作成して表示
                 if (form.ShowDialog() == DialogResult.OK)
                 {
                     // 日付選択フォームから選択した日付を取得
@@ -360,6 +401,7 @@ namespace u_net
 
                     // フォームAの日付コントロールに選択した日付を設定
                     購買納期終了.Text = selectedDate;
+                    購買納期終了.Focus();
                 }
             }
         }
@@ -374,11 +416,13 @@ namespace u_net
             try
             {
                 F_カレンダー form = new F_カレンダー();
-                //// objParent に購買納期開始の参照を設定
-                //sender = this.購買納期終了;
+
+                if (!string.IsNullOrEmpty(購買納期終了.Text))
+                {
+                    form.args = 購買納期終了.Text;
+                }
 
                 //// カレンダーフォームを作成して表示
-                //form.ShowDialog();
                 if (form.ShowDialog() == DialogResult.OK)
                 {
                     // 日付選択フォームから選択した日付を取得
@@ -386,6 +430,7 @@ namespace u_net
 
                     // フォームAの日付コントロールに選択した日付を設定
                     購買納期終了.Text = selectedDate;
+                    購買納期終了.Focus();
                 }
             }
             catch (Exception ex)
@@ -400,11 +445,22 @@ namespace u_net
             try
             {
                 F_カレンダー form = new F_カレンダー();
-                // objParent に購買納期開始の参照を設定
-                sender = this.出荷予定日開始;
 
-                // カレンダーフォームを作成して表示
-                form.ShowDialog();
+                if (!string.IsNullOrEmpty(出荷予定日開始.Text))
+                {
+                    form.args = 出荷予定日開始.Text;
+                }
+
+                //// カレンダーフォームを作成して表示
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                    // 日付選択フォームから選択した日付を取得
+                    string selectedDate = form.SelectedDate;
+
+                    // フォームAの日付コントロールに選択した日付を設定
+                    出荷予定日開始.Text = selectedDate;
+                    出荷予定日開始.Focus();
+                }
             }
             catch (Exception ex)
             {
@@ -417,8 +473,14 @@ namespace u_net
         {
             if (e.KeyChar == ' ')
             {
-                // 日付選択フォームを作成し表示
                 F_カレンダー form = new F_カレンダー();
+
+                if (!string.IsNullOrEmpty(出荷予定日開始.Text))
+                {
+                    form.args = 出荷予定日開始.Text;
+                }
+
+                //// カレンダーフォームを作成して表示
                 if (form.ShowDialog() == DialogResult.OK)
                 {
                     // 日付選択フォームから選択した日付を取得
@@ -426,6 +488,7 @@ namespace u_net
 
                     // フォームAの日付コントロールに選択した日付を設定
                     出荷予定日開始.Text = selectedDate;
+                    出荷予定日開始.Focus();
                 }
             }
         }
@@ -440,11 +503,13 @@ namespace u_net
             try
             {
                 F_カレンダー form = new F_カレンダー();
-                //// objParent に購買納期開始の参照を設定
-                //sender = this.出荷予定日開始;
+
+                if (!string.IsNullOrEmpty(出荷予定日開始.Text))
+                {
+                    form.args = 出荷予定日開始.Text;
+                }
 
                 //// カレンダーフォームを作成して表示
-                //form.ShowDialog();
                 if (form.ShowDialog() == DialogResult.OK)
                 {
                     // 日付選択フォームから選択した日付を取得
@@ -452,6 +517,7 @@ namespace u_net
 
                     // フォームAの日付コントロールに選択した日付を設定
                     出荷予定日開始.Text = selectedDate;
+                    出荷予定日開始.Focus();
                 }
             }
             catch (Exception ex)
@@ -466,11 +532,22 @@ namespace u_net
             try
             {
                 F_カレンダー form = new F_カレンダー();
-                // objParent に購買納期開始の参照を設定
-                sender = this.出荷予定日終了;
 
-                // カレンダーフォームを作成して表示
-                form.ShowDialog();
+                if (!string.IsNullOrEmpty(出荷予定日終了.Text))
+                {
+                    form.args = 出荷予定日終了.Text;
+                }
+
+                //// カレンダーフォームを作成して表示
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                    // 日付選択フォームから選択した日付を取得
+                    string selectedDate = form.SelectedDate;
+
+                    // フォームAの日付コントロールに選択した日付を設定
+                    出荷予定日終了.Text = selectedDate;
+                    出荷予定日終了.Focus();
+                }
             }
             catch (Exception ex)
             {
@@ -483,8 +560,14 @@ namespace u_net
         {
             if (e.KeyChar == ' ')
             {
-                // 日付選択フォームを作成し表示
                 F_カレンダー form = new F_カレンダー();
+
+                if (!string.IsNullOrEmpty(出荷予定日終了.Text))
+                {
+                    form.args = 出荷予定日終了.Text;
+                }
+
+                //// カレンダーフォームを作成して表示
                 if (form.ShowDialog() == DialogResult.OK)
                 {
                     // 日付選択フォームから選択した日付を取得
@@ -492,6 +575,7 @@ namespace u_net
 
                     // フォームAの日付コントロールに選択した日付を設定
                     出荷予定日終了.Text = selectedDate;
+                    出荷予定日終了.Focus();
                 }
             }
         }
@@ -506,11 +590,13 @@ namespace u_net
             try
             {
                 F_カレンダー form = new F_カレンダー();
-                //// objParent に購買納期開始の参照を設定
-                //sender = this.出荷予定日終了;
+
+                if (!string.IsNullOrEmpty(出荷予定日終了.Text))
+                {
+                    form.args = 出荷予定日終了.Text;
+                }
 
                 //// カレンダーフォームを作成して表示
-                //form.ShowDialog();
                 if (form.ShowDialog() == DialogResult.OK)
                 {
                     // 日付選択フォームから選択した日付を取得
@@ -518,6 +604,7 @@ namespace u_net
 
                     // フォームAの日付コントロールに選択した日付を設定
                     出荷予定日終了.Text = selectedDate;
+                    出荷予定日終了.Focus();
                 }
             }
             catch (Exception ex)
@@ -550,11 +637,23 @@ namespace u_net
             try
             {
                 F_カレンダー form = new F_カレンダー();
-                // objParent に申請日開始の参照を設定
-                sender = this.申請日開始;
 
-                // カレンダーフォームを作成して表示
-                form.ShowDialog();
+                if (!string.IsNullOrEmpty(申請日開始.Text))
+                {
+                    form.args = 申請日開始.Text;
+                }
+
+                //// カレンダーフォームを作成して表示
+
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                    // 日付選択フォームから選択した日付を取得
+                    string selectedDate = form.SelectedDate;
+
+                    // フォームAの日付コントロールに選択した日付を設定
+                    申請日開始.Text = selectedDate;
+                    申請日開始.Focus();
+                }
             }
             catch (Exception ex)
             {
@@ -567,18 +666,23 @@ namespace u_net
         {
             if (e.KeyChar == ' ')
             {
-                // 日付選択フォームを作成し表示
                 F_カレンダー form = new F_カレンダー();
+
+                if (!string.IsNullOrEmpty(申請日開始.Text))
+                {
+                    form.args = 申請日開始.Text;
+                }
+
+                //// カレンダーフォームを作成して表示
+
                 if (form.ShowDialog() == DialogResult.OK)
                 {
-                    // objParent に申請日開始の参照を設定
-                    sender = this.申請日開始;
-
                     // 日付選択フォームから選択した日付を取得
                     string selectedDate = form.SelectedDate;
 
                     // フォームAの日付コントロールに選択した日付を設定
                     申請日開始.Text = selectedDate;
+                    申請日開始.Focus();
                 }
             }
         }
@@ -593,11 +697,14 @@ namespace u_net
             try
             {
                 F_カレンダー form = new F_カレンダー();
-                //// objParent に購買納期開始の参照を設定
-                //sender = this.申請日開始;
+
+                if (!string.IsNullOrEmpty(申請日開始.Text))
+                {
+                    form.args = 申請日開始.Text;
+                }
 
                 //// カレンダーフォームを作成して表示
-                //form.ShowDialog();
+
                 if (form.ShowDialog() == DialogResult.OK)
                 {
                     // 日付選択フォームから選択した日付を取得
@@ -605,6 +712,7 @@ namespace u_net
 
                     // フォームAの日付コントロールに選択した日付を設定
                     申請日開始.Text = selectedDate;
+                    申請日開始.Focus();
                 }
             }
             catch (Exception ex)
@@ -619,11 +727,22 @@ namespace u_net
             try
             {
                 F_カレンダー form = new F_カレンダー();
-                // objParent に申請日終了の参照を設定
-                sender = this.申請日終了;
 
-                // カレンダーフォームを作成して表示
-                form.ShowDialog();
+                if (!string.IsNullOrEmpty(申請日終了.Text))
+                {
+                    form.args = 申請日終了.Text;
+                }
+
+                //// カレンダーフォームを作成して表示
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                    // 日付選択フォームから選択した日付を取得
+                    string selectedDate = form.SelectedDate;
+
+                    // フォームAの日付コントロールに選択した日付を設定
+                    申請日終了.Text = selectedDate;
+                    申請日終了.Focus();
+                }
             }
             catch (Exception ex)
             {
@@ -636,18 +755,22 @@ namespace u_net
         {
             if (e.KeyChar == ' ')
             {
-                // 日付選択フォームを作成し表示
                 F_カレンダー form = new F_カレンダー();
+
+                if (!string.IsNullOrEmpty(申請日終了.Text))
+                {
+                    form.args = 申請日終了.Text;
+                }
+
+                //// カレンダーフォームを作成して表示
                 if (form.ShowDialog() == DialogResult.OK)
                 {
-                    // objParent に申請日終了の参照を設定
-                    sender = this.申請日終了;
-
                     // 日付選択フォームから選択した日付を取得
                     string selectedDate = form.SelectedDate;
 
                     // フォームAの日付コントロールに選択した日付を設定
                     申請日終了.Text = selectedDate;
+                    申請日終了.Focus();
                 }
             }
         }
@@ -662,11 +785,13 @@ namespace u_net
             try
             {
                 F_カレンダー form = new F_カレンダー();
-                //// objParent に申請日終了の参照を設定
-                //sender = this.申請日終了;
+
+                if (!string.IsNullOrEmpty(申請日終了.Text))
+                {
+                    form.args = 申請日終了.Text;
+                }
 
                 //// カレンダーフォームを作成して表示
-                //form.ShowDialog();
                 if (form.ShowDialog() == DialogResult.OK)
                 {
                     // 日付選択フォームから選択した日付を取得
@@ -674,6 +799,7 @@ namespace u_net
 
                     // フォームAの日付コントロールに選択した日付を設定
                     申請日終了.Text = selectedDate;
+                    申請日終了.Focus();
                 }
             }
             catch (Exception ex)

@@ -118,45 +118,58 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>128, 44</value>
+    <value>133, 17</value>
+  </metadata>
+  <metadata name="newDataSet.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>133, 17</value>
   </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="Email作成ボタン.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="最終製品検査記録プレビューボタン.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAARBJREFUOE/F
-        kjFPAkEQhRdLK2q824WKjtvVyopSMXq3y4/wL9hSWtlpob/Av2Jl6GylIEGNCZ0RhfeOATEKuat4yUsm
-        M/O9TDarti9jsxNt/QCelvTAON9RLLTzfe3CZTmT8c8MmBobruSgwiJDNg+Av5mqVG9H5ptU0Ul2AeZr
-        GWCsH0nQfe3gbFcW/4gz7qwyiwt68Dn8GVv/2HBdI8xSUXK6h/kDPJELyPwEcClOsiPU7/BL5EI7JyHj
-        wiGgIfrj2KUpe2Tg3wFUo5U2cd4Teh/aZrfahjvW7HEma+sDqLr1VQA36L/Br6iv2ZNxLjJk/w0ootWA
-        +Ufiw5Tx4iPxO7KQS4obTLQfjuWgrUmpGbfzso4f9Bv3AAAAAElFTkSuQmCC
+        iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAYAAAAfSC3RAAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1
+        MAAA6mAAADqYAAAXcJy6UTwAAAAHdElNRQfnDAcADDgbBaOwAAAB4UlEQVQ4T32SsWpUQRSGh5U0KlYW
+        azZ3ZuPGFXHdmblLIF06C7Nx5ibZpBDrPIJCwBfQOg+gKNgkDyAEUghpNJ2dXbAyQpR0Yvz+exfRxoGP
+        e++c8985559jeoPKtMsHLevT0Ib8HD7DTxuqU+fzvvV51YV8tT/YMHfuTsyf1Y4rrSKk+yR/hDM4hkM4
+        ghP4Cjtz5cNrRczGhrVGaEPyBCT64mJ+ZsvcX4jrM3aUr9tYbbH/Hr7Bdic8btmwPhXG/ILNM4l6i5sz
+        rqzMzbhmLM85n/hxXgaVf+BCdYuyp8Jm81gnSdQtm1JcrPRTU8R0mbh6/07fY6jjEmJEPlR5Ounv5e6N
+        TTHaUM42XMAjaIK8nMJR3RMn6iQtF5IpMGLWb10i/hR+wQTquHE+7fNxIiPqnihvniAlIpSLeQHewSdY
+        gkaoe+JDlsu9ZfXUITi7OOakhCipP5W5WwzSFTtMpjekKl0umzsgy2WUEtXTE9BJEl2Q97brs+1Qye0B
+        XmgidLnT5APAvTpZPam8XYl4nsOrrq/sjTKZeow0Ebpc3RNBLK/dkxFLNq5SUWV5fwnnjOYbfjTf9Il7
+        mgiEMuMfZFLfr8htxNVr9n7AXi3832rHCRO0adqjZNwwd3F9z4b84TcshqnaJuRLyAAAAABJRU5ErkJg
+        gg==
 </value>
   </data>
-  <metadata name="statusStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>13, 44</value>
-  </metadata>
-  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>42</value>
-  </metadata>
+  <data name="最終製品検査記録印刷ボタン.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAKBJREFUOE9j
+        gAF5A38vOYOAx0D8Hw9+KWsQkADVggqAkoQ0w/A/rIbAFEC5WIGsgX8WVN0LqBACEGMACOBUR7EBZAMi
+        Qx8bfixvGOAJchLJmuUNAm6C2YYBj+B+IhaDNINcDmTfAvFJNgCKwZpBmFwD4BhogP8RFAECAFktEB+G
+        ClMhHVDDAOKjExR96ACUKEASWDUgY6AaGaNAD4guBgYAcjLyXx5I9BEAAAAASUVORK5CYII=
+</value>
+  </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAABAAIAICAQAAAAAADoAgAAJgAAABAQEAAAAAAAKAEAAA4DAAAoAAAAIAAAAEAAAAABAAQAAAAAAIAC
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAgAAAAICAAIAAAACAAIAAgIAAAICAgADAwMAAAAD/AAD/
         AAAA//8A/wAAAP8A/wD//wAA////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-        AAAAAAAAAAAAAAv/+wAA//v/+//wAAv/+/AP+/8AAPv/+//78AAP+//wC//78Av/+//7//sA+//78A/7
-        //v/+//7//v/+//7//AL//v/+//7//v/+//7//vwD/v/+//7//v/+//7//v/8Av/+//7//v/+//7//v/
-        +/AP+//7//v/+//7//v/+//wC//7//v/+//7//v/+//78A/7AAAAAAAAAAAAAAAA//AL//v/+//7//v/
-        +//7//vwD/v/+//7//v/+//7//v/8Av/+//7//v/+//7//v/+/AP+wAAAAAAAAAAAAAAAP/wC//7//v/
-        +//7//v/+//78A/7//v/+//7//v/+//7//AL//v/+//7//v/+//7//vwD/sAAAAAAAAAAAAAAAD/8Av/
-        +//7//v/+//7//v/+/AP+//7//v/+//7//v/+//wC//7//v/+//7//v/+//78A/7//v/+//7//v/+//7
-        //AL//v/+//7//v/+//7//vwD/v/+//78AAAAAAAAAAAAAv/+//7/wAAAAAAAAAAAAAP+//7//sAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPAAAAAAAAAAAAAAAA
+        AAAAC/sAAAAAAAAAAAAAAAAAAA+/vwAAAAAAAAAAAAAAAAsL+/v7AAAAAAAAAAAAAAAPD7+/v78AAAAA
+        AAAAAAAA+wv7+/v7+wAAAAAAAAAAALAPv7+/v7+/AAAAAAAAAAvwC/v7+/v7+/sAAAAAAAAPDw+/v7+/
+        v7+/vwAAAAAA+w8L+/v7+/v7+/sAAAAAALD/D7+/v7+/v7+/AAAAAAvw/wv7+/v7+/v7+wAAAAAPD//w
+        D7+/v7+/v78AAAAA+w////AL+/v7+/v7AAAAAL+wD///8A+/v7+/vwAAAAAL+/AP//8L+/v7+/sAAAAA
+        D7+/sA//D7+/v7+/AAAAAAv7+wvwD/AL+/v7+wAAAAAAD7AAD7AP8A+/v78AAAAAAAAAAAAL8A/wC/v7
+        AAAAAAAAAAAAAA+wD7APvwAAAAAAAAAAAAAAC/vwAAsAAAAAAAAAAAAAAAAPAAAAAAAAAAAAAAAAAAAA
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA////////
-        //+BgAMBAYADAAGAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAf//wAH//+AD///////////
+        ///////////////P////w////4D///+AP///AA///wAD//4AAP/+AAA//AAAD/wAAAf4AAAH+AAAB/AA
+        AAfwAAAH4AAAB+AAAAfwAAAH8AAAB/AAAAf4IAAH/ngAB//+AAf//4CH///h5///+f//////////////
         //8oAAAAEAAAACAAAAABAAQAAAAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAgAAAAICAAIAA
         AACAAIAAgIAAAICAgADAwMAAAAD/AAD/AAAA//8A/wAAAP8A/wD//wAA////AAAAAAAAAAAAAAAAAAAA
-        AAAPAA+/vwAPsAv7+/v7+/vwD7+/v7+/v7AL+/v7+/v78A8AAAAAAACwC/v7+/v7+/APAAAAAAAAsAv7
-        +/v7+/vwDwAAAAAAALAL+/v7+/v78A+/v7+/v7+wC/v7AAAAAAAPv78AAAAAAAAAAAAAAAAA//8AABAQ
-        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAB/wAAg/8AAA==
+        AAAAAAAAAAAAAAAAAPsAAAAAAADwv78AAAAACwD7+/sAAADw8L+/v78ACw/w+/v7+/AA//APv7+/sAAA
+        //AL+/vwAL8A/w+/v7AAC/sP8Av78AAAD7D/AA+wAAAAAAD7AAAAAAAAAAAAAAAAAAAAAAAA//8AAP//
+        AAD4/wAA8D8AAOAPAADAAwAAgAAAAAAAAAAAAAAAgAAAAIAAAADAAAAA4AAAAPkAAAD/zwAA//8AAA==
 </value>
   </data>
 </root>

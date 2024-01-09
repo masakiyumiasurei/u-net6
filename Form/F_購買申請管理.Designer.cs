@@ -453,10 +453,12 @@
             Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(3, 2, 3, 2);
             Name = "F_購買申請管理";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "購買申請管理";
             FormClosing += Form_Unload;
             Load += Form_Load;
             KeyDown += F_購買申請管理_KeyDown;
+            Resize += Form_Resize;
             panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)購買申請明細).EndInit();
             panel2.ResumeLayout(false);

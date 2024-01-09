@@ -336,6 +336,7 @@
             Load += Form_Load;
             KeyDown += Form_KeyDown;
             KeyUp += F_製品管理_KeyUp;
+            Resize += Form_Resize;
             panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             panel2.ResumeLayout(false);
