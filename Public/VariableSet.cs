@@ -54,7 +54,7 @@ namespace u_net.Public
         }
 
 
-        public static bool SetTable2Form(Form formObject, string sourceSQL, SqlConnection cn, string cmbname1="", string cmbname2="")
+        public static bool SetTable2Form(Form formObject, string sourceSQL, SqlConnection cn, string cmbname1="", string cmbname2="", string cmbname3 = "", string cmbname4 = "", string cmbname5 = "")
         {
             //タブコントロール、グループボックスにアクセスするため、再帰関数とする
             //cmbnameはコンボボックスのテキストに登録する。selectedvalueに存在しない値を表示させるため
@@ -69,7 +69,7 @@ namespace u_net.Public
                 {
                     reader.Read();
 
-                    SetControlValues(formObject.Controls, reader, cmbname1, cmbname2);
+                    SetControlValues(formObject.Controls, reader, cmbname1, cmbname2,cmbname3,cmbname4,cmbname5);
                     
                 }
             }
@@ -77,7 +77,7 @@ namespace u_net.Public
         }
 
         //タブコントロール、グループボックスにアクセスするため、再帰関数とする
-        private static void SetControlValues(Control.ControlCollection controls, SqlDataReader reader, string cmbname1 = "", string cmbname2 = "")
+        private static void SetControlValues(Control.ControlCollection controls, SqlDataReader reader, string cmbname1 = "", string cmbname2 = "", string cmbname3 = "", string cmbname4 = "", string cmbname5 = "")
         {
             foreach (Control control in controls)
             {
@@ -86,18 +86,18 @@ namespace u_net.Public
                     foreach (TabPage tabPage in tabControl.TabPages)
                     {
                         // タブコントロール内のコントロールに再帰的にアクセスする
-                        SetControlValues(tabPage.Controls, reader, cmbname1, cmbname2);
+                        SetControlValues(tabPage.Controls, reader, cmbname1, cmbname2,cmbname3,cmbname4,cmbname5);
                     }
                 }
                 else if (control is GroupBox groupBox)
                 {
                     // グループボックス内のコントロールに再帰的にアクセスする
-                    SetControlValues(groupBox.Controls, reader, cmbname1, cmbname2);
+                    SetControlValues(groupBox.Controls, reader, cmbname1, cmbname2, cmbname3, cmbname4, cmbname5);
                 }
                 else if (control is Panel panel)
                 {
                     // パネル内のコントロールに再帰的にアクセスする
-                    SetControlValues(panel.Controls, reader, cmbname1, cmbname2);
+                    SetControlValues(panel.Controls, reader, cmbname1, cmbname2, cmbname3, cmbname4, cmbname5);
                 }
                 else
                 {
@@ -114,17 +114,17 @@ namespace u_net.Public
 
                         if (columnName != getedName) continue;
 
-                        if (reader[columnName] != DBNull.Value)
-                        {
-                            SetControlValue(control, reader[columnName],cmbname1,cmbname2);
+                        //if (reader[columnName] != DBNull.Value)
+                        //{
+                            SetControlValue(control, reader[columnName],cmbname1,cmbname2, cmbname3, cmbname4, cmbname5);
                             break;
-                        }
+                        //}
                     }
                 }
             }
         }
 
-        private static void SetControlValue(Control control, object value, string cmbname1 = "", string cmbname2 = "")
+        private static void SetControlValue(Control control, object value, string cmbname1 = "", string cmbname2 = "", string cmbname3 = "", string cmbname4 = "", string cmbname5 = "")
         {
             if (control is TextBox textBox)
             {
@@ -132,7 +132,11 @@ namespace u_net.Public
             }
             else if (control is ComboBox comboBox)
             {
-                if (control.Name == cmbname1 || control.Name == cmbname2)
+                if (value == DBNull.Value)
+                {
+                    comboBox.SelectedIndex = -1;
+                }
+                else if (control.Name == cmbname1 || control.Name == cmbname2 || control.Name == cmbname3 || control.Name == cmbname4 || control.Name == cmbname5)
                 {
                     comboBox.Text = value.ToString();
                 }
@@ -144,7 +148,16 @@ namespace u_net.Public
             }
             else if (control is CheckBox checkBox)
             {
-                checkBox.Checked = Convert.ToInt32(value) != 0;
+                if(value == DBNull.Value)
+                {
+                    checkBox.Checked = false;
+                }
+                else
+                {
+                    checkBox.Checked = Convert.ToInt32(value) != 0;
+                }
+
+                
             }
             else if (control is MaskedTextBox maskedTextBox)
             {

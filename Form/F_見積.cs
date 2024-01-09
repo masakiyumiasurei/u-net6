@@ -220,7 +220,7 @@ namespace u_net
                     }
                 }
                 else
-                {               
+                {
                     // 読込
                     if (!GoModifyMode())
                     {
@@ -570,7 +570,7 @@ namespace u_net
         {
             try
             {
-                int count = 見積明細1.Detail.RowCount -1;
+                int count = 見積明細1.Detail.RowCount - 1;
 
                 if (count == 0)
                 {
@@ -766,7 +766,7 @@ namespace u_net
                 {
                     strSQL = "SELECT * FROM V見積ヘッダ WHERE 見積コード='" + codeString + "' AND 見積版数=" + editionNumber;
                 }
-                VariableSet.SetTable2Form(this, strSQL, cn);
+                VariableSet.SetTable2Form(this, strSQL, cn, "担当者コード", "納入場所", "支払条件", "有効期間");
 
                 if (!string.IsNullOrEmpty(見積日.Text))
                 {
@@ -965,7 +965,7 @@ namespace u_net
             {
                 string strwhere = $"見積コード= '{codeString}' AND 見積版数= {editionNumber}";
 
-                if (!DataUpdater.UpdateOrInsertDataFrom(this, cn, "T見積", strwhere, "見積コード", transaction, "見積版数"))
+                if (!DataUpdater.UpdateOrInsertDataFrom(this, cn, "T見積", strwhere, "見積コード", transaction, "見積版数", "担当者コード", "納入場所", "支払条件", "有効期間"))
                 {
                     //保存できなかった時の処理 catchで対応する
                     throw new Exception();
@@ -2323,7 +2323,25 @@ namespace u_net
             this.toolStripStatusLabel2.Text = "■入力した内容は見積書へ表示されません。　■最大入力文字数は500文字（全角文字）です。";
         }
 
-        
+        private void 見積コード_KeyDown(object sender, KeyEventArgs e)
+        {
+            string strCode;
+
+            switch (e.KeyCode)
+            {
+                case Keys.Return:
+                    strCode = 見積コード.Text;
+                    if (string.IsNullOrEmpty(strCode))
+                        return;
+
+                    strCode = FormatCode(CH_ESTIMATE, strCode);
+                    if (strCode != Convert.ToString(見積コード.Text))
+                    {
+                        見積コード.Text = strCode;
+                    }
+                    break;
+            }
+        }
     }
 }
 
