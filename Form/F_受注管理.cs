@@ -149,7 +149,7 @@ namespace u_net
             dataGridView1.AllowUserToResizeColumns = true;
             dataGridView1.Font = new Font("MS ゴシック", 10);
             dataGridView1.DefaultCellStyle.SelectionBackColor = Color.FromArgb(210, 210, 255);
-           // dataGridView1.DefaultCellStyle.SelectionForeColor = Color.Black;
+            dataGridView1.DefaultCellStyle.SelectionForeColor = Color.Black;
             dataGridView1.GridColor = Color.FromArgb(230, 230, 230);
             dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font("MS ゴシック", 9);
             dataGridView1.DefaultCellStyle.Font = new Font("MS ゴシック", 10);
