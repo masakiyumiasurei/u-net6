@@ -320,6 +320,8 @@ namespace u_net
 
                 // フォームAの日付コントロールに選択した日付を設定
                 更新日開始.Text = selectedDate;
+
+                更新日開始.Focus();
             }
         }
 

@@ -182,6 +182,24 @@ namespace u_net
             ls.SavePlace(CommonConstants.LoginUserCode, this);
         }
 
+        private void Form_Resize(object sender, EventArgs e)
+        {
+            try
+            {
+
+                購買申請明細.Height = 購買申請明細.Height + (this.Height - intWindowHeight);
+                intWindowHeight = this.Height;  // 高さ保存
+
+                購買申請明細.Width = 購買申請明細.Width + (this.Width - intWindowWidth);
+                intWindowWidth = this.Width;    // 幅保存
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this.Name + "_Form_Resize - " + ex.Message);
+            }
+        }
+
         private void InitializeFilter()
         {
             this.dtm申請日開始 = DateTime.MinValue;

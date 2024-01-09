@@ -794,6 +794,7 @@
             Controls.Add(cmdNextYear);
             Controls.Add(cmdPrevYear);
             Name = "F_カレンダー";
+            StartPosition = FormStartPosition.CenterScreen;
             FormClosing += F_カレンダー_FormClosing;
             Load += Form_Open;
             ResumeLayout(false);

@@ -632,6 +632,7 @@
             Controls.Add(申請日開始);
             Controls.Add(出荷予定日1ラベル);
             Name = "F_購買申請管理_抽出";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "購買申請管理_抽出";
             Load += Form_Load;
             終了指定.ResumeLayout(false);
