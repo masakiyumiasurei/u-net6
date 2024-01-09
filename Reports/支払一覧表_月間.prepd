@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <PrintDefine>
-<PrintSetting Name="レポート定義ファイル" Ver="9.2.4" >
+<PrintSetting Name="レポート定義ファイル" Ver="9.2.0" >
 <PrintAttrs>
 <FontAttr AttrName="Font1" Name="ＭＳ Ｐゴシック" Size="9" />
 <FontAttr AttrName="Font2" Name="ＭＳ Ｐゴシック" Size="9" Color="White" />
@@ -55,6 +55,9 @@
 <LineAttr AttrName="Line44" Width="0.1" />
 <LineAttr AttrName="Line45" Width="0.1" />
 <LineAttr AttrName="Line46" Width="0.1" />
+<LineAttr AttrName="Line47" Width="0.1" />
+<LineAttr AttrName="Line48" Width="0.1" />
+<LineAttr AttrName="Line49" Width="0.1" />
 </PrintAttrs>
 <Paper Size="A4" Direction="True" />
 <Design FontAttr="Font1" LineAttr="Line1" GridWidth="2" DesignScale="100" GridFit="True" ObjLock="False" X="0" Y="0" Width="297" Height="210" DisplayRepeatObject="False" RepeatObjectColor="Silver" ImageSizeType="Clip" />
@@ -64,18 +67,18 @@
 <Text Name="Text29" X="7" Y="25" Width="7" Height="6" Text="No." BackColor="Black" Align="Center" VAlign="Middle" FontAttr="Font3" LineAttr="Line3" />
 <Text Name="Text46" X="6" Y="196" Width="16" Height="4" Text="出力日時：" Align="Left" VAlign="Middle" FontAttr="Font1" />
 <Text Name="出力日時" X="22" Y="196" Width="70" Height="4" Text="*出力日時*" Align="Left" VAlign="Middle" FontAttr="Font1" />
-<Text Name="行番号" X="7" Y="31" Width="7" Height="6" Text="*行番号*" Align="Left" VAlign="Middle" FontAttr="Font1" LineAttr="Line6" IntervalY="6" Repeat="27" />
+<Text Name="行番号" X="7" Y="31" Width="7" Height="6" Text="*行番号*" Align="Right" VAlign="Middle" FontAttr="Font1" LineAttr="Line6" IntervalY="6" Repeat="27" />
 <Text Name="ページ" X="248" Y="196" Width="40" Height="4" Text="*ページ*" Align="Right" VAlign="Middle" FontAttr="Font1" />
-<Text Name="項目1" X="54" Y="17" Width="18" Height="6" Text="*項目1*" Align="Left" VAlign="Middle" FontAttr="Font4" LineAttr="Line8" />
-<Text Name="項目2" X="72" Y="17" Width="18" Height="6" Text="*項目2*" Align="Left" VAlign="Middle" FontAttr="Font4" LineAttr="Line9" />
-<Text Name="項目3" X="90" Y="17" Width="18" Height="6" Text="*項目3*" Align="Left" VAlign="Middle" FontAttr="Font4" LineAttr="Line10" />
-<Text Name="項目4" X="108" Y="17" Width="18" Height="6" Text="*項目4*" Align="Left" VAlign="Middle" FontAttr="Font4" LineAttr="Line11" />
-<Text Name="項目5" X="126" Y="17" Width="18" Height="6" Text="*項目5*" Align="Left" VAlign="Middle" FontAttr="Font4" LineAttr="Line12" />
-<Text Name="項目6" X="144" Y="17" Width="18" Height="6" Text="*項目6*" Align="Left" VAlign="Middle" FontAttr="Font4" LineAttr="Line13" />
-<Text Name="項目7" X="162" Y="17" Width="18" Height="6" Text="*項目7*" Align="Left" VAlign="Middle" FontAttr="Font4" LineAttr="Line14" />
-<Text Name="項目8" X="180" Y="17" Width="18" Height="6" Text="*項目8*" Align="Left" VAlign="Middle" FontAttr="Font4" LineAttr="Line15" />
-<Text Name="項目9" X="198" Y="17" Width="18" Height="6" Text="*項目9*" Align="Left" VAlign="Middle" FontAttr="Font4" LineAttr="Line16" />
-<Text Name="項目10" X="216" Y="17" Width="18" Height="6" Text="*項目10*" Align="Left" VAlign="Middle" FontAttr="Font4" LineAttr="Line17" />
+<Text Name="項目1" X="54" Y="17" Width="18" Height="6" Text="*項目1*" Align="Right" VAlign="Middle" FontAttr="Font4" LineAttr="Line8" />
+<Text Name="項目2" X="72" Y="17" Width="18" Height="6" Text="*項目2*" Align="Right" VAlign="Middle" FontAttr="Font4" LineAttr="Line9" />
+<Text Name="項目3" X="90" Y="17" Width="18" Height="6" Text="*項目3*" Align="Right" VAlign="Middle" FontAttr="Font4" LineAttr="Line10" />
+<Text Name="項目4" X="108" Y="17" Width="18" Height="6" Text="*項目4*" Align="Right" VAlign="Middle" FontAttr="Font4" LineAttr="Line11" />
+<Text Name="項目5" X="126" Y="17" Width="18" Height="6" Text="*項目5*" Align="Right" VAlign="Middle" FontAttr="Font4" LineAttr="Line12" />
+<Text Name="項目6" X="144" Y="17" Width="18" Height="6" Text="*項目6*" Align="Right" VAlign="Middle" FontAttr="Font4" LineAttr="Line13" />
+<Text Name="項目7" X="162" Y="17" Width="18" Height="6" Text="*項目7*" Align="Right" VAlign="Middle" FontAttr="Font4" LineAttr="Line14" />
+<Text Name="項目8" X="180" Y="17" Width="18" Height="6" Text="*項目8*" Align="Right" VAlign="Middle" FontAttr="Font4" LineAttr="Line15" />
+<Text Name="項目9" X="198" Y="17" Width="18" Height="6" Text="*項目9*" Align="Right" VAlign="Middle" FontAttr="Font4" LineAttr="Line16" />
+<Text Name="項目10" X="216" Y="17" Width="18" Height="6" Text="*項目10*" Align="Right" VAlign="Middle" FontAttr="Font4" LineAttr="Line17" />
 <Text Name="タイトル" X="7" Y="7" Width="283.8" Height="6" Text="*タイトル*" Align="Center" VAlign="Middle" FontAttr="Font5" />
 <Text Name="Text18" X="14" Y="25" Width="40" Height="6" Text="支払先名" BackColor="Black" Align="Center" VAlign="Middle" FontAttr="Font3" LineAttr="Line19" />
 <Text Name="Text19" X="54" Y="25" Width="18" Height="6" Text="材料費(SPM)" BackColor="Black" Align="Center" VAlign="Middle" FontAttr="Font6" LineAttr="Line20" />
@@ -92,18 +95,21 @@
 <Text Name="Text30" X="252" Y="25" Width="18" Height="6" Text="営業外費用" BackColor="Black" Align="Center" VAlign="Middle" FontAttr="Font3" LineAttr="Line31" />
 <Text Name="Text31" X="270" Y="25" Width="18" Height="6" Text="合計" BackColor="Black" Align="Center" VAlign="Middle" FontAttr="Font3" LineAttr="Line32" />
 <Text Name="支払先名" X="14" Y="31" Width="40" Height="6" Text="*支払先名*" Align="Left" VAlign="Middle" FontAttr="Font1" LineAttr="Line33" IntervalY="6" Repeat="27" />
-<Text Name="材料費(SPM)" X="54" Y="31" Width="18" Height="6" Text="*材料費(SPM)*" Align="Left" VAlign="Middle" FontAttr="Font1" LineAttr="Line34" IntervalY="6" Repeat="27" />
-<Text Name="材料費(OEM)" X="72" Y="31" Width="18" Height="6" Text="*材料費(OEM)*" Align="Left" VAlign="Middle" FontAttr="Font1" LineAttr="Line35" IntervalY="6" Repeat="27" />
-<Text Name="材料費(CMPS)" X="90" Y="31" Width="18" Height="6" Text="*材料費(CMPS)*" Align="Left" VAlign="Middle" FontAttr="Font1" LineAttr="Line36" IntervalY="6" Repeat="27" />
-<Text Name="材料費(加工)" X="108" Y="31" Width="18" Height="6" Text="*材料費(加工)*" Align="Left" VAlign="Middle" FontAttr="Font1" LineAttr="Line37" IntervalY="6" Repeat="27" />
-<Text Name="材料費(その他)" X="126" Y="31" Width="18" Height="6" Text="*材料費(その他)*" Align="Left" VAlign="Middle" FontAttr="Font1" LineAttr="Line38" IntervalY="6" Repeat="27" />
-<Text Name="材料費(外注費)" X="144" Y="31" Width="18" Height="6" Text="*材料費(外注費)*" Align="Left" VAlign="Middle" FontAttr="Font1" LineAttr="Line39" IntervalY="6" Repeat="27" />
-<Text Name="派遣費" X="162" Y="31" Width="18" Height="6" Text="*派遣費*" Align="Left" VAlign="Middle" FontAttr="Font1" LineAttr="Line40" IntervalY="6" Repeat="27" />
-<Text Name="人件費" X="180" Y="31" Width="18" Height="6" Text="*人件費*" Align="Left" VAlign="Middle" FontAttr="Font1" LineAttr="Line41" IntervalY="6" Repeat="27" />
-<Text Name="製造費(電気料)" X="198" Y="31" Width="18" Height="6" Text="*製造費(電気料)*" Align="Left" VAlign="Middle" FontAttr="Font1" LineAttr="Line42" IntervalY="6" Repeat="27" />
-<Text Name="製造費(製造費)" X="216" Y="31" Width="18" Height="6" Text="*製造費(製造費)*" Align="Left" VAlign="Middle" FontAttr="Font1" LineAttr="Line43" IntervalY="6" Repeat="27" />
-<Text Name="一般管理販売費" X="234" Y="31" Width="18" Height="6" Text="*一般管理販売費*" Align="Left" VAlign="Middle" FontAttr="Font1" LineAttr="Line44" IntervalY="6" Repeat="27" />
-<Text Name="営業外費用" X="252" Y="31" Width="18" Height="6" Text="*営業外費用*" Align="Left" VAlign="Middle" FontAttr="Font1" LineAttr="Line45" IntervalY="6" Repeat="27" />
-<Text Name="合計" X="270" Y="31" Width="18" Height="6" Text="*合計*" Align="Left" VAlign="Middle" FontAttr="Font1" LineAttr="Line46" IntervalY="6" Repeat="27" />
+<Text Name="材料費(SPM)" X="54" Y="31" Width="18" Height="6" Text="*材料費(SPM)*" Align="Right" VAlign="Middle" FontAttr="Font1" LineAttr="Line34" IntervalY="6" Repeat="27" />
+<Text Name="材料費(OEM)" X="72" Y="31" Width="18" Height="6" Text="*材料費(OEM)*" Align="Right" VAlign="Middle" FontAttr="Font1" LineAttr="Line35" IntervalY="6" Repeat="27" />
+<Text Name="材料費(CMPS)" X="90" Y="31" Width="18" Height="6" Text="*材料費(CMPS)*" Align="Right" VAlign="Middle" FontAttr="Font1" LineAttr="Line36" IntervalY="6" Repeat="27" />
+<Text Name="材料費(加工)" X="108" Y="31" Width="18" Height="6" Text="*材料費(加工)*" Align="Right" VAlign="Middle" FontAttr="Font1" LineAttr="Line37" IntervalY="6" Repeat="27" />
+<Text Name="材料費(その他)" X="126" Y="31" Width="18" Height="6" Text="*材料費(その他)*" Align="Right" VAlign="Middle" FontAttr="Font1" LineAttr="Line38" IntervalY="6" Repeat="27" />
+<Text Name="材料費(外注費)" X="144" Y="31" Width="18" Height="6" Text="*材料費(外注費)*" Align="Right" VAlign="Middle" FontAttr="Font1" LineAttr="Line39" IntervalY="6" Repeat="27" />
+<Text Name="派遣費" X="162" Y="31" Width="18" Height="6" Text="*派遣費*" Align="Right" VAlign="Middle" FontAttr="Font1" LineAttr="Line40" IntervalY="6" Repeat="27" />
+<Text Name="人件費" X="180" Y="31" Width="18" Height="6" Text="*人件費*" Align="Right" VAlign="Middle" FontAttr="Font1" LineAttr="Line41" IntervalY="6" Repeat="27" />
+<Text Name="製造費(電気料)" X="198" Y="31" Width="18" Height="6" Text="*製造費(電気料)*" Align="Right" VAlign="Middle" FontAttr="Font1" LineAttr="Line42" IntervalY="6" Repeat="27" />
+<Text Name="製造費(製造費)" X="216" Y="31" Width="18" Height="6" Text="*製造費(製造費)*" Align="Right" VAlign="Middle" FontAttr="Font1" LineAttr="Line43" IntervalY="6" Repeat="27" />
+<Text Name="一般管理販売費" X="234" Y="31" Width="18" Height="6" Text="*一般管理販売費*" Align="Right" VAlign="Middle" FontAttr="Font1" LineAttr="Line44" IntervalY="6" Repeat="27" />
+<Text Name="営業外費用" X="252" Y="31" Width="18" Height="6" Text="*営業外費用*" Align="Right" VAlign="Middle" FontAttr="Font1" LineAttr="Line45" IntervalY="6" Repeat="27" />
+<Text Name="合計" X="270" Y="31" Width="18" Height="6" Text="*合計*" Align="Right" VAlign="Middle" FontAttr="Font1" LineAttr="Line46" IntervalY="6" Repeat="27" />
+<Text Name="項目11" X="234" Y="17" Width="18" Height="6" Text="*項目11*" Align="Right" VAlign="Middle" FontAttr="Font4" LineAttr="Line47" />
+<Text Name="項目12" X="252" Y="17" Width="18" Height="6" Text="*項目12*" Align="Right" VAlign="Middle" FontAttr="Font4" LineAttr="Line48" />
+<Text Name="支払合計金額" X="270" Y="17" Width="18" Height="6" Text="*支払合計金額*" Align="Right" VAlign="Middle" FontAttr="Font4" LineAttr="Line49" />
 </PrintObjects>
 </PrintDefine>

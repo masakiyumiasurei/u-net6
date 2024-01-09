@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.Data.SqlClient;
+using Pao.Reports;
 using u_net.Public;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
@@ -525,7 +526,137 @@ namespace u_net
 
         private void コマンド印刷_Click(object sender, EventArgs e)
         {
+            IReport paoRep = ReportCreator.GetPreview();
 
+            paoRep.LoadDefFile("../../../Reports/支払一覧表_月間.prepd");
+
+            //最大行数
+            int maxRow = 27;
+            //現在の行
+            int CurRow = 0;
+            //行数
+            int RowCount = maxRow;
+            if (dataGridView1.RowCount > 0)
+            {
+                RowCount = dataGridView1.RowCount - 1;
+            }
+
+            int page = 1;
+            double maxPage = Math.Ceiling((double)RowCount / maxRow);
+
+            DateTime now = DateTime.Now;
+
+            int lenB;
+
+            DataGridViewRow totalRow = dataGridView1.Rows[dataGridView1.Rows.Count - 1];
+
+            //描画すべき行がある限りページを増やす
+            while (RowCount > 0)
+            {
+                RowCount -= maxRow;
+
+                paoRep.PageStart();
+
+                //ヘッダー
+                paoRep.Write("タイトル", string.Format("yyyy年M月",集計年月.Text) + "支払一覧表");
+
+                for (var i = 1; i <= 12; i++)
+                {
+                    paoRep.Write("項目" + (i).ToString(), string.Format("{0:#,0}", totalRow.Cells[i+1].Value) != "" ? string.Format("{0:#,0}", totalRow.Cells[i+1].Value) : " ");
+
+                    paoRep.z_Objects.SetObject("項目" + (i).ToString());
+                    lenB = Encoding.Default.GetBytes(string.Format("{0:#,0}", totalRow.Cells[i + 1].Value)).Length;
+                    if (8 < lenB)
+                    {
+                        paoRep.z_Objects.z_Text.z_FontAttr.Size = 6;
+                    }
+                    else
+                    {
+                        paoRep.z_Objects.z_Text.z_FontAttr.Size = 9;
+                    }
+
+                }
+                paoRep.Write("支払合計金額", string.Format("{0:#,0}", totalRow.Cells[14].Value) != "" ? string.Format("{0:#,0}", totalRow.Cells[14].Value) : " ");
+
+                paoRep.z_Objects.SetObject("支払合計金額");
+                lenB = Encoding.Default.GetBytes(string.Format("{0:#,0}", totalRow.Cells[14].Value)).Length;
+                if (9 < lenB)
+                {
+                    paoRep.z_Objects.z_Text.z_FontAttr.Size = 6;
+                }
+                else
+                {
+                    paoRep.z_Objects.z_Text.z_FontAttr.Size = 9;
+                }
+
+                //フッダー
+                paoRep.Write("出力日時", now.ToString("yyyy/MM/dd HH:mm:ss"));
+                paoRep.Write("ページ", (page + "/" + maxPage + " ページ").ToString());
+
+                //明細
+                for (var i = 0; i < maxRow; i++)
+                {
+                    if (CurRow >= dataGridView1.RowCount - 1) break;
+
+                    DataGridViewRow targetRow = dataGridView1.Rows[CurRow];
+
+                    paoRep.Write("行番号", (CurRow + 1).ToString(), i + 1);
+                    paoRep.Write("支払先名", targetRow.Cells["支払先名"].Value.ToString() != "" ? targetRow.Cells["支払先名"].Value.ToString() : " ", i + 1);
+
+                    paoRep.Write("材料費(SPM)", string.Format("{0:#,0}", targetRow.Cells[2].Value) != "" ? string.Format("{0:#,0}", targetRow.Cells[2].Value) : " ", i + 1);
+                    paoRep.Write("材料費(OEM)", string.Format("{0:#,0}", targetRow.Cells[3].Value) != "" ? string.Format("{0:#,0}", targetRow.Cells[3].Value) : " ", i + 1);
+                    paoRep.Write("材料費(CMPS)", string.Format("{0:#,0}", targetRow.Cells[4].Value) != "" ? string.Format("{0:#,0}", targetRow.Cells[4].Value) : " ", i + 1);
+                    paoRep.Write("材料費(加工)", string.Format("{0:#,0}", targetRow.Cells[5].Value) != "" ? string.Format("{0:#,0}", targetRow.Cells[5].Value) : " ", i + 1);
+                    paoRep.Write("材料費(その他)", string.Format("{0:#,0}", targetRow.Cells[6].Value) != "" ? string.Format("{0:#,0}", targetRow.Cells[6].Value) : " ", i + 1);
+                    paoRep.Write("材料費(外注費)", string.Format("{0:#,0}", targetRow.Cells[7].Value) != "" ? string.Format("{0:#,0}", targetRow.Cells[7].Value) : " ", i + 1);
+                    paoRep.Write("派遣費", string.Format("{0:#,0}", targetRow.Cells[8].Value) != "" ? string.Format("{0:#,0}", targetRow.Cells[8].Value) : " ", i + 1);
+                    paoRep.Write("人件費", string.Format("{0:#,0}", targetRow.Cells[9].Value) != "" ? string.Format("{0:#,0}", targetRow.Cells[9].Value) : " ", i + 1);
+                    paoRep.Write("製造費(電気料)", string.Format("{0:#,0}", targetRow.Cells[10].Value) != "" ? string.Format("{0:#,0}", targetRow.Cells[10].Value) : " ", i + 1);
+                    paoRep.Write("製造費(製造費)", string.Format("{0:#,0}", targetRow.Cells[11].Value) != "" ? string.Format("{0:#,0}", targetRow.Cells[11].Value) : " ", i + 1);
+                    paoRep.Write("一般管理販売費", string.Format("{0:#,0}", targetRow.Cells[12].Value) != "" ? string.Format("{0:#,0}", targetRow.Cells[12].Value) : " ", i + 1);
+                    paoRep.Write("営業外費用", string.Format("{0:#,0}", targetRow.Cells[13].Value) != "" ? string.Format("{0:#,0}", targetRow.Cells[13].Value) : " ", i + 1);
+                    paoRep.Write("合計", string.Format("{0:#,0}", targetRow.Cells[14].Value) != "" ? string.Format("{0:#,0}", targetRow.Cells[14].Value) : " ", i + 1);
+
+
+
+
+                    paoRep.z_Objects.SetObject("支払先名", i + 1);
+                    lenB = Encoding.Default.GetBytes(targetRow.Cells["支払先名"].Value.ToString()).Length;
+                    if (24 < lenB)
+                    {
+                        paoRep.z_Objects.z_Text.z_FontAttr.Size = 6;
+                    }
+                    else
+                    {
+                        paoRep.z_Objects.z_Text.z_FontAttr.Size = 9;
+                    }
+
+
+                    paoRep.z_Objects.SetObject("合計", i + 1);
+                    lenB = Encoding.Default.GetBytes(targetRow.Cells[14].Value.ToString()).Length;
+                    if (9 < lenB)
+                    {
+                        paoRep.z_Objects.z_Text.z_FontAttr.Size = 6;
+                    }
+                    else
+                    {
+                        paoRep.z_Objects.z_Text.z_FontAttr.Size = 9;
+                    }
+
+                    CurRow++;
+
+
+                }
+
+                page++;
+
+                paoRep.PageEnd();
+
+            }
+
+
+
+            paoRep.Output();
         }
 
         private void コマンド保守_Click(object sender, EventArgs e)

@@ -661,7 +661,7 @@ namespace u_net
                 //明細
                 for (var i = 0; i < maxRow; i++)
                 {
-                    if (CurRow >= dataGridView1.RowCount) break;
+                    if (CurRow >= dataGridView1.RowCount-1) break;
 
                     DataGridViewRow targetRow = dataGridView1.Rows[CurRow];
 
@@ -743,7 +743,7 @@ namespace u_net
                 //明細
                 for (var i = 0; i < maxRow; i++)
                 {
-                    if (CurRow >= dataGridView1.RowCount) break;
+                    if (CurRow >= dataGridView1.RowCount-1) break;
 
                     DataGridViewRow targetRow = dataGridView1.Rows[CurRow];
 
