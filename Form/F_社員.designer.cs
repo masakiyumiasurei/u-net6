@@ -611,6 +611,7 @@ namespace u_net
             削除日時.ReadOnly = true;
             削除日時.Size = new Size(188, 20);
             削除日時.TabIndex = 256;
+            削除日時.TabStop = false;
             削除日時.Visible = false;
             // 
             // 削除者コード
@@ -623,6 +624,7 @@ namespace u_net
             削除者コード.ReadOnly = true;
             削除者コード.Size = new Size(47, 20);
             削除者コード.TabIndex = 255;
+            削除者コード.TabStop = false;
             削除者コード.Visible = false;
             // 
             // 確定者コード
@@ -635,6 +637,7 @@ namespace u_net
             確定者コード.ReadOnly = true;
             確定者コード.Size = new Size(47, 20);
             確定者コード.TabIndex = 254;
+            確定者コード.TabStop = false;
             確定者コード.Visible = false;
             // 
             // 確定日時
@@ -647,6 +650,7 @@ namespace u_net
             確定日時.ReadOnly = true;
             確定日時.Size = new Size(188, 20);
             確定日時.TabIndex = 253;
+            確定日時.TabStop = false;
             確定日時.Visible = false;
             // 
             // ラベル74
@@ -724,6 +728,7 @@ namespace u_net
             削除.ReadOnly = true;
             削除.Size = new Size(20, 20);
             削除.TabIndex = 248;
+            削除.TabStop = false;
             // 
             // 確定
             // 
@@ -736,6 +741,7 @@ namespace u_net
             確定.ReadOnly = true;
             確定.Size = new Size(20, 20);
             確定.TabIndex = 247;
+            確定.TabStop = false;
             // 
             // 退社年月日選択ボタン
             // 
@@ -786,6 +792,7 @@ namespace u_net
             更新者名.ReadOnly = true;
             更新者名.Size = new Size(142, 20);
             更新者名.TabIndex = 242;
+            更新者名.TabStop = false;
             // 
             // 承認順序
             // 
@@ -1050,6 +1057,7 @@ namespace u_net
             更新者コード.ReadOnly = true;
             更新者コード.Size = new Size(47, 20);
             更新者コード.TabIndex = 221;
+            更新者コード.TabStop = false;
             // 
             // ラベル19
             // 
@@ -1091,6 +1099,7 @@ namespace u_net
             更新日時.ReadOnly = true;
             更新日時.Size = new Size(188, 20);
             更新日時.TabIndex = 220;
+            更新日時.TabStop = false;
             // 
             // 作成者名
             // 
@@ -1102,6 +1111,7 @@ namespace u_net
             作成者名.ReadOnly = true;
             作成者名.Size = new Size(142, 20);
             作成者名.TabIndex = 219;
+            作成者名.TabStop = false;
             // 
             // 作成者コード
             // 
@@ -1113,6 +1123,7 @@ namespace u_net
             作成者コード.ReadOnly = true;
             作成者コード.Size = new Size(47, 20);
             作成者コード.TabIndex = 218;
+            作成者コード.TabStop = false;
             // 
             // ラベル11
             // 
@@ -1154,6 +1165,7 @@ namespace u_net
             作成日時.ReadOnly = true;
             作成日時.Size = new Size(188, 20);
             作成日時.TabIndex = 217;
+            作成日時.TabStop = false;
             // 
             // 勤務地コード_ラベル
             // 
@@ -1209,7 +1221,7 @@ namespace u_net
             氏名.Margin = new Padding(3, 2, 3, 2);
             氏名.Name = "氏名";
             氏名.Size = new Size(306, 20);
-            氏名.TabIndex = 201;
+            氏名.TabIndex = 4;
             氏名.TextChanged += 氏名_TextChanged;
             氏名.Enter += 氏名_Enter;
             氏名.Leave += 氏名_Leave;
