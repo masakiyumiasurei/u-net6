@@ -219,6 +219,7 @@ namespace u_net
             // 
             // コマンド印刷
             // 
+            コマンド印刷.Enabled = false;
             コマンド印刷.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             コマンド印刷.ForeColor = Color.Blue;
             コマンド印刷.ImageAlign = ContentAlignment.BottomLeft;
@@ -248,6 +249,7 @@ namespace u_net
             // 
             コマンド確定.Enabled = false;
             コマンド確定.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            コマンド確定.ForeColor = Color.Blue;
             コマンド確定.ImageAlign = ContentAlignment.BottomLeft;
             コマンド確定.Location = new Point(655, 5);
             コマンド確定.Margin = new Padding(3, 2, 3, 2);
