@@ -1569,6 +1569,7 @@ namespace u_net
             見積コード.Size = new Size(150, 21);
             見積コード.TabIndex = 0;
             見積コード.TextChanged += 見積コード_TextChanged;
+            見積コード.KeyDown += 見積コード_KeyDown;
             見積コード.Validating += 見積コード_Validating;
             見積コード.Validated += 見積コード_Validated;
             // 

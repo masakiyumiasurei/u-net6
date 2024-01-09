@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.Data.SqlClient;
+using Pao.Reports;
 using u_net.Public;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
@@ -539,7 +540,98 @@ namespace u_net
 
         private void コマンド印刷_Click(object sender, EventArgs e)
         {
+            IReport paoRep = ReportCreator.GetPreview();
 
+            paoRep.LoadDefFile("../../../Reports/支払一覧表_年間.prepd");
+
+            //最大行数
+            int maxRow = 27;
+            //現在の行
+            int CurRow = 0;
+            //行数
+            int RowCount = maxRow;
+            if (dataGridView1.RowCount > 0)
+            {
+                RowCount = dataGridView1.RowCount - 1;
+            }
+
+            int page = 1;
+            double maxPage = Math.Ceiling((double)RowCount / maxRow);
+
+            DateTime now = DateTime.Now;
+
+            int lenB;
+
+            DataGridViewRow totalRow = dataGridView1.Rows[dataGridView1.Rows.Count - 1];
+
+            //描画すべき行がある限りページを増やす
+            while (RowCount > 0)
+            {
+                RowCount -= maxRow;
+
+                paoRep.PageStart();
+
+                //ヘッダー
+                paoRep.Write("タイトル", 集計年度.Text.ToString() + "年度支払一覧表");
+
+                paoRep.Write("支払区分", 支払区分コード.Text.ToString() != "" ? 支払区分コード.Text.ToString() : "（全て）");
+                for(var i = 2; i <= 13; i++)
+                {
+                    int ii = (i >= 2 && i <= 10) ? i + 2 : (i >= 11 && i <= 13) ? i - 10 : i;
+                    paoRep.Write("合計" + (ii).ToString() + "月", string.Format("{0:#,0}", totalRow.Cells[i].Value) != "" ? string.Format("{0:#,0}", totalRow.Cells[i].Value) : " ");
+                }
+                paoRep.Write("支払合計金額", string.Format("{0:#,0}", totalRow.Cells[14].Value) != "" ? string.Format("{0:#,0}", totalRow.Cells[14].Value) : " ");
+
+
+                //フッダー
+                paoRep.Write("出力日時", now.ToString("yyyy/MM/dd HH:mm:ss"));
+                paoRep.Write("ページ", (page + "/" + maxPage + " ページ").ToString());
+
+                //明細
+                for (var i = 0; i < maxRow; i++)
+                {
+                    if (CurRow >= dataGridView1.RowCount-1) break;
+
+                    DataGridViewRow targetRow = dataGridView1.Rows[CurRow];
+
+                    paoRep.Write("行番号", (CurRow + 1).ToString(), i + 1);
+                    paoRep.Write("支払先名", targetRow.Cells["支払先名"].Value.ToString() != "" ? targetRow.Cells["支払先名"].Value.ToString() : " ", i + 1);
+
+                    for (var j = 2; j <= 13; j++)
+                    {
+                        int jj = (j >= 2 && j <= 10) ? j + 2 : (j >= 11 && j <= 13) ? j - 10 : j;
+                        paoRep.Write((jj).ToString() + "月", string.Format("{0:#,0}", targetRow.Cells[j].Value) != "" ? string.Format("{0:#,0}", targetRow.Cells[j].Value) : " ", i + 1);
+                    }
+                    paoRep.Write("合計", string.Format("{0:#,0}", targetRow.Cells[14].Value) != "" ? string.Format("{0:#,0}", targetRow.Cells[14].Value) : " ", i + 1);
+
+
+
+
+                    paoRep.z_Objects.SetObject("支払先名", i + 1);
+                    lenB = Encoding.Default.GetBytes(targetRow.Cells["支払先名"].Value.ToString()).Length;
+                    if (26 < lenB)
+                    {
+                        paoRep.z_Objects.z_Text.z_FontAttr.Size = 6;
+                    }
+                    else
+                    {
+                        paoRep.z_Objects.z_Text.z_FontAttr.Size = 10;
+                    }
+
+                    CurRow++;
+
+
+                }
+
+                page++;
+
+                paoRep.PageEnd();
+
+            }
+
+
+
+            paoRep.Output();
         }
 
         private void コマンド保守_Click(object sender, EventArgs e)

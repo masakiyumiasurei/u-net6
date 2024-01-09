@@ -16,6 +16,8 @@ using System.Windows.Forms;
 using Newtonsoft.Json.Linq;
 using System.Drawing.Imaging;
 using System.Drawing.Printing;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
+using Microsoft.Identity.Client.NativeInterop;
 
 namespace u_net
 {
@@ -1005,18 +1007,20 @@ namespace u_net
                 if (MessageBox.Show(strMsg, "削除コマンド", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
                     return;
 
-                //OpenForm("認証", CommonConstants.USER_CODE_TECH);
+                // ログインユーザーが表示データの登録ユーザーでなければ認証する
+            
+                using (var authenticationForm = new F_認証())
+                {
+                    authenticationForm.args = CommonConstants.USER_CODE_TECH;
+                    authenticationForm.ShowDialog();
 
-                //while (string.IsNullOrEmpty(certificateCode))
-                //{
-                //    if (SysCmd(acSysCmdGetObjectState, acForm, "認証") == 0)
-                //    {
-                //        MessageBox.Show("削除はキャンセルされました。", "削除コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                //        return;
-                //    }
-
-                //    Application.DoEvents();
-                //}
+                    if (string.IsNullOrEmpty(CommonConstants.strCertificateCode))
+                    {
+                        MessageBox.Show("認証できません。" + Environment.NewLine + "削除はキャンセルされました。", "削除コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return;
+                    }
+                }
+                
 
                 // 部品情報削除
                 FunctionClass fn = new FunctionClass();
@@ -1275,21 +1279,7 @@ namespace u_net
                     strSQL = "SELECT * FROM V部品読込 WHERE 部品コード ='" + codeString + "' AND 部品版数= " + editionNumber;
                 }
 
-                //using (SqlCommand cmd = new SqlCommand(strSQL, connection))
-                //{
-                //    cmd.Parameters.AddWithValue("@CodeString", codeString);
-                //    if (editionNumber != 0)
-                //    {
-                //        cmd.Parameters.AddWithValue("@EditionNumber", editionNumber);
-                //    }
 
-                //    DataTable dataTable = new DataTable();
-                //    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-                //    adapter.Fill(dataTable);
-
-                //    if (dataTable.Rows.Count > 0)
-                //    {
-                //DataRow row = dataTable.Rows[0];
                 VariableSet.SetTable2Form(this, strSQL, cn);
 
 
@@ -1571,31 +1561,8 @@ namespace u_net
                         FunctionClass fn = new FunctionClass();
                         fn.DoWait("読み込んでいます...");
 
+     
 
-                        //                    string query = "SELECT M部品.部品コード, ISNULL([V部品履歴_最終版数].最終版数, 0) + 1 AS 版数 " +
-                        //"FROM M部品 LEFT OUTER JOIN [V部品履歴_最終版数] " +
-                        //"ON M部品.部品コード = [V部品履歴_最終版数].部品コード " +
-                        //"WHERE M部品.部品コード BETWEEN '@StartCode' AND '@EndCode' " +
-                        //"ORDER BY M部品.部品コード DESC";
-
-                        //                    using (SqlCommand command = new SqlCommand(query, cn))
-                        //                    {
-                        //                        int parsedCode = int.Parse(部品コード.Text);
-                        //                        command.Parameters.AddWithValue("@StartCode", parsedCode - 10);
-                        //                        command.Parameters.AddWithValue("@EndCode", parsedCode + 10);
-
-                        //                        SqlDataAdapter adapter = new SqlDataAdapter(command);
-                        //                        DataTable dataTable = new DataTable();
-
-                        //                        adapter.Fill(dataTable);
-
-                        //                        // 部品コードのソースにDataTableを設定
-                        //                        部品コード.DataSource = dataTable;
-                        //                        部品コード.DisplayMember = "Value";
-                        //                        部品コード.ValueMember = "Key";
-
-                        //                        //版数.Text = 部品コード.V
-                        //                    }
 
                         string query = "select max(版数) as 最終版数 from M部品履歴 where 部品コード='" + 部品コード.Text + "' group by 部品コード";
 
@@ -1668,12 +1635,46 @@ namespace u_net
 
         private void 部品使用先_MouseDoubleClick(object sender, MouseEventArgs e)
         {
+            if (Application.OpenForms["F_製品管理"] != null)
+            {
+                MessageBox.Show("[ユニット]画面が既に開かれているため実行できません。", BASE_CAPTION, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                this.Close();
+                return;
+            }
+
+            if(部品使用先.SelectedRows.Count > 0)
+            {
+                F_ユニット targetform = new F_ユニット();
+
+                string strCode = 部品使用先.SelectedRows[0].Cells[0].Value.ToString();
+                string strEdition = 部品使用先.SelectedRows[0].Cells[1].Value.ToString();
+
+                targetform.args = strCode + "," + strEdition;
+                targetform.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("使用しているユニットはありません。", BASE_CAPTION, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+
+
+
 
         }
 
         private void 部品集合参照ボタン_Click(object sender, EventArgs e)
         {
+            if (IsIncluded)
+            {
+                F_部品集合 targetform = new F_部品集合();
 
+                targetform.args = 部品集合コード.Text + "," + 部品集合版数.Text;
+                targetform.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("この部品は部品集合に構成されていません。", BASE_CAPTION, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
         }
 
 
