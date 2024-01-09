@@ -312,6 +312,7 @@ namespace u_net
 
                 // フォームAの日付コントロールに選択した日付を設定
                 見積日開始.Text = selectedDate;
+                見積日開始.Focus();
             }
         }
 
@@ -334,6 +335,7 @@ namespace u_net
 
                 // フォームAの日付コントロールに選択した日付を設定
                 見積日終了.Text = selectedDate;
+                見積日終了.Focus();
             }
         }
 
