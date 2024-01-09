@@ -23,6 +23,7 @@ namespace u_net
             InitializeComponent();
         }
 
+        private bool setflg = false;
         SqlConnection cn;
         public void Connect()
         {
@@ -43,6 +44,11 @@ namespace u_net
                     return;
                 }
 
+                OriginalClass ofn = new OriginalClass();
+
+                ofn.SetComboBox(担当者名, "SELECT 社員コード AS Value, 氏名 AS Display FROM M社員 " +
+                    "WHERE (退社 IS NULL) AND ([パート] = 0) AND (削除日時 IS NULL) AND (ふりがな <> N'ん') ORDER BY ふりがな");
+
                 //開いているフォームのインスタンスを作成する
                 frmTarget = Application.OpenForms.OfType<F_見積管理>().FirstOrDefault();
 
@@ -60,9 +66,56 @@ namespace u_net
                 this.顧客コード.Text = frmTarget.str顧客コード;
                 this.顧客名.Text = frmTarget.str顧客名;
                 this.件名.Text = frmTarget.str件名;
-                //this.確定指定.Text = frmTarget.lng確定指定.ToString();
-                //this.承認指定.Text = frmTarget.lng承認指定.ToString();
-                //this.削除指定.Text = frmTarget.lng削除指定.ToString();
+
+                switch (frmTarget.lng確定指定)
+                {
+                    case 1:
+                        確定指定Button1.Checked = true;
+                        break;
+                    case 2:
+                        確定指定Button2.Checked = true;
+                        break;
+                    case 0:
+                        確定指定Button3.Checked = true;
+                        break;
+
+                    default:
+                        break;
+                }
+
+                switch (frmTarget.lng承認指定)
+                {
+                    case 1:
+                        承認指定button1.Checked = true;
+                        break;
+                    case 2:
+                        承認指定button2.Checked = true;
+                        break;
+                    case 0:
+                        承認指定button3.Checked = true;
+                        break;
+
+                    default:
+                        break;
+                }
+
+                switch (frmTarget.lng削除指定)
+                {
+                    case 1:
+                        削除指定Button1.Checked = true;
+                        break;
+                    case 2:
+                        削除指定Button2.Checked = true;
+                        break;
+                    case 0:
+                        削除指定Button3.Checked = true;
+                        break;
+
+                    default:
+
+                        break;
+                }
+
             }
             catch (Exception ex)
             {
@@ -83,10 +136,22 @@ namespace u_net
                 F_見積管理? frmTarget = Application.OpenForms.OfType<F_見積管理>().FirstOrDefault();
 
                 if (!string.IsNullOrEmpty(見積日開始.Text))
+                {
                     frmTarget.dtm見積日開始 = Nz(DateTime.Parse(見積日開始.Text));
+                }
+                else
+                {
+                    frmTarget.dtm見積日開始 = DateTime.MinValue;
+                }
 
                 if (!string.IsNullOrEmpty(見積日終了.Text))
+                {
                     frmTarget.dtm見積日終了 = Nz(DateTime.Parse(見積日終了.Text));
+                }
+                else
+                {
+                    frmTarget.dtm見積日終了 = DateTime.MinValue;
+                }
 
                 frmTarget.str担当者名 = Nz(担当者名.Text);
                 frmTarget.str顧客コード = Nz(顧客コード.Text);
@@ -138,22 +203,26 @@ namespace u_net
                 if (!frmTarget.DoUpdate())
                 {
                     MessageBox.Show("抽出処理は失敗しました。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    fn.WaitForm.Close();
+
                     return;
                 }
 
                 if (frmTarget.estEXT)
                 {
                     MessageBox.Show("抽出条件に一致するデータはありません。", "情報", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    fn.WaitForm.Close();
                     frmTarget.estEXT = false;
-                    this.Close();
+
                     return;
                 }
 
                 fn.WaitForm.Close();
+                this.Close();
             }
             finally
             {
-                this.Close();
+
             }
         }
 
@@ -176,6 +245,11 @@ namespace u_net
         {
             // 日付選択フォームを作成し表示
             F_カレンダー form = new F_カレンダー();
+            if (!string.IsNullOrEmpty(見積日開始.Text))
+            {
+                form.args = 見積日開始.Text;
+            }
+
             if (form.ShowDialog() == DialogResult.OK)
             {
                 // objParent に申請日終了の参照を設定
@@ -195,6 +269,11 @@ namespace u_net
             {
                 // 日付選択フォームを作成し表示
                 F_カレンダー form = new F_カレンダー();
+                if (!string.IsNullOrEmpty(見積日開始.Text))
+                {
+                    form.args = 見積日開始.Text;
+                }
+
                 if (form.ShowDialog() == DialogResult.OK)
                 {
                     // objParent に申請日終了の参照を設定
@@ -218,6 +297,11 @@ namespace u_net
         {
             // 日付選択フォームを作成し表示
             F_カレンダー form = new F_カレンダー();
+            if (!string.IsNullOrEmpty(見積日開始.Text))
+            {
+                form.args = 見積日開始.Text;
+            }
+
             if (form.ShowDialog() == DialogResult.OK)
             {
                 // objParent に見積日開始の参照を設定
@@ -235,6 +319,11 @@ namespace u_net
         {
             // 日付選択フォームを作成し表示
             F_カレンダー form = new F_カレンダー();
+            if (!string.IsNullOrEmpty(見積日終了.Text))
+            {
+                form.args = 見積日終了.Text;
+            }
+
             if (form.ShowDialog() == DialogResult.OK)
             {
                 // objParent に申請日終了の参照を設定
@@ -254,6 +343,11 @@ namespace u_net
             {
                 // 日付選択フォームを作成し表示
                 F_カレンダー form = new F_カレンダー();
+                if (!string.IsNullOrEmpty(見積日終了.Text))
+                {
+                    form.args = 見積日終了.Text;
+                }
+
                 if (form.ShowDialog() == DialogResult.OK)
                 {
                     // objParent に申請日終了の参照を設定
@@ -277,6 +371,11 @@ namespace u_net
         {
             // 日付選択フォームを作成し表示
             F_カレンダー form = new F_カレンダー();
+            if (!string.IsNullOrEmpty(見積日終了.Text))
+            {
+                form.args = 見積日終了.Text;
+            }
+
             if (form.ShowDialog() == DialogResult.OK)
             {
                 // objParent に申請日終了の参照を設定
@@ -292,34 +391,53 @@ namespace u_net
 
         private void 顧客コード_Validated(object sender, EventArgs e)
         {
+            setflg = true;
             if (!string.IsNullOrEmpty(this.顧客コード.Text))
             {
+                FunctionClass fn = new FunctionClass();
                 Connect();
-                //this.顧客名.Text = FunctionClass.Zn(FunctionClass.GetCustomerName(cn,Nz(this.顧客コード.Text)));
+                object customerNameObj = FunctionClass.GetCustomerName(cn, this.顧客コード.Text);
+
+                if (customerNameObj == DBNull.Value || customerNameObj == null || customerNameObj == "")
+                {
+                    this.顧客名.Text = null;
+                }
+                else
+                {
+                    this.顧客名.Text = (string)fn.Zn(customerNameObj);
+                }
             }
         }
 
         private void 顧客コード選択ボタン_Click(object sender, EventArgs e)
         {
+            顧客コード.Focus();
             objParent = this;
             F_検索 form = new F_検索();
-            form.FilterName="顧客名フリガナ";
-            if(form.ShowDialog()==DialogResult.OK)
+            form.FilterName = "顧客名フリガナ";
+            if (form.ShowDialog() == DialogResult.OK)
             {
+                setflg = true;
                 string SelectedCode = form.SelectedCode;
                 顧客コード.Text = SelectedCode;
+                顧客名.Focus();
             }
         }
 
-        private void 顧客名_Validated(object sender, EventArgs e)
-        {
-            this.顧客コード.Text = null;
-        }
 
         private void 担当者名_Enter(object sender, EventArgs e)
         {
             long lng1;
             lng1 = this.担当者名.Items.Count;
+        }
+
+        private void 顧客名_TextChanged(object sender, EventArgs e)
+        {
+            if (!setflg)
+            {
+                this.顧客コード.Text = null;
+            }
+            setflg = false;
         }
     }
 }

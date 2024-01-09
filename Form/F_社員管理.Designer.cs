@@ -284,7 +284,6 @@
             dataGridView1.AllowUserToAddRows = false;
             dataGridView1.AllowUserToDeleteRows = false;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Dock = DockStyle.Right;
             dataGridView1.Location = new Point(0, 43);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
@@ -306,7 +305,7 @@
             panel2.Dock = DockStyle.Bottom;
             panel2.Location = new Point(0, 627);
             panel2.Name = "panel2";
-            panel2.Size = new Size(0, 36);
+            panel2.Size = new Size(1205, 36);
             panel2.TabIndex = 88;
             // 
             // F_社員管理
