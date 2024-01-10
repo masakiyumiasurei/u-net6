@@ -1195,10 +1195,10 @@ namespace u_net
             return hasDuplicate;
         }
 
-
-
-
-
+        private void 売上区分コード_TextChanged(object sender, EventArgs e)
+        {
+            ChangedData(true);
+        }
 
         //private void 明細削除ボタン_Click(object sender, DataGridViewCellEventArgs e)
         //{

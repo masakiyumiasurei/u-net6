@@ -557,6 +557,7 @@ namespace u_net
             売上区分コード.Name = "売上区分コード";
             売上区分コード.Size = new Size(136, 20);
             売上区分コード.TabIndex = 16;
+            売上区分コード.TextChanged += 売上区分コード_TextChanged;
             売上区分コード.Enter += 売上区分コード_Enter;
             // 
             // FlowCategoryCode
