@@ -43,9 +43,9 @@ namespace u_net
                 this.基本型式名.Text = frmTarget.str基本型式名;
                 シリーズ名.Text = frmTarget.strシリーズ名;
                 if (frmTarget.dtm更新日開始 != DateTime.MinValue)
-                    更新日開始.Text = frmTarget.dtm更新日開始.ToString();
+                    更新日開始.Text = frmTarget.dtm更新日開始.ToString("yyyy/MM/dd");
                 if (frmTarget.dtm更新日終了 != DateTime.MinValue)
-                    更新日終了.Text = frmTarget.dtm更新日終了.ToString();
+                    更新日終了.Text = frmTarget.dtm更新日終了.ToString("yyyy/MM/dd");
                 更新者名.SelectedItem = frmTarget.str更新者名;
                 //ComposedChipMount.Value = frmTarget.intComposedChipMount;
                 switch (frmTarget.intComposedChipMount)
@@ -77,7 +77,7 @@ namespace u_net
                         break;
 
                     default:
-                        // intComposedChipMount の値に対応するラジオボタンがない場合の処理
+                        // intIsUnit の値に対応するラジオボタンがない場合の処理
                         break;
                 }
                 switch (frmTarget.lngDiscontinued)
@@ -93,7 +93,7 @@ namespace u_net
                         break;
 
                     default:
-                        // intComposedChipMount の値に対応するラジオボタンがない場合の処理
+                        // lngDiscontinued の値に対応するラジオボタンがない場合の処理
                         break;
                 }
                 switch (frmTarget.lngDeleted)
@@ -109,7 +109,7 @@ namespace u_net
                         break;
 
                     default:
-                        // intComposedChipMount の値に対応するラジオボタンがない場合の処理
+                        // lngDeleted の値に対応するラジオボタンがない場合の処理
                         break;
                 }
             }
@@ -125,18 +125,13 @@ namespace u_net
             try
             {
                 F_商品管理? frmTarget = Application.OpenForms.OfType<F_商品管理>().FirstOrDefault();
-                //F_商品管理 frmTarget = new F_商品管理();
-
-
 
                 frmTarget.str基本型式名 = Nz(基本型式名.Text);
                 frmTarget.strシリーズ名 = Nz(シリーズ名.Text);
                 frmTarget.dtm更新日開始 = string.IsNullOrEmpty(更新日開始.Text) ?
                     DateTime.MinValue : DateTime.Parse(更新日開始.Text);
-
                 frmTarget.dtm更新日終了 = string.IsNullOrEmpty(更新日終了.Text) ?
                     DateTime.MinValue : DateTime.Parse(更新日終了.Text);
-
                 frmTarget.str更新者名 = Nz(更新者名.Text);
 
                 if (intComposedChipMountbutton1.Checked)
@@ -196,7 +191,6 @@ namespace u_net
                 if (cnt == 0)
                 {
                     MessageBox.Show("抽出条件に一致するデータはありません。", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
-
                     return;
                 }
                 else if (cnt < 0)
@@ -204,15 +198,16 @@ namespace u_net
                     MessageBox.Show("エラーが発生したため、抽出できませんでした。", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     return;
                 }
+                else
+                {
+                    this.Close();
+                }
+
             }
             catch (Exception ex)
             {
                 Debug.WriteLine(this.Name + "_抽出ボタン_Click - " + ex.Message);
                 MessageBox.Show("エラーが発生しました。", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
-                //this.Painting = true;
                 this.Close();
             }
         }
@@ -231,7 +226,11 @@ namespace u_net
                 // 日付選択フォームを作成し表示
                 if (!string.IsNullOrEmpty(更新日開始.Text))
                 {
-                    dateSelectionForm.args = 更新日開始.Text;
+                    //入力値が日付の場合
+                    if (DateTime.TryParse(更新日開始.Text, out var dateTime))
+                    {
+                        dateSelectionForm.args = 更新日開始.Text;
+                    }
                 }
 
                 if (dateSelectionForm.ShowDialog() == DialogResult.OK)
@@ -280,7 +279,11 @@ namespace u_net
 
                 if (!string.IsNullOrEmpty(更新日終了.Text))
                 {
-                    dateSelectionForm.args = 更新日終了.Text;
+                    //入力値が日付の場合
+                    if (DateTime.TryParse(更新日終了.Text, out var dateTime))
+                    {
+                        dateSelectionForm.args = 更新日終了.Text;
+                    }
                 }
 
                 if (dateSelectionForm.ShowDialog() == DialogResult.OK)
