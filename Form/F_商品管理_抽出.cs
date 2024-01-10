@@ -229,7 +229,11 @@ namespace u_net
                 // 日付選択フォームを作成し表示
                 if (!string.IsNullOrEmpty(更新日開始.Text))
                 {
-                    dateSelectionForm.args = 更新日開始.Text;
+                    //入力値が日付の場合
+                    if (DateTime.TryParse(更新日開始.Text, out var dateTime))
+                    {
+                        dateSelectionForm.args = 更新日開始.Text;
+                    }
                 }
 
                 if (dateSelectionForm.ShowDialog() == DialogResult.OK)
@@ -277,7 +281,11 @@ namespace u_net
 
                 if (!string.IsNullOrEmpty(更新日終了.Text))
                 {
-                    dateSelectionForm.args = 更新日終了.Text;
+                    //入力値が日付の場合
+                    if (DateTime.TryParse(更新日終了.Text, out var dateTime))
+                    {
+                        dateSelectionForm.args = 更新日終了.Text;
+                    }
                 }
 
                 if (dateSelectionForm.ShowDialog() == DialogResult.OK)
