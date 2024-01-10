@@ -92,6 +92,7 @@ namespace u_net
             twipperdot = myapi.GetTwipPerDot(intpixel);
 
             // DataGridViewの設定
+            部品使用先.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             部品使用先.AllowUserToResizeColumns = true;
             部品使用先.ReadOnly = true;
             部品使用先.AllowUserToAddRows = false;

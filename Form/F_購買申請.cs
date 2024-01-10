@@ -24,6 +24,7 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 using System.Data.Common;
+using Microsoft.Identity.Client;
 
 namespace u_net
 {
@@ -36,6 +37,7 @@ namespace u_net
         private string BASE_CAPTION = "購買申請";
         private bool setCombo = true;
         private bool Terminate;//強制終了用フラグ
+        private bool setProduct = false;
 
         const int WM_UNDO = 0x0304; // Windows message for undo
 
@@ -181,9 +183,9 @@ namespace u_net
             //コンボボックスの設定
             OriginalClass ofn = new OriginalClass();
             ofn.SetComboBox(購買申請コード, "SELECT 購買申請コード as Display,購買申請コード as Value FROM T購買申請 ORDER BY 購買申請コード DESC");
-            ofn.SetComboBox(購買申請版数, "SELECT 購買申請版数 as Display , 購買申請版数 as Value FROM T購買申請 ORDER BY 購買申請版数 DESC");
+            //ofn.SetComboBox(購買申請版数, "SELECT 購買申請版数 as Display , 購買申請版数 as Value FROM T購買申請 ORDER BY 購買申請版数 DESC");
             //ofn.SetComboBox(商品コード, "SELECT 商品コード as Display, 商品名 as Display2, シリーズ名 as Display3, 商品コード as Value FROM M商品 ORDER BY 商品コード DESC");
-            ofn.SetComboBox(商品コード, "SELECT M商品.商品コード  as Display, M商品.商品名  as Display2, Mシリーズ.シリーズ名  as Display3, - CONVERT (int, CONVERT (bit, ISNULL(M商品.シリーズコード, 0)))  as Display4, 商品コード as Value FROM M商品 LEFT OUTER JOIN Mシリーズ ON M商品.シリーズコード = Mシリーズ.シリーズコード ORDER BY M商品.商品名");
+            //ofn.SetComboBox(商品コード, "SELECT M商品.商品コード  as Display, M商品.商品名  as Display2, Mシリーズ.シリーズ名  as Display3, - CONVERT (int, CONVERT (bit, ISNULL(M商品.シリーズコード, 0)))  as Display4, 商品コード as Value FROM M商品 LEFT OUTER JOIN Mシリーズ ON M商品.シリーズコード = Mシリーズ.シリーズコード ORDER BY M商品.商品名");
             商品コード.DrawMode = DrawMode.OwnerDrawFixed;
             ofn.SetComboBox(申請者コード, "SELECT [社員コード] as Display, 氏名 as Display2 ,社員コード as Value FROM M社員 WHERE (退社 IS NULL) AND (削除日時 IS NULL) AND (ふりがな <> N'ん') ORDER BY ふりがな");
             申請者コード.DrawMode = DrawMode.OwnerDrawFixed;
@@ -215,23 +217,19 @@ namespace u_net
                         throw new Exception("初期化に失敗しました。");
                     }
 
-                    // 版数を先に設定する
-                    string[] args = this.args.Split(',');
-                    if (args.Length == 2)
+                    //引数をカンマで分けてそれぞれの項目に設定
+                    int indexOfComma = args.IndexOf(",");
+                    string editionString = args.Substring(indexOfComma + 1).Trim();
+                    int edition;
+                    if (int.TryParse(editionString, out edition))
                     {
-                        if (int.TryParse(args[1], out int version))
-                        {
-                            this.購買申請版数.Text = version.ToString();
-                            this.購買申請コード.Text = args[0];
-                        }
-                        //    if (!string.IsNullOrEmpty(args))
-                        //{
-                        //this.購買申請コード.Text = args;
-                        //UpdatedControl(this.購買申請コード);
-                        UpdatedControl(this.購買申請版数);
-                        ChangedData(false);
-                        //}
+                        購買申請版数.Text = edition.ToString();
                     }
+
+                    string codeString = args.Substring(0, indexOfComma).Trim();
+                    購買申請コード.Text = codeString;
+
+                    UpdatedControl(購買申請コード);
                 }
                 fn.WaitForm.Close();
 
@@ -376,7 +374,7 @@ namespace u_net
                         break;
                     case "申請日":
                         if (string.IsNullOrEmpty(varValue.ToString()) || varValue.Equals(DBNull.Value))
-                            {
+                        {
                             MessageBox.Show("申請日を入力してください。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                             goto Exit_IsError;
                         }
@@ -394,10 +392,10 @@ namespace u_net
                     case "ロット番号1":
                     case "ロット番号2":
                         if (string.IsNullOrEmpty(varValue.ToString()) || varValue.Equals(DBNull.Value))
-                                goto Bye_IsError;
-                        if (!IsLimit_N(varValue, 7, 2, controlObject.Name))
+                            goto Bye_IsError;
+                        if (!FunctionClass.IsLimit_N(varValue, 7, 2, controlObject.Name))
                             goto Exit_IsError;
-                        if(int.Parse(varValue.ToString()) < 0)
+                        if (int.Parse(varValue.ToString()) < 0)
                         {
                             string strMsg = "正数値を入力してください。" + Environment.NewLine + Environment.NewLine + controlObject.Name;
                             MessageBox.Show(strMsg, "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -1320,7 +1318,7 @@ namespace u_net
                 this.確認_営業部.Text = null;
                 this.確認_製造部.Text = null;
                 this.終了入力.Text = null;
-                
+
                 // 複写に成功すればインターフェースを更新する
                 if (CopyData(CurrentCode, CurrentEdition + 1))
                 {
@@ -1417,8 +1415,6 @@ namespace u_net
                 // 確認_営業部用
                 object var3 = null;
 
-                F_認証 form = new F_認証();
-                form.ShowDialog();
 
                 // 登録データのエラーチェック
                 if (IsErrorData("購買申請コード", "購買申請版数"))
@@ -1436,21 +1432,18 @@ namespace u_net
                 }
 
                 // 認証する
-                string strCertificateCode = "007";
 
-                do
+                using (var authenticationForm = new F_認証())
                 {
-                    // 認証フォームが閉じていれば、認証不成立となる
-                    if (form == null)
-                    {
-                        MessageBox.Show("認証に失敗しました。" + Environment.NewLine +
-                                        "承認はできません。", "承認コマンド", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                        goto Bye_コマンド承認_Click;
-                    }
+                    authenticationForm.args = "007";
+                    authenticationForm.ShowDialog();
 
-                    Application.DoEvents();
+                    if (string.IsNullOrEmpty(CommonConstants.strCertificateCode))
+                    {
+                        MessageBox.Show("認証に失敗しました。" + Environment.NewLine + "承認はできません。", "承認コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return;
+                    }
                 }
-                while (string.IsNullOrEmpty(strCertificateCode));
 
                 fn.DoWait("しばらくお待ちください...");
 
@@ -1719,7 +1712,7 @@ namespace u_net
             try
             {
                 Connect();
-                string sqlQuery = $"SELECT DISTINCT 購買申請版数 FROM T購買申請 WHERE 購買申請コード = '{購買申請コード}' ORDER BY 購買申請版数 DESC";
+                string sqlQuery = $"SELECT 購買申請版数 as Display,購買申請版数 as Value FROM T購買申請 WHERE 購買申請コード = '{購買申請コード}' ORDER BY 購買申請版数 DESC";
 
                 using (SqlCommand command = new SqlCommand(sqlQuery, cn))
                 {
@@ -1751,7 +1744,14 @@ namespace u_net
                 {
                     case "購買申請コード":
                         //版数のソース更新
-                        購買申請版数.DataSource = Get購買申請版数Data(this.CurrentCode);
+                        OriginalClass ofn = new OriginalClass();
+
+                        ofn.SetComboBox(購買申請版数, " SELECT 購買申請版数 as Display,購買申請版数 as Value " +
+                                "FROM T購買申請 " +
+                                "WHERE (購買申請コード = '" + CurrentCode + "') " +
+                                "ORDER BY 購買申請版数 DESC");
+
+
 
                         //同一コードのデータ表示
                         strSQL = $"SELECT * FROM V購買申請 " +
@@ -1762,6 +1762,9 @@ namespace u_net
                         FunctionClass.LockData(this, IsDecided || IsDeleted, "購買申請コード", "購買申請版数");
                         // 個別にReadOnlyを設定
                         LockCtl();
+
+                        ChangedData(false);
+
                         コマンド複写.Enabled = true;
                         コマンド削除.Enabled = !IsCompleted;
                         コマンド改版.Enabled = IsApproved && !IsCompleted && !IsEnd && !IsDeleted;
@@ -1780,6 +1783,9 @@ namespace u_net
                         FunctionClass.LockData(this, IsDecided || IsDeleted, "購買申請コード", "購買申請版数");
                         // 個別にReadOnlyを設定
                         LockCtl();
+
+                        ChangedData(false);
+
                         コマンド複写.Enabled = true;
                         コマンド削除.Enabled = !IsCompleted;
                         コマンド改版.Enabled = IsApproved && !IsCompleted && !IsEnd && !IsDeleted;
@@ -1793,6 +1799,7 @@ namespace u_net
                         break;
 
                     case "商品コード":
+                        setProduct = true;
                         if (controlObject.Text != null)
                         {
                             商品名.Text = ((DataRowView)商品コード.SelectedItem)?.Row.Field<String>("Display2")?.ToString();
@@ -1801,8 +1808,16 @@ namespace u_net
                         break;
 
                     case "商品名":
-                        商品コード.Text = null;
-                        シリーズ名.Text = null;
+                        if (setProduct)
+                        {
+                            setProduct = false;
+                        }
+                        else
+                        {
+                            商品コード.Text = null;
+                            シリーズ名.Text = null;
+                        }
+                        
                         break;
 
                     case "IsManufacturing":
@@ -1833,6 +1848,38 @@ namespace u_net
                     }
                 }
 
+                if (!string.IsNullOrEmpty(材料単価.Text))
+                {
+                    decimal val = decimal.Parse(材料単価.Text);
+                    材料単価.Text = val.ToString("N2");
+                }
+
+                if (!string.IsNullOrEmpty(確認者コード3.Text))
+                {
+                    確認_営業部.Text = "■";
+                }
+
+                if (!string.IsNullOrEmpty(MountChipLotCreated.Text) && MountChipLotCreated.Text != "0")
+                {
+                    Scheduled.Text = "■";
+                }
+
+                if (!string.IsNullOrEmpty(無効日時.Text))
+                {
+                    削除.Text = "■";
+                }
+
+                if (!string.IsNullOrEmpty(確認者コード1.Text))
+                {
+                    確認_製造部.Text = "■";
+                }
+
+                if (!string.IsNullOrEmpty(終了日時.Text))
+                {
+                    終了入力.Text = "■";
+                }
+
+
                 result = true;
 
                 return result;
@@ -1846,7 +1893,7 @@ namespace u_net
 
         private async void ロット番号1_Validated(object sender, EventArgs e)
         {
-            UpdatedControl(this.ActiveControl);
+            UpdatedControl(sender as Control);
         }
 
         private void ロット番号1_TextChanged(object sender, EventArgs e)
@@ -1857,7 +1904,7 @@ namespace u_net
 
         private async void ロット番号2_Validated(object sender, EventArgs e)
         {
-            UpdatedControl(this.ActiveControl);
+            UpdatedControl(sender as Control);
         }
 
         private void ロット番号2_TextChanged(object sender, EventArgs e)
@@ -1953,17 +2000,7 @@ namespace u_net
 
         private void 購買申請コード_Validated(object sender, EventArgs e)
         {
-            try
-            {
-                UpdatedControl(this.ActiveControl);
-            }
-            catch (Exception ex)
-            {
-                Debug.Print($"{this.Name}_購買申請コード_AfterUpdate - {ex.HResult} : {ex.Message}");
-                MessageBox.Show("コード設定時にエラーが発生しました。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                // 強制終了フラグを設定する
-                Terminate = true;
-            }
+
         }
 
         private void 購買申請コード_TextChanged(object sender, EventArgs e)
@@ -1998,12 +2035,12 @@ namespace u_net
 
         private void 購買申請版数_Validated(object sender, EventArgs e)
         {
-            UpdatedControl(this.ActiveControl);
+            
         }
 
         private void 購買納期_Validated(object sender, EventArgs e)
         {
-            UpdatedControl(this.ActiveControl);
+            UpdatedControl(sender as Control);
         }
 
         private void 購買納期_TextChanged(object sender, EventArgs e)
@@ -2025,7 +2062,7 @@ namespace u_net
                 dateSelectionForm.args = 購買納期.Text;
             }
 
-            if (dateSelectionForm.ShowDialog() == DialogResult.OK)
+            if (dateSelectionForm.ShowDialog() == DialogResult.OK && !購買納期.ReadOnly)
             {
                 // 日付選択フォームから選択した日付を取得
                 string selectedDate = dateSelectionForm.SelectedDate;
@@ -2037,7 +2074,7 @@ namespace u_net
 
         private void 材料単価_Validated(object sender, EventArgs e)
         {
-            UpdatedControl(this.ActiveControl);
+            UpdatedControl(sender as Control);
         }
 
         private void 材料単価_TextChanged(object sender, EventArgs e)
@@ -2153,16 +2190,16 @@ namespace u_net
 
         private void 購買申請コード_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            IsError(this.ActiveControl, e.Cancel);
+            IsError(sender as Control, e.Cancel);
         }
 
         private void 購買申請版数_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            TextBox textBox = (TextBox)sender;
+            //TextBox textBox = (TextBox)sender;
 
-            if (textBox.Modified == false) return;
+            //if (textBox.Modified == false) return;
 
-            if (IsError(textBox, false) == true) e.Cancel = true;
+            if (IsError(sender as Control, false) == true) e.Cancel = true;
         }
 
         private void 申請日_Validating(object sender, System.ComponentModel.CancelEventArgs e)
@@ -2176,7 +2213,7 @@ namespace u_net
 
         private void 出荷予定日_Validated(object sender, EventArgs e)
         {
-            UpdatedControl(this.ActiveControl);
+            UpdatedControl(sender as Control);
         }
 
         private void 出荷予定日_Validating(object sender, System.ComponentModel.CancelEventArgs e)
@@ -2211,7 +2248,7 @@ namespace u_net
                 dateSelectionForm.args = 出荷予定日.Text;
             }
 
-            if (dateSelectionForm.ShowDialog() == DialogResult.OK)
+            if (dateSelectionForm.ShowDialog() == DialogResult.OK && !出荷予定日.ReadOnly)
             {
                 // 日付選択フォームから選択した日付を取得
                 string selectedDate = dateSelectionForm.SelectedDate;
@@ -2223,12 +2260,12 @@ namespace u_net
 
         private void 商品コード_Validated(object sender, EventArgs e)
         {
-            UpdatedControl(this.ActiveControl);
+            UpdatedControl(sender as Control);
         }
 
         private void 商品コード_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            IsError(this.ActiveControl, e.Cancel);
+            IsError(sender as Control, e.Cancel);
         }
 
         private void 商品コード_TextChanged(object sender, EventArgs e)
@@ -2239,23 +2276,24 @@ namespace u_net
 
         private void 商品コード_KeyDown(object sender, KeyEventArgs e)
         {
-            string strCode;
-            switch (e.KeyCode)
+          
+            if (e.KeyCode == Keys.Return)
             {
-                case Keys.Return:
-                    strCode = this.ActiveControl.Text;
-                    if (string.IsNullOrEmpty(strCode))
-                        return;
-                    strCode = strCode.PadLeft(8, '0');
-                    if (strCode != Convert.ToString(ActiveControl.Tag))
-                        ActiveControl.Text = strCode;
-                    break;
+
+                string strCode = 商品コード.Text.ToString();
+                string formattedCode = strCode.Trim().PadLeft(8, '0');
+
+                if (formattedCode != strCode || string.IsNullOrEmpty(strCode))
+                {
+                    商品コード.Text = formattedCode;
+                }
+
             }
         }
 
         private void 商品名_Validated(object sender, EventArgs e)
         {
-            UpdatedControl(this.ActiveControl);
+            UpdatedControl(sender as Control);
         }
 
         private void 商品名_Validating(object sender, System.ComponentModel.CancelEventArgs e)
@@ -2275,12 +2313,12 @@ namespace u_net
 
         private void 申請者コード_Validated(object sender, EventArgs e)
         {
-            UpdatedControl(this.ActiveControl);
+            UpdatedControl(sender as Control);
         }
 
         private void 申請者コード_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            IsError(this.ActiveControl, e.Cancel);
+            IsError(sender as Control, e.Cancel);
         }
 
         private void 申請者コード_TextChanged(object sender, EventArgs e)
@@ -2308,7 +2346,7 @@ namespace u_net
 
         private void 申請日_Validated(object sender, EventArgs e)
         {
-            UpdatedControl(this.ActiveControl);
+            UpdatedControl(sender as Control);
         }
 
         private void 申請日_TextChanged(object sender, EventArgs e)
@@ -2342,7 +2380,7 @@ namespace u_net
                 dateSelectionForm.args = 申請日.Text;
             }
 
-            if (dateSelectionForm.ShowDialog() == DialogResult.OK)
+            if (dateSelectionForm.ShowDialog() == DialogResult.OK && !申請日.ReadOnly)
             {
                 // 日付選択フォームから選択した日付を取得
                 string selectedDate = dateSelectionForm.SelectedDate;
@@ -2354,7 +2392,7 @@ namespace u_net
 
         private void 数量_Validated(object sender, EventArgs e)
         {
-            UpdatedControl(this.ActiveControl);
+            UpdatedControl(sender as Control);
         }
 
         private void 数量_Validating(object sender, System.ComponentModel.CancelEventArgs e)
@@ -2374,7 +2412,7 @@ namespace u_net
 
         private void 備考_Validated(object sender, EventArgs e)
         {
-            UpdatedControl(this.ActiveControl);
+            UpdatedControl(sender as Control);
         }
 
         private void 備考_Validating(object sender, System.ComponentModel.CancelEventArgs e)
@@ -2399,6 +2437,7 @@ namespace u_net
             if (textBox.Modified == false) return;
 
             if (IsError(textBox, false) == true) e.Cancel = true;
+
         }
 
         private void ロット番号2_Validating(object sender, System.ComponentModel.CancelEventArgs e)
@@ -2482,6 +2521,28 @@ namespace u_net
             商品名.Text = ((DataRowView)商品コード.SelectedItem)?.Row.Field<String>("Display2")?.ToString();
             シリーズ名.Text = ((DataRowView)商品コード.SelectedItem)?.Row.Field<String>("Display3")?.ToString();
             ChangedData(true);
+        }
+
+        private void 購買申請コード_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (購買申請コード.SelectedIndex == 0) return;
+
+                UpdatedControl(購買申請コード);
+            }
+            catch (Exception ex)
+            {
+                Debug.Print($"{this.Name}_購買申請コード_AfterUpdate - {ex.HResult} : {ex.Message}");
+                MessageBox.Show("コード設定時にエラーが発生しました。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                // 強制終了フラグを設定する
+                Terminate = true;
+            }
+        }
+
+        private void 購買申請版数_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UpdatedControl(購買申請版数);
         }
     }
 }

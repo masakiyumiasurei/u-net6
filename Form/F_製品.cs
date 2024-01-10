@@ -225,9 +225,19 @@ namespace u_net
                         this.Close();
                     }
 
-                    this.製品版数.Text = Convert.ToInt32(args.Substring(0, args.IndexOf(","))).ToString();
-                    this.製品コード.Focus();
-                    this.製品コード.Text = args.Substring(0, args.IndexOf(","));
+                    //引数をカンマで分けてそれぞれの項目に設定
+                    int indexOfComma = args.IndexOf(",");
+                    string editionString = args.Substring(indexOfComma + 1).Trim();
+                    int edition;
+                    if (int.TryParse(editionString, out edition))
+                    {
+                        製品版数.Text = edition.ToString();
+                    }
+
+                    string codeString = args.Substring(0, indexOfComma).Trim();
+                    製品コード.Text = codeString;
+
+                    UpdatedControl(製品コード);
                 }
                 args = null;
 

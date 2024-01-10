@@ -61,16 +61,33 @@ namespace u_net
                     //if (Convert.ToDouble(frmTarget.dte受注日1) != 0)
                     if (frmTarget.dte受注日1 != DateTime.MinValue)
                     {
-                        受注日1.Text = frmTarget.dte受注日1.ToString();
+                        受注日1.Text = frmTarget.dte受注日1.ToShortDateString();
                     }
 
                     if (frmTarget.dte受注日2 != DateTime.MinValue)
                     {
-                        受注日2.Text = frmTarget.dte受注日2.ToString();
+                        受注日2.Text = frmTarget.dte受注日2.ToShortDateString();
                     }
 
-                    // 同様に他の日付プロパティに対しても処理を追加
-                    // ...
+                    if (frmTarget.dte出荷予定日1 != DateTime.MinValue)
+                    {
+                        出荷予定日1.Text = frmTarget.dte出荷予定日1.ToShortDateString();
+                    }
+
+                    if (frmTarget.dte出荷予定日2 != DateTime.MinValue)
+                    {
+                        出荷予定日2.Text = frmTarget.dte出荷予定日2.ToShortDateString();
+                    }
+
+                    if (frmTarget.dte受注納期1 != DateTime.MinValue)
+                    {
+                        受注納期1.Text = frmTarget.dte受注納期1.ToShortDateString();
+                    }
+
+                    if (frmTarget.dte受注納期2 != DateTime.MinValue)
+                    {
+                        受注納期2.Text = frmTarget.dte受注納期2.ToShortDateString();
+                    }
 
                     注文番号.Text = frmTarget.str注文番号;
                     顧客コード.Text = frmTarget.str顧客コード;
@@ -88,7 +105,35 @@ namespace u_net
                     受注完了承認指定.Checked = frmTarget.ble受注完了承認指定;
                     受注完了承認指定_CheckedChanged(受注完了承認指定, EventArgs.Empty);
 
-                    //削除.Text = frmTarget.byt無効日.ToString();
+
+                    //ラジオボタンの規定値　
+                    if (frmTarget.byt受注承認 == 1)
+                    {
+                        承認済み.Checked = true;
+                    }
+                    else
+                    {
+                        未承認.Checked = true;
+                    }
+
+                    if (frmTarget.byt出荷 == 1)
+                    {
+                        出荷済み.Checked = true;
+                    }
+                    else
+                    {
+                        未出荷.Checked = true;
+                    }
+
+                    if (frmTarget.byt受注完了承認 == 1)
+                    {
+                        完了承認済み.Checked = true;
+                    }
+                    else
+                    {
+                        未完了承認.Checked = true;
+                    }
+                    
                     if (frmTarget.byt無効日 == 1)
                     {
                         削除済み.Checked = true;
@@ -214,6 +259,12 @@ namespace u_net
                     if (!string.IsNullOrEmpty(受注日2.Text))
                         frmTarget.dte受注日2 = Nz(DateTime.Parse(受注日2.Text));
 
+                    if (!string.IsNullOrEmpty(出荷予定日1.Text))
+                        frmTarget.dte出荷予定日1 = Nz(DateTime.Parse(出荷予定日1.Text));
+
+                    if (!string.IsNullOrEmpty(出荷予定日2.Text))
+                        frmTarget.dte出荷予定日2 = Nz(DateTime.Parse(出荷予定日2.Text));
+
                     if (!string.IsNullOrEmpty(受注納期1.Text))
                         frmTarget.dte受注納期1 = Nz(DateTime.Parse(受注納期1.Text));
 
@@ -227,13 +278,15 @@ namespace u_net
 
                     if (受注承認指定.Checked)
                     {
+                        frmTarget.ble受注承認指定 = true;
+
                         if (承認済み.Checked)
                         {
-                            frmTarget.ble受注承認指定 = true;
+                            frmTarget.byt受注承認 = 1;
                         }
                         else
                         {
-                            frmTarget.ble受注承認指定 = false;
+                            frmTarget.byt受注承認 = 2;
                         }
                     }
                     else
@@ -264,21 +317,20 @@ namespace u_net
                     }
                     else
                     {
-                        frmTarget.ble出荷指定 = false;
-                        frmTarget.byt出荷 = 2;
-                        frmTarget.dte出荷予定日1 = DateTime.MinValue;
-                        frmTarget.dte出荷予定日2 = DateTime.MinValue;
+                        frmTarget.ble出荷指定 = false;                        
                     }
 
                     if (受注完了承認指定.Checked)
                     {
+                        frmTarget.ble受注完了承認指定 = true;
+                        
                         if (完了承認済み.Checked)
                         {
-                            frmTarget.ble受注完了承認指定 = true;
+                            frmTarget.byt受注完了承認 = 1;
                         }
                         else
                         {
-                            frmTarget.ble受注完了承認指定 = false;
+                            frmTarget.byt受注完了承認 = 2;
                         }
                     }
                     else
@@ -384,7 +436,7 @@ namespace u_net
 
             if (textBox.Modified == false) return;
 
-            if (IsError(textBox) == true) e.Cancel = true;
+            if (IsError(textBox) == true) ; // e.Cancel = true;  コントロールから逃げられなくなるため
         }
 
         private void 受注コード1_KeyDown(object sender, KeyEventArgs e)
@@ -450,7 +502,7 @@ namespace u_net
 
             if (textBox.Modified == false) return;
 
-            if (IsError(textBox) == true) e.Cancel = true;
+            if (IsError(textBox) == true) ; // e.Cancel = true;
         }
 
         private void 受注コード2_KeyDown(object sender, KeyEventArgs e)
@@ -502,12 +554,16 @@ namespace u_net
 
             if (textBox.Modified == false) return;
 
-            if (IsError(textBox) == true) e.Cancel = true;
+            if (IsError(textBox) == true) ;// e.Cancel = true;
         }
 
         private void 受注日1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             F_カレンダー form = new F_カレンダー();
+            if (!string.IsNullOrEmpty(受注日1.Text))
+            {
+                form.args = 受注日1.Text;
+            }
             if (form.ShowDialog() == DialogResult.OK)
             {
                 // 日付選択フォームから選択した日付を取得
@@ -515,17 +571,22 @@ namespace u_net
 
                 // フォームAの日付コントロールに選択した日付を設定
                 受注日1.Text = selectedDate;
+                受注日1.Focus();
             }
         }
 
         private void 受注日1_Leave(object sender, EventArgs e)
         {
-            FunctionClass.範囲指定(受注日1, 受注日2);
+            FunctionClass.AdjustRange(受注日1, 受注日2, 受注日1);
         }
 
         private void 受注日1選択ボタン_Click(object sender, EventArgs e)
         {
             F_カレンダー form = new F_カレンダー();
+            if (!string.IsNullOrEmpty(受注日1.Text))
+            {
+                form.args = 受注日1.Text;
+            }
             if (form.ShowDialog() == DialogResult.OK)
             {
                 // 日付選択フォームから選択した日付を取得
@@ -533,6 +594,7 @@ namespace u_net
 
                 // フォームAの日付コントロールに選択した日付を設定
                 受注日1.Text = selectedDate;
+                受注日1.Focus();
             }
         }
 
@@ -542,12 +604,16 @@ namespace u_net
 
             if (textBox.Modified == false) return;
 
-            if (IsError(textBox) == true) e.Cancel = true;
+            if (IsError(textBox) == true) ;// e.Cancel = true;
         }
 
         private void 受注日2_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             F_カレンダー form = new F_カレンダー();
+            if (!string.IsNullOrEmpty(受注日2.Text))
+            {
+                form.args = 受注日2.Text;
+            }
             if (form.ShowDialog() == DialogResult.OK)
             {
                 // 日付選択フォームから選択した日付を取得
@@ -555,17 +621,23 @@ namespace u_net
 
                 // フォームAの日付コントロールに選択した日付を設定
                 受注日2.Text = selectedDate;
+                受注日2.Focus();
             }
         }
 
         private void 受注日2_Leave(object sender, EventArgs e)
         {
-            FunctionClass.範囲指定(受注日1, 受注日2);
+            FunctionClass.AdjustRange(受注日2, 受注日1, 受注日2);
         }
 
         private void 受注日2選択ボタン_Click(object sender, EventArgs e)
         {
             F_カレンダー form = new F_カレンダー();
+            if (!string.IsNullOrEmpty(受注日2.Text))
+            {
+                form.args = 受注日2.Text;
+            }
+
             if (form.ShowDialog() == DialogResult.OK)
             {
                 // 日付選択フォームから選択した日付を取得
@@ -573,6 +645,7 @@ namespace u_net
 
                 // フォームAの日付コントロールに選択した日付を設定
                 受注日2.Text = selectedDate;
+                受注日2.Focus();
             }
         }
 
@@ -582,12 +655,18 @@ namespace u_net
 
             if (textBox.Modified == false) return;
 
-            if (IsError(textBox) == true) e.Cancel = true;
+            if (IsError(textBox) == true) ;// e.Cancel = true;
         }
 
         private void 受注納期1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             F_カレンダー form = new F_カレンダー();
+
+            if (!string.IsNullOrEmpty(受注納期1.Text))
+            {
+                form.args = 受注納期1.Text;
+            }
+
             if (form.ShowDialog() == DialogResult.OK)
             {
                 // 日付選択フォームから選択した日付を取得
@@ -595,17 +674,22 @@ namespace u_net
 
                 // フォームAの日付コントロールに選択した日付を設定
                 受注納期1.Text = selectedDate;
+                受注納期1.Focus();
             }
         }
 
         private void 受注納期1_Leave(object sender, EventArgs e)
         {
-            FunctionClass.範囲指定(受注納期1, 受注納期2);
+            FunctionClass.AdjustRange(受注納期1, 受注納期2, 受注納期1);
         }
 
         private void 受注納期1選択ボタン_Click(object sender, EventArgs e)
         {
             F_カレンダー form = new F_カレンダー();
+            if (!string.IsNullOrEmpty(受注納期1.Text))
+            {
+                form.args = 受注納期1.Text;
+            }
             if (form.ShowDialog() == DialogResult.OK)
             {
                 // 日付選択フォームから選択した日付を取得
@@ -613,6 +697,7 @@ namespace u_net
 
                 // フォームAの日付コントロールに選択した日付を設定
                 受注納期1.Text = selectedDate;
+                受注納期1.Focus();
             }
         }
 
@@ -622,12 +707,16 @@ namespace u_net
 
             if (textBox.Modified == false) return;
 
-            if (IsError(textBox) == true) e.Cancel = true;
+            if (IsError(textBox) == true) ;// e.Cancel = true;
         }
 
         private void 受注納期2_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             F_カレンダー form = new F_カレンダー();
+            if (!string.IsNullOrEmpty(受注納期2.Text))
+            {
+                form.args = 受注納期2.Text;
+            }
             if (form.ShowDialog() == DialogResult.OK)
             {
                 // 日付選択フォームから選択した日付を取得
@@ -635,17 +724,22 @@ namespace u_net
 
                 // フォームAの日付コントロールに選択した日付を設定
                 受注納期2.Text = selectedDate;
+                受注納期2.Focus();
             }
         }
 
         private void 受注納期2_Leave(object sender, EventArgs e)
         {
-            FunctionClass.範囲指定(受注納期1, 受注納期2);
+            FunctionClass.AdjustRange(受注納期2, 受注納期1, 受注納期2);
         }
 
         private void 受注納期2選択ボタン_Click(object sender, EventArgs e)
         {
             F_カレンダー form = new F_カレンダー();
+            if (!string.IsNullOrEmpty(受注納期2.Text))
+            {
+                form.args = 受注納期2.Text;
+            }
             if (form.ShowDialog() == DialogResult.OK)
             {
                 // 日付選択フォームから選択した日付を取得
@@ -653,17 +747,22 @@ namespace u_net
 
                 // フォームAの日付コントロールに選択した日付を設定
                 受注納期2.Text = selectedDate;
+                受注納期2.Focus();
             }
         }
 
         private void 出荷完了日1_Leave(object sender, EventArgs e)
         {
-            FunctionClass.範囲指定(出荷完了日1, 出荷完了日2);
+            FunctionClass.AdjustRange(出荷完了日1, 出荷完了日2, 出荷完了日1);
         }
 
         private void 出荷完了日1選択ボタン_Click(object sender, EventArgs e)
         {
             F_カレンダー form = new F_カレンダー();
+            if (!string.IsNullOrEmpty(出荷完了日1.Text))
+            {
+                form.args = 出荷完了日1.Text;
+            }
             if (form.ShowDialog() == DialogResult.OK)
             {
                 // 日付選択フォームから選択した日付を取得
@@ -671,17 +770,22 @@ namespace u_net
 
                 // フォームAの日付コントロールに選択した日付を設定
                 出荷完了日1.Text = selectedDate;
+                出荷完了日1.Focus();
             }
         }
 
         private void 出荷完了日2_Leave(object sender, EventArgs e)
         {
-            FunctionClass.範囲指定(出荷完了日1, 出荷完了日2);
+            FunctionClass.AdjustRange(出荷完了日2, 出荷完了日1, 出荷完了日2);
         }
 
         private void 出荷完了日2選択ボタン_Click(object sender, EventArgs e)
         {
             F_カレンダー form = new F_カレンダー();
+            if (!string.IsNullOrEmpty(出荷完了日2.Text))
+            {
+                form.args = 出荷完了日2.Text;
+            }
             if (form.ShowDialog() == DialogResult.OK)
             {
                 // 日付選択フォームから選択した日付を取得
@@ -689,6 +793,7 @@ namespace u_net
 
                 // フォームAの日付コントロールに選択した日付を設定
                 出荷完了日2.Text = selectedDate;
+                出荷完了日2.Focus();
             }
         }
 
@@ -698,12 +803,16 @@ namespace u_net
 
             if (textBox.Modified == false) return;
 
-            if (IsError(textBox) == true) e.Cancel = true;
+            if (IsError(textBox) == true) ;// e.Cancel = true;
         }
 
         private void 出荷予定日1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             F_カレンダー form = new F_カレンダー();
+            if (!string.IsNullOrEmpty(出荷完了日1.Text))
+            {
+                form.args = 出荷完了日1.Text;
+            }
             if (form.ShowDialog() == DialogResult.OK)
             {
                 // 日付選択フォームから選択した日付を取得
@@ -711,12 +820,13 @@ namespace u_net
 
                 // フォームAの日付コントロールに選択した日付を設定
                 出荷予定日1.Text = selectedDate;
+                出荷予定日1.Focus();
             }
         }
 
         private void 出荷予定日1_Leave(object sender, EventArgs e)
         {
-            FunctionClass.範囲指定(出荷予定日1, 出荷予定日2);
+            FunctionClass.AdjustRange(出荷予定日1, 出荷予定日2,出荷予定日1);
         }
 
         private void 出荷予定日1選択ボタン_Click(object sender, EventArgs e)
@@ -729,6 +839,7 @@ namespace u_net
 
                 // フォームAの日付コントロールに選択した日付を設定
                 出荷予定日1.Text = selectedDate;
+                出荷予定日1.Focus();
             }
         }
 
@@ -738,7 +849,7 @@ namespace u_net
 
             if (textBox.Modified == false) return;
 
-            if (IsError(textBox) == true) e.Cancel = true;
+            if (IsError(textBox) == true) ;//e.Cancel = true;
         }
 
         private void 出荷予定日2_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -751,6 +862,7 @@ namespace u_net
 
                 // フォームAの日付コントロールに選択した日付を設定
                 出荷予定日2.Text = selectedDate;
+                出荷予定日2.Focus();
             }
         }
 
@@ -769,6 +881,7 @@ namespace u_net
 
                 // フォームAの日付コントロールに選択した日付を設定
                 出荷予定日2.Text = selectedDate;
+                出荷予定日2.Focus();
             }
         }
 
@@ -784,7 +897,7 @@ namespace u_net
 
             if (textBox.Modified == false) return;
 
-            if (IsError(textBox) == true) e.Cancel = true;
+            if (IsError(textBox) == true) ;// e.Cancel = true;
         }
 
         private void 自社担当者コード_DrawItem(object sender, DrawItemEventArgs e)
