@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using u_net.Public;
 
 namespace u_net
 {
@@ -217,6 +218,100 @@ namespace u_net
         private void キャンセルボタン_MouseClick(object sender, MouseEventArgs e)
         {
             this.Close();
+        }
+
+        private void 更新日開始選択ボタン_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                F_カレンダー dateSelectionForm = new F_カレンダー();
+
+                // 日付選択フォームを作成し表示
+                if (!string.IsNullOrEmpty(更新日開始.Text))
+                {
+                    dateSelectionForm.args = 更新日開始.Text;
+                }
+
+                if (dateSelectionForm.ShowDialog() == DialogResult.OK)
+                {
+                    // 日付選択フォームから選択した日付を取得
+                    string selectedDate = dateSelectionForm.SelectedDate;
+
+                    // フォームAの日付コントロールに選択した日付を設定
+                    更新日開始.Text = selectedDate;
+                }
+            }
+            catch (Exception ex)
+            {
+                // エラーが発生した場合の処理
+                MessageBox.Show($"エラーが発生しました: {ex.Message}", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void 更新日開始_DoubleClick(object sender, EventArgs e)
+        {
+            更新日開始選択ボタン_Click(sender, e);
+        }
+
+        private void 更新日開始_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == ' ')
+            {
+                更新日開始選択ボタン_Click(sender, e);
+            }
+        }
+
+        private void 更新日開始_Leave(object sender, EventArgs e)
+        {
+            FunctionClass.AdjustRange(更新日開始, 更新日終了, sender as Control);
+        }
+
+        private void 更新日終了選択ボタン_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                F_カレンダー dateSelectionForm = new F_カレンダー();
+
+                // 日付選択フォームを作成し表示
+                dateSelectionForm = new F_カレンダー();
+
+                if (!string.IsNullOrEmpty(更新日終了.Text))
+                {
+                    dateSelectionForm.args = 更新日終了.Text;
+                }
+
+                if (dateSelectionForm.ShowDialog() == DialogResult.OK)
+                {
+                    // 日付選択フォームから選択した日付を取得
+                    string selectedDate = dateSelectionForm.SelectedDate;
+
+                    // フォームAの日付コントロールに選択した日付を設定
+                    更新日終了.Text = selectedDate;
+                }
+            }
+            catch (Exception ex)
+            {
+                // エラーが発生した場合の処理
+                MessageBox.Show($"エラーが発生しました: {ex.Message}", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void 更新日終了_DoubleClick(object sender, EventArgs e)
+        {
+            更新日終了選択ボタン_Click(sender, e);
+        }
+
+        private void 更新日終了_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == ' ')
+            {
+                更新日終了選択ボタン_Click(sender, e);
+            }
+        }
+
+        private void 更新日終了_Leave(object sender, EventArgs e)
+        {
+            FunctionClass.AdjustRange(更新日開始, 更新日終了, sender as Control);
         }
 
         // Nz メソッドの代替
