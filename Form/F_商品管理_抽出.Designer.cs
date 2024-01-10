@@ -167,6 +167,9 @@
             更新日開始.Name = "更新日開始";
             更新日開始.Size = new Size(160, 23);
             更新日開始.TabIndex = 6;
+            更新日開始.DoubleClick += 更新日開始_DoubleClick;
+            更新日開始.KeyPress += 更新日開始_KeyPress;
+            更新日開始.Leave += 更新日開始_Leave;
             // 
             // label2
             // 
@@ -193,6 +196,9 @@
             更新日終了.Name = "更新日終了";
             更新日終了.Size = new Size(160, 23);
             更新日終了.TabIndex = 7;
+            更新日終了.DoubleClick += 更新日終了_DoubleClick;
+            更新日終了.KeyPress += 更新日終了_KeyPress;
+            更新日終了.Leave += 更新日終了_Leave;
             // 
             // Discontinued
             // 
