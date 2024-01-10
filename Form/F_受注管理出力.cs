@@ -12,6 +12,7 @@ using System.Windows.Forms;
 using u_net.Public;
 using ClosedXML.Excel;
 using Pao.Reports;
+using static ClosedXML.Excel.XLPredefinedFormat;
 
 namespace u_net
 {
@@ -116,7 +117,7 @@ namespace u_net
         {
             try
             {
-                this.Visible = false; // フォームを非表示にする
+                //this.Visible = false; // フォームを非表示にする
                 F_受注管理 frmTarget = Application.OpenForms.OfType<F_受注管理>().FirstOrDefault();
 
                 コマンド印刷(frmTarget.dataGridView1);
@@ -137,7 +138,7 @@ namespace u_net
 
             DataRowCollection report;
 
-            DataTable dt = new DataTable("DataGridView_Data");
+            DataTable dt = new DataTable();
 
             // 列のヘッダーをDataTableに追加
             foreach (DataGridViewColumn col in dataGridView.Columns)
@@ -155,25 +156,22 @@ namespace u_net
                 }
                 dt.Rows.Add(dRow);
             }
+            report = dt.Rows;
 
 
-
-            string sqlQuery = "SELECT * FROM V部品集合管理 WHERE 1=1 " ;
-
-            using (SqlCommand command = new SqlCommand(sqlQuery, cn))
-            {
-                using (SqlDataAdapter adapter = new SqlDataAdapter(command))
-                {
-                    DataSet dataSet = new DataSet();
-
-                    adapter.Fill(dataSet);
-
-                    report = dataSet.Tables[0].Rows;
-                }
-            }
+            //string sqlQuery = "SELECT * FROM V部品集合管理 WHERE 1=1 ";
+            //using (SqlCommand command = new SqlCommand(sqlQuery, cn))
+            //{
+            //    using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+            //    {
+            //        DataSet dataSet = new DataSet();
+            //        adapter.Fill(dataSet);
+            //        report = dataSet.Tables[0].Rows;
+            //    }
+            //}
 
             //最大行数
-            int maxRow = 33;
+            int maxRow = 43;
             //現在の行
             int CurRow = 0;
             //行数
@@ -187,7 +185,7 @@ namespace u_net
             int page = 1;
             double maxPage = Math.Ceiling((double)RowCount / maxRow);
 
-            DateTime now = DateTime.Now;
+            System.DateTime now = System.DateTime.Now;
 
             int lenB;
 
@@ -204,20 +202,11 @@ namespace u_net
                 //paoRep.Write("担当者名", 仕入先担当者名.Text != "" ? 仕入先担当者名.Text : " ");
                 //paoRep.Write("購買コード", 購買コード.Text != "" ? 購買コード.Text : " ");
                 //paoRep.Write("シリーズ名", シリーズ名.Text != "" ? シリーズ名.Text : " ");
-                //paoRep.Write("ロット番号", ロット番号.Text != "" ? ロット番号.Text : " ");
-                //paoRep.Write("無効日時", 無効日時.Text != "" ? 無効日時.Text : " ");
-                //paoRep.Write("承認者名", 承認者名.Text != "" ? 承認者名.Text : " ");
-                //paoRep.Write("発注者名", 発注者名.Text != "" ? 発注者名.Text : " ");
-                //paoRep.Write("無効日時表示", 無効日時.Text != "" ? "＜この注文書は無効です。＞" : " ");
-                //paoRep.Write("発注版数表示", int.TryParse(発注版数.Text, out int version) && version > 1 ?
-                //    "（第 " + 発注版数.Text + " 版）" : " ");
-
-
-
+                
                 //フッダー
 
                 paoRep.Write("出力日時", now.ToString("yyyy年M月d日"));
-                paoRep.Write("ページ", (page + "/" + maxPage + " ページ").ToString());
+                paoRep.Write("ページ数", (page + "/" + maxPage + " ページ").ToString());
 
                 //明細
                 for (var i = 0; i < maxRow; i++)
@@ -226,30 +215,33 @@ namespace u_net
 
                     DataRow targetRow = report[CurRow];
 
-                    //paoRep.Write("明細番号", (CurRow + 1).ToString(), i + 1);  //連番にしたい時はこちら。明細番号は歯抜けがあるので
-                    paoRep.Write("部品集合コード", targetRow["部品集合コード"].ToString() != "" ? targetRow["部品集合コード"].ToString() : " ", i + 1);
-                    paoRep.Write("版数", targetRow["部品集合版数"].ToString() != "" ? $"({targetRow["部品集合版数"].ToString()})" : " ", i + 1);
-                    paoRep.Write("集合名", targetRow["集合名"].ToString() != "" ? targetRow["集合名"].ToString() : " ", i + 1);
-                    paoRep.Write("更新日時", targetRow["更新日時"].ToString() != "" ? targetRow["更新日時"].ToString() : " ", i + 1);
-                    paoRep.Write("更新者名", targetRow["更新者名"].ToString() != "" ? targetRow["更新者名"].ToString() : " ", i + 1);
-                    paoRep.Write("確定", targetRow["確定"].ToString() != "" ? targetRow["確定"].ToString() : " ", i + 1);
-                    paoRep.Write("承認", targetRow["承認"].ToString() != "" ? targetRow["承認"].ToString() : " ", i + 1);
-                    paoRep.Write("削除", targetRow["削除"].ToString() != "" ? targetRow["削除"].ToString() : " ", i + 1);
-                    paoRep.Write("横罫線", i + 1);
+                    paoRep.Write("Text39", " ", i + 1);  //連番にしたい時はこちら。明細番号は歯抜けがあるので
+                    paoRep.Write("受注コード", targetRow["受注コード"].ToString() != "" ? targetRow["受注コード"].ToString() : " ", i + 1);
+                    paoRep.Write("受注版数", targetRow["版"].ToString() != "" ? targetRow["版"].ToString() : " ", i + 1);                   
+
+                    paoRep.Write("受注日", targetRow["受注日"] != DBNull.Value && !string.IsNullOrEmpty(targetRow["受注日"].ToString()) ?
+                        System.DateTime.TryParse(targetRow["受注日"].ToString(), out System.DateTime parsedDate) ? 
+                        parsedDate.ToString("yyyy/MM/dd") : " ":" ", i + 1);
+
+                    paoRep.Write("出荷予定日", targetRow["出荷予定日"] != DBNull.Value && !string.IsNullOrEmpty(targetRow["出荷予定日"].ToString()) ?
+                        System.DateTime.TryParse(targetRow["出荷予定日"].ToString(), out System.DateTime parsedDate2) ?
+                        parsedDate2.ToString("yyyy/MM/dd") : " " : " ", i + 1);
+
+                    paoRep.Write("受注納期", targetRow["受注納期"] != DBNull.Value && !string.IsNullOrEmpty(targetRow["受注納期"].ToString()) ?
+                        System.DateTime.TryParse(targetRow["受注納期"].ToString(), out System.DateTime parsedDate3) ?
+                        parsedDate3.ToString("yyyy/MM/dd") : " " : " ", i + 1);
+
+                    paoRep.Write("注文番号", targetRow["注文番号"].ToString() != "" ? targetRow["注文番号"].ToString() : " ", i + 1);
+                    paoRep.Write("顧客コード", targetRow["顧客コード"].ToString() != "" ? targetRow["顧客コード"].ToString().PadLeft(8, '0') : " ", i + 1);
+                    paoRep.Write("顧客名", targetRow["顧客名"].ToString() != "" ? targetRow["顧客名"].ToString() : " ", i + 1);
+                    paoRep.Write("自社担当者名", targetRow["自社担当者名"].ToString() != "" ? targetRow["自社担当者名"].ToString() : " ", i + 1);                    
 
                     CurRow++;
                 }
-
                 page++;
-
                 paoRep.PageEnd();
-
             }
             paoRep.Output();
-
         }
-
-
-
     }
 }

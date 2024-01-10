@@ -332,7 +332,7 @@ namespace u_net
                                            " ,  承認者コード  AS 承認 " +
                                            " , CASE WHEN 出荷完了日 IS NOT NULL THEN '■' ELSE '' END AS 出荷 " +
                                            " , CASE WHEN 完了承認者コード IS NOT NULL THEN '■' ELSE '' END AS 完了  " +
-                                           ", 無効日 ";
+                                           ", 無効日 ,顧客コード";
 
                 Connect();
                 string sql = "";
@@ -429,7 +429,7 @@ namespace u_net
                 dataGridView1.Columns[11].Width = 400 / twipperdot;    //出荷
                 dataGridView1.Columns[12].Width = 400 / twipperdot;　　//完了
                 dataGridView1.Columns[13].Visible = false; //無効日
-                //dataGridView1.Columns[14].Width = 0 / twipperdot;　//承認者コード　色変更のため追加
+                dataGridView1.Columns[14].Visible = false;　//顧客コード　受注管理表の出力のため
 
                 //    Font fontSO = new Font(this.dataGridView1.DefaultCellStyle.Font.FontFamily
                 //, this.dataGridView1.DefaultCellStyle.Font.Size , FontStyle.Strikeout);
