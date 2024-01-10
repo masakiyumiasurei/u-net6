@@ -219,6 +219,16 @@ namespace u_net
             this.Close();
         }
 
+        private void 更新日開始選択ボタン_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 更新日終了選択ボタン_Click(object sender, EventArgs e)
+        {
+
+        }
+
         // Nz メソッドの代替
         private T Nz<T>(T value)
         {
