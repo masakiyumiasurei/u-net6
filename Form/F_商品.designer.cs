@@ -562,6 +562,7 @@ namespace u_net
             // FlowCategoryCode
             // 
             FlowCategoryCode.DropDownStyle = ComboBoxStyle.DropDownList;
+            FlowCategoryCode.DropDownWidth = 170;
             FlowCategoryCode.FormattingEnabled = true;
             FlowCategoryCode.ImeMode = ImeMode.Disable;
             FlowCategoryCode.Location = new Point(125, 252);
@@ -1032,7 +1033,6 @@ namespace u_net
             数量単位名.ReadOnly = true;
             数量単位名.Size = new Size(141, 20);
             数量単位名.TabIndex = 157;
-            数量単位名.Visible = false;
             // 
             // label2
             // 
@@ -1117,7 +1117,6 @@ namespace u_net
             FlowCategoryName.ReadOnly = true;
             FlowCategoryName.Size = new Size(141, 20);
             FlowCategoryName.TabIndex = 151;
-            FlowCategoryName.Visible = false;
             // 
             // label6
             // 
@@ -1245,6 +1244,7 @@ namespace u_net
             数量単位コード.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             数量単位コード.AutoCompleteSource = AutoCompleteSource.ListItems;
             数量単位コード.DropDownStyle = ComboBoxStyle.DropDownList;
+            数量単位コード.DropDownWidth = 170;
             数量単位コード.FormattingEnabled = true;
             数量単位コード.ImeMode = ImeMode.Disable;
             数量単位コード.Location = new Point(124, 281);
