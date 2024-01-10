@@ -506,6 +506,7 @@
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "F_入庫管理_抽出";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "入庫管理 - 抽出";
             FormClosing += F_入庫管理_抽出_FormClosing;
             Load += Form_Load;

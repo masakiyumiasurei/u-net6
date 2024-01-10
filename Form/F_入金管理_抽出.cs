@@ -17,6 +17,7 @@ namespace u_net
         F_入金管理 frmTarget;
         public object objParent;
         public Control ctlNext;
+        bool setflg = false;
 
         public F_入金管理_抽出()
         {
@@ -48,19 +49,58 @@ namespace u_net
                 //開いているフォームのインスタンスを作成する
                 F_入金管理 frmTarget = Application.OpenForms.OfType<F_入金管理>().FirstOrDefault();
 
+                OriginalClass ofn = new OriginalClass();
+                ofn.SetComboBox(入金区分コード, "SELECT REPLACE(STR([入金区分コード], 2, 0), ' ', '0') AS  Value, 入金区分名 as Display FROM M入金区分");
+
+
                 // F_入金管理クラスからデータを取得し、現在のフォームのコントロールに設定
                 入金コード開始.Text = frmTarget.str入金コード開始;
                 入金コード終了.Text = frmTarget.str入金コード終了;
-                if (frmTarget.dtm入金日開始!=DateTime.MinValue)
+
+                if (frmTarget.dtm入金日開始 != DateTime.MinValue)
                     入金日開始.Text = frmTarget.dtm入金日開始.ToString();
-                if (frmTarget.dtm入金日終了!=DateTime.MinValue)
+
+                if (frmTarget.dtm入金日終了 != DateTime.MinValue)
                     入金日終了.Text = frmTarget.dtm入金日終了.ToString();
+
                 顧客コード.Text = frmTarget.str顧客コード;
                 顧客名.Text = frmTarget.str顧客名;
                 入金金額開始.Text = frmTarget.str入金金額開始;
                 入金金額終了.Text = frmTarget.str入金金額終了;
-                //請求指定.Text = frmTarget.lng請求指定.ToString();
-                //削除指定.Text = frmTarget.lng削除指定.ToString();
+                入金区分コード.SelectedIndex = -1;
+
+                switch (frmTarget.lng請求指定)
+                {
+                    case 1:
+                        購買データ抽出指定1.Checked = true;
+                        break;
+                    case 2:
+                        購買データ抽出指定2.Checked = true;
+                        break;
+                    case 0:
+                        購買データ抽出指定3.Checked = true;
+                        break;
+
+                    default:
+                        break;
+                }
+
+                switch (frmTarget.lng削除指定)
+                {
+                    case 1:
+                        削除指定Button1.Checked = true;
+                        break;
+                    case 2:
+                        削除指定Button2.Checked = true;
+                        break;
+                    case 0:
+                        削除指定Button3.Checked = true;
+                        break;
+
+                    default:
+
+                        break;
+                }
             }
             catch (Exception ex)
             {
@@ -86,12 +126,36 @@ namespace u_net
                 frmTarget.str顧客コード = Nz(顧客コード.Text);
                 frmTarget.str顧客名 = Nz(顧客名.Text);
                 frmTarget.str入金金額開始 = Nz(入金金額開始.Text);
-                frmTarget.str入金金額終了 = Nz(入金金額終了.Text);
-                frmTarget.lng請求指定 = int.Parse(請求指定.Text);
-                frmTarget.lng削除指定 = int.Parse(削除指定.Text);
+                frmTarget.str入金金額終了 = Nz(入金金額終了.Text);               
+
+                if (購買データ抽出指定1.Checked)
+                {
+                    frmTarget.lng請求指定 = 1;
+                }
+                else if (購買データ抽出指定2.Checked)
+                {
+                    frmTarget.lng請求指定 = 2;
+                }
+                else if (購買データ抽出指定3.Checked)
+                {
+                    frmTarget.lng請求指定 = 0;
+                }
+
+                if (削除指定Button1.Checked)
+                {
+                    frmTarget.lng削除指定 = 1;
+                }
+                else if (削除指定Button2.Checked)
+                {
+                    frmTarget.lng削除指定 = 2;
+                }
+                else if (削除指定Button3.Checked)
+                {
+                    frmTarget.lng削除指定 = 0;
+                }
 
                 long cnt = frmTarget.DoUpdate();
-
+                fn.WaitForm.Close();
                 if (cnt == 0)
                 {
                     MessageBox.Show("抽出条件に一致するデータはありません。", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -131,19 +195,14 @@ namespace u_net
             return value;
         }
 
-        private void 仕入先参照ボタン_Click(object sender, EventArgs e)
-        {
-            F_仕入先 fm = new F_仕入先();
-            fm.args = this.入金日開始.Text;
-            fm.ShowDialog();
-        }
-
-        private void 顧客コード_Validated(object sender, EventArgs e)
+        private void 顧客コード_TextChanged(object sender, EventArgs e)
         {
             Connect();
             if (!string.IsNullOrEmpty(顧客コード.Text))
                 顧客名.Text = FunctionClass.GetCustomerName(cn, 顧客コード.Text);
+            setflg = true;
         }
+
 
         private void 顧客コード_KeyDown(object sender, KeyEventArgs e)
         {
@@ -164,11 +223,17 @@ namespace u_net
             {
                 if (e.KeyChar == (char)Keys.Space)
                 {
-                    ctlNext = 顧客名;
-                    objParent = 顧客コード;
-                    // "検索" フォームを開く処理
-                    F_検索 searchForm = new F_検索();
-                    searchForm.Show();
+                    e.Handled = true;
+                    F_検索 SearchForm = new F_検索();
+                    SearchForm.FilterName = "顧客名フリガナ";
+                    if (SearchForm.ShowDialog() == DialogResult.OK)
+                    {
+                        setflg = true;
+                        string SelectedCode = SearchForm.SelectedCode;
+                        顧客コード.Text = SelectedCode;
+                        顧客名.Focus();
+                    }
+
                 }
             }
             catch (Exception ex)
@@ -179,19 +244,24 @@ namespace u_net
 
         private void 顧客コード検索ボタン_Click(object sender, EventArgs e)
         {
-            objParent = this;
-            F_検索 form = new F_検索();
-            form.FilterName = "顧客名フリガナ";
-            if (form.ShowDialog() == DialogResult.OK)
+            F_検索 SearchForm = new F_検索();
+            SearchForm.FilterName = "顧客名フリガナ";
+            if (SearchForm.ShowDialog() == DialogResult.OK)
             {
-                string SelectedCode = form.SelectedCode;
+                setflg = true;
+                string SelectedCode = SearchForm.SelectedCode;
                 顧客コード.Text = SelectedCode;
+                顧客名.Focus();
             }
         }
 
         private void 顧客名_Validated(object sender, EventArgs e)
         {
-            顧客コード.Text = null;
+            if (!setflg)
+            {
+                顧客コード.Text = null;
+            }
+            setflg = false;
         }
 
         private void 入金コード開始_KeyDown(object sender, KeyEventArgs e)
@@ -268,16 +338,18 @@ namespace u_net
         private void 入金日開始_KeyPress(object sender, KeyPressEventArgs e)
         {
             F_カレンダー form = new F_カレンダー();
+            if (!string.IsNullOrEmpty(入金日開始.Text))
+            {
+                form.args = 入金日開始.Text;
+            }
+
             if (form.ShowDialog() == DialogResult.OK)
             {
-                // objParent に入金日開始の参照を設定
-                sender = this.入金日開始;
-
                 // 日付選択フォームから選択した日付を取得
                 string selectedDate = form.SelectedDate;
 
-                // フォームAの日付コントロールに選択した日付を設定
                 入金日開始.Text = selectedDate;
+                入金日開始.Focus();
             }
 
             if (e.KeyChar == ' ')
@@ -286,14 +358,13 @@ namespace u_net
                 //F_カレンダー form = new F_カレンダー();
                 if (form.ShowDialog() == DialogResult.OK)
                 {
-                    // objParent に入金日開始の参照を設定
-                    sender = this.入金日開始;
 
                     // 日付選択フォームから選択した日付を取得
                     string selectedDate = form.SelectedDate;
 
                     // フォームAの日付コントロールに選択した日付を設定
                     入金日開始.Text = selectedDate;
+                    入金日開始.Focus();
                 }
             }
         }
@@ -307,32 +378,38 @@ namespace u_net
         {
             // 日付選択フォームを作成し表示
             F_カレンダー form = new F_カレンダー();
+
+            if (!string.IsNullOrEmpty(入金日開始.Text))
+            {
+                form.args = 入金日開始.Text;
+            }
+
             if (form.ShowDialog() == DialogResult.OK)
             {
-                // objParent に入金日開始の参照を設定
-                sender = this.入金日開始;
-
                 // 日付選択フォームから選択した日付を取得
                 string selectedDate = form.SelectedDate;
 
-                // フォームAの日付コントロールに選択した日付を設定
                 入金日開始.Text = selectedDate;
+                入金日開始.Focus();
             }
         }
 
         private void 入金日終了_KeyPress(object sender, KeyPressEventArgs e)
         {
             F_カレンダー form = new F_カレンダー();
+            if (!string.IsNullOrEmpty(入金日終了.Text))
+            {
+                form.args = 入金日終了.Text;
+            }
+
             if (form.ShowDialog() == DialogResult.OK)
             {
-                // objParent に入金日終了の参照を設定
-                sender = this.入金日終了;
-
                 // 日付選択フォームから選択した日付を取得
                 string selectedDate = form.SelectedDate;
 
                 // フォームAの日付コントロールに選択した日付を設定
                 入金日終了.Text = selectedDate;
+                入金日終了.Focus();
             }
 
             if (e.KeyChar == ' ')
@@ -341,14 +418,13 @@ namespace u_net
                 //F_カレンダー form = new F_カレンダー();
                 if (form.ShowDialog() == DialogResult.OK)
                 {
-                    // objParent に入金日終了の参照を設定
-                    sender = this.入金日終了;
 
                     // 日付選択フォームから選択した日付を取得
                     string selectedDate = form.SelectedDate;
 
                     // フォームAの日付コントロールに選択した日付を設定
                     入金日終了.Text = selectedDate;
+                    入金日終了.Focus();
                 }
             }
         }
@@ -362,17 +438,22 @@ namespace u_net
         {
             // 日付選択フォームを作成し表示
             F_カレンダー form = new F_カレンダー();
+            if (!string.IsNullOrEmpty(入金日終了.Text))
+            {
+                form.args = 入金日終了.Text;
+            }
+
             if (form.ShowDialog() == DialogResult.OK)
             {
-                // objParent に入金日終了の参照を設定
-                sender = this.入金日終了;
 
                 // 日付選択フォームから選択した日付を取得
                 string selectedDate = form.SelectedDate;
 
-                // フォームAの日付コントロールに選択した日付を設定
                 入金日終了.Text = selectedDate;
+                入金日終了.Focus();
             }
         }
+
+
     }
 }

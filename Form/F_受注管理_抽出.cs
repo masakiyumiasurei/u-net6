@@ -469,9 +469,7 @@ namespace u_net
         private void 受注コード1_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
-            {
-                // ChangeBig メソッドが提供されていないため、対応するコードに置き換える必要があります
-                // 以下はダミーコードで、実際の処理に合わせて修正してください
+            {                
                 int keyAscii = ChangeBig(e.KeyChar);
 
                 //// イベントを処理したことを示す
@@ -508,9 +506,7 @@ namespace u_net
         private void 受注コード2_KeyDown(object sender, KeyEventArgs e)
         {
             try
-            {
-                // FormatCode メソッドが提供されていないため、対応するコードに置き換える必要があります
-                // 以下はダミーコードで、実際の処理に合わせて修正してください
+            {                
                 string strCode = FunctionClass.FormatCode("A", e.KeyCode.ToString());
 
                 ////// イベントを処理したことを示す
@@ -526,9 +522,7 @@ namespace u_net
         private void 受注コード2_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
-            {
-                // ChangeBig メソッドが提供されていないため、対応するコードに置き換える必要があります
-                // 以下はダミーコードで、実際の処理に合わせて修正してください
+            {                
                 ////e.KeyChar = ChangeBig(e.KeyChar);
                 int keyAscii = ChangeBig(e.KeyChar);
 
