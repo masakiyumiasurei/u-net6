@@ -189,7 +189,6 @@ namespace u_net
                 if (cnt == 0)
                 {
                     MessageBox.Show("抽出条件に一致するデータはありません。", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
-
                     return;
                 }
                 else if (cnt < 0)
@@ -197,15 +196,16 @@ namespace u_net
                     MessageBox.Show("エラーが発生したため、抽出できませんでした。", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     return;
                 }
+                else
+                {
+                    this.Close();
+                }
+
             }
             catch (Exception ex)
             {
                 Debug.WriteLine(this.Name + "_抽出ボタン_Click - " + ex.Message);
                 MessageBox.Show("エラーが発生しました。", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
-                //this.Painting = true;
                 this.Close();
             }
         }
