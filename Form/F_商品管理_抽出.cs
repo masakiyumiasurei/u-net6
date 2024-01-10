@@ -75,7 +75,7 @@ namespace u_net
                         break;
 
                     default:
-                        // intComposedChipMount の値に対応するラジオボタンがない場合の処理
+                        // intIsUnit の値に対応するラジオボタンがない場合の処理
                         break;
                 }
                 switch (frmTarget.lngDiscontinued)
@@ -91,7 +91,7 @@ namespace u_net
                         break;
 
                     default:
-                        // intComposedChipMount の値に対応するラジオボタンがない場合の処理
+                        // lngDiscontinued の値に対応するラジオボタンがない場合の処理
                         break;
                 }
                 switch (frmTarget.lngDeleted)
@@ -107,7 +107,7 @@ namespace u_net
                         break;
 
                     default:
-                        // intComposedChipMount の値に対応するラジオボタンがない場合の処理
+                        // lngDeleted の値に対応するラジオボタンがない場合の処理
                         break;
                 }
             }

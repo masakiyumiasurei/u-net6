@@ -56,6 +56,7 @@ namespace u_net
             this.dtm更新日開始 = DateTime.MinValue;
             this.dtm更新日終了 = DateTime.MinValue;
             this.str更新者名 = "";
+            this.intComposedChipMount = 0;
             this.intIsUnit = 1;
             this.lngDiscontinued = 1;
             this.lngDeleted = 1;
