@@ -31,18 +31,13 @@ namespace u_net
         {
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(F_商品));
-            M商品BindingSource = new BindingSource(components);
-            uiDataSet = new uiDataSet();
             コマンド終了 = new Button();
             コマンド登録 = new Button();
             comboBox売上区分bindingSource = new BindingSource(components);
-            manufactureFlowBindingSource = new BindingSource(components);
-            m単位BindingSource = new BindingSource(components);
             newDataSet = new newDataSet();
             combBox商品コードBindingSource = new BindingSource(components);
             m商品分類BindingSource = new BindingSource(components);
             mシリーズBindingSource = new BindingSource(components);
-            M商品明細BindingSource = new BindingSource(components);
             panel1 = new Panel();
             button4 = new Button();
             button3 = new Button();
@@ -129,15 +124,11 @@ namespace u_net
             label6 = new Label();
             label1 = new Label();
             label4 = new Label();
-            m商品TableAdapter = new uiDataSetTableAdapters.M商品TableAdapter();
             v商品ヘッダTableAdapter = new uiDataSetTableAdapters.V商品ヘッダTableAdapter();
             combBox商品コードTableAdapter = new uiDataSetTableAdapters.CombBox商品コードTableAdapter();
             combBoxMシリーズTableAdapter = new uiDataSetTableAdapters.combBoxMシリーズTableAdapter();
-            M単位TableAdapter = new uiDataSetTableAdapters.M単位TableAdapter();
-            comboBoxManufactureFlowTableAdapter = new uiDataSetTableAdapters.ComboBoxManufactureFlowTableAdapter();
             m商品分類TableAdapter = new uiDataSetTableAdapters.M商品分類TableAdapter();
             comboBox売上区分TableAdapter = new uiDataSetTableAdapters.ComboBox売上区分TableAdapter();
-            tableAdapterManager = new uiDataSetTableAdapters.TableAdapterManager();
             label18 = new Label();
             label19 = new Label();
             数量単位コード = new ComboBox();
@@ -147,31 +138,15 @@ namespace u_net
             label21 = new Label();
             mshomeisaiTableAdapter = new newDataSetTableAdapters.MshomeisaiTableAdapter();
             商品明細1 = new MultiRowDesigner.商品明細();
-            ((System.ComponentModel.ISupportInitialize)M商品BindingSource).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)uiDataSet).BeginInit();
             ((System.ComponentModel.ISupportInitialize)comboBox売上区分bindingSource).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)manufactureFlowBindingSource).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)m単位BindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)newDataSet).BeginInit();
             ((System.ComponentModel.ISupportInitialize)combBox商品コードBindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)m商品分類BindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)mシリーズBindingSource).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)M商品明細BindingSource).BeginInit();
             panel1.SuspendLayout();
             statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)v商品ヘッダBindingSource).BeginInit();
             SuspendLayout();
-            // 
-            // M商品BindingSource
-            // 
-            M商品BindingSource.DataMember = "M商品";
-            M商品BindingSource.DataSource = uiDataSet;
-            // 
-            // uiDataSet
-            // 
-            uiDataSet.DataSetName = "uiDataSet";
-            uiDataSet.Namespace = "http://tempuri.org/uiDataSet.xsd";
-            uiDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // コマンド終了
             // 
@@ -203,17 +178,6 @@ namespace u_net
             // comboBox売上区分bindingSource
             // 
             comboBox売上区分bindingSource.DataMember = "M売上区分";
-            comboBox売上区分bindingSource.DataSource = uiDataSet;
-            // 
-            // manufactureFlowBindingSource
-            // 
-            manufactureFlowBindingSource.DataMember = "ManufactureFlow";
-            manufactureFlowBindingSource.DataSource = uiDataSet;
-            // 
-            // m単位BindingSource
-            // 
-            m単位BindingSource.DataMember = "M単位";
-            m単位BindingSource.DataSource = uiDataSet;
             // 
             // newDataSet
             // 
@@ -224,22 +188,14 @@ namespace u_net
             // combBox商品コードBindingSource
             // 
             combBox商品コードBindingSource.DataMember = "CombBox商品コード";
-            combBox商品コードBindingSource.DataSource = uiDataSet;
             // 
             // m商品分類BindingSource
             // 
             m商品分類BindingSource.DataMember = "M商品分類";
-            m商品分類BindingSource.DataSource = uiDataSet;
             // 
             // mシリーズBindingSource
             // 
             mシリーズBindingSource.DataMember = "Mシリーズ";
-            mシリーズBindingSource.DataSource = uiDataSet;
-            // 
-            // M商品明細BindingSource
-            // 
-            M商品明細BindingSource.DataMember = "M商品明細";
-            M商品明細BindingSource.DataSource = newDataSet;
             // 
             // panel1
             // 
@@ -529,17 +485,17 @@ namespace u_net
             // statusStrip1
             // 
             statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1 });
-            statusStrip1.Location = new Point(0, 667);
+            statusStrip1.Location = new Point(0, 670);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Padding = new Padding(1, 0, 19, 0);
-            statusStrip1.Size = new Size(1007, 25);
+            statusStrip1.Size = new Size(1007, 22);
             statusStrip1.TabIndex = 110;
             statusStrip1.Text = "statusStrip1";
             // 
             // toolStripStatusLabel1
             // 
             toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            toolStripStatusLabel1.Size = new Size(111, 20);
+            toolStripStatusLabel1.Size = new Size(89, 17);
             toolStripStatusLabel1.Text = "各種項目の説明";
             // 
             // 売上区分コード
@@ -844,7 +800,6 @@ namespace u_net
             // v商品ヘッダBindingSource
             // 
             v商品ヘッダBindingSource.DataMember = "V商品ヘッダ";
-            v商品ヘッダBindingSource.DataSource = uiDataSet;
             // 
             // label8
             // 
@@ -1009,7 +964,6 @@ namespace u_net
             // 
             CustomerSerialNumberRequired.AutoSize = true;
             CustomerSerialNumberRequired.CheckAlign = ContentAlignment.MiddleRight;
-            CustomerSerialNumberRequired.DataBindings.Add(new Binding("Checked", M商品BindingSource, "CustomerSerialNumberRequired", true));
             CustomerSerialNumberRequired.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             CustomerSerialNumberRequired.Location = new Point(136, 203);
             CustomerSerialNumberRequired.Margin = new Padding(4, 3, 4, 3);
@@ -1163,10 +1117,6 @@ namespace u_net
             label4.Text = "商品コード(&C)";
             label4.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // m商品TableAdapter
-            // 
-            m商品TableAdapter.ClearBeforeFill = true;
-            // 
             // v商品ヘッダTableAdapter
             // 
             v商品ヘッダTableAdapter.ClearBeforeFill = true;
@@ -1179,14 +1129,6 @@ namespace u_net
             // 
             combBoxMシリーズTableAdapter.ClearBeforeFill = true;
             // 
-            // M単位TableAdapter
-            // 
-            M単位TableAdapter.ClearBeforeFill = true;
-            // 
-            // comboBoxManufactureFlowTableAdapter
-            // 
-            comboBoxManufactureFlowTableAdapter.ClearBeforeFill = true;
-            // 
             // m商品分類TableAdapter
             // 
             m商品分類TableAdapter.ClearBeforeFill = true;
@@ -1194,20 +1136,6 @@ namespace u_net
             // comboBox売上区分TableAdapter
             // 
             comboBox売上区分TableAdapter.ClearBeforeFill = true;
-            // 
-            // tableAdapterManager
-            // 
-            tableAdapterManager.BackupDataSetBeforeUpdate = false;
-            tableAdapterManager.combBoxMシリーズTableAdapter = null;
-            tableAdapterManager.CombBox商品コードTableAdapter = null;
-            tableAdapterManager.ComboBoxManufactureFlowTableAdapter = null;
-            tableAdapterManager.ComboBox売上区分TableAdapter = null;
-            tableAdapterManager.Connection = null;
-            tableAdapterManager.M単位TableAdapter = null;
-            tableAdapterManager.M商品TableAdapter = null;
-            tableAdapterManager.M商品分類TableAdapter = null;
-            tableAdapterManager.M商品明細TableAdapter = null;
-            tableAdapterManager.UpdateOrder = uiDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             // 
             // label18
             // 
@@ -1307,7 +1235,7 @@ namespace u_net
             // 商品明細1
             // 
             商品明細1.Dock = DockStyle.Bottom;
-            商品明細1.Location = new Point(0, 437);
+            商品明細1.Location = new Point(0, 440);
             商品明細1.Margin = new Padding(5, 3, 5, 3);
             商品明細1.Name = "商品明細1";
             商品明細1.Size = new Size(1007, 230);
@@ -1380,16 +1308,11 @@ namespace u_net
             Text = "商品";
             Load += Form_Load;
             KeyDown += F_商品_KeyDown;
-            ((System.ComponentModel.ISupportInitialize)M商品BindingSource).EndInit();
-            ((System.ComponentModel.ISupportInitialize)uiDataSet).EndInit();
             ((System.ComponentModel.ISupportInitialize)comboBox売上区分bindingSource).EndInit();
-            ((System.ComponentModel.ISupportInitialize)manufactureFlowBindingSource).EndInit();
-            ((System.ComponentModel.ISupportInitialize)m単位BindingSource).EndInit();
             ((System.ComponentModel.ISupportInitialize)newDataSet).EndInit();
             ((System.ComponentModel.ISupportInitialize)combBox商品コードBindingSource).EndInit();
             ((System.ComponentModel.ISupportInitialize)m商品分類BindingSource).EndInit();
             ((System.ComponentModel.ISupportInitialize)mシリーズBindingSource).EndInit();
-            ((System.ComponentModel.ISupportInitialize)M商品明細BindingSource).EndInit();
             panel1.ResumeLayout(false);
             statusStrip1.ResumeLayout(false);
             statusStrip1.PerformLayout();
@@ -1448,12 +1371,6 @@ namespace u_net
         private System.Windows.Forms.Button コマンド削除;
         private System.Windows.Forms.Button コマンド複写;
         private System.Windows.Forms.Button コマンド修正;
-        private System.Windows.Forms.BindingSource M商品BindingSource;
-        private System.Windows.Forms.BindingSource M商品明細BindingSource;
-        private System.Windows.Forms.BindingSource m単位BindingSource;
-        private uiDataSetTableAdapters.M単位TableAdapter M単位TableAdapter;
-        private System.Windows.Forms.BindingSource manufactureFlowBindingSource;
-        private uiDataSetTableAdapters.ComboBoxManufactureFlowTableAdapter comboBoxManufactureFlowTableAdapter;
         private System.Windows.Forms.BindingSource comboBox売上区分bindingSource;
         private uiDataSetTableAdapters.ComboBox売上区分TableAdapter comboBox売上区分TableAdapter;
         private System.Windows.Forms.BindingSource m商品分類BindingSource;
@@ -1509,12 +1426,8 @@ namespace u_net
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.BindingSource v商品ヘッダBindingSource;
-
-        private uiDataSet uiDataSet;
-        private uiDataSetTableAdapters.M商品TableAdapter m商品TableAdapter;
         private uiDataSetTableAdapters.V商品ヘッダTableAdapter v商品ヘッダTableAdapter;
         private uiDataSetTableAdapters.combBoxMシリーズTableAdapter combBoxMシリーズTableAdapter;
-        private uiDataSetTableAdapters.TableAdapterManager tableAdapterManager;
         private Label label18;
         private Label label19;
         private ComboBox 数量単位コード;

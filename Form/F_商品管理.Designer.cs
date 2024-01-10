@@ -47,27 +47,10 @@
             label1 = new Label();
             label2 = new Label();
             dataGridView1 = new DataGridView();
-            dataGridViewTextBoxColumn51 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn52 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn53 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn54 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn55 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn56 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn57 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn58 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn59 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn60 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn61 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn62 = new DataGridViewTextBoxColumn();
-            q商品管理bindingSource = new BindingSource(components);
-            newDataSet = new newDataSet();
-            q商品管理TableAdapter = new newDataSetTableAdapters.Q商品管理TableAdapter();
             panel2 = new Panel();
             toolTip1 = new ToolTip(components);
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)q商品管理bindingSource).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)newDataSet).BeginInit();
             panel2.SuspendLayout();
             SuspendLayout();
             // 
@@ -285,10 +268,7 @@
             // 
             dataGridView1.AllowUserToAddRows = false;
             dataGridView1.AllowUserToDeleteRows = false;
-            dataGridView1.AutoGenerateColumns = false;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn51, dataGridViewTextBoxColumn52, dataGridViewTextBoxColumn53, dataGridViewTextBoxColumn54, dataGridViewTextBoxColumn55, dataGridViewTextBoxColumn56, dataGridViewTextBoxColumn57, dataGridViewTextBoxColumn58, dataGridViewTextBoxColumn59, dataGridViewTextBoxColumn60, dataGridViewTextBoxColumn61, dataGridViewTextBoxColumn62 });
-            dataGridView1.DataSource = q商品管理bindingSource;
             dataGridView1.Location = new Point(0, 36);
             dataGridView1.Margin = new Padding(3, 2, 3, 2);
             dataGridView1.Name = "dataGridView1";
@@ -301,105 +281,6 @@
             dataGridView1.CellPainting += DataGridView1_CellPainting;
             dataGridView1.Sorted += dataGridView1_Sorted;
             dataGridView1.KeyDown += dataGridView1_KeyDown;
-            // 
-            // dataGridViewTextBoxColumn51
-            // 
-            dataGridViewTextBoxColumn51.DataPropertyName = "商品コード";
-            dataGridViewTextBoxColumn51.HeaderText = "商品コード";
-            dataGridViewTextBoxColumn51.Name = "dataGridViewTextBoxColumn51";
-            dataGridViewTextBoxColumn51.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn52
-            // 
-            dataGridViewTextBoxColumn52.DataPropertyName = "基本型式名";
-            dataGridViewTextBoxColumn52.HeaderText = "基本型式名";
-            dataGridViewTextBoxColumn52.Name = "dataGridViewTextBoxColumn52";
-            dataGridViewTextBoxColumn52.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn53
-            // 
-            dataGridViewTextBoxColumn53.DataPropertyName = "シリーズ名";
-            dataGridViewTextBoxColumn53.HeaderText = "シリーズ名";
-            dataGridViewTextBoxColumn53.Name = "dataGridViewTextBoxColumn53";
-            dataGridViewTextBoxColumn53.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn54
-            // 
-            dataGridViewTextBoxColumn54.DataPropertyName = "在庫管理";
-            dataGridViewTextBoxColumn54.HeaderText = "在庫管理";
-            dataGridViewTextBoxColumn54.Name = "dataGridViewTextBoxColumn54";
-            dataGridViewTextBoxColumn54.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn55
-            // 
-            dataGridViewTextBoxColumn55.DataPropertyName = "在庫数量";
-            dataGridViewTextBoxColumn55.HeaderText = "在庫数量";
-            dataGridViewTextBoxColumn55.Name = "dataGridViewTextBoxColumn55";
-            dataGridViewTextBoxColumn55.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn56
-            // 
-            dataGridViewTextBoxColumn56.DataPropertyName = "在庫下限数量";
-            dataGridViewTextBoxColumn56.HeaderText = "在庫下限数量";
-            dataGridViewTextBoxColumn56.Name = "dataGridViewTextBoxColumn56";
-            dataGridViewTextBoxColumn56.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn57
-            // 
-            dataGridViewTextBoxColumn57.DataPropertyName = "更新日時";
-            dataGridViewTextBoxColumn57.HeaderText = "更新日時";
-            dataGridViewTextBoxColumn57.Name = "dataGridViewTextBoxColumn57";
-            dataGridViewTextBoxColumn57.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn58
-            // 
-            dataGridViewTextBoxColumn58.DataPropertyName = "更新者名";
-            dataGridViewTextBoxColumn58.HeaderText = "更新者名";
-            dataGridViewTextBoxColumn58.Name = "dataGridViewTextBoxColumn58";
-            dataGridViewTextBoxColumn58.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn59
-            // 
-            dataGridViewTextBoxColumn59.DataPropertyName = "廃止";
-            dataGridViewTextBoxColumn59.HeaderText = "廃止";
-            dataGridViewTextBoxColumn59.Name = "dataGridViewTextBoxColumn59";
-            dataGridViewTextBoxColumn59.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn60
-            // 
-            dataGridViewTextBoxColumn60.DataPropertyName = "削除";
-            dataGridViewTextBoxColumn60.HeaderText = "削除";
-            dataGridViewTextBoxColumn60.Name = "dataGridViewTextBoxColumn60";
-            dataGridViewTextBoxColumn60.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn61
-            // 
-            dataGridViewTextBoxColumn61.DataPropertyName = "ユニ";
-            dataGridViewTextBoxColumn61.HeaderText = "ユニ";
-            dataGridViewTextBoxColumn61.Name = "dataGridViewTextBoxColumn61";
-            dataGridViewTextBoxColumn61.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn62
-            // 
-            dataGridViewTextBoxColumn62.DataPropertyName = "構成";
-            dataGridViewTextBoxColumn62.HeaderText = "構成";
-            dataGridViewTextBoxColumn62.Name = "dataGridViewTextBoxColumn62";
-            dataGridViewTextBoxColumn62.ReadOnly = true;
-            // 
-            // q商品管理bindingSource
-            // 
-            q商品管理bindingSource.DataMember = "Q商品管理";
-            q商品管理bindingSource.DataSource = newDataSet;
-            // 
-            // newDataSet
-            // 
-            newDataSet.DataSetName = "newDataSet";
-            newDataSet.Namespace = "http://tempuri.org/newDataSet.xsd";
-            newDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // q商品管理TableAdapter
-            // 
-            q商品管理TableAdapter.ClearBeforeFill = true;
             // 
             // panel2
             // 
@@ -430,8 +311,6 @@
             KeyDown += Form_KeyDown;
             panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)q商品管理bindingSource).EndInit();
-            ((System.ComponentModel.ISupportInitialize)newDataSet).EndInit();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
             ResumeLayout(false);
@@ -568,21 +447,6 @@
         private DataGridViewTextBoxColumn 削除DataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn ユニDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn 構成DataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn51;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn52;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn53;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn54;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn55;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn56;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn57;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn58;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn59;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn60;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn61;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn62;
-        private BindingSource q商品管理bindingSource;
-        private newDataSet newDataSet;
-        private newDataSetTableAdapters.Q商品管理TableAdapter q商品管理TableAdapter;
         private Panel panel2;
         private Button コマンド検索;
         private ToolTip toolTip1;

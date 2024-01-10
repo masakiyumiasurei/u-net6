@@ -32,7 +32,9 @@ namespace u_net
                     return;
                 }
 
-                //F_商品管理 frmTarget = new F_商品管理(); // NEWだと開いてるインスタンスにならない
+                OriginalClass ofn = new OriginalClass();
+                ofn.SetComboBox(更新者名, "SELECT 氏名 as Value , 氏名 as Display FROM M社員 WHERE (退社 IS NULL) AND ([パート] = 0) AND (ふりがな <> N'ん') OR (退社 IS NULL) AND ([パート] IS NULL) AND (ふりがな <> N'ん') ORDER BY ふりがな");
+
 
                 //開いているフォームのインスタンスを作成する
                 F_商品管理 frmTarget = Application.OpenForms.OfType<F_商品管理>().FirstOrDefault();
@@ -239,6 +241,7 @@ namespace u_net
 
                     // フォームAの日付コントロールに選択した日付を設定
                     更新日開始.Text = selectedDate;
+                    更新日開始.Focus();
                 }
             }
             catch (Exception ex)
@@ -287,6 +290,7 @@ namespace u_net
 
                     // フォームAの日付コントロールに選択した日付を設定
                     更新日終了.Text = selectedDate;
+                    更新日終了.Focus();
                 }
             }
             catch (Exception ex)
