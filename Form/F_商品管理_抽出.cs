@@ -41,9 +41,9 @@ namespace u_net
                 this.基本型式名.Text = frmTarget.str基本型式名;
                 シリーズ名.Text = frmTarget.strシリーズ名;
                 if (frmTarget.dtm更新日開始 != DateTime.MinValue)
-                    更新日開始.Text = frmTarget.dtm更新日開始.ToString();
+                    更新日開始.Text = frmTarget.dtm更新日開始.ToString("yyyy/MM/dd");
                 if (frmTarget.dtm更新日終了 != DateTime.MinValue)
-                    更新日終了.Text = frmTarget.dtm更新日終了.ToString();
+                    更新日終了.Text = frmTarget.dtm更新日終了.ToString("yyyy/MM/dd");
                 更新者名.SelectedItem = frmTarget.str更新者名;
                 //ComposedChipMount.Value = frmTarget.intComposedChipMount;
                 switch (frmTarget.intComposedChipMount)
@@ -123,18 +123,13 @@ namespace u_net
             try
             {
                 F_商品管理? frmTarget = Application.OpenForms.OfType<F_商品管理>().FirstOrDefault();
-                //F_商品管理 frmTarget = new F_商品管理();
-
-
 
                 frmTarget.str基本型式名 = Nz(基本型式名.Text);
                 frmTarget.strシリーズ名 = Nz(シリーズ名.Text);
                 frmTarget.dtm更新日開始 = string.IsNullOrEmpty(更新日開始.Text) ?
                     DateTime.MinValue : DateTime.Parse(更新日開始.Text);
-
                 frmTarget.dtm更新日終了 = string.IsNullOrEmpty(更新日終了.Text) ?
                     DateTime.MinValue : DateTime.Parse(更新日終了.Text);
-
                 frmTarget.str更新者名 = Nz(更新者名.Text);
 
                 if (intComposedChipMountbutton1.Checked)

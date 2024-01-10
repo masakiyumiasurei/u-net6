@@ -172,10 +172,15 @@ namespace u_net
                 {
                     filter += "シリーズ名 LIKE '%" + strシリーズ名 + "%' AND ";
                 }
-                // 更新日時
+                // 更新日時開始
                 if (dtm更新日開始 != DateTime.MinValue)
                 {
-                    filter += "'" + dtm更新日開始 + "' <= 更新日時 AND 更新日時 <= '" + dtm更新日終了 + "' AND ";
+                    filter += "'" + dtm更新日開始.ToString("yyyy/MM/dd") + "' <= 更新日時 AND ";
+                }
+                // 更新日時終了
+                if (dtm更新日終了 != DateTime.MinValue)
+                {
+                    filter += "更新日時 <= '" + dtm更新日終了.ToString("yyyy/MM/dd") + "' AND ";
                 }
                 // 更新者名
                 if (!string.IsNullOrEmpty(str更新者名))
