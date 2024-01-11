@@ -1198,10 +1198,10 @@ namespace u_net
             // statusStrip1
             // 
             statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1 });
-            statusStrip1.Location = new Point(0, 601);
+            statusStrip1.Location = new Point(0, 704);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Padding = new Padding(1, 0, 19, 0);
-            statusStrip1.Size = new Size(1155, 22);
+            statusStrip1.Size = new Size(1240, 22);
             statusStrip1.TabIndex = 10117;
             statusStrip1.Text = "statusStrip1";
             // 
@@ -1250,7 +1250,7 @@ namespace u_net
             // F_発注
             // 
             BackColor = SystemColors.Control;
-            ClientSize = new Size(1155, 623);
+            ClientSize = new Size(1240, 726);
             Controls.Add(発注明細1);
             Controls.Add(入庫状況);
             Controls.Add(statusStrip1);

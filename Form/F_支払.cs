@@ -756,12 +756,7 @@ namespace u_net
                 Connect();
 
                 Cursor.Current = Cursors.WaitCursor;
-                this.DoubleBuffered = true;
-
-                if (this.ActiveControl == this.コマンド新規)
-                {
-                    this.コマンド新規.Focus();
-                }
+                this.DoubleBuffered = true;                                
 
                 // 変更がある
                 if (IsDirty)
@@ -1332,7 +1327,7 @@ namespace u_net
             try
             {
                 DialogResult intRes;
-
+                Connect();
                 if (!IsDirty)
                 {
                     if (this.IsNewData && !string.IsNullOrEmpty(this.CurrentCode))

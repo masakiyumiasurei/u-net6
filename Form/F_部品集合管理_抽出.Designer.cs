@@ -84,9 +84,8 @@
             集合名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             集合名.ImeMode = ImeMode.Hiragana;
             集合名.Location = new Point(136, 51);
-            集合名.Multiline = true;
             集合名.Name = "集合名";
-            集合名.Size = new Size(318, 24);
+            集合名.Size = new Size(318, 20);
             集合名.TabIndex = 4;
             // 
             // 分類内容
@@ -95,10 +94,9 @@
             分類内容.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             分類内容.ImeMode = ImeMode.Hiragana;
             分類内容.Location = new Point(194, 20);
-            分類内容.Multiline = true;
             分類内容.Name = "分類内容";
             分類内容.ReadOnly = true;
-            分類内容.Size = new Size(260, 27);
+            分類内容.Size = new Size(260, 20);
             分類内容.TabIndex = 2;
             分類内容.TabStop = false;
             // 
@@ -296,7 +294,7 @@
             // 更新日開始選択ボタン
             // 
             更新日開始選択ボタン.Location = new Point(257, 80);
-            更新日開始選択ボタン.Margin = new Padding(5, 5, 5, 5);
+            更新日開始選択ボタン.Margin = new Padding(5);
             更新日開始選択ボタン.Name = "更新日開始選択ボタン";
             更新日開始選択ボタン.Size = new Size(24, 28);
             更新日開始選択ボタン.TabIndex = 21008;
@@ -326,9 +324,8 @@
             更新日開始.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             更新日開始.ImeMode = ImeMode.Disable;
             更新日開始.Location = new Point(136, 81);
-            更新日開始.Multiline = true;
             更新日開始.Name = "更新日開始";
-            更新日開始.Size = new Size(116, 24);
+            更新日開始.Size = new Size(116, 20);
             更新日開始.TabIndex = 6;
             更新日開始.DoubleClick += 更新日開始_DoubleClick;
             // 
@@ -338,16 +335,15 @@
             更新日終了.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             更新日終了.ImeMode = ImeMode.Disable;
             更新日終了.Location = new Point(310, 81);
-            更新日終了.Multiline = true;
             更新日終了.Name = "更新日終了";
-            更新日終了.Size = new Size(116, 24);
+            更新日終了.Size = new Size(116, 20);
             更新日終了.TabIndex = 7;
             更新日終了.DoubleClick += 更新日終了_DoubleClick;
             // 
             // 更新日終了選択ボタン
             // 
             更新日終了選択ボタン.Location = new Point(431, 80);
-            更新日終了選択ボタン.Margin = new Padding(5, 5, 5, 5);
+            更新日終了選択ボタン.Margin = new Padding(5);
             更新日終了選択ボタン.Name = "更新日終了選択ボタン";
             更新日終了選択ボタン.Size = new Size(24, 28);
             更新日終了選択ボタン.TabIndex = 21016;
@@ -411,9 +407,8 @@
             更新者名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             更新者名.ImeMode = ImeMode.Hiragana;
             更新者名.Location = new Point(136, 113);
-            更新者名.Multiline = true;
             更新者名.Name = "更新者名";
-            更新者名.Size = new Size(318, 24);
+            更新者名.Size = new Size(318, 20);
             更新者名.TabIndex = 9;
             // 
             // statusStrip1
@@ -458,8 +453,10 @@
             Controls.Add(集合分類_ラベル);
             Margin = new Padding(3, 4, 3, 4);
             Name = "F_部品集合管理_抽出";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "部品集合管理_抽出";
             Load += Form_Load;
+            KeyDown += Form_KeyDown;
             groupBox3.ResumeLayout(false);
             groupBox3.PerformLayout();
             groupBox4.ResumeLayout(false);

@@ -1355,11 +1355,10 @@ namespace u_net
                 dateSelectionForm.args = 発注日.Text;
             }
 
-            if (dateSelectionForm.ShowDialog() == DialogResult.OK)
+            if (dateSelectionForm.ShowDialog() == DialogResult.OK && !発注日.ReadOnly && 発注日.Enabled)
             {
                 // 日付選択フォームから選択した日付を取得
                 string selectedDate = dateSelectionForm.SelectedDate;
-
                 発注日.Text = selectedDate;
             }
         }
