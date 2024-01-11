@@ -94,8 +94,6 @@ namespace u_net
             顧客名 = new TextBox();
             顧客検索ボタン = new Button();
             商品分類_ラベル = new Label();
-            商品コード = new ListBox();
-            型式名 = new ListBox();
             型番_ラベル = new Label();
             型番 = new TextBox();
             定価_ラベル = new Label();
@@ -113,6 +111,8 @@ namespace u_net
             確定済単価 = new TextBox();
             確定ボタン = new Button();
             閉じるボタン = new Button();
+            商品コード = new DataGridView();
+            型式名 = new DataGridView();
             ((System.ComponentModel.ISupportInitialize)M商品BindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)uiDataSet).BeginInit();
             ((System.ComponentModel.ISupportInitialize)comboBox売上区分bindingSource).BeginInit();
@@ -125,6 +125,8 @@ namespace u_net
             ((System.ComponentModel.ISupportInitialize)M商品明細BindingSource).BeginInit();
             statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)v商品ヘッダBindingSource).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)商品コード).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)型式名).BeginInit();
             SuspendLayout();
             // 
             // M商品BindingSource
@@ -359,7 +361,6 @@ namespace u_net
             商品分類名.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             商品分類名.AutoCompleteSource = AutoCompleteSource.ListItems;
             商品分類名.DropDownHeight = 184;
-            商品分類名.DropDownStyle = ComboBoxStyle.DropDownList;
             商品分類名.DropDownWidth = 238;
             商品分類名.FormattingEnabled = true;
             商品分類名.ImeMode = ImeMode.Disable;
@@ -370,9 +371,11 @@ namespace u_net
             商品分類名.Name = "商品分類名";
             商品分類名.Size = new Size(48, 20);
             商品分類名.TabIndex = 4;
-            商品分類名.SelectedIndexChanged += 商品分類コード_SelectedIndexChanged;
-            商品分類名.TextChanged += 商品分類コード_TextChanged;
+            商品分類名.DrawItem += 商品分類名_DrawItem;
+            商品分類名.SelectedIndexChanged += 商品分類名_SelectedIndexChanged;
+            商品分類名.TextChanged += 商品分類名_TextChanged;
             商品分類名.Enter += 商品分類名_Enter;
+            商品分類名.KeyPress += 商品分類名_KeyPress;
             商品分類名.Leave += 商品分類名_Leave;
             // 
             // v商品ヘッダBindingSource
@@ -504,8 +507,14 @@ namespace u_net
             顧客コード.Name = "顧客コード";
             顧客コード.Size = new Size(82, 20);
             顧客コード.TabIndex = 2;
+            顧客コード.TextChanged += 顧客コード_TextChanged;
+            顧客コード.DoubleClick += 顧客コード_DoubleClick;
             顧客コード.Enter += 顧客コード_Enter;
+            顧客コード.KeyDown += 顧客コード_KeyDown;
+            顧客コード.KeyPress += 顧客コード_KeyPress;
             顧客コード.Leave += 顧客コード_Leave;
+            顧客コード.Validating += 顧客コード_Validating;
+            顧客コード.Validated += 顧客コード_Validated;
             // 
             // 顧客名
             // 
@@ -529,6 +538,7 @@ namespace u_net
             顧客検索ボタン.TabStop = false;
             顧客検索ボタン.Text = "▼";
             顧客検索ボタン.UseVisualStyleBackColor = true;
+            顧客検索ボタン.Click += 顧客検索ボタン_Click;
             // 
             // 商品分類_ラベル
             // 
@@ -544,28 +554,6 @@ namespace u_net
             商品分類_ラベル.TabIndex = 3;
             商品分類_ラベル.Text = "商品分類";
             商品分類_ラベル.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // 商品コード
-            // 
-            商品コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            商品コード.FormattingEnabled = true;
-            商品コード.ImeMode = ImeMode.Disable;
-            商品コード.Location = new Point(10, 60);
-            商品コード.MultiColumn = true;
-            商品コード.Name = "商品コード";
-            商品コード.Size = new Size(728, 121);
-            商品コード.TabIndex = 5;
-            // 
-            // 型式名
-            // 
-            型式名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            型式名.FormattingEnabled = true;
-            型式名.ImeMode = ImeMode.Disable;
-            型式名.Location = new Point(10, 185);
-            型式名.MultiColumn = true;
-            型式名.Name = "型式名";
-            型式名.Size = new Size(728, 147);
-            型式名.TabIndex = 6;
             // 
             // 型番_ラベル
             // 
@@ -594,6 +582,7 @@ namespace u_net
             型番.TabIndex = 7;
             型番.Enter += 型番_Enter;
             型番.Leave += 型番_Leave;
+            型番.Validating += 型番_Validating;
             // 
             // 定価_ラベル
             // 
@@ -635,8 +624,10 @@ namespace u_net
             売値掛率.Name = "売値掛率";
             売値掛率.Size = new Size(136, 20);
             売値掛率.TabIndex = 9;
+            売値掛率.TextChanged += 売値掛率_TextChanged;
             売値掛率.Enter += 売値掛率_Enter;
             売値掛率.Leave += 売値掛率_Leave;
+            売値掛率.Validating += 売値掛率_Validating;
             // 
             // 売値掛率_ラベル
             // 
@@ -725,8 +716,11 @@ namespace u_net
             単価.Size = new Size(136, 20);
             単価.TabIndex = 21016;
             単価.TabStop = false;
+            単価.TextChanged += 単価_TextChanged;
             単価.Enter += 単価_Enter;
             単価.Leave += 単価_Leave;
+            単価.Validating += 単価_Validating;
+            単価.Validated += 単価_Validated;
             // 
             // 原価
             // 
@@ -812,12 +806,42 @@ namespace u_net
             閉じるボタン.UseVisualStyleBackColor = true;
             閉じるボタン.Click += 閉じるボタン_Click;
             // 
+            // 商品コード
+            // 
+            商品コード.AllowUserToAddRows = false;
+            商品コード.AllowUserToDeleteRows = false;
+            商品コード.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            商品コード.Location = new Point(10, 57);
+            商品コード.Margin = new Padding(3, 2, 3, 2);
+            商品コード.Name = "商品コード";
+            商品コード.ReadOnly = true;
+            商品コード.RowTemplate.Height = 29;
+            商品コード.Size = new Size(728, 133);
+            商品コード.TabIndex = 21021;
+            商品コード.SelectionChanged += 商品コード_SelectionChanged;
+            // 
+            // 型式名
+            // 
+            型式名.AllowUserToAddRows = false;
+            型式名.AllowUserToDeleteRows = false;
+            型式名.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            型式名.Location = new Point(10, 194);
+            型式名.Margin = new Padding(3, 2, 3, 2);
+            型式名.Name = "型式名";
+            型式名.ReadOnly = true;
+            型式名.RowTemplate.Height = 29;
+            型式名.Size = new Size(728, 133);
+            型式名.TabIndex = 21022;
+            型式名.SelectionChanged += 型式名_SelectionChanged;
+            // 
             // F_商品構成2
             // 
             AutoScaleDimensions = new SizeF(8F, 12F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
             ClientSize = new Size(746, 536);
+            Controls.Add(型式名);
+            Controls.Add(商品コード);
             Controls.Add(閉じるボタン);
             Controls.Add(確定ボタン);
             Controls.Add(確定済単価);
@@ -835,8 +859,6 @@ namespace u_net
             Controls.Add(定価_ラベル);
             Controls.Add(型番);
             Controls.Add(型番_ラベル);
-            Controls.Add(型式名);
-            Controls.Add(商品コード);
             Controls.Add(商品分類_ラベル);
             Controls.Add(顧客検索ボタン);
             Controls.Add(顧客名);
@@ -854,6 +876,7 @@ namespace u_net
             KeyPreview = true;
             Margin = new Padding(3, 2, 3, 2);
             Name = "F_商品構成2";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "商品構成";
             Load += Form_Load;
             ((System.ComponentModel.ISupportInitialize)M商品BindingSource).EndInit();
@@ -869,6 +892,8 @@ namespace u_net
             statusStrip1.ResumeLayout(false);
             statusStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)v商品ヘッダBindingSource).EndInit();
+            ((System.ComponentModel.ISupportInitialize)商品コード).EndInit();
+            ((System.ComponentModel.ISupportInitialize)型式名).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -947,8 +972,6 @@ namespace u_net
         private TextBox 顧客名;
         private Button 顧客検索ボタン;
         private Label 商品分類_ラベル;
-        private ListBox 商品コード;
-        private ListBox 型式名;
         private Label 型番_ラベル;
         private TextBox 型番;
         private Label 定価_ラベル;
@@ -966,6 +989,8 @@ namespace u_net
         private TextBox 確定済単価;
         private Button 確定ボタン;
         private Button 閉じるボタン;
+        private DataGridView 商品コード;
+        private DataGridView 型式名;
     }
 }
 

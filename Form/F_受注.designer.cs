@@ -2696,7 +2696,7 @@ namespace u_net
         private TextBox 出荷予定日;
         private TextBox 受注納期;
         private TextBox 受注日;
-        private MultiRowDesigner.受注明細 受注明細1;
+        public MultiRowDesigner.受注明細 受注明細1;
         private TextBox ProductionNotice;
         private Label label23;
         private TextBox 改版履歴;
@@ -2717,7 +2717,7 @@ namespace u_net
         private TextBox 顧客担当者名;
         private TextBox 顧客名;
         private Button 顧客コード検索ボタン;
-        private TextBox 顧客コード;
+        public TextBox 顧客コード;
         private Label label20;
         private Label label19;
         private Label label18;
