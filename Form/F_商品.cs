@@ -799,8 +799,8 @@ namespace u_net
                 }
 
 
-                LocalSetting test = new LocalSetting();
-                test.SavePlace(CommonConstants.LoginUserCode, this);
+                //LocalSetting test = new LocalSetting();
+                //test.SavePlace(CommonConstants.LoginUserCode, this);
 
             }
             catch (Exception ex)
