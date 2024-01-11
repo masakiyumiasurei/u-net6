@@ -29,6 +29,7 @@ namespace u_net
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(F_部品集合));
             コマンド終了 = new Button();
             コマンド登録 = new Button();
@@ -108,6 +109,7 @@ namespace u_net
             承認日時 = new TextBox();
             無効日時 = new TextBox();
             部品集合明細1 = new MultiRowDesigner.部品集合明細();
+            toolTip1 = new ToolTip(components);
             panel1.SuspendLayout();
             statusStrip1.SuspendLayout();
             SuspendLayout();
@@ -146,10 +148,11 @@ namespace u_net
             // 
             panel1.BackColor = SystemColors.ActiveCaption;
             panel1.Controls.Add(コマンド新規);
-            panel1.Location = new Point(0, 1);
+            panel1.Dock = DockStyle.Top;
+            panel1.Location = new Point(0, 0);
             panel1.Margin = new Padding(4, 3, 4, 3);
             panel1.Name = "panel1";
-            panel1.Size = new Size(869, 42);
+            panel1.Size = new Size(1111, 42);
             panel1.TabIndex = 81;
             // 
             // コマンド新規
@@ -181,6 +184,7 @@ namespace u_net
             コマンド部品.TabIndex = 1010;
             コマンド部品.TabStop = false;
             コマンド部品.Text = "部品参照";
+            toolTip1.SetToolTip(コマンド部品, "選択明細行の部品の参照");
             コマンド部品.UseVisualStyleBackColor = true;
             コマンド部品.Click += コマンド部品_Click;
             // 
@@ -196,6 +200,7 @@ namespace u_net
             コマンド改版.TabIndex = 1009;
             コマンド改版.TabStop = false;
             コマンド改版.Text = "改版";
+            toolTip1.SetToolTip(コマンド改版, "部品集合データの改版");
             コマンド改版.UseVisualStyleBackColor = true;
             コマンド改版.Click += コマンド改版_Click;
             // 
@@ -438,6 +443,7 @@ namespace u_net
             コマンドユニット管理.TabIndex = 1011;
             コマンドユニット管理.TabStop = false;
             コマンドユニット管理.Text = "ユ管参照";
+            toolTip1.SetToolTip(コマンドユニット管理, "ユニット管理の参照");
             コマンドユニット管理.UseVisualStyleBackColor = true;
             コマンドユニット管理.Click += コマンドユニット管理_Click;
             // 
@@ -724,7 +730,7 @@ namespace u_net
             statusStrip1.Location = new Point(0, 558);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Padding = new Padding(1, 0, 19, 0);
-            statusStrip1.Size = new Size(1053, 22);
+            statusStrip1.Size = new Size(1111, 22);
             statusStrip1.TabIndex = 10195;
             statusStrip1.Text = "statusStrip1";
             // 
@@ -912,17 +918,20 @@ namespace u_net
             // 
             // 部品集合明細1
             // 
+            部品集合明細1.AutoScroll = true;
+            部品集合明細1.AutoSize = true;
             部品集合明細1.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            部品集合明細1.Location = new Point(9, 192);
+            部品集合明細1.Location = new Point(0, 210);
             部品集合明細1.Margin = new Padding(4, 4, 4, 4);
+            部品集合明細1.MaximumSize = new Size(3000, 1000);
             部品集合明細1.Name = "部品集合明細1";
-            部品集合明細1.Size = new Size(1017, 359);
+            部品集合明細1.Size = new Size(1111, 348);
             部品集合明細1.TabIndex = 11;
             // 
             // F_部品集合
             // 
             BackColor = SystemColors.Control;
-            ClientSize = new Size(1053, 580);
+            ClientSize = new Size(1111, 580);
             Controls.Add(部品集合明細1);
             Controls.Add(無効日時);
             Controls.Add(承認日時);
@@ -977,11 +986,11 @@ namespace u_net
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "F_部品集合";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "部品集合";
             FormClosing += Form_Unload;
             Load += Form_Load;
             KeyDown += Form_KeyDown;
-            Resize += Form_Resize;
             panel1.ResumeLayout(false);
             statusStrip1.ResumeLayout(false);
             statusStrip1.PerformLayout();
@@ -1072,6 +1081,7 @@ namespace u_net
         private TextBox 承認日時;
         private TextBox 無効日時;
         private MultiRowDesigner.部品集合明細 部品集合明細1;
+        private ToolTip toolTip1;
     }
 }
 

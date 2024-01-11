@@ -106,6 +106,8 @@ namespace u_net
             請求コード = new TextBox();
             入金明細1 = new MultiRowDesigner.入金明細();
             toolTip1 = new ToolTip(components);
+            入金日選択ボタン = new Button();
+            顧客コード検索ボタン = new Button();
             panel1.SuspendLayout();
             statusStrip1.SuspendLayout();
             SuspendLayout();
@@ -477,7 +479,9 @@ namespace u_net
             入金日.Size = new Size(102, 20);
             入金日.TabIndex = 4;
             入金日.Enter += 入金日_Enter;
+            入金日.KeyPress += 入金日_KeyPress;
             入金日.Leave += 入金日_Leave;
+            入金日.Validating += 入金日_Validating;
             // 
             // 入金日_ラベル
             // 
@@ -650,8 +654,13 @@ namespace u_net
             顧客コード.Name = "顧客コード";
             顧客コード.Size = new Size(102, 20);
             顧客コード.TabIndex = 6;
+            顧客コード.TextChanged += 顧客コード_TextChanged;
             顧客コード.Enter += 顧客コード_Enter;
+            顧客コード.KeyDown += 顧客コード_KeyDown;
+            顧客コード.KeyPress += 顧客コード_KeyPress;
             顧客コード.Leave += 顧客コード_Leave;
+            顧客コード.Validating += 顧客コード_Validating;
+            顧客コード.Validated += 顧客コード_Validated;
             // 
             // 顧客名
             // 
@@ -708,17 +717,17 @@ namespace u_net
             // statusStrip1
             // 
             statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1 });
-            statusStrip1.Location = new Point(0, 491);
+            statusStrip1.Location = new Point(0, 488);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Padding = new Padding(1, 0, 19, 0);
-            statusStrip1.Size = new Size(900, 22);
+            statusStrip1.Size = new Size(900, 25);
             statusStrip1.TabIndex = 10195;
             statusStrip1.Text = "statusStrip1";
             // 
             // toolStripStatusLabel1
             // 
             toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            toolStripStatusLabel1.Size = new Size(89, 17);
+            toolStripStatusLabel1.Size = new Size(111, 20);
             toolStripStatusLabel1.Text = "各種項目の説明";
             // 
             // label5
@@ -747,6 +756,9 @@ namespace u_net
             入金コード.Name = "入金コード";
             入金コード.Size = new Size(102, 20);
             入金コード.TabIndex = 2;
+            入金コード.TextChanged += 入金コード_TextChanged;
+            入金コード.KeyDown += 入金コード_KeyDown;
+            入金コード.Validated += 入金コード_Validated;
             // 
             // 入金月
             // 
@@ -758,6 +770,7 @@ namespace u_net
             入金月.Name = "入金月";
             入金月.Size = new Size(102, 20);
             入金月.TabIndex = 10;
+            入金月.TextChanged += 入金月_TextChanged;
             入金月.Enter += 売掛年月_Enter;
             入金月.Leave += 売掛年月_Leave;
             // 
@@ -771,6 +784,7 @@ namespace u_net
             領収証但書.Name = "領収証但書";
             領収証但書.Size = new Size(409, 20);
             領収証但書.TabIndex = 12;
+            領収証但書.TextChanged += 領収証但書_TextChanged;
             領収証但書.Enter += 領収証但書_Enter;
             領収証但書.Leave += 領収証但書_Leave;
             // 
@@ -799,6 +813,7 @@ namespace u_net
             送付状摘要.Name = "送付状摘要";
             送付状摘要.Size = new Size(409, 65);
             送付状摘要.TabIndex = 14;
+            送付状摘要.TextChanged += 送付状摘要_TextChanged;
             送付状摘要.Enter += 送付状摘要_Enter;
             送付状摘要.Leave += 送付状摘要_Leave;
             // 
@@ -859,15 +874,43 @@ namespace u_net
             // 入金明細1
             // 
             入金明細1.Location = new Point(9, 323);
-            入金明細1.Margin = new Padding(4, 4, 4, 4);
+            入金明細1.Margin = new Padding(4);
             入金明細1.Name = "入金明細1";
             入金明細1.Size = new Size(879, 159);
             入金明細1.TabIndex = 10201;
+            // 
+            // 入金日選択ボタン
+            // 
+            入金日選択ボタン.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            入金日選択ボタン.Location = new Point(231, 72);
+            入金日選択ボタン.Margin = new Padding(4);
+            入金日選択ボタン.Name = "入金日選択ボタン";
+            入金日選択ボタン.Size = new Size(20, 20);
+            入金日選択ボタン.TabIndex = 10202;
+            入金日選択ボタン.TabStop = false;
+            入金日選択ボタン.Text = "▼";
+            入金日選択ボタン.UseVisualStyleBackColor = true;
+            入金日選択ボタン.Click += 入金日選択ボタン_Click;
+            // 
+            // 顧客コード検索ボタン
+            // 
+            顧客コード検索ボタン.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            顧客コード検索ボタン.Location = new Point(231, 96);
+            顧客コード検索ボタン.Margin = new Padding(4);
+            顧客コード検索ボタン.Name = "顧客コード検索ボタン";
+            顧客コード検索ボタン.Size = new Size(20, 20);
+            顧客コード検索ボタン.TabIndex = 10203;
+            顧客コード検索ボタン.TabStop = false;
+            顧客コード検索ボタン.Text = "▼";
+            顧客コード検索ボタン.UseVisualStyleBackColor = true;
+            顧客コード検索ボタン.Click += 顧客コード検索ボタン_Click;
             // 
             // F_入金
             // 
             BackColor = SystemColors.Control;
             ClientSize = new Size(900, 513);
+            Controls.Add(顧客コード検索ボタン);
+            Controls.Add(入金日選択ボタン);
             Controls.Add(入金明細1);
             Controls.Add(請求コード);
             Controls.Add(領収コード);
@@ -1009,6 +1052,8 @@ namespace u_net
         private TextBox 請求コード;
         private MultiRowDesigner.入金明細 入金明細1;
         private ToolTip toolTip1;
+        internal Button 入金日選択ボタン;
+        internal Button 顧客コード検索ボタン;
     }
 }
 

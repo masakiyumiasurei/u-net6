@@ -18,13 +18,15 @@ using System.Drawing.Imaging;
 using System.Drawing.Printing;
 using GrapeCity.Win.MultiRow;
 using System.Data.Common;
+using DocumentFormat.OpenXml.Wordprocessing;
+using Control = System.Windows.Forms.Control;
 //using DocumentFormat.OpenXml.Wordprocessing;
 
 namespace u_net
 {
     public partial class F_入金 : Form
     {
-        private Control previousControl;
+        private System.Windows.Forms.Control previousControl;
         private SqlConnection cn;
         private SqlTransaction tx;
         public string args = "";
@@ -97,7 +99,7 @@ namespace u_net
 
         private void Form_Load(object sender, EventArgs e)
         {
-            foreach (Control control in Controls)
+            foreach (System.Windows.Forms.Control control in Controls)
             {
                 control.PreviewKeyDown += OriginalClass.ValidateCheck;
             }
@@ -292,7 +294,7 @@ namespace u_net
             return false;
         }
 
-        private void UpdatedControl(Control controlObject)
+        private void UpdatedControl(System.Windows.Forms.Control controlObject)
         {
             FunctionClass fn = new FunctionClass();
             try
@@ -659,7 +661,7 @@ namespace u_net
                 return true;
             }
         }
-        private bool IsError(Control controlObject, bool cancel)
+        private bool IsError(System.Windows.Forms.Control controlObject, bool cancel)
         {
             try
             {
@@ -818,66 +820,32 @@ namespace u_net
                 Cursor.Current = Cursors.WaitCursor;
                 this.DoubleBuffered = true;
 
-                //if (this.ActiveControl == this.コマンド新規)
-                //{
-                //    this.コマンド新規.Focus();
-                //}
-
                 // 変更がある
-                //if (this.IsChanged)
-                //{
-                //    var intRes = MessageBox.Show("変更内容を登録しますか？", "新規コマンド", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
-                //    switch (intRes)
-                //    {
-                //        case DialogResult.Yes:
-                //            // 登録処理
-                //            if (!SaveData())
-                //            {
-                //                MessageBox.Show("エラーのため登録できません。", "新規コマンド", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                //                goto Bye_コマンド新規_Click;
-                //            }
-                //            break;
-                //        case DialogResult.Cancel:
-                //            goto Bye_コマンド新規_Click;
-                //    }
-                //}
+                if (IsChanged)
+                {
+                    var intRes = MessageBox.Show("変更内容を登録しますか？", "新規コマンド", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                    switch (intRes)
+                    {
+                        case DialogResult.Yes:
 
-                VariableSet.SetControls(this);
-                //DispGrid(CurrentCode);
+                            if (IsErrorData("入金コード")) return;
+                            // 登録処理
+                            if (!SaveData(IsNewData, CurrentCode))
+                            {
+                                MessageBox.Show("エラーのため登録できません。", "新規コマンド", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                                goto Bye_コマンド新規_Click;
+                            }
+                            break;
+                        case DialogResult.Cancel:
+                            goto Bye_コマンド新規_Click;
+                    }
+                }
 
-                //string code = FunctionClass.採番(cn, "PAR");
-                //部品コード.Text = code.Substring(Math.Max(0, code.Length - 8));
-                //版数.Text = 1.ToString();
-                //入数.Text = 1.ToString();
-                //単位数量.Text = 1.ToString();
-                //ロス率.Text = 0f.ToString();
-                //Rohs1ChemSherpaStatusCode.SelectedValue = 1;
-                //JampAis.SelectedValue = 1;
-                //非含有証明書.SelectedValue = (byte)3;
-                //RoHS資料.SelectedValue = (Int16)1;
-                //Rohs2ChemSherpaStatusCode.SelectedValue = 1;
-                //Rohs2JampAisStatusCode.SelectedValue = 1;
-                //Rohs2NonInclusionCertificationStatusCode.SelectedValue = 3;
-                //Rohs2DocumentStatusCode.SelectedValue = 1;
-                //Rohs2ProvisionalRegisteredStatusCode.Checked = true;
-                //廃止.Checked = false;
-
-
-                ChangedData(false);
-
-                //InventoryAmount.Text = 0.ToString();
-                //ShowRohsStatus();
-                //品名.Focus();
-                //部品コード.Enabled = false;
-                //改版ボタン.Enabled = false;
-                //コマンド新規.Enabled = false;
-                //コマンド読込.Enabled = true;
-                //コマンド削除.Enabled = false;
-                //コマンド廃止.Enabled = false;
-                //コマンドツール.Enabled = false;
-                //コマンド登録.Enabled = false;
-
-
+                if (!GoNewMode())
+                {
+                    MessageBox.Show("エラーのため新規モードへ移行できません。", "新規コマンド", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
 
             }
             finally
@@ -895,23 +863,72 @@ namespace u_net
 
         private void コマンド読込_Click(object sender, EventArgs e)
         {
-            // if (!AskSave()) { return; }
+            try
+            {
+                DialogResult intRes;
+                Connect();
+                if (!IsChanged)
+                {
+                    if (this.IsNewData && !string.IsNullOrEmpty(this.CurrentCode))
+                    {
+                        if (!FunctionClass.ReturnCode(cn, this.CurrentCode))
+                        {
+                            MessageBox.Show($"エラーのためコードは破棄されました。\n\n入金コード　：　{this.CurrentCode}",
+                                "修正コマンド", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        }
+                    }
 
+                    if (!GoModifyMode()) throw new Exception();
+                    goto Bye_コマンド修正_Click;
+                }
 
-            // strOpenArgsがどのように設定されているかに依存します。
-            // もしstrOpenArgsに関連する処理が必要な場合はここに追加してください。
+                intRes = MessageBox.Show("変更内容を登録しますか？", "修正コマンド", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
 
-            // 各コントロールの値をクリア
-            VariableSet.SetControls(this);
+                switch (intRes)
+                {
+                    case DialogResult.Yes:
+                        if (IsErrorData("入金コード")) return;
+                        if (!SaveData(IsNewData, CurrentCode))
+                        {
+                            MessageBox.Show("エラーのため登録できません。", "修正コマンド", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            return;
+                        }
+                        break;
 
-            // コントロールを操作
-            //部品コード.Enabled = true;
-            //部品コード.Focus();
-            //改版ボタン.Enabled = false;
-            //コマンド新規.Enabled = true;
-            //コマンド読込.Enabled = false;
-            //コマンド廃止.Enabled = false;
-            //コマンド登録.Enabled = false;
+                    case DialogResult.No:
+                        if (this.IsNewData && !string.IsNullOrEmpty(this.CurrentCode))
+                        {
+                            if (!FunctionClass.ReturnCode(cn, this.CurrentCode))
+                            {
+                                MessageBox.Show($"エラーのためコードは破棄されました。\n\n入金コード　：　{this.CurrentCode}",
+                                    "修正コマンド", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            }
+                        }
+                        break;
+
+                    case DialogResult.Cancel:
+                        return;
+                }
+
+                if (!GoModifyMode()) throw new Exception();
+
+            }
+            catch (Exception ex)
+            {
+                Debug.Print($"{this.Name}_コマンド修正_Click - {ex.Message}");
+                if (MessageBox.Show("エラーが発生しました。\n管理者に連絡してください。\n\n強制終了しますか？",
+                    "修正コマンド", MessageBoxButtons.YesNo, MessageBoxIcon.Error) == DialogResult.Yes)
+                {
+                    this.Close();
+                }
+                else
+                {
+                    goto Bye_コマンド修正_Click;
+                }
+            }
+
+        Bye_コマンド修正_Click:
+            return;
         }
 
 
@@ -1020,32 +1037,32 @@ namespace u_net
                 strSQL1 = $"SELECT * FROM T入金 WHERE {strKey}";
 
                 SqlCommand cmd = new SqlCommand(strSQL1, cn);
-                
-                    using (SqlDataReader reader = cmd.ExecuteReader())
+
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    if (!reader.HasRows)
                     {
-                        if (!reader.HasRows)
-                        {
-                            //EOFの処理
-                            return false;
-                        }
-                        else
-                        {
-                            // レコードが存在する場合の処理
-                            strKey = $"入金コード='{codeString}'";
-                            strSQL1 = $"DELETE T入金 WHERE {strKey}";
-                            strSQL2 = $"DELETE T入金明細 WHERE {strKey}";
+                        //EOFの処理
+                        return false;
+                    }
+                    else
+                    {
+                        // レコードが存在する場合の処理
+                        strKey = $"入金コード='{codeString}'";
+                        strSQL1 = $"DELETE T入金 WHERE {strKey}";
+                        strSQL2 = $"DELETE T入金明細 WHERE {strKey}";
 
-                            using (SqlCommand command = new SqlCommand(strSQL1, connectionObject, transaction))
-                            {
-                                command.ExecuteNonQuery();
-                            }
-
-                            using (SqlCommand command = new SqlCommand(strSQL2, connectionObject, transaction))
-                            {
-                                command.ExecuteNonQuery();
-                            }
+                        using (SqlCommand command = new SqlCommand(strSQL1, connectionObject, transaction))
+                        {
+                            command.ExecuteNonQuery();
                         }
-                    }              
+
+                        using (SqlCommand command = new SqlCommand(strSQL2, connectionObject, transaction))
+                        {
+                            command.ExecuteNonQuery();
+                        }
+                    }
+                }
 
                 // トランザクション完了
                 transaction.Commit();
@@ -1065,31 +1082,32 @@ namespace u_net
             try
             {
 
-                //this.品名.Focus();
-                ChangedData(true);
-
                 Connect();
 
                 // 以下、初期値の設定
-                //string code = FunctionClass.採番(cn, "PAR");
-                //部品コード.Text = code.Substring(Math.Max(0, code.Length - 8));
-                //this.版数.Text = 1.ToString();
-                //this.InventoryAmount.Text = 0.ToString();
-                //this.作成日時.Text = null;
-                //this.作成者コード.Text = null;
-                //this.CreatorName.Text = null;
-                //this.更新日時.Text = null;
-                //this.更新者コード.Text = null;
-                //this.UpdaterName.Text = null;
+                string code = FunctionClass.採番(cn, "B");
+                if (CopyData(code))
+                {
+                    ChangedData(true);
+                    FunctionClass.LockData(this, false);
+                    this.入金日.Focus();
+                    入金コード.Enabled = false;
 
-                // インターフェース更新
-                //this.コマンド新規.Enabled = false;
-                //this.コマンド読込.Enabled = true;
+                    this.コマンド新規.Enabled = false;
+                    this.コマンド修正.Enabled = true;
+                    this.コマンド複写.Enabled = false;
+                    this.コマンド削除.Enabled = false;
+                    this.コマンド登録.Enabled = true;
 
-                // 使用先の表示
-                //DispGrid(this.CurrentCode);
-
-                // RoHS対応状態の表示を更新する
+                    // 明細部制御
+                    入金明細1.Detail.AllowUserToAddRows = true;
+                    入金明細1.Detail.AllowUserToDeleteRows = true;
+                    入金明細1.Detail.ReadOnly = false; //readonlyなのでaccessと真偽が逆になる   
+                }
+                else
+                {
+                    throw new InvalidOperationException("CopyData時:エラー"); ;
+                }
 
             }
             catch (Exception ex)
@@ -1102,6 +1120,48 @@ namespace u_net
             }
         }
 
+        private bool CopyData(string codeString)
+        {
+            try
+            {
+                // 明細部の初期設定
+                DataTable dataTable = (DataTable)入金明細1.Detail.DataSource;
+                if (dataTable != null)
+                {
+                    for (int i = 0; i < dataTable.Rows.Count; i++)
+                    {
+                        // 行の状態が Deleted の時は次の行へ
+                        if (dataTable.Rows[i].RowState == DataRowState.Deleted)
+                        {
+                            continue;
+                        }
+                        dataTable.Rows[i]["入金コード"] = codeString;
+
+                    }
+                    入金明細1.Detail.DataSource = dataTable; // 更新した DataTable を再セット
+                }
+
+
+                入金コード.Text = codeString;
+
+                請求コード.Text = null;
+                作成日時.Text = null;
+                作成者コード.Text = null;
+                作成者名.Text = null;
+                更新日時.Text = string.Empty;
+                更新者コード.Text = string.Empty;
+                更新者名.Text = null;
+
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("エラーが発生しました。", "改版", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+        }
+
 
         private void コマンド終了_Click(object sender, EventArgs e)
         {
@@ -1111,7 +1171,7 @@ namespace u_net
         private void Form_KeyDown(object sender, KeyEventArgs e)
         {
 
-            bool intShiftDown = (Control.ModifierKeys & Keys.Shift) == Keys.Shift;
+            bool intShiftDown = (System.Windows.Forms.Control.ModifierKeys & Keys.Shift) == Keys.Shift;
 
             if (intShiftDown)
             {
@@ -1261,6 +1321,142 @@ namespace u_net
         private void コマンド領収書_Click(object sender, EventArgs e)
         {
             MessageBox.Show("本機能は使用できません。", "領収書プレビュー", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void 入金日選択ボタン_Click(object sender, EventArgs e)
+        {
+            F_カレンダー dateSelectionForm = new F_カレンダー();
+
+            if (!string.IsNullOrEmpty(入金日.Text))
+            {
+                dateSelectionForm.args = 入金日.Text;
+            }
+
+            if (dateSelectionForm.ShowDialog() == DialogResult.OK && !入金日.ReadOnly && 入金日.Enabled)
+            {
+                // 日付選択フォームから選択した日付を取得
+                string selectedDate = dateSelectionForm.SelectedDate;
+                入金日.Text = selectedDate;
+            }
+        }
+
+        private void 顧客コード検索ボタン_Click(object sender, EventArgs e)
+        {
+            SearchForm = new F_検索();
+            SearchForm.FilterName = "顧客名フリガナ";
+            if (SearchForm.ShowDialog() == DialogResult.OK)
+            {
+                string SelectedCode = SearchForm.SelectedCode;
+
+                顧客コード.Text = SelectedCode;
+                UpdatedControl(顧客コード);
+            }
+        }
+
+        private void 顧客コード_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            switch (e.KeyChar)
+            {
+                case (char)Keys.Space:
+                    e.Handled = true;
+                    顧客コード検索ボタン_Click(sender, e);
+                    break;
+            }
+        }
+
+        private void 顧客コード_Validated(object sender, EventArgs e)
+        {
+            if (this.顧客コード.Modified == false) return;
+            UpdatedControl(顧客コード);
+        }
+
+        private void 顧客コード_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (this.顧客コード.Modified == false) return;
+            if (IsError(sender as System.Windows.Forms.Control, false) == true) e.Cancel = true;
+        }
+
+        private void 顧客コード_TextChanged(object sender, EventArgs e)
+        {
+            ChangedData(true);
+        }
+
+        private void 顧客コード_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Return)
+            {
+                System.Windows.Forms.Control control = (System.Windows.Forms.Control)sender;
+                string strCode = control.Text.Trim();
+
+                if (string.IsNullOrEmpty(strCode))
+                {
+                    return;
+                }
+
+                strCode = strCode.PadLeft(8, '0');
+                if (strCode != control.Text)
+                {
+                    control.Text = strCode;
+                }
+            }
+        }
+
+        private void 送付状摘要_TextChanged(object sender, EventArgs e)
+        {
+            ChangedData(true);
+        }
+
+        private void 入金コード_TextChanged(object sender, EventArgs e)
+        {
+            FunctionClass.LimitText(sender as System.Windows.Forms.Control, 9);
+        }
+
+        private void 入金コード_Validated(object sender, EventArgs e)
+        {
+            UpdatedControl(入金コード);
+        }
+
+        private void 入金コード_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Return)
+            {
+                string strCode = this.入金コード.Text;
+                if (string.IsNullOrEmpty(strCode)) return;
+
+                strCode = FunctionClass.FormatReceivedCode(入金コード.Text);
+
+                if (strCode != this.入金コード.Text)
+                {
+                    this.入金コード.Text = strCode;
+                }
+
+            }
+        }
+
+        private void 入金月_TextChanged(object sender, EventArgs e)
+        {
+            ChangedData(true);
+        }
+
+        private void 入金日_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (IsError(sender as System.Windows.Forms.Control, false) == true) ;// e.Cancel = true;
+        }
+
+        private void 入金日_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            switch (e.KeyChar)
+            {
+                case (char)Keys.Space:
+                    e.Handled = true;
+                    入金日選択ボタン_Click(sender, e);
+                    break;
+            }
+        }
+
+        private void 領収証但書_TextChanged(object sender, EventArgs e)
+        {
+            ChangedData(true);
         }
     }
 }

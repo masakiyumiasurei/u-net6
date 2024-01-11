@@ -50,6 +50,10 @@ namespace u_net
                     this.Close();
                     return;
                 }
+                foreach (System.Windows.Forms.Control control in Controls)
+                {
+                    control.PreviewKeyDown += OriginalClass.ValidateCheck;
+                }
 
                 ofn.SetComboBox(分類名, "SELECT 分類記号 as Display,対象部品名 as Display2,分類記号 as Value FROM M部品分類 ORDER BY 分類記号");
                 分類名.DrawMode = DrawMode.OwnerDrawFixed;
@@ -290,6 +294,15 @@ namespace u_net
             更新日終了選択ボタン_Click(sender, e);
         }
 
-        
+        private void Form_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Return:
+                    SelectNextControl(ActiveControl, true, true, true, true);
+                    break;
+
+            }
+        }
     }
 }
