@@ -525,7 +525,7 @@ namespace u_net
             FlowCategoryCode.Location = new Point(125, 252);
             FlowCategoryCode.Margin = new Padding(4, 3, 4, 3);
             FlowCategoryCode.Name = "FlowCategoryCode";
-            FlowCategoryCode.Size = new Size(48, 20);
+            FlowCategoryCode.Size = new Size(79, 20);
             FlowCategoryCode.TabIndex = 18;
             FlowCategoryCode.TextChanged += FlowCategoryCode_TextChanged;
             // 
@@ -982,7 +982,7 @@ namespace u_net
             数量単位名.BackColor = Color.White;
             数量単位名.Enabled = false;
             数量単位名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            数量単位名.Location = new Point(178, 282);
+            数量単位名.Location = new Point(209, 282);
             数量単位名.Margin = new Padding(3, 2, 3, 2);
             数量単位名.Name = "数量単位名";
             数量単位名.ReadOnly = true;
@@ -1066,7 +1066,7 @@ namespace u_net
             FlowCategoryName.BackColor = Color.White;
             FlowCategoryName.Enabled = false;
             FlowCategoryName.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            FlowCategoryName.Location = new Point(178, 252);
+            FlowCategoryName.Location = new Point(209, 252);
             FlowCategoryName.Margin = new Padding(3, 2, 3, 2);
             FlowCategoryName.Name = "FlowCategoryName";
             FlowCategoryName.ReadOnly = true;
@@ -1178,7 +1178,7 @@ namespace u_net
             数量単位コード.ImeMode = ImeMode.Disable;
             数量単位コード.Location = new Point(124, 281);
             数量単位コード.Name = "数量単位コード";
-            数量単位コード.Size = new Size(48, 20);
+            数量単位コード.Size = new Size(79, 20);
             数量単位コード.TabIndex = 20;
             数量単位コード.TextChanged += 数量単位コード_TextChanged;
             // 
