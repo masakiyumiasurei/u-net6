@@ -1070,6 +1070,9 @@ namespace u_net
             }
 
             if (!FunctionClass.LimitText(this.ActiveControl, 8)) return;
+
+            シリーズ名.Text = シリーズコード.Text;
+
             ChangedData(true);
         }
 
@@ -1086,6 +1089,8 @@ namespace u_net
         private void 商品分類コード_TextChanged(object sender, EventArgs e)
         {
             if (!FunctionClass.LimitText(this.ActiveControl, 2)) return;
+
+
             ChangedData(true);
         }
 
