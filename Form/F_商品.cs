@@ -28,6 +28,10 @@ namespace u_net
         public string args = "";
         //public string CurrentCode = "";
         private bool setCombo = false;
+
+        int intWindowHeight = 0;
+        int intWindowWidth = 0;
+
         public F_商品()
         {
             this.Text = "商品";       // ウィンドウタイトルを設定
@@ -145,11 +149,6 @@ namespace u_net
                 }
 
                 fn.WaitForm.Close();
-
-                //実行中フォーム起動              
-                LocalSetting localSetting = new LocalSetting();
-                localSetting.LoadPlace(CommonConstants.LoginUserCode, this);
-
             }
             catch (Exception ex)
             {
@@ -1203,6 +1202,19 @@ namespace u_net
         private void 売上区分コード_TextChanged(object sender, EventArgs e)
         {
             ChangedData(true);
+        }
+
+        private void F_商品_Resize(object sender, EventArgs e)
+        {
+            try
+            {
+                intWindowHeight = this.Height;  // 高さ保存
+                intWindowWidth = this.Width;    // 幅保存
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this.Name + "F_商品_Form_Resize - " + ex.Message);
+            }
         }
 
         //private void 明細削除ボタン_Click(object sender, DataGridViewCellEventArgs e)

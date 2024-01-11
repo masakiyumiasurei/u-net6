@@ -535,7 +535,7 @@ namespace u_net
             商品コード.AutoCompleteSource = AutoCompleteSource.ListItems;
             商品コード.BackColor = Color.FromArgb(255, 255, 153);
             商品コード.FormattingEnabled = true;
-            商品コード.ImeMode = ImeMode.NoControl;
+            商品コード.ImeMode = ImeMode.Disable;
             商品コード.Location = new Point(125, 51);
             商品コード.Margin = new Padding(4, 3, 4, 3);
             商品コード.Name = "商品コード";
@@ -1235,7 +1235,7 @@ namespace u_net
             // 
             // 商品明細1
             // 
-            商品明細1.Dock = DockStyle.Bottom;
+            商品明細1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             商品明細1.Location = new Point(0, 440);
             商品明細1.Margin = new Padding(5, 3, 5, 3);
             商品明細1.Name = "商品明細1";
@@ -1320,6 +1320,7 @@ namespace u_net
             KeyPreview = true;
             Margin = new Padding(3, 2, 3, 2);
             Name = "F_商品";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "商品";
             Load += Form_Load;
             KeyDown += F_商品_KeyDown;
