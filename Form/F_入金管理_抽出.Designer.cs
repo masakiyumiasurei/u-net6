@@ -32,9 +32,9 @@
             入金日開始 = new TextBox();
             入金コード1ラベル = new Label();
             請求指定 = new GroupBox();
-            radioButton1 = new RadioButton();
-            削除指定Button2 = new RadioButton();
-            削除指定Button1 = new RadioButton();
+            購買データ抽出指定3 = new RadioButton();
+            購買データ抽出指定2 = new RadioButton();
+            購買データ抽出指定1 = new RadioButton();
             抽出ボタン = new Button();
             キャンセルボタン = new Button();
             入金日開始選択ボタン = new Button();
@@ -44,9 +44,9 @@
             入金日1ラベル = new Label();
             入金区分コード = new ComboBox();
             削除指定 = new GroupBox();
-            radioButton4 = new RadioButton();
-            radioButton2 = new RadioButton();
-            radioButton3 = new RadioButton();
+            削除指定Button3 = new RadioButton();
+            削除指定Button2 = new RadioButton();
+            削除指定Button1 = new RadioButton();
             label6 = new Label();
             自社担当者名ラベル = new Label();
             顧客コード = new TextBox();
@@ -66,14 +66,12 @@
             // 顧客名
             // 
             顧客名.BackColor = Color.White;
-            顧客名.Enabled = false;
             顧客名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             顧客名.ImeMode = ImeMode.Hiragana;
             顧客名.Location = new Point(126, 110);
             顧客名.Margin = new Padding(3, 2, 3, 2);
-            顧客名.Multiline = true;
             顧客名.Name = "顧客名";
-            顧客名.Size = new Size(413, 23);
+            顧客名.Size = new Size(413, 20);
             顧客名.TabIndex = 8;
             顧客名.Validated += 顧客名_Validated;
             // 
@@ -83,9 +81,8 @@
             入金日開始.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             入金日開始.Location = new Point(126, 50);
             入金日開始.Margin = new Padding(3, 2, 3, 2);
-            入金日開始.Multiline = true;
             入金日開始.Name = "入金日開始";
-            入金日開始.Size = new Size(160, 23);
+            入金日開始.Size = new Size(160, 20);
             入金日開始.TabIndex = 2;
             入金日開始.KeyPress += 入金日開始_KeyPress;
             入金日開始.Leave += 入金日開始_Leave;
@@ -107,9 +104,9 @@
             // 
             // 請求指定
             // 
-            請求指定.Controls.Add(radioButton1);
-            請求指定.Controls.Add(削除指定Button2);
-            請求指定.Controls.Add(削除指定Button1);
+            請求指定.Controls.Add(購買データ抽出指定3);
+            請求指定.Controls.Add(購買データ抽出指定2);
+            請求指定.Controls.Add(購買データ抽出指定1);
             請求指定.Font = new Font("BIZ UDゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             請求指定.Location = new Point(25, 221);
             請求指定.Name = "請求指定";
@@ -118,38 +115,38 @@
             請求指定.TabStop = false;
             請求指定.Text = "請求指定(&B)";
             // 
-            // radioButton1
+            // 購買データ抽出指定3
             // 
-            radioButton1.AutoSize = true;
-            radioButton1.Location = new Point(341, 22);
-            radioButton1.Name = "radioButton1";
-            radioButton1.Size = new Size(95, 18);
-            radioButton1.TabIndex = 3;
-            radioButton1.TabStop = true;
-            radioButton1.Text = "指定しない";
-            radioButton1.UseVisualStyleBackColor = true;
+            購買データ抽出指定3.AutoSize = true;
+            購買データ抽出指定3.Location = new Point(341, 22);
+            購買データ抽出指定3.Name = "購買データ抽出指定3";
+            購買データ抽出指定3.Size = new Size(95, 18);
+            購買データ抽出指定3.TabIndex = 3;
+            購買データ抽出指定3.TabStop = true;
+            購買データ抽出指定3.Text = "指定しない";
+            購買データ抽出指定3.UseVisualStyleBackColor = true;
             // 
-            // 削除指定Button2
+            // 購買データ抽出指定2
             // 
-            削除指定Button2.AutoSize = true;
-            削除指定Button2.Location = new Point(197, 22);
-            削除指定Button2.Name = "削除指定Button2";
-            削除指定Button2.Size = new Size(95, 18);
-            削除指定Button2.TabIndex = 2;
-            削除指定Button2.TabStop = true;
-            削除指定Button2.Text = "締めている";
-            削除指定Button2.UseVisualStyleBackColor = true;
+            購買データ抽出指定2.AutoSize = true;
+            購買データ抽出指定2.Location = new Point(197, 22);
+            購買データ抽出指定2.Name = "購買データ抽出指定2";
+            購買データ抽出指定2.Size = new Size(95, 18);
+            購買データ抽出指定2.TabIndex = 2;
+            購買データ抽出指定2.TabStop = true;
+            購買データ抽出指定2.Text = "締めている";
+            購買データ抽出指定2.UseVisualStyleBackColor = true;
             // 
-            // 削除指定Button1
+            // 購買データ抽出指定1
             // 
-            削除指定Button1.AutoSize = true;
-            削除指定Button1.Location = new Point(30, 22);
-            削除指定Button1.Name = "削除指定Button1";
-            削除指定Button1.Size = new Size(109, 18);
-            削除指定Button1.TabIndex = 1;
-            削除指定Button1.TabStop = true;
-            削除指定Button1.Text = "締めていない";
-            削除指定Button1.UseVisualStyleBackColor = true;
+            購買データ抽出指定1.AutoSize = true;
+            購買データ抽出指定1.Location = new Point(30, 22);
+            購買データ抽出指定1.Name = "購買データ抽出指定1";
+            購買データ抽出指定1.Size = new Size(109, 18);
+            購買データ抽出指定1.TabIndex = 1;
+            購買データ抽出指定1.TabStop = true;
+            購買データ抽出指定1.Text = "締めていない";
+            購買データ抽出指定1.UseVisualStyleBackColor = true;
             // 
             // 抽出ボタン
             // 
@@ -220,9 +217,8 @@
             入金日終了.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             入金日終了.Location = new Point(345, 50);
             入金日終了.Margin = new Padding(3, 2, 3, 2);
-            入金日終了.Multiline = true;
             入金日終了.Name = "入金日終了";
-            入金日終了.Size = new Size(160, 23);
+            入金日終了.Size = new Size(160, 20);
             入金日終了.TabIndex = 4;
             入金日終了.KeyPress += 入金日終了_KeyPress;
             入金日終了.Leave += 入金日終了_Leave;
@@ -253,9 +249,9 @@
             // 
             // 削除指定
             // 
-            削除指定.Controls.Add(radioButton4);
-            削除指定.Controls.Add(radioButton2);
-            削除指定.Controls.Add(radioButton3);
+            削除指定.Controls.Add(削除指定Button3);
+            削除指定.Controls.Add(削除指定Button2);
+            削除指定.Controls.Add(削除指定Button1);
             削除指定.Font = new Font("BIZ UDゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             削除指定.Location = new Point(25, 284);
             削除指定.Name = "削除指定";
@@ -264,38 +260,38 @@
             削除指定.TabStop = false;
             削除指定.Text = "削除指定(&R)";
             // 
-            // radioButton4
+            // 削除指定Button3
             // 
-            radioButton4.AutoSize = true;
-            radioButton4.Location = new Point(341, 22);
-            radioButton4.Name = "radioButton4";
-            radioButton4.Size = new Size(95, 18);
-            radioButton4.TabIndex = 4;
-            radioButton4.TabStop = true;
-            radioButton4.Text = "指定しない";
-            radioButton4.UseVisualStyleBackColor = true;
+            削除指定Button3.AutoSize = true;
+            削除指定Button3.Location = new Point(341, 22);
+            削除指定Button3.Name = "削除指定Button3";
+            削除指定Button3.Size = new Size(95, 18);
+            削除指定Button3.TabIndex = 4;
+            削除指定Button3.TabStop = true;
+            削除指定Button3.Text = "指定しない";
+            削除指定Button3.UseVisualStyleBackColor = true;
             // 
-            // radioButton2
+            // 削除指定Button2
             // 
-            radioButton2.AutoSize = true;
-            radioButton2.Location = new Point(197, 22);
-            radioButton2.Name = "radioButton2";
-            radioButton2.Size = new Size(109, 18);
-            radioButton2.TabIndex = 2;
-            radioButton2.TabStop = true;
-            radioButton2.Text = "削除している";
-            radioButton2.UseVisualStyleBackColor = true;
+            削除指定Button2.AutoSize = true;
+            削除指定Button2.Location = new Point(197, 22);
+            削除指定Button2.Name = "削除指定Button2";
+            削除指定Button2.Size = new Size(109, 18);
+            削除指定Button2.TabIndex = 2;
+            削除指定Button2.TabStop = true;
+            削除指定Button2.Text = "削除している";
+            削除指定Button2.UseVisualStyleBackColor = true;
             // 
-            // radioButton3
+            // 削除指定Button1
             // 
-            radioButton3.AutoSize = true;
-            radioButton3.Location = new Point(30, 22);
-            radioButton3.Name = "radioButton3";
-            radioButton3.Size = new Size(123, 18);
-            radioButton3.TabIndex = 1;
-            radioButton3.TabStop = true;
-            radioButton3.Text = "削除していない";
-            radioButton3.UseVisualStyleBackColor = true;
+            削除指定Button1.AutoSize = true;
+            削除指定Button1.Location = new Point(30, 22);
+            削除指定Button1.Name = "削除指定Button1";
+            削除指定Button1.Size = new Size(123, 18);
+            削除指定Button1.TabIndex = 1;
+            削除指定Button1.TabStop = true;
+            削除指定Button1.Text = "削除していない";
+            削除指定Button1.UseVisualStyleBackColor = true;
             // 
             // label6
             // 
@@ -333,13 +329,12 @@
             顧客コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             顧客コード.Location = new Point(126, 80);
             顧客コード.Margin = new Padding(3, 2, 3, 2);
-            顧客コード.Multiline = true;
             顧客コード.Name = "顧客コード";
-            顧客コード.Size = new Size(160, 23);
+            顧客コード.Size = new Size(160, 20);
             顧客コード.TabIndex = 6;
+            顧客コード.TextChanged += 顧客コード_TextChanged;
             顧客コード.KeyDown += 顧客コード_KeyDown;
             顧客コード.KeyPress += 顧客コード_KeyPress;
-            顧客コード.Validated += 顧客コード_Validated;
             // 
             // 顧客コード検索ボタン
             // 
@@ -360,9 +355,8 @@
             入金コード開始.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             入金コード開始.Location = new Point(126, 20);
             入金コード開始.Margin = new Padding(3, 2, 3, 2);
-            入金コード開始.Multiline = true;
             入金コード開始.Name = "入金コード開始";
-            入金コード開始.Size = new Size(189, 23);
+            入金コード開始.Size = new Size(189, 20);
             入金コード開始.TabIndex = 0;
             入金コード開始.KeyDown += 入金コード開始_KeyDown;
             入金コード開始.Leave += 入金コード開始_Leave;
@@ -388,9 +382,8 @@
             入金コード終了.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             入金コード終了.Location = new Point(345, 20);
             入金コード終了.Margin = new Padding(3, 2, 3, 2);
-            入金コード終了.Multiline = true;
             入金コード終了.Name = "入金コード終了";
-            入金コード終了.Size = new Size(189, 23);
+            入金コード終了.Size = new Size(189, 20);
             入金コード終了.TabIndex = 1;
             入金コード終了.KeyDown += 入金コード終了_KeyDown;
             入金コード終了.Leave += 入金コード終了_Leave;
@@ -401,9 +394,8 @@
             入金金額終了.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             入金金額終了.Location = new Point(345, 170);
             入金金額終了.Margin = new Padding(3, 2, 3, 2);
-            入金金額終了.Multiline = true;
             入金金額終了.Name = "入金金額終了";
-            入金金額終了.Size = new Size(189, 23);
+            入金金額終了.Size = new Size(189, 20);
             入金金額終了.TabIndex = 11;
             入金金額終了.Leave += 入金金額終了_Leave;
             // 
@@ -428,9 +420,8 @@
             入金金額開始.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             入金金額開始.Location = new Point(126, 170);
             入金金額開始.Margin = new Padding(3, 2, 3, 2);
-            入金金額開始.Multiline = true;
             入金金額開始.Name = "入金金額開始";
-            入金金額開始.Size = new Size(189, 23);
+            入金金額開始.Size = new Size(189, 20);
             入金金額開始.TabIndex = 10;
             入金金額開始.Leave += 入金金額開始_Leave;
             // 
@@ -495,6 +486,7 @@
             Controls.Add(入金日開始);
             Controls.Add(入金コード1ラベル);
             Name = "F_入金管理_抽出";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "入金管理 _抽出";
             Load += Form_Load;
             請求指定.ResumeLayout(false);
@@ -522,8 +514,8 @@
         private RadioButton 未出荷ラベル;
         private RadioButton 出荷済みラベル;
         private GroupBox 請求指定;
-        private RadioButton 削除指定Button2;
-        private RadioButton 削除指定Button1;
+        private RadioButton 購買データ抽出指定2;
+        private RadioButton 購買データ抽出指定1;
         private Button 抽出ボタン;
         private Button キャンセルボタン;
         private Button 入金日開始選択ボタン;
@@ -534,8 +526,8 @@
         private Label 顧客名ラベル;
         private ComboBox 入金区分コード;
         private GroupBox 削除指定;
-        private RadioButton radioButton2;
-        private RadioButton radioButton3;
+        private RadioButton 削除指定Button2;
+        private RadioButton 削除指定Button1;
         private Label label6;
         private Label 自社担当者名ラベル;
         private TextBox 顧客コード;
@@ -546,8 +538,8 @@
         private Label label1;
         private TextBox 入金金額開始;
         private Label label2;
-        private RadioButton radioButton1;
-        private RadioButton radioButton4;
+        private RadioButton 購買データ抽出指定3;
+        private RadioButton 削除指定Button3;
         private Button 出荷完了日2選択ボタン;
         private Label 出荷完了日2ラベル;
         private TextBox 出荷完了日2;

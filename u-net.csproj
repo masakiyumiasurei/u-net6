@@ -136,6 +136,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="ClosedXML" Version="0.102.2" />
     <PackageReference Include="GrapeCity.Win.MultiRow" Version="11.2.0" />
     <PackageReference Include="Microsoft.Data.SqlClient" Version="5.2.0-preview3.23201.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.12">
@@ -197,9 +198,7 @@
     <Compile Update="Form\F_ユニット_ツール.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Form\F_製品材料費参照.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Update="Form\F_製品材料費参照.cs" />
     <Compile Update="Form\F_製品参照.cs">
       <SubType>Form</SubType>
     </Compile>

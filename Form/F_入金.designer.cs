@@ -30,6 +30,7 @@ namespace u_net
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(F_入金));
             コマンド終了 = new Button();
             コマンド登録 = new Button();
             panel1 = new Panel();
@@ -41,7 +42,7 @@ namespace u_net
             コマンド承認 = new Button();
             コマンド削除 = new Button();
             コマンド複写 = new Button();
-            コマンド読込 = new Button();
+            コマンド修正 = new Button();
             dataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn2 = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn3 = new DataGridViewTextBoxColumn();
@@ -84,7 +85,7 @@ namespace u_net
             label8 = new Label();
             作成者コード = new TextBox();
             label9 = new Label();
-            登録日時 = new TextBox();
+            作成日時 = new TextBox();
             作成者名 = new TextBox();
             顧客コード = new TextBox();
             顧客名 = new TextBox();
@@ -95,7 +96,7 @@ namespace u_net
             toolStripStatusLabel1 = new ToolStripStatusLabel();
             label5 = new Label();
             入金コード = new TextBox();
-            売掛年月 = new TextBox();
+            入金月 = new TextBox();
             領収証但書 = new TextBox();
             送付状摘要_ラベル = new Label();
             送付状摘要 = new TextBox();
@@ -195,7 +196,7 @@ namespace u_net
             コマンド領収書.Text = "領収書";
             toolTip1.SetToolTip(コマンド領収書, "領収書の印刷プレビュー");
             コマンド領収書.UseVisualStyleBackColor = true;
-            コマンド領収書.Click += コマンド部品表_Click;
+            コマンド領収書.Click += コマンド領収書_Click;
             // 
             // コマンド顧客
             // 
@@ -210,7 +211,7 @@ namespace u_net
             コマンド顧客.TabStop = false;
             コマンド顧客.Text = "顧客";
             コマンド顧客.UseVisualStyleBackColor = true;
-            コマンド顧客.Click += コマンド部品_Click;
+            コマンド顧客.Click += コマンド顧客_Click;
             // 
             // コマンド確定
             // 
@@ -276,20 +277,20 @@ namespace u_net
             コマンド複写.UseVisualStyleBackColor = true;
             コマンド複写.Click += コマンド複写_Click;
             // 
-            // コマンド読込
+            // コマンド修正
             // 
-            コマンド読込.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            コマンド読込.ForeColor = Color.Blue;
-            コマンド読込.ImageAlign = ContentAlignment.BottomLeft;
-            コマンド読込.Location = new Point(75, 5);
-            コマンド読込.Margin = new Padding(3, 2, 3, 2);
-            コマンド読込.Name = "コマンド読込";
-            コマンド読込.Size = new Size(70, 20);
-            コマンド読込.TabIndex = 1003;
-            コマンド読込.TabStop = false;
-            コマンド読込.Text = "読込";
-            コマンド読込.UseVisualStyleBackColor = true;
-            コマンド読込.Click += コマンド読込_Click;
+            コマンド修正.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            コマンド修正.ForeColor = Color.Blue;
+            コマンド修正.ImageAlign = ContentAlignment.BottomLeft;
+            コマンド修正.Location = new Point(75, 5);
+            コマンド修正.Margin = new Padding(3, 2, 3, 2);
+            コマンド修正.Name = "コマンド修正";
+            コマンド修正.Size = new Size(70, 20);
+            コマンド修正.TabIndex = 1003;
+            コマンド修正.TabStop = false;
+            コマンド修正.Text = "修正";
+            コマンド修正.UseVisualStyleBackColor = true;
+            コマンド修正.Click += コマンド読込_Click;
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -611,19 +612,19 @@ namespace u_net
             label9.Text = "作成日時";
             label9.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // 登録日時
+            // 作成日時
             // 
-            登録日時.BackColor = SystemColors.Window;
-            登録日時.Enabled = false;
-            登録日時.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            登録日時.ImeMode = ImeMode.NoControl;
-            登録日時.Location = new Point(727, 48);
-            登録日時.Margin = new Padding(3, 2, 3, 2);
-            登録日時.Name = "登録日時";
-            登録日時.ReadOnly = true;
-            登録日時.Size = new Size(161, 20);
-            登録日時.TabIndex = 10156;
-            登録日時.TabStop = false;
+            作成日時.BackColor = SystemColors.Window;
+            作成日時.Enabled = false;
+            作成日時.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            作成日時.ImeMode = ImeMode.NoControl;
+            作成日時.Location = new Point(727, 48);
+            作成日時.Margin = new Padding(3, 2, 3, 2);
+            作成日時.Name = "作成日時";
+            作成日時.ReadOnly = true;
+            作成日時.Size = new Size(161, 20);
+            作成日時.TabIndex = 10156;
+            作成日時.TabStop = false;
             // 
             // 作成者名
             // 
@@ -747,18 +748,18 @@ namespace u_net
             入金コード.Size = new Size(102, 20);
             入金コード.TabIndex = 2;
             // 
-            // 売掛年月
+            // 入金月
             // 
-            売掛年月.BackColor = Color.White;
-            売掛年月.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            売掛年月.ImeMode = ImeMode.Disable;
-            売掛年月.Location = new Point(122, 144);
-            売掛年月.Margin = new Padding(3, 2, 3, 2);
-            売掛年月.Name = "売掛年月";
-            売掛年月.Size = new Size(102, 20);
-            売掛年月.TabIndex = 10;
-            売掛年月.Enter += 売掛年月_Enter;
-            売掛年月.Leave += 売掛年月_Leave;
+            入金月.BackColor = Color.White;
+            入金月.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            入金月.ImeMode = ImeMode.Disable;
+            入金月.Location = new Point(122, 144);
+            入金月.Margin = new Padding(3, 2, 3, 2);
+            入金月.Name = "入金月";
+            入金月.Size = new Size(102, 20);
+            入金月.TabIndex = 10;
+            入金月.Enter += 売掛年月_Enter;
+            入金月.Leave += 売掛年月_Leave;
             // 
             // 領収証但書
             // 
@@ -875,7 +876,7 @@ namespace u_net
             Controls.Add(送付状摘要);
             Controls.Add(送付状摘要_ラベル);
             Controls.Add(領収証但書);
-            Controls.Add(売掛年月);
+            Controls.Add(入金月);
             Controls.Add(入金コード);
             Controls.Add(label5);
             Controls.Add(statusStrip1);
@@ -890,7 +891,7 @@ namespace u_net
             Controls.Add(label8);
             Controls.Add(作成者コード);
             Controls.Add(label9);
-            Controls.Add(登録日時);
+            Controls.Add(作成日時);
             Controls.Add(売掛年月_ラベル);
             Controls.Add(識別名_ラベル);
             Controls.Add(領収証但書_ラベル);
@@ -909,8 +910,9 @@ namespace u_net
             Controls.Add(コマンド承認);
             Controls.Add(コマンド削除);
             Controls.Add(コマンド複写);
-            Controls.Add(コマンド読込);
+            Controls.Add(コマンド修正);
             Controls.Add(panel1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             ImeMode = ImeMode.Off;
             KeyPreview = true;
             MaximizeBox = false;
@@ -970,7 +972,7 @@ namespace u_net
         private System.Windows.Forms.Button コマンド承認;
         private System.Windows.Forms.Button コマンド削除;
         private System.Windows.Forms.Button コマンド複写;
-        private System.Windows.Forms.Button コマンド読込;
+        private System.Windows.Forms.Button コマンド修正;
 
         private Button コマンドF8;
         private Label 領収証但書_ラベル;
@@ -986,7 +988,7 @@ namespace u_net
         private Label label8;
         private TextBox 作成者コード;
         private Label label9;
-        private TextBox 登録日時;
+        private TextBox 作成日時;
         private TextBox 作成者名;
         private TextBox 顧客コード;
         private TextBox 顧客名;
@@ -997,7 +999,7 @@ namespace u_net
         internal ToolStripStatusLabel toolStripStatusLabel1;
         private Label label5;
         private TextBox 入金コード;
-        private TextBox 売掛年月;
+        private TextBox 入金月;
         private TextBox 領収証但書;
         private Label 送付状摘要_ラベル;
         private TextBox 送付状摘要;

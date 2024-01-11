@@ -230,6 +230,7 @@ namespace u_net
             dtm入金日開始 = DateTime.MinValue; // 適切な初期値に変更する必要があります
             dtm入金日終了 = DateTime.MinValue; // 適切な初期値に変更する必要があります
             str顧客名 = "";
+            //   str顧客コード = "";
             str入金金額開始 = "";
             str入金金額終了 = "";
             lng請求指定 = 1;
@@ -279,6 +280,9 @@ namespace u_net
             FunctionClass fn = new FunctionClass();
             fn.DoWait("しばらくお待ちください...");
 
+            LocalSetting localSetting = new LocalSetting();
+            localSetting.LoadPlace(CommonConstants.LoginUserCode, this);
+
             MyApi myapi = new MyApi();
             int xSize, ySize, intpixel, twipperdot;
 
@@ -298,6 +302,7 @@ namespace u_net
             一覧.ColumnHeadersDefaultCellStyle.Font = new Font("MS ゴシック", 9);
             一覧.DefaultCellStyle.Font = new Font("MS ゴシック", 10);
             一覧.DefaultCellStyle.ForeColor = Color.Black;
+            一覧.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
             myapi.GetFullScreen(out xSize, out ySize);
 
@@ -328,14 +333,12 @@ namespace u_net
         {
             try
             {
-                if (this.Height > 800)
-                {
-                    一覧.Height = 一覧.Height + (this.Height - intWindowHeight);
-                    intWindowHeight = this.Height;  // 高さ保存
+                一覧.Height = 一覧.Height + (this.Height - intWindowHeight);
+                intWindowHeight = this.Height;  // 高さ保存
 
-                    一覧.Width = 一覧.Width + (this.Width - intWindowWidth);
-                    intWindowWidth = this.Width;    // 幅保存
-                }
+                一覧.Width = 一覧.Width + (this.Width - intWindowWidth);
+                intWindowWidth = this.Width;    // 幅保存
+
             }
             catch (Exception ex)
             {
@@ -348,22 +351,24 @@ namespace u_net
             int result = -1;
             try
             {
+                result = GridSet();
                 if (result >= 0)
                 {
                     this.表示件数.Text = result.ToString();
-                    if (GridDrawn())
-                    {
-                        return result;
-                    }
-                    else
-                    {
-                        //描画処理時のエラー　何を返すか？
-                        return result;
-                    }
+
+                    //if (GridDrawn())  //getsetで処理するので不要
+                    //{
+                    //    return result;
+                    //}
+                    //else
+                    //{
+                    //    //描画処理時のエラー　何を返すか？
+                    //    return result;
+                    //}
                 }
                 else
                 {
-                    this.表示件数.Text = null; // Nullの代わりにC#ではnullを使用
+                    this.表示件数.Text = null;
                 }
             }
             catch (Exception ex)
@@ -384,7 +389,7 @@ namespace u_net
 
             lngArrayIndex = -1;
             lngRowIndex = 0;
-
+            gridobject = 一覧;
             do
             {
                 // DataGridView の場合、Cells[列のインデックス].Value でセルの値にアクセスできます
@@ -412,19 +417,19 @@ namespace u_net
                 //入金コード指定
                 if (!string.IsNullOrEmpty(str入金コード開始))
                 {
-                    WhereString(strFilter, "(入金コード BETWEEN '" + str入金コード開始 + "' AND '" + str入金コード終了 + "')");
+                    strFilter = WhereString(strFilter, "(入金コード BETWEEN '" + str入金コード開始 + "' AND '" + str入金コード終了 + "')");
                 }
 
                 // 入金日指定
                 if (dtm入金日開始 != DateTime.MinValue && dtm入金日終了 != DateTime.MinValue)
                 {
-                    WhereString(strFilter, "入金日 BETWEEN '" + dtm入金日開始 + "' AND '" + dtm入金日終了 + "'");
+                    strFilter = WhereString(strFilter, "入金日 BETWEEN '" + dtm入金日開始 + "' AND '" + dtm入金日終了 + "'");
                 }
 
                 // 顧客コード指定
                 if (!string.IsNullOrEmpty(str顧客コード))
                 {
-                    WhereString(strFilter, "顧客コード='" + str顧客コード + "'");
+                    strFilter = WhereString(strFilter, "顧客コード='" + str顧客コード + "'");
                 }
 
                 // 購買コード指定
@@ -438,7 +443,7 @@ namespace u_net
                         str1 = var1.ToString();
                         if (!string.IsNullOrEmpty(str1))
                         {
-                            WhereString(strFilter, "顧客名 LIKE '%" + str1 + "%'");
+                            strFilter = WhereString(strFilter, "顧客名 LIKE '%" + str1 + "%'");
                         }
                     }
                 }
@@ -446,17 +451,17 @@ namespace u_net
                 // 入金金額指定
                 if (!string.IsNullOrEmpty(str入金金額開始) && !string.IsNullOrEmpty(str入金金額終了))
                 {
-                    WhereString(strFilter, "入金金額 BETWEEN " + str入金金額開始 + " AND " + str入金金額終了);
+                    strFilter = WhereString(strFilter, "合計金額 BETWEEN " + str入金金額開始 + " AND " + str入金金額終了);
                 }
 
                 // 購買指定
                 switch (lng請求指定)
                 {
                     case 1:
-                        WhereString(strFilter, "請求 IS NULL");
+                        strFilter = WhereString(strFilter, "請求 IS NULL");
                         break;
                     case 2:
-                        WhereString(strFilter, "請求 IS NOT NULL");
+                        strFilter = WhereString(strFilter, "請求 IS NOT NULL");
                         break;
                 }
 
@@ -464,10 +469,10 @@ namespace u_net
                 switch (lng削除指定)
                 {
                     case 1:
-                        WhereString(strFilter, "削除 IS NULL");
+                        strFilter = WhereString(strFilter, "削除 IS NULL");
                         break;
                     case 2:
-                        WhereString(strFilter, "削除 IS NOT NULL");
+                        strFilter = WhereString(strFilter, "削除 IS NOT NULL");
                         break;
                 }
 
@@ -501,18 +506,19 @@ namespace u_net
 
                 //0列目はaccessでは行ヘッダのため、ずらす
                 //dataGridView1.Columns[0].Width = 500 / twipperdot;
-                一覧.Columns[0].Width = 1600 / twipperdot; //1150
-                一覧.Columns[1].Width = 300 / twipperdot;
-                一覧.Columns[2].Width = 1300 / twipperdot;
-                一覧.Columns[3].Width = 1400 / twipperdot;
-                一覧.Columns[4].Width = 1400 / twipperdot;
-                一覧.Columns[5].Width = 3500 / twipperdot;
-                一覧.Columns[6].Width = 2000 / twipperdot;
+                一覧.Columns[0].Width = 1300 / twipperdot; //1150
+                一覧.Columns[1].Width = 1400 / twipperdot;
+                一覧.Columns[2].Width = 1200 / twipperdot;
+                一覧.Columns[3].Width = 7000 / twipperdot;
+                一覧.Columns[4].Visible = false;
+                一覧.Columns[5].Width = 1500 / twipperdot;
+                一覧.Columns[6].Width = 400 / twipperdot;
                 一覧.Columns[7].Width = 400 / twipperdot;//1300
                 一覧.Columns[8].Width = 400 / twipperdot;
-                一覧.Columns[9].Width = 400 / twipperdot;
-                一覧.Columns[10].Width = 400 / twipperdot;
-                一覧.Columns[11].Width = 400 / twipperdot;
+
+                //金額列　カンマと右付け
+                一覧.Columns[5].DefaultCellStyle.Format = "#,###,###,##0";
+                一覧.Columns[5].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
 
                 return 一覧.RowCount;
             }
@@ -585,7 +591,34 @@ namespace u_net
             DoUpdate();
         }
 
-        //選択行をクリアして先頭を表示して先頭行を選択
+
+        private void DataGridView1_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+            //列ヘッダーかどうか調べる
+            if (e.ColumnIndex < 0 && e.RowIndex >= 0)
+            {
+                一覧.SuspendLayout();
+                //セルを描画する
+                e.Paint(e.ClipBounds, DataGridViewPaintParts.All);
+
+                //行番号を描画する範囲を決定する
+                //e.AdvancedBorderStyleやe.CellStyle.Paddingは無視
+                Rectangle indexRect = e.CellBounds;
+                indexRect.Inflate(-2, -2);
+                //行番号を描画する
+                TextRenderer.DrawText(e.Graphics,
+                    (e.RowIndex + 1).ToString(),
+                    e.CellStyle.Font,
+                    indexRect,
+                    e.CellStyle.ForeColor,
+                    TextFormatFlags.Right | TextFormatFlags.VerticalCenter);
+                //描画が完了したことを知らせる
+                e.Handled = true;
+                一覧.ResumeLayout();
+
+            }
+        }
+
         private void Cleargrid(DataGridView dataGridView)
         {
             dataGridView.ClearSelection();
@@ -649,6 +682,7 @@ namespace u_net
                                 string selectedData = 一覧.SelectedRows[0].Cells[0].Value.ToString(); // 1列目のデータを取得
 
                                 F_入金 targetform = new F_入金();
+                                targetform.args = CurrentCode;
                                 targetform.ShowDialog();
                             }
                             else
@@ -698,7 +732,7 @@ namespace u_net
         {
             一覧.Focus(); // DataGridViewにフォーカスを設定
 
-            F_検索コード form = new F_検索コード(this, "ORD");
+            F_検索コード form = new F_検索コード(this, "B");
             form.ShowDialog();
         }
 
@@ -730,6 +764,7 @@ namespace u_net
         {
             一覧.Focus();
             F_入金 form = new F_入金();
+            form.args = CurrentCode;
             form.ShowDialog();
         }
 
@@ -737,15 +772,49 @@ namespace u_net
         {
             一覧.Focus(); // DataGridViewにフォーカスを設定
 
-            //F_顧客 form = new F_顧客();
-            //form.ShowDialog();
+            string param;
+            param = $" -sv:{CommonConstants.ServerInstanceName} -open:customer";
+            GetShell(param);
         }
 
         private void コマンド領収書_Click(object sender, EventArgs e)
         {
-            //TODO:帳票出力
+            try
+            {
+                // 領収コード
+                string receiptCode;
+                // 対象の入金コード一覧を取得する
+                string[] creditSlipCode = GetCreditSlipCode("□");
+                string codeString = "";
+
+                foreach (string ft in creditSlipCode)
+                {
+                    codeString += "," + ft;
+                }
+
+                // 入金一覧文字列の先頭のデリミタを削除する
+                codeString = codeString.Substring(1);
+
+                // 領収処理を実行する
+                receiptCode = DoReceiptProcess(codeString);
+
+                // 領収済み表示更新
+                UpdateReceiptIcon();
+
+                // 領収書のプレビュー
+                領収書印刷();
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(this.Name + "_コマンド領収書_Click - " + ex.Message);
+                MessageBox.Show("エラーのため実行できません。", "領収書コマンド", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
+        private void 領収書印刷()
+        {
+            //reportの処理
+        }
         private void コマンド領収解除_Click(object sender, EventArgs e)
         {
             try
@@ -817,6 +886,7 @@ namespace u_net
 
         private void 一覧_Click(object sender, EventArgs e)
         {
+            gridobject = 一覧;
             if (OperationMode == 1)
             {
                 string currentValue = gridobject.Rows[gridobject.CurrentCell.RowIndex].Cells[7].Value?.ToString();
@@ -845,14 +915,16 @@ namespace u_net
         {
             try
             {
-                if ((intButton & (int)MouseButtons.Left) <= 0 || gridobject.CurrentRow == null)
+                if ((intButton & (int)MouseButtons.Left) <= 0 || 一覧.CurrentRow == null)
                 {
                     intButton = (int)MouseButtons.Left; // 保存マウスボタン初期化
                     return;
                 }
 
                 F_入金 form = new F_入金();
+                form.args = CurrentCode;
                 form.ShowDialog();
+
             }
             catch (Exception ex)
             {
@@ -862,12 +934,13 @@ namespace u_net
 
         private void 一覧_CellEnter(object sender, DataGridViewCellEventArgs e)
         {
-            gridobject.Invalidate();
+
+            一覧.Invalidate();
         }
 
         private void 一覧_CellLeave(object sender, DataGridViewCellEventArgs e)
         {
-            gridobject.SuspendLayout();
+            一覧.SuspendLayout();
         }
 
         private void 一覧_MouseDown(object sender, MouseEventArgs e)

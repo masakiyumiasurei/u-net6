@@ -102,7 +102,7 @@ namespace u_net
                     break;
 
                 case Keys.Return:
-                    SelectNextControl(ActiveControl, true, true, true, true);
+                    OKボタン_Click( sender, e);
                     break;
             }
         }

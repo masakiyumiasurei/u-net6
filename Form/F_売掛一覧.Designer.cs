@@ -457,7 +457,7 @@
         private Button コマンド抽出;
         private Button コマンド印刷;
         private Button コマンド終了;
-        private TextBox 表示件数;
+        public TextBox 表示件数;
         private Label label1;
         private Label label2;
         private DataGridViewTextBoxColumn 受注明細コードDataGridViewTextBoxColumn;

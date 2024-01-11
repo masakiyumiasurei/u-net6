@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using u_net.Public;
 
 namespace u_net
 {
@@ -31,7 +32,9 @@ namespace u_net
                     return;
                 }
 
-                //F_商品管理 frmTarget = new F_商品管理(); // NEWだと開いてるインスタンスにならない
+                OriginalClass ofn = new OriginalClass();
+                ofn.SetComboBox(更新者名, "SELECT 氏名 as Value , 氏名 as Display FROM M社員 WHERE (退社 IS NULL) AND ([パート] = 0) AND (ふりがな <> N'ん') OR (退社 IS NULL) AND ([パート] IS NULL) AND (ふりがな <> N'ん') ORDER BY ふりがな");
+
 
                 //開いているフォームのインスタンスを作成する
                 F_商品管理 frmTarget = Application.OpenForms.OfType<F_商品管理>().FirstOrDefault();
@@ -40,9 +43,9 @@ namespace u_net
                 this.基本型式名.Text = frmTarget.str基本型式名;
                 シリーズ名.Text = frmTarget.strシリーズ名;
                 if (frmTarget.dtm更新日開始 != DateTime.MinValue)
-                    更新日開始.Text = frmTarget.dtm更新日開始.ToString();
+                    更新日開始.Text = frmTarget.dtm更新日開始.ToString("yyyy/MM/dd");
                 if (frmTarget.dtm更新日終了 != DateTime.MinValue)
-                    更新日終了.Text = frmTarget.dtm更新日終了.ToString();
+                    更新日終了.Text = frmTarget.dtm更新日終了.ToString("yyyy/MM/dd");
                 更新者名.SelectedItem = frmTarget.str更新者名;
                 //ComposedChipMount.Value = frmTarget.intComposedChipMount;
                 switch (frmTarget.intComposedChipMount)
@@ -74,7 +77,7 @@ namespace u_net
                         break;
 
                     default:
-                        // intComposedChipMount の値に対応するラジオボタンがない場合の処理
+                        // intIsUnit の値に対応するラジオボタンがない場合の処理
                         break;
                 }
                 switch (frmTarget.lngDiscontinued)
@@ -90,7 +93,7 @@ namespace u_net
                         break;
 
                     default:
-                        // intComposedChipMount の値に対応するラジオボタンがない場合の処理
+                        // lngDiscontinued の値に対応するラジオボタンがない場合の処理
                         break;
                 }
                 switch (frmTarget.lngDeleted)
@@ -106,7 +109,7 @@ namespace u_net
                         break;
 
                     default:
-                        // intComposedChipMount の値に対応するラジオボタンがない場合の処理
+                        // lngDeleted の値に対応するラジオボタンがない場合の処理
                         break;
                 }
             }
@@ -122,18 +125,13 @@ namespace u_net
             try
             {
                 F_商品管理? frmTarget = Application.OpenForms.OfType<F_商品管理>().FirstOrDefault();
-                //F_商品管理 frmTarget = new F_商品管理();
-
-
 
                 frmTarget.str基本型式名 = Nz(基本型式名.Text);
                 frmTarget.strシリーズ名 = Nz(シリーズ名.Text);
                 frmTarget.dtm更新日開始 = string.IsNullOrEmpty(更新日開始.Text) ?
                     DateTime.MinValue : DateTime.Parse(更新日開始.Text);
-
                 frmTarget.dtm更新日終了 = string.IsNullOrEmpty(更新日終了.Text) ?
                     DateTime.MinValue : DateTime.Parse(更新日終了.Text);
-
                 frmTarget.str更新者名 = Nz(更新者名.Text);
 
                 if (intComposedChipMountbutton1.Checked)
@@ -193,7 +191,6 @@ namespace u_net
                 if (cnt == 0)
                 {
                     MessageBox.Show("抽出条件に一致するデータはありません。", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
-
                     return;
                 }
                 else if (cnt < 0)
@@ -201,15 +198,16 @@ namespace u_net
                     MessageBox.Show("エラーが発生したため、抽出できませんでした。", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     return;
                 }
+                else
+                {
+                    this.Close();
+                }
+
             }
             catch (Exception ex)
             {
                 Debug.WriteLine(this.Name + "_抽出ボタン_Click - " + ex.Message);
                 MessageBox.Show("エラーが発生しました。", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
-                //this.Painting = true;
                 this.Close();
             }
         }
@@ -217,6 +215,110 @@ namespace u_net
         private void キャンセルボタン_MouseClick(object sender, MouseEventArgs e)
         {
             this.Close();
+        }
+
+        private void 更新日開始選択ボタン_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                F_カレンダー dateSelectionForm = new F_カレンダー();
+
+                // 日付選択フォームを作成し表示
+                if (!string.IsNullOrEmpty(更新日開始.Text))
+                {
+                    //入力値が日付の場合
+                    if (DateTime.TryParse(更新日開始.Text, out var dateTime))
+                    {
+                        dateSelectionForm.args = 更新日開始.Text;
+                    }
+                }
+
+                if (dateSelectionForm.ShowDialog() == DialogResult.OK)
+                {
+                    // 日付選択フォームから選択した日付を取得
+                    string selectedDate = dateSelectionForm.SelectedDate;
+
+                    // フォームAの日付コントロールに選択した日付を設定
+                    更新日開始.Text = selectedDate;
+                    更新日開始.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                // エラーが発生した場合の処理
+                MessageBox.Show($"エラーが発生しました: {ex.Message}", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void 更新日開始_DoubleClick(object sender, EventArgs e)
+        {
+            更新日開始選択ボタン_Click(sender, e);
+        }
+
+        private void 更新日開始_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == ' ')
+            {
+                更新日開始選択ボタン_Click(sender, e);
+            }
+        }
+
+        private void 更新日開始_Leave(object sender, EventArgs e)
+        {
+            FunctionClass.AdjustRange(更新日開始, 更新日終了, sender as Control);
+        }
+
+        private void 更新日終了選択ボタン_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                F_カレンダー dateSelectionForm = new F_カレンダー();
+
+                // 日付選択フォームを作成し表示
+                dateSelectionForm = new F_カレンダー();
+
+                if (!string.IsNullOrEmpty(更新日終了.Text))
+                {
+                    //入力値が日付の場合
+                    if (DateTime.TryParse(更新日終了.Text, out var dateTime))
+                    {
+                        dateSelectionForm.args = 更新日終了.Text;
+                    }
+                }
+
+                if (dateSelectionForm.ShowDialog() == DialogResult.OK)
+                {
+                    // 日付選択フォームから選択した日付を取得
+                    string selectedDate = dateSelectionForm.SelectedDate;
+
+                    // フォームAの日付コントロールに選択した日付を設定
+                    更新日終了.Text = selectedDate;
+                    更新日終了.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                // エラーが発生した場合の処理
+                MessageBox.Show($"エラーが発生しました: {ex.Message}", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void 更新日終了_DoubleClick(object sender, EventArgs e)
+        {
+            更新日終了選択ボタン_Click(sender, e);
+        }
+
+        private void 更新日終了_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == ' ')
+            {
+                更新日終了選択ボタン_Click(sender, e);
+            }
+        }
+
+        private void 更新日終了_Leave(object sender, EventArgs e)
+        {
+            FunctionClass.AdjustRange(更新日開始, 更新日終了, sender as Control);
         }
 
         // Nz メソッドの代替

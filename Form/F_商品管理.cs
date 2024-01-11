@@ -25,7 +25,7 @@ namespace u_net
         public int intComposedChipMount = 0;
         public int intIsUnit = 0;
         public int lngDiscontinued = 0;
-        public int lngDeleted = 0;      
+        public int lngDeleted = 0;
 
         int intWindowHeight = 0;
         int intWindowWidth = 0;
@@ -56,6 +56,7 @@ namespace u_net
             this.dtm更新日開始 = DateTime.MinValue;
             this.dtm更新日終了 = DateTime.MinValue;
             this.str更新者名 = "";
+            this.intComposedChipMount = 0;
             this.intIsUnit = 1;
             this.lngDiscontinued = 1;
             this.lngDeleted = 1;
@@ -84,7 +85,7 @@ namespace u_net
             dataGridView1.GridColor = Color.FromArgb(230, 230, 230);
             dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font("MS ゴシック", 9);
             dataGridView1.DefaultCellStyle.Font = new Font("MS ゴシック", 10);
-            dataGridView1.DefaultCellStyle.ForeColor = Color.Black;            
+            dataGridView1.DefaultCellStyle.ForeColor = Color.Black;
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             dataGridView1.ColumnHeadersHeight = 25;
@@ -172,10 +173,15 @@ namespace u_net
                 {
                     filter += "シリーズ名 LIKE '%" + strシリーズ名 + "%' AND ";
                 }
-                // 更新日時
+                // 更新日時開始
                 if (dtm更新日開始 != DateTime.MinValue)
                 {
-                    filter += "'" + dtm更新日開始 + "' <= 更新日時 AND 更新日時 <= '" + dtm更新日終了 + "' AND ";
+                    filter += "'" + dtm更新日開始.ToString("yyyy/MM/dd") + "' <= 更新日時 AND ";
+                }
+                // 更新日時終了
+                if (dtm更新日終了 != DateTime.MinValue)
+                {
+                    filter += "更新日時 <= '" + dtm更新日終了.ToString("yyyy/MM/dd") + "' AND ";
                 }
                 // 更新者名
                 if (!string.IsNullOrEmpty(str更新者名))
@@ -257,7 +263,7 @@ namespace u_net
                 intWindowWidth = this.Width;
 
                 dataGridView1.Columns[0].DefaultCellStyle.BackColor = Color.FromArgb(255, 255, 200); // 薄い黄色
-                
+
                 // 列の幅を設定 もとは恐らくtwipのためピクセルに直す
 
                 //0列目はaccessでは行ヘッダのため、ずらす
@@ -275,7 +281,7 @@ namespace u_net
                 dataGridView1.Columns[10].Width = 500 / twipperdot;
                 dataGridView1.Columns[11].Width = 500 / twipperdot;
 
-                
+
 
                 return dataGridView1.RowCount;
             }
@@ -448,7 +454,7 @@ namespace u_net
         }
 
         private void コマンド検索_Click(object sender, EventArgs e)
-        {            
+        {
             F_検索コード form = new F_検索コード(this, "ORD");
             form.ShowDialog();
         }
