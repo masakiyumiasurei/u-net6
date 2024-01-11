@@ -42,14 +42,16 @@
             コマンド抽出 = new Button();
             コマンド更新 = new Button();
             コマンド終了 = new Button();
+            dataGridView1 = new DataGridView();
+            panel2 = new Panel();
+            panel3 = new Panel();
             表示件数 = new TextBox();
             label1 = new Label();
             label2 = new Label();
-            dataGridView1 = new DataGridView();
-            panel2 = new Panel();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel2.SuspendLayout();
+            panel3.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
@@ -252,46 +254,17 @@
             コマンド終了.UseVisualStyleBackColor = true;
             コマンド終了.Click += コマンド終了_Click;
             // 
-            // 表示件数
-            // 
-            表示件数.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            表示件数.Location = new Point(82, 5);
-            表示件数.Name = "表示件数";
-            表示件数.Size = new Size(100, 20);
-            表示件数.TabIndex = 84;
-            表示件数.TabStop = false;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(8, 11);
-            label1.Name = "label1";
-            label1.Size = new Size(53, 12);
-            label1.TabIndex = 85;
-            label1.Text = "表示件数";
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label2.Location = new Point(190, 11);
-            label2.Name = "label2";
-            label2.Size = new Size(17, 12);
-            label2.TabIndex = 86;
-            label2.Text = "件";
-            // 
             // dataGridView1
             // 
             dataGridView1.AllowUserToAddRows = false;
             dataGridView1.AllowUserToDeleteRows = false;
+            dataGridView1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Dock = DockStyle.Fill;
             dataGridView1.Location = new Point(0, 43);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
             dataGridView1.RowTemplate.Height = 29;
-            dataGridView1.Size = new Size(1205, 620);
+            dataGridView1.Size = new Size(1205, 578);
             dataGridView1.TabIndex = 87;
             dataGridView1.CellClick += dataGridView1_CellClick;
             dataGridView1.CellDoubleClick += dataGridView1_CellDoubleClick;
@@ -301,14 +274,52 @@
             // 
             // panel2
             // 
-            panel2.Controls.Add(表示件数);
-            panel2.Controls.Add(label1);
-            panel2.Controls.Add(label2);
+            panel2.Controls.Add(panel3);
             panel2.Dock = DockStyle.Bottom;
             panel2.Location = new Point(0, 627);
             panel2.Name = "panel2";
             panel2.Size = new Size(1205, 36);
             panel2.TabIndex = 88;
+            // 
+            // panel3
+            // 
+            panel3.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            panel3.Controls.Add(表示件数);
+            panel3.Controls.Add(label1);
+            panel3.Controls.Add(label2);
+            panel3.Location = new Point(2, 3);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(1205, 33);
+            panel3.TabIndex = 87;
+            // 
+            // 表示件数
+            // 
+            表示件数.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            表示件数.Location = new Point(84, 4);
+            表示件数.Name = "表示件数";
+            表示件数.Size = new Size(100, 20);
+            表示件数.TabIndex = 87;
+            表示件数.TabStop = false;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.Location = new Point(20, 10);
+            label1.Name = "label1";
+            label1.Size = new Size(53, 12);
+            label1.TabIndex = 88;
+            label1.Text = "表示件数";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label2.Location = new Point(191, 10);
+            label2.Name = "label2";
+            label2.Size = new Size(17, 12);
+            label2.TabIndex = 89;
+            label2.Text = "件";
             // 
             // F_部品集合管理
             // 
@@ -320,6 +331,7 @@
             Controls.Add(panel1);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "F_部品集合管理";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "部品集合管理";
             FormClosed += F_部品集合管理_FormClosed;
             Load += Form_Load;
@@ -328,7 +340,8 @@
             panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             panel2.ResumeLayout(false);
-            panel2.PerformLayout();
+            panel3.ResumeLayout(false);
+            panel3.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -344,9 +357,6 @@
         private Button コマンド抽出;
         private Button コマンド更新;
         private Button コマンド終了;
-        private TextBox 表示件数;
-        private Label label1;
-        private Label label2;
         private DataGridViewTextBoxColumn 受注明細コードDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn 受注コードDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn 受注版数DataGridViewTextBoxColumn;
@@ -478,5 +488,9 @@
         private Panel panel2;
         private Button コマンド検索;
         private Button コマンド保守;
+        private Panel panel3;
+        private TextBox 表示件数;
+        private Label label1;
+        private Label label2;
     }
 }

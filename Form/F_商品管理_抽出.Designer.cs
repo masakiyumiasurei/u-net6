@@ -111,9 +111,8 @@
             シリーズ名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             シリーズ名.Location = new Point(116, 51);
             シリーズ名.Margin = new Padding(3, 2, 3, 2);
-            シリーズ名.Multiline = true;
             シリーズ名.Name = "シリーズ名";
-            シリーズ名.Size = new Size(413, 23);
+            シリーズ名.Size = new Size(413, 20);
             シリーズ名.TabIndex = 4;
             // 
             // 基本型式名
@@ -122,9 +121,8 @@
             基本型式名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             基本型式名.Location = new Point(116, 23);
             基本型式名.Margin = new Padding(3, 2, 3, 2);
-            基本型式名.Multiline = true;
             基本型式名.Name = "基本型式名";
-            基本型式名.Size = new Size(413, 23);
+            基本型式名.Size = new Size(413, 20);
             基本型式名.TabIndex = 2;
             // 
             // label5
@@ -163,9 +161,8 @@
             更新日開始.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             更新日開始.Location = new Point(116, 82);
             更新日開始.Margin = new Padding(3, 2, 3, 2);
-            更新日開始.Multiline = true;
             更新日開始.Name = "更新日開始";
-            更新日開始.Size = new Size(160, 23);
+            更新日開始.Size = new Size(160, 20);
             更新日開始.TabIndex = 6;
             更新日開始.DoubleClick += 更新日開始_DoubleClick;
             更新日開始.KeyPress += 更新日開始_KeyPress;
@@ -192,9 +189,8 @@
             更新日終了.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             更新日終了.Location = new Point(341, 82);
             更新日終了.Margin = new Padding(3, 2, 3, 2);
-            更新日終了.Multiline = true;
             更新日終了.Name = "更新日終了";
-            更新日終了.Size = new Size(160, 23);
+            更新日終了.Size = new Size(160, 20);
             更新日終了.TabIndex = 7;
             更新日終了.DoubleClick += 更新日終了_DoubleClick;
             更新日終了.KeyPress += 更新日終了_KeyPress;

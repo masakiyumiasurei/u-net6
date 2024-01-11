@@ -134,6 +134,7 @@ namespace u_net
             // 
             コマンド登録.Enabled = false;
             コマンド登録.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            コマンド登録.ForeColor = Color.Blue;
             コマンド登録.ImageAlign = ContentAlignment.BottomLeft;
             コマンド登録.Location = new Point(680, 6);
             コマンド登録.Margin = new Padding(1, 0, 0, 0);
@@ -251,6 +252,7 @@ namespace u_net
             // 
             コマンド確定.Enabled = false;
             コマンド確定.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            コマンド確定.ForeColor = Color.Blue;
             コマンド確定.ImageAlign = ContentAlignment.BottomLeft;
             コマンド確定.Location = new Point(612, 6);
             コマンド確定.Margin = new Padding(1, 0, 0, 0);
@@ -265,6 +267,7 @@ namespace u_net
             // 
             コマンド承認.Enabled = false;
             コマンド承認.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            コマンド承認.ForeColor = Color.Blue;
             コマンド承認.ImageAlign = ContentAlignment.BottomLeft;
             コマンド承認.Location = new Point(545, 6);
             コマンド承認.Margin = new Padding(1, 0, 0, 0);
@@ -279,6 +282,7 @@ namespace u_net
             // 
             コマンド削除.Enabled = false;
             コマンド削除.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            コマンド削除.ForeColor = Color.Blue;
             コマンド削除.ImageAlign = ContentAlignment.BottomLeft;
             コマンド削除.Location = new Point(199, 6);
             コマンド削除.Margin = new Padding(1, 0, 0, 0);
@@ -293,6 +297,7 @@ namespace u_net
             // 
             コマンド複写.Enabled = false;
             コマンド複写.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            コマンド複写.ForeColor = Color.Blue;
             コマンド複写.ImageAlign = ContentAlignment.BottomLeft;
             コマンド複写.Location = new Point(134, 6);
             コマンド複写.Margin = new Padding(1, 0, 0, 0);
@@ -307,6 +312,7 @@ namespace u_net
             // 
             コマンド修正.Enabled = false;
             コマンド修正.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            コマンド修正.ForeColor = Color.Blue;
             コマンド修正.ImageAlign = ContentAlignment.BottomLeft;
             コマンド修正.Location = new Point(68, 6);
             コマンド修正.Margin = new Padding(1, 0, 0, 0);
@@ -321,6 +327,7 @@ namespace u_net
             // 
             コマンド新規.Enabled = false;
             コマンド新規.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            コマンド新規.ForeColor = Color.Blue;
             コマンド新規.ImageAlign = ContentAlignment.BottomLeft;
             コマンド新規.Location = new Point(3, 6);
             コマンド新規.Margin = new Padding(1, 0, 0, 0);

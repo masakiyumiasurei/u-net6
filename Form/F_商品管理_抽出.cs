@@ -46,7 +46,14 @@ namespace u_net
                     更新日開始.Text = frmTarget.dtm更新日開始.ToString("yyyy/MM/dd");
                 if (frmTarget.dtm更新日終了 != DateTime.MinValue)
                     更新日終了.Text = frmTarget.dtm更新日終了.ToString("yyyy/MM/dd");
-                更新者名.SelectedItem = frmTarget.str更新者名;
+                if (frmTarget.str更新者名 != "")
+                {
+                    更新者名.SelectedItem = frmTarget.str更新者名;
+                }
+                else
+                {
+                    更新者名.SelectedIndex = -1;
+                }
                 //ComposedChipMount.Value = frmTarget.intComposedChipMount;
                 switch (frmTarget.intComposedChipMount)
                 {
