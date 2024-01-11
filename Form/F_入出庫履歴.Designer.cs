@@ -410,6 +410,7 @@
             Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(3, 2, 3, 2);
             Name = "F_入出庫履歴";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "入出庫履歴";
             FormClosing += F_入出庫履歴_FormClosing;
             Load += Form_Load;

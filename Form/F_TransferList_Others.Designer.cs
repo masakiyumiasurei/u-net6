@@ -359,6 +359,7 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "振込一覧 - その他";
             Load += Form_Load;
+            KeyDown += Form_KeyDown;
             groupBox.ResumeLayout(false);
             groupBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();

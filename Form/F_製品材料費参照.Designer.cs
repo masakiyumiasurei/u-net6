@@ -28,23 +28,23 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.品名_ラベル = new System.Windows.Forms.Label();
-            this.品名 = new System.Windows.Forms.TextBox();
-            this.製品コード_ラベル = new System.Windows.Forms.Label();
-            this.閉じるボタン = new System.Windows.Forms.Button();
-            this.製品コード = new System.Windows.Forms.ComboBox();
-            this.製品版数 = new System.Windows.Forms.ComboBox();
-            this.製品版数_ラベル = new System.Windows.Forms.Label();
-            this.シリーズ名_ラベル = new System.Windows.Forms.Label();
-            this.シリーズ名 = new System.Windows.Forms.TextBox();
-            this.型式一覧_ラベル = new System.Windows.Forms.Label();
-            this.型番_ラベル = new System.Windows.Forms.Label();
-            this.型番 = new System.Windows.Forms.TextBox();
-            this.材料費合計_ラベル = new System.Windows.Forms.Label();
-            this.材料費合計 = new System.Windows.Forms.TextBox();
-            this.型式 = new System.Windows.Forms.DataGridView();
-            ((System.ComponentModel.ISupportInitialize)(this.型式)).BeginInit();
-            this.SuspendLayout();
+            品名_ラベル = new Label();
+            品名 = new TextBox();
+            製品コード_ラベル = new Label();
+            閉じるボタン = new Button();
+            製品コード = new ComboBox();
+            製品版数 = new ComboBox();
+            製品版数_ラベル = new Label();
+            シリーズ名_ラベル = new Label();
+            シリーズ名 = new TextBox();
+            型式一覧_ラベル = new Label();
+            型番_ラベル = new Label();
+            型番 = new TextBox();
+            材料費合計_ラベル = new Label();
+            材料費合計 = new TextBox();
+            型式 = new DataGridView();
+            ((System.ComponentModel.ISupportInitialize)型式).BeginInit();
+            SuspendLayout();
             // 
             // 品名_ラベル
             // 
@@ -63,17 +63,16 @@
             // 
             // 品名
             // 
-            this.品名.BackColor = System.Drawing.Color.White;
-            this.品名.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.品名.ImeMode = System.Windows.Forms.ImeMode.Off;
-            this.品名.Location = new System.Drawing.Point(119, 39);
-            this.品名.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.品名.Multiline = true;
-            this.品名.Name = "品名";
-            this.品名.ReadOnly = true;
-            this.品名.Size = new System.Drawing.Size(330, 19);
-            this.品名.TabIndex = 6;
-            this.品名.TabStop = false;
+            品名.BackColor = Color.White;
+            品名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            品名.ImeMode = ImeMode.Off;
+            品名.Location = new Point(119, 39);
+            品名.Margin = new Padding(3, 2, 3, 2);
+            品名.Name = "品名";
+            品名.ReadOnly = true;
+            品名.Size = new Size(330, 20);
+            品名.TabIndex = 6;
+            品名.TabStop = false;
             // 
             // 製品コード_ラベル
             // 
@@ -92,40 +91,40 @@
             // 
             // 閉じるボタン
             // 
-            this.閉じるボタン.Location = new System.Drawing.Point(347, 434);
-            this.閉じるボタン.Name = "閉じるボタン";
-            this.閉じるボタン.Size = new System.Drawing.Size(102, 24);
-            this.閉じるボタン.TabIndex = 15;
-            this.閉じるボタン.Text = "閉じる(&X)";
-            this.閉じるボタン.UseVisualStyleBackColor = true;
-            this.閉じるボタン.Click += new System.EventHandler(this.閉じるボタン_Click);
+            閉じるボタン.Location = new Point(347, 434);
+            閉じるボタン.Name = "閉じるボタン";
+            閉じるボタン.Size = new Size(102, 24);
+            閉じるボタン.TabIndex = 15;
+            閉じるボタン.Text = "閉じる(&X)";
+            閉じるボタン.UseVisualStyleBackColor = true;
+            閉じるボタン.Click += 閉じるボタン_Click;
             // 
             // 製品コード
             // 
-            this.製品コード.BackColor = System.Drawing.Color.White;
-            this.製品コード.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.製品コード.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.製品コード.FormattingEnabled = true;
-            this.製品コード.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.製品コード.Location = new System.Drawing.Point(119, 15);
-            this.製品コード.Name = "製品コード";
-            this.製品コード.Size = new System.Drawing.Size(102, 21);
-            this.製品コード.TabIndex = 2;
-            this.製品コード.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.製品コード_DrawItem);
-            this.製品コード.SelectedIndexChanged += new System.EventHandler(this.製品コード_SelectedIndexChanged);
-            this.製品コード.TextChanged += new System.EventHandler(this.製品コード_TextChanged);
+            製品コード.BackColor = Color.White;
+            製品コード.DrawMode = DrawMode.OwnerDrawFixed;
+            製品コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            製品コード.FormattingEnabled = true;
+            製品コード.ImeMode = ImeMode.Disable;
+            製品コード.Location = new Point(119, 15);
+            製品コード.Name = "製品コード";
+            製品コード.Size = new Size(102, 21);
+            製品コード.TabIndex = 2;
+            製品コード.DrawItem += 製品コード_DrawItem;
+            製品コード.SelectedIndexChanged += 製品コード_SelectedIndexChanged;
+            製品コード.TextChanged += 製品コード_TextChanged;
             // 
             // 製品版数
             // 
-            this.製品版数.BackColor = System.Drawing.Color.White;
-            this.製品版数.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.製品版数.FormattingEnabled = true;
-            this.製品版数.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.製品版数.Location = new System.Drawing.Point(290, 15);
-            this.製品版数.Name = "製品版数";
-            this.製品版数.Size = new System.Drawing.Size(59, 21);
-            this.製品版数.TabIndex = 4;
-            this.製品版数.SelectedIndexChanged += new System.EventHandler(this.製品版数_SelectedIndexChanged);
+            製品版数.BackColor = Color.White;
+            製品版数.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            製品版数.FormattingEnabled = true;
+            製品版数.ImeMode = ImeMode.Disable;
+            製品版数.Location = new Point(290, 15);
+            製品版数.Name = "製品版数";
+            製品版数.Size = new Size(59, 21);
+            製品版数.TabIndex = 4;
+            製品版数.SelectedIndexChanged += 製品版数_SelectedIndexChanged;
             // 
             // 製品版数_ラベル
             // 
@@ -159,17 +158,16 @@
             // 
             // シリーズ名
             // 
-            this.シリーズ名.BackColor = System.Drawing.Color.White;
-            this.シリーズ名.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.シリーズ名.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.シリーズ名.Location = new System.Drawing.Point(119, 62);
-            this.シリーズ名.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.シリーズ名.Multiline = true;
-            this.シリーズ名.Name = "シリーズ名";
-            this.シリーズ名.ReadOnly = true;
-            this.シリーズ名.Size = new System.Drawing.Size(330, 19);
-            this.シリーズ名.TabIndex = 8;
-            this.シリーズ名.TabStop = false;
+            シリーズ名.BackColor = Color.White;
+            シリーズ名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            シリーズ名.ImeMode = ImeMode.NoControl;
+            シリーズ名.Location = new Point(119, 62);
+            シリーズ名.Margin = new Padding(3, 2, 3, 2);
+            シリーズ名.Name = "シリーズ名";
+            シリーズ名.ReadOnly = true;
+            シリーズ名.Size = new Size(330, 20);
+            シリーズ名.TabIndex = 8;
+            シリーズ名.TabStop = false;
             // 
             // 型式一覧_ラベル
             // 
@@ -203,17 +201,16 @@
             // 
             // 型番
             // 
-            this.型番.BackColor = System.Drawing.Color.White;
-            this.型番.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.型番.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.型番.Location = new System.Drawing.Point(119, 374);
-            this.型番.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.型番.Multiline = true;
-            this.型番.Name = "型番";
-            this.型番.ReadOnly = true;
-            this.型番.Size = new System.Drawing.Size(330, 19);
-            this.型番.TabIndex = 12;
-            this.型番.TabStop = false;
+            型番.BackColor = Color.White;
+            型番.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            型番.ImeMode = ImeMode.NoControl;
+            型番.Location = new Point(119, 374);
+            型番.Margin = new Padding(3, 2, 3, 2);
+            型番.Name = "型番";
+            型番.ReadOnly = true;
+            型番.Size = new Size(330, 20);
+            型番.TabIndex = 12;
+            型番.TabStop = false;
             // 
             // 材料費合計_ラベル
             // 
@@ -232,56 +229,56 @@
             // 
             // 材料費合計
             // 
-            this.材料費合計.BackColor = System.Drawing.Color.White;
-            this.材料費合計.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.材料費合計.ImeMode = System.Windows.Forms.ImeMode.Off;
-            this.材料費合計.Location = new System.Drawing.Point(119, 401);
-            this.材料費合計.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.材料費合計.Multiline = true;
-            this.材料費合計.Name = "材料費合計";
-            this.材料費合計.ReadOnly = true;
-            this.材料費合計.Size = new System.Drawing.Size(165, 19);
-            this.材料費合計.TabIndex = 14;
-            this.材料費合計.TabStop = false;
-            this.材料費合計.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            材料費合計.BackColor = Color.White;
+            材料費合計.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            材料費合計.ImeMode = ImeMode.Off;
+            材料費合計.Location = new Point(119, 401);
+            材料費合計.Margin = new Padding(3, 2, 3, 2);
+            材料費合計.Name = "材料費合計";
+            材料費合計.ReadOnly = true;
+            材料費合計.Size = new Size(165, 20);
+            材料費合計.TabIndex = 14;
+            材料費合計.TabStop = false;
+            材料費合計.TextAlign = HorizontalAlignment.Right;
             // 
             // 型式
             // 
-            this.型式.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.型式.Location = new System.Drawing.Point(119, 86);
-            this.型式.Name = "型式";
-            this.型式.RowTemplate.Height = 25;
-            this.型式.Size = new System.Drawing.Size(330, 283);
-            this.型式.TabIndex = 16;
-            this.型式.SelectionChanged += new System.EventHandler(this.型式_SelectionChanged);
+            型式.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            型式.Location = new Point(119, 86);
+            型式.Name = "型式";
+            型式.RowTemplate.Height = 25;
+            型式.Size = new Size(330, 283);
+            型式.TabIndex = 16;
+            型式.SelectionChanged += 型式_SelectionChanged;
             // 
             // F_製品材料費参照
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(458, 470);
-            this.Controls.Add(this.型式);
-            this.Controls.Add(this.材料費合計_ラベル);
-            this.Controls.Add(this.材料費合計);
-            this.Controls.Add(this.型番_ラベル);
-            this.Controls.Add(this.型番);
-            this.Controls.Add(this.型式一覧_ラベル);
-            this.Controls.Add(this.シリーズ名);
-            this.Controls.Add(this.シリーズ名_ラベル);
-            this.Controls.Add(this.製品版数_ラベル);
-            this.Controls.Add(this.製品版数);
-            this.Controls.Add(this.製品コード);
-            this.Controls.Add(this.閉じるボタン);
-            this.Controls.Add(this.品名_ラベル);
-            this.Controls.Add(this.品名);
-            this.Controls.Add(this.製品コード_ラベル);
-            this.Name = "F_製品材料費参照";
-            this.Text = "製品材料費参照";
-            this.Load += new System.EventHandler(this.Form_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.型式)).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(458, 470);
+            Controls.Add(型式);
+            Controls.Add(材料費合計_ラベル);
+            Controls.Add(材料費合計);
+            Controls.Add(型番_ラベル);
+            Controls.Add(型番);
+            Controls.Add(型式一覧_ラベル);
+            Controls.Add(シリーズ名);
+            Controls.Add(シリーズ名_ラベル);
+            Controls.Add(製品版数_ラベル);
+            Controls.Add(製品版数);
+            Controls.Add(製品コード);
+            Controls.Add(閉じるボタン);
+            Controls.Add(品名_ラベル);
+            Controls.Add(品名);
+            Controls.Add(製品コード_ラベル);
+            Name = "F_製品材料費参照";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "製品材料費参照";
+            Load += Form_Load;
+            KeyDown += F_製品材料費参照_KeyDown;
+            ((System.ComponentModel.ISupportInitialize)型式).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion

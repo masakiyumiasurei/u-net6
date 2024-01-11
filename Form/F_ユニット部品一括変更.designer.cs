@@ -1076,6 +1076,7 @@ namespace u_net
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "F_ユニット部品一括変更";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = " ユニット - 部品一括変更";
             FormClosing += Form_Unload;
             Load += Form_Load;

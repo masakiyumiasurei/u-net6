@@ -1275,6 +1275,7 @@ namespace u_net
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "F_入庫";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = " 入庫（発注）";
             FormClosing += Form_Unload;
             Load += Form_Load;

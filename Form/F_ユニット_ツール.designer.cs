@@ -290,6 +290,7 @@ namespace u_net
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "F_ユニット_ツール";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = " ユニット - ツール";
             FormClosing += Form_Unload;
             Load += Form_Load;

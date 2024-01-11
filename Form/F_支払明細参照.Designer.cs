@@ -502,6 +502,7 @@
             Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(3, 2, 3, 2);
             Name = "F_支払明細参照";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "請求処理";
             FormClosing += F_製品管理_FormClosing;
             Load += Form_Load;

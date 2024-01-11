@@ -66,7 +66,9 @@ namespace u_net
         private void Form_Load(object sender, EventArgs e)
         {
 
-
+            string LoginUserCode = CommonConstants.LoginUserCode;
+            LocalSetting localSetting = new LocalSetting();
+            localSetting.LoadPlace(LoginUserCode, this);
 
             MyApi myapi = new MyApi();
             int xSize, ySize, intpixel, twipperdot;
@@ -371,7 +373,7 @@ namespace u_net
             {
                 case 12:
                     str支払先コード = CurrentCode;
-                    F_手形 targetform = new F_手形(); 
+                    F_手形 targetform = new F_手形();
                     targetform.ShowDialog();
                     break;
 
@@ -393,8 +395,8 @@ namespace u_net
                     targetform4.ShowDialog();
                     break;
             }
-            
-            
+
+
         }
 
         private void dataGridView1_KeyDown(object sender, KeyEventArgs e)
@@ -778,6 +780,13 @@ namespace u_net
             {
                 締切.Text = null;
             }
+        }
+
+        private void F_振込一覧_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            string LoginUserCode = CommonConstants.LoginUserCode;
+            LocalSetting test = new LocalSetting();
+            test.SavePlace(LoginUserCode, this);
         }
     }
 }

@@ -466,9 +466,11 @@ namespace u_net
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "F_ユニット構成番号検索";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = " 構成番号検索";
             FormClosing += Form_Unload;
             Load += Form_Load;
+            KeyDown += F_ユニット構成番号検索_KeyDown;
             statusStrip1.ResumeLayout(false);
             statusStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)対象ユニット).EndInit();

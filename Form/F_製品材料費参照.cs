@@ -56,6 +56,12 @@ namespace u_net
 
         private void Form_Load(object sender, EventArgs e)
         {
+
+            foreach (Control control in Controls)
+            {
+                control.PreviewKeyDown += OriginalClass.ValidateCheck;
+            }
+
             FunctionClass fn = new FunctionClass();
 
             fn.DoWait("しばらくお待ちください...");
@@ -65,14 +71,14 @@ namespace u_net
 
             製品コード.DrawMode = DrawMode.OwnerDrawFixed;
             ofn.SetComboBox(製品コード, "SELECT 製品コード as Value , 製品コード as Display, MAX(製品版数) AS Display2 FROM M製品 GROUP BY 製品コード ORDER BY 製品コード DESC");
-            
+
 
 
             this.製品版数.Text = Convert.ToInt32(args.Substring(0, args.IndexOf(","))).ToString();
             this.製品コード.Focus();
             this.製品コード.SelectedValue = args.Substring(0, args.IndexOf(","));
 
-            
+
 
 
 
@@ -145,7 +151,7 @@ namespace u_net
 
         private void SetModelList(string productCode, int productEdition)
         {
-            
+
 
             if (productCode == "System.Data.DataRowView") return;
 
@@ -237,7 +243,7 @@ namespace u_net
         {
             decimal sum = 0;
 
-            foreach(DataGridViewRow row in 型式.SelectedRows)
+            foreach (DataGridViewRow row in 型式.SelectedRows)
             {
                 if (string.IsNullOrEmpty(row.Cells[1].Value?.ToString())) continue;
                 sum += Decimal.Parse(row.Cells[1].Value.ToString());
@@ -250,6 +256,16 @@ namespace u_net
         private void 型式_SelectionChanged(object sender, EventArgs e)
         {
             材料費合計.Text = GetTotalCost().ToString("N2");
+        }
+
+        private void F_製品材料費参照_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Return:
+                    SelectNextControl(ActiveControl, true, true, true, true);
+                    break;
+            }
         }
     }
 }

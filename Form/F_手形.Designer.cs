@@ -359,6 +359,7 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "手形";
             Load += Form_Load;
+            KeyDown += F_手形_KeyDown;
             groupBox.ResumeLayout(false);
             groupBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();

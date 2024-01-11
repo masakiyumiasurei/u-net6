@@ -110,7 +110,7 @@ namespace u_net
                 int commaIndex = args.IndexOf(",");
                 if (commaIndex != -1)
                 {
-                   製品コード.Text = args.Substring(0, commaIndex);
+                    製品コード.Text = args.Substring(0, commaIndex);
                 }
 
                 int startIndex = commaIndex + 1;
@@ -138,7 +138,7 @@ namespace u_net
 
         private void Form_Unload(object sender, FormClosingEventArgs e)
         {
-           
+
 
 
         }
@@ -146,7 +146,7 @@ namespace u_net
 
         private void UpdatedCode(string codeString)
         {
-            
+
             OriginalClass ofn = new OriginalClass();
             ofn.SetComboBox(製品版数, "SELECT 製品版数 as Display, 製品版数 as Value FROM M製品 WHERE 製品コード=" + codeString + " ORDER BY 製品版数 DESC");
 
@@ -158,7 +158,7 @@ namespace u_net
 
             // 対象ユニットにフォーカスを設定する
             対象ユニット.Focus();
-        
+
         }
 
         private void SetProductInfo(string productCode, int productEdition)
@@ -194,7 +194,7 @@ namespace u_net
                         }
                     }
                 }
-                
+
             }
             catch (Exception ex)
             {
@@ -235,14 +235,14 @@ namespace u_net
             対象ユニット.Columns[2].Width = 2750 / twipperdot;
             対象ユニット.Columns[3].Width = 2750 / twipperdot;
 
-            
+
 
         }
 
 
-            private void 重複検索ボタン_Click(object sender, EventArgs e)
-            {
-                FunctionClass fn = new FunctionClass();
+        private void 重複検索ボタン_Click(object sender, EventArgs e)
+        {
+            FunctionClass fn = new FunctionClass();
 
 
             try
@@ -282,9 +282,9 @@ namespace u_net
                 // 検索結果の設定
                 DataGridUtils.SetDataGridView(cn, strSQL, 検索結果);
 
- 
+
                 // データがない場合
-                if(検索結果.RowCount <= 0)
+                if (検索結果.RowCount <= 0)
                 {
                     MessageBox.Show("検索結果はありません。", "重複検索", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
@@ -357,7 +357,7 @@ namespace u_net
                     lngi++;
                 }
 
-                if(strKey == "")
+                if (strKey == "")
                 {
                     strKey = "1=0";
                 }
@@ -417,6 +417,16 @@ namespace u_net
         private void 閉じるボタン_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void F_ユニット構成番号検索_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Return:
+                    SelectNextControl(ActiveControl, true, true, true, true);
+                    break;
+            }
         }
     }
 }

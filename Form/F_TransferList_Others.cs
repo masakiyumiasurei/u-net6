@@ -37,6 +37,12 @@ namespace u_net
             try
             {
 
+                foreach (Control control in Controls)
+                {
+                    control.PreviewKeyDown += OriginalClass.ValidateCheck;
+                }
+
+
                 // 対象フォームが読み込まれていないときはすぐに終了する
                 if (Application.OpenForms["F_振込一覧"] == null)
                 {
@@ -136,6 +142,17 @@ namespace u_net
                 return default(T);
             }
             return value;
+        }
+
+        private void Form_KeyDown(object sender, KeyEventArgs e)
+        {
+
+            switch (e.KeyCode)
+            {
+                case Keys.Return:
+                    SelectNextControl(ActiveControl, true, true, true, true);
+                    break;
+            }
         }
 
         private void 削除ボタン_Click(object sender, EventArgs e)

@@ -1425,6 +1425,7 @@ namespace u_net
             Font = new Font("ＭＳ ゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             KeyPreview = true;
             Name = "F_メーカー";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = " ";
             FormClosing += Form_Unload;
             Load += Form_Load;

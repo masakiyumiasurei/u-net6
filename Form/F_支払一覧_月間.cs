@@ -64,7 +64,7 @@ namespace u_net
         }
 
 
-        
+
 
         private string Nz(object value)
         {
@@ -83,6 +83,14 @@ namespace u_net
         private void Form_Load(object sender, EventArgs e)
         {
 
+            foreach (Control control in Controls)
+            {
+                control.PreviewKeyDown += OriginalClass.ValidateCheck;
+            }
+
+            string LoginUserCode = CommonConstants.LoginUserCode;
+            LocalSetting localSetting = new LocalSetting();
+            localSetting.LoadPlace(LoginUserCode, this);
 
 
             MyApi myapi = new MyApi();
@@ -262,7 +270,7 @@ namespace u_net
                     }
 
 
-               
+
                 }
 
             }
@@ -326,7 +334,7 @@ namespace u_net
         private void dataGridView1_Sorted(object sender, EventArgs e)
         {
             AddTotalRow(dataGridView1);
-            
+
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -389,6 +397,9 @@ namespace u_net
 
                 switch (e.KeyCode)
                 {
+                    case Keys.Return:
+                        SelectNextControl(ActiveControl, true, true, true, true);
+                        break;
                     case Keys.F1:
                         if (this.コマンド抽出.Enabled) コマンド抽出_Click(null, null);
                         break;
@@ -558,11 +569,11 @@ namespace u_net
                 paoRep.PageStart();
 
                 //ヘッダー
-                paoRep.Write("タイトル", string.Format("yyyy年M月",集計年月.Text) + "支払一覧表");
+                paoRep.Write("タイトル", string.Format("yyyy年M月", 集計年月.Text) + "支払一覧表");
 
                 for (var i = 1; i <= 12; i++)
                 {
-                    paoRep.Write("項目" + (i).ToString(), string.Format("{0:#,0}", totalRow.Cells[i+1].Value) != "" ? string.Format("{0:#,0}", totalRow.Cells[i+1].Value) : " ");
+                    paoRep.Write("項目" + (i).ToString(), string.Format("{0:#,0}", totalRow.Cells[i + 1].Value) != "" ? string.Format("{0:#,0}", totalRow.Cells[i + 1].Value) : " ");
 
                     paoRep.z_Objects.SetObject("項目" + (i).ToString());
                     lenB = Encoding.Default.GetBytes(string.Format("{0:#,0}", totalRow.Cells[i + 1].Value)).Length;
@@ -668,8 +679,8 @@ namespace u_net
         {
             string param = $" -user:{CommonConstants.LoginUserName}" +
                            $" -sv:{CommonConstants.ServerInstanceName.Replace(" ", "_")}" +
-                           $" -pv:payment,{dtm集計年月.ToString().Replace(" ","_")}" + 
-                           $",{PayeeCode.Replace(" ","_")}";
+                           $" -pv:payment,{dtm集計年月.ToString().Replace(" ", "_")}" +
+                           $",{PayeeCode.Replace(" ", "_")}";
             FunctionClass.GetShell(param);
         }
 
@@ -731,7 +742,7 @@ namespace u_net
             F_支払 targetform = new F_支払();
             targetform.ShowDialog();
         }
-        
+
 
         private void 集計年月_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -782,6 +793,11 @@ namespace u_net
             }
         }
 
-        
+        private void F_支払一覧_月間_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            string LoginUserCode = CommonConstants.LoginUserCode;
+            LocalSetting test = new LocalSetting();
+            test.SavePlace(LoginUserCode, this);
+        }
     }
 }

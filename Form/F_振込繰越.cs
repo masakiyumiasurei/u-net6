@@ -36,6 +36,10 @@ namespace u_net
         {
             try
             {
+                foreach (Control control in Controls)
+                {
+                    control.PreviewKeyDown += OriginalClass.ValidateCheck;
+                }
 
                 // 対象フォームが読み込まれていないときはすぐに終了する
                 if (Application.OpenForms["F_振込一覧"] == null)
@@ -284,6 +288,16 @@ namespace u_net
         private void 支払先参照ボタン_Leave(object sender, EventArgs e)
         {
             toolStripStatusLabel1.Text = "■各種項目の説明";
+        }
+
+        private void F_振込繰越_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Return:
+                    SelectNextControl(ActiveControl, true, true, true, true);
+                    break;
+            }
         }
     }
 }

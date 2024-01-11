@@ -424,7 +424,9 @@
             Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(3, 2, 3, 2);
             Name = "F_支払一覧_月間";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "支払一覧表（月間）";
+            FormClosing += F_支払一覧_月間_FormClosing;
             Load += Form_Load;
             KeyDown += Form_KeyDown;
             Resize += Form_Resize;

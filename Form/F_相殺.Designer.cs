@@ -329,6 +329,7 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "相殺";
             Load += Form_Load;
+            KeyDown += F_相殺_KeyDown;
             groupBox.ResumeLayout(false);
             groupBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();

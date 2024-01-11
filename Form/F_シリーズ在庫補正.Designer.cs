@@ -91,7 +91,6 @@
             今日の日付.ImeMode = ImeMode.Disable;
             今日の日付.Location = new Point(119, 14);
             今日の日付.Margin = new Padding(3, 2, 3, 2);
-            今日の日付.Multiline = true;
             今日の日付.Name = "今日の日付";
             今日の日付.Size = new Size(160, 20);
             今日の日付.TabIndex = 1;
@@ -119,7 +118,6 @@
             シリーズコード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             シリーズコード.Location = new Point(119, 40);
             シリーズコード.Margin = new Padding(3, 2, 3, 2);
-            シリーズコード.Multiline = true;
             シリーズコード.Name = "シリーズコード";
             シリーズコード.Size = new Size(160, 20);
             シリーズコード.TabIndex = 2;
@@ -147,7 +145,6 @@
             確認日.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             確認日.Location = new Point(119, 92);
             確認日.Margin = new Padding(3, 2, 3, 2);
-            確認日.Multiline = true;
             確認日.Name = "確認日";
             確認日.Size = new Size(160, 20);
             確認日.TabIndex = 4;
@@ -160,7 +157,6 @@
             シリーズ名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             シリーズ名.Location = new Point(119, 66);
             シリーズ名.Margin = new Padding(3, 2, 3, 2);
-            シリーズ名.Multiline = true;
             シリーズ名.Name = "シリーズ名";
             シリーズ名.Size = new Size(343, 20);
             シリーズ名.TabIndex = 3;
@@ -203,7 +199,6 @@
             在庫数量.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             在庫数量.Location = new Point(119, 118);
             在庫数量.Margin = new Padding(3, 2, 3, 2);
-            在庫数量.Multiline = true;
             在庫数量.Name = "在庫数量";
             在庫数量.Size = new Size(160, 20);
             在庫数量.TabIndex = 5;
@@ -243,9 +238,9 @@
             // 
             補正数量.BackColor = Color.White;
             補正数量.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            補正数量.ImeMode = ImeMode.Disable;
             補正数量.Location = new Point(119, 195);
             補正数量.Margin = new Padding(3, 2, 3, 2);
-            補正数量.Multiline = true;
             補正数量.Name = "補正数量";
             補正数量.Size = new Size(160, 20);
             補正数量.TabIndex = 1;
@@ -296,6 +291,7 @@
             Controls.Add(補正実行ボタン);
             KeyPreview = true;
             Name = "F_シリーズ在庫補正";
+            StartPosition = FormStartPosition.CenterScreen;
             FormClosing += F_シリーズ在庫補正_FormClosing;
             Load += Form_Load;
             KeyDown += F_シリーズ在庫補正_KeyDown;

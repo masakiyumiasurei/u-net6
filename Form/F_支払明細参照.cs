@@ -78,7 +78,14 @@ namespace u_net
 
         private void Form_Load(object sender, EventArgs e)
         {
+            foreach (Control control in Controls)
+            {
+                control.PreviewKeyDown += OriginalClass.ValidateCheck;
+            }
 
+            string LoginUserCode = CommonConstants.LoginUserCode;
+            LocalSetting localSetting = new LocalSetting();
+            localSetting.LoadPlace(LoginUserCode, this);
 
             Connect();
 
@@ -523,6 +530,7 @@ namespace u_net
 
                 switch (e.KeyCode)
                 {
+ 
                     case Keys.F1:
                         if (this.コマンド抽出.Enabled) コマンド抽出_Click(null, null);
                         break;

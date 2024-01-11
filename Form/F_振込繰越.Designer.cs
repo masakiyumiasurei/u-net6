@@ -329,6 +329,7 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "繰越";
             Load += Form_Load;
+            KeyDown += F_振込繰越_KeyDown;
             groupBox.ResumeLayout(false);
             groupBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();

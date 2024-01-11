@@ -42,6 +42,11 @@ namespace u_net
             //LocalSetting localSetting = new LocalSetting();
             //localSetting.LoadPlace(LoginUserCode, this);
 
+            foreach (Control control in Controls)
+            {
+                control.PreviewKeyDown += OriginalClass.ValidateCheck;
+            }
+
             try
             {
                 if (Application.OpenForms["F_シリーズ在庫参照"] == null)

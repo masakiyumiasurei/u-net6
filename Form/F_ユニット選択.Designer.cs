@@ -233,6 +233,7 @@
             Controls.Add(コマンドキャンセル);
             Controls.Add(表示件数);
             Name = "F_ユニット選択";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "ユニット選択";
             Load += Form_Load;
             KeyDown += F_ユニット選択_KeyDown;

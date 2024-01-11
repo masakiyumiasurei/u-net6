@@ -35,6 +35,12 @@ namespace u_net
             try
             {
 
+                foreach (Control control in Controls)
+                {
+                    control.PreviewKeyDown += OriginalClass.ValidateCheck;
+                }
+
+
                 // 対象フォームが読み込まれていないときはすぐに終了する
                 if (Application.OpenForms["F_製品管理"] == null)
                 {
@@ -89,7 +95,7 @@ namespace u_net
                         break;
 
                     default:
-    
+
                         break;
                 }
 
@@ -168,7 +174,7 @@ namespace u_net
                         break;
 
                     default:
-          
+
                         break;
                 }
 
@@ -316,7 +322,7 @@ namespace u_net
 
         private F_カレンダー dateSelectionForm;
 
-        
+
 
         private void 更新日開始選択_Click(object sender, EventArgs e)
         {
@@ -335,6 +341,7 @@ namespace u_net
 
                 // フォームAの日付コントロールに選択した日付を設定
                 更新日開始.Text = selectedDate;
+                更新日開始.Focus();
             }
         }
 
@@ -345,7 +352,7 @@ namespace u_net
 
         private void 更新日開始_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if(e.KeyChar == ' ')
+            if (e.KeyChar == ' ')
             {
                 更新日開始選択_Click(sender, e);
             }
@@ -371,6 +378,7 @@ namespace u_net
 
                 // フォームAの日付コントロールに選択した日付を設定
                 更新日終了.Text = selectedDate;
+                更新日終了.Focus();
             }
         }
 
@@ -381,7 +389,7 @@ namespace u_net
 
         private void 更新日終了_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if(e.KeyChar == ' ')
+            if (e.KeyChar == ' ')
             {
                 更新日終了選択_Click(sender, e);
             }
@@ -395,6 +403,16 @@ namespace u_net
         private void 更新日終了_Leave(object sender, EventArgs e)
         {
             FunctionClass.AdjustRange(更新日開始, 更新日終了, sender as Control);
+        }
+
+        private void F_製品管理_抽出_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Return:
+                    SelectNextControl(ActiveControl, true, true, true, true);
+                    break;
+            }
         }
     }
 }

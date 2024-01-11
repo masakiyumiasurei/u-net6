@@ -28,36 +28,36 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.処理内容 = new System.Windows.Forms.TextBox();
-            this.SuspendLayout();
+            処理内容 = new TextBox();
+            SuspendLayout();
             // 
             // 処理内容
             // 
-            this.処理内容.BackColor = System.Drawing.Color.Black;
-            this.処理内容.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.処理内容.Enabled = false;
-            this.処理内容.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.処理内容.ForeColor = System.Drawing.Color.White;
-            this.処理内容.Location = new System.Drawing.Point(-3, 23);
-            this.処理内容.Name = "処理内容";
-            this.処理内容.Size = new System.Drawing.Size(208, 16);
-            this.処理内容.TabIndex = 0;
-            this.処理内容.Text = "登録中...";
-            this.処理内容.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            処理内容.BackColor = Color.Black;
+            処理内容.BorderStyle = BorderStyle.None;
+            処理内容.Enabled = false;
+            処理内容.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Bold, GraphicsUnit.Point);
+            処理内容.ForeColor = Color.White;
+            処理内容.Location = new Point(-3, 23);
+            処理内容.Name = "処理内容";
+            処理内容.Size = new Size(208, 16);
+            処理内容.TabIndex = 0;
+            処理内容.Text = "登録中...";
+            処理内容.TextAlign = HorizontalAlignment.Center;
             // 
             // F_実行中
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(205, 67);
-            this.Controls.Add(this.処理内容);
-            this.Name = "F_実行中";
-            this.Text = "F_実行中";
-            this.Load += new System.EventHandler(this.F_実行中_Load);
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.Black;
+            ClientSize = new Size(205, 67);
+            Controls.Add(処理内容);
+            Name = "F_実行中";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "F_実行中";
+            Load += F_実行中_Load;
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
