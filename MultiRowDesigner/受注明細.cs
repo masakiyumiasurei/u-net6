@@ -26,6 +26,12 @@ namespace MultiRowDesigner
             }
         }
 
+        public string strArticle;
+        public string strSeries;
+        public string strModel;
+        public int intPrice;
+
+
         public 受注明細()
         {
             InitializeComponent();
@@ -49,6 +55,14 @@ namespace MultiRowDesigner
                 textBox.TextChanged += gcMultiRow1_TextChanged;
                 textBox.GotFocus -= gcMultiRow1_GotFocus;
                 textBox.GotFocus += gcMultiRow1_GotFocus;
+
+        
+
+                if (gcMultiRow1.CurrentCell.Name == "商品コード")
+                {
+                    textBox.DoubleClick -= gcMultiRow1_CellDoubleClick;
+                    textBox.DoubleClick += gcMultiRow1_CellDoubleClick;
+                }
             }
             else if (comboBox != null)
             {
@@ -140,9 +154,35 @@ namespace MultiRowDesigner
                         combo.DroppedDown = true;
                         e.Handled = true;
                         break;
+                    case "商品コード":
+                        e.Handled = true;
+
+
+                        F_商品構成2 targetform = new F_商品構成2();
+
+                        targetform.ShowDialog();
+                        break;
                 }
             }
 
+        }
+
+        private void gcMultiRow1_CellDoubleClick(object sender, EventArgs e)
+        {
+            if (gcMultiRow1.CurrentCell.RowIndex == null || gcMultiRow1.CurrentCell.CellIndex == null) return;
+
+            switch (gcMultiRow1.CurrentCell.Name)
+            {
+                case "商品コード":
+                    
+                    F_商品構成2 targetform = new F_商品構成2();
+
+                    targetform.ShowDialog();
+                    break;
+
+
+
+            }
         }
 
         private void ラインコード_DrawItem(object sender, DrawItemEventArgs e)
