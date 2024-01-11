@@ -139,8 +139,6 @@ namespace u_net
             mshomeisaiTableAdapter = new newDataSetTableAdapters.MshomeisaiTableAdapter();
             商品明細1 = new MultiRowDesigner.商品明細();
             分類名 = new TextBox();
-            ((System.ComponentModel.ISupportInitialize)M商品BindingSource).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)uiDataSet).BeginInit();
             ((System.ComponentModel.ISupportInitialize)comboBox売上区分bindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)newDataSet).BeginInit();
             ((System.ComponentModel.ISupportInitialize)combBox商品コードBindingSource).BeginInit();
