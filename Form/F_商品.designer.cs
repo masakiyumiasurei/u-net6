@@ -866,7 +866,6 @@ namespace u_net
             シリーズ名.ReadOnly = true;
             シリーズ名.Size = new Size(290, 20);
             シリーズ名.TabIndex = 166;
-            シリーズ名.Visible = false;
             // 
             // 商品名
             // 
