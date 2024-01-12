@@ -170,6 +170,7 @@
     <Compile Update="Form\F_TransferList_Others.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Form\F_入庫完了.cs" />
     <Compile Update="Form\F_相殺.cs">
       <SubType>Form</SubType>
     </Compile>
