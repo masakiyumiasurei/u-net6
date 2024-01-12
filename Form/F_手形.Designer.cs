@@ -219,6 +219,7 @@
             支払先参照ボタン.TabIndex = 21010;
             支払先参照ボタン.TabStop = false;
             支払先参照ボタン.Text = "▶";
+            toolTip1.SetToolTip(支払先参照ボタン, "支払先参照");
             支払先参照ボタン.UseVisualStyleBackColor = true;
             支払先参照ボタン.Click += 支払先参照ボタン_Click;
             支払先参照ボタン.Enter += 支払先参照ボタン_Enter;
@@ -359,6 +360,7 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "手形";
             Load += Form_Load;
+            KeyDown += F_手形_KeyDown;
             groupBox.ResumeLayout(false);
             groupBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();

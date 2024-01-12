@@ -30,6 +30,7 @@ namespace u_net
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(F_製品));
             コマンド終了 = new Button();
             コマンド登録 = new Button();
             panel1 = new Panel();
@@ -200,7 +201,7 @@ namespace u_net
             コマンド廃止.TabIndex = 1010;
             コマンド廃止.TabStop = false;
             コマンド廃止.Text = "廃止";
-            toolTip1.SetToolTip(コマンド廃止, "■製品を廃止します。");
+            toolTip1.SetToolTip(コマンド廃止, "製品の廃止");
             コマンド廃止.UseVisualStyleBackColor = true;
             コマンド廃止.Click += コマンド廃止_Click;
             // 
@@ -216,7 +217,7 @@ namespace u_net
             コマンドユニット表.TabIndex = 1009;
             コマンドユニット表.TabStop = false;
             コマンドユニット表.Text = "ユニット表";
-            toolTip1.SetToolTip(コマンドユニット表, "■ユニット表をプレビューします。");
+            toolTip1.SetToolTip(コマンドユニット表, "ユニット表のプレビュー");
             コマンドユニット表.UseVisualStyleBackColor = true;
             コマンドユニット表.Click += コマンドユニット表_Click;
             // 
@@ -457,7 +458,7 @@ namespace u_net
             コマンドツール.TabIndex = 1011;
             コマンドツール.TabStop = false;
             コマンドツール.Text = "ツール";
-            toolTip1.SetToolTip(コマンドツール, "■ツールメニューを開きます。");
+            toolTip1.SetToolTip(コマンドツール, "ツールメニューの起動");
             コマンドツール.UseVisualStyleBackColor = true;
             コマンドツール.Click += コマンドツール_Click;
             // 
@@ -1248,12 +1249,14 @@ namespace u_net
             Controls.Add(廃止表示);
             Controls.Add(確定表示);
             Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             ImeMode = ImeMode.Off;
             KeyPreview = true;
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "F_製品";
-            Text = " ";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = " 製品";
             FormClosing += Form_Unload;
             Load += Form_Load;
             KeyDown += Form_KeyDown;

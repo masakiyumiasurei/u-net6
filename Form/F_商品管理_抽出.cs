@@ -24,6 +24,11 @@ namespace u_net
             try
             {
 
+                foreach (Control control in Controls)
+                {
+                    control.PreviewKeyDown += OriginalClass.ValidateCheck;
+                }
+
                 // 対象フォームが読み込まれていないときはすぐに終了する
                 if (Application.OpenForms["F_商品管理"] == null)
                 {
@@ -326,6 +331,16 @@ namespace u_net
         private void 更新日終了_Leave(object sender, EventArgs e)
         {
             FunctionClass.AdjustRange(更新日開始, 更新日終了, sender as Control);
+        }
+
+        private void F_商品管理_抽出_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Return:
+                    SelectNextControl(ActiveControl, true, true, true, true);
+                    break;
+            }
         }
 
         // Nz メソッドの代替

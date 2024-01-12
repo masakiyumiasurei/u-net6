@@ -247,6 +247,7 @@ namespace u_net
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "F_ユニット使用製品参照";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = " 使用先製品参照";
             FormClosing += Form_Unload;
             Load += Form_Load;

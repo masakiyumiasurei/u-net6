@@ -273,7 +273,7 @@
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
             dataGridView1.RowTemplate.Height = 29;
-            dataGridView1.Size = new Size(1032, 535);
+            dataGridView1.Size = new Size(1032, 513);
             dataGridView1.TabIndex = 87;
             dataGridView1.CellClick += dataGridView1_CellClick;
             dataGridView1.CellDoubleClick += dataGridView1_CellDoubleClick;
@@ -300,6 +300,7 @@
             // 
             現在日.BackColor = Color.White;
             現在日.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            現在日.ImeMode = ImeMode.Disable;
             現在日.Location = new Point(72, 35);
             現在日.Margin = new Padding(3, 2, 3, 2);
             現在日.Name = "現在日";
@@ -328,6 +329,7 @@
             今日の日付.BackColor = Color.White;
             今日の日付.Enabled = false;
             今日の日付.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            今日の日付.ImeMode = ImeMode.Disable;
             今日の日付.Location = new Point(427, 35);
             今日の日付.Margin = new Padding(3, 2, 3, 2);
             今日の日付.Name = "今日の日付";
@@ -446,10 +448,10 @@
             // 
             // panel2
             // 
+            panel2.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             panel2.Controls.Add(表示件数);
             panel2.Controls.Add(label1);
             panel2.Controls.Add(label2);
-            panel2.Dock = DockStyle.Bottom;
             panel2.Location = new Point(0, 578);
             panel2.Margin = new Padding(3, 2, 3, 2);
             panel2.Name = "panel2";
@@ -511,6 +513,7 @@
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "F_シリーズ在庫参照";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "シリーズ在庫参照";
             FormClosing += F_シリーズ在庫参照_FormClosing;
             Load += Form_Load;

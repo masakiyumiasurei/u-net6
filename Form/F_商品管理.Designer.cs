@@ -302,6 +302,7 @@
             Controls.Add(panel1);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "F_商品管理";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "商品管理";
             Load += Form_Load;
             SizeChanged += Form_Resize;

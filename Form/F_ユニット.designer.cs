@@ -30,6 +30,7 @@ namespace u_net
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(F_ユニット));
             コマンド終了 = new Button();
             コマンド登録 = new Button();
             panel1 = new Panel();
@@ -994,10 +995,14 @@ namespace u_net
             // 
             // ユニット明細1
             // 
-            ユニット明細1.Location = new Point(5, 195);
+            ユニット明細1.AllowDrop = true;
+            ユニット明細1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            ユニット明細1.AutoScroll = true;
+            ユニット明細1.AutoSize = true;
+            ユニット明細1.Location = new Point(5, 191);
             ユニット明細1.Margin = new Padding(4);
             ユニット明細1.Name = "ユニット明細1";
-            ユニット明細1.Size = new Size(1200, 369);
+            ユニット明細1.Size = new Size(1204, 373);
             ユニット明細1.TabIndex = 10197;
             // 
             // 承認表示
@@ -1101,11 +1106,13 @@ namespace u_net
             Controls.Add(label3);
             Controls.Add(label4);
             Controls.Add(label10);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             ImeMode = ImeMode.Off;
             KeyPreview = true;
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "F_ユニット";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = " ユニット";
             FormClosing += Form_Unload;
             Load += Form_Load;

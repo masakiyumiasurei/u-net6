@@ -30,6 +30,7 @@ namespace u_net
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(F_ユニット参照));
             コマンド終了 = new Button();
             コマンド登録 = new Button();
             panel1 = new Panel();
@@ -108,7 +109,7 @@ namespace u_net
             更新者コード = new TextBox();
             statusStrip1 = new StatusStrip();
             toolStripStatusLabel1 = new ToolStripStatusLabel();
-            this.ユニット明細参照1 = new MultiRowDesigner.ユニット明細参照();
+            ユニット明細参照1 = new MultiRowDesigner.ユニット明細参照();
             廃止 = new CheckBox();
             label5 = new Label();
             toolTip1 = new ToolTip(components);
@@ -133,14 +134,6 @@ namespace u_net
             toolTip1.SetToolTip(コマンド終了, "終了");
             コマンド終了.UseVisualStyleBackColor = true;
             コマンド終了.Click += コマンド終了_Click;
-            // 
-            // ユニット明細参照1
-            // 
-            this.ユニット明細参照1.Location = new System.Drawing.Point(5, 195);
-            this.ユニット明細参照1.Margin = new System.Windows.Forms.Padding(4);
-            this.ユニット明細参照1.Name = "ユニット明細参照1";
-            this.ユニット明細参照1.Size = new System.Drawing.Size(1200, 369);
-            this.ユニット明細参照1.TabIndex = 10197;
             // 
             // コマンド登録
             // 
@@ -249,6 +242,7 @@ namespace u_net
             コマンド確定.TabIndex = 1007;
             コマンド確定.TabStop = false;
             コマンド確定.Text = "確定";
+            toolTip1.SetToolTip(コマンド確定, "ユニットデータの確定");
             コマンド確定.UseVisualStyleBackColor = true;
             コマンド確定.Click += コマンド確定_Click;
             // 
@@ -934,11 +928,13 @@ namespace u_net
             // 
             // statusStrip1
             // 
+            statusStrip1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            statusStrip1.Dock = DockStyle.None;
             statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1 });
             statusStrip1.Location = new Point(0, 568);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Padding = new Padding(1, 0, 19, 0);
-            statusStrip1.Size = new Size(1036, 22);
+            statusStrip1.Size = new Size(111, 22);
             statusStrip1.TabIndex = 10195;
             statusStrip1.Text = "statusStrip1";
             // 
@@ -947,6 +943,15 @@ namespace u_net
             toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             toolStripStatusLabel1.Size = new Size(89, 17);
             toolStripStatusLabel1.Text = "各種項目の説明";
+            // 
+            // ユニット明細参照1
+            // 
+            ユニット明細参照1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            ユニット明細参照1.Location = new Point(5, 195);
+            ユニット明細参照1.Margin = new Padding(4, 4, 4, 4);
+            ユニット明細参照1.Name = "ユニット明細参照1";
+            ユニット明細参照1.Size = new Size(1018, 369);
+            ユニット明細参照1.TabIndex = 10197;
             // 
             // 廃止
             // 
@@ -1075,11 +1080,13 @@ namespace u_net
             Controls.Add(label3);
             Controls.Add(label4);
             Controls.Add(label10);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             ImeMode = ImeMode.Off;
             KeyPreview = true;
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "F_ユニット参照";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = " ユニット参照";
             FormClosing += Form_Unload;
             Load += Form_Load;

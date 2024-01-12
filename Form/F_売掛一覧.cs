@@ -106,6 +106,10 @@ namespace u_net
         private void Form_Load(object sender, EventArgs e)
         {
 
+            string LoginUserCode = CommonConstants.LoginUserCode;
+            LocalSetting localSetting = new LocalSetting();
+            localSetting.LoadPlace(LoginUserCode, this);
+
             MyApi myapi = new MyApi();
             int xSize, ySize, intpixel, twipperdot;
 
@@ -661,7 +665,7 @@ namespace u_net
                 //明細
                 for (var i = 0; i < maxRow; i++)
                 {
-                    if (CurRow >= dataGridView1.RowCount-1) break;
+                    if (CurRow >= dataGridView1.RowCount - 1) break;
 
                     DataGridViewRow targetRow = dataGridView1.Rows[CurRow];
 
@@ -669,7 +673,7 @@ namespace u_net
                     paoRep.Write("顧客コード", targetRow.Cells["顧客コード"].Value.ToString() != "" ? targetRow.Cells["顧客コード"].Value.ToString() : " ", i + 1);
                     paoRep.Write("顧客名", targetRow.Cells["顧客名"].Value.ToString() != "" ? targetRow.Cells["顧客名"].Value.ToString() : " ", i + 1);
                     paoRep.Write("売上金額", string.Format("{0:#,0}", targetRow.Cells["売上金額"].Value) != "" ? string.Format("{0:#,0}", targetRow.Cells["売上金額"].Value) : " ", i + 1);
-                   
+
 
 
 
@@ -743,7 +747,7 @@ namespace u_net
                 //明細
                 for (var i = 0; i < maxRow; i++)
                 {
-                    if (CurRow >= dataGridView1.RowCount-1) break;
+                    if (CurRow >= dataGridView1.RowCount - 1) break;
 
                     DataGridViewRow targetRow = dataGridView1.Rows[CurRow];
 
@@ -936,6 +940,11 @@ namespace u_net
             売掛年月.DroppedDown = true;
         }
 
-        
+        private void F_売掛一覧_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            string LoginUserCode = CommonConstants.LoginUserCode;
+            LocalSetting test = new LocalSetting();
+            test.SavePlace(LoginUserCode, this);
+        }
     }
 }

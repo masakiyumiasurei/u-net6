@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(F_入庫管理));
             panel1 = new Panel();
             button4 = new Button();
@@ -47,6 +48,7 @@
             label2 = new Label();
             dataGridView1 = new DataGridView();
             panel2 = new Panel();
+            toolTip1 = new ToolTip(components);
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel2.SuspendLayout();
@@ -109,6 +111,7 @@
             コマンド入庫.Size = new Size(70, 22);
             コマンド入庫.TabIndex = 9;
             コマンド入庫.Text = "入庫参照";
+            toolTip1.SetToolTip(コマンド入庫, "入庫データの参照");
             コマンド入庫.UseVisualStyleBackColor = true;
             コマンド入庫.Click += コマンド入庫_Click;
             // 
@@ -124,6 +127,7 @@
             コマンド発注.Size = new Size(70, 22);
             コマンド発注.TabIndex = 8;
             コマンド発注.Text = "発注参照";
+            toolTip1.SetToolTip(コマンド発注, "関連する発注データの参照");
             コマンド発注.UseVisualStyleBackColor = true;
             コマンド発注.Click += コマンド発注_Click;
             // 
@@ -153,6 +157,7 @@
             コマンド保守.Size = new Size(70, 22);
             コマンド保守.TabIndex = 6;
             コマンド保守.Text = "保守";
+            toolTip1.SetToolTip(コマンド保守, "保守");
             コマンド保守.UseVisualStyleBackColor = true;
             コマンド保守.Click += コマンド保守_Click;
             // 
@@ -167,6 +172,7 @@
             コマンド更新.Size = new Size(70, 22);
             コマンド更新.TabIndex = 5;
             コマンド更新.Text = "更新";
+            toolTip1.SetToolTip(コマンド更新, "表示更新");
             コマンド更新.UseVisualStyleBackColor = true;
             コマンド更新.Click += コマンド更新_Click;
             // 
@@ -181,6 +187,7 @@
             コマンド初期化.Size = new Size(70, 22);
             コマンド初期化.TabIndex = 4;
             コマンド初期化.Text = "初期化";
+            toolTip1.SetToolTip(コマンド初期化, "抽出初期化");
             コマンド初期化.UseVisualStyleBackColor = true;
             コマンド初期化.Click += コマンド初期化_Click;
             // 
@@ -195,6 +202,7 @@
             コマンド検索.Size = new Size(70, 22);
             コマンド検索.TabIndex = 3;
             コマンド検索.Text = "検索";
+            toolTip1.SetToolTip(コマンド検索, "コード検索");
             コマンド検索.UseVisualStyleBackColor = true;
             コマンド検索.Click += コマンド検索_Click;
             // 
@@ -209,6 +217,7 @@
             コマンド抽出.Size = new Size(70, 22);
             コマンド抽出.TabIndex = 2;
             コマンド抽出.Text = "抽出";
+            toolTip1.SetToolTip(コマンド抽出, "抽出設定");
             コマンド抽出.UseVisualStyleBackColor = true;
             コマンド抽出.Click += コマンド抽出_Click;
             // 
@@ -313,6 +322,7 @@
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "F_入庫管理";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "入庫管理";
             FormClosing += F_入庫管理_FormClosing;
             Load += Form_Load;
@@ -471,5 +481,6 @@
         //private newDataSetTableAdapters.Q入庫管理TableAdapter q入庫管理TableAdapter;
         private Panel panel2;
         private Button コマンド検索;
+        private ToolTip toolTip1;
     }
 }

@@ -607,7 +607,6 @@ namespace u_net
             定価.ImeMode = ImeMode.NoControl;
             定価.Location = new Point(94, 359);
             定価.Margin = new Padding(3, 2, 3, 2);
-            定価.Multiline = true;
             定価.Name = "定価";
             定価.ReadOnly = true;
             定価.Size = new Size(136, 20);
@@ -711,7 +710,6 @@ namespace u_net
             単価.ImeMode = ImeMode.Disable;
             単価.Location = new Point(94, 407);
             単価.Margin = new Padding(3, 2, 3, 2);
-            単価.Multiline = true;
             単価.Name = "単価";
             単価.Size = new Size(136, 20);
             単価.TabIndex = 21016;
@@ -730,7 +728,6 @@ namespace u_net
             原価.ImeMode = ImeMode.NoControl;
             原価.Location = new Point(94, 431);
             原価.Margin = new Padding(3, 2, 3, 2);
-            原価.Multiline = true;
             原価.Name = "原価";
             原価.ReadOnly = true;
             原価.Size = new Size(136, 20);
@@ -745,7 +742,6 @@ namespace u_net
             粗利.ImeMode = ImeMode.NoControl;
             粗利.Location = new Point(94, 455);
             粗利.Margin = new Padding(3, 2, 3, 2);
-            粗利.Multiline = true;
             粗利.Name = "粗利";
             粗利.ReadOnly = true;
             粗利.Size = new Size(136, 20);
@@ -775,7 +771,6 @@ namespace u_net
             確定済単価.ImeMode = ImeMode.NoControl;
             確定済単価.Location = new Point(314, 406);
             確定済単価.Margin = new Padding(3, 2, 3, 2);
-            確定済単価.Multiline = true;
             確定済単価.Name = "確定済単価";
             確定済単価.ReadOnly = true;
             確定済単価.Size = new Size(136, 20);
@@ -879,6 +874,7 @@ namespace u_net
             StartPosition = FormStartPosition.CenterScreen;
             Text = "商品構成";
             Load += Form_Load;
+            KeyDown += F_商品構成2_KeyDown;
             ((System.ComponentModel.ISupportInitialize)M商品BindingSource).EndInit();
             ((System.ComponentModel.ISupportInitialize)uiDataSet).EndInit();
             ((System.ComponentModel.ISupportInitialize)comboBox売上区分bindingSource).EndInit();

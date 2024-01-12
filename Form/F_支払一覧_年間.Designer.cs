@@ -455,7 +455,8 @@
             Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(3, 2, 3, 2);
             Name = "F_支払一覧_年間";
-            Text = "請求処理";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "支払一覧表（年間）";
             Load += Form_Load;
             KeyDown += Form_KeyDown;
             Resize += Form_Resize;

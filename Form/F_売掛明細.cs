@@ -60,6 +60,9 @@ namespace u_net
 
         private void Form_Load(object sender, EventArgs e)
         {
+            string LoginUserCode = CommonConstants.LoginUserCode;
+            LocalSetting localSetting = new LocalSetting();
+            localSetting.LoadPlace(LoginUserCode, this);
 
             foreach (Control control in Controls)
             {
@@ -286,7 +289,9 @@ namespace u_net
 
         private void F_製品管理_FormClosing(object sender, FormClosingEventArgs e)
         {
-
+            string LoginUserCode = CommonConstants.LoginUserCode;
+            LocalSetting test = new LocalSetting();
+            test.SavePlace(LoginUserCode, this);
         }
 
 
@@ -337,8 +342,9 @@ namespace u_net
 
             switch (e.KeyCode)
             {
-
-
+                case Keys.Return:
+                    SelectNextControl(ActiveControl, true, true, true, true);
+                    break;
             }
         }
 

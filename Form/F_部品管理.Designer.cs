@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(F_部品管理));
             panel1 = new Panel();
             button4 = new Button();
@@ -47,6 +48,7 @@
             label2 = new Label();
             dataGridView1 = new DataGridView();
             panel2 = new Panel();
+            toolTip1 = new ToolTip(components);
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel2.SuspendLayout();
@@ -109,6 +111,7 @@
             コマンド部品.Size = new Size(70, 22);
             コマンド部品.TabIndex = 9;
             コマンド部品.Text = "部品";
+            toolTip1.SetToolTip(コマンド部品, "部品データの参照");
             コマンド部品.UseVisualStyleBackColor = true;
             コマンド部品.Click += コマンド部品_Click;
             // 
@@ -124,6 +127,7 @@
             コマンド入出履歴.Size = new Size(70, 22);
             コマンド入出履歴.TabIndex = 8;
             コマンド入出履歴.Text = "入出履歴";
+            toolTip1.SetToolTip(コマンド入出履歴, "入出庫履歴の参照");
             コマンド入出履歴.UseVisualStyleBackColor = true;
             コマンド入出履歴.Click += コマンド入出履歴_Click;
             // 
@@ -138,6 +142,7 @@
             コマンド出力.Size = new Size(70, 22);
             コマンド出力.TabIndex = 7;
             コマンド出力.Text = "出力";
+            toolTip1.SetToolTip(コマンド出力, "表示データの出力");
             コマンド出力.UseVisualStyleBackColor = true;
             コマンド出力.Click += コマンド出力_Click;
             // 
@@ -152,6 +157,7 @@
             コマンド保守.Size = new Size(70, 22);
             コマンド保守.TabIndex = 6;
             コマンド保守.Text = "保守";
+            toolTip1.SetToolTip(コマンド保守, "保守");
             コマンド保守.UseVisualStyleBackColor = true;
             コマンド保守.Click += コマンド保守_Click;
             // 
@@ -166,6 +172,7 @@
             コマンド更新.Size = new Size(70, 22);
             コマンド更新.TabIndex = 5;
             コマンド更新.Text = "更新";
+            toolTip1.SetToolTip(コマンド更新, "最新の情報に更新");
             コマンド更新.UseVisualStyleBackColor = true;
             コマンド更新.Click += コマンド更新_Click;
             // 
@@ -180,6 +187,7 @@
             コマンド初期化.Size = new Size(70, 22);
             コマンド初期化.TabIndex = 4;
             コマンド初期化.Text = "初期化";
+            toolTip1.SetToolTip(コマンド初期化, "抽出条件の初期化");
             コマンド初期化.UseVisualStyleBackColor = true;
             コマンド初期化.Click += コマンド初期化_Click;
             // 
@@ -194,6 +202,7 @@
             コマンド検索.Size = new Size(70, 22);
             コマンド検索.TabIndex = 3;
             コマンド検索.Text = "検索";
+            toolTip1.SetToolTip(コマンド検索, "コードによる検索");
             コマンド検索.UseVisualStyleBackColor = true;
             コマンド検索.Click += コマンド検索_Click;
             // 
@@ -208,6 +217,7 @@
             コマンド抽出.Size = new Size(70, 22);
             コマンド抽出.TabIndex = 2;
             コマンド抽出.Text = "抽出";
+            toolTip1.SetToolTip(コマンド抽出, "抽出条件の設定");
             コマンド抽出.UseVisualStyleBackColor = true;
             コマンド抽出.Click += コマンド抽出_Click;
             // 
@@ -222,6 +232,7 @@
             コマンド印刷プレビュー.Size = new Size(70, 22);
             コマンド印刷プレビュー.TabIndex = 1;
             コマンド印刷プレビュー.Text = "印刷P";
+            toolTip1.SetToolTip(コマンド印刷プレビュー, "印刷プレビュー");
             コマンド印刷プレビュー.UseVisualStyleBackColor = true;
             コマンド印刷プレビュー.Click += コマンド印刷プレビュー_Click;
             // 
@@ -235,6 +246,7 @@
             コマンド終了.Size = new Size(70, 22);
             コマンド終了.TabIndex = 0;
             コマンド終了.Text = "終了";
+            toolTip1.SetToolTip(コマンド終了, "終了");
             コマンド終了.UseVisualStyleBackColor = true;
             コマンド終了.Click += コマンド終了_Click;
             // 
@@ -310,6 +322,7 @@
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "F_部品管理";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "部品管理";
             FormClosing += F_部品管理_FormClosing;
             Load += Form_Load;
@@ -468,5 +481,6 @@
         //private newDataSetTableAdapters.Q部品管理TableAdapter q部品管理TableAdapter;
         private Panel panel2;
         private Button コマンド検索;
+        private ToolTip toolTip1;
     }
 }

@@ -85,6 +85,7 @@
             // 
             担当者名.BackColor = Color.White;
             担当者名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            担当者名.ImeMode = ImeMode.Hiragana;
             担当者名.Location = new Point(175, 53);
             担当者名.Margin = new Padding(3, 2, 3, 2);
             担当者名.Name = "担当者名";
@@ -95,6 +96,7 @@
             // 
             メーカー名.BackColor = Color.White;
             メーカー名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            メーカー名.ImeMode = ImeMode.Hiragana;
             メーカー名.Location = new Point(175, 20);
             メーカー名.Margin = new Padding(3, 2, 3, 2);
             メーカー名.Name = "メーカー名";
@@ -135,6 +137,7 @@
             // 
             更新日開始.BackColor = Color.White;
             更新日開始.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            更新日開始.ImeMode = ImeMode.Disable;
             更新日開始.Location = new Point(175, 119);
             更新日開始.Margin = new Padding(3, 2, 3, 2);
             更新日開始.Name = "更新日開始";
@@ -160,6 +163,7 @@
             // 
             更新日終了.BackColor = Color.White;
             更新日終了.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            更新日終了.ImeMode = ImeMode.Disable;
             更新日終了.Location = new Point(397, 120);
             更新日終了.Margin = new Padding(3, 2, 3, 2);
             更新日終了.Name = "更新日終了";
@@ -250,6 +254,7 @@
             // 
             担当者メールアドレス.BackColor = Color.White;
             担当者メールアドレス.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            担当者メールアドレス.ImeMode = ImeMode.Off;
             担当者メールアドレス.Location = new Point(175, 88);
             担当者メールアドレス.Margin = new Padding(3, 2, 3, 2);
             担当者メールアドレス.Name = "担当者メールアドレス";
@@ -313,7 +318,7 @@
             KeyPreview = true;
             Name = "F_メーカー管理_抽出";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "F_メーカー管理_抽出";
+            Text = "メーカー管理_抽出";
             FormClosing += F_メーカー管理_抽出_FormClosing;
             Load += Form_Load;
             KeyDown += F_メーカー管理_抽出_KeyDown;

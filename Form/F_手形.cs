@@ -40,6 +40,13 @@ namespace u_net
             try
             {
 
+
+                foreach (Control control in Controls)
+                {
+                    control.PreviewKeyDown += OriginalClass.ValidateCheck;
+                }
+
+
                 // 対象フォームが読み込まれていないときはすぐに終了する
                 if (Application.OpenForms["F_振込一覧"] == null)
                 {
@@ -285,7 +292,7 @@ namespace u_net
 
         private void 支払年月_SelectedIndexChanged(object sender, EventArgs e)
         {
-            dtm支払年月 =  DateTime.ParseExact(支払年月.Text + "/1", "yyyy/MM/d", null);
+            dtm支払年月 = DateTime.ParseExact(支払年月.Text + "/1", "yyyy/MM/d", null);
         }
 
         private void 支払先参照ボタン_Enter(object sender, EventArgs e)
@@ -298,6 +305,14 @@ namespace u_net
             toolStripStatusLabel1.Text = "■各種項目の説明";
         }
 
-        
+        private void F_手形_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Return:
+                    SelectNextControl(ActiveControl, true, true, true, true);
+                    break;
+            }
+        }
     }
 }

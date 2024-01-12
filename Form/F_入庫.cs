@@ -1721,7 +1721,7 @@ namespace u_net
                 dateSelectionForm.args = 入庫日.Text;
             }
 
-            if (dateSelectionForm.ShowDialog() == DialogResult.OK)
+            if (dateSelectionForm.ShowDialog() == DialogResult.OK && !入庫日.ReadOnly && 入庫日.Enabled)
             {
                 // 日付選択フォームから選択した日付を取得
                 string selectedDate = dateSelectionForm.SelectedDate;

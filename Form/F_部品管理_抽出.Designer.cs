@@ -153,6 +153,7 @@
             // 
             更新者名.BackColor = Color.White;
             更新者名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            更新者名.ImeMode = ImeMode.Hiragana;
             更新者名.Location = new Point(175, 358);
             更新者名.Margin = new Padding(3, 2, 3, 2);
             更新者名.Name = "更新者名";
@@ -307,6 +308,7 @@
             // 
             品名.BackColor = Color.White;
             品名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            品名.ImeMode = ImeMode.Hiragana;
             品名.Location = new Point(175, 88);
             品名.Margin = new Padding(3, 2, 3, 2);
             品名.Name = "品名";
@@ -422,6 +424,7 @@
             // 
             型番.BackColor = Color.White;
             型番.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            型番.ImeMode = ImeMode.Off;
             型番.Location = new Point(175, 127);
             型番.Margin = new Padding(3, 2, 3, 2);
             型番.Name = "型番";
@@ -432,6 +435,7 @@
             // 
             メーカー名.BackColor = Color.White;
             メーカー名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            メーカー名.ImeMode = ImeMode.Hiragana;
             メーカー名.Location = new Point(175, 164);
             メーカー名.Margin = new Padding(3, 2, 3, 2);
             メーカー名.Name = "メーカー名";
@@ -442,6 +446,7 @@
             // 
             仕入先名.BackColor = Color.White;
             仕入先名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            仕入先名.ImeMode = ImeMode.Hiragana;
             仕入先名.Location = new Point(175, 201);
             仕入先名.Margin = new Padding(3, 2, 3, 2);
             仕入先名.Name = "仕入先名";
@@ -452,6 +457,7 @@
             // 
             ChemSherpaVersion.BackColor = Color.White;
             ChemSherpaVersion.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            ChemSherpaVersion.ImeMode = ImeMode.Disable;
             ChemSherpaVersion.Location = new Point(175, 320);
             ChemSherpaVersion.Margin = new Padding(3, 2, 3, 2);
             ChemSherpaVersion.Name = "ChemSherpaVersion";
@@ -464,7 +470,7 @@
             単価指定.DisplayMember = "分類コード";
             単価指定.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             単価指定.FormattingEnabled = true;
-            単価指定.ImeMode = ImeMode.Off;
+            単価指定.ImeMode = ImeMode.Disable;
             単価指定.Location = new Point(175, 242);
             単価指定.Name = "単価指定";
             単価指定.Size = new Size(139, 21);
@@ -478,7 +484,7 @@
             RohsStatusCode.DrawMode = DrawMode.OwnerDrawFixed;
             RohsStatusCode.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             RohsStatusCode.FormattingEnabled = true;
-            RohsStatusCode.ImeMode = ImeMode.Off;
+            RohsStatusCode.ImeMode = ImeMode.Disable;
             RohsStatusCode.Location = new Point(175, 280);
             RohsStatusCode.Name = "RohsStatusCode";
             RohsStatusCode.Size = new Size(139, 21);
@@ -493,7 +499,7 @@
             分類記号.DrawMode = DrawMode.OwnerDrawFixed;
             分類記号.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             分類記号.FormattingEnabled = true;
-            分類記号.ImeMode = ImeMode.Off;
+            分類記号.ImeMode = ImeMode.Disable;
             分類記号.Location = new Point(175, 19);
             分類記号.Name = "分類記号";
             分類記号.Size = new Size(77, 21);
@@ -558,6 +564,7 @@
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "F_部品管理_抽出";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "部品管理 - 抽出";
             FormClosing += F_部品管理_抽出_FormClosing;
             Load += Form_Load;

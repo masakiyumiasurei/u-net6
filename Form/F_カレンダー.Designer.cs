@@ -156,6 +156,7 @@
             // txtYear
             // 
             txtYear.Font = new Font("ＭＳ ゴシック", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            txtYear.ImeMode = ImeMode.Disable;
             txtYear.Location = new Point(25, 0);
             txtYear.Name = "txtYear";
             txtYear.Size = new Size(80, 23);
@@ -726,6 +727,7 @@
             // 
             cboMonth.Font = new Font("ＭＳ ゴシック", 12F, FontStyle.Regular, GraphicsUnit.Point);
             cboMonth.FormattingEnabled = true;
+            cboMonth.ImeMode = ImeMode.Disable;
             cboMonth.Location = new Point(175, 0);
             cboMonth.Name = "cboMonth";
             cboMonth.Size = new Size(80, 24);
@@ -795,6 +797,7 @@
             Controls.Add(cmdPrevYear);
             Name = "F_カレンダー";
             StartPosition = FormStartPosition.CenterScreen;
+            Text = "カレンダー";
             FormClosing += F_カレンダー_FormClosing;
             Load += Form_Open;
             ResumeLayout(false);

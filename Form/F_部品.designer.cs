@@ -30,6 +30,7 @@ namespace u_net
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(F_部品));
             コマンド終了 = new Button();
             コマンド登録 = new Button();
             panel1 = new Panel();
@@ -197,6 +198,7 @@ namespace u_net
             m部品分類TableAdapter = new newDataSetTableAdapters.M部品分類TableAdapter();
             rohsStatusCodeTableAdapter = new newDataSetTableAdapters.RohsStatusCodeTableAdapter();
             無効日時 = new TextBox();
+            toolTip1 = new ToolTip(components);
             panel1.SuspendLayout();
             仕入先1フレーム.SuspendLayout();
             statusStrip1.SuspendLayout();
@@ -295,6 +297,7 @@ namespace u_net
             コマンド入出庫.TabIndex = 1010;
             コマンド入出庫.TabStop = false;
             コマンド入出庫.Text = "入出庫";
+            toolTip1.SetToolTip(コマンド入出庫, "入出庫履歴の参照");
             コマンド入出庫.UseVisualStyleBackColor = true;
             コマンド入出庫.Click += コマンド入出庫_Click;
             // 
@@ -310,6 +313,7 @@ namespace u_net
             コマンドメーカー.TabIndex = 1009;
             コマンドメーカー.TabStop = false;
             コマンドメーカー.Text = "メーカー";
+            toolTip1.SetToolTip(コマンドメーカー, "メーカーマスタの参照");
             コマンドメーカー.UseVisualStyleBackColor = true;
             コマンドメーカー.Click += コマンドメーカー_Click;
             // 
@@ -325,6 +329,7 @@ namespace u_net
             コマンド仕入先.TabIndex = 1008;
             コマンド仕入先.TabStop = false;
             コマンド仕入先.Text = "仕入先";
+            toolTip1.SetToolTip(コマンド仕入先, "仕入先マスタの参照");
             コマンド仕入先.UseVisualStyleBackColor = true;
             コマンド仕入先.Click += コマンド仕入先_Click;
             // 
@@ -715,6 +720,7 @@ namespace u_net
             // 
             品名.BackColor = Color.White;
             品名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            品名.ImeMode = ImeMode.Hiragana;
             品名.Location = new Point(160, 80);
             品名.Margin = new Padding(3, 2, 3, 2);
             品名.Name = "品名";
@@ -845,7 +851,7 @@ namespace u_net
             // 
             仕入先1コード.BackColor = Color.White;
             仕入先1コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            仕入先1コード.ImeMode = ImeMode.Off;
+            仕入先1コード.ImeMode = ImeMode.Disable;
             仕入先1コード.Location = new Point(150, 20);
             仕入先1コード.Margin = new Padding(3, 2, 3, 2);
             仕入先1コード.Name = "仕入先1コード";
@@ -878,7 +884,7 @@ namespace u_net
             // 
             仕入先1単価.BackColor = Color.White;
             仕入先1単価.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            仕入先1単価.ImeMode = ImeMode.Off;
+            仕入先1単価.ImeMode = ImeMode.Disable;
             仕入先1単価.Location = new Point(150, 50);
             仕入先1単価.Margin = new Padding(3, 2, 3, 2);
             仕入先1単価.Name = "仕入先1単価";
@@ -922,7 +928,7 @@ namespace u_net
             // 
             メーカーコード.BackColor = Color.White;
             メーカーコード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            メーカーコード.ImeMode = ImeMode.Off;
+            メーカーコード.ImeMode = ImeMode.Disable;
             メーカーコード.Location = new Point(160, 140);
             メーカーコード.Margin = new Padding(3, 2, 3, 2);
             メーカーコード.Name = "メーカーコード";
@@ -968,9 +974,8 @@ namespace u_net
             版数.ImeMode = ImeMode.Off;
             版数.Location = new Point(400, 50);
             版数.Margin = new Padding(3, 2, 3, 2);
-            版数.Multiline = true;
             版数.Name = "版数";
-            版数.Size = new Size(139, 23);
+            版数.Size = new Size(139, 20);
             版数.TabIndex = 4;
             // 
             // statusStrip1
@@ -1000,7 +1005,7 @@ namespace u_net
             部品コード.Enabled = false;
             部品コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             部品コード.FormattingEnabled = true;
-            部品コード.ImeMode = ImeMode.Off;
+            部品コード.ImeMode = ImeMode.Disable;
             部品コード.Location = new Point(160, 50);
             部品コード.Name = "部品コード";
             部品コード.Size = new Size(139, 21);
@@ -1045,6 +1050,7 @@ namespace u_net
             改版ボタン.TabIndex = 5;
             改版ボタン.TabStop = false;
             改版ボタン.Text = "改版(&V)";
+            toolTip1.SetToolTip(改版ボタン, "表示されているデータを改訂し、履歴を残します。");
             改版ボタン.UseVisualStyleBackColor = true;
             改版ボタン.Click += 改版ボタン_Click;
             // 
@@ -1134,7 +1140,7 @@ namespace u_net
             // 
             仕入先2コード.BackColor = Color.White;
             仕入先2コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            仕入先2コード.ImeMode = ImeMode.Off;
+            仕入先2コード.ImeMode = ImeMode.Disable;
             仕入先2コード.Location = new Point(150, 20);
             仕入先2コード.Margin = new Padding(3, 2, 3, 2);
             仕入先2コード.Name = "仕入先2コード";
@@ -1167,7 +1173,7 @@ namespace u_net
             // 
             仕入先2単価.BackColor = Color.White;
             仕入先2単価.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            仕入先2単価.ImeMode = ImeMode.Off;
+            仕入先2単価.ImeMode = ImeMode.Disable;
             仕入先2単価.Location = new Point(150, 50);
             仕入先2単価.Margin = new Padding(3, 2, 3, 2);
             仕入先2単価.Name = "仕入先2単価";
@@ -1253,7 +1259,7 @@ namespace u_net
             // 
             仕入先3コード.BackColor = Color.White;
             仕入先3コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            仕入先3コード.ImeMode = ImeMode.Off;
+            仕入先3コード.ImeMode = ImeMode.Disable;
             仕入先3コード.Location = new Point(150, 20);
             仕入先3コード.Margin = new Padding(3, 2, 3, 2);
             仕入先3コード.Name = "仕入先3コード";
@@ -1286,7 +1292,7 @@ namespace u_net
             // 
             仕入先3単価.BackColor = Color.White;
             仕入先3単価.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            仕入先3単価.ImeMode = ImeMode.Off;
+            仕入先3単価.ImeMode = ImeMode.Disable;
             仕入先3単価.Location = new Point(150, 50);
             仕入先3単価.Margin = new Padding(3, 2, 3, 2);
             仕入先3単価.Name = "仕入先3単価";
@@ -1360,7 +1366,7 @@ namespace u_net
             分類コード.DrawMode = DrawMode.OwnerDrawFixed;
             分類コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             分類コード.FormattingEnabled = true;
-            分類コード.ImeMode = ImeMode.Off;
+            分類コード.ImeMode = ImeMode.Disable;
             分類コード.Location = new Point(160, 457);
             分類コード.Name = "分類コード";
             分類コード.Size = new Size(139, 21);
@@ -1418,7 +1424,7 @@ namespace u_net
             形状分類コード.BackColor = Color.White;
             形状分類コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             形状分類コード.FormattingEnabled = true;
-            形状分類コード.ImeMode = ImeMode.Off;
+            形状分類コード.ImeMode = ImeMode.Disable;
             形状分類コード.Location = new Point(160, 493);
             形状分類コード.Name = "形状分類コード";
             形状分類コード.Size = new Size(139, 21);
@@ -1454,7 +1460,7 @@ namespace u_net
             RohsStatusCode.BackColor = Color.White;
             RohsStatusCode.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             RohsStatusCode.FormattingEnabled = true;
-            RohsStatusCode.ImeMode = ImeMode.Off;
+            RohsStatusCode.ImeMode = ImeMode.NoControl;
             RohsStatusCode.Location = new Point(160, 531);
             RohsStatusCode.Name = "RohsStatusCode";
             RohsStatusCode.Size = new Size(139, 21);
@@ -1527,7 +1533,7 @@ namespace u_net
             Rohs1ChemSherpaStatusCode.BackColor = Color.White;
             Rohs1ChemSherpaStatusCode.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             Rohs1ChemSherpaStatusCode.FormattingEnabled = true;
-            Rohs1ChemSherpaStatusCode.ImeMode = ImeMode.Off;
+            Rohs1ChemSherpaStatusCode.ImeMode = ImeMode.Disable;
             Rohs1ChemSherpaStatusCode.Location = new Point(150, 110);
             Rohs1ChemSherpaStatusCode.Name = "Rohs1ChemSherpaStatusCode";
             Rohs1ChemSherpaStatusCode.Size = new Size(139, 21);
@@ -1558,7 +1564,7 @@ namespace u_net
             RoHS資料.BackColor = Color.White;
             RoHS資料.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             RoHS資料.FormattingEnabled = true;
-            RoHS資料.ImeMode = ImeMode.Off;
+            RoHS資料.ImeMode = ImeMode.Disable;
             RoHS資料.Location = new Point(150, 80);
             RoHS資料.Name = "RoHS資料";
             RoHS資料.Size = new Size(139, 21);
@@ -1589,7 +1595,7 @@ namespace u_net
             非含有証明書.BackColor = Color.White;
             非含有証明書.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             非含有証明書.FormattingEnabled = true;
-            非含有証明書.ImeMode = ImeMode.Off;
+            非含有証明書.ImeMode = ImeMode.Disable;
             非含有証明書.Location = new Point(150, 50);
             非含有証明書.Name = "非含有証明書";
             非含有証明書.Size = new Size(139, 21);
@@ -1620,7 +1626,7 @@ namespace u_net
             JampAis.BackColor = Color.White;
             JampAis.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             JampAis.FormattingEnabled = true;
-            JampAis.ImeMode = ImeMode.Off;
+            JampAis.ImeMode = ImeMode.Disable;
             JampAis.Location = new Point(150, 20);
             JampAis.Name = "JampAis";
             JampAis.Size = new Size(139, 21);
@@ -1668,7 +1674,7 @@ namespace u_net
             Rohs2ChemSherpaStatusCode.BackColor = Color.White;
             Rohs2ChemSherpaStatusCode.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             Rohs2ChemSherpaStatusCode.FormattingEnabled = true;
-            Rohs2ChemSherpaStatusCode.ImeMode = ImeMode.Off;
+            Rohs2ChemSherpaStatusCode.ImeMode = ImeMode.Disable;
             Rohs2ChemSherpaStatusCode.Location = new Point(150, 110);
             Rohs2ChemSherpaStatusCode.Name = "Rohs2ChemSherpaStatusCode";
             Rohs2ChemSherpaStatusCode.Size = new Size(139, 21);
@@ -1699,7 +1705,7 @@ namespace u_net
             Rohs2DocumentStatusCode.BackColor = Color.White;
             Rohs2DocumentStatusCode.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             Rohs2DocumentStatusCode.FormattingEnabled = true;
-            Rohs2DocumentStatusCode.ImeMode = ImeMode.Off;
+            Rohs2DocumentStatusCode.ImeMode = ImeMode.Disable;
             Rohs2DocumentStatusCode.Location = new Point(150, 80);
             Rohs2DocumentStatusCode.Name = "Rohs2DocumentStatusCode";
             Rohs2DocumentStatusCode.Size = new Size(139, 21);
@@ -1730,7 +1736,7 @@ namespace u_net
             Rohs2NonInclusionCertificationStatusCode.BackColor = Color.White;
             Rohs2NonInclusionCertificationStatusCode.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             Rohs2NonInclusionCertificationStatusCode.FormattingEnabled = true;
-            Rohs2NonInclusionCertificationStatusCode.ImeMode = ImeMode.Off;
+            Rohs2NonInclusionCertificationStatusCode.ImeMode = ImeMode.Disable;
             Rohs2NonInclusionCertificationStatusCode.Location = new Point(150, 50);
             Rohs2NonInclusionCertificationStatusCode.Name = "Rohs2NonInclusionCertificationStatusCode";
             Rohs2NonInclusionCertificationStatusCode.Size = new Size(139, 21);
@@ -1761,7 +1767,7 @@ namespace u_net
             Rohs2JampAisStatusCode.BackColor = Color.White;
             Rohs2JampAisStatusCode.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             Rohs2JampAisStatusCode.FormattingEnabled = true;
-            Rohs2JampAisStatusCode.ImeMode = ImeMode.Off;
+            Rohs2JampAisStatusCode.ImeMode = ImeMode.Disable;
             Rohs2JampAisStatusCode.Location = new Point(150, 20);
             Rohs2JampAisStatusCode.Name = "Rohs2JampAisStatusCode";
             Rohs2JampAisStatusCode.Size = new Size(139, 21);
@@ -1806,7 +1812,7 @@ namespace u_net
             // 
             ChemSherpaVersion.BackColor = Color.White;
             ChemSherpaVersion.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            ChemSherpaVersion.ImeMode = ImeMode.Off;
+            ChemSherpaVersion.ImeMode = ImeMode.Disable;
             ChemSherpaVersion.Location = new Point(160, 745);
             ChemSherpaVersion.Margin = new Padding(3, 2, 3, 2);
             ChemSherpaVersion.Name = "ChemSherpaVersion";
@@ -1861,7 +1867,7 @@ namespace u_net
             // 
             入数.BackColor = SystemColors.Window;
             入数.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            入数.ImeMode = ImeMode.Off;
+            入数.ImeMode = ImeMode.Disable;
             入数.Location = new Point(912, 80);
             入数.Margin = new Padding(3, 2, 3, 2);
             入数.Name = "入数";
@@ -1892,7 +1898,7 @@ namespace u_net
             // 
             単位数量.BackColor = SystemColors.Window;
             単位数量.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            単位数量.ImeMode = ImeMode.Off;
+            単位数量.ImeMode = ImeMode.Disable;
             単位数量.Location = new Point(912, 110);
             単位数量.Margin = new Padding(3, 2, 3, 2);
             単位数量.Name = "単位数量";
@@ -1923,7 +1929,7 @@ namespace u_net
             // 
             StandardDeliveryDay.BackColor = SystemColors.Window;
             StandardDeliveryDay.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            StandardDeliveryDay.ImeMode = ImeMode.Off;
+            StandardDeliveryDay.ImeMode = ImeMode.Disable;
             StandardDeliveryDay.Location = new Point(912, 140);
             StandardDeliveryDay.Margin = new Padding(3, 2, 3, 2);
             StandardDeliveryDay.Name = "StandardDeliveryDay";
@@ -2000,7 +2006,7 @@ namespace u_net
             // 
             ロス率.BackColor = SystemColors.Window;
             ロス率.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            ロス率.ImeMode = ImeMode.Off;
+            ロス率.ImeMode = ImeMode.Disable;
             ロス率.Location = new Point(912, 229);
             ロス率.Margin = new Padding(3, 2, 3, 2);
             ロス率.Name = "ロス率";
@@ -2047,12 +2053,11 @@ namespace u_net
             InventoryAmount.BackColor = SystemColors.Window;
             InventoryAmount.Enabled = false;
             InventoryAmount.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            InventoryAmount.ImeMode = ImeMode.Off;
+            InventoryAmount.ImeMode = ImeMode.Disable;
             InventoryAmount.Location = new Point(912, 296);
             InventoryAmount.Margin = new Padding(3, 2, 3, 2);
-            InventoryAmount.Multiline = true;
             InventoryAmount.Name = "InventoryAmount";
-            InventoryAmount.Size = new Size(139, 23);
+            InventoryAmount.Size = new Size(139, 20);
             InventoryAmount.TabIndex = 10053;
             InventoryAmount.TabStop = false;
             InventoryAmount.TextChanged += InventoryAmount_TextChanged;
@@ -2079,11 +2084,11 @@ namespace u_net
             部品集合コード.BackColor = SystemColors.Window;
             部品集合コード.Enabled = false;
             部品集合コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            部品集合コード.ImeMode = ImeMode.Disable;
             部品集合コード.Location = new Point(912, 332);
             部品集合コード.Margin = new Padding(3, 2, 3, 2);
-            部品集合コード.Multiline = true;
             部品集合コード.Name = "部品集合コード";
-            部品集合コード.Size = new Size(115, 23);
+            部品集合コード.Size = new Size(115, 20);
             部品集合コード.TabIndex = 10055;
             部品集合コード.TabStop = false;
             // 
@@ -2130,6 +2135,7 @@ namespace u_net
             // 
             備考.BackColor = SystemColors.Window;
             備考.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            備考.ImeMode = ImeMode.Hiragana;
             備考.Location = new Point(912, 585);
             備考.Margin = new Padding(3, 2, 3, 2);
             備考.Multiline = true;
@@ -2156,7 +2162,7 @@ namespace u_net
             CalcInventoryCode.BackColor = Color.White;
             CalcInventoryCode.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             CalcInventoryCode.FormattingEnabled = true;
-            CalcInventoryCode.ImeMode = ImeMode.Off;
+            CalcInventoryCode.ImeMode = ImeMode.Disable;
             CalcInventoryCode.Location = new Point(912, 199);
             CalcInventoryCode.Name = "CalcInventoryCode";
             CalcInventoryCode.Size = new Size(139, 21);
@@ -2172,7 +2178,7 @@ namespace u_net
             受入検査ランク.BackColor = Color.White;
             受入検査ランク.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             受入検査ランク.FormattingEnabled = true;
-            受入検査ランク.ImeMode = ImeMode.Off;
+            受入検査ランク.ImeMode = ImeMode.Disable;
             受入検査ランク.Items.AddRange(new object[] { "A", "B1", "B2", "C", "D" });
             受入検査ランク.Location = new Point(912, 262);
             受入検査ランク.Name = "受入検査ランク";
@@ -2189,11 +2195,11 @@ namespace u_net
             部品集合版数.BackColor = SystemColors.Window;
             部品集合版数.Enabled = false;
             部品集合版数.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            部品集合版数.ImeMode = ImeMode.Disable;
             部品集合版数.Location = new Point(1025, 332);
             部品集合版数.Margin = new Padding(3, 2, 3, 2);
-            部品集合版数.Multiline = true;
             部品集合版数.Name = "部品集合版数";
-            部品集合版数.Size = new Size(27, 23);
+            部品集合版数.Size = new Size(27, 20);
             部品集合版数.TabIndex = 10061;
             部品集合版数.TabStop = false;
             // 
@@ -2202,11 +2208,11 @@ namespace u_net
             集合名.BackColor = SystemColors.Window;
             集合名.Enabled = false;
             集合名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            集合名.ImeMode = ImeMode.Disable;
             集合名.Location = new Point(1051, 332);
             集合名.Margin = new Padding(3, 2, 3, 2);
-            集合名.Multiline = true;
             集合名.Name = "集合名";
-            集合名.Size = new Size(387, 23);
+            集合名.Size = new Size(387, 20);
             集合名.TabIndex = 10062;
             集合名.TabStop = false;
             // 
@@ -2338,11 +2344,13 @@ namespace u_net
             Controls.Add(版数_ラベル);
             Controls.Add(過不足数量);
             Controls.Add(panel1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             ImeMode = ImeMode.Off;
             KeyPreview = true;
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "F_部品";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = " 部品";
             FormClosing += Form_Unload;
             Load += Form_Load;
@@ -2573,6 +2581,7 @@ namespace u_net
         private BindingSource M部品分類bindingSource;
         private BindingSource rohsStatusCodebindingSource;
         private TextBox 無効日時;
+        private ToolTip toolTip1;
     }
 }
 

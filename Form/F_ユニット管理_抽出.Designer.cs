@@ -534,8 +534,10 @@
             Controls.Add(品名);
             Controls.Add(品名_ラベル);
             Name = "F_ユニット管理_抽出";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "ユニット管理 - 抽出";
             Load += Form_Load;
+            KeyDown += F_ユニット管理_抽出_KeyDown;
             groupBox3.ResumeLayout(false);
             groupBox3.PerformLayout();
             groupBox4.ResumeLayout(false);

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             削除指定 = new GroupBox();
             DeletedButton3 = new RadioButton();
             DeletedButton2 = new RadioButton();
@@ -61,6 +62,7 @@
             入庫日終了 = new TextBox();
             入庫日開始 = new TextBox();
             仕入先コード検索ボタン = new Button();
+            toolTip1 = new ToolTip(components);
             削除指定.SuspendLayout();
             棚卸指定.SuspendLayout();
             確定指定.SuspendLayout();
@@ -320,6 +322,7 @@
             // 
             入庫者名.BackColor = Color.White;
             入庫者名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            入庫者名.ImeMode = ImeMode.Hiragana;
             入庫者名.Location = new Point(168, 65);
             入庫者名.Margin = new Padding(3, 2, 3, 2);
             入庫者名.Name = "入庫者名";
@@ -330,6 +333,7 @@
             // 
             仕入先名.BackColor = Color.White;
             仕入先名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            仕入先名.ImeMode = ImeMode.Hiragana;
             仕入先名.Location = new Point(168, 240);
             仕入先名.Margin = new Padding(3, 2, 3, 2);
             仕入先名.Name = "仕入先名";
@@ -341,6 +345,7 @@
             // 
             仕入先コード.BackColor = Color.White;
             仕入先コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            仕入先コード.ImeMode = ImeMode.Disable;
             仕入先コード.Location = new Point(168, 206);
             仕入先コード.Margin = new Padding(3, 2, 3, 2);
             仕入先コード.Name = "仕入先コード";
@@ -380,6 +385,7 @@
             // 
             発注コード.BackColor = Color.White;
             発注コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            発注コード.ImeMode = ImeMode.Disable;
             発注コード.Location = new Point(168, 173);
             発注コード.Margin = new Padding(3, 2, 3, 2);
             発注コード.Name = "発注コード";
@@ -442,6 +448,7 @@
             // 
             入庫日終了.BackColor = Color.White;
             入庫日終了.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            入庫日終了.ImeMode = ImeMode.Disable;
             入庫日終了.Location = new Point(392, 22);
             入庫日終了.Margin = new Padding(3, 2, 3, 2);
             入庫日終了.Name = "入庫日終了";
@@ -454,6 +461,7 @@
             // 
             入庫日開始.BackColor = Color.White;
             入庫日開始.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            入庫日開始.ImeMode = ImeMode.Disable;
             入庫日開始.Location = new Point(168, 22);
             入庫日開始.Margin = new Padding(3, 2, 3, 2);
             入庫日開始.Name = "入庫日開始";
@@ -470,6 +478,7 @@
             仕入先コード検索ボタン.Size = new Size(29, 21);
             仕入先コード検索ボタン.TabIndex = 21008;
             仕入先コード検索ボタン.Text = "▼";
+            toolTip1.SetToolTip(仕入先コード検索ボタン, "仕入先選択");
             仕入先コード検索ボタン.UseVisualStyleBackColor = true;
             仕入先コード検索ボタン.Click += 仕入先コード検索ボタン_Click;
             // 
@@ -555,5 +564,6 @@
         private TextBox 入庫日終了;
         private TextBox 入庫日開始;
         private Button 仕入先コード検索ボタン;
+        private ToolTip toolTip1;
     }
 }

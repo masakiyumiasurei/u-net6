@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(F_入出庫履歴));
             panel1 = new Panel();
             button4 = new Button();
@@ -59,6 +60,7 @@
             品名 = new TextBox();
             部品コード_ラベル = new Label();
             型番 = new TextBox();
+            toolTip1 = new ToolTip(components);
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel2.SuspendLayout();
@@ -145,6 +147,7 @@
             コマンド更新.Size = new Size(70, 22);
             コマンド更新.TabIndex = 7;
             コマンド更新.Text = "更新";
+            toolTip1.SetToolTip(コマンド更新, "表示更新");
             コマンド更新.UseVisualStyleBackColor = true;
             // 
             // コマンド入出力
@@ -170,6 +173,7 @@
             コマンド印刷.Size = new Size(70, 22);
             コマンド印刷.TabIndex = 5;
             コマンド印刷.Text = "印刷";
+            toolTip1.SetToolTip(コマンド印刷, "印刷");
             コマンド印刷.UseVisualStyleBackColor = true;
             // 
             // コマンド全表示
@@ -183,6 +187,7 @@
             コマンド全表示.Size = new Size(70, 22);
             コマンド全表示.TabIndex = 4;
             コマンド全表示.Text = "全表示";
+            toolTip1.SetToolTip(コマンド全表示, "全データ表示");
             コマンド全表示.UseVisualStyleBackColor = true;
             // 
             // コマンド初期化
@@ -196,6 +201,7 @@
             コマンド初期化.Size = new Size(70, 22);
             コマンド初期化.TabIndex = 3;
             コマンド初期化.Text = "初期化";
+            toolTip1.SetToolTip(コマンド初期化, "抽出初期化");
             コマンド初期化.UseVisualStyleBackColor = true;
             // 
             // コマンド抽出
@@ -209,6 +215,7 @@
             コマンド抽出.Size = new Size(70, 22);
             コマンド抽出.TabIndex = 2;
             コマンド抽出.Text = "抽出";
+            toolTip1.SetToolTip(コマンド抽出, "抽出設定");
             コマンド抽出.UseVisualStyleBackColor = true;
             // 
             // コマンドF9
@@ -233,6 +240,7 @@
             コマンド終了.Size = new Size(70, 22);
             コマンド終了.TabIndex = 0;
             コマンド終了.Text = "終了";
+            toolTip1.SetToolTip(コマンド終了, "終了");
             コマンド終了.UseVisualStyleBackColor = true;
             コマンド終了.Click += コマンド終了_Click;
             // 
@@ -410,6 +418,7 @@
             Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(3, 2, 3, 2);
             Name = "F_入出庫履歴";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "入出庫履歴";
             FormClosing += F_入出庫履歴_FormClosing;
             Load += Form_Load;
@@ -579,5 +588,6 @@
         private TextBox 品名;
         private Label 部品コード_ラベル;
         private TextBox 型番;
+        private ToolTip toolTip1;
     }
 }

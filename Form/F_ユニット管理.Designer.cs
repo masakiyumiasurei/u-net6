@@ -297,6 +297,7 @@
             // 
             dataGridView1.AllowUserToAddRows = false;
             dataGridView1.AllowUserToDeleteRows = false;
+            dataGridView1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Location = new Point(0, 30);
             dataGridView1.Margin = new Padding(3, 2, 3, 2);
@@ -311,10 +312,10 @@
             // 
             // panel2
             // 
+            panel2.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             panel2.Controls.Add(表示件数);
             panel2.Controls.Add(label1);
             panel2.Controls.Add(label2);
-            panel2.Dock = DockStyle.Bottom;
             panel2.Location = new Point(0, 470);
             panel2.Margin = new Padding(3, 2, 3, 2);
             panel2.Name = "panel2";
@@ -332,6 +333,7 @@
             Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(3, 2, 3, 2);
             Name = "F_ユニット管理";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "ユニット管理";
             FormClosing += F_ユニット管理_FormClosing;
             Load += Form_Load;

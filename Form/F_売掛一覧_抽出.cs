@@ -231,5 +231,15 @@ namespace u_net
         {
             FunctionClass.AdjustRange(支払日開始, 支払日終了, sender as Control);
         }
+
+        private void F_売掛一覧_抽出_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Return:
+                    SelectNextControl(ActiveControl, true, true, true, true);
+                    break;
+            }
+        }
     }
 }

@@ -262,14 +262,14 @@ namespace u_net
                         str1 = str1.Substring(strOption.Length); // 残りの文字列を設定する
 
                         if (strOption.StartsWith("-")) // オプションと特殊で場合分け
-                        {    
+                        {
                             strOption = strOption.Substring(1, strOption.Length - 1); // Mid 関数の代わり
-                            
+
                         }
                         else
                         {
                             strOption = strOption.Substring(0, strOption.Length); // Mid 関数の代わり
-                            
+
                         }
 
                         DataGridViewRow selectedRow = 型式名.Rows
@@ -400,7 +400,7 @@ namespace u_net
                     WriteProduct(out str型番, out cur定価, out cur原価);
                     型番.Text = str型番;
                     定価.Text = cur定価.ToString();
-                    
+
                     原価.Text = cur原価.ToString();
 
                     単価.Text = string.IsNullOrEmpty(単価.Text) ? "0" : 単価.Text;
@@ -417,7 +417,7 @@ namespace u_net
                 case "売値掛率":
                     // 定価が存在するなら金額計算を行う
                     if (!string.IsNullOrEmpty(定価.Text))
-                    { 
+                    {
 
                         単価.Text = string.IsNullOrEmpty(単価.Text) ? "0" : 単価.Text;
                         原価.Text = string.IsNullOrEmpty(原価.Text) ? "0" : 原価.Text;
@@ -439,14 +439,14 @@ namespace u_net
                     }
                     else
                     {
-                    // 掛率が無効になるときは現在の掛率を保持しておく
-                    単価.Text = string.IsNullOrEmpty(単価.Text) ? "0" : 単価.Text;
+                        // 掛率が無効になるときは現在の掛率を保持しておく
+                        単価.Text = string.IsNullOrEmpty(単価.Text) ? "0" : 単価.Text;
                         原価.Text = string.IsNullOrEmpty(原価.Text) ? "0" : 原価.Text;
                         定価.Text = string.IsNullOrEmpty(定価.Text) ? "0" : 定価.Text;
-                    粗利.Text = string.IsNullOrEmpty(粗利.Text) ? "0" : 粗利.Text;
-                    売値掛率.Text = string.IsNullOrEmpty(売値掛率.Text) ? "0" : 売値掛率.Text;
+                        粗利.Text = string.IsNullOrEmpty(粗利.Text) ? "0" : 粗利.Text;
+                        売値掛率.Text = string.IsNullOrEmpty(売値掛率.Text) ? "0" : 売値掛率.Text;
 
-                    curDiscount = decimal.Parse(売値掛率.Text);
+                        curDiscount = decimal.Parse(売値掛率.Text);
                         売値掛率.Text = 100.ToString();
                     }
 
@@ -455,14 +455,14 @@ namespace u_net
                     // 定価が存在するなら金額計算を行う
                     if (!string.IsNullOrEmpty(定価.Text))
                     {
-                    単価.Text = string.IsNullOrEmpty(単価.Text) ? "0" : 単価.Text;
+                        単価.Text = string.IsNullOrEmpty(単価.Text) ? "0" : 単価.Text;
                         原価.Text = string.IsNullOrEmpty(原価.Text) ? "0" : 原価.Text;
                         定価.Text = string.IsNullOrEmpty(定価.Text) ? "0" : 定価.Text;
-                    粗利.Text = string.IsNullOrEmpty(粗利.Text) ? "0" : 粗利.Text;
-                    売値掛率.Text = string.IsNullOrEmpty(売値掛率.Text) ? "0" : 売値掛率.Text;
+                        粗利.Text = string.IsNullOrEmpty(粗利.Text) ? "0" : 粗利.Text;
+                        売値掛率.Text = string.IsNullOrEmpty(売値掛率.Text) ? "0" : 売値掛率.Text;
 
-                    // 単価計算
-                    単価.Text = GetSellingPrice(decimal.Parse(定価.Text), decimal.Parse(売値掛率.Text)).ToString();
+                        // 単価計算
+                        単価.Text = GetSellingPrice(decimal.Parse(定価.Text), decimal.Parse(売値掛率.Text)).ToString();
                         // 粗利計算
                         粗利.Text = (Convert.ToDecimal(単価.Text) - Convert.ToDecimal(原価.Text)).ToString();
                     }
@@ -633,7 +633,7 @@ namespace u_net
             frmOrder.受注明細1.strArticle = 商品コード.SelectedRows[0].Cells[3].Value.ToString();
             frmOrder.受注明細1.strModel = 型番.Text;
             frmOrder.受注明細1.intPrice = int.Parse(単価.Text);
-     
+
 
             frmOrder.ChangedData(true);
 
@@ -901,7 +901,7 @@ namespace u_net
             {
                 e.Handled = true;
                 顧客検索ボタン_Click(sender, e);
-                
+
             }
         }
 
@@ -979,6 +979,16 @@ namespace u_net
                 単価.Text = GetSellingPrice(decimal.Parse(定価.Text), decimal.Parse(売値掛率.Text)).ToString();
                 // 粗利計算
                 粗利.Text = (Convert.ToDecimal(単価.Text) - Convert.ToDecimal(原価.Text)).ToString();
+            }
+        }
+
+        private void F_商品構成2_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Return:
+                    SelectNextControl(ActiveControl, true, true, true, true);
+                    break;
             }
         }
     }

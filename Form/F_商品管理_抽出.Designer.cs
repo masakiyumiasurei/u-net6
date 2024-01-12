@@ -68,6 +68,7 @@
             // 
             更新者名.DisplayMember = "更新者名";
             更新者名.FormattingEnabled = true;
+            更新者名.ImeMode = ImeMode.Disable;
             更新者名.Location = new Point(116, 114);
             更新者名.Margin = new Padding(4, 3, 4, 3);
             更新者名.Name = "更新者名";
@@ -109,6 +110,7 @@
             // 
             シリーズ名.BackColor = Color.White;
             シリーズ名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            シリーズ名.ImeMode = ImeMode.Off;
             シリーズ名.Location = new Point(116, 51);
             シリーズ名.Margin = new Padding(3, 2, 3, 2);
             シリーズ名.Name = "シリーズ名";
@@ -119,6 +121,7 @@
             // 
             基本型式名.BackColor = Color.White;
             基本型式名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            基本型式名.ImeMode = ImeMode.Off;
             基本型式名.Location = new Point(116, 23);
             基本型式名.Margin = new Padding(3, 2, 3, 2);
             基本型式名.Name = "基本型式名";
@@ -159,6 +162,7 @@
             // 
             更新日開始.BackColor = Color.White;
             更新日開始.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            更新日開始.ImeMode = ImeMode.Disable;
             更新日開始.Location = new Point(116, 82);
             更新日開始.Margin = new Padding(3, 2, 3, 2);
             更新日開始.Name = "更新日開始";
@@ -187,6 +191,7 @@
             // 
             更新日終了.BackColor = Color.White;
             更新日終了.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            更新日終了.ImeMode = ImeMode.Disable;
             更新日終了.Location = new Point(341, 82);
             更新日終了.Margin = new Padding(3, 2, 3, 2);
             更新日終了.Name = "更新日終了";
@@ -443,9 +448,12 @@
             Controls.Add(シリーズ名);
             Controls.Add(基本型式名);
             Controls.Add(label5);
+            KeyPreview = true;
             Name = "F_商品管理_抽出";
-            Text = "F_商品管理_抽出";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "商品管理 - 抽出";
             Load += Form_Load;
+            KeyDown += F_商品管理_抽出_KeyDown;
             Discontinued.ResumeLayout(false);
             Discontinued.PerformLayout();
             intComposedChipMount.ResumeLayout(false);
