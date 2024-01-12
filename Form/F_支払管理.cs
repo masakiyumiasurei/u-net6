@@ -88,13 +88,13 @@ namespace u_net
         private void Form_Resize(object sender, EventArgs e)
         {
             try
-            {                
-                    dataGridView1.Height = dataGridView1.Height + (this.Height - intWindowHeight);
-                    intWindowHeight = this.Height;  // 高さ保存
+            {
+                dataGridView1.Height = dataGridView1.Height + (this.Height - intWindowHeight);
+                intWindowHeight = this.Height;  // 高さ保存
 
-                    dataGridView1.Width = dataGridView1.Width + (this.Width - intWindowWidth);
-                    intWindowWidth = this.Width;    // 幅保存
-                
+                dataGridView1.Width = dataGridView1.Width + (this.Width - intWindowWidth);
+                intWindowWidth = this.Width;    // 幅保存
+
             }
             catch (Exception ex)
             {
@@ -102,12 +102,13 @@ namespace u_net
             }
         }
 
-        private void Form_Load(object sender, EventArgs e)
+        private void F_支払管理_Load(object sender, EventArgs e)
         {
             FunctionClass fn = new FunctionClass();
             fn.DoWait("しばらくお待ちください...");
             //実行中フォーム起動
 
+            //フォームサイズ読込
             LocalSetting localSetting = new LocalSetting();
             localSetting.LoadPlace(CommonConstants.LoginUserCode, this);
 
@@ -334,42 +335,38 @@ namespace u_net
                 MessageBox.Show("行が選択されていません。");
             }
         }
-
-        private void Form_KeyDown(object sender, KeyEventArgs e)
+        private void F_支払管理_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
                 switch (e.KeyCode)
                 {
                     case Keys.F1:
-                        if (this.コマンド抽出.Enabled) コマンド抽出_Click(null, null);
+                        if (this.コマンド抽出.Enabled) コマンド抽出_Click(sender, e);
                         break;
                     case Keys.F2:
-                        //if (this.コマンド検索.Enabled) コマンド検索_Click(null, null);
+                        if (this.コマンド検索.Enabled) コマンド検索_Click(sender, e);
                         break;
                     case Keys.F3:
-                        if (this.コマンド初期化.Enabled) コマンド初期化_Click(null, null);
+                        if (this.コマンド初期化.Enabled) コマンド初期化_Click(sender, e);
                         break;
                     case Keys.F4:
-                        if (this.コマンド更新.Enabled) コマンド更新_Click(null, null);
+                        if (this.コマンド更新.Enabled) コマンド更新_Click(sender, e);
                         break;
                     case Keys.F5:
-                        if (this.コマンド支払.Enabled) コマンド支払_Click(null, null);
+                        if (this.コマンド支払.Enabled) コマンド支払_Click(sender, e);
                         break;
                     case Keys.F8:
-                        if (this.コマンド承認.Enabled) コマンド承認_Click(null, null);
+                        if (this.コマンド承認.Enabled) コマンド承認_Click(sender, e);
                         break;
                     case Keys.F9:
-                        //if (this.コマンド印刷.Enabled) コマンド印刷_Click(null, null);
                         break;
                     case Keys.F10:
-                        //if (this.コマンド入出力.Enabled) コマンド入出力_Click(null, null);
                         break;
                     case Keys.F11:
-                    //if (this.コマンド入出力.Enabled) コマンド入出力_Click(null, null);
-                    //break;
+                        break;
                     case Keys.F12:
-                        if (this.コマンド終了.Enabled) コマンド終了_Click(null, null);
+                        if (this.コマンド終了.Enabled) コマンド終了_Click(sender, e);
                         break;
                     case Keys.Return:
                         if (this.ActiveControl == this.dataGridView1)
@@ -465,6 +462,12 @@ namespace u_net
             }
         }
 
-
+        private void F_支払管理_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            //フォームサイズ保存
+            string LoginUserCode = CommonConstants.LoginUserCode;
+            LocalSetting test = new LocalSetting();
+            test.SavePlace(LoginUserCode, this);
+        }
     }
 }

@@ -305,6 +305,7 @@
             Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(3, 2, 3, 2);
             Name = "F_商品管理";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "商品管理";
             Load += Form_Load;
             SizeChanged += Form_Resize;
