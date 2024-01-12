@@ -57,17 +57,17 @@ namespace u_net
             dataGridViewTextBoxColumn25 = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn26 = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn27 = new DataGridViewTextBoxColumn();
-            キャンセルボタン = new Button();
+            閉じるボタン = new Button();
             statusStrip1 = new StatusStrip();
             toolStripStatusLabel1 = new ToolStripStatusLabel();
             groupBox1 = new GroupBox();
+            集計年月_ラベル = new Label();
+            完了入庫 = new ListBox();
+            完了年月 = new ComboBox();
             注釈2_ラベル = new Label();
             支払年月_ラベル = new Label();
             注釈_ラベル = new Label();
             実行ボタン = new Button();
-            完了年月 = new ComboBox();
-            完了入庫 = new ListBox();
-            集計年月_ラベル = new Label();
             statusStrip1.SuspendLayout();
             groupBox1.SuspendLayout();
             SuspendLayout();
@@ -202,18 +202,18 @@ namespace u_net
             // 
             dataGridViewTextBoxColumn27.Name = "dataGridViewTextBoxColumn27";
             // 
-            // キャンセルボタン
+            // 閉じるボタン
             // 
-            キャンセルボタン.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            キャンセルボタン.Location = new Point(331, 280);
-            キャンセルボタン.Margin = new Padding(4);
-            キャンセルボタン.Name = "キャンセルボタン";
-            キャンセルボタン.RightToLeft = RightToLeft.Yes;
-            キャンセルボタン.Size = new Size(102, 27);
-            キャンセルボタン.TabIndex = 5;
-            キャンセルボタン.Text = "キャンセル(&X)";
-            キャンセルボタン.UseVisualStyleBackColor = true;
-            キャンセルボタン.Click += キャンセルボタン_Click;
+            閉じるボタン.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            閉じるボタン.Location = new Point(331, 280);
+            閉じるボタン.Margin = new Padding(4);
+            閉じるボタン.Name = "閉じるボタン";
+            閉じるボタン.RightToLeft = RightToLeft.Yes;
+            閉じるボタン.Size = new Size(102, 27);
+            閉じるボタン.TabIndex = 5;
+            閉じるボタン.Text = "閉じる(&X)";
+            閉じるボタン.UseVisualStyleBackColor = true;
+            閉じるボタン.Click += キャンセルボタン_Click;
             // 
             // statusStrip1
             // 
@@ -244,6 +244,42 @@ namespace u_net
             groupBox1.Size = new Size(424, 267);
             groupBox1.TabIndex = 10198;
             groupBox1.TabStop = false;
+            // 
+            // 集計年月_ラベル
+            // 
+            集計年月_ラベル.AllowDrop = true;
+            集計年月_ラベル.AutoEllipsis = true;
+            集計年月_ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            集計年月_ラベル.ForeColor = SystemColors.ActiveCaptionText;
+            集計年月_ラベル.ImageAlign = ContentAlignment.MiddleLeft;
+            集計年月_ラベル.Location = new Point(10, 177);
+            集計年月_ラベル.Margin = new Padding(0);
+            集計年月_ラベル.Name = "集計年月_ラベル";
+            集計年月_ラベル.Size = new Size(82, 20);
+            集計年月_ラベル.TabIndex = 3;
+            集計年月_ラベル.Text = "集計年月(&M)";
+            集計年月_ラベル.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // 完了入庫
+            // 
+            完了入庫.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            完了入庫.FormattingEnabled = true;
+            完了入庫.ImeMode = ImeMode.Disable;
+            完了入庫.Location = new Point(95, 61);
+            完了入庫.Name = "完了入庫";
+            完了入庫.Size = new Size(314, 108);
+            完了入庫.TabIndex = 2;
+            // 
+            // 完了年月
+            // 
+            完了年月.BackColor = Color.White;
+            完了年月.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            完了年月.FormattingEnabled = true;
+            完了年月.ImeMode = ImeMode.Disable;
+            完了年月.Location = new Point(95, 176);
+            完了年月.Name = "完了年月";
+            完了年月.Size = new Size(122, 21);
+            完了年月.TabIndex = 4;
             // 
             // 注釈2_ラベル
             // 
@@ -303,49 +339,13 @@ namespace u_net
             実行ボタン.UseVisualStyleBackColor = true;
             実行ボタン.Click += 実行ボタン_Click;
             // 
-            // 完了年月
-            // 
-            完了年月.BackColor = Color.White;
-            完了年月.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            完了年月.FormattingEnabled = true;
-            完了年月.ImeMode = ImeMode.Disable;
-            完了年月.Location = new Point(95, 176);
-            完了年月.Name = "完了年月";
-            完了年月.Size = new Size(122, 21);
-            完了年月.TabIndex = 4;
-            // 
-            // 完了入庫
-            // 
-            完了入庫.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            完了入庫.FormattingEnabled = true;
-            完了入庫.ImeMode = ImeMode.Disable;
-            完了入庫.Location = new Point(95, 61);
-            完了入庫.Name = "完了入庫";
-            完了入庫.Size = new Size(314, 108);
-            完了入庫.TabIndex = 2;
-            // 
-            // 集計年月_ラベル
-            // 
-            集計年月_ラベル.AllowDrop = true;
-            集計年月_ラベル.AutoEllipsis = true;
-            集計年月_ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            集計年月_ラベル.ForeColor = SystemColors.ActiveCaptionText;
-            集計年月_ラベル.ImageAlign = ContentAlignment.MiddleLeft;
-            集計年月_ラベル.Location = new Point(10, 177);
-            集計年月_ラベル.Margin = new Padding(0);
-            集計年月_ラベル.Name = "集計年月_ラベル";
-            集計年月_ラベル.Size = new Size(82, 20);
-            集計年月_ラベル.TabIndex = 3;
-            集計年月_ラベル.Text = "集計年月(&M)";
-            集計年月_ラベル.TextAlign = ContentAlignment.MiddleLeft;
-            // 
             // F_入庫完了
             // 
             BackColor = SystemColors.Control;
             ClientSize = new Size(447, 333);
             Controls.Add(実行ボタン);
             Controls.Add(groupBox1);
-            Controls.Add(キャンセルボタン);
+            Controls.Add(閉じるボタン);
             Controls.Add(statusStrip1);
             ImeMode = ImeMode.Off;
             KeyPreview = true;
@@ -393,7 +393,7 @@ namespace u_net
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn26;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn27;
         private System.Windows.Forms.DataGridViewTextBoxColumn 日誌IDDataGridViewTextBoxColumn;
-        private Button キャンセルボタン;
+        private Button 閉じるボタン;
         private StatusStrip statusStrip1;
         internal ToolStripStatusLabel toolStripStatusLabel1;
         private GroupBox groupBox1;
