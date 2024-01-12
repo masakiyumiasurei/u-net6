@@ -106,21 +106,33 @@ namespace u_net
             fn.DoWait("しばらくお待ちください...");
 
             OriginalClass ofn = new OriginalClass();
-            ofn.SetComboBox(数量単位コード, "SELECT 単位名 as Display,単位コード as Value FROM M単位");
-            ofn.SetComboBox(シリーズコード, "SELECT シリーズ名 as Display,シリーズコード as Value FROM Mシリーズ");
-            ofn.SetComboBox(商品分類コード, "SELECT 分類名 as Display,商品分類コード as Value FROM M商品分類");
+            ofn.SetComboBox(数量単位コード, "SELECT 単位コード as Display, 単位名 as Display2,単位コード as Value FROM M単位");
+            数量単位コード.DrawMode = DrawMode.OwnerDrawFixed;
+
+            ofn.SetComboBox(シリーズコード, "SELECT シリーズコード as Display ,シリーズ名 as Display2, シリーズコード as Value " +
+                "FROM Mシリーズ where 無効日時 IS NULL ORDER BY シリーズ名");
+            シリーズコード.DrawMode = DrawMode.OwnerDrawFixed;
+
+            ofn.SetComboBox(商品分類コード, "SELECT 商品分類コード as Display,分類名 as Display2,分類内容 as Display3," +
+                "商品分類コード as Value FROM M商品分類");
+            //ofn.SetComboBox(商品分類コード, "SELECT 商品分類コード as Display,分類名 as Display2," +
+            //    "商品分類コード as Value FROM M商品分類");
+            商品分類コード.DrawMode = DrawMode.OwnerDrawFixed;
+
             ofn.SetComboBox(売上区分コード, "SELECT 売上区分名 as Display,売上区分コード as Value FROM M売上区分");
-            ofn.SetComboBox(FlowCategoryCode, "SELECT Name as Display,Code as Value FROM ManufactureFlow");
+            ofn.SetComboBox(FlowCategoryCode, "SELECT Code as Display,Name as Display2,Code as Value FROM ManufactureFlow");
             setCombo = true;
-            ofn.SetComboBox(商品コード, "SELECT M商品.商品コード as Display ,M商品.商品コード as Value FROM M商品 INNER JOIN M商品明細 ON M商品.商品コード = M商品明細.商品コード " +
+            FlowCategoryCode.DrawMode = DrawMode.OwnerDrawFixed;
+
+            ofn.SetComboBox(商品コード, "SELECT M商品.商品コード as Display ,M商品.商品コード as Value " +
+                "FROM M商品 INNER JOIN M商品明細 ON M商品.商品コード = M商品明細.商品コード " +
                                         "GROUP BY M商品.商品コード ORDER BY M商品.商品コード DESC");
 
-
-
-            int intWindowHeight = this.Height;
-            int intWindowWidth = this.Width;
+            intWindowHeight = this.Height;
+            intWindowWidth = this.Width;
 
             previousControl = null;
+                      
 
             try
             {
@@ -716,6 +728,7 @@ namespace u_net
         private void コマンドシリーズ_Click(object sender, EventArgs e)
         {
             F_シリーズ fm = new F_シリーズ();
+            fm.args = シリーズコード.Text;
             fm.ShowDialog();
         }
 
@@ -949,13 +962,18 @@ namespace u_net
 
         private void 商品分類コード_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (this.ActiveControl == null) return;
+            // if (this.ActiveControl == null) return;
             if (this.商品分類コード.SelectedItem != null)
             {
-                Connect();
-                string sql = $"SELECT 分類名 FROM M商品分類 WHERE 商品分類コード= {商品分類コード.Text}";
-                分類内容.Text = OriginalClass.GetScalar<string>(cn, sql);
-                cn.Close();
+                分類名.Text = ((DataRowView)商品分類コード.SelectedItem)?.Row.Field<String>("Display2")?.ToString();
+                分類内容.Text = ((DataRowView)商品分類コード.SelectedItem)?.Row.Field<String>("Display3")?.ToString();
+                ChangedData(true);
+
+
+                //Connect();
+                //string sql = $"SELECT 分類名 FROM M商品分類 WHERE 商品分類コード= {商品分類コード.Text}";
+                //分類内容.Text = OriginalClass.GetScalar<string>(cn, sql);
+                //cn.Close();
             }
         }
 
@@ -1055,24 +1073,21 @@ namespace u_net
 
         private void シリーズコード_TextChanged(object sender, EventArgs e)
         {
-            if (this.ActiveControl == null) return;
-            string enteredText = シリーズコード.Text;
-            if (string.IsNullOrEmpty(enteredText)) return;
+            //if (this.ActiveControl == null) return;
+            //string enteredText = シリーズコード.Text;
+            //if (string.IsNullOrEmpty(enteredText)) return;
 
+            //if (!OriginalClass.ComboBoxContainsValue(シリーズコード, enteredText))
+            //{
+            //    MessageBox.Show("シリーズを選択してください。" + Environment.NewLine + "シリーズは事前に登録されている必要があります。",
+            //        this.Name, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            //    シリーズコード.Text = ""; // テキストボックスをクリア
+            //    シリーズコード.SelectedValue = DBNull.Value;
+            //}
 
-            if (!OriginalClass.ComboBoxContainsValue(シリーズコード, enteredText))
-            {
-                MessageBox.Show("シリーズを選択してください。" + Environment.NewLine + "シリーズは事前に登録されている必要があります。",
-                    this.Name, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                シリーズコード.Text = ""; // テキストボックスをクリア
-                シリーズコード.SelectedValue = DBNull.Value;
-            }
-
-            if (!FunctionClass.LimitText(this.ActiveControl, 8)) return;
-
-            シリーズ名.Text = シリーズコード.Text;
-
-            ChangedData(true);
+            //if (!FunctionClass.LimitText(this.ActiveControl, 8)) return;
+            //シリーズ名.Text = ((DataRowView)シリーズコード.SelectedItem)?.Row.Field<String>("Display2")?.ToString();
+            //ChangedData(true);
         }
 
         private void シリーズコード_Enter(object sender, EventArgs e)
@@ -1088,8 +1103,6 @@ namespace u_net
         private void 商品分類コード_TextChanged(object sender, EventArgs e)
         {
             if (!FunctionClass.LimitText(this.ActiveControl, 2)) return;
-
-
             ChangedData(true);
         }
 
@@ -1106,13 +1119,21 @@ namespace u_net
 
         private void FlowCategoryCode_TextChanged(object sender, EventArgs e)
         {
-            if (!FunctionClass.LimitText(this.ActiveControl, 3)) return;
+            // if (!FunctionClass.LimitText(this.FlowCategoryCode, 3)) return;
+            if (this.FlowCategoryCode.SelectedValue == null)
+            {
+                FlowCategoryName.Text = null;
+            }
             ChangedData(true);
         }
 
         private void 数量単位コード_TextChanged(object sender, EventArgs e)
         {
-            if (!FunctionClass.LimitText(this.ActiveControl, 2)) return;
+           // if (!FunctionClass.LimitText(this.数量単位コード, 2)) return;
+            if (this.数量単位コード.SelectedValue == null)
+            {
+                数量単位名.Text = null;
+            }
             ChangedData(true);
         }
 
@@ -1217,117 +1238,111 @@ namespace u_net
             }
         }
 
-        //private void 明細削除ボタン_Click(object sender, DataGridViewCellEventArgs e)
-        //{
-        //    try
-        //    {
-        //        DialogResult result = MessageBox.Show("行を削除しますか？", "行削除", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-        //        if (result == DialogResult.Yes)
-        //        {
-        //            dataGridView1.Rows.RemoveAt(e.RowIndex);
-        //            ChangedData(true);
-        //            NumberDetails("dgv明細番号");
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show("エラーが発生しました。\n" + ex.Message, "行削除エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        //    }
-        //}
+        private void 商品分類コード_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            OriginalClass.SetComboBoxAppearance((ComboBox)sender, e, new int[] { 50, 50, 500 }, new string[] { "Display", "Display2", "Display3" });
+            商品分類コード.Invalidate();
+            商品分類コード.DroppedDown = true;
+        }
 
-        //private void NumberDetails(string fieldName, long StartValue = 1, long offset = 1)
-        //{
-        //    //明細番号をふり直す
-        //    //FieldName - 番号を格納するフィールド名
-        //    //共通化すべきか？フォームによって引数が異なっている様だが。。。共通で使用する様に作ってるようだが、datagridviewを使用しないのであれば共通化は不要か
+        private void シリーズコード_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (this.シリーズコード.SelectedItem != null)
+            {
+                シリーズ名.Text = ((DataRowView)シリーズコード.SelectedItem)?.Row.Field<String>("Display2")?.ToString();
+                ChangedData(true);
+            }
+        }
 
-        //    try
-        //    {
-        //        long lngi = StartValue;
-        //        BindingSource bindingSource = (BindingSource)dataGridView1.DataSource;
-        //        DataTable dataTable = ((DataView)bindingSource.List).Table;
-        //        DataRow currentRow = ((DataRowView)bindingSource.Current).Row;
+        private void シリーズコード_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            OriginalClass.SetComboBoxAppearance((ComboBox)sender, e, new int[] { 100, 500 }, new string[] { "Display", "Display2" });
+            シリーズコード.Invalidate();
+            シリーズコード.DroppedDown = true;
+        }
 
-        //        dataTable.DefaultView.Sort = "明細番号 ";
 
-        //        // 既存の行の明細番号を増加させる
-        //        foreach (DataRowView rowView in dataTable.DefaultView)
-        //        {
-        //            DataRow row = rowView.Row;
-        //            // short rowDetailNumber = (short)row["明細番号"];
-        //            //if (rowDetailNumber >= currentDetailNumber)
-        //            //{
-        //            row["明細番号"] = lngi.ToString(); //(short)(rowDetailNumber + 1);
-        //            lngi += offset;
-        //            //}
-        //        }
+        private void シリーズコード_Validating(object sender, CancelEventArgs e)
+        {
+            if (this.ActiveControl == null) return;
+            string enteredText = シリーズコード.Text;
+            if (string.IsNullOrEmpty(enteredText)) return;
+            string str = OriginalClass.ComboBoxContainsValue(シリーズコード, enteredText);
 
-        //        //foreach (DataGridViewRow row in dataGridView1.Rows)
-        //        //{
-        //        //    if (!row.IsNewRow)
-        //        //    {
-        //        //        row.Cells[fieldName].Value = lngi.ToString();
-        //        //        lngi += offset;
-        //        //    }
-        //        //}
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Console.WriteLine(this.Name + "_NumberDetails - " + ex.Message);
-        //    }
-        //}
+            if (string.IsNullOrEmpty(str))
+            {
+                MessageBox.Show("シリーズを選択してください。" + Environment.NewLine + "シリーズは事前に登録されている必要があります。",
+                    this.Name, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                シリーズコード.Text = ""; // テキストボックスをクリア
+                シリーズコード.SelectedValue = DBNull.Value;
+                シリーズ名.Text = "";
+            }
 
-        //private void 行挿入ボタン_Click(object sender, DataGridViewCellEventArgs e)
-        //{
-        //    try
-        //    {
-        //        BindingSource bindingSource = (BindingSource)dataGridView1.DataSource;
-        //        DataTable dataTable = ((DataView)bindingSource.List).Table;
-        //        DataRow currentRow = ((DataRowView)bindingSource.Current).Row;
+            if (!FunctionClass.LimitText(this.シリーズコード, 8)) return;
+            シリーズ名.Text = str;
+            ChangedData(true);
+        }
 
-        //        int newRowIndex = e.RowIndex + 1;
+        private void FlowCategoryCode_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (FlowCategoryCode.SelectedItem != null)
+            {
+                if (FlowCategoryCode.SelectedItem is DataRowView)
+                {
+                    DataRowView selectedRow = (DataRowView)FlowCategoryCode.SelectedItem;
 
-        //        // 挿入した行の明細番号を取得
-        //        short currentDetailNumber = (short)dataGridView1.Rows[e.RowIndex].Cells["dgv明細番号"].Value;
+                    if (selectedRow.Row != null && selectedRow.Row.Table.Columns.Contains("Display2"))
+                    {
+                        string display2Value = selectedRow.Row.Field<String>("Display2")?.ToString();
+                        if (display2Value != null)
+                        {
+                            //品名.Text = display2Value;
+                            FlowCategoryName.Text = display2Value;
+                            ChangedData(true);
+                        }
+                        else
+                        {
+                            // display2Value が null の場合の処理
+                        }
+                    }
+                    else
+                    {
+                        // "Display2" 列が存在しないか、Row が null の場合の処理
+                    }
+                }
+                else
+                {
+                    // SelectedItem が DataRowView でない場合の処理
+                }
+            }
+            else
+            {
+                // SelectedItem が null の場合の処理
+            }
+        }
 
-        //        dataTable.DefaultView.Sort = "明細番号 DESC";
+        private void FlowCategoryCode_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            OriginalClass.SetComboBoxAppearance((ComboBox)sender, e, new int[] { 50, 500 }, new string[] { "Display", "Display2" });
+            FlowCategoryCode.Invalidate();
+            FlowCategoryCode.DroppedDown = true;
+        }
 
-        //        // 既存の行の明細番号を降順に増加させる
-        //        foreach (DataRowView rowView in dataTable.DefaultView)
-        //        {
-        //            DataRow row = rowView.Row;
-        //            short rowDetailNumber = (short)row["明細番号"];
-        //            if (rowDetailNumber >= currentDetailNumber)
-        //            {
-        //                row["明細番号"] = (short)(rowDetailNumber + 1);
-        //            }
-        //        }
+        private void 数量単位コード_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (数量単位コード.SelectedItem != null)
+            {                
+                数量単位名.Text = ((DataRowView)数量単位コード.SelectedItem)?.Row.Field<String>("Display2")?.ToString();
+                ChangedData(true);
+            }
+        }
 
-        //        //DataGridViewに新しい行を挿入
-        //        DataRow newRow = dataTable.NewRow();
-        //        newRow["商品コード"] = this.商品コード.Text;
-        //        newRow["Revision"] = this.Revision.Text;
-        //        newRow["明細番号"] = currentDetailNumber;
-        //        //dataTable.Rows.Add(newRow);
-        //        dataTable.Rows.InsertAt(newRow, newRowIndex - 1);
-        //        dataTable.DefaultView.Sort = "明細番号";
-
-        //        // DataGridViewの特定のセル（"型式名" カラムのセル）をアクティブにする
-        //        int activeIndex = dataGridView1.Columns["型式名"].Index;
-        //        //dataGridView1.CurrentCell = dataGridView1.Rows[newRowIndex].Cells[activeIndex];
-        //        dataGridView1[activeIndex, newRowIndex].Selected = true;
-        //        dataGridView1.BeginEdit(true);
-
-        //        bindingSource.EndEdit();
-        //        bindingSource.ResetBindings(false);
-
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Debug.WriteLine("行挿入ボタン_Click - " + ex.Message);
-        //    }
-        //}
-
+        private void 数量単位コード_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            OriginalClass.SetComboBoxAppearance((ComboBox)sender, e, new int[] { 50, 500 }, new string[] { "Display", "Display2" });
+            数量単位コード.Invalidate();
+            数量単位コード.DroppedDown = true;
+        }
     }
 }
 

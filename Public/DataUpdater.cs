@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
 using GrapeCity.Win.MultiRow;
+using Microsoft.IdentityModel.Tokens;
 
 namespace u_net.Public
 {
@@ -116,9 +117,13 @@ namespace u_net.Public
                             {
                                 controlValue = comboBox.Text;
                             }
-                            else
+                            else if(comboBox.SelectedValue!=null)
                             {
                                 controlValue = comboBox.SelectedValue;
+                            }
+                            else 
+                            {
+                                controlValue = DBNull.Value; 
                             }
                             break;
 
@@ -142,6 +147,7 @@ namespace u_net.Public
                     {
                         row[controlName] = controlValue;
                     }
+                    
                 }
             }
         }

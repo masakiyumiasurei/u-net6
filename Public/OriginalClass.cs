@@ -94,22 +94,24 @@ namespace u_net.Public
         }
 
         // コンボボックスのアイテムに指定の値が含まれているかチェック
-        public static bool ComboBoxContainsValue(ComboBox comboBox, string value)
+        public static string ComboBoxContainsValue(ComboBox comboBox, string value)
         {
             foreach (var item in comboBox.Items)
             {
                 if (item is DataRowView rowView)
                 {
                     string itemText = rowView["display"].ToString();  // rowView.Row.Field<string>(1); // 2列目を取得
+                    
                     //MessageBox.Show(itemText);
 
                     if (itemText == value)
                     {
-                        return true;
+                        string str = rowView.Row.Field<string>(1);
+                        return str; // 2列目を取得
                     }
                 }
             }
-            return false;
+            return "";
         }
 
 
