@@ -378,8 +378,6 @@ namespace u_net
             }
         }
 
-
-
         private void コマンド登録_Click(object sender, EventArgs e)
         {
 
@@ -2120,7 +2118,6 @@ namespace u_net
             }
         }
 
-
         private void SetSupplier(string supplierCode)
         {
             try
@@ -2249,6 +2246,7 @@ namespace u_net
         {           
             if (IsError(sender as Control, false) == true) e.Cancel = true;
         }
+
         private void 発注コード_TextChanged(object sender, EventArgs e)
         {
             FunctionClass.LimitText(sender as Control, 11);
@@ -2289,8 +2287,6 @@ namespace u_net
         {
             toolStripStatusLabel1.Text = "各種項目の説明";
         }
-
-
 
         private void 仕入先コード_Enter(object sender, EventArgs e)
         {
@@ -2341,8 +2337,6 @@ namespace u_net
         {
             toolStripStatusLabel1.Text = "各種項目の説明";
         }
-
-
 
         private void NoCredit_Enter(object sender, EventArgs e)
         {

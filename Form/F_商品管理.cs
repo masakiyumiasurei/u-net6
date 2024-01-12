@@ -233,6 +233,10 @@ namespace u_net
                 {
                     filter = filter.Substring(0, filter.Length - 5); // 最後の " AND " を削除
                 }
+                else
+                {
+                    filter += " 1=1 ";
+                }
 
                 string query = "SELECT 商品コード, 基本型式名, シリーズ名, 在庫管理, 在庫数量, 在庫下限数量, " +
                     "更新日時, 更新者名, 廃止, 削除, ユニ, 構成 " +
@@ -455,8 +459,9 @@ namespace u_net
 
         private void コマンド検索_Click(object sender, EventArgs e)
         {
-            F_検索コード form = new F_検索コード(this, "ORD");
-            form.ShowDialog();
+            MessageBox.Show("このコマンドは開発中です", "検索コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //F_検索コード form = new F_検索コード(this, "ORD");
+            //form.ShowDialog();
         }
 
         private void コマンド商品_Click(object sender, EventArgs e)

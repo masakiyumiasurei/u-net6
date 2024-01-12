@@ -33,11 +33,6 @@ namespace u_net
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(F_商品));
             コマンド終了 = new Button();
             コマンド登録 = new Button();
-            comboBox売上区分bindingSource = new BindingSource(components);
-            newDataSet = new newDataSet();
-            combBox商品コードBindingSource = new BindingSource(components);
-            m商品分類BindingSource = new BindingSource(components);
-            mシリーズBindingSource = new BindingSource(components);
             panel1 = new Panel();
             button4 = new Button();
             button3 = new Button();
@@ -58,7 +53,6 @@ namespace u_net
             dataGridViewTextBoxColumn7 = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn8 = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn9 = new DataGridViewTextBoxColumn();
-            日誌IDDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn10 = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn11 = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn12 = new DataGridViewTextBoxColumn();
@@ -100,10 +94,7 @@ namespace u_net
             作成日時 = new TextBox();
             label9 = new Label();
             分類内容 = new TextBox();
-            商品分類コード = new ComboBox();
-            v商品ヘッダBindingSource = new BindingSource(components);
             label8 = new Label();
-            シリーズコード = new ComboBox();
             label7 = new Label();
             シリーズ名 = new TextBox();
             商品名 = new TextBox();
@@ -114,41 +105,29 @@ namespace u_net
             Discontinued = new CheckBox();
             IsUnit = new CheckBox();
             CustomerSerialNumberRequired = new CheckBox();
-            数量単位名 = new TextBox();
             label2 = new Label();
             掛率有効 = new CheckBox();
             性別label = new Label();
             備考 = new TextBox();
             label11 = new Label();
-            FlowCategoryName = new TextBox();
             label6 = new Label();
             label1 = new Label();
             label4 = new Label();
-            v商品ヘッダTableAdapter = new uiDataSetTableAdapters.V商品ヘッダTableAdapter();
-            combBox商品コードTableAdapter = new uiDataSetTableAdapters.CombBox商品コードTableAdapter();
-            combBoxMシリーズTableAdapter = new uiDataSetTableAdapters.combBoxMシリーズTableAdapter();
-            m商品分類TableAdapter = new uiDataSetTableAdapters.M商品分類TableAdapter();
-            comboBox売上区分TableAdapter = new uiDataSetTableAdapters.ComboBox売上区分TableAdapter();
             label18 = new Label();
             label19 = new Label();
-            数量単位コード = new ComboBox();
             notifyIcon1 = new NotifyIcon(components);
             button1 = new Button();
             label20 = new Label();
             label21 = new Label();
-            mshomeisaiTableAdapter = new newDataSetTableAdapters.MshomeisaiTableAdapter();
             商品明細1 = new MultiRowDesigner.商品明細();
             分類名 = new TextBox();
-            //((System.ComponentModel.ISupportInitialize)M商品BindingSource).BeginInit();
-            //((System.ComponentModel.ISupportInitialize)uiDataSet).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)comboBox売上区分bindingSource).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)newDataSet).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)combBox商品コードBindingSource).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)m商品分類BindingSource).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)mシリーズBindingSource).BeginInit();
+            商品分類コード = new ComboBox();
+            シリーズコード = new ComboBox();
+            数量単位コード = new ComboBox();
+            FlowCategoryName = new TextBox();
+            数量単位名 = new TextBox();
             panel1.SuspendLayout();
             statusStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)v商品ヘッダBindingSource).BeginInit();
             SuspendLayout();
             // 
             // コマンド終了
@@ -177,28 +156,6 @@ namespace u_net
             コマンド登録.Text = "登録";
             コマンド登録.UseVisualStyleBackColor = true;
             コマンド登録.Click += コマンド登録_Click;
-            // 
-            // comboBox売上区分bindingSource
-            // 
-            comboBox売上区分bindingSource.DataMember = "M売上区分";
-            // 
-            // newDataSet
-            // 
-            newDataSet.DataSetName = "newDataSet";
-            newDataSet.Namespace = "http://tempuri.org/newDataSet.xsd";
-            newDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // combBox商品コードBindingSource
-            // 
-            combBox商品コードBindingSource.DataMember = "CombBox商品コード";
-            // 
-            // m商品分類BindingSource
-            // 
-            m商品分類BindingSource.DataMember = "M商品分類";
-            // 
-            // mシリーズBindingSource
-            // 
-            mシリーズBindingSource.DataMember = "Mシリーズ";
             // 
             // panel1
             // 
@@ -409,10 +366,6 @@ namespace u_net
             dataGridViewTextBoxColumn9.HeaderText = "構成番号";
             dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
             // 
-            // 日誌IDDataGridViewTextBoxColumn
-            // 
-            日誌IDDataGridViewTextBoxColumn.Name = "日誌IDDataGridViewTextBoxColumn";
-            // 
             // dataGridViewTextBoxColumn10
             // 
             dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
@@ -488,24 +441,23 @@ namespace u_net
             // statusStrip1
             // 
             statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1 });
-            statusStrip1.Location = new Point(0, 670);
+            statusStrip1.Location = new Point(0, 667);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Padding = new Padding(1, 0, 19, 0);
-            statusStrip1.Size = new Size(1012, 22);
+            statusStrip1.Size = new Size(1012, 25);
             statusStrip1.TabIndex = 110;
             statusStrip1.Text = "statusStrip1";
             // 
             // toolStripStatusLabel1
             // 
             toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            toolStripStatusLabel1.Size = new Size(89, 17);
+            toolStripStatusLabel1.Size = new Size(111, 20);
             toolStripStatusLabel1.Text = "各種項目の説明";
             // 
             // 売上区分コード
             // 
             売上区分コード.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             売上区分コード.AutoCompleteSource = AutoCompleteSource.ListItems;
-            売上区分コード.DropDownStyle = ComboBoxStyle.DropDownList;
             売上区分コード.DropDownWidth = 102;
             売上区分コード.FormattingEnabled = true;
             売上区分コード.ImeMode = ImeMode.Disable;
@@ -520,8 +472,8 @@ namespace u_net
             // 
             // FlowCategoryCode
             // 
-            FlowCategoryCode.DropDownStyle = ComboBoxStyle.DropDownList;
             FlowCategoryCode.DropDownWidth = 170;
+            FlowCategoryCode.Enabled = false;
             FlowCategoryCode.FormattingEnabled = true;
             FlowCategoryCode.ImeMode = ImeMode.Disable;
             FlowCategoryCode.Location = new Point(125, 252);
@@ -529,6 +481,8 @@ namespace u_net
             FlowCategoryCode.Name = "FlowCategoryCode";
             FlowCategoryCode.Size = new Size(79, 20);
             FlowCategoryCode.TabIndex = 18;
+            FlowCategoryCode.DrawItem += FlowCategoryCode_DrawItem;
+            FlowCategoryCode.SelectedIndexChanged += FlowCategoryCode_SelectedIndexChanged;
             FlowCategoryCode.TextChanged += FlowCategoryCode_TextChanged;
             // 
             // 商品コード
@@ -787,28 +741,6 @@ namespace u_net
             分類内容.TabIndex = 171;
             分類内容.TabStop = false;
             // 
-            // 商品分類コード
-            // 
-            商品分類コード.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            商品分類コード.AutoCompleteSource = AutoCompleteSource.ListItems;
-            商品分類コード.DropDownStyle = ComboBoxStyle.DropDownList;
-            商品分類コード.DropDownWidth = 238;
-            商品分類コード.FormattingEnabled = true;
-            商品分類コード.ImeMode = ImeMode.Disable;
-            商品分類コード.Location = new Point(125, 153);
-            商品分類コード.Margin = new Padding(4, 3, 4, 3);
-            商品分類コード.MaxDropDownItems = 16;
-            商品分類コード.Name = "商品分類コード";
-            商品分類コード.Size = new Size(48, 20);
-            商品分類コード.TabIndex = 11;
-            商品分類コード.SelectedIndexChanged += 商品分類コード_SelectedIndexChanged;
-            商品分類コード.TextChanged += 商品分類コード_TextChanged;
-            商品分類コード.Enter += 商品分類コード_Enter;
-            // 
-            // v商品ヘッダBindingSource
-            // 
-            v商品ヘッダBindingSource.DataMember = "V商品ヘッダ";
-            // 
             // label8
             // 
             label8.AllowDrop = true;
@@ -823,23 +755,6 @@ namespace u_net
             label8.TabIndex = 10;
             label8.Text = "商品分類(&G)";
             label8.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // シリーズコード
-            // 
-            シリーズコード.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            シリーズコード.AutoCompleteSource = AutoCompleteSource.ListItems;
-            シリーズコード.DropDownStyle = ComboBoxStyle.DropDownList;
-            シリーズコード.DropDownWidth = 238;
-            シリーズコード.FormattingEnabled = true;
-            シリーズコード.ImeMode = ImeMode.Disable;
-            シリーズコード.Location = new Point(125, 102);
-            シリーズコード.Margin = new Padding(4, 3, 4, 3);
-            シリーズコード.MaxDropDownItems = 20;
-            シリーズコード.Name = "シリーズコード";
-            シリーズコード.Size = new Size(82, 20);
-            シリーズコード.TabIndex = 6;
-            シリーズコード.TextChanged += シリーズコード_TextChanged;
-            シリーズコード.Enter += シリーズコード_Enter;
             // 
             // label7
             // 
@@ -861,12 +776,12 @@ namespace u_net
             シリーズ名.BackColor = Color.White;
             シリーズ名.Enabled = false;
             シリーズ名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            シリーズ名.Location = new Point(212, 102);
+            シリーズ名.Location = new Point(222, 102);
             シリーズ名.Margin = new Padding(3, 2, 3, 2);
             シリーズ名.Multiline = true;
             シリーズ名.Name = "シリーズ名";
             シリーズ名.ReadOnly = true;
-            シリーズ名.Size = new Size(290, 20);
+            シリーズ名.Size = new Size(280, 20);
             シリーズ名.TabIndex = 166;
             // 
             // 商品名
@@ -978,18 +893,6 @@ namespace u_net
             CustomerSerialNumberRequired.TabIndex = 14;
             CustomerSerialNumberRequired.UseVisualStyleBackColor = true;
             // 
-            // 数量単位名
-            // 
-            数量単位名.BackColor = Color.White;
-            数量単位名.Enabled = false;
-            数量単位名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            数量単位名.Location = new Point(209, 282);
-            数量単位名.Margin = new Padding(3, 2, 3, 2);
-            数量単位名.Name = "数量単位名";
-            数量単位名.ReadOnly = true;
-            数量単位名.Size = new Size(141, 20);
-            数量単位名.TabIndex = 157;
-            // 
             // label2
             // 
             label2.AllowDrop = true;
@@ -1062,18 +965,6 @@ namespace u_net
             label11.Text = "品名(&N)";
             label11.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // FlowCategoryName
-            // 
-            FlowCategoryName.BackColor = Color.White;
-            FlowCategoryName.Enabled = false;
-            FlowCategoryName.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            FlowCategoryName.Location = new Point(209, 252);
-            FlowCategoryName.Margin = new Padding(3, 2, 3, 2);
-            FlowCategoryName.Name = "FlowCategoryName";
-            FlowCategoryName.ReadOnly = true;
-            FlowCategoryName.Size = new Size(141, 20);
-            FlowCategoryName.TabIndex = 151;
-            // 
             // label6
             // 
             label6.AllowDrop = true;
@@ -1119,26 +1010,6 @@ namespace u_net
             label4.Text = "商品コード(&C)";
             label4.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // v商品ヘッダTableAdapter
-            // 
-            v商品ヘッダTableAdapter.ClearBeforeFill = true;
-            // 
-            // combBox商品コードTableAdapter
-            // 
-            combBox商品コードTableAdapter.ClearBeforeFill = true;
-            // 
-            // combBoxMシリーズTableAdapter
-            // 
-            combBoxMシリーズTableAdapter.ClearBeforeFill = true;
-            // 
-            // m商品分類TableAdapter
-            // 
-            m商品分類TableAdapter.ClearBeforeFill = true;
-            // 
-            // comboBox売上区分TableAdapter
-            // 
-            comboBox売上区分TableAdapter.ClearBeforeFill = true;
-            // 
             // label18
             // 
             label18.AllowDrop = true;
@@ -1168,20 +1039,6 @@ namespace u_net
             label19.TabIndex = 13;
             label19.Text = "顧客シリアル必須(&I)";
             label19.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // 数量単位コード
-            // 
-            数量単位コード.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            数量単位コード.AutoCompleteSource = AutoCompleteSource.ListItems;
-            数量単位コード.DropDownStyle = ComboBoxStyle.DropDownList;
-            数量単位コード.DropDownWidth = 170;
-            数量単位コード.FormattingEnabled = true;
-            数量単位コード.ImeMode = ImeMode.Disable;
-            数量単位コード.Location = new Point(124, 281);
-            数量単位コード.Name = "数量単位コード";
-            数量単位コード.Size = new Size(79, 20);
-            数量単位コード.TabIndex = 20;
-            数量単位コード.TextChanged += 数量単位コード_TextChanged;
             // 
             // notifyIcon1
             // 
@@ -1231,10 +1088,6 @@ namespace u_net
             label21.Text = "ユニット(&M)";
             label21.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // mshomeisaiTableAdapter
-            // 
-            mshomeisaiTableAdapter.ClearBeforeFill = true;
-            // 
             // 商品明細1
             // 
             商品明細1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
@@ -1257,17 +1110,96 @@ namespace u_net
             分類名.TabIndex = 190;
             分類名.TabStop = false;
             // 
+            // 商品分類コード
+            // 
+            商品分類コード.BackColor = Color.White;
+            商品分類コード.DisplayMember = "分類コード";
+            商品分類コード.DrawMode = DrawMode.OwnerDrawFixed;
+            商品分類コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            商品分類コード.FormattingEnabled = true;
+            商品分類コード.ImeMode = ImeMode.Off;
+            商品分類コード.Location = new Point(125, 152);
+            商品分類コード.Name = "商品分類コード";
+            商品分類コード.Size = new Size(49, 21);
+            商品分類コード.TabIndex = 191;
+            商品分類コード.ValueMember = "分類コード";
+            商品分類コード.DrawItem += 商品分類コード_DrawItem;
+            商品分類コード.SelectedIndexChanged += 商品分類コード_SelectedIndexChanged;
+            商品分類コード.TextChanged += 商品分類コード_TextChanged;
+            商品分類コード.Enter += 商品分類コード_Enter;
+            // 
+            // シリーズコード
+            // 
+            シリーズコード.BackColor = Color.White;
+            シリーズコード.DrawMode = DrawMode.OwnerDrawFixed;
+            シリーズコード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            シリーズコード.FormattingEnabled = true;
+            シリーズコード.ImeMode = ImeMode.Off;
+            シリーズコード.Location = new Point(125, 102);
+            シリーズコード.Name = "シリーズコード";
+            シリーズコード.Size = new Size(91, 21);
+            シリーズコード.TabIndex = 6;
+            シリーズコード.DrawItem += シリーズコード_DrawItem;
+            シリーズコード.SelectedIndexChanged += シリーズコード_SelectedIndexChanged;
+            シリーズコード.Enter += シリーズコード_Enter;
+            シリーズコード.Validating += シリーズコード_Validating;
+            // 
+            // 数量単位コード
+            // 
+            数量単位コード.BackColor = Color.White;
+            数量単位コード.DrawMode = DrawMode.OwnerDrawFixed;
+            数量単位コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            数量単位コード.FormattingEnabled = true;
+            数量単位コード.ImeMode = ImeMode.Off;
+            数量単位コード.Location = new Point(125, 282);
+            数量単位コード.Name = "数量単位コード";
+            数量単位コード.Size = new Size(79, 21);
+            数量単位コード.TabIndex = 192;
+            数量単位コード.DrawItem += 数量単位コード_DrawItem;
+            数量単位コード.SelectedIndexChanged += 数量単位コード_SelectedIndexChanged;
+            数量単位コード.TextChanged += 数量単位コード_TextChanged;
+            // 
+            // FlowCategoryName
+            // 
+            FlowCategoryName.BackColor = Color.White;
+            FlowCategoryName.Enabled = false;
+            FlowCategoryName.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            FlowCategoryName.Location = new Point(211, 252);
+            FlowCategoryName.Margin = new Padding(3, 2, 3, 2);
+            FlowCategoryName.Multiline = true;
+            FlowCategoryName.Name = "FlowCategoryName";
+            FlowCategoryName.ReadOnly = true;
+            FlowCategoryName.Size = new Size(280, 20);
+            FlowCategoryName.TabIndex = 193;
+            // 
+            // 数量単位名
+            // 
+            数量単位名.BackColor = Color.White;
+            数量単位名.Enabled = false;
+            数量単位名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            数量単位名.Location = new Point(211, 283);
+            数量単位名.Margin = new Padding(3, 2, 3, 2);
+            数量単位名.Multiline = true;
+            数量単位名.Name = "数量単位名";
+            数量単位名.ReadOnly = true;
+            数量単位名.Size = new Size(280, 20);
+            数量単位名.TabIndex = 194;
+            // 
             // F_商品
             // 
             AutoScaleDimensions = new SizeF(8F, 12F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
             ClientSize = new Size(1012, 692);
+            Controls.Add(数量単位名);
+            Controls.Add(FlowCategoryName);
+            Controls.Add(数量単位コード);
+            Controls.Add(シリーズコード);
+            Controls.Add(商品分類コード);
             Controls.Add(分類名);
             Controls.Add(商品明細1);
             Controls.Add(label21);
             Controls.Add(label20);
-            Controls.Add(数量単位コード);
             Controls.Add(label19);
             Controls.Add(label18);
             Controls.Add(button1);
@@ -1292,9 +1224,7 @@ namespace u_net
             Controls.Add(作成日時);
             Controls.Add(label9);
             Controls.Add(分類内容);
-            Controls.Add(商品分類コード);
             Controls.Add(label8);
-            Controls.Add(シリーズコード);
             Controls.Add(label7);
             Controls.Add(シリーズ名);
             Controls.Add(商品名);
@@ -1305,13 +1235,11 @@ namespace u_net
             Controls.Add(Discontinued);
             Controls.Add(IsUnit);
             Controls.Add(CustomerSerialNumberRequired);
-            Controls.Add(数量単位名);
             Controls.Add(label2);
             Controls.Add(掛率有効);
             Controls.Add(性別label);
             Controls.Add(備考);
             Controls.Add(label11);
-            Controls.Add(FlowCategoryName);
             Controls.Add(label6);
             Controls.Add(label1);
             Controls.Add(label4);
@@ -1326,15 +1254,9 @@ namespace u_net
             Text = "商品";
             Load += Form_Load;
             KeyDown += F_商品_KeyDown;
-            ((System.ComponentModel.ISupportInitialize)comboBox売上区分bindingSource).EndInit();
-            ((System.ComponentModel.ISupportInitialize)newDataSet).EndInit();
-            ((System.ComponentModel.ISupportInitialize)combBox商品コードBindingSource).EndInit();
-            ((System.ComponentModel.ISupportInitialize)m商品分類BindingSource).EndInit();
-            ((System.ComponentModel.ISupportInitialize)mシリーズBindingSource).EndInit();
             panel1.ResumeLayout(false);
             statusStrip1.ResumeLayout(false);
             statusStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)v商品ヘッダBindingSource).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -1375,7 +1297,7 @@ namespace u_net
         private CalendarColumn calendarColumn3;
         private System.Windows.Forms.Button コマンド終了;
         private System.Windows.Forms.Button コマンド登録;
-        private System.Windows.Forms.DataGridViewTextBoxColumn 日誌IDDataGridViewTextBoxColumn;
+        
 
         private CalendarColumn 登録日;
         private System.Windows.Forms.Panel panel1;
@@ -1389,12 +1311,7 @@ namespace u_net
         private System.Windows.Forms.Button コマンド削除;
         private System.Windows.Forms.Button コマンド複写;
         private System.Windows.Forms.Button コマンド修正;
-        private System.Windows.Forms.BindingSource comboBox売上区分bindingSource;
-        private uiDataSetTableAdapters.ComboBox売上区分TableAdapter comboBox売上区分TableAdapter;
-        private System.Windows.Forms.BindingSource m商品分類BindingSource;
-        private uiDataSetTableAdapters.M商品分類TableAdapter m商品分類TableAdapter;
-        private System.Windows.Forms.BindingSource combBox商品コードBindingSource;
-        private uiDataSetTableAdapters.CombBox商品コードTableAdapter combBox商品コードTableAdapter;
+        
         private System.Windows.Forms.StatusStrip statusStrip1;
         internal System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
 
@@ -1420,7 +1337,6 @@ namespace u_net
         private System.Windows.Forms.TextBox 作成日時;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox 分類内容;
-        private System.Windows.Forms.ComboBox 商品分類コード;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.ComboBox シリーズコード;
         private System.Windows.Forms.Label label7;
@@ -1433,30 +1349,30 @@ namespace u_net
         private System.Windows.Forms.CheckBox Discontinued;
         private System.Windows.Forms.CheckBox IsUnit;
         private System.Windows.Forms.CheckBox CustomerSerialNumberRequired;
-        private System.Windows.Forms.TextBox 数量単位名;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.CheckBox 掛率有効;
         private System.Windows.Forms.Label 性別label;
         private System.Windows.Forms.TextBox 備考;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.TextBox FlowCategoryName;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.BindingSource v商品ヘッダBindingSource;
-        private uiDataSetTableAdapters.V商品ヘッダTableAdapter v商品ヘッダTableAdapter;
-        private uiDataSetTableAdapters.combBoxMシリーズTableAdapter combBoxMシリーズTableAdapter;
+        
         private Label label18;
         private Label label19;
-        private ComboBox 数量単位コード;
-        private newDataSet newDataSet;
+        
         private NotifyIcon notifyIcon1;
         private Button button1;
         private Label label20;
         private Label label21;
-        private newDataSetTableAdapters.MshomeisaiTableAdapter mshomeisaiTableAdapter;
+        
         private MultiRowDesigner.商品明細 商品明細1;
         private TextBox 分類名;
+        private ComboBox 商品分類コード;
+        private ComboBox 数量単位コード;
+        private TextBox FlowCategoryName;
+        private TextBox 数量単位名;
+        //private ComboBox シリーズコード;
     }
 }
 

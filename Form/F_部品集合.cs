@@ -171,7 +171,7 @@ namespace u_net
 
             OriginalClass ofn = new OriginalClass();
             ofn.SetComboBox(分類コード, "SELECT 分類記号 as Display,対象部品名 as Display2 ,分類コード as Value FROM M部品分類 ORDER BY 分類記号");
-
+            分類コード.DrawMode = DrawMode.OwnerDrawFixed;
 
             MyApi myapi = new MyApi();
             int xSize, ySize, intpixel, twipperdot;
