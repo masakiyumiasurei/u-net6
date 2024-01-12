@@ -36,8 +36,9 @@ namespace u_net
             ログインボタン = new Button();
             日付 = new TextBox();
             toolTip1 = new ToolTip(components);
-            label23 = new Label();
             ユーアイホームボタン = new Button();
+            営業部部長不在ボタン = new Button();
+            label23 = new Label();
             システム設定ボタン = new Button();
             statusStrip1 = new StatusStrip();
             共通 = new TabPage();
@@ -135,8 +136,9 @@ namespace u_net
             受注入力ボタン = new Button();
             不在イメージコマンド = new Button();
             在席イメージコマンド = new Button();
-            営業部部長不在ボタン = new Button();
             tabControl1 = new TabControl();
+            imageList1 = new ImageList(components);
+            label1 = new Label();
             共通.SuspendLayout();
             文書資料.SuspendLayout();
             管理.SuspendLayout();
@@ -150,10 +152,10 @@ namespace u_net
             // 
             コマンド終了.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             コマンド終了.ForeColor = Color.Red;
-            コマンド終了.Location = new Point(507, 462);
+            コマンド終了.Location = new Point(516, 458);
             コマンド終了.Margin = new Padding(3, 2, 3, 2);
             コマンド終了.Name = "コマンド終了";
-            コマンド終了.Size = new Size(93, 36);
+            コマンド終了.Size = new Size(103, 48);
             コマンド終了.TabIndex = 1021;
             コマンド終了.TabStop = false;
             コマンド終了.Text = "終了";
@@ -166,7 +168,7 @@ namespace u_net
             ログインユーザー名.BackColor = Color.Black;
             ログインユーザー名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             ログインユーザー名.ForeColor = Color.White;
-            ログインユーザー名.Location = new Point(214, 455);
+            ログインユーザー名.Location = new Point(214, 458);
             ログインユーザー名.Margin = new Padding(3, 2, 3, 2);
             ログインユーザー名.Multiline = true;
             ログインユーザー名.Name = "ログインユーザー名";
@@ -181,9 +183,9 @@ namespace u_net
             // 
             ログインボタン.Font = new Font("Yu Gothic UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
             ログインボタン.ForeColor = Color.Black;
-            ログインボタン.Location = new Point(408, 461);
+            ログインボタン.Location = new Point(408, 458);
             ログインボタン.Name = "ログインボタン";
-            ログインボタン.Size = new Size(93, 36);
+            ログインボタン.Size = new Size(103, 48);
             ログインボタン.TabIndex = 10003;
             ログインボタン.Text = "ログアウト";
             ログインボタン.UseVisualStyleBackColor = true;
@@ -194,7 +196,7 @@ namespace u_net
             日付.BackColor = Color.Black;
             日付.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             日付.ForeColor = Color.White;
-            日付.Location = new Point(214, 482);
+            日付.Location = new Point(214, 483);
             日付.Margin = new Padding(3, 2, 3, 2);
             日付.Multiline = true;
             日付.Name = "日付";
@@ -204,29 +206,14 @@ namespace u_net
             日付.TextAlign = HorizontalAlignment.Center;
             toolTip1.SetToolTip(日付, "現在の日付");
             // 
-            // label23
-            // 
-            label23.AllowDrop = true;
-            label23.AutoEllipsis = true;
-            label23.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            label23.ForeColor = SystemColors.ActiveCaptionText;
-            label23.ImageAlign = ContentAlignment.MiddleLeft;
-            label23.Location = new Point(461, 25);
-            label23.Margin = new Padding(0);
-            label23.Name = "label23";
-            label23.Size = new Size(120, 21);
-            label23.TabIndex = 10007;
-            label23.Text = "UINICS CO.,LTD.";
-            label23.TextAlign = ContentAlignment.MiddleLeft;
-            // 
             // ユーアイホームボタン
             // 
             ユーアイホームボタン.Font = new Font("Yu Gothic UI Light", 11.25F, FontStyle.Underline, GraphicsUnit.Point);
             ユーアイホームボタン.ForeColor = Color.Blue;
-            ユーアイホームボタン.Location = new Point(16, 462);
+            ユーアイホームボタン.Location = new Point(8, 458);
             ユーアイホームボタン.Margin = new Padding(3, 2, 3, 2);
             ユーアイホームボタン.Name = "ユーアイホームボタン";
-            ユーアイホームボタン.Size = new Size(93, 36);
+            ユーアイホームボタン.Size = new Size(98, 48);
             ユーアイホームボタン.TabIndex = 10008;
             ユーアイホームボタン.TabStop = false;
             ユーアイホームボタン.Text = "UI Home";
@@ -235,14 +222,42 @@ namespace u_net
             ユーアイホームボタン.Click += ユーアイホームボタン_Click;
             ユーアイホームボタン.MouseMove += ユーアイホームボタン_MouseMove;
             // 
+            // 営業部部長不在ボタン
+            // 
+            営業部部長不在ボタン.Font = new Font("Yu Gothic UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
+            営業部部長不在ボタン.ForeColor = Color.Black;
+            営業部部長不在ボタン.Image = (Image)resources.GetObject("営業部部長不在ボタン.Image");
+            営業部部長不在ボタン.Location = new Point(528, 316);
+            営業部部長不在ボタン.Name = "営業部部長不在ボタン";
+            営業部部長不在ボタン.Size = new Size(51, 45);
+            営業部部長不在ボタン.TabIndex = 10007;
+            toolTip1.SetToolTip(営業部部長不在ボタン, "営業部部長の在席状況を切り替えます");
+            営業部部長不在ボタン.UseVisualStyleBackColor = true;
+            営業部部長不在ボタン.Click += 営業部部長不在ボタン_Click;
+            // 
+            // label23
+            // 
+            label23.AllowDrop = true;
+            label23.AutoEllipsis = true;
+            label23.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            label23.ForeColor = SystemColors.ActiveCaptionText;
+            label23.ImageAlign = ContentAlignment.MiddleLeft;
+            label23.Location = new Point(500, 25);
+            label23.Margin = new Padding(0);
+            label23.Name = "label23";
+            label23.Size = new Size(120, 21);
+            label23.TabIndex = 10007;
+            label23.Text = "UINICS CO.,LTD.";
+            label23.TextAlign = ContentAlignment.MiddleLeft;
+            // 
             // システム設定ボタン
             // 
             システム設定ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             システム設定ボタン.ForeColor = Color.Red;
-            システム設定ボタン.Location = new Point(115, 462);
+            システム設定ボタン.Location = new Point(111, 458);
             システム設定ボタン.Margin = new Padding(3, 2, 3, 2);
             システム設定ボタン.Name = "システム設定ボタン";
-            システム設定ボタン.Size = new Size(93, 36);
+            システム設定ボタン.Size = new Size(98, 48);
             システム設定ボタン.TabIndex = 10009;
             システム設定ボタン.TabStop = false;
             システム設定ボタン.Text = "システム設定";
@@ -281,17 +296,18 @@ namespace u_net
             共通.Controls.Add(社員登録ボタン);
             共通.Controls.Add(消費税登録ボタン);
             共通.Controls.Add(社員管理ボタン);
+            共通.ImageKey = "6.png";
             共通.Location = new Point(4, 24);
             共通.Name = "共通";
             共通.Size = new Size(612, 380);
             共通.TabIndex = 5;
-            共通.Text = "共通";
+            共通.Text = " 共通";
             // 
             // マスタメンテボタン
             // 
             マスタメンテボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             マスタメンテボタン.ForeColor = Color.Red;
-            マスタメンテボタン.Location = new Point(17, 334);
+            マスタメンテボタン.Location = new Point(21, 340);
             マスタメンテボタン.Margin = new Padding(3, 2, 3, 2);
             マスタメンテボタン.Name = "マスタメンテボタン";
             マスタメンテボタン.Size = new Size(182, 36);
@@ -305,7 +321,7 @@ namespace u_net
             // 
             休日ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             休日ボタン.ForeColor = Color.Red;
-            休日ボタン.Location = new Point(205, 334);
+            休日ボタン.Location = new Point(209, 340);
             休日ボタン.Margin = new Padding(3, 2, 3, 2);
             休日ボタン.Name = "休日ボタン";
             休日ボタン.Size = new Size(182, 36);
@@ -319,7 +335,7 @@ namespace u_net
             // 
             単位登録ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             単位登録ボタン.ForeColor = Color.Red;
-            単位登録ボタン.Location = new Point(205, 294);
+            単位登録ボタン.Location = new Point(209, 300);
             単位登録ボタン.Margin = new Padding(3, 2, 3, 2);
             単位登録ボタン.Name = "単位登録ボタン";
             単位登録ボタン.Size = new Size(182, 36);
@@ -333,7 +349,7 @@ namespace u_net
             // 
             地区マスタメンテボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             地区マスタメンテボタン.ForeColor = Color.Red;
-            地区マスタメンテボタン.Location = new Point(393, 294);
+            地区マスタメンテボタン.Location = new Point(397, 300);
             地区マスタメンテボタン.Margin = new Padding(3, 2, 3, 2);
             地区マスタメンテボタン.Name = "地区マスタメンテボタン";
             地区マスタメンテボタン.Size = new Size(182, 36);
@@ -347,7 +363,7 @@ namespace u_net
             // 
             資格認定管理ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             資格認定管理ボタン.ForeColor = Color.Blue;
-            資格認定管理ボタン.Location = new Point(205, 195);
+            資格認定管理ボタン.Location = new Point(209, 201);
             資格認定管理ボタン.Margin = new Padding(3, 2, 3, 2);
             資格認定管理ボタン.Name = "資格認定管理ボタン";
             資格認定管理ボタン.Size = new Size(182, 36);
@@ -361,7 +377,7 @@ namespace u_net
             // 
             旧業務日報ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             旧業務日報ボタン.ForeColor = Color.FromArgb(128, 64, 0);
-            旧業務日報ボタン.Location = new Point(205, 105);
+            旧業務日報ボタン.Location = new Point(209, 111);
             旧業務日報ボタン.Margin = new Padding(3, 2, 3, 2);
             旧業務日報ボタン.Name = "旧業務日報ボタン";
             旧業務日報ボタン.Size = new Size(182, 36);
@@ -375,7 +391,7 @@ namespace u_net
             // 
             年間教育計画表ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             年間教育計画表ボタン.ForeColor = Color.FromArgb(128, 64, 0);
-            年間教育計画表ボタン.Location = new Point(393, 155);
+            年間教育計画表ボタン.Location = new Point(397, 161);
             年間教育計画表ボタン.Margin = new Padding(3, 2, 3, 2);
             年間教育計画表ボタン.Name = "年間教育計画表ボタン";
             年間教育計画表ボタン.Size = new Size(182, 36);
@@ -389,7 +405,7 @@ namespace u_net
             // 
             ファックス送付管理ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             ファックス送付管理ボタン.ForeColor = Color.Blue;
-            ファックス送付管理ボタン.Location = new Point(393, 65);
+            ファックス送付管理ボタン.Location = new Point(397, 71);
             ファックス送付管理ボタン.Margin = new Padding(3, 2, 3, 2);
             ファックス送付管理ボタン.Name = "ファックス送付管理ボタン";
             ファックス送付管理ボタン.Size = new Size(182, 36);
@@ -403,7 +419,7 @@ namespace u_net
             // 
             月間予定表ボタン.Font = new Font("Yu Gothic UI", 9F, FontStyle.Underline, GraphicsUnit.Point);
             月間予定表ボタン.ForeColor = Color.Blue;
-            月間予定表ボタン.Location = new Point(17, 14);
+            月間予定表ボタン.Location = new Point(21, 20);
             月間予定表ボタン.Margin = new Padding(3, 2, 3, 2);
             月間予定表ボタン.Name = "月間予定表ボタン";
             月間予定表ボタン.Size = new Size(182, 36);
@@ -417,7 +433,7 @@ namespace u_net
             // 
             会社情報ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             会社情報ボタン.ForeColor = Color.Black;
-            会社情報ボタン.Location = new Point(393, 334);
+            会社情報ボタン.Location = new Point(397, 340);
             会社情報ボタン.Margin = new Padding(3, 2, 3, 2);
             会社情報ボタン.Name = "会社情報ボタン";
             会社情報ボタン.Size = new Size(182, 36);
@@ -431,7 +447,7 @@ namespace u_net
             // 
             教育訓練資料ボタン.Font = new Font("Yu Gothic UI", 9F, FontStyle.Underline, GraphicsUnit.Point);
             教育訓練資料ボタン.ForeColor = Color.Blue;
-            教育訓練資料ボタン.Location = new Point(205, 155);
+            教育訓練資料ボタン.Location = new Point(209, 161);
             教育訓練資料ボタン.Margin = new Padding(3, 2, 3, 2);
             教育訓練資料ボタン.Name = "教育訓練資料ボタン";
             教育訓練資料ボタン.Size = new Size(182, 36);
@@ -445,7 +461,7 @@ namespace u_net
             // 
             ファックス送付ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             ファックス送付ボタン.ForeColor = Color.Red;
-            ファックス送付ボタン.Location = new Point(205, 65);
+            ファックス送付ボタン.Location = new Point(209, 71);
             ファックス送付ボタン.Margin = new Padding(3, 2, 3, 2);
             ファックス送付ボタン.Name = "ファックス送付ボタン";
             ファックス送付ボタン.Size = new Size(182, 36);
@@ -459,7 +475,7 @@ namespace u_net
             // 
             ファックス管理ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             ファックス管理ボタン.ForeColor = Color.Blue;
-            ファックス管理ボタン.Location = new Point(17, 65);
+            ファックス管理ボタン.Location = new Point(21, 71);
             ファックス管理ボタン.Margin = new Padding(3, 2, 3, 2);
             ファックス管理ボタン.Name = "ファックス管理ボタン";
             ファックス管理ボタン.Size = new Size(182, 36);
@@ -473,7 +489,7 @@ namespace u_net
             // 
             Plog起動ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             Plog起動ボタン.ForeColor = Color.Black;
-            Plog起動ボタン.Location = new Point(17, 105);
+            Plog起動ボタン.Location = new Point(21, 111);
             Plog起動ボタン.Margin = new Padding(3, 2, 3, 2);
             Plog起動ボタン.Name = "Plog起動ボタン";
             Plog起動ボタン.Size = new Size(182, 36);
@@ -487,7 +503,7 @@ namespace u_net
             // 
             資格認定登録ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             資格認定登録ボタン.ForeColor = Color.Red;
-            資格認定登録ボタン.Location = new Point(17, 195);
+            資格認定登録ボタン.Location = new Point(21, 201);
             資格認定登録ボタン.Margin = new Padding(3, 2, 3, 2);
             資格認定登録ボタン.Name = "資格認定登録ボタン";
             資格認定登録ボタン.Size = new Size(182, 36);
@@ -501,7 +517,7 @@ namespace u_net
             // 
             教育計画管理ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             教育計画管理ボタン.ForeColor = Color.Blue;
-            教育計画管理ボタン.Location = new Point(17, 155);
+            教育計画管理ボタン.Location = new Point(21, 161);
             教育計画管理ボタン.Margin = new Padding(3, 2, 3, 2);
             教育計画管理ボタン.Name = "教育計画管理ボタン";
             教育計画管理ボタン.Size = new Size(182, 36);
@@ -515,7 +531,7 @@ namespace u_net
             // 
             社員登録ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             社員登録ボタン.ForeColor = Color.Red;
-            社員登録ボタン.Location = new Point(17, 245);
+            社員登録ボタン.Location = new Point(21, 251);
             社員登録ボタン.Margin = new Padding(3, 2, 3, 2);
             社員登録ボタン.Name = "社員登録ボタン";
             社員登録ボタン.Size = new Size(182, 36);
@@ -529,7 +545,7 @@ namespace u_net
             // 
             消費税登録ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             消費税登録ボタン.ForeColor = Color.Red;
-            消費税登録ボタン.Location = new Point(17, 294);
+            消費税登録ボタン.Location = new Point(21, 300);
             消費税登録ボタン.Margin = new Padding(3, 2, 3, 2);
             消費税登録ボタン.Name = "消費税登録ボタン";
             消費税登録ボタン.Size = new Size(182, 36);
@@ -543,7 +559,7 @@ namespace u_net
             // 
             社員管理ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             社員管理ボタン.ForeColor = Color.Blue;
-            社員管理ボタン.Location = new Point(205, 245);
+            社員管理ボタン.Location = new Point(209, 251);
             社員管理ボタン.Margin = new Padding(3, 2, 3, 2);
             社員管理ボタン.Name = "社員管理ボタン";
             社員管理ボタン.Size = new Size(182, 36);
@@ -565,18 +581,19 @@ namespace u_net
             文書資料.Controls.Add(会議報告書_技術ボタン);
             文書資料.Controls.Add(会議報告書_営業ボタン);
             文書資料.Controls.Add(文書管理システム起動ボタン);
+            文書資料.ImageKey = "5.png";
             文書資料.Location = new Point(4, 24);
             文書資料.Name = "文書資料";
             文書資料.Padding = new Padding(3);
             文書資料.Size = new Size(612, 380);
             文書資料.TabIndex = 4;
-            文書資料.Text = "文書資料";
+            文書資料.Text = " 文書資料";
             // 
             // 旧文書管理ボタン
             // 
             旧文書管理ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             旧文書管理ボタン.ForeColor = Color.FromArgb(128, 64, 0);
-            旧文書管理ボタン.Location = new Point(10, 202);
+            旧文書管理ボタン.Location = new Point(21, 202);
             旧文書管理ボタン.Margin = new Padding(3, 2, 3, 2);
             旧文書管理ボタン.Name = "旧文書管理ボタン";
             旧文書管理ボタン.Size = new Size(182, 36);
@@ -590,7 +607,7 @@ namespace u_net
             // 
             経営計画書ボタン.Font = new Font("Yu Gothic UI", 9F, FontStyle.Underline, GraphicsUnit.Point);
             経営計画書ボタン.ForeColor = Color.Blue;
-            経営計画書ボタン.Location = new Point(10, 69);
+            経営計画書ボタン.Location = new Point(21, 70);
             経営計画書ボタン.Margin = new Padding(3, 2, 3, 2);
             経営計画書ボタン.Name = "経営計画書ボタン";
             経営計画書ボタン.Size = new Size(182, 36);
@@ -604,7 +621,7 @@ namespace u_net
             // 
             会議報告書_製造ボタン.Font = new Font("Yu Gothic UI", 9F, FontStyle.Underline, GraphicsUnit.Point);
             会議報告書_製造ボタン.ForeColor = Color.Blue;
-            会議報告書_製造ボタン.Location = new Point(10, 149);
+            会議報告書_製造ボタン.Location = new Point(21, 150);
             会議報告書_製造ボタン.Margin = new Padding(3, 2, 3, 2);
             会議報告書_製造ボタン.Name = "会議報告書_製造ボタン";
             会議報告書_製造ボタン.Size = new Size(182, 36);
@@ -618,7 +635,7 @@ namespace u_net
             // 
             会議報告書_品質保証ボタン.Font = new Font("Yu Gothic UI", 9F, FontStyle.Underline, GraphicsUnit.Point);
             会議報告書_品質保証ボタン.ForeColor = Color.Blue;
-            会議報告書_品質保証ボタン.Location = new Point(386, 149);
+            会議報告書_品質保証ボタン.Location = new Point(397, 150);
             会議報告書_品質保証ボタン.Margin = new Padding(3, 2, 3, 2);
             会議報告書_品質保証ボタン.Name = "会議報告書_品質保証ボタン";
             会議報告書_品質保証ボタン.Size = new Size(182, 36);
@@ -632,7 +649,7 @@ namespace u_net
             // 
             会議報告書_管理ボタン.Font = new Font("Yu Gothic UI", 9F, FontStyle.Underline, GraphicsUnit.Point);
             会議報告書_管理ボタン.ForeColor = Color.Blue;
-            会議報告書_管理ボタン.Location = new Point(198, 149);
+            会議報告書_管理ボタン.Location = new Point(209, 150);
             会議報告書_管理ボタン.Margin = new Padding(3, 2, 3, 2);
             会議報告書_管理ボタン.Name = "会議報告書_管理ボタン";
             会議報告書_管理ボタン.Size = new Size(182, 36);
@@ -646,7 +663,7 @@ namespace u_net
             // 
             会議報告書_業績ボタン.Font = new Font("Yu Gothic UI", 9F, FontStyle.Underline, GraphicsUnit.Point);
             会議報告書_業績ボタン.ForeColor = Color.Blue;
-            会議報告書_業績ボタン.Location = new Point(10, 109);
+            会議報告書_業績ボタン.Location = new Point(21, 110);
             会議報告書_業績ボタン.Margin = new Padding(3, 2, 3, 2);
             会議報告書_業績ボタン.Name = "会議報告書_業績ボタン";
             会議報告書_業績ボタン.Size = new Size(182, 36);
@@ -660,7 +677,7 @@ namespace u_net
             // 
             会議報告書_技術ボタン.Font = new Font("Yu Gothic UI", 9F, FontStyle.Underline, GraphicsUnit.Point);
             会議報告書_技術ボタン.ForeColor = Color.Blue;
-            会議報告書_技術ボタン.Location = new Point(386, 109);
+            会議報告書_技術ボタン.Location = new Point(397, 110);
             会議報告書_技術ボタン.Margin = new Padding(3, 2, 3, 2);
             会議報告書_技術ボタン.Name = "会議報告書_技術ボタン";
             会議報告書_技術ボタン.Size = new Size(182, 36);
@@ -674,7 +691,7 @@ namespace u_net
             // 
             会議報告書_営業ボタン.Font = new Font("Yu Gothic UI", 9F, FontStyle.Underline, GraphicsUnit.Point);
             会議報告書_営業ボタン.ForeColor = Color.Blue;
-            会議報告書_営業ボタン.Location = new Point(198, 109);
+            会議報告書_営業ボタン.Location = new Point(209, 110);
             会議報告書_営業ボタン.Margin = new Padding(3, 2, 3, 2);
             会議報告書_営業ボタン.Name = "会議報告書_営業ボタン";
             会議報告書_営業ボタン.Size = new Size(182, 36);
@@ -688,7 +705,7 @@ namespace u_net
             // 
             文書管理システム起動ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             文書管理システム起動ボタン.ForeColor = Color.Black;
-            文書管理システム起動ボタン.Location = new Point(10, 19);
+            文書管理システム起動ボタン.Location = new Point(21, 20);
             文書管理システム起動ボタン.Margin = new Padding(3, 2, 3, 2);
             文書管理システム起動ボタン.Name = "文書管理システム起動ボタン";
             文書管理システム起動ボタン.Size = new Size(182, 36);
@@ -714,18 +731,19 @@ namespace u_net
             管理.Controls.Add(請求処理ボタン);
             管理.Controls.Add(入金管理ボタン);
             管理.Controls.Add(入金入力ボタン);
+            管理.ImageKey = "4.png";
             管理.Location = new Point(4, 24);
             管理.Name = "管理";
             管理.Padding = new Padding(3);
             管理.Size = new Size(612, 380);
             管理.TabIndex = 3;
-            管理.Text = "管理";
+            管理.Text = " 管理";
             // 
             // サポート記録ボタン
             // 
             サポート記録ボタン.Font = new Font("Yu Gothic UI", 9F, FontStyle.Underline, GraphicsUnit.Point);
             サポート記録ボタン.ForeColor = Color.Blue;
-            サポート記録ボタン.Location = new Point(10, 193);
+            サポート記録ボタン.Location = new Point(21, 198);
             サポート記録ボタン.Margin = new Padding(3, 2, 3, 2);
             サポート記録ボタン.Name = "サポート記録ボタン";
             サポート記録ボタン.Size = new Size(182, 36);
@@ -739,7 +757,7 @@ namespace u_net
             // 
             ISO関連ボタン.Font = new Font("Yu Gothic UI", 9F, FontStyle.Underline, GraphicsUnit.Point);
             ISO関連ボタン.ForeColor = Color.Blue;
-            ISO関連ボタン.Location = new Point(386, 193);
+            ISO関連ボタン.Location = new Point(397, 198);
             ISO関連ボタン.Margin = new Padding(3, 2, 3, 2);
             ISO関連ボタン.Name = "ISO関連ボタン";
             ISO関連ボタン.Size = new Size(182, 36);
@@ -753,7 +771,7 @@ namespace u_net
             // 
             総務会計関連ボタン.Font = new Font("Yu Gothic UI", 9F, FontStyle.Underline, GraphicsUnit.Point);
             総務会計関連ボタン.ForeColor = Color.Blue;
-            総務会計関連ボタン.Location = new Point(198, 193);
+            総務会計関連ボタン.Location = new Point(209, 198);
             総務会計関連ボタン.Margin = new Padding(3, 2, 3, 2);
             総務会計関連ボタン.Name = "総務会計関連ボタン";
             総務会計関連ボタン.Size = new Size(182, 36);
@@ -767,7 +785,7 @@ namespace u_net
             // 
             振込一覧表ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             振込一覧表ボタン.ForeColor = Color.Blue;
-            振込一覧表ボタン.Location = new Point(386, 144);
+            振込一覧表ボタン.Location = new Point(397, 149);
             振込一覧表ボタン.Margin = new Padding(3, 2, 3, 2);
             振込一覧表ボタン.Name = "振込一覧表ボタン";
             振込一覧表ボタン.Size = new Size(182, 36);
@@ -781,7 +799,7 @@ namespace u_net
             // 
             与信情報ボタン.Font = new Font("Yu Gothic UI", 9F, FontStyle.Underline, GraphicsUnit.Point);
             与信情報ボタン.ForeColor = Color.Blue;
-            与信情報ボタン.Location = new Point(10, 233);
+            与信情報ボタン.Location = new Point(21, 238);
             与信情報ボタン.Margin = new Padding(3, 2, 3, 2);
             与信情報ボタン.Name = "与信情報ボタン";
             与信情報ボタン.Size = new Size(182, 36);
@@ -795,7 +813,7 @@ namespace u_net
             // 
             支払管理ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             支払管理ボタン.ForeColor = Color.Blue;
-            支払管理ボタン.Location = new Point(198, 104);
+            支払管理ボタン.Location = new Point(209, 109);
             支払管理ボタン.Margin = new Padding(3, 2, 3, 2);
             支払管理ボタン.Name = "支払管理ボタン";
             支払管理ボタン.Size = new Size(182, 36);
@@ -809,7 +827,7 @@ namespace u_net
             // 
             支払一覧_年間ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             支払一覧_年間ボタン.ForeColor = Color.Blue;
-            支払一覧_年間ボタン.Location = new Point(10, 144);
+            支払一覧_年間ボタン.Location = new Point(21, 149);
             支払一覧_年間ボタン.Margin = new Padding(3, 2, 3, 2);
             支払一覧_年間ボタン.Name = "支払一覧_年間ボタン";
             支払一覧_年間ボタン.Size = new Size(182, 36);
@@ -823,7 +841,7 @@ namespace u_net
             // 
             支払一覧_月間ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             支払一覧_月間ボタン.ForeColor = Color.Blue;
-            支払一覧_月間ボタン.Location = new Point(198, 144);
+            支払一覧_月間ボタン.Location = new Point(209, 149);
             支払一覧_月間ボタン.Margin = new Padding(3, 2, 3, 2);
             支払一覧_月間ボタン.Name = "支払一覧_月間ボタン";
             支払一覧_月間ボタン.Size = new Size(182, 36);
@@ -837,7 +855,7 @@ namespace u_net
             // 
             支払入力ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             支払入力ボタン.ForeColor = Color.Red;
-            支払入力ボタン.Location = new Point(10, 104);
+            支払入力ボタン.Location = new Point(21, 109);
             支払入力ボタン.Margin = new Padding(3, 2, 3, 2);
             支払入力ボタン.Name = "支払入力ボタン";
             支払入力ボタン.Size = new Size(182, 36);
@@ -851,7 +869,7 @@ namespace u_net
             // 
             売掛一覧ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             売掛一覧ボタン.ForeColor = Color.Blue;
-            売掛一覧ボタン.Location = new Point(10, 55);
+            売掛一覧ボタン.Location = new Point(21, 60);
             売掛一覧ボタン.Margin = new Padding(3, 2, 3, 2);
             売掛一覧ボタン.Name = "売掛一覧ボタン";
             売掛一覧ボタン.Size = new Size(182, 36);
@@ -865,7 +883,7 @@ namespace u_net
             // 
             請求処理ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             請求処理ボタン.ForeColor = Color.Blue;
-            請求処理ボタン.Location = new Point(198, 55);
+            請求処理ボタン.Location = new Point(209, 60);
             請求処理ボタン.Margin = new Padding(3, 2, 3, 2);
             請求処理ボタン.Name = "請求処理ボタン";
             請求処理ボタン.Size = new Size(182, 36);
@@ -879,7 +897,7 @@ namespace u_net
             // 
             入金管理ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             入金管理ボタン.ForeColor = Color.Blue;
-            入金管理ボタン.Location = new Point(198, 15);
+            入金管理ボタン.Location = new Point(209, 20);
             入金管理ボタン.Margin = new Padding(3, 2, 3, 2);
             入金管理ボタン.Name = "入金管理ボタン";
             入金管理ボタン.Size = new Size(182, 36);
@@ -893,7 +911,7 @@ namespace u_net
             // 
             入金入力ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             入金入力ボタン.ForeColor = Color.Red;
-            入金入力ボタン.Location = new Point(10, 15);
+            入金入力ボタン.Location = new Point(21, 20);
             入金入力ボタン.Margin = new Padding(3, 2, 3, 2);
             入金入力ボタン.Name = "入金入力ボタン";
             入金入力ボタン.Size = new Size(182, 36);
@@ -917,18 +935,19 @@ namespace u_net
             技術.Controls.Add(ユニット管理ボタン);
             技術.Controls.Add(製品管理ボタン);
             技術.Controls.Add(製品登録ボタン);
+            技術.ImageKey = "3.png";
             技術.Location = new Point(4, 24);
             技術.Name = "技術";
             技術.Padding = new Padding(3);
             技術.Size = new Size(612, 380);
             技術.TabIndex = 2;
-            技術.Text = "技術";
+            技術.Text = " 技術";
             // 
             // 製品情報ボタン
             // 
             製品情報ボタン.Font = new Font("Yu Gothic UI", 9F, FontStyle.Underline, GraphicsUnit.Point);
             製品情報ボタン.ForeColor = Color.Blue;
-            製品情報ボタン.Location = new Point(6, 233);
+            製品情報ボタン.Location = new Point(21, 238);
             製品情報ボタン.Margin = new Padding(3, 2, 3, 2);
             製品情報ボタン.Name = "製品情報ボタン";
             製品情報ボタン.Size = new Size(182, 36);
@@ -942,7 +961,7 @@ namespace u_net
             // 
             部品管理.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             部品管理.ForeColor = Color.Blue;
-            部品管理.Location = new Point(194, 104);
+            部品管理.Location = new Point(209, 109);
             部品管理.Margin = new Padding(3, 2, 3, 2);
             部品管理.Name = "部品管理";
             部品管理.Size = new Size(182, 36);
@@ -956,7 +975,7 @@ namespace u_net
             // 
             メーカー登録ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             メーカー登録ボタン.ForeColor = Color.Red;
-            メーカー登録ボタン.Location = new Point(6, 144);
+            メーカー登録ボタン.Location = new Point(21, 149);
             メーカー登録ボタン.Margin = new Padding(3, 2, 3, 2);
             メーカー登録ボタン.Name = "メーカー登録ボタン";
             メーカー登録ボタン.Size = new Size(182, 36);
@@ -970,7 +989,7 @@ namespace u_net
             // 
             メーカー管理ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             メーカー管理ボタン.ForeColor = Color.Blue;
-            メーカー管理ボタン.Location = new Point(194, 144);
+            メーカー管理ボタン.Location = new Point(209, 149);
             メーカー管理ボタン.Margin = new Padding(3, 2, 3, 2);
             メーカー管理ボタン.Name = "メーカー管理ボタン";
             メーカー管理ボタン.Size = new Size(182, 36);
@@ -984,7 +1003,7 @@ namespace u_net
             // 
             部品集合登録ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             部品集合登録ボタン.ForeColor = Color.Red;
-            部品集合登録ボタン.Location = new Point(6, 184);
+            部品集合登録ボタン.Location = new Point(21, 189);
             部品集合登録ボタン.Margin = new Padding(3, 2, 3, 2);
             部品集合登録ボタン.Name = "部品集合登録ボタン";
             部品集合登録ボタン.Size = new Size(182, 36);
@@ -998,7 +1017,7 @@ namespace u_net
             // 
             部品集合管理ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             部品集合管理ボタン.ForeColor = Color.Blue;
-            部品集合管理ボタン.Location = new Point(194, 184);
+            部品集合管理ボタン.Location = new Point(209, 189);
             部品集合管理ボタン.Margin = new Padding(3, 2, 3, 2);
             部品集合管理ボタン.Name = "部品集合管理ボタン";
             部品集合管理ボタン.Size = new Size(182, 36);
@@ -1012,7 +1031,7 @@ namespace u_net
             // 
             部品登録ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             部品登録ボタン.ForeColor = Color.Red;
-            部品登録ボタン.Location = new Point(6, 104);
+            部品登録ボタン.Location = new Point(21, 109);
             部品登録ボタン.Margin = new Padding(3, 2, 3, 2);
             部品登録ボタン.Name = "部品登録ボタン";
             部品登録ボタン.Size = new Size(182, 36);
@@ -1026,7 +1045,7 @@ namespace u_net
             // 
             ユニット登録ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             ユニット登録ボタン.ForeColor = Color.Red;
-            ユニット登録ボタン.Location = new Point(6, 55);
+            ユニット登録ボタン.Location = new Point(21, 60);
             ユニット登録ボタン.Margin = new Padding(3, 2, 3, 2);
             ユニット登録ボタン.Name = "ユニット登録ボタン";
             ユニット登録ボタン.Size = new Size(182, 36);
@@ -1040,7 +1059,7 @@ namespace u_net
             // 
             ユニット管理ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             ユニット管理ボタン.ForeColor = Color.Blue;
-            ユニット管理ボタン.Location = new Point(194, 55);
+            ユニット管理ボタン.Location = new Point(209, 60);
             ユニット管理ボタン.Margin = new Padding(3, 2, 3, 2);
             ユニット管理ボタン.Name = "ユニット管理ボタン";
             ユニット管理ボタン.Size = new Size(182, 36);
@@ -1054,7 +1073,7 @@ namespace u_net
             // 
             製品管理ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             製品管理ボタン.ForeColor = Color.Blue;
-            製品管理ボタン.Location = new Point(194, 15);
+            製品管理ボタン.Location = new Point(209, 20);
             製品管理ボタン.Margin = new Padding(3, 2, 3, 2);
             製品管理ボタン.Name = "製品管理ボタン";
             製品管理ボタン.Size = new Size(182, 36);
@@ -1068,7 +1087,7 @@ namespace u_net
             // 
             製品登録ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             製品登録ボタン.ForeColor = Color.Red;
-            製品登録ボタン.Location = new Point(6, 15);
+            製品登録ボタン.Location = new Point(21, 20);
             製品登録ボタン.Margin = new Padding(3, 2, 3, 2);
             製品登録ボタン.Name = "製品登録ボタン";
             製品登録ボタン.Size = new Size(182, 36);
@@ -1096,18 +1115,19 @@ namespace u_net
             製造.Controls.Add(入庫管理ボタン);
             製造.Controls.Add(入庫入力ボタン);
             製造.Controls.Add(label33);
+            製造.ImageKey = "2.png";
             製造.Location = new Point(4, 24);
             製造.Name = "製造";
             製造.Padding = new Padding(3);
             製造.Size = new Size(612, 380);
             製造.TabIndex = 1;
-            製造.Text = "製造";
+            製造.Text = " 製造";
             // 
             // ProductionSystemButton
             // 
             ProductionSystemButton.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             ProductionSystemButton.ForeColor = Color.Black;
-            ProductionSystemButton.Location = new Point(6, 18);
+            ProductionSystemButton.Location = new Point(21, 20);
             ProductionSystemButton.Margin = new Padding(3, 2, 3, 2);
             ProductionSystemButton.Name = "ProductionSystemButton";
             ProductionSystemButton.Size = new Size(182, 36);
@@ -1121,7 +1141,7 @@ namespace u_net
             // 
             発注入力ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             発注入力ボタン.ForeColor = Color.Red;
-            発注入力ボタン.Location = new Point(6, 58);
+            発注入力ボタン.Location = new Point(21, 60);
             発注入力ボタン.Margin = new Padding(3, 2, 3, 2);
             発注入力ボタン.Name = "発注入力ボタン";
             発注入力ボタン.Size = new Size(182, 36);
@@ -1135,7 +1155,7 @@ namespace u_net
             // 
             発注管理ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             発注管理ボタン.ForeColor = Color.Blue;
-            発注管理ボタン.Location = new Point(194, 58);
+            発注管理ボタン.Location = new Point(209, 60);
             発注管理ボタン.Margin = new Padding(3, 2, 3, 2);
             発注管理ボタン.Name = "発注管理ボタン";
             発注管理ボタン.Size = new Size(182, 36);
@@ -1149,7 +1169,7 @@ namespace u_net
             // 
             棚卸作業ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             棚卸作業ボタン.ForeColor = Color.Black;
-            棚卸作業ボタン.Location = new Point(382, 268);
+            棚卸作業ボタン.Location = new Point(397, 270);
             棚卸作業ボタン.Margin = new Padding(3, 2, 3, 2);
             棚卸作業ボタン.Name = "棚卸作業ボタン";
             棚卸作業ボタン.Size = new Size(182, 36);
@@ -1163,7 +1183,7 @@ namespace u_net
             // 
             部品棚卸管理ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             部品棚卸管理ボタン.ForeColor = Color.Blue;
-            部品棚卸管理ボタン.Location = new Point(194, 268);
+            部品棚卸管理ボタン.Location = new Point(209, 270);
             部品棚卸管理ボタン.Margin = new Padding(3, 2, 3, 2);
             部品棚卸管理ボタン.Name = "部品棚卸管理ボタン";
             部品棚卸管理ボタン.Size = new Size(182, 36);
@@ -1177,7 +1197,7 @@ namespace u_net
             // 
             部品棚卸入力ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             部品棚卸入力ボタン.ForeColor = Color.Red;
-            部品棚卸入力ボタン.Location = new Point(6, 268);
+            部品棚卸入力ボタン.Location = new Point(21, 270);
             部品棚卸入力ボタン.Margin = new Padding(3, 2, 3, 2);
             部品棚卸入力ボタン.Name = "部品棚卸入力ボタン";
             部品棚卸入力ボタン.Size = new Size(182, 36);
@@ -1191,7 +1211,7 @@ namespace u_net
             // 
             支払先管理ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             支払先管理ボタン.ForeColor = Color.Blue;
-            支払先管理ボタン.Location = new Point(194, 228);
+            支払先管理ボタン.Location = new Point(209, 230);
             支払先管理ボタン.Margin = new Padding(3, 2, 3, 2);
             支払先管理ボタン.Name = "支払先管理ボタン";
             支払先管理ボタン.Size = new Size(182, 36);
@@ -1205,7 +1225,7 @@ namespace u_net
             // 
             仕入先登録ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             仕入先登録ボタン.ForeColor = Color.Red;
-            仕入先登録ボタン.Location = new Point(6, 228);
+            仕入先登録ボタン.Location = new Point(21, 230);
             仕入先登録ボタン.Margin = new Padding(3, 2, 3, 2);
             仕入先登録ボタン.Name = "仕入先登録ボタン";
             仕入先登録ボタン.Size = new Size(182, 36);
@@ -1219,7 +1239,7 @@ namespace u_net
             // 
             仕入先別買掛一覧表ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             仕入先別買掛一覧表ボタン.ForeColor = Color.Blue;
-            仕入先別買掛一覧表ボタン.Location = new Point(194, 183);
+            仕入先別買掛一覧表ボタン.Location = new Point(209, 185);
             仕入先別買掛一覧表ボタン.Margin = new Padding(3, 2, 3, 2);
             仕入先別買掛一覧表ボタン.Name = "仕入先別買掛一覧表ボタン";
             仕入先別買掛一覧表ボタン.Size = new Size(182, 36);
@@ -1233,7 +1253,7 @@ namespace u_net
             // 
             購買買掛一覧表ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             購買買掛一覧表ボタン.ForeColor = Color.Blue;
-            購買買掛一覧表ボタン.Location = new Point(6, 183);
+            購買買掛一覧表ボタン.Location = new Point(21, 185);
             購買買掛一覧表ボタン.Margin = new Padding(3, 2, 3, 2);
             購買買掛一覧表ボタン.Name = "購買買掛一覧表ボタン";
             購買買掛一覧表ボタン.Size = new Size(182, 36);
@@ -1247,7 +1267,7 @@ namespace u_net
             // 
             部品納期管理ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             部品納期管理ボタン.ForeColor = Color.Blue;
-            部品納期管理ボタン.Location = new Point(194, 138);
+            部品納期管理ボタン.Location = new Point(209, 139);
             部品納期管理ボタン.Margin = new Padding(3, 2, 3, 2);
             部品納期管理ボタン.Name = "部品納期管理ボタン";
             部品納期管理ボタン.Size = new Size(182, 36);
@@ -1261,7 +1281,7 @@ namespace u_net
             // 
             入庫完了ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             入庫完了ボタン.ForeColor = Color.Black;
-            入庫完了ボタン.Location = new Point(382, 98);
+            入庫完了ボタン.Location = new Point(397, 100);
             入庫完了ボタン.Margin = new Padding(3, 2, 3, 2);
             入庫完了ボタン.Name = "入庫完了ボタン";
             入庫完了ボタン.Size = new Size(182, 36);
@@ -1275,7 +1295,7 @@ namespace u_net
             // 
             入庫管理ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             入庫管理ボタン.ForeColor = Color.Blue;
-            入庫管理ボタン.Location = new Point(194, 98);
+            入庫管理ボタン.Location = new Point(209, 100);
             入庫管理ボタン.Margin = new Padding(3, 2, 3, 2);
             入庫管理ボタン.Name = "入庫管理ボタン";
             入庫管理ボタン.Size = new Size(182, 36);
@@ -1289,7 +1309,7 @@ namespace u_net
             // 
             入庫入力ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             入庫入力ボタン.ForeColor = Color.Red;
-            入庫入力ボタン.Location = new Point(6, 98);
+            入庫入力ボタン.Location = new Point(21, 100);
             入庫入力ボタン.Margin = new Padding(3, 2, 3, 2);
             入庫入力ボタン.Name = "入庫入力ボタン";
             入庫入力ボタン.Size = new Size(182, 36);
@@ -1341,18 +1361,19 @@ namespace u_net
             販売.Controls.Add(不在イメージコマンド);
             販売.Controls.Add(在席イメージコマンド);
             販売.Controls.Add(営業部部長不在ボタン);
+            販売.ImageKey = "1.png";
             販売.Location = new Point(4, 24);
             販売.Name = "販売";
             販売.Padding = new Padding(3);
             販売.Size = new Size(612, 380);
             販売.TabIndex = 0;
-            販売.Text = "販売";
+            販売.Text = " 販売";
             // 
             // 出荷管理ボタン
             // 
             出荷管理ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             出荷管理ボタン.ForeColor = Color.Black;
-            出荷管理ボタン.Location = new Point(196, 275);
+            出荷管理ボタン.Location = new Point(209, 275);
             出荷管理ボタン.Margin = new Padding(3, 2, 3, 2);
             出荷管理ボタン.Name = "出荷管理ボタン";
             出荷管理ボタン.Size = new Size(182, 36);
@@ -1366,7 +1387,7 @@ namespace u_net
             // 
             シリーズ在庫参照ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             シリーズ在庫参照ボタン.ForeColor = Color.Black;
-            シリーズ在庫参照ボタン.Location = new Point(384, 275);
+            シリーズ在庫参照ボタン.Location = new Point(397, 275);
             シリーズ在庫参照ボタン.Margin = new Padding(3, 2, 3, 2);
             シリーズ在庫参照ボタン.Name = "シリーズ在庫参照ボタン";
             シリーズ在庫参照ボタン.Size = new Size(182, 36);
@@ -1380,7 +1401,7 @@ namespace u_net
             // 
             売上分析ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             売上分析ボタン.ForeColor = Color.Black;
-            売上分析ボタン.Location = new Point(8, 315);
+            売上分析ボタン.Location = new Point(21, 315);
             売上分析ボタン.Margin = new Padding(3, 2, 3, 2);
             売上分析ボタン.Name = "売上分析ボタン";
             売上分析ボタン.Size = new Size(182, 36);
@@ -1394,7 +1415,7 @@ namespace u_net
             // 
             売上計画ボタン.Font = new Font("Yu Gothic UI", 9F, FontStyle.Underline, GraphicsUnit.Point);
             売上計画ボタン.ForeColor = Color.Blue;
-            売上計画ボタン.Location = new Point(196, 315);
+            売上計画ボタン.Location = new Point(209, 315);
             売上計画ボタン.Margin = new Padding(3, 2, 3, 2);
             売上計画ボタン.Name = "売上計画ボタン";
             売上計画ボタン.Size = new Size(182, 36);
@@ -1408,7 +1429,7 @@ namespace u_net
             // 
             受注管理ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             受注管理ボタン.ForeColor = Color.Blue;
-            受注管理ボタン.Location = new Point(196, 20);
+            受注管理ボタン.Location = new Point(209, 20);
             受注管理ボタン.Margin = new Padding(3, 2, 3, 2);
             受注管理ボタン.Name = "受注管理ボタン";
             受注管理ボタン.Size = new Size(182, 36);
@@ -1422,7 +1443,7 @@ namespace u_net
             // 
             承認管理ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             承認管理ボタン.ForeColor = Color.Red;
-            承認管理ボタン.Location = new Point(384, 20);
+            承認管理ボタン.Location = new Point(397, 20);
             承認管理ボタン.Margin = new Padding(3, 2, 3, 2);
             承認管理ボタン.Name = "承認管理ボタン";
             承認管理ボタン.Size = new Size(182, 36);
@@ -1436,7 +1457,7 @@ namespace u_net
             // 
             見積入力ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             見積入力ボタン.ForeColor = Color.Red;
-            見積入力ボタン.Location = new Point(8, 60);
+            見積入力ボタン.Location = new Point(21, 60);
             見積入力ボタン.Margin = new Padding(3, 2, 3, 2);
             見積入力ボタン.Name = "見積入力ボタン";
             見積入力ボタン.Size = new Size(182, 36);
@@ -1450,7 +1471,7 @@ namespace u_net
             // 
             見積管理ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             見積管理ボタン.ForeColor = Color.Blue;
-            見積管理ボタン.Location = new Point(196, 60);
+            見積管理ボタン.Location = new Point(209, 60);
             見積管理ボタン.Margin = new Padding(3, 2, 3, 2);
             見積管理ボタン.Name = "見積管理ボタン";
             見積管理ボタン.Size = new Size(182, 36);
@@ -1464,7 +1485,7 @@ namespace u_net
             // 
             商品構成ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             商品構成ボタン.ForeColor = Color.Black;
-            商品構成ボタン.Location = new Point(384, 60);
+            商品構成ボタン.Location = new Point(397, 60);
             商品構成ボタン.Margin = new Padding(3, 2, 3, 2);
             商品構成ボタン.Name = "商品構成ボタン";
             商品構成ボタン.Size = new Size(182, 36);
@@ -1478,7 +1499,7 @@ namespace u_net
             // 
             購買申請入力ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             購買申請入力ボタン.ForeColor = Color.Red;
-            購買申請入力ボタン.Location = new Point(8, 100);
+            購買申請入力ボタン.Location = new Point(21, 100);
             購買申請入力ボタン.Margin = new Padding(3, 2, 3, 2);
             購買申請入力ボタン.Name = "購買申請入力ボタン";
             購買申請入力ボタン.Size = new Size(182, 36);
@@ -1492,7 +1513,7 @@ namespace u_net
             // 
             購買申請管理ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             購買申請管理ボタン.ForeColor = Color.Blue;
-            購買申請管理ボタン.Location = new Point(196, 100);
+            購買申請管理ボタン.Location = new Point(209, 100);
             購買申請管理ボタン.Margin = new Padding(3, 2, 3, 2);
             購買申請管理ボタン.Name = "購買申請管理ボタン";
             購買申請管理ボタン.Size = new Size(182, 36);
@@ -1506,7 +1527,7 @@ namespace u_net
             // 
             商品登録ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             商品登録ボタン.ForeColor = Color.Red;
-            商品登録ボタン.Location = new Point(8, 149);
+            商品登録ボタン.Location = new Point(21, 149);
             商品登録ボタン.Margin = new Padding(3, 2, 3, 2);
             商品登録ボタン.Name = "商品登録ボタン";
             商品登録ボタン.Size = new Size(182, 36);
@@ -1520,7 +1541,7 @@ namespace u_net
             // 
             依頼主登録.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             依頼主登録.ForeColor = Color.Red;
-            依頼主登録.Location = new Point(8, 231);
+            依頼主登録.Location = new Point(21, 230);
             依頼主登録.Margin = new Padding(3, 2, 3, 2);
             依頼主登録.Name = "依頼主登録";
             依頼主登録.Size = new Size(182, 36);
@@ -1534,7 +1555,7 @@ namespace u_net
             // 
             RunShippingListButton.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             RunShippingListButton.ForeColor = Color.Blue;
-            RunShippingListButton.Location = new Point(8, 275);
+            RunShippingListButton.Location = new Point(21, 275);
             RunShippingListButton.Margin = new Padding(3, 2, 3, 2);
             RunShippingListButton.Name = "RunShippingListButton";
             RunShippingListButton.Size = new Size(182, 36);
@@ -1548,7 +1569,7 @@ namespace u_net
             // 
             依頼主管理ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             依頼主管理ボタン.ForeColor = Color.Blue;
-            依頼主管理ボタン.Location = new Point(196, 231);
+            依頼主管理ボタン.Location = new Point(209, 230);
             依頼主管理ボタン.Margin = new Padding(3, 2, 3, 2);
             依頼主管理ボタン.Name = "依頼主管理ボタン";
             依頼主管理ボタン.Size = new Size(182, 36);
@@ -1562,7 +1583,7 @@ namespace u_net
             // 
             顧客管理ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             顧客管理ボタン.ForeColor = Color.Blue;
-            顧客管理ボタン.Location = new Point(196, 191);
+            顧客管理ボタン.Location = new Point(209, 191);
             顧客管理ボタン.Margin = new Padding(3, 2, 3, 2);
             顧客管理ボタン.Name = "顧客管理ボタン";
             顧客管理ボタン.Size = new Size(182, 36);
@@ -1576,7 +1597,7 @@ namespace u_net
             // 
             顧客登録ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             顧客登録ボタン.ForeColor = Color.Red;
-            顧客登録ボタン.Location = new Point(8, 189);
+            顧客登録ボタン.Location = new Point(21, 189);
             顧客登録ボタン.Margin = new Padding(3, 2, 3, 2);
             顧客登録ボタン.Name = "顧客登録ボタン";
             顧客登録ボタン.Size = new Size(182, 36);
@@ -1590,7 +1611,7 @@ namespace u_net
             // 
             シリーズ登録ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             シリーズ登録ボタン.ForeColor = Color.Red;
-            シリーズ登録ボタン.Location = new Point(384, 149);
+            シリーズ登録ボタン.Location = new Point(397, 149);
             シリーズ登録ボタン.Margin = new Padding(3, 2, 3, 2);
             シリーズ登録ボタン.Name = "シリーズ登録ボタン";
             シリーズ登録ボタン.Size = new Size(182, 36);
@@ -1604,7 +1625,7 @@ namespace u_net
             // 
             商品管理ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             商品管理ボタン.ForeColor = Color.Blue;
-            商品管理ボタン.Location = new Point(196, 149);
+            商品管理ボタン.Location = new Point(209, 149);
             商品管理ボタン.Margin = new Padding(3, 2, 3, 2);
             商品管理ボタン.Name = "商品管理ボタン";
             商品管理ボタン.Size = new Size(182, 36);
@@ -1618,7 +1639,7 @@ namespace u_net
             // 
             受注入力ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             受注入力ボタン.ForeColor = Color.Red;
-            受注入力ボタン.Location = new Point(8, 20);
+            受注入力ボタン.Location = new Point(21, 20);
             受注入力ボタン.Margin = new Padding(3, 2, 3, 2);
             受注入力ボタン.Name = "受注入力ボタン";
             受注入力ボタン.Size = new Size(182, 36);
@@ -1633,9 +1654,9 @@ namespace u_net
             不在イメージコマンド.Font = new Font("Yu Gothic UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
             不在イメージコマンド.ForeColor = Color.Black;
             不在イメージコマンド.Image = (Image)resources.GetObject("不在イメージコマンド.Image");
-            不在イメージコマンド.Location = new Point(501, 212);
+            不在イメージコマンド.Location = new Point(497, 212);
             不在イメージコマンド.Name = "不在イメージコマンド";
-            不在イメージコマンド.Size = new Size(51, 45);
+            不在イメージコマンド.Size = new Size(78, 45);
             不在イメージコマンド.TabIndex = 10009;
             不在イメージコマンド.UseVisualStyleBackColor = true;
             不在イメージコマンド.Visible = false;
@@ -1645,25 +1666,12 @@ namespace u_net
             在席イメージコマンド.Font = new Font("Yu Gothic UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
             在席イメージコマンド.ForeColor = Color.Black;
             在席イメージコマンド.Image = (Image)resources.GetObject("在席イメージコマンド.Image");
-            在席イメージコマンド.Location = new Point(436, 212);
+            在席イメージコマンド.Location = new Point(407, 212);
             在席イメージコマンド.Name = "在席イメージコマンド";
-            在席イメージコマンド.Size = new Size(51, 45);
+            在席イメージコマンド.Size = new Size(78, 45);
             在席イメージコマンド.TabIndex = 10008;
             在席イメージコマンド.UseVisualStyleBackColor = true;
             在席イメージコマンド.Visible = false;
-            // 
-            // 営業部部長不在ボタン
-            // 
-            営業部部長不在ボタン.Font = new Font("Yu Gothic UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            営業部部長不在ボタン.ForeColor = Color.Black;
-            営業部部長不在ボタン.Image = (Image)resources.GetObject("営業部部長不在ボタン.Image");
-            営業部部長不在ボタン.Location = new Point(515, 316);
-            営業部部長不在ボタン.Name = "営業部部長不在ボタン";
-            営業部部長不在ボタン.Size = new Size(51, 45);
-            営業部部長不在ボタン.TabIndex = 10007;
-            toolTip1.SetToolTip(営業部部長不在ボタン, "営業部部長の在席状況を切り替えます");
-            営業部部長不在ボタン.UseVisualStyleBackColor = true;
-            営業部部長不在ボタン.Click += 営業部部長不在ボタン_Click;
             // 
             // tabControl1
             // 
@@ -1674,7 +1682,8 @@ namespace u_net
             tabControl1.Controls.Add(文書資料);
             tabControl1.Controls.Add(共通);
             tabControl1.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            tabControl1.ItemSize = new Size(80, 20);
+            tabControl1.ImageList = imageList1;
+            tabControl1.ItemSize = new Size(102, 20);
             tabControl1.Location = new Point(4, 49);
             tabControl1.Name = "tabControl1";
             tabControl1.Padding = new Point(1, 3);
@@ -1684,13 +1693,40 @@ namespace u_net
             tabControl1.SizeMode = TabSizeMode.Fixed;
             tabControl1.TabIndex = 10002;
             // 
+            // imageList1
+            // 
+            imageList1.ColorDepth = ColorDepth.Depth8Bit;
+            imageList1.ImageStream = (ImageListStreamer)resources.GetObject("imageList1.ImageStream");
+            imageList1.TransparentColor = Color.Transparent;
+            imageList1.Images.SetKeyName(0, "1.png");
+            imageList1.Images.SetKeyName(1, "2.png");
+            imageList1.Images.SetKeyName(2, "3.png");
+            imageList1.Images.SetKeyName(3, "4.png");
+            imageList1.Images.SetKeyName(4, "5.png");
+            imageList1.Images.SetKeyName(5, "6.png");
+            // 
+            // label1
+            // 
+            label1.AllowDrop = true;
+            label1.AutoEllipsis = true;
+            label1.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.ForeColor = SystemColors.ActiveCaptionText;
+            label1.Image = (Image)resources.GetObject("label1.Image");
+            label1.Location = new Point(8, 8);
+            label1.Margin = new Padding(0);
+            label1.Name = "label1";
+            label1.Size = new Size(612, 32);
+            label1.TabIndex = 10011;
+            label1.TextAlign = ContentAlignment.MiddleCenter;
+            // 
             // F_メイン
             // 
             BackColor = SystemColors.Control;
             ClientSize = new Size(636, 536);
+            Controls.Add(label23);
+            Controls.Add(label1);
             Controls.Add(システム設定ボタン);
             Controls.Add(ユーアイホームボタン);
-            Controls.Add(label23);
             Controls.Add(日付);
             Controls.Add(ログインボタン);
             Controls.Add(tabControl1);
@@ -1700,7 +1736,8 @@ namespace u_net
             Icon = (Icon)resources.GetObject("$this.Icon");
             KeyPreview = true;
             Name = "F_メイン";
-            Text = " メイン";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Uinics U-net Client";
             FormClosing += Form_Unload;
             Load += Form_Load;
             共通.ResumeLayout(false);
@@ -1845,6 +1882,8 @@ namespace u_net
         private Button 在席イメージコマンド;
         private Button 営業部部長不在ボタン;
         private TabControl tabControl1;
+        private Label label1;
+        private ImageList imageList1;
     }
 }
 
