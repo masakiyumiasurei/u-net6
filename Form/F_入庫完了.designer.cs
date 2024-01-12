@@ -61,15 +61,16 @@ namespace u_net
             statusStrip1 = new StatusStrip();
             toolStripStatusLabel1 = new ToolStripStatusLabel();
             groupBox1 = new GroupBox();
+            完了入庫 = new DataGridView();
+            集計年月_ラベル = new Label();
+            完了年月 = new ComboBox();
             注釈2_ラベル = new Label();
             支払年月_ラベル = new Label();
             注釈_ラベル = new Label();
             実行ボタン = new Button();
-            完了年月 = new ComboBox();
-            完了入庫 = new ListBox();
-            集計年月_ラベル = new Label();
             statusStrip1.SuspendLayout();
             groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)完了入庫).BeginInit();
             SuspendLayout();
             // 
             // dataGridViewTextBoxColumn1
@@ -233,8 +234,8 @@ namespace u_net
             // 
             // groupBox1
             // 
-            groupBox1.Controls.Add(集計年月_ラベル);
             groupBox1.Controls.Add(完了入庫);
+            groupBox1.Controls.Add(集計年月_ラベル);
             groupBox1.Controls.Add(完了年月);
             groupBox1.Controls.Add(注釈2_ラベル);
             groupBox1.Controls.Add(支払年月_ラベル);
@@ -244,6 +245,42 @@ namespace u_net
             groupBox1.Size = new Size(424, 267);
             groupBox1.TabIndex = 10198;
             groupBox1.TabStop = false;
+            // 
+            // 完了入庫
+            // 
+            完了入庫.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            完了入庫.Location = new Point(95, 60);
+            完了入庫.Name = "完了入庫";
+            完了入庫.RowTemplate.Height = 25;
+            完了入庫.Size = new Size(323, 110);
+            完了入庫.TabIndex = 17;
+            完了入庫.SelectionChanged += 完了入庫_SelectionChanged;
+            // 
+            // 集計年月_ラベル
+            // 
+            集計年月_ラベル.AllowDrop = true;
+            集計年月_ラベル.AutoEllipsis = true;
+            集計年月_ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            集計年月_ラベル.ForeColor = SystemColors.ActiveCaptionText;
+            集計年月_ラベル.ImageAlign = ContentAlignment.MiddleLeft;
+            集計年月_ラベル.Location = new Point(10, 177);
+            集計年月_ラベル.Margin = new Padding(0);
+            集計年月_ラベル.Name = "集計年月_ラベル";
+            集計年月_ラベル.Size = new Size(82, 20);
+            集計年月_ラベル.TabIndex = 3;
+            集計年月_ラベル.Text = "集計年月(&M)";
+            集計年月_ラベル.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // 完了年月
+            // 
+            完了年月.BackColor = Color.White;
+            完了年月.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            完了年月.FormattingEnabled = true;
+            完了年月.ImeMode = ImeMode.Disable;
+            完了年月.Location = new Point(95, 176);
+            完了年月.Name = "完了年月";
+            完了年月.Size = new Size(122, 21);
+            完了年月.TabIndex = 4;
             // 
             // 注釈2_ラベル
             // 
@@ -303,42 +340,6 @@ namespace u_net
             実行ボタン.UseVisualStyleBackColor = true;
             実行ボタン.Click += 実行ボタン_Click;
             // 
-            // 完了年月
-            // 
-            完了年月.BackColor = Color.White;
-            完了年月.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            完了年月.FormattingEnabled = true;
-            完了年月.ImeMode = ImeMode.Disable;
-            完了年月.Location = new Point(95, 176);
-            完了年月.Name = "完了年月";
-            完了年月.Size = new Size(122, 21);
-            完了年月.TabIndex = 4;
-            // 
-            // 完了入庫
-            // 
-            完了入庫.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            完了入庫.FormattingEnabled = true;
-            完了入庫.ImeMode = ImeMode.Disable;
-            完了入庫.Location = new Point(95, 61);
-            完了入庫.Name = "完了入庫";
-            完了入庫.Size = new Size(314, 108);
-            完了入庫.TabIndex = 2;
-            // 
-            // 集計年月_ラベル
-            // 
-            集計年月_ラベル.AllowDrop = true;
-            集計年月_ラベル.AutoEllipsis = true;
-            集計年月_ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            集計年月_ラベル.ForeColor = SystemColors.ActiveCaptionText;
-            集計年月_ラベル.ImageAlign = ContentAlignment.MiddleLeft;
-            集計年月_ラベル.Location = new Point(10, 177);
-            集計年月_ラベル.Margin = new Padding(0);
-            集計年月_ラベル.Name = "集計年月_ラベル";
-            集計年月_ラベル.Size = new Size(82, 20);
-            集計年月_ラベル.TabIndex = 3;
-            集計年月_ラベル.Text = "集計年月(&M)";
-            集計年月_ラベル.TextAlign = ContentAlignment.MiddleLeft;
-            // 
             // F_入庫完了
             // 
             BackColor = SystemColors.Control;
@@ -359,6 +360,7 @@ namespace u_net
             statusStrip1.ResumeLayout(false);
             statusStrip1.PerformLayout();
             groupBox1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)完了入庫).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -402,8 +404,8 @@ namespace u_net
         private Label 支払年月_ラベル;
         private Label 注釈2_ラベル;
         private Label 集計年月_ラベル;
-        private ListBox 完了入庫;
         private ComboBox 完了年月;
+        private DataGridView 完了入庫;
     }
 }
 
