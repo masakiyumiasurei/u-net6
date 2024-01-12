@@ -149,6 +149,13 @@ namespace u_net
                         入金コード.Text = args;
 
                         UpdatedControl(入金コード);
+
+                        if (DateTime.TryParse(入金日.Text, out DateTime parsedDate))
+                            入金日.Text = string.Format("{0:yyyy/MM/dd}", parsedDate);
+
+                        if (DateTime.TryParse(入金日.Text, out DateTime parsedDate2))
+                            入金月.Text = string.Format("{0:yyyy/MM}", parsedDate2);
+
                         // 編集による変更がない状態へ遷移
                         ChangedData(false);
                     }
@@ -522,67 +529,65 @@ namespace u_net
         }
 
         private void Form_Unload(object sender, FormClosingEventArgs e)
-        {
-            string LoginUserCode = CommonConstants.LoginUserCode;
-            LocalSetting test = new LocalSetting();
-            test.SavePlace(LoginUserCode, this);
-
+        {            
             try
             {
-
                 Connect();
 
                 // データへの変更がないときの処理
-                //if (!IsChanged)
-                //{
-                // 新規モードで且つコードが取得済みのときはコードを戻す
-                //if (IsNewData && !string.IsNullOrEmpty(CurrentCode) && CurrentEdition == 1)
-                //{
-                //    // 採番された番号を戻す
-                //    if (!FunctionClass.ReturnCode(cn, "PAR" + CurrentCode))
-                //    {
-                //        MessageBox.Show("エラーのためコードは破棄されました。" + Environment.NewLine + Environment.NewLine +
-                //                        "部品コード　：　" + CurrentCode, "警告", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                //    }
-                //}
-                //return;
-                //}
+                if (!IsChanged)
+                {
+                    //新規モードで且つコードが取得済みのときはコードを戻す
+                if (IsNewData && !string.IsNullOrEmpty(CurrentCode) )
+                    {
+                        // 採番された番号を戻す
+                        if (!FunctionClass.ReturnCode(cn,  CurrentCode))
+                        {
+                            MessageBox.Show("エラーのためコードは破棄されました。" + Environment.NewLine + Environment.NewLine +
+                                            "部品コード　：　" + CurrentCode, "警告", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        }
+                    }
+                    return;
+                }
 
                 // 修正されているときは登録確認を行う
                 var intRes = MessageBox.Show("変更内容を登録しますか？", "確認", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
                 switch (intRes)
                 {
                     case DialogResult.Yes:
-                        // エラーチェック
-                        //if (!ErrCheck())
-                        //{
-                        //    return;
-                        //}
-                        //// 登録処理
-                        //if (!SaveData())
-                        //{
-                        //    if (MessageBox.Show("エラーのため登録できませんでした。" + Environment.NewLine +
-                        //                        "強制終了しますか？", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
-                        //    {
-                        //        return;
-                        //    }
-                        //}
+                        //エラーチェック
+                        if (!IsErrorData("入金コード"))
+                        {
+                            return;
+                        }
+                        // 登録処理
+                        if (!SaveData(IsNewData, CurrentCode))
+                        {
+                            if (MessageBox.Show("エラーのため登録できませんでした。" + Environment.NewLine +
+                                                "強制終了しますか？", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                            {
+                                return;
+                            }
+                        }
                         break;
                     case DialogResult.No:
-                        // 新規コードを取得していたときはコードを戻す
-                        //if (IsNewData && !string.IsNullOrEmpty(CurrentCode) && CurrentEdition == 1)
-                        //{
-                        //    if (!FunctionClass.ReturnCode(cn, "PAR" + CurrentCode))
-                        //    {
-                        //        MessageBox.Show("エラーのためコードは破棄されました。" + Environment.NewLine +
-                        //                        "部品コード　：　" + CurrentCode, "警告", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                        //    }
-                        //}
+                        //新規コードを取得していたときはコードを戻す
+                        if (IsNewData && !string.IsNullOrEmpty(CurrentCode))
+                        {
+                            if (!FunctionClass.ReturnCode(cn,  CurrentCode))
+                            {
+                                MessageBox.Show("エラーのためコードは破棄されました。" + Environment.NewLine +
+                                                "部品コード　：　" + CurrentCode, "警告", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            }
+                        }
                         break;
                     case DialogResult.Cancel:
                         return;
                 }
 
+                string LoginUserCode = CommonConstants.LoginUserCode;
+                LocalSetting test = new LocalSetting();
+                test.SavePlace(LoginUserCode, this);
 
             }
             catch (Exception ex)
@@ -784,7 +789,7 @@ namespace u_net
         }
 
 
-        private void ChangedData(bool isChanged)
+        public void ChangedData(bool isChanged)
         {
             if (ActiveControl == null) return;
 

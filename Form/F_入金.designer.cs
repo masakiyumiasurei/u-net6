@@ -876,8 +876,9 @@ namespace u_net
             入金明細1.Location = new Point(9, 323);
             入金明細1.Margin = new Padding(4);
             入金明細1.Name = "入金明細1";
-            入金明細1.Size = new Size(879, 159);
+            入金明細1.Size = new Size(891, 159);
             入金明細1.TabIndex = 10201;
+            入金明細1.Load += Form_Load;
             // 
             // 入金日選択ボタン
             // 

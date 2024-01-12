@@ -116,6 +116,9 @@ namespace u_net
             FunctionClass fn = new FunctionClass();
             fn.DoWait("しばらくお待ちください...");
 
+            string LoginUserCode = CommonConstants.LoginUserCode;
+            LocalSetting localSetting = new LocalSetting();
+            localSetting.LoadPlace(LoginUserCode, this);
 
             MyApi myapi = new MyApi();
             int xSize, ySize, intpixel, twipperdot;
@@ -225,6 +228,10 @@ namespace u_net
 
         private void コマンド終了_Click(object sender, EventArgs e)
         {
+            string LoginUserCode = CommonConstants.LoginUserCode;//テスト用 ログインユーザを実行中にどのように管理するか決まったら修正
+            LocalSetting test = new LocalSetting();
+            test.SavePlace(LoginUserCode, this);
+
             Close(); // フォームを閉じる
         }
 

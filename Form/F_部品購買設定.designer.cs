@@ -930,6 +930,7 @@ namespace u_net
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "F_部品購買設定";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "部品購買設定";
             Load += Form_Load;
             KeyDown += Form_KeyDown;
