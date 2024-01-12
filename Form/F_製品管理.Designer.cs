@@ -133,7 +133,7 @@
             コマンド製品.TabIndex = 9;
             コマンド製品.TabStop = false;
             コマンド製品.Text = "製品";
-            toolTip1.SetToolTip(コマンド製品, "■選択されている製品を参照します。");
+            toolTip1.SetToolTip(コマンド製品, "製品の参照");
             コマンド製品.UseVisualStyleBackColor = true;
             コマンド製品.Click += コマンド製品_Click;
             // 
@@ -149,7 +149,7 @@
             コマンド材料費.TabIndex = 8;
             コマンド材料費.TabStop = false;
             コマンド材料費.Text = "材料費";
-            toolTip1.SetToolTip(コマンド材料費, "■製品の材料費を参照します。");
+            toolTip1.SetToolTip(コマンド材料費, "材料費の参照");
             コマンド材料費.UseVisualStyleBackColor = true;
             コマンド材料費.Click += コマンド材料費_Click;
             // 

@@ -29,6 +29,7 @@ namespace u_net
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(F_入庫));
             コマンド終了 = new Button();
             コマンド登録 = new Button();
@@ -130,6 +131,7 @@ namespace u_net
             toolStripStatusLabel1 = new ToolStripStatusLabel();
             toolStripStatusLabel2 = new ToolStripStatusLabel();
             買掛区分コード設定 = new ComboBox();
+            toolTip1 = new ToolTip(components);
             panel1.SuspendLayout();
             statusStrip1.SuspendLayout();
             SuspendLayout();
@@ -217,6 +219,7 @@ namespace u_net
             コマンド仕入先.TabIndex = 1009;
             コマンド仕入先.TabStop = false;
             コマンド仕入先.Text = "仕入先";
+            toolTip1.SetToolTip(コマンド仕入先, "仕入先参照");
             コマンド仕入先.UseVisualStyleBackColor = true;
             コマンド仕入先.Click += コマンド仕入先_Click;
             // 
@@ -232,6 +235,7 @@ namespace u_net
             コマンド発注.TabIndex = 1008;
             コマンド発注.TabStop = false;
             コマンド発注.Text = "発注参照";
+            toolTip1.SetToolTip(コマンド発注, "対象発注データの参照");
             コマンド発注.UseVisualStyleBackColor = true;
             コマンド発注.Click += コマンド発注_Click;
             // 
@@ -1432,6 +1436,7 @@ namespace u_net
         internal ToolStripStatusLabel toolStripStatusLabel1;
         internal ToolStripStatusLabel toolStripStatusLabel2;
         private ComboBox 買掛区分コード設定;
+        private ToolTip toolTip1;
     }
 }
 

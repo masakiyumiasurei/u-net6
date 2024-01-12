@@ -242,6 +242,7 @@ namespace u_net
             コマンド確定.TabIndex = 1007;
             コマンド確定.TabStop = false;
             コマンド確定.Text = "確定";
+            toolTip1.SetToolTip(コマンド確定, "ユニットデータの確定");
             コマンド確定.UseVisualStyleBackColor = true;
             コマンド確定.Click += コマンド確定_Click;
             // 

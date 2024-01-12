@@ -189,6 +189,7 @@
             支払先参照ボタン.TabIndex = 21010;
             支払先参照ボタン.TabStop = false;
             支払先参照ボタン.Text = "▶";
+            toolTip1.SetToolTip(支払先参照ボタン, "支払先参照");
             支払先参照ボタン.UseVisualStyleBackColor = true;
             支払先参照ボタン.Click += 支払先参照ボタン_Click;
             支払先参照ボタン.Enter += 支払先参照ボタン_Enter;

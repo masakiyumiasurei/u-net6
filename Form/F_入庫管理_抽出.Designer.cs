@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             削除指定 = new GroupBox();
             DeletedButton3 = new RadioButton();
             DeletedButton2 = new RadioButton();
@@ -61,6 +62,7 @@
             入庫日終了 = new TextBox();
             入庫日開始 = new TextBox();
             仕入先コード検索ボタン = new Button();
+            toolTip1 = new ToolTip(components);
             削除指定.SuspendLayout();
             棚卸指定.SuspendLayout();
             確定指定.SuspendLayout();
@@ -476,6 +478,7 @@
             仕入先コード検索ボタン.Size = new Size(29, 21);
             仕入先コード検索ボタン.TabIndex = 21008;
             仕入先コード検索ボタン.Text = "▼";
+            toolTip1.SetToolTip(仕入先コード検索ボタン, "仕入先選択");
             仕入先コード検索ボタン.UseVisualStyleBackColor = true;
             仕入先コード検索ボタン.Click += 仕入先コード検索ボタン_Click;
             // 
@@ -561,5 +564,6 @@
         private TextBox 入庫日終了;
         private TextBox 入庫日開始;
         private Button 仕入先コード検索ボタン;
+        private ToolTip toolTip1;
     }
 }

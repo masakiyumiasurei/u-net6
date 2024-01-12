@@ -198,6 +198,7 @@ namespace u_net
             m部品分類TableAdapter = new newDataSetTableAdapters.M部品分類TableAdapter();
             rohsStatusCodeTableAdapter = new newDataSetTableAdapters.RohsStatusCodeTableAdapter();
             無効日時 = new TextBox();
+            toolTip1 = new ToolTip(components);
             panel1.SuspendLayout();
             仕入先1フレーム.SuspendLayout();
             statusStrip1.SuspendLayout();
@@ -296,6 +297,7 @@ namespace u_net
             コマンド入出庫.TabIndex = 1010;
             コマンド入出庫.TabStop = false;
             コマンド入出庫.Text = "入出庫";
+            toolTip1.SetToolTip(コマンド入出庫, "入出庫履歴の参照");
             コマンド入出庫.UseVisualStyleBackColor = true;
             コマンド入出庫.Click += コマンド入出庫_Click;
             // 
@@ -311,6 +313,7 @@ namespace u_net
             コマンドメーカー.TabIndex = 1009;
             コマンドメーカー.TabStop = false;
             コマンドメーカー.Text = "メーカー";
+            toolTip1.SetToolTip(コマンドメーカー, "メーカーマスタの参照");
             コマンドメーカー.UseVisualStyleBackColor = true;
             コマンドメーカー.Click += コマンドメーカー_Click;
             // 
@@ -326,6 +329,7 @@ namespace u_net
             コマンド仕入先.TabIndex = 1008;
             コマンド仕入先.TabStop = false;
             コマンド仕入先.Text = "仕入先";
+            toolTip1.SetToolTip(コマンド仕入先, "仕入先マスタの参照");
             コマンド仕入先.UseVisualStyleBackColor = true;
             コマンド仕入先.Click += コマンド仕入先_Click;
             // 
@@ -1046,6 +1050,7 @@ namespace u_net
             改版ボタン.TabIndex = 5;
             改版ボタン.TabStop = false;
             改版ボタン.Text = "改版(&V)";
+            toolTip1.SetToolTip(改版ボタン, "表示されているデータを改訂し、履歴を残します。");
             改版ボタン.UseVisualStyleBackColor = true;
             改版ボタン.Click += 改版ボタン_Click;
             // 
@@ -2576,6 +2581,7 @@ namespace u_net
         private BindingSource M部品分類bindingSource;
         private BindingSource rohsStatusCodebindingSource;
         private TextBox 無効日時;
+        private ToolTip toolTip1;
     }
 }
 
