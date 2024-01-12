@@ -346,7 +346,7 @@ namespace u_net
             ClientSize = new Size(447, 333);
             Controls.Add(実行ボタン);
             Controls.Add(groupBox1);
-            Controls.Add(閉じるボタン);
+            Controls.Add(キャンセルボタン);
             Controls.Add(statusStrip1);
             ImeMode = ImeMode.Off;
             KeyPreview = true;
@@ -395,7 +395,7 @@ namespace u_net
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn26;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn27;
         private System.Windows.Forms.DataGridViewTextBoxColumn 日誌IDDataGridViewTextBoxColumn;
-        private Button 閉じるボタン;
+        private Button キャンセルボタン;
         private StatusStrip statusStrip1;
         internal ToolStripStatusLabel toolStripStatusLabel1;
         private GroupBox groupBox1;
