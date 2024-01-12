@@ -451,7 +451,7 @@
             KeyPreview = true;
             Name = "F_商品管理_抽出";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "F_商品管理_抽出";
+            Text = "商品管理 - 抽出";
             Load += Form_Load;
             KeyDown += F_商品管理_抽出_KeyDown;
             Discontinued.ResumeLayout(false);
