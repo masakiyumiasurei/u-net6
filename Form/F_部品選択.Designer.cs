@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             表示件数 = new TextBox();
             コマンドキャンセル = new Button();
             label1 = new Label();
@@ -159,6 +159,7 @@
             分類記号.DropDownWidth = 431;
             分類記号.Font = new Font("BIZ UDゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             分類記号.FormattingEnabled = true;
+            分類記号.ImeMode = ImeMode.Disable;
             分類記号.IntegralHeight = false;
             分類記号.ItemHeight = 13;
             分類記号.Location = new Point(104, 11);
@@ -206,6 +207,7 @@
             // 
             型番文字列.BackColor = SystemColors.Window;
             型番文字列.Font = new Font("BIZ UDゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            型番文字列.ImeMode = ImeMode.Off;
             型番文字列.Location = new Point(119, 11);
             型番文字列.Name = "型番文字列";
             型番文字列.Size = new Size(335, 21);
@@ -249,6 +251,7 @@
             RoHS対応.DropDownHeight = 225;
             RoHS対応.Font = new Font("BIZ UDゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             RoHS対応.FormattingEnabled = true;
+            RoHS対応.ImeMode = ImeMode.Disable;
             RoHS対応.IntegralHeight = false;
             RoHS対応.Location = new Point(104, 11);
             RoHS対応.Name = "RoHS対応";
@@ -271,9 +274,9 @@
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Location = new Point(17, 85);
             dataGridView1.Name = "dataGridView1";
-            dataGridViewCellStyle1.Format = "N2";
-            dataGridViewCellStyle1.NullValue = null;
-            dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Format = "N2";
+            dataGridViewCellStyle2.NullValue = null;
+            dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle2;
             dataGridView1.RowTemplate.Height = 25;
             dataGridView1.Size = new Size(610, 293);
             dataGridView1.TabIndex = 113;
@@ -302,6 +305,7 @@
             Controls.Add(コマンドキャンセル);
             Controls.Add(表示件数);
             Name = "F_部品選択";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "部品選択";
             Load += Form_Load;
             KeyDown += F_部品選択_KeyDown;

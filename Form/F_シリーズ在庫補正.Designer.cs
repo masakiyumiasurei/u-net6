@@ -292,6 +292,7 @@
             KeyPreview = true;
             Name = "F_シリーズ在庫補正";
             StartPosition = FormStartPosition.CenterScreen;
+            Text = "シリーズ在庫補正";
             FormClosing += F_シリーズ在庫補正_FormClosing;
             Load += Form_Load;
             KeyDown += F_シリーズ在庫補正_KeyDown;

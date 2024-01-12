@@ -310,6 +310,7 @@
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "F_部品管理";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "部品管理";
             FormClosing += F_部品管理_FormClosing;
             Load += Form_Load;

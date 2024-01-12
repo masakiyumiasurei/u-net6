@@ -127,6 +127,7 @@
             // 
             支払日終了.BackColor = Color.White;
             支払日終了.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            支払日終了.ImeMode = ImeMode.Disable;
             支払日終了.Location = new Point(345, 259);
             支払日終了.Margin = new Padding(3, 2, 3, 2);
             支払日終了.Name = "支払日終了";
@@ -181,6 +182,7 @@
             // 
             支払日開始.BackColor = Color.White;
             支払日開始.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            支払日開始.ImeMode = ImeMode.Disable;
             支払日開始.Location = new Point(126, 259);
             支払日開始.Margin = new Padding(3, 2, 3, 2);
             支払日開始.Name = "支払日開始";
@@ -270,6 +272,7 @@
             // 
             締日.BackColor = Color.White;
             締日.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            締日.ImeMode = ImeMode.Off;
             締日.Location = new Point(126, 229);
             締日.Margin = new Padding(3, 2, 3, 2);
             締日.Name = "締日";
@@ -297,8 +300,10 @@
             Controls.Add(ラベル18);
             Controls.Add(顧客名);
             Name = "F_売掛一覧_抽出";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "売掛一覧_抽出";
             Load += Form_Load;
+            KeyDown += F_売掛一覧_抽出_KeyDown;
             完了指定.ResumeLayout(false);
             完了指定.PerformLayout();
             ResumeLayout(false);
