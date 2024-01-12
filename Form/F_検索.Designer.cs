@@ -268,6 +268,7 @@
             Controls.Add(フィルタ_サ);
             Name = "F_検索";
             StartPosition = FormStartPosition.CenterScreen;
+            Text = "検索";
             FormClosing += F_検索_FormClosing;
             Load += Form_Load;
             ((System.ComponentModel.ISupportInitialize)リスト).EndInit();

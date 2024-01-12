@@ -503,7 +503,7 @@
             Margin = new Padding(3, 2, 3, 2);
             Name = "F_支払明細参照";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "請求処理";
+            Text = "支払明細参照";
             FormClosing += F_製品管理_FormClosing;
             Load += Form_Load;
             KeyDown += Form_KeyDown;

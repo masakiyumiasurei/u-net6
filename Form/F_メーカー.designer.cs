@@ -30,6 +30,7 @@ namespace u_net
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(F_メーカー));
             コマンド終了 = new Button();
             コマンド登録 = new Button();
             panel1 = new Panel();
@@ -1423,10 +1424,11 @@ namespace u_net
             Controls.Add(削除者コード);
             Controls.Add(panel1);
             Font = new Font("ＭＳ ゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             KeyPreview = true;
             Name = "F_メーカー";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = " ";
+            Text = " メーカー";
             FormClosing += Form_Unload;
             Load += Form_Load;
             KeyDown += Form_KeyDown;

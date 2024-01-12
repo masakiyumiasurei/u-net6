@@ -28,144 +28,144 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.抽出ボタン = new System.Windows.Forms.Button();
-            this.キャンセルボタン = new System.Windows.Forms.Button();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.売上地区コード = new System.Windows.Forms.ComboBox();
-            this.担当者コード = new System.Windows.Forms.ComboBox();
-            this.売上地区名 = new System.Windows.Forms.TextBox();
-            this.担当者名 = new System.Windows.Forms.TextBox();
-            this.SuspendLayout();
+            抽出ボタン = new Button();
+            キャンセルボタン = new Button();
+            label6 = new Label();
+            label8 = new Label();
+            売上地区コード = new ComboBox();
+            担当者コード = new ComboBox();
+            売上地区名 = new TextBox();
+            担当者名 = new TextBox();
+            SuspendLayout();
             // 
             // 抽出ボタン
             // 
-            this.抽出ボタン.Location = new System.Drawing.Point(276, 270);
-            this.抽出ボタン.Name = "抽出ボタン";
-            this.抽出ボタン.Size = new System.Drawing.Size(114, 23);
-            this.抽出ボタン.TabIndex = 24;
-            this.抽出ボタン.Text = "抽出(&O)";
-            this.抽出ボタン.UseVisualStyleBackColor = true;
-            this.抽出ボタン.Click += new System.EventHandler(this.抽出ボタン_Click);
+            抽出ボタン.Location = new Point(276, 270);
+            抽出ボタン.Name = "抽出ボタン";
+            抽出ボタン.Size = new Size(114, 23);
+            抽出ボタン.TabIndex = 24;
+            抽出ボタン.Text = "抽出(&O)";
+            抽出ボタン.UseVisualStyleBackColor = true;
+            抽出ボタン.Click += 抽出ボタン_Click;
             // 
             // キャンセルボタン
             // 
-            this.キャンセルボタン.Location = new System.Drawing.Point(399, 270);
-            this.キャンセルボタン.Name = "キャンセルボタン";
-            this.キャンセルボタン.Size = new System.Drawing.Size(114, 23);
-            this.キャンセルボタン.TabIndex = 25;
-            this.キャンセルボタン.Text = "キャンセル(&X)";
-            this.キャンセルボタン.UseVisualStyleBackColor = true;
-            this.キャンセルボタン.MouseClick += new System.Windows.Forms.MouseEventHandler(this.キャンセルボタン_MouseClick);
+            キャンセルボタン.Location = new Point(399, 270);
+            キャンセルボタン.Name = "キャンセルボタン";
+            キャンセルボタン.Size = new Size(114, 23);
+            キャンセルボタン.TabIndex = 25;
+            キャンセルボタン.Text = "キャンセル(&X)";
+            キャンセルボタン.UseVisualStyleBackColor = true;
+            キャンセルボタン.MouseClick += キャンセルボタン_MouseClick;
             // 
             // label6
             // 
-            this.label6.AllowDrop = true;
-            this.label6.AutoEllipsis = true;
-            this.label6.Font = new System.Drawing.Font("BIZ UDゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label6.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label6.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label6.Location = new System.Drawing.Point(23, 27);
-            this.label6.Margin = new System.Windows.Forms.Padding(0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(151, 17);
-            this.label6.TabIndex = 6;
-            this.label6.Text = "売上地区コード(&A)";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            label6.AllowDrop = true;
+            label6.AutoEllipsis = true;
+            label6.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label6.ForeColor = SystemColors.ActiveCaptionText;
+            label6.ImageAlign = ContentAlignment.MiddleLeft;
+            label6.Location = new Point(23, 27);
+            label6.Margin = new Padding(0);
+            label6.Name = "label6";
+            label6.Size = new Size(151, 17);
+            label6.TabIndex = 6;
+            label6.Text = "売上地区コード(&A)";
+            label6.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // label8
             // 
-            this.label8.AllowDrop = true;
-            this.label8.AutoEllipsis = true;
-            this.label8.Font = new System.Drawing.Font("BIZ UDゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label8.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label8.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label8.Location = new System.Drawing.Point(23, 65);
-            this.label8.Margin = new System.Windows.Forms.Padding(0);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(151, 17);
-            this.label8.TabIndex = 8;
-            this.label8.Text = "担当者コード(&S)";
-            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            label8.AllowDrop = true;
+            label8.AutoEllipsis = true;
+            label8.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label8.ForeColor = SystemColors.ActiveCaptionText;
+            label8.ImageAlign = ContentAlignment.MiddleLeft;
+            label8.Location = new Point(23, 65);
+            label8.Margin = new Padding(0);
+            label8.Name = "label8";
+            label8.Size = new Size(151, 17);
+            label8.TabIndex = 8;
+            label8.Text = "担当者コード(&S)";
+            label8.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // 売上地区コード
             // 
-            this.売上地区コード.BackColor = System.Drawing.Color.White;
-            this.売上地区コード.DisplayMember = "分類コード";
-            this.売上地区コード.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.売上地区コード.FormattingEnabled = true;
-            this.売上地区コード.ImeMode = System.Windows.Forms.ImeMode.Off;
-            this.売上地区コード.Location = new System.Drawing.Point(166, 27);
-            this.売上地区コード.Name = "売上地区コード";
-            this.売上地区コード.Size = new System.Drawing.Size(139, 21);
-            this.売上地区コード.TabIndex = 7;
-            this.売上地区コード.ValueMember = "分類コード";
-            this.売上地区コード.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.売上地区コード_DrawItem);
-            this.売上地区コード.SelectedIndexChanged += new System.EventHandler(this.売上地区コード_SelectedIndexChanged);
-            this.売上地区コード.TextChanged += new System.EventHandler(this.売上地区コード_TextChanged);
+            売上地区コード.BackColor = Color.White;
+            売上地区コード.DisplayMember = "分類コード";
+            売上地区コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            売上地区コード.FormattingEnabled = true;
+            売上地区コード.ImeMode = ImeMode.Off;
+            売上地区コード.Location = new Point(166, 27);
+            売上地区コード.Name = "売上地区コード";
+            売上地区コード.Size = new Size(139, 21);
+            売上地区コード.TabIndex = 7;
+            売上地区コード.ValueMember = "分類コード";
+            売上地区コード.DrawItem += 売上地区コード_DrawItem;
+            売上地区コード.SelectedIndexChanged += 売上地区コード_SelectedIndexChanged;
+            売上地区コード.TextChanged += 売上地区コード_TextChanged;
             // 
             // 担当者コード
             // 
-            this.担当者コード.BackColor = System.Drawing.Color.White;
-            this.担当者コード.DisplayMember = "分類コード";
-            this.担当者コード.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.担当者コード.FormattingEnabled = true;
-            this.担当者コード.ImeMode = System.Windows.Forms.ImeMode.Off;
-            this.担当者コード.Location = new System.Drawing.Point(166, 65);
-            this.担当者コード.Name = "担当者コード";
-            this.担当者コード.Size = new System.Drawing.Size(139, 21);
-            this.担当者コード.TabIndex = 9;
-            this.担当者コード.ValueMember = "分類コード";
-            this.担当者コード.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.担当者コード_DrawItem);
-            this.担当者コード.SelectedIndexChanged += new System.EventHandler(this.担当者コード_SelectedIndexChanged);
-            this.担当者コード.TextChanged += new System.EventHandler(this.担当者コード_TextChanged);
+            担当者コード.BackColor = Color.White;
+            担当者コード.DisplayMember = "分類コード";
+            担当者コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            担当者コード.FormattingEnabled = true;
+            担当者コード.ImeMode = ImeMode.Off;
+            担当者コード.Location = new Point(166, 65);
+            担当者コード.Name = "担当者コード";
+            担当者コード.Size = new Size(139, 21);
+            担当者コード.TabIndex = 9;
+            担当者コード.ValueMember = "分類コード";
+            担当者コード.DrawItem += 担当者コード_DrawItem;
+            担当者コード.SelectedIndexChanged += 担当者コード_SelectedIndexChanged;
+            担当者コード.TextChanged += 担当者コード_TextChanged;
             // 
             // 売上地区名
             // 
-            this.売上地区名.BackColor = System.Drawing.Color.White;
-            this.売上地区名.Enabled = false;
-            this.売上地区名.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.売上地区名.Location = new System.Drawing.Point(311, 27);
-            this.売上地区名.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.売上地区名.Name = "売上地区名";
-            this.売上地区名.Size = new System.Drawing.Size(177, 20);
-            this.売上地区名.TabIndex = 11;
+            売上地区名.BackColor = Color.White;
+            売上地区名.Enabled = false;
+            売上地区名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            売上地区名.Location = new Point(311, 27);
+            売上地区名.Margin = new Padding(3, 2, 3, 2);
+            売上地区名.Name = "売上地区名";
+            売上地区名.Size = new Size(177, 20);
+            売上地区名.TabIndex = 11;
             // 
             // 担当者名
             // 
-            this.担当者名.BackColor = System.Drawing.Color.White;
-            this.担当者名.Enabled = false;
-            this.担当者名.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.担当者名.Location = new System.Drawing.Point(311, 64);
-            this.担当者名.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.担当者名.Name = "担当者名";
-            this.担当者名.Size = new System.Drawing.Size(177, 20);
-            this.担当者名.TabIndex = 26;
+            担当者名.BackColor = Color.White;
+            担当者名.Enabled = false;
+            担当者名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            担当者名.Location = new Point(311, 64);
+            担当者名.Margin = new Padding(3, 2, 3, 2);
+            担当者名.Name = "担当者名";
+            担当者名.Size = new Size(177, 20);
+            担当者名.TabIndex = 26;
             // 
             // F_売上一覧_区分別_抽出
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(533, 336);
-            this.Controls.Add(this.担当者名);
-            this.Controls.Add(this.売上地区名);
-            this.Controls.Add(this.担当者コード);
-            this.Controls.Add(this.売上地区コード);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.キャンセルボタン);
-            this.Controls.Add(this.抽出ボタン);
-            this.KeyPreview = true;
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
-            this.Name = "F_売上一覧_区分別_抽出";
-            this.Text = "F_売上一覧_区分別_抽出";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.F_売上一覧_区分別_抽出_FormClosing);
-            this.Load += new System.EventHandler(this.Form_Load);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.F_売上一覧_区分別_抽出_KeyDown);
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(533, 336);
+            Controls.Add(担当者名);
+            Controls.Add(売上地区名);
+            Controls.Add(担当者コード);
+            Controls.Add(売上地区コード);
+            Controls.Add(label8);
+            Controls.Add(label6);
+            Controls.Add(キャンセルボタン);
+            Controls.Add(抽出ボタン);
+            KeyPreview = true;
+            MaximizeBox = false;
+            MinimizeBox = false;
+            Name = "F_売上一覧_区分別_抽出";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "F_売上一覧_区分別_抽出";
+            FormClosing += F_売上一覧_区分別_抽出_FormClosing;
+            Load += Form_Load;
+            KeyDown += F_売上一覧_区分別_抽出_KeyDown;
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion

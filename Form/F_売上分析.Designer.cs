@@ -28,200 +28,201 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.閉じるボタン = new System.Windows.Forms.Button();
-            this.担当者別売上一覧ボタン = new System.Windows.Forms.Button();
-            this.顧客別売上一覧ボタン = new System.Windows.Forms.Button();
-            this.顧客グループ別売上一覧ボタン = new System.Windows.Forms.Button();
-            this.売上一覧_売上地区別ボタン = new System.Windows.Forms.Button();
-            this.全国地区別売上一覧ボタン = new System.Windows.Forms.Button();
-            this.依頼主別売上一覧ボタン = new System.Windows.Forms.Button();
-            this.顧客毎依頼主別売上一覧ボタン = new System.Windows.Forms.Button();
-            this.区分別年度売上一覧ボタン = new System.Windows.Forms.Button();
-            this.売上一覧_区分別ボタン = new System.Windows.Forms.Button();
-            this.売上明細参照ボタン = new System.Windows.Forms.Button();
-            this.依頼主毎シリーズ別売上一覧ボタン = new System.Windows.Forms.Button();
-            this.顧客グループ別売上明細一覧ボタン = new System.Windows.Forms.Button();
-            this.受注残推移グラフボタン = new System.Windows.Forms.Button();
-            this.売上計画ボタン = new System.Windows.Forms.Button();
-            this.SuspendLayout();
+            閉じるボタン = new Button();
+            担当者別売上一覧ボタン = new Button();
+            顧客別売上一覧ボタン = new Button();
+            顧客グループ別売上一覧ボタン = new Button();
+            売上一覧_売上地区別ボタン = new Button();
+            全国地区別売上一覧ボタン = new Button();
+            依頼主別売上一覧ボタン = new Button();
+            顧客毎依頼主別売上一覧ボタン = new Button();
+            区分別年度売上一覧ボタン = new Button();
+            売上一覧_区分別ボタン = new Button();
+            売上明細参照ボタン = new Button();
+            依頼主毎シリーズ別売上一覧ボタン = new Button();
+            顧客グループ別売上明細一覧ボタン = new Button();
+            受注残推移グラフボタン = new Button();
+            売上計画ボタン = new Button();
+            SuspendLayout();
             // 
             // 閉じるボタン
             // 
-            this.閉じるボタン.Location = new System.Drawing.Point(468, 328);
-            this.閉じるボタン.Name = "閉じるボタン";
-            this.閉じるボタン.Size = new System.Drawing.Size(114, 23);
-            this.閉じるボタン.TabIndex = 211;
-            this.閉じるボタン.Text = "閉じる";
-            this.閉じるボタン.UseVisualStyleBackColor = true;
-            this.閉じるボタン.Click += new System.EventHandler(this.閉じるボタン_Click);
+            閉じるボタン.Location = new Point(468, 328);
+            閉じるボタン.Name = "閉じるボタン";
+            閉じるボタン.Size = new Size(114, 23);
+            閉じるボタン.TabIndex = 211;
+            閉じるボタン.Text = "閉じる";
+            閉じるボタン.UseVisualStyleBackColor = true;
+            閉じるボタン.Click += 閉じるボタン_Click;
             // 
             // 担当者別売上一覧ボタン
             // 
-            this.担当者別売上一覧ボタン.Location = new System.Drawing.Point(12, 12);
-            this.担当者別売上一覧ボタン.Name = "担当者別売上一覧ボタン";
-            this.担当者別売上一覧ボタン.Size = new System.Drawing.Size(184, 33);
-            this.担当者別売上一覧ボタン.TabIndex = 246;
-            this.担当者別売上一覧ボタン.Text = "担当者別売上";
-            this.担当者別売上一覧ボタン.UseVisualStyleBackColor = true;
-            this.担当者別売上一覧ボタン.Click += new System.EventHandler(this.担当者別売上一覧ボタン_Click);
+            担当者別売上一覧ボタン.Location = new Point(12, 12);
+            担当者別売上一覧ボタン.Name = "担当者別売上一覧ボタン";
+            担当者別売上一覧ボタン.Size = new Size(184, 33);
+            担当者別売上一覧ボタン.TabIndex = 246;
+            担当者別売上一覧ボタン.Text = "担当者別売上";
+            担当者別売上一覧ボタン.UseVisualStyleBackColor = true;
+            担当者別売上一覧ボタン.Click += 担当者別売上一覧ボタン_Click;
             // 
             // 顧客別売上一覧ボタン
             // 
-            this.顧客別売上一覧ボタン.Location = new System.Drawing.Point(202, 12);
-            this.顧客別売上一覧ボタン.Name = "顧客別売上一覧ボタン";
-            this.顧客別売上一覧ボタン.Size = new System.Drawing.Size(184, 33);
-            this.顧客別売上一覧ボタン.TabIndex = 247;
-            this.顧客別売上一覧ボタン.Text = "顧客別売上";
-            this.顧客別売上一覧ボタン.UseVisualStyleBackColor = true;
-            this.顧客別売上一覧ボタン.Click += new System.EventHandler(this.顧客別売上一覧ボタン_Click);
+            顧客別売上一覧ボタン.Location = new Point(202, 12);
+            顧客別売上一覧ボタン.Name = "顧客別売上一覧ボタン";
+            顧客別売上一覧ボタン.Size = new Size(184, 33);
+            顧客別売上一覧ボタン.TabIndex = 247;
+            顧客別売上一覧ボタン.Text = "顧客別売上";
+            顧客別売上一覧ボタン.UseVisualStyleBackColor = true;
+            顧客別売上一覧ボタン.Click += 顧客別売上一覧ボタン_Click;
             // 
             // 顧客グループ別売上一覧ボタン
             // 
-            this.顧客グループ別売上一覧ボタン.Location = new System.Drawing.Point(392, 12);
-            this.顧客グループ別売上一覧ボタン.Name = "顧客グループ別売上一覧ボタン";
-            this.顧客グループ別売上一覧ボタン.Size = new System.Drawing.Size(184, 33);
-            this.顧客グループ別売上一覧ボタン.TabIndex = 248;
-            this.顧客グループ別売上一覧ボタン.Text = "グループ顧客別売上";
-            this.顧客グループ別売上一覧ボタン.UseVisualStyleBackColor = true;
-            this.顧客グループ別売上一覧ボタン.Click += new System.EventHandler(this.顧客グループ別売上一覧ボタン_Click);
+            顧客グループ別売上一覧ボタン.Location = new Point(392, 12);
+            顧客グループ別売上一覧ボタン.Name = "顧客グループ別売上一覧ボタン";
+            顧客グループ別売上一覧ボタン.Size = new Size(184, 33);
+            顧客グループ別売上一覧ボタン.TabIndex = 248;
+            顧客グループ別売上一覧ボタン.Text = "グループ顧客別売上";
+            顧客グループ別売上一覧ボタン.UseVisualStyleBackColor = true;
+            顧客グループ別売上一覧ボタン.Click += 顧客グループ別売上一覧ボタン_Click;
             // 
             // 売上一覧_売上地区別ボタン
             // 
-            this.売上一覧_売上地区別ボタン.ForeColor = System.Drawing.Color.Black;
-            this.売上一覧_売上地区別ボタン.Location = new System.Drawing.Point(12, 51);
-            this.売上一覧_売上地区別ボタン.Name = "売上一覧_売上地区別ボタン";
-            this.売上一覧_売上地区別ボタン.Size = new System.Drawing.Size(184, 33);
-            this.売上一覧_売上地区別ボタン.TabIndex = 249;
-            this.売上一覧_売上地区別ボタン.Text = "営業管轄別売上";
-            this.売上一覧_売上地区別ボタン.UseVisualStyleBackColor = true;
-            this.売上一覧_売上地区別ボタン.Click += new System.EventHandler(this.売上一覧_売上地区別ボタン_Click);
+            売上一覧_売上地区別ボタン.ForeColor = Color.Black;
+            売上一覧_売上地区別ボタン.Location = new Point(12, 51);
+            売上一覧_売上地区別ボタン.Name = "売上一覧_売上地区別ボタン";
+            売上一覧_売上地区別ボタン.Size = new Size(184, 33);
+            売上一覧_売上地区別ボタン.TabIndex = 249;
+            売上一覧_売上地区別ボタン.Text = "営業管轄別売上";
+            売上一覧_売上地区別ボタン.UseVisualStyleBackColor = true;
+            売上一覧_売上地区別ボタン.Click += 売上一覧_売上地区別ボタン_Click;
             // 
             // 全国地区別売上一覧ボタン
             // 
-            this.全国地区別売上一覧ボタン.ForeColor = System.Drawing.Color.Black;
-            this.全国地区別売上一覧ボタン.Location = new System.Drawing.Point(202, 51);
-            this.全国地区別売上一覧ボタン.Name = "全国地区別売上一覧ボタン";
-            this.全国地区別売上一覧ボタン.Size = new System.Drawing.Size(184, 33);
-            this.全国地区別売上一覧ボタン.TabIndex = 250;
-            this.全国地区別売上一覧ボタン.Text = "都道府県別売上";
-            this.全国地区別売上一覧ボタン.UseVisualStyleBackColor = true;
-            this.全国地区別売上一覧ボタン.Click += new System.EventHandler(this.全国地区別売上一覧ボタン_Click);
+            全国地区別売上一覧ボタン.ForeColor = Color.Black;
+            全国地区別売上一覧ボタン.Location = new Point(202, 51);
+            全国地区別売上一覧ボタン.Name = "全国地区別売上一覧ボタン";
+            全国地区別売上一覧ボタン.Size = new Size(184, 33);
+            全国地区別売上一覧ボタン.TabIndex = 250;
+            全国地区別売上一覧ボタン.Text = "都道府県別売上";
+            全国地区別売上一覧ボタン.UseVisualStyleBackColor = true;
+            全国地区別売上一覧ボタン.Click += 全国地区別売上一覧ボタン_Click;
             // 
             // 依頼主別売上一覧ボタン
             // 
-            this.依頼主別売上一覧ボタン.Location = new System.Drawing.Point(12, 90);
-            this.依頼主別売上一覧ボタン.Name = "依頼主別売上一覧ボタン";
-            this.依頼主別売上一覧ボタン.Size = new System.Drawing.Size(184, 33);
-            this.依頼主別売上一覧ボタン.TabIndex = 251;
-            this.依頼主別売上一覧ボタン.Text = "依頼主別売上";
-            this.依頼主別売上一覧ボタン.UseVisualStyleBackColor = true;
-            this.依頼主別売上一覧ボタン.Click += new System.EventHandler(this.依頼主別売上一覧ボタン_Click);
+            依頼主別売上一覧ボタン.Location = new Point(12, 90);
+            依頼主別売上一覧ボタン.Name = "依頼主別売上一覧ボタン";
+            依頼主別売上一覧ボタン.Size = new Size(184, 33);
+            依頼主別売上一覧ボタン.TabIndex = 251;
+            依頼主別売上一覧ボタン.Text = "依頼主別売上";
+            依頼主別売上一覧ボタン.UseVisualStyleBackColor = true;
+            依頼主別売上一覧ボタン.Click += 依頼主別売上一覧ボタン_Click;
             // 
             // 顧客毎依頼主別売上一覧ボタン
             // 
-            this.顧客毎依頼主別売上一覧ボタン.Location = new System.Drawing.Point(202, 90);
-            this.顧客毎依頼主別売上一覧ボタン.Name = "顧客毎依頼主別売上一覧ボタン";
-            this.顧客毎依頼主別売上一覧ボタン.Size = new System.Drawing.Size(184, 33);
-            this.顧客毎依頼主別売上一覧ボタン.TabIndex = 252;
-            this.顧客毎依頼主別売上一覧ボタン.Text = "顧客毎依頼主別売上";
-            this.顧客毎依頼主別売上一覧ボタン.UseVisualStyleBackColor = true;
-            this.顧客毎依頼主別売上一覧ボタン.Click += new System.EventHandler(this.顧客毎依頼主別売上一覧ボタン_Click);
+            顧客毎依頼主別売上一覧ボタン.Location = new Point(202, 90);
+            顧客毎依頼主別売上一覧ボタン.Name = "顧客毎依頼主別売上一覧ボタン";
+            顧客毎依頼主別売上一覧ボタン.Size = new Size(184, 33);
+            顧客毎依頼主別売上一覧ボタン.TabIndex = 252;
+            顧客毎依頼主別売上一覧ボタン.Text = "顧客毎依頼主別売上";
+            顧客毎依頼主別売上一覧ボタン.UseVisualStyleBackColor = true;
+            顧客毎依頼主別売上一覧ボタン.Click += 顧客毎依頼主別売上一覧ボタン_Click;
             // 
             // 区分別年度売上一覧ボタン
             // 
-            this.区分別年度売上一覧ボタン.ForeColor = System.Drawing.Color.Red;
-            this.区分別年度売上一覧ボタン.Location = new System.Drawing.Point(12, 129);
-            this.区分別年度売上一覧ボタン.Name = "区分別年度売上一覧ボタン";
-            this.区分別年度売上一覧ボタン.Size = new System.Drawing.Size(184, 33);
-            this.区分別年度売上一覧ボタン.TabIndex = 253;
-            this.区分別年度売上一覧ボタン.Text = "製品区分年間売上";
-            this.区分別年度売上一覧ボタン.UseVisualStyleBackColor = true;
-            this.区分別年度売上一覧ボタン.Click += new System.EventHandler(this.区分別年度売上一覧ボタン_Click);
+            区分別年度売上一覧ボタン.ForeColor = Color.Red;
+            区分別年度売上一覧ボタン.Location = new Point(12, 129);
+            区分別年度売上一覧ボタン.Name = "区分別年度売上一覧ボタン";
+            区分別年度売上一覧ボタン.Size = new Size(184, 33);
+            区分別年度売上一覧ボタン.TabIndex = 253;
+            区分別年度売上一覧ボタン.Text = "製品区分年間売上";
+            区分別年度売上一覧ボタン.UseVisualStyleBackColor = true;
+            区分別年度売上一覧ボタン.Click += 区分別年度売上一覧ボタン_Click;
             // 
             // 売上一覧_区分別ボタン
             // 
-            this.売上一覧_区分別ボタン.ForeColor = System.Drawing.Color.Red;
-            this.売上一覧_区分別ボタン.Location = new System.Drawing.Point(202, 129);
-            this.売上一覧_区分別ボタン.Name = "売上一覧_区分別ボタン";
-            this.売上一覧_区分別ボタン.Size = new System.Drawing.Size(184, 33);
-            this.売上一覧_区分別ボタン.TabIndex = 254;
-            this.売上一覧_区分別ボタン.Text = "製品区分顧客月別売上";
-            this.売上一覧_区分別ボタン.UseVisualStyleBackColor = true;
-            this.売上一覧_区分別ボタン.Click += new System.EventHandler(this.売上一覧_区分別ボタン_Click);
+            売上一覧_区分別ボタン.ForeColor = Color.Red;
+            売上一覧_区分別ボタン.Location = new Point(202, 129);
+            売上一覧_区分別ボタン.Name = "売上一覧_区分別ボタン";
+            売上一覧_区分別ボタン.Size = new Size(184, 33);
+            売上一覧_区分別ボタン.TabIndex = 254;
+            売上一覧_区分別ボタン.Text = "製品区分顧客月別売上";
+            売上一覧_区分別ボタン.UseVisualStyleBackColor = true;
+            売上一覧_区分別ボタン.Click += 売上一覧_区分別ボタン_Click;
             // 
             // 売上明細参照ボタン
             // 
-            this.売上明細参照ボタン.ForeColor = System.Drawing.Color.Red;
-            this.売上明細参照ボタン.Location = new System.Drawing.Point(12, 168);
-            this.売上明細参照ボタン.Name = "売上明細参照ボタン";
-            this.売上明細参照ボタン.Size = new System.Drawing.Size(184, 33);
-            this.売上明細参照ボタン.TabIndex = 255;
-            this.売上明細参照ボタン.Text = "顧客別売上商品明細";
-            this.売上明細参照ボタン.UseVisualStyleBackColor = true;
-            this.売上明細参照ボタン.Click += new System.EventHandler(this.売上明細参照ボタン_Click);
+            売上明細参照ボタン.ForeColor = Color.Red;
+            売上明細参照ボタン.Location = new Point(12, 168);
+            売上明細参照ボタン.Name = "売上明細参照ボタン";
+            売上明細参照ボタン.Size = new Size(184, 33);
+            売上明細参照ボタン.TabIndex = 255;
+            売上明細参照ボタン.Text = "顧客別売上商品明細";
+            売上明細参照ボタン.UseVisualStyleBackColor = true;
+            売上明細参照ボタン.Click += 売上明細参照ボタン_Click;
             // 
             // 依頼主毎シリーズ別売上一覧ボタン
             // 
-            this.依頼主毎シリーズ別売上一覧ボタン.Location = new System.Drawing.Point(202, 168);
-            this.依頼主毎シリーズ別売上一覧ボタン.Name = "依頼主毎シリーズ別売上一覧ボタン";
-            this.依頼主毎シリーズ別売上一覧ボタン.Size = new System.Drawing.Size(184, 33);
-            this.依頼主毎シリーズ別売上一覧ボタン.TabIndex = 256;
-            this.依頼主毎シリーズ別売上一覧ボタン.Text = "依頼主別売上商品明細";
-            this.依頼主毎シリーズ別売上一覧ボタン.UseVisualStyleBackColor = true;
-            this.依頼主毎シリーズ別売上一覧ボタン.Click += new System.EventHandler(this.依頼主毎シリーズ別売上一覧ボタン_Click);
+            依頼主毎シリーズ別売上一覧ボタン.Location = new Point(202, 168);
+            依頼主毎シリーズ別売上一覧ボタン.Name = "依頼主毎シリーズ別売上一覧ボタン";
+            依頼主毎シリーズ別売上一覧ボタン.Size = new Size(184, 33);
+            依頼主毎シリーズ別売上一覧ボタン.TabIndex = 256;
+            依頼主毎シリーズ別売上一覧ボタン.Text = "依頼主別売上商品明細";
+            依頼主毎シリーズ別売上一覧ボタン.UseVisualStyleBackColor = true;
+            依頼主毎シリーズ別売上一覧ボタン.Click += 依頼主毎シリーズ別売上一覧ボタン_Click;
             // 
             // 顧客グループ別売上明細一覧ボタン
             // 
-            this.顧客グループ別売上明細一覧ボタン.Location = new System.Drawing.Point(392, 168);
-            this.顧客グループ別売上明細一覧ボタン.Name = "顧客グループ別売上明細一覧ボタン";
-            this.顧客グループ別売上明細一覧ボタン.Size = new System.Drawing.Size(184, 33);
-            this.顧客グループ別売上明細一覧ボタン.TabIndex = 257;
-            this.顧客グループ別売上明細一覧ボタン.Text = "グループ顧客売上明細";
-            this.顧客グループ別売上明細一覧ボタン.UseVisualStyleBackColor = true;
-            this.顧客グループ別売上明細一覧ボタン.Click += new System.EventHandler(this.顧客グループ別売上明細一覧ボタン_Click);
+            顧客グループ別売上明細一覧ボタン.Location = new Point(392, 168);
+            顧客グループ別売上明細一覧ボタン.Name = "顧客グループ別売上明細一覧ボタン";
+            顧客グループ別売上明細一覧ボタン.Size = new Size(184, 33);
+            顧客グループ別売上明細一覧ボタン.TabIndex = 257;
+            顧客グループ別売上明細一覧ボタン.Text = "グループ顧客売上明細";
+            顧客グループ別売上明細一覧ボタン.UseVisualStyleBackColor = true;
+            顧客グループ別売上明細一覧ボタン.Click += 顧客グループ別売上明細一覧ボタン_Click;
             // 
             // 受注残推移グラフボタン
             // 
-            this.受注残推移グラフボタン.Location = new System.Drawing.Point(12, 207);
-            this.受注残推移グラフボタン.Name = "受注残推移グラフボタン";
-            this.受注残推移グラフボタン.Size = new System.Drawing.Size(184, 33);
-            this.受注残推移グラフボタン.TabIndex = 258;
-            this.受注残推移グラフボタン.Text = "受注残推移";
-            this.受注残推移グラフボタン.UseVisualStyleBackColor = true;
-            this.受注残推移グラフボタン.Click += new System.EventHandler(this.受注残推移グラフボタン_Click);
+            受注残推移グラフボタン.Location = new Point(12, 207);
+            受注残推移グラフボタン.Name = "受注残推移グラフボタン";
+            受注残推移グラフボタン.Size = new Size(184, 33);
+            受注残推移グラフボタン.TabIndex = 258;
+            受注残推移グラフボタン.Text = "受注残推移";
+            受注残推移グラフボタン.UseVisualStyleBackColor = true;
+            受注残推移グラフボタン.Click += 受注残推移グラフボタン_Click;
             // 
             // 売上計画ボタン
             // 
-            this.売上計画ボタン.ForeColor = System.Drawing.Color.Red;
-            this.売上計画ボタン.Location = new System.Drawing.Point(202, 207);
-            this.売上計画ボタン.Name = "売上計画ボタン";
-            this.売上計画ボタン.Size = new System.Drawing.Size(184, 33);
-            this.売上計画ボタン.TabIndex = 259;
-            this.売上計画ボタン.Text = "担当者別売上計画・実績";
-            this.売上計画ボタン.UseVisualStyleBackColor = true;
-            this.売上計画ボタン.Click += new System.EventHandler(this.売上計画ボタン_Click);
+            売上計画ボタン.ForeColor = Color.Red;
+            売上計画ボタン.Location = new Point(202, 207);
+            売上計画ボタン.Name = "売上計画ボタン";
+            売上計画ボタン.Size = new Size(184, 33);
+            売上計画ボタン.TabIndex = 259;
+            売上計画ボタン.Text = "担当者別売上計画・実績";
+            売上計画ボタン.UseVisualStyleBackColor = true;
+            売上計画ボタン.Click += 売上計画ボタン_Click;
             // 
             // F_売上分析
             // 
-            this.ClientSize = new System.Drawing.Size(595, 360);
-            this.Controls.Add(this.売上計画ボタン);
-            this.Controls.Add(this.受注残推移グラフボタン);
-            this.Controls.Add(this.顧客グループ別売上明細一覧ボタン);
-            this.Controls.Add(this.依頼主毎シリーズ別売上一覧ボタン);
-            this.Controls.Add(this.売上明細参照ボタン);
-            this.Controls.Add(this.売上一覧_区分別ボタン);
-            this.Controls.Add(this.区分別年度売上一覧ボタン);
-            this.Controls.Add(this.顧客毎依頼主別売上一覧ボタン);
-            this.Controls.Add(this.依頼主別売上一覧ボタン);
-            this.Controls.Add(this.全国地区別売上一覧ボタン);
-            this.Controls.Add(this.閉じるボタン);
-            this.Controls.Add(this.担当者別売上一覧ボタン);
-            this.Controls.Add(this.顧客別売上一覧ボタン);
-            this.Controls.Add(this.顧客グループ別売上一覧ボタン);
-            this.Controls.Add(this.売上一覧_売上地区別ボタン);
-            this.Name = "F_売上分析";
-            this.ResumeLayout(false);
-
+            ClientSize = new Size(595, 360);
+            Controls.Add(売上計画ボタン);
+            Controls.Add(受注残推移グラフボタン);
+            Controls.Add(顧客グループ別売上明細一覧ボタン);
+            Controls.Add(依頼主毎シリーズ別売上一覧ボタン);
+            Controls.Add(売上明細参照ボタン);
+            Controls.Add(売上一覧_区分別ボタン);
+            Controls.Add(区分別年度売上一覧ボタン);
+            Controls.Add(顧客毎依頼主別売上一覧ボタン);
+            Controls.Add(依頼主別売上一覧ボタン);
+            Controls.Add(全国地区別売上一覧ボタン);
+            Controls.Add(閉じるボタン);
+            Controls.Add(担当者別売上一覧ボタン);
+            Controls.Add(顧客別売上一覧ボタン);
+            Controls.Add(顧客グループ別売上一覧ボタン);
+            Controls.Add(売上一覧_売上地区別ボタン);
+            Name = "F_売上分析";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "売上分析";
+            ResumeLayout(false);
         }
 
         #endregion

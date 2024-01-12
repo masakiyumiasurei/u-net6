@@ -30,6 +30,7 @@ namespace u_net
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(F_製品));
             コマンド終了 = new Button();
             コマンド登録 = new Button();
             panel1 = new Panel();
@@ -1248,13 +1249,14 @@ namespace u_net
             Controls.Add(廃止表示);
             Controls.Add(確定表示);
             Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             ImeMode = ImeMode.Off;
             KeyPreview = true;
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "F_製品";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = " ";
+            Text = " 製品";
             FormClosing += Form_Unload;
             Load += Form_Load;
             KeyDown += Form_KeyDown;

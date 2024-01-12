@@ -356,6 +356,7 @@
             // 売掛年月
             // 
             売掛年月.FormattingEnabled = true;
+            売掛年月.ImeMode = ImeMode.Disable;
             売掛年月.Location = new Point(100, 39);
             売掛年月.Name = "売掛年月";
             売掛年月.Size = new Size(121, 23);
@@ -430,7 +431,9 @@
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "F_売掛一覧";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "売掛一覧";
+            FormClosing += F_売掛一覧_FormClosing;
             Load += Form_Load;
             KeyDown += Form_KeyDown;
             Resize += Form_Resize;

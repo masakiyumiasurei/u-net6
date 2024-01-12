@@ -360,7 +360,7 @@ namespace u_net
             MinimizeBox = false;
             Name = "F_製品管理_汎用キー設定";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = " ";
+            Text = "製品管理_汎用キー設定";
             Load += Form_Load;
             statusStrip1.ResumeLayout(false);
             statusStrip1.PerformLayout();

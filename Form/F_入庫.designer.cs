@@ -29,6 +29,7 @@ namespace u_net
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(F_入庫));
             コマンド終了 = new Button();
             コマンド登録 = new Button();
             panel1 = new Panel();
@@ -1270,6 +1271,7 @@ namespace u_net
             Controls.Add(コマンド複写);
             Controls.Add(コマンド修正);
             Controls.Add(panel1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             ImeMode = ImeMode.Off;
             KeyPreview = true;
             MaximizeBox = false;
