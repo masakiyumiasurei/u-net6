@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(F_売掛一覧));
             panel1 = new Panel();
             コマンド詳細 = new Button();
@@ -55,6 +56,7 @@
             radioButton3 = new RadioButton();
             radioButton2 = new RadioButton();
             radioButton1 = new RadioButton();
+            toolTip1 = new ToolTip(components);
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel2.SuspendLayout();
@@ -96,6 +98,7 @@
             コマンド詳細.Size = new Size(70, 22);
             コマンド詳細.TabIndex = 6;
             コマンド詳細.Text = "詳細";
+            toolTip1.SetToolTip(コマンド詳細, "詳細参照");
             コマンド詳細.UseVisualStyleBackColor = true;
             コマンド詳細.Click += コマンド詳細_Click;
             // 
@@ -111,6 +114,7 @@
             コマンド売掛資料.Size = new Size(70, 22);
             コマンド売掛資料.TabIndex = 10;
             コマンド売掛資料.Text = "売掛資料P";
+            toolTip1.SetToolTip(コマンド売掛資料, "全データ表示");
             コマンド売掛資料.UseVisualStyleBackColor = true;
             コマンド売掛資料.Click += コマンド売掛資料_Click;
             // 
@@ -125,6 +129,7 @@
             コマンド顧客.Size = new Size(70, 22);
             コマンド顧客.TabIndex = 5;
             コマンド顧客.Text = "顧客";
+            toolTip1.SetToolTip(コマンド顧客, "顧客参照");
             コマンド顧客.UseVisualStyleBackColor = true;
             コマンド顧客.Click += コマンド顧客_Click;
             // 
@@ -139,6 +144,7 @@
             コマンド入金.Size = new Size(70, 22);
             コマンド入金.TabIndex = 4;
             コマンド入金.Text = "入金";
+            toolTip1.SetToolTip(コマンド入金, "入金入力");
             コマンド入金.UseVisualStyleBackColor = true;
             コマンド入金.Click += コマンド入金_Click;
             // 
@@ -168,6 +174,7 @@
             コマンド検収.Size = new Size(70, 22);
             コマンド検収.TabIndex = 7;
             コマンド検収.Text = "検収通知";
+            toolTip1.SetToolTip(コマンド検収, "検収通知書の到達状態を設定します。");
             コマンド検収.UseVisualStyleBackColor = true;
             コマンド検収.Click += コマンド検収_Click;
             // 
@@ -183,6 +190,7 @@
             コマンド更新.Size = new Size(70, 22);
             コマンド更新.TabIndex = 3;
             コマンド更新.Text = "更新";
+            toolTip1.SetToolTip(コマンド更新, "最新の情報に更新");
             コマンド更新.UseVisualStyleBackColor = true;
             コマンド更新.Click += コマンド更新_Click;
             // 
@@ -198,6 +206,7 @@
             コマンド初期化.Size = new Size(70, 22);
             コマンド初期化.TabIndex = 2;
             コマンド初期化.Text = "初期化";
+            toolTip1.SetToolTip(コマンド初期化, "抽出初期化");
             コマンド初期化.UseVisualStyleBackColor = true;
             コマンド初期化.Click += コマンド初期化_Click;
             // 
@@ -213,6 +222,7 @@
             コマンド検索.Size = new Size(70, 22);
             コマンド検索.TabIndex = 1;
             コマンド検索.Text = "検索";
+            toolTip1.SetToolTip(コマンド検索, "コード検索");
             コマンド検索.UseVisualStyleBackColor = true;
             コマンド検索.Click += コマンド検索_Click;
             // 
@@ -228,6 +238,7 @@
             コマンド抽出.Size = new Size(70, 22);
             コマンド抽出.TabIndex = 0;
             コマンド抽出.Text = "抽出";
+            toolTip1.SetToolTip(コマンド抽出, "抽出設定");
             コマンド抽出.UseVisualStyleBackColor = true;
             コマンド抽出.Click += コマンド抽出_Click;
             // 
@@ -244,6 +255,7 @@
             コマンド印刷.TabIndex = 8;
             コマンド印刷.TabStop = false;
             コマンド印刷.Text = "印刷P";
+            toolTip1.SetToolTip(コマンド印刷, "印刷プレビュー");
             コマンド印刷.UseVisualStyleBackColor = true;
             コマンド印刷.Click += コマンド印刷_Click;
             // 
@@ -257,6 +269,7 @@
             コマンド終了.Size = new Size(70, 22);
             コマンド終了.TabIndex = 11;
             コマンド終了.Text = "終了";
+            toolTip1.SetToolTip(コマンド終了, "終了");
             コマンド終了.UseVisualStyleBackColor = true;
             コマンド終了.Click += コマンド終了_Click;
             // 
@@ -602,5 +615,6 @@
         private RadioButton radioButton2;
         private RadioButton radioButton1;
         private DataGridView dataGridView2;
+        private ToolTip toolTip1;
     }
 }

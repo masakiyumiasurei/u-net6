@@ -201,7 +201,7 @@ namespace u_net
             コマンド廃止.TabIndex = 1010;
             コマンド廃止.TabStop = false;
             コマンド廃止.Text = "廃止";
-            toolTip1.SetToolTip(コマンド廃止, "■製品を廃止します。");
+            toolTip1.SetToolTip(コマンド廃止, "製品の廃止");
             コマンド廃止.UseVisualStyleBackColor = true;
             コマンド廃止.Click += コマンド廃止_Click;
             // 
@@ -217,7 +217,7 @@ namespace u_net
             コマンドユニット表.TabIndex = 1009;
             コマンドユニット表.TabStop = false;
             コマンドユニット表.Text = "ユニット表";
-            toolTip1.SetToolTip(コマンドユニット表, "■ユニット表をプレビューします。");
+            toolTip1.SetToolTip(コマンドユニット表, "ユニット表のプレビュー");
             コマンドユニット表.UseVisualStyleBackColor = true;
             コマンドユニット表.Click += コマンドユニット表_Click;
             // 
@@ -458,7 +458,7 @@ namespace u_net
             コマンドツール.TabIndex = 1011;
             コマンドツール.TabStop = false;
             コマンドツール.Text = "ツール";
-            toolTip1.SetToolTip(コマンドツール, "■ツールメニューを開きます。");
+            toolTip1.SetToolTip(コマンドツール, "ツールメニューの起動");
             コマンドツール.UseVisualStyleBackColor = true;
             コマンドツール.Click += コマンドツール_Click;
             // 

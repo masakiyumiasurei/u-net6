@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(F_売上明細参照));
             panel1 = new Panel();
             button4 = new Button();
@@ -56,6 +57,7 @@
             label1 = new Label();
             顧客コード = new TextBox();
             顧客コード検索ボタン = new Button();
+            toolTip1 = new ToolTip(components);
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel2.SuspendLayout();
@@ -142,6 +144,7 @@
             コマンド出力.Size = new Size(70, 22);
             コマンド出力.TabIndex = 7;
             コマンド出力.Text = "出力";
+            toolTip1.SetToolTip(コマンド出力, "表示データのエクスポート");
             コマンド出力.UseVisualStyleBackColor = true;
             コマンド出力.Click += コマンド出力_Click;
             // 
@@ -157,6 +160,7 @@
             コマンド保守.Size = new Size(70, 22);
             コマンド保守.TabIndex = 6;
             コマンド保守.Text = "保守";
+            toolTip1.SetToolTip(コマンド保守, "保守");
             コマンド保守.UseVisualStyleBackColor = true;
             // 
             // コマンド更新
@@ -170,6 +174,7 @@
             コマンド更新.Size = new Size(70, 22);
             コマンド更新.TabIndex = 5;
             コマンド更新.Text = "更新";
+            toolTip1.SetToolTip(コマンド更新, "最新の情報に更新");
             コマンド更新.UseVisualStyleBackColor = true;
             コマンド更新.Click += コマンド更新_Click;
             // 
@@ -185,6 +190,7 @@
             コマンド初期化.Size = new Size(70, 22);
             コマンド初期化.TabIndex = 4;
             コマンド初期化.Text = "初期化";
+            toolTip1.SetToolTip(コマンド初期化, "抽出初期化");
             コマンド初期化.UseVisualStyleBackColor = true;
             // 
             // コマンド検索
@@ -199,6 +205,7 @@
             コマンド検索.Size = new Size(70, 22);
             コマンド検索.TabIndex = 3;
             コマンド検索.Text = "検索";
+            toolTip1.SetToolTip(コマンド検索, "コード検索");
             コマンド検索.UseVisualStyleBackColor = true;
             // 
             // コマンド抽出
@@ -213,6 +220,7 @@
             コマンド抽出.Size = new Size(70, 22);
             コマンド抽出.TabIndex = 2;
             コマンド抽出.Text = "抽出";
+            toolTip1.SetToolTip(コマンド抽出, "抽出設定");
             コマンド抽出.UseVisualStyleBackColor = true;
             // 
             // コマンド印刷
@@ -227,6 +235,7 @@
             コマンド印刷.Size = new Size(70, 22);
             コマンド印刷.TabIndex = 1;
             コマンド印刷.Text = "印刷PV";
+            toolTip1.SetToolTip(コマンド印刷, "印刷プレビュー");
             コマンド印刷.UseVisualStyleBackColor = true;
             // 
             // コマンド終了
@@ -239,6 +248,7 @@
             コマンド終了.Size = new Size(70, 22);
             コマンド終了.TabIndex = 0;
             コマンド終了.Text = "終了";
+            toolTip1.SetToolTip(コマンド終了, "終了");
             コマンド終了.UseVisualStyleBackColor = true;
             コマンド終了.Click += コマンド終了_Click;
             // 
@@ -612,5 +622,6 @@
         private Label label3;
         private TextBox 表示件数;
         private Label label2;
+        private ToolTip toolTip1;
     }
 }

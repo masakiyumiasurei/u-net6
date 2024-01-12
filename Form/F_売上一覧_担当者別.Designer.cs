@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(F_売上一覧_担当者別));
             panel1 = new Panel();
             button4 = new Button();
@@ -49,6 +50,7 @@
             label1 = new Label();
             コピーボタン = new Button();
             label2 = new Label();
+            toolTip1 = new ToolTip(components);
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
@@ -149,6 +151,7 @@
             コマンド更新.Size = new Size(70, 22);
             コマンド更新.TabIndex = 6;
             コマンド更新.Text = "更新";
+            toolTip1.SetToolTip(コマンド更新, "表示更新");
             コマンド更新.UseVisualStyleBackColor = true;
             // 
             // コマンドF4
@@ -187,6 +190,7 @@
             コマンド検索.Size = new Size(70, 22);
             コマンド検索.TabIndex = 3;
             コマンド検索.Text = "検索";
+            toolTip1.SetToolTip(コマンド検索, "コード検索");
             コマンド検索.UseVisualStyleBackColor = true;
             // 
             // コマンド抽出
@@ -201,6 +205,7 @@
             コマンド抽出.Size = new Size(70, 22);
             コマンド抽出.TabIndex = 2;
             コマンド抽出.Text = "抽出";
+            toolTip1.SetToolTip(コマンド抽出, "抽出設定");
             コマンド抽出.UseVisualStyleBackColor = true;
             // 
             // コマンド印刷
@@ -215,6 +220,7 @@
             コマンド印刷.Size = new Size(70, 22);
             コマンド印刷.TabIndex = 1;
             コマンド印刷.Text = "印刷";
+            toolTip1.SetToolTip(コマンド印刷, "表示データの印刷");
             コマンド印刷.UseVisualStyleBackColor = true;
             // 
             // コマンド終了
@@ -227,6 +233,7 @@
             コマンド終了.Size = new Size(70, 22);
             コマンド終了.TabIndex = 0;
             コマンド終了.Text = "終了";
+            toolTip1.SetToolTip(コマンド終了, "終了");
             コマンド終了.UseVisualStyleBackColor = true;
             コマンド終了.Click += コマンド終了_Click;
             // 
@@ -309,6 +316,7 @@
             コピーボタン.Size = new Size(137, 22);
             コピーボタン.TabIndex = 12;
             コピーボタン.Text = "クリップボードへコピー";
+            toolTip1.SetToolTip(コピーボタン, "選択範囲をクリップボードへコピーします");
             コピーボタン.UseVisualStyleBackColor = true;
             コピーボタン.Click += コピーボタン_Click;
             // 
@@ -500,5 +508,6 @@
         private Label label1;
         private Button コピーボタン;
         private Label label2;
+        private ToolTip toolTip1;
     }
 }
