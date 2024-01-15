@@ -148,13 +148,7 @@ namespace u_net
 
                         入金コード.Text = args;
 
-                        UpdatedControl(入金コード);
-
-                        if (DateTime.TryParse(入金日.Text, out DateTime parsedDate))
-                            入金日.Text = string.Format("{0:yyyy/MM/dd}", parsedDate);
-
-                        if (DateTime.TryParse(入金日.Text, out DateTime parsedDate2))
-                            入金月.Text = string.Format("{0:yyyy/MM}", parsedDate2);
+                        UpdatedControl(入金コード);                                              
 
                         // 編集による変更がない状態へ遷移
                         ChangedData(false);
@@ -334,7 +328,36 @@ namespace u_net
                         this.コマンド複写.Enabled = true;
                         this.コマンド削除.Enabled = !this.IsDemanded;
 
+                        if (DateTime.TryParse(入金日.Text, out DateTime parsedDate))
+                            入金日.Text = string.Format("{0:yyyy/MM/dd}", parsedDate);
+
+                        if (DateTime.TryParse(入金日.Text, out DateTime parsedDate2))
+                            入金月.Text = string.Format("{0:yyyy/MM}", parsedDate2);
+
                         ChangedData(false);
+                        コマンド顧客.Enabled = true;
+                        break;
+
+                    case "顧客コード":
+                        if (顧客コード == null || string.IsNullOrEmpty(顧客コード.Text))
+                        {
+                            MessageBox.Show(controlObject.Name + "を入力してください。", "警告",
+                                MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            return ;
+                        }
+                        Connect();
+                        string str1 = GetCustomerName(cn, 顧客コード.Text);
+
+                        if (string.IsNullOrEmpty(str1))
+                        {
+                            MessageBox.Show("指定された顧客データはありません。", controlObject.Name,
+                                MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            return ;
+                        }
+                        else
+                        {
+                            顧客名.Text = str1;
+                        }
                         break;
                 }
             }
@@ -529,7 +552,7 @@ namespace u_net
         }
 
         private void Form_Unload(object sender, FormClosingEventArgs e)
-        {            
+        {
             try
             {
                 Connect();
@@ -538,10 +561,10 @@ namespace u_net
                 if (!IsChanged)
                 {
                     //新規モードで且つコードが取得済みのときはコードを戻す
-                if (IsNewData && !string.IsNullOrEmpty(CurrentCode) )
+                    if (IsNewData && !string.IsNullOrEmpty(CurrentCode))
                     {
                         // 採番された番号を戻す
-                        if (!FunctionClass.ReturnCode(cn,  CurrentCode))
+                        if (!FunctionClass.ReturnCode(cn, CurrentCode))
                         {
                             MessageBox.Show("エラーのためコードは破棄されました。" + Environment.NewLine + Environment.NewLine +
                                             "部品コード　：　" + CurrentCode, "警告", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -574,7 +597,7 @@ namespace u_net
                         //新規コードを取得していたときはコードを戻す
                         if (IsNewData && !string.IsNullOrEmpty(CurrentCode))
                         {
-                            if (!FunctionClass.ReturnCode(cn,  CurrentCode))
+                            if (!FunctionClass.ReturnCode(cn, CurrentCode))
                             {
                                 MessageBox.Show("エラーのためコードは破棄されました。" + Environment.NewLine +
                                                 "部品コード　：　" + CurrentCode, "警告", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -602,7 +625,7 @@ namespace u_net
         private void コマンド登録_Click(object sender, EventArgs e)
         {
             // エラーチェック
-            if (!IsErrorData("入金コード"))
+            if (IsErrorData("入金コード"))
             {
                 goto Bye_コマンド登録_Click;
             }
@@ -708,7 +731,7 @@ namespace u_net
                                 MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                             return true;
                         }
-
+                        Connect();
                         string str1 = GetCustomerName(cn, varValue.ToString());
 
                         if (string.IsNullOrEmpty(str1))
@@ -946,36 +969,7 @@ namespace u_net
         {
             MessageBox.Show("現在開発中です。", "確定コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
-
-        private void コマンド部品表_Click(object sender, EventArgs e)
-        {
-            try
-            {
-
-                //if (this.ActiveControl == this.コマンドユニット表)
-                //{
-                //    GetNextControl(コマンドユニット表, false).Focus();
-                //}
-
-                //string strCode = this.メーカーコード.Text;
-                //if (string.IsNullOrEmpty(strCode))
-                //{
-                //    MessageBox.Show("メーカーコードを入力してください。", BASE_CAPTION, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                //    this.メーカーコード.Focus();
-                //}
-                //else
-                //{
-                //    F_メーカー targetform = new F_メーカー();
-
-                //    targetform.args = strCode;
-                //    targetform.ShowDialog();
-                //}
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error in コマンドメーカー_Click: " + ex.Message);
-            }
-        }
+                
 
         private void コマンド部品定数表_Click(object sender, EventArgs e)
         {
@@ -1041,28 +1035,30 @@ namespace u_net
                 strKey = $"入金コード='{codeString}' AND 請求コード IS NULL";
                 strSQL1 = $"SELECT * FROM T入金 WHERE {strKey}";
 
-                SqlCommand cmd = new SqlCommand(strSQL1, cn);
+                SqlCommand cmd = new SqlCommand(strSQL1, cn, transaction);
 
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
                     if (!reader.HasRows)
                     {
                         //EOFの処理
+                        reader.Close();
                         return false;
                     }
                     else
                     {
+                        reader.Close();
                         // レコードが存在する場合の処理
                         strKey = $"入金コード='{codeString}'";
                         strSQL1 = $"DELETE T入金 WHERE {strKey}";
                         strSQL2 = $"DELETE T入金明細 WHERE {strKey}";
 
-                        using (SqlCommand command = new SqlCommand(strSQL1, connectionObject, transaction))
+                        using (SqlCommand command = new SqlCommand(strSQL1, cn, transaction))
                         {
                             command.ExecuteNonQuery();
                         }
 
-                        using (SqlCommand command = new SqlCommand(strSQL2, connectionObject, transaction))
+                        using (SqlCommand command = new SqlCommand(strSQL2, cn, transaction))
                         {
                             command.ExecuteNonQuery();
                         }
@@ -1236,26 +1232,6 @@ namespace u_net
             }
         }
 
-        private void 品名_Enter(object sender, EventArgs e)
-        {
-            toolStripStatusLabel1.Text = "■全角２５文字まで入力できます。";
-        }
-
-        private void 品名_Leave(object sender, EventArgs e)
-        {
-            toolStripStatusLabel1.Text = "各種項目の説明";
-        }
-
-        private void 型番_Enter(object sender, EventArgs e)
-        {
-            toolStripStatusLabel1.Text = "■半角３０文字まで入力できます。";
-        }
-
-        private void 型番_Leave(object sender, EventArgs e)
-        {
-            toolStripStatusLabel1.Text = "各種項目の説明";
-        }
-
         private void 識別コード_Enter(object sender, EventArgs e)
         {
             toolStripStatusLabel1.Text = "■指導書No.の一部を入力します。　■７文字まで入力できます。";
@@ -1415,7 +1391,7 @@ namespace u_net
         {
             FunctionClass.LimitText(sender as System.Windows.Forms.Control, 9);
         }
-
+        
         private void 入金コード_Validated(object sender, EventArgs e)
         {
             UpdatedControl(入金コード);
@@ -1433,8 +1409,9 @@ namespace u_net
                 if (strCode != this.入金コード.Text)
                 {
                     this.入金コード.Text = strCode;
+                    //keyDownイベントがvalidatedの後に実行されるのでデータロード処理を実行させる
+                    UpdatedControl(入金コード);
                 }
-
             }
         }
 
@@ -1463,5 +1440,6 @@ namespace u_net
         {
             ChangedData(true);
         }
+        
     }
 }

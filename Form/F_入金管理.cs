@@ -889,21 +889,21 @@ namespace u_net
             gridobject = 一覧;
             if (OperationMode == 1)
             {
-                string currentValue = gridobject.Rows[gridobject.CurrentCell.RowIndex].Cells[7].Value?.ToString();
+                string currentValue = gridobject.Rows[gridobject.CurrentCell.RowIndex].Cells[6].Value?.ToString();
 
                 switch (currentValue)
                 {
                     case "":
-                        gridobject.Rows[gridobject.CurrentCell.RowIndex].Cells[7].Value = "□";
+                        gridobject.Rows[gridobject.CurrentCell.RowIndex].Cells[6].Value = "□";
                         break;
                     case "□":
-                        gridobject.Rows[gridobject.CurrentCell.RowIndex].Cells[7].Value = "";
+                        gridobject.Rows[gridobject.CurrentCell.RowIndex].Cells[6].Value = "";
                         break;
                     case "■":
-                        gridobject.Rows[gridobject.CurrentCell.RowIndex].Cells[7].Value = "×";
+                        gridobject.Rows[gridobject.CurrentCell.RowIndex].Cells[6].Value = "×";
                         break;
                     case "×":
-                        gridobject.Rows[gridobject.CurrentCell.RowIndex].Cells[7].Value = "■";
+                        gridobject.Rows[gridobject.CurrentCell.RowIndex].Cells[6].Value = "■";
                         break;
                     default:
                         break;
@@ -942,6 +942,24 @@ namespace u_net
         {
             一覧.SuspendLayout();
         }
+
+        private bool ascending = true;
+        private void dataGridView1_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.ColumnIndex == 3)
+            {
+                if (ascending)
+                {
+                    一覧.Sort(一覧.Columns[4], System.ComponentModel.ListSortDirection.Ascending);
+                }
+                else
+                {
+                    一覧.Sort(一覧.Columns[4], System.ComponentModel.ListSortDirection.Descending);
+                }
+                ascending = !ascending;
+            }
+        }
+
 
         private void 一覧_MouseDown(object sender, MouseEventArgs e)
         {

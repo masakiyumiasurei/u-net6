@@ -45,6 +45,7 @@
             gcMultiRow1.TemplateScaleSize = new SizeF(1.33333337F, 1.66666663F);
             gcMultiRow1.Text = "gcMultiRow1";
             gcMultiRow1.CellValidating += gcMultiRow1_CellValidating;
+            gcMultiRow1.CellValidated += gcMultiRow1_CellValidated;
             gcMultiRow1.CellEnter += gcMultiRow1_CellEnter;
             gcMultiRow1.DefaultValuesNeeded += gcMultiRow1_DefaultValuesNeeded;
             gcMultiRow1.EditingControlShowing += gcMultiRow1_EditingControlShowing;
