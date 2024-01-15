@@ -146,10 +146,11 @@ namespace u_net
             // 
             panel1.BackColor = SystemColors.ActiveCaption;
             panel1.Controls.Add(コマンド新規);
-            panel1.Location = new Point(0, 1);
+            panel1.Dock = DockStyle.Top;
+            panel1.Location = new Point(0, 0);
             panel1.Margin = new Padding(4, 3, 4, 3);
             panel1.Name = "panel1";
-            panel1.Size = new Size(901, 42);
+            panel1.Size = new Size(958, 42);
             panel1.TabIndex = 81;
             // 
             // コマンド新規
@@ -720,7 +721,7 @@ namespace u_net
             statusStrip1.Location = new Point(0, 488);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Padding = new Padding(1, 0, 19, 0);
-            statusStrip1.Size = new Size(900, 25);
+            statusStrip1.Size = new Size(958, 25);
             statusStrip1.TabIndex = 10195;
             statusStrip1.Text = "statusStrip1";
             // 
@@ -873,10 +874,11 @@ namespace u_net
             // 
             // 入金明細1
             // 
+            入金明細1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             入金明細1.Location = new Point(9, 323);
             入金明細1.Margin = new Padding(4);
             入金明細1.Name = "入金明細1";
-            入金明細1.Size = new Size(891, 159);
+            入金明細1.Size = new Size(948, 159);
             入金明細1.TabIndex = 10201;
             入金明細1.Load += Form_Load;
             // 
@@ -909,7 +911,7 @@ namespace u_net
             // F_入金
             // 
             BackColor = SystemColors.Control;
-            ClientSize = new Size(900, 513);
+            ClientSize = new Size(958, 513);
             Controls.Add(顧客コード検索ボタン);
             Controls.Add(入金日選択ボタン);
             Controls.Add(入金明細1);

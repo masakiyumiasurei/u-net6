@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using GrapeCity.Win.MultiRow;
 using u_net;
 using u_net.Public;
+using static Azure.Core.HttpHeader;
 
 namespace MultiRowDesigner
 {
@@ -65,24 +66,32 @@ namespace MultiRowDesigner
             {
                 //comboBox.PreviewKeyDown -= gcMultiRow1_PreviewKeyDown;
                 //comboBox.PreviewKeyDown += gcMultiRow1_PreviewKeyDown;
-                comboBox.KeyPress -= new KeyPressEventHandler(gcMultiRow1_KeyPress);
-                comboBox.KeyPress += new KeyPressEventHandler(gcMultiRow1_KeyPress);
+                //comboBox.KeyPress -= new KeyPressEventHandler(gcMultiRow1_KeyPress);
+                //comboBox.KeyPress += new KeyPressEventHandler(gcMultiRow1_KeyPress);
 
+                comboBox.SelectedIndexChanged -= 入金区分コード_SelectedIndexChanged;
+                comboBox.SelectedIndexChanged -= 備考コード_SelectedIndexChanged;
+                comboBox.DrawItem -= 備考コード_DrawItem;
 
-                if (gcMultiRow1.CurrentCell.Name == "備考コード")
+                switch (gcMultiRow1.CurrentCell.Name)
                 {
-                    comboBox.DrawMode = DrawMode.OwnerDrawFixed;
-                    comboBox.DrawItem -= 備考コード_DrawItem;
-                    comboBox.DrawItem += 備考コード_DrawItem;
-                    comboBox.SelectedIndexChanged -= 備考コード_SelectedIndexChanged;
-                    comboBox.SelectedIndexChanged += 備考コード_SelectedIndexChanged;
-                    comboBox.SelectedIndexChanged -= 入金区分コード_SelectedIndexChanged;
-                    comboBox.SelectedIndexChanged += 入金区分コード_SelectedIndexChanged;
+                    
+                    case "入金区分コード":
+                        
+                        comboBox.SelectedIndexChanged += 入金区分コード_SelectedIndexChanged;
+                        break;
 
-                }
-                else
-                {
-                    comboBox.DrawMode = DrawMode.Normal;
+                    case "備考コード":
+                       
+                        comboBox.DrawMode = DrawMode.OwnerDrawFixed;                       
+                        comboBox.DrawItem += 備考コード_DrawItem;                        
+                        comboBox.SelectedIndexChanged += 備考コード_SelectedIndexChanged;
+
+                        break;
+
+                    default:
+                        comboBox.DrawMode = DrawMode.Normal;
+                        break;
                 }
             }
         }
@@ -90,51 +99,36 @@ namespace MultiRowDesigner
         private void 備考コード_DrawItem(object sender, DrawItemEventArgs e)
         {
             ComboBoxEditingControl combo = sender as ComboBoxEditingControl;
-            OriginalClass.SetComboBoxAppearance(combo, e, new int[] { 50, 500 }, new string[] { "Display", "Display2" });
+            OriginalClass.SetComboBoxAppearance(combo, e, new int[] { 100, 500 }, new string[] { "Display", "Display2" });
         }
 
         private void 備考コード_SelectedIndexChanged(object sender, EventArgs e)
         {
             ComboBoxEditingControl combo = sender as ComboBoxEditingControl;
-            gcMultiRow1.CurrentRow.Cells["備考"].Value = ((DataRowView)combo.SelectedItem)?.Row.Field<String>("Display2")?.ToString();
-            
+            if (combo.SelectedItem != null)
+            {                
+                gcMultiRow1.CurrentRow.Cells["備考"].Value = ((DataRowView)combo.SelectedItem)?.Row.Field<String>("Display2")?.ToString();
+            }   
         }
 
         private void 入金区分コード_SelectedIndexChanged(object sender, EventArgs e)
         {
             ComboBoxEditingControl combo = sender as ComboBoxEditingControl;
-            gcMultiRow1.CurrentRow.Cells["備考コード"].Value =
-               string.Format("{0:000}", ((DataRowView)combo.SelectedItem)?.Row.Field<String>("Value"));
-
-            ComboBoxEditingControl? combo2 = gcMultiRow1.CurrentRow.Cells["備考コード"].Value as ComboBoxEditingControl;
-            gcMultiRow1.CurrentRow.Cells["備考"].Value = ((DataRowView)combo2.SelectedItem)?.Row.Field<String>("Display2")?.ToString();
-
-        }
-        
-        
-        private void gcMultiRow1_CellContentClick(object sender, CellEventArgs e)
-
-        {
-
-            switch (gcMultiRow1.CurrentCell)
+            if (combo.SelectedItem != null)
             {
-                //ボタンClick時の処理
-                case ButtonCell:
-                    switch (e.CellName)
-                    {
-                        case "明細削除ボタン":
-                            MessageBox.Show("", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                            break;
-                        default:
-                            break;
-                    }
-                    break;
+                var a = Int32.Parse(((DataRowView)combo.SelectedItem)?.Row["Value"].ToString());
+                var v = a.ToString("000");
 
-                default:
-                    break;
-            }
+                gcMultiRow1.CurrentRow.Cells["備考コード"].Value = v;
+
+                string strSQL = $"select 摘要内容 from M摘要 where 内容コード={a}";
+                Connect();
+                string str摘要内容 = OriginalClass.GetScalar<string>(cn, strSQL);
+                gcMultiRow1.CurrentRow.Cells["備考"].Value = str摘要内容;
+            }    
 
         }
+        
 
         private void gcMultiRow1_CellContentButtonClick(object sender, CellEventArgs e)
         {
@@ -155,50 +149,7 @@ namespace MultiRowDesigner
                     }
 
                     break;
-                //case "行挿入ボタン":
-                //    gcMultiRow1.Rows.Insert(e.RowIndex);
-                //    break;
-
-                case "メーカー名ボタン":
-                    int col = gcMultiRow1.CurrentRow.Cells["メーカー名"].CellIndex;
-                    int row = 0;
-                    if (gcMultiRow1.CurrentRow.Index > 0)
-                    {
-                        row = gcMultiRow1.CurrentRow.Index;
-                    }
-                    gcMultiRow1.CurrentCellPosition = new CellPosition(row, col);
-                    break;
-
-                case "型番ボタン":
-                    int col2 = gcMultiRow1.CurrentRow.Cells["型番"].CellIndex;
-                    int row2 = 0;
-                    if (gcMultiRow1.CurrentRow.Index > 0)
-                    {
-                        row2 = gcMultiRow1.CurrentRow.Index;
-                    }
-                    gcMultiRow1.CurrentCellPosition = new CellPosition(row2, col2);
-                    break;
-
-
-                case "品名ボタン":
-                    int col5 = gcMultiRow1.CurrentRow.Cells["品名"].CellIndex;
-                    int row5 = 0;
-                    if (gcMultiRow1.CurrentRow.Index > 0)
-                    {
-                        row5 = gcMultiRow1.CurrentRow.Index;
-                    }
-                    gcMultiRow1.CurrentCellPosition = new CellPosition(row5, col5);
-                    break;
-
-                case "部品コードボタン":
-                    int col6 = gcMultiRow1.CurrentRow.Cells["部品コード"].CellIndex;
-                    int row6 = 0;
-                    if (gcMultiRow1.CurrentRow.Index > 0)
-                    {
-                        row6 = gcMultiRow1.CurrentRow.Index;
-                    }
-                    gcMultiRow1.CurrentCellPosition = new CellPosition(row6, col6);
-                    break;
+               
             }
         }
         private void gcMultiRow1_CellEnter(object sender, CellEventArgs e)
@@ -297,7 +248,6 @@ namespace MultiRowDesigner
                     }
                     break;
             }
-
         }
 
 
@@ -326,10 +276,8 @@ namespace MultiRowDesigner
                     case "入金金額":
 
                         if (!FunctionClass.IsLimit_N(varValue, 7, 0, strName))
-                            return true;
-                        
+                            return true;                        
                         break;
-
                 }
 
                 return isError;
@@ -341,11 +289,22 @@ namespace MultiRowDesigner
             }
         }
 
-
-
-
-
-
-
+        private void gcMultiRow1_CellValidated(object sender, CellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && e.CellIndex >= 0)
+            {
+                switch (e.CellName)
+                {
+                    case "備考コード":
+                    case "備考":
+                    case "入金区分コード":
+                    case "領収証出力コード":
+                    case "入金金額":
+                        F_入金? Parentform = Application.OpenForms.OfType<F_入金>().FirstOrDefault();
+                        Parentform.ChangedData(true);
+                        break;
+                }
+            }
+        }
     }
 }
