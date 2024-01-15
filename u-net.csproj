@@ -92,6 +92,10 @@
     <Compile Include="MultiRowDesigner\購買発注先.Designer.cs" />
     <Compile Include="MultiRowDesigner\購買発注先テンプレート.cs" />
     <Compile Include="MultiRowDesigner\購買発注先テンプレート.Designer.cs" />
+    <Compile Include="MultiRowDesigner\部品_資料添付.cs" />
+    <Compile Include="MultiRowDesigner\部品_資料添付.Designer.cs" />
+    <Compile Include="MultiRowDesigner\部品_資料添付テンプレート.cs" />
+    <Compile Include="MultiRowDesigner\部品_資料添付テンプレート.Designer.cs" />
     <Compile Include="MultiRowDesigner\部品購買設定明細.cs" />
     <Compile Include="MultiRowDesigner\部品購買設定明細.Designer.cs" />
     <Compile Include="MultiRowDesigner\部品購買設定明細テンプレート.cs" />
@@ -132,6 +136,7 @@
     <EmbeddedResource Include="MultiRowDesigner\購買明細テンプレート.resx" />
     <EmbeddedResource Include="MultiRowDesigner\購買発注先.resx" />
     <EmbeddedResource Include="MultiRowDesigner\購買発注先テンプレート.resx" />
+    <EmbeddedResource Include="MultiRowDesigner\部品_資料添付.resx" />
     <EmbeddedResource Include="MultiRowDesigner\部品購買設定明細.resx" />
     <EmbeddedResource Include="MultiRowDesigner\部品購買設定明細テンプレート.resx" />
     <EmbeddedResource Include="MultiRowDesigner\部品集合明細.resx" />
@@ -243,6 +248,9 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Form\F_ユニット選択.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Form\F_部品_資料添付.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Form\F_部品選択.cs">
