@@ -1,0 +1,852 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Diagnostics;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using Microsoft.Data.SqlClient;
+using Pao.Reports;
+using u_net.Public;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
+
+namespace u_net
+{
+    public partial class F_売上計画 : MidForm
+    {
+        public string str集計年度;
+        public string str支払区分コード;
+
+        int intWindowHeight = 0;
+        int intWindowWidth = 0;
+
+        private Control? previousControl;
+        private SqlConnection? cn;
+        public F_売上計画()
+        {
+            InitializeComponent();
+        }
+
+        public string PayeeCode
+        {
+            get
+            {
+                if (dataGridView1.CurrentRow.Index != dataGridView1.RowCount - 1)
+                {
+                    return dataGridView1.CurrentRow.Cells[0].Value?.ToString();
+                }
+                else
+                {
+                    return "";
+                }
+            }
+        }
+
+        public string PayeeName
+        {
+            get
+            {
+                if (dataGridView1.CurrentRow.Index != dataGridView1.RowCount - 1)
+                {
+                    return dataGridView1.CurrentRow.Cells[1].Value?.ToString();
+                }
+                else
+                {
+                    return "";
+                }
+            }
+        }
+
+
+        public string groupCode
+        {
+            get
+            {
+                return Nz(自社担当者コード.SelectedValue);
+            }
+        }
+        public DateTime PayMonth
+        {
+            get
+            {
+                int int1 = (dataGridView1.CurrentCell.ColumnIndex % 12) + 2;  // 月の調整
+                int int2 = dataGridView1.CurrentCell.ColumnIndex / 11;        // 年の調整
+
+                int selectedYear = Convert.ToInt32(str集計年度) + int2;
+                int selectedMonth = int1;
+
+                return new DateTime(selectedYear, selectedMonth, 1);
+            }
+        }
+
+        private string Nz(object value)
+        {
+            return value == null ? "" : value.ToString();
+        }
+
+        public void Connect()
+        {
+            Connection connectionInfo = new Connection();
+            string connectionString = connectionInfo.Getconnect();
+            cn = new SqlConnection(connectionString);
+            cn.Open();
+        }
+
+
+        private void Form_Load(object sender, EventArgs e)
+        {
+            foreach (Control control in Controls)
+            {
+                control.PreviewKeyDown += OriginalClass.ValidateCheck;
+            }
+
+            string LoginUserCode = CommonConstants.LoginUserCode;
+            LocalSetting localSetting = new LocalSetting();
+            localSetting.LoadPlace(LoginUserCode, this);
+
+
+            MyApi myapi = new MyApi();
+            int xSize, ySize, intpixel, twipperdot;
+
+            //1インチ当たりのピクセル数 アクセスのサイズの引数がtwipなのでピクセルに変換する除算値を求める
+            intpixel = myapi.GetLogPixel();
+            twipperdot = myapi.GetTwipPerDot(intpixel);
+
+            intWindowHeight = this.Height;
+            intWindowWidth = this.Width;
+
+            // DataGridViewの設定
+            dataGridView1.AllowUserToResizeColumns = true;
+            dataGridView1.Font = new Font("MS ゴシック", 10);
+            dataGridView1.DefaultCellStyle.SelectionBackColor = Color.FromArgb(210, 210, 255);
+            dataGridView1.DefaultCellStyle.SelectionForeColor = Color.Black;
+            dataGridView1.GridColor = Color.FromArgb(230, 230, 230);
+            dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font("MS ゴシック", 9);
+            dataGridView1.DefaultCellStyle.Font = new Font("MS ゴシック", 10);
+            dataGridView1.DefaultCellStyle.ForeColor = Color.Black;
+
+            //dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridView1.AllowUserToAddRows = false;
+            dataGridView1.AllowUserToDeleteRows = false;
+            dataGridView1.ReadOnly = true;
+
+
+            myapi.GetFullScreen(out xSize, out ySize);
+
+            int x = 10, y = 10;
+
+            this.Size = new Size(this.Width, ySize * myapi.GetTwipPerDot(intpixel) - 1200);
+            //accessのmovesizeメソッドの引数の座標単位はtwipなので以下で
+
+            this.Size = new Size(this.Width, ySize - 1200 / twipperdot);
+
+            this.StartPosition = FormStartPosition.Manual; // 手動で位置を指定
+            int screenWidth = Screen.PrimaryScreen.Bounds.Width; // プライマリスクリーンの幅
+            x = (screenWidth - this.Width) / 2;
+            this.Location = new Point(x, y);
+
+
+            Connect();
+
+            using (SqlCommand cmd = new SqlCommand("SP支払年度", cn))
+            {
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                // レコードセットを設定
+                DataTable dataTable = new DataTable();
+                dataTable.Load(reader);
+
+                集計年度.DisplayMember = "支払年度";
+                集計年度.ValueMember = "支払年度";
+                集計年度.DataSource = dataTable;
+
+
+            }
+
+            OriginalClass ofn = new OriginalClass();
+            ofn.SetComboBox(自社担当者コード, "SELECT 買掛区分コード as Value, 買掛区分名 as Display, 番号 FROM M買掛区分 UNION SELECT '', '（全て）', 0 AS 番号 FROM M買掛区分 ORDER BY 番号");
+            自社担当者コード.SelectedIndex = -1;
+        }
+
+
+        private void Form_Resize(object sender, EventArgs e)
+        {
+            try
+            {
+
+                dataGridView1.Height = dataGridView1.Height + (this.Height - intWindowHeight);
+                intWindowHeight = this.Height;  // 高さ保存
+
+                dataGridView1.Width = dataGridView1.Width + (this.Width - intWindowWidth);
+                intWindowWidth = this.Width;    // 幅保存
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this.Name + "_Form_Resize - " + ex.Message);
+            }
+        }
+        public bool DoUpdate()
+        {
+            if (string.IsNullOrEmpty(集計年度.Text)) return false;
+
+            FunctionClass fn = new FunctionClass();
+            fn.DoWait("集計しています...");
+
+            bool result = true;
+            try
+            {
+                SetGrid(str集計年度, str支払区分コード);
+                AddTotalRow(dataGridView1);
+
+                if (dataGridView1.RowCount > 0)
+                {
+                    dataGridView1.Rows[0].Selected = true;
+                    dataGridView1.FirstDisplayedScrollingRowIndex = 0;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                result = false;
+                MessageBox.Show(this.Name + "_DoUpdate - " + ex.Message);
+            }
+
+            fn.WaitForm.Close();
+
+            return result;
+        }
+
+        private bool SetGrid(string yearString, string groupCode = null)
+        {
+            bool success = false;
+
+            Connect();
+
+            try
+            {
+
+                FunctionClass fn = new FunctionClass();
+
+
+                using (SqlCommand command = new SqlCommand("SP支払一覧_年間", cn))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@PayYear", yearString);
+                    command.Parameters.AddWithValue("@GroupCode", fn.Zn(groupCode));
+
+                    // データベースからデータを取得して DataGridView に設定
+                    using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+                    {
+                        DataTable dataTable = new DataTable();
+                        adapter.Fill(dataTable);
+                        //dataGridView1.DataSource = dataTable;
+
+                        BindingSource bindingSource = new BindingSource();
+                        bindingSource.DataSource = dataTable;
+
+                        // DataGridView に BindingSource をバインド
+                        dataGridView1.DataSource = bindingSource;
+                    }
+
+
+                    表示件数.Text = dataGridView1.RowCount.ToString();
+
+
+                    success = true;
+
+
+                    MyApi myapi = new MyApi();
+                    int xSize, ySize, intpixel, twipperdot;
+
+                    //1インチ当たりのピクセル数 アクセスのサイズの引数がtwipなのでピクセルに変換する除算値を求める
+                    intpixel = myapi.GetLogPixel();
+                    twipperdot = myapi.GetTwipPerDot(intpixel);
+
+                    intWindowHeight = this.Height;
+                    intWindowWidth = this.Width;
+
+                    //0列目はaccessでは行ヘッダのため、ずらす
+                    dataGridView1.Columns[0].Width = 1100 / twipperdot;
+                    dataGridView1.Columns[1].Width = 3500 / twipperdot;
+                    dataGridView1.Columns[14].Width = 1500 / twipperdot;
+
+
+
+                    for (int col = 2; col <= 14; col++)
+                    {
+                        dataGridView1.Columns[col].Width = 1300 / twipperdot;
+                        dataGridView1.Columns[col].DefaultCellStyle.Format = "#,###,###,##0";
+                        dataGridView1.Columns[col].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                    }
+
+
+
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+            }
+
+            return success;
+        }
+
+        private static void AddTotalRow(DataGridView dataGridView)
+        {
+            try
+            {
+                int rowCount = dataGridView.Rows.Count;
+                int colCount = dataGridView.Columns.Count;
+
+
+                BindingSource bindingSource = (BindingSource)dataGridView.DataSource;
+                bindingSource.AddNew();
+
+
+                // 合計行に表示する文字列
+                dataGridView.Rows[rowCount].Cells[0].Value = "(合計)";
+
+                // 列ごとの合計金額を計算し、表示する
+                for (int col = 2; col <= colCount; col++)
+                {
+                    long sum = 0;
+
+                    // 列ごとに合計金額を計算
+                    for (int row = 0; row < rowCount; row++)
+                    {
+                        // データグリッドビューのセルの値が数値であることを仮定
+                        object cellValue = dataGridView.Rows[row].Cells[col].Value;
+                        if (cellValue != null && cellValue.ToString() != "")
+                        {
+                            sum += Convert.ToInt64(cellValue);
+                        }
+
+                    }
+
+                    // 合計をセルに表示
+                    dataGridView.Rows[rowCount].Cells[col].Value = sum;
+
+                    // セルのフォーマットを設定して桁区切りにする
+                    dataGridView.Columns[col].DefaultCellStyle.Format = "#,###,###,##0";
+                    dataGridView.Columns[col].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+            }
+        }
+
+
+
+        private void dataGridView1_Sorted(object sender, EventArgs e)
+        {
+            AddTotalRow(dataGridView1);
+
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex == -1 && e.ColumnIndex > 0)
+            {
+                dataGridView1.Rows.RemoveAt(dataGridView1.Rows.Count - 1);
+            }
+        }
+
+        private void DataGridView1_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+            //列ヘッダーかどうか調べる
+            if (e.ColumnIndex < 0 && e.RowIndex >= 0)
+            {
+                //dataGridView1.SuspendLayout();
+                //セルを描画する
+                e.Paint(e.ClipBounds, DataGridViewPaintParts.All);
+
+                //行番号を描画する範囲を決定する
+                //e.AdvancedBorderStyleやe.CellStyle.Paddingは無視
+                Rectangle indexRect = e.CellBounds;
+                indexRect.Inflate(-2, -2);
+
+                //行番号を描画する
+                TextRenderer.DrawText(e.Graphics, (e.RowIndex + 1).ToString(), e.CellStyle.Font, indexRect,
+                    e.CellStyle.ForeColor, TextFormatFlags.Right | TextFormatFlags.VerticalCenter);
+
+                //描画が完了したことを知らせる
+                e.Handled = true;
+                //dataGridView1.ResumeLayout();
+
+            }
+        }
+
+        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+
+            F_支払 targetform = new F_支払();
+            targetform.ShowDialog();
+        }
+
+        private void dataGridView1_KeyDown(object sender, KeyEventArgs e)
+        {
+            Form_KeyDown(sender, e);
+        }
+
+
+        private void Form_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                switch (e.KeyCode)
+                {
+                    case Keys.Return:
+                        SelectNextControl(ActiveControl, true, true, true, true);
+                        break;
+                    case Keys.F1:
+                        if (this.コマンド抽出.Enabled) コマンド抽出_Click(null, null);
+                        break;
+                    case Keys.F2:
+                        if (this.コマンド検索.Enabled) コマンド検索_Click(null, null);
+                        break;
+                    case Keys.F3:
+                        if (this.コマンド初期化.Enabled) コマンド初期化_Click(null, null);
+                        //datagidviewの並び替えが行われるため
+                        e.Handled = true;
+                        break;
+                    case Keys.F4:
+                        break;
+                    case Keys.F5:
+                        if (this.コマンド顧客参照.Enabled) コマンド顧客参照_Click(null, null);
+                        break;
+                    case Keys.F6:
+                        if (this.コマンド重要顧客.Enabled) コマンド重要顧客_Click(null, null);
+                        break;
+                    case Keys.F7:
+                        if (this.コマンドコピー.Enabled) コマンドコピー_Click(null, null);
+                        break;
+                    case Keys.F8:
+                        break;
+                    case Keys.F9:
+                        if (this.コマンド出力.Enabled) コマンド出力_Click(null, null);
+                        break;
+                    case Keys.F10:
+                        if (this.コマンド更新.Enabled) コマンド更新_Click(null, null);
+                        break;
+                    case Keys.F11:
+                        if (this.コマンド登録.Enabled) コマンド登録_Click(null, null);
+                        break;
+                    case Keys.F12:
+                        if (this.コマンド終了.Enabled) コマンド終了_Click(null, null);
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("KeyDown - " + ex.Message);
+            }
+        }
+
+
+        private void コマンド抽出_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("現在開発中です。", "抽出コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void コマンド更新_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                // 確認
+                DialogResult result = MessageBox.Show("表示データを最新の情報に更新しますか？", "更新コマンド", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.No)
+                {
+                    return;
+                }
+
+
+                // リストを更新する
+
+                if (DoUpdate())
+                {
+                    if (dataGridView1.RowCount > 0)
+                    {
+                        コマンド顧客参照.Enabled = true;
+                        コマンドコピー.Enabled = true;
+                        コマンド重要顧客.Enabled = true;
+                        // コマンド支払通知.Enabled = true;
+                        コマンド出力.Enabled = true;
+                        コマンド登録.Enabled = true;
+                    }
+                    else
+                    {
+                        コマンド重要顧客.Enabled = false;
+                        コマンド顧客参照.Enabled = false;
+                        // コマンド支払通知.Enabled = false;
+                        コマンド出力.Enabled = false;
+                        コマンド登録.Enabled = false;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("エラーが発生しました。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    コマンド重要顧客.Enabled = false;
+                    コマンド顧客参照.Enabled = false;
+                    // コマンド支払通知.Enabled = false;
+                    コマンド出力.Enabled = false;
+                    コマンド登録.Enabled = false;
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"コマンド更新_Click エラー: {ex.Message}");
+            }
+        }
+
+        private void コマンド終了_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void コマンド検索_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("現在開発中です。", "検索コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void コマンド初期化_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("現在開発中です。", "初期化コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void コマンド支払先_Click(object sender, EventArgs e)
+        {
+            F_仕入先 targetform = new F_仕入先();
+            targetform.args = PayeeCode;
+            targetform.ShowDialog();
+        }
+
+        private void コマンド明細参照_Click(object sender, EventArgs e)
+        {
+            F_支払明細参照 targetform = new F_支払明細参照();
+            targetform.ShowDialog();
+        }
+
+
+        private void コマンド印刷_Click(object sender, EventArgs e)
+        {
+            IReport paoRep = ReportCreator.GetPreview();
+
+            paoRep.LoadDefFile("../../../Reports/支払一覧表_年間.prepd");
+
+            //最大行数
+            int maxRow = 27;
+            //現在の行
+            int CurRow = 0;
+            //行数
+            int RowCount = maxRow;
+            if (dataGridView1.RowCount > 0)
+            {
+                RowCount = dataGridView1.RowCount - 1;
+            }
+
+            int page = 1;
+            double maxPage = Math.Ceiling((double)RowCount / maxRow);
+
+            DateTime now = DateTime.Now;
+
+            int lenB;
+
+            DataGridViewRow totalRow = dataGridView1.Rows[dataGridView1.Rows.Count - 1];
+
+            //描画すべき行がある限りページを増やす
+            while (RowCount > 0)
+            {
+                RowCount -= maxRow;
+
+                paoRep.PageStart();
+
+                //ヘッダー
+                paoRep.Write("タイトル", 集計年度.Text.ToString() + "年度支払一覧表");
+
+                paoRep.Write("支払区分", 自社担当者コード.Text.ToString() != "" ? 自社担当者コード.Text.ToString() : "（全て）");
+                for (var i = 2; i <= 13; i++)
+                {
+                    int ii = (i >= 2 && i <= 10) ? i + 2 : (i >= 11 && i <= 13) ? i - 10 : i;
+                    paoRep.Write("合計" + (ii).ToString() + "月", string.Format("{0:#,0}", totalRow.Cells[i].Value) != "" ? string.Format("{0:#,0}", totalRow.Cells[i].Value) : " ");
+                }
+                paoRep.Write("支払合計金額", string.Format("{0:#,0}", totalRow.Cells[14].Value) != "" ? string.Format("{0:#,0}", totalRow.Cells[14].Value) : " ");
+
+
+                //フッダー
+                paoRep.Write("出力日時", now.ToString("yyyy/MM/dd HH:mm:ss"));
+                paoRep.Write("ページ", (page + "/" + maxPage + " ページ").ToString());
+
+                //明細
+                for (var i = 0; i < maxRow; i++)
+                {
+                    if (CurRow >= dataGridView1.RowCount - 1) break;
+
+                    DataGridViewRow targetRow = dataGridView1.Rows[CurRow];
+
+                    paoRep.Write("行番号", (CurRow + 1).ToString(), i + 1);
+                    paoRep.Write("支払先名", targetRow.Cells["支払先名"].Value.ToString() != "" ? targetRow.Cells["支払先名"].Value.ToString() : " ", i + 1);
+
+                    for (var j = 2; j <= 13; j++)
+                    {
+                        int jj = (j >= 2 && j <= 10) ? j + 2 : (j >= 11 && j <= 13) ? j - 10 : j;
+                        paoRep.Write((jj).ToString() + "月", string.Format("{0:#,0}", targetRow.Cells[j].Value) != "" ? string.Format("{0:#,0}", targetRow.Cells[j].Value) : " ", i + 1);
+                    }
+                    paoRep.Write("合計", string.Format("{0:#,0}", targetRow.Cells[14].Value) != "" ? string.Format("{0:#,0}", targetRow.Cells[14].Value) : " ", i + 1);
+
+
+
+
+                    paoRep.z_Objects.SetObject("支払先名", i + 1);
+                    lenB = Encoding.Default.GetBytes(targetRow.Cells["支払先名"].Value.ToString()).Length;
+                    if (26 < lenB)
+                    {
+                        paoRep.z_Objects.z_Text.z_FontAttr.Size = 6;
+                    }
+                    else
+                    {
+                        paoRep.z_Objects.z_Text.z_FontAttr.Size = 10;
+                    }
+
+                    CurRow++;
+
+
+                }
+
+                page++;
+
+                paoRep.PageEnd();
+
+            }
+
+
+
+            paoRep.Output();
+        }
+
+        private void コマンド保守_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void コマンド支払通知_Click(object sender, EventArgs e)
+        {
+            string param = $" -user:{CommonConstants.LoginUserName}" +
+                           $" -sv:{CommonConstants.ServerInstanceName.Replace(" ", "_")}" +
+                           $" -pv:payment,{PayMonth.ToString().Replace(" ", "_")}" +
+                           $",{PayeeCode.Replace(" ", "_")}";
+            FunctionClass.GetShell(param);
+        }
+
+        private void コピーボタン_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // 選択されているセルのデータを取得
+                DataObject dataObject = dataGridView1.GetClipboardContent();
+
+                // クリップボードにコピー
+                Clipboard.SetDataObject(dataObject);
+
+                MessageBox.Show("クリップボードへコピーしました。", "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            }
+            catch (Exception ex)
+            {
+                // コピーに失敗した場合はエラーメッセージを表示
+                Console.WriteLine("クリップボードへのコピーに失敗しました。" + ex.Message);
+
+            }
+        }
+        private void コマンド入出力_Click(object sender, EventArgs e)
+        {
+
+            DialogResult result = MessageBox.Show("選択セルの内容をクリップボードへコピーします。\nよろしいですか？", "入出力コマンド", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.No)
+            {
+                return;
+            }
+
+            try
+            {
+                // 選択されているセルのデータを取得
+                DataObject dataObject = dataGridView1.GetClipboardContent();
+
+                // クリップボードにコピー
+                Clipboard.SetDataObject(dataObject);
+
+                MessageBox.Show("クリップボードへコピーしました。", "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            }
+            catch (Exception ex)
+            {
+                // コピーに失敗した場合はエラーメッセージを表示
+                Console.WriteLine("クリップボードへのコピーに失敗しました。" + ex.Message);
+
+            }
+        }
+        private void コマンド支払_Click(object sender, EventArgs e)
+        {
+
+
+            F_支払 targetform = new F_支払();
+            targetform.ShowDialog();
+        }
+
+
+        private void 集計年度_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                str集計年度 = 集計年度.Text;
+
+                // リストを更新する
+                if (DoUpdate())
+                {
+                    if (dataGridView1.RowCount > 0)
+                    {
+                        コマンド顧客参照.Enabled = true;
+                        コマンドコピー.Enabled = true;
+                        コマンド重要顧客.Enabled = true;
+                        // コマンド支払通知.Enabled = true;
+                        コマンド出力.Enabled = true;
+                        コマンド登録.Enabled = true;
+                    }
+                    else
+                    {
+                        コマンド重要顧客.Enabled = false;
+                        コマンド顧客参照.Enabled = false;
+                        // コマンド支払通知.Enabled = false;
+                        コマンド出力.Enabled = false;
+                        コマンド登録.Enabled = false;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("エラーが発生しました。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    コマンド顧客参照.Enabled = false;
+                    コマンドコピー.Enabled = false;
+                    コマンド重要顧客.Enabled = false;
+                    // コマンド支払通知.Enabled = false;
+                    コマンド出力.Enabled = false;
+                    コマンド登録.Enabled = false;
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"集計年月_AfterUpdate エラー: {ex.Message}");
+            }
+        }
+
+        private void 支払区分コード_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                str支払区分コード = string.IsNullOrEmpty(自社担当者コード.SelectedValue?.ToString()) ? null : 自社担当者コード.SelectedValue?.ToString();
+
+                // 集計年度が指定されていないときは何もしない
+                if (string.IsNullOrEmpty(str集計年度))
+                {
+                    return;
+                }
+
+
+                // リストを更新する
+                if (DoUpdate())
+                {
+                    if (dataGridView1.RowCount > 0)
+                    {
+                        コマンド重要顧客.Enabled = true;
+                        コマンドコピー.Enabled = true;
+                        コマンド顧客参照.Enabled = true;
+                        // コマンド支払通知.Enabled = true;
+                        コマンド出力.Enabled = true;
+                        コマンド登録.Enabled = true;
+                    }
+                    else
+                    {
+                        コマンド重要顧客.Enabled = false;
+                        コマンドコピー.Enabled = false;
+                        コマンド顧客参照.Enabled = false;
+                        // コマンド支払通知.Enabled = false;
+                        コマンド出力.Enabled = false;
+                        コマンド登録.Enabled = false;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("エラーが発生しました。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    コマンド重要顧客.Enabled = false;
+                    コマンド顧客参照.Enabled = false;
+                    // コマンド支払通知.Enabled = false;
+                    コマンド出力.Enabled = false;
+                    コマンド登録.Enabled = false;
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"エラーが発生しました。\n{ex.Message}", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void コマンドコピー_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "■選択セルをクリップボードへコピーします。";
+        }
+
+        private void コマンドコピー_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "各種項目の説明";
+        }
+
+        private void コマンド顧客参照_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void コマンドコピー_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void コマンド重要顧客_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void コマンド出力_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void コマンド登録_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void F_売上計画_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            string LoginUserCode = CommonConstants.LoginUserCode;
+            LocalSetting test = new LocalSetting();
+            test.SavePlace(LoginUserCode, this);
+        }
+    }
+}

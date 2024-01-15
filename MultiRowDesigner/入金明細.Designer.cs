@@ -28,33 +28,48 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.gcMultiRow1 = new GrapeCity.Win.MultiRow.GcMultiRow();
-            this.入金明細テンプレート1 = new MultiRowDesigner.入金明細テンプレート();
-            ((System.ComponentModel.ISupportInitialize)(this.gcMultiRow1)).BeginInit();
-            this.SuspendLayout();
+            gcMultiRow1 = new GrapeCity.Win.MultiRow.GcMultiRow();
+            入金明細テンプレート1 = new 入金明細テンプレート();
+            ((System.ComponentModel.ISupportInitialize)gcMultiRow1).BeginInit();
+            SuspendLayout();
             // 
             // gcMultiRow1
             // 
-            this.gcMultiRow1.EditMode = GrapeCity.Win.MultiRow.EditMode.EditOnEnter;
-            this.gcMultiRow1.Location = new System.Drawing.Point(0, 0);
-            this.gcMultiRow1.Name = "gcMultiRow1";
-            this.gcMultiRow1.Size = new System.Drawing.Size(860, 295);
-            this.gcMultiRow1.TabIndex = 0;
-            this.gcMultiRow1.Template = this.入金明細テンプレート1;
-            this.gcMultiRow1.Text = "gcMultiRow1";
-            this.gcMultiRow1.CellEnter += new System.EventHandler<GrapeCity.Win.MultiRow.CellEventArgs>(this.gcMultiRow1_CellEnter);
-            this.gcMultiRow1.CellContentClick += new System.EventHandler<GrapeCity.Win.MultiRow.CellEventArgs>(this.gcMultiRow1_CellContentClick);
+            gcMultiRow1.EditMode = GrapeCity.Win.MultiRow.EditMode.EditOnEnter;
+            gcMultiRow1.Location = new Point(0, 0);
+            gcMultiRow1.Margin = new Padding(4, 5, 4, 5);
+            gcMultiRow1.Name = "gcMultiRow1";
+            gcMultiRow1.Size = new Size(1147, 492);
+            gcMultiRow1.TabIndex = 0;
+            gcMultiRow1.Template = 入金明細テンプレート1;
+            gcMultiRow1.TemplateScaleSize = new SizeF(1.33333337F, 1.66666663F);
+            gcMultiRow1.Text = "gcMultiRow1";
+            gcMultiRow1.CellValidating += gcMultiRow1_CellValidating;
+            gcMultiRow1.CellEnter += gcMultiRow1_CellEnter;
+            gcMultiRow1.DefaultValuesNeeded += gcMultiRow1_DefaultValuesNeeded;
+            gcMultiRow1.EditingControlShowing += gcMultiRow1_EditingControlShowing;
+            gcMultiRow1.CellContentButtonClick += gcMultiRow1_CellContentButtonClick;
+            // 
+            // 入金明細テンプレート1
+            // 
+            入金明細テンプレート1.Height = 38;
+            // 
+            // 
+            // 
+            入金明細テンプレート1.Row.Height = 17;
+            入金明細テンプレート1.Row.Width = 707;
+            入金明細テンプレート1.Width = 707;
             // 
             // 入金明細
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.gcMultiRow1);
-            this.Name = "入金明細";
-            this.Size = new System.Drawing.Size(860, 295);
-            ((System.ComponentModel.ISupportInitialize)(this.gcMultiRow1)).EndInit();
-            this.ResumeLayout(false);
-
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(gcMultiRow1);
+            Margin = new Padding(4, 5, 4, 5);
+            Name = "入金明細";
+            Size = new Size(1147, 492);
+            ((System.ComponentModel.ISupportInitialize)gcMultiRow1).EndInit();
+            ResumeLayout(false);
         }
 
         #endregion

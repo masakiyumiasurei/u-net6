@@ -113,6 +113,7 @@
     <EmbeddedResource Include="MultiRowDesigner\入庫明細.resx" />
     <EmbeddedResource Include="MultiRowDesigner\入庫明細テンプレート.resx" />
     <EmbeddedResource Include="MultiRowDesigner\入金明細.resx" />
+    <EmbeddedResource Include="MultiRowDesigner\入金明細テンプレート.resx" />
     <EmbeddedResource Include="MultiRowDesigner\受注明細.resx" />
     <EmbeddedResource Include="MultiRowDesigner\受注明細テンプレート.resx" />
     <EmbeddedResource Include="MultiRowDesigner\商品明細.resx" />
@@ -174,6 +175,9 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Form\F_入庫完了.cs" />
+    <Compile Update="Form\F_売上計画.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Form\F_相殺.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -601,19 +601,7 @@ namespace MultiRowDesigner
             //}
         }
 
-        private void gcMultiRow1_RowsAdded(object sender, RowsAddedEventArgs e)
-        {
-            //F_発注 ParentForm = Application.OpenForms.OfType<F_発注>().FirstOrDefault();
-
-            //gcMultiRow1.CurrentRow.Cells["発注コード"].Value = ParentForm.CurrentCode;
-            //gcMultiRow1.CurrentRow.Cells["発注版数"].Value = ParentForm.CurrentEdition;
-            //gcMultiRow1.CurrentRow.Cells["明細番号"].Value = GetDetailNumber();
-            ////gcMultiRow1.CurrentRow.Cells["行番号"].Value = gcMultiRow1.RowCount + 1;
-            //gcMultiRow1.CurrentRow.Cells["必要数量"].Value = 1;
-            //gcMultiRow1.CurrentRow.Cells["発注数量"].Value = 1;
-            //gcMultiRow1.CurrentRow.Cells["単位数量"].Value = 1;
-
-        }
+        
 
         private void gcMultiRow1_RowsAdding(object sender, RowsAddingEventArgs e)
         {
