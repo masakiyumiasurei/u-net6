@@ -312,6 +312,7 @@
             // 
             dataGridView1.AllowUserToAddRows = false;
             dataGridView1.AllowUserToDeleteRows = false;
+            dataGridView1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Location = new Point(0, 75);
             dataGridView1.Margin = new Padding(3, 2, 3, 2);
@@ -422,7 +423,9 @@
             自社担当者コード.Name = "自社担当者コード";
             自社担当者コード.Size = new Size(50, 21);
             自社担当者コード.TabIndex = 4;
-            自社担当者コード.SelectedIndexChanged += 支払区分コード_SelectedIndexChanged;
+            自社担当者コード.DrawItem += 自社担当者コード_DrawItem;
+            自社担当者コード.SelectedIndexChanged += 自社担当者コード_SelectedIndexChanged;
+            自社担当者コード.TextChanged += 自社担当者コード_TextChanged;
             // 
             // 自社担当者名
             // 
@@ -435,7 +438,6 @@
             自社担当者名.Size = new Size(101, 20);
             自社担当者名.TabIndex = 90;
             自社担当者名.TabStop = false;
-            自社担当者名.TextAlign = HorizontalAlignment.Right;
             // 
             // F_売上計画
             // 
