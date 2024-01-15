@@ -18,6 +18,9 @@ namespace u_net
     public partial class F_売上計画 : MidForm
     {
         public string str集計年度;
+        public string str自社担当者コード;
+        public string str顧客コード;
+        public string str顧客名;
         public string str支払区分コード;
 
         int intWindowHeight = 0;
@@ -457,7 +460,9 @@ namespace u_net
 
         private void コマンド抽出_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("現在開発中です。", "抽出コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            dataGridView1.Focus();
+            F_売上計画_抽出 form = new F_売上計画_抽出();
+            form.ShowDialog();
         }
 
         private void コマンド更新_Click(object sender, EventArgs e)
