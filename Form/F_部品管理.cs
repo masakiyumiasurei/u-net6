@@ -731,7 +731,9 @@ namespace u_net
 
         private void コマンド出力_Click(object sender, EventArgs e)
         {
-
+            F_出力 targetform = new F_出力();
+            targetform.DataGridView = dataGridView1;
+            targetform.ShowDialog();
         }
 
         private void コマンド保守_Click(object sender, EventArgs e)
