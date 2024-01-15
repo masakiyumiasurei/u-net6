@@ -172,14 +172,9 @@ namespace u_net
                     return;
                 }
 
-                string strSQL;
-
-                // SQLを作成する
-                strSQL = $"EXEC SP売上一覧_担当者別 '{str集計年度}'";
-
-                //F_出力 fm = new F_出力();
-                //fm.args = strSQL;
-                //fm.ShowDialog();
+                F_出力 targetform = new F_出力();
+                targetform.DataGridView = dataGridView1;
+                targetform.ShowDialog();
 
             }
             catch (Exception ex)
