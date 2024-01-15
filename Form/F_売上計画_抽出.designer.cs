@@ -435,6 +435,7 @@ namespace u_net
             StartPosition = FormStartPosition.CenterScreen;
             Text = "売上実績一覧 - 抽出";
             Load += Form_Load;
+            KeyDown += Form_KeyDown;
             statusStrip1.ResumeLayout(false);
             statusStrip1.PerformLayout();
             groupBox1.ResumeLayout(false);

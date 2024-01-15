@@ -161,6 +161,16 @@ namespace u_net
             toolStripStatusLabel1.Text = "各種項目の説明";
         }
 
+        private void Form_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Return:
+                    SelectNextControl(ActiveControl, true, true, true, true);
+                    break;
+            }
+        }
+
         // Nz メソッドの代替
         private T Nz<T>(T value)
         {
