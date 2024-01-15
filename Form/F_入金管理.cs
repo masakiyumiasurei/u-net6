@@ -147,7 +147,7 @@ namespace u_net
                     using (SqlCommand command = new SqlCommand("ReceiptCancel", cn, transaction))
                     {
                         command.CommandType = CommandType.StoredProcedure;
-                        command.Parameters.AddWithValue("@ParamName", codes); // パラメータ名は適切なものに置き換える
+                        command.Parameters.AddWithValue("@Codes", codes); // パラメータ名は適切なものに置き換える
 
                         command.ExecuteNonQuery();
                     }
@@ -185,7 +185,7 @@ namespace u_net
                     using (SqlCommand command = new SqlCommand("ReceiptProcess", cn, transaction))
                     {
                         command.CommandType = CommandType.StoredProcedure;
-                        command.Parameters.AddWithValue("@ParamName", codes); // パラメータ名は適切なものに置き換える
+                        command.Parameters.AddWithValue("@Codes", codes); // パラメータ名は適切なものに置き換える
 
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
@@ -258,13 +258,13 @@ namespace u_net
 
             foreach (DataGridViewRow row in 一覧.Rows)
             {
-                if (row.Cells[7].Value?.ToString() == "□")
+                if (row.Cells[6].Value?.ToString() == "□")
                 {
-                    row.HeaderCell.Value = "■";
+                    row.Cells[6].Value = "■";
                 }
-                else if (row.Cells[7].Value?.ToString() == "×")
+                else if (row.Cells[6].Value?.ToString() == "×")
                 {
-                    row.HeaderCell.Value = "";
+                    row.Cells[6].Value = "";
                 }
                 else
                 {
@@ -393,10 +393,10 @@ namespace u_net
             do
             {
                 // DataGridView の場合、Cells[列のインデックス].Value でセルの値にアクセスできます
-                if (gridobject.Rows[lngRowIndex].Cells[7].Value?.ToString() == flag)
+                if (gridobject.Rows[lngRowIndex].Cells[6].Value?.ToString() == flag)
                 {
                     lngArrayIndex++;
-                    code.Add(gridobject.Rows[lngRowIndex].Cells[1].Value?.ToString());
+                    code.Add(gridobject.Rows[lngRowIndex].Cells[0].Value?.ToString());
                 }
                 lngRowIndex++;
             } while (lngRowIndex < gridobject.Rows.Count);
@@ -801,8 +801,16 @@ namespace u_net
                 // 領収済み表示更新
                 UpdateReceiptIcon();
 
+                bool shainFlg = false;
+
+                var intRes = MessageBox.Show("社印は必要ですか？", "社印の有無確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (intRes == DialogResult.Yes)
+                {
+                    shainFlg=true;
+                }
+               
                 // 領収書のプレビュー
-                領収書印刷();
+                領収書印刷("ReceiptCode='" + receiptCode + "'", shainFlg);
             }
             catch (Exception ex)
             {
@@ -811,10 +819,115 @@ namespace u_net
             }
         }
 
-        private void 領収書印刷()
+        private void 領収書印刷(string filterString, bool shainFlg)
         {
-            //reportの処理
+            IReport paoRep = ReportCreator.GetPreview();
+            if (shainFlg)
+            {
+                paoRep.LoadDefFile("../../../Reports/領収書.prepd");
+            }
+            else
+            {
+                paoRep.LoadDefFile("../../../Reports/領収書社員なし.prepd");
+            }
+            Connect();
+
+            DataRowCollection report;
+
+            string sqlQuery = "SELECT * FROM V領収書 WHERE " + filterString;
+
+            using (SqlCommand command = new SqlCommand(sqlQuery, cn))
+            {
+                using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+                {
+                    DataSet dataSet = new DataSet();
+                    adapter.Fill(dataSet);
+                    report = dataSet.Tables[0].Rows;
+                }
+            }
+
+            //最大行数
+            int maxRow = 37;
+            //現在の行
+            int CurRow = 0;
+            //行数
+            int RowCount = maxRow;
+            if (report.Count > 0)
+            {
+                RowCount = report.Count;
+            }
+            int page = 1;
+            double maxPage = Math.Ceiling((double)RowCount / maxRow);
+            DateTime now = DateTime.Now;
+
+            int lenB;
+            int i = 0;
+            //描画すべき行がある限りページを増やす  1件しか印刷しない
+            while (RowCount > 0)
+            {
+                RowCount -= maxRow;
+
+                paoRep.PageStart();
+
+
+                if (CurRow >= report.Count) break;
+
+                DataRow targetRow = report[CurRow];
+
+                //paoRep.Write("明細番号", (CurRow + 1).ToString(), i + 1);  //連番にしたい時はこちら。明細番号は歯抜けがあるので
+                paoRep.Write("DestinationZipCode", targetRow["DestinationZipCode"].ToString() != "" ? targetRow["DestinationZipCode"].ToString() : " ", i + 1);
+                paoRep.Write("DestinationAddress1", targetRow["DestinationAddress1"].ToString() != "" ? targetRow["DestinationAddress1"].ToString() : " ", i + 1);
+                paoRep.Write("DestinationAddress2", targetRow["DestinationAddress2"].ToString() != "" ? targetRow["DestinationAddress2"].ToString() : " ", i + 1);
+                paoRep.Write("DestinationName1", targetRow["DestinationName1"].ToString() != "" ? targetRow["DestinationName1"].ToString() : " ", i + 1);
+                paoRep.Write("DestinationName2", targetRow["DestinationName2"].ToString() != "" ? targetRow["DestinationName2"].ToString() : " ", i + 1);
+                paoRep.Write("ReceiptDay", targetRow["ReceiptDay"].ToString() != "" ? targetRow.Field<DateTime>("ReceiptDay").ToString("yyyy年MM月dd日") : " ", i + 1);
+                paoRep.Write("領収日1", targetRow["ReceiptDay"].ToString() != "" ? targetRow.Field<DateTime>("ReceiptDay").ToString("yyyy年MM月dd日") : " ", i + 1);
+                paoRep.Write("領収日2", targetRow["ReceiptDay"].ToString() != "" ? targetRow.Field<DateTime>("ReceiptDay").ToString("yyyy年MM月dd日") : " ", i + 1);
+                paoRep.Write("送付状摘要", targetRow["Summary"].ToString() != "" ? targetRow["Summary"].ToString() : " ", i + 1);
+                paoRep.Write("SummaryCopy", targetRow["Summary"].ToString() != "" ? targetRow["Summary"].ToString() : " ", i + 1);
+                paoRep.Write("領収先名前1", targetRow["ReceiptName"].ToString() != "" ? targetRow["ReceiptName"].ToString() : " ", i + 1);
+                paoRep.Write("領収先名前2", targetRow["ReceiptName"].ToString() != "" ? targetRow["ReceiptName"].ToString() : " ", i + 1);
+                paoRep.Write("領収金額合計", targetRow["Receipt"].ToString() != "" ? targetRow["Receipt"].ToString() : " ", i + 1);
+                paoRep.Write("控え領収金額合計", targetRow["Receipt"].ToString() != "" ? targetRow["Receipt"].ToString() : " ", i + 1);
+                paoRep.Write("領収コード1", targetRow["ReceiptCode"].ToString() != "" ? targetRow["ReceiptCode"].ToString() : " ", i + 1);
+                paoRep.Write("領収コード2", targetRow["ReceiptCode"].ToString() != "" ? targetRow["ReceiptCode"].ToString() : " ", i + 1);
+                paoRep.Write("但し書き1", targetRow["Proviso"].ToString() != "" ? targetRow["Proviso"].ToString() : " ", i + 1);
+                paoRep.Write("但し書き2", targetRow["Proviso"].ToString() != "" ? targetRow["Proviso"].ToString() : " ", i + 1);
+                paoRep.Write("DetailsSummary1", targetRow["DetailsSummary"].ToString() != "" ? targetRow["DetailsSummary"].ToString() : " ", i + 1);
+                paoRep.Write("DetailsSummary2", targetRow["DetailsSummary"].ToString() != "" ? targetRow["DetailsSummary"].ToString() : " ", i + 1);
+
+                paoRep.z_Objects.SetObject("領収先名前1", i + 1);
+                if (targetRow["ReceiptName"].ToString().Length > 20)
+                {
+                    paoRep.z_Objects.z_Text.z_FontAttr.Size = 8;
+                }
+                else
+                {
+                    paoRep.z_Objects.z_Text.z_FontAttr.Size = 12;
+                }
+
+                paoRep.z_Objects.SetObject("領収先名前2", i + 1);
+                if (targetRow["ReceiptName"].ToString().Length > 20)
+                {
+                    paoRep.z_Objects.z_Text.z_FontAttr.Size = 8;
+                }
+                else
+                {
+                    paoRep.z_Objects.z_Text.z_FontAttr.Size = 12;
+                }
+
+                CurRow++;
+                //}
+                i += 1;
+                page++;
+                
+                paoRep.PageEnd();
+
+            }
+
+            paoRep.Output();
         }
+
         private void コマンド領収解除_Click(object sender, EventArgs e)
         {
             try
