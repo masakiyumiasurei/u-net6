@@ -1,7 +1,7 @@
 ﻿
 namespace u_net
 {
-    partial class F_売上計画_抽出
+    partial class F_売上計画_重要顧客設定
     {
         /// <summary>
         /// 必要なデザイナー変数です。
@@ -29,6 +29,7 @@ namespace u_net
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             dataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn2 = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn3 = new DataGridViewTextBoxColumn();
@@ -61,20 +62,24 @@ namespace u_net
             statusStrip1 = new StatusStrip();
             toolStripStatusLabel1 = new ToolStripStatusLabel();
             groupBox1 = new GroupBox();
-            顧客名 = new TextBox();
-            顧客名_ラベル = new Label();
-            顧客コード検索ボタン = new Button();
-            顧客コード_ラベル = new Label();
+            顧客下移動ボタン = new Button();
+            顧客上移動ボタン = new Button();
+            顧客参照ボタン = new Button();
+            重要顧客削除ボタン = new Button();
+            重要顧客追加ボタン = new Button();
+            dataGridView1 = new DataGridView();
+            重要顧客_ラベル = new Label();
             担当者名 = new TextBox();
-            担当者コード = new ComboBox();
+            自社担当者コード = new ComboBox();
             自社担当者_ラベル = new Label();
             年度_ラベル = new Label();
             集計年度 = new ComboBox();
-            顧客コード = new TextBox();
             集計年度_ラベル = new Label();
-            抽出ボタン = new Button();
+            登録ボタン = new Button();
+            toolTip1 = new ToolTip(components);
             statusStrip1.SuspendLayout();
             groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
             // dataGridViewTextBoxColumn1
@@ -210,23 +215,23 @@ namespace u_net
             // キャンセルボタン
             // 
             キャンセルボタン.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            キャンセルボタン.Location = new Point(270, 180);
+            キャンセルボタン.Location = new Point(494, 363);
             キャンセルボタン.Margin = new Padding(4);
             キャンセルボタン.Name = "キャンセルボタン";
             キャンセルボタン.RightToLeft = RightToLeft.Yes;
             キャンセルボタン.Size = new Size(102, 27);
             キャンセルボタン.TabIndex = 11;
-            キャンセルボタン.Text = "キャンセル(&C)";
+            キャンセルボタン.Text = "キャンセル";
             キャンセルボタン.UseVisualStyleBackColor = true;
             キャンセルボタン.Click += キャンセルボタン_Click;
             // 
             // statusStrip1
             // 
             statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1 });
-            statusStrip1.Location = new Point(0, 211);
+            statusStrip1.Location = new Point(0, 395);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Padding = new Padding(1, 0, 19, 0);
-            statusStrip1.Size = new Size(392, 22);
+            statusStrip1.Size = new Size(609, 22);
             statusStrip1.TabIndex = 10195;
             statusStrip1.Text = "statusStrip1";
             // 
@@ -239,78 +244,123 @@ namespace u_net
             // 
             // groupBox1
             // 
-            groupBox1.Controls.Add(顧客名);
-            groupBox1.Controls.Add(顧客名_ラベル);
-            groupBox1.Controls.Add(顧客コード検索ボタン);
-            groupBox1.Controls.Add(顧客コード_ラベル);
+            groupBox1.Controls.Add(顧客下移動ボタン);
+            groupBox1.Controls.Add(顧客上移動ボタン);
+            groupBox1.Controls.Add(顧客参照ボタン);
+            groupBox1.Controls.Add(重要顧客削除ボタン);
+            groupBox1.Controls.Add(重要顧客追加ボタン);
+            groupBox1.Controls.Add(dataGridView1);
+            groupBox1.Controls.Add(重要顧客_ラベル);
             groupBox1.Controls.Add(担当者名);
-            groupBox1.Controls.Add(担当者コード);
+            groupBox1.Controls.Add(自社担当者コード);
             groupBox1.Controls.Add(自社担当者_ラベル);
             groupBox1.Controls.Add(年度_ラベル);
             groupBox1.Controls.Add(集計年度);
-            groupBox1.Controls.Add(顧客コード);
             groupBox1.Controls.Add(集計年度_ラベル);
             groupBox1.Location = new Point(11, 6);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(361, 167);
+            groupBox1.Size = new Size(585, 350);
             groupBox1.TabIndex = 10198;
             groupBox1.TabStop = false;
             // 
-            // 顧客名
+            // 顧客下移動ボタン
             // 
-            顧客名.BackColor = Color.White;
-            顧客名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            顧客名.ImeMode = ImeMode.Hiragana;
-            顧客名.Location = new Point(100, 90);
-            顧客名.Margin = new Padding(3, 2, 3, 2);
-            顧客名.Name = "顧客名";
-            顧客名.Size = new Size(246, 20);
-            顧客名.TabIndex = 9;
-            顧客名.Enter += 顧客名_Enter;
-            顧客名.Leave += 顧客名_Leave;
+            顧客下移動ボタン.Enabled = false;
+            顧客下移動ボタン.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            顧客下移動ボタン.Location = new Point(413, 311);
+            顧客下移動ボタン.Margin = new Padding(4);
+            顧客下移動ボタン.Name = "顧客下移動ボタン";
+            顧客下移動ボタン.RightToLeft = RightToLeft.Yes;
+            顧客下移動ボタン.Size = new Size(68, 21);
+            顧客下移動ボタン.TabIndex = 11;
+            顧客下移動ボタン.Text = "下へ";
+            toolTip1.SetToolTip(顧客下移動ボタン, "顧客を下へ移動");
+            顧客下移動ボタン.UseVisualStyleBackColor = true;
+            顧客下移動ボタン.Click += 顧客下移動ボタン_Click;
             // 
-            // 顧客名_ラベル
+            // 顧客上移動ボタン
             // 
-            顧客名_ラベル.AllowDrop = true;
-            顧客名_ラベル.AutoEllipsis = true;
-            顧客名_ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            顧客名_ラベル.ForeColor = SystemColors.ActiveCaptionText;
-            顧客名_ラベル.ImageAlign = ContentAlignment.MiddleLeft;
-            顧客名_ラベル.Location = new Point(11, 90);
-            顧客名_ラベル.Margin = new Padding(0);
-            顧客名_ラベル.Name = "顧客名_ラベル";
-            顧客名_ラベル.Size = new Size(86, 21);
-            顧客名_ラベル.TabIndex = 8;
-            顧客名_ラベル.Text = "顧客名(&N)";
-            顧客名_ラベル.TextAlign = ContentAlignment.MiddleLeft;
+            顧客上移動ボタン.Enabled = false;
+            顧客上移動ボタン.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            顧客上移動ボタン.Location = new Point(337, 311);
+            顧客上移動ボタン.Margin = new Padding(4);
+            顧客上移動ボタン.Name = "顧客上移動ボタン";
+            顧客上移動ボタン.RightToLeft = RightToLeft.Yes;
+            顧客上移動ボタン.Size = new Size(68, 21);
+            顧客上移動ボタン.TabIndex = 10;
+            顧客上移動ボタン.Text = "上へ";
+            toolTip1.SetToolTip(顧客上移動ボタン, "顧客を上へ移動");
+            顧客上移動ボタン.UseVisualStyleBackColor = true;
+            顧客上移動ボタン.Click += 顧客上移動ボタン_Click;
             // 
-            // 顧客コード検索ボタン
+            // 顧客参照ボタン
             // 
-            顧客コード検索ボタン.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            顧客コード検索ボタン.Location = new Point(213, 66);
-            顧客コード検索ボタン.Margin = new Padding(4, 3, 4, 3);
-            顧客コード検索ボタン.Name = "顧客コード検索ボタン";
-            顧客コード検索ボタン.Size = new Size(21, 21);
-            顧客コード検索ボタン.TabIndex = 7;
-            顧客コード検索ボタン.TabStop = false;
-            顧客コード検索ボタン.Text = "▼";
-            顧客コード検索ボタン.UseVisualStyleBackColor = true;
-            顧客コード検索ボタン.Click += 顧客コード検索ボタン_Click;
+            顧客参照ボタン.Enabled = false;
+            顧客参照ボタン.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            顧客参照ボタン.Location = new Point(261, 311);
+            顧客参照ボタン.Margin = new Padding(4);
+            顧客参照ボタン.Name = "顧客参照ボタン";
+            顧客参照ボタン.RightToLeft = RightToLeft.Yes;
+            顧客参照ボタン.Size = new Size(68, 21);
+            顧客参照ボタン.TabIndex = 9;
+            顧客参照ボタン.Text = "参照";
+            toolTip1.SetToolTip(顧客参照ボタン, "顧客の参照");
+            顧客参照ボタン.UseVisualStyleBackColor = true;
+            顧客参照ボタン.Click += 顧客参照ボタン_Click;
             // 
-            // 顧客コード_ラベル
+            // 重要顧客削除ボタン
             // 
-            顧客コード_ラベル.AllowDrop = true;
-            顧客コード_ラベル.AutoEllipsis = true;
-            顧客コード_ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            顧客コード_ラベル.ForeColor = SystemColors.ActiveCaptionText;
-            顧客コード_ラベル.ImageAlign = ContentAlignment.MiddleLeft;
-            顧客コード_ラベル.Location = new Point(11, 65);
-            顧客コード_ラベル.Margin = new Padding(0);
-            顧客コード_ラベル.Name = "顧客コード_ラベル";
-            顧客コード_ラベル.Size = new Size(86, 21);
-            顧客コード_ラベル.TabIndex = 5;
-            顧客コード_ラベル.Text = "顧客コード(&C)";
-            顧客コード_ラベル.TextAlign = ContentAlignment.MiddleLeft;
+            重要顧客削除ボタン.Enabled = false;
+            重要顧客削除ボタン.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            重要顧客削除ボタン.Location = new Point(185, 311);
+            重要顧客削除ボタン.Margin = new Padding(4);
+            重要顧客削除ボタン.Name = "重要顧客削除ボタン";
+            重要顧客削除ボタン.RightToLeft = RightToLeft.Yes;
+            重要顧客削除ボタン.Size = new Size(68, 21);
+            重要顧客削除ボタン.TabIndex = 8;
+            重要顧客削除ボタン.Text = "削除";
+            toolTip1.SetToolTip(重要顧客削除ボタン, "顧客の削除");
+            重要顧客削除ボタン.UseVisualStyleBackColor = true;
+            重要顧客削除ボタン.Click += 重要顧客削除ボタン_Click;
+            // 
+            // 重要顧客追加ボタン
+            // 
+            重要顧客追加ボタン.Enabled = false;
+            重要顧客追加ボタン.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            重要顧客追加ボタン.Location = new Point(109, 311);
+            重要顧客追加ボタン.Margin = new Padding(4);
+            重要顧客追加ボタン.Name = "重要顧客追加ボタン";
+            重要顧客追加ボタン.RightToLeft = RightToLeft.Yes;
+            重要顧客追加ボタン.Size = new Size(68, 21);
+            重要顧客追加ボタン.TabIndex = 7;
+            重要顧客追加ボタン.Text = "追加";
+            toolTip1.SetToolTip(重要顧客追加ボタン, "顧客の追加");
+            重要顧客追加ボタン.UseVisualStyleBackColor = true;
+            重要顧客追加ボタン.Click += 重要顧客追加ボタン_Click;
+            // 
+            // dataGridView1
+            // 
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Location = new Point(100, 66);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.RowTemplate.Height = 25;
+            dataGridView1.Size = new Size(469, 234);
+            dataGridView1.TabIndex = 6;
+            // 
+            // 重要顧客_ラベル
+            // 
+            重要顧客_ラベル.AllowDrop = true;
+            重要顧客_ラベル.AutoEllipsis = true;
+            重要顧客_ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            重要顧客_ラベル.ForeColor = SystemColors.ActiveCaptionText;
+            重要顧客_ラベル.ImageAlign = ContentAlignment.MiddleLeft;
+            重要顧客_ラベル.Location = new Point(11, 66);
+            重要顧客_ラベル.Margin = new Padding(0);
+            重要顧客_ラベル.Name = "重要顧客_ラベル";
+            重要顧客_ラベル.Size = new Size(86, 21);
+            重要顧客_ラベル.TabIndex = 5;
+            重要顧客_ラベル.Text = "重要顧客(&C)";
+            重要顧客_ラベル.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // 担当者名
             // 
@@ -318,26 +368,26 @@ namespace u_net
             担当者名.Enabled = false;
             担当者名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             担当者名.ImeMode = ImeMode.NoControl;
-            担当者名.Location = new Point(203, 40);
+            担当者名.Location = new Point(204, 41);
             担当者名.Margin = new Padding(3, 2, 3, 2);
             担当者名.Name = "担当者名";
             担当者名.ReadOnly = true;
-            担当者名.Size = new Size(143, 20);
+            担当者名.Size = new Size(195, 20);
             担当者名.TabIndex = 94;
             担当者名.TabStop = false;
             // 
-            // 担当者コード
+            // 自社担当者コード
             // 
-            担当者コード.BackColor = SystemColors.Window;
-            担当者コード.DropDownWidth = 100;
-            担当者コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            担当者コード.FormattingEnabled = true;
-            担当者コード.ImeMode = ImeMode.Disable;
-            担当者コード.Location = new Point(100, 40);
-            担当者コード.MaxDropDownItems = 10;
-            担当者コード.Name = "担当者コード";
-            担当者コード.Size = new Size(100, 21);
-            担当者コード.TabIndex = 4;
+            自社担当者コード.BackColor = SystemColors.Window;
+            自社担当者コード.DropDownWidth = 100;
+            自社担当者コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            自社担当者コード.FormattingEnabled = true;
+            自社担当者コード.ImeMode = ImeMode.Disable;
+            自社担当者コード.Location = new Point(100, 40);
+            自社担当者コード.MaxDropDownItems = 10;
+            自社担当者コード.Name = "自社担当者コード";
+            自社担当者コード.Size = new Size(100, 21);
+            自社担当者コード.TabIndex = 4;
             // 
             // 自社担当者_ラベル
             // 
@@ -380,17 +430,6 @@ namespace u_net
             集計年度.Size = new Size(68, 21);
             集計年度.TabIndex = 2;
             // 
-            // 顧客コード
-            // 
-            顧客コード.BackColor = Color.White;
-            顧客コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            顧客コード.ImeMode = ImeMode.Disable;
-            顧客コード.Location = new Point(100, 66);
-            顧客コード.Margin = new Padding(3, 2, 3, 2);
-            顧客コード.Name = "顧客コード";
-            顧客コード.Size = new Size(110, 20);
-            顧客コード.TabIndex = 6;
-            // 
             // 集計年度_ラベル
             // 
             集計年度_ラベル.AllowDrop = true;
@@ -406,24 +445,24 @@ namespace u_net
             集計年度_ラベル.Text = "集計年度(&Y)";
             集計年度_ラベル.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // 抽出ボタン
+            // 登録ボタン
             // 
-            抽出ボタン.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            抽出ボタン.Location = new Point(160, 180);
-            抽出ボタン.Margin = new Padding(4);
-            抽出ボタン.Name = "抽出ボタン";
-            抽出ボタン.RightToLeft = RightToLeft.Yes;
-            抽出ボタン.Size = new Size(102, 27);
-            抽出ボタン.TabIndex = 10;
-            抽出ボタン.Text = "抽出(&F)";
-            抽出ボタン.UseVisualStyleBackColor = true;
-            抽出ボタン.Click += 抽出ボタン_Click;
+            登録ボタン.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            登録ボタン.Location = new Point(384, 363);
+            登録ボタン.Margin = new Padding(4);
+            登録ボタン.Name = "登録ボタン";
+            登録ボタン.RightToLeft = RightToLeft.Yes;
+            登録ボタン.Size = new Size(102, 27);
+            登録ボタン.TabIndex = 10;
+            登録ボタン.Text = "登録";
+            登録ボタン.UseVisualStyleBackColor = true;
+            登録ボタン.Click += 登録ボタン_Click;
             // 
-            // F_売上計画_抽出
+            // F_売上計画_重要顧客設定
             // 
             BackColor = SystemColors.Control;
-            ClientSize = new Size(392, 233);
-            Controls.Add(抽出ボタン);
+            ClientSize = new Size(609, 417);
+            Controls.Add(登録ボタン);
             Controls.Add(groupBox1);
             Controls.Add(キャンセルボタン);
             Controls.Add(statusStrip1);
@@ -431,15 +470,16 @@ namespace u_net
             KeyPreview = true;
             MaximizeBox = false;
             MinimizeBox = false;
-            Name = "F_売上計画_抽出";
+            Name = "F_売上計画_重要顧客設定";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "売上実績一覧 - 抽出";
+            Text = "重要顧客設定";
             Load += Form_Load;
             KeyDown += Form_KeyDown;
             statusStrip1.ResumeLayout(false);
             statusStrip1.PerformLayout();
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -478,18 +518,25 @@ namespace u_net
         private StatusStrip statusStrip1;
         internal ToolStripStatusLabel toolStripStatusLabel1;
         private GroupBox groupBox1;
-        private Button 抽出ボタン;
+        private Button 登録ボタン;
         private Label 集計年度_ラベル;
         private TextBox 顧客コード;
         private TextBox 担当者名;
-        internal ComboBox 担当者コード;
+        internal ComboBox 自社担当者コード;
         private Label 自社担当者_ラベル;
         private Label 年度_ラベル;
         internal ComboBox 集計年度;
         private Label 顧客コード_ラベル;
         private Button 顧客コード検索ボタン;
         private TextBox 顧客名;
-        private Label 顧客名_ラベル;
+        private Label 重要顧客_ラベル;
+        private DataGridView dataGridView1;
+        private Button 重要顧客追加ボタン;
+        private Button 顧客下移動ボタン;
+        private Button 顧客上移動ボタン;
+        private Button 顧客参照ボタン;
+        private Button 重要顧客削除ボタン;
+        private ToolTip toolTip1;
     }
 }
 

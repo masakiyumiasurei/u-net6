@@ -172,7 +172,7 @@ namespace u_net
             }
 
             OriginalClass ofn = new OriginalClass();
-            ofn.SetComboBox(自社担当者コード, "SELECT 買掛区分コード as Value, 買掛区分名 as Display, 番号 FROM M買掛区分 UNION SELECT '', '（全て）', 0 AS 番号 FROM M買掛区分 ORDER BY 番号");
+            ofn.SetComboBox(自社担当者コード, "SELECT 社員コード as Value, 氏名 as Display FROM M社員 WHERE ([パート] = 0) AND (退社 IS NULL) AND (ふりがな <> N'ん') AND (部 = N'営業部') AND (削除日時 IS NULL) ORDER BY ふりがな");
             自社担当者コード.SelectedIndex = -1;
         }
 
@@ -834,7 +834,9 @@ namespace u_net
 
         private void コマンド重要顧客_Click(object sender, EventArgs e)
         {
-
+            dataGridView1.Focus();
+            F_売上計画_重要顧客設定 form = new F_売上計画_重要顧客設定();
+            form.ShowDialog();
         }
 
         private void コマンド出力_Click(object sender, EventArgs e)
