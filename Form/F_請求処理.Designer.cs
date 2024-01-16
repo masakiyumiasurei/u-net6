@@ -56,17 +56,19 @@
             前回請求金額合計 = new TextBox();
             合計_ラベル = new Label();
             toolTip1 = new ToolTip(components);
-            請求明細書プレビューボタン = new Button();
-            開始ボタン = new Button();
+            panel3 = new Panel();
+            label5 = new Label();
+            label4 = new Label();
+            label3 = new Label();
             締め取り消しボタン = new Button();
+            開始ボタン = new Button();
+            請求明細書プレビューボタン = new Button();
             請求締日 = new TextBox();
             請求締日_ラベル = new Label();
-            label3 = new Label();
-            label4 = new Label();
-            label5 = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel2.SuspendLayout();
+            panel3.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
@@ -307,11 +309,12 @@
             dataGridView1.AllowUserToAddRows = false;
             dataGridView1.AllowUserToDeleteRows = false;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(0, 100);
+            dataGridView1.Dock = DockStyle.Fill;
+            dataGridView1.Location = new Point(0, 43);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
             dataGridView1.RowTemplate.Height = 29;
-            dataGridView1.Size = new Size(1205, 587);
+            dataGridView1.Size = new Size(1205, 680);
             dataGridView1.TabIndex = 1;
             dataGridView1.CellDoubleClick += dataGridView1_CellDoubleClick;
             dataGridView1.CellPainting += DataGridView1_CellPainting;
@@ -399,51 +402,111 @@
             合計_ラベル.Text = "合  計";
             合計_ラベル.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // 請求明細書プレビューボタン
+            // panel3
             // 
-            請求明細書プレビューボタン.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            請求明細書プレビューボタン.Image = (Image)resources.GetObject("請求明細書プレビューボタン.Image");
-            請求明細書プレビューボタン.Location = new Point(390, 53);
-            請求明細書プレビューボタン.Margin = new Padding(5);
-            請求明細書プレビューボタン.Name = "請求明細書プレビューボタン";
-            請求明細書プレビューボタン.RightToLeft = RightToLeft.Yes;
-            請求明細書プレビューボタン.Size = new Size(62, 35);
-            請求明細書プレビューボタン.TabIndex = 91;
-            請求明細書プレビューボタン.TabStop = false;
-            toolTip1.SetToolTip(請求明細書プレビューボタン, "請求明細書プレビュー");
-            請求明細書プレビューボタン.UseVisualStyleBackColor = true;
-            請求明細書プレビューボタン.Visible = false;
+            panel3.Controls.Add(label5);
+            panel3.Controls.Add(label4);
+            panel3.Controls.Add(label3);
+            panel3.Controls.Add(締め取り消しボタン);
+            panel3.Controls.Add(開始ボタン);
+            panel3.Controls.Add(請求明細書プレビューボタン);
+            panel3.Controls.Add(請求締日);
+            panel3.Controls.Add(請求締日_ラベル);
+            panel3.Location = new Point(0, 43);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(1205, 43);
+            panel3.TabIndex = 97;
+            // 
+            // label5
+            // 
+            label5.AllowDrop = true;
+            label5.AutoEllipsis = true;
+            label5.Font = new Font("BIZ UDゴシック", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            label5.ForeColor = SystemColors.ActiveCaptionText;
+            label5.ImageAlign = ContentAlignment.MiddleLeft;
+            label5.Location = new Point(864, 11);
+            label5.Margin = new Padding(0);
+            label5.Name = "label5";
+            label5.Size = new Size(89, 27);
+            label5.TabIndex = 104;
+            label5.Text = "A+B";
+            label5.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // label4
+            // 
+            label4.AllowDrop = true;
+            label4.AutoEllipsis = true;
+            label4.Font = new Font("BIZ UDゴシック", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            label4.ForeColor = SystemColors.ActiveCaptionText;
+            label4.ImageAlign = ContentAlignment.MiddleLeft;
+            label4.Location = new Point(774, 11);
+            label4.Margin = new Padding(0);
+            label4.Name = "label4";
+            label4.Size = new Size(89, 27);
+            label4.TabIndex = 103;
+            label4.Text = "B";
+            label4.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // label3
+            // 
+            label3.AllowDrop = true;
+            label3.AutoEllipsis = true;
+            label3.Font = new Font("BIZ UDゴシック", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            label3.ForeColor = SystemColors.ActiveCaptionText;
+            label3.ImageAlign = ContentAlignment.MiddleLeft;
+            label3.Location = new Point(685, 11);
+            label3.Margin = new Padding(0);
+            label3.Name = "label3";
+            label3.Size = new Size(89, 27);
+            label3.TabIndex = 102;
+            label3.Text = "A";
+            label3.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // 締め取り消しボタン
+            // 
+            締め取り消しボタン.Font = new Font("BIZ UDゴシック", 13F, FontStyle.Regular, GraphicsUnit.Point);
+            締め取り消しボタン.Image = (Image)resources.GetObject("締め取り消しボタン.Image");
+            締め取り消しボタン.Location = new Point(524, 4);
+            締め取り消しボタン.Margin = new Padding(5);
+            締め取り消しボタン.Name = "締め取り消しボタン";
+            締め取り消しボタン.RightToLeft = RightToLeft.Yes;
+            締め取り消しボタン.Size = new Size(62, 35);
+            締め取り消しボタン.TabIndex = 101;
+            締め取り消しボタン.TabStop = false;
+            toolTip1.SetToolTip(締め取り消しボタン, "締め取消");
+            締め取り消しボタン.UseVisualStyleBackColor = true;
+            締め取り消しボタン.Visible = false;
             // 
             // 開始ボタン
             // 
             開始ボタン.Font = new Font("BIZ UDゴシック", 13F, FontStyle.Regular, GraphicsUnit.Point);
             開始ボタン.ForeColor = Color.FromArgb(0, 0, 64);
-            開始ボタン.Location = new Point(455, 53);
+            開始ボタン.Location = new Point(458, 4);
             開始ボタン.Margin = new Padding(5);
             開始ボタン.Name = "開始ボタン";
             開始ボタン.RightToLeft = RightToLeft.Yes;
             開始ボタン.Size = new Size(62, 35);
-            開始ボタン.TabIndex = 92;
+            開始ボタン.TabIndex = 100;
             開始ボタン.TabStop = false;
             開始ボタン.Text = "✔";
             toolTip1.SetToolTip(開始ボタン, "締め処理実行");
             開始ボタン.UseVisualStyleBackColor = true;
             開始ボタン.Visible = false;
             // 
-            // 締め取り消しボタン
+            // 請求明細書プレビューボタン
             // 
-            締め取り消しボタン.Font = new Font("BIZ UDゴシック", 13F, FontStyle.Regular, GraphicsUnit.Point);
-            締め取り消しボタン.Image = (Image)resources.GetObject("締め取り消しボタン.Image");
-            締め取り消しボタン.Location = new Point(521, 53);
-            締め取り消しボタン.Margin = new Padding(5);
-            締め取り消しボタン.Name = "締め取り消しボタン";
-            締め取り消しボタン.RightToLeft = RightToLeft.Yes;
-            締め取り消しボタン.Size = new Size(62, 35);
-            締め取り消しボタン.TabIndex = 93;
-            締め取り消しボタン.TabStop = false;
-            toolTip1.SetToolTip(締め取り消しボタン, "締め取消");
-            締め取り消しボタン.UseVisualStyleBackColor = true;
-            締め取り消しボタン.Visible = false;
+            請求明細書プレビューボタン.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            請求明細書プレビューボタン.Image = (Image)resources.GetObject("請求明細書プレビューボタン.Image");
+            請求明細書プレビューボタン.Location = new Point(393, 4);
+            請求明細書プレビューボタン.Margin = new Padding(5);
+            請求明細書プレビューボタン.Name = "請求明細書プレビューボタン";
+            請求明細書プレビューボタン.RightToLeft = RightToLeft.Yes;
+            請求明細書プレビューボタン.Size = new Size(62, 35);
+            請求明細書プレビューボタン.TabIndex = 99;
+            請求明細書プレビューボタン.TabStop = false;
+            toolTip1.SetToolTip(請求明細書プレビューボタン, "請求明細書プレビュー");
+            請求明細書プレビューボタン.UseVisualStyleBackColor = true;
+            請求明細書プレビューボタン.Visible = false;
             // 
             // 請求締日
             // 
@@ -451,11 +514,11 @@
             請求締日.Enabled = false;
             請求締日.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             請求締日.ImeMode = ImeMode.Off;
-            請求締日.Location = new Point(113, 55);
+            請求締日.Location = new Point(116, 6);
             請求締日.Name = "請求締日";
             請求締日.ReadOnly = true;
             請求締日.Size = new Size(116, 20);
-            請求締日.TabIndex = 90;
+            請求締日.TabIndex = 98;
             請求締日.TabStop = false;
             // 
             // 請求締日_ラベル
@@ -465,72 +528,20 @@
             請求締日_ラベル.Font = new Font("BIZ UDゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             請求締日_ラベル.ForeColor = SystemColors.ActiveCaptionText;
             請求締日_ラベル.ImageAlign = ContentAlignment.MiddleLeft;
-            請求締日_ラベル.Location = new Point(24, 55);
+            請求締日_ラベル.Location = new Point(27, 6);
             請求締日_ラベル.Margin = new Padding(0);
             請求締日_ラベル.Name = "請求締日_ラベル";
             請求締日_ラベル.Size = new Size(86, 27);
-            請求締日_ラベル.TabIndex = 89;
+            請求締日_ラベル.TabIndex = 97;
             請求締日_ラベル.Text = "請求締日";
             請求締日_ラベル.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // label3
-            // 
-            label3.AllowDrop = true;
-            label3.AutoEllipsis = true;
-            label3.Font = new Font("BIZ UDゴシック", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            label3.ForeColor = SystemColors.ActiveCaptionText;
-            label3.ImageAlign = ContentAlignment.MiddleLeft;
-            label3.Location = new Point(682, 60);
-            label3.Margin = new Padding(0);
-            label3.Name = "label3";
-            label3.Size = new Size(89, 27);
-            label3.TabIndex = 94;
-            label3.Text = "A";
-            label3.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // label4
-            // 
-            label4.AllowDrop = true;
-            label4.AutoEllipsis = true;
-            label4.Font = new Font("BIZ UDゴシック", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            label4.ForeColor = SystemColors.ActiveCaptionText;
-            label4.ImageAlign = ContentAlignment.MiddleLeft;
-            label4.Location = new Point(771, 60);
-            label4.Margin = new Padding(0);
-            label4.Name = "label4";
-            label4.Size = new Size(89, 27);
-            label4.TabIndex = 95;
-            label4.Text = "B";
-            label4.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // label5
-            // 
-            label5.AllowDrop = true;
-            label5.AutoEllipsis = true;
-            label5.Font = new Font("BIZ UDゴシック", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            label5.ForeColor = SystemColors.ActiveCaptionText;
-            label5.ImageAlign = ContentAlignment.MiddleLeft;
-            label5.Location = new Point(861, 60);
-            label5.Margin = new Padding(0);
-            label5.Name = "label5";
-            label5.Size = new Size(89, 27);
-            label5.TabIndex = 96;
-            label5.Text = "A+B";
-            label5.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // F_請求処理
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1205, 723);
-            Controls.Add(label5);
-            Controls.Add(label4);
-            Controls.Add(label3);
-            Controls.Add(締め取り消しボタン);
-            Controls.Add(開始ボタン);
-            Controls.Add(請求明細書プレビューボタン);
-            Controls.Add(請求締日);
-            Controls.Add(請求締日_ラベル);
+            Controls.Add(panel3);
             Controls.Add(panel2);
             Controls.Add(dataGridView1);
             Controls.Add(panel1);
@@ -544,8 +555,9 @@
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
+            panel3.ResumeLayout(false);
+            panel3.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -695,20 +707,21 @@
         private Button コマンド初期化;
         private Button コマンド登録;
         private ToolTip toolTip1;
-        private TextBox 請求締日;
-        private Label 請求締日_ラベル;
-        private Button 請求明細書プレビューボタン;
-        private Button 開始ボタン;
-        private Button 締め取り消しボタン;
-        private Label label3;
-        private Label label4;
         private Label 合計_ラベル;
-        private Label label5;
         private TextBox 前回請求金額合計;
         private TextBox 販売金額合計;
         private TextBox 入金金額合計;
         private TextBox 今回請求金額合計;
         private TextBox 販売金額総合計;
         private TextBox 販売金額消費税合計;
+        private Panel panel3;
+        private Label label5;
+        private Label label4;
+        private Label label3;
+        private Button 締め取り消しボタン;
+        private Button 開始ボタン;
+        private Button 請求明細書プレビューボタン;
+        private TextBox 請求締日;
+        private Label 請求締日_ラベル;
     }
 }
