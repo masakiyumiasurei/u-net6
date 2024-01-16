@@ -188,10 +188,6 @@ namespace u_net
             this.受入検査ランク.DisplayMember = "Value";
             this.受入検査ランク.ValueMember = "Key";
 
-
-
-
-
             try
             {
                 this.SuspendLayout();
@@ -602,7 +598,7 @@ namespace u_net
             }
             finally
             {
-                
+
                 this.DoubleBuffered = false;
                 Cursor.Current = Cursors.Default;
             }
@@ -1009,7 +1005,7 @@ namespace u_net
                     return;
 
                 // ログインユーザーが表示データの登録ユーザーでなければ認証する
-            
+
                 using (var authenticationForm = new F_認証())
                 {
                     authenticationForm.args = CommonConstants.USER_CODE_TECH;
@@ -1021,7 +1017,7 @@ namespace u_net
                         return;
                     }
                 }
-                
+
 
                 // 部品情報削除
                 FunctionClass fn = new FunctionClass();
@@ -1562,7 +1558,7 @@ namespace u_net
                         FunctionClass fn = new FunctionClass();
                         fn.DoWait("読み込んでいます...");
 
-     
+
 
 
                         string query = "select max(版数) as 最終版数 from M部品履歴 where 部品コード='" + 部品コード.Text + "' group by 部品コード";
@@ -1643,7 +1639,7 @@ namespace u_net
                 return;
             }
 
-            if(部品使用先.SelectedRows.Count > 0)
+            if (部品使用先.SelectedRows.Count > 0)
             {
                 F_ユニット targetform = new F_ユニット();
 
@@ -2793,6 +2789,11 @@ namespace u_net
             toolStripStatusLabel2.Text = "各種項目の説明";
         }
 
-
+        private void pictureBox1_Paint(object sender, PaintEventArgs e)
+        {
+            e.Graphics.DrawLine(Pens.Black, new Point(5, 0), new Point(19, 0));
+            e.Graphics.DrawLine(Pens.Black, new Point(19, 0), new Point(19, 254));
+            e.Graphics.DrawLine(Pens.Black, new Point(5, 254), new Point(19, 254));
+        }
     }
 }

@@ -166,6 +166,9 @@
     <Compile Update="Form\F_出荷管理旧.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Form\F_売上計画_重要顧客設定.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Form\F_振込繰越.cs">
       <SubType>Form</SubType>
     </Compile>
