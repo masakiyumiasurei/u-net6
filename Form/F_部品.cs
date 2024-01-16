@@ -2791,7 +2791,7 @@ namespace u_net
 
         private void pictureBox1_Paint(object sender, PaintEventArgs e)
         {
-            e.Graphics.DrawLine(Pens.Black, new Point(5,0), new Point(19,0));
+            e.Graphics.DrawLine(Pens.Black, new Point(5, 0), new Point(19, 0));
             e.Graphics.DrawLine(Pens.Black, new Point(19, 0), new Point(19, 254));
             e.Graphics.DrawLine(Pens.Black, new Point(5, 254), new Point(19, 254));
         }
