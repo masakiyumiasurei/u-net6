@@ -37,23 +37,16 @@
             // 
             gcMultiRow1.EditMode = GrapeCity.Win.MultiRow.EditMode.EditOnEnter;
             gcMultiRow1.Location = new Point(0, 0);
-            gcMultiRow1.Margin = new Padding(4);
+            gcMultiRow1.Margin = new Padding(5);
             gcMultiRow1.Name = "gcMultiRow1";
-            gcMultiRow1.Size = new Size(692, 294);
+            gcMultiRow1.Size = new Size(885, 416);
             gcMultiRow1.TabIndex = 0;
             gcMultiRow1.Template = 部品_資料添付テンプレート1;
-            gcMultiRow1.TemplateScaleSize = new SizeF(1.16666663F, 1.25F);
+            gcMultiRow1.TemplateScaleSize = new SizeF(1.33333337F, 1.66666675F);
             gcMultiRow1.Text = "gcMultiRow1";
-            gcMultiRow1.RowsAdded += gcMultiRow1_RowsAdded;
             gcMultiRow1.RowsRemoved += gcMultiRow1_RowsRemoved;
-            gcMultiRow1.CellValidating += gcMultiRow1_CellValidating;
-            gcMultiRow1.CellValidated += gcMultiRow1_CellValidated;
-            gcMultiRow1.CellEnter += gcMultiRow1_CellEnter;
-            gcMultiRow1.RowEnter += gcMultiRow1_RowEnter;
-            gcMultiRow1.RowLeave += gcMultiRow1_RowLeave;
-            gcMultiRow1.EditingControlShowing += gcMultiRow1_EditingControlShowing;
-            gcMultiRow1.CellContentClick += gcMultiRow1_CellContentClick;
-            gcMultiRow1.CellContentButtonClick += gcMultiRow1_CellEnter;
+            gcMultiRow1.DefaultValuesNeeded += gcMultiRow1_DefaultValuesNeeded;
+            gcMultiRow1.CellContentButtonClick += gcMultiRow1_CellContentButtonClick;
             // 
             // 部品_資料添付テンプレート1
             // 
@@ -67,12 +60,12 @@
             // 
             // 部品_資料添付
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(gcMultiRow1);
-            Margin = new Padding(4);
+            Margin = new Padding(5);
             Name = "部品_資料添付";
-            Size = new Size(693, 294);
+            Size = new Size(887, 421);
             Load += 部品_資料添付_Load;
             ((System.ComponentModel.ISupportInitialize)gcMultiRow1).EndInit();
             ResumeLayout(false);

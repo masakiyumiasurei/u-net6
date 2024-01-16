@@ -193,15 +193,15 @@ namespace u_net
             // 部品_資料添付1
             // 
             部品_資料添付1.Location = new Point(2, 1);
-            部品_資料添付1.Margin = new Padding(4, 4, 4, 4);
+            部品_資料添付1.Margin = new Padding(4);
             部品_資料添付1.Name = "部品_資料添付1";
-            部品_資料添付1.Size = new Size(672, 294);
+            部品_資料添付1.Size = new Size(937, 390);
             部品_資料添付1.TabIndex = 0;
             // 
             // F_部品_資料添付
             // 
             BackColor = SystemColors.Control;
-            ClientSize = new Size(673, 296);
+            ClientSize = new Size(937, 396);
             Controls.Add(部品_資料添付1);
             ImeMode = ImeMode.Off;
             KeyPreview = true;
