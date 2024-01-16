@@ -85,14 +85,14 @@ namespace u_net
 
                 //F_売上計画クラスからデータを取得し、現在のフォームのコントロールに設定
 
-                if (frmTarget.str自社担当者コード != "")
-                {
-                    this.担当者コード.SelectedItem = frmTarget.str自社担当者コード;
-                }
-                else
-                {
-                    this.担当者コード.SelectedIndex = -1;
-                }
+                //if (frmTarget.str自社担当者コード != "")
+                //{
+                //    this.担当者コード.SelectedItem = frmTarget.str自社担当者コード;
+                //}
+                //else
+                //{
+                //    this.担当者コード.SelectedIndex = -1;
+                //}
                 this.顧客コード.Text = frmTarget.str顧客コード;
                 this.顧客名.Text = frmTarget.str顧客名;
             }
@@ -111,7 +111,7 @@ namespace u_net
             {
                 F_売上計画? frmTarget = Application.OpenForms.OfType<F_売上計画>().FirstOrDefault();
 
-                frmTarget.str自社担当者コード = Nz(this.担当者コード.Text);
+                //frmTarget.str自社担当者コード = Nz(this.担当者コード.Text);
                 frmTarget.str顧客コード = Nz(this.顧客コード.Text);
                 frmTarget.str顧客名 = Nz(this.顧客名.Text);
 
