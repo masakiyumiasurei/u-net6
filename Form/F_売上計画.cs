@@ -1098,10 +1098,8 @@ namespace u_net
 
         private void コマンド重要顧客_Click(object sender, EventArgs e)
         {
-            //F_売上計画_重要顧客設定 targetform = new F_売上計画_重要顧客設定();
-            //targetform.TheYear = TheYear;
-            //targetform.SalesmanCode = SalesmanCode;
-            //targetform.ShowDialog();
+            F_売上計画_重要顧客設定 targetform = new F_売上計画_重要顧客設定();
+            targetform.ShowDialog();
         }
 
         private void コマンド出力_Click(object sender, EventArgs e)
