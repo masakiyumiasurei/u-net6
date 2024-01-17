@@ -53,6 +53,33 @@ namespace u_net.Public
             return logPixelX;
         }
 
+        [DllImport("mpr.dll", CharSet = CharSet.Auto)]
+        public static extern int WNetGetUser(
+        [MarshalAs(UnmanagedType.LPTStr)] string lpName,
+        [MarshalAs(UnmanagedType.LPTStr)] StringBuilder lpUserName,
+        ref int lpnLength
+    );
+
+        // ネットワークユーザー名を取得するメソッド
+        public static string NetUserName()
+        {
+            const int MAX_BUFFER = 255;
+            StringBuilder sb = new StringBuilder(MAX_BUFFER);
+
+            int bufferSize = MAX_BUFFER;
+            int result = WNetGetUser("", sb, ref bufferSize);
+
+            if (result == 0)
+            {
+                // APIの返り値が正常なら、後続のNullを取り除く
+                // これはAPIの関数から値を取得する場合にしばしば使用する定型的な処理
+                return sb.ToString().TrimEnd('\0');
+            }
+            else
+            {
+                return "";
+            }
+        }
 
     }
 }

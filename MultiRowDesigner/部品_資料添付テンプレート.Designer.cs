@@ -37,13 +37,13 @@
             GrapeCity.Win.MultiRow.Border border2 = new GrapeCity.Win.MultiRow.Border();
             GrapeCity.Win.MultiRow.TextLengthValidator textLengthValidator2 = new GrapeCity.Win.MultiRow.TextLengthValidator();
             GrapeCity.Win.MultiRow.CellStyle cellStyle4 = new GrapeCity.Win.MultiRow.CellStyle();
-            GrapeCity.Win.MultiRow.Border border3 = new GrapeCity.Win.MultiRow.Border();
-            GrapeCity.Win.MultiRow.TextLengthValidator textLengthValidator3 = new GrapeCity.Win.MultiRow.TextLengthValidator();
             GrapeCity.Win.MultiRow.CellStyle cellStyle5 = new GrapeCity.Win.MultiRow.CellStyle();
             GrapeCity.Win.MultiRow.CellStyle cellStyle6 = new GrapeCity.Win.MultiRow.CellStyle();
             GrapeCity.Win.MultiRow.CellStyle cellStyle7 = new GrapeCity.Win.MultiRow.CellStyle();
             GrapeCity.Win.MultiRow.CellStyle cellStyle8 = new GrapeCity.Win.MultiRow.CellStyle();
             GrapeCity.Win.MultiRow.CellStyle cellStyle9 = new GrapeCity.Win.MultiRow.CellStyle();
+            GrapeCity.Win.MultiRow.Border border3 = new GrapeCity.Win.MultiRow.Border();
+            GrapeCity.Win.MultiRow.TextLengthValidator textLengthValidator3 = new GrapeCity.Win.MultiRow.TextLengthValidator();
             GrapeCity.Win.MultiRow.CellStyle cellStyle10 = new GrapeCity.Win.MultiRow.CellStyle();
             GrapeCity.Win.MultiRow.Border border4 = new GrapeCity.Win.MultiRow.Border();
             GrapeCity.Win.MultiRow.TextLengthValidator textLengthValidator4 = new GrapeCity.Win.MultiRow.TextLengthValidator();
@@ -61,7 +61,6 @@
             GrapeCity.Win.MultiRow.TextLengthValidator textLengthValidator8 = new GrapeCity.Win.MultiRow.TextLengthValidator();
             GrapeCity.Win.MultiRow.CellStyle cellStyle15 = new GrapeCity.Win.MultiRow.CellStyle();
             GrapeCity.Win.MultiRow.Border border9 = new GrapeCity.Win.MultiRow.Border();
-            GrapeCity.Win.MultiRow.TextLengthValidator textLengthValidator9 = new GrapeCity.Win.MultiRow.TextLengthValidator();
             GrapeCity.Win.MultiRow.CellStyle cellStyle16 = new GrapeCity.Win.MultiRow.CellStyle();
             GrapeCity.Win.MultiRow.Border border10 = new GrapeCity.Win.MultiRow.Border();
             GrapeCity.Win.MultiRow.CellStyle cellStyle17 = new GrapeCity.Win.MultiRow.CellStyle();
@@ -82,10 +81,12 @@
             GrapeCity.Win.MultiRow.Border border18 = new GrapeCity.Win.MultiRow.Border();
             GrapeCity.Win.MultiRow.CellStyle cellStyle25 = new GrapeCity.Win.MultiRow.CellStyle();
             GrapeCity.Win.MultiRow.Border border19 = new GrapeCity.Win.MultiRow.Border();
+            GrapeCity.Win.MultiRow.TextLengthValidator textLengthValidator9 = new GrapeCity.Win.MultiRow.TextLengthValidator();
+            GrapeCity.Win.MultiRow.CellStyle cellStyle26 = new GrapeCity.Win.MultiRow.CellStyle();
+            GrapeCity.Win.MultiRow.Border border20 = new GrapeCity.Win.MultiRow.Border();
             this.ダイアログ = new GrapeCity.Win.MultiRow.ButtonCell();
             this.PartCode = new GrapeCity.Win.MultiRow.TextBoxCell();
             this.PartRevision = new GrapeCity.Win.MultiRow.TextBoxCell();
-            this.OrderNumber = new GrapeCity.Win.MultiRow.TextBoxCell();
             this.添付ボタン = new GrapeCity.Win.MultiRow.ButtonCell();
             this.プレビューボタン = new GrapeCity.Win.MultiRow.ButtonCell();
             this.保存ボタン = new GrapeCity.Win.MultiRow.ButtonCell();
@@ -107,13 +108,14 @@
             this.labelCell8 = new GrapeCity.Win.MultiRow.LabelCell();
             this.labelCell9 = new GrapeCity.Win.MultiRow.LabelCell();
             this.labelCell10 = new GrapeCity.Win.MultiRow.LabelCell();
+            this.Data = new GrapeCity.Win.MultiRow.TextBoxCell();
+            this.OrderNumber = new GrapeCity.Win.MultiRow.RowHeaderCell();
             // 
             // Row
             // 
             this.Row.Cells.Add(this.ダイアログ);
             this.Row.Cells.Add(this.PartCode);
             this.Row.Cells.Add(this.PartRevision);
-            this.Row.Cells.Add(this.OrderNumber);
             this.Row.Cells.Add(this.添付ボタン);
             this.Row.Cells.Add(this.プレビューボタン);
             this.Row.Cells.Add(this.保存ボタン);
@@ -135,8 +137,10 @@
             this.Row.Cells.Add(this.labelCell8);
             this.Row.Cells.Add(this.labelCell9);
             this.Row.Cells.Add(this.labelCell10);
-            this.Row.Height = 218;
-            this.Row.Width = 577;
+            this.Row.Cells.Add(this.Data);
+            this.Row.Cells.Add(this.OrderNumber);
+            this.Row.Height = 247;
+            this.Row.Width = 685;
             // 
             // ダイアログ
             // 
@@ -157,6 +161,7 @@
             // PartCode
             // 
             this.PartCode.DataField = "PartCode";
+            this.PartCode.Enabled = false;
             this.PartCode.Location = new System.Drawing.Point(128, 7);
             this.PartCode.Name = "PartCode";
             this.PartCode.Size = new System.Drawing.Size(82, 16);
@@ -174,6 +179,7 @@
             // PartRevision
             // 
             this.PartRevision.DataField = "PartRevision";
+            this.PartRevision.Enabled = false;
             this.PartRevision.Location = new System.Drawing.Point(128, 31);
             this.PartRevision.Name = "PartRevision";
             this.PartRevision.Size = new System.Drawing.Size(34, 16);
@@ -188,36 +194,18 @@
             textLengthValidator2.MinimumLength = 10;
             this.PartRevision.Validators.Add(textLengthValidator2);
             // 
-            // OrderNumber
-            // 
-            this.OrderNumber.DataField = "OrderNumber";
-            this.OrderNumber.Location = new System.Drawing.Point(116, 75);
-            this.OrderNumber.Name = "OrderNumber";
-            this.OrderNumber.ReadOnly = true;
-            this.OrderNumber.Size = new System.Drawing.Size(20, 16);
-            cellStyle4.BackColor = System.Drawing.Color.White;
-            border3.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
-            cellStyle4.Border = border3;
-            cellStyle4.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
-            cellStyle4.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.OrderNumber.Style = cellStyle4;
-            this.OrderNumber.TabIndex = 13;
-            textLengthValidator3.LengthUnit = GrapeCity.Win.MultiRow.LengthUnit.TextElement;
-            textLengthValidator3.MinimumLength = 10;
-            this.OrderNumber.Validators.Add(textLengthValidator3);
-            // 
             // 添付ボタン
             // 
             this.添付ボタン.ButtonCommand = GrapeCity.Win.MultiRow.RowActionButtonCommands.Remove;
             this.添付ボタン.Location = new System.Drawing.Point(259, 111);
             this.添付ボタン.Name = "添付ボタン";
             this.添付ボタン.Size = new System.Drawing.Size(78, 31);
-            cellStyle5.BackColor = System.Drawing.Color.White;
-            cellStyle5.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
-            cellStyle5.ImeMode = System.Windows.Forms.ImeMode.Off;
-            cellStyle5.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            cellStyle5.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
-            this.添付ボタン.Style = cellStyle5;
+            cellStyle4.BackColor = System.Drawing.Color.White;
+            cellStyle4.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
+            cellStyle4.ImeMode = System.Windows.Forms.ImeMode.Off;
+            cellStyle4.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            cellStyle4.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
+            this.添付ボタン.Style = cellStyle4;
             this.添付ボタン.TabIndex = 3;
             this.添付ボタン.Value = "添付";
             // 
@@ -227,12 +215,12 @@
             this.プレビューボタン.Location = new System.Drawing.Point(259, 152);
             this.プレビューボタン.Name = "プレビューボタン";
             this.プレビューボタン.Size = new System.Drawing.Size(78, 31);
-            cellStyle6.BackColor = System.Drawing.Color.White;
-            cellStyle6.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
-            cellStyle6.ImeMode = System.Windows.Forms.ImeMode.Off;
-            cellStyle6.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            cellStyle6.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
-            this.プレビューボタン.Style = cellStyle6;
+            cellStyle5.BackColor = System.Drawing.Color.White;
+            cellStyle5.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
+            cellStyle5.ImeMode = System.Windows.Forms.ImeMode.Off;
+            cellStyle5.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            cellStyle5.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
+            this.プレビューボタン.Style = cellStyle5;
             this.プレビューボタン.TabIndex = 4;
             this.プレビューボタン.Value = "プレビュー";
             // 
@@ -242,14 +230,15 @@
             this.保存ボタン.Location = new System.Drawing.Point(363, 152);
             this.保存ボタン.Name = "保存ボタン";
             this.保存ボタン.Size = new System.Drawing.Size(78, 31);
-            cellStyle7.BackColor = System.Drawing.Color.White;
-            cellStyle7.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
-            cellStyle7.ImeMode = System.Windows.Forms.ImeMode.Off;
-            cellStyle7.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            cellStyle7.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
-            this.保存ボタン.Style = cellStyle7;
+            cellStyle6.BackColor = System.Drawing.Color.White;
+            cellStyle6.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
+            cellStyle6.ImeMode = System.Windows.Forms.ImeMode.Off;
+            cellStyle6.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            cellStyle6.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
+            this.保存ボタン.Style = cellStyle6;
             this.保存ボタン.TabIndex = 14;
             this.保存ボタン.Value = "保存";
+            this.保存ボタン.Visible = false;
             // 
             // 削除ボタン
             // 
@@ -257,12 +246,12 @@
             this.削除ボタン.Location = new System.Drawing.Point(363, 111);
             this.削除ボタン.Name = "削除ボタン";
             this.削除ボタン.Size = new System.Drawing.Size(78, 31);
-            cellStyle8.BackColor = System.Drawing.Color.White;
-            cellStyle8.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
-            cellStyle8.ImeMode = System.Windows.Forms.ImeMode.Off;
-            cellStyle8.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            cellStyle8.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
-            this.削除ボタン.Style = cellStyle8;
+            cellStyle7.BackColor = System.Drawing.Color.White;
+            cellStyle7.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
+            cellStyle7.ImeMode = System.Windows.Forms.ImeMode.Off;
+            cellStyle7.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            cellStyle7.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
+            this.削除ボタン.Style = cellStyle7;
             this.削除ボタン.TabIndex = 5;
             this.削除ボタン.Value = "削除";
             // 
@@ -272,12 +261,12 @@
             this.閉じるボタン.Location = new System.Drawing.Point(472, 180);
             this.閉じるボタン.Name = "閉じるボタン";
             this.閉じるボタン.Size = new System.Drawing.Size(85, 31);
-            cellStyle9.BackColor = System.Drawing.Color.White;
-            cellStyle9.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
-            cellStyle9.ImeMode = System.Windows.Forms.ImeMode.Off;
-            cellStyle9.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            cellStyle9.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
-            this.閉じるボタン.Style = cellStyle9;
+            cellStyle8.BackColor = System.Drawing.Color.White;
+            cellStyle8.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
+            cellStyle8.ImeMode = System.Windows.Forms.ImeMode.Off;
+            cellStyle8.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            cellStyle8.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
+            this.閉じるボタン.Style = cellStyle8;
             this.閉じるボタン.TabIndex = 15;
             this.閉じるボタン.Value = "閉じる";
             // 
@@ -287,116 +276,117 @@
             this.DataName.Location = new System.Drawing.Point(116, 195);
             this.DataName.Name = "DataName";
             this.DataName.Size = new System.Drawing.Size(326, 16);
+            cellStyle9.BackColor = System.Drawing.Color.White;
+            border3.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
+            cellStyle9.Border = border3;
+            cellStyle9.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
+            cellStyle9.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.DataName.Style = cellStyle9;
+            this.DataName.TabIndex = 25;
+            textLengthValidator3.LengthUnit = GrapeCity.Win.MultiRow.LengthUnit.TextElement;
+            textLengthValidator3.MinimumLength = 10;
+            this.DataName.Validators.Add(textLengthValidator3);
+            // 
+            // SourcePath
+            // 
+            this.SourcePath.DataField = "SourcePath";
+            this.SourcePath.Location = new System.Drawing.Point(472, 67);
+            this.SourcePath.Name = "SourcePath";
+            this.SourcePath.Size = new System.Drawing.Size(171, 16);
             cellStyle10.BackColor = System.Drawing.Color.White;
             border4.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
             cellStyle10.Border = border4;
             cellStyle10.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
             cellStyle10.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.DataName.Style = cellStyle10;
-            this.DataName.TabIndex = 25;
+            this.SourcePath.Style = cellStyle10;
+            this.SourcePath.TabIndex = 21;
             textLengthValidator4.LengthUnit = GrapeCity.Win.MultiRow.LengthUnit.TextElement;
             textLengthValidator4.MinimumLength = 10;
-            this.DataName.Validators.Add(textLengthValidator4);
+            this.SourcePath.Validators.Add(textLengthValidator4);
             // 
-            // SourcePath
+            // DetailNumber
             // 
-            this.SourcePath.DataField = "SourcePath";
-            this.SourcePath.Location = new System.Drawing.Point(249, 45);
-            this.SourcePath.Name = "SourcePath";
-            this.SourcePath.Size = new System.Drawing.Size(53, 16);
+            this.DetailNumber.DataField = "DetailNumber";
+            this.DetailNumber.Location = new System.Drawing.Point(472, 90);
+            this.DetailNumber.Name = "DetailNumber";
+            this.DetailNumber.Size = new System.Drawing.Size(171, 16);
             cellStyle11.BackColor = System.Drawing.Color.White;
             border5.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
             cellStyle11.Border = border5;
             cellStyle11.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
             cellStyle11.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.SourcePath.Style = cellStyle11;
-            this.SourcePath.TabIndex = 21;
+            this.DetailNumber.Style = cellStyle11;
+            this.DetailNumber.TabIndex = 23;
             textLengthValidator5.LengthUnit = GrapeCity.Win.MultiRow.LengthUnit.TextElement;
             textLengthValidator5.MinimumLength = 10;
-            this.SourcePath.Validators.Add(textLengthValidator5);
-            this.SourcePath.Visible = false;
+            this.DetailNumber.Validators.Add(textLengthValidator5);
             // 
-            // DetailNumber
+            // UpdateUserCode
             // 
-            this.DetailNumber.DataField = "DetailNumber";
-            this.DetailNumber.Location = new System.Drawing.Point(249, 69);
-            this.DetailNumber.Name = "DetailNumber";
-            this.DetailNumber.Size = new System.Drawing.Size(35, 16);
+            this.UpdateUserCode.DataField = "UpdateUserCode";
+            this.UpdateUserCode.Enabled = false;
+            this.UpdateUserCode.Location = new System.Drawing.Point(507, 7);
+            this.UpdateUserCode.Name = "UpdateUserCode";
+            this.UpdateUserCode.ReadOnly = true;
+            this.UpdateUserCode.Size = new System.Drawing.Size(136, 13);
             cellStyle12.BackColor = System.Drawing.Color.White;
             border6.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
             cellStyle12.Border = border6;
             cellStyle12.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
             cellStyle12.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.DetailNumber.Style = cellStyle12;
-            this.DetailNumber.TabIndex = 23;
+            this.UpdateUserCode.Style = cellStyle12;
+            this.UpdateUserCode.TabIndex = 7;
             textLengthValidator6.LengthUnit = GrapeCity.Win.MultiRow.LengthUnit.TextElement;
             textLengthValidator6.MinimumLength = 10;
-            this.DetailNumber.Validators.Add(textLengthValidator6);
-            this.DetailNumber.Visible = false;
+            this.UpdateUserCode.Validators.Add(textLengthValidator6);
             // 
-            // UpdateUserCode
+            // UpdateUserFullName
             // 
-            this.UpdateUserCode.DataField = "UpdateUserCode";
-            this.UpdateUserCode.Location = new System.Drawing.Point(409, 4);
-            this.UpdateUserCode.Name = "UpdateUserCode";
-            this.UpdateUserCode.ReadOnly = true;
-            this.UpdateUserCode.Size = new System.Drawing.Size(136, 16);
+            this.UpdateUserFullName.DataField = "UpdateUserFullName";
+            this.UpdateUserFullName.Enabled = false;
+            this.UpdateUserFullName.Location = new System.Drawing.Point(507, 28);
+            this.UpdateUserFullName.Name = "UpdateUserFullName";
+            this.UpdateUserFullName.ReadOnly = true;
+            this.UpdateUserFullName.Size = new System.Drawing.Size(136, 13);
             cellStyle13.BackColor = System.Drawing.Color.White;
             border7.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
             cellStyle13.Border = border7;
             cellStyle13.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
             cellStyle13.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.UpdateUserCode.Style = cellStyle13;
-            this.UpdateUserCode.TabIndex = 7;
+            this.UpdateUserFullName.Style = cellStyle13;
+            this.UpdateUserFullName.TabIndex = 9;
             textLengthValidator7.LengthUnit = GrapeCity.Win.MultiRow.LengthUnit.TextElement;
             textLengthValidator7.MinimumLength = 10;
-            this.UpdateUserCode.Validators.Add(textLengthValidator7);
+            this.UpdateUserFullName.Validators.Add(textLengthValidator7);
             // 
-            // UpdateUserFullName
+            // UpdateDate
             // 
-            this.UpdateUserFullName.DataField = "UpdateUserFullName";
-            this.UpdateUserFullName.Location = new System.Drawing.Point(409, 25);
-            this.UpdateUserFullName.Name = "UpdateUserFullName";
-            this.UpdateUserFullName.ReadOnly = true;
-            this.UpdateUserFullName.Size = new System.Drawing.Size(136, 16);
+            this.UpdateDate.DataField = "UpdateDate";
+            this.UpdateDate.Enabled = false;
+            this.UpdateDate.Location = new System.Drawing.Point(507, 49);
+            this.UpdateDate.Name = "UpdateDate";
+            this.UpdateDate.ReadOnly = true;
+            this.UpdateDate.Size = new System.Drawing.Size(136, 13);
             cellStyle14.BackColor = System.Drawing.Color.White;
             border8.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
             cellStyle14.Border = border8;
             cellStyle14.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
             cellStyle14.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.UpdateUserFullName.Style = cellStyle14;
-            this.UpdateUserFullName.TabIndex = 9;
+            this.UpdateDate.Style = cellStyle14;
+            this.UpdateDate.TabIndex = 11;
             textLengthValidator8.LengthUnit = GrapeCity.Win.MultiRow.LengthUnit.TextElement;
             textLengthValidator8.MinimumLength = 10;
-            this.UpdateUserFullName.Validators.Add(textLengthValidator8);
-            // 
-            // UpdateDate
-            // 
-            this.UpdateDate.DataField = "UpdateDate";
-            this.UpdateDate.Location = new System.Drawing.Point(409, 46);
-            this.UpdateDate.Name = "UpdateDate";
-            this.UpdateDate.ReadOnly = true;
-            this.UpdateDate.Size = new System.Drawing.Size(136, 16);
-            cellStyle15.BackColor = System.Drawing.Color.White;
-            border9.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
-            cellStyle15.Border = border9;
-            cellStyle15.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
-            cellStyle15.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.UpdateDate.Style = cellStyle15;
-            this.UpdateDate.TabIndex = 11;
-            textLengthValidator9.LengthUnit = GrapeCity.Win.MultiRow.LengthUnit.TextElement;
-            textLengthValidator9.MinimumLength = 10;
-            this.UpdateDate.Validators.Add(textLengthValidator9);
+            this.UpdateDate.Validators.Add(textLengthValidator8);
             // 
             // labelCell1
             // 
             this.labelCell1.Location = new System.Drawing.Point(59, 7);
             this.labelCell1.Name = "labelCell1";
             this.labelCell1.Size = new System.Drawing.Size(67, 16);
-            cellStyle16.Border = border10;
-            cellStyle16.Font = new System.Drawing.Font("BIZ UDゴシック", 9F);
-            cellStyle16.ImeMode = System.Windows.Forms.ImeMode.Off;
-            this.labelCell1.Style = cellStyle16;
+            cellStyle15.Border = border9;
+            cellStyle15.Font = new System.Drawing.Font("BIZ UDゴシック", 9F);
+            cellStyle15.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.labelCell1.Style = cellStyle15;
             this.labelCell1.TabIndex = 26;
             this.labelCell1.TabStop = false;
             this.labelCell1.Value = "部品コード:";
@@ -406,10 +396,10 @@
             this.labelCell2.Location = new System.Drawing.Point(59, 31);
             this.labelCell2.Name = "labelCell2";
             this.labelCell2.Size = new System.Drawing.Size(67, 16);
-            cellStyle17.Border = border11;
-            cellStyle17.Font = new System.Drawing.Font("BIZ UDゴシック", 9F);
-            cellStyle17.ImeMode = System.Windows.Forms.ImeMode.Off;
-            this.labelCell2.Style = cellStyle17;
+            cellStyle16.Border = border10;
+            cellStyle16.Font = new System.Drawing.Font("BIZ UDゴシック", 9F);
+            cellStyle16.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.labelCell2.Style = cellStyle16;
             this.labelCell2.TabIndex = 27;
             this.labelCell2.TabStop = false;
             this.labelCell2.Value = "版数:";
@@ -419,10 +409,10 @@
             this.labelCell3.Location = new System.Drawing.Point(51, 75);
             this.labelCell3.Name = "labelCell3";
             this.labelCell3.Size = new System.Drawing.Size(65, 16);
-            cellStyle18.Border = border12;
-            cellStyle18.Font = new System.Drawing.Font("BIZ UDゴシック", 9F);
-            cellStyle18.ImeMode = System.Windows.Forms.ImeMode.Off;
-            this.labelCell3.Style = cellStyle18;
+            cellStyle17.Border = border11;
+            cellStyle17.Font = new System.Drawing.Font("BIZ UDゴシック", 9F);
+            cellStyle17.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.labelCell3.Style = cellStyle17;
             this.labelCell3.TabIndex = 28;
             this.labelCell3.TabStop = false;
             this.labelCell3.Value = "添付番号:";
@@ -432,10 +422,10 @@
             this.labelCell4.Location = new System.Drawing.Point(51, 106);
             this.labelCell4.Name = "labelCell4";
             this.labelCell4.Size = new System.Drawing.Size(65, 16);
-            cellStyle19.Border = border13;
-            cellStyle19.Font = new System.Drawing.Font("BIZ UDゴシック", 9F);
-            cellStyle19.ImeMode = System.Windows.Forms.ImeMode.Off;
-            this.labelCell4.Style = cellStyle19;
+            cellStyle18.Border = border12;
+            cellStyle18.Font = new System.Drawing.Font("BIZ UDゴシック", 9F);
+            cellStyle18.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.labelCell4.Style = cellStyle18;
             this.labelCell4.TabIndex = 29;
             this.labelCell4.TabStop = false;
             this.labelCell4.Value = "添付資料";
@@ -445,83 +435,120 @@
             this.labelCell5.Location = new System.Drawing.Point(39, 195);
             this.labelCell5.Name = "labelCell5";
             this.labelCell5.Size = new System.Drawing.Size(65, 16);
-            cellStyle20.Border = border14;
-            cellStyle20.Font = new System.Drawing.Font("BIZ UDゴシック", 9F);
-            cellStyle20.ImeMode = System.Windows.Forms.ImeMode.Off;
-            this.labelCell5.Style = cellStyle20;
+            cellStyle19.Border = border13;
+            cellStyle19.Font = new System.Drawing.Font("BIZ UDゴシック", 9F);
+            cellStyle19.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.labelCell5.Style = cellStyle19;
             this.labelCell5.TabIndex = 30;
             this.labelCell5.TabStop = false;
             this.labelCell5.Value = "添付資料名:";
             // 
             // labelCell6
             // 
-            this.labelCell6.Location = new System.Drawing.Point(208, 45);
+            this.labelCell6.Location = new System.Drawing.Point(390, 66);
             this.labelCell6.Name = "labelCell6";
-            this.labelCell6.Size = new System.Drawing.Size(41, 16);
-            cellStyle21.Border = border15;
-            cellStyle21.Font = new System.Drawing.Font("BIZ UDゴシック", 9F);
-            cellStyle21.ImeMode = System.Windows.Forms.ImeMode.Off;
-            this.labelCell6.Style = cellStyle21;
+            this.labelCell6.Size = new System.Drawing.Size(72, 16);
+            cellStyle20.Border = border14;
+            cellStyle20.Font = new System.Drawing.Font("BIZ UDゴシック", 9F);
+            cellStyle20.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.labelCell6.Style = cellStyle20;
             this.labelCell6.TabIndex = 31;
             this.labelCell6.TabStop = false;
             this.labelCell6.Value = "SourcePath:";
             // 
             // labelCell7
             // 
-            this.labelCell7.Location = new System.Drawing.Point(208, 69);
+            this.labelCell7.Location = new System.Drawing.Point(390, 90);
             this.labelCell7.Name = "labelCell7";
-            this.labelCell7.Size = new System.Drawing.Size(41, 16);
-            cellStyle22.Border = border16;
-            cellStyle22.Font = new System.Drawing.Font("BIZ UDゴシック", 9F);
-            cellStyle22.ImeMode = System.Windows.Forms.ImeMode.Off;
-            this.labelCell7.Style = cellStyle22;
+            this.labelCell7.Size = new System.Drawing.Size(88, 16);
+            cellStyle21.Border = border15;
+            cellStyle21.Font = new System.Drawing.Font("BIZ UDゴシック", 9F);
+            cellStyle21.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.labelCell7.Style = cellStyle21;
             this.labelCell7.TabIndex = 32;
             this.labelCell7.TabStop = false;
             this.labelCell7.Value = "DetailNumber:";
             // 
             // labelCell8
             // 
-            this.labelCell8.Location = new System.Drawing.Point(327, 4);
+            this.labelCell8.Location = new System.Drawing.Point(425, 7);
             this.labelCell8.Name = "labelCell8";
-            this.labelCell8.Size = new System.Drawing.Size(79, 16);
-            cellStyle23.Border = border17;
-            cellStyle23.Font = new System.Drawing.Font("BIZ UDゴシック", 9F);
-            cellStyle23.ImeMode = System.Windows.Forms.ImeMode.Off;
-            this.labelCell8.Style = cellStyle23;
+            this.labelCell8.Size = new System.Drawing.Size(79, 13);
+            cellStyle22.Border = border16;
+            cellStyle22.Font = new System.Drawing.Font("BIZ UDゴシック", 9F);
+            cellStyle22.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.labelCell8.Style = cellStyle22;
             this.labelCell8.TabIndex = 33;
             this.labelCell8.TabStop = false;
             this.labelCell8.Value = "更新者コード:";
             // 
             // labelCell9
             // 
-            this.labelCell9.Location = new System.Drawing.Point(327, 25);
+            this.labelCell9.Location = new System.Drawing.Point(425, 28);
             this.labelCell9.Name = "labelCell9";
-            this.labelCell9.Size = new System.Drawing.Size(79, 16);
-            cellStyle24.Border = border18;
-            cellStyle24.Font = new System.Drawing.Font("BIZ UDゴシック", 9F);
-            cellStyle24.ImeMode = System.Windows.Forms.ImeMode.Off;
-            this.labelCell9.Style = cellStyle24;
+            this.labelCell9.Size = new System.Drawing.Size(79, 13);
+            cellStyle23.Border = border17;
+            cellStyle23.Font = new System.Drawing.Font("BIZ UDゴシック", 9F);
+            cellStyle23.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.labelCell9.Style = cellStyle23;
             this.labelCell9.TabIndex = 34;
             this.labelCell9.TabStop = false;
             this.labelCell9.Value = "更新者名:";
             // 
             // labelCell10
             // 
-            this.labelCell10.Location = new System.Drawing.Point(327, 46);
+            this.labelCell10.Location = new System.Drawing.Point(425, 49);
             this.labelCell10.Name = "labelCell10";
-            this.labelCell10.Size = new System.Drawing.Size(79, 16);
-            cellStyle25.Border = border19;
-            cellStyle25.Font = new System.Drawing.Font("BIZ UDゴシック", 9F);
-            cellStyle25.ImeMode = System.Windows.Forms.ImeMode.Off;
-            this.labelCell10.Style = cellStyle25;
+            this.labelCell10.Size = new System.Drawing.Size(79, 13);
+            cellStyle24.Border = border18;
+            cellStyle24.Font = new System.Drawing.Font("BIZ UDゴシック", 9F);
+            cellStyle24.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.labelCell10.Style = cellStyle24;
             this.labelCell10.TabIndex = 35;
             this.labelCell10.TabStop = false;
             this.labelCell10.Value = "更新日時:";
             // 
+            // Data
+            // 
+            this.Data.DataField = "UpdateDate";
+            this.Data.Location = new System.Drawing.Point(51, 142);
+            this.Data.Name = "Data";
+            this.Data.ReadOnly = true;
+            this.Data.Size = new System.Drawing.Size(136, 16);
+            cellStyle25.BackColor = System.Drawing.Color.White;
+            border19.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
+            cellStyle25.Border = border19;
+            cellStyle25.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
+            cellStyle25.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.Data.Style = cellStyle25;
+            this.Data.TabIndex = 36;
+            textLengthValidator9.LengthUnit = GrapeCity.Win.MultiRow.LengthUnit.TextElement;
+            textLengthValidator9.MinimumLength = 10;
+            this.Data.Validators.Add(textLengthValidator9);
+            // 
+            // OrderNumber
+            // 
+            this.OrderNumber.DataField = "OrderNumber";
+            this.OrderNumber.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.OrderNumber.Location = new System.Drawing.Point(116, 74);
+            this.OrderNumber.Name = "OrderNumber";
+            this.OrderNumber.ShowIndicator = false;
+            this.OrderNumber.ShowRowError = false;
+            this.OrderNumber.Size = new System.Drawing.Size(46, 17);
+            cellStyle26.BackColor = System.Drawing.Color.White;
+            border20.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
+            cellStyle26.Border = border20;
+            cellStyle26.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
+            cellStyle26.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.OrderNumber.Style = cellStyle26;
+            this.OrderNumber.TabIndex = 37;
+            this.OrderNumber.TabStop = false;
+            this.OrderNumber.ValueFormat = "%1%";
+            // 
             // 部品_資料添付テンプレート
             // 
-            this.Height = 218;
-            this.Width = 577;
+            this.Height = 247;
+            this.Width = 685;
 
         }
 
@@ -531,7 +558,6 @@
         private GrapeCity.Win.MultiRow.ButtonCell ダイアログ;
         private GrapeCity.Win.MultiRow.TextBoxCell PartCode;
         private GrapeCity.Win.MultiRow.TextBoxCell PartRevision;
-        private GrapeCity.Win.MultiRow.TextBoxCell OrderNumber;
         private GrapeCity.Win.MultiRow.ButtonCell 添付ボタン;
         private GrapeCity.Win.MultiRow.ButtonCell プレビューボタン;
         private GrapeCity.Win.MultiRow.ButtonCell 保存ボタン;
@@ -553,5 +579,7 @@
         private GrapeCity.Win.MultiRow.LabelCell labelCell8;
         private GrapeCity.Win.MultiRow.LabelCell labelCell9;
         private GrapeCity.Win.MultiRow.LabelCell labelCell10;
+        private GrapeCity.Win.MultiRow.TextBoxCell Data;
+        private GrapeCity.Win.MultiRow.RowHeaderCell OrderNumber;
     }
 }
