@@ -160,6 +160,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Form\F_仕入先別買掛一覧表.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Form\F_購買買掛一覧表.cs">
       <SubType>Form</SubType>
     </Compile>
