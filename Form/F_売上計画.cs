@@ -92,6 +92,7 @@ namespace u_net
             set
             {
                 intTheYear = value;
+                集計年度.SelectedValue = value;
             }
         }
 
@@ -1090,8 +1091,9 @@ namespace u_net
 
         private void コマンド抽出_Click(object sender, EventArgs e)
         {
-            //F_売上計画_抽出 targetform = new F_売上計画_抽出();
-            //targetform.ShowDialog();
+            F_売上計画_抽出 targetform = new F_売上計画_抽出();
+            targetform.ShowDialog();
+            
         }
 
         private void コマンド重要顧客_Click(object sender, EventArgs e)
