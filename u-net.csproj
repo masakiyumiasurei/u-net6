@@ -160,6 +160,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Form\F_請求条件設定.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Form\F_出力.cs">
       <SubType>Form</SubType>
     </Compile>
