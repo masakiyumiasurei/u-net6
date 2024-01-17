@@ -205,9 +205,9 @@ namespace u_net
             //Form_Resize(sender, e);
 
             //実行中フォーム起動
-            string LoginUserCode = CommonConstants.LoginUserCode;
-            LocalSetting localSetting = new LocalSetting();
-            localSetting.LoadPlace(LoginUserCode, this);
+            //string LoginUserCode = CommonConstants.LoginUserCode;
+            //LocalSetting localSetting = new LocalSetting();
+            //localSetting.LoadPlace(LoginUserCode, this);
 
 
             // 一覧を表示する
@@ -235,9 +235,9 @@ namespace u_net
 
         private void F_検索_FormClosing(object sender, FormClosingEventArgs e)
         {
-            string LoginUserCode = CommonConstants.LoginUserCode;
-            LocalSetting test = new LocalSetting();
-            test.SavePlace(LoginUserCode, this);
+            //string LoginUserCode = CommonConstants.LoginUserCode;
+            //LocalSetting test = new LocalSetting();
+            //test.SavePlace(LoginUserCode, this);
         }
 
 

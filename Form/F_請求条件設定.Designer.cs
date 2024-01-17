@@ -138,7 +138,7 @@
             キャンセルボタン.Name = "キャンセルボタン";
             キャンセルボタン.Size = new Size(102, 24);
             キャンセルボタン.TabIndex = 18;
-            キャンセルボタン.Text = "キャンセル(&X)";
+            キャンセルボタン.Text = "キャンセル";
             キャンセルボタン.UseVisualStyleBackColor = true;
             キャンセルボタン.MouseClick += キャンセルボタン_MouseClick;
             // 
@@ -177,7 +177,7 @@
             顧客検索ボタン.TabIndex = 7;
             顧客検索ボタン.Text = "▼";
             顧客検索ボタン.UseVisualStyleBackColor = true;
-            顧客検索ボタン.Click += 更新日終了選択_Click;
+            顧客検索ボタン.Click += 顧客検索ボタン_Click;
             // 
             // 締日分類
             // 
@@ -266,7 +266,7 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "請求処理 - 抽出";
             Load += Form_Load;
-            KeyDown += F_ユニット管理_抽出_KeyDown;
+            KeyDown += F_請求条件設定_KeyDown;
             表示方法.ResumeLayout(false);
             表示方法.PerformLayout();
             締日分類.ResumeLayout(false);
