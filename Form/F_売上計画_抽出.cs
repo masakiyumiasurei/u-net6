@@ -109,8 +109,9 @@ namespace u_net
 
 
                 this.集計年度.SelectedValue = fn.Zn(frmTarget.TheYear);
-                this.顧客コード.Text = frmTarget.str顧客コード;
                 this.顧客名.Text = frmTarget.str顧客名;
+                this.顧客コード.Text = frmTarget.str顧客コード;
+                
                 if (frmTarget.SalesmanCode != "")
                 {
                     this.担当者コード.SelectedValue = fn.Zn(frmTarget.SalesmanCode);
