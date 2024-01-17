@@ -510,7 +510,7 @@
             // 
             // Data
             // 
-            this.Data.DataField = "UpdateDate";
+            this.Data.DataField = "Data";
             this.Data.Location = new System.Drawing.Point(51, 142);
             this.Data.Name = "Data";
             this.Data.ReadOnly = true;
@@ -528,7 +528,6 @@
             // 
             // OrderNumber
             // 
-            this.OrderNumber.DataField = "OrderNumber";
             this.OrderNumber.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.OrderNumber.Location = new System.Drawing.Point(116, 74);
             this.OrderNumber.Name = "OrderNumber";

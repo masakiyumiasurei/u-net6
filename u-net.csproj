@@ -137,6 +137,7 @@
     <EmbeddedResource Include="MultiRowDesigner\購買発注先.resx" />
     <EmbeddedResource Include="MultiRowDesigner\購買発注先テンプレート.resx" />
     <EmbeddedResource Include="MultiRowDesigner\部品_資料添付.resx" />
+    <EmbeddedResource Include="MultiRowDesigner\部品_資料添付テンプレート.resx" />
     <EmbeddedResource Include="MultiRowDesigner\部品購買設定明細.resx" />
     <EmbeddedResource Include="MultiRowDesigner\部品購買設定明細テンプレート.resx" />
     <EmbeddedResource Include="MultiRowDesigner\部品集合明細.resx" />

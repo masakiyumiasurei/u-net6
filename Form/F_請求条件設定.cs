@@ -34,142 +34,47 @@ namespace u_net
         {
             try
             {
-
                 foreach (Control control in Controls)
                 {
                     control.PreviewKeyDown += OriginalClass.ValidateCheck;
                 }
 
-
                 // 対象フォームが読み込まれていないときはすぐに終了する
-                if (Application.OpenForms["F_ユニット管理"] == null)
+                if (Application.OpenForms["F_請求処理"] == null)
                 {
-                    MessageBox.Show("[ユニット管理]画面が起動していない状態では実行できません。", "警告", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    MessageBox.Show("[請求処理]画面が起動していない状態では実行できません。", "警告", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     this.Close();
                     return;
                 }
 
-
-                OriginalClass ofn = new OriginalClass();
-
-                ofn.SetComboBox(更新者名, "SELECT 氏名 as Value , 氏名 as Display FROM M社員 WHERE (退社 IS NULL) AND ([パート] = 0) AND (ふりがな <> N'ん') OR (退社 IS NULL) AND ([パート] IS NULL) AND (ふりがな <> N'ん') ORDER BY ふりがな");
-
-                //this.非含有証明書.DataSource = new KeyValuePair<long, String>[] {
-                //    new KeyValuePair<long, String>(1, "返却済み"),
-                //    new KeyValuePair<long, String>(2, "未返却"),
-                //    new KeyValuePair<long, String>(3, "未提出"),
-                //    new KeyValuePair<long, String>(4, "不明"),
-                //    new KeyValuePair<long, String>(0, "指定しない"),
-                //};
-                //this.非含有証明書.DisplayMember = "Value";
-                //this.非含有証明書.ValueMember = "Key";
+                請求締日.Text = DateTime.Now.ToString("yyyy/MM/dd");
 
                 //開いているフォームのインスタンスを作成する
-                F_ユニット管理 frmTarget = Application.OpenForms.OfType<F_ユニット管理>().FirstOrDefault();
+                F_請求処理 frmTarget = Application.OpenForms.OfType<F_請求処理>().FirstOrDefault();
 
-                //請求締日.Text = frmTarget.str品名;
-                //型番.Text = frmTarget.str型番;
-
-
-                //switch (frmTarget.lngRoHS対応)
-                //{
-                //    case 1:
-                //        RoHS対応Button1.Checked = true;
-                //        break;
-                //    case 2:
-                //        RoHS対応Button2.Checked = true;
-                //        break;
-                //    case 0:
-                //        RoHS対応Button3.Checked = true;
-                //        break;
-
-                //    default:
-
-                //if (frmTarget.dtm更新日開始 != DateTime.MinValue)
-                //    更新日開始.Text = frmTarget.dtm更新日開始.ToString("yyyy/MM/dd");
-                //        break;
-                //}
-
-                //非含有証明書.SelectedValue = frmTarget.lng非含有証明書;
+                FunctionClass fn = new FunctionClass();
+                顧客コード.Text = fn.Zn(frmTarget.str顧客コード)?.ToString();
+                顧客名.Text = fn.Zn(frmTarget.str顧客名)?.ToString();
 
 
-                //if (frmTarget.dtm更新日開始 != DateTime.MinValue)
-                //    更新日開始.Text = frmTarget.dtm更新日開始.ToString("yyyy/MM/dd");
-                //if (frmTarget.dtm更新日終了 != DateTime.MinValue)
-                //    更新日終了.Text = frmTarget.dtm更新日終了.ToString("yyyy/MM/dd");
-                //更新者名.Text = frmTarget.str更新者名;
+                if (frmTarget.dte請求締日 != DateTime.MinValue)
+                    請求締日.Text = frmTarget.dte請求締日.ToString("yyyy/MM/dd");
 
+                switch (frmTarget.byt表示方法)
+                {
+                    case 1:
+                        表示方法Button1.Checked = true;
+                        break;
+                    case 2:
+                        表示方法Button2.Checked = true;
+                        break;
+                    case 0:
+                        表示方法Button3.Checked = true;
+                        break;
 
-                //switch (frmTarget.lng廃止指定)
-                //{
-                //    case 1:
-                //        廃止指定Button1.Checked = true;
-                //        break;
-                //    case 2:
-                //        廃止指定Button2.Checked = true;
-                //        break;
-                //    case 0:
-                //        廃止指定Button3.Checked = true;
-                //        break;
-
-                //    default:
-
-                //}
-                //        break;
-                //}
-
-                //switch (frmTarget.lng確定指定)
-                //{
-                //    case 1:
-                //        確定指定Button1.Checked = true;
-                //        break;
-                //    case 2:
-                //        確定指定Button2.Checked = true;
-                //        break;
-                //    case 0:
-                //        確定指定Button3.Checked = true;
-                //        break;
-
-                //    default:
-
-                //        break;
-                //}
-
-                //switch (frmTarget.lng承認指定)
-                //{
-                //    case 1:
-                //        承認指定button1.Checked = true;
-                //        break;
-                //    case 2:
-                //        承認指定button2.Checked = true;
-                //        break;
-                //    case 0:
-                //        承認指定button3.Checked = true;
-                //        break;
-
-                //    default:
-
-                //        break;
-                //}
-
-
-                //switch (frmTarget.lng削除指定)
-                //{
-                //    case 1:
-                //        削除指定Button1.Checked = true;
-                //        break;
-                //    case 2:
-                //        削除指定Button2.Checked = true;
-                //        break;
-                //    case 0:
-                //        削除指定Button3.Checked = true;
-                //        break;
-
-                //    default:
-
-                //        break;
-                //}
-
+                    default:
+                        break;
+                }
             }
             catch (Exception ex)
             {
@@ -178,117 +83,58 @@ namespace u_net
             }
         }
 
-        private void 抽出ボタン_Click(object sender, EventArgs e)
+        private void OKボタン_Click(object sender, EventArgs e)
         {
+            FunctionClass fn = new FunctionClass();
             try
-            {
-                F_ユニット管理? frmTarget = Application.OpenForms.OfType<F_ユニット管理>().FirstOrDefault();
+            {                
+                fn.DoWait("しばらくお待ちください...");
+                F_請求処理? frmTarget = Application.OpenForms.OfType<F_請求処理>().FirstOrDefault();
 
+                frmTarget.str顧客コード = Nz(顧客コード.Text);
+                frmTarget.str顧客名 = Nz(顧客名.Text);
+                frmTarget.dte請求締日 = string.IsNullOrEmpty(請求締日.Text) ? DateTime.MinValue : DateTime.Parse(請求締日.Text);
 
-                //    frmTarget.str品名 = Nz(請求締日.Text);
-                //    frmTarget.str型番 = Nz(型番.Text);
+                if (表示方法Button1.Checked)
+                {
+                    frmTarget.byt表示方法 = 1;
+                }
+                else if (表示方法Button2.Checked)
+                {
+                    frmTarget.byt表示方法 = 2;
+                }
+                else if (表示方法Button3.Checked)
+                {
+                    frmTarget.byt表示方法 = 3;
+                }
 
+                frmTarget.Filtering();
 
-                //    if (RoHS対応Button1.Checked)
-                //    {
-                //        frmTarget.lngRoHS対応 = 1;
-                //    }
-                //    else if (RoHS対応Button2.Checked)
-                //    {
-                //        frmTarget.lngRoHS対応 = 2;
-                //    }
-                //    else if (RoHS対応Button3.Checked)
-                //    {
-                //        frmTarget.lngRoHS対応 = 0;
-                //    }
+                int tmpint = 0;
+                int.TryParse(frmTarget.表示件数.Text, out tmpint);
+                if (tmpint == 0 )
+                {
+                    MessageBox.Show("抽出条件に一致するデータはありません。", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                //    frmTarget.lng非含有証明書 = 非含有証明書.SelectedValue != null ? Convert.ToInt64(非含有証明書.SelectedValue) : 0;
+                    return;
+                }
+                else if (tmpint < 0)
+                {
+                    MessageBox.Show("エラーが発生したため、抽出できませんでした。", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
 
-                //    frmTarget.dtm更新日開始 = string.IsNullOrEmpty(更新日開始.Text) ?
-                //       DateTime.MinValue : DateTime.Parse(更新日開始.Text);
-
-                //    frmTarget.dtm更新日終了 = string.IsNullOrEmpty(更新日終了.Text) ?
-                //        DateTime.MinValue : DateTime.Parse(更新日終了.Text);
-
-                //    frmTarget.str更新者名 = Nz(更新者名.Text);
-
-                //    if (確定指定Button1.Checked)
-                //    {
-                //        frmTarget.lng確定指定 = 1;
-                //    }
-                //    else if (確定指定Button2.Checked)
-                //    {
-                //        frmTarget.lng確定指定 = 2;
-                //    }
-                //    else if (確定指定Button3.Checked)
-                //    {
-                //        frmTarget.lng確定指定 = 0;
-                //    }
-
-                //    if (承認指定button1.Checked)
-                //    {
-                //        frmTarget.lng承認指定 = 1;
-                //    }
-                //    else if (承認指定button2.Checked)
-                //    {
-                //        frmTarget.lng承認指定 = 2;
-                //    }
-                //    else if (承認指定button3.Checked)
-                //    {
-                //        frmTarget.lng承認指定 = 0;
-                //    }
-
-                //    if (廃止指定Button1.Checked)
-                //    {
-                //        frmTarget.lng廃止指定 = 1;
-                //    }
-                //    else if (廃止指定Button2.Checked)
-                //    {
-                //        frmTarget.lng廃止指定 = 2;
-                //    }
-                //    else if (廃止指定Button3.Checked)
-                //    {
-                //        frmTarget.lng廃止指定 = 0;
-                //    }
-
-                //    if (削除指定Button1.Checked)
-                //    {
-                //        frmTarget.lng削除指定 = 1;
-                //    }
-                //    else if (削除指定Button2.Checked)
-                //    {
-                //        frmTarget.lng削除指定 = 2;
-                //    }
-                //    else if (削除指定Button3.Checked)
-                //    {
-                //        frmTarget.lng削除指定 = 0;
-                //    }
-
-
-
-                //    long cnt = frmTarget.DoUpdate();
-
-                //    if (cnt == 0)
-                //    {
-                //        MessageBox.Show("抽出条件に一致するデータはありません。", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                //        return;
-                //    }
-                //    else if (cnt < 0)
-                //    {
-                //        MessageBox.Show("エラーが発生したため、抽出できませんでした。", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                //        return;
-                //    }
             }
             catch (Exception ex)
             {
-                //    Debug.WriteLine(this.Name + "_抽出ボタン_Click - " + ex.Message);
-                //    MessageBox.Show("エラーが発生しました。", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Debug.WriteLine(this.Name + "_抽出ボタン_Click - " + ex.Message);
+                MessageBox.Show("エラーが発生しました。", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
-                //    //this.Painting = true;
-                //    this.Close();
+                //this.Painting = true;
+               if (fn.WaitForm != null) fn.WaitForm.Close();
+                this.Close();
             }
         }
 
@@ -310,38 +156,19 @@ namespace u_net
 
         private F_カレンダー dateSelectionForm;
 
-
-
-        private void 更新日開始選択_Click(object sender, EventArgs e)
-        {
-            // 日付選択フォームを作成し表示
-            dateSelectionForm = new F_カレンダー();
-
-            //if (!string.IsNullOrEmpty(更新日開始.Text))
-            //{
-            //    dateSelectionForm.args = 更新日開始.Text;
-            //}
-
-            if (dateSelectionForm.ShowDialog() == DialogResult.OK)
-            {
-                // 日付選択フォームから選択した日付を取得
-                string selectedDate = dateSelectionForm.SelectedDate;
-
-                //// フォームAの日付コントロールに選択した日付を設定
-                //更新日開始.Text = selectedDate;
-
-                //更新日開始.Focus();
-            }
-        }
-
-        private void OKボタン_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void 顧客検索ボタン_Click(object sender, EventArgs e)
         {
-
+            F_検索 SearchForm = new F_検索();
+            SearchForm.FilterName = "顧客名フリガナ";
+            if (SearchForm.ShowDialog() == DialogResult.OK)
+            {
+                // setflg = true;
+                string SelectedCode = SearchForm.SelectedCode;
+                顧客コード.Text = SelectedCode;
+                顧客コード.Focus();
+                Connect();
+                顧客名.Text = FunctionClass.GetCustomerName(cn, Nz(顧客コード.Text));
+            }
         }
 
         private void F_請求条件設定_KeyDown(object sender, KeyEventArgs e)
@@ -354,9 +181,38 @@ namespace u_net
             }
         }
 
+        private void 顧客コード_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Return:
+                    if (this.ActiveControl.Text != "")
+                    {
+                        this.ActiveControl.Text = FunctionClass.FormatCode(this.ActiveControl.Text, "00000000");
+                    }
+                    break;
+            }
+        }
+
         private void 請求締日選択ボタン_Click(object sender, EventArgs e)
         {
+            // 日付選択フォームを作成し表示
+            dateSelectionForm = new F_カレンダー();
 
+            if (!string.IsNullOrEmpty(請求締日.Text))
+            {
+                dateSelectionForm.args = 請求締日.Text;
+            }
+
+            if (dateSelectionForm.ShowDialog() == DialogResult.OK)
+            {
+                // 日付選択フォームから選択した日付を取得
+                string selectedDate = dateSelectionForm.SelectedDate;
+
+                //// フォームAの日付コントロールに選択した日付を設定
+                請求締日.Text = selectedDate;
+                請求締日.Focus();
+            }
         }
     }
 }
