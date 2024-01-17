@@ -1,7 +1,7 @@
 ﻿
 namespace u_net
 {
-    partial class F_部品
+    partial class F_部品履歴
     {
         /// <summary>
         /// 必要なデザイナー変数です。
@@ -30,7 +30,7 @@ namespace u_net
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(F_部品));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(F_部品履歴));
             コマンド終了 = new Button();
             コマンド登録 = new Button();
             panel1 = new Panel();
@@ -43,7 +43,7 @@ namespace u_net
             コマンド承認 = new Button();
             コマンド削除 = new Button();
             コマンド複写 = new Button();
-            コマンド読込 = new Button();
+            コマンド修正 = new Button();
             dataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn2 = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn3 = new DataGridViewTextBoxColumn();
@@ -100,9 +100,6 @@ namespace u_net
             型番 = new TextBox();
             メーカーコード = new TextBox();
             版数_ラベル = new Label();
-            過不足数量 = new TextBox();
-            label8 = new Label();
-            版数 = new TextBox();
             statusStrip1 = new StatusStrip();
             toolStripStatusLabel1 = new ToolStripStatusLabel();
             toolStripStatusLabel2 = new ToolStripStatusLabel();
@@ -110,7 +107,6 @@ namespace u_net
             メーカーコード検索ボタン = new Button();
             MakerName = new TextBox();
             改版ボタン = new Button();
-            資料ボタン = new Button();
             仕入先2フレーム = new GroupBox();
             label5 = new Label();
             Supplier2Name = new TextBox();
@@ -129,9 +125,6 @@ namespace u_net
             仕入先3単価 = new TextBox();
             上移動ボタン = new Button();
             下移動ボタン = new Button();
-            MakerShortName = new TextBox();
-            GroupNumber = new TextBox();
-            FormGroupShortName = new TextBox();
             分類コード = new ComboBox();
             M部品分類bindingSource = new BindingSource(components);
             newDataSet = new newDataSet();
@@ -143,28 +136,6 @@ namespace u_net
             RohsStatusCode = new ComboBox();
             rohsStatusCodebindingSource = new BindingSource(components);
             label22 = new Label();
-            Rohs2ProvisionalRegisteredStatusCode = new CheckBox();
-            label23 = new Label();
-            groupBox4 = new GroupBox();
-            Rohs1ChemSherpaStatusCode = new ComboBox();
-            label27 = new Label();
-            RoHS資料 = new ComboBox();
-            label26 = new Label();
-            非含有証明書 = new ComboBox();
-            label25 = new Label();
-            JampAis = new ComboBox();
-            label24 = new Label();
-            groupBox5 = new GroupBox();
-            Rohs2ChemSherpaStatusCode = new ComboBox();
-            label28 = new Label();
-            Rohs2DocumentStatusCode = new ComboBox();
-            label29 = new Label();
-            Rohs2NonInclusionCertificationStatusCode = new ComboBox();
-            label30 = new Label();
-            Rohs2JampAisStatusCode = new ComboBox();
-            label31 = new Label();
-            label32 = new Label();
-            ChemSherpaVersion = new TextBox();
             label33 = new Label();
             label7 = new Label();
             廃止 = new CheckBox();
@@ -172,33 +143,21 @@ namespace u_net
             label11 = new Label();
             単位数量 = new TextBox();
             label34 = new Label();
-            StandardDeliveryDay = new TextBox();
-            label35 = new Label();
-            ShelfNumber = new TextBox();
-            label36 = new Label();
             label37 = new Label();
             ロス率 = new TextBox();
             label38 = new Label();
             label39 = new Label();
             InventoryAmount = new TextBox();
             label40 = new Label();
-            部品集合コード = new TextBox();
-            label41 = new Label();
-            label42 = new Label();
-            label3 = new Label();
-            備考 = new TextBox();
-            部品使用先 = new DataGridView();
             CalcInventoryCode = new ComboBox();
             受入検査ランク = new ComboBox();
-            部品集合版数 = new TextBox();
-            集合名 = new TextBox();
-            部品集合参照ボタン = new Button();
             m部品形状TableAdapter = new newDataSetTableAdapters.M部品形状TableAdapter();
             m部品分類TableAdapter = new newDataSetTableAdapters.M部品分類TableAdapter();
             rohsStatusCodeTableAdapter = new newDataSetTableAdapters.RohsStatusCodeTableAdapter();
             無効日時 = new TextBox();
             toolTip1 = new ToolTip(components);
             pictureBox1 = new PictureBox();
+            comboBox1 = new ComboBox();
             panel1.SuspendLayout();
             仕入先1フレーム.SuspendLayout();
             statusStrip1.SuspendLayout();
@@ -208,9 +167,6 @@ namespace u_net
             ((System.ComponentModel.ISupportInitialize)newDataSet).BeginInit();
             ((System.ComponentModel.ISupportInitialize)M部品形状bindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)rohsStatusCodebindingSource).BeginInit();
-            groupBox4.SuspendLayout();
-            groupBox5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)部品使用先).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -251,7 +207,7 @@ namespace u_net
             panel1.Location = new Point(0, 1);
             panel1.Margin = new Padding(4, 3, 4, 3);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1141, 42);
+            panel1.Size = new Size(944, 42);
             panel1.TabIndex = 81;
             // 
             // コマンド新規
@@ -273,6 +229,7 @@ namespace u_net
             // 
             // コマンド履歴
             // 
+            コマンド履歴.Enabled = false;
             コマンド履歴.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             コマンド履歴.ForeColor = Color.Blue;
             コマンド履歴.ImageAlign = ContentAlignment.BottomLeft;
@@ -288,6 +245,7 @@ namespace u_net
             // 
             // コマンド入出庫
             // 
+            コマンド入出庫.Enabled = false;
             コマンド入出庫.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             コマンド入出庫.ForeColor = Color.Blue;
             コマンド入出庫.ImageAlign = ContentAlignment.BottomLeft;
@@ -398,20 +356,20 @@ namespace u_net
             コマンド複写.UseVisualStyleBackColor = true;
             コマンド複写.Click += コマンド複写_Click;
             // 
-            // コマンド読込
+            // コマンド修正
             // 
-            コマンド読込.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            コマンド読込.ForeColor = Color.Blue;
-            コマンド読込.ImageAlign = ContentAlignment.BottomLeft;
-            コマンド読込.Location = new Point(75, 5);
-            コマンド読込.Margin = new Padding(3, 2, 3, 2);
-            コマンド読込.Name = "コマンド読込";
-            コマンド読込.Size = new Size(70, 20);
-            コマンド読込.TabIndex = 1003;
-            コマンド読込.TabStop = false;
-            コマンド読込.Text = "読込";
-            コマンド読込.UseVisualStyleBackColor = true;
-            コマンド読込.Click += コマンド読込_Click;
+            コマンド修正.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            コマンド修正.ForeColor = Color.Blue;
+            コマンド修正.ImageAlign = ContentAlignment.BottomLeft;
+            コマンド修正.Location = new Point(75, 5);
+            コマンド修正.Margin = new Padding(3, 2, 3, 2);
+            コマンド修正.Name = "コマンド修正";
+            コマンド修正.Size = new Size(70, 20);
+            コマンド修正.TabIndex = 1003;
+            コマンド修正.TabStop = false;
+            コマンド修正.Text = "修正";
+            コマンド修正.UseVisualStyleBackColor = true;
+            コマンド修正.Click += コマンド読込_Click;
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -548,7 +506,7 @@ namespace u_net
             削除.BackColor = SystemColors.Window;
             削除.Enabled = false;
             削除.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            削除.Location = new Point(947, 202);
+            削除.Location = new Point(699, 202);
             削除.Margin = new Padding(3, 2, 3, 2);
             削除.Multiline = true;
             削除.Name = "削除";
@@ -562,7 +520,7 @@ namespace u_net
             label15.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             label15.ForeColor = SystemColors.ActiveCaptionText;
             label15.ImageAlign = ContentAlignment.MiddleLeft;
-            label15.Location = new Point(876, 202);
+            label15.Location = new Point(628, 202);
             label15.Margin = new Padding(0);
             label15.Name = "label15";
             label15.Size = new Size(68, 20);
@@ -575,7 +533,7 @@ namespace u_net
             UpdaterName.BackColor = SystemColors.Window;
             UpdaterName.Enabled = false;
             UpdaterName.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            UpdaterName.Location = new Point(979, 152);
+            UpdaterName.Location = new Point(731, 152);
             UpdaterName.Margin = new Padding(3, 2, 3, 2);
             UpdaterName.Multiline = true;
             UpdaterName.Name = "UpdaterName";
@@ -587,7 +545,7 @@ namespace u_net
             更新者コード.BackColor = SystemColors.Window;
             更新者コード.Enabled = false;
             更新者コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            更新者コード.Location = new Point(947, 152);
+            更新者コード.Location = new Point(699, 152);
             更新者コード.Margin = new Padding(3, 2, 3, 2);
             更新者コード.Multiline = true;
             更新者コード.Name = "更新者コード";
@@ -601,7 +559,7 @@ namespace u_net
             label14.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             label14.ForeColor = SystemColors.ActiveCaptionText;
             label14.ImageAlign = ContentAlignment.MiddleLeft;
-            label14.Location = new Point(876, 152);
+            label14.Location = new Point(628, 152);
             label14.Margin = new Padding(0);
             label14.Name = "label14";
             label14.Size = new Size(68, 20);
@@ -616,7 +574,7 @@ namespace u_net
             label13.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             label13.ForeColor = SystemColors.ActiveCaptionText;
             label13.ImageAlign = ContentAlignment.MiddleLeft;
-            label13.Location = new Point(876, 126);
+            label13.Location = new Point(628, 126);
             label13.Margin = new Padding(0);
             label13.Name = "label13";
             label13.Size = new Size(68, 20);
@@ -629,7 +587,7 @@ namespace u_net
             更新日時.BackColor = SystemColors.Window;
             更新日時.Enabled = false;
             更新日時.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            更新日時.Location = new Point(947, 126);
+            更新日時.Location = new Point(699, 126);
             更新日時.Margin = new Padding(3, 2, 3, 2);
             更新日時.Multiline = true;
             更新日時.Name = "更新日時";
@@ -641,7 +599,7 @@ namespace u_net
             CreatorName.BackColor = SystemColors.Window;
             CreatorName.Enabled = false;
             CreatorName.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            CreatorName.Location = new Point(979, 101);
+            CreatorName.Location = new Point(731, 101);
             CreatorName.Margin = new Padding(3, 2, 3, 2);
             CreatorName.Multiline = true;
             CreatorName.Name = "CreatorName";
@@ -653,7 +611,7 @@ namespace u_net
             作成者コード.BackColor = SystemColors.Window;
             作成者コード.Enabled = false;
             作成者コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            作成者コード.Location = new Point(947, 101);
+            作成者コード.Location = new Point(699, 101);
             作成者コード.Margin = new Padding(3, 2, 3, 2);
             作成者コード.Multiline = true;
             作成者コード.Name = "作成者コード";
@@ -667,7 +625,7 @@ namespace u_net
             label12.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             label12.ForeColor = SystemColors.ActiveCaptionText;
             label12.ImageAlign = ContentAlignment.MiddleLeft;
-            label12.Location = new Point(876, 101);
+            label12.Location = new Point(628, 101);
             label12.Margin = new Padding(0);
             label12.Name = "label12";
             label12.Size = new Size(68, 20);
@@ -682,7 +640,7 @@ namespace u_net
             label10.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             label10.ForeColor = SystemColors.ActiveCaptionText;
             label10.ImageAlign = ContentAlignment.MiddleLeft;
-            label10.Location = new Point(876, 77);
+            label10.Location = new Point(628, 77);
             label10.Margin = new Padding(0);
             label10.Name = "label10";
             label10.Size = new Size(68, 20);
@@ -695,7 +653,7 @@ namespace u_net
             作成日時.BackColor = SystemColors.Window;
             作成日時.Enabled = false;
             作成日時.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            作成日時.Location = new Point(947, 77);
+            作成日時.Location = new Point(699, 77);
             作成日時.Margin = new Padding(3, 2, 3, 2);
             作成日時.Multiline = true;
             作成日時.Name = "作成日時";
@@ -936,36 +894,6 @@ namespace u_net
             版数_ラベル.Text = "版数(&E)";
             版数_ラベル.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // 過不足数量
-            // 
-            過不足数量.Location = new Point(585, 380);
-            過不足数量.Name = "過不足数量";
-            過不足数量.Size = new Size(70, 23);
-            過不足数量.TabIndex = 52;
-            過不足数量.Visible = false;
-            // 
-            // label8
-            // 
-            label8.Location = new Point(585, 356);
-            label8.Name = "label8";
-            label8.Size = new Size(70, 23);
-            label8.TabIndex = 51;
-            label8.Text = "過不足数量";
-            label8.Visible = false;
-            // 
-            // 版数
-            // 
-            版数.BackColor = SystemColors.Window;
-            版数.Enabled = false;
-            版数.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            版数.ImeMode = ImeMode.NoControl;
-            版数.Location = new Point(322, 51);
-            版数.Margin = new Padding(3, 2, 3, 2);
-            版数.Name = "版数";
-            版数.ReadOnly = true;
-            版数.Size = new Size(48, 20);
-            版数.TabIndex = 4;
-            // 
             // statusStrip1
             // 
             statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1, toolStripStatusLabel2 });
@@ -1043,17 +971,6 @@ namespace u_net
             toolTip1.SetToolTip(改版ボタン, "表示されているデータを改訂し、履歴を残します。");
             改版ボタン.UseVisualStyleBackColor = true;
             改版ボタン.Click += 改版ボタン_Click;
-            // 
-            // 資料ボタン
-            // 
-            資料ボタン.Location = new Point(477, 85);
-            資料ボタン.Margin = new Padding(4);
-            資料ボタン.Name = "資料ボタン";
-            資料ボタン.Size = new Size(68, 24);
-            資料ボタン.TabIndex = 10008;
-            資料ボタン.TabStop = false;
-            資料ボタン.Text = "資料";
-            資料ボタン.UseVisualStyleBackColor = true;
             // 
             // 仕入先2フレーム
             // 
@@ -1315,42 +1232,6 @@ namespace u_net
             下移動ボタン.Text = "下へ";
             下移動ボタン.UseVisualStyleBackColor = true;
             // 
-            // MakerShortName
-            // 
-            MakerShortName.BackColor = Color.White;
-            MakerShortName.Enabled = false;
-            MakerShortName.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            MakerShortName.Location = new Point(465, 52);
-            MakerShortName.Margin = new Padding(3, 2, 3, 2);
-            MakerShortName.Name = "MakerShortName";
-            MakerShortName.Size = new Size(34, 20);
-            MakerShortName.TabIndex = 10016;
-            MakerShortName.Visible = false;
-            // 
-            // GroupNumber
-            // 
-            GroupNumber.BackColor = Color.White;
-            GroupNumber.Enabled = false;
-            GroupNumber.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            GroupNumber.Location = new Point(505, 52);
-            GroupNumber.Margin = new Padding(3, 2, 3, 2);
-            GroupNumber.Name = "GroupNumber";
-            GroupNumber.Size = new Size(34, 20);
-            GroupNumber.TabIndex = 10017;
-            GroupNumber.Visible = false;
-            // 
-            // FormGroupShortName
-            // 
-            FormGroupShortName.BackColor = Color.White;
-            FormGroupShortName.Enabled = false;
-            FormGroupShortName.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            FormGroupShortName.Location = new Point(545, 52);
-            FormGroupShortName.Margin = new Padding(3, 2, 3, 2);
-            FormGroupShortName.Name = "FormGroupShortName";
-            FormGroupShortName.Size = new Size(34, 20);
-            FormGroupShortName.TabIndex = 10018;
-            FormGroupShortName.Visible = false;
-            // 
             // 分類コード
             // 
             分類コード.BackColor = Color.White;
@@ -1453,7 +1334,7 @@ namespace u_net
             RohsStatusCode.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             RohsStatusCode.FormattingEnabled = true;
             RohsStatusCode.ImeMode = ImeMode.NoControl;
-            RohsStatusCode.Location = new Point(125, 463);
+            RohsStatusCode.Location = new Point(125, 584);
             RohsStatusCode.Name = "RohsStatusCode";
             RohsStatusCode.Size = new Size(121, 21);
             RohsStatusCode.TabIndex = 31;
@@ -1470,354 +1351,13 @@ namespace u_net
             label22.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             label22.ForeColor = SystemColors.ActiveCaptionText;
             label22.ImageAlign = ContentAlignment.MiddleLeft;
-            label22.Location = new Point(10, 463);
+            label22.Location = new Point(10, 584);
             label22.Margin = new Padding(0);
             label22.Name = "label22";
             label22.Size = new Size(112, 20);
             label22.TabIndex = 30;
             label22.Text = "RoHS対応状態";
             label22.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // Rohs2ProvisionalRegisteredStatusCode
-            // 
-            Rohs2ProvisionalRegisteredStatusCode.AutoSize = true;
-            Rohs2ProvisionalRegisteredStatusCode.Location = new Point(126, 492);
-            Rohs2ProvisionalRegisteredStatusCode.Name = "Rohs2ProvisionalRegisteredStatusCode";
-            Rohs2ProvisionalRegisteredStatusCode.Size = new Size(15, 14);
-            Rohs2ProvisionalRegisteredStatusCode.TabIndex = 33;
-            Rohs2ProvisionalRegisteredStatusCode.UseVisualStyleBackColor = true;
-            Rohs2ProvisionalRegisteredStatusCode.Validated += Rohs2ProvisionalRegisteredStatusCode_Validated;
-            // 
-            // label23
-            // 
-            label23.AllowDrop = true;
-            label23.AutoEllipsis = true;
-            label23.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label23.ForeColor = SystemColors.ActiveCaptionText;
-            label23.ImageAlign = ContentAlignment.MiddleLeft;
-            label23.Location = new Point(10, 488);
-            label23.Margin = new Padding(0);
-            label23.Name = "label23";
-            label23.Size = new Size(112, 20);
-            label23.TabIndex = 32;
-            label23.Text = "仮RoHS2登録";
-            label23.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // groupBox4
-            // 
-            groupBox4.Controls.Add(Rohs1ChemSherpaStatusCode);
-            groupBox4.Controls.Add(label27);
-            groupBox4.Controls.Add(RoHS資料);
-            groupBox4.Controls.Add(label26);
-            groupBox4.Controls.Add(非含有証明書);
-            groupBox4.Controls.Add(label25);
-            groupBox4.Controls.Add(JampAis);
-            groupBox4.Controls.Add(label24);
-            groupBox4.Location = new Point(21, 516);
-            groupBox4.Name = "groupBox4";
-            groupBox4.Size = new Size(227, 145);
-            groupBox4.TabIndex = 34;
-            groupBox4.TabStop = false;
-            groupBox4.Text = "RoHS1";
-            // 
-            // Rohs1ChemSherpaStatusCode
-            // 
-            Rohs1ChemSherpaStatusCode.BackColor = Color.White;
-            Rohs1ChemSherpaStatusCode.DropDownWidth = 136;
-            Rohs1ChemSherpaStatusCode.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            Rohs1ChemSherpaStatusCode.FormattingEnabled = true;
-            Rohs1ChemSherpaStatusCode.ImeMode = ImeMode.Disable;
-            Rohs1ChemSherpaStatusCode.Location = new Point(104, 109);
-            Rohs1ChemSherpaStatusCode.Name = "Rohs1ChemSherpaStatusCode";
-            Rohs1ChemSherpaStatusCode.Size = new Size(102, 21);
-            Rohs1ChemSherpaStatusCode.TabIndex = 42;
-            Rohs1ChemSherpaStatusCode.SelectedIndexChanged += Rohs1ChemSherpaStatusCode_SelectedIndexChanged;
-            Rohs1ChemSherpaStatusCode.Enter += Rohs1ChemSherpaStatusCode_Enter;
-            Rohs1ChemSherpaStatusCode.KeyPress += Rohs1ChemSherpaStatusCode_KeyPress;
-            Rohs1ChemSherpaStatusCode.Leave += Rohs1ChemSherpaStatusCode_Leave;
-            Rohs1ChemSherpaStatusCode.Validating += Rohs1ChemSherpaStatusCode_Validating;
-            // 
-            // label27
-            // 
-            label27.AllowDrop = true;
-            label27.AutoEllipsis = true;
-            label27.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label27.ForeColor = SystemColors.ActiveCaptionText;
-            label27.ImageAlign = ContentAlignment.MiddleLeft;
-            label27.Location = new Point(20, 110);
-            label27.Margin = new Padding(0);
-            label27.Name = "label27";
-            label27.Size = new Size(88, 20);
-            label27.TabIndex = 41;
-            label27.Text = "chemSHERPA";
-            label27.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // RoHS資料
-            // 
-            RoHS資料.BackColor = Color.White;
-            RoHS資料.DropDownWidth = 136;
-            RoHS資料.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            RoHS資料.FormattingEnabled = true;
-            RoHS資料.ImeMode = ImeMode.Disable;
-            RoHS資料.Location = new Point(104, 79);
-            RoHS資料.Name = "RoHS資料";
-            RoHS資料.Size = new Size(102, 21);
-            RoHS資料.TabIndex = 40;
-            RoHS資料.SelectedIndexChanged += RoHS資料_SelectedIndexChanged;
-            RoHS資料.Enter += RoHS資料_Enter;
-            RoHS資料.KeyPress += RoHS資料_KeyPress;
-            RoHS資料.Leave += RoHS資料_Leave;
-            RoHS資料.Validating += RoHS資料_Validating;
-            // 
-            // label26
-            // 
-            label26.AllowDrop = true;
-            label26.AutoEllipsis = true;
-            label26.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label26.ForeColor = SystemColors.ActiveCaptionText;
-            label26.ImageAlign = ContentAlignment.MiddleLeft;
-            label26.Location = new Point(20, 80);
-            label26.Margin = new Padding(0);
-            label26.Name = "label26";
-            label26.Size = new Size(88, 20);
-            label26.TabIndex = 39;
-            label26.Text = "RoHS資料";
-            label26.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // 非含有証明書
-            // 
-            非含有証明書.BackColor = Color.White;
-            非含有証明書.DropDownWidth = 136;
-            非含有証明書.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            非含有証明書.FormattingEnabled = true;
-            非含有証明書.ImeMode = ImeMode.Disable;
-            非含有証明書.Location = new Point(104, 50);
-            非含有証明書.Name = "非含有証明書";
-            非含有証明書.Size = new Size(102, 21);
-            非含有証明書.TabIndex = 38;
-            非含有証明書.SelectedIndexChanged += 非含有証明書_SelectedIndexChanged;
-            非含有証明書.Enter += 非含有証明書_Enter;
-            非含有証明書.KeyPress += 非含有証明書_KeyPress;
-            非含有証明書.Leave += 非含有証明書_Leave;
-            非含有証明書.Validating += 非含有証明書_Validating;
-            // 
-            // label25
-            // 
-            label25.AllowDrop = true;
-            label25.AutoEllipsis = true;
-            label25.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label25.ForeColor = SystemColors.ActiveCaptionText;
-            label25.ImageAlign = ContentAlignment.MiddleLeft;
-            label25.Location = new Point(20, 50);
-            label25.Margin = new Padding(0);
-            label25.Name = "label25";
-            label25.Size = new Size(88, 20);
-            label25.TabIndex = 37;
-            label25.Text = "非含有証明書";
-            label25.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // JampAis
-            // 
-            JampAis.BackColor = Color.White;
-            JampAis.DropDownWidth = 136;
-            JampAis.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            JampAis.FormattingEnabled = true;
-            JampAis.ImeMode = ImeMode.Disable;
-            JampAis.Location = new Point(104, 20);
-            JampAis.Name = "JampAis";
-            JampAis.Size = new Size(102, 21);
-            JampAis.TabIndex = 36;
-            JampAis.SelectedIndexChanged += JampAis_SelectedIndexChanged;
-            JampAis.Enter += JampAis_Enter;
-            JampAis.KeyPress += JampAis_KeyPress;
-            JampAis.Leave += JampAis_Leave;
-            JampAis.Validating += JampAis_Validating;
-            // 
-            // label24
-            // 
-            label24.AllowDrop = true;
-            label24.AutoEllipsis = true;
-            label24.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label24.ForeColor = SystemColors.ActiveCaptionText;
-            label24.ImageAlign = ContentAlignment.MiddleLeft;
-            label24.Location = new Point(20, 20);
-            label24.Margin = new Padding(0);
-            label24.Name = "label24";
-            label24.Size = new Size(88, 20);
-            label24.TabIndex = 35;
-            label24.Text = "JAMP-AIS";
-            label24.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // groupBox5
-            // 
-            groupBox5.Controls.Add(Rohs2ChemSherpaStatusCode);
-            groupBox5.Controls.Add(label28);
-            groupBox5.Controls.Add(Rohs2DocumentStatusCode);
-            groupBox5.Controls.Add(label29);
-            groupBox5.Controls.Add(Rohs2NonInclusionCertificationStatusCode);
-            groupBox5.Controls.Add(label30);
-            groupBox5.Controls.Add(Rohs2JampAisStatusCode);
-            groupBox5.Controls.Add(label31);
-            groupBox5.Location = new Point(254, 516);
-            groupBox5.Name = "groupBox5";
-            groupBox5.Size = new Size(227, 145);
-            groupBox5.TabIndex = 43;
-            groupBox5.TabStop = false;
-            groupBox5.Text = "RoHS2";
-            // 
-            // Rohs2ChemSherpaStatusCode
-            // 
-            Rohs2ChemSherpaStatusCode.BackColor = Color.White;
-            Rohs2ChemSherpaStatusCode.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            Rohs2ChemSherpaStatusCode.FormattingEnabled = true;
-            Rohs2ChemSherpaStatusCode.ImeMode = ImeMode.Disable;
-            Rohs2ChemSherpaStatusCode.Location = new Point(104, 110);
-            Rohs2ChemSherpaStatusCode.Name = "Rohs2ChemSherpaStatusCode";
-            Rohs2ChemSherpaStatusCode.Size = new Size(102, 21);
-            Rohs2ChemSherpaStatusCode.TabIndex = 51;
-            Rohs2ChemSherpaStatusCode.SelectedIndexChanged += Rohs2ChemSherpaStatusCode_SelectedIndexChanged;
-            Rohs2ChemSherpaStatusCode.Enter += Rohs2ChemSherpaStatusCode_Enter;
-            Rohs2ChemSherpaStatusCode.KeyPress += Rohs2ChemSherpaStatusCode_KeyPress;
-            Rohs2ChemSherpaStatusCode.Leave += Rohs2ChemSherpaStatusCode_Leave;
-            Rohs2ChemSherpaStatusCode.Validating += Rohs2ChemSherpaStatusCode_Validating;
-            // 
-            // label28
-            // 
-            label28.AllowDrop = true;
-            label28.AutoEllipsis = true;
-            label28.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label28.ForeColor = SystemColors.ActiveCaptionText;
-            label28.ImageAlign = ContentAlignment.MiddleLeft;
-            label28.Location = new Point(20, 110);
-            label28.Margin = new Padding(0);
-            label28.Name = "label28";
-            label28.Size = new Size(88, 20);
-            label28.TabIndex = 50;
-            label28.Text = "chemSHERPA";
-            label28.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // Rohs2DocumentStatusCode
-            // 
-            Rohs2DocumentStatusCode.BackColor = Color.White;
-            Rohs2DocumentStatusCode.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            Rohs2DocumentStatusCode.FormattingEnabled = true;
-            Rohs2DocumentStatusCode.ImeMode = ImeMode.Disable;
-            Rohs2DocumentStatusCode.Location = new Point(104, 80);
-            Rohs2DocumentStatusCode.Name = "Rohs2DocumentStatusCode";
-            Rohs2DocumentStatusCode.Size = new Size(102, 21);
-            Rohs2DocumentStatusCode.TabIndex = 49;
-            Rohs2DocumentStatusCode.SelectedIndexChanged += Rohs2DocumentStatusCode_SelectedIndexChanged;
-            Rohs2DocumentStatusCode.Enter += Rohs2DocumentStatusCode_Enter;
-            Rohs2DocumentStatusCode.KeyPress += Rohs2DocumentStatusCode_KeyPress;
-            Rohs2DocumentStatusCode.Leave += Rohs2DocumentStatusCode_Leave;
-            Rohs2DocumentStatusCode.Validating += Rohs2DocumentStatusCode_Validating;
-            // 
-            // label29
-            // 
-            label29.AllowDrop = true;
-            label29.AutoEllipsis = true;
-            label29.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label29.ForeColor = SystemColors.ActiveCaptionText;
-            label29.ImageAlign = ContentAlignment.MiddleLeft;
-            label29.Location = new Point(20, 80);
-            label29.Margin = new Padding(0);
-            label29.Name = "label29";
-            label29.Size = new Size(88, 20);
-            label29.TabIndex = 48;
-            label29.Text = "RoHS資料";
-            label29.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // Rohs2NonInclusionCertificationStatusCode
-            // 
-            Rohs2NonInclusionCertificationStatusCode.BackColor = Color.White;
-            Rohs2NonInclusionCertificationStatusCode.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            Rohs2NonInclusionCertificationStatusCode.FormattingEnabled = true;
-            Rohs2NonInclusionCertificationStatusCode.ImeMode = ImeMode.Disable;
-            Rohs2NonInclusionCertificationStatusCode.Location = new Point(104, 50);
-            Rohs2NonInclusionCertificationStatusCode.Name = "Rohs2NonInclusionCertificationStatusCode";
-            Rohs2NonInclusionCertificationStatusCode.Size = new Size(102, 21);
-            Rohs2NonInclusionCertificationStatusCode.TabIndex = 47;
-            Rohs2NonInclusionCertificationStatusCode.SelectedIndexChanged += Rohs2NonInclusionCertificationStatusCode_SelectedIndexChanged;
-            Rohs2NonInclusionCertificationStatusCode.Enter += Rohs2NonInclusionCertificationStatusCode_Enter;
-            Rohs2NonInclusionCertificationStatusCode.KeyPress += Rohs2NonInclusionCertificationStatusCode_KeyPress;
-            Rohs2NonInclusionCertificationStatusCode.Leave += Rohs2NonInclusionCertificationStatusCode_Leave;
-            Rohs2NonInclusionCertificationStatusCode.Validating += Rohs2NonInclusionCertificationStatusCode_Validating;
-            // 
-            // label30
-            // 
-            label30.AllowDrop = true;
-            label30.AutoEllipsis = true;
-            label30.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label30.ForeColor = SystemColors.ActiveCaptionText;
-            label30.ImageAlign = ContentAlignment.MiddleLeft;
-            label30.Location = new Point(20, 50);
-            label30.Margin = new Padding(0);
-            label30.Name = "label30";
-            label30.Size = new Size(88, 20);
-            label30.TabIndex = 46;
-            label30.Text = "非含有証明書";
-            label30.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // Rohs2JampAisStatusCode
-            // 
-            Rohs2JampAisStatusCode.BackColor = Color.White;
-            Rohs2JampAisStatusCode.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            Rohs2JampAisStatusCode.FormattingEnabled = true;
-            Rohs2JampAisStatusCode.ImeMode = ImeMode.Disable;
-            Rohs2JampAisStatusCode.Location = new Point(104, 20);
-            Rohs2JampAisStatusCode.Name = "Rohs2JampAisStatusCode";
-            Rohs2JampAisStatusCode.Size = new Size(102, 21);
-            Rohs2JampAisStatusCode.TabIndex = 45;
-            Rohs2JampAisStatusCode.SelectedIndexChanged += Rohs2JampAisStatusCode_SelectedIndexChanged;
-            Rohs2JampAisStatusCode.Enter += Rohs2JampAisStatusCode_Enter;
-            Rohs2JampAisStatusCode.KeyPress += Rohs2JampAisStatusCode_KeyPress;
-            Rohs2JampAisStatusCode.Leave += Rohs2JampAisStatusCode_Leave;
-            Rohs2JampAisStatusCode.Validating += Rohs2JampAisStatusCode_Validating;
-            // 
-            // label31
-            // 
-            label31.AllowDrop = true;
-            label31.AutoEllipsis = true;
-            label31.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label31.ForeColor = SystemColors.ActiveCaptionText;
-            label31.ImageAlign = ContentAlignment.MiddleLeft;
-            label31.Location = new Point(20, 20);
-            label31.Margin = new Padding(0);
-            label31.Name = "label31";
-            label31.Size = new Size(88, 20);
-            label31.TabIndex = 44;
-            label31.Text = "JAMP-AIS";
-            label31.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // label32
-            // 
-            label32.AllowDrop = true;
-            label32.AutoEllipsis = true;
-            label32.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label32.ForeColor = SystemColors.ActiveCaptionText;
-            label32.ImageAlign = ContentAlignment.MiddleLeft;
-            label32.Location = new Point(10, 664);
-            label32.Margin = new Padding(0);
-            label32.Name = "label32";
-            label32.Size = new Size(112, 20);
-            label32.TabIndex = 52;
-            label32.Text = "chemSHERPA Ver.";
-            label32.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // ChemSherpaVersion
-            // 
-            ChemSherpaVersion.BackColor = Color.White;
-            ChemSherpaVersion.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            ChemSherpaVersion.ImeMode = ImeMode.Disable;
-            ChemSherpaVersion.Location = new Point(126, 664);
-            ChemSherpaVersion.Margin = new Padding(3, 2, 3, 2);
-            ChemSherpaVersion.Name = "ChemSherpaVersion";
-            ChemSherpaVersion.Size = new Size(88, 20);
-            ChemSherpaVersion.TabIndex = 53;
-            ChemSherpaVersion.TextChanged += ChemSherpaVersion_TextChanged;
-            ChemSherpaVersion.Enter += ChemSherpaVersion_Enter;
-            ChemSherpaVersion.Leave += ChemSherpaVersion_Leave;
-            ChemSherpaVersion.Validating += ChemSherpaVersion_Validating;
             // 
             // label33
             // 
@@ -1826,12 +1366,12 @@ namespace u_net
             label33.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             label33.ForeColor = SystemColors.ActiveCaptionText;
             label33.ImageAlign = ContentAlignment.MiddleLeft;
-            label33.Location = new Point(484, 521);
+            label33.Location = new Point(331, 503);
             label33.Margin = new Padding(0);
             label33.Name = "label33";
-            label33.Size = new Size(148, 125);
+            label33.Size = new Size(160, 83);
             label33.TabIndex = 10035;
-            label33.Text = "※RoHS対応状況について\r\n\r\n　２・・・RoHS2対応\r\n　１・・・RoHS1対応\r\n　△・・・RoHS2非対応\r\n　×・・・RoHS1非対応\r\n　？・・・未調査\r\n　仮・・・仮RoHS2対応";
+            label33.Text = "※[RoHS]省略表示について\r\n　対応：　　○\r\n　対応予定：△\r\n　非対応：　×\r\n　未調査：　？\r\n　（同[RoHS在庫状況]）";
             // 
             // label7
             // 
@@ -1840,7 +1380,7 @@ namespace u_net
             label7.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             label7.ForeColor = SystemColors.ActiveCaptionText;
             label7.ImageAlign = ContentAlignment.MiddleLeft;
-            label7.Location = new Point(876, 178);
+            label7.Location = new Point(621, 438);
             label7.Margin = new Padding(0);
             label7.Name = "label7";
             label7.Size = new Size(68, 20);
@@ -1851,7 +1391,7 @@ namespace u_net
             // 廃止
             // 
             廃止.AutoSize = true;
-            廃止.Location = new Point(947, 180);
+            廃止.Location = new Point(692, 440);
             廃止.Name = "廃止";
             廃止.Size = new Size(15, 14);
             廃止.TabIndex = 10036;
@@ -1863,10 +1403,10 @@ namespace u_net
             入数.BackColor = SystemColors.Window;
             入数.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             入数.ImeMode = ImeMode.Disable;
-            入数.Location = new Point(755, 77);
+            入数.Location = new Point(125, 475);
             入数.Margin = new Padding(3, 2, 3, 2);
             入数.Name = "入数";
-            入数.Size = new Size(88, 20);
+            入数.Size = new Size(90, 20);
             入数.TabIndex = 55;
             入数.TextChanged += 入数_TextChanged;
             入数.Enter += 入数_Enter;
@@ -1881,10 +1421,10 @@ namespace u_net
             label11.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             label11.ForeColor = SystemColors.ActiveCaptionText;
             label11.ImageAlign = ContentAlignment.MiddleLeft;
-            label11.Location = new Point(640, 77);
+            label11.Location = new Point(10, 475);
             label11.Margin = new Padding(0);
             label11.Name = "label11";
-            label11.Size = new Size(112, 20);
+            label11.Size = new Size(114, 20);
             label11.TabIndex = 54;
             label11.Text = "入数(&Q)";
             label11.TextAlign = ContentAlignment.MiddleLeft;
@@ -1894,10 +1434,10 @@ namespace u_net
             単位数量.BackColor = SystemColors.Window;
             単位数量.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             単位数量.ImeMode = ImeMode.Disable;
-            単位数量.Location = new Point(755, 101);
+            単位数量.Location = new Point(125, 499);
             単位数量.Margin = new Padding(3, 2, 3, 2);
             単位数量.Name = "単位数量";
-            単位数量.Size = new Size(88, 20);
+            単位数量.Size = new Size(90, 20);
             単位数量.TabIndex = 57;
             単位数量.TextChanged += 単位数量_TextChanged;
             単位数量.Enter += 単位数量_Enter;
@@ -1912,75 +1452,13 @@ namespace u_net
             label34.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             label34.ForeColor = SystemColors.ActiveCaptionText;
             label34.ImageAlign = ContentAlignment.MiddleLeft;
-            label34.Location = new Point(640, 101);
+            label34.Location = new Point(10, 499);
             label34.Margin = new Padding(0);
             label34.Name = "label34";
-            label34.Size = new Size(112, 20);
+            label34.Size = new Size(114, 20);
             label34.TabIndex = 56;
             label34.Text = "発注単位数量(&U)";
             label34.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // StandardDeliveryDay
-            // 
-            StandardDeliveryDay.BackColor = SystemColors.Window;
-            StandardDeliveryDay.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            StandardDeliveryDay.ImeMode = ImeMode.Disable;
-            StandardDeliveryDay.Location = new Point(755, 126);
-            StandardDeliveryDay.Margin = new Padding(3, 2, 3, 2);
-            StandardDeliveryDay.Name = "StandardDeliveryDay";
-            StandardDeliveryDay.Size = new Size(88, 20);
-            StandardDeliveryDay.TabIndex = 59;
-            StandardDeliveryDay.TextChanged += StandardDeliveryDay_TextChanged;
-            StandardDeliveryDay.Enter += StandardDeliveryDay_Enter;
-            StandardDeliveryDay.Leave += StandardDeliveryDay_Leave;
-            StandardDeliveryDay.Validating += StandardDeliveryDay_Validating;
-            StandardDeliveryDay.Validated += StandardDeliveryDay_Validated;
-            // 
-            // label35
-            // 
-            label35.AllowDrop = true;
-            label35.AutoEllipsis = true;
-            label35.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label35.ForeColor = SystemColors.ActiveCaptionText;
-            label35.ImageAlign = ContentAlignment.MiddleLeft;
-            label35.Location = new Point(640, 126);
-            label35.Margin = new Padding(0);
-            label35.Name = "label35";
-            label35.Size = new Size(112, 20);
-            label35.TabIndex = 58;
-            label35.Text = "標準納期(&S)";
-            label35.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // ShelfNumber
-            // 
-            ShelfNumber.BackColor = SystemColors.Window;
-            ShelfNumber.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            ShelfNumber.ImeMode = ImeMode.Off;
-            ShelfNumber.Location = new Point(755, 151);
-            ShelfNumber.Margin = new Padding(3, 2, 3, 2);
-            ShelfNumber.Name = "ShelfNumber";
-            ShelfNumber.Size = new Size(88, 20);
-            ShelfNumber.TabIndex = 61;
-            ShelfNumber.TextChanged += ShelfNumber_TextChanged;
-            ShelfNumber.Enter += ShelfNumber_Enter;
-            ShelfNumber.Leave += ShelfNumber_Leave;
-            ShelfNumber.Validating += ShelfNumber_Validating;
-            ShelfNumber.Validated += ShelfNumber_Validated;
-            // 
-            // label36
-            // 
-            label36.AllowDrop = true;
-            label36.AutoEllipsis = true;
-            label36.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label36.ForeColor = SystemColors.ActiveCaptionText;
-            label36.ImageAlign = ContentAlignment.MiddleLeft;
-            label36.Location = new Point(640, 151);
-            label36.Margin = new Padding(0);
-            label36.Name = "label36";
-            label36.Size = new Size(112, 20);
-            label36.TabIndex = 60;
-            label36.Text = "棚番号(&B)";
-            label36.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // label37
             // 
@@ -1989,7 +1467,7 @@ namespace u_net
             label37.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             label37.ForeColor = SystemColors.ActiveCaptionText;
             label37.ImageAlign = ContentAlignment.MiddleLeft;
-            label37.Location = new Point(640, 176);
+            label37.Location = new Point(753, 300);
             label37.Margin = new Padding(0);
             label37.Name = "label37";
             label37.Size = new Size(112, 20);
@@ -2002,7 +1480,7 @@ namespace u_net
             ロス率.BackColor = SystemColors.Window;
             ロス率.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             ロス率.ImeMode = ImeMode.Disable;
-            ロス率.Location = new Point(755, 202);
+            ロス率.Location = new Point(868, 326);
             ロス率.Margin = new Padding(3, 2, 3, 2);
             ロス率.Name = "ロス率";
             ロス率.Size = new Size(88, 20);
@@ -2020,7 +1498,7 @@ namespace u_net
             label38.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             label38.ForeColor = SystemColors.ActiveCaptionText;
             label38.ImageAlign = ContentAlignment.MiddleLeft;
-            label38.Location = new Point(640, 202);
+            label38.Location = new Point(753, 326);
             label38.Margin = new Padding(0);
             label38.Name = "label38";
             label38.Size = new Size(112, 20);
@@ -2035,7 +1513,7 @@ namespace u_net
             label39.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             label39.ForeColor = SystemColors.ActiveCaptionText;
             label39.ImageAlign = ContentAlignment.MiddleLeft;
-            label39.Location = new Point(640, 227);
+            label39.Location = new Point(10, 524);
             label39.Margin = new Padding(0);
             label39.Name = "label39";
             label39.Size = new Size(112, 20);
@@ -2049,7 +1527,7 @@ namespace u_net
             InventoryAmount.Enabled = false;
             InventoryAmount.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             InventoryAmount.ImeMode = ImeMode.Disable;
-            InventoryAmount.Location = new Point(755, 252);
+            InventoryAmount.Location = new Point(868, 376);
             InventoryAmount.Margin = new Padding(3, 2, 3, 2);
             InventoryAmount.Name = "InventoryAmount";
             InventoryAmount.Size = new Size(88, 20);
@@ -2066,7 +1544,7 @@ namespace u_net
             label40.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             label40.ForeColor = SystemColors.ActiveCaptionText;
             label40.ImageAlign = ContentAlignment.MiddleLeft;
-            label40.Location = new Point(640, 252);
+            label40.Location = new Point(753, 376);
             label40.Margin = new Padding(0);
             label40.Name = "label40";
             label40.Size = new Size(112, 20);
@@ -2074,91 +1552,13 @@ namespace u_net
             label40.Text = "在庫数(&K)";
             label40.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // 部品集合コード
-            // 
-            部品集合コード.BackColor = SystemColors.Window;
-            部品集合コード.Enabled = false;
-            部品集合コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            部品集合コード.ImeMode = ImeMode.Disable;
-            部品集合コード.Location = new Point(755, 277);
-            部品集合コード.Margin = new Padding(3, 2, 3, 2);
-            部品集合コード.Name = "部品集合コード";
-            部品集合コード.Size = new Size(68, 20);
-            部品集合コード.TabIndex = 10055;
-            部品集合コード.TabStop = false;
-            // 
-            // label41
-            // 
-            label41.AllowDrop = true;
-            label41.AutoEllipsis = true;
-            label41.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label41.ForeColor = SystemColors.ActiveCaptionText;
-            label41.ImageAlign = ContentAlignment.MiddleLeft;
-            label41.Location = new Point(640, 277);
-            label41.Margin = new Padding(0);
-            label41.Name = "label41";
-            label41.Size = new Size(112, 20);
-            label41.TabIndex = 10054;
-            label41.Text = "対象部品集合";
-            label41.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // label42
-            // 
-            label42.AllowDrop = true;
-            label42.AutoEllipsis = true;
-            label42.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label42.ForeColor = SystemColors.ActiveCaptionText;
-            label42.ImageAlign = ContentAlignment.MiddleLeft;
-            label42.Location = new Point(640, 302);
-            label42.Margin = new Padding(0);
-            label42.Name = "label42";
-            label42.Size = new Size(112, 20);
-            label42.TabIndex = 10056;
-            label42.Text = "使用先ユニット(&I)";
-            label42.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // label3
-            // 
-            label3.Location = new Point(640, 477);
-            label3.Name = "label3";
-            label3.Size = new Size(112, 20);
-            label3.TabIndex = 10058;
-            label3.Text = "履歴";
-            label3.Visible = false;
-            // 
-            // 備考
-            // 
-            備考.BackColor = SystemColors.Window;
-            備考.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            備考.ImeMode = ImeMode.Hiragana;
-            備考.Location = new Point(755, 477);
-            備考.Margin = new Padding(3, 2, 3, 2);
-            備考.Multiline = true;
-            備考.Name = "備考";
-            備考.Size = new Size(366, 139);
-            備考.TabIndex = 68;
-            備考.TextChanged += 備考_TextChanged;
-            備考.Enter += 備考_Enter;
-            備考.Leave += 備考_Leave;
-            備考.Validating += 備考_Validating;
-            // 
-            // 部品使用先
-            // 
-            部品使用先.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            部品使用先.Location = new Point(755, 302);
-            部品使用先.Name = "部品使用先";
-            部品使用先.RowTemplate.Height = 25;
-            部品使用先.Size = new Size(366, 170);
-            部品使用先.TabIndex = 10060;
-            部品使用先.MouseDoubleClick += 部品使用先_MouseDoubleClick;
-            // 
             // CalcInventoryCode
             // 
             CalcInventoryCode.BackColor = Color.White;
             CalcInventoryCode.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             CalcInventoryCode.FormattingEnabled = true;
             CalcInventoryCode.ImeMode = ImeMode.Disable;
-            CalcInventoryCode.Location = new Point(755, 176);
+            CalcInventoryCode.Location = new Point(868, 300);
             CalcInventoryCode.Name = "CalcInventoryCode";
             CalcInventoryCode.Size = new Size(88, 21);
             CalcInventoryCode.TabIndex = 63;
@@ -2175,53 +1575,15 @@ namespace u_net
             受入検査ランク.FormattingEnabled = true;
             受入検査ランク.ImeMode = ImeMode.Disable;
             受入検査ランク.Items.AddRange(new object[] { "A", "B1", "B2", "C", "D" });
-            受入検査ランク.Location = new Point(755, 227);
+            受入検査ランク.Location = new Point(125, 524);
             受入検査ランク.Name = "受入検査ランク";
-            受入検査ランク.Size = new Size(88, 21);
+            受入検査ランク.Size = new Size(90, 21);
             受入検査ランク.TabIndex = 67;
             受入検査ランク.SelectedIndexChanged += 受入検査ランク_SelectedIndexChanged;
             受入検査ランク.Enter += 受入検査ランク_Enter;
             受入検査ランク.KeyPress += 受入検査ランク_KeyPress;
             受入検査ランク.Leave += 受入検査ランク_Leave;
             受入検査ランク.Validating += 受入検査ランク_Validating;
-            // 
-            // 部品集合版数
-            // 
-            部品集合版数.BackColor = SystemColors.Window;
-            部品集合版数.Enabled = false;
-            部品集合版数.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            部品集合版数.ImeMode = ImeMode.Disable;
-            部品集合版数.Location = new Point(822, 277);
-            部品集合版数.Margin = new Padding(3, 2, 3, 2);
-            部品集合版数.Name = "部品集合版数";
-            部品集合版数.Size = new Size(24, 20);
-            部品集合版数.TabIndex = 10061;
-            部品集合版数.TabStop = false;
-            // 
-            // 集合名
-            // 
-            集合名.BackColor = SystemColors.Window;
-            集合名.Enabled = false;
-            集合名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            集合名.ImeMode = ImeMode.Disable;
-            集合名.Location = new Point(845, 277);
-            集合名.Margin = new Padding(3, 2, 3, 2);
-            集合名.Name = "集合名";
-            集合名.Size = new Size(256, 20);
-            集合名.TabIndex = 10062;
-            集合名.TabStop = false;
-            // 
-            // 部品集合参照ボタン
-            // 
-            部品集合参照ボタン.Location = new Point(1101, 277);
-            部品集合参照ボタン.Margin = new Padding(4);
-            部品集合参照ボタン.Name = "部品集合参照ボタン";
-            部品集合参照ボタン.Size = new Size(20, 20);
-            部品集合参照ボタン.TabIndex = 10012;
-            部品集合参照ボタン.TabStop = false;
-            部品集合参照ボタン.Text = "…";
-            部品集合参照ボタン.UseVisualStyleBackColor = true;
-            部品集合参照ボタン.Click += 部品集合参照ボタン_Click;
             // 
             // m部品形状TableAdapter
             // 
@@ -2237,7 +1599,7 @@ namespace u_net
             // 
             // 無効日時
             // 
-            無効日時.Location = new Point(988, 201);
+            無効日時.Location = new Point(740, 201);
             無効日時.Name = "無効日時";
             無効日時.Size = new Size(129, 23);
             無効日時.TabIndex = 10063;
@@ -2252,32 +1614,34 @@ namespace u_net
             pictureBox1.TabStop = false;
             pictureBox1.Paint += pictureBox1_Paint;
             // 
-            // F_部品
+            // comboBox1
+            // 
+            comboBox1.BackColor = Color.FromArgb(255, 255, 153);
+            comboBox1.DropDownHeight = 102;
+            comboBox1.Enabled = false;
+            comboBox1.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            comboBox1.FormattingEnabled = true;
+            comboBox1.ImeMode = ImeMode.Disable;
+            comboBox1.IntegralHeight = false;
+            comboBox1.Location = new Point(322, 51);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(48, 21);
+            comboBox1.TabIndex = 10065;
+            // 
+            // F_部品履歴
             // 
             BackColor = SystemColors.Control;
             ClientSize = new Size(1140, 708);
+            Controls.Add(comboBox1);
             Controls.Add(無効日時);
-            Controls.Add(部品集合参照ボタン);
-            Controls.Add(集合名);
-            Controls.Add(部品集合版数);
             Controls.Add(受入検査ランク);
             Controls.Add(CalcInventoryCode);
-            Controls.Add(部品使用先);
-            Controls.Add(備考);
-            Controls.Add(label3);
-            Controls.Add(label42);
-            Controls.Add(部品集合コード);
-            Controls.Add(label41);
             Controls.Add(InventoryAmount);
             Controls.Add(label40);
             Controls.Add(label39);
             Controls.Add(ロス率);
             Controls.Add(label38);
             Controls.Add(label37);
-            Controls.Add(ShelfNumber);
-            Controls.Add(label36);
-            Controls.Add(StandardDeliveryDay);
-            Controls.Add(label35);
             Controls.Add(単位数量);
             Controls.Add(label34);
             Controls.Add(入数);
@@ -2285,12 +1649,6 @@ namespace u_net
             Controls.Add(label7);
             Controls.Add(廃止);
             Controls.Add(label33);
-            Controls.Add(label32);
-            Controls.Add(ChemSherpaVersion);
-            Controls.Add(groupBox5);
-            Controls.Add(groupBox4);
-            Controls.Add(label23);
-            Controls.Add(Rohs2ProvisionalRegisteredStatusCode);
             Controls.Add(RohsStatusCode);
             Controls.Add(label22);
             Controls.Add(形状分類コード);
@@ -2298,21 +1656,15 @@ namespace u_net
             Controls.Add(GroupName);
             Controls.Add(分類コード);
             Controls.Add(label20);
-            Controls.Add(FormGroupShortName);
-            Controls.Add(GroupNumber);
-            Controls.Add(MakerShortName);
             Controls.Add(下移動ボタン);
             Controls.Add(上移動ボタン);
             Controls.Add(仕入先3フレーム);
             Controls.Add(仕入先2フレーム);
-            Controls.Add(資料ボタン);
             Controls.Add(改版ボタン);
             Controls.Add(MakerName);
             Controls.Add(メーカーコード検索ボタン);
             Controls.Add(部品コード);
             Controls.Add(statusStrip1);
-            Controls.Add(版数);
-            Controls.Add(label8);
             Controls.Add(更新日時);
             Controls.Add(コマンド終了);
             Controls.Add(コマンド登録);
@@ -2324,7 +1676,7 @@ namespace u_net
             Controls.Add(コマンド承認);
             Controls.Add(コマンド削除);
             Controls.Add(コマンド複写);
-            Controls.Add(コマンド読込);
+            Controls.Add(コマンド修正);
             Controls.Add(削除);
             Controls.Add(label15);
             Controls.Add(UpdaterName);
@@ -2345,7 +1697,6 @@ namespace u_net
             Controls.Add(型番);
             Controls.Add(メーカーコード);
             Controls.Add(版数_ラベル);
-            Controls.Add(過不足数量);
             Controls.Add(panel1);
             Controls.Add(pictureBox1);
             Icon = (Icon)resources.GetObject("$this.Icon");
@@ -2353,7 +1704,7 @@ namespace u_net
             KeyPreview = true;
             MaximizeBox = false;
             MinimizeBox = false;
-            Name = "F_部品";
+            Name = "F_部品履歴";
             StartPosition = FormStartPosition.CenterScreen;
             Text = " 部品";
             FormClosing += Form_Unload;
@@ -2372,9 +1723,6 @@ namespace u_net
             ((System.ComponentModel.ISupportInitialize)newDataSet).EndInit();
             ((System.ComponentModel.ISupportInitialize)M部品形状bindingSource).EndInit();
             ((System.ComponentModel.ISupportInitialize)rohsStatusCodebindingSource).EndInit();
-            groupBox4.ResumeLayout(false);
-            groupBox5.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)部品使用先).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -2429,7 +1777,7 @@ namespace u_net
         private System.Windows.Forms.Button コマンド承認;
         private System.Windows.Forms.Button コマンド削除;
         private System.Windows.Forms.Button コマンド複写;
-        private System.Windows.Forms.Button コマンド読込;
+        private System.Windows.Forms.Button コマンド修正;
         private uiDataSetTableAdapters.M単位TableAdapter m単位TableAdapter;
         private uiDataSetTableAdapters.ComboBoxManufactureFlowTableAdapter comboBoxManufactureFlowTableAdapter;
         private uiDataSetTableAdapters.ComboBox売上区分TableAdapter comboBox売上区分TableAdapter;
@@ -2482,10 +1830,7 @@ namespace u_net
         private TextBox メーカーコード;
         private TextBox 仕入先1単価;
         private Label 版数_ラベル;
-        private TextBox 過不足数量;
         private Label label17;
-        private Label label8;
-        private TextBox 版数;
         private StatusStrip statusStrip1;
         private ToolStripStatusLabel toolStripStatusLabel1;
         private ToolStripStatusLabel toolStripStatusLabel2;
@@ -2498,7 +1843,6 @@ namespace u_net
         private Button メーカーコード検索ボタン;
         private TextBox MakerName;
         private Button 改版ボタン;
-        private Button 資料ボタン;
         private GroupBox 仕入先2フレーム;
         private Label label5;
         private TextBox Supplier2Name;
@@ -2517,9 +1861,6 @@ namespace u_net
         private TextBox 仕入先3単価;
         private Button 上移動ボタン;
         private Button 下移動ボタン;
-        private TextBox MakerShortName;
-        private TextBox GroupNumber;
-        private TextBox FormGroupShortName;
         private ComboBox 分類コード;
         private Label label20;
         private TextBox GroupName;
@@ -2527,28 +1868,6 @@ namespace u_net
         private Label label21;
         private ComboBox RohsStatusCode;
         private Label label22;
-        private CheckBox Rohs2ProvisionalRegisteredStatusCode;
-        private Label label23;
-        private GroupBox groupBox4;
-        private ComboBox Rohs1ChemSherpaStatusCode;
-        private Label label27;
-        private ComboBox RoHS資料;
-        private Label label26;
-        private ComboBox 非含有証明書;
-        private Label label25;
-        private ComboBox JampAis;
-        private Label label24;
-        private GroupBox groupBox5;
-        private ComboBox Rohs2ChemSherpaStatusCode;
-        private Label label28;
-        private ComboBox Rohs2DocumentStatusCode;
-        private Label label29;
-        private ComboBox Rohs2NonInclusionCertificationStatusCode;
-        private Label label30;
-        private ComboBox Rohs2JampAisStatusCode;
-        private Label label31;
-        private Label label32;
-        private TextBox ChemSherpaVersion;
         private Label label33;
         private Label label7;
         private CheckBox 廃止;
@@ -2556,27 +1875,14 @@ namespace u_net
         private Label label11;
         private TextBox 単位数量;
         private Label label34;
-        private TextBox StandardDeliveryDay;
-        private Label label35;
-        private TextBox ShelfNumber;
-        private Label label36;
         private Label label37;
         private TextBox ロス率;
         private Label label38;
         private Label label39;
         private TextBox InventoryAmount;
         private Label label40;
-        private TextBox 部品集合コード;
-        private Label label41;
-        private Label label42;
-        private Label label3;
-        private TextBox 備考;
-        private DataGridView 部品使用先;
         private ComboBox CalcInventoryCode;
         private ComboBox 受入検査ランク;
-        private TextBox 部品集合版数;
-        private TextBox 集合名;
-        private Button 部品集合参照ボタン;
         private newDataSetTableAdapters.M部品形状TableAdapter m部品形状TableAdapter;
         private newDataSet newDataSet;
         private newDataSetTableAdapters.M部品分類TableAdapter m部品分類TableAdapter;
@@ -2587,6 +1893,7 @@ namespace u_net
         private TextBox 無効日時;
         private ToolTip toolTip1;
         private PictureBox pictureBox1;
+        private ComboBox comboBox1;
     }
 }
 

@@ -256,6 +256,9 @@
     <Compile Update="Form\F_ユニット選択.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Form\F_部品履歴.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Form\F_部品_資料添付.cs">
       <SubType>Form</SubType>
     </Compile>
