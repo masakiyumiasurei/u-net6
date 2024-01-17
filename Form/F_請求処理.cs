@@ -69,9 +69,9 @@ namespace u_net
         }
 
 
-        private string Nz(object value)
+        private int Nz(string value)
         {
-            return value == null ? "" : value.ToString();
+            return string.IsNullOrEmpty(value)  ? 0 :int.Parse(value);
         }
 
 
@@ -511,6 +511,25 @@ namespace u_net
                 return;
             }
 
+            string query = "SELECT * FROM 会社情報";
+            SqlCommand cmd = new SqlCommand(query, cn);
+            SqlDataReader 会社情報 = cmd.ExecuteReader();
+                
+            if (!会社情報.Read())
+            {
+                MessageBox.Show("会社情報がDBに存在していません。会社情報を空白で出力します", "");
+            }
+
+            query = $"SELECT * FROM uv_営業担当者 where 顧客コード={reader["顧客コード"].ToString()}";
+            SqlCommand cmd2 = new SqlCommand(query, cn);
+            SqlDataReader 担当営業 = cmd.ExecuteReader();
+
+            if (!会社情報.Read())
+            {
+                MessageBox.Show("会社情報がDBに存在していません。会社情報を空白で出力します", "");
+            }
+
+
             report = resultTable.Rows;
 
             //最大行数
@@ -539,14 +558,91 @@ namespace u_net
                 paoRep.Write("BillingZipCode", row["BillingZipCode"].ToString() != "" ? row["BillingZipCode"].ToString() : " ");
                 paoRep.Write("BillingAddress1", row["BillingAddress1"].ToString() != "" ? row["BillingAddress1"].ToString() : " ");
                 paoRep.Write("BillingAddress2", row["BillingAddress2"].ToString() != "" ? row["BillingAddress2"].ToString() : " ");
-                paoRep.Write("BillingToName1", row["BillingToName1"].ToString() != "" ? row["BillingToName1"].ToString() : " ");
-                paoRep.Write("BillingToName2", row["BillingToName2"].ToString() != "" ? row["BillingToName2"].ToString() : " ");
+
+                if (row["BillingToName2"]?.ToString() != "")
+                {
+                    paoRep.Write("BillingToName1", row["BillingToName1"].ToString() != "" ? row["BillingToName1"].ToString() : " ");
+                    paoRep.Write("BillingToName2", row["BillingToName2"].ToString() + " 御中" );
+                }
+                else
+                {
+                    paoRep.Write("BillingToName1", row["BillingToName1"].ToString() != "" ? row["BillingToName1"].ToString()+" 御中" : " ");
+                    paoRep.Write("BillingToName2", "　");
+                }    
+                    
                 paoRep.Write("CustomerName1", row["CustomerName1"].ToString() != "" ? row["CustomerName1"].ToString() : " ");
+                paoRep.Write("CustomerName2", row["CustomerName2"].ToString() != "" ? row["CustomerName2"].ToString() : " ");
+
+                paoRep.Write("顧客コード", row["顧客コード"].ToString() != "" ? row["顧客コード"].ToString() : " ");
                 paoRep.Write("CustomerName2", row["CustomerName2"].ToString() != "" ? row["CustomerName2"].ToString() : " ");
 
 
 
+                int 前回御請求額 = (int.TryParse(row["繰越残高"]?.ToString(), out int 繰越残高) ? 繰越残高 : 0) +
+                 (int.TryParse(row["繰越残高消費税"]?.ToString(), out int 繰越残高消費税) ? 繰越残高消費税 : 0);
+                paoRep.Write("前回御請求額", 前回御請求額 );
 
+                paoRep.Write("御入金額", int.TryParse(row["入金合計"]?.ToString(), out int 入金合計) ? 入金合計 : 0);
+
+                int 繰越金額 = (int.TryParse(row["繰越残高"]?.ToString(), out  繰越残高) ? 繰越残高 : 0) +
+                 (int.TryParse(row["繰越残高消費税"]?.ToString(), out  繰越残高消費税) ? 繰越残高消費税 : 0) -
+                  (int.TryParse(row["入金合計"]?.ToString(), out 入金合計) ? 入金合計 : 0);
+                paoRep.Write("繰越金額", 繰越金額);
+
+                paoRep.Write("販売金額", int.TryParse(row["販売金額"]?.ToString(), out int 販売金額) ? 販売金額 : 0);
+                paoRep.Write("消費税額", int.TryParse(row["販売合計消費税"]?.ToString(), out int 販売合計消費税) ? 販売合計消費税 : 0);
+
+                int 御買上計= (int.TryParse(row["販売合計"]?.ToString(), out int 販売合計) ? 販売合計 : 0) +
+                 (int.TryParse(row["販売合計消費税"]?.ToString(), out  販売合計消費税) ? 販売合計消費税 : 0);
+
+                paoRep.Write("御買上計", 御買上計);                               
+                paoRep.Write("今回御請求額", 繰越金額 + 御買上計);
+
+
+                paoRep.Write("請求日", row.Field<DateTime>("請求日").ToString("yyyy年MM月dd日"));
+                paoRep.Write("請求コード", row["請求コード"].ToString() != "" ? row["請求コード"].ToString() : " ");
+
+                paoRep.Write("会社名1", 会社情報["会社名1"].ToString() != "" ? row["会社名1"].ToString() : " ");
+                paoRep.Write("会社名2", 会社情報["会社名2"].ToString() != "" ? row["会社名2"].ToString() : " ");
+
+
+                string フォーマット郵便番号 = 会社情報["郵便番号"].ToString().Length == 7
+                    ? string.Format("{0:###-####}", int.Parse(会社情報["郵便番号"].ToString()))
+                    : 会社情報["郵便番号"].ToString();
+                paoRep.Write("自社郵便番号", フォーマット郵便番号 != "" ? フォーマット郵便番号 : " ");
+
+                paoRep.Write("自社住所1", 会社情報["住所1"].ToString() != "" ? row["住所1"].ToString() : " ");
+                paoRep.Write("自社住所2", 会社情報["住所2"].ToString() != "" ? row["住所2"].ToString() : " ");
+                paoRep.Write("電話番号", "TEL:" + 会社情報["電話番号"].ToString());
+                paoRep.Write("FAX番号", "FAX:" + 会社情報["FAX番号"].ToString());
+
+                paoRep.Write("銀行名称", 会社情報["取引銀行1名称"].ToString() != "" ? row["取引銀行1名称"].ToString() : " ");
+                paoRep.Write("銀行口座番号", "No," + 会社情報["取引銀行1口座番号"].ToString());
+
+                paoRep.Write("営業担当者名", 担当営業["営業担当者名"].ToString() != "" ? 担当営業["営業担当者名"].ToString() : " ");
+
+                //サイズ調整
+                paoRep.z_Objects.SetObject("BillingToName1");
+                lenB = Encoding.Default.GetBytes(row["BillingToName1"].ToString()).Length;
+                if (lenB < 44)
+                {
+                    paoRep.z_Objects.z_Text.z_FontAttr.Size = 8;
+                }
+                else
+                {
+                    paoRep.z_Objects.z_Text.z_FontAttr.Size = 10;
+                }
+
+                paoRep.z_Objects.SetObject("BillingToName2");
+                lenB = Encoding.Default.GetBytes(row["BillingToName2"].ToString()).Length;
+                if (lenB < 44)
+                {
+                    paoRep.z_Objects.z_Text.z_FontAttr.Size = 8;
+                }
+                else
+                {
+                    paoRep.z_Objects.z_Text.z_FontAttr.Size = 10;
+                }
 
 
 
@@ -558,46 +654,18 @@ namespace u_net
                 DataRow targetRow = report[CurRow];
 
                 //paoRep.Write("明細番号", (CurRow + 1).ToString(), i + 1);  //連番にしたい時はこちら。明細番号は歯抜けがあるので
-                paoRep.Write("DestinationZipCode", targetRow["DestinationZipCode"].ToString() != "" ? targetRow["DestinationZipCode"].ToString() : " ", i + 1);
-                paoRep.Write("DestinationAddress1", targetRow["DestinationAddress1"].ToString() != "" ? targetRow["DestinationAddress1"].ToString() : " ", i + 1);
-                paoRep.Write("DestinationAddress2", targetRow["DestinationAddress2"].ToString() != "" ? targetRow["DestinationAddress2"].ToString() : " ", i + 1);
-                paoRep.Write("DestinationName1", targetRow["DestinationName1"].ToString() != "" ? targetRow["DestinationName1"].ToString() : " ", i + 1);
-                paoRep.Write("DestinationName2", targetRow["DestinationName2"].ToString() != "" ? targetRow["DestinationName2"].ToString() : " ", i + 1);
-                paoRep.Write("ReceiptDay", targetRow["ReceiptDay"].ToString() != "" ? targetRow.Field<DateTime>("ReceiptDay").ToString("yyyy年MM月dd日") : " ", i + 1);
-                paoRep.Write("領収日1", targetRow["ReceiptDay"].ToString() != "" ? targetRow.Field<DateTime>("ReceiptDay").ToString("yyyy年MM月dd日") : " ", i + 1);
-                paoRep.Write("領収日2", targetRow["ReceiptDay"].ToString() != "" ? targetRow.Field<DateTime>("ReceiptDay").ToString("yyyy年MM月dd日") : " ", i + 1);
-                paoRep.Write("送付状摘要", targetRow["Summary"].ToString() != "" ? targetRow["Summary"].ToString() : " ", i + 1);
-                paoRep.Write("SummaryCopy", targetRow["Summary"].ToString() != "" ? targetRow["Summary"].ToString() : " ", i + 1);
-                paoRep.Write("領収先名前1", targetRow["ReceiptName"].ToString() != "" ? targetRow["ReceiptName"].ToString() : " ", i + 1);
-                paoRep.Write("領収先名前2", targetRow["ReceiptName"].ToString() != "" ? targetRow["ReceiptName"].ToString() : " ", i + 1);
-                paoRep.Write("領収金額合計", targetRow["Receipt"].ToString() != "" ? targetRow["Receipt"].ToString() : " ", i + 1);
-                paoRep.Write("控え領収金額合計", targetRow["Receipt"].ToString() != "" ? targetRow["Receipt"].ToString() : " ", i + 1);
-                paoRep.Write("領収コード1", targetRow["ReceiptCode"].ToString() != "" ? targetRow["ReceiptCode"].ToString() : " ", i + 1);
-                paoRep.Write("領収コード2", targetRow["ReceiptCode"].ToString() != "" ? targetRow["ReceiptCode"].ToString() : " ", i + 1);
-                paoRep.Write("但し書き1", targetRow["Proviso"].ToString() != "" ? targetRow["Proviso"].ToString() : " ", i + 1);
-                paoRep.Write("但し書き2", targetRow["Proviso"].ToString() != "" ? targetRow["Proviso"].ToString() : " ", i + 1);
-                paoRep.Write("DetailsSummary1", targetRow["DetailsSummary"].ToString() != "" ? targetRow["DetailsSummary"].ToString() : " ", i + 1);
-                paoRep.Write("DetailsSummary2", targetRow["DetailsSummary"].ToString() != "" ? targetRow["DetailsSummary"].ToString() : " ", i + 1);
-
-                paoRep.z_Objects.SetObject("領収先名前1", i + 1);
-                if (targetRow["ReceiptName"].ToString().Length > 20)
-                {
-                    paoRep.z_Objects.z_Text.z_FontAttr.Size = 8;
-                }
-                else
-                {
-                    paoRep.z_Objects.z_Text.z_FontAttr.Size = 12;
-                }
-
-                paoRep.z_Objects.SetObject("領収先名前2", i + 1);
-                if (targetRow["ReceiptName"].ToString().Length > 20)
-                {
-                    paoRep.z_Objects.z_Text.z_FontAttr.Size = 8;
-                }
-                else
-                {
-                    paoRep.z_Objects.z_Text.z_FontAttr.Size = 12;
-                }
+                
+                paoRep.Write("伝票日付", targetRow["伝票日付"].ToString() != "" ? targetRow.Field<DateTime>("伝票日付").ToString("yyyy年MM月dd日") : " ", i + 1);
+               
+                paoRep.Write("コード", targetRow["コード"].ToString() != "" ? targetRow["コード"].ToString() : " ", i + 1);
+                paoRep.Write("品名", targetRow["品名"].ToString() != "" ? targetRow["品名"].ToString() : " ", i + 1);
+                paoRep.Write("型番", targetRow["型番"].ToString() != "" ? targetRow["型番"].ToString() : " ", i + 1);
+                paoRep.Write("注文番号", targetRow["注文番号"].ToString() != "" ? targetRow["注文番号"].ToString() : " ", i + 1);
+                paoRep.Write("数量", targetRow["数量"].ToString() != "" ? targetRow["数量"].ToString() : " ", i + 1);
+                paoRep.Write("単位", targetRow["単位"].ToString() != "" ? targetRow["単位"].ToString() : " ", i + 1);
+                paoRep.Write("単価", targetRow["単価"].ToString() != "" ? targetRow["単価"].ToString() : " ", i + 1);
+                paoRep.Write("金額", targetRow["金額"].ToString() != "" ? targetRow["金額"].ToString() : " ", i + 1);             
+                                    
 
                 CurRow++;
                 }
