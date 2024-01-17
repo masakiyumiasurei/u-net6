@@ -2,42 +2,46 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Common;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Transactions;
 using System.Windows.Forms;
+using DocumentFormat.OpenXml.Drawing.Diagrams;
 using Microsoft.Data.SqlClient;
 using u_net.Public;
+using static u_net.Public.FunctionClass;
+using static u_net.CommonConstants;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
+using Pao.Reports;
+using DocumentFormat.OpenXml.Office2013.Excel;
 
 namespace u_net
 {
     public partial class F_請求処理 : MidForm
     {
-        public string str製品コード開始 { get; set; }
-        public string str製品コード終了 { get; set; }
-        public string str品名 { get; set; }
-        public string strシリーズ名 { get; set; }
-        public long lng指導書変更 { get; set; }
-        public long lngRoHS対応 { get; set; }
-        public long lng非含有証明書 { get; set; }
-        public DateTime dtm更新日開始 { get; set; }
-        public DateTime dtm更新日終了 { get; set; }
-        public string str更新者名 { get; set; }
-        public long lng確定指定 { get; set; }
-        public long lng承認指定 { get; set; }
-        public long lng廃止指定 { get; set; }
-        public long lng削除指定 { get; set; }
-        public string strKey1 { get; set; }
+        private const string StrSecondOrder = "顧客コード"; // 並べ替え第２項目
 
-        public bool blnShiftOn = false;
+        public Button CurrentOrder; // 現在の並べ替え
+        public bool ble締め処理; // 締め処理をしたかどうかのフラグ
+        public DateTime dte請求締日 = DateTime.MinValue;
+        public string str顧客コード = "";
+        public string str顧客名 = "";
+        public byte byt表示方法;
 
-        public bool blnCurrent = false;
-
-        public string strSearchCode = "";
-
+        private int intWindowHeight; // 現在保持している高さ
+        private int intWindowWidth; // 現在保持している幅
+        private string MyUserName; // ユーザー名
+        private int lngInterval; // 縞の間隔
+        private int lngCurrentRow; // 現在行
+        private int intKeyCode; // 保存キーコード
+        private int intButton; // 保存マウスボタン
+        private bool blnMark;
+        private string[] NoOutArray;
+        string param;
 
 
         public string CurrentCode
@@ -56,8 +60,6 @@ namespace u_net
             }
         }
 
-        int intWindowHeight = 0;
-        int intWindowWidth = 0;
 
         private Control? previousControl;
         private SqlConnection? cn;
@@ -81,25 +83,63 @@ namespace u_net
             cn.Open();
         }
 
+        private void DelDemand()
+        {
+            Connect();
+            SqlTransaction transaction = cn.BeginTransaction();
+            try
+            {
+                string strSQL = "DELETE FROM T請求一時";
+                using (SqlCommand command = new SqlCommand(strSQL, cn, transaction))
+                {
+                    command.ExecuteNonQuery();
+                    transaction.Commit();
+                }
+            }
+            catch (Exception ex)
+            {
+                transaction.Rollback();
+                MessageBox.Show($"請求処理の後処理に失敗しました。{Environment.NewLine}" +
+                                $"次回請求処理時表示データが不正になります。{Environment.NewLine}" +
+                                $"正常に請求処理を終了すれば修復されます。{Environment.NewLine}" +
+                                $"エラー詳細: {ex.Message}", "DelDemand", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
 
+        public bool DoClose(string SPName, DateTime CloseDate, string CustomerCode)
+        {
+            try
+            {
+                Connect();
 
+                using (SqlCommand objCommand = new SqlCommand(SPName, cn))
+                {
+                    objCommand.CommandType = CommandType.StoredProcedure;
+
+                    // パラメータの追加
+                    objCommand.Parameters.AddWithValue("@CloseDate", CloseDate);
+                    objCommand.Parameters.AddWithValue("@CustomerCode", CustomerCode);
+
+                    objCommand.ExecuteNonQuery();
+                }
+
+                cn.Close();
+                return true;
+            }
+            catch (SqlException ex)
+            {
+                Debug.Print("DoClose - ADO Error! Err.No: " + ex.Number + " SQL State: " + ex.State);
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Debug.Print("DoClose - " + ex.Message);
+                return false;
+            }
+        }
         private void InitializeFilter()
         {
-            str製品コード開始 = "";
-            str製品コード終了 = "";
-            str品名 = "";
-            strシリーズ名 = "";
-            lng指導書変更 = 0;
-            lngRoHS対応 = 1;
-            lng非含有証明書 = 0;
-            dtm更新日開始 = DateTime.MinValue;
-            dtm更新日終了 = DateTime.MinValue;
-            str更新者名 = "";
-            lng確定指定 = 0;
-            lng承認指定 = 0;
-            lng廃止指定 = 1;
-            lng削除指定 = 1;
-            strKey1 = "";
+
         }
 
         private void Form_Load(object sender, EventArgs e)
@@ -107,19 +147,80 @@ namespace u_net
             FunctionClass fn = new FunctionClass();
             fn.DoWait("しばらくお待ちください...");
 
-
             //実行中フォーム起動
             string LoginUserCode = CommonConstants.LoginUserCode;
             LocalSetting localSetting = new LocalSetting();
             localSetting.LoadPlace(LoginUserCode, this);
 
+            try
+            {
+                Connect();
 
-            MyApi myapi = new MyApi();
-            int xSize, ySize, intpixel, twipperdot;
+                // 請求処理ロック
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    string sql = "SELECT * FROM システム WHERE システムコード = 1";
+                    cmd.Connection = cn;
+                    cmd.CommandType = CommandType.Text;
+                    cmd.CommandText = sql;
+                    //SqlDataReader reader = cmd.ExecuteReader();
+                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
 
-            //1インチ当たりのピクセル数 アクセスのサイズの引数がtwipなのでピクセルに変換する除算値を求める
-            intpixel = myapi.GetLogPixel();
-            twipperdot = myapi.GetTwipPerDot(intpixel);
+                    DataSet dataSet = new DataSet();
+                    adapter.Fill(dataSet, "システム");
+                    DataTable table = dataSet.Tables["システム"];
+                    DataRow row = table.Rows[0];
+                    if (table.Rows.Count > 0)
+                    {
+                        if (row["請求処理者コード"] == DBNull.Value)
+                        {
+                            // 請求処理者コードがNULLの場合
+                            string name = MyApi.NetUserName();
+                            string code = FunctionClass.employeeCode(cn, name);
+                            //row["請求処理者コード"] = code;
+
+                            //テスト用
+                            row["請求処理者コード"] = "855";
+
+
+                            using (SqlCommandBuilder commandBuilder = new SqlCommandBuilder(adapter))
+                            {
+                                adapter.Update(dataSet, "システム");
+                            }
+                        }
+                        else
+                        {
+                            // 請求処理者コードがNULLでない場合
+                            MessageBox.Show("現在、" + FunctionClass.EmployeeName(cn, row["請求処理者コード"]?.ToString()) +
+                                           " さんが請求処理をしています。\n請求処理は実行できません。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            Close();
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("初期化に失敗しました。\n管理者に連絡してください。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        Close();
+                        return;
+                    }
+                }
+
+                byt表示方法 = 3;
+            }
+            catch (SqlException ex)
+            {
+                Debug.Print(this.Name + "_Load - ADO Error! Err.No: " + ex.Number + " SQL State: " + ex.State);
+                Close(); // フォームを閉じる
+            }
+            catch (Exception ex)
+            {
+                Debug.Print(this.Name + "_Load - " + ex.Message);
+                Close(); // フォームを閉じる
+            }
+            finally
+            {
+                cn.Close();
+            }
 
             intWindowHeight = this.Height;
             intWindowWidth = this.Width;
@@ -140,189 +241,123 @@ namespace u_net
             dataGridView1.ReadOnly = true;
 
 
-            myapi.GetFullScreen(out xSize, out ySize);
-
-            int x = 10, y = 10;
-
-            this.Size = new Size(this.Width, ySize * myapi.GetTwipPerDot(intpixel) - 1200);
-            //accessのmovesizeメソッドの引数の座標単位はtwipなので以下で
-
-            this.Size = new Size(this.Width, ySize - 1200 / twipperdot);
-
-            this.StartPosition = FormStartPosition.Manual; // 手動で位置を指定
-            int screenWidth = Screen.PrimaryScreen.Bounds.Width; // プライマリスクリーンの幅
-            x = (screenWidth - this.Width) / 2;
-            this.Location = new Point(x, y);
-
-            InitializeFilter();
-            DoUpdate();
+            //InitializeFilter();
+            Filtering();
             fn.WaitForm.Close();
         }
 
 
-        private void F_製品管理_FormClosing(object sender, FormClosingEventArgs e)
+        private void Form_Closing(object sender, FormClosingEventArgs e)
         {
-            string LoginUserCode = CommonConstants.LoginUserCode;//テスト用 ログインユーザを実行中にどのように管理するか決まったら修正
-            LocalSetting test = new LocalSetting();
-            test.SavePlace(LoginUserCode, this);
-        }
-
-
-
-        public int DoUpdate()
-        {
-            int result = -1;
             try
             {
-                result = GridSet();
-                if (result >= 0)
+                // T請求から集計レコード削除
+                DelDemand();
+
+                Connect();
+                // 請求処理ロック解除
+                using (SqlCommand cmd = new SqlCommand())
                 {
-                    this.表示件数.Text = result.ToString();
+                    cmd.Connection = cn;
+                    cmd.CommandType = CommandType.Text;
+                    cmd.CommandText = "SELECT * FROM システム WHERE システムコード = 1";
+
+                    using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                    {
+                        DataTable table = new DataTable();
+                        adapter.Fill(table);
+
+                        if (table.Rows.Count > 0)
+                        {
+                            DataRow row = table.Rows[0];
+
+                            if (row["請求処理者コード"] != DBNull.Value)
+                            {
+                                row["請求処理者コード"] = DBNull.Value;
+
+                                // データベースに変更を反映
+                                SqlCommandBuilder commandBuilder = new SqlCommandBuilder(adapter);
+                                adapter.Update(table);
+                            }
+                        }
+                    }
                 }
-                else
+
+                if (ble締め処理 == true)
                 {
-                    this.表示件数.Text = null;
+                    return;
                 }
+
             }
             catch (Exception ex)
             {
-                result = -1;
-                MessageBox.Show(this.Name + "_DoUpdate - " + ex.Message);
+                MessageBox.Show("クローズ処理に失敗しました。\n" + ex.Message, "請求処理", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                string LoginUserCode = CommonConstants.LoginUserCode;//テスト用 ログインユーザを実行中にどのように管理するか決まったら修正
+                LocalSetting test = new LocalSetting();
+                test.SavePlace(LoginUserCode, this);
             }
 
-            return result;
         }
 
-        private int GridSet()
+
+        private void Filtering()
         {
             try
             {
-                string filter = string.Empty;
-
-                // 品名指定
-                if (!string.IsNullOrEmpty(str品名))
+                //ストアドでT請求一時を作成する。このテーブルがgridviewに表示される
+                //dte請求締日の初期値をストアドに渡すとエラーになるため回避
+                if (dte請求締日 != DateTime.MinValue)
                 {
-                    filter += string.Format("品名 LIKE '%{0}%' AND ", str品名);
+                    Connect();
+                    using (SqlCommand objCommand = new SqlCommand("SP請求処理", cn))
+                    {
+                        objCommand.CommandType = CommandType.StoredProcedure;
+                        objCommand.Parameters.AddWithValue("@datNew", dte請求締日);
+                        objCommand.Parameters.AddWithValue("@CustomerCode", str顧客コード);
+                        objCommand.Parameters.AddWithValue("@Display", byt表示方法);
+                        objCommand.ExecuteNonQuery();
+                    }
                 }
-
-                // シリーズ名指定
-                if (!string.IsNullOrEmpty(strシリーズ名))
-                {
-                    filter += string.Format("シリーズ名 LIKE '%{0}%' AND ", strシリーズ名);
-                }
-
-                // 指導書変更指定
-                switch (lng指導書変更)
-                {
-                    case 1:
-                        filter += "指導書変更 IS NOT NULL AND ";
-                        break;
-                    case 2:
-                        filter += "指導書変更 IS NOT AND ";
-                        break;
-                }
-
-                // RoHS対応指定
-                switch (lngRoHS対応)
-                {
-                    case 1:
-                        filter += "(RohsStatusSign = '１' OR RohsStatusSign = '２') AND ";
-                        break;
-                    case 2:
-                        filter += "(NOT (RohsStatusSign = '１' OR RohsStatusSign = '２')) AND ";
-                        break;
-                }
-
-                // 非含有証明書指定
-                switch (lng確定指定)
-                {
-                    case 1:
-                        filter += "非含有証明書 = '○' AND ";
-                        break;
-                    case 2:
-                        filter += "非含有証明書 = '△' AND ";
-                        break;
-                    case 3:
-                        filter += "非含有証明書 = '？' AND ";
-                        break;
-                    case 4:
-                        filter += "非含有証明書 IS  NULL AND ";
-                        break;
-                }
-
-
-
-                // 更新日時
-                if (dtm更新日開始 != DateTime.MinValue && dtm更新日終了 != DateTime.MinValue)
-                {
-                    filter += "'" + dtm更新日開始 + "' <= 更新日時 AND 更新日時 <= '" + dtm更新日終了 + "' AND ";
-                }
-                // 更新者名
-                if (!string.IsNullOrEmpty(str更新者名))
-                {
-                    filter += "更新者名 = '" + str更新者名 + "' AND ";
-                }
-
-
-                // 確定指定
-                switch (lng確定指定)
-                {
-                    case 1:
-                        filter += "確定 IS NULL AND ";
-                        break;
-                    case 2:
-                        filter += "確定 IS NOT NULL AND ";
-                        break;
-                }
-
-                // 承認指定
-                switch (lng承認指定)
-                {
-                    case 1:
-                        filter += "承認 IS NULL AND ";
-                        break;
-                    case 2:
-                        filter += "承認 IS NOT NULL AND ";
-                        break;
-                }
-
-                // 廃止指定
-                switch (lng廃止指定)
-                {
-                    case 1:
-                        filter += "廃止 IS NULL AND ";
-                        break;
-                    case 2:
-                        filter += "廃止 IS NOT NULL AND ";
-                        break;
-                }
-
-                // 削除
-                switch (lng削除指定)
-                {
-                    case 1:
-                        filter += "削除 IS NULL AND ";
-                        break;
-                    case 2:
-                        filter += "削除 IS NOT NULL AND ";
-                        break;
-                }
-
-                // 汎用キー1指定
-                if (!string.IsNullOrEmpty(strKey1))
-                {
-                    filter += string.Format("汎用キー1 LIKE '%{0}%' AND ", strKey1);
-                }
-
-                if (!string.IsNullOrEmpty(filter))
-                {
-                    filter = filter.Substring(0, filter.Length - 5); // 最後の " AND " を削除
-                }
-
-                string query = "SELECT * FROM V製品一覧 WHERE 1=1 AND " + filter + " ORDER BY 製品コード DESC ";
+                string query =
+                "SELECT '' AS Ｘ, CASE WHEN 締め日 IS NULL THEN '' ELSE '■' END AS 締, 顧客コード, 顧客名, 顧客名フリガナ, 請求書処理方法, 最終請求日 AS 前回請求日, " +
+                "前回繰越残高 AS 前回請求額, 入金合計 AS 入金額, 販売合計 AS 売上額, " +
+                "販売合計消費税 AS 消費税, 今回販売額 AS 売上合計額, 請求金額 AS 今回請求額 " +
+                "FROM V請求処理 ORDER BY 顧客名フリガナ";
 
                 Connect();
                 DataGridUtils.SetDataGridView(cn, query, this.dataGridView1);
+
+                string strSQL =
+               "SELECT COUNT(*) AS 件数, " +
+               "SUM(前回繰越残高) AS 前回請求金額合計, " +
+               "SUM(入金合計) AS 入金金額合計, " +
+               "SUM(販売合計) AS 販売金額合計, " +
+               "SUM(販売合計消費税) AS 販売金額消費税合計, " +
+               "SUM(今回販売額) AS 販売金額総合計, " +
+               "SUM(請求金額) AS 今回請求金額合計 " +
+               "FROM V請求処理";
+
+                using (SqlCommand cmdAggregate = new SqlCommand(strSQL, cn))
+                {
+                    using (SqlDataReader reader = cmdAggregate.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            表示件数.Text = reader["件数"].ToString();
+                            前回請求金額合計.Text = reader["前回請求金額合計"].ToString();
+                            入金金額合計.Text = reader["入金金額合計"].ToString();
+                            販売金額合計.Text = reader["販売金額合計"].ToString();
+                            販売金額消費税合計.Text = reader["販売金額消費税合計"].ToString();
+                            販売金額総合計.Text = reader["販売金額総合計"].ToString();
+                            今回請求金額合計.Text = reader["今回請求金額合計"].ToString();
+                            if (dte請求締日 != DateTime.MinValue)
+                                請求締日.Text = dte請求締日.ToString();
+                        }
+                    }
+                }
 
 
                 MyApi myapi = new MyApi();
@@ -336,33 +371,37 @@ namespace u_net
                 intWindowWidth = this.Width;
 
                 //// DataGridViewの設定
-                dataGridView1.Columns[0].DefaultCellStyle.BackColor = Color.FromArgb(255, 255, 200); // 薄い黄色
-                dataGridView1.Columns[1].DefaultCellStyle.BackColor = Color.FromArgb(255, 255, 200);
+                dataGridView1.Columns[2].DefaultCellStyle.BackColor = Color.FromArgb(255, 255, 200); // 薄い黄色
+
 
                 //0列目はaccessでは行ヘッダのため、ずらす
 
-                dataGridView1.Columns[0].Width = 1200 / twipperdot;
-                dataGridView1.Columns[1].Width = 400 / twipperdot;
-                dataGridView1.Columns[2].Width = 3400 / twipperdot;
-                dataGridView1.Columns[3].Width = 3400 / twipperdot;
-                dataGridView1.Columns[4].Width = 400 / twipperdot;
-                dataGridView1.Columns[5].Width = 400 / twipperdot;
-                dataGridView1.Columns[6].Width = 400 / twipperdot;
-                dataGridView1.Columns[7].Width = 400 / twipperdot;
-                dataGridView1.Columns[8].Width = 2200 / twipperdot;
-                dataGridView1.Columns[9].Width = 1500 / twipperdot;
-                dataGridView1.Columns[10].Width = 400 / twipperdot;
-                dataGridView1.Columns[11].Width = 400 / twipperdot;
-                dataGridView1.Columns[12].Width = 400 / twipperdot;
+                dataGridView1.Columns[0].Width = 320 / twipperdot;
+                dataGridView1.Columns[1].Width = 320 / twipperdot;
+                dataGridView1.Columns[2].Width = 1500 / twipperdot;
+                dataGridView1.Columns[3].Width = 3900 / twipperdot;
+                dataGridView1.Columns[4].Width = 0;
+                dataGridView1.Columns[5].Width = 1100 / twipperdot;
+                dataGridView1.Columns[6].Width = 1200 / twipperdot;
+                dataGridView1.Columns[7].Width = 1270 / twipperdot;
+                dataGridView1.Columns[8].Width = 1300 / twipperdot;
+                dataGridView1.Columns[9].Width = 1300 / twipperdot;
+                dataGridView1.Columns[10].Width = 1150 / twipperdot;
+                dataGridView1.Columns[11].Width = 1300 / twipperdot;
+                dataGridView1.Columns[12].Width = 1300 / twipperdot;
 
+                for (int i = 6; i < 12; i++)
+                {
+                    dataGridView1.Columns[i].DefaultCellStyle.Format = "#,###,###,##0";
+                }
+                lngInterval = 0;
+                return;
 
-                return dataGridView1.RowCount;
-                return 0;
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Filtering - " + ex.Message);
-                return -1;
+                return;
             }
         }
 
@@ -391,17 +430,185 @@ namespace u_net
             }
         }
 
+        bool shainFlg = false;
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-
             if (e.RowIndex >= 0) // ヘッダー行でない場合
             {
+                try
+                {
+                    string strTmp;
+                    string code;
 
-                F_製品 targetform = new F_製品();
+                    DialogResult dialogResult = MessageBox.Show("社印は必要ですか？", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        shainFlg = true;
+                    }
+                    bool blnMark = (dialogResult == DialogResult.Yes);
 
-                targetform.args = CurrentCode + "," + CurrentEdition;
-                targetform.ShowDialog();
+                    code = $"{dataGridView1.Rows[dataGridView1.SelectedCells[0].RowIndex].Cells[2].Value}";
+
+                    請求明細書印刷(code, shainFlg);
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"エラーが発生しました: {ex.Message}", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
+        }
+
+        private void dataGridView1_Click(object sender, EventArgs e)
+        {
+            string currentValue = dataGridView1.Rows[dataGridView1.CurrentCell.RowIndex].Cells[0].Value?.ToString();
+
+            switch (currentValue)
+            {
+
+                case "■":
+                    dataGridView1.Rows[dataGridView1.CurrentCell.RowIndex].Cells[0].Value = "";
+                    break;
+                case "":
+                    dataGridView1.Rows[dataGridView1.CurrentCell.RowIndex].Cells[0].Value = "■";
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void 請求明細書印刷(string code, bool shainFlg)
+        {
+            IReport paoRep = ReportCreator.GetPreview();
+            if (shainFlg)
+            {
+                paoRep.LoadDefFile("../../../Reports/請求明細書.prepd");
+            }
+            else
+            {
+                paoRep.LoadDefFile("../../../Reports/請求明細書社印なし.prepd");
+            }
+            Connect();
+
+            DataRowCollection report;
+            DataTable resultTable = new DataTable();
+
+            SqlCommand command = new SqlCommand("SP請求明細", cn);
+
+            command.CommandType = CommandType.StoredProcedure;
+            command.Parameters.AddWithValue("@dtmNew", dte請求締日);
+            command.Parameters.AddWithValue("@CustomerCode", code);
+
+            SqlDataReader reader = command.ExecuteReader();
+
+            if (reader.HasRows)
+            {
+                resultTable.Load(reader);
+            }
+            else
+            {
+                MessageBox.Show("出力する請求明細がありません。","");
+                return;
+            }
+
+            report = resultTable.Rows;
+
+            //最大行数
+            int maxRow = 10;
+            //現在の行
+            int CurRow = 0;
+            //行数
+            int RowCount = maxRow;
+            if (report.Count > 0)
+            {
+                RowCount = report.Count;
+            }
+            int page = 1;
+            double maxPage = Math.Ceiling((double)RowCount / maxRow);
+            DateTime now = DateTime.Now;
+
+            int lenB;
+            //描画すべき行がある限りページを増やす  
+            while (RowCount > 0)
+            {
+                RowCount -= maxRow;
+
+                paoRep.PageStart();
+                DataRow row = report[0];
+                // ヘッダー
+                paoRep.Write("BillingZipCode", row["BillingZipCode"].ToString() != "" ? row["BillingZipCode"].ToString() : " ");
+                paoRep.Write("BillingAddress1", row["BillingAddress1"].ToString() != "" ? row["BillingAddress1"].ToString() : " ");
+                paoRep.Write("BillingAddress2", row["BillingAddress2"].ToString() != "" ? row["BillingAddress2"].ToString() : " ");
+                paoRep.Write("BillingToName1", row["BillingToName1"].ToString() != "" ? row["BillingToName1"].ToString() : " ");
+                paoRep.Write("BillingToName2", row["BillingToName2"].ToString() != "" ? row["BillingToName2"].ToString() : " ");
+                paoRep.Write("CustomerName1", row["CustomerName1"].ToString() != "" ? row["CustomerName1"].ToString() : " ");
+                paoRep.Write("CustomerName2", row["CustomerName2"].ToString() != "" ? row["CustomerName2"].ToString() : " ");
+
+
+
+
+
+
+
+                //明細
+                for (var i = 0; i < maxRow; i++)
+                {
+                    if (CurRow >= report.Count) break;
+
+                DataRow targetRow = report[CurRow];
+
+                //paoRep.Write("明細番号", (CurRow + 1).ToString(), i + 1);  //連番にしたい時はこちら。明細番号は歯抜けがあるので
+                paoRep.Write("DestinationZipCode", targetRow["DestinationZipCode"].ToString() != "" ? targetRow["DestinationZipCode"].ToString() : " ", i + 1);
+                paoRep.Write("DestinationAddress1", targetRow["DestinationAddress1"].ToString() != "" ? targetRow["DestinationAddress1"].ToString() : " ", i + 1);
+                paoRep.Write("DestinationAddress2", targetRow["DestinationAddress2"].ToString() != "" ? targetRow["DestinationAddress2"].ToString() : " ", i + 1);
+                paoRep.Write("DestinationName1", targetRow["DestinationName1"].ToString() != "" ? targetRow["DestinationName1"].ToString() : " ", i + 1);
+                paoRep.Write("DestinationName2", targetRow["DestinationName2"].ToString() != "" ? targetRow["DestinationName2"].ToString() : " ", i + 1);
+                paoRep.Write("ReceiptDay", targetRow["ReceiptDay"].ToString() != "" ? targetRow.Field<DateTime>("ReceiptDay").ToString("yyyy年MM月dd日") : " ", i + 1);
+                paoRep.Write("領収日1", targetRow["ReceiptDay"].ToString() != "" ? targetRow.Field<DateTime>("ReceiptDay").ToString("yyyy年MM月dd日") : " ", i + 1);
+                paoRep.Write("領収日2", targetRow["ReceiptDay"].ToString() != "" ? targetRow.Field<DateTime>("ReceiptDay").ToString("yyyy年MM月dd日") : " ", i + 1);
+                paoRep.Write("送付状摘要", targetRow["Summary"].ToString() != "" ? targetRow["Summary"].ToString() : " ", i + 1);
+                paoRep.Write("SummaryCopy", targetRow["Summary"].ToString() != "" ? targetRow["Summary"].ToString() : " ", i + 1);
+                paoRep.Write("領収先名前1", targetRow["ReceiptName"].ToString() != "" ? targetRow["ReceiptName"].ToString() : " ", i + 1);
+                paoRep.Write("領収先名前2", targetRow["ReceiptName"].ToString() != "" ? targetRow["ReceiptName"].ToString() : " ", i + 1);
+                paoRep.Write("領収金額合計", targetRow["Receipt"].ToString() != "" ? targetRow["Receipt"].ToString() : " ", i + 1);
+                paoRep.Write("控え領収金額合計", targetRow["Receipt"].ToString() != "" ? targetRow["Receipt"].ToString() : " ", i + 1);
+                paoRep.Write("領収コード1", targetRow["ReceiptCode"].ToString() != "" ? targetRow["ReceiptCode"].ToString() : " ", i + 1);
+                paoRep.Write("領収コード2", targetRow["ReceiptCode"].ToString() != "" ? targetRow["ReceiptCode"].ToString() : " ", i + 1);
+                paoRep.Write("但し書き1", targetRow["Proviso"].ToString() != "" ? targetRow["Proviso"].ToString() : " ", i + 1);
+                paoRep.Write("但し書き2", targetRow["Proviso"].ToString() != "" ? targetRow["Proviso"].ToString() : " ", i + 1);
+                paoRep.Write("DetailsSummary1", targetRow["DetailsSummary"].ToString() != "" ? targetRow["DetailsSummary"].ToString() : " ", i + 1);
+                paoRep.Write("DetailsSummary2", targetRow["DetailsSummary"].ToString() != "" ? targetRow["DetailsSummary"].ToString() : " ", i + 1);
+
+                paoRep.z_Objects.SetObject("領収先名前1", i + 1);
+                if (targetRow["ReceiptName"].ToString().Length > 20)
+                {
+                    paoRep.z_Objects.z_Text.z_FontAttr.Size = 8;
+                }
+                else
+                {
+                    paoRep.z_Objects.z_Text.z_FontAttr.Size = 12;
+                }
+
+                paoRep.z_Objects.SetObject("領収先名前2", i + 1);
+                if (targetRow["ReceiptName"].ToString().Length > 20)
+                {
+                    paoRep.z_Objects.z_Text.z_FontAttr.Size = 8;
+                }
+                else
+                {
+                    paoRep.z_Objects.z_Text.z_FontAttr.Size = 12;
+                }
+
+                CurRow++;
+                }
+                
+                page++;
+
+                paoRep.PageEnd();
+
+            }
+
+            paoRep.Output();
         }
 
         private void dataGridView1_KeyDown(object sender, KeyEventArgs e)
@@ -441,12 +648,8 @@ namespace u_net
 
         private void コマンド抽出_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void コマンド初期化_Click(object sender, EventArgs e)
-        {
-
+            //F_請求条件設定 fm = new F_請求条件設定();
+            //fm.ShowDialog();
         }
 
         private void コマンド印刷_Click(object sender, EventArgs e)
@@ -461,27 +664,56 @@ namespace u_net
 
         private void コマンド顧客_Click(object sender, EventArgs e)
         {
-
+            param = $" -sv:{ServerInstanceName} -open:customer";
+            GetShell(param);
         }
 
         private void コマンド締め実行_Click(object sender, EventArgs e)
         {
-
+            //F_締め処理 fm = new F_締め処理();
+            //fm.ShowDialog();
         }
 
         private void コマンド締め取消_Click(object sender, EventArgs e)
         {
+            try
+            {
+                // 表示顧客の締日処理取り消し
 
-        }
+                if (MessageBox.Show("表示データの締め処理を取り消しますか？\n\n", "取消確認",
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                {
+                    goto Bye_コマンド締め取消_Click;
+                }
 
-        private void コマンド複写_Click(object sender, EventArgs e)
-        {
+                if (DoClose("SP締め取り消し", dte請求締日, ""))
+                {
+                    Filtering();
+                }
+                else
+                {
+                    MessageBox.Show("締めの取り消し処理は失敗しました。",
+                        "締め取り消し処理", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"コマンド締め取消_Click - {ex.Message}");
+                goto Bye_コマンド締め取消_Click;
+            }
 
+        Bye_コマンド締め取消_Click:
+            Filtering();
         }
 
         private void コマンド更新_Click(object sender, EventArgs e)
         {
+            FunctionClass fn = new FunctionClass();
+            fn.DoWait("しばらくお待ちください...");
 
+            Filtering();
+
+            fn.WaitForm.Close();
         }
 
         private void コマンド登録_Click(object sender, EventArgs e)
@@ -494,9 +726,6 @@ namespace u_net
             Close();
         }
 
-        private void 請求明細書プレビューボタン_Click(object sender, EventArgs e)
-        {
 
-        }
     }
 }

@@ -24,22 +24,22 @@ namespace u_net
 
 
 
-    public partial class F_部品 : Form
+    public partial class F_部品履歴 : Form
     {
         private Control previousControl;
         private SqlConnection cn;
         private SqlTransaction tx;
         public string args = "";
-        private string BASE_CAPTION = "部品";
+        private string BASE_CAPTION = "部品履歴";
         private int selected_frame = 0;
 
 
 
 
 
-        public F_部品()
+        public F_部品履歴()
         {
-            this.Text = "部品";       // ウィンドウタイトルを設定
+            this.Text = "部品履歴";       // ウィンドウタイトルを設定
             this.MaximizeBox = false;  // 最大化ボタンを無効化
             this.MinimizeBox = false; //最小化ボタンを無効化
 
@@ -92,18 +92,18 @@ namespace u_net
             twipperdot = myapi.GetTwipPerDot(intpixel);
 
             // DataGridViewの設定
-            部品使用先.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            部品使用先.AllowUserToResizeColumns = true;
-            部品使用先.ReadOnly = true;
-            部品使用先.AllowUserToAddRows = false;
-            部品使用先.AllowUserToDeleteRows = false;
-            部品使用先.Font = new Font("MS ゴシック", 10);
-            部品使用先.DefaultCellStyle.SelectionBackColor = Color.FromArgb(210, 210, 255);
-            部品使用先.DefaultCellStyle.SelectionForeColor = Color.Black;
-            部品使用先.GridColor = Color.FromArgb(230, 230, 230);
-            部品使用先.ColumnHeadersDefaultCellStyle.Font = new Font("MS ゴシック", 9);
-            部品使用先.DefaultCellStyle.Font = new Font("MS ゴシック", 10);
-            部品使用先.DefaultCellStyle.ForeColor = Color.Black;
+            //部品使用先.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            //部品使用先.AllowUserToResizeColumns = true;
+            //部品使用先.ReadOnly = true;
+            //部品使用先.AllowUserToAddRows = false;
+            //部品使用先.AllowUserToDeleteRows = false;
+            //部品使用先.Font = new Font("MS ゴシック", 10);
+            //部品使用先.DefaultCellStyle.SelectionBackColor = Color.FromArgb(210, 210, 255);
+            //部品使用先.DefaultCellStyle.SelectionForeColor = Color.Black;
+            //部品使用先.GridColor = Color.FromArgb(230, 230, 230);
+            //部品使用先.ColumnHeadersDefaultCellStyle.Font = new Font("MS ゴシック", 9);
+            //部品使用先.DefaultCellStyle.Font = new Font("MS ゴシック", 10);
+            //部品使用先.DefaultCellStyle.ForeColor = Color.Black;
 
             OriginalClass ofn = new OriginalClass();
             ofn.SetComboBox(分類コード, "SELECT 分類記号 as Display,対象部品名 as Display2,分類コード as Value FROM M部品分類");
@@ -112,63 +112,63 @@ namespace u_net
             ofn.SetComboBox(RohsStatusCode, "SELECT Name as Display,Code as Value FROM rohsStatusCode");
 
 
-            this.JampAis.DataSource = new KeyValuePair<int, String>[] {
-                new KeyValuePair<int, String>(2, "有り"),
-                new KeyValuePair<int, String>(1, "無し"),
-            };
-            this.JampAis.DisplayMember = "Value";
-            this.JampAis.ValueMember = "Key";
+            //this.JampAis.DataSource = new KeyValuePair<int, String>[] {
+            //    new KeyValuePair<int, String>(2, "有り"),
+            //    new KeyValuePair<int, String>(1, "無し"),
+            //};
+            //this.JampAis.DisplayMember = "Value";
+            //this.JampAis.ValueMember = "Key";
 
-            this.非含有証明書.DataSource = new KeyValuePair<byte, String>[] {
-                new KeyValuePair<byte, String>(1, "返却済み"),
-                new KeyValuePair<byte, String>(2, "未返却"),
-                new KeyValuePair<byte, String>(3, "未提出"),
-            };
-            this.非含有証明書.DisplayMember = "Value";
-            this.非含有証明書.ValueMember = "Key";
+            //this.非含有証明書.DataSource = new KeyValuePair<byte, String>[] {
+            //    new KeyValuePair<byte, String>(1, "返却済み"),
+            //    new KeyValuePair<byte, String>(2, "未返却"),
+            //    new KeyValuePair<byte, String>(3, "未提出"),
+            //};
+            //this.非含有証明書.DisplayMember = "Value";
+            //this.非含有証明書.ValueMember = "Key";
 
-            this.RoHS資料.DataSource = new KeyValuePair<Int16, String>[] {
-                new KeyValuePair<Int16, String>(2, "有り"),
-                new KeyValuePair<Int16, String>(1, "無し"),
-            };
-            this.RoHS資料.DisplayMember = "Value";
-            this.RoHS資料.ValueMember = "Key";
+            //this.RoHS資料.DataSource = new KeyValuePair<Int16, String>[] {
+            //    new KeyValuePair<Int16, String>(2, "有り"),
+            //    new KeyValuePair<Int16, String>(1, "無し"),
+            //};
+            //this.RoHS資料.DisplayMember = "Value";
+            //this.RoHS資料.ValueMember = "Key";
 
-            this.Rohs1ChemSherpaStatusCode.DataSource = new KeyValuePair<int, String>[] {
-                new KeyValuePair<int, String>(2, "有り"),
-                new KeyValuePair<int, String>(1, "無し"),
-            };
-            this.Rohs1ChemSherpaStatusCode.DisplayMember = "Value";
-            this.Rohs1ChemSherpaStatusCode.ValueMember = "Key";
+            //this.Rohs1ChemSherpaStatusCode.DataSource = new KeyValuePair<int, String>[] {
+            //    new KeyValuePair<int, String>(2, "有り"),
+            //    new KeyValuePair<int, String>(1, "無し"),
+            //};
+            //this.Rohs1ChemSherpaStatusCode.DisplayMember = "Value";
+            //this.Rohs1ChemSherpaStatusCode.ValueMember = "Key";
 
-            this.Rohs2JampAisStatusCode.DataSource = new KeyValuePair<int, String>[] {
-                new KeyValuePair<int, String>(2, "有り"),
-                new KeyValuePair<int, String>(1, "無し"),
-            };
-            this.Rohs2JampAisStatusCode.DisplayMember = "Value";
-            this.Rohs2JampAisStatusCode.ValueMember = "Key";
+            //this.Rohs2JampAisStatusCode.DataSource = new KeyValuePair<int, String>[] {
+            //    new KeyValuePair<int, String>(2, "有り"),
+            //    new KeyValuePair<int, String>(1, "無し"),
+            //};
+            //this.Rohs2JampAisStatusCode.DisplayMember = "Value";
+            //this.Rohs2JampAisStatusCode.ValueMember = "Key";
 
-            this.Rohs2NonInclusionCertificationStatusCode.DataSource = new KeyValuePair<int, String>[] {
-                new KeyValuePair<int, String>(1, "返却済み"),
-                new KeyValuePair<int, String>(2, "未返却"),
-                new KeyValuePair<int, String>(3, "未提出"),
-            };
-            this.Rohs2NonInclusionCertificationStatusCode.DisplayMember = "Value";
-            this.Rohs2NonInclusionCertificationStatusCode.ValueMember = "Key";
+            //this.Rohs2NonInclusionCertificationStatusCode.DataSource = new KeyValuePair<int, String>[] {
+            //    new KeyValuePair<int, String>(1, "返却済み"),
+            //    new KeyValuePair<int, String>(2, "未返却"),
+            //    new KeyValuePair<int, String>(3, "未提出"),
+            //};
+            //this.Rohs2NonInclusionCertificationStatusCode.DisplayMember = "Value";
+            //this.Rohs2NonInclusionCertificationStatusCode.ValueMember = "Key";
 
-            this.Rohs2DocumentStatusCode.DataSource = new KeyValuePair<int, String>[] {
-                new KeyValuePair<int, String>(2, "有り"),
-                new KeyValuePair<int, String>(1, "無し"),
-            };
-            this.Rohs2DocumentStatusCode.DisplayMember = "Value";
-            this.Rohs2DocumentStatusCode.ValueMember = "Key";
+            //this.Rohs2DocumentStatusCode.DataSource = new KeyValuePair<int, String>[] {
+            //    new KeyValuePair<int, String>(2, "有り"),
+            //    new KeyValuePair<int, String>(1, "無し"),
+            //};
+            //this.Rohs2DocumentStatusCode.DisplayMember = "Value";
+            //this.Rohs2DocumentStatusCode.ValueMember = "Key";
 
-            this.Rohs2ChemSherpaStatusCode.DataSource = new KeyValuePair<int, String>[] {
-                new KeyValuePair<int, String>(2, "有り"),
-                new KeyValuePair<int, String>(1, "無し"),
-            };
-            this.Rohs2ChemSherpaStatusCode.DisplayMember = "Value";
-            this.Rohs2ChemSherpaStatusCode.ValueMember = "Key";
+            //this.Rohs2ChemSherpaStatusCode.DataSource = new KeyValuePair<int, String>[] {
+            //    new KeyValuePair<int, String>(2, "有り"),
+            //    new KeyValuePair<int, String>(1, "無し"),
+            //};
+            //this.Rohs2ChemSherpaStatusCode.DisplayMember = "Value";
+            //this.Rohs2ChemSherpaStatusCode.ValueMember = "Key";
 
             this.CalcInventoryCode.DataSource = new KeyValuePair<string, string>[] {
             new KeyValuePair<string, string>("01", "する"),
@@ -326,7 +326,8 @@ namespace u_net
         {
             get
             {
-                return string.IsNullOrEmpty(版数.Text) ? 0 : int.Parse(版数.Text);
+                //return string.IsNullOrEmpty(版数.Text) ? 0 : int.Parse(版数.Text);
+                return 0;
             }
         }
 
@@ -334,7 +335,8 @@ namespace u_net
         {
             get
             {
-                return !string.IsNullOrEmpty(部品集合コード.Text);
+                //return !string.IsNullOrEmpty(部品集合コード.Text);
+                return false;
             }
         }
 
@@ -463,7 +465,7 @@ namespace u_net
                 {
                     // 新規モードのとき
                     this.コマンド新規.Enabled = true;
-                    this.コマンド読込.Enabled = false;
+                    this.コマンド修正.Enabled = false;
                     this.コマンド入出庫.Enabled = true;
                 }
                 // UpdatePurGridの呼び出し
@@ -489,7 +491,7 @@ namespace u_net
         {
             //入力確認    
             if (!FunctionClass.IsError(this.部品コード)) return false;
-            if (!FunctionClass.IsError(this.版数)) return false;
+            //if (!FunctionClass.IsError(this.版数)) return false;
             return true;
         }
 
@@ -563,19 +565,19 @@ namespace u_net
 
                 string code = FunctionClass.採番(cn, "PAR");
                 部品コード.Text = code.Substring(Math.Max(0, code.Length - 8));
-                版数.Text = 1.ToString();
+                //版数.Text = 1.ToString();
                 入数.Text = 1.ToString();
                 単位数量.Text = 1.ToString();
                 ロス率.Text = 0f.ToString();
-                Rohs1ChemSherpaStatusCode.SelectedValue = 1;
-                JampAis.SelectedValue = 1;
-                非含有証明書.SelectedValue = (byte)3;
-                RoHS資料.SelectedValue = (Int16)1;
-                Rohs2ChemSherpaStatusCode.SelectedValue = 1;
-                Rohs2JampAisStatusCode.SelectedValue = 1;
-                Rohs2NonInclusionCertificationStatusCode.SelectedValue = 3;
-                Rohs2DocumentStatusCode.SelectedValue = 1;
-                Rohs2ProvisionalRegisteredStatusCode.Checked = true;
+                //Rohs1ChemSherpaStatusCode.SelectedValue = 1;
+                //JampAis.SelectedValue = 1;
+                //非含有証明書.SelectedValue = (byte)3;
+                //RoHS資料.SelectedValue = (Int16)1;
+                //Rohs2ChemSherpaStatusCode.SelectedValue = 1;
+                //Rohs2JampAisStatusCode.SelectedValue = 1;
+                //Rohs2NonInclusionCertificationStatusCode.SelectedValue = 3;
+                //Rohs2DocumentStatusCode.SelectedValue = 1;
+                //Rohs2ProvisionalRegisteredStatusCode.Checked = true;
                 廃止.Checked = false;
 
 
@@ -587,7 +589,7 @@ namespace u_net
                 部品コード.Enabled = false;
                 改版ボタン.Enabled = false;
                 コマンド新規.Enabled = false;
-                コマンド読込.Enabled = true;
+                コマンド修正.Enabled = true;
                 コマンド削除.Enabled = false;
                 コマンド入出庫.Enabled = false;
                 コマンド履歴.Enabled = false;
@@ -627,7 +629,7 @@ namespace u_net
                         adapter.Fill(dataTable);
 
                         // DataGridViewを設定していると仮定
-                        部品使用先.DataSource = dataTable;
+                        //部品使用先.DataSource = dataTable;
 
                         if (dataTable.Rows.Count <= 0)
                         {
@@ -635,7 +637,7 @@ namespace u_net
                             dataTable.Rows.Add();
                         }
 
-                        部品使用先.Columns[部品使用先.ColumnCount - 1].Selected = true;
+                        //部品使用先.Columns[部品使用先.ColumnCount - 1].Selected = true;
                     }
                 }
 
@@ -648,35 +650,35 @@ namespace u_net
 
         private void ShowRohsStatus()
         {
-            if (this.Rohs2ProvisionalRegisteredStatusCode.Checked)
-            {
-                this.RohsStatusCode.SelectedValue = 5;
-                // this.RohsStatusName = "仮RoHS2";
-            }
-            else
-            {
-                if ((Rohs2ChemSherpaStatusCode.SelectedValue != null && (int)Rohs2ChemSherpaStatusCode.SelectedValue == 2) ||
-    (Rohs2JampAisStatusCode.SelectedValue != null && (int)Rohs2JampAisStatusCode.SelectedValue == 2) ||
-    (Rohs2NonInclusionCertificationStatusCode.SelectedValue != null && (int)Rohs2NonInclusionCertificationStatusCode.SelectedValue == 1) ||
-    (Rohs2DocumentStatusCode.SelectedValue != null && (int)Rohs2DocumentStatusCode.SelectedValue == 2))
-                {
-                    this.RohsStatusCode.SelectedValue = 2;
-                    // this.RohsStatusName = "RoHS2";
-                }
-                else if ((Rohs1ChemSherpaStatusCode.SelectedValue != null && (int)Rohs1ChemSherpaStatusCode.SelectedValue == 2) ||
-         (JampAis.SelectedValue != null && (int)JampAis.SelectedValue == 2) ||
-         (非含有証明書.SelectedValue != null && (byte)非含有証明書.SelectedValue == 1) ||
-         (RoHS資料.SelectedValue != null && (Int16)RoHS資料.SelectedValue == 2))
-                {
-                    this.RohsStatusCode.SelectedValue = 6;
-                    // this.RohsStatusName = "RoHS2非対応";
-                }
-                else
-                {
-                    this.RohsStatusCode.SelectedValue = 3;
-                    // this.RohsStatusName = "RoHS1非対応";
-                }
-            }
+    //        if (this.Rohs2ProvisionalRegisteredStatusCode.Checked)
+    //        {
+    //            this.RohsStatusCode.SelectedValue = 5;
+    //            // this.RohsStatusName = "仮RoHS2";
+    //        }
+    //        else
+    //        {
+    //            if ((Rohs2ChemSherpaStatusCode.SelectedValue != null && (int)Rohs2ChemSherpaStatusCode.SelectedValue == 2) ||
+    //(Rohs2JampAisStatusCode.SelectedValue != null && (int)Rohs2JampAisStatusCode.SelectedValue == 2) ||
+    //(Rohs2NonInclusionCertificationStatusCode.SelectedValue != null && (int)Rohs2NonInclusionCertificationStatusCode.SelectedValue == 1) ||
+    //(Rohs2DocumentStatusCode.SelectedValue != null && (int)Rohs2DocumentStatusCode.SelectedValue == 2))
+    //            {
+    //                this.RohsStatusCode.SelectedValue = 2;
+    //                // this.RohsStatusName = "RoHS2";
+    //            }
+    //            else if ((Rohs1ChemSherpaStatusCode.SelectedValue != null && (int)Rohs1ChemSherpaStatusCode.SelectedValue == 2) ||
+    //     (JampAis.SelectedValue != null && (int)JampAis.SelectedValue == 2) ||
+    //     (非含有証明書.SelectedValue != null && (byte)非含有証明書.SelectedValue == 1) ||
+    //     (RoHS資料.SelectedValue != null && (Int16)RoHS資料.SelectedValue == 2))
+    //            {
+    //                this.RohsStatusCode.SelectedValue = 6;
+    //                // this.RohsStatusName = "RoHS2非対応";
+    //            }
+    //            else
+    //            {
+    //                this.RohsStatusCode.SelectedValue = 3;
+    //                // this.RohsStatusName = "RoHS1非対応";
+    //            }
+    //        }
         }
 
         private void コマンド読込_Click(object sender, EventArgs e)
@@ -695,7 +697,7 @@ namespace u_net
             部品コード.Focus();
             改版ボタン.Enabled = false;
             コマンド新規.Enabled = true;
-            コマンド読込.Enabled = false;
+            コマンド修正.Enabled = false;
             コマンド入出庫.Enabled = false;
             コマンド登録.Enabled = false;
         }
@@ -808,7 +810,7 @@ namespace u_net
                     {
                         //this.部品コード.Requery;
                         // ■ なぜかRequeryしてもColumn(1)がNULLとなるので、版数を+1する
-                        this.版数.Text = (Convert.ToInt32(this.CurrentEdition) + 1).ToString();
+                        //this.版数.Text = (Convert.ToInt32(this.CurrentEdition) + 1).ToString();
                         this.コマンド履歴.Enabled = true;
 
                         fn.WaitForm.Close();
@@ -916,7 +918,7 @@ namespace u_net
                 string str1 = FunctionClass.GetMakerName(cn, SelectedCode);
                 string str2 = FunctionClass.GetMakerShortName(cn, SelectedCode);
                 MakerName.Text = str1;
-                MakerShortName.Text = str2;
+                //MakerShortName.Text = str2;
 
             }
         }
@@ -957,10 +959,10 @@ namespace u_net
         {
             try
             {
-                if (ActiveControl == 資料ボタン)
-                {
-                    GetNextControl(資料ボタン, false).Focus();
-                }
+                //if (ActiveControl == 資料ボタン)
+                //{
+                //    GetNextControl(資料ボタン, false).Focus();
+                //}
 
                 string strCode = 部品コード.Text;
                 if (string.IsNullOrEmpty(strCode))
@@ -1110,7 +1112,7 @@ namespace u_net
                 // 以下、初期値の設定
                 string code = FunctionClass.採番(cn, "PAR");
                 部品コード.Text = code.Substring(Math.Max(0, code.Length - 8));
-                this.版数.Text = 1.ToString();
+                //this.版数.Text = 1.ToString();
                 this.InventoryAmount.Text = 0.ToString();
                 this.作成日時.Text = null;
                 this.作成者コード.Text = null;
@@ -1121,7 +1123,7 @@ namespace u_net
 
                 // インターフェース更新
                 this.コマンド新規.Enabled = false;
-                this.コマンド読込.Enabled = true;
+                this.コマンド修正.Enabled = true;
 
                 // 使用先の表示
                 DispGrid(this.CurrentCode);
@@ -1406,7 +1408,7 @@ namespace u_net
                             else
                             {
                                 MakerName.Text = str1;
-                                MakerShortName.Text = str2;
+                                //MakerShortName.Text = str2;
                             }
                         }
 
@@ -1428,7 +1430,7 @@ namespace u_net
                             MessageBox.Show(controlName + "を入力してください.", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                             return true;
                         }
-                        GroupNumber.Text = 分類コード.Text;
+                        //GroupNumber.Text = 分類コード.Text;
                         break;
                     case "形状分類コード":
                         if (string.IsNullOrEmpty(varValue.ToString()))
@@ -1436,7 +1438,7 @@ namespace u_net
                             MessageBox.Show("形状分類を指定してください.", "情報", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             return true;
                         }
-                        FormGroupShortName.Text = 形状分類コード.Text;
+                        //FormGroupShortName.Text = 形状分類コード.Text;
                         break;
                     case "入数":
                         if (!FunctionClass.IsLimit_N(varValue, 8, 0, controlName))
@@ -1570,7 +1572,7 @@ namespace u_net
                             adapter.Fill(dataTable);
                             if (dataTable.Rows.Count > 0)
                             {
-                                版数.Text = dataTable.Rows[0]["最終版数"].ToString();
+                                //版数.Text = dataTable.Rows[0]["最終版数"].ToString();
                             }
                         }
 
@@ -1639,20 +1641,20 @@ namespace u_net
                 return;
             }
 
-            if (部品使用先.SelectedRows.Count > 0)
-            {
-                F_ユニット targetform = new F_ユニット();
+            //if (部品使用先.SelectedRows.Count > 0)
+            //{
+            //    F_ユニット targetform = new F_ユニット();
 
-                string strCode = 部品使用先.SelectedRows[0].Cells[0].Value.ToString();
-                string strEdition = 部品使用先.SelectedRows[0].Cells[1].Value.ToString();
+            //    string strCode = 部品使用先.SelectedRows[0].Cells[0].Value.ToString();
+            //    string strEdition = 部品使用先.SelectedRows[0].Cells[1].Value.ToString();
 
-                targetform.args = strCode + "," + strEdition;
-                targetform.ShowDialog();
-            }
-            else
-            {
-                MessageBox.Show("使用しているユニットはありません。", BASE_CAPTION, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            }
+            //    targetform.args = strCode + "," + strEdition;
+            //    targetform.ShowDialog();
+            //}
+            //else
+            //{
+            //    MessageBox.Show("使用しているユニットはありません。", BASE_CAPTION, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            //}
 
 
 
@@ -1665,7 +1667,7 @@ namespace u_net
             {
                 F_部品集合 targetform = new F_部品集合();
 
-                targetform.args = 部品集合コード.Text + "," + 部品集合版数.Text;
+                //targetform.args = 部品集合コード.Text + "," + 部品集合版数.Text;
                 targetform.ShowDialog();
             }
             else
@@ -1702,9 +1704,9 @@ namespace u_net
                     }
                     break;
                 case Keys.F2:
-                    if (コマンド読込.Enabled)
+                    if (コマンド修正.Enabled)
                     {
-                        コマンド読込.Focus();
+                        コマンド修正.Focus();
                         コマンド読込_Click(sender, e);
                     }
                     break;
