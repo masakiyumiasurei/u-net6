@@ -31,11 +31,14 @@ namespace u_net
 
 
 
-        public string FilterName;
+
         private int FilterNumber = 1;
         public string SelectedCode;
+        public string SelectedName;
 
+        public string strSalesmanCode;
 
+        public string args;
 
 
         public F_顧客コード選択()
@@ -52,7 +55,7 @@ namespace u_net
             cn.Open();
         }
 
-        private void Filtering(object filterNumber, string FilterName)
+        private void Filtering(object filterNumber)
         {
             // リストを指定条件で更新する
             // filterNumber - 抽出番号
@@ -64,66 +67,49 @@ namespace u_net
             switch (filterNumber)
             {
                 case 1:
-                    strFilter = "WHERE " + FilterName + " like '[アイウエオ]%'";
+                    strFilter = "WHERE 顧客名フリガナ like '[アイウエオ]%' AND 自社担当者コード='" + strSalesmanCode + "'";
                     break;
                 case 2:
-                    strFilter = "WHERE " + FilterName + " like '[カキクケコガギグゲゴ]%'";
+                    strFilter = "WHERE 顧客名フリガナ like '[カキクケコガギグゲゴ]%' AND 自社担当者コード='" + strSalesmanCode + "'";
                     break;
                 case 3:
-                    strFilter = "WHERE " + FilterName + " like '[サシスセソザジズゼゾ]%'";
+                    strFilter = "WHERE 顧客名フリガナ like '[サシスセソザジズゼゾ]%' AND 自社担当者コード='" + strSalesmanCode + "'";
                     break;
                 case 4:
-                    strFilter = "WHERE " + FilterName + " like '[タチツテトダヂヅデド]%'";
+                    strFilter = "WHERE 顧客名フリガナ like '[タチツテトダヂヅデド]%' AND 自社担当者コード='" + strSalesmanCode + "'";
                     break;
                 case 5:
-                    strFilter = "WHERE " + FilterName + " like '[ナニヌネノ]%'";
+                    strFilter = "WHERE 顧客名フリガナ like '[ナニヌネノ]%' AND 自社担当者コード='" + strSalesmanCode + "'";
                     break;
                 case 6:
-                    strFilter = "WHERE " + FilterName + " like '[ハヒフヘホバビブベボパピプペポ]%'";
+                    strFilter = "WHERE 顧客名フリガナ like '[ハヒフヘホバビブベボパピプペポ]%' AND 自社担当者コード='" + strSalesmanCode + "'";
                     break;
                 case 7:
-                    strFilter = "WHERE " + FilterName + " like '[マミムメモ]%'";
+                    strFilter = "WHERE 顧客名フリガナ like '[マミムメモ]%' AND 自社担当者コード='" + strSalesmanCode + "'";
                     break;
                 case 8:
-                    strFilter = "WHERE " + FilterName + " like '[ヤユヨ]%'";
+                    strFilter = "WHERE 顧客名フリガナ like '[ヤユヨ]%' AND 自社担当者コード='" + strSalesmanCode + "'";
                     break;
                 case 9:
-                    strFilter = "WHERE " + FilterName + " like '[ラリルレロ]%'";
+                    strFilter = "WHERE 顧客名フリガナ like '[ラリルレロ]%' AND 自社担当者コード='" + strSalesmanCode + "'";
                     break;
                 case 10:
-                    strFilter = "WHERE " + FilterName + " like '[ワヲン]%'";
+                    strFilter = "WHERE 顧客名フリガナ like '[ワヲン]%' AND 自社担当者コード='" + strSalesmanCode + "'";
                     break;
                 case 11:
-                    strFilter = "WHERE " + FilterName + " like '[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ]%'";
+                    strFilter = "WHERE 顧客名フリガナ like '[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ]%' AND 自社担当者コード='" + strSalesmanCode + "'";
                     break;
                 case 12:
-                    strFilter = "";
+                    strFilter = "WHERE 自社担当者コード ='" + strSalesmanCode + "'";
                     break;
                 default:
                     MessageBox.Show("不正な呼び出しが行われました.", "Filtering", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     break;
             }
 
-            // 一覧のソースを設定する
-            // 各ソースに対応するビューが必要
-            switch (FilterName)
-            {
-                case "申請顧客名フリガナ":
-                    query = "SELECT 顧客コード, 顧客名, 顧客担当者名 FROM V顧客検索_申請 " + strFilter + " ORDER BY " + FilterName + ";";
-                    break;
-                case "顧客名フリガナ":
-                    query = "SELECT 顧客コード, 顧客名, 顧客担当者名, 無効 FROM V顧客検索 " + strFilter + " ORDER BY " + FilterName + ";";
-                    break;
-                case "仕入先名フリガナ":
-                    query = "SELECT 仕入先コード, 仕入先名, 電話番号 FROM V仕入先検索 " + strFilter + " ORDER BY " + FilterName + ";";
-                    break;
-                case "メーカー名フリガナ":
-                    query = "SELECT メーカーコード, メーカー名, 電話番号 FROM uv_メーカー検索 " + strFilter + " ORDER BY " + FilterName + ";";
-                    break;
-                case "支払先名フリガナ":
-                    query = "SELECT 支払先コード, 支払先名, 電話番号 FROM V支払先検索 " + strFilter + " ORDER BY " + FilterName + ";";
-                    break;
-            }
+
+            query = "SELECT 顧客コード, 顧客名, 顧客担当者名 FROM V顧客コード選択 " + strFilter + " ORDER BY 顧客名フリガナ;";
+               
 
             
             SqlDataAdapter adapter = new SqlDataAdapter(query, cn);
@@ -182,31 +168,15 @@ namespace u_net
 
             MyApi myapi = new MyApi();
 
-            if (string.IsNullOrEmpty(FilterName))
+            if (!string.IsNullOrEmpty(args))
             {
-                MessageBox.Show("呼び出しに失敗しました。\n管理者に連絡してください。", this.Name, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                DialogResult = DialogResult.Cancel;
-                this.Close();
-                return;
+                strSalesmanCode = args;
             }
 
-            // ウィンドウサイズを調整する
-            //int lngX, lngy;
-            //myapi.GetFullScreen(out lngX, out lngy);
-            //intWindowHeight = this.Height;
-            //intWindowWidth = this.Width;
-            //this.Width = intWindowWidth;
-            //this.Height = lngy * myapi.GetTwipPerDot(myapi.GetLogPixel()) - 1200;
-            //Form_Resize(sender, e);
-
-            //実行中フォーム起動
-            //string LoginUserCode = CommonConstants.LoginUserCode;
-            //LocalSetting localSetting = new LocalSetting();
-            //localSetting.LoadPlace(LoginUserCode, this);
-
+          
 
             // 一覧を表示する
-            Filtering(FilterNumber, FilterName);
+            Filtering(FilterNumber);
 
             //列幅を自動調整する
             リスト.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
@@ -266,9 +236,11 @@ namespace u_net
                     DataGridViewRow selectedRow = リスト.Rows[e.RowIndex];
 
                     // 選択した行の各セルの値を取得
-                    string column1Value = selectedRow.Cells[0].Value.ToString(); // 0は列のインデックス
+                    string column1Value = selectedRow.Cells[0].Value.ToString(); 
+                    string column2Value = selectedRow.Cells[1].Value.ToString(); 
 
                     SelectedCode = column1Value;
+                    SelectedName = column2Value;
 
                     DialogResult = DialogResult.OK;
                     Close();
@@ -301,9 +273,11 @@ namespace u_net
                         DataGridViewRow selectedRow = リスト.SelectedRows[0];
 
                         // 選択した行の各セルの値を取得
-                        string column1Value = selectedRow.Cells[0].Value.ToString(); // 0は列のインデックス
+                        string column1Value = selectedRow.Cells[0].Value.ToString(); 
+                        string column2Value = selectedRow.Cells[1].Value.ToString(); 
 
                         SelectedCode = column1Value;
+                        SelectedName = column2Value;
 
                         DialogResult = DialogResult.OK;
                         Close();
@@ -311,11 +285,11 @@ namespace u_net
                     break;
                 case Keys.Right:
                     FilterNumber = (FilterNumber % 12) + 1;
-                    Filtering(FilterNumber, FilterName);
+                    Filtering(FilterNumber);
                     break;
                 case Keys.Left:
                     FilterNumber = (FilterNumber + (12 - 2)) % 12 + 1;
-                    Filtering(FilterNumber, FilterName);
+                    Filtering(FilterNumber);
                     break;
                 case Keys.F1:
                     フィルタ_ア_Click(sender,e);
@@ -438,73 +412,73 @@ namespace u_net
         private void フィルタ_ア_Click(object sender, EventArgs e)
         {
             FilterNumber = 1;
-            Filtering(FilterNumber, FilterName);
+            Filtering(FilterNumber);
         }
 
         private void フィルタ_カ_Click(object sender, EventArgs e)
         {
             FilterNumber = 2;
-            Filtering(FilterNumber, FilterName);
+            Filtering(FilterNumber);
         }
 
         private void フィルタ_サ_Click(object sender, EventArgs e)
         {
             FilterNumber = 3;
-            Filtering(FilterNumber, FilterName);
+            Filtering(FilterNumber);
         }
 
         private void フィルタ_タ_Click(object sender, EventArgs e)
         {
             FilterNumber = 4;
-            Filtering(FilterNumber, FilterName);
+            Filtering(FilterNumber);
         }
 
         private void フィルタ_ナ_Click(object sender, EventArgs e)
         {
             FilterNumber = 5;
-            Filtering(FilterNumber, FilterName);
+            Filtering(FilterNumber);
         }
 
         private void フィルタ_ハ_Click(object sender, EventArgs e)
         {
             FilterNumber = 6;
-            Filtering(FilterNumber, FilterName);
+            Filtering(FilterNumber);
         }
 
         private void フィルタ_マ_Click(object sender, EventArgs e)
         {
             FilterNumber = 7;
-            Filtering(FilterNumber, FilterName);
+            Filtering(FilterNumber);
         }
 
         private void フィルタ_ヤ_Click(object sender, EventArgs e)
         {
             FilterNumber = 8;
-            Filtering(FilterNumber, FilterName);
+            Filtering(FilterNumber);
         }
 
         private void フィルタ_ラ_Click(object sender, EventArgs e)
         {
             FilterNumber = 9;
-            Filtering(FilterNumber, FilterName);
+            Filtering(FilterNumber);
         }
 
         private void フィルタ_ワ_Click(object sender, EventArgs e)
         {
             FilterNumber = 10;
-            Filtering(FilterNumber, FilterName);
+            Filtering(FilterNumber);
         }
 
         private void フィルタ_abc_Click(object sender, EventArgs e)
         {
             FilterNumber = 11;
-            Filtering(FilterNumber, FilterName);
+            Filtering(FilterNumber);
         }
 
         private void フィルタ_全て_Click(object sender, EventArgs e)
         {
             FilterNumber = 12;
-            Filtering(FilterNumber, FilterName);
+            Filtering(FilterNumber);
         }
 
         

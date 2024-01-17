@@ -289,9 +289,66 @@ namespace u_net
             Close();
         }
 
+
+        F_顧客コード選択 SearchForm = new F_顧客コード選択();
         private void 重要顧客追加ボタン_Click(object sender, EventArgs e)
         {
+            SearchForm = new F_顧客コード選択();
+            SearchForm.args = SalesmanCode;
+            if (SearchForm.ShowDialog() == DialogResult.OK)
+            {
+                string SelectedCode = SearchForm.SelectedCode;
+                string SelectedName = SearchForm.SelectedName;
 
+                if (dataGridView1.SelectedRows.Count > 0)
+                {
+                    int selectedIndex = dataGridView1.SelectedRows[0].Index;
+
+                    BindingSource bindingSource1 = (BindingSource)dataGridView1.DataSource;
+
+                    bindingSource1.AddNew();
+
+                    // データソースからDataTableを取得
+                    DataTable dataTable = (bindingSource1.DataSource as DataTable);
+
+                    //値をセット
+                    dataTable.Rows[dataGridView1.RowCount - 2][1] = SelectedCode;
+                    dataTable.Rows[dataGridView1.RowCount - 2][2] = SelectedName;
+
+                    for(int idx=dataGridView1.RowCount-2; idx > selectedIndex; idx--)
+                    {
+                        // 行データの交換
+                        object[] obj = dataTable.Rows[idx].ItemArray;
+                        object[] obj2 = dataTable.Rows[idx-1].ItemArray;
+
+                        dataTable.Rows[idx].ItemArray = obj2;
+                        dataTable.Rows[idx - 1].ItemArray = obj;
+                    }
+
+
+                    
+
+                    // Noの列も交換
+                    //object leftValue = dataTable.Rows[currentIndex][0];
+                    //dataTable.Rows[currentIndex][0] = dataTable.Rows[newIndex][0];
+                    //dataTable.Rows[newIndex][0] = leftValue;
+
+                    // 連番を振り直す
+                    for (int i = 0; i < bindingSource1.Count - 1; i++)
+                    {
+                        ((DataRowView)bindingSource1[i])[0] = i + 1;
+                    }
+
+                    // BindingSourceをリセットして変更を反映
+                    bindingSource1.ResetBindings(false);
+
+
+                    dataGridView1.ClearSelection();
+                    dataGridView1.Rows[selectedIndex].Selected = true;
+                }
+
+
+            }
         }
 
         private void 重要顧客削除ボタン_Click(object sender, EventArgs e)
