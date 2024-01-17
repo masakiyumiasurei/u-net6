@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ClosedXML.Excel;
 using DocumentFormat.OpenXml.Bibliography;
 //using DocumentFormat.OpenXml.Wordprocessing;
 using Microsoft.Data.SqlClient;
@@ -1103,7 +1104,157 @@ namespace u_net
 
         private void コマンド出力_Click(object sender, EventArgs e)
         {
+            using (XLWorkbook wb = new XLWorkbook())
+            {
+                DataTable dt = new DataTable("DataGridView_Data");
 
+                // 列のヘッダーをDataTableに追加
+                foreach (DataGridViewColumn col in dataGridView1.Columns)
+                {
+                    dt.Columns.Add(col.HeaderText);
+                }
+
+                // 行のデータをDataTableに追加
+                foreach (DataGridViewRow row in dataGridView1.Rows)
+                {
+                    DataRow dRow = dt.NewRow();
+                    foreach (DataGridViewCell cell in row.Cells)
+                    {
+                        dRow[cell.ColumnIndex] = cell.Value;
+                    }
+                    dt.Rows.Add(dRow);
+                }
+
+                // DataTableをエクセルに追加
+                var exws1 = wb.Worksheets.Add(dt);
+
+                int lngRows;
+                int lngCols;
+                int lngRow;
+                int lngCol;
+
+
+                lngRows = dataGridView1.Rows.Count;
+                lngCols = dataGridView1.Columns.Count;
+
+                // PageSetupの設定
+                exws1.PageSetup.PaperSize = XLPaperSize.A4Paper;
+                exws1.PageSetup.PageOrientation = XLPageOrientation.Landscape;
+                exws1.PageSetup.Margins.SetTop(0.75);
+                exws1.PageSetup.Margins.SetBottom(0.5);
+                exws1.PageSetup.Margins.SetLeft(0.5);
+                exws1.PageSetup.Margins.SetRight(0.5);
+                exws1.PageSetup.Margins.Header = 0.5;
+                exws1.PageSetup.Margins.Footer = 0.5;
+                exws1.PageSetup.Header.Right.AddText("&P / &N");
+                // 印刷タイトル行の指定
+                exws1.PageSetup.SetRowsToRepeatAtTop(1, 2);
+
+                // 行番号を削除
+                exws1.Range("A:A").Delete(XLShiftDeletedCells.ShiftCellsLeft);
+
+                // フリガナと売上区分コードを削除
+                exws1.Range("C:D").Delete(XLShiftDeletedCells.ShiftCellsLeft);
+
+                lngCols = lngCols - 3; // 全列数減少
+
+                // 罫線を引く（印刷タイトルに割り当てる行数分セル範囲を下へ移動）
+                exws1.Range(exws1.Cell(1 + 1, 1), exws1.Cell(lngRows + 1, lngCols)).Style.Border.OutsideBorder = XLBorderStyleValues.Thin;
+
+                // 顧客名の不要な罫線をなくす
+                int startRow = 3;    // 始点行インデックス
+                int endRow = 3;      // 終点行インデックス
+                string strCode = ""; // 重複検出用保存顧客コード
+
+                for (lngRow = 3; lngRow <= lngRows + 1; lngRow++)
+                {
+                    if (exws1.Cell(lngRow, 1).Value.ToString() == strCode)
+                    {
+                        endRow = lngRow;
+
+                        // 最終行のとき
+                        if (lngRow == lngRows + 1)
+                        {
+                            exws1.Range(exws1.Cell(startRow, 2), exws1.Cell(endRow, 2))
+                                .Style.Border.InsideBorder = XLBorderStyleValues.None;
+                        }
+                    }
+                    else
+                    {
+                        exws1.Range(exws1.Cell(startRow, 2), exws1.Cell(endRow, 2))
+                            .Style.Border.InsideBorder = XLBorderStyleValues.None;
+                        startRow = lngRow;
+                        endRow = lngRow;
+                        strCode = exws1.Cell(lngRow, 1).Value.ToString();
+                    }
+                }
+
+                // 顧客コード文字列を顧客名の下へ移動し、顧客コード列を削除する
+                // 同時に過去の売上金額を出力する
+                lngRow = 3; // 印刷タイトル２行分を追加
+                while (lngRow <= lngRows + 1)
+                {
+                    string strCustomerCode = exws1.Cell(lngRow, 1).Value.ToString() == "" ? "" :(Convert.ToInt32(exws1.Cell(lngRow, 1).Value)).ToString("00000000");
+
+                    // 「その他」顧客と「合計」顧客に対しては出力しない
+                    if (!(strCustomerCode == "00000000" || strCustomerCode == "99999999"))
+                    {
+                        exws1.Cell(lngRow + 1, 2).Value = "(CODE:" + strCustomerCode + ")";
+                        // SetLastProceeds メソッドの呼び出し
+                        // SetLastProceeds(TheYear - 1, 5, strCustomerCode, exws1.Cell(lngRow + 3, 2));
+                    }
+                    lngRow = lngRow + 12; // 顧客名表示行ごと
+                }
+                exws1.Range("A:A").Delete(XLShiftDeletedCells.ShiftCellsLeft); // 顧客コード列を削除
+                lngCols = lngCols - 1; // 全列数減少
+
+                // 計画値と実績値間の罫線をなくす
+                lngRow = 3;
+                while (lngRow <= lngRows + 1)
+                {
+                    exws1.Range(exws1.Cell(lngRow, 2), exws1.Cell(lngRow + 1, lngCols))
+                        .Style.Border.InsideBorder = XLBorderStyleValues.None;
+                    lngRow = lngRow + 2;
+                }
+
+
+                exws1.Column(1).Width = 17;
+                exws1.Column(2).Width = 10;
+                exws1.Column(3).Width = 4;
+                exws1.Range(exws1.Cell(2, 1), exws1.Cell(2, lngCols - 4)).Style.Fill.BackgroundColor = XLColor.Gray;
+                exws1.Range(exws1.Cell(2, 1), exws1.Cell(2, lngCols - 4)).Style.Fill.PatternType = XLFillPatternValues.Solid;
+                exws1.Cell(1, 1).Value = TheYear + "年度 売上計画　（担当者：" + SalesmanName + "）";
+
+
+                
+
+
+                string file_pass = "";
+
+                // ファイルを保存するか、直接開くかをユーザーに選択させる場合
+                SaveFileDialog saveDialog = new SaveFileDialog();
+                saveDialog.Filter = "Excel File|*.xlsx";
+                if (saveDialog.ShowDialog() == DialogResult.OK)
+                {
+                    file_pass = saveDialog.FileName;
+                    wb.SaveAs(file_pass);
+                }
+
+
+                MessageBox.Show("データがファイルに保存されました。");
+
+              
+                try
+                {
+                    Process.Start(new ProcessStartInfo(file_pass) { UseShellExecute = true });
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Excelを開く際にエラーが発生しました: " + ex.Message);
+                }
+                
+            }
         }
 
         private void コマンド登録_Click(object sender, EventArgs e)
