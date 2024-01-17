@@ -266,6 +266,7 @@ namespace u_net
             顧客名.Name = "顧客名";
             顧客名.Size = new Size(246, 20);
             顧客名.TabIndex = 9;
+            顧客名.TextChanged += 顧客名_TextChanged;
             顧客名.Enter += 顧客名_Enter;
             顧客名.Leave += 顧客名_Leave;
             // 
@@ -338,6 +339,9 @@ namespace u_net
             担当者コード.Name = "担当者コード";
             担当者コード.Size = new Size(100, 21);
             担当者コード.TabIndex = 4;
+            担当者コード.DrawItem += 担当者コード_DrawItem;
+            担当者コード.SelectedIndexChanged += 担当者コード_SelectedIndexChanged;
+            担当者コード.TextChanged += 担当者コード_TextChanged;
             // 
             // 自社担当者_ラベル
             // 
@@ -390,6 +394,11 @@ namespace u_net
             顧客コード.Name = "顧客コード";
             顧客コード.Size = new Size(110, 20);
             顧客コード.TabIndex = 6;
+            顧客コード.TextChanged += 顧客コード_TextChanged;
+            顧客コード.DoubleClick += 顧客コード_DoubleClick;
+            顧客コード.KeyDown += 顧客コード_KeyDown;
+            顧客コード.KeyPress += 顧客コード_KeyPress;
+            顧客コード.Validated += 顧客コード_Validated;
             // 
             // 集計年度_ラベル
             // 

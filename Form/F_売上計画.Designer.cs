@@ -477,9 +477,9 @@
         private Button コマンドF8;
         private Button コマンド重要顧客;
         private Button コマンド顧客参照;
-        private Button コマンドコピー;
-        private Button コマンド出力;
-        private Button コマンド更新;
+        internal Button コマンドコピー;
+        internal Button コマンド出力;
+        internal Button コマンド更新;
         private Button コマンド初期化;
         private Button コマンド抽出;
         private Button コマンドF4;
