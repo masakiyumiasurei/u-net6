@@ -69,7 +69,7 @@ namespace u_net
             重要顧客追加ボタン = new Button();
             dataGridView1 = new DataGridView();
             重要顧客_ラベル = new Label();
-            担当者名 = new TextBox();
+            自社担当者名 = new TextBox();
             自社担当者コード = new ComboBox();
             自社担当者_ラベル = new Label();
             年度_ラベル = new Label();
@@ -251,7 +251,7 @@ namespace u_net
             groupBox1.Controls.Add(重要顧客追加ボタン);
             groupBox1.Controls.Add(dataGridView1);
             groupBox1.Controls.Add(重要顧客_ラベル);
-            groupBox1.Controls.Add(担当者名);
+            groupBox1.Controls.Add(自社担当者名);
             groupBox1.Controls.Add(自社担当者コード);
             groupBox1.Controls.Add(自社担当者_ラベル);
             groupBox1.Controls.Add(年度_ラベル);
@@ -346,6 +346,7 @@ namespace u_net
             dataGridView1.RowTemplate.Height = 25;
             dataGridView1.Size = new Size(469, 234);
             dataGridView1.TabIndex = 6;
+            dataGridView1.SelectionChanged += dataGridView1_SelectionChanged;
             // 
             // 重要顧客_ラベル
             // 
@@ -362,19 +363,19 @@ namespace u_net
             重要顧客_ラベル.Text = "重要顧客(&C)";
             重要顧客_ラベル.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // 担当者名
+            // 自社担当者名
             // 
-            担当者名.BackColor = Color.White;
-            担当者名.Enabled = false;
-            担当者名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            担当者名.ImeMode = ImeMode.NoControl;
-            担当者名.Location = new Point(204, 41);
-            担当者名.Margin = new Padding(3, 2, 3, 2);
-            担当者名.Name = "担当者名";
-            担当者名.ReadOnly = true;
-            担当者名.Size = new Size(195, 20);
-            担当者名.TabIndex = 94;
-            担当者名.TabStop = false;
+            自社担当者名.BackColor = Color.White;
+            自社担当者名.Enabled = false;
+            自社担当者名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            自社担当者名.ImeMode = ImeMode.NoControl;
+            自社担当者名.Location = new Point(204, 41);
+            自社担当者名.Margin = new Padding(3, 2, 3, 2);
+            自社担当者名.Name = "自社担当者名";
+            自社担当者名.ReadOnly = true;
+            自社担当者名.Size = new Size(195, 20);
+            自社担当者名.TabIndex = 94;
+            自社担当者名.TabStop = false;
             // 
             // 自社担当者コード
             // 
@@ -388,6 +389,9 @@ namespace u_net
             自社担当者コード.Name = "自社担当者コード";
             自社担当者コード.Size = new Size(100, 21);
             自社担当者コード.TabIndex = 4;
+            自社担当者コード.DrawItem += 自社担当者コード_DrawItem;
+            自社担当者コード.SelectedIndexChanged += 自社担当者コード_SelectedIndexChanged;
+            自社担当者コード.TextChanged += 自社担当者コード_TextChanged;
             // 
             // 自社担当者_ラベル
             // 
@@ -429,6 +433,7 @@ namespace u_net
             集計年度.Name = "集計年度";
             集計年度.Size = new Size(68, 21);
             集計年度.TabIndex = 2;
+            集計年度.SelectedIndexChanged += 集計年度_SelectedIndexChanged;
             // 
             // 集計年度_ラベル
             // 
@@ -521,7 +526,7 @@ namespace u_net
         private Button 登録ボタン;
         private Label 集計年度_ラベル;
         private TextBox 顧客コード;
-        private TextBox 担当者名;
+        private TextBox 自社担当者名;
         internal ComboBox 自社担当者コード;
         private Label 自社担当者_ラベル;
         private Label 年度_ラベル;
