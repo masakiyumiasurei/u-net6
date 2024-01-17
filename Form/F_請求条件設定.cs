@@ -85,6 +85,8 @@ namespace u_net
 
                 //    default:
 
+                //if (frmTarget.dtm更新日開始 != DateTime.MinValue)
+                //    更新日開始.Text = frmTarget.dtm更新日開始.ToString("yyyy/MM/dd");
                 //        break;
                 //}
 
@@ -112,6 +114,7 @@ namespace u_net
 
                 //    default:
 
+                //}
                 //        break;
                 //}
 
@@ -182,110 +185,110 @@ namespace u_net
                 F_ユニット管理? frmTarget = Application.OpenForms.OfType<F_ユニット管理>().FirstOrDefault();
 
 
-            //    frmTarget.str品名 = Nz(請求締日.Text);
-            //    frmTarget.str型番 = Nz(型番.Text);
+                //    frmTarget.str品名 = Nz(請求締日.Text);
+                //    frmTarget.str型番 = Nz(型番.Text);
 
 
-            //    if (RoHS対応Button1.Checked)
-            //    {
-            //        frmTarget.lngRoHS対応 = 1;
-            //    }
-            //    else if (RoHS対応Button2.Checked)
-            //    {
-            //        frmTarget.lngRoHS対応 = 2;
-            //    }
-            //    else if (RoHS対応Button3.Checked)
-            //    {
-            //        frmTarget.lngRoHS対応 = 0;
-            //    }
+                //    if (RoHS対応Button1.Checked)
+                //    {
+                //        frmTarget.lngRoHS対応 = 1;
+                //    }
+                //    else if (RoHS対応Button2.Checked)
+                //    {
+                //        frmTarget.lngRoHS対応 = 2;
+                //    }
+                //    else if (RoHS対応Button3.Checked)
+                //    {
+                //        frmTarget.lngRoHS対応 = 0;
+                //    }
 
-            //    frmTarget.lng非含有証明書 = 非含有証明書.SelectedValue != null ? Convert.ToInt64(非含有証明書.SelectedValue) : 0;
+                //    frmTarget.lng非含有証明書 = 非含有証明書.SelectedValue != null ? Convert.ToInt64(非含有証明書.SelectedValue) : 0;
 
-            //    frmTarget.dtm更新日開始 = string.IsNullOrEmpty(更新日開始.Text) ?
-            //       DateTime.MinValue : DateTime.Parse(更新日開始.Text);
+                //    frmTarget.dtm更新日開始 = string.IsNullOrEmpty(更新日開始.Text) ?
+                //       DateTime.MinValue : DateTime.Parse(更新日開始.Text);
 
-            //    frmTarget.dtm更新日終了 = string.IsNullOrEmpty(更新日終了.Text) ?
-            //        DateTime.MinValue : DateTime.Parse(更新日終了.Text);
+                //    frmTarget.dtm更新日終了 = string.IsNullOrEmpty(更新日終了.Text) ?
+                //        DateTime.MinValue : DateTime.Parse(更新日終了.Text);
 
-            //    frmTarget.str更新者名 = Nz(更新者名.Text);
+                //    frmTarget.str更新者名 = Nz(更新者名.Text);
 
-            //    if (確定指定Button1.Checked)
-            //    {
-            //        frmTarget.lng確定指定 = 1;
-            //    }
-            //    else if (確定指定Button2.Checked)
-            //    {
-            //        frmTarget.lng確定指定 = 2;
-            //    }
-            //    else if (確定指定Button3.Checked)
-            //    {
-            //        frmTarget.lng確定指定 = 0;
-            //    }
+                //    if (確定指定Button1.Checked)
+                //    {
+                //        frmTarget.lng確定指定 = 1;
+                //    }
+                //    else if (確定指定Button2.Checked)
+                //    {
+                //        frmTarget.lng確定指定 = 2;
+                //    }
+                //    else if (確定指定Button3.Checked)
+                //    {
+                //        frmTarget.lng確定指定 = 0;
+                //    }
 
-            //    if (承認指定button1.Checked)
-            //    {
-            //        frmTarget.lng承認指定 = 1;
-            //    }
-            //    else if (承認指定button2.Checked)
-            //    {
-            //        frmTarget.lng承認指定 = 2;
-            //    }
-            //    else if (承認指定button3.Checked)
-            //    {
-            //        frmTarget.lng承認指定 = 0;
-            //    }
+                //    if (承認指定button1.Checked)
+                //    {
+                //        frmTarget.lng承認指定 = 1;
+                //    }
+                //    else if (承認指定button2.Checked)
+                //    {
+                //        frmTarget.lng承認指定 = 2;
+                //    }
+                //    else if (承認指定button3.Checked)
+                //    {
+                //        frmTarget.lng承認指定 = 0;
+                //    }
 
-            //    if (廃止指定Button1.Checked)
-            //    {
-            //        frmTarget.lng廃止指定 = 1;
-            //    }
-            //    else if (廃止指定Button2.Checked)
-            //    {
-            //        frmTarget.lng廃止指定 = 2;
-            //    }
-            //    else if (廃止指定Button3.Checked)
-            //    {
-            //        frmTarget.lng廃止指定 = 0;
-            //    }
+                //    if (廃止指定Button1.Checked)
+                //    {
+                //        frmTarget.lng廃止指定 = 1;
+                //    }
+                //    else if (廃止指定Button2.Checked)
+                //    {
+                //        frmTarget.lng廃止指定 = 2;
+                //    }
+                //    else if (廃止指定Button3.Checked)
+                //    {
+                //        frmTarget.lng廃止指定 = 0;
+                //    }
 
-            //    if (削除指定Button1.Checked)
-            //    {
-            //        frmTarget.lng削除指定 = 1;
-            //    }
-            //    else if (削除指定Button2.Checked)
-            //    {
-            //        frmTarget.lng削除指定 = 2;
-            //    }
-            //    else if (削除指定Button3.Checked)
-            //    {
-            //        frmTarget.lng削除指定 = 0;
-            //    }
+                //    if (削除指定Button1.Checked)
+                //    {
+                //        frmTarget.lng削除指定 = 1;
+                //    }
+                //    else if (削除指定Button2.Checked)
+                //    {
+                //        frmTarget.lng削除指定 = 2;
+                //    }
+                //    else if (削除指定Button3.Checked)
+                //    {
+                //        frmTarget.lng削除指定 = 0;
+                //    }
 
 
 
-            //    long cnt = frmTarget.DoUpdate();
+                //    long cnt = frmTarget.DoUpdate();
 
-            //    if (cnt == 0)
-            //    {
-            //        MessageBox.Show("抽出条件に一致するデータはありません。", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //    if (cnt == 0)
+                //    {
+                //        MessageBox.Show("抽出条件に一致するデータはありません。", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-            //        return;
-            //    }
-            //    else if (cnt < 0)
-            //    {
-            //        MessageBox.Show("エラーが発生したため、抽出できませんでした。", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            //        return;
-            //    }
+                //        return;
+                //    }
+                //    else if (cnt < 0)
+                //    {
+                //        MessageBox.Show("エラーが発生したため、抽出できませんでした。", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                //        return;
+                //    }
             }
             catch (Exception ex)
             {
-            //    Debug.WriteLine(this.Name + "_抽出ボタン_Click - " + ex.Message);
-            //    MessageBox.Show("エラーが発生しました。", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //    Debug.WriteLine(this.Name + "_抽出ボタン_Click - " + ex.Message);
+                //    MessageBox.Show("エラーが発生しました。", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
-            //    //this.Painting = true;
-            //    this.Close();
+                //    //this.Painting = true;
+                //    this.Close();
             }
         }
 
@@ -331,67 +334,17 @@ namespace u_net
             }
         }
 
-        private void 更新日開始_DoubleClick(object sender, EventArgs e)
+        private void OKボタン_Click(object sender, EventArgs e)
         {
-            更新日開始選択_Click(sender, e);
+
         }
 
-        private void 更新日開始_KeyPress(object sender, KeyPressEventArgs e)
+        private void 顧客検索ボタン_Click(object sender, EventArgs e)
         {
-            if (e.KeyChar == ' ')
-            {
-                更新日開始選択_Click(sender, e);
-            }
+
         }
 
-
-
-
-        private void 更新日終了選択_Click(object sender, EventArgs e)
-        {
-            // 日付選択フォームを作成し表示
-            dateSelectionForm = new F_カレンダー();
-
-            //if (!string.IsNullOrEmpty(更新日終了.Text))
-            //{
-            //    dateSelectionForm.args = 更新日終了.Text;
-            //}
-
-            //if (dateSelectionForm.ShowDialog() == DialogResult.OK)
-            //{
-            //    // 日付選択フォームから選択した日付を取得
-            //    string selectedDate = dateSelectionForm.SelectedDate;
-
-            //    // フォームAの日付コントロールに選択した日付を設定
-            //    更新日終了.Text = selectedDate;
-            //    更新日終了.Focus();
-            //}
-        }
-
-        private void 更新日終了_DoubleClick(object sender, EventArgs e)
-        {
-            更新日終了選択_Click(sender, e);
-        }
-
-        private void 更新日終了_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == ' ')
-            {
-                更新日終了選択_Click(sender, e);
-            }
-        }
-
-        private void 更新日開始_Leave(object sender, EventArgs e)
-        {
-        //    FunctionClass.AdjustRange(更新日開始, 更新日終了, sender as Control);
-        }
-
-        private void 更新日終了_Leave(object sender, EventArgs e)
-        {
-           // FunctionClass.AdjustRange(更新日開始, 更新日終了, sender as Control);
-        }
-
-        private void F_ユニット管理_抽出_KeyDown(object sender, KeyEventArgs e)
+        private void F_請求条件設定_KeyDown(object sender, KeyEventArgs e)
         {
             switch (e.KeyCode)
             {
@@ -402,11 +355,6 @@ namespace u_net
         }
 
         private void 請求締日選択ボタン_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void OKボタン_Click(object sender, EventArgs e)
         {
 
         }

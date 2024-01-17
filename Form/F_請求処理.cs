@@ -644,6 +644,36 @@ namespace u_net
                     paoRep.z_Objects.z_Text.z_FontAttr.Size = 10;
                 }
 
+                paoRep.z_Objects.SetObject("BillingToName1");
+                lenB = Encoding.Default.GetBytes(row["BillingToName1"].ToString()).Length;
+                if (lenB < 49)
+                {
+                    paoRep.z_Objects.z_Text.z_FontAttr.Size = 8;
+                }
+                else if(lenB<44)
+                {
+                    paoRep.z_Objects.z_Text.z_FontAttr.Size = 9;
+                }
+                else
+                {
+                    paoRep.z_Objects.z_Text.z_FontAttr.Size = 10;
+                }
+
+                paoRep.z_Objects.SetObject("BillingToName2");
+                lenB = Encoding.Default.GetBytes(row["BillingToName2"].ToString()).Length;
+                if (lenB < 49)
+                {
+                    paoRep.z_Objects.z_Text.z_FontAttr.Size = 8;
+                }
+                else if (lenB < 44)
+                {
+                    paoRep.z_Objects.z_Text.z_FontAttr.Size = 9;
+                }
+                else
+                {
+                    paoRep.z_Objects.z_Text.z_FontAttr.Size = 10;
+                }
+
 
 
                 //明細

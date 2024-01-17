@@ -35,7 +35,7 @@ namespace u_net
             コマンド登録 = new Button();
             panel1 = new Panel();
             コマンド新規 = new Button();
-            コマンド履歴 = new Button();
+            コマンド最新版 = new Button();
             コマンド入出庫 = new Button();
             コマンドメーカー = new Button();
             コマンド仕入先 = new Button();
@@ -102,11 +102,9 @@ namespace u_net
             版数_ラベル = new Label();
             statusStrip1 = new StatusStrip();
             toolStripStatusLabel1 = new ToolStripStatusLabel();
-            toolStripStatusLabel2 = new ToolStripStatusLabel();
             部品コード = new ComboBox();
             メーカーコード検索ボタン = new Button();
             MakerName = new TextBox();
-            改版ボタン = new Button();
             仕入先2フレーム = new GroupBox();
             label5 = new Label();
             Supplier2Name = new TextBox();
@@ -128,28 +126,22 @@ namespace u_net
             分類コード = new ComboBox();
             M部品分類bindingSource = new BindingSource(components);
             newDataSet = new newDataSet();
-            label20 = new Label();
+            分類_ラベル = new Label();
             GroupName = new TextBox();
             形状分類コード = new ComboBox();
             M部品形状bindingSource = new BindingSource(components);
-            label21 = new Label();
+            形状分類_ラベル = new Label();
             RohsStatusCode = new ComboBox();
             rohsStatusCodebindingSource = new BindingSource(components);
-            label22 = new Label();
+            RoHS在庫状況_ラベル = new Label();
             label33 = new Label();
-            label7 = new Label();
+            廃止_ラベル = new Label();
             廃止 = new CheckBox();
             入数 = new TextBox();
-            label11 = new Label();
+            入数_ラベル = new Label();
             単位数量 = new TextBox();
-            label34 = new Label();
-            label37 = new Label();
-            ロス率 = new TextBox();
-            label38 = new Label();
-            label39 = new Label();
-            InventoryAmount = new TextBox();
-            label40 = new Label();
-            CalcInventoryCode = new ComboBox();
+            発注単位数量_ラベル = new Label();
+            受入検査ランク_ラベル = new Label();
             受入検査ランク = new ComboBox();
             m部品形状TableAdapter = new newDataSetTableAdapters.M部品形状TableAdapter();
             m部品分類TableAdapter = new newDataSetTableAdapters.M部品分類TableAdapter();
@@ -158,6 +150,29 @@ namespace u_net
             toolTip1 = new ToolTip(components);
             pictureBox1 = new PictureBox();
             comboBox1 = new ComboBox();
+            RoHS_ラベル = new Label();
+            RoHS = new ComboBox();
+            非含有証明書_ラベル = new Label();
+            非含有証明書 = new ComboBox();
+            RoHS資料_ラベル = new Label();
+            RoHS資料 = new ComboBox();
+            label1 = new Label();
+            label3 = new Label();
+            label8 = new Label();
+            ロス率係数_ラベル = new Label();
+            ロス率 = new TextBox();
+            備考_ラベル = new Label();
+            送付状摘要 = new TextBox();
+            在庫数量_ラベル = new Label();
+            在庫数量 = new TextBox();
+            過不足数量_ラベル = new Label();
+            調整在庫数量 = new TextBox();
+            対象部品集合_ラベル = new Label();
+            部品集合コード = new TextBox();
+            label7 = new Label();
+            label11 = new Label();
+            部品集合版数 = new TextBox();
+            集合名 = new TextBox();
             panel1.SuspendLayout();
             仕入先1フレーム.SuspendLayout();
             statusStrip1.SuspendLayout();
@@ -207,7 +222,7 @@ namespace u_net
             panel1.Location = new Point(0, 1);
             panel1.Margin = new Padding(4, 3, 4, 3);
             panel1.Name = "panel1";
-            panel1.Size = new Size(944, 42);
+            panel1.Size = new Size(903, 42);
             panel1.TabIndex = 81;
             // 
             // コマンド新規
@@ -227,21 +242,21 @@ namespace u_net
             コマンド新規.UseVisualStyleBackColor = false;
             コマンド新規.Click += コマンド新規_Click;
             // 
-            // コマンド履歴
+            // コマンド最新版
             // 
-            コマンド履歴.Enabled = false;
-            コマンド履歴.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            コマンド履歴.ForeColor = Color.Blue;
-            コマンド履歴.ImageAlign = ContentAlignment.BottomLeft;
-            コマンド履歴.Location = new Point(510, 5);
-            コマンド履歴.Margin = new Padding(3, 2, 3, 2);
-            コマンド履歴.Name = "コマンド履歴";
-            コマンド履歴.Size = new Size(70, 20);
-            コマンド履歴.TabIndex = 1011;
-            コマンド履歴.TabStop = false;
-            コマンド履歴.Text = "履歴";
-            コマンド履歴.UseVisualStyleBackColor = true;
-            コマンド履歴.Click += コマンド履歴_Click;
+            コマンド最新版.Enabled = false;
+            コマンド最新版.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            コマンド最新版.ForeColor = Color.Blue;
+            コマンド最新版.ImageAlign = ContentAlignment.BottomLeft;
+            コマンド最新版.Location = new Point(510, 5);
+            コマンド最新版.Margin = new Padding(3, 2, 3, 2);
+            コマンド最新版.Name = "コマンド最新版";
+            コマンド最新版.Size = new Size(70, 20);
+            コマンド最新版.TabIndex = 1011;
+            コマンド最新版.TabStop = false;
+            コマンド最新版.Text = "履歴";
+            コマンド最新版.UseVisualStyleBackColor = true;
+            コマンド最新版.Click += コマンド最新版_Click;
             // 
             // コマンド入出庫
             // 
@@ -506,7 +521,7 @@ namespace u_net
             削除.BackColor = SystemColors.Window;
             削除.Enabled = false;
             削除.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            削除.Location = new Point(699, 202);
+            削除.Location = new Point(713, 149);
             削除.Margin = new Padding(3, 2, 3, 2);
             削除.Multiline = true;
             削除.Name = "削除";
@@ -520,7 +535,7 @@ namespace u_net
             label15.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             label15.ForeColor = SystemColors.ActiveCaptionText;
             label15.ImageAlign = ContentAlignment.MiddleLeft;
-            label15.Location = new Point(628, 202);
+            label15.Location = new Point(642, 149);
             label15.Margin = new Padding(0);
             label15.Name = "label15";
             label15.Size = new Size(68, 20);
@@ -533,7 +548,7 @@ namespace u_net
             UpdaterName.BackColor = SystemColors.Window;
             UpdaterName.Enabled = false;
             UpdaterName.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            UpdaterName.Location = new Point(731, 152);
+            UpdaterName.Location = new Point(745, 125);
             UpdaterName.Margin = new Padding(3, 2, 3, 2);
             UpdaterName.Multiline = true;
             UpdaterName.Name = "UpdaterName";
@@ -545,7 +560,7 @@ namespace u_net
             更新者コード.BackColor = SystemColors.Window;
             更新者コード.Enabled = false;
             更新者コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            更新者コード.Location = new Point(699, 152);
+            更新者コード.Location = new Point(713, 125);
             更新者コード.Margin = new Padding(3, 2, 3, 2);
             更新者コード.Multiline = true;
             更新者コード.Name = "更新者コード";
@@ -559,7 +574,7 @@ namespace u_net
             label14.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             label14.ForeColor = SystemColors.ActiveCaptionText;
             label14.ImageAlign = ContentAlignment.MiddleLeft;
-            label14.Location = new Point(628, 152);
+            label14.Location = new Point(642, 125);
             label14.Margin = new Padding(0);
             label14.Name = "label14";
             label14.Size = new Size(68, 20);
@@ -574,7 +589,7 @@ namespace u_net
             label13.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             label13.ForeColor = SystemColors.ActiveCaptionText;
             label13.ImageAlign = ContentAlignment.MiddleLeft;
-            label13.Location = new Point(628, 126);
+            label13.Location = new Point(642, 99);
             label13.Margin = new Padding(0);
             label13.Name = "label13";
             label13.Size = new Size(68, 20);
@@ -587,7 +602,7 @@ namespace u_net
             更新日時.BackColor = SystemColors.Window;
             更新日時.Enabled = false;
             更新日時.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            更新日時.Location = new Point(699, 126);
+            更新日時.Location = new Point(713, 99);
             更新日時.Margin = new Padding(3, 2, 3, 2);
             更新日時.Multiline = true;
             更新日時.Name = "更新日時";
@@ -599,7 +614,7 @@ namespace u_net
             CreatorName.BackColor = SystemColors.Window;
             CreatorName.Enabled = false;
             CreatorName.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            CreatorName.Location = new Point(731, 101);
+            CreatorName.Location = new Point(745, 74);
             CreatorName.Margin = new Padding(3, 2, 3, 2);
             CreatorName.Multiline = true;
             CreatorName.Name = "CreatorName";
@@ -611,7 +626,7 @@ namespace u_net
             作成者コード.BackColor = SystemColors.Window;
             作成者コード.Enabled = false;
             作成者コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            作成者コード.Location = new Point(699, 101);
+            作成者コード.Location = new Point(713, 74);
             作成者コード.Margin = new Padding(3, 2, 3, 2);
             作成者コード.Multiline = true;
             作成者コード.Name = "作成者コード";
@@ -625,7 +640,7 @@ namespace u_net
             label12.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             label12.ForeColor = SystemColors.ActiveCaptionText;
             label12.ImageAlign = ContentAlignment.MiddleLeft;
-            label12.Location = new Point(628, 101);
+            label12.Location = new Point(642, 74);
             label12.Margin = new Padding(0);
             label12.Name = "label12";
             label12.Size = new Size(68, 20);
@@ -640,7 +655,7 @@ namespace u_net
             label10.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             label10.ForeColor = SystemColors.ActiveCaptionText;
             label10.ImageAlign = ContentAlignment.MiddleLeft;
-            label10.Location = new Point(628, 77);
+            label10.Location = new Point(642, 50);
             label10.Margin = new Padding(0);
             label10.Name = "label10";
             label10.Size = new Size(68, 20);
@@ -653,7 +668,7 @@ namespace u_net
             作成日時.BackColor = SystemColors.Window;
             作成日時.Enabled = false;
             作成日時.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            作成日時.Location = new Point(699, 77);
+            作成日時.Location = new Point(713, 50);
             作成日時.Margin = new Padding(3, 2, 3, 2);
             作成日時.Multiline = true;
             作成日時.Name = "作成日時";
@@ -671,7 +686,7 @@ namespace u_net
             メーカー名フリガナ_ラベル.Margin = new Padding(0);
             メーカー名フリガナ_ラベル.Name = "メーカー名フリガナ_ラベル";
             メーカー名フリガナ_ラベル.Size = new Size(112, 20);
-            メーカー名フリガナ_ラベル.TabIndex = 7;
+            メーカー名フリガナ_ラベル.TabIndex = 5;
             メーカー名フリガナ_ラベル.Text = "型番(&M)";
             メーカー名フリガナ_ラベル.TextAlign = ContentAlignment.MiddleLeft;
             // 
@@ -684,7 +699,7 @@ namespace u_net
             品名.Margin = new Padding(3, 2, 3, 2);
             品名.Name = "品名";
             品名.Size = new Size(326, 20);
-            品名.TabIndex = 6;
+            品名.TabIndex = 4;
             品名.TextChanged += 品名_TextChanged;
             品名.Enter += 品名_Enter;
             品名.Leave += 品名_Leave;
@@ -701,7 +716,7 @@ namespace u_net
             メーカー名_ラベル.Margin = new Padding(0);
             メーカー名_ラベル.Name = "メーカー名_ラベル";
             メーカー名_ラベル.Size = new Size(112, 20);
-            メーカー名_ラベル.TabIndex = 5;
+            メーカー名_ラベル.TabIndex = 3;
             メーカー名_ラベル.Text = "品名(&N)";
             メーカー名_ラベル.TextAlign = ContentAlignment.MiddleLeft;
             // 
@@ -716,7 +731,7 @@ namespace u_net
             メーカー省略名_ラベル.Margin = new Padding(0);
             メーカー省略名_ラベル.Name = "メーカー省略名_ラベル";
             メーカー省略名_ラベル.Size = new Size(112, 20);
-            メーカー省略名_ラベル.TabIndex = 9;
+            メーカー省略名_ラベル.TabIndex = 7;
             メーカー省略名_ラベル.Text = "メーカーコード(&A)";
             メーカー省略名_ラベル.TextAlign = ContentAlignment.MiddleLeft;
             // 
@@ -802,7 +817,7 @@ namespace u_net
             label2.Margin = new Padding(0);
             label2.Name = "label2";
             label2.Size = new Size(112, 20);
-            label2.TabIndex = 12;
+            label2.TabIndex = 9;
             label2.Text = "仕入先コード(&S)";
             label2.TextAlign = ContentAlignment.MiddleLeft;
             // 
@@ -815,7 +830,7 @@ namespace u_net
             仕入先1コード.Margin = new Padding(3, 2, 3, 2);
             仕入先1コード.Name = "仕入先1コード";
             仕入先1コード.Size = new Size(88, 20);
-            仕入先1コード.TabIndex = 13;
+            仕入先1コード.TabIndex = 10;
             仕入先1コード.TextChanged += 仕入先1コード_TextChanged;
             仕入先1コード.Enter += 仕入先1コード_Enter;
             仕入先1コード.KeyDown += 仕入先1コード_KeyDown;
@@ -835,7 +850,7 @@ namespace u_net
             label17.Margin = new Padding(0);
             label17.Name = "label17";
             label17.Size = new Size(112, 20);
-            label17.TabIndex = 14;
+            label17.TabIndex = 11;
             label17.Text = "単価(&P)";
             label17.TextAlign = ContentAlignment.MiddleLeft;
             // 
@@ -848,7 +863,7 @@ namespace u_net
             仕入先1単価.Margin = new Padding(3, 2, 3, 2);
             仕入先1単価.Name = "仕入先1単価";
             仕入先1単価.Size = new Size(88, 20);
-            仕入先1単価.TabIndex = 15;
+            仕入先1単価.TabIndex = 12;
             仕入先1単価.TextChanged += 仕入先1単価_TextChanged;
             仕入先1単価.Enter += 仕入先1単価_Enter;
             仕入先1単価.Leave += 仕入先1単価_Leave;
@@ -858,11 +873,12 @@ namespace u_net
             // 
             型番.BackColor = Color.White;
             型番.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            型番.ImeMode = ImeMode.Alpha;
             型番.Location = new Point(125, 101);
             型番.Margin = new Padding(3, 2, 3, 2);
             型番.Name = "型番";
             型番.Size = new Size(326, 20);
-            型番.TabIndex = 8;
+            型番.TabIndex = 6;
             型番.TextChanged += 型番_TextChanged;
             型番.Enter += 型番_Enter;
             型番.Leave += 型番_Leave;
@@ -877,7 +893,7 @@ namespace u_net
             メーカーコード.Margin = new Padding(3, 2, 3, 2);
             メーカーコード.Name = "メーカーコード";
             メーカーコード.Size = new Size(88, 20);
-            メーカーコード.TabIndex = 10;
+            メーカーコード.TabIndex = 8;
             メーカーコード.TextChanged += メーカーコード_TextChanged;
             メーカーコード.Enter += メーカーコード_Enter;
             メーカーコード.KeyDown += メーカーコード_KeyDown;
@@ -887,33 +903,28 @@ namespace u_net
             // 
             // 版数_ラベル
             // 
-            版数_ラベル.Location = new Point(259, 52);
+            版数_ラベル.Location = new Point(309, 52);
             版数_ラベル.Name = "版数_ラベル";
             版数_ラベル.Size = new Size(59, 20);
-            版数_ラベル.TabIndex = 3;
+            版数_ラベル.TabIndex = 10000;
             版数_ラベル.Text = "版数(&E)";
             版数_ラベル.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // statusStrip1
             // 
-            statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1, toolStripStatusLabel2 });
-            statusStrip1.Location = new Point(0, 686);
+            statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1 });
+            statusStrip1.Location = new Point(0, 648);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Padding = new Padding(1, 0, 19, 0);
-            statusStrip1.Size = new Size(1140, 22);
+            statusStrip1.Size = new Size(902, 22);
             statusStrip1.TabIndex = 10001;
             statusStrip1.Text = "statusStrip1";
             // 
             // toolStripStatusLabel1
             // 
             toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            toolStripStatusLabel1.Size = new Size(0, 17);
-            // 
-            // toolStripStatusLabel2
-            // 
-            toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            toolStripStatusLabel2.Size = new Size(89, 17);
-            toolStripStatusLabel2.Text = "各種項目の説明";
+            toolStripStatusLabel1.Size = new Size(89, 17);
+            toolStripStatusLabel1.Text = "各種項目の説明";
             // 
             // 部品コード
             // 
@@ -958,19 +969,6 @@ namespace u_net
             MakerName.Size = new Size(306, 20);
             MakerName.TabIndex = 10006;
             MakerName.TabStop = false;
-            // 
-            // 改版ボタン
-            // 
-            改版ボタン.Location = new Point(383, 48);
-            改版ボタン.Margin = new Padding(4);
-            改版ボタン.Name = "改版ボタン";
-            改版ボタン.Size = new Size(68, 24);
-            改版ボタン.TabIndex = 5;
-            改版ボタン.TabStop = false;
-            改版ボタン.Text = "改版(&V)";
-            toolTip1.SetToolTip(改版ボタン, "表示されているデータを改訂し、履歴を残します。");
-            改版ボタン.UseVisualStyleBackColor = true;
-            改版ボタン.Click += 改版ボタン_Click;
             // 
             // 仕入先2フレーム
             // 
@@ -1039,7 +1037,7 @@ namespace u_net
             label6.Margin = new Padding(0);
             label6.Name = "label6";
             label6.Size = new Size(112, 20);
-            label6.TabIndex = 17;
+            label6.TabIndex = 13;
             label6.Text = "仕入先コード";
             label6.TextAlign = ContentAlignment.MiddleLeft;
             // 
@@ -1052,7 +1050,7 @@ namespace u_net
             仕入先2コード.Margin = new Padding(3, 2, 3, 2);
             仕入先2コード.Name = "仕入先2コード";
             仕入先2コード.Size = new Size(88, 20);
-            仕入先2コード.TabIndex = 18;
+            仕入先2コード.TabIndex = 14;
             仕入先2コード.TextChanged += 仕入先2コード_TextChanged;
             仕入先2コード.Enter += 仕入先2コード_Enter;
             仕入先2コード.KeyDown += 仕入先2コード_KeyDown;
@@ -1072,7 +1070,7 @@ namespace u_net
             label9.Margin = new Padding(0);
             label9.Name = "label9";
             label9.Size = new Size(112, 20);
-            label9.TabIndex = 19;
+            label9.TabIndex = 15;
             label9.Text = "単価";
             label9.TextAlign = ContentAlignment.MiddleLeft;
             // 
@@ -1085,7 +1083,7 @@ namespace u_net
             仕入先2単価.Margin = new Padding(3, 2, 3, 2);
             仕入先2単価.Name = "仕入先2単価";
             仕入先2単価.Size = new Size(88, 20);
-            仕入先2単価.TabIndex = 20;
+            仕入先2単価.TabIndex = 16;
             仕入先2単価.TextChanged += 仕入先2単価_TextChanged;
             仕入先2単価.Enter += 仕入先2単価_Enter;
             仕入先2単価.Leave += 仕入先2単価_Leave;
@@ -1158,7 +1156,7 @@ namespace u_net
             label18.Margin = new Padding(0);
             label18.Name = "label18";
             label18.Size = new Size(112, 20);
-            label18.TabIndex = 22;
+            label18.TabIndex = 17;
             label18.Text = "仕入先コード";
             label18.TextAlign = ContentAlignment.MiddleLeft;
             // 
@@ -1171,7 +1169,7 @@ namespace u_net
             仕入先3コード.Margin = new Padding(3, 2, 3, 2);
             仕入先3コード.Name = "仕入先3コード";
             仕入先3コード.Size = new Size(88, 20);
-            仕入先3コード.TabIndex = 23;
+            仕入先3コード.TabIndex = 18;
             仕入先3コード.TextChanged += 仕入先3コード_TextChanged;
             仕入先3コード.Enter += 仕入先3コード_Enter;
             仕入先3コード.KeyDown += 仕入先3コード_KeyDown;
@@ -1191,7 +1189,7 @@ namespace u_net
             label19.Margin = new Padding(0);
             label19.Name = "label19";
             label19.Size = new Size(112, 20);
-            label19.TabIndex = 24;
+            label19.TabIndex = 19;
             label19.Text = "単価";
             label19.TextAlign = ContentAlignment.MiddleLeft;
             // 
@@ -1204,7 +1202,7 @@ namespace u_net
             仕入先3単価.Margin = new Padding(3, 2, 3, 2);
             仕入先3単価.Name = "仕入先3単価";
             仕入先3単価.Size = new Size(88, 20);
-            仕入先3単価.TabIndex = 25;
+            仕入先3単価.TabIndex = 20;
             仕入先3単価.TextChanged += 仕入先3単価_TextChanged;
             仕入先3単価.Enter += 仕入先3単価_Enter;
             仕入先3単価.Leave += 仕入先3単価_Leave;
@@ -1243,7 +1241,7 @@ namespace u_net
             分類コード.Location = new Point(125, 414);
             分類コード.Name = "分類コード";
             分類コード.Size = new Size(90, 21);
-            分類コード.TabIndex = 27;
+            分類コード.TabIndex = 22;
             分類コード.ValueMember = "分類コード";
             分類コード.DrawItem += 分類コード_DrawItem;
             分類コード.SelectedIndexChanged += 分類コード_SelectedIndexChanged;
@@ -1265,20 +1263,20 @@ namespace u_net
             newDataSet.Namespace = "http://tempuri.org/newDataSet.xsd";
             newDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // label20
+            // 分類_ラベル
             // 
-            label20.AllowDrop = true;
-            label20.AutoEllipsis = true;
-            label20.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label20.ForeColor = SystemColors.ActiveCaptionText;
-            label20.ImageAlign = ContentAlignment.MiddleLeft;
-            label20.Location = new Point(9, 413);
-            label20.Margin = new Padding(0);
-            label20.Name = "label20";
-            label20.Size = new Size(112, 20);
-            label20.TabIndex = 26;
-            label20.Text = "分類(&G)";
-            label20.TextAlign = ContentAlignment.MiddleLeft;
+            分類_ラベル.AllowDrop = true;
+            分類_ラベル.AutoEllipsis = true;
+            分類_ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            分類_ラベル.ForeColor = SystemColors.ActiveCaptionText;
+            分類_ラベル.ImageAlign = ContentAlignment.MiddleLeft;
+            分類_ラベル.Location = new Point(9, 413);
+            分類_ラベル.Margin = new Padding(0);
+            分類_ラベル.Name = "分類_ラベル";
+            分類_ラベル.Size = new Size(112, 20);
+            分類_ラベル.TabIndex = 21;
+            分類_ラベル.Text = "分類";
+            分類_ラベル.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // GroupName
             // 
@@ -1301,7 +1299,7 @@ namespace u_net
             形状分類コード.Location = new Point(125, 439);
             形状分類コード.Name = "形状分類コード";
             形状分類コード.Size = new Size(90, 21);
-            形状分類コード.TabIndex = 29;
+            形状分類コード.TabIndex = 24;
             形状分類コード.SelectedIndexChanged += 形状分類コード_SelectedIndexChanged;
             形状分類コード.Enter += 形状分類コード_Enter;
             形状分類コード.KeyPress += 形状分類コード_KeyPress;
@@ -1313,51 +1311,53 @@ namespace u_net
             M部品形状bindingSource.DataMember = "M部品形状";
             M部品形状bindingSource.DataSource = newDataSet;
             // 
-            // label21
+            // 形状分類_ラベル
             // 
-            label21.AllowDrop = true;
-            label21.AutoEllipsis = true;
-            label21.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label21.ForeColor = SystemColors.ActiveCaptionText;
-            label21.ImageAlign = ContentAlignment.MiddleLeft;
-            label21.Location = new Point(10, 439);
-            label21.Margin = new Padding(0);
-            label21.Name = "label21";
-            label21.Size = new Size(112, 20);
-            label21.TabIndex = 28;
-            label21.Text = "形状分類(&H)";
-            label21.TextAlign = ContentAlignment.MiddleLeft;
+            形状分類_ラベル.AllowDrop = true;
+            形状分類_ラベル.AutoEllipsis = true;
+            形状分類_ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            形状分類_ラベル.ForeColor = SystemColors.ActiveCaptionText;
+            形状分類_ラベル.ImageAlign = ContentAlignment.MiddleLeft;
+            形状分類_ラベル.Location = new Point(10, 439);
+            形状分類_ラベル.Margin = new Padding(0);
+            形状分類_ラベル.Name = "形状分類_ラベル";
+            形状分類_ラベル.Size = new Size(112, 20);
+            形状分類_ラベル.TabIndex = 23;
+            形状分類_ラベル.Text = "形状分類";
+            形状分類_ラベル.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // RohsStatusCode
             // 
             RohsStatusCode.BackColor = Color.White;
             RohsStatusCode.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             RohsStatusCode.FormattingEnabled = true;
-            RohsStatusCode.ImeMode = ImeMode.NoControl;
-            RohsStatusCode.Location = new Point(125, 584);
+            RohsStatusCode.ImeMode = ImeMode.Disable;
+            RohsStatusCode.Location = new Point(125, 562);
             RohsStatusCode.Name = "RohsStatusCode";
-            RohsStatusCode.Size = new Size(121, 21);
-            RohsStatusCode.TabIndex = 31;
+            RohsStatusCode.Size = new Size(102, 21);
+            RohsStatusCode.TabIndex = 34;
+            RohsStatusCode.Enter += RohsStatusCode_Enter;
+            RohsStatusCode.Leave += RohsStatusCode_Leave;
             // 
             // rohsStatusCodebindingSource
             // 
             rohsStatusCodebindingSource.DataMember = "RohsStatusCode";
             rohsStatusCodebindingSource.DataSource = newDataSet;
             // 
-            // label22
+            // RoHS在庫状況_ラベル
             // 
-            label22.AllowDrop = true;
-            label22.AutoEllipsis = true;
-            label22.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label22.ForeColor = SystemColors.ActiveCaptionText;
-            label22.ImageAlign = ContentAlignment.MiddleLeft;
-            label22.Location = new Point(10, 584);
-            label22.Margin = new Padding(0);
-            label22.Name = "label22";
-            label22.Size = new Size(112, 20);
-            label22.TabIndex = 30;
-            label22.Text = "RoHS対応状態";
-            label22.TextAlign = ContentAlignment.MiddleLeft;
+            RoHS在庫状況_ラベル.AllowDrop = true;
+            RoHS在庫状況_ラベル.AutoEllipsis = true;
+            RoHS在庫状況_ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            RoHS在庫状況_ラベル.ForeColor = SystemColors.ActiveCaptionText;
+            RoHS在庫状況_ラベル.ImageAlign = ContentAlignment.MiddleLeft;
+            RoHS在庫状況_ラベル.Location = new Point(9, 562);
+            RoHS在庫状況_ラベル.Margin = new Padding(0);
+            RoHS在庫状況_ラベル.Name = "RoHS在庫状況_ラベル";
+            RoHS在庫状況_ラベル.Size = new Size(112, 20);
+            RoHS在庫状況_ラベル.TabIndex = 33;
+            RoHS在庫状況_ラベル.Text = "RoHS在庫状況(&T)";
+            RoHS在庫状況_ラベル.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // label33
             // 
@@ -1366,35 +1366,35 @@ namespace u_net
             label33.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             label33.ForeColor = SystemColors.ActiveCaptionText;
             label33.ImageAlign = ContentAlignment.MiddleLeft;
-            label33.Location = new Point(331, 503);
+            label33.Location = new Point(243, 537);
             label33.Margin = new Padding(0);
             label33.Name = "label33";
             label33.Size = new Size(160, 83);
             label33.TabIndex = 10035;
             label33.Text = "※[RoHS]省略表示について\r\n　対応：　　○\r\n　対応予定：△\r\n　非対応：　×\r\n　未調査：　？\r\n　（同[RoHS在庫状況]）";
             // 
-            // label7
+            // 廃止_ラベル
             // 
-            label7.AllowDrop = true;
-            label7.AutoEllipsis = true;
-            label7.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label7.ForeColor = SystemColors.ActiveCaptionText;
-            label7.ImageAlign = ContentAlignment.MiddleLeft;
-            label7.Location = new Point(621, 438);
-            label7.Margin = new Padding(0);
-            label7.Name = "label7";
-            label7.Size = new Size(68, 20);
-            label7.TabIndex = 10037;
-            label7.Text = "廃止(&B)";
-            label7.TextAlign = ContentAlignment.MiddleLeft;
+            廃止_ラベル.AllowDrop = true;
+            廃止_ラベル.AutoEllipsis = true;
+            廃止_ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            廃止_ラベル.ForeColor = SystemColors.ActiveCaptionText;
+            廃止_ラベル.ImageAlign = ContentAlignment.MiddleLeft;
+            廃止_ラベル.Location = new Point(422, 537);
+            廃止_ラベル.Margin = new Padding(0);
+            廃止_ラベル.Name = "廃止_ラベル";
+            廃止_ラベル.Size = new Size(112, 20);
+            廃止_ラベル.TabIndex = 43;
+            廃止_ラベル.Text = "廃止(&A)";
+            廃止_ラベル.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // 廃止
             // 
             廃止.AutoSize = true;
-            廃止.Location = new Point(692, 440);
+            廃止.Location = new Point(538, 540);
             廃止.Name = "廃止";
             廃止.Size = new Size(15, 14);
-            廃止.TabIndex = 10036;
+            廃止.TabIndex = 44;
             廃止.UseVisualStyleBackColor = true;
             廃止.Validated += 廃止_Validated;
             // 
@@ -1403,170 +1403,77 @@ namespace u_net
             入数.BackColor = SystemColors.Window;
             入数.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             入数.ImeMode = ImeMode.Disable;
-            入数.Location = new Point(125, 475);
+            入数.Location = new Point(125, 464);
             入数.Margin = new Padding(3, 2, 3, 2);
             入数.Name = "入数";
             入数.Size = new Size(90, 20);
-            入数.TabIndex = 55;
+            入数.TabIndex = 26;
             入数.TextChanged += 入数_TextChanged;
             入数.Enter += 入数_Enter;
             入数.Leave += 入数_Leave;
             入数.Validating += 入数_Validating;
             入数.Validated += 入数_Validated;
             // 
-            // label11
+            // 入数_ラベル
             // 
-            label11.AllowDrop = true;
-            label11.AutoEllipsis = true;
-            label11.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label11.ForeColor = SystemColors.ActiveCaptionText;
-            label11.ImageAlign = ContentAlignment.MiddleLeft;
-            label11.Location = new Point(10, 475);
-            label11.Margin = new Padding(0);
-            label11.Name = "label11";
-            label11.Size = new Size(114, 20);
-            label11.TabIndex = 54;
-            label11.Text = "入数(&Q)";
-            label11.TextAlign = ContentAlignment.MiddleLeft;
+            入数_ラベル.AllowDrop = true;
+            入数_ラベル.AutoEllipsis = true;
+            入数_ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            入数_ラベル.ForeColor = SystemColors.ActiveCaptionText;
+            入数_ラベル.ImageAlign = ContentAlignment.MiddleLeft;
+            入数_ラベル.Location = new Point(10, 464);
+            入数_ラベル.Margin = new Padding(0);
+            入数_ラベル.Name = "入数_ラベル";
+            入数_ラベル.Size = new Size(114, 20);
+            入数_ラベル.TabIndex = 25;
+            入数_ラベル.Text = "入数";
+            入数_ラベル.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // 単位数量
             // 
             単位数量.BackColor = SystemColors.Window;
             単位数量.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             単位数量.ImeMode = ImeMode.Disable;
-            単位数量.Location = new Point(125, 499);
+            単位数量.Location = new Point(125, 488);
             単位数量.Margin = new Padding(3, 2, 3, 2);
             単位数量.Name = "単位数量";
             単位数量.Size = new Size(90, 20);
-            単位数量.TabIndex = 57;
+            単位数量.TabIndex = 28;
             単位数量.TextChanged += 単位数量_TextChanged;
             単位数量.Enter += 単位数量_Enter;
             単位数量.Leave += 単位数量_Leave;
             単位数量.Validating += 単位数量_Validating;
             単位数量.Validated += 単位数量_Validated;
             // 
-            // label34
+            // 発注単位数量_ラベル
             // 
-            label34.AllowDrop = true;
-            label34.AutoEllipsis = true;
-            label34.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label34.ForeColor = SystemColors.ActiveCaptionText;
-            label34.ImageAlign = ContentAlignment.MiddleLeft;
-            label34.Location = new Point(10, 499);
-            label34.Margin = new Padding(0);
-            label34.Name = "label34";
-            label34.Size = new Size(114, 20);
-            label34.TabIndex = 56;
-            label34.Text = "発注単位数量(&U)";
-            label34.TextAlign = ContentAlignment.MiddleLeft;
+            発注単位数量_ラベル.AllowDrop = true;
+            発注単位数量_ラベル.AutoEllipsis = true;
+            発注単位数量_ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            発注単位数量_ラベル.ForeColor = SystemColors.ActiveCaptionText;
+            発注単位数量_ラベル.ImageAlign = ContentAlignment.MiddleLeft;
+            発注単位数量_ラベル.Location = new Point(10, 488);
+            発注単位数量_ラベル.Margin = new Padding(0);
+            発注単位数量_ラベル.Name = "発注単位数量_ラベル";
+            発注単位数量_ラベル.Size = new Size(114, 20);
+            発注単位数量_ラベル.TabIndex = 27;
+            発注単位数量_ラベル.Text = "発注単位数量";
+            発注単位数量_ラベル.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // label37
+            // 受入検査ランク_ラベル
             // 
-            label37.AllowDrop = true;
-            label37.AutoEllipsis = true;
-            label37.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label37.ForeColor = SystemColors.ActiveCaptionText;
-            label37.ImageAlign = ContentAlignment.MiddleLeft;
-            label37.Location = new Point(753, 300);
-            label37.Margin = new Padding(0);
-            label37.Name = "label37";
-            label37.Size = new Size(112, 20);
-            label37.TabIndex = 62;
-            label37.Text = "在庫計算(&C)";
-            label37.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // ロス率
-            // 
-            ロス率.BackColor = SystemColors.Window;
-            ロス率.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            ロス率.ImeMode = ImeMode.Disable;
-            ロス率.Location = new Point(868, 326);
-            ロス率.Margin = new Padding(3, 2, 3, 2);
-            ロス率.Name = "ロス率";
-            ロス率.Size = new Size(88, 20);
-            ロス率.TabIndex = 65;
-            ロス率.TextChanged += ロス率_TextChanged;
-            ロス率.Enter += ロス率_Enter;
-            ロス率.Leave += ロス率_Leave;
-            ロス率.Validating += ロス率_Validating;
-            ロス率.Validated += ロス率_Validated;
-            // 
-            // label38
-            // 
-            label38.AllowDrop = true;
-            label38.AutoEllipsis = true;
-            label38.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label38.ForeColor = SystemColors.ActiveCaptionText;
-            label38.ImageAlign = ContentAlignment.MiddleLeft;
-            label38.Location = new Point(753, 326);
-            label38.Margin = new Padding(0);
-            label38.Name = "label38";
-            label38.Size = new Size(112, 20);
-            label38.TabIndex = 64;
-            label38.Text = "在庫ロス率(&F)";
-            label38.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // label39
-            // 
-            label39.AllowDrop = true;
-            label39.AutoEllipsis = true;
-            label39.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label39.ForeColor = SystemColors.ActiveCaptionText;
-            label39.ImageAlign = ContentAlignment.MiddleLeft;
-            label39.Location = new Point(10, 524);
-            label39.Margin = new Padding(0);
-            label39.Name = "label39";
-            label39.Size = new Size(112, 20);
-            label39.TabIndex = 66;
-            label39.Text = "受入検査ランク(&L)";
-            label39.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // InventoryAmount
-            // 
-            InventoryAmount.BackColor = SystemColors.Window;
-            InventoryAmount.Enabled = false;
-            InventoryAmount.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            InventoryAmount.ImeMode = ImeMode.Disable;
-            InventoryAmount.Location = new Point(868, 376);
-            InventoryAmount.Margin = new Padding(3, 2, 3, 2);
-            InventoryAmount.Name = "InventoryAmount";
-            InventoryAmount.Size = new Size(88, 20);
-            InventoryAmount.TabIndex = 10053;
-            InventoryAmount.TabStop = false;
-            InventoryAmount.TextChanged += InventoryAmount_TextChanged;
-            InventoryAmount.Validating += InventoryAmount_Validating;
-            InventoryAmount.Validated += InventoryAmount_Validated;
-            // 
-            // label40
-            // 
-            label40.AllowDrop = true;
-            label40.AutoEllipsis = true;
-            label40.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label40.ForeColor = SystemColors.ActiveCaptionText;
-            label40.ImageAlign = ContentAlignment.MiddleLeft;
-            label40.Location = new Point(753, 376);
-            label40.Margin = new Padding(0);
-            label40.Name = "label40";
-            label40.Size = new Size(112, 20);
-            label40.TabIndex = 10000;
-            label40.Text = "在庫数(&K)";
-            label40.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // CalcInventoryCode
-            // 
-            CalcInventoryCode.BackColor = Color.White;
-            CalcInventoryCode.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            CalcInventoryCode.FormattingEnabled = true;
-            CalcInventoryCode.ImeMode = ImeMode.Disable;
-            CalcInventoryCode.Location = new Point(868, 300);
-            CalcInventoryCode.Name = "CalcInventoryCode";
-            CalcInventoryCode.Size = new Size(88, 21);
-            CalcInventoryCode.TabIndex = 63;
-            CalcInventoryCode.SelectedIndexChanged += CalcInventoryCode_SelectedIndexChanged;
-            CalcInventoryCode.Enter += CalcInventoryCode_Enter;
-            CalcInventoryCode.KeyPress += CalcInventoryCode_KeyPress;
-            CalcInventoryCode.Leave += CalcInventoryCode_Leave;
-            CalcInventoryCode.Validating += CalcInventoryCode_Validating;
+            受入検査ランク_ラベル.AllowDrop = true;
+            受入検査ランク_ラベル.AutoEllipsis = true;
+            受入検査ランク_ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            受入検査ランク_ラベル.ForeColor = SystemColors.ActiveCaptionText;
+            受入検査ランク_ラベル.ImageAlign = ContentAlignment.MiddleLeft;
+            受入検査ランク_ラベル.Location = new Point(10, 512);
+            受入検査ランク_ラベル.Margin = new Padding(0);
+            受入検査ランク_ラベル.Name = "受入検査ランク_ラベル";
+            受入検査ランク_ラベル.Size = new Size(112, 20);
+            受入検査ランク_ラベル.TabIndex = 29;
+            受入検査ランク_ラベル.Text = "受入検査ランク";
+            受入検査ランク_ラベル.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // 受入検査ランク
             // 
@@ -1575,10 +1482,10 @@ namespace u_net
             受入検査ランク.FormattingEnabled = true;
             受入検査ランク.ImeMode = ImeMode.Disable;
             受入検査ランク.Items.AddRange(new object[] { "A", "B1", "B2", "C", "D" });
-            受入検査ランク.Location = new Point(125, 524);
+            受入検査ランク.Location = new Point(125, 512);
             受入検査ランク.Name = "受入検査ランク";
             受入検査ランク.Size = new Size(90, 21);
-            受入検査ランク.TabIndex = 67;
+            受入検査ランク.TabIndex = 30;
             受入検査ランク.SelectedIndexChanged += 受入検査ランク_SelectedIndexChanged;
             受入検査ランク.Enter += 受入検査ランク_Enter;
             受入検査ランク.KeyPress += 受入検査ランク_KeyPress;
@@ -1599,7 +1506,7 @@ namespace u_net
             // 
             // 無効日時
             // 
-            無効日時.Location = new Point(740, 201);
+            無効日時.Location = new Point(754, 149);
             無効日時.Name = "無効日時";
             無効日時.Size = new Size(129, 23);
             無効日時.TabIndex = 10063;
@@ -1617,50 +1524,392 @@ namespace u_net
             // comboBox1
             // 
             comboBox1.BackColor = Color.FromArgb(255, 255, 153);
-            comboBox1.DropDownHeight = 102;
+            comboBox1.DropDownHeight = 48;
             comboBox1.Enabled = false;
             comboBox1.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             comboBox1.FormattingEnabled = true;
             comboBox1.ImeMode = ImeMode.Disable;
             comboBox1.IntegralHeight = false;
-            comboBox1.Location = new Point(322, 51);
+            comboBox1.Location = new Point(381, 51);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(48, 21);
             comboBox1.TabIndex = 10065;
+            comboBox1.TabStop = false;
+            // 
+            // RoHS_ラベル
+            // 
+            RoHS_ラベル.AllowDrop = true;
+            RoHS_ラベル.AutoEllipsis = true;
+            RoHS_ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            RoHS_ラベル.ForeColor = SystemColors.ActiveCaptionText;
+            RoHS_ラベル.ImageAlign = ContentAlignment.MiddleLeft;
+            RoHS_ラベル.Location = new Point(10, 537);
+            RoHS_ラベル.Margin = new Padding(0);
+            RoHS_ラベル.Name = "RoHS_ラベル";
+            RoHS_ラベル.Size = new Size(112, 20);
+            RoHS_ラベル.TabIndex = 31;
+            RoHS_ラベル.Text = "RoHS(&O)";
+            RoHS_ラベル.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // RoHS
+            // 
+            RoHS.BackColor = Color.White;
+            RoHS.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            RoHS.FormattingEnabled = true;
+            RoHS.ImeMode = ImeMode.Disable;
+            RoHS.Items.AddRange(new object[] { "A", "B1", "B2", "C", "D" });
+            RoHS.Location = new Point(125, 537);
+            RoHS.Name = "RoHS";
+            RoHS.Size = new Size(102, 21);
+            RoHS.TabIndex = 32;
+            RoHS.Enter += RoHS_Enter;
+            RoHS.Leave += RoHS_Leave;
+            // 
+            // 非含有証明書_ラベル
+            // 
+            非含有証明書_ラベル.AllowDrop = true;
+            非含有証明書_ラベル.AutoEllipsis = true;
+            非含有証明書_ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            非含有証明書_ラベル.ForeColor = SystemColors.ActiveCaptionText;
+            非含有証明書_ラベル.ImageAlign = ContentAlignment.MiddleLeft;
+            非含有証明書_ラベル.Location = new Point(10, 588);
+            非含有証明書_ラベル.Margin = new Padding(0);
+            非含有証明書_ラベル.Name = "非含有証明書_ラベル";
+            非含有証明書_ラベル.Size = new Size(112, 20);
+            非含有証明書_ラベル.TabIndex = 35;
+            非含有証明書_ラベル.Text = "非含有証明書(&O)";
+            非含有証明書_ラベル.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // 非含有証明書
+            // 
+            非含有証明書.BackColor = Color.White;
+            非含有証明書.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            非含有証明書.FormattingEnabled = true;
+            非含有証明書.ImeMode = ImeMode.Disable;
+            非含有証明書.Location = new Point(125, 588);
+            非含有証明書.Name = "非含有証明書";
+            非含有証明書.Size = new Size(102, 21);
+            非含有証明書.TabIndex = 36;
+            非含有証明書.Enter += 非含有証明書_Enter;
+            非含有証明書.Leave += 非含有証明書_Leave;
+            // 
+            // RoHS資料_ラベル
+            // 
+            RoHS資料_ラベル.AllowDrop = true;
+            RoHS資料_ラベル.AutoEllipsis = true;
+            RoHS資料_ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            RoHS資料_ラベル.ForeColor = SystemColors.ActiveCaptionText;
+            RoHS資料_ラベル.ImageAlign = ContentAlignment.MiddleLeft;
+            RoHS資料_ラベル.Location = new Point(9, 614);
+            RoHS資料_ラベル.Margin = new Padding(0);
+            RoHS資料_ラベル.Name = "RoHS資料_ラベル";
+            RoHS資料_ラベル.Size = new Size(112, 20);
+            RoHS資料_ラベル.TabIndex = 37;
+            RoHS資料_ラベル.Text = "RoHS資料(&D)";
+            RoHS資料_ラベル.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // RoHS資料
+            // 
+            RoHS資料.BackColor = Color.White;
+            RoHS資料.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            RoHS資料.FormattingEnabled = true;
+            RoHS資料.ImeMode = ImeMode.Disable;
+            RoHS資料.Location = new Point(125, 614);
+            RoHS資料.Name = "RoHS資料";
+            RoHS資料.Size = new Size(102, 21);
+            RoHS資料.TabIndex = 38;
+            RoHS資料.Enter += RoHS資料_Enter;
+            RoHS資料.Leave += RoHS資料_Leave;
+            // 
+            // label1
+            // 
+            label1.AllowDrop = true;
+            label1.AutoEllipsis = true;
+            label1.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.ForeColor = SystemColors.ActiveCaptionText;
+            label1.ImageAlign = ContentAlignment.MiddleLeft;
+            label1.Location = new Point(228, 453);
+            label1.Margin = new Padding(0);
+            label1.Name = "label1";
+            label1.Size = new Size(172, 33);
+            label1.TabIndex = 10072;
+            label1.Text = "※入数は発注数量=1に対して含まれる部品の数量です。";
+            // 
+            // label3
+            // 
+            label3.AllowDrop = true;
+            label3.AutoEllipsis = true;
+            label3.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label3.ForeColor = SystemColors.ActiveCaptionText;
+            label3.ImageAlign = ContentAlignment.MiddleLeft;
+            label3.Location = new Point(228, 485);
+            label3.Margin = new Padding(0);
+            label3.Name = "label3";
+            label3.Size = new Size(172, 33);
+            label3.TabIndex = 10073;
+            label3.Text = "※発注単位数量は発注可能な最小の数量です。";
+            // 
+            // label8
+            // 
+            label8.AllowDrop = true;
+            label8.AutoEllipsis = true;
+            label8.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label8.ForeColor = SystemColors.ActiveCaptionText;
+            label8.ImageAlign = ContentAlignment.MiddleLeft;
+            label8.Location = new Point(462, 50);
+            label8.Margin = new Padding(0);
+            label8.Name = "label8";
+            label8.Size = new Size(142, 59);
+            label8.TabIndex = 10074;
+            label8.Text = "＜注意＞\r\nこのデータは履歴として利用します。\r\n編集しないでください。";
+            // 
+            // ロス率係数_ラベル
+            // 
+            ロス率係数_ラベル.AllowDrop = true;
+            ロス率係数_ラベル.AutoEllipsis = true;
+            ロス率係数_ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            ロス率係数_ラベル.ForeColor = SystemColors.ActiveCaptionText;
+            ロス率係数_ラベル.ImageAlign = ContentAlignment.MiddleLeft;
+            ロス率係数_ラベル.Location = new Point(422, 440);
+            ロス率係数_ラベル.Margin = new Padding(0);
+            ロス率係数_ラベル.Name = "ロス率係数_ラベル";
+            ロス率係数_ラベル.Size = new Size(112, 20);
+            ロス率係数_ラベル.TabIndex = 39;
+            ロス率係数_ラベル.Text = "ロス率係数";
+            ロス率係数_ラベル.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // ロス率
+            // 
+            ロス率.BackColor = SystemColors.Window;
+            ロス率.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            ロス率.ImeMode = ImeMode.Disable;
+            ロス率.Location = new Point(537, 440);
+            ロス率.Margin = new Padding(3, 2, 3, 2);
+            ロス率.Name = "ロス率";
+            ロス率.Size = new Size(102, 20);
+            ロス率.TabIndex = 40;
+            ロス率.Enter += ロス率_Enter;
+            ロス率.Leave += ロス率_Leave;
+            // 
+            // 備考_ラベル
+            // 
+            備考_ラベル.AllowDrop = true;
+            備考_ラベル.AutoEllipsis = true;
+            備考_ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            備考_ラベル.ForeColor = SystemColors.ActiveCaptionText;
+            備考_ラベル.ImageAlign = ContentAlignment.MiddleLeft;
+            備考_ラベル.Location = new Point(422, 464);
+            備考_ラベル.Margin = new Padding(0);
+            備考_ラベル.Name = "備考_ラベル";
+            備考_ラベル.Size = new Size(112, 20);
+            備考_ラベル.TabIndex = 41;
+            備考_ラベル.Text = "備考(&N)";
+            備考_ラベル.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // 送付状摘要
+            // 
+            送付状摘要.BackColor = SystemColors.Window;
+            送付状摘要.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            送付状摘要.ImeMode = ImeMode.Hiragana;
+            送付状摘要.Location = new Point(537, 464);
+            送付状摘要.Margin = new Padding(3, 2, 3, 2);
+            送付状摘要.Multiline = true;
+            送付状摘要.Name = "送付状摘要";
+            送付状摘要.Size = new Size(346, 69);
+            送付状摘要.TabIndex = 42;
+            // 
+            // 在庫数量_ラベル
+            // 
+            在庫数量_ラベル.AllowDrop = true;
+            在庫数量_ラベル.AutoEllipsis = true;
+            在庫数量_ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            在庫数量_ラベル.ForeColor = SystemColors.ActiveCaptionText;
+            在庫数量_ラベル.ImageAlign = ContentAlignment.MiddleLeft;
+            在庫数量_ラベル.Location = new Point(422, 562);
+            在庫数量_ラベル.Margin = new Padding(0);
+            在庫数量_ラベル.Name = "在庫数量_ラベル";
+            在庫数量_ラベル.Size = new Size(112, 20);
+            在庫数量_ラベル.TabIndex = 45;
+            在庫数量_ラベル.Text = "在庫数量(&S)";
+            在庫数量_ラベル.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // 在庫数量
+            // 
+            在庫数量.BackColor = SystemColors.Window;
+            在庫数量.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            在庫数量.ImeMode = ImeMode.Disable;
+            在庫数量.Location = new Point(537, 562);
+            在庫数量.Margin = new Padding(3, 2, 3, 2);
+            在庫数量.Name = "在庫数量";
+            在庫数量.Size = new Size(102, 20);
+            在庫数量.TabIndex = 46;
+            // 
+            // 過不足数量_ラベル
+            // 
+            過不足数量_ラベル.AllowDrop = true;
+            過不足数量_ラベル.AutoEllipsis = true;
+            過不足数量_ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            過不足数量_ラベル.ForeColor = SystemColors.ActiveCaptionText;
+            過不足数量_ラベル.ImageAlign = ContentAlignment.MiddleLeft;
+            過不足数量_ラベル.Location = new Point(422, 588);
+            過不足数量_ラベル.Margin = new Padding(0);
+            過不足数量_ラベル.Name = "過不足数量_ラベル";
+            過不足数量_ラベル.Size = new Size(112, 20);
+            過不足数量_ラベル.TabIndex = 47;
+            過不足数量_ラベル.Text = "過不足数量";
+            過不足数量_ラベル.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // 調整在庫数量
+            // 
+            調整在庫数量.BackColor = SystemColors.Window;
+            調整在庫数量.Enabled = false;
+            調整在庫数量.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            調整在庫数量.ImeMode = ImeMode.Disable;
+            調整在庫数量.Location = new Point(537, 588);
+            調整在庫数量.Margin = new Padding(3, 2, 3, 2);
+            調整在庫数量.Name = "調整在庫数量";
+            調整在庫数量.ReadOnly = true;
+            調整在庫数量.Size = new Size(102, 20);
+            調整在庫数量.TabIndex = 48;
+            調整在庫数量.TabStop = false;
+            調整在庫数量.Enter += 調整在庫数量_Enter;
+            調整在庫数量.Leave += 調整在庫数量_Leave;
+            // 
+            // 対象部品集合_ラベル
+            // 
+            対象部品集合_ラベル.AllowDrop = true;
+            対象部品集合_ラベル.AutoEllipsis = true;
+            対象部品集合_ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            対象部品集合_ラベル.ForeColor = SystemColors.ActiveCaptionText;
+            対象部品集合_ラベル.ImageAlign = ContentAlignment.MiddleLeft;
+            対象部品集合_ラベル.Location = new Point(422, 614);
+            対象部品集合_ラベル.Margin = new Padding(0);
+            対象部品集合_ラベル.Name = "対象部品集合_ラベル";
+            対象部品集合_ラベル.Size = new Size(112, 20);
+            対象部品集合_ラベル.TabIndex = 10083;
+            対象部品集合_ラベル.Text = "対象部品集合";
+            対象部品集合_ラベル.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // 部品集合コード
+            // 
+            部品集合コード.BackColor = SystemColors.Window;
+            部品集合コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            部品集合コード.ImeMode = ImeMode.Disable;
+            部品集合コード.Location = new Point(537, 612);
+            部品集合コード.Margin = new Padding(3, 2, 3, 2);
+            部品集合コード.Name = "部品集合コード";
+            部品集合コード.ReadOnly = true;
+            部品集合コード.Size = new Size(102, 20);
+            部品集合コード.TabIndex = 10084;
+            部品集合コード.TabStop = false;
+            部品集合コード.Enter += 部品集合コード_Enter;
+            部品集合コード.Leave += 部品集合コード_Leave;
+            // 
+            // label7
+            // 
+            label7.AllowDrop = true;
+            label7.AutoEllipsis = true;
+            label7.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label7.ForeColor = SystemColors.ActiveCaptionText;
+            label7.ImageAlign = ContentAlignment.MiddleLeft;
+            label7.Location = new Point(642, 561);
+            label7.Margin = new Padding(0);
+            label7.Name = "label7";
+            label7.Size = new Size(241, 20);
+            label7.TabIndex = 10085;
+            label7.Text = "※通常、システム導入時に入力します。";
+            label7.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // label11
+            // 
+            label11.AllowDrop = true;
+            label11.AutoEllipsis = true;
+            label11.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label11.ForeColor = SystemColors.ActiveCaptionText;
+            label11.ImageAlign = ContentAlignment.MiddleLeft;
+            label11.Location = new Point(642, 588);
+            label11.Margin = new Padding(0);
+            label11.Name = "label11";
+            label11.Size = new Size(241, 20);
+            label11.TabIndex = 10086;
+            label11.Text = "※現時点での値です。";
+            label11.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // 部品集合版数
+            // 
+            部品集合版数.BackColor = SystemColors.Window;
+            部品集合版数.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            部品集合版数.ImeMode = ImeMode.Disable;
+            部品集合版数.Location = new Point(638, 612);
+            部品集合版数.Margin = new Padding(3, 2, 3, 2);
+            部品集合版数.Name = "部品集合版数";
+            部品集合版数.ReadOnly = true;
+            部品集合版数.Size = new Size(24, 20);
+            部品集合版数.TabIndex = 10087;
+            部品集合版数.TabStop = false;
+            // 
+            // 集合名
+            // 
+            集合名.BackColor = SystemColors.Window;
+            集合名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            集合名.ImeMode = ImeMode.Disable;
+            集合名.Location = new Point(661, 612);
+            集合名.Margin = new Padding(3, 2, 3, 2);
+            集合名.Name = "集合名";
+            集合名.ReadOnly = true;
+            集合名.Size = new Size(207, 20);
+            集合名.TabIndex = 10088;
+            集合名.TabStop = false;
             // 
             // F_部品履歴
             // 
             BackColor = SystemColors.Control;
-            ClientSize = new Size(1140, 708);
+            ClientSize = new Size(902, 670);
+            Controls.Add(集合名);
+            Controls.Add(部品集合版数);
+            Controls.Add(label11);
+            Controls.Add(label7);
+            Controls.Add(部品集合コード);
+            Controls.Add(対象部品集合_ラベル);
+            Controls.Add(調整在庫数量);
+            Controls.Add(過不足数量_ラベル);
+            Controls.Add(在庫数量);
+            Controls.Add(在庫数量_ラベル);
+            Controls.Add(送付状摘要);
+            Controls.Add(備考_ラベル);
+            Controls.Add(ロス率);
+            Controls.Add(ロス率係数_ラベル);
+            Controls.Add(label8);
+            Controls.Add(label3);
+            Controls.Add(label1);
+            Controls.Add(RoHS資料);
+            Controls.Add(RoHS資料_ラベル);
+            Controls.Add(非含有証明書);
+            Controls.Add(非含有証明書_ラベル);
+            Controls.Add(RoHS);
+            Controls.Add(RoHS_ラベル);
             Controls.Add(comboBox1);
             Controls.Add(無効日時);
             Controls.Add(受入検査ランク);
-            Controls.Add(CalcInventoryCode);
-            Controls.Add(InventoryAmount);
-            Controls.Add(label40);
-            Controls.Add(label39);
-            Controls.Add(ロス率);
-            Controls.Add(label38);
-            Controls.Add(label37);
+            Controls.Add(受入検査ランク_ラベル);
             Controls.Add(単位数量);
-            Controls.Add(label34);
+            Controls.Add(発注単位数量_ラベル);
             Controls.Add(入数);
-            Controls.Add(label11);
-            Controls.Add(label7);
+            Controls.Add(入数_ラベル);
+            Controls.Add(廃止_ラベル);
             Controls.Add(廃止);
             Controls.Add(label33);
             Controls.Add(RohsStatusCode);
-            Controls.Add(label22);
+            Controls.Add(RoHS在庫状況_ラベル);
             Controls.Add(形状分類コード);
-            Controls.Add(label21);
+            Controls.Add(形状分類_ラベル);
             Controls.Add(GroupName);
             Controls.Add(分類コード);
-            Controls.Add(label20);
+            Controls.Add(分類_ラベル);
             Controls.Add(下移動ボタン);
             Controls.Add(上移動ボタン);
             Controls.Add(仕入先3フレーム);
             Controls.Add(仕入先2フレーム);
-            Controls.Add(改版ボタン);
             Controls.Add(MakerName);
             Controls.Add(メーカーコード検索ボタン);
             Controls.Add(部品コード);
@@ -1668,7 +1917,7 @@ namespace u_net
             Controls.Add(更新日時);
             Controls.Add(コマンド終了);
             Controls.Add(コマンド登録);
-            Controls.Add(コマンド履歴);
+            Controls.Add(コマンド最新版);
             Controls.Add(コマンド入出庫);
             Controls.Add(コマンドメーカー);
             Controls.Add(コマンド仕入先);
@@ -1769,7 +2018,7 @@ namespace u_net
         private CalendarColumn 登録日;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button コマンド新規;
-        private System.Windows.Forms.Button コマンド履歴;
+        private System.Windows.Forms.Button コマンド最新版;
         private System.Windows.Forms.Button コマンド入出庫;
         private System.Windows.Forms.Button コマンドメーカー;
         private System.Windows.Forms.Button コマンド仕入先;
@@ -1833,7 +2082,6 @@ namespace u_net
         private Label label17;
         private StatusStrip statusStrip1;
         private ToolStripStatusLabel toolStripStatusLabel1;
-        private ToolStripStatusLabel toolStripStatusLabel2;
         private ComboBox 部品コード;
         private Label label4;
         private TextBox Supplier1Name;
@@ -1842,7 +2090,6 @@ namespace u_net
         private TextBox 仕入先1コード;
         private Button メーカーコード検索ボタン;
         private TextBox MakerName;
-        private Button 改版ボタン;
         private GroupBox 仕入先2フレーム;
         private Label label5;
         private TextBox Supplier2Name;
@@ -1862,26 +2109,20 @@ namespace u_net
         private Button 上移動ボタン;
         private Button 下移動ボタン;
         private ComboBox 分類コード;
-        private Label label20;
+        private Label 分類_ラベル;
         private TextBox GroupName;
         private ComboBox 形状分類コード;
-        private Label label21;
+        private Label 形状分類_ラベル;
         private ComboBox RohsStatusCode;
-        private Label label22;
+        private Label RoHS在庫状況_ラベル;
         private Label label33;
-        private Label label7;
+        private Label 廃止_ラベル;
         private CheckBox 廃止;
         private TextBox 入数;
-        private Label label11;
+        private Label 入数_ラベル;
         private TextBox 単位数量;
-        private Label label34;
-        private Label label37;
-        private TextBox ロス率;
-        private Label label38;
-        private Label label39;
-        private TextBox InventoryAmount;
-        private Label label40;
-        private ComboBox CalcInventoryCode;
+        private Label 発注単位数量_ラベル;
+        private Label 受入検査ランク_ラベル;
         private ComboBox 受入検査ランク;
         private newDataSetTableAdapters.M部品形状TableAdapter m部品形状TableAdapter;
         private newDataSet newDataSet;
@@ -1894,6 +2135,29 @@ namespace u_net
         private ToolTip toolTip1;
         private PictureBox pictureBox1;
         private ComboBox comboBox1;
+        private Label RoHS_ラベル;
+        private ComboBox RoHS;
+        private Label 非含有証明書_ラベル;
+        private ComboBox 非含有証明書;
+        private Label RoHS資料_ラベル;
+        private ComboBox RoHS資料;
+        private Label label1;
+        private Label label3;
+        private Label label8;
+        private Label ロス率係数_ラベル;
+        private TextBox ロス率;
+        private Label 備考_ラベル;
+        private TextBox 送付状摘要;
+        private Label 在庫数量_ラベル;
+        private TextBox 在庫数量;
+        private Label 過不足数量_ラベル;
+        private TextBox 調整在庫数量;
+        private Label 対象部品集合_ラベル;
+        private TextBox 部品集合コード;
+        private Label label7;
+        private Label label11;
+        private TextBox 部品集合版数;
+        private TextBox 集合名;
     }
 }
 
