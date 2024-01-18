@@ -65,10 +65,11 @@ namespace u_net
             作業開始ボタン = new Button();
             注釈_ラベル = new Label();
             棚卸履歴_ラベル = new Label();
-            棚卸作業サブ1 = new MultiRowDesigner.棚卸作業サブ();
             閉じるボタン = new Button();
+            dataGridView1 = new DataGridView();
             statusStrip1.SuspendLayout();
             groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
             // dataGridViewTextBoxColumn1
@@ -220,17 +221,18 @@ namespace u_net
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(dataGridView1);
             groupBox1.Controls.Add(棚卸登録ボタン);
             groupBox1.Controls.Add(作業終了ボタン);
             groupBox1.Controls.Add(作業開始ボタン);
             groupBox1.Controls.Add(注釈_ラベル);
             groupBox1.Controls.Add(棚卸履歴_ラベル);
-            groupBox1.Controls.Add(棚卸作業サブ1);
             groupBox1.Location = new Point(11, 6);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(488, 322);
             groupBox1.TabIndex = 10198;
             groupBox1.TabStop = false;
+            groupBox1.Enter += groupBox1_Enter;
             // 
             // 棚卸登録ボタン
             // 
@@ -303,14 +305,6 @@ namespace u_net
             棚卸履歴_ラベル.Text = "棚卸履歴(&H)";
             棚卸履歴_ラベル.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // 棚卸作業サブ1
-            // 
-            棚卸作業サブ1.Location = new Point(10, 37);
-            棚卸作業サブ1.Margin = new Padding(4);
-            棚卸作業サブ1.Name = "棚卸作業サブ1";
-            棚卸作業サブ1.Size = new Size(467, 180);
-            棚卸作業サブ1.TabIndex = 6;
-            // 
             // 閉じるボタン
             // 
             閉じるボタン.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
@@ -323,6 +317,20 @@ namespace u_net
             閉じるボタン.Text = "閉じる";
             閉じるボタン.UseVisualStyleBackColor = true;
             閉じるボタン.Click += 閉じるボタン_Click;
+            // 
+            // dataGridView1
+            // 
+            dataGridView1.AllowUserToAddRows = false;
+            dataGridView1.AllowUserToDeleteRows = false;
+            dataGridView1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Location = new Point(10, 38);
+            dataGridView1.Margin = new Padding(3, 2, 3, 2);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.ReadOnly = true;
+            dataGridView1.RowTemplate.Height = 29;
+            dataGridView1.Size = new Size(467, 184);
+            dataGridView1.TabIndex = 88;
             // 
             // F_棚卸作業
             // 
@@ -343,6 +351,7 @@ namespace u_net
             statusStrip1.ResumeLayout(false);
             statusStrip1.PerformLayout();
             groupBox1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -380,13 +389,14 @@ namespace u_net
         private StatusStrip statusStrip1;
         internal ToolStripStatusLabel toolStripStatusLabel1;
         private GroupBox groupBox1;
-        private MultiRowDesigner.棚卸作業サブ 棚卸作業サブ1;
+        //private MultiRowDesigner.棚卸作業サブ 棚卸作業サブ1;
         private Label 注釈_ラベル;
         private Label 棚卸履歴_ラベル;
         private Button 作業開始ボタン;
         private Button 作業終了ボタン;
         private Button 棚卸登録ボタン;
         private Button 閉じるボタン;
+        private DataGridView dataGridView1;
     }
 }
 
