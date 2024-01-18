@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.Data.SqlClient;
+using Microsoft.VisualBasic.Logging;
 using u_net.Public;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
@@ -249,7 +250,7 @@ namespace u_net
 
 
 
-                using (SqlCommand command = new SqlCommand("SP売上一覧_担当者別", cn))
+                using (SqlCommand command = new SqlCommand("SP購買買掛一覧表", cn))
                 {
                     command.CommandType = CommandType.StoredProcedure;
                     command.Parameters.AddWithValue("@SalesYear", yearString);
@@ -261,6 +262,27 @@ namespace u_net
                         DataTable dataTable = new DataTable();
                         adapter.Fill(dataTable);
                         //dataGridView1.DataSource = dataTable;
+
+                        // 新しい列を追加
+                        DataColumn totalColumn = new DataColumn("(合計)", typeof(decimal));
+                        dataTable.Columns.Add(totalColumn);
+
+                        // 合計値を計算して新しい列に追加
+                        foreach (DataRow row in dataTable.Rows)
+                        {
+                            // 1列目から12列目までの値を合計
+                            decimal sum = 0;
+                            for (int i = 1; i < 13; i++)
+                            {
+                                if (row[i] != DBNull.Value)
+                                {
+                                    sum += Convert.ToDecimal(row[i]);
+                                }
+                            }
+
+                            // 合計値を13列目に追加
+                            row["（合計）"] = sum;
+                        }
 
                         BindingSource bindingSource = new BindingSource();
                         bindingSource.DataSource = dataTable;
@@ -291,20 +313,14 @@ namespace u_net
 
                     //0列目はaccessでは行ヘッダのため、ずらす
                     //dataGridView1.Columns[0].Width = 500 / twipperdot;
-                    dataGridView1.Columns[0].Width = 1000 / twipperdot; //1150
-                    dataGridView1.Columns[1].Width = 1300 / twipperdot;
-                    dataGridView1.Columns[2].Width = 1300 / twipperdot;
-                    dataGridView1.Columns[3].Width = 1300 / twipperdot;
-                    dataGridView1.Columns[4].Width = 1300 / twipperdot;
-                    dataGridView1.Columns[5].Width = 1300 / twipperdot;
-                    dataGridView1.Columns[6].Width = 1300 / twipperdot;
-                    dataGridView1.Columns[7].Width = 1300 / twipperdot;//1300
-                    dataGridView1.Columns[8].Width = 1300 / twipperdot;
-                    dataGridView1.Columns[9].Width = 1300 / twipperdot;
-                    dataGridView1.Columns[10].Width = 1300 / twipperdot;
-                    dataGridView1.Columns[11].Width = 1300 / twipperdot;
-                    dataGridView1.Columns[12].Width = 1300 / twipperdot;
-                    dataGridView1.Columns[13].Width = 1300 / twipperdot;
+                    dataGridView1.Columns[0].Width = 1900 / twipperdot; //1150
+                    for(int i = 1; i < 13; i++)
+                    {
+                        dataGridView1.Columns[i].Width = 1350 / twipperdot;
+                        dataGridView1.Columns[i].DefaultCellStyle.Format = "#,###,###,##0";
+                    }
+                    dataGridView1.Columns[13].Width = 1500 / twipperdot;
+                    dataGridView1.Columns[13].DefaultCellStyle.Format = "#,###,###,##0";
 
 
 
@@ -335,7 +351,7 @@ namespace u_net
                 dataGridView.Rows[rowCount].Cells[0].Value = "(合計)";
 
                 // 列ごとの合計金額を計算し、表示する
-                for (int col = 1; col <= colCount; col++)
+                for (int col = 1; col < colCount; col++)
                 {
                     long sum = 0;
 
@@ -357,6 +373,43 @@ namespace u_net
                     // セルのフォーマットを設定して桁区切りにする
                     dataGridView.Columns[col].DefaultCellStyle.Format = "#,###,###,##0";
                 }
+
+                bindingSource.AddNew();
+
+                dataGridView.Rows[rowCount+1].Cells[0].Value = "(半期合計)";
+
+                long sum2 = 0;
+
+                for (int col = 1; col <= 6; col++)
+                {
+                    
+
+                    // データグリッドビューのセルの値が数値であることを仮定
+                    object cellValue = dataGridView.Rows[rowCount].Cells[col].Value;
+                    if (cellValue != null && cellValue.ToString() != "")
+                    {
+                        sum2 += Convert.ToInt64(cellValue);
+                    }
+                }
+
+                dataGridView.Rows[rowCount+1].Cells[6].Value = sum2;
+
+                long sum3 = 0;
+
+                for (int col = 7; col <= 12; col++)
+                {
+
+
+                    // データグリッドビューのセルの値が数値であることを仮定
+                    object cellValue = dataGridView.Rows[rowCount].Cells[col].Value;
+                    if (cellValue != null && cellValue.ToString() != "")
+                    {
+                        sum3 += Convert.ToInt64(cellValue);
+                    }
+                }
+
+                dataGridView.Rows[rowCount + 1].Cells[12].Value = sum3;
+
             }
             catch (Exception ex)
             {
@@ -375,6 +428,7 @@ namespace u_net
         {
             if (e.RowIndex == -1 && e.ColumnIndex > 0)
             {
+                dataGridView1.Rows.RemoveAt(dataGridView1.Rows.Count - 1);
                 dataGridView1.Rows.RemoveAt(dataGridView1.Rows.Count - 1);
             }
         }
