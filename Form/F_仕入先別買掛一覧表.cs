@@ -249,7 +249,7 @@ namespace u_net
 
 
 
-                using (SqlCommand command = new SqlCommand("SP売上一覧_担当者別", cn))
+                using (SqlCommand command = new SqlCommand("SP仕入先別買掛一覧表", cn))
                 {
                     command.CommandType = CommandType.StoredProcedure;
                     command.Parameters.AddWithValue("@SalesYear", yearString);
@@ -261,6 +261,26 @@ namespace u_net
                         DataTable dataTable = new DataTable();
                         adapter.Fill(dataTable);
                         //dataGridView1.DataSource = dataTable;
+
+                        // 新しい列を追加
+                        DataColumn totalColumn = new DataColumn("(合計)", typeof(decimal));
+                        dataTable.Columns.Add(totalColumn);
+
+                        // 合計値を計算して新しい列に追加
+                        foreach (DataRow row in dataTable.Rows)
+                        {
+                  
+                            decimal sum = 0;
+                            for (int i = 2; i < 14; i++)
+                            {
+                                if (row[i] != DBNull.Value)
+                                {
+                                    sum += Convert.ToDecimal(row[i]);
+                                }
+                            }
+
+                            row["（合計）"] = sum;
+                        }
 
                         BindingSource bindingSource = new BindingSource();
                         bindingSource.DataSource = dataTable;
@@ -291,20 +311,15 @@ namespace u_net
 
                     //0列目はaccessでは行ヘッダのため、ずらす
                     //dataGridView1.Columns[0].Width = 500 / twipperdot;
-                    dataGridView1.Columns[0].Width = 1000 / twipperdot; //1150
-                    dataGridView1.Columns[1].Width = 1300 / twipperdot;
-                    dataGridView1.Columns[2].Width = 1300 / twipperdot;
-                    dataGridView1.Columns[3].Width = 1300 / twipperdot;
-                    dataGridView1.Columns[4].Width = 1300 / twipperdot;
-                    dataGridView1.Columns[5].Width = 1300 / twipperdot;
-                    dataGridView1.Columns[6].Width = 1300 / twipperdot;
-                    dataGridView1.Columns[7].Width = 1300 / twipperdot;//1300
-                    dataGridView1.Columns[8].Width = 1300 / twipperdot;
-                    dataGridView1.Columns[9].Width = 1300 / twipperdot;
-                    dataGridView1.Columns[10].Width = 1300 / twipperdot;
-                    dataGridView1.Columns[11].Width = 1300 / twipperdot;
-                    dataGridView1.Columns[12].Width = 1300 / twipperdot;
-                    dataGridView1.Columns[13].Width = 1300 / twipperdot;
+                    dataGridView1.Columns[0].Width = 1300 / twipperdot; //1150
+                    dataGridView1.Columns[1].Width = 3000/ twipperdot;
+                    for (int i = 2; i < 14; i++)
+                    {
+                        dataGridView1.Columns[i].Width = 1250 / twipperdot;
+                        dataGridView1.Columns[i].DefaultCellStyle.Format = "#,###,###,##0";
+                    }
+                    dataGridView1.Columns[14].Width = 1500 / twipperdot;
+                    dataGridView1.Columns[14].DefaultCellStyle.Format = "#,###,###,##0";
 
 
 
@@ -335,7 +350,7 @@ namespace u_net
                 dataGridView.Rows[rowCount].Cells[0].Value = "(合計)";
 
                 // 列ごとの合計金額を計算し、表示する
-                for (int col = 1; col <= colCount; col++)
+                for (int col = 2; col <= colCount; col++)
                 {
                     long sum = 0;
 

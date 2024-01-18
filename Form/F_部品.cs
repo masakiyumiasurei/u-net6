@@ -888,11 +888,11 @@ namespace u_net
             {
 
 
-                //F_部品履歴 targetform = new F_部品履歴();
+                F_部品履歴 targetform = new F_部品履歴();
 
-                //targetform.args = CurrentCode;
-                //targetform.args2 = CurrentEdition;
-                //targetform.ShowDialog();
+                targetform.args = CurrentCode;
+                targetform.args2 = CurrentEdition-1;
+                targetform.ShowDialog();
 
             }
             catch (Exception ex)
@@ -1210,7 +1210,7 @@ namespace u_net
 
             Close(); // フォームを閉じる
         }
-
+        
 
 
         //private void UpdatePurGrid()
