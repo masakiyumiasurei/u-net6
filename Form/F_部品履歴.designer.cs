@@ -131,7 +131,7 @@ namespace u_net
             形状分類コード = new ComboBox();
             M部品形状bindingSource = new BindingSource(components);
             形状分類_ラベル = new Label();
-            RohsStatusCode = new ComboBox();
+            RoHS在庫状況 = new ComboBox();
             rohsStatusCodebindingSource = new BindingSource(components);
             RoHS在庫状況_ラベル = new Label();
             label33 = new Label();
@@ -149,7 +149,7 @@ namespace u_net
             無効日時 = new TextBox();
             toolTip1 = new ToolTip(components);
             pictureBox1 = new PictureBox();
-            comboBox1 = new ComboBox();
+            版数 = new ComboBox();
             RoHS_ラベル = new Label();
             RoHS = new ComboBox();
             非含有証明書_ラベル = new Label();
@@ -162,7 +162,7 @@ namespace u_net
             ロス率係数_ラベル = new Label();
             ロス率 = new TextBox();
             備考_ラベル = new Label();
-            送付状摘要 = new TextBox();
+            備考 = new TextBox();
             在庫数量_ラベル = new Label();
             在庫数量 = new TextBox();
             過不足数量_ラベル = new Label();
@@ -173,6 +173,7 @@ namespace u_net
             label11 = new Label();
             部品集合版数 = new TextBox();
             集合名 = new TextBox();
+            部品集合参照ボタン = new Button();
             panel1.SuspendLayout();
             仕入先1フレーム.SuspendLayout();
             statusStrip1.SuspendLayout();
@@ -384,7 +385,7 @@ namespace u_net
             コマンド修正.TabStop = false;
             コマンド修正.Text = "修正";
             コマンド修正.UseVisualStyleBackColor = true;
-            コマンド修正.Click += コマンド読込_Click;
+            コマンド修正.Click += コマンド修正_Click;
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -1326,18 +1327,18 @@ namespace u_net
             形状分類_ラベル.Text = "形状分類";
             形状分類_ラベル.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // RohsStatusCode
+            // RoHS在庫状況
             // 
-            RohsStatusCode.BackColor = Color.White;
-            RohsStatusCode.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            RohsStatusCode.FormattingEnabled = true;
-            RohsStatusCode.ImeMode = ImeMode.Disable;
-            RohsStatusCode.Location = new Point(125, 562);
-            RohsStatusCode.Name = "RohsStatusCode";
-            RohsStatusCode.Size = new Size(102, 21);
-            RohsStatusCode.TabIndex = 34;
-            RohsStatusCode.Enter += RohsStatusCode_Enter;
-            RohsStatusCode.Leave += RohsStatusCode_Leave;
+            RoHS在庫状況.BackColor = Color.White;
+            RoHS在庫状況.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            RoHS在庫状況.FormattingEnabled = true;
+            RoHS在庫状況.ImeMode = ImeMode.Disable;
+            RoHS在庫状況.Location = new Point(125, 562);
+            RoHS在庫状況.Name = "RoHS在庫状況";
+            RoHS在庫状況.Size = new Size(102, 21);
+            RoHS在庫状況.TabIndex = 34;
+            RoHS在庫状況.Enter += RohsStatusCode_Enter;
+            RoHS在庫状況.Leave += RohsStatusCode_Leave;
             // 
             // rohsStatusCodebindingSource
             // 
@@ -1521,20 +1522,22 @@ namespace u_net
             pictureBox1.TabStop = false;
             pictureBox1.Paint += pictureBox1_Paint;
             // 
-            // comboBox1
+            // 版数
             // 
-            comboBox1.BackColor = Color.FromArgb(255, 255, 153);
-            comboBox1.DropDownHeight = 48;
-            comboBox1.Enabled = false;
-            comboBox1.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            comboBox1.FormattingEnabled = true;
-            comboBox1.ImeMode = ImeMode.Disable;
-            comboBox1.IntegralHeight = false;
-            comboBox1.Location = new Point(381, 51);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(48, 21);
-            comboBox1.TabIndex = 10065;
-            comboBox1.TabStop = false;
+            版数.BackColor = Color.FromArgb(255, 255, 153);
+            版数.DropDownHeight = 48;
+            版数.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            版数.FormattingEnabled = true;
+            版数.ImeMode = ImeMode.Disable;
+            版数.IntegralHeight = false;
+            版数.Location = new Point(381, 51);
+            版数.Name = "版数";
+            版数.Size = new Size(48, 21);
+            版数.TabIndex = 10065;
+            版数.TabStop = false;
+            版数.SelectedIndexChanged += 版数_SelectedIndexChanged;
+            版数.Validating += 版数_Validating;
+            版数.Validated += 版数_Validated;
             // 
             // RoHS_ラベル
             // 
@@ -1562,8 +1565,11 @@ namespace u_net
             RoHS.Name = "RoHS";
             RoHS.Size = new Size(102, 21);
             RoHS.TabIndex = 32;
+            RoHS.TextChanged += RoHS_TextChanged;
             RoHS.Enter += RoHS_Enter;
+            RoHS.KeyPress += RoHS_KeyPress;
             RoHS.Leave += RoHS_Leave;
+            RoHS.Validating += RoHS_Validating;
             // 
             // 非含有証明書_ラベル
             // 
@@ -1688,8 +1694,11 @@ namespace u_net
             ロス率.Name = "ロス率";
             ロス率.Size = new Size(102, 20);
             ロス率.TabIndex = 40;
+            ロス率.TextChanged += ロス率_TextChanged;
             ロス率.Enter += ロス率_Enter;
             ロス率.Leave += ロス率_Leave;
+            ロス率.Validating += ロス率_Validating;
+            ロス率.Validated += ロス率_Validated;
             // 
             // 備考_ラベル
             // 
@@ -1706,17 +1715,17 @@ namespace u_net
             備考_ラベル.Text = "備考(&N)";
             備考_ラベル.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // 送付状摘要
+            // 備考
             // 
-            送付状摘要.BackColor = SystemColors.Window;
-            送付状摘要.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            送付状摘要.ImeMode = ImeMode.Hiragana;
-            送付状摘要.Location = new Point(537, 464);
-            送付状摘要.Margin = new Padding(3, 2, 3, 2);
-            送付状摘要.Multiline = true;
-            送付状摘要.Name = "送付状摘要";
-            送付状摘要.Size = new Size(346, 69);
-            送付状摘要.TabIndex = 42;
+            備考.BackColor = SystemColors.Window;
+            備考.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            備考.ImeMode = ImeMode.Hiragana;
+            備考.Location = new Point(537, 464);
+            備考.Margin = new Padding(3, 2, 3, 2);
+            備考.Multiline = true;
+            備考.Name = "備考";
+            備考.Size = new Size(346, 69);
+            備考.TabIndex = 42;
             // 
             // 在庫数量_ラベル
             // 
@@ -1743,6 +1752,9 @@ namespace u_net
             在庫数量.Name = "在庫数量";
             在庫数量.Size = new Size(102, 20);
             在庫数量.TabIndex = 46;
+            在庫数量.TextChanged += 在庫数量_TextChanged;
+            在庫数量.Validating += 在庫数量_Validating;
+            在庫数量.Validated += 在庫数量_Validated;
             // 
             // 過不足数量_ラベル
             // 
@@ -1861,10 +1873,23 @@ namespace u_net
             集合名.TabIndex = 10088;
             集合名.TabStop = false;
             // 
+            // 部品集合参照ボタン
+            // 
+            部品集合参照ボタン.Location = new Point(869, 611);
+            部品集合参照ボタン.Margin = new Padding(4);
+            部品集合参照ボタン.Name = "部品集合参照ボタン";
+            部品集合参照ボタン.Size = new Size(20, 20);
+            部品集合参照ボタン.TabIndex = 10089;
+            部品集合参照ボタン.TabStop = false;
+            部品集合参照ボタン.Text = "…";
+            部品集合参照ボタン.UseVisualStyleBackColor = true;
+            部品集合参照ボタン.Click += 部品集合参照ボタン_Click;
+            // 
             // F_部品履歴
             // 
             BackColor = SystemColors.Control;
             ClientSize = new Size(902, 670);
+            Controls.Add(部品集合参照ボタン);
             Controls.Add(集合名);
             Controls.Add(部品集合版数);
             Controls.Add(label11);
@@ -1875,7 +1900,7 @@ namespace u_net
             Controls.Add(過不足数量_ラベル);
             Controls.Add(在庫数量);
             Controls.Add(在庫数量_ラベル);
-            Controls.Add(送付状摘要);
+            Controls.Add(備考);
             Controls.Add(備考_ラベル);
             Controls.Add(ロス率);
             Controls.Add(ロス率係数_ラベル);
@@ -1888,7 +1913,7 @@ namespace u_net
             Controls.Add(非含有証明書_ラベル);
             Controls.Add(RoHS);
             Controls.Add(RoHS_ラベル);
-            Controls.Add(comboBox1);
+            Controls.Add(版数);
             Controls.Add(無効日時);
             Controls.Add(受入検査ランク);
             Controls.Add(受入検査ランク_ラベル);
@@ -1899,7 +1924,7 @@ namespace u_net
             Controls.Add(廃止_ラベル);
             Controls.Add(廃止);
             Controls.Add(label33);
-            Controls.Add(RohsStatusCode);
+            Controls.Add(RoHS在庫状況);
             Controls.Add(RoHS在庫状況_ラベル);
             Controls.Add(形状分類コード);
             Controls.Add(形状分類_ラベル);
@@ -1955,7 +1980,7 @@ namespace u_net
             MinimizeBox = false;
             Name = "F_部品履歴";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = " 部品";
+            Text = "部品履歴";
             FormClosing += Form_Unload;
             Load += Form_Load;
             KeyDown += Form_KeyDown;
@@ -2113,7 +2138,7 @@ namespace u_net
         private TextBox GroupName;
         private ComboBox 形状分類コード;
         private Label 形状分類_ラベル;
-        private ComboBox RohsStatusCode;
+        private ComboBox RoHS在庫状況;
         private Label RoHS在庫状況_ラベル;
         private Label label33;
         private Label 廃止_ラベル;
@@ -2134,7 +2159,7 @@ namespace u_net
         private TextBox 無効日時;
         private ToolTip toolTip1;
         private PictureBox pictureBox1;
-        private ComboBox comboBox1;
+        private ComboBox 版数;
         private Label RoHS_ラベル;
         private ComboBox RoHS;
         private Label 非含有証明書_ラベル;
@@ -2158,6 +2183,8 @@ namespace u_net
         private Label label11;
         private TextBox 部品集合版数;
         private TextBox 集合名;
+        private Button 部品集合参照ボタン;
+        private TextBox 備考;
     }
 }
 
