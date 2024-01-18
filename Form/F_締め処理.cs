@@ -42,32 +42,17 @@ namespace u_net
 
 
                 //// 対象フォームが読み込まれていないときはすぐに終了する
-                //if (Application.OpenForms["F_ユニット管理"] == null)
+                //if (Application.OpenForms["F_請求処理"] == null)
                 //{
-                //    MessageBox.Show("[ユニット管理]画面が起動していない状態では実行できません。", "警告", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                //    MessageBox.Show("[請求処理]画面が起動していない状態では実行できません。", "警告", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 //    this.Close();
                 //    return;
                 //}
 
+                締め処理.Checked = true;
+                印刷.Checked = true;
                 請求書様式.Text = "請求明細書";
-
-                //OriginalClass ofn = new OriginalClass();
-                //ofn.SetComboBox(請求書様式, "SELECT 氏名 as Value , 氏名 as Display FROM M社員 WHERE (退社 IS NULL) AND ([パート] = 0) AND (ふりがな <> N'ん') OR (退社 IS NULL) AND ([パート] IS NULL) AND (ふりがな <> N'ん') ORDER BY ふりがな");
-
-                //this.非含有証明書.DataSource = new KeyValuePair<long, String>[] {
-                //    new KeyValuePair<long, String>(1, "返却済み"),
-                //    new KeyValuePair<long, String>(2, "未返却"),
-                //    new KeyValuePair<long, String>(3, "未提出"),
-                //    new KeyValuePair<long, String>(4, "不明"),
-                //    new KeyValuePair<long, String>(0, "指定しない"),
-                //};
-                //this.非含有証明書.DisplayMember = "Value";
-                //this.非含有証明書.ValueMember = "Key";
-
-                //開いているフォームのインスタンスを作成する
-                F_請求処理 frmTarget = Application.OpenForms.OfType<F_請求処理>().FirstOrDefault();
-                frmTarget.DoStart(締め処理.Checked,印刷.Checked);
-                this.Close();
+                
             }
             catch (Exception ex)
             {
@@ -95,7 +80,9 @@ namespace u_net
 
         private void 開始ボタン_Click(object sender, EventArgs e)
         {
-
+            F_請求処理 frmTarget = Application.OpenForms.OfType<F_請求処理>().FirstOrDefault();
+            frmTarget.DoStart(締め処理.Checked, 印刷.Checked);
+            this.Close();
         }
 
         private void F_締め処理_KeyDown(object sender, KeyEventArgs e)

@@ -4,15 +4,13 @@
 <PrintAttrs>
 <FontAttr AttrName="Font1" Name="ＭＳ Ｐゴシック" Size="10" />
 <FontAttr AttrName="Font2" Name="ＭＳ Ｐゴシック" Size="18" Color="White" />
-<FontAttr AttrName="Font3" Name="ＭＳ Ｐゴシック" Size="9" />
-<FontAttr AttrName="Font4" Name="ＭＳ Ｐゴシック" Size="12" />
-<FontAttr AttrName="Font5" Name="ＭＳ Ｐゴシック" Size="18" Bold="True" />
-<FontAttr AttrName="Font6" Name="ＭＳ Ｐゴシック" Size="8" />
-<FontAttr AttrName="Font7" Name="ＭＳ Ｐゴシック" Size="8" Color="White" />
+<FontAttr AttrName="Font3" Name="ＭＳ Ｐゴシック" Size="8" />
+<FontAttr AttrName="Font4" Name="ＭＳ Ｐゴシック" Size="9" />
+<FontAttr AttrName="Font5" Name="ＭＳ Ｐゴシック" Size="8" Color="White" />
 <LineAttr AttrName="Line1" Width="0.3" />
-<LineAttr AttrName="Line2" Width="0.7" />
+<LineAttr AttrName="Line2" Color="Transparent" Width="0" />
 <LineAttr AttrName="Line3" Color="Transparent" Width="0" />
-<LineAttr AttrName="Line4" Color="Transparent" Width="0" />
+<LineAttr AttrName="Line4" Width="0.1" />
 <LineAttr AttrName="Line5" Color="Transparent" Width="0" />
 <LineAttr AttrName="Line6" Color="Transparent" Width="0" />
 <LineAttr AttrName="Line7" Color="Transparent" Width="0" />
@@ -34,7 +32,7 @@
 <LineAttr AttrName="Line23" Color="Transparent" Width="0" />
 <LineAttr AttrName="Line24" Color="Transparent" Width="0" />
 <LineAttr AttrName="Line25" Color="Transparent" Width="0" />
-<LineAttr AttrName="Line26" Width="0.1" />
+<LineAttr AttrName="Line26" Color="Transparent" Width="0" />
 <LineAttr AttrName="Line27" Color="Transparent" Width="0" />
 <LineAttr AttrName="Line28" Color="Transparent" Width="0" />
 <LineAttr AttrName="Line29" Color="Transparent" Width="0" />
@@ -42,90 +40,48 @@
 <LineAttr AttrName="Line31" Color="Transparent" Width="0" />
 <LineAttr AttrName="Line32" Color="Transparent" Width="0" />
 <LineAttr AttrName="Line33" Color="Transparent" Width="0" />
-<LineAttr AttrName="Line34" Color="Transparent" Width="0" />
-<LineAttr AttrName="Line35" Color="Transparent" Width="0" />
-<LineAttr AttrName="Line36" Color="Transparent" Width="0" />
-<LineAttr AttrName="Line37" Color="Transparent" Width="0" />
-<LineAttr AttrName="Line38" Color="Transparent" Width="0" />
-<LineAttr AttrName="Line39" Color="Transparent" Width="0" />
-<LineAttr AttrName="Line40" Color="Transparent" Width="0" />
-<LineAttr AttrName="Line41" Color="Transparent" Width="0" />
-<LineAttr AttrName="Line42" Color="Transparent" Width="0" />
-<LineAttr AttrName="Line43" Color="Transparent" Width="0" />
-<LineAttr AttrName="Line44" Color="Transparent" Width="0" />
-<LineAttr AttrName="Line45" Color="Transparent" Width="0" />
-<LineAttr AttrName="Line46" Color="Transparent" Width="0" />
-<LineAttr AttrName="Line47" Color="Transparent" Width="0" />
-<LineAttr AttrName="Line48" Color="Transparent" Width="0" />
-<LineAttr AttrName="Line49" Color="Transparent" Width="0" />
-<LineAttr AttrName="Line50" Color="Transparent" Width="0" />
-<LineAttr AttrName="Line51" Color="Transparent" Width="0" />
-<LineAttr AttrName="Line52" Color="Transparent" Width="0" />
-<LineAttr AttrName="Line53" Color="Transparent" Width="0" />
-<LineAttr AttrName="Line54" Color="Transparent" Width="0" />
-<LineAttr AttrName="Line55" Color="Transparent" Width="0" />
-<LineAttr AttrName="Line56" Color="Transparent" Width="0" />
+<LineAttr AttrName="Line34" Width="0.1" />
+<LineAttr AttrName="Line35" Width="0.1" />
+<LineAttr AttrName="Line36" Width="0.1" />
+<LineAttr AttrName="Line37" Width="0.1" />
+<LineAttr AttrName="Line38" Width="0.1" />
+<LineAttr AttrName="Line39" Width="0.1" />
+<LineAttr AttrName="Line40" Width="0.1" />
+<LineAttr AttrName="Line41" Width="0.1" />
+<LineAttr AttrName="Line42" Width="0.1" />
+<LineAttr AttrName="Line43" Width="0.1" />
+<LineAttr AttrName="Line44" Width="0.1" />
+<LineAttr AttrName="Line45" Width="0.1" />
+<LineAttr AttrName="Line46" Width="0.1" />
+<LineAttr AttrName="Line47" Color="White" Width="0.1" />
+<LineAttr AttrName="Line48" Color="White" Width="0.1" />
+<LineAttr AttrName="Line49" Color="White" Width="0.1" />
+<LineAttr AttrName="Line50" Color="White" Width="0.1" />
+<LineAttr AttrName="Line51" Color="White" Width="0.1" />
+<LineAttr AttrName="Line52" Color="White" Width="0.1" />
+<LineAttr AttrName="Line53" Color="White" Width="0.1" />
+<LineAttr AttrName="Line54" Width="0.1" />
+<LineAttr AttrName="Line55" Width="0.1" />
+<LineAttr AttrName="Line56" Width="0.1" />
 <LineAttr AttrName="Line57" Color="Transparent" Width="0" />
 <LineAttr AttrName="Line58" Color="Transparent" Width="0" />
-<LineAttr AttrName="Line59" Color="Transparent" Width="0" />
-<LineAttr AttrName="Line60" Color="Transparent" Width="0" />
-<LineAttr AttrName="Line61" Color="Transparent" Width="0" />
-<LineAttr AttrName="Line62" Color="Transparent" Width="0" />
+<LineAttr AttrName="Line59" Width="0.1" />
+<LineAttr AttrName="Line60" Width="0.1" />
+<LineAttr AttrName="Line61" Width="0.1" />
+<LineAttr AttrName="Line62" Width="0.1" />
 <LineAttr AttrName="Line63" Color="Transparent" Width="0" />
-<LineAttr AttrName="Line64" Color="Transparent" Width="0" />
-<LineAttr AttrName="Line65" Color="Transparent" Width="0" />
-<LineAttr AttrName="Line66" Color="Transparent" Width="0" />
+<LineAttr AttrName="Line64" Color="Transparent" Width="0" Style="Dash" />
+<LineAttr AttrName="Line65" Width="0.1" />
+<LineAttr AttrName="Line66" Width="0.1" />
 <LineAttr AttrName="Line67" Color="Transparent" Width="0" />
 <LineAttr AttrName="Line68" Color="Transparent" Width="0" />
-<LineAttr AttrName="Line69" Color="Transparent" Width="0" />
-<LineAttr AttrName="Line70" Color="Transparent" Width="0" />
-<LineAttr AttrName="Line71" Color="Transparent" Width="0" />
-<LineAttr AttrName="Line72" Color="Transparent" Width="0" />
-<LineAttr AttrName="Line73" Color="Transparent" Width="0" />
-<LineAttr AttrName="Line74" Width="0.1" />
-<LineAttr AttrName="Line75" Width="0.1" />
-<LineAttr AttrName="Line76" Width="0.1" />
-<LineAttr AttrName="Line77" Width="0.1" />
-<LineAttr AttrName="Line78" Width="0.1" />
-<LineAttr AttrName="Line79" Width="0.1" />
-<LineAttr AttrName="Line80" Width="0.1" />
-<LineAttr AttrName="Line81" Width="0.1" />
-<LineAttr AttrName="Line82" Width="0.1" />
-<LineAttr AttrName="Line83" Width="0.1" />
-<LineAttr AttrName="Line84" Width="0.1" />
-<LineAttr AttrName="Line85" Width="0.1" />
-<LineAttr AttrName="Line86" Width="0.1" />
-<LineAttr AttrName="Line87" Color="White" Width="0.1" />
-<LineAttr AttrName="Line88" Color="White" Width="0.1" />
-<LineAttr AttrName="Line89" Color="White" Width="0.1" />
-<LineAttr AttrName="Line90" Color="White" Width="0.1" />
-<LineAttr AttrName="Line91" Color="White" Width="0.1" />
-<LineAttr AttrName="Line92" Color="White" Width="0.1" />
-<LineAttr AttrName="Line93" Color="White" Width="0.1" />
-<LineAttr AttrName="Line94" Width="0.1" />
-<LineAttr AttrName="Line95" Width="0.1" />
-<LineAttr AttrName="Line96" Width="0.1" />
-<LineAttr AttrName="Line97" Width="0.1" />
-<LineAttr AttrName="Line98" Width="0.1" />
-<LineAttr AttrName="Line99" Width="0.1" />
-<LineAttr AttrName="Line100" Width="0.1" />
-<LineAttr AttrName="Line101" Width="0.1" />
-<LineAttr AttrName="Line102" Width="0.1" />
-<LineAttr AttrName="Line103" Color="Transparent" Width="0" Style="Dash" />
-<LineAttr AttrName="Line104" Width="0.1" />
-<LineAttr AttrName="Line105" Width="0.1" />
-<LineAttr AttrName="Line106" Color="Transparent" Width="0" />
-<LineAttr AttrName="Line107" Color="Transparent" Width="0" />
-<LineAttr AttrName="Line108" Color="Transparent" Width="0" />
-<LineAttr AttrName="Line109" Color="Transparent" Width="0" />
-<LineAttr AttrName="Line110" Color="Transparent" Width="0" />
-<LineAttr AttrName="Line111" Color="Transparent" Width="0" />
+<LineAttr AttrName="Line69" Color="0" Width="0.3" />
 </PrintAttrs>
 <Paper Size="A4" Direction="False" />
 <Design FontAttr="Font1" LineAttr="Line1" GridWidth="2" DesignScale="100" GridFit="True" ObjLock="False" X="0" Y="0" Width="210" Height="297" DisplayRepeatObject="False" RepeatObjectColor="Silver" ImageSizeType="Clip" />
 </PrintSetting>
 <PrintObjects>
-<Image Name="社印" X="143.9" Y="15.1" Width="26" Height="26" LineAttr="Line107" >
+<Image Name="社印" X="143.9" Y="15.1" Width="26" Height="26" LineAttr="Line67" >
 iVBORw0KGgoAAAANSUhEUgAAAUoAAAFLCAIAAAA/F1L3AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAOvAAADrwBlbxySQAA/7JJREFUeF7s/YdLpNnaPgqff+yDcw7n9272TNPdYsCAllglBgwYMG
 DAgAEDBgwYMGDAgAEDBlQMGDBgwICWaIkBA3YPs/eP93wf73h917XK6d3T0z1j9bTdzow3F1JWPfXU86xn3WmtO/wfeKZneqa/KD2z9zM901+Wntn7mZ7pL0vP7P1Mz/SXpWf2fqZn+svSM3s/0zP9
 ZemZvZ/pmf6y9Mzez/RMf1l6Zu9neqa/LD2z9+PQ7a35e313dW3+/3J0e4XrK1xd4voSNzf3b/4G3by5f+Eq3b7B9TVu3t7fy9Oh27f3Lz4gXrDwgDH529CTZG8+IU7iG86tG4NrXJ3i8lJzWjjXUy
@@ -902,7 +858,7 @@ bhrzFd3cg3epvIXRcLPSWabWcm0Dg62Ux1I+t58JDTzc7Q11YSw3LnAzsw0bTy+4Mu8MzM079ZJydces
 x8DYbnv0XoEwcWJwim7rPLLR/z6v/RqJ8HD4RQi6fEL5bez4Yftx6zsHiATW8Li9TCpreFRWph09vCIrWw6W1hkVrY9LawSC1seltYpBY2vS0sUgub3hYWqYVNbwuLlAL4AqEepYOXbX+7AAAAAElF
 TkSuQmCC
 </Image>
-<Image Name="社印" X="168" Y="146" Width="1" Height="1" LineAttr="Line106" >
+<Image Name="社印" X="168" Y="146" Width="1" Height="1" LineAttr="Line68" >
 iVBORw0KGgoAAAANSUhEUgAAAUoAAAFLCAIAAAA/F1L3AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAOvAAADrwBlbxySQAA/7JJREFUeF7s/YdLpNnaPgqff+yDcw7n9272TNPdYsCAllglBgwYMG
 DAgAEDBgwYMGDAgAEDBlQMGDBgwICWaIkBA3YPs/eP93wf73h917XK6d3T0z1j9bTdzow3F1JWPfXU86xn3WmtO/wfeKZneqa/KD2z9zM901+Wntn7mZ7pL0vP7P1Mz/SXpWf2fqZn+svSM3s/0zP9
 ZemZvZ/pmf6y9Mzez/RMf1l6Zu9neqa/LD2z9+PQ7a35e313dW3+/3J0e4XrK1xd4voSNzf3b/4G3by5f+Eq3b7B9TVu3t7fy9Oh27f3Lz4gXrDwgDH529CTZG8+IU7iG86tG4NrXJ3i8lJzWjjXUy
@@ -1682,70 +1638,79 @@ TkSuQmCC
 <Line Name="Line7" StartX="238" StartY="82" EndX="226" EndY="82" LineAttr="Line1" />
 <Text Name="Text40" X="108" Y="0" Width="40" Height="10" Text="請  求  書" BackColor="Black" Align="Center" VAlign="Middle" FontAttr="Font2" />
 <Text Name="BillingZipCode" X="24.4" Y="10" Width="30" Height="4.5" Text="*BillingZipCode*" Align="Left" VAlign="Top" FontAttr="Font1" />
-<Square Name="収入印紙" X="22" Y="135" Width="18" Height="21" LineAttr="Line103" R="0" >
+<Square Name="収入印紙" X="22" Y="135" Width="18" Height="21" LineAttr="Line64" R="0" >
 </Square>
-<Square Name="Square2" X="182" Y="50" Width="14" Height="14" LineAttr="Line104" R="0" >
+<Square Name="Square2" X="182" Y="50" Width="14" Height="14" LineAttr="Line65" R="0" >
 </Square>
-<Text Name="Text27" X="13.4" Y="66" Width="27" Height="4" Text="前回御請求額" Align="Center" VAlign="Middle" FontAttr="Font6" LineAttr="Line26" />
+<Text Name="Text27" X="13.4" Y="66" Width="27" Height="4" Text="前回御請求額" Align="Center" VAlign="Middle" FontAttr="Font3" LineAttr="Line4" />
 <Text Name="Text42" X="18.4" Y="10" Width="6" Height="4.5" Text="〒" Align="Left" VAlign="Top" FontAttr="Font1" />
 <Text Name="BillingAddress1" X="18.4" Y="15" Width="80" Height="5.5" Text="*BillingAddress1*" Align="Left" VAlign="Top" FontAttr="Font1" />
 <Text Name="BillingAddress2" X="18.4" Y="20.6" Width="80" Height="5.5" Text="*BillingAddress2*" Align="Left" VAlign="Top" FontAttr="Font1" />
 <Text Name="BillingToName1" X="18.4" Y="30" Width="80" Height="4.4" Text="*BillingToName1*" Align="Left" VAlign="Top" FontAttr="Font1" />
 <Text Name="BillingToName2" X="18.4" Y="34.3" Width="80" Height="4.4" Text="*BillingToName2*" Align="Left" VAlign="Top" FontAttr="Font1" />
-<Text Name="Text47" X="98.1" Y="30" Width="10" Height="4.4" Text="御中" Align="Left" VAlign="Top" FontAttr="Font1" />
-<Text Name="Text48" X="98.1" Y="34.3" Width="10" Height="4.4" Text="御中" Align="Left" VAlign="Top" FontAttr="Font1" />
-<Text Name="請求日" X="108" Y="11" Width="40" Height="4" Text="*請求日*" Align="Left" VAlign="Top" FontAttr="Font1" />
+<Text Name="請求日" X="108" Y="11" Width="40" Height="4" Text="*請求日*" Align="Right" VAlign="Top" FontAttr="Font1" />
 <Text Name="Text50" X="168.2" Y="10" Width="7.9" Height="4" Text="No." Align="Right" VAlign="Top" FontAttr="Font1" />
-<Text Name="請求コード" X="176.1" Y="10" Width="20" Height="4" Text="*請求コード*" Align="Center" VAlign="Top" FontAttr="Font1" />
+<Text Name="請求コード" X="176.1" Y="10" Width="20" Height="4" Text="" Align="Center" VAlign="Top" FontAttr="Font1" />
 <Text Name="会社名1" X="117" Y="25" Width="63" Height="4.2" Text="*会社名1*" Align="Left" VAlign="Top" FontAttr="Font1" />
 <Text Name="会社名2" X="117" Y="29.2" Width="63" Height="4.2" Text="*会社名2*" Align="Left" VAlign="Top" FontAttr="Font1" />
-<Text Name="Text54" X="117" Y="35" Width="5" Height="3.8" Text="〒" Align="Left" VAlign="Top" FontAttr="Font3" />
-<Text Name="自社郵便番号" X="122" Y="35" Width="30" Height="3.8" Text="*自社郵便番号*" Align="Left" VAlign="Top" FontAttr="Font3" />
-<Text Name="自社住所1" X="117" Y="38.8" Width="63" Height="3.8" Text="*自社住所1*" Align="Left" VAlign="Top" FontAttr="Font3" />
-<Text Name="自社住所2" X="117" Y="42.6" Width="63" Height="3.8" Text="*自社住所2*" Align="Left" VAlign="Top" FontAttr="Font3" />
-<Text Name="電話番号" X="117" Y="46.4" Width="31.5" Height="3.8" Text="*電話番号*" Align="Left" VAlign="Top" FontAttr="Font3" />
-<Text Name="FAX番号" X="148.5" Y="46.4" Width="31.5" Height="3.8" Text="*FAX番号*" Align="Left" VAlign="Top" FontAttr="Font3" />
-<Text Name="銀行名称" X="117" Y="50.2" Width="43" Height="3.8" Text="*銀行名称*" Align="Left" VAlign="Top" FontAttr="Font3" />
-<Text Name="銀行口座番号" X="160" Y="50.2" Width="20" Height="3.8" Text="*銀行口座番号*" Align="Left" VAlign="Top" FontAttr="Font3" />
-<Text Name="Text63" X="15.1" Y="49" Width="17" Height="4" Text="お客様名" Align="Left" VAlign="Top" FontAttr="Font6" />
-<Text Name="CustomerName1" X="32.1" Y="48.9" Width="78" Height="4" Text="*CustomerName1*" Align="Left" VAlign="Top" FontAttr="Font6" />
-<Text Name="CustomerName2" X="32.1" Y="52.9" Width="78" Height="4" Text="*CustomerName2*" Align="Left" VAlign="Top" FontAttr="Font6" />
-<Text Name="Text66" X="32.1" Y="56.9" Width="25" Height="4" Text="（お客様コード" Align="Left" VAlign="Top" FontAttr="Font6" />
-<Text Name="顧客コード" X="57" Y="56.9" Width="23" Height="4" Text="*顧客コード*" Align="Center" VAlign="Top" FontAttr="Font6" />
-<Text Name="Text68" X="80" Y="56.9" Width="4.1" Height="4" Text="）" Align="Left" VAlign="Top" FontAttr="Font6" />
-<Text Name="Text69" X="15.5" Y="61.1" Width="164.8" Height="3.8" Text="下記の通り御請求申し上げます。総額五千円未満の場合、振込手数料はお客様にてご負担願います。" Align="Left" VAlign="Top" FontAttr="Font6" />
-<Text Name="Text72" X="117" Y="57" Width="20" Height="3.8" Text="*営業担当者*" Align="Left" VAlign="Top" FontAttr="Font3" />
-<Text Name="営業担当者名" X="137" Y="57" Width="43" Height="3.8" Text="*営業担当者名*" Align="Left" VAlign="Top" FontAttr="Font3" />
-<Text Name="Text74" X="40.4" Y="66" Width="26" Height="4" Text="御入金額" Align="Center" VAlign="Middle" FontAttr="Font6" LineAttr="Line74" />
-<Text Name="Text75" X="66.4" Y="66" Width="26" Height="4" Text="繰越金額" Align="Center" VAlign="Middle" FontAttr="Font6" LineAttr="Line75" />
-<Text Name="Text76" X="92.4" Y="66" Width="26" Height="4" Text="御買上額" Align="Center" VAlign="Middle" FontAttr="Font6" LineAttr="Line76" />
-<Text Name="Text77" X="118.4" Y="66" Width="24" Height="4" Text="消費税額" Align="Center" VAlign="Middle" FontAttr="Font6" LineAttr="Line77" />
-<Text Name="Text78" X="142.4" Y="66" Width="24" Height="4" Text="御買上計" Align="Center" VAlign="Middle" FontAttr="Font6" LineAttr="Line78" />
-<Text Name="Text79" X="170.4" Y="66" Width="26" Height="4" Text="今回御請求額" BackColor="Black" Align="Center" VAlign="Middle" FontAttr="Font7" LineAttr="Line79" />
-<Text Name="前回御請求額" X="13.4" Y="70" Width="27" Height="6" Text="*前回御請求額*" Align="Left" VAlign="Bottom" FontAttr="Font3" LineAttr="Line80" />
-<Text Name="御入金額" X="40.4" Y="70" Width="26" Height="6" Text="*御入金額*" Align="Left" VAlign="Bottom" FontAttr="Font3" LineAttr="Line81" />
-<Text Name="繰越金額" X="66.4" Y="70" Width="26" Height="6" Text="*繰越金額*" Align="Left" VAlign="Bottom" FontAttr="Font3" LineAttr="Line82" />
-<Text Name="販売金額" X="92.4" Y="70" Width="26" Height="6" Text="*販売金額*" Align="Left" VAlign="Bottom" FontAttr="Font3" LineAttr="Line83" />
-<Text Name="消費税額" X="118.4" Y="70" Width="24" Height="6" Text="*消費税額*" Align="Left" VAlign="Bottom" FontAttr="Font3" LineAttr="Line84" />
-<Text Name="御買上計" X="142.4" Y="70" Width="24" Height="6" Text="*御買上計*" Align="Left" VAlign="Bottom" FontAttr="Font3" LineAttr="Line85" />
-<Text Name="今回御請求額" X="170.4" Y="70" Width="26" Height="6" Text="*今回御請求額*" Align="Left" VAlign="Bottom" FontAttr="Font3" LineAttr="Line86" />
-<Text Name="Text87" X="13.4" Y="78" Width="19" Height="4" Text="伝票日付" BackColor="Black" Align="Center" VAlign="Bottom" FontAttr="Font7" LineAttr="Line87" />
-<Text Name="Text88" X="32.4" Y="78" Width="18" Height="4" Text="伝票No." BackColor="Black" Align="Center" VAlign="Bottom" FontAttr="Font7" LineAttr="Line88" />
-<Text Name="Text89" X="50.4" Y="78" Width="68" Height="4" Text="品　番　・　品　名" BackColor="Black" Align="Center" VAlign="Bottom" FontAttr="Font7" LineAttr="Line89" />
-<Text Name="Text90" X="118.4" Y="78" Width="20" Height="4" Text="数　量" BackColor="Black" Align="Center" VAlign="Bottom" FontAttr="Font7" LineAttr="Line90" />
-<Text Name="Text91" X="138.4" Y="78" Width="10" Height="4" Text="単位" BackColor="Black" Align="Center" VAlign="Bottom" FontAttr="Font7" LineAttr="Line91" />
-<Text Name="Text92" X="148.4" Y="78" Width="24" Height="4" Text="単　価" BackColor="Black" Align="Center" VAlign="Bottom" FontAttr="Font7" LineAttr="Line92" />
-<Text Name="Text93" X="172.4" Y="78" Width="24" Height="4" Text="御買上額" BackColor="Black" Align="Center" VAlign="Bottom" FontAttr="Font7" LineAttr="Line93" />
-<Square Name="Square3" X="13.4" Y="78" Width="183" Height="4" LineAttr="Line105" R="0" >
+<Text Name="Text54" X="117" Y="35" Width="5" Height="3.8" Text="〒" Align="Left" VAlign="Top" FontAttr="Font4" />
+<Text Name="自社郵便番号" X="122" Y="35" Width="30" Height="3.8" Text="*自社郵便番号*" Align="Left" VAlign="Top" FontAttr="Font4" />
+<Text Name="自社住所1" X="117" Y="38.8" Width="63" Height="3.8" Text="*自社住所1*" Align="Left" VAlign="Top" FontAttr="Font4" />
+<Text Name="自社住所2" X="117" Y="42.6" Width="63" Height="3.8" Text="*自社住所2*" Align="Left" VAlign="Top" FontAttr="Font4" />
+<Text Name="電話番号" X="117" Y="46.4" Width="31.5" Height="3.8" Text="*電話番号*" Align="Left" VAlign="Top" FontAttr="Font4" />
+<Text Name="FAX番号" X="148.5" Y="46.4" Width="31.5" Height="3.8" Text="*FAX番号*" Align="Left" VAlign="Top" FontAttr="Font4" />
+<Text Name="銀行名称" X="117" Y="50.2" Width="43" Height="3.8" Text="*銀行名称*" Align="Left" VAlign="Top" FontAttr="Font4" />
+<Text Name="銀行口座番号" X="160" Y="50.2" Width="20" Height="3.8" Text="*銀行口座番号*" Align="Left" VAlign="Top" FontAttr="Font4" />
+<Text Name="Text63" X="15.1" Y="49" Width="17" Height="4" Text="お客様名" Align="Left" VAlign="Top" FontAttr="Font3" />
+<Text Name="CustomerName1" X="32.1" Y="48.9" Width="78" Height="4" Text="*CustomerName1*" Align="Left" VAlign="Top" FontAttr="Font3" />
+<Text Name="CustomerName2" X="32.1" Y="52.9" Width="78" Height="4" Text="*CustomerName2*" Align="Left" VAlign="Top" FontAttr="Font3" />
+<Text Name="Text66" X="32.1" Y="56.9" Width="25" Height="4" Text="（お客様コード" Align="Left" VAlign="Top" FontAttr="Font3" />
+<Text Name="顧客コード" X="57" Y="56.9" Width="23" Height="4" Text="*顧客コード*" Align="Center" VAlign="Top" FontAttr="Font3" />
+<Text Name="Text68" X="80" Y="56.9" Width="4.1" Height="4" Text="）" Align="Left" VAlign="Top" FontAttr="Font3" />
+<Text Name="Text69" X="15.5" Y="61.1" Width="164.8" Height="3.8" Text="下記の通り御請求申し上げます。総額五千円未満の場合、振込手数料はお客様にてご負担願います。" Align="Left" VAlign="Top" FontAttr="Font3" />
+<Text Name="Text72" X="117" Y="57" Width="20" Height="3.8" Text="*営業担当者*" Align="Left" VAlign="Top" FontAttr="Font4" />
+<Text Name="営業担当者名" X="137" Y="57" Width="43" Height="3.8" Text="*営業担当者名*" Align="Left" VAlign="Top" FontAttr="Font4" />
+<Text Name="Text74" X="40.4" Y="66" Width="26" Height="4" Text="御入金額" Align="Center" VAlign="Middle" FontAttr="Font3" LineAttr="Line34" />
+<Text Name="Text75" X="66.4" Y="66" Width="26" Height="4" Text="繰越金額" Align="Center" VAlign="Middle" FontAttr="Font3" LineAttr="Line35" />
+<Text Name="Text76" X="92.4" Y="66" Width="26" Height="4" Text="御買上額" Align="Center" VAlign="Middle" FontAttr="Font3" LineAttr="Line36" />
+<Text Name="Text77" X="118.4" Y="66" Width="24" Height="4" Text="消費税額(10%)" Align="Center" VAlign="Middle" FontAttr="Font3" LineAttr="Line37" />
+<Text Name="Text78" X="142.4" Y="66" Width="24" Height="4" Text="御買上計" Align="Center" VAlign="Middle" FontAttr="Font3" LineAttr="Line38" />
+<Text Name="Text79" X="170.4" Y="66" Width="26" Height="4" Text="今回御請求額" BackColor="Black" Align="Center" VAlign="Middle" FontAttr="Font5" LineAttr="Line39" />
+<Text Name="前回御請求額" X="13.4" Y="70" Width="27" Height="6" Text="*前回御請求額*" Align="Right" VAlign="Bottom" FontAttr="Font4" LineAttr="Line40" />
+<Text Name="御入金額" X="40.4" Y="70" Width="26" Height="6" Text="*御入金額*" Align="Right" VAlign="Bottom" FontAttr="Font4" LineAttr="Line41" />
+<Text Name="繰越金額" X="66.4" Y="70" Width="26" Height="6" Text="*繰越金額*" Align="Right" VAlign="Bottom" FontAttr="Font4" LineAttr="Line42" />
+<Text Name="販売金額" X="92.4" Y="70" Width="26" Height="6" Text="*販売金額*" Align="Right" VAlign="Bottom" FontAttr="Font4" LineAttr="Line43" />
+<Text Name="消費税額" X="118.4" Y="70" Width="24" Height="6" Text="*消費税額*" Align="Right" VAlign="Bottom" FontAttr="Font4" LineAttr="Line44" />
+<Text Name="御買上計" X="142.4" Y="70" Width="24" Height="6" Text="*御買上計*" Align="Right" VAlign="Bottom" FontAttr="Font4" LineAttr="Line45" />
+<Text Name="今回御請求額" X="170.4" Y="70" Width="26" Height="6" Text="*今回御請求額*" Align="Right" VAlign="Bottom" FontAttr="Font4" LineAttr="Line46" />
+<Text Name="Text87" X="13.4" Y="78" Width="19" Height="4" Text="伝票日付" BackColor="Black" Align="Center" VAlign="Bottom" FontAttr="Font5" LineAttr="Line47" />
+<Text Name="Text88" X="32.4" Y="78" Width="18" Height="4" Text="伝票No." BackColor="Black" Align="Center" VAlign="Bottom" FontAttr="Font5" LineAttr="Line48" />
+<Text Name="Text89" X="50.4" Y="78" Width="68" Height="4" Text="品　番　・　品　名" BackColor="Black" Align="Center" VAlign="Bottom" FontAttr="Font5" LineAttr="Line49" />
+<Text Name="Text90" X="118.4" Y="78" Width="20" Height="4" Text="数　量" BackColor="Black" Align="Center" VAlign="Bottom" FontAttr="Font5" LineAttr="Line50" />
+<Text Name="Text91" X="138.4" Y="78" Width="10" Height="4" Text="単位" BackColor="Black" Align="Center" VAlign="Bottom" FontAttr="Font5" LineAttr="Line51" />
+<Text Name="Text92" X="148.4" Y="78" Width="24" Height="4" Text="単　価" BackColor="Black" Align="Center" VAlign="Bottom" FontAttr="Font5" LineAttr="Line52" />
+<Text Name="Text93" X="172.4" Y="78" Width="24" Height="4" Text="御買上額" BackColor="Black" Align="Center" VAlign="Bottom" FontAttr="Font5" LineAttr="Line53" />
+<Square Name="Square3" X="13.4" Y="78" Width="183" Height="4" LineAttr="Line66" R="0" >
 </Square>
-<Text Name="伝票日付" X="13.4" Y="82" Width="19" Height="12" Text="*伝票日付*" Align="Left" VAlign="Top" FontAttr="Font3" LineAttr="Line94" IntervalY="12" Repeat="17" />
-<Text Name="コード" X="32.4" Y="82" Width="18" Height="12" Text="*コード*" Align="Center" VAlign="Top" FontAttr="Font3" LineAttr="Line95" IntervalY="12" Repeat="17" />
-<Text Name="品名" X="50.4" Y="82" Width="68" Height="4" Text="*品名*" Align="Left" VAlign="Top" FontAttr="Font3" LineAttr="Line96" IntervalY="12" Repeat="17" />
-<Text Name="型番" X="50.4" Y="86" Width="68" Height="4" Text="*型番*" Align="Left" VAlign="Top" FontAttr="Font3" LineAttr="Line97" IntervalY="12" Repeat="17" />
-<Text Name="注文番号" X="50.4" Y="90" Width="68" Height="4" Text="*注文番号*" Align="Left" VAlign="Top" FontAttr="Font3" LineAttr="Line98" IntervalY="12" Repeat="17" />
-<Text Name="数量" X="118.4" Y="82" Width="20" Height="12" Text="*数量*" Align="Left" VAlign="Middle" FontAttr="Font3" LineAttr="Line99" IntervalY="12" Repeat="17" />
-<Text Name="単位" X="138.4" Y="82" Width="10" Height="12" Text="*単位*" Align="Left" VAlign="Middle" FontAttr="Font3" LineAttr="Line100" IntervalY="12" Repeat="17" />
-<Text Name="単価" X="148.4" Y="82" Width="24" Height="12" Text="*単価*" Align="Left" VAlign="Middle" FontAttr="Font3" LineAttr="Line101" IntervalY="12" Repeat="17" />
-<Text Name="金額" X="172.4" Y="82" Width="24" Height="12" Text="*金額*" Align="Left" VAlign="Middle" FontAttr="Font3" LineAttr="Line102" IntervalY="12" Repeat="17" />
+<Text Name="伝票日付" X="13.4" Y="82" Width="19" Height="12" Text="*伝票日付*" Align="Left" VAlign="Top" FontAttr="Font4" LineAttr="Line54" IntervalY="12" Repeat="17" />
+<Text Name="コード" X="32.4" Y="82" Width="18" Height="12" Text="*コード*" Align="Center" VAlign="Top" FontAttr="Font4" LineAttr="Line55" IntervalY="12" Repeat="17" />
+<Text Name="品名" X="50.4" Y="82" Width="68" Height="12" Text="*品名*" Align="Left" VAlign="Top" FontAttr="Font4" LineAttr="Line56" IntervalY="12" Repeat="17" />
+<Text Name="型番" X="50.4" Y="86" Width="68" Height="4" Text="*型番*" Align="Left" VAlign="Top" FontAttr="Font4" IntervalY="12" Repeat="17" />
+<Text Name="注文番号" X="50.4" Y="90" Width="68" Height="4" Text="*注文番号*" Align="Left" VAlign="Top" FontAttr="Font4" IntervalY="12" Repeat="17" />
+<Text Name="数量" X="118.4" Y="82" Width="20" Height="12" Text="*数量*" Align="Right" VAlign="Middle" FontAttr="Font4" LineAttr="Line59" IntervalY="12" Repeat="17" />
+<Text Name="単位" X="138.4" Y="82" Width="10" Height="12" Text="*単位*" Align="Left" VAlign="Middle" FontAttr="Font4" LineAttr="Line60" IntervalY="12" Repeat="17" />
+<Text Name="単価" X="148.4" Y="82" Width="24" Height="12" Text="*単価*" Align="Right" VAlign="Middle" FontAttr="Font4" LineAttr="Line61" IntervalY="12" Repeat="17" />
+<Text Name="金額" X="172.4" Y="82" Width="24" Height="12" Text="*金額*" Align="Right" VAlign="Middle" FontAttr="Font4" LineAttr="Line62" IntervalY="12" Repeat="17" />
+<Text Name="Text62" X="154" Y="2" Width="50" Height="4" Text="登録番号：T4120101007630" Align="Right" VAlign="Top" FontAttr="Font1" />
+<Image Name="Image3" X="184" Y="52" Width="10" Height="10" LineAttr="Line69" >
+iVBORw0KGgoAAAANSUhEUgAAAC8AAAAvCAIAAAD8RQT7AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAOwgAADsIBFShKgAAAAlNJREFUWEftl8txwzAMRN1Azrnm6BrUQRpRFSlCBaQOndKJimFgLg
+mCX4GklfEhb3ZGEggCa4nW52ZeiQk3t1tLQ/RMS/rppUadmjSAaiRpkAKdm56KKTxXMb2dsUe1lmVcsk6dphtZ4rmqUBngacdR0W4Wm7DuIbjhHKwhkouLl6i7OeEIbhh2c0rFUKlrJTVmzg1R6pJ1
+LSQdZt8zbc7NsoXgCjdLiESyl0mS9VK4OTYXnBT5TkBcEDfOhh+wm03+0J5zw5k5qOwRvTEgxhzsRqyQvnWz2syGGxKOsEmiEWU3/sa4idUw4IZAHexiI0MpRTf7WgjOuCGNuvEnJmmQu3n4oCdDKV
+mCakNu/IoJEY9zQ4tptfKH0PPd0F8J+yS5YgBfvki958ZNO3XDj/SlYMUR3yrxYGqvGwJlIzc1oitFNw96KGJAzakbwrbodTPEJW6ie3GPTtcNYVv0uJmUyg3U4PhyOR93cx/Sm53+3nzTsC0U58b8
+mLtNmNTnt6tXxOZo3PDtbin/m9xtpj0aP19zbM6/mxwkODd8XOav3NAWh3xc4mXd0Ju2/DiC2E1r9Plu5lRzwwmpGxvKEG7ci0ss/sxO4lAYbbrBLjYPEPUDgivXDYZIOMLGIQYE17vxZL3jYctlbh
+AXvLgbIk26xg2CMSU3RJQn3BRfuNynQns0doNIRt1NmMBu5sRucFii4gZwofa5aUueG+yQKjTdEDyfNPC1QNCLLN0DZZ06Z26AolAVnquYrm4gi7JqJGmQgp6fm1TXS02Pm4SkZaIBjPkFtawa+F6y
+RvkAAAAASUVORK5CYII=
+</Image>
+<Line Name="Line2" StartX="168" StartY="14" EndX="204" EndY="14" LineAttr="Line1" />
 </PrintObjects>
 </PrintDefine>

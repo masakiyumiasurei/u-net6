@@ -18,6 +18,7 @@ using static u_net.CommonConstants;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 using Pao.Reports;
 using DocumentFormat.OpenXml.Office2013.Excel;
+//using DocumentFormat.OpenXml.Spreadsheet;
 
 namespace u_net
 {
@@ -117,9 +118,22 @@ namespace u_net
                     objCommand.CommandType = CommandType.StoredProcedure;
 
                     // パラメータの追加
-                    objCommand.Parameters.AddWithValue("@CloseDate", CloseDate);
-                    objCommand.Parameters.AddWithValue("@CustomerCode", CustomerCode);
+                    switch (SPName)
+                    {
+                        case "SP締め取り消し":
+                        case "SP請求明細": //←ここで呼ばれることはないが念のため
+                            objCommand.Parameters.AddWithValue("@dtmLastClosed", CloseDate);
+                            objCommand.Parameters.AddWithValue("@strCustomerCode", CustomerCode);
 
+                            break;
+
+                        case "SP締め処理":
+                            objCommand.Parameters.AddWithValue("@dtmNew", CloseDate);
+                            objCommand.Parameters.AddWithValue("@strCustomerCode", CustomerCode);
+
+                            break;                       
+
+                    }
                     objCommand.ExecuteNonQuery();
                 }
 
@@ -323,7 +337,8 @@ namespace u_net
                     }
                 }
                 string query =
-                "SELECT '' AS Ｘ, CASE WHEN 締め日 IS NULL THEN '' ELSE '■' END AS 締, 顧客コード, 顧客名, 顧客名フリガナ, 請求書処理方法, 最終請求日 AS 前回請求日, " +
+                "SELECT '' AS Ｘ, CASE WHEN 締め日 IS NULL THEN '' ELSE '■' END AS 締, " +
+                "顧客コード, 顧客名, 顧客名フリガナ, 請求書処理方法, 最終請求日 AS 前回請求日, " +
                 "前回繰越残高 AS 前回請求額, 入金合計 AS 入金額, 販売合計 AS 売上額, " +
                 "販売合計消費税 AS 消費税, 今回販売額 AS 売上合計額, 請求金額 AS 今回請求額 " +
                 "FROM V請求処理 ORDER BY 顧客名フリガナ";
@@ -469,13 +484,13 @@ namespace u_net
                 int intBeginPage = 0;
                 int intEndPage = 0;
                 int intNumCopies = 0;
-                string Specification;
+                string specification;
                 long lngi = 1;
                 long lngy;
                 bool shainFlg = false;
                 string code = "";
 
-                //  NoOutArray = new object[objGrid.Rows - 1, 2];
+                string[,] noOutArray = new string[2, dataGridView1.Rows.Count-1];
 
                 if (printCheck)
                 {
@@ -489,6 +504,7 @@ namespace u_net
                     //    intEndPage = objDialog.ToPage;
                     //    intNumCopies = objDialog.Copies;
                     //}
+
                     DialogResult dialogResult = MessageBox.Show("社印は必要ですか？", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (dialogResult == DialogResult.Yes)
                     {
@@ -499,41 +515,44 @@ namespace u_net
 
                 //顧客番号を順番に取得して請求書を発行する　accessでブレイクして確認して処理を作成する
 
-                //while (lngi <= objGrid.Rows - 1)
-                //{
-                //    objGrid.Rows[(int)lngi - 1].Selected = true;
-                //    Specification = $"{dte請求締日},{objGrid.Rows[(int)lngi - 1].Cells[3].Value},{blnMark}";
+                while (lngi <= dataGridView1.Rows.Count - 1)
+                {
+                    dataGridView1.CurrentCell = dataGridView1[0, (int)lngi - 1];
 
-                //    if (string.IsNullOrEmpty(objGrid.Rows[(int)lngi - 1].Cells[1].Value?.ToString()))
-                //    {
-                //        if (printCheck)
-                //        {
-                //            請求明細書印刷(code, shainFlg);
-                //        }
+                    //specification = $"{dte請求締日}, {dataGridView1[2, (int)lngi - 1].Value}, {(blnMark ? 1 : 0)}";
 
-                //        NoOutArray[(int)lngi - 1, 1] = objGrid.Rows[(int)lngi - 1].Cells[3].Value;
-                //    }
-                //    else
-                //    {
-                //        NoOutArray[(int)lngi - 1, 0] = "■";
-                //        NoOutArray[(int)lngi - 1, 1] = objGrid.Rows[(int)lngi - 1].Cells[3].Value;
-                //    }
+                    code = dataGridView1[2, (int)lngi - 1].Value.ToString();
 
-                //    lngi++;
-                //}
+                    if (string.IsNullOrEmpty((string)dataGridView1[0, (int)lngi - 1].Value))
+                    {
+                        if (printCheck)
+                        {
+                            // プリント処理
+                            請求明細書印刷(code, shainFlg);
+                        }
+                        noOutArray[1, (int)lngi - 1] = (string)dataGridView1[2, (int)lngi - 1].Value;
+                    }
+                    else
+                    {
+                        noOutArray[0, (int)lngi - 1] = "■";
+                        noOutArray[1, (int)lngi - 1] = (string)dataGridView1[2, (int)lngi - 1].Value;
+                    }
+
+                    lngi++;
+                }
+
+                
 
                 if (tighteningCheck)
                 {
                     // 締め処理を行う
                     if (DoClose("SP締め処理", dte請求締日, ""))
                     {
-
-                        // Filtering;
+                                                
                     }
                     else
                     {
-                        MessageBox.Show("締め処理は失敗しました。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                        
+                        MessageBox.Show("締め処理は失敗しました。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);                        
                         return;
                     }
                 }
@@ -543,27 +562,26 @@ namespace u_net
 
                 lngi = 1;
 
-                //印刷した行に■つける
+                //対象行に■をつける
 
-                //while (lngi <= objGrid.Rows - 1)
-                //{
-                //    lngy = 1;
+                while (lngi <= dataGridView1.Rows.Count - 1)
+                {
+                    lngy = 1;
 
-                //    while (lngy <= objGrid.Rows - 1)
-                //    {
-                //        if (objGrid.Rows[(int)lngi - 1].Cells[3].Value?.ToString() == NoOutArray[(int)lngy - 1, 1]?.ToString())
-                //        {
-                //            if (NoOutArray[(int)lngy - 1, 0]?.ToString() == "■")
-                //            {
-                //                objGrid.Rows[(int)lngi - 1].Cells[1].Value = "■";
-                //            }
-                //        }
+                    while (lngy <= dataGridView1.Rows.Count - 1)
+                    {
+                        if ((string)dataGridView1[2, (int)lngi - 1].Value == noOutArray[1, (int)lngy - 1])
+                        {
+                            if (noOutArray[0, (int)lngy - 1] == "■")
+                            {
+                                dataGridView1[1, (int)lngi - 1].Value = "■";
+                            }
+                        }
+                        lngy++;
+                    }
+                    lngi++;
+                }
 
-                //        lngy++;
-                //    }
-
-                //    lngi++;
-                //}
             }
             catch (Exception ex)
             {
@@ -571,6 +589,7 @@ namespace u_net
                 Debug.Print($"DoStart_Click - {ex.Message}");
             }
         }
+
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.ColumnIndex == 0) // クリックしたセルが1列目の場合のみ処理を行う
@@ -593,7 +612,7 @@ namespace u_net
         }
 
 
-        private void 請求明細書印刷(string code, bool shainFlg)
+        public void 請求明細書印刷(string code, bool shainFlg)
         {
             try
             {
@@ -604,7 +623,7 @@ namespace u_net
                 }
                 else
                 {
-                    paoRep.LoadDefFile("../../../Reports/請求明細書社印なし.prepd");
+                    paoRep.LoadDefFile("../../../Reports/請求明細書_社印なし.prepd");
                 }
                 Connect();
 
@@ -618,10 +637,11 @@ namespace u_net
                 command.Parameters.AddWithValue("@CustomerCode", code);
 
                 SqlDataReader reader = command.ExecuteReader();
-
+                string custmercode;
                 if (reader.HasRows)
                 {
                     resultTable.Load(reader);
+                     custmercode = resultTable.Rows[0]["顧客コード"].ToString();
                 }
                 else
                 {
@@ -629,29 +649,40 @@ namespace u_net
                     return;
                 }
 
-                string query = "SELECT * FROM 会社情報";
-                SqlCommand cmd = new SqlCommand(query, cn);
-                SqlDataReader 会社情報 = cmd.ExecuteReader();
+                string queryCompany = "SELECT * FROM 会社情報";
 
-                if (!会社情報.Read())
+                DataTable 会社情報 = new DataTable();
+                using (SqlCommand cmdCompany = new SqlCommand(queryCompany, cn))
+                {
+                    SqlDataAdapter adapterCompany = new SqlDataAdapter(cmdCompany);                    
+                    adapterCompany.Fill(会社情報);
+                }
+
+                if (会社情報.Rows.Count == 0)
                 {
                     MessageBox.Show("会社情報がDBに存在していません。会社情報を空白で出力します", "");
                 }
 
-                query = $"SELECT * FROM uv_営業担当者 where 顧客コード={reader["顧客コード"].ToString()}";
-                SqlCommand cmd2 = new SqlCommand(query, cn);
-                SqlDataReader 担当営業 = cmd.ExecuteReader();
+                string querySales = $"SELECT * FROM uv_営業担当者 where 顧客コード='{custmercode}'";
 
-                if (!会社情報.Read())
+                DataTable 担当営業 = new DataTable();
+                using (SqlCommand cmdSales = new SqlCommand(querySales, cn))
                 {
-                    MessageBox.Show("会社情報がDBに存在していません。会社情報を空白で出力します", "");
+                    SqlDataAdapter adapterSales = new SqlDataAdapter(cmdSales);
+                    
+                    adapterSales.Fill(担当営業);
+                }
+
+                if (担当営業.Rows.Count == 0)
+                {
+                    MessageBox.Show("担当営業情報がDBに存在していません。担当営業を空白で出力します", "");
                 }
 
 
                 report = resultTable.Rows;
 
                 //最大行数
-                int maxRow = 10;
+                int maxRow = 16;
                 //現在の行
                 int CurRow = 0;
                 //行数
@@ -698,46 +729,47 @@ namespace u_net
 
                     int 前回御請求額 = (int.TryParse(row["繰越残高"]?.ToString(), out int 繰越残高) ? 繰越残高 : 0) +
                      (int.TryParse(row["繰越残高消費税"]?.ToString(), out int 繰越残高消費税) ? 繰越残高消費税 : 0);
-                    paoRep.Write("前回御請求額", 前回御請求額);
+                    paoRep.Write("前回御請求額", 前回御請求額.ToString("N0"));
 
-                    paoRep.Write("御入金額", int.TryParse(row["入金合計"]?.ToString(), out int 入金合計) ? 入金合計 : 0);
+                    paoRep.Write("御入金額", int.TryParse(row["入金合計"]?.ToString(), out int 入金合計) ? 入金合計.ToString("N0") : "0");
 
                     int 繰越金額 = (int.TryParse(row["繰越残高"]?.ToString(), out 繰越残高) ? 繰越残高 : 0) +
                      (int.TryParse(row["繰越残高消費税"]?.ToString(), out 繰越残高消費税) ? 繰越残高消費税 : 0) -
                       (int.TryParse(row["入金合計"]?.ToString(), out 入金合計) ? 入金合計 : 0);
-                    paoRep.Write("繰越金額", 繰越金額);
 
-                    paoRep.Write("販売金額", int.TryParse(row["販売金額"]?.ToString(), out int 販売金額) ? 販売金額 : 0);
-                    paoRep.Write("消費税額", int.TryParse(row["販売合計消費税"]?.ToString(), out int 販売合計消費税) ? 販売合計消費税 : 0);
+                    paoRep.Write("繰越金額", 繰越金額.ToString("N0"));
 
-                    int 御買上計 = (int.TryParse(row["販売合計"]?.ToString(), out int 販売合計) ? 販売合計 : 0) +
+                    paoRep.Write("販売金額", int.TryParse(row["販売合計"]?.ToString(), out int 販売合計) ? 販売合計.ToString("N0") : "0");
+                    paoRep.Write("消費税額", int.TryParse(row["販売合計消費税"]?.ToString(), out int 販売合計消費税) ? 販売合計消費税.ToString("N0") : "0");
+
+                    int 御買上計 = (int.TryParse(row["販売合計"]?.ToString(), out 販売合計) ? 販売合計 : 0) +
                      (int.TryParse(row["販売合計消費税"]?.ToString(), out 販売合計消費税) ? 販売合計消費税 : 0);
 
-                    paoRep.Write("御買上計", 御買上計);
-                    paoRep.Write("今回御請求額", 繰越金額 + 御買上計);
+                    paoRep.Write("御買上計", 御買上計.ToString("N0"));
+                    paoRep.Write("今回御請求額", (繰越金額 + 御買上計).ToString("N0"));
 
 
                     paoRep.Write("請求日", row.Field<DateTime>("請求日").ToString("yyyy年MM月dd日"));
-                    paoRep.Write("請求コード", row["請求コード"].ToString() != "" ? row["請求コード"].ToString() : " ");
+                    //paoRep.Write("請求コード", row["請求コード"].ToString() != "" ? row["請求コード"].ToString() : " ");
 
-                    paoRep.Write("会社名1", 会社情報["会社名1"].ToString() != "" ? row["会社名1"].ToString() : " ");
-                    paoRep.Write("会社名2", 会社情報["会社名2"].ToString() != "" ? row["会社名2"].ToString() : " ");
+                    paoRep.Write("会社名1", 会社情報.Rows[0]["会社名1"].ToString() != "" ? 会社情報.Rows[0]["会社名1"].ToString() : " ");
+                    paoRep.Write("会社名2", 会社情報.Rows[0]["会社名2"].ToString() != "" ? 会社情報.Rows[0]["会社名2"].ToString() : " ");
 
 
-                    string フォーマット郵便番号 = 会社情報["郵便番号"].ToString().Length == 7
-                        ? string.Format("{0:###-####}", int.Parse(会社情報["郵便番号"].ToString()))
-                        : 会社情報["郵便番号"].ToString();
+                    string フォーマット郵便番号 = 会社情報.Rows[0]["郵便番号"].ToString().Length == 7
+                        ? string.Format("{0:###-####}", int.Parse(会社情報.Rows[0]["郵便番号"].ToString()))
+                        : 会社情報.Rows[0]["郵便番号"].ToString();
                     paoRep.Write("自社郵便番号", フォーマット郵便番号 != "" ? フォーマット郵便番号 : " ");
 
-                    paoRep.Write("自社住所1", 会社情報["住所1"].ToString() != "" ? row["住所1"].ToString() : " ");
-                    paoRep.Write("自社住所2", 会社情報["住所2"].ToString() != "" ? row["住所2"].ToString() : " ");
-                    paoRep.Write("電話番号", "TEL:" + 会社情報["電話番号"].ToString());
-                    paoRep.Write("FAX番号", "FAX:" + 会社情報["FAX番号"].ToString());
+                    paoRep.Write("自社住所1", 会社情報.Rows[0]["住所1"].ToString() != "" ? 会社情報.Rows[0]["住所1"].ToString() : " ");
+                    paoRep.Write("自社住所2", 会社情報.Rows[0]["住所2"].ToString() != "" ? 会社情報.Rows[0]["住所2"].ToString() : " ");
+                    paoRep.Write("電話番号", "TEL:" + 会社情報.Rows[0]["電話番号"].ToString());
+                    paoRep.Write("FAX番号", "FAX:" + 会社情報.Rows[0]["FAX番号"].ToString());
 
-                    paoRep.Write("銀行名称", 会社情報["取引銀行1名称"].ToString() != "" ? row["取引銀行1名称"].ToString() : " ");
-                    paoRep.Write("銀行口座番号", "No," + 会社情報["取引銀行1口座番号"].ToString());
+                    paoRep.Write("銀行名称", 会社情報.Rows[0]["取引銀行1名称"].ToString() != "" ? 会社情報.Rows[0]["取引銀行1名称"].ToString() : " ");
+                    paoRep.Write("銀行口座番号", "No," + 会社情報.Rows[0]["取引銀行1口座番号"].ToString());
 
-                    paoRep.Write("営業担当者名", 担当営業["営業担当者名"].ToString() != "" ? 担当営業["営業担当者名"].ToString() : " ");
+                    paoRep.Write("営業担当者名", 担当営業.Rows[0]["営業担当者名"].ToString() != "" ? 担当営業.Rows[0]["営業担当者名"].ToString() : " ");
 
                     //サイズ調整
                     paoRep.z_Objects.SetObject("BillingToName1");
@@ -802,7 +834,7 @@ namespace u_net
 
                         //paoRep.Write("明細番号", (CurRow + 1).ToString(), i + 1);  //連番にしたい時はこちら。明細番号は歯抜けがあるので
 
-                        paoRep.Write("伝票日付", targetRow["伝票日付"].ToString() != "" ? targetRow.Field<DateTime>("伝票日付").ToString("yyyy年MM月dd日") : " ", i + 1);
+                        paoRep.Write("伝票日付", targetRow["伝票日付"].ToString() != "" ? targetRow.Field<DateTime>("伝票日付").ToString("yyyy/MM/dd") : " ", i + 1);
 
                         paoRep.Write("コード", targetRow["コード"].ToString() != "" ? targetRow["コード"].ToString() : " ", i + 1);
                         paoRep.Write("品名", targetRow["品名"].ToString() != "" ? targetRow["品名"].ToString() : " ", i + 1);
@@ -810,8 +842,8 @@ namespace u_net
                         paoRep.Write("注文番号", targetRow["注文番号"].ToString() != "" ? targetRow["注文番号"].ToString() : " ", i + 1);
                         paoRep.Write("数量", targetRow["数量"].ToString() != "" ? targetRow["数量"].ToString() : " ", i + 1);
                         paoRep.Write("単位", targetRow["単位"].ToString() != "" ? targetRow["単位"].ToString() : " ", i + 1);
-                        paoRep.Write("単価", targetRow["単価"].ToString() != "" ? targetRow["単価"].ToString() : " ", i + 1);
-                        paoRep.Write("金額", targetRow["金額"].ToString() != "" ? targetRow["金額"].ToString() : " ", i + 1);
+                        paoRep.Write("単価", targetRow["単価"].ToString() != "" ? Convert.ToInt32(targetRow["単価"]).ToString("N0") : " ", i + 1);
+                        paoRep.Write("金額", targetRow["金額"].ToString() != "" ? Convert.ToInt32(targetRow["金額"]).ToString("N0") : " ", i + 1);
 
                         CurRow++;
                     }
@@ -858,7 +890,12 @@ namespace u_net
 
         private void コマンド顧客_Click(object sender, EventArgs e)
         {
-            param = $" -sv:{ServerInstanceName} -open:customer";
+            string sv = string.IsNullOrEmpty(ServerInstanceName) ? "" : ServerInstanceName;
+            string Code= string.IsNullOrEmpty(dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[2].Value?.ToString()) ? ""
+                    : dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[2].Value?.ToString();
+            string param = " -sv:" + sv.Replace(" ", "_") +
+               " -open:customer," + Code.Replace(" ", "_") +
+               "," + 1;
             GetShell(param);
         }
 

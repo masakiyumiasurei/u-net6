@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.Common;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -228,16 +229,7 @@ namespace MultiRowDesigner
 
                                 byte[] fileBytes = new byte[fs.Length];
                                 fs.Read(fileBytes, 0, fileBytes.Length);
-
-                                //using (BinaryReader br = new BinaryReader(fs))
-                                //    {
-                                //        fileBytes = br.ReadBytes((int)fs.Length);
-                                //    }
                                 
-
-                                // ファイルのバイナリデータを取得
-                                //byte[] fileBytes = File.ReadAllBytes(filePath);
-
                                 gcMultiRow1.EndEdit();
                                 // ここでファイル名、ファイルパス、バイナリデータを使用する
 
@@ -282,8 +274,40 @@ namespace MultiRowDesigner
                     break;
                 case "プレビューボタン":
 
+                    GetPreview();
+                    
+
+
+
+
                     break;
                 case "削除ボタン":
+                    if (MessageBox.Show("明細行(" + (e.RowIndex + 1) + ")を削除しますか？", "削除確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        Connect();
+                        SqlTransaction transaction = cn.BeginTransaction();
+                        try
+                        {                            
+                            string strwhere = $"Partcode= '{gcMultiRow1.CurrentRow.Cells["PartCode"].Value.ToString()}' " +
+                                $" and DetailNumber = {(int)gcMultiRow1.CurrentRow.Cells["DetailNumber"].Value}" +
+                                $" and OrderNumber = {(int)gcMultiRow1.CurrentRow.Cells["OrderNumber"].Value}";
+
+                            string sql = "delete from PartAttach where " + strwhere;
+                            SqlCommand cmd = new SqlCommand(strwhere, cn);
+                            cmd.CommandType = CommandType.Text;
+                            cmd.ExecuteNonQuery();
+
+
+                            gcMultiRow1.Rows.RemoveAt(e.RowIndex);
+                            transaction.Commit();
+                        }
+                        catch(Exception ex)
+                        {
+                            transaction.Rollback();
+                            MessageBox.Show("データの保存中にエラーが発生しました: " + ex.Message, "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+                    }
                     break;
 
                 case "閉じるボタン":
@@ -293,8 +317,37 @@ namespace MultiRowDesigner
             }
         }
 
+        //ファイルのプレビュー
+        public bool GetPreview()
+        {
+            try
+            {
+                string fileName = gcMultiRow1.CurrentRow.Cells["DataName"].Value.ToString();
+                byte[] fileBytes = (byte[])gcMultiRow1.CurrentRow.Cells["Data"].Value;
+                // バイナリデータを一時ファイルに保存
+                string tempFilePath = Path.Combine(Path.GetTempPath(), fileName);
+                File.WriteAllBytes(tempFilePath, fileBytes);
 
-        public int GetDetailNumber(string partCode, int partRevision)
+                // 外部アプリケーションでファイルを開く
+                //Process.Start(tempFilePath);
+
+                Process.Start(new ProcessStartInfo
+                {
+                    FileName = tempFilePath,
+                    UseShellExecute = true
+                });
+
+                return true;
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("エラーが発生しました: " + ex.Message, "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+        }
+            public int GetDetailNumber(string partCode, int partRevision)
         {
             int detailNumber = 0;
 

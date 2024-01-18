@@ -33,7 +33,7 @@ namespace u_net.Public
                 Connect();
                 MyApi myapi = new MyApi();
 
-                string sqlQuery = "SELECT WindowLeft, WindowTop, WindowWidth, WindowHeight FROM Mオブジェクト配置 WHERE UserCode = @UserCode AND ObjectName = @ObjectName";
+                string sqlQuery = "SELECT WindowLeft, WindowTop, WindowWidth, WindowHeight FROM Sオブジェクト配置 WHERE UserCode = @UserCode AND ObjectName = @ObjectName";
 
                 using (SqlCommand command = new SqlCommand(sqlQuery, cn))
                 {
@@ -114,7 +114,7 @@ namespace u_net.Public
 
 
                 string strKey = "UserCode='" + userCode + "' AND ObjectName='" + objectName + "'";
-                string strSQL = "DELETE FROM Mオブジェクト配置 WHERE " + strKey;
+                string strSQL = "DELETE FROM Sオブジェクト配置 WHERE " + strKey;
 
                 using (SqlCommand deleteCommand = new SqlCommand(strSQL, cn, transaction))
                 {
@@ -122,7 +122,7 @@ namespace u_net.Public
                     deleteCommand.ExecuteNonQuery();
                 }
 
-                strSQL = "INSERT INTO Mオブジェクト配置 (UserCode, ObjectName, WindowLeft, WindowTop, WindowWidth, WindowHeight) " +
+                strSQL = "INSERT INTO Sオブジェクト配置 (UserCode, ObjectName, WindowLeft, WindowTop, WindowWidth, WindowHeight) " +
                          "VALUES ('" + userCode + "', '" + objectName + "', " + form.Left + ", " + form.Top +
                          ", " + form.Width + ", " + form.Height + ")";
 

@@ -201,7 +201,7 @@ namespace u_net
             // F_部品_資料添付
             // 
             BackColor = SystemColors.Control;
-            ClientSize = new Size(937, 396);
+            ClientSize = new Size(897, 396);
             Controls.Add(部品_資料添付1);
             ImeMode = ImeMode.Off;
             KeyPreview = true;

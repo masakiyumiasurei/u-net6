@@ -970,10 +970,10 @@ namespace u_net
                 }
                 else
                 {
-                    //F_部品_資料添付 targetform = new F_部品_資料添付();
+                    F_部品_資料添付 targetform = new F_部品_資料添付();
 
-                    //targetform.args = strCode;
-                    //targetform.ShowDialog();
+                    targetform.args = strCode;
+                    targetform.ShowDialog();
                 }
             }
             catch (Exception ex)

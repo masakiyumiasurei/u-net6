@@ -68,7 +68,7 @@ namespace u_net
                     case 2:
                         表示方法Button2.Checked = true;
                         break;
-                    case 0:
+                    case 3:
                         表示方法Button3.Checked = true;
                         break;
 

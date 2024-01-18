@@ -17,7 +17,7 @@ namespace u_net
             _ServerName = @"128.20.70.215\\MSSQLSERVER,1435";
 
             //本番ではprimary_が付く
-            _DBName = "uidb";
+            _DBName = "uidb2";
             _Login = "sa";
             _Password = "Hbm-0855";
 
