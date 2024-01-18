@@ -31,9 +31,9 @@
             請求締日 = new TextBox();
             請求締日_ラベル = new Label();
             表示方法 = new GroupBox();
-            削除指定Button3 = new RadioButton();
-            削除指定Button2 = new RadioButton();
-            削除指定Button1 = new RadioButton();
+            表示方法Button3 = new RadioButton();
+            表示方法Button2 = new RadioButton();
+            表示方法Button1 = new RadioButton();
             OKボタン = new Button();
             キャンセルボタン = new Button();
             請求締日選択ボタン = new Button();
@@ -78,9 +78,9 @@
             // 
             // 表示方法
             // 
-            表示方法.Controls.Add(削除指定Button3);
-            表示方法.Controls.Add(削除指定Button2);
-            表示方法.Controls.Add(削除指定Button1);
+            表示方法.Controls.Add(表示方法Button3);
+            表示方法.Controls.Add(表示方法Button2);
+            表示方法.Controls.Add(表示方法Button1);
             表示方法.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             表示方法.Location = new Point(11, 129);
             表示方法.Name = "表示方法";
@@ -89,38 +89,38 @@
             表示方法.TabStop = false;
             表示方法.Text = "表示方法";
             // 
-            // 削除指定Button3
+            // 表示方法Button3
             // 
-            削除指定Button3.AutoSize = true;
-            削除指定Button3.Location = new Point(249, 22);
-            削除指定Button3.Name = "削除指定Button3";
-            削除指定Button3.Size = new Size(131, 16);
-            削除指定Button3.TabIndex = 204;
-            削除指定Button3.TabStop = true;
-            削除指定Button3.Text = "売上がある顧客のみ";
-            削除指定Button3.UseVisualStyleBackColor = true;
+            表示方法Button3.AutoSize = true;
+            表示方法Button3.Location = new Point(249, 22);
+            表示方法Button3.Name = "表示方法Button3";
+            表示方法Button3.Size = new Size(131, 16);
+            表示方法Button3.TabIndex = 204;
+            表示方法Button3.TabStop = true;
+            表示方法Button3.Text = "売上がある顧客のみ";
+            表示方法Button3.UseVisualStyleBackColor = true;
             // 
-            // 削除指定Button2
+            // 表示方法Button2
             // 
-            削除指定Button2.AutoSize = true;
-            削除指定Button2.Location = new Point(99, 22);
-            削除指定Button2.Name = "削除指定Button2";
-            削除指定Button2.Size = new Size(143, 16);
-            削除指定Button2.TabIndex = 2;
-            削除指定Button2.TabStop = true;
-            削除指定Button2.Text = "売掛残がある顧客のみ";
-            削除指定Button2.UseVisualStyleBackColor = true;
+            表示方法Button2.AutoSize = true;
+            表示方法Button2.Location = new Point(99, 22);
+            表示方法Button2.Name = "表示方法Button2";
+            表示方法Button2.Size = new Size(143, 16);
+            表示方法Button2.TabIndex = 2;
+            表示方法Button2.TabStop = true;
+            表示方法Button2.Text = "売掛残がある顧客のみ";
+            表示方法Button2.UseVisualStyleBackColor = true;
             // 
-            // 削除指定Button1
+            // 表示方法Button1
             // 
-            削除指定Button1.AutoSize = true;
-            削除指定Button1.Location = new Point(23, 22);
-            削除指定Button1.Name = "削除指定Button1";
-            削除指定Button1.Size = new Size(59, 16);
-            削除指定Button1.TabIndex = 1;
-            削除指定Button1.TabStop = true;
-            削除指定Button1.Text = "全一覧";
-            削除指定Button1.UseVisualStyleBackColor = true;
+            表示方法Button1.AutoSize = true;
+            表示方法Button1.Location = new Point(23, 22);
+            表示方法Button1.Name = "表示方法Button1";
+            表示方法Button1.Size = new Size(59, 16);
+            表示方法Button1.TabIndex = 1;
+            表示方法Button1.TabStop = true;
+            表示方法Button1.Text = "全一覧";
+            表示方法Button1.UseVisualStyleBackColor = true;
             // 
             // OKボタン
             // 
@@ -223,6 +223,7 @@
             顧客コード.Name = "顧客コード";
             顧客コード.Size = new Size(65, 20);
             顧客コード.TabIndex = 21017;
+            顧客コード.KeyDown += 顧客コード_KeyDown;
             // 
             // 顧客名
             // 
@@ -284,9 +285,9 @@
         private Label 請求締日_ラベル;
         private Label 顧客名_ラベル;
         private GroupBox 表示方法;
-        private RadioButton 削除指定Button3;
-        private RadioButton 削除指定Button2;
-        private RadioButton 削除指定Button1;
+        private RadioButton 表示方法Button3;
+        private RadioButton 表示方法Button2;
+        private RadioButton 表示方法Button1;
         private Button OKボタン;
         private Button キャンセルボタン;
         private Button 請求締日選択ボタン;

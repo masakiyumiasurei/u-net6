@@ -64,7 +64,11 @@ namespace u_net
 
         private void Form_Load(object sender, EventArgs e)
         {
-
+            Connect();
+            //テスト用　コメントにすること
+            args = "00000123";
+            string strSQL = "SELECT * FROM PartAttach WHERE PartCode='" + args + "' ORDER BY OrderNumber";
+            VariableSet.SetTable2Details(部品_資料添付1.Detail, strSQL, cn);
         }
 
         
