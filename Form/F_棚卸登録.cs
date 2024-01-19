@@ -420,7 +420,91 @@ namespace u_net
 
         private void コマンド棚卸表_Click(object sender, EventArgs e)
         {
+            //IReport paoRep = ReportCreator.GetPreview();
 
+            //paoRep.LoadDefFile("../../../Reports/棚卸表.prepd");
+
+            //Connect();
+
+            //DataRowCollection M部品;
+
+            //string sqlQuery = "SELECT * FROM M部品 ORDER BY 品名";
+
+            //using (SqlCommand command = new SqlCommand(sqlQuery, cn))
+            //{
+            //    using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+            //    {
+            //        DataSet dataSet = new DataSet();
+
+            //        adapter.Fill(dataSet);
+
+            //        M部品 = dataSet.Tables[0].Rows;
+
+            //    }
+            //}
+
+            ////最大行数
+            //int maxRow = 49;
+            ////現在の行
+            //int CurRow = 0;
+            ////行数
+            //int RowCount = maxRow;
+            //if (M部品.Count > 0)
+            //{
+            //    RowCount = M部品.Count;
+            //}
+
+            //int page = 1;
+            //double maxPage = Math.Ceiling((double)RowCount / maxRow);
+
+            //DateTime now = DateTime.Now;
+
+            //int lenB;
+
+            ////描画すべき行がある限りページを増やす
+            //while (RowCount > 0)
+            //{
+            //    RowCount -= maxRow;
+
+            //    paoRep.PageStart();
+
+
+            //    //フッダー
+            //    paoRep.Write("出力日時", "出力日時：" + now.ToString("yyyy/MM/dd HH:mm:ss"));
+            //    paoRep.Write("ページ", ("ページ： " + page + "/" + maxPage).ToString());
+
+            //    //明細
+            //    for (var i = 0; i < maxRow; i++)
+            //    {
+            //        if (CurRow >= V部品表.Count) break;
+
+            //        DataRow targetRow = V部品表[CurRow];
+
+            //        paoRep.Write("明細番号", targetRow["明細番号"].ToString() != "" ? targetRow["明細番号"].ToString() : " ", i + 1);
+            //        paoRep.Write("構成番号", targetRow["構成番号"].ToString() != "" ? targetRow["構成番号"].ToString() : " ", i + 1);
+            //        paoRep.Write("形状", targetRow["形状"].ToString() != "" ? targetRow["形状"].ToString() : " ", i + 1);
+            //        paoRep.Write("部品コード", targetRow["部品コード"].ToString() != "" ? targetRow["部品コード"].ToString() : " ", i + 1);
+            //        paoRep.Write("品名", targetRow["品名"].ToString() != "" ? targetRow["品名"].ToString() : " ", i + 1);
+            //        paoRep.Write("型番", targetRow["型番"].ToString() != "" ? targetRow["型番"].ToString() : " ", i + 1);
+            //        paoRep.Write("メーカー名", targetRow["メーカー名"].ToString() != "" ? targetRow["メーカー名"].ToString() : " ", i + 1);
+            //        paoRep.Write("変更", targetRow["変更"].ToString() != "" ? targetRow["変更"].ToString() : " ", i + 1);
+
+
+            //        CurRow++;
+
+
+            //    }
+
+            //    page++;
+
+            //    paoRep.PageEnd();
+
+
+
+            //}
+
+
+            //paoRep.Output();
         }
 
         private void コマンド部品_Click(object sender, EventArgs e)
