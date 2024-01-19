@@ -21,19 +21,9 @@ namespace u_net
 
         public string strSearchCode = "";
 
-        public string strユニットコード開始 { get; set; }
-        public string strユニットコード終了 { get; set; }
+
         public string str品名 { get; set; }
         public string str型番 { get; set; }
-        public long lngRoHS対応 { get; set; }
-        public long lng非含有証明書 { get; set; }
-        public DateTime dtm更新日開始 { get; set; }
-        public DateTime dtm更新日終了 { get; set; }
-        public string str更新者名 { get; set; }
-        public long lng確定指定 { get; set; }
-        public long lng承認指定 { get; set; }
-        public long lng削除指定 { get; set; }
-        public long lng廃止指定 { get; set; }
 
 
         int intWindowHeight = 0;
@@ -80,25 +70,12 @@ namespace u_net
 
         private void InitializeFilter()
         {
-            strユニットコード開始 = "";
-            strユニットコード終了 = "";
-            str品名 = "";
-            str型番 = "";
-            lng廃止指定 = 0;
-            lngRoHS対応 = 1;
-            lng非含有証明書 = 0;
-            dtm更新日開始 = DateTime.MinValue;
-            dtm更新日終了 = DateTime.MinValue;
-            str更新者名 = "";
-            lng確定指定 = 0;
-            lng承認指定 = 0;
-            lng削除指定 = 1;
+
         }
 
         private void Form_Load(object sender, EventArgs e)
         {
-            FunctionClass fn = new FunctionClass();
-            fn.DoWait("しばらくお待ちください...");
+
 
 
             //実行中フォーム起動
@@ -127,10 +104,10 @@ namespace u_net
             dataGridView1.DefaultCellStyle.Font = new Font("MS ゴシック", 10);
             dataGridView1.DefaultCellStyle.ForeColor = Color.Black;
 
-            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            //dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView1.AllowUserToAddRows = false;
             dataGridView1.AllowUserToDeleteRows = false;
-            dataGridView1.ReadOnly = true;
+            dataGridView1.ReadOnly = false;
 
 
             myapi.GetFullScreen(out xSize, out ySize);
@@ -147,9 +124,8 @@ namespace u_net
             x = (screenWidth - this.Width) / 2;
             this.Location = new Point(x, y);
 
-            InitializeFilter();
+
             DoUpdate();
-            fn.WaitForm.Close();
 
         }
 
@@ -168,7 +144,7 @@ namespace u_net
             int result = -1;
             try
             {
-                result = GridSet();
+                result = Filtering();
 
                 if (result >= 0)
                 {
@@ -188,14 +164,17 @@ namespace u_net
             return result;
         }
 
-        private int GridSet()
+        private int Filtering()
         {
             try
             {
-                string filter = string.Empty;
+                string filter = "(随時登録 <> 1) AND (無効日時 IS NULL) AND ";
 
 
-
+                if (!string.IsNullOrEmpty(strSearchCode))
+                {
+                    filter += string.Format("部品コード = '{0}' AND ", strSearchCode);
+                }
 
 
                 // 品名指定
@@ -211,105 +190,12 @@ namespace u_net
                 }
 
 
-                // RoHS対応指定
-                switch (lngRoHS対応)
-                {
-                    case 1:
-                        filter += "(RohsStatusSign = '１' OR RohsStatusSign = '２') AND ";
-                        break;
-                    case 2:
-                        filter += "(NOT (RohsStatusSign = '１' OR RohsStatusSign = '２')) AND ";
-                        break;
-                }
-
-                // 非含有証明書指定
-                switch (lng非含有証明書)
-                {
-                    case 1:
-                        filter += "非含有証明書 = '○' AND ";
-                        break;
-                    case 2:
-                        filter += "非含有証明書 = '△' AND ";
-                        break;
-                    case 3:
-                        filter += "非含有証明書 = '？' AND ";
-                        break;
-                    case 4:
-                        filter += "非含有証明書 IS  NULL AND ";
-                        break;
-                }
-
-
-
-                // 更新日指定
-                if (dtm更新日開始 != DateTime.MinValue && dtm更新日終了 != DateTime.MinValue)
-                {
-                    filter += string.Format("'{0}'<=更新日時 AND 更新日時<='{1}' AND ", dtm更新日開始.ToString("yyyy/MM/dd"), dtm更新日終了.ToString("yyyy/MM/dd"));
-                }
-
-
-                // 更新者名指定
-                if (!string.IsNullOrEmpty(str更新者名))
-                {
-                    filter += string.Format("更新者名 = '{0}' AND ", str更新者名);
-                }
-
-
-
-                // 確定
-                switch (lng確定指定)
-                {
-                    case 1:
-                        filter += "確定 IS NULL AND ";
-                        break;
-                    case 2:
-                        filter += "確定 IS NOT NULL AND ";
-                        break;
-                }
-
-                // 承認
-                switch (lng承認指定)
-                {
-                    case 1:
-                        filter += "承認 IS NULL AND ";
-                        break;
-                    case 2:
-                        filter += "承認 IS NOT NULL AND ";
-                        break;
-                }
-
-
-
-                // 廃止
-                switch (lng廃止指定)
-                {
-                    case 1:
-                        filter += "廃止 IS NULL AND ";
-                        break;
-                    case 2:
-                        filter += "廃止 IS NOT NULL AND ";
-                        break;
-                }
-
-
-
-                // 削除
-                switch (lng削除指定)
-                {
-                    case 1:
-                        filter += "削除 IS NULL AND ";
-                        break;
-                    case 2:
-                        filter += "削除 IS NOT NULL AND ";
-                        break;
-                }
-
                 if (!string.IsNullOrEmpty(filter))
                 {
                     filter = filter.Substring(0, filter.Length - 5); // 最後の " AND " を削除
                 }
 
-                string query = "SELECT * FROM Vユニット管理 WHERE 1=1 AND " + filter + " ORDER BY ユニットコード DESC ";
+                string query = "SELECT 部品コード, 品名, 型番, 在庫数量, 現品在庫数量, 現品在庫数量 - 在庫数量 AS 調整数量, 仕入先1単価 AS 単価, 仕入先1単価 * 在庫数量 AS 金額 FROM M部品 WHERE  " + filter;
 
                 Connect();
                 DataGridUtils.SetDataGridView(cn, query, this.dataGridView1);
@@ -327,23 +213,23 @@ namespace u_net
 
                 //// DataGridViewの設定
                 dataGridView1.Columns[0].DefaultCellStyle.BackColor = Color.FromArgb(255, 255, 200); // 薄い黄色
-                dataGridView1.Columns[1].DefaultCellStyle.BackColor = Color.FromArgb(255, 255, 200); // 薄い黄色
+                //dataGridView1.Columns[1].DefaultCellStyle.BackColor = Color.FromArgb(255, 255, 200); // 薄い黄色
 
 
                 //0列目はaccessでは行ヘッダのため、ずらす
 
-                dataGridView1.Columns[0].Width = 1200 / twipperdot;
-                dataGridView1.Columns[1].Width = 400 / twipperdot;
-                dataGridView1.Columns[2].Width = 3400 / twipperdot;
-                dataGridView1.Columns[3].Width = 3400 / twipperdot;
-                dataGridView1.Columns[4].Width = 400 / twipperdot;
-                dataGridView1.Columns[5].Width = 400 / twipperdot;
-                dataGridView1.Columns[6].Width = 400 / twipperdot;
-                dataGridView1.Columns[7].Width = 2200 / twipperdot;
-                dataGridView1.Columns[8].Width = 1500 / twipperdot;
-                dataGridView1.Columns[9].Width = 400 / twipperdot;
-                dataGridView1.Columns[10].Width = 400 / twipperdot;
-                dataGridView1.Columns[11].Width = 400 / twipperdot;
+                //dataGridView1.Columns[0].Width = 1200 / twipperdot;
+                //dataGridView1.Columns[1].Width = 400 / twipperdot;
+                //dataGridView1.Columns[2].Width = 3400 / twipperdot;
+                //dataGridView1.Columns[3].Width = 3400 / twipperdot;
+                //dataGridView1.Columns[4].Width = 400 / twipperdot;
+                //dataGridView1.Columns[5].Width = 400 / twipperdot;
+                //dataGridView1.Columns[6].Width = 400 / twipperdot;
+                //dataGridView1.Columns[7].Width = 2200 / twipperdot;
+                //dataGridView1.Columns[8].Width = 1500 / twipperdot;
+                //dataGridView1.Columns[9].Width = 400 / twipperdot;
+                //dataGridView1.Columns[10].Width = 400 / twipperdot;
+                //dataGridView1.Columns[11].Width = 400 / twipperdot;
 
                 return dataGridView1.RowCount;
 
@@ -383,17 +269,31 @@ namespace u_net
         //ダブルクリックで仕入先フォームを開く　仕入先コードを渡す
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0) // ヘッダー行でない場合
+            if (dataGridView1.SelectedCells.Count > 0)
             {
+                int idx = dataGridView1.CurrentCell.RowIndex;
 
-                F_ユニット targetform = new F_ユニット();
+                // DataGridView1で選択された行が存在する場合
+                string selectedData = dataGridView1.Rows[idx].Cells[0].Value.ToString(); // 1列目のデータを取得
 
-                targetform.args = CurrentCode + "," + CurrentEdition;
+                // 部品フォームを作成し、引数を設定して表示
+                F_部品 targetform = new F_部品();
+                targetform.args = selectedData;
                 targetform.ShowDialog();
+            }
+            else
+            {
+                // ユーザーが行を選択していない場合のエラーハンドリング
+                MessageBox.Show("行が選択されていません。");
             }
         }
 
+        public override void SearchCode(string codeString)
+        {
+            strSearchCode = codeString;
 
+            Filtering();
+        }
 
         private void dataGridView1_KeyDown(object sender, KeyEventArgs e)
         {
@@ -415,7 +315,7 @@ namespace u_net
                         if (this.コマンド検索.Enabled) コマンド検索_Click(sender, e);
                         break;
                     case Keys.F3:
-                        if (this.コマンド初期化.Enabled) コマンド初期化_Click(sender, e);
+                        e.Handled = true;
                         break;
                     case Keys.F4:
                         break;
@@ -423,7 +323,7 @@ namespace u_net
                         if (this.コマンド部品.Enabled) コマンド部品_Click(sender, e);
                         break;
                     case Keys.F6:
-                        if (this.コマンド棚卸表.Enabled) コマンド棚卸表_Click(sender, e);
+
                         break;
                     case Keys.F7:
                         break;
@@ -442,27 +342,8 @@ namespace u_net
                     case Keys.F12:
                         if (this.コマンド終了.Enabled) コマンド終了_Click(sender, e);
                         break;
-                    case Keys.Return:
-                        if (this.ActiveControl == this.dataGridView1)
-                        {
-                            if (dataGridView1.SelectedRows.Count > 0)
-                            {
-                                // DataGridView1で選択された行が存在する場合
-                                string selectedCode = dataGridView1.SelectedRows[0].Cells[0].Value.ToString(); // 1列目のデータを取得
-                                string selectedEdition = dataGridView1.SelectedRows[0].Cells[1].Value.ToString();
 
 
-                                //F_ユニット targetform = new F_ユニット();
-                                //targetform.args = selectedCode + "," + selectedEdition;
-                                //targetform.ShowDialog();
-                            }
-                            else
-                            {
-                                // ユーザーが行を選択していない場合のエラーハンドリング
-                                MessageBox.Show("行が選択されていません。");
-                            }
-                        }
-                        break;
                 }
             }
             catch (Exception ex)
@@ -476,14 +357,16 @@ namespace u_net
 
         private void コマンド抽出_Click(object sender, EventArgs e)
         {
-            dataGridView1.Focus();
-            F_ユニット管理_抽出 form = new F_ユニット管理_抽出();
+            F_棚卸登録抽出設定 form = new F_棚卸登録抽出設定();
             form.ShowDialog();
         }
 
         private void コマンド検索_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("現在開発中です。\n コードで検索するときに使用します。", "検索コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            F_検索コード form = new F_検索コード(this, null);
+            form.ShowDialog();
+
         }
 
 
@@ -494,9 +377,10 @@ namespace u_net
 
             fn.DoWait("初期化しています...");
 
-            // 初期抽出条件を設定する
-            InitializeFilter();
-
+            strSearchCode = "";
+            str品名 = "";
+            str型番 = "";
+ 
             // リストを更新する
             if (DoUpdate() == -1)
                 MessageBox.Show("エラーが発生しました。", "初期化コマンド", MessageBoxButtons.OK);
@@ -507,223 +391,27 @@ namespace u_net
 
         private void コマンド更新_Click(object sender, EventArgs e)
         {
-            FunctionClass fn = new FunctionClass();
+            DialogResult result = MessageBox.Show(
+            "表示リストを更新しますか？",
+            "更新コマンド",
+            MessageBoxButtons.YesNo,
+            MessageBoxIcon.Question);
 
-            fn.DoWait("更新しています...");
+            if (result == DialogResult.No)
+            {
+                return;
+            }
 
 
             // リストを更新する
             if (DoUpdate() == -1)
                 MessageBox.Show("更新できませんでした。", "更新コマンド", MessageBoxButtons.OK);
 
-            fn.WaitForm.Close();
+  
 
         }
 
 
-        private void コマンドユニット_Click(object sender, EventArgs e)
-        {
-            if (dataGridView1.SelectedRows.Count > 0)
-            {
-                // DataGridView1で選択された行が存在する場合
-                string selectedCode = dataGridView1.SelectedRows[0].Cells[0].Value.ToString(); // 1列目のデータを取得
-                string selectedEdition = dataGridView1.SelectedRows[0].Cells[1].Value.ToString();
-
-
-                F_ユニット targetform = new F_ユニット();
-                targetform.args = selectedCode + "," + selectedEdition;
-                targetform.ShowDialog();
-            }
-            else
-            {
-                // ユーザーが行を選択していない場合のエラーハンドリング
-                MessageBox.Show("行が選択されていません。");
-            }
-        }
-
-        private void コマンド部品表_Click(object sender, EventArgs e)
-        {
-            IReport paoRep = ReportCreator.GetPreview();
-
-            paoRep.LoadDefFile("../../../Reports/部品表.prepd");
-
-            Connect();
-
-
-            DataRowCollection V部品表;
-
-            string sqlQuery = "SELECT * FROM V部品表 where ユニットコード='" + CurrentCode + "' and ユニット版数=" + CurrentEdition + " ORDER BY 明細番号";
-
-            using (SqlCommand command = new SqlCommand(sqlQuery, cn))
-            {
-                using (SqlDataAdapter adapter = new SqlDataAdapter(command))
-                {
-                    DataSet dataSet = new DataSet();
-
-                    adapter.Fill(dataSet);
-
-                    V部品表 = dataSet.Tables[0].Rows;
-
-                }
-            }
-
-            //最大行数
-            int maxRow = 49;
-            //現在の行
-            int CurRow = 0;
-            //行数
-            int RowCount = maxRow;
-            if (V部品表.Count > 0)
-            {
-                RowCount = V部品表.Count;
-            }
-
-            int page = 1;
-            double maxPage = Math.Ceiling((double)RowCount / maxRow);
-
-            DateTime now = DateTime.Now;
-
-            int lenB;
-
-            //描画すべき行がある限りページを増やす
-            while (RowCount > 0)
-            {
-                RowCount -= maxRow;
-
-                paoRep.PageStart();
-
-                //ヘッダー
-                paoRep.Write("ユニットコード", V部品表[0]["ユニットコード"].ToString() != "" ? V部品表[0]["ユニットコード"].ToString() : " ");
-                paoRep.Write("ユニット版数", V部品表[0]["ユニット版数"].ToString() != "" ? V部品表[0]["ユニット版数"].ToString() : " ");
-                paoRep.Write("ユニット品名", V部品表[0]["ユニット品名"].ToString() != "" ? V部品表[0]["ユニット品名"].ToString() : " ");
-                paoRep.Write("ユニット型番", V部品表[0]["ユニット型番"].ToString() != "" ? V部品表[0]["ユニット型番"].ToString() : " ");
-
-                paoRep.Write("承認日時", V部品表[0]["承認日時"].ToString() != "" ? V部品表[0]["承認日時"].ToString() : " ");
-
-                if (!string.IsNullOrEmpty(V部品表[0]["無効日時"].ToString()))
-                {
-                    paoRep.Write("コメント", "（削除済み）");
-                }
-                else
-                {
-                    paoRep.Write("コメント", "");
-                }
-
-                if (string.IsNullOrEmpty(V部品表[0]["識別コード"].ToString()))
-                {
-                    paoRep.Write("ページコード", " ");
-                }
-                else
-                {
-                    string ページコード = $"{V部品表[0]["識別コード"].ToString()}-04{page:D2}";
-                    paoRep.Write("ページコード", ページコード);
-                }
-
-                //フッダー
-                paoRep.Write("出力日時", "出力日時：" + now.ToString("yyyy/MM/dd HH:mm:ss"));
-                paoRep.Write("ページ", ("ページ： " + page + "/" + maxPage).ToString());
-
-                //明細
-                for (var i = 0; i < maxRow; i++)
-                {
-                    if (CurRow >= V部品表.Count) break;
-
-                    DataRow targetRow = V部品表[CurRow];
-
-                    paoRep.Write("明細番号", targetRow["明細番号"].ToString() != "" ? targetRow["明細番号"].ToString() : " ", i + 1);
-                    paoRep.Write("構成番号", targetRow["構成番号"].ToString() != "" ? targetRow["構成番号"].ToString() : " ", i + 1);
-                    paoRep.Write("形状", targetRow["形状"].ToString() != "" ? targetRow["形状"].ToString() : " ", i + 1);
-                    paoRep.Write("部品コード", targetRow["部品コード"].ToString() != "" ? targetRow["部品コード"].ToString() : " ", i + 1);
-                    paoRep.Write("品名", targetRow["品名"].ToString() != "" ? targetRow["品名"].ToString() : " ", i + 1);
-                    paoRep.Write("型番", targetRow["型番"].ToString() != "" ? targetRow["型番"].ToString() : " ", i + 1);
-                    paoRep.Write("メーカー名", targetRow["メーカー名"].ToString() != "" ? targetRow["メーカー名"].ToString() : " ", i + 1);
-                    paoRep.Write("変更", targetRow["変更"].ToString() != "" ? targetRow["変更"].ToString() : " ", i + 1);
-
-                    if (targetRow["削除対象"].ToString() == "1")
-                    {
-                        paoRep.Write("削除対象", "------------------------------------------------------------------------------------------------", i + 1);
-                    }
-                    else
-                    {
-                        paoRep.Write("削除対象", "", i + 1);
-                    }
-
-                    CurRow++;
-
-
-                }
-
-                page++;
-
-                paoRep.PageEnd();
-
-
-
-            }
-
-
-            paoRep.Output();
-        }
-
-        private void コマンド廃止指定_Click(object sender, EventArgs e)
-        {
-            if (dataGridView1.SelectedRows.Count > 0)
-            {
-                // DataGridView1で選択された行が存在する場合
-                string selectedData = CurrentAbolition;
-
-
-                if (selectedData == "")
-                {
-                    if (SetAbolitionChanged(-1, CurrentCode, CurrentEdition))
-                    {
-                        dataGridView1.SelectedRows[0].Cells[6].Value = "■";
-                    }
-                }
-                else
-                {
-                    if (SetAbolitionChanged(0, CurrentCode, CurrentEdition))
-                    {
-                        dataGridView1.SelectedRows[0].Cells[6].Value = "";
-                    }
-                }
-
-            }
-        }
-
-        private bool SetAbolitionChanged(int value, string code, string edition)
-        {
-            bool success = false;
-
-            try
-            {
-                Connect();
-
-                string strSQL = $"UPDATE Mユニット SET 廃止 = {value} " +
-                                $"WHERE ユニットコード = '{code}' AND ユニット版数 = {edition}";
-
-                using (SqlCommand cmd = new SqlCommand(strSQL, cn))
-                {
-                    cmd.ExecuteNonQuery();
-                }
-
-                success = true;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"{this.GetType().Name}_SetAbolitionChanged - {ex.GetType().Name}: {ex.Message}");
-            }
-
-            return success;
-        }
-
-        private void コマンド参照用_Click(object sender, EventArgs e)
-        {
-            F_ユニット参照 targetform = new F_ユニット参照();
-
-            targetform.args = CurrentCode + "," + CurrentEdition;
-            targetform.ShowDialog();
-        }
 
         private void コマンド終了_Click(object sender, EventArgs e)
         {
@@ -737,13 +425,53 @@ namespace u_net
 
         private void コマンド部品_Click(object sender, EventArgs e)
         {
+            if (dataGridView1.SelectedCells.Count > 0)
+            {
+                int idx = dataGridView1.CurrentCell.RowIndex;
 
+                // DataGridView1で選択された行が存在する場合
+                string selectedData = dataGridView1.Rows[idx].Cells[0].Value.ToString(); // 1列目のデータを取得
+
+                // 部品フォームを作成し、引数を設定して表示
+                F_部品 targetform = new F_部品();
+                targetform.args = selectedData;
+                targetform.ShowDialog();
+            }
+            else
+            {
+                // ユーザーが行を選択していない場合のエラーハンドリング
+                MessageBox.Show("行が選択されていません。");
+            }
         }
 
         private void コマンド保守_Click(object sender, EventArgs e)
         {
+            MessageBox.Show("現在開発中のため、使用できません。", "保守コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void コマンド登録_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("現在開発中のため、使用できません。\n登録は自動的に行われるため、登録操作を実行する必要はありません。", "登録コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void コマンド入出力_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("現在開発中のため、使用できません。", "入出力コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void 開始ボタン_Click(object sender, EventArgs e)
+        {
 
         }
+
+
+
+
+
+
+
+
+
 
         private void コマンド保守_Enter(object sender, EventArgs e)
         {
@@ -755,36 +483,185 @@ namespace u_net
             toolStripStatusLabel1.Text = "各種項目の説明";
         }
 
-        private void コマンド登録_Click(object sender, EventArgs e)
-        {
 
-        }
-
-        private void コマンド入出力_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void 開始ボタン_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void F_棚卸登録_Resize(object sender, EventArgs e)
         {
             try
             {
 
-                dataGridView1.Height = dataGridView1.Height + (this.Height - intWindowHeight);
-                intWindowHeight = this.Height;  // 高さ保存
+                //dataGridView1.Height = dataGridView1.Height + (this.Height - intWindowHeight);
+                //intWindowHeight = this.Height;  // 高さ保存
 
-                dataGridView1.Width = dataGridView1.Width + (this.Width - intWindowWidth);
-                intWindowWidth = this.Width;    // 幅保存
+                //dataGridView1.Width = dataGridView1.Width + (this.Width - intWindowWidth);
+                //intWindowWidth = this.Width;    // 幅保存
 
             }
             catch (Exception ex)
             {
                 MessageBox.Show(this.Name + "_Form_Resize - " + ex.Message);
+            }
+        }
+
+        private void dataGridView1_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            // 編集コントロールが表示されるときに呼び出されるイベントハンドラ
+            DataGridView dgv = sender as DataGridView;
+
+            if (dgv.CurrentCell.ColumnIndex == dgv.Columns["現品在庫数量"].Index)
+            {
+                // 特定の列の場合のみ、編集を許可する
+                TextBox tb = e.Control as TextBox;
+                if (tb != null)
+                {
+                    tb.ReadOnly = false;
+                }
+            }
+            else if (在庫修正許可.Checked && dgv.CurrentCell.ColumnIndex == dgv.Columns["在庫数量"].Index)
+            {
+                // 特定の列の場合のみ、編集を許可する
+                TextBox tb = e.Control as TextBox;
+                if (tb != null)
+                {
+                    tb.ReadOnly = false;
+                }
+            }
+            else
+            {
+                // 他の列の場合は編集を禁止する
+                TextBox tb = e.Control as TextBox;
+                if (tb != null)
+                {
+                    tb.ReadOnly = true;
+                }
+            }
+        }
+
+        private void dataGridView1_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
+        {
+
+            if (e.RowIndex >= 0 && (e.ColumnIndex == 4 || (在庫修正許可.Checked && e.ColumnIndex == 3)))
+            {
+                DataGridViewCell cell = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex];
+
+                if (string.IsNullOrEmpty(e.FormattedValue?.ToString()))
+                {
+                    e.Cancel = true;
+                    MessageBox.Show("0 以上の数値を入力してください。", "入力", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                if (e.ColumnIndex == 3)
+                {
+                    if (!FunctionClass.IsLimit_N(e.FormattedValue, 10, 0, "在庫数量"))
+                    {
+                        e.Cancel = true;
+                        return;
+                    }
+                }
+                else if (e.ColumnIndex == 4)
+                {
+                    if (!FunctionClass.IsLimit_N(e.FormattedValue, 10, 0, "現品在庫数量"))
+                    {
+                        e.Cancel = true;
+                        return;
+                    }
+                }
+
+
+                // 入力値が条件を満たさない場合
+                if (Convert.ToInt32(e.FormattedValue) < 0)
+                {
+                    e.Cancel = true; // 変更をキャンセル
+                    MessageBox.Show("0 以上の数値を入力してください。", "入力", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void dataGridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && e.ColumnIndex == 3)
+            {
+                dataGridView1.Rows[e.RowIndex].Cells["現品在庫数量"].Value = dataGridView1.Rows[e.RowIndex].Cells["在庫数量"].Value;
+                dataGridView1.Rows[e.RowIndex].Cells["金額"].Value = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["在庫数量"].Value) * Convert.ToDecimal(dataGridView1.Rows[e.RowIndex].Cells["単価"].Value);
+                dataGridView1.Rows[e.RowIndex].Cells["調整数量"].Value = 0;
+
+                string pkValue = dataGridView1.Rows[e.RowIndex].Cells["部品コード"].Value.ToString();
+                object val1 = dataGridView1.Rows[e.RowIndex].Cells["在庫数量"].Value;
+                object val2 = dataGridView1.Rows[e.RowIndex].Cells["現品在庫数量"].Value;
+
+
+                UpdateColumnValue(pkValue, "在庫数量", val1);
+                UpdateColumnValue(pkValue, "現品在庫数量", val2);
+
+
+            }
+            else if (e.RowIndex >= 0 && e.ColumnIndex == 4)
+            {
+                dataGridView1.Rows[e.RowIndex].Cells["調整数量"].Value = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["現品在庫数量"].Value) - Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["在庫数量"].Value);
+
+                string pkValue = dataGridView1.Rows[e.RowIndex].Cells["部品コード"].Value.ToString();
+                object val2 = dataGridView1.Rows[e.RowIndex].Cells["現品在庫数量"].Value;
+
+                UpdateColumnValue(pkValue, "現品在庫数量", val2);
+            }
+
+
+
+        }
+
+        private void UpdateColumnValue(string primaryKeyValue, string columnName, object newValue)
+        {
+            try
+            {
+                Connect();
+
+                // SQLコマンドを作成
+                string sql = $"UPDATE M部品 SET {columnName} = @{columnName} WHERE 部品コード = @部品コード";
+                using (SqlCommand command = new SqlCommand(sql, cn))
+                {
+                    // パラメータを追加
+                    command.Parameters.AddWithValue($"@{columnName}", newValue);
+                    command.Parameters.AddWithValue($"@部品コード", primaryKeyValue);
+
+                    // コマンドを実行
+                    int rowsAffected = command.ExecuteNonQuery();
+
+                    if (rowsAffected > 0)
+                    {
+                        Console.WriteLine($"列 {columnName} の値が更新されました。");
+                    }
+                    else
+                    {
+                        Console.WriteLine($"指定された条件に一致するレコードが見つかりませんでした。");
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"エラー: {ex.Message}");
+            }
+        }
+
+        private void 在庫修正許可_CheckedChanged(object sender, EventArgs e)
+        {
+            if (在庫修正許可.Checked)
+            {
+                DialogResult result = MessageBox.Show(
+                    "＜注意事項＞" + Environment.NewLine + Environment.NewLine +
+                    "[在庫数量]はシステムにより修正されます。" + Environment.NewLine +
+                    "通常、ユーザーが修正することはありません。" + Environment.NewLine +
+                    "初期導入時か緊急時にのみ修正されることをお奨めします。" + Environment.NewLine + Environment.NewLine +
+                    "[在庫数量]の修正を許可しますか？",
+                    "確認",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question);
+
+                if (result == DialogResult.No)
+                {
+                    在庫修正許可.Checked = false;
+                }
             }
         }
     }

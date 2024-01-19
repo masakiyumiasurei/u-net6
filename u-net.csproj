@@ -56,6 +56,10 @@
     <Compile Include="MultiRowDesigner\支払明細.Designer.cs" />
     <Compile Include="MultiRowDesigner\支払明細テンプレート.cs" />
     <Compile Include="MultiRowDesigner\支払明細テンプレート.Designer.cs" />
+    <Compile Include="MultiRowDesigner\文書添付.cs" />
+    <Compile Include="MultiRowDesigner\文書添付.Designer.cs" />
+    <Compile Include="MultiRowDesigner\文書添付テンプレート.cs" />
+    <Compile Include="MultiRowDesigner\文書添付テンプレート.Designer.cs" />
     <Compile Include="MultiRowDesigner\棚卸作業サブ.cs" />
     <Compile Include="MultiRowDesigner\棚卸作業サブ.Designer.cs" />
     <Compile Include="MultiRowDesigner\棚卸作業サブテンプレート.cs" />
@@ -128,6 +132,8 @@
     <EmbeddedResource Include="MultiRowDesigner\商品明細テンプレート.resx" />
     <EmbeddedResource Include="MultiRowDesigner\支払明細.resx" />
     <EmbeddedResource Include="MultiRowDesigner\支払明細テンプレート.resx" />
+    <EmbeddedResource Include="MultiRowDesigner\文書添付.resx" />
+    <EmbeddedResource Include="MultiRowDesigner\文書添付テンプレート.resx" />
     <EmbeddedResource Include="MultiRowDesigner\棚卸作業サブ.resx" />
     <EmbeddedResource Include="MultiRowDesigner\業務日報明細予定.resx" />
     <EmbeddedResource Include="MultiRowDesigner\業務日報明細実績.resx" />
@@ -166,6 +172,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Form\F_ファックス送信テスト.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Form\F_ファックス抽出設定.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Form\F_棚卸登録抽出設定.cs">
       <SubType>Form</SubType>
     </Compile>
