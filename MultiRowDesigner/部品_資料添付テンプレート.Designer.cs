@@ -110,6 +110,7 @@
             this.labelCell10 = new GrapeCity.Win.MultiRow.LabelCell();
             this.Data = new GrapeCity.Win.MultiRow.TextBoxCell();
             this.OrderNumber = new GrapeCity.Win.MultiRow.RowHeaderCell();
+            this.添付 = new GrapeCity.Win.MultiRow.ImageCell();
             // 
             // Row
             // 
@@ -139,8 +140,9 @@
             this.Row.Cells.Add(this.labelCell10);
             this.Row.Cells.Add(this.Data);
             this.Row.Cells.Add(this.OrderNumber);
-            this.Row.Height = 247;
-            this.Row.Width = 685;
+            this.Row.Cells.Add(this.添付);
+            this.Row.Height = 191;
+            this.Row.Width = 678;
             // 
             // ダイアログ
             // 
@@ -196,8 +198,7 @@
             // 
             // 添付ボタン
             // 
-            this.添付ボタン.ButtonCommand = GrapeCity.Win.MultiRow.RowActionButtonCommands.Remove;
-            this.添付ボタン.Location = new System.Drawing.Point(259, 111);
+            this.添付ボタン.Location = new System.Drawing.Point(248, 7);
             this.添付ボタン.Name = "添付ボタン";
             this.添付ボタン.Size = new System.Drawing.Size(78, 31);
             cellStyle4.BackColor = System.Drawing.Color.White;
@@ -211,8 +212,7 @@
             // 
             // プレビューボタン
             // 
-            this.プレビューボタン.ButtonCommand = GrapeCity.Win.MultiRow.RowActionButtonCommands.Remove;
-            this.プレビューボタン.Location = new System.Drawing.Point(259, 152);
+            this.プレビューボタン.Location = new System.Drawing.Point(248, 49);
             this.プレビューボタン.Name = "プレビューボタン";
             this.プレビューボタン.Size = new System.Drawing.Size(78, 31);
             cellStyle5.BackColor = System.Drawing.Color.White;
@@ -226,8 +226,7 @@
             // 
             // 保存ボタン
             // 
-            this.保存ボタン.ButtonCommand = GrapeCity.Win.MultiRow.RowActionButtonCommands.Remove;
-            this.保存ボタン.Location = new System.Drawing.Point(363, 152);
+            this.保存ボタン.Location = new System.Drawing.Point(600, 110);
             this.保存ボタン.Name = "保存ボタン";
             this.保存ボタン.Size = new System.Drawing.Size(78, 31);
             cellStyle6.BackColor = System.Drawing.Color.White;
@@ -242,8 +241,7 @@
             // 
             // 削除ボタン
             // 
-            this.削除ボタン.ButtonCommand = GrapeCity.Win.MultiRow.RowActionButtonCommands.Remove;
-            this.削除ボタン.Location = new System.Drawing.Point(363, 111);
+            this.削除ボタン.Location = new System.Drawing.Point(337, 7);
             this.削除ボタン.Name = "削除ボタン";
             this.削除ボタン.Size = new System.Drawing.Size(78, 31);
             cellStyle7.BackColor = System.Drawing.Color.White;
@@ -257,8 +255,7 @@
             // 
             // 閉じるボタン
             // 
-            this.閉じるボタン.ButtonCommand = GrapeCity.Win.MultiRow.RowActionButtonCommands.Remove;
-            this.閉じるボタン.Location = new System.Drawing.Point(472, 180);
+            this.閉じるボタン.Location = new System.Drawing.Point(573, 152);
             this.閉じるボタン.Name = "閉じるボタン";
             this.閉じるボタン.Size = new System.Drawing.Size(85, 31);
             cellStyle8.BackColor = System.Drawing.Color.White;
@@ -273,7 +270,7 @@
             // DataName
             // 
             this.DataName.DataField = "DataName";
-            this.DataName.Location = new System.Drawing.Point(116, 195);
+            this.DataName.Location = new System.Drawing.Point(128, 152);
             this.DataName.Name = "DataName";
             this.DataName.Size = new System.Drawing.Size(326, 16);
             cellStyle9.BackColor = System.Drawing.Color.White;
@@ -380,7 +377,7 @@
             // 
             // labelCell1
             // 
-            this.labelCell1.Location = new System.Drawing.Point(59, 7);
+            this.labelCell1.Location = new System.Drawing.Point(53, 7);
             this.labelCell1.Name = "labelCell1";
             this.labelCell1.Size = new System.Drawing.Size(67, 16);
             cellStyle15.Border = border9;
@@ -393,7 +390,7 @@
             // 
             // labelCell2
             // 
-            this.labelCell2.Location = new System.Drawing.Point(59, 31);
+            this.labelCell2.Location = new System.Drawing.Point(53, 31);
             this.labelCell2.Name = "labelCell2";
             this.labelCell2.Size = new System.Drawing.Size(67, 16);
             cellStyle16.Border = border10;
@@ -406,7 +403,7 @@
             // 
             // labelCell3
             // 
-            this.labelCell3.Location = new System.Drawing.Point(51, 75);
+            this.labelCell3.Location = new System.Drawing.Point(51, 55);
             this.labelCell3.Name = "labelCell3";
             this.labelCell3.Size = new System.Drawing.Size(65, 16);
             cellStyle17.Border = border11;
@@ -419,7 +416,7 @@
             // 
             // labelCell4
             // 
-            this.labelCell4.Location = new System.Drawing.Point(51, 106);
+            this.labelCell4.Location = new System.Drawing.Point(51, 82);
             this.labelCell4.Name = "labelCell4";
             this.labelCell4.Size = new System.Drawing.Size(65, 16);
             cellStyle18.Border = border12;
@@ -432,7 +429,7 @@
             // 
             // labelCell5
             // 
-            this.labelCell5.Location = new System.Drawing.Point(39, 195);
+            this.labelCell5.Location = new System.Drawing.Point(53, 152);
             this.labelCell5.Name = "labelCell5";
             this.labelCell5.Size = new System.Drawing.Size(65, 16);
             cellStyle19.Border = border13;
@@ -511,10 +508,10 @@
             // Data
             // 
             this.Data.DataField = "Data";
-            this.Data.Location = new System.Drawing.Point(51, 142);
+            this.Data.Location = new System.Drawing.Point(658, 10);
             this.Data.Name = "Data";
             this.Data.ReadOnly = true;
-            this.Data.Size = new System.Drawing.Size(136, 16);
+            this.Data.Size = new System.Drawing.Size(10, 10);
             cellStyle25.BackColor = System.Drawing.Color.White;
             border19.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
             cellStyle25.Border = border19;
@@ -529,7 +526,7 @@
             // OrderNumber
             // 
             this.OrderNumber.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.OrderNumber.Location = new System.Drawing.Point(116, 74);
+            this.OrderNumber.Location = new System.Drawing.Point(128, 54);
             this.OrderNumber.Name = "OrderNumber";
             this.OrderNumber.ShowIndicator = false;
             this.OrderNumber.ShowRowError = false;
@@ -544,10 +541,17 @@
             this.OrderNumber.TabStop = false;
             this.OrderNumber.ValueFormat = "%1%";
             // 
+            // 添付
+            // 
+            this.添付.Location = new System.Drawing.Point(128, 83);
+            this.添付.Name = "添付";
+            this.添付.Size = new System.Drawing.Size(80, 54);
+            this.添付.TabIndex = 38;
+            // 
             // 部品_資料添付テンプレート
             // 
-            this.Height = 247;
-            this.Width = 685;
+            this.Height = 191;
+            this.Width = 678;
 
         }
 
@@ -580,5 +584,6 @@
         private GrapeCity.Win.MultiRow.LabelCell labelCell10;
         private GrapeCity.Win.MultiRow.TextBoxCell Data;
         private GrapeCity.Win.MultiRow.RowHeaderCell OrderNumber;
+        private GrapeCity.Win.MultiRow.ImageCell 添付;
     }
 }

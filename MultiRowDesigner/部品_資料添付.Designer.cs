@@ -36,13 +36,13 @@
             // gcMultiRow1
             // 
             gcMultiRow1.EditMode = GrapeCity.Win.MultiRow.EditMode.EditOnEnter;
-            gcMultiRow1.Location = new Point(0, 0);
-            gcMultiRow1.Margin = new Padding(5);
+            gcMultiRow1.Location = new Point(-9, 0);
+            gcMultiRow1.Margin = new Padding(4);
             gcMultiRow1.Name = "gcMultiRow1";
-            gcMultiRow1.Size = new Size(885, 416);
+            gcMultiRow1.Size = new Size(717, 583);
             gcMultiRow1.TabIndex = 0;
             gcMultiRow1.Template = 部品_資料添付テンプレート1;
-            gcMultiRow1.TemplateScaleSize = new SizeF(1.33333337F, 1.66666675F);
+            gcMultiRow1.TemplateScaleSize = new SizeF(1.16666675F, 1.25F);
             gcMultiRow1.Text = "gcMultiRow1";
             gcMultiRow1.RowsRemoved += gcMultiRow1_RowsRemoved;
             gcMultiRow1.DefaultValuesNeeded += gcMultiRow1_DefaultValuesNeeded;
@@ -60,12 +60,12 @@
             // 
             // 部品_資料添付
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(gcMultiRow1);
-            Margin = new Padding(5);
+            Margin = new Padding(4);
             Name = "部品_資料添付";
-            Size = new Size(887, 421);
+            Size = new Size(707, 583);
             Load += 部品_資料添付_Load;
             ((System.ComponentModel.ISupportInitialize)gcMultiRow1).EndInit();
             ResumeLayout(false);
