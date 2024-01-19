@@ -312,6 +312,9 @@
             dataGridView1.TabIndex = 87;
             dataGridView1.CellDoubleClick += dataGridView1_CellDoubleClick;
             dataGridView1.CellPainting += DataGridView1_CellPainting;
+            dataGridView1.CellValidating += dataGridView1_CellValidating;
+            dataGridView1.CellValueChanged += dataGridView1_CellValueChanged;
+            dataGridView1.EditingControlShowing += dataGridView1_EditingControlShowing;
             dataGridView1.KeyDown += dataGridView1_KeyDown;
             // 
             // panel2
@@ -364,6 +367,7 @@
             在庫修正許可.TabIndex = 1;
             在庫修正許可.Text = "[在庫数量]の修正を許可する(&E)";
             在庫修正許可.UseVisualStyleBackColor = true;
+            在庫修正許可.CheckedChanged += 在庫修正許可_CheckedChanged;
             // 
             // 開始ボタン
             // 
@@ -376,6 +380,7 @@
             開始ボタン.TabIndex = 2;
             開始ボタン.Text = "在庫調整の開始(&S)";
             開始ボタン.UseVisualStyleBackColor = true;
+            開始ボタン.Visible = false;
             開始ボタン.Click += 開始ボタン_Click;
             // 
             // F_棚卸登録
