@@ -44,6 +44,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="文書添付テンプレート.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="文書添付テンプレート.designer.cs">
+      <DependentUpon>文書添付テンプレート.cs</DependentUpon>
+    </Compile>
     <Compile Include="棚卸作業サブ.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -55,6 +61,12 @@
     </Compile>
     <Compile Include="棚卸作業サブテンプレート.designer.cs">
       <DependentUpon>棚卸作業サブテンプレート.cs</DependentUpon>
+    </Compile>
+    <Compile Include="文書添付.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="文書添付.Designer.cs">
+      <DependentUpon>文書添付.cs</DependentUpon>
     </Compile>
     <Compile Include="部品_資料添付.cs">
       <SubType>UserControl</SubType>
@@ -306,11 +318,17 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="文書添付テンプレート.resx">
+      <DependentUpon>文書添付テンプレート.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="棚卸作業サブ.resx">
       <DependentUpon>棚卸作業サブ.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="棚卸作業サブテンプレート.resx">
       <DependentUpon>棚卸作業サブテンプレート.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="文書添付.resx">
+      <DependentUpon>文書添付.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="部品_資料添付.resx">
       <DependentUpon>部品_資料添付.cs</DependentUpon>
