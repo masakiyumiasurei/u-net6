@@ -420,7 +420,99 @@ namespace u_net
 
         private void コマンド棚卸表_Click(object sender, EventArgs e)
         {
+            IReport paoRep = ReportCreator.GetPreview();
 
+            paoRep.LoadDefFile("../../../Reports/棚卸表.prepd");
+
+            Connect();
+
+            DataRowCollection M部品;
+
+            string sqlQuery = "SELECT * FROM M部品 where 在庫数量 > 0 ORDER BY 品名";
+
+            using (SqlCommand command = new SqlCommand(sqlQuery, cn))
+            {
+                using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+                {
+                    DataSet dataSet = new DataSet();
+
+                    adapter.Fill(dataSet);
+
+                    M部品 = dataSet.Tables[0].Rows;
+
+                }
+            }
+
+            //最大行数
+            int maxRow = 44;
+            //現在の行
+            int CurRow = 0;
+            //行数
+            int RowCount = maxRow;
+            if (M部品.Count > 0)
+            {
+                RowCount = M部品.Count;
+            }
+
+            int page = 1;
+            double maxPage = Math.Ceiling((double)RowCount / maxRow);
+
+            DateTime now = DateTime.Now;
+
+            int lenB;
+
+            long sum = 0;
+
+            //描画すべき行がある限りページを増やす
+            while (RowCount > 0)
+            {
+                RowCount -= maxRow;
+
+                paoRep.PageStart();
+
+
+                //フッダー
+                paoRep.Write("出力日時", now.ToString("yyyy年M月dd日"));
+                paoRep.Write("ページ", ( page + "/" + maxPage + "ページ").ToString());
+
+                sum = 0;
+
+                //明細
+                for (var i = 0; i < maxRow; i++)
+                {
+                    if (CurRow >= M部品.Count) break;
+
+                    DataRow targetRow = M部品[CurRow];
+
+                    paoRep.Write("部品コード", targetRow["部品コード"].ToString() != "" ? targetRow["部品コード"].ToString() : " ", i + 1);
+                    paoRep.Write("品名", targetRow["品名"].ToString() != "" ? targetRow["品名"].ToString() : " ", i + 1);
+                    paoRep.Write("型番", targetRow["型番"].ToString() != "" ? targetRow["型番"].ToString() : " ", i + 1);
+
+                    paoRep.Write("在庫数量", string.Format("{0:#,0}", targetRow["在庫数量"]) != "" ? string.Format("{0:#,0}", targetRow["在庫数量"]) : " ", i + 1);
+                    paoRep.Write("仕入先1単価", string.Format("{0:#,0.00}", targetRow["仕入先1単価"]) != "" ? string.Format("{0:#,0.00}", targetRow["仕入先1単価"]) : " ", i + 1);
+                    long money = (long)Math.Floor(Convert.ToDecimal(targetRow["仕入先1単価"] != DBNull.Value ? targetRow["仕入先1単価"] : 0) * Convert.ToInt32(targetRow["在庫数量"] != DBNull.Value ? targetRow["在庫数量"] : 0 ));
+                    paoRep.Write("金額",  string.Format("{0:#,0}", money) , i + 1);
+
+                    sum += money;
+
+                    CurRow++;
+
+
+                }
+
+                paoRep.Write("合計金額",  string.Format("{0:#,0}", sum));
+
+
+                page++;
+
+                paoRep.PageEnd();
+
+
+
+            }
+
+
+            paoRep.Output();
         }
 
         private void コマンド部品_Click(object sender, EventArgs e)

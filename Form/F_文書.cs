@@ -2949,10 +2949,8 @@ namespace u_net
 
         }
 
-        private void 結果内容_Validating(object sender, System.ComponentModel.CancelEventArgs e)
-        {
 
-        }
+        #region システム配布記録
 
         private void 配布日選択ボタン_Click(object sender, EventArgs e)
         {
@@ -3024,8 +3022,291 @@ namespace u_net
 
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        #endregion
+
+
+        #region 環境連絡書
+
+        private void 結果内容_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
+
         }
+
+        private void 発生日_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 発生日_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void 発生日_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 発生日_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 発生日_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void 発生日選択ボタン_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 連絡先_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "■全角100文字まで入力できます。";
+        }
+
+        private void 連絡先_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "各種項目の説明";
+        }
+
+        private void 連絡先_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 連絡先_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 連絡先_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void 環境負荷_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "■ドロップダウンリストから選択します。";
+        }
+
+        private void 環境負荷_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "各種項目の説明";
+        }
+
+        private void 環境負荷_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 環境負荷_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 環境負荷_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void 異常内容_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "■全角2,000文字まで入力可。　■ダブルクリックでズーム表示。";
+        }
+
+        private void 異常内容_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "各種項目の説明";
+        }
+
+        private void 異常内容_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 異常内容_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 異常内容_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 異常内容_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void 回答書ボタン_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        #endregion
+
+
+        #region 記録
+
+        private void 日付1選択ボタン_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 日付1_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 日付1_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void 日付1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 日付1_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 日付1_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void 日付1_Leave(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 日付2_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 日付2_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void 日付2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 日付2_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 日付2_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void 日付2_Leave(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 参加者_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 参加者_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 参加者_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void 場所_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 場所_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 場所_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void 目的_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 目的_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 目的_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 目的_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void 目的_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "■2,000字（全角・半角の区別なし）まで入力できます。";
+        }
+
+        private void 目的_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "各種項目の説明";
+        }
+
+        private void 報告内容_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 報告内容_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 報告内容_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 報告内容_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void 報告内容_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "■4,000字（全角・半角の区別なし）まで入力できます。";
+        }
+
+        private void 報告内容_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "各種項目の説明";
+        }
+
+        #endregion
     }
 }
