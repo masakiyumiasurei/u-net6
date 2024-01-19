@@ -97,7 +97,7 @@ namespace u_net
             回答日4選択ボタン = new Button();
             結果日付選択ボタン = new Button();
             配布日選択ボタン = new Button();
-            button1 = new Button();
+            発生日選択ボタン = new Button();
             改版ボタン = new Button();
             文書名_ラベル = new Label();
             件名_ラベル = new Label();
@@ -212,16 +212,20 @@ namespace u_net
             通信欄_ラベル = new Label();
             label28 = new Label();
             環境連絡書パネル = new Panel();
-            textBox2 = new TextBox();
-            textBox3 = new TextBox();
-            textBox4 = new TextBox();
+            回答書ボタン = new Button();
+            label32 = new Label();
+            環境負荷 = new ComboBox();
+            label31 = new Label();
+            異常内容 = new TextBox();
+            版数_環境連絡書 = new TextBox();
+            文書コード_環境連絡書 = new TextBox();
             label27 = new Label();
             label29 = new Label();
             label30 = new Label();
-            textBox5 = new TextBox();
-            label31 = new Label();
-            textBox6 = new TextBox();
-            label32 = new Label();
+            連絡先 = new TextBox();
+            連絡先_ラベル = new Label();
+            発生日 = new TextBox();
+            発生日_ラベル = new Label();
             文書添付パネル = new Panel();
             文書添付 = new MultiRowDesigner.文書添付();
             panel1.SuspendLayout();
@@ -896,18 +900,19 @@ namespace u_net
             配布日選択ボタン.UseVisualStyleBackColor = true;
             配布日選択ボタン.Click += 配布日選択ボタン_Click;
             // 
-            // button1
+            // 発生日選択ボタン
             // 
-            button1.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            button1.Location = new Point(190, 6);
-            button1.Margin = new Padding(4);
-            button1.Name = "button1";
-            button1.Size = new Size(20, 20);
-            button1.TabIndex = 10286;
-            button1.TabStop = false;
-            button1.Text = "▼";
-            toolTip1.SetToolTip(button1, "カレンダー");
-            button1.UseVisualStyleBackColor = true;
+            発生日選択ボタン.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            発生日選択ボタン.Location = new Point(190, 6);
+            発生日選択ボタン.Margin = new Padding(4);
+            発生日選択ボタン.Name = "発生日選択ボタン";
+            発生日選択ボタン.Size = new Size(20, 20);
+            発生日選択ボタン.TabIndex = 10286;
+            発生日選択ボタン.TabStop = false;
+            発生日選択ボタン.Text = "▼";
+            toolTip1.SetToolTip(発生日選択ボタン, "カレンダー");
+            発生日選択ボタン.UseVisualStyleBackColor = true;
+            発生日選択ボタン.Click += 発生日選択ボタン_Click;
             // 
             // 改版ボタン
             // 
@@ -1078,7 +1083,6 @@ namespace u_net
             システム配布記録.Name = "システム配布記録";
             システム配布記録.Size = new Size(404, 376);
             システム配布記録.TabIndex = 17;
-            システム配布記録.Visible = false;
             // 
             // 配布目的
             // 
@@ -2470,62 +2474,132 @@ namespace u_net
             // 
             // 環境連絡書パネル
             // 
-            環境連絡書パネル.Controls.Add(textBox2);
-            環境連絡書パネル.Controls.Add(textBox3);
-            環境連絡書パネル.Controls.Add(textBox4);
+            環境連絡書パネル.Controls.Add(回答書ボタン);
+            環境連絡書パネル.Controls.Add(label32);
+            環境連絡書パネル.Controls.Add(環境負荷);
+            環境連絡書パネル.Controls.Add(label31);
+            環境連絡書パネル.Controls.Add(異常内容);
+            環境連絡書パネル.Controls.Add(版数_環境連絡書);
+            環境連絡書パネル.Controls.Add(文書コード_環境連絡書);
             環境連絡書パネル.Controls.Add(label27);
             環境連絡書パネル.Controls.Add(label29);
             環境連絡書パネル.Controls.Add(label30);
-            環境連絡書パネル.Controls.Add(textBox5);
-            環境連絡書パネル.Controls.Add(label31);
-            環境連絡書パネル.Controls.Add(button1);
-            環境連絡書パネル.Controls.Add(textBox6);
-            環境連絡書パネル.Controls.Add(label32);
+            環境連絡書パネル.Controls.Add(連絡先);
+            環境連絡書パネル.Controls.Add(連絡先_ラベル);
+            環境連絡書パネル.Controls.Add(発生日選択ボタン);
+            環境連絡書パネル.Controls.Add(発生日);
+            環境連絡書パネル.Controls.Add(発生日_ラベル);
             環境連絡書パネル.Location = new Point(9, 226);
             環境連絡書パネル.Name = "環境連絡書パネル";
             環境連絡書パネル.Size = new Size(404, 376);
             環境連絡書パネル.TabIndex = 17;
-            環境連絡書パネル.Visible = false;
             // 
-            // textBox2
+            // 回答書ボタン
             // 
-            textBox2.BackColor = SystemColors.Window;
-            textBox2.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            textBox2.ImeMode = ImeMode.Hiragana;
-            textBox2.Location = new Point(0, 83);
-            textBox2.Margin = new Padding(3, 2, 3, 2);
-            textBox2.Multiline = true;
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(401, 288);
-            textBox2.TabIndex = 19;
+            回答書ボタン.Enabled = false;
+            回答書ボタン.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            回答書ボタン.Location = new Point(147, 342);
+            回答書ボタン.Margin = new Padding(4);
+            回答書ボタン.Name = "回答書ボタン";
+            回答書ボタン.RightToLeft = RightToLeft.Yes;
+            回答書ボタン.Size = new Size(102, 24);
+            回答書ボタン.TabIndex = 10295;
+            回答書ボタン.TabStop = false;
+            回答書ボタン.Text = "環境回答書";
+            回答書ボタン.UseVisualStyleBackColor = true;
+            回答書ボタン.Click += 回答書ボタン_Click;
             // 
-            // textBox3
+            // label32
             // 
-            textBox3.BackColor = Color.White;
-            textBox3.Enabled = false;
-            textBox3.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            textBox3.ImeMode = ImeMode.Disable;
-            textBox3.Location = new Point(288, 31);
-            textBox3.Margin = new Padding(3, 2, 3, 2);
-            textBox3.Name = "textBox3";
-            textBox3.ReadOnly = true;
-            textBox3.Size = new Size(32, 20);
-            textBox3.TabIndex = 10292;
-            textBox3.Visible = false;
+            label32.AllowDrop = true;
+            label32.AutoEllipsis = true;
+            label32.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label32.ForeColor = SystemColors.ActiveCaptionText;
+            label32.ImageAlign = ContentAlignment.MiddleLeft;
+            label32.Location = new Point(85, 99);
+            label32.Margin = new Padding(0);
+            label32.Name = "label32";
+            label32.Size = new Size(305, 20);
+            label32.TabIndex = 10294;
+            label32.Text = "※できるだけ具体的に詳しく記述してください。";
+            label32.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // textBox4
+            // 環境負荷
             // 
-            textBox4.BackColor = Color.White;
-            textBox4.Enabled = false;
-            textBox4.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            textBox4.ImeMode = ImeMode.Disable;
-            textBox4.Location = new Point(288, 6);
-            textBox4.Margin = new Padding(3, 2, 3, 2);
-            textBox4.Name = "textBox4";
-            textBox4.ReadOnly = true;
-            textBox4.Size = new Size(113, 20);
-            textBox4.TabIndex = 10291;
-            textBox4.Visible = false;
+            環境負荷.BackColor = SystemColors.Window;
+            環境負荷.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            環境負荷.FormattingEnabled = true;
+            環境負荷.ImeMode = ImeMode.Disable;
+            環境負荷.Location = new Point(86, 70);
+            環境負荷.Name = "環境負荷";
+            環境負荷.Size = new Size(163, 21);
+            環境負荷.TabIndex = 19;
+            環境負荷.SelectedIndexChanged += 環境負荷_SelectedIndexChanged;
+            環境負荷.Enter += 環境負荷_Enter;
+            環境負荷.Leave += 環境負荷_Leave;
+            環境負荷.Validating += 環境負荷_Validating;
+            環境負荷.Validated += 環境負荷_Validated;
+            // 
+            // label31
+            // 
+            label31.AllowDrop = true;
+            label31.AutoEllipsis = true;
+            label31.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label31.ForeColor = SystemColors.ActiveCaptionText;
+            label31.ImageAlign = ContentAlignment.MiddleLeft;
+            label31.Location = new Point(0, 70);
+            label31.Margin = new Padding(0);
+            label31.Name = "label31";
+            label31.Size = new Size(85, 20);
+            label31.TabIndex = 10293;
+            label31.Text = "環境負荷";
+            label31.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // 異常内容
+            // 
+            異常内容.BackColor = SystemColors.Window;
+            異常内容.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            異常内容.ImeMode = ImeMode.Hiragana;
+            異常内容.Location = new Point(0, 120);
+            異常内容.Margin = new Padding(3, 2, 3, 2);
+            異常内容.Multiline = true;
+            異常内容.Name = "異常内容";
+            異常内容.Size = new Size(401, 214);
+            異常内容.TabIndex = 20;
+            異常内容.TextChanged += 異常内容_TextChanged;
+            異常内容.DoubleClick += 異常内容_DoubleClick;
+            異常内容.Enter += 異常内容_Enter;
+            異常内容.Leave += 異常内容_Leave;
+            異常内容.Validating += 異常内容_Validating;
+            異常内容.Validated += 異常内容_Validated;
+            // 
+            // 版数_環境連絡書
+            // 
+            版数_環境連絡書.BackColor = Color.White;
+            版数_環境連絡書.Enabled = false;
+            版数_環境連絡書.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            版数_環境連絡書.ImeMode = ImeMode.Disable;
+            版数_環境連絡書.Location = new Point(369, 5);
+            版数_環境連絡書.Margin = new Padding(3, 2, 3, 2);
+            版数_環境連絡書.Name = "版数_環境連絡書";
+            版数_環境連絡書.ReadOnly = true;
+            版数_環境連絡書.Size = new Size(32, 20);
+            版数_環境連絡書.TabIndex = 10292;
+            版数_環境連絡書.Visible = false;
+            // 
+            // 文書コード_環境連絡書
+            // 
+            文書コード_環境連絡書.BackColor = Color.White;
+            文書コード_環境連絡書.Enabled = false;
+            文書コード_環境連絡書.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            文書コード_環境連絡書.ImeMode = ImeMode.Disable;
+            文書コード_環境連絡書.Location = new Point(288, 6);
+            文書コード_環境連絡書.Margin = new Padding(3, 2, 3, 2);
+            文書コード_環境連絡書.Name = "文書コード_環境連絡書";
+            文書コード_環境連絡書.ReadOnly = true;
+            文書コード_環境連絡書.Size = new Size(49, 20);
+            文書コード_環境連絡書.TabIndex = 10291;
+            文書コード_環境連絡書.Visible = false;
             // 
             // label27
             // 
@@ -2534,10 +2608,10 @@ namespace u_net
             label27.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             label27.ForeColor = SystemColors.ActiveCaptionText;
             label27.ImageAlign = ContentAlignment.MiddleLeft;
-            label27.Location = new Point(217, 32);
+            label27.Location = new Point(339, 6);
             label27.Margin = new Padding(0);
             label27.Name = "label27";
-            label27.Size = new Size(68, 20);
+            label27.Size = new Size(33, 20);
             label27.TabIndex = 10290;
             label27.Text = "版数";
             label27.TextAlign = ContentAlignment.MiddleLeft;
@@ -2566,65 +2640,76 @@ namespace u_net
             label30.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             label30.ForeColor = SystemColors.ActiveCaptionText;
             label30.ImageAlign = ContentAlignment.MiddleLeft;
-            label30.Location = new Point(0, 61);
+            label30.Location = new Point(0, 99);
             label30.Margin = new Padding(0);
             label30.Name = "label30";
             label30.Size = new Size(85, 20);
             label30.TabIndex = 10288;
-            label30.Text = "配布目的";
+            label30.Text = "内容";
             label30.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // textBox5
+            // 連絡先
             // 
-            textBox5.BackColor = Color.White;
-            textBox5.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            textBox5.ImeMode = ImeMode.Disable;
-            textBox5.Location = new Point(86, 32);
-            textBox5.Margin = new Padding(3, 2, 3, 2);
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(102, 20);
-            textBox5.TabIndex = 18;
+            連絡先.BackColor = Color.White;
+            連絡先.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            連絡先.ImeMode = ImeMode.Hiragana;
+            連絡先.Location = new Point(86, 31);
+            連絡先.Margin = new Padding(3, 2, 3, 2);
+            連絡先.Multiline = true;
+            連絡先.Name = "連絡先";
+            連絡先.Size = new Size(315, 34);
+            連絡先.TabIndex = 18;
+            連絡先.TextChanged += 連絡先_TextChanged;
+            連絡先.Enter += 連絡先_Enter;
+            連絡先.Leave += 連絡先_Leave;
+            連絡先.Validating += 連絡先_Validating;
+            連絡先.Validated += 連絡先_Validated;
             // 
-            // label31
+            // 連絡先_ラベル
             // 
-            label31.AllowDrop = true;
-            label31.AutoEllipsis = true;
-            label31.Font = new Font("BIZ UDゴシック", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label31.ForeColor = SystemColors.ActiveCaptionText;
-            label31.ImageAlign = ContentAlignment.MiddleLeft;
-            label31.Location = new Point(0, 31);
-            label31.Margin = new Padding(0);
-            label31.Name = "label31";
-            label31.Size = new Size(85, 20);
-            label31.TabIndex = 10287;
-            label31.Text = "配布バージョン";
-            label31.TextAlign = ContentAlignment.MiddleLeft;
+            連絡先_ラベル.AllowDrop = true;
+            連絡先_ラベル.AutoEllipsis = true;
+            連絡先_ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            連絡先_ラベル.ForeColor = SystemColors.ActiveCaptionText;
+            連絡先_ラベル.ImageAlign = ContentAlignment.MiddleLeft;
+            連絡先_ラベル.Location = new Point(0, 31);
+            連絡先_ラベル.Margin = new Padding(0);
+            連絡先_ラベル.Name = "連絡先_ラベル";
+            連絡先_ラベル.Size = new Size(85, 20);
+            連絡先_ラベル.TabIndex = 10287;
+            連絡先_ラベル.Text = "連絡先";
+            連絡先_ラベル.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // textBox6
+            // 発生日
             // 
-            textBox6.BackColor = Color.White;
-            textBox6.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            textBox6.ImeMode = ImeMode.Disable;
-            textBox6.Location = new Point(86, 6);
-            textBox6.Margin = new Padding(3, 2, 3, 2);
-            textBox6.Name = "textBox6";
-            textBox6.Size = new Size(102, 20);
-            textBox6.TabIndex = 17;
+            発生日.BackColor = Color.White;
+            発生日.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            発生日.ImeMode = ImeMode.Disable;
+            発生日.Location = new Point(86, 6);
+            発生日.Margin = new Padding(3, 2, 3, 2);
+            発生日.Name = "発生日";
+            発生日.Size = new Size(102, 20);
+            発生日.TabIndex = 17;
+            発生日.TextChanged += 発生日_TextChanged;
+            発生日.DoubleClick += 発生日_DoubleClick;
+            発生日.KeyDown += 発生日_KeyDown;
+            発生日.Validating += 発生日_Validating;
+            発生日.Validated += 発生日_Validated;
             // 
-            // label32
+            // 発生日_ラベル
             // 
-            label32.AllowDrop = true;
-            label32.AutoEllipsis = true;
-            label32.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label32.ForeColor = SystemColors.ActiveCaptionText;
-            label32.ImageAlign = ContentAlignment.MiddleLeft;
-            label32.Location = new Point(0, 5);
-            label32.Margin = new Padding(0);
-            label32.Name = "label32";
-            label32.Size = new Size(85, 20);
-            label32.TabIndex = 16;
-            label32.Text = "配布日";
-            label32.TextAlign = ContentAlignment.MiddleLeft;
+            発生日_ラベル.AllowDrop = true;
+            発生日_ラベル.AutoEllipsis = true;
+            発生日_ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            発生日_ラベル.ForeColor = SystemColors.ActiveCaptionText;
+            発生日_ラベル.ImageAlign = ContentAlignment.MiddleLeft;
+            発生日_ラベル.Location = new Point(0, 5);
+            発生日_ラベル.Margin = new Padding(0);
+            発生日_ラベル.Name = "発生日_ラベル";
+            発生日_ラベル.Size = new Size(85, 20);
+            発生日_ラベル.TabIndex = 16;
+            発生日_ラベル.Text = "発生日";
+            発生日_ラベル.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // 文書添付パネル
             // 
@@ -2994,19 +3079,23 @@ namespace u_net
         private TextBox 版数_システム配布記録;
         private TextBox 配布目的;
         private Panel 環境連絡書パネル;
-        private TextBox textBox2;
-        private TextBox textBox3;
-        private TextBox textBox4;
+        private TextBox 異常内容;
+        private TextBox 版数_環境連絡書;
+        private TextBox 文書コード_環境連絡書;
         private Label label27;
         private Label label29;
         private Label label30;
-        private TextBox textBox5;
-        private Label label31;
-        internal Button button1;
-        private TextBox textBox6;
-        private Label label32;
+        private TextBox 連絡先;
+        private Label 連絡先_ラベル;
+        internal Button 発生日選択ボタン;
+        private TextBox 発生日;
+        private Label 発生日_ラベル;
         private Panel 文書添付パネル;
         private MultiRowDesigner.文書添付 文書添付;
+        private Label label31;
+        internal ComboBox 環境負荷;
+        private Label label32;
+        private Button 回答書ボタン;
     }
 }
 

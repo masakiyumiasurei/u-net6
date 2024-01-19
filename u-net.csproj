@@ -172,198 +172,74 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Form\F_ファックス送信テスト.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="Form\F_ファックス抽出設定.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="Form\F_棚卸登録抽出設定.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="Form\F_棚卸登録.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="Form\F_棚卸作業.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="Form\F_文書.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="Form\F_仕入先別買掛一覧表.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="Form\F_購買買掛一覧表.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="Form\F_顧客コード選択.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="Form\F_締め処理.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="Form\F_請求条件設定.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="Form\F_出力.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="Form\F_出荷管理旧.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="Form\F_売上計画_重要顧客設定.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="Form\F_振込繰越.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Update="Form\F_ファックス送信テスト.cs" />
+    <Compile Update="Form\F_ファックス抽出設定.cs" />
+    <Compile Update="Form\F_棚卸登録抽出設定.cs" />
+    <Compile Update="Form\F_棚卸登録.cs" />
+    <Compile Update="Form\F_棚卸作業.cs" />
+    <Compile Update="Form\F_文書.cs" />
+    <Compile Update="Form\F_仕入先別買掛一覧表.cs" />
+    <Compile Update="Form\F_購買買掛一覧表.cs" />
+    <Compile Update="Form\F_顧客コード選択.cs" />
+    <Compile Update="Form\F_締め処理.cs" />
+    <Compile Update="Form\F_請求条件設定.cs" />
+    <Compile Update="Form\F_出力.cs" />
+    <Compile Update="Form\F_出荷管理旧.cs" />
+    <Compile Update="Form\F_売上計画_重要顧客設定.cs" />
+    <Compile Update="Form\F_振込繰越.cs" />
     <Compile Update="Form\F_システム.cs" />
-    <Compile Update="Form\F_商品構成.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="Form\F_売掛明細.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="Form\F_TransferList_Others.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Update="Form\F_商品構成.cs" />
+    <Compile Update="Form\F_売掛明細.cs" />
+    <Compile Update="Form\F_TransferList_Others.cs" />
     <Compile Update="Form\F_入庫完了.cs" />
-    <Compile Update="Form\F_売上計画.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="Form\F_相殺.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="Form\F_振込一覧.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Update="Form\F_売上計画.cs" />
+    <Compile Update="Form\F_相殺.cs" />
+    <Compile Update="Form\F_振込一覧.cs" />
     <Compile Update="Form\F_支払明細参照.cs" />
-    <Compile Update="Form\F_支払一覧_月間.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="Form\F_手形.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="Form\F_業務日報.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="Form\F_支払管理_抽出.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Update="Form\F_支払一覧_月間.cs" />
+    <Compile Update="Form\F_手形.cs" />
+    <Compile Update="Form\F_業務日報.cs" />
+    <Compile Update="Form\F_支払管理_抽出.cs" />
     <Compile Update="Form\F_支払.cs" />
-    <Compile Update="Form\F_ユニット参照.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="Form\F_ユニット構成番号検索.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="Form\F_ユニット_ツール.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Update="Form\F_ユニット参照.cs" />
+    <Compile Update="Form\F_ユニット構成番号検索.cs" />
+    <Compile Update="Form\F_ユニット_ツール.cs" />
     <Compile Update="Form\F_製品材料費参照.cs" />
-    <Compile Update="Form\F_製品参照.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="Form\F_発注_買掛区分設定.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="Form\F_ユニット部品一括変更.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="Form\F_支払管理.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="Form\F_支払管理_承認.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="Form\F_ユニット使用製品参照.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Update="Form\F_製品参照.cs" />
+    <Compile Update="Form\F_発注_買掛区分設定.cs" />
+    <Compile Update="Form\F_ユニット部品一括変更.cs" />
+    <Compile Update="Form\F_支払管理.cs" />
+    <Compile Update="Form\F_支払管理_承認.cs" />
+    <Compile Update="Form\F_ユニット使用製品参照.cs" />
     <Compile Update="Form\F_支払一覧_年間.cs" />
-    <Compile Update="Form\F_売上計画_抽出.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="Form\F_請求処理.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="Form\F_製品管理_汎用キー抽出.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="Form\F_製品管理_汎用キー設定.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="Form\F_製品_ツール.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="Form\F_入金.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="Form\F_ユニット選択.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="Form\F_部品履歴.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="Form\F_部品_資料添付.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="Form\F_部品選択.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="Form\F_部品購買設定.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="Form\F_部品集合管理_抽出.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="Form\F_部品集合管理.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="Form\F_部品集合.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="Form\F_購買.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="Form\F_ユニット.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="Form\F_ユニット管理.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="Form\F_ユニット管理_抽出.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="Form\F_製品管理_抽出.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="Form\F_製品管理.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="Form\F_売上一覧_区分別_抽出.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="Form\F_売上一覧_全国地区別.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="Form\F_売上一覧_区分別_年度.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="Form\F_売上一覧_売上地区別.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="Form\F_売上一覧_区分別.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="Form\F_売上明細参照.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="Form\F_売上一覧_担当者別.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="Form\F_売上分析.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Update="Form\F_売上計画_抽出.cs" />
+    <Compile Update="Form\F_請求処理.cs" />
+    <Compile Update="Form\F_製品管理_汎用キー抽出.cs" />
+    <Compile Update="Form\F_製品管理_汎用キー設定.cs" />
+    <Compile Update="Form\F_製品_ツール.cs" />
+    <Compile Update="Form\F_入金.cs" />
+    <Compile Update="Form\F_ユニット選択.cs" />
+    <Compile Update="Form\F_部品履歴.cs" />
+    <Compile Update="Form\F_部品_資料添付.cs" />
+    <Compile Update="Form\F_部品選択.cs" />
+    <Compile Update="Form\F_部品購買設定.cs" />
+    <Compile Update="Form\F_部品集合管理_抽出.cs" />
+    <Compile Update="Form\F_部品集合管理.cs" />
+    <Compile Update="Form\F_部品集合.cs" />
+    <Compile Update="Form\F_購買.cs" />
+    <Compile Update="Form\F_ユニット.cs" />
+    <Compile Update="Form\F_ユニット管理.cs" />
+    <Compile Update="Form\F_ユニット管理_抽出.cs" />
+    <Compile Update="Form\F_製品管理_抽出.cs" />
+    <Compile Update="Form\F_製品管理.cs" />
+    <Compile Update="Form\F_売上一覧_区分別_抽出.cs" />
+    <Compile Update="Form\F_売上一覧_全国地区別.cs" />
+    <Compile Update="Form\F_売上一覧_区分別_年度.cs" />
+    <Compile Update="Form\F_売上一覧_売上地区別.cs" />
+    <Compile Update="Form\F_売上一覧_区分別.cs" />
+    <Compile Update="Form\F_売上明細参照.cs" />
+    <Compile Update="Form\F_売上一覧_担当者別.cs" />
+    <Compile Update="Form\F_売上分析.cs" />
     
     <Compile Update="Form\F_シリーズ在庫補正.cs" />
     <Compile Update="Form\F_入出庫履歴.cs" />
