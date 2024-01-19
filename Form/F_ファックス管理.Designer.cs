@@ -47,11 +47,13 @@
             label2 = new Label();
             dataGridView1 = new DataGridView();
             panel2 = new Panel();
-            label3 = new Label();
             ボタン = new Button();
+            panel3 = new Panel();
+            label3 = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel2.SuspendLayout();
+            panel3.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
@@ -89,6 +91,7 @@
             コマンド更新.TabStop = false;
             コマンド更新.Text = "更新";
             コマンド更新.UseVisualStyleBackColor = true;
+            コマンド更新.Click += コマンド更新_Click;
             // 
             // command
             // 
@@ -102,7 +105,6 @@
             command.TabIndex = 11;
             command.TabStop = false;
             command.UseVisualStyleBackColor = true;
-            command.Click += コマンド指導書変更有り_Click;
             // 
             // コマンド再送
             // 
@@ -117,7 +119,7 @@
             コマンド再送.TabStop = false;
             コマンド再送.Text = "再送";
             コマンド再送.UseVisualStyleBackColor = true;
-            コマンド再送.Click += コマンド指導書設定_Click;
+            コマンド再送.Click += コマンド再送_Click;
             // 
             // コマンド参照
             // 
@@ -132,7 +134,7 @@
             コマンド参照.TabStop = false;
             コマンド参照.Text = "送信元";
             コマンド参照.UseVisualStyleBackColor = true;
-            コマンド参照.Click += コマンド製品_Click;
+            コマンド参照.Click += コマンド参照_Click;
             // 
             // コマンド表示
             // 
@@ -147,7 +149,7 @@
             コマンド表示.TabStop = false;
             コマンド表示.Text = "送信文書";
             コマンド表示.UseVisualStyleBackColor = true;
-            コマンド表示.Click += コマンド材料費_Click;
+            コマンド表示.Click += コマンド表示_Click;
             // 
             // コマンド非表示
             // 
@@ -163,6 +165,7 @@
             コマンド非表示.TabStop = false;
             コマンド非表示.Text = "非表示";
             コマンド非表示.UseVisualStyleBackColor = true;
+            コマンド非表示.Click += コマンド非表示_Click;
             // 
             // コマンド入出力
             // 
@@ -196,6 +199,7 @@
             // 
             // コマンド検索
             // 
+            コマンド検索.Enabled = false;
             コマンド検索.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             コマンド検索.ForeColor = Color.Black;
             コマンド検索.ImageAlign = ContentAlignment.BottomLeft;
@@ -226,6 +230,7 @@
             // 
             // コマンド印刷
             // 
+            コマンド印刷.Enabled = false;
             コマンド印刷.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             コマンド印刷.ForeColor = Color.Black;
             コマンド印刷.ImageAlign = ContentAlignment.BottomLeft;
@@ -237,7 +242,6 @@
             コマンド印刷.TabStop = false;
             コマンド印刷.Text = "印刷";
             コマンド印刷.UseVisualStyleBackColor = true;
-            コマンド印刷.Click += コマンド更新_Click;
             // 
             // コマンド終了
             // 
@@ -287,13 +291,15 @@
             dataGridView1.AllowUserToAddRows = false;
             dataGridView1.AllowUserToDeleteRows = false;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(0, 68);
+            dataGridView1.Dock = DockStyle.Fill;
+            dataGridView1.Location = new Point(0, 59);
             dataGridView1.Margin = new Padding(3, 2, 3, 2);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
             dataGridView1.RowTemplate.Height = 29;
-            dataGridView1.Size = new Size(1054, 394);
+            dataGridView1.Size = new Size(1054, 411);
             dataGridView1.TabIndex = 87;
+            dataGridView1.CellDoubleClick += dataGridView1_CellDoubleClick;
             // 
             // panel2
             // 
@@ -308,16 +314,6 @@
             panel2.Size = new Size(1054, 27);
             panel2.TabIndex = 88;
             // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            label3.Location = new Point(6, 42);
-            label3.Name = "label3";
-            label3.Size = new Size(545, 14);
-            label3.TabIndex = 87;
-            label3.Text = "※FAX送信中の状態で本ウィンドウを閉じるには[非表示]コマンドを実行してください。";
-            // 
             // ボタン
             // 
             ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
@@ -327,27 +323,50 @@
             ボタン.TabIndex = 87;
             ボタン.Text = "ログ出力";
             ボタン.UseVisualStyleBackColor = true;
+            ボタン.Visible = false;
+            // 
+            // panel3
+            // 
+            panel3.Controls.Add(label3);
+            panel3.Dock = DockStyle.Top;
+            panel3.Location = new Point(0, 32);
+            panel3.Margin = new Padding(3, 2, 3, 2);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(1054, 27);
+            panel3.TabIndex = 89;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            label3.Location = new Point(16, 7);
+            label3.Name = "label3";
+            label3.Size = new Size(545, 14);
+            label3.TabIndex = 88;
+            label3.Text = "※FAX送信中の状態で本ウィンドウを閉じるには[非表示]コマンドを実行してください。";
             // 
             // F_ファックス管理
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1054, 497);
-            Controls.Add(label3);
-            Controls.Add(panel2);
             Controls.Add(dataGridView1);
+            Controls.Add(panel3);
+            Controls.Add(panel2);
             Controls.Add(panel1);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(3, 2, 3, 2);
             Name = "F_ファックス管理";
             Text = "ファックス管理";
+            Load += Form_Load;
             KeyDown += Form_KeyDown;
             panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
+            panel3.ResumeLayout(false);
+            panel3.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -496,7 +515,8 @@
         private Panel panel2;
         private Button コマンド検索;
         private Button コマンド更新;
-        private Label label3;
         private Button ボタン;
+        private Panel panel3;
+        private Label label3;
     }
 }

@@ -28,28 +28,30 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.送信日開始 = new TextBox();
+            送信日開始 = new TextBox();
             送信日_ラベル = new Label();
             抽出ボタン = new Button();
             キャンセルボタン = new Button();
             groupBox1 = new GroupBox();
-            送信日開始選択 = new Button();
-            label1 = new Label();
-            送信日終了 = new TextBox();
             送信日終了選択 = new Button();
+            送信日終了 = new TextBox();
+            label1 = new Label();
+            送信日開始選択 = new Button();
             groupBox1.SuspendLayout();
             SuspendLayout();
             // 
             // 送信日開始
             // 
-            this.送信日開始.BackColor = Color.White;
-            this.送信日開始.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            this.送信日開始.ImeMode = ImeMode.Disable;
-            this.送信日開始.Location = new Point(115, 15);
-            this.送信日開始.Margin = new Padding(3, 2, 3, 2);
-            this.送信日開始.Name = "送信日開始";
-            this.送信日開始.Size = new Size(102, 20);
-            this.送信日開始.TabIndex = 2;
+            送信日開始.BackColor = Color.White;
+            送信日開始.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            送信日開始.ImeMode = ImeMode.Disable;
+            送信日開始.Location = new Point(115, 15);
+            送信日開始.Margin = new Padding(3, 2, 3, 2);
+            送信日開始.Name = "送信日開始";
+            送信日開始.Size = new Size(102, 20);
+            送信日開始.TabIndex = 2;
+            送信日開始.Click += 送信日開始_Click;
+            送信日開始.DoubleClick += 送信日開始_DoubleClick;
             // 
             // 送信日_ラベル
             // 
@@ -93,25 +95,38 @@
             groupBox1.Controls.Add(label1);
             groupBox1.Controls.Add(送信日開始選択);
             groupBox1.Controls.Add(送信日_ラベル);
-            groupBox1.Controls.Add(this.送信日開始);
+            groupBox1.Controls.Add(送信日開始);
             groupBox1.Location = new Point(9, 0);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(401, 165);
             groupBox1.TabIndex = 19;
             groupBox1.TabStop = false;
             // 
-            // 送信日開始選択
+            // 送信日終了選択
             // 
-            送信日開始選択.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            送信日開始選択.Location = new Point(220, 15);
-            送信日開始選択.Margin = new Padding(4);
-            送信日開始選択.Name = "送信日開始選択";
-            送信日開始選択.Size = new Size(20, 20);
-            送信日開始選択.TabIndex = 10206;
-            送信日開始選択.TabStop = false;
-            送信日開始選択.Text = "▼";
-            送信日開始選択.UseVisualStyleBackColor = true;
-            送信日開始選択.Click += 送信日開始選択_Click;
+            送信日終了選択.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            送信日終了選択.Location = new Point(372, 16);
+            送信日終了選択.Margin = new Padding(4);
+            送信日終了選択.Name = "送信日終了選択";
+            送信日終了選択.Size = new Size(20, 20);
+            送信日終了選択.TabIndex = 21019;
+            送信日終了選択.TabStop = false;
+            送信日終了選択.Text = "▼";
+            送信日終了選択.UseVisualStyleBackColor = true;
+            送信日終了選択.Click += 送信日終了選択_Click;
+            // 
+            // 送信日終了
+            // 
+            送信日終了.BackColor = Color.White;
+            送信日終了.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            送信日終了.ImeMode = ImeMode.Disable;
+            送信日終了.Location = new Point(267, 15);
+            送信日終了.Margin = new Padding(3, 2, 3, 2);
+            送信日終了.Name = "送信日終了";
+            送信日終了.Size = new Size(102, 20);
+            送信日終了.TabIndex = 2;
+            送信日終了.Click += 送信日終了_Click;
+            送信日終了.DoubleClick += 送信日終了_DoubleClick;
             // 
             // label1
             // 
@@ -128,29 +143,18 @@
             label1.Text = "～";
             label1.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // 送信日終了
+            // 送信日開始選択
             // 
-            送信日終了.BackColor = Color.White;
-            送信日終了.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            送信日終了.ImeMode = ImeMode.Disable;
-            送信日終了.Location = new Point(267, 15);
-            送信日終了.Margin = new Padding(3, 2, 3, 2);
-            送信日終了.Name = "送信日終了";
-            送信日終了.Size = new Size(102, 20);
-            送信日終了.TabIndex = 2;
-            // 
-            // 送信日終了選択
-            // 
-            送信日終了選択.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            送信日終了選択.Location = new Point(372, 16);
-            送信日終了選択.Margin = new Padding(4);
-            送信日終了選択.Name = "送信日終了選択";
-            送信日終了選択.Size = new Size(20, 20);
-            送信日終了選択.TabIndex = 21019;
-            送信日終了選択.TabStop = false;
-            送信日終了選択.Text = "▼";
-            送信日終了選択.UseVisualStyleBackColor = true;
-            送信日終了選択.Click += 送信日終了選択_Click;
+            送信日開始選択.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            送信日開始選択.Location = new Point(220, 15);
+            送信日開始選択.Margin = new Padding(4);
+            送信日開始選択.Name = "送信日開始選択";
+            送信日開始選択.Size = new Size(20, 20);
+            送信日開始選択.TabIndex = 10206;
+            送信日開始選択.TabStop = false;
+            送信日開始選択.Text = "▼";
+            送信日開始選択.UseVisualStyleBackColor = true;
+            送信日開始選択.Click += 送信日開始選択_Click;
             // 
             // F_ファックス抽出設定
             // 

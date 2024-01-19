@@ -449,8 +449,8 @@ namespace u_net
 
         private void 入庫完了ボタン_Click(object sender, EventArgs e)
         {
-            //F_入庫完了 fm = new F_入庫完了();
-            //fm.ShowDialog();
+            F_入庫完了 fm = new F_入庫完了();
+            fm.ShowDialog();
         }
 
         private void 部品納期管理ボタン_Click(object sender, EventArgs e)
@@ -462,14 +462,14 @@ namespace u_net
 
         private void 購買買掛一覧表ボタン_Click(object sender, EventArgs e)
         {
-            //F_購買買掛一覧表 fm = new F_購買買掛一覧表();
-            //fm.ShowDialog();
+            F_購買買掛一覧表 fm = new F_購買買掛一覧表();
+            fm.ShowDialog();
         }
 
         private void 仕入先別買掛一覧表ボタン_Click(object sender, EventArgs e)
         {
-            //F_仕入先別買掛一覧表 fm = new F_仕入先別買掛一覧表();
-            //fm.ShowDialog();
+            F_仕入先別買掛一覧表 fm = new F_仕入先別買掛一覧表();
+            fm.ShowDialog();
         }
 
         private void 仕入先登録ボタン_Click(object sender, EventArgs e)
@@ -500,8 +500,8 @@ namespace u_net
 
         private void 棚卸作業ボタン_Click(object sender, EventArgs e)
         {
-            //F_棚卸作業 fm = new F_棚卸作業();
-            //fm.ShowDialog();
+            F_棚卸作業 fm = new F_棚卸作業();
+            fm.ShowDialog();
         }
 
         private void 製品登録ボタン_Click(object sender, EventArgs e)
@@ -602,26 +602,26 @@ namespace u_net
 
         private void 請求処理ボタン_Click(object sender, EventArgs e)
         {
-            //F_請求処理 fm = new F_請求処理();
-            //fm.ShowDialog();
+            F_請求処理 fm = new F_請求処理();
+            fm.ShowDialog();
         }
 
         private void 支払一覧_年間ボタン_Click(object sender, EventArgs e)
         {
-            //F_支払一覧_年間 fm = new F_支払一覧_年間();
-            //fm.ShowDialog();
+            F_支払一覧_年間 fm = new F_支払一覧_年間();
+            fm.ShowDialog();
         }
 
         private void 支払一覧_月間ボタン_Click(object sender, EventArgs e)
         {
-            //F_支払一覧_月間 fm = new F_支払一覧_月間();
-            //fm.ShowDialog();
+            F_支払一覧_月間 fm = new F_支払一覧_月間();
+            fm.ShowDialog();
         }
 
         private void 振込一覧表ボタン_Click(object sender, EventArgs e)
         {
-            //F_振込一覧 fm = new F_振込一覧();
-            //fm.ShowDialog();
+            F_振込一覧 fm = new F_振込一覧();
+            fm.ShowDialog();
         }
 
         private void サポート記録ボタン_Click(object sender, EventArgs e)
@@ -730,8 +730,8 @@ namespace u_net
 
         private void ファックス管理ボタン_Click(object sender, EventArgs e)
         {
-            //F_ファックス管理 fm = new F_ファックス管理();
-            //fm.ShowDialog();
+            F_ファックス管理 fm = new F_ファックス管理();
+            fm.ShowDialog();
         }
 
         private void ファックス送付ボタン_Click(object sender, EventArgs e)
@@ -762,8 +762,8 @@ namespace u_net
 
         private void 旧業務日報ボタン_Click(object sender, EventArgs e)
         {
-            //F_業務日報 fm = new F_業務日報();
-            //fm.ShowDialog();
+            F_業務日報 fm = new F_業務日報();
+            fm.ShowDialog();
         }
 
         private void 教育計画管理ボタン_Click(object sender, EventArgs e)
@@ -923,10 +923,6 @@ namespace u_net
                 MessageBox.Show("エラーが発生しました。\n" + ex.Message);
             }
 
-
-
-
-
         }
 
         private void 承認管理ボタン_Click(object sender, EventArgs e)
@@ -965,8 +961,8 @@ namespace u_net
 
         private void 商品構成ボタン_Click(object sender, EventArgs e)
         {
-            //F_商品構成 fm = new F_商品構成();
-            //fm.ShowDialog();
+            F_商品構成2 fm = new F_商品構成2();
+            fm.ShowDialog();
         }
 
         private void 購買申請入力ボタン_Click(object sender, EventArgs e)
@@ -995,8 +991,8 @@ namespace u_net
 
         private void 会社情報ボタン_Click(object sender, EventArgs e)
         {
-            //F_会社情報 fm = new F_会社情報();
-            //fm.ShowDialog();
+            F_会社情報 fm = new F_会社情報();
+            fm.ShowDialog();
         }
     }
 }

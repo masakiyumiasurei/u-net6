@@ -30,12 +30,11 @@ namespace u_net
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(F_シリーズ危険在庫警告));
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            m単位BindingSource = new BindingSource(components);
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(F_シリーズ危険在庫警告));
             newDataSet = new newDataSet();
             combBox商品コードBindingSource = new BindingSource(components);
             m商品分類BindingSource = new BindingSource(components);
@@ -76,11 +75,9 @@ namespace u_net
             v商品ヘッダBindingSource = new BindingSource(components);
             v商品ヘッダTableAdapter = new uiDataSetTableAdapters.V商品ヘッダTableAdapter();
             combBoxMシリーズTableAdapter = new uiDataSetTableAdapters.combBoxMシリーズTableAdapter();
-            M単位TableAdapter = new uiDataSetTableAdapters.M単位TableAdapter();
             m商品分類TableAdapter = new uiDataSetTableAdapters.M商品分類TableAdapter();
             notifyIcon1 = new NotifyIcon(components);
             mshomeisaiTableAdapter = new newDataSetTableAdapters.MshomeisaiTableAdapter();
-            ((System.ComponentModel.ISupportInitialize)m単位BindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)newDataSet).BeginInit();
             ((System.ComponentModel.ISupportInitialize)combBox商品コードBindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)m商品分類BindingSource).BeginInit();
@@ -89,10 +86,6 @@ namespace u_net
             statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)v商品ヘッダBindingSource).BeginInit();
             SuspendLayout();
-            // 
-            // m単位BindingSource
-            // 
-            m単位BindingSource.DataMember = "M単位";
             // 
             // newDataSet
             // 
@@ -140,6 +133,7 @@ namespace u_net
             dataGridView1.RowTemplate.Height = 21;
             dataGridView1.Size = new Size(943, 329);
             dataGridView1.TabIndex = 109;
+            dataGridView1.CellPainting += DataGridView1_CellPainting;
             // 
             // 明細削除ボタン
             // 
@@ -323,10 +317,6 @@ namespace u_net
             // 
             combBoxMシリーズTableAdapter.ClearBeforeFill = true;
             // 
-            // M単位TableAdapter
-            // 
-            M単位TableAdapter.ClearBeforeFill = true;
-            // 
             // m商品分類TableAdapter
             // 
             m商品分類TableAdapter.ClearBeforeFill = true;
@@ -354,7 +344,7 @@ namespace u_net
             Margin = new Padding(3, 2, 3, 2);
             Name = "F_シリーズ危険在庫警告";
             Text = "シリーズ危険在庫警告";
-            ((System.ComponentModel.ISupportInitialize)m単位BindingSource).EndInit();
+            Load += Form_Load;
             ((System.ComponentModel.ISupportInitialize)newDataSet).EndInit();
             ((System.ComponentModel.ISupportInitialize)combBox商品コードBindingSource).EndInit();
             ((System.ComponentModel.ISupportInitialize)m商品分類BindingSource).EndInit();
@@ -406,8 +396,6 @@ namespace u_net
         private CalendarColumn 登録日;
 
         private DataGridView dataGridView1;
-        private BindingSource m単位BindingSource;
-        private uiDataSetTableAdapters.M単位TableAdapter M単位TableAdapter;
         private BindingSource m商品分類BindingSource;
         private uiDataSetTableAdapters.M商品分類TableAdapter m商品分類TableAdapter;
         private BindingSource combBox商品コードBindingSource;

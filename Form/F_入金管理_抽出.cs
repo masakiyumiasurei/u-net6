@@ -111,11 +111,11 @@ namespace u_net
 
         private void 抽出ボタン_Click(object sender, EventArgs e)
         {
+            FunctionClass fn = new FunctionClass();
             try
             {
                 Application.DoEvents();
-
-                FunctionClass fn = new FunctionClass();
+                                
                 fn.DoWait("しばらくお待ちください...");
 
                 F_入金管理? frmTarget = Application.OpenForms.OfType<F_入金管理>().FirstOrDefault();
@@ -170,6 +170,7 @@ namespace u_net
             }
             catch (Exception ex)
             {
+                if(fn.WaitForm!=null) fn.WaitForm.Close();
                 Debug.WriteLine(this.Name + "_抽出ボタン_Click - " + ex.Message);
                 MessageBox.Show("エラーが発生しました。", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
