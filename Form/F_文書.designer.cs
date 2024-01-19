@@ -98,6 +98,8 @@ namespace u_net
             結果日付選択ボタン = new Button();
             配布日選択ボタン = new Button();
             発生日選択ボタン = new Button();
+            日付1選択ボタン = new Button();
+            日付2選択ボタン = new Button();
             改版ボタン = new Button();
             文書名_ラベル = new Label();
             件名_ラベル = new Label();
@@ -228,11 +230,27 @@ namespace u_net
             発生日_ラベル = new Label();
             文書添付パネル = new Panel();
             文書添付 = new MultiRowDesigner.文書添付();
+            記録パネル = new Panel();
+            場所 = new TextBox();
+            label38 = new Label();
+            label36 = new Label();
+            日付2 = new TextBox();
+            label34 = new Label();
+            label33 = new Label();
+            目的 = new TextBox();
+            報告内容 = new TextBox();
+            版数_記録 = new TextBox();
+            文書コード_記録 = new TextBox();
+            label35 = new Label();
+            参加者 = new TextBox();
+            日付1 = new TextBox();
+            label37 = new Label();
             panel1.SuspendLayout();
             statusStrip1.SuspendLayout();
             システム配布記録.SuspendLayout();
             環境連絡書パネル.SuspendLayout();
             文書添付パネル.SuspendLayout();
+            記録パネル.SuspendLayout();
             SuspendLayout();
             // 
             // コマンド終了
@@ -913,6 +931,33 @@ namespace u_net
             toolTip1.SetToolTip(発生日選択ボタン, "カレンダー");
             発生日選択ボタン.UseVisualStyleBackColor = true;
             発生日選択ボタン.Click += 発生日選択ボタン_Click;
+            // 
+            // 日付1選択ボタン
+            // 
+            日付1選択ボタン.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            日付1選択ボタン.Location = new Point(190, 6);
+            日付1選択ボタン.Margin = new Padding(4);
+            日付1選択ボタン.Name = "日付1選択ボタン";
+            日付1選択ボタン.Size = new Size(20, 20);
+            日付1選択ボタン.TabIndex = 10286;
+            日付1選択ボタン.TabStop = false;
+            日付1選択ボタン.Text = "▼";
+            toolTip1.SetToolTip(日付1選択ボタン, "カレンダー");
+            日付1選択ボタン.UseVisualStyleBackColor = true;
+            日付1選択ボタン.Click += 日付1選択ボタン_Click;
+            // 
+            // 日付2選択ボタン
+            // 
+            日付2選択ボタン.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            日付2選択ボタン.Location = new Point(337, 6);
+            日付2選択ボタン.Margin = new Padding(4);
+            日付2選択ボタン.Name = "日付2選択ボタン";
+            日付2選択ボタン.Size = new Size(20, 20);
+            日付2選択ボタン.TabIndex = 21020;
+            日付2選択ボタン.TabStop = false;
+            日付2選択ボタン.Text = "▼";
+            toolTip1.SetToolTip(日付2選択ボタン, "カレンダー");
+            日付2選択ボタン.UseVisualStyleBackColor = true;
             // 
             // 改版ボタン
             // 
@@ -2755,6 +2800,247 @@ namespace u_net
             文書添付.Size = new Size(401, 548);
             文書添付.TabIndex = 10266;
             // 
+            // 記録パネル
+            // 
+            記録パネル.Controls.Add(場所);
+            記録パネル.Controls.Add(label38);
+            記録パネル.Controls.Add(label36);
+            記録パネル.Controls.Add(日付2選択ボタン);
+            記録パネル.Controls.Add(日付2);
+            記録パネル.Controls.Add(label34);
+            記録パネル.Controls.Add(label33);
+            記録パネル.Controls.Add(目的);
+            記録パネル.Controls.Add(報告内容);
+            記録パネル.Controls.Add(版数_記録);
+            記録パネル.Controls.Add(文書コード_記録);
+            記録パネル.Controls.Add(label35);
+            記録パネル.Controls.Add(参加者);
+            記録パネル.Controls.Add(日付1選択ボタン);
+            記録パネル.Controls.Add(日付1);
+            記録パネル.Controls.Add(label37);
+            記録パネル.Location = new Point(9, 226);
+            記録パネル.Name = "記録パネル";
+            記録パネル.Size = new Size(404, 376);
+            記録パネル.TabIndex = 10293;
+            // 
+            // 場所
+            // 
+            場所.BackColor = Color.White;
+            場所.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            場所.ImeMode = ImeMode.Hiragana;
+            場所.Location = new Point(86, 58);
+            場所.Margin = new Padding(3, 2, 3, 2);
+            場所.Name = "場所";
+            場所.Size = new Size(315, 20);
+            場所.TabIndex = 22;
+            場所.TextChanged += 場所_TextChanged;
+            場所.Validating += 場所_Validating;
+            場所.Validated += 場所_Validated;
+            // 
+            // label38
+            // 
+            label38.AllowDrop = true;
+            label38.AutoEllipsis = true;
+            label38.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label38.ForeColor = SystemColors.ActiveCaptionText;
+            label38.ImageAlign = ContentAlignment.MiddleLeft;
+            label38.Location = new Point(0, 58);
+            label38.Margin = new Padding(0);
+            label38.Name = "label38";
+            label38.Size = new Size(85, 20);
+            label38.TabIndex = 21;
+            label38.Text = "場所(&S)";
+            label38.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // label36
+            // 
+            label36.AllowDrop = true;
+            label36.AutoEllipsis = true;
+            label36.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label36.ForeColor = SystemColors.ActiveCaptionText;
+            label36.ImageAlign = ContentAlignment.MiddleLeft;
+            label36.Location = new Point(0, 32);
+            label36.Margin = new Padding(0);
+            label36.Name = "label36";
+            label36.Size = new Size(85, 20);
+            label36.TabIndex = 19;
+            label36.Text = "参加者(&N)";
+            label36.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // 日付2
+            // 
+            日付2.BackColor = Color.White;
+            日付2.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            日付2.ImeMode = ImeMode.Disable;
+            日付2.Location = new Point(233, 6);
+            日付2.Margin = new Padding(3, 2, 3, 2);
+            日付2.Name = "日付2";
+            日付2.Size = new Size(102, 20);
+            日付2.TabIndex = 18;
+            日付2.TextChanged += 日付2_TextChanged;
+            日付2.DoubleClick += 日付2_DoubleClick;
+            日付2.KeyDown += 日付2_KeyDown;
+            日付2.Leave += 日付2_Leave;
+            日付2.Validating += 日付2_Validating;
+            日付2.Validated += 日付2_Validated;
+            // 
+            // label34
+            // 
+            label34.AllowDrop = true;
+            label34.AutoEllipsis = true;
+            label34.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label34.ForeColor = SystemColors.ActiveCaptionText;
+            label34.ImageAlign = ContentAlignment.MiddleLeft;
+            label34.Location = new Point(210, 5);
+            label34.Margin = new Padding(0);
+            label34.Name = "label34";
+            label34.Size = new Size(21, 21);
+            label34.TabIndex = 21018;
+            label34.Text = "～";
+            label34.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // label33
+            // 
+            label33.AllowDrop = true;
+            label33.AutoEllipsis = true;
+            label33.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label33.ForeColor = SystemColors.ActiveCaptionText;
+            label33.ImageAlign = ContentAlignment.MiddleLeft;
+            label33.Location = new Point(0, 83);
+            label33.Margin = new Padding(0);
+            label33.Name = "label33";
+            label33.Size = new Size(390, 20);
+            label33.TabIndex = 10294;
+            label33.Text = "目的(&P)";
+            label33.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // 目的
+            // 
+            目的.BackColor = SystemColors.Window;
+            目的.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            目的.ImeMode = ImeMode.Hiragana;
+            目的.Location = new Point(2, 103);
+            目的.Margin = new Padding(3, 2, 3, 2);
+            目的.Multiline = true;
+            目的.Name = "目的";
+            目的.Size = new Size(399, 51);
+            目的.TabIndex = 10293;
+            目的.TextChanged += 目的_TextChanged;
+            目的.DoubleClick += 目的_DoubleClick;
+            目的.Enter += 目的_Enter;
+            目的.Leave += 目的_Leave;
+            目的.Validating += 目的_Validating;
+            目的.Validated += 目的_Validated;
+            // 
+            // 報告内容
+            // 
+            報告内容.BackColor = SystemColors.Window;
+            報告内容.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            報告内容.ImeMode = ImeMode.Hiragana;
+            報告内容.Location = new Point(3, 177);
+            報告内容.Margin = new Padding(3, 2, 3, 2);
+            報告内容.Multiline = true;
+            報告内容.Name = "報告内容";
+            報告内容.Size = new Size(398, 194);
+            報告内容.TabIndex = 19;
+            報告内容.TextChanged += 報告内容_TextChanged;
+            報告内容.DoubleClick += 報告内容_DoubleClick;
+            報告内容.Enter += 報告内容_Enter;
+            報告内容.Leave += 報告内容_Leave;
+            報告内容.Validating += 報告内容_Validating;
+            報告内容.Validated += 報告内容_Validated;
+            // 
+            // 版数_記録
+            // 
+            版数_記録.BackColor = Color.White;
+            版数_記録.Enabled = false;
+            版数_記録.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            版数_記録.ImeMode = ImeMode.Disable;
+            版数_記録.Location = new Point(356, 155);
+            版数_記録.Margin = new Padding(3, 2, 3, 2);
+            版数_記録.Name = "版数_記録";
+            版数_記録.ReadOnly = true;
+            版数_記録.Size = new Size(13, 20);
+            版数_記録.TabIndex = 10292;
+            版数_記録.TabStop = false;
+            版数_記録.Visible = false;
+            // 
+            // 文書コード_記録
+            // 
+            文書コード_記録.BackColor = Color.White;
+            文書コード_記録.Enabled = false;
+            文書コード_記録.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            文書コード_記録.ImeMode = ImeMode.Disable;
+            文書コード_記録.Location = new Point(337, 155);
+            文書コード_記録.Margin = new Padding(3, 2, 3, 2);
+            文書コード_記録.Name = "文書コード_記録";
+            文書コード_記録.ReadOnly = true;
+            文書コード_記録.Size = new Size(13, 20);
+            文書コード_記録.TabIndex = 10291;
+            文書コード_記録.TabStop = false;
+            文書コード_記録.Visible = false;
+            // 
+            // label35
+            // 
+            label35.AllowDrop = true;
+            label35.AutoEllipsis = true;
+            label35.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label35.ForeColor = SystemColors.ActiveCaptionText;
+            label35.ImageAlign = ContentAlignment.MiddleLeft;
+            label35.Location = new Point(0, 155);
+            label35.Margin = new Padding(0);
+            label35.Name = "label35";
+            label35.Size = new Size(325, 20);
+            label35.TabIndex = 10288;
+            label35.Text = "報告内容(&R)";
+            label35.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // 参加者
+            // 
+            参加者.BackColor = Color.White;
+            参加者.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            参加者.ImeMode = ImeMode.Hiragana;
+            参加者.Location = new Point(86, 32);
+            参加者.Margin = new Padding(3, 2, 3, 2);
+            参加者.Name = "参加者";
+            参加者.Size = new Size(315, 20);
+            参加者.TabIndex = 20;
+            参加者.TextChanged += 参加者_TextChanged;
+            参加者.Validating += 参加者_Validating;
+            参加者.Validated += 参加者_Validated;
+            // 
+            // 日付1
+            // 
+            日付1.BackColor = Color.White;
+            日付1.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            日付1.ImeMode = ImeMode.Disable;
+            日付1.Location = new Point(86, 6);
+            日付1.Margin = new Padding(3, 2, 3, 2);
+            日付1.Name = "日付1";
+            日付1.Size = new Size(102, 20);
+            日付1.TabIndex = 17;
+            日付1.TextChanged += 日付1_TextChanged;
+            日付1.DoubleClick += 日付1_DoubleClick;
+            日付1.KeyDown += 日付1_KeyDown;
+            日付1.Leave += 日付1_Leave;
+            日付1.Validating += 日付1_Validating;
+            日付1.Validated += 日付1_Validated;
+            // 
+            // label37
+            // 
+            label37.AllowDrop = true;
+            label37.AutoEllipsis = true;
+            label37.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label37.ForeColor = SystemColors.ActiveCaptionText;
+            label37.ImageAlign = ContentAlignment.MiddleLeft;
+            label37.Location = new Point(0, 5);
+            label37.Margin = new Padding(0);
+            label37.Name = "label37";
+            label37.Size = new Size(85, 20);
+            label37.TabIndex = 16;
+            label37.Text = "日付(&D)";
+            label37.TextAlign = ContentAlignment.MiddleLeft;
+            // 
             // F_文書
             // 
             BackColor = SystemColors.Control;
@@ -2888,6 +3174,8 @@ namespace u_net
             環境連絡書パネル.PerformLayout();
             文書添付パネル.ResumeLayout(false);
             文書添付パネル.PerformLayout();
+            記録パネル.ResumeLayout(false);
+            記録パネル.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -3096,6 +3384,24 @@ namespace u_net
         internal ComboBox 環境負荷;
         private Label label32;
         private Button 回答書ボタン;
+        private Panel 記録パネル;
+        private TextBox 報告内容;
+        private TextBox 版数_記録;
+        private TextBox 文書コード_記録;
+        private Label label35;
+        private TextBox 参加者;
+        private Label label36;
+        internal Button button1;
+        private TextBox 日付1;
+        private Label label37;
+        private Label label33;
+        private TextBox 目的;
+        internal Button 日付1選択ボタン;
+        internal Button 日付2選択ボタン;
+        private TextBox 日付2;
+        private Label label34;
+        private Label label38;
+        private TextBox 場所;
     }
 }
 
