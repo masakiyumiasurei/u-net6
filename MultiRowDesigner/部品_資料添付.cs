@@ -9,10 +9,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DocumentFormat.OpenXml.Vml;
 using GrapeCity.Win.MultiRow;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using u_net;
 using u_net.Public;
+using Path = System.IO.Path;
 
 namespace MultiRowDesigner
 {
@@ -28,15 +30,16 @@ namespace MultiRowDesigner
 
         private void gcMultiRow1_EditingControlShowing(object sender, EditingControlShowingEventArgs e)
         {
-            TextBoxEditingControl textBox = e.Control as TextBoxEditingControl;
-            ComboBoxEditingControl comboBox = e.Control as ComboBoxEditingControl;
-            if (textBox != null)
-            {
-                textBox.PreviewKeyDown -= gcMultiRow1_PreviewKeyDown;
-                textBox.PreviewKeyDown += gcMultiRow1_PreviewKeyDown;
-                textBox.KeyPress -= new KeyPressEventHandler(gcMultiRow1_KeyPress);
-                textBox.KeyPress += new KeyPressEventHandler(gcMultiRow1_KeyPress);
-            }
+
+            //TextBoxEditingControl textBox = e.Control as TextBoxEditingControl;
+            //ComboBoxEditingControl comboBox = e.Control as ComboBoxEditingControl;
+            //if (textBox != null)
+            //{
+            //    textBox.PreviewKeyDown -= gcMultiRow1_PreviewKeyDown;
+            //    textBox.PreviewKeyDown += gcMultiRow1_PreviewKeyDown;
+            //    textBox.KeyPress -= new KeyPressEventHandler(gcMultiRow1_KeyPress);
+            //    textBox.KeyPress += new KeyPressEventHandler(gcMultiRow1_KeyPress);
+            //}
         }
 
         private SqlConnection? cn;
@@ -73,8 +76,9 @@ namespace MultiRowDesigner
             F_部品 ParentForm = Application.OpenForms.OfType<F_部品>().FirstOrDefault();
 
             // テスト中はコメント
-            // e.Row.Cells["PartCode"].Value = ParentForm.CurrentCode;
-            e.Row.Cells["PartCode"].Value = "00000123";
+            // e.Row.Cells["PartCode"].Value = "00000123";
+
+            e.Row.Cells["PartCode"].Value = ParentForm.CurrentCode;           
             e.Row.Cells["PartRevision"].Value = 1;
 
             // GetOrderNumber();
@@ -118,80 +122,6 @@ namespace MultiRowDesigner
             }
         }
 
-
-        private void gcMultiRow1_CellValidating(object sender, CellValidatingEventArgs e)
-        {
-            gcMultiRow1.EndEdit();
-            //gcMultiRow1.CancelEdit();
-            //e.Cancel = true;
-
-            switch (e.CellName)
-            {
-                case "構成番号":
-                    if (IsError(gcMultiRow1.CurrentCell) == true) e.Cancel = true;
-                    break;
-
-                case "部品コード":
-                    if (IsError(gcMultiRow1.CurrentCell) == true) e.Cancel = true;
-                    break;
-
-            }
-        }
-
-
-
-        private void gcMultiRow1_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
-        {
-            gcMultiRow1.EndEdit();
-
-            if (e.KeyCode == Keys.Return)
-            {
-
-                if (gcMultiRow1.CurrentCell.RowIndex == null || gcMultiRow1.CurrentCell.CellIndex == null) return;
-
-                if (gcMultiRow1.CurrentCell.Name == "PartCode")
-                {
-
-                    //string strCode = gcMultiRow1.CurrentCell.Value.ToString();
-                    //string formattedCode = strCode.Trim().PadLeft(8, '0');
-
-                    //if (formattedCode != strCode || string.IsNullOrEmpty(strCode))
-                    //{
-                    //    gcMultiRow1.CurrentCell.Value = formattedCode;
-
-                    //}
-                }
-            }
-
-        }
-
-        private void gcMultiRow1_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == ' ')
-            {
-                if (gcMultiRow1.CurrentCell.RowIndex == null || gcMultiRow1.CurrentCell.CellIndex == null) return;
-
-                switch (gcMultiRow1.CurrentCell.Name)
-                {
-                    case "PartCode":
-                        //e.Handled = true;
-
-
-                        //codeSelectionForm = new F_部品選択();
-                        //if (codeSelectionForm.ShowDialog() == DialogResult.OK)
-                        //{
-                        //    string selectedCode = codeSelectionForm.SelectedCode;
-
-                        //    gcMultiRow1.CurrentCell.Value = selectedCode;
-                        //    gcMultiRow1.CurrentCellPosition = new CellPosition(gcMultiRow1.CurrentRow.Index, gcMultiRow1.CurrentRow.Cells["品名"].CellIndex);
-                        //}
-                        break;
-
-                }
-            }
-
-        }
-
         private void gcMultiRow1_CellContentButtonClick(object sender, CellEventArgs e)
         {
             u_net.F_部品_資料添付 objForm = (u_net.F_部品_資料添付)Application.OpenForms["F_部品_資料添付"];
@@ -199,7 +129,7 @@ namespace MultiRowDesigner
             switch (e.CellName)
             {
                 case "添付ボタン":
-                    
+
 
                     using (OpenFileDialog openFileDialog = new OpenFileDialog())
                     {
@@ -229,7 +159,7 @@ namespace MultiRowDesigner
 
                                 byte[] fileBytes = new byte[fs.Length];
                                 fs.Read(fileBytes, 0, fileBytes.Length);
-                                
+
                                 gcMultiRow1.EndEdit();
                                 // ここでファイル名、ファイルパス、バイナリデータを使用する
 
@@ -238,11 +168,15 @@ namespace MultiRowDesigner
                                 gcMultiRow1.CurrentRow.Cells["Data"].Value = fileBytes;
                                 gcMultiRow1.CurrentRow.Cells["DetailNumber"].Value =
                                     GetDetailNumber(gcMultiRow1.CurrentRow.Cells["PartCode"].Value.ToString(), (int)gcMultiRow1.CurrentRow.Cells["PartRevision"].Value);
-                                
+
                                 gcMultiRow1.CurrentRow.Cells["UpdateUserCode"].Value = CommonConstants.LoginUserCode;
                                 gcMultiRow1.CurrentRow.Cells["UpdateUserFullName"].Value =
                                     FunctionClass.GetUserFullName(cn, CommonConstants.LoginUserCode);
                                 gcMultiRow1.CurrentRow.Cells["UpdateDate"].Value = DateTime.Now;
+
+                                gcMultiRow1.CurrentRow.Cells["添付"].Value = GetIcon(fileBytes);
+                                // Icon iconForFile = System.Drawing.Icon.ExtractAssociatedIcon(filePath);
+                                // gcMultiRow1.CurrentRow.Cells["添付"].Value= iconForFile;
                                 gcMultiRow1.NotifyCurrentCellDirty(true);
 
 
@@ -275,25 +209,23 @@ namespace MultiRowDesigner
                 case "プレビューボタン":
 
                     GetPreview();
-                    
-
-
-
 
                     break;
                 case "削除ボタン":
+
                     if (MessageBox.Show("明細行(" + (e.RowIndex + 1) + ")を削除しますか？", "削除確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
                         Connect();
                         SqlTransaction transaction = cn.BeginTransaction();
                         try
-                        {                            
+                        {
+                            
                             string strwhere = $"Partcode= '{gcMultiRow1.CurrentRow.Cells["PartCode"].Value.ToString()}' " +
-                                $" and DetailNumber = {(int)gcMultiRow1.CurrentRow.Cells["DetailNumber"].Value}" +
-                                $" and OrderNumber = {(int)gcMultiRow1.CurrentRow.Cells["OrderNumber"].Value}";
+                                $" and DetailNumber = {(int)gcMultiRow1.CurrentRow.Cells["DetailNumber"].Value}";//+
+                               // $" and OrderNumber = {(int)gcMultiRow1.CurrentRow.Cells["OrderNumber"].Value}";
 
                             string sql = "delete from PartAttach where " + strwhere;
-                            SqlCommand cmd = new SqlCommand(strwhere, cn);
+                            SqlCommand cmd = new SqlCommand(sql, cn, transaction);
                             cmd.CommandType = CommandType.Text;
                             cmd.ExecuteNonQuery();
 
@@ -301,7 +233,7 @@ namespace MultiRowDesigner
                             gcMultiRow1.Rows.RemoveAt(e.RowIndex);
                             transaction.Commit();
                         }
-                        catch(Exception ex)
+                        catch (Exception ex)
                         {
                             transaction.Rollback();
                             MessageBox.Show("データの保存中にエラーが発生しました: " + ex.Message, "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -317,19 +249,49 @@ namespace MultiRowDesigner
             }
         }
 
+        public Icon GetIcon(byte[] fileBytes)
+        {
+            Icon iconForFile;
+            try
+            {
+                string fileName = gcMultiRow1.CurrentRow.Cells["DataName"].Value.ToString();
+
+                // バイナリデータを一時ファイルに保存
+                string tempFilePath = Path.Combine(Path.GetTempPath(), fileName);
+                File.WriteAllBytes(tempFilePath, fileBytes);
+
+                //Icon? fileIcon;
+
+                iconForFile = System.Drawing.Icon.ExtractAssociatedIcon(tempFilePath);
+
+                //using (MemoryStream ms = new MemoryStream(fileBytes))
+                //{
+                //    fileIcon = new Icon(ms);
+                //}
+
+                return iconForFile;
+            }
+            catch (Exception ex)
+            {
+                iconForFile = null;
+                MessageBox.Show("エラーが発生しました: " + ex.Message, "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return iconForFile;
+            }
+        }
         //ファイルのプレビュー
         public bool GetPreview()
         {
             try
             {
+                if (gcMultiRow1.CurrentRow == null) return false;
+
                 string fileName = gcMultiRow1.CurrentRow.Cells["DataName"].Value.ToString();
                 byte[] fileBytes = (byte[])gcMultiRow1.CurrentRow.Cells["Data"].Value;
                 // バイナリデータを一時ファイルに保存
                 string tempFilePath = Path.Combine(Path.GetTempPath(), fileName);
                 File.WriteAllBytes(tempFilePath, fileBytes);
 
-                // 外部アプリケーションでファイルを開く
-                //Process.Start(tempFilePath);
+                // 外部アプリケーションでファイルを開く                
 
                 Process.Start(new ProcessStartInfo
                 {
@@ -338,16 +300,14 @@ namespace MultiRowDesigner
                 });
 
                 return true;
-
             }
             catch (Exception ex)
             {
                 MessageBox.Show("エラーが発生しました: " + ex.Message, "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
-
         }
-            public int GetDetailNumber(string partCode, int partRevision)
+        public int GetDetailNumber(string partCode, int partRevision)
         {
             int detailNumber = 0;
 
@@ -387,13 +347,20 @@ namespace MultiRowDesigner
             return detailNumber;
         }
 
+        private void gcMultiRow1_CellPainting(object sender, CellPaintingEventArgs e)
+        {
+            if (e.CellName == "Data" && e.RowIndex >= 0 && gcMultiRow1.Rows[e.RowIndex].Cells["Data"].Value != DBNull.Value &&
+                gcMultiRow1.Rows[e.RowIndex].Cells["添付"].Value != DBNull.Value)
+            {
+                gcMultiRow1.Rows[e.RowIndex].Cells["添付"].Value = GetIcon((byte[])gcMultiRow1.Rows[e.RowIndex].Cells["Data"].Value);
+            }
+        }
 
         public void GetOrderNumber(string partCode, int partRevision, DataGridView dataGridView)
         {
             try
             {
                 Connect();
-                cn.Open();
 
                 using (SqlCommand command = new SqlCommand())
                 {
@@ -438,7 +405,6 @@ namespace MultiRowDesigner
                 }
             }
         }
-
 
 
     }
