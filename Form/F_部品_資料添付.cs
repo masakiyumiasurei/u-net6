@@ -18,6 +18,7 @@ using System.Drawing.Imaging;
 using System.Drawing.Printing;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 using Microsoft.Identity.Client.NativeInterop;
+using GrapeCity.Win.MultiRow;
 
 namespace u_net
 {
@@ -66,12 +67,25 @@ namespace u_net
         {
             Connect();
             //テスト用　コメントにすること
-            args = "00000123";
+            //args = "00000123";
             string strSQL = "SELECT * FROM PartAttach WHERE PartCode='" + args + "' ORDER BY OrderNumber";
             VariableSet.SetTable2Details(部品_資料添付1.Detail, strSQL, cn);
+
+            RefreshAttachmentColumn();
         }
 
-        
+        private void RefreshAttachmentColumn()
+        {
+            foreach (var row in 部品_資料添付1.Detail.Rows)
+            {
+                // 各行の添付カラムを更新する処理を書く
+                if (row.Cells["Data"].Value != DBNull.Value)
+                {
+                    row.Cells["添付"].Value = 部品_資料添付1.GetIcon((byte[])row.Cells["Data"].Value);
+                }
+            }
+        }
+
         private void Form_Unload(object sender, FormClosingEventArgs e)
         {
 

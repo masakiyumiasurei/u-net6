@@ -348,7 +348,8 @@ namespace u_net
 
         private void 棚卸登録ボタン_Click(object sender, EventArgs e)
         {
-
+            F_棚卸登録 form = new F_棚卸登録();
+            form.ShowDialog();
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
