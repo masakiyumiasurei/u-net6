@@ -39,7 +39,6 @@ namespace u_net
             this.MinimizeBox = false; //最小化ボタンを無効化
 
             InitializeComponent();
-
         }
 
         public void Connect()
@@ -2593,6 +2592,440 @@ namespace u_net
         private void 回答日1_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
 
+        }
+
+        private void 回答日2選択ボタン_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 本文2_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 本文2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 本文2_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 本文2_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void 本文2_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "■全角2,000文字まで入力可。　■ダブルクリックでズーム表示。";
+        }
+
+        private void 本文2_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "各種項目の説明";
+        }
+
+        private void 送信先3ボタン_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 承認3ボタン_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 担当者コード3_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "■担当者コードを入力あるいはドロップダウンリストから選択します。";
+        }
+
+        private void 担当者コード3_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "各種項目の説明";
+        }
+
+        private void 担当者コード3_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 担当者コード3_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 担当者コード3_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void 回答日3_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 回答日3_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 回答日3_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 回答日3_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void 回答日3選択ボタン_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 本文3_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "■全角2,000文字まで入力可。　■ダブルクリックでズーム表示。";
+        }
+
+        private void 本文3_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "各種項目の説明";
+        }
+
+        private void 本文3_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 本文3_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 本文3_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void 本文3_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 送信先5ボタン_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 承認5ボタン_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 担当者コード5_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "■担当者コードを入力あるいはドロップダウンリストから選択します。";
+        }
+
+        private void 担当者コード5_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "各種項目の説明";
+        }
+
+        private void 担当者コード5_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 担当者コード5_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 担当者コード5_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void 回答日5_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 回答日5_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 回答日5_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 回答日5_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void 回答日5選択ボタン_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 本文5_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 本文5_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "■全角2,000文字まで入力可。　■ダブルクリックでズーム表示。";
+        }
+
+        private void 本文5_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "各種項目の説明";
+        }
+
+        private void 本文5_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 本文5_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 本文5_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void 送信先4ボタン_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 承認4ボタン_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 担当者コード4_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "■担当者コードを入力あるいはドロップダウンリストから選択します。";
+        }
+
+        private void 担当者コード4_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "各種項目の説明";
+        }
+
+        private void 担当者コード4_TextUpdate(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 担当者コード4_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 担当者コード4_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void 回答日4_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 回答日4_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 回答日4_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 回答日4_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void 回答日4選択ボタン_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 本文4_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 本文4_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "■全角2,000文字まで入力可。　■ダブルクリックでズーム表示。";
+        }
+
+        private void 本文4_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "各種項目の説明";
+        }
+
+        private void 本文4_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 本文4_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 本文4_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void 結果日付_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 結果日付_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 結果日付_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 結果日付_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void 結果日付選択ボタン_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 結果内容_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 結果内容_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "■全角2,000文字まで入力可。　■ダブルクリックでズーム表示。";
+        }
+
+        private void 結果内容_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "各種項目の説明";
+        }
+
+        private void 結果内容_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 結果内容_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 結果内容_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void 配布日選択ボタン_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 配布バージョン_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 配布バージョン_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 配布バージョン_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void 配布目的_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 配布目的_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 配布目的_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 配布目的_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void 通信欄_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "■承認後完了承認されるまでの間入力できます。　■全角２，０００文字まで入力できます。";
+        }
+
+        private void 通信欄_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "各種項目の説明";
+        }
+
+        private void 通信欄_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 通信欄_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 通信欄_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void 通信欄_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
         }
     }
 }
