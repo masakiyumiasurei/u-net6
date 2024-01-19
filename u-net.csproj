@@ -172,6 +172,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Form\F_ファックス送信テスト.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Form\F_棚卸登録抽出設定.cs">
       <SubType>Form</SubType>
     </Compile>
