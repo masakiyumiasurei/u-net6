@@ -78,7 +78,7 @@ namespace u_net
         {
             get
             {
-                return Nz(自社担当者コード.SelectedValue);
+                return Nz(自社担当者名.Text);
             }
         }
 
@@ -1115,15 +1115,20 @@ namespace u_net
                 }
 
                 // 行のデータをDataTableに追加
+                DataRow dRow = dt.NewRow();
+                dt.Rows.Add(dRow);
+
                 foreach (DataGridViewRow row in dataGridView1.Rows)
                 {
-                    DataRow dRow = dt.NewRow();
+                    dRow = dt.NewRow();
                     foreach (DataGridViewCell cell in row.Cells)
                     {
                         dRow[cell.ColumnIndex] = cell.Value;
                     }
                     dt.Rows.Add(dRow);
                 }
+
+             
 
                 // DataTableをエクセルに追加
                 var exws1 = wb.Worksheets.Add(dt);
@@ -1151,7 +1156,7 @@ namespace u_net
                 exws1.PageSetup.SetRowsToRepeatAtTop(1, 2);
 
                 // 行番号を削除
-                exws1.Range("A:A").Delete(XLShiftDeletedCells.ShiftCellsLeft);
+                //exws1.Range("A:A").Delete(XLShiftDeletedCells.ShiftCellsLeft);
 
                 // フリガナと売上区分コードを削除
                 exws1.Range("C:D").Delete(XLShiftDeletedCells.ShiftCellsLeft);
@@ -1159,21 +1164,25 @@ namespace u_net
                 lngCols = lngCols - 3; // 全列数減少
 
                 // 罫線を引く（印刷タイトルに割り当てる行数分セル範囲を下へ移動）
-                exws1.Range(exws1.Cell(1 + 1, 1), exws1.Cell(lngRows + 1, lngCols)).Style.Border.OutsideBorder = XLBorderStyleValues.Thin;
+                exws1.Range(exws1.Cell(3, 1), exws1.Cell(lngRows + 2, lngCols + 1)).Style.Border.InsideBorder = XLBorderStyleValues.Thin;
+                exws1.Range(exws1.Cell(3, 1), exws1.Cell(lngRows + 2, lngCols + 1)).Style.Border.OutsideBorder = XLBorderStyleValues.Thin;
+
+               
+
 
                 // 顧客名の不要な罫線をなくす
                 int startRow = 3;    // 始点行インデックス
                 int endRow = 3;      // 終点行インデックス
                 string strCode = ""; // 重複検出用保存顧客コード
 
-                for (lngRow = 3; lngRow <= lngRows + 1; lngRow++)
+                for (lngRow = 3; lngRow <= lngRows + 2; lngRow++)
                 {
                     if (exws1.Cell(lngRow, 1).Value.ToString() == strCode)
                     {
                         endRow = lngRow;
 
                         // 最終行のとき
-                        if (lngRow == lngRows + 1)
+                        if (lngRow == lngRows + 2)
                         {
                             exws1.Range(exws1.Cell(startRow, 2), exws1.Cell(endRow, 2))
                                 .Style.Border.InsideBorder = XLBorderStyleValues.None;
@@ -1189,12 +1198,14 @@ namespace u_net
                     }
                 }
 
+                
+
                 // 顧客コード文字列を顧客名の下へ移動し、顧客コード列を削除する
                 // 同時に過去の売上金額を出力する
                 lngRow = 3; // 印刷タイトル２行分を追加
                 while (lngRow <= lngRows + 1)
                 {
-                    string strCustomerCode = exws1.Cell(lngRow, 1).Value.ToString() == "" ? "" :(Convert.ToInt32(exws1.Cell(lngRow, 1).Value)).ToString("00000000");
+                    string strCustomerCode = exws1.Cell(lngRow, 1).Value.ToString() == "" ? "" : string.Format("{0:D8}", exws1.Cell(lngRow, 1).Value);
 
                     // 「その他」顧客と「合計」顧客に対しては出力しない
                     if (!(strCustomerCode == "00000000" || strCustomerCode == "99999999"))
@@ -1212,18 +1223,26 @@ namespace u_net
                 lngRow = 3;
                 while (lngRow <= lngRows + 1)
                 {
-                    exws1.Range(exws1.Cell(lngRow, 2), exws1.Cell(lngRow + 1, lngCols))
+                    exws1.Range(exws1.Cell(lngRow, 2), exws1.Cell(lngRow + 1, lngCols + 1))
                         .Style.Border.InsideBorder = XLBorderStyleValues.None;
                     lngRow = lngRow + 2;
+                }
+
+
+                for (int i = 1; i <= lngCols + 1; i++)
+                {
+                    exws1.Range(exws1.Cell(3, i), exws1.Cell(lngRows + 2, i)).Style.Border.OutsideBorder = XLBorderStyleValues.Thin;
                 }
 
 
                 exws1.Column(1).Width = 17;
                 exws1.Column(2).Width = 10;
                 exws1.Column(3).Width = 4;
-                exws1.Range(exws1.Cell(2, 1), exws1.Cell(2, lngCols - 4)).Style.Fill.BackgroundColor = XLColor.Gray;
+                exws1.Range(exws1.Cell(2, 1), exws1.Cell(2, lngCols - 4)).Style.Fill.BackgroundColor = XLColor.White;
+                exws1.Range(exws1.Cell(2, 1), exws1.Cell(lngRows + 2, lngCols + 1)).Style.Fill.BackgroundColor = XLColor.White;
+                exws1.Range(exws1.Cell(3, 4), exws1.Cell(lngRows + 2, lngCols + 1)).Style.NumberFormat.Format = "#,##0";
                 exws1.Range(exws1.Cell(2, 1), exws1.Cell(2, lngCols - 4)).Style.Fill.PatternType = XLFillPatternValues.Solid;
-                exws1.Cell(1, 1).Value = TheYear + "年度 売上計画　（担当者：" + SalesmanName + "）";
+                exws1.Cell(2, 1).Value = TheYear + "年度 売上計画　（担当者：" + SalesmanName + "）";
 
 
                 
