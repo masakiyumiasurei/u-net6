@@ -2949,6 +2949,35 @@ namespace u_net
 
         }
 
+        private void 印刷ボタン_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 承認者コード_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 承認者コード_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void 承認ボタン_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 否認ボタン_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 完了承認ボタン_Click(object sender, EventArgs e)
+        {
+
+        }
 
         #region システム配布記録
 
@@ -3152,6 +3181,31 @@ namespace u_net
 
         #region 記録
 
+        private void 記録_日付1_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void 記録_日付1_Leave(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 記録_日付1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 記録_日付1_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 記録_日付1_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
         private void 日付1選択ボタン_Click(object sender, EventArgs e)
         {
 
@@ -3308,5 +3362,111 @@ namespace u_net
         }
 
         #endregion
+
+
+        #region 議事録
+
+        private void 議事録_開催日_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 議事録_開催日_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "■入力欄をダブルクリックすると、日付をカレンダーから入力することができます。";
+        }
+
+        private void 議事録_開催日_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "各種項目の説明";
+        }
+
+        private void 議事録_開催日_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void 議事録_開催日_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 議事録_開催日_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void 議事録_開催日選択ボタン_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 議事録_開催場所_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "■全角５０文字まで入力できます。";
+        }
+
+        private void 議事録_開催場所_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "各種項目の説明";
+        }
+
+        private void 議事録_開催場所_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 議事録_開催場所_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void 議事録_参加者_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void 議事録_参加者_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 議事録_参加者_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "■全角１００文字まで入力できます。";
+        }
+
+        private void 議事録_参加者_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "各種項目の説明";
+        }
+
+        private void 議事録_内容_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 議事録_内容_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "■全角２，０００文字まで入力できます。";
+        }
+
+        private void 議事録_内容_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "各種項目の説明";
+        }
+
+        private void 議事録_内容_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 議事録_内容_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        #endregion
+
     }
 }
