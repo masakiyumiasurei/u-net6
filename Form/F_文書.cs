@@ -3473,9 +3473,6 @@ namespace u_net
 
         #region 教育訓練実施要領書
 
-        #endregion
-
-
         private void 教育訓練実施要領書_受講者名_TextChanged(object sender, EventArgs e)
         {
 
@@ -3661,5 +3658,352 @@ namespace u_net
 
         }
 
+        #endregion
+
+
+        #region 出向依頼書
+
+        #endregion
+
+
+        private void 出向依頼書_受付日_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 出向依頼書_受付日_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void 出向依頼書_受付日_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 出向依頼書_受付日_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 出向依頼書_受付日_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void 出向依頼書_受付日選択ボタン_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 出向依頼書_出向分類_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void 出向依頼書_出向分類_TextUpdate(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 出向依頼書_出向分類_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 出向依頼書_出向分類_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void 出向依頼書_顧客コード_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 出向依頼書_顧客コード_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void 出向依頼書_顧客コード_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+        }
+
+        private void 出向依頼書_顧客コード_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 出向依頼書_顧客コード_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 出向依頼書_顧客コード_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void 出向依頼書_顧客コード選択ボタン_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 出向依頼書_顧客参照ボタン_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 出向依頼書_顧客名_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 出向依頼書_顧客名_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 出向依頼書_顧客名_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void 出向依頼書_顧客担当者名_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 出向依頼書_顧客担当者名_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 出向依頼書_顧客担当者名_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void 出向依頼書_顧客電話番号_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 出向依頼書_顧客電話番号_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 出向依頼書_顧客電話番号_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void 出向依頼書_製品型番_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 出向依頼書_製品型番_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 出向依頼書_製品型番_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void 出向依頼書_シリアル番号_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 出向依頼書_シリアル番号_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 出向依頼書_シリアル番号_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void 出向依頼書_依頼分類_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 出向依頼書_依頼分類_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void 出向依頼書_依頼分類その他_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 出向依頼書_依頼分類その他_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void 出向依頼書_依頼内容_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 出向依頼書_依頼内容_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 出向依頼書_依頼内容_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 出向依頼書_依頼内容_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void 出向依頼書_出向日開始_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 出向依頼書_出向日開始_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+        }
+
+        private void 出向依頼書_出向日開始_Leave(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 出向依頼書_出向日開始_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 出向依頼書_出向日開始_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 出向依頼書_出向日開始_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void 出向依頼書_出向日開始選択ボタン_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 出向依頼書_出向日終了_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 出向依頼書_出向日終了_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+        }
+
+        private void 出向依頼書_出向日終了_Leave(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 出向依頼書_出向日終了_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 出向依頼書_出向日終了_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 出向依頼書_出向日終了_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void 出向依頼書_出向日終了選択ボタン_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 出向依頼書_出向先会社名_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 出向依頼書_出向先会社名_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 出向依頼書_出向先会社名_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void 出向依頼書_出向先住所_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 出向依頼書_出向先住所_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 出向依頼書_出向先住所_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void 出向依頼書_出向先電話番号_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 出向依頼書_出向先電話番号_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 出向依頼書_出向先電話番号_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void 出向依頼書_費用_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+        }
+
+        private void 出向依頼書_費用_TextUpdate(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 出向依頼書_費用_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 出向依頼書_費用_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
     }
 }
