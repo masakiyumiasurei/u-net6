@@ -51,11 +51,14 @@ namespace u_net
                 DataGridUtils.SetDataGridView(cn, strSQL, this.dataGridView1);
 
                 dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-                dataGridView1.Rows[0].Selected = true;
+                if (dataGridView1.RowCount > 0)
+                {
+                    dataGridView1.Rows[0].Selected = true;
+                }
 
                 //MyApi myapi = new MyApi();
                 //int xSize, ySize, intpixel, twipperdot;
-                               
+
                 //intpixel = myapi.GetLogPixel();
                 //twipperdot = myapi.GetTwipPerDot(intpixel);
 

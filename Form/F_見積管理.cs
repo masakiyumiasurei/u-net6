@@ -833,14 +833,16 @@ namespace u_net
                 {
                     case 0:
                         // グループに登録済みでない場合
-                        //F_グループ form = new F_グループ(strDocumentCode);
-                        //form.ShowDialog();
+                        
+                        F_グループ form = new F_グループ();
+                        form.args = strDocumentCode;
+                        form.ShowDialog();
                         break;
                     case 1:
                         // グループに登録済みの場合
-                        F_リンク form = new F_リンク();
-                        form.args = strDocumentCode;
-                        form.ShowDialog();
+                        F_リンク form2 = new F_リンク();
+                        form2.args = strDocumentCode;
+                        form2.ShowDialog();
                         break;
                     case -1:
                         // エラーのため実行できない場合
