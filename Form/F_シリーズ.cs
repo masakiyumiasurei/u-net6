@@ -979,6 +979,9 @@ namespace u_net
                         }
                     }
                     break;
+                case Keys.Return:
+                    SelectNextControl(ActiveControl, true, true, true, true);
+                    break;
                 case Keys.F1:
                     if (コマンド新規.Enabled)
                     {
@@ -1105,7 +1108,7 @@ namespace u_net
                             {
                                 //stock = Convert.ToInt32(reader["在庫数量"]);
                                 //ストアドの結果では在庫数量は7番目のインデックスになるのだがVBAのコードではrs1.Fields(5).Valueとなっていた
-                                //一応ソースに合わせておくが、確認次第上にするかも
+                                //一応ソースに合わせておくが、確認次第上に変更かも
                                 stock = Convert.ToInt32(reader[5]);
                                 break; // 一致するレコードが見つかったらループを終了
                             }
@@ -1137,11 +1140,7 @@ namespace u_net
                 }
             }
         }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
+                
 
 
         private void シリーズ名_TextChanged(object sender, EventArgs e)
