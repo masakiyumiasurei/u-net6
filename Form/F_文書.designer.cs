@@ -96,11 +96,18 @@ namespace u_net
             回答日5選択ボタン = new Button();
             回答日4選択ボタン = new Button();
             結果日付選択ボタン = new Button();
-            配布日選択ボタン = new Button();
-            発生日選択ボタン = new Button();
+            システム配布記録_配布日選択ボタン = new Button();
+            環境連絡書_発生日選択ボタン = new Button();
             記録_日付1選択ボタン = new Button();
             記録_日付2選択ボタン = new Button();
             議事録_開催日選択ボタン = new Button();
+            教育訓練実施要領書_日付2選択ボタン = new Button();
+            教育訓練実施要領書_日付1選択ボタン = new Button();
+            出向依頼書_出向日終了選択ボタン = new Button();
+            出向依頼書_出向日開始選択ボタン = new Button();
+            出向依頼書_受付日選択ボタン = new Button();
+            出向依頼書_顧客コード選択ボタン = new Button();
+            出向依頼書_顧客参照ボタン = new Button();
             改版ボタン = new Button();
             文書名_ラベル = new Label();
             件名_ラベル = new Label();
@@ -112,15 +119,15 @@ namespace u_net
             分類コード = new ComboBox();
             回答期限 = new TextBox();
             システム配布記録 = new Panel();
-            配布目的 = new TextBox();
-            版数_システム配布記録 = new TextBox();
-            文書コード_システム配布記録 = new TextBox();
+            システム配布記録_配布目的 = new TextBox();
+            システム配布記録_版数 = new TextBox();
+            システム配布記録_文書コード = new TextBox();
             版数_ラベル_システム配布記録 = new Label();
             文書コード_ラベル_システム配布記録 = new Label();
             配布目的_ラベル = new Label();
-            配布バージョン = new TextBox();
+            システム配布記録_配布バージョン = new TextBox();
             配布バージョン_ラベル = new Label();
-            配布日 = new TextBox();
+            システム配布記録_配布日 = new TextBox();
             配布日_ラベル = new Label();
             文書フローコード = new ComboBox();
             発信者コード = new ComboBox();
@@ -215,19 +222,19 @@ namespace u_net
             通信欄_ラベル = new Label();
             label28 = new Label();
             環境連絡書パネル = new Panel();
-            回答書ボタン = new Button();
+            環境連絡書_回答書ボタン = new Button();
             label32 = new Label();
-            環境負荷 = new ComboBox();
+            環境連絡書_環境負荷 = new ComboBox();
             label31 = new Label();
-            異常内容 = new TextBox();
-            版数_環境連絡書 = new TextBox();
-            文書コード_環境連絡書 = new TextBox();
+            環境連絡書_異常内容 = new TextBox();
+            環境連絡書_版数 = new TextBox();
+            環境連絡書_文書コード = new TextBox();
             label27 = new Label();
             label29 = new Label();
             label30 = new Label();
-            連絡先 = new TextBox();
+            環境連絡書_連絡先 = new TextBox();
             連絡先_ラベル = new Label();
-            発生日 = new TextBox();
+            環境連絡書_発生日 = new TextBox();
             発生日_ラベル = new Label();
             文書添付パネル = new Panel();
             送信先コード5 = new TextBox();
@@ -276,6 +283,64 @@ namespace u_net
             印刷ボタン = new Button();
             承認者コード = new ComboBox();
             label45 = new Label();
+            教育訓練実施要領書パネル = new Panel();
+            label51 = new Label();
+            教育訓練実施要領書_受講者名 = new TextBox();
+            label50 = new Label();
+            教育訓練実施要領書_目的 = new TextBox();
+            教育訓練実施要領書_実施場所 = new TextBox();
+            label41 = new Label();
+            label42 = new Label();
+            教育訓練実施要領書_日付2 = new TextBox();
+            label46 = new Label();
+            label47 = new Label();
+            教育訓練実施要領書_内容 = new TextBox();
+            教育訓練実施要領書_期待効果 = new TextBox();
+            教育訓練実施要領書_版数 = new TextBox();
+            教育訓練実施要領書_文書コード = new TextBox();
+            label48 = new Label();
+            教育訓練実施要領書_訓練名 = new TextBox();
+            教育訓練実施要領書_日付1 = new TextBox();
+            label49 = new Label();
+            出向依頼書パネル = new Panel();
+            label66 = new Label();
+            label65 = new Label();
+            label64 = new Label();
+            出向依頼書_費用 = new ComboBox();
+            出向依頼書_出向先電話番号 = new TextBox();
+            出向依頼書_出向先住所 = new TextBox();
+            出向依頼書_出向先会社名 = new TextBox();
+            label63 = new Label();
+            label62 = new Label();
+            出向依頼書_顧客電話番号 = new TextBox();
+            出向依頼書_依頼分類 = new GroupBox();
+            出向依頼書_依頼分類その他 = new TextBox();
+            出向依頼書_その他 = new RadioButton();
+            出向依頼書_立会 = new RadioButton();
+            出向依頼書_調査 = new RadioButton();
+            出向依頼書_修理 = new RadioButton();
+            label61 = new Label();
+            出向依頼書_シリアル番号 = new TextBox();
+            出向依頼書_製品型番 = new TextBox();
+            label60 = new Label();
+            label57 = new Label();
+            出向依頼書_顧客担当者名 = new TextBox();
+            出向依頼書_顧客コード = new TextBox();
+            label53 = new Label();
+            出向依頼書_受付日 = new TextBox();
+            出向依頼書_出向分類 = new ComboBox();
+            label52 = new Label();
+            出向依頼書_顧客名 = new TextBox();
+            label54 = new Label();
+            label55 = new Label();
+            出向依頼書_出向日終了 = new TextBox();
+            label56 = new Label();
+            出向依頼書_依頼内容 = new TextBox();
+            出向依頼書_版数 = new TextBox();
+            出向依頼書_文書コード = new TextBox();
+            label58 = new Label();
+            出向依頼書_出向日開始 = new TextBox();
+            label59 = new Label();
             panel1.SuspendLayout();
             statusStrip1.SuspendLayout();
             システム配布記録.SuspendLayout();
@@ -284,6 +349,9 @@ namespace u_net
             記録パネル.SuspendLayout();
             議事録パネル.SuspendLayout();
             panel2.SuspendLayout();
+            教育訓練実施要領書パネル.SuspendLayout();
+            出向依頼書パネル.SuspendLayout();
+            出向依頼書_依頼分類.SuspendLayout();
             SuspendLayout();
             // 
             // コマンド終了
@@ -937,33 +1005,33 @@ namespace u_net
             結果日付選択ボタン.UseVisualStyleBackColor = true;
             結果日付選択ボタン.Click += 結果日付選択ボタン_Click;
             // 
-            // 配布日選択ボタン
+            // システム配布記録_配布日選択ボタン
             // 
-            配布日選択ボタン.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            配布日選択ボタン.Location = new Point(190, 6);
-            配布日選択ボタン.Margin = new Padding(4);
-            配布日選択ボタン.Name = "配布日選択ボタン";
-            配布日選択ボタン.Size = new Size(20, 20);
-            配布日選択ボタン.TabIndex = 10286;
-            配布日選択ボタン.TabStop = false;
-            配布日選択ボタン.Text = "▼";
-            toolTip1.SetToolTip(配布日選択ボタン, "カレンダー");
-            配布日選択ボタン.UseVisualStyleBackColor = true;
-            配布日選択ボタン.Click += 配布日選択ボタン_Click;
+            システム配布記録_配布日選択ボタン.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            システム配布記録_配布日選択ボタン.Location = new Point(190, 6);
+            システム配布記録_配布日選択ボタン.Margin = new Padding(4);
+            システム配布記録_配布日選択ボタン.Name = "システム配布記録_配布日選択ボタン";
+            システム配布記録_配布日選択ボタン.Size = new Size(20, 20);
+            システム配布記録_配布日選択ボタン.TabIndex = 10286;
+            システム配布記録_配布日選択ボタン.TabStop = false;
+            システム配布記録_配布日選択ボタン.Text = "▼";
+            toolTip1.SetToolTip(システム配布記録_配布日選択ボタン, "カレンダー");
+            システム配布記録_配布日選択ボタン.UseVisualStyleBackColor = true;
+            システム配布記録_配布日選択ボタン.Click += システム配布記録_配布日選択ボタン_Click;
             // 
-            // 発生日選択ボタン
+            // 環境連絡書_発生日選択ボタン
             // 
-            発生日選択ボタン.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            発生日選択ボタン.Location = new Point(190, 6);
-            発生日選択ボタン.Margin = new Padding(4);
-            発生日選択ボタン.Name = "発生日選択ボタン";
-            発生日選択ボタン.Size = new Size(20, 20);
-            発生日選択ボタン.TabIndex = 10286;
-            発生日選択ボタン.TabStop = false;
-            発生日選択ボタン.Text = "▼";
-            toolTip1.SetToolTip(発生日選択ボタン, "カレンダー");
-            発生日選択ボタン.UseVisualStyleBackColor = true;
-            発生日選択ボタン.Click += 発生日選択ボタン_Click;
+            環境連絡書_発生日選択ボタン.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            環境連絡書_発生日選択ボタン.Location = new Point(190, 6);
+            環境連絡書_発生日選択ボタン.Margin = new Padding(4);
+            環境連絡書_発生日選択ボタン.Name = "環境連絡書_発生日選択ボタン";
+            環境連絡書_発生日選択ボタン.Size = new Size(20, 20);
+            環境連絡書_発生日選択ボタン.TabIndex = 10286;
+            環境連絡書_発生日選択ボタン.TabStop = false;
+            環境連絡書_発生日選択ボタン.Text = "▼";
+            toolTip1.SetToolTip(環境連絡書_発生日選択ボタン, "カレンダー");
+            環境連絡書_発生日選択ボタン.UseVisualStyleBackColor = true;
+            環境連絡書_発生日選択ボタン.Click += 環境連絡書_発生日選択ボタン_Click;
             // 
             // 記録_日付1選択ボタン
             // 
@@ -977,7 +1045,7 @@ namespace u_net
             記録_日付1選択ボタン.Text = "▼";
             toolTip1.SetToolTip(記録_日付1選択ボタン, "カレンダー");
             記録_日付1選択ボタン.UseVisualStyleBackColor = true;
-            記録_日付1選択ボタン.Click += 日付1選択ボタン_Click;
+            記録_日付1選択ボタン.Click += 記録_日付1選択ボタン_Click;
             // 
             // 記録_日付2選択ボタン
             // 
@@ -991,6 +1059,7 @@ namespace u_net
             記録_日付2選択ボタン.Text = "▼";
             toolTip1.SetToolTip(記録_日付2選択ボタン, "カレンダー");
             記録_日付2選択ボタン.UseVisualStyleBackColor = true;
+            記録_日付2選択ボタン.Click += 記録_日付2選択ボタン_Click;
             // 
             // 議事録_開催日選択ボタン
             // 
@@ -1005,6 +1074,104 @@ namespace u_net
             toolTip1.SetToolTip(議事録_開催日選択ボタン, "カレンダー");
             議事録_開催日選択ボタン.UseVisualStyleBackColor = true;
             議事録_開催日選択ボタン.Click += 議事録_開催日選択ボタン_Click;
+            // 
+            // 教育訓練実施要領書_日付2選択ボタン
+            // 
+            教育訓練実施要領書_日付2選択ボタン.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            教育訓練実施要領書_日付2選択ボタン.Location = new Point(337, 84);
+            教育訓練実施要領書_日付2選択ボタン.Margin = new Padding(4);
+            教育訓練実施要領書_日付2選択ボタン.Name = "教育訓練実施要領書_日付2選択ボタン";
+            教育訓練実施要領書_日付2選択ボタン.Size = new Size(20, 20);
+            教育訓練実施要領書_日付2選択ボタン.TabIndex = 21020;
+            教育訓練実施要領書_日付2選択ボタン.TabStop = false;
+            教育訓練実施要領書_日付2選択ボタン.Text = "▼";
+            toolTip1.SetToolTip(教育訓練実施要領書_日付2選択ボタン, "カレンダー");
+            教育訓練実施要領書_日付2選択ボタン.UseVisualStyleBackColor = true;
+            教育訓練実施要領書_日付2選択ボタン.Click += 教育訓練実施要領書_日付2選択ボタン_Click;
+            // 
+            // 教育訓練実施要領書_日付1選択ボタン
+            // 
+            教育訓練実施要領書_日付1選択ボタン.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            教育訓練実施要領書_日付1選択ボタン.Location = new Point(190, 84);
+            教育訓練実施要領書_日付1選択ボタン.Margin = new Padding(4);
+            教育訓練実施要領書_日付1選択ボタン.Name = "教育訓練実施要領書_日付1選択ボタン";
+            教育訓練実施要領書_日付1選択ボタン.Size = new Size(20, 20);
+            教育訓練実施要領書_日付1選択ボタン.TabIndex = 10286;
+            教育訓練実施要領書_日付1選択ボタン.TabStop = false;
+            教育訓練実施要領書_日付1選択ボタン.Text = "▼";
+            toolTip1.SetToolTip(教育訓練実施要領書_日付1選択ボタン, "カレンダー");
+            教育訓練実施要領書_日付1選択ボタン.UseVisualStyleBackColor = true;
+            教育訓練実施要領書_日付1選択ボタン.Click += 教育訓練実施要領書_日付1選択ボタン_Click;
+            // 
+            // 出向依頼書_出向日終了選択ボタン
+            // 
+            出向依頼書_出向日終了選択ボタン.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            出向依頼書_出向日終了選択ボタン.Location = new Point(337, 263);
+            出向依頼書_出向日終了選択ボタン.Margin = new Padding(4);
+            出向依頼書_出向日終了選択ボタン.Name = "出向依頼書_出向日終了選択ボタン";
+            出向依頼書_出向日終了選択ボタン.Size = new Size(20, 20);
+            出向依頼書_出向日終了選択ボタン.TabIndex = 21020;
+            出向依頼書_出向日終了選択ボタン.TabStop = false;
+            出向依頼書_出向日終了選択ボタン.Text = "▼";
+            toolTip1.SetToolTip(出向依頼書_出向日終了選択ボタン, "カレンダー");
+            出向依頼書_出向日終了選択ボタン.UseVisualStyleBackColor = true;
+            出向依頼書_出向日終了選択ボタン.Click += 出向依頼書_出向日終了選択ボタン_Click;
+            // 
+            // 出向依頼書_出向日開始選択ボタン
+            // 
+            出向依頼書_出向日開始選択ボタン.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            出向依頼書_出向日開始選択ボタン.Location = new Point(190, 263);
+            出向依頼書_出向日開始選択ボタン.Margin = new Padding(4);
+            出向依頼書_出向日開始選択ボタン.Name = "出向依頼書_出向日開始選択ボタン";
+            出向依頼書_出向日開始選択ボタン.Size = new Size(20, 20);
+            出向依頼書_出向日開始選択ボタン.TabIndex = 10286;
+            出向依頼書_出向日開始選択ボタン.TabStop = false;
+            出向依頼書_出向日開始選択ボタン.Text = "▼";
+            toolTip1.SetToolTip(出向依頼書_出向日開始選択ボタン, "カレンダー");
+            出向依頼書_出向日開始選択ボタン.UseVisualStyleBackColor = true;
+            出向依頼書_出向日開始選択ボタン.Click += 出向依頼書_出向日開始選択ボタン_Click;
+            // 
+            // 出向依頼書_受付日選択ボタン
+            // 
+            出向依頼書_受付日選択ボタン.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            出向依頼書_受付日選択ボタン.Location = new Point(190, 4);
+            出向依頼書_受付日選択ボタン.Margin = new Padding(4);
+            出向依頼書_受付日選択ボタン.Name = "出向依頼書_受付日選択ボタン";
+            出向依頼書_受付日選択ボタン.Size = new Size(20, 20);
+            出向依頼書_受付日選択ボタン.TabIndex = 21027;
+            出向依頼書_受付日選択ボタン.TabStop = false;
+            出向依頼書_受付日選択ボタン.Text = "▼";
+            toolTip1.SetToolTip(出向依頼書_受付日選択ボタン, "カレンダー");
+            出向依頼書_受付日選択ボタン.UseVisualStyleBackColor = true;
+            出向依頼書_受付日選択ボタン.Click += 出向依頼書_受付日選択ボタン_Click;
+            // 
+            // 出向依頼書_顧客コード選択ボタン
+            // 
+            出向依頼書_顧客コード選択ボタン.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            出向依頼書_顧客コード選択ボタン.Location = new Point(190, 49);
+            出向依頼書_顧客コード選択ボタン.Margin = new Padding(4);
+            出向依頼書_顧客コード選択ボタン.Name = "出向依頼書_顧客コード選択ボタン";
+            出向依頼書_顧客コード選択ボタン.Size = new Size(20, 20);
+            出向依頼書_顧客コード選択ボタン.TabIndex = 21029;
+            出向依頼書_顧客コード選択ボタン.TabStop = false;
+            出向依頼書_顧客コード選択ボタン.Text = "▼";
+            toolTip1.SetToolTip(出向依頼書_顧客コード選択ボタン, "カレンダー");
+            出向依頼書_顧客コード選択ボタン.UseVisualStyleBackColor = true;
+            出向依頼書_顧客コード選択ボタン.Click += 出向依頼書_顧客コード選択ボタン_Click;
+            // 
+            // 出向依頼書_顧客参照ボタン
+            // 
+            出向依頼書_顧客参照ボタン.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            出向依頼書_顧客参照ボタン.Location = new Point(212, 49);
+            出向依頼書_顧客参照ボタン.Margin = new Padding(4);
+            出向依頼書_顧客参照ボタン.Name = "出向依頼書_顧客参照ボタン";
+            出向依頼書_顧客参照ボタン.Size = new Size(20, 20);
+            出向依頼書_顧客参照ボタン.TabIndex = 21030;
+            出向依頼書_顧客参照ボタン.TabStop = false;
+            出向依頼書_顧客参照ボタン.Text = "▶";
+            toolTip1.SetToolTip(出向依頼書_顧客参照ボタン, "カレンダー");
+            出向依頼書_顧客参照ボタン.UseVisualStyleBackColor = true;
+            出向依頼書_顧客参照ボタン.Click += 出向依頼書_顧客参照ボタン_Click;
             // 
             // 改版ボタン
             // 
@@ -1160,65 +1327,65 @@ namespace u_net
             // 
             // システム配布記録
             // 
-            システム配布記録.Controls.Add(配布目的);
-            システム配布記録.Controls.Add(版数_システム配布記録);
-            システム配布記録.Controls.Add(文書コード_システム配布記録);
+            システム配布記録.Controls.Add(システム配布記録_配布目的);
+            システム配布記録.Controls.Add(システム配布記録_版数);
+            システム配布記録.Controls.Add(システム配布記録_文書コード);
             システム配布記録.Controls.Add(版数_ラベル_システム配布記録);
             システム配布記録.Controls.Add(文書コード_ラベル_システム配布記録);
             システム配布記録.Controls.Add(配布目的_ラベル);
-            システム配布記録.Controls.Add(配布バージョン);
+            システム配布記録.Controls.Add(システム配布記録_配布バージョン);
             システム配布記録.Controls.Add(配布バージョン_ラベル);
-            システム配布記録.Controls.Add(配布日選択ボタン);
-            システム配布記録.Controls.Add(配布日);
+            システム配布記録.Controls.Add(システム配布記録_配布日選択ボタン);
+            システム配布記録.Controls.Add(システム配布記録_配布日);
             システム配布記録.Controls.Add(配布日_ラベル);
             システム配布記録.Location = new Point(9, 226);
             システム配布記録.Name = "システム配布記録";
             システム配布記録.Size = new Size(404, 376);
             システム配布記録.TabIndex = 17;
             // 
-            // 配布目的
+            // システム配布記録_配布目的
             // 
-            配布目的.BackColor = SystemColors.Window;
-            配布目的.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            配布目的.ImeMode = ImeMode.Hiragana;
-            配布目的.Location = new Point(0, 83);
-            配布目的.Margin = new Padding(3, 2, 3, 2);
-            配布目的.Multiline = true;
-            配布目的.Name = "配布目的";
-            配布目的.Size = new Size(401, 288);
-            配布目的.TabIndex = 19;
-            配布目的.TextChanged += 配布目的_TextChanged;
-            配布目的.DoubleClick += 配布目的_DoubleClick;
-            配布目的.Validating += 配布目的_Validating;
-            配布目的.Validated += 配布目的_Validated;
+            システム配布記録_配布目的.BackColor = SystemColors.Window;
+            システム配布記録_配布目的.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            システム配布記録_配布目的.ImeMode = ImeMode.Hiragana;
+            システム配布記録_配布目的.Location = new Point(0, 83);
+            システム配布記録_配布目的.Margin = new Padding(3, 2, 3, 2);
+            システム配布記録_配布目的.Multiline = true;
+            システム配布記録_配布目的.Name = "システム配布記録_配布目的";
+            システム配布記録_配布目的.Size = new Size(401, 288);
+            システム配布記録_配布目的.TabIndex = 19;
+            システム配布記録_配布目的.TextChanged += システム配布記録_配布目的_TextChanged;
+            システム配布記録_配布目的.DoubleClick += システム配布記録_配布目的_DoubleClick;
+            システム配布記録_配布目的.Validating += システム配布記録_配布目的_Validating;
+            システム配布記録_配布目的.Validated += システム配布記録_配布目的_Validated;
             // 
-            // 版数_システム配布記録
+            // システム配布記録_版数
             // 
-            版数_システム配布記録.BackColor = Color.White;
-            版数_システム配布記録.Enabled = false;
-            版数_システム配布記録.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            版数_システム配布記録.ImeMode = ImeMode.Disable;
-            版数_システム配布記録.Location = new Point(288, 31);
-            版数_システム配布記録.Margin = new Padding(3, 2, 3, 2);
-            版数_システム配布記録.Name = "版数_システム配布記録";
-            版数_システム配布記録.ReadOnly = true;
-            版数_システム配布記録.Size = new Size(32, 20);
-            版数_システム配布記録.TabIndex = 10292;
-            版数_システム配布記録.Visible = false;
+            システム配布記録_版数.BackColor = Color.White;
+            システム配布記録_版数.Enabled = false;
+            システム配布記録_版数.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            システム配布記録_版数.ImeMode = ImeMode.Disable;
+            システム配布記録_版数.Location = new Point(288, 31);
+            システム配布記録_版数.Margin = new Padding(3, 2, 3, 2);
+            システム配布記録_版数.Name = "システム配布記録_版数";
+            システム配布記録_版数.ReadOnly = true;
+            システム配布記録_版数.Size = new Size(32, 20);
+            システム配布記録_版数.TabIndex = 10292;
+            システム配布記録_版数.Visible = false;
             // 
-            // 文書コード_システム配布記録
+            // システム配布記録_文書コード
             // 
-            文書コード_システム配布記録.BackColor = Color.White;
-            文書コード_システム配布記録.Enabled = false;
-            文書コード_システム配布記録.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            文書コード_システム配布記録.ImeMode = ImeMode.Disable;
-            文書コード_システム配布記録.Location = new Point(288, 6);
-            文書コード_システム配布記録.Margin = new Padding(3, 2, 3, 2);
-            文書コード_システム配布記録.Name = "文書コード_システム配布記録";
-            文書コード_システム配布記録.ReadOnly = true;
-            文書コード_システム配布記録.Size = new Size(113, 20);
-            文書コード_システム配布記録.TabIndex = 10291;
-            文書コード_システム配布記録.Visible = false;
+            システム配布記録_文書コード.BackColor = Color.White;
+            システム配布記録_文書コード.Enabled = false;
+            システム配布記録_文書コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            システム配布記録_文書コード.ImeMode = ImeMode.Disable;
+            システム配布記録_文書コード.Location = new Point(288, 6);
+            システム配布記録_文書コード.Margin = new Padding(3, 2, 3, 2);
+            システム配布記録_文書コード.Name = "システム配布記録_文書コード";
+            システム配布記録_文書コード.ReadOnly = true;
+            システム配布記録_文書コード.Size = new Size(113, 20);
+            システム配布記録_文書コード.TabIndex = 10291;
+            システム配布記録_文書コード.Visible = false;
             // 
             // 版数_ラベル_システム配布記録
             // 
@@ -1267,19 +1434,19 @@ namespace u_net
             配布目的_ラベル.Text = "配布目的";
             配布目的_ラベル.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // 配布バージョン
+            // システム配布記録_配布バージョン
             // 
-            配布バージョン.BackColor = Color.White;
-            配布バージョン.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            配布バージョン.ImeMode = ImeMode.Disable;
-            配布バージョン.Location = new Point(86, 32);
-            配布バージョン.Margin = new Padding(3, 2, 3, 2);
-            配布バージョン.Name = "配布バージョン";
-            配布バージョン.Size = new Size(102, 20);
-            配布バージョン.TabIndex = 18;
-            配布バージョン.TextChanged += 配布バージョン_TextChanged;
-            配布バージョン.Validating += 配布バージョン_Validating;
-            配布バージョン.Validated += 配布バージョン_Validated;
+            システム配布記録_配布バージョン.BackColor = Color.White;
+            システム配布記録_配布バージョン.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            システム配布記録_配布バージョン.ImeMode = ImeMode.Disable;
+            システム配布記録_配布バージョン.Location = new Point(86, 32);
+            システム配布記録_配布バージョン.Margin = new Padding(3, 2, 3, 2);
+            システム配布記録_配布バージョン.Name = "システム配布記録_配布バージョン";
+            システム配布記録_配布バージョン.Size = new Size(102, 20);
+            システム配布記録_配布バージョン.TabIndex = 18;
+            システム配布記録_配布バージョン.TextChanged += システム配布記録_配布バージョン_TextChanged;
+            システム配布記録_配布バージョン.Validating += システム配布記録_配布バージョン_Validating;
+            システム配布記録_配布バージョン.Validated += システム配布記録_配布バージョン_Validated;
             // 
             // 配布バージョン_ラベル
             // 
@@ -1296,16 +1463,20 @@ namespace u_net
             配布バージョン_ラベル.Text = "配布バージョン";
             配布バージョン_ラベル.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // 配布日
+            // システム配布記録_配布日
             // 
-            配布日.BackColor = Color.White;
-            配布日.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            配布日.ImeMode = ImeMode.Disable;
-            配布日.Location = new Point(86, 6);
-            配布日.Margin = new Padding(3, 2, 3, 2);
-            配布日.Name = "配布日";
-            配布日.Size = new Size(102, 20);
-            配布日.TabIndex = 17;
+            システム配布記録_配布日.BackColor = Color.White;
+            システム配布記録_配布日.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            システム配布記録_配布日.ImeMode = ImeMode.Disable;
+            システム配布記録_配布日.Location = new Point(86, 6);
+            システム配布記録_配布日.Margin = new Padding(3, 2, 3, 2);
+            システム配布記録_配布日.Name = "システム配布記録_配布日";
+            システム配布記録_配布日.Size = new Size(102, 20);
+            システム配布記録_配布日.TabIndex = 17;
+            システム配布記録_配布日.TextChanged += システム配布記録_配布日_TextChanged;
+            システム配布記録_配布日.KeyDown += システム配布記録_配布日_KeyDown;
+            システム配布記録_配布日.Validating += システム配布記録_配布日_Validating;
+            システム配布記録_配布日.Validated += システム配布記録_配布日_Validated;
             // 
             // 配布日_ラベル
             // 
@@ -2566,40 +2737,40 @@ namespace u_net
             // 
             // 環境連絡書パネル
             // 
-            環境連絡書パネル.Controls.Add(回答書ボタン);
+            環境連絡書パネル.Controls.Add(環境連絡書_回答書ボタン);
             環境連絡書パネル.Controls.Add(label32);
-            環境連絡書パネル.Controls.Add(環境負荷);
+            環境連絡書パネル.Controls.Add(環境連絡書_環境負荷);
             環境連絡書パネル.Controls.Add(label31);
-            環境連絡書パネル.Controls.Add(異常内容);
-            環境連絡書パネル.Controls.Add(版数_環境連絡書);
-            環境連絡書パネル.Controls.Add(文書コード_環境連絡書);
+            環境連絡書パネル.Controls.Add(環境連絡書_異常内容);
+            環境連絡書パネル.Controls.Add(環境連絡書_版数);
+            環境連絡書パネル.Controls.Add(環境連絡書_文書コード);
             環境連絡書パネル.Controls.Add(label27);
             環境連絡書パネル.Controls.Add(label29);
             環境連絡書パネル.Controls.Add(label30);
-            環境連絡書パネル.Controls.Add(連絡先);
+            環境連絡書パネル.Controls.Add(環境連絡書_連絡先);
             環境連絡書パネル.Controls.Add(連絡先_ラベル);
-            環境連絡書パネル.Controls.Add(発生日選択ボタン);
-            環境連絡書パネル.Controls.Add(発生日);
+            環境連絡書パネル.Controls.Add(環境連絡書_発生日選択ボタン);
+            環境連絡書パネル.Controls.Add(環境連絡書_発生日);
             環境連絡書パネル.Controls.Add(発生日_ラベル);
             環境連絡書パネル.Location = new Point(9, 226);
             環境連絡書パネル.Name = "環境連絡書パネル";
             環境連絡書パネル.Size = new Size(404, 376);
             環境連絡書パネル.TabIndex = 17;
             // 
-            // 回答書ボタン
+            // 環境連絡書_回答書ボタン
             // 
-            回答書ボタン.Enabled = false;
-            回答書ボタン.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            回答書ボタン.Location = new Point(147, 342);
-            回答書ボタン.Margin = new Padding(4);
-            回答書ボタン.Name = "回答書ボタン";
-            回答書ボタン.RightToLeft = RightToLeft.Yes;
-            回答書ボタン.Size = new Size(102, 24);
-            回答書ボタン.TabIndex = 10295;
-            回答書ボタン.TabStop = false;
-            回答書ボタン.Text = "環境回答書";
-            回答書ボタン.UseVisualStyleBackColor = true;
-            回答書ボタン.Click += 回答書ボタン_Click;
+            環境連絡書_回答書ボタン.Enabled = false;
+            環境連絡書_回答書ボタン.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            環境連絡書_回答書ボタン.Location = new Point(147, 342);
+            環境連絡書_回答書ボタン.Margin = new Padding(4);
+            環境連絡書_回答書ボタン.Name = "環境連絡書_回答書ボタン";
+            環境連絡書_回答書ボタン.RightToLeft = RightToLeft.Yes;
+            環境連絡書_回答書ボタン.Size = new Size(102, 24);
+            環境連絡書_回答書ボタン.TabIndex = 10295;
+            環境連絡書_回答書ボタン.TabStop = false;
+            環境連絡書_回答書ボタン.Text = "環境回答書";
+            環境連絡書_回答書ボタン.UseVisualStyleBackColor = true;
+            環境連絡書_回答書ボタン.Click += 環境連絡書_回答書ボタン_Click;
             // 
             // label32
             // 
@@ -2616,21 +2787,21 @@ namespace u_net
             label32.Text = "※できるだけ具体的に詳しく記述してください。";
             label32.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // 環境負荷
+            // 環境連絡書_環境負荷
             // 
-            環境負荷.BackColor = SystemColors.Window;
-            環境負荷.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            環境負荷.FormattingEnabled = true;
-            環境負荷.ImeMode = ImeMode.Disable;
-            環境負荷.Location = new Point(86, 70);
-            環境負荷.Name = "環境負荷";
-            環境負荷.Size = new Size(163, 21);
-            環境負荷.TabIndex = 19;
-            環境負荷.SelectedIndexChanged += 環境負荷_SelectedIndexChanged;
-            環境負荷.Enter += 環境負荷_Enter;
-            環境負荷.Leave += 環境負荷_Leave;
-            環境負荷.Validating += 環境負荷_Validating;
-            環境負荷.Validated += 環境負荷_Validated;
+            環境連絡書_環境負荷.BackColor = SystemColors.Window;
+            環境連絡書_環境負荷.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            環境連絡書_環境負荷.FormattingEnabled = true;
+            環境連絡書_環境負荷.ImeMode = ImeMode.Disable;
+            環境連絡書_環境負荷.Location = new Point(86, 70);
+            環境連絡書_環境負荷.Name = "環境連絡書_環境負荷";
+            環境連絡書_環境負荷.Size = new Size(163, 21);
+            環境連絡書_環境負荷.TabIndex = 19;
+            環境連絡書_環境負荷.SelectedIndexChanged += 環境連絡書_環境負荷_SelectedIndexChanged;
+            環境連絡書_環境負荷.Enter += 環境連絡書_環境負荷_Enter;
+            環境連絡書_環境負荷.Leave += 環境連絡書_環境負荷_Leave;
+            環境連絡書_環境負荷.Validating += 環境連絡書_環境負荷_Validating;
+            環境連絡書_環境負荷.Validated += 環境連絡書_環境負荷_Validated;
             // 
             // label31
             // 
@@ -2647,51 +2818,51 @@ namespace u_net
             label31.Text = "環境負荷";
             label31.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // 異常内容
+            // 環境連絡書_異常内容
             // 
-            異常内容.BackColor = SystemColors.Window;
-            異常内容.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            異常内容.ImeMode = ImeMode.Hiragana;
-            異常内容.Location = new Point(0, 120);
-            異常内容.Margin = new Padding(3, 2, 3, 2);
-            異常内容.Multiline = true;
-            異常内容.Name = "異常内容";
-            異常内容.Size = new Size(401, 214);
-            異常内容.TabIndex = 20;
-            異常内容.TextChanged += 異常内容_TextChanged;
-            異常内容.DoubleClick += 異常内容_DoubleClick;
-            異常内容.Enter += 異常内容_Enter;
-            異常内容.Leave += 異常内容_Leave;
-            異常内容.Validating += 異常内容_Validating;
-            異常内容.Validated += 異常内容_Validated;
+            環境連絡書_異常内容.BackColor = SystemColors.Window;
+            環境連絡書_異常内容.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            環境連絡書_異常内容.ImeMode = ImeMode.Hiragana;
+            環境連絡書_異常内容.Location = new Point(0, 120);
+            環境連絡書_異常内容.Margin = new Padding(3, 2, 3, 2);
+            環境連絡書_異常内容.Multiline = true;
+            環境連絡書_異常内容.Name = "環境連絡書_異常内容";
+            環境連絡書_異常内容.Size = new Size(401, 214);
+            環境連絡書_異常内容.TabIndex = 20;
+            環境連絡書_異常内容.TextChanged += 環境連絡書_異常内容_TextChanged;
+            環境連絡書_異常内容.DoubleClick += 環境連絡書_異常内容_DoubleClick;
+            環境連絡書_異常内容.Enter += 環境連絡書_異常内容_Enter;
+            環境連絡書_異常内容.Leave += 環境連絡書_異常内容_Leave;
+            環境連絡書_異常内容.Validating += 環境連絡書_異常内容_Validating;
+            環境連絡書_異常内容.Validated += 環境連絡書_異常内容_Validated;
             // 
-            // 版数_環境連絡書
+            // 環境連絡書_版数
             // 
-            版数_環境連絡書.BackColor = Color.White;
-            版数_環境連絡書.Enabled = false;
-            版数_環境連絡書.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            版数_環境連絡書.ImeMode = ImeMode.Disable;
-            版数_環境連絡書.Location = new Point(369, 5);
-            版数_環境連絡書.Margin = new Padding(3, 2, 3, 2);
-            版数_環境連絡書.Name = "版数_環境連絡書";
-            版数_環境連絡書.ReadOnly = true;
-            版数_環境連絡書.Size = new Size(32, 20);
-            版数_環境連絡書.TabIndex = 10292;
-            版数_環境連絡書.Visible = false;
+            環境連絡書_版数.BackColor = Color.White;
+            環境連絡書_版数.Enabled = false;
+            環境連絡書_版数.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            環境連絡書_版数.ImeMode = ImeMode.Disable;
+            環境連絡書_版数.Location = new Point(369, 5);
+            環境連絡書_版数.Margin = new Padding(3, 2, 3, 2);
+            環境連絡書_版数.Name = "環境連絡書_版数";
+            環境連絡書_版数.ReadOnly = true;
+            環境連絡書_版数.Size = new Size(32, 20);
+            環境連絡書_版数.TabIndex = 10292;
+            環境連絡書_版数.Visible = false;
             // 
-            // 文書コード_環境連絡書
+            // 環境連絡書_文書コード
             // 
-            文書コード_環境連絡書.BackColor = Color.White;
-            文書コード_環境連絡書.Enabled = false;
-            文書コード_環境連絡書.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            文書コード_環境連絡書.ImeMode = ImeMode.Disable;
-            文書コード_環境連絡書.Location = new Point(288, 6);
-            文書コード_環境連絡書.Margin = new Padding(3, 2, 3, 2);
-            文書コード_環境連絡書.Name = "文書コード_環境連絡書";
-            文書コード_環境連絡書.ReadOnly = true;
-            文書コード_環境連絡書.Size = new Size(49, 20);
-            文書コード_環境連絡書.TabIndex = 10291;
-            文書コード_環境連絡書.Visible = false;
+            環境連絡書_文書コード.BackColor = Color.White;
+            環境連絡書_文書コード.Enabled = false;
+            環境連絡書_文書コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            環境連絡書_文書コード.ImeMode = ImeMode.Disable;
+            環境連絡書_文書コード.Location = new Point(288, 6);
+            環境連絡書_文書コード.Margin = new Padding(3, 2, 3, 2);
+            環境連絡書_文書コード.Name = "環境連絡書_文書コード";
+            環境連絡書_文書コード.ReadOnly = true;
+            環境連絡書_文書コード.Size = new Size(49, 20);
+            環境連絡書_文書コード.TabIndex = 10291;
+            環境連絡書_文書コード.Visible = false;
             // 
             // label27
             // 
@@ -2740,22 +2911,22 @@ namespace u_net
             label30.Text = "内容";
             label30.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // 連絡先
+            // 環境連絡書_連絡先
             // 
-            連絡先.BackColor = Color.White;
-            連絡先.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            連絡先.ImeMode = ImeMode.Hiragana;
-            連絡先.Location = new Point(86, 31);
-            連絡先.Margin = new Padding(3, 2, 3, 2);
-            連絡先.Multiline = true;
-            連絡先.Name = "連絡先";
-            連絡先.Size = new Size(315, 34);
-            連絡先.TabIndex = 18;
-            連絡先.TextChanged += 連絡先_TextChanged;
-            連絡先.Enter += 連絡先_Enter;
-            連絡先.Leave += 連絡先_Leave;
-            連絡先.Validating += 連絡先_Validating;
-            連絡先.Validated += 連絡先_Validated;
+            環境連絡書_連絡先.BackColor = Color.White;
+            環境連絡書_連絡先.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            環境連絡書_連絡先.ImeMode = ImeMode.Hiragana;
+            環境連絡書_連絡先.Location = new Point(86, 31);
+            環境連絡書_連絡先.Margin = new Padding(3, 2, 3, 2);
+            環境連絡書_連絡先.Multiline = true;
+            環境連絡書_連絡先.Name = "環境連絡書_連絡先";
+            環境連絡書_連絡先.Size = new Size(315, 34);
+            環境連絡書_連絡先.TabIndex = 18;
+            環境連絡書_連絡先.TextChanged += 環境連絡書_連絡先_TextChanged;
+            環境連絡書_連絡先.Enter += 環境連絡書_連絡先_Enter;
+            環境連絡書_連絡先.Leave += 環境連絡書_連絡先_Leave;
+            環境連絡書_連絡先.Validating += 環境連絡書_連絡先_Validating;
+            環境連絡書_連絡先.Validated += 環境連絡書_連絡先_Validated;
             // 
             // 連絡先_ラベル
             // 
@@ -2772,21 +2943,21 @@ namespace u_net
             連絡先_ラベル.Text = "連絡先";
             連絡先_ラベル.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // 発生日
+            // 環境連絡書_発生日
             // 
-            発生日.BackColor = Color.White;
-            発生日.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            発生日.ImeMode = ImeMode.Disable;
-            発生日.Location = new Point(86, 6);
-            発生日.Margin = new Padding(3, 2, 3, 2);
-            発生日.Name = "発生日";
-            発生日.Size = new Size(102, 20);
-            発生日.TabIndex = 17;
-            発生日.TextChanged += 発生日_TextChanged;
-            発生日.DoubleClick += 発生日_DoubleClick;
-            発生日.KeyDown += 発生日_KeyDown;
-            発生日.Validating += 発生日_Validating;
-            発生日.Validated += 発生日_Validated;
+            環境連絡書_発生日.BackColor = Color.White;
+            環境連絡書_発生日.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            環境連絡書_発生日.ImeMode = ImeMode.Disable;
+            環境連絡書_発生日.Location = new Point(86, 6);
+            環境連絡書_発生日.Margin = new Padding(3, 2, 3, 2);
+            環境連絡書_発生日.Name = "環境連絡書_発生日";
+            環境連絡書_発生日.Size = new Size(102, 20);
+            環境連絡書_発生日.TabIndex = 17;
+            環境連絡書_発生日.TextChanged += 環境連絡書_発生日_TextChanged;
+            環境連絡書_発生日.DoubleClick += 環境連絡書_発生日_DoubleClick;
+            環境連絡書_発生日.KeyDown += 環境連絡書_発生日_KeyDown;
+            環境連絡書_発生日.Validating += 環境連絡書_発生日_Validating;
+            環境連絡書_発生日.Validated += 環境連絡書_発生日_Validated;
             // 
             // 発生日_ラベル
             // 
@@ -3021,9 +3192,9 @@ namespace u_net
             記録_場所.Name = "記録_場所";
             記録_場所.Size = new Size(315, 20);
             記録_場所.TabIndex = 22;
-            記録_場所.TextChanged += 場所_TextChanged;
-            記録_場所.Validating += 場所_Validating;
-            記録_場所.Validated += 場所_Validated;
+            記録_場所.TextChanged += 記録_場所_TextChanged;
+            記録_場所.Validating += 記録_場所_Validating;
+            記録_場所.Validated += 記録_場所_Validated;
             // 
             // label38
             // 
@@ -3065,12 +3236,12 @@ namespace u_net
             記録_日付2.Name = "記録_日付2";
             記録_日付2.Size = new Size(102, 20);
             記録_日付2.TabIndex = 18;
-            記録_日付2.TextChanged += 日付2_TextChanged;
-            記録_日付2.DoubleClick += 日付2_DoubleClick;
-            記録_日付2.KeyDown += 日付2_KeyDown;
-            記録_日付2.Leave += 日付2_Leave;
-            記録_日付2.Validating += 日付2_Validating;
-            記録_日付2.Validated += 日付2_Validated;
+            記録_日付2.TextChanged += 記録_日付2_TextChanged;
+            記録_日付2.DoubleClick += 記録_日付2_DoubleClick;
+            記録_日付2.KeyDown += 記録_日付2_KeyDown;
+            記録_日付2.Leave += 記録_日付2_Leave;
+            記録_日付2.Validating += 記録_日付2_Validating;
+            記録_日付2.Validated += 記録_日付2_Validated;
             // 
             // label34
             // 
@@ -3113,12 +3284,12 @@ namespace u_net
             記録_目的.Name = "記録_目的";
             記録_目的.Size = new Size(399, 51);
             記録_目的.TabIndex = 24;
-            記録_目的.TextChanged += 目的_TextChanged;
-            記録_目的.DoubleClick += 目的_DoubleClick;
-            記録_目的.Enter += 目的_Enter;
-            記録_目的.Leave += 目的_Leave;
-            記録_目的.Validating += 目的_Validating;
-            記録_目的.Validated += 目的_Validated;
+            記録_目的.TextChanged += 記録_目的_TextChanged;
+            記録_目的.DoubleClick += 記録_目的_DoubleClick;
+            記録_目的.Enter += 記録_目的_Enter;
+            記録_目的.Leave += 記録_目的_Leave;
+            記録_目的.Validating += 記録_目的_Validating;
+            記録_目的.Validated += 記録_目的_Validated;
             // 
             // 記録_報告内容
             // 
@@ -3131,12 +3302,12 @@ namespace u_net
             記録_報告内容.Name = "記録_報告内容";
             記録_報告内容.Size = new Size(398, 194);
             記録_報告内容.TabIndex = 26;
-            記録_報告内容.TextChanged += 報告内容_TextChanged;
-            記録_報告内容.DoubleClick += 報告内容_DoubleClick;
-            記録_報告内容.Enter += 報告内容_Enter;
-            記録_報告内容.Leave += 報告内容_Leave;
-            記録_報告内容.Validating += 報告内容_Validating;
-            記録_報告内容.Validated += 報告内容_Validated;
+            記録_報告内容.TextChanged += 記録_報告内容_TextChanged;
+            記録_報告内容.DoubleClick += 記録_報告内容_DoubleClick;
+            記録_報告内容.Enter += 記録_報告内容_Enter;
+            記録_報告内容.Leave += 記録_報告内容_Leave;
+            記録_報告内容.Validating += 記録_報告内容_Validating;
+            記録_報告内容.Validated += 記録_報告内容_Validated;
             // 
             // 記録_版数
             // 
@@ -3193,9 +3364,9 @@ namespace u_net
             記録_参加者.Name = "記録_参加者";
             記録_参加者.Size = new Size(315, 20);
             記録_参加者.TabIndex = 20;
-            記録_参加者.TextChanged += 参加者_TextChanged;
-            記録_参加者.Validating += 参加者_Validating;
-            記録_参加者.Validated += 参加者_Validated;
+            記録_参加者.TextChanged += 記録_参加者_TextChanged;
+            記録_参加者.Validating += 記録_参加者_Validating;
+            記録_参加者.Validated += 記録_参加者_Validated;
             // 
             // 記録_日付1
             // 
@@ -3208,7 +3379,7 @@ namespace u_net
             記録_日付1.Size = new Size(102, 20);
             記録_日付1.TabIndex = 17;
             記録_日付1.TextChanged += 記録_日付1_TextChanged;
-            記録_日付1.DoubleClick += 日付1_DoubleClick;
+            記録_日付1.DoubleClick += 記録_日付1_DoubleClick;
             記録_日付1.KeyDown += 記録_日付1_KeyDown;
             記録_日付1.Leave += 記録_日付1_Leave;
             記録_日付1.Validating += 記録_日付1_Validating;
@@ -3512,11 +3683,916 @@ namespace u_net
             label45.Text = "承認者名";
             label45.TextAlign = ContentAlignment.MiddleLeft;
             // 
+            // 教育訓練実施要領書パネル
+            // 
+            教育訓練実施要領書パネル.Controls.Add(label51);
+            教育訓練実施要領書パネル.Controls.Add(教育訓練実施要領書_受講者名);
+            教育訓練実施要領書パネル.Controls.Add(label50);
+            教育訓練実施要領書パネル.Controls.Add(教育訓練実施要領書_目的);
+            教育訓練実施要領書パネル.Controls.Add(教育訓練実施要領書_実施場所);
+            教育訓練実施要領書パネル.Controls.Add(label41);
+            教育訓練実施要領書パネル.Controls.Add(label42);
+            教育訓練実施要領書パネル.Controls.Add(教育訓練実施要領書_日付2選択ボタン);
+            教育訓練実施要領書パネル.Controls.Add(教育訓練実施要領書_日付2);
+            教育訓練実施要領書パネル.Controls.Add(label46);
+            教育訓練実施要領書パネル.Controls.Add(label47);
+            教育訓練実施要領書パネル.Controls.Add(教育訓練実施要領書_内容);
+            教育訓練実施要領書パネル.Controls.Add(教育訓練実施要領書_期待効果);
+            教育訓練実施要領書パネル.Controls.Add(教育訓練実施要領書_版数);
+            教育訓練実施要領書パネル.Controls.Add(教育訓練実施要領書_文書コード);
+            教育訓練実施要領書パネル.Controls.Add(label48);
+            教育訓練実施要領書パネル.Controls.Add(教育訓練実施要領書_訓練名);
+            教育訓練実施要領書パネル.Controls.Add(教育訓練実施要領書_日付1選択ボタン);
+            教育訓練実施要領書パネル.Controls.Add(教育訓練実施要領書_日付1);
+            教育訓練実施要領書パネル.Controls.Add(label49);
+            教育訓練実施要領書パネル.Location = new Point(9, 226);
+            教育訓練実施要領書パネル.Name = "教育訓練実施要領書パネル";
+            教育訓練実施要領書パネル.Size = new Size(404, 376);
+            教育訓練実施要領書パネル.TabIndex = 17;
+            // 
+            // label51
+            // 
+            label51.AllowDrop = true;
+            label51.AutoEllipsis = true;
+            label51.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label51.ForeColor = SystemColors.ActiveCaptionText;
+            label51.ImageAlign = ContentAlignment.MiddleLeft;
+            label51.Location = new Point(0, 84);
+            label51.Margin = new Padding(0);
+            label51.Name = "label51";
+            label51.Size = new Size(85, 20);
+            label51.TabIndex = 21024;
+            label51.Text = "受講日";
+            label51.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // 教育訓練実施要領書_受講者名
+            // 
+            教育訓練実施要領書_受講者名.BackColor = Color.White;
+            教育訓練実施要領書_受講者名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            教育訓練実施要領書_受講者名.ImeMode = ImeMode.Hiragana;
+            教育訓練実施要領書_受講者名.Location = new Point(86, 6);
+            教育訓練実施要領書_受講者名.Margin = new Padding(3, 2, 3, 2);
+            教育訓練実施要領書_受講者名.Multiline = true;
+            教育訓練実施要領書_受講者名.Name = "教育訓練実施要領書_受講者名";
+            教育訓練実施要領書_受講者名.Size = new Size(315, 28);
+            教育訓練実施要領書_受講者名.TabIndex = 16;
+            教育訓練実施要領書_受講者名.TextChanged += 教育訓練実施要領書_受講者名_TextChanged;
+            教育訓練実施要領書_受講者名.Validating += 教育訓練実施要領書_受講者名_Validating;
+            教育訓練実施要領書_受講者名.Validated += 教育訓練実施要領書_受講者名_Validated;
+            // 
+            // label50
+            // 
+            label50.AllowDrop = true;
+            label50.AutoEllipsis = true;
+            label50.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label50.ForeColor = SystemColors.ActiveCaptionText;
+            label50.ImageAlign = ContentAlignment.MiddleLeft;
+            label50.Location = new Point(0, 108);
+            label50.Margin = new Padding(0);
+            label50.Name = "label50";
+            label50.Size = new Size(390, 20);
+            label50.TabIndex = 21021;
+            label50.Text = "目的";
+            label50.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // 教育訓練実施要領書_目的
+            // 
+            教育訓練実施要領書_目的.BackColor = SystemColors.Window;
+            教育訓練実施要領書_目的.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            教育訓練実施要領書_目的.ImeMode = ImeMode.Hiragana;
+            教育訓練実施要領書_目的.Location = new Point(2, 129);
+            教育訓練実施要領書_目的.Margin = new Padding(3, 2, 3, 2);
+            教育訓練実施要領書_目的.Multiline = true;
+            教育訓練実施要領書_目的.Name = "教育訓練実施要領書_目的";
+            教育訓練実施要領書_目的.Size = new Size(399, 41);
+            教育訓練実施要領書_目的.TabIndex = 21;
+            教育訓練実施要領書_目的.TextChanged += 教育訓練実施要領書_目的_TextChanged;
+            教育訓練実施要領書_目的.DoubleClick += 教育訓練実施要領書_目的_DoubleClick;
+            教育訓練実施要領書_目的.Enter += 教育訓練実施要領書_目的_Enter;
+            教育訓練実施要領書_目的.Leave += 教育訓練実施要領書_目的_Leave;
+            教育訓練実施要領書_目的.Validating += 教育訓練実施要領書_目的_Validating;
+            教育訓練実施要領書_目的.Validated += 教育訓練実施要領書_目的_Validated;
+            // 
+            // 教育訓練実施要領書_実施場所
+            // 
+            教育訓練実施要領書_実施場所.BackColor = Color.White;
+            教育訓練実施要領書_実施場所.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            教育訓練実施要領書_実施場所.ImeMode = ImeMode.Hiragana;
+            教育訓練実施要領書_実施場所.Location = new Point(86, 60);
+            教育訓練実施要領書_実施場所.Margin = new Padding(3, 2, 3, 2);
+            教育訓練実施要領書_実施場所.Name = "教育訓練実施要領書_実施場所";
+            教育訓練実施要領書_実施場所.Size = new Size(315, 20);
+            教育訓練実施要領書_実施場所.TabIndex = 18;
+            教育訓練実施要領書_実施場所.TextChanged += 教育訓練実施要領書_実施場所_TextChanged;
+            教育訓練実施要領書_実施場所.Validating += 教育訓練実施要領書_実施場所_Validating;
+            教育訓練実施要領書_実施場所.Validated += 教育訓練実施要領書_実施場所_Validated;
+            // 
+            // label41
+            // 
+            label41.AllowDrop = true;
+            label41.AutoEllipsis = true;
+            label41.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label41.ForeColor = SystemColors.ActiveCaptionText;
+            label41.ImageAlign = ContentAlignment.MiddleLeft;
+            label41.Location = new Point(0, 60);
+            label41.Margin = new Padding(0);
+            label41.Name = "label41";
+            label41.Size = new Size(85, 20);
+            label41.TabIndex = 21;
+            label41.Text = "実施場所";
+            label41.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // label42
+            // 
+            label42.AllowDrop = true;
+            label42.AutoEllipsis = true;
+            label42.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label42.ForeColor = SystemColors.ActiveCaptionText;
+            label42.ImageAlign = ContentAlignment.MiddleLeft;
+            label42.Location = new Point(0, 37);
+            label42.Margin = new Padding(0);
+            label42.Name = "label42";
+            label42.Size = new Size(85, 20);
+            label42.TabIndex = 19;
+            label42.Text = "訓練名";
+            label42.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // 教育訓練実施要領書_日付2
+            // 
+            教育訓練実施要領書_日付2.BackColor = Color.White;
+            教育訓練実施要領書_日付2.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            教育訓練実施要領書_日付2.ImeMode = ImeMode.Disable;
+            教育訓練実施要領書_日付2.Location = new Point(233, 84);
+            教育訓練実施要領書_日付2.Margin = new Padding(3, 2, 3, 2);
+            教育訓練実施要領書_日付2.Name = "教育訓練実施要領書_日付2";
+            教育訓練実施要領書_日付2.Size = new Size(102, 20);
+            教育訓練実施要領書_日付2.TabIndex = 20;
+            教育訓練実施要領書_日付2.TextChanged += 教育訓練実施要領書_日付2_TextChanged;
+            教育訓練実施要領書_日付2.KeyDown += 教育訓練実施要領書_日付2_KeyDown;
+            教育訓練実施要領書_日付2.Validating += 教育訓練実施要領書_日付2_Validating;
+            教育訓練実施要領書_日付2.Validated += 教育訓練実施要領書_日付2_Validated;
+            // 
+            // label46
+            // 
+            label46.AllowDrop = true;
+            label46.AutoEllipsis = true;
+            label46.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label46.ForeColor = SystemColors.ActiveCaptionText;
+            label46.ImageAlign = ContentAlignment.MiddleLeft;
+            label46.Location = new Point(210, 83);
+            label46.Margin = new Padding(0);
+            label46.Name = "label46";
+            label46.Size = new Size(21, 21);
+            label46.TabIndex = 21018;
+            label46.Text = "～";
+            label46.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // label47
+            // 
+            label47.AllowDrop = true;
+            label47.AutoEllipsis = true;
+            label47.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label47.ForeColor = SystemColors.ActiveCaptionText;
+            label47.ImageAlign = ContentAlignment.MiddleLeft;
+            label47.Location = new Point(0, 173);
+            label47.Margin = new Padding(0);
+            label47.Name = "label47";
+            label47.Size = new Size(390, 20);
+            label47.TabIndex = 23;
+            label47.Text = "内容";
+            label47.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // 教育訓練実施要領書_内容
+            // 
+            教育訓練実施要領書_内容.BackColor = SystemColors.Window;
+            教育訓練実施要領書_内容.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            教育訓練実施要領書_内容.ImeMode = ImeMode.Hiragana;
+            教育訓練実施要領書_内容.Location = new Point(2, 194);
+            教育訓練実施要領書_内容.Margin = new Padding(3, 2, 3, 2);
+            教育訓練実施要領書_内容.Multiline = true;
+            教育訓練実施要領書_内容.Name = "教育訓練実施要領書_内容";
+            教育訓練実施要領書_内容.Size = new Size(399, 114);
+            教育訓練実施要領書_内容.TabIndex = 22;
+            教育訓練実施要領書_内容.TextChanged += 教育訓練実施要領書_内容_TextChanged;
+            教育訓練実施要領書_内容.DoubleClick += 教育訓練実施要領書_内容_DoubleClick;
+            教育訓練実施要領書_内容.Enter += 教育訓練実施要領書_内容_Enter;
+            教育訓練実施要領書_内容.Leave += 教育訓練実施要領書_内容_Leave;
+            教育訓練実施要領書_内容.Validating += 教育訓練実施要領書_内容_Validating;
+            教育訓練実施要領書_内容.Validated += 教育訓練実施要領書_内容_Validated;
+            // 
+            // 教育訓練実施要領書_期待効果
+            // 
+            教育訓練実施要領書_期待効果.BackColor = SystemColors.Window;
+            教育訓練実施要領書_期待効果.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            教育訓練実施要領書_期待効果.ImeMode = ImeMode.Hiragana;
+            教育訓練実施要領書_期待効果.Location = new Point(2, 330);
+            教育訓練実施要領書_期待効果.Margin = new Padding(3, 2, 3, 2);
+            教育訓練実施要領書_期待効果.Multiline = true;
+            教育訓練実施要領書_期待効果.Name = "教育訓練実施要領書_期待効果";
+            教育訓練実施要領書_期待効果.Size = new Size(398, 41);
+            教育訓練実施要領書_期待効果.TabIndex = 23;
+            教育訓練実施要領書_期待効果.TextChanged += 教育訓練実施要領書_期待効果_TextChanged;
+            教育訓練実施要領書_期待効果.DoubleClick += 教育訓練実施要領書_期待効果_DoubleClick;
+            教育訓練実施要領書_期待効果.Enter += 教育訓練実施要領書_期待効果_Enter;
+            教育訓練実施要領書_期待効果.Leave += 教育訓練実施要領書_期待効果_Leave;
+            教育訓練実施要領書_期待効果.Validating += 教育訓練実施要領書_期待効果_Validating;
+            教育訓練実施要領書_期待効果.Validated += 教育訓練実施要領書_期待効果_Validated;
+            // 
+            // 教育訓練実施要領書_版数
+            // 
+            教育訓練実施要領書_版数.BackColor = Color.White;
+            教育訓練実施要領書_版数.Enabled = false;
+            教育訓練実施要領書_版数.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            教育訓練実施要領書_版数.ImeMode = ImeMode.Disable;
+            教育訓練実施要領書_版数.Location = new Point(356, 309);
+            教育訓練実施要領書_版数.Margin = new Padding(3, 2, 3, 2);
+            教育訓練実施要領書_版数.Name = "教育訓練実施要領書_版数";
+            教育訓練実施要領書_版数.ReadOnly = true;
+            教育訓練実施要領書_版数.Size = new Size(13, 20);
+            教育訓練実施要領書_版数.TabIndex = 10292;
+            教育訓練実施要領書_版数.TabStop = false;
+            教育訓練実施要領書_版数.Visible = false;
+            // 
+            // 教育訓練実施要領書_文書コード
+            // 
+            教育訓練実施要領書_文書コード.BackColor = Color.White;
+            教育訓練実施要領書_文書コード.Enabled = false;
+            教育訓練実施要領書_文書コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            教育訓練実施要領書_文書コード.ImeMode = ImeMode.Disable;
+            教育訓練実施要領書_文書コード.Location = new Point(337, 309);
+            教育訓練実施要領書_文書コード.Margin = new Padding(3, 2, 3, 2);
+            教育訓練実施要領書_文書コード.Name = "教育訓練実施要領書_文書コード";
+            教育訓練実施要領書_文書コード.ReadOnly = true;
+            教育訓練実施要領書_文書コード.Size = new Size(13, 20);
+            教育訓練実施要領書_文書コード.TabIndex = 10291;
+            教育訓練実施要領書_文書コード.TabStop = false;
+            教育訓練実施要領書_文書コード.Visible = false;
+            // 
+            // label48
+            // 
+            label48.AllowDrop = true;
+            label48.AutoEllipsis = true;
+            label48.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label48.ForeColor = SystemColors.ActiveCaptionText;
+            label48.ImageAlign = ContentAlignment.MiddleLeft;
+            label48.Location = new Point(0, 310);
+            label48.Margin = new Padding(0);
+            label48.Name = "label48";
+            label48.Size = new Size(325, 20);
+            label48.TabIndex = 25;
+            label48.Text = "期待効果";
+            label48.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // 教育訓練実施要領書_訓練名
+            // 
+            教育訓練実施要領書_訓練名.BackColor = Color.White;
+            教育訓練実施要領書_訓練名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            教育訓練実施要領書_訓練名.ImeMode = ImeMode.Hiragana;
+            教育訓練実施要領書_訓練名.Location = new Point(86, 37);
+            教育訓練実施要領書_訓練名.Margin = new Padding(3, 2, 3, 2);
+            教育訓練実施要領書_訓練名.Name = "教育訓練実施要領書_訓練名";
+            教育訓練実施要領書_訓練名.Size = new Size(315, 20);
+            教育訓練実施要領書_訓練名.TabIndex = 17;
+            教育訓練実施要領書_訓練名.TextChanged += 教育訓練実施要領書_訓練名_TextChanged;
+            教育訓練実施要領書_訓練名.Validating += 教育訓練実施要領書_訓練名_Validating;
+            教育訓練実施要領書_訓練名.Validated += 教育訓練実施要領書_訓練名_Validated;
+            // 
+            // 教育訓練実施要領書_日付1
+            // 
+            教育訓練実施要領書_日付1.BackColor = Color.White;
+            教育訓練実施要領書_日付1.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            教育訓練実施要領書_日付1.ImeMode = ImeMode.Disable;
+            教育訓練実施要領書_日付1.Location = new Point(86, 84);
+            教育訓練実施要領書_日付1.Margin = new Padding(3, 2, 3, 2);
+            教育訓練実施要領書_日付1.Name = "教育訓練実施要領書_日付1";
+            教育訓練実施要領書_日付1.Size = new Size(102, 20);
+            教育訓練実施要領書_日付1.TabIndex = 19;
+            教育訓練実施要領書_日付1.TextChanged += 教育訓練実施要領書_日付1_TextChanged;
+            教育訓練実施要領書_日付1.KeyDown += 教育訓練実施要領書_日付1_KeyDown;
+            教育訓練実施要領書_日付1.Validating += 教育訓練実施要領書_日付1_Validating;
+            教育訓練実施要領書_日付1.Validated += 教育訓練実施要領書_日付1_Validated;
+            // 
+            // label49
+            // 
+            label49.AllowDrop = true;
+            label49.AutoEllipsis = true;
+            label49.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label49.ForeColor = SystemColors.ActiveCaptionText;
+            label49.ImageAlign = ContentAlignment.MiddleLeft;
+            label49.Location = new Point(0, 5);
+            label49.Margin = new Padding(0);
+            label49.Name = "label49";
+            label49.Size = new Size(85, 20);
+            label49.TabIndex = 16;
+            label49.Text = "受講者名";
+            label49.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // 出向依頼書パネル
+            // 
+            出向依頼書パネル.Controls.Add(label66);
+            出向依頼書パネル.Controls.Add(label65);
+            出向依頼書パネル.Controls.Add(label64);
+            出向依頼書パネル.Controls.Add(出向依頼書_費用);
+            出向依頼書パネル.Controls.Add(出向依頼書_出向先電話番号);
+            出向依頼書パネル.Controls.Add(出向依頼書_出向先住所);
+            出向依頼書パネル.Controls.Add(出向依頼書_出向先会社名);
+            出向依頼書パネル.Controls.Add(label63);
+            出向依頼書パネル.Controls.Add(label62);
+            出向依頼書パネル.Controls.Add(出向依頼書_顧客電話番号);
+            出向依頼書パネル.Controls.Add(出向依頼書_依頼分類);
+            出向依頼書パネル.Controls.Add(label61);
+            出向依頼書パネル.Controls.Add(出向依頼書_シリアル番号);
+            出向依頼書パネル.Controls.Add(出向依頼書_製品型番);
+            出向依頼書パネル.Controls.Add(label60);
+            出向依頼書パネル.Controls.Add(label57);
+            出向依頼書パネル.Controls.Add(出向依頼書_顧客担当者名);
+            出向依頼書パネル.Controls.Add(出向依頼書_顧客参照ボタン);
+            出向依頼書パネル.Controls.Add(出向依頼書_顧客コード選択ボタン);
+            出向依頼書パネル.Controls.Add(出向依頼書_顧客コード);
+            出向依頼書パネル.Controls.Add(label53);
+            出向依頼書パネル.Controls.Add(出向依頼書_受付日選択ボタン);
+            出向依頼書パネル.Controls.Add(出向依頼書_受付日);
+            出向依頼書パネル.Controls.Add(出向依頼書_出向分類);
+            出向依頼書パネル.Controls.Add(label52);
+            出向依頼書パネル.Controls.Add(出向依頼書_顧客名);
+            出向依頼書パネル.Controls.Add(label54);
+            出向依頼書パネル.Controls.Add(label55);
+            出向依頼書パネル.Controls.Add(出向依頼書_出向日終了選択ボタン);
+            出向依頼書パネル.Controls.Add(出向依頼書_出向日終了);
+            出向依頼書パネル.Controls.Add(label56);
+            出向依頼書パネル.Controls.Add(出向依頼書_依頼内容);
+            出向依頼書パネル.Controls.Add(出向依頼書_版数);
+            出向依頼書パネル.Controls.Add(出向依頼書_文書コード);
+            出向依頼書パネル.Controls.Add(label58);
+            出向依頼書パネル.Controls.Add(出向依頼書_出向日開始選択ボタン);
+            出向依頼書パネル.Controls.Add(出向依頼書_出向日開始);
+            出向依頼書パネル.Controls.Add(label59);
+            出向依頼書パネル.Location = new Point(9, 226);
+            出向依頼書パネル.Name = "出向依頼書パネル";
+            出向依頼書パネル.Size = new Size(404, 376);
+            出向依頼書パネル.TabIndex = 17;
+            // 
+            // label66
+            // 
+            label66.AllowDrop = true;
+            label66.AutoEllipsis = true;
+            label66.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label66.ForeColor = SystemColors.ActiveCaptionText;
+            label66.ImageAlign = ContentAlignment.MiddleLeft;
+            label66.Location = new Point(0, 353);
+            label66.Margin = new Padding(0);
+            label66.Name = "label66";
+            label66.Size = new Size(85, 20);
+            label66.TabIndex = 44;
+            label66.Text = "費用(&P)";
+            label66.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // label65
+            // 
+            label65.AllowDrop = true;
+            label65.AutoEllipsis = true;
+            label65.Font = new Font("BIZ UDゴシック", 7.5F, FontStyle.Regular, GraphicsUnit.Point);
+            label65.ForeColor = SystemColors.ActiveCaptionText;
+            label65.ImageAlign = ContentAlignment.MiddleLeft;
+            label65.Location = new Point(0, 330);
+            label65.Margin = new Padding(0);
+            label65.Name = "label65";
+            label65.Size = new Size(91, 20);
+            label65.TabIndex = 42;
+            label65.Text = "出向先電話番号(&E)";
+            label65.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // label64
+            // 
+            label64.AllowDrop = true;
+            label64.AutoEllipsis = true;
+            label64.Font = new Font("BIZ UDゴシック", 8F, FontStyle.Regular, GraphicsUnit.Point);
+            label64.ForeColor = SystemColors.ActiveCaptionText;
+            label64.ImageAlign = ContentAlignment.MiddleLeft;
+            label64.Location = new Point(0, 308);
+            label64.Margin = new Padding(0);
+            label64.Name = "label64";
+            label64.Size = new Size(89, 20);
+            label64.TabIndex = 40;
+            label64.Text = "出向先住所(&D)";
+            label64.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // 出向依頼書_費用
+            // 
+            出向依頼書_費用.BackColor = SystemColors.Window;
+            出向依頼書_費用.Enabled = false;
+            出向依頼書_費用.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            出向依頼書_費用.FormattingEnabled = true;
+            出向依頼書_費用.ImeMode = ImeMode.Disable;
+            出向依頼書_費用.Location = new Point(92, 352);
+            出向依頼書_費用.Name = "出向依頼書_費用";
+            出向依頼書_費用.Size = new Size(96, 21);
+            出向依頼書_費用.TabIndex = 45;
+            出向依頼書_費用.TextUpdate += 出向依頼書_費用_TextUpdate;
+            出向依頼書_費用.KeyPress += 出向依頼書_費用_KeyPress;
+            出向依頼書_費用.Validating += 出向依頼書_費用_Validating;
+            出向依頼書_費用.Validated += 出向依頼書_費用_Validated;
+            // 
+            // 出向依頼書_出向先電話番号
+            // 
+            出向依頼書_出向先電話番号.BackColor = Color.White;
+            出向依頼書_出向先電話番号.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            出向依頼書_出向先電話番号.ImeMode = ImeMode.Disable;
+            出向依頼書_出向先電話番号.Location = new Point(92, 330);
+            出向依頼書_出向先電話番号.Margin = new Padding(3, 2, 3, 2);
+            出向依頼書_出向先電話番号.Name = "出向依頼書_出向先電話番号";
+            出向依頼書_出向先電話番号.Size = new Size(176, 20);
+            出向依頼書_出向先電話番号.TabIndex = 43;
+            出向依頼書_出向先電話番号.TextChanged += 出向依頼書_出向先電話番号_TextChanged;
+            出向依頼書_出向先電話番号.Validating += 出向依頼書_出向先電話番号_Validating;
+            出向依頼書_出向先電話番号.Validated += 出向依頼書_出向先電話番号_Validated;
+            // 
+            // 出向依頼書_出向先住所
+            // 
+            出向依頼書_出向先住所.BackColor = Color.White;
+            出向依頼書_出向先住所.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            出向依頼書_出向先住所.ImeMode = ImeMode.Hiragana;
+            出向依頼書_出向先住所.Location = new Point(92, 308);
+            出向依頼書_出向先住所.Margin = new Padding(3, 2, 3, 2);
+            出向依頼書_出向先住所.Name = "出向依頼書_出向先住所";
+            出向依頼書_出向先住所.Size = new Size(308, 20);
+            出向依頼書_出向先住所.TabIndex = 41;
+            出向依頼書_出向先住所.TextChanged += 出向依頼書_出向先住所_TextChanged;
+            出向依頼書_出向先住所.Validating += 出向依頼書_出向先住所_Validating;
+            出向依頼書_出向先住所.Validated += 出向依頼書_出向先住所_Validated;
+            // 
+            // 出向依頼書_出向先会社名
+            // 
+            出向依頼書_出向先会社名.BackColor = Color.White;
+            出向依頼書_出向先会社名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            出向依頼書_出向先会社名.ImeMode = ImeMode.Hiragana;
+            出向依頼書_出向先会社名.Location = new Point(92, 286);
+            出向依頼書_出向先会社名.Margin = new Padding(3, 2, 3, 2);
+            出向依頼書_出向先会社名.Name = "出向依頼書_出向先会社名";
+            出向依頼書_出向先会社名.Size = new Size(308, 20);
+            出向依頼書_出向先会社名.TabIndex = 39;
+            出向依頼書_出向先会社名.TextChanged += 出向依頼書_出向先会社名_TextChanged;
+            出向依頼書_出向先会社名.Validating += 出向依頼書_出向先会社名_Validating;
+            出向依頼書_出向先会社名.Validated += 出向依頼書_出向先会社名_Validated;
+            // 
+            // label63
+            // 
+            label63.AllowDrop = true;
+            label63.AutoEllipsis = true;
+            label63.Font = new Font("BIZ UDゴシック", 8F, FontStyle.Regular, GraphicsUnit.Point);
+            label63.ForeColor = SystemColors.ActiveCaptionText;
+            label63.ImageAlign = ContentAlignment.MiddleLeft;
+            label63.Location = new Point(0, 286);
+            label63.Margin = new Padding(0);
+            label63.Name = "label63";
+            label63.Size = new Size(89, 20);
+            label63.TabIndex = 38;
+            label63.Text = "出向先会社名(&T)";
+            label63.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // label62
+            // 
+            label62.AllowDrop = true;
+            label62.AutoEllipsis = true;
+            label62.Font = new Font("BIZ UDゴシック", 7.5F, FontStyle.Regular, GraphicsUnit.Point);
+            label62.ForeColor = SystemColors.ActiveCaptionText;
+            label62.ImageAlign = ContentAlignment.MiddleLeft;
+            label62.Location = new Point(0, 116);
+            label62.Margin = new Padding(0);
+            label62.Name = "label62";
+            label62.Size = new Size(85, 20);
+            label62.TabIndex = 26;
+            label62.Text = "顧客電話番号(&T)";
+            label62.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // 出向依頼書_顧客電話番号
+            // 
+            出向依頼書_顧客電話番号.BackColor = Color.White;
+            出向依頼書_顧客電話番号.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            出向依頼書_顧客電話番号.ImeMode = ImeMode.Disable;
+            出向依頼書_顧客電話番号.Location = new Point(86, 116);
+            出向依頼書_顧客電話番号.Margin = new Padding(3, 2, 3, 2);
+            出向依頼書_顧客電話番号.Name = "出向依頼書_顧客電話番号";
+            出向依頼書_顧客電話番号.Size = new Size(176, 20);
+            出向依頼書_顧客電話番号.TabIndex = 27;
+            出向依頼書_顧客電話番号.TextChanged += 出向依頼書_顧客電話番号_TextChanged;
+            出向依頼書_顧客電話番号.Validating += 出向依頼書_顧客電話番号_Validating;
+            出向依頼書_顧客電話番号.Validated += 出向依頼書_顧客電話番号_Validated;
+            // 
+            // 出向依頼書_依頼分類
+            // 
+            出向依頼書_依頼分類.Controls.Add(出向依頼書_依頼分類その他);
+            出向依頼書_依頼分類.Controls.Add(出向依頼書_その他);
+            出向依頼書_依頼分類.Controls.Add(出向依頼書_立会);
+            出向依頼書_依頼分類.Controls.Add(出向依頼書_調査);
+            出向依頼書_依頼分類.Controls.Add(出向依頼書_修理);
+            出向依頼書_依頼分類.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            出向依頼書_依頼分類.Location = new Point(5, 182);
+            出向依頼書_依頼分類.Name = "出向依頼書_依頼分類";
+            出向依頼書_依頼分類.Size = new Size(395, 38);
+            出向依頼書_依頼分類.TabIndex = 32;
+            出向依頼書_依頼分類.TabStop = false;
+            出向依頼書_依頼分類.Text = "依頼分類(&G)";
+            出向依頼書_依頼分類.Validating += 出向依頼書_依頼分類_Validating;
+            出向依頼書_依頼分類.Validated += 出向依頼書_依頼分類_Validated;
+            // 
+            // 出向依頼書_依頼分類その他
+            // 
+            出向依頼書_依頼分類その他.BackColor = Color.White;
+            出向依頼書_依頼分類その他.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            出向依頼書_依頼分類その他.ImeMode = ImeMode.Hiragana;
+            出向依頼書_依頼分類その他.Location = new Point(289, 16);
+            出向依頼書_依頼分類その他.Margin = new Padding(3, 2, 3, 2);
+            出向依頼書_依頼分類その他.Name = "出向依頼書_依頼分類その他";
+            出向依頼書_依頼分類その他.Size = new Size(98, 20);
+            出向依頼書_依頼分類その他.TabIndex = 5;
+            出向依頼書_依頼分類その他.TextChanged += 出向依頼書_依頼分類その他_TextChanged;
+            出向依頼書_依頼分類その他.Validating += 出向依頼書_依頼分類その他_Validating;
+            // 
+            // 出向依頼書_その他
+            // 
+            出向依頼書_その他.AutoSize = true;
+            出向依頼書_その他.Location = new Point(227, 17);
+            出向依頼書_その他.Name = "出向依頼書_その他";
+            出向依頼書_その他.Size = new Size(59, 16);
+            出向依頼書_その他.TabIndex = 4;
+            出向依頼書_その他.TabStop = true;
+            出向依頼書_その他.Text = "その他";
+            出向依頼書_その他.UseVisualStyleBackColor = true;
+            // 
+            // 出向依頼書_立会
+            // 
+            出向依頼書_立会.AutoSize = true;
+            出向依頼書_立会.Location = new Point(155, 17);
+            出向依頼書_立会.Name = "出向依頼書_立会";
+            出向依頼書_立会.Size = new Size(47, 16);
+            出向依頼書_立会.TabIndex = 3;
+            出向依頼書_立会.TabStop = true;
+            出向依頼書_立会.Text = "立会";
+            出向依頼書_立会.UseVisualStyleBackColor = true;
+            // 
+            // 出向依頼書_調査
+            // 
+            出向依頼書_調査.AutoSize = true;
+            出向依頼書_調査.Location = new Point(87, 17);
+            出向依頼書_調査.Name = "出向依頼書_調査";
+            出向依頼書_調査.Size = new Size(47, 16);
+            出向依頼書_調査.TabIndex = 2;
+            出向依頼書_調査.TabStop = true;
+            出向依頼書_調査.Text = "調査";
+            出向依頼書_調査.UseVisualStyleBackColor = true;
+            // 
+            // 出向依頼書_修理
+            // 
+            出向依頼書_修理.AutoSize = true;
+            出向依頼書_修理.Location = new Point(19, 17);
+            出向依頼書_修理.Name = "出向依頼書_修理";
+            出向依頼書_修理.Size = new Size(47, 16);
+            出向依頼書_修理.TabIndex = 1;
+            出向依頼書_修理.TabStop = true;
+            出向依頼書_修理.Text = "修理";
+            出向依頼書_修理.UseVisualStyleBackColor = true;
+            // 
+            // label61
+            // 
+            label61.AllowDrop = true;
+            label61.AutoEllipsis = true;
+            label61.Font = new Font("BIZ UDゴシック", 7.5F, FontStyle.Regular, GraphicsUnit.Point);
+            label61.ForeColor = SystemColors.ActiveCaptionText;
+            label61.ImageAlign = ContentAlignment.MiddleLeft;
+            label61.Location = new Point(0, 162);
+            label61.Margin = new Padding(0);
+            label61.Name = "label61";
+            label61.Size = new Size(85, 20);
+            label61.TabIndex = 30;
+            label61.Text = "シリアル番号(&S)";
+            label61.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // 出向依頼書_シリアル番号
+            // 
+            出向依頼書_シリアル番号.BackColor = Color.White;
+            出向依頼書_シリアル番号.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            出向依頼書_シリアル番号.ImeMode = ImeMode.Disable;
+            出向依頼書_シリアル番号.Location = new Point(86, 162);
+            出向依頼書_シリアル番号.Margin = new Padding(3, 2, 3, 2);
+            出向依頼書_シリアル番号.Name = "出向依頼書_シリアル番号";
+            出向依頼書_シリアル番号.Size = new Size(314, 20);
+            出向依頼書_シリアル番号.TabIndex = 31;
+            出向依頼書_シリアル番号.TextChanged += 出向依頼書_シリアル番号_TextChanged;
+            出向依頼書_シリアル番号.Validating += 出向依頼書_シリアル番号_Validating;
+            出向依頼書_シリアル番号.Validated += 出向依頼書_シリアル番号_Validated;
+            // 
+            // 出向依頼書_製品型番
+            // 
+            出向依頼書_製品型番.BackColor = Color.White;
+            出向依頼書_製品型番.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            出向依頼書_製品型番.ImeMode = ImeMode.Off;
+            出向依頼書_製品型番.Location = new Point(86, 139);
+            出向依頼書_製品型番.Margin = new Padding(3, 2, 3, 2);
+            出向依頼書_製品型番.Name = "出向依頼書_製品型番";
+            出向依頼書_製品型番.Size = new Size(314, 20);
+            出向依頼書_製品型番.TabIndex = 29;
+            出向依頼書_製品型番.TextChanged += 出向依頼書_製品型番_TextChanged;
+            出向依頼書_製品型番.Validating += 出向依頼書_製品型番_Validating;
+            出向依頼書_製品型番.Validated += 出向依頼書_製品型番_Validated;
+            // 
+            // label60
+            // 
+            label60.AllowDrop = true;
+            label60.AutoEllipsis = true;
+            label60.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label60.ForeColor = SystemColors.ActiveCaptionText;
+            label60.ImageAlign = ContentAlignment.MiddleLeft;
+            label60.Location = new Point(0, 139);
+            label60.Margin = new Padding(0);
+            label60.Name = "label60";
+            label60.Size = new Size(85, 20);
+            label60.TabIndex = 28;
+            label60.Text = "製品型番(&M)";
+            label60.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // label57
+            // 
+            label57.AllowDrop = true;
+            label57.AutoEllipsis = true;
+            label57.Font = new Font("BIZ UDゴシック", 7.5F, FontStyle.Regular, GraphicsUnit.Point);
+            label57.ForeColor = SystemColors.ActiveCaptionText;
+            label57.ImageAlign = ContentAlignment.MiddleLeft;
+            label57.Location = new Point(0, 93);
+            label57.Margin = new Padding(0);
+            label57.Name = "label57";
+            label57.Size = new Size(85, 20);
+            label57.TabIndex = 24;
+            label57.Text = "顧客担当者名(&N)";
+            label57.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // 出向依頼書_顧客担当者名
+            // 
+            出向依頼書_顧客担当者名.BackColor = Color.White;
+            出向依頼書_顧客担当者名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            出向依頼書_顧客担当者名.ImeMode = ImeMode.Hiragana;
+            出向依頼書_顧客担当者名.Location = new Point(86, 93);
+            出向依頼書_顧客担当者名.Margin = new Padding(3, 2, 3, 2);
+            出向依頼書_顧客担当者名.Name = "出向依頼書_顧客担当者名";
+            出向依頼書_顧客担当者名.Size = new Size(314, 20);
+            出向依頼書_顧客担当者名.TabIndex = 25;
+            出向依頼書_顧客担当者名.TextChanged += 出向依頼書_顧客担当者名_TextChanged;
+            出向依頼書_顧客担当者名.Validating += 出向依頼書_顧客担当者名_Validating;
+            出向依頼書_顧客担当者名.Validated += 出向依頼書_顧客担当者名_Validated;
+            // 
+            // 出向依頼書_顧客コード
+            // 
+            出向依頼書_顧客コード.BackColor = Color.White;
+            出向依頼書_顧客コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            出向依頼書_顧客コード.ImeMode = ImeMode.Disable;
+            出向依頼書_顧客コード.Location = new Point(86, 49);
+            出向依頼書_顧客コード.Margin = new Padding(3, 2, 3, 2);
+            出向依頼書_顧客コード.Name = "出向依頼書_顧客コード";
+            出向依頼書_顧客コード.Size = new Size(102, 20);
+            出向依頼書_顧客コード.TabIndex = 21;
+            出向依頼書_顧客コード.TextChanged += 出向依頼書_顧客コード_TextChanged;
+            出向依頼書_顧客コード.DoubleClick += 出向依頼書_顧客コード_DoubleClick;
+            出向依頼書_顧客コード.KeyDown += 出向依頼書_顧客コード_KeyDown;
+            出向依頼書_顧客コード.KeyPress += 出向依頼書_顧客コード_KeyPress;
+            出向依頼書_顧客コード.Validating += 出向依頼書_顧客コード_Validating;
+            出向依頼書_顧客コード.Validated += 出向依頼書_顧客コード_Validated;
+            // 
+            // label53
+            // 
+            label53.AllowDrop = true;
+            label53.AutoEllipsis = true;
+            label53.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label53.ForeColor = SystemColors.ActiveCaptionText;
+            label53.ImageAlign = ContentAlignment.MiddleLeft;
+            label53.Location = new Point(0, 26);
+            label53.Margin = new Padding(0);
+            label53.Name = "label53";
+            label53.Size = new Size(85, 20);
+            label53.TabIndex = 18;
+            label53.Text = "出向分類(&G)";
+            label53.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // 出向依頼書_受付日
+            // 
+            出向依頼書_受付日.BackColor = Color.White;
+            出向依頼書_受付日.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            出向依頼書_受付日.ImeMode = ImeMode.Disable;
+            出向依頼書_受付日.Location = new Point(86, 4);
+            出向依頼書_受付日.Margin = new Padding(3, 2, 3, 2);
+            出向依頼書_受付日.Name = "出向依頼書_受付日";
+            出向依頼書_受付日.Size = new Size(102, 20);
+            出向依頼書_受付日.TabIndex = 17;
+            出向依頼書_受付日.TextChanged += 出向依頼書_受付日_TextChanged;
+            出向依頼書_受付日.DoubleClick += 出向依頼書_受付日_DoubleClick;
+            出向依頼書_受付日.KeyDown += 出向依頼書_受付日_KeyDown;
+            出向依頼書_受付日.Validating += 出向依頼書_受付日_Validating;
+            出向依頼書_受付日.Validated += 出向依頼書_受付日_Validated;
+            // 
+            // 出向依頼書_出向分類
+            // 
+            出向依頼書_出向分類.BackColor = SystemColors.Window;
+            出向依頼書_出向分類.Enabled = false;
+            出向依頼書_出向分類.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            出向依頼書_出向分類.FormattingEnabled = true;
+            出向依頼書_出向分類.ImeMode = ImeMode.Disable;
+            出向依頼書_出向分類.Location = new Point(86, 26);
+            出向依頼書_出向分類.Name = "出向依頼書_出向分類";
+            出向依頼書_出向分類.Size = new Size(314, 21);
+            出向依頼書_出向分類.TabIndex = 19;
+            出向依頼書_出向分類.TextUpdate += 出向依頼書_出向分類_TextUpdate;
+            出向依頼書_出向分類.KeyDown += 出向依頼書_出向分類_KeyDown;
+            出向依頼書_出向分類.Validating += 出向依頼書_出向分類_Validating;
+            出向依頼書_出向分類.Validated += 出向依頼書_出向分類_Validated;
+            // 
+            // label52
+            // 
+            label52.AllowDrop = true;
+            label52.AutoEllipsis = true;
+            label52.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label52.ForeColor = SystemColors.ActiveCaptionText;
+            label52.ImageAlign = ContentAlignment.MiddleLeft;
+            label52.Location = new Point(0, 263);
+            label52.Margin = new Padding(0);
+            label52.Name = "label52";
+            label52.Size = new Size(85, 20);
+            label52.TabIndex = 35;
+            label52.Text = "出向日(&A)";
+            label52.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // 出向依頼書_顧客名
+            // 
+            出向依頼書_顧客名.BackColor = Color.White;
+            出向依頼書_顧客名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            出向依頼書_顧客名.ImeMode = ImeMode.Hiragana;
+            出向依頼書_顧客名.Location = new Point(86, 71);
+            出向依頼書_顧客名.Margin = new Padding(3, 2, 3, 2);
+            出向依頼書_顧客名.Name = "出向依頼書_顧客名";
+            出向依頼書_顧客名.Size = new Size(314, 20);
+            出向依頼書_顧客名.TabIndex = 23;
+            出向依頼書_顧客名.TextChanged += 出向依頼書_顧客名_TextChanged;
+            出向依頼書_顧客名.Validating += 出向依頼書_顧客名_Validating;
+            出向依頼書_顧客名.Validated += 出向依頼書_顧客名_Validated;
+            // 
+            // label54
+            // 
+            label54.AllowDrop = true;
+            label54.AutoEllipsis = true;
+            label54.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label54.ForeColor = SystemColors.ActiveCaptionText;
+            label54.ImageAlign = ContentAlignment.MiddleLeft;
+            label54.Location = new Point(0, 71);
+            label54.Margin = new Padding(0);
+            label54.Name = "label54";
+            label54.Size = new Size(85, 20);
+            label54.TabIndex = 22;
+            label54.Text = "顧客名(&U)";
+            label54.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // label55
+            // 
+            label55.AllowDrop = true;
+            label55.AutoEllipsis = true;
+            label55.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label55.ForeColor = SystemColors.ActiveCaptionText;
+            label55.ImageAlign = ContentAlignment.MiddleLeft;
+            label55.Location = new Point(0, 49);
+            label55.Margin = new Padding(0);
+            label55.Name = "label55";
+            label55.Size = new Size(85, 20);
+            label55.TabIndex = 20;
+            label55.Text = "顧客コード(&C)";
+            label55.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // 出向依頼書_出向日終了
+            // 
+            出向依頼書_出向日終了.BackColor = Color.White;
+            出向依頼書_出向日終了.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            出向依頼書_出向日終了.ImeMode = ImeMode.Disable;
+            出向依頼書_出向日終了.Location = new Point(233, 263);
+            出向依頼書_出向日終了.Margin = new Padding(3, 2, 3, 2);
+            出向依頼書_出向日終了.Name = "出向依頼書_出向日終了";
+            出向依頼書_出向日終了.Size = new Size(102, 20);
+            出向依頼書_出向日終了.TabIndex = 37;
+            出向依頼書_出向日終了.TextChanged += 出向依頼書_出向日終了_TextChanged;
+            出向依頼書_出向日終了.DoubleClick += 出向依頼書_出向日終了_DoubleClick;
+            出向依頼書_出向日終了.KeyPress += 出向依頼書_出向日終了_KeyPress;
+            出向依頼書_出向日終了.Leave += 出向依頼書_出向日終了_Leave;
+            出向依頼書_出向日終了.Validating += 出向依頼書_出向日終了_Validating;
+            出向依頼書_出向日終了.Validated += 出向依頼書_出向日終了_Validated;
+            // 
+            // label56
+            // 
+            label56.AllowDrop = true;
+            label56.AutoEllipsis = true;
+            label56.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label56.ForeColor = SystemColors.ActiveCaptionText;
+            label56.ImageAlign = ContentAlignment.MiddleLeft;
+            label56.Location = new Point(210, 262);
+            label56.Margin = new Padding(0);
+            label56.Name = "label56";
+            label56.Size = new Size(21, 21);
+            label56.TabIndex = 21018;
+            label56.Text = "～";
+            label56.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // 出向依頼書_依頼内容
+            // 
+            出向依頼書_依頼内容.BackColor = SystemColors.Window;
+            出向依頼書_依頼内容.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            出向依頼書_依頼内容.ImeMode = ImeMode.Hiragana;
+            出向依頼書_依頼内容.Location = new Point(92, 223);
+            出向依頼書_依頼内容.Margin = new Padding(3, 2, 3, 2);
+            出向依頼書_依頼内容.Multiline = true;
+            出向依頼書_依頼内容.Name = "出向依頼書_依頼内容";
+            出向依頼書_依頼内容.Size = new Size(308, 37);
+            出向依頼書_依頼内容.TabIndex = 34;
+            出向依頼書_依頼内容.TextChanged += 出向依頼書_依頼内容_TextChanged;
+            出向依頼書_依頼内容.DoubleClick += 出向依頼書_依頼内容_DoubleClick;
+            出向依頼書_依頼内容.Validating += 出向依頼書_依頼内容_Validating;
+            出向依頼書_依頼内容.Validated += 出向依頼書_依頼内容_Validated;
+            // 
+            // 出向依頼書_版数
+            // 
+            出向依頼書_版数.BackColor = Color.White;
+            出向依頼書_版数.Enabled = false;
+            出向依頼書_版数.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            出向依頼書_版数.ImeMode = ImeMode.Disable;
+            出向依頼書_版数.Location = new Point(328, 116);
+            出向依頼書_版数.Margin = new Padding(3, 2, 3, 2);
+            出向依頼書_版数.Name = "出向依頼書_版数";
+            出向依頼書_版数.ReadOnly = true;
+            出向依頼書_版数.Size = new Size(13, 20);
+            出向依頼書_版数.TabIndex = 10292;
+            出向依頼書_版数.TabStop = false;
+            出向依頼書_版数.Visible = false;
+            // 
+            // 出向依頼書_文書コード
+            // 
+            出向依頼書_文書コード.BackColor = Color.White;
+            出向依頼書_文書コード.Enabled = false;
+            出向依頼書_文書コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            出向依頼書_文書コード.ImeMode = ImeMode.Disable;
+            出向依頼書_文書コード.Location = new Point(309, 116);
+            出向依頼書_文書コード.Margin = new Padding(3, 2, 3, 2);
+            出向依頼書_文書コード.Name = "出向依頼書_文書コード";
+            出向依頼書_文書コード.ReadOnly = true;
+            出向依頼書_文書コード.Size = new Size(13, 20);
+            出向依頼書_文書コード.TabIndex = 10291;
+            出向依頼書_文書コード.TabStop = false;
+            出向依頼書_文書コード.Visible = false;
+            // 
+            // label58
+            // 
+            label58.AllowDrop = true;
+            label58.AutoEllipsis = true;
+            label58.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label58.ForeColor = SystemColors.ActiveCaptionText;
+            label58.ImageAlign = ContentAlignment.MiddleLeft;
+            label58.Location = new Point(0, 223);
+            label58.Margin = new Padding(0);
+            label58.Name = "label58";
+            label58.Size = new Size(85, 20);
+            label58.TabIndex = 33;
+            label58.Text = "依頼内容(&R)";
+            label58.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // 出向依頼書_出向日開始
+            // 
+            出向依頼書_出向日開始.BackColor = Color.White;
+            出向依頼書_出向日開始.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            出向依頼書_出向日開始.ImeMode = ImeMode.Disable;
+            出向依頼書_出向日開始.Location = new Point(92, 263);
+            出向依頼書_出向日開始.Margin = new Padding(3, 2, 3, 2);
+            出向依頼書_出向日開始.Name = "出向依頼書_出向日開始";
+            出向依頼書_出向日開始.Size = new Size(96, 20);
+            出向依頼書_出向日開始.TabIndex = 36;
+            出向依頼書_出向日開始.TextChanged += 出向依頼書_出向日開始_TextChanged;
+            出向依頼書_出向日開始.DoubleClick += 出向依頼書_出向日開始_DoubleClick;
+            出向依頼書_出向日開始.KeyPress += 出向依頼書_出向日開始_KeyPress;
+            出向依頼書_出向日開始.Leave += 出向依頼書_出向日開始_Leave;
+            出向依頼書_出向日開始.Validating += 出向依頼書_出向日開始_Validating;
+            出向依頼書_出向日開始.Validated += 出向依頼書_出向日開始_Validated;
+            // 
+            // label59
+            // 
+            label59.AllowDrop = true;
+            label59.AutoEllipsis = true;
+            label59.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label59.ForeColor = SystemColors.ActiveCaptionText;
+            label59.ImageAlign = ContentAlignment.MiddleLeft;
+            label59.Location = new Point(0, 4);
+            label59.Margin = new Padding(0);
+            label59.Name = "label59";
+            label59.Size = new Size(85, 20);
+            label59.TabIndex = 16;
+            label59.Text = "受付日(&D)";
+            label59.TextAlign = ContentAlignment.MiddleLeft;
+            // 
             // F_文書
             // 
             BackColor = SystemColors.Control;
             ClientSize = new Size(880, 659);
-            Controls.Add(記録パネル);
+            Controls.Add(出向依頼書パネル);
             Controls.Add(panel2);
             Controls.Add(label28);
             Controls.Add(通信欄);
@@ -3652,6 +4728,12 @@ namespace u_net
             議事録パネル.ResumeLayout(false);
             議事録パネル.PerformLayout();
             panel2.ResumeLayout(false);
+            教育訓練実施要領書パネル.ResumeLayout(false);
+            教育訓練実施要領書パネル.PerformLayout();
+            出向依頼書パネル.ResumeLayout(false);
+            出向依頼書パネル.PerformLayout();
+            出向依頼書_依頼分類.ResumeLayout(false);
+            出向依頼書_依頼分類.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -3831,35 +4913,35 @@ namespace u_net
         private TextBox 通信欄;
         private Label 通信欄_ラベル;
         private Label label28;
-        internal Button 配布日選択ボタン;
-        private TextBox 配布日;
+        internal Button システム配布記録_配布日選択ボタン;
+        private TextBox システム配布記録_配布日;
         private Label 配布日_ラベル;
-        private TextBox 配布バージョン;
+        private TextBox システム配布記録_配布バージョン;
         private Label 配布バージョン_ラベル;
         private Label 配布目的_ラベル;
-        private TextBox 文書コード_システム配布記録;
+        private TextBox システム配布記録_文書コード;
         private Label 版数_ラベル_システム配布記録;
         private Label 文書コード_ラベル_システム配布記録;
-        private TextBox 版数_システム配布記録;
-        private TextBox 配布目的;
+        private TextBox システム配布記録_版数;
+        private TextBox システム配布記録_配布目的;
         private Panel 環境連絡書パネル;
-        private TextBox 異常内容;
-        private TextBox 版数_環境連絡書;
-        private TextBox 文書コード_環境連絡書;
+        private TextBox 環境連絡書_異常内容;
+        private TextBox 環境連絡書_版数;
+        private TextBox 環境連絡書_文書コード;
         private Label label27;
         private Label label29;
         private Label label30;
-        private TextBox 連絡先;
+        private TextBox 環境連絡書_連絡先;
         private Label 連絡先_ラベル;
-        internal Button 発生日選択ボタン;
-        private TextBox 発生日;
+        internal Button 環境連絡書_発生日選択ボタン;
+        private TextBox 環境連絡書_発生日;
         private Label 発生日_ラベル;
         private Panel 文書添付パネル;
         private MultiRowDesigner.文書添付 文書添付;
         private Label label31;
-        internal ComboBox 環境負荷;
+        internal ComboBox 環境連絡書_環境負荷;
         private Label label32;
-        private Button 回答書ボタン;
+        private Button 環境連絡書_回答書ボタン;
         private Panel 記録パネル;
         private TextBox 記録_報告内容;
         private TextBox 記録_版数;
@@ -3881,16 +4963,16 @@ namespace u_net
         private TextBox 議事録_参加者;
         private Label label39;
         private Label label40;
-        internal Button button2;
+        internal Button 出向依頼書_受付日選択ボタン;
         private TextBox 送信先コード3;
         private Label 送信先コード2_ラベル;
         private Label 送信先コード3_ラベル;
-        private TextBox textBox4;
+        private TextBox 教育訓練実施要領書_目的;
         private TextBox 議事録_内容;
-        private TextBox textBox6;
-        private TextBox textBox7;
+        private TextBox 教育訓練実施要領書_受講者名;
+        private TextBox 出向依頼書_製品型番;
         private Label label43;
-        private TextBox textBox8;
+        private TextBox 出向依頼書_シリアル番号;
         internal Button 議事録_開催日選択ボタン;
         private TextBox 議事録_開催日;
         private TextBox 議事録_版数;
@@ -3913,6 +4995,66 @@ namespace u_net
         private Label 送信先コード4_ラベル;
         private TextBox 送信先コード5;
         private Label 送信先コード5_ラベル;
+        private Panel 教育訓練実施要領書パネル;
+        private TextBox 教育訓練実施要領書_実施場所;
+        private Label label41;
+        private Label label42;
+        internal Button 教育訓練実施要領書_日付2選択ボタン;
+        private TextBox 教育訓練実施要領書_日付2;
+        private Label label46;
+        private Label label47;
+        private TextBox 教育訓練実施要領書_内容;
+        private TextBox 教育訓練実施要領書_期待効果;
+        private TextBox 教育訓練実施要領書_版数;
+        private TextBox 教育訓練実施要領書_文書コード;
+        private Label label48;
+        private TextBox 教育訓練実施要領書_訓練名;
+        internal Button 教育訓練実施要領書_日付1選択ボタン;
+        private TextBox 教育訓練実施要領書_日付1;
+        private Label label49;
+        private Label label50;
+        private Label label51;
+        private Panel 出向依頼書パネル;
+        private Label label52;
+        private TextBox 出向依頼書_顧客名;
+        private Label label54;
+        private Label label55;
+        internal Button 出向依頼書_出向日終了選択ボタン;
+        private TextBox 出向依頼書_出向日終了;
+        private Label label56;
+        private TextBox 出向依頼書_依頼内容;
+        private TextBox 出向依頼書_版数;
+        private TextBox 出向依頼書_文書コード;
+        private Label label58;
+        internal Button 出向依頼書_出向日開始選択ボタン;
+        private TextBox 出向依頼書_出向日開始;
+        private Label label59;
+        private TextBox 出向依頼書_受付日;
+        internal ComboBox 出向依頼書_出向分類;
+        internal Button 出向依頼書_顧客参照ボタン;
+        internal Button 出向依頼書_顧客コード選択ボタン;
+        private TextBox 出向依頼書_顧客コード;
+        private Label label53;
+        private Label label61;
+        private Label label60;
+        private Label label57;
+        private TextBox 出向依頼書_顧客担当者名;
+        private GroupBox 出向依頼書_依頼分類;
+        private RadioButton 出向依頼書_修理;
+        private TextBox 出向依頼書_依頼分類その他;
+        private RadioButton 出向依頼書_その他;
+        private RadioButton 出向依頼書_立会;
+        private RadioButton 出向依頼書_調査;
+        private Label label62;
+        private TextBox 出向依頼書_顧客電話番号;
+        private Label label66;
+        private Label label65;
+        private Label label64;
+        internal ComboBox 出向依頼書_費用;
+        private TextBox 出向依頼書_出向先電話番号;
+        private TextBox 出向依頼書_出向先住所;
+        private TextBox 出向依頼書_出向先会社名;
+        private Label label63;
     }
 }
 
