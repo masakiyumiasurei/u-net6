@@ -230,6 +230,17 @@ namespace u_net
             発生日 = new TextBox();
             発生日_ラベル = new Label();
             文書添付パネル = new Panel();
+            送信先コード5 = new TextBox();
+            送信先コード5_ラベル = new Label();
+            送信先コード4 = new TextBox();
+            送信先コード4_ラベル = new Label();
+            送信先コード3 = new TextBox();
+            送信先コード3_ラベル = new Label();
+            送信先コード2 = new TextBox();
+            送信先コード2_ラベル = new Label();
+            注釈_ラベル = new Label();
+            送信先コード1 = new TextBox();
+            送信先コード1_ラベル = new Label();
             文書添付 = new MultiRowDesigner.文書添付();
             記録パネル = new Panel();
             記録_場所 = new TextBox();
@@ -2794,6 +2805,17 @@ namespace u_net
             // 
             // 文書添付パネル
             // 
+            文書添付パネル.Controls.Add(送信先コード5);
+            文書添付パネル.Controls.Add(送信先コード5_ラベル);
+            文書添付パネル.Controls.Add(送信先コード4);
+            文書添付パネル.Controls.Add(送信先コード4_ラベル);
+            文書添付パネル.Controls.Add(送信先コード3);
+            文書添付パネル.Controls.Add(送信先コード3_ラベル);
+            文書添付パネル.Controls.Add(送信先コード2);
+            文書添付パネル.Controls.Add(送信先コード2_ラベル);
+            文書添付パネル.Controls.Add(注釈_ラベル);
+            文書添付パネル.Controls.Add(送信先コード1);
+            文書添付パネル.Controls.Add(送信先コード1_ラベル);
             文書添付パネル.Controls.Add(文書添付);
             文書添付パネル.Controls.Add(label9);
             文書添付パネル.Controls.Add(作成日時);
@@ -2827,6 +2849,136 @@ namespace u_net
             文書添付パネル.Size = new Size(881, 568);
             文書添付パネル.TabIndex = 10302;
             文書添付パネル.Visible = false;
+            // 
+            // 送信先コード5
+            // 
+            送信先コード5.BackColor = SystemColors.Window;
+            送信先コード5.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            送信先コード5.ImeMode = ImeMode.NoControl;
+            送信先コード5.Location = new Point(704, 29);
+            送信先コード5.Margin = new Padding(3, 2, 3, 2);
+            送信先コード5.Name = "送信先コード5";
+            送信先コード5.Size = new Size(65, 20);
+            送信先コード5.TabIndex = 10277;
+            送信先コード5.TabStop = false;
+            送信先コード5.Visible = false;
+            // 
+            // 送信先コード5_ラベル
+            // 
+            送信先コード5_ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            送信先コード5_ラベル.Location = new Point(704, 8);
+            送信先コード5_ラベル.Name = "送信先コード5_ラベル";
+            送信先コード5_ラベル.Size = new Size(65, 20);
+            送信先コード5_ラベル.TabIndex = 10276;
+            送信先コード5_ラベル.Text = "送信先部署";
+            送信先コード5_ラベル.TextAlign = ContentAlignment.MiddleLeft;
+            送信先コード5_ラベル.Visible = false;
+            // 
+            // 送信先コード4
+            // 
+            送信先コード4.BackColor = SystemColors.Window;
+            送信先コード4.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            送信先コード4.ImeMode = ImeMode.NoControl;
+            送信先コード4.Location = new Point(638, 29);
+            送信先コード4.Margin = new Padding(3, 2, 3, 2);
+            送信先コード4.Name = "送信先コード4";
+            送信先コード4.Size = new Size(65, 20);
+            送信先コード4.TabIndex = 10275;
+            送信先コード4.TabStop = false;
+            送信先コード4.Visible = false;
+            // 
+            // 送信先コード4_ラベル
+            // 
+            送信先コード4_ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            送信先コード4_ラベル.Location = new Point(638, 8);
+            送信先コード4_ラベル.Name = "送信先コード4_ラベル";
+            送信先コード4_ラベル.Size = new Size(65, 20);
+            送信先コード4_ラベル.TabIndex = 10274;
+            送信先コード4_ラベル.Text = "送信先部署";
+            送信先コード4_ラベル.TextAlign = ContentAlignment.MiddleLeft;
+            送信先コード4_ラベル.Visible = false;
+            // 
+            // 送信先コード3
+            // 
+            送信先コード3.BackColor = SystemColors.Window;
+            送信先コード3.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            送信先コード3.ImeMode = ImeMode.NoControl;
+            送信先コード3.Location = new Point(572, 29);
+            送信先コード3.Margin = new Padding(3, 2, 3, 2);
+            送信先コード3.Name = "送信先コード3";
+            送信先コード3.Size = new Size(65, 20);
+            送信先コード3.TabIndex = 10273;
+            送信先コード3.TabStop = false;
+            送信先コード3.Visible = false;
+            // 
+            // 送信先コード3_ラベル
+            // 
+            送信先コード3_ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            送信先コード3_ラベル.Location = new Point(572, 8);
+            送信先コード3_ラベル.Name = "送信先コード3_ラベル";
+            送信先コード3_ラベル.Size = new Size(65, 20);
+            送信先コード3_ラベル.TabIndex = 10272;
+            送信先コード3_ラベル.Text = "送信先部署";
+            送信先コード3_ラベル.TextAlign = ContentAlignment.MiddleLeft;
+            送信先コード3_ラベル.Visible = false;
+            // 
+            // 送信先コード2
+            // 
+            送信先コード2.BackColor = SystemColors.Window;
+            送信先コード2.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            送信先コード2.ImeMode = ImeMode.NoControl;
+            送信先コード2.Location = new Point(506, 29);
+            送信先コード2.Margin = new Padding(3, 2, 3, 2);
+            送信先コード2.Name = "送信先コード2";
+            送信先コード2.Size = new Size(65, 20);
+            送信先コード2.TabIndex = 10271;
+            送信先コード2.TabStop = false;
+            送信先コード2.Visible = false;
+            // 
+            // 送信先コード2_ラベル
+            // 
+            送信先コード2_ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            送信先コード2_ラベル.Location = new Point(506, 8);
+            送信先コード2_ラベル.Name = "送信先コード2_ラベル";
+            送信先コード2_ラベル.Size = new Size(65, 20);
+            送信先コード2_ラベル.TabIndex = 10270;
+            送信先コード2_ラベル.Text = "送信先部署";
+            送信先コード2_ラベル.TextAlign = ContentAlignment.MiddleLeft;
+            送信先コード2_ラベル.Visible = false;
+            // 
+            // 注釈_ラベル
+            // 
+            注釈_ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            注釈_ラベル.Location = new Point(440, 51);
+            注釈_ラベル.Name = "注釈_ラベル";
+            注釈_ラベル.Size = new Size(393, 49);
+            注釈_ラベル.TabIndex = 10269;
+            注釈_ラベル.Text = "※添付文書に関する操作は編集モード時可能となり、操作結果は自動的に登録されます。";
+            注釈_ラベル.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // 送信先コード1
+            // 
+            送信先コード1.BackColor = SystemColors.Window;
+            送信先コード1.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            送信先コード1.ImeMode = ImeMode.NoControl;
+            送信先コード1.Location = new Point(440, 29);
+            送信先コード1.Margin = new Padding(3, 2, 3, 2);
+            送信先コード1.Name = "送信先コード1";
+            送信先コード1.Size = new Size(65, 20);
+            送信先コード1.TabIndex = 10268;
+            送信先コード1.TabStop = false;
+            送信先コード1.Visible = false;
+            // 
+            // 送信先コード1_ラベル
+            // 
+            送信先コード1_ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            送信先コード1_ラベル.Location = new Point(440, 8);
+            送信先コード1_ラベル.Name = "送信先コード1_ラベル";
+            送信先コード1_ラベル.Size = new Size(65, 20);
+            送信先コード1_ラベル.TabIndex = 10267;
+            送信先コード1_ラベル.Text = "送信先部署";
+            送信先コード1_ラベル.TextAlign = ContentAlignment.MiddleLeft;
+            送信先コード1_ラベル.Visible = false;
             // 
             // 文書添付
             // 
@@ -3269,6 +3421,7 @@ namespace u_net
             // 完了承認者コード
             // 
             完了承認者コード.BackColor = SystemColors.Window;
+            完了承認者コード.Enabled = false;
             完了承認者コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             完了承認者コード.FormattingEnabled = true;
             完了承認者コード.ImeMode = ImeMode.Hiragana;
@@ -3324,7 +3477,6 @@ namespace u_net
             // 
             // 印刷ボタン
             // 
-            印刷ボタン.Enabled = false;
             印刷ボタン.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             印刷ボタン.Location = new Point(11, 3);
             印刷ボタン.Margin = new Padding(4);
@@ -3339,6 +3491,7 @@ namespace u_net
             // 承認者コード
             // 
             承認者コード.BackColor = SystemColors.Window;
+            承認者コード.Enabled = false;
             承認者コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             承認者コード.FormattingEnabled = true;
             承認者コード.ImeMode = ImeMode.Hiragana;
@@ -3363,7 +3516,7 @@ namespace u_net
             // 
             BackColor = SystemColors.Control;
             ClientSize = new Size(880, 659);
-            Controls.Add(文書添付パネル);
+            Controls.Add(記録パネル);
             Controls.Add(panel2);
             Controls.Add(label28);
             Controls.Add(通信欄);
@@ -3729,9 +3882,9 @@ namespace u_net
         private Label label39;
         private Label label40;
         internal Button button2;
-        private TextBox textBox3;
-        private Label label41;
-        private Label label42;
+        private TextBox 送信先コード3;
+        private Label 送信先コード2_ラベル;
+        private Label 送信先コード3_ラベル;
         private TextBox textBox4;
         private TextBox 議事録_内容;
         private TextBox textBox6;
@@ -3752,6 +3905,14 @@ namespace u_net
         private Button 完了承認ボタン;
         private Button 否認ボタン;
         internal ComboBox 完了承認者コード;
+        private Label 注釈_ラベル;
+        private TextBox 送信先コード2;
+        private TextBox 送信先コード1;
+        private Label 送信先コード1_ラベル;
+        private TextBox 送信先コード4;
+        private Label 送信先コード4_ラベル;
+        private TextBox 送信先コード5;
+        private Label 送信先コード5_ラベル;
     }
 }
 
