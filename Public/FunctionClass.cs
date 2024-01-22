@@ -606,7 +606,7 @@ namespace u_net.Public
 
 
 
-        public static bool DeleteGroupMember(long groupCode, long number, SqlConnection connection)
+        public static bool DeleteGroupMember(int groupCode, int number, SqlConnection connection)
         {
             bool isDeleted = false;
 

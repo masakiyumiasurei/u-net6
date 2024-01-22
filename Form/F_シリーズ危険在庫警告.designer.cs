@@ -31,17 +31,13 @@ namespace u_net
         {
             components = new System.ComponentModel.Container();
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(F_シリーズ危険在庫警告));
             newDataSet = new newDataSet();
             combBox商品コードBindingSource = new BindingSource(components);
             m商品分類BindingSource = new BindingSource(components);
             mシリーズBindingSource = new BindingSource(components);
             dataGridView1 = new DataGridView();
-            明細削除ボタン = new DataGridViewButtonColumn();
-            行挿入ボタン = new DataGridViewButtonColumn();
             dataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn2 = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn3 = new DataGridViewTextBoxColumn();
@@ -107,6 +103,8 @@ namespace u_net
             // 
             // dataGridView1
             // 
+            dataGridView1.AllowUserToAddRows = false;
+            dataGridView1.AllowUserToDeleteRows = false;
             dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = SystemColors.ButtonFace;
             dataGridViewCellStyle1.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
@@ -116,48 +114,25 @@ namespace u_net
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
             dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { 明細削除ボタン, 行挿入ボタン });
+            dataGridView1.Dock = DockStyle.Fill;
             dataGridView1.EditMode = DataGridViewEditMode.EditOnEnter;
             dataGridView1.ImeMode = ImeMode.On;
-            dataGridView1.Location = new Point(0, 10);
+            dataGridView1.Location = new Point(0, 0);
             dataGridView1.Margin = new Padding(4, 3, 4, 3);
             dataGridView1.Name = "dataGridView1";
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = SystemColors.GradientInactiveCaption;
-            dataGridViewCellStyle4.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle4.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
-            dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridView1.ReadOnly = true;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.GradientInactiveCaption;
+            dataGridViewCellStyle2.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle2.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dataGridView1.RowTemplate.Height = 21;
-            dataGridView1.Size = new Size(943, 329);
+            dataGridView1.Size = new Size(939, 370);
             dataGridView1.TabIndex = 109;
             dataGridView1.CellPainting += DataGridView1_CellPainting;
-            // 
-            // 明細削除ボタン
-            // 
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.ForeColor = Color.Maroon;
-            明細削除ボタン.DefaultCellStyle = dataGridViewCellStyle2;
-            明細削除ボタン.HeaderText = "";
-            明細削除ボタン.Name = "明細削除ボタン";
-            明細削除ボタン.Text = "X";
-            明細削除ボタン.ToolTipText = "明細行を削除します";
-            明細削除ボタン.UseColumnTextForButtonValue = true;
-            明細削除ボタン.Width = 22;
-            // 
-            // 行挿入ボタン
-            // 
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.ForeColor = Color.Maroon;
-            行挿入ボタン.DefaultCellStyle = dataGridViewCellStyle3;
-            行挿入ボタン.HeaderText = "";
-            行挿入ボタン.Name = "行挿入ボタン";
-            行挿入ボタン.Text = "▶";
-            行挿入ボタン.ToolTipText = "行挿入";
-            行挿入ボタン.UseColumnTextForButtonValue = true;
-            行挿入ボタン.Width = 19;
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -302,8 +277,8 @@ namespace u_net
             // toolStripStatusLabel1
             // 
             toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            toolStripStatusLabel1.Size = new Size(89, 17);
-            toolStripStatusLabel1.Text = "各種項目の説明";
+            toolStripStatusLabel1.Size = new Size(0, 17);
+            toolStripStatusLabel1.Visible = false;
             // 
             // v商品ヘッダBindingSource
             // 
@@ -343,6 +318,7 @@ namespace u_net
             KeyPreview = true;
             Margin = new Padding(3, 2, 3, 2);
             Name = "F_シリーズ危険在庫警告";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "シリーズ危険在庫警告";
             Load += Form_Load;
             ((System.ComponentModel.ISupportInitialize)newDataSet).EndInit();

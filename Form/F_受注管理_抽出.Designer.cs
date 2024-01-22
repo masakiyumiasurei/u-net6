@@ -861,6 +861,7 @@
             Controls.Add(顧客名);
             Controls.Add(受注日1);
             Controls.Add(受注コード1ラベル);
+            KeyPreview = true;
             Margin = new Padding(3, 4, 3, 4);
             Name = "F_受注管理_抽出";
             StartPosition = FormStartPosition.CenterScreen;
