@@ -2949,6 +2949,42 @@ namespace u_net
 
         }
 
+        private void 結果内容_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void 通信欄_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "■承認後完了承認されるまでの間入力できます。　■全角２，０００文字まで入力できます。";
+        }
+
+        private void 通信欄_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "各種項目の説明";
+        }
+
+
+        private void 通信欄_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 通信欄_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 通信欄_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void 通信欄_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
+
         private void 印刷ボタン_Click(object sender, EventArgs e)
         {
 
@@ -2979,74 +3015,65 @@ namespace u_net
 
         }
 
+
         #region システム配布記録
 
-        private void 配布日選択ボタン_Click(object sender, EventArgs e)
+        private void システム配布記録_配布日_KeyDown(object sender, KeyEventArgs e)
         {
 
         }
 
-        private void 配布バージョン_TextChanged(object sender, EventArgs e)
+        private void システム配布記録_配布日_TextChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void 配布バージョン_Validated(object sender, EventArgs e)
+        private void システム配布記録_配布日_Validated(object sender, EventArgs e)
         {
 
         }
 
-        private void 配布バージョン_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        private void システム配布記録_配布日_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
 
         }
 
-        private void 配布目的_DoubleClick(object sender, EventArgs e)
+        private void システム配布記録_配布日選択ボタン_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void 配布目的_TextChanged(object sender, EventArgs e)
+        private void システム配布記録_配布バージョン_TextChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void 配布目的_Validated(object sender, EventArgs e)
+        private void システム配布記録_配布バージョン_Validated(object sender, EventArgs e)
         {
 
         }
 
-        private void 配布目的_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        private void システム配布記録_配布バージョン_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
 
         }
 
-        private void 通信欄_Enter(object sender, EventArgs e)
-        {
-            toolStripStatusLabel1.Text = "■承認後完了承認されるまでの間入力できます。　■全角２，０００文字まで入力できます。";
-        }
-
-        private void 通信欄_Leave(object sender, EventArgs e)
-        {
-            toolStripStatusLabel1.Text = "各種項目の説明";
-        }
-
-        private void 通信欄_TextChanged(object sender, EventArgs e)
+        private void システム配布記録_配布目的_DoubleClick(object sender, EventArgs e)
         {
 
         }
 
-        private void 通信欄_Validated(object sender, EventArgs e)
+        private void システム配布記録_配布目的_TextChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void 通信欄_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        private void システム配布記録_配布目的_Validated(object sender, EventArgs e)
         {
 
         }
 
-        private void 通信欄_DoubleClick(object sender, EventArgs e)
+        private void システム配布記録_配布目的_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
 
         }
@@ -3056,122 +3083,117 @@ namespace u_net
 
         #region 環境連絡書
 
-        private void 結果内容_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        private void 環境連絡書_発生日_DoubleClick(object sender, EventArgs e)
         {
 
         }
 
-        private void 発生日_DoubleClick(object sender, EventArgs e)
+        private void 環境連絡書_発生日_KeyDown(object sender, KeyEventArgs e)
         {
 
         }
 
-        private void 発生日_KeyDown(object sender, KeyEventArgs e)
+        private void 環境連絡書_発生日_TextChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void 発生日_TextChanged(object sender, EventArgs e)
+        private void 環境連絡書_発生日_Validated(object sender, EventArgs e)
         {
 
         }
 
-        private void 発生日_Validated(object sender, EventArgs e)
+        private void 環境連絡書_発生日_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
 
         }
 
-        private void 発生日_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        private void 環境連絡書_発生日選択ボタン_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void 発生日選択ボタン_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void 連絡先_Enter(object sender, EventArgs e)
+        private void 環境連絡書_連絡先_Enter(object sender, EventArgs e)
         {
             toolStripStatusLabel1.Text = "■全角100文字まで入力できます。";
         }
 
-        private void 連絡先_Leave(object sender, EventArgs e)
+        private void 環境連絡書_連絡先_Leave(object sender, EventArgs e)
         {
             toolStripStatusLabel1.Text = "各種項目の説明";
         }
 
-        private void 連絡先_TextChanged(object sender, EventArgs e)
+        private void 環境連絡書_連絡先_TextChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void 連絡先_Validated(object sender, EventArgs e)
+        private void 環境連絡書_連絡先_Validated(object sender, EventArgs e)
         {
 
         }
 
-        private void 連絡先_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        private void 環境連絡書_連絡先_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
 
         }
 
-        private void 環境負荷_Enter(object sender, EventArgs e)
+        private void 環境連絡書_環境負荷_Enter(object sender, EventArgs e)
         {
             toolStripStatusLabel1.Text = "■ドロップダウンリストから選択します。";
         }
 
-        private void 環境負荷_Leave(object sender, EventArgs e)
+        private void 環境連絡書_環境負荷_Leave(object sender, EventArgs e)
         {
             toolStripStatusLabel1.Text = "各種項目の説明";
         }
 
-        private void 環境負荷_SelectedIndexChanged(object sender, EventArgs e)
+        private void 環境連絡書_環境負荷_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void 環境負荷_Validated(object sender, EventArgs e)
+        private void 環境連絡書_環境負荷_Validated(object sender, EventArgs e)
         {
 
         }
 
-        private void 環境負荷_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        private void 環境連絡書_環境負荷_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
 
         }
 
-        private void 異常内容_Enter(object sender, EventArgs e)
+        private void 環境連絡書_異常内容_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 環境連絡書_異常内容_Enter(object sender, EventArgs e)
         {
             toolStripStatusLabel1.Text = "■全角2,000文字まで入力可。　■ダブルクリックでズーム表示。";
         }
 
-        private void 異常内容_Leave(object sender, EventArgs e)
+        private void 環境連絡書_異常内容_Leave(object sender, EventArgs e)
         {
             toolStripStatusLabel1.Text = "各種項目の説明";
         }
 
-        private void 異常内容_DoubleClick(object sender, EventArgs e)
+        private void 環境連絡書_異常内容_TextChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void 異常内容_TextChanged(object sender, EventArgs e)
+        private void 環境連絡書_異常内容_Validated(object sender, EventArgs e)
         {
 
         }
 
-        private void 異常内容_Validated(object sender, EventArgs e)
+        private void 環境連絡書_異常内容_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
 
         }
 
-        private void 異常内容_Validating(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-
-        }
-
-        private void 回答書ボタン_Click(object sender, EventArgs e)
+        private void 環境連絡書_回答書ボタン_Click(object sender, EventArgs e)
         {
 
         }
@@ -3180,6 +3202,11 @@ namespace u_net
 
 
         #region 記録
+
+        private void 記録_日付1_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
 
         private void 記録_日付1_KeyDown(object sender, KeyEventArgs e)
         {
@@ -3206,159 +3233,134 @@ namespace u_net
 
         }
 
-        private void 日付1選択ボタン_Click(object sender, EventArgs e)
+        private void 記録_日付1選択ボタン_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void 日付1_DoubleClick(object sender, EventArgs e)
+        private void 記録_日付2_DoubleClick(object sender, EventArgs e)
         {
 
         }
 
-        private void 日付1_KeyDown(object sender, KeyEventArgs e)
+        private void 記録_日付2_KeyDown(object sender, KeyEventArgs e)
         {
 
         }
 
-        private void 日付1_TextChanged(object sender, EventArgs e)
+        private void 記録_日付2_Leave(object sender, EventArgs e)
         {
 
         }
 
-        private void 日付1_Validated(object sender, EventArgs e)
+        private void 記録_日付2_TextChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void 日付1_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        private void 記録_日付2_Validated(object sender, EventArgs e)
         {
 
         }
 
-        private void 日付1_Leave(object sender, EventArgs e)
+        private void 記録_日付2_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
 
         }
 
-        private void 日付2_DoubleClick(object sender, EventArgs e)
+        private void 記録_日付2選択ボタン_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void 日付2_KeyDown(object sender, KeyEventArgs e)
+        private void 記録_参加者_TextChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void 日付2_TextChanged(object sender, EventArgs e)
+        private void 記録_参加者_Validated(object sender, EventArgs e)
         {
 
         }
 
-        private void 日付2_Validated(object sender, EventArgs e)
+        private void 記録_参加者_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
 
         }
 
-        private void 日付2_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        private void 記録_場所_TextChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void 日付2_Leave(object sender, EventArgs e)
+        private void 記録_場所_Validated(object sender, EventArgs e)
         {
 
         }
 
-        private void 参加者_TextChanged(object sender, EventArgs e)
+        private void 記録_場所_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
 
         }
 
-        private void 参加者_Validated(object sender, EventArgs e)
+        private void 記録_目的_TextChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void 参加者_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        private void 記録_目的_Validated(object sender, EventArgs e)
         {
 
         }
 
-        private void 場所_TextChanged(object sender, EventArgs e)
+        private void 記録_目的_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
 
         }
 
-        private void 場所_Validated(object sender, EventArgs e)
+        private void 記録_目的_DoubleClick(object sender, EventArgs e)
         {
 
         }
 
-        private void 場所_Validating(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-
-        }
-
-        private void 目的_DoubleClick(object sender, EventArgs e)
-        {
-
-        }
-
-        private void 目的_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void 目的_Validated(object sender, EventArgs e)
-        {
-
-        }
-
-        private void 目的_Validating(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-
-        }
-
-        private void 目的_Enter(object sender, EventArgs e)
+        private void 記録_目的_Enter(object sender, EventArgs e)
         {
             toolStripStatusLabel1.Text = "■2,000字（全角・半角の区別なし）まで入力できます。";
         }
 
-        private void 目的_Leave(object sender, EventArgs e)
+        private void 記録_目的_Leave(object sender, EventArgs e)
         {
             toolStripStatusLabel1.Text = "各種項目の説明";
         }
 
-        private void 報告内容_DoubleClick(object sender, EventArgs e)
+        private void 記録_報告内容_DoubleClick(object sender, EventArgs e)
         {
 
         }
 
-        private void 報告内容_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void 報告内容_Validated(object sender, EventArgs e)
-        {
-
-        }
-
-        private void 報告内容_Validating(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-
-        }
-
-        private void 報告内容_Enter(object sender, EventArgs e)
+        private void 記録_報告内容_Enter(object sender, EventArgs e)
         {
             toolStripStatusLabel1.Text = "■4,000字（全角・半角の区別なし）まで入力できます。";
         }
 
-        private void 報告内容_Leave(object sender, EventArgs e)
+        private void 記録_報告内容_Leave(object sender, EventArgs e)
         {
             toolStripStatusLabel1.Text = "各種項目の説明";
+        }
+
+        private void 記録_報告内容_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 記録_報告内容_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 記録_報告内容_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
         }
 
         #endregion
@@ -3467,6 +3469,197 @@ namespace u_net
         }
 
         #endregion
+
+
+        #region 教育訓練実施要領書
+
+        #endregion
+
+
+        private void 教育訓練実施要領書_受講者名_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 教育訓練実施要領書_受講者名_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 教育訓練実施要領書_受講者名_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void 教育訓練実施要領書_訓練名_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 教育訓練実施要領書_訓練名_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 教育訓練実施要領書_訓練名_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void 教育訓練実施要領書_実施場所_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 教育訓練実施要領書_実施場所_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 教育訓練実施要領書_実施場所_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void 教育訓練実施要領書_日付1_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void 教育訓練実施要領書_日付1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 教育訓練実施要領書_日付1_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 教育訓練実施要領書_日付1_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void 教育訓練実施要領書_日付1選択ボタン_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 教育訓練実施要領書_日付2_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void 教育訓練実施要領書_日付2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 教育訓練実施要領書_日付2_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 教育訓練実施要領書_日付2_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void 教育訓練実施要領書_日付2選択ボタン_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 教育訓練実施要領書_目的_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 教育訓練実施要領書_目的_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "■全角５００文字まで入力できます。　■別ウィンドウから入力するときは入力欄をダブルクリックしてください。";
+        }
+
+        private void 教育訓練実施要領書_目的_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "各種項目の説明";
+        }
+
+        private void 教育訓練実施要領書_目的_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 教育訓練実施要領書_目的_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 教育訓練実施要領書_目的_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void 教育訓練実施要領書_内容_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 教育訓練実施要領書_内容_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "■全角１，５００文字まで入力できます。　■別ウィンドウから入力するときは入力欄をダブルクリックしてください。";
+        }
+
+        private void 教育訓練実施要領書_内容_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "各種項目の説明";
+        }
+
+        private void 教育訓練実施要領書_内容_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 教育訓練実施要領書_内容_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 教育訓練実施要領書_内容_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void 教育訓練実施要領書_期待効果_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 教育訓練実施要領書_期待効果_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "■全角５００文字まで入力できます。　■別ウィンドウから入力するときは入力欄をダブルクリックしてください。";
+        }
+
+        private void 教育訓練実施要領書_期待効果_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "各種項目の説明";
+        }
+
+        private void 教育訓練実施要領書_期待効果_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 教育訓練実施要領書_期待効果_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 教育訓練実施要領書_期待効果_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
 
     }
 }
