@@ -19,6 +19,13 @@ using System.Drawing.Printing;
 using Pao.Reports;
 using GrapeCity.Win.MultiRow;
 using System.Text;
+using System.Reflection.Emit;
+using System.Data.Common;
+using System.Net.Sockets;
+using Microsoft.VisualBasic;
+using System.Collections.ObjectModel;
+using System.Data.SqlClient;
+using System.IO;
 
 namespace u_net
 {
@@ -30,7 +37,17 @@ namespace u_net
         public string args = "";
         private string BASE_CAPTION = "文書";
         private int selected_frame = 0;
-        public bool IsDirty = false;
+
+        const string TRANSMIT = "-1";
+
+        public string strFlow;
+        private string strLockPC;
+        private bool blnEmergency;
+        private bool blnEditOn;
+        private int intKeyCode;
+        private string CustomFormName;
+        private int page = 1;
+
 
         public F_文書()
         {
@@ -65,13 +82,7 @@ namespace u_net
                 return value.Substring(value.Length - length, length);
         }
 
-        public bool BeDetails
-        {
-            get
-            {
-                return false;
-            }
-        }
+
 
         public string CurrentCode
         {
@@ -89,11 +100,42 @@ namespace u_net
             }
         }
 
-        public string CurrentPartsCode
+        public bool EditOn
         {
             get
             {
-                return "";
+                return blnEditOn;
+            }
+
+            set
+            {
+                blnEditOn = value;
+            }
+
+        }
+
+
+        public bool IsAnswered
+        {
+            get
+            {
+                return !IsNull(結果内容.Text);
+            }
+        }
+
+        public bool IsApproved
+        {
+            get
+            {
+                return !IsNull(承認者コード.Text);
+            }
+        }
+
+        public bool IsChanged
+        {
+            get
+            {
+                return コマンド登録.Enabled;
             }
         }
 
@@ -105,13 +147,7 @@ namespace u_net
             }
         }
 
-        public bool IsApproved
-        {
-            get
-            {
-                return !IsNull(承認日時.Text);
-            }
-        }
+
 
         public bool IsDecided
         {
@@ -129,15 +165,36 @@ namespace u_net
             }
         }
 
-        private bool IsLatestEdition
+        public bool IsFinished
         {
             get
             {
-                int productVersion = string.IsNullOrEmpty(版数.Text?.ToString()) ? 0 : Int32.Parse(版数.Text);
-                int maxVersion = string.IsNullOrEmpty(((DataRowView)文書コード.SelectedItem)?.Row.Field<Int16>("Display3").ToString()) ? 0 : Int32.Parse(((DataRowView)文書コード.SelectedItem)?.Row.Field<Int16>("Display3").ToString());
-                return productVersion == maxVersion;
+                return !IsNull(完了承認者コード.Text);
             }
         }
+
+        public bool IsReplied
+        {
+            get
+            {
+                return !(IsNull(本文1.Text) &&
+                         IsNull(本文2.Text) &&
+                         IsNull(本文3.Text) &&
+                         IsNull(本文4.Text) &&
+                         IsNull(本文5.Text) &&
+                         IsNull(本文6.Text));
+            }
+        }
+
+        public static bool IsLoadedLink()
+        {
+            // F_リンクフォームのインスタンスを取得
+            Form fLinkForm = Application.OpenForms["F_リンク"];
+
+            // F_リンクフォームが存在し、表示されているかどうかを判定
+            return fLinkForm != null;
+        }
+
 
         // Nz関数の代用
         private string Nz(object value)
@@ -156,6 +213,17 @@ namespace u_net
         DataSet ds = new DataSet();
         DataTable dt = new DataTable();
         SqlDataAdapter adapter = new SqlDataAdapter();
+
+
+
+
+
+
+
+
+
+
+
 
         private void Form_Load(object sender, EventArgs e)
         {
@@ -180,10 +248,40 @@ namespace u_net
 
 
             OriginalClass ofn = new OriginalClass();
-            ofn.SetComboBox(文書コード, "SELECT A.ユニットコード as Value, A.ユニットコード as Display , A.最新版数 as Display3, { fn REPLACE(STR(CONVERT(bit, Mユニット.無効日時), 1, 0), '1', '×') } AS Display2 FROM Mユニット INNER JOIN (SELECT ユニットコード, MAX(ユニット版数) AS 最新版数 FROM Mユニット GROUP BY ユニットコード) A ON Mユニット.ユニットコード = A.ユニットコード AND Mユニット.ユニット版数 = A.最新版数 ORDER BY A.ユニットコード DESC");
+            ofn.SetComboBox(文書コード, "SELECT 文書コード as Value, 文書コード as Display , MAX(版数) AS Display2 FROM T処理文書 WHERE (無効日時 IS NULL) GROUP BY 文書コード ORDER BY 文書コード DESC");
             文書コード.DrawMode = DrawMode.OwnerDrawFixed;
 
+            ofn.SetComboBox(文書名, "SELECT 文書名 as Value, 文書名 as Display, フォーム名 as Display2 FROM M文書 ORDER BY 表示順序");
+            文書名.DrawMode = DrawMode.OwnerDrawFixed;
 
+            ofn.SetComboBox(分類コード, "SELECT 文書分類コード as Value, 分類名 as Display FROM M文書分類");
+
+            ofn.SetComboBox(文書フローコード, "SELECT 文書フローコード as Value, 文書フロー名 as Display FROM M文書フロー");
+
+            ofn.SetComboBox(発信者コード, "SELECT [社員コード] as Value, 社員コード as Display, 氏名 as Display2 FROM M社員 WHERE (退社 IS NULL) AND (削除日時 IS NULL) AND ([パート] = 0) ORDER BY [ふりがな]");
+            発信者コード.DrawMode = DrawMode.OwnerDrawFixed;
+
+            ofn.SetComboBox(担当者コード1, "SELECT [社員コード] as Value, 社員コード as Display, 氏名 as Display2 FROM M社員 WHERE ([社員コード] = N'002') ORDER BY ふりがな");
+            担当者コード1.DrawMode = DrawMode.OwnerDrawFixed;
+
+            ofn.SetComboBox(担当者コード2, "SELECT [社員コード] as Value, 社員コード as Display, 氏名 as Display2 FROM M社員 WHERE (退社 IS NULL) AND (部 = N'営業部') AND (削除日時 IS NULL) ORDER BY ふりがな");
+            担当者コード2.DrawMode = DrawMode.OwnerDrawFixed;
+
+            ofn.SetComboBox(担当者コード3, "SELECT [社員コード] as Value, 社員コード as Display, 氏名 as Display2 FROM M社員 WHERE (部 = N'技術部') AND (退社 IS NULL) AND (削除日時 IS NULL) ORDER BY ふりがな");
+            担当者コード3.DrawMode = DrawMode.OwnerDrawFixed;
+
+            ofn.SetComboBox(担当者コード4, "SELECT [社員コード] as Value, 社員コード as Display, 氏名 as Display2 FROM M社員 WHERE (退社 IS NULL) AND (部 = N'製造部') AND (削除日時 IS NULL) ORDER BY ふりがな");
+            担当者コード4.DrawMode = DrawMode.OwnerDrawFixed;
+
+            ofn.SetComboBox(担当者コード5, "SELECT [社員コード] as Value, 社員コード as Display, 氏名 as Display2 FROM M社員 WHERE (退社 IS NULL) AND (部 = N'管理部') AND (削除日時 IS NULL) ORDER BY ふりがな");
+            担当者コード5.DrawMode = DrawMode.OwnerDrawFixed;
+
+            ofn.SetComboBox(担当者コード6, "SELECT [社員コード] as Value, 社員コード as Display, 氏名 as Display2 FROM M社員 WHERE (退社 IS NULL) AND (部 = N'会長') AND (削除日時 IS NULL) ORDER BY ふりがな");
+            担当者コード6.DrawMode = DrawMode.OwnerDrawFixed;
+
+            ofn.SetComboBox(承認者コード, "SELECT [社員コード] as Value, 社員コード as Display, 氏名 as Display2 FROM M社員 ORDER BY [ふりがな]");
+
+            ofn.SetComboBox(完了承認者コード, "SELECT [社員コード] as Value, 社員コード as Display, 氏名 as Display2 FROM M社員 ORDER BY [ふりがな]");
 
 
             try
@@ -225,6 +323,7 @@ namespace u_net
             catch (Exception ex)
             {
                 MessageBox.Show("初期化に失敗しました。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                blnEmergency = true;
                 this.Close();
             }
             finally
@@ -249,23 +348,23 @@ namespace u_net
                 // ヘッダ部の初期化
                 VariableSet.SetControls(this);
 
-
-                this.文書コード.Text = Right(FunctionClass.採番(cn, "UNI"), 8);
-                this.版数.Text = 1.ToString();
+                承認者コード.SelectedIndex = -1;
 
 
-                // 明細部の初期化
-                //strSQL = "SELECT * FROM Vユニット明細 WHERE ユニットコード='" +
-                //             this.CurrentCode + "' AND ユニット版数=" + this.CurrentEdition +
-                //             " ORDER BY 明細番号";
-                //VariableSet.SetTable2Details(ユニット明細1.Detail, strSQL, cn);
+                DoInitialize(FunctionClass.採番(cn, CommonConstants.CH_DOCUMENT), 1);
 
-                // ヘッダ部動作制御
-                FunctionClass.LockData(this, false);
+                strFlow = "1";
+                VariableSet.FlowControl(this, true, strFlow, "文書コード");
+                通信欄.ReadOnly = true;
 
-                this.件名.Focus();
+                //this.文書コード.Text = Right(FunctionClass.採番(cn, "UNI"), 8);
+                //this.版数.Text = 1.ToString();
+
+                this.文書名.Focus();
                 this.文書コード.Enabled = false;
                 this.版数.Enabled = false;
+
+
                 this.改版ボタン.Enabled = false;
                 this.コマンド新規.Enabled = false;
                 this.コマンド修正.Enabled = true;
@@ -273,9 +372,22 @@ namespace u_net
                 this.コマンド削除.Enabled = false;
                 this.コマンド改版.Enabled = false;
                 this.コマンド編集.Enabled = false;
+                コマンドリンク.Enabled = false;
                 this.コマンド承認.Enabled = false;
                 this.コマンド確定.Enabled = false;
                 this.コマンド登録.Enabled = false;
+
+
+                if (Setlock(CurrentCode, CurrentEdition, CommonConstants.MyComputerName))
+                {
+                    strLockPC = CommonConstants.MyComputerName;
+                    EditOn = true;
+                    UpdateCaption(IsChanged, EditOn);
+                }
+                else
+                {
+                    return success;
+                }
 
                 success = true;
                 return success;
@@ -287,6 +399,87 @@ namespace u_net
             }
         }
 
+
+        private bool Setlock(string dataCode, int dataEdition, string computerName)
+        {
+            try
+            {
+
+                Connect();
+
+                // これからロックする情報が残っているときは、前回強制終了したということ
+                // よって、強制的にロックを解除する
+                string deleteLockSQL = $"DELETE FROM S編集ロック WHERE データコード = '{dataCode}' AND データ版数 = {dataEdition} AND コンピュータ名 = '{computerName}'";
+                using (SqlCommand deleteLockCommand = new SqlCommand(deleteLockSQL, cn))
+                {
+                    deleteLockCommand.ExecuteNonQuery();
+                }
+
+                // 今回のロック情報を登録する
+                string insertLockSQL = $"INSERT INTO S編集ロック VALUES ('{dataCode}', {dataEdition}, '{computerName}', '{CommonConstants.LoginUserCode}', NULL, GETDATE())";
+                using (SqlCommand insertLockCommand = new SqlCommand(insertLockSQL, cn))
+                {
+                    insertLockCommand.ExecuteNonQuery();
+                }
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error in SetLock: {ex.Message}");
+                return false;
+
+            }
+        }
+
+
+        private bool SetUnlock(string dataCode, int dataEdition)
+        {
+            try
+            {
+                Connect();
+
+                string unlockSQL = $"DELETE FROM S編集ロック WHERE データコード = '{dataCode}' AND データ版数 = {dataEdition}";
+                using (SqlCommand unlockCommand = new SqlCommand(unlockSQL, cn))
+                {
+                    unlockCommand.ExecuteNonQuery();
+                }
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error in SetUnlock: {ex.Message}");
+                return false;
+            }
+
+        }
+
+        private void DoInitialize(string codeString, int editionNumber)
+        {
+            文書コード.Text = codeString;
+            版数.Text = editionNumber.ToString();
+            登録者コード.Text = CommonConstants.LoginUserCode;
+            発信者コード.Text = CommonConstants.LoginUserCode;
+            if (string.IsNullOrEmpty(((DataRowView)発信者コード.SelectedItem)?.Row.Field<string>("Display2")))
+            {
+                発信者名.Text = ((DataRowView)発信者コード.SelectedItem)?.Row.Field<string>("Display2");
+            }
+            else
+            {
+                発信者名.Text = null;
+            }
+            文書フローコード.Text = "02";
+            送信先コード1.Text = "002";  // 送信先を固定する
+            送信先コード2.Text = CommonConstants.USER_CODE_TECH;
+            送信先コード3.Text = "006";
+            送信先コード4.Text = "001";
+            送信先コード5.Text = "019";
+            送信先コード6.Text = "019";
+
+        }
+
+
         private bool GoModifyMode()
         {
             try
@@ -297,18 +490,36 @@ namespace u_net
                 // 各コントロール値をクリア
                 VariableSet.SetControls(this);
 
+
+
+
+
+                this.文書コード.Enabled = true;
+                版数.Enabled = true;
+
+                FunctionClass.LockData(this, true, "文書コード");
+
                 版数.DataSource = null;
+                版数.Text = "1";
+
+                送信先コード1.Text = "002";
+                送信先コード2.Text = CommonConstants.USER_CODE_TECH;
+                送信先コード3.Text = "006";
+                送信先コード4.Text = "001";
+                送信先コード5.Text = "019";
+                送信先コード6.Text = "007";
+
 
                 ChangedData(false);
 
-                this.文書コード.Focus();
+                文書添付.Enabled = false;
+                文書コード.Focus();
 
-                FunctionClass.LockData(this, true, "ユニットコード");
 
-
-                // ボタンの状態を設定
                 this.コマンド新規.Enabled = true;
                 this.コマンド修正.Enabled = false;
+                コマンド複写.Enabled = false;
+                コマンド登録.Enabled = false;
 
 
                 success = true;
@@ -327,29 +538,40 @@ namespace u_net
             LocalSetting test = new LocalSetting();
             test.SavePlace(LoginUserCode, this);
 
+            if (blnEmergency) return;
+
             try
             {
 
                 Connect();
 
                 // データへの変更がないときの処理
-                if (!IsDirty)
+                if (!IsChanged)
                 {
-                    // 新規モードで且つコードが取得済みのときはコードを戻す
-                    if (IsNewData && !string.IsNullOrEmpty(CurrentCode) && CurrentEdition == 1)
+                    // 新規モードのときは内部の更新データを元に戻す
+                    if (IsNewData && !string.IsNullOrEmpty(CurrentCode))
                     {
-                        // 採番された番号を戻す
-                        if (!FunctionClass.ReturnCode(cn, "UNI" + CurrentCode))
+                        if (CurrentEdition == 1)
                         {
-                            MessageBox.Show("エラーのためコードは破棄されました。" + Environment.NewLine + Environment.NewLine +
-                                            "ユニットコード　：　" + CurrentCode, "警告", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            // 初版時のみ採番された番号を戻す
+                            if (!FunctionClass.Recycle(cn, CurrentCode))
+                            {
+                                MessageBox.Show("文書コードは破棄されました。" + Environment.NewLine + Environment.NewLine +
+                                                "文書コード　：　" + CurrentCode, "警告", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            }
                         }
+                        //文書添付を戻す
+                        if (!DelAttachedDoc(CurrentCode, CurrentEdition))
+                        {
+                            return;
+                        }
+
                     }
                     return;
                 }
 
                 // 修正されているときは登録確認を行う
-                var intRes = MessageBox.Show("変更内容を登録しますか？", "確認", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                var intRes = MessageBox.Show("文書コード : " + CurrentCode + " （第 " + CurrentEdition + " 版）\n\n変更内容を登録しますか？", "確認", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
                 switch (intRes)
                 {
                     case DialogResult.Yes:
@@ -372,10 +594,16 @@ namespace u_net
                         //新規コードを取得していたときはコードを戻す
                         if (IsNewData && !string.IsNullOrEmpty(CurrentCode) && CurrentEdition == 1)
                         {
-                            if (!FunctionClass.ReturnCode(cn, "UNI" + CurrentCode))
+                            if (!FunctionClass.Recycle(cn, CurrentCode))
                             {
                                 MessageBox.Show("エラーのためコードは破棄されました。" + Environment.NewLine +
                                                 "ユニットコード　：　" + CurrentCode, "警告", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            }
+
+                            //文書添付を戻す
+                            if (!DelAttachedDoc(CurrentCode, CurrentEdition))
+                            {
+                                return;
                             }
                         }
                         break;
@@ -392,21 +620,56 @@ namespace u_net
             }
             finally
             {
-                Form unitSelectionForm = Application.OpenForms["F_部品選択"];
-
-                if (unitSelectionForm != null)
+                if (!blnEmergency)
                 {
-                    // フォームが開いている場合は閉じる
-                    unitSelectionForm.Close();
+                    //自分が編集中のときは参照モードへ移行しておく
+                    if (strLockPC == CommonConstants.MyComputerName)
+                    {
+                        //参照モードへ移行する
+                        if (SetUnlock(CurrentCode, CurrentEdition))
+                        {
+                            UpdateCaption(IsChanged, false);
+                        }
+                        else
+                        {
+                            MessageBox.Show("参照モードへの移行に失敗しました。\n他のユーザーがこのデータを開くと編集できない可能性があります。", "編集コマンド", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
                 }
+
             }
+        }
+
+
+
+        private bool DelAttachedDoc(string codeString, int editionNumber)
+        {
+            try
+            {
+                Connect();
+
+
+                string deleteAttachedDocSQL = $"DELETE FROM T添付文書 WHERE 文書コード = '{codeString}' AND 版数 = {editionNumber}";
+                using (SqlCommand deleteAttachedDocCommand = new SqlCommand(deleteAttachedDocSQL, cn))
+                {
+                    deleteAttachedDocCommand.ExecuteNonQuery();
+                }
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error in DelAttachedDoc: {ex.Message}");
+                return false;
+            }
+
         }
 
         private bool ErrCheck()
         {
             //入力確認    
-            if (!FunctionClass.IsError(this.文書コード)) return false;
-            if (!FunctionClass.IsError(this.版数)) return false;
+            if (IsError(this.文書コード)) return false;
+            if (IsError(this.版数)) return false;
 
             return true;
         }
@@ -415,39 +678,31 @@ namespace u_net
         {
             if (ActiveControl == null) return;
 
-            if (isChanged)
-            {
-                this.Text = BASE_CAPTION + "*";
-            }
-            else
-            {
-                this.Text = BASE_CAPTION;
-            }
+
+            UpdateCaption(isChanged, EditOn);
 
             if (ActiveControl == 文書コード)
             {
-                件名.Focus();
+                文書名.Focus();
             }
 
             文書コード.Enabled = !isChanged;
 
             if (ActiveControl == 版数)
             {
-                件名.Focus();
+                文書名.Focus();
             }
-
-            IsDirty = isChanged;
 
             版数.Enabled = !isChanged;
             コマンド複写.Enabled = !isChanged;
             コマンド削除.Enabled = !isChanged;
-            コマンド改版.Enabled = !isChanged;
-            コマンド編集.Enabled = !isChanged;
+            コマンドリンク.Enabled = !isChanged;
+
 
 
             if (isChanged && !IsApproved)
             {
-                コマンド承認.Enabled = false;
+
                 コマンド確定.Enabled = true;
             }
 
@@ -458,24 +713,106 @@ namespace u_net
         {
             try
             {
-                object varValue = controlObject.Text;
-                string controlName = controlObject.Name;
 
-                switch (controlName)
+                switch (intKeyCode)
                 {
-                    case "品名":
-                    case "型番":
-                    case "識別コード":
-                        if (string.IsNullOrEmpty(varValue.ToString()))
+                    case (int)Keys.F1:
+                    case (int)Keys.F2:
+                    case (int)Keys.F3:
+                    case (int)Keys.F4:
+                    case (int)Keys.F5:
+                    case (int)Keys.F6:
+                    case (int)Keys.F7:
+                    case (int)Keys.F8:
+                    case (int)Keys.F9:
+                    case (int)Keys.F10:
+                    case (int)Keys.F11:
+                    case (int)Keys.F12:
+                        return false;
+                }
+
+                object varValue = controlObject.Text;
+
+                Connect();
+
+                switch (controlObject.Name)
+                {
+                    case "文書コード":
+                        if (!CheckDocument(varValue.ToString(),
+                            ((DataRowView)文書コード.SelectedItem).Row.Field<Int32>("Display2") > 0 ? this.CurrentEdition : ((DataRowView)文書コード.SelectedItem).Row.Field<Int32>("Display2")))
                         {
-                            MessageBox.Show(controlName + "を入力してください.", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            return true;
+                        }
+                        break;
+                    case "版数":
+                        if (IsNull(varValue))
+                        {
+                            MessageBox.Show(controlObject.Name + "を入力してください。", controlObject.Name, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            return true;
+                        }
+                        break;
+                    case "文書名":
+                    case "件名":
+                        if (IsNull(varValue))
+                        {
+                            MessageBox.Show(controlObject.Name + "を入力してください。", controlObject.Name, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            return true;
+                        }
+                        break;
+                    case "回答期限":
+                        if (IsNull(varValue))
+                        {
+                            MessageBox.Show("期限日を入力してください。", "期限日", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            return true;
+                        }
+                        if (!DateTime.TryParse(varValue.ToString(), out _))
+                        {
+                            MessageBox.Show("日付を入力してください。", "期限日", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            return true;
+                        }
+                        if (!this.IsApproved && DateTime.Parse(varValue.ToString()) < DateTime.Today)
+                        {
+                            MessageBox.Show("過去日付は入力できません。", "期限日", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            return true;
+                        }
+                        break;
+                    case "文書フローコード":
+                        if (IsNull(varValue))
+                        {
+                            MessageBox.Show("文書フローを選択してください。", "文書フロー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                             return true;
                         }
                         break;
 
-                    default:
-                        // 他のコントロールに対するエラーチェックロジックを追加してください。
+                    case "発信者コード":
+                        if (IsNull(varValue))
+                        {
+                            MessageBox.Show("発信者名を選択してください。", "発信者", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            return true;
+                        }
                         break;
+
+                    case "回答日1":
+                    case "回答日2":
+                    case "回答日3":
+                    case "回答日4":
+                    case "回答日5":
+                        if (IsNull(varValue)) return false;
+
+                        if (!DateTime.TryParse(varValue.ToString(), out _))
+                        {
+                            MessageBox.Show("日付を入力してください。", controlObject.Name, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            return true;
+                        }
+
+                        if (DateTime.Today < DateTime.Parse(varValue.ToString()))
+                        {
+                            MessageBox.Show("未来日付は入力できません。", controlObject.Name, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            return true;
+                        }
+                        break;
+
+
                 }
 
                 return false;
@@ -485,6 +822,37 @@ namespace u_net
                 Console.WriteLine(ex.Message);
                 // エラーハンドリングが必要に応じて行われるべきです
                 return true;
+            }
+        }
+
+
+        private bool CheckDocument(string codeString, int editionNumber)
+        {
+            try
+            {
+                Connect();
+
+                bool documentExists = false;
+                string strKey = $"文書コード = '{codeString}' AND 版数 = {editionNumber}";
+                string strSQL = $"SELECT * FROM T処理文書 WHERE {strKey}";
+
+                using (SqlDataAdapter adapter = new SqlDataAdapter(strSQL, cn))
+                {
+                    DataTable dataTable = new DataTable();
+                    adapter.Fill(dataTable);
+
+                    if (dataTable.Rows.Count > 0)
+                    {
+                        documentExists = true;
+                    }
+                }
+
+                return documentExists;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error in CheckDocument: {ex.Message}");
+                return false;
             }
         }
 
@@ -501,74 +869,91 @@ namespace u_net
 
                 switch (controlObject.Name)
                 {
-                    case "ユニットコード":
+                    case "文書コード":
+                    case "版数":
+
                         fn.DoWait("読み込んでいます...");
 
-
-                        // 版数のソース更新
-                        UpdateEditionList(controlObject.Text);
-
-                        // OpenArgsが設定されていなければ版数を最新版とする
-                        // 開いてからコードを変えて読み込むときはOpenArgsはnullに
-                        // 設定されているため、最新版となる
-                        if (string.IsNullOrEmpty(args))
+                        // コードが更新されたときは版数のソースを更新する
+                        if (controlObject.Name == "文書コード")
                         {
-                            this.版数.Text = ((DataRowView)文書コード.SelectedItem)?.Row.Field<String>("Display3")?.ToString();
+                            UpdateEditionList(controlObject.Text);
                         }
 
-                        // ヘッダ部の表示
-                        LoadHeader(this, CurrentCode, CurrentEdition);
+                        LoadHeader(this, this.CurrentCode, this.CurrentEdition);
 
-                        // 動作を制御する
-                        FunctionClass.LockData(this, this.IsDecided || this.IsDeleted, "ユニットコード");
-                        this.版数.Enabled = true; // 版数を編集可能にする
-                        this.改版ボタン.Enabled = this.IsLatestEdition && this.IsApproved && !IsDeleted;
+                        if (IsNull(fn.Zn(((DataRowView)文書名.SelectedItem)?.Row.Field<string>("Display2"))))
+                        {
+                            CustomFormName = null;
+                        }
+                        else
+                        {
+                            CustomFormName = ((DataRowView)文書名.SelectedItem)?.Row.Field<string>("Display2");
+                            SetCustomForm();
 
-                        ChangedData(false);
+                            LoadHeaderSub(this, this.CurrentCode, this.CurrentEdition);
 
-                        this.コマンド複写.Enabled = !this.IsDirty;
-                        this.コマンド削除.Enabled = this.IsLatestEdition;
-                        this.コマンド改版.Enabled = !this.IsDirty;
-                        this.コマンド承認.Enabled = this.IsDecided && !this.IsApproved;
-                        this.コマンド確定.Enabled = !this.IsApproved;
+                            if (BeControl(CustomFormName + "_顧客コード") && BeControl(CustomFormName + "_顧客名"))
+                            {
+                                if (!GetCustomFormEnabled(CustomFormName + "_顧客名"))
+                                {
+                                    SetCustomFormValue(CustomFormName + "_顧客名", GetCustomerName(Nz(GetCustomFormValue(CustomFormName + "_顧客コード"))));
+                                }
+                            }
 
-                        fn.WaitForm.Close();
+                        }
 
+                        FunctionClass.LockData(this, true, "文書コード");
+
+                        if (!IsNull(this.文書名.Text))
+                        {
+                            this.分類コード.Enabled =
+                                (this.文書名.Text.ToString() == "検討依頼書") ||
+                                (this.文書名.Text.ToString() == "製品企画書") ||
+                                (this.文書名.Text.ToString() == "設計製作依頼書");
+                        }
+
+                        this.送信先1ボタン.Enabled = false;
+                        this.送信先2ボタン.Enabled = false;
+                        this.送信先3ボタン.Enabled = false;
+                        this.送信先4ボタン.Enabled = false;
+                        this.送信先5ボタン.Enabled = false;
+                        this.送信先6ボタン.Enabled = false;
+                        this.版数.Enabled = true;          // 版数を編集可にする
+                        this.コマンド複写.Enabled = true;
+                        this.コマンド削除.Enabled = !this.IsAnswered;
+                        this.コマンド編集.Enabled = !this.IsFinished;
+                        this.コマンドリンク.Enabled = !IsLoadedLink();
+
+                        // 添付文書数を取得する
+                        this.添付文書数.Text = GetAttaches(this.CurrentCode, this.CurrentEdition).ToString();
+                        this.文書添付.Enabled = true;
                         break;
 
-                    case "ユニット版数":
-                        fn.DoWait("読み込んでいます...");
+                    case "文書名":
+                        this.分類コード.Enabled = (controlObject.Text == "検討依頼書") || (controlObject.Text == "製品企画書") || (controlObject.Text == "設計製作依頼書");
 
-                        // ヘッダ部の表示
-                        LoadHeader(this, CurrentCode, CurrentEdition);
 
+                        if (IsNull(fn.Zn(((DataRowView)文書名.SelectedItem)?.Row.Field<string>("Display2"))))
                         {
-                            fn.WaitForm.Close();
-                            return;
+                            CustomFormName = null;
+                            SetCustomForm();
                         }
+                        else
+                        {
+                            CustomFormName = ((DataRowView)文書名.SelectedItem)?.Row.Field<string>("Display2");
+                            SetCustomForm();
 
-                        // 動作を制御する
-                        FunctionClass.LockData(this, this.IsDecided || this.IsDeleted, "ユニットコード", "ユニット版数");
-                        this.改版ボタン.Enabled = this.IsLatestEdition && this.IsApproved && !IsDeleted;
+                            SetCustomFormValue(CustomFormName + "_文書コード", CurrentCode);
+                            SetCustomFormValue(CustomFormName + "_版数", CurrentEdition.ToString());
+                        }
+                        break;
 
-                        ChangedData(false);
-
-                        this.コマンド複写.Enabled = !this.IsDirty;
-                        this.コマンド削除.Enabled = this.IsLatestEdition;
-                        this.コマンド改版.Enabled = !this.IsDirty;
-                        this.コマンド承認.Enabled = this.IsDecided && !this.IsApproved;
-                        this.コマンド確定.Enabled = !this.IsApproved;
-
-                        fn.WaitForm.Close();
-
+                    default:
                         break;
                 }
 
 
-                //テスト用
-                //製品明細1.Detail.AllowUserToAddRows = true;
-                //製品明細1.Detail.AllowUserToDeleteRows = true;
-                //製品明細1.Detail.ReadOnly = false;
 
 
             }
@@ -580,19 +965,167 @@ namespace u_net
             }
         }
 
+
+        private int GetAttaches(string codeString, int editionNumber)
+        {
+            try
+            {
+                int attachesCount = 0;
+                string strSQL = $"SELECT COUNT(添付文書コード) AS 添付文書数 FROM T添付文書 " +
+                                 $"WHERE 文書コード = '{codeString}' AND 版数 = {editionNumber}";
+
+                Connect();
+
+                using (SqlCommand command = new SqlCommand(strSQL, cn))
+                {
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            attachesCount = Convert.ToInt32(reader["添付文書数"]);
+                        }
+                    }
+                }
+
+                return attachesCount;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error in GetAttaches: {ex.Message}");
+                return 0;
+            }
+
+        }
+
+        private string GetCustomerName(string customerCode)
+        {
+            try
+            {
+                string customerName = "";
+                if (string.IsNullOrEmpty(customerCode))
+                {
+                    return customerName;
+                }
+
+                string strKey = $"顧客コード = '{customerCode}'";
+                string strSQL = $"SELECT * FROM M顧客 WHERE {strKey}";
+
+                Connect();
+
+                using (SqlCommand command = new SqlCommand(strSQL, cn))
+                {
+                    cn.Open();
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            customerName = $"{reader["顧客名"]} {reader["顧客名2"]}";
+                        }
+                    }
+                }
+
+                return customerName.Trim();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error in GetCustomerName: {ex.Message}");
+                return "";
+            }
+
+        }
+
+        private bool BeControl(string controlName)
+        {
+            foreach (Control control in Controls)
+            {
+                if (control.Name == controlName)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        private void SetCustomForm()
+        {
+            foreach (Control control in this.Controls)
+            {
+                if (control is Panel panel)
+                {
+
+                    // パネルの名称が指定したものと一致する場合
+                    if (panel.Name == CustomFormName)
+                    {
+
+                        // 新しいパネルをフォームに追加
+                        this.Controls.Add(panel);
+                    }
+                    else
+                    {
+                        // 名前が一致しないパネルを削除
+                        this.Controls.Remove(panel);
+                    }
+                }
+            }
+
+        }
+
+        private void SetCustomFormEnabled(string ctlName, bool setValue)
+        {
+
+            Control targetCtl = this.Controls.OfType<Control>().FirstOrDefault(ctl => ctl.Name == ctlName);
+
+            targetCtl.Enabled = setValue;
+        }
+
+        private bool GetCustomFormEnabled(string ctlName)
+        {
+
+            Control targetCtl = this.Controls.OfType<Control>().FirstOrDefault(ctl => ctl.Name == ctlName);
+
+            return targetCtl.Enabled;
+        }
+
+        private void SetCustomFormValue(string ctlName, string setValue)
+        {
+
+            Control targetCtl = this.Controls.OfType<Control>().FirstOrDefault(ctl => ctl.Name == ctlName);
+
+            targetCtl.Text = setValue;
+        }
+
+        private string GetCustomFormValue(string ctlName)
+        {
+
+            Control targetCtl = this.Controls.OfType<Control>().FirstOrDefault(ctl => ctl.Name == ctlName);
+
+            return targetCtl.Text;
+        }
+
+
         private void UpdateEditionList(string codeString)
         {
 
             OriginalClass ofn = new OriginalClass();
 
 
-            ofn.SetComboBox(版数, "SELECT ユニット版数 AS Value, ユニット版数 AS Display, " +
-                    "{ fn REPLACE(STR(CONVERT(bit, 承認日時), 1, 0), '1', '■') } AS Display2 " +
-                    "FROM Mユニット " +
-                    "WHERE (ユニットコード = '" + codeString + "') " +
-                    "ORDER BY ユニット版数 DESC");
+            ofn.SetComboBox(版数, "SELECT 版数 AS Value, 版数 AS Display, " +
+                    "{ fn REPLACE(STR(CONVERT(bit, 承認者コード), 1, 0), '1', '■') } AS Display2 " +
+                    "FROM T処理文書 " +
+                    "WHERE (文書コード = '" + codeString + "') " +
+                    "ORDER BY 版数 DESC");
             版数.DrawMode = DrawMode.OwnerDrawFixed;
 
+        }
+
+        private void UpdateCaption(bool changedOn, bool editedOn)
+        {
+            string strChanged = changedOn ? "*" : "";
+            string strEdited = editedOn ? " - 編集中" : "";
+
+            this.Text = this.Name + strChanged + strEdited;
         }
 
         private bool LoadHeader(Form formObject, string codeString, int editionNumber)
@@ -603,39 +1136,43 @@ namespace u_net
 
                 string strSQL;
 
-                strSQL = "SELECT * FROM Vユニットヘッダ WHERE ユニットコード ='" + codeString + "' and ユニット版数 = " + editionNumber;
+                strSQL = "SELECT * FROM T処理文書 WHERE 文書コード ='" + codeString + "' and 版数 = " + editionNumber;
 
 
-                if (string.IsNullOrEmpty(確定日時.Text))
-                {
-                    //確定表示.SendToBack();
-                }
-                else
-                {
-                    //確定表示.BringToFront();
-                }
-
-                if (string.IsNullOrEmpty(承認日時.Text))
-                {
-                    //承認表示.SendToBack();
-                }
-                else
-                {
-                    //承認表示.BringToFront();
-                }
-
-
-                if (string.IsNullOrEmpty(無効日時.Text))
-                {
-                    //削除表示.SendToBack();
-                }
-                else
-                {
-                    //削除表示.BringToFront();
-                }
 
 
                 VariableSet.SetTable2Form(this, strSQL, cn);
+
+
+
+                return true;
+
+
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                // エラーハンドリングが必要に応じて行われるべきです
+                return false;
+            }
+        }
+
+
+        private bool LoadHeaderSub(Form formObject, string codeString, int editionNumber)
+        {
+            try
+            {
+                Connect();
+
+                string strSQL;
+
+                strSQL = "SELECT * FROM T" + CustomFormName + " WHERE 文書コード ='" + codeString + "' and 版数 = " + editionNumber;
+
+
+
+
+                VariableSet.SetTable2FormCustom(this, strSQL, cn, CustomFormName);
 
 
 
@@ -707,8 +1244,17 @@ namespace u_net
 
 
                     // 登録処理
-                    if (RegTrans(CurrentCode, CurrentEdition, false))
+                    if (RegTrans(CurrentCode, CurrentEdition))
                     {
+                        if (string.IsNullOrEmpty(更新版数.Text))
+                        {
+                            更新版数.Text = "1";
+                        }
+                        else
+                        {
+                            更新版数.Text = (Convert.ToInt32(更新版数.Text) + 1).ToString();
+                        }
+
                         return true;
                     }
                     else
@@ -735,7 +1281,7 @@ namespace u_net
             }
         }
 
-        private bool RegTrans(string codeString, int editionNumber, bool updatePreEdition)
+        private bool RegTrans(string codeString, int editionNumber)
         {
             Connect();
             SqlTransaction transaction = cn.BeginTransaction();
@@ -744,45 +1290,26 @@ namespace u_net
                 try
                 {
 
-                    string strwhere = "ユニットコード='" + codeString + "' and ユニット版数 =" + editionNumber;
+                    string strwhere = "文書コード='" + codeString + "' and 版数 =" + editionNumber;
                     // ヘッダ部の登録
-                    if (!DataUpdater.UpdateOrInsertDataFrom(this, cn, "Mユニット", strwhere, "ユニットコード", transaction, "ユニット版数"))
+                    if (!DataUpdater.UpdateOrInsertDataFrom(this, cn, "T処理文書", strwhere, "文書コード", transaction, "版数"))
                     {
                         transaction.Rollback();  // 変更をキャンセル
                         return false;
                     }
 
-                    // 前版データの更新処理
-                    if (updatePreEdition)
+
+                    if (CustomFormName != null)
                     {
-                        string sql = "";
-                        strwhere = "ユニットコード='" + codeString + "' and ユニット版数 =" + (editionNumber - 1);
-
-                        if (IsApproved) // 改版データを承認した場合
+                        // カスタム部の登録
+                        if (!DataUpdater.UpdateOrInsertDataFromCustom(this, cn, "T" + CustomFormName, strwhere, "文書コード", transaction, CustomFormName, "版数"))
                         {
-                            //sql = $"UPDATE Mユニット SET 無効日時=GETDATE(), 無効者コード='{承認者コード.Text}' WHERE " + strwhere;
-                        }
-                        else // 改版データを承認しない場合
-                        {
-                            sql = $"UPDATE Mユニット SET 無効日時=NULL, 無効者コード=NULL WHERE " + strwhere;
-                        }
-
-                        using (SqlCommand cmd = new SqlCommand(sql, cn, transaction))
-                        {
-                            cmd.ExecuteNonQuery();
+                            transaction.Rollback();  // 変更をキャンセル
+                            return false;
                         }
                     }
 
-                    string nonCor = IsBasedNonCor() == 9 ? "NULL" : "'" + IsBasedNonCor().ToString() + "'";
 
-                    string sql2 = "";
-
-                    //sql2 = $"UPDATE Mユニット SET RoHS対応 = {rohsStatus}, 非含有証明書 = {nonCor} WHERE " + strwhere;
-
-                    using (SqlCommand cmd = new SqlCommand(sql2, cn, transaction))
-                    {
-                        cmd.ExecuteNonQuery();
-                    }
 
                     transaction.Commit();
 
@@ -798,65 +1325,19 @@ namespace u_net
             }
         }
 
-        private int IsBasedNonCor()
-        {
-            try
-            {
 
 
-                //if ((IsDecided && ユニット明細1.Detail.RowCount < 1) || (!IsDecided && ユニット明細1.Detail.RowCount <= 1))
-                //{
-                //    return 0;
-                //}
 
-                int result = 0;
 
-                //foreach (Row row in ユニット明細1.Detail.Rows)
-                //{
 
-                //    if (row.IsNewRow) continue;
 
-                //    // ユニットの場合、製品と違いRoHSフィールドの値がNULLであることはあり得ないが、
-                //    // 万が一NULL値を取得してしまった場合に備え条件を含める
-                //    if (row.Cells["非含有証明書"].Value is DBNull)
-                //    {
-                //        result = 9;
-                //        break;
-                //    }
-                //    else if (row.Cells["非含有証明書"].Value.ToString() == "？")
-                //    {
-                //        result = 3;
-                //    }
-                //    else if (row.Cells["非含有証明書"].Value.ToString() == "△" && result < 3)
-                //    {
-                //        result = 2;
-                //    }
-                //    else if (row.Cells["非含有証明書"].Value.ToString() == "○" && result < 2)
-                //    {
-                //        result = 1;
-                //    }
-                //}
 
-                return result;
 
-            }
-            catch (Exception ex)
-            {
-                Debug.Print($"{GetType().Name}_IsBasedNonCor - {ex.Message}");
-                return 0;
-            }
-
-        }
 
         private void Form_KeyDown(object sender, KeyEventArgs e)
         {
 
-            bool intShiftDown = (Control.ModifierKeys & Keys.Shift) == Keys.Shift;
 
-            if (intShiftDown)
-            {
-                Debug.Print(Name + " - Shiftキーが押されました");
-            }
 
             switch (e.KeyCode)
             {
@@ -868,7 +1349,7 @@ namespace u_net
                     if (コマンド新規.Enabled) コマンド新規_Click(sender, e);
                     break;
                 case Keys.F2:
-                    if (コマンド修正.Enabled) コマンド読込_Click(sender, e);
+                    if (コマンド修正.Enabled) コマンド修正_Click(sender, e);
                     break;
                 case Keys.F3:
                     if (コマンド複写.Enabled) コマンド複写_Click(sender, e);
@@ -877,16 +1358,16 @@ namespace u_net
                     if (コマンド削除.Enabled) コマンド削除_Click(sender, e);
                     break;
                 case Keys.F5:
-                    if (コマンド改ページ.Enabled) コマンド部品_Click(sender, e);
+                    if (コマンド改ページ.Enabled) コマンド改ページ_Click(sender, e);
                     break;
                 case Keys.F6:
-                    if (コマンド改版.Enabled) コマンド部品表_Click(sender, e);
+
                     break;
                 case Keys.F7:
-                    if (コマンド編集.Enabled) コマンド部品定数表_Click(sender, e);
+                    if (コマンド編集.Enabled) コマンド編集_Click(sender, e);
                     break;
                 case Keys.F8:
-                    if (コマンドリンク.Enabled) コマンドツール_Click(sender, e);
+                    if (コマンドリンク.Enabled) コマンドリンク_Click(sender, e);
                     break;
                 case Keys.F9:
                     if (コマンド承認.Enabled) コマンド承認_Click(sender, e);
@@ -907,55 +1388,117 @@ namespace u_net
         {
             try
             {
+
                 Connect();
 
-                Cursor.Current = Cursors.WaitCursor;
-                this.DoubleBuffered = true;
-
-                if (this.ActiveControl == this.コマンド新規)
+                // データへの変更がないときの処理
+                if (!IsChanged)
                 {
-                    this.コマンド新規.Focus();
+                    // 新規モードのときは内部の更新データを元に戻す
+                    if (IsNewData && !string.IsNullOrEmpty(CurrentCode))
+                    {
+                        if (CurrentEdition == 1)
+                        {
+                            // 初版時のみ採番された番号を戻す
+                            if (!FunctionClass.Recycle(cn, CurrentCode))
+                            {
+                                MessageBox.Show("文書コードは破棄されました。" + Environment.NewLine + Environment.NewLine +
+                                                "文書コード　：　" + CurrentCode, "警告", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            }
+                        }
+                        //文書添付を戻す
+                        if (!DelAttachedDoc(CurrentCode, CurrentEdition))
+                        {
+                            return;
+                        }
+
+                    }
+
                 }
-
-                // 変更がある
-                if (IsDirty)
+                else
                 {
-                    var intRes = MessageBox.Show("変更内容を登録しますか？", "新規コマンド", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                    // 修正されているときは登録確認を行う
+                    var intRes = MessageBox.Show("文書コード : " + CurrentCode + " （第 " + CurrentEdition + " 版）\n\n変更内容を登録しますか？", "確認", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
                     switch (intRes)
                     {
                         case DialogResult.Yes:
+                            // エラーチェック
+                            if (!ErrCheck())
+                            {
+                                return;
+                            }
                             // 登録処理
                             if (!SaveData())
                             {
-                                MessageBox.Show("エラーのため登録できません。", "新規コマンド", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                                goto Bye_コマンド新規_Click;
+                                if (MessageBox.Show("エラーのため登録できませんでした。" + Environment.NewLine +
+                                                    "強制終了しますか？", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                                {
+
+                                }
+                            }
+                            break;
+                        case DialogResult.No:
+                            //新規コードを取得していたときはコードを戻す
+                            if (IsNewData && !string.IsNullOrEmpty(CurrentCode) && CurrentEdition == 1)
+                            {
+                                if (!FunctionClass.Recycle(cn, CurrentCode))
+                                {
+                                    MessageBox.Show("エラーのためコードは破棄されました。" + Environment.NewLine +
+                                                    "ユニットコード　：　" + CurrentCode, "警告", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                                }
+
+                                //文書添付を戻す
+                                if (!DelAttachedDoc(CurrentCode, CurrentEdition))
+                                {
+                                    return;
+                                }
                             }
                             break;
                         case DialogResult.Cancel:
-                            goto Bye_コマンド新規_Click;
+                            return;
+                    }
+                }
+
+
+
+                //自分が編集中のときは参照モードへ移行しておく
+                if (strLockPC == CommonConstants.MyComputerName)
+                {
+                    //参照モードへ移行する
+                    if (SetUnlock(CurrentCode, CurrentEdition))
+                    {
+                        UpdateCaption(IsChanged, false);
+                    }
+                    else
+                    {
+                        MessageBox.Show("参照モードへの移行に失敗しました。\n他のユーザーがこのデータを開くと編集できない可能性があります。", "編集コマンド", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
 
 
                 if (!GoNewMode())
                 {
-                    MessageBox.Show("エラーのため新規モードへ移行できません。", "新規コマンド", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    goto Bye_コマンド新規_Click;
+                    MessageBox.Show($"エラーが発生しました。{Environment.NewLine}" +
+                                    $"システム管理者へ連絡してください。{Environment.NewLine}{Environment.NewLine}" +
+                                    $"[{this.Name}]を終了します。",
+                                    "新規コマンド", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    blnEmergency = true;
+                    this.Close();
                 }
 
+
             }
-            finally
+            catch (Exception ex)
             {
-
-                this.DoubleBuffered = false;
-                Cursor.Current = Cursors.Default;
+                Debug.Print(Name + "_Unload - " + ex.Message);
+                blnEmergency = true;
+                MessageBox.Show(ex.Message, "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-        Bye_コマンド新規_Click:
-            return;
         }
 
-        private void 改版ボタン_Click(object sender, EventArgs e)
+        private void コマンド改版_Click(object sender, EventArgs e)
         {
 
             FunctionClass fn = new FunctionClass();
@@ -965,24 +1508,69 @@ namespace u_net
                 fn.DoWait("改版しています...");
 
 
-                if (CopyData(this.CurrentCode, this.CurrentEdition + 1) && ClearHistory())
+                string strNewCode;
+                int intNewEdition;
+
+
+
+                // 新ID（コード、版数）取得
+                strNewCode = this.CurrentCode;
+                intNewEdition = this.CurrentEdition + 1;
+
+                // 添付文書複写
+                if (!AttachCopied(this.CurrentCode, this.CurrentEdition, strNewCode, intNewEdition))
                 {
-                    // データ変更とする
-                    ChangedData(true);
-                    // ヘッダ部制御
-                    FunctionClass.LockData(this, false);
-                    this.件名.Focus();
-                    this.改版ボタン.Enabled = false;
-                    this.コマンド新規.Enabled = false;
-                    this.コマンド修正.Enabled = true;
-                    this.コマンド承認.Enabled = false;
+                    MessageBox.Show($"エラーが発生しました。", "改版コマンド", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
                 }
+
+                // カスタム情報があるときは（ID情報を）複写する
+                if (!string.IsNullOrEmpty(CustomFormName))
+                {
+                    SetCustomFormValue(CustomFormName + "_文書コード", strNewCode);
+                    SetCustomFormValue(CustomFormName + "_版数", intNewEdition.ToString());
+                }
+
+
+                // ID設定
+                this.文書コード.Text = strNewCode;
+                this.版数.Text = intNewEdition.ToString();
+
+                // 進捗情報初期化
+                InitialAdvance();
+
+                // 動作制御
+                string strFlow = "1"; // 適切な値に置き換える必要があります
+                VariableSet.FlowControl(this, true, strFlow, "文書コード");
+
+                if (this.文書名.Enabled)
+                {
+                    this.文書名.Focus();
+                }
+                else
+                {
+                    this.件名.Focus();
+                }
+
+                this.文書コード.Enabled = false;
+                this.版数.Enabled = false;
+                this.コマンド新規.Enabled = false;
+                this.コマンド修正.Enabled = true;
+                this.コマンド複写.Enabled = false;
+                this.コマンド削除.Enabled = false;
+                this.コマンド改版.Enabled = false;
+                this.コマンド登録.Enabled = true;
+                this.改版ボタン.Enabled = false;
+
+                // 各コントロールを編集可とする
+                // 承認後の文書データを複写した場合の対処
+                FunctionClass.LockData(this, false);
             }
             catch (Exception ex)
             {
-                Debug.Print(this.Name + "_改版ボタン_Click - " + ex.Message);
-                MessageBox.Show("エラーが発生しました。", BASE_CAPTION, MessageBoxButtons.OK, MessageBoxIcon.Error);
-
+                Console.WriteLine($"Error in コマンド改版_Click: {ex.Message}");
+                MessageBox.Show($"エラーが発生しました。{Environment.NewLine}{Environment.NewLine}" +
+                                $"{ex.Message}", "改版コマンド", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
@@ -990,220 +1578,220 @@ namespace u_net
             }
         }
 
-        private bool CopyData(string codeString, int editionNumber)
+        private void InitialAdvance()
         {
-            try
-            {
-
-
-                //for (int i = 0; i < ユニット明細1.Detail.RowCount; i++)
-                //{
-                //    if (ユニット明細1.Detail.Rows[i].IsNewRow == true)
-                //    {
-                //        //新規行の場合は、処理をスキップ
-                //        continue;
-                //    }
-
-                //    ユニット明細1.Detail.Rows[i].Cells["ユニットコード"].Value = codeString;
-                //    ユニット明細1.Detail.Rows[i].Cells["ユニット版数"].Value = editionNumber;
-
-
-                //}
-
-
-                // 表示情報の更新
-                this.文書コード.Text = codeString;
-                this.版数.Text = editionNumber.ToString();
-
-                this.作成日時.Text = null;
-                this.確定日時.Text = null;
-                this.作成者名.Text = null;
-                this.更新日時.Text = null;
-                this.更新者コード.Text = null;
-                this.更新者名.Text = null;
-                this.確定日時.Text = null;
-                this.確定者コード.Text = null;
-                this.承認日時.Text = null;
-
-
-                return true;
-            }
-            catch (Exception ex)
-            {
-                // エラーハンドリング
-                Debug.Print($"{this.Name}_CopyData - {ex.Message}");
-                return false;
-            }
+            回答期限.Text = null;
+            承認者コード1.Text = null;
+            承認者コード2.Text = null;
+            承認者コード3.Text = null;
+            承認者コード4.Text = null;
+            承認者コード5.Text = null;
+            承認者コード6.Text = null;
+            担当者コード1.SelectedIndex = -1;
+            担当者名1.Text = null;
+            担当者コード2.SelectedIndex = -1;
+            担当者名2.Text = null;
+            担当者コード3.SelectedIndex = -1;
+            担当者名3.Text = null;
+            担当者コード4.SelectedIndex = -1;
+            担当者名4.Text = null;
+            担当者コード5.SelectedIndex = -1;
+            担当者名5.Text = null;
+            担当者コード6.SelectedIndex = -1;
+            担当者名6.Text = null;
+            回答日1.Text = null;
+            回答日2.Text = null;
+            回答日3.Text = null;
+            回答日4.Text = null;
+            回答日5.Text = null;
+            回答日6.Text = null;
+            本文1.Text = null;
+            本文2.Text = null;
+            本文3.Text = null;
+            本文4.Text = null;
+            本文5.Text = null;
+            本文6.Text = null;
+            結果日付.Text = null;
+            結果内容.Text = null;
+            通信欄.Text = null;
+            作成日時.Text = null;
+            確定日時.Text = null;
+            確定者コード.Text = null;
+            承認日時.Text = null;
+            承認者コード.SelectedIndex = -1;
+            完了日.Text = null;
+            完了承認日時.Text = null;
+            完了承認者コード.SelectedIndex = -1;
+            無効日時.Text = null;
+            更新版数.Text = "0";
         }
 
-        private bool ClearHistory()
-        {
-            try
-            {
-
-                //if (ユニット明細1.Detail.RowCount == 0)
-                //{
-                //    return true;
-                //}
-
-                int lngi = 1; // 明細番号の初期化
-
-                //for (int i = 0; i < ユニット明細1.Detail.RowCount; i++)
-                //{
-                //    if (ユニット明細1.Detail.Rows[i].IsNewRow == true)
-                //    {
-                //        //新規行の場合は、処理をスキップ
-                //        continue;
-                //    }
-
-                //    if (string.IsNullOrEmpty(ユニット明細1.Detail.Rows[i].Cells["削除対象"].Value?.ToString()))
-                //    {
-                //        ユニット明細1.Detail.Rows[i].Cells["削除対象"].Value = false;
-                //    }
-
-                //    if (Convert.ToBoolean(ユニット明細1.Detail.Rows[i].Cells["削除対象"].Value))
-                //    {
-                //        ユニット明細1.Detail.Rows.RemoveAt(i);
-                //    }
-                //    else
-                //    {
-                //        ユニット明細1.Detail.Rows[i].Cells["明細番号"].Value = lngi;
-                //        ユニット明細1.Detail.Rows[i].Cells["変更操作コード"].Value = null;
-                //        ユニット明細1.Detail.Rows[i].Cells["変更内容"].Value = null;
-                //        lngi++;
-                //    }
-                //}
-
-
-                return true;
-            }
-            catch (Exception ex)
-            {
-                // エラーハンドリング
-                Debug.Print($"{this.Name}_ClearHistory - {ex.Message}");
-                return false;
-            }
-        }
-
-        private void コマンド読込_Click(object sender, EventArgs e)
+        private bool AttachCopied(string srcCodeString, int srcEditionNumber, string tgtCodeString, int tgtEditionNumber)
         {
             try
             {
 
                 Connect();
 
-                this.SuspendLayout();
+                SqlCommand cmd = new SqlCommand("usp_複写_添付文書", cn);
+                cmd.CommandType = CommandType.StoredProcedure;
 
-                if (!this.IsDirty)
-                {
-                    // 新規モードで且つコードが取得済みのときはコードを戻す
-                    if (this.IsNewData && this.CurrentCode != "" && this.CurrentEdition == 1)
-                    {
-                        // 採番された番号を戻す
-                        if (!FunctionClass.ReturnCode(cn, "UNI" + this.CurrentCode))
-                        {
-                            MessageBox.Show("エラーのためコードは破棄されました。" + Environment.NewLine + Environment.NewLine +
-                                            "ユニットコード　：　" + this.CurrentCode, "修正コマンド", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                        }
-                    }
+                // パラメータの設定
+                cmd.Parameters.AddWithValue("@元文書コード", srcCodeString);
+                cmd.Parameters.AddWithValue("@元版数", srcEditionNumber);
+                cmd.Parameters.AddWithValue("@先文書コード", tgtCodeString);
+                cmd.Parameters.AddWithValue("@先版数", tgtEditionNumber);
 
-                    // 修正モードへ移行する
-                    if (!GoModifyMode())
-                    {
-                        if (MessageBox.Show("エラーが発生しました。" + Environment.NewLine +
-                                    "管理者に連絡してください。" + Environment.NewLine + Environment.NewLine +
-                                    "強制終了しますか？", "修正コマンド", MessageBoxButtons.YesNo, MessageBoxIcon.Error) == DialogResult.Yes)
-                        {
-                            this.ResumeLayout();
-                            this.Close();
-                        }
-                        else
-                        {
-                            this.ResumeLayout();
-                            return;
-                        }
-                    }
 
-                    goto Bye_コマンド読込_Click;
-                }
+                cmd.ExecuteNonQuery();
 
-                // 修正されているときは登録確認を行う
-                DialogResult result = MessageBox.Show("変更内容を登録しますか？", "修正コマンド", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
-
-                switch (result)
-                {
-                    case DialogResult.Yes:
-                        // エラーチェック
-                        if (!ErrCheck())
-                        {
-                            return;
-                        }
-
-                        // 登録処理
-                        if (!SaveData())
-                        {
-                            MessageBox.Show("エラーのため登録できません。", "修正コマンド", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                            return;
-                        }
-                        break;
-
-                    case DialogResult.No:
-                        // 新規モードで且つコードが取得済みのときはコードを戻す
-                        if (this.IsNewData && this.CurrentCode != "" && this.CurrentEdition == 1)
-                        {
-                            // 採番された番号を戻す
-                            if (!FunctionClass.ReturnCode(cn, "UNI" + this.CurrentCode))
-                            {
-                                MessageBox.Show("エラーのためコードは破棄されました。" + Environment.NewLine + Environment.NewLine +
-                                                "ユニットコード　：　" + this.CurrentCode, "修正コマンド", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                            }
-                        }
-                        break;
-
-                    case DialogResult.Cancel:
-                        return;
-                }
-
-                // 修正モードへ移行する
-                if (!GoModifyMode())
-                {
-                    if (MessageBox.Show("エラーが発生しました。" + Environment.NewLine +
-                                    "管理者に連絡してください。" + Environment.NewLine + Environment.NewLine +
-                                    "強制終了しますか？", "修正コマンド", MessageBoxButtons.YesNo, MessageBoxIcon.Error) == DialogResult.Yes)
-                    {
-                        this.ResumeLayout();
-                        this.Close();
-                    }
-                    else
-                    {
-                        this.ResumeLayout();
-                        return;
-                    }
-                }
-
-            Bye_コマンド読込_Click:
-                this.ResumeLayout();
-                return;
+                return true;
             }
             catch (Exception ex)
             {
                 // エラーハンドリング
-                Debug.Print(this.Name + "_コマンド読込_Click - " + ex.Message);
-
-                if (MessageBox.Show("エラーが発生しました。" + Environment.NewLine +
-                                    "管理者に連絡してください。" + Environment.NewLine + Environment.NewLine +
-                                    "強制終了しますか？", "修正コマンド", MessageBoxButtons.YesNo, MessageBoxIcon.Error) == DialogResult.Yes)
-                {
-                    this.ResumeLayout();
-                    this.Close();
-                }
-                else
-                {
-                    this.ResumeLayout();
-                    return;
-                }
+                Console.WriteLine($"Error in AttachCopied: {ex.Message}");
+                return false;
             }
         }
+
+        private void 改版ボタン_Click(object sender, EventArgs e)
+        {
+            コマンド改版_Click(sender, e);
+        }
+
+        private void コマンド修正_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                if (!AskSave())
+                    return;
+
+                // 修正モードへ移行する
+                if (!GoModifyMode())
+                    throw new Exception("Error in GoModifyMode");
+
+            }
+            catch (Exception ex)
+            {
+                // エラーが発生したときは強制終了する
+                Debug.Print(this.Name + "_コマンド修正_Click - " + ex.HResult + " : " + ex.Message);
+                MessageBox.Show("エラーが発生しました。" + Environment.NewLine +
+                    "[" + this.Name + "]を終了します。", "修正コマンド", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+
+                blnEmergency = true;
+
+                this.Close();
+            }
+        }
+
+        private bool AskSave()
+        {
+            try
+            {
+                string strSQL;
+
+                Connect();
+
+                if (IsChanged)
+                {
+                    var intRes = MessageBox.Show(
+                        "文書コード : " + this.CurrentCode + Environment.NewLine + Environment.NewLine +
+                        "変更内容を登録しますか？", "保存の確認", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+
+                    switch (intRes)
+                    {
+                        case DialogResult.Yes:
+                            // エラー検出
+                            if (!ErrCheck())
+                            {
+                                return false;
+                            }
+
+                            // 登録処理
+                            if (RegTrans(this.CurrentCode, this.CurrentEdition))
+                            {
+                                return true;
+                            }
+                            else
+                            {
+                                return false;
+                            }
+
+                        case DialogResult.No:
+                            break;
+
+                        case DialogResult.Cancel:
+                            return false;
+                    }
+                }
+
+                // 登録しない場合
+                // 新規モードのときは内部の更新データを元に戻す
+                if (this.IsNewData && !string.IsNullOrEmpty(this.CurrentCode))
+                {
+                    if (this.CurrentEdition == 1)
+                    {
+                        // 初版時のみ採番された番号を戻す
+                        if (!FunctionClass.Recycle(cn, this.CurrentCode))
+                        {
+                            MessageBox.Show(
+                                "文書コードは破棄されました。" + Environment.NewLine + Environment.NewLine +
+                                "文書コード　：　" + this.CurrentCode, "警告", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        }
+                    }
+
+
+                    // 文書添付を戻す
+                    strSQL = "DELETE FROM T添付文書" +
+                    " WHERE 文書コード = @CurrentCode AND 版数 = @CurrentEdition";
+
+                    SqlTransaction transaction = null;
+
+                    try
+                    {
+                        // トランザクション開始
+                        transaction = cn.BeginTransaction();
+
+                        // SqlCommandの作成
+                        using (SqlCommand cmd = new SqlCommand(strSQL, cn, transaction))
+                        {
+                            // パラメーターの追加
+                            cmd.Parameters.AddWithValue("@CurrentCode", this.CurrentCode);
+                            cmd.Parameters.AddWithValue("@CurrentEdition", this.CurrentEdition);
+
+                            // SQLコマンド実行
+                            cmd.ExecuteNonQuery();
+                        }
+
+                        // トランザクションのコミット
+                        transaction.Commit();
+                    }
+                    catch (Exception ex)
+                    {
+                        // トランザクションのロールバック
+                        if (transaction != null)
+                        {
+                            transaction.Rollback();
+                        }
+
+                        Debug.Print("Error: " + ex.Message);
+                    }
+
+                }
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Debug.Print("AskSave - " + ex.HResult + " : " + ex.Message);
+                return false;
+            }
+        }
+
+
 
         private void コマンド確定_Click(object sender, EventArgs e)
         {
@@ -1215,6 +1803,16 @@ namespace u_net
                 object varSaved1 = null;  // 確定日時保存用（エラー発生時の対策）
                 object varSaved2 = null;  // 確定者コード保存用（エラー発生時の対策）
 
+
+                DialogResult result = MessageBox.Show(
+        "現在システムにログインしているユーザーはこの文書の発信者ではありません。" + Environment.NewLine +
+        "確定する前に発信者が入力中でないことを確認してください。" + Environment.NewLine + Environment.NewLine +
+        "確定しますか？", "確定コマンド", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (result == DialogResult.No)
+                {
+                    return;
+                }
 
                 fn.DoWait("確定しています...");
 
@@ -1251,18 +1849,23 @@ namespace u_net
                     UpdateEditionList(CurrentCode);
 
 
-                    FunctionClass.LockData(this, IsDecided || IsDeleted, "ユニットコード", "ユニット版数");
+                    //FunctionClass.LockData(this, IsDecided || IsDeleted, "ユニットコード", "ユニット版数");
+
+                    ChangedData(false);
 
                     // 新規モードのときは修正モードへ移行する
                     if (IsNewData)
                     {
                         コマンド新規.Enabled = true;
                         コマンド修正.Enabled = false;
+                        コマンド編集.Enabled = true;
                     }
 
                     コマンド承認.Enabled = IsDecided;
 
-                    ChangedData(false);
+                    ControlDocument(ref strFlow);
+
+                    承認ボタン.Enabled = IsDecided;
                 }
                 else
                 {
@@ -1282,6 +1885,194 @@ namespace u_net
             }
         }
 
+
+        public void ControlDocument(ref string FlowString)
+        {
+            try
+            {
+                if (!IsDecided)
+                {
+                    // 確定されていない状態
+                    FunctionClass.LockData(this, false, "文書コード");
+                    FlowString = "1";
+                    VariableSet.FlowControl(this, true, strFlow);
+                    通信欄.ReadOnly = true;
+                    承認ボタン.Enabled = !(
+                        IsNull(承認者コード1.Text) &&
+                        IsNull(承認者コード2.Text) &&
+                        IsNull(承認者コード3.Text) &&
+                        IsNull(承認者コード4.Text) &&
+                        IsNull(承認者コード5.Text) &&
+                        IsNull(承認者コード6.Text));
+                }
+                else if (!IsApproved)
+                {
+                    // 確定されているが、承認されていない状態
+                    FunctionClass.LockData(this, true, "文書コード");
+                }
+                else if (IsNull(結果内容.Text))
+                {
+                    // 承認されているが、結果が出ていない状態
+                    if (Nz(承認者コード1.Text) != TRANSMIT &&
+                        Nz(承認者コード2.Text) != TRANSMIT &&
+                        Nz(承認者コード3.Text) != TRANSMIT &&
+                        Nz(承認者コード4.Text) != TRANSMIT &&
+                        Nz(承認者コード5.Text) != TRANSMIT &&
+                        Nz(承認者コード6.Text) != TRANSMIT)
+                    {
+                        FlowString = "5";
+                        VariableSet.FlowControl(this, true, strFlow);
+                    }
+                    else
+                    {
+                        FlowString = "3";
+                        VariableSet.FlowControl(this, true, strFlow);
+                        // 今後はコントロール配列を使いグループ化する
+                        SetControlAccessibility(承認者コード1.Text, 担当者コード1, 回答日1, 回答日1選択ボタン, 本文1);
+                        SetControlAccessibility(承認者コード2.Text, 担当者コード2, 回答日2, 回答日2選択ボタン, 本文2);
+                        SetControlAccessibility(承認者コード3.Text, 担当者コード3, 回答日3, 回答日3選択ボタン, 本文3);
+                        SetControlAccessibility(承認者コード4.Text, 担当者コード4, 回答日4, 回答日4選択ボタン, 本文4);
+                        SetControlAccessibility(承認者コード5.Text, 担当者コード5, 回答日5, 回答日5選択ボタン, 本文5);
+                        SetControlAccessibility(承認者コード6.Text, 担当者コード6, 回答日6, 回答日6選択ボタン, 本文6);
+
+                        承認ボタン.Enabled =
+                            (IsNull(承認者コード1) || 承認者コード1.Text == TRANSMIT) &&
+                            (IsNull(承認者コード2) || 承認者コード2.Text == TRANSMIT) &&
+                            (IsNull(承認者コード3) || 承認者コード3.Text == TRANSMIT) &&
+                            (IsNull(承認者コード4) || 承認者コード4.Text == TRANSMIT) &&
+                            (IsNull(承認者コード5) || 承認者コード5.Text == TRANSMIT) &&
+                            (IsNull(承認者コード6) || 承認者コード6.Text == TRANSMIT);
+                    }
+                    switch (CommonConstants.LoginDep)
+                    {
+                        case "営業部":
+                            // 無理やりユーザーコードで分岐
+                            // ユーザーをグループに所属させるシステムが必要
+                            if (CommonConstants.LoginUserCode == "002")
+                            {
+                                // 社長（兼営業部長）
+                                承認6ボタン.Enabled = !IsNull(承認者コード6);
+                                承認1ボタン.Enabled = !IsNull(承認者コード1);
+                                承認2ボタン.Enabled = false;
+                                承認3ボタン.Enabled = false;
+                                承認5ボタン.Enabled = false;
+                                承認4ボタン.Enabled = false;
+                            }
+                            else
+                            {
+                                // 営業部
+                                承認6ボタン.Enabled = false;
+                                承認1ボタン.Enabled = !IsNull(承認者コード1);
+                                承認2ボタン.Enabled = false;
+                                承認3ボタン.Enabled = false;
+                                承認5ボタン.Enabled = false;
+                                承認4ボタン.Enabled = false;
+                            }
+                            break;
+                        case "技術部":
+                            承認2ボタン.Enabled = !IsNull(承認者コード2);
+                            承認1ボタン.Enabled = false;
+                            承認3ボタン.Enabled = false;
+                            承認4ボタン.Enabled = false;
+                            承認5ボタン.Enabled = false;
+                            承認6ボタン.Enabled = false;
+                            break;
+                        case "製造部":
+                            承認3ボタン.Enabled = !IsNull(承認者コード3);
+                            承認1ボタン.Enabled = false;
+                            承認2ボタン.Enabled = false;
+                            承認4ボタン.Enabled = false;
+                            承認5ボタン.Enabled = false;
+                            承認6ボタン.Enabled = false;
+                            break;
+                        case "管理部":
+                            承認5ボタン.Enabled = !IsNull(承認者コード5);
+                            承認1ボタン.Enabled = false;
+                            承認2ボタン.Enabled = false;
+                            承認3ボタン.Enabled = false;
+                            承認4ボタン.Enabled = false;
+                            承認6ボタン.Enabled = false;
+                            break;
+                        case "会長":
+                            承認4ボタン.Enabled = !IsNull(承認者コード4);
+                            承認1ボタン.Enabled = false;
+                            承認2ボタン.Enabled = false;
+                            承認3ボタン.Enabled = false;
+                            承認5ボタン.Enabled = false;
+                            承認6ボタン.Enabled = false;
+                            // 社長ユーザーではログオンしない
+                            break;
+                            //case "社長":
+                            //    SetControlAccessibility(承認者コード6, 承認6ボタン);
+                            //    承認1ボタン.Enabled = false;
+                            //    承認2ボタン.Enabled = false;
+                            //    承認3ボタン.Enabled = false;
+                            //    承認4ボタン.Enabled = false;
+                            //    承認5ボタン.Enabled = false;
+                            //    break;
+                    }
+                    // ログインユーザーが専務の場合は総務も承認可とする
+                    //if (LoginUserCode == "002")
+                    //{
+                    //    承認2ボタン.Enabled = false;
+                    //    承認3ボタン.Enabled = false;
+                    //    承認4ボタン.Enabled = false;
+                    //    承認5ボタン.Enabled = !IsNull(承認者コード5);
+                    //}
+                    通信欄.Enabled = true;
+                }
+                else if (!IsFinished)
+                {
+                    // 結果が出ているが完了承認されていない状態
+                    FlowString = "5";
+                    VariableSet.FlowControl(this, true, strFlow);
+                    通信欄.Enabled = true;
+                    // コマンド完了承認.Enabled = true;
+                    完了承認ボタン.Enabled = true;
+                }
+                else
+                {
+                    // 完了承認されている状態
+                    FlowString = "7";
+                    VariableSet.FlowControl(this, true, strFlow);
+                    通信欄.Enabled = false;
+                }
+
+                // ボタンの有効性を設定
+                送信先1ボタン.Enabled = IsDecided && !IsAnswered;
+                送信先2ボタン.Enabled = IsDecided && !IsAnswered;
+                送信先3ボタン.Enabled = IsDecided && !IsAnswered;
+                送信先4ボタン.Enabled = IsDecided && !IsAnswered;
+                送信先5ボタン.Enabled = IsDecided && !IsAnswered;
+                送信先6ボタン.Enabled = IsDecided && !IsAnswered;
+                文書添付.Enabled = !IsFinished;
+            }
+            catch (Exception ex)
+            {
+                Debug.Print("Error: " + ex.Message);
+            }
+        }
+
+        private void SetControlAccessibility(string approvalCode, Control code, Control date, Control dateButton, Control text)
+        {
+            if (approvalCode == TRANSMIT)
+            {
+                code.Enabled = true;
+                date.Enabled = true;
+                dateButton.Enabled = true;
+                text.Enabled = true;
+            }
+            else
+            {
+                code.Enabled = false;
+                date.Enabled = false;
+                dateButton.Enabled = false;
+                text.Enabled = false;
+
+            }
+        }
+
+
         private void コマンド承認_Click(object sender, EventArgs e)
         {
 
@@ -1290,22 +2081,46 @@ namespace u_net
 
             try
             {
-                string var1 = null;
-                string var2 = null;
-                string var3 = null;
+                string strAppUserCode;   // 承認ユーザーコード
+                object varSaved1;
+                object varSaved2;
+                string str1;             // 承認が許可されるユーザーコード
 
 
+                // 送信先の確認
+                if (IsNull(承認者コード1) &&
+                    IsNull(承認者コード2) &&
+                    IsNull(承認者コード3) &&
+                    IsNull(承認者コード4) &&
+                    IsNull(承認者コード5) &&
+                    IsNull(承認者コード6))
+                {
+                    MessageBox.Show("送信先を指定してください。", "承認コマンド", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    送信先1ボタン.Focus();
+                    return;
+                }
 
+                // 発信者の長のユーザーコードを得る
+                str1 = GetHeadUserCode(発信者コード.Text);
+                if (string.IsNullOrEmpty(str1))
+                {
+                    MessageBox.Show("承認者を特定できませんでした。" + Environment.NewLine +
+                                    "社員マスタを確認してください。", "承認コマンド", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
 
                 // 認証処理
-                string strHeadCode = CommonConstants.USER_CODE_TECH; // 承認者を指定する
 
                 // ログオンユーザーが指定ユーザーなら認証者コードにユーザーコードを設定する
-                if (CommonConstants.LoginUserCode != strHeadCode)
+                if (CommonConstants.LoginUserCode == str1)
+                {
+                    strAppUserCode = str1;
+                }
+                else
                 {
                     using (var authenticationForm = new F_認証())
                     {
-                        authenticationForm.args = strHeadCode;
+                        authenticationForm.args = str1;
                         authenticationForm.ShowDialog();
 
                         if (string.IsNullOrEmpty(CommonConstants.strCertificateCode))
@@ -1313,45 +2128,69 @@ namespace u_net
                             MessageBox.Show("認証できません。" + Environment.NewLine + "承認できません。", "承認", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             return;
                         }
+                        else
+                        {
+                            strAppUserCode = CommonConstants.strCertificateCode;
+                        }
                     }
                 }
 
 
-                fn.DoWait("承認しています...");
+
 
                 // 値を退避させる
-                var1 = 承認日時.Text;
+                varSaved1 = 承認日時.Text;
+                varSaved2 = 承認者コード.SelectedValue;
 
                 // 値をセットする
                 if (IsApproved)
                 {
                     承認日時.Text = null;
+                    承認者コード.SelectedIndex = -1;
                 }
                 else
                 {
                     承認日時.Text = FunctionClass.GetServerDate(cn).ToString();
+                    承認者コード.SelectedValue = strAppUserCode;
                 }
 
 
                 // サーバーへ登録する
-                if (RegTrans(CurrentCode, CurrentEdition, 1 < CurrentEdition))
+                if (RegTrans(CurrentCode, CurrentEdition))
                 {
-                    // 版数のソース更新
-                    UpdateEditionList(CurrentCode);
+
+                    if (string.IsNullOrEmpty(更新版数.Text))
+                    {
+                        更新版数.Text = "1";
+                    }
+                    else
+                    {
+                        更新版数.Text = (Convert.ToInt32(更新版数.Text) + 1).ToString();
+                    }
 
                     ChangedData(false);
-                    // 新規モードで承認することはできない仕様とする。
-                    コマンド確定.Enabled = !IsApproved;
-                    改版ボタン.Enabled = IsApproved;
+
+                    if (ApprovedDoc(文書名.Text))
+                    {
+                        コマンド確定.Enabled = !IsApproved;
+                        ControlDocument(ref strFlow);
+                    }
+                    else
+                    {
+                        MessageBox.Show("承認後処理でエラーが発生しました。", "承認コマンド", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
+                    コマンド改版.Enabled = IsApproved && !IsFinished;
+                    改版ボタン.Enabled = IsApproved && !IsFinished;
                 }
                 else
                 {
-                    承認日時.Text = var1;
+                    承認日時.Text = varSaved1.ToString();
+                    承認者コード.SelectedValue = varSaved2;
                     MessageBox.Show("登録できませんでした。", "承認コマンド", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
 
 
-                fn.WaitForm.Close();
+
             }
             catch (Exception ex)
             {
@@ -1360,11 +2199,82 @@ namespace u_net
 
         }
 
+        private string GetHeadUserCode(string userCode)
+        {
+            string headUserCode = "";
+
+            Connect();
+
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = cn;
+                    cmd.CommandText = "SELECT 社員コード FROM M社員 WHERE " +
+                                      "部=(" +
+                                      "SELECT 部 FROM M社員 WHERE 社員コード=@userCode) " +
+                                      "AND (" +
+                                      "ユーザグループ２ = 'Director' " +
+                                      "OR ユーザグループ２ = 'Boarder' " +
+                                      "OR ユーザグループ２ = 'President')" +
+                                      "OR ユーザグループ２ = 'Executive President'";
+                    cmd.Parameters.AddWithValue("@userCode", userCode);
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            headUserCode = reader["社員コード"].ToString();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"エラーが発生しました。{Environment.NewLine}{Environment.NewLine}" +
+                                  $"{ex.HResult} : {ex.Message}");
+            }
+
+            return headUserCode;
+        }
+
+        private bool ApprovedDoc(string docName)
+        {
+            bool result = false;
+
+            Connect();
+
+            //switch (docName)
+            //{
+            //    case "新規販売取引申請書":
+            //        result = ApplyCustomer(cn, 新規販売取引申請書_顧客コード);
+            //        if (!result)
+            //        {
+            //            MessageBox.Show($"顧客コード : {Nz(新規販売取引申請書_顧客コード)}" +
+            //                            $"{Environment.NewLine}{Environment.NewLine}" +
+            //                            "新規販売取引申請処理に失敗しました。",
+            //                            "新規販売取引申請", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            //        }
+            //        break;
+
+            //    default:
+            //        // 対象文書がない場合は処理成功とする
+            //        result = true;
+            //        break;
+            //}
+
+            return result;
+        }
+
+
         private void コマンド複写_Click(object sender, EventArgs e)
         {
 
             FunctionClass fn = new FunctionClass();
             Connect();
+
+            string strNewCode;
+            int intNewEdition;
 
             try
             {
@@ -1372,23 +2282,85 @@ namespace u_net
                 fn.DoWait("複写しています...");
 
 
-                // 複写に成功すればインターフェースを更新する
-                if (CopyData(Right(FunctionClass.採番(cn, "UNI"), 8), 1) && ClearHistory())
+                strNewCode = FunctionClass.採番(cn, CommonConstants.CH_DOCUMENT);
+                intNewEdition = 1;
+
+                // 添付文書複写
+                if (!AttachCopied(this.CurrentCode, this.CurrentEdition, strNewCode, intNewEdition))
                 {
-                    // データ変更とする
-                    ChangedData(true);
-                    // ヘッダ部制御
-                    FunctionClass.LockData(this, false);
-
-                    // ■ 値集合ソースをクリアする必要はないのか？
-
-                    件名.Focus();
-                    改版ボタン.Enabled = false;
-                    コマンド新規.Enabled = false;
-                    コマンド修正.Enabled = true;
-                    コマンド承認.Enabled = false;
-
+                    // 採番された番号を戻す
+                    if (!FunctionClass.ReturnCode(cn, strNewCode))
+                    {
+                        MessageBox.Show($"エラーのためコードは破棄されました。{Environment.NewLine}{Environment.NewLine}" +
+                                        $"文書コード　：　{strNewCode}",
+                                        "複写コマンド", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
+                    return;
                 }
+
+                // カスタム情報があるときは（ID情報を）複写する
+                if (!string.IsNullOrEmpty(CustomFormName))
+                {
+                    SetCustomFormValue(CustomFormName + "_文書コード", strNewCode);
+                    SetCustomFormValue(CustomFormName + "_版数", intNewEdition.ToString());
+                }
+
+                // ID設定
+                this.文書コード.Text = strNewCode;
+                this.版数.Text = intNewEdition.ToString();
+
+                // 編集モードへ移行する
+                if (Setlock(this.CurrentCode, this.CurrentEdition, CommonConstants.MyComputerName))
+                {
+                    strLockPC = CommonConstants.MyComputerName;
+                    this.EditOn = true;
+                    UpdateCaption(this.IsChanged, this.EditOn);
+                }
+                else
+                {
+                    MessageBox.Show("新規モードへの移行に失敗しました。",
+                                    "複写コマンド", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
+
+                // 進捗情報初期化
+                InitialAdvance();
+                this.発信者コード.SelectedValue = CommonConstants.LoginUserCode;
+                if (string.IsNullOrEmpty(((DataRowView)発信者コード.SelectedItem)?.Row.Field<string>("Display2")))
+                {
+                    発信者名.Text = ((DataRowView)発信者コード.SelectedItem)?.Row.Field<string>("Display2");
+                }
+                else
+                {
+                    発信者名.Text = null;
+                }
+
+                // 変更されたことになる
+                ChangedData(true);
+
+                // 動作制御
+                this.strFlow = "1";
+                VariableSet.FlowControl(this, true, strFlow, "文書コード");
+                if (this.文書名.Enabled)
+                    this.文書名.Focus();
+                else
+                    this.件名.Focus();
+
+                this.文書コード.Enabled = false;
+                this.版数.Enabled = false;
+                this.コマンド新規.Enabled = false;
+                this.コマンド修正.Enabled = true;
+                this.コマンド複写.Enabled = false;
+                this.コマンド削除.Enabled = false;
+                this.コマンド改版.Enabled = false;
+                this.コマンド編集.Enabled = false;
+                this.コマンド登録.Enabled = true;
+                this.改版ボタン.Enabled = false;
+
+                // 各コントロールを編集可とする
+                FunctionClass.LockData(this, false);
+
+
             }
             catch (Exception ex)
             {
@@ -1427,16 +2399,19 @@ namespace u_net
                     {
                         コマンド新規.Enabled = true;
                         コマンド修正.Enabled = false;
+                        コマンド編集.Enabled = true;
+                        コマンド承認.Enabled = IsDecided && !IsApproved;
+                        承認ボタン.Enabled = IsDecided && !IsApproved;
 
                         OriginalClass ofn = new OriginalClass();
-                        ofn.SetComboBox(文書コード, "SELECT A.ユニットコード as Value, A.ユニットコード as Display , A.最新版数 as Display3, { fn REPLACE(STR(CONVERT(bit, Mユニット.無効日時), 1, 0), '1', '×') } AS Display2 FROM Mユニット INNER JOIN (SELECT ユニットコード, MAX(ユニット版数) AS 最新版数 FROM Mユニット GROUP BY ユニットコード) A ON Mユニット.ユニットコード = A.ユニットコード AND Mユニット.ユニット版数 = A.最新版数 ORDER BY A.ユニットコード DESC");
+                        ofn.SetComboBox(文書コード, "SELECT 文書名 as Value,文書名 as Display, [フォーム名] as Display2 FROM M文書 ORDER BY 表示順序");
+
+
 
                     }
 
-                    if (!IsApproved)
-                    {
-                        コマンド確定.Enabled = true;
-                    }
+
+                    ControlDocument(ref strFlow);
                 }
                 else
                 {
@@ -1461,538 +2436,84 @@ namespace u_net
 
             try
             {
-                // エラーハンドリングはC#のtry-catch構文を使用する
-                string strHeadCode;       // 部長の社員コード
-                object varSaved1 = null;  // 無効日時保存用
-                object varSaved2 = null;  // 無効者コード保存用
+                string strCertifier;
+                string strMsg;
+
+
+
+                strMsg = "文書コード　：　" + CurrentCode + Environment.NewLine +
+                         "版数　：　" + CurrentEdition + Environment.NewLine + Environment.NewLine +
+                         "この文書を削除しますか？" + Environment.NewLine +
+                         "削除後、元に戻すことはできません。" + Environment.NewLine +
+                         "また、改版された文書は前版の文書が有効になります。";
+
+                if (MessageBox.Show(strMsg, "削除コマンド", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                    return;
+
+                // 認証するユーザーを特定する
+                strCertifier = IsApproved ? 承認者コード.SelectedValue.ToString() : 発信者コード.SelectedValue.ToString();
+
 
                 if (IsApproved)
                 {
-                    // 承認されているときは版数に関係なくデータを無効化する
-                    DialogResult intRes = MessageBox.Show(
-                        $"ユニットコード　：　{CurrentCode}{Environment.NewLine}" +
-                        $"版数　：　{CurrentEdition}{Environment.NewLine}{Environment.NewLine}" +
-                        $"この承認済み製品データを削除します。{Environment.NewLine}" +
-                        $"削除後参照のみ可能となります。{Environment.NewLine}" +
-                        $"承認済みデータを削除すると運用上問題が生じることがあります。{Environment.NewLine}{Environment.NewLine}" +
-                        $"削除しますか？",
-                        "削除コマンド",
-                        MessageBoxButtons.YesNo,
-                        MessageBoxIcon.Question);
+                    strCertifier = 承認者コード.Text;
+                }
+                else
+                {
+                    strCertifier = 発信者コード.Text;
+                }
 
-                    if (intRes == DialogResult.No)
+                using (var authenticationForm = new F_認証())
+                {
+                    authenticationForm.args = strCertifier;
+                    authenticationForm.ShowDialog();
+
+                    if (string.IsNullOrEmpty(CommonConstants.strCertificateCode))
+                    {
+                        MessageBox.Show("削除は中止されました。", "削除コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         return;
+                    }
 
-                    // 認証処理
-                    strHeadCode = CommonConstants.USER_CODE_TECH; // 承認者を指定する
+                }
 
-                    // ログオンユーザーが指定ユーザーなら認証者コードにユーザーコードを設定する
-                    if (CommonConstants.LoginUserCode != strHeadCode)
+                // 削除処理
+                if (DeleteData(cn, CurrentCode, CurrentEdition))
+                {
+                    MessageBox.Show("削除しました。", "削除コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+
+                    // 削除後、現在の版数を基に表示データを更新する
+                    if (CurrentEdition - 1 > 0)
                     {
-                        using (var authenticationForm = new F_認証())
+                        // 前版を表示する
+                        版数.Focus();
+                        版数.Text = (CurrentEdition - 1).ToString();
+                    }
+                    else
+                    {
+                        // 新規モードへ移行する
+                        if (!GoNewMode())
                         {
-                            authenticationForm.args = strHeadCode;
-                            authenticationForm.ShowDialog();
-
-                            if (string.IsNullOrEmpty(CommonConstants.strCertificateCode))
-                            {
-                                MessageBox.Show("認証に失敗しました。" + Environment.NewLine + "実行できません。", "削除コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                return;
-                            }
+                            MessageBox.Show("エラーが発生しました。" + Environment.NewLine +
+                                            "システム管理者へ連絡してください。" + Environment.NewLine +
+                                            "[" + Name + "]を終了します。", "削除コマンド", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            Close();
                         }
-                    }
-
-                    // 削除情報設定
-                    varSaved1 = 無効日時.Text;
-                    varSaved2 = 無効者コード.Text;
-
-                    if (IsDeleted)
-                    {
-                        無効日時.Text = null;
-                        無効者コード.Text = null;
-                    }
-                    else
-                    {
-                        // ここにGetServerDateのC#版の処理を追加
-                        無効日時.Text = FunctionClass.GetServerDate(cn).ToString();
-                        無効者コード.Text = CommonConstants.strCertificateCode;
-                    }
-
-
-                    // 表示データを登録する
-                    if (RegTrans(CurrentCode, CurrentEdition, false))
-                    {
-                        if (IsDeleted)
-                            MessageBox.Show("削除されました。", "削除コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        else
-                            MessageBox.Show("削除は取り消されました。", "削除コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                    else
-                    {
-                        // 登録失敗
-                        無効日時.Text = varSaved1.ToString();
-                        無効者コード.Text = varSaved2.ToString();
-                        MessageBox.Show("エラー発生により処理は取り消されました。", "削除コマンド", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     }
                 }
                 else
                 {
-                    // 承認されていないときは版数により処理が異なる
-                    // 対象データが確定されているときは意思を確認する
-                    if (IsDecided)
-                    {
-                        if (MessageBox.Show(
-                            "この製品データは確定されています。" + Environment.NewLine +
-                            "通常、確定済みのデータを削除することはありません。" + Environment.NewLine + Environment.NewLine +
-                            "続行しますか？",
-                            "削除コマンド", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
-                        {
-                            return;
-                        }
-                    }
-
-                    // 他のユーザーによって承認されているかどうか確認する
-                    if (IsApprovedS(cn, CurrentCode, CurrentEdition))
-                    {
-                        MessageBox.Show("このデータは他のユーザーにより承認されたため、削除できません。",
-                            "削除コマンド", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                        return;
-                    }
-
-                    if (CurrentEdition == 1)
-                    {
-                        // 指定版数データを完全削除する
-                        if (MessageBox.Show(
-                            $"ユニットコード　：　{CurrentCode}{Environment.NewLine}" +
-                            $"版数　：　{CurrentEdition}{Environment.NewLine}{Environment.NewLine}" +
-                            $"この製品データを削除します。{Environment.NewLine}" +
-                            $"削除後参照することはできません。{Environment.NewLine}" +
-                            $"また、この処理を取り消すことはできません。{Environment.NewLine}{Environment.NewLine}" +
-                            $"削除しますか？",
-                            "削除コマンド", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
-                        {
-                            return;
-                        }
-
-                        if (DeleteData(cn, CurrentCode, CurrentEdition))
-                        {
-                            MessageBox.Show("削除しました。", "削除コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                            // 新規モードへ移行する
-                            if (!GoNewMode())
-                            {
-                                MessageBox.Show($"エラーのため新規モードへ移行できません。{Environment.NewLine}" +
-                                                $"[{Name}]画面を終了します。",
-                                    "削除コマンド", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                                Close();
-                            }
-
-                        }
-                        else
-                        {
-                            MessageBox.Show("エラー発生により処理は取り消されました。",
-                                "削除コマンド", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                        }
-                    }
-                    else
-                    {
-                        // 指定版数データを完全削除し、前版を有効にする
-                        if (MessageBox.Show(
-                            $"ユニットコード　：　{CurrentCode}{Environment.NewLine}" +
-                            $"版数　：　{CurrentEdition}{Environment.NewLine}{Environment.NewLine}" +
-                            $"この製品データを削除し、前版に戻します。{Environment.NewLine}" +
-                            $"この処理を取り消すことはできません。{Environment.NewLine}{Environment.NewLine}" +
-                            $"削除しますか？",
-                            "削除コマンド", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
-                        {
-                            return;
-                        }
-
-                        if (UndoRevise(cn, CurrentCode, CurrentEdition))
-                        {
-                            MessageBox.Show("改版を取り消しました。", "削除コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-
-
-                            // 前版を表示する
-                            版数.Focus();
-                            版数.Text = (CurrentEdition - 1).ToString();
-
-                            // 版数のソース更新
-                            UpdateEditionList(this.CurrentCode);
-                        }
-                        else
-                        {
-                            MessageBox.Show("エラー発生により処理は取り消されました。",
-                                "削除コマンド", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                        }
-                    }
+                    MessageBox.Show("削除できませんでした。" + Environment.NewLine +
+                                    "他のユーザーにより承認されている可能性があります。", "削除コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"エラーが発生しました: {ex.Message}", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("削除できませんでした。" + Environment.NewLine + Environment.NewLine +
+                                ex.HResult + " : " + ex.Message, "削除コマンド", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        private void コマンドツール_Click(object sender, EventArgs e)
-        {
-            F_ユニット_ツール targetform = new F_ユニット_ツール();
-
-            targetform.args = CurrentCode;
-            targetform.ShowDialog();
-        }
-
-        private void コマンド部品_Click(object sender, EventArgs e)
-        {
-            F_部品 targetform = new F_部品();
-
-            targetform.args = CurrentPartsCode;
-            targetform.ShowDialog();
-        }
-
-        private void コマンド部品表_Click(object sender, EventArgs e)
-        {
-            IReport paoRep = ReportCreator.GetPreview();
-
-            paoRep.LoadDefFile("../../../Reports/部品表.prepd");
-
-            Connect();
-
-            F_ユニット? f_ユニット = Application.OpenForms.OfType<F_ユニット>().FirstOrDefault();
-
-            DataRowCollection V部品表;
-
-            string sqlQuery = "SELECT * FROM V部品表 where ユニットコード='" + CurrentCode + "' and ユニット版数=" + CurrentEdition + " ORDER BY 明細番号";
-
-            using (SqlCommand command = new SqlCommand(sqlQuery, cn))
-            {
-                using (SqlDataAdapter adapter = new SqlDataAdapter(command))
-                {
-                    DataSet dataSet = new DataSet();
-
-                    adapter.Fill(dataSet);
-
-                    V部品表 = dataSet.Tables[0].Rows;
-
-                }
-            }
-
-            //最大行数
-            int maxRow = 49;
-            //現在の行
-            int CurRow = 0;
-            //行数
-            int RowCount = maxRow;
-            if (V部品表.Count > 0)
-            {
-                RowCount = V部品表.Count;
-            }
-
-            int page = 1;
-            double maxPage = Math.Ceiling((double)RowCount / maxRow);
-
-            DateTime now = DateTime.Now;
-
-            int lenB;
-
-            //描画すべき行がある限りページを増やす
-            while (RowCount > 0)
-            {
-                RowCount -= maxRow;
-
-                paoRep.PageStart();
-
-                //ヘッダー
-                paoRep.Write("ユニットコード", V部品表[0]["ユニットコード"].ToString() != "" ? V部品表[0]["ユニットコード"].ToString() : " ");
-                paoRep.Write("ユニット版数", V部品表[0]["ユニット版数"].ToString() != "" ? V部品表[0]["ユニット版数"].ToString() : " ");
-                paoRep.Write("ユニット品名", V部品表[0]["ユニット品名"].ToString() != "" ? V部品表[0]["ユニット品名"].ToString() : " ");
-                paoRep.Write("ユニット型番", V部品表[0]["ユニット型番"].ToString() != "" ? V部品表[0]["ユニット型番"].ToString() : " ");
-
-                paoRep.Write("承認日時", V部品表[0]["承認日時"].ToString() != "" ? V部品表[0]["承認日時"].ToString() : " ");
-
-                if (!string.IsNullOrEmpty(V部品表[0]["無効日時"].ToString()))
-                {
-                    paoRep.Write("コメント", "（削除済み）");
-                }
-                else if (f_ユニット.ユニット明細1.Detail.SortOrder != 0)
-                {
-                    paoRep.Write("コメント", "（確認用）");
-                }
-                else
-                {
-                    paoRep.Write("コメント", "");
-                }
-
-                if (string.IsNullOrEmpty(V部品表[0]["識別コード"].ToString()))
-                {
-                    paoRep.Write("ページコード", " ");
-                }
-                else
-                {
-                    string ページコード = $"{V部品表[0]["識別コード"].ToString()}-04{page:D2}";
-                    paoRep.Write("ページコード", ページコード);
-                }
-
-                //フッダー
-                paoRep.Write("出力日時", "出力日時：" + now.ToString("yyyy/MM/dd HH:mm:ss"));
-                paoRep.Write("ページ", ("ページ： " + page + "/" + maxPage).ToString());
-
-                //明細
-                for (var i = 0; i < maxRow; i++)
-                {
-                    if (CurRow >= V部品表.Count) break;
-
-                    DataRow targetRow = V部品表[CurRow];
-
-                    paoRep.Write("明細番号", targetRow["明細番号"].ToString() != "" ? targetRow["明細番号"].ToString() : " ", i + 1);
-                    paoRep.Write("構成番号", targetRow["構成番号"].ToString() != "" ? targetRow["構成番号"].ToString() : " ", i + 1);
-                    paoRep.Write("形状", targetRow["形状"].ToString() != "" ? targetRow["形状"].ToString() : " ", i + 1);
-                    paoRep.Write("部品コード", targetRow["部品コード"].ToString() != "" ? targetRow["部品コード"].ToString() : " ", i + 1);
-                    paoRep.Write("品名", targetRow["品名"].ToString() != "" ? targetRow["品名"].ToString() : " ", i + 1);
-                    paoRep.Write("型番", targetRow["型番"].ToString() != "" ? targetRow["型番"].ToString() : " ", i + 1);
-                    paoRep.Write("メーカー名", targetRow["メーカー名"].ToString() != "" ? targetRow["メーカー名"].ToString() : " ", i + 1);
-                    paoRep.Write("変更", targetRow["変更"].ToString() != "" ? targetRow["変更"].ToString() : " ", i + 1);
-
-                    if (targetRow["削除対象"].ToString() == "1")
-                    {
-                        paoRep.Write("削除対象", "------------------------------------------------------------------------------------------------", i + 1);
-                    }
-                    else
-                    {
-                        paoRep.Write("削除対象", "", i + 1);
-                    }
-
-                    CurRow++;
-
-
-                }
-
-                page++;
-
-                paoRep.PageEnd();
-
-
-
-            }
-
-
-            paoRep.Output();
-        }
-
-        private void コマンド部品定数表_Click(object sender, EventArgs e)
-        {
-            var intRes = MessageBox.Show("部品単価を表示しますか？", "部品定数表コマンド", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
-            bool bleShowPrice;
-
-            switch (intRes)
-            {
-                case DialogResult.Yes:
-                    bleShowPrice = true;
-                    break;
-                case DialogResult.No:
-                    bleShowPrice = false;
-                    break;
-                default:
-                    return;
-            }
-
-
-
-
-            IReport paoRep = ReportCreator.GetPreview();
-
-            paoRep.LoadDefFile("../../../Reports/部品定数表.prepd");
-
-            Connect();
-
-            F_ユニット? f_ユニット = Application.OpenForms.OfType<F_ユニット>().FirstOrDefault();
-
-            DataRowCollection V部品定数表;
-
-            string sqlQuery = "SELECT * FROM V部品定数表 where ユニットコード='" + CurrentCode + "' and ユニット版数=" + CurrentEdition + " ORDER BY 品名,型番";
-
-            using (SqlCommand command = new SqlCommand(sqlQuery, cn))
-            {
-                using (SqlDataAdapter adapter = new SqlDataAdapter(command))
-                {
-                    DataSet dataSet = new DataSet();
-
-                    adapter.Fill(dataSet);
-
-                    V部品定数表 = dataSet.Tables[0].Rows;
-
-                }
-            }
-
-            //最大行数
-            int maxRow = 26;
-            //現在の行
-            int CurRow = 0;
-            //行数
-            int RowCount = maxRow;
-            if (V部品定数表.Count > 0)
-            {
-                RowCount = V部品定数表.Count;
-            }
-
-            int page = 1;
-            double maxPage = Math.Ceiling((double)RowCount / maxRow);
-
-            DateTime now = DateTime.Now;
-
-            int lenB;
-
-            //描画すべき行がある限りページを増やす
-            while (RowCount > 0)
-            {
-                RowCount -= maxRow;
-
-                paoRep.PageStart();
-
-                //ヘッダー
-                paoRep.Write("シリーズ名", " ");
-                paoRep.Write("ロット数量", " ");
-                paoRep.Write("ロット番号", " ");
-                paoRep.Write("売上区分", " ");
-                paoRep.Write("発注納期", " ");
-                paoRep.Write("発注日", " ");
-
-                paoRep.Write("ユニットコード", V部品定数表[0]["ユニットコード"].ToString() != "" ? V部品定数表[0]["ユニットコード"].ToString() : " ");
-                paoRep.Write("ユニット版数", V部品定数表[0]["ユニット版数"].ToString() != "" ? V部品定数表[0]["ユニット版数"].ToString() : " ");
-                paoRep.Write("ユニット品名", V部品定数表[0]["ユニット品名"].ToString() != "" ? V部品定数表[0]["ユニット品名"].ToString() : " ");
-                paoRep.Write("ユニット型番", V部品定数表[0]["ユニット型番"].ToString() != "" ? V部品定数表[0]["ユニット型番"].ToString() : " ");
-
-                paoRep.Write("承認日時", V部品定数表[0]["承認日時"].ToString() != "" ? V部品定数表[0]["承認日時"].ToString() : " ");
-
-
-
-                //フッダー
-                paoRep.Write("出力日時", "出力日時：" + now.ToString("yyyy/MM/dd HH:mm:ss"));
-                paoRep.Write("ページ", ("ページ： " + page + "/" + maxPage).ToString());
-
-                //明細
-                for (var i = 0; i < maxRow; i++)
-                {
-                    if (CurRow >= V部品定数表.Count) break;
-
-                    DataRow targetRow = V部品定数表[CurRow];
-
-                    paoRep.Write("明細番号", (CurRow + 1).ToString(), i + 1);
-                    paoRep.Write("部品置換", targetRow["部品置換"].ToString() != "" ? targetRow["部品置換"].ToString() : " ", i + 1);
-                    paoRep.Write("形状", targetRow["形状"].ToString() != "" ? targetRow["形状"].ToString() : " ", i + 1);
-                    paoRep.Write("部品コード", targetRow["部品コード"].ToString() != "" ? targetRow["部品コード"].ToString() : " ", i + 1);
-                    paoRep.Write("品名", targetRow["品名"].ToString() != "" ? targetRow["品名"].ToString() : " ", i + 1);
-                    paoRep.Write("型番", targetRow["型番"].ToString() != "" ? targetRow["型番"].ToString() : " ", i + 1);
-                    paoRep.Write("メーカー名", targetRow["メーカー名"].ToString() != "" ? targetRow["メーカー名"].ToString() : " ", i + 1);
-                    paoRep.Write("ShelfNumber", targetRow["ShelfNumber"].ToString() != "" ? targetRow["ShelfNumber"].ToString() : " ", i + 1);
-                    paoRep.Write("仕入先名", targetRow["仕入先名"].ToString() != "" ? targetRow["仕入先名"].ToString() : " ", i + 1);
-                    paoRep.Write("定数", targetRow["定数"].ToString() != "" ? targetRow["定数"].ToString() : " ", i + 1);
-                    if (bleShowPrice)
-                    {
-                        paoRep.Write("部品単価", targetRow["部品単価"].ToString() != "" ? targetRow["部品単価"].ToString() : " ", i + 1);
-                    }
-                    else
-                    {
-                        paoRep.Write("部品単価", " ", i + 1);
-                    }
-
-                    paoRep.Write("発注コード", " ", i + 1);
-                    paoRep.Write("発注数量", " ", i + 1);
-                    paoRep.Write("出庫数量１", "／", i + 1);
-                    paoRep.Write("確認１", " ", i + 1);
-                    paoRep.Write("出庫数量２", "／", i + 1);
-                    paoRep.Write("確認２", " ", i + 1);
-
-
-
-                    paoRep.z_Objects.SetObject("品名", i + 1);
-                    lenB = Encoding.Default.GetBytes(targetRow["品名"].ToString()).Length;
-                    if (26 < lenB)
-                    {
-                        paoRep.z_Objects.z_Text.z_FontAttr.Size = 6;
-                    }
-                    else if (20 < lenB)
-                    {
-                        paoRep.z_Objects.z_Text.z_FontAttr.Size = 8;
-                    }
-                    else
-                    {
-                        paoRep.z_Objects.z_Text.z_FontAttr.Size = 10;
-                    }
-
-                    paoRep.z_Objects.SetObject("型番", i + 1);
-                    lenB = Encoding.Default.GetBytes(targetRow["型番"].ToString()).Length;
-                    if (40 < lenB)
-                    {
-                        paoRep.z_Objects.z_Text.z_FontAttr.Size = 6;
-                    }
-                    else if (26 < lenB)
-                    {
-                        paoRep.z_Objects.z_Text.z_FontAttr.Size = 8;
-                    }
-                    else
-                    {
-                        paoRep.z_Objects.z_Text.z_FontAttr.Size = 10;
-                    }
-
-                    paoRep.z_Objects.SetObject("仕入先名", i + 1);
-                    lenB = Encoding.Default.GetBytes(targetRow["仕入先名"].ToString()).Length;
-                    if (16 < lenB)
-                    {
-                        paoRep.z_Objects.z_Text.z_FontAttr.Size = 5;
-                    }
-                    else if (10 < lenB)
-                    {
-                        paoRep.z_Objects.z_Text.z_FontAttr.Size = 7;
-                    }
-                    else
-                    {
-                        paoRep.z_Objects.z_Text.z_FontAttr.Size = 10;
-                    }
-
-
-                    CurRow++;
-
-
-                }
-
-                page++;
-
-                paoRep.PageEnd();
-
-
-
-            }
-
-
-            paoRep.Output();
-        }
-
-        private bool IsApprovedS(SqlConnection connection, string codeString, int editionNumber)
-        {
-            bool isApproved;
-
-            using (SqlCommand cmd = new SqlCommand())
-            {
-                // SQLコマンドの構築
-                string strKey = $"ユニットコード = '{codeString}' AND ユニット版数 = {editionNumber} AND 承認日時 IS NULL";
-                string strSQL = $"SELECT COUNT(*) FROM Mユニット WHERE {strKey}";
-
-                // SQLコマンドを設定
-                cmd.CommandText = strSQL;
-                cmd.Connection = connection;
-
-                // サーバーへの問い合わせ実行
-
-                int count = (int)cmd.ExecuteScalar();
-
-                // 結果の判定
-                isApproved = count == 0;
-            }
-
-            return isApproved;
-        }
 
         private bool DeleteData(SqlConnection connection, string codeString, int editionNumber)
         {
@@ -2003,40 +2524,40 @@ namespace u_net
             {
 
                 // 他のユーザーによって承認されているかどうか確認する
-                string strKey = $"ユニットコード = '{codeString}' AND ユニット版数 = {editionNumber} AND 承認日時 IS NULL";
-                string strSQL1 = $"SELECT COUNT(*) FROM Mユニット WHERE {strKey}";
+                string strKey = $"文書コード = '{codeString}' AND 版数 = {editionNumber}";
 
-                using (SqlCommand cmdCheck = new SqlCommand(strSQL1, connection))
+
+
+                // 承認されていない場合にのみ削除処理を実行
+                string strSQL1 = $"DELETE FROM T処理文書 WHERE {strKey}";
+                string strSQL2 = $"DELETE FROM T添付文書 WHERE {strKey}";
+                string strSQL3 = $"DELETE FROM T{CustomFormName} WHERE {strKey}";
+
+                using (SqlCommand cmdDelete1 = new SqlCommand(strSQL1, connection))
+                using (SqlCommand cmdDelete2 = new SqlCommand(strSQL2, connection))
+                using (SqlCommand cmdDelete3 = new SqlCommand(strSQL3, connection))
                 {
-                    int count = (int)cmdCheck.ExecuteScalar();
+                    transaction = connection.BeginTransaction();
 
-                    if (count > 0)
+                    cmdDelete1.Transaction = transaction;
+                    cmdDelete2.Transaction = transaction;
+                    cmdDelete3.Transaction = transaction;
+
+                    // 削除処理実行
+                    cmdDelete1.ExecuteNonQuery();
+                    cmdDelete2.ExecuteNonQuery();
+                    if (!string.IsNullOrEmpty(CustomFormName))
                     {
-                        strKey = $"ユニットコード = '{codeString}' AND ユニット版数 = {editionNumber} ";
-
-                        // 承認されていない場合にのみ削除処理を実行
-                        string strSQL2 = $"DELETE FROM Mユニット WHERE {strKey}";
-                        string strSQL3 = $"DELETE FROM Mユニット明細 WHERE {strKey}";
-
-                        using (SqlCommand cmdDelete1 = new SqlCommand(strSQL2, connection))
-                        using (SqlCommand cmdDelete2 = new SqlCommand(strSQL3, connection))
-                        {
-                            transaction = connection.BeginTransaction();
-
-                            cmdDelete1.Transaction = transaction;
-                            cmdDelete2.Transaction = transaction;
-
-                            // 削除処理実行
-                            cmdDelete1.ExecuteNonQuery();
-                            cmdDelete2.ExecuteNonQuery();
-
-                            // トランザクションのコミット
-                            transaction.Commit();
-
-                            success = true;
-                        }
+                        cmdDelete3.ExecuteNonQuery();
                     }
+
+                    // トランザクションのコミット
+                    transaction.Commit();
+
+                    success = true;
                 }
+
+
             }
             catch (Exception ex)
             {
@@ -2053,175 +2574,1806 @@ namespace u_net
             return success;
         }
 
-        private bool UndoRevise(SqlConnection connection, string codeString, int editionNumber)
+
+
+
+
+        private void コマンド編集_Click(object sender, EventArgs e)
         {
-            bool success = false;
-            SqlTransaction transaction = null;
+
+            FunctionClass fn = new FunctionClass();
+            Connect();
 
             try
             {
 
-                // 対象版数のデータを削除
-                string strKey1 = $"ユニットコード = '{codeString}' AND ユニット版数 = {editionNumber}";
-                string strSQL1 = $"DELETE FROM Mユニット明細 WHERE {strKey1}";
-                string strSQL2 = $"DELETE FROM Mユニット WHERE {strKey1}";
+                fn.DoWait("しばらくお待ちください...");
 
-                // 前版に戻すための更新クエリ
-                string strKey2 = $"ユニットコード = '{codeString}' AND ユニット版数 = {editionNumber - 1}";
-                string strSQL3 = $"UPDATE Mユニット SET 無効日時 = NULL, 無効者コード = NULL WHERE {strKey2}";
 
-                using (SqlCommand cmdDelete1 = new SqlCommand(strSQL1, connection))
-                using (SqlCommand cmdDelete2 = new SqlCommand(strSQL2, connection))
-                using (SqlCommand cmdUpdate = new SqlCommand(strSQL3, connection))
+
+                strLockPC = GetLockPC(this.CurrentCode, this.CurrentEdition);
+
+                if (strLockPC == "")
                 {
-                    transaction = connection.BeginTransaction();
+                    if (Convert.ToInt32(更新版数.Text) < Convert.ToInt32(GetLastEdition(this.CurrentCode, this.CurrentEdition)))
+                    {
+                        var intRes = MessageBox.Show("他のユーザーにより内容が変更されています。" +
+                                                 Environment.NewLine + Environment.NewLine +
+                                                 "表示データを最新の情報に更新しますか？",
+                                                 "編集コマンド", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
-                    cmdDelete1.Transaction = transaction;
-                    cmdDelete2.Transaction = transaction;
-                    cmdUpdate.Transaction = transaction;
+                        if (intRes == DialogResult.OK)
+                        {
+                            this.文書コード.Focus();
 
-                    // 削除処理と更新処理を実行
-                    cmdDelete1.ExecuteNonQuery();
-                    cmdDelete2.ExecuteNonQuery();
-                    cmdUpdate.ExecuteNonQuery();
+                            try
+                            {
+                                this.文書コード.Text = this.CurrentCode;
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show("再読込に失敗しました。" + Environment.NewLine +
+                                                "編集はできません。" + Environment.NewLine + Environment.NewLine +
+                                                "いったん閉じてから再度開き直してください。",
+                                                "編集コマンド", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
-                    // トランザクションのコミット
-                    transaction.Commit();
+                                return;
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("古い内容での編集はできません。", "編集コマンド", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            return;
+                        }
+                    }
 
-                    success = true;
+                    if (Setlock(this.CurrentCode, this.CurrentEdition, CommonConstants.MyComputerName))
+                    {
+                        strLockPC = CommonConstants.MyComputerName;
+                        this.EditOn = true;
+                        UpdateCaption(this.IsChanged, this.EditOn);
+                        ControlDocument(ref strFlow);
+
+                        this.コマンド承認.Enabled = this.IsDecided && !this.IsReplied;
+                        this.コマンド確定.Enabled = !this.IsApproved;
+
+                        if (!this.IsDeleted && this.IsApproved && !this.IsFinished &&
+                            !CheckDocument(this.CurrentCode, this.CurrentEdition + 1))
+                        {
+                            this.コマンド改版.Enabled = true;
+                            this.改版ボタン.Enabled = true;
+                        }
+                        else
+                        {
+                            this.コマンド改版.Enabled = false;
+                            this.改版ボタン.Enabled = false;
+                        }
+
+                        this.承認ボタン.Enabled = this.IsDecided && !this.IsReplied;
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("編集モードへの移行に失敗しました。", "編集コマンド", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
+                }
+                else if (strLockPC == CommonConstants.MyComputerName)
+                {
+                    if (this.IsChanged)
+                    {
+                        var intRes = MessageBox.Show("この文書は変更されています。" + Environment.NewLine +
+                                                 "保存しますか？", "編集コマンド",
+                                                 MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+
+                        switch (intRes)
+                        {
+                            case DialogResult.Yes:
+                                if (RegTrans(this.CurrentCode, this.CurrentEdition))
+                                {
+                                    if (string.IsNullOrEmpty(更新版数.Text))
+                                    {
+                                        更新版数.Text = "1";
+                                    }
+                                    else
+                                    {
+                                        更新版数.Text = (Convert.ToInt32(更新版数.Text) + 1).ToString();
+                                    }
+                                    ChangedData(false);
+                                }
+                                else
+                                {
+                                    MessageBox.Show("エラーが発生したため、保存できませんでした。",
+                                                    "編集コマンド", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                                }
+                                break;
+                            case DialogResult.Cancel:
+                                return;
+                        }
+                    }
+
+                    if (SetUnlock(this.CurrentCode, this.CurrentEdition))
+                    {
+                        strLockPC = "";
+                        this.EditOn = false;
+                        UpdateCaption(this.IsChanged, this.EditOn);
+                        FunctionClass.LockData(this, true, "文書コード");
+
+                        this.コマンド改版.Enabled = false;
+                        this.コマンド承認.Enabled = false;
+                        this.コマンド確定.Enabled = false;
+                        this.送信先1ボタン.Enabled = false;
+                        this.送信先2ボタン.Enabled = false;
+                        this.送信先3ボタン.Enabled = false;
+                        this.送信先4ボタン.Enabled = false;
+                        this.送信先5ボタン.Enabled = false;
+                        this.送信先6ボタン.Enabled = false;
+                        this.承認1ボタン.Enabled = false;
+                        this.承認2ボタン.Enabled = false;
+                        this.承認3ボタン.Enabled = false;
+                        this.承認4ボタン.Enabled = false;
+                        this.承認5ボタン.Enabled = false;
+                        this.承認6ボタン.Enabled = false;
+                        this.承認ボタン.Enabled = false;
+                        this.改版ボタン.Enabled = false;
+                        this.完了承認ボタン.Enabled = false;
+                    }
+                    else
+                    {
+                        MessageBox.Show("参照モードへの移行に失敗しました。", "編集コマンド", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("このデータは" + strLockPC + "上で編集中のため、編集できません。",
+                                    "編集コマンド", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
             }
             catch (Exception ex)
             {
-                // エラーが発生した場合の処理
-                if (transaction != null)
-                {
-                    // トランザクションのロールバック
-                    transaction.Rollback();
-                }
+                Console.WriteLine(this.Name + "_コマンド編集_Click - " + ex.HResult + " : " + ex.Message);
+            }
+            finally
+            {
+                fn.WaitForm.Close();
+            }
+        }
 
-                Console.WriteLine($"UndoRevise - Error: {ex.Message}");
+
+        private string GetLastEdition(string dataCode, int dataEdition)
+        {
+            string result = "";
+
+            try
+            {
+                Connect();
+
+                using (SqlCommand command = new SqlCommand())
+                {
+                    command.Connection = cn;
+                    command.CommandText = "SELECT 更新版数 FROM T処理文書 " +
+                                          "WHERE 文書コード = @DataCode AND 版数 = @DataEdition";
+                    command.Parameters.AddWithValue("@DataCode", dataCode);
+                    command.Parameters.AddWithValue("@DataEdition", dataEdition);
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            result = reader["更新版数"].ToString();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("GetLastEdition - " + ex.Message);
+            }
+
+            return result;
+        }
+
+
+        private string GetLockPC(string dataCode, int dataEdition)
+        {
+            string result = "";
+
+            try
+            {
+                Connect();
+
+                using (SqlCommand command = new SqlCommand())
+                {
+                    command.Connection = cn;
+                    command.CommandText = "SELECT コンピュータ名 FROM S編集ロック " +
+                                          "WHERE データコード = @DataCode AND データ版数 = @DataEdition";
+                    command.Parameters.AddWithValue("@DataCode", dataCode);
+                    command.Parameters.AddWithValue("@DataEdition", dataEdition);
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            result = reader["コンピュータ名"].ToString();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("GetLockPC - " + ex.Message);
             }
 
 
-            return success;
+            return result;
         }
+
+
+        private void コマンド改ページ_Click(object sender, EventArgs e)
+        {
+            if (page == 1)
+            {
+
+                // 新しいパネルをフォームに追加
+                this.Controls.Add(文書添付パネル);
+                page = 2;
+            }
+            else
+            {
+                // 名前が一致しないパネルを削除
+                this.Controls.Remove(文書添付パネル);
+                page = 1;
+            }
+        }
+        private void コマンドリンク_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                Connect();
+
+                // 本データのコードを取得
+                string strDocumentCode = CurrentCode;
+
+                // 本データがグループに登録済みかどうかを判断する
+                int result = FunctionClass.DetectGroupMember(cn, strDocumentCode);
+
+                switch (result)
+                {
+                    case 0:
+                        // グループに登録されていない場合
+                        F_グループ targetform = new F_グループ();
+
+                        targetform.args = strDocumentCode;
+                        targetform.ShowDialog();
+                        break;
+                    case 1:
+                        // グループに登録されている場合
+                        F_リンク targetform2 = new F_リンク();
+
+                        targetform2.args = strDocumentCode;
+                        targetform2.ShowDialog();
+                        break;
+                    case -1:
+                        // エラーの場合
+                        Console.WriteLine("エラーのため実行できません。");
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("エラーが発生しました。" + Environment.NewLine + Environment.NewLine +
+                                  ex.HResult + " : " + ex.Message);
+            }
+        }
+
+
 
         private void コマンド終了_Click(object sender, EventArgs e)
         {
             Close(); // フォームを閉じる
         }
 
-        //各コントロールの処理
-        private void ユニットコード_KeyDown(object sender, KeyEventArgs e)
+
+        private void 印刷ボタン_Click(object sender, EventArgs e)
         {
-            if (e.KeyCode == Keys.Return)
+            // デスクトップフォルダのパスを取得
+            string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+
+            // 画面のキャプチャをデスクトップに保存
+            string screenshotFileName = "screenshot.png";
+            string screenshotFilePath = Path.Combine(desktopPath, screenshotFileName);
+            OriginalClass.CaptureActiveForm(screenshotFilePath);
+
+            // 印刷ダイアログを表示
+            OriginalClass.PrintScreen(screenshotFilePath);
+        }
+
+        private void 完了承認ボタン_Click(object sender, EventArgs e)
+        {
+
+            FunctionClass fn = new FunctionClass();
+            Connect();
+
+            try
             {
+                string strAppUserCode;
+                object varSaved1;
+                object varSaved2;
+                string str1;
 
-                string strCode = 文書コード.Text.ToString();
-                string formattedCode = strCode.Trim().PadLeft(8, '0');
+                fn.DoWait("完了承認しています...");
 
-                if (formattedCode != strCode || string.IsNullOrEmpty(strCode))
+                // ログインユーザーが発信者の長でないときは認証する
+                str1 = GetHeadUserCode(発信者コード.Text);
+                if (CommonConstants.LoginUserCode == str1)
                 {
-                    文書コード.Text = formattedCode;
+                    strAppUserCode = str1;
+                }
+                else
+                {
+                    using (var authenticationForm = new F_認証())
+                    {
+                        authenticationForm.args = str1;
+                        authenticationForm.ShowDialog();
+
+                        if (string.IsNullOrEmpty(CommonConstants.strCertificateCode))
+                        {
+                            MessageBox.Show("認証に失敗しました。" + Environment.NewLine + "完了承認はできません。", "完了承認", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            return;
+                        }
+                        else
+                        {
+                            strAppUserCode = CommonConstants.strCertificateCode;
+                        }
+                    }
                 }
 
+
+
+
+                // 承認情報を設定する前に現在の情報を保存しておく
+                varSaved1 = this.完了承認日時.Text;
+                varSaved2 = this.完了承認者コード.SelectedValue;
+
+                // 承認情報を設定する
+                if (this.IsFinished)
+                {
+                    this.完了承認日時.Text = null;
+                    this.完了承認者コード.SelectedIndex = -1;
+                }
+                else
+                {
+                    this.完了承認日時.Text = FunctionClass.GetServerDate(cn).ToString();
+                    this.完了承認者コード.SelectedValue = strAppUserCode;
+                }
+
+                // 表示されている内容で登録する
+                if (RegTrans(this.CurrentCode, this.CurrentEdition))
+                {
+                    // 表示されている更新版数を１上げる（実際のデータはサーバー側のトリガで１増加）
+                    if (string.IsNullOrEmpty(更新版数.Text))
+                    {
+                        更新版数.Text = "1";
+                    }
+                    else
+                    {
+                        更新版数.Text = (Convert.ToInt32(更新版数.Text) + 1).ToString();
+                    }
+                    // 完了承認後処理（■トランザクション内で処理すること）
+                    if (FinishedDoc(this.文書名.Text))
+                    {
+                        ControlDocument(ref strFlow);
+                    }
+                    else
+                    {
+                        MessageBox.Show("完了承認後処理でエラーが発生しました。", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
+                }
+                else
+                {
+                    this.完了承認日時.Text = varSaved1.ToString();
+                    this.完了承認者コード.SelectedValue = varSaved2;
+                    MessageBox.Show("登録できませんでした。", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+
+
+                return;
+
+
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("予期しないエラーが発生しました。", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                fn.WaitForm.Close();
             }
         }
 
-        private void 文書コード_SelectedIndexChanged(object sender, EventArgs e)
+
+        private bool FinishedDoc(string docName)
         {
-            //版数.Text = ((DataRowView)文書コード.SelectedItem)?.Row.Field<Int16>("Display3").ToString();
+            try
+            {
+                bool result = false;
+
+                Connect();
+
+                //switch (docName)
+                //{
+                //    case "新規販売取引申請書":
+                //        result = ApprovalCustomer(cn, 新規販売取引申請書_顧客コード);
+                //        if (!result)
+                //        {
+                //            MessageBox.Show($"顧客コード : {Nz(新規販売取引申請書_顧客コード.Text)}" +
+                //                            $"{Environment.NewLine}{Environment.NewLine}" +
+                //                            "顧客との取引開始処理に失敗しました。",
+                //                            "顧客取引開始",
+                //                            MessageBoxButtons.OK,
+                //                            MessageBoxIcon.Exclamation);
+                //        }
+                //        break;
+
+                //    case "年間教育計画表":
+                //        result = Approval(cn, CurrentCode, CurrentEdition, CommonConstants.LoginUserCode);
+                //        if (!result)
+                //        {
+                //            MessageBox.Show($"文書コード : {CurrentCode}{Environment.NewLine}" +
+                //                            $"版数 : {CurrentEdition}{Environment.NewLine}{Environment.NewLine}" +
+                //                            "年間教育計画での承認処理に失敗しました。",
+                //                            "年間教育計画承認",
+                //                            MessageBoxButtons.OK,
+                //                            MessageBoxIcon.Exclamation);
+                //        }
+                //        break;
+
+                //    default:
+                //        // 対象文書がない場合は処理成功とする
+                //        result = true;
+                //        break;
+                //}
+
+                return result;
+            }
+            catch (Exception ex)
+            {
+                Debug.Print($"{this.Name}_FinishedDoc - {ex.Message}");
+                return false;
+            }
+        }
+
+        private void 否認ボタン_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("登録文書を否認するコマンドです。" + Environment.NewLine +
+                            "このバージョンではサポートされません。",
+                            "否認",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Information);
+        }
+
+        private void 承認ボタン_Click(object sender, EventArgs e)
+        {
+
+            // コマンド承認_Clickを呼び出す
+            コマンド承認_Click(sender, e);
+
+
+
+        }
+
+        private void 結果内容削除ボタン_Click()
+        {
+            if (MessageBox.Show("結果内容を削除すると、各発信先の承認を取り消すことができるようになりますが、" + Environment.NewLine +
+                                "完了承認はできなくなります。" + Environment.NewLine + Environment.NewLine +
+                                "削除しますか？", "結果内容削除確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+            {
+                return;
+            }
+
+            this.結果内容.Text = null;
+            this.結果内容.Focus();
+            ChangedData(true);
+            ControlDocument(ref strFlow);
+        }
+
+
+        private void 承認1ボタン_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string strAppUserCode; // 承認ユーザーコード
+                string str1; // 承認が許可されるユーザーコード
+
+                if (IsNull(担当者コード1.Text))
+                    return;
+                if (IsNull(承認者コード1.Text))
+                    return;
+
+                // ログインユーザーが発信者の長でないときは認証する
+                str1 = GetHeadUserCode(担当者コード1.Text);
+                if (CommonConstants.LoginUserCode == str1)
+                {
+                    strAppUserCode = str1;
+                }
+                else
+                {
+                    using (var authenticationForm = new F_認証())
+                    {
+                        authenticationForm.args = str1;
+                        authenticationForm.ShowDialog();
+
+                        if (string.IsNullOrEmpty(CommonConstants.strCertificateCode))
+                        {
+                            MessageBox.Show("認証できません。" + Environment.NewLine + "承認できません。", "回答承認", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            return;
+                        }
+                        else
+                        {
+                            strAppUserCode = CommonConstants.strCertificateCode;
+                        }
+                    }
+                }
+
+                // 承認者コードの切り替え
+                承認者コード1.Text = (承認者コード1.Text == TRANSMIT) ? strAppUserCode : TRANSMIT;
+
+                // 変更されたことにする
+                ChangedData(true);
+
+                // 文書の制御を行う
+                ControlDocument(ref strFlow);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("エラーが発生しました。" + Environment.NewLine + Environment.NewLine +
+                                ex.HResult + " : " + ex.Message, "回答承認", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void 承認2ボタン_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string strAppUserCode; // 承認ユーザーコード
+                string str2; // 承認が許可されるユーザーコード
+
+                if (IsNull(担当者コード2.Text))
+                    return;
+                if (IsNull(承認者コード2.Text))
+                    return;
+
+                // ログインユーザーが発信者の長でないときは認証する
+                str2 = GetHeadUserCode(担当者コード2.Text);
+                if (CommonConstants.LoginUserCode == str2)
+                {
+                    strAppUserCode = str2;
+                }
+                else
+                {
+                    using (var authenticationForm = new F_認証())
+                    {
+                        authenticationForm.args = str2;
+                        authenticationForm.ShowDialog();
+
+                        if (string.IsNullOrEmpty(CommonConstants.strCertificateCode))
+                        {
+                            MessageBox.Show("認証できません。" + Environment.NewLine + "承認できません。", "回答承認", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            return;
+                        }
+                        else
+                        {
+                            strAppUserCode = CommonConstants.strCertificateCode;
+                        }
+                    }
+                }
+
+                // 承認者コードの切り替え
+                承認者コード2.Text = (承認者コード2.Text == TRANSMIT) ? strAppUserCode : TRANSMIT;
+
+                // 変更されたことにする
+                ChangedData(true);
+
+                // 文書の制御を行う
+                ControlDocument(ref strFlow);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("エラーが発生しました。" + Environment.NewLine + Environment.NewLine +
+                                ex.HResult + " : " + ex.Message, "回答承認", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+        private void 承認3ボタン_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string strAppUserCode; // 承認ユーザーコード
+                string str3; // 承認が許可されるユーザーコード
+
+                if (IsNull(担当者コード3.Text))
+                    return;
+                if (IsNull(承認者コード3.Text))
+                    return;
+
+                // ログインユーザーが発信者の長でないときは認証する
+                str3 = GetHeadUserCode(担当者コード3.Text);
+                if (CommonConstants.LoginUserCode == str3)
+                {
+                    strAppUserCode = str3;
+                }
+                else
+                {
+                    using (var authenticationForm = new F_認証())
+                    {
+                        authenticationForm.args = str3;
+                        authenticationForm.ShowDialog();
+
+                        if (string.IsNullOrEmpty(CommonConstants.strCertificateCode))
+                        {
+                            MessageBox.Show("認証できません。" + Environment.NewLine + "承認できません。", "回答承認", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            return;
+                        }
+                        else
+                        {
+                            strAppUserCode = CommonConstants.strCertificateCode;
+                        }
+                    }
+                }
+
+                // 承認者コードの切り替え
+                承認者コード3.Text = (承認者コード3.Text == TRANSMIT) ? strAppUserCode : TRANSMIT;
+
+                // 変更されたことにする
+                ChangedData(true);
+
+                // 文書の制御を行う
+                ControlDocument(ref strFlow);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("エラーが発生しました。" + Environment.NewLine + Environment.NewLine +
+                                ex.HResult + " : " + ex.Message, "回答承認", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void 承認4ボタン_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string strAppUserCode; // 承認ユーザーコード
+                string str4; // 承認が許可されるユーザーコード
+
+                if (IsNull(担当者コード4.Text))
+                    return;
+                if (IsNull(承認者コード4.Text))
+                    return;
+
+                // ログインユーザーが発信者の長でないときは認証する
+                str4 = GetHeadUserCode(担当者コード4.Text);
+                if (CommonConstants.LoginUserCode == str4)
+                {
+                    strAppUserCode = str4;
+                }
+                else
+                {
+                    using (var authenticationForm = new F_認証())
+                    {
+                        authenticationForm.args = str4;
+                        authenticationForm.ShowDialog();
+
+                        if (string.IsNullOrEmpty(CommonConstants.strCertificateCode))
+                        {
+                            MessageBox.Show("認証できません。" + Environment.NewLine + "承認できません。", "回答承認", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            return;
+                        }
+                        else
+                        {
+                            strAppUserCode = CommonConstants.strCertificateCode;
+                        }
+                    }
+                }
+
+                // 承認者コードの切り替え
+                承認者コード4.Text = (承認者コード4.Text == TRANSMIT) ? strAppUserCode : TRANSMIT;
+
+                // 変更されたことにする
+                ChangedData(true);
+
+                // 文書の制御を行う
+                ControlDocument(ref strFlow);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("エラーが発生しました。" + Environment.NewLine + Environment.NewLine +
+                                ex.HResult + " : " + ex.Message, "回答承認", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void 承認5ボタン_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string strAppUserCode; // 承認ユーザーコード
+                string str5; // 承認が許可されるユーザーコード
+
+                if (IsNull(担当者コード5.Text))
+                    return;
+                if (IsNull(承認者コード5.Text))
+                    return;
+
+                // ログインユーザーが発信者の長でないときは認証する
+                str5 = GetHeadUserCode(担当者コード5.Text);
+                if (CommonConstants.LoginUserCode == str5)
+                {
+                    strAppUserCode = str5;
+                }
+                else
+                {
+                    using (var authenticationForm = new F_認証())
+                    {
+                        authenticationForm.args = str5;
+                        authenticationForm.ShowDialog();
+
+                        if (string.IsNullOrEmpty(CommonConstants.strCertificateCode))
+                        {
+                            MessageBox.Show("認証できません。" + Environment.NewLine + "承認できません。", "回答承認", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            return;
+                        }
+                        else
+                        {
+                            strAppUserCode = CommonConstants.strCertificateCode;
+                        }
+                    }
+                }
+
+                // 承認者コードの切り替え
+                承認者コード5.Text = (承認者コード5.Text == TRANSMIT) ? strAppUserCode : TRANSMIT;
+
+                // 変更されたことにする
+                ChangedData(true);
+
+                // 文書の制御を行う
+                ControlDocument(ref strFlow);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("エラーが発生しました。" + Environment.NewLine + Environment.NewLine +
+                                ex.HResult + " : " + ex.Message, "回答承認", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void 承認6ボタン_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string strAppUserCode; // 承認ユーザーコード
+                string str6; // 承認が許可されるユーザーコード
+
+                if (IsNull(担当者コード6.Text))
+                    return;
+                if (IsNull(承認者コード6.Text))
+                    return;
+
+                // ログインユーザーが発信者の長でないときは認証する
+                str6 = GetHeadUserCode(担当者コード6.Text);
+                if (CommonConstants.LoginUserCode == str6)
+                {
+                    strAppUserCode = str6;
+                }
+                else
+                {
+                    using (var authenticationForm = new F_認証())
+                    {
+                        authenticationForm.args = str6;
+                        authenticationForm.ShowDialog();
+
+                        if (string.IsNullOrEmpty(CommonConstants.strCertificateCode))
+                        {
+                            MessageBox.Show("認証できません。" + Environment.NewLine + "承認できません。", "回答承認", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            return;
+                        }
+                        else
+                        {
+                            strAppUserCode = CommonConstants.strCertificateCode;
+                        }
+                    }
+                }
+
+                // 承認者コードの切り替え
+                承認者コード6.Text = (承認者コード6.Text == TRANSMIT) ? strAppUserCode : TRANSMIT;
+
+                // 変更されたことにする
+                ChangedData(true);
+
+                // 文書の制御を行う
+                ControlDocument(ref strFlow);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("エラーが発生しました。" + Environment.NewLine + Environment.NewLine +
+                                ex.HResult + " : " + ex.Message, "回答承認", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+
+
+        private void 送信先1ボタン_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!IsNull(担当者コード1.Text))
+                {
+                    MessageBox.Show("既に回答されているため、変更できません。", "発信先", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
+
+                // 本文1にフォーカスを設定
+                本文1.Focus();
+
+                // 承認者コード1の切り替え
+                承認者コード1.Text = IsNull(承認者コード1.Text) ? TRANSMIT : null;
+
+                // 変更されたことにする
+                ChangedData(true);
+
+                // 承認者コード1の更新
+                UpdatedControl(承認者コード1);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("エラーが発生しました。" + Environment.NewLine + Environment.NewLine +
+                                ex.HResult + " : " + ex.Message, "発信先", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+        private void 送信先2ボタン_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!IsNull(担当者コード2.Text))
+                {
+                    MessageBox.Show("既に回答されているため、変更できません。", "発信先", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
+
+                // 本文2にフォーカスを設定
+                本文2.Focus();
+
+                // 承認者コード2の切り替え
+                承認者コード2.Text = IsNull(承認者コード2.Text) ? TRANSMIT : null;
+
+                // 変更されたことにする
+                ChangedData(true);
+
+                // 承認者コード2の更新
+                UpdatedControl(承認者コード2);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("エラーが発生しました。" + Environment.NewLine + Environment.NewLine +
+                                ex.HResult + " : " + ex.Message, "発信先", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+        private void 送信先3ボタン_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!IsNull(担当者コード3.Text))
+                {
+                    MessageBox.Show("既に回答されているため、変更できません。", "発信先", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
+
+                // 本文3にフォーカスを設定
+                本文3.Focus();
+
+                // 承認者コード3の切り替え
+                承認者コード3.Text = IsNull(承認者コード3.Text) ? TRANSMIT : null;
+
+                // 変更されたことにする
+                ChangedData(true);
+
+                // 承認者コード3の更新
+                UpdatedControl(承認者コード3);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("エラーが発生しました。" + Environment.NewLine + Environment.NewLine +
+                                ex.HResult + " : " + ex.Message, "発信先", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void 送信先4ボタン_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!IsNull(担当者コード4.Text))
+                {
+                    MessageBox.Show("既に回答されているため、変更できません。", "発信先", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
+
+                // 本文4にフォーカスを設定
+                本文4.Focus();
+
+                // 承認者コード4の切り替え
+                承認者コード4.Text = IsNull(承認者コード4.Text) ? TRANSMIT : null;
+
+                // 変更されたことにする
+                ChangedData(true);
+
+                // 承認者コード4の更新
+                UpdatedControl(承認者コード4);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("エラーが発生しました。" + Environment.NewLine + Environment.NewLine +
+                                ex.HResult + " : " + ex.Message, "発信先", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+        private void 送信先5ボタン_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!IsNull(担当者コード5.Text))
+                {
+                    MessageBox.Show("既に回答されているため、変更できません。", "発信先", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
+
+                // 本文5にフォーカスを設定
+                本文5.Focus();
+
+                // 承認者コード5の切り替え
+                承認者コード5.Text = IsNull(承認者コード5.Text) ? TRANSMIT : null;
+
+                // 変更されたことにする
+                ChangedData(true);
+
+                // 承認者コード5の更新
+                UpdatedControl(承認者コード5);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("エラーが発生しました。" + Environment.NewLine + Environment.NewLine +
+                                ex.HResult + " : " + ex.Message, "発信先", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+        private void 送信先6ボタン_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!IsNull(担当者コード6.Text))
+                {
+                    MessageBox.Show("既に回答されているため、変更できません。", "発信先", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
+
+                // 本文6にフォーカスを設定
+                本文6.Focus();
+
+                // 承認者コード6の切り替え
+                承認者コード6.Text = IsNull(承認者コード6.Text) ? TRANSMIT : null;
+
+                // 変更されたことにする
+                ChangedData(true);
+
+                // 承認者コード6の更新
+                UpdatedControl(承認者コード6);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("エラーが発生しました。" + Environment.NewLine + Environment.NewLine +
+                                ex.HResult + " : " + ex.Message, "発信先", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+
+        private object ApprovalDocument(string documentCode, int edition, string approverCode, string fieldName, bool enableCancel)
+        {
+            object result = null;
+
+            try
+            {
+
+                Connect();
+
+                using (SqlDataAdapter adapter = new SqlDataAdapter())
+                {
+                    using (SqlCommand selectCommand = new SqlCommand())
+                    {
+                        selectCommand.Connection = cn;
+                        selectCommand.CommandText = "SELECT * FROM T処理文書 WHERE 文書コード = @DocumentCode AND 版数 = @Edition";
+                        selectCommand.Parameters.AddWithValue("@DocumentCode", documentCode);
+                        selectCommand.Parameters.AddWithValue("@Edition", edition);
+
+                        adapter.SelectCommand = selectCommand;
+
+                        using (DataSet dataSet = new DataSet())
+                        {
+                            adapter.Fill(dataSet, "T処理文書");
+
+                            DataTable table = dataSet.Tables["T処理文書"];
+
+                            if (table.Rows.Count > 0)
+                            {
+                                DataRow row = table.Rows[0];
+
+                                if (row[fieldName] == DBNull.Value || row[fieldName].ToString() != approverCode)
+                                {
+                                    if (enableCancel)
+                                    {
+                                        // 未承認または不在承認かつ取り消し不可のとき → 承認
+                                        // 改版なら以前の版を旧版に更新する
+                                        if (edition > 1)
+                                        {
+                                            DataRow previousRow = table.Select($"文書コード = '{documentCode}' AND 版数 = {edition - 1}").FirstOrDefault();
+                                            if (previousRow != null)
+                                            {
+                                                previousRow["無効日時"] = DateTime.Now;
+                                            }
+                                        }
+
+                                        // 初期コード保存
+                                        result = row[fieldName];
+                                        // 承認
+                                        row[fieldName] = approverCode;
+
+                                        using (SqlCommandBuilder commandBuilder = new SqlCommandBuilder(adapter))
+                                        {
+                                            adapter.Update(dataSet, "T処理文書");
+                                        }
+                                    }
+                                    else
+                                    {
+                                        // 取り消し不可の場合は承認
+                                        result = approverCode;
+                                        row[fieldName] = approverCode;
+
+                                        using (SqlCommandBuilder commandBuilder = new SqlCommandBuilder(adapter))
+                                        {
+                                            adapter.Update(dataSet, "T処理文書");
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    // 承認初期化
+                                    result = row[fieldName];
+                                    row[fieldName] = DBNull.Value;
+
+                                    using (SqlCommandBuilder commandBuilder = new SqlCommandBuilder(adapter))
+                                    {
+                                        adapter.Update(dataSet, "T処理文書");
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                Console.WriteLine("対象となる文書データが登録されていないか削除されています。\n続行できません。");
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("ApprovalDocument - " + ex.Message);
+            }
+
+
+            return result;
+        }
+
+
+
+
+        //各コントロールの処理
+
+
+        private F_カレンダー dateSelectionForm;
+
+        private void 期限日選択ボタン_Click(object sender, EventArgs e)
+        {
+            if (IsApproved)
+            {
+                MessageBox.Show("承認後の修正はできません", "期限日入力", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                // 日付選択フォームを作成し表示
+                dateSelectionForm = new F_カレンダー();
+
+                if (!string.IsNullOrEmpty(回答期限.Text))
+                {
+                    dateSelectionForm.args = 回答期限.Text;
+                }
+
+                if (dateSelectionForm.ShowDialog() == DialogResult.OK)
+                {
+                    // 日付選択フォームから選択した日付を取得
+                    string selectedDate = dateSelectionForm.SelectedDate;
+
+                    // フォームAの日付コントロールに選択した日付を設定
+                    回答期限.Text = selectedDate;
+                    UpdatedControl(回答期限);
+                }
+            }
+        }
+        private void 回答期限_Validated(object sender, EventArgs e)
+        {
             UpdatedControl(sender as Control);
         }
 
-        private void 文書コード_TextChanged(object sender, EventArgs e)
+        private void 回答期限_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            FunctionClass.LimitText(sender as Control, 8);
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
-        private void 文書コード_Enter(object sender, EventArgs e)
+        private void 回答期限_TextChanged(object sender, EventArgs e)
         {
-            toolStripStatusLabel1.Text = "■文書コードを入力あるいは選択します。　■コードは簡易入力できます。";
+            ChangedData(true);
         }
 
-        private void 文書コード_Leave(object sender, EventArgs e)
+        private void 回答期限_DoubleClick(object sender, EventArgs e)
         {
-            toolStripStatusLabel1.Text = "各種項目の説明";
+            期限日選択ボタン_Click(sender, e);
         }
 
-        private void 文書コード_KeyDown(object sender, KeyEventArgs e)
+        private void 回答期限_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == ' ')
+            {
+                期限日選択ボタン_Click(sender, e);
+                e.Handled = true;
+            }
+        }
+
+        private void 回答期限_KeyDown(object sender, KeyEventArgs e)
         {
 
         }
-        private void 文書コード_DrawItem(object sender, DrawItemEventArgs e)
+
+
+
+
+
+        private void 回答日1_DoubleClick(object sender, EventArgs e)
         {
-            OriginalClass.SetComboBoxAppearance((ComboBox)sender, e, new int[] { 100, 30 }, new string[] { "Display", "Display2" });
-            文書コード.Invalidate();
-            文書コード.DroppedDown = true;
+            回答日1選択ボタン_Click(sender, e);
         }
 
-        private void 版数_DrawItem(object sender, DrawItemEventArgs e)
+        private void 回答日1_TextChanged(object sender, EventArgs e)
         {
-            OriginalClass.SetComboBoxAppearance((ComboBox)sender, e, new int[] { 30, 30 }, new string[] { "Display", "Display2" });
-            版数.Invalidate();
-            版数.DroppedDown = true;
+            ChangedData(true);
         }
+
+        private void 回答日1_Validated(object sender, EventArgs e)
+        {
+            UpdatedControl(sender as Control);
+        }
+
+        private void 回答日1_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (IsError(sender as Control) == true) e.Cancel = true;
+        }
+
+
+        private void 回答日1選択ボタン_Click(object sender, EventArgs e)
+        {
+            // 日付選択フォームを作成し表示
+            dateSelectionForm = new F_カレンダー();
+
+            if (!string.IsNullOrEmpty(回答日1.Text))
+            {
+                dateSelectionForm.args = 回答日1.Text;
+            }
+
+            if (dateSelectionForm.ShowDialog() == DialogResult.OK)
+            {
+                // 日付選択フォームから選択した日付を取得
+                string selectedDate = dateSelectionForm.SelectedDate;
+
+                // フォームAの日付コントロールに選択した日付を設定
+                回答日1.Text = selectedDate;
+                UpdatedControl(回答日1);
+            }
+        }
+
+
+        private void 回答日2_DoubleClick(object sender, EventArgs e)
+        {
+            回答日2選択ボタン_Click(sender, e);
+        }
+
+        private void 回答日2_TextChanged(object sender, EventArgs e)
+        {
+            ChangedData(true);
+        }
+
+        private void 回答日2_Validated(object sender, EventArgs e)
+        {
+            UpdatedControl(sender as Control);
+        }
+
+        private void 回答日2_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (IsError(sender as Control) == true) e.Cancel = true;
+        }
+
+
+        private void 回答日2選択ボタン_Click(object sender, EventArgs e)
+        {
+            // 日付選択フォームを作成し表示
+            dateSelectionForm = new F_カレンダー();
+
+            if (!string.IsNullOrEmpty(回答日2.Text))
+            {
+                dateSelectionForm.args = 回答日2.Text;
+            }
+
+            if (dateSelectionForm.ShowDialog() == DialogResult.OK)
+            {
+                // 日付選択フォームから選択した日付を取得
+                string selectedDate = dateSelectionForm.SelectedDate;
+
+                // フォームAの日付コントロールに選択した日付を設定
+                回答日2.Text = selectedDate;
+                UpdatedControl(回答日2);
+            }
+        }
+
+
+        private void 回答日3_DoubleClick(object sender, EventArgs e)
+        {
+            回答日3選択ボタン_Click(sender, e);
+        }
+
+        private void 回答日3_TextChanged(object sender, EventArgs e)
+        {
+            ChangedData(true);
+        }
+
+        private void 回答日3_Validated(object sender, EventArgs e)
+        {
+            UpdatedControl(sender as Control);
+        }
+
+        private void 回答日3_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (IsError(sender as Control) == true) e.Cancel = true;
+        }
+
+
+        private void 回答日3選択ボタン_Click(object sender, EventArgs e)
+        {
+            // 日付選択フォームを作成し表示
+            dateSelectionForm = new F_カレンダー();
+
+            if (!string.IsNullOrEmpty(回答日3.Text))
+            {
+                dateSelectionForm.args = 回答日3.Text;
+            }
+
+            if (dateSelectionForm.ShowDialog() == DialogResult.OK)
+            {
+                // 日付選択フォームから選択した日付を取得
+                string selectedDate = dateSelectionForm.SelectedDate;
+
+                // フォームAの日付コントロールに選択した日付を設定
+                回答日3.Text = selectedDate;
+                UpdatedControl(回答日3);
+            }
+        }
+
+        private void 回答日4_DoubleClick(object sender, EventArgs e)
+        {
+            回答日4選択ボタン_Click(sender, e);
+        }
+
+        private void 回答日4_TextChanged(object sender, EventArgs e)
+        {
+            ChangedData(true);
+        }
+
+        private void 回答日4_Validated(object sender, EventArgs e)
+        {
+            UpdatedControl(sender as Control);
+        }
+
+        private void 回答日4_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (IsError(sender as Control) == true) e.Cancel = true;
+        }
+
+
+        private void 回答日4選択ボタン_Click(object sender, EventArgs e)
+        {
+            // 日付選択フォームを作成し表示
+            dateSelectionForm = new F_カレンダー();
+
+            if (!string.IsNullOrEmpty(回答日4.Text))
+            {
+                dateSelectionForm.args = 回答日4.Text;
+            }
+
+            if (dateSelectionForm.ShowDialog() == DialogResult.OK)
+            {
+                // 日付選択フォームから選択した日付を取得
+                string selectedDate = dateSelectionForm.SelectedDate;
+
+                // フォームAの日付コントロールに選択した日付を設定
+                回答日4.Text = selectedDate;
+                UpdatedControl(回答日4);
+            }
+        }
+
+        private void 回答日5_DoubleClick(object sender, EventArgs e)
+        {
+            回答日5選択ボタン_Click(sender, e);
+        }
+
+        private void 回答日5_TextChanged(object sender, EventArgs e)
+        {
+            ChangedData(true);
+        }
+
+        private void 回答日5_Validated(object sender, EventArgs e)
+        {
+            UpdatedControl(sender as Control);
+        }
+
+        private void 回答日5_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (IsError(sender as Control) == true) e.Cancel = true;
+        }
+
+
+        private void 回答日5選択ボタン_Click(object sender, EventArgs e)
+        {
+            // 日付選択フォームを作成し表示
+            dateSelectionForm = new F_カレンダー();
+
+            if (!string.IsNullOrEmpty(回答日5.Text))
+            {
+                dateSelectionForm.args = 回答日5.Text;
+            }
+
+            if (dateSelectionForm.ShowDialog() == DialogResult.OK)
+            {
+                // 日付選択フォームから選択した日付を取得
+                string selectedDate = dateSelectionForm.SelectedDate;
+
+                // フォームAの日付コントロールに選択した日付を設定
+                回答日5.Text = selectedDate;
+                UpdatedControl(回答日5);
+            }
+        }
+
+        private void 回答日6_DoubleClick(object sender, EventArgs e)
+        {
+            回答日6選択ボタン_Click(sender, e);
+        }
+
+        private void 回答日6_TextChanged(object sender, EventArgs e)
+        {
+            ChangedData(true);
+        }
+
+        private void 回答日6_Validated(object sender, EventArgs e)
+        {
+            UpdatedControl(sender as Control);
+        }
+
+        private void 回答日6_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (IsError(sender as Control) == true) e.Cancel = true;
+        }
+
+
+        private void 回答日6選択ボタン_Click(object sender, EventArgs e)
+        {
+            // 日付選択フォームを作成し表示
+            dateSelectionForm = new F_カレンダー();
+
+            if (!string.IsNullOrEmpty(回答日6.Text))
+            {
+                dateSelectionForm.args = 回答日6.Text;
+            }
+
+            if (dateSelectionForm.ShowDialog() == DialogResult.OK)
+            {
+                // 日付選択フォームから選択した日付を取得
+                string selectedDate = dateSelectionForm.SelectedDate;
+
+                // フォームAの日付コントロールに選択した日付を設定
+                回答日6.Text = selectedDate;
+                UpdatedControl(回答日6);
+            }
+        }
+
+
+
+        private void 結果日付_DoubleClick(object sender, EventArgs e)
+        {
+            結果日付選択ボタン_Click(sender, e);
+        }
+
+        private void 結果日付_TextChanged(object sender, EventArgs e)
+        {
+            ChangedData(true);
+        }
+
+        private void 結果日付_Validated(object sender, EventArgs e)
+        {
+            UpdatedControl(sender as Control);
+        }
+
+        private void 結果日付_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (IsError(sender as Control) == true) e.Cancel = true;
+        }
+
+        private void 結果日付選択ボタン_Click(object sender, EventArgs e)
+        {
+            // 日付選択フォームを作成し表示
+            dateSelectionForm = new F_カレンダー();
+
+            if (!string.IsNullOrEmpty(結果日付.Text))
+            {
+                dateSelectionForm.args = 結果日付.Text;
+            }
+
+            if (dateSelectionForm.ShowDialog() == DialogResult.OK)
+            {
+                // 日付選択フォームから選択した日付を取得
+                string selectedDate = dateSelectionForm.SelectedDate;
+
+                // フォームAの日付コントロールに選択した日付を設定
+                結果日付.Text = selectedDate;
+                UpdatedControl(結果日付);
+            }
+        }
+
+        private void 通信欄_TextChanged(object sender, EventArgs e)
+        {
+            ChangedData(true);
+        }
+
+        private void 通信欄_Validated(object sender, EventArgs e)
+        {
+            UpdatedControl(sender as Control);
+        }
+
+        private void 通信欄_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (IsError(sender as Control) == true) e.Cancel = true;
+        }
+
+        private void 通信欄_DoubleClick(object sender, EventArgs e)
+        {
+            FunctionClass.DocZoom(sender as Control, CurrentCode, CurrentEdition, 4000);
+        }
+
+
+        private void 結果内容_TextChanged(object sender, EventArgs e)
+        {
+            FunctionClass.LimitText(sender as Control, 4000);
+            ChangedData(true);
+        }
+
+        private void 結果内容_Validated(object sender, EventArgs e)
+        {
+            UpdatedControl(sender as Control);
+        }
+
+        private void 結果内容_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (IsError(sender as Control) == true) e.Cancel = true;
+        }
+        private void 結果内容_DoubleClick(object sender, EventArgs e)
+        {
+            FunctionClass.DocZoom(sender as Control, CurrentCode, CurrentEdition, 4000);
+        }
+
+
+        private void 件名_Validated(object sender, EventArgs e)
+        {
+            UpdatedControl(sender as Control);
+        }
+
+        private void 件名_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (IsError(sender as Control) == true) e.Cancel = true;
+        }
+
 
         private void 件名_TextChanged(object sender, EventArgs e)
         {
-            FunctionClass.LimitText(sender as Control, 60);
-            //ChangedData(true);
+            FunctionClass.LimitText(sender as Control, 100);
+            ChangedData(true);
         }
 
-        private void コマンド修正_Click(object sender, EventArgs e)
+
+        private void 承認者コード_Validated(object sender, EventArgs e)
+        {
+            UpdatedControl(sender as Control);
+        }
+
+        private void 承認者コード_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (IsError(sender as Control) == true) e.Cancel = true;
+        }
+
+
+        private void 担当者コード1_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            OriginalClass.SetComboBoxAppearance((ComboBox)sender, e, new int[] { 30, 100 }, new string[] { "Display", "Display2" });
+            担当者コード1.Invalidate();
+            担当者コード1.DroppedDown = true;
+        }
+
+        private void 担当者コード2_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            OriginalClass.SetComboBoxAppearance((ComboBox)sender, e, new int[] { 30, 100 }, new string[] { "Display", "Display2" });
+            担当者コード2.Invalidate();
+            担当者コード2.DroppedDown = true;
+        }
+
+        private void 担当者コード3_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            OriginalClass.SetComboBoxAppearance((ComboBox)sender, e, new int[] { 30, 100 }, new string[] { "Display", "Display2" });
+            担当者コード3.Invalidate();
+            担当者コード3.DroppedDown = true;
+        }
+
+        private void 担当者コード4_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            OriginalClass.SetComboBoxAppearance((ComboBox)sender, e, new int[] { 30, 100 }, new string[] { "Display", "Display2" });
+            担当者コード4.Invalidate();
+            担当者コード4.DroppedDown = true;
+        }
+
+        private void 担当者コード5_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            OriginalClass.SetComboBoxAppearance((ComboBox)sender, e, new int[] { 30, 100 }, new string[] { "Display", "Display2" });
+            担当者コード5.Invalidate();
+            担当者コード5.DroppedDown = true;
+        }
+
+        private void 担当者コード6_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            OriginalClass.SetComboBoxAppearance((ComboBox)sender, e, new int[] { 30, 100 }, new string[] { "Display", "Display2" });
+            担当者コード6.Invalidate();
+            担当者コード6.DroppedDown = true;
+        }
+
+        private void 発信者コード_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            OriginalClass.SetComboBoxAppearance((ComboBox)sender, e, new int[] { 30, 100 }, new string[] { "Display", "Display2" });
+            発信者コード.Invalidate();
+            発信者コード.DroppedDown = true;
+        }
+
+        private void 担当者コード6_Validated(object sender, EventArgs e)
         {
 
         }
 
-        private void コマンドリンク_Click(object sender, EventArgs e)
+        private void 担当者コード6_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (IsError(sender as Control) == true) e.Cancel = true;
+        }
+
+        private void 担当者コード6_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            担当者名6.Text = ((DataRowView)担当者コード6.SelectedItem)?.Row.Field<String>("Display2")?.ToString();
+
+            UpdatedControl(sender as Control);
+        }
+
+
+        private void 担当者コード6_TextChanged(object sender, EventArgs e)
+        {
+            ChangedData(true);
+
+            if (担当者コード6.SelectedValue == null)
+            {
+                担当者名6.Text = null;
+            }
+        }
+
+
+
+
+        private void 担当者コード1_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (IsError(sender as Control) == true) e.Cancel = true;
+        }
+
+        private void 担当者コード1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            担当者名1.Text = ((DataRowView)担当者コード1.SelectedItem)?.Row.Field<String>("Display2")?.ToString();
+
+            UpdatedControl(sender as Control);
+        }
+
+
+        private void 担当者コード1_TextChanged(object sender, EventArgs e)
+        {
+            ChangedData(true);
+
+            if (担当者コード1.SelectedValue == null)
+            {
+                担当者名1.Text = null;
+            }
+        }
+
+
+
+
+        private void 担当者コード2_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (IsError(sender as Control) == true) e.Cancel = true;
+        }
+
+        private void 担当者コード2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            担当者名2.Text = ((DataRowView)担当者コード2.SelectedItem)?.Row.Field<String>("Display2")?.ToString();
+
+            UpdatedControl(sender as Control);
+        }
+
+
+        private void 担当者コード2_TextChanged(object sender, EventArgs e)
+        {
+            ChangedData(true);
+
+            if (担当者コード2.SelectedValue == null)
+            {
+                担当者名2.Text = null;
+            }
+        }
+
+
+
+        private void 担当者コード3_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (IsError(sender as Control) == true) e.Cancel = true;
+        }
+
+        private void 担当者コード3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            担当者名3.Text = ((DataRowView)担当者コード3.SelectedItem)?.Row.Field<String>("Display2")?.ToString();
+
+            UpdatedControl(sender as Control);
+        }
+
+
+        private void 担当者コード3_TextChanged(object sender, EventArgs e)
+        {
+            ChangedData(true);
+
+            if (担当者コード3.SelectedValue == null)
+            {
+                担当者名3.Text = null;
+            }
+        }
+
+
+
+        private void 担当者コード4_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (IsError(sender as Control) == true) e.Cancel = true;
+        }
+
+        private void 担当者コード4_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            担当者名4.Text = ((DataRowView)担当者コード4.SelectedItem)?.Row.Field<String>("Display2")?.ToString();
+
+            UpdatedControl(sender as Control);
+        }
+
+
+        private void 担当者コード4_TextChanged(object sender, EventArgs e)
+        {
+            ChangedData(true);
+
+            if (担当者コード4.SelectedValue == null)
+            {
+                担当者名4.Text = null;
+            }
+        }
+
+
+        private void 担当者コード5_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (IsError(sender as Control) == true) e.Cancel = true;
+        }
+
+        private void 担当者コード5_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            担当者名5.Text = ((DataRowView)担当者コード5.SelectedItem)?.Row.Field<String>("Display2")?.ToString();
+
+            UpdatedControl(sender as Control);
+        }
+
+
+        private void 担当者コード5_TextChanged(object sender, EventArgs e)
+        {
+            ChangedData(true);
+
+            if (担当者コード5.SelectedValue == null)
+            {
+                担当者名5.Text = null;
+            }
+        }
+
+
+        private void 発信者コード_Validated(object sender, EventArgs e)
         {
 
         }
 
-        private void コマンド編集_Click(object sender, EventArgs e)
+        private void 発信者コード_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (IsError(sender as Control) == true) e.Cancel = true;
+        }
+
+        private void 発信者コード_KeyDown(object sender, KeyEventArgs e)
         {
 
         }
 
-        private void コマンド改版_Click(object sender, EventArgs e)
+        private void 発信者コード_SelectedIndexChanged(object sender, EventArgs e)
         {
+            発信者名.Text = ((DataRowView)発信者コード.SelectedItem)?.Row.Field<String>("Display2")?.ToString();
 
+            UpdatedControl(sender as Control);
         }
 
-        private void コマンド改ページ_Click(object sender, EventArgs e)
+        private void 発信者コード_TextChanged(object sender, EventArgs e)
         {
+            ChangedData(true);
 
+            if (発信者コード.SelectedValue == null)
+            {
+                発信者名.Text = null;
+            }
         }
 
-        private void 文書名_SelectedIndexChanged(object sender, EventArgs e)
-        {
 
+
+        private void 発信者コード_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Space)
+            {
+                ComboBox comboBox = sender as ComboBox;
+                if (comboBox != null)
+                {
+                    comboBox.DroppedDown = true;
+                }
+                e.KeyChar = (char)0;
+            }
         }
 
-        private void 文書名_KeyDown(object sender, KeyEventArgs e)
-        {
-
-        }
-
-        private void 文書名_Validated(object sender, EventArgs e)
-        {
-
-        }
-
-        private void 文書名_Validating(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-
-        }
 
         private void 版数_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            UpdatedControl(sender as Control);
         }
 
         private void 版数_TextChanged(object sender, EventArgs e)
@@ -2236,18 +4388,485 @@ namespace u_net
 
         private void 版数_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
-        private void 件名_Validated(object sender, EventArgs e)
+        private void 版数_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            OriginalClass.SetComboBoxAppearance((ComboBox)sender, e, new int[] { 30, 30 }, new string[] { "Display", "Display2" });
+            版数.Invalidate();
+            版数.DroppedDown = true;
+        }
+
+
+
+
+        private void 分類コード_Validated(object sender, EventArgs e)
         {
 
         }
 
-        private void 件名_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        private void 分類コード_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (IsError(sender as Control) == true) e.Cancel = true;
+        }
+
+        private void 分類コード_KeyDown(object sender, KeyEventArgs e)
         {
 
         }
+
+
+        private void 分類コード_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UpdatedControl(sender as Control);
+        }
+
+
+        private void 分類コード_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Space)
+            {
+                ComboBox comboBox = sender as ComboBox;
+                if (comboBox != null)
+                {
+                    comboBox.DroppedDown = true;
+                }
+                e.KeyChar = (char)0;
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        private void 文書コード_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UpdatedControl(sender as Control);
+        }
+
+
+        private void 文書コード_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            OriginalClass.SetComboBoxAppearance((ComboBox)sender, e, new int[] { 200, 0 }, new string[] { "Display", "Display2" });
+            文書コード.Invalidate();
+            文書コード.DroppedDown = true;
+        }
+
+
+        private void 文書コード_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 文書コード_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "■文書コードを入力あるいは選択します。　■コードは簡易入力できます。";
+        }
+
+        private void 文書コード_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "各種項目の説明";
+        }
+
+        private void 文書コード_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Return)
+            {
+                string strCode = 文書コード.Text;
+                if (string.IsNullOrEmpty(strCode))
+                {
+                    return;
+                }
+
+                strCode = FunctionClass.FormatDocumentCode(strCode);
+
+                if (strCode != 文書コード.Text)
+                {
+                    文書コード.Text = strCode;
+                }
+            }
+        }
+
+        private void 文書コード_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.KeyChar = (char)FunctionClass.ChangeBig((int)e.KeyChar);
+        }
+
+
+        private void 文書コード_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 文書コード_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (IsError(sender as Control) == true) e.Cancel = true;
+        }
+
+
+
+        private void 文書フローコード_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 文書フローコード_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (IsError(sender as Control) == true) e.Cancel = true;
+        }
+
+        private void 文書フローコード_TextChanged(object sender, EventArgs e)
+        {
+            ChangedData(true);
+        }
+
+        private void 文書フローコード_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void 文書フローコード_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UpdatedControl(sender as Control);
+        }
+
+
+        private void 文書フローコード_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Space)
+            {
+                ComboBox comboBox = sender as ComboBox;
+                if (comboBox != null)
+                {
+                    comboBox.DroppedDown = true;
+                }
+                e.KeyChar = (char)0;
+            }
+        }
+
+
+
+
+        private void 文書名_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            OriginalClass.SetComboBoxAppearance((ComboBox)sender, e, new int[] { 400, 0 }, new string[] { "Display", "Display2" });
+            文書名.Invalidate();
+            文書名.DroppedDown = true;
+        }
+        private void 文書名_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UpdatedControl(sender as Control);
+
+        }
+
+
+        private void 文書名_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void 文書名_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 文書名_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (IsError(sender as Control) == true) e.Cancel = true;
+        }
+
+        private void 文書名_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Space)
+            {
+                ComboBox comboBox = sender as ComboBox;
+                if (comboBox != null)
+                {
+                    comboBox.DroppedDown = true;
+                }
+                e.KeyChar = (char)0;
+            }
+        }
+
+        private void 文書名_TextChanged(object sender, EventArgs e)
+        {
+            ChangedData(true);
+        }
+
+
+        private void 本文1_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "■全角2,000文字まで入力可。　■別ウィンドウに表示するには入力欄をダブルクリックしてください。";
+        }
+
+        private void 本文1_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "各種項目の説明";
+            本文1.SelectionStart = 0;
+        }
+
+
+
+        private void 本文1_TextChanged(object sender, EventArgs e)
+        {
+            FunctionClass.LimitText(sender as Control, 4000);
+            ChangedData(true);
+        }
+
+        private void 本文1_Validated(object sender, EventArgs e)
+        {
+            UpdatedControl(sender as Control);
+        }
+
+        private void 本文1_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (IsError(sender as Control) == true) e.Cancel = true;
+        }
+
+        private void 本文1_DoubleClick(object sender, EventArgs e)
+        {
+            FunctionClass.DocZoom(sender as Control, CurrentCode, CurrentEdition, 4000);
+        }
+
+
+        private void 本文6_Validated(object sender, EventArgs e)
+        {
+            UpdatedControl(sender as Control);
+        }
+
+        private void 本文6_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (IsError(sender as Control) == true) e.Cancel = true;
+        }
+
+
+
+        private void 本文6_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "■全角2,000文字まで入力可。　■ダブルクリックでズーム表示。";
+            本文6.SelectionStart = 0;
+        }
+
+        private void 本文6_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "各種項目の説明";
+        }
+
+        private void 本文6_TextChanged(object sender, EventArgs e)
+        {
+            FunctionClass.LimitText(sender as Control, 4000);
+            ChangedData(true);
+        }
+
+        private void 本文6_DoubleClick(object sender, EventArgs e)
+        {
+            FunctionClass.DocZoom(sender as Control, CurrentCode, CurrentEdition, 4000);
+        }
+
+
+
+
+        private void 本文2_DoubleClick(object sender, EventArgs e)
+        {
+            FunctionClass.DocZoom(sender as Control, CurrentCode, CurrentEdition, 4000);
+        }
+
+        private void 本文2_TextChanged(object sender, EventArgs e)
+        {
+            FunctionClass.LimitText(sender as Control, 4000);
+            ChangedData(true);
+        }
+
+        private void 本文2_Validated(object sender, EventArgs e)
+        {
+            UpdatedControl(sender as Control);
+        }
+
+        private void 本文2_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (IsError(sender as Control) == true) e.Cancel = true;
+        }
+
+        private void 本文2_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "■全角2,000文字まで入力可。　■ダブルクリックでズーム表示。";
+            本文2.SelectionStart = 0;
+        }
+
+        private void 本文2_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "各種項目の説明";
+        }
+
+
+
+
+
+        private void 本文3_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "■全角2,000文字まで入力可。　■ダブルクリックでズーム表示。";
+            本文3.SelectionStart = 0;
+        }
+
+        private void 本文3_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "各種項目の説明";
+        }
+
+        private void 本文3_DoubleClick(object sender, EventArgs e)
+        {
+            FunctionClass.DocZoom(sender as Control, CurrentCode, CurrentEdition, 4000);
+        }
+
+        private void 本文3_Validated(object sender, EventArgs e)
+        {
+            UpdatedControl(sender as Control);
+        }
+
+        private void 本文3_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (IsError(sender as Control) == true) e.Cancel = true;
+        }
+
+        private void 本文3_TextChanged(object sender, EventArgs e)
+        {
+            FunctionClass.LimitText(sender as Control, 4000);
+            ChangedData(true);
+        }
+
+
+
+
+
+        private void 本文5_DoubleClick(object sender, EventArgs e)
+        {
+            FunctionClass.DocZoom(sender as Control, CurrentCode, CurrentEdition, 4000);
+        }
+
+        private void 本文5_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "■全角2,000文字まで入力可。　■ダブルクリックでズーム表示。";
+            本文5.SelectionStart = 0;
+        }
+
+        private void 本文5_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "各種項目の説明";
+        }
+
+        private void 本文5_TextChanged(object sender, EventArgs e)
+        {
+            FunctionClass.LimitText(sender as Control, 4000);
+            ChangedData(true);
+        }
+
+        private void 本文5_Validated(object sender, EventArgs e)
+        {
+            UpdatedControl(sender as Control);
+        }
+
+        private void 本文5_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (IsError(sender as Control) == true) e.Cancel = true;
+        }
+
+
+        private void 本文4_DoubleClick(object sender, EventArgs e)
+        {
+            FunctionClass.DocZoom(sender as Control, CurrentCode, CurrentEdition, 4000);
+        }
+
+        private void 本文4_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "■全角2,000文字まで入力可。　■ダブルクリックでズーム表示。";
+            本文4.SelectionStart = 0;
+        }
+
+        private void 本文4_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "各種項目の説明";
+        }
+
+        private void 本文4_TextChanged(object sender, EventArgs e)
+        {
+            FunctionClass.LimitText(sender as Control, 4000);
+            ChangedData(true);
+        }
+
+        private void 本文4_Validated(object sender, EventArgs e)
+        {
+            UpdatedControl(sender as Control);
+        }
+
+        private void 本文4_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (IsError(sender as Control) == true) e.Cancel = true;
+        }
+
+
+
+        private void 本文_DoubleClick(object sender, EventArgs e)
+        {
+            FunctionClass.DocZoom(sender as Control, CurrentCode, CurrentEdition, 4000);
+        }
+
+        private void 本文_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "■全角2,000文字まで入力可。　■ダブルクリックでズーム表示。";
+            本文.SelectionStart = 0;
+        }
+
+        private void 本文_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "各種項目の説明";
+        }
+
+        private void 本文_TextChanged(object sender, EventArgs e)
+        {
+            FunctionClass.LimitText(sender as Control, 4000);
+            ChangedData(true);
+        }
+
+        private void 本文_Validated(object sender, EventArgs e)
+        {
+            UpdatedControl(sender as Control);
+        }
+
+        private void 本文_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (IsError(sender as Control) == true) e.Cancel = true;
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         private void 文書名_Enter(object sender, EventArgs e)
         {
@@ -2269,6 +4888,10 @@ namespace u_net
             toolStripStatusLabel1.Text = "各種項目の説明";
         }
 
+
+
+
+
         private void 発信者コード_Enter(object sender, EventArgs e)
         {
             toolStripStatusLabel1.Text = "■[space]キーで氏名を選択します。";
@@ -2279,170 +4902,6 @@ namespace u_net
             toolStripStatusLabel1.Text = "各種項目の説明";
         }
 
-        private void 期限日選択ボタン_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void 分類コード_Validated(object sender, EventArgs e)
-        {
-
-        }
-
-        private void 分類コード_Validating(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-
-        }
-
-        private void 分類コード_KeyDown(object sender, KeyEventArgs e)
-        {
-
-        }
-
-        private void 回答期限_Validated(object sender, EventArgs e)
-        {
-
-        }
-
-        private void 回答期限_Validating(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-
-        }
-
-        private void 回答期限_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void 回答期限_DoubleClick(object sender, EventArgs e)
-        {
-
-        }
-
-        private void 回答期限_KeyDown(object sender, KeyEventArgs e)
-        {
-
-        }
-
-        private void 文書フローコード_Validated(object sender, EventArgs e)
-        {
-
-        }
-
-        private void 文書フローコード_Validating(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-
-        }
-
-        private void 文書フローコード_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void 文書フローコード_KeyDown(object sender, KeyEventArgs e)
-        {
-
-        }
-
-        private void 文書コード_Validated(object sender, EventArgs e)
-        {
-
-        }
-
-        private void 文書コード_Validating(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-
-        }
-
-        private void 発信者コード_Validated(object sender, EventArgs e)
-        {
-
-        }
-
-        private void 発信者コード_Validating(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-
-        }
-
-        private void 発信者コード_KeyDown(object sender, KeyEventArgs e)
-        {
-
-        }
-
-        private void 発信者コード_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void 送信先6ボタン_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void 承認6ボタン_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void 担当者コード6_Validated(object sender, EventArgs e)
-        {
-
-        }
-
-        private void 担当者コード6_Validating(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-
-        }
-
-        private void 担当者コード6_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void 回答日6_Validated(object sender, EventArgs e)
-        {
-
-        }
-
-        private void 回答日6_Validating(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-
-        }
-
-        private void 回答日6_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void 回答日6_DoubleClick(object sender, EventArgs e)
-        {
-
-        }
-
-        private void 本文6_Validated(object sender, EventArgs e)
-        {
-
-        }
-
-        private void 本文6_Validating(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-
-        }
-
-        private void 回答日6選択ボタン_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void 送信先1ボタン_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void 承認1ボタン_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void 担当者コード6_Enter(object sender, EventArgs e)
         {
@@ -2464,65 +4923,12 @@ namespace u_net
             toolStripStatusLabel1.Text = "各種項目の説明";
         }
 
-        private void 本文6_Enter(object sender, EventArgs e)
-        {
-            toolStripStatusLabel1.Text = "■全角2,000文字まで入力可。　■ダブルクリックでズーム表示。";
-        }
-
-        private void 本文6_Leave(object sender, EventArgs e)
-        {
-            toolStripStatusLabel1.Text = "各種項目の説明";
-        }
-
-        private void 本文6_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void 本文6_DoubleClick(object sender, EventArgs e)
-        {
-
-        }
-
-        private void 本文1_Leave(object sender, EventArgs e)
-        {
-            toolStripStatusLabel1.Text = "■全角2,000文字まで入力可。　■別ウィンドウに表示するには入力欄をダブルクリックしてください。";
-        }
-
-        private void 本文1_Enter(object sender, EventArgs e)
-        {
-            toolStripStatusLabel1.Text = "各種項目の説明";
-        }
-
-        private void 回答日1選択ボタン_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void 送信先2ボタン_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void 承認2ボタン_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void 担当者コード2_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void 担当者コード2_Validated(object sender, EventArgs e)
         {
 
         }
 
-        private void 担当者コード2_Validating(object sender, System.ComponentModel.CancelEventArgs e)
-        {
 
-        }
 
         private void 担当者コード2_Enter(object sender, EventArgs e)
         {
@@ -2532,111 +4938,6 @@ namespace u_net
         private void 担当者コード2_Leave(object sender, EventArgs e)
         {
             toolStripStatusLabel1.Text = "各種項目の説明";
-        }
-
-        private void 本文1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void 本文1_Validated(object sender, EventArgs e)
-        {
-
-        }
-
-        private void 本文1_Validating(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-
-        }
-
-        private void 本文1_DoubleClick(object sender, EventArgs e)
-        {
-
-        }
-
-        private void 回答日2_Validated(object sender, EventArgs e)
-        {
-
-        }
-
-        private void 回答日2_Validating(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-
-        }
-
-        private void 回答日2_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void 回答日2_DoubleClick(object sender, EventArgs e)
-        {
-
-        }
-
-        private void 回答日1_DoubleClick(object sender, EventArgs e)
-        {
-
-        }
-
-        private void 回答日1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void 回答日1_Validated(object sender, EventArgs e)
-        {
-
-        }
-
-        private void 回答日1_Validating(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-
-        }
-
-        private void 回答日2選択ボタン_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void 本文2_DoubleClick(object sender, EventArgs e)
-        {
-
-        }
-
-        private void 本文2_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void 本文2_Validated(object sender, EventArgs e)
-        {
-
-        }
-
-        private void 本文2_Validating(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-
-        }
-
-        private void 本文2_Enter(object sender, EventArgs e)
-        {
-            toolStripStatusLabel1.Text = "■全角2,000文字まで入力可。　■ダブルクリックでズーム表示。";
-        }
-
-        private void 本文2_Leave(object sender, EventArgs e)
-        {
-            toolStripStatusLabel1.Text = "各種項目の説明";
-        }
-
-        private void 送信先3ボタン_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void 承認3ボタン_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void 担当者コード3_Enter(object sender, EventArgs e)
@@ -2649,85 +4950,13 @@ namespace u_net
             toolStripStatusLabel1.Text = "各種項目の説明";
         }
 
-        private void 担当者コード3_TextChanged(object sender, EventArgs e)
-        {
 
-        }
 
         private void 担当者コード3_Validated(object sender, EventArgs e)
         {
 
         }
 
-        private void 担当者コード3_Validating(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-
-        }
-
-        private void 回答日3_DoubleClick(object sender, EventArgs e)
-        {
-
-        }
-
-        private void 回答日3_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void 回答日3_Validated(object sender, EventArgs e)
-        {
-
-        }
-
-        private void 回答日3_Validating(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-
-        }
-
-        private void 回答日3選択ボタン_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void 本文3_Enter(object sender, EventArgs e)
-        {
-            toolStripStatusLabel1.Text = "■全角2,000文字まで入力可。　■ダブルクリックでズーム表示。";
-        }
-
-        private void 本文3_Leave(object sender, EventArgs e)
-        {
-            toolStripStatusLabel1.Text = "各種項目の説明";
-        }
-
-        private void 本文3_DoubleClick(object sender, EventArgs e)
-        {
-
-        }
-
-        private void 本文3_Validated(object sender, EventArgs e)
-        {
-
-        }
-
-        private void 本文3_Validating(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-
-        }
-
-        private void 本文3_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void 送信先5ボタン_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void 承認5ボタン_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void 担当者コード5_Enter(object sender, EventArgs e)
         {
@@ -2739,85 +4968,14 @@ namespace u_net
             toolStripStatusLabel1.Text = "各種項目の説明";
         }
 
-        private void 担当者コード5_TextChanged(object sender, EventArgs e)
-        {
 
-        }
 
         private void 担当者コード5_Validated(object sender, EventArgs e)
         {
 
         }
 
-        private void 担当者コード5_Validating(object sender, System.ComponentModel.CancelEventArgs e)
-        {
 
-        }
-
-        private void 回答日5_DoubleClick(object sender, EventArgs e)
-        {
-
-        }
-
-        private void 回答日5_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void 回答日5_Validated(object sender, EventArgs e)
-        {
-
-        }
-
-        private void 回答日5_Validating(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-
-        }
-
-        private void 回答日5選択ボタン_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void 本文5_DoubleClick(object sender, EventArgs e)
-        {
-
-        }
-
-        private void 本文5_Enter(object sender, EventArgs e)
-        {
-            toolStripStatusLabel1.Text = "■全角2,000文字まで入力可。　■ダブルクリックでズーム表示。";
-        }
-
-        private void 本文5_Leave(object sender, EventArgs e)
-        {
-            toolStripStatusLabel1.Text = "各種項目の説明";
-        }
-
-        private void 本文5_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void 本文5_Validated(object sender, EventArgs e)
-        {
-
-        }
-
-        private void 本文5_Validating(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-
-        }
-
-        private void 送信先4ボタン_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void 承認4ボタン_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void 担当者コード4_Enter(object sender, EventArgs e)
         {
@@ -2839,95 +4997,7 @@ namespace u_net
 
         }
 
-        private void 担当者コード4_Validating(object sender, System.ComponentModel.CancelEventArgs e)
-        {
 
-        }
-
-        private void 回答日4_DoubleClick(object sender, EventArgs e)
-        {
-
-        }
-
-        private void 回答日4_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void 回答日4_Validated(object sender, EventArgs e)
-        {
-
-        }
-
-        private void 回答日4_Validating(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-
-        }
-
-        private void 回答日4選択ボタン_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void 本文4_DoubleClick(object sender, EventArgs e)
-        {
-
-        }
-
-        private void 本文4_Enter(object sender, EventArgs e)
-        {
-            toolStripStatusLabel1.Text = "■全角2,000文字まで入力可。　■ダブルクリックでズーム表示。";
-        }
-
-        private void 本文4_Leave(object sender, EventArgs e)
-        {
-            toolStripStatusLabel1.Text = "各種項目の説明";
-        }
-
-        private void 本文4_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void 本文4_Validated(object sender, EventArgs e)
-        {
-
-        }
-
-        private void 本文4_Validating(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-
-        }
-
-        private void 結果日付_DoubleClick(object sender, EventArgs e)
-        {
-
-        }
-
-        private void 結果日付_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void 結果日付_Validated(object sender, EventArgs e)
-        {
-
-        }
-
-        private void 結果日付_Validating(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-
-        }
-
-        private void 結果日付選択ボタン_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void 結果内容_DoubleClick(object sender, EventArgs e)
-        {
-
-        }
 
         private void 結果内容_Enter(object sender, EventArgs e)
         {
@@ -2939,20 +5009,7 @@ namespace u_net
             toolStripStatusLabel1.Text = "各種項目の説明";
         }
 
-        private void 結果内容_TextChanged(object sender, EventArgs e)
-        {
 
-        }
-
-        private void 結果内容_Validated(object sender, EventArgs e)
-        {
-
-        }
-
-        private void 結果内容_Validating(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-
-        }
 
         private void 通信欄_Enter(object sender, EventArgs e)
         {
@@ -2963,87 +5020,7 @@ namespace u_net
         {
             toolStripStatusLabel1.Text = "各種項目の説明";
         }
-
-
-        private void 通信欄_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void 通信欄_Validated(object sender, EventArgs e)
-        {
-
-        }
-
-        private void 通信欄_Validating(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-
-        }
-
-        private void 通信欄_DoubleClick(object sender, EventArgs e)
-        {
-
-        }
-
-        private void 印刷ボタン_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void 承認者コード_Validated(object sender, EventArgs e)
-        {
-
-        }
-
-        private void 承認者コード_Validating(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-
-        }
-
-        private void 承認ボタン_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void 否認ボタン_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void 完了承認ボタン_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void 本文_DoubleClick(object sender, EventArgs e)
-        {
-
-        }
-
-        private void 本文_Enter(object sender, EventArgs e)
-        {
-            toolStripStatusLabel1.Text = "■全角2,000文字まで入力可。　■ダブルクリックでズーム表示。";
-        }
-
-        private void 本文_Leave(object sender, EventArgs e)
-        {
-            toolStripStatusLabel1.Text = "各種項目の説明";
-        }
-
-        private void 本文_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void 本文_Validated(object sender, EventArgs e)
-        {
-
-        }
-
-        private void 本文_Validating(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-
-        }
+     
 
 
         #region システム配布記録
