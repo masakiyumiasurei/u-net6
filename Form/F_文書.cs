@@ -3015,6 +3015,36 @@ namespace u_net
 
         }
 
+        private void 本文_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 本文_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "■全角2,000文字まで入力可。　■ダブルクリックでズーム表示。";
+        }
+
+        private void 本文_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "各種項目の説明";
+        }
+
+        private void 本文_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 本文_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 本文_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
 
         #region システム配布記録
 
@@ -3663,9 +3693,6 @@ namespace u_net
 
         #region 出向依頼書
 
-        #endregion
-
-
         private void 出向依頼書_受付日_DoubleClick(object sender, EventArgs e)
         {
 
@@ -4002,6 +4029,430 @@ namespace u_net
         }
 
         private void 出向依頼書_費用_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        #endregion
+
+
+        #region 規販売取引申請書
+
+        private void 新規販売取引申請書_顧客コード_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 新規販売取引申請書_顧客コード_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void 新規販売取引申請書_顧客コード_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+        }
+
+        private void 新規販売取引申請書_顧客コード_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "■コードを入力するか、右側のボタンを押して顧客を選択します。　■8文字入力可。　■[space]キーで選択できます。";
+        }
+
+        private void 新規販売取引申請書_顧客コード_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "各種項目の説明";
+        }
+
+        private void 新規販売取引申請書_顧客コード検索ボタン_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 新規販売取引申請書_顧客コード検索ボタン_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "■顧客検索ダイアログを表示";
+        }
+
+        private void 新規販売取引申請書_顧客コード検索ボタン_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "各種項目の説明";
+        }
+
+        private void 新規販売取引申請書_顧客参照ボタン_Click(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "■顧客データを参照します。";
+        }
+
+        private void 新規販売取引申請書_顧客参照ボタン_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "各種項目の説明";
+        }
+
+        private void 新規販売取引申請書_新規顧客登録ボタン_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        #endregion
+
+
+        #region 是正予防会議通知書
+
+        private void 是正予防会議通知書_受付文書コード_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void 是正予防会議通知書_受付文書コード_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+        }
+
+        private void 是正予防会議通知書_受付文書コード_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 是正予防会議通知書_受付文書コード_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 是正予防会議通知書_受付文書コード_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void 是正予防会議通知書_顧客コード_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void 是正予防会議通知書_顧客コード_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+        }
+
+        private void 是正予防会議通知書_顧客コード_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 是正予防会議通知書_顧客コード_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 是正予防会議通知書_顧客コード_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void 是正予防会議通知書_顧客コード検索ボタン_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 是正予防会議通知書_使用者名_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 是正予防会議通知書_使用者名_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 是正予防会議通知書_使用者名_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void 是正予防会議通知書_型番_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 是正予防会議通知書_型番_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 是正予防会議通知書_型番_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void 是正予防会議通知書_数量_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 是正予防会議通知書_数量_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 是正予防会議通知書_数量_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void 是正予防会議通知書_不具合現象_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 是正予防会議通知書_不具合現象_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 是正予防会議通知書_不具合現象_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 是正予防会議通知書_不具合現象_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void 是正予防会議通知書_不具合現象_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 是正予防会議通知書_不具合現象_Leave(object sender, EventArgs e)
+        {
+
+        }
+
+        #endregion
+
+
+        #region 是正予防処置報告書
+
+        private void 是正予防処置報告書_受付文書コード_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void 是正予防処置報告書_受付文書コード_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+        }
+
+        private void 是正予防処置報告書_受付文書コード_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 是正予防処置報告書_受付文書コード_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 是正予防処置報告書_受付文書コード_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void 是正予防処置報告書_顧客コード_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void 是正予防処置報告書_顧客コード_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+        }
+
+        private void 是正予防処置報告書_顧客コード検索ボタン_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 是正予防処置報告書_顧客コード検索ボタン_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "■顧客検索ダイアログを表示";
+        }
+
+        private void 是正予防処置報告書_顧客コード検索ボタン_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "各種項目の説明";
+        }
+
+        private void 是正予防処置報告書_使用者名_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 是正予防処置報告書_使用者名_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 是正予防処置報告書_使用者名_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void 是正予防処置報告書_型番_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 是正予防処置報告書_型番_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 是正予防処置報告書_型番_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void 是正予防処置報告書_数量_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 是正予防処置報告書_数量_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 是正予防処置報告書_数量_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void 是正予防処置報告書_議事録_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 是正予防処置報告書_議事録_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "■全角２，０００文字まで入力できます。　■別ウィンドウから入力するときは入力欄をダブルクリックしてください。";
+        }
+
+        private void 是正予防処置報告書_議事録_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "各種項目の説明";
+        }
+
+        private void 是正予防処置報告書_議事録_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 是正予防処置報告書_議事録_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 是正予防処置報告書_議事録_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void 是正予防処置報告書_回答ボタン_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        #endregion
+
+
+
+        private void 是正予防処置報告書_環境_発生日_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 是正予防処置報告書_環境_発生日_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 是正予防処置報告書_環境_発生日_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void 是正予防処置報告書_環境_発生日選択ボタン_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 是正予防処置報告書_環境_発生日選択ボタン_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "■カレンダーの表示";
+        }
+
+        private void 是正予防処置報告書_環境_発生日選択ボタン_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "各種項目の説明";
+        }
+
+        private void 是正予防処置報告書_環境_発生所在地_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "■全角100文字まで入力できます。";
+        }
+
+        private void 是正予防処置報告書_環境_発生所在地_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "各種項目の説明";
+        }
+
+        private void 是正予防処置報告書_環境_発生所在地_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 是正予防処置報告書_環境_発生所在地_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 是正予防処置報告書_環境_発生所在地_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void 是正予防処置報告書_環境_議事録_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 是正予防処置報告書_環境_議事録_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "■全角２，０００文字まで入力できます。　■別ウィンドウから入力するときは入力欄をダブルクリックしてください。";
+        }
+
+        private void 是正予防処置報告書_環境_議事録_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "各種項目の説明";
+        }
+
+        private void 是正予防処置報告書_環境_議事録_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 是正予防処置報告書_環境_議事録_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 是正予防処置報告書_環境_議事録_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void 是正予防処置報告書_環境_回答ボタン_Click(object sender, EventArgs e)
         {
 
         }
