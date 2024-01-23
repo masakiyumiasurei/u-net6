@@ -153,6 +153,159 @@ namespace u_net.Public
         }
 
 
+
+
+
+
+
+        public static bool UpdateOrInsertDataFromCustom(Form form, SqlConnection connection, string tableName, string condition,
+            string ukname, SqlTransaction transaction,string CustomFormName, string ukname2 = "", string cmbname1 = "", string cmbname2 = "", string cmbname3 = "", string cmbname4 = "", string cmbname5 = "")
+        {
+            try
+            {
+                // 指定された条件で既存のデータを検索
+                string selectQuery = $"SELECT * FROM {tableName} WHERE {condition}";
+                using (SqlCommand selectCommand = new SqlCommand(selectQuery, connection, transaction))
+                using (SqlDataAdapter adapter = new SqlDataAdapter(selectCommand))
+                using (DataSet dataSet = new DataSet())
+                using (Control control = new Control())
+                {
+                    adapter.Fill(dataSet, tableName);
+
+                    if (dataSet.Tables[0].Rows.Count == 1)
+                    {
+                        // 既存データが見つかった場合（更新モード）
+                        DataRow row = dataSet.Tables[0].Rows[0];
+
+                        SetControlValuesCustom(form.Controls, row, connection, tableName, ukname, transaction, CustomFormName, ukname2, cmbname1, cmbname2, cmbname3, cmbname4, cmbname5);
+
+                        // データベースに変更を反映
+                        SqlCommandBuilder cmdBuilder = new SqlCommandBuilder(adapter);
+                        adapter.Update(dataSet, tableName);
+                    }
+                    else
+                    {
+                        // 既存データが見つからなかった場合（新規モード）
+                        DataRow newRow = dataSet.Tables[0].NewRow();
+
+                        SetControlValuesCustom(form.Controls, newRow, connection, tableName, ukname, transaction, CustomFormName, ukname2, cmbname1, cmbname2, cmbname3, cmbname4, cmbname5);
+
+                        dataSet.Tables[0].Rows.Add(newRow);
+
+                        // データベースに新規データを追加
+                        SqlCommandBuilder cmdBuilder = new SqlCommandBuilder(adapter);
+                        adapter.Update(dataSet, tableName);
+                    }
+                }
+
+
+                return true; // 成功した場合は true を返す
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show($"データの更新中にエラーが発生しました: {ex.Message}");
+                return false; // エラーがある場合は false を返す
+            }
+        }
+
+        private static void SetControlValuesCustom(Control.ControlCollection controls, DataRow row, SqlConnection connection,
+            string tableName, string ukname, SqlTransaction transaction,string CustomFormName, string? ukname2 = "", string cmbname1 = "", string cmbname2 = "", string cmbname3 = "", string cmbname4 = "", string cmbname5 = "")
+        {
+            foreach (Control control in controls)
+            {
+                //該当パネルのコントロールでない場合は次へ
+                if (control.Name.IndexOf(CustomFormName) == -1) continue;
+
+                if (control is TabControl tabControl)
+                {
+                    foreach (TabPage tabPage in tabControl.TabPages)
+                    {
+                        // タブコントロール内のコントロールに再帰的にアクセスする
+                        SetControlValues(tabPage.Controls, row, connection, tableName, ukname, transaction, ukname2, cmbname1, cmbname2, cmbname3, cmbname4, cmbname5);
+                    }
+                }
+                else if (control is GroupBox groupBox)
+                {
+                    // グループボックス内のコントロールに再帰的にアクセスする
+                    SetControlValues(groupBox.Controls, row, connection, tableName, ukname, transaction, ukname2, cmbname1, cmbname2, cmbname3, cmbname4, cmbname5);
+                }
+                else if (control is Panel panel)
+                {
+                    // パネル内のコントロールに再帰的にアクセスする
+                    SetControlValues(panel.Controls, row, connection, tableName, ukname, transaction, ukname2, cmbname1, cmbname2, cmbname3, cmbname4, cmbname5);
+                }
+                else
+                {
+                    if (!(control is TextBox) && !(control is ComboBox) && !(control is CheckBox) && !(control is MaskedTextBox))
+                    {
+                        continue;
+                    }
+
+                    string controlName = control.Name;
+                    object controlValue = null;
+
+                    switch (control)
+                    {
+                        case TextBox textBox:
+                            if (!string.IsNullOrEmpty(textBox.Text))
+                            {
+                                controlValue = textBox.Text;
+                            }
+                            else
+                            {
+                                controlValue = DBNull.Value;
+                            }
+                            break;
+
+                        case ComboBox comboBox:
+                            if (control.Name == ukname || control.Name == ukname2 || control.Name == cmbname1 || control.Name == cmbname2 || control.Name == cmbname3 || control.Name == cmbname4 || control.Name == cmbname5)
+                            {
+                                controlValue = comboBox.Text;
+                            }
+                            else if (comboBox.SelectedValue != null)
+                            {
+                                controlValue = comboBox.SelectedValue;
+                            }
+                            else
+                            {
+                                controlValue = DBNull.Value;
+                            }
+                            break;
+
+                        case CheckBox checkBox:
+                            controlValue = checkBox.Checked ? -1 : 0;
+                            break;
+
+                        case MaskedTextBox maskedtextBox:
+                            if (!string.IsNullOrEmpty(maskedtextBox.Text))
+                            {
+                                controlValue = maskedtextBox.Text;
+                            }
+                            else
+                            {
+                                controlValue = DBNull.Value;
+                            }
+                            break;
+                    }
+
+                    //テーブルの列名と合わせるために_以降のみ取得
+                    controlName = controlName.Substring(controlName.IndexOf('_') + 1);
+
+                    if (controlValue != null && row.Table.Columns.Contains(controlName))
+                    {
+                        row[controlName] = controlValue;
+                    }
+
+                }
+            }
+        }
+
+
+
+
+
+
         public static bool UpdateOrInsertDetails(GcMultiRow multiRow, SqlConnection connection, string tableName, string condition,
             string ukname, SqlTransaction transaction)
         {

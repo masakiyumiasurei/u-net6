@@ -167,6 +167,99 @@ namespace u_net.Public
 
         }
 
+
+
+
+
+
+
+        public static bool SetTable2FormCustom(Form formObject, string sourceSQL, SqlConnection cn,string CustomFormName, string cmbname1 = "", string cmbname2 = "", string cmbname3 = "", string cmbname4 = "", string cmbname5 = "")
+        {
+            //タブコントロール、グループボックスにアクセスするため、再帰関数とする
+            //cmbnameはコンボボックスのテキストに登録する。selectedvalueに存在しない値を表示させるため
+
+            if (string.IsNullOrWhiteSpace(sourceSQL) || cn == null) return false; // クエリまたは接続が無効な場合は何もしない
+
+            using (SqlCommand command = new SqlCommand(sourceSQL, cn))
+
+            using (SqlDataReader reader = command.ExecuteReader())
+            {
+                if (reader.HasRows)
+                {
+                    reader.Read();
+
+                    SetControlValuesCustom(formObject.Controls, reader, CustomFormName, cmbname1, cmbname2, cmbname3, cmbname4, cmbname5);
+
+                }
+            }
+            return true;
+        }
+
+        //タブコントロール、グループボックスにアクセスするため、再帰関数とする
+        private static void SetControlValuesCustom(Control.ControlCollection controls, SqlDataReader reader,string CustomFormName, string cmbname1 = "", string cmbname2 = "", string cmbname3 = "", string cmbname4 = "", string cmbname5 = "")
+        {
+            foreach (Control control in controls)
+            {
+                //該当パネルのコントロールでない場合は次へ
+                if (control.Name.IndexOf(CustomFormName) == -1) continue;
+
+                if (control is TabControl tabControl)
+                {
+                    foreach (TabPage tabPage in tabControl.TabPages)
+                    {
+                        // タブコントロール内のコントロールに再帰的にアクセスする
+                        SetControlValuesCustom(tabPage.Controls, reader, CustomFormName, cmbname1, cmbname2, cmbname3, cmbname4, cmbname5);
+                    }
+                }
+                else if (control is GroupBox groupBox)
+                {
+                    // グループボックス内のコントロールに再帰的にアクセスする
+                    SetControlValuesCustom(groupBox.Controls, reader, CustomFormName, cmbname1, cmbname2, cmbname3, cmbname4, cmbname5);
+                }
+                else if (control is Panel panel)
+                {
+                    // パネル内のコントロールに再帰的にアクセスする
+                    SetControlValuesCustom(panel.Controls, reader, CustomFormName, cmbname1, cmbname2, cmbname3, cmbname4, cmbname5);
+                }
+                else
+                {
+                    if (!(control is TextBox) && !(control is ComboBox) && !(control is CheckBox) && !(control is MaskedTextBox))
+                    {
+                        continue;
+                    }
+
+                    string columnName = control.Name;
+
+                    for (int i = 0; i < reader.FieldCount; i++)
+                    {
+                        string getedName = reader.GetName(i);
+
+                        //SQLから取得した列名にパネル名を付与して一致しているか比較
+                        if (columnName != CustomFormName + "_" + getedName) continue;
+
+                        //if (reader[columnName] != DBNull.Value)
+                        //{
+                        SetControlValue(control, reader[columnName], cmbname1, cmbname2, cmbname3, cmbname4, cmbname5);
+                        break;
+                        //}
+                    }
+                }
+            }
+        }
+
+     
+
+
+
+
+
+
+
+
+
+
+
+
         public static void SetControls(Control control)
         {
             foreach (Control childControl in control.Controls)

@@ -2834,7 +2834,17 @@ namespace u_net.Public
             }
         }
 
+        public static void DocZoom(Control target,string Code,int edition,long bytes)
+        {
+            //F_文書ズーム targetform = new F_文書ズーム();
 
+            //targetform.TargetControl = target;
+            //targetform.CurrentCode = Code;
+            //targetform.CurrentEdition = edition;
+            //targetform.MaxByte = bytes;
+            //targetform.SetProperties();
+            //targetform.ShowDialog();
+        }
 
 
 

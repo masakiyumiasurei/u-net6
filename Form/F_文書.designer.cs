@@ -108,6 +108,14 @@ namespace u_net
             出向依頼書_受付日選択ボタン = new Button();
             出向依頼書_顧客コード選択ボタン = new Button();
             出向依頼書_顧客参照ボタン = new Button();
+            新規販売取引申請書_顧客コード検索ボタン = new Button();
+            新規販売取引申請書_顧客参照ボタン = new Button();
+            是正予防会議通知書_顧客コード検索ボタン = new Button();
+            是正予防処置報告書_顧客コード検索ボタン = new Button();
+            是正予防処置報告書_環境_発生日選択ボタン = new Button();
+            button3 = new Button();
+            button5 = new Button();
+            button6 = new Button();
             改版ボタン = new Button();
             文書名_ラベル = new Label();
             件名_ラベル = new Label();
@@ -118,7 +126,7 @@ namespace u_net
             文書名 = new ComboBox();
             分類コード = new ComboBox();
             回答期限 = new TextBox();
-            システム配布記録 = new Panel();
+            システム配布記録パネル = new Panel();
             システム配布記録_配布目的 = new TextBox();
             システム配布記録_版数 = new TextBox();
             システム配布記録_文書コード = new TextBox();
@@ -237,6 +245,8 @@ namespace u_net
             環境連絡書_発生日 = new TextBox();
             発生日_ラベル = new Label();
             文書添付パネル = new Panel();
+            送信先コード6 = new TextBox();
+            送信先コード6_ラベル = new Label();
             送信先コード5 = new TextBox();
             送信先コード5_ラベル = new Label();
             送信先コード4 = new TextBox();
@@ -341,11 +351,92 @@ namespace u_net
             label58 = new Label();
             出向依頼書_出向日開始 = new TextBox();
             label59 = new Label();
-            送信先コード6 = new TextBox();
-            送信先コード6_ラベル = new Label();
+            新規販売取引申請書パネル = new Panel();
+            新規販売取引申請書_顧客名 = new TextBox();
+            新規販売取引申請書_新規顧客登録ボタン = new Button();
+            label67 = new Label();
+            新規販売取引申請書_版数 = new TextBox();
+            新規販売取引申請書_文書コード = new TextBox();
+            label72 = new Label();
+            新規販売取引申請書_顧客コード = new TextBox();
+            label73 = new Label();
+            是正予防会議通知書パネル = new Panel();
+            label77 = new Label();
+            是正予防会議通知書_不具合現象 = new TextBox();
+            label76 = new Label();
+            label75 = new Label();
+            label74 = new Label();
+            是正予防会議通知書_数量 = new TextBox();
+            是正予防会議通知書_型番 = new TextBox();
+            label71 = new Label();
+            是正予防会議通知書_使用者名 = new TextBox();
+            label68 = new Label();
+            是正予防会議通知書_顧客コード = new TextBox();
+            是正予防会議通知書_顧客名 = new TextBox();
+            是正予防会議通知書_版数 = new TextBox();
+            是正予防会議通知書_文書コード = new TextBox();
+            label69 = new Label();
+            是正予防会議通知書_受付文書コード = new TextBox();
+            label70 = new Label();
+            本文 = new TextBox();
+            是正予防処置報告書パネル = new Panel();
+            是正予防処置報告書_回答ボタン = new Button();
+            label78 = new Label();
+            是正予防処置報告書_議事録 = new TextBox();
+            label79 = new Label();
+            label80 = new Label();
+            label81 = new Label();
+            是正予防処置報告書_数量 = new TextBox();
+            是正予防処置報告書_型番 = new TextBox();
+            label82 = new Label();
+            是正予防処置報告書_使用者名 = new TextBox();
+            label83 = new Label();
+            是正予防処置報告書_顧客コード = new TextBox();
+            是正予防処置報告書_顧客名 = new TextBox();
+            是正予防処置報告書_版数 = new TextBox();
+            是正予防処置報告書_文書コード = new TextBox();
+            label84 = new Label();
+            是正予防処置報告書_受付文書コード = new TextBox();
+            label85 = new Label();
+            是正予防処置報告書_環境パネル = new Panel();
+            是正予防処置報告書_環境_回答ボタン = new Button();
+            是正予防処置報告書_環境_議事録 = new TextBox();
+            是正予防処置報告書_環境_版数 = new TextBox();
+            是正予防処置報告書_環境_文書コード = new TextBox();
+            label88 = new Label();
+            label89 = new Label();
+            label90 = new Label();
+            是正予防処置報告書_環境_発生所在地 = new TextBox();
+            label91 = new Label();
+            是正予防処置報告書_環境_発生日 = new TextBox();
+            label92 = new Label();
+            製品企画書パネル = new Panel();
+            label97 = new Label();
+            textBox6 = new TextBox();
+            label98 = new Label();
+            textBox8 = new TextBox();
+            textBox9 = new TextBox();
+            label99 = new Label();
+            label100 = new Label();
+            textBox10 = new TextBox();
+            textBox11 = new TextBox();
+            label101 = new Label();
+            textBox12 = new TextBox();
+            comboBox4 = new ComboBox();
+            label102 = new Label();
+            textBox13 = new TextBox();
+            label103 = new Label();
+            label104 = new Label();
+            textBox14 = new TextBox();
+            textBox15 = new TextBox();
+            textBox16 = new TextBox();
+            textBox17 = new TextBox();
+            label106 = new Label();
+            textBox18 = new TextBox();
+            label107 = new Label();
             panel1.SuspendLayout();
             statusStrip1.SuspendLayout();
-            システム配布記録.SuspendLayout();
+            システム配布記録パネル.SuspendLayout();
             環境連絡書パネル.SuspendLayout();
             文書添付パネル.SuspendLayout();
             記録パネル.SuspendLayout();
@@ -354,6 +445,11 @@ namespace u_net
             教育訓練実施要領書パネル.SuspendLayout();
             出向依頼書パネル.SuspendLayout();
             出向依頼書_依頼分類.SuspendLayout();
+            新規販売取引申請書パネル.SuspendLayout();
+            是正予防会議通知書パネル.SuspendLayout();
+            是正予防処置報告書パネル.SuspendLayout();
+            是正予防処置報告書_環境パネル.SuspendLayout();
+            製品企画書パネル.SuspendLayout();
             SuspendLayout();
             // 
             // コマンド終了
@@ -724,6 +820,7 @@ namespace u_net
             文書コード.TextChanged += 文書コード_TextChanged;
             文書コード.Enter += 文書コード_Enter;
             文書コード.KeyDown += 文書コード_KeyDown;
+            文書コード.KeyPress += 文書コード_KeyPress;
             文書コード.Leave += 文書コード_Leave;
             文書コード.Validating += 文書コード_Validating;
             文書コード.Validated += 文書コード_Validated;
@@ -837,6 +934,7 @@ namespace u_net
             版数.Size = new Size(54, 21);
             版数.TabIndex = 8;
             版数.DrawItem += 版数_DrawItem;
+            版数.SelectedIndexChanged += 版数_SelectedIndexChanged;
             版数.TextChanged += 版数_TextChanged;
             版数.Validating += 版数_Validating;
             版数.Validated += 版数_Validated;
@@ -1175,6 +1273,122 @@ namespace u_net
             出向依頼書_顧客参照ボタン.UseVisualStyleBackColor = true;
             出向依頼書_顧客参照ボタン.Click += 出向依頼書_顧客参照ボタン_Click;
             // 
+            // 新規販売取引申請書_顧客コード検索ボタン
+            // 
+            新規販売取引申請書_顧客コード検索ボタン.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            新規販売取引申請書_顧客コード検索ボタン.Location = new Point(190, 6);
+            新規販売取引申請書_顧客コード検索ボタン.Margin = new Padding(4);
+            新規販売取引申請書_顧客コード検索ボタン.Name = "新規販売取引申請書_顧客コード検索ボタン";
+            新規販売取引申請書_顧客コード検索ボタン.Size = new Size(20, 20);
+            新規販売取引申請書_顧客コード検索ボタン.TabIndex = 10286;
+            新規販売取引申請書_顧客コード検索ボタン.TabStop = false;
+            新規販売取引申請書_顧客コード検索ボタン.Text = "▼";
+            toolTip1.SetToolTip(新規販売取引申請書_顧客コード検索ボタン, "顧客検索");
+            新規販売取引申請書_顧客コード検索ボタン.UseVisualStyleBackColor = true;
+            新規販売取引申請書_顧客コード検索ボタン.Click += 新規販売取引申請書_顧客コード検索ボタン_Click;
+            新規販売取引申請書_顧客コード検索ボタン.Enter += 新規販売取引申請書_顧客コード検索ボタン_Enter;
+            新規販売取引申請書_顧客コード検索ボタン.Leave += 新規販売取引申請書_顧客コード検索ボタン_Leave;
+            // 
+            // 新規販売取引申請書_顧客参照ボタン
+            // 
+            新規販売取引申請書_顧客参照ボタン.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            新規販売取引申請書_顧客参照ボタン.Location = new Point(211, 6);
+            新規販売取引申請書_顧客参照ボタン.Margin = new Padding(4);
+            新規販売取引申請書_顧客参照ボタン.Name = "新規販売取引申請書_顧客参照ボタン";
+            新規販売取引申請書_顧客参照ボタン.Size = new Size(20, 20);
+            新規販売取引申請書_顧客参照ボタン.TabIndex = 10296;
+            新規販売取引申請書_顧客参照ボタン.TabStop = false;
+            新規販売取引申請書_顧客参照ボタン.Text = "▶";
+            toolTip1.SetToolTip(新規販売取引申請書_顧客参照ボタン, "顧客参照");
+            新規販売取引申請書_顧客参照ボタン.UseVisualStyleBackColor = true;
+            新規販売取引申請書_顧客参照ボタン.Click += 新規販売取引申請書_顧客参照ボタン_Click;
+            新規販売取引申請書_顧客参照ボタン.Enter += 新規販売取引申請書_顧客参照ボタン_Enter;
+            // 
+            // 是正予防会議通知書_顧客コード検索ボタン
+            // 
+            是正予防会議通知書_顧客コード検索ボタン.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            是正予防会議通知書_顧客コード検索ボタン.Location = new Point(190, 30);
+            是正予防会議通知書_顧客コード検索ボタン.Margin = new Padding(4);
+            是正予防会議通知書_顧客コード検索ボタン.Name = "是正予防会議通知書_顧客コード検索ボタン";
+            是正予防会議通知書_顧客コード検索ボタン.Size = new Size(20, 20);
+            是正予防会議通知書_顧客コード検索ボタン.TabIndex = 10286;
+            是正予防会議通知書_顧客コード検索ボタン.TabStop = false;
+            是正予防会議通知書_顧客コード検索ボタン.Text = "▼";
+            toolTip1.SetToolTip(是正予防会議通知書_顧客コード検索ボタン, "顧客検索");
+            是正予防会議通知書_顧客コード検索ボタン.UseVisualStyleBackColor = true;
+            是正予防会議通知書_顧客コード検索ボタン.Click += 是正予防会議通知書_顧客コード検索ボタン_Click;
+            // 
+            // 是正予防処置報告書_顧客コード検索ボタン
+            // 
+            是正予防処置報告書_顧客コード検索ボタン.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            是正予防処置報告書_顧客コード検索ボタン.Location = new Point(190, 30);
+            是正予防処置報告書_顧客コード検索ボタン.Margin = new Padding(4);
+            是正予防処置報告書_顧客コード検索ボタン.Name = "是正予防処置報告書_顧客コード検索ボタン";
+            是正予防処置報告書_顧客コード検索ボタン.Size = new Size(20, 20);
+            是正予防処置報告書_顧客コード検索ボタン.TabIndex = 10286;
+            是正予防処置報告書_顧客コード検索ボタン.TabStop = false;
+            是正予防処置報告書_顧客コード検索ボタン.Text = "▼";
+            toolTip1.SetToolTip(是正予防処置報告書_顧客コード検索ボタン, "顧客検索");
+            是正予防処置報告書_顧客コード検索ボタン.UseVisualStyleBackColor = true;
+            是正予防処置報告書_顧客コード検索ボタン.Click += 是正予防処置報告書_顧客コード検索ボタン_Click;
+            是正予防処置報告書_顧客コード検索ボタン.Enter += 是正予防処置報告書_顧客コード検索ボタン_Enter;
+            是正予防処置報告書_顧客コード検索ボタン.Leave += 是正予防処置報告書_顧客コード検索ボタン_Leave;
+            // 
+            // 是正予防処置報告書_環境_発生日選択ボタン
+            // 
+            是正予防処置報告書_環境_発生日選択ボタン.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            是正予防処置報告書_環境_発生日選択ボタン.Location = new Point(190, 6);
+            是正予防処置報告書_環境_発生日選択ボタン.Margin = new Padding(4);
+            是正予防処置報告書_環境_発生日選択ボタン.Name = "是正予防処置報告書_環境_発生日選択ボタン";
+            是正予防処置報告書_環境_発生日選択ボタン.Size = new Size(20, 20);
+            是正予防処置報告書_環境_発生日選択ボタン.TabIndex = 10286;
+            是正予防処置報告書_環境_発生日選択ボタン.TabStop = false;
+            是正予防処置報告書_環境_発生日選択ボタン.Text = "▼";
+            toolTip1.SetToolTip(是正予防処置報告書_環境_発生日選択ボタン, "カレンダー");
+            是正予防処置報告書_環境_発生日選択ボタン.UseVisualStyleBackColor = true;
+            是正予防処置報告書_環境_発生日選択ボタン.Click += 是正予防処置報告書_環境_発生日選択ボタン_Click;
+            是正予防処置報告書_環境_発生日選択ボタン.Enter += 是正予防処置報告書_環境_発生日選択ボタン_Enter;
+            是正予防処置報告書_環境_発生日選択ボタン.Leave += 是正予防処置報告書_環境_発生日選択ボタン_Leave;
+            // 
+            // button3
+            // 
+            button3.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            button3.Location = new Point(190, 49);
+            button3.Margin = new Padding(4);
+            button3.Name = "button3";
+            button3.Size = new Size(20, 20);
+            button3.TabIndex = 21029;
+            button3.TabStop = false;
+            button3.Text = "▼";
+            toolTip1.SetToolTip(button3, "カレンダー");
+            button3.UseVisualStyleBackColor = true;
+            // 
+            // button5
+            // 
+            button5.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            button5.Location = new Point(337, 263);
+            button5.Margin = new Padding(4);
+            button5.Name = "button5";
+            button5.Size = new Size(20, 20);
+            button5.TabIndex = 21020;
+            button5.TabStop = false;
+            button5.Text = "▼";
+            toolTip1.SetToolTip(button5, "カレンダー");
+            button5.UseVisualStyleBackColor = true;
+            // 
+            // button6
+            // 
+            button6.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            button6.Location = new Point(190, 263);
+            button6.Margin = new Padding(4);
+            button6.Name = "button6";
+            button6.Size = new Size(20, 20);
+            button6.TabIndex = 10286;
+            button6.TabStop = false;
+            button6.Text = "▼";
+            toolTip1.SetToolTip(button6, "カレンダー");
+            button6.UseVisualStyleBackColor = true;
+            // 
             // 改版ボタン
             // 
             改版ボタン.Enabled = false;
@@ -1290,9 +1504,12 @@ namespace u_net
             文書名.Name = "文書名";
             文書名.Size = new Size(251, 21);
             文書名.TabIndex = 4;
+            文書名.DrawItem += 文書名_DrawItem;
             文書名.SelectedIndexChanged += 文書名_SelectedIndexChanged;
+            文書名.TextChanged += 文書名_TextChanged;
             文書名.Enter += 文書名_Enter;
             文書名.KeyDown += 文書名_KeyDown;
+            文書名.KeyPress += 文書名_KeyPress;
             文書名.Leave += 文書名_Leave;
             文書名.Validating += 文書名_Validating;
             文書名.Validated += 文書名_Validated;
@@ -1307,7 +1524,9 @@ namespace u_net
             分類コード.Name = "分類コード";
             分類コード.Size = new Size(102, 21);
             分類コード.TabIndex = 10;
+            分類コード.SelectedIndexChanged += 分類コード_SelectedIndexChanged;
             分類コード.KeyDown += 分類コード_KeyDown;
+            分類コード.KeyPress += 分類コード_KeyPress;
             分類コード.Validating += 分類コード_Validating;
             分類コード.Validated += 分類コード_Validated;
             // 
@@ -1324,26 +1543,27 @@ namespace u_net
             回答期限.TextChanged += 回答期限_TextChanged;
             回答期限.DoubleClick += 回答期限_DoubleClick;
             回答期限.KeyDown += 回答期限_KeyDown;
+            回答期限.KeyPress += 回答期限_KeyPress;
             回答期限.Validating += 回答期限_Validating;
             回答期限.Validated += 回答期限_Validated;
             // 
-            // システム配布記録
+            // システム配布記録パネル
             // 
-            システム配布記録.Controls.Add(システム配布記録_配布目的);
-            システム配布記録.Controls.Add(システム配布記録_版数);
-            システム配布記録.Controls.Add(システム配布記録_文書コード);
-            システム配布記録.Controls.Add(版数_ラベル_システム配布記録);
-            システム配布記録.Controls.Add(文書コード_ラベル_システム配布記録);
-            システム配布記録.Controls.Add(配布目的_ラベル);
-            システム配布記録.Controls.Add(システム配布記録_配布バージョン);
-            システム配布記録.Controls.Add(配布バージョン_ラベル);
-            システム配布記録.Controls.Add(システム配布記録_配布日選択ボタン);
-            システム配布記録.Controls.Add(システム配布記録_配布日);
-            システム配布記録.Controls.Add(配布日_ラベル);
-            システム配布記録.Location = new Point(9, 226);
-            システム配布記録.Name = "システム配布記録";
-            システム配布記録.Size = new Size(404, 376);
-            システム配布記録.TabIndex = 17;
+            システム配布記録パネル.Controls.Add(システム配布記録_配布目的);
+            システム配布記録パネル.Controls.Add(システム配布記録_版数);
+            システム配布記録パネル.Controls.Add(システム配布記録_文書コード);
+            システム配布記録パネル.Controls.Add(版数_ラベル_システム配布記録);
+            システム配布記録パネル.Controls.Add(文書コード_ラベル_システム配布記録);
+            システム配布記録パネル.Controls.Add(配布目的_ラベル);
+            システム配布記録パネル.Controls.Add(システム配布記録_配布バージョン);
+            システム配布記録パネル.Controls.Add(配布バージョン_ラベル);
+            システム配布記録パネル.Controls.Add(システム配布記録_配布日選択ボタン);
+            システム配布記録パネル.Controls.Add(システム配布記録_配布日);
+            システム配布記録パネル.Controls.Add(配布日_ラベル);
+            システム配布記録パネル.Location = new Point(9, 226);
+            システム配布記録パネル.Name = "システム配布記録パネル";
+            システム配布記録パネル.Size = new Size(404, 376);
+            システム配布記録パネル.TabIndex = 17;
             // 
             // システム配布記録_配布目的
             // 
@@ -1505,9 +1725,11 @@ namespace u_net
             文書フローコード.Name = "文書フローコード";
             文書フローコード.Size = new Size(102, 21);
             文書フローコード.TabIndex = 14;
+            文書フローコード.SelectedIndexChanged += 文書フローコード_SelectedIndexChanged;
             文書フローコード.TextChanged += 文書フローコード_TextChanged;
             文書フローコード.Enter += 文書フローコード_Enter;
             文書フローコード.KeyDown += 文書フローコード_KeyDown;
+            文書フローコード.KeyPress += 文書フローコード_KeyPress;
             文書フローコード.Leave += 文書フローコード_Leave;
             文書フローコード.Validating += 文書フローコード_Validating;
             文書フローコード.Validated += 文書フローコード_Validated;
@@ -1522,9 +1744,12 @@ namespace u_net
             発信者コード.Name = "発信者コード";
             発信者コード.Size = new Size(84, 21);
             発信者コード.TabIndex = 16;
+            発信者コード.DrawItem += 発信者コード_DrawItem;
             発信者コード.SelectedIndexChanged += 発信者コード_SelectedIndexChanged;
+            発信者コード.TextChanged += 発信者コード_TextChanged;
             発信者コード.Enter += 発信者コード_Enter;
             発信者コード.KeyDown += 発信者コード_KeyDown;
+            発信者コード.KeyPress += 発信者コード_KeyPress;
             発信者コード.Leave += 発信者コード_Leave;
             発信者コード.Validating += 発信者コード_Validating;
             発信者コード.Validated += 発信者コード_Validated;
@@ -1701,7 +1926,9 @@ namespace u_net
             担当者コード6.Name = "担当者コード6";
             担当者コード6.Size = new Size(69, 21);
             担当者コード6.TabIndex = 20;
+            担当者コード6.DrawItem += 担当者コード6_DrawItem;
             担当者コード6.SelectedIndexChanged += 担当者コード6_SelectedIndexChanged;
+            担当者コード6.TextChanged += 担当者コード6_TextChanged;
             担当者コード6.Enter += 担当者コード6_Enter;
             担当者コード6.Leave += 担当者コード6_Leave;
             担当者コード6.Validating += 担当者コード6_Validating;
@@ -1832,8 +2059,12 @@ namespace u_net
             担当者コード1.Name = "担当者コード1";
             担当者コード1.Size = new Size(69, 21);
             担当者コード1.TabIndex = 24;
+            担当者コード1.DrawItem += 担当者コード1_DrawItem;
+            担当者コード1.SelectedIndexChanged += 担当者コード1_SelectedIndexChanged;
+            担当者コード1.TextChanged += 担当者コード1_TextChanged;
             担当者コード1.Enter += 担当者コード1_Enter;
             担当者コード1.Leave += 担当者コード1_Leave;
+            担当者コード1.Validating += 担当者コード1_Validating;
             // 
             // label5
             // 
@@ -1954,7 +2185,9 @@ namespace u_net
             担当者コード2.Name = "担当者コード2";
             担当者コード2.Size = new Size(69, 21);
             担当者コード2.TabIndex = 28;
+            担当者コード2.DrawItem += 担当者コード2_DrawItem;
             担当者コード2.SelectedIndexChanged += 担当者コード2_SelectedIndexChanged;
+            担当者コード2.TextChanged += 担当者コード2_TextChanged;
             担当者コード2.Enter += 担当者コード2_Enter;
             担当者コード2.Leave += 担当者コード2_Leave;
             担当者コード2.Validating += 担当者コード2_Validating;
@@ -2338,6 +2571,8 @@ namespace u_net
             担当者コード3.Name = "担当者コード3";
             担当者コード3.Size = new Size(69, 21);
             担当者コード3.TabIndex = 32;
+            担当者コード3.DrawItem += 担当者コード3_DrawItem;
+            担当者コード3.SelectedIndexChanged += 担当者コード3_SelectedIndexChanged;
             担当者コード3.TextChanged += 担当者コード3_TextChanged;
             担当者コード3.Enter += 担当者コード3_Enter;
             担当者コード3.Leave += 担当者コード3_Leave;
@@ -2463,6 +2698,8 @@ namespace u_net
             担当者コード5.Name = "担当者コード5";
             担当者コード5.Size = new Size(69, 21);
             担当者コード5.TabIndex = 36;
+            担当者コード5.DrawItem += 担当者コード5_DrawItem;
+            担当者コード5.SelectedIndexChanged += 担当者コード5_SelectedIndexChanged;
             担当者コード5.TextChanged += 担当者コード5_TextChanged;
             担当者コード5.Enter += 担当者コード5_Enter;
             担当者コード5.Leave += 担当者コード5_Leave;
@@ -2588,7 +2825,10 @@ namespace u_net
             担当者コード4.Name = "担当者コード4";
             担当者コード4.Size = new Size(69, 21);
             担当者コード4.TabIndex = 40;
+            担当者コード4.DrawItem += 担当者コード4_DrawItem;
+            担当者コード4.SelectedIndexChanged += 担当者コード4_SelectedIndexChanged;
             担当者コード4.TextUpdate += 担当者コード4_TextUpdate;
+            担当者コード4.TextChanged += 担当者コード4_TextChanged;
             担当者コード4.Enter += 担当者コード4_Enter;
             担当者コード4.Leave += 担当者コード4_Leave;
             担当者コード4.Validating += 担当者コード4_Validating;
@@ -3024,6 +3264,30 @@ namespace u_net
             文書添付パネル.Size = new Size(881, 568);
             文書添付パネル.TabIndex = 10302;
             文書添付パネル.Visible = false;
+            // 
+            // 送信先コード6
+            // 
+            送信先コード6.BackColor = SystemColors.Window;
+            送信先コード6.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            送信先コード6.ImeMode = ImeMode.NoControl;
+            送信先コード6.Location = new Point(771, 29);
+            送信先コード6.Margin = new Padding(3, 2, 3, 2);
+            送信先コード6.Name = "送信先コード6";
+            送信先コード6.Size = new Size(65, 20);
+            送信先コード6.TabIndex = 10279;
+            送信先コード6.TabStop = false;
+            送信先コード6.Visible = false;
+            // 
+            // 送信先コード6_ラベル
+            // 
+            送信先コード6_ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            送信先コード6_ラベル.Location = new Point(771, 8);
+            送信先コード6_ラベル.Name = "送信先コード6_ラベル";
+            送信先コード6_ラベル.Size = new Size(65, 20);
+            送信先コード6_ラベル.TabIndex = 10278;
+            送信先コード6_ラベル.Text = "送信先部署";
+            送信先コード6_ラベル.TextAlign = ContentAlignment.MiddleLeft;
+            送信先コード6_ラベル.Visible = false;
             // 
             // 送信先コード5
             // 
@@ -4592,35 +4856,1261 @@ namespace u_net
             label59.Text = "受付日(&D)";
             label59.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // 送信先コード6
+            // 新規販売取引申請書パネル
             // 
-            送信先コード6.BackColor = SystemColors.Window;
-            送信先コード6.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            送信先コード6.ImeMode = ImeMode.NoControl;
-            送信先コード6.Location = new Point(771, 29);
-            送信先コード6.Margin = new Padding(3, 2, 3, 2);
-            送信先コード6.Name = "送信先コード6";
-            送信先コード6.Size = new Size(65, 20);
-            送信先コード6.TabIndex = 10279;
-            送信先コード6.TabStop = false;
-            送信先コード6.Visible = false;
+            新規販売取引申請書パネル.Controls.Add(新規販売取引申請書_顧客名);
+            新規販売取引申請書パネル.Controls.Add(新規販売取引申請書_顧客参照ボタン);
+            新規販売取引申請書パネル.Controls.Add(新規販売取引申請書_新規顧客登録ボタン);
+            新規販売取引申請書パネル.Controls.Add(label67);
+            新規販売取引申請書パネル.Controls.Add(新規販売取引申請書_版数);
+            新規販売取引申請書パネル.Controls.Add(新規販売取引申請書_文書コード);
+            新規販売取引申請書パネル.Controls.Add(label72);
+            新規販売取引申請書パネル.Controls.Add(新規販売取引申請書_顧客コード検索ボタン);
+            新規販売取引申請書パネル.Controls.Add(新規販売取引申請書_顧客コード);
+            新規販売取引申請書パネル.Controls.Add(label73);
+            新規販売取引申請書パネル.Location = new Point(9, 226);
+            新規販売取引申請書パネル.Name = "新規販売取引申請書パネル";
+            新規販売取引申請書パネル.Size = new Size(404, 376);
+            新規販売取引申請書パネル.TabIndex = 10296;
             // 
-            // 送信先コード6_ラベル
+            // 新規販売取引申請書_顧客名
             // 
-            送信先コード6_ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            送信先コード6_ラベル.Location = new Point(771, 8);
-            送信先コード6_ラベル.Name = "送信先コード6_ラベル";
-            送信先コード6_ラベル.Size = new Size(65, 20);
-            送信先コード6_ラベル.TabIndex = 10278;
-            送信先コード6_ラベル.Text = "送信先部署";
-            送信先コード6_ラベル.TextAlign = ContentAlignment.MiddleLeft;
-            送信先コード6_ラベル.Visible = false;
+            新規販売取引申請書_顧客名.BackColor = Color.White;
+            新規販売取引申請書_顧客名.Enabled = false;
+            新規販売取引申請書_顧客名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            新規販売取引申請書_顧客名.ImeMode = ImeMode.Hiragana;
+            新規販売取引申請書_顧客名.Location = new Point(86, 32);
+            新規販売取引申請書_顧客名.Margin = new Padding(3, 2, 3, 2);
+            新規販売取引申請書_顧客名.Name = "新規販売取引申請書_顧客名";
+            新規販売取引申請書_顧客名.ReadOnly = true;
+            新規販売取引申請書_顧客名.Size = new Size(304, 20);
+            新規販売取引申請書_顧客名.TabIndex = 19;
+            新規販売取引申請書_顧客名.TabStop = false;
+            // 
+            // 新規販売取引申請書_新規顧客登録ボタン
+            // 
+            新規販売取引申請書_新規顧客登録ボタン.Enabled = false;
+            新規販売取引申請書_新規顧客登録ボタン.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            新規販売取引申請書_新規顧客登録ボタン.Location = new Point(15, 63);
+            新規販売取引申請書_新規顧客登録ボタン.Margin = new Padding(4);
+            新規販売取引申請書_新規顧客登録ボタン.Name = "新規販売取引申請書_新規顧客登録ボタン";
+            新規販売取引申請書_新規顧客登録ボタン.RightToLeft = RightToLeft.Yes;
+            新規販売取引申請書_新規顧客登録ボタン.Size = new Size(129, 34);
+            新規販売取引申請書_新規顧客登録ボタン.TabIndex = 20;
+            新規販売取引申請書_新規顧客登録ボタン.TabStop = false;
+            新規販売取引申請書_新規顧客登録ボタン.Text = "新規顧客登録";
+            新規販売取引申請書_新規顧客登録ボタン.UseVisualStyleBackColor = true;
+            新規販売取引申請書_新規顧客登録ボタン.Click += 新規販売取引申請書_新規顧客登録ボタン_Click;
+            // 
+            // label67
+            // 
+            label67.AllowDrop = true;
+            label67.AutoEllipsis = true;
+            label67.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label67.ForeColor = SystemColors.ActiveCaptionText;
+            label67.ImageAlign = ContentAlignment.MiddleLeft;
+            label67.Location = new Point(5, 114);
+            label67.Margin = new Padding(0);
+            label67.Name = "label67";
+            label67.Size = new Size(305, 41);
+            label67.TabIndex = 10294;
+            label67.Text = "※[顧客]ウィンドウの[申請]ボタンを押すと、\r\n顧客コードがコピーできます。";
+            label67.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // 新規販売取引申請書_版数
+            // 
+            新規販売取引申請書_版数.BackColor = Color.White;
+            新規販売取引申請書_版数.Enabled = false;
+            新規販売取引申請書_版数.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            新規販売取引申請書_版数.ImeMode = ImeMode.Disable;
+            新規販売取引申請書_版数.Location = new Point(343, 65);
+            新規販売取引申請書_版数.Margin = new Padding(3, 2, 3, 2);
+            新規販売取引申請書_版数.Name = "新規販売取引申請書_版数";
+            新規販売取引申請書_版数.ReadOnly = true;
+            新規販売取引申請書_版数.Size = new Size(15, 20);
+            新規販売取引申請書_版数.TabIndex = 10292;
+            新規販売取引申請書_版数.Visible = false;
+            // 
+            // 新規販売取引申請書_文書コード
+            // 
+            新規販売取引申請書_文書コード.BackColor = Color.White;
+            新規販売取引申請書_文書コード.Enabled = false;
+            新規販売取引申請書_文書コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            新規販売取引申請書_文書コード.ImeMode = ImeMode.Disable;
+            新規販売取引申請書_文書コード.Location = new Point(322, 65);
+            新規販売取引申請書_文書コード.Margin = new Padding(3, 2, 3, 2);
+            新規販売取引申請書_文書コード.Name = "新規販売取引申請書_文書コード";
+            新規販売取引申請書_文書コード.ReadOnly = true;
+            新規販売取引申請書_文書コード.Size = new Size(15, 20);
+            新規販売取引申請書_文書コード.TabIndex = 10291;
+            新規販売取引申請書_文書コード.Visible = false;
+            // 
+            // label72
+            // 
+            label72.AllowDrop = true;
+            label72.AutoEllipsis = true;
+            label72.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label72.ForeColor = SystemColors.ActiveCaptionText;
+            label72.ImageAlign = ContentAlignment.MiddleLeft;
+            label72.Location = new Point(0, 32);
+            label72.Margin = new Padding(0);
+            label72.Name = "label72";
+            label72.Size = new Size(85, 20);
+            label72.TabIndex = 18;
+            label72.Text = "顧客名";
+            label72.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // 新規販売取引申請書_顧客コード
+            // 
+            新規販売取引申請書_顧客コード.BackColor = Color.White;
+            新規販売取引申請書_顧客コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            新規販売取引申請書_顧客コード.ImeMode = ImeMode.Disable;
+            新規販売取引申請書_顧客コード.Location = new Point(86, 6);
+            新規販売取引申請書_顧客コード.Margin = new Padding(3, 2, 3, 2);
+            新規販売取引申請書_顧客コード.Name = "新規販売取引申請書_顧客コード";
+            新規販売取引申請書_顧客コード.Size = new Size(102, 20);
+            新規販売取引申請書_顧客コード.TabIndex = 17;
+            新規販売取引申請書_顧客コード.DoubleClick += 新規販売取引申請書_顧客コード_DoubleClick;
+            新規販売取引申請書_顧客コード.Enter += 新規販売取引申請書_顧客コード_Enter;
+            新規販売取引申請書_顧客コード.KeyDown += 新規販売取引申請書_顧客コード_KeyDown;
+            新規販売取引申請書_顧客コード.KeyPress += 新規販売取引申請書_顧客コード_KeyPress;
+            新規販売取引申請書_顧客コード.Leave += 新規販売取引申請書_顧客コード_Leave;
+            // 
+            // label73
+            // 
+            label73.AllowDrop = true;
+            label73.AutoEllipsis = true;
+            label73.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label73.ForeColor = SystemColors.ActiveCaptionText;
+            label73.ImageAlign = ContentAlignment.MiddleLeft;
+            label73.Location = new Point(0, 5);
+            label73.Margin = new Padding(0);
+            label73.Name = "label73";
+            label73.Size = new Size(85, 20);
+            label73.TabIndex = 16;
+            label73.Text = "顧客コード";
+            label73.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // 是正予防会議通知書パネル
+            // 
+            是正予防会議通知書パネル.Controls.Add(label77);
+            是正予防会議通知書パネル.Controls.Add(是正予防会議通知書_不具合現象);
+            是正予防会議通知書パネル.Controls.Add(label76);
+            是正予防会議通知書パネル.Controls.Add(label75);
+            是正予防会議通知書パネル.Controls.Add(label74);
+            是正予防会議通知書パネル.Controls.Add(是正予防会議通知書_数量);
+            是正予防会議通知書パネル.Controls.Add(是正予防会議通知書_型番);
+            是正予防会議通知書パネル.Controls.Add(label71);
+            是正予防会議通知書パネル.Controls.Add(是正予防会議通知書_使用者名);
+            是正予防会議通知書パネル.Controls.Add(label68);
+            是正予防会議通知書パネル.Controls.Add(是正予防会議通知書_顧客コード);
+            是正予防会議通知書パネル.Controls.Add(是正予防会議通知書_顧客名);
+            是正予防会議通知書パネル.Controls.Add(是正予防会議通知書_版数);
+            是正予防会議通知書パネル.Controls.Add(是正予防会議通知書_文書コード);
+            是正予防会議通知書パネル.Controls.Add(label69);
+            是正予防会議通知書パネル.Controls.Add(是正予防会議通知書_顧客コード検索ボタン);
+            是正予防会議通知書パネル.Controls.Add(是正予防会議通知書_受付文書コード);
+            是正予防会議通知書パネル.Controls.Add(label70);
+            是正予防会議通知書パネル.Location = new Point(9, 226);
+            是正予防会議通知書パネル.Name = "是正予防会議通知書パネル";
+            是正予防会議通知書パネル.Size = new Size(404, 376);
+            是正予防会議通知書パネル.TabIndex = 17;
+            // 
+            // label77
+            // 
+            label77.AllowDrop = true;
+            label77.AutoEllipsis = true;
+            label77.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label77.ForeColor = SystemColors.ActiveCaptionText;
+            label77.ImageAlign = ContentAlignment.MiddleLeft;
+            label77.Location = new Point(191, 7);
+            label77.Margin = new Padding(0);
+            label77.Name = "label77";
+            label77.Size = new Size(199, 20);
+            label77.TabIndex = 10293;
+            label77.Text = "※品質異常報告書へのリンク";
+            label77.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // 是正予防会議通知書_不具合現象
+            // 
+            是正予防会議通知書_不具合現象.BackColor = SystemColors.Window;
+            是正予防会議通知書_不具合現象.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            是正予防会議通知書_不具合現象.ImeMode = ImeMode.Hiragana;
+            是正予防会議通知書_不具合現象.Location = new Point(2, 170);
+            是正予防会議通知書_不具合現象.Margin = new Padding(3, 2, 3, 2);
+            是正予防会議通知書_不具合現象.Multiline = true;
+            是正予防会議通知書_不具合現象.Name = "是正予防会議通知書_不具合現象";
+            是正予防会議通知書_不具合現象.Size = new Size(388, 201);
+            是正予防会議通知書_不具合現象.TabIndex = 29;
+            是正予防会議通知書_不具合現象.TextChanged += 是正予防会議通知書_不具合現象_TextChanged;
+            是正予防会議通知書_不具合現象.DoubleClick += 是正予防会議通知書_不具合現象_DoubleClick;
+            是正予防会議通知書_不具合現象.Enter += 是正予防会議通知書_不具合現象_Enter;
+            是正予防会議通知書_不具合現象.Leave += 是正予防会議通知書_不具合現象_Leave;
+            是正予防会議通知書_不具合現象.Validating += 是正予防会議通知書_不具合現象_Validating;
+            是正予防会議通知書_不具合現象.Validated += 是正予防会議通知書_不具合現象_Validated;
+            // 
+            // label76
+            // 
+            label76.AllowDrop = true;
+            label76.AutoEllipsis = true;
+            label76.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label76.ForeColor = SystemColors.ActiveCaptionText;
+            label76.ImageAlign = ContentAlignment.MiddleLeft;
+            label76.Location = new Point(0, 102);
+            label76.Margin = new Padding(0);
+            label76.Name = "label76";
+            label76.Size = new Size(85, 20);
+            label76.TabIndex = 24;
+            label76.Text = "型番";
+            label76.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // label75
+            // 
+            label75.AllowDrop = true;
+            label75.AutoEllipsis = true;
+            label75.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label75.ForeColor = SystemColors.ActiveCaptionText;
+            label75.ImageAlign = ContentAlignment.MiddleLeft;
+            label75.Location = new Point(0, 125);
+            label75.Margin = new Padding(0);
+            label75.Name = "label75";
+            label75.Size = new Size(85, 20);
+            label75.TabIndex = 26;
+            label75.Text = "数量";
+            label75.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // label74
+            // 
+            label74.AllowDrop = true;
+            label74.AutoEllipsis = true;
+            label74.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label74.ForeColor = SystemColors.ActiveCaptionText;
+            label74.ImageAlign = ContentAlignment.MiddleLeft;
+            label74.Location = new Point(0, 148);
+            label74.Margin = new Padding(0);
+            label74.Name = "label74";
+            label74.Size = new Size(85, 20);
+            label74.TabIndex = 28;
+            label74.Text = "不具合現象";
+            label74.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // 是正予防会議通知書_数量
+            // 
+            是正予防会議通知書_数量.BackColor = Color.White;
+            是正予防会議通知書_数量.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            是正予防会議通知書_数量.ImeMode = ImeMode.Disable;
+            是正予防会議通知書_数量.Location = new Point(86, 125);
+            是正予防会議通知書_数量.Margin = new Padding(3, 2, 3, 2);
+            是正予防会議通知書_数量.Name = "是正予防会議通知書_数量";
+            是正予防会議通知書_数量.Size = new Size(102, 20);
+            是正予防会議通知書_数量.TabIndex = 27;
+            是正予防会議通知書_数量.TextChanged += 是正予防会議通知書_数量_TextChanged;
+            是正予防会議通知書_数量.Validating += 是正予防会議通知書_数量_Validating;
+            是正予防会議通知書_数量.Validated += 是正予防会議通知書_数量_Validated;
+            // 
+            // 是正予防会議通知書_型番
+            // 
+            是正予防会議通知書_型番.BackColor = Color.White;
+            是正予防会議通知書_型番.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            是正予防会議通知書_型番.ImeMode = ImeMode.Alpha;
+            是正予防会議通知書_型番.Location = new Point(86, 102);
+            是正予防会議通知書_型番.Margin = new Padding(3, 2, 3, 2);
+            是正予防会議通知書_型番.Name = "是正予防会議通知書_型番";
+            是正予防会議通知書_型番.Size = new Size(304, 20);
+            是正予防会議通知書_型番.TabIndex = 25;
+            是正予防会議通知書_型番.TextChanged += 是正予防会議通知書_型番_TextChanged;
+            是正予防会議通知書_型番.Validating += 是正予防会議通知書_型番_Validating;
+            是正予防会議通知書_型番.Validated += 是正予防会議通知書_型番_Validated;
+            // 
+            // label71
+            // 
+            label71.AllowDrop = true;
+            label71.AutoEllipsis = true;
+            label71.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label71.ForeColor = SystemColors.ActiveCaptionText;
+            label71.ImageAlign = ContentAlignment.MiddleLeft;
+            label71.Location = new Point(0, 54);
+            label71.Margin = new Padding(0);
+            label71.Name = "label71";
+            label71.Size = new Size(85, 20);
+            label71.TabIndex = 20;
+            label71.Text = "顧客名";
+            label71.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // 是正予防会議通知書_使用者名
+            // 
+            是正予防会議通知書_使用者名.BackColor = Color.White;
+            是正予防会議通知書_使用者名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            是正予防会議通知書_使用者名.ImeMode = ImeMode.Hiragana;
+            是正予防会議通知書_使用者名.Location = new Point(86, 78);
+            是正予防会議通知書_使用者名.Margin = new Padding(3, 2, 3, 2);
+            是正予防会議通知書_使用者名.Name = "是正予防会議通知書_使用者名";
+            是正予防会議通知書_使用者名.Size = new Size(304, 20);
+            是正予防会議通知書_使用者名.TabIndex = 23;
+            是正予防会議通知書_使用者名.TextChanged += 是正予防会議通知書_使用者名_TextChanged;
+            是正予防会議通知書_使用者名.Validating += 是正予防会議通知書_使用者名_Validating;
+            是正予防会議通知書_使用者名.Validated += 是正予防会議通知書_使用者名_Validated;
+            // 
+            // label68
+            // 
+            label68.AllowDrop = true;
+            label68.AutoEllipsis = true;
+            label68.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label68.ForeColor = SystemColors.ActiveCaptionText;
+            label68.ImageAlign = ContentAlignment.MiddleLeft;
+            label68.Location = new Point(0, 30);
+            label68.Margin = new Padding(0);
+            label68.Name = "label68";
+            label68.Size = new Size(85, 20);
+            label68.TabIndex = 18;
+            label68.Text = "顧客コード";
+            label68.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // 是正予防会議通知書_顧客コード
+            // 
+            是正予防会議通知書_顧客コード.BackColor = Color.White;
+            是正予防会議通知書_顧客コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            是正予防会議通知書_顧客コード.ImeMode = ImeMode.Disable;
+            是正予防会議通知書_顧客コード.Location = new Point(86, 30);
+            是正予防会議通知書_顧客コード.Margin = new Padding(3, 2, 3, 2);
+            是正予防会議通知書_顧客コード.Name = "是正予防会議通知書_顧客コード";
+            是正予防会議通知書_顧客コード.Size = new Size(102, 20);
+            是正予防会議通知書_顧客コード.TabIndex = 19;
+            是正予防会議通知書_顧客コード.TextChanged += 是正予防会議通知書_顧客コード_TextChanged;
+            是正予防会議通知書_顧客コード.KeyDown += 是正予防会議通知書_顧客コード_KeyDown;
+            是正予防会議通知書_顧客コード.KeyPress += 是正予防会議通知書_顧客コード_KeyPress;
+            是正予防会議通知書_顧客コード.Validating += 是正予防会議通知書_顧客コード_Validating;
+            是正予防会議通知書_顧客コード.Validated += 是正予防会議通知書_顧客コード_Validated;
+            // 
+            // 是正予防会議通知書_顧客名
+            // 
+            是正予防会議通知書_顧客名.BackColor = Color.White;
+            是正予防会議通知書_顧客名.Enabled = false;
+            是正予防会議通知書_顧客名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            是正予防会議通知書_顧客名.ImeMode = ImeMode.Hiragana;
+            是正予防会議通知書_顧客名.Location = new Point(86, 54);
+            是正予防会議通知書_顧客名.Margin = new Padding(3, 2, 3, 2);
+            是正予防会議通知書_顧客名.Name = "是正予防会議通知書_顧客名";
+            是正予防会議通知書_顧客名.ReadOnly = true;
+            是正予防会議通知書_顧客名.Size = new Size(304, 20);
+            是正予防会議通知書_顧客名.TabIndex = 21;
+            是正予防会議通知書_顧客名.TabStop = false;
+            // 
+            // 是正予防会議通知書_版数
+            // 
+            是正予防会議通知書_版数.BackColor = Color.White;
+            是正予防会議通知書_版数.Enabled = false;
+            是正予防会議通知書_版数.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            是正予防会議通知書_版数.ImeMode = ImeMode.Disable;
+            是正予防会議通知書_版数.Location = new Point(309, 127);
+            是正予防会議通知書_版数.Margin = new Padding(3, 2, 3, 2);
+            是正予防会議通知書_版数.Name = "是正予防会議通知書_版数";
+            是正予防会議通知書_版数.ReadOnly = true;
+            是正予防会議通知書_版数.Size = new Size(15, 20);
+            是正予防会議通知書_版数.TabIndex = 10292;
+            是正予防会議通知書_版数.Visible = false;
+            // 
+            // 是正予防会議通知書_文書コード
+            // 
+            是正予防会議通知書_文書コード.BackColor = Color.White;
+            是正予防会議通知書_文書コード.Enabled = false;
+            是正予防会議通知書_文書コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            是正予防会議通知書_文書コード.ImeMode = ImeMode.Disable;
+            是正予防会議通知書_文書コード.Location = new Point(288, 127);
+            是正予防会議通知書_文書コード.Margin = new Padding(3, 2, 3, 2);
+            是正予防会議通知書_文書コード.Name = "是正予防会議通知書_文書コード";
+            是正予防会議通知書_文書コード.ReadOnly = true;
+            是正予防会議通知書_文書コード.Size = new Size(15, 20);
+            是正予防会議通知書_文書コード.TabIndex = 10291;
+            是正予防会議通知書_文書コード.Visible = false;
+            // 
+            // label69
+            // 
+            label69.AllowDrop = true;
+            label69.AutoEllipsis = true;
+            label69.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label69.ForeColor = SystemColors.ActiveCaptionText;
+            label69.ImageAlign = ContentAlignment.MiddleLeft;
+            label69.Location = new Point(0, 78);
+            label69.Margin = new Padding(0);
+            label69.Name = "label69";
+            label69.Size = new Size(85, 20);
+            label69.TabIndex = 22;
+            label69.Text = "使用者名";
+            label69.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // 是正予防会議通知書_受付文書コード
+            // 
+            是正予防会議通知書_受付文書コード.BackColor = Color.White;
+            是正予防会議通知書_受付文書コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            是正予防会議通知書_受付文書コード.ImeMode = ImeMode.Disable;
+            是正予防会議通知書_受付文書コード.Location = new Point(86, 6);
+            是正予防会議通知書_受付文書コード.Margin = new Padding(3, 2, 3, 2);
+            是正予防会議通知書_受付文書コード.Name = "是正予防会議通知書_受付文書コード";
+            是正予防会議通知書_受付文書コード.Size = new Size(102, 20);
+            是正予防会議通知書_受付文書コード.TabIndex = 17;
+            是正予防会議通知書_受付文書コード.TextChanged += 是正予防会議通知書_受付文書コード_TextChanged;
+            是正予防会議通知書_受付文書コード.KeyDown += 是正予防会議通知書_受付文書コード_KeyDown;
+            是正予防会議通知書_受付文書コード.KeyPress += 是正予防会議通知書_受付文書コード_KeyPress;
+            是正予防会議通知書_受付文書コード.Validating += 是正予防会議通知書_受付文書コード_Validating;
+            是正予防会議通知書_受付文書コード.Validated += 是正予防会議通知書_受付文書コード_Validated;
+            // 
+            // label70
+            // 
+            label70.AllowDrop = true;
+            label70.AutoEllipsis = true;
+            label70.Font = new Font("BIZ UDゴシック", 8F, FontStyle.Regular, GraphicsUnit.Point);
+            label70.ForeColor = SystemColors.ActiveCaptionText;
+            label70.ImageAlign = ContentAlignment.MiddleLeft;
+            label70.Location = new Point(0, 5);
+            label70.Margin = new Padding(0);
+            label70.Name = "label70";
+            label70.Size = new Size(85, 20);
+            label70.TabIndex = 16;
+            label70.Text = "受付文書コード";
+            label70.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // 本文
+            // 
+            本文.BackColor = SystemColors.Window;
+            本文.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            本文.ImeMode = ImeMode.Hiragana;
+            本文.Location = new Point(14, 230);
+            本文.Margin = new Padding(3, 2, 3, 2);
+            本文.Multiline = true;
+            本文.Name = "本文";
+            本文.Size = new Size(399, 371);
+            本文.TabIndex = 17;
+            本文.TextChanged += 本文_TextChanged;
+            本文.DoubleClick += 本文_DoubleClick;
+            本文.Enter += 本文_Enter;
+            本文.Leave += 本文_Leave;
+            本文.Validating += 本文_Validating;
+            本文.Validated += 本文_Validated;
+            // 
+            // 是正予防処置報告書パネル
+            // 
+            是正予防処置報告書パネル.Controls.Add(是正予防処置報告書_回答ボタン);
+            是正予防処置報告書パネル.Controls.Add(label78);
+            是正予防処置報告書パネル.Controls.Add(是正予防処置報告書_議事録);
+            是正予防処置報告書パネル.Controls.Add(label79);
+            是正予防処置報告書パネル.Controls.Add(label80);
+            是正予防処置報告書パネル.Controls.Add(label81);
+            是正予防処置報告書パネル.Controls.Add(是正予防処置報告書_数量);
+            是正予防処置報告書パネル.Controls.Add(是正予防処置報告書_型番);
+            是正予防処置報告書パネル.Controls.Add(label82);
+            是正予防処置報告書パネル.Controls.Add(是正予防処置報告書_使用者名);
+            是正予防処置報告書パネル.Controls.Add(label83);
+            是正予防処置報告書パネル.Controls.Add(是正予防処置報告書_顧客コード);
+            是正予防処置報告書パネル.Controls.Add(是正予防処置報告書_顧客名);
+            是正予防処置報告書パネル.Controls.Add(是正予防処置報告書_版数);
+            是正予防処置報告書パネル.Controls.Add(是正予防処置報告書_文書コード);
+            是正予防処置報告書パネル.Controls.Add(label84);
+            是正予防処置報告書パネル.Controls.Add(是正予防処置報告書_顧客コード検索ボタン);
+            是正予防処置報告書パネル.Controls.Add(是正予防処置報告書_受付文書コード);
+            是正予防処置報告書パネル.Controls.Add(label85);
+            是正予防処置報告書パネル.Location = new Point(9, 226);
+            是正予防処置報告書パネル.Name = "是正予防処置報告書パネル";
+            是正予防処置報告書パネル.Size = new Size(404, 376);
+            是正予防処置報告書パネル.TabIndex = 17;
+            // 
+            // 是正予防処置報告書_回答ボタン
+            // 
+            是正予防処置報告書_回答ボタン.Enabled = false;
+            是正予防処置報告書_回答ボタン.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            是正予防処置報告書_回答ボタン.Location = new Point(302, 347);
+            是正予防処置報告書_回答ボタン.Margin = new Padding(4);
+            是正予防処置報告書_回答ボタン.Name = "是正予防処置報告書_回答ボタン";
+            是正予防処置報告書_回答ボタン.RightToLeft = RightToLeft.Yes;
+            是正予防処置報告書_回答ボタン.Size = new Size(88, 24);
+            是正予防処置報告書_回答ボタン.TabIndex = 30;
+            是正予防処置報告書_回答ボタン.TabStop = false;
+            是正予防処置報告書_回答ボタン.Text = "回答";
+            是正予防処置報告書_回答ボタン.UseVisualStyleBackColor = true;
+            是正予防処置報告書_回答ボタン.Click += 是正予防処置報告書_回答ボタン_Click;
+            // 
+            // label78
+            // 
+            label78.AllowDrop = true;
+            label78.AutoEllipsis = true;
+            label78.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label78.ForeColor = SystemColors.ActiveCaptionText;
+            label78.ImageAlign = ContentAlignment.MiddleLeft;
+            label78.Location = new Point(191, 7);
+            label78.Margin = new Padding(0);
+            label78.Name = "label78";
+            label78.Size = new Size(199, 20);
+            label78.TabIndex = 10293;
+            label78.Text = "※品質異常報告書へのリンク";
+            label78.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // 是正予防処置報告書_議事録
+            // 
+            是正予防処置報告書_議事録.BackColor = SystemColors.Window;
+            是正予防処置報告書_議事録.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            是正予防処置報告書_議事録.ImeMode = ImeMode.Hiragana;
+            是正予防処置報告書_議事録.Location = new Point(2, 170);
+            是正予防処置報告書_議事録.Margin = new Padding(3, 2, 3, 2);
+            是正予防処置報告書_議事録.Multiline = true;
+            是正予防処置報告書_議事録.Name = "是正予防処置報告書_議事録";
+            是正予防処置報告書_議事録.Size = new Size(388, 173);
+            是正予防処置報告書_議事録.TabIndex = 29;
+            是正予防処置報告書_議事録.TextChanged += 是正予防処置報告書_議事録_TextChanged;
+            是正予防処置報告書_議事録.DoubleClick += 是正予防処置報告書_議事録_DoubleClick;
+            是正予防処置報告書_議事録.Enter += 是正予防処置報告書_議事録_Enter;
+            是正予防処置報告書_議事録.Leave += 是正予防処置報告書_議事録_Leave;
+            是正予防処置報告書_議事録.Validating += 是正予防処置報告書_議事録_Validating;
+            是正予防処置報告書_議事録.Validated += 是正予防処置報告書_議事録_Validated;
+            // 
+            // label79
+            // 
+            label79.AllowDrop = true;
+            label79.AutoEllipsis = true;
+            label79.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label79.ForeColor = SystemColors.ActiveCaptionText;
+            label79.ImageAlign = ContentAlignment.MiddleLeft;
+            label79.Location = new Point(0, 102);
+            label79.Margin = new Padding(0);
+            label79.Name = "label79";
+            label79.Size = new Size(85, 20);
+            label79.TabIndex = 24;
+            label79.Text = "型番";
+            label79.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // label80
+            // 
+            label80.AllowDrop = true;
+            label80.AutoEllipsis = true;
+            label80.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label80.ForeColor = SystemColors.ActiveCaptionText;
+            label80.ImageAlign = ContentAlignment.MiddleLeft;
+            label80.Location = new Point(0, 125);
+            label80.Margin = new Padding(0);
+            label80.Name = "label80";
+            label80.Size = new Size(85, 20);
+            label80.TabIndex = 26;
+            label80.Text = "数量";
+            label80.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // label81
+            // 
+            label81.AllowDrop = true;
+            label81.AutoEllipsis = true;
+            label81.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label81.ForeColor = SystemColors.ActiveCaptionText;
+            label81.ImageAlign = ContentAlignment.MiddleLeft;
+            label81.Location = new Point(0, 148);
+            label81.Margin = new Padding(0);
+            label81.Name = "label81";
+            label81.Size = new Size(390, 20);
+            label81.TabIndex = 28;
+            label81.Text = "是正・予防会議議事録";
+            label81.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // 是正予防処置報告書_数量
+            // 
+            是正予防処置報告書_数量.BackColor = Color.White;
+            是正予防処置報告書_数量.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            是正予防処置報告書_数量.ImeMode = ImeMode.Disable;
+            是正予防処置報告書_数量.Location = new Point(86, 125);
+            是正予防処置報告書_数量.Margin = new Padding(3, 2, 3, 2);
+            是正予防処置報告書_数量.Name = "是正予防処置報告書_数量";
+            是正予防処置報告書_数量.Size = new Size(102, 20);
+            是正予防処置報告書_数量.TabIndex = 27;
+            是正予防処置報告書_数量.TextChanged += 是正予防処置報告書_数量_TextChanged;
+            是正予防処置報告書_数量.Validating += 是正予防処置報告書_数量_Validating;
+            是正予防処置報告書_数量.Validated += 是正予防処置報告書_数量_Validated;
+            // 
+            // 是正予防処置報告書_型番
+            // 
+            是正予防処置報告書_型番.BackColor = Color.White;
+            是正予防処置報告書_型番.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            是正予防処置報告書_型番.ImeMode = ImeMode.Alpha;
+            是正予防処置報告書_型番.Location = new Point(86, 102);
+            是正予防処置報告書_型番.Margin = new Padding(3, 2, 3, 2);
+            是正予防処置報告書_型番.Name = "是正予防処置報告書_型番";
+            是正予防処置報告書_型番.Size = new Size(304, 20);
+            是正予防処置報告書_型番.TabIndex = 25;
+            是正予防処置報告書_型番.TextChanged += 是正予防処置報告書_型番_TextChanged;
+            是正予防処置報告書_型番.Validating += 是正予防処置報告書_型番_Validating;
+            是正予防処置報告書_型番.Validated += 是正予防処置報告書_型番_Validated;
+            // 
+            // label82
+            // 
+            label82.AllowDrop = true;
+            label82.AutoEllipsis = true;
+            label82.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label82.ForeColor = SystemColors.ActiveCaptionText;
+            label82.ImageAlign = ContentAlignment.MiddleLeft;
+            label82.Location = new Point(0, 54);
+            label82.Margin = new Padding(0);
+            label82.Name = "label82";
+            label82.Size = new Size(85, 20);
+            label82.TabIndex = 20;
+            label82.Text = "顧客名";
+            label82.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // 是正予防処置報告書_使用者名
+            // 
+            是正予防処置報告書_使用者名.BackColor = Color.White;
+            是正予防処置報告書_使用者名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            是正予防処置報告書_使用者名.ImeMode = ImeMode.Hiragana;
+            是正予防処置報告書_使用者名.Location = new Point(86, 78);
+            是正予防処置報告書_使用者名.Margin = new Padding(3, 2, 3, 2);
+            是正予防処置報告書_使用者名.Name = "是正予防処置報告書_使用者名";
+            是正予防処置報告書_使用者名.Size = new Size(304, 20);
+            是正予防処置報告書_使用者名.TabIndex = 23;
+            是正予防処置報告書_使用者名.TextChanged += 是正予防処置報告書_使用者名_TextChanged;
+            是正予防処置報告書_使用者名.Validating += 是正予防処置報告書_使用者名_Validating;
+            是正予防処置報告書_使用者名.Validated += 是正予防処置報告書_使用者名_Validated;
+            // 
+            // label83
+            // 
+            label83.AllowDrop = true;
+            label83.AutoEllipsis = true;
+            label83.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label83.ForeColor = SystemColors.ActiveCaptionText;
+            label83.ImageAlign = ContentAlignment.MiddleLeft;
+            label83.Location = new Point(0, 30);
+            label83.Margin = new Padding(0);
+            label83.Name = "label83";
+            label83.Size = new Size(85, 20);
+            label83.TabIndex = 18;
+            label83.Text = "顧客コード";
+            label83.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // 是正予防処置報告書_顧客コード
+            // 
+            是正予防処置報告書_顧客コード.BackColor = Color.White;
+            是正予防処置報告書_顧客コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            是正予防処置報告書_顧客コード.ImeMode = ImeMode.Disable;
+            是正予防処置報告書_顧客コード.Location = new Point(86, 30);
+            是正予防処置報告書_顧客コード.Margin = new Padding(3, 2, 3, 2);
+            是正予防処置報告書_顧客コード.Name = "是正予防処置報告書_顧客コード";
+            是正予防処置報告書_顧客コード.Size = new Size(102, 20);
+            是正予防処置報告書_顧客コード.TabIndex = 19;
+            是正予防処置報告書_顧客コード.KeyDown += 是正予防処置報告書_顧客コード_KeyDown;
+            是正予防処置報告書_顧客コード.KeyPress += 是正予防処置報告書_顧客コード_KeyPress;
+            // 
+            // 是正予防処置報告書_顧客名
+            // 
+            是正予防処置報告書_顧客名.BackColor = Color.White;
+            是正予防処置報告書_顧客名.Enabled = false;
+            是正予防処置報告書_顧客名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            是正予防処置報告書_顧客名.ImeMode = ImeMode.Hiragana;
+            是正予防処置報告書_顧客名.Location = new Point(86, 54);
+            是正予防処置報告書_顧客名.Margin = new Padding(3, 2, 3, 2);
+            是正予防処置報告書_顧客名.Name = "是正予防処置報告書_顧客名";
+            是正予防処置報告書_顧客名.ReadOnly = true;
+            是正予防処置報告書_顧客名.Size = new Size(304, 20);
+            是正予防処置報告書_顧客名.TabIndex = 21;
+            是正予防処置報告書_顧客名.TabStop = false;
+            // 
+            // 是正予防処置報告書_版数
+            // 
+            是正予防処置報告書_版数.BackColor = Color.White;
+            是正予防処置報告書_版数.Enabled = false;
+            是正予防処置報告書_版数.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            是正予防処置報告書_版数.ImeMode = ImeMode.Disable;
+            是正予防処置報告書_版数.Location = new Point(309, 127);
+            是正予防処置報告書_版数.Margin = new Padding(3, 2, 3, 2);
+            是正予防処置報告書_版数.Name = "是正予防処置報告書_版数";
+            是正予防処置報告書_版数.ReadOnly = true;
+            是正予防処置報告書_版数.Size = new Size(15, 20);
+            是正予防処置報告書_版数.TabIndex = 10292;
+            是正予防処置報告書_版数.Visible = false;
+            // 
+            // 是正予防処置報告書_文書コード
+            // 
+            是正予防処置報告書_文書コード.BackColor = Color.White;
+            是正予防処置報告書_文書コード.Enabled = false;
+            是正予防処置報告書_文書コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            是正予防処置報告書_文書コード.ImeMode = ImeMode.Disable;
+            是正予防処置報告書_文書コード.Location = new Point(288, 127);
+            是正予防処置報告書_文書コード.Margin = new Padding(3, 2, 3, 2);
+            是正予防処置報告書_文書コード.Name = "是正予防処置報告書_文書コード";
+            是正予防処置報告書_文書コード.ReadOnly = true;
+            是正予防処置報告書_文書コード.Size = new Size(15, 20);
+            是正予防処置報告書_文書コード.TabIndex = 10291;
+            是正予防処置報告書_文書コード.Visible = false;
+            // 
+            // label84
+            // 
+            label84.AllowDrop = true;
+            label84.AutoEllipsis = true;
+            label84.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label84.ForeColor = SystemColors.ActiveCaptionText;
+            label84.ImageAlign = ContentAlignment.MiddleLeft;
+            label84.Location = new Point(0, 78);
+            label84.Margin = new Padding(0);
+            label84.Name = "label84";
+            label84.Size = new Size(85, 20);
+            label84.TabIndex = 22;
+            label84.Text = "使用者名";
+            label84.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // 是正予防処置報告書_受付文書コード
+            // 
+            是正予防処置報告書_受付文書コード.BackColor = Color.White;
+            是正予防処置報告書_受付文書コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            是正予防処置報告書_受付文書コード.ImeMode = ImeMode.Disable;
+            是正予防処置報告書_受付文書コード.Location = new Point(86, 6);
+            是正予防処置報告書_受付文書コード.Margin = new Padding(3, 2, 3, 2);
+            是正予防処置報告書_受付文書コード.Name = "是正予防処置報告書_受付文書コード";
+            是正予防処置報告書_受付文書コード.Size = new Size(102, 20);
+            是正予防処置報告書_受付文書コード.TabIndex = 17;
+            是正予防処置報告書_受付文書コード.TextChanged += 是正予防処置報告書_受付文書コード_TextChanged;
+            是正予防処置報告書_受付文書コード.KeyDown += 是正予防処置報告書_受付文書コード_KeyDown;
+            是正予防処置報告書_受付文書コード.KeyPress += 是正予防処置報告書_受付文書コード_KeyPress;
+            是正予防処置報告書_受付文書コード.Validating += 是正予防処置報告書_受付文書コード_Validating;
+            是正予防処置報告書_受付文書コード.Validated += 是正予防処置報告書_受付文書コード_Validated;
+            // 
+            // label85
+            // 
+            label85.AllowDrop = true;
+            label85.AutoEllipsis = true;
+            label85.Font = new Font("BIZ UDゴシック", 8F, FontStyle.Regular, GraphicsUnit.Point);
+            label85.ForeColor = SystemColors.ActiveCaptionText;
+            label85.ImageAlign = ContentAlignment.MiddleLeft;
+            label85.Location = new Point(0, 5);
+            label85.Margin = new Padding(0);
+            label85.Name = "label85";
+            label85.Size = new Size(85, 20);
+            label85.TabIndex = 16;
+            label85.Text = "受付文書コード";
+            label85.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // 是正予防処置報告書_環境パネル
+            // 
+            是正予防処置報告書_環境パネル.Controls.Add(是正予防処置報告書_環境_回答ボタン);
+            是正予防処置報告書_環境パネル.Controls.Add(是正予防処置報告書_環境_議事録);
+            是正予防処置報告書_環境パネル.Controls.Add(是正予防処置報告書_環境_版数);
+            是正予防処置報告書_環境パネル.Controls.Add(是正予防処置報告書_環境_文書コード);
+            是正予防処置報告書_環境パネル.Controls.Add(label88);
+            是正予防処置報告書_環境パネル.Controls.Add(label89);
+            是正予防処置報告書_環境パネル.Controls.Add(label90);
+            是正予防処置報告書_環境パネル.Controls.Add(是正予防処置報告書_環境_発生所在地);
+            是正予防処置報告書_環境パネル.Controls.Add(label91);
+            是正予防処置報告書_環境パネル.Controls.Add(是正予防処置報告書_環境_発生日選択ボタン);
+            是正予防処置報告書_環境パネル.Controls.Add(是正予防処置報告書_環境_発生日);
+            是正予防処置報告書_環境パネル.Controls.Add(label92);
+            是正予防処置報告書_環境パネル.Location = new Point(9, 226);
+            是正予防処置報告書_環境パネル.Name = "是正予防処置報告書_環境パネル";
+            是正予防処置報告書_環境パネル.Size = new Size(404, 376);
+            是正予防処置報告書_環境パネル.TabIndex = 17;
+            // 
+            // 是正予防処置報告書_環境_回答ボタン
+            // 
+            是正予防処置報告書_環境_回答ボタン.Enabled = false;
+            是正予防処置報告書_環境_回答ボタン.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            是正予防処置報告書_環境_回答ボタン.Location = new Point(100, 341);
+            是正予防処置報告書_環境_回答ボタン.Margin = new Padding(4);
+            是正予防処置報告書_環境_回答ボタン.Name = "是正予防処置報告書_環境_回答ボタン";
+            是正予防処置報告書_環境_回答ボタン.RightToLeft = RightToLeft.Yes;
+            是正予防処置報告書_環境_回答ボタン.Size = new Size(198, 29);
+            是正予防処置報告書_環境_回答ボタン.TabIndex = 22;
+            是正予防処置報告書_環境_回答ボタン.TabStop = false;
+            是正予防処置報告書_環境_回答ボタン.Text = "是正・予防処置回答書（環境）";
+            是正予防処置報告書_環境_回答ボタン.UseVisualStyleBackColor = true;
+            是正予防処置報告書_環境_回答ボタン.Click += 是正予防処置報告書_環境_回答ボタン_Click;
+            // 
+            // 是正予防処置報告書_環境_議事録
+            // 
+            是正予防処置報告書_環境_議事録.BackColor = SystemColors.Window;
+            是正予防処置報告書_環境_議事録.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            是正予防処置報告書_環境_議事録.ImeMode = ImeMode.Hiragana;
+            是正予防処置報告書_環境_議事録.Location = new Point(0, 92);
+            是正予防処置報告書_環境_議事録.Margin = new Padding(3, 2, 3, 2);
+            是正予防処置報告書_環境_議事録.Multiline = true;
+            是正予防処置報告書_環境_議事録.Name = "是正予防処置報告書_環境_議事録";
+            是正予防処置報告書_環境_議事録.Size = new Size(401, 243);
+            是正予防処置報告書_環境_議事録.TabIndex = 21;
+            是正予防処置報告書_環境_議事録.TextChanged += 是正予防処置報告書_環境_議事録_TextChanged;
+            是正予防処置報告書_環境_議事録.DoubleClick += 是正予防処置報告書_環境_議事録_DoubleClick;
+            是正予防処置報告書_環境_議事録.Enter += 是正予防処置報告書_環境_議事録_Enter;
+            是正予防処置報告書_環境_議事録.Leave += 是正予防処置報告書_環境_議事録_Leave;
+            是正予防処置報告書_環境_議事録.Validating += 是正予防処置報告書_環境_議事録_Validating;
+            是正予防処置報告書_環境_議事録.Validated += 是正予防処置報告書_環境_議事録_Validated;
+            // 
+            // 是正予防処置報告書_環境_版数
+            // 
+            是正予防処置報告書_環境_版数.BackColor = Color.White;
+            是正予防処置報告書_環境_版数.Enabled = false;
+            是正予防処置報告書_環境_版数.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            是正予防処置報告書_環境_版数.ImeMode = ImeMode.Disable;
+            是正予防処置報告書_環境_版数.Location = new Point(369, 5);
+            是正予防処置報告書_環境_版数.Margin = new Padding(3, 2, 3, 2);
+            是正予防処置報告書_環境_版数.Name = "是正予防処置報告書_環境_版数";
+            是正予防処置報告書_環境_版数.ReadOnly = true;
+            是正予防処置報告書_環境_版数.Size = new Size(32, 20);
+            是正予防処置報告書_環境_版数.TabIndex = 10292;
+            是正予防処置報告書_環境_版数.Visible = false;
+            // 
+            // 是正予防処置報告書_環境_文書コード
+            // 
+            是正予防処置報告書_環境_文書コード.BackColor = Color.White;
+            是正予防処置報告書_環境_文書コード.Enabled = false;
+            是正予防処置報告書_環境_文書コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            是正予防処置報告書_環境_文書コード.ImeMode = ImeMode.Disable;
+            是正予防処置報告書_環境_文書コード.Location = new Point(288, 6);
+            是正予防処置報告書_環境_文書コード.Margin = new Padding(3, 2, 3, 2);
+            是正予防処置報告書_環境_文書コード.Name = "是正予防処置報告書_環境_文書コード";
+            是正予防処置報告書_環境_文書コード.ReadOnly = true;
+            是正予防処置報告書_環境_文書コード.Size = new Size(49, 20);
+            是正予防処置報告書_環境_文書コード.TabIndex = 10291;
+            是正予防処置報告書_環境_文書コード.Visible = false;
+            // 
+            // label88
+            // 
+            label88.AllowDrop = true;
+            label88.AutoEllipsis = true;
+            label88.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label88.ForeColor = SystemColors.ActiveCaptionText;
+            label88.ImageAlign = ContentAlignment.MiddleLeft;
+            label88.Location = new Point(339, 6);
+            label88.Margin = new Padding(0);
+            label88.Name = "label88";
+            label88.Size = new Size(33, 20);
+            label88.TabIndex = 10290;
+            label88.Text = "版数";
+            label88.TextAlign = ContentAlignment.MiddleLeft;
+            label88.Visible = false;
+            // 
+            // label89
+            // 
+            label89.AllowDrop = true;
+            label89.AutoEllipsis = true;
+            label89.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label89.ForeColor = SystemColors.ActiveCaptionText;
+            label89.ImageAlign = ContentAlignment.MiddleLeft;
+            label89.Location = new Point(217, 6);
+            label89.Margin = new Padding(0);
+            label89.Name = "label89";
+            label89.Size = new Size(68, 20);
+            label89.TabIndex = 10289;
+            label89.Text = "文書コード";
+            label89.TextAlign = ContentAlignment.MiddleLeft;
+            label89.Visible = false;
+            // 
+            // label90
+            // 
+            label90.AllowDrop = true;
+            label90.AutoEllipsis = true;
+            label90.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label90.ForeColor = SystemColors.ActiveCaptionText;
+            label90.ImageAlign = ContentAlignment.MiddleLeft;
+            label90.Location = new Point(0, 71);
+            label90.Margin = new Padding(0);
+            label90.Name = "label90";
+            label90.Size = new Size(401, 20);
+            label90.TabIndex = 20;
+            label90.Text = "是正・予防会議議事録（環境）";
+            label90.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // 是正予防処置報告書_環境_発生所在地
+            // 
+            是正予防処置報告書_環境_発生所在地.BackColor = Color.White;
+            是正予防処置報告書_環境_発生所在地.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            是正予防処置報告書_環境_発生所在地.ImeMode = ImeMode.Hiragana;
+            是正予防処置報告書_環境_発生所在地.Location = new Point(86, 31);
+            是正予防処置報告書_環境_発生所在地.Margin = new Padding(3, 2, 3, 2);
+            是正予防処置報告書_環境_発生所在地.Multiline = true;
+            是正予防処置報告書_環境_発生所在地.Name = "是正予防処置報告書_環境_発生所在地";
+            是正予防処置報告書_環境_発生所在地.Size = new Size(315, 34);
+            是正予防処置報告書_環境_発生所在地.TabIndex = 19;
+            是正予防処置報告書_環境_発生所在地.TextChanged += 是正予防処置報告書_環境_発生所在地_TextChanged;
+            是正予防処置報告書_環境_発生所在地.Enter += 是正予防処置報告書_環境_発生所在地_Enter;
+            是正予防処置報告書_環境_発生所在地.Leave += 是正予防処置報告書_環境_発生所在地_Leave;
+            是正予防処置報告書_環境_発生所在地.Validating += 是正予防処置報告書_環境_発生所在地_Validating;
+            是正予防処置報告書_環境_発生所在地.Validated += 是正予防処置報告書_環境_発生所在地_Validated;
+            // 
+            // label91
+            // 
+            label91.AllowDrop = true;
+            label91.AutoEllipsis = true;
+            label91.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label91.ForeColor = SystemColors.ActiveCaptionText;
+            label91.ImageAlign = ContentAlignment.MiddleLeft;
+            label91.Location = new Point(0, 31);
+            label91.Margin = new Padding(0);
+            label91.Name = "label91";
+            label91.Size = new Size(85, 20);
+            label91.TabIndex = 18;
+            label91.Text = "発生所在地";
+            label91.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // 是正予防処置報告書_環境_発生日
+            // 
+            是正予防処置報告書_環境_発生日.BackColor = Color.White;
+            是正予防処置報告書_環境_発生日.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            是正予防処置報告書_環境_発生日.ImeMode = ImeMode.Disable;
+            是正予防処置報告書_環境_発生日.Location = new Point(86, 6);
+            是正予防処置報告書_環境_発生日.Margin = new Padding(3, 2, 3, 2);
+            是正予防処置報告書_環境_発生日.Name = "是正予防処置報告書_環境_発生日";
+            是正予防処置報告書_環境_発生日.Size = new Size(102, 20);
+            是正予防処置報告書_環境_発生日.TabIndex = 17;
+            是正予防処置報告書_環境_発生日.TextChanged += 是正予防処置報告書_環境_発生日_TextChanged;
+            是正予防処置報告書_環境_発生日.Validating += 是正予防処置報告書_環境_発生日_Validating;
+            是正予防処置報告書_環境_発生日.Validated += 是正予防処置報告書_環境_発生日_Validated;
+            // 
+            // label92
+            // 
+            label92.AllowDrop = true;
+            label92.AutoEllipsis = true;
+            label92.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label92.ForeColor = SystemColors.ActiveCaptionText;
+            label92.ImageAlign = ContentAlignment.MiddleLeft;
+            label92.Location = new Point(0, 5);
+            label92.Margin = new Padding(0);
+            label92.Name = "label92";
+            label92.Size = new Size(85, 20);
+            label92.TabIndex = 16;
+            label92.Text = "発生日";
+            label92.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // 製品企画書パネル
+            // 
+            製品企画書パネル.Controls.Add(label97);
+            製品企画書パネル.Controls.Add(textBox6);
+            製品企画書パネル.Controls.Add(label98);
+            製品企画書パネル.Controls.Add(textBox8);
+            製品企画書パネル.Controls.Add(textBox9);
+            製品企画書パネル.Controls.Add(label99);
+            製品企画書パネル.Controls.Add(label100);
+            製品企画書パネル.Controls.Add(textBox10);
+            製品企画書パネル.Controls.Add(button3);
+            製品企画書パネル.Controls.Add(textBox11);
+            製品企画書パネル.Controls.Add(label101);
+            製品企画書パネル.Controls.Add(textBox12);
+            製品企画書パネル.Controls.Add(comboBox4);
+            製品企画書パネル.Controls.Add(label102);
+            製品企画書パネル.Controls.Add(textBox13);
+            製品企画書パネル.Controls.Add(label103);
+            製品企画書パネル.Controls.Add(label104);
+            製品企画書パネル.Controls.Add(button5);
+            製品企画書パネル.Controls.Add(textBox14);
+            製品企画書パネル.Controls.Add(textBox15);
+            製品企画書パネル.Controls.Add(textBox16);
+            製品企画書パネル.Controls.Add(textBox17);
+            製品企画書パネル.Controls.Add(label106);
+            製品企画書パネル.Controls.Add(button6);
+            製品企画書パネル.Controls.Add(textBox18);
+            製品企画書パネル.Controls.Add(label107);
+            製品企画書パネル.Location = new Point(9, 226);
+            製品企画書パネル.Name = "製品企画書パネル";
+            製品企画書パネル.Size = new Size(404, 376);
+            製品企画書パネル.TabIndex = 21031;
+            // 
+            // label97
+            // 
+            label97.AllowDrop = true;
+            label97.AutoEllipsis = true;
+            label97.Font = new Font("BIZ UDゴシック", 7.5F, FontStyle.Regular, GraphicsUnit.Point);
+            label97.ForeColor = SystemColors.ActiveCaptionText;
+            label97.ImageAlign = ContentAlignment.MiddleLeft;
+            label97.Location = new Point(0, 116);
+            label97.Margin = new Padding(0);
+            label97.Name = "label97";
+            label97.Size = new Size(85, 20);
+            label97.TabIndex = 26;
+            label97.Text = "顧客電話番号(&T)";
+            label97.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // textBox6
+            // 
+            textBox6.BackColor = Color.White;
+            textBox6.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            textBox6.ImeMode = ImeMode.Disable;
+            textBox6.Location = new Point(86, 116);
+            textBox6.Margin = new Padding(3, 2, 3, 2);
+            textBox6.Name = "textBox6";
+            textBox6.Size = new Size(176, 20);
+            textBox6.TabIndex = 27;
+            // 
+            // label98
+            // 
+            label98.AllowDrop = true;
+            label98.AutoEllipsis = true;
+            label98.Font = new Font("BIZ UDゴシック", 7.5F, FontStyle.Regular, GraphicsUnit.Point);
+            label98.ForeColor = SystemColors.ActiveCaptionText;
+            label98.ImageAlign = ContentAlignment.MiddleLeft;
+            label98.Location = new Point(0, 162);
+            label98.Margin = new Padding(0);
+            label98.Name = "label98";
+            label98.Size = new Size(85, 20);
+            label98.TabIndex = 30;
+            label98.Text = "シリアル番号(&S)";
+            label98.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // textBox8
+            // 
+            textBox8.BackColor = Color.White;
+            textBox8.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            textBox8.ImeMode = ImeMode.Disable;
+            textBox8.Location = new Point(86, 162);
+            textBox8.Margin = new Padding(3, 2, 3, 2);
+            textBox8.Name = "textBox8";
+            textBox8.Size = new Size(314, 20);
+            textBox8.TabIndex = 31;
+            // 
+            // textBox9
+            // 
+            textBox9.BackColor = Color.White;
+            textBox9.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            textBox9.ImeMode = ImeMode.Off;
+            textBox9.Location = new Point(86, 139);
+            textBox9.Margin = new Padding(3, 2, 3, 2);
+            textBox9.Name = "textBox9";
+            textBox9.Size = new Size(314, 20);
+            textBox9.TabIndex = 29;
+            // 
+            // label99
+            // 
+            label99.AllowDrop = true;
+            label99.AutoEllipsis = true;
+            label99.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label99.ForeColor = SystemColors.ActiveCaptionText;
+            label99.ImageAlign = ContentAlignment.MiddleLeft;
+            label99.Location = new Point(0, 139);
+            label99.Margin = new Padding(0);
+            label99.Name = "label99";
+            label99.Size = new Size(85, 20);
+            label99.TabIndex = 28;
+            label99.Text = "製品型番(&M)";
+            label99.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // label100
+            // 
+            label100.AllowDrop = true;
+            label100.AutoEllipsis = true;
+            label100.Font = new Font("BIZ UDゴシック", 7.5F, FontStyle.Regular, GraphicsUnit.Point);
+            label100.ForeColor = SystemColors.ActiveCaptionText;
+            label100.ImageAlign = ContentAlignment.MiddleLeft;
+            label100.Location = new Point(0, 93);
+            label100.Margin = new Padding(0);
+            label100.Name = "label100";
+            label100.Size = new Size(85, 20);
+            label100.TabIndex = 24;
+            label100.Text = "顧客担当者名(&N)";
+            label100.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // textBox10
+            // 
+            textBox10.BackColor = Color.White;
+            textBox10.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            textBox10.ImeMode = ImeMode.Hiragana;
+            textBox10.Location = new Point(86, 93);
+            textBox10.Margin = new Padding(3, 2, 3, 2);
+            textBox10.Name = "textBox10";
+            textBox10.Size = new Size(314, 20);
+            textBox10.TabIndex = 25;
+            // 
+            // textBox11
+            // 
+            textBox11.BackColor = Color.White;
+            textBox11.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            textBox11.ImeMode = ImeMode.Disable;
+            textBox11.Location = new Point(86, 49);
+            textBox11.Margin = new Padding(3, 2, 3, 2);
+            textBox11.Name = "textBox11";
+            textBox11.Size = new Size(102, 20);
+            textBox11.TabIndex = 21;
+            // 
+            // label101
+            // 
+            label101.AllowDrop = true;
+            label101.AutoEllipsis = true;
+            label101.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label101.ForeColor = SystemColors.ActiveCaptionText;
+            label101.ImageAlign = ContentAlignment.MiddleLeft;
+            label101.Location = new Point(0, 26);
+            label101.Margin = new Padding(0);
+            label101.Name = "label101";
+            label101.Size = new Size(85, 20);
+            label101.TabIndex = 18;
+            label101.Text = "出向分類(&G)";
+            label101.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // textBox12
+            // 
+            textBox12.BackColor = Color.White;
+            textBox12.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            textBox12.ImeMode = ImeMode.Disable;
+            textBox12.Location = new Point(86, 4);
+            textBox12.Margin = new Padding(3, 2, 3, 2);
+            textBox12.Name = "textBox12";
+            textBox12.Size = new Size(102, 20);
+            textBox12.TabIndex = 17;
+            // 
+            // comboBox4
+            // 
+            comboBox4.BackColor = SystemColors.Window;
+            comboBox4.Enabled = false;
+            comboBox4.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            comboBox4.FormattingEnabled = true;
+            comboBox4.ImeMode = ImeMode.Disable;
+            comboBox4.Location = new Point(86, 26);
+            comboBox4.Name = "comboBox4";
+            comboBox4.Size = new Size(314, 21);
+            comboBox4.TabIndex = 19;
+            // 
+            // label102
+            // 
+            label102.AllowDrop = true;
+            label102.AutoEllipsis = true;
+            label102.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label102.ForeColor = SystemColors.ActiveCaptionText;
+            label102.ImageAlign = ContentAlignment.MiddleLeft;
+            label102.Location = new Point(0, 263);
+            label102.Margin = new Padding(0);
+            label102.Name = "label102";
+            label102.Size = new Size(85, 20);
+            label102.TabIndex = 35;
+            label102.Text = "出向日(&A)";
+            label102.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // textBox13
+            // 
+            textBox13.BackColor = Color.White;
+            textBox13.Enabled = false;
+            textBox13.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            textBox13.ImeMode = ImeMode.Hiragana;
+            textBox13.Location = new Point(86, 71);
+            textBox13.Margin = new Padding(3, 2, 3, 2);
+            textBox13.Name = "textBox13";
+            textBox13.ReadOnly = true;
+            textBox13.Size = new Size(314, 20);
+            textBox13.TabIndex = 23;
+            // 
+            // label103
+            // 
+            label103.AllowDrop = true;
+            label103.AutoEllipsis = true;
+            label103.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label103.ForeColor = SystemColors.ActiveCaptionText;
+            label103.ImageAlign = ContentAlignment.MiddleLeft;
+            label103.Location = new Point(0, 71);
+            label103.Margin = new Padding(0);
+            label103.Name = "label103";
+            label103.Size = new Size(85, 20);
+            label103.TabIndex = 22;
+            label103.Text = "顧客名(&U)";
+            label103.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // label104
+            // 
+            label104.AllowDrop = true;
+            label104.AutoEllipsis = true;
+            label104.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label104.ForeColor = SystemColors.ActiveCaptionText;
+            label104.ImageAlign = ContentAlignment.MiddleLeft;
+            label104.Location = new Point(0, 49);
+            label104.Margin = new Padding(0);
+            label104.Name = "label104";
+            label104.Size = new Size(85, 20);
+            label104.TabIndex = 20;
+            label104.Text = "顧客コード(&C)";
+            label104.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // textBox14
+            // 
+            textBox14.BackColor = Color.White;
+            textBox14.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            textBox14.ImeMode = ImeMode.Disable;
+            textBox14.Location = new Point(233, 263);
+            textBox14.Margin = new Padding(3, 2, 3, 2);
+            textBox14.Name = "textBox14";
+            textBox14.Size = new Size(102, 20);
+            textBox14.TabIndex = 37;
+            // 
+            // textBox15
+            // 
+            textBox15.BackColor = SystemColors.Window;
+            textBox15.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            textBox15.ImeMode = ImeMode.Hiragana;
+            textBox15.Location = new Point(92, 223);
+            textBox15.Margin = new Padding(3, 2, 3, 2);
+            textBox15.Multiline = true;
+            textBox15.Name = "textBox15";
+            textBox15.Size = new Size(308, 37);
+            textBox15.TabIndex = 34;
+            // 
+            // textBox16
+            // 
+            textBox16.BackColor = Color.White;
+            textBox16.Enabled = false;
+            textBox16.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            textBox16.ImeMode = ImeMode.Disable;
+            textBox16.Location = new Point(328, 116);
+            textBox16.Margin = new Padding(3, 2, 3, 2);
+            textBox16.Name = "textBox16";
+            textBox16.ReadOnly = true;
+            textBox16.Size = new Size(13, 20);
+            textBox16.TabIndex = 10292;
+            textBox16.TabStop = false;
+            textBox16.Visible = false;
+            // 
+            // textBox17
+            // 
+            textBox17.BackColor = Color.White;
+            textBox17.Enabled = false;
+            textBox17.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            textBox17.ImeMode = ImeMode.Disable;
+            textBox17.Location = new Point(309, 116);
+            textBox17.Margin = new Padding(3, 2, 3, 2);
+            textBox17.Name = "textBox17";
+            textBox17.ReadOnly = true;
+            textBox17.Size = new Size(13, 20);
+            textBox17.TabIndex = 10291;
+            textBox17.TabStop = false;
+            textBox17.Visible = false;
+            // 
+            // label106
+            // 
+            label106.AllowDrop = true;
+            label106.AutoEllipsis = true;
+            label106.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label106.ForeColor = SystemColors.ActiveCaptionText;
+            label106.ImageAlign = ContentAlignment.MiddleLeft;
+            label106.Location = new Point(0, 223);
+            label106.Margin = new Padding(0);
+            label106.Name = "label106";
+            label106.Size = new Size(85, 20);
+            label106.TabIndex = 33;
+            label106.Text = "依頼内容(&R)";
+            label106.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // textBox18
+            // 
+            textBox18.BackColor = Color.White;
+            textBox18.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            textBox18.ImeMode = ImeMode.Disable;
+            textBox18.Location = new Point(92, 263);
+            textBox18.Margin = new Padding(3, 2, 3, 2);
+            textBox18.Name = "textBox18";
+            textBox18.Size = new Size(96, 20);
+            textBox18.TabIndex = 36;
+            // 
+            // label107
+            // 
+            label107.AllowDrop = true;
+            label107.AutoEllipsis = true;
+            label107.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label107.ForeColor = SystemColors.ActiveCaptionText;
+            label107.ImageAlign = ContentAlignment.MiddleLeft;
+            label107.Location = new Point(0, 4);
+            label107.Margin = new Padding(0);
+            label107.Name = "label107";
+            label107.Size = new Size(85, 20);
+            label107.TabIndex = 16;
+            label107.Text = "受付日(&D)";
+            label107.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // F_文書
             // 
             BackColor = SystemColors.Control;
             ClientSize = new Size(880, 659);
-            Controls.Add(文書添付パネル);
+            Controls.Add(製品企画書パネル);
             Controls.Add(panel2);
             Controls.Add(label28);
             Controls.Add(通信欄);
@@ -4731,6 +6221,7 @@ namespace u_net
             Controls.Add(コマンド複写);
             Controls.Add(コマンド修正);
             Controls.Add(panel1);
+            Controls.Add(本文);
             Icon = (Icon)resources.GetObject("$this.Icon");
             ImeMode = ImeMode.Off;
             KeyPreview = true;
@@ -4745,8 +6236,8 @@ namespace u_net
             panel1.ResumeLayout(false);
             statusStrip1.ResumeLayout(false);
             statusStrip1.PerformLayout();
-            システム配布記録.ResumeLayout(false);
-            システム配布記録.PerformLayout();
+            システム配布記録パネル.ResumeLayout(false);
+            システム配布記録パネル.PerformLayout();
             環境連絡書パネル.ResumeLayout(false);
             環境連絡書パネル.PerformLayout();
             文書添付パネル.ResumeLayout(false);
@@ -4762,6 +6253,16 @@ namespace u_net
             出向依頼書パネル.PerformLayout();
             出向依頼書_依頼分類.ResumeLayout(false);
             出向依頼書_依頼分類.PerformLayout();
+            新規販売取引申請書パネル.ResumeLayout(false);
+            新規販売取引申請書パネル.PerformLayout();
+            是正予防会議通知書パネル.ResumeLayout(false);
+            是正予防会議通知書パネル.PerformLayout();
+            是正予防処置報告書パネル.ResumeLayout(false);
+            是正予防処置報告書パネル.PerformLayout();
+            是正予防処置報告書_環境パネル.ResumeLayout(false);
+            是正予防処置報告書_環境パネル.PerformLayout();
+            製品企画書パネル.ResumeLayout(false);
+            製品企画書パネル.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -4842,7 +6343,7 @@ namespace u_net
         internal ComboBox 分類コード;
         private TextBox 回答期限;
         internal Button 期限日選択ボタン;
-        private Panel システム配布記録;
+        private Panel システム配布記録パネル;
         internal ComboBox 文書フローコード;
         internal ComboBox 発信者コード;
         private Label 添付文書数_ラベル;
@@ -5085,6 +6586,103 @@ namespace u_net
         private Label label63;
         private TextBox 送信先コード6;
         private Label 送信先コード6_ラベル;
+        private Panel 新規販売取引申請書パネル;
+        private Button 新規販売取引申請書_新規顧客登録ボタン;
+        private Label label67;
+        internal ComboBox comboBox1;
+        private TextBox 是正予防会議通知書_顧客名;
+        private TextBox 新規販売取引申請書_版数;
+        private TextBox 新規販売取引申請書_文書コード;
+        private Label label69;
+        private Label label70;
+        private Label label71;
+        private TextBox 是正予防会議通知書_受付文書コード;
+        private Label label72;
+        internal Button 新規販売取引申請書_顧客コード検索ボタン;
+        private TextBox 新規販売取引申請書_顧客コード;
+        private Label label73;
+        internal Button 新規販売取引申請書_顧客参照ボタン;
+        private TextBox 新規販売取引申請書_顧客名;
+        private Panel 是正予防会議通知書パネル;
+        private TextBox 是正予防会議通知書_版数;
+        private TextBox 是正予防会議通知書_文書コード;
+        internal Button 是正予防会議通知書_顧客コード検索ボタン;
+        private TextBox 本文;
+        private TextBox 是正予防会議通知書_顧客コード;
+        private Label label68;
+        private TextBox 是正予防会議通知書_不具合現象;
+        private Label label76;
+        private Label label75;
+        private Label label74;
+        private TextBox 是正予防会議通知書_数量;
+        private TextBox 是正予防処置報告書_版数;
+        private TextBox 是正予防処置報告書_顧客名;
+        private TextBox 是正予防会議通知書_型番;
+        private TextBox 是正予防会議通知書_使用者名;
+        private Label label77;
+        private Panel 是正予防処置報告書パネル;
+        private Label label78;
+        private TextBox 是正予防処置報告書_議事録;
+        private Label label79;
+        private Label label80;
+        private Label label81;
+        private TextBox 是正予防処置報告書_数量;
+        private TextBox 是正予防処置報告書_型番;
+        private Label label82;
+        private TextBox 是正予防処置報告書_使用者名;
+        private Label label83;
+        private TextBox 是正予防処置報告書_顧客コード;
+        private TextBox 是正予防処置報告書_文書コード;
+        private Label label84;
+        internal Button 是正予防処置報告書_顧客コード検索ボタン;
+        private TextBox 是正予防処置報告書_受付文書コード;
+        private Label label85;
+        private Button 是正予防処置報告書_回答ボタン;
+        private Panel 是正予防処置報告書_環境パネル;
+        private Button button1;
+        private Label label86;
+        internal ComboBox comboBox2;
+        private Label label87;
+        private TextBox textBox2;
+        private TextBox 是正予防処置報告書_環境_版数;
+        private TextBox 是正予防処置報告書_環境_文書コード;
+        private Label label88;
+        private Label label89;
+        private Label label90;
+        private TextBox 是正予防処置報告書_環境_発生所在地;
+        private Label label91;
+        internal Button 是正予防処置報告書_環境_発生日選択ボタン;
+        private TextBox 是正予防処置報告書_環境_発生日;
+        private Label label92;
+        private Button 是正予防処置報告書_環境_回答ボタン;
+        private TextBox 是正予防処置報告書_環境_議事録;
+        private Panel 製品企画書パネル;
+        private Label label97;
+        private TextBox textBox6;
+        private Label label98;
+        private TextBox textBox8;
+        private TextBox textBox9;
+        private Label label99;
+        private Label label100;
+        private TextBox textBox10;
+        internal Button button3;
+        private TextBox textBox11;
+        private Label label101;
+        private TextBox textBox12;
+        internal ComboBox comboBox4;
+        private Label label102;
+        private TextBox textBox13;
+        private Label label103;
+        private Label label104;
+        internal Button button5;
+        private TextBox textBox14;
+        private TextBox textBox15;
+        private TextBox textBox16;
+        private TextBox textBox17;
+        private Label label106;
+        internal Button button6;
+        private TextBox textBox18;
+        private Label label107;
     }
 }
 
