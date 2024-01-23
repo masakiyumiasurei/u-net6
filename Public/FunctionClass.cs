@@ -1559,12 +1559,12 @@ namespace u_net.Public
 
 
 
-        public static long GetRecordCount(SqlConnection connection, string recordSource, string where = "")
+        public static int GetRecordCount(SqlConnection connection, string recordSource, string where = "")
         {
             // 指定されたレコードソースのレコード数を取得する関数
             // where句は省略可能
 
-            long recordCount = 0;
+            int recordCount = 0;
 
             try
             {
@@ -1589,7 +1589,7 @@ namespace u_net.Public
                     {
                         if (reader.Read())
                         {
-                            recordCount = (long)reader.GetInt32(0);
+                            recordCount = (int)reader.GetInt32(0);
                         }
                     }
                 }
@@ -2690,7 +2690,12 @@ namespace u_net.Public
         }
 
 
-
+        /// <summary>
+        /// 休日は1、営業日は0を返す
+        /// </summary>
+        /// <param name="connection"></param>
+        /// <param name="date">判定する日</param>
+        /// <returns></returns>
         public int OfficeClosed(SqlConnection connection, DateTime date)
         {
             int officeClosed = 0;
@@ -2793,7 +2798,41 @@ namespace u_net.Public
         }
 
 
+        public static string ConvLiteral(string original)
+        {
+            try
+            {
+                StringBuilder strRes = new StringBuilder();
 
+                for (int i = 0; i < original.Length; i++)
+                {
+                    char strFetch = original[i];
+
+                    switch (strFetch)
+                    {
+                        case '%':
+                            strRes.Append("[%]");
+                            break;
+                        case '_':
+                            strRes.Append("[_]");
+                            break;
+                        case '[':
+                            strRes.Append("[[]");
+                            break;
+                        default:
+                            strRes.Append(strFetch);
+                            break;
+                    }
+                }
+
+                return strRes.ToString();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"ConvLiteral - {ex.Message}");
+                return string.Empty;
+            }
+        }
 
 
 

@@ -176,7 +176,7 @@ namespace u_net
             }
             finally
             {
-                //this.Painting = true;
+                
                 this.Close();
             }
         }

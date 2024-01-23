@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Common;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
@@ -14,41 +15,41 @@ using Microsoft.IdentityModel.Tokens;
 using u_net.Public;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
+using static u_net.Public.FunctionClass;
+using static u_net.CommonConstants;
+using static u_net.Public.OriginalClass;
+using static System.ComponentModel.Design.ObjectSelectorEditor;
 
 namespace u_net
 {
     public partial class F_出荷管理旧 : MidForm
     {
-        const string strSecondOrder = "受注コード";
+        public const string strSecondOrder = "受注コード";   // 並べ替え第２項目
+                          
+        public string str出荷コード開始 = "";
+        public string str出荷コード終了 = "";
+        public string str受注コード開始 = "";
+        public string str受注コード終了 = "";
+        public DateTime dte出荷予定日1=DateTime.MinValue;
+        public DateTime dte出荷予定日2 = DateTime.MinValue;
+        public string str型番 = "";
+        public string str型番詳細 = "";
+        public int lngシリアル番号指定;
+        public int lngシリアル番号開始;
+        public int lngシリアル番号終了;
+        public string str発送先名 = "";
+        public string str顧客コード = "";
+        public string str顧客名 = "";
+        public int lng作業終了指定;
+        public DateTime dte作業終了日開始 = DateTime.MinValue;
+        public DateTime dte作業終了日終了 = DateTime.MinValue;
 
-        public string str検索コード;
-        public string str受注コード1;
-        public string str受注コード2;
-        public DateTime dte受注日1;
-        public DateTime dte受注日2;
-        public DateTime dte出荷予定日1;
-        public DateTime dte出荷予定日2;
-        public DateTime dte受注納期1;
-        public DateTime dte受注納期2;
-        public string str注文番号;
-        public string str顧客コード;
-        public string str顧客名;
-        public string str自社担当者コード;
-        public bool ble受注承認指定;
-        public byte byt受注承認;
-        public bool ble出荷指定;
-        public byte byt出荷;
-        public DateTime dte出荷完了日1;
-        public DateTime dte出荷完了日2;
-        public bool ble受注完了承認指定;
-        public byte byt受注完了承認;
-        public byte byt無効日;
-        public bool ble履歴表示;
-        public Button CurrentOrder;
-        private bool resizing = false;
+        private string sourceSQL;                           // 一覧のレコードソースのSQL
+        private int intWindowHeight=0;                        // 現在保持している高さ
+        private int intWindowWidth=0;                         // 現在保持している幅
+        private bool bln履歴表示=false;                           // 履歴表示する？
 
-        int intWindowHeight = 0;
-        int intWindowWidth = 0;
+        
 
         private Control? previousControl;
         private SqlConnection? cn;
@@ -66,44 +67,27 @@ namespace u_net
             cn.Open();
         }
 
-        //コード検索
-        public override void SearchCode(string codeString)
-        {
-            //検索コード保持
-            this.str検索コード = codeString;
-
-            InitializeFilter();
-            this.str受注コード1 = codeString;
-            this.str受注コード2 = codeString;
-            ////Filtering;
-            DoUpdate();
-        }
+       
 
         //全表示設定
         private void InitializeFilter()
         {
-            str受注コード1 = "";
-            str受注コード2 = "";
-            dte受注日1 = DateTime.MinValue;
-            dte受注日2 = DateTime.MinValue;
-            dte出荷予定日1 = DateTime.MinValue;
-            dte出荷予定日2 = DateTime.MinValue;
-            dte受注納期1 = DateTime.MinValue;
-            dte受注納期2 = DateTime.MinValue;
-            str注文番号 = "";
-            str顧客コード = "";
-            str顧客名 = "";
-            str自社担当者コード = "";
-            ble受注承認指定 = false;
-            byt受注承認 = 1;
-            ble出荷指定 = false;
-            byt出荷 = 1;
-            dte出荷完了日1 = DateTime.MinValue;
-            dte出荷完了日2 = DateTime.MinValue;
-            ble受注完了承認指定 = false;
-            byt受注完了承認 = 1;
-            byt無効日 = 2;
-            ble履歴表示 = 履歴トグル.Checked;
+             str出荷コード開始 = "";
+             str出荷コード終了 = "";
+             dte出荷予定日1 = DateTime.MinValue;
+             dte出荷予定日2 = DateTime.MinValue;
+             str型番 = "";
+             lngシリアル番号指定 = 0;
+             lngシリアル番号開始 = -1;
+             lngシリアル番号終了 = -1;
+             str発送先名 = "";
+             str顧客コード = "";
+             str顧客名 = "";
+             lng作業終了指定 = 0;
+             dte作業終了日開始 = DateTime.MinValue;
+             dte作業終了日終了 = DateTime.MinValue;
+             bln履歴表示 = 履歴トグル.Checked;
+
         }
 
         private void Form_Load(object sender, EventArgs e)
@@ -113,14 +97,7 @@ namespace u_net
             //実行中フォーム起動
 
             LocalSetting localSetting = new LocalSetting();
-            localSetting.LoadPlace(CommonConstants.LoginUserCode, this);
-
-            MyApi myapi = new MyApi();
-            int xSize, ySize, intpixel, twipperdot;
-
-            //1インチ当たりのピクセル数 アクセスのサイズの引数がtwipなのでピクセルに変換する除算値を求める
-            intpixel = myapi.GetLogPixel();
-            twipperdot = myapi.GetTwipPerDot(intpixel);
+            localSetting.LoadPlace(CommonConstants.LoginUserCode, this);            
 
             intWindowHeight = this.Height;
             intWindowWidth = this.Width;
@@ -136,25 +113,9 @@ namespace u_net
             dataGridView1.DefaultCellStyle.ForeColor = Color.Black;
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
-            myapi.GetFullScreen(out xSize, out ySize);
-
-            int x = 10, y = 10;
-
-            this.Size = new Size(this.Width, ySize * myapi.GetTwipPerDot(intpixel) - 1200);
-            //accessのmovesizeメソッドの引数の座標単位はtwipなので以下で
-
-            this.Size = new Size(this.Width, ySize - 1200 / twipperdot);
-
-            this.StartPosition = FormStartPosition.Manual; // 手動で位置を指定
-            int screenWidth = Screen.PrimaryScreen.Bounds.Width; // プライマリスクリーンの幅
-            x = (screenWidth - this.Width) / 2;
-            this.Location = new Point(x, y);
 
             ////setall();
-            InitializeFilter();
-            this.ble受注完了承認指定 = true;
-            this.byt受注完了承認 = 2;
-            DoUpdate();
+            初期表示ボタン_Click(sender,e);
             Cleargrid(dataGridView1);
             fn.WaitForm.Close();
         }
@@ -163,10 +124,6 @@ namespace u_net
         {
             try
             {
-                if (!resizing)
-                {
-                    resizing = true;
-
                     this.SuspendLayout();
 
                     //this.サブ.Height = this.サブ.Height + (this.Height - intWindowHeight);
@@ -176,8 +133,6 @@ namespace u_net
                     intWindowHeight = this.Height; // 高さ保存
                     intWindowWidth = this.Width;   // 幅保存
 
-                    resizing = false;
-                }
             }
             catch (Exception ex)
             {
@@ -190,7 +145,7 @@ namespace u_net
             int result = -1;
             try
             {
-                result = Filtering();
+                 Filtering();
 
             }
             catch (Exception ex)
@@ -203,139 +158,134 @@ namespace u_net
         }
 
         //private void Filtering()
-        private int Filtering()
+        public void Filtering()
         {
             try
             {
-                DateTime dtePrevious;//前回出勤日
+                // 画面描画を抑止する
+                
+                DateTime dtePrevious; // 前回出勤日
+                DateTime dteNext;     // 次回出勤日
                 string strWhere = string.Empty;
 
-                if (!string.IsNullOrEmpty(str受注コード1))
+                if (str出荷コード開始 != "")
                 {
-                    strWhere += "'" + str受注コード1 + "' <= 受注コード and 受注コード <= '" + str受注コード2 + "'";
-                }
-
-                if (dte受注日1 != DateTime.MinValue)
-                {
-                    strWhere += "'" + dte受注日1 + "' <= 受注日 and 受注日 <= '" + dte受注日2 + "'";
+                    strWhere = FunctionClass.WhereString(strWhere, $"'{str出荷コード開始}' <= 出荷コード AND 出荷コード <= '{str出荷コード終了}'");
                 }
 
                 if (dte出荷予定日1 != DateTime.MinValue)
                 {
-                    strWhere += "'" + dte出荷予定日1 + "' <= 出荷予定日 and 出荷予定日 <= '" + dte出荷予定日2 + "'";
+                    strWhere = FunctionClass.WhereString(strWhere, $"'{dte出荷予定日1}' <= 出荷予定日 AND 出荷予定日 <= '{dte出荷予定日2}'");
                 }
 
-                if (dte受注納期1 != DateTime.MinValue)
+                if (str受注コード開始 != "")
                 {
-                    strWhere += "'" + dte受注納期1 + "' <= 受注納期 AND 受注納期 <= '" + dte受注納期2 + "'";
+                    strWhere = FunctionClass.WhereString(strWhere, $"'{str受注コード開始}' <= 受注コード AND 受注コード <= '{str受注コード終了}'");
                 }
 
-                if (!string.IsNullOrEmpty(str注文番号))
+                if (str型番詳細 == "")
                 {
-                    strWhere += "注文番号 like '%" + str注文番号 + "%'";
-                }
-
-                if (!string.IsNullOrEmpty(str顧客コード))
-                {
-                    strWhere += "顧客コード = '" + str顧客コード + "'";
-                }
-
-                if (!string.IsNullOrEmpty(str自社担当者コード))
-                {
-                    strWhere += "自社担当者コード = '" + str自社担当者コード + "'";
-                }
-
-                if (ble受注承認指定)
-                {
-                    switch (byt受注承認)
+                    if (str型番 != "")
                     {
-                        case 1:
-                            strWhere = FunctionClass.WhereString(strWhere, "承認者コード is not null");
-                            break;
-                        case 2:
-                            strWhere = FunctionClass.WhereString(strWhere, "承認者コード is null");
-                            break;
+                        strWhere = FunctionClass.WhereString(strWhere, $"型番 LIKE '%{ConvLiteral(str型番)}%'");
                     }
-                }
-
-                if (ble出荷指定)
-                {
-                    switch (byt出荷)
-                    {
-                        case 1:
-                            if (Convert.ToDouble(dte出荷完了日1) == 0)
-                            {
-                                strWhere = FunctionClass.WhereString(strWhere, "出荷完了日 is not null");
-                            }
-                            else
-                            {
-                                strWhere = FunctionClass.WhereString(strWhere, "'" + dte出荷完了日1 + "'<=出荷完了日 and 出荷完了日<='" + dte出荷完了日2 + "'");
-                            }
-                            break;
-                        case 2:
-                            strWhere = FunctionClass.WhereString(strWhere, "出荷完了日 is null");
-                            break;
-                    }
-                }
-
-                if (ble受注完了承認指定)
-                {
-                    switch (byt受注完了承認)
-                    {
-                        case 1:
-                            strWhere = FunctionClass.WhereString(strWhere, "完了承認者コード is not null");
-                            break;
-                        case 2:
-                            strWhere = FunctionClass.WhereString(strWhere, "完了承認者コード is null");
-                            break;
-                    }
-                }
-
-                if (!this.ble履歴表示)
-                {
-                    switch (byt無効日)
-                    {
-                        case 1:
-                            strWhere = FunctionClass.WhereString(strWhere, "無効日 is not null");
-                            break;
-                        case 2:
-                            strWhere = FunctionClass.WhereString(strWhere, "無効日 is null");
-                            break;
-                    }
-                }
-
-                //改版依頼中の受注データは表示しない
-                strWhere = FunctionClass.WhereString(strWhere, "not(1<受注版数 and 承認者コード is null)");
-
-                string query1 = "SELECT 受注コード, 受注版数 AS 版, 受注日, 出荷予定日, 受注納期, 注文番号, 顧客名, 自社担当者名, FORMAT(受注金額, N'#,0') AS 受注金額 " +
-                                           " , CASE WHEN 確定日時 IS NOT NULL THEN '■' ELSE '' END AS 確定 " +
-                                           " , CASE WHEN 承認者コード IS NOT NULL THEN '■' ELSE '' END AS 承認 " +
-                                           " , CASE WHEN 出荷完了日 IS NOT NULL THEN '■' ELSE '' END AS 出荷 " +
-                                           " , CASE WHEN 完了承認者コード IS NOT NULL THEN '■' ELSE '' END AS 完了 ";
-
-
-                if (this.ble履歴表示)
-                {
-                    query1 += " FROM SalesOrderList_History ";
                 }
                 else
                 {
-                    query1 += " FROM SalesOrderList ";
+                    strWhere = FunctionClass.WhereString(strWhere, str型番詳細);
                 }
 
-                string query2 = "";
-                // SQL文の構築
-                if (string.IsNullOrEmpty(strWhere))
+                switch (lngシリアル番号指定)
                 {
-                    query2 = query1 + " ORDER BY 受注コード DESC";
+                    case 1:
+                        if (lngシリアル番号開始 == -1)
+                        {
+                            strWhere = FunctionClass.WhereString(strWhere, "出荷シリアル番号1 IS NOT NULL");
+                        }
+                        else
+                        {
+                            strWhere = FunctionClass.WhereString(strWhere, $"((出荷シリアル番号1 <= {lngシリアル番号開始} AND {lngシリアル番号開始} <= 出荷シリアル番号2 or " +
+                                $"出荷シリアル番号1 <= {lngシリアル番号終了} AND {lngシリアル番号終了} <= 出荷シリアル番号2) or " +
+                                $"({lngシリアル番号開始} <= 出荷シリアル番号1 AND 出荷シリアル番号2 <= {lngシリアル番号終了}))");
+                        }
+                        break;
+                    case 2:
+                        strWhere = FunctionClass.WhereString(strWhere, "出荷シリアル番号1 IS NULL");
+                        break;
+                }
+                if (str発送先名 != "")
+                {
+                    strWhere = FunctionClass.WhereString(strWhere, $"発送先名 LIKE '%{ConvLiteral(str発送先名)}%'");
+                }
+
+                if (str顧客コード != "")
+                {
+                    strWhere = FunctionClass.WhereString(strWhere, $"顧客コード='{str顧客コード}'");
+                }
+
+                switch (lng作業終了指定)
+                {
+                    case 1:
+                        if (dte作業終了日開始 == DateTime.MinValue)
+                        {
+                            strWhere = FunctionClass.WhereString(strWhere, "出荷終了日 is not null");
+                        }
+                        else
+                        {
+                            strWhere = FunctionClass.WhereString(strWhere, $"'{dte作業終了日開始}' <= 出荷終了日 and 出荷終了日 <= '{dte作業終了日終了}'");
+                        }
+                        break;
+                    case 2:
+                        strWhere = FunctionClass.WhereString(strWhere, "出荷終了更新日 is null");
+                        break;
+                }
+
+                if (!bln履歴表示) strWhere = FunctionClass.WhereString(strWhere, "無効日 is null");
+
+                // フォーム更新
+                Connect();
+                string sql = "SELECT 現品票出力 as 出力,出荷コード,受注コード," +
+                            "受注版数 as 版,IIf([PaymentConfirmation] = 0, '', '■') as 入," +
+                            "出荷予定日,品名,型番," +
+                            "出荷数量 as 数量," +
+                            "format(出荷シリアル番号1,'00000000') as シリアル番号1," +
+                            "format(出荷シリアル番号2,'00000000') as シリアル番号2," +
+                            "発送先名,外観目視検査者頭文字 as 目,梱包作業者頭文字 as 梱," +
+                            "出荷終了日 as 作業終了日,納品書 " +
+                            "FROM uv_出荷管理 ";
+
+                sourceSQL = sql + $"where {strWhere}"; //ORDER BY ";
+
+                string sqlsum = "";
+
+                if (bln履歴表示)
+                {
+                    有効件数.Text = FunctionClass.GetRecordCount(cn, "uv_出荷管理", $" {strWhere} and 無効日 is null").ToString();
+                    if (有効件数.Text != "0")
+                    {
+                        sqlsum = $"SELECT SUM(出荷数量) AS num FROM uv_出荷管理 where {strWhere} and 無効日 is null";
+                        合計数量.Text = GetScalar<int>(cn, sqlsum).ToString("#,0");
+
+                        sqlsum = $"SELECT SUM(金額) AS num FROM uv_出荷管理 where {strWhere} and 無効日 is null";
+                        合計金額.Text = GetScalar<int>(cn, sqlsum).ToString("#,0");
+                    }                    
+                    
                 }
                 else
                 {
-                    query2 = query1 + $" WHERE {strWhere} ORDER BY 受注コード DESC";
+                    有効件数.Text = FunctionClass.GetRecordCount(cn, "uv_出荷管理", $" {strWhere} ").ToString();
+                    if (有効件数.Text != "0")
+                    {
+                        sqlsum = $"SELECT SUM(出荷数量) AS num FROM uv_出荷管理 where {strWhere} ";
+                        合計数量.Text = GetScalar<int>(cn, sqlsum).ToString("#,0");
+
+                        sqlsum = $"SELECT SUM(金額) AS num FROM uv_出荷管理 where {strWhere} ";
+                        合計金額.Text = GetScalar<int>(cn, sqlsum).ToString("#,0");
+                    }
                 }
 
                 Connect();
-                DataGridUtils.SetDataGridView(cn, query2, this.dataGridView1);
+                DataGridUtils.SetDataGridView(cn, sourceSQL, this.dataGridView1);
 
                 MyApi myapi = new MyApi();
                 int xSize, ySize, intpixel, twipperdot;
@@ -348,70 +298,115 @@ namespace u_net
                 intWindowWidth = this.Width;
 
                 // DataGridViewの設定
-                dataGridView1.Columns[0].DefaultCellStyle.BackColor = Color.FromArgb(255, 255, 200); // 薄い黄色
+               // dataGridView1.Columns[0].DefaultCellStyle.BackColor = Color.FromArgb(255, 255, 200); // 薄い黄色
                 dataGridView1.Columns[1].DefaultCellStyle.BackColor = Color.FromArgb(255, 255, 200); // 薄い黄色
 
                 dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
                 dataGridView1.ColumnHeadersHeight = 25;
 
                 // 0列目はaccessでは行ヘッダのため、ずらす
-                dataGridView1.Columns[0].Width = 1800 / twipperdot;
-                dataGridView1.Columns[1].Width = 400 / twipperdot;
-                dataGridView1.Columns[2].Width = 2000 / twipperdot;
-                dataGridView1.Columns[3].Width = 2000 / twipperdot;
-                dataGridView1.Columns[4].Width = 2000 / twipperdot;
-                dataGridView1.Columns[5].Width = 1500 / twipperdot;
-                dataGridView1.Columns[6].Width = 1500 / twipperdot;
-                dataGridView1.Columns[7].Width = 2200 / twipperdot;
-                dataGridView1.Columns[8].Width = 1500 / twipperdot;
-                dataGridView1.Columns[9].Width = 400 / twipperdot;
-                dataGridView1.Columns[10].Width = 400 / twipperdot;
-                dataGridView1.Columns[11].Width = 400 / twipperdot;
-                dataGridView1.Columns[12].Width = 400 / twipperdot;
+                dataGridView1.Columns[0].Width = 37 ;
+                dataGridView1.Columns[1].Width = 74 ;
+                dataGridView1.Columns[2].Width = 84 ;
+                dataGridView1.Columns[3].Width = 23 ;
+                dataGridView1.Columns[4].Width = 23 ;
+                dataGridView1.Columns[5].Width = 87 ;
+                dataGridView1.Columns[6].Width = 114 ;
+                dataGridView1.Columns[7].Width = 212 ;
+                dataGridView1.Columns[8].Width = 45 ;
+                dataGridView1.Columns[9].Width = 82 ;
+                dataGridView1.Columns[10].Width = 82 ;
+                dataGridView1.Columns[11].Width = 230 ;
+                dataGridView1.Columns[12].Width = 20 ;
+                dataGridView1.Columns[13].Width = 20;
+                dataGridView1.Columns[14].Width = 87;
+                dataGridView1.Columns[15].Width = 20;
 
                 if (strWhere == "")
                 {
                     初期表示ボタン.ForeColor = Color.FromArgb(255, 0, 0);
                     本日出荷分ボタン.ForeColor = Color.FromArgb(0, 0, 0);
                     前日出荷分ボタン.ForeColor = Color.FromArgb(0, 0, 0);
+                    翌日出荷分ボタン.ForeColor = Color.FromArgb(0, 0, 0);
                 }
                 else
                 {
                     初期表示ボタン.ForeColor = Color.FromArgb(0, 0, 0);
+
                     dtePrevious = DateTime.Now.AddDays(-1);
                     FunctionClass func = new FunctionClass();
-                    do
+
+                    //前日が休日なら営業日までさかのぼる
+                    while (func.OfficeClosed(cn, dtePrevious) == 1)
                     {
                         dtePrevious = dtePrevious.AddDays(-1);
-                    } while (func.OfficeClosed(cn, dtePrevious) == 1);
+                    }                                        
 
-                    if (dte受注日1.Date == DateTime.Now.Date && dte受注日2.Date == DateTime.Now.Date)
+                    //翌日が休日なら営業日まで進める
+                    dteNext = DateTime.Now.AddDays(+1);
+                    while (func.OfficeClosed(cn, dteNext) == 1) 
+                    {
+                        dteNext = dtePrevious.AddDays(+1);
+                    } 
+
+                    if (dte出荷予定日1.Date == DateTime.Now.Date && dte出荷予定日2.Date == DateTime.Now.Date)
                     {
                         本日出荷分ボタン.ForeColor = Color.FromArgb(255, 0, 0);
                         前日出荷分ボタン.ForeColor = Color.FromArgb(0, 0, 0);
+                        翌日出荷分ボタン.ForeColor = Color.FromArgb(0, 0, 0);
                     }
-                    else if (dte受注日1.Date == dtePrevious.Date && dte受注日2.Date == dtePrevious.Date)
+                    else if (dte出荷予定日1.Date == dtePrevious.Date && dte出荷予定日2.Date == dtePrevious.Date)
                     {
                         本日出荷分ボタン.ForeColor = Color.FromArgb(0, 0, 0);
                         前日出荷分ボタン.ForeColor = Color.FromArgb(255, 0, 0);
+                        翌日出荷分ボタン.ForeColor = Color.FromArgb(0, 0, 0);
+                    }
+                    else if (dte出荷予定日1.Date == dteNext.Date && dte出荷予定日2.Date == dteNext.Date)
+                    {
+                        本日出荷分ボタン.ForeColor = Color.FromArgb(0, 0, 0);
+                        前日出荷分ボタン.ForeColor = Color.FromArgb(0, 0, 0);
+                        翌日出荷分ボタン.ForeColor = Color.FromArgb(255, 0, 0);
                     }
                     else
                     {
                         本日出荷分ボタン.ForeColor = Color.FromArgb(0, 0, 0);
                         前日出荷分ボタン.ForeColor = Color.FromArgb(0, 0, 0);
+                        翌日出荷分ボタン.ForeColor = Color.FromArgb(0, 0, 0);
                     }
-                }
+                }                      
 
-                this.有効件数.Text = dataGridView1.RowCount.ToString();
-
-
-                return dataGridView1.RowCount;
+                return ;
                 //return 1;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Filtering - " + ex.Message);
-                return -1;
+                switch (ex.HResult)
+                {
+                    case 2757:
+                        MessageBox.Show("抽出の条件式が誤っている可能性があります。","");
+                        break;
+                    default:
+                        Console.WriteLine($"_Filter - {ex.HResult}: {ex.Message}");
+                        break;
+                }
+            }            
+        }
+
+        private void dataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            int value;                        
+
+            if (e.ColumnIndex == 0 || e.ColumnIndex == 15)
+            {
+                if (e.Value != null && !string.IsNullOrWhiteSpace(e.Value.ToString()))
+                {
+                    e.CellStyle.ForeColor = Color.Red; // 赤                    
+                }
+                else
+                {
+                    e.CellStyle.ForeColor = Color.Black; // 黒                    
+                }
+                e.Value = "■"; // 値を"■"に設定
             }
         }
 
@@ -449,16 +444,12 @@ namespace u_net
 
             if (e.RowIndex >= 0) // ヘッダー行でない場合
             {
-                string selectedData = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString(); // 1列目のデータを取得
-
-                if (!string.IsNullOrEmpty(dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString()))
-                {
-                    selectedData += "," + dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
-                }
-                F_受注 targetform = new F_受注();
-
-                targetform.varOpenArgs = selectedData;
-                targetform.ShowDialog();
+                this.dataGridView1.Focus();
+                F_受注 form = new F_受注();
+                form.varOpenArgs = $"{dataGridView1.SelectedRows[0].Cells[2].Value?.ToString()}," +
+                    $"{dataGridView1.SelectedRows[0].Cells[3].Value?.ToString()}";
+                form.ShowDialog();
+                                
             }
         }
 
@@ -518,18 +509,9 @@ namespace u_net
         private void コマンド抽出_Click(object sender, EventArgs e)
         {
             try
-            {
-                //if (frmSub != null)
-                //{
-                //    frmSub.Focus(); // サブフォームにフォーカスを設定
-
-                //    // 受注管理_抽出フォームを開く
-                //    F_受注管理_抽出 form = new F_受注管理_抽出();
-                //    form.ShowDialog();
-                //}
+            {                
                 this.dataGridView1.Focus(); // サブフォームにフォーカスを設定
-                // 受注管理_抽出フォームを開く
-                F_受注管理_抽出 form = new F_受注管理_抽出();
+                F_出荷管理_抽出 form = new F_出荷管理_抽出();
                 form.ShowDialog();
             }
             catch (Exception ex)
@@ -539,108 +521,133 @@ namespace u_net
         }
 
         private void コマンド出力_Click(object sender, EventArgs e)
-        {
-            //if (frmSub != null)
-            //{
-            //    frmSub.Focus(); // サブフォームにフォーカスを設定
-
-            //    // 受注管理出力フォームを開く
-            //    F_受注管理出力 form = new F_受注管理出力();
-            //    form.ShowDialog();
-            //}
+        {            
             this.dataGridView1.Focus();
-            F_受注管理出力 form = new F_受注管理出力();
+            F_出力 form = new F_出力();
             form.ShowDialog();
         }
 
         private void コマンド更新_Click(object sender, EventArgs e)
         {
-            //if (frmSub != null)
-            //{
-            //    frmSub.Focus(); // サブフォームにフォーカスを設定
-            //    frmSub.Requery(); // サブフォームを再クエリ
-            //}
             this.dataGridView1.Focus();
-            DoUpdate();
+            Filtering();
+            Cleargrid(dataGridView1);
         }
 
         private void コマンド検索_Click(object sender, EventArgs e)
         {
-            //if (frmSub != null)
-            //{
-            //    frmSub.Focus(); // サブフォームにフォーカスを設定
-
-            //    // 別のフォームを開く
-            //    F_検索コード form = new F_検索コード(this, "");
-            //    form.ShowDialog();
-            //}
-            this.dataGridView1.Focus();
-            F_検索コード form = new F_検索コード(this, "");
-            form.ShowDialog();
+            MessageBox.Show("検索は現在開発中です", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
-        private void Form_KeyDown(int KeyCode, int Shift)
+        private void FunctionKeyDown(object sender, KeyEventArgs e)
         {
-            //FunctionKeyDown(KeyCode, Shift);
+            try
+            {
+                switch (e.KeyCode)
+                {
+                    
+                    case Keys.F1:
+                        if (コマンド抽出.Enabled)
+                        {
+                            コマンド抽出.Focus();
+                            コマンド抽出_Click(sender, e);
+                        }
+                        break;
+                    case Keys.F2:
+                        if (コマンド検索.Enabled)
+                        {
+                            コマンド検索.Focus();
+                            コマンド検索_Click(sender, e);
+                        }
+                        break;
+                    case Keys.F3:
+                        if (コマンド更新.Enabled)
+                        {
+                            コマンド更新.Focus();
+                            コマンド更新_Click(sender, e);
+                        }
+                        break;
+                    case Keys.F4:
+                        
+                        break;
+                    case Keys.F5:
+                        if (コマンド受注.Enabled)
+                        {
+                            コマンド受注.Focus();
+                            コマンド受注_Click(sender, e);
+                        }
+                        break;
+                    case Keys.F6:
+                        if (コマンド現品票.Enabled)
+                        {
+                            コマンド現品票.Focus();
+                            コマンド現品票_Click(sender, e);
+                        }
+                        break;
+                    case Keys.F7:
+                        if (コマンド現品票印刷.Enabled)
+                        {
+                            コマンド現品票印刷.Focus();
+                            コマンド現品票印刷_Click(sender, e);
+                        }
+                        break;
+                    case Keys.F8:
+                        if (コマンド現品票全印刷.Enabled)
+                        {
+                            コマンド現品票全印刷.Focus();
+                            コマンド現品票全印刷_Click(sender, e);
+                        }
+                        break;
+                    case Keys.F9:
+                        if (コマンド印刷.Enabled)
+                        {
+                            コマンド印刷.Focus();
+                            コマンド印刷_Click(sender, e);
+                        }
+                        break;
+                    case Keys.F10:
+                        if (コマンド出力.Enabled)
+                        {
+                            コマンド出力.Focus();
+                            コマンド出力_Click(sender, e);
+                        }
+                        break;
+                    case Keys.F11:
+                        
+                        break;
+                    case Keys.F12:
+                        if (コマンド終了.Enabled)
+                        {
+                            コマンド終了.Focus();
+                            コマンド終了_Click(sender, e);
+                        }
+                        break;
+                    
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"{Name}_FunctionKeyDown - {ex.GetType().Name} : {ex.Message}");
+            }
         }
+
+        
 
         private void Form_Unload(object sender, FormClosedEventArgs e)
         {
             LocalSetting ls = new LocalSetting();
             // ウィンドウの配置情報を保存する
-            ls.SavePlace(CommonConstants.LoginUserCode, this);
-
-            //if (frmSub != null)
-            //{
-            //    frmSub.Visible = false;
-            //}
+            ls.SavePlace(CommonConstants.LoginUserCode, this);            
         }
-
-        private void Form_Open(int Cancel)
-        {
-            try
-            {
-                //API.SetFormIcon(this.Handle, Application.StartupPath + "\\list.ico");
-
-                //frmSub = this.サブ.Form; // YourSubFormに適切な型が必要です
-
-                intWindowHeight = this.Height;
-                intWindowWidth = this.Width;
-
-                // 初期設定
-                InitializeFilter();
-                this.ble受注完了承認指定 = true;
-                this.byt受注完了承認 = 2;
-
-                //// 初期ソート設定
-                //if (frmSub != null)
-                //{
-                //    frmSub.OrderBy = "受注コード DESC";
-                //    frmSub.CurrentOrder = frmSub.Controls["受注コードボタン"];
-                //    frmSub.CurrentOrder.ForeColor = System.Drawing.Color.FromArgb(0, 0, 255);
-                //}
-
-                ////Filtering;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"初期化に失敗しました。\n{this.Name}を開くことができません。\n\n{ex.GetType().Name} : {ex.Message}", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                this.Close();
-            }
-        }
-
+                
+        
         private void コマンド受注_Click(object sender, EventArgs e)
         {
-            //if (frmSub != null)
-            //{
-            //    frmSub.Focus(); // サブフォームにフォーカスを設定
-
-            //    // 受注フォームを開く
-            //    F_受注 form = new F_受注();
-            //    form.ShowDialog();
-            //}
+            
             this.dataGridView1.Focus();
             F_受注 form = new F_受注();
+            form.varOpenArgs = $"{dataGridView1.SelectedRows[0].Cells[2].Value?.ToString()}," +
+                $"{dataGridView1.SelectedRows[0].Cells[3].Value?.ToString()}";
             form.ShowDialog();
 
         }
@@ -655,8 +662,7 @@ namespace u_net
 
                     // 初期表示処理
                     InitializeFilter();
-                    ble受注完了承認指定 = true;
-                    byt受注完了承認 = 2;
+                    lng作業終了指定 = 2;                 
                     Filtering();
                 }
             }
@@ -669,48 +675,97 @@ namespace u_net
         private void 履歴トグル_CheckedChanged(object sender, EventArgs e)
         {
             dataGridView1.Focus();
-            ble履歴表示 = 履歴トグル.Checked;
+            bln履歴表示 = 履歴トグル.Checked;
             Filtering();
         }
 
         private void コマンド現品票全印刷_Click(object sender, EventArgs e)
         {
-
+            //出荷検査記録 13年以上前の検査表が必要？
         }
 
         private void コマンド現品票印刷_Click(object sender, EventArgs e)
         {
-
+            //出荷検査記録 13年以上前の検査表が必要？
         }
 
         private void コマンド現品票_Click(object sender, EventArgs e)
         {
-
+            MessageBox.Show("存在しないフォームを参照しています", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         private void コマンド印刷_Click(object sender, EventArgs e)
         {
-
+            //出荷管理 必要？
         }
 
         private void 前日出荷分ボタン_Click(object sender, EventArgs e)
         {
+            try
+            {
+                DateTime dtePrevious = DateTime.Now.AddDays(-1); // 前回出勤日（今回は前日）
+                
+                
+                InitializeFilter();
+                Connect();
+                FunctionClass func = new FunctionClass();
+                
+                while (func.OfficeClosed(cn, dtePrevious)==1)
+                {
+                    dtePrevious = dtePrevious.AddDays(-1);
+                }
+                                
+                dte出荷予定日1 = dtePrevious;
+                dte出荷予定日2 = dtePrevious;
 
+                // DoFilter メソッドの具体的な実装が不明なので、仮の実装としてメソッドを呼び出す
+                Filtering();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"前日出荷分ボタン_Click - {ex.Message}");
+            }
         }
 
         private void 本日出荷分ボタン_Click(object sender, EventArgs e)
         {
-
+            InitializeFilter();
+            dte出荷予定日1 = DateTime.Now.Date;
+            dte出荷予定日2 = DateTime.Now.Date;
+            Filtering();
         }
 
         private void 翌日出荷分ボタン_Click(object sender, EventArgs e)
         {
+            try
+            {
+                DateTime dteNext = DateTime.Now.AddDays(+1); // 翌日出勤日
 
+
+                InitializeFilter();
+                Connect();
+                FunctionClass func = new FunctionClass();
+
+                while (func.OfficeClosed(cn, dteNext) == 1)
+                {
+                    dteNext = dteNext.AddDays(+1);
+                }
+
+                dte出荷予定日1 = dteNext;
+                dte出荷予定日2 = dteNext;
+
+                // DoFilter メソッドの具体的な実装が不明なので、仮の実装としてメソッドを呼び出す
+                Filtering();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"前日出荷分ボタン_Click - {ex.Message}");
+            }
         }
 
         private void 最終製品検査記録プレビューボタン_Click(object sender, EventArgs e)
         {
-
+            //出荷検査記録 13年以上前の検査表が必要？
         }
 
         private void 最終製品検査記録印刷ボタン_Click(object sender, EventArgs e)

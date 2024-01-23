@@ -62,7 +62,7 @@ namespace u_net
             // 現在選択されているデータのコードを取得する
             get
             {
-                return dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value?.ToString();
+                return dataGridView1.SelectedRows[0].Cells[0].Value?.ToString();
             }
         }
         public string CurrentEdition
@@ -70,7 +70,7 @@ namespace u_net
             // 現在選択されているデータの版数を取得する
             get
             {
-                return dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[1].Value?.ToString();
+                return dataGridView1.SelectedRows[0].Cells[1].Value?.ToString();
             }
         }
         public F_受注管理()

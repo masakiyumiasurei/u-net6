@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using u_net.Public;
+using static u_net.Public.FunctionClass;
 
 namespace u_net
 {
@@ -21,7 +22,7 @@ namespace u_net
         }
 
         SqlConnection cn;
-
+        bool setflg = false;
         public void Connect()
         {
             Connection connectionInfo = new Connection();
@@ -42,52 +43,79 @@ namespace u_net
 
 
                 // 対象フォームが読み込まれていないときはすぐに終了する
-                //if (Application.OpenForms["F_出荷管理"] == null)
-                //{
-                //    MessageBox.Show("[出荷管理]画面が起動していない状態では実行できません。", "警告", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                //    this.Close();
-                //    return;
-                //}
-
-                //this.非含有証明書.DataSource = new KeyValuePair<long, String>[] {
-                //    new KeyValuePair<long, String>(1, "返却済み"),
-                //    new KeyValuePair<long, String>(2, "未返却"),
-                //    new KeyValuePair<long, String>(3, "未提出"),
-                //    new KeyValuePair<long, String>(4, "不明"),
-                //    new KeyValuePair<long, String>(0, "指定しない"),
-                //};
-                //this.非含有証明書.DisplayMember = "Value";
-                //this.非含有証明書.ValueMember = "Key";
+                if (Application.OpenForms["F_出荷管理旧"] == null)
+                {
+                    MessageBox.Show("[出荷管理]画面が起動していない状態では実行できません。", "警告", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    this.Close();
+                    return;
+                }
 
                 //開いているフォームのインスタンスを作成する
                 F_出荷管理旧 frmTarget = Application.OpenForms.OfType<F_出荷管理旧>().FirstOrDefault();
 
-                //品名.Text = frmTarget.str品名;
-                //型番.Text = frmTarget.str型番;
+                受注コード開始.Text = frmTarget.str受注コード開始.ToString();
+                受注コード終了.Text = frmTarget.str受注コード終了.ToString();
 
-                //if (frmTarget.dtm更新日開始 != DateTime.MinValue)
-                //    出荷予定日開始.Text = frmTarget.dtm更新日開始.ToString("yyyy/MM/dd");
-                //if (frmTarget.dtm更新日終了 != DateTime.MinValue)
-                //    出荷予定日終了.Text = frmTarget.dtm更新日終了.ToString("yyyy/MM/dd");
-                //更新者名.Text = frmTarget.str更新者名;
+                if (frmTarget.dte出荷予定日1 != DateTime.MinValue)
+                    出荷予定日開始.Text = frmTarget.dte出荷予定日1.ToString("yyyy/MM/dd");
+
+                if (frmTarget.dte出荷予定日2 != DateTime.MinValue)
+                    出荷予定日終了.Text = frmTarget.dte出荷予定日2.ToString("yyyy/MM/dd");
 
 
-                //switch (frmTarget.lng廃止指定)
-                //{
-                //    case 1:
-                //        廃止指定Button1.Checked = true;
-                //        break;
-                //    case 2:
-                //        廃止指定Button2.Checked = true;
-                //        break;
-                //    case 0:
-                //        廃止指定Button3.Checked = true;
-                //        break;
+                出荷コード開始.Text = frmTarget.str出荷コード開始.ToString();
+                出荷コード終了.Text = frmTarget.str出荷コード終了.ToString();
+                型番.Text = frmTarget.str型番.ToString();
+                型番詳細.Text = frmTarget.str型番詳細.ToString();
 
-                //    default:
 
-                //        break;
-                //}
+                switch (frmTarget.lngシリアル番号指定)
+                {
+                    case 1:
+                        シリアル番号指定1.Checked = true;
+                        break;
+                    case 2:
+                        シリアル番号指定2.Checked = true;
+                        break;
+                    case 0:
+                        シリアル番号指定3.Checked = true;
+                        break;
+
+                    default:
+                        break;
+                }                
+
+                if (frmTarget.lngシリアル番号開始 != -1)
+                    シリアル番号開始.Text = frmTarget.lngシリアル番号開始.ToString();
+
+                if (frmTarget.lngシリアル番号終了 != -1)
+                    シリアル番号終了.Text = frmTarget.lngシリアル番号終了.ToString();
+
+                発送先名.Text = frmTarget.str発送先名.ToString();
+                顧客コード.Text = frmTarget.str顧客コード.ToString();
+                顧客名.Text = frmTarget.str顧客名.ToString();
+
+                switch (frmTarget.lng作業終了指定)
+                {
+                    case 1:
+                        作業終了指定1.Checked = true;
+                        break;
+                    case 2:
+                        作業終了指定2.Checked = true;
+                        break;
+                    case 0:
+                        作業終了指定3.Checked = true;
+                        break;
+
+                    default:
+                        break;
+                }
+
+                if (frmTarget.dte作業終了日開始 != DateTime.MinValue)
+                    作業終了日開始.Text = frmTarget.dte作業終了日開始.ToString();
+
+                if (frmTarget.dte作業終了日終了 != DateTime.MinValue)
+                    作業終了日終了.Text = frmTarget.dte作業終了日終了.ToString();
 
             }
             catch (Exception ex)
@@ -99,53 +127,48 @@ namespace u_net
 
         private void 抽出ボタン_Click(object sender, EventArgs e)
         {
+            FunctionClass fn = new FunctionClass();
             try
             {
+                fn.DoWait("しばらくお待ちください...");
                 F_出荷管理旧? frmTarget = Application.OpenForms.OfType<F_出荷管理旧>().FirstOrDefault();
+                DateTime dt;
+                int num;
 
+                frmTarget.str受注コード開始 = Nz(受注コード開始.Text);
+                frmTarget.str受注コード終了 = Nz(受注コード終了.Text);
+                frmTarget.str出荷コード開始 = 出荷コード開始.Text;
+                frmTarget.str出荷コード終了 = 出荷コード終了.Text;
+                frmTarget.dte出荷予定日1 = DateTime.TryParse(出荷予定日開始.Text, out dt) ? dt : default(DateTime);
+                frmTarget.dte出荷予定日2 = DateTime.TryParse(出荷予定日終了.Text, out dt) ? dt : default(DateTime);
 
-                //frmTarget.str品名 = Nz(品名.Text);
-                //frmTarget.str型番 = Nz(型番.Text);
+                frmTarget.str型番 = Nz(型番.Text);
+                frmTarget.str型番詳細 = Nz(型番詳細.Text);
+                frmTarget.lngシリアル番号指定 = int.TryParse(シリアル番号指定.Text, out num) ? num : 0;
 
+                if (string.IsNullOrEmpty(シリアル番号開始.Text) || string.IsNullOrEmpty(シリアル番号終了.Text))
+                {
+                    frmTarget.lngシリアル番号開始 = -1;
+                    frmTarget.lngシリアル番号終了 = -1;
+                }
+                else
+                {
+                    frmTarget.lngシリアル番号開始 = int.Parse(シリアル番号開始.Text);
+                    frmTarget.lngシリアル番号終了 = int.Parse(シリアル番号終了.Text);
+                }
 
-                //if (シリアル番号指定1.Checked)
-                //{
-                //    frmTarget.lngRoHS対応 = 1;
-                //}
-                //else if (シリアル番号指定2.Checked)
-                //{
-                //    frmTarget.lngRoHS対応 = 2;
-                //}
-                //else if (シリアル番号指定3.Checked)
-                //{
-                //    frmTarget.lngRoHS対応 = 0;
-                //}
+                frmTarget.str発送先名 = Nz(発送先名.Text);
+                frmTarget.str顧客コード = Nz(顧客コード.Text);
+                frmTarget.str顧客名 = Nz(顧客名.Text);
+                frmTarget.lng作業終了指定 = int.Parse(作業終了指定.Text);
 
-                //frmTarget.lng非含有証明書 = 非含有証明書.SelectedValue != null ? Convert.ToInt64(非含有証明書.SelectedValue) : 0;
+                frmTarget.dte作業終了日開始 = DateTime.TryParse(作業終了日開始.Text, out dt) ? dt : default(DateTime);
+                frmTarget.dte作業終了日終了 = DateTime.TryParse(作業終了日終了.Text, out dt) ? dt : default(DateTime);
 
-                //frmTarget.dtm更新日開始 = string.IsNullOrEmpty(出荷予定日開始.Text) ?
-                //   DateTime.MinValue : DateTime.Parse(出荷予定日開始.Text);
+                // 抽出更新
 
-                //frmTarget.dtm更新日終了 = string.IsNullOrEmpty(出荷予定日終了.Text) ?
-                //    DateTime.MinValue : DateTime.Parse(出荷予定日終了.Text);
+                frmTarget.Filtering();
 
-                //frmTarget.str更新者名 = Nz(更新者名.Text);
-
-
-
-                //long cnt = frmTarget.DoUpdate();
-
-                //if (cnt == 0)
-                //{
-                //    MessageBox.Show("抽出条件に一致するデータはありません。", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                //    return;
-                //}
-                //else if (cnt < 0)
-                //{
-                //    MessageBox.Show("エラーが発生したため、抽出できませんでした。", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                //    return;
-                //}
             }
             catch (Exception ex)
             {
@@ -154,7 +177,7 @@ namespace u_net
             }
             finally
             {
-                //this.Painting = true;
+                if (fn.WaitForm != null) fn.WaitForm.Close();
                 this.Close();
             }
         }
@@ -179,12 +202,12 @@ namespace u_net
 
         private void 出荷コード開始_Leave(object sender, EventArgs e)
         {
-
+            FunctionClass.AdjustRange(出荷コード開始, 出荷コード終了, sender as Control);
         }
 
         private void 出荷コード終了_Leave(object sender, EventArgs e)
         {
-
+            FunctionClass.AdjustRange(出荷コード開始, 出荷コード終了, sender as Control);
         }
 
         private void 出荷予定日開始選択ボタン_Click(object sender, EventArgs e)
@@ -220,6 +243,7 @@ namespace u_net
             {
                 出荷予定日開始選択ボタン_Click(sender, e);
             }
+            
         }
 
         private void 出荷予定日終了選択ボタン_Click(object sender, EventArgs e)
@@ -287,25 +311,17 @@ namespace u_net
                     break;
             }
         }
-
-        private void 受注コード開始_KeyPress(object sender, KeyPressEventArgs e)
-        {
-
-        }
+                
 
         private void 受注コード開始_Leave(object sender, EventArgs e)
         {
-
+            FunctionClass.AdjustRange(受注コード開始, 受注コード終了, sender as Control);
         }
-
-        private void 受注コード終了_KeyPress(object sender, KeyPressEventArgs e)
-        {
-
-        }
+                
 
         private void 受注コード終了_Leave(object sender, EventArgs e)
         {
-
+            FunctionClass.AdjustRange(受注コード開始, 受注コード終了, sender as Control);
         }
 
         private void 型番_TextChanged(object sender, EventArgs e)
@@ -350,7 +366,7 @@ namespace u_net
 
         private void シリアル番号開始_Leave(object sender, EventArgs e)
         {
-
+            FunctionClass.AdjustRange(シリアル番号開始, シリアル番号終了, sender as Control);
         }
 
         private void シリアル番号開始_Validated(object sender, EventArgs e)
@@ -360,7 +376,7 @@ namespace u_net
 
         private void シリアル番号終了_Leave(object sender, EventArgs e)
         {
-
+            FunctionClass.AdjustRange(シリアル番号開始, シリアル番号終了, sender as Control);
         }
 
         private void シリアル番号終了_Validated(object sender, EventArgs e)
@@ -380,9 +396,25 @@ namespace u_net
 
         private void 顧客コード_DoubleClick(object sender, EventArgs e)
         {
-
+            F_検索 SearchForm = new F_検索();
+            SearchForm.FilterName = "顧客名フリガナ";
+            if (SearchForm.ShowDialog() == DialogResult.OK)
+            {
+                setflg = true;
+                string SelectedCode = SearchForm.SelectedCode;
+                顧客コード.Text = SelectedCode;
+                顧客名.Focus();
+            }
         }
 
+        private void 顧客名_Validated(object sender, EventArgs e)
+        {
+            if (!setflg)
+            {
+                顧客コード.Text = null;
+            }
+            setflg = false;
+        }
         private void 顧客コード_Enter(object sender, EventArgs e)
         {
             toolStripStatusLabel1.Text = "■顧客を検索するには入力欄をダブルクリックしてください。";
@@ -400,7 +432,15 @@ namespace u_net
 
         private void 顧客コード検索ボタン_Click(object sender, EventArgs e)
         {
-
+            F_検索 SearchForm = new F_検索();
+            SearchForm.FilterName = "顧客名フリガナ";
+            if (SearchForm.ShowDialog() == DialogResult.OK)
+            {
+                setflg = true;
+                string SelectedCode = SearchForm.SelectedCode;
+                顧客コード.Text = SelectedCode;
+                顧客名.Focus();
+            }
         }
 
         private void 作業終了日開始選択ボタン_Click(object sender, EventArgs e)
@@ -496,12 +536,51 @@ namespace u_net
 
         private void 作業終了日開始_Validated(object sender, EventArgs e)
         {
-
+            作業終了指定.Text = "1";
         }
 
         private void 作業終了日終了_Validated(object sender, EventArgs e)
         {
-
+            作業終了指定.Text = "1";
         }
+
+        private void 受注コード開始_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Return)
+            {
+                string strCode = ActiveControl.Text;
+
+                if (string.IsNullOrEmpty(strCode))
+                    return;
+
+                strCode = FunctionClass.FormatCode("A", strCode);
+
+                if (strCode != ActiveControl.Text)
+                {
+                    ActiveControl.Text = strCode;
+                }
+            }
+        }
+
+        private void 受注コード終了_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Return)
+            {
+                string strCode = ActiveControl.Text;
+
+                if (string.IsNullOrEmpty(strCode))
+                    return;
+
+                strCode = FunctionClass.FormatCode("A", strCode);
+
+                if (strCode != ActiveControl.Text)
+                {
+                    ActiveControl.Text = strCode;
+                }
+            }
+        }
+
+
+
     }
 }
