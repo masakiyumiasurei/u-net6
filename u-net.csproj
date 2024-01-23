@@ -52,6 +52,10 @@
     <Compile Include="MultiRowDesigner\商品明細.Designer.cs" />
     <Compile Include="MultiRowDesigner\商品明細テンプレート.cs" />
     <Compile Include="MultiRowDesigner\商品明細テンプレート.Designer.cs" />
+    <Compile Include="MultiRowDesigner\年間教育計画サブ.cs" />
+    <Compile Include="MultiRowDesigner\年間教育計画サブ.Designer.cs" />
+    <Compile Include="MultiRowDesigner\年間教育計画サブテンプレート.cs" />
+    <Compile Include="MultiRowDesigner\年間教育計画サブテンプレート.Designer.cs" />
     <Compile Include="MultiRowDesigner\支払明細.cs" />
     <Compile Include="MultiRowDesigner\支払明細.Designer.cs" />
     <Compile Include="MultiRowDesigner\支払明細テンプレート.cs" />
@@ -130,6 +134,7 @@
     <EmbeddedResource Include="MultiRowDesigner\受注明細テンプレート.resx" />
     <EmbeddedResource Include="MultiRowDesigner\商品明細.resx" />
     <EmbeddedResource Include="MultiRowDesigner\商品明細テンプレート.resx" />
+    <EmbeddedResource Include="MultiRowDesigner\年間教育計画サブ.resx" />
     <EmbeddedResource Include="MultiRowDesigner\支払明細.resx" />
     <EmbeddedResource Include="MultiRowDesigner\支払明細テンプレート.resx" />
     <EmbeddedResource Include="MultiRowDesigner\文書添付.resx" />
@@ -175,6 +180,9 @@
     <Compile Update="Form\F_ファックス送信テスト.cs" />
     <Compile Update="Form\F_ファックス抽出設定.cs" />
     <Compile Update="Form\F_グループ.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Form\F_年間教育計画.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Form\F_出荷管理_抽出.cs">

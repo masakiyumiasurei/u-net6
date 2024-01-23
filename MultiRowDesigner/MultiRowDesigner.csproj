@@ -44,6 +44,18 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="年間教育計画サブ.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="年間教育計画サブ.Designer.cs">
+      <DependentUpon>年間教育計画サブ.cs</DependentUpon>
+    </Compile>
+    <Compile Include="年間教育計画サブテンプレート.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="年間教育計画サブテンプレート.designer.cs">
+      <DependentUpon>年間教育計画サブテンプレート.cs</DependentUpon>
+    </Compile>
     <Compile Include="文書添付テンプレート.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -317,6 +329,12 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="年間教育計画サブ.resx">
+      <DependentUpon>年間教育計画サブ.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="年間教育計画サブテンプレート.resx">
+      <DependentUpon>年間教育計画サブテンプレート.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="文書添付テンプレート.resx">
       <DependentUpon>文書添付テンプレート.cs</DependentUpon>
