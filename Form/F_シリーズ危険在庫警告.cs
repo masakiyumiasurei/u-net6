@@ -128,7 +128,7 @@ namespace u_net
 
                 //0列目はaccessでは行ヘッダのため、ずらす
 
-                dataGridView1.Columns[0].Width = 1000 / twipperdot; //1150
+                dataGridView1.Columns[0].Width = 1100 / twipperdot; //1150
                 dataGridView1.Columns[1].Width = 2000 / twipperdot;
                 dataGridView1.Columns[2].Width = 500 / twipperdot;
                 dataGridView1.Columns[3].Width = 1300 / twipperdot;
@@ -142,8 +142,7 @@ namespace u_net
 
                 for (int lngRow = dataGridView1.FirstDisplayedCell.RowIndex; lngRow < dataGridView1.Rows.Count; lngRow++)
                 {
-                    // 行番号を表示する
-                    dataGridView1.Rows[lngRow].Cells[0].Value = lngRow + 1;
+                    
                     dataGridView1.Rows[lngRow].Cells[0].Style.BackColor = Color.FromArgb(250, 250, 150);
 
                     // 残在庫が下限値以下のシリーズに対し、視覚的に強調表示する

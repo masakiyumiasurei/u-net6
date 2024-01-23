@@ -248,7 +248,7 @@ namespace u_net
                 }
 
                 fn.WaitForm.Close();
-            
+
                 this.Close();
             }
             catch
@@ -814,6 +814,16 @@ namespace u_net
             OriginalClass.SetComboBoxAppearance((ComboBox)sender, e, new int[] { 200, 0 }, new string[] { "Display", "Display2" });
             申請者コード.Invalidate();
             申請者コード.DroppedDown = true;
+        }
+
+        private void F_購買申請管理_抽出_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Return:
+                    SelectNextControl(ActiveControl, true, true, true, true);
+                    break;
+            }
         }
 
         // Nz メソッドの代替

@@ -49,6 +49,10 @@ namespace u_net
                     return;
                 }
 
+                foreach (Control control in Controls)
+                {
+                    control.PreviewKeyDown += OriginalClass.ValidateCheck;
+                }
                 //コンボボックスの設定
                 OriginalClass ofn = new OriginalClass();
                 ofn.SetComboBox(自社担当者コード, "SELECT T受注.[自社担当者コード] AS Value, T受注.[自社担当者コード] AS Display, T受注.自社担当者名 AS Display2 FROM T受注 INNER JOIN V受注_最大版数 ON T受注.[受注コード] = V受注_最大版数.[受注コード] AND T受注.受注版数 = V受注_最大版数.最大版数 LEFT OUTER JOIN M社員 ON T受注.[自社担当者コード] = M社員.[社員コード] GROUP BY T受注.[自社担当者コード], T受注.自社担当者名, M社員.ふりがな ORDER BY M社員.ふりがな");

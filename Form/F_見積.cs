@@ -1515,7 +1515,30 @@ namespace u_net
 
         private void 文書グループ登録ボタン_Click(object sender, EventArgs e)
         {
-            // TODO:文書管理
+            Connect();
+                        
+            string strDocumentCode = CurrentCode;
+            if (string.IsNullOrEmpty(strDocumentCode)) return;
+            // 本データがグループに登録済みかどうかを判断する
+            switch (FunctionClass.DetectGroupMember(cn, strDocumentCode))
+            {
+                case 0:
+                    // グループに登録済みでない場合
+                    F_グループ form = new F_グループ();
+                    form.args= strDocumentCode;
+                    form.ShowDialog();
+                    break;
+                case 1:
+                    // グループに登録済みの場合
+                    F_リンク form2 = new F_リンク();
+                    form2.args = strDocumentCode;
+                    form2.ShowDialog();
+                    break;
+                case -1:
+                    // エラーのため実行できない場合
+                    MessageBox.Show("エラーのため実行できません。", this.Name, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    break;
+            }
         }
 
         private void コマンド承認_Click(object sender, EventArgs e)

@@ -55,15 +55,31 @@ namespace u_net
             // 現在選択されているデータのコードを取得する
             get
             {
-                return dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value?.ToString();
+
+                if (dataGridView1.SelectedRows.Count > 0)
+                {
+                    return dataGridView1.SelectedRows[0].Cells[0].Value?.ToString();
+                }
+                else
+                {
+                    // エラーが発生した場合の処理を記述
+                    return "";
+                }
             }
         }
-        public string CurrentEdition
+        public string? CurrentEdition
         {
             // 現在選択されているデータの版数を取得する
             get
             {
-                return dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[1].Value?.ToString();
+                if (dataGridView1.SelectedRows.Count > 0)
+                {
+                    return dataGridView1.SelectedRows[0].Cells[1].Value.ToString();
+                }
+                else
+                {
+                    return "";
+                }
             }
         }
         public void Connect()
@@ -811,19 +827,22 @@ namespace u_net
 
                 // 現在のコードを取得
                 string strDocumentCode = CurrentCode;
-
+                if (string.IsNullOrEmpty(strDocumentCode)) return;
                 // 本データがグループに登録済みかどうかを判断する
                 switch (FunctionClass.DetectGroupMember(cn, strDocumentCode))
                 {
                     case 0:
                         // グループに登録済みでない場合
-                        //F_グループ form = new F_グループ(strDocumentCode);
-                        //form.ShowDialog();
+                        
+                        F_グループ form = new F_グループ();
+                        form.args = strDocumentCode;
+                        form.ShowDialog();
                         break;
                     case 1:
                         // グループに登録済みの場合
-                        //F_リンク form1 = new F_リンク(strDocumentCode);
-                        //form1.ShowDialog();
+                        F_リンク form2 = new F_リンク();
+                        form2.args = strDocumentCode;
+                        form2.ShowDialog();
                         break;
                     case -1:
                         // エラーのため実行できない場合
