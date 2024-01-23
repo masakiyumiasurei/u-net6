@@ -16,6 +16,7 @@ using System.Drawing.Imaging;
 using System.Drawing.Printing;
 using GrapeCity.Win.MultiRow;
 using System.Xml.Linq;
+using Microsoft.IdentityModel.Tokens;
 
 namespace u_net.Public
 {
@@ -203,6 +204,52 @@ namespace u_net.Public
             }
 
             return true;
+        }
+
+
+
+
+
+
+
+        public static void FlowControl(Form formObject, bool isReady, string controlTag = "", string exControlName1 = "", string exControlName2 = "")
+        {
+            foreach (Control ctlFetch in formObject.Controls)
+            {
+                if (ctlFetch.Name != exControlName1 && ctlFetch.Name != exControlName2 && !string.IsNullOrEmpty(ctlFetch.Tag.ToString()))
+                {
+                    if (ctlFetch.Tag == controlTag)
+                    {
+                        if (ctlFetch is TextBox textBox || ctlFetch is ComboBox comboBox)
+                        {
+                            if (ctlFetch.TabStop)
+                            {
+                                ctlFetch.Enabled = isReady;
+                                ctlFetch.BackColor = isReady ? System.Drawing.Color.White : System.Drawing.Color.FromArgb(255, 200, 200);
+                            }
+                        }
+                        else
+                        {
+                            ctlFetch.Enabled = isReady;
+                        }
+                    }
+                    else
+                    {
+                        if (ctlFetch is TextBox textBox || ctlFetch is ComboBox comboBox)
+                        {
+                            if (ctlFetch.TabStop)
+                            {
+                                ctlFetch.Enabled = !isReady;
+                                ctlFetch.BackColor = isReady ? System.Drawing.Color.White : System.Drawing.Color.FromArgb(255, 200, 200);
+                            }
+                        }
+                        else
+                        {
+                            ctlFetch.Enabled = !isReady;
+                        }
+                    }
+                }
+            }
         }
 
     }
