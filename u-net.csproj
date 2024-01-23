@@ -177,6 +177,9 @@
     <Compile Update="Form\F_グループ.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Form\F_出荷管理_抽出.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Form\F_リンク.cs">
       <SubType>Form</SubType>
     </Compile>

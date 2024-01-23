@@ -341,6 +341,8 @@ namespace u_net
             label58 = new Label();
             出向依頼書_出向日開始 = new TextBox();
             label59 = new Label();
+            送信先コード6 = new TextBox();
+            送信先コード6_ラベル = new Label();
             panel1.SuspendLayout();
             statusStrip1.SuspendLayout();
             システム配布記録.SuspendLayout();
@@ -2976,6 +2978,8 @@ namespace u_net
             // 
             // 文書添付パネル
             // 
+            文書添付パネル.Controls.Add(送信先コード6);
+            文書添付パネル.Controls.Add(送信先コード6_ラベル);
             文書添付パネル.Controls.Add(送信先コード5);
             文書添付パネル.Controls.Add(送信先コード5_ラベル);
             文書添付パネル.Controls.Add(送信先コード4);
@@ -4588,11 +4592,35 @@ namespace u_net
             label59.Text = "受付日(&D)";
             label59.TextAlign = ContentAlignment.MiddleLeft;
             // 
+            // 送信先コード6
+            // 
+            送信先コード6.BackColor = SystemColors.Window;
+            送信先コード6.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            送信先コード6.ImeMode = ImeMode.NoControl;
+            送信先コード6.Location = new Point(771, 29);
+            送信先コード6.Margin = new Padding(3, 2, 3, 2);
+            送信先コード6.Name = "送信先コード6";
+            送信先コード6.Size = new Size(65, 20);
+            送信先コード6.TabIndex = 10279;
+            送信先コード6.TabStop = false;
+            送信先コード6.Visible = false;
+            // 
+            // 送信先コード6_ラベル
+            // 
+            送信先コード6_ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            送信先コード6_ラベル.Location = new Point(771, 8);
+            送信先コード6_ラベル.Name = "送信先コード6_ラベル";
+            送信先コード6_ラベル.Size = new Size(65, 20);
+            送信先コード6_ラベル.TabIndex = 10278;
+            送信先コード6_ラベル.Text = "送信先部署";
+            送信先コード6_ラベル.TextAlign = ContentAlignment.MiddleLeft;
+            送信先コード6_ラベル.Visible = false;
+            // 
             // F_文書
             // 
             BackColor = SystemColors.Control;
             ClientSize = new Size(880, 659);
-            Controls.Add(出向依頼書パネル);
+            Controls.Add(文書添付パネル);
             Controls.Add(panel2);
             Controls.Add(label28);
             Controls.Add(通信欄);
@@ -5055,6 +5083,8 @@ namespace u_net
         private TextBox 出向依頼書_出向先住所;
         private TextBox 出向依頼書_出向先会社名;
         private Label label63;
+        private TextBox 送信先コード6;
+        private Label 送信先コード6_ラベル;
     }
 }
 
