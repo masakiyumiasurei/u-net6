@@ -137,6 +137,7 @@
             dataGridView1.RowTemplate.Height = 25;
             dataGridView1.Size = new Size(233, 487);
             dataGridView1.TabIndex = 5;
+            dataGridView1.CellClick += dataGridView1_CellClick;
             // 
             // グループ追加ボタン
             // 
@@ -180,7 +181,6 @@
             // 
             // グループ明細追加ボタン
             // 
-            グループ明細追加ボタン.Enabled = false;
             グループ明細追加ボタン.Location = new Point(302, 153);
             グループ明細追加ボタン.Margin = new Padding(3, 4, 3, 4);
             グループ明細追加ボタン.Name = "グループ明細追加ボタン";

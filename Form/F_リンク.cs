@@ -274,6 +274,11 @@ namespace u_net
 
         private void リンク解除ボタン_Click(object sender, EventArgs e)
         {
+            if(dataGridView1.SelectedRows.Count==0)
+            {
+                return;
+            }
+
             int lngNumber = Convert.ToInt32(Nz(dataGridView1.SelectedRows[0].Cells[0].Value));
             string strCode1 = Nz(dataGridView1.SelectedRows[0].Cells[2].Value.ToString());
 
