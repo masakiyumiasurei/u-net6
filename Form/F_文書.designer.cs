@@ -820,6 +820,7 @@ namespace u_net
             文書コード.TextChanged += 文書コード_TextChanged;
             文書コード.Enter += 文書コード_Enter;
             文書コード.KeyDown += 文書コード_KeyDown;
+            文書コード.KeyPress += 文書コード_KeyPress;
             文書コード.Leave += 文書コード_Leave;
             文書コード.Validating += 文書コード_Validating;
             文書コード.Validated += 文書コード_Validated;
@@ -933,6 +934,7 @@ namespace u_net
             版数.Size = new Size(54, 21);
             版数.TabIndex = 8;
             版数.DrawItem += 版数_DrawItem;
+            版数.SelectedIndexChanged += 版数_SelectedIndexChanged;
             版数.TextChanged += 版数_TextChanged;
             版数.Validating += 版数_Validating;
             版数.Validated += 版数_Validated;
@@ -1502,9 +1504,12 @@ namespace u_net
             文書名.Name = "文書名";
             文書名.Size = new Size(251, 21);
             文書名.TabIndex = 4;
+            文書名.DrawItem += 文書名_DrawItem;
             文書名.SelectedIndexChanged += 文書名_SelectedIndexChanged;
+            文書名.TextChanged += 文書名_TextChanged;
             文書名.Enter += 文書名_Enter;
             文書名.KeyDown += 文書名_KeyDown;
+            文書名.KeyPress += 文書名_KeyPress;
             文書名.Leave += 文書名_Leave;
             文書名.Validating += 文書名_Validating;
             文書名.Validated += 文書名_Validated;
@@ -1519,7 +1524,9 @@ namespace u_net
             分類コード.Name = "分類コード";
             分類コード.Size = new Size(102, 21);
             分類コード.TabIndex = 10;
+            分類コード.SelectedIndexChanged += 分類コード_SelectedIndexChanged;
             分類コード.KeyDown += 分類コード_KeyDown;
+            分類コード.KeyPress += 分類コード_KeyPress;
             分類コード.Validating += 分類コード_Validating;
             分類コード.Validated += 分類コード_Validated;
             // 
@@ -1536,6 +1543,7 @@ namespace u_net
             回答期限.TextChanged += 回答期限_TextChanged;
             回答期限.DoubleClick += 回答期限_DoubleClick;
             回答期限.KeyDown += 回答期限_KeyDown;
+            回答期限.KeyPress += 回答期限_KeyPress;
             回答期限.Validating += 回答期限_Validating;
             回答期限.Validated += 回答期限_Validated;
             // 
@@ -1717,9 +1725,11 @@ namespace u_net
             文書フローコード.Name = "文書フローコード";
             文書フローコード.Size = new Size(102, 21);
             文書フローコード.TabIndex = 14;
+            文書フローコード.SelectedIndexChanged += 文書フローコード_SelectedIndexChanged;
             文書フローコード.TextChanged += 文書フローコード_TextChanged;
             文書フローコード.Enter += 文書フローコード_Enter;
             文書フローコード.KeyDown += 文書フローコード_KeyDown;
+            文書フローコード.KeyPress += 文書フローコード_KeyPress;
             文書フローコード.Leave += 文書フローコード_Leave;
             文書フローコード.Validating += 文書フローコード_Validating;
             文書フローコード.Validated += 文書フローコード_Validated;
@@ -1734,9 +1744,12 @@ namespace u_net
             発信者コード.Name = "発信者コード";
             発信者コード.Size = new Size(84, 21);
             発信者コード.TabIndex = 16;
+            発信者コード.DrawItem += 発信者コード_DrawItem;
             発信者コード.SelectedIndexChanged += 発信者コード_SelectedIndexChanged;
+            発信者コード.TextChanged += 発信者コード_TextChanged;
             発信者コード.Enter += 発信者コード_Enter;
             発信者コード.KeyDown += 発信者コード_KeyDown;
+            発信者コード.KeyPress += 発信者コード_KeyPress;
             発信者コード.Leave += 発信者コード_Leave;
             発信者コード.Validating += 発信者コード_Validating;
             発信者コード.Validated += 発信者コード_Validated;
@@ -1913,7 +1926,9 @@ namespace u_net
             担当者コード6.Name = "担当者コード6";
             担当者コード6.Size = new Size(69, 21);
             担当者コード6.TabIndex = 20;
+            担当者コード6.DrawItem += 担当者コード6_DrawItem;
             担当者コード6.SelectedIndexChanged += 担当者コード6_SelectedIndexChanged;
+            担当者コード6.TextChanged += 担当者コード6_TextChanged;
             担当者コード6.Enter += 担当者コード6_Enter;
             担当者コード6.Leave += 担当者コード6_Leave;
             担当者コード6.Validating += 担当者コード6_Validating;
@@ -2044,8 +2059,12 @@ namespace u_net
             担当者コード1.Name = "担当者コード1";
             担当者コード1.Size = new Size(69, 21);
             担当者コード1.TabIndex = 24;
+            担当者コード1.DrawItem += 担当者コード1_DrawItem;
+            担当者コード1.SelectedIndexChanged += 担当者コード1_SelectedIndexChanged;
+            担当者コード1.TextChanged += 担当者コード1_TextChanged;
             担当者コード1.Enter += 担当者コード1_Enter;
             担当者コード1.Leave += 担当者コード1_Leave;
+            担当者コード1.Validating += 担当者コード1_Validating;
             // 
             // label5
             // 
@@ -2166,7 +2185,9 @@ namespace u_net
             担当者コード2.Name = "担当者コード2";
             担当者コード2.Size = new Size(69, 21);
             担当者コード2.TabIndex = 28;
+            担当者コード2.DrawItem += 担当者コード2_DrawItem;
             担当者コード2.SelectedIndexChanged += 担当者コード2_SelectedIndexChanged;
+            担当者コード2.TextChanged += 担当者コード2_TextChanged;
             担当者コード2.Enter += 担当者コード2_Enter;
             担当者コード2.Leave += 担当者コード2_Leave;
             担当者コード2.Validating += 担当者コード2_Validating;
@@ -2550,6 +2571,8 @@ namespace u_net
             担当者コード3.Name = "担当者コード3";
             担当者コード3.Size = new Size(69, 21);
             担当者コード3.TabIndex = 32;
+            担当者コード3.DrawItem += 担当者コード3_DrawItem;
+            担当者コード3.SelectedIndexChanged += 担当者コード3_SelectedIndexChanged;
             担当者コード3.TextChanged += 担当者コード3_TextChanged;
             担当者コード3.Enter += 担当者コード3_Enter;
             担当者コード3.Leave += 担当者コード3_Leave;
@@ -2675,6 +2698,8 @@ namespace u_net
             担当者コード5.Name = "担当者コード5";
             担当者コード5.Size = new Size(69, 21);
             担当者コード5.TabIndex = 36;
+            担当者コード5.DrawItem += 担当者コード5_DrawItem;
+            担当者コード5.SelectedIndexChanged += 担当者コード5_SelectedIndexChanged;
             担当者コード5.TextChanged += 担当者コード5_TextChanged;
             担当者コード5.Enter += 担当者コード5_Enter;
             担当者コード5.Leave += 担当者コード5_Leave;
@@ -2800,7 +2825,10 @@ namespace u_net
             担当者コード4.Name = "担当者コード4";
             担当者コード4.Size = new Size(69, 21);
             担当者コード4.TabIndex = 40;
+            担当者コード4.DrawItem += 担当者コード4_DrawItem;
+            担当者コード4.SelectedIndexChanged += 担当者コード4_SelectedIndexChanged;
             担当者コード4.TextUpdate += 担当者コード4_TextUpdate;
+            担当者コード4.TextChanged += 担当者コード4_TextChanged;
             担当者コード4.Enter += 担当者コード4_Enter;
             担当者コード4.Leave += 担当者コード4_Leave;
             担当者コード4.Validating += 担当者コード4_Validating;
