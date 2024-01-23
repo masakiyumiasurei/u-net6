@@ -84,18 +84,19 @@ namespace u_net
                 using (SqlCommand cmd = new SqlCommand())
                 {
                     cmd.Connection = cn;
-                    cmd.CommandType = CommandType.Text;
+                    //cmd.CommandType = CommandType.Text;
 
-                    string strSQL = "SELECT * FROM Mグループ明細 WHERE グループコード=@GroupCode";
-                    cmd.CommandText = strSQL;
-                    cmd.Parameters.AddWithValue("@GroupCode", groupCode);
+                    //string strSQL = "SELECT * FROM Mグループ明細 WHERE グループコード=@GroupCode";
+                    //cmd.CommandText = strSQL;
+                    //cmd.Parameters.AddWithValue("@GroupCode", groupCode);
 
-                    using (SqlDataReader reader = cmd.ExecuteReader())
-                    {
-                        reader.Close();
+                    //using (SqlDataReader reader = cmd.ExecuteReader())
+                    //{
+                    // reader.Close();
 
-                        // 新しいレコードを追加
-                        strSQL = "INSERT INTO Mグループ明細 (グループコード, 明細番号, 行番号, 文書コード) " +
+                    // 新しいレコードを追加
+
+                    string strSQL = "INSERT INTO Mグループ明細 (グループコード, 明細番号, 行番号, 文書コード) " +
                                  "VALUES (@GroupCode, @Number, @LineNumber, @Code)";
                         cmd.CommandText = strSQL;
                         cmd.Parameters.Clear();
@@ -104,7 +105,7 @@ namespace u_net
                         cmd.Parameters.AddWithValue("@LineNumber", lineNumber);
                         cmd.Parameters.AddWithValue("@Code", code);
                         cmd.ExecuteNonQuery();
-                    }
+                    //}
                 }
 
                 return true;
@@ -287,6 +288,12 @@ namespace u_net
             }
         }
 
+        /// <summary>
+        /// 各種フォームの表示
+        /// </summary>
+        /// <param name="documentCode"></param>
+        /// <param name="documentEdition"></param>
+        /// <returns></returns>
         private bool DoOpen(string documentCode, int documentEdition)
         {
             bool isOpen = false;
@@ -316,6 +323,16 @@ namespace u_net
                     break;
 
                 case CommonConstants.CH_ESTIMATE:
+
+                    Form mitumoriForm = Application.OpenForms.Cast<Form>().FirstOrDefault(f => f.Name == "F_見積");
+
+                    if (mitumoriForm != null) 
+                    {
+                        MessageBox.Show("見積ウインドウは既に開いています。", "",MessageBoxButtons.OK,MessageBoxIcon.Error);    
+                        return true;
+                    }
+
+
                     F_見積 fm = new F_見積();
                     fm.varOpenArgs = $"{documentCode},{documentEdition}";
                     fm.ShowDialog();
@@ -323,6 +340,15 @@ namespace u_net
                     break;
 
                 case "ORD":
+
+                    Form hachuForm = Application.OpenForms.Cast<Form>().FirstOrDefault(f => f.Name == "F_発注");
+
+                    if (hachuForm != null)
+                    {
+                        MessageBox.Show("発注ウインドウは既に開いています。", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return false;
+                    }
+
                     F_発注 fm2 = new F_発注();
                     fm2.args = $"{documentCode},{documentEdition}";
                     fm2.ShowDialog();
@@ -336,7 +362,7 @@ namespace u_net
         public void SetDocumentInfo(SqlConnection cn, string code)
         {
             try
-            { 
+            {
                 string strKey;
                 string strSQL;
 
@@ -405,7 +431,7 @@ namespace u_net
         private void Form_Load(object sender, EventArgs e)
         {
             //テスト用
-            args = "EST00031787";
+           // args = "EST00031781";
 
             try
             {
@@ -419,7 +445,7 @@ namespace u_net
                 dataGridView1.RowHeadersVisible = false;
                 dataGridView2.RowHeadersVisible = false;
                 Setグループ();
-                                
+
                 if (!string.IsNullOrEmpty(args))
                 {
                     コード.Text = args.ToString();
@@ -435,12 +461,13 @@ namespace u_net
 
         private void グループ_AfterUpdate()
         {
-            object value = dataGridView1.Rows[0].Cells[0].Value;
+            object value = dataGridView1.SelectedRows[0].Cells[0].Value;
             int lngGroupCode = (value != null && int.TryParse(value.ToString(), out int result)) ? result : 0;
 
             if (lngGroupCode > 0)
             {
-                dataGridView2.Rows.Clear(); // DataGridViewのクリア
+                // dataGridView2.DataSource = null;
+                // dataGridView2.Rows.Clear(); // DataGridViewのクリア
 
                 string strSQL = $"SELECT 明細番号, 行番号 AS [No.], 文書コード, 版数, 文書名, 件名 " +
                                       $"FROM Vグループ明細 " +
@@ -451,7 +478,7 @@ namespace u_net
 
                 dataGridView2.Columns[0].Visible = false;
                 dataGridView2.Columns[1].Width = 30;
-                dataGridView2.Columns[2].Width = 120 ;
+                dataGridView2.Columns[2].Width = 120;
                 dataGridView2.Columns[3].Visible = false;
                 dataGridView2.Columns[4].Width = 170;
                 dataGridView2.Columns[5].Width = 400;
@@ -482,7 +509,7 @@ namespace u_net
 
         private void グループ追加ボタン_Click(object sender, EventArgs e)
         {
-            string strGroupName = dataGridView1.CurrentRow.Cells[1].Value?.ToString();
+            string strGroupName = グループ名.Text;
 
             if (string.IsNullOrEmpty(strGroupName))
             {
@@ -574,7 +601,7 @@ namespace u_net
         {
             try
             {
-                string? strGroupCode = dataGridView2.Rows[0].Cells[0].Value?.ToString();
+                string? strGroupCode = dataGridView1.SelectedRows[0].Cells[0].Value?.ToString();
                 string strCode = コード.Text;
                 string strName = 文書名.Text;
                 string strSubject = 件名.Text;
@@ -621,49 +648,63 @@ namespace u_net
 
         private void グループ明細削除ボタン_Click(object sender, EventArgs e)
         {
-            int intGroupCode = (int)(Nz(dataGridView1.CurrentRow.Cells[0].Value) ?? 0);
-            string strCode = (string)(Nz(dataGridView2.CurrentRow.Cells[2].Value) ?? string.Empty);
-            int intNumber = (int)(Nz(dataGridView2.CurrentRow.Cells[0].Value) ?? 0);
-
-            if (intGroupCode == 0 || string.IsNullOrEmpty(strCode) || intNumber == 0)
+            try
             {
-                return;
+                int intGroupCode = (int)(Nz(dataGridView1.SelectedRows[0].Cells[0].Value) ?? 0);
+                string strCode = (string)(Nz(dataGridView2.SelectedRows[0].Cells[2].Value) ?? string.Empty);
+                int intNumber = (int)(Nz(dataGridView2.SelectedRows[0].Cells[0].Value) ?? 0);
+
+                if (intGroupCode == 0 || string.IsNullOrEmpty(strCode) || intNumber == 0)
+                {
+                    return;
+                }
+
+                DialogResult result = MessageBox.Show(
+                    "文書 " + strCode + " をグループから削除しますか？",
+                    this.Name,
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question
+                );
+
+                if (result == DialogResult.No)
+                {
+                    return;
+                }
+                Connect();
+                if (FunctionClass.DeleteGroupMember(intGroupCode, intNumber, cn))
+                {
+                    グループ_AfterUpdate();
+
+                }
+                else
+                {
+                    MessageBox.Show("削除できませんでした。", this.Name, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
             }
-
-            DialogResult result = MessageBox.Show(
-                "文書 " + strCode + " をグループから削除しますか？",
-                this.Name,
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Question
-            );
-
-            if (result == DialogResult.No)
+            catch (Exception ex)
             {
-                return;
+                //Console.WriteLine("削除-" + ex.ToString());
+                Debug.WriteLine("削除-" +  ex.ToString());
             }
-            Connect();
-            if (FunctionClass.DeleteGroupMember(intGroupCode, intNumber, cn))
-            {
-                グループ_AfterUpdate();
-
-            }
-            else
-            {
-                MessageBox.Show("削除できませんでした。", this.Name, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            }
-
         }
 
         private void 文書参照ボタン_Click(object sender, EventArgs e)
         {
-            if (dataGridView2.SelectedRows == null) return;
-
-            string strCode = dataGridView2.SelectedRows[0].Cells[2].Value?.ToString();
-            int intEdition = Convert.ToInt32(dataGridView2.SelectedRows[0].Cells[3].Value);
-
-            if (!DoOpen(strCode, intEdition))
+            try
             {
-                MessageBox.Show("現在のバージョンでは選択文書の参照は対応していません。", this.Name, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                if (dataGridView2.SelectedRows.Count == 0) return;
+
+                string strCode = dataGridView2.SelectedRows[0].Cells[2].Value?.ToString();
+                int intEdition = Convert.ToInt32(dataGridView2.SelectedRows[0].Cells[3].Value);
+
+                if (!DoOpen(strCode, intEdition))
+                {
+                    MessageBox.Show("現在のバージョンでは選択文書の参照は対応していません。", this.Name, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("文書参照-" + ex.ToString());
             }
         }
 
@@ -698,6 +739,11 @@ namespace u_net
             {
                 MessageBox.Show("現在のバージョンでは選択文書の参照は対応していません。", this.Name, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            グループ_AfterUpdate();
         }
     }
 }
