@@ -117,6 +117,7 @@ namespace u_net
             製品企画書_発売予定日選択ボタン = new Button();
             製品企画書_会議開催日選択ボタン = new Button();
             設計審査会議事録_開催日選択ボタン = new Button();
+            設計製作依頼書_顧客コード検索ボタン = new Button();
             改版ボタン = new Button();
             文書名_ラベル = new Label();
             件名_ラベル = new Label();
@@ -471,6 +472,41 @@ namespace u_net
             設計審査会議事録_文書コード = new TextBox();
             label125 = new Label();
             label126 = new Label();
+            設計製作依頼書パネル = new Panel();
+            設計製作依頼書_付属書類 = new GroupBox();
+            label115 = new Label();
+            設計製作依頼書_付属文書2 = new CheckBox();
+            label114 = new Label();
+            設計製作依頼書_付属文書1 = new CheckBox();
+            label113 = new Label();
+            設計製作依頼書_付属文書3 = new CheckBox();
+            設計製作依頼書_付属書類指定 = new CheckBox();
+            設計製作依頼書_その他文書名 = new TextBox();
+            設計製作依頼書_型番 = new TextBox();
+            label121 = new Label();
+            label123 = new Label();
+            設計製作依頼書_客先担当者名 = new TextBox();
+            設計製作依頼書_顧客コード = new TextBox();
+            label127 = new Label();
+            設計製作依頼書_検討依頼書コード = new TextBox();
+            設計製作依頼書_顧客名 = new TextBox();
+            label129 = new Label();
+            label130 = new Label();
+            設計製作依頼書_依頼内容 = new TextBox();
+            設計製作依頼書_版数 = new TextBox();
+            設計製作依頼書_文書コード = new TextBox();
+            label132 = new Label();
+            label133 = new Label();
+            設計製作依頼書_受注コード = new TextBox();
+            label118 = new Label();
+            設計製作依頼書_標準価格 = new TextBox();
+            label119 = new Label();
+            label120 = new Label();
+            設計製作依頼書_数量 = new TextBox();
+            label128 = new Label();
+            label131 = new Label();
+            設計製作依頼書_リンク1ボタン = new Button();
+            設計製作依頼書_リンク2ボタン = new Button();
             panel1.SuspendLayout();
             statusStrip1.SuspendLayout();
             システム配布記録パネル.SuspendLayout();
@@ -488,6 +524,8 @@ namespace u_net
             是正予防処置報告書_環境パネル.SuspendLayout();
             製品企画書パネル.SuspendLayout();
             設計審査会議事録パネル.SuspendLayout();
+            設計製作依頼書パネル.SuspendLayout();
+            設計製作依頼書_付属書類.SuspendLayout();
             SuspendLayout();
             // 
             // コマンド終了
@@ -1445,6 +1483,19 @@ namespace u_net
             toolTip1.SetToolTip(設計審査会議事録_開催日選択ボタン, "カレンダー");
             設計審査会議事録_開催日選択ボタン.UseVisualStyleBackColor = true;
             設計審査会議事録_開催日選択ボタン.Click += 設計審査会議事録_開催日選択ボタン_Click;
+            // 
+            // 設計製作依頼書_顧客コード検索ボタン
+            // 
+            設計製作依頼書_顧客コード検索ボタン.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            設計製作依頼書_顧客コード検索ボタン.Location = new Point(190, 49);
+            設計製作依頼書_顧客コード検索ボタン.Margin = new Padding(4);
+            設計製作依頼書_顧客コード検索ボタン.Name = "設計製作依頼書_顧客コード検索ボタン";
+            設計製作依頼書_顧客コード検索ボタン.Size = new Size(20, 20);
+            設計製作依頼書_顧客コード検索ボタン.TabIndex = 21027;
+            設計製作依頼書_顧客コード検索ボタン.TabStop = false;
+            設計製作依頼書_顧客コード検索ボタン.Text = "▼";
+            toolTip1.SetToolTip(設計製作依頼書_顧客コード検索ボタン, "顧客検索");
+            設計製作依頼書_顧客コード検索ボタン.UseVisualStyleBackColor = true;
             // 
             // 改版ボタン
             // 
@@ -6793,11 +6844,565 @@ namespace u_net
             label126.Text = "開催日";
             label126.TextAlign = ContentAlignment.MiddleLeft;
             // 
+            // 設計製作依頼書パネル
+            // 
+            設計製作依頼書パネル.Controls.Add(設計製作依頼書_リンク2ボタン);
+            設計製作依頼書パネル.Controls.Add(設計製作依頼書_リンク1ボタン);
+            設計製作依頼書パネル.Controls.Add(label131);
+            設計製作依頼書パネル.Controls.Add(label128);
+            設計製作依頼書パネル.Controls.Add(設計製作依頼書_数量);
+            設計製作依頼書パネル.Controls.Add(label120);
+            設計製作依頼書パネル.Controls.Add(label119);
+            設計製作依頼書パネル.Controls.Add(設計製作依頼書_標準価格);
+            設計製作依頼書パネル.Controls.Add(label118);
+            設計製作依頼書パネル.Controls.Add(設計製作依頼書_受注コード);
+            設計製作依頼書パネル.Controls.Add(設計製作依頼書_付属書類);
+            設計製作依頼書パネル.Controls.Add(設計製作依頼書_型番);
+            設計製作依頼書パネル.Controls.Add(label121);
+            設計製作依頼書パネル.Controls.Add(label123);
+            設計製作依頼書パネル.Controls.Add(設計製作依頼書_客先担当者名);
+            設計製作依頼書パネル.Controls.Add(設計製作依頼書_顧客コード);
+            設計製作依頼書パネル.Controls.Add(label127);
+            設計製作依頼書パネル.Controls.Add(設計製作依頼書_顧客コード検索ボタン);
+            設計製作依頼書パネル.Controls.Add(設計製作依頼書_検討依頼書コード);
+            設計製作依頼書パネル.Controls.Add(設計製作依頼書_顧客名);
+            設計製作依頼書パネル.Controls.Add(label129);
+            設計製作依頼書パネル.Controls.Add(label130);
+            設計製作依頼書パネル.Controls.Add(設計製作依頼書_依頼内容);
+            設計製作依頼書パネル.Controls.Add(設計製作依頼書_版数);
+            設計製作依頼書パネル.Controls.Add(設計製作依頼書_文書コード);
+            設計製作依頼書パネル.Controls.Add(label132);
+            設計製作依頼書パネル.Controls.Add(label133);
+            設計製作依頼書パネル.Location = new Point(9, 226);
+            設計製作依頼書パネル.Name = "設計製作依頼書パネル";
+            設計製作依頼書パネル.Size = new Size(404, 376);
+            設計製作依頼書パネル.TabIndex = 17;
+            // 
+            // 設計製作依頼書_付属書類
+            // 
+            設計製作依頼書_付属書類.Controls.Add(label115);
+            設計製作依頼書_付属書類.Controls.Add(設計製作依頼書_付属文書2);
+            設計製作依頼書_付属書類.Controls.Add(label114);
+            設計製作依頼書_付属書類.Controls.Add(設計製作依頼書_付属文書1);
+            設計製作依頼書_付属書類.Controls.Add(label113);
+            設計製作依頼書_付属書類.Controls.Add(設計製作依頼書_付属文書3);
+            設計製作依頼書_付属書類.Controls.Add(設計製作依頼書_付属書類指定);
+            設計製作依頼書_付属書類.Controls.Add(設計製作依頼書_その他文書名);
+            設計製作依頼書_付属書類.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            設計製作依頼書_付属書類.Location = new Point(4, 311);
+            設計製作依頼書_付属書類.Name = "設計製作依頼書_付属書類";
+            設計製作依頼書_付属書類.Size = new Size(395, 60);
+            設計製作依頼書_付属書類.TabIndex = 34;
+            設計製作依頼書_付属書類.TabStop = false;
+            設計製作依頼書_付属書類.Text = "　付属書類";
+            // 
+            // label115
+            // 
+            label115.AllowDrop = true;
+            label115.AutoEllipsis = true;
+            label115.Enabled = false;
+            label115.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label115.ForeColor = SystemColors.ActiveCaptionText;
+            label115.ImageAlign = ContentAlignment.MiddleLeft;
+            label115.Location = new Point(188, 16);
+            label115.Margin = new Padding(0);
+            label115.Name = "label115";
+            label115.Size = new Size(80, 20);
+            label115.TabIndex = 21032;
+            label115.Text = "納入仕様書";
+            label115.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // 設計製作依頼書_付属文書2
+            // 
+            設計製作依頼書_付属文書2.AutoSize = true;
+            設計製作依頼書_付属文書2.CheckAlign = ContentAlignment.MiddleRight;
+            設計製作依頼書_付属文書2.Enabled = false;
+            設計製作依頼書_付属文書2.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            設計製作依頼書_付属文書2.Location = new Point(169, 20);
+            設計製作依頼書_付属文書2.Margin = new Padding(4, 3, 4, 3);
+            設計製作依頼書_付属文書2.Name = "設計製作依頼書_付属文書2";
+            設計製作依頼書_付属文書2.Size = new Size(15, 14);
+            設計製作依頼書_付属文書2.TabIndex = 37;
+            設計製作依頼書_付属文書2.UseVisualStyleBackColor = true;
+            設計製作依頼書_付属文書2.Validated += 設計製作依頼書_付属文書2_Validated;
+            // 
+            // label114
+            // 
+            label114.AllowDrop = true;
+            label114.AutoEllipsis = true;
+            label114.Enabled = false;
+            label114.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label114.ForeColor = SystemColors.ActiveCaptionText;
+            label114.ImageAlign = ContentAlignment.MiddleLeft;
+            label114.Location = new Point(52, 16);
+            label114.Margin = new Padding(0);
+            label114.Name = "label114";
+            label114.Size = new Size(80, 20);
+            label114.TabIndex = 21030;
+            label114.Text = "取扱説明書";
+            label114.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // 設計製作依頼書_付属文書1
+            // 
+            設計製作依頼書_付属文書1.AutoSize = true;
+            設計製作依頼書_付属文書1.CheckAlign = ContentAlignment.MiddleRight;
+            設計製作依頼書_付属文書1.Enabled = false;
+            設計製作依頼書_付属文書1.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            設計製作依頼書_付属文書1.Location = new Point(34, 20);
+            設計製作依頼書_付属文書1.Margin = new Padding(4, 3, 4, 3);
+            設計製作依頼書_付属文書1.Name = "設計製作依頼書_付属文書1";
+            設計製作依頼書_付属文書1.Size = new Size(15, 14);
+            設計製作依頼書_付属文書1.TabIndex = 36;
+            設計製作依頼書_付属文書1.UseVisualStyleBackColor = true;
+            設計製作依頼書_付属文書1.Validated += 設計製作依頼書_付属文書1_Validated;
+            // 
+            // label113
+            // 
+            label113.AllowDrop = true;
+            label113.AutoEllipsis = true;
+            label113.Enabled = false;
+            label113.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label113.ForeColor = SystemColors.ActiveCaptionText;
+            label113.ImageAlign = ContentAlignment.MiddleLeft;
+            label113.Location = new Point(52, 36);
+            label113.Margin = new Padding(0);
+            label113.Name = "label113";
+            label113.Size = new Size(80, 20);
+            label113.TabIndex = 21028;
+            label113.Text = "その他";
+            label113.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // 設計製作依頼書_付属文書3
+            // 
+            設計製作依頼書_付属文書3.AutoSize = true;
+            設計製作依頼書_付属文書3.CheckAlign = ContentAlignment.MiddleRight;
+            設計製作依頼書_付属文書3.Enabled = false;
+            設計製作依頼書_付属文書3.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            設計製作依頼書_付属文書3.Location = new Point(34, 40);
+            設計製作依頼書_付属文書3.Margin = new Padding(4, 3, 4, 3);
+            設計製作依頼書_付属文書3.Name = "設計製作依頼書_付属文書3";
+            設計製作依頼書_付属文書3.Size = new Size(15, 14);
+            設計製作依頼書_付属文書3.TabIndex = 38;
+            設計製作依頼書_付属文書3.UseVisualStyleBackColor = true;
+            設計製作依頼書_付属文書3.Validated += 設計製作依頼書_付属文書3_Validated;
+            // 
+            // 設計製作依頼書_付属書類指定
+            // 
+            設計製作依頼書_付属書類指定.AutoSize = true;
+            設計製作依頼書_付属書類指定.CheckAlign = ContentAlignment.MiddleRight;
+            設計製作依頼書_付属書類指定.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            設計製作依頼書_付属書類指定.Location = new Point(4, 0);
+            設計製作依頼書_付属書類指定.Margin = new Padding(4, 3, 4, 3);
+            設計製作依頼書_付属書類指定.Name = "設計製作依頼書_付属書類指定";
+            設計製作依頼書_付属書類指定.Size = new Size(15, 14);
+            設計製作依頼書_付属書類指定.TabIndex = 35;
+            設計製作依頼書_付属書類指定.UseVisualStyleBackColor = true;
+            設計製作依頼書_付属書類指定.Validating += 設計製作依頼書_付属書類指定_Validating;
+            設計製作依頼書_付属書類指定.Validated += 設計製作依頼書_付属書類指定_Validated;
+            // 
+            // 設計製作依頼書_その他文書名
+            // 
+            設計製作依頼書_その他文書名.BackColor = Color.White;
+            設計製作依頼書_その他文書名.Enabled = false;
+            設計製作依頼書_その他文書名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            設計製作依頼書_その他文書名.ImeMode = ImeMode.Hiragana;
+            設計製作依頼書_その他文書名.Location = new Point(135, 36);
+            設計製作依頼書_その他文書名.Margin = new Padding(3, 2, 3, 2);
+            設計製作依頼書_その他文書名.Name = "設計製作依頼書_その他文書名";
+            設計製作依頼書_その他文書名.Size = new Size(251, 20);
+            設計製作依頼書_その他文書名.TabIndex = 39;
+            設計製作依頼書_その他文書名.TextChanged += 設計製作依頼書_その他文書名_TextChanged;
+            設計製作依頼書_その他文書名.Validating += 設計製作依頼書_その他文書名_Validating;
+            設計製作依頼書_その他文書名.Validated += 設計製作依頼書_その他文書名_Validated;
+            // 
+            // 設計製作依頼書_型番
+            // 
+            設計製作依頼書_型番.BackColor = Color.White;
+            設計製作依頼書_型番.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            設計製作依頼書_型番.ImeMode = ImeMode.Alpha;
+            設計製作依頼書_型番.Location = new Point(86, 116);
+            設計製作依頼書_型番.Margin = new Padding(3, 2, 3, 2);
+            設計製作依頼書_型番.Name = "設計製作依頼書_型番";
+            設計製作依頼書_型番.Size = new Size(225, 20);
+            設計製作依頼書_型番.TabIndex = 27;
+            設計製作依頼書_型番.TextChanged += 設計製作依頼書_型番_TextChanged;
+            設計製作依頼書_型番.Validating += 設計製作依頼書_型番_Validating;
+            設計製作依頼書_型番.Validated += 設計製作依頼書_型番_Validated;
+            // 
+            // label121
+            // 
+            label121.AllowDrop = true;
+            label121.AutoEllipsis = true;
+            label121.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label121.ForeColor = SystemColors.ActiveCaptionText;
+            label121.ImageAlign = ContentAlignment.MiddleLeft;
+            label121.Location = new Point(0, 116);
+            label121.Margin = new Padding(0);
+            label121.Name = "label121";
+            label121.Size = new Size(85, 20);
+            label121.TabIndex = 26;
+            label121.Text = "型番";
+            label121.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // label123
+            // 
+            label123.AllowDrop = true;
+            label123.AutoEllipsis = true;
+            label123.Font = new Font("BIZ UDゴシック", 8.5F, FontStyle.Regular, GraphicsUnit.Point);
+            label123.ForeColor = SystemColors.ActiveCaptionText;
+            label123.ImageAlign = ContentAlignment.MiddleLeft;
+            label123.Location = new Point(0, 93);
+            label123.Margin = new Padding(0);
+            label123.Name = "label123";
+            label123.Size = new Size(85, 20);
+            label123.TabIndex = 24;
+            label123.Text = "顧客担当者名";
+            label123.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // 設計製作依頼書_客先担当者名
+            // 
+            設計製作依頼書_客先担当者名.BackColor = Color.White;
+            設計製作依頼書_客先担当者名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            設計製作依頼書_客先担当者名.ImeMode = ImeMode.Hiragana;
+            設計製作依頼書_客先担当者名.Location = new Point(86, 93);
+            設計製作依頼書_客先担当者名.Margin = new Padding(3, 2, 3, 2);
+            設計製作依頼書_客先担当者名.Name = "設計製作依頼書_客先担当者名";
+            設計製作依頼書_客先担当者名.Size = new Size(225, 20);
+            設計製作依頼書_客先担当者名.TabIndex = 25;
+            設計製作依頼書_客先担当者名.TextChanged += 設計製作依頼書_客先担当者名_TextChanged;
+            設計製作依頼書_客先担当者名.Validating += 設計製作依頼書_客先担当者名_Validating;
+            設計製作依頼書_客先担当者名.Validated += 設計製作依頼書_客先担当者名_Validated;
+            // 
+            // 設計製作依頼書_顧客コード
+            // 
+            設計製作依頼書_顧客コード.BackColor = Color.White;
+            設計製作依頼書_顧客コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            設計製作依頼書_顧客コード.ImeMode = ImeMode.Disable;
+            設計製作依頼書_顧客コード.Location = new Point(86, 49);
+            設計製作依頼書_顧客コード.Margin = new Padding(3, 2, 3, 2);
+            設計製作依頼書_顧客コード.Name = "設計製作依頼書_顧客コード";
+            設計製作依頼書_顧客コード.Size = new Size(102, 20);
+            設計製作依頼書_顧客コード.TabIndex = 21;
+            設計製作依頼書_顧客コード.TextChanged += 設計製作依頼書_顧客コード_TextChanged;
+            設計製作依頼書_顧客コード.DoubleClick += 設計製作依頼書_顧客コード_DoubleClick;
+            設計製作依頼書_顧客コード.KeyDown += 設計製作依頼書_顧客コード_KeyDown;
+            設計製作依頼書_顧客コード.KeyPress += 設計製作依頼書_顧客コード_KeyPress;
+            設計製作依頼書_顧客コード.Validating += 設計製作依頼書_顧客コード_Validating;
+            設計製作依頼書_顧客コード.Validated += 設計製作依頼書_顧客コード_Validated;
+            // 
+            // label127
+            // 
+            label127.AllowDrop = true;
+            label127.AutoEllipsis = true;
+            label127.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label127.ForeColor = SystemColors.ActiveCaptionText;
+            label127.ImageAlign = ContentAlignment.MiddleLeft;
+            label127.Location = new Point(0, 26);
+            label127.Margin = new Padding(0);
+            label127.Name = "label127";
+            label127.Size = new Size(85, 20);
+            label127.TabIndex = 18;
+            label127.Text = "受注コード";
+            label127.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // 設計製作依頼書_検討依頼書コード
+            // 
+            設計製作依頼書_検討依頼書コード.BackColor = Color.White;
+            設計製作依頼書_検討依頼書コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            設計製作依頼書_検討依頼書コード.ImeMode = ImeMode.Disable;
+            設計製作依頼書_検討依頼書コード.Location = new Point(86, 4);
+            設計製作依頼書_検討依頼書コード.Margin = new Padding(3, 2, 3, 2);
+            設計製作依頼書_検討依頼書コード.Name = "設計製作依頼書_検討依頼書コード";
+            設計製作依頼書_検討依頼書コード.Size = new Size(102, 20);
+            設計製作依頼書_検討依頼書コード.TabIndex = 17;
+            設計製作依頼書_検討依頼書コード.TextChanged += 設計製作依頼書_検討依頼書コード_TextChanged;
+            設計製作依頼書_検討依頼書コード.KeyDown += 設計製作依頼書_検討依頼書コード_KeyDown;
+            設計製作依頼書_検討依頼書コード.KeyPress += 設計製作依頼書_検討依頼書コード_KeyPress;
+            設計製作依頼書_検討依頼書コード.Validating += 設計製作依頼書_検討依頼書コード_Validating;
+            設計製作依頼書_検討依頼書コード.Validated += 設計製作依頼書_検討依頼書コード_Validated;
+            // 
+            // 設計製作依頼書_顧客名
+            // 
+            設計製作依頼書_顧客名.BackColor = Color.White;
+            設計製作依頼書_顧客名.Enabled = false;
+            設計製作依頼書_顧客名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            設計製作依頼書_顧客名.ImeMode = ImeMode.NoControl;
+            設計製作依頼書_顧客名.Location = new Point(86, 71);
+            設計製作依頼書_顧客名.Margin = new Padding(3, 2, 3, 2);
+            設計製作依頼書_顧客名.Name = "設計製作依頼書_顧客名";
+            設計製作依頼書_顧客名.ReadOnly = true;
+            設計製作依頼書_顧客名.Size = new Size(314, 20);
+            設計製作依頼書_顧客名.TabIndex = 23;
+            // 
+            // label129
+            // 
+            label129.AllowDrop = true;
+            label129.AutoEllipsis = true;
+            label129.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label129.ForeColor = SystemColors.ActiveCaptionText;
+            label129.ImageAlign = ContentAlignment.MiddleLeft;
+            label129.Location = new Point(0, 71);
+            label129.Margin = new Padding(0);
+            label129.Name = "label129";
+            label129.Size = new Size(85, 20);
+            label129.TabIndex = 22;
+            label129.Text = "顧客名";
+            label129.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // label130
+            // 
+            label130.AllowDrop = true;
+            label130.AutoEllipsis = true;
+            label130.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label130.ForeColor = SystemColors.ActiveCaptionText;
+            label130.ImageAlign = ContentAlignment.MiddleLeft;
+            label130.Location = new Point(0, 49);
+            label130.Margin = new Padding(0);
+            label130.Name = "label130";
+            label130.Size = new Size(85, 20);
+            label130.TabIndex = 20;
+            label130.Text = "顧客コード";
+            label130.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // 設計製作依頼書_依頼内容
+            // 
+            設計製作依頼書_依頼内容.BackColor = SystemColors.Window;
+            設計製作依頼書_依頼内容.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            設計製作依頼書_依頼内容.ImeMode = ImeMode.Hiragana;
+            設計製作依頼書_依頼内容.Location = new Point(4, 200);
+            設計製作依頼書_依頼内容.Margin = new Padding(3, 2, 3, 2);
+            設計製作依頼書_依頼内容.Multiline = true;
+            設計製作依頼書_依頼内容.Name = "設計製作依頼書_依頼内容";
+            設計製作依頼書_依頼内容.Size = new Size(396, 107);
+            設計製作依頼書_依頼内容.TabIndex = 33;
+            設計製作依頼書_依頼内容.TextChanged += 設計製作依頼書_依頼内容_TextChanged;
+            設計製作依頼書_依頼内容.DoubleClick += 設計製作依頼書_依頼内容_DoubleClick;
+            設計製作依頼書_依頼内容.Enter += 設計製作依頼書_依頼内容_Enter;
+            設計製作依頼書_依頼内容.Leave += 設計製作依頼書_依頼内容_Leave;
+            設計製作依頼書_依頼内容.Validating += 設計製作依頼書_依頼内容_Validating;
+            設計製作依頼書_依頼内容.Validated += 設計製作依頼書_依頼内容_Validated;
+            // 
+            // 設計製作依頼書_版数
+            // 
+            設計製作依頼書_版数.BackColor = Color.White;
+            設計製作依頼書_版数.Enabled = false;
+            設計製作依頼書_版数.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            設計製作依頼書_版数.ImeMode = ImeMode.Disable;
+            設計製作依頼書_版数.Location = new Point(360, 47);
+            設計製作依頼書_版数.Margin = new Padding(3, 2, 3, 2);
+            設計製作依頼書_版数.Name = "設計製作依頼書_版数";
+            設計製作依頼書_版数.ReadOnly = true;
+            設計製作依頼書_版数.Size = new Size(13, 20);
+            設計製作依頼書_版数.TabIndex = 10292;
+            設計製作依頼書_版数.TabStop = false;
+            設計製作依頼書_版数.Visible = false;
+            // 
+            // 設計製作依頼書_文書コード
+            // 
+            設計製作依頼書_文書コード.BackColor = Color.White;
+            設計製作依頼書_文書コード.Enabled = false;
+            設計製作依頼書_文書コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            設計製作依頼書_文書コード.ImeMode = ImeMode.Disable;
+            設計製作依頼書_文書コード.Location = new Point(341, 47);
+            設計製作依頼書_文書コード.Margin = new Padding(3, 2, 3, 2);
+            設計製作依頼書_文書コード.Name = "設計製作依頼書_文書コード";
+            設計製作依頼書_文書コード.ReadOnly = true;
+            設計製作依頼書_文書コード.Size = new Size(13, 20);
+            設計製作依頼書_文書コード.TabIndex = 10291;
+            設計製作依頼書_文書コード.TabStop = false;
+            設計製作依頼書_文書コード.Visible = false;
+            // 
+            // label132
+            // 
+            label132.AllowDrop = true;
+            label132.AutoEllipsis = true;
+            label132.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label132.ForeColor = SystemColors.ActiveCaptionText;
+            label132.ImageAlign = ContentAlignment.MiddleLeft;
+            label132.Location = new Point(1, 180);
+            label132.Margin = new Padding(0);
+            label132.Name = "label132";
+            label132.Size = new Size(399, 20);
+            label132.TabIndex = 32;
+            label132.Text = "依頼内容";
+            label132.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // label133
+            // 
+            label133.AllowDrop = true;
+            label133.AutoEllipsis = true;
+            label133.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label133.ForeColor = SystemColors.ActiveCaptionText;
+            label133.ImageAlign = ContentAlignment.MiddleLeft;
+            label133.Location = new Point(0, 4);
+            label133.Margin = new Padding(0);
+            label133.Name = "label133";
+            label133.Size = new Size(85, 20);
+            label133.TabIndex = 16;
+            label133.Text = "文書コード";
+            label133.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // 設計製作依頼書_受注コード
+            // 
+            設計製作依頼書_受注コード.BackColor = Color.White;
+            設計製作依頼書_受注コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            設計製作依頼書_受注コード.ImeMode = ImeMode.Disable;
+            設計製作依頼書_受注コード.Location = new Point(86, 26);
+            設計製作依頼書_受注コード.Margin = new Padding(3, 2, 3, 2);
+            設計製作依頼書_受注コード.Name = "設計製作依頼書_受注コード";
+            設計製作依頼書_受注コード.Size = new Size(102, 20);
+            設計製作依頼書_受注コード.TabIndex = 19;
+            設計製作依頼書_受注コード.TextChanged += 設計製作依頼書_受注コード_TextChanged;
+            設計製作依頼書_受注コード.DoubleClick += 設計製作依頼書_受注コード_DoubleClick;
+            設計製作依頼書_受注コード.KeyDown += 設計製作依頼書_受注コード_KeyDown;
+            設計製作依頼書_受注コード.KeyPress += 設計製作依頼書_受注コード_KeyPress;
+            設計製作依頼書_受注コード.Validating += 設計製作依頼書_受注コード_Validating;
+            設計製作依頼書_受注コード.Validated += 設計製作依頼書_受注コード_Validated;
+            // 
+            // label118
+            // 
+            label118.AllowDrop = true;
+            label118.AutoEllipsis = true;
+            label118.Font = new Font("BIZ UDゴシック", 8.5F, FontStyle.Regular, GraphicsUnit.Point);
+            label118.ForeColor = SystemColors.ActiveCaptionText;
+            label118.ImageAlign = ContentAlignment.MiddleLeft;
+            label118.Location = new Point(313, 92);
+            label118.Margin = new Padding(0);
+            label118.Name = "label118";
+            label118.Size = new Size(24, 20);
+            label118.TabIndex = 21029;
+            label118.Text = "様";
+            label118.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // 設計製作依頼書_標準価格
+            // 
+            設計製作依頼書_標準価格.BackColor = Color.White;
+            設計製作依頼書_標準価格.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            設計製作依頼書_標準価格.ImeMode = ImeMode.Disable;
+            設計製作依頼書_標準価格.Location = new Point(86, 138);
+            設計製作依頼書_標準価格.Margin = new Padding(3, 2, 3, 2);
+            設計製作依頼書_標準価格.Name = "設計製作依頼書_標準価格";
+            設計製作依頼書_標準価格.Size = new Size(103, 20);
+            設計製作依頼書_標準価格.TabIndex = 29;
+            設計製作依頼書_標準価格.TextChanged += 設計製作依頼書_標準価格_TextChanged;
+            設計製作依頼書_標準価格.Validating += 設計製作依頼書_標準価格_Validating;
+            設計製作依頼書_標準価格.Validated += 設計製作依頼書_標準価格_Validated;
+            // 
+            // label119
+            // 
+            label119.AllowDrop = true;
+            label119.AutoEllipsis = true;
+            label119.Font = new Font("BIZ UDゴシック", 8.5F, FontStyle.Regular, GraphicsUnit.Point);
+            label119.ForeColor = SystemColors.ActiveCaptionText;
+            label119.ImageAlign = ContentAlignment.MiddleLeft;
+            label119.Location = new Point(190, 138);
+            label119.Margin = new Padding(0);
+            label119.Name = "label119";
+            label119.Size = new Size(24, 20);
+            label119.TabIndex = 21031;
+            label119.Text = "円";
+            label119.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // label120
+            // 
+            label120.AllowDrop = true;
+            label120.AutoEllipsis = true;
+            label120.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label120.ForeColor = SystemColors.ActiveCaptionText;
+            label120.ImageAlign = ContentAlignment.MiddleLeft;
+            label120.Location = new Point(0, 138);
+            label120.Margin = new Padding(0);
+            label120.Name = "label120";
+            label120.Size = new Size(85, 20);
+            label120.TabIndex = 28;
+            label120.Text = "標準価格";
+            label120.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // 設計製作依頼書_数量
+            // 
+            設計製作依頼書_数量.BackColor = Color.White;
+            設計製作依頼書_数量.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            設計製作依頼書_数量.ImeMode = ImeMode.Disable;
+            設計製作依頼書_数量.Location = new Point(86, 160);
+            設計製作依頼書_数量.Margin = new Padding(3, 2, 3, 2);
+            設計製作依頼書_数量.Name = "設計製作依頼書_数量";
+            設計製作依頼書_数量.Size = new Size(103, 20);
+            設計製作依頼書_数量.TabIndex = 31;
+            設計製作依頼書_数量.TextChanged += 設計製作依頼書_数量_TextChanged;
+            設計製作依頼書_数量.Validating += 設計製作依頼書_数量_Validating;
+            設計製作依頼書_数量.Validated += 設計製作依頼書_数量_Validated;
+            // 
+            // label128
+            // 
+            label128.AllowDrop = true;
+            label128.AutoEllipsis = true;
+            label128.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label128.ForeColor = SystemColors.ActiveCaptionText;
+            label128.ImageAlign = ContentAlignment.MiddleLeft;
+            label128.Location = new Point(0, 159);
+            label128.Margin = new Padding(0);
+            label128.Name = "label128";
+            label128.Size = new Size(85, 20);
+            label128.TabIndex = 30;
+            label128.Text = "数量";
+            label128.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // label131
+            // 
+            label131.AllowDrop = true;
+            label131.AutoEllipsis = true;
+            label131.Font = new Font("BIZ UDゴシック", 8.5F, FontStyle.Regular, GraphicsUnit.Point);
+            label131.ForeColor = SystemColors.ActiveCaptionText;
+            label131.ImageAlign = ContentAlignment.MiddleLeft;
+            label131.Location = new Point(214, 4);
+            label131.Margin = new Padding(0);
+            label131.Name = "label131";
+            label131.Size = new Size(186, 20);
+            label131.TabIndex = 21035;
+            label131.Text = "※検討依頼書の文書コードです。";
+            label131.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // 設計製作依頼書_リンク1ボタン
+            // 
+            設計製作依頼書_リンク1ボタン.Enabled = false;
+            設計製作依頼書_リンク1ボタン.Font = new Font("メイリオ", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            設計製作依頼書_リンク1ボタン.ForeColor = Color.Navy;
+            設計製作依頼書_リンク1ボタン.Location = new Point(189, 3);
+            設計製作依頼書_リンク1ボタン.Margin = new Padding(0);
+            設計製作依頼書_リンク1ボタン.Name = "設計製作依頼書_リンク1ボタン";
+            設計製作依頼書_リンク1ボタン.Size = new Size(22, 22);
+            設計製作依頼書_リンク1ボタン.TabIndex = 21036;
+            設計製作依頼書_リンク1ボタン.TabStop = false;
+            設計製作依頼書_リンク1ボタン.Text = "➡";
+            設計製作依頼書_リンク1ボタン.TextAlign = ContentAlignment.TopCenter;
+            設計製作依頼書_リンク1ボタン.UseVisualStyleBackColor = true;
+            設計製作依頼書_リンク1ボタン.Click += 設計製作依頼書_リンク1ボタン_Click;
+            設計製作依頼書_リンク1ボタン.Enter += 設計製作依頼書_リンク1ボタン_Enter;
+            設計製作依頼書_リンク1ボタン.Leave += 設計製作依頼書_リンク1ボタン_Leave;
+            // 
+            // 設計製作依頼書_リンク2ボタン
+            // 
+            設計製作依頼書_リンク2ボタン.Font = new Font("メイリオ", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            設計製作依頼書_リンク2ボタン.ForeColor = Color.Navy;
+            設計製作依頼書_リンク2ボタン.Location = new Point(189, 25);
+            設計製作依頼書_リンク2ボタン.Margin = new Padding(0);
+            設計製作依頼書_リンク2ボタン.Name = "設計製作依頼書_リンク2ボタン";
+            設計製作依頼書_リンク2ボタン.Size = new Size(22, 22);
+            設計製作依頼書_リンク2ボタン.TabIndex = 21037;
+            設計製作依頼書_リンク2ボタン.TabStop = false;
+            設計製作依頼書_リンク2ボタン.Text = "➡";
+            設計製作依頼書_リンク2ボタン.TextAlign = ContentAlignment.TopCenter;
+            toolTip1.SetToolTip(設計製作依頼書_リンク2ボタン, "リンク");
+            設計製作依頼書_リンク2ボタン.UseVisualStyleBackColor = true;
+            設計製作依頼書_リンク2ボタン.Click += 設計製作依頼書_リンク2ボタン_Click;
+            設計製作依頼書_リンク2ボタン.Enter += 設計製作依頼書_リンク2ボタン_Enter;
+            設計製作依頼書_リンク2ボタン.Leave += 設計製作依頼書_リンク2ボタン_Leave;
+            // 
             // F_文書
             // 
             BackColor = SystemColors.Control;
             ClientSize = new Size(880, 659);
-            Controls.Add(設計審査会議事録パネル);
+            Controls.Add(設計製作依頼書パネル);
             Controls.Add(panel2);
             Controls.Add(label28);
             Controls.Add(通信欄);
@@ -6952,6 +7557,10 @@ namespace u_net
             製品企画書パネル.PerformLayout();
             設計審査会議事録パネル.ResumeLayout(false);
             設計審査会議事録パネル.PerformLayout();
+            設計製作依頼書パネル.ResumeLayout(false);
+            設計製作依頼書パネル.PerformLayout();
+            設計製作依頼書_付属書類.ResumeLayout(false);
+            設計製作依頼書_付属書類.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -7405,6 +8014,42 @@ namespace u_net
         private TextBox 設計審査会議事録_参加者;
         private TextBox 設計審査会議事録_企画書との相異;
         private Label label112;
+        private Panel 設計製作依頼書パネル;
+        private TextBox 設計製作依頼書_型番;
+        private Label label121;
+        private Label label123;
+        private TextBox 設計製作依頼書_客先担当者名;
+        private TextBox 設計製作依頼書_顧客コード;
+        private Label label127;
+        internal Button 設計製作依頼書_顧客コード検索ボタン;
+        private TextBox 設計製作依頼書_検討依頼書コード;
+        private TextBox 設計製作依頼書_顧客名;
+        private Label label129;
+        private Label label130;
+        private TextBox 設計製作依頼書_依頼内容;
+        private TextBox 設計製作依頼書_版数;
+        private TextBox 設計製作依頼書_文書コード;
+        private Label label132;
+        private Label label133;
+        private GroupBox 設計製作依頼書_付属書類;
+        private TextBox 設計製作依頼書_その他文書名;
+        private Label label113;
+        private CheckBox 設計製作依頼書_付属文書3;
+        private CheckBox 設計製作依頼書_付属書類指定;
+        private Label label115;
+        private CheckBox 設計製作依頼書_付属文書2;
+        private Label label114;
+        private CheckBox 設計製作依頼書_付属文書1;
+        private TextBox 設計製作依頼書_受注コード;
+        internal Button 設計製作依頼書_リンク1ボタン;
+        private Label label131;
+        private Label label128;
+        private TextBox 設計製作依頼書_数量;
+        private Label label120;
+        private Label label119;
+        private TextBox 設計製作依頼書_標準価格;
+        private Label label118;
+        internal Button 設計製作依頼書_リンク2ボタン;
     }
 }
 

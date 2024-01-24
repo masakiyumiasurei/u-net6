@@ -7012,6 +7012,249 @@ namespace u_net
 
         #endregion
 
+        private void 設計製作依頼書_検討依頼書コード_KeyDown(object sender, KeyEventArgs e)
+        {
 
+        }
+
+        private void 設計製作依頼書_検討依頼書コード_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+        }
+
+        private void 設計製作依頼書_検討依頼書コード_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設計製作依頼書_検討依頼書コード_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設計製作依頼書_検討依頼書コード_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void 設計製作依頼書_リンク1ボタン_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設計製作依頼書_リンク1ボタン_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設計製作依頼書_リンク1ボタン_Leave(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設計製作依頼書_リンク2ボタン_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設計製作依頼書_リンク2ボタン_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設計製作依頼書_リンク2ボタン_Leave(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設計製作依頼書_受注コード_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設計製作依頼書_受注コード_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void 設計製作依頼書_受注コード_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+        }
+
+        private void 設計製作依頼書_受注コード_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設計製作依頼書_受注コード_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設計製作依頼書_受注コード_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void 設計製作依頼書_顧客コード_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設計製作依頼書_顧客コード_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void 設計製作依頼書_顧客コード_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+        }
+
+        private void 設計製作依頼書_顧客コード_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設計製作依頼書_顧客コード_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設計製作依頼書_顧客コード_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void 設計製作依頼書_客先担当者名_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設計製作依頼書_客先担当者名_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設計製作依頼書_客先担当者名_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void 設計製作依頼書_型番_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設計製作依頼書_型番_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設計製作依頼書_型番_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void 設計製作依頼書_標準価格_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設計製作依頼書_標準価格_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設計製作依頼書_標準価格_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void 設計製作依頼書_数量_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設計製作依頼書_数量_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設計製作依頼書_数量_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void 設計製作依頼書_依頼内容_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設計製作依頼書_依頼内容_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設計製作依頼書_依頼内容_Leave(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設計製作依頼書_依頼内容_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設計製作依頼書_依頼内容_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設計製作依頼書_依頼内容_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void 設計製作依頼書_付属書類指定_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設計製作依頼書_付属書類指定_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void 設計製作依頼書_付属文書1_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設計製作依頼書_付属文書2_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設計製作依頼書_付属文書3_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設計製作依頼書_その他文書名_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設計製作依頼書_その他文書名_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設計製作依頼書_その他文書名_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
     }
 }
