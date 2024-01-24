@@ -5020,7 +5020,7 @@ namespace u_net
         {
             toolStripStatusLabel1.Text = "各種項目の説明";
         }
-     
+
 
 
         #region システム配布記録
@@ -6343,6 +6343,7 @@ namespace u_net
         #endregion
 
 
+        #region 是正予防処置報告書_環境
 
         private void 是正予防処置報告書_環境_発生日_TextChanged(object sender, EventArgs e)
         {
@@ -6433,5 +6434,832 @@ namespace u_net
         {
 
         }
+
+        #endregion
+
+
+        #region 製品企画書
+
+        private void 製品企画書_品名_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 製品企画書_品名_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 製品企画書_品名_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void 製品企画書_型番_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 製品企画書_型番_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 製品企画書_型番_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void 製品企画書_売上区分_TextUpdate(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 製品企画書_売上区分_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 製品企画書_売上区分_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void 製品企画書_顧客コード_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 製品企画書_顧客コード_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "■企画に関係する顧客の顧客コードを入力します。";
+        }
+
+        private void 製品企画書_顧客コード_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "各種項目の説明";
+        }
+
+        private void 製品企画書_顧客コード_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void 製品企画書_顧客コード_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+        }
+
+        private void 製品企画書_顧客コード_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 製品企画書_顧客コード_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 製品企画書_顧客コード_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void 製品企画書_顧客コード検索ボタン_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "■顧客検索ダイアログを表示。";
+        }
+
+        private void 製品企画書_顧客コード検索ボタン_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "各種項目の説明";
+        }
+
+        private void 製品企画書_顧客コード検索ボタン_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 製品企画書_年間販売数量_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 製品企画書_年間販売数量_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 製品企画書_年間販売数量_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void 製品企画書_標準価格_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 製品企画書_標準価格_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 製品企画書_標準価格_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void 製品企画書_自社開発費比率_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 製品企画書_自社開発費比率_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 製品企画書_自社開発費比率_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void 製品企画書_自社開発費比率_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "■自社対他社の開発費分担における自社比率を入力。";
+        }
+
+        private void 製品企画書_自社開発費比率_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "各種項目の説明";
+        }
+
+        private void 製品企画書_競合価格_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 製品企画書_競合価格_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 製品企画書_競合価格_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void 製品企画書_競合メーカー_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 製品企画書_競合メーカー_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 製品企画書_競合メーカー_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void 製品企画書_競合製品型番_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 製品企画書_競合製品型番_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 製品企画書_競合製品型番_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void 製品企画書_発売予定日_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 製品企画書_発売予定日_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+        }
+
+        private void 製品企画書_発売予定日_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 製品企画書_発売予定日_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 製品企画書_発売予定日_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void 製品企画書_発売予定日選択ボタン_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 製品企画書_会議開催日_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 製品企画書_会議開催日_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+        }
+
+        private void 製品企画書_会議開催日_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 製品企画書_会議開催日_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 製品企画書_会議開催日_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void 製品企画書_会議開催日選択ボタン_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 製品企画書_開発目的_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 製品企画書_開発目的_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "■ズームするには入力欄をダブルクリックしてください。";
+        }
+
+        private void 製品企画書_開発目的_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "各種項目の説明";
+        }
+
+        private void 製品企画書_開発目的_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 製品企画書_開発目的_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 製品企画書_開発目的_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void 製品企画書_製品概要_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 製品企画書_製品概要_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 製品企画書_製品概要_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 製品企画書_製品概要_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void 製品企画書_製品概要_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "■ズームするには入力欄をダブルクリックしてください。";
+        }
+
+        private void 製品企画書_製品概要_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "各種項目の説明";
+        }
+
+        private void 製品企画書_要求事項_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 製品企画書_要求事項_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 製品企画書_要求事項_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 製品企画書_要求事項_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void 製品企画書_要求事項_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "■ズームするには入力欄をダブルクリックしてください。";
+        }
+
+        private void 製品企画書_要求事項_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "各種項目の説明";
+        }
+
+        #endregion
+
+
+        #region 設計審査会議事録
+
+        private void 設計審査会議事録_開催日_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設計審査会議事録_開催日_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+        }
+
+        private void 設計審査会議事録_開催日_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "■入力欄をダブルクリックすると、日付をカレンダーから入力することができます。";
+        }
+
+        private void 設計審査会議事録_開催日_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "各種項目の説明";
+        }
+
+        private void 設計審査会議事録_開催日_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設計審査会議事録_開催日_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void 設計審査会議事録_開催日選択ボタン_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設計審査会議事録_開催場所_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "■全角５０文字まで入力できます。";
+        }
+
+        private void 設計審査会議事録_開催場所_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "各種項目の説明";
+        }
+
+        private void 設計審査会議事録_開催場所_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設計審査会議事録_開催場所_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void 設計審査会議事録_参加者_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "■全角１００文字まで入力できます。";
+        }
+
+        private void 設計審査会議事録_参加者_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "各種項目の説明";
+        }
+
+        private void 設計審査会議事録_参加者_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設計審査会議事録_参加者_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void 設計審査会議事録_企画書との相異_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設計審査会議事録_企画書との相異_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "■全角２，０００文字まで入力できます。";
+        }
+
+        private void 設計審査会議事録_企画書との相異_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "各種項目の説明";
+        }
+
+        private void 設計審査会議事録_企画書との相異_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設計審査会議事録_計画書との相異_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設計審査会議事録_計画書との相異_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "■全角２，０００文字まで入力できます。";
+        }
+
+        private void 設計審査会議事録_計画書との相異_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "各種項目の説明";
+        }
+
+        private void 設計審査会議事録_計画書との相異_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設計審査会議事録_構想資料との相異_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設計審査会議事録_構想資料との相異_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "■全角２，０００文字まで入力できます。";
+        }
+
+        private void 設計審査会議事録_構想資料との相異_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "各種項目の説明";
+        }
+
+        private void 設計審査会議事録_構想資料との相異_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設計審査会議事録_仕様書の確認_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設計審査会議事録_仕様書の確認_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "■全角２，０００文字まで入力できます。";
+        }
+
+        private void 設計審査会議事録_仕様書の確認_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "各種項目の説明";
+        }
+
+        private void 設計審査会議事録_仕様書の確認_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設計審査会議事録_改善点_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設計審査会議事録_改善点_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "■全角２，０００文字まで入力できます。";
+        }
+
+        private void 設計審査会議事録_改善点_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "各種項目の説明";
+        }
+
+        private void 設計審査会議事録_改善点_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設計審査会議事録_要望_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設計審査会議事録_要望_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "■全角２，０００文字まで入力できます。";
+        }
+
+        private void 設計審査会議事録_要望_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "各種項目の説明";
+        }
+
+        private void 設計審査会議事録_要望_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設計審査会議事録_結論_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設計審査会議事録_結論_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "■全角２，０００文字まで入力できます。";
+        }
+
+        private void 設計審査会議事録_結論_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "各種項目の説明";
+        }
+
+        private void 設計審査会議事録_結論_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        #endregion
+
+
+        #region 設計製作依頼書
+
+        private void 設計製作依頼書_検討依頼書コード_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void 設計製作依頼書_検討依頼書コード_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+        }
+
+        private void 設計製作依頼書_検討依頼書コード_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設計製作依頼書_検討依頼書コード_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設計製作依頼書_検討依頼書コード_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void 設計製作依頼書_リンク1ボタン_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設計製作依頼書_リンク1ボタン_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設計製作依頼書_リンク1ボタン_Leave(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設計製作依頼書_リンク2ボタン_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設計製作依頼書_リンク2ボタン_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設計製作依頼書_リンク2ボタン_Leave(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設計製作依頼書_受注コード_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設計製作依頼書_受注コード_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void 設計製作依頼書_受注コード_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+        }
+
+        private void 設計製作依頼書_受注コード_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設計製作依頼書_受注コード_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設計製作依頼書_受注コード_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void 設計製作依頼書_顧客コード_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設計製作依頼書_顧客コード_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void 設計製作依頼書_顧客コード_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+        }
+
+        private void 設計製作依頼書_顧客コード_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設計製作依頼書_顧客コード_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設計製作依頼書_顧客コード_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void 設計製作依頼書_客先担当者名_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設計製作依頼書_客先担当者名_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設計製作依頼書_客先担当者名_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void 設計製作依頼書_型番_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設計製作依頼書_型番_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設計製作依頼書_型番_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void 設計製作依頼書_標準価格_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設計製作依頼書_標準価格_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設計製作依頼書_標準価格_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void 設計製作依頼書_数量_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設計製作依頼書_数量_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設計製作依頼書_数量_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void 設計製作依頼書_依頼内容_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設計製作依頼書_依頼内容_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設計製作依頼書_依頼内容_Leave(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設計製作依頼書_依頼内容_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設計製作依頼書_依頼内容_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設計製作依頼書_依頼内容_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void 設計製作依頼書_付属書類指定_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設計製作依頼書_付属書類指定_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void 設計製作依頼書_付属文書1_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設計製作依頼書_付属文書2_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設計製作依頼書_付属文書3_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設計製作依頼書_その他文書名_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設計製作依頼書_その他文書名_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設計製作依頼書_その他文書名_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        #endregion
     }
 }
