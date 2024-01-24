@@ -6438,6 +6438,8 @@ namespace u_net
         #endregion
 
 
+        #region 製品企画書
+
         private void 製品企画書_品名_TextChanged(object sender, EventArgs e)
         {
 
@@ -6668,62 +6670,62 @@ namespace u_net
 
         }
 
-        private void 会議開催日_DoubleClick(object sender, EventArgs e)
+        private void 製品企画書_会議開催日_DoubleClick(object sender, EventArgs e)
         {
 
         }
 
-        private void 会議開催日_KeyPress(object sender, KeyPressEventArgs e)
+        private void 製品企画書_会議開催日_KeyPress(object sender, KeyPressEventArgs e)
         {
 
         }
 
-        private void 会議開催日_TextChanged(object sender, EventArgs e)
+        private void 製品企画書_会議開催日_TextChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void 会議開催日_Validated(object sender, EventArgs e)
+        private void 製品企画書_会議開催日_Validated(object sender, EventArgs e)
         {
 
         }
 
-        private void 会議開催日_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        private void 製品企画書_会議開催日_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
 
         }
 
-        private void 会議開催日選択ボタン_Click(object sender, EventArgs e)
+        private void 製品企画書_会議開催日選択ボタン_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void 開発目的_DoubleClick(object sender, EventArgs e)
+        private void 製品企画書_開発目的_DoubleClick(object sender, EventArgs e)
         {
 
         }
 
-        private void 開発目的_Enter(object sender, EventArgs e)
+        private void 製品企画書_開発目的_Enter(object sender, EventArgs e)
         {
             toolStripStatusLabel1.Text = "■ズームするには入力欄をダブルクリックしてください。";
         }
 
-        private void 開発目的_Leave(object sender, EventArgs e)
+        private void 製品企画書_開発目的_Leave(object sender, EventArgs e)
         {
             toolStripStatusLabel1.Text = "各種項目の説明";
         }
 
-        private void 開発目的_TextChanged(object sender, EventArgs e)
+        private void 製品企画書_開発目的_TextChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void 開発目的_Validated(object sender, EventArgs e)
+        private void 製品企画書_開発目的_Validated(object sender, EventArgs e)
         {
 
         }
 
-        private void 開発目的_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        private void 製品企画書_開発目的_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
 
         }
@@ -6787,5 +6789,229 @@ namespace u_net
         {
             toolStripStatusLabel1.Text = "各種項目の説明";
         }
+
+        #endregion 製品企画書
+
+
+        #region 設計審査会議事録
+
+        private void 設計審査会議事録_開催日_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設計審査会議事録_開催日_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+        }
+
+        private void 設計審査会議事録_開催日_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "■入力欄をダブルクリックすると、日付をカレンダーから入力することができます。";
+        }
+
+        private void 設計審査会議事録_開催日_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "各種項目の説明";
+        }
+
+        private void 設計審査会議事録_開催日_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設計審査会議事録_開催日_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void 設計審査会議事録_開催日選択ボタン_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設計審査会議事録_開催場所_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "■全角５０文字まで入力できます。";
+        }
+
+        private void 設計審査会議事録_開催場所_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "各種項目の説明";
+        }
+
+        private void 設計審査会議事録_開催場所_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設計審査会議事録_開催場所_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void 設計審査会議事録_参加者_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "■全角１００文字まで入力できます。";
+        }
+
+        private void 設計審査会議事録_参加者_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "各種項目の説明";
+        }
+
+        private void 設計審査会議事録_参加者_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設計審査会議事録_参加者_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void 設計審査会議事録_企画書との相異_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設計審査会議事録_企画書との相異_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "■全角２，０００文字まで入力できます。";
+        }
+
+        private void 設計審査会議事録_企画書との相異_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "各種項目の説明";
+        }
+
+        private void 設計審査会議事録_企画書との相異_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設計審査会議事録_計画書との相異_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設計審査会議事録_計画書との相異_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "■全角２，０００文字まで入力できます。";
+        }
+
+        private void 設計審査会議事録_計画書との相異_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "各種項目の説明";
+        }
+
+        private void 設計審査会議事録_計画書との相異_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設計審査会議事録_構想資料との相異_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設計審査会議事録_構想資料との相異_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "■全角２，０００文字まで入力できます。";
+        }
+
+        private void 設計審査会議事録_構想資料との相異_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "各種項目の説明";
+        }
+
+        private void 設計審査会議事録_構想資料との相異_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設計審査会議事録_仕様書の確認_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設計審査会議事録_仕様書の確認_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "■全角２，０００文字まで入力できます。";
+        }
+
+        private void 設計審査会議事録_仕様書の確認_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "各種項目の説明";
+        }
+
+        private void 設計審査会議事録_仕様書の確認_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設計審査会議事録_改善点_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設計審査会議事録_改善点_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "■全角２，０００文字まで入力できます。";
+        }
+
+        private void 設計審査会議事録_改善点_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "各種項目の説明";
+        }
+
+        private void 設計審査会議事録_改善点_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設計審査会議事録_要望_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設計審査会議事録_要望_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "■全角２，０００文字まで入力できます。";
+        }
+
+        private void 設計審査会議事録_要望_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "各種項目の説明";
+        }
+
+        private void 設計審査会議事録_要望_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設計審査会議事録_結論_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設計審査会議事録_結論_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "■全角２，０００文字まで入力できます。";
+        }
+
+        private void 設計審査会議事録_結論_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "各種項目の説明";
+        }
+
+        private void 設計審査会議事録_結論_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        #endregion
+
+
     }
 }

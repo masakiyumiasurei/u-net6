@@ -115,7 +115,8 @@ namespace u_net
             是正予防処置報告書_環境_発生日選択ボタン = new Button();
             製品企画書_顧客コード検索ボタン = new Button();
             製品企画書_発売予定日選択ボタン = new Button();
-            会議開催日選択ボタン = new Button();
+            製品企画書_会議開催日選択ボタン = new Button();
+            設計審査会議事録_開催日選択ボタン = new Button();
             改版ボタン = new Button();
             文書名_ラベル = new Label();
             件名_ラベル = new Label();
@@ -418,11 +419,11 @@ namespace u_net
             label95 = new Label();
             label94 = new Label();
             label93 = new Label();
-            開発目的 = new TextBox();
+            製品企画書_開発目的 = new TextBox();
             label87 = new Label();
             製品企画書_製品概要 = new TextBox();
             label86 = new Label();
-            会議開催日 = new TextBox();
+            製品企画書_会議開催日 = new TextBox();
             製品企画書_標準価格 = new TextBox();
             製品企画書_競合価格 = new TextBox();
             製品企画書_発売予定日 = new TextBox();
@@ -447,6 +448,29 @@ namespace u_net
             製品企画書_文書コード = new TextBox();
             label106 = new Label();
             label107 = new Label();
+            設計審査会議事録パネル = new Panel();
+            設計審査会議事録_参加者 = new TextBox();
+            設計審査会議事録_企画書との相異 = new TextBox();
+            label112 = new Label();
+            設計審査会議事録_計画書との相異 = new TextBox();
+            label109 = new Label();
+            設計審査会議事録_構想資料との相異 = new TextBox();
+            label110 = new Label();
+            設計審査会議事録_仕様書の確認 = new TextBox();
+            label111 = new Label();
+            設計審査会議事録_改善点 = new TextBox();
+            label116 = new Label();
+            設計審査会議事録_要望 = new TextBox();
+            label117 = new Label();
+            label122 = new Label();
+            設計審査会議事録_開催日 = new TextBox();
+            設計審査会議事録_開催場所 = new TextBox();
+            label124 = new Label();
+            設計審査会議事録_結論 = new TextBox();
+            設計審査会議事録_版数 = new TextBox();
+            設計審査会議事録_文書コード = new TextBox();
+            label125 = new Label();
+            label126 = new Label();
             panel1.SuspendLayout();
             statusStrip1.SuspendLayout();
             システム配布記録パネル.SuspendLayout();
@@ -463,6 +487,7 @@ namespace u_net
             是正予防処置報告書パネル.SuspendLayout();
             是正予防処置報告書_環境パネル.SuspendLayout();
             製品企画書パネル.SuspendLayout();
+            設計審査会議事録パネル.SuspendLayout();
             SuspendLayout();
             // 
             // コマンド終了
@@ -1393,19 +1418,33 @@ namespace u_net
             製品企画書_発売予定日選択ボタン.UseVisualStyleBackColor = true;
             製品企画書_発売予定日選択ボタン.Click += 製品企画書_発売予定日選択ボタン_Click;
             // 
-            // 会議開催日選択ボタン
+            // 製品企画書_会議開催日選択ボタン
             // 
-            会議開催日選択ボタン.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            会議開催日選択ボタン.Location = new Point(382, 196);
-            会議開催日選択ボタン.Margin = new Padding(4);
-            会議開催日選択ボタン.Name = "会議開催日選択ボタン";
-            会議開催日選択ボタン.Size = new Size(20, 20);
-            会議開催日選択ボタン.TabIndex = 21036;
-            会議開催日選択ボタン.TabStop = false;
-            会議開催日選択ボタン.Text = "▼";
-            toolTip1.SetToolTip(会議開催日選択ボタン, "カレンダー");
-            会議開催日選択ボタン.UseVisualStyleBackColor = true;
-            会議開催日選択ボタン.Click += 会議開催日選択ボタン_Click;
+            製品企画書_会議開催日選択ボタン.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            製品企画書_会議開催日選択ボタン.Location = new Point(382, 196);
+            製品企画書_会議開催日選択ボタン.Margin = new Padding(4);
+            製品企画書_会議開催日選択ボタン.Name = "製品企画書_会議開催日選択ボタン";
+            製品企画書_会議開催日選択ボタン.Size = new Size(20, 20);
+            製品企画書_会議開催日選択ボタン.TabIndex = 21036;
+            製品企画書_会議開催日選択ボタン.TabStop = false;
+            製品企画書_会議開催日選択ボタン.Text = "▼";
+            toolTip1.SetToolTip(製品企画書_会議開催日選択ボタン, "カレンダー");
+            製品企画書_会議開催日選択ボタン.UseVisualStyleBackColor = true;
+            製品企画書_会議開催日選択ボタン.Click += 製品企画書_会議開催日選択ボタン_Click;
+            // 
+            // 設計審査会議事録_開催日選択ボタン
+            // 
+            設計審査会議事録_開催日選択ボタン.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            設計審査会議事録_開催日選択ボタン.Location = new Point(190, 4);
+            設計審査会議事録_開催日選択ボタン.Margin = new Padding(4);
+            設計審査会議事録_開催日選択ボタン.Name = "設計審査会議事録_開催日選択ボタン";
+            設計審査会議事録_開催日選択ボタン.Size = new Size(20, 20);
+            設計審査会議事録_開催日選択ボタン.TabIndex = 21029;
+            設計審査会議事録_開催日選択ボタン.TabStop = false;
+            設計審査会議事録_開催日選択ボタン.Text = "▼";
+            toolTip1.SetToolTip(設計審査会議事録_開催日選択ボタン, "カレンダー");
+            設計審査会議事録_開催日選択ボタン.UseVisualStyleBackColor = true;
+            設計審査会議事録_開催日選択ボタン.Click += 設計審査会議事録_開催日選択ボタン_Click;
             // 
             // 改版ボタン
             // 
@@ -5795,12 +5834,12 @@ namespace u_net
             製品企画書パネル.Controls.Add(label95);
             製品企画書パネル.Controls.Add(label94);
             製品企画書パネル.Controls.Add(label93);
-            製品企画書パネル.Controls.Add(開発目的);
+            製品企画書パネル.Controls.Add(製品企画書_開発目的);
             製品企画書パネル.Controls.Add(label87);
             製品企画書パネル.Controls.Add(製品企画書_製品概要);
             製品企画書パネル.Controls.Add(label86);
-            製品企画書パネル.Controls.Add(会議開催日選択ボタン);
-            製品企画書パネル.Controls.Add(会議開催日);
+            製品企画書パネル.Controls.Add(製品企画書_会議開催日選択ボタン);
+            製品企画書パネル.Controls.Add(製品企画書_会議開催日);
             製品企画書パネル.Controls.Add(製品企画書_標準価格);
             製品企画書パネル.Controls.Add(製品企画書_競合価格);
             製品企画書パネル.Controls.Add(製品企画書_発売予定日選択ボタン);
@@ -5937,23 +5976,23 @@ namespace u_net
             label93.Text = "競合製品型番";
             label93.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // 開発目的
+            // 製品企画書_開発目的
             // 
-            開発目的.BackColor = SystemColors.Window;
-            開発目的.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            開発目的.ImeMode = ImeMode.Hiragana;
-            開発目的.Location = new Point(5, 232);
-            開発目的.Margin = new Padding(3, 2, 3, 2);
-            開発目的.Multiline = true;
-            開発目的.Name = "開発目的";
-            開発目的.Size = new Size(395, 37);
-            開発目的.TabIndex = 40;
-            開発目的.TextChanged += 開発目的_TextChanged;
-            開発目的.DoubleClick += 開発目的_DoubleClick;
-            開発目的.Enter += 開発目的_Enter;
-            開発目的.Leave += 開発目的_Leave;
-            開発目的.Validating += 開発目的_Validating;
-            開発目的.Validated += 開発目的_Validated;
+            製品企画書_開発目的.BackColor = SystemColors.Window;
+            製品企画書_開発目的.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            製品企画書_開発目的.ImeMode = ImeMode.Hiragana;
+            製品企画書_開発目的.Location = new Point(5, 232);
+            製品企画書_開発目的.Margin = new Padding(3, 2, 3, 2);
+            製品企画書_開発目的.Multiline = true;
+            製品企画書_開発目的.Name = "製品企画書_開発目的";
+            製品企画書_開発目的.Size = new Size(395, 37);
+            製品企画書_開発目的.TabIndex = 40;
+            製品企画書_開発目的.TextChanged += 製品企画書_開発目的_TextChanged;
+            製品企画書_開発目的.DoubleClick += 製品企画書_開発目的_DoubleClick;
+            製品企画書_開発目的.Enter += 製品企画書_開発目的_Enter;
+            製品企画書_開発目的.Leave += 製品企画書_開発目的_Leave;
+            製品企画書_開発目的.Validating += 製品企画書_開発目的_Validating;
+            製品企画書_開発目的.Validated += 製品企画書_開発目的_Validated;
             // 
             // label87
             // 
@@ -6003,21 +6042,21 @@ namespace u_net
             label86.Text = "製品概要";
             label86.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // 会議開催日
+            // 製品企画書_会議開催日
             // 
-            会議開催日.BackColor = Color.White;
-            会議開催日.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            会議開催日.ImeMode = ImeMode.Disable;
-            会議開催日.Location = new Point(280, 196);
-            会議開催日.Margin = new Padding(3, 2, 3, 2);
-            会議開催日.Name = "会議開催日";
-            会議開催日.Size = new Size(102, 20);
-            会議開催日.TabIndex = 38;
-            会議開催日.TextChanged += 会議開催日_TextChanged;
-            会議開催日.DoubleClick += 会議開催日_DoubleClick;
-            会議開催日.KeyPress += 会議開催日_KeyPress;
-            会議開催日.Validating += 会議開催日_Validating;
-            会議開催日.Validated += 会議開催日_Validated;
+            製品企画書_会議開催日.BackColor = Color.White;
+            製品企画書_会議開催日.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            製品企画書_会議開催日.ImeMode = ImeMode.Disable;
+            製品企画書_会議開催日.Location = new Point(280, 196);
+            製品企画書_会議開催日.Margin = new Padding(3, 2, 3, 2);
+            製品企画書_会議開催日.Name = "製品企画書_会議開催日";
+            製品企画書_会議開催日.Size = new Size(102, 20);
+            製品企画書_会議開催日.TabIndex = 38;
+            製品企画書_会議開催日.TextChanged += 製品企画書_会議開催日_TextChanged;
+            製品企画書_会議開催日.DoubleClick += 製品企画書_会議開催日_DoubleClick;
+            製品企画書_会議開催日.KeyPress += 製品企画書_会議開催日_KeyPress;
+            製品企画書_会議開催日.Validating += 製品企画書_会議開催日_Validating;
+            製品企画書_会議開催日.Validated += 製品企画書_会議開催日_Validated;
             // 
             // 製品企画書_標準価格
             // 
@@ -6381,11 +6420,384 @@ namespace u_net
             label107.Text = "品名";
             label107.TextAlign = ContentAlignment.MiddleLeft;
             // 
+            // 設計審査会議事録パネル
+            // 
+            設計審査会議事録パネル.Controls.Add(設計審査会議事録_参加者);
+            設計審査会議事録パネル.Controls.Add(設計審査会議事録_企画書との相異);
+            設計審査会議事録パネル.Controls.Add(label112);
+            設計審査会議事録パネル.Controls.Add(設計審査会議事録_計画書との相異);
+            設計審査会議事録パネル.Controls.Add(label109);
+            設計審査会議事録パネル.Controls.Add(設計審査会議事録_構想資料との相異);
+            設計審査会議事録パネル.Controls.Add(label110);
+            設計審査会議事録パネル.Controls.Add(設計審査会議事録_仕様書の確認);
+            設計審査会議事録パネル.Controls.Add(label111);
+            設計審査会議事録パネル.Controls.Add(設計審査会議事録_改善点);
+            設計審査会議事録パネル.Controls.Add(label116);
+            設計審査会議事録パネル.Controls.Add(設計審査会議事録_要望);
+            設計審査会議事録パネル.Controls.Add(label117);
+            設計審査会議事録パネル.Controls.Add(設計審査会議事録_開催日選択ボタン);
+            設計審査会議事録パネル.Controls.Add(label122);
+            設計審査会議事録パネル.Controls.Add(設計審査会議事録_開催日);
+            設計審査会議事録パネル.Controls.Add(設計審査会議事録_開催場所);
+            設計審査会議事録パネル.Controls.Add(label124);
+            設計審査会議事録パネル.Controls.Add(設計審査会議事録_結論);
+            設計審査会議事録パネル.Controls.Add(設計審査会議事録_版数);
+            設計審査会議事録パネル.Controls.Add(設計審査会議事録_文書コード);
+            設計審査会議事録パネル.Controls.Add(label125);
+            設計審査会議事録パネル.Controls.Add(label126);
+            設計審査会議事録パネル.Location = new Point(9, 226);
+            設計審査会議事録パネル.Name = "設計審査会議事録パネル";
+            設計審査会議事録パネル.Size = new Size(404, 376);
+            設計審査会議事録パネル.TabIndex = 17;
+            // 
+            // 設計審査会議事録_参加者
+            // 
+            設計審査会議事録_参加者.BackColor = Color.White;
+            設計審査会議事録_参加者.Enabled = false;
+            設計審査会議事録_参加者.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            設計審査会議事録_参加者.ImeMode = ImeMode.Hiragana;
+            設計審査会議事録_参加者.Location = new Point(86, 46);
+            設計審査会議事録_参加者.Margin = new Padding(3, 2, 3, 2);
+            設計審査会議事録_参加者.Name = "設計審査会議事録_参加者";
+            設計審査会議事録_参加者.ReadOnly = true;
+            設計審査会議事録_参加者.Size = new Size(314, 20);
+            設計審査会議事録_参加者.TabIndex = 21;
+            設計審査会議事録_参加者.TextChanged += 設計審査会議事録_参加者_TextChanged;
+            設計審査会議事録_参加者.Enter += 設計審査会議事録_参加者_Enter;
+            設計審査会議事録_参加者.Leave += 設計審査会議事録_参加者_Leave;
+            設計審査会議事録_参加者.Validating += 設計審査会議事録_参加者_Validating;
+            // 
+            // 設計審査会議事録_企画書との相異
+            // 
+            設計審査会議事録_企画書との相異.BackColor = SystemColors.Window;
+            設計審査会議事録_企画書との相異.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            設計審査会議事録_企画書との相異.ImeMode = ImeMode.Hiragana;
+            設計審査会議事録_企画書との相異.Location = new Point(5, 80);
+            設計審査会議事録_企画書との相異.Margin = new Padding(3, 2, 3, 2);
+            設計審査会議事録_企画書との相異.Multiline = true;
+            設計審査会議事録_企画書との相異.Name = "設計審査会議事録_企画書との相異";
+            設計審査会議事録_企画書との相異.Size = new Size(395, 30);
+            設計審査会議事録_企画書との相異.TabIndex = 23;
+            設計審査会議事録_企画書との相異.TextChanged += 設計審査会議事録_企画書との相異_TextChanged;
+            設計審査会議事録_企画書との相異.DoubleClick += 設計審査会議事録_企画書との相異_DoubleClick;
+            設計審査会議事録_企画書との相異.Enter += 設計審査会議事録_企画書との相異_Enter;
+            設計審査会議事録_企画書との相異.Leave += 設計審査会議事録_企画書との相異_Leave;
+            // 
+            // label112
+            // 
+            label112.AllowDrop = true;
+            label112.AutoEllipsis = true;
+            label112.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label112.ForeColor = SystemColors.ActiveCaptionText;
+            label112.ImageAlign = ContentAlignment.MiddleLeft;
+            label112.Location = new Point(0, 65);
+            label112.Margin = new Padding(0);
+            label112.Name = "label112";
+            label112.Size = new Size(400, 16);
+            label112.TabIndex = 22;
+            label112.Text = "製品企画書との相異";
+            label112.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // 設計審査会議事録_計画書との相異
+            // 
+            設計審査会議事録_計画書との相異.BackColor = SystemColors.Window;
+            設計審査会議事録_計画書との相異.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            設計審査会議事録_計画書との相異.ImeMode = ImeMode.Hiragana;
+            設計審査会議事録_計画書との相異.Location = new Point(5, 123);
+            設計審査会議事録_計画書との相異.Margin = new Padding(3, 2, 3, 2);
+            設計審査会議事録_計画書との相異.Multiline = true;
+            設計審査会議事録_計画書との相異.Name = "設計審査会議事録_計画書との相異";
+            設計審査会議事録_計画書との相異.Size = new Size(395, 30);
+            設計審査会議事録_計画書との相異.TabIndex = 25;
+            設計審査会議事録_計画書との相異.TextChanged += 設計審査会議事録_計画書との相異_TextChanged;
+            設計審査会議事録_計画書との相異.DoubleClick += 設計審査会議事録_計画書との相異_DoubleClick;
+            設計審査会議事録_計画書との相異.Enter += 設計審査会議事録_計画書との相異_Enter;
+            設計審査会議事録_計画書との相異.Leave += 設計審査会議事録_計画書との相異_Leave;
+            // 
+            // label109
+            // 
+            label109.AllowDrop = true;
+            label109.AutoEllipsis = true;
+            label109.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label109.ForeColor = SystemColors.ActiveCaptionText;
+            label109.ImageAlign = ContentAlignment.MiddleLeft;
+            label109.Location = new Point(0, 108);
+            label109.Margin = new Padding(0);
+            label109.Name = "label109";
+            label109.Size = new Size(400, 16);
+            label109.TabIndex = 24;
+            label109.Text = "製品開発計画書との相異";
+            label109.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // 設計審査会議事録_構想資料との相異
+            // 
+            設計審査会議事録_構想資料との相異.BackColor = SystemColors.Window;
+            設計審査会議事録_構想資料との相異.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            設計審査会議事録_構想資料との相異.ImeMode = ImeMode.Hiragana;
+            設計審査会議事録_構想資料との相異.Location = new Point(5, 167);
+            設計審査会議事録_構想資料との相異.Margin = new Padding(3, 2, 3, 2);
+            設計審査会議事録_構想資料との相異.Multiline = true;
+            設計審査会議事録_構想資料との相異.Name = "設計審査会議事録_構想資料との相異";
+            設計審査会議事録_構想資料との相異.Size = new Size(395, 30);
+            設計審査会議事録_構想資料との相異.TabIndex = 27;
+            設計審査会議事録_構想資料との相異.TextChanged += 設計審査会議事録_構想資料との相異_TextChanged;
+            設計審査会議事録_構想資料との相異.DoubleClick += 設計審査会議事録_構想資料との相異_DoubleClick;
+            設計審査会議事録_構想資料との相異.Enter += 設計審査会議事録_構想資料との相異_Enter;
+            設計審査会議事録_構想資料との相異.Leave += 設計審査会議事録_構想資料との相異_Leave;
+            // 
+            // label110
+            // 
+            label110.AllowDrop = true;
+            label110.AutoEllipsis = true;
+            label110.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label110.ForeColor = SystemColors.ActiveCaptionText;
+            label110.ImageAlign = ContentAlignment.MiddleLeft;
+            label110.Location = new Point(0, 152);
+            label110.Margin = new Padding(0);
+            label110.Name = "label110";
+            label110.Size = new Size(400, 16);
+            label110.TabIndex = 26;
+            label110.Text = "開発構想資料・品質計画書との相異";
+            label110.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // 設計審査会議事録_仕様書の確認
+            // 
+            設計審査会議事録_仕様書の確認.BackColor = SystemColors.Window;
+            設計審査会議事録_仕様書の確認.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            設計審査会議事録_仕様書の確認.ImeMode = ImeMode.Hiragana;
+            設計審査会議事録_仕様書の確認.Location = new Point(5, 212);
+            設計審査会議事録_仕様書の確認.Margin = new Padding(3, 2, 3, 2);
+            設計審査会議事録_仕様書の確認.Multiline = true;
+            設計審査会議事録_仕様書の確認.Name = "設計審査会議事録_仕様書の確認";
+            設計審査会議事録_仕様書の確認.Size = new Size(395, 30);
+            設計審査会議事録_仕様書の確認.TabIndex = 29;
+            設計審査会議事録_仕様書の確認.TextChanged += 設計審査会議事録_仕様書の確認_TextChanged;
+            設計審査会議事録_仕様書の確認.DoubleClick += 設計審査会議事録_仕様書の確認_DoubleClick;
+            設計審査会議事録_仕様書の確認.Enter += 設計審査会議事録_仕様書の確認_Enter;
+            設計審査会議事録_仕様書の確認.Leave += 設計審査会議事録_仕様書の確認_Leave;
+            // 
+            // label111
+            // 
+            label111.AllowDrop = true;
+            label111.AutoEllipsis = true;
+            label111.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label111.ForeColor = SystemColors.ActiveCaptionText;
+            label111.ImageAlign = ContentAlignment.MiddleLeft;
+            label111.Location = new Point(0, 196);
+            label111.Margin = new Padding(0);
+            label111.Name = "label111";
+            label111.Size = new Size(400, 16);
+            label111.TabIndex = 28;
+            label111.Text = "評価試験データ・評価仕様書の確認";
+            label111.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // 設計審査会議事録_改善点
+            // 
+            設計審査会議事録_改善点.BackColor = SystemColors.Window;
+            設計審査会議事録_改善点.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            設計審査会議事録_改善点.ImeMode = ImeMode.Hiragana;
+            設計審査会議事録_改善点.Location = new Point(5, 255);
+            設計審査会議事録_改善点.Margin = new Padding(3, 2, 3, 2);
+            設計審査会議事録_改善点.Multiline = true;
+            設計審査会議事録_改善点.Name = "設計審査会議事録_改善点";
+            設計審査会議事録_改善点.Size = new Size(395, 30);
+            設計審査会議事録_改善点.TabIndex = 31;
+            設計審査会議事録_改善点.TextChanged += 設計審査会議事録_改善点_TextChanged;
+            設計審査会議事録_改善点.DoubleClick += 設計審査会議事録_改善点_DoubleClick;
+            設計審査会議事録_改善点.Enter += 設計審査会議事録_改善点_Enter;
+            設計審査会議事録_改善点.Leave += 設計審査会議事録_改善点_Leave;
+            // 
+            // label116
+            // 
+            label116.AllowDrop = true;
+            label116.AutoEllipsis = true;
+            label116.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label116.ForeColor = SystemColors.ActiveCaptionText;
+            label116.ImageAlign = ContentAlignment.MiddleLeft;
+            label116.Location = new Point(0, 240);
+            label116.Margin = new Padding(0);
+            label116.Name = "label116";
+            label116.Size = new Size(400, 16);
+            label116.TabIndex = 30;
+            label116.Text = "改善点";
+            label116.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // 設計審査会議事録_要望
+            // 
+            設計審査会議事録_要望.BackColor = SystemColors.Window;
+            設計審査会議事録_要望.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            設計審査会議事録_要望.ImeMode = ImeMode.Hiragana;
+            設計審査会議事録_要望.Location = new Point(5, 299);
+            設計審査会議事録_要望.Margin = new Padding(3, 2, 3, 2);
+            設計審査会議事録_要望.Multiline = true;
+            設計審査会議事録_要望.Name = "設計審査会議事録_要望";
+            設計審査会議事録_要望.Size = new Size(395, 30);
+            設計審査会議事録_要望.TabIndex = 33;
+            設計審査会議事録_要望.TextChanged += 設計審査会議事録_要望_TextChanged;
+            設計審査会議事録_要望.DoubleClick += 設計審査会議事録_要望_DoubleClick;
+            設計審査会議事録_要望.Enter += 設計審査会議事録_要望_Enter;
+            設計審査会議事録_要望.Leave += 設計審査会議事録_要望_Leave;
+            // 
+            // label117
+            // 
+            label117.AllowDrop = true;
+            label117.AutoEllipsis = true;
+            label117.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label117.ForeColor = SystemColors.ActiveCaptionText;
+            label117.ImageAlign = ContentAlignment.MiddleLeft;
+            label117.Location = new Point(0, 284);
+            label117.Margin = new Padding(0);
+            label117.Name = "label117";
+            label117.Size = new Size(400, 16);
+            label117.TabIndex = 32;
+            label117.Text = "各部署の要望";
+            label117.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // label122
+            // 
+            label122.AllowDrop = true;
+            label122.AutoEllipsis = true;
+            label122.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label122.ForeColor = SystemColors.ActiveCaptionText;
+            label122.ImageAlign = ContentAlignment.MiddleLeft;
+            label122.Location = new Point(0, 25);
+            label122.Margin = new Padding(0);
+            label122.Name = "label122";
+            label122.Size = new Size(85, 20);
+            label122.TabIndex = 18;
+            label122.Text = "開催場所";
+            label122.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // 設計審査会議事録_開催日
+            // 
+            設計審査会議事録_開催日.BackColor = Color.White;
+            設計審査会議事録_開催日.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            設計審査会議事録_開催日.ImeMode = ImeMode.Disable;
+            設計審査会議事録_開催日.Location = new Point(86, 4);
+            設計審査会議事録_開催日.Margin = new Padding(3, 2, 3, 2);
+            設計審査会議事録_開催日.Name = "設計審査会議事録_開催日";
+            設計審査会議事録_開催日.Size = new Size(102, 20);
+            設計審査会議事録_開催日.TabIndex = 17;
+            設計審査会議事録_開催日.TextChanged += 設計審査会議事録_開催日_TextChanged;
+            設計審査会議事録_開催日.DoubleClick += 設計審査会議事録_開催日_DoubleClick;
+            設計審査会議事録_開催日.Enter += 設計審査会議事録_開催日_Enter;
+            設計審査会議事録_開催日.KeyPress += 設計審査会議事録_開催日_KeyPress;
+            設計審査会議事録_開催日.Leave += 設計審査会議事録_開催日_Leave;
+            設計審査会議事録_開催日.Validating += 設計審査会議事録_開催日_Validating;
+            // 
+            // 設計審査会議事録_開催場所
+            // 
+            設計審査会議事録_開催場所.BackColor = Color.White;
+            設計審査会議事録_開催場所.Enabled = false;
+            設計審査会議事録_開催場所.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            設計審査会議事録_開催場所.ImeMode = ImeMode.Hiragana;
+            設計審査会議事録_開催場所.Location = new Point(86, 25);
+            設計審査会議事録_開催場所.Margin = new Padding(3, 2, 3, 2);
+            設計審査会議事録_開催場所.Name = "設計審査会議事録_開催場所";
+            設計審査会議事録_開催場所.ReadOnly = true;
+            設計審査会議事録_開催場所.Size = new Size(314, 20);
+            設計審査会議事録_開催場所.TabIndex = 19;
+            設計審査会議事録_開催場所.TextChanged += 設計審査会議事録_開催場所_TextChanged;
+            設計審査会議事録_開催場所.Enter += 設計審査会議事録_開催場所_Enter;
+            設計審査会議事録_開催場所.Leave += 設計審査会議事録_開催場所_Leave;
+            設計審査会議事録_開催場所.Validating += 設計審査会議事録_開催場所_Validating;
+            // 
+            // label124
+            // 
+            label124.AllowDrop = true;
+            label124.AutoEllipsis = true;
+            label124.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label124.ForeColor = SystemColors.ActiveCaptionText;
+            label124.ImageAlign = ContentAlignment.MiddleLeft;
+            label124.Location = new Point(0, 46);
+            label124.Margin = new Padding(0);
+            label124.Name = "label124";
+            label124.Size = new Size(85, 20);
+            label124.TabIndex = 20;
+            label124.Text = "参加者";
+            label124.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // 設計審査会議事録_結論
+            // 
+            設計審査会議事録_結論.BackColor = SystemColors.Window;
+            設計審査会議事録_結論.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            設計審査会議事録_結論.ImeMode = ImeMode.Hiragana;
+            設計審査会議事録_結論.Location = new Point(5, 343);
+            設計審査会議事録_結論.Margin = new Padding(3, 2, 3, 2);
+            設計審査会議事録_結論.Multiline = true;
+            設計審査会議事録_結論.Name = "設計審査会議事録_結論";
+            設計審査会議事録_結論.Size = new Size(395, 30);
+            設計審査会議事録_結論.TabIndex = 35;
+            設計審査会議事録_結論.TextChanged += 設計審査会議事録_結論_TextChanged;
+            設計審査会議事録_結論.DoubleClick += 設計審査会議事録_結論_DoubleClick;
+            設計審査会議事録_結論.Enter += 設計審査会議事録_結論_Enter;
+            設計審査会議事録_結論.Leave += 設計審査会議事録_結論_Leave;
+            // 
+            // 設計審査会議事録_版数
+            // 
+            設計審査会議事録_版数.BackColor = Color.White;
+            設計審査会議事録_版数.Enabled = false;
+            設計審査会議事録_版数.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            設計審査会議事録_版数.ImeMode = ImeMode.Disable;
+            設計審査会議事録_版数.Location = new Point(354, 3);
+            設計審査会議事録_版数.Margin = new Padding(3, 2, 3, 2);
+            設計審査会議事録_版数.Name = "設計審査会議事録_版数";
+            設計審査会議事録_版数.ReadOnly = true;
+            設計審査会議事録_版数.Size = new Size(13, 20);
+            設計審査会議事録_版数.TabIndex = 10292;
+            設計審査会議事録_版数.TabStop = false;
+            設計審査会議事録_版数.Visible = false;
+            // 
+            // 設計審査会議事録_文書コード
+            // 
+            設計審査会議事録_文書コード.BackColor = Color.White;
+            設計審査会議事録_文書コード.Enabled = false;
+            設計審査会議事録_文書コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            設計審査会議事録_文書コード.ImeMode = ImeMode.Disable;
+            設計審査会議事録_文書コード.Location = new Point(335, 3);
+            設計審査会議事録_文書コード.Margin = new Padding(3, 2, 3, 2);
+            設計審査会議事録_文書コード.Name = "設計審査会議事録_文書コード";
+            設計審査会議事録_文書コード.ReadOnly = true;
+            設計審査会議事録_文書コード.Size = new Size(13, 20);
+            設計審査会議事録_文書コード.TabIndex = 10291;
+            設計審査会議事録_文書コード.TabStop = false;
+            設計審査会議事録_文書コード.Visible = false;
+            // 
+            // label125
+            // 
+            label125.AllowDrop = true;
+            label125.AutoEllipsis = true;
+            label125.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label125.ForeColor = SystemColors.ActiveCaptionText;
+            label125.ImageAlign = ContentAlignment.MiddleLeft;
+            label125.Location = new Point(0, 327);
+            label125.Margin = new Padding(0);
+            label125.Name = "label125";
+            label125.Size = new Size(400, 16);
+            label125.TabIndex = 34;
+            label125.Text = "結論";
+            label125.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // label126
+            // 
+            label126.AllowDrop = true;
+            label126.AutoEllipsis = true;
+            label126.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label126.ForeColor = SystemColors.ActiveCaptionText;
+            label126.ImageAlign = ContentAlignment.MiddleLeft;
+            label126.Location = new Point(0, 4);
+            label126.Margin = new Padding(0);
+            label126.Name = "label126";
+            label126.Size = new Size(85, 20);
+            label126.TabIndex = 16;
+            label126.Text = "開催日";
+            label126.TextAlign = ContentAlignment.MiddleLeft;
+            // 
             // F_文書
             // 
             BackColor = SystemColors.Control;
             ClientSize = new Size(880, 659);
-            Controls.Add(製品企画書パネル);
+            Controls.Add(設計審査会議事録パネル);
             Controls.Add(panel2);
             Controls.Add(label28);
             Controls.Add(通信欄);
@@ -6538,6 +6950,8 @@ namespace u_net
             是正予防処置報告書_環境パネル.PerformLayout();
             製品企画書パネル.ResumeLayout(false);
             製品企画書パネル.PerformLayout();
+            設計審査会議事録パネル.ResumeLayout(false);
+            設計審査会議事録パネル.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -6956,9 +7370,9 @@ namespace u_net
         internal Button 製品企画書_発売予定日選択ボタン;
         private TextBox 製品企画書_標準価格;
         private TextBox 製品企画書_競合価格;
-        internal Button 会議開催日選択ボタン;
-        private TextBox 会議開催日;
-        private TextBox 開発目的;
+        internal Button 製品企画書_会議開催日選択ボタン;
+        private TextBox 製品企画書_会議開催日;
+        private TextBox 製品企画書_開発目的;
         private TextBox 製品企画書_製品概要;
         private Label label95;
         private Label label94;
@@ -6967,6 +7381,30 @@ namespace u_net
         private Label label96;
         private Label label108;
         private Label label105;
+        private Panel 設計審査会議事録パネル;
+        private TextBox 設計審査会議事録_改善点;
+        private Label label116;
+        private TextBox 設計審査会議事録_要望;
+        private Label label117;
+        internal Button 設計審査会議事録_開催日選択ボタン;
+        private Label label122;
+        private TextBox 設計審査会議事録_開催日;
+        private TextBox 設計審査会議事録_開催場所;
+        private Label label124;
+        private TextBox 設計審査会議事録_結論;
+        private TextBox 設計審査会議事録_版数;
+        private TextBox 設計審査会議事録_文書コード;
+        private Label label125;
+        private Label label126;
+        private TextBox 設計審査会議事録_計画書との相異;
+        private Label label109;
+        private TextBox 設計審査会議事録_構想資料との相異;
+        private Label label110;
+        private TextBox 設計審査会議事録_仕様書の確認;
+        private Label label111;
+        private TextBox 設計審査会議事録_参加者;
+        private TextBox 設計審査会議事録_企画書との相異;
+        private Label label112;
     }
 }
 
