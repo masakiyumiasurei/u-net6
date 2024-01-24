@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using u_net;
 
 namespace u_net
 {
@@ -81,6 +82,28 @@ namespace u_net
                             $"Platform: {version.Platform}";
 
             return osInfo;
+        }
+
+        // 
+        /// <summary>
+        /// 親フォームを検索するメソッド
+        /// </summary>
+        /// <returns></returns>
+        public static Form GetParent()
+        {
+            // F_MdiParent フォームが既にインスタンス化されている場合
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form.Name == "F_MdiParent")
+                {
+                    return form;
+                }
+            }
+
+            // F_MdiParent フォームがまだインスタンス化されていない場合 ありえないか。。。
+            F_MdiParent mdiParent = new F_MdiParent();
+            mdiParent.Show();
+            return mdiParent;
         }
 
     }

@@ -31,6 +31,7 @@ namespace u_net
         public F_test()
         {
             InitializeComponent();
+            
         }
         private void button1_Click(object sender, EventArgs e)
         {

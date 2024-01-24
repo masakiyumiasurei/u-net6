@@ -134,24 +134,16 @@ namespace u_net
                 control.PreviewKeyDown += OriginalClass.ValidateCheck;
             }
 
-
-
             //実行中フォーム起動
             string LoginUserCode = CommonConstants.LoginUserCode;//テスト用 ログインユーザを実行中にどのように管理するか決まったら修正
             LocalSetting localSetting = new LocalSetting();
             localSetting.LoadPlace(LoginUserCode, this);
 
-            MyApi myapi = new MyApi();
-            int xSize, ySize, intpixel, twipperdot;
-
-            //1インチ当たりのピクセル数 アクセスのサイズの引数がtwipなのでピクセルに変換する除算値を求める
-            intpixel = myapi.GetLogPixel();
-            twipperdot = myapi.GetTwipPerDot(intpixel);
-
 
             OriginalClass ofn = new OriginalClass();
-            //ofn.SetComboBox(ユニットコード, "SELECT A.ユニットコード as Value, A.ユニットコード as Display , A.最新版数 as Display3, { fn REPLACE(STR(CONVERT(bit, Mユニット.無効日時), 1, 0), '1', '×') } AS Display2 FROM Mユニット INNER JOIN (SELECT ユニットコード, MAX(ユニット版数) AS 最新版数 FROM Mユニット GROUP BY ユニットコード) A ON Mユニット.ユニットコード = A.ユニットコード AND Mユニット.ユニット版数 = A.最新版数 ORDER BY A.ユニットコード DESC");
-            //ユニットコード.DrawMode = DrawMode.OwnerDrawFixed;
+            ofn.SetComboBox(受講者コード, "SELECT 社員コード as Value,氏名 as Display FROM M社員" +
+                " WHERE 退社 IS NULL AND 削除日時 IS NULL ORDER BY ふりがな");
+            //受講者コード.DrawMode = DrawMode.OwnerDrawFixed;
 
             try
             {
@@ -700,7 +692,7 @@ namespace u_net
             {
                 case Keys.Return:
                     SelectNextControl(ActiveControl, true, true, true, true);
-                    break; 
+                    break;
             }
         }
 

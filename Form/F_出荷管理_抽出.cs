@@ -83,7 +83,7 @@ namespace u_net
 
                     default:
                         break;
-                }                
+                }
 
                 if (frmTarget.lngシリアル番号開始 != -1)
                     シリアル番号開始.Text = frmTarget.lngシリアル番号開始.ToString();
@@ -112,10 +112,10 @@ namespace u_net
                 }
 
                 if (frmTarget.dte作業終了日開始 != DateTime.MinValue)
-                    作業終了日開始.Text = frmTarget.dte作業終了日開始.ToString();
+                    作業終了日開始.Text = frmTarget.dte作業終了日開始.ToString("yyyy/MM/dd");
 
                 if (frmTarget.dte作業終了日終了 != DateTime.MinValue)
-                    作業終了日終了.Text = frmTarget.dte作業終了日終了.ToString();
+                    作業終了日終了.Text = frmTarget.dte作業終了日終了.ToString("yyyy/MM/dd");
 
             }
             catch (Exception ex)
@@ -144,7 +144,21 @@ namespace u_net
 
                 frmTarget.str型番 = Nz(型番.Text);
                 frmTarget.str型番詳細 = Nz(型番詳細.Text);
-                frmTarget.lngシリアル番号指定 = int.TryParse(シリアル番号指定.Text, out num) ? num : 0;
+
+
+                if (シリアル番号指定1.Checked)
+                {
+                    frmTarget.lngシリアル番号指定 = 1;
+                }
+                else if (シリアル番号指定2.Checked)
+                {
+                    frmTarget.lngシリアル番号指定 = 2;
+                }
+                else if (シリアル番号指定3.Checked)
+                {
+                    frmTarget.lngシリアル番号指定 = 0;
+                }
+
 
                 if (string.IsNullOrEmpty(シリアル番号開始.Text) || string.IsNullOrEmpty(シリアル番号終了.Text))
                 {
@@ -160,7 +174,21 @@ namespace u_net
                 frmTarget.str発送先名 = Nz(発送先名.Text);
                 frmTarget.str顧客コード = Nz(顧客コード.Text);
                 frmTarget.str顧客名 = Nz(顧客名.Text);
-                frmTarget.lng作業終了指定 = int.Parse(作業終了指定.Text);
+
+
+                if (作業終了指定1.Checked)
+                {
+                    frmTarget.lng作業終了指定 = 1;
+                }
+                else if (作業終了指定2.Checked)
+                {
+                    frmTarget.lng作業終了指定 = 2;
+                }
+                else if (作業終了指定3.Checked)
+                {
+                    frmTarget.lng作業終了指定 = 0;
+                }
+
 
                 frmTarget.dte作業終了日開始 = DateTime.TryParse(作業終了日開始.Text, out dt) ? dt : default(DateTime);
                 frmTarget.dte作業終了日終了 = DateTime.TryParse(作業終了日終了.Text, out dt) ? dt : default(DateTime);
@@ -173,7 +201,7 @@ namespace u_net
             catch (Exception ex)
             {
                 Debug.WriteLine(this.Name + "_抽出ボタン_Click - " + ex.Message);
-                MessageBox.Show("エラーが発生しました。", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("エラーが発生しました。" + ex.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
@@ -243,7 +271,7 @@ namespace u_net
             {
                 出荷予定日開始選択ボタン_Click(sender, e);
             }
-            
+
         }
 
         private void 出荷予定日終了選択ボタン_Click(object sender, EventArgs e)
@@ -311,13 +339,13 @@ namespace u_net
                     break;
             }
         }
-                
+
 
         private void 受注コード開始_Leave(object sender, EventArgs e)
         {
             FunctionClass.AdjustRange(受注コード開始, 受注コード終了, sender as Control);
         }
-                
+
 
         private void 受注コード終了_Leave(object sender, EventArgs e)
         {
@@ -580,7 +608,11 @@ namespace u_net
             }
         }
 
-
-
+        private void 顧客コード_TextChanged(object sender, EventArgs e)
+        {
+            Connect();
+            if (!string.IsNullOrEmpty(顧客コード.Text))
+                顧客名.Text = FunctionClass.GetCustomerName(cn, 顧客コード.Text);
+        }
     }
 }

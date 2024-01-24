@@ -285,6 +285,12 @@ namespace u_net
                 dataGridView1.Columns[10].Width = 500 / twipperdot;
                 dataGridView1.Columns[11].Width = 500 / twipperdot;
 
+                // DataGirdViewのTypeを取得
+                System.Type dgvtype = typeof(DataGridView);
+                // プロパティ設定の取得
+                System.Reflection.PropertyInfo dgvPropertyInfo = dgvtype.GetProperty("DoubleBuffered", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
+                // 対象のDataGridViewにtrueをセットする
+                dgvPropertyInfo.SetValue(dataGridView1, true, null);
 
 
                 return dataGridView1.RowCount;
@@ -334,8 +340,15 @@ namespace u_net
 
                 F_商品 targetform = new F_商品();
 
+                //targetform.MdiParent = this.MdiParent; 
                 targetform.args = selectedData;
+                
+                //this.Enabled = false;
+                //targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                
                 targetform.ShowDialog();
+                //targetform.Show();
+               
             }
         }
 
@@ -474,6 +487,7 @@ namespace u_net
                 // 商品フォームを作成し、引数を設定して表示
                 F_商品 targetform = new F_商品();
                 targetform.args = selectedData;
+                //targetform.Show();
                 targetform.ShowDialog();
             }
             else

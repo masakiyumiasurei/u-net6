@@ -170,7 +170,7 @@ namespace u_net
             コマンド抽出.TabIndex = 1002;
             コマンド抽出.TabStop = false;
             コマンド抽出.Text = "抽出";
-            コマンド抽出.UseVisualStyleBackColor = false;
+            コマンド抽出.UseVisualStyleBackColor = true;
             コマンド抽出.Click += コマンド抽出_Click;
             // 
             // コマンド行挿入
@@ -484,7 +484,7 @@ namespace u_net
             受講者コード.ImeMode = ImeMode.Disable;
             受講者コード.Location = new Point(111, 128);
             受講者コード.Name = "受講者コード";
-            受講者コード.Size = new Size(115, 21);
+            受講者コード.Size = new Size(174, 21);
             受講者コード.TabIndex = 3;
             受講者コード.SelectedIndexChanged += 受講者コード_SelectedIndexChanged;
             受講者コード.Enter += 受講者コード_Enter;
@@ -623,7 +623,7 @@ namespace u_net
             受講者名.Enabled = false;
             受講者名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             受講者名.ImeMode = ImeMode.Disable;
-            受講者名.Location = new Point(232, 129);
+            受講者名.Location = new Point(291, 129);
             受講者名.Margin = new Padding(3, 2, 3, 2);
             受講者名.Name = "受講者名";
             受講者名.ReadOnly = true;
@@ -955,9 +955,9 @@ namespace u_net
             // 年間教育計画サブ1
             // 
             年間教育計画サブ1.Location = new Point(5, 247);
-            年間教育計画サブ1.Margin = new Padding(4, 4, 4, 4);
+            年間教育計画サブ1.Margin = new Padding(4);
             年間教育計画サブ1.Name = "年間教育計画サブ1";
-            年間教育計画サブ1.Size = new Size(830, 290);
+            年間教育計画サブ1.Size = new Size(877, 290);
             年間教育計画サブ1.TabIndex = 21031;
             // 
             // F_年間教育計画

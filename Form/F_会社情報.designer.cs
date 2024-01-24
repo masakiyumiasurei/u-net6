@@ -30,9 +30,7 @@ namespace u_net
         private void InitializeComponent()
         {
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(F_会社情報));
             dataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn2 = new DataGridViewTextBoxColumn();
@@ -65,6 +63,7 @@ namespace u_net
             label1 = new Label();
             tabControl1 = new TabControl();
             ページ55 = new TabPage();
+            郵便番号 = new MaskedTextBox();
             表示名 = new TextBox();
             会社名2 = new TextBox();
             会社コード = new TextBox();
@@ -77,7 +76,6 @@ namespace u_net
             会社名1 = new TextBox();
             氏名_ラベル = new Label();
             代表者氏名 = new TextBox();
-            郵便番号 = new TextBox();
             FAX番号 = new TextBox();
             部_ラベル = new Label();
             ラベル93 = new Label();
@@ -92,13 +90,14 @@ namespace u_net
             円未満端数処理1 = new ComboBox();
             label4 = new Label();
             groupBox1 = new GroupBox();
+            dataGridView1 = new DataGridView();
             消費税処理方法 = new ComboBox();
             label3 = new Label();
             税計算タイミング = new ComboBox();
             label2 = new Label();
-            comboBox3 = new ComboBox();
-            comboBox2 = new ComboBox();
-            comboBox1 = new ComboBox();
+            支払期日 = new ComboBox();
+            支払期間 = new ComboBox();
+            自社締日 = new ComboBox();
             label25 = new Label();
             label27 = new Label();
             ページ79 = new TabPage();
@@ -119,19 +118,16 @@ namespace u_net
             toolStripStatusLabel2 = new ToolStripStatusLabel();
             process1 = new System.Diagnostics.Process();
             閉じるボタン = new Button();
-            dataGridView1 = new DataGridView();
-            適用日ボタン = new DataGridViewButtonColumn();
-            区分名ボタン = new DataGridViewButtonColumn();
-            消費税率ボタン = new DataGridViewButtonColumn();
+            コマンド登録 = new Button();
             tabControl1.SuspendLayout();
             ページ55.SuspendLayout();
             ページ56.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             ページ79.SuspendLayout();
             groupBox3.SuspendLayout();
             statusStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
             // dataGridViewTextBoxColumn1
@@ -294,6 +290,7 @@ namespace u_net
             // 
             // ページ55
             // 
+            ページ55.Controls.Add(郵便番号);
             ページ55.Controls.Add(表示名);
             ページ55.Controls.Add(会社名2);
             ページ55.Controls.Add(会社コード);
@@ -306,7 +303,6 @@ namespace u_net
             ページ55.Controls.Add(会社名1);
             ページ55.Controls.Add(氏名_ラベル);
             ページ55.Controls.Add(代表者氏名);
-            ページ55.Controls.Add(郵便番号);
             ページ55.Controls.Add(FAX番号);
             ページ55.Controls.Add(部_ラベル);
             ページ55.Controls.Add(ラベル93);
@@ -320,6 +316,17 @@ namespace u_net
             ページ55.Text = "　 基本情報";
             ページ55.UseVisualStyleBackColor = true;
             // 
+            // 郵便番号
+            // 
+            郵便番号.Font = new Font("BIZ UDPゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            郵便番号.Location = new Point(176, 110);
+            郵便番号.Mask = "000-0000";
+            郵便番号.Name = "郵便番号";
+            郵便番号.Size = new Size(135, 20);
+            郵便番号.TabIndex = 211;
+            郵便番号.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
+            郵便番号.VisibleChanged += 会社名1_TextChanged;
+            // 
             // 表示名
             // 
             表示名.BackColor = Color.White;
@@ -327,11 +334,10 @@ namespace u_net
             表示名.ImeMode = ImeMode.Off;
             表示名.Location = new Point(176, 140);
             表示名.Margin = new Padding(3, 2, 3, 2);
-            表示名.Multiline = true;
             表示名.Name = "表示名";
-            表示名.Size = new Size(312, 20);
+            表示名.Size = new Size(312, 21);
             表示名.TabIndex = 4;
-            表示名.TextChanged += 表示名_TextChanged;
+            表示名.TextChanged += 会社名1_TextChanged;
             // 
             // 会社名2
             // 
@@ -340,11 +346,10 @@ namespace u_net
             会社名2.ImeMode = ImeMode.Off;
             会社名2.Location = new Point(176, 80);
             会社名2.Margin = new Padding(3, 2, 3, 2);
-            会社名2.Multiline = true;
             会社名2.Name = "会社名2";
-            会社名2.Size = new Size(310, 20);
+            会社名2.Size = new Size(310, 21);
             会社名2.TabIndex = 2;
-            会社名2.TextChanged += ふりがな_TextChanged;
+            会社名2.TextChanged += 会社名1_TextChanged;
             // 
             // 会社コード
             // 
@@ -352,13 +357,10 @@ namespace u_net
             会社コード.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             会社コード.Location = new Point(176, 20);
             会社コード.Margin = new Padding(3, 2, 3, 2);
-            会社コード.Multiline = true;
             会社コード.Name = "会社コード";
-            会社コード.Size = new Size(135, 20);
+            会社コード.Size = new Size(135, 21);
             会社コード.TabIndex = 0;
-            会社コード.TextChanged += 社員コード_TextChanged;
-            会社コード.Validating += 社員コード_Validating;
-            会社コード.Validated += 社員コード_Validated;
+            会社コード.Validated += 会社コード_Validated;
             // 
             // ラベル64
             // 
@@ -396,12 +398,11 @@ namespace u_net
             頭文字.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             頭文字.Location = new Point(176, 170);
             頭文字.Margin = new Padding(3, 2, 3, 2);
-            頭文字.Multiline = true;
             頭文字.Name = "頭文字";
             頭文字.ReadOnly = true;
-            頭文字.Size = new Size(312, 20);
+            頭文字.Size = new Size(312, 21);
             頭文字.TabIndex = 5;
-            頭文字.TextChanged += 頭文字_TextChanged;
+            頭文字.TextChanged += 会社名1_TextChanged;
             // 
             // 勤務地コードラベル
             // 
@@ -455,13 +456,10 @@ namespace u_net
             会社名1.ImeMode = ImeMode.Off;
             会社名1.Location = new Point(176, 50);
             会社名1.Margin = new Padding(3, 2, 3, 2);
-            会社名1.Multiline = true;
             会社名1.Name = "会社名1";
-            会社名1.Size = new Size(310, 20);
+            会社名1.Size = new Size(310, 21);
             会社名1.TabIndex = 1;
-            会社名1.TextChanged += 氏名_TextChanged;
-            会社名1.Enter += 氏名_Enter;
-            会社名1.Leave += 氏名_Leave;
+            会社名1.TextChanged += 会社名1_TextChanged;
             // 
             // 氏名_ラベル
             // 
@@ -485,25 +483,10 @@ namespace u_net
             代表者氏名.ImeMode = ImeMode.Hiragana;
             代表者氏名.Location = new Point(176, 260);
             代表者氏名.Margin = new Padding(3, 2, 3, 2);
-            代表者氏名.Multiline = true;
             代表者氏名.Name = "代表者氏名";
-            代表者氏名.Size = new Size(249, 20);
+            代表者氏名.Size = new Size(249, 21);
             代表者氏名.TabIndex = 8;
-            代表者氏名.TextChanged += 電子メールアドレス_TextChanged;
-            // 
-            // 郵便番号
-            // 
-            郵便番号.BackColor = Color.White;
-            郵便番号.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            郵便番号.ImeMode = ImeMode.Hiragana;
-            郵便番号.Location = new Point(176, 110);
-            郵便番号.Margin = new Padding(3, 2, 3, 2);
-            郵便番号.MaxLength = 48;
-            郵便番号.Multiline = true;
-            郵便番号.Name = "郵便番号";
-            郵便番号.Size = new Size(162, 20);
-            郵便番号.TabIndex = 3;
-            郵便番号.TextChanged += 役職名_TextChanged;
+            代表者氏名.TextChanged += 会社名1_TextChanged;
             // 
             // FAX番号
             // 
@@ -511,14 +494,11 @@ namespace u_net
             FAX番号.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             FAX番号.Location = new Point(176, 230);
             FAX番号.Margin = new Padding(3, 2, 3, 2);
-            FAX番号.Multiline = true;
             FAX番号.Name = "FAX番号";
             FAX番号.ReadOnly = true;
-            FAX番号.Size = new Size(208, 20);
+            FAX番号.Size = new Size(208, 21);
             FAX番号.TabIndex = 7;
-            FAX番号.TextChanged += チーム名_TextChanged;
-            FAX番号.Enter += チーム名_Enter;
-            FAX番号.Leave += チーム名_Leave;
+            FAX番号.TextChanged += 会社名1_TextChanged;
             // 
             // 部_ラベル
             // 
@@ -556,12 +536,11 @@ namespace u_net
             電話番号.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             電話番号.Location = new Point(176, 200);
             電話番号.Margin = new Padding(3, 2, 3, 2);
-            電話番号.Multiline = true;
             電話番号.Name = "電話番号";
             電話番号.ReadOnly = true;
-            電話番号.Size = new Size(208, 20);
+            電話番号.Size = new Size(208, 21);
             電話番号.TabIndex = 6;
-            電話番号.TextChanged += 部_TextChanged;
+            電話番号.TextChanged += 会社名1_TextChanged;
             // 
             // 社員コード_ラベル
             // 
@@ -584,9 +563,9 @@ namespace u_net
             ページ56.Controls.Add(label12);
             ページ56.Controls.Add(groupBox2);
             ページ56.Controls.Add(groupBox1);
-            ページ56.Controls.Add(comboBox3);
-            ページ56.Controls.Add(comboBox2);
-            ページ56.Controls.Add(comboBox1);
+            ページ56.Controls.Add(支払期日);
+            ページ56.Controls.Add(支払期間);
+            ページ56.Controls.Add(自社締日);
             ページ56.Controls.Add(label25);
             ページ56.Controls.Add(label27);
             ページ56.Location = new Point(4, 22);
@@ -634,7 +613,7 @@ namespace u_net
             groupBox2.Controls.Add(円未満端数処理1);
             groupBox2.Controls.Add(label4);
             groupBox2.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            groupBox2.Location = new Point(31, 272);
+            groupBox2.Location = new Point(31, 285);
             groupBox2.Name = "groupBox2";
             groupBox2.Size = new Size(495, 72);
             groupBox2.TabIndex = 7;
@@ -648,6 +627,7 @@ namespace u_net
             円未満端数処理2.Name = "円未満端数処理2";
             円未満端数処理2.Size = new Size(103, 21);
             円未満端数処理2.TabIndex = 9;
+            円未満端数処理2.TextChanged += 会社名1_TextChanged;
             // 
             // label5
             // 
@@ -671,6 +651,7 @@ namespace u_net
             円未満端数処理1.Name = "円未満端数処理1";
             円未満端数処理1.Size = new Size(103, 21);
             円未満端数処理1.TabIndex = 8;
+            円未満端数処理1.TextChanged += 会社名1_TextChanged;
             // 
             // label4
             // 
@@ -695,20 +676,50 @@ namespace u_net
             groupBox1.Controls.Add(税計算タイミング);
             groupBox1.Controls.Add(label2);
             groupBox1.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            groupBox1.Location = new Point(33, 89);
+            groupBox1.Location = new Point(33, 77);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(386, 154);
+            groupBox1.Size = new Size(493, 202);
             groupBox1.TabIndex = 3;
             groupBox1.TabStop = false;
             groupBox1.Text = "消費税";
             // 
+            // dataGridView1
+            // 
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = SystemColors.ButtonFace;
+            dataGridViewCellStyle1.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.EditMode = DataGridViewEditMode.EditOnEnter;
+            dataGridView1.ImeMode = ImeMode.On;
+            dataGridView1.Location = new Point(12, 20);
+            dataGridView1.Margin = new Padding(4, 3, 4, 3);
+            dataGridView1.Name = "dataGridView1";
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.GradientInactiveCaption;
+            dataGridViewCellStyle2.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle2.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridView1.RowTemplate.Height = 21;
+            dataGridView1.Size = new Size(474, 117);
+            dataGridView1.TabIndex = 201;
+            // 
             // 消費税処理方法
             // 
             消費税処理方法.FormattingEnabled = true;
-            消費税処理方法.Location = new Point(124, 125);
+            消費税処理方法.Location = new Point(124, 173);
             消費税処理方法.Name = "消費税処理方法";
             消費税処理方法.Size = new Size(103, 21);
             消費税処理方法.TabIndex = 6;
+            消費税処理方法.SelectedIndexChanged += 会社名1_TextChanged;
+            消費税処理方法.TextChanged += 会社名1_TextChanged;
             // 
             // label3
             // 
@@ -717,7 +728,7 @@ namespace u_net
             label3.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             label3.ForeColor = SystemColors.ActiveCaptionText;
             label3.ImageAlign = ContentAlignment.MiddleLeft;
-            label3.Location = new Point(12, 125);
+            label3.Location = new Point(12, 173);
             label3.Margin = new Padding(0);
             label3.Name = "label3";
             label3.Size = new Size(133, 20);
@@ -728,10 +739,12 @@ namespace u_net
             // 税計算タイミング
             // 
             税計算タイミング.FormattingEnabled = true;
-            税計算タイミング.Location = new Point(124, 95);
+            税計算タイミング.Location = new Point(124, 143);
             税計算タイミング.Name = "税計算タイミング";
             税計算タイミング.Size = new Size(103, 21);
             税計算タイミング.TabIndex = 5;
+            税計算タイミング.SelectedIndexChanged += 会社名1_TextChanged;
+            税計算タイミング.TextChanged += 会社名1_TextChanged;
             // 
             // label2
             // 
@@ -740,7 +753,7 @@ namespace u_net
             label2.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             label2.ForeColor = SystemColors.ActiveCaptionText;
             label2.ImageAlign = ContentAlignment.MiddleLeft;
-            label2.Location = new Point(12, 95);
+            label2.Location = new Point(12, 143);
             label2.Margin = new Padding(0);
             label2.Name = "label2";
             label2.Size = new Size(133, 20);
@@ -748,32 +761,38 @@ namespace u_net
             label2.Text = "税計算タイミング";
             label2.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // comboBox3
+            // 支払期日
             // 
-            comboBox3.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            comboBox3.FormattingEnabled = true;
-            comboBox3.Location = new Point(237, 50);
-            comboBox3.Name = "comboBox3";
-            comboBox3.Size = new Size(42, 21);
-            comboBox3.TabIndex = 2;
+            支払期日.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            支払期日.FormattingEnabled = true;
+            支払期日.Location = new Point(237, 50);
+            支払期日.Name = "支払期日";
+            支払期日.Size = new Size(42, 21);
+            支払期日.TabIndex = 2;
+            支払期日.SelectedIndexChanged += 会社名1_TextChanged;
+            支払期日.TextChanged += 会社名1_TextChanged;
             // 
-            // comboBox2
+            // 支払期間
             // 
-            comboBox2.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            comboBox2.FormattingEnabled = true;
-            comboBox2.Location = new Point(128, 50);
-            comboBox2.Name = "comboBox2";
-            comboBox2.Size = new Size(103, 21);
-            comboBox2.TabIndex = 1;
+            支払期間.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            支払期間.FormattingEnabled = true;
+            支払期間.Location = new Point(128, 50);
+            支払期間.Name = "支払期間";
+            支払期間.Size = new Size(103, 21);
+            支払期間.TabIndex = 1;
+            支払期間.SelectedIndexChanged += 会社名1_TextChanged;
+            支払期間.TextChanged += 会社名1_TextChanged;
             // 
-            // comboBox1
+            // 自社締日
             // 
-            comboBox1.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(128, 20);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(64, 21);
-            comboBox1.TabIndex = 0;
+            自社締日.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            自社締日.FormattingEnabled = true;
+            自社締日.Location = new Point(128, 20);
+            自社締日.Name = "自社締日";
+            自社締日.Size = new Size(64, 21);
+            自社締日.TabIndex = 0;
+            自社締日.SelectedIndexChanged += 会社名1_TextChanged;
+            自社締日.TextChanged += 会社名1_TextChanged;
             // 
             // label25
             // 
@@ -785,9 +804,9 @@ namespace u_net
             label25.Location = new Point(25, 50);
             label25.Margin = new Padding(0);
             label25.Name = "label25";
-            label25.Size = new Size(133, 20);
+            label25.Size = new Size(81, 20);
             label25.TabIndex = 208;
-            label25.Text = "パスワード";
+            label25.Text = "支払日";
             label25.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // label27
@@ -802,7 +821,7 @@ namespace u_net
             label27.Name = "label27";
             label27.Size = new Size(133, 20);
             label27.TabIndex = 207;
-            label27.Text = "ユーザー名";
+            label27.Text = "自社締日";
             label27.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // ページ79
@@ -841,6 +860,7 @@ namespace u_net
             取引銀行2口座番号.Name = "取引銀行2口座番号";
             取引銀行2口座番号.Size = new Size(107, 21);
             取引銀行2口座番号.TabIndex = 4;
+            取引銀行2口座番号.TextChanged += 会社名1_TextChanged;
             // 
             // 取引銀行1口座番号
             // 
@@ -848,6 +868,7 @@ namespace u_net
             取引銀行1口座番号.Name = "取引銀行1口座番号";
             取引銀行1口座番号.Size = new Size(107, 21);
             取引銀行1口座番号.TabIndex = 2;
+            取引銀行1口座番号.TextChanged += 会社名1_TextChanged;
             // 
             // 取引銀行2名称
             // 
@@ -855,6 +876,7 @@ namespace u_net
             取引銀行2名称.Name = "取引銀行2名称";
             取引銀行2名称.Size = new Size(262, 21);
             取引銀行2名称.TabIndex = 3;
+            取引銀行2名称.TextChanged += 会社名1_TextChanged;
             // 
             // 取引銀行1名称
             // 
@@ -862,6 +884,7 @@ namespace u_net
             取引銀行1名称.Name = "取引銀行1名称";
             取引銀行1名称.Size = new Size(262, 21);
             取引銀行1名称.TabIndex = 1;
+            取引銀行1名称.TextChanged += 会社名1_TextChanged;
             // 
             // label11
             // 
@@ -967,62 +990,18 @@ namespace u_net
             閉じるボタン.TabIndex = 1;
             閉じるボタン.Text = "閉じる";
             閉じるボタン.UseVisualStyleBackColor = true;
+            閉じるボタン.Click += コマンド終了_Click;
             // 
-            // dataGridView1
+            // コマンド登録
             // 
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = SystemColors.ButtonFace;
-            dataGridViewCellStyle1.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { 適用日ボタン, 区分名ボタン, 消費税率ボタン });
-            dataGridView1.EditMode = DataGridViewEditMode.EditOnEnter;
-            dataGridView1.ImeMode = ImeMode.On;
-            dataGridView1.Location = new Point(29, 20);
-            dataGridView1.Margin = new Padding(4, 3, 4, 3);
-            dataGridView1.Name = "dataGridView1";
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = SystemColors.GradientInactiveCaption;
-            dataGridViewCellStyle4.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle4.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
-            dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
-            dataGridView1.RowTemplate.Height = 21;
-            dataGridView1.Size = new Size(304, 69);
-            dataGridView1.TabIndex = 201;
-            // 
-            // 適用日ボタン
-            // 
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.ForeColor = Color.Maroon;
-            適用日ボタン.DefaultCellStyle = dataGridViewCellStyle2;
-            適用日ボタン.HeaderText = "適用日";
-            適用日ボタン.Name = "適用日ボタン";
-            適用日ボタン.Text = "";
-            適用日ボタン.UseColumnTextForButtonValue = true;
-            適用日ボタン.Width = 70;
-            // 
-            // 区分名ボタン
-            // 
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.ForeColor = Color.Maroon;
-            区分名ボタン.DefaultCellStyle = dataGridViewCellStyle3;
-            区分名ボタン.HeaderText = "消費税区分名";
-            区分名ボタン.Name = "区分名ボタン";
-            区分名ボタン.Text = "";
-            区分名ボタン.UseColumnTextForButtonValue = true;
-            // 
-            // 消費税率ボタン
-            // 
-            消費税率ボタン.HeaderText = "消費税率";
-            消費税率ボタン.Name = "消費税率ボタン";
-            消費税率ボタン.Width = 70;
+            コマンド登録.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            コマンド登録.Location = new Point(367, 412);
+            コマンド登録.Name = "コマンド登録";
+            コマンド登録.Size = new Size(93, 32);
+            コマンド登録.TabIndex = 201;
+            コマンド登録.Text = "登録";
+            コマンド登録.UseVisualStyleBackColor = true;
+            コマンド登録.Click += コマンド登録_Click;
             // 
             // F_会社情報
             // 
@@ -1030,6 +1009,7 @@ namespace u_net
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
             ClientSize = new Size(571, 476);
+            Controls.Add(コマンド登録);
             Controls.Add(閉じるボタン);
             Controls.Add(statusStrip1);
             Controls.Add(tabControl1);
@@ -1049,12 +1029,12 @@ namespace u_net
             ページ56.ResumeLayout(false);
             groupBox2.ResumeLayout(false);
             groupBox1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ページ79.ResumeLayout(false);
             groupBox3.ResumeLayout(false);
             groupBox3.PerformLayout();
             statusStrip1.ResumeLayout(false);
             statusStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -1119,7 +1099,6 @@ namespace u_net
         private Label label25;
         private Label label27;
         private TabPage ページ79;
-        private TextBox 郵便番号;
         private StatusStrip statusStrip1;
         private ToolStripStatusLabel toolStripStatusLabel1;
         private ToolStripStatusLabel toolStripStatusLabel2;
@@ -1127,9 +1106,9 @@ namespace u_net
         private TextBox 表示名;
         private System.Diagnostics.Process process1;
         private Button 閉じるボタン;
-        private ComboBox comboBox1;
-        private ComboBox comboBox3;
-        private ComboBox comboBox2;
+        private ComboBox 自社締日;
+        private ComboBox 支払期日;
+        private ComboBox 支払期間;
         private GroupBox groupBox1;
         private GroupBox groupBox2;
         private ComboBox 消費税処理方法;
@@ -1157,6 +1136,8 @@ namespace u_net
         private DataGridViewButtonColumn 適用日ボタン;
         private DataGridViewButtonColumn 区分名ボタン;
         private DataGridViewButtonColumn 消費税率ボタン;
+        private Button コマンド登録;
+        private MaskedTextBox 郵便番号;
     }
 }
 

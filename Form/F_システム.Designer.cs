@@ -687,6 +687,7 @@
             Controls.Add(接続対象サーバー);
             Controls.Add(閉じる);
             Name = "F_システム";
+            StartPosition = FormStartPosition.CenterScreen;
             FormClosing += F_システム_FormClosing;
             FormClosed += F_システム_FormClosed;
             Load += Form_Load;
