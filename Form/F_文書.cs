@@ -6790,7 +6790,7 @@ namespace u_net
             toolStripStatusLabel1.Text = "各種項目の説明";
         }
 
-        #endregion 製品企画書
+        #endregion
 
 
         #region 設計審査会議事録
@@ -7011,6 +7011,9 @@ namespace u_net
         }
 
         #endregion
+
+
+        #region 設計製作依頼書
 
         private void 設計製作依頼書_検討依頼書コード_KeyDown(object sender, KeyEventArgs e)
         {
@@ -7256,5 +7259,7 @@ namespace u_net
         {
 
         }
+
+        #endregion
     }
 }
