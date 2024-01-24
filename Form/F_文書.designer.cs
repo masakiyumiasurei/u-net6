@@ -113,9 +113,9 @@ namespace u_net
             是正予防会議通知書_顧客コード検索ボタン = new Button();
             是正予防処置報告書_顧客コード検索ボタン = new Button();
             是正予防処置報告書_環境_発生日選択ボタン = new Button();
-            button3 = new Button();
-            button5 = new Button();
-            button6 = new Button();
+            製品企画書_顧客コード検索ボタン = new Button();
+            製品企画書_発売予定日選択ボタン = new Button();
+            会議開催日選択ボタン = new Button();
             改版ボタン = new Button();
             文書名_ラベル = new Label();
             件名_ラベル = new Label();
@@ -411,28 +411,41 @@ namespace u_net
             是正予防処置報告書_環境_発生日 = new TextBox();
             label92 = new Label();
             製品企画書パネル = new Panel();
+            label108 = new Label();
+            label105 = new Label();
+            label102 = new Label();
+            label96 = new Label();
+            label95 = new Label();
+            label94 = new Label();
+            label93 = new Label();
+            開発目的 = new TextBox();
+            label87 = new Label();
+            製品企画書_製品概要 = new TextBox();
+            label86 = new Label();
+            会議開催日 = new TextBox();
+            製品企画書_標準価格 = new TextBox();
+            製品企画書_競合価格 = new TextBox();
+            製品企画書_発売予定日 = new TextBox();
+            製品企画書_競合製品型番 = new TextBox();
             label97 = new Label();
-            textBox6 = new TextBox();
+            製品企画書_年間販売数量 = new TextBox();
             label98 = new Label();
-            textBox8 = new TextBox();
-            textBox9 = new TextBox();
+            製品企画書_競合メーカー = new TextBox();
+            製品企画書_自社開発費比率 = new TextBox();
             label99 = new Label();
             label100 = new Label();
-            textBox10 = new TextBox();
-            textBox11 = new TextBox();
+            製品企画書_顧客名 = new TextBox();
+            製品企画書_顧客コード = new TextBox();
             label101 = new Label();
-            textBox12 = new TextBox();
-            comboBox4 = new ComboBox();
-            label102 = new Label();
-            textBox13 = new TextBox();
+            製品企画書_品名 = new TextBox();
+            製品企画書_売上区分 = new ComboBox();
+            製品企画書_型番 = new TextBox();
             label103 = new Label();
             label104 = new Label();
-            textBox14 = new TextBox();
-            textBox15 = new TextBox();
-            textBox16 = new TextBox();
-            textBox17 = new TextBox();
+            製品企画書_要求事項 = new TextBox();
+            製品企画書_版数 = new TextBox();
+            製品企画書_文書コード = new TextBox();
             label106 = new Label();
-            textBox18 = new TextBox();
             label107 = new Label();
             panel1.SuspendLayout();
             statusStrip1.SuspendLayout();
@@ -1350,44 +1363,49 @@ namespace u_net
             是正予防処置報告書_環境_発生日選択ボタン.Enter += 是正予防処置報告書_環境_発生日選択ボタン_Enter;
             是正予防処置報告書_環境_発生日選択ボタン.Leave += 是正予防処置報告書_環境_発生日選択ボタン_Leave;
             // 
-            // button3
+            // 製品企画書_顧客コード検索ボタン
             // 
-            button3.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            button3.Location = new Point(190, 49);
-            button3.Margin = new Padding(4);
-            button3.Name = "button3";
-            button3.Size = new Size(20, 20);
-            button3.TabIndex = 21029;
-            button3.TabStop = false;
-            button3.Text = "▼";
-            toolTip1.SetToolTip(button3, "カレンダー");
-            button3.UseVisualStyleBackColor = true;
+            製品企画書_顧客コード検索ボタン.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            製品企画書_顧客コード検索ボタン.Location = new Point(186, 68);
+            製品企画書_顧客コード検索ボタン.Margin = new Padding(4);
+            製品企画書_顧客コード検索ボタン.Name = "製品企画書_顧客コード検索ボタン";
+            製品企画書_顧客コード検索ボタン.Size = new Size(20, 20);
+            製品企画書_顧客コード検索ボタン.TabIndex = 21029;
+            製品企画書_顧客コード検索ボタン.TabStop = false;
+            製品企画書_顧客コード検索ボタン.Text = "▼";
+            toolTip1.SetToolTip(製品企画書_顧客コード検索ボタン, "顧客検索");
+            製品企画書_顧客コード検索ボタン.UseVisualStyleBackColor = true;
+            製品企画書_顧客コード検索ボタン.Click += 製品企画書_顧客コード検索ボタン_Click;
+            製品企画書_顧客コード検索ボタン.Enter += 製品企画書_顧客コード検索ボタン_Enter;
+            製品企画書_顧客コード検索ボタン.Leave += 製品企画書_顧客コード検索ボタン_Leave;
             // 
-            // button5
+            // 製品企画書_発売予定日選択ボタン
             // 
-            button5.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            button5.Location = new Point(337, 263);
-            button5.Margin = new Padding(4);
-            button5.Name = "button5";
-            button5.Size = new Size(20, 20);
-            button5.TabIndex = 21020;
-            button5.TabStop = false;
-            button5.Text = "▼";
-            toolTip1.SetToolTip(button5, "カレンダー");
-            button5.UseVisualStyleBackColor = true;
+            製品企画書_発売予定日選択ボタン.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            製品企画書_発売予定日選択ボタン.Location = new Point(186, 196);
+            製品企画書_発売予定日選択ボタン.Margin = new Padding(4);
+            製品企画書_発売予定日選択ボタン.Name = "製品企画書_発売予定日選択ボタン";
+            製品企画書_発売予定日選択ボタン.Size = new Size(20, 20);
+            製品企画書_発売予定日選択ボタン.TabIndex = 21032;
+            製品企画書_発売予定日選択ボタン.TabStop = false;
+            製品企画書_発売予定日選択ボタン.Text = "▼";
+            toolTip1.SetToolTip(製品企画書_発売予定日選択ボタン, "カレンダー");
+            製品企画書_発売予定日選択ボタン.UseVisualStyleBackColor = true;
+            製品企画書_発売予定日選択ボタン.Click += 製品企画書_発売予定日選択ボタン_Click;
             // 
-            // button6
+            // 会議開催日選択ボタン
             // 
-            button6.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            button6.Location = new Point(190, 263);
-            button6.Margin = new Padding(4);
-            button6.Name = "button6";
-            button6.Size = new Size(20, 20);
-            button6.TabIndex = 10286;
-            button6.TabStop = false;
-            button6.Text = "▼";
-            toolTip1.SetToolTip(button6, "カレンダー");
-            button6.UseVisualStyleBackColor = true;
+            会議開催日選択ボタン.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            会議開催日選択ボタン.Location = new Point(382, 196);
+            会議開催日選択ボタン.Margin = new Padding(4);
+            会議開催日選択ボタン.Name = "会議開催日選択ボタン";
+            会議開催日選択ボタン.Size = new Size(20, 20);
+            会議開催日選択ボタン.TabIndex = 21036;
+            会議開催日選択ボタン.TabStop = false;
+            会議開催日選択ボタン.Text = "▼";
+            toolTip1.SetToolTip(会議開催日選択ボタン, "カレンダー");
+            会議開催日選択ボタン.UseVisualStyleBackColor = true;
+            会議開催日選択ボタン.Click += 会議開催日選択ボタン_Click;
             // 
             // 改版ボタン
             // 
@@ -5770,189 +5788,79 @@ namespace u_net
             // 
             // 製品企画書パネル
             // 
+            製品企画書パネル.Controls.Add(label108);
+            製品企画書パネル.Controls.Add(label105);
+            製品企画書パネル.Controls.Add(label102);
+            製品企画書パネル.Controls.Add(label96);
+            製品企画書パネル.Controls.Add(label95);
+            製品企画書パネル.Controls.Add(label94);
+            製品企画書パネル.Controls.Add(label93);
+            製品企画書パネル.Controls.Add(開発目的);
+            製品企画書パネル.Controls.Add(label87);
+            製品企画書パネル.Controls.Add(製品企画書_製品概要);
+            製品企画書パネル.Controls.Add(label86);
+            製品企画書パネル.Controls.Add(会議開催日選択ボタン);
+            製品企画書パネル.Controls.Add(会議開催日);
+            製品企画書パネル.Controls.Add(製品企画書_標準価格);
+            製品企画書パネル.Controls.Add(製品企画書_競合価格);
+            製品企画書パネル.Controls.Add(製品企画書_発売予定日選択ボタン);
+            製品企画書パネル.Controls.Add(製品企画書_発売予定日);
+            製品企画書パネル.Controls.Add(製品企画書_競合製品型番);
             製品企画書パネル.Controls.Add(label97);
-            製品企画書パネル.Controls.Add(textBox6);
+            製品企画書パネル.Controls.Add(製品企画書_年間販売数量);
             製品企画書パネル.Controls.Add(label98);
-            製品企画書パネル.Controls.Add(textBox8);
-            製品企画書パネル.Controls.Add(textBox9);
+            製品企画書パネル.Controls.Add(製品企画書_競合メーカー);
+            製品企画書パネル.Controls.Add(製品企画書_自社開発費比率);
             製品企画書パネル.Controls.Add(label99);
             製品企画書パネル.Controls.Add(label100);
-            製品企画書パネル.Controls.Add(textBox10);
-            製品企画書パネル.Controls.Add(button3);
-            製品企画書パネル.Controls.Add(textBox11);
+            製品企画書パネル.Controls.Add(製品企画書_顧客名);
+            製品企画書パネル.Controls.Add(製品企画書_顧客コード検索ボタン);
+            製品企画書パネル.Controls.Add(製品企画書_顧客コード);
             製品企画書パネル.Controls.Add(label101);
-            製品企画書パネル.Controls.Add(textBox12);
-            製品企画書パネル.Controls.Add(comboBox4);
-            製品企画書パネル.Controls.Add(label102);
-            製品企画書パネル.Controls.Add(textBox13);
+            製品企画書パネル.Controls.Add(製品企画書_品名);
+            製品企画書パネル.Controls.Add(製品企画書_売上区分);
+            製品企画書パネル.Controls.Add(製品企画書_型番);
             製品企画書パネル.Controls.Add(label103);
             製品企画書パネル.Controls.Add(label104);
-            製品企画書パネル.Controls.Add(button5);
-            製品企画書パネル.Controls.Add(textBox14);
-            製品企画書パネル.Controls.Add(textBox15);
-            製品企画書パネル.Controls.Add(textBox16);
-            製品企画書パネル.Controls.Add(textBox17);
+            製品企画書パネル.Controls.Add(製品企画書_要求事項);
+            製品企画書パネル.Controls.Add(製品企画書_版数);
+            製品企画書パネル.Controls.Add(製品企画書_文書コード);
             製品企画書パネル.Controls.Add(label106);
-            製品企画書パネル.Controls.Add(button6);
-            製品企画書パネル.Controls.Add(textBox18);
             製品企画書パネル.Controls.Add(label107);
             製品企画書パネル.Location = new Point(9, 226);
             製品企画書パネル.Name = "製品企画書パネル";
             製品企画書パネル.Size = new Size(404, 376);
-            製品企画書パネル.TabIndex = 21031;
+            製品企画書パネル.TabIndex = 17;
             // 
-            // label97
+            // label108
             // 
-            label97.AllowDrop = true;
-            label97.AutoEllipsis = true;
-            label97.Font = new Font("BIZ UDゴシック", 7.5F, FontStyle.Regular, GraphicsUnit.Point);
-            label97.ForeColor = SystemColors.ActiveCaptionText;
-            label97.ImageAlign = ContentAlignment.MiddleLeft;
-            label97.Location = new Point(0, 116);
-            label97.Margin = new Padding(0);
-            label97.Name = "label97";
-            label97.Size = new Size(85, 20);
-            label97.TabIndex = 26;
-            label97.Text = "顧客電話番号(&T)";
-            label97.TextAlign = ContentAlignment.MiddleLeft;
+            label108.AllowDrop = true;
+            label108.AutoEllipsis = true;
+            label108.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label108.ForeColor = SystemColors.ActiveCaptionText;
+            label108.ImageAlign = ContentAlignment.MiddleLeft;
+            label108.Location = new Point(382, 132);
+            label108.Margin = new Padding(0);
+            label108.Name = "label108";
+            label108.Size = new Size(19, 20);
+            label108.TabIndex = 21047;
+            label108.Text = "円";
+            label108.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // textBox6
+            // label105
             // 
-            textBox6.BackColor = Color.White;
-            textBox6.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            textBox6.ImeMode = ImeMode.Disable;
-            textBox6.Location = new Point(86, 116);
-            textBox6.Margin = new Padding(3, 2, 3, 2);
-            textBox6.Name = "textBox6";
-            textBox6.Size = new Size(176, 20);
-            textBox6.TabIndex = 27;
-            // 
-            // label98
-            // 
-            label98.AllowDrop = true;
-            label98.AutoEllipsis = true;
-            label98.Font = new Font("BIZ UDゴシック", 7.5F, FontStyle.Regular, GraphicsUnit.Point);
-            label98.ForeColor = SystemColors.ActiveCaptionText;
-            label98.ImageAlign = ContentAlignment.MiddleLeft;
-            label98.Location = new Point(0, 162);
-            label98.Margin = new Padding(0);
-            label98.Name = "label98";
-            label98.Size = new Size(85, 20);
-            label98.TabIndex = 30;
-            label98.Text = "シリアル番号(&S)";
-            label98.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // textBox8
-            // 
-            textBox8.BackColor = Color.White;
-            textBox8.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            textBox8.ImeMode = ImeMode.Disable;
-            textBox8.Location = new Point(86, 162);
-            textBox8.Margin = new Padding(3, 2, 3, 2);
-            textBox8.Name = "textBox8";
-            textBox8.Size = new Size(314, 20);
-            textBox8.TabIndex = 31;
-            // 
-            // textBox9
-            // 
-            textBox9.BackColor = Color.White;
-            textBox9.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            textBox9.ImeMode = ImeMode.Off;
-            textBox9.Location = new Point(86, 139);
-            textBox9.Margin = new Padding(3, 2, 3, 2);
-            textBox9.Name = "textBox9";
-            textBox9.Size = new Size(314, 20);
-            textBox9.TabIndex = 29;
-            // 
-            // label99
-            // 
-            label99.AllowDrop = true;
-            label99.AutoEllipsis = true;
-            label99.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label99.ForeColor = SystemColors.ActiveCaptionText;
-            label99.ImageAlign = ContentAlignment.MiddleLeft;
-            label99.Location = new Point(0, 139);
-            label99.Margin = new Padding(0);
-            label99.Name = "label99";
-            label99.Size = new Size(85, 20);
-            label99.TabIndex = 28;
-            label99.Text = "製品型番(&M)";
-            label99.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // label100
-            // 
-            label100.AllowDrop = true;
-            label100.AutoEllipsis = true;
-            label100.Font = new Font("BIZ UDゴシック", 7.5F, FontStyle.Regular, GraphicsUnit.Point);
-            label100.ForeColor = SystemColors.ActiveCaptionText;
-            label100.ImageAlign = ContentAlignment.MiddleLeft;
-            label100.Location = new Point(0, 93);
-            label100.Margin = new Padding(0);
-            label100.Name = "label100";
-            label100.Size = new Size(85, 20);
-            label100.TabIndex = 24;
-            label100.Text = "顧客担当者名(&N)";
-            label100.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // textBox10
-            // 
-            textBox10.BackColor = Color.White;
-            textBox10.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            textBox10.ImeMode = ImeMode.Hiragana;
-            textBox10.Location = new Point(86, 93);
-            textBox10.Margin = new Padding(3, 2, 3, 2);
-            textBox10.Name = "textBox10";
-            textBox10.Size = new Size(314, 20);
-            textBox10.TabIndex = 25;
-            // 
-            // textBox11
-            // 
-            textBox11.BackColor = Color.White;
-            textBox11.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            textBox11.ImeMode = ImeMode.Disable;
-            textBox11.Location = new Point(86, 49);
-            textBox11.Margin = new Padding(3, 2, 3, 2);
-            textBox11.Name = "textBox11";
-            textBox11.Size = new Size(102, 20);
-            textBox11.TabIndex = 21;
-            // 
-            // label101
-            // 
-            label101.AllowDrop = true;
-            label101.AutoEllipsis = true;
-            label101.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label101.ForeColor = SystemColors.ActiveCaptionText;
-            label101.ImageAlign = ContentAlignment.MiddleLeft;
-            label101.Location = new Point(0, 26);
-            label101.Margin = new Padding(0);
-            label101.Name = "label101";
-            label101.Size = new Size(85, 20);
-            label101.TabIndex = 18;
-            label101.Text = "出向分類(&G)";
-            label101.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // textBox12
-            // 
-            textBox12.BackColor = Color.White;
-            textBox12.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            textBox12.ImeMode = ImeMode.Disable;
-            textBox12.Location = new Point(86, 4);
-            textBox12.Margin = new Padding(3, 2, 3, 2);
-            textBox12.Name = "textBox12";
-            textBox12.Size = new Size(102, 20);
-            textBox12.TabIndex = 17;
-            // 
-            // comboBox4
-            // 
-            comboBox4.BackColor = SystemColors.Window;
-            comboBox4.Enabled = false;
-            comboBox4.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            comboBox4.FormattingEnabled = true;
-            comboBox4.ImeMode = ImeMode.Disable;
-            comboBox4.Location = new Point(86, 26);
-            comboBox4.Name = "comboBox4";
-            comboBox4.Size = new Size(314, 21);
-            comboBox4.TabIndex = 19;
+            label105.AllowDrop = true;
+            label105.AutoEllipsis = true;
+            label105.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label105.ForeColor = SystemColors.ActiveCaptionText;
+            label105.ImageAlign = ContentAlignment.MiddleLeft;
+            label105.Location = new Point(382, 111);
+            label105.Margin = new Padding(0);
+            label105.Name = "label105";
+            label105.Size = new Size(19, 20);
+            label105.TabIndex = 21046;
+            label105.Text = "円";
+            label105.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // label102
             // 
@@ -5961,26 +5869,409 @@ namespace u_net
             label102.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             label102.ForeColor = SystemColors.ActiveCaptionText;
             label102.ImageAlign = ContentAlignment.MiddleLeft;
-            label102.Location = new Point(0, 263);
+            label102.Location = new Point(208, 196);
             label102.Margin = new Padding(0);
             label102.Name = "label102";
-            label102.Size = new Size(85, 20);
-            label102.TabIndex = 35;
-            label102.Text = "出向日(&A)";
+            label102.Size = new Size(72, 20);
+            label102.TabIndex = 21045;
+            label102.Text = "会議開催日";
             label102.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // textBox13
+            // label96
             // 
-            textBox13.BackColor = Color.White;
-            textBox13.Enabled = false;
-            textBox13.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            textBox13.ImeMode = ImeMode.Hiragana;
-            textBox13.Location = new Point(86, 71);
-            textBox13.Margin = new Padding(3, 2, 3, 2);
-            textBox13.Name = "textBox13";
-            textBox13.ReadOnly = true;
-            textBox13.Size = new Size(314, 20);
-            textBox13.TabIndex = 23;
+            label96.AllowDrop = true;
+            label96.AutoEllipsis = true;
+            label96.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label96.ForeColor = SystemColors.ActiveCaptionText;
+            label96.ImageAlign = ContentAlignment.MiddleLeft;
+            label96.Location = new Point(208, 133);
+            label96.Margin = new Padding(0);
+            label96.Name = "label96";
+            label96.Size = new Size(72, 20);
+            label96.TabIndex = 21044;
+            label96.Text = "競合価格";
+            label96.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // label95
+            // 
+            label95.AllowDrop = true;
+            label95.AutoEllipsis = true;
+            label95.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label95.ForeColor = SystemColors.ActiveCaptionText;
+            label95.ImageAlign = ContentAlignment.MiddleLeft;
+            label95.Location = new Point(208, 111);
+            label95.Margin = new Padding(0);
+            label95.Name = "label95";
+            label95.Size = new Size(72, 20);
+            label95.TabIndex = 21043;
+            label95.Text = "標準価格";
+            label95.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // label94
+            // 
+            label94.AllowDrop = true;
+            label94.AutoEllipsis = true;
+            label94.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label94.ForeColor = SystemColors.ActiveCaptionText;
+            label94.ImageAlign = ContentAlignment.MiddleLeft;
+            label94.Location = new Point(0, 196);
+            label94.Margin = new Padding(0);
+            label94.Name = "label94";
+            label94.Size = new Size(85, 20);
+            label94.TabIndex = 36;
+            label94.Text = "発売予定日";
+            label94.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // label93
+            // 
+            label93.AllowDrop = true;
+            label93.AutoEllipsis = true;
+            label93.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label93.ForeColor = SystemColors.ActiveCaptionText;
+            label93.ImageAlign = ContentAlignment.MiddleLeft;
+            label93.Location = new Point(0, 175);
+            label93.Margin = new Padding(0);
+            label93.Name = "label93";
+            label93.Size = new Size(85, 20);
+            label93.TabIndex = 34;
+            label93.Text = "競合製品型番";
+            label93.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // 開発目的
+            // 
+            開発目的.BackColor = SystemColors.Window;
+            開発目的.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            開発目的.ImeMode = ImeMode.Hiragana;
+            開発目的.Location = new Point(5, 232);
+            開発目的.Margin = new Padding(3, 2, 3, 2);
+            開発目的.Multiline = true;
+            開発目的.Name = "開発目的";
+            開発目的.Size = new Size(395, 37);
+            開発目的.TabIndex = 40;
+            開発目的.TextChanged += 開発目的_TextChanged;
+            開発目的.DoubleClick += 開発目的_DoubleClick;
+            開発目的.Enter += 開発目的_Enter;
+            開発目的.Leave += 開発目的_Leave;
+            開発目的.Validating += 開発目的_Validating;
+            開発目的.Validated += 開発目的_Validated;
+            // 
+            // label87
+            // 
+            label87.AllowDrop = true;
+            label87.AutoEllipsis = true;
+            label87.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label87.ForeColor = SystemColors.ActiveCaptionText;
+            label87.ImageAlign = ContentAlignment.MiddleLeft;
+            label87.Location = new Point(0, 216);
+            label87.Margin = new Padding(0);
+            label87.Name = "label87";
+            label87.Size = new Size(400, 16);
+            label87.TabIndex = 39;
+            label87.Text = "開発目的";
+            label87.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // 製品企画書_製品概要
+            // 
+            製品企画書_製品概要.BackColor = SystemColors.Window;
+            製品企画書_製品概要.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            製品企画書_製品概要.ImeMode = ImeMode.Hiragana;
+            製品企画書_製品概要.Location = new Point(5, 286);
+            製品企画書_製品概要.Margin = new Padding(3, 2, 3, 2);
+            製品企画書_製品概要.Multiline = true;
+            製品企画書_製品概要.Name = "製品企画書_製品概要";
+            製品企画書_製品概要.Size = new Size(395, 37);
+            製品企画書_製品概要.TabIndex = 42;
+            製品企画書_製品概要.TextChanged += 製品企画書_製品概要_TextChanged;
+            製品企画書_製品概要.DoubleClick += 製品企画書_製品概要_DoubleClick;
+            製品企画書_製品概要.Enter += 製品企画書_製品概要_Enter;
+            製品企画書_製品概要.Leave += 製品企画書_製品概要_Leave;
+            製品企画書_製品概要.Validating += 製品企画書_製品概要_Validating;
+            製品企画書_製品概要.Validated += 製品企画書_製品概要_Validated;
+            // 
+            // label86
+            // 
+            label86.AllowDrop = true;
+            label86.AutoEllipsis = true;
+            label86.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label86.ForeColor = SystemColors.ActiveCaptionText;
+            label86.ImageAlign = ContentAlignment.MiddleLeft;
+            label86.Location = new Point(0, 270);
+            label86.Margin = new Padding(0);
+            label86.Name = "label86";
+            label86.Size = new Size(400, 16);
+            label86.TabIndex = 41;
+            label86.Text = "製品概要";
+            label86.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // 会議開催日
+            // 
+            会議開催日.BackColor = Color.White;
+            会議開催日.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            会議開催日.ImeMode = ImeMode.Disable;
+            会議開催日.Location = new Point(280, 196);
+            会議開催日.Margin = new Padding(3, 2, 3, 2);
+            会議開催日.Name = "会議開催日";
+            会議開催日.Size = new Size(102, 20);
+            会議開催日.TabIndex = 38;
+            会議開催日.TextChanged += 会議開催日_TextChanged;
+            会議開催日.DoubleClick += 会議開催日_DoubleClick;
+            会議開催日.KeyPress += 会議開催日_KeyPress;
+            会議開催日.Validating += 会議開催日_Validating;
+            会議開催日.Validated += 会議開催日_Validated;
+            // 
+            // 製品企画書_標準価格
+            // 
+            製品企画書_標準価格.BackColor = Color.White;
+            製品企画書_標準価格.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            製品企画書_標準価格.ImeMode = ImeMode.Disable;
+            製品企画書_標準価格.Location = new Point(280, 111);
+            製品企画書_標準価格.Margin = new Padding(3, 2, 3, 2);
+            製品企画書_標準価格.Name = "製品企画書_標準価格";
+            製品企画書_標準価格.Size = new Size(102, 20);
+            製品企画書_標準価格.TabIndex = 28;
+            製品企画書_標準価格.TextChanged += 製品企画書_標準価格_TextChanged;
+            製品企画書_標準価格.Validating += 製品企画書_標準価格_Validating;
+            製品企画書_標準価格.Validated += 製品企画書_標準価格_Validated;
+            // 
+            // 製品企画書_競合価格
+            // 
+            製品企画書_競合価格.BackColor = Color.White;
+            製品企画書_競合価格.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            製品企画書_競合価格.ImeMode = ImeMode.Disable;
+            製品企画書_競合価格.Location = new Point(280, 133);
+            製品企画書_競合価格.Margin = new Padding(3, 2, 3, 2);
+            製品企画書_競合価格.Name = "製品企画書_競合価格";
+            製品企画書_競合価格.Size = new Size(102, 20);
+            製品企画書_競合価格.TabIndex = 31;
+            製品企画書_競合価格.TextChanged += 製品企画書_競合価格_TextChanged;
+            製品企画書_競合価格.Validating += 製品企画書_競合価格_Validating;
+            製品企画書_競合価格.Validated += 製品企画書_競合価格_Validated;
+            // 
+            // 製品企画書_発売予定日
+            // 
+            製品企画書_発売予定日.BackColor = Color.White;
+            製品企画書_発売予定日.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            製品企画書_発売予定日.ImeMode = ImeMode.Disable;
+            製品企画書_発売予定日.Location = new Point(86, 196);
+            製品企画書_発売予定日.Margin = new Padding(3, 2, 3, 2);
+            製品企画書_発売予定日.Name = "製品企画書_発売予定日";
+            製品企画書_発売予定日.Size = new Size(100, 20);
+            製品企画書_発売予定日.TabIndex = 37;
+            製品企画書_発売予定日.TextChanged += 製品企画書_発売予定日_TextChanged;
+            製品企画書_発売予定日.DoubleClick += 製品企画書_発売予定日_DoubleClick;
+            製品企画書_発売予定日.KeyPress += 製品企画書_発売予定日_KeyPress;
+            製品企画書_発売予定日.Validating += 製品企画書_発売予定日_Validating;
+            製品企画書_発売予定日.Validated += 製品企画書_発売予定日_Validated;
+            // 
+            // 製品企画書_競合製品型番
+            // 
+            製品企画書_競合製品型番.BackColor = Color.White;
+            製品企画書_競合製品型番.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            製品企画書_競合製品型番.ImeMode = ImeMode.Alpha;
+            製品企画書_競合製品型番.Location = new Point(86, 175);
+            製品企画書_競合製品型番.Margin = new Padding(3, 2, 3, 2);
+            製品企画書_競合製品型番.Name = "製品企画書_競合製品型番";
+            製品企画書_競合製品型番.Size = new Size(314, 20);
+            製品企画書_競合製品型番.TabIndex = 35;
+            製品企画書_競合製品型番.TextChanged += 製品企画書_競合製品型番_TextChanged;
+            製品企画書_競合製品型番.Validating += 製品企画書_競合製品型番_Validating;
+            製品企画書_競合製品型番.Validated += 製品企画書_競合製品型番_Validated;
+            // 
+            // label97
+            // 
+            label97.AllowDrop = true;
+            label97.AutoEllipsis = true;
+            label97.Font = new Font("BIZ UDゴシック", 8.5F, FontStyle.Regular, GraphicsUnit.Point);
+            label97.ForeColor = SystemColors.ActiveCaptionText;
+            label97.ImageAlign = ContentAlignment.MiddleLeft;
+            label97.Location = new Point(0, 111);
+            label97.Margin = new Padding(0);
+            label97.Name = "label97";
+            label97.Size = new Size(85, 20);
+            label97.TabIndex = 26;
+            label97.Text = "年間販売数量";
+            label97.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // 製品企画書_年間販売数量
+            // 
+            製品企画書_年間販売数量.BackColor = Color.White;
+            製品企画書_年間販売数量.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            製品企画書_年間販売数量.ImeMode = ImeMode.Disable;
+            製品企画書_年間販売数量.Location = new Point(86, 111);
+            製品企画書_年間販売数量.Margin = new Padding(3, 2, 3, 2);
+            製品企画書_年間販売数量.Name = "製品企画書_年間販売数量";
+            製品企画書_年間販売数量.Size = new Size(100, 20);
+            製品企画書_年間販売数量.TabIndex = 27;
+            製品企画書_年間販売数量.TextChanged += 製品企画書_年間販売数量_TextChanged;
+            製品企画書_年間販売数量.Validating += 製品企画書_年間販売数量_Validating;
+            製品企画書_年間販売数量.Validated += 製品企画書_年間販売数量_Validated;
+            // 
+            // label98
+            // 
+            label98.AllowDrop = true;
+            label98.AutoEllipsis = true;
+            label98.Font = new Font("BIZ UDゴシック", 8.5F, FontStyle.Regular, GraphicsUnit.Point);
+            label98.ForeColor = SystemColors.ActiveCaptionText;
+            label98.ImageAlign = ContentAlignment.MiddleLeft;
+            label98.Location = new Point(0, 154);
+            label98.Margin = new Padding(0);
+            label98.Name = "label98";
+            label98.Size = new Size(85, 20);
+            label98.TabIndex = 32;
+            label98.Text = "競合メーカー";
+            label98.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // 製品企画書_競合メーカー
+            // 
+            製品企画書_競合メーカー.BackColor = Color.White;
+            製品企画書_競合メーカー.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            製品企画書_競合メーカー.ImeMode = ImeMode.Hiragana;
+            製品企画書_競合メーカー.Location = new Point(86, 154);
+            製品企画書_競合メーカー.Margin = new Padding(3, 2, 3, 2);
+            製品企画書_競合メーカー.Name = "製品企画書_競合メーカー";
+            製品企画書_競合メーカー.Size = new Size(314, 20);
+            製品企画書_競合メーカー.TabIndex = 33;
+            製品企画書_競合メーカー.TextChanged += 製品企画書_競合メーカー_TextChanged;
+            製品企画書_競合メーカー.Validating += 製品企画書_競合メーカー_Validating;
+            製品企画書_競合メーカー.Validated += 製品企画書_競合メーカー_Validated;
+            // 
+            // 製品企画書_自社開発費比率
+            // 
+            製品企画書_自社開発費比率.BackColor = Color.White;
+            製品企画書_自社開発費比率.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            製品企画書_自社開発費比率.ImeMode = ImeMode.Disable;
+            製品企画書_自社開発費比率.Location = new Point(86, 133);
+            製品企画書_自社開発費比率.Margin = new Padding(3, 2, 3, 2);
+            製品企画書_自社開発費比率.Name = "製品企画書_自社開発費比率";
+            製品企画書_自社開発費比率.Size = new Size(100, 20);
+            製品企画書_自社開発費比率.TabIndex = 30;
+            製品企画書_自社開発費比率.TextChanged += 製品企画書_自社開発費比率_TextChanged;
+            製品企画書_自社開発費比率.Enter += 製品企画書_自社開発費比率_Enter;
+            製品企画書_自社開発費比率.Leave += 製品企画書_自社開発費比率_Leave;
+            製品企画書_自社開発費比率.Validating += 製品企画書_自社開発費比率_Validating;
+            製品企画書_自社開発費比率.Validated += 製品企画書_自社開発費比率_Validated;
+            // 
+            // label99
+            // 
+            label99.AllowDrop = true;
+            label99.AutoEllipsis = true;
+            label99.Font = new Font("BIZ UDゴシック", 8F, FontStyle.Regular, GraphicsUnit.Point);
+            label99.ForeColor = SystemColors.ActiveCaptionText;
+            label99.ImageAlign = ContentAlignment.MiddleLeft;
+            label99.Location = new Point(0, 133);
+            label99.Margin = new Padding(0);
+            label99.Name = "label99";
+            label99.Size = new Size(85, 20);
+            label99.TabIndex = 29;
+            label99.Text = "自社開発費比率";
+            label99.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // label100
+            // 
+            label100.AllowDrop = true;
+            label100.AutoEllipsis = true;
+            label100.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label100.ForeColor = SystemColors.ActiveCaptionText;
+            label100.ImageAlign = ContentAlignment.MiddleLeft;
+            label100.Location = new Point(0, 89);
+            label100.Margin = new Padding(0);
+            label100.Name = "label100";
+            label100.Size = new Size(85, 20);
+            label100.TabIndex = 24;
+            label100.Text = "顧客名";
+            label100.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // 製品企画書_顧客名
+            // 
+            製品企画書_顧客名.BackColor = Color.White;
+            製品企画書_顧客名.Enabled = false;
+            製品企画書_顧客名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            製品企画書_顧客名.ImeMode = ImeMode.NoControl;
+            製品企画書_顧客名.Location = new Point(86, 89);
+            製品企画書_顧客名.Margin = new Padding(3, 2, 3, 2);
+            製品企画書_顧客名.Name = "製品企画書_顧客名";
+            製品企画書_顧客名.ReadOnly = true;
+            製品企画書_顧客名.Size = new Size(314, 20);
+            製品企画書_顧客名.TabIndex = 25;
+            // 
+            // 製品企画書_顧客コード
+            // 
+            製品企画書_顧客コード.BackColor = Color.White;
+            製品企画書_顧客コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            製品企画書_顧客コード.ImeMode = ImeMode.Disable;
+            製品企画書_顧客コード.Location = new Point(86, 68);
+            製品企画書_顧客コード.Margin = new Padding(3, 2, 3, 2);
+            製品企画書_顧客コード.Name = "製品企画書_顧客コード";
+            製品企画書_顧客コード.Size = new Size(100, 20);
+            製品企画書_顧客コード.TabIndex = 23;
+            製品企画書_顧客コード.TextChanged += 製品企画書_顧客コード_TextChanged;
+            製品企画書_顧客コード.DoubleClick += 製品企画書_顧客コード_DoubleClick;
+            製品企画書_顧客コード.Enter += 製品企画書_顧客コード_Enter;
+            製品企画書_顧客コード.KeyDown += 製品企画書_顧客コード_KeyDown;
+            製品企画書_顧客コード.KeyPress += 製品企画書_顧客コード_KeyPress;
+            製品企画書_顧客コード.Leave += 製品企画書_顧客コード_Leave;
+            製品企画書_顧客コード.Validating += 製品企画書_顧客コード_Validating;
+            製品企画書_顧客コード.Validated += 製品企画書_顧客コード_Validated;
+            // 
+            // label101
+            // 
+            label101.AllowDrop = true;
+            label101.AutoEllipsis = true;
+            label101.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label101.ForeColor = SystemColors.ActiveCaptionText;
+            label101.ImageAlign = ContentAlignment.MiddleLeft;
+            label101.Location = new Point(0, 25);
+            label101.Margin = new Padding(0);
+            label101.Name = "label101";
+            label101.Size = new Size(85, 20);
+            label101.TabIndex = 18;
+            label101.Text = "型番";
+            label101.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // 製品企画書_品名
+            // 
+            製品企画書_品名.BackColor = Color.White;
+            製品企画書_品名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            製品企画書_品名.ImeMode = ImeMode.Hiragana;
+            製品企画書_品名.Location = new Point(86, 4);
+            製品企画書_品名.Margin = new Padding(3, 2, 3, 2);
+            製品企画書_品名.Name = "製品企画書_品名";
+            製品企画書_品名.Size = new Size(314, 20);
+            製品企画書_品名.TabIndex = 17;
+            製品企画書_品名.TextChanged += 製品企画書_品名_TextChanged;
+            製品企画書_品名.Validating += 製品企画書_品名_Validating;
+            製品企画書_品名.Validated += 製品企画書_品名_Validated;
+            // 
+            // 製品企画書_売上区分
+            // 
+            製品企画書_売上区分.BackColor = SystemColors.Window;
+            製品企画書_売上区分.Enabled = false;
+            製品企画書_売上区分.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            製品企画書_売上区分.FormattingEnabled = true;
+            製品企画書_売上区分.ImeMode = ImeMode.Disable;
+            製品企画書_売上区分.Location = new Point(86, 46);
+            製品企画書_売上区分.Name = "製品企画書_売上区分";
+            製品企画書_売上区分.Size = new Size(152, 21);
+            製品企画書_売上区分.TabIndex = 21;
+            製品企画書_売上区分.TextUpdate += 製品企画書_売上区分_TextUpdate;
+            製品企画書_売上区分.Validating += 製品企画書_売上区分_Validating;
+            製品企画書_売上区分.Validated += 製品企画書_売上区分_Validated;
+            // 
+            // 製品企画書_型番
+            // 
+            製品企画書_型番.BackColor = Color.White;
+            製品企画書_型番.Enabled = false;
+            製品企画書_型番.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            製品企画書_型番.ImeMode = ImeMode.Off;
+            製品企画書_型番.Location = new Point(86, 25);
+            製品企画書_型番.Margin = new Padding(3, 2, 3, 2);
+            製品企画書_型番.Name = "製品企画書_型番";
+            製品企画書_型番.ReadOnly = true;
+            製品企画書_型番.Size = new Size(314, 20);
+            製品企画書_型番.TabIndex = 19;
+            製品企画書_型番.TextChanged += 製品企画書_型番_TextChanged;
+            製品企画書_型番.Validating += 製品企画書_型番_Validating;
+            製品企画書_型番.Validated += 製品企画書_型番_Validated;
             // 
             // label103
             // 
@@ -5989,12 +6280,12 @@ namespace u_net
             label103.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             label103.ForeColor = SystemColors.ActiveCaptionText;
             label103.ImageAlign = ContentAlignment.MiddleLeft;
-            label103.Location = new Point(0, 71);
+            label103.Location = new Point(0, 68);
             label103.Margin = new Padding(0);
             label103.Name = "label103";
             label103.Size = new Size(85, 20);
             label103.TabIndex = 22;
-            label103.Text = "顧客名(&U)";
+            label103.Text = "顧客コード";
             label103.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // label104
@@ -6004,66 +6295,61 @@ namespace u_net
             label104.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             label104.ForeColor = SystemColors.ActiveCaptionText;
             label104.ImageAlign = ContentAlignment.MiddleLeft;
-            label104.Location = new Point(0, 49);
+            label104.Location = new Point(0, 47);
             label104.Margin = new Padding(0);
             label104.Name = "label104";
             label104.Size = new Size(85, 20);
             label104.TabIndex = 20;
-            label104.Text = "顧客コード(&C)";
+            label104.Text = "売上区分";
             label104.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // textBox14
+            // 製品企画書_要求事項
             // 
-            textBox14.BackColor = Color.White;
-            textBox14.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            textBox14.ImeMode = ImeMode.Disable;
-            textBox14.Location = new Point(233, 263);
-            textBox14.Margin = new Padding(3, 2, 3, 2);
-            textBox14.Name = "textBox14";
-            textBox14.Size = new Size(102, 20);
-            textBox14.TabIndex = 37;
+            製品企画書_要求事項.BackColor = SystemColors.Window;
+            製品企画書_要求事項.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            製品企画書_要求事項.ImeMode = ImeMode.Hiragana;
+            製品企画書_要求事項.Location = new Point(5, 338);
+            製品企画書_要求事項.Margin = new Padding(3, 2, 3, 2);
+            製品企画書_要求事項.Multiline = true;
+            製品企画書_要求事項.Name = "製品企画書_要求事項";
+            製品企画書_要求事項.Size = new Size(395, 37);
+            製品企画書_要求事項.TabIndex = 44;
+            製品企画書_要求事項.TextChanged += 製品企画書_要求事項_TextChanged;
+            製品企画書_要求事項.DoubleClick += 製品企画書_要求事項_DoubleClick;
+            製品企画書_要求事項.Enter += 製品企画書_要求事項_Enter;
+            製品企画書_要求事項.Leave += 製品企画書_要求事項_Leave;
+            製品企画書_要求事項.Validating += 製品企画書_要求事項_Validating;
+            製品企画書_要求事項.Validated += 製品企画書_要求事項_Validated;
             // 
-            // textBox15
+            // 製品企画書_版数
             // 
-            textBox15.BackColor = SystemColors.Window;
-            textBox15.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            textBox15.ImeMode = ImeMode.Hiragana;
-            textBox15.Location = new Point(92, 223);
-            textBox15.Margin = new Padding(3, 2, 3, 2);
-            textBox15.Multiline = true;
-            textBox15.Name = "textBox15";
-            textBox15.Size = new Size(308, 37);
-            textBox15.TabIndex = 34;
+            製品企画書_版数.BackColor = Color.White;
+            製品企画書_版数.Enabled = false;
+            製品企画書_版数.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            製品企画書_版数.ImeMode = ImeMode.Disable;
+            製品企画書_版数.Location = new Point(356, 47);
+            製品企画書_版数.Margin = new Padding(3, 2, 3, 2);
+            製品企画書_版数.Name = "製品企画書_版数";
+            製品企画書_版数.ReadOnly = true;
+            製品企画書_版数.Size = new Size(13, 20);
+            製品企画書_版数.TabIndex = 10292;
+            製品企画書_版数.TabStop = false;
+            製品企画書_版数.Visible = false;
             // 
-            // textBox16
+            // 製品企画書_文書コード
             // 
-            textBox16.BackColor = Color.White;
-            textBox16.Enabled = false;
-            textBox16.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            textBox16.ImeMode = ImeMode.Disable;
-            textBox16.Location = new Point(328, 116);
-            textBox16.Margin = new Padding(3, 2, 3, 2);
-            textBox16.Name = "textBox16";
-            textBox16.ReadOnly = true;
-            textBox16.Size = new Size(13, 20);
-            textBox16.TabIndex = 10292;
-            textBox16.TabStop = false;
-            textBox16.Visible = false;
-            // 
-            // textBox17
-            // 
-            textBox17.BackColor = Color.White;
-            textBox17.Enabled = false;
-            textBox17.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            textBox17.ImeMode = ImeMode.Disable;
-            textBox17.Location = new Point(309, 116);
-            textBox17.Margin = new Padding(3, 2, 3, 2);
-            textBox17.Name = "textBox17";
-            textBox17.ReadOnly = true;
-            textBox17.Size = new Size(13, 20);
-            textBox17.TabIndex = 10291;
-            textBox17.TabStop = false;
-            textBox17.Visible = false;
+            製品企画書_文書コード.BackColor = Color.White;
+            製品企画書_文書コード.Enabled = false;
+            製品企画書_文書コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            製品企画書_文書コード.ImeMode = ImeMode.Disable;
+            製品企画書_文書コード.Location = new Point(337, 47);
+            製品企画書_文書コード.Margin = new Padding(3, 2, 3, 2);
+            製品企画書_文書コード.Name = "製品企画書_文書コード";
+            製品企画書_文書コード.ReadOnly = true;
+            製品企画書_文書コード.Size = new Size(13, 20);
+            製品企画書_文書コード.TabIndex = 10291;
+            製品企画書_文書コード.TabStop = false;
+            製品企画書_文書コード.Visible = false;
             // 
             // label106
             // 
@@ -6072,24 +6358,13 @@ namespace u_net
             label106.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             label106.ForeColor = SystemColors.ActiveCaptionText;
             label106.ImageAlign = ContentAlignment.MiddleLeft;
-            label106.Location = new Point(0, 223);
+            label106.Location = new Point(0, 322);
             label106.Margin = new Padding(0);
             label106.Name = "label106";
-            label106.Size = new Size(85, 20);
-            label106.TabIndex = 33;
-            label106.Text = "依頼内容(&R)";
+            label106.Size = new Size(400, 16);
+            label106.TabIndex = 43;
+            label106.Text = "要求事項";
             label106.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // textBox18
-            // 
-            textBox18.BackColor = Color.White;
-            textBox18.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            textBox18.ImeMode = ImeMode.Disable;
-            textBox18.Location = new Point(92, 263);
-            textBox18.Margin = new Padding(3, 2, 3, 2);
-            textBox18.Name = "textBox18";
-            textBox18.Size = new Size(96, 20);
-            textBox18.TabIndex = 36;
             // 
             // label107
             // 
@@ -6103,7 +6378,7 @@ namespace u_net
             label107.Name = "label107";
             label107.Size = new Size(85, 20);
             label107.TabIndex = 16;
-            label107.Text = "受付日(&D)";
+            label107.Text = "品名";
             label107.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // F_文書
@@ -6639,11 +6914,10 @@ namespace u_net
         private Label label85;
         private Button 是正予防処置報告書_回答ボタン;
         private Panel 是正予防処置報告書_環境パネル;
-        private Button button1;
         private Label label86;
         internal ComboBox comboBox2;
         private Label label87;
-        private TextBox textBox2;
+        private TextBox 製品企画書_競合製品型番;
         private TextBox 是正予防処置報告書_環境_版数;
         private TextBox 是正予防処置報告書_環境_文書コード;
         private Label label88;
@@ -6658,31 +6932,41 @@ namespace u_net
         private TextBox 是正予防処置報告書_環境_議事録;
         private Panel 製品企画書パネル;
         private Label label97;
-        private TextBox textBox6;
+        private TextBox 製品企画書_年間販売数量;
         private Label label98;
-        private TextBox textBox8;
-        private TextBox textBox9;
+        private TextBox 製品企画書_競合メーカー;
+        private TextBox 製品企画書_自社開発費比率;
         private Label label99;
         private Label label100;
-        private TextBox textBox10;
-        internal Button button3;
-        private TextBox textBox11;
+        private TextBox 製品企画書_顧客名;
+        internal Button 製品企画書_顧客コード検索ボタン;
+        private TextBox 製品企画書_顧客コード;
         private Label label101;
-        private TextBox textBox12;
-        internal ComboBox comboBox4;
-        private Label label102;
-        private TextBox textBox13;
+        private TextBox 製品企画書_品名;
+        internal ComboBox 製品企画書_売上区分;
+        private TextBox 製品企画書_型番;
         private Label label103;
         private Label label104;
-        internal Button button5;
-        private TextBox textBox14;
-        private TextBox textBox15;
-        private TextBox textBox16;
-        private TextBox textBox17;
+        private TextBox 製品企画書_要求事項;
+        private TextBox 製品企画書_版数;
+        private TextBox 製品企画書_文書コード;
         private Label label106;
-        internal Button button6;
-        private TextBox textBox18;
         private Label label107;
+        private TextBox 製品企画書_発売予定日;
+        internal Button 製品企画書_発売予定日選択ボタン;
+        private TextBox 製品企画書_標準価格;
+        private TextBox 製品企画書_競合価格;
+        internal Button 会議開催日選択ボタン;
+        private TextBox 会議開催日;
+        private TextBox 開発目的;
+        private TextBox 製品企画書_製品概要;
+        private Label label95;
+        private Label label94;
+        private Label label93;
+        private Label label102;
+        private Label label96;
+        private Label label108;
+        private Label label105;
     }
 }
 
