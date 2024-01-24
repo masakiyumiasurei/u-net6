@@ -239,7 +239,7 @@ namespace u_net.Public
 
                         //if (reader[columnName] != DBNull.Value)
                         //{
-                        SetControlValue(control, reader[columnName], cmbname1, cmbname2, cmbname3, cmbname4, cmbname5);
+                        SetControlValue(control, reader[getedName], cmbname1, cmbname2, cmbname3, cmbname4, cmbname5);
                         break;
                         //}
                     }
@@ -307,42 +307,42 @@ namespace u_net.Public
 
         public static void FlowControl(Form formObject, bool isReady, string controlTag = "", string exControlName1 = "", string exControlName2 = "")
         {
-            foreach (Control ctlFetch in formObject.Controls)
-            {
-                if (ctlFetch.Name != exControlName1 && ctlFetch.Name != exControlName2 && !string.IsNullOrEmpty(ctlFetch.Tag.ToString()))
-                {
-                    if (ctlFetch.Tag == controlTag)
-                    {
-                        if (ctlFetch is TextBox textBox || ctlFetch is ComboBox comboBox)
-                        {
-                            if (ctlFetch.TabStop)
-                            {
-                                ctlFetch.Enabled = isReady;
-                                ctlFetch.BackColor = isReady ? System.Drawing.Color.White : System.Drawing.Color.FromArgb(255, 200, 200);
-                            }
-                        }
-                        else
-                        {
-                            ctlFetch.Enabled = isReady;
-                        }
-                    }
-                    else
-                    {
-                        if (ctlFetch is TextBox textBox || ctlFetch is ComboBox comboBox)
-                        {
-                            if (ctlFetch.TabStop)
-                            {
-                                ctlFetch.Enabled = !isReady;
-                                ctlFetch.BackColor = isReady ? System.Drawing.Color.White : System.Drawing.Color.FromArgb(255, 200, 200);
-                            }
-                        }
-                        else
-                        {
-                            ctlFetch.Enabled = !isReady;
-                        }
-                    }
-                }
-            }
+            //foreach (Control ctlFetch in formObject.Controls)
+            //{
+            //    if (ctlFetch.Name != exControlName1 && ctlFetch.Name != exControlName2 )
+            //    {
+            //        if (ctlFetch.Tag == controlTag)
+            //        {
+            //            if (ctlFetch is TextBox textBox || ctlFetch is ComboBox comboBox)
+            //            {
+            //                if (ctlFetch.TabStop)
+            //                {
+            //                    ctlFetch.Enabled = isReady;
+            //                    ctlFetch.BackColor = isReady ? System.Drawing.Color.White : System.Drawing.Color.FromArgb(255, 200, 200);
+            //                }
+            //            }
+            //            else
+            //            {
+            //                ctlFetch.Enabled = isReady;
+            //            }
+            //        }
+            //        else
+            //        {
+            //            if (ctlFetch is TextBox textBox || ctlFetch is ComboBox comboBox)
+            //            {
+            //                if (ctlFetch.TabStop)
+            //                {
+            //                    ctlFetch.Enabled = !isReady;
+            //                    ctlFetch.BackColor = isReady ? System.Drawing.Color.White : System.Drawing.Color.FromArgb(255, 200, 200);
+            //                }
+            //            }
+            //            else
+            //            {
+            //                ctlFetch.Enabled = !isReady;
+            //            }
+            //        }
+            //    }
+            //}
         }
 
     }

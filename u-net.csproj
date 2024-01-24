@@ -199,6 +199,9 @@
     <Compile Update="Form\F_棚卸作業.cs" />
     <Compile Update="Form\F_文書.cs" />
     <Compile Update="Form\F_仕入先別買掛一覧表.cs" />
+    <Compile Update="Form\F_年間教育計画_抽出.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Form\F_購買買掛一覧表.cs" />
     <Compile Update="Form\F_顧客コード選択.cs" />
     <Compile Update="Form\F_締め処理.cs" />
