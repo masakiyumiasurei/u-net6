@@ -22,7 +22,7 @@ namespace u_net
 
             //Application.Run(new F_売上一覧_担当者別());
             //Application.Run(new F_商品管理());
-            Application.Run(new F_部品集合管理());
+            Application.Run(new F_文書());
 
         }
     }
