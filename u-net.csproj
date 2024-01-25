@@ -189,7 +189,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Form\F_MdiParent.cs">
+    <Compile Update="Form\F_環境回答書.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Form\F_文書ズーム.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Form\F_文書_作成用.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Form\F_ファックス送信テスト.cs" />

@@ -30,6 +30,7 @@ using System.Drawing.Text;
 using System.ComponentModel;
 using MultiRowDesigner;
 
+
 namespace u_net
 {
     public partial class F_文書 : Form
@@ -50,8 +51,9 @@ namespace u_net
         private int intKeyCode;
         private string CustomFormName;
         private int page = 1;
+        private string strDocName;
 
-
+        private bool setflg = false;
         public F_文書()
         {
             this.Text = "文書";       // ウィンドウタイトルを設定
@@ -286,6 +288,31 @@ namespace u_net
 
             ofn.SetComboBox(完了承認者コード, "SELECT [社員コード] as Value, 氏名 as Display FROM M社員 ORDER BY [ふりがな]");
 
+            ofn.SetComboBox(製品企画書_売上区分コード, "SELECT [売上区分コード] as Value, 売上区分名 as Display FROM M売上区分 ORDER BY 番号");
+
+            this.出向依頼書_出向分類.DataSource = new KeyValuePair<String, String>[] {
+                new KeyValuePair<String, String>("技術部へ依頼します", "技術部へ依頼します"),
+                new KeyValuePair<String, String>("管理部（品質保証チーム）へ依頼します", "管理部（品質保証チーム）へ依頼します"),
+                new KeyValuePair<String, String>("営業部へ依頼します", "営業部へ依頼します"),
+                 new KeyValuePair<String, String>("製造部へ依頼します", "製造部へ依頼します"),
+                new KeyValuePair<String, String>("技術部が出向します", "技術部が出向します"),
+                new KeyValuePair<String, String>("管理部（品質保証チーム）が出向します", "管理部（品質保証チーム）が出向します"),
+                 new KeyValuePair<String, String>("営業部が出向します", "営業部が出向します"),
+                 new KeyValuePair<String, String>("製造部が出向します", "製造部が出向します"),
+            };
+            this.出向依頼書_出向分類.DisplayMember = "Value";
+            this.出向依頼書_出向分類.ValueMember = "Key";
+
+
+            this.出向依頼書_費用.DataSource = new KeyValuePair<byte, String>[] {
+                new KeyValuePair<byte, String>(1, "無償"),
+                new KeyValuePair<byte, String>(2, "有償"),
+                new KeyValuePair<byte, String>(0, "未定"),
+
+
+            };
+            this.出向依頼書_費用.DisplayMember = "Value";
+            this.出向依頼書_費用.ValueMember = "Key";
 
             try
             {
@@ -717,6 +744,8 @@ namespace u_net
             try
             {
 
+                FunctionClass fn = new FunctionClass();
+
                 switch (intKeyCode)
                 {
                     case (int)Keys.F1:
@@ -825,6 +854,320 @@ namespace u_net
                         }
                         break;
 
+                    case "製品企画書_売上区分コード":
+                        if (!FunctionClass.IsLimit(varValue, 2, false, controlObject.Name))
+                        {
+                            return true;
+                        }
+
+                        break;
+                    case "製品企画書_自社開発費比率":
+                        if (!FunctionClass.IsLimit(varValue, 10, false, controlObject.Name))
+                        {
+                            return true;
+                        }
+
+                        break;
+
+                    case "是正予防会議通知書_受付文書コード":
+                    case "是正予防処置報告書_受付文書コード":
+
+                        if (!FunctionClass.IsLimit(varValue, 11, false, controlObject.Name))
+                        {
+
+                            return true;
+                        }
+
+                        break;
+
+                    case "システム配布記録_配布バージョン":
+                    case "製品企画書_品名":
+                    case "製品企画書_型番":
+                    case "製品企画書_競合メーカー":
+                    case "製品企画書_競合製品型番":
+                        if (!FunctionClass.IsLimit(varValue, 50, false, controlObject.Name))
+                        {
+                            return true;
+                        }
+
+                        break;
+
+
+
+                    case "教育訓練実施要領書_受講者名":
+                    case "教育訓練実施要領書_訓練名":
+                    case "教育訓練実施要領書_実施場所":
+                        if (!FunctionClass.IsLimit(varValue, 100, false, controlObject.Name))
+                        {
+                            return true;
+                        }
+                        break;
+
+                    case "教育訓練実施要領書_目的":
+                    case "製品企画書_開発目的":
+                    case "製品企画書_製品概要":
+                        if (!FunctionClass.IsLimit(varValue, 1000, false, controlObject.Name))
+                        {
+                            return true;
+                        }
+                        break;
+
+                    case "システム配布記録_配布目的":
+                    case "製品企画書_要求事項":
+                        if (!FunctionClass.IsLimit(varValue, 2000, false, controlObject.Name))
+                        {
+                            return true;
+                        }
+                        break;
+
+                    case "教育訓練実施要領書_内容":
+                        if (!FunctionClass.IsLimit(varValue, 3000, false, controlObject.Name))
+                        {
+                            return true;
+                        }
+                        break;
+
+                    case "教育訓練実施要領書_期待効果":
+
+                        if (IsNull(varValue)) return false;
+                        if (!FunctionClass.IsLimit(varValue, 1000, false, controlObject.Name))
+                        {
+                            return true;
+                        }
+                        break;
+
+                    case "教育訓練実施要領書_日付1":
+                    case "教育訓練実施要領書_日付2":
+                        if (!IsDate(varValue))
+                        {
+                            MessageBox.Show("日付を入力してください。", controlObject.Name, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            return true;
+                        }
+
+
+                        break;
+
+                    case "システム配布記録_配布日":
+                    case "出向依頼書_出向日開始":
+                    case "出向依頼書_出校日終了":
+                        if (!IsDate(varValue))
+                        {
+                            MessageBox.Show("日付を入力してください。", controlObject.Name, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            return true;
+                        }
+
+                        if (DateTime.Now < Convert.ToDateTime(varValue))
+                        {
+                            MessageBox.Show("未来日付は入力できません。", controlObject.Name, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            return true;
+                        }
+                        break;
+
+                    case "環境連絡所_発生日":
+                    case "記録_日付1":
+                    case "記録_日付2":
+                    case "議事録_開催日":
+                    case "出向依頼書_受付日":
+                    case "是正予防処置報告書_環境_受付日":
+                    case "品質異常報告書_発生日":
+
+                        if (IsNull(varValue))
+                        {
+                            MessageBox.Show(controlObject.Name + "を入力してください。", controlObject.Name, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            return true;
+                        }
+                        if (!IsDate(varValue))
+                        {
+                            MessageBox.Show("日付を入力してください。", controlObject.Name, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            return true;
+                        }
+
+                        if (DateTime.Today < Convert.ToDateTime(varValue))
+                        {
+                            MessageBox.Show("未来日付は入力できません。", controlObject.Name, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            return true;
+                        }
+                        break;
+                    case "製品企画書_発売予定日":
+                    case "製品企画書_会議開催日":
+
+                        if (!IsDate(varValue))
+                        {
+                            MessageBox.Show("日付を入力してください。", controlObject.Name, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            return true;
+                        }
+
+                        if (DateTime.Today > Convert.ToDateTime(varValue))
+                        {
+                            MessageBox.Show("過去日付は入力できません。", controlObject.Name, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            return true;
+                        }
+                        break;
+                    case "環境連絡所_発生場所":
+                    case "環境連絡所_型番":
+                    case "環境連絡所_異常内容":
+                    case "記録_参加者":
+                    case "記録_場所":
+                    case "記録_目的":
+                    case "記録_報告内容":
+                    case "議事録_開催場所":
+                    case "議事録_参加者":
+                    case "議事録_内容":
+                    case "出向依頼書_顧客名":
+                    case "出向依頼書_出向先会社名":
+                    case "出向依頼書_製品型番":
+                    case "出向依頼書_依頼内容":
+                    case "是正予防会議通知書_不具合現象":
+                    case "是正予防処置報告書_議事録":
+                    case "是正要望書地報告書_環境_議事録":
+                    case "設計審査会議事録_企画書との相違":
+                    case "設計審査会議事録_計画書との相違":
+                    case "設計審査会議事録_構想資料との相違":
+                    case "設計審査会議事録_仕様書の確認":
+                    case "設計審査会議事録_改善点":
+                    case "設計審査会議事録_要望":
+                    case "設計審査会議事録_結論":
+                    case "設計製作依頼書_依頼内容":
+                    case "年間教育計画表_教育目的":
+                    case "品質異常報告書_発生場所":
+                    case "品質異常報告書_型番":
+                    case "品質異常報告書_異常内容":
+                        if (IsNull(varValue))
+                        {
+                            MessageBox.Show(controlObject.Name + "を入力してください。", controlObject.Name, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            return true;
+                        }
+                        break;
+                    case "記録_記録分類コード":
+                        if (IsNull(varValue))
+                        {
+                            MessageBox.Show("記録分類コードを指定してください。", "記録分類", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            return true;
+                        }
+                        break;
+                    case "設計製作依頼書_付属書類指定":
+                        if (IsNull(varValue))
+                        {
+                            MessageBox.Show("付属書類の有無を指定してください。", "入力制限", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            return true;
+                        }
+                        break;
+                    case "出向依頼書_顧客コード":
+                        if (!出向依頼書_SetCustomerInfo(varValue.ToString()))
+                        {
+                            return true;
+                        }
+                        break;
+
+                    case "出向依頼書_依頼分類その他":
+                        if (出向依頼書_その他.Checked)
+                        {
+                            if (IsNull(varValue))
+                            {
+                                MessageBox.Show("依頼分類が「その他」のときは分類項目を入力してください。", "依頼分類-その他", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                                return true;
+                            }
+                        }
+                        break;
+                    case "製品企画書_顧客コード":
+                        製品企画書_顧客コード.Text = FunctionClass.GetCustomerName(cn, varValue.ToString());
+                        break;
+
+                    case "新規販売取引申請書_顧客コード":
+                        if (IsNull(varValue))
+                        {
+                            MessageBox.Show(controlObject.Name + "を入力してください。", controlObject.Name, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            return true;
+                        }
+                        string str1;
+                        str1 = FunctionClass.GetCustomerName(cn, Nz(varValue));
+                        if (string.IsNullOrEmpty(str1))
+                        {
+                            MessageBox.Show("指定された顧客データはありません。", controlObject.Name, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            return true;
+                        }
+                        else
+                        {
+                            新規販売取引申請書_顧客名.Text = str1;
+                        }
+                        break;
+
+                    case "是正予防会議通知書_顧客コード":
+                    case "是正予防処置報告書_顧客コード":
+                        if (!FunctionClass.IsLimit(varValue, 8, false, controlObject.Name))
+                        {
+                            return true;
+                        }
+                        if (IsNull(varValue)) return false;
+                        是正予防会議通知書_顧客名.Text = FunctionClass.GetCustomerName(cn, varValue.ToString());
+                        break;
+
+                    case "是正予防会議通知書_数量":
+                    case "是正予防処置報告書_数量":
+                    case "是正予防処置報告書_環境_数量":
+                    case "製品企画書_年間販売数量":
+                    case "設計製作依頼書_数量":
+                        if (IsNull(varValue)) return false;
+                        if (!FunctionClass.IsLimit_N(varValue, 7, 0, controlObject.Name)) return true;
+                        if (Convert.ToInt32(varValue) <= 0)
+                        {
+                            MessageBox.Show("整数値を入力してください。", controlObject.Name, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            return true;
+                        }
+                        break;
+                    case "製品企画書_標準価格":
+                    case "設計製作依頼書_標準価格":
+                        if (!FunctionClass.IsLimit_N(varValue, 9, 2, controlObject.Name)) return true;
+
+                        break;
+                    case "製品企画書_競合価格":
+                        if (IsNull(varValue)) return false;
+                        if (!FunctionClass.IsLimit_N(varValue, 9, 2, controlObject.Name)) return true;
+
+                        break;
+                    case "設計製作依頼書_顧客コード":
+                        try
+                        {
+                            if (string.IsNullOrEmpty(varValue.ToString()))
+                            {
+                                設計製作依頼書_顧客名.Text = null;
+                            }
+                            else
+                            {
+                                using (SqlCommand cmd = new SqlCommand())
+                                {
+                                    string strKey = "顧客コード='" + varValue + "' AND 取引開始日 IS NOT NULL";
+                                    string strSQL = "SELECT * FROM M顧客 WHERE " + strKey;
+
+                                    cmd.CommandText = strSQL;
+                                    cmd.Connection = cn;
+
+                                    using (SqlDataReader reader = cmd.ExecuteReader())
+                                    {
+                                        if (!reader.HasRows)   // 顧客コードなし
+                                        {
+                                            設計製作依頼書_顧客名.Text = null;
+                                            reader.Close();
+                                            MessageBox.Show("入力された顧客コードは有効ではありません。", controlObject.Name, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                                            return true;
+                                        }
+
+                                        reader.Read();
+                                        設計製作依頼書_顧客名.Text = reader["顧客名"].ToString();
+
+                                        if (IsNull(設計製作依頼書_客先担当者名.Text))
+                                        {
+                                            設計製作依頼書_客先担当者名.Text = reader["顧客担当者名"].ToString();
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine($"{ex.GetType().Name}: {ex.Message}");
+                        }
+                        break;
 
                 }
 
@@ -838,7 +1181,20 @@ namespace u_net
             }
         }
 
+        private bool IsDate(object value)
+        {
+            if (value == null)
+            {
+                return false;
+            }
 
+            if (DateTime.TryParse(value.ToString(), out _))
+            {
+                return true;
+            }
+
+            return false;
+        }
         private bool CheckDocument(string codeString, int editionNumber)
         {
             try
@@ -972,6 +1328,49 @@ namespace u_net
                             SetCustomFormValue(CustomFormName + "_版数", CurrentEdition.ToString());
                         }
                         break;
+
+                    case "出向依頼書_顧客名":
+                        if (setflg) return;
+                        出向依頼書_顧客コード = null;
+                        break;
+
+
+                    case "設計製作依頼書_付属書類指定":
+                        設計製作依頼書_付属書類.Enabled = 設計製作依頼書_付属書類指定.Checked;
+                        設計製作依頼書_付属文書1.Enabled = 設計製作依頼書_付属書類指定.Checked;
+                        設計製作依頼書_付属文書2.Enabled = 設計製作依頼書_付属書類指定.Checked;
+                        設計製作依頼書_付属文書3.Enabled = 設計製作依頼書_付属書類指定.Checked;
+                        if (設計製作依頼書_付属書類指定.Checked)
+                        {
+                            設計製作依頼書_その他文書名.Enabled = 設計製作依頼書_付属文書3.Checked;
+
+                        }
+                        else
+                        {
+                            設計製作依頼書_その他文書名.Enabled = false;
+                        }
+                        break;
+
+                    case "設計製作依頼書_付属文書3":
+                        設計製作依頼書_その他文書名.Enabled = 設計製作依頼書_付属文書3.Checked;
+                        if (設計製作依頼書_付属文書3.Checked)
+                        {
+                            設計製作依頼書_その他文書名.Text = strDocName;
+                            設計製作依頼書_その他文書名.Focus();
+                        }
+                        else
+                        {
+                            設計製作依頼書_その他文書名.Text = null;
+                        }
+                        break;
+
+                    case "設計製作依頼書_その他文書名":
+                        if (!IsNull(controlObject.Text))
+                        {
+                            strDocName = controlObject.Text;
+                        }
+                        break;
+
 
                     default:
                         break;
@@ -1114,10 +1513,10 @@ namespace u_net
                     this.Controls.Add(是正予防会議通知書パネル);
                     是正予防会議通知書パネル.BringToFront();
                     break;
-                //case "是正予防会議通知書_環境":
-                //    this.Controls.Add(是正予防会議通知書_環境パネル);
-                //是正予防会議通知書_環境パネル.BringToFront();
-                //    break;
+                case "是正予防会議通知書_環境":
+                    //this.Controls.Add(是正予防会議通知書_環境パネル);
+                    //是正予防会議通知書_環境パネル.BringToFront();
+                    break;
                 case "是正予防処置報告書":
                     this.Controls.Add(是正予防処置報告書パネル);
                     是正予防処置報告書パネル.BringToFront();
@@ -1138,26 +1537,26 @@ namespace u_net
                     this.Controls.Add(設計製作依頼書パネル);
                     設計製作依頼書パネル.BringToFront();
                     break;
-                //case "設備購買申請書":
-                //    this.Controls.Add(設備購買申請書パネル);
-                //設備購買申請書パネル.BringToFront();
-                //    break;
-                //case "年間教育計画表":
-                //    this.Controls.Add(年間教育計画表パネル);
-                //年間教育計画表パネル.BringToFront();
-                //    break;
-                //case "非該当証明発行依頼書":
-                //    this.Controls.Add(非該当証明発行依頼書パネル);
-                //非該当証明発行依頼書パネル.BringToFront();
-                //    break;
-                //case "品質異常報告書":
-                //    this.Controls.Add(品質異常報告書パネル);
-                //品質異常報告書パネル.BringToFront();
-                //    break;
-                //case "不具合調査修理依頼書":
-                //    this.Controls.Add(不具合調査修理依頼書パネル);
-                //不具合調査修理依頼書パネル.BringToFront();
-                //    break;
+                case "設備購買申請書":
+                    this.Controls.Add(設備購買申請書パネル);
+                    設備購買申請書パネル.BringToFront();
+                    break;
+                case "年間教育計画表":
+                    this.Controls.Add(年間教育計画パネル);
+                    年間教育計画パネル.BringToFront();
+                    break;
+                case "非該当証明発行依頼書":
+                    this.Controls.Add(非該当証明発行依頼書パネル);
+                    非該当証明発行依頼書パネル.BringToFront();
+                    break;
+                case "品質異常報告書":
+                    this.Controls.Add(品質異常報告書パネル);
+                    品質異常報告書パネル.BringToFront();
+                    break;
+                case "不具合調査修理依頼書":
+                    this.Controls.Add(不具合調査修理依頼書パネル);
+                    不具合調査修理依頼書パネル.BringToFront();
+                    break;
                 default:
                     break;
             }
@@ -1198,9 +1597,9 @@ namespace u_net
                 case "是正予防会議通知書":
                     this.Controls.Remove(是正予防会議通知書パネル);
                     break;
-                //case "是正予防会議通知書_環境":
-                //    this.Controls.Remove(是正予防会議通知書_環境パネル);
-                //    break;
+                case "是正予防会議通知書_環境":
+                    //this.Controls.Remove(是正予防会議通知書_環境パネル);
+                    break;
                 case "是正予防処置報告書":
                     this.Controls.Remove(是正予防処置報告書パネル);
                     break;
@@ -1216,21 +1615,21 @@ namespace u_net
                 case "設計製作依頼書":
                     this.Controls.Remove(設計製作依頼書パネル);
                     break;
-                //case "設備購買申請書":
-                //    this.Controls.Remove(設備購買申請書パネル);
-                //    break;
-                //case "年間教育計画表":
-                //    this.Controls.Remove(年間教育計画表パネル);
-                //    break;
-                //case "非該当証明発行依頼書":
-                //    this.Controls.Remove(非該当証明発行依頼書パネル);
-                //    break;
-                //case "品質異常報告書":
-                //    this.Controls.Remove(品質異常報告書パネル);
-                //    break;
-                //case "不具合調査修理依頼書":
-                //    this.Controls.Remove(不具合調査修理依頼書パネル);
-                //    break;
+                case "設備購買申請書":
+                    this.Controls.Remove(設備購買申請書パネル);
+                    break;
+                case "年間教育計画表":
+                    this.Controls.Remove(年間教育計画パネル);
+                    break;
+                case "非該当証明発行依頼書":
+                    this.Controls.Remove(非該当証明発行依頼書パネル);
+                    break;
+                case "品質異常報告書":
+                    this.Controls.Remove(品質異常報告書パネル);
+                    break;
+                case "不具合調査修理依頼書":
+                    this.Controls.Remove(不具合調査修理依頼書パネル);
+                    break;
                 default:
                     break;
             }
@@ -1398,6 +1797,10 @@ namespace u_net
 
                 VariableSet.SetTable2FormCustom(this, strSQL, cn, CustomFormName);
 
+                if (CustomFormName == "設計製作依頼書")
+                {
+                    strDocName = 設計製作依頼書_その他文書名.Text;
+                }
 
 
                 return true;
@@ -2464,30 +2867,31 @@ namespace u_net
 
         private bool ApprovedDoc(string docName)
         {
-            bool result = false;
+            int result = 0;
 
             Connect();
 
-            //switch (docName)
-            //{
-            //    case "新規販売取引申請書":
-            //        result = ApplyCustomer(cn, 新規販売取引申請書_顧客コード);
-            //        if (!result)
-            //        {
-            //            MessageBox.Show($"顧客コード : {Nz(新規販売取引申請書_顧客コード)}" +
-            //                            $"{Environment.NewLine}{Environment.NewLine}" +
-            //                            "新規販売取引申請処理に失敗しました。",
-            //                            "新規販売取引申請", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            //        }
-            //        break;
+            switch (docName)
+            {
+                case "新規販売取引申請書":
+                    result = 新規販売取引申請書_ApplyCustomer(新規販売取引申請書_顧客コード.Text);
+                    if (result == -1)
+                    {
+                        MessageBox.Show($"顧客コード : {Nz(新規販売取引申請書_顧客コード)}" +
+                                        $"{Environment.NewLine}{Environment.NewLine}" +
+                                        "新規販売取引申請処理に失敗しました。",
+                                        "新規販売取引申請", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        return false;
+                    }
+                    break;
 
-            //    default:
-            //        // 対象文書がない場合は処理成功とする
-            //        result = true;
-            //        break;
-            //}
+                default:
+                    // 対象文書がない場合は処理成功とする
+                    return true;
+                    break;
+            }
 
-            return result;
+            return true;
         }
 
 
@@ -3232,45 +3636,47 @@ namespace u_net
         {
             try
             {
-                bool result = false;
+                int result = 0;
 
                 Connect();
 
-                //switch (docName)
-                //{
-                //    case "新規販売取引申請書":
-                //        result = ApprovalCustomer(cn, 新規販売取引申請書_顧客コード);
-                //        if (!result)
-                //        {
-                //            MessageBox.Show($"顧客コード : {Nz(新規販売取引申請書_顧客コード.Text)}" +
-                //                            $"{Environment.NewLine}{Environment.NewLine}" +
-                //                            "顧客との取引開始処理に失敗しました。",
-                //                            "顧客取引開始",
-                //                            MessageBoxButtons.OK,
-                //                            MessageBoxIcon.Exclamation);
-                //        }
-                //        break;
+                switch (docName)
+                {
+                    case "新規販売取引申請書":
+                        result = 新規販売取引申請書_ApprovalCustomer(新規販売取引申請書_顧客コード.Text);
+                        if (result == -1)
+                        {
+                            MessageBox.Show($"顧客コード : {Nz(新規販売取引申請書_顧客コード.Text)}" +
+                                            $"{Environment.NewLine}{Environment.NewLine}" +
+                                            "顧客との取引開始処理に失敗しました。",
+                                            "顧客取引開始",
+                                            MessageBoxButtons.OK,
+                                            MessageBoxIcon.Exclamation);
+                            return false;
+                        }
+                        break;
 
-                //    case "年間教育計画表":
-                //        result = Approval(cn, CurrentCode, CurrentEdition, CommonConstants.LoginUserCode);
-                //        if (!result)
-                //        {
-                //            MessageBox.Show($"文書コード : {CurrentCode}{Environment.NewLine}" +
-                //                            $"版数 : {CurrentEdition}{Environment.NewLine}{Environment.NewLine}" +
-                //                            "年間教育計画での承認処理に失敗しました。",
-                //                            "年間教育計画承認",
-                //                            MessageBoxButtons.OK,
-                //                            MessageBoxIcon.Exclamation);
-                //        }
-                //        break;
+                    case "年間教育計画表":
+                        result = 年間教育計画表_Approval( CurrentCode, CurrentEdition, CommonConstants.LoginUserCode);
+                        if (result == -1)
+                        {
+                            MessageBox.Show($"文書コード : {CurrentCode}{Environment.NewLine}" +
+                                            $"版数 : {CurrentEdition}{Environment.NewLine}{Environment.NewLine}" +
+                                            "年間教育計画での承認処理に失敗しました。",
+                                            "年間教育計画承認",
+                                            MessageBoxButtons.OK,
+                                            MessageBoxIcon.Exclamation);
+                            return false;
+                        }
+                        break;
 
-                //    default:
-                //        // 対象文書がない場合は処理成功とする
-                //        result = true;
-                //        break;
-                //}
+                    default:
+                        // 対象文書がない場合は処理成功とする
+                        return true;
+                        break;
+                }
 
-                return result;
+                return true;
             }
             catch (Exception ex)
             {
@@ -3936,7 +4342,7 @@ namespace u_net
                     dateSelectionForm.args = 回答期限.Text;
                 }
 
-                if (dateSelectionForm.ShowDialog() == DialogResult.OK)
+                if (dateSelectionForm.ShowDialog() == DialogResult.OK && 回答期限.Enabled && !回答期限.ReadOnly)
                 {
                     // 日付選択フォームから選択した日付を取得
                     string selectedDate = dateSelectionForm.SelectedDate;
@@ -4016,7 +4422,7 @@ namespace u_net
                 dateSelectionForm.args = 回答日1.Text;
             }
 
-            if (dateSelectionForm.ShowDialog() == DialogResult.OK)
+            if (dateSelectionForm.ShowDialog() == DialogResult.OK && 回答日1.Enabled && !回答日1.ReadOnly)
             {
                 // 日付選択フォームから選択した日付を取得
                 string selectedDate = dateSelectionForm.SelectedDate;
@@ -4059,7 +4465,7 @@ namespace u_net
                 dateSelectionForm.args = 回答日2.Text;
             }
 
-            if (dateSelectionForm.ShowDialog() == DialogResult.OK)
+            if (dateSelectionForm.ShowDialog() == DialogResult.OK && 回答日2.Enabled && !回答日2.ReadOnly)
             {
                 // 日付選択フォームから選択した日付を取得
                 string selectedDate = dateSelectionForm.SelectedDate;
@@ -4102,7 +4508,7 @@ namespace u_net
                 dateSelectionForm.args = 回答日3.Text;
             }
 
-            if (dateSelectionForm.ShowDialog() == DialogResult.OK)
+            if (dateSelectionForm.ShowDialog() == DialogResult.OK && 回答日3.Enabled && !回答日3.ReadOnly)
             {
                 // 日付選択フォームから選択した日付を取得
                 string selectedDate = dateSelectionForm.SelectedDate;
@@ -4144,7 +4550,7 @@ namespace u_net
                 dateSelectionForm.args = 回答日4.Text;
             }
 
-            if (dateSelectionForm.ShowDialog() == DialogResult.OK)
+            if (dateSelectionForm.ShowDialog() == DialogResult.OK && 回答日4.Enabled && !回答日4.ReadOnly)
             {
                 // 日付選択フォームから選択した日付を取得
                 string selectedDate = dateSelectionForm.SelectedDate;
@@ -4186,7 +4592,7 @@ namespace u_net
                 dateSelectionForm.args = 回答日5.Text;
             }
 
-            if (dateSelectionForm.ShowDialog() == DialogResult.OK)
+            if (dateSelectionForm.ShowDialog() == DialogResult.OK && 回答日5.Enabled && !回答日5.ReadOnly)
             {
                 // 日付選択フォームから選択した日付を取得
                 string selectedDate = dateSelectionForm.SelectedDate;
@@ -4228,7 +4634,7 @@ namespace u_net
                 dateSelectionForm.args = 回答日6.Text;
             }
 
-            if (dateSelectionForm.ShowDialog() == DialogResult.OK)
+            if (dateSelectionForm.ShowDialog() == DialogResult.OK && 回答日6.Enabled && !回答日6.ReadOnly)
             {
                 // 日付選択フォームから選択した日付を取得
                 string selectedDate = dateSelectionForm.SelectedDate;
@@ -4271,7 +4677,7 @@ namespace u_net
                 dateSelectionForm.args = 結果日付.Text;
             }
 
-            if (dateSelectionForm.ShowDialog() == DialogResult.OK)
+            if (dateSelectionForm.ShowDialog() == DialogResult.OK && 結果日付.Enabled && !結果日付.ReadOnly)
             {
                 // 日付選択フォームから選択した日付を取得
                 string selectedDate = dateSelectionForm.SelectedDate;
@@ -5263,10 +5669,17 @@ namespace u_net
         {
 
         }
+        private void システム配布記録_配布日_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Space)
+            {
+                システム配布記録_配布日選択ボタン_Click(sender, e);
+            }
+        }
 
         private void システム配布記録_配布日_TextChanged(object sender, EventArgs e)
         {
-
+            ChangedData(true);
         }
 
         private void システム配布記録_配布日_Validated(object sender, EventArgs e)
@@ -5276,17 +5689,33 @@ namespace u_net
 
         private void システム配布記録_配布日_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void システム配布記録_配布日選択ボタン_Click(object sender, EventArgs e)
         {
+            dateSelectionForm = new F_カレンダー();
 
+            if (!string.IsNullOrEmpty(システム配布記録_配布日.Text))
+            {
+                dateSelectionForm.args = システム配布記録_配布日.Text;
+            }
+
+            if (dateSelectionForm.ShowDialog() == DialogResult.OK && システム配布記録_配布日.Enabled && !システム配布記録_配布日.ReadOnly)
+            {
+                // 日付選択フォームから選択した日付を取得
+                string selectedDate = dateSelectionForm.SelectedDate;
+
+                // フォームAの日付コントロールに選択した日付を設定
+                システム配布記録_配布日.Text = selectedDate;
+                システム配布記録_配布日.Focus();
+                UpdatedControl(結果日付);
+            }
         }
 
         private void システム配布記録_配布バージョン_TextChanged(object sender, EventArgs e)
         {
-
+            ChangedData(true);
         }
 
         private void システム配布記録_配布バージョン_Validated(object sender, EventArgs e)
@@ -5296,17 +5725,18 @@ namespace u_net
 
         private void システム配布記録_配布バージョン_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void システム配布記録_配布目的_DoubleClick(object sender, EventArgs e)
         {
+            FunctionClass.DocZoom(sender as Control, CurrentCode, CurrentEdition, 4000);
 
         }
 
         private void システム配布記録_配布目的_TextChanged(object sender, EventArgs e)
         {
-
+            ChangedData(true);
         }
 
         private void システム配布記録_配布目的_Validated(object sender, EventArgs e)
@@ -5316,7 +5746,7 @@ namespace u_net
 
         private void システム配布記録_配布目的_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         #endregion
@@ -5326,7 +5756,7 @@ namespace u_net
 
         private void 環境連絡書_発生日_DoubleClick(object sender, EventArgs e)
         {
-
+            環境連絡書_発生日選択ボタン_Click(sender, e);
         }
 
         private void 環境連絡書_発生日_KeyDown(object sender, KeyEventArgs e)
@@ -5336,7 +5766,15 @@ namespace u_net
 
         private void 環境連絡書_発生日_TextChanged(object sender, EventArgs e)
         {
+            ChangedData(true);
+        }
 
+        private void 環境連絡書_発生日_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Space)
+            {
+                環境連絡書_発生日選択ボタン_Click(sender, e);
+            }
         }
 
         private void 環境連絡書_発生日_Validated(object sender, EventArgs e)
@@ -5346,11 +5784,28 @@ namespace u_net
 
         private void 環境連絡書_発生日_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 環境連絡書_発生日選択ボタン_Click(object sender, EventArgs e)
         {
+            dateSelectionForm = new F_カレンダー();
+
+            if (!string.IsNullOrEmpty(環境連絡書_発生日.Text))
+            {
+                dateSelectionForm.args = 環境連絡書_発生日.Text;
+            }
+
+            if (dateSelectionForm.ShowDialog() == DialogResult.OK && 環境連絡書_発生日.Enabled && !環境連絡書_発生日.ReadOnly)
+            {
+                // 日付選択フォームから選択した日付を取得
+                string selectedDate = dateSelectionForm.SelectedDate;
+
+                // フォームAの日付コントロールに選択した日付を設定
+                環境連絡書_発生日.Text = selectedDate;
+                環境連絡書_発生日.Focus();
+                UpdatedControl(環境連絡書_発生日);
+            }
 
         }
 
@@ -5366,7 +5821,8 @@ namespace u_net
 
         private void 環境連絡書_連絡先_TextChanged(object sender, EventArgs e)
         {
-
+            FunctionClass.LimitText(sender as Control, 200);
+            ChangedData(true);
         }
 
         private void 環境連絡書_連絡先_Validated(object sender, EventArgs e)
@@ -5376,7 +5832,7 @@ namespace u_net
 
         private void 環境連絡書_連絡先_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 環境連絡書_環境負荷_Enter(object sender, EventArgs e)
@@ -5391,7 +5847,7 @@ namespace u_net
 
         private void 環境連絡書_環境負荷_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            ChangedData(true);
         }
 
         private void 環境連絡書_環境負荷_Validated(object sender, EventArgs e)
@@ -5401,12 +5857,12 @@ namespace u_net
 
         private void 環境連絡書_環境負荷_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 環境連絡書_異常内容_DoubleClick(object sender, EventArgs e)
         {
-
+            FunctionClass.DocZoom(sender as Control, CurrentCode, CurrentEdition, 4000);
         }
 
         private void 環境連絡書_異常内容_Enter(object sender, EventArgs e)
@@ -5421,7 +5877,8 @@ namespace u_net
 
         private void 環境連絡書_異常内容_TextChanged(object sender, EventArgs e)
         {
-
+            FunctionClass.LimitText(sender as Control, 4000);
+            ChangedData(true);
         }
 
         private void 環境連絡書_異常内容_Validated(object sender, EventArgs e)
@@ -5431,7 +5888,7 @@ namespace u_net
 
         private void 環境連絡書_異常内容_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 環境連絡書_回答書ボタン_Click(object sender, EventArgs e)
@@ -5446,7 +5903,7 @@ namespace u_net
 
         private void 記録_日付1_DoubleClick(object sender, EventArgs e)
         {
-
+            記録_日付1選択ボタン_Click(sender, e);
         }
 
         private void 記録_日付1_KeyDown(object sender, KeyEventArgs e)
@@ -5456,12 +5913,12 @@ namespace u_net
 
         private void 記録_日付1_Leave(object sender, EventArgs e)
         {
-
+            FunctionClass.AdjustRange(記録_日付1, 記録_日付2, sender as Control);
         }
 
         private void 記録_日付1_TextChanged(object sender, EventArgs e)
         {
-
+            ChangedData(true);
         }
 
         private void 記録_日付1_Validated(object sender, EventArgs e)
@@ -5471,17 +5928,41 @@ namespace u_net
 
         private void 記録_日付1_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 記録_日付1選択ボタン_Click(object sender, EventArgs e)
         {
+            dateSelectionForm = new F_カレンダー();
 
+            if (!string.IsNullOrEmpty(記録_日付1.Text))
+            {
+                dateSelectionForm.args = 記録_日付1.Text;
+            }
+
+            if (dateSelectionForm.ShowDialog() == DialogResult.OK && 記録_日付1.Enabled && !記録_日付1.ReadOnly)
+            {
+                // 日付選択フォームから選択した日付を取得
+                string selectedDate = dateSelectionForm.SelectedDate;
+
+                // フォームAの日付コントロールに選択した日付を設定
+                記録_日付1.Text = selectedDate;
+                記録_日付1.Focus();
+                UpdatedControl(記録_日付1);
+            }
+        }
+
+        private void 記録_日付1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Space)
+            {
+                記録_日付1選択ボタン_Click(sender, e);
+            }
         }
 
         private void 記録_日付2_DoubleClick(object sender, EventArgs e)
         {
-
+            記録_日付2選択ボタン_Click(sender, e);
         }
 
         private void 記録_日付2_KeyDown(object sender, KeyEventArgs e)
@@ -5491,12 +5972,12 @@ namespace u_net
 
         private void 記録_日付2_Leave(object sender, EventArgs e)
         {
-
+            FunctionClass.AdjustRange(記録_日付1, 記録_日付2, sender as Control);
         }
 
         private void 記録_日付2_TextChanged(object sender, EventArgs e)
         {
-
+            ChangedData(true);
         }
 
         private void 記録_日付2_Validated(object sender, EventArgs e)
@@ -5506,17 +5987,40 @@ namespace u_net
 
         private void 記録_日付2_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 記録_日付2選択ボタン_Click(object sender, EventArgs e)
         {
+            if (!string.IsNullOrEmpty(記録_日付2.Text))
+            {
+                dateSelectionForm.args = 記録_日付2.Text;
+            }
 
+            if (dateSelectionForm.ShowDialog() == DialogResult.OK && 記録_日付2.Enabled && !記録_日付2.ReadOnly)
+            {
+                // 日付選択フォームから選択した日付を取得
+                string selectedDate = dateSelectionForm.SelectedDate;
+
+                // フォームAの日付コントロールに選択した日付を設定
+                記録_日付2.Text = selectedDate;
+                記録_日付2.Focus();
+                UpdatedControl(記録_日付2);
+            }
+        }
+
+        private void 記録_日付2_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Space)
+            {
+                記録_日付2選択ボタン_Click(sender, e);
+            }
         }
 
         private void 記録_参加者_TextChanged(object sender, EventArgs e)
         {
-
+            FunctionClass.LimitText(sender as Control, 200);
+            ChangedData(true);
         }
 
         private void 記録_参加者_Validated(object sender, EventArgs e)
@@ -5526,12 +6030,13 @@ namespace u_net
 
         private void 記録_参加者_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 記録_場所_TextChanged(object sender, EventArgs e)
         {
-
+            FunctionClass.LimitText(sender as Control, 100);
+            ChangedData(true);
         }
 
         private void 記録_場所_Validated(object sender, EventArgs e)
@@ -5541,12 +6046,13 @@ namespace u_net
 
         private void 記録_場所_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 記録_目的_TextChanged(object sender, EventArgs e)
         {
-
+            FunctionClass.LimitText(sender as Control, 2000);
+            ChangedData(true);
         }
 
         private void 記録_目的_Validated(object sender, EventArgs e)
@@ -5556,12 +6062,12 @@ namespace u_net
 
         private void 記録_目的_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 記録_目的_DoubleClick(object sender, EventArgs e)
         {
-
+            FunctionClass.DocZoom(sender as Control, CurrentCode, CurrentEdition, 2000);
         }
 
         private void 記録_目的_Enter(object sender, EventArgs e)
@@ -5576,7 +6082,7 @@ namespace u_net
 
         private void 記録_報告内容_DoubleClick(object sender, EventArgs e)
         {
-
+            FunctionClass.DocZoom(sender as Control, CurrentCode, CurrentEdition, 4000);
         }
 
         private void 記録_報告内容_Enter(object sender, EventArgs e)
@@ -5591,7 +6097,8 @@ namespace u_net
 
         private void 記録_報告内容_TextChanged(object sender, EventArgs e)
         {
-
+            FunctionClass.LimitText(sender as Control, 4000);
+            ChangedData(true);
         }
 
         private void 記録_報告内容_Validated(object sender, EventArgs e)
@@ -5601,7 +6108,7 @@ namespace u_net
 
         private void 記録_報告内容_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         #endregion
@@ -5611,7 +6118,7 @@ namespace u_net
 
         private void 議事録_開催日_DoubleClick(object sender, EventArgs e)
         {
-
+            議事録_開催日選択ボタン_Click(sender, e);
         }
 
         private void 議事録_開催日_Enter(object sender, EventArgs e)
@@ -5631,17 +6138,41 @@ namespace u_net
 
         private void 議事録_開催日_TextChanged(object sender, EventArgs e)
         {
-
+            ChangedData(true);
         }
 
         private void 議事録_開催日_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 議事録_開催日選択ボタン_Click(object sender, EventArgs e)
         {
+            dateSelectionForm = new F_カレンダー();
 
+            if (!string.IsNullOrEmpty(議事録_開催日.Text))
+            {
+                dateSelectionForm.args = 議事録_開催日.Text;
+            }
+
+            if (dateSelectionForm.ShowDialog() == DialogResult.OK && 議事録_開催日.Enabled && !議事録_開催日.ReadOnly)
+            {
+                // 日付選択フォームから選択した日付を取得
+                string selectedDate = dateSelectionForm.SelectedDate;
+
+                // フォームAの日付コントロールに選択した日付を設定
+                議事録_開催日.Text = selectedDate;
+                議事録_開催日.Focus();
+                UpdatedControl(議事録_開催日);
+            }
+        }
+
+        private void 議事録_開催日_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Space)
+            {
+                議事録_開催日選択ボタン_Click(sender, e);
+            }
         }
 
         private void 議事録_開催場所_Enter(object sender, EventArgs e)
@@ -5656,22 +6187,24 @@ namespace u_net
 
         private void 議事録_開催場所_TextChanged(object sender, EventArgs e)
         {
-
+            FunctionClass.LimitText(sender as Control, 100);
+            ChangedData(true);
         }
 
         private void 議事録_開催場所_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 議事録_参加者_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 議事録_参加者_TextChanged(object sender, EventArgs e)
         {
-
+            FunctionClass.LimitText(sender as Control, 200);
+            ChangedData(true);
         }
 
         private void 議事録_参加者_Enter(object sender, EventArgs e)
@@ -5686,7 +6219,7 @@ namespace u_net
 
         private void 議事録_内容_DoubleClick(object sender, EventArgs e)
         {
-
+            FunctionClass.DocZoom(sender as Control, CurrentCode, CurrentEdition, 4000);
         }
 
         private void 議事録_内容_Enter(object sender, EventArgs e)
@@ -5701,12 +6234,13 @@ namespace u_net
 
         private void 議事録_内容_TextChanged(object sender, EventArgs e)
         {
-
+            FunctionClass.LimitText(sender as Control, 4000);
+            ChangedData(true);
         }
 
         private void 議事録_内容_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         #endregion
@@ -5716,7 +6250,7 @@ namespace u_net
 
         private void 教育訓練実施要領書_受講者名_TextChanged(object sender, EventArgs e)
         {
-
+            ChangedData(true);
         }
 
         private void 教育訓練実施要領書_受講者名_Validated(object sender, EventArgs e)
@@ -5726,12 +6260,12 @@ namespace u_net
 
         private void 教育訓練実施要領書_受講者名_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 教育訓練実施要領書_訓練名_TextChanged(object sender, EventArgs e)
         {
-
+            ChangedData(true);
         }
 
         private void 教育訓練実施要領書_訓練名_Validated(object sender, EventArgs e)
@@ -5741,12 +6275,12 @@ namespace u_net
 
         private void 教育訓練実施要領書_訓練名_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 教育訓練実施要領書_実施場所_TextChanged(object sender, EventArgs e)
         {
-
+            ChangedData(true);
         }
 
         private void 教育訓練実施要領書_実施場所_Validated(object sender, EventArgs e)
@@ -5756,7 +6290,7 @@ namespace u_net
 
         private void 教育訓練実施要領書_実施場所_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 教育訓練実施要領書_日付1_KeyDown(object sender, KeyEventArgs e)
@@ -5766,7 +6300,7 @@ namespace u_net
 
         private void 教育訓練実施要領書_日付1_TextChanged(object sender, EventArgs e)
         {
-
+            ChangedData(true);
         }
 
         private void 教育訓練実施要領書_日付1_Validated(object sender, EventArgs e)
@@ -5776,12 +6310,36 @@ namespace u_net
 
         private void 教育訓練実施要領書_日付1_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 教育訓練実施要領書_日付1選択ボタン_Click(object sender, EventArgs e)
         {
+            dateSelectionForm = new F_カレンダー();
 
+            if (!string.IsNullOrEmpty(教育訓練実施要領書_日付1.Text))
+            {
+                dateSelectionForm.args = 教育訓練実施要領書_日付1.Text;
+            }
+
+            if (dateSelectionForm.ShowDialog() == DialogResult.OK && 教育訓練実施要領書_日付1.Enabled && !教育訓練実施要領書_日付1.ReadOnly)
+            {
+                // 日付選択フォームから選択した日付を取得
+                string selectedDate = dateSelectionForm.SelectedDate;
+
+                // フォームAの日付コントロールに選択した日付を設定
+                教育訓練実施要領書_日付1.Text = selectedDate;
+                教育訓練実施要領書_日付1.Focus();
+                UpdatedControl(教育訓練実施要領書_日付1);
+            }
+        }
+
+        private void 教育訓練実施要領書_日付1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Space)
+            {
+                教育訓練実施要領書_日付1選択ボタン_Click(sender, e);
+            }
         }
 
         private void 教育訓練実施要領書_日付2_KeyDown(object sender, KeyEventArgs e)
@@ -5791,7 +6349,7 @@ namespace u_net
 
         private void 教育訓練実施要領書_日付2_TextChanged(object sender, EventArgs e)
         {
-
+            ChangedData(true);
         }
 
         private void 教育訓練実施要領書_日付2_Validated(object sender, EventArgs e)
@@ -5801,17 +6359,41 @@ namespace u_net
 
         private void 教育訓練実施要領書_日付2_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 教育訓練実施要領書_日付2選択ボタン_Click(object sender, EventArgs e)
         {
+            dateSelectionForm = new F_カレンダー();
 
+            if (!string.IsNullOrEmpty(教育訓練実施要領書_日付2.Text))
+            {
+                dateSelectionForm.args = 教育訓練実施要領書_日付2.Text;
+            }
+
+            if (dateSelectionForm.ShowDialog() == DialogResult.OK && 教育訓練実施要領書_日付2.Enabled && !教育訓練実施要領書_日付2.ReadOnly)
+            {
+                // 日付選択フォームから選択した日付を取得
+                string selectedDate = dateSelectionForm.SelectedDate;
+
+                // フォームAの日付コントロールに選択した日付を設定
+                教育訓練実施要領書_日付2.Text = selectedDate;
+                教育訓練実施要領書_日付2.Focus();
+                UpdatedControl(教育訓練実施要領書_日付2);
+            }
+        }
+
+        private void 教育訓練実施要領書_日付2_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Space)
+            {
+                教育訓練実施要領書_日付2選択ボタン_Click(sender, e);
+            }
         }
 
         private void 教育訓練実施要領書_目的_DoubleClick(object sender, EventArgs e)
         {
-
+            FunctionClass.DocZoom(sender as Control, CurrentCode, CurrentEdition, 1000);
         }
 
         private void 教育訓練実施要領書_目的_Enter(object sender, EventArgs e)
@@ -5826,7 +6408,8 @@ namespace u_net
 
         private void 教育訓練実施要領書_目的_TextChanged(object sender, EventArgs e)
         {
-
+            FunctionClass.LimitText(sender as Control, 1000);
+            ChangedData(true);
         }
 
         private void 教育訓練実施要領書_目的_Validated(object sender, EventArgs e)
@@ -5836,12 +6419,12 @@ namespace u_net
 
         private void 教育訓練実施要領書_目的_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 教育訓練実施要領書_内容_DoubleClick(object sender, EventArgs e)
         {
-
+            FunctionClass.DocZoom(sender as Control, CurrentCode, CurrentEdition, 3000);
         }
 
         private void 教育訓練実施要領書_内容_Enter(object sender, EventArgs e)
@@ -5856,7 +6439,8 @@ namespace u_net
 
         private void 教育訓練実施要領書_内容_TextChanged(object sender, EventArgs e)
         {
-
+            FunctionClass.LimitText(sender as Control, 3000);
+            ChangedData(true);
         }
 
         private void 教育訓練実施要領書_内容_Validated(object sender, EventArgs e)
@@ -5866,12 +6450,12 @@ namespace u_net
 
         private void 教育訓練実施要領書_内容_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 教育訓練実施要領書_期待効果_DoubleClick(object sender, EventArgs e)
         {
-
+            FunctionClass.DocZoom(sender as Control, CurrentCode, CurrentEdition, 1000);
         }
 
         private void 教育訓練実施要領書_期待効果_Enter(object sender, EventArgs e)
@@ -5886,7 +6470,8 @@ namespace u_net
 
         private void 教育訓練実施要領書_期待効果_TextChanged(object sender, EventArgs e)
         {
-
+            FunctionClass.LimitText(sender as Control, 1000);
+            ChangedData(true);
         }
 
         private void 教育訓練実施要領書_期待効果_Validated(object sender, EventArgs e)
@@ -5896,7 +6481,7 @@ namespace u_net
 
         private void 教育訓練実施要領書_期待効果_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         #endregion
@@ -5904,9 +6489,54 @@ namespace u_net
 
         #region 出向依頼書
 
+        private bool 出向依頼書_SetCustomerInfo(string customerCode)
+        {
+            try
+            {
+                Connect();
+
+                bool result = false;
+                string strKey = "顧客コード='" + customerCode + "' AND 取引開始日 IS NOT NULL";
+                string strSQL = "SELECT * FROM V顧客 WHERE " + strKey;
+
+                using (SqlCommand cmd = new SqlCommand(strSQL, cn))
+                {
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            出向依頼書_顧客名.Text = reader["顧客名"].ToString() + " " + reader["顧客名2"].ToString();
+                            出向依頼書_顧客担当者名.Text = reader["顧客担当者名"].ToString();
+                            出向依頼書_顧客電話番号.Text = reader["電話番号1"].ToString() +
+                                                    "-" + reader["電話番号2"].ToString() +
+                                                    "-" + reader["電話番号3"].ToString();
+                            出向依頼書_顧客電話番号.Text = 出向依頼書_顧客電話番号.Text.Replace(" ", "");
+                            result = true;
+                        }
+                    }
+                }
+
+                return result;
+            }
+            catch (Exception ex)
+            {
+
+                return false;
+            }
+        }
+
+        private void 出向依頼書_その他_CheckedChanged(object sender, EventArgs e)
+        {
+            if (出向依頼書_その他.Checked)
+            {
+                出向依頼書_依頼分類その他.Focus();
+            }
+        }
+
+
         private void 出向依頼書_受付日_DoubleClick(object sender, EventArgs e)
         {
-
+            出向依頼書_受付日選択ボタン_Click(sender, e);
         }
 
         private void 出向依頼書_受付日_KeyDown(object sender, KeyEventArgs e)
@@ -5916,7 +6546,7 @@ namespace u_net
 
         private void 出向依頼書_受付日_TextChanged(object sender, EventArgs e)
         {
-
+            ChangedData(true);
         }
 
         private void 出向依頼書_受付日_Validated(object sender, EventArgs e)
@@ -5926,12 +6556,36 @@ namespace u_net
 
         private void 出向依頼書_受付日_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 出向依頼書_受付日選択ボタン_Click(object sender, EventArgs e)
         {
+            dateSelectionForm = new F_カレンダー();
 
+            if (!string.IsNullOrEmpty(出向依頼書_受付日.Text))
+            {
+                dateSelectionForm.args = 出向依頼書_受付日.Text;
+            }
+
+            if (dateSelectionForm.ShowDialog() == DialogResult.OK && 出向依頼書_受付日.Enabled && !出向依頼書_受付日.ReadOnly)
+            {
+                // 日付選択フォームから選択した日付を取得
+                string selectedDate = dateSelectionForm.SelectedDate;
+
+                // フォームAの日付コントロールに選択した日付を設定
+                出向依頼書_受付日.Text = selectedDate;
+                出向依頼書_受付日.Focus();
+                UpdatedControl(出向依頼書_受付日);
+            }
+        }
+
+        private void 出向依頼書_受付日_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Space)
+            {
+                出向依頼書_受付日選択ボタン_Click(sender, e);
+            }
         }
 
         private void 出向依頼書_出向分類_KeyDown(object sender, KeyEventArgs e)
@@ -5939,9 +6593,26 @@ namespace u_net
 
         }
 
+        private void 出向依頼書_出向分類_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == ' ') // スペースキーが押されたかを確認
+            {
+                if (sender is ComboBox comboBox)
+                {
+                    comboBox.DroppedDown = true; // コンボボックスのドロップダウンを開く
+                    e.Handled = true; // イベントの処理が完了したことを示す
+                }
+            }
+        }
+
         private void 出向依頼書_出向分類_TextUpdate(object sender, EventArgs e)
         {
 
+        }
+
+        private void 出向依頼書_出向分類_TextChanged(object sender, EventArgs e)
+        {
+            ChangedData(true);
         }
 
         private void 出向依頼書_出向分類_Validated(object sender, EventArgs e)
@@ -5951,42 +6622,69 @@ namespace u_net
 
         private void 出向依頼書_出向分類_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 出向依頼書_顧客コード_DoubleClick(object sender, EventArgs e)
         {
-
+            出向依頼書_顧客コード選択ボタン_Click(sender, e);
         }
 
         private void 出向依頼書_顧客コード_KeyDown(object sender, KeyEventArgs e)
         {
+            if (e.KeyCode == Keys.Return)
+            {
+                TextBox textBox = (TextBox)sender;
+                string formattedCode = textBox.Text.Trim().PadLeft(8, '0');
 
+                if (formattedCode != textBox.Text || string.IsNullOrEmpty(textBox.Text))
+                {
+                    textBox.Text = formattedCode;
+                    出向依頼書_顧客コード_Validated(sender, e);
+                }
+            }
         }
 
         private void 出向依頼書_顧客コード_KeyPress(object sender, KeyPressEventArgs e)
         {
-
+            if (e.KeyChar == (char)Keys.Space)
+            {
+                出向依頼書_顧客コード選択ボタン_Click(sender, e);
+            }
         }
 
         private void 出向依頼書_顧客コード_TextChanged(object sender, EventArgs e)
         {
-
+            FunctionClass.LimitText(sender as Control, 8);
+            ChangedData(true);
         }
 
         private void 出向依頼書_顧客コード_Validated(object sender, EventArgs e)
         {
 
+
+
         }
 
         private void 出向依頼書_顧客コード_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
+            setflg = true;
+            if (IsError(sender as Control) == true) e.Cancel = true;
+            setflg = false;
         }
+
+        private F_検索 SearchForm;
 
         private void 出向依頼書_顧客コード選択ボタン_Click(object sender, EventArgs e)
         {
+            SearchForm = new F_検索();
+            SearchForm.FilterName = "顧客名フリガナ";
+            if (SearchForm.ShowDialog() == DialogResult.OK && 出向依頼書_顧客コード.Enabled && !出向依頼書_顧客コード.ReadOnly)
+            {
+                string SelectedCode = SearchForm.SelectedCode;
 
+                出向依頼書_顧客コード.Text = SelectedCode;
+            }
         }
 
         private void 出向依頼書_顧客参照ボタン_Click(object sender, EventArgs e)
@@ -5996,22 +6694,24 @@ namespace u_net
 
         private void 出向依頼書_顧客名_TextChanged(object sender, EventArgs e)
         {
-
+            FunctionClass.LimitText(sender as Control, 50);
+            ChangedData(true);
         }
 
         private void 出向依頼書_顧客名_Validated(object sender, EventArgs e)
         {
-
+            UpdatedControl(sender as Control);
         }
 
         private void 出向依頼書_顧客名_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 出向依頼書_顧客担当者名_TextChanged(object sender, EventArgs e)
         {
-
+            FunctionClass.LimitText(sender as Control, 50);
+            ChangedData(true);
         }
 
         private void 出向依頼書_顧客担当者名_Validated(object sender, EventArgs e)
@@ -6021,12 +6721,13 @@ namespace u_net
 
         private void 出向依頼書_顧客担当者名_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 出向依頼書_顧客電話番号_TextChanged(object sender, EventArgs e)
         {
-
+            FunctionClass.LimitText(sender as Control, 20);
+            ChangedData(true);
         }
 
         private void 出向依頼書_顧客電話番号_Validated(object sender, EventArgs e)
@@ -6036,27 +6737,28 @@ namespace u_net
 
         private void 出向依頼書_顧客電話番号_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 出向依頼書_製品型番_TextChanged(object sender, EventArgs e)
         {
-
+            FunctionClass.LimitText(sender as Control, 50);
+            ChangedData(true);
         }
 
         private void 出向依頼書_製品型番_Validated(object sender, EventArgs e)
         {
-
         }
 
         private void 出向依頼書_製品型番_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 出向依頼書_シリアル番号_TextChanged(object sender, EventArgs e)
         {
-
+            FunctionClass.LimitText(sender as Control, 50);
+            ChangedData(true);
         }
 
         private void 出向依頼書_シリアル番号_Validated(object sender, EventArgs e)
@@ -6066,7 +6768,7 @@ namespace u_net
 
         private void 出向依頼書_シリアル番号_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 出向依頼書_依頼分類_Validated(object sender, EventArgs e)
@@ -6081,22 +6783,24 @@ namespace u_net
 
         private void 出向依頼書_依頼分類その他_TextChanged(object sender, EventArgs e)
         {
-
+            FunctionClass.LimitText(sender as Control, 50);
+            ChangedData(true);
         }
 
         private void 出向依頼書_依頼分類その他_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 出向依頼書_依頼内容_DoubleClick(object sender, EventArgs e)
         {
-
+            FunctionClass.DocZoom(sender as Control, CurrentCode, CurrentEdition, 4000);
         }
 
         private void 出向依頼書_依頼内容_TextChanged(object sender, EventArgs e)
         {
-
+            FunctionClass.LimitText(sender as Control, 4000);
+            ChangedData(true);
         }
 
         private void 出向依頼書_依頼内容_Validated(object sender, EventArgs e)
@@ -6106,27 +6810,30 @@ namespace u_net
 
         private void 出向依頼書_依頼内容_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 出向依頼書_出向日開始_DoubleClick(object sender, EventArgs e)
         {
-
+            出向依頼書_出向日開始選択ボタン_Click(sender, e);
         }
 
         private void 出向依頼書_出向日開始_KeyPress(object sender, KeyPressEventArgs e)
         {
-
+            if (e.KeyChar == (char)Keys.Space)
+            {
+                出向依頼書_出向日開始選択ボタン_Click(sender, e);
+            }
         }
 
         private void 出向依頼書_出向日開始_Leave(object sender, EventArgs e)
         {
-
+            FunctionClass.AdjustRange(出向依頼書_出向日開始, 出向依頼書_出向日終了, sender as Control);
         }
 
         private void 出向依頼書_出向日開始_TextChanged(object sender, EventArgs e)
         {
-
+            ChangedData(true);
         }
 
         private void 出向依頼書_出向日開始_Validated(object sender, EventArgs e)
@@ -6136,32 +6843,51 @@ namespace u_net
 
         private void 出向依頼書_出向日開始_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
+            ChangedData(true);
         }
 
         private void 出向依頼書_出向日開始選択ボタン_Click(object sender, EventArgs e)
         {
+            dateSelectionForm = new F_カレンダー();
 
+            if (!string.IsNullOrEmpty(出向依頼書_出向日開始.Text))
+            {
+                dateSelectionForm.args = 出向依頼書_出向日開始.Text;
+            }
+
+            if (dateSelectionForm.ShowDialog() == DialogResult.OK && 出向依頼書_出向日開始.Enabled && !出向依頼書_出向日開始.ReadOnly)
+            {
+                // 日付選択フォームから選択した日付を取得
+                string selectedDate = dateSelectionForm.SelectedDate;
+
+                // フォームAの日付コントロールに選択した日付を設定
+                出向依頼書_出向日開始.Text = selectedDate;
+                出向依頼書_出向日開始.Focus();
+                UpdatedControl(出向依頼書_出向日開始);
+            }
         }
 
         private void 出向依頼書_出向日終了_DoubleClick(object sender, EventArgs e)
         {
-
+            出向依頼書_出向日終了選択ボタン_Click(sender, e);
         }
 
         private void 出向依頼書_出向日終了_KeyPress(object sender, KeyPressEventArgs e)
         {
-
+            if (e.KeyChar == (char)Keys.Space)
+            {
+                出向依頼書_出向日終了選択ボタン_Click(sender, e);
+            }
         }
 
         private void 出向依頼書_出向日終了_Leave(object sender, EventArgs e)
         {
-
+            FunctionClass.AdjustRange(出向依頼書_出向日開始, 出向依頼書_出向日終了, sender as Control);
         }
 
         private void 出向依頼書_出向日終了_TextChanged(object sender, EventArgs e)
         {
-
+            ChangedData(true);
         }
 
         private void 出向依頼書_出向日終了_Validated(object sender, EventArgs e)
@@ -6171,17 +6897,34 @@ namespace u_net
 
         private void 出向依頼書_出向日終了_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 出向依頼書_出向日終了選択ボタン_Click(object sender, EventArgs e)
         {
+            dateSelectionForm = new F_カレンダー();
 
+            if (!string.IsNullOrEmpty(出向依頼書_出向日終了.Text))
+            {
+                dateSelectionForm.args = 出向依頼書_出向日終了.Text;
+            }
+
+            if (dateSelectionForm.ShowDialog() == DialogResult.OK && 出向依頼書_出向日終了.Enabled && !出向依頼書_出向日終了.ReadOnly)
+            {
+                // 日付選択フォームから選択した日付を取得
+                string selectedDate = dateSelectionForm.SelectedDate;
+
+                // フォームAの日付コントロールに選択した日付を設定
+                出向依頼書_出向日終了.Text = selectedDate;
+                出向依頼書_出向日終了.Focus();
+                UpdatedControl(出向依頼書_出向日終了);
+            }
         }
 
         private void 出向依頼書_出向先会社名_TextChanged(object sender, EventArgs e)
         {
-
+            FunctionClass.LimitText(sender as Control, 50);
+            ChangedData(true);
         }
 
         private void 出向依頼書_出向先会社名_Validated(object sender, EventArgs e)
@@ -6191,12 +6934,13 @@ namespace u_net
 
         private void 出向依頼書_出向先会社名_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 出向依頼書_出向先住所_TextChanged(object sender, EventArgs e)
         {
-
+            FunctionClass.LimitText(sender as Control, 50);
+            ChangedData(true);
         }
 
         private void 出向依頼書_出向先住所_Validated(object sender, EventArgs e)
@@ -6206,12 +6950,13 @@ namespace u_net
 
         private void 出向依頼書_出向先住所_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 出向依頼書_出向先電話番号_TextChanged(object sender, EventArgs e)
         {
-
+            FunctionClass.LimitText(sender as Control, 20);
+            ChangedData(true);
         }
 
         private void 出向依頼書_出向先電話番号_Validated(object sender, EventArgs e)
@@ -6221,18 +6966,31 @@ namespace u_net
 
         private void 出向依頼書_出向先電話番号_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 出向依頼書_費用_KeyPress(object sender, KeyPressEventArgs e)
         {
-
+            if (e.KeyChar == ' ') // スペースキーが押されたかを確認
+            {
+                if (sender is ComboBox comboBox)
+                {
+                    comboBox.DroppedDown = true; // コンボボックスのドロップダウンを開く
+                    e.Handled = true; // イベントの処理が完了したことを示す
+                }
+            }
         }
 
         private void 出向依頼書_費用_TextUpdate(object sender, EventArgs e)
         {
 
         }
+
+        private void 出向依頼書_費用_TextChanged(object sender, EventArgs e)
+        {
+            ChangedData(true);
+        }
+
 
         private void 出向依頼書_費用_Validated(object sender, EventArgs e)
         {
@@ -6241,28 +6999,100 @@ namespace u_net
 
         private void 出向依頼書_費用_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         #endregion
 
 
-        #region 規販売取引申請書
+        #region 新規販売取引申請書
+
+        public int 新規販売取引申請書_ApplyCustomer(string customerCode)
+        {
+            try
+            {
+                Connect();
+
+                int result = 0;
+                string strKey = "顧客コード = '" + customerCode + "'";
+                string strSQL = "UPDATE M顧客 SET 取引申請日 = getdate() WHERE " + strKey;
+
+                using (SqlCommand cmd = new SqlCommand(strSQL, cn))
+                {
+                    result = cmd.ExecuteNonQuery();
+                }
+
+                return result;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"{ex.GetType().Name}: {ex.Message}");
+                return -1; // エラーが発生した場合、適切なエラーコードを返すか、例外をスローするなど適切な処理を行ってください
+            }
+        }
+
+        public int 新規販売取引申請書_ApprovalCustomer(string customerCode)
+        {
+            try
+            {
+                Connect();
+
+                int result = 0;
+                string strKey = "顧客コード ='" + customerCode + "'";
+                string strSQL = "UPDATE M顧客 SET 取引開始日 = getdate() WHERE " + strKey;
+
+                using (SqlCommand cmd = new SqlCommand(strSQL, cn))
+                {
+                    result = cmd.ExecuteNonQuery();
+                }
+
+                return result;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"{ex.GetType().Name}: {ex.Message}");
+                return -1; // エラーが発生した場合、適切なエラーコードを返すか、例外をスローするなど適切な処理を行ってください
+            }
+        }
 
         private void 新規販売取引申請書_顧客コード_DoubleClick(object sender, EventArgs e)
         {
-
+            新規販売取引申請書_顧客コード検索ボタン_Click(sender, e);
         }
 
         private void 新規販売取引申請書_顧客コード_KeyDown(object sender, KeyEventArgs e)
         {
-
+            if (e.KeyCode == Keys.Return)
+            {
+                ComboBox comboBox = sender as ComboBox;
+                if (comboBox != null)
+                {
+                    string strCode = comboBox.Text.Trim();
+                    if (!string.IsNullOrEmpty(strCode))
+                    {
+                        strCode = strCode.PadLeft(8, '0');
+                        if (strCode != comboBox.Text)
+                        {
+                            comboBox.Text = strCode;
+                        }
+                    }
+                }
+            }
         }
 
         private void 新規販売取引申請書_顧客コード_KeyPress(object sender, KeyPressEventArgs e)
         {
-
+            if (e.KeyChar == (char)Keys.Space)
+            {
+                新規販売取引申請書_顧客コード検索ボタン_Click(sender, e);
+            }
         }
+
+        private void 新規販売取引申請書_顧客コード_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (IsError(sender as Control) == true) e.Cancel = true;
+        }
+
 
         private void 新規販売取引申請書_顧客コード_Enter(object sender, EventArgs e)
         {
@@ -6276,7 +7106,27 @@ namespace u_net
 
         private void 新規販売取引申請書_顧客コード検索ボタン_Click(object sender, EventArgs e)
         {
+            dateSelectionForm = new F_カレンダー();
 
+            if (IsApproved)
+            {
+                MessageBox.Show("承認後の修正はできません。", "顧客選択", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            SearchForm = new F_検索();
+            SearchForm.FilterName = "申請顧客名フリガナ";
+            if (SearchForm.ShowDialog() == DialogResult.OK && 新規販売取引申請書_顧客コード.Enabled && !新規販売取引申請書_顧客コード.ReadOnly)
+            {
+                string SelectedCode = SearchForm.SelectedCode;
+
+                新規販売取引申請書_顧客コード.Text = SelectedCode;
+            }
+        }
+
+        private void 新規販売取引申請書_顧客コード_TextChanged(object sender, EventArgs e)
+        {
+            ChangedData(true);
         }
 
         private void 新規販売取引申請書_顧客コード検索ボタン_Enter(object sender, EventArgs e)
@@ -6301,7 +7151,14 @@ namespace u_net
 
         private void 新規販売取引申請書_新規顧客登録ボタン_Click(object sender, EventArgs e)
         {
+            string selectedData = Nz(新規販売取引申請書_顧客コード.Text);
 
+            string trimmedAndReplaced = selectedData.TrimEnd().Replace(" ", "_");
+
+            string replacedServerInstanceName = CommonConstants.ServerInstanceName.Replace(" ", "_");
+
+            string param = $" -sv:{replacedServerInstanceName} -open:saleslistbyparentcustomer, {trimmedAndReplaced},1";
+            FunctionClass.GetShell(param);
         }
 
         #endregion
@@ -6311,17 +7168,20 @@ namespace u_net
 
         private void 是正予防会議通知書_受付文書コード_KeyDown(object sender, KeyEventArgs e)
         {
-
+            if (e.KeyCode == Keys.Return)
+            {
+                是正予防会議通知書_受付文書コード.Text = FunctionClass.FormatDocumentCode(是正予防会議通知書_受付文書コード.Text);
+            }
         }
 
         private void 是正予防会議通知書_受付文書コード_KeyPress(object sender, KeyPressEventArgs e)
         {
-
+            e.KeyChar = (char)FunctionClass.ChangeBig((int)e.KeyChar);
         }
 
         private void 是正予防会議通知書_受付文書コード_TextChanged(object sender, EventArgs e)
         {
-
+            ChangedData(true);
         }
 
         private void 是正予防会議通知書_受付文書コード_Validated(object sender, EventArgs e)
@@ -6331,22 +7191,41 @@ namespace u_net
 
         private void 是正予防会議通知書_受付文書コード_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 是正予防会議通知書_顧客コード_KeyDown(object sender, KeyEventArgs e)
         {
+            if (e.KeyCode == Keys.Return)
+            {
+                ComboBox comboBox = sender as ComboBox;
+                if (comboBox != null)
+                {
+                    string strCode = comboBox.Text.Trim();
+                    if (!string.IsNullOrEmpty(strCode))
+                    {
+                        strCode = strCode.PadLeft(8, '0');
+                        if (strCode != comboBox.Text)
+                        {
+                            comboBox.Text = strCode;
 
+                        }
+                    }
+                }
+            }
         }
 
         private void 是正予防会議通知書_顧客コード_KeyPress(object sender, KeyPressEventArgs e)
         {
-
+            if (e.KeyChar == (char)Keys.Space)
+            {
+                是正予防会議通知書_顧客コード検索ボタン_Click(sender, e);
+            }
         }
 
         private void 是正予防会議通知書_顧客コード_TextChanged(object sender, EventArgs e)
         {
-
+            ChangedData(true);
         }
 
         private void 是正予防会議通知書_顧客コード_Validated(object sender, EventArgs e)
@@ -6356,17 +7235,25 @@ namespace u_net
 
         private void 是正予防会議通知書_顧客コード_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 是正予防会議通知書_顧客コード検索ボタン_Click(object sender, EventArgs e)
         {
+            SearchForm = new F_検索();
+            SearchForm.FilterName = "顧客名フリガナ";
+            if (SearchForm.ShowDialog() == DialogResult.OK)
+            {
+                string SelectedCode = SearchForm.SelectedCode;
 
+                是正予防会議通知書_顧客コード.Text = SelectedCode;
+            }
         }
 
         private void 是正予防会議通知書_使用者名_TextChanged(object sender, EventArgs e)
         {
-
+            FunctionClass.LimitText(sender as Control, 60);
+            ChangedData(true);
         }
 
         private void 是正予防会議通知書_使用者名_Validated(object sender, EventArgs e)
@@ -6376,12 +7263,13 @@ namespace u_net
 
         private void 是正予防会議通知書_使用者名_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 是正予防会議通知書_型番_TextChanged(object sender, EventArgs e)
         {
-
+            FunctionClass.LimitText(sender as Control, 50);
+            ChangedData(true);
         }
 
         private void 是正予防会議通知書_型番_Validated(object sender, EventArgs e)
@@ -6391,12 +7279,12 @@ namespace u_net
 
         private void 是正予防会議通知書_型番_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 是正予防会議通知書_数量_TextChanged(object sender, EventArgs e)
         {
-
+            ChangedData(true);
         }
 
         private void 是正予防会議通知書_数量_Validated(object sender, EventArgs e)
@@ -6406,17 +7294,19 @@ namespace u_net
 
         private void 是正予防会議通知書_数量_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 是正予防会議通知書_不具合現象_DoubleClick(object sender, EventArgs e)
         {
+            FunctionClass.DocZoom(sender as Control, CurrentCode, CurrentEdition, 4000);
 
         }
 
         private void 是正予防会議通知書_不具合現象_TextChanged(object sender, EventArgs e)
         {
-
+            FunctionClass.LimitText(sender as Control, 4000);
+            ChangedData(true);
         }
 
         private void 是正予防会議通知書_不具合現象_Validated(object sender, EventArgs e)
@@ -6426,7 +7316,7 @@ namespace u_net
 
         private void 是正予防会議通知書_不具合現象_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 是正予防会議通知書_不具合現象_Enter(object sender, EventArgs e)
@@ -6446,17 +7336,17 @@ namespace u_net
 
         private void 是正予防処置報告書_受付文書コード_KeyDown(object sender, KeyEventArgs e)
         {
-
+            是正予防処置報告書_受付文書コード.Text = FunctionClass.FormatDocumentCode(是正予防処置報告書_受付文書コード.Text);
         }
 
         private void 是正予防処置報告書_受付文書コード_KeyPress(object sender, KeyPressEventArgs e)
         {
-
+            e.KeyChar = (char)FunctionClass.ChangeBig((int)e.KeyChar);
         }
 
         private void 是正予防処置報告書_受付文書コード_TextChanged(object sender, EventArgs e)
         {
-
+            ChangedData(true);
         }
 
         private void 是正予防処置報告書_受付文書コード_Validated(object sender, EventArgs e)
@@ -6466,22 +7356,57 @@ namespace u_net
 
         private void 是正予防処置報告書_受付文書コード_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 是正予防処置報告書_顧客コード_KeyDown(object sender, KeyEventArgs e)
         {
-
+            if (e.KeyCode == Keys.Return)
+            {
+                ComboBox comboBox = sender as ComboBox;
+                if (comboBox != null)
+                {
+                    string strCode = comboBox.Text.Trim();
+                    if (!string.IsNullOrEmpty(strCode))
+                    {
+                        strCode = strCode.PadLeft(8, '0');
+                        if (strCode != comboBox.Text)
+                        {
+                            comboBox.Text = strCode;
+                        }
+                    }
+                }
+            }
         }
 
         private void 是正予防処置報告書_顧客コード_KeyPress(object sender, KeyPressEventArgs e)
         {
-
+            if (e.KeyChar == (char)Keys.Space)
+            {
+                是正予防処置報告書_顧客コード検索ボタン_Click(sender, e);
+            }
         }
 
         private void 是正予防処置報告書_顧客コード検索ボタン_Click(object sender, EventArgs e)
         {
+            SearchForm = new F_検索();
+            SearchForm.FilterName = "顧客名フリガナ";
+            if (SearchForm.ShowDialog() == DialogResult.OK)
+            {
+                string SelectedCode = SearchForm.SelectedCode;
 
+                是正予防処置報告書_顧客コード.Text = SelectedCode;
+            }
+        }
+
+        private void 是正予防処置報告書_顧客コード_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (IsError(sender as Control) == true) e.Cancel = true;
+        }
+
+        private void 是正予防処置報告書_顧客コード_TextChanged(object sender, EventArgs e)
+        {
+            ChangedData(true);
         }
 
         private void 是正予防処置報告書_顧客コード検索ボタン_Enter(object sender, EventArgs e)
@@ -6496,7 +7421,8 @@ namespace u_net
 
         private void 是正予防処置報告書_使用者名_TextChanged(object sender, EventArgs e)
         {
-
+            FunctionClass.LimitText(sender as Control, 60);
+            ChangedData(true);
         }
 
         private void 是正予防処置報告書_使用者名_Validated(object sender, EventArgs e)
@@ -6506,12 +7432,13 @@ namespace u_net
 
         private void 是正予防処置報告書_使用者名_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 是正予防処置報告書_型番_TextChanged(object sender, EventArgs e)
         {
-
+            FunctionClass.LimitText(sender as Control, 50);
+            ChangedData(true);
         }
 
         private void 是正予防処置報告書_型番_Validated(object sender, EventArgs e)
@@ -6521,12 +7448,12 @@ namespace u_net
 
         private void 是正予防処置報告書_型番_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 是正予防処置報告書_数量_TextChanged(object sender, EventArgs e)
         {
-
+            ChangedData(true);
         }
 
         private void 是正予防処置報告書_数量_Validated(object sender, EventArgs e)
@@ -6536,12 +7463,12 @@ namespace u_net
 
         private void 是正予防処置報告書_数量_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 是正予防処置報告書_議事録_DoubleClick(object sender, EventArgs e)
         {
-
+            FunctionClass.DocZoom(sender as Control, CurrentCode, CurrentEdition, 4000);
         }
 
         private void 是正予防処置報告書_議事録_Enter(object sender, EventArgs e)
@@ -6556,7 +7483,8 @@ namespace u_net
 
         private void 是正予防処置報告書_議事録_TextChanged(object sender, EventArgs e)
         {
-
+            FunctionClass.LimitText(sender as Control, 4000);
+            ChangedData(true);
         }
 
         private void 是正予防処置報告書_議事録_Validated(object sender, EventArgs e)
@@ -6566,7 +7494,7 @@ namespace u_net
 
         private void 是正予防処置報告書_議事録_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 是正予防処置報告書_回答ボタン_Click(object sender, EventArgs e)
@@ -6581,7 +7509,8 @@ namespace u_net
 
         private void 是正予防処置報告書_環境_発生日_TextChanged(object sender, EventArgs e)
         {
-
+            FunctionClass.LimitText(sender as Control, 60);
+            ChangedData(true);
         }
 
         private void 是正予防処置報告書_環境_発生日_Validated(object sender, EventArgs e)
@@ -6591,12 +7520,28 @@ namespace u_net
 
         private void 是正予防処置報告書_環境_発生日_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 是正予防処置報告書_環境_発生日選択ボタン_Click(object sender, EventArgs e)
         {
+            dateSelectionForm = new F_カレンダー();
 
+            if (!string.IsNullOrEmpty(是正予防処置報告書_環境_発生日.Text))
+            {
+                dateSelectionForm.args = 是正予防処置報告書_環境_発生日.Text;
+            }
+
+            if (dateSelectionForm.ShowDialog() == DialogResult.OK && 是正予防処置報告書_環境_発生日.Enabled && !是正予防処置報告書_環境_発生日.ReadOnly)
+            {
+                // 日付選択フォームから選択した日付を取得
+                string selectedDate = dateSelectionForm.SelectedDate;
+
+                // フォームAの日付コントロールに選択した日付を設定
+                是正予防処置報告書_環境_発生日.Text = selectedDate;
+                是正予防処置報告書_環境_発生日.Focus();
+                UpdatedControl(是正予防処置報告書_環境_発生日);
+            }
         }
 
         private void 是正予防処置報告書_環境_発生日選択ボタン_Enter(object sender, EventArgs e)
@@ -6621,7 +7566,8 @@ namespace u_net
 
         private void 是正予防処置報告書_環境_発生所在地_TextChanged(object sender, EventArgs e)
         {
-
+            FunctionClass.LimitText(sender as Control, 200);
+            ChangedData(true);
         }
 
         private void 是正予防処置報告書_環境_発生所在地_Validated(object sender, EventArgs e)
@@ -6631,12 +7577,12 @@ namespace u_net
 
         private void 是正予防処置報告書_環境_発生所在地_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 是正予防処置報告書_環境_議事録_DoubleClick(object sender, EventArgs e)
         {
-
+            FunctionClass.DocZoom(sender as Control, CurrentCode, CurrentEdition, 4000);
         }
 
         private void 是正予防処置報告書_環境_議事録_Enter(object sender, EventArgs e)
@@ -6652,6 +7598,9 @@ namespace u_net
         private void 是正予防処置報告書_環境_議事録_TextChanged(object sender, EventArgs e)
         {
 
+
+            FunctionClass.LimitText(sender as Control, 4000);
+            ChangedData(true);
         }
 
         private void 是正予防処置報告書_環境_議事録_Validated(object sender, EventArgs e)
@@ -6661,7 +7610,7 @@ namespace u_net
 
         private void 是正予防処置報告書_環境_議事録_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 是正予防処置報告書_環境_回答ボタン_Click(object sender, EventArgs e)
@@ -6676,7 +7625,7 @@ namespace u_net
 
         private void 製品企画書_品名_TextChanged(object sender, EventArgs e)
         {
-
+            ChangedData(true);
         }
 
         private void 製品企画書_品名_Validated(object sender, EventArgs e)
@@ -6686,12 +7635,12 @@ namespace u_net
 
         private void 製品企画書_品名_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 製品企画書_型番_TextChanged(object sender, EventArgs e)
         {
-
+            ChangedData(true);
         }
 
         private void 製品企画書_型番_Validated(object sender, EventArgs e)
@@ -6701,27 +7650,32 @@ namespace u_net
 
         private void 製品企画書_型番_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
-        private void 製品企画書_売上区分_TextUpdate(object sender, EventArgs e)
+        private void 製品企画書_売上区分コード_TextUpdate(object sender, EventArgs e)
         {
 
         }
 
-        private void 製品企画書_売上区分_Validated(object sender, EventArgs e)
+        private void 製品企画書_売上区分コード_TextChanged(object sender, EventArgs e)
+        {
+            ChangedData(true);
+        }
+
+        private void 製品企画書_売上区分コード_Validated(object sender, EventArgs e)
         {
 
         }
 
-        private void 製品企画書_売上区分_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        private void 製品企画書_売上区分コード_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 製品企画書_顧客コード_DoubleClick(object sender, EventArgs e)
         {
-
+            製品企画書_顧客コード検索ボタン_Click(sender, e);
         }
 
         private void 製品企画書_顧客コード_Enter(object sender, EventArgs e)
@@ -6736,17 +7690,36 @@ namespace u_net
 
         private void 製品企画書_顧客コード_KeyDown(object sender, KeyEventArgs e)
         {
-
+            if (e.KeyCode == Keys.Return)
+            {
+                ComboBox comboBox = sender as ComboBox;
+                if (comboBox != null)
+                {
+                    string strCode = comboBox.Text.Trim();
+                    if (!string.IsNullOrEmpty(strCode))
+                    {
+                        strCode = strCode.PadLeft(8, '0');
+                        if (strCode != comboBox.Text)
+                        {
+                            comboBox.Text = strCode;
+                        }
+                    }
+                }
+            }
         }
 
         private void 製品企画書_顧客コード_KeyPress(object sender, KeyPressEventArgs e)
         {
-
+            if (e.KeyChar == (char)Keys.Space)
+            {
+                製品企画書_顧客コード検索ボタン_Click(sender, e);
+            }
         }
 
         private void 製品企画書_顧客コード_TextChanged(object sender, EventArgs e)
         {
-
+            FunctionClass.LimitText(sender as Control, 8);
+            ChangedData(true);
         }
 
         private void 製品企画書_顧客コード_Validated(object sender, EventArgs e)
@@ -6756,7 +7729,7 @@ namespace u_net
 
         private void 製品企画書_顧客コード_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 製品企画書_顧客コード検索ボタン_Enter(object sender, EventArgs e)
@@ -6771,12 +7744,27 @@ namespace u_net
 
         private void 製品企画書_顧客コード検索ボタン_Click(object sender, EventArgs e)
         {
+            if (IsApproved)
+            {
+                MessageBox.Show("承認後の修正はできません", "顧客検索", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
 
+                SearchForm = new F_検索();
+                SearchForm.FilterName = "顧客名フリガナ";
+                if (SearchForm.ShowDialog() == DialogResult.OK)
+                {
+                    string SelectedCode = SearchForm.SelectedCode;
+
+                    製品企画書_顧客コード.Text = SelectedCode;
+                }
+            }
         }
 
         private void 製品企画書_年間販売数量_TextChanged(object sender, EventArgs e)
         {
-
+            ChangedData(true);
         }
 
         private void 製品企画書_年間販売数量_Validated(object sender, EventArgs e)
@@ -6786,12 +7774,12 @@ namespace u_net
 
         private void 製品企画書_年間販売数量_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 製品企画書_標準価格_TextChanged(object sender, EventArgs e)
         {
-
+            ChangedData(true);
         }
 
         private void 製品企画書_標準価格_Validated(object sender, EventArgs e)
@@ -6801,12 +7789,12 @@ namespace u_net
 
         private void 製品企画書_標準価格_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 製品企画書_自社開発費比率_TextChanged(object sender, EventArgs e)
         {
-
+            ChangedData(true);
         }
 
         private void 製品企画書_自社開発費比率_Validated(object sender, EventArgs e)
@@ -6816,7 +7804,7 @@ namespace u_net
 
         private void 製品企画書_自社開発費比率_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 製品企画書_自社開発費比率_Enter(object sender, EventArgs e)
@@ -6831,7 +7819,7 @@ namespace u_net
 
         private void 製品企画書_競合価格_TextChanged(object sender, EventArgs e)
         {
-
+            ChangedData(true);
         }
 
         private void 製品企画書_競合価格_Validated(object sender, EventArgs e)
@@ -6841,12 +7829,12 @@ namespace u_net
 
         private void 製品企画書_競合価格_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 製品企画書_競合メーカー_TextChanged(object sender, EventArgs e)
         {
-
+            ChangedData(true);
         }
 
         private void 製品企画書_競合メーカー_Validated(object sender, EventArgs e)
@@ -6856,12 +7844,12 @@ namespace u_net
 
         private void 製品企画書_競合メーカー_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 製品企画書_競合製品型番_TextChanged(object sender, EventArgs e)
         {
-
+            ChangedData(true);
         }
 
         private void 製品企画書_競合製品型番_Validated(object sender, EventArgs e)
@@ -6871,22 +7859,25 @@ namespace u_net
 
         private void 製品企画書_競合製品型番_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 製品企画書_発売予定日_DoubleClick(object sender, EventArgs e)
         {
-
+            製品企画書_発売予定日選択ボタン_Click(sender, e);
         }
 
         private void 製品企画書_発売予定日_KeyPress(object sender, KeyPressEventArgs e)
         {
-
+            if (e.KeyChar == (char)Keys.Space)
+            {
+                製品企画書_発売予定日選択ボタン_Click(sender, e);
+            }
         }
 
         private void 製品企画書_発売予定日_TextChanged(object sender, EventArgs e)
         {
-
+            ChangedData(true);
         }
 
         private void 製品企画書_発売予定日_Validated(object sender, EventArgs e)
@@ -6896,27 +7887,46 @@ namespace u_net
 
         private void 製品企画書_発売予定日_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 製品企画書_発売予定日選択ボタン_Click(object sender, EventArgs e)
         {
+            dateSelectionForm = new F_カレンダー();
 
+            if (!string.IsNullOrEmpty(製品企画書_発売予定日.Text))
+            {
+                dateSelectionForm.args = 製品企画書_発売予定日.Text;
+            }
+
+            if (dateSelectionForm.ShowDialog() == DialogResult.OK && 製品企画書_発売予定日.Enabled && !製品企画書_発売予定日.ReadOnly)
+            {
+                // 日付選択フォームから選択した日付を取得
+                string selectedDate = dateSelectionForm.SelectedDate;
+
+                // フォームAの日付コントロールに選択した日付を設定
+                製品企画書_発売予定日.Text = selectedDate;
+                製品企画書_発売予定日.Focus();
+                UpdatedControl(製品企画書_発売予定日);
+            }
         }
 
         private void 製品企画書_会議開催日_DoubleClick(object sender, EventArgs e)
         {
-
+            製品企画書_会議開催日選択ボタン_Click(sender, e);
         }
 
         private void 製品企画書_会議開催日_KeyPress(object sender, KeyPressEventArgs e)
         {
-
+            if (e.KeyChar == (char)Keys.Space)
+            {
+                製品企画書_会議開催日選択ボタン_Click(sender, e);
+            }
         }
 
         private void 製品企画書_会議開催日_TextChanged(object sender, EventArgs e)
         {
-
+            ChangedData(true);
         }
 
         private void 製品企画書_会議開催日_Validated(object sender, EventArgs e)
@@ -6926,17 +7936,33 @@ namespace u_net
 
         private void 製品企画書_会議開催日_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 製品企画書_会議開催日選択ボタン_Click(object sender, EventArgs e)
         {
+            dateSelectionForm = new F_カレンダー();
 
+            if (!string.IsNullOrEmpty(製品企画書_会議開催日.Text))
+            {
+                dateSelectionForm.args = 製品企画書_会議開催日.Text;
+            }
+
+            if (dateSelectionForm.ShowDialog() == DialogResult.OK && 製品企画書_会議開催日.Enabled && !製品企画書_会議開催日.ReadOnly)
+            {
+                // 日付選択フォームから選択した日付を取得
+                string selectedDate = dateSelectionForm.SelectedDate;
+
+                // フォームAの日付コントロールに選択した日付を設定
+                製品企画書_会議開催日.Text = selectedDate;
+                製品企画書_会議開催日.Focus();
+                UpdatedControl(製品企画書_会議開催日);
+            }
         }
 
         private void 製品企画書_開発目的_DoubleClick(object sender, EventArgs e)
         {
-
+            FunctionClass.DocZoom(sender as Control, CurrentCode, CurrentEdition, 1000);
         }
 
         private void 製品企画書_開発目的_Enter(object sender, EventArgs e)
@@ -6951,7 +7977,8 @@ namespace u_net
 
         private void 製品企画書_開発目的_TextChanged(object sender, EventArgs e)
         {
-
+            FunctionClass.LimitText(sender as Control, 1000);
+            ChangedData(true);
         }
 
         private void 製品企画書_開発目的_Validated(object sender, EventArgs e)
@@ -6961,17 +7988,18 @@ namespace u_net
 
         private void 製品企画書_開発目的_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 製品企画書_製品概要_DoubleClick(object sender, EventArgs e)
         {
-
+            FunctionClass.DocZoom(sender as Control, CurrentCode, CurrentEdition, 1000);
         }
 
         private void 製品企画書_製品概要_TextChanged(object sender, EventArgs e)
         {
-
+            FunctionClass.LimitText(sender as Control, 1000);
+            ChangedData(true);
         }
 
         private void 製品企画書_製品概要_Validated(object sender, EventArgs e)
@@ -6981,7 +8009,7 @@ namespace u_net
 
         private void 製品企画書_製品概要_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 製品企画書_製品概要_Enter(object sender, EventArgs e)
@@ -6996,12 +8024,13 @@ namespace u_net
 
         private void 製品企画書_要求事項_DoubleClick(object sender, EventArgs e)
         {
-
+            FunctionClass.DocZoom(sender as Control, CurrentCode, CurrentEdition, 2000);
         }
 
         private void 製品企画書_要求事項_TextChanged(object sender, EventArgs e)
         {
-
+            FunctionClass.LimitText(sender as Control, 2000);
+            ChangedData(true);
         }
 
         private void 製品企画書_要求事項_Validated(object sender, EventArgs e)
@@ -7011,7 +8040,7 @@ namespace u_net
 
         private void 製品企画書_要求事項_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 製品企画書_要求事項_Enter(object sender, EventArgs e)
@@ -7031,12 +8060,15 @@ namespace u_net
 
         private void 設計審査会議事録_開催日_DoubleClick(object sender, EventArgs e)
         {
-
+            設計審査会議事録_開催日選択ボタン_Click(sender, e);
         }
 
         private void 設計審査会議事録_開催日_KeyPress(object sender, KeyPressEventArgs e)
         {
-
+            if (e.KeyChar == (char)Keys.Space)
+            {
+                設計審査会議事録_開催日選択ボタン_Click(sender, e);
+            }
         }
 
         private void 設計審査会議事録_開催日_Enter(object sender, EventArgs e)
@@ -7051,17 +8083,33 @@ namespace u_net
 
         private void 設計審査会議事録_開催日_TextChanged(object sender, EventArgs e)
         {
-
+            ChangedData(true);
         }
 
         private void 設計審査会議事録_開催日_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 設計審査会議事録_開催日選択ボタン_Click(object sender, EventArgs e)
         {
+            dateSelectionForm = new F_カレンダー();
 
+            if (!string.IsNullOrEmpty(設計審査会議事録_開催日.Text))
+            {
+                dateSelectionForm.args = 設計審査会議事録_開催日.Text;
+            }
+
+            if (dateSelectionForm.ShowDialog() == DialogResult.OK && 設計審査会議事録_開催日.Enabled && !設計審査会議事録_開催日.ReadOnly)
+            {
+                // 日付選択フォームから選択した日付を取得
+                string selectedDate = dateSelectionForm.SelectedDate;
+
+                // フォームAの日付コントロールに選択した日付を設定
+                設計審査会議事録_開催日.Text = selectedDate;
+                設計審査会議事録_開催日.Focus();
+                UpdatedControl(設計審査会議事録_開催日);
+            }
         }
 
         private void 設計審査会議事録_開催場所_Enter(object sender, EventArgs e)
@@ -7076,12 +8124,13 @@ namespace u_net
 
         private void 設計審査会議事録_開催場所_TextChanged(object sender, EventArgs e)
         {
-
+            FunctionClass.LimitText(sender as Control, 100);
+            ChangedData(true);
         }
 
         private void 設計審査会議事録_開催場所_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 設計審査会議事録_参加者_Enter(object sender, EventArgs e)
@@ -7096,17 +8145,18 @@ namespace u_net
 
         private void 設計審査会議事録_参加者_TextChanged(object sender, EventArgs e)
         {
-
+            FunctionClass.LimitText(sender as Control, 2);
+            ChangedData(true);
         }
 
         private void 設計審査会議事録_参加者_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 設計審査会議事録_企画書との相異_DoubleClick(object sender, EventArgs e)
         {
-
+            FunctionClass.DocZoom(sender as Control, CurrentCode, CurrentEdition, 4000);
         }
 
         private void 設計審査会議事録_企画書との相異_Enter(object sender, EventArgs e)
@@ -7121,12 +8171,13 @@ namespace u_net
 
         private void 設計審査会議事録_企画書との相異_TextChanged(object sender, EventArgs e)
         {
-
+            FunctionClass.LimitText(sender as Control, 4000);
+            ChangedData(true);
         }
 
         private void 設計審査会議事録_計画書との相異_DoubleClick(object sender, EventArgs e)
         {
-
+            FunctionClass.DocZoom(sender as Control, CurrentCode, CurrentEdition, 4000);
         }
 
         private void 設計審査会議事録_計画書との相異_Enter(object sender, EventArgs e)
@@ -7141,12 +8192,13 @@ namespace u_net
 
         private void 設計審査会議事録_計画書との相異_TextChanged(object sender, EventArgs e)
         {
-
+            FunctionClass.LimitText(sender as Control, 4000);
+            ChangedData(true);
         }
 
         private void 設計審査会議事録_構想資料との相異_DoubleClick(object sender, EventArgs e)
         {
-
+            FunctionClass.DocZoom(sender as Control, CurrentCode, CurrentEdition, 4000);
         }
 
         private void 設計審査会議事録_構想資料との相異_Enter(object sender, EventArgs e)
@@ -7161,12 +8213,13 @@ namespace u_net
 
         private void 設計審査会議事録_構想資料との相異_TextChanged(object sender, EventArgs e)
         {
-
+            FunctionClass.LimitText(sender as Control, 4000);
+            ChangedData(true);
         }
 
         private void 設計審査会議事録_仕様書の確認_DoubleClick(object sender, EventArgs e)
         {
-
+            FunctionClass.DocZoom(sender as Control, CurrentCode, CurrentEdition, 4000);
         }
 
         private void 設計審査会議事録_仕様書の確認_Enter(object sender, EventArgs e)
@@ -7181,12 +8234,13 @@ namespace u_net
 
         private void 設計審査会議事録_仕様書の確認_TextChanged(object sender, EventArgs e)
         {
-
+            FunctionClass.LimitText(sender as Control, 4000);
+            ChangedData(true);
         }
 
         private void 設計審査会議事録_改善点_DoubleClick(object sender, EventArgs e)
         {
-
+            FunctionClass.DocZoom(sender as Control, CurrentCode, CurrentEdition, 4000);
         }
 
         private void 設計審査会議事録_改善点_Enter(object sender, EventArgs e)
@@ -7201,12 +8255,13 @@ namespace u_net
 
         private void 設計審査会議事録_改善点_TextChanged(object sender, EventArgs e)
         {
-
+            FunctionClass.LimitText(sender as Control, 4000);
+            ChangedData(true);
         }
 
         private void 設計審査会議事録_要望_DoubleClick(object sender, EventArgs e)
         {
-
+            FunctionClass.DocZoom(sender as Control, CurrentCode, CurrentEdition, 4000);
         }
 
         private void 設計審査会議事録_要望_Enter(object sender, EventArgs e)
@@ -7221,12 +8276,13 @@ namespace u_net
 
         private void 設計審査会議事録_要望_TextChanged(object sender, EventArgs e)
         {
-
+            FunctionClass.LimitText(sender as Control, 4000);
+            ChangedData(true);
         }
 
         private void 設計審査会議事録_結論_DoubleClick(object sender, EventArgs e)
         {
-
+            FunctionClass.DocZoom(sender as Control, CurrentCode, CurrentEdition, 4000);
         }
 
         private void 設計審査会議事録_結論_Enter(object sender, EventArgs e)
@@ -7241,7 +8297,8 @@ namespace u_net
 
         private void 設計審査会議事録_結論_TextChanged(object sender, EventArgs e)
         {
-
+            FunctionClass.LimitText(sender as Control, 4000);
+            ChangedData(true);
         }
 
         #endregion
@@ -7251,17 +8308,18 @@ namespace u_net
 
         private void 設計製作依頼書_検討依頼書コード_KeyDown(object sender, KeyEventArgs e)
         {
-
+            設計製作依頼書_検討依頼書コード.Text = FunctionClass.FormatDocumentCode(設計製作依頼書_検討依頼書コード.Text);
         }
 
         private void 設計製作依頼書_検討依頼書コード_KeyPress(object sender, KeyPressEventArgs e)
         {
-
+            e.KeyChar = (char)FunctionClass.ChangeBig((int)e.KeyChar);
         }
 
         private void 設計製作依頼書_検討依頼書コード_TextChanged(object sender, EventArgs e)
         {
-
+            FunctionClass.LimitText(sender as Control, 11);
+            ChangedData(true);
         }
 
         private void 設計製作依頼書_検討依頼書コード_Validated(object sender, EventArgs e)
@@ -7271,12 +8329,17 @@ namespace u_net
 
         private void 設計製作依頼書_検討依頼書コード_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 設計製作依頼書_リンク1ボタン_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(設計製作依頼書_検討依頼書コード.Text)) return;
 
+            F_文書 targetform = new F_文書();
+
+            targetform.args = 設計製作依頼書_検討依頼書コード.Text + ",1";
+            targetform.ShowDialog();
         }
 
         private void 設計製作依頼書_リンク1ボタン_Enter(object sender, EventArgs e)
@@ -7291,7 +8354,12 @@ namespace u_net
 
         private void 設計製作依頼書_リンク2ボタン_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(設計製作依頼書_受注コード.Text)) return;
 
+            F_受注 targetform = new F_受注();
+
+            targetform.varOpenArgs = 設計製作依頼書_受注コード.Text;
+            targetform.ShowDialog();
         }
 
         private void 設計製作依頼書_リンク2ボタン_Enter(object sender, EventArgs e)
@@ -7306,22 +8374,32 @@ namespace u_net
 
         private void 設計製作依頼書_受注コード_DoubleClick(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(設計製作依頼書_受注コード.Text)) return;
 
+            F_受注 targetform = new F_受注();
+
+            targetform.varOpenArgs = 設計製作依頼書_受注コード.Text;
+            targetform.ShowDialog();
         }
 
         private void 設計製作依頼書_受注コード_KeyDown(object sender, KeyEventArgs e)
         {
-
+            if (e.KeyCode == Keys.Return)
+            {
+                設計製作依頼書_受注コード.Text = FunctionClass.FormatCode("A", 設計製作依頼書_受注コード.Text);
+            }
         }
 
         private void 設計製作依頼書_受注コード_KeyPress(object sender, KeyPressEventArgs e)
         {
+            e.KeyChar = (char)FunctionClass.ChangeBig((int)e.KeyChar);
 
         }
 
         private void 設計製作依頼書_受注コード_TextChanged(object sender, EventArgs e)
         {
-
+            FunctionClass.LimitText(sender as Control, 9);
+            ChangedData(true);
         }
 
         private void 設計製作依頼書_受注コード_Validated(object sender, EventArgs e)
@@ -7331,27 +8409,75 @@ namespace u_net
 
         private void 設計製作依頼書_受注コード_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 設計製作依頼書_顧客コード_DoubleClick(object sender, EventArgs e)
         {
+            if (IsApproved)
+            {
+                MessageBox.Show("承認後の修正はできません", "顧客検索", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
 
+                SearchForm = new F_検索();
+                SearchForm.FilterName = "顧客名フリガナ";
+                if (SearchForm.ShowDialog() == DialogResult.OK)
+                {
+                    string SelectedCode = SearchForm.SelectedCode;
+
+                    設計製作依頼書_顧客コード.Text = SelectedCode;
+                }
+            }
         }
 
         private void 設計製作依頼書_顧客コード_KeyDown(object sender, KeyEventArgs e)
         {
+            if (e.KeyCode == Keys.Return)
+            {
+                TextBox textBox = (TextBox)sender;
+                string formattedCode = textBox.Text.Trim().PadLeft(8, '0');
 
+                if (formattedCode != textBox.Text || string.IsNullOrEmpty(textBox.Text))
+                {
+                    textBox.Text = formattedCode;
+                }
+            }
         }
 
         private void 設計製作依頼書_顧客コード_KeyPress(object sender, KeyPressEventArgs e)
         {
-
+            if (e.KeyChar == (char)Keys.Space)
+            {
+                設計製作依頼書_顧客コード検索ボタン_Click(sender, e);
+            }
         }
 
         private void 設計製作依頼書_顧客コード_TextChanged(object sender, EventArgs e)
         {
+            FunctionClass.LimitText(sender as Control, 8);
+            ChangedData(true);
+        }
 
+        private void 設計製作依頼書_顧客コード検索ボタン_Click(object sender, EventArgs e)
+        {
+            if (IsApproved)
+            {
+                MessageBox.Show("承認後の修正はできません", "顧客検索", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+
+                SearchForm = new F_検索();
+                SearchForm.FilterName = "顧客名フリガナ";
+                if (SearchForm.ShowDialog() == DialogResult.OK)
+                {
+                    string SelectedCode = SearchForm.SelectedCode;
+
+                    設計製作依頼書_顧客コード.Text = SelectedCode;
+                }
+            }
         }
 
         private void 設計製作依頼書_顧客コード_Validated(object sender, EventArgs e)
@@ -7361,12 +8487,13 @@ namespace u_net
 
         private void 設計製作依頼書_顧客コード_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 設計製作依頼書_客先担当者名_TextChanged(object sender, EventArgs e)
         {
-
+            FunctionClass.LimitText(sender as Control, 80);
+            ChangedData(true);
         }
 
         private void 設計製作依頼書_客先担当者名_Validated(object sender, EventArgs e)
@@ -7376,12 +8503,13 @@ namespace u_net
 
         private void 設計製作依頼書_客先担当者名_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 設計製作依頼書_型番_TextChanged(object sender, EventArgs e)
         {
-
+            FunctionClass.LimitText(sender as Control, 100);
+            ChangedData(true);
         }
 
         private void 設計製作依頼書_型番_Validated(object sender, EventArgs e)
@@ -7391,12 +8519,12 @@ namespace u_net
 
         private void 設計製作依頼書_型番_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 設計製作依頼書_標準価格_TextChanged(object sender, EventArgs e)
         {
-
+            ChangedData(true);
         }
 
         private void 設計製作依頼書_標準価格_Validated(object sender, EventArgs e)
@@ -7406,12 +8534,12 @@ namespace u_net
 
         private void 設計製作依頼書_標準価格_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 設計製作依頼書_数量_TextChanged(object sender, EventArgs e)
         {
-
+            ChangedData(true);
         }
 
         private void 設計製作依頼書_数量_Validated(object sender, EventArgs e)
@@ -7421,12 +8549,12 @@ namespace u_net
 
         private void 設計製作依頼書_数量_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 設計製作依頼書_依頼内容_DoubleClick(object sender, EventArgs e)
         {
-
+            FunctionClass.DocZoom(sender as Control, CurrentCode, CurrentEdition, 4000);
         }
 
         private void 設計製作依頼書_依頼内容_Enter(object sender, EventArgs e)
@@ -7441,7 +8569,8 @@ namespace u_net
 
         private void 設計製作依頼書_依頼内容_TextChanged(object sender, EventArgs e)
         {
-
+            FunctionClass.LimitText(sender as Control, 4000);
+            ChangedData(true);
         }
 
         private void 設計製作依頼書_依頼内容_Validated(object sender, EventArgs e)
@@ -7451,7 +8580,7 @@ namespace u_net
 
         private void 設計製作依頼書_依頼内容_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 設計製作依頼書_付属書類指定_Validated(object sender, EventArgs e)
@@ -7459,9 +8588,14 @@ namespace u_net
 
         }
 
+        private void 設計製作依頼書_付属書類指定_CheckedChanged(object sender, EventArgs e)
+        {
+            UpdatedControl(sender as Control);
+        }
+
         private void 設計製作依頼書_付属書類指定_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 設計製作依頼書_付属文書1_Validated(object sender, EventArgs e)
@@ -7479,21 +8613,1039 @@ namespace u_net
 
         }
 
+        private void 設計製作依頼書_付属文書3_CheckedChanged(object sender, EventArgs e)
+        {
+            UpdatedControl(sender as Control);
+            ChangedData(true);
+        }
+
+        private void 設計製作依頼書_付属文書2_CheckedChanged(object sender, EventArgs e)
+        {
+            ChangedData(true);
+        }
+
+        private void 設計製作依頼書_付属文書1_CheckedChanged(object sender, EventArgs e)
+        {
+            ChangedData(true);
+        }
+
         private void 設計製作依頼書_その他文書名_TextChanged(object sender, EventArgs e)
         {
-
+            ChangedData(true);
         }
 
         private void 設計製作依頼書_その他文書名_Validated(object sender, EventArgs e)
         {
-
+            UpdatedControl(sender as Control);
         }
 
         private void 設計製作依頼書_その他文書名_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (IsError(sender as Control) == true) e.Cancel = true;
+        }
+
+        #endregion
+
+
+        #region 設備購買申請書
+
+
+        private void 設備購買申請書_購買予定日_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+        }
+
+        private void 設備購買申請書_購買予定日_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設備購買申請書_購買予定日_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設備購買申請書_購買予定日_Validating(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void 設備購買申請書_購買予定日選択ボタン_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設備購買申請書_品名_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設備購買申請書_品名_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設備購買申請書_品名_Validating(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void 設備購買申請書_型番_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設備購買申請書_型番_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設備購買申請書_型番_Validating(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void 設備購買申請書_メーカー名_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設備購買申請書_メーカー名_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設備購買申請書_メーカー名_Validating(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void 設備購買申請書_仕入先名_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設備購買申請書_仕入先名_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設備購買申請書_仕入先名_Validating(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void 設備購買申請書_数量_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設備購買申請書_数量_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設備購買申請書_数量_Validating(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void 設備購買申請書_標準価格_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設備購買申請書_標準価格_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設備購買申請書_標準価格_Validating(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void 設備購買申請書_単価_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設備購買申請書_単価_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設備購買申請書_単価_Validating(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void 設備購買申請書_支払方法_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設備購買申請書_支払方法_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設備購買申請書_支払方法_Validating(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void 設備購買申請書_使用部署_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設備購買申請書_使用部署_Leave(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設備購買申請書_使用部署_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設備購買申請書_使用部署_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設備購買申請書_使用部署_Validating(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void 設備購買申請書_用途_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設備購買申請書_用途_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設備購買申請書_用途_Leave(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設備購買申請書_用途_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設備購買申請書_用途_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設備購買申請書_用途_Validating(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void 設備購買申請書_購入理由_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設備購買申請書_購入理由_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設備購買申請書_購入理由_Leave(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設備購買申請書_購入理由_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設備購買申請書_購入理由_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 設備購買申請書_購入理由_Validating(object sender, CancelEventArgs e)
         {
 
         }
 
         #endregion
+
+
+        #region 年間教育計画表
+
+        public int 年間教育計画表_Approval(string documentCode, int edition, string approvalUser)
+        {
+            try
+            {
+                Connect();
+
+                int result = 0;
+                string strKey = $"文書コード = '{documentCode}' and 版数 = {edition}";
+                string strSQL = $"UPDATE T年間教育計画 SET 承認者コード = '{approvalUser}' WHERE {strKey}";
+
+                using (SqlCommand cmd = new SqlCommand(strSQL, cn))
+                {
+                    result = cmd.ExecuteNonQuery();
+                }
+
+                return result;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"{ex.GetType().Name}: {ex.Message}");
+                return -1; // エラーが発生した場合、適切なエラーコードを返すか、例外をスローするなど適切な処理を行ってください
+            }
+        }
+
+        private void 年間教育計画表_教育目的_TextChanged(object sender, EventArgs e)
+        {
+            FunctionClass.LimitText(sender as Control, 400);
+            ChangedData(true);
+        }
+
+        private void 年間教育計画表_教育目的_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 年間教育計画表_教育目的_Validating(object sender, CancelEventArgs e)
+        {
+            if (IsError(sender as Control) == true) e.Cancel = true;
+        }
+
+        private void 年間教育計画表_年間教育計画ボタン_Click(object sender, EventArgs e)
+        {
+            F_年間教育計画 targetform = new F_年間教育計画();
+
+            targetform.args = CurrentCode + "," + CurrentEdition;
+            targetform.ShowDialog();
+        }
+
+        #endregion
+
+
+        #region 非該当証明発行依頼書
+
+        private void 非該当証明発行依頼書_受注コード_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 非該当証明発行依頼書_受注コード_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "■関連する受注コードを入力します。　■簡易入力ができます。　■入力されているコードの受注データを参照するには入力欄をダブルクリックしてください。";
+        }
+
+        private void 非該当証明発行依頼書_受注コード_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "各種項目の説明";
+        }
+
+        private void 非該当証明発行依頼書_受注コード_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void 非該当証明発行依頼書_受注コード_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+        }
+
+        private void 非該当証明発行依頼書_受注コード_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 非該当証明発行依頼書_受注コード_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 非該当証明発行依頼書_受注コード_Validating(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void 非該当証明発行依頼書_受注リンクボタン_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "■対象コードの情報を表示。版が登録されている情報は最新のものを表示。";
+        }
+
+        private void 非該当証明発行依頼書_受注リンクボタン_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "各種項目の説明";
+        }
+
+        private void 非該当証明発行依頼書_受注リンクボタン_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 非該当証明発行依頼書_顧客名_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 非該当証明発行依頼書_顧客名_Validating(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void 非該当証明発行依頼書_代理店名_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 非該当証明発行依頼書_代理店名_Validating(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void 非該当証明発行依頼書_品名_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 非該当証明発行依頼書_品名_Validating(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void 非該当証明発行依頼書_型番_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 非該当証明発行依頼書_型番_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 非該当証明発行依頼書_型番_Validating(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void 非該当証明発行依頼書_発行日_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 非該当証明発行依頼書_発行日_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+        }
+
+        private void 非該当証明発行依頼書_発行日_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 非該当証明発行依頼書_発行日_Validating(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void 非該当証明発行依頼書_発行日選択ボタン_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 非該当証明発行依頼書_発行部数_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 非該当証明発行依頼書_発行部数_Validating(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void 非該当証明発行依頼書_輸出先国名_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 非該当証明発行依頼書_輸出先国名_Validating(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void 非該当証明発行依頼書_郵送方法コード_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 非該当証明発行依頼書_郵送方法コード_Validating(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void 非該当証明発行依頼書_郵送日_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 非該当証明発行依頼書_郵送日_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+        }
+
+        private void 非該当証明発行依頼書_郵送日_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 非該当証明発行依頼書_郵送日_Validating(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void 非該当証明発行依頼書_郵送日選択ボタン_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 非該当証明発行依頼書_郵送先郵便番号_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 非該当証明発行依頼書_郵送先郵便番号_Validating(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void 非該当証明発行依頼書_郵送先住所1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 非該当証明発行依頼書_郵送先住所1_Validating(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void 非該当証明発行依頼書_郵送先住所2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 非該当証明発行依頼書_郵送先住所2_Validating(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void 非該当証明発行依頼書_郵送先名_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 非該当証明発行依頼書_郵送先名_Validating(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void 非該当証明発行依頼書_郵送先担当者名_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 非該当証明発行依頼書_郵送先担当者名_Validating(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void 非該当証明発行依頼書_備考_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 非該当証明発行依頼書_備考_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "■全角５００文字まで入力できます。";
+        }
+
+        private void 非該当証明発行依頼書_備考_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "各種項目の説明";
+        }
+
+        private void 非該当証明発行依頼書_備考_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        #endregion
+
+
+        #region 品質異常報告書
+
+        private void 品質異常報告書_発生日_DoubleClick(object sender, EventArgs e)
+        {
+            品質異常報告書_発生日選択ボタン_Click(sender, e);
+        }
+
+        private void 品質異常報告書_発生日_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Space)
+            {
+                品質異常報告書_発生日選択ボタン_Click(sender, e);
+            }
+        }
+
+        private void 品質異常報告書_発生日_TextChanged(object sender, EventArgs e)
+        {
+            FunctionClass.LimitText(sender as Control, 10);
+        }
+
+        private void 品質異常報告書_発生日_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 品質異常報告書_発生日_Validating(object sender, CancelEventArgs e)
+        {
+            if (IsError(sender as Control) == true) e.Cancel = true;
+        }
+
+        private void 品質異常報告書_発生日選択ボタン_Click(object sender, EventArgs e)
+        {
+            dateSelectionForm = new F_カレンダー();
+
+            if (!string.IsNullOrEmpty(品質異常報告書_発生日.Text))
+            {
+                dateSelectionForm.args = 品質異常報告書_発生日.Text;
+            }
+
+            if (dateSelectionForm.ShowDialog() == DialogResult.OK && 品質異常報告書_発生日.Enabled && !品質異常報告書_発生日.ReadOnly)
+            {
+                // 日付選択フォームから選択した日付を取得
+                string selectedDate = dateSelectionForm.SelectedDate;
+
+                // フォームAの日付コントロールに選択した日付を設定
+                品質異常報告書_発生日.Text = selectedDate;
+                品質異常報告書_発生日.Focus();
+                UpdatedControl(品質異常報告書_発生日);
+            }
+        }
+
+        private void 品質異常報告書_発生場所_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "■全角２５文字まで入力できます。";
+        }
+
+        private void 品質異常報告書_発生場所_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "各種項目の説明";
+        }
+
+        private void 品質異常報告書_発生場所_TextChanged(object sender, EventArgs e)
+        {
+            FunctionClass.LimitText(sender as Control, 50);
+            ChangedData(true);
+        }
+
+        private void 品質異常報告書_発生場所_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 品質異常報告書_発生場所_Validating(object sender, CancelEventArgs e)
+        {
+            if (IsError(sender as Control) == true) e.Cancel = true;
+        }
+
+        private void 品質異常報告書_型番_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "■全角２５文字まで入力できます。";
+        }
+
+        private void 品質異常報告書_型番_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "各種項目の説明";
+        }
+
+        private void 品質異常報告書_型番_TextChanged(object sender, EventArgs e)
+        {
+            FunctionClass.LimitText(sender as Control, 50);
+            ChangedData(true);
+        }
+
+        private void 品質異常報告書_型番_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 品質異常報告書_型番_Validating(object sender, CancelEventArgs e)
+        {
+            if (IsError(sender as Control) == true) e.Cancel = true;
+        }
+
+        private void 品質異常報告書_異常内容_DoubleClick(object sender, EventArgs e)
+        {
+            FunctionClass.DocZoom(sender as Control, CurrentCode, CurrentEdition, 4000);
+        }
+
+        private void 品質異常報告書_異常内容_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "■全角２，０００文字まで入力できます。　■別ウィンドウで表示するには入力欄をダブルクリックします。";
+        }
+
+        private void 品質異常報告書_異常内容_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "各種項目の説明";
+        }
+
+        private void 品質異常報告書_異常内容_TextChanged(object sender, EventArgs e)
+        {
+            FunctionClass.LimitText(sender as Control, 4000);
+            ChangedData(true);
+        }
+
+        private void 品質異常報告書_異常内容_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 品質異常報告書_異常内容_Validating(object sender, CancelEventArgs e)
+        {
+            if (IsError(sender as Control) == true) e.Cancel = true;
+        }
+
+        private void 品質異常報告書_回答書ボタン_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        #endregion
+
+
+        #region 不具合調査修理依頼書
+
+        private void 不具合調査修理依頼書_受付日_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 不具合調査修理依頼書_受付日_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+        }
+
+        private void 不具合調査修理依頼書_受付日_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 不具合調査修理依頼書_受付日_Validating(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void 不具合調査修理依頼書_受付日選択ボタン_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 不具合調査修理依頼書_受注コード_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 不具合調査修理依頼書_受注コード_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void 不具合調査修理依頼書_受注コード_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+        }
+
+        private void 不具合調査修理依頼書_受注コード_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 不具合調査修理依頼書_受注コード_Validating(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void 不具合調査修理依頼書_受注コード参照ボタン_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 不具合調査修理依頼書_受注コード参照ボタン_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "■対象コードの情報を表示。版が登録されている情報は最新のものを表示。";
+        }
+
+        private void 不具合調査修理依頼書_受注コード参照ボタン_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "各種項目の説明";
+        }
+
+        private void 不具合調査修理依頼書_顧客コード_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 不具合調査修理依頼書_顧客コード_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void 不具合調査修理依頼書_顧客コード_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+        }
+
+        private void 不具合調査修理依頼書_顧客コード_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 不具合調査修理依頼書_顧客コード_Validating(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void 不具合調査修理依頼書_顧客コード選択ボタン_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 不具合調査修理依頼書_顧客コード選択ボタン_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "■顧客検索ダイアログを表示。";
+        }
+
+        private void 不具合調査修理依頼書_顧客コード選択ボタン_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "各種項目の説明";
+        }
+
+        private void 不具合調査修理依頼書_顧客参照ボタン_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 不具合調査修理依頼書_顧客参照ボタン_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "■顧客データを参照します。";
+        }
+
+        private void 不具合調査修理依頼書_顧客参照ボタン_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "各種項目の説明";
+        }
+
+        private void 不具合調査修理依頼書_依頼分類_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 不具合調査修理依頼書_依頼分類_Validating(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void 不具合調査修理依頼書_依頼分類その他_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 不具合調査修理依頼書_依頼分類その他_Leave(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 不具合調査修理依頼書_依頼分類その他_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 不具合調査修理依頼書_依頼分類その他_Validating(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void 不具合調査修理依頼書_発生日_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 不具合調査修理依頼書_発生日_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+        }
+
+        private void 不具合調査修理依頼書_発生日_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 不具合調査修理依頼書_発生日_Validating(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void 不具合調査修理依頼書_発生日選択ボタン_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 不具合調査修理依頼書_連絡者社名_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 不具合調査修理依頼書_連絡者社名_Validating(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void 不具合調査修理依頼書_連絡者氏名_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 不具合調査修理依頼書_連絡者氏名_Validating(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void 不具合調査修理依頼書_型番_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 不具合調査修理依頼書_型番_Validating(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void 不具合調査修理依頼書_シリアル番号1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 不具合調査修理依頼書_シリアル番号1_Validating(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void 不具合調査修理依頼書_シリアル番号2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 不具合調査修理依頼書_シリアル番号2_Validating(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void 不具合調査修理依頼書_数量_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 不具合調査修理依頼書_数量_Validating(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void 不具合調査修理依頼書_発生場所_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 不具合調査修理依頼書_発生場所_Validating(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void 不具合調査修理依頼書_現象_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 不具合調査修理依頼書_現象_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "■全角２０００文字まで入力できます。　■入力欄をダブルクリックすると別ウィンドウに表示されます。";
+        }
+
+        private void 不具合調査修理依頼書_現象_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "各種項目の説明";
+        }
+
+        private void 不具合調査修理依頼書_現象_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 不具合調査修理依頼書_現象_Validating(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void 不具合調査修理依頼書_顧客の声_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 不具合調査修理依頼書_顧客の声_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "■全角２０００文字まで入力できます。　■入力欄をダブルクリックすると別ウィンドウに表示されます。";
+        }
+
+        private void 不具合調査修理依頼書_顧客の声_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "各種項目の説明";
+        }
+
+        private void 不具合調査修理依頼書_顧客の声_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 不具合調査修理依頼書_顧客の声_Validating(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void 不具合調査修理依頼書_代替有無_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 不具合調査修理依頼書_代替有無_Validating(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void 不具合調査修理依頼書_回答書ボタン_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        #endregion
+
     }
 }
