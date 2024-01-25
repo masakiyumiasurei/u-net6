@@ -444,7 +444,7 @@ namespace u_net
             製品企画書_顧客コード = new TextBox();
             label101 = new Label();
             製品企画書_品名 = new TextBox();
-            製品企画書_売上区分 = new ComboBox();
+            製品企画書_売上区分コード = new ComboBox();
             製品企画書_型番 = new TextBox();
             label103 = new Label();
             label104 = new Label();
@@ -6113,7 +6113,7 @@ namespace u_net
             製品企画書パネル.Controls.Add(製品企画書_顧客コード);
             製品企画書パネル.Controls.Add(label101);
             製品企画書パネル.Controls.Add(製品企画書_品名);
-            製品企画書パネル.Controls.Add(製品企画書_売上区分);
+            製品企画書パネル.Controls.Add(製品企画書_売上区分コード);
             製品企画書パネル.Controls.Add(製品企画書_型番);
             製品企画書パネル.Controls.Add(label103);
             製品企画書パネル.Controls.Add(label104);
@@ -6537,20 +6537,20 @@ namespace u_net
             製品企画書_品名.Validating += (this.製品企画書_品名_Validating);
             製品企画書_品名.Validated += (this.製品企画書_品名_Validated);
             // 
-            // 製品企画書_売上区分
+            // 製品企画書_売上区分コード
             // 
-            製品企画書_売上区分.BackColor = SystemColors.Window;
-            製品企画書_売上区分.Enabled = false;
-            製品企画書_売上区分.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            製品企画書_売上区分.FormattingEnabled = true;
-            製品企画書_売上区分.ImeMode = ImeMode.Disable;
-            製品企画書_売上区分.Location = new Point(86, 46);
-            製品企画書_売上区分.Name = "製品企画書_売上区分";
-            製品企画書_売上区分.Size = new Size(152, 21);
-            製品企画書_売上区分.TabIndex = 21;
-            製品企画書_売上区分.TextUpdate += (this.製品企画書_売上区分_TextUpdate);
-            製品企画書_売上区分.Validating += (this.製品企画書_売上区分_Validating);
-            製品企画書_売上区分.Validated += (this.製品企画書_売上区分_Validated);
+            製品企画書_売上区分コード.BackColor = SystemColors.Window;
+            製品企画書_売上区分コード.Enabled = false;
+            製品企画書_売上区分コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            製品企画書_売上区分コード.FormattingEnabled = true;
+            製品企画書_売上区分コード.ImeMode = ImeMode.Disable;
+            製品企画書_売上区分コード.Location = new Point(86, 46);
+            製品企画書_売上区分コード.Name = "製品企画書_売上区分コード";
+            製品企画書_売上区分コード.Size = new Size(152, 21);
+            製品企画書_売上区分コード.TabIndex = 21;
+            製品企画書_売上区分コード.TextUpdate += (this.製品企画書_売上区分コード_TextUpdate);
+            製品企画書_売上区分コード.Validating += (this.製品企画書_売上区分コード_Validating);
+            製品企画書_売上区分コード.Validated += (this.製品企画書_売上区分コード_Validated);
             // 
             // 製品企画書_型番
             // 
@@ -10171,7 +10171,7 @@ namespace u_net
         private TextBox 製品企画書_顧客コード;
         private Label label101;
         private TextBox 製品企画書_品名;
-        internal ComboBox 製品企画書_売上区分;
+        internal ComboBox 製品企画書_売上区分コード;
         private TextBox 製品企画書_型番;
         private Label label103;
         private Label label104;
