@@ -19,18 +19,19 @@ using static u_net.Public.FunctionClass;
 using static u_net.CommonConstants;
 using static u_net.Public.OriginalClass;
 using static System.ComponentModel.Design.ObjectSelectorEditor;
+using System.Reflection.Metadata.Ecma335;
 
 namespace u_net
 {
     public partial class F_出荷管理旧 : MidForm
     {
         public const string strSecondOrder = "受注コード";   // 並べ替え第２項目
-                          
+
         public string str出荷コード開始 = "";
         public string str出荷コード終了 = "";
         public string str受注コード開始 = "";
         public string str受注コード終了 = "";
-        public DateTime dte出荷予定日1=DateTime.MinValue;
+        public DateTime dte出荷予定日1 = DateTime.MinValue;
         public DateTime dte出荷予定日2 = DateTime.MinValue;
         public string str型番 = "";
         public string str型番詳細 = "";
@@ -45,11 +46,11 @@ namespace u_net
         public DateTime dte作業終了日終了 = DateTime.MinValue;
 
         private string sourceSQL;                           // 一覧のレコードソースのSQL
-        private int intWindowHeight=0;                        // 現在保持している高さ
-        private int intWindowWidth=0;                         // 現在保持している幅
-        private bool bln履歴表示=false;                           // 履歴表示する？
+        private int intWindowHeight = 0;                        // 現在保持している高さ
+        private int intWindowWidth = 0;                         // 現在保持している幅
+        private bool bln履歴表示 = false;                           // 履歴表示する？
 
-        
+
 
         private Control? previousControl;
         private SqlConnection? cn;
@@ -67,37 +68,41 @@ namespace u_net
             cn.Open();
         }
 
-       
+
 
         //全表示設定
         private void InitializeFilter()
         {
-             str出荷コード開始 = "";
-             str出荷コード終了 = "";
-             dte出荷予定日1 = DateTime.MinValue;
-             dte出荷予定日2 = DateTime.MinValue;
-             str型番 = "";
-             lngシリアル番号指定 = 0;
-             lngシリアル番号開始 = -1;
-             lngシリアル番号終了 = -1;
-             str発送先名 = "";
-             str顧客コード = "";
-             str顧客名 = "";
-             lng作業終了指定 = 0;
-             dte作業終了日開始 = DateTime.MinValue;
-             dte作業終了日終了 = DateTime.MinValue;
-             bln履歴表示 = 履歴トグル.Checked;
+            str出荷コード開始 = "";
+            str出荷コード終了 = "";
+            dte出荷予定日1 = DateTime.MinValue;
+            dte出荷予定日2 = DateTime.MinValue;
+            str型番 = "";
+            lngシリアル番号指定 = 0;
+            lngシリアル番号開始 = -1;
+            lngシリアル番号終了 = -1;
+            str発送先名 = "";
+            str顧客コード = "";
+            str顧客名 = "";
+            lng作業終了指定 = 0;
+            dte作業終了日開始 = DateTime.MinValue;
+            dte作業終了日終了 = DateTime.MinValue;
+            bln履歴表示 = 履歴トグル.Checked;
 
         }
 
         private void Form_Load(object sender, EventArgs e)
         {
+            //テスト用
+            //dataGridView1.ColumnCount = 50;
+            //dataGridView1.RowCount = 1000;
+            //return;
             FunctionClass fn = new FunctionClass();
             fn.DoWait("しばらくお待ちください...");
             //実行中フォーム起動
 
             LocalSetting localSetting = new LocalSetting();
-            localSetting.LoadPlace(CommonConstants.LoginUserCode, this);            
+            localSetting.LoadPlace(CommonConstants.LoginUserCode, this);
 
             intWindowHeight = this.Height;
             intWindowWidth = this.Width;
@@ -113,9 +118,15 @@ namespace u_net
             dataGridView1.DefaultCellStyle.ForeColor = Color.Black;
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
+            // DataGirdViewのTypeを取得
+            System.Type dgvtype = typeof(DataGridView);
+            // プロパティ設定の取得
+            System.Reflection.PropertyInfo dgvPropertyInfo = dgvtype.GetProperty("DoubleBuffered", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
+            // 対象のDataGridViewにtrueをセットする
+            dgvPropertyInfo.SetValue(dataGridView1, true, null);
 
             ////setall();
-            初期表示ボタン_Click(sender,e);
+            初期表示ボタン_Click(sender, e);
             Cleargrid(dataGridView1);
             fn.WaitForm.Close();
         }
@@ -124,14 +135,14 @@ namespace u_net
         {
             try
             {
-                    this.SuspendLayout();
+                this.SuspendLayout();
 
-                    //this.サブ.Height = this.サブ.Height + (this.Height - intWindowHeight);
+                //this.サブ.Height = this.サブ.Height + (this.Height - intWindowHeight);
 
-                    this.ResumeLayout();
+                this.ResumeLayout();
 
-                    intWindowHeight = this.Height; // 高さ保存
-                    intWindowWidth = this.Width;   // 幅保存
+                intWindowHeight = this.Height; // 高さ保存
+                intWindowWidth = this.Width;   // 幅保存
 
             }
             catch (Exception ex)
@@ -145,7 +156,7 @@ namespace u_net
             int result = -1;
             try
             {
-                 Filtering();
+                Filtering();
 
             }
             catch (Exception ex)
@@ -163,7 +174,7 @@ namespace u_net
             try
             {
                 // 画面描画を抑止する
-                
+
                 DateTime dtePrevious; // 前回出勤日
                 DateTime dteNext;     // 次回出勤日
                 string strWhere = string.Empty;
@@ -251,7 +262,7 @@ namespace u_net
                             "format(出荷シリアル番号1,'00000000') as シリアル番号1," +
                             "format(出荷シリアル番号2,'00000000') as シリアル番号2," +
                             "発送先名,外観目視検査者頭文字 as 目,梱包作業者頭文字 as 梱," +
-                            "出荷終了日 as 作業終了日,納品書 " +
+                            "出荷終了日 as 作業終了日,納品書,無効日 " +
                             "FROM uv_出荷管理 ";
 
                 sourceSQL = sql + $"where {strWhere}"; //ORDER BY ";
@@ -268,8 +279,8 @@ namespace u_net
 
                         sqlsum = $"SELECT SUM(金額) AS num FROM uv_出荷管理 where {strWhere} and 無効日 is null";
                         合計金額.Text = GetScalar<int>(cn, sqlsum).ToString("#,0");
-                    }                    
-                    
+                    }
+
                 }
                 else
                 {
@@ -298,29 +309,32 @@ namespace u_net
                 intWindowWidth = this.Width;
 
                 // DataGridViewの設定
-               // dataGridView1.Columns[0].DefaultCellStyle.BackColor = Color.FromArgb(255, 255, 200); // 薄い黄色
+                // dataGridView1.Columns[0].DefaultCellStyle.BackColor = Color.FromArgb(255, 255, 200); // 薄い黄色
                 dataGridView1.Columns[1].DefaultCellStyle.BackColor = Color.FromArgb(255, 255, 200); // 薄い黄色
 
                 dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
                 dataGridView1.ColumnHeadersHeight = 25;
 
                 // 0列目はaccessでは行ヘッダのため、ずらす
-                dataGridView1.Columns[0].Width = 37 ;
-                dataGridView1.Columns[1].Width = 74 ;
-                dataGridView1.Columns[2].Width = 84 ;
-                dataGridView1.Columns[3].Width = 23 ;
-                dataGridView1.Columns[4].Width = 23 ;
-                dataGridView1.Columns[5].Width = 87 ;
-                dataGridView1.Columns[6].Width = 114 ;
-                dataGridView1.Columns[7].Width = 212 ;
-                dataGridView1.Columns[8].Width = 45 ;
-                dataGridView1.Columns[9].Width = 82 ;
-                dataGridView1.Columns[10].Width = 82 ;
-                dataGridView1.Columns[11].Width = 230 ;
-                dataGridView1.Columns[12].Width = 20 ;
+                dataGridView1.Columns[0].Width = 37;
+                dataGridView1.Columns[1].Width = 74;
+                dataGridView1.Columns[2].Width = 84;
+                dataGridView1.Columns[3].Width = 23;
+                dataGridView1.Columns[4].Width = 23;
+                dataGridView1.Columns[5].Width = 87;
+                dataGridView1.Columns[6].Width = 114;
+                dataGridView1.Columns[7].Width = 212;
+                dataGridView1.Columns[8].Width = 45;
+                dataGridView1.Columns[9].Width = 82;
+                dataGridView1.Columns[10].Width = 82;
+                dataGridView1.Columns[11].Width = 230;
+                dataGridView1.Columns[12].Width = 20;
                 dataGridView1.Columns[13].Width = 20;
                 dataGridView1.Columns[14].Width = 87;
                 dataGridView1.Columns[15].Width = 20;
+                dataGridView1.Columns[16].Visible=false;//無効日　2重線を引くため
+
+                dataGridView1.Columns[8].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
 
                 if (strWhere == "")
                 {
@@ -340,14 +354,14 @@ namespace u_net
                     while (func.OfficeClosed(cn, dtePrevious) == 1)
                     {
                         dtePrevious = dtePrevious.AddDays(-1);
-                    }                                        
+                    }
 
                     //翌日が休日なら営業日まで進める
                     dteNext = DateTime.Now.AddDays(+1);
-                    while (func.OfficeClosed(cn, dteNext) == 1) 
+                    while (func.OfficeClosed(cn, dteNext) == 1)
                     {
                         dteNext = dtePrevious.AddDays(+1);
-                    } 
+                    }
 
                     if (dte出荷予定日1.Date == DateTime.Now.Date && dte出荷予定日2.Date == DateTime.Now.Date)
                     {
@@ -373,9 +387,9 @@ namespace u_net
                         前日出荷分ボタン.ForeColor = Color.FromArgb(0, 0, 0);
                         翌日出荷分ボタン.ForeColor = Color.FromArgb(0, 0, 0);
                     }
-                }                      
+                }
 
-                return ;
+                return;
                 //return 1;
             }
             catch (Exception ex)
@@ -383,20 +397,42 @@ namespace u_net
                 switch (ex.HResult)
                 {
                     case 2757:
-                        MessageBox.Show("抽出の条件式が誤っている可能性があります。","");
+                        MessageBox.Show("抽出の条件式が誤っている可能性があります。", "");
                         break;
                     default:
                         Console.WriteLine($"_Filter - {ex.HResult}: {ex.Message}");
                         break;
                 }
-            }            
+            }
+        }
+
+        private void dataGridView1_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
+        {
+            //無効日がnullの行に線を引く
+            if (dataGridView1.Rows[e.RowIndex].Cells[16].Value != null &&
+        !string.IsNullOrEmpty(dataGridView1.Rows[e.RowIndex].Cells[16].Value.ToString()))
+            {
+                // 描画範囲を調整する
+                Rectangle rowBounds = new Rectangle(
+                    e.RowBounds.Left,
+                    e.RowBounds.Top,
+                    dataGridView1.RowHeadersWidth + dataGridView1.Columns.GetColumnsWidth(DataGridViewElementStates.Visible) - 1,
+                    e.RowBounds.Height);
+
+                using (Pen p = new Pen(Color.Red, 2))
+                {
+                    // 線を描画
+                    e.Graphics.DrawLine(p, rowBounds.Left, rowBounds.Top + rowBounds.Height / 2,
+                        rowBounds.Right, rowBounds.Top + rowBounds.Height / 2);
+                }
+            }
         }
 
         private void dataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            int value;                        
+            int value;
 
-            if (e.ColumnIndex == 0 || e.ColumnIndex == 15)
+            if (e.ColumnIndex == 0 )
             {
                 if (e.Value != null && !string.IsNullOrWhiteSpace(e.Value.ToString()))
                 {
@@ -405,6 +441,24 @@ namespace u_net
                 else
                 {
                     e.CellStyle.ForeColor = Color.Black; // 黒                    
+                }
+                e.Value = "■"; // 値を"■"に設定
+            }
+            else if(e.ColumnIndex == 15)
+            {
+                switch (e.Value)
+                {
+                    case "指定用紙":
+                        e.CellStyle.ForeColor = Color.Red; // 赤
+                        break;
+
+                    case "自社用紙":
+                        e.CellStyle.ForeColor = Color.Black;
+                        break;
+
+                    default:
+                        e.CellStyle.ForeColor = Color.Purple;
+                        break;
                 }
                 e.Value = "■"; // 値を"■"に設定
             }
@@ -449,7 +503,7 @@ namespace u_net
                 form.varOpenArgs = $"{dataGridView1.SelectedRows[0].Cells[2].Value?.ToString()}," +
                     $"{dataGridView1.SelectedRows[0].Cells[3].Value?.ToString()}";
                 form.ShowDialog();
-                                
+
             }
         }
 
@@ -509,7 +563,7 @@ namespace u_net
         private void コマンド抽出_Click(object sender, EventArgs e)
         {
             try
-            {                
+            {
                 this.dataGridView1.Focus(); // サブフォームにフォーカスを設定
                 F_出荷管理_抽出 form = new F_出荷管理_抽出();
                 form.ShowDialog();
@@ -521,9 +575,10 @@ namespace u_net
         }
 
         private void コマンド出力_Click(object sender, EventArgs e)
-        {            
+        {
             this.dataGridView1.Focus();
             F_出力 form = new F_出力();
+            form.DataGridView = dataGridView1;
             form.ShowDialog();
         }
 
@@ -545,7 +600,7 @@ namespace u_net
             {
                 switch (e.KeyCode)
                 {
-                    
+
                     case Keys.F1:
                         if (コマンド抽出.Enabled)
                         {
@@ -568,7 +623,7 @@ namespace u_net
                         }
                         break;
                     case Keys.F4:
-                        
+
                         break;
                     case Keys.F5:
                         if (コマンド受注.Enabled)
@@ -613,7 +668,7 @@ namespace u_net
                         }
                         break;
                     case Keys.F11:
-                        
+
                         break;
                     case Keys.F12:
                         if (コマンド終了.Enabled)
@@ -622,7 +677,7 @@ namespace u_net
                             コマンド終了_Click(sender, e);
                         }
                         break;
-                    
+
                 }
             }
             catch (Exception ex)
@@ -631,19 +686,19 @@ namespace u_net
             }
         }
 
-        
+
 
         private void Form_Unload(object sender, FormClosedEventArgs e)
         {
             LocalSetting ls = new LocalSetting();
             // ウィンドウの配置情報を保存する
-            ls.SavePlace(CommonConstants.LoginUserCode, this);            
+            ls.SavePlace(CommonConstants.LoginUserCode, this);
         }
-                
-        
+
+
         private void コマンド受注_Click(object sender, EventArgs e)
         {
-            
+
             this.dataGridView1.Focus();
             F_受注 form = new F_受注();
             form.varOpenArgs = $"{dataGridView1.SelectedRows[0].Cells[2].Value?.ToString()}," +
@@ -662,7 +717,7 @@ namespace u_net
 
                     // 初期表示処理
                     InitializeFilter();
-                    lng作業終了指定 = 2;                 
+                    lng作業終了指定 = 2;
                     Filtering();
                 }
             }
@@ -704,17 +759,17 @@ namespace u_net
             try
             {
                 DateTime dtePrevious = DateTime.Now.AddDays(-1); // 前回出勤日（今回は前日）
-                
-                
+
+
                 InitializeFilter();
                 Connect();
                 FunctionClass func = new FunctionClass();
-                
-                while (func.OfficeClosed(cn, dtePrevious)==1)
+
+                while (func.OfficeClosed(cn, dtePrevious) == 1)
                 {
                     dtePrevious = dtePrevious.AddDays(-1);
                 }
-                                
+
                 dte出荷予定日1 = dtePrevious;
                 dte出荷予定日2 = dtePrevious;
 

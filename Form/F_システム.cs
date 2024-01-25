@@ -61,10 +61,10 @@ namespace u_net
 
             サーバー日時.Text = FunctionClass.GetServerDate(cn).ToString();
 
-            
+
         }
 
-      
+
 
 
         private void F_システム_FormClosing(object sender, FormClosingEventArgs e)
@@ -123,7 +123,7 @@ namespace u_net
 
         }
 
-        
+
         private void 接続設定ボタン_Click(object sender, EventArgs e)
         {
             Connect();
@@ -144,7 +144,7 @@ namespace u_net
             {
                 Console.WriteLine("Error: " + ex.Message);
             }
-            
+
         }
 
 

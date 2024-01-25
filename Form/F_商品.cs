@@ -36,7 +36,8 @@ namespace u_net
         {
             this.Text = "商品";       // ウィンドウタイトルを設定
             this.MaximizeBox = false;  // 最大化ボタンを無効化
-
+                                       // 親フォームを直接指定
+         //   this.MdiParent = CommonConstants.GetParent();
             InitializeComponent();
         }
         public void Connect()

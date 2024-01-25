@@ -303,7 +303,7 @@ namespace u_net
             //列ヘッダーかどうか調べる
             if (e.ColumnIndex < 0 && e.RowIndex >= 0)
             {
-                //dataGridView1.SuspendLayout();
+                dataGridView1.SuspendLayout();
                 //セルを描画する
                 e.Paint(e.ClipBounds, DataGridViewPaintParts.All);
 
@@ -318,7 +318,7 @@ namespace u_net
 
                 //描画が完了したことを知らせる
                 e.Handled = true;
-                //dataGridView1.ResumeLayout();
+                dataGridView1.ResumeLayout();
 
             }
         }
