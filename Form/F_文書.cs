@@ -7730,6 +7730,406 @@ namespace u_net
 
         }
 
+        #endregion
+
+
+        #region 年間教育計画表
+
+        private void 年間教育計画表_教育目的_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 年間教育計画表_教育目的_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 年間教育計画表_教育目的_Validating(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void 年間教育計画表_年間教育計画ボタン_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        #endregion
+
+
+        #region 非該当証明発行依頼書
+
+        private void 非該当証明発行依頼書_受注コード_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 非該当証明発行依頼書_受注コード_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "■関連する受注コードを入力します。　■簡易入力ができます。　■入力されているコードの受注データを参照するには入力欄をダブルクリックしてください。";
+        }
+
+        private void 非該当証明発行依頼書_受注コード_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "各種項目の説明";
+        }
+
+        private void 非該当証明発行依頼書_受注コード_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void 非該当証明発行依頼書_受注コード_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+        }
+
+        private void 非該当証明発行依頼書_受注コード_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 非該当証明発行依頼書_受注コード_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 非該当証明発行依頼書_受注コード_Validating(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void 非該当証明発行依頼書_受注リンクボタン_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "■対象コードの情報を表示。版が登録されている情報は最新のものを表示。";
+        }
+
+        private void 非該当証明発行依頼書_受注リンクボタン_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "各種項目の説明";
+        }
+
+        private void 非該当証明発行依頼書_受注リンクボタン_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 非該当証明発行依頼書_顧客名_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 非該当証明発行依頼書_顧客名_Validating(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void 非該当証明発行依頼書_代理店名_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 非該当証明発行依頼書_代理店名_Validating(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void 非該当証明発行依頼書_品名_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 非該当証明発行依頼書_品名_Validating(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void 非該当証明発行依頼書_型番_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 非該当証明発行依頼書_型番_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 非該当証明発行依頼書_型番_Validating(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void 非該当証明発行依頼書_発行日_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 非該当証明発行依頼書_発行日_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+        }
+
+        private void 非該当証明発行依頼書_発行日_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 非該当証明発行依頼書_発行日_Validating(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void 非該当証明発行依頼書_発行日選択ボタン_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 非該当証明発行依頼書_発行部数_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 非該当証明発行依頼書_発行部数_Validating(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void 非該当証明発行依頼書_輸出先国名_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 非該当証明発行依頼書_輸出先国名_Validating(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void 非該当証明発行依頼書_郵送方法コード_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 非該当証明発行依頼書_郵送方法コード_Validating(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void 非該当証明発行依頼書_郵送日_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 非該当証明発行依頼書_郵送日_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+        }
+
+        private void 非該当証明発行依頼書_郵送日_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 非該当証明発行依頼書_郵送日_Validating(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void 非該当証明発行依頼書_郵送日選択ボタン_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 非該当証明発行依頼書_郵送先郵便番号_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 非該当証明発行依頼書_郵送先郵便番号_Validating(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void 非該当証明発行依頼書_郵送先住所1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 非該当証明発行依頼書_郵送先住所1_Validating(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void 非該当証明発行依頼書_郵送先住所2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 非該当証明発行依頼書_郵送先住所2_Validating(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void 非該当証明発行依頼書_郵送先名_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 非該当証明発行依頼書_郵送先名_Validating(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void 非該当証明発行依頼書_郵送先担当者名_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 非該当証明発行依頼書_郵送先担当者名_Validating(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void 非該当証明発行依頼書_備考_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 非該当証明発行依頼書_備考_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "■全角５００文字まで入力できます。";
+        }
+
+        private void 非該当証明発行依頼書_備考_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "各種項目の説明";
+        }
+
+        private void 非該当証明発行依頼書_備考_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        #endregion
+
+
+        #region 品質異常報告書
+
+        private void 品質異常報告書_発生日_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 品質異常報告書_発生日_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+        }
+
+        private void 品質異常報告書_発生日_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 品質異常報告書_発生日_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 品質異常報告書_発生日_Validating(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void 品質異常報告書_発生日選択ボタン_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 品質異常報告書_発生場所_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "■全角２５文字まで入力できます。";
+        }
+
+        private void 品質異常報告書_発生場所_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "各種項目の説明";
+        }
+
+        private void 品質異常報告書_発生場所_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 品質異常報告書_発生場所_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 品質異常報告書_発生場所_Validating(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void 品質異常報告書_型番_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "■全角２５文字まで入力できます。";
+        }
+
+        private void 品質異常報告書_型番_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "各種項目の説明";
+        }
+
+        private void 品質異常報告書_型番_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 品質異常報告書_型番_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 品質異常報告書_型番_Validating(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void 品質異常報告書_異常内容_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 品質異常報告書_異常内容_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "■全角２，０００文字まで入力できます。　■別ウィンドウで表示するには入力欄をダブルクリックします。";
+        }
+
+        private void 品質異常報告書_異常内容_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "各種項目の説明";
+        }
+
+        private void 品質異常報告書_異常内容_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 品質異常報告書_異常内容_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 品質異常報告書_異常内容_Validating(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void 品質異常報告書_回答書ボタン_Click(object sender, EventArgs e)
+        {
+
+        }
+
 #endregion
     }
 }

@@ -119,6 +119,9 @@ namespace u_net
             設計審査会議事録_開催日選択ボタン = new Button();
             設計製作依頼書_顧客コード検索ボタン = new Button();
             設計製作依頼書_リンク2ボタン = new Button();
+            非該当証明発行依頼書_郵送日選択ボタン = new Button();
+            非該当証明発行依頼書_受注リンクボタン = new Button();
+            非該当証明発行依頼書_発行日選択ボタン = new Button();
             改版ボタン = new Button();
             文書名_ラベル = new Label();
             件名_ラベル = new Label();
@@ -537,6 +540,62 @@ namespace u_net
             設備購買申請書_文書コード = new TextBox();
             label146 = new Label();
             label147 = new Label();
+            年間教育計画パネル = new Panel();
+            年間教育計画表_年間教育計画ボタン = new Button();
+            年間教育計画表_教育目的 = new TextBox();
+            年間教育計画表_版数 = new TextBox();
+            年間教育計画表_文書コード = new TextBox();
+            label148 = new Label();
+            非該当証明発行依頼書パネル = new Panel();
+            label149 = new Label();
+            label150 = new Label();
+            label151 = new Label();
+            label152 = new Label();
+            label153 = new Label();
+            label154 = new Label();
+            非該当証明発行依頼書_郵送先担当者名 = new TextBox();
+            非該当証明発行依頼書_郵送先名 = new TextBox();
+            非該当証明発行依頼書_郵送先住所2 = new TextBox();
+            非該当証明発行依頼書_郵送先住所1 = new TextBox();
+            非該当証明発行依頼書_郵送先郵便番号 = new TextBox();
+            非該当証明発行依頼書_郵送日 = new TextBox();
+            label155 = new Label();
+            非該当証明発行依頼書_顧客名 = new TextBox();
+            label156 = new Label();
+            非該当証明発行依頼書_郵送方法コード = new ComboBox();
+            label157 = new Label();
+            非該当証明発行依頼書_輸出先国名 = new TextBox();
+            label158 = new Label();
+            label159 = new Label();
+            非該当証明発行依頼書_発行部数 = new TextBox();
+            非該当証明発行依頼書_発行日 = new TextBox();
+            label160 = new Label();
+            label161 = new Label();
+            非該当証明発行依頼書_型番 = new TextBox();
+            非該当証明発行依頼書_代理店名 = new TextBox();
+            非該当証明発行依頼書_受注コード = new TextBox();
+            非該当証明発行依頼書_品名 = new TextBox();
+            label162 = new Label();
+            label163 = new Label();
+            非該当証明発行依頼書_備考 = new TextBox();
+            非該当証明発行依頼書_版数 = new TextBox();
+            非該当証明発行依頼書_文書コード = new TextBox();
+            label164 = new Label();
+            label165 = new Label();
+            品質異常報告書パネル = new Panel();
+            label166 = new Label();
+            品質異常報告書_回答書ボタン = new Button();
+            品質異常報告書_発生場所 = new TextBox();
+            label167 = new Label();
+            品質異常報告書_型番 = new TextBox();
+            品質異常報告書_発生日選択ボタン = new Button();
+            品質異常報告書_発生日 = new TextBox();
+            label168 = new Label();
+            品質異常報告書_異常内容 = new TextBox();
+            品質異常報告書_版数 = new TextBox();
+            品質異常報告書_文書コード = new TextBox();
+            label169 = new Label();
+            label170 = new Label();
             panel1.SuspendLayout();
             statusStrip1.SuspendLayout();
             システム配布記録パネル.SuspendLayout();
@@ -557,6 +616,9 @@ namespace u_net
             設計製作依頼書パネル.SuspendLayout();
             設計製作依頼書_付属書類.SuspendLayout();
             設備購買申請書パネル.SuspendLayout();
+            年間教育計画パネル.SuspendLayout();
+            非該当証明発行依頼書パネル.SuspendLayout();
+            品質異常報告書パネル.SuspendLayout();
             SuspendLayout();
             // 
             // コマンド終了
@@ -1545,6 +1607,52 @@ namespace u_net
             設計製作依頼書_リンク2ボタン.Click += 設計製作依頼書_リンク2ボタン_Click;
             設計製作依頼書_リンク2ボタン.Enter += 設計製作依頼書_リンク2ボタン_Enter;
             設計製作依頼書_リンク2ボタン.Leave += 設計製作依頼書_リンク2ボタン_Leave;
+            // 
+            // 非該当証明発行依頼書_郵送日選択ボタン
+            // 
+            非該当証明発行依頼書_郵送日選択ボタン.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            非該当証明発行依頼書_郵送日選択ボタン.Location = new Point(189, 194);
+            非該当証明発行依頼書_郵送日選択ボタン.Margin = new Padding(4);
+            非該当証明発行依頼書_郵送日選択ボタン.Name = "非該当証明発行依頼書_郵送日選択ボタン";
+            非該当証明発行依頼書_郵送日選択ボタン.Size = new Size(20, 20);
+            非該当証明発行依頼書_郵送日選択ボタン.TabIndex = 21042;
+            非該当証明発行依頼書_郵送日選択ボタン.TabStop = false;
+            非該当証明発行依頼書_郵送日選択ボタン.Text = "▼";
+            toolTip1.SetToolTip(非該当証明発行依頼書_郵送日選択ボタン, "カレンダー");
+            非該当証明発行依頼書_郵送日選択ボタン.UseVisualStyleBackColor = true;
+            非該当証明発行依頼書_郵送日選択ボタン.Click += 非該当証明発行依頼書_郵送日選択ボタン_Click;
+            // 
+            // 非該当証明発行依頼書_受注リンクボタン
+            // 
+            非該当証明発行依頼書_受注リンクボタン.Font = new Font("メイリオ", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            非該当証明発行依頼書_受注リンクボタン.ForeColor = Color.Navy;
+            非該当証明発行依頼書_受注リンクボタン.Location = new Point(189, 3);
+            非該当証明発行依頼書_受注リンクボタン.Margin = new Padding(0);
+            非該当証明発行依頼書_受注リンクボタン.Name = "非該当証明発行依頼書_受注リンクボタン";
+            非該当証明発行依頼書_受注リンクボタン.Size = new Size(22, 22);
+            非該当証明発行依頼書_受注リンクボタン.TabIndex = 21036;
+            非該当証明発行依頼書_受注リンクボタン.TabStop = false;
+            非該当証明発行依頼書_受注リンクボタン.Text = "➡";
+            非該当証明発行依頼書_受注リンクボタン.TextAlign = ContentAlignment.TopCenter;
+            toolTip1.SetToolTip(非該当証明発行依頼書_受注リンクボタン, "リンク");
+            非該当証明発行依頼書_受注リンクボタン.UseVisualStyleBackColor = true;
+            非該当証明発行依頼書_受注リンクボタン.Click += 非該当証明発行依頼書_受注リンクボタン_Click;
+            非該当証明発行依頼書_受注リンクボタン.Enter += 非該当証明発行依頼書_受注リンクボタン_Enter;
+            非該当証明発行依頼書_受注リンクボタン.Leave += 非該当証明発行依頼書_受注リンクボタン_Leave;
+            // 
+            // 非該当証明発行依頼書_発行日選択ボタン
+            // 
+            非該当証明発行依頼書_発行日選択ボタン.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            非該当証明発行依頼書_発行日選択ボタン.Location = new Point(189, 109);
+            非該当証明発行依頼書_発行日選択ボタン.Margin = new Padding(4);
+            非該当証明発行依頼書_発行日選択ボタン.Name = "非該当証明発行依頼書_発行日選択ボタン";
+            非該当証明発行依頼書_発行日選択ボタン.Size = new Size(20, 20);
+            非該当証明発行依頼書_発行日選択ボタン.TabIndex = 21027;
+            非該当証明発行依頼書_発行日選択ボタン.TabStop = false;
+            非該当証明発行依頼書_発行日選択ボタン.Text = "▼";
+            toolTip1.SetToolTip(非該当証明発行依頼書_発行日選択ボタン, "カレンダー");
+            非該当証明発行依頼書_発行日選択ボタン.UseVisualStyleBackColor = true;
+            非該当証明発行依頼書_発行日選択ボタン.Click += 非該当証明発行依頼書_発行日選択ボタン_Click;
             // 
             // 改版ボタン
             // 
@@ -7463,7 +7571,7 @@ namespace u_net
             設備購買申請書パネル.Location = new Point(9, 226);
             設備購買申請書パネル.Name = "設備購買申請書パネル";
             設備購買申請書パネル.Size = new Size(404, 376);
-            設備購買申請書パネル.TabIndex = 10303;
+            設備購買申請書パネル.TabIndex = 17;
             // 
             // label134
             // 
@@ -7591,10 +7699,10 @@ namespace u_net
             設備購買申請書_用途.Name = "設備購買申請書_用途";
             設備購買申請書_用途.Size = new Size(396, 43);
             設備購買申請書_用途.TabIndex = 37;
+            設備購買申請書_用途.TextChanged += 設備購買申請書_用途_TextChanged;
             設備購買申請書_用途.DoubleClick += 設備購買申請書_用途_DoubleClick;
             設備購買申請書_用途.Enter += 設備購買申請書_用途_Enter;
             設備購買申請書_用途.Leave += 設備購買申請書_用途_Leave;
-            設備購買申請書_用途.TextChanged += 設備購買申請書_用途_TextChanged;
             設備購買申請書_用途.Validating += 設備購買申請書_用途_Validating;
             設備購買申請書_用途.Validated += 設備購買申請書_用途_Validated;
             // 
@@ -7638,9 +7746,9 @@ namespace u_net
             設備購買申請書_使用部署.Name = "設備購買申請書_使用部署";
             設備購買申請書_使用部署.Size = new Size(313, 20);
             設備購買申請書_使用部署.TabIndex = 35;
+            設備購買申請書_使用部署.TextChanged += 設備購買申請書_使用部署_TextChanged;
             設備購買申請書_使用部署.Enter += 設備購買申請書_使用部署_Enter;
             設備購買申請書_使用部署.Leave += 設備購買申請書_使用部署_Leave;
-            設備購買申請書_使用部署.TextChanged += 設備購買申請書_使用部署_TextChanged;
             設備購買申請書_使用部署.Validating += 設備購買申請書_使用部署_Validating;
             設備購買申請書_使用部署.Validated += 設備購買申請書_使用部署_Validated;
             // 
@@ -7830,10 +7938,10 @@ namespace u_net
             設備購買申請書_購入理由.Name = "設備購買申請書_購入理由";
             設備購買申請書_購入理由.Size = new Size(396, 68);
             設備購買申請書_購入理由.TabIndex = 39;
+            設備購買申請書_購入理由.TextChanged += 設備購買申請書_購入理由_TextChanged;
             設備購買申請書_購入理由.DoubleClick += 設備購買申請書_購入理由_DoubleClick;
             設備購買申請書_購入理由.Enter += 設備購買申請書_購入理由_Enter;
             設備購買申請書_購入理由.Leave += 設備購買申請書_購入理由_Leave;
-            設備購買申請書_購入理由.TextChanged += 設備購買申請書_購入理由_TextChanged;
             設備購買申請書_購入理由.Validating += 設備購買申請書_購入理由_Validating;
             設備購買申請書_購入理由.Validated += 設備購買申請書_購入理由_Validated;
             // 
@@ -7897,11 +8005,866 @@ namespace u_net
             label147.Text = "購買予定日";
             label147.TextAlign = ContentAlignment.MiddleLeft;
             // 
+            // 年間教育計画パネル
+            // 
+            年間教育計画パネル.Controls.Add(年間教育計画表_年間教育計画ボタン);
+            年間教育計画パネル.Controls.Add(年間教育計画表_教育目的);
+            年間教育計画パネル.Controls.Add(年間教育計画表_版数);
+            年間教育計画パネル.Controls.Add(年間教育計画表_文書コード);
+            年間教育計画パネル.Controls.Add(label148);
+            年間教育計画パネル.Location = new Point(9, 226);
+            年間教育計画パネル.Name = "年間教育計画パネル";
+            年間教育計画パネル.Size = new Size(404, 376);
+            年間教育計画パネル.TabIndex = 17;
+            // 
+            // 年間教育計画表_年間教育計画ボタン
+            // 
+            年間教育計画表_年間教育計画ボタン.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            年間教育計画表_年間教育計画ボタン.Location = new Point(35, 107);
+            年間教育計画表_年間教育計画ボタン.Margin = new Padding(4);
+            年間教育計画表_年間教育計画ボタン.Name = "年間教育計画表_年間教育計画ボタン";
+            年間教育計画表_年間教育計画ボタン.Size = new Size(112, 34);
+            年間教育計画表_年間教育計画ボタン.TabIndex = 18;
+            年間教育計画表_年間教育計画ボタン.TabStop = false;
+            年間教育計画表_年間教育計画ボタン.Text = "年間教育計画";
+            年間教育計画表_年間教育計画ボタン.UseVisualStyleBackColor = true;
+            年間教育計画表_年間教育計画ボタン.Click += 年間教育計画表_年間教育計画ボタン_Click;
+            // 
+            // 年間教育計画表_教育目的
+            // 
+            年間教育計画表_教育目的.BackColor = SystemColors.Window;
+            年間教育計画表_教育目的.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            年間教育計画表_教育目的.ImeMode = ImeMode.Hiragana;
+            年間教育計画表_教育目的.Location = new Point(0, 25);
+            年間教育計画表_教育目的.Margin = new Padding(3, 2, 3, 2);
+            年間教育計画表_教育目的.Multiline = true;
+            年間教育計画表_教育目的.Name = "年間教育計画表_教育目的";
+            年間教育計画表_教育目的.Size = new Size(396, 51);
+            年間教育計画表_教育目的.TabIndex = 17;
+            年間教育計画表_教育目的.TextChanged += 年間教育計画表_教育目的_TextChanged;
+            年間教育計画表_教育目的.Validating += 年間教育計画表_教育目的_Validating;
+            年間教育計画表_教育目的.Validated += 年間教育計画表_教育目的_Validated;
+            // 
+            // 年間教育計画表_版数
+            // 
+            年間教育計画表_版数.BackColor = Color.White;
+            年間教育計画表_版数.Enabled = false;
+            年間教育計画表_版数.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            年間教育計画表_版数.ImeMode = ImeMode.Disable;
+            年間教育計画表_版数.Location = new Point(348, 94);
+            年間教育計画表_版数.Margin = new Padding(3, 2, 3, 2);
+            年間教育計画表_版数.Name = "年間教育計画表_版数";
+            年間教育計画表_版数.ReadOnly = true;
+            年間教育計画表_版数.Size = new Size(13, 20);
+            年間教育計画表_版数.TabIndex = 10292;
+            年間教育計画表_版数.TabStop = false;
+            年間教育計画表_版数.Visible = false;
+            // 
+            // 年間教育計画表_文書コード
+            // 
+            年間教育計画表_文書コード.BackColor = Color.White;
+            年間教育計画表_文書コード.Enabled = false;
+            年間教育計画表_文書コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            年間教育計画表_文書コード.ImeMode = ImeMode.Disable;
+            年間教育計画表_文書コード.Location = new Point(329, 94);
+            年間教育計画表_文書コード.Margin = new Padding(3, 2, 3, 2);
+            年間教育計画表_文書コード.Name = "年間教育計画表_文書コード";
+            年間教育計画表_文書コード.ReadOnly = true;
+            年間教育計画表_文書コード.Size = new Size(13, 20);
+            年間教育計画表_文書コード.TabIndex = 10291;
+            年間教育計画表_文書コード.TabStop = false;
+            年間教育計画表_文書コード.Visible = false;
+            // 
+            // label148
+            // 
+            label148.AllowDrop = true;
+            label148.AutoEllipsis = true;
+            label148.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label148.ForeColor = SystemColors.ActiveCaptionText;
+            label148.ImageAlign = ContentAlignment.MiddleLeft;
+            label148.Location = new Point(0, 4);
+            label148.Margin = new Padding(0);
+            label148.Name = "label148";
+            label148.Size = new Size(186, 20);
+            label148.TabIndex = 16;
+            label148.Text = "目的";
+            label148.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // 非該当証明発行依頼書パネル
+            // 
+            非該当証明発行依頼書パネル.Controls.Add(label149);
+            非該当証明発行依頼書パネル.Controls.Add(label150);
+            非該当証明発行依頼書パネル.Controls.Add(label151);
+            非該当証明発行依頼書パネル.Controls.Add(label152);
+            非該当証明発行依頼書パネル.Controls.Add(label153);
+            非該当証明発行依頼書パネル.Controls.Add(label154);
+            非該当証明発行依頼書パネル.Controls.Add(非該当証明発行依頼書_郵送先担当者名);
+            非該当証明発行依頼書パネル.Controls.Add(非該当証明発行依頼書_郵送先名);
+            非該当証明発行依頼書パネル.Controls.Add(非該当証明発行依頼書_郵送先住所2);
+            非該当証明発行依頼書パネル.Controls.Add(非該当証明発行依頼書_郵送先住所1);
+            非該当証明発行依頼書パネル.Controls.Add(非該当証明発行依頼書_郵送先郵便番号);
+            非該当証明発行依頼書パネル.Controls.Add(非該当証明発行依頼書_郵送日選択ボタン);
+            非該当証明発行依頼書パネル.Controls.Add(非該当証明発行依頼書_郵送日);
+            非該当証明発行依頼書パネル.Controls.Add(label155);
+            非該当証明発行依頼書パネル.Controls.Add(非該当証明発行依頼書_顧客名);
+            非該当証明発行依頼書パネル.Controls.Add(label156);
+            非該当証明発行依頼書パネル.Controls.Add(非該当証明発行依頼書_郵送方法コード);
+            非該当証明発行依頼書パネル.Controls.Add(非該当証明発行依頼書_受注リンクボタン);
+            非該当証明発行依頼書パネル.Controls.Add(label157);
+            非該当証明発行依頼書パネル.Controls.Add(非該当証明発行依頼書_輸出先国名);
+            非該当証明発行依頼書パネル.Controls.Add(label158);
+            非該当証明発行依頼書パネル.Controls.Add(label159);
+            非該当証明発行依頼書パネル.Controls.Add(非該当証明発行依頼書_発行部数);
+            非該当証明発行依頼書パネル.Controls.Add(非該当証明発行依頼書_発行日);
+            非該当証明発行依頼書パネル.Controls.Add(label160);
+            非該当証明発行依頼書パネル.Controls.Add(label161);
+            非該当証明発行依頼書パネル.Controls.Add(非該当証明発行依頼書_型番);
+            非該当証明発行依頼書パネル.Controls.Add(非該当証明発行依頼書_代理店名);
+            非該当証明発行依頼書パネル.Controls.Add(非該当証明発行依頼書_発行日選択ボタン);
+            非該当証明発行依頼書パネル.Controls.Add(非該当証明発行依頼書_受注コード);
+            非該当証明発行依頼書パネル.Controls.Add(非該当証明発行依頼書_品名);
+            非該当証明発行依頼書パネル.Controls.Add(label162);
+            非該当証明発行依頼書パネル.Controls.Add(label163);
+            非該当証明発行依頼書パネル.Controls.Add(非該当証明発行依頼書_備考);
+            非該当証明発行依頼書パネル.Controls.Add(非該当証明発行依頼書_版数);
+            非該当証明発行依頼書パネル.Controls.Add(非該当証明発行依頼書_文書コード);
+            非該当証明発行依頼書パネル.Controls.Add(label164);
+            非該当証明発行依頼書パネル.Controls.Add(label165);
+            非該当証明発行依頼書パネル.Location = new Point(9, 226);
+            非該当証明発行依頼書パネル.Name = "非該当証明発行依頼書パネル";
+            非該当証明発行依頼書パネル.Size = new Size(404, 376);
+            非該当証明発行依頼書パネル.TabIndex = 17;
+            // 
+            // label149
+            // 
+            label149.AllowDrop = true;
+            label149.AutoEllipsis = true;
+            label149.Font = new Font("BIZ UDゴシック", 8F, FontStyle.Regular, GraphicsUnit.Point);
+            label149.ForeColor = SystemColors.ActiveCaptionText;
+            label149.ImageAlign = ContentAlignment.MiddleLeft;
+            label149.Location = new Point(0, 299);
+            label149.Margin = new Padding(0);
+            label149.Name = "label149";
+            label149.Size = new Size(85, 20);
+            label149.TabIndex = 44;
+            label149.Text = "郵送先担当者名";
+            label149.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // label150
+            // 
+            label150.AllowDrop = true;
+            label150.AutoEllipsis = true;
+            label150.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label150.ForeColor = SystemColors.ActiveCaptionText;
+            label150.ImageAlign = ContentAlignment.MiddleLeft;
+            label150.Location = new Point(0, 279);
+            label150.Margin = new Padding(0);
+            label150.Name = "label150";
+            label150.Size = new Size(85, 20);
+            label150.TabIndex = 42;
+            label150.Text = "郵送先名";
+            label150.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // label151
+            // 
+            label151.AllowDrop = true;
+            label151.AutoEllipsis = true;
+            label151.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label151.ForeColor = SystemColors.ActiveCaptionText;
+            label151.ImageAlign = ContentAlignment.MiddleLeft;
+            label151.Location = new Point(0, 257);
+            label151.Margin = new Padding(0);
+            label151.Name = "label151";
+            label151.Size = new Size(85, 20);
+            label151.TabIndex = 40;
+            label151.Text = "郵送先住所2";
+            label151.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // label152
+            // 
+            label152.AllowDrop = true;
+            label152.AutoEllipsis = true;
+            label152.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label152.ForeColor = SystemColors.ActiveCaptionText;
+            label152.ImageAlign = ContentAlignment.MiddleLeft;
+            label152.Location = new Point(0, 237);
+            label152.Margin = new Padding(0);
+            label152.Name = "label152";
+            label152.Size = new Size(85, 20);
+            label152.TabIndex = 38;
+            label152.Text = "郵送先住所1";
+            label152.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // label153
+            // 
+            label153.AllowDrop = true;
+            label153.AutoEllipsis = true;
+            label153.Font = new Font("BIZ UDゴシック", 8F, FontStyle.Regular, GraphicsUnit.Point);
+            label153.ForeColor = SystemColors.ActiveCaptionText;
+            label153.ImageAlign = ContentAlignment.MiddleLeft;
+            label153.Location = new Point(0, 215);
+            label153.Margin = new Padding(0);
+            label153.Name = "label153";
+            label153.Size = new Size(85, 20);
+            label153.TabIndex = 36;
+            label153.Text = "郵送先郵便番号";
+            label153.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // label154
+            // 
+            label154.AllowDrop = true;
+            label154.AutoEllipsis = true;
+            label154.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label154.ForeColor = SystemColors.ActiveCaptionText;
+            label154.ImageAlign = ContentAlignment.MiddleLeft;
+            label154.Location = new Point(0, 194);
+            label154.Margin = new Padding(0);
+            label154.Name = "label154";
+            label154.Size = new Size(85, 20);
+            label154.TabIndex = 34;
+            label154.Text = "郵送日";
+            label154.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // 非該当証明発行依頼書_郵送先担当者名
+            // 
+            非該当証明発行依頼書_郵送先担当者名.BackColor = Color.White;
+            非該当証明発行依頼書_郵送先担当者名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            非該当証明発行依頼書_郵送先担当者名.ImeMode = ImeMode.Hiragana;
+            非該当証明発行依頼書_郵送先担当者名.Location = new Point(86, 299);
+            非該当証明発行依頼書_郵送先担当者名.Margin = new Padding(3, 2, 3, 2);
+            非該当証明発行依頼書_郵送先担当者名.Name = "非該当証明発行依頼書_郵送先担当者名";
+            非該当証明発行依頼書_郵送先担当者名.Size = new Size(314, 20);
+            非該当証明発行依頼書_郵送先担当者名.TabIndex = 45;
+            非該当証明発行依頼書_郵送先担当者名.TextChanged += 非該当証明発行依頼書_郵送先担当者名_TextChanged;
+            非該当証明発行依頼書_郵送先担当者名.Validating += 非該当証明発行依頼書_郵送先担当者名_Validating;
+            // 
+            // 非該当証明発行依頼書_郵送先名
+            // 
+            非該当証明発行依頼書_郵送先名.BackColor = Color.White;
+            非該当証明発行依頼書_郵送先名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            非該当証明発行依頼書_郵送先名.ImeMode = ImeMode.Hiragana;
+            非該当証明発行依頼書_郵送先名.Location = new Point(86, 278);
+            非該当証明発行依頼書_郵送先名.Margin = new Padding(3, 2, 3, 2);
+            非該当証明発行依頼書_郵送先名.Name = "非該当証明発行依頼書_郵送先名";
+            非該当証明発行依頼書_郵送先名.Size = new Size(314, 20);
+            非該当証明発行依頼書_郵送先名.TabIndex = 43;
+            非該当証明発行依頼書_郵送先名.TextChanged += 非該当証明発行依頼書_郵送先名_TextChanged;
+            非該当証明発行依頼書_郵送先名.Validating += 非該当証明発行依頼書_郵送先名_Validating;
+            // 
+            // 非該当証明発行依頼書_郵送先住所2
+            // 
+            非該当証明発行依頼書_郵送先住所2.BackColor = Color.White;
+            非該当証明発行依頼書_郵送先住所2.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            非該当証明発行依頼書_郵送先住所2.ImeMode = ImeMode.Hiragana;
+            非該当証明発行依頼書_郵送先住所2.Location = new Point(86, 257);
+            非該当証明発行依頼書_郵送先住所2.Margin = new Padding(3, 2, 3, 2);
+            非該当証明発行依頼書_郵送先住所2.Name = "非該当証明発行依頼書_郵送先住所2";
+            非該当証明発行依頼書_郵送先住所2.Size = new Size(314, 20);
+            非該当証明発行依頼書_郵送先住所2.TabIndex = 41;
+            非該当証明発行依頼書_郵送先住所2.TextChanged += 非該当証明発行依頼書_郵送先住所2_TextChanged;
+            非該当証明発行依頼書_郵送先住所2.Validating += 非該当証明発行依頼書_郵送先住所2_Validating;
+            // 
+            // 非該当証明発行依頼書_郵送先住所1
+            // 
+            非該当証明発行依頼書_郵送先住所1.BackColor = Color.White;
+            非該当証明発行依頼書_郵送先住所1.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            非該当証明発行依頼書_郵送先住所1.ImeMode = ImeMode.Hiragana;
+            非該当証明発行依頼書_郵送先住所1.Location = new Point(86, 236);
+            非該当証明発行依頼書_郵送先住所1.Margin = new Padding(3, 2, 3, 2);
+            非該当証明発行依頼書_郵送先住所1.Name = "非該当証明発行依頼書_郵送先住所1";
+            非該当証明発行依頼書_郵送先住所1.Size = new Size(314, 20);
+            非該当証明発行依頼書_郵送先住所1.TabIndex = 39;
+            非該当証明発行依頼書_郵送先住所1.TextChanged += 非該当証明発行依頼書_郵送先住所1_TextChanged;
+            非該当証明発行依頼書_郵送先住所1.Validating += 非該当証明発行依頼書_郵送先住所1_Validating;
+            // 
+            // 非該当証明発行依頼書_郵送先郵便番号
+            // 
+            非該当証明発行依頼書_郵送先郵便番号.BackColor = Color.White;
+            非該当証明発行依頼書_郵送先郵便番号.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            非該当証明発行依頼書_郵送先郵便番号.ImeMode = ImeMode.Disable;
+            非該当証明発行依頼書_郵送先郵便番号.Location = new Point(86, 215);
+            非該当証明発行依頼書_郵送先郵便番号.Margin = new Padding(3, 2, 3, 2);
+            非該当証明発行依頼書_郵送先郵便番号.Name = "非該当証明発行依頼書_郵送先郵便番号";
+            非該当証明発行依頼書_郵送先郵便番号.Size = new Size(123, 20);
+            非該当証明発行依頼書_郵送先郵便番号.TabIndex = 37;
+            非該当証明発行依頼書_郵送先郵便番号.TextChanged += 非該当証明発行依頼書_郵送先郵便番号_TextChanged;
+            非該当証明発行依頼書_郵送先郵便番号.Validating += 非該当証明発行依頼書_郵送先郵便番号_Validating;
+            // 
+            // 非該当証明発行依頼書_郵送日
+            // 
+            非該当証明発行依頼書_郵送日.BackColor = Color.White;
+            非該当証明発行依頼書_郵送日.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            非該当証明発行依頼書_郵送日.ImeMode = ImeMode.Disable;
+            非該当証明発行依頼書_郵送日.Location = new Point(86, 194);
+            非該当証明発行依頼書_郵送日.Margin = new Padding(3, 2, 3, 2);
+            非該当証明発行依頼書_郵送日.Name = "非該当証明発行依頼書_郵送日";
+            非該当証明発行依頼書_郵送日.Size = new Size(102, 20);
+            非該当証明発行依頼書_郵送日.TabIndex = 35;
+            非該当証明発行依頼書_郵送日.TextChanged += 非該当証明発行依頼書_郵送日_TextChanged;
+            非該当証明発行依頼書_郵送日.DoubleClick += 非該当証明発行依頼書_郵送日_DoubleClick;
+            非該当証明発行依頼書_郵送日.KeyPress += 非該当証明発行依頼書_郵送日_KeyPress;
+            非該当証明発行依頼書_郵送日.Validating += 非該当証明発行依頼書_郵送日_Validating;
+            // 
+            // label155
+            // 
+            label155.AllowDrop = true;
+            label155.AutoEllipsis = true;
+            label155.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label155.ForeColor = SystemColors.ActiveCaptionText;
+            label155.ImageAlign = ContentAlignment.MiddleLeft;
+            label155.Location = new Point(0, 173);
+            label155.Margin = new Padding(0);
+            label155.Name = "label155";
+            label155.Size = new Size(85, 20);
+            label155.TabIndex = 32;
+            label155.Text = "郵送方法";
+            label155.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // 非該当証明発行依頼書_顧客名
+            // 
+            非該当証明発行依頼書_顧客名.BackColor = Color.White;
+            非該当証明発行依頼書_顧客名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            非該当証明発行依頼書_顧客名.ImeMode = ImeMode.Hiragana;
+            非該当証明発行依頼書_顧客名.Location = new Point(86, 25);
+            非該当証明発行依頼書_顧客名.Margin = new Padding(3, 2, 3, 2);
+            非該当証明発行依頼書_顧客名.Name = "非該当証明発行依頼書_顧客名";
+            非該当証明発行依頼書_顧客名.Size = new Size(314, 20);
+            非該当証明発行依頼書_顧客名.TabIndex = 19;
+            非該当証明発行依頼書_顧客名.TextChanged += 非該当証明発行依頼書_顧客名_TextChanged;
+            非該当証明発行依頼書_顧客名.Validating += 非該当証明発行依頼書_顧客名_Validating;
+            // 
+            // label156
+            // 
+            label156.AllowDrop = true;
+            label156.AutoEllipsis = true;
+            label156.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label156.ForeColor = SystemColors.ActiveCaptionText;
+            label156.ImageAlign = ContentAlignment.MiddleLeft;
+            label156.Location = new Point(0, 25);
+            label156.Margin = new Padding(0);
+            label156.Name = "label156";
+            label156.Size = new Size(85, 20);
+            label156.TabIndex = 18;
+            label156.Text = "顧客名";
+            label156.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // 非該当証明発行依頼書_郵送方法コード
+            // 
+            非該当証明発行依頼書_郵送方法コード.BackColor = SystemColors.Window;
+            非該当証明発行依頼書_郵送方法コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            非該当証明発行依頼書_郵送方法コード.FormattingEnabled = true;
+            非該当証明発行依頼書_郵送方法コード.ImeMode = ImeMode.Hiragana;
+            非該当証明発行依頼書_郵送方法コード.Location = new Point(86, 172);
+            非該当証明発行依頼書_郵送方法コード.Name = "非該当証明発行依頼書_郵送方法コード";
+            非該当証明発行依頼書_郵送方法コード.Size = new Size(154, 21);
+            非該当証明発行依頼書_郵送方法コード.TabIndex = 33;
+            非該当証明発行依頼書_郵送方法コード.TextChanged += 非該当証明発行依頼書_郵送方法コード_SelectedIndexChanged;
+            非該当証明発行依頼書_郵送方法コード.Validating += 非該当証明発行依頼書_郵送方法コード_Validating;
+            // 
+            // label157
+            // 
+            label157.AllowDrop = true;
+            label157.AutoEllipsis = true;
+            label157.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label157.ForeColor = SystemColors.ActiveCaptionText;
+            label157.ImageAlign = ContentAlignment.MiddleLeft;
+            label157.Location = new Point(0, 151);
+            label157.Margin = new Padding(0);
+            label157.Name = "label157";
+            label157.Size = new Size(85, 20);
+            label157.TabIndex = 30;
+            label157.Text = "輸出先国名";
+            label157.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // 非該当証明発行依頼書_輸出先国名
+            // 
+            非該当証明発行依頼書_輸出先国名.BackColor = Color.White;
+            非該当証明発行依頼書_輸出先国名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            非該当証明発行依頼書_輸出先国名.ImeMode = ImeMode.Hiragana;
+            非該当証明発行依頼書_輸出先国名.Location = new Point(86, 151);
+            非該当証明発行依頼書_輸出先国名.Margin = new Padding(3, 2, 3, 2);
+            非該当証明発行依頼書_輸出先国名.Name = "非該当証明発行依頼書_輸出先国名";
+            非該当証明発行依頼書_輸出先国名.Size = new Size(314, 20);
+            非該当証明発行依頼書_輸出先国名.TabIndex = 31;
+            非該当証明発行依頼書_輸出先国名.TextChanged += 非該当証明発行依頼書_輸出先国名_TextChanged;
+            非該当証明発行依頼書_輸出先国名.Validating += 非該当証明発行依頼書_輸出先国名_Validating;
+            // 
+            // label158
+            // 
+            label158.AllowDrop = true;
+            label158.AutoEllipsis = true;
+            label158.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label158.ForeColor = SystemColors.ActiveCaptionText;
+            label158.ImageAlign = ContentAlignment.MiddleLeft;
+            label158.Location = new Point(0, 130);
+            label158.Margin = new Padding(0);
+            label158.Name = "label158";
+            label158.Size = new Size(85, 20);
+            label158.TabIndex = 28;
+            label158.Text = "発行部数";
+            label158.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // label159
+            // 
+            label159.AllowDrop = true;
+            label159.AutoEllipsis = true;
+            label159.Font = new Font("BIZ UDゴシック", 8.5F, FontStyle.Regular, GraphicsUnit.Point);
+            label159.ForeColor = SystemColors.ActiveCaptionText;
+            label159.ImageAlign = ContentAlignment.MiddleLeft;
+            label159.Location = new Point(161, 130);
+            label159.Margin = new Padding(0);
+            label159.Name = "label159";
+            label159.Size = new Size(24, 20);
+            label159.TabIndex = 21031;
+            label159.Text = "部";
+            label159.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // 非該当証明発行依頼書_発行部数
+            // 
+            非該当証明発行依頼書_発行部数.BackColor = Color.White;
+            非該当証明発行依頼書_発行部数.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            非該当証明発行依頼書_発行部数.ImeMode = ImeMode.Disable;
+            非該当証明発行依頼書_発行部数.Location = new Point(86, 130);
+            非該当証明発行依頼書_発行部数.Margin = new Padding(3, 2, 3, 2);
+            非該当証明発行依頼書_発行部数.Name = "非該当証明発行依頼書_発行部数";
+            非該当証明発行依頼書_発行部数.Size = new Size(72, 20);
+            非該当証明発行依頼書_発行部数.TabIndex = 29;
+            非該当証明発行依頼書_発行部数.TextChanged += 非該当証明発行依頼書_発行部数_TextChanged;
+            非該当証明発行依頼書_発行部数.Validating += 非該当証明発行依頼書_発行部数_Validating;
+            // 
+            // 非該当証明発行依頼書_発行日
+            // 
+            非該当証明発行依頼書_発行日.BackColor = Color.White;
+            非該当証明発行依頼書_発行日.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            非該当証明発行依頼書_発行日.ImeMode = ImeMode.Disable;
+            非該当証明発行依頼書_発行日.Location = new Point(86, 109);
+            非該当証明発行依頼書_発行日.Margin = new Padding(3, 2, 3, 2);
+            非該当証明発行依頼書_発行日.Name = "非該当証明発行依頼書_発行日";
+            非該当証明発行依頼書_発行日.Size = new Size(102, 20);
+            非該当証明発行依頼書_発行日.TabIndex = 27;
+            非該当証明発行依頼書_発行日.TextChanged += 非該当証明発行依頼書_発行日_TextChanged;
+            非該当証明発行依頼書_発行日.DoubleClick += 非該当証明発行依頼書_発行日_DoubleClick;
+            非該当証明発行依頼書_発行日.KeyPress += 非該当証明発行依頼書_発行日_KeyPress;
+            非該当証明発行依頼書_発行日.Validating += 非該当証明発行依頼書_発行日_Validating;
+            // 
+            // label160
+            // 
+            label160.AllowDrop = true;
+            label160.AutoEllipsis = true;
+            label160.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label160.ForeColor = SystemColors.ActiveCaptionText;
+            label160.ImageAlign = ContentAlignment.MiddleLeft;
+            label160.Location = new Point(0, 109);
+            label160.Margin = new Padding(0);
+            label160.Name = "label160";
+            label160.Size = new Size(85, 20);
+            label160.TabIndex = 26;
+            label160.Text = "発行日";
+            label160.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // label161
+            // 
+            label161.AllowDrop = true;
+            label161.AutoEllipsis = true;
+            label161.Font = new Font("BIZ UDゴシック", 8.5F, FontStyle.Regular, GraphicsUnit.Point);
+            label161.ForeColor = SystemColors.ActiveCaptionText;
+            label161.ImageAlign = ContentAlignment.MiddleLeft;
+            label161.Location = new Point(0, 88);
+            label161.Margin = new Padding(0);
+            label161.Name = "label161";
+            label161.Size = new Size(85, 20);
+            label161.TabIndex = 24;
+            label161.Text = "型番";
+            label161.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // 非該当証明発行依頼書_型番
+            // 
+            非該当証明発行依頼書_型番.BackColor = Color.White;
+            非該当証明発行依頼書_型番.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            非該当証明発行依頼書_型番.ImeMode = ImeMode.Alpha;
+            非該当証明発行依頼書_型番.Location = new Point(86, 88);
+            非該当証明発行依頼書_型番.Margin = new Padding(3, 2, 3, 2);
+            非該当証明発行依頼書_型番.Name = "非該当証明発行依頼書_型番";
+            非該当証明発行依頼書_型番.Size = new Size(314, 20);
+            非該当証明発行依頼書_型番.TabIndex = 25;
+            非該当証明発行依頼書_型番.TextChanged += 非該当証明発行依頼書_型番_TextChanged;
+            非該当証明発行依頼書_型番.Validating += 非該当証明発行依頼書_型番_Validating;
+            非該当証明発行依頼書_型番.Validated += 非該当証明発行依頼書_型番_Validated;
+            // 
+            // 非該当証明発行依頼書_代理店名
+            // 
+            非該当証明発行依頼書_代理店名.BackColor = Color.White;
+            非該当証明発行依頼書_代理店名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            非該当証明発行依頼書_代理店名.ImeMode = ImeMode.Hiragana;
+            非該当証明発行依頼書_代理店名.Location = new Point(86, 46);
+            非該当証明発行依頼書_代理店名.Margin = new Padding(3, 2, 3, 2);
+            非該当証明発行依頼書_代理店名.Name = "非該当証明発行依頼書_代理店名";
+            非該当証明発行依頼書_代理店名.Size = new Size(314, 20);
+            非該当証明発行依頼書_代理店名.TabIndex = 21;
+            非該当証明発行依頼書_代理店名.TextChanged += 非該当証明発行依頼書_代理店名_TextChanged;
+            非該当証明発行依頼書_代理店名.Validating += 非該当証明発行依頼書_代理店名_Validating;
+            // 
+            // 非該当証明発行依頼書_受注コード
+            // 
+            非該当証明発行依頼書_受注コード.BackColor = Color.White;
+            非該当証明発行依頼書_受注コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            非該当証明発行依頼書_受注コード.ImeMode = ImeMode.Disable;
+            非該当証明発行依頼書_受注コード.Location = new Point(86, 4);
+            非該当証明発行依頼書_受注コード.Margin = new Padding(3, 2, 3, 2);
+            非該当証明発行依頼書_受注コード.Name = "非該当証明発行依頼書_受注コード";
+            非該当証明発行依頼書_受注コード.Size = new Size(102, 20);
+            非該当証明発行依頼書_受注コード.TabIndex = 17;
+            非該当証明発行依頼書_受注コード.TextChanged += 非該当証明発行依頼書_受注コード_TextChanged;
+            非該当証明発行依頼書_受注コード.DoubleClick += 非該当証明発行依頼書_受注コード_DoubleClick;
+            非該当証明発行依頼書_受注コード.Enter += 非該当証明発行依頼書_受注コード_Enter;
+            非該当証明発行依頼書_受注コード.KeyDown += 非該当証明発行依頼書_受注コード_KeyDown;
+            非該当証明発行依頼書_受注コード.KeyPress += 非該当証明発行依頼書_受注コード_KeyPress;
+            非該当証明発行依頼書_受注コード.Leave += 非該当証明発行依頼書_受注コード_Leave;
+            非該当証明発行依頼書_受注コード.Validating += 非該当証明発行依頼書_受注コード_Validating;
+            非該当証明発行依頼書_受注コード.Validated += 非該当証明発行依頼書_受注コード_Validated;
+            // 
+            // 非該当証明発行依頼書_品名
+            // 
+            非該当証明発行依頼書_品名.BackColor = Color.White;
+            非該当証明発行依頼書_品名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            非該当証明発行依頼書_品名.ImeMode = ImeMode.Hiragana;
+            非該当証明発行依頼書_品名.Location = new Point(86, 67);
+            非該当証明発行依頼書_品名.Margin = new Padding(3, 2, 3, 2);
+            非該当証明発行依頼書_品名.Name = "非該当証明発行依頼書_品名";
+            非該当証明発行依頼書_品名.Size = new Size(314, 20);
+            非該当証明発行依頼書_品名.TabIndex = 23;
+            非該当証明発行依頼書_品名.TextChanged += 非該当証明発行依頼書_品名_TextChanged;
+            非該当証明発行依頼書_品名.Validating += 非該当証明発行依頼書_品名_Validating;
+            // 
+            // label162
+            // 
+            label162.AllowDrop = true;
+            label162.AutoEllipsis = true;
+            label162.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label162.ForeColor = SystemColors.ActiveCaptionText;
+            label162.ImageAlign = ContentAlignment.MiddleLeft;
+            label162.Location = new Point(0, 67);
+            label162.Margin = new Padding(0);
+            label162.Name = "label162";
+            label162.Size = new Size(85, 20);
+            label162.TabIndex = 22;
+            label162.Text = "品名";
+            label162.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // label163
+            // 
+            label163.AllowDrop = true;
+            label163.AutoEllipsis = true;
+            label163.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label163.ForeColor = SystemColors.ActiveCaptionText;
+            label163.ImageAlign = ContentAlignment.MiddleLeft;
+            label163.Location = new Point(0, 46);
+            label163.Margin = new Padding(0);
+            label163.Name = "label163";
+            label163.Size = new Size(85, 20);
+            label163.TabIndex = 20;
+            label163.Text = "代理店名";
+            label163.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // 非該当証明発行依頼書_備考
+            // 
+            非該当証明発行依頼書_備考.BackColor = SystemColors.Window;
+            非該当証明発行依頼書_備考.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            非該当証明発行依頼書_備考.ImeMode = ImeMode.Hiragana;
+            非該当証明発行依頼書_備考.Location = new Point(4, 343);
+            非該当証明発行依頼書_備考.Margin = new Padding(3, 2, 3, 2);
+            非該当証明発行依頼書_備考.Multiline = true;
+            非該当証明発行依頼書_備考.Name = "非該当証明発行依頼書_備考";
+            非該当証明発行依頼書_備考.Size = new Size(396, 30);
+            非該当証明発行依頼書_備考.TabIndex = 47;
+            非該当証明発行依頼書_備考.TextChanged += 非該当証明発行依頼書_備考_TextChanged;
+            非該当証明発行依頼書_備考.DoubleClick += 非該当証明発行依頼書_備考_DoubleClick;
+            非該当証明発行依頼書_備考.Enter += 非該当証明発行依頼書_備考_Enter;
+            非該当証明発行依頼書_備考.Leave += 非該当証明発行依頼書_備考_Leave;
+            // 
+            // 非該当証明発行依頼書_版数
+            // 
+            非該当証明発行依頼書_版数.BackColor = Color.White;
+            非該当証明発行依頼書_版数.Enabled = false;
+            非該当証明発行依頼書_版数.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            非該当証明発行依頼書_版数.ImeMode = ImeMode.Disable;
+            非該当証明発行依頼書_版数.Location = new Point(342, 194);
+            非該当証明発行依頼書_版数.Margin = new Padding(3, 2, 3, 2);
+            非該当証明発行依頼書_版数.Name = "非該当証明発行依頼書_版数";
+            非該当証明発行依頼書_版数.ReadOnly = true;
+            非該当証明発行依頼書_版数.Size = new Size(13, 20);
+            非該当証明発行依頼書_版数.TabIndex = 10292;
+            非該当証明発行依頼書_版数.TabStop = false;
+            非該当証明発行依頼書_版数.Visible = false;
+            // 
+            // 非該当証明発行依頼書_文書コード
+            // 
+            非該当証明発行依頼書_文書コード.BackColor = Color.White;
+            非該当証明発行依頼書_文書コード.Enabled = false;
+            非該当証明発行依頼書_文書コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            非該当証明発行依頼書_文書コード.ImeMode = ImeMode.Disable;
+            非該当証明発行依頼書_文書コード.Location = new Point(323, 194);
+            非該当証明発行依頼書_文書コード.Margin = new Padding(3, 2, 3, 2);
+            非該当証明発行依頼書_文書コード.Name = "非該当証明発行依頼書_文書コード";
+            非該当証明発行依頼書_文書コード.ReadOnly = true;
+            非該当証明発行依頼書_文書コード.Size = new Size(13, 20);
+            非該当証明発行依頼書_文書コード.TabIndex = 10291;
+            非該当証明発行依頼書_文書コード.TabStop = false;
+            非該当証明発行依頼書_文書コード.Visible = false;
+            // 
+            // label164
+            // 
+            label164.AllowDrop = true;
+            label164.AutoEllipsis = true;
+            label164.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label164.ForeColor = SystemColors.ActiveCaptionText;
+            label164.ImageAlign = ContentAlignment.MiddleLeft;
+            label164.Location = new Point(0, 325);
+            label164.Margin = new Padding(0);
+            label164.Name = "label164";
+            label164.Size = new Size(399, 20);
+            label164.TabIndex = 46;
+            label164.Text = "備考";
+            label164.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // label165
+            // 
+            label165.AllowDrop = true;
+            label165.AutoEllipsis = true;
+            label165.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label165.ForeColor = SystemColors.ActiveCaptionText;
+            label165.ImageAlign = ContentAlignment.MiddleLeft;
+            label165.Location = new Point(0, 4);
+            label165.Margin = new Padding(0);
+            label165.Name = "label165";
+            label165.Size = new Size(85, 20);
+            label165.TabIndex = 16;
+            label165.Text = "受注コード";
+            label165.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // 品質異常報告書パネル
+            // 
+            品質異常報告書パネル.Controls.Add(label166);
+            品質異常報告書パネル.Controls.Add(品質異常報告書_回答書ボタン);
+            品質異常報告書パネル.Controls.Add(品質異常報告書_発生場所);
+            品質異常報告書パネル.Controls.Add(label167);
+            品質異常報告書パネル.Controls.Add(品質異常報告書_型番);
+            品質異常報告書パネル.Controls.Add(品質異常報告書_発生日選択ボタン);
+            品質異常報告書パネル.Controls.Add(品質異常報告書_発生日);
+            品質異常報告書パネル.Controls.Add(label168);
+            品質異常報告書パネル.Controls.Add(品質異常報告書_異常内容);
+            品質異常報告書パネル.Controls.Add(品質異常報告書_版数);
+            品質異常報告書パネル.Controls.Add(品質異常報告書_文書コード);
+            品質異常報告書パネル.Controls.Add(label169);
+            品質異常報告書パネル.Controls.Add(label170);
+            品質異常報告書パネル.Location = new Point(9, 226);
+            品質異常報告書パネル.Name = "品質異常報告書パネル";
+            品質異常報告書パネル.Size = new Size(404, 376);
+            品質異常報告書パネル.TabIndex = 17;
+            // 
+            // label166
+            // 
+            label166.AllowDrop = true;
+            label166.AutoEllipsis = true;
+            label166.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label166.ForeColor = SystemColors.ActiveCaptionText;
+            label166.ImageAlign = ContentAlignment.MiddleLeft;
+            label166.Location = new Point(86, 69);
+            label166.Margin = new Padding(0);
+            label166.Name = "label166";
+            label166.Size = new Size(314, 20);
+            label166.TabIndex = 21029;
+            label166.Text = "※できるだけ具体的に詳しく記述してください。";
+            label166.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // 品質異常報告書_回答書ボタン
+            // 
+            品質異常報告書_回答書ボタン.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            品質異常報告書_回答書ボタン.Location = new Point(157, 345);
+            品質異常報告書_回答書ボタン.Margin = new Padding(4);
+            品質異常報告書_回答書ボタン.Name = "品質異常報告書_回答書ボタン";
+            品質異常報告書_回答書ボタン.Size = new Size(88, 24);
+            品質異常報告書_回答書ボタン.TabIndex = 24;
+            品質異常報告書_回答書ボタン.TabStop = false;
+            品質異常報告書_回答書ボタン.Text = "回答書";
+            品質異常報告書_回答書ボタン.UseVisualStyleBackColor = true;
+            品質異常報告書_回答書ボタン.Click += 品質異常報告書_回答書ボタン_Click;
+            // 
+            // 品質異常報告書_発生場所
+            // 
+            品質異常報告書_発生場所.BackColor = Color.White;
+            品質異常報告書_発生場所.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            品質異常報告書_発生場所.ImeMode = ImeMode.Hiragana;
+            品質異常報告書_発生場所.Location = new Point(86, 25);
+            品質異常報告書_発生場所.Margin = new Padding(3, 2, 3, 2);
+            品質異常報告書_発生場所.Name = "品質異常報告書_発生場所";
+            品質異常報告書_発生場所.Size = new Size(314, 20);
+            品質異常報告書_発生場所.TabIndex = 19;
+            品質異常報告書_発生場所.Enter += 品質異常報告書_発生場所_Enter;
+            品質異常報告書_発生場所.Leave += 品質異常報告書_発生場所_Leave;
+            品質異常報告書_発生場所.TextChanged += 品質異常報告書_発生場所_TextChanged;
+            品質異常報告書_発生場所.Validated += 品質異常報告書_発生場所_Validated;
+            品質異常報告書_発生場所.Validating += 品質異常報告書_発生場所_Validating;
+            // 
+            // label167
+            // 
+            label167.AllowDrop = true;
+            label167.AutoEllipsis = true;
+            label167.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label167.ForeColor = SystemColors.ActiveCaptionText;
+            label167.ImageAlign = ContentAlignment.MiddleLeft;
+            label167.Location = new Point(0, 25);
+            label167.Margin = new Padding(0);
+            label167.Name = "label167";
+            label167.Size = new Size(85, 20);
+            label167.TabIndex = 18;
+            label167.Text = "発生場所";
+            label167.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // 品質異常報告書_型番
+            // 
+            品質異常報告書_型番.BackColor = Color.White;
+            品質異常報告書_型番.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            品質異常報告書_型番.ImeMode = ImeMode.Off;
+            品質異常報告書_型番.Location = new Point(86, 46);
+            品質異常報告書_型番.Margin = new Padding(3, 2, 3, 2);
+            品質異常報告書_型番.Name = "品質異常報告書_型番";
+            品質異常報告書_型番.Size = new Size(314, 20);
+            品質異常報告書_型番.TabIndex = 21;
+            品質異常報告書_型番.Enter += 品質異常報告書_型番_Enter;
+            品質異常報告書_型番.Leave += 品質異常報告書_型番_Leave;
+            品質異常報告書_型番.TextChanged += 品質異常報告書_型番_TextChanged;
+            品質異常報告書_型番.Validated += 品質異常報告書_型番_Validated;
+            品質異常報告書_型番.Validating += 品質異常報告書_型番_Validating;
+            // 
+            // 品質異常報告書_発生日選択ボタン
+            // 
+            品質異常報告書_発生日選択ボタン.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            品質異常報告書_発生日選択ボタン.Location = new Point(191, 3);
+            品質異常報告書_発生日選択ボタン.Margin = new Padding(4);
+            品質異常報告書_発生日選択ボタン.Name = "品質異常報告書_発生日選択ボタン";
+            品質異常報告書_発生日選択ボタン.Size = new Size(20, 20);
+            品質異常報告書_発生日選択ボタン.TabIndex = 21027;
+            品質異常報告書_発生日選択ボタン.TabStop = false;
+            品質異常報告書_発生日選択ボタン.Text = "▼";
+            品質異常報告書_発生日選択ボタン.UseVisualStyleBackColor = true;
+            品質異常報告書_発生日選択ボタン.Click += 品質異常報告書_発生日選択ボタン_Click;
+            // 
+            // 品質異常報告書_発生日
+            // 
+            品質異常報告書_発生日.BackColor = Color.White;
+            品質異常報告書_発生日.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            品質異常報告書_発生日.ImeMode = ImeMode.Disable;
+            品質異常報告書_発生日.Location = new Point(86, 4);
+            品質異常報告書_発生日.Margin = new Padding(3, 2, 3, 2);
+            品質異常報告書_発生日.Name = "品質異常報告書_発生日";
+            品質異常報告書_発生日.Size = new Size(102, 20);
+            品質異常報告書_発生日.TabIndex = 17;
+            品質異常報告書_発生日.DoubleClick += 品質異常報告書_発生日_DoubleClick;
+            品質異常報告書_発生日.KeyPress += 品質異常報告書_発生日_KeyPress;
+            品質異常報告書_発生日.TextChanged += 品質異常報告書_発生日_TextChanged;
+            品質異常報告書_発生日.Validated += 品質異常報告書_発生日_Validated;
+            品質異常報告書_発生日.Validating += 品質異常報告書_発生日_Validating;
+            // 
+            // label168
+            // 
+            label168.AllowDrop = true;
+            label168.AutoEllipsis = true;
+            label168.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label168.ForeColor = SystemColors.ActiveCaptionText;
+            label168.ImageAlign = ContentAlignment.MiddleLeft;
+            label168.Location = new Point(0, 46);
+            label168.Margin = new Padding(0);
+            label168.Name = "label168";
+            label168.Size = new Size(85, 20);
+            label168.TabIndex = 20;
+            label168.Text = "型番";
+            label168.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // 品質異常報告書_異常内容
+            // 
+            品質異常報告書_異常内容.BackColor = SystemColors.Window;
+            品質異常報告書_異常内容.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            品質異常報告書_異常内容.ImeMode = ImeMode.Hiragana;
+            品質異常報告書_異常内容.Location = new Point(4, 91);
+            品質異常報告書_異常内容.Margin = new Padding(3, 2, 3, 2);
+            品質異常報告書_異常内容.Multiline = true;
+            品質異常報告書_異常内容.Name = "品質異常報告書_異常内容";
+            品質異常報告書_異常内容.Size = new Size(396, 249);
+            品質異常報告書_異常内容.TabIndex = 23;
+            品質異常報告書_異常内容.DoubleClick += 品質異常報告書_異常内容_DoubleClick;
+            品質異常報告書_異常内容.Enter += 品質異常報告書_異常内容_Enter;
+            品質異常報告書_異常内容.Leave += 品質異常報告書_異常内容_Leave;
+            品質異常報告書_異常内容.TextChanged += 品質異常報告書_異常内容_TextChanged;
+            品質異常報告書_異常内容.Validated += 品質異常報告書_異常内容_Validated;
+            品質異常報告書_異常内容.Validating += 品質異常報告書_異常内容_Validating;
+            // 
+            // 品質異常報告書_版数
+            // 
+            品質異常報告書_版数.BackColor = Color.White;
+            品質異常報告書_版数.Enabled = false;
+            品質異常報告書_版数.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            品質異常報告書_版数.ImeMode = ImeMode.Disable;
+            品質異常報告書_版数.Location = new Point(303, 3);
+            品質異常報告書_版数.Margin = new Padding(3, 2, 3, 2);
+            品質異常報告書_版数.Name = "品質異常報告書_版数";
+            品質異常報告書_版数.ReadOnly = true;
+            品質異常報告書_版数.Size = new Size(13, 20);
+            品質異常報告書_版数.TabIndex = 10292;
+            品質異常報告書_版数.TabStop = false;
+            品質異常報告書_版数.Visible = false;
+            // 
+            // 品質異常報告書_文書コード
+            // 
+            品質異常報告書_文書コード.BackColor = Color.White;
+            品質異常報告書_文書コード.Enabled = false;
+            品質異常報告書_文書コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            品質異常報告書_文書コード.ImeMode = ImeMode.Disable;
+            品質異常報告書_文書コード.Location = new Point(284, 3);
+            品質異常報告書_文書コード.Margin = new Padding(3, 2, 3, 2);
+            品質異常報告書_文書コード.Name = "品質異常報告書_文書コード";
+            品質異常報告書_文書コード.ReadOnly = true;
+            品質異常報告書_文書コード.Size = new Size(13, 20);
+            品質異常報告書_文書コード.TabIndex = 10291;
+            品質異常報告書_文書コード.TabStop = false;
+            品質異常報告書_文書コード.Visible = false;
+            // 
+            // label169
+            // 
+            label169.AllowDrop = true;
+            label169.AutoEllipsis = true;
+            label169.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label169.ForeColor = SystemColors.ActiveCaptionText;
+            label169.ImageAlign = ContentAlignment.MiddleLeft;
+            label169.Location = new Point(0, 69);
+            label169.Margin = new Padding(0);
+            label169.Name = "label169";
+            label169.Size = new Size(85, 20);
+            label169.TabIndex = 22;
+            label169.Text = "異常内容";
+            label169.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // label170
+            // 
+            label170.AllowDrop = true;
+            label170.AutoEllipsis = true;
+            label170.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label170.ForeColor = SystemColors.ActiveCaptionText;
+            label170.ImageAlign = ContentAlignment.MiddleLeft;
+            label170.Location = new Point(0, 4);
+            label170.Margin = new Padding(0);
+            label170.Name = "label170";
+            label170.Size = new Size(85, 20);
+            label170.TabIndex = 16;
+            label170.Text = "発生日";
+            label170.TextAlign = ContentAlignment.MiddleLeft;
+            // 
             // F_文書
             // 
             BackColor = SystemColors.Control;
             ClientSize = new Size(880, 659);
-            Controls.Add(設備購買申請書パネル);
+            Controls.Add(品質異常報告書パネル);
+            Controls.Add(非該当証明発行依頼書パネル);
             Controls.Add(panel2);
             Controls.Add(label28);
             Controls.Add(通信欄);
@@ -8012,6 +8975,7 @@ namespace u_net
             Controls.Add(コマンド複写);
             Controls.Add(コマンド修正);
             Controls.Add(panel1);
+            Controls.Add(設備購買申請書パネル);
             Controls.Add(本文);
             Icon = (Icon)resources.GetObject("$this.Icon");
             ImeMode = ImeMode.Off;
@@ -8062,6 +9026,12 @@ namespace u_net
             設計製作依頼書_付属書類.PerformLayout();
             設備購買申請書パネル.ResumeLayout(false);
             設備購買申請書パネル.PerformLayout();
+            年間教育計画パネル.ResumeLayout(false);
+            年間教育計画パネル.PerformLayout();
+            非該当証明発行依頼書パネル.ResumeLayout(false);
+            非該当証明発行依頼書パネル.PerformLayout();
+            品質異常報告書パネル.ResumeLayout(false);
+            品質異常報告書パネル.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -8581,6 +9551,65 @@ namespace u_net
         private TextBox 設備購買申請書_文書コード;
         private Label label146;
         private Label label147;
+        private Panel 年間教育計画パネル;
+        internal Button 年間教育計画表_年間教育計画ボタン;
+        private TextBox 年間教育計画表_教育目的;
+        private TextBox 年間教育計画表_版数;
+        private TextBox 年間教育計画表_文書コード;
+        private Label label148;
+        private Panel 非該当証明発行依頼書パネル;
+        private Label label149;
+        private Label label150;
+        private Label label151;
+        private Label label152;
+        private Label label153;
+        private Label label154;
+        private TextBox 非該当証明発行依頼書_郵送先担当者名;
+        private TextBox 非該当証明発行依頼書_郵送先名;
+        private TextBox 非該当証明発行依頼書_郵送先住所2;
+        private TextBox 非該当証明発行依頼書_郵送先住所1;
+        private TextBox 非該当証明発行依頼書_郵送先郵便番号;
+        internal Button 非該当証明発行依頼書_郵送日選択ボタン;
+        private TextBox 非該当証明発行依頼書_郵送日;
+        private Label label155;
+        private TextBox 非該当証明発行依頼書_顧客名;
+        private Label label156;
+        internal ComboBox 非該当証明発行依頼書_郵送方法コード;
+        internal Button 非該当証明発行依頼書_受注リンクボタン;
+        private Label label157;
+        private TextBox 非該当証明発行依頼書_輸出先国名;
+        private Label label158;
+        private Label label159;
+        private TextBox 非該当証明発行依頼書_発行部数;
+        private TextBox 非該当証明発行依頼書_発行日;
+        private Label label160;
+        private Label label161;
+        private TextBox 非該当証明発行依頼書_型番;
+        private TextBox 非該当証明発行依頼書_代理店名;
+        internal Button 非該当証明発行依頼書_発行日選択ボタン;
+        private TextBox 非該当証明発行依頼書_受注コード;
+        private TextBox 非該当証明発行依頼書_品名;
+        private Label label162;
+        private Label label163;
+        private TextBox 非該当証明発行依頼書_備考;
+        private TextBox 非該当証明発行依頼書_版数;
+        private TextBox 非該当証明発行依頼書_文書コード;
+        private Label label164;
+        private Label label165;
+        private Panel 品質異常報告書パネル;
+        private Label label166;
+        internal Button 品質異常報告書_回答書ボタン;
+        private TextBox 品質異常報告書_発生場所;
+        private Label label167;
+        private TextBox 品質異常報告書_型番;
+        internal Button 品質異常報告書_発生日選択ボタン;
+        private TextBox 品質異常報告書_発生日;
+        private Label label168;
+        private TextBox 品質異常報告書_異常内容;
+        private TextBox 品質異常報告書_版数;
+        private TextBox 品質異常報告書_文書コード;
+        private Label label169;
+        private Label label170;
     }
 }
 
