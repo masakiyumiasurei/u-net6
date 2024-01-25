@@ -16,12 +16,16 @@ using System.Drawing.Imaging;
 using System.Drawing.Printing;
 using GrapeCity.Win.MultiRow;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
+using System.Media;
 
 namespace u_net.Public
 {
     internal class OriginalClass
     {
-
+        /// <summary>
+        /// 渡したパスを実行する
+        /// </summary>
+        /// <param name="url">実行するパス</param>
         public static void OpenUrl(string url)
         {
             try
@@ -39,11 +43,15 @@ namespace u_net.Public
         }
 
 
+        /// <summary>
+        //  URL の妥当性を確認するためのカスタムロジックを実装
+        // このロジックは URL の形式に合ったものである必要があります
+        // 有効な URL であるかどうかの判定を行います
+        /// </summary>
+        /// <param name="url"></param>
+        /// <returns></returns>
         public static bool IsValidUrl(string url)
-        {
-            // URL の妥当性を確認するためのカスタムロジックを実装
-            // このロジックは URL の形式に合ったものである必要があります
-            // 有効な URL であるかどうかの判定を行います
+        {            
             try
             {
                 Uri uri = new Uri(url);
@@ -59,6 +67,11 @@ namespace u_net.Public
 
         public const string ApiUrl = "https://zipcloud.ibsnet.co.jp/api/search";
 
+        /// <summary>
+        /// 郵便番号から住所を返す
+        /// </summary>
+        /// <param name="zipCode"></param>
+        /// <returns></returns>
         public static async Task<string> GetAddressFromZipCode(string zipCode)
         {
             using (var httpClient = new HttpClient())
@@ -85,6 +98,11 @@ namespace u_net.Public
             }
         }
 
+        /// <summary>
+        /// 郵便番号の書式かどうかを返す
+        /// </summary>
+        /// <param name="zipCode"></param>
+        /// <returns></returns>
         public static bool IsValidZipCode(string zipCode)
         {
             // 郵便番号の正規表現パターン (例: "123-4567")
@@ -93,7 +111,12 @@ namespace u_net.Public
             return System.Text.RegularExpressions.Regex.IsMatch(zipCode, pattern);
         }
 
-        // コンボボックスのアイテムに指定の値が含まれているかチェック
+        /// <summary>
+        /// コンボボックスのアイテムに指定の値が含まれているかチェック
+        /// </summary>
+        /// <param name="comboBox"></param>
+        /// <param name="value">判定する値</param>
+        /// <returns></returns>        
         public static string ComboBoxContainsValue(ComboBox comboBox, string value)
         {
             foreach (var item in comboBox.Items)
@@ -116,7 +139,10 @@ namespace u_net.Public
 
 
 
-
+        /// <summary>
+        /// 画面キャプチャを返す
+        /// </summary>
+        /// <param name="outputPath">保存先</param>
         public static void CaptureScreen(string outputPath)
         {
             // 画面のサイズを取得
@@ -200,7 +226,11 @@ namespace u_net.Public
         }
 
 
-
+        /// <summary>
+        /// コンボボックスのソースをセットする。SQLにはDisply とValueのカラムを指定する必要がある
+        /// </summary>
+        /// <param name="comboBox">対象のコンボボックス</param>
+        /// <param name="sqlQuery">ソースのクエリ</param>
         public void SetComboBox(ComboBox comboBox, string sqlQuery)
         {
             try
@@ -227,6 +257,12 @@ namespace u_net.Public
                 MessageBox.Show("データの読み込み中にエラーが発生しました: " + ex.Message, "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        /// <summary>
+        /// multirowのコンボボックスのソースをセットする。SQLにはDisply とValueのカラムを指定する必要がある
+        /// </summary>
+        /// <param name="comboBox"></param>
+        /// <param name="sqlQuery"></param>
         public void SetComboBox(ComboBoxCell comboBox, string sqlQuery)
         {
             try
@@ -278,6 +314,13 @@ namespace u_net.Public
             if (Convert.ToBoolean(e.State & DrawItemState.Selected)) ControlPaint.DrawFocusRectangle(e.Graphics, e.Bounds);
         }
 
+        /// <summary>
+        /// コンボボックスの表示時に、複数列を表示する
+        /// </summary>
+        /// <param name="cb">コンボボックス</param>
+        /// <param name="e"></param>
+        /// <param name="fieldWidth">表示幅</param>
+        /// <param name="fieldName">カラム名</param>
         public static void SetComboBoxAppearance(ComboBoxEditingControl cb, DrawItemEventArgs e, int[] fieldWidth, String[] fieldName)
         {
             DataTable dt = (DataTable)cb.DataSource;
@@ -303,7 +346,12 @@ namespace u_net.Public
             if (Convert.ToBoolean(e.State & DrawItemState.Selected)) ControlPaint.DrawFocusRectangle(e.Graphics, e.Bounds);
         }
 
-        //数値かどうか判定する
+        /// <summary>
+        /// 数値かどうか判定する　数値ならtrue
+        /// </summary>
+        /// <param name="varValue">判定したい対象</param>
+        /// <returns></returns>
+        
         public static bool IsNumeric(object varValue)
         {
             return double.TryParse(varValue.ToString(), out _);
@@ -330,8 +378,13 @@ namespace u_net.Public
             }
 
         }
-
-        //SQLの結果を返す 返す型が不明なのでジェネリックで定義する
+        /// <summary>
+        /// SQLの結果を返す 
+        /// </summary>
+        /// <typeparam name="T">返す型が不明なのでジェネリックで定義する</typeparam>
+        /// <param name="connection"></param>
+        /// <param name="sql"></param>
+        /// <returns></returns>
         public static T GetScalar<T>(SqlConnection connection, string sql)
         {
             T result =  default(T);
@@ -354,6 +407,26 @@ namespace u_net.Public
 
             return result;
         }
+
+        /// <summary>
+        /// 音声ファイルを実行する
+        /// </summary>
+        /// <param name="fileName">ファイル名を渡す</param>
+       public static void PlaySound(string fileName)
+        {
+            try
+            {
+                string fullPath = Path.Combine(Application.StartupPath, fileName);
+                SoundPlayer player = new SoundPlayer(fullPath);
+                player.Play();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+            }
+        }
+
+
 
     }
 }

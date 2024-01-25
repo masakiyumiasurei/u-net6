@@ -19,6 +19,11 @@ using System.Drawing.Printing;
 using Pao.Reports;
 using GrapeCity.Win.MultiRow;
 using System.Text;
+using Microsoft.IdentityModel.Tokens;
+using static u_net.Public.FunctionClass;
+using static u_net.Public.OriginalClass;
+using Microsoft.EntityFrameworkCore.Diagnostics;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace u_net
 {
@@ -31,6 +36,9 @@ namespace u_net
         private string BASE_CAPTION = "年間教育計画";
         private int selected_frame = 0;
         public bool IsDirty = false;
+
+        public object? var年度;
+        public object? var部;
 
         public F_年間教育計画()
         {
@@ -127,53 +135,45 @@ namespace u_net
         DataTable dt = new DataTable();
         SqlDataAdapter adapter = new SqlDataAdapter();
 
+        private void SetAll()
+        {
+            var年度 = null;
+            var部 = null;
+
+        }
+
+        private void SetInitial()
+        {
+            //今年の条件の時点で対象レコードはないので、不要であるが．．．
+            var年度 = DateTime.Now.Year; ;
+            var部 = null;
+
+        }
         private void Form_Load(object sender, EventArgs e)
         {
-            foreach (Control control in Controls)
-            {
-                control.PreviewKeyDown += OriginalClass.ValidateCheck;
-            }
-
-            //実行中フォーム起動
-            string LoginUserCode = CommonConstants.LoginUserCode;//テスト用 ログインユーザを実行中にどのように管理するか決まったら修正
-            LocalSetting localSetting = new LocalSetting();
-            localSetting.LoadPlace(LoginUserCode, this);
-
-
-            OriginalClass ofn = new OriginalClass();
-            ofn.SetComboBox(受講者コード, "SELECT 社員コード as Value,氏名 as Display FROM M社員" +
-                " WHERE 退社 IS NULL AND 削除日時 IS NULL ORDER BY ふりがな");
-            //受講者コード.DrawMode = DrawMode.OwnerDrawFixed;
-
             try
             {
+                foreach (Control control in Controls)
+                {
+                    control.PreviewKeyDown += OriginalClass.ValidateCheck;
+                }
+
+                //実行中フォーム起動
+                string LoginUserCode = CommonConstants.LoginUserCode;//テスト用 ログインユーザを実行中にどのように管理するか決まったら修正
+                LocalSetting localSetting = new LocalSetting();
+                localSetting.LoadPlace(LoginUserCode, this);
+
+
+                OriginalClass ofn = new OriginalClass();
+                ofn.SetComboBox(受講者コード, "SELECT 社員コード as Value,氏名 as Display FROM M社員" +
+                    " WHERE 退社 IS NULL AND 削除日時 IS NULL ORDER BY ふりがな");
+                //受講者コード.DrawMode = DrawMode.OwnerDrawFixed;
+
                 this.SuspendLayout();
 
                 int intWindowHeight = this.Height;
                 int intWindowWidth = this.Width;
 
-
-                if (string.IsNullOrEmpty(args)) // 新規
-                {
-                    if (!GoNewMode())
-                    {
-                        MessageBox.Show("初期化に失敗しました。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        this.Close();
-                    }
-                }
-                else // 読込se
-                {
-                    if (!GoModifyMode())
-                    {
-                        MessageBox.Show("初期化に失敗しました。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        this.Close();
-                    }
-
-                    this.受講者コード.Text = Convert.ToInt32(args.Substring(0, args.IndexOf(","))).ToString();
-                    //this.ユニットコード.Focus();
-                    //this.ユニットコード.Text = args.Substring(0, args.IndexOf(","));
-                }
-                args = null;
 
                 // 成功時の処理
                 return;
@@ -190,199 +190,88 @@ namespace u_net
             }
         }
 
-        public bool GoNewMode()
+        public void Filtering()
         {
             try
             {
-                bool success = false;
                 string strSQL = "";
+                string strFilter = "";
+                string strSource = "";
+                string[] arr1;
+                string str1 = "";
+
+                //入金コード指定
+                if (!string.IsNullOrEmpty(var部?.ToString()))
+                {
+                    strFilter = WhereString(strFilter, "部='" + var部.ToString() + "'");
+                }
+
+                // 入金日指定
+                if (int.TryParse(var年度?.ToString(), out int num))
+                {                    
+                    strFilter = WhereString(strFilter, "年度=" +  num );
+                }
+
+
+                if (strFilter == "")
+                {
+                    strSQL = "SELECT * FROM V年間教育計画サブ ORDER BY 登録コード DESC";
+                }
+                else
+                {
+                    strSQL = "SELECT * FROM V年間教育計画サブ WHERE " + strFilter + " ORDER BY 登録コード DESC";
+                }
 
                 Connect();
+                if (!VariableSet.SetTable2Details(年間教育計画サブ1.Detail, strSQL, cn))
+                    throw new Exception("初期化に失敗しました。");
 
+                年間教育計画サブ1.Detail.AllowUserToAddRows = false;
+                年間教育計画サブ1.Detail.AllowUserToDeleteRows = false;
+                年間教育計画サブ1.Detail.ReadOnly = true;
 
+                表示件数.Text = 年間教育計画サブ1.Detail.RowCount.ToString();
 
+                for (int i = 0; i < 年間教育計画サブ1.Detail.RowCount; i++)
+                {
+                    if ((bool)年間教育計画サブ1.Detail.Rows[i].Cells["キャンセル待ち"].Value == true)
+                    {
+                        年間教育計画サブ1.Detail.Rows[i].Cells["キャンセル待ち表示"].Value = "キャンセル待ち";
+                    }
+                    else
+                    {
+                        年間教育計画サブ1.Detail.Rows[i].Cells["キャンセル待ち表示"].Value = "";
+                    }
 
-                // ヘッダ部の初期化
-                VariableSet.SetControls(this);
-
-
-                //this.ユニットコード.Text = Right(FunctionClass.採番(cn, "UNI"), 8);
-                //this.受講者コード.Text = 1.ToString();
-
-
-                // 明細部の初期化
-                strSQL = "SELECT * FROM Vユニット明細 WHERE ユニットコード='" +
-                             this.CurrentCode + "' AND ユニット版数=" + this.CurrentEdition +
-                             " ORDER BY 明細番号";
-                //VariableSet.SetTable2Details(ユニット明細1.Detail, strSQL, cn);
-
-                // ヘッダ部動作制御
-                FunctionClass.LockData(this, false);
-
-                //this.品名.Focus();
-                this.受講者コード.Enabled = false;
-                this.実行ボタン.Enabled = false;
-                this.コマンド抽出.Enabled = false;
-                this.コマンド初期化.Enabled = true;
-                this.コマンド全表示.Enabled = false;
-                this.コマンド印刷.Enabled = false;
-                this.コマンド商品.Enabled = false;
-                this.コマンド行挿入.Enabled = false;
-                this.コマンド複写.Enabled = false;
-                this.コマンド更新.Enabled = false;
-                this.コマンド登録.Enabled = false;
-
-                // 明細部動作制御
-                //ユニット明細1.Detail.AllowUserToAddRows = true;
-                //ユニット明細1.Detail.AllowUserToDeleteRows = true;
-                //ユニット明細1.Detail.ReadOnly = false;
-
-                success = true;
-                return success;
+                    if ((bool)年間教育計画サブ1.Detail.Rows[i].Cells["キャンセル"].Value == true)
+                    {
+                        年間教育計画サブ1.Detail.Rows[i].Cells["キャンセル表示"].Value = "=======================" +
+                            "==================================================================================" +
+                            "===========";
+                    }
+                    else
+                    {
+                        年間教育計画サブ1.Detail.Rows[i].Cells["キャンセル表示"].Value = "";
+                    }
+                }
             }
             catch (Exception ex)
             {
-                Console.WriteLine(this.Name + "_GoNewMode - " + ex.Message);
-                return false;
+                MessageBox.Show("Filtering - " + ex.Message);
+                return;
             }
         }
-
-        private bool GoModifyMode()
-        {
-            try
-            {
-                bool success = false;
-                string strSQL = "";
-
-                // 各コントロール値をクリア
-                VariableSet.SetControls(this);
-
-                受講者コード.DataSource = null;
+      
 
 
-                // 明細部の初期化
-                strSQL = "SELECT * FROM Vユニット明細 WHERE ユニットコード='" +
-                             this.CurrentCode + "' AND ユニット版数=" + this.CurrentEdition +
-                             " ORDER BY 明細番号";
-                //VariableSet.SetTable2Details(ユニット明細1.Detail, strSQL, cn);
-
-                ChangedData(false);
-
-                //this.ユニットコード.Focus();
-
-                FunctionClass.LockData(this, true, "ユニットコード");
-
-
-                // ボタンの状態を設定
-                this.コマンド抽出.Enabled = true;
-                this.コマンド初期化.Enabled = false;
-
-
-                success = true;
-                return success;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(this.Name + "_GoModifyMode - " + ex.Message);
-                return false;
-            }
-        }
 
         private void Form_Unload(object sender, FormClosingEventArgs e)
         {
-            string LoginUserCode = CommonConstants.LoginUserCode;//テスト用 ログインユーザを実行中にどのように管理するか決まったら修正
+            string LoginUserCode = CommonConstants.LoginUserCode;
             LocalSetting test = new LocalSetting();
             test.SavePlace(LoginUserCode, this);
-
-            try
-            {
-
-                Connect();
-
-                // データへの変更がないときの処理
-                if (!IsDirty)
-                {
-                    // 新規モードで且つコードが取得済みのときはコードを戻す
-                    if (IsNewData && !string.IsNullOrEmpty(CurrentCode) && CurrentEdition == 1)
-                    {
-                        // 採番された番号を戻す
-                        if (!FunctionClass.ReturnCode(cn, "UNI" + CurrentCode))
-                        {
-                            MessageBox.Show("エラーのためコードは破棄されました。" + Environment.NewLine + Environment.NewLine +
-                                            "ユニットコード　：　" + CurrentCode, "警告", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                        }
-                    }
-                    return;
-                }
-
-                // 修正されているときは登録確認を行う
-                var intRes = MessageBox.Show("変更内容を登録しますか？", "確認", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
-                switch (intRes)
-                {
-                    case DialogResult.Yes:
-                        // エラーチェック
-                        if (!ErrCheck())
-                        {
-                            return;
-                        }
-                        // 登録処理
-                        if (!SaveData())
-                        {
-                            if (MessageBox.Show("エラーのため登録できませんでした。" + Environment.NewLine +
-                                                "強制終了しますか？", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
-                            {
-                                return;
-                            }
-                        }
-                        break;
-                    case DialogResult.No:
-                        //新規コードを取得していたときはコードを戻す
-                        if (IsNewData && !string.IsNullOrEmpty(CurrentCode) && CurrentEdition == 1)
-                        {
-                            if (!FunctionClass.ReturnCode(cn, "UNI" + CurrentCode))
-                            {
-                                MessageBox.Show("エラーのためコードは破棄されました。" + Environment.NewLine +
-                                                "ユニットコード　：　" + CurrentCode, "警告", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                            }
-                        }
-                        break;
-                    case DialogResult.Cancel:
-                        return;
-                }
-
-
-            }
-            catch (Exception ex)
-            {
-                Debug.Print(Name + "_Unload - " + ex.Message);
-                MessageBox.Show(ex.Message, "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
-                Form unitSelectionForm = Application.OpenForms["F_部品選択"];
-
-                if (unitSelectionForm != null)
-                {
-                    // フォームが開いている場合は閉じる
-                    unitSelectionForm.Close();
-                }
-            }
         }
 
-        private bool ErrCheck()
-        {
-            //入力確認    
-            //if (!FunctionClass.IsError(this.ユニットコード)) return false;
-            if (!FunctionClass.IsError(this.受講者コード)) return false;
-
-            //if ((IsDecided && ユニット明細1.Detail.RowCount < 1) || (!IsDecided && ユニット明細1.Detail.RowCount <= 1))
-            //{
-            //    MessageBox.Show("１つ以上の明細が必要です。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            //    return false;
-            //}
-
-            return true;
-        }
 
         public void ChangedData(bool isChanged)
         {
@@ -926,17 +815,21 @@ namespace u_net
 
         private void コマンド全表示_Click(object sender, EventArgs e)
         {
+            SetAll();
+            Filtering();
 
         }
 
         private void コマンド初期化_Click(object sender, EventArgs e)
         {
-
+            SetInitial();
+            Filtering();
         }
 
         private void コマンド抽出_Click(object sender, EventArgs e)
         {
-
+            F_年間教育計画_抽出 fm = new F_年間教育計画_抽出();
+            fm.ShowDialog();
         }
 
         private void 実行ボタン_Click(object sender, EventArgs e)
@@ -1001,12 +894,12 @@ namespace u_net
 
         private void 教育名_Enter(object sender, EventArgs e)
         {
-            toolStripStatusLabel1.Text = "■改行する場合は、[Ctrl]キーを押しながら[Enter]キーを押します。";
+            // toolStripStatusLabel1.Text = "■改行する場合は、[Ctrl]キーを押しながら[Enter]キーを押します。";
         }
 
         private void 教育名_Leave(object sender, EventArgs e)
         {
-            toolStripStatusLabel1.Text = "各種項目の説明";
+            //toolStripStatusLabel1.Text = "各種項目の説明";
         }
 
         private void 教育名_TextChanged(object sender, EventArgs e)
@@ -1026,12 +919,12 @@ namespace u_net
 
         private void 教育機関名_Enter(object sender, EventArgs e)
         {
-            toolStripStatusLabel1.Text = "■改行する場合は、[Ctrl]キーを押しながら[Enter]キーを押します。";
+            // toolStripStatusLabel1.Text = "■改行する場合は、[Ctrl]キーを押しながら[Enter]キーを押します。";
         }
 
         private void 教育機関名_Leave(object sender, EventArgs e)
         {
-            toolStripStatusLabel1.Text = "各種項目の説明";
+            //toolStripStatusLabel1.Text = "各種項目の説明";
         }
 
         private void 教育機関名_TextChanged(object sender, EventArgs e)

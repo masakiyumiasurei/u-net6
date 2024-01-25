@@ -346,8 +346,8 @@ namespace u_net
 
         private void 出荷管理ボタン_Click(object sender, EventArgs e)
         {
-            //F_出荷管理 fm = new F_出荷管理();
-            //fm.ShowDialog();
+            F_出荷管理旧 fm = new F_出荷管理旧();
+            fm.ShowDialog();
         }
 
         private void シリーズ在庫参照ボタン_Click(object sender, EventArgs e)

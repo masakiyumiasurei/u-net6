@@ -29,15 +29,24 @@
 		/// </summary>
         private void InitializeComponent()
         {
-            GrapeCity.Win.MultiRow.CellStyle cellStyle16 = new GrapeCity.Win.MultiRow.CellStyle();
-            GrapeCity.Win.MultiRow.CellStyle cellStyle17 = new GrapeCity.Win.MultiRow.CellStyle();
             GrapeCity.Win.MultiRow.CellStyle cellStyle18 = new GrapeCity.Win.MultiRow.CellStyle();
+            GrapeCity.Win.MultiRow.Border border18 = new GrapeCity.Win.MultiRow.Border();
             GrapeCity.Win.MultiRow.CellStyle cellStyle19 = new GrapeCity.Win.MultiRow.CellStyle();
+            GrapeCity.Win.MultiRow.Border border19 = new GrapeCity.Win.MultiRow.Border();
             GrapeCity.Win.MultiRow.CellStyle cellStyle20 = new GrapeCity.Win.MultiRow.CellStyle();
+            GrapeCity.Win.MultiRow.Border border20 = new GrapeCity.Win.MultiRow.Border();
             GrapeCity.Win.MultiRow.CellStyle cellStyle21 = new GrapeCity.Win.MultiRow.CellStyle();
+            GrapeCity.Win.MultiRow.Border border21 = new GrapeCity.Win.MultiRow.Border();
             GrapeCity.Win.MultiRow.CellStyle cellStyle22 = new GrapeCity.Win.MultiRow.CellStyle();
+            GrapeCity.Win.MultiRow.Border border22 = new GrapeCity.Win.MultiRow.Border();
             GrapeCity.Win.MultiRow.CellStyle cellStyle23 = new GrapeCity.Win.MultiRow.CellStyle();
+            GrapeCity.Win.MultiRow.Border border23 = new GrapeCity.Win.MultiRow.Border();
             GrapeCity.Win.MultiRow.CellStyle cellStyle24 = new GrapeCity.Win.MultiRow.CellStyle();
+            GrapeCity.Win.MultiRow.Border border24 = new GrapeCity.Win.MultiRow.Border();
+            GrapeCity.Win.MultiRow.CellStyle cellStyle25 = new GrapeCity.Win.MultiRow.CellStyle();
+            GrapeCity.Win.MultiRow.Border border25 = new GrapeCity.Win.MultiRow.Border();
+            GrapeCity.Win.MultiRow.CellStyle cellStyle26 = new GrapeCity.Win.MultiRow.CellStyle();
+            GrapeCity.Win.MultiRow.Border border26 = new GrapeCity.Win.MultiRow.Border();
             GrapeCity.Win.MultiRow.CellStyle cellStyle1 = new GrapeCity.Win.MultiRow.CellStyle();
             GrapeCity.Win.MultiRow.Border border1 = new GrapeCity.Win.MultiRow.Border();
             GrapeCity.Win.MultiRow.TextLengthValidator textLengthValidator1 = new GrapeCity.Win.MultiRow.TextLengthValidator();
@@ -83,21 +92,27 @@
             GrapeCity.Win.MultiRow.CellStyle cellStyle15 = new GrapeCity.Win.MultiRow.CellStyle();
             GrapeCity.Win.MultiRow.Border border15 = new GrapeCity.Win.MultiRow.Border();
             GrapeCity.Win.MultiRow.TextLengthValidator textLengthValidator15 = new GrapeCity.Win.MultiRow.TextLengthValidator();
+            GrapeCity.Win.MultiRow.CellStyle cellStyle16 = new GrapeCity.Win.MultiRow.CellStyle();
+            GrapeCity.Win.MultiRow.Border border16 = new GrapeCity.Win.MultiRow.Border();
+            GrapeCity.Win.MultiRow.TextLengthValidator textLengthValidator16 = new GrapeCity.Win.MultiRow.TextLengthValidator();
+            GrapeCity.Win.MultiRow.CellStyle cellStyle17 = new GrapeCity.Win.MultiRow.CellStyle();
+            GrapeCity.Win.MultiRow.Border border17 = new GrapeCity.Win.MultiRow.Border();
+            GrapeCity.Win.MultiRow.TextLengthValidator textLengthValidator17 = new GrapeCity.Win.MultiRow.TextLengthValidator();
             this.columnHeaderSection1 = new GrapeCity.Win.MultiRow.ColumnHeaderSection();
-            this.登録コードボタン = new GrapeCity.Win.MultiRow.ButtonCell();
-            this.年度ボタン = new GrapeCity.Win.MultiRow.ButtonCell();
-            this.教育名ボタン = new GrapeCity.Win.MultiRow.ButtonCell();
-            this.教育機関名ボタン = new GrapeCity.Win.MultiRow.ButtonCell();
-            this.部署名ボタン = new GrapeCity.Win.MultiRow.ButtonCell();
-            this.教育期間ボタン = new GrapeCity.Win.MultiRow.ButtonCell();
-            this.受講者名ボタン = new GrapeCity.Win.MultiRow.ButtonCell();
-            this.備考ボタン = new GrapeCity.Win.MultiRow.ButtonCell();
-            this.登録文書ボタン = new GrapeCity.Win.MultiRow.ButtonCell();
+            this.登録コードボタン = new GrapeCity.Win.MultiRow.ColumnHeaderCell();
+            this.年度ボタン = new GrapeCity.Win.MultiRow.ColumnHeaderCell();
+            this.教育名ボタン = new GrapeCity.Win.MultiRow.ColumnHeaderCell();
+            this.教育機関名ボタン = new GrapeCity.Win.MultiRow.ColumnHeaderCell();
+            this.部署名ボタン = new GrapeCity.Win.MultiRow.ColumnHeaderCell();
+            this.教育期間ボタン = new GrapeCity.Win.MultiRow.ColumnHeaderCell();
+            this.受講者名ボタン = new GrapeCity.Win.MultiRow.ColumnHeaderCell();
+            this.備考ボタン = new GrapeCity.Win.MultiRow.ColumnHeaderCell();
+            this.登録文書ボタン = new GrapeCity.Win.MultiRow.ColumnHeaderCell();
             this.登録コード = new GrapeCity.Win.MultiRow.TextBoxCell();
             this.年度 = new GrapeCity.Win.MultiRow.TextBoxCell();
             this.教育名 = new GrapeCity.Win.MultiRow.TextBoxCell();
-            this.キャンセル待ち = new GrapeCity.Win.MultiRow.TextBoxCell();
-            this.キャンセル = new GrapeCity.Win.MultiRow.TextBoxCell();
+            this.キャンセル待ち表示 = new GrapeCity.Win.MultiRow.TextBoxCell();
+            this.キャンセル表示 = new GrapeCity.Win.MultiRow.TextBoxCell();
             this.教育機関名 = new GrapeCity.Win.MultiRow.TextBoxCell();
             this.チーム名 = new GrapeCity.Win.MultiRow.TextBoxCell();
             this.受講者名 = new GrapeCity.Win.MultiRow.TextBoxCell();
@@ -108,14 +123,16 @@
             this.版数 = new GrapeCity.Win.MultiRow.TextBoxCell();
             this.受講者コード = new GrapeCity.Win.MultiRow.TextBoxCell();
             this.選択 = new GrapeCity.Win.MultiRow.TextBoxCell();
+            this.キャンセル = new GrapeCity.Win.MultiRow.TextBoxCell();
+            this.キャンセル待ち = new GrapeCity.Win.MultiRow.TextBoxCell();
             // 
             // Row
             // 
             this.Row.Cells.Add(this.登録コード);
             this.Row.Cells.Add(this.年度);
             this.Row.Cells.Add(this.教育名);
-            this.Row.Cells.Add(this.キャンセル待ち);
-            this.Row.Cells.Add(this.キャンセル);
+            this.Row.Cells.Add(this.キャンセル待ち表示);
+            this.Row.Cells.Add(this.キャンセル表示);
             this.Row.Cells.Add(this.教育機関名);
             this.Row.Cells.Add(this.チーム名);
             this.Row.Cells.Add(this.受講者名);
@@ -126,8 +143,10 @@
             this.Row.Cells.Add(this.版数);
             this.Row.Cells.Add(this.受講者コード);
             this.Row.Cells.Add(this.選択);
+            this.Row.Cells.Add(this.キャンセル);
+            this.Row.Cells.Add(this.キャンセル待ち);
             this.Row.Height = 36;
-            this.Row.Width = 840;
+            this.Row.Width = 786;
             // 
             // columnHeaderSection1
             // 
@@ -142,19 +161,24 @@
             this.columnHeaderSection1.Cells.Add(this.登録文書ボタン);
             this.columnHeaderSection1.Height = 40;
             this.columnHeaderSection1.Name = "columnHeaderSection1";
-            this.columnHeaderSection1.Width = 840;
+            this.columnHeaderSection1.Width = 786;
             // 
             // 登録コードボタン
             // 
             this.登録コードボタン.Location = new System.Drawing.Point(0, 0);
             this.登録コードボタン.Name = "登録コードボタン";
             this.登録コードボタン.Size = new System.Drawing.Size(40, 40);
-            cellStyle16.BackColor = System.Drawing.SystemColors.Control;
-            cellStyle16.Font = new System.Drawing.Font("BIZ UDPゴシック", 8F);
-            cellStyle16.ImeMode = System.Windows.Forms.ImeMode.Off;
-            cellStyle16.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            cellStyle16.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
-            this.登録コードボタン.Style = cellStyle16;
+            cellStyle18.BackColor = System.Drawing.SystemColors.Control;
+            border18.Bottom = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Black);
+            border18.Left = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Black);
+            border18.Right = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Black);
+            border18.Top = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Black);
+            cellStyle18.Border = border18;
+            cellStyle18.Font = new System.Drawing.Font("BIZ UDPゴシック", 8F);
+            cellStyle18.ImeMode = System.Windows.Forms.ImeMode.Off;
+            cellStyle18.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            cellStyle18.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
+            this.登録コードボタン.Style = cellStyle18;
             this.登録コードボタン.TabIndex = 0;
             this.登録コードボタン.TabStop = false;
             this.登録コードボタン.Value = "No.";
@@ -164,12 +188,17 @@
             this.年度ボタン.Location = new System.Drawing.Point(40, 0);
             this.年度ボタン.Name = "年度ボタン";
             this.年度ボタン.Size = new System.Drawing.Size(40, 40);
-            cellStyle17.BackColor = System.Drawing.SystemColors.Control;
-            cellStyle17.Font = new System.Drawing.Font("BIZ UDPゴシック", 8F);
-            cellStyle17.ImeMode = System.Windows.Forms.ImeMode.Off;
-            cellStyle17.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            cellStyle17.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
-            this.年度ボタン.Style = cellStyle17;
+            cellStyle19.BackColor = System.Drawing.SystemColors.Control;
+            border19.Bottom = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Black);
+            border19.Left = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Black);
+            border19.Right = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Black);
+            border19.Top = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Black);
+            cellStyle19.Border = border19;
+            cellStyle19.Font = new System.Drawing.Font("BIZ UDPゴシック", 8F);
+            cellStyle19.ImeMode = System.Windows.Forms.ImeMode.Off;
+            cellStyle19.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            cellStyle19.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
+            this.年度ボタン.Style = cellStyle19;
             this.年度ボタン.TabIndex = 1;
             this.年度ボタン.TabStop = false;
             this.年度ボタン.Value = "年度";
@@ -179,12 +208,17 @@
             this.教育名ボタン.Location = new System.Drawing.Point(80, 0);
             this.教育名ボタン.Name = "教育名ボタン";
             this.教育名ボタン.Size = new System.Drawing.Size(170, 40);
-            cellStyle18.BackColor = System.Drawing.SystemColors.Control;
-            cellStyle18.Font = new System.Drawing.Font("BIZ UDPゴシック", 8F);
-            cellStyle18.ImeMode = System.Windows.Forms.ImeMode.Off;
-            cellStyle18.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            cellStyle18.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
-            this.教育名ボタン.Style = cellStyle18;
+            cellStyle20.BackColor = System.Drawing.SystemColors.Control;
+            border20.Bottom = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Black);
+            border20.Left = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Black);
+            border20.Right = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Black);
+            border20.Top = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Black);
+            cellStyle20.Border = border20;
+            cellStyle20.Font = new System.Drawing.Font("BIZ UDPゴシック", 8F);
+            cellStyle20.ImeMode = System.Windows.Forms.ImeMode.Off;
+            cellStyle20.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            cellStyle20.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
+            this.教育名ボタン.Style = cellStyle20;
             this.教育名ボタン.TabIndex = 2;
             this.教育名ボタン.TabStop = false;
             this.教育名ボタン.Value = "教育名";
@@ -194,12 +228,17 @@
             this.教育機関名ボタン.Location = new System.Drawing.Point(250, 0);
             this.教育機関名ボタン.Name = "教育機関名ボタン";
             this.教育機関名ボタン.Size = new System.Drawing.Size(136, 40);
-            cellStyle19.BackColor = System.Drawing.SystemColors.Control;
-            cellStyle19.Font = new System.Drawing.Font("BIZ UDPゴシック", 8F);
-            cellStyle19.ImeMode = System.Windows.Forms.ImeMode.Off;
-            cellStyle19.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            cellStyle19.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
-            this.教育機関名ボタン.Style = cellStyle19;
+            cellStyle21.BackColor = System.Drawing.SystemColors.Control;
+            border21.Bottom = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Black);
+            border21.Left = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Black);
+            border21.Right = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Black);
+            border21.Top = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Black);
+            cellStyle21.Border = border21;
+            cellStyle21.Font = new System.Drawing.Font("BIZ UDPゴシック", 8F);
+            cellStyle21.ImeMode = System.Windows.Forms.ImeMode.Off;
+            cellStyle21.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            cellStyle21.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
+            this.教育機関名ボタン.Style = cellStyle21;
             this.教育機関名ボタン.TabIndex = 3;
             this.教育機関名ボタン.TabStop = false;
             this.教育機関名ボタン.Value = "教育機関名/講師名";
@@ -209,12 +248,17 @@
             this.部署名ボタン.Location = new System.Drawing.Point(386, 0);
             this.部署名ボタン.Name = "部署名ボタン";
             this.部署名ボタン.Size = new System.Drawing.Size(78, 20);
-            cellStyle20.BackColor = System.Drawing.SystemColors.Control;
-            cellStyle20.Font = new System.Drawing.Font("BIZ UDPゴシック", 7F);
-            cellStyle20.ImeMode = System.Windows.Forms.ImeMode.Off;
-            cellStyle20.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            cellStyle20.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
-            this.部署名ボタン.Style = cellStyle20;
+            cellStyle22.BackColor = System.Drawing.SystemColors.Control;
+            border22.Bottom = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Black);
+            border22.Left = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Black);
+            border22.Right = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Black);
+            border22.Top = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Black);
+            cellStyle22.Border = border22;
+            cellStyle22.Font = new System.Drawing.Font("BIZ UDPゴシック", 7F);
+            cellStyle22.ImeMode = System.Windows.Forms.ImeMode.Off;
+            cellStyle22.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            cellStyle22.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
+            this.部署名ボタン.Style = cellStyle22;
             this.部署名ボタン.TabIndex = 4;
             this.部署名ボタン.TabStop = false;
             this.部署名ボタン.Value = "部署名(Team)";
@@ -224,12 +268,17 @@
             this.教育期間ボタン.Location = new System.Drawing.Point(552, 0);
             this.教育期間ボタン.Name = "教育期間ボタン";
             this.教育期間ボタン.Size = new System.Drawing.Size(156, 20);
-            cellStyle21.BackColor = System.Drawing.SystemColors.Control;
-            cellStyle21.Font = new System.Drawing.Font("BIZ UDPゴシック", 7F);
-            cellStyle21.ImeMode = System.Windows.Forms.ImeMode.Off;
-            cellStyle21.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            cellStyle21.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
-            this.教育期間ボタン.Style = cellStyle21;
+            cellStyle23.BackColor = System.Drawing.SystemColors.Control;
+            border23.Bottom = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Black);
+            border23.Left = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Black);
+            border23.Right = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Black);
+            border23.Top = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Black);
+            cellStyle23.Border = border23;
+            cellStyle23.Font = new System.Drawing.Font("BIZ UDPゴシック", 7F);
+            cellStyle23.ImeMode = System.Windows.Forms.ImeMode.Off;
+            cellStyle23.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            cellStyle23.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
+            this.教育期間ボタン.Style = cellStyle23;
             this.教育期間ボタン.TabIndex = 5;
             this.教育期間ボタン.TabStop = false;
             this.教育期間ボタン.Value = "教育期間";
@@ -239,12 +288,17 @@
             this.受講者名ボタン.Location = new System.Drawing.Point(464, 0);
             this.受講者名ボタン.Name = "受講者名ボタン";
             this.受講者名ボタン.Size = new System.Drawing.Size(88, 20);
-            cellStyle22.BackColor = System.Drawing.SystemColors.Control;
-            cellStyle22.Font = new System.Drawing.Font("BIZ UDPゴシック", 7F);
-            cellStyle22.ImeMode = System.Windows.Forms.ImeMode.Off;
-            cellStyle22.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            cellStyle22.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
-            this.受講者名ボタン.Style = cellStyle22;
+            cellStyle24.BackColor = System.Drawing.SystemColors.Control;
+            border24.Bottom = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Black);
+            border24.Left = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Black);
+            border24.Right = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Black);
+            border24.Top = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Black);
+            cellStyle24.Border = border24;
+            cellStyle24.Font = new System.Drawing.Font("BIZ UDPゴシック", 7F);
+            cellStyle24.ImeMode = System.Windows.Forms.ImeMode.Off;
+            cellStyle24.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            cellStyle24.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
+            this.受講者名ボタン.Style = cellStyle24;
             this.受講者名ボタン.TabIndex = 6;
             this.受講者名ボタン.TabStop = false;
             this.受講者名ボタン.Value = "受講者名";
@@ -254,12 +308,17 @@
             this.備考ボタン.Location = new System.Drawing.Point(386, 20);
             this.備考ボタン.Name = "備考ボタン";
             this.備考ボタン.Size = new System.Drawing.Size(322, 20);
-            cellStyle23.BackColor = System.Drawing.SystemColors.Control;
-            cellStyle23.Font = new System.Drawing.Font("BIZ UDPゴシック", 7F);
-            cellStyle23.ImeMode = System.Windows.Forms.ImeMode.Off;
-            cellStyle23.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            cellStyle23.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
-            this.備考ボタン.Style = cellStyle23;
+            cellStyle25.BackColor = System.Drawing.SystemColors.Control;
+            border25.Bottom = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Black);
+            border25.Left = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Black);
+            border25.Right = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Black);
+            border25.Top = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Black);
+            cellStyle25.Border = border25;
+            cellStyle25.Font = new System.Drawing.Font("BIZ UDPゴシック", 7F);
+            cellStyle25.ImeMode = System.Windows.Forms.ImeMode.Off;
+            cellStyle25.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            cellStyle25.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
+            this.備考ボタン.Style = cellStyle25;
             this.備考ボタン.TabIndex = 7;
             this.備考ボタン.TabStop = false;
             this.備考ボタン.Value = "備考";
@@ -269,12 +328,17 @@
             this.登録文書ボタン.Location = new System.Drawing.Point(708, 0);
             this.登録文書ボタン.Name = "登録文書ボタン";
             this.登録文書ボタン.Size = new System.Drawing.Size(78, 40);
-            cellStyle24.BackColor = System.Drawing.SystemColors.Control;
-            cellStyle24.Font = new System.Drawing.Font("BIZ UDPゴシック", 8F);
-            cellStyle24.ImeMode = System.Windows.Forms.ImeMode.Off;
-            cellStyle24.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            cellStyle24.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
-            this.登録文書ボタン.Style = cellStyle24;
+            cellStyle26.BackColor = System.Drawing.SystemColors.Control;
+            border26.Bottom = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Black);
+            border26.Left = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Black);
+            border26.Right = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Black);
+            border26.Top = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Black);
+            cellStyle26.Border = border26;
+            cellStyle26.Font = new System.Drawing.Font("BIZ UDPゴシック", 8F);
+            cellStyle26.ImeMode = System.Windows.Forms.ImeMode.Off;
+            cellStyle26.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            cellStyle26.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
+            this.登録文書ボタン.Style = cellStyle26;
             this.登録文書ボタン.TabIndex = 8;
             this.登録文書ボタン.TabStop = false;
             this.登録文書ボタン.Value = "登録文書";
@@ -337,44 +401,42 @@
             textLengthValidator3.MinimumLength = 10;
             this.教育名.Validators.Add(textLengthValidator3);
             // 
-            // キャンセル待ち
+            // キャンセル待ち表示
             // 
-            this.キャンセル待ち.DataField = "キャンセル待ち";
-            this.キャンセル待ち.Location = new System.Drawing.Point(83, 8);
-            this.キャンセル待ち.Name = "キャンセル待ち";
-            this.キャンセル待ち.ReadOnly = true;
-            this.キャンセル待ち.Size = new System.Drawing.Size(161, 17);
+            this.キャンセル待ち表示.Location = new System.Drawing.Point(83, 8);
+            this.キャンセル待ち表示.Name = "キャンセル待ち表示";
+            this.キャンセル待ち表示.ReadOnly = true;
+            this.キャンセル待ち表示.Size = new System.Drawing.Size(161, 17);
             cellStyle4.BackColor = System.Drawing.Color.Transparent;
             cellStyle4.Border = border4;
             cellStyle4.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
             cellStyle4.ForeColor = System.Drawing.Color.Magenta;
             cellStyle4.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             cellStyle4.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
-            this.キャンセル待ち.Style = cellStyle4;
-            this.キャンセル待ち.TabIndex = 3;
-            this.キャンセル待ち.TabStop = false;
+            this.キャンセル待ち表示.Style = cellStyle4;
+            this.キャンセル待ち表示.TabIndex = 3;
+            this.キャンセル待ち表示.TabStop = false;
             textLengthValidator4.LengthUnit = GrapeCity.Win.MultiRow.LengthUnit.TextElement;
             textLengthValidator4.MinimumLength = 10;
-            this.キャンセル待ち.Validators.Add(textLengthValidator4);
+            this.キャンセル待ち表示.Validators.Add(textLengthValidator4);
             // 
-            // キャンセル
+            // キャンセル表示
             // 
-            this.キャンセル.DataField = "キャンセル";
-            this.キャンセル.Location = new System.Drawing.Point(0, 8);
-            this.キャンセル.Name = "キャンセル";
-            this.キャンセル.Size = new System.Drawing.Size(797, 14);
+            this.キャンセル表示.Location = new System.Drawing.Point(0, 10);
+            this.キャンセル表示.Name = "キャンセル表示";
+            this.キャンセル表示.Size = new System.Drawing.Size(708, 14);
             cellStyle5.BackColor = System.Drawing.Color.Transparent;
             cellStyle5.Border = border5;
             cellStyle5.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
             cellStyle5.ForeColor = System.Drawing.Color.Red;
             cellStyle5.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             cellStyle5.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
-            this.キャンセル.Style = cellStyle5;
-            this.キャンセル.TabIndex = 4;
-            this.キャンセル.TabStop = false;
+            this.キャンセル表示.Style = cellStyle5;
+            this.キャンセル表示.TabIndex = 4;
+            this.キャンセル表示.TabStop = false;
             textLengthValidator5.LengthUnit = GrapeCity.Win.MultiRow.LengthUnit.TextElement;
             textLengthValidator5.MinimumLength = 10;
-            this.キャンセル.Validators.Add(textLengthValidator5);
+            this.キャンセル表示.Validators.Add(textLengthValidator5);
             // 
             // 教育機関名
             // 
@@ -447,6 +509,7 @@
             border9.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
             cellStyle9.Border = border9;
             cellStyle9.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
+            cellStyle9.Format = "d";
             cellStyle9.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             cellStyle9.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.TopLeft;
             this.日付1.Style = cellStyle9;
@@ -467,6 +530,7 @@
             border10.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
             cellStyle10.Border = border10;
             cellStyle10.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
+            cellStyle10.Format = "d";
             cellStyle10.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             cellStyle10.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.TopLeft;
             this.日付2.Style = cellStyle10;
@@ -539,7 +603,7 @@
             // 受講者コード
             // 
             this.受講者コード.DataField = "受講者コード";
-            this.受講者コード.Location = new System.Drawing.Point(806, 0);
+            this.受講者コード.Location = new System.Drawing.Point(738, 5);
             this.受講者コード.Name = "受講者コード";
             this.受講者コード.ReadOnly = true;
             this.受講者コード.Size = new System.Drawing.Size(34, 17);
@@ -555,6 +619,7 @@
             textLengthValidator14.LengthUnit = GrapeCity.Win.MultiRow.LengthUnit.TextElement;
             textLengthValidator14.MinimumLength = 10;
             this.受講者コード.Validators.Add(textLengthValidator14);
+            this.受講者コード.Visible = false;
             // 
             // 選択
             // 
@@ -574,12 +639,54 @@
             textLengthValidator15.MinimumLength = 10;
             this.選択.Validators.Add(textLengthValidator15);
             // 
+            // キャンセル
+            // 
+            this.キャンセル.DataField = "キャンセル";
+            this.キャンセル.Location = new System.Drawing.Point(680, 5);
+            this.キャンセル.Name = "キャンセル";
+            this.キャンセル.ReadOnly = true;
+            this.キャンセル.Size = new System.Drawing.Size(19, 17);
+            cellStyle16.BackColor = System.Drawing.Color.White;
+            border16.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
+            cellStyle16.Border = border16;
+            cellStyle16.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
+            cellStyle16.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            cellStyle16.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.TopLeft;
+            this.キャンセル.Style = cellStyle16;
+            this.キャンセル.TabIndex = 15;
+            this.キャンセル.TabStop = false;
+            textLengthValidator16.LengthUnit = GrapeCity.Win.MultiRow.LengthUnit.TextElement;
+            textLengthValidator16.MinimumLength = 10;
+            this.キャンセル.Validators.Add(textLengthValidator16);
+            this.キャンセル.Visible = false;
+            // 
+            // キャンセル待ち
+            // 
+            this.キャンセル待ち.DataField = "キャンセル待ち";
+            this.キャンセル待ち.Location = new System.Drawing.Point(642, 5);
+            this.キャンセル待ち.Name = "キャンセル待ち";
+            this.キャンセル待ち.ReadOnly = true;
+            this.キャンセル待ち.Size = new System.Drawing.Size(19, 17);
+            cellStyle17.BackColor = System.Drawing.Color.White;
+            border17.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
+            cellStyle17.Border = border17;
+            cellStyle17.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
+            cellStyle17.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            cellStyle17.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.TopLeft;
+            this.キャンセル待ち.Style = cellStyle17;
+            this.キャンセル待ち.TabIndex = 16;
+            this.キャンセル待ち.TabStop = false;
+            textLengthValidator17.LengthUnit = GrapeCity.Win.MultiRow.LengthUnit.TextElement;
+            textLengthValidator17.MinimumLength = 10;
+            this.キャンセル待ち.Validators.Add(textLengthValidator17);
+            this.キャンセル待ち.Visible = false;
+            // 
             // 年間教育計画サブテンプレート
             // 
             this.ColumnHeaders.AddRange(new GrapeCity.Win.MultiRow.ColumnHeaderSection[] {
             this.columnHeaderSection1});
             this.Height = 76;
-            this.Width = 840;
+            this.Width = 786;
 
         }
         
@@ -587,20 +694,20 @@
         #endregion
 
         private GrapeCity.Win.MultiRow.ColumnHeaderSection columnHeaderSection1;
-        private GrapeCity.Win.MultiRow.ButtonCell 登録コードボタン;
-        private GrapeCity.Win.MultiRow.ButtonCell 年度ボタン;
-        private GrapeCity.Win.MultiRow.ButtonCell 教育名ボタン;
-        private GrapeCity.Win.MultiRow.ButtonCell 教育機関名ボタン;
-        private GrapeCity.Win.MultiRow.ButtonCell 部署名ボタン;
-        private GrapeCity.Win.MultiRow.ButtonCell 教育期間ボタン;
-        private GrapeCity.Win.MultiRow.ButtonCell 受講者名ボタン;
-        private GrapeCity.Win.MultiRow.ButtonCell 備考ボタン;
-        private GrapeCity.Win.MultiRow.ButtonCell 登録文書ボタン;
+        private GrapeCity.Win.MultiRow.ColumnHeaderCell 登録コードボタン;
+        private GrapeCity.Win.MultiRow.ColumnHeaderCell 年度ボタン;
+        private GrapeCity.Win.MultiRow.ColumnHeaderCell 教育名ボタン;
+        private GrapeCity.Win.MultiRow.ColumnHeaderCell 教育機関名ボタン;
+        private GrapeCity.Win.MultiRow.ColumnHeaderCell 部署名ボタン;
+        private GrapeCity.Win.MultiRow.ColumnHeaderCell 教育期間ボタン;
+        private GrapeCity.Win.MultiRow.ColumnHeaderCell 受講者名ボタン;
+        private GrapeCity.Win.MultiRow.ColumnHeaderCell 備考ボタン;
+        private GrapeCity.Win.MultiRow.ColumnHeaderCell 登録文書ボタン;
         private GrapeCity.Win.MultiRow.TextBoxCell 登録コード;
         private GrapeCity.Win.MultiRow.TextBoxCell 年度;
         private GrapeCity.Win.MultiRow.TextBoxCell 教育名;
-        private GrapeCity.Win.MultiRow.TextBoxCell キャンセル待ち;
-        private GrapeCity.Win.MultiRow.TextBoxCell キャンセル;
+        private GrapeCity.Win.MultiRow.TextBoxCell キャンセル待ち表示;
+        private GrapeCity.Win.MultiRow.TextBoxCell キャンセル表示;
         private GrapeCity.Win.MultiRow.TextBoxCell 教育機関名;
         private GrapeCity.Win.MultiRow.TextBoxCell チーム名;
         private GrapeCity.Win.MultiRow.TextBoxCell 受講者名;
@@ -611,5 +718,7 @@
         private GrapeCity.Win.MultiRow.TextBoxCell 版数;
         private GrapeCity.Win.MultiRow.TextBoxCell 受講者コード;
         private GrapeCity.Win.MultiRow.TextBoxCell 選択;
+        private GrapeCity.Win.MultiRow.TextBoxCell キャンセル;
+        private GrapeCity.Win.MultiRow.TextBoxCell キャンセル待ち;
     }
 }

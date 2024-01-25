@@ -74,10 +74,12 @@
             管理者用バージョンアップボタン = new Button();
             サーバー日時更新ボタン = new Button();
             toolTip1 = new ToolTip(components);
+            test = new TextBox();
             SuspendLayout();
             // 
             // 閉じる
             // 
+            閉じる.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             閉じる.Location = new Point(573, 549);
             閉じる.Name = "閉じる";
             閉じる.Size = new Size(114, 23);
@@ -608,6 +610,7 @@
             // 
             // バージョンアップボタン
             // 
+            バージョンアップボタン.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             バージョンアップボタン.Location = new Point(450, 107);
             バージョンアップボタン.Name = "バージョンアップボタン";
             バージョンアップボタン.Size = new Size(190, 23);
@@ -619,6 +622,7 @@
             // 
             // 管理者用バージョンアップボタン
             // 
+            管理者用バージョンアップボタン.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             管理者用バージョンアップボタン.Location = new Point(450, 133);
             管理者用バージョンアップボタン.Name = "管理者用バージョンアップボタン";
             管理者用バージョンアップボタン.Size = new Size(190, 23);
@@ -630,6 +634,7 @@
             // 
             // サーバー日時更新ボタン
             // 
+            サーバー日時更新ボタン.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             サーバー日時更新ボタン.Location = new Point(450, 162);
             サーバー日時更新ボタン.Name = "サーバー日時更新ボタン";
             サーバー日時更新ボタン.Size = new Size(190, 23);
@@ -639,9 +644,22 @@
             サーバー日時更新ボタン.UseVisualStyleBackColor = true;
             サーバー日時更新ボタン.Click += サーバー日時更新ボタン_Click;
             // 
+            // test
+            // 
+            test.BackColor = Color.White;
+            test.Enabled = false;
+            test.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            test.Location = new Point(590, 463);
+            test.Margin = new Padding(3, 2, 3, 2);
+            test.Multiline = true;
+            test.Name = "test";
+            test.Size = new Size(106, 23);
+            test.TabIndex = 255;
+            // 
             // F_システム
             // 
             ClientSize = new Size(708, 586);
+            Controls.Add(test);
             Controls.Add(サーバー日時更新ボタン);
             Controls.Add(管理者用バージョンアップボタン);
             Controls.Add(バージョンアップボタン);
@@ -742,5 +760,6 @@
         private Button 管理者用バージョンアップボタン;
         private Button サーバー日時更新ボタン;
         private ToolTip toolTip1;
+        private TextBox test;
     }
 }

@@ -10,6 +10,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using u_net.Public;
 using static System.ComponentModel.Design.ObjectSelectorEditor;
+using static u_net.Public.FunctionClass;
+using static u_net.Public.OriginalClass;
 
 namespace u_net
 {
@@ -51,13 +53,13 @@ namespace u_net
                 }
 
                 OriginalClass ofn = new OriginalClass();
-                ofn.SetComboBox(this.部, "SELECT 部 FROM M社員 WHERE 部 IS NOT NULL GROUP BY 部");
+                ofn.SetComboBox(this.部, "SELECT 部 as Display ,部 as Value FROM M社員 WHERE 部 IS NOT NULL GROUP BY 部");
                 
                 //開いているフォームのインスタンスを作成する
                 F_年間教育計画 frmTarget = Application.OpenForms.OfType<F_年間教育計画>().FirstOrDefault();
 
-                //this.年度.Text = frmTarget.str年度;
-
+                this.年度.Text = frmTarget.var年度 != null ? frmTarget.var年度.ToString() : string.Empty;
+                this.部.Text = frmTarget.var部 !=null ? frmTarget.var部.ToString() : "";
 
             }
             catch (Exception ex)
@@ -88,22 +90,10 @@ namespace u_net
             {
                 F_年間教育計画? frmTarget = Application.OpenForms.OfType<F_年間教育計画>().FirstOrDefault();
 
-                //frmTarget.str年度 = Nz(this.年度.Text);
-                //frmTarget.str部 = Nz(this.年度.Text);
+                frmTarget.var年度 = this.年度.Text;
+                frmTarget.var部 = Nz(this.部.Text);
 
-                //long cnt = frmTarget.DoUpdate();
-
-                //if (cnt == 0)
-                //{
-                //    MessageBox.Show("抽出条件に一致するデータはありません。", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                //    return;
-                //}
-                //else if (cnt < 0)
-                //{
-                //    MessageBox.Show("エラーが発生したため、抽出できませんでした。", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                //    return;
-                //}
+                frmTarget.Filtering();                
             }
             catch (Exception ex)
             {

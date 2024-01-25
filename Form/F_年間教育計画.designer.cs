@@ -43,41 +43,11 @@ namespace u_net
             コマンド印刷 = new Button();
             コマンド全表示 = new Button();
             コマンド初期化 = new Button();
-            dataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn2 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn3 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn4 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn5 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn6 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn7 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn8 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn9 = new DataGridViewTextBoxColumn();
-            日誌IDDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn10 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn11 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn12 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn13 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn14 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn15 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn16 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn17 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn18 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn19 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn20 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn21 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn22 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn23 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn24 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn25 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn26 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn27 = new DataGridViewTextBoxColumn();
             コマンド行削除 = new Button();
             年度 = new TextBox();
             年度_ラベル = new Label();
             受講者コード = new ComboBox();
             実行ボタン = new Button();
-            statusStrip1 = new StatusStrip();
-            toolStripStatusLabel1 = new ToolStripStatusLabel();
             キャンセル待ち = new CheckBox();
             toolTip1 = new ToolTip(components);
             操作 = new GroupBox();
@@ -110,10 +80,13 @@ namespace u_net
             版数 = new TextBox();
             文書コード = new TextBox();
             年間教育計画サブ1 = new MultiRowDesigner.年間教育計画サブ();
+            panel2 = new Panel();
+            label1 = new Label();
+            表示件数 = new TextBox();
             panel1.SuspendLayout();
-            statusStrip1.SuspendLayout();
             操作.SuspendLayout();
             登録文書.SuspendLayout();
+            panel2.SuspendLayout();
             SuspendLayout();
             // 
             // コマンド終了
@@ -254,6 +227,7 @@ namespace u_net
             // 
             // コマンド印刷
             // 
+            コマンド印刷.Enabled = false;
             コマンド印刷.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             コマンド印刷.ForeColor = Color.Blue;
             コマンド印刷.ImageAlign = ContentAlignment.BottomLeft;
@@ -297,136 +271,6 @@ namespace u_net
             コマンド初期化.UseVisualStyleBackColor = true;
             コマンド初期化.Click += コマンド初期化_Click;
             // 
-            // dataGridViewTextBoxColumn1
-            // 
-            dataGridViewTextBoxColumn1.DataPropertyName = "商品コード";
-            dataGridViewTextBoxColumn1.HeaderText = "商品コード";
-            dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            dataGridViewTextBoxColumn2.DataPropertyName = "Revision";
-            dataGridViewTextBoxColumn2.HeaderText = "Revision";
-            dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            dataGridViewTextBoxColumn3.DataPropertyName = "明細番号";
-            dataGridViewTextBoxColumn3.HeaderText = "明細番号";
-            dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            dataGridViewTextBoxColumn4.DataPropertyName = "型式番号";
-            dataGridViewTextBoxColumn4.HeaderText = "型式番号";
-            dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            dataGridViewTextBoxColumn5.DataPropertyName = "型式名";
-            dataGridViewTextBoxColumn5.HeaderText = "型式名";
-            dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            // 
-            // dataGridViewTextBoxColumn6
-            // 
-            dataGridViewTextBoxColumn6.DataPropertyName = "定価";
-            dataGridViewTextBoxColumn6.HeaderText = "定価";
-            dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            // 
-            // dataGridViewTextBoxColumn7
-            // 
-            dataGridViewTextBoxColumn7.DataPropertyName = "原価";
-            dataGridViewTextBoxColumn7.HeaderText = "原価";
-            dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
-            // 
-            // dataGridViewTextBoxColumn8
-            // 
-            dataGridViewTextBoxColumn8.DataPropertyName = "機能";
-            dataGridViewTextBoxColumn8.HeaderText = "機能";
-            dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
-            // 
-            // dataGridViewTextBoxColumn9
-            // 
-            dataGridViewTextBoxColumn9.DataPropertyName = "構成番号";
-            dataGridViewTextBoxColumn9.HeaderText = "構成番号";
-            dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
-            // 
-            // 日誌IDDataGridViewTextBoxColumn
-            // 
-            日誌IDDataGridViewTextBoxColumn.Name = "日誌IDDataGridViewTextBoxColumn";
-            // 
-            // dataGridViewTextBoxColumn10
-            // 
-            dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
-            // 
-            // dataGridViewTextBoxColumn11
-            // 
-            dataGridViewTextBoxColumn11.Name = "dataGridViewTextBoxColumn11";
-            // 
-            // dataGridViewTextBoxColumn12
-            // 
-            dataGridViewTextBoxColumn12.Name = "dataGridViewTextBoxColumn12";
-            // 
-            // dataGridViewTextBoxColumn13
-            // 
-            dataGridViewTextBoxColumn13.Name = "dataGridViewTextBoxColumn13";
-            // 
-            // dataGridViewTextBoxColumn14
-            // 
-            dataGridViewTextBoxColumn14.Name = "dataGridViewTextBoxColumn14";
-            // 
-            // dataGridViewTextBoxColumn15
-            // 
-            dataGridViewTextBoxColumn15.Name = "dataGridViewTextBoxColumn15";
-            // 
-            // dataGridViewTextBoxColumn16
-            // 
-            dataGridViewTextBoxColumn16.Name = "dataGridViewTextBoxColumn16";
-            // 
-            // dataGridViewTextBoxColumn17
-            // 
-            dataGridViewTextBoxColumn17.Name = "dataGridViewTextBoxColumn17";
-            // 
-            // dataGridViewTextBoxColumn18
-            // 
-            dataGridViewTextBoxColumn18.Name = "dataGridViewTextBoxColumn18";
-            // 
-            // dataGridViewTextBoxColumn19
-            // 
-            dataGridViewTextBoxColumn19.Name = "dataGridViewTextBoxColumn19";
-            // 
-            // dataGridViewTextBoxColumn20
-            // 
-            dataGridViewTextBoxColumn20.Name = "dataGridViewTextBoxColumn20";
-            // 
-            // dataGridViewTextBoxColumn21
-            // 
-            dataGridViewTextBoxColumn21.Name = "dataGridViewTextBoxColumn21";
-            // 
-            // dataGridViewTextBoxColumn22
-            // 
-            dataGridViewTextBoxColumn22.Name = "dataGridViewTextBoxColumn22";
-            // 
-            // dataGridViewTextBoxColumn23
-            // 
-            dataGridViewTextBoxColumn23.Name = "dataGridViewTextBoxColumn23";
-            // 
-            // dataGridViewTextBoxColumn24
-            // 
-            dataGridViewTextBoxColumn24.Name = "dataGridViewTextBoxColumn24";
-            // 
-            // dataGridViewTextBoxColumn25
-            // 
-            dataGridViewTextBoxColumn25.Name = "dataGridViewTextBoxColumn25";
-            // 
-            // dataGridViewTextBoxColumn26
-            // 
-            dataGridViewTextBoxColumn26.Name = "dataGridViewTextBoxColumn26";
-            // 
-            // dataGridViewTextBoxColumn27
-            // 
-            dataGridViewTextBoxColumn27.Name = "dataGridViewTextBoxColumn27";
-            // 
             // コマンド行削除
             // 
             コマンド行削除.Enabled = false;
@@ -446,6 +290,7 @@ namespace u_net
             // 年度
             // 
             年度.BackColor = Color.White;
+            年度.Enabled = false;
             年度.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             年度.ImeMode = ImeMode.Disable;
             年度.Location = new Point(111, 105);
@@ -484,7 +329,7 @@ namespace u_net
             受講者コード.ImeMode = ImeMode.Disable;
             受講者コード.Location = new Point(111, 128);
             受講者コード.Name = "受講者コード";
-            受講者コード.Size = new Size(174, 21);
+            受講者コード.Size = new Size(79, 21);
             受講者コード.TabIndex = 3;
             受講者コード.SelectedIndexChanged += 受講者コード_SelectedIndexChanged;
             受講者コード.Enter += 受講者コード_Enter;
@@ -507,23 +352,6 @@ namespace u_net
             実行ボタン.UseVisualStyleBackColor = true;
             実行ボタン.Click += 実行ボタン_Click;
             // 
-            // statusStrip1
-            // 
-            statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1 });
-            statusStrip1.Location = new Point(0, 547);
-            statusStrip1.Name = "statusStrip1";
-            statusStrip1.Padding = new Padding(1, 0, 19, 0);
-            statusStrip1.Size = new Size(882, 22);
-            statusStrip1.TabIndex = 10195;
-            statusStrip1.Text = "statusStrip1";
-            // 
-            // toolStripStatusLabel1
-            // 
-            toolStripStatusLabel1.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            toolStripStatusLabel1.Size = new Size(89, 17);
-            toolStripStatusLabel1.Text = "各種項目の説明";
-            // 
             // キャンセル待ち
             // 
             キャンセル待ち.AutoSize = true;
@@ -544,6 +372,7 @@ namespace u_net
             操作.Controls.Add(修正);
             操作.Controls.Add(新規);
             操作.Controls.Add(実行ボタン);
+            操作.Enabled = false;
             操作.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             操作.Location = new Point(7, 51);
             操作.Margin = new Padding(4, 2, 4, 2);
@@ -623,7 +452,7 @@ namespace u_net
             受講者名.Enabled = false;
             受講者名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             受講者名.ImeMode = ImeMode.Disable;
-            受講者名.Location = new Point(291, 129);
+            受講者名.Location = new Point(196, 129);
             受講者名.Margin = new Padding(3, 2, 3, 2);
             受講者名.Name = "受講者名";
             受講者名.ReadOnly = true;
@@ -649,6 +478,7 @@ namespace u_net
             // 教育名
             // 
             教育名.BackColor = Color.White;
+            教育名.Enabled = false;
             教育名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             教育名.ImeMode = ImeMode.Hiragana;
             教育名.Location = new Point(111, 152);
@@ -665,6 +495,7 @@ namespace u_net
             // 教育機関名
             // 
             教育機関名.BackColor = Color.White;
+            教育機関名.Enabled = false;
             教育機関名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             教育機関名.ImeMode = ImeMode.Hiragana;
             教育機関名.Location = new Point(111, 175);
@@ -696,6 +527,7 @@ namespace u_net
             // 日付1
             // 
             日付1.BackColor = Color.White;
+            日付1.Enabled = false;
             日付1.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             日付1.ImeMode = ImeMode.Disable;
             日付1.Location = new Point(111, 198);
@@ -726,6 +558,7 @@ namespace u_net
             // 
             // 日付1選択ボタン
             // 
+            日付1選択ボタン.Enabled = false;
             日付1選択ボタン.Location = new Point(217, 197);
             日付1選択ボタン.Margin = new Padding(4);
             日付1選択ボタン.Name = "日付1選択ボタン";
@@ -753,6 +586,7 @@ namespace u_net
             // 
             // 日付2選択ボタン
             // 
+            日付2選択ボタン.Enabled = false;
             日付2選択ボタン.Location = new Point(368, 197);
             日付2選択ボタン.Margin = new Padding(4);
             日付2選択ボタン.Name = "日付2選択ボタン";
@@ -766,6 +600,7 @@ namespace u_net
             // 日付2
             // 
             日付2.BackColor = Color.White;
+            日付2.Enabled = false;
             日付2.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             日付2.ImeMode = ImeMode.Disable;
             日付2.Location = new Point(262, 198);
@@ -782,6 +617,7 @@ namespace u_net
             // 備考
             // 
             備考.BackColor = Color.White;
+            備考.Enabled = false;
             備考.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             備考.ImeMode = ImeMode.Hiragana;
             備考.Location = new Point(111, 221);
@@ -954,17 +790,59 @@ namespace u_net
             // 
             // 年間教育計画サブ1
             // 
-            年間教育計画サブ1.Location = new Point(5, 247);
-            年間教育計画サブ1.Margin = new Padding(4);
+            年間教育計画サブ1.Dock = DockStyle.Bottom;
+            年間教育計画サブ1.Font = new Font("Yu Gothic UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            年間教育計画サブ1.Location = new Point(0, 267);
+            年間教育計画サブ1.Margin = new Padding(4, 4, 4, 4);
             年間教育計画サブ1.Name = "年間教育計画サブ1";
-            年間教育計画サブ1.Size = new Size(877, 290);
+            年間教育計画サブ1.Size = new Size(883, 301);
             年間教育計画サブ1.TabIndex = 21031;
+            // 
+            // panel2
+            // 
+            panel2.Controls.Add(label1);
+            panel2.Controls.Add(表示件数);
+            panel2.Dock = DockStyle.Bottom;
+            panel2.Location = new Point(0, 568);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(883, 33);
+            panel2.TabIndex = 21032;
+            // 
+            // label1
+            // 
+            label1.AllowDrop = true;
+            label1.AutoEllipsis = true;
+            label1.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.ForeColor = SystemColors.ActiveCaptionText;
+            label1.ImageAlign = ContentAlignment.MiddleLeft;
+            label1.Location = new Point(36, 5);
+            label1.Margin = new Padding(0);
+            label1.Name = "label1";
+            label1.Size = new Size(65, 20);
+            label1.TabIndex = 21033;
+            label1.Text = "表示件数";
+            label1.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // 表示件数
+            // 
+            表示件数.BackColor = Color.White;
+            表示件数.Enabled = false;
+            表示件数.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            表示件数.ImeMode = ImeMode.NoControl;
+            表示件数.Location = new Point(104, 6);
+            表示件数.Margin = new Padding(3, 2, 3, 2);
+            表示件数.Name = "表示件数";
+            表示件数.ReadOnly = true;
+            表示件数.Size = new Size(105, 20);
+            表示件数.TabIndex = 21033;
+            表示件数.TabStop = false;
             // 
             // F_年間教育計画
             // 
             BackColor = SystemColors.Control;
-            ClientSize = new Size(882, 569);
+            ClientSize = new Size(883, 601);
             Controls.Add(年間教育計画サブ1);
+            Controls.Add(panel2);
             Controls.Add(登録文書);
             Controls.Add(キャンセル);
             Controls.Add(登録者コード_ラベル);
@@ -989,7 +867,6 @@ namespace u_net
             Controls.Add(受講者名_ラベル);
             Controls.Add(操作);
             Controls.Add(キャンセル待ち);
-            Controls.Add(statusStrip1);
             Controls.Add(受講者コード);
             Controls.Add(年度);
             Controls.Add(年度_ラベル);
@@ -1017,50 +894,22 @@ namespace u_net
             Load += Form_Load;
             KeyDown += Form_KeyDown;
             panel1.ResumeLayout(false);
-            statusStrip1.ResumeLayout(false);
-            statusStrip1.PerformLayout();
             操作.ResumeLayout(false);
             操作.PerformLayout();
             登録文書.ResumeLayout(false);
             登録文書.PerformLayout();
+            panel2.ResumeLayout(false);
+            panel2.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn11;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn12;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn13;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn14;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn15;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn16;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn17;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn18;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn19;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn20;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn21;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn22;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn23;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn24;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn25;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn26;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn27;
 
         private System.Windows.Forms.Button コマンド終了;
         private System.Windows.Forms.Button コマンド登録;
-        private System.Windows.Forms.DataGridViewTextBoxColumn 日誌IDDataGridViewTextBoxColumn;
-
+       
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button コマンド抽出;
         private System.Windows.Forms.Button コマンド行挿入;
@@ -1094,9 +943,7 @@ namespace u_net
         private Label label7;
         private TextBox 更新者名;
         private TextBox 更新者コード;
-        private StatusStrip statusStrip1;
-        internal ToolStripStatusLabel toolStripStatusLabel1;
-        private CheckBox キャンセル待ち;
+        public CheckBox キャンセル待ち;
         private Label label5;
         private ToolTip toolTip1;
         private GroupBox 操作;
@@ -1105,31 +952,34 @@ namespace u_net
         private RadioButton 新規;
         private RadioButton 複写;
         private Label 受講者名_ラベル;
-        private TextBox 受講者名;
+        public TextBox 受講者名;
         private Label 教育名_ラベル;
-        private TextBox 教育名;
-        private TextBox 年度;
+        public TextBox 教育名;
+        public TextBox 年度;
         private Label 年度_ラベル;
-        private TextBox 教育機関名;
-        private TextBox 日付1;
+        public TextBox 教育機関名;
+        public TextBox 日付1;
         private Label 教育機関_ラベル;
         private Button 日付1選択ボタン;
         private Label label2;
         private Button 日付2選択ボタン;
-        private TextBox 日付2;
-        private TextBox 備考;
+        public TextBox 日付2;
+        public TextBox 備考;
         private Label 備考_ラベル;
         private Label 部署名_ラベル;
-        private TextBox 部;
-        private TextBox 登録コード;
-        private TextBox 登録者コード;
+        public TextBox 部;
+        public TextBox 登録コード;
+        public TextBox 登録者コード;
         private Label 登録コード_ラベル;
         private Label 登録者コード_ラベル;
-        private CheckBox キャンセル;
+        public CheckBox キャンセル;
         private GroupBox 登録文書;
-        private TextBox 版数;
-        private TextBox 文書コード;
+        public TextBox 版数;
+        public TextBox 文書コード;
         private MultiRowDesigner.年間教育計画サブ 年間教育計画サブ1;
+        private Panel panel2;
+        private Label label1;
+        private TextBox 表示件数;
     }
 }
 

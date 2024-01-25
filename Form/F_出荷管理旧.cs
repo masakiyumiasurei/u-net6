@@ -129,6 +129,10 @@ namespace u_net
             初期表示ボタン_Click(sender, e);
             Cleargrid(dataGridView1);
             fn.WaitForm.Close();
+
+
+
+
         }
 
         private void Form_Resize(object sender, EventArgs e)

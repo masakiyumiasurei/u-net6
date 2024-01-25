@@ -28,6 +28,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="error.wav" />
+    <None Remove="logoff.wav" />
+    <None Remove="logon.wav" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Include="MultiRowDesigner\ユニット明細.cs" />
     <Compile Include="MultiRowDesigner\ユニット明細.Designer.cs" />
     <Compile Include="MultiRowDesigner\ユニット明細テンプレート.cs" />
@@ -119,7 +125,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="error.wav" />
     <Content Include="icon\unetc.ico" />
+    <Content Include="logoff.wav" />
+    <Content Include="logon.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
@@ -135,6 +146,7 @@
     <EmbeddedResource Include="MultiRowDesigner\商品明細.resx" />
     <EmbeddedResource Include="MultiRowDesigner\商品明細テンプレート.resx" />
     <EmbeddedResource Include="MultiRowDesigner\年間教育計画サブ.resx" />
+    <EmbeddedResource Include="MultiRowDesigner\年間教育計画サブテンプレート.resx" />
     <EmbeddedResource Include="MultiRowDesigner\支払明細.resx" />
     <EmbeddedResource Include="MultiRowDesigner\支払明細テンプレート.resx" />
     <EmbeddedResource Include="MultiRowDesigner\文書添付.resx" />
