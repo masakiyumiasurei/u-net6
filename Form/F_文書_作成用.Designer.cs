@@ -1,6 +1,6 @@
 ﻿namespace u_net
 {
-    partial class temp
+    partial class F_文書_作成用
     {
         /// <summary>
         /// Required designer variable.

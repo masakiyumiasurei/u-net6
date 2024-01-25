@@ -12,10 +12,10 @@ using u_net.Public;
 
 namespace u_net
 {
-    public partial class temp : Form
+    public partial class F_文書_作成用 : Form
     {
 
-        public temp()
+        public F_文書_作成用()
         {
             InitializeComponent();
         }
