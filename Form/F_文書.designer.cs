@@ -118,6 +118,7 @@ namespace u_net
             製品企画書_会議開催日選択ボタン = new Button();
             設計審査会議事録_開催日選択ボタン = new Button();
             設計製作依頼書_顧客コード検索ボタン = new Button();
+            設計製作依頼書_リンク2ボタン = new Button();
             改版ボタン = new Button();
             文書名_ラベル = new Label();
             件名_ラベル = new Label();
@@ -473,6 +474,15 @@ namespace u_net
             label125 = new Label();
             label126 = new Label();
             設計製作依頼書パネル = new Panel();
+            設計製作依頼書_リンク1ボタン = new Button();
+            label131 = new Label();
+            label128 = new Label();
+            設計製作依頼書_数量 = new TextBox();
+            label120 = new Label();
+            label119 = new Label();
+            設計製作依頼書_標準価格 = new TextBox();
+            label118 = new Label();
+            設計製作依頼書_受注コード = new TextBox();
             設計製作依頼書_付属書類 = new GroupBox();
             label115 = new Label();
             設計製作依頼書_付属文書2 = new CheckBox();
@@ -497,16 +507,36 @@ namespace u_net
             設計製作依頼書_文書コード = new TextBox();
             label132 = new Label();
             label133 = new Label();
-            設計製作依頼書_受注コード = new TextBox();
-            label118 = new Label();
-            設計製作依頼書_標準価格 = new TextBox();
-            label119 = new Label();
-            label120 = new Label();
-            設計製作依頼書_数量 = new TextBox();
-            label128 = new Label();
-            label131 = new Label();
-            設計製作依頼書_リンク1ボタン = new Button();
-            設計製作依頼書_リンク2ボタン = new Button();
+            設備購買申請書パネル = new Panel();
+            label134 = new Label();
+            label135 = new Label();
+            label136 = new Label();
+            label137 = new Label();
+            設備購買申請書_標準価格 = new TextBox();
+            設備購買申請書_単価 = new TextBox();
+            設備購買申請書_支払方法 = new ComboBox();
+            設備購買申請書_購買予定日選択ボタン = new Button();
+            設備購買申請書_用途 = new TextBox();
+            label138 = new Label();
+            label139 = new Label();
+            設備購買申請書_使用部署 = new TextBox();
+            label140 = new Label();
+            label141 = new Label();
+            設備購買申請書_数量 = new TextBox();
+            設備購買申請書_品名 = new TextBox();
+            設備購買申請書_仕入先名 = new TextBox();
+            label142 = new Label();
+            label143 = new Label();
+            設備購買申請書_メーカー名 = new TextBox();
+            設備購買申請書_型番 = new TextBox();
+            label144 = new Label();
+            設備購買申請書_購買予定日 = new TextBox();
+            label145 = new Label();
+            設備購買申請書_購入理由 = new TextBox();
+            設備購買申請書_版数 = new TextBox();
+            設備購買申請書_文書コード = new TextBox();
+            label146 = new Label();
+            label147 = new Label();
             panel1.SuspendLayout();
             statusStrip1.SuspendLayout();
             システム配布記録パネル.SuspendLayout();
@@ -526,6 +556,7 @@ namespace u_net
             設計審査会議事録パネル.SuspendLayout();
             設計製作依頼書パネル.SuspendLayout();
             設計製作依頼書_付属書類.SuspendLayout();
+            設備購買申請書パネル.SuspendLayout();
             SuspendLayout();
             // 
             // コマンド終了
@@ -1496,6 +1527,24 @@ namespace u_net
             設計製作依頼書_顧客コード検索ボタン.Text = "▼";
             toolTip1.SetToolTip(設計製作依頼書_顧客コード検索ボタン, "顧客検索");
             設計製作依頼書_顧客コード検索ボタン.UseVisualStyleBackColor = true;
+            // 
+            // 設計製作依頼書_リンク2ボタン
+            // 
+            設計製作依頼書_リンク2ボタン.Font = new Font("メイリオ", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            設計製作依頼書_リンク2ボタン.ForeColor = Color.Navy;
+            設計製作依頼書_リンク2ボタン.Location = new Point(189, 25);
+            設計製作依頼書_リンク2ボタン.Margin = new Padding(0);
+            設計製作依頼書_リンク2ボタン.Name = "設計製作依頼書_リンク2ボタン";
+            設計製作依頼書_リンク2ボタン.Size = new Size(22, 22);
+            設計製作依頼書_リンク2ボタン.TabIndex = 21037;
+            設計製作依頼書_リンク2ボタン.TabStop = false;
+            設計製作依頼書_リンク2ボタン.Text = "➡";
+            設計製作依頼書_リンク2ボタン.TextAlign = ContentAlignment.TopCenter;
+            toolTip1.SetToolTip(設計製作依頼書_リンク2ボタン, "リンク");
+            設計製作依頼書_リンク2ボタン.UseVisualStyleBackColor = true;
+            設計製作依頼書_リンク2ボタン.Click += 設計製作依頼書_リンク2ボタン_Click;
+            設計製作依頼書_リンク2ボタン.Enter += 設計製作依頼書_リンク2ボタン_Enter;
+            設計製作依頼書_リンク2ボタン.Leave += 設計製作依頼書_リンク2ボタン_Leave;
             // 
             // 改版ボタン
             // 
@@ -6878,6 +6927,144 @@ namespace u_net
             設計製作依頼書パネル.Size = new Size(404, 376);
             設計製作依頼書パネル.TabIndex = 17;
             // 
+            // 設計製作依頼書_リンク1ボタン
+            // 
+            設計製作依頼書_リンク1ボタン.Enabled = false;
+            設計製作依頼書_リンク1ボタン.Font = new Font("メイリオ", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            設計製作依頼書_リンク1ボタン.ForeColor = Color.Navy;
+            設計製作依頼書_リンク1ボタン.Location = new Point(189, 3);
+            設計製作依頼書_リンク1ボタン.Margin = new Padding(0);
+            設計製作依頼書_リンク1ボタン.Name = "設計製作依頼書_リンク1ボタン";
+            設計製作依頼書_リンク1ボタン.Size = new Size(22, 22);
+            設計製作依頼書_リンク1ボタン.TabIndex = 21036;
+            設計製作依頼書_リンク1ボタン.TabStop = false;
+            設計製作依頼書_リンク1ボタン.Text = "➡";
+            設計製作依頼書_リンク1ボタン.TextAlign = ContentAlignment.TopCenter;
+            設計製作依頼書_リンク1ボタン.UseVisualStyleBackColor = true;
+            設計製作依頼書_リンク1ボタン.Click += 設計製作依頼書_リンク1ボタン_Click;
+            設計製作依頼書_リンク1ボタン.Enter += 設計製作依頼書_リンク1ボタン_Enter;
+            設計製作依頼書_リンク1ボタン.Leave += 設計製作依頼書_リンク1ボタン_Leave;
+            // 
+            // label131
+            // 
+            label131.AllowDrop = true;
+            label131.AutoEllipsis = true;
+            label131.Font = new Font("BIZ UDゴシック", 8.5F, FontStyle.Regular, GraphicsUnit.Point);
+            label131.ForeColor = SystemColors.ActiveCaptionText;
+            label131.ImageAlign = ContentAlignment.MiddleLeft;
+            label131.Location = new Point(214, 4);
+            label131.Margin = new Padding(0);
+            label131.Name = "label131";
+            label131.Size = new Size(186, 20);
+            label131.TabIndex = 21035;
+            label131.Text = "※検討依頼書の文書コードです。";
+            label131.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // label128
+            // 
+            label128.AllowDrop = true;
+            label128.AutoEllipsis = true;
+            label128.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label128.ForeColor = SystemColors.ActiveCaptionText;
+            label128.ImageAlign = ContentAlignment.MiddleLeft;
+            label128.Location = new Point(0, 159);
+            label128.Margin = new Padding(0);
+            label128.Name = "label128";
+            label128.Size = new Size(85, 20);
+            label128.TabIndex = 30;
+            label128.Text = "数量";
+            label128.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // 設計製作依頼書_数量
+            // 
+            設計製作依頼書_数量.BackColor = Color.White;
+            設計製作依頼書_数量.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            設計製作依頼書_数量.ImeMode = ImeMode.Disable;
+            設計製作依頼書_数量.Location = new Point(86, 160);
+            設計製作依頼書_数量.Margin = new Padding(3, 2, 3, 2);
+            設計製作依頼書_数量.Name = "設計製作依頼書_数量";
+            設計製作依頼書_数量.Size = new Size(103, 20);
+            設計製作依頼書_数量.TabIndex = 31;
+            設計製作依頼書_数量.TextChanged += 設計製作依頼書_数量_TextChanged;
+            設計製作依頼書_数量.Validating += 設計製作依頼書_数量_Validating;
+            設計製作依頼書_数量.Validated += 設計製作依頼書_数量_Validated;
+            // 
+            // label120
+            // 
+            label120.AllowDrop = true;
+            label120.AutoEllipsis = true;
+            label120.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label120.ForeColor = SystemColors.ActiveCaptionText;
+            label120.ImageAlign = ContentAlignment.MiddleLeft;
+            label120.Location = new Point(0, 138);
+            label120.Margin = new Padding(0);
+            label120.Name = "label120";
+            label120.Size = new Size(85, 20);
+            label120.TabIndex = 28;
+            label120.Text = "標準価格";
+            label120.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // label119
+            // 
+            label119.AllowDrop = true;
+            label119.AutoEllipsis = true;
+            label119.Font = new Font("BIZ UDゴシック", 8.5F, FontStyle.Regular, GraphicsUnit.Point);
+            label119.ForeColor = SystemColors.ActiveCaptionText;
+            label119.ImageAlign = ContentAlignment.MiddleLeft;
+            label119.Location = new Point(190, 138);
+            label119.Margin = new Padding(0);
+            label119.Name = "label119";
+            label119.Size = new Size(24, 20);
+            label119.TabIndex = 21031;
+            label119.Text = "円";
+            label119.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // 設計製作依頼書_標準価格
+            // 
+            設計製作依頼書_標準価格.BackColor = Color.White;
+            設計製作依頼書_標準価格.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            設計製作依頼書_標準価格.ImeMode = ImeMode.Disable;
+            設計製作依頼書_標準価格.Location = new Point(86, 138);
+            設計製作依頼書_標準価格.Margin = new Padding(3, 2, 3, 2);
+            設計製作依頼書_標準価格.Name = "設計製作依頼書_標準価格";
+            設計製作依頼書_標準価格.Size = new Size(103, 20);
+            設計製作依頼書_標準価格.TabIndex = 29;
+            設計製作依頼書_標準価格.TextChanged += 設計製作依頼書_標準価格_TextChanged;
+            設計製作依頼書_標準価格.Validating += 設計製作依頼書_標準価格_Validating;
+            設計製作依頼書_標準価格.Validated += 設計製作依頼書_標準価格_Validated;
+            // 
+            // label118
+            // 
+            label118.AllowDrop = true;
+            label118.AutoEllipsis = true;
+            label118.Font = new Font("BIZ UDゴシック", 8.5F, FontStyle.Regular, GraphicsUnit.Point);
+            label118.ForeColor = SystemColors.ActiveCaptionText;
+            label118.ImageAlign = ContentAlignment.MiddleLeft;
+            label118.Location = new Point(313, 92);
+            label118.Margin = new Padding(0);
+            label118.Name = "label118";
+            label118.Size = new Size(24, 20);
+            label118.TabIndex = 21029;
+            label118.Text = "様";
+            label118.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // 設計製作依頼書_受注コード
+            // 
+            設計製作依頼書_受注コード.BackColor = Color.White;
+            設計製作依頼書_受注コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            設計製作依頼書_受注コード.ImeMode = ImeMode.Disable;
+            設計製作依頼書_受注コード.Location = new Point(86, 26);
+            設計製作依頼書_受注コード.Margin = new Padding(3, 2, 3, 2);
+            設計製作依頼書_受注コード.Name = "設計製作依頼書_受注コード";
+            設計製作依頼書_受注コード.Size = new Size(102, 20);
+            設計製作依頼書_受注コード.TabIndex = 19;
+            設計製作依頼書_受注コード.TextChanged += 設計製作依頼書_受注コード_TextChanged;
+            設計製作依頼書_受注コード.DoubleClick += 設計製作依頼書_受注コード_DoubleClick;
+            設計製作依頼書_受注コード.KeyDown += 設計製作依頼書_受注コード_KeyDown;
+            設計製作依頼書_受注コード.KeyPress += 設計製作依頼書_受注コード_KeyPress;
+            設計製作依頼書_受注コード.Validating += 設計製作依頼書_受注コード_Validating;
+            設計製作依頼書_受注コード.Validated += 設計製作依頼書_受注コード_Validated;
+            // 
             // 設計製作依頼書_付属書類
             // 
             設計製作依頼書_付属書類.Controls.Add(label115);
@@ -7242,167 +7429,479 @@ namespace u_net
             label133.Text = "文書コード";
             label133.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // 設計製作依頼書_受注コード
+            // 設備購買申請書パネル
             // 
-            設計製作依頼書_受注コード.BackColor = Color.White;
-            設計製作依頼書_受注コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            設計製作依頼書_受注コード.ImeMode = ImeMode.Disable;
-            設計製作依頼書_受注コード.Location = new Point(86, 26);
-            設計製作依頼書_受注コード.Margin = new Padding(3, 2, 3, 2);
-            設計製作依頼書_受注コード.Name = "設計製作依頼書_受注コード";
-            設計製作依頼書_受注コード.Size = new Size(102, 20);
-            設計製作依頼書_受注コード.TabIndex = 19;
-            設計製作依頼書_受注コード.TextChanged += 設計製作依頼書_受注コード_TextChanged;
-            設計製作依頼書_受注コード.DoubleClick += 設計製作依頼書_受注コード_DoubleClick;
-            設計製作依頼書_受注コード.KeyDown += 設計製作依頼書_受注コード_KeyDown;
-            設計製作依頼書_受注コード.KeyPress += 設計製作依頼書_受注コード_KeyPress;
-            設計製作依頼書_受注コード.Validating += 設計製作依頼書_受注コード_Validating;
-            設計製作依頼書_受注コード.Validated += 設計製作依頼書_受注コード_Validated;
+            設備購買申請書パネル.Controls.Add(label134);
+            設備購買申請書パネル.Controls.Add(label135);
+            設備購買申請書パネル.Controls.Add(label136);
+            設備購買申請書パネル.Controls.Add(label137);
+            設備購買申請書パネル.Controls.Add(設備購買申請書_標準価格);
+            設備購買申請書パネル.Controls.Add(設備購買申請書_単価);
+            設備購買申請書パネル.Controls.Add(設備購買申請書_支払方法);
+            設備購買申請書パネル.Controls.Add(設備購買申請書_購買予定日選択ボタン);
+            設備購買申請書パネル.Controls.Add(設備購買申請書_用途);
+            設備購買申請書パネル.Controls.Add(label138);
+            設備購買申請書パネル.Controls.Add(label139);
+            設備購買申請書パネル.Controls.Add(設備購買申請書_使用部署);
+            設備購買申請書パネル.Controls.Add(label140);
+            設備購買申請書パネル.Controls.Add(label141);
+            設備購買申請書パネル.Controls.Add(設備購買申請書_数量);
+            設備購買申請書パネル.Controls.Add(設備購買申請書_品名);
+            設備購買申請書パネル.Controls.Add(設備購買申請書_仕入先名);
+            設備購買申請書パネル.Controls.Add(label142);
+            設備購買申請書パネル.Controls.Add(label143);
+            設備購買申請書パネル.Controls.Add(設備購買申請書_メーカー名);
+            設備購買申請書パネル.Controls.Add(設備購買申請書_型番);
+            設備購買申請書パネル.Controls.Add(label144);
+            設備購買申請書パネル.Controls.Add(設備購買申請書_購買予定日);
+            設備購買申請書パネル.Controls.Add(label145);
+            設備購買申請書パネル.Controls.Add(設備購買申請書_購入理由);
+            設備購買申請書パネル.Controls.Add(設備購買申請書_版数);
+            設備購買申請書パネル.Controls.Add(設備購買申請書_文書コード);
+            設備購買申請書パネル.Controls.Add(label146);
+            設備購買申請書パネル.Controls.Add(label147);
+            設備購買申請書パネル.Location = new Point(9, 226);
+            設備購買申請書パネル.Name = "設備購買申請書パネル";
+            設備購買申請書パネル.Size = new Size(404, 376);
+            設備購買申請書パネル.TabIndex = 10303;
             // 
-            // label118
+            // label134
             // 
-            label118.AllowDrop = true;
-            label118.AutoEllipsis = true;
-            label118.Font = new Font("BIZ UDゴシック", 8.5F, FontStyle.Regular, GraphicsUnit.Point);
-            label118.ForeColor = SystemColors.ActiveCaptionText;
-            label118.ImageAlign = ContentAlignment.MiddleLeft;
-            label118.Location = new Point(313, 92);
-            label118.Margin = new Padding(0);
-            label118.Name = "label118";
-            label118.Size = new Size(24, 20);
-            label118.TabIndex = 21029;
-            label118.Text = "様";
-            label118.TextAlign = ContentAlignment.MiddleLeft;
+            label134.AllowDrop = true;
+            label134.AutoEllipsis = true;
+            label134.Font = new Font("BIZ UDゴシック", 8.5F, FontStyle.Regular, GraphicsUnit.Point);
+            label134.ForeColor = SystemColors.ActiveCaptionText;
+            label134.ImageAlign = ContentAlignment.MiddleLeft;
+            label134.Location = new Point(190, 158);
+            label134.Margin = new Padding(0);
+            label134.Name = "label134";
+            label134.Size = new Size(24, 20);
+            label134.TabIndex = 21041;
+            label134.Text = "円";
+            label134.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // 設計製作依頼書_標準価格
+            // label135
             // 
-            設計製作依頼書_標準価格.BackColor = Color.White;
-            設計製作依頼書_標準価格.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            設計製作依頼書_標準価格.ImeMode = ImeMode.Disable;
-            設計製作依頼書_標準価格.Location = new Point(86, 138);
-            設計製作依頼書_標準価格.Margin = new Padding(3, 2, 3, 2);
-            設計製作依頼書_標準価格.Name = "設計製作依頼書_標準価格";
-            設計製作依頼書_標準価格.Size = new Size(103, 20);
-            設計製作依頼書_標準価格.TabIndex = 29;
-            設計製作依頼書_標準価格.TextChanged += 設計製作依頼書_標準価格_TextChanged;
-            設計製作依頼書_標準価格.Validating += 設計製作依頼書_標準価格_Validating;
-            設計製作依頼書_標準価格.Validated += 設計製作依頼書_標準価格_Validated;
+            label135.AllowDrop = true;
+            label135.AutoEllipsis = true;
+            label135.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label135.ForeColor = SystemColors.ActiveCaptionText;
+            label135.ImageAlign = ContentAlignment.MiddleLeft;
+            label135.Location = new Point(0, 207);
+            label135.Margin = new Padding(0);
+            label135.Name = "label135";
+            label135.Size = new Size(85, 20);
+            label135.TabIndex = 34;
+            label135.Text = "使用部署";
+            label135.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // label119
+            // label136
             // 
-            label119.AllowDrop = true;
-            label119.AutoEllipsis = true;
-            label119.Font = new Font("BIZ UDゴシック", 8.5F, FontStyle.Regular, GraphicsUnit.Point);
-            label119.ForeColor = SystemColors.ActiveCaptionText;
-            label119.ImageAlign = ContentAlignment.MiddleLeft;
-            label119.Location = new Point(190, 138);
-            label119.Margin = new Padding(0);
-            label119.Name = "label119";
-            label119.Size = new Size(24, 20);
-            label119.TabIndex = 21031;
-            label119.Text = "円";
-            label119.TextAlign = ContentAlignment.MiddleLeft;
+            label136.AllowDrop = true;
+            label136.AutoEllipsis = true;
+            label136.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label136.ForeColor = SystemColors.ActiveCaptionText;
+            label136.ImageAlign = ContentAlignment.MiddleLeft;
+            label136.Location = new Point(0, 182);
+            label136.Margin = new Padding(0);
+            label136.Name = "label136";
+            label136.Size = new Size(85, 20);
+            label136.TabIndex = 32;
+            label136.Text = "支払方法";
+            label136.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // label120
+            // label137
             // 
-            label120.AllowDrop = true;
-            label120.AutoEllipsis = true;
-            label120.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label120.ForeColor = SystemColors.ActiveCaptionText;
-            label120.ImageAlign = ContentAlignment.MiddleLeft;
-            label120.Location = new Point(0, 138);
-            label120.Margin = new Padding(0);
-            label120.Name = "label120";
-            label120.Size = new Size(85, 20);
-            label120.TabIndex = 28;
-            label120.Text = "標準価格";
-            label120.TextAlign = ContentAlignment.MiddleLeft;
+            label137.AllowDrop = true;
+            label137.AutoEllipsis = true;
+            label137.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label137.ForeColor = SystemColors.ActiveCaptionText;
+            label137.ImageAlign = ContentAlignment.MiddleLeft;
+            label137.Location = new Point(0, 115);
+            label137.Margin = new Padding(0);
+            label137.Name = "label137";
+            label137.Size = new Size(85, 20);
+            label137.TabIndex = 26;
+            label137.Text = "数量";
+            label137.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // 設計製作依頼書_数量
+            // 設備購買申請書_標準価格
             // 
-            設計製作依頼書_数量.BackColor = Color.White;
-            設計製作依頼書_数量.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            設計製作依頼書_数量.ImeMode = ImeMode.Disable;
-            設計製作依頼書_数量.Location = new Point(86, 160);
-            設計製作依頼書_数量.Margin = new Padding(3, 2, 3, 2);
-            設計製作依頼書_数量.Name = "設計製作依頼書_数量";
-            設計製作依頼書_数量.Size = new Size(103, 20);
-            設計製作依頼書_数量.TabIndex = 31;
-            設計製作依頼書_数量.TextChanged += 設計製作依頼書_数量_TextChanged;
-            設計製作依頼書_数量.Validating += 設計製作依頼書_数量_Validating;
-            設計製作依頼書_数量.Validated += 設計製作依頼書_数量_Validated;
+            設備購買申請書_標準価格.BackColor = Color.White;
+            設備購買申請書_標準価格.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            設備購買申請書_標準価格.ImeMode = ImeMode.Disable;
+            設備購買申請書_標準価格.Location = new Point(86, 137);
+            設備購買申請書_標準価格.Margin = new Padding(3, 2, 3, 2);
+            設備購買申請書_標準価格.Name = "設備購買申請書_標準価格";
+            設備購買申請書_標準価格.Size = new Size(103, 20);
+            設備購買申請書_標準価格.TabIndex = 29;
+            設備購買申請書_標準価格.TextChanged += 設備購買申請書_標準価格_TextChanged;
+            設備購買申請書_標準価格.Validating += 設備購買申請書_標準価格_Validating;
+            設備購買申請書_標準価格.Validated += 設備購買申請書_標準価格_Validated;
             // 
-            // label128
+            // 設備購買申請書_単価
             // 
-            label128.AllowDrop = true;
-            label128.AutoEllipsis = true;
-            label128.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label128.ForeColor = SystemColors.ActiveCaptionText;
-            label128.ImageAlign = ContentAlignment.MiddleLeft;
-            label128.Location = new Point(0, 159);
-            label128.Margin = new Padding(0);
-            label128.Name = "label128";
-            label128.Size = new Size(85, 20);
-            label128.TabIndex = 30;
-            label128.Text = "数量";
-            label128.TextAlign = ContentAlignment.MiddleLeft;
+            設備購買申請書_単価.BackColor = Color.White;
+            設備購買申請書_単価.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            設備購買申請書_単価.ImeMode = ImeMode.Disable;
+            設備購買申請書_単価.Location = new Point(86, 159);
+            設備購買申請書_単価.Margin = new Padding(3, 2, 3, 2);
+            設備購買申請書_単価.Name = "設備購買申請書_単価";
+            設備購買申請書_単価.Size = new Size(103, 20);
+            設備購買申請書_単価.TabIndex = 31;
+            設備購買申請書_単価.TextChanged += 設備購買申請書_単価_TextChanged;
+            設備購買申請書_単価.Validating += 設備購買申請書_単価_Validating;
+            設備購買申請書_単価.Validated += 設備購買申請書_単価_Validated;
             // 
-            // label131
+            // 設備購買申請書_支払方法
             // 
-            label131.AllowDrop = true;
-            label131.AutoEllipsis = true;
-            label131.Font = new Font("BIZ UDゴシック", 8.5F, FontStyle.Regular, GraphicsUnit.Point);
-            label131.ForeColor = SystemColors.ActiveCaptionText;
-            label131.ImageAlign = ContentAlignment.MiddleLeft;
-            label131.Location = new Point(214, 4);
-            label131.Margin = new Padding(0);
-            label131.Name = "label131";
-            label131.Size = new Size(186, 20);
-            label131.TabIndex = 21035;
-            label131.Text = "※検討依頼書の文書コードです。";
-            label131.TextAlign = ContentAlignment.MiddleLeft;
+            設備購買申請書_支払方法.BackColor = SystemColors.Window;
+            設備購買申請書_支払方法.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            設備購買申請書_支払方法.FormattingEnabled = true;
+            設備購買申請書_支払方法.ImeMode = ImeMode.Disable;
+            設備購買申請書_支払方法.Location = new Point(86, 182);
+            設備購買申請書_支払方法.Name = "設備購買申請書_支払方法";
+            設備購買申請書_支払方法.Size = new Size(103, 21);
+            設備購買申請書_支払方法.TabIndex = 33;
+            設備購買申請書_支払方法.TextChanged += 設備購買申請書_支払方法_SelectedIndexChanged;
+            設備購買申請書_支払方法.Validating += 設備購買申請書_支払方法_Validating;
+            設備購買申請書_支払方法.Validated += 設備購買申請書_支払方法_Validated;
             // 
-            // 設計製作依頼書_リンク1ボタン
+            // 設備購買申請書_購買予定日選択ボタン
             // 
-            設計製作依頼書_リンク1ボタン.Enabled = false;
-            設計製作依頼書_リンク1ボタン.Font = new Font("メイリオ", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            設計製作依頼書_リンク1ボタン.ForeColor = Color.Navy;
-            設計製作依頼書_リンク1ボタン.Location = new Point(189, 3);
-            設計製作依頼書_リンク1ボタン.Margin = new Padding(0);
-            設計製作依頼書_リンク1ボタン.Name = "設計製作依頼書_リンク1ボタン";
-            設計製作依頼書_リンク1ボタン.Size = new Size(22, 22);
-            設計製作依頼書_リンク1ボタン.TabIndex = 21036;
-            設計製作依頼書_リンク1ボタン.TabStop = false;
-            設計製作依頼書_リンク1ボタン.Text = "➡";
-            設計製作依頼書_リンク1ボタン.TextAlign = ContentAlignment.TopCenter;
-            設計製作依頼書_リンク1ボタン.UseVisualStyleBackColor = true;
-            設計製作依頼書_リンク1ボタン.Click += 設計製作依頼書_リンク1ボタン_Click;
-            設計製作依頼書_リンク1ボタン.Enter += 設計製作依頼書_リンク1ボタン_Enter;
-            設計製作依頼書_リンク1ボタン.Leave += 設計製作依頼書_リンク1ボタン_Leave;
+            設備購買申請書_購買予定日選択ボタン.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            設備購買申請書_購買予定日選択ボタン.Location = new Point(190, 4);
+            設備購買申請書_購買予定日選択ボタン.Margin = new Padding(4);
+            設備購買申請書_購買予定日選択ボタン.Name = "設備購買申請書_購買予定日選択ボタン";
+            設備購買申請書_購買予定日選択ボタン.Size = new Size(20, 20);
+            設備購買申請書_購買予定日選択ボタン.TabIndex = 21034;
+            設備購買申請書_購買予定日選択ボタン.TabStop = false;
+            設備購買申請書_購買予定日選択ボタン.Text = "▼";
+            設備購買申請書_購買予定日選択ボタン.UseVisualStyleBackColor = true;
+            設備購買申請書_購買予定日選択ボタン.TextChanged += 設備購買申請書_購買予定日選択ボタン_Click;
             // 
-            // 設計製作依頼書_リンク2ボタン
+            // 設備購買申請書_用途
             // 
-            設計製作依頼書_リンク2ボタン.Font = new Font("メイリオ", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            設計製作依頼書_リンク2ボタン.ForeColor = Color.Navy;
-            設計製作依頼書_リンク2ボタン.Location = new Point(189, 25);
-            設計製作依頼書_リンク2ボタン.Margin = new Padding(0);
-            設計製作依頼書_リンク2ボタン.Name = "設計製作依頼書_リンク2ボタン";
-            設計製作依頼書_リンク2ボタン.Size = new Size(22, 22);
-            設計製作依頼書_リンク2ボタン.TabIndex = 21037;
-            設計製作依頼書_リンク2ボタン.TabStop = false;
-            設計製作依頼書_リンク2ボタン.Text = "➡";
-            設計製作依頼書_リンク2ボタン.TextAlign = ContentAlignment.TopCenter;
-            toolTip1.SetToolTip(設計製作依頼書_リンク2ボタン, "リンク");
-            設計製作依頼書_リンク2ボタン.UseVisualStyleBackColor = true;
-            設計製作依頼書_リンク2ボタン.Click += 設計製作依頼書_リンク2ボタン_Click;
-            設計製作依頼書_リンク2ボタン.Enter += 設計製作依頼書_リンク2ボタン_Enter;
-            設計製作依頼書_リンク2ボタン.Leave += 設計製作依頼書_リンク2ボタン_Leave;
+            設備購買申請書_用途.BackColor = SystemColors.Window;
+            設備購買申請書_用途.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            設備購買申請書_用途.ImeMode = ImeMode.Hiragana;
+            設備購買申請書_用途.Location = new Point(3, 248);
+            設備購買申請書_用途.Margin = new Padding(3, 2, 3, 2);
+            設備購買申請書_用途.Multiline = true;
+            設備購買申請書_用途.Name = "設備購買申請書_用途";
+            設備購買申請書_用途.Size = new Size(396, 43);
+            設備購買申請書_用途.TabIndex = 37;
+            設備購買申請書_用途.DoubleClick += 設備購買申請書_用途_DoubleClick;
+            設備購買申請書_用途.Enter += 設備購買申請書_用途_Enter;
+            設備購買申請書_用途.Leave += 設備購買申請書_用途_Leave;
+            設備購買申請書_用途.TextChanged += 設備購買申請書_用途_TextChanged;
+            設備購買申請書_用途.Validating += 設備購買申請書_用途_Validating;
+            設備購買申請書_用途.Validated += 設備購買申請書_用途_Validated;
+            // 
+            // label138
+            // 
+            label138.AllowDrop = true;
+            label138.AutoEllipsis = true;
+            label138.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label138.ForeColor = SystemColors.ActiveCaptionText;
+            label138.ImageAlign = ContentAlignment.MiddleLeft;
+            label138.Location = new Point(0, 229);
+            label138.Margin = new Padding(0);
+            label138.Name = "label138";
+            label138.Size = new Size(399, 20);
+            label138.TabIndex = 36;
+            label138.Text = "用途";
+            label138.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // label139
+            // 
+            label139.AllowDrop = true;
+            label139.AutoEllipsis = true;
+            label139.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label139.ForeColor = SystemColors.ActiveCaptionText;
+            label139.ImageAlign = ContentAlignment.MiddleLeft;
+            label139.Location = new Point(0, 159);
+            label139.Margin = new Padding(0);
+            label139.Name = "label139";
+            label139.Size = new Size(85, 20);
+            label139.TabIndex = 30;
+            label139.Text = "単価";
+            label139.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // 設備購買申請書_使用部署
+            // 
+            設備購買申請書_使用部署.BackColor = Color.White;
+            設備購買申請書_使用部署.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            設備購買申請書_使用部署.ImeMode = ImeMode.Hiragana;
+            設備購買申請書_使用部署.Location = new Point(86, 206);
+            設備購買申請書_使用部署.Margin = new Padding(3, 2, 3, 2);
+            設備購買申請書_使用部署.Name = "設備購買申請書_使用部署";
+            設備購買申請書_使用部署.Size = new Size(313, 20);
+            設備購買申請書_使用部署.TabIndex = 35;
+            設備購買申請書_使用部署.Enter += 設備購買申請書_使用部署_Enter;
+            設備購買申請書_使用部署.Leave += 設備購買申請書_使用部署_Leave;
+            設備購買申請書_使用部署.TextChanged += 設備購買申請書_使用部署_TextChanged;
+            設備購買申請書_使用部署.Validating += 設備購買申請書_使用部署_Validating;
+            設備購買申請書_使用部署.Validated += 設備購買申請書_使用部署_Validated;
+            // 
+            // label140
+            // 
+            label140.AllowDrop = true;
+            label140.AutoEllipsis = true;
+            label140.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label140.ForeColor = SystemColors.ActiveCaptionText;
+            label140.ImageAlign = ContentAlignment.MiddleLeft;
+            label140.Location = new Point(0, 138);
+            label140.Margin = new Padding(0);
+            label140.Name = "label140";
+            label140.Size = new Size(85, 20);
+            label140.TabIndex = 28;
+            label140.Text = "標準価格";
+            label140.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // label141
+            // 
+            label141.AllowDrop = true;
+            label141.AutoEllipsis = true;
+            label141.Font = new Font("BIZ UDゴシック", 8.5F, FontStyle.Regular, GraphicsUnit.Point);
+            label141.ForeColor = SystemColors.ActiveCaptionText;
+            label141.ImageAlign = ContentAlignment.MiddleLeft;
+            label141.Location = new Point(190, 137);
+            label141.Margin = new Padding(0);
+            label141.Name = "label141";
+            label141.Size = new Size(24, 20);
+            label141.TabIndex = 21031;
+            label141.Text = "円";
+            label141.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // 設備購買申請書_数量
+            // 
+            設備購買申請書_数量.BackColor = Color.White;
+            設備購買申請書_数量.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            設備購買申請書_数量.ImeMode = ImeMode.Disable;
+            設備購買申請書_数量.Location = new Point(86, 115);
+            設備購買申請書_数量.Margin = new Padding(3, 2, 3, 2);
+            設備購買申請書_数量.Name = "設備購買申請書_数量";
+            設備購買申請書_数量.Size = new Size(103, 20);
+            設備購買申請書_数量.TabIndex = 27;
+            設備購買申請書_数量.TextChanged += 設備購買申請書_数量_TextChanged;
+            設備購買申請書_数量.Validating += 設備購買申請書_数量_Validating;
+            設備購買申請書_数量.Validated += 設備購買申請書_数量_Validated;
+            // 
+            // 設備購買申請書_品名
+            // 
+            設備購買申請書_品名.BackColor = Color.White;
+            設備購買申請書_品名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            設備購買申請書_品名.ImeMode = ImeMode.Hiragana;
+            設備購買申請書_品名.Location = new Point(86, 26);
+            設備購買申請書_品名.Margin = new Padding(3, 2, 3, 2);
+            設備購買申請書_品名.Name = "設備購買申請書_品名";
+            設備購買申請書_品名.Size = new Size(313, 20);
+            設備購買申請書_品名.TabIndex = 19;
+            設備購買申請書_品名.TextChanged += 設備購買申請書_品名_TextChanged;
+            設備購買申請書_品名.Validating += 設備購買申請書_品名_Validating;
+            設備購買申請書_品名.Validated += 設備購買申請書_品名_Validated;
+            // 
+            // 設備購買申請書_仕入先名
+            // 
+            設備購買申請書_仕入先名.BackColor = Color.White;
+            設備購買申請書_仕入先名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            設備購買申請書_仕入先名.ImeMode = ImeMode.Hiragana;
+            設備購買申請書_仕入先名.Location = new Point(86, 94);
+            設備購買申請書_仕入先名.Margin = new Padding(3, 2, 3, 2);
+            設備購買申請書_仕入先名.Name = "設備購買申請書_仕入先名";
+            設備購買申請書_仕入先名.Size = new Size(313, 20);
+            設備購買申請書_仕入先名.TabIndex = 25;
+            設備購買申請書_仕入先名.TextChanged += 設備購買申請書_仕入先名_TextChanged;
+            設備購買申請書_仕入先名.Validating += 設備購買申請書_仕入先名_Validating;
+            設備購買申請書_仕入先名.Validated += 設備購買申請書_仕入先名_Validated;
+            // 
+            // label142
+            // 
+            label142.AllowDrop = true;
+            label142.AutoEllipsis = true;
+            label142.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label142.ForeColor = SystemColors.ActiveCaptionText;
+            label142.ImageAlign = ContentAlignment.MiddleLeft;
+            label142.Location = new Point(0, 94);
+            label142.Margin = new Padding(0);
+            label142.Name = "label142";
+            label142.Size = new Size(85, 20);
+            label142.TabIndex = 24;
+            label142.Text = "仕入先名";
+            label142.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // label143
+            // 
+            label143.AllowDrop = true;
+            label143.AutoEllipsis = true;
+            label143.Font = new Font("BIZ UDゴシック", 8.5F, FontStyle.Regular, GraphicsUnit.Point);
+            label143.ForeColor = SystemColors.ActiveCaptionText;
+            label143.ImageAlign = ContentAlignment.MiddleLeft;
+            label143.Location = new Point(-2, 71);
+            label143.Margin = new Padding(0);
+            label143.Name = "label143";
+            label143.Size = new Size(85, 20);
+            label143.TabIndex = 22;
+            label143.Text = "メーカー名";
+            label143.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // 設備購買申請書_メーカー名
+            // 
+            設備購買申請書_メーカー名.BackColor = Color.White;
+            設備購買申請書_メーカー名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            設備購買申請書_メーカー名.ImeMode = ImeMode.Hiragana;
+            設備購買申請書_メーカー名.Location = new Point(86, 71);
+            設備購買申請書_メーカー名.Margin = new Padding(3, 2, 3, 2);
+            設備購買申請書_メーカー名.Name = "設備購買申請書_メーカー名";
+            設備購買申請書_メーカー名.Size = new Size(313, 20);
+            設備購買申請書_メーカー名.TabIndex = 23;
+            設備購買申請書_メーカー名.TextChanged += 設備購買申請書_メーカー名_TextChanged;
+            設備購買申請書_メーカー名.Validating += 設備購買申請書_メーカー名_Validating;
+            設備購買申請書_メーカー名.Validated += 設備購買申請書_メーカー名_Validated;
+            // 
+            // 設備購買申請書_型番
+            // 
+            設備購買申請書_型番.BackColor = Color.White;
+            設備購買申請書_型番.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            設備購買申請書_型番.ImeMode = ImeMode.Alpha;
+            設備購買申請書_型番.Location = new Point(86, 48);
+            設備購買申請書_型番.Margin = new Padding(3, 2, 3, 2);
+            設備購買申請書_型番.Name = "設備購買申請書_型番";
+            設備購買申請書_型番.Size = new Size(313, 20);
+            設備購買申請書_型番.TabIndex = 21;
+            設備購買申請書_型番.TextChanged += 設備購買申請書_型番_TextChanged;
+            設備購買申請書_型番.Validating += 設備購買申請書_型番_Validating;
+            設備購買申請書_型番.Validated += 設備購買申請書_型番_Validated;
+            // 
+            // label144
+            // 
+            label144.AllowDrop = true;
+            label144.AutoEllipsis = true;
+            label144.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label144.ForeColor = SystemColors.ActiveCaptionText;
+            label144.ImageAlign = ContentAlignment.MiddleLeft;
+            label144.Location = new Point(0, 26);
+            label144.Margin = new Padding(0);
+            label144.Name = "label144";
+            label144.Size = new Size(85, 20);
+            label144.TabIndex = 18;
+            label144.Text = "品名";
+            label144.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // 設備購買申請書_購買予定日
+            // 
+            設備購買申請書_購買予定日.BackColor = Color.White;
+            設備購買申請書_購買予定日.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            設備購買申請書_購買予定日.ImeMode = ImeMode.Disable;
+            設備購買申請書_購買予定日.Location = new Point(86, 4);
+            設備購買申請書_購買予定日.Margin = new Padding(3, 2, 3, 2);
+            設備購買申請書_購買予定日.Name = "設備購買申請書_購買予定日";
+            設備購買申請書_購買予定日.Size = new Size(102, 20);
+            設備購買申請書_購買予定日.TabIndex = 17;
+            設備購買申請書_購買予定日.TextChanged += 設備購買申請書_購買予定日_TextChanged;
+            設備購買申請書_購買予定日.KeyPress += 設備購買申請書_購買予定日_KeyPress;
+            設備購買申請書_購買予定日.Validating += 設備購買申請書_購買予定日_Validating;
+            設備購買申請書_購買予定日.Validated += 設備購買申請書_購買予定日_Validated;
+            // 
+            // label145
+            // 
+            label145.AllowDrop = true;
+            label145.AutoEllipsis = true;
+            label145.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label145.ForeColor = SystemColors.ActiveCaptionText;
+            label145.ImageAlign = ContentAlignment.MiddleLeft;
+            label145.Location = new Point(0, 48);
+            label145.Margin = new Padding(0);
+            label145.Name = "label145";
+            label145.Size = new Size(85, 20);
+            label145.TabIndex = 20;
+            label145.Text = "型番";
+            label145.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // 設備購買申請書_購入理由
+            // 
+            設備購買申請書_購入理由.BackColor = SystemColors.Window;
+            設備購買申請書_購入理由.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            設備購買申請書_購入理由.ImeMode = ImeMode.Hiragana;
+            設備購買申請書_購入理由.Location = new Point(3, 306);
+            設備購買申請書_購入理由.Margin = new Padding(3, 2, 3, 2);
+            設備購買申請書_購入理由.Multiline = true;
+            設備購買申請書_購入理由.Name = "設備購買申請書_購入理由";
+            設備購買申請書_購入理由.Size = new Size(396, 68);
+            設備購買申請書_購入理由.TabIndex = 39;
+            設備購買申請書_購入理由.DoubleClick += 設備購買申請書_購入理由_DoubleClick;
+            設備購買申請書_購入理由.Enter += 設備購買申請書_購入理由_Enter;
+            設備購買申請書_購入理由.Leave += 設備購買申請書_購入理由_Leave;
+            設備購買申請書_購入理由.TextChanged += 設備購買申請書_購入理由_TextChanged;
+            設備購買申請書_購入理由.Validating += 設備購買申請書_購入理由_Validating;
+            設備購買申請書_購入理由.Validated += 設備購買申請書_購入理由_Validated;
+            // 
+            // 設備購買申請書_版数
+            // 
+            設備購買申請書_版数.BackColor = Color.White;
+            設備購買申請書_版数.Enabled = false;
+            設備購買申請書_版数.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            設備購買申請書_版数.ImeMode = ImeMode.Disable;
+            設備購買申請書_版数.Location = new Point(362, 5);
+            設備購買申請書_版数.Margin = new Padding(3, 2, 3, 2);
+            設備購買申請書_版数.Name = "設備購買申請書_版数";
+            設備購買申請書_版数.ReadOnly = true;
+            設備購買申請書_版数.Size = new Size(13, 20);
+            設備購買申請書_版数.TabIndex = 10292;
+            設備購買申請書_版数.TabStop = false;
+            設備購買申請書_版数.Visible = false;
+            // 
+            // 設備購買申請書_文書コード
+            // 
+            設備購買申請書_文書コード.BackColor = Color.White;
+            設備購買申請書_文書コード.Enabled = false;
+            設備購買申請書_文書コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            設備購買申請書_文書コード.ImeMode = ImeMode.Disable;
+            設備購買申請書_文書コード.Location = new Point(343, 5);
+            設備購買申請書_文書コード.Margin = new Padding(3, 2, 3, 2);
+            設備購買申請書_文書コード.Name = "設備購買申請書_文書コード";
+            設備購買申請書_文書コード.ReadOnly = true;
+            設備購買申請書_文書コード.Size = new Size(13, 20);
+            設備購買申請書_文書コード.TabIndex = 10291;
+            設備購買申請書_文書コード.TabStop = false;
+            設備購買申請書_文書コード.Visible = false;
+            // 
+            // label146
+            // 
+            label146.AllowDrop = true;
+            label146.AutoEllipsis = true;
+            label146.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label146.ForeColor = SystemColors.ActiveCaptionText;
+            label146.ImageAlign = ContentAlignment.MiddleLeft;
+            label146.Location = new Point(0, 288);
+            label146.Margin = new Padding(0);
+            label146.Name = "label146";
+            label146.Size = new Size(399, 20);
+            label146.TabIndex = 38;
+            label146.Text = "購入理由及び期待される効果";
+            label146.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // label147
+            // 
+            label147.AllowDrop = true;
+            label147.AutoEllipsis = true;
+            label147.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label147.ForeColor = SystemColors.ActiveCaptionText;
+            label147.ImageAlign = ContentAlignment.MiddleLeft;
+            label147.Location = new Point(0, 4);
+            label147.Margin = new Padding(0);
+            label147.Name = "label147";
+            label147.Size = new Size(85, 20);
+            label147.TabIndex = 16;
+            label147.Text = "購買予定日";
+            label147.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // F_文書
             // 
             BackColor = SystemColors.Control;
             ClientSize = new Size(880, 659);
-            Controls.Add(設計製作依頼書パネル);
+            Controls.Add(設備購買申請書パネル);
             Controls.Add(panel2);
             Controls.Add(label28);
             Controls.Add(通信欄);
@@ -7561,6 +8060,8 @@ namespace u_net
             設計製作依頼書パネル.PerformLayout();
             設計製作依頼書_付属書類.ResumeLayout(false);
             設計製作依頼書_付属書類.PerformLayout();
+            設備購買申請書パネル.ResumeLayout(false);
+            設備購買申請書パネル.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -8050,6 +8551,36 @@ namespace u_net
         private TextBox 設計製作依頼書_標準価格;
         private Label label118;
         internal Button 設計製作依頼書_リンク2ボタン;
+        private Panel 設備購買申請書パネル;
+        private Label label134;
+        private Label label135;
+        private Label label136;
+        private Label label137;
+        private TextBox 設備購買申請書_標準価格;
+        private TextBox 設備購買申請書_単価;
+        internal ComboBox 設備購買申請書_支払方法;
+        internal Button 設備購買申請書_購買予定日選択ボタン;
+        private TextBox 設備購買申請書_用途;
+        private Label label138;
+        private Label label139;
+        private TextBox 設備購買申請書_使用部署;
+        private Label label140;
+        private Label label141;
+        private TextBox 設備購買申請書_数量;
+        private TextBox 設備購買申請書_品名;
+        private TextBox 設備購買申請書_仕入先名;
+        private Label label142;
+        private Label label143;
+        private TextBox 設備購買申請書_メーカー名;
+        private TextBox 設備購買申請書_型番;
+        private Label label144;
+        private TextBox 設備購買申請書_購買予定日;
+        private Label label145;
+        private TextBox 設備購買申請書_購入理由;
+        private TextBox 設備購買申請書_版数;
+        private TextBox 設備購買申請書_文書コード;
+        private Label label146;
+        private Label label147;
     }
 }
 
