@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore.Diagnostics;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,10 +12,10 @@ using u_net.Public;
 
 namespace u_net
 {
-    public partial class F_環境回答書 : Form
+    public partial class F_品質異常回答書 : Form
     {
 
-        public F_環境回答書()
+        public F_品質異常回答書()
         {
             InitializeComponent();
         }
@@ -35,7 +34,6 @@ namespace u_net
         public int intEdition;
         public string args;
 
-
         private void Form_Load(object sender, EventArgs e)
         {
             try
@@ -45,6 +43,18 @@ namespace u_net
                 {
                     control.PreviewKeyDown += OriginalClass.ValidateCheck;
                 }
+
+                this.処置方法コード.DataSource = new KeyValuePair<String, String>[] {
+                new KeyValuePair<String, String>("01", "再加工＋検査"),
+                new KeyValuePair<String, String>("02", "補修＋検査"),
+                new KeyValuePair<String, String>("03", "用途変更"),
+                new KeyValuePair<String, String>("04", "廃棄"),
+                 new KeyValuePair<String, String>("05", "特殊"),
+     
+
+            };
+                this.処置方法コード.DisplayMember = "Value";
+                this.処置方法コード.ValueMember = "Key";
 
 
                 if (!string.IsNullOrEmpty(args)) // 新規
@@ -64,19 +74,15 @@ namespace u_net
 
 
 
-                    if (LoadData(this, strCode, intEdition))
+                    if (!LoadData(this, strCode, intEdition))
                     {
-                        回答公開方法_AfterUpdate();
-                    }
-                    else
-                    {
+   
                         MessageBox.Show("初期化に失敗しました。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         this.Close();
                     }
                     this.Text = Text + "(" + strCode + "-" + intEdition + ")";
                 }
                 args = null;
-
             }
             catch (Exception ex)
             {
@@ -84,6 +90,7 @@ namespace u_net
                 MessageBox.Show("エラーが発生しました: " + ex.Message, "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
         private bool LoadData(Form formObject, string codeString, int editionNumber)
         {
@@ -93,7 +100,7 @@ namespace u_net
 
                 string strSQL;
 
-                strSQL = "SELECT * FROM T環境回答書 WHERE 文書コード ='" + codeString + "' and 文書版数 = " + editionNumber;
+                strSQL = "SELECT * FROM T品質異常回答書 WHERE 文書コード ='" + codeString + "' and 文書版数 = " + editionNumber;
 
                 VariableSet.SetTable2Form(this, strSQL, cn);
 
@@ -104,25 +111,7 @@ namespace u_net
 
                 }
 
-                switch (回答公開方法.Text)
-                {
-                    case "1":
-                        面談.Checked = true;
-                        break;
-                    case "2":
-                        書類.Checked = true;
-                        break;
-                    case "3":
-                        電話.Checked = true;
-                        break;
-                    case "4":
-                        その他.Checked = true;
-                        break;
-                    default:
-                        面談.Checked = true;
-                        break;
-                }
-
+        
 
                 return true;
 
@@ -137,36 +126,6 @@ namespace u_net
             }
         }
 
-        private void 回答公開方法_AfterUpdate()
-        {
-            if (面談.Checked)
-            {
-                回答公開方法.Text = "1";
-            }
-            else if (書類.Checked)
-            {
-                回答公開方法.Text = "2";
-            }
-            else if (電話.Checked)
-            {
-                回答公開方法.Text = "3";
-            }
-            else if (その他.Checked)
-            {
-                回答公開方法.Text = "4";
-            }
-
-
-            if (その他.Checked)
-            {
-                回答公開方法その他.Enabled = true;
-            }
-            else
-            {
-                回答公開方法その他.Enabled = false;
-                回答公開方法その他.Text = null;
-            }
-        }
 
         // Nz メソッドの代替
         private T Nz<T>(T value)
@@ -177,6 +136,7 @@ namespace u_net
             }
             return value;
         }
+
 
         // IsNull関数の代用
         private bool IsNull(object value)
@@ -209,6 +169,15 @@ namespace u_net
 
                 switch (controlName)
                 {
+                    case "処置方法コード":
+
+                        if (string.IsNullOrEmpty(varValue.ToString()))
+                        {
+                            MessageBox.Show("処置方法を選択してください。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            return true;
+                        }
+                        break;
+
                     case "処置担当者":
                     case "処置内容":
 
@@ -256,6 +225,7 @@ namespace u_net
         private bool ErrCheck()
         {
             //入力確認    
+            if (IsError(this.処置方法コード)) return false;
             if (IsError(this.処置内容)) return false;
             if (IsError(this.処置日)) return false;
             if (IsError(this.処置担当者)) return false;
@@ -306,13 +276,13 @@ namespace u_net
 
                     string strwhere = "文書コード='" + codeString + "' and 文書版数 =" + editionNumber;
                     // ヘッダ部の登録
-                    if (!DataUpdater.UpdateOrInsertDataFrom(this, cn, "T環境回答書", strwhere, "文書コード", transaction, "文書版数"))
+                    if (!DataUpdater.UpdateOrInsertDataFrom(this, cn, "T品質異常回答書", strwhere, "文書コード", transaction, "文書版数"))
                     {
                         transaction.Rollback();  // 変更をキャンセル
                         return false;
                     }
 
-                  
+
 
                     transaction.Commit();
 
@@ -328,7 +298,9 @@ namespace u_net
             }
         }
 
-        private void F_環境回答書_KeyDown(object sender, KeyEventArgs e)
+
+
+        private void F_品質異常回答書_KeyDown(object sender, KeyEventArgs e)
         {
             switch (e.KeyCode)
             {
@@ -384,11 +356,11 @@ namespace u_net
                 // フォームAの日付コントロールに選択した日付を設定
                 処置日.Text = selectedDate;
                 処置日.Focus();
-            
+
             }
         }
 
-        
+
         private void 処置担当者_Enter(object sender, EventArgs e)
         {
             toolStripStatusLabel1.Text = "■全角２５文字まで入力できます。　■担当者名を入力します。　■複数入力可能です。";
@@ -437,44 +409,51 @@ namespace u_net
             if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
-        private void 回答公開先_Enter(object sender, EventArgs e)
-        {
-            toolStripStatusLabel1.Text = "■全角２５文字まで入力できます。　■担当者名を入力します。　■複数入力可能です。";
-        }
-
-        private void 回答公開先_Leave(object sender, EventArgs e)
-        {
-            toolStripStatusLabel1.Text = "各種項目の説明";
-        }
-
-        private void 回答公開方法_Validated(object sender, EventArgs e)
-        {
-
-        }
-
         private void 閉じるボタン_Click(object sender, EventArgs e)
         {
             Close();
         }
 
-        private void 面談_CheckedChanged(object sender, EventArgs e)
+        private void 参照文書コード_Enter(object sender, EventArgs e)
         {
-            回答公開方法_AfterUpdate();
+            toolStripStatusLabel1.Text = "■本回答に関連する是正・予防処置報告書の文書コードを入力します。";
         }
 
-        private void 書類_CheckedChanged(object sender, EventArgs e)
+        private void 参照文書コード_Leave(object sender, EventArgs e)
         {
-            回答公開方法_AfterUpdate();
+            toolStripStatusLabel1.Text = "各種項目の説明";
         }
 
-        private void 電話_CheckedChanged(object sender, EventArgs e)
+        private void 参照文書コード_KeyDown(object sender, KeyEventArgs e)
         {
-            回答公開方法_AfterUpdate();
+            if (e.KeyCode == Keys.Return)
+            {
+
+                string strCode = 参照文書コード.ToString();
+                string formattedCode = strCode.Trim().PadLeft(8, '0');
+
+                if (formattedCode != strCode || string.IsNullOrEmpty(strCode))
+                {
+                    参照文書コード.Text = formattedCode;
+                }
+
+            }
         }
 
-        private void その他_CheckedChanged(object sender, EventArgs e)
+        private void 参照文書コード_TextChanged(object sender, EventArgs e)
         {
-            回答公開方法_AfterUpdate();
+            FunctionClass.LimitText(sender as Control, 11);
         }
+
+        private void 処置方法コード_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "■品質異常に対する処置方法を選択します。";
+        }
+
+        private void 処置方法コード_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "各種項目の説明";
+        }
+
     }
 }

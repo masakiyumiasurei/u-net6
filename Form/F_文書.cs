@@ -314,6 +314,39 @@ namespace u_net
             this.出向依頼書_費用.DisplayMember = "Value";
             this.出向依頼書_費用.ValueMember = "Key";
 
+            this.設備購買申請書_支払方法コード.DataSource = new KeyValuePair<String, String>[] {
+                new KeyValuePair<String, String>("01", "振込"),
+                new KeyValuePair<String, String>("02", "現金"),
+                new KeyValuePair<String, String>("03", "リース"),
+                new KeyValuePair<String, String>("04", "その他"),
+
+            };
+            this.設備購買申請書_支払方法コード.DisplayMember = "Value";
+            this.設備購買申請書_支払方法コード.ValueMember = "Key";
+
+
+            this.非該当証明発行依頼書_郵送方法コード.DataSource = new KeyValuePair<String, String>[] {
+                new KeyValuePair<String, String>("01", "商品同梱"),
+                new KeyValuePair<String, String>("02", "郵便"),
+                new KeyValuePair<String, String>("03", "郵便速達"),
+                new KeyValuePair<String, String>("04", "ヤマト宅配"),
+                 new KeyValuePair<String, String>("05", "ヤマトメール"),
+                new KeyValuePair<String, String>("06", "ヤマトタイムサービス"),
+
+            };
+            this.非該当証明発行依頼書_郵送方法コード.DisplayMember = "Value";
+            this.非該当証明発行依頼書_郵送方法コード.ValueMember = "Key";
+
+
+            this.不具合調査修理依頼書_代替有無.DataSource = new KeyValuePair<String, String>[] {
+                new KeyValuePair<String, String>("有り", "有り"),
+                new KeyValuePair<String, String>("無し", "無し"),
+                
+
+            };
+            this.不具合調査修理依頼書_代替有無.DisplayMember = "Value";
+            this.不具合調査修理依頼書_代替有無.ValueMember = "Key";
+
             try
             {
                 this.SuspendLayout();
@@ -970,6 +1003,8 @@ namespace u_net
                     case "出向依頼書_受付日":
                     case "是正予防処置報告書_環境_受付日":
                     case "品質異常報告書_発生日":
+                    case "不具合調査修理依頼書_受付日":
+                    case "不具合調査修理依頼書_発生日":
 
                         if (IsNull(varValue))
                         {
@@ -990,6 +1025,9 @@ namespace u_net
                         break;
                     case "製品企画書_発売予定日":
                     case "製品企画書_会議開催日":
+                    case "設備購買申請書_購買予定日":
+                    case "非該当証明発行依頼書_発行日":
+                    case "非該当証明発行依頼書_郵送日":
 
                         if (!IsDate(varValue))
                         {
@@ -1032,6 +1070,21 @@ namespace u_net
                     case "品質異常報告書_発生場所":
                     case "品質異常報告書_型番":
                     case "品質異常報告書_異常内容":
+                    case "設備購買申請書_型番":
+                    case "設備購買申請書_目的":
+                    case "非該当証明発行依頼書_顧客名":
+                    case "非該当証明発行依頼書_代理店名":
+                    case "非該当証明発行依頼書_品名":
+                    case "非該当証明発行依頼書_型番":
+                    case "非該当証明発行依頼書_輸出先国名":
+                    case "非該当証明発行依頼書_郵送方法コード":
+                    case "不具合調査修理依頼書_連絡者社名":
+                    case "不具合調査修理依頼書_連絡者氏名":
+                    case "不具合調査修理依頼書_型番":
+                    case "不具合調査修理依頼書_発生場所":
+                    case "不具合調査修理依頼書_現象":
+                    case "不具合調査修理依頼書_顧客の声":
+                    case "不具合調査修理依頼書_代替有無":
                         if (IsNull(varValue))
                         {
                             MessageBox.Show(controlObject.Name + "を入力してください。", controlObject.Name, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -1042,6 +1095,13 @@ namespace u_net
                         if (IsNull(varValue))
                         {
                             MessageBox.Show("記録分類コードを指定してください。", "記録分類", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            return true;
+                        }
+                        break;
+                    case "不具合調査修理依頼書_依頼分類コード":
+                        if (IsNull(varValue))
+                        {
+                            MessageBox.Show("依頼分類を選択してください。", "依頼分類", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                             return true;
                         }
                         break;
@@ -1061,6 +1121,16 @@ namespace u_net
 
                     case "出向依頼書_依頼分類その他":
                         if (出向依頼書_その他.Checked)
+                        {
+                            if (IsNull(varValue))
+                            {
+                                MessageBox.Show("依頼分類が「その他」のときは分類項目を入力してください。", "依頼分類-その他", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                                return true;
+                            }
+                        }
+                        break;
+                    case "不具合調査修理依頼書_その他":
+                        if (不具合調査修理依頼書_その他.Checked)
                         {
                             if (IsNull(varValue))
                             {
@@ -1091,9 +1161,27 @@ namespace u_net
                             新規販売取引申請書_顧客名.Text = str1;
                         }
                         break;
+                    case "不具合調査修理依頼書_顧客コード":
+                        if (IsNull(varValue))
+                        {
+                            MessageBox.Show(controlObject.Name + "を入力してください。", controlObject.Name, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            return true;
+                        }
+                        string str2;
+                        str2 = FunctionClass.GetCustomerName(cn, Nz(varValue));
+                        if (string.IsNullOrEmpty(str2))
+                        {
+                            MessageBox.Show("指定された顧客データはありません。", controlObject.Name, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            return true;
+                        }
+                        else
+                        {
+                            不具合調査修理依頼書_顧客名.Text = str2;
+                        }
+                        break;
 
                     case "是正予防会議通知書_顧客コード":
-                    case "是正予防処置報告書_顧客コード":
+
                         if (!FunctionClass.IsLimit(varValue, 8, false, controlObject.Name))
                         {
                             return true;
@@ -1101,12 +1189,23 @@ namespace u_net
                         if (IsNull(varValue)) return false;
                         是正予防会議通知書_顧客名.Text = FunctionClass.GetCustomerName(cn, varValue.ToString());
                         break;
+                    case "是正予防処置報告書_顧客コード":
+                        if (!FunctionClass.IsLimit(varValue, 8, false, controlObject.Name))
+                        {
+                            return true;
+                        }
+                        if (IsNull(varValue)) return false;
+                        是正予防処置報告書_顧客名.Text = FunctionClass.GetCustomerName(cn, varValue.ToString());
+                        break;
 
                     case "是正予防会議通知書_数量":
                     case "是正予防処置報告書_数量":
                     case "是正予防処置報告書_環境_数量":
                     case "製品企画書_年間販売数量":
                     case "設計製作依頼書_数量":
+                    case "設備購買申請書_数量":
+                    case "非該当証明発行依頼書_発行部数":
+                    case "不具合調査修理依頼書_数量":
                         if (IsNull(varValue)) return false;
                         if (!FunctionClass.IsLimit_N(varValue, 7, 0, controlObject.Name)) return true;
                         if (Convert.ToInt32(varValue) <= 0)
@@ -1117,12 +1216,25 @@ namespace u_net
                         break;
                     case "製品企画書_標準価格":
                     case "設計製作依頼書_標準価格":
+              
                         if (!FunctionClass.IsLimit_N(varValue, 9, 2, controlObject.Name)) return true;
 
                         break;
                     case "製品企画書_競合価格":
+       
                         if (IsNull(varValue)) return false;
                         if (!FunctionClass.IsLimit_N(varValue, 9, 2, controlObject.Name)) return true;
+
+                        break;
+ 
+                    case "設備購買申請書_単価":
+                        if (!FunctionClass.IsLimit_N(varValue, 9, 0, controlObject.Name)) return true;
+
+                        break;
+ 
+                    case "設備購買申請書_標準価格":
+                        if (IsNull(varValue)) return false;
+                        if (!FunctionClass.IsLimit_N(varValue, 9, 0, controlObject.Name)) return true;
 
                         break;
                     case "設計製作依頼書_顧客コード":
@@ -1765,6 +1877,13 @@ namespace u_net
                 {
                     DateTime tempDate = DateTime.Parse(結果日付.Text);
                     結果日付.Text = tempDate.ToString("yyyy/MM/dd");
+
+                }
+
+                if (!string.IsNullOrEmpty(環境連絡書_発生日.Text))
+                {
+                    DateTime tempDate = DateTime.Parse(環境連絡書_発生日.Text);
+                    環境連絡書_発生日.Text = tempDate.ToString("yyyy/MM/dd");
 
                 }
 
@@ -4705,7 +4824,20 @@ namespace u_net
 
         private void 通信欄_DoubleClick(object sender, EventArgs e)
         {
-            FunctionClass.DocZoom(sender as Control, CurrentCode, CurrentEdition, 4000);
+
+            F_文書ズーム targetform = new F_文書ズーム();
+
+            Control targetCtl = sender as Control;
+
+            targetform.TargetControl = targetCtl;
+            targetform.CurrentCode = CurrentCode;
+            targetform.CurrentEdition = CurrentEdition;
+            targetform.MaxByte = 4000;
+            targetform.SetProperties();
+            if (targetform.ShowDialog() == DialogResult.OK)
+            {
+                targetCtl.Text = targetform.テキスト.Text;
+            }
         }
 
 
@@ -4726,7 +4858,19 @@ namespace u_net
         }
         private void 結果内容_DoubleClick(object sender, EventArgs e)
         {
-            FunctionClass.DocZoom(sender as Control, CurrentCode, CurrentEdition, 4000);
+            F_文書ズーム targetform = new F_文書ズーム();
+
+            Control targetCtl = sender as Control;
+
+            targetform.TargetControl = targetCtl;
+            targetform.CurrentCode = CurrentCode;
+            targetform.CurrentEdition = CurrentEdition;
+            targetform.MaxByte = 4000;
+            targetform.SetProperties();
+            if (targetform.ShowDialog() == DialogResult.OK)
+            {
+                targetCtl.Text = targetform.テキスト.Text;
+            }
         }
 
 
@@ -5277,7 +5421,19 @@ namespace u_net
 
         private void 本文1_DoubleClick(object sender, EventArgs e)
         {
-            FunctionClass.DocZoom(sender as Control, CurrentCode, CurrentEdition, 4000);
+            F_文書ズーム targetform = new F_文書ズーム();
+
+            Control targetCtl = sender as Control;
+
+            targetform.TargetControl = targetCtl;
+            targetform.CurrentCode = CurrentCode;
+            targetform.CurrentEdition = CurrentEdition;
+            targetform.MaxByte = 4000;
+            targetform.SetProperties();
+            if (targetform.ShowDialog() == DialogResult.OK)
+            {
+                targetCtl.Text = targetform.テキスト.Text;
+            }
         }
 
 
@@ -5312,7 +5468,19 @@ namespace u_net
 
         private void 本文6_DoubleClick(object sender, EventArgs e)
         {
-            FunctionClass.DocZoom(sender as Control, CurrentCode, CurrentEdition, 4000);
+            F_文書ズーム targetform = new F_文書ズーム();
+
+            Control targetCtl = sender as Control;
+
+            targetform.TargetControl = targetCtl;
+            targetform.CurrentCode = CurrentCode;
+            targetform.CurrentEdition = CurrentEdition;
+            targetform.MaxByte = 4000;
+            targetform.SetProperties();
+            if (targetform.ShowDialog() == DialogResult.OK)
+            {
+                targetCtl.Text = targetform.テキスト.Text;
+            }
         }
 
 
@@ -5320,7 +5488,19 @@ namespace u_net
 
         private void 本文2_DoubleClick(object sender, EventArgs e)
         {
-            FunctionClass.DocZoom(sender as Control, CurrentCode, CurrentEdition, 4000);
+            F_文書ズーム targetform = new F_文書ズーム();
+
+            Control targetCtl = sender as Control;
+
+            targetform.TargetControl = targetCtl;
+            targetform.CurrentCode = CurrentCode;
+            targetform.CurrentEdition = CurrentEdition;
+            targetform.MaxByte = 4000;
+            targetform.SetProperties();
+            if (targetform.ShowDialog() == DialogResult.OK)
+            {
+                targetCtl.Text = targetform.テキスト.Text;
+            }
         }
 
         private void 本文2_TextChanged(object sender, EventArgs e)
@@ -5367,7 +5547,19 @@ namespace u_net
 
         private void 本文3_DoubleClick(object sender, EventArgs e)
         {
-            FunctionClass.DocZoom(sender as Control, CurrentCode, CurrentEdition, 4000);
+            F_文書ズーム targetform = new F_文書ズーム();
+
+            Control targetCtl = sender as Control;
+
+            targetform.TargetControl = targetCtl;
+            targetform.CurrentCode = CurrentCode;
+            targetform.CurrentEdition = CurrentEdition;
+            targetform.MaxByte = 4000;
+            targetform.SetProperties();
+            if (targetform.ShowDialog() == DialogResult.OK)
+            {
+                targetCtl.Text = targetform.テキスト.Text;
+            }
         }
 
         private void 本文3_Validated(object sender, EventArgs e)
@@ -5392,7 +5584,19 @@ namespace u_net
 
         private void 本文5_DoubleClick(object sender, EventArgs e)
         {
-            FunctionClass.DocZoom(sender as Control, CurrentCode, CurrentEdition, 4000);
+            F_文書ズーム targetform = new F_文書ズーム();
+
+            Control targetCtl = sender as Control;
+
+            targetform.TargetControl = targetCtl;
+            targetform.CurrentCode = CurrentCode;
+            targetform.CurrentEdition = CurrentEdition;
+            targetform.MaxByte = 4000;
+            targetform.SetProperties();
+            if (targetform.ShowDialog() == DialogResult.OK)
+            {
+                targetCtl.Text = targetform.テキスト.Text;
+            }
         }
 
         private void 本文5_Enter(object sender, EventArgs e)
@@ -5425,7 +5629,19 @@ namespace u_net
 
         private void 本文4_DoubleClick(object sender, EventArgs e)
         {
-            FunctionClass.DocZoom(sender as Control, CurrentCode, CurrentEdition, 4000);
+            F_文書ズーム targetform = new F_文書ズーム();
+
+            Control targetCtl = sender as Control;
+
+            targetform.TargetControl = targetCtl;
+            targetform.CurrentCode = CurrentCode;
+            targetform.CurrentEdition = CurrentEdition;
+            targetform.MaxByte = 4000;
+            targetform.SetProperties();
+            if (targetform.ShowDialog() == DialogResult.OK)
+            {
+                targetCtl.Text = targetform.テキスト.Text;
+            }
         }
 
         private void 本文4_Enter(object sender, EventArgs e)
@@ -5459,7 +5675,19 @@ namespace u_net
 
         private void 本文_DoubleClick(object sender, EventArgs e)
         {
-            FunctionClass.DocZoom(sender as Control, CurrentCode, CurrentEdition, 4000);
+            F_文書ズーム targetform = new F_文書ズーム();
+
+            Control targetCtl = sender as Control;
+
+            targetform.TargetControl = targetCtl;
+            targetform.CurrentCode = CurrentCode;
+            targetform.CurrentEdition = CurrentEdition;
+            targetform.MaxByte = 4000;
+            targetform.SetProperties();
+            if (targetform.ShowDialog() == DialogResult.OK)
+            {
+                targetCtl.Text = targetform.テキスト.Text;
+            }
         }
 
         private void 本文_Enter(object sender, EventArgs e)
@@ -5665,10 +5893,6 @@ namespace u_net
 
         #region システム配布記録
 
-        private void システム配布記録_配布日_KeyDown(object sender, KeyEventArgs e)
-        {
-
-        }
         private void システム配布記録_配布日_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == (char)Keys.Space)
@@ -5730,7 +5954,19 @@ namespace u_net
 
         private void システム配布記録_配布目的_DoubleClick(object sender, EventArgs e)
         {
-            FunctionClass.DocZoom(sender as Control, CurrentCode, CurrentEdition, 4000);
+            F_文書ズーム targetform = new F_文書ズーム();
+
+            Control targetCtl = sender as Control;
+
+            targetform.TargetControl = targetCtl;
+            targetform.CurrentCode = CurrentCode;
+            targetform.CurrentEdition = CurrentEdition;
+            targetform.MaxByte = 4000;
+            targetform.SetProperties();
+            if (targetform.ShowDialog() == DialogResult.OK)
+            {
+                targetCtl.Text = targetform.テキスト.Text;
+            }
 
         }
 
@@ -5757,11 +5993,6 @@ namespace u_net
         private void 環境連絡書_発生日_DoubleClick(object sender, EventArgs e)
         {
             環境連絡書_発生日選択ボタン_Click(sender, e);
-        }
-
-        private void 環境連絡書_発生日_KeyDown(object sender, KeyEventArgs e)
-        {
-
         }
 
         private void 環境連絡書_発生日_TextChanged(object sender, EventArgs e)
@@ -5862,7 +6093,19 @@ namespace u_net
 
         private void 環境連絡書_異常内容_DoubleClick(object sender, EventArgs e)
         {
-            FunctionClass.DocZoom(sender as Control, CurrentCode, CurrentEdition, 4000);
+            F_文書ズーム targetform = new F_文書ズーム();
+
+            Control targetCtl = sender as Control;
+
+            targetform.TargetControl = targetCtl;
+            targetform.CurrentCode = CurrentCode;
+            targetform.CurrentEdition = CurrentEdition;
+            targetform.MaxByte = 4000;
+            targetform.SetProperties();
+            if (targetform.ShowDialog() == DialogResult.OK)
+            {
+                targetCtl.Text = targetform.テキスト.Text;
+            }
         }
 
         private void 環境連絡書_異常内容_Enter(object sender, EventArgs e)
@@ -5893,7 +6136,11 @@ namespace u_net
 
         private void 環境連絡書_回答書ボタン_Click(object sender, EventArgs e)
         {
+            F_環境回答書 targetform = new F_環境回答書();
 
+            targetform.args = CurrentCode + "," + CurrentEdition;
+
+            targetform.ShowDialog();
         }
 
         #endregion
@@ -5904,11 +6151,6 @@ namespace u_net
         private void 記録_日付1_DoubleClick(object sender, EventArgs e)
         {
             記録_日付1選択ボタン_Click(sender, e);
-        }
-
-        private void 記録_日付1_KeyDown(object sender, KeyEventArgs e)
-        {
-
         }
 
         private void 記録_日付1_Leave(object sender, EventArgs e)
@@ -5963,11 +6205,6 @@ namespace u_net
         private void 記録_日付2_DoubleClick(object sender, EventArgs e)
         {
             記録_日付2選択ボタン_Click(sender, e);
-        }
-
-        private void 記録_日付2_KeyDown(object sender, KeyEventArgs e)
-        {
-
         }
 
         private void 記録_日付2_Leave(object sender, EventArgs e)
@@ -6067,7 +6304,19 @@ namespace u_net
 
         private void 記録_目的_DoubleClick(object sender, EventArgs e)
         {
-            FunctionClass.DocZoom(sender as Control, CurrentCode, CurrentEdition, 2000);
+            F_文書ズーム targetform = new F_文書ズーム();
+
+            Control targetCtl = sender as Control;
+
+            targetform.TargetControl = targetCtl;
+            targetform.CurrentCode = CurrentCode;
+            targetform.CurrentEdition = CurrentEdition;
+            targetform.MaxByte = 2000;
+            targetform.SetProperties();
+            if (targetform.ShowDialog() == DialogResult.OK)
+            {
+                targetCtl.Text = targetform.テキスト.Text;
+            }
         }
 
         private void 記録_目的_Enter(object sender, EventArgs e)
@@ -6082,7 +6331,19 @@ namespace u_net
 
         private void 記録_報告内容_DoubleClick(object sender, EventArgs e)
         {
-            FunctionClass.DocZoom(sender as Control, CurrentCode, CurrentEdition, 4000);
+            F_文書ズーム targetform = new F_文書ズーム();
+
+            Control targetCtl = sender as Control;
+
+            targetform.TargetControl = targetCtl;
+            targetform.CurrentCode = CurrentCode;
+            targetform.CurrentEdition = CurrentEdition;
+            targetform.MaxByte = 4000;
+            targetform.SetProperties();
+            if (targetform.ShowDialog() == DialogResult.OK)
+            {
+                targetCtl.Text = targetform.テキスト.Text;
+            }
         }
 
         private void 記録_報告内容_Enter(object sender, EventArgs e)
@@ -6129,11 +6390,6 @@ namespace u_net
         private void 議事録_開催日_Leave(object sender, EventArgs e)
         {
             toolStripStatusLabel1.Text = "各種項目の説明";
-        }
-
-        private void 議事録_開催日_KeyDown(object sender, KeyEventArgs e)
-        {
-
         }
 
         private void 議事録_開催日_TextChanged(object sender, EventArgs e)
@@ -6219,7 +6475,19 @@ namespace u_net
 
         private void 議事録_内容_DoubleClick(object sender, EventArgs e)
         {
-            FunctionClass.DocZoom(sender as Control, CurrentCode, CurrentEdition, 4000);
+            F_文書ズーム targetform = new F_文書ズーム();
+
+            Control targetCtl = sender as Control;
+
+            targetform.TargetControl = targetCtl;
+            targetform.CurrentCode = CurrentCode;
+            targetform.CurrentEdition = CurrentEdition;
+            targetform.MaxByte = 4000;
+            targetform.SetProperties();
+            if (targetform.ShowDialog() == DialogResult.OK)
+            {
+                targetCtl.Text = targetform.テキスト.Text;
+            }
         }
 
         private void 議事録_内容_Enter(object sender, EventArgs e)
@@ -6293,11 +6561,6 @@ namespace u_net
             if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
-        private void 教育訓練実施要領書_日付1_KeyDown(object sender, KeyEventArgs e)
-        {
-
-        }
-
         private void 教育訓練実施要領書_日付1_TextChanged(object sender, EventArgs e)
         {
             ChangedData(true);
@@ -6340,11 +6603,6 @@ namespace u_net
             {
                 教育訓練実施要領書_日付1選択ボタン_Click(sender, e);
             }
-        }
-
-        private void 教育訓練実施要領書_日付2_KeyDown(object sender, KeyEventArgs e)
-        {
-
         }
 
         private void 教育訓練実施要領書_日付2_TextChanged(object sender, EventArgs e)
@@ -6393,7 +6651,19 @@ namespace u_net
 
         private void 教育訓練実施要領書_目的_DoubleClick(object sender, EventArgs e)
         {
-            FunctionClass.DocZoom(sender as Control, CurrentCode, CurrentEdition, 1000);
+            F_文書ズーム targetform = new F_文書ズーム();
+
+            Control targetCtl = sender as Control;
+
+            targetform.TargetControl = targetCtl;
+            targetform.CurrentCode = CurrentCode;
+            targetform.CurrentEdition = CurrentEdition;
+            targetform.MaxByte = 1000;
+            targetform.SetProperties();
+            if (targetform.ShowDialog() == DialogResult.OK)
+            {
+                targetCtl.Text = targetform.テキスト.Text;
+            }
         }
 
         private void 教育訓練実施要領書_目的_Enter(object sender, EventArgs e)
@@ -6424,7 +6694,19 @@ namespace u_net
 
         private void 教育訓練実施要領書_内容_DoubleClick(object sender, EventArgs e)
         {
-            FunctionClass.DocZoom(sender as Control, CurrentCode, CurrentEdition, 3000);
+            F_文書ズーム targetform = new F_文書ズーム();
+
+            Control targetCtl = sender as Control;
+
+            targetform.TargetControl = targetCtl;
+            targetform.CurrentCode = CurrentCode;
+            targetform.CurrentEdition = CurrentEdition;
+            targetform.MaxByte = 3000;
+            targetform.SetProperties();
+            if (targetform.ShowDialog() == DialogResult.OK)
+            {
+                targetCtl.Text = targetform.テキスト.Text;
+            }
         }
 
         private void 教育訓練実施要領書_内容_Enter(object sender, EventArgs e)
@@ -6455,7 +6737,19 @@ namespace u_net
 
         private void 教育訓練実施要領書_期待効果_DoubleClick(object sender, EventArgs e)
         {
-            FunctionClass.DocZoom(sender as Control, CurrentCode, CurrentEdition, 1000);
+            F_文書ズーム targetform = new F_文書ズーム();
+
+            Control targetCtl = sender as Control;
+
+            targetform.TargetControl = targetCtl;
+            targetform.CurrentCode = CurrentCode;
+            targetform.CurrentEdition = CurrentEdition;
+            targetform.MaxByte = 1000;
+            targetform.SetProperties();
+            if (targetform.ShowDialog() == DialogResult.OK)
+            {
+                targetCtl.Text = targetform.テキスト.Text;
+            }
         }
 
         private void 教育訓練実施要領書_期待効果_Enter(object sender, EventArgs e)
@@ -6533,15 +6827,9 @@ namespace u_net
             }
         }
 
-
         private void 出向依頼書_受付日_DoubleClick(object sender, EventArgs e)
         {
             出向依頼書_受付日選択ボタン_Click(sender, e);
-        }
-
-        private void 出向依頼書_受付日_KeyDown(object sender, KeyEventArgs e)
-        {
-
         }
 
         private void 出向依頼書_受付日_TextChanged(object sender, EventArgs e)
@@ -6586,11 +6874,6 @@ namespace u_net
             {
                 出向依頼書_受付日選択ボタン_Click(sender, e);
             }
-        }
-
-        private void 出向依頼書_出向分類_KeyDown(object sender, KeyEventArgs e)
-        {
-
         }
 
         private void 出向依頼書_出向分類_KeyPress(object sender, KeyPressEventArgs e)
@@ -6794,7 +7077,19 @@ namespace u_net
 
         private void 出向依頼書_依頼内容_DoubleClick(object sender, EventArgs e)
         {
-            FunctionClass.DocZoom(sender as Control, CurrentCode, CurrentEdition, 4000);
+            F_文書ズーム targetform = new F_文書ズーム();
+
+            Control targetCtl = sender as Control;
+
+            targetform.TargetControl = targetCtl;
+            targetform.CurrentCode = CurrentCode;
+            targetform.CurrentEdition = CurrentEdition;
+            targetform.MaxByte = 4000;
+            targetform.SetProperties();
+            if (targetform.ShowDialog() == DialogResult.OK)
+            {
+                targetCtl.Text = targetform.テキスト.Text;
+            }
         }
 
         private void 出向依頼書_依頼内容_TextChanged(object sender, EventArgs e)
@@ -6991,7 +7286,6 @@ namespace u_net
             ChangedData(true);
         }
 
-
         private void 出向依頼書_費用_Validated(object sender, EventArgs e)
         {
 
@@ -7092,7 +7386,6 @@ namespace u_net
         {
             if (IsError(sender as Control) == true) e.Cancel = true;
         }
-
 
         private void 新規販売取引申請書_顧客コード_Enter(object sender, EventArgs e)
         {
@@ -7299,7 +7592,19 @@ namespace u_net
 
         private void 是正予防会議通知書_不具合現象_DoubleClick(object sender, EventArgs e)
         {
-            FunctionClass.DocZoom(sender as Control, CurrentCode, CurrentEdition, 4000);
+            F_文書ズーム targetform = new F_文書ズーム();
+
+            Control targetCtl = sender as Control;
+
+            targetform.TargetControl = targetCtl;
+            targetform.CurrentCode = CurrentCode;
+            targetform.CurrentEdition = CurrentEdition;
+            targetform.MaxByte = 4000;
+            targetform.SetProperties();
+            if (targetform.ShowDialog() == DialogResult.OK)
+            {
+                targetCtl.Text = targetform.テキスト.Text;
+            }
 
         }
 
@@ -7468,7 +7773,19 @@ namespace u_net
 
         private void 是正予防処置報告書_議事録_DoubleClick(object sender, EventArgs e)
         {
-            FunctionClass.DocZoom(sender as Control, CurrentCode, CurrentEdition, 4000);
+            F_文書ズーム targetform = new F_文書ズーム();
+
+            Control targetCtl = sender as Control;
+
+            targetform.TargetControl = targetCtl;
+            targetform.CurrentCode = CurrentCode;
+            targetform.CurrentEdition = CurrentEdition;
+            targetform.MaxByte = 4000;
+            targetform.SetProperties();
+            if (targetform.ShowDialog() == DialogResult.OK)
+            {
+                targetCtl.Text = targetform.テキスト.Text;
+            }
         }
 
         private void 是正予防処置報告書_議事録_Enter(object sender, EventArgs e)
@@ -7499,7 +7816,11 @@ namespace u_net
 
         private void 是正予防処置報告書_回答ボタン_Click(object sender, EventArgs e)
         {
+            F_是正予防処置回答 targetform = new F_是正予防処置回答();
 
+            targetform.args = CurrentCode + "," + CurrentEdition;
+
+            targetform.ShowDialog();
         }
 
         #endregion
@@ -7582,7 +7903,19 @@ namespace u_net
 
         private void 是正予防処置報告書_環境_議事録_DoubleClick(object sender, EventArgs e)
         {
-            FunctionClass.DocZoom(sender as Control, CurrentCode, CurrentEdition, 4000);
+            F_文書ズーム targetform = new F_文書ズーム();
+
+            Control targetCtl = sender as Control;
+
+            targetform.TargetControl = targetCtl;
+            targetform.CurrentCode = CurrentCode;
+            targetform.CurrentEdition = CurrentEdition;
+            targetform.MaxByte = 4000;
+            targetform.SetProperties();
+            if (targetform.ShowDialog() == DialogResult.OK)
+            {
+                targetCtl.Text = targetform.テキスト.Text;
+            }
         }
 
         private void 是正予防処置報告書_環境_議事録_Enter(object sender, EventArgs e)
@@ -7615,7 +7948,11 @@ namespace u_net
 
         private void 是正予防処置報告書_環境_回答ボタン_Click(object sender, EventArgs e)
         {
+            F_是正予防処置回答_環境 targetform = new F_是正予防処置回答_環境();
 
+            targetform.args = CurrentCode + "," + CurrentEdition;
+
+            targetform.ShowDialog();
         }
 
         #endregion
@@ -7962,7 +8299,19 @@ namespace u_net
 
         private void 製品企画書_開発目的_DoubleClick(object sender, EventArgs e)
         {
-            FunctionClass.DocZoom(sender as Control, CurrentCode, CurrentEdition, 1000);
+            F_文書ズーム targetform = new F_文書ズーム();
+
+            Control targetCtl = sender as Control;
+
+            targetform.TargetControl = targetCtl;
+            targetform.CurrentCode = CurrentCode;
+            targetform.CurrentEdition = CurrentEdition;
+            targetform.MaxByte = 1000;
+            targetform.SetProperties();
+            if (targetform.ShowDialog() == DialogResult.OK)
+            {
+                targetCtl.Text = targetform.テキスト.Text;
+            }
         }
 
         private void 製品企画書_開発目的_Enter(object sender, EventArgs e)
@@ -7993,7 +8342,19 @@ namespace u_net
 
         private void 製品企画書_製品概要_DoubleClick(object sender, EventArgs e)
         {
-            FunctionClass.DocZoom(sender as Control, CurrentCode, CurrentEdition, 1000);
+            F_文書ズーム targetform = new F_文書ズーム();
+
+            Control targetCtl = sender as Control;
+
+            targetform.TargetControl = targetCtl;
+            targetform.CurrentCode = CurrentCode;
+            targetform.CurrentEdition = CurrentEdition;
+            targetform.MaxByte = 1000;
+            targetform.SetProperties();
+            if (targetform.ShowDialog() == DialogResult.OK)
+            {
+                targetCtl.Text = targetform.テキスト.Text;
+            }
         }
 
         private void 製品企画書_製品概要_TextChanged(object sender, EventArgs e)
@@ -8024,7 +8385,19 @@ namespace u_net
 
         private void 製品企画書_要求事項_DoubleClick(object sender, EventArgs e)
         {
-            FunctionClass.DocZoom(sender as Control, CurrentCode, CurrentEdition, 2000);
+            F_文書ズーム targetform = new F_文書ズーム();
+
+            Control targetCtl = sender as Control;
+
+            targetform.TargetControl = targetCtl;
+            targetform.CurrentCode = CurrentCode;
+            targetform.CurrentEdition = CurrentEdition;
+            targetform.MaxByte = 2000;
+            targetform.SetProperties();
+            if (targetform.ShowDialog() == DialogResult.OK)
+            {
+                targetCtl.Text = targetform.テキスト.Text;
+            }
         }
 
         private void 製品企画書_要求事項_TextChanged(object sender, EventArgs e)
@@ -8156,7 +8529,19 @@ namespace u_net
 
         private void 設計審査会議事録_企画書との相異_DoubleClick(object sender, EventArgs e)
         {
-            FunctionClass.DocZoom(sender as Control, CurrentCode, CurrentEdition, 4000);
+            F_文書ズーム targetform = new F_文書ズーム();
+
+            Control targetCtl = sender as Control;
+
+            targetform.TargetControl = targetCtl;
+            targetform.CurrentCode = CurrentCode;
+            targetform.CurrentEdition = CurrentEdition;
+            targetform.MaxByte = 4000;
+            targetform.SetProperties();
+            if (targetform.ShowDialog() == DialogResult.OK)
+            {
+                targetCtl.Text = targetform.テキスト.Text;
+            }
         }
 
         private void 設計審査会議事録_企画書との相異_Enter(object sender, EventArgs e)
@@ -8177,7 +8562,19 @@ namespace u_net
 
         private void 設計審査会議事録_計画書との相異_DoubleClick(object sender, EventArgs e)
         {
-            FunctionClass.DocZoom(sender as Control, CurrentCode, CurrentEdition, 4000);
+            F_文書ズーム targetform = new F_文書ズーム();
+
+            Control targetCtl = sender as Control;
+
+            targetform.TargetControl = targetCtl;
+            targetform.CurrentCode = CurrentCode;
+            targetform.CurrentEdition = CurrentEdition;
+            targetform.MaxByte = 4000;
+            targetform.SetProperties();
+            if (targetform.ShowDialog() == DialogResult.OK)
+            {
+                targetCtl.Text = targetform.テキスト.Text;
+            }
         }
 
         private void 設計審査会議事録_計画書との相異_Enter(object sender, EventArgs e)
@@ -8198,7 +8595,19 @@ namespace u_net
 
         private void 設計審査会議事録_構想資料との相異_DoubleClick(object sender, EventArgs e)
         {
-            FunctionClass.DocZoom(sender as Control, CurrentCode, CurrentEdition, 4000);
+            F_文書ズーム targetform = new F_文書ズーム();
+
+            Control targetCtl = sender as Control;
+
+            targetform.TargetControl = targetCtl;
+            targetform.CurrentCode = CurrentCode;
+            targetform.CurrentEdition = CurrentEdition;
+            targetform.MaxByte = 4000;
+            targetform.SetProperties();
+            if (targetform.ShowDialog() == DialogResult.OK)
+            {
+                targetCtl.Text = targetform.テキスト.Text;
+            }
         }
 
         private void 設計審査会議事録_構想資料との相異_Enter(object sender, EventArgs e)
@@ -8219,7 +8628,19 @@ namespace u_net
 
         private void 設計審査会議事録_仕様書の確認_DoubleClick(object sender, EventArgs e)
         {
-            FunctionClass.DocZoom(sender as Control, CurrentCode, CurrentEdition, 4000);
+            F_文書ズーム targetform = new F_文書ズーム();
+
+            Control targetCtl = sender as Control;
+
+            targetform.TargetControl = targetCtl;
+            targetform.CurrentCode = CurrentCode;
+            targetform.CurrentEdition = CurrentEdition;
+            targetform.MaxByte = 4000;
+            targetform.SetProperties();
+            if (targetform.ShowDialog() == DialogResult.OK)
+            {
+                targetCtl.Text = targetform.テキスト.Text;
+            }
         }
 
         private void 設計審査会議事録_仕様書の確認_Enter(object sender, EventArgs e)
@@ -8240,7 +8661,19 @@ namespace u_net
 
         private void 設計審査会議事録_改善点_DoubleClick(object sender, EventArgs e)
         {
-            FunctionClass.DocZoom(sender as Control, CurrentCode, CurrentEdition, 4000);
+            F_文書ズーム targetform = new F_文書ズーム();
+
+            Control targetCtl = sender as Control;
+
+            targetform.TargetControl = targetCtl;
+            targetform.CurrentCode = CurrentCode;
+            targetform.CurrentEdition = CurrentEdition;
+            targetform.MaxByte = 4000;
+            targetform.SetProperties();
+            if (targetform.ShowDialog() == DialogResult.OK)
+            {
+                targetCtl.Text = targetform.テキスト.Text;
+            }
         }
 
         private void 設計審査会議事録_改善点_Enter(object sender, EventArgs e)
@@ -8261,7 +8694,19 @@ namespace u_net
 
         private void 設計審査会議事録_要望_DoubleClick(object sender, EventArgs e)
         {
-            FunctionClass.DocZoom(sender as Control, CurrentCode, CurrentEdition, 4000);
+            F_文書ズーム targetform = new F_文書ズーム();
+
+            Control targetCtl = sender as Control;
+
+            targetform.TargetControl = targetCtl;
+            targetform.CurrentCode = CurrentCode;
+            targetform.CurrentEdition = CurrentEdition;
+            targetform.MaxByte = 4000;
+            targetform.SetProperties();
+            if (targetform.ShowDialog() == DialogResult.OK)
+            {
+                targetCtl.Text = targetform.テキスト.Text;
+            }
         }
 
         private void 設計審査会議事録_要望_Enter(object sender, EventArgs e)
@@ -8282,7 +8727,19 @@ namespace u_net
 
         private void 設計審査会議事録_結論_DoubleClick(object sender, EventArgs e)
         {
-            FunctionClass.DocZoom(sender as Control, CurrentCode, CurrentEdition, 4000);
+            F_文書ズーム targetform = new F_文書ズーム();
+
+            Control targetCtl = sender as Control;
+
+            targetform.TargetControl = targetCtl;
+            targetform.CurrentCode = CurrentCode;
+            targetform.CurrentEdition = CurrentEdition;
+            targetform.MaxByte = 4000;
+            targetform.SetProperties();
+            if (targetform.ShowDialog() == DialogResult.OK)
+            {
+                targetCtl.Text = targetform.テキスト.Text;
+            }
         }
 
         private void 設計審査会議事録_結論_Enter(object sender, EventArgs e)
@@ -8554,7 +9011,19 @@ namespace u_net
 
         private void 設計製作依頼書_依頼内容_DoubleClick(object sender, EventArgs e)
         {
-            FunctionClass.DocZoom(sender as Control, CurrentCode, CurrentEdition, 4000);
+            F_文書ズーム targetform = new F_文書ズーム();
+
+            Control targetCtl = sender as Control;
+
+            targetform.TargetControl = targetCtl;
+            targetform.CurrentCode = CurrentCode;
+            targetform.CurrentEdition = CurrentEdition;
+            targetform.MaxByte = 4000;
+            targetform.SetProperties();
+            if (targetform.ShowDialog() == DialogResult.OK)
+            {
+                targetCtl.Text = targetform.テキスト.Text;
+            }
         }
 
         private void 設計製作依頼書_依頼内容_Enter(object sender, EventArgs e)
@@ -8652,12 +9121,15 @@ namespace u_net
 
         private void 設備購買申請書_購買予定日_KeyPress(object sender, KeyPressEventArgs e)
         {
-
+            if (e.KeyChar == (char)Keys.Space)
+            {
+                設備購買申請書_購買予定日選択ボタン_Click(sender, e);
+            }
         }
 
         private void 設備購買申請書_購買予定日_TextChanged(object sender, EventArgs e)
         {
-
+            ChangedData(true);
         }
 
         private void 設備購買申請書_購買予定日_Validated(object sender, EventArgs e)
@@ -8667,17 +9139,34 @@ namespace u_net
 
         private void 設備購買申請書_購買予定日_Validating(object sender, CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 設備購買申請書_購買予定日選択ボタン_Click(object sender, EventArgs e)
         {
+            dateSelectionForm = new F_カレンダー();
 
+            if (!string.IsNullOrEmpty(設備購買申請書_購買予定日.Text))
+            {
+                dateSelectionForm.args = 設備購買申請書_購買予定日.Text;
+            }
+
+            if (dateSelectionForm.ShowDialog() == DialogResult.OK && 設備購買申請書_購買予定日.Enabled && !設備購買申請書_購買予定日.ReadOnly)
+            {
+                // 日付選択フォームから選択した日付を取得
+                string selectedDate = dateSelectionForm.SelectedDate;
+
+                // フォームAの日付コントロールに選択した日付を設定
+                設備購買申請書_購買予定日.Text = selectedDate;
+                設備購買申請書_購買予定日.Focus();
+                UpdatedControl(設備購買申請書_購買予定日);
+            }
         }
 
         private void 設備購買申請書_品名_TextChanged(object sender, EventArgs e)
         {
-
+            FunctionClass.LimitText(sender as Control, 50);
+            ChangedData(true);
         }
 
         private void 設備購買申請書_品名_Validated(object sender, EventArgs e)
@@ -8687,12 +9176,13 @@ namespace u_net
 
         private void 設備購買申請書_品名_Validating(object sender, CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 設備購買申請書_型番_TextChanged(object sender, EventArgs e)
         {
-
+            FunctionClass.LimitText(sender as Control, 50);
+            ChangedData(true);
         }
 
         private void 設備購買申請書_型番_Validated(object sender, EventArgs e)
@@ -8702,12 +9192,13 @@ namespace u_net
 
         private void 設備購買申請書_型番_Validating(object sender, CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 設備購買申請書_メーカー名_TextChanged(object sender, EventArgs e)
         {
-
+            FunctionClass.LimitText(sender as Control, 50);
+            ChangedData(true);
         }
 
         private void 設備購買申請書_メーカー名_Validated(object sender, EventArgs e)
@@ -8717,12 +9208,13 @@ namespace u_net
 
         private void 設備購買申請書_メーカー名_Validating(object sender, CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 設備購買申請書_仕入先名_TextChanged(object sender, EventArgs e)
         {
-
+            FunctionClass.LimitText(sender as Control, 50);
+            ChangedData(true);
         }
 
         private void 設備購買申請書_仕入先名_Validated(object sender, EventArgs e)
@@ -8732,12 +9224,12 @@ namespace u_net
 
         private void 設備購買申請書_仕入先名_Validating(object sender, CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 設備購買申請書_数量_TextChanged(object sender, EventArgs e)
         {
-
+            ChangedData(true);
         }
 
         private void 設備購買申請書_数量_Validated(object sender, EventArgs e)
@@ -8747,12 +9239,12 @@ namespace u_net
 
         private void 設備購買申請書_数量_Validating(object sender, CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 設備購買申請書_標準価格_TextChanged(object sender, EventArgs e)
         {
-
+            ChangedData(true);
         }
 
         private void 設備購買申請書_標準価格_Validated(object sender, EventArgs e)
@@ -8762,12 +9254,12 @@ namespace u_net
 
         private void 設備購買申請書_標準価格_Validating(object sender, CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 設備購買申請書_単価_TextChanged(object sender, EventArgs e)
         {
-
+            ChangedData(true);
         }
 
         private void 設備購買申請書_単価_Validated(object sender, EventArgs e)
@@ -8777,22 +9269,22 @@ namespace u_net
 
         private void 設備購買申請書_単価_Validating(object sender, CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
-        private void 設備購買申請書_支払方法_SelectedIndexChanged(object sender, EventArgs e)
+        private void 設備購買申請書_支払方法コード_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ChangedData(true);
+        }
+
+        private void 設備購買申請書_支払方法コード_Validated(object sender, EventArgs e)
         {
 
         }
 
-        private void 設備購買申請書_支払方法_Validated(object sender, EventArgs e)
+        private void 設備購買申請書_支払方法コード_Validating(object sender, CancelEventArgs e)
         {
-
-        }
-
-        private void 設備購買申請書_支払方法_Validating(object sender, CancelEventArgs e)
-        {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 設備購買申請書_使用部署_Enter(object sender, EventArgs e)
@@ -8807,7 +9299,8 @@ namespace u_net
 
         private void 設備購買申請書_使用部署_TextChanged(object sender, EventArgs e)
         {
-
+            FunctionClass.LimitText(sender as Control, 60);
+            ChangedData(true);
         }
 
         private void 設備購買申請書_使用部署_Validated(object sender, EventArgs e)
@@ -8817,12 +9310,24 @@ namespace u_net
 
         private void 設備購買申請書_使用部署_Validating(object sender, CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 設備購買申請書_用途_DoubleClick(object sender, EventArgs e)
         {
+            F_文書ズーム targetform = new F_文書ズーム();
 
+            Control targetCtl = sender as Control;
+
+            targetform.TargetControl = targetCtl;
+            targetform.CurrentCode = CurrentCode;
+            targetform.CurrentEdition = CurrentEdition;
+            targetform.MaxByte = 4000;
+            targetform.SetProperties();
+            if (targetform.ShowDialog() == DialogResult.OK)
+            {
+                targetCtl.Text = targetform.テキスト.Text;
+            }
         }
 
         private void 設備購買申請書_用途_Enter(object sender, EventArgs e)
@@ -8837,7 +9342,8 @@ namespace u_net
 
         private void 設備購買申請書_用途_TextChanged(object sender, EventArgs e)
         {
-
+            FunctionClass.LimitText(sender as Control, 4000);
+            ChangedData(true);
         }
 
         private void 設備購買申請書_用途_Validated(object sender, EventArgs e)
@@ -8847,12 +9353,24 @@ namespace u_net
 
         private void 設備購買申請書_用途_Validating(object sender, CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 設備購買申請書_購入理由_DoubleClick(object sender, EventArgs e)
         {
+            F_文書ズーム targetform = new F_文書ズーム();
 
+            Control targetCtl = sender as Control;
+
+            targetform.TargetControl = targetCtl;
+            targetform.CurrentCode = CurrentCode;
+            targetform.CurrentEdition = CurrentEdition;
+            targetform.MaxByte = 4000;
+            targetform.SetProperties();
+            if (targetform.ShowDialog() == DialogResult.OK)
+            {
+                targetCtl.Text = targetform.テキスト.Text;
+            }
         }
 
         private void 設備購買申請書_購入理由_Enter(object sender, EventArgs e)
@@ -8867,7 +9385,8 @@ namespace u_net
 
         private void 設備購買申請書_購入理由_TextChanged(object sender, EventArgs e)
         {
-
+            FunctionClass.LimitText(sender as Control, 4000);
+            ChangedData(true);
         }
 
         private void 設備購買申請書_購入理由_Validated(object sender, EventArgs e)
@@ -8877,7 +9396,7 @@ namespace u_net
 
         private void 設備購買申請書_購入理由_Validating(object sender, CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         #endregion
@@ -8940,7 +9459,37 @@ namespace u_net
 
         private void 非該当証明発行依頼書_受注コード_DoubleClick(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(非該当証明発行依頼書_受注コード.Text)) return;
 
+            F_受注 targetform = new F_受注();
+
+            targetform.varOpenArgs = 非該当証明発行依頼書_受注コード.Text;
+            targetform.ShowDialog();
+        }
+
+        private void 非該当証明発行依頼書_受注コード_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Return)
+            {
+                非該当証明発行依頼書_受注コード.Text = FunctionClass.FormatCode("A", 非該当証明発行依頼書_受注コード.Text);
+            }
+        }
+
+        private void 非該当証明発行依頼書_受注コード_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.KeyChar = (char)FunctionClass.ChangeBig((int)e.KeyChar);
+
+        }
+
+        private void 非該当証明発行依頼書_受注コード_TextChanged(object sender, EventArgs e)
+        {
+            FunctionClass.LimitText(sender as Control, 9);
+            ChangedData(true);
+        }
+
+        private void 非該当証明発行依頼書_受注コード_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 非該当証明発行依頼書_受注コード_Enter(object sender, EventArgs e)
@@ -8953,27 +9502,7 @@ namespace u_net
             toolStripStatusLabel1.Text = "各種項目の説明";
         }
 
-        private void 非該当証明発行依頼書_受注コード_KeyDown(object sender, KeyEventArgs e)
-        {
-
-        }
-
-        private void 非該当証明発行依頼書_受注コード_KeyPress(object sender, KeyPressEventArgs e)
-        {
-
-        }
-
-        private void 非該当証明発行依頼書_受注コード_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void 非該当証明発行依頼書_受注コード_Validated(object sender, EventArgs e)
-        {
-
-        }
-
-        private void 非該当証明発行依頼書_受注コード_Validating(object sender, CancelEventArgs e)
         {
 
         }
@@ -8990,42 +9519,51 @@ namespace u_net
 
         private void 非該当証明発行依頼書_受注リンクボタン_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(非該当証明発行依頼書_受注コード.Text)) return;
 
+            F_受注 targetform = new F_受注();
+
+            targetform.varOpenArgs = 非該当証明発行依頼書_受注コード.Text;
+            targetform.ShowDialog();
         }
 
         private void 非該当証明発行依頼書_顧客名_TextChanged(object sender, EventArgs e)
         {
-
+            FunctionClass.LimitText(sender as Control, 48);
+            ChangedData(true);
         }
 
         private void 非該当証明発行依頼書_顧客名_Validating(object sender, CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 非該当証明発行依頼書_代理店名_TextChanged(object sender, EventArgs e)
         {
-
+            FunctionClass.LimitText(sender as Control, 48);
+            ChangedData(true);
         }
 
         private void 非該当証明発行依頼書_代理店名_Validating(object sender, CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 非該当証明発行依頼書_品名_TextChanged(object sender, EventArgs e)
         {
-
+            FunctionClass.LimitText(sender as Control, 48);
+            ChangedData(true);
         }
 
         private void 非該当証明発行依頼書_品名_Validating(object sender, CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 非該当証明発行依頼書_型番_TextChanged(object sender, EventArgs e)
         {
-
+            FunctionClass.LimitText(sender as Control, 48);
+            ChangedData(true);
         }
 
         private void 非該当証明発行依頼書_型番_Validated(object sender, EventArgs e)
@@ -9035,142 +9573,200 @@ namespace u_net
 
         private void 非該当証明発行依頼書_型番_Validating(object sender, CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 非該当証明発行依頼書_発行日_DoubleClick(object sender, EventArgs e)
         {
-
+            非該当証明発行依頼書_発行日選択ボタン_Click(sender, e);
         }
 
         private void 非該当証明発行依頼書_発行日_KeyPress(object sender, KeyPressEventArgs e)
         {
-
+            if (e.KeyChar == (char)Keys.Space)
+            {
+                非該当証明発行依頼書_発行日選択ボタン_Click(sender, e);
+            }
         }
 
         private void 非該当証明発行依頼書_発行日_TextChanged(object sender, EventArgs e)
         {
-
+            FunctionClass.LimitText(sender as Control, 10);
+            ChangedData(true);
         }
 
         private void 非該当証明発行依頼書_発行日_Validating(object sender, CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 非該当証明発行依頼書_発行日選択ボタン_Click(object sender, EventArgs e)
         {
+            dateSelectionForm = new F_カレンダー();
 
+            if (!string.IsNullOrEmpty(非該当証明発行依頼書_発行日.Text))
+            {
+                dateSelectionForm.args = 非該当証明発行依頼書_発行日.Text;
+            }
+
+            if (dateSelectionForm.ShowDialog() == DialogResult.OK && 非該当証明発行依頼書_発行日.Enabled && !非該当証明発行依頼書_発行日.ReadOnly)
+            {
+                // 日付選択フォームから選択した日付を取得
+                string selectedDate = dateSelectionForm.SelectedDate;
+
+                // フォームAの日付コントロールに選択した日付を設定
+                非該当証明発行依頼書_発行日.Text = selectedDate;
+                非該当証明発行依頼書_発行日.Focus();
+                UpdatedControl(非該当証明発行依頼書_発行日);
+            }
         }
 
         private void 非該当証明発行依頼書_発行部数_TextChanged(object sender, EventArgs e)
         {
-
+            FunctionClass.LimitText(sender as Control, 7);
+            ChangedData(true);
         }
 
         private void 非該当証明発行依頼書_発行部数_Validating(object sender, CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 非該当証明発行依頼書_輸出先国名_TextChanged(object sender, EventArgs e)
         {
-
+            FunctionClass.LimitText(sender as Control, 48);
+            ChangedData(true);
         }
 
         private void 非該当証明発行依頼書_輸出先国名_Validating(object sender, CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 非該当証明発行依頼書_郵送方法コード_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            ChangedData(true);
         }
 
         private void 非該当証明発行依頼書_郵送方法コード_Validating(object sender, CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 非該当証明発行依頼書_郵送日_DoubleClick(object sender, EventArgs e)
         {
-
+            非該当証明発行依頼書_郵送日選択ボタン_Click(sender, e);
         }
 
         private void 非該当証明発行依頼書_郵送日_KeyPress(object sender, KeyPressEventArgs e)
         {
-
+            if (e.KeyChar == (char)Keys.Space)
+            {
+                非該当証明発行依頼書_郵送日選択ボタン_Click(sender, e);
+            }
         }
 
         private void 非該当証明発行依頼書_郵送日_TextChanged(object sender, EventArgs e)
         {
-
+            ChangedData(true);
         }
 
         private void 非該当証明発行依頼書_郵送日_Validating(object sender, CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 非該当証明発行依頼書_郵送日選択ボタン_Click(object sender, EventArgs e)
         {
+            dateSelectionForm = new F_カレンダー();
 
+            if (!string.IsNullOrEmpty(非該当証明発行依頼書_郵送日.Text))
+            {
+                dateSelectionForm.args = 非該当証明発行依頼書_郵送日.Text;
+            }
+
+            if (dateSelectionForm.ShowDialog() == DialogResult.OK && 非該当証明発行依頼書_郵送日.Enabled && !非該当証明発行依頼書_郵送日.ReadOnly)
+            {
+                // 日付選択フォームから選択した日付を取得
+                string selectedDate = dateSelectionForm.SelectedDate;
+
+                // フォームAの日付コントロールに選択した日付を設定
+                非該当証明発行依頼書_郵送日.Text = selectedDate;
+                非該当証明発行依頼書_郵送日.Focus();
+                UpdatedControl(非該当証明発行依頼書_郵送日);
+            }
         }
 
         private void 非該当証明発行依頼書_郵送先郵便番号_TextChanged(object sender, EventArgs e)
         {
-
+            FunctionClass.LimitText(sender as Control, 8);
+            ChangedData(true);
         }
 
         private void 非該当証明発行依頼書_郵送先郵便番号_Validating(object sender, CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 非該当証明発行依頼書_郵送先住所1_TextChanged(object sender, EventArgs e)
         {
-
+            FunctionClass.LimitText(sender as Control, 48);
+            ChangedData(true);
         }
 
         private void 非該当証明発行依頼書_郵送先住所1_Validating(object sender, CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 非該当証明発行依頼書_郵送先住所2_TextChanged(object sender, EventArgs e)
         {
-
+            FunctionClass.LimitText(sender as Control, 48);
+            ChangedData(true);
         }
 
         private void 非該当証明発行依頼書_郵送先住所2_Validating(object sender, CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 非該当証明発行依頼書_郵送先名_TextChanged(object sender, EventArgs e)
         {
-
+            FunctionClass.LimitText(sender as Control, 48);
+            ChangedData(true);
         }
 
         private void 非該当証明発行依頼書_郵送先名_Validating(object sender, CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 非該当証明発行依頼書_郵送先担当者名_TextChanged(object sender, EventArgs e)
         {
-
+            FunctionClass.LimitText(sender as Control, 48);
+            ChangedData(true);
         }
 
         private void 非該当証明発行依頼書_郵送先担当者名_Validating(object sender, CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 非該当証明発行依頼書_備考_DoubleClick(object sender, EventArgs e)
         {
+            F_文書ズーム targetform = new F_文書ズーム();
 
+            Control targetCtl = sender as Control;
+
+            targetform.TargetControl = targetCtl;
+            targetform.CurrentCode = CurrentCode;
+            targetform.CurrentEdition = CurrentEdition;
+            targetform.MaxByte = 1000;
+            targetform.SetProperties();
+            if (targetform.ShowDialog() == DialogResult.OK)
+            {
+                targetCtl.Text = targetform.テキスト.Text;
+            }
         }
 
         private void 非該当証明発行依頼書_備考_Enter(object sender, EventArgs e)
@@ -9185,7 +9781,8 @@ namespace u_net
 
         private void 非該当証明発行依頼書_備考_TextChanged(object sender, EventArgs e)
         {
-
+            FunctionClass.LimitText(sender as Control, 1000);
+            ChangedData(true);
         }
 
         #endregion
@@ -9296,7 +9893,19 @@ namespace u_net
 
         private void 品質異常報告書_異常内容_DoubleClick(object sender, EventArgs e)
         {
-            FunctionClass.DocZoom(sender as Control, CurrentCode, CurrentEdition, 4000);
+            F_文書ズーム targetform = new F_文書ズーム();
+
+            Control targetCtl = sender as Control;
+
+            targetform.TargetControl = targetCtl;
+            targetform.CurrentCode = CurrentCode;
+            targetform.CurrentEdition = CurrentEdition;
+            targetform.MaxByte = 4000;
+            targetform.SetProperties();
+            if (targetform.ShowDialog() == DialogResult.OK)
+            {
+                targetCtl.Text = targetform.テキスト.Text;
+            }
         }
 
         private void 品質異常報告書_異常内容_Enter(object sender, EventArgs e)
@@ -9327,7 +9936,11 @@ namespace u_net
 
         private void 品質異常報告書_回答書ボタン_Click(object sender, EventArgs e)
         {
+            F_品質異常回答書 targetform = new F_品質異常回答書();
 
+            targetform.args = CurrentCode + "," + CurrentEdition;
+
+            targetform.ShowDialog();
         }
 
         #endregion
@@ -9335,59 +9948,70 @@ namespace u_net
 
         #region 不具合調査修理依頼書
 
-        private void 不具合調査修理依頼書_受付日_DoubleClick(object sender, EventArgs e)
-        {
-
-        }
-
-        private void 不具合調査修理依頼書_受付日_KeyPress(object sender, KeyPressEventArgs e)
-        {
-
-        }
-
-        private void 不具合調査修理依頼書_受付日_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void 不具合調査修理依頼書_受付日_Validating(object sender, CancelEventArgs e)
-        {
-
-        }
-
-        private void 不具合調査修理依頼書_受付日選択ボタン_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void 不具合調査修理依頼書_受注コード_DoubleClick(object sender, EventArgs e)
         {
+            if (!string.IsNullOrEmpty(不具合調査修理依頼書_受注コード.Text))
+            {
+                F_受注 targetform = new F_受注();
 
+                targetform.varOpenArgs = 不具合調査修理依頼書_受注コード.Text;
+                targetform.ShowDialog();
+            }
+            else
+            {
+                F_受注管理 targetform = new F_受注管理();
+
+                targetform.ShowDialog();
+            }
         }
 
         private void 不具合調査修理依頼書_受注コード_KeyDown(object sender, KeyEventArgs e)
         {
-
+            if (e.KeyCode == Keys.Return)
+            {
+                不具合調査修理依頼書_受注コード.Text = FunctionClass.FormatCode("A", 不具合調査修理依頼書_受注コード.Text);
+            }
         }
 
         private void 不具合調査修理依頼書_受注コード_KeyPress(object sender, KeyPressEventArgs e)
         {
+            e.KeyChar = (char)FunctionClass.ChangeBig((int)e.KeyChar);
 
         }
 
         private void 不具合調査修理依頼書_受注コード_TextChanged(object sender, EventArgs e)
         {
+            FunctionClass.LimitText(sender as Control, 9);
+            ChangedData(true);
+        }
+
+        private void 不具合調査修理依頼書_受注コード_Validated(object sender, EventArgs e)
+        {
 
         }
 
-        private void 不具合調査修理依頼書_受注コード_Validating(object sender, CancelEventArgs e)
+        private void 不具合調査修理依頼書_受注コード_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 不具合調査修理依頼書_受注コード参照ボタン_Click(object sender, EventArgs e)
         {
+            if (!string.IsNullOrEmpty(不具合調査修理依頼書_受注コード.Text))
+            {
+                F_受注 targetform = new F_受注();
 
+                targetform.varOpenArgs = 不具合調査修理依頼書_受注コード.Text;
+                targetform.ShowDialog();
+            }
+            else
+            {
+                F_受注管理 targetform = new F_受注管理();
+
+                targetform.ShowDialog();
+            }
+
+            
         }
 
         private void 不具合調査修理依頼書_受注コード参照ボタン_Enter(object sender, EventArgs e)
@@ -9400,34 +10024,100 @@ namespace u_net
             toolStripStatusLabel1.Text = "各種項目の説明";
         }
 
+        private void 不具合調査修理依頼書_受付日_DoubleClick(object sender, EventArgs e)
+        {
+            不具合調査修理依頼書_受付日選択ボタン_Click(sender, e);
+        }
+
+        private void 不具合調査修理依頼書_受付日_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Space)
+            {
+                不具合調査修理依頼書_受付日選択ボタン_Click(sender, e);
+            }
+        }
+
+        private void 不具合調査修理依頼書_受付日_TextChanged(object sender, EventArgs e)
+        {
+            ChangedData(true);
+        }
+
+        private void 不具合調査修理依頼書_受付日_Validating(object sender, CancelEventArgs e)
+        {
+            if (IsError(sender as Control) == true) e.Cancel = true;
+        }
+
+        private void 不具合調査修理依頼書_受付日選択ボタン_Click(object sender, EventArgs e)
+        {
+ 
+            dateSelectionForm = new F_カレンダー();
+
+            if (!string.IsNullOrEmpty(不具合調査修理依頼書_受付日.Text))
+            {
+                dateSelectionForm.args = 不具合調査修理依頼書_受付日.Text;
+            }
+
+            if (dateSelectionForm.ShowDialog() == DialogResult.OK && 不具合調査修理依頼書_受付日.Enabled && !不具合調査修理依頼書_受付日.ReadOnly)
+            {
+                // 日付選択フォームから選択した日付を取得
+                string selectedDate = dateSelectionForm.SelectedDate;
+
+                // フォームAの日付コントロールに選択した日付を設定
+                不具合調査修理依頼書_受付日.Text = selectedDate;
+                不具合調査修理依頼書_受付日.Focus();
+                UpdatedControl(不具合調査修理依頼書_受付日);
+            }
+        }
+
         private void 不具合調査修理依頼書_顧客コード_DoubleClick(object sender, EventArgs e)
         {
-
+            不具合調査修理依頼書_顧客コード選択ボタン_Click(sender, e);
         }
 
         private void 不具合調査修理依頼書_顧客コード_KeyDown(object sender, KeyEventArgs e)
         {
+            if (e.KeyCode == Keys.Return)
+            {
+                TextBox textBox = (TextBox)sender;
+                string formattedCode = textBox.Text.Trim().PadLeft(8, '0');
 
+                if (formattedCode != textBox.Text || string.IsNullOrEmpty(textBox.Text))
+                {
+                    textBox.Text = formattedCode;
+  
+                }
+            }
         }
 
         private void 不具合調査修理依頼書_顧客コード_KeyPress(object sender, KeyPressEventArgs e)
         {
-
+            if (e.KeyChar == (char)Keys.Space)
+            {
+                不具合調査修理依頼書_顧客コード選択ボタン_Click(sender, e);
+            }
         }
 
         private void 不具合調査修理依頼書_顧客コード_TextChanged(object sender, EventArgs e)
         {
-
+            FunctionClass.LimitText(sender as Control, 8);
+            ChangedData(true);
         }
 
         private void 不具合調査修理依頼書_顧客コード_Validating(object sender, CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 不具合調査修理依頼書_顧客コード選択ボタン_Click(object sender, EventArgs e)
         {
+            SearchForm = new F_検索();
+            SearchForm.FilterName = "顧客名フリガナ";
+            if (SearchForm.ShowDialog() == DialogResult.OK)
+            {
+                string SelectedCode = SearchForm.SelectedCode;
 
+                不具合調査修理依頼書_顧客コード.Text = SelectedCode;
+            }
         }
 
         private void 不具合調査修理依頼書_顧客コード選択ボタン_Enter(object sender, EventArgs e)
@@ -9477,112 +10167,151 @@ namespace u_net
 
         private void 不具合調査修理依頼書_依頼分類その他_TextChanged(object sender, EventArgs e)
         {
-
+            FunctionClass.LimitText(sender as Control, 50);
+            ChangedData(true);
         }
 
         private void 不具合調査修理依頼書_依頼分類その他_Validating(object sender, CancelEventArgs e)
         {
-
+            
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 不具合調査修理依頼書_発生日_DoubleClick(object sender, EventArgs e)
         {
-
+            不具合調査修理依頼書_発生日選択ボタン_Click(sender, e);
         }
 
         private void 不具合調査修理依頼書_発生日_KeyPress(object sender, KeyPressEventArgs e)
         {
-
+            if (e.KeyChar == (char)Keys.Space)
+            {
+                不具合調査修理依頼書_発生日選択ボタン_Click(sender, e);
+            }
         }
 
         private void 不具合調査修理依頼書_発生日_TextChanged(object sender, EventArgs e)
         {
-
+            ChangedData(true);
         }
 
         private void 不具合調査修理依頼書_発生日_Validating(object sender, CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 不具合調査修理依頼書_発生日選択ボタン_Click(object sender, EventArgs e)
         {
+            dateSelectionForm = new F_カレンダー();
 
+            if (!string.IsNullOrEmpty(不具合調査修理依頼書_発生日.Text))
+            {
+                dateSelectionForm.args = 不具合調査修理依頼書_発生日.Text;
+            }
+
+            if (dateSelectionForm.ShowDialog() == DialogResult.OK && 不具合調査修理依頼書_発生日.Enabled && !不具合調査修理依頼書_発生日.ReadOnly)
+            {
+                // 日付選択フォームから選択した日付を取得
+                string selectedDate = dateSelectionForm.SelectedDate;
+
+                // フォームAの日付コントロールに選択した日付を設定
+                不具合調査修理依頼書_発生日.Text = selectedDate;
+                不具合調査修理依頼書_発生日.Focus();
+                UpdatedControl(不具合調査修理依頼書_発生日);
+            }
         }
 
         private void 不具合調査修理依頼書_連絡者社名_TextChanged(object sender, EventArgs e)
         {
-
+            FunctionClass.LimitText(sender as Control, 50);
+            ChangedData(true);
         }
 
         private void 不具合調査修理依頼書_連絡者社名_Validating(object sender, CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 不具合調査修理依頼書_連絡者氏名_TextChanged(object sender, EventArgs e)
         {
-
+            FunctionClass.LimitText(sender as Control, 50);
+            ChangedData(true);
         }
 
         private void 不具合調査修理依頼書_連絡者氏名_Validating(object sender, CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 不具合調査修理依頼書_型番_TextChanged(object sender, EventArgs e)
         {
-
+            FunctionClass.LimitText(sender as Control, 50);
+            ChangedData(true);
         }
 
         private void 不具合調査修理依頼書_型番_Validating(object sender, CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 不具合調査修理依頼書_シリアル番号1_TextChanged(object sender, EventArgs e)
         {
-
+            FunctionClass.LimitText(sender as Control, 10);
+            ChangedData(true);
         }
 
         private void 不具合調査修理依頼書_シリアル番号1_Validating(object sender, CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 不具合調査修理依頼書_シリアル番号2_TextChanged(object sender, EventArgs e)
         {
-
+            FunctionClass.LimitText(sender as Control, 10);
+            ChangedData(true);
         }
 
         private void 不具合調査修理依頼書_シリアル番号2_Validating(object sender, CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 不具合調査修理依頼書_数量_TextChanged(object sender, EventArgs e)
         {
-
+            ChangedData(true);
         }
 
         private void 不具合調査修理依頼書_数量_Validating(object sender, CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 不具合調査修理依頼書_発生場所_TextChanged(object sender, EventArgs e)
         {
-
+            FunctionClass.LimitText(sender as Control, 50);
+            ChangedData(true);
         }
 
         private void 不具合調査修理依頼書_発生場所_Validating(object sender, CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 不具合調査修理依頼書_現象_DoubleClick(object sender, EventArgs e)
         {
+            F_文書ズーム targetform = new F_文書ズーム();
 
+            Control targetCtl = sender as Control;
+
+            targetform.TargetControl = targetCtl;
+            targetform.CurrentCode = CurrentCode;
+            targetform.CurrentEdition = CurrentEdition;
+            targetform.MaxByte = 4000;
+            targetform.SetProperties();
+            if (targetform.ShowDialog() == DialogResult.OK)
+            {
+                targetCtl.Text = targetform.テキスト.Text;
+            }
         }
 
         private void 不具合調査修理依頼書_現象_Enter(object sender, EventArgs e)
@@ -9597,17 +10326,30 @@ namespace u_net
 
         private void 不具合調査修理依頼書_現象_TextChanged(object sender, EventArgs e)
         {
-
+            FunctionClass.LimitText(sender as Control, 4000);
+            ChangedData(true);
         }
 
         private void 不具合調査修理依頼書_現象_Validating(object sender, CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 不具合調査修理依頼書_顧客の声_DoubleClick(object sender, EventArgs e)
         {
+            F_文書ズーム targetform = new F_文書ズーム();
 
+            Control targetCtl = sender as Control;
+
+            targetform.TargetControl = targetCtl;
+            targetform.CurrentCode = CurrentCode;
+            targetform.CurrentEdition = CurrentEdition;
+            targetform.MaxByte = 4000;
+            targetform.SetProperties();
+            if (targetform.ShowDialog() == DialogResult.OK)
+            {
+                targetCtl.Text = targetform.テキスト.Text;
+            }
         }
 
         private void 不具合調査修理依頼書_顧客の声_Enter(object sender, EventArgs e)
@@ -9622,27 +10364,32 @@ namespace u_net
 
         private void 不具合調査修理依頼書_顧客の声_TextChanged(object sender, EventArgs e)
         {
-
+            FunctionClass.LimitText(sender as Control, 4000);
+            ChangedData(true);
         }
 
         private void 不具合調査修理依頼書_顧客の声_Validating(object sender, CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 不具合調査修理依頼書_代替有無_Validated(object sender, EventArgs e)
         {
-
+            ChangedData(true);
         }
 
         private void 不具合調査修理依頼書_代替有無_Validating(object sender, CancelEventArgs e)
         {
-
+            if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 不具合調査修理依頼書_回答書ボタン_Click(object sender, EventArgs e)
         {
+            F_不具合調査修理回答書 targetform = new F_不具合調査修理回答書();
 
+            targetform.args = CurrentCode + "," + CurrentEdition;
+
+            targetform.ShowDialog();
         }
 
         #endregion

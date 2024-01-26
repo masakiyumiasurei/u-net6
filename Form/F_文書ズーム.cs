@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Pao.Reports;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -29,6 +30,46 @@ namespace u_net
             cn = new SqlConnection(connectionString);
             cn.Open();
         }
+        private string BASE_CAPTION = "文書ズーム";
+        public Control ctlTarget;
+        public string strCode;
+        public int intEdition;
+        public long lngMaxByte=4000;
+        private int intSelStart=0;
+
+        public string CurrentCode
+        {
+            get { return strCode; }
+            set { strCode = value; }
+        }
+
+        public int CurrentEdition
+        {
+            get { return intEdition; }
+            set { intEdition = value; }
+        }
+
+        public string InputText
+        {
+            get { return Nz(テキスト.Text); }
+        }
+
+        public long MaxByte
+        {
+            get { return lngMaxByte; }
+            set { lngMaxByte = value; }
+        }
+
+        public Control TargetControl
+        {
+            get { return ctlTarget; }
+            set { ctlTarget = value; }
+        }
+
+        private string Nz(string value)
+        {
+            return string.IsNullOrEmpty(value) ? "" : value;
+        }
 
         private void Form_Load(object sender, EventArgs e)
         {
@@ -40,19 +81,11 @@ namespace u_net
                     control.PreviewKeyDown += OriginalClass.ValidateCheck;
                 }
 
+                文字サイズ.Text = テキスト.Font.Size.ToString();
 
-                // 対象フォームが読み込まれていないときはすぐに終了する
-                if (Application.OpenForms["F_文書"] == null)
-                {
-                    MessageBox.Show("[F_文書]画面が起動していない状態では実行できません。", "警告", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    this.Close();
-                    return;
-                }
+                
 
-                //開いているフォームのインスタンスを作成する
-                //F_文書 frmTarget = Application.OpenForms.OfType<F_文書>().FirstOrDefault();
 
-                //品名.Text = frmTarget.str品名;
 
             }
             catch (Exception ex)
@@ -62,8 +95,54 @@ namespace u_net
             }
         }
 
+
+        public void SetProperties()
+        {
+            try
+            {
+                
+                switch (TargetControl.Name)
+                {
+                    case "本文1":
+                        対象.Text = "営業部回答";
+                        break;
+                    case "本文2":
+                        対象.Text = "技術部回答";
+                        break;
+                    case "本文3":
+                        対象.Text = "製造部回答";
+                        break;
+                    case "本文4":
+                        対象.Text = "社長回答";
+                        break;
+                    case "本文5":
+                        対象.Text = "管理部回答";
+                        break;
+                    default:
+                        対象.Text = TargetControl.Name;
+                        break;
+                }
+
+                テキスト.Enabled = TargetControl.Enabled;
+                if (!テキスト.Enabled)
+                {
+                    テキスト.ImeMode = ImeMode.Disable;
+                }
+
+                テキスト.Text = TargetControl.Text;
+                テキスト.SelectionStart = intSelStart;
+
+                this.Text = BASE_CAPTION;
+            }
+            catch (Exception ex)
+            {
+                Debug.Print($"{this.Name}_SetProperties - {ex.GetType().Name}: {ex.Message}");
+            }
+        }
+
         private void キャンセルボタン_MouseClick(object sender, MouseEventArgs e)
         {
+            DialogResult = DialogResult.Cancel;
             this.Close();
         }
 
@@ -95,46 +174,104 @@ namespace u_net
 
         private void 印刷ボタン_Click(object sender, EventArgs e)
         {
+            IReport paoRep = ReportCreator.GetPreview();
 
+            paoRep.LoadDefFile("../../../Reports/文書ズーム.prepd");
+
+
+            DateTime now = DateTime.Now;
+
+
+            paoRep.PageStart();
+
+
+            paoRep.Write("出力日時", now.ToString("yyyy/MM/dd HH:mm:ss"));
+            paoRep.Write("文書コード", string.IsNullOrEmpty(CurrentCode) ? " " : CurrentCode);
+            paoRep.Write("文書版数", string.IsNullOrEmpty(CurrentEdition.ToString()) ? " " : CurrentEdition.ToString());
+            paoRep.Write("対象", string.IsNullOrEmpty(対象.Text) ? " " : 対象.Text);
+            paoRep.Write("テキスト", string.IsNullOrEmpty(テキスト.Text) ? " " : テキスト.Text); 
+            
+            paoRep.PageEnd();
+
+            
+
+
+
+            paoRep.Output();
         }
 
         private void OKボタン_Click(object sender, EventArgs e)
         {
-
+            DialogResult = DialogResult.OK;
+            Close();
         }
 
         private void 文字サイズ_Validated(object sender, EventArgs e)
         {
-
+            try
+            {
+                テキスト.Focus();
+                テキスト.Font = new Font(テキスト.Font.FontFamily, Convert.ToInt32(文字サイズ.Text));
+            }
+            catch (Exception ex)
+            {
+                // エラー処理を追加
+                Console.WriteLine($"{this.Name}_文字サイズ_AfterUpdate - {ex.GetType().Name}: {ex.Message}");
+            }
         }
 
         private void 文字拡大ボタン_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                テキスト.Focus();
+                テキスト.Font = new Font(テキスト.Font.FontFamily, テキスト.Font.Size + 1);
+                文字サイズ.Text = テキスト.Font.Size.ToString();
+            }
+            catch (Exception ex)
+            {
+                // エラー処理を追加
+                Console.WriteLine($"{this.Name}_文字拡大ボタン_Click - {ex.GetType().Name}: {ex.Message}");
+            }
         }
 
         private void 文字縮小ボタン_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                テキスト.Focus();
+                テキスト.Font = new Font(テキスト.Font.FontFamily, テキスト.Font.Size - 1);
+                文字サイズ.Text = テキスト.Font.Size.ToString();
+            }
+            catch (Exception ex)
+            {
+                // エラー処理を追加
+                Console.WriteLine($"{this.Name}_文字縮小ボタン_Click - {ex.GetType().Name}: {ex.Message}");
+            }
         }
 
         private void テキスト_TextChanged(object sender, EventArgs e)
         {
-
+            FunctionClass.LimitText(sender as Control, Convert.ToInt32(MaxByte));
+            this.Text = BASE_CAPTION + "*";
         }
 
         private void テキスト_Enter(object sender, EventArgs e)
         {
-
+            テキスト.SelectionStart = intSelStart;
         }
 
         private void テキスト_Leave(object sender, EventArgs e)
         {
-
+            intSelStart = テキスト.SelectionStart;
         }
 
         private void テキスト_KeyDown(object sender, KeyEventArgs e)
         {
+            if (e.KeyCode == Keys.Return)
+            {
+                OKボタン_Click(sender, e);
+            }
 
         }
     }

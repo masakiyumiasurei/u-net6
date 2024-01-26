@@ -133,30 +133,30 @@ namespace u_net
 
         private void 区分別年度売上一覧ボタン_Click(object sender, EventArgs e)
         {
-            //F_売上一覧_区分別_年度 fm = new F_売上一覧_区分別_年度();
-            //fm.ShowDialog();
+            F_売上一覧_区分別_年度 fm = new F_売上一覧_区分別_年度();
+            fm.ShowDialog();
         }
 
 
         private void 売上一覧_区分別ボタン_Click(object sender, EventArgs e)
         {
-            //F_売上一覧_区分別 fm = new F_売上一覧_区分別();
-            //fm.ShowDialog();
+            F_売上一覧_区分別 fm = new F_売上一覧_区分別();
+            fm.ShowDialog();
         }
 
-       
+
         private void 売上明細参照ボタン_Click(object sender, EventArgs e)
         {
-            //F_売上明細参照 fm = new F_売上明細参照();
-            //fm.ShowDialog();
+            F_売上明細参照 fm = new F_売上明細参照();
+            fm.ShowDialog();
         }
 
-        
+
 
         private void 売上計画ボタン_Click(object sender, EventArgs e)
         {
-            //F_売上計画 fm = new F_売上計画();
-            //fm.ShowDialog();
+            F_売上計画 fm = new F_売上計画();
+            fm.ShowDialog();
         }
 
         private void 担当者別売上一覧ボタン_Click(object sender, EventArgs e)
