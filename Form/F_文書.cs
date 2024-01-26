@@ -5893,10 +5893,6 @@ namespace u_net
 
         #region システム配布記録
 
-        private void システム配布記録_配布日_KeyDown(object sender, KeyEventArgs e)
-        {
-
-        }
         private void システム配布記録_配布日_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == (char)Keys.Space)
@@ -5997,11 +5993,6 @@ namespace u_net
         private void 環境連絡書_発生日_DoubleClick(object sender, EventArgs e)
         {
             環境連絡書_発生日選択ボタン_Click(sender, e);
-        }
-
-        private void 環境連絡書_発生日_KeyDown(object sender, KeyEventArgs e)
-        {
-
         }
 
         private void 環境連絡書_発生日_TextChanged(object sender, EventArgs e)
@@ -6162,11 +6153,6 @@ namespace u_net
             記録_日付1選択ボタン_Click(sender, e);
         }
 
-        private void 記録_日付1_KeyDown(object sender, KeyEventArgs e)
-        {
-
-        }
-
         private void 記録_日付1_Leave(object sender, EventArgs e)
         {
             FunctionClass.AdjustRange(記録_日付1, 記録_日付2, sender as Control);
@@ -6219,11 +6205,6 @@ namespace u_net
         private void 記録_日付2_DoubleClick(object sender, EventArgs e)
         {
             記録_日付2選択ボタン_Click(sender, e);
-        }
-
-        private void 記録_日付2_KeyDown(object sender, KeyEventArgs e)
-        {
-
         }
 
         private void 記録_日付2_Leave(object sender, EventArgs e)
@@ -6411,11 +6392,6 @@ namespace u_net
             toolStripStatusLabel1.Text = "各種項目の説明";
         }
 
-        private void 議事録_開催日_KeyDown(object sender, KeyEventArgs e)
-        {
-
-        }
-
         private void 議事録_開催日_TextChanged(object sender, EventArgs e)
         {
             ChangedData(true);
@@ -6585,11 +6561,6 @@ namespace u_net
             if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
-        private void 教育訓練実施要領書_日付1_KeyDown(object sender, KeyEventArgs e)
-        {
-
-        }
-
         private void 教育訓練実施要領書_日付1_TextChanged(object sender, EventArgs e)
         {
             ChangedData(true);
@@ -6632,11 +6603,6 @@ namespace u_net
             {
                 教育訓練実施要領書_日付1選択ボタン_Click(sender, e);
             }
-        }
-
-        private void 教育訓練実施要領書_日付2_KeyDown(object sender, KeyEventArgs e)
-        {
-
         }
 
         private void 教育訓練実施要領書_日付2_TextChanged(object sender, EventArgs e)
@@ -6861,15 +6827,9 @@ namespace u_net
             }
         }
 
-
         private void 出向依頼書_受付日_DoubleClick(object sender, EventArgs e)
         {
             出向依頼書_受付日選択ボタン_Click(sender, e);
-        }
-
-        private void 出向依頼書_受付日_KeyDown(object sender, KeyEventArgs e)
-        {
-
         }
 
         private void 出向依頼書_受付日_TextChanged(object sender, EventArgs e)
@@ -6914,11 +6874,6 @@ namespace u_net
             {
                 出向依頼書_受付日選択ボタン_Click(sender, e);
             }
-        }
-
-        private void 出向依頼書_出向分類_KeyDown(object sender, KeyEventArgs e)
-        {
-
         }
 
         private void 出向依頼書_出向分類_KeyPress(object sender, KeyPressEventArgs e)
@@ -7331,7 +7286,6 @@ namespace u_net
             ChangedData(true);
         }
 
-
         private void 出向依頼書_費用_Validated(object sender, EventArgs e)
         {
 
@@ -7432,7 +7386,6 @@ namespace u_net
         {
             if (IsError(sender as Control) == true) e.Cancel = true;
         }
-
 
         private void 新規販売取引申請書_顧客コード_Enter(object sender, EventArgs e)
         {
@@ -9495,6 +9448,7 @@ namespace u_net
 
 
         #region 非該当証明発行依頼書
+
         private void 非該当証明発行依頼書_受注コード_DoubleClick(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(非該当証明発行依頼書_受注コード.Text)) return;
@@ -9525,8 +9479,6 @@ namespace u_net
             ChangedData(true);
         }
 
-
-
         private void 非該当証明発行依頼書_受注コード_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
             if (IsError(sender as Control) == true) e.Cancel = true;
@@ -9542,13 +9494,10 @@ namespace u_net
             toolStripStatusLabel1.Text = "各種項目の説明";
         }
 
-
         private void 非該当証明発行依頼書_受注コード_Validated(object sender, EventArgs e)
         {
 
         }
-
-
 
         private void 非該当証明発行依頼書_受注リンクボタン_Enter(object sender, EventArgs e)
         {
@@ -10107,9 +10056,6 @@ namespace u_net
                 UpdatedControl(不具合調査修理依頼書_受付日);
             }
         }
-
-     
-
 
         private void 不具合調査修理依頼書_顧客コード_DoubleClick(object sender, EventArgs e)
         {

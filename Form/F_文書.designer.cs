@@ -2009,7 +2009,7 @@ namespace u_net
             システム配布記録_配布日.Size = new Size(102, 20);
             システム配布記録_配布日.TabIndex = 17;
             システム配布記録_配布日.TextChanged += (this.システム配布記録_配布日_TextChanged);
-            システム配布記録_配布日.KeyDown += (this.システム配布記録_配布日_KeyDown);
+            システム配布記録_配布日.KeyPress += (this.システム配布記録_配布日_KeyPress);
             システム配布記録_配布日.Validating += (this.システム配布記録_配布日_Validating);
             システム配布記録_配布日.Validated += (this.システム配布記録_配布日_Validated);
             // 
@@ -3510,7 +3510,7 @@ namespace u_net
             環境連絡書_発生日.TabIndex = 17;
             環境連絡書_発生日.TextChanged += (this.環境連絡書_発生日_TextChanged);
             環境連絡書_発生日.DoubleClick += (this.環境連絡書_発生日_DoubleClick);
-            環境連絡書_発生日.KeyDown += (this.環境連絡書_発生日_KeyDown);
+            環境連絡書_発生日.KeyPress += (this.環境連絡書_発生日_KeyPress);
             環境連絡書_発生日.Validating += (this.環境連絡書_発生日_Validating);
             環境連絡書_発生日.Validated += (this.環境連絡書_発生日_Validated);
             // 
@@ -3819,7 +3819,7 @@ namespace u_net
             記録_日付2.TabIndex = 18;
             記録_日付2.TextChanged += (this.記録_日付2_TextChanged);
             記録_日付2.DoubleClick += (this.記録_日付2_DoubleClick);
-            記録_日付2.KeyDown += (this.記録_日付2_KeyDown);
+            記録_日付2.KeyPress += (this.記録_日付2_KeyPress);
             記録_日付2.Leave += (this.記録_日付2_Leave);
             記録_日付2.Validating += (this.記録_日付2_Validating);
             記録_日付2.Validated += (this.記録_日付2_Validated);
@@ -3961,7 +3961,7 @@ namespace u_net
             記録_日付1.TabIndex = 17;
             記録_日付1.TextChanged += (this.記録_日付1_TextChanged);
             記録_日付1.DoubleClick += (this.記録_日付1_DoubleClick);
-            記録_日付1.KeyDown += (this.記録_日付1_KeyDown);
+            記録_日付1.KeyPress += (this.記録_日付1_KeyPress);
             記録_日付1.Leave += (this.記録_日付1_Leave);
             記録_日付1.Validating += (this.記録_日付1_Validating);
             記録_日付1.Validated += (this.記録_日付1_Validated);
@@ -4135,7 +4135,7 @@ namespace u_net
             議事録_開催日.TextChanged += (this.議事録_開催日_TextChanged);
             議事録_開催日.DoubleClick += (this.議事録_開催日_DoubleClick);
             議事録_開催日.Enter += (this.議事録_開催日_Enter);
-            議事録_開催日.KeyDown += (this.議事録_開催日_KeyDown);
+            議事録_開催日.KeyPress += (this.議事録_開催日_KeyPress);
             議事録_開催日.Leave += (this.議事録_開催日_Leave);
             議事録_開催日.Validating += (this.議事録_開催日_Validating);
             // 
@@ -4409,7 +4409,7 @@ namespace u_net
             教育訓練実施要領書_日付2.Size = new Size(102, 20);
             教育訓練実施要領書_日付2.TabIndex = 20;
             教育訓練実施要領書_日付2.TextChanged += (this.教育訓練実施要領書_日付2_TextChanged);
-            教育訓練実施要領書_日付2.KeyDown += (this.教育訓練実施要領書_日付2_KeyDown);
+            教育訓練実施要領書_日付2.KeyPress += (this.教育訓練実施要領書_日付2_KeyPress);
             教育訓練実施要領書_日付2.Validating += (this.教育訓練実施要領書_日付2_Validating);
             教育訓練実施要領書_日付2.Validated += (this.教育訓練実施要領書_日付2_Validated);
             // 
@@ -4549,7 +4549,7 @@ namespace u_net
             教育訓練実施要領書_日付1.Size = new Size(102, 20);
             教育訓練実施要領書_日付1.TabIndex = 19;
             教育訓練実施要領書_日付1.TextChanged += (this.教育訓練実施要領書_日付1_TextChanged);
-            教育訓練実施要領書_日付1.KeyDown += (this.教育訓練実施要領書_日付1_KeyDown);
+            教育訓練実施要領書_日付1.KeyPress += (this.教育訓練実施要領書_日付1_KeyPress);
             教育訓練実施要領書_日付1.Validating += (this.教育訓練実施要領書_日付1_Validating);
             教育訓練実施要領書_日付1.Validated += (this.教育訓練実施要領書_日付1_Validated);
             // 
@@ -4698,6 +4698,7 @@ namespace u_net
             出向依頼書_その他.TabStop = true;
             出向依頼書_その他.Text = "その他";
             出向依頼書_その他.UseVisualStyleBackColor = true;
+            出向依頼書_その他.CheckedChanged += (this.出向依頼書_その他_CheckedChanged);
             // 
             // 出向依頼書_立会
             // 
@@ -4747,6 +4748,7 @@ namespace u_net
             出向依頼書_費用.KeyPress += (this.出向依頼書_費用_KeyPress);
             出向依頼書_費用.Validating += (this.出向依頼書_費用_Validating);
             出向依頼書_費用.Validated += (this.出向依頼書_費用_Validated);
+            出向依頼書_費用.TextChanged += (this.出向依頼書_費用_TextChanged);
             // 
             // 出向依頼書_出向先電話番号
             // 
@@ -4965,7 +4967,7 @@ namespace u_net
             出向依頼書_受付日.TabIndex = 17;
             出向依頼書_受付日.TextChanged += (this.出向依頼書_受付日_TextChanged);
             出向依頼書_受付日.DoubleClick += (this.出向依頼書_受付日_DoubleClick);
-            出向依頼書_受付日.KeyDown += (this.出向依頼書_受付日_KeyDown);
+            出向依頼書_受付日.KeyPress += (this.出向依頼書_受付日_KeyPress);
             出向依頼書_受付日.Validating += (this.出向依頼書_受付日_Validating);
             出向依頼書_受付日.Validated += (this.出向依頼書_受付日_Validated);
             // 
@@ -4981,9 +4983,10 @@ namespace u_net
             出向依頼書_出向分類.Size = new Size(314, 21);
             出向依頼書_出向分類.TabIndex = 19;
             出向依頼書_出向分類.TextUpdate += (this.出向依頼書_出向分類_TextUpdate);
-            出向依頼書_出向分類.KeyDown += (this.出向依頼書_出向分類_KeyDown);
+            出向依頼書_出向分類.KeyPress += (this.出向依頼書_出向分類_KeyPress);
             出向依頼書_出向分類.Validating += (this.出向依頼書_出向分類_Validating);
             出向依頼書_出向分類.Validated += (this.出向依頼書_出向分類_Validated);
+            出向依頼書_出向分類.TextChanged += (this.出向依頼書_出向分類_TextChanged);
             // 
             // label52
             // 
@@ -5288,6 +5291,8 @@ namespace u_net
             新規販売取引申請書_顧客コード.KeyDown += (this.新規販売取引申請書_顧客コード_KeyDown);
             新規販売取引申請書_顧客コード.KeyPress += (this.新規販売取引申請書_顧客コード_KeyPress);
             新規販売取引申請書_顧客コード.Leave += (this.新規販売取引申請書_顧客コード_Leave);
+            新規販売取引申請書_顧客コード.Validating += (this.新規販売取引申請書_顧客コード_Validating);
+            新規販売取引申請書_顧客コード.TextChanged += (this.新規販売取引申請書_顧客コード_TextChanged);
             // 
             // label73
             // 
@@ -5804,6 +5809,8 @@ namespace u_net
             是正予防処置報告書_顧客コード.TabIndex = 19;
             是正予防処置報告書_顧客コード.KeyDown += (this.是正予防処置報告書_顧客コード_KeyDown);
             是正予防処置報告書_顧客コード.KeyPress += (this.是正予防処置報告書_顧客コード_KeyPress);
+            是正予防処置報告書_顧客コード.Validating += (this.是正予防処置報告書_顧客コード_Validating);
+            是正予防処置報告書_顧客コード.TextChanged += (this.是正予防処置報告書_顧客コード_TextChanged);
             // 
             // 是正予防処置報告書_顧客名
             // 
@@ -6551,6 +6558,7 @@ namespace u_net
             製品企画書_売上区分コード.TextUpdate += (this.製品企画書_売上区分コード_TextUpdate);
             製品企画書_売上区分コード.Validating += (this.製品企画書_売上区分コード_Validating);
             製品企画書_売上区分コード.Validated += (this.製品企画書_売上区分コード_Validated);
+            製品企画書_売上区分コード.TextChanged += (this.製品企画書_売上区分コード_TextChanged);
             // 
             // 製品企画書_型番
             // 
@@ -7268,6 +7276,7 @@ namespace u_net
             設計製作依頼書_付属文書2.TabIndex = 37;
             設計製作依頼書_付属文書2.UseVisualStyleBackColor = true;
             設計製作依頼書_付属文書2.Validated += (this.設計製作依頼書_付属文書2_Validated);
+            設計製作依頼書_付属文書2.CheckedChanged += (this.設計製作依頼書_付属文書2_CheckedChanged);
             // 
             // label114
             // 
@@ -7298,6 +7307,7 @@ namespace u_net
             設計製作依頼書_付属文書1.TabIndex = 36;
             設計製作依頼書_付属文書1.UseVisualStyleBackColor = true;
             設計製作依頼書_付属文書1.Validated += (this.設計製作依頼書_付属文書1_Validated);
+            設計製作依頼書_付属文書1.CheckedChanged += (this.設計製作依頼書_付属文書1_CheckedChanged);
             // 
             // label113
             // 
@@ -7328,7 +7338,7 @@ namespace u_net
             設計製作依頼書_付属文書3.TabIndex = 38;
             設計製作依頼書_付属文書3.UseVisualStyleBackColor = true;
             設計製作依頼書_付属文書3.Validated += (this.設計製作依頼書_付属文書3_Validated);
-            // 
+            設計製作依頼書_付属文書3.CheckedChanged += (this.設計製作依頼書_付属文書3_CheckedChanged);
             // 設計製作依頼書_付属書類指定
             // 
             設計製作依頼書_付属書類指定.AutoSize = true;
@@ -7342,6 +7352,7 @@ namespace u_net
             設計製作依頼書_付属書類指定.UseVisualStyleBackColor = true;
             設計製作依頼書_付属書類指定.Validating += (this.設計製作依頼書_付属書類指定_Validating);
             設計製作依頼書_付属書類指定.Validated += (this.設計製作依頼書_付属書類指定_Validated);
+            設計製作依頼書_付属書類指定.CheckedChanged += (this.設計製作依頼書_付属書類指定_CheckedChanged);
             // 
             // 設計製作依頼書_その他文書名
             // 
@@ -9105,6 +9116,8 @@ namespace u_net
             不具合調査修理依頼書_連絡者社名.Name = "不具合調査修理依頼書_連絡者社名";
             不具合調査修理依頼書_連絡者社名.Size = new Size(314, 20);
             不具合調査修理依頼書_連絡者社名.TabIndex = 26;
+            不具合調査修理依頼書_連絡者社名.TextChanged += (this.不具合調査修理依頼書_連絡者社名_TextChanged);
+            不具合調査修理依頼書_連絡者社名.Validating += (this.不具合調査修理依頼書_連絡者社名_Validating);
             // 
             // label175
             // 
@@ -9194,6 +9207,7 @@ namespace u_net
             不具合調査修理依頼書_受注コード.KeyDown += (this.不具合調査修理依頼書_受注コード_KeyDown);
             不具合調査修理依頼書_受注コード.KeyPress += (this.不具合調査修理依頼書_受注コード_KeyPress);
             不具合調査修理依頼書_受注コード.Validating += (this.不具合調査修理依頼書_受注コード_Validating);
+            不具合調査修理依頼書_受注コード.Validated += (this.不具合調査修理依頼書_受注コード_Validated);
             // 
             // label177
             // 
