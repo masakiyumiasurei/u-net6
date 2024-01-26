@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Pao.Reports;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -173,7 +174,30 @@ namespace u_net
 
         private void 印刷ボタン_Click(object sender, EventArgs e)
         {
+            IReport paoRep = ReportCreator.GetPreview();
 
+            paoRep.LoadDefFile("../../../Reports/文書ズーム.prepd");
+
+
+            DateTime now = DateTime.Now;
+
+
+            paoRep.PageStart();
+
+
+            paoRep.Write("出力日時", now.ToString("yyyy/MM/dd HH:mm:ss"));
+            paoRep.Write("文書コード", string.IsNullOrEmpty(CurrentCode) ? " " : CurrentCode);
+            paoRep.Write("文書版数", string.IsNullOrEmpty(CurrentEdition.ToString()) ? " " : CurrentEdition.ToString());
+            paoRep.Write("対象", string.IsNullOrEmpty(対象.Text) ? " " : 対象.Text);
+            paoRep.Write("テキスト", string.IsNullOrEmpty(テキスト.Text) ? " " : テキスト.Text); 
+            
+            paoRep.PageEnd();
+
+            
+
+
+
+            paoRep.Output();
         }
 
         private void OKボタン_Click(object sender, EventArgs e)
