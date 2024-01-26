@@ -73,16 +73,16 @@ namespace u_net
 
         private void InitializeFilter()
         {
-            str支払コード開始 = "";
-            str支払コード終了 = "";
-            dtm買掛日開始 = DateTime.MinValue; // または 0 に相当する値を設定
-            dtm買掛日終了 = DateTime.MinValue; // または 0 に相当する値を設定
-            str支払年月 = "";
-            lng振込指定 = 0;
-            str支払先コード = "";
-            str支払先名 = "";
+            str文書コード開始 = "";
+            str文書コード終了 = "";
+            dtm確定日開始 = DateTime.MinValue; // または 0 に相当する値を設定
+            dtm確定日終了 = DateTime.MinValue; // または 0 に相当する値を設定
+            str文書名 = "";
+            str件名 = "";
+            str発信者名 = "";
             lng確定指定 = 0;
             lng承認指定 = 0;
+            lng完了承認指定 = 0;
             lng削除指定 = 1;
         }
 
