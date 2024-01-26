@@ -30,7 +30,8 @@
         {
             処置日 = new TextBox();
             処置日_ラベル = new Label();
-            回答公開方法 = new GroupBox();
+            回答公開方法グループ = new GroupBox();
+            回答公開方法 = new TextBox();
             回答公開方法その他 = new TextBox();
             その他 = new RadioButton();
             電話 = new RadioButton();
@@ -48,7 +49,9 @@
             処置担当者_ラベル = new Label();
             statusStrip1 = new StatusStrip();
             toolStripStatusLabel1 = new ToolStripStatusLabel();
-            回答公開方法.SuspendLayout();
+            文書コード = new TextBox();
+            文書版数 = new TextBox();
+            回答公開方法グループ.SuspendLayout();
             groupBox1.SuspendLayout();
             statusStrip1.SuspendLayout();
             SuspendLayout();
@@ -84,21 +87,34 @@
             処置日_ラベル.Text = "処置日(&D)";
             処置日_ラベル.TextAlign = ContentAlignment.MiddleLeft;
             // 
+            // 回答公開方法グループ
+            // 
+            回答公開方法グループ.Controls.Add(回答公開方法);
+            回答公開方法グループ.Controls.Add(回答公開方法その他);
+            回答公開方法グループ.Controls.Add(その他);
+            回答公開方法グループ.Controls.Add(電話);
+            回答公開方法グループ.Controls.Add(書類);
+            回答公開方法グループ.Controls.Add(面談);
+            回答公開方法グループ.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            回答公開方法グループ.Location = new Point(11, 418);
+            回答公開方法グループ.Name = "回答公開方法グループ";
+            回答公開方法グループ.Size = new Size(403, 80);
+            回答公開方法グループ.TabIndex = 9;
+            回答公開方法グループ.TabStop = false;
+            回答公開方法グループ.Text = "回答/公開方法(&H)";
+            回答公開方法グループ.Validated += 回答公開方法_Validated;
+            // 
             // 回答公開方法
             // 
-            回答公開方法.Controls.Add(回答公開方法その他);
-            回答公開方法.Controls.Add(その他);
-            回答公開方法.Controls.Add(電話);
-            回答公開方法.Controls.Add(書類);
-            回答公開方法.Controls.Add(面談);
-            回答公開方法.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            回答公開方法.Location = new Point(11, 418);
+            回答公開方法.BackColor = Color.White;
+            回答公開方法.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            回答公開方法.ImeMode = ImeMode.Disable;
+            回答公開方法.Location = new Point(273, 17);
+            回答公開方法.Margin = new Padding(3, 2, 3, 2);
             回答公開方法.Name = "回答公開方法";
-            回答公開方法.Size = new Size(403, 80);
-            回答公開方法.TabIndex = 9;
-            回答公開方法.TabStop = false;
-            回答公開方法.Text = "回答/公開方法(&H)";
-            回答公開方法.Validated += 回答公開方法_Validated;
+            回答公開方法.Size = new Size(102, 20);
+            回答公開方法.TabIndex = 21017;
+            回答公開方法.Visible = false;
             // 
             // 回答公開方法その他
             // 
@@ -121,6 +137,7 @@
             その他.TabStop = true;
             その他.Text = "その他";
             その他.UseVisualStyleBackColor = true;
+            その他.CheckedChanged += その他_CheckedChanged;
             // 
             // 電話
             // 
@@ -132,6 +149,7 @@
             電話.TabStop = true;
             電話.Text = "電話";
             電話.UseVisualStyleBackColor = true;
+            電話.CheckedChanged += 電話_CheckedChanged;
             // 
             // 書類
             // 
@@ -143,6 +161,7 @@
             書類.TabStop = true;
             書類.Text = "書類";
             書類.UseVisualStyleBackColor = true;
+            書類.CheckedChanged += 書類_CheckedChanged;
             // 
             // 面談
             // 
@@ -154,6 +173,7 @@
             面談.TabStop = true;
             面談.Text = "面談";
             面談.UseVisualStyleBackColor = true;
+            面談.CheckedChanged += 面談_CheckedChanged;
             // 
             // 登録ボタン
             // 
@@ -189,12 +209,14 @@
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(文書版数);
+            groupBox1.Controls.Add(文書コード);
             groupBox1.Controls.Add(回答公開先);
             groupBox1.Controls.Add(label1);
             groupBox1.Controls.Add(処置内容);
             groupBox1.Controls.Add(処置内容_ラベル);
             groupBox1.Controls.Add(処置担当者);
-            groupBox1.Controls.Add(回答公開方法);
+            groupBox1.Controls.Add(回答公開方法グループ);
             groupBox1.Controls.Add(処置日選択ボタン);
             groupBox1.Controls.Add(処置日_ラベル);
             groupBox1.Controls.Add(処置担当者_ラベル);
@@ -310,6 +332,30 @@
             toolStripStatusLabel1.Size = new Size(89, 17);
             toolStripStatusLabel1.Text = "各種項目の説明";
             // 
+            // 文書コード
+            // 
+            文書コード.BackColor = Color.White;
+            文書コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            文書コード.ImeMode = ImeMode.Disable;
+            文書コード.Location = new Point(259, 4);
+            文書コード.Margin = new Padding(3, 2, 3, 2);
+            文書コード.Name = "文書コード";
+            文書コード.Size = new Size(102, 20);
+            文書コード.TabIndex = 21018;
+            文書コード.Visible = false;
+            // 
+            // 文書版数
+            // 
+            文書版数.BackColor = Color.White;
+            文書版数.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            文書版数.ImeMode = ImeMode.Disable;
+            文書版数.Location = new Point(259, 21);
+            文書版数.Margin = new Padding(3, 2, 3, 2);
+            文書版数.Name = "文書版数";
+            文書版数.Size = new Size(102, 20);
+            文書版数.TabIndex = 21019;
+            文書版数.Visible = false;
+            // 
             // F_環境回答書
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -324,8 +370,8 @@
             Text = "環境回答書";
             Load += Form_Load;
             KeyDown += F_環境回答書_KeyDown;
-            回答公開方法.ResumeLayout(false);
-            回答公開方法.PerformLayout();
+            回答公開方法グループ.ResumeLayout(false);
+            回答公開方法グループ.PerformLayout();
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             statusStrip1.ResumeLayout(false);
@@ -352,7 +398,7 @@
         private RadioButton 承認指定button3;
         private RadioButton 承認指定button2;
         private RadioButton 承認指定button1;
-        private GroupBox 回答公開方法;
+        private GroupBox 回答公開方法グループ;
         private RadioButton 電話;
         private RadioButton 書類;
         private RadioButton 面談;
@@ -383,5 +429,10 @@
         private RadioButton RoHS対応Button1;
         private Label 非含有証明書_ラベル;
         private ComboBox 非含有証明書;
+        private TextBox 回答公開方法;
+        private TextBox textBox2;
+        private TextBox textBox1;
+        private TextBox 文書版数;
+        private TextBox 文書コード;
     }
 }
