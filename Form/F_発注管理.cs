@@ -65,7 +65,7 @@ namespace u_net
             // 現在選択されているデータのコードを取得する
             get
             {
-                return dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value?.ToString();
+                return dataGridView1.SelectedRows[0].Cells[0].Value?.ToString();
             }
         }
         public string CurrentEdition
@@ -73,7 +73,7 @@ namespace u_net
             // 現在選択されているデータの版数を取得する
             get
             {
-                return dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[1].Value?.ToString();
+                return dataGridView1.SelectedRows[0].Cells[1].Value?.ToString();
             }
         }
         public bool IsApproved
@@ -152,6 +152,10 @@ namespace u_net
             dataGridView1.DefaultCellStyle.Font = new Font("MS ゴシック", 10);
             dataGridView1.DefaultCellStyle.ForeColor = Color.Black;
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+
+            System.Type dgvtype = typeof(DataGridView);
+            System.Reflection.PropertyInfo dgvPropertyInfo = dgvtype.GetProperty("DoubleBuffered", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
+            dgvPropertyInfo.SetValue(dataGridView1, true, null);
 
             myapi.GetFullScreen(out xSize, out ySize);
 
@@ -651,7 +655,7 @@ namespace u_net
         private void コマンド検索_Click(object sender, EventArgs e)
         {
             dataGridView1.Focus(); // DataGridViewにフォーカスを設定
-                        
+
             F_検索コード form = new F_検索コード(this, "ORD");
             form.ShowDialog();
         }
@@ -678,7 +682,7 @@ namespace u_net
         private void コマンド発注_Click(object sender, EventArgs e)
         {
             F_発注 fm = new F_発注();
-            fm.args= $"{CurrentCode} , {CurrentEdition}";
+            fm.args = $"{CurrentCode} , {CurrentEdition}";
             fm.ShowDialog();
         }
 
@@ -769,6 +773,6 @@ namespace u_net
             F_入庫履歴 fm = new F_入庫履歴();
             fm.ShowDialog();
         }
-                
+
     }
 }

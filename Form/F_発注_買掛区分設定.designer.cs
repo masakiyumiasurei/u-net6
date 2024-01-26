@@ -551,7 +551,8 @@ namespace u_net
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "F_発注_買掛区分設定";
-            Text = " ";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = " 発注買掛区分設定";
             FormClosed += F_発注_買掛区分設定_FormClosed;
             Load += Form_Load;
             statusStrip1.ResumeLayout(false);

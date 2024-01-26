@@ -601,7 +601,7 @@ namespace MultiRowDesigner
             //}
         }
 
-        
+
 
         private void gcMultiRow1_RowsAdding(object sender, RowsAddingEventArgs e)
         {
@@ -848,10 +848,10 @@ namespace MultiRowDesigner
             NumberDetails("明細番号");
         }
 
-        
+
         private void gcMultiRow1_CellContentButtonClick(object sender, CellEventArgs e)
         {
-            GcMultiRow gcMultiRow = sender as GcMultiRow;            
+            GcMultiRow gcMultiRow = sender as GcMultiRow;
             F_発注? parentform = Application.OpenForms.OfType<F_発注>().FirstOrDefault();
             switch (e.CellName)
             {
@@ -911,7 +911,7 @@ namespace MultiRowDesigner
 
                     break;
                 case "買掛区分修正ボタン":
-                    
+
                     if (!parentform.IsDecided)
                     {
                         //コンボボックスのダブルクリックイベントではこうなっていた
@@ -922,8 +922,17 @@ namespace MultiRowDesigner
                     {
                         if (parentform.IsApproved)
                         {
-                            MessageBox.Show("この発注データは承認されています。\n承認後の区分設定はできません。",
-                                            parentform.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            if (parentform.buttonCnt == 0)
+                            {
+                                MessageBox.Show("この発注データは承認されています。\n承認後の区分設定はできません。",
+                                                parentform.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                                parentform.buttonCnt = 1;
+                            }
+                            else
+                            {
+                                //元に戻す
+                                parentform.buttonCnt = 0;
+                            }
                         }
                         else
                         {
@@ -939,18 +948,18 @@ namespace MultiRowDesigner
                             {
                                 //元に戻す
                                 parentform.buttonCnt = 0;
-                            }    
-                                
-                            
+                            }
+
+
                             //{
-                                //区分の各種値はF_発注_買掛区分設定でセットする
+                            //区分の各種値はF_発注_買掛区分設定でセットする
 
-                                //string selectedCode = form.SelectedCode;
+                            //string selectedCode = form.SelectedCode;
 
-                                //gcMultiRow1.CurrentRow.Cells["買掛区分"].Value = selectedCode;
+                            //gcMultiRow1.CurrentRow.Cells["買掛区分"].Value = selectedCode;
 
-                                //gcMultiRow1.CurrentCellPosition =
-                                //    new CellPosition(gcMultiRow1.CurrentRow.Index, gcMultiRow1.CurrentRow.Cells["品名"].CellIndex);
+                            //gcMultiRow1.CurrentCellPosition =
+                            //    new CellPosition(gcMultiRow1.CurrentRow.Index, gcMultiRow1.CurrentRow.Cells["品名"].CellIndex);
                             //}
                         }
                     }
@@ -979,7 +988,7 @@ namespace MultiRowDesigner
                     case "部品コード":
                         e.Handled = true;　//スペースの本来の挙動（空白入力）を制御する
                         F_部品選択 form = new F_部品選択();
-                        if (form.ShowDialog() == DialogResult.OK)
+                        if (form.ShowDialog() == DialogResult.OK && gcMultiRow1.ReadOnly == false)
                         {
                             string selectedCode = form.SelectedCode;
 
@@ -1006,7 +1015,7 @@ namespace MultiRowDesigner
                     case "発注納期":
                         e.Handled = true; //スペースの本来の挙動（空白入力）を制御する
 
-                        if (fm.ShowDialog() == DialogResult.OK)
+                        if (fm.ShowDialog() == DialogResult.OK && gcMultiRow1.ReadOnly==false)
                         {
                             // 日付選択フォームから選択した日付を取得
                             string selectedDate = fm.SelectedDate;
@@ -1018,7 +1027,7 @@ namespace MultiRowDesigner
                     case "回答納期":
                         e.Handled = true; //スペースの本来の挙動（空白入力）を制御する
 
-                        if (fm.ShowDialog() == DialogResult.OK)
+                        if (fm.ShowDialog() == DialogResult.OK && gcMultiRow1.ReadOnly == false)
                         {
                             // 日付選択フォームから選択した日付を取得
                             string selectedDate = fm.SelectedDate;
@@ -1051,8 +1060,19 @@ namespace MultiRowDesigner
                         }
                         else
                         {
-                            //F_発注_買掛区分設定 fm = new 発注_買掛区分設定();
-                            // F_発注_買掛区分設定 のOPEN処理　完成したら記載する
+                            F_発注_買掛区分設定 form = new F_発注_買掛区分設定();
+                            //form.ShowDialog();
+                            //if (parentform.buttonCnt == 0)
+                            //{
+                            //    form.ShowDialog();
+
+                            //    return;
+                            //}
+                            //else
+                            //{
+                            //    //元に戻す
+                            //    parentform.buttonCnt = 0;
+                            //}
                         }
                     }
                     break;
@@ -1064,17 +1084,20 @@ namespace MultiRowDesigner
 
             F_カレンダー fm = new F_カレンダー();
             F_発注? parentform = Application.OpenForms.OfType<F_発注>().FirstOrDefault();
+            F_発注_買掛区分設定 kaiform = new F_発注_買掛区分設定();
 
             switch (gcMultiRow1.CurrentCell.Name)
             {
                 case "部品コード":
 
                     F_部品選択 form = new F_部品選択();
-                    if (form.ShowDialog() == DialogResult.OK)
+                    if (form.ShowDialog() == DialogResult.OK && gcMultiRow1.ReadOnly == false)
                     {
                         string selectedCode = form.SelectedCode;
-
+                        gcMultiRow1.EditingControl.Text = selectedCode; // <== 対応策
                         gcMultiRow1.CurrentCell.Value = selectedCode;
+                        UpdatedControl(gcMultiRow1.CurrentCell);
+
                         gcMultiRow1.CurrentCellPosition =
                             new CellPosition(gcMultiRow1.CurrentRow.Index, gcMultiRow1.CurrentRow.Cells["品名"].CellIndex);
                     }
@@ -1094,8 +1117,19 @@ namespace MultiRowDesigner
                         }
                         else
                         {
-                            //F_発注_買掛区分設定 fm = new 発注_買掛区分設定();
-                            // F_発注_買掛区分設定 のOPEN処理　完成したら記載する
+                             
+                            //form.ShowDialog();
+                            if (parentform.buttonCnt == 0)
+                            {
+                                kaiform.ShowDialog();
+
+                                return;
+                            }
+                            else
+                            {
+                                //元に戻す
+                                parentform.buttonCnt = 0;
+                            }
                         }
                     }
                     break;
@@ -1114,31 +1148,41 @@ namespace MultiRowDesigner
                         }
                         else
                         {
-                            //F_発注_買掛区分設定 fm = new 発注_買掛区分設定();
-                            // F_発注_買掛区分設定 のOPEN処理　完成したら記載する
+                            //form.ShowDialog();
+                            if (parentform.buttonCnt == 0)
+                            {
+                                kaiform.ShowDialog();
+
+                                return;
+                            }
+                            else
+                            {
+                                //元に戻す
+                                parentform.buttonCnt = 0;
+                            }
                         }
                     }
                     break;
                 case "発注納期":
 
-                    if (fm.ShowDialog() == DialogResult.OK)
+                    if (fm.ShowDialog() == DialogResult.OK && gcMultiRow1.ReadOnly == false)
                     {
                         // 日付選択フォームから選択した日付を取得
                         string selectedDate = fm.SelectedDate;
                         gcMultiRow1.CurrentCell.Value = selectedDate;
-
+                        gcMultiRow1.EditingControl.Text = selectedDate; // <== 対応策
                         gcMultiRow1.CurrentCellPosition =
                                 new CellPosition(gcMultiRow1.CurrentRow.Index, gcMultiRow1.CurrentRow.Cells["必要数量"].CellIndex);
                     }
                     break;
                 case "回答納期":
 
-                    if (fm.ShowDialog() == DialogResult.OK)
+                    if (fm.ShowDialog() == DialogResult.OK && gcMultiRow1.ReadOnly == false)
                     {
                         // 日付選択フォームから選択した日付を取得
                         string selectedDate = fm.SelectedDate;
                         gcMultiRow1.CurrentCell.Value = selectedDate;
-
+                        gcMultiRow1.EditingControl.Text = selectedDate; // <== 対応策
                         gcMultiRow1.CurrentCellPosition =
                                 new CellPosition(gcMultiRow1.CurrentRow.Index, gcMultiRow1.CurrentRow.Cells["買掛区分"].CellIndex);
                     }

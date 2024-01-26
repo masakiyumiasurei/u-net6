@@ -71,7 +71,7 @@ namespace u_net
             // 現在選択されているデータのコードを取得する
             get
             {
-                return 一覧.Rows[一覧.CurrentRow.Index].Cells[2].Value?.ToString();
+                return 一覧.SelectedRows[0].Cells[2].Value?.ToString();
             }
         }
 
@@ -80,7 +80,7 @@ namespace u_net
             // 現在選択されているデータのコードを取得する
             get
             {
-                return 一覧.Rows[一覧.CurrentRow.Index].Cells[0].Value?.ToString();
+                return 一覧.SelectedRows[0].Cells[0].Value?.ToString();
             }
         }
 
