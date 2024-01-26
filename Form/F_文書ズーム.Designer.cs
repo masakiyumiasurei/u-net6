@@ -36,10 +36,10 @@
             印刷ボタン = new Button();
             テキスト = new TextBox();
             groupBox1 = new GroupBox();
+            文字縮小ボタン = new Button();
+            文字拡大ボタン = new Button();
             文字サイズ = new TextBox();
             OKボタン = new Button();
-            文字拡大ボタン = new Button();
-            文字縮小ボタン = new Button();
             toolTip1 = new ToolTip(components);
             groupBox1.SuspendLayout();
             SuspendLayout();
@@ -105,6 +105,7 @@
             // 
             // テキスト
             // 
+            テキスト.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             テキスト.BackColor = SystemColors.Window;
             テキスト.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             テキスト.ImeMode = ImeMode.Hiragana;
@@ -133,6 +134,28 @@
             groupBox1.TabIndex = 70;
             groupBox1.TabStop = false;
             // 
+            // 文字縮小ボタン
+            // 
+            文字縮小ボタン.Location = new Point(373, 28);
+            文字縮小ボタン.Name = "文字縮小ボタン";
+            文字縮小ボタン.Size = new Size(23, 23);
+            文字縮小ボタン.TabIndex = 7;
+            文字縮小ボタン.Text = "－";
+            toolTip1.SetToolTip(文字縮小ボタン, "文字の縮小");
+            文字縮小ボタン.UseVisualStyleBackColor = true;
+            文字縮小ボタン.Click += 文字縮小ボタン_Click;
+            // 
+            // 文字拡大ボタン
+            // 
+            文字拡大ボタン.Location = new Point(347, 28);
+            文字拡大ボタン.Name = "文字拡大ボタン";
+            文字拡大ボタン.Size = new Size(23, 23);
+            文字拡大ボタン.TabIndex = 6;
+            文字拡大ボタン.Text = "＋";
+            toolTip1.SetToolTip(文字拡大ボタン, "文字の拡大");
+            文字拡大ボタン.UseVisualStyleBackColor = true;
+            文字拡大ボタン.Click += 文字拡大ボタン_Click;
+            // 
             // 文字サイズ
             // 
             文字サイズ.BackColor = Color.White;
@@ -156,28 +179,6 @@
             OKボタン.Text = "OK";
             OKボタン.UseVisualStyleBackColor = true;
             OKボタン.Click += OKボタン_Click;
-            // 
-            // 文字拡大ボタン
-            // 
-            文字拡大ボタン.Location = new Point(347, 28);
-            文字拡大ボタン.Name = "文字拡大ボタン";
-            文字拡大ボタン.Size = new Size(23, 23);
-            文字拡大ボタン.TabIndex = 6;
-            文字拡大ボタン.Text = "＋";
-            toolTip1.SetToolTip(文字拡大ボタン, "文字の拡大");
-            文字拡大ボタン.UseVisualStyleBackColor = true;
-            文字拡大ボタン.Click += 文字拡大ボタン_Click;
-            // 
-            // 文字縮小ボタン
-            // 
-            文字縮小ボタン.Location = new Point(373, 28);
-            文字縮小ボタン.Name = "文字縮小ボタン";
-            文字縮小ボタン.Size = new Size(23, 23);
-            文字縮小ボタン.TabIndex = 7;
-            文字縮小ボタン.Text = "－";
-            toolTip1.SetToolTip(文字縮小ボタン, "文字の縮小");
-            文字縮小ボタン.UseVisualStyleBackColor = true;
-            文字縮小ボタン.Click += 文字縮小ボタン_Click;
             // 
             // F_文書ズーム
             // 
@@ -208,7 +209,7 @@
         private Button キャンセルボタン;
         private Button コモンダイアログ;
         private Button 印刷ボタン;
-        private TextBox テキスト;
+        public TextBox テキスト;
         private GroupBox groupBox1;
         private Button 文字拡大ボタン;
         private TextBox 文字サイズ;

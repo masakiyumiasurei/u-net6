@@ -4817,7 +4817,20 @@ namespace u_net
 
         private void 通信欄_DoubleClick(object sender, EventArgs e)
         {
-            FunctionClass.DocZoom(sender as Control, CurrentCode, CurrentEdition, 4000);
+
+            F_文書ズーム targetform = new F_文書ズーム();
+
+            Control targetCtl = sender as Control;
+
+            targetform.TargetControl = targetCtl;
+            targetform.CurrentCode = CurrentCode;
+            targetform.CurrentEdition = CurrentEdition;
+            targetform.MaxByte = 4000;
+            targetform.SetProperties();
+            if (targetform.ShowDialog() == DialogResult.OK)
+            {
+                targetCtl.Text = targetform.テキスト.Text;
+            }
         }
 
 
@@ -4838,7 +4851,19 @@ namespace u_net
         }
         private void 結果内容_DoubleClick(object sender, EventArgs e)
         {
-            FunctionClass.DocZoom(sender as Control, CurrentCode, CurrentEdition, 4000);
+            F_文書ズーム targetform = new F_文書ズーム();
+
+            Control targetCtl = sender as Control;
+
+            targetform.TargetControl = targetCtl;
+            targetform.CurrentCode = CurrentCode;
+            targetform.CurrentEdition = CurrentEdition;
+            targetform.MaxByte = 4000;
+            targetform.SetProperties();
+            if (targetform.ShowDialog() == DialogResult.OK)
+            {
+                targetCtl.Text = targetform.テキスト.Text;
+            }
         }
 
 
@@ -5389,7 +5414,19 @@ namespace u_net
 
         private void 本文1_DoubleClick(object sender, EventArgs e)
         {
-            FunctionClass.DocZoom(sender as Control, CurrentCode, CurrentEdition, 4000);
+            F_文書ズーム targetform = new F_文書ズーム();
+
+            Control targetCtl = sender as Control;
+
+            targetform.TargetControl = targetCtl;
+            targetform.CurrentCode = CurrentCode;
+            targetform.CurrentEdition = CurrentEdition;
+            targetform.MaxByte = 4000;
+            targetform.SetProperties();
+            if (targetform.ShowDialog() == DialogResult.OK)
+            {
+                targetCtl.Text = targetform.テキスト.Text;
+            }
         }
 
 
@@ -5424,7 +5461,19 @@ namespace u_net
 
         private void 本文6_DoubleClick(object sender, EventArgs e)
         {
-            FunctionClass.DocZoom(sender as Control, CurrentCode, CurrentEdition, 4000);
+            F_文書ズーム targetform = new F_文書ズーム();
+
+            Control targetCtl = sender as Control;
+
+            targetform.TargetControl = targetCtl;
+            targetform.CurrentCode = CurrentCode;
+            targetform.CurrentEdition = CurrentEdition;
+            targetform.MaxByte = 4000;
+            targetform.SetProperties();
+            if (targetform.ShowDialog() == DialogResult.OK)
+            {
+                targetCtl.Text = targetform.テキスト.Text;
+            }
         }
 
 
@@ -5432,7 +5481,19 @@ namespace u_net
 
         private void 本文2_DoubleClick(object sender, EventArgs e)
         {
-            FunctionClass.DocZoom(sender as Control, CurrentCode, CurrentEdition, 4000);
+            F_文書ズーム targetform = new F_文書ズーム();
+
+            Control targetCtl = sender as Control;
+
+            targetform.TargetControl = targetCtl;
+            targetform.CurrentCode = CurrentCode;
+            targetform.CurrentEdition = CurrentEdition;
+            targetform.MaxByte = 4000;
+            targetform.SetProperties();
+            if (targetform.ShowDialog() == DialogResult.OK)
+            {
+                targetCtl.Text = targetform.テキスト.Text;
+            }
         }
 
         private void 本文2_TextChanged(object sender, EventArgs e)
@@ -5479,7 +5540,19 @@ namespace u_net
 
         private void 本文3_DoubleClick(object sender, EventArgs e)
         {
-            FunctionClass.DocZoom(sender as Control, CurrentCode, CurrentEdition, 4000);
+            F_文書ズーム targetform = new F_文書ズーム();
+
+            Control targetCtl = sender as Control;
+
+            targetform.TargetControl = targetCtl;
+            targetform.CurrentCode = CurrentCode;
+            targetform.CurrentEdition = CurrentEdition;
+            targetform.MaxByte = 4000;
+            targetform.SetProperties();
+            if (targetform.ShowDialog() == DialogResult.OK)
+            {
+                targetCtl.Text = targetform.テキスト.Text;
+            }
         }
 
         private void 本文3_Validated(object sender, EventArgs e)
@@ -5504,7 +5577,19 @@ namespace u_net
 
         private void 本文5_DoubleClick(object sender, EventArgs e)
         {
-            FunctionClass.DocZoom(sender as Control, CurrentCode, CurrentEdition, 4000);
+            F_文書ズーム targetform = new F_文書ズーム();
+
+            Control targetCtl = sender as Control;
+
+            targetform.TargetControl = targetCtl;
+            targetform.CurrentCode = CurrentCode;
+            targetform.CurrentEdition = CurrentEdition;
+            targetform.MaxByte = 4000;
+            targetform.SetProperties();
+            if (targetform.ShowDialog() == DialogResult.OK)
+            {
+                targetCtl.Text = targetform.テキスト.Text;
+            }
         }
 
         private void 本文5_Enter(object sender, EventArgs e)
@@ -5537,7 +5622,19 @@ namespace u_net
 
         private void 本文4_DoubleClick(object sender, EventArgs e)
         {
-            FunctionClass.DocZoom(sender as Control, CurrentCode, CurrentEdition, 4000);
+            F_文書ズーム targetform = new F_文書ズーム();
+
+            Control targetCtl = sender as Control;
+
+            targetform.TargetControl = targetCtl;
+            targetform.CurrentCode = CurrentCode;
+            targetform.CurrentEdition = CurrentEdition;
+            targetform.MaxByte = 4000;
+            targetform.SetProperties();
+            if (targetform.ShowDialog() == DialogResult.OK)
+            {
+                targetCtl.Text = targetform.テキスト.Text;
+            }
         }
 
         private void 本文4_Enter(object sender, EventArgs e)
@@ -5571,7 +5668,19 @@ namespace u_net
 
         private void 本文_DoubleClick(object sender, EventArgs e)
         {
-            FunctionClass.DocZoom(sender as Control, CurrentCode, CurrentEdition, 4000);
+            F_文書ズーム targetform = new F_文書ズーム();
+
+            Control targetCtl = sender as Control;
+
+            targetform.TargetControl = targetCtl;
+            targetform.CurrentCode = CurrentCode;
+            targetform.CurrentEdition = CurrentEdition;
+            targetform.MaxByte = 4000;
+            targetform.SetProperties();
+            if (targetform.ShowDialog() == DialogResult.OK)
+            {
+                targetCtl.Text = targetform.テキスト.Text;
+            }
         }
 
         private void 本文_Enter(object sender, EventArgs e)
@@ -5842,7 +5951,19 @@ namespace u_net
 
         private void システム配布記録_配布目的_DoubleClick(object sender, EventArgs e)
         {
-            FunctionClass.DocZoom(sender as Control, CurrentCode, CurrentEdition, 4000);
+            F_文書ズーム targetform = new F_文書ズーム();
+
+            Control targetCtl = sender as Control;
+
+            targetform.TargetControl = targetCtl;
+            targetform.CurrentCode = CurrentCode;
+            targetform.CurrentEdition = CurrentEdition;
+            targetform.MaxByte = 4000;
+            targetform.SetProperties();
+            if (targetform.ShowDialog() == DialogResult.OK)
+            {
+                targetCtl.Text = targetform.テキスト.Text;
+            }
 
         }
 
@@ -5974,7 +6095,19 @@ namespace u_net
 
         private void 環境連絡書_異常内容_DoubleClick(object sender, EventArgs e)
         {
-            FunctionClass.DocZoom(sender as Control, CurrentCode, CurrentEdition, 4000);
+            F_文書ズーム targetform = new F_文書ズーム();
+
+            Control targetCtl = sender as Control;
+
+            targetform.TargetControl = targetCtl;
+            targetform.CurrentCode = CurrentCode;
+            targetform.CurrentEdition = CurrentEdition;
+            targetform.MaxByte = 4000;
+            targetform.SetProperties();
+            if (targetform.ShowDialog() == DialogResult.OK)
+            {
+                targetCtl.Text = targetform.テキスト.Text;
+            }
         }
 
         private void 環境連絡書_異常内容_Enter(object sender, EventArgs e)
@@ -6179,7 +6312,19 @@ namespace u_net
 
         private void 記録_目的_DoubleClick(object sender, EventArgs e)
         {
-            FunctionClass.DocZoom(sender as Control, CurrentCode, CurrentEdition, 2000);
+            F_文書ズーム targetform = new F_文書ズーム();
+
+            Control targetCtl = sender as Control;
+
+            targetform.TargetControl = targetCtl;
+            targetform.CurrentCode = CurrentCode;
+            targetform.CurrentEdition = CurrentEdition;
+            targetform.MaxByte = 2000;
+            targetform.SetProperties();
+            if (targetform.ShowDialog() == DialogResult.OK)
+            {
+                targetCtl.Text = targetform.テキスト.Text;
+            }
         }
 
         private void 記録_目的_Enter(object sender, EventArgs e)
@@ -6194,7 +6339,19 @@ namespace u_net
 
         private void 記録_報告内容_DoubleClick(object sender, EventArgs e)
         {
-            FunctionClass.DocZoom(sender as Control, CurrentCode, CurrentEdition, 4000);
+            F_文書ズーム targetform = new F_文書ズーム();
+
+            Control targetCtl = sender as Control;
+
+            targetform.TargetControl = targetCtl;
+            targetform.CurrentCode = CurrentCode;
+            targetform.CurrentEdition = CurrentEdition;
+            targetform.MaxByte = 4000;
+            targetform.SetProperties();
+            if (targetform.ShowDialog() == DialogResult.OK)
+            {
+                targetCtl.Text = targetform.テキスト.Text;
+            }
         }
 
         private void 記録_報告内容_Enter(object sender, EventArgs e)
@@ -6331,7 +6488,19 @@ namespace u_net
 
         private void 議事録_内容_DoubleClick(object sender, EventArgs e)
         {
-            FunctionClass.DocZoom(sender as Control, CurrentCode, CurrentEdition, 4000);
+            F_文書ズーム targetform = new F_文書ズーム();
+
+            Control targetCtl = sender as Control;
+
+            targetform.TargetControl = targetCtl;
+            targetform.CurrentCode = CurrentCode;
+            targetform.CurrentEdition = CurrentEdition;
+            targetform.MaxByte = 4000;
+            targetform.SetProperties();
+            if (targetform.ShowDialog() == DialogResult.OK)
+            {
+                targetCtl.Text = targetform.テキスト.Text;
+            }
         }
 
         private void 議事録_内容_Enter(object sender, EventArgs e)
@@ -6505,7 +6674,19 @@ namespace u_net
 
         private void 教育訓練実施要領書_目的_DoubleClick(object sender, EventArgs e)
         {
-            FunctionClass.DocZoom(sender as Control, CurrentCode, CurrentEdition, 1000);
+            F_文書ズーム targetform = new F_文書ズーム();
+
+            Control targetCtl = sender as Control;
+
+            targetform.TargetControl = targetCtl;
+            targetform.CurrentCode = CurrentCode;
+            targetform.CurrentEdition = CurrentEdition;
+            targetform.MaxByte = 1000;
+            targetform.SetProperties();
+            if (targetform.ShowDialog() == DialogResult.OK)
+            {
+                targetCtl.Text = targetform.テキスト.Text;
+            }
         }
 
         private void 教育訓練実施要領書_目的_Enter(object sender, EventArgs e)
@@ -6536,7 +6717,19 @@ namespace u_net
 
         private void 教育訓練実施要領書_内容_DoubleClick(object sender, EventArgs e)
         {
-            FunctionClass.DocZoom(sender as Control, CurrentCode, CurrentEdition, 3000);
+            F_文書ズーム targetform = new F_文書ズーム();
+
+            Control targetCtl = sender as Control;
+
+            targetform.TargetControl = targetCtl;
+            targetform.CurrentCode = CurrentCode;
+            targetform.CurrentEdition = CurrentEdition;
+            targetform.MaxByte = 3000;
+            targetform.SetProperties();
+            if (targetform.ShowDialog() == DialogResult.OK)
+            {
+                targetCtl.Text = targetform.テキスト.Text;
+            }
         }
 
         private void 教育訓練実施要領書_内容_Enter(object sender, EventArgs e)
@@ -6567,7 +6760,19 @@ namespace u_net
 
         private void 教育訓練実施要領書_期待効果_DoubleClick(object sender, EventArgs e)
         {
-            FunctionClass.DocZoom(sender as Control, CurrentCode, CurrentEdition, 1000);
+            F_文書ズーム targetform = new F_文書ズーム();
+
+            Control targetCtl = sender as Control;
+
+            targetform.TargetControl = targetCtl;
+            targetform.CurrentCode = CurrentCode;
+            targetform.CurrentEdition = CurrentEdition;
+            targetform.MaxByte = 1000;
+            targetform.SetProperties();
+            if (targetform.ShowDialog() == DialogResult.OK)
+            {
+                targetCtl.Text = targetform.テキスト.Text;
+            }
         }
 
         private void 教育訓練実施要領書_期待効果_Enter(object sender, EventArgs e)
@@ -6906,7 +7111,19 @@ namespace u_net
 
         private void 出向依頼書_依頼内容_DoubleClick(object sender, EventArgs e)
         {
-            FunctionClass.DocZoom(sender as Control, CurrentCode, CurrentEdition, 4000);
+            F_文書ズーム targetform = new F_文書ズーム();
+
+            Control targetCtl = sender as Control;
+
+            targetform.TargetControl = targetCtl;
+            targetform.CurrentCode = CurrentCode;
+            targetform.CurrentEdition = CurrentEdition;
+            targetform.MaxByte = 4000;
+            targetform.SetProperties();
+            if (targetform.ShowDialog() == DialogResult.OK)
+            {
+                targetCtl.Text = targetform.テキスト.Text;
+            }
         }
 
         private void 出向依頼書_依頼内容_TextChanged(object sender, EventArgs e)
@@ -7411,7 +7628,19 @@ namespace u_net
 
         private void 是正予防会議通知書_不具合現象_DoubleClick(object sender, EventArgs e)
         {
-            FunctionClass.DocZoom(sender as Control, CurrentCode, CurrentEdition, 4000);
+            F_文書ズーム targetform = new F_文書ズーム();
+
+            Control targetCtl = sender as Control;
+
+            targetform.TargetControl = targetCtl;
+            targetform.CurrentCode = CurrentCode;
+            targetform.CurrentEdition = CurrentEdition;
+            targetform.MaxByte = 4000;
+            targetform.SetProperties();
+            if (targetform.ShowDialog() == DialogResult.OK)
+            {
+                targetCtl.Text = targetform.テキスト.Text;
+            }
 
         }
 
@@ -7580,7 +7809,19 @@ namespace u_net
 
         private void 是正予防処置報告書_議事録_DoubleClick(object sender, EventArgs e)
         {
-            FunctionClass.DocZoom(sender as Control, CurrentCode, CurrentEdition, 4000);
+            F_文書ズーム targetform = new F_文書ズーム();
+
+            Control targetCtl = sender as Control;
+
+            targetform.TargetControl = targetCtl;
+            targetform.CurrentCode = CurrentCode;
+            targetform.CurrentEdition = CurrentEdition;
+            targetform.MaxByte = 4000;
+            targetform.SetProperties();
+            if (targetform.ShowDialog() == DialogResult.OK)
+            {
+                targetCtl.Text = targetform.テキスト.Text;
+            }
         }
 
         private void 是正予防処置報告書_議事録_Enter(object sender, EventArgs e)
@@ -7694,7 +7935,19 @@ namespace u_net
 
         private void 是正予防処置報告書_環境_議事録_DoubleClick(object sender, EventArgs e)
         {
-            FunctionClass.DocZoom(sender as Control, CurrentCode, CurrentEdition, 4000);
+            F_文書ズーム targetform = new F_文書ズーム();
+
+            Control targetCtl = sender as Control;
+
+            targetform.TargetControl = targetCtl;
+            targetform.CurrentCode = CurrentCode;
+            targetform.CurrentEdition = CurrentEdition;
+            targetform.MaxByte = 4000;
+            targetform.SetProperties();
+            if (targetform.ShowDialog() == DialogResult.OK)
+            {
+                targetCtl.Text = targetform.テキスト.Text;
+            }
         }
 
         private void 是正予防処置報告書_環境_議事録_Enter(object sender, EventArgs e)
@@ -8074,7 +8327,19 @@ namespace u_net
 
         private void 製品企画書_開発目的_DoubleClick(object sender, EventArgs e)
         {
-            FunctionClass.DocZoom(sender as Control, CurrentCode, CurrentEdition, 1000);
+            F_文書ズーム targetform = new F_文書ズーム();
+
+            Control targetCtl = sender as Control;
+
+            targetform.TargetControl = targetCtl;
+            targetform.CurrentCode = CurrentCode;
+            targetform.CurrentEdition = CurrentEdition;
+            targetform.MaxByte = 1000;
+            targetform.SetProperties();
+            if (targetform.ShowDialog() == DialogResult.OK)
+            {
+                targetCtl.Text = targetform.テキスト.Text;
+            }
         }
 
         private void 製品企画書_開発目的_Enter(object sender, EventArgs e)
@@ -8105,7 +8370,19 @@ namespace u_net
 
         private void 製品企画書_製品概要_DoubleClick(object sender, EventArgs e)
         {
-            FunctionClass.DocZoom(sender as Control, CurrentCode, CurrentEdition, 1000);
+            F_文書ズーム targetform = new F_文書ズーム();
+
+            Control targetCtl = sender as Control;
+
+            targetform.TargetControl = targetCtl;
+            targetform.CurrentCode = CurrentCode;
+            targetform.CurrentEdition = CurrentEdition;
+            targetform.MaxByte = 1000;
+            targetform.SetProperties();
+            if (targetform.ShowDialog() == DialogResult.OK)
+            {
+                targetCtl.Text = targetform.テキスト.Text;
+            }
         }
 
         private void 製品企画書_製品概要_TextChanged(object sender, EventArgs e)
@@ -8136,7 +8413,19 @@ namespace u_net
 
         private void 製品企画書_要求事項_DoubleClick(object sender, EventArgs e)
         {
-            FunctionClass.DocZoom(sender as Control, CurrentCode, CurrentEdition, 2000);
+            F_文書ズーム targetform = new F_文書ズーム();
+
+            Control targetCtl = sender as Control;
+
+            targetform.TargetControl = targetCtl;
+            targetform.CurrentCode = CurrentCode;
+            targetform.CurrentEdition = CurrentEdition;
+            targetform.MaxByte = 2000;
+            targetform.SetProperties();
+            if (targetform.ShowDialog() == DialogResult.OK)
+            {
+                targetCtl.Text = targetform.テキスト.Text;
+            }
         }
 
         private void 製品企画書_要求事項_TextChanged(object sender, EventArgs e)
@@ -8268,7 +8557,19 @@ namespace u_net
 
         private void 設計審査会議事録_企画書との相異_DoubleClick(object sender, EventArgs e)
         {
-            FunctionClass.DocZoom(sender as Control, CurrentCode, CurrentEdition, 4000);
+            F_文書ズーム targetform = new F_文書ズーム();
+
+            Control targetCtl = sender as Control;
+
+            targetform.TargetControl = targetCtl;
+            targetform.CurrentCode = CurrentCode;
+            targetform.CurrentEdition = CurrentEdition;
+            targetform.MaxByte = 4000;
+            targetform.SetProperties();
+            if (targetform.ShowDialog() == DialogResult.OK)
+            {
+                targetCtl.Text = targetform.テキスト.Text;
+            }
         }
 
         private void 設計審査会議事録_企画書との相異_Enter(object sender, EventArgs e)
@@ -8289,7 +8590,19 @@ namespace u_net
 
         private void 設計審査会議事録_計画書との相異_DoubleClick(object sender, EventArgs e)
         {
-            FunctionClass.DocZoom(sender as Control, CurrentCode, CurrentEdition, 4000);
+            F_文書ズーム targetform = new F_文書ズーム();
+
+            Control targetCtl = sender as Control;
+
+            targetform.TargetControl = targetCtl;
+            targetform.CurrentCode = CurrentCode;
+            targetform.CurrentEdition = CurrentEdition;
+            targetform.MaxByte = 4000;
+            targetform.SetProperties();
+            if (targetform.ShowDialog() == DialogResult.OK)
+            {
+                targetCtl.Text = targetform.テキスト.Text;
+            }
         }
 
         private void 設計審査会議事録_計画書との相異_Enter(object sender, EventArgs e)
@@ -8310,7 +8623,19 @@ namespace u_net
 
         private void 設計審査会議事録_構想資料との相異_DoubleClick(object sender, EventArgs e)
         {
-            FunctionClass.DocZoom(sender as Control, CurrentCode, CurrentEdition, 4000);
+            F_文書ズーム targetform = new F_文書ズーム();
+
+            Control targetCtl = sender as Control;
+
+            targetform.TargetControl = targetCtl;
+            targetform.CurrentCode = CurrentCode;
+            targetform.CurrentEdition = CurrentEdition;
+            targetform.MaxByte = 4000;
+            targetform.SetProperties();
+            if (targetform.ShowDialog() == DialogResult.OK)
+            {
+                targetCtl.Text = targetform.テキスト.Text;
+            }
         }
 
         private void 設計審査会議事録_構想資料との相異_Enter(object sender, EventArgs e)
@@ -8331,7 +8656,19 @@ namespace u_net
 
         private void 設計審査会議事録_仕様書の確認_DoubleClick(object sender, EventArgs e)
         {
-            FunctionClass.DocZoom(sender as Control, CurrentCode, CurrentEdition, 4000);
+            F_文書ズーム targetform = new F_文書ズーム();
+
+            Control targetCtl = sender as Control;
+
+            targetform.TargetControl = targetCtl;
+            targetform.CurrentCode = CurrentCode;
+            targetform.CurrentEdition = CurrentEdition;
+            targetform.MaxByte = 4000;
+            targetform.SetProperties();
+            if (targetform.ShowDialog() == DialogResult.OK)
+            {
+                targetCtl.Text = targetform.テキスト.Text;
+            }
         }
 
         private void 設計審査会議事録_仕様書の確認_Enter(object sender, EventArgs e)
@@ -8352,7 +8689,19 @@ namespace u_net
 
         private void 設計審査会議事録_改善点_DoubleClick(object sender, EventArgs e)
         {
-            FunctionClass.DocZoom(sender as Control, CurrentCode, CurrentEdition, 4000);
+            F_文書ズーム targetform = new F_文書ズーム();
+
+            Control targetCtl = sender as Control;
+
+            targetform.TargetControl = targetCtl;
+            targetform.CurrentCode = CurrentCode;
+            targetform.CurrentEdition = CurrentEdition;
+            targetform.MaxByte = 4000;
+            targetform.SetProperties();
+            if (targetform.ShowDialog() == DialogResult.OK)
+            {
+                targetCtl.Text = targetform.テキスト.Text;
+            }
         }
 
         private void 設計審査会議事録_改善点_Enter(object sender, EventArgs e)
@@ -8373,7 +8722,19 @@ namespace u_net
 
         private void 設計審査会議事録_要望_DoubleClick(object sender, EventArgs e)
         {
-            FunctionClass.DocZoom(sender as Control, CurrentCode, CurrentEdition, 4000);
+            F_文書ズーム targetform = new F_文書ズーム();
+
+            Control targetCtl = sender as Control;
+
+            targetform.TargetControl = targetCtl;
+            targetform.CurrentCode = CurrentCode;
+            targetform.CurrentEdition = CurrentEdition;
+            targetform.MaxByte = 4000;
+            targetform.SetProperties();
+            if (targetform.ShowDialog() == DialogResult.OK)
+            {
+                targetCtl.Text = targetform.テキスト.Text;
+            }
         }
 
         private void 設計審査会議事録_要望_Enter(object sender, EventArgs e)
@@ -8394,7 +8755,19 @@ namespace u_net
 
         private void 設計審査会議事録_結論_DoubleClick(object sender, EventArgs e)
         {
-            FunctionClass.DocZoom(sender as Control, CurrentCode, CurrentEdition, 4000);
+            F_文書ズーム targetform = new F_文書ズーム();
+
+            Control targetCtl = sender as Control;
+
+            targetform.TargetControl = targetCtl;
+            targetform.CurrentCode = CurrentCode;
+            targetform.CurrentEdition = CurrentEdition;
+            targetform.MaxByte = 4000;
+            targetform.SetProperties();
+            if (targetform.ShowDialog() == DialogResult.OK)
+            {
+                targetCtl.Text = targetform.テキスト.Text;
+            }
         }
 
         private void 設計審査会議事録_結論_Enter(object sender, EventArgs e)
@@ -8666,7 +9039,19 @@ namespace u_net
 
         private void 設計製作依頼書_依頼内容_DoubleClick(object sender, EventArgs e)
         {
-            FunctionClass.DocZoom(sender as Control, CurrentCode, CurrentEdition, 4000);
+            F_文書ズーム targetform = new F_文書ズーム();
+
+            Control targetCtl = sender as Control;
+
+            targetform.TargetControl = targetCtl;
+            targetform.CurrentCode = CurrentCode;
+            targetform.CurrentEdition = CurrentEdition;
+            targetform.MaxByte = 4000;
+            targetform.SetProperties();
+            if (targetform.ShowDialog() == DialogResult.OK)
+            {
+                targetCtl.Text = targetform.テキスト.Text;
+            }
         }
 
         private void 設計製作依頼書_依頼内容_Enter(object sender, EventArgs e)
@@ -8958,7 +9343,19 @@ namespace u_net
 
         private void 設備購買申請書_用途_DoubleClick(object sender, EventArgs e)
         {
-            FunctionClass.DocZoom(sender as Control, CurrentCode, CurrentEdition, 4000);
+            F_文書ズーム targetform = new F_文書ズーム();
+
+            Control targetCtl = sender as Control;
+
+            targetform.TargetControl = targetCtl;
+            targetform.CurrentCode = CurrentCode;
+            targetform.CurrentEdition = CurrentEdition;
+            targetform.MaxByte = 4000;
+            targetform.SetProperties();
+            if (targetform.ShowDialog() == DialogResult.OK)
+            {
+                targetCtl.Text = targetform.テキスト.Text;
+            }
         }
 
         private void 設備購買申請書_用途_Enter(object sender, EventArgs e)
@@ -8989,7 +9386,19 @@ namespace u_net
 
         private void 設備購買申請書_購入理由_DoubleClick(object sender, EventArgs e)
         {
-            FunctionClass.DocZoom(sender as Control, CurrentCode, CurrentEdition, 4000);
+            F_文書ズーム targetform = new F_文書ズーム();
+
+            Control targetCtl = sender as Control;
+
+            targetform.TargetControl = targetCtl;
+            targetform.CurrentCode = CurrentCode;
+            targetform.CurrentEdition = CurrentEdition;
+            targetform.MaxByte = 4000;
+            targetform.SetProperties();
+            if (targetform.ShowDialog() == DialogResult.OK)
+            {
+                targetCtl.Text = targetform.テキスト.Text;
+            }
         }
 
         private void 設備購買申請書_購入理由_Enter(object sender, EventArgs e)
@@ -9377,7 +9786,19 @@ namespace u_net
 
         private void 非該当証明発行依頼書_備考_DoubleClick(object sender, EventArgs e)
         {
-            FunctionClass.DocZoom(sender as Control, CurrentCode, CurrentEdition, 1000);
+            F_文書ズーム targetform = new F_文書ズーム();
+
+            Control targetCtl = sender as Control;
+
+            targetform.TargetControl = targetCtl;
+            targetform.CurrentCode = CurrentCode;
+            targetform.CurrentEdition = CurrentEdition;
+            targetform.MaxByte = 1000;
+            targetform.SetProperties();
+            if (targetform.ShowDialog() == DialogResult.OK)
+            {
+                targetCtl.Text = targetform.テキスト.Text;
+            }
         }
 
         private void 非該当証明発行依頼書_備考_Enter(object sender, EventArgs e)
@@ -9504,7 +9925,19 @@ namespace u_net
 
         private void 品質異常報告書_異常内容_DoubleClick(object sender, EventArgs e)
         {
-            FunctionClass.DocZoom(sender as Control, CurrentCode, CurrentEdition, 4000);
+            F_文書ズーム targetform = new F_文書ズーム();
+
+            Control targetCtl = sender as Control;
+
+            targetform.TargetControl = targetCtl;
+            targetform.CurrentCode = CurrentCode;
+            targetform.CurrentEdition = CurrentEdition;
+            targetform.MaxByte = 4000;
+            targetform.SetProperties();
+            if (targetform.ShowDialog() == DialogResult.OK)
+            {
+                targetCtl.Text = targetform.テキスト.Text;
+            }
         }
 
         private void 品質異常報告書_異常内容_Enter(object sender, EventArgs e)
@@ -9897,7 +10330,19 @@ namespace u_net
 
         private void 不具合調査修理依頼書_現象_DoubleClick(object sender, EventArgs e)
         {
-            FunctionClass.DocZoom(sender as Control, CurrentCode, CurrentEdition, 4000);
+            F_文書ズーム targetform = new F_文書ズーム();
+
+            Control targetCtl = sender as Control;
+
+            targetform.TargetControl = targetCtl;
+            targetform.CurrentCode = CurrentCode;
+            targetform.CurrentEdition = CurrentEdition;
+            targetform.MaxByte = 4000;
+            targetform.SetProperties();
+            if (targetform.ShowDialog() == DialogResult.OK)
+            {
+                targetCtl.Text = targetform.テキスト.Text;
+            }
         }
 
         private void 不具合調査修理依頼書_現象_Enter(object sender, EventArgs e)
@@ -9923,7 +10368,19 @@ namespace u_net
 
         private void 不具合調査修理依頼書_顧客の声_DoubleClick(object sender, EventArgs e)
         {
-            FunctionClass.DocZoom(sender as Control, CurrentCode, CurrentEdition, 4000);
+            F_文書ズーム targetform = new F_文書ズーム();
+
+            Control targetCtl = sender as Control;
+
+            targetform.TargetControl = targetCtl;
+            targetform.CurrentCode = CurrentCode;
+            targetform.CurrentEdition = CurrentEdition;
+            targetform.MaxByte = 4000;
+            targetform.SetProperties();
+            if (targetform.ShowDialog() == DialogResult.OK)
+            {
+                targetCtl.Text = targetform.テキスト.Text;
+            }
         }
 
         private void 不具合調査修理依頼書_顧客の声_Enter(object sender, EventArgs e)
