@@ -45,7 +45,10 @@
             label1 = new Label();
             結果 = new TextBox();
             処理日選択ボタン = new Button();
-            処置有無コード = new GroupBox();
+            処置有無コードグループ = new GroupBox();
+            文書版数 = new TextBox();
+            処置有無コード = new TextBox();
+            文書コード = new TextBox();
             処置有無コードButton2 = new RadioButton();
             処置有無コードButton1 = new RadioButton();
             顧客への対応_ラベル = new Label();
@@ -55,7 +58,7 @@
             statusStrip1 = new StatusStrip();
             toolStripStatusLabel1 = new ToolStripStatusLabel();
             groupBox1.SuspendLayout();
-            処置有無コード.SuspendLayout();
+            処置有無コードグループ.SuspendLayout();
             statusStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -109,7 +112,7 @@
             groupBox1.Controls.Add(label1);
             groupBox1.Controls.Add(結果);
             groupBox1.Controls.Add(処理日選択ボタン);
-            groupBox1.Controls.Add(処置有無コード);
+            groupBox1.Controls.Add(処置有無コードグループ);
             groupBox1.Controls.Add(顧客への対応_ラベル);
             groupBox1.Controls.Add(対応);
             groupBox1.Controls.Add(処理者名);
@@ -190,6 +193,7 @@
             処理工数.Size = new Size(102, 20);
             処理工数.TabIndex = 13;
             処理工数.TabStop = false;
+            処理工数.TextAlign = HorizontalAlignment.Right;
             処理工数.TextChanged += 処理工数_TextChanged;
             処理工数.Validating += 処理工数_Validating;
             // 
@@ -315,19 +319,60 @@
             処理日選択ボタン.UseVisualStyleBackColor = true;
             処理日選択ボタン.Click += 処理日選択ボタン_Click;
             // 
+            // 処置有無コードグループ
+            // 
+            処置有無コードグループ.Controls.Add(文書版数);
+            処置有無コードグループ.Controls.Add(処置有無コード);
+            処置有無コードグループ.Controls.Add(文書コード);
+            処置有無コードグループ.Controls.Add(処置有無コードButton2);
+            処置有無コードグループ.Controls.Add(処置有無コードButton1);
+            処置有無コードグループ.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            処置有無コードグループ.Location = new Point(9, 16);
+            処置有無コードグループ.Name = "処置有無コードグループ";
+            処置有無コードグループ.Size = new Size(449, 50);
+            処置有無コードグループ.TabIndex = 1;
+            処置有無コードグループ.TabStop = false;
+            処置有無コードグループ.Text = "是正・予防処置(&P)";
+            処置有無コードグループ.Validating += 処置有無コード_Validating;
+            処置有無コードグループ.Validated += 処置有無コード_Validated;
+            // 
+            // 文書版数
+            // 
+            文書版数.BackColor = Color.White;
+            文書版数.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            文書版数.ImeMode = ImeMode.Disable;
+            文書版数.Location = new Point(341, 22);
+            文書版数.Margin = new Padding(3, 2, 3, 2);
+            文書版数.Name = "文書版数";
+            文書版数.Size = new Size(102, 20);
+            文書版数.TabIndex = 21023;
+            文書版数.Visible = false;
+            // 
             // 処置有無コード
             // 
-            処置有無コード.Controls.Add(処置有無コードButton2);
-            処置有無コード.Controls.Add(処置有無コードButton1);
-            処置有無コード.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            処置有無コード.Location = new Point(9, 16);
+            処置有無コード.BackColor = Color.White;
+            処置有無コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            処置有無コード.ImeMode = ImeMode.NoControl;
+            処置有無コード.Location = new Point(246, 17);
+            処置有無コード.Margin = new Padding(3, 2, 3, 2);
             処置有無コード.Name = "処置有無コード";
-            処置有無コード.Size = new Size(449, 50);
-            処置有無コード.TabIndex = 1;
+            処置有無コード.ReadOnly = true;
+            処置有無コード.Size = new Size(131, 20);
+            処置有無コード.TabIndex = 21022;
             処置有無コード.TabStop = false;
-            処置有無コード.Text = "是正・予防処置(&P)";
-            処置有無コード.Validating += 処置有無コード_Validating;
-            処置有無コード.Validated += 処置有無コード_Validated;
+            処置有無コード.Visible = false;
+            // 
+            // 文書コード
+            // 
+            文書コード.BackColor = Color.White;
+            文書コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            文書コード.ImeMode = ImeMode.Disable;
+            文書コード.Location = new Point(341, 5);
+            文書コード.Margin = new Padding(3, 2, 3, 2);
+            文書コード.Name = "文書コード";
+            文書コード.Size = new Size(102, 20);
+            文書コード.TabIndex = 21022;
+            文書コード.Visible = false;
             // 
             // 処置有無コードButton2
             // 
@@ -339,6 +384,7 @@
             処置有無コードButton2.TabStop = true;
             処置有無コードButton2.Text = "しない(&X)";
             処置有無コードButton2.UseVisualStyleBackColor = true;
+            処置有無コードButton2.CheckedChanged += 処置有無コードButton2_CheckedChanged;
             // 
             // 処置有無コードButton1
             // 
@@ -350,6 +396,7 @@
             処置有無コードButton1.TabStop = true;
             処置有無コードButton1.Text = "する(&O)";
             処置有無コードButton1.UseVisualStyleBackColor = true;
+            処置有無コードButton1.CheckedChanged += 処置有無コードButton1_CheckedChanged;
             // 
             // 顧客への対応_ラベル
             // 
@@ -406,7 +453,9 @@
             処理者コード.Name = "処理者コード";
             処理者コード.Size = new Size(80, 21);
             処理者コード.TabIndex = 11;
+            処理者コード.DrawItem += 処理者コード_DrawItem;
             処理者コード.SelectedIndexChanged += 処理者コード_SelectedIndexChanged;
+            処理者コード.TextChanged += 処理者コード_TextChanged;
             処理者コード.Validating += 処理者コード_Validating;
             処理者コード.Validated += 処理者コード_Validated;
             // 
@@ -443,8 +492,8 @@
             KeyDown += F_不具合調査修理回答書_KeyDown;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
-            処置有無コード.ResumeLayout(false);
-            処置有無コード.PerformLayout();
+            処置有無コードグループ.ResumeLayout(false);
+            処置有無コードグループ.PerformLayout();
             statusStrip1.ResumeLayout(false);
             statusStrip1.PerformLayout();
             ResumeLayout(false);
@@ -477,7 +526,7 @@
         private GroupBox groupBox1;
         private StatusStrip statusStrip1;
         internal ToolStripStatusLabel toolStripStatusLabel1;
-        private GroupBox 処置有無コード;
+        private GroupBox 処置有無コードグループ;
         private RadioButton 廃止指定Button3;
         private RadioButton 廃止指定Button2;
         private RadioButton 廃止指定Button1;
@@ -498,5 +547,8 @@
         private Label label5;
         private ComboBox 責任先;
         private TextBox 処理工数;
+        private TextBox 処置有無コード;
+        private TextBox 文書版数;
+        private TextBox 文書コード;
     }
 }

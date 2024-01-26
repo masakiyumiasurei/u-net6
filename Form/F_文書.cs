@@ -10385,7 +10385,11 @@ namespace u_net
 
         private void 不具合調査修理依頼書_回答書ボタン_Click(object sender, EventArgs e)
         {
+            F_不具合調査修理回答書 targetform = new F_不具合調査修理回答書();
 
+            targetform.args = CurrentCode + "," + CurrentEdition;
+
+            targetform.ShowDialog();
         }
 
         #endregion
