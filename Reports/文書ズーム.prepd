@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<PrintDefine>
+<PrintSetting Name="レポート定義ファイル" Ver="9.2.4" >
+<PrintAttrs>
+<FontAttr AttrName="Font1" Name="ＭＳ Ｐゴシック" Size="10" />
+<FontAttr AttrName="Font2" Name="ＭＳ Ｐゴシック" Size="16" />
+<FontAttr AttrName="Font3" Name="ＭＳ Ｐゴシック" Size="9" />
+<FontAttr AttrName="Font4" Name="ＭＳ Ｐゴシック" Size="8" Color="White" />
+<LineAttr AttrName="Line1" Width="0.3" />
+<LineAttr AttrName="Line2" Color="Transparent" Width="0" />
+<LineAttr AttrName="Line3" Color="Transparent" Width="0" />
+<LineAttr AttrName="Line4" Color="Transparent" Width="0" />
+<LineAttr AttrName="Line5" Width="0.1" />
+<LineAttr AttrName="Line6" Width="0.1" />
+<LineAttr AttrName="Line7" Color="White" Width="0.1" />
+<LineAttr AttrName="Line8" Color="White" Width="0.1" />
+<LineAttr AttrName="Line9" Color="White" Width="0.1" />
+<LineAttr AttrName="Line10" Color="White" Width="0.1" />
+<LineAttr AttrName="Line11" Color="White" Width="0.1" />
+<LineAttr AttrName="Line12" Width="0.1" />
+<LineAttr AttrName="Line13" Width="0.1" />
+<LineAttr AttrName="Line14" Width="0.1" />
+<LineAttr AttrName="Line15" Width="0.1" />
+<LineAttr AttrName="Line16" Width="0.1" />
+<LineAttr AttrName="Line17" Width="0.1" />
+<LineAttr AttrName="Line18" Width="0.1" />
+<LineAttr AttrName="Line19" Width="0.1" />
+<LineAttr AttrName="Line20" Width="0.1" />
+<LineAttr AttrName="Line21" Width="0.1" />
+<LineAttr AttrName="Line22" Width="0.1" />
+<LineAttr AttrName="Line23" Width="0.1" />
+</PrintAttrs>
+<Paper Size="A4" Direction="False" />
+<Design FontAttr="Font1" LineAttr="Line1" GridWidth="2" DesignScale="100" GridFit="True" ObjLock="False" X="0" Y="0" Width="210" Height="297" DisplayRepeatObject="False" RepeatObjectColor="Silver" ImageSizeType="Clip" />
+</PrintSetting>
+<PrintObjects>
+<Line Name="Line7" StartX="238" StartY="82" EndX="226" EndY="82" LineAttr="Line1" />
+<Text Name="出力日時" X="145" Y="1" Width="55" Height="4" Text="*出力日時*" Align="Right" VAlign="Top" FontAttr="Font3" />
+<Text Name="文書コード_ラベル" X="10" Y="5" Width="35" Height="5" Text=" 文書コード" BackColor="Silver" Align="Left" VAlign="Middle" FontAttr="Font1" LineAttr="Line5" />
+<Text Name="文書コード" X="45" Y="5" Width="55" Height="5" Text="*文書コード*" Align="Left" VAlign="Middle" FontAttr="Font1" LineAttr="Line6" />
+<Text Name="版数_ラベル" X="100" Y="5" Width="35" Height="5" Text=" 版数" BackColor="Silver" Align="Left" VAlign="Middle" FontAttr="Font1" LineAttr="Line19" />
+<Text Name="文書版数" X="135" Y="5" Width="25" Height="5" Text="*文書版数*" Align="Left" VAlign="Middle" FontAttr="Font1" LineAttr="Line20" />
+<Text Name="対象_ラベル" X="10" Y="10" Width="35" Height="5" Text=" 対象" BackColor="Silver" Align="Left" VAlign="Middle" FontAttr="Font1" LineAttr="Line21" />
+<Text Name="対象" X="45" Y="10" Width="115" Height="5" Text="*対象*" Align="Left" VAlign="Middle" FontAttr="Font1" LineAttr="Line22" />
+<Text Name="テキスト" X="10" Y="15" Width="190" Height="277" Text="*テキスト*" Align="Left" VAlign="Top" FontAttr="Font1" LineAttr="Line23" />
+<Square Name="Square3" X="160" Y="5" Width="40" Height="10" LineAttr="Line1" R="0" >
+</Square>
+</PrintObjects>
+</PrintDefine>
