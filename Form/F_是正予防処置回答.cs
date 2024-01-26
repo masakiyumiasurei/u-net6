@@ -128,7 +128,7 @@ namespace u_net
                     strSQL += " and 版数 = " + editionNumber;
                 }
 
-                VariableSet.SetTable2Form(this, strSQL, cn);
+                VariableSet.SetTable2Form(this, strSQL, cn, "回答者コード");
 
         
                
