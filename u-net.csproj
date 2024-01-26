@@ -189,6 +189,15 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Form\F_是正予防処置回答_環境.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Form\F_是正予防処置回答.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Form\F_品質異常回答書.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Form\F_環境回答書.cs">
       <SubType>Form</SubType>
     </Compile>
