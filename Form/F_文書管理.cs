@@ -16,20 +16,21 @@ namespace u_net
 {
     public partial class F_文書管理 : MidForm
     {
-        public string str支払コード開始 = "";
-        public string str支払コード終了 = "";
-        public DateTime dtm買掛日開始 = DateTime.MinValue;
-        public DateTime dtm買掛日終了 = DateTime.MinValue;
-        public string str支払年月 = "";
-        public int lng振込指定 = 0;
-        public string str支払先コード = "";
-        public string str支払先名 = "";
+        public string str文書コード開始 = "";
+        public string str文書コード終了 = "";
+        public string str文書名 = "";
+        public string str件名 = "";
+        public string str発信者名 = "";
+        public DateTime dtm確定日開始 = DateTime.MinValue;
+        public DateTime dtm確定日終了 = DateTime.MinValue;
+        public DateTime dtm期限日開始 = DateTime.MinValue;
+        public DateTime dtm期限日終了 = DateTime.MinValue;
         public int lng確定指定 = 0;
         public int lng承認指定 = 0;
+        public int lng完了承認指定 = 0;
         public int lng削除指定 = 1;
-        public bool payEXT = false;
-        public string strSearchCode = "";
 
+        public string strSearchCode = "";
 
         public string CurrentCode
         {
