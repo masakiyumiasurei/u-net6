@@ -3314,7 +3314,7 @@ namespace u_net
             // 
             // 環境連絡書_回答書ボタン
             // 
-            環境連絡書_回答書ボタン.Enabled = false;
+            環境連絡書_回答書ボタン.Enabled = true;
             環境連絡書_回答書ボタン.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             環境連絡書_回答書ボタン.Location = new Point(147, 342);
             環境連絡書_回答書ボタン.Margin = new Padding(4);
@@ -5634,7 +5634,7 @@ namespace u_net
             // 
             // 是正予防処置報告書_回答ボタン
             // 
-            是正予防処置報告書_回答ボタン.Enabled = false;
+            是正予防処置報告書_回答ボタン.Enabled = true;
             是正予防処置報告書_回答ボタン.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             是正予防処置報告書_回答ボタン.Location = new Point(302, 347);
             是正予防処置報告書_回答ボタン.Margin = new Padding(4);
@@ -5921,7 +5921,7 @@ namespace u_net
             // 
             // 是正予防処置報告書_環境_回答ボタン
             // 
-            是正予防処置報告書_環境_回答ボタン.Enabled = false;
+            是正予防処置報告書_環境_回答ボタン.Enabled = true;
             是正予防処置報告書_環境_回答ボタン.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             是正予防処置報告書_環境_回答ボタン.Location = new Point(100, 341);
             是正予防処置報告書_環境_回答ボタン.Margin = new Padding(4);
