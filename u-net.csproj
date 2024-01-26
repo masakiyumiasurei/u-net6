@@ -189,6 +189,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Form\F_文書管理.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Form\F_是正予防処置回答_環境.cs">
       <SubType>Form</SubType>
     </Compile>
