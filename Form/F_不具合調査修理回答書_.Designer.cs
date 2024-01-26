@@ -438,7 +438,7 @@
             Controls.Add(登録ボタン);
             Name = "F_不具合調査修理回答書";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "是正・予防処置回答";
+            Text = "不具合調査修理回答書";
             Load += Form_Load;
             KeyDown += F_不具合調査修理回答書_KeyDown;
             groupBox1.ResumeLayout(false);
