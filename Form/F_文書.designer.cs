@@ -517,7 +517,7 @@ namespace u_net
             label137 = new Label();
             設備購買申請書_標準価格 = new TextBox();
             設備購買申請書_単価 = new TextBox();
-            設備購買申請書_支払方法 = new ComboBox();
+            設備購買申請書_支払方法コード = new ComboBox();
             設備購買申請書_購買予定日選択ボタン = new Button();
             設備購買申請書_用途 = new TextBox();
             label138 = new Label();
@@ -7593,7 +7593,7 @@ namespace u_net
             設備購買申請書パネル.Controls.Add(label137);
             設備購買申請書パネル.Controls.Add(設備購買申請書_標準価格);
             設備購買申請書パネル.Controls.Add(設備購買申請書_単価);
-            設備購買申請書パネル.Controls.Add(設備購買申請書_支払方法);
+            設備購買申請書パネル.Controls.Add(設備購買申請書_支払方法コード);
             設備購買申請書パネル.Controls.Add(設備購買申請書_購買予定日選択ボタン);
             設備購買申請書パネル.Controls.Add(設備購買申請書_用途);
             設備購買申請書パネル.Controls.Add(label138);
@@ -7709,19 +7709,19 @@ namespace u_net
             設備購買申請書_単価.Validating += (this.設備購買申請書_単価_Validating);
             設備購買申請書_単価.Validated += (this.設備購買申請書_単価_Validated);
             // 
-            // 設備購買申請書_支払方法
+            // 設備購買申請書_支払方法コード
             // 
-            設備購買申請書_支払方法.BackColor = SystemColors.Window;
-            設備購買申請書_支払方法.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            設備購買申請書_支払方法.FormattingEnabled = true;
-            設備購買申請書_支払方法.ImeMode = ImeMode.Disable;
-            設備購買申請書_支払方法.Location = new Point(86, 182);
-            設備購買申請書_支払方法.Name = "設備購買申請書_支払方法";
-            設備購買申請書_支払方法.Size = new Size(103, 21);
-            設備購買申請書_支払方法.TabIndex = 33;
-            設備購買申請書_支払方法.TextChanged += (this.設備購買申請書_支払方法_SelectedIndexChanged);
-            設備購買申請書_支払方法.Validating += (this.設備購買申請書_支払方法_Validating);
-            設備購買申請書_支払方法.Validated += (this.設備購買申請書_支払方法_Validated);
+            設備購買申請書_支払方法コード.BackColor = SystemColors.Window;
+            設備購買申請書_支払方法コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            設備購買申請書_支払方法コード.FormattingEnabled = true;
+            設備購買申請書_支払方法コード.ImeMode = ImeMode.Disable;
+            設備購買申請書_支払方法コード.Location = new Point(86, 182);
+            設備購買申請書_支払方法コード.Name = "設備購買申請書_支払方法コード";
+            設備購買申請書_支払方法コード.Size = new Size(103, 21);
+            設備購買申請書_支払方法コード.TabIndex = 33;
+            設備購買申請書_支払方法コード.TextChanged += (this.設備購買申請書_支払方法コード_SelectedIndexChanged);
+            設備購買申請書_支払方法コード.Validating += (this.設備購買申請書_支払方法コード_Validating);
+            設備購買申請書_支払方法コード.Validated += (this.設備購買申請書_支払方法コード_Validated);
             // 
             // 設備購買申請書_購買予定日選択ボタン
             // 
@@ -10262,7 +10262,7 @@ namespace u_net
         private Label label137;
         private TextBox 設備購買申請書_標準価格;
         private TextBox 設備購買申請書_単価;
-        internal ComboBox 設備購買申請書_支払方法;
+        internal ComboBox 設備購買申請書_支払方法コード;
         internal Button 設備購買申請書_購買予定日選択ボタン;
         private TextBox 設備購買申請書_用途;
         private Label label138;
