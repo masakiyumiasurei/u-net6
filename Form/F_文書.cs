@@ -1880,6 +1880,13 @@ namespace u_net
 
                 }
 
+                if (!string.IsNullOrEmpty(環境連絡書_発生日.Text))
+                {
+                    DateTime tempDate = DateTime.Parse(環境連絡書_発生日.Text);
+                    環境連絡書_発生日.Text = tempDate.ToString("yyyy/MM/dd");
+
+                }
+
                 return true;
 
 
@@ -6138,7 +6145,11 @@ namespace u_net
 
         private void 環境連絡書_回答書ボタン_Click(object sender, EventArgs e)
         {
+            F_環境回答書 targetform = new F_環境回答書();
 
+            targetform.args = CurrentCode + "," + CurrentEdition;
+
+            targetform.ShowDialog();
         }
 
         #endregion
