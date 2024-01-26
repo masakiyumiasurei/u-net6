@@ -45,6 +45,8 @@
             処置担当者_ラベル = new Label();
             statusStrip1 = new StatusStrip();
             toolStripStatusLabel1 = new ToolStripStatusLabel();
+            文書版数 = new TextBox();
+            文書コード = new TextBox();
             groupBox1.SuspendLayout();
             statusStrip1.SuspendLayout();
             SuspendLayout();
@@ -114,7 +116,9 @@
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(文書版数);
             groupBox1.Controls.Add(label1);
+            groupBox1.Controls.Add(文書コード);
             groupBox1.Controls.Add(処置方法コード);
             groupBox1.Controls.Add(処置方法_ラベル);
             groupBox1.Controls.Add(参照文書コード);
@@ -282,6 +286,30 @@
             toolStripStatusLabel1.Size = new Size(89, 17);
             toolStripStatusLabel1.Text = "各種項目の説明";
             // 
+            // 文書版数
+            // 
+            文書版数.BackColor = Color.White;
+            文書版数.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            文書版数.ImeMode = ImeMode.Disable;
+            文書版数.Location = new Point(298, 34);
+            文書版数.Margin = new Padding(3, 2, 3, 2);
+            文書版数.Name = "文書版数";
+            文書版数.Size = new Size(102, 20);
+            文書版数.TabIndex = 21021;
+            文書版数.Visible = false;
+            // 
+            // 文書コード
+            // 
+            文書コード.BackColor = Color.White;
+            文書コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            文書コード.ImeMode = ImeMode.Disable;
+            文書コード.Location = new Point(298, 17);
+            文書コード.Margin = new Padding(3, 2, 3, 2);
+            文書コード.Name = "文書コード";
+            文書コード.Size = new Size(102, 20);
+            文書コード.TabIndex = 21020;
+            文書コード.Visible = false;
+            // 
             // F_品質異常回答書
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -349,5 +377,7 @@
         private ComboBox 処置方法コード;
         private Label 処置方法_ラベル;
         private Label label1;
+        private TextBox 文書版数;
+        private TextBox 文書コード;
     }
 }

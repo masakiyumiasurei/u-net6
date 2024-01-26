@@ -9936,7 +9936,11 @@ namespace u_net
 
         private void 品質異常報告書_回答書ボタン_Click(object sender, EventArgs e)
         {
+            F_品質異常回答書 targetform = new F_品質異常回答書();
 
+            targetform.args = CurrentCode + "," + CurrentEdition;
+
+            targetform.ShowDialog();
         }
 
         #endregion
