@@ -78,7 +78,7 @@
             OKボタン.TabIndex = 15;
             OKボタン.Text = "OK(&O)";
             OKボタン.UseVisualStyleBackColor = true;
-            OKボタン.Click += 登録ボタン_Click;
+            OKボタン.Click += OKボタン_Click;
             // 
             // キャンセルボタン
             // 
@@ -317,7 +317,9 @@
             回答者コード.Name = "回答者コード";
             回答者コード.Size = new Size(80, 21);
             回答者コード.TabIndex = 2;
+            回答者コード.DrawItem += 回答者コード_DrawItem;
             回答者コード.SelectedIndexChanged += 回答者コード_SelectedIndexChanged;
+            回答者コード.TextChanged += 回答者コード_TextChanged;
             回答者コード.Enter += 回答者コード_Enter;
             回答者コード.Leave += 回答者コード_Leave;
             回答者コード.Validating += 回答者コード_Validating;

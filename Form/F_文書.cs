@@ -7816,7 +7816,11 @@ namespace u_net
 
         private void 是正予防処置報告書_回答ボタン_Click(object sender, EventArgs e)
         {
+            F_是正予防処置回答 targetform = new F_是正予防処置回答();
 
+            targetform.args = CurrentCode + "," + CurrentEdition;
+
+            targetform.ShowDialog();
         }
 
         #endregion
@@ -7944,7 +7948,11 @@ namespace u_net
 
         private void 是正予防処置報告書_環境_回答ボタン_Click(object sender, EventArgs e)
         {
+            F_是正予防処置回答_環境 targetform = new F_是正予防処置回答_環境();
 
+            targetform.args = CurrentCode + "," + CurrentEdition;
+
+            targetform.ShowDialog();
         }
 
         #endregion
@@ -9928,7 +9936,11 @@ namespace u_net
 
         private void 品質異常報告書_回答書ボタン_Click(object sender, EventArgs e)
         {
+            F_品質異常回答書 targetform = new F_品質異常回答書();
 
+            targetform.args = CurrentCode + "," + CurrentEdition;
+
+            targetform.ShowDialog();
         }
 
         #endregion
