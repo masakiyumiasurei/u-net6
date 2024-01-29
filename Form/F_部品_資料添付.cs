@@ -81,7 +81,7 @@ namespace u_net
                 // 各行の添付カラムを更新する処理を書く
                 if (row.Cells["Data"].Value != DBNull.Value)
                 {
-                    row.Cells["添付"].Value = 部品_資料添付1.GetIcon((byte[])row.Cells["Data"].Value);
+                    row.Cells["添付"].Value = 部品_資料添付1.GetIcon((byte[])row.Cells["Data"].Value, row.Cells["DataName"].Value.ToString());
                 }
             }
         }

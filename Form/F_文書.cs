@@ -1835,6 +1835,15 @@ namespace u_net
 
                 VariableSet.SetTable2Form(this, strSQL, cn, "担当者コード1", "担当者コード2", "担当者コード3", "担当者コード4", "担当者コード5","発信者コード");
 
+                strSQL = "SELECT * FROM T添付文書 WHERE 文書コード ='" + codeString + "' and 版数 = " + editionNumber;
+
+                VariableSet.SetTable2Details(文書添付.Detail, strSQL, cn);
+
+                RefreshAttachmentColumn();
+
+
+
+
                 if (!string.IsNullOrEmpty(回答期限.Text))
                 {
                     DateTime tempDate = DateTime.Parse(回答期限.Text);
@@ -1922,6 +1931,18 @@ namespace u_net
                 Console.WriteLine(ex.Message);
                 // エラーハンドリングが必要に応じて行われるべきです
                 return false;
+            }
+        }
+
+        private void RefreshAttachmentColumn()
+        {
+            foreach (var row in 文書添付.Detail.Rows)
+            {
+                // 各行の添付カラムを更新する処理を書く
+                if (row.Cells["文書"].Value != null && row.Cells["紙文書名"].Value != null)
+                {
+                    row.Cells["添付"].Value = 文書添付.GetIcon((byte[])row.Cells["文書"].Value, row.Cells["紙文書名"].Value.ToString());
+                }
             }
         }
 

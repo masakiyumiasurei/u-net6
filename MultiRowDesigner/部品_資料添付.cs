@@ -174,7 +174,7 @@ namespace MultiRowDesigner
                                     FunctionClass.GetUserFullName(cn, CommonConstants.LoginUserCode);
                                 gcMultiRow1.CurrentRow.Cells["UpdateDate"].Value = DateTime.Now;
 
-                                gcMultiRow1.CurrentRow.Cells["添付"].Value = GetIcon(fileBytes);
+                                gcMultiRow1.CurrentRow.Cells["添付"].Value = GetIcon(fileBytes,fileName);
                                 // Icon iconForFile = System.Drawing.Icon.ExtractAssociatedIcon(filePath);
                                 // gcMultiRow1.CurrentRow.Cells["添付"].Value= iconForFile;
                                 gcMultiRow1.NotifyCurrentCellDirty(true);
@@ -249,12 +249,12 @@ namespace MultiRowDesigner
             }
         }
 
-        public Icon GetIcon(byte[] fileBytes)
+        public Icon GetIcon(byte[] fileBytes,string fileName)
         {
             Icon iconForFile;
             try
             {
-                string fileName = gcMultiRow1.CurrentRow.Cells["DataName"].Value.ToString();
+                //string fileName = gcMultiRow1.CurrentRow.Cells["DataName"].Value.ToString();
 
                 // バイナリデータを一時ファイルに保存
                 string tempFilePath = Path.Combine(Path.GetTempPath(), fileName);
@@ -352,7 +352,7 @@ namespace MultiRowDesigner
             if (e.CellName == "Data" && e.RowIndex >= 0 && gcMultiRow1.Rows[e.RowIndex].Cells["Data"].Value != DBNull.Value &&
                 gcMultiRow1.Rows[e.RowIndex].Cells["添付"].Value != DBNull.Value)
             {
-                gcMultiRow1.Rows[e.RowIndex].Cells["添付"].Value = GetIcon((byte[])gcMultiRow1.Rows[e.RowIndex].Cells["Data"].Value);
+                gcMultiRow1.Rows[e.RowIndex].Cells["添付"].Value = GetIcon((byte[])gcMultiRow1.Rows[e.RowIndex].Cells["Data"].Value, gcMultiRow1.Rows[e.RowIndex].Cells["DataName"].Value.ToString());
             }
         }
 
