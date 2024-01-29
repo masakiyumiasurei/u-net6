@@ -1471,7 +1471,7 @@ namespace u_net
                 // 送信確認
                 DialogResult result = MessageBox.Show($"ファックスを送信しますか？{Environment.NewLine}{Environment.NewLine}" +
                                                       $"送信先FAX番号： {strFaxNumber}{Environment.NewLine}{Environment.NewLine}" +
-                                                      "[はい] - 見積書を送信します{Environment.NewLine}" +
+                                                      $"[はい] - 見積書を送信します{Environment.NewLine}" +
                                                       "[いいえ] - 操作を取り消します", "送信コマンド", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                 if (result == DialogResult.No)

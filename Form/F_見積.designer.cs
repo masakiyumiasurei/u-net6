@@ -562,6 +562,7 @@ namespace u_net
             // 確定
             // 
             確定.BackColor = SystemColors.Control;
+            確定.Enabled = false;
             確定.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             確定.Location = new Point(720, 175);
             確定.Margin = new Padding(3, 2, 3, 2);
@@ -723,6 +724,7 @@ namespace u_net
             // 承認
             // 
             承認.BackColor = SystemColors.Control;
+            承認.Enabled = false;
             承認.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             承認.Location = new Point(826, 175);
             承認.Margin = new Padding(3, 2, 3, 2);
@@ -750,6 +752,7 @@ namespace u_net
             // 削除
             // 
             削除.BackColor = SystemColors.Control;
+            削除.Enabled = false;
             削除.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             削除.Location = new Point(928, 175);
             削除.Margin = new Padding(3, 2, 3, 2);
@@ -1013,6 +1016,7 @@ namespace u_net
             // 
             納期.BackColor = Color.White;
             納期.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            納期.ImeMode = ImeMode.NoControl;
             納期.Location = new Point(125, 275);
             納期.Margin = new Padding(3, 2, 3, 2);
             納期.Name = "納期";
