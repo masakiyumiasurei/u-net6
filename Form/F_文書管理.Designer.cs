@@ -272,6 +272,7 @@
             表示件数.Size = new Size(88, 20);
             表示件数.TabIndex = 84;
             表示件数.TabStop = false;
+            表示件数.TextAlign = HorizontalAlignment.Right;
             // 
             // label1
             // 
@@ -297,6 +298,7 @@
             // 
             dataGridView1.AllowUserToAddRows = false;
             dataGridView1.AllowUserToDeleteRows = false;
+            dataGridView1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Location = new Point(0, 30);
             dataGridView1.Margin = new Padding(3, 2, 3, 2);

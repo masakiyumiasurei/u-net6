@@ -642,6 +642,15 @@ namespace u_net
             label184 = new Label();
             不具合調査修理依頼書_シリアル番号1 = new TextBox();
             label185 = new Label();
+            完了承認表示 = new TextBox();
+            承認表示 = new TextBox();
+            確定表示 = new TextBox();
+            承認者コード4表示 = new TextBox();
+            承認者コード5表示 = new TextBox();
+            承認者コード3表示 = new TextBox();
+            承認者コード2表示 = new TextBox();
+            承認者コード1表示 = new TextBox();
+            承認者コード6表示 = new TextBox();
             panel1.SuspendLayout();
             statusStrip1.SuspendLayout();
             システム配布記録パネル.SuspendLayout();
@@ -3314,7 +3323,6 @@ namespace u_net
             // 
             // 環境連絡書_回答書ボタン
             // 
-            環境連絡書_回答書ボタン.Enabled = true;
             環境連絡書_回答書ボタン.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             環境連絡書_回答書ボタン.Location = new Point(147, 342);
             環境連絡書_回答書ボタン.Margin = new Padding(4);
@@ -4745,10 +4753,10 @@ namespace u_net
             出向依頼書_費用.Size = new Size(96, 21);
             出向依頼書_費用.TabIndex = 45;
             出向依頼書_費用.TextUpdate += (this.出向依頼書_費用_TextUpdate);
+            出向依頼書_費用.TextChanged += (this.出向依頼書_費用_TextChanged);
             出向依頼書_費用.KeyPress += (this.出向依頼書_費用_KeyPress);
             出向依頼書_費用.Validating += (this.出向依頼書_費用_Validating);
             出向依頼書_費用.Validated += (this.出向依頼書_費用_Validated);
-            出向依頼書_費用.TextChanged += (this.出向依頼書_費用_TextChanged);
             // 
             // 出向依頼書_出向先電話番号
             // 
@@ -4983,10 +4991,10 @@ namespace u_net
             出向依頼書_出向分類.Size = new Size(314, 21);
             出向依頼書_出向分類.TabIndex = 19;
             出向依頼書_出向分類.TextUpdate += (this.出向依頼書_出向分類_TextUpdate);
+            出向依頼書_出向分類.TextChanged += (this.出向依頼書_出向分類_TextChanged);
             出向依頼書_出向分類.KeyPress += (this.出向依頼書_出向分類_KeyPress);
             出向依頼書_出向分類.Validating += (this.出向依頼書_出向分類_Validating);
             出向依頼書_出向分類.Validated += (this.出向依頼書_出向分類_Validated);
-            出向依頼書_出向分類.TextChanged += (this.出向依頼書_出向分類_TextChanged);
             // 
             // label52
             // 
@@ -5286,13 +5294,13 @@ namespace u_net
             新規販売取引申請書_顧客コード.Name = "新規販売取引申請書_顧客コード";
             新規販売取引申請書_顧客コード.Size = new Size(102, 20);
             新規販売取引申請書_顧客コード.TabIndex = 17;
+            新規販売取引申請書_顧客コード.TextChanged += (this.新規販売取引申請書_顧客コード_TextChanged);
             新規販売取引申請書_顧客コード.DoubleClick += (this.新規販売取引申請書_顧客コード_DoubleClick);
             新規販売取引申請書_顧客コード.Enter += (this.新規販売取引申請書_顧客コード_Enter);
             新規販売取引申請書_顧客コード.KeyDown += (this.新規販売取引申請書_顧客コード_KeyDown);
             新規販売取引申請書_顧客コード.KeyPress += (this.新規販売取引申請書_顧客コード_KeyPress);
             新規販売取引申請書_顧客コード.Leave += (this.新規販売取引申請書_顧客コード_Leave);
             新規販売取引申請書_顧客コード.Validating += (this.新規販売取引申請書_顧客コード_Validating);
-            新規販売取引申請書_顧客コード.TextChanged += (this.新規販売取引申請書_顧客コード_TextChanged);
             // 
             // label73
             // 
@@ -5634,7 +5642,6 @@ namespace u_net
             // 
             // 是正予防処置報告書_回答ボタン
             // 
-            是正予防処置報告書_回答ボタン.Enabled = true;
             是正予防処置報告書_回答ボタン.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             是正予防処置報告書_回答ボタン.Location = new Point(302, 347);
             是正予防処置報告書_回答ボタン.Margin = new Padding(4);
@@ -5807,10 +5814,10 @@ namespace u_net
             是正予防処置報告書_顧客コード.Name = "是正予防処置報告書_顧客コード";
             是正予防処置報告書_顧客コード.Size = new Size(102, 20);
             是正予防処置報告書_顧客コード.TabIndex = 19;
+            是正予防処置報告書_顧客コード.TextChanged += (this.是正予防処置報告書_顧客コード_TextChanged);
             是正予防処置報告書_顧客コード.KeyDown += (this.是正予防処置報告書_顧客コード_KeyDown);
             是正予防処置報告書_顧客コード.KeyPress += (this.是正予防処置報告書_顧客コード_KeyPress);
             是正予防処置報告書_顧客コード.Validating += (this.是正予防処置報告書_顧客コード_Validating);
-            是正予防処置報告書_顧客コード.TextChanged += (this.是正予防処置報告書_顧客コード_TextChanged);
             // 
             // 是正予防処置報告書_顧客名
             // 
@@ -5921,7 +5928,6 @@ namespace u_net
             // 
             // 是正予防処置報告書_環境_回答ボタン
             // 
-            是正予防処置報告書_環境_回答ボタン.Enabled = true;
             是正予防処置報告書_環境_回答ボタン.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             是正予防処置報告書_環境_回答ボタン.Location = new Point(100, 341);
             是正予防処置報告書_環境_回答ボタン.Margin = new Padding(4);
@@ -6556,9 +6562,9 @@ namespace u_net
             製品企画書_売上区分コード.Size = new Size(152, 21);
             製品企画書_売上区分コード.TabIndex = 21;
             製品企画書_売上区分コード.TextUpdate += (this.製品企画書_売上区分コード_TextUpdate);
+            製品企画書_売上区分コード.TextChanged += (this.製品企画書_売上区分コード_TextChanged);
             製品企画書_売上区分コード.Validating += (this.製品企画書_売上区分コード_Validating);
             製品企画書_売上区分コード.Validated += (this.製品企画書_売上区分コード_Validated);
-            製品企画書_売上区分コード.TextChanged += (this.製品企画書_売上区分コード_TextChanged);
             // 
             // 製品企画書_型番
             // 
@@ -7275,8 +7281,8 @@ namespace u_net
             設計製作依頼書_付属文書2.Size = new Size(15, 14);
             設計製作依頼書_付属文書2.TabIndex = 37;
             設計製作依頼書_付属文書2.UseVisualStyleBackColor = true;
-            設計製作依頼書_付属文書2.Validated += (this.設計製作依頼書_付属文書2_Validated);
             設計製作依頼書_付属文書2.CheckedChanged += (this.設計製作依頼書_付属文書2_CheckedChanged);
+            設計製作依頼書_付属文書2.Validated += (this.設計製作依頼書_付属文書2_Validated);
             // 
             // label114
             // 
@@ -7306,8 +7312,8 @@ namespace u_net
             設計製作依頼書_付属文書1.Size = new Size(15, 14);
             設計製作依頼書_付属文書1.TabIndex = 36;
             設計製作依頼書_付属文書1.UseVisualStyleBackColor = true;
-            設計製作依頼書_付属文書1.Validated += (this.設計製作依頼書_付属文書1_Validated);
             設計製作依頼書_付属文書1.CheckedChanged += (this.設計製作依頼書_付属文書1_CheckedChanged);
+            設計製作依頼書_付属文書1.Validated += (this.設計製作依頼書_付属文書1_Validated);
             // 
             // label113
             // 
@@ -7337,8 +7343,9 @@ namespace u_net
             設計製作依頼書_付属文書3.Size = new Size(15, 14);
             設計製作依頼書_付属文書3.TabIndex = 38;
             設計製作依頼書_付属文書3.UseVisualStyleBackColor = true;
-            設計製作依頼書_付属文書3.Validated += (this.設計製作依頼書_付属文書3_Validated);
             設計製作依頼書_付属文書3.CheckedChanged += (this.設計製作依頼書_付属文書3_CheckedChanged);
+            設計製作依頼書_付属文書3.Validated += (this.設計製作依頼書_付属文書3_Validated);
+            // 
             // 設計製作依頼書_付属書類指定
             // 
             設計製作依頼書_付属書類指定.AutoSize = true;
@@ -7350,9 +7357,9 @@ namespace u_net
             設計製作依頼書_付属書類指定.Size = new Size(15, 14);
             設計製作依頼書_付属書類指定.TabIndex = 35;
             設計製作依頼書_付属書類指定.UseVisualStyleBackColor = true;
+            設計製作依頼書_付属書類指定.CheckedChanged += (this.設計製作依頼書_付属書類指定_CheckedChanged);
             設計製作依頼書_付属書類指定.Validating += (this.設計製作依頼書_付属書類指定_Validating);
             設計製作依頼書_付属書類指定.Validated += (this.設計製作依頼書_付属書類指定_Validated);
-            設計製作依頼書_付属書類指定.CheckedChanged += (this.設計製作依頼書_付属書類指定_CheckedChanged);
             // 
             // 設計製作依頼書_その他文書名
             // 
@@ -9279,9 +9286,9 @@ namespace u_net
             不具合調査修理依頼書_依頼分類その他.Size = new Size(308, 20);
             不具合調査修理依頼書_依頼分類その他.TabIndex = 6;
             不具合調査修理依頼書_依頼分類その他.TextChanged += (this.不具合調査修理依頼書_依頼分類その他_TextChanged);
-            不具合調査修理依頼書_依頼分類その他.Validating += (this.不具合調査修理依頼書_依頼分類その他_Validating);
             不具合調査修理依頼書_依頼分類その他.Enter += (this.不具合調査修理依頼書_依頼分類その他_Enter);
             不具合調査修理依頼書_依頼分類その他.Leave += (this.不具合調査修理依頼書_依頼分類その他_Leave);
+            不具合調査修理依頼書_依頼分類その他.Validating += (this.不具合調査修理依頼書_依頼分類その他_Validating);
             // 
             // 不具合調査修理依頼書_その他
             // 
@@ -9425,9 +9432,9 @@ namespace u_net
             不具合調査修理依頼書_受付日.Name = "不具合調査修理依頼書_受付日";
             不具合調査修理依頼書_受付日.Size = new Size(102, 20);
             不具合調査修理依頼書_受付日.TabIndex = 15;
+            不具合調査修理依頼書_受付日.TextChanged += (this.不具合調査修理依頼書_受付日_TextChanged);
             不具合調査修理依頼書_受付日.DoubleClick += (this.不具合調査修理依頼書_受付日_DoubleClick);
             不具合調査修理依頼書_受付日.KeyPress += (this.不具合調査修理依頼書_受付日_KeyPress);
-            不具合調査修理依頼書_受付日.TextChanged += (this.不具合調査修理依頼書_受付日_TextChanged);
             不具合調査修理依頼書_受付日.Validating += (this.不具合調査修理依頼書_受付日_Validating);
             // 
             // label180
@@ -9527,11 +9534,11 @@ namespace u_net
             不具合調査修理依頼書_現象.Name = "不具合調査修理依頼書_現象";
             不具合調査修理依頼書_現象.Size = new Size(397, 26);
             不具合調査修理依頼書_現象.TabIndex = 39;
-            不具合調査修理依頼書_現象.DoubleClick += (this.不具合調査修理依頼書_現象_DoubleClick);
             不具合調査修理依頼書_現象.TextChanged += (this.不具合調査修理依頼書_現象_TextChanged);
-            不具合調査修理依頼書_現象.Validating += (this.不具合調査修理依頼書_現象_Validating);
+            不具合調査修理依頼書_現象.DoubleClick += (this.不具合調査修理依頼書_現象_DoubleClick);
             不具合調査修理依頼書_現象.Enter += (this.不具合調査修理依頼書_現象_Enter);
             不具合調査修理依頼書_現象.Leave += (this.不具合調査修理依頼書_現象_Leave);
+            不具合調査修理依頼書_現象.Validating += (this.不具合調査修理依頼書_現象_Validating);
             // 
             // 不具合調査修理依頼書_版数
             // 
@@ -9606,10 +9613,148 @@ namespace u_net
             label185.Text = "受付日";
             label185.TextAlign = ContentAlignment.MiddleLeft;
             // 
+            // 完了承認表示
+            // 
+            完了承認表示.BackColor = Color.Black;
+            完了承認表示.Enabled = false;
+            完了承認表示.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            完了承認表示.ImeMode = ImeMode.NoControl;
+            完了承認表示.Location = new Point(379, 205);
+            完了承認表示.Margin = new Padding(3, 2, 3, 2);
+            完了承認表示.Name = "完了承認表示";
+            完了承認表示.ReadOnly = true;
+            完了承認表示.Size = new Size(20, 20);
+            完了承認表示.TabIndex = 10305;
+            完了承認表示.TabStop = false;
+            完了承認表示.Visible = false;
+            // 
+            // 承認表示
+            // 
+            承認表示.BackColor = Color.Black;
+            承認表示.Enabled = false;
+            承認表示.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            承認表示.ImeMode = ImeMode.NoControl;
+            承認表示.Location = new Point(379, 177);
+            承認表示.Margin = new Padding(3, 2, 3, 2);
+            承認表示.Name = "承認表示";
+            承認表示.ReadOnly = true;
+            承認表示.Size = new Size(20, 20);
+            承認表示.TabIndex = 10304;
+            承認表示.TabStop = false;
+            // 
+            // 確定表示
+            // 
+            確定表示.BackColor = Color.Black;
+            確定表示.Enabled = false;
+            確定表示.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            確定表示.ImeMode = ImeMode.NoControl;
+            確定表示.Location = new Point(379, 151);
+            確定表示.Margin = new Padding(3, 2, 3, 2);
+            確定表示.Name = "確定表示";
+            確定表示.ReadOnly = true;
+            確定表示.Size = new Size(20, 20);
+            確定表示.TabIndex = 10303;
+            確定表示.TabStop = false;
+            確定表示.Visible = false;
+            // 
+            // 承認者コード4表示
+            // 
+            承認者コード4表示.BackColor = Color.Red;
+            承認者コード4表示.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            承認者コード4表示.ImeMode = ImeMode.NoControl;
+            承認者コード4表示.Location = new Point(500, 421);
+            承認者コード4表示.Margin = new Padding(3, 2, 3, 2);
+            承認者コード4表示.Name = "承認者コード4表示";
+            承認者コード4表示.ReadOnly = true;
+            承認者コード4表示.Size = new Size(20, 20);
+            承認者コード4表示.TabIndex = 10311;
+            承認者コード4表示.TabStop = false;
+            承認者コード4表示.Visible = false;
+            // 
+            // 承認者コード5表示
+            // 
+            承認者コード5表示.BackColor = Color.Red;
+            承認者コード5表示.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            承認者コード5表示.ImeMode = ImeMode.NoControl;
+            承認者コード5表示.Location = new Point(500, 347);
+            承認者コード5表示.Margin = new Padding(3, 2, 3, 2);
+            承認者コード5表示.Name = "承認者コード5表示";
+            承認者コード5表示.ReadOnly = true;
+            承認者コード5表示.Size = new Size(20, 20);
+            承認者コード5表示.TabIndex = 10310;
+            承認者コード5表示.TabStop = false;
+            承認者コード5表示.Visible = false;
+            // 
+            // 承認者コード3表示
+            // 
+            承認者コード3表示.BackColor = Color.Red;
+            承認者コード3表示.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            承認者コード3表示.ImeMode = ImeMode.NoControl;
+            承認者コード3表示.Location = new Point(500, 272);
+            承認者コード3表示.Margin = new Padding(3, 2, 3, 2);
+            承認者コード3表示.Name = "承認者コード3表示";
+            承認者コード3表示.ReadOnly = true;
+            承認者コード3表示.Size = new Size(20, 20);
+            承認者コード3表示.TabIndex = 10309;
+            承認者コード3表示.TabStop = false;
+            承認者コード3表示.Visible = false;
+            // 
+            // 承認者コード2表示
+            // 
+            承認者コード2表示.BackColor = Color.Red;
+            承認者コード2表示.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            承認者コード2表示.ImeMode = ImeMode.NoControl;
+            承認者コード2表示.Location = new Point(500, 197);
+            承認者コード2表示.Margin = new Padding(3, 2, 3, 2);
+            承認者コード2表示.Name = "承認者コード2表示";
+            承認者コード2表示.ReadOnly = true;
+            承認者コード2表示.Size = new Size(20, 20);
+            承認者コード2表示.TabIndex = 10308;
+            承認者コード2表示.TabStop = false;
+            承認者コード2表示.Visible = false;
+            // 
+            // 承認者コード1表示
+            // 
+            承認者コード1表示.BackColor = Color.Red;
+            承認者コード1表示.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            承認者コード1表示.ImeMode = ImeMode.NoControl;
+            承認者コード1表示.Location = new Point(500, 123);
+            承認者コード1表示.Margin = new Padding(3, 2, 3, 2);
+            承認者コード1表示.Name = "承認者コード1表示";
+            承認者コード1表示.ReadOnly = true;
+            承認者コード1表示.Size = new Size(20, 20);
+            承認者コード1表示.TabIndex = 10307;
+            承認者コード1表示.TabStop = false;
+            承認者コード1表示.Visible = false;
+            // 
+            // 承認者コード6表示
+            // 
+            承認者コード6表示.BackColor = Color.Red;
+            承認者コード6表示.Enabled = false;
+            承認者コード6表示.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            承認者コード6表示.ImeMode = ImeMode.NoControl;
+            承認者コード6表示.Location = new Point(500, 50);
+            承認者コード6表示.Margin = new Padding(3, 2, 3, 2);
+            承認者コード6表示.Name = "承認者コード6表示";
+            承認者コード6表示.ReadOnly = true;
+            承認者コード6表示.Size = new Size(20, 20);
+            承認者コード6表示.TabIndex = 10306;
+            承認者コード6表示.TabStop = false;
+            承認者コード6表示.Visible = false;
+            // 
             // F_文書
             // 
             this.BackColor = SystemColors.Control;
             this.ClientSize = new Size(880, 659);
+            this.Controls.Add(承認者コード4表示);
+            this.Controls.Add(承認者コード5表示);
+            this.Controls.Add(承認者コード3表示);
+            this.Controls.Add(承認者コード2表示);
+            this.Controls.Add(承認者コード1表示);
+            this.Controls.Add(承認者コード6表示);
+            this.Controls.Add(完了承認表示);
+            this.Controls.Add(承認表示);
+            this.Controls.Add(確定表示);
             this.Controls.Add(panel2);
             this.Controls.Add(label28);
             this.Controls.Add(通信欄);
@@ -10404,6 +10549,15 @@ namespace u_net
         private Label label184;
         private TextBox 不具合調査修理依頼書_シリアル番号1;
         private Label label185;
+        private TextBox 完了承認表示;
+        private TextBox 承認表示;
+        private TextBox 確定表示;
+        private TextBox 承認者コード4表示;
+        private TextBox 承認者コード5表示;
+        private TextBox 承認者コード3表示;
+        private TextBox 承認者コード2表示;
+        private TextBox 承認者コード1表示;
+        private TextBox 承認者コード6表示;
     }
 }
 

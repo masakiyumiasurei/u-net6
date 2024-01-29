@@ -53,7 +53,7 @@ namespace u_net
                 F_文書管理 frmTarget = Application.OpenForms.OfType<F_文書管理>().FirstOrDefault();
 
                 文書コード開始.Text = frmTarget.str文書コード開始;
-                文書コード開始.Text = frmTarget.str文書コード開始;
+                文書コード終了.Text = frmTarget.str文書コード終了;
                 文書名.Text = frmTarget.str文書名;
                 件名.Text = frmTarget.str件名;
                 発信者名.Text = frmTarget.str発信者名;
@@ -341,12 +341,18 @@ namespace u_net
 
         private void 文書コード開始_KeyDown(object sender, KeyEventArgs e)
         {
-
+            if (e.KeyCode == Keys.Return)
+            {
+                文書コード開始.Text = FunctionClass.FormatCode(CommonConstants.CH_DOCUMENT, 文書コード開始.Text);
+            }
         }
 
         private void 文書コード終了_KeyDown(object sender, KeyEventArgs e)
         {
-
+            if (e.KeyCode == Keys.Return)
+            {
+                文書コード終了.Text = FunctionClass.FormatCode(CommonConstants.CH_DOCUMENT, 文書コード終了.Text);
+            }
         }
 
         private void 期限日開始選択ボタン_Click(object sender, EventArgs e)

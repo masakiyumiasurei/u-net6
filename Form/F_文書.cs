@@ -371,9 +371,20 @@ namespace u_net
                         this.Close();
                     }
 
-                    this.版数.Text = Convert.ToInt32(args.Substring(0, args.IndexOf(","))).ToString();
-                    this.文書コード.Focus();
-                    this.文書コード.Text = args.Substring(0, args.IndexOf(","));
+                    //引数をカンマで分けてそれぞれの項目に設定
+                    int indexOfComma = args.IndexOf(",");
+                    string editionString = args.Substring(indexOfComma + 1).Trim();
+                    int edition;
+                    if (int.TryParse(editionString, out edition))
+                    {
+                        版数.Text = edition.ToString();
+                    }
+
+                    string codeString = args.Substring(0, indexOfComma).Trim();
+                    文書コード.Text = codeString;
+
+
+       
                 }
                 args = null;
 
@@ -1822,7 +1833,7 @@ namespace u_net
 
 
 
-                VariableSet.SetTable2Form(this, strSQL, cn, "担当者コード1", "担当者コード2", "担当者コード3", "担当者コード4", "担当者コード5");
+                VariableSet.SetTable2Form(this, strSQL, cn, "担当者コード1", "担当者コード2", "担当者コード3", "担当者コード4", "担当者コード5","発信者コード");
 
                 if (!string.IsNullOrEmpty(回答期限.Text))
                 {
@@ -1886,6 +1897,20 @@ namespace u_net
                     環境連絡書_発生日.Text = tempDate.ToString("yyyy/MM/dd");
 
                 }
+
+
+
+                確定表示.Visible = !string.IsNullOrEmpty(確定者コード.Text);
+                承認表示.Visible = !string.IsNullOrEmpty(承認者コード.Text);
+                完了承認表示.Visible = !string.IsNullOrEmpty(完了承認者コード.Text);
+
+                承認者コード1表示.Visible = !string.IsNullOrEmpty(承認者コード1.Text);
+                承認者コード2表示.Visible = !string.IsNullOrEmpty(承認者コード2.Text);
+                承認者コード3表示.Visible = !string.IsNullOrEmpty(承認者コード3.Text);
+                承認者コード4表示.Visible = !string.IsNullOrEmpty(承認者コード4.Text);
+                承認者コード5表示.Visible = !string.IsNullOrEmpty(承認者コード5.Text);
+                承認者コード6表示.Visible = !string.IsNullOrEmpty(承認者コード6.Text);
+
 
                 return true;
 
