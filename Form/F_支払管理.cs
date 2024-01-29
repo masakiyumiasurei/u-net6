@@ -133,6 +133,11 @@ namespace u_net
             dataGridView1.DefaultCellStyle.ForeColor = Color.Black;
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridView1.AllowUserToAddRows = false;
+            dataGridView1.AllowUserToDeleteRows = false;
+            dataGridView1.ReadOnly = true;
+
 
             myapi.GetFullScreen(out xSize, out ySize);
 
@@ -236,7 +241,7 @@ namespace u_net
                         filter += " and 削除 IS NULL ";
                         break;
                     case 2:
-                        filter += " and IS NOT NULL ";
+                        filter += " and 削除 IS NOT NULL ";
                         break;
                 }
 

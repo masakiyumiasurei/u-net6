@@ -63,6 +63,7 @@ namespace u_net
             構成番号検索ボタン = new Button();
             全印刷ボタン = new Button();
             groupBox1 = new GroupBox();
+            コマンド出力 = new Button();
             statusStrip1.SuspendLayout();
             groupBox1.SuspendLayout();
             SuspendLayout();
@@ -200,7 +201,7 @@ namespace u_net
             // 閉じるボタン
             // 
             閉じるボタン.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            閉じるボタン.Location = new Point(270, 125);
+            閉じるボタン.Location = new Point(270, 161);
             閉じるボタン.Margin = new Padding(4);
             閉じるボタン.Name = "閉じるボタン";
             閉じるボタン.RightToLeft = RightToLeft.Yes;
@@ -213,7 +214,7 @@ namespace u_net
             // statusStrip1
             // 
             statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1 });
-            statusStrip1.Location = new Point(0, 153);
+            statusStrip1.Location = new Point(0, 192);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Padding = new Padding(1, 0, 19, 0);
             statusStrip1.Size = new Size(385, 22);
@@ -256,18 +257,32 @@ namespace u_net
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(コマンド出力);
             groupBox1.Controls.Add(構成番号検索ボタン);
             groupBox1.Controls.Add(全印刷ボタン);
             groupBox1.Location = new Point(11, 7);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(361, 111);
+            groupBox1.Size = new Size(361, 147);
             groupBox1.TabIndex = 10198;
             groupBox1.TabStop = false;
+            // 
+            // コマンド出力
+            // 
+            コマンド出力.Font = new Font("BIZ UDゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            コマンド出力.Location = new Point(7, 70);
+            コマンド出力.Margin = new Padding(4);
+            コマンド出力.Name = "コマンド出力";
+            コマンド出力.RightToLeft = RightToLeft.Yes;
+            コマンド出力.Size = new Size(170, 44);
+            コマンド出力.TabIndex = 3;
+            コマンド出力.Text = "Excel出力";
+            コマンド出力.UseVisualStyleBackColor = true;
+            コマンド出力.Click += コマンド出力_Click;
             // 
             // F_製品_ツール
             // 
             BackColor = SystemColors.Control;
-            ClientSize = new Size(385, 175);
+            ClientSize = new Size(385, 214);
             Controls.Add(groupBox1);
             Controls.Add(閉じるボタン);
             Controls.Add(statusStrip1);
@@ -323,6 +338,7 @@ namespace u_net
         private Button 構成番号検索ボタン;
         private Button 全印刷ボタン;
         private GroupBox groupBox1;
+        private Button コマンド出力;
     }
 }
 

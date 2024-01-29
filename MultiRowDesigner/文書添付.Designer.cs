@@ -45,6 +45,8 @@ namespace MultiRowDesigner
             gcMultiRow1.TabIndex = 0;
             gcMultiRow1.Template = 文書添付テンプレート1;
             gcMultiRow1.Text = "gcMultiRow1";
+            gcMultiRow1.DefaultValuesNeeded += gcMultiRow1_DefaultValuesNeeded;
+            gcMultiRow1.CellContentClick += gcMultiRow1_CellContentButtonClick;
             // 
             // 文書添付テンプレート1
             // 
@@ -62,6 +64,7 @@ namespace MultiRowDesigner
             Margin = new Padding(5);
             Name = "文書添付";
             Size = new Size(401, 504);
+            Load += 部品_資料添付_Load;
             ((System.ComponentModel.ISupportInitialize)gcMultiRow1).EndInit();
             ResumeLayout(false);
         }
