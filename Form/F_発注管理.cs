@@ -81,7 +81,7 @@ namespace u_net
             // 現在選択されているデータが承認されているかどうかを取得する
             get
             {
-                return !string.IsNullOrEmpty(Nz(dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[9].Value?.ToString(), ""));
+                return !string.IsNullOrEmpty(Nz(dataGridView1.SelectedRows[0].Cells[8].Value?.ToString(), ""));
             }
         }
 
@@ -90,7 +90,7 @@ namespace u_net
             // 現在選択されているデータが完了しているかどうかを取得する
             get
             {
-                return dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[11].Value?.ToString();
+                return dataGridView1.SelectedRows[0].Cells[10].Value?.ToString();
             }
         }
 
@@ -99,11 +99,9 @@ namespace u_net
             // 現在選択されているデータが削除されているかどうかを取得する
             get
             {
-                return !string.IsNullOrEmpty(Nz(dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[12].Value?.ToString(), ""));
+                return !string.IsNullOrEmpty(Nz(dataGridView1.SelectedRows[0].Cells[11].Value?.ToString(), ""));
             }
         }
-
-
 
         public void Connect()
         {
@@ -504,7 +502,6 @@ namespace u_net
             }
         }
 
-
         private bool sorting;
         private void dataGridView1_Sorted(object sender, EventArgs e)
         {
@@ -544,7 +541,6 @@ namespace u_net
                 dataGridView.FirstDisplayedScrollingRowIndex = 0; // 先頭行を表示
             }
         }
-
 
         private void Form_KeyDown(object sender, KeyEventArgs e)
         {
@@ -628,15 +624,12 @@ namespace u_net
             this.Close();
         }
 
-
         private void コマンド抽出_Click(object sender, EventArgs e)
         {
             dataGridView1.Focus();
             F_発注管理_抽出 form = new F_発注管理_抽出();
             form.ShowDialog();
         }
-
-
 
         private void コマンド初期化_Click(object sender, EventArgs e)
         {
@@ -651,7 +644,6 @@ namespace u_net
             //MessageBox.Show("現在開発中です。", "初期化マンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-
         private void コマンド検索_Click(object sender, EventArgs e)
         {
             dataGridView1.Focus(); // DataGridViewにフォーカスを設定
@@ -659,8 +651,6 @@ namespace u_net
             F_検索コード form = new F_検索コード(this, "ORD");
             form.ShowDialog();
         }
-
-
 
         private void コマンド更新_Click(object sender, EventArgs e)
         {
@@ -670,7 +660,6 @@ namespace u_net
             Cleargrid(dataGridView1);
             fn.WaitForm.Close();
         }
-
 
         private void コマンド保守_Click(object sender, EventArgs e)
         {
@@ -685,7 +674,6 @@ namespace u_net
             fm.args = $"{CurrentCode} , {CurrentEdition}";
             fm.ShowDialog();
         }
-
 
         private void コマンド印刷_Click(object sender, EventArgs e)
         {
@@ -724,7 +712,6 @@ namespace u_net
                 MessageBox.Show("エラーが発生しました。\n" + ex.Message, "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
 
         private void コマンド入庫_Click(object sender, EventArgs e)
         {

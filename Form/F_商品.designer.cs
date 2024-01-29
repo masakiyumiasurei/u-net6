@@ -1090,8 +1090,8 @@ namespace u_net
             // 
             // 商品明細1
             // 
-            商品明細1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            商品明細1.Location = new Point(0, 440);
+            商品明細1.Dock = DockStyle.Bottom;
+            商品明細1.Location = new Point(0, 437);
             商品明細1.Margin = new Padding(5, 3, 5, 3);
             商品明細1.Name = "商品明細1";
             商品明細1.Size = new Size(1012, 230);

@@ -129,6 +129,8 @@ namespace MultiRowDesigner
                             gcMultiRow1.EndEdit(); //編集の終了
                             string selectedCode = form.SelectedCode;
 
+                            gcMultiRow1.EditingControl.Text = selectedCode; // <== 対応策
+
                             gcMultiRow1.CurrentCell.Value = selectedCode;
 
                             //品名にセル移動した時にvaledatedを実行しないようにするため

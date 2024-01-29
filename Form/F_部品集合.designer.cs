@@ -152,7 +152,7 @@ namespace u_net
             panel1.Location = new Point(0, 0);
             panel1.Margin = new Padding(4, 3, 4, 3);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1111, 42);
+            panel1.Size = new Size(1148, 42);
             panel1.TabIndex = 81;
             // 
             // コマンド新規
@@ -727,10 +727,10 @@ namespace u_net
             // statusStrip1
             // 
             statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1 });
-            statusStrip1.Location = new Point(0, 558);
+            statusStrip1.Location = new Point(0, 602);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Padding = new Padding(1, 0, 19, 0);
-            statusStrip1.Size = new Size(1111, 22);
+            statusStrip1.Size = new Size(1148, 22);
             statusStrip1.TabIndex = 10195;
             statusStrip1.Text = "statusStrip1";
             // 
@@ -919,20 +919,17 @@ namespace u_net
             // 部品集合明細1
             // 
             部品集合明細1.AutoScroll = true;
-            部品集合明細1.AutoSize = true;
             部品集合明細1.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            部品集合明細1.Location = new Point(0, 210);
+            部品集合明細1.Location = new Point(0, 212);
             部品集合明細1.Margin = new Padding(4, 4, 4, 4);
-            部品集合明細1.MaximumSize = new Size(3000, 1000);
             部品集合明細1.Name = "部品集合明細1";
-            部品集合明細1.Size = new Size(1111, 348);
+            部品集合明細1.Size = new Size(1148, 388);
             部品集合明細1.TabIndex = 11;
             // 
             // F_部品集合
             // 
             BackColor = SystemColors.Control;
-            ClientSize = new Size(1111, 580);
-            Controls.Add(部品集合明細1);
+            ClientSize = new Size(1148, 624);
             Controls.Add(無効日時);
             Controls.Add(承認日時);
             Controls.Add(確定日時);
@@ -980,6 +977,7 @@ namespace u_net
             Controls.Add(コマンド複写);
             Controls.Add(コマンド修正);
             Controls.Add(panel1);
+            Controls.Add(部品集合明細1);
             Icon = (Icon)resources.GetObject("$this.Icon");
             ImeMode = ImeMode.Off;
             KeyPreview = true;

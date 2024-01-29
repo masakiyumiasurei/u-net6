@@ -215,6 +215,7 @@
             this.発注合計金額.Name = "発注合計金額";
             this.発注合計金額.Size = new System.Drawing.Size(101, 17);
             cellStyle24.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
+            cellStyle24.Format = "N0";
             cellStyle24.ImeMode = System.Windows.Forms.ImeMode.Off;
             this.発注合計金額.Style = cellStyle24;
             this.発注合計金額.TabIndex = 3;
@@ -415,7 +416,7 @@
             this.買掛区分ボタン.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.買掛区分ボタン.Location = new System.Drawing.Point(1002, 0);
             this.買掛区分ボタン.Name = "買掛区分ボタン";
-            this.買掛区分ボタン.Size = new System.Drawing.Size(122, 44);
+            this.買掛区分ボタン.Size = new System.Drawing.Size(147, 44);
             this.買掛区分ボタン.SortCellName = "買掛区分";
             this.買掛区分ボタン.SortMode = GrapeCity.Win.MultiRow.SortMode.Automatic;
             cellStyle36.BackColor = System.Drawing.Color.Transparent;
@@ -591,6 +592,7 @@
             this.回答納期.DataField = "回答納期";
             this.回答納期.Location = new System.Drawing.Point(924, 0);
             this.回答納期.Name = "回答納期";
+            this.回答納期.ReadOnly = true;
             this.回答納期.Size = new System.Drawing.Size(78, 34);
             border9.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
             cellStyle10.Border = border9;
@@ -604,10 +606,10 @@
             this.買掛区分.DataField = "買掛区分";
             this.買掛区分.DisplayMember = "買掛区分";
             this.買掛区分.DropDownStyle = GrapeCity.Win.MultiRow.MultiRowComboBoxStyle.DropDown;
-            this.買掛区分.Location = new System.Drawing.Point(1003, 15);
+            this.買掛区分.Location = new System.Drawing.Point(1027, 0);
             this.買掛区分.Name = "買掛区分";
-            this.買掛区分.Size = new System.Drawing.Size(120, 17);
-            cellStyle11.Font = new System.Drawing.Font("BIZ UDゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.買掛区分.Size = new System.Drawing.Size(122, 32);
+            cellStyle11.Font = new System.Drawing.Font("BIZ UDゴシック", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             cellStyle11.SelectionForeColor = System.Drawing.Color.Black;
             this.買掛区分.Style = cellStyle11;
             this.買掛区分.TabIndex = 12;
@@ -678,14 +680,14 @@
             border13.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
             cellStyle15.Border = border13;
             cellStyle15.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
-            cellStyle15.Format = "N0";
+            cellStyle15.Format = "N2";
             this.発注単価.Style = cellStyle15;
             this.発注単価.TabIndex = 10;
             // 
             // 発注コード
             // 
             this.発注コード.DataField = "発注コード";
-            this.発注コード.Location = new System.Drawing.Point(1138, 8);
+            this.発注コード.Location = new System.Drawing.Point(1167, 8);
             this.発注コード.Name = "発注コード";
             this.発注コード.ReadOnly = true;
             this.発注コード.Size = new System.Drawing.Size(20, 17);
@@ -746,15 +748,15 @@
             // 
             this.買掛区分修正ボタン.Location = new System.Drawing.Point(1003, 1);
             this.買掛区分修正ボタン.Name = "買掛区分修正ボタン";
-            this.買掛区分修正ボタン.Size = new System.Drawing.Size(120, 14);
+            this.買掛区分修正ボタン.Size = new System.Drawing.Size(24, 31);
             cellStyle20.BackColor = System.Drawing.SystemColors.Control;
-            cellStyle20.Font = new System.Drawing.Font("ＭＳ ゴシック", 5.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            cellStyle20.Font = new System.Drawing.Font("ＭＳ ゴシック", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             cellStyle20.ImeMode = System.Windows.Forms.ImeMode.Off;
             cellStyle20.SelectionForeColor = System.Drawing.SystemColors.ControlText;
             cellStyle20.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
             this.買掛区分修正ボタン.Style = cellStyle20;
             this.買掛区分修正ボタン.TabIndex = 48;
-            this.買掛区分修正ボタン.Value = "買掛区分修正";
+            this.買掛区分修正ボタン.Value = "修正";
             // 
             // 発注明細テンプレート
             // 

@@ -49,7 +49,7 @@ namespace u_net
             cn.Open();
         }
 
-       
+
         public void Form_Load(object sender, EventArgs e)
         {
             bleloading = true;
@@ -114,7 +114,7 @@ namespace u_net
             lngRoHS対応 = 1;
 
             分類記号.SelectedIndex = -1;
-            分類記号.Focus();
+            
 
             bleloading = false;
 
@@ -212,7 +212,7 @@ namespace u_net
 
                 //0列目はaccessでは行ヘッダのため、ずらす
                 //dataGridView1.Columns[0].Width = 500 / twipperdot;
-                dataGridView1.Columns[0].Width = 1000 / twipperdot; 
+                dataGridView1.Columns[0].Width = 1000 / twipperdot;
                 dataGridView1.Columns[1].Width = 350 / twipperdot;
                 dataGridView1.Columns[2].Width = 3250 / twipperdot;
                 dataGridView1.Columns[3].Width = 3250 / twipperdot;
@@ -283,10 +283,10 @@ namespace u_net
             }
 
             bleDontKeyUp = false;
-            
+
             SetSource();
-            
-            
+
+
         }
 
         private void 分類記号_TextChanged(object sender, EventArgs e)
@@ -297,7 +297,7 @@ namespace u_net
             }
         }
 
-    
+
         private void 分類記号_DrawItem(object sender, DrawItemEventArgs e)
         {
             OriginalClass.SetComboBoxAppearance((ComboBox)sender, e, new int[] { 50, 500 }, new string[] { "Display", "Display2" });
@@ -336,7 +336,7 @@ namespace u_net
                     部品指定方法.SelectedIndex = (部品指定方法.SelectedIndex + 1) % 3;
                     e.Handled = true;
                     break;
-                
+
             }
         }
 
@@ -379,7 +379,7 @@ namespace u_net
                     break;
             }
 
-            if(keyCode == (int)Keys.Return)
+            if (keyCode == (int)Keys.Return)
             {
                 if (bleDontKeyUp)
                 {
@@ -536,7 +536,7 @@ namespace u_net
             SetSource();
         }
 
-    
+
         private void 検索ボタン_Click_1(object sender, EventArgs e)
         {
             str分類記号 = "";
@@ -546,6 +546,11 @@ namespace u_net
             bleDontKeyUp = false;
             SetSource();
 
+        }
+
+        private void F_部品選択_Shown(object sender, EventArgs e)
+        {
+            分類記号.Focus();
         }
     }
 

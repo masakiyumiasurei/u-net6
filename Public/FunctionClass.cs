@@ -2802,7 +2802,7 @@ namespace u_net.Public
 
         public static DateTime DateConvert(DateTime inputDate)
         {
-            if (inputDate < DateTime.Now)
+            if (inputDate.Date < DateTime.Now.Date)
             {
                 return inputDate.AddYears(1);
             }

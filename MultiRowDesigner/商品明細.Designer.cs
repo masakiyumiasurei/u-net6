@@ -39,11 +39,12 @@ namespace MultiRowDesigner
             // gcMultiRow1
             // 
             gcMultiRow1.AllowRowMove = true;
+            gcMultiRow1.Dock = DockStyle.Fill;
             gcMultiRow1.EditMode = GrapeCity.Win.MultiRow.EditMode.EditOnEnter;
             gcMultiRow1.Location = new Point(0, 0);
             gcMultiRow1.Margin = new Padding(5);
             gcMultiRow1.Name = "gcMultiRow1";
-            gcMultiRow1.Size = new Size(983, 348);
+            gcMultiRow1.Size = new Size(986, 348);
             gcMultiRow1.TabIndex = 0;
             gcMultiRow1.Template = 商品明細テンプレート1;
             gcMultiRow1.TemplateScaleSize = new SizeF(1.33333373F, 1.66666675F);
@@ -76,7 +77,7 @@ namespace MultiRowDesigner
             Controls.Add(gcMultiRow1);
             Margin = new Padding(5);
             Name = "商品明細";
-            Size = new Size(983, 348);
+            Size = new Size(986, 348);
             Load += 商品明細_Load;
             ((System.ComponentModel.ISupportInitialize)gcMultiRow1).EndInit();
             ResumeLayout(false);

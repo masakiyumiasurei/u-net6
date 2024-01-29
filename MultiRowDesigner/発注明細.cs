@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Channels;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DocumentFormat.OpenXml.InkML;
 using GrapeCity.Win.BarCode.ValueType;
 using GrapeCity.Win.MultiRow;
 using u_net;
@@ -40,7 +41,9 @@ namespace MultiRowDesigner
         {
             get
             {
-                if (!string.IsNullOrEmpty(gcMultiRow1.CurrentRow.Cells["部品コード"].Value?.ToString()))
+                var currentRow = gcMultiRow1.CurrentRow;
+
+                if (currentRow != null && !string.IsNullOrEmpty(gcMultiRow1.CurrentRow.Cells["部品コード"].Value?.ToString()))
                 {
                     return gcMultiRow1.CurrentRow.Cells["部品コード"].Value?.ToString();
                 }
@@ -80,6 +83,8 @@ namespace MultiRowDesigner
         {
             gcMultiRow1.ShortcutKeyManager.Unregister(Keys.Enter);
             gcMultiRow1.ShortcutKeyManager.Register(SelectionActions.MoveToNextCell, Keys.Enter);
+
+           // gcMultiRow1.["発注数量"].ForeColor = Color.Red;
         }
 
         private void gcMultiRow1_DefaultValuesNeeded(object sender, RowEventArgs e)
@@ -281,7 +286,30 @@ namespace MultiRowDesigner
 
         }
 
+        private void gcMultiRow1_CellFormatting(object sender, CellFormattingEventArgs e)
+        {
+            //セルがマイナスの場合の処理
+            // ヘッダーセルの場合は無視
 
+            if (gcMultiRow1.Rows.Count == 0 || e.RowIndex < 0 || e.RowIndex >= gcMultiRow1.Rows.Count)
+                return;
+
+            // 行が存在しない場合は処理をスキップ
+            if (gcMultiRow1.Rows.Count == 0)
+                return;
+            
+            string columnName = gcMultiRow1.Columns[e.CellIndex].Name;
+
+            // セルの値が数値で、かつマイナスの場合
+            if (!gcMultiRow1.Rows[e.RowIndex].IsNewRow && (columnName == "発注数量" )
+                && e.Value != null && e.Value != DBNull.Value)
+            {
+                if (Convert.ToDecimal(e.Value) < 0)
+                {   // 赤色のフォントを設定
+                    e.CellStyle.ForeColor = Color.Red;
+                }
+            }
+        }
         private void ResetNumber()
         {
             try
@@ -441,19 +469,7 @@ namespace MultiRowDesigner
                             MessageBox.Show("発注数量が０です。\nこの部品を発注する必要はありません。", "情報", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
 
-                        // メーカー名がない場合（履歴入力した場合）はメーカー名にフォーカスする
-                        //if (string.IsNullOrEmpty(gcMultiRow1.Rows[idx].Cells["メーカー名"].Value?.ToString()))
-                        //{
-                        //    int columnIndex = gcMultiRow1.Rows[0].Cells["メーカー名"].CellIndex;
-                        //    gcMultiRow1.CurrentCellPosition = new CellPosition(idx, columnIndex);
-
-                        //}
-                        //else
-                        //{
-                        //    int columnIndex = gcMultiRow1.Rows[0].Cells["発注納期"].CellIndex;
-                        //    gcMultiRow1.CurrentCellPosition = new CellPosition(idx, columnIndex);
-
-                        //}
+                        ParentForm.ChangedData(true);
 
                         break;
 
@@ -551,10 +567,7 @@ namespace MultiRowDesigner
         {
             F_発注? parentform = Application.OpenForms.OfType<F_発注>().FirstOrDefault();
 
-            //switch (gcMultiRow1.CurrentCell)
-            //{
-            //    //テキストボックスEnter時の処理
-            //    case TextBoxCell:
+            
             switch (e.CellName)
             {
                 case "部品コード":
@@ -588,7 +601,9 @@ namespace MultiRowDesigner
                     parentform.toolStripStatusLabel1.Text = "■ダブルクリックするか、[space]キーを押してカレンダーを開くことができます。";
                     break;
                 case "買掛区分":
-                    parentform.toolStripStatusLabel1.Text = "■買掛区分を選択します。　■確定後入力するには入力欄をダブルクリックしてください。";
+                    ComboBoxEditingControl combo = sender as ComboBoxEditingControl;                    
+                    if (combo!=null) combo.DroppedDown = true;
+                    parentform.toolStripStatusLabel1.Text = "■買掛区分を選択します。　■確定後入力するには左の「修正」ボタンをクリックしてください。";
                     break;
                 default:
                     parentform.toolStripStatusLabel1.Text = "各種項目の説明";
@@ -616,12 +631,12 @@ namespace MultiRowDesigner
             //if (IsError(gcMultiRow1.CurrentRow.Cells["発注数量"], true)) e.Cancel = true;
             //if (IsError(gcMultiRow1.CurrentRow.Cells["発注納期"], true)) e.Cancel = true;
             //if (IsError(gcMultiRow1.CurrentRow.Cells["買掛区分"], true)) e.Cancel = true;
-
-            if (IsErrorData())
-            {
-                e.Cancel = true;
-                return;
-            }
+            //var targetRow = e.RowIndex;
+            //if (IsErrorData(targetRow))            
+            //{
+            //    e.Cancel = true;
+            //    return;
+            //}
 
             if (string.IsNullOrEmpty(gcMultiRow1.CurrentRow.Cells["部品コード"].Value?.ToString()) &&
                 !string.IsNullOrEmpty(gcMultiRow1.CurrentRow.Cells["部品コード"].Value?.ToString()) &&
@@ -642,30 +657,128 @@ namespace MultiRowDesigner
 
         }
 
-        private bool IsErrorData()
+        private bool IsErrorData(int rowIndex,bool cancel)
         {
-            GcMultiRow formObject = new GcMultiRow();
-            bool isErrorData = false;
-
-            foreach (Control objControl in formObject.Controls)
+            F_発注 ParentForm = Application.OpenForms.OfType<F_発注>().FirstOrDefault();
+            bool isError = false;
+            try
             {
-                // ここで objControl.ControlType の定義に基づいて判定を行う
-                if ((objControl is TextBoxCell || objControl is ComboBoxCell) && objControl.Visible)
+                // セルのループ
+                foreach (var cell in gcMultiRow1.Rows[rowIndex].Cells)
                 {
-                    bool Cancel = true;
-                    if (IsError(objControl, Cancel))
+                    // セル内のコントロールにアクセス
+                    var cellControl = cell;
+                    var varValue = cell.Value;
+                    string strName = cell.Name;
+                    string strMsg;
+
+                    //money型は少数第4位まであるため、value値が少数第3位以下
+                    if (varValue is decimal decimalValue)
                     {
-                        objControl.Focus();
-                        isErrorData = true;
-                        break;
+                        // 小数第3位以下が00の場合にフォーマット
+                        if (decimalValue * 100 % 1 == 0)
+                        {
+                            varValue = decimalValue.ToString("F2"); // 少数第2位まで表示
+                        }
                     }
+
+                    switch (strName)
+                    {
+                        case "部品コード":
+                            if (!cancel && string.IsNullOrEmpty((string)varValue))
+                            {
+                                MessageBox.Show("部品コードを未入力にすることはできません。\nこの発注部品を削除するときは、明細行を削除してください。",
+                                    "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                                isError = true;
+                            }
+
+                            if (IsAbolished(((string)varValue).PadLeft(8, '0')))
+                            {
+                                if (MessageBox.Show("指定された部品は廃止されています。\nよろしいですか？", "確認", MessageBoxButtons.YesNo,
+                                        MessageBoxIcon.Question) == DialogResult.No)
+                                {
+                                    isError = true;
+                                }
+                            }
+                            break;
+
+                        case "品名":
+                        case "型番":
+                            if (string.IsNullOrEmpty((string)varValue))
+                            {
+                                MessageBox.Show("部品を選択するか、" + strName + " を入力してください。",
+                                    "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                                isError = true;
+                            }
+                            break;
+
+                        case "メーカー名":
+
+                            if (ParentForm.InvManageOn && string.IsNullOrEmpty((string)varValue))
+                            {
+                                MessageBox.Show(strName + " を入力してください。",
+                                    "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                                isError = true;
+                            }
+                            // 追加の制約やチェックがあればここに追加
+                            break;
+
+                        case "発注単価":
+
+                            if (!FunctionClass.IsLimit_N(varValue, 12, 2, strName))
+                            {
+                                isError = true;
+                            }
+                            break;
+
+                        case "必要数量":
+                        case "発注数量":
+
+
+                            if (!FunctionClass.IsLimit_N(varValue, 8, 2, strName))
+                            {
+                                isError = true;
+                            }
+                            break;
+
+                        case "発注納期":
+                            if (varValue == DBNull.Value)
+                            {
+                                MessageBox.Show(strName + " を入力してください。",
+                                    "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                                isError = true;
+                            }
+                            else if (varValue is not DateTime)
+                            {
+                                strMsg = "日付以外は入力できません。" + "\n\n" + strName;
+                                MessageBox.Show(strMsg, "入力", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                isError = true;
+                            }
+                            break;
+
+                        case "買掛区分":
+                            if (varValue == DBNull.Value)
+                            {
+                                MessageBox.Show(strName + " を入力してください。" + "\n\n"
+                                    + "※ 買掛区分は入庫時に確認されるため、わからない場合でも入力してください。",
+                                    "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                                isError = true;
+                            }
+                            break;
+
+
+                    }
+
                 }
+
+                return isError;
             }
-
-            return isErrorData;
+            catch (Exception ex)
+            {
+                Console.WriteLine("エラー: " + ex.Message);
+                return true;
+            }
         }
-
-
 
         private void gcMultiRow1_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
@@ -687,8 +800,6 @@ namespace MultiRowDesigner
                 }
             }
         }
-
-
 
         private void gcMultiRow1_CellValidating(object sender, CellValidatingEventArgs e)
         {
@@ -748,6 +859,15 @@ namespace MultiRowDesigner
                 string strMsg;
                 bool isError = false;
 
+                if (varValue is decimal decimalValue)
+                {
+                    // 小数第3位以下が00の場合にフォーマット
+                    if (decimalValue * 100 % 1 == 0)
+                    {
+                        varValue = decimalValue.ToString("F2"); // 少数第2位まで表示
+                    }
+                }
+
                 switch (strName)
                 {
                     case "部品コード":
@@ -790,6 +910,7 @@ namespace MultiRowDesigner
                         break;
 
                     case "発注単価":
+
                         if (!FunctionClass.IsLimit_N(varValue, 12, 2, strName))
                         {
                             isError = true;
@@ -798,6 +919,8 @@ namespace MultiRowDesigner
 
                     case "必要数量":
                     case "発注数量":
+
+
                         if (!FunctionClass.IsLimit_N(varValue, 8, 2, strName))
                         {
                             isError = true;
@@ -805,13 +928,13 @@ namespace MultiRowDesigner
                         break;
 
                     case "発注納期":
-                        if (string.IsNullOrEmpty((string)varValue))
+                        if (varValue == DBNull.Value)
                         {
                             MessageBox.Show(strName + " を入力してください。",
                                 "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                             isError = true;
                         }
-                        else if (!DateTime.TryParse((string)varValue, out _))
+                        else if (varValue is not DateTime)
                         {
                             strMsg = "日付以外は入力できません。" + "\n\n" + strName;
                             MessageBox.Show(strMsg, "入力", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -820,7 +943,7 @@ namespace MultiRowDesigner
                         break;
 
                     case "買掛区分":
-                        if (string.IsNullOrEmpty((string)varValue))
+                        if (varValue == DBNull.Value)
                         {
                             MessageBox.Show(strName + " を入力してください。" + "\n\n"
                                 + "※ 買掛区分は入庫時に確認されるため、わからない場合でも入力してください。",
@@ -828,7 +951,6 @@ namespace MultiRowDesigner
                             isError = true;
                         }
                         break;
-                        // 他のケースも同様に追加
 
                 }
 
@@ -847,7 +969,6 @@ namespace MultiRowDesigner
             Parentform.ChangedData(true);
             NumberDetails("明細番号");
         }
-
 
         private void gcMultiRow1_CellContentButtonClick(object sender, CellEventArgs e)
         {
@@ -967,8 +1088,6 @@ namespace MultiRowDesigner
             }
         }
 
-
-
         private void gcMultiRow1_KeyPress(object sender, KeyPressEventArgs e)
         {
             F_カレンダー fm = new F_カレンダー();
@@ -991,31 +1110,20 @@ namespace MultiRowDesigner
                         if (form.ShowDialog() == DialogResult.OK && gcMultiRow1.ReadOnly == false)
                         {
                             string selectedCode = form.SelectedCode;
-
+                            gcMultiRow1.EditingControl.Text = selectedCode; // <== 対応策
                             gcMultiRow1.CurrentCell.Value = selectedCode;
-                            //次のセルに変更しないと値が反映しないため
-                            int idx = gcMultiRow1.CurrentRow.Index;
+                            UpdatedControl(gcMultiRow1.CurrentCell);
 
-                            // メーカー名がない場合（履歴入力した場合）はメーカー名にフォーカスする
-                            if (string.IsNullOrEmpty(gcMultiRow1.Rows[idx].Cells["メーカー名"].Value?.ToString()))
-                            {
-                                int columnIndex = gcMultiRow1.Rows[0].Cells["メーカー名"].CellIndex;
-                                gcMultiRow1.CurrentCellPosition = new CellPosition(idx, columnIndex);
+                            gcMultiRow1.CurrentCellPosition =
+                                new CellPosition(gcMultiRow1.CurrentRow.Index, gcMultiRow1.CurrentRow.Cells["発注納期"].CellIndex);
 
-                            }
-                            else
-                            {
-                                int columnIndex = gcMultiRow1.Rows[0].Cells["発注納期"].CellIndex;
-                                gcMultiRow1.CurrentCellPosition = new CellPosition(idx, columnIndex);
-
-                            }
                         }
                         break;
 
                     case "発注納期":
                         e.Handled = true; //スペースの本来の挙動（空白入力）を制御する
 
-                        if (fm.ShowDialog() == DialogResult.OK && gcMultiRow1.ReadOnly==false)
+                        if (fm.ShowDialog() == DialogResult.OK && gcMultiRow1.ReadOnly == false)
                         {
                             // 日付選択フォームから選択した日付を取得
                             string selectedDate = fm.SelectedDate;
@@ -1117,7 +1225,7 @@ namespace MultiRowDesigner
                         }
                         else
                         {
-                             
+
                             //form.ShowDialog();
                             if (parentform.buttonCnt == 0)
                             {
@@ -1176,15 +1284,22 @@ namespace MultiRowDesigner
                     }
                     break;
                 case "回答納期":
-
-                    if (fm.ShowDialog() == DialogResult.OK && gcMultiRow1.ReadOnly == false)
+                    if (parentform.IsApproved)
                     {
-                        // 日付選択フォームから選択した日付を取得
-                        string selectedDate = fm.SelectedDate;
-                        gcMultiRow1.CurrentCell.Value = selectedDate;
-                        gcMultiRow1.EditingControl.Text = selectedDate; // <== 対応策
-                        gcMultiRow1.CurrentCellPosition =
-                                new CellPosition(gcMultiRow1.CurrentRow.Index, gcMultiRow1.CurrentRow.Cells["買掛区分"].CellIndex);
+                        if (fm.ShowDialog() == DialogResult.OK && gcMultiRow1.ReadOnly == false)
+                        {
+                            // 日付選択フォームから選択した日付を取得
+                            string selectedDate = fm.SelectedDate;
+                            gcMultiRow1.CurrentCell.Value = selectedDate;
+                            gcMultiRow1.EditingControl.Text = selectedDate; // <== 対応策
+                            gcMultiRow1.CurrentCellPosition =
+                                    new CellPosition(gcMultiRow1.CurrentRow.Index, gcMultiRow1.CurrentRow.Cells["買掛区分"].CellIndex);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("この発注データは承認されていません。\n承認前の回答納期の設定はできません。",
+                                            parentform.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     }
                     break;
                 default:
@@ -1251,6 +1366,12 @@ namespace MultiRowDesigner
             }
         }
 
+        private void gcMultiRow1_RowValidating(object sender, CellCancelEventArgs e)
+        {
+            var targetRow = e.RowIndex;
+            if (gcMultiRow1.Rows[e.RowIndex].IsNewRow) return;
 
+            if (IsErrorData(targetRow,false)) e.Cancel = true;
+        }
     }
 }

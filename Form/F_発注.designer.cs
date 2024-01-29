@@ -1201,7 +1201,7 @@ namespace u_net
             statusStrip1.Location = new Point(0, 704);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Padding = new Padding(1, 0, 19, 0);
-            statusStrip1.Size = new Size(1152, 22);
+            statusStrip1.Size = new Size(1198, 22);
             statusStrip1.TabIndex = 10117;
             statusStrip1.Text = "statusStrip1";
             // 
@@ -1234,13 +1234,13 @@ namespace u_net
             // 
             // 発注明細1
             // 
-            発注明細1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             発注明細1.AutoScroll = true;
+            発注明細1.Dock = DockStyle.Bottom;
             発注明細1.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             発注明細1.Location = new Point(0, 351);
             発注明細1.Margin = new Padding(4, 5, 4, 5);
             発注明細1.Name = "発注明細1";
-            発注明細1.Size = new Size(1152, 353);
+            発注明細1.Size = new Size(1198, 353);
             発注明細1.TabIndex = 10119;
             発注明細1.Resize += Form_Resize;
             // 
@@ -1251,7 +1251,7 @@ namespace u_net
             // F_発注
             // 
             BackColor = SystemColors.Control;
-            ClientSize = new Size(1152, 726);
+            ClientSize = new Size(1198, 726);
             Controls.Add(発注明細1);
             Controls.Add(入庫状況);
             Controls.Add(statusStrip1);

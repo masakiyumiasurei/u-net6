@@ -42,18 +42,20 @@ namespace MultiRowDesigner
             gcMultiRow1.Dock = DockStyle.Fill;
             gcMultiRow1.EditMode = GrapeCity.Win.MultiRow.EditMode.EditOnEnter;
             gcMultiRow1.Location = new Point(0, 0);
-            gcMultiRow1.Margin = new Padding(4);
+            gcMultiRow1.Margin = new Padding(5);
             gcMultiRow1.Name = "gcMultiRow1";
-            gcMultiRow1.Size = new Size(1325, 504);
+            gcMultiRow1.Size = new Size(1537, 672);
             gcMultiRow1.TabIndex = 0;
             gcMultiRow1.Template = 発注明細テンプレート1;
-            gcMultiRow1.TemplateScaleSize = new SizeF(1.16666675F, 1.25F);
+            gcMultiRow1.TemplateScaleSize = new SizeF(1.33333349F, 1.66666675F);
             gcMultiRow1.Text = "gcMultiRow1";
             gcMultiRow1.RowsAdding += gcMultiRow1_RowsAdding;
             gcMultiRow1.RowsRemoved += gcMultiRow1_RowsRemoved;
             gcMultiRow1.CellValidating += gcMultiRow1_CellValidating;
             gcMultiRow1.CellValidated += gcMultiRow1_CellValidated;
+            gcMultiRow1.CellFormatting += gcMultiRow1_CellFormatting;
             gcMultiRow1.CellEnter += gcMultiRow1_CellEnter;
+            gcMultiRow1.RowValidating += gcMultiRow1_RowValidating;
             gcMultiRow1.DefaultValuesNeeded += gcMultiRow1_DefaultValuesNeeded;
             gcMultiRow1.EditingControlShowing += gcMultiRow1_EditingControlShowing;
             gcMultiRow1.CellDoubleClick += gcMultiRow1_CellDoubleClick;
@@ -75,13 +77,13 @@ namespace MultiRowDesigner
             // 
             // 発注明細
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoScroll = true;
             Controls.Add(gcMultiRow1);
-            Margin = new Padding(4);
+            Margin = new Padding(5);
             Name = "発注明細";
-            Size = new Size(1325, 504);
+            Size = new Size(1537, 672);
             Load += 発注明細_Load;
             ((System.ComponentModel.ISupportInitialize)gcMultiRow1).EndInit();
             ResumeLayout(false);

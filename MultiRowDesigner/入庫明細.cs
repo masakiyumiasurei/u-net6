@@ -236,8 +236,17 @@ namespace MultiRowDesigner
                 // エラーチェック
                 bool isError = false;
 
-
                 object varValue = controlObject.Value;
+
+                if (varValue is decimal decimalValue)
+                {
+                    // 小数第3位以下が00の場合にフォーマット
+                    if (decimalValue * 100 % 1 == 0)
+                    {
+                        varValue = decimalValue.ToString("F2"); // 少数第2位まで表示
+                    }
+                }
+
                 switch (controlObject.Name)
                 {
                     case "部品コード":

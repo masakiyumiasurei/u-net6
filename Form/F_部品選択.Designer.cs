@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             表示件数 = new TextBox();
             コマンドキャンセル = new Button();
             label1 = new Label();
@@ -76,7 +76,7 @@
             コマンドキャンセル.Location = new Point(512, 420);
             コマンドキャンセル.Name = "コマンドキャンセル";
             コマンドキャンセル.Size = new Size(102, 24);
-            コマンドキャンセル.TabIndex = 1;
+            コマンドキャンセル.TabIndex = 3;
             コマンドキャンセル.Text = "キャンセル";
             コマンドキャンセル.Click += キャンセルボタン_Click;
             // 
@@ -96,24 +96,24 @@
             コマンド確定.Location = new Point(392, 420);
             コマンド確定.Name = "コマンド確定";
             コマンド確定.Size = new Size(102, 24);
-            コマンド確定.TabIndex = 3;
+            コマンド確定.TabIndex = 2;
             コマンド確定.Text = "確 定";
             コマンド確定.Click += コマンド確定_Click;
             // 
             // statusStrip1
             // 
             statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1 });
-            statusStrip1.Location = new Point(0, 453);
+            statusStrip1.Location = new Point(0, 450);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Padding = new Padding(1, 0, 19, 0);
-            statusStrip1.Size = new Size(635, 22);
+            statusStrip1.Size = new Size(635, 25);
             statusStrip1.TabIndex = 111;
             statusStrip1.Text = "statusStrip1";
             // 
             // toolStripStatusLabel1
             // 
             toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            toolStripStatusLabel1.Size = new Size(89, 17);
+            toolStripStatusLabel1.Size = new Size(111, 20);
             toolStripStatusLabel1.Text = "各種項目の説明";
             // 
             // 部品指定方法
@@ -133,10 +133,10 @@
             ページ分類抽出.Controls.Add(対象部品名);
             ページ分類抽出.Controls.Add(分類記号);
             ページ分類抽出.Controls.Add(分類記号_ラベル);
-            ページ分類抽出.Location = new Point(4, 24);
+            ページ分類抽出.Location = new Point(4, 29);
             ページ分類抽出.Name = "ページ分類抽出";
             ページ分類抽出.Padding = new Padding(3);
-            ページ分類抽出.Size = new Size(610, 42);
+            ページ分類抽出.Size = new Size(610, 37);
             ページ分類抽出.TabIndex = 2;
             ページ分類抽出.Text = "分類抽出";
             ページ分類抽出.UseVisualStyleBackColor = true;
@@ -165,7 +165,7 @@
             分類記号.Location = new Point(104, 11);
             分類記号.Name = "分類記号";
             分類記号.Size = new Size(41, 21);
-            分類記号.TabIndex = 2;
+            分類記号.TabIndex = 1;
             分類記号.DrawItem += 分類記号_DrawItem;
             分類記号.SelectedIndexChanged += 分類記号_SelectedIndexChanged;
             分類記号.TextChanged += 分類記号_TextChanged;
@@ -185,10 +185,10 @@
             ページ型番抽出.Controls.Add(検索ボタン);
             ページ型番抽出.Controls.Add(型番文字列);
             ページ型番抽出.Controls.Add(型番文字列_ラベル);
-            ページ型番抽出.Location = new Point(4, 24);
+            ページ型番抽出.Location = new Point(4, 29);
             ページ型番抽出.Name = "ページ型番抽出";
             ページ型番抽出.Padding = new Padding(3);
-            ページ型番抽出.Size = new Size(610, 42);
+            ページ型番抽出.Size = new Size(610, 37);
             ページ型番抽出.TabIndex = 1;
             ページ型番抽出.Text = "型番抽出";
             ページ型番抽出.UseVisualStyleBackColor = true;
@@ -229,10 +229,10 @@
             ページ追加条件.Controls.Add(注釈_ラベル);
             ページ追加条件.Controls.Add(RoHS対応);
             ページ追加条件.Controls.Add(RoHS対応_ラベル);
-            ページ追加条件.Location = new Point(4, 24);
+            ページ追加条件.Location = new Point(4, 29);
             ページ追加条件.Name = "ページ追加条件";
             ページ追加条件.Padding = new Padding(3);
-            ページ追加条件.Size = new Size(610, 42);
+            ページ追加条件.Size = new Size(610, 37);
             ページ追加条件.TabIndex = 0;
             ページ追加条件.Text = "追加条件";
             ページ追加条件.UseVisualStyleBackColor = true;
@@ -274,9 +274,9 @@
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Location = new Point(17, 85);
             dataGridView1.Name = "dataGridView1";
-            dataGridViewCellStyle2.Format = "N2";
-            dataGridViewCellStyle2.NullValue = null;
-            dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Format = "N2";
+            dataGridViewCellStyle1.NullValue = null;
+            dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle1;
             dataGridView1.RowTemplate.Height = 25;
             dataGridView1.Size = new Size(610, 293);
             dataGridView1.TabIndex = 113;
@@ -308,6 +308,7 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "部品選択";
             Load += Form_Load;
+            Shown += F_部品選択_Shown;
             KeyDown += F_部品選択_KeyDown;
             statusStrip1.ResumeLayout(false);
             statusStrip1.PerformLayout();

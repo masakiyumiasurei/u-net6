@@ -171,7 +171,7 @@ namespace u_net
                 MessageBox.Show($"OKボタン_Click - {ex.GetType().Name} : {ex.Message}", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
+        
         private void キャンセルボタン_Click(object sender, EventArgs e)
         {
             //If Forms.Count >= 4 Then

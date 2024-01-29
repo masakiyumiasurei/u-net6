@@ -52,6 +52,7 @@ namespace u_net
         public int intWindowHeight = 0;
         public int intWindowWidth = 0;
         public int buttonCnt = 0; //何故か明細のボタンクリックで2回買掛区分編集フォームが開くため
+        bool setCombo = true;
         public F_発注()
         {
             this.Text = "発注";       // ウィンドウタイトルを設定
@@ -220,7 +221,8 @@ namespace u_net
             //twipperdot = myapi.GetTwipPerDot(intpixel);
 
             OriginalClass ofn = new OriginalClass();
-            ofn.SetComboBox(発注コード, "SELECT 発注コード as Display ,発注コード as Value FROM V発注_最新版 ORDER BY 発注コード DESC");
+
+            SetEditions(発注コード.Text);
 
             string sql = "SELECT 氏名 as Display ,社員コード as Value FROM M社員 WHERE (退社 IS NULL) AND (削除日時 IS NULL) ORDER BY ふりがな";
             ofn.SetComboBox(発注者コード, sql);
@@ -275,6 +277,7 @@ namespace u_net
             }
             finally
             {
+                setCombo = false;
                 this.ResumeLayout();
                 fn.WaitForm.Close();
                 this.Focus();
@@ -419,7 +422,7 @@ namespace u_net
                     this.コマンド読込.Enabled = false;
                     //発注版数に追加したレコードを入れ直す
                     OriginalClass ofn = new OriginalClass();
-                    ofn.SetComboBox(発注版数, "SELECT 発注コード as Display ,発注コード as Value FROM V発注_最新版 ORDER BY 発注コード DESC");
+                    ofn.SetComboBox(発注コード, "SELECT 発注コード as Display ,発注コード as Value FROM V発注_最新版 ORDER BY 発注コード DESC");
                 }
                 this.コマンド承認.Enabled = this.IsDecided;
                 this.コマンド確定.Enabled = true;
@@ -977,6 +980,12 @@ namespace u_net
                     // ログオンユーザーが承認可能ユーザーなら認証済みユーザーとする
                     strHeadCode = USER_CODE_TECH;
                 }
+
+                if(LoginUserCode == strHeadCode)
+                {
+                    //ログオンユーザーが承認可能ユーザーなら認証済みユーザーとする
+                    strCertificateCode = LoginUserCode;
+                }
                 else
                 {
                     //ログオンユーザーが承認可能ユーザーでないなら、営業部承認者で認証を要求する
@@ -1017,6 +1026,7 @@ namespace u_net
                 if (RegTrans(this.CurrentCode, this.CurrentEdition, cn))
                 {
                     blnNewParts = false;
+                    チェック();
                 }
                 else
                 {
@@ -2006,7 +2016,6 @@ namespace u_net
         {
             try
             {
-
                 switch (controlName)
                 {
                     case "発注コード":
@@ -2056,6 +2065,11 @@ namespace u_net
                         コマンド購買.Enabled = IsLotOrder;
                         コマンド承認.Enabled = IsDecided && !IsApproved && !IsDeleted;
                         コマンド確定.Enabled = !IsApproved && !IsDeleted;
+
+                       
+
+
+
 
                         break;
 
@@ -2239,7 +2253,7 @@ namespace u_net
 
         private void 発注コード_Validated(object sender, EventArgs e)
         {
-            UpdatedControl("発注コード");
+            
         }
 
         private void 発注コード_Validating(object sender, System.ComponentModel.CancelEventArgs e)
@@ -2254,7 +2268,8 @@ namespace u_net
 
         private void 発注コード_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //FunctionClass.LimitText(sender as Control, 8);
+            if (setCombo) return;
+            UpdatedControl("発注コード");
         }
 
         private void 発注コード_KeyDown(object sender, KeyEventArgs e)
@@ -2451,6 +2466,7 @@ namespace u_net
             switch (e.KeyChar)
             {
                 case (char)Keys.Space:
+                    e.Handled = true;
                     仕入先選択ボタン_Click(sender, e);
                     break;
             }
