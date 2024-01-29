@@ -65,7 +65,7 @@ namespace u_net
         SqlDataAdapter adapter = new SqlDataAdapter();
 
 
-        
+
 
         private void Form_Load(object sender, EventArgs e)
         {
@@ -80,11 +80,11 @@ namespace u_net
 
         private void Form_Unload(object sender, FormClosingEventArgs e)
         {
-           
+
 
         }
 
-      
+
 
         private void 閉じるボタン_Click(object sender, EventArgs e)
         {
@@ -178,7 +178,7 @@ namespace u_net
 
                     paoRep.Write("承認日時", V部品表[0]["承認日時"].ToString() != "" ? V部品表[0]["承認日時"].ToString() : " ");
 
-                    if (!string.IsNullOrEmpty(V部品表[0]["無効日時"].ToString())) 
+                    if (!string.IsNullOrEmpty(V部品表[0]["無効日時"].ToString()))
                     {
                         paoRep.Write("コメント", "（削除済み）");
                     }
@@ -245,12 +245,40 @@ namespace u_net
 
 
             paoRep.Output();
-            
+
         }
 
         private void 全印刷ボタン_Enter(object sender, EventArgs e)
         {
             toolStripStatusLabel1.Text = "■ユニット表および部品表を印刷します。";
+        }
+
+        private void コマンド出力_Click(object sender, EventArgs e)
+        {
+            Connect();
+
+            F_製品? f_製品 = Application.OpenForms.OfType<F_製品>().FirstOrDefault();
+
+            string sqlQuery = "SELECT * FROM Vユニット表 where 製品コード='" + f_製品.CurrentCode + "' and 製品版数=" + f_製品.CurrentEdition + " ORDER BY 明細番号";
+
+            // 新しいDataGridViewを作成
+            DataGridView dataGridView1 = new DataGridView();
+            dataGridView1.Visible = false;
+            this.Controls.Add(dataGridView1);
+
+            using (SqlDataAdapter adapter = new SqlDataAdapter(sqlQuery, cn))
+            {
+                dataGridView1.SuspendLayout();
+                DataTable dataTable = new DataTable();
+                adapter.Fill(dataTable);
+                dataGridView1.DataSource = dataTable;
+                dataGridView1.ResumeLayout();
+            }
+
+
+            F_出力 targetform = new F_出力();
+            targetform.DataGridView = dataGridView1;
+            targetform.ShowDialog();
         }
     }
 }
