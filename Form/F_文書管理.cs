@@ -41,6 +41,15 @@ namespace u_net
             }
         }
 
+        public string CurrentEdition
+        {
+            get
+            {
+                return string.IsNullOrEmpty(dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[1].Value?.ToString()) ? ""
+                    : dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[1].Value?.ToString();
+            }
+        }
+
         int intWindowHeight = 0;
         int intWindowWidth = 0;
 
@@ -59,18 +68,7 @@ namespace u_net
             cn.Open();
         }
 
-        public override void SearchCode(string codeString)
-        {
-            strSearchCode = codeString;
-            //str仕入先コード開始 = strSearchCode;
-            //str仕入先コード終了 = strSearchCode;
-            if (DoUpdate() == -1)
-            {
-                MessageBox.Show("エラーが発生しました。");
-            }
-
-        }
-
+  
         private void InitializeFilter()
         {
             str文書コード開始 = "";
@@ -90,11 +88,11 @@ namespace u_net
         {
             try
             {
-                dataGridView1.Height = dataGridView1.Height + (this.Height - intWindowHeight);
-                intWindowHeight = this.Height;  // 高さ保存
+                //dataGridView1.Height = dataGridView1.Height + (this.Height - intWindowHeight);
+                //intWindowHeight = this.Height;  // 高さ保存
 
-                dataGridView1.Width = dataGridView1.Width + (this.Width - intWindowWidth);
-                intWindowWidth = this.Width;    // 幅保存
+                //dataGridView1.Width = dataGridView1.Width + (this.Width - intWindowWidth);
+                //intWindowWidth = this.Width;    // 幅保存
 
             }
             catch (Exception ex)
@@ -132,7 +130,11 @@ namespace u_net
             dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font("MS ゴシック", 9);
             dataGridView1.DefaultCellStyle.Font = new Font("MS ゴシック", 10);
             dataGridView1.DefaultCellStyle.ForeColor = Color.Black;
+
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridView1.AllowUserToAddRows = false;
+            dataGridView1.AllowUserToDeleteRows = false;
+            dataGridView1.ReadOnly = true;
 
 
             myapi.GetFullScreen(out xSize, out ySize);
@@ -185,64 +187,67 @@ namespace u_net
             {
                 string filter = string.Empty;
 
-                //if (dtm買掛日開始 != DateTime.MinValue && dtm買掛日終了 != DateTime.MinValue)
-                //{
-                //    filter += string.Format(" and '{0}' <= 買掛日 AND 買掛日 <= '{1}' ", dtm買掛日開始, dtm買掛日終了);
-                //}
+                if (!string.IsNullOrEmpty(str文書名))
+                {
+                    filter += string.Format(" and 文書名 LIKE '%{0}%' ", str文書名);
+                }
 
 
-                //if (!string.IsNullOrEmpty(str支払年月))
-                //{
-                //    filter += string.Format(" and 支払年月= '{0}'  ", str支払年月);
-                //}
+                if (!string.IsNullOrEmpty(str件名))
+                {
+                    filter += string.Format(" and 件名 LIKE '%{0}%' ", str件名);
+                }
 
-                //if (!string.IsNullOrEmpty(str支払先名))
-                //{
-                //    filter += string.Format(" and 支払先名 LIKE '%{0}%' ", str支払先名);
-                //}
+     
 
-                //switch (lng振込指定)
-                //{
-                //    case 1:
-                //        filter += " and 振込 <> '' ";
-                //        break;
-                //    case 2:
-                //        filter += " and 振込 = '' ";
-                //        break;
-                //}
-
-                //switch (lng確定指定)
-                //{
-                //    case 1:
-                //        filter += " and 確定 IS NULL ";
-                //        break;
-                //    case 2:
-                //        filter += " and 確定 IS NOT NULL ";
-                //        break;
-                //}
-
-                //switch (lng承認指定)
-                //{
-                //    case 1:
-                //        filter += " and 承認 IS NULL ";
-                //        break;
-                //    case 2:
-                //        filter += " and 承認 IS NOT NULL ";
-                //        break;
-                //}
-
-                //switch (lng削除指定)
-                //{
-                //    case 1:
-                //        filter += " and 削除 IS NULL ";
-                //        break;
-                //    case 2:
-                //        filter += " and IS NOT NULL ";
-                //        break;
-                //}
+                if (!string.IsNullOrEmpty(str発信者名))
+                {
+                    filter += string.Format(" and 発信者名 LIKE '%{0}%' ", str発信者名);
+                }
 
 
-                string query = "SELECT * FROM V支払管理 WHERE 1=1 " + filter + " ORDER BY 支払コード DESC ";
+
+                if (dtm確定日開始 != DateTime.MinValue && dtm確定日終了 != DateTime.MinValue)
+                {
+                    filter += string.Format(" and 確定日 BETWEEN '{0}' AND '{1}' ", dtm確定日開始, dtm確定日終了);
+                }
+
+
+
+
+
+                switch (lng確定指定)
+                {
+                    case 1:
+                        filter += " and 確定 IS NULL ";
+                        break;
+                    case 2:
+                        filter += " and 確定 IS NOT NULL ";
+                        break;
+                }
+
+                switch (lng完了承認指定)
+                {
+                    case 1:
+                        filter += " and 完了承認 IS NULL ";
+                        break;
+                    case 2:
+                        filter += " and 完了承認 IS NOT NULL ";
+                        break;
+                }
+
+                switch (lng削除指定)
+                {
+                    case 1:
+                        filter += " and 削除 IS NULL ";
+                        break;
+                    case 2:
+                        filter += " and 削除 IS NOT NULL ";
+                        break;
+                }
+
+
+                string query = "SELECT * FROM V文書管理 WHERE 1=1 " + filter + " ORDER BY 文書コード DESC ";
 
                 Connect();
                 DataGridUtils.SetDataGridView(cn, query, this.dataGridView1);
@@ -260,23 +265,31 @@ namespace u_net
 
                 //// DataGridViewの設定
                 dataGridView1.Columns[0].DefaultCellStyle.BackColor = Color.FromArgb(255, 255, 200); // 薄い黄色
+                dataGridView1.Columns[1].DefaultCellStyle.BackColor = Color.FromArgb(255, 255, 200); // 薄い黄色
 
                 dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
                 dataGridView1.ColumnHeadersHeight = 25;
 
                 //0列目はaccessでは行ヘッダのため、ずらす
 
-                dataGridView1.Columns[0].Width = 1500 / twipperdot; //1150
-                dataGridView1.Columns[1].Width = 1000 / twipperdot;
-                dataGridView1.Columns[2].Width = 1000 / twipperdot;
-                dataGridView1.Columns[3].Width = 350 / twipperdot;
+                dataGridView1.Columns[0].Width = 1300 / twipperdot; //1150
+                dataGridView1.Columns[1].Width = 350 / twipperdot;
+                dataGridView1.Columns[2].Width = 2200 / twipperdot;
+                dataGridView1.Columns[3].Width = 4100 / twipperdot;
                 dataGridView1.Columns[4].Width = 1100 / twipperdot;
-                dataGridView1.Columns[5].Width = 4800 / twipperdot;
-                dataGridView1.Columns[6].Width = 1400 / twipperdot;
-                dataGridView1.Columns[7].Width = 2300 / twipperdot;//1300
-                dataGridView1.Columns[8].Width = 350 / twipperdot;
-                dataGridView1.Columns[9].Width = 350 / twipperdot;
-                dataGridView1.Columns[9].Width = 350 / twipperdot;
+                dataGridView1.Columns[5].Width = 1200 / twipperdot;
+                dataGridView1.Columns[6].Width = 1200 / twipperdot;
+                dataGridView1.Columns[7].Width = 300 / twipperdot;//1300
+                dataGridView1.Columns[8].Width = 300 / twipperdot;
+                dataGridView1.Columns[9].Width = 300 / twipperdot;
+                dataGridView1.Columns[10].Width = 300 / twipperdot;
+                dataGridView1.Columns[11].Width = 300 / twipperdot;
+                dataGridView1.Columns[12].Width = 300 / twipperdot;
+                dataGridView1.Columns[13].Width = 300 / twipperdot;
+                dataGridView1.Columns[14].Width = 300 / twipperdot;
+                dataGridView1.Columns[15].Width = 300 / twipperdot;
+                dataGridView1.Columns[16].Width = 300 / twipperdot;
+   
 
                 return dataGridView1.RowCount;
 
@@ -298,9 +311,8 @@ namespace u_net
 
         private void コマンド抽出_Click(object sender, EventArgs e)
         {
-            //dataGridView1.Focus();
-            //F_支払管理_抽出 form = new F_支払管理_抽出();
-            //form.ShowDialog();
+            F_文書管理_抽出 form = new F_文書管理_抽出();
+            form.ShowDialog();
         }
 
         private void コマンド初期化_Click(object sender, EventArgs e)
@@ -312,14 +324,13 @@ namespace u_net
 
         private void コマンド更新_Click(object sender, EventArgs e)
         {
-            DoUpdate();
-            Cleargrid(dataGridView1);
+            MessageBox.Show("現在開発中です。", "更新コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
         }
 
         private void コマンド検索_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("現在開発中です。\n コードで検索するときに使用します。", "検索コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("現在開発中です。", "検索コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void F_文書管理_KeyDown(object sender, KeyEventArgs e)
@@ -366,7 +377,7 @@ namespace u_net
                                 // DataGridView1で選択された行が存在する場合
 
                                 F_文書 targetform = new F_文書();
-                                targetform.args = CurrentCode;
+                                targetform.args = CurrentCode + "," + CurrentEdition;
                                 targetform.ShowDialog();
                             }
                             else
@@ -405,10 +416,9 @@ namespace u_net
 
             if (e.RowIndex >= 0) // ヘッダー行でない場合
             {
-                string selectedData = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString(); // 1列目のデータを取得
 
-                F_支払 targetform = new F_支払();
-                targetform.args = selectedData;
+                F_文書 targetform = new F_文書();
+                targetform.args = CurrentCode + "," + CurrentEdition;
                 targetform.ShowDialog();
             }
         }
@@ -456,17 +466,66 @@ namespace u_net
 
         private void コマンド文書参照_Click(object sender, EventArgs e)
         {
+            if (dataGridView1.SelectedRows.Count > 0)
+            {
+                // DataGridView1で選択された行が存在する場合
 
+                F_文書 targetform = new F_文書();
+                targetform.args = CurrentCode + "," + CurrentEdition;
+                targetform.ShowDialog();
+            }
+            else
+            {
+                // ユーザーが行を選択していない場合のエラーハンドリング
+                MessageBox.Show("行が選択されていません。");
+            }
         }
 
         private void コマンドリンク_Click(object sender, EventArgs e)
         {
+            try
+            {
 
+                Connect();
+
+                // 本データのコードを取得
+                string strDocumentCode = CurrentCode;
+
+                // 本データがグループに登録済みかどうかを判断する
+                int result = FunctionClass.DetectGroupMember(cn, strDocumentCode);
+
+                switch (result)
+                {
+                    case 0:
+                        // グループに登録されていない場合
+                        F_グループ targetform = new F_グループ();
+
+                        targetform.args = strDocumentCode;
+                        targetform.ShowDialog();
+                        break;
+                    case 1:
+                        // グループに登録されている場合
+                        F_リンク targetform2 = new F_リンク();
+
+                        targetform2.args = strDocumentCode;
+                        targetform2.ShowDialog();
+                        break;
+                    case -1:
+                        // エラーの場合
+                        Console.WriteLine("エラーのため実行できません。");
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("エラーが発生しました。" + Environment.NewLine + Environment.NewLine +
+                                  ex.HResult + " : " + ex.Message);
+            }
         }
 
         private void コマンド印刷_Click(object sender, EventArgs e)
         {
-
+            MessageBox.Show("現在開発中です。", "印刷コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void コマンド保守_Click(object sender, EventArgs e)
@@ -476,7 +535,7 @@ namespace u_net
 
         private void コマンド入出力_Click(object sender, EventArgs e)
         {
-
+            MessageBox.Show("このコマンドは使用できません。", "入出力コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }

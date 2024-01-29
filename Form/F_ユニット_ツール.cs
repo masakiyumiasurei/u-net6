@@ -125,5 +125,38 @@ namespace u_net
                 MessageBox.Show("エラーのため取得できませんでした。", "ツールコマンド", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void コマンド出力_Click(object sender, EventArgs e)
+        {
+            Connect();
+
+            F_ユニット? f_ユニット = Application.OpenForms.OfType<F_ユニット>().FirstOrDefault();
+
+            string sqlQuery = "SELECT * FROM V部品表 where ユニットコード='" + f_ユニット.CurrentCode + "' and ユニット版数=" + f_ユニット.CurrentEdition + " ORDER BY 明細番号";
+
+            // 新しいDataGridViewを作成
+            DataGridView dataGridView1 = new DataGridView();
+            dataGridView1.Visible = false;
+            this.Controls.Add(dataGridView1);
+
+            using (SqlDataAdapter adapter = new SqlDataAdapter(sqlQuery, cn))
+            {
+                dataGridView1.SuspendLayout();
+                DataTable dataTable = new DataTable();
+                adapter.Fill(dataTable);
+                dataGridView1.DataSource = dataTable;
+                dataGridView1.ResumeLayout();
+            }
+
+
+            F_出力 targetform = new F_出力();
+            targetform.DataGridView = dataGridView1;
+            targetform.ShowDialog();
+        }
     }
 }

@@ -64,6 +64,7 @@ namespace u_net
             使用製品検索ボタン = new Button();
             groupBox1 = new GroupBox();
             材料費の強制取得ボタン = new Button();
+            コマンド出力 = new Button();
             statusStrip1.SuspendLayout();
             groupBox1.SuspendLayout();
             SuspendLayout();
@@ -256,6 +257,7 @@ namespace u_net
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(コマンド出力);
             groupBox1.Controls.Add(材料費の強制取得ボタン);
             groupBox1.Controls.Add(部品一括変更ボタン);
             groupBox1.Controls.Add(使用製品検索ボタン);
@@ -264,6 +266,7 @@ namespace u_net
             groupBox1.Size = new Size(361, 153);
             groupBox1.TabIndex = 10198;
             groupBox1.TabStop = false;
+            groupBox1.Enter += groupBox1_Enter;
             // 
             // 材料費の強制取得ボタン
             // 
@@ -277,6 +280,19 @@ namespace u_net
             材料費の強制取得ボタン.Text = "材料費の強制取得";
             材料費の強制取得ボタン.UseVisualStyleBackColor = true;
             材料費の強制取得ボタン.Click += 材料費の強制取得ボタン_Click;
+            // 
+            // コマンド出力
+            // 
+            コマンド出力.Font = new Font("BIZ UDゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            コマンド出力.Location = new Point(184, 70);
+            コマンド出力.Margin = new Padding(4);
+            コマンド出力.Name = "コマンド出力";
+            コマンド出力.RightToLeft = RightToLeft.Yes;
+            コマンド出力.Size = new Size(170, 44);
+            コマンド出力.TabIndex = 4;
+            コマンド出力.Text = "Excel出力";
+            コマンド出力.UseVisualStyleBackColor = true;
+            コマンド出力.Click += コマンド出力_Click;
             // 
             // F_ユニット_ツール
             // 
@@ -338,6 +354,7 @@ namespace u_net
         private Button 使用製品検索ボタン;
         private GroupBox groupBox1;
         private Button 材料費の強制取得ボタン;
+        private Button コマンド出力;
     }
 }
 
