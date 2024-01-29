@@ -94,15 +94,16 @@ namespace u_net
             登録者名 = new TextBox();
             確定日時 = new TextBox();
             確定者名 = new TextBox();
-            状況 = new ListBox();
             業務日報明細実績1 = new MultiRowDesigner.業務日報明細実績();
             業務日報明細予定1 = new MultiRowDesigner.業務日報明細予定();
             label1 = new Label();
             本日の一言 = new TextBox();
             toolTip1 = new ToolTip(components);
             ログインユーザーボタン = new Button();
+            状況 = new DataGridView();
             panel1.SuspendLayout();
             statusStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)状況).BeginInit();
             SuspendLayout();
             // 
             // コマンド終了
@@ -470,6 +471,7 @@ namespace u_net
             日付.Name = "日付";
             日付.Size = new Size(136, 21);
             日付.TabIndex = 2;
+            日付.SelectedIndexChanged += 日付_SelectedIndexChanged;
             日付.Enter += 日付_Enter;
             日付.Leave += 日付_Leave;
             // 
@@ -636,6 +638,7 @@ namespace u_net
             社員コード.Name = "社員コード";
             社員コード.Size = new Size(136, 21);
             社員コード.TabIndex = 4;
+            社員コード.SelectedIndexChanged += 社員コード_SelectedIndexChanged;
             社員コード.Enter += 社員コード_Enter;
             社員コード.Leave += 社員コード_Leave;
             // 
@@ -754,17 +757,6 @@ namespace u_net
             確定者名.TabStop = false;
             確定者名.Visible = false;
             // 
-            // 状況
-            // 
-            状況.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            状況.FormattingEnabled = true;
-            状況.Location = new Point(331, 50);
-            状況.Name = "状況";
-            状況.Size = new Size(534, 147);
-            状況.TabIndex = 13;
-            状況.Enter += 状況_Enter;
-            状況.Leave += 状況_Leave;
-            // 
             // 業務日報明細実績1
             // 
             業務日報明細実績1.Location = new Point(9, 229);
@@ -805,7 +797,7 @@ namespace u_net
             本日の一言.Margin = new Padding(3, 2, 3, 2);
             本日の一言.Multiline = true;
             本日の一言.Name = "本日の一言";
-            本日の一言.Size = new Size(743, 34);
+            本日の一言.Size = new Size(743, 60);
             本日の一言.TabIndex = 17;
             // 
             // ログインユーザーボタン
@@ -820,17 +812,33 @@ namespace u_net
             ログインユーザーボタン.Text = "me";
             toolTip1.SetToolTip(ログインユーザーボタン, "現在のユーザーに設定");
             ログインユーザーボタン.UseVisualStyleBackColor = true;
+            ログインユーザーボタン.Click += ログインユーザーボタン_Click;
+            // 
+            // 状況
+            // 
+            状況.AllowUserToAddRows = false;
+            状況.AllowUserToDeleteRows = false;
+            状況.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            状況.Location = new Point(308, 59);
+            状況.Name = "状況";
+            状況.ReadOnly = true;
+            状況.RowTemplate.Height = 25;
+            状況.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            状況.Size = new Size(557, 138);
+            状況.TabIndex = 21015;
+            状況.CellClick += 状況_CellClick;
+            状況.Enter += 状況_Enter;
             // 
             // F_業務日報
             // 
             BackColor = SystemColors.Control;
             ClientSize = new Size(888, 642);
+            Controls.Add(状況);
             Controls.Add(ログインユーザーボタン);
             Controls.Add(本日の一言);
             Controls.Add(label1);
             Controls.Add(業務日報明細予定1);
             Controls.Add(業務日報明細実績1);
-            Controls.Add(状況);
             Controls.Add(確定者名);
             Controls.Add(確定日時);
             Controls.Add(登録者名);
@@ -877,6 +885,7 @@ namespace u_net
             panel1.ResumeLayout(false);
             statusStrip1.ResumeLayout(false);
             statusStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)状況).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -950,13 +959,13 @@ namespace u_net
         private TextBox 登録者名;
         private TextBox 確定日時;
         private TextBox 確定者名;
-        private ListBox 状況;
         private MultiRowDesigner.業務日報明細実績 業務日報明細実績1;
         private MultiRowDesigner.業務日報明細予定 業務日報明細予定1;
         private Label label1;
         private TextBox 本日の一言;
         private ToolTip toolTip1;
         private Button ログインユーザーボタン;
+        private DataGridView 状況;
     }
 }
 

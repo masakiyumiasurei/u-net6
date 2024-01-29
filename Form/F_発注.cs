@@ -749,7 +749,7 @@ namespace u_net
         }
 
 
-        private bool IsErrorData(string exFieldName1, string exFieldName2 = null)
+        private bool IsErrorData(string exFieldName1, string? exFieldName2 = null)
         {
             try
             {
@@ -2156,10 +2156,10 @@ namespace u_net
         {
             try
             {
-                this.発注明細1.Height += (this.Height - intWindowHeight);
-                this.発注明細1.Width += (this.Width - intWindowWidth);
-                intWindowHeight = this.Height;
-                intWindowWidth = this.Width;
+                //this.発注明細1.Height += (this.Height - intWindowHeight);
+                //this.発注明細1.Width += (this.Width - intWindowWidth);
+                //intWindowHeight = this.Height;
+                //intWindowWidth = this.Width;
 
             }
             catch (Exception ex)
@@ -2243,7 +2243,7 @@ namespace u_net
         }
 
         private void 発注コード_Validating(object sender, System.ComponentModel.CancelEventArgs e)
-        {           
+        {
             if (IsError(sender as Control, false) == true) e.Cancel = true;
         }
 
@@ -2415,7 +2415,7 @@ namespace u_net
 
         private void 仕入先コード_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-           
+
             if (IsError(sender as Control, false) == true) e.Cancel = true;
         }
 
@@ -2538,7 +2538,7 @@ namespace u_net
             if (発注日.Text != tmpdate)
             {
                 if (IsError(sender as Control, false) == true)
-                {                
+                {
                     発注日.Text = tmpdate;
                     e.Cancel = true; // 逃がさない
                 }

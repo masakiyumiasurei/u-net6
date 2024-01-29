@@ -37,9 +37,11 @@
             GrapeCity.Win.MultiRow.CellStyle cellStyle2 = new GrapeCity.Win.MultiRow.CellStyle();
             GrapeCity.Win.MultiRow.Border border1 = new GrapeCity.Win.MultiRow.Border();
             GrapeCity.Win.MultiRow.CellStyle cellStyle3 = new GrapeCity.Win.MultiRow.CellStyle();
-            GrapeCity.Win.MultiRow.CellStyle cellStyle4 = new GrapeCity.Win.MultiRow.CellStyle();
-            GrapeCity.Win.MultiRow.CellStyle cellStyle5 = new GrapeCity.Win.MultiRow.CellStyle();
             GrapeCity.Win.MultiRow.Border border2 = new GrapeCity.Win.MultiRow.Border();
+            GrapeCity.Win.MultiRow.CellStyle cellStyle4 = new GrapeCity.Win.MultiRow.CellStyle();
+            GrapeCity.Win.MultiRow.Border border3 = new GrapeCity.Win.MultiRow.Border();
+            GrapeCity.Win.MultiRow.CellStyle cellStyle5 = new GrapeCity.Win.MultiRow.CellStyle();
+            GrapeCity.Win.MultiRow.Border border4 = new GrapeCity.Win.MultiRow.Border();
             this.columnHeaderSection1 = new GrapeCity.Win.MultiRow.ColumnHeaderSection();
             this.明細ボタン = new GrapeCity.Win.MultiRow.ButtonCell();
             this.明細番号ボタン = new GrapeCity.Win.MultiRow.ButtonCell();
@@ -47,17 +49,17 @@
             this.実績内容ボタン = new GrapeCity.Win.MultiRow.ButtonCell();
             this.明細削除ボタン = new GrapeCity.Win.MultiRow.ButtonCell();
             this.明細番号 = new GrapeCity.Win.MultiRow.RowHeaderCell();
-            this.項目コード = new GrapeCity.Win.MultiRow.ComboBoxCell();
-            this.実績内容 = new GrapeCity.Win.MultiRow.ComboBoxCell();
             this.日報コード = new GrapeCity.Win.MultiRow.TextBoxCell();
+            this.項目 = new GrapeCity.Win.MultiRow.TextBoxCell();
+            this.実績内容 = new GrapeCity.Win.MultiRow.TextBoxCell();
             // 
             // Row
             // 
             this.Row.Cells.Add(this.明細削除ボタン);
             this.Row.Cells.Add(this.明細番号);
-            this.Row.Cells.Add(this.項目コード);
-            this.Row.Cells.Add(this.実績内容);
             this.Row.Cells.Add(this.日報コード);
+            this.Row.Cells.Add(this.項目);
+            this.Row.Cells.Add(this.実績内容);
             this.Row.Height = 17;
             this.Row.Width = 736;
             // 
@@ -162,29 +164,6 @@
             this.明細番号.Style = cellStyle2;
             this.明細番号.TabIndex = 1;
             // 
-            // 項目コード
-            // 
-            this.項目コード.DataField = "項目コード";
-            this.項目コード.DisplayMember = "項目";
-            this.項目コード.Location = new System.Drawing.Point(44, 0);
-            this.項目コード.Name = "項目コード";
-            this.項目コード.Size = new System.Drawing.Size(149, 17);
-            cellStyle3.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
-            cellStyle3.SelectionForeColor = System.Drawing.Color.Black;
-            this.項目コード.Style = cellStyle3;
-            this.項目コード.TabIndex = 1;
-            // 
-            // 実績内容
-            // 
-            this.実績内容.DataField = "実績内容";
-            this.実績内容.Location = new System.Drawing.Point(193, 0);
-            this.実績内容.Name = "実績内容";
-            this.実績内容.Size = new System.Drawing.Size(543, 17);
-            cellStyle4.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
-            cellStyle4.SelectionForeColor = System.Drawing.Color.Black;
-            this.実績内容.Style = cellStyle4;
-            this.実績内容.TabIndex = 2;
-            // 
             // 日報コード
             // 
             this.日報コード.DataField = "日報コード";
@@ -194,13 +173,45 @@
             this.日報コード.ReadOnly = true;
             this.日報コード.Size = new System.Drawing.Size(10, 17);
             border2.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
-            cellStyle5.Border = border2;
-            cellStyle5.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
-            cellStyle5.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
-            this.日報コード.Style = cellStyle5;
+            cellStyle3.Border = border2;
+            cellStyle3.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
+            cellStyle3.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
+            this.日報コード.Style = cellStyle3;
             this.日報コード.TabIndex = 3;
             this.日報コード.TabStop = false;
             this.日報コード.Visible = false;
+            // 
+            // 項目
+            // 
+            this.項目.DataField = "項目";
+            this.項目.Enabled = false;
+            this.項目.Location = new System.Drawing.Point(44, 0);
+            this.項目.Name = "項目";
+            this.項目.ReadOnly = true;
+            this.項目.Size = new System.Drawing.Size(149, 17);
+            border3.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
+            cellStyle4.Border = border3;
+            cellStyle4.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
+            cellStyle4.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
+            this.項目.Style = cellStyle4;
+            this.項目.TabIndex = 4;
+            this.項目.TabStop = false;
+            // 
+            // 実績内容
+            // 
+            this.実績内容.DataField = "実績内容";
+            this.実績内容.Enabled = false;
+            this.実績内容.Location = new System.Drawing.Point(193, 0);
+            this.実績内容.Name = "実績内容";
+            this.実績内容.ReadOnly = true;
+            this.実績内容.Size = new System.Drawing.Size(543, 17);
+            border4.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
+            cellStyle5.Border = border4;
+            cellStyle5.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
+            cellStyle5.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
+            this.実績内容.Style = cellStyle5;
+            this.実績内容.TabIndex = 5;
+            this.実績内容.TabStop = false;
             // 
             // 業務日報明細実績テンプレート
             // 
@@ -221,8 +232,8 @@
         private GrapeCity.Win.MultiRow.ButtonCell 実績内容ボタン;
         private GrapeCity.Win.MultiRow.ButtonCell 明細削除ボタン;
         private GrapeCity.Win.MultiRow.RowHeaderCell 明細番号;
-        private GrapeCity.Win.MultiRow.ComboBoxCell 項目コード;
-        private GrapeCity.Win.MultiRow.ComboBoxCell 実績内容;
         private GrapeCity.Win.MultiRow.TextBoxCell 日報コード;
+        private GrapeCity.Win.MultiRow.TextBoxCell 項目;
+        private GrapeCity.Win.MultiRow.TextBoxCell 実績内容;
     }
 }

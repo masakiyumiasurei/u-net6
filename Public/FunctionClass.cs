@@ -293,16 +293,22 @@ namespace u_net.Public
             return success;
         }
 
-
-        public static void LockData(Form formObject, bool lockedOn, string exControlName1 = null, string exControlName2 = null)
+        /// <summary>
+        /// アクセスでは、enabledのがtureのコントロールをLockするようにしていたが、
+        /// .netではコンボボックスとチェックボックスにはreadonlyがないため、enabledで制御する。
+        /// コンボボックスとチェックボックスにはenabledの状態を条件に入れない
+        /// </summary>
+        /// <param name="formObject"></param>
+        /// <param name="lockedOn"></param>
+        /// <param name="exControlName1"></param>
+        /// <param name="exControlName2"></param>
+        public static void LockData(Form formObject, bool lockedOn, string? exControlName1 = null, string? exControlName2 = null)
         {
             foreach (Control control in formObject.Controls)
             {
                 //if (control.Enabled)
                 //{
-                //アクセスでは、enabledのがtureのコントロールをLockするようにしていたが、
-                //.netではコンボボックスとチェックボックスにはreadonlyがないため、enabledで制御する。
-                //コンボボックスとチェックボックスにはenabledの状態を条件に入れない
+                //
                 if (control is TextBox)
                 {
                     if (control.Enabled && control.Name != exControlName1 && control.Name != exControlName2)
@@ -386,9 +392,14 @@ namespace u_net.Public
             }
         }
 
-
-        //省略されたコードを補完する
-        // 戻り値 → 完全形のコード エラーの時はデフォルト値を返す
+        /// <summary>
+        /// 省略されたコードを補完する
+        /// 戻り値 → 完全形のコード エラーの時はデフォルト値を返す
+        /// </summary>
+        /// <param name="HeaderString"></param>
+        /// <param name="AbbreviatedCode"></param>
+        /// <returns></returns>
+        
         public static string FormatCode(string HeaderString, string AbbreviatedCode)
         {
             try
@@ -434,12 +445,16 @@ namespace u_net.Public
         }
 
 
-
+        /// <summary>
+        ///  エラーハンドリングを追加
+        ///accessではactivecontrolをcontrol1と比較していたが、C#では更新イベントではactivcontrolが次のコントロールに
+        ///変わるため、第3引数として、現在入力したコントロールを入れることとした。
+        /// </summary>
+        /// <param name="control1"></param>
+        /// <param name="control2"></param>
+        /// <param name="inputctl"></param>
         public static void AdjustRange(Control control1, Control control2, Control inputctl)
-        {
-            // エラーハンドリングを追加
-            //accessではactivecontrolをcontrol1と比較していたが、C#では更新イベントではactivcontrolが次のコントロールに
-            //変わるため、第3引数として、現在入力したコントロールを入れることとした。
+        {            
             try
             {
                 Form frmOn = control1.FindForm(); // コントロールが所属するフォーム
@@ -496,11 +511,11 @@ namespace u_net.Public
             if (str2 == null)
             {
                 str2 = str1;
-                str1 = (string)start;
+                str1 = (string?)start;
                 start = 1;
             }
 
-            if (string.IsNullOrEmpty(str1) || string.IsNullOrEmpty((string)str2))
+            if (string.IsNullOrEmpty(str1) || string.IsNullOrEmpty((string?)str2))
             {
                 return result;
             }

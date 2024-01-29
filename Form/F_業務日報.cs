@@ -16,6 +16,8 @@ using System.Windows.Forms;
 using Newtonsoft.Json.Linq;
 using System.Drawing.Imaging;
 using System.Drawing.Printing;
+using GrapeCity.Win.MultiRow;
+using static System.ComponentModel.Design.ObjectSelectorEditor;
 
 namespace u_net
 {
@@ -27,6 +29,8 @@ namespace u_net
         public string args = "";
         private string BASE_CAPTION = "業務日報";
         private int selected_frame = 0;
+        private string str状況 = "";
+        private bool cmbflg = true;
 
         public F_業務日報()
         {
@@ -65,44 +69,42 @@ namespace u_net
             {
                 control.PreviewKeyDown += OriginalClass.ValidateCheck;
             }
-
             FunctionClass fn = new FunctionClass();
             fn.DoWait("しばらくお待ちください...");
 
-            //実行中フォーム起動
-            string LoginUserCode = CommonConstants.LoginUserCode;//テスト用 ログインユーザを実行中にどのように管理するか決まったら修正
-            LocalSetting localSetting = new LocalSetting();
-            localSetting.LoadPlace(LoginUserCode, this);
-
-            MyApi myapi = new MyApi();
-            int xSize, ySize, intpixel, twipperdot;
-
-            //1インチ当たりのピクセル数 アクセスのサイズの引数がtwipなのでピクセルに変換する除算値を求める
-            intpixel = myapi.GetLogPixel();
-            twipperdot = myapi.GetTwipPerDot(intpixel);
-
             try
             {
+
+
+                //実行中フォーム起動
+                string LoginUserCode = CommonConstants.LoginUserCode;
+                LocalSetting localSetting = new LocalSetting();
+                localSetting.LoadPlace(LoginUserCode, this);
+
+                OriginalClass ofn = new OriginalClass();
+                ofn.SetComboBox(日付, "SELECT TOP 5 日付 as Value, 日付 as Display FROM T業務日報 " +
+                    "WHERE 日付 < getdate() GROUP BY 日付 ORDER BY 日付 DESC; ");
+
+                ofn.SetComboBox(社員コード, "SELECT 社員コード as Value, 氏名 as Display " +
+                    "FROM M社員 WHERE [ふりがな]<>'ん' And 業務日報順序 Is Not Null And Not (部='製造部' And [パート]=1) ORDER BY [ふりがな]; ");
+                //社員コード.SelectedIndex = -1;
                 this.SuspendLayout();
 
-                int intWindowHeight = this.Height;
-                int intWindowWidth = this.Width;
+                社員コード.SelectedValue = LoginUserCode;
+                日付.Text = DateTime.Now.Date.ToString("yyyy/MM/dd");
+                日報コード.Text = GetCode(DateTime.Now, 社員コード.SelectedValue.ToString().PadLeft(3, '0'));
 
+                SetRowSource(DateTime.Now.Date);
+                str状況 = 社員コード.SelectedValue.ToString();
 
-                if (string.IsNullOrEmpty(args))
-                {
-                    コマンド新規_Click(sender, e);
-                }
-                else
-                {
-                    //コマンド読込_Click(sender, e);
-                    //if (!string.IsNullOrEmpty(args))
-                    //{
-                    //    this.部品コード.Text = args;
-                    //    UpdatedControl(部品コード);
-                    //}
-                }
-                // 成功時の処理
+                業務日報明細実績1.Detail.AllowUserToAddRows = false;
+                業務日報明細実績1.Detail.AllowUserToDeleteRows = false;
+                業務日報明細実績1.Detail.ReadOnly = true;
+
+                業務日報明細予定1.Detail.AllowUserToAddRows = false;
+                業務日報明細予定1.Detail.AllowUserToDeleteRows = false;
+                業務日報明細予定1.Detail.ReadOnly = true;
+
                 return;
             }
             catch (Exception ex)
@@ -112,8 +114,186 @@ namespace u_net
             }
             finally
             {
+                cmbflg = false;
                 this.ResumeLayout();
                 fn.WaitForm.Close();
+            }
+        }
+
+        private string GetCode(DateTime dteInput, string strInput)
+        {
+            //long ticks = new DateTime(dteInput.Year, dteInput.Month, dteInput.Day).Ticks;
+            int tmpint = (int)dteInput.ToOADate();
+            return tmpint.ToString() + strInput;
+
+        }
+
+        private void SetRowSource(DateTime targetDate)
+        {
+            string strTargetDate = targetDate.ToString("yyyy/MM/dd");
+
+            Connect();
+
+            string query = "SELECT " +
+                           "M社員.部," +
+                           "M社員.氏名," +
+                           "V業務日報状況_登録済み.確定, " +
+                           "V業務日報状況_登録済み.社長, " +
+                           "V業務日報状況_登録済み.専務, " +
+                           "V業務日報状況_登録済み.村中, " +
+                           "V業務日報状況_登録済み.菅野, " +
+                           "V業務日報状況_登録済み.高松, " +
+                           "V業務日報状況_登録済み.坂口, " +
+                           "COALESCE(V業務日報状況_登録済み.日付, CONVERT(DATETIME, '" + strTargetDate + "', 102)) AS 日付," +
+                           "M社員.社員コード " +
+                           "FROM M社員 LEFT JOIN V業務日報状況_登録済み ON V業務日報状況_登録済み.社員コード = M社員.社員コード " +
+                           "AND V業務日報状況_登録済み.日付 = CONVERT(DATETIME, '" + strTargetDate + "', 102) " +
+                           "WHERE 業務日報順序 IS NOT NULL AND NOT(部 = '製造部' AND パート = 1) " +
+                           "ORDER BY M社員.ふりがな";
+
+            DataGridUtils.SetDataGridView(cn, query, this.状況);
+
+            状況.Columns[0].Width = 60;
+            状況.Columns[1].Width = 100;
+            状況.Columns[2].Width = 30;
+            状況.Columns[3].Width = 30;
+            状況.Columns[4].Width = 30;
+            状況.Columns[5].Width = 30;
+            状況.Columns[6].Width = 30;
+            状況.Columns[7].Width = 30;
+            状況.Columns[8].Width = 30;
+            状況.Columns[9].Visible = false; //日付
+            状況.Columns[10].Visible = false;//社員コード
+
+        }
+
+        public bool LoadHeader()
+        {
+            try
+            {
+                Connect();
+                string strSQL;
+                strSQL = "SELECT * FROM V業務日報 WHERE 日報コード='" + 日報コード.Text + "'";
+
+                if (!VariableSet.SetTable2Form(this, strSQL, cn)) return false;
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("読み込み時エラーです" + ex.Message, "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+        }
+
+
+        public bool LoadDetails(string strSQL, GcMultiRow multiRow)
+        {
+            try
+            {
+                Connect();
+
+                using (SqlCommand command = new SqlCommand(strSQL, cn))
+                {
+                    using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+                    {
+                        DataTable dataTable = new DataTable();
+                        adapter.Fill(dataTable);
+                        multiRow.DataSource = dataTable;
+                    }
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("読み込み時エラーです" + ex.Message, "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return false;
+        }
+
+        private void UpdatedControl(System.Windows.Forms.Control controlObject)
+        {
+            FunctionClass fn = new FunctionClass();
+            try
+            {
+
+
+                string strSQL="";
+                string strSQL2 = "";
+
+                switch (controlObject.Name)
+                {
+                    case "日付":
+                    case "社員コード":
+                        Connect();
+                        fn.DoWait("読み込んでいます...");
+                        if (DateTime.TryParse(日付.Text, out DateTime date))
+                            日報コード.Text = GetCode(date, 社員コード.SelectedValue.ToString().PadLeft(3, '0'));
+
+                        // ヘッダ部の表示
+                        if (controlObject.Name == "日付" && DateTime.TryParse(日付.Text, out DateTime parsedDate))
+                            SetRowSource(parsedDate);
+
+                        str状況 = 社員コード.SelectedValue.ToString();
+
+                        if (!LoadHeader()) throw new Exception("初期化に失敗しました。");
+
+                         strSQL = $"SELECT 明細番号,実績内容,項目 " +
+                               $"FROM T業務日報明細実績 left join M業務日報項目 on T業務日報明細実績.項目コード=M業務日報項目.項目コード " +
+                               $"WHERE 日報コード= '{日報コード.Text}' ORDER BY 明細番号";
+
+                         strSQL2 = $"SELECT 明細番号,予定内容,項目 " +
+                                        $"FROM T業務日報明細予定 left join M業務日報項目 on T業務日報明細予定.項目コード = M業務日報項目.項目コード " +
+                                        $"WHERE 日報コード= '{日報コード.Text}' ORDER BY 明細番号";
+
+
+                        if (!VariableSet.SetTable2Details(業務日報明細実績1.Detail, strSQL, cn))
+                            throw new Exception("初期化に失敗しました。");
+
+
+                        if (!VariableSet.SetTable2Details(業務日報明細予定1.Detail, strSQL2, cn))
+                            throw new Exception("初期化に失敗しました。");
+
+                        break;
+
+                    case "状況":
+                        Connect();
+                        fn.DoWait("読み込んでいます...");
+
+                        社員コード.Text = str状況;
+
+                        if (DateTime.TryParse(日付.Text, out DateTime dt))
+                            日報コード.Text = GetCode(dt, 社員コード.Text.PadLeft(3, '0'));
+
+
+                        if (!LoadHeader()) throw new Exception("初期化に失敗しました。");
+
+                        strSQL = $"SELECT 明細番号,実績内容,項目 " +
+                                 $"FROM T業務日報明細実績 left join M業務日報項目 on T業務日報明細実績.項目コード=M業務日報項目.項目コード " +
+                                 $"WHERE 日報コード= '{日報コード.Text}' ORDER BY 明細番号";
+
+                        strSQL2 = $"SELECT 明細番号,予定内容,項目 " +
+                                  $"FROM T業務日報明細予定 left join M業務日報項目 on T業務日報明細予定.項目コード = M業務日報項目.項目コード " +
+                                  $"WHERE 日報コード= '{日報コード.Text}' ORDER BY 明細番号";
+
+
+                        if (!VariableSet.SetTable2Details(業務日報明細実績1.Detail, strSQL, cn))
+                            throw new Exception("初期化に失敗しました。");
+
+
+                        if (!VariableSet.SetTable2Details(業務日報明細予定1.Detail, strSQL2, cn))
+                            throw new Exception("初期化に失敗しました。");
+
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.Print(this.Name + "_UpdatedControl - " + ex.Message);
+            }
+            finally
+            {
+                if (fn.WaitForm != null) fn.WaitForm.Close();
             }
         }
 
@@ -123,460 +303,14 @@ namespace u_net
             LocalSetting test = new LocalSetting();
             test.SavePlace(LoginUserCode, this);
 
-            try
-            {
-
-                Connect();
-
-                // データへの変更がないときの処理
-                //if (!IsChanged)
-                //{
-                // 新規モードで且つコードが取得済みのときはコードを戻す
-                //if (IsNewData && !string.IsNullOrEmpty(CurrentCode) && CurrentEdition == 1)
-                //{
-                //    // 採番された番号を戻す
-                //    if (!FunctionClass.ReturnCode(cn, "PAR" + CurrentCode))
-                //    {
-                //        MessageBox.Show("エラーのためコードは破棄されました。" + Environment.NewLine + Environment.NewLine +
-                //                        "部品コード　：　" + CurrentCode, "警告", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                //    }
-                //}
-                //return;
-                //}
-
-                // 修正されているときは登録確認を行う
-                var intRes = MessageBox.Show("変更内容を登録しますか？", "確認", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
-                switch (intRes)
-                {
-                    case DialogResult.Yes:
-                        // エラーチェック
-                        if (!ErrCheck())
-                        {
-                            return;
-                        }
-                        // 登録処理
-                        if (!SaveData())
-                        {
-                            if (MessageBox.Show("エラーのため登録できませんでした。" + Environment.NewLine +
-                                                "強制終了しますか？", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
-                            {
-                                return;
-                            }
-                        }
-                        break;
-                    case DialogResult.No:
-                        // 新規コードを取得していたときはコードを戻す
-                        //if (IsNewData && !string.IsNullOrEmpty(CurrentCode) && CurrentEdition == 1)
-                        //{
-                        //    if (!FunctionClass.ReturnCode(cn, "PAR" + CurrentCode))
-                        //    {
-                        //        MessageBox.Show("エラーのためコードは破棄されました。" + Environment.NewLine +
-                        //                        "部品コード　：　" + CurrentCode, "警告", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                        //    }
-                        //}
-                        break;
-                    case DialogResult.Cancel:
-                        return;
-                }
-
-
-            }
-            catch (Exception ex)
-            {
-                Debug.Print(Name + "_Unload - " + ex.Message);
-                MessageBox.Show(ex.Message, "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
         }
-
-        //public bool IsChanged
-        //{
-        //    get
-        //    {
-        //        return コマンド登録.Enabled;
-        //    }
-        //}
-
-        //public bool IsNewData
-        //{
-        //    get
-        //    {
-        //        return !コマンド新規.Enabled;
-        //    }
-        //}
-
-        //public string CurrentCode
-        //{
-        //    get
-        //    {
-        //        return string.IsNullOrEmpty(部品コード.Text) ? "" : 部品コード.Text;
-        //    }
-        //}
-
-        //public int CurrentEdition
-        //{
-        //    get
-        //    {
-        //        return string.IsNullOrEmpty(版数.Text) ? 0 : int.Parse(版数.Text);
-        //    }
-        //}
-
-        //public bool IsIncluded
-        //{
-        //    get
-        //    {
-        //        return !string.IsNullOrEmpty(部品集合コード.Text);
-        //    }
-        //}
-
-        private bool SaveData()
-        {
-
-            Connect();
-            SqlTransaction transaction = cn.BeginTransaction();
-            {
-                try
-                {
-
-                    //DateTime dteNow = DateTime.Now;
-                    //Control objControl1 = null;
-                    //Control objControl2 = null;
-                    //Control objControl3 = null;
-                    //Control objControl4 = null;
-                    //Control objControl5 = null;
-                    //Control objControl6 = null;
-                    //object varSaved1 = null;
-                    //object varSaved2 = null;
-                    //object varSaved3 = null;
-                    //object varSaved4 = null;
-                    //object varSaved5 = null;
-                    //object varSaved6 = null;
-
-                    //if (IsNewData)
-                    //{
-                    //objControl1 = this.作成日時;
-                    //objControl2 = this.作成者コード;
-                    //objControl3 = this.CreatorName;
-                    //varSaved1 = objControl1.Text;
-                    //varSaved2 = objControl2.Text;
-                    //varSaved3 = objControl3.Text;
-                    //objControl1.Text = dteNow.ToString(); // ここでDateTimeをstringに変換して設定
-                    //objControl2.Text = CommonConstants.LoginUserCode;
-                    //objControl3.Text = CommonConstants.LoginUserFullName;
-                    //}
-
-                    //objControl4 = this.更新日時;
-                    //objControl5 = this.更新者コード;
-                    //objControl6 = this.UpdaterName;
-
-                    //varSaved4 = objControl4.Text;
-                    //varSaved5 = objControl5.Text;
-                    //varSaved6 = objControl6.Text;
-
-                    //objControl4.Text = dteNow.ToString(); // ここでDateTimeをstringに変換して設定
-                    //objControl5.Text = CommonConstants.LoginUserCode;
-                    //objControl6.Text = CommonConstants.LoginUserFullName;
-
-
-                    //string strwhere = " 部品コード='" + this.部品コード.Text + "'";
-
-                    //if (!DataUpdater.UpdateOrInsertDataFrom(this, cn, "M部品", strwhere, "部品コード", transaction))
-                    //{
-
-
-                    //    if (IsNewData)
-                    //    {
-                    //        objControl1.Text = varSaved1.ToString();
-                    //        objControl2.Text = varSaved2.ToString();
-                    //        objControl3.Text = varSaved3.ToString();
-
-                    //    }
-
-                    //    objControl4.Text = varSaved4.ToString();
-                    //    objControl5.Text = varSaved5.ToString();
-                    //    objControl6.Text = varSaved6.ToString();
-
-                    //    return false;
-                    //}
-
-                    // トランザクションをコミット
-                    transaction.Commit();
-
-
-                    //部品コード.Enabled = true;
-
-                    // 新規モードのときは修正モードへ移行する
-                    //if (IsNewData)
-                    //{
-                    //    コマンド新規.Enabled = true;
-                    //}
-
-                    //コマンド複写.Enabled = true;
-                    //コマンド削除.Enabled = true;
-                    //コマンド登録.Enabled = false;
-
-                    return true;
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine("Error in SaveData: " + ex.Message);
-                    return false;
-                }
-            }
-        }
-
-        private void コマンド登録_Click(object sender, EventArgs e)
-        {
-
-            //if (this.ActiveControl == this.コマンド登録)
-            //{
-            //    GetNextControl(コマンド登録, false).Focus();
-            //}
-
-            // エラーチェック
-            if (!ErrCheck())
-            {
-                goto Bye_コマンド登録_Click;
-            }
-
-            FunctionClass fn = new FunctionClass();
-            fn.DoWait("登録しています...");
-
-
-            // 登録処理
-            if (SaveData())
-            {
-                // 登録に成功した
-                ChangedData(false); // データ変更取り消し
-
-                //if (this.IsNewData)
-                //{
-                //    // 新規モードのとき
-                //    this.コマンド新規.Enabled = true;
-                //    this.コマンド読込.Enabled = false;
-                //    this.コマンド廃止.Enabled = true;
-                //}
-                // UpdatePurGridの呼び出し
-                // Call UpdatePurGrid();
-                fn.WaitForm.Close();
-                MessageBox.Show("登録を完了しました", "登録コマンド", MessageBoxButtons.OK);
-            }
-            else
-            {
-                // 登録に失敗したとき
-                fn.WaitForm.Close();
-                //this.コマンド登録.Enabled = true;
-                MessageBox.Show("登録できませんでした。", "登録コマンド", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            }
-
-        Bye_コマンド登録_Click:
-            return;
-
-        }
-
-        private bool ErrCheck()
-        {
-            //入力確認    
-            //if (!FunctionClass.IsError(this.部品コード)) return false;
-            //if (!FunctionClass.IsError(this.版数)) return false;
-            return true;
-        }
-
-        private void ChangedData(bool isChanged)
-        {
-            if (ActiveControl == null) return;
-
-            if (isChanged)
-            {
-                this.Text = BASE_CAPTION + "*";
-            }
-            else
-            {
-                this.Text = BASE_CAPTION;
-            }
-
-            // コードにフォーカスがある状態でサブフォームから呼び出されたときの対処
-            //if (this.ActiveControl == this.部品コード)
-            //{
-            //    this.品名.Focus();
-            //}
-
-            //this.部品コード.Enabled = !isChanged;
-            //this.改版ボタン.Enabled = !isChanged;
-            //// this.コマンド複写.Enabled = !isChanged; // コマンド複写についての情報が提供されていないためコメントアウト
-            //this.コマンド削除.Enabled = !isChanged;
-            //this.コマンド登録.Enabled = isChanged;
-
-            // RoHSの状態表示を更新する
-            ShowRohsStatus();
-        }
-
-        private void コマンド新規_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                Connect();
-
-                Cursor.Current = Cursors.WaitCursor;
-                this.DoubleBuffered = true;
-
-                //if (this.ActiveControl == this.コマンド新規)
-                //{
-                //    this.コマンド新規.Focus();
-                //}
-
-                // 変更がある
-                //if (this.IsChanged)
-                //{
-                //    var intRes = MessageBox.Show("変更内容を登録しますか？", "新規コマンド", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
-                //    switch (intRes)
-                //    {
-                //        case DialogResult.Yes:
-                //            // 登録処理
-                //            if (!SaveData())
-                //            {
-                //                MessageBox.Show("エラーのため登録できません。", "新規コマンド", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                //                goto Bye_コマンド新規_Click;
-                //            }
-                //            break;
-                //        case DialogResult.Cancel:
-                //            goto Bye_コマンド新規_Click;
-                //    }
-                //}
-
-                VariableSet.SetControls(this);
-                //DispGrid(CurrentCode);
-
-                //string code = FunctionClass.採番(cn, "PAR");
-                //部品コード.Text = code.Substring(Math.Max(0, code.Length - 8));
-                //版数.Text = 1.ToString();
-                //入数.Text = 1.ToString();
-                //単位数量.Text = 1.ToString();
-                //ロス率.Text = 0f.ToString();
-                //Rohs1ChemSherpaStatusCode.SelectedValue = 1;
-                //JampAis.SelectedValue = 1;
-                //非含有証明書.SelectedValue = (byte)3;
-                //RoHS資料.SelectedValue = (Int16)1;
-                //Rohs2ChemSherpaStatusCode.SelectedValue = 1;
-                //Rohs2JampAisStatusCode.SelectedValue = 1;
-                //Rohs2NonInclusionCertificationStatusCode.SelectedValue = 3;
-                //Rohs2DocumentStatusCode.SelectedValue = 1;
-                //Rohs2ProvisionalRegisteredStatusCode.Checked = true;
-                //廃止.Checked = false;
-
-
-                ChangedData(false);
-
-                //InventoryAmount.Text = 0.ToString();
-                //ShowRohsStatus();
-                //品名.Focus();
-                //部品コード.Enabled = false;
-                //改版ボタン.Enabled = false;
-                //コマンド新規.Enabled = false;
-                //コマンド読込.Enabled = true;
-                //コマンド削除.Enabled = false;
-                //コマンド廃止.Enabled = false;
-                //コマンドツール.Enabled = false;
-                //コマンド登録.Enabled = false;
-
-
-
-            }
-            finally
-            {
-
-                this.DoubleBuffered = false;
-                Cursor.Current = Cursors.Default;
-            }
-
-        Bye_コマンド新規_Click:
-            return;
-        }
-
-        private void ShowRohsStatus()
-        {
-            //        if (this.Rohs2ProvisionalRegisteredStatusCode.Checked)
-            //        {
-            //            this.RohsStatusCode.SelectedValue = 5;
-            //            // this.RohsStatusName = "仮RoHS2";
-            //        }
-            //        else
-            //        {
-            //            if ((Rohs2ChemSherpaStatusCode.SelectedValue != null && (int)Rohs2ChemSherpaStatusCode.SelectedValue == 2) ||
-            //(Rohs2JampAisStatusCode.SelectedValue != null && (int)Rohs2JampAisStatusCode.SelectedValue == 2) ||
-            //(Rohs2NonInclusionCertificationStatusCode.SelectedValue != null && (int)Rohs2NonInclusionCertificationStatusCode.SelectedValue == 1) ||
-            //(Rohs2DocumentStatusCode.SelectedValue != null && (int)Rohs2DocumentStatusCode.SelectedValue == 2))
-            //            {
-            //                this.RohsStatusCode.SelectedValue = 2;
-            //                // this.RohsStatusName = "RoHS2";
-            //            }
-            //            else if ((Rohs1ChemSherpaStatusCode.SelectedValue != null && (int)Rohs1ChemSherpaStatusCode.SelectedValue == 2) ||
-            //     (JampAis.SelectedValue != null && (int)JampAis.SelectedValue == 2) ||
-            //     (非含有証明書.SelectedValue != null && (byte)非含有証明書.SelectedValue == 1) ||
-            //     (RoHS資料.SelectedValue != null && (Int16)RoHS資料.SelectedValue == 2))
-            //            {
-            //                this.RohsStatusCode.SelectedValue = 6;
-            //                // this.RohsStatusName = "RoHS2非対応";
-            //            }
-            //            else
-            //            {
-            //                this.RohsStatusCode.SelectedValue = 3;
-            //                // this.RohsStatusName = "RoHS1非対応";
-            //            }
-            //        }
-        }
-
-        private F_検索 SearchForm;
 
         private void コマンド終了_Click(object sender, EventArgs e)
         {
             Close(); // フォームを閉じる
         }
 
-        //private void UpdatePurGrid()
-        //{
-        //■現在未使用
-        //登録後の処理として、購買フォームが開いている場合はグリッドを更新する
-        //    try
-        //    {
-        //        // 購買フォームが開いているかを確認
-        //        if (Application.OpenForms["購買"] == null)
-        //        {
-        //            return;
-        //        }
 
-        //        // 購買フォームのグリッドを取得
-        //        Form frmPurchase = Application.OpenForms["購買"];
-        //        MSHierarchicalFlexGridLib.MSHFlexGrid obj1 = (MSHierarchicalFlexGridLib.MSHFlexGrid)frmPurchase.Controls["objGrid"];
-
-        //        if (obj1 != null)
-        //        {
-        //            int currentRow = obj1.row;
-        //            string supplierCode = OriginalClass.Nz(仕入先1コード.Text,null);
-        //            string supplierName = OriginalClass.Nz(Supplier1Name.Text, null);
-        //            string productName = OriginalClass.Nz(品名.Text, null);
-        //            string modelNumber = OriginalClass.Nz(型番.Text, null);
-        //            double unitPrice = OriginalClass.Nz(仕入先1単価.Text, null);
-
-        //            if (obj1.TextMatrix[currentRow, 5] != supplierCode)
-        //            {
-        //                obj1.TextMatrix[currentRow, 5] = supplierCode;
-        //                obj1.TextMatrix[currentRow, 6] = supplierName;
-        //                frmPurchase.GetType().GetMethod("ChangedControl").Invoke(frmPurchase, new object[] { true });
-        //            }
-
-        //            obj1.TextMatrix[currentRow, 8] = productName;
-        //            obj1.TextMatrix[currentRow, 9] = modelNumber;
-        //            obj1.TextMatrix[currentRow, 13] = unitPrice.ToString("###,###,##0.00");
-
-        //            frmPurchase.GetType().GetMethod("CalcAmount").Invoke(frmPurchase, new object[] { currentRow });
-        //            frmPurchase.GetType().GetProperty("bleGridUpdated").SetValue(frmPurchase, true, null);
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Debug.Print(Name + "_UpdatedPurGrid - " + ex.Message);
-        //    }
-        //}
 
         private void Form_KeyDown(object sender, KeyEventArgs e)
         {
@@ -633,8 +367,8 @@ namespace u_net
                     //if (コマンド確定.Enabled) コマンド確定_Click(sender, e);
                     break;
                 case Keys.F11:
-                    if (コマンド登録.Enabled) コマンド登録_Click(sender, e);
-                    break;
+                //if (コマンド登録.Enabled) コマンド登録_Click(sender, e);
+                //break;
                 case Keys.F12:
                     //if (コマンド終了.Enabled) コマンド終了_Click(sender, e);
                     break;
@@ -643,12 +377,30 @@ namespace u_net
 
         private void コマンド詳細_Click(object sender, EventArgs e)
         {
+            string message = "日報コード　：　" + 日報コード.Text + Environment.NewLine +
+                 "登録日　：　" + 登録日.Text + Environment.NewLine +
+                 "登録者　：　[" + 登録者コード.Text + "]" + 登録者名.Text;
+
+            MessageBox.Show(message, "詳細", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
         }
 
         private void 日付選択ボタン_Click(object sender, EventArgs e)
         {
+            F_カレンダー dateSelectionForm = new F_カレンダー();
 
+            if (!string.IsNullOrEmpty(日付.Text))
+            {
+                dateSelectionForm.args = 日付.Text;
+            }
+
+            if (dateSelectionForm.ShowDialog() == DialogResult.OK && 日付.Enabled)
+            {
+                // 日付選択フォームから選択した日付を取得
+                string selectedDate = dateSelectionForm.SelectedDate;
+                日付.Text = selectedDate;
+                UpdatedControl(this.日付);
+            }
         }
 
         private void 日付_Enter(object sender, EventArgs e)
@@ -674,11 +426,35 @@ namespace u_net
         private void 状況_Enter(object sender, EventArgs e)
         {
             toolStripStatusLabel1.Text = "■表示日付での各ユーザーの登録状態です。表示したいユーザーを選択してください。";
+          //  社員コード.SelectedValue = 状況.SelectedRows[0].Cells[10].Value;
         }
 
         private void 状況_Leave(object sender, EventArgs e)
         {
             toolStripStatusLabel1.Text = "各種項目の説明";
+        }
+
+        private void 社員コード_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbflg) return;
+            UpdatedControl(this.社員コード);
+        }
+
+        private void ログインユーザーボタン_Click(object sender, EventArgs e)
+        {
+            社員コード.SelectedValue = CommonConstants.LoginUserCode;
+            UpdatedControl(this.社員コード);
+        }
+
+        private void 日付_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbflg) return;
+            UpdatedControl(this.日付);
+        }
+
+        private void 状況_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            社員コード.SelectedValue = 状況.SelectedRows[0].Cells[10].Value;
         }
     }
 }
