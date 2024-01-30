@@ -2770,7 +2770,7 @@ namespace u_net.Public
         }
 
         //外部システムを起動する
-        public static void GetShell(string para)
+        public static bool GetShell(string para)
         {
             try
             {
@@ -2791,12 +2791,14 @@ namespace u_net.Public
                     //process.StartInfo.FileName = $"{Environment.GetEnvironmentVariable("ProgramFiles")}\\Uinics\\Uinics U-net 3 Client\\unetc.exe";
                     process.StartInfo.FileName = exePath;
                     process.StartInfo.Arguments = param;
-                    process.Start();                
-                
+                    process.Start();
+
+                return true;
             }
             catch
             {
                 MessageBox.Show("外部システムを開けませんでした。。", "OPEN時エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
             }
         }
 
