@@ -32,7 +32,7 @@
             panel1 = new Panel();
             コマンド保守 = new Button();
             コマンド印刷明細 = new Button();
-            コマンドF7 = new Button();
+            コマンド出力 = new Button();
             コマンド参照 = new Button();
             コマンド部品購買設定 = new Button();
             コマンド印刷 = new Button();
@@ -59,7 +59,7 @@
             panel1.BackColor = SystemColors.ActiveCaption;
             panel1.Controls.Add(コマンド保守);
             panel1.Controls.Add(コマンド印刷明細);
-            panel1.Controls.Add(コマンドF7);
+            panel1.Controls.Add(コマンド出力);
             panel1.Controls.Add(コマンド参照);
             panel1.Controls.Add(コマンド部品購買設定);
             panel1.Controls.Add(コマンド印刷);
@@ -106,19 +106,20 @@
             コマンド印刷明細.UseVisualStyleBackColor = true;
             コマンド印刷明細.Click += コマンド印刷明細_Click;
             // 
-            // コマンドF7
+            // コマンド出力
             // 
-            コマンドF7.Enabled = false;
-            コマンドF7.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            コマンドF7.ForeColor = Color.Blue;
-            コマンドF7.ImageAlign = ContentAlignment.BottomLeft;
-            コマンドF7.Location = new Point(489, 5);
-            コマンドF7.Margin = new Padding(0, 3, 0, 3);
-            コマンドF7.Name = "コマンドF7";
-            コマンドF7.Size = new Size(80, 29);
-            コマンドF7.TabIndex = 10;
-            コマンドF7.TabStop = false;
-            コマンドF7.UseVisualStyleBackColor = true;
+            コマンド出力.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            コマンド出力.ForeColor = Color.Blue;
+            コマンド出力.ImageAlign = ContentAlignment.BottomLeft;
+            コマンド出力.Location = new Point(489, 5);
+            コマンド出力.Margin = new Padding(0, 3, 0, 3);
+            コマンド出力.Name = "コマンド出力";
+            コマンド出力.Size = new Size(80, 29);
+            コマンド出力.TabIndex = 10;
+            コマンド出力.TabStop = false;
+            コマンド出力.Text = "出力";
+            コマンド出力.UseVisualStyleBackColor = true;
+            コマンド出力.Click += コマンド出力_Click;
             // 
             // コマンド参照
             // 
@@ -348,7 +349,7 @@
         #endregion
         private Panel panel1;
         private Button コマンド印刷明細;
-        private Button コマンドF7;
+        private Button コマンド出力;
         private Button コマンド参照;
         private Button コマンド部品購買設定;
         private Button コマンド印刷;

@@ -207,14 +207,20 @@ namespace u_net
                 // 更新日時
                 if (dtm更新日開始 != DateTime.MinValue)
                 {
-                    filter += "'" + dtm更新日開始 + "' <= 更新日時 AND 更新日時 <= '" + dtm更新日終了 + "' AND ";
+                    filter += "'" + dtm更新日開始 + "' <= 更新日時 AND ";
                 }
+                if(dtm更新日終了 != DateTime.MinValue)
+                {
+                    filter += "更新日時 <= '" + dtm更新日終了 + "' AND ";
+                }
+
+
                 // 更新者名
                 if (!string.IsNullOrEmpty(str更新者名))
                 {
-                    filter += "更新者名 = '" + str更新者名 + "' AND ";
+                    filter += string.Format("更新者名 LIKE '%{0}%' AND ", str更新者名);
                 }
-              
+
 
                 // 削除
                 switch (lngDeleted)

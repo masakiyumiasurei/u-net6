@@ -60,9 +60,11 @@
             前ページボタン = new Button();
             次ページボタン = new Button();
             履歴トグル = new CheckBox();
+            panel4 = new Panel();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel2.SuspendLayout();
+            panel4.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
@@ -254,9 +256,10 @@
             // 
             // 有効件数
             // 
+            有効件数.Font = new Font("Yu Gothic UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             有効件数.Location = new Point(82, 5);
             有効件数.Name = "有効件数";
-            有効件数.Size = new Size(100, 27);
+            有効件数.Size = new Size(100, 25);
             有効件数.TabIndex = 0;
             // 
             // 表示件数ラベル
@@ -282,13 +285,14 @@
             dataGridView1.AllowUserToAddRows = false;
             dataGridView1.AllowUserToDeleteRows = false;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(7, 87);
+            dataGridView1.Dock = DockStyle.Fill;
+            dataGridView1.Location = new Point(0, 80);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
             dataGridView1.RowHeadersVisible = false;
             dataGridView1.RowTemplate.Height = 29;
             dataGridView1.ShowCellErrors = false;
-            dataGridView1.Size = new Size(1149, 557);
+            dataGridView1.Size = new Size(1180, 570);
             dataGridView1.TabIndex = 87;
             dataGridView1.CellClick += dataGridView1_CellClick;
             dataGridView1.CellDoubleClick += dataGridView1_CellDoubleClick;
@@ -327,9 +331,10 @@
             // 
             // 税込合計金額
             // 
+            税込合計金額.Font = new Font("Yu Gothic UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             税込合計金額.Location = new Point(728, 5);
             税込合計金額.Name = "税込合計金額";
-            税込合計金額.Size = new Size(100, 27);
+            税込合計金額.Size = new Size(100, 25);
             税込合計金額.TabIndex = 3;
             // 
             // label3
@@ -343,9 +348,10 @@
             // 
             // 合計金額
             // 
+            合計金額.Font = new Font("Yu Gothic UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             合計金額.Location = new Point(498, 5);
             合計金額.Name = "合計金額";
-            合計金額.Size = new Size(100, 27);
+            合計金額.Size = new Size(100, 25);
             合計金額.TabIndex = 2;
             // 
             // 合計金額ラベル
@@ -359,9 +365,10 @@
             // 
             // 合計数量
             // 
+            合計数量.Font = new Font("Yu Gothic UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             合計数量.Location = new Point(306, 5);
             合計数量.Name = "合計数量";
-            合計数量.Size = new Size(100, 27);
+            合計数量.Size = new Size(100, 25);
             合計数量.TabIndex = 1;
             // 
             // 合計数量ラベル
@@ -376,7 +383,7 @@
             // 初期表示ボタン
             // 
             初期表示ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            初期表示ボタン.Location = new Point(0, 51);
+            初期表示ボタン.Location = new Point(12, 5);
             初期表示ボタン.Name = "初期表示ボタン";
             初期表示ボタン.Size = new Size(86, 29);
             初期表示ボタン.TabIndex = 1;
@@ -387,7 +394,7 @@
             // 本日受注分ボタン
             // 
             本日受注分ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            本日受注分ボタン.Location = new Point(81, 51);
+            本日受注分ボタン.Location = new Point(93, 5);
             本日受注分ボタン.Name = "本日受注分ボタン";
             本日受注分ボタン.Size = new Size(86, 29);
             本日受注分ボタン.TabIndex = 2;
@@ -398,7 +405,7 @@
             // 前日受注分ボタン
             // 
             前日受注分ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            前日受注分ボタン.Location = new Point(165, 51);
+            前日受注分ボタン.Location = new Point(177, 5);
             前日受注分ボタン.Name = "前日受注分ボタン";
             前日受注分ボタン.Size = new Size(86, 29);
             前日受注分ボタン.TabIndex = 3;
@@ -409,7 +416,7 @@
             // 前ページボタン
             // 
             前ページボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            前ページボタン.Location = new Point(295, 51);
+            前ページボタン.Location = new Point(307, 5);
             前ページボタン.Name = "前ページボタン";
             前ページボタン.Size = new Size(54, 29);
             前ページボタン.TabIndex = 4;
@@ -420,7 +427,7 @@
             // 次ページボタン
             // 
             次ページボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            次ページボタン.Location = new Point(345, 51);
+            次ページボタン.Location = new Point(357, 5);
             次ページボタン.Name = "次ページボタン";
             次ページボタン.Size = new Size(54, 29);
             次ページボタン.TabIndex = 5;
@@ -433,7 +440,7 @@
             履歴トグル.Appearance = Appearance.Button;
             履歴トグル.AutoSize = true;
             履歴トグル.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            履歴トグル.Location = new Point(406, 49);
+            履歴トグル.Location = new Point(418, 3);
             履歴トグル.Margin = new Padding(3, 4, 3, 4);
             履歴トグル.Name = "履歴トグル";
             履歴トグル.Size = new Size(72, 22);
@@ -442,22 +449,32 @@
             履歴トグル.UseVisualStyleBackColor = true;
             履歴トグル.CheckedChanged += 履歴トグル_CheckedChanged;
             // 
+            // panel4
+            // 
+            panel4.Controls.Add(前日受注分ボタン);
+            panel4.Controls.Add(履歴トグル);
+            panel4.Controls.Add(初期表示ボタン);
+            panel4.Controls.Add(次ページボタン);
+            panel4.Controls.Add(本日受注分ボタン);
+            panel4.Controls.Add(前ページボタン);
+            panel4.Dock = DockStyle.Top;
+            panel4.Location = new Point(0, 43);
+            panel4.Name = "panel4";
+            panel4.Size = new Size(1180, 37);
+            panel4.TabIndex = 10016;
+            // 
             // F_受注管理
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1180, 687);
-            Controls.Add(履歴トグル);
-            Controls.Add(次ページボタン);
-            Controls.Add(前ページボタン);
-            Controls.Add(前日受注分ボタン);
-            Controls.Add(本日受注分ボタン);
-            Controls.Add(初期表示ボタン);
-            Controls.Add(panel2);
             Controls.Add(dataGridView1);
+            Controls.Add(panel4);
+            Controls.Add(panel2);
             Controls.Add(panel1);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "F_受注管理";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "受注管理";
             FormClosed += Form_Unload;
             Load += Form_Load;
@@ -468,8 +485,9 @@
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
+            panel4.ResumeLayout(false);
+            panel4.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -508,5 +526,6 @@
         private Button button1;
         private CheckBox 履歴トグル;
         private Panel panel3;
+        private Panel panel4;
     }
 }

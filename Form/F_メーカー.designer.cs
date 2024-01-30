@@ -104,9 +104,9 @@ namespace u_net
             label17 = new Label();
             label16 = new Label();
             仕入先1_ラベル = new Label();
-            仕入先1 = new TextBox();
-            仕入先2 = new TextBox();
-            仕入先3 = new TextBox();
+            仕入先名1 = new TextBox();
+            仕入先名2 = new TextBox();
+            仕入先名3 = new TextBox();
             仕入先2_ラベル = new Label();
             備考_ラベル = new Label();
             メーカー名フリガナ = new TextBox();
@@ -873,9 +873,9 @@ namespace u_net
             groupBox1.Controls.Add(label17);
             groupBox1.Controls.Add(label16);
             groupBox1.Controls.Add(仕入先1_ラベル);
-            groupBox1.Controls.Add(仕入先1);
-            groupBox1.Controls.Add(仕入先2);
-            groupBox1.Controls.Add(仕入先3);
+            groupBox1.Controls.Add(仕入先名1);
+            groupBox1.Controls.Add(仕入先名2);
+            groupBox1.Controls.Add(仕入先名3);
             groupBox1.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             groupBox1.Location = new Point(10, 352);
             groupBox1.Name = "groupBox1";
@@ -929,50 +929,50 @@ namespace u_net
             仕入先1_ラベル.Text = "仕入先1(&S)";
             仕入先1_ラベル.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // 仕入先1
+            // 仕入先名1
             // 
-            仕入先1.BackColor = Color.White;
-            仕入先1.Font = new Font("ＭＳ ゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            仕入先1.ImeMode = ImeMode.Hiragana;
-            仕入先1.Location = new Point(150, 20);
-            仕入先1.Margin = new Padding(3, 2, 3, 2);
-            仕入先1.Name = "仕入先1";
-            仕入先1.Size = new Size(339, 21);
-            仕入先1.TabIndex = 30;
-            仕入先1.TextChanged += 仕入先1_TextChanged;
-            仕入先1.Enter += 仕入先1_Enter;
-            仕入先1.Leave += 仕入先1_Leave;
-            仕入先1.Validated += 仕入先1_Validated;
+            仕入先名1.BackColor = Color.White;
+            仕入先名1.Font = new Font("ＭＳ ゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            仕入先名1.ImeMode = ImeMode.Hiragana;
+            仕入先名1.Location = new Point(150, 20);
+            仕入先名1.Margin = new Padding(3, 2, 3, 2);
+            仕入先名1.Name = "仕入先名1";
+            仕入先名1.Size = new Size(339, 21);
+            仕入先名1.TabIndex = 30;
+            仕入先名1.TextChanged += 仕入先1_TextChanged;
+            仕入先名1.Enter += 仕入先1_Enter;
+            仕入先名1.Leave += 仕入先1_Leave;
+            仕入先名1.Validated += 仕入先1_Validated;
             // 
-            // 仕入先2
+            // 仕入先名2
             // 
-            仕入先2.BackColor = Color.White;
-            仕入先2.Font = new Font("ＭＳ ゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            仕入先2.ImeMode = ImeMode.Hiragana;
-            仕入先2.Location = new Point(150, 45);
-            仕入先2.Margin = new Padding(3, 2, 3, 2);
-            仕入先2.Name = "仕入先2";
-            仕入先2.Size = new Size(339, 21);
-            仕入先2.TabIndex = 32;
-            仕入先2.TextChanged += 仕入先2_TextChanged;
-            仕入先2.Enter += 仕入先2_Enter;
-            仕入先2.Leave += 仕入先2_Leave;
-            仕入先2.Validated += 仕入先2_Validated;
+            仕入先名2.BackColor = Color.White;
+            仕入先名2.Font = new Font("ＭＳ ゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            仕入先名2.ImeMode = ImeMode.Hiragana;
+            仕入先名2.Location = new Point(150, 45);
+            仕入先名2.Margin = new Padding(3, 2, 3, 2);
+            仕入先名2.Name = "仕入先名2";
+            仕入先名2.Size = new Size(339, 21);
+            仕入先名2.TabIndex = 32;
+            仕入先名2.TextChanged += 仕入先2_TextChanged;
+            仕入先名2.Enter += 仕入先2_Enter;
+            仕入先名2.Leave += 仕入先2_Leave;
+            仕入先名2.Validated += 仕入先2_Validated;
             // 
-            // 仕入先3
+            // 仕入先名3
             // 
-            仕入先3.BackColor = Color.White;
-            仕入先3.Font = new Font("ＭＳ ゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            仕入先3.ImeMode = ImeMode.Hiragana;
-            仕入先3.Location = new Point(150, 70);
-            仕入先3.Margin = new Padding(3, 2, 3, 2);
-            仕入先3.Name = "仕入先3";
-            仕入先3.Size = new Size(339, 21);
-            仕入先3.TabIndex = 34;
-            仕入先3.TextChanged += 仕入先3_TextChanged;
-            仕入先3.Enter += 仕入先3_Enter;
-            仕入先3.Leave += 仕入先3_Leave;
-            仕入先3.Validated += 仕入先3_Validated;
+            仕入先名3.BackColor = Color.White;
+            仕入先名3.Font = new Font("ＭＳ ゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            仕入先名3.ImeMode = ImeMode.Hiragana;
+            仕入先名3.Location = new Point(150, 70);
+            仕入先名3.Margin = new Padding(3, 2, 3, 2);
+            仕入先名3.Name = "仕入先名3";
+            仕入先名3.Size = new Size(339, 21);
+            仕入先名3.TabIndex = 34;
+            仕入先名3.TextChanged += 仕入先3_TextChanged;
+            仕入先名3.Enter += 仕入先3_Enter;
+            仕入先名3.Leave += 仕入先3_Leave;
+            仕入先名3.Validated += 仕入先3_Validated;
             // 
             // 仕入先2_ラベル
             // 
@@ -1557,9 +1557,9 @@ namespace u_net
         private TextBox 電話番号2;
         private TextBox 電話番号3;
         private Label label2;
-        private TextBox 仕入先2;
-        private TextBox 仕入先1;
-        private TextBox 仕入先3;
+        private TextBox 仕入先名2;
+        private TextBox 仕入先名1;
+        private TextBox 仕入先名3;
         private TextBox ファックス番号1;
         private TextBox 担当者名;
         private TextBox ウェブアドレス;

@@ -36,6 +36,7 @@ namespace u_net
         private SqlConnection cn;
         private bool setCombo = true;
         private string tmpCCode = ""; // 依頼主コード退避用
+        private string beforjuchu = "";
 
         private string BASE_CAPTION = "受注（製図指図書）";
 
@@ -213,6 +214,8 @@ namespace u_net
 
             ofn.SetComboBox(受注コード, "SELECT A.受注コード AS Value, A.最新版数, A.受注コード AS Display, { fn REPLACE(STR(CONVERT(bit, T受注.無効日), 1, 0), '1', '×') } AS Display2 " +
                 "FROM T受注 INNER JOIN (SELECT TOP 100 受注コード, MAX(受注版数) AS 最新版数 FROM T受注 GROUP BY 受注コード ORDER BY T受注.受注コード DESC) A ON T受注.受注コード = A.受注コード AND T受注.受注版数 = A.最新版数 ORDER BY A.受注コード DESC");
+            //ofn.SetComboBox(受注版数, "SELECT 1 AS Value, 1 AS Display, '' AS Display2");
+            //this.受注版数.SelectedIndex = 0;
 
             ofn.SetComboBox(ClientCode, "SELECT Code AS Value, Name AS Display FROM ClientDataSource");
             ofn.SetComboBox(納品書送付コード, "SELECT right(replace(str(納品書送付コード),' ','0'),2) AS Value, right(replace(str(納品書送付コード),' ','0'),2) AS Display, 送付処理 AS Display2 FROM M納品書送付処理");
@@ -239,6 +242,7 @@ namespace u_net
             ofn.SetComboBox(ReceiptCommentCode, "SELECT '01' As Value, '01' As Display, '表示する' As Display2 UNION ALL SELECT '02' As Value, '02' As Display, '表示しない' As Display2");
             ofn.SetComboBox(InvoiceFaxCode, "SELECT '01' As Value, '01' As Display, '有り' As Display2 UNION ALL SELECT '02' As Value, '02' As Display, '無し' As Display2");
 
+            this.状態.ForeColor = Color.Black;
             try
             {
                 this.SuspendLayout();
@@ -274,7 +278,7 @@ namespace u_net
                     {
                         this.受注コード.Text = varOpenArgs.Substring(0, varOpenArgs.IndexOf(','));
                         this.受注版数.Text = varOpenArgs.Substring(varOpenArgs.IndexOf(',') + 1);
-                        UpdatedControl(this.受注版数);
+                        UpdatedControl(this.受注コード);
                         ChangedData(false);
                     }
 
@@ -369,10 +373,12 @@ namespace u_net
                 //ヘッダ部を初期化する
                 VariableSet.SetControls(this);
                 this.受注コード.Text = 採番(cn, "A");
-
+                
+                setCombo = true;
                 OriginalClass ofn = new OriginalClass();
                 ofn.SetComboBox(受注版数, "SELECT 1 AS Value, 1 AS Display, '' AS Display2");
                 this.受注版数.SelectedIndex = 0;
+                
 
                 this.受注日.Text = DateTime.Now.ToString("yyyy/MM/dd");
                 this.発送方法コード.SelectedValue = "01";
@@ -390,6 +396,7 @@ namespace u_net
                 this.ReceiptComment.Text = ((DataRowView)ReceiptCommentCode.SelectedItem)?.Row.Field<String>("Display2")?.ToString();
                 this.ProductionPlanned.Text = "0";
 
+                setCombo = false;
                 //明細部を初期化する
                 LoadDetails(this.受注明細1.Detail, this.CurrentCode);
 
@@ -414,6 +421,10 @@ namespace u_net
                 受注明細1.Detail.AllowUserToAddRows = true;
                 受注明細1.Detail.AllowUserToDeleteRows = true;
                 受注明細1.Detail.ReadOnly = false; //readonlyなのでaccessと真偽が逆になる 
+
+                this.状態.Text = "";
+                this.状態.ForeColor = Color.Black;
+                ChangedData(false);
 
                 return true;
             }
@@ -527,10 +538,12 @@ namespace u_net
                             if (this.IsDecided)
                             {
                                 this.状態.Text = "承認待ち";
+                                状態.ForeColor = Color.Black;
                             }
                             else
                             {
                                 this.状態.Text = "未確定";
+                                状態.ForeColor = Color.Black;
                             }
                         }
 
@@ -849,38 +862,51 @@ namespace u_net
                 if (!string.IsNullOrEmpty(((DataRowView)受注コード.SelectedItem)?.Row.Field<string>("Display2")?.ToString()))
                 {
                     this.状態.Text = "削除済み";
+                    this.状態.ForeColor = Color.Black;
                     return;
                 }
 
                 // 表示データの承認状態を取得する（this.isapprovedには依存したくないから）
-                if (string.IsNullOrEmpty(((DataRowView)受注版数.SelectedItem)?.Row.Field<string>("Display2")?.ToString()))
+                if (((DataRowView)受注版数.SelectedItem)?.Row.Field<string>("Display2")?.ToString()=="")
                 {
                     if (this.IsDecided)
                     {
                         this.状態.Text = "承認待ち";
+                        this.状態.ForeColor = Color.Black;
                     }
                     else
                     {
                         this.状態.Text = "未確定";
+                        this.状態.ForeColor = Color.Black;
                     }
                 }
-                else
+                else if (this.受注版数.Items.Count > 0 && this.受注版数.Text == 受注版数.GetItemText(this.受注版数.Items[0]))
                 {
-                    if (this.受注版数.Text == (string)this.受注版数.Items[0])
-                    {
-                        this.状態.Text = "最新版";
-                    }
-                    else
-                    {
-                        if (string.IsNullOrEmpty(((DataRowView)受注版数.Items[0])?.Row.Field<string>("Display2")?.ToString()))
+
+                        if (this.受注版数.Text == 受注版数.GetItemText(this.受注版数.Items[0]))
                         {
-                            this.状態.Text = "改版中";
+                            this.状態.Text = "最新版";
+                            this.状態.ForeColor = Color.Red;
                         }
                         else
                         {
-                            this.状態.Text = "旧版";
+                            if (string.IsNullOrEmpty(((DataRowView)受注版数.Items[0])?.Row.Field<string>("Display2")?.ToString()))
+                            {
+                                this.状態.Text = "改版中";
+                            this.状態.ForeColor = Color.Black;
                         }
-                    }
+                            else
+                            {
+                                this.状態.Text = "旧版";
+                            this.状態.ForeColor = Color.Black;
+                        }
+                        }
+                    
+                }
+                else
+                {
+                    this.状態.Text = "";
+                    this.状態.ForeColor = Color.Black;
                 }
             }
             catch (Exception ex)
@@ -2972,11 +2998,16 @@ namespace u_net
 
         private void 受注日_Validating(object sender, CancelEventArgs e)
         {
+           // object originalValue = 受注日.Text;
             TextBox textBox = (TextBox)sender;
 
             if (textBox.Modified == false) return;
 
-            if (IsError(textBox) == true) e.Cancel = true;
+            if (IsError(textBox) == true)
+            {
+                e.Cancel = true;
+                受注日.Text = beforjuchu;
+            }
         }
 
         private void 受注日_Validated(object sender, EventArgs e)
@@ -3017,8 +3048,13 @@ namespace u_net
             }
             else
             {
+                beforjuchu = 受注日.Text;
                 // 日付選択フォームを作成し表示
                 F_カレンダー calendar = new F_カレンダー();
+                if (!string.IsNullOrEmpty(受注日.Text))
+                {
+                    calendar.args = 受注日.Text;
+                }
                 if (calendar.ShowDialog() == DialogResult.OK)
                 {
                     // 日付選択フォームから選択した日付を取得
@@ -3028,6 +3064,7 @@ namespace u_net
                     受注日.Text = selectedDate;
                     受注日.Modified = true;
                     受注日.Focus();
+
                 }
             }
         }
@@ -3241,6 +3278,11 @@ namespace u_net
             {
                 // 日付選択フォームを作成し表示
                 F_カレンダー calendar = new F_カレンダー();
+                if (!string.IsNullOrEmpty(受注納期.Text))
+                {
+                    calendar.args = 受注納期.Text;
+                }
+
                 if (calendar.ShowDialog() == DialogResult.OK)
                 {
                     // 日付選択フォームから選択した日付を取得
@@ -4064,7 +4106,7 @@ namespace u_net
         }
 
         private void 受注日_Enter(object sender, EventArgs e)
-        {
+        {            
             this.toolStripStatusLabel2.Text = "■西暦部分は2桁で入力。「/」は必要。　■[+]キー、[-]キーで1日増減。　■[space]キーでカレンダー表示。";
         }
 

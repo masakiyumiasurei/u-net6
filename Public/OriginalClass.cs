@@ -192,6 +192,9 @@ namespace u_net.Public
         public static void PrintScreen(string imagePath)
         {
             PrintDocument printDocument = new PrintDocument();
+
+            printDocument.DefaultPageSettings.Landscape = true;
+
             printDocument.PrintPage += (sender, e) =>
             {
                 Image image = Image.FromFile(imagePath);
