@@ -884,17 +884,9 @@ namespace u_net
 
         private void コマンド仕入先_Click(object sender, EventArgs e)
         {
-            // エラーハンドリングはC#では別の方法を使用するため、ここでは省略
-            // On Error Resume Next の代替方法はC#にはありません
+            F_仕入先 targetform = new F_仕入先();
 
-            if (ActiveControl == コマンド仕入先)
-            {
-                GetNextControl(コマンド仕入先, false).Focus();
-            }
-
-            // 仕入先フォームを開く
-            //Form 仕入先Form = new 仕入先(); // 仕入先フォームの名前に合わせて変更してください
-            //仕入先Form.Show();
+            targetform.ShowDialog();
         }
 
         private void コマンドメール_Click(object sender, EventArgs e)
