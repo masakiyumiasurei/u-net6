@@ -919,17 +919,20 @@ namespace u_net
             // 部品集合明細1
             // 
             部品集合明細1.AutoScroll = true;
+            部品集合明細1.AutoSize = true;
+            部品集合明細1.Dock = DockStyle.Bottom;
             部品集合明細1.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            部品集合明細1.Location = new Point(0, 212);
-            部品集合明細1.Margin = new Padding(4, 4, 4, 4);
+            部品集合明細1.Location = new Point(0, 165);
+            部品集合明細1.Margin = new Padding(4);
             部品集合明細1.Name = "部品集合明細1";
-            部品集合明細1.Size = new Size(1148, 388);
+            部品集合明細1.Size = new Size(1148, 437);
             部品集合明細1.TabIndex = 11;
             // 
             // F_部品集合
             // 
             BackColor = SystemColors.Control;
             ClientSize = new Size(1148, 624);
+            Controls.Add(部品集合明細1);
             Controls.Add(無効日時);
             Controls.Add(承認日時);
             Controls.Add(確定日時);
@@ -977,7 +980,6 @@ namespace u_net
             Controls.Add(コマンド複写);
             Controls.Add(コマンド修正);
             Controls.Add(panel1);
-            Controls.Add(部品集合明細1);
             Icon = (Icon)resources.GetObject("$this.Icon");
             ImeMode = ImeMode.Off;
             KeyPreview = true;
