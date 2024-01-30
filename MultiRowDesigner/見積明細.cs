@@ -132,10 +132,12 @@ namespace MultiRowDesigner
                     // 新規行の場合、何もしない
                     if (gcMultiRow.Rows[e.RowIndex].IsNewRow == true) return;
 
+                    F_見積 ParentForm = (F_見積)Application.OpenForms["F_見積"];
+                    if (ParentForm.IsDecided) return;
+
                     // 削除確認
                     if (MessageBox.Show("明細行(" + (e.RowIndex + 1) + ")を削除しますか？", "承認コマンド", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
-                        F_見積 ParentForm = (F_見積)Application.OpenForms["F_見積"];
 
                         gcMultiRow.Rows.RemoveAt(e.RowIndex);
 

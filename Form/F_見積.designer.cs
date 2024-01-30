@@ -159,7 +159,7 @@ namespace u_net
             コマンド終了.Margin = new Padding(1, 0, 0, 0);
             コマンド終了.Name = "コマンド終了";
             コマンド終了.Size = new Size(70, 25);
-            コマンド終了.TabIndex = 0;
+            コマンド終了.TabIndex = 100000;
             コマンド終了.TabStop = false;
             コマンド終了.Text = "終了";
             コマンド終了.UseVisualStyleBackColor = true;
@@ -174,7 +174,7 @@ namespace u_net
             コマンド登録.Margin = new Padding(1, 0, 0, 0);
             コマンド登録.Name = "コマンド登録";
             コマンド登録.Size = new Size(70, 25);
-            コマンド登録.TabIndex = 11;
+            コマンド登録.TabIndex = 110000;
             コマンド登録.TabStop = false;
             コマンド登録.Text = "登録";
             コマンド登録.UseVisualStyleBackColor = true;
@@ -210,7 +210,7 @@ namespace u_net
             文書グループ登録ボタン.Margin = new Padding(1, 0, 0, 0);
             文書グループ登録ボタン.Name = "文書グループ登録ボタン";
             文書グループ登録ボタン.Size = new Size(70, 25);
-            文書グループ登録ボタン.TabIndex = 6;
+            文書グループ登録ボタン.TabIndex = 60000;
             文書グループ登録ボタン.TabStop = false;
             文書グループ登録ボタン.Text = "リンク";
             文書グループ登録ボタン.UseVisualStyleBackColor = true;
@@ -225,7 +225,7 @@ namespace u_net
             button.Margin = new Padding(1, 0, 0, 0);
             button.Name = "button";
             button.Size = new Size(70, 25);
-            button.TabIndex = 10;
+            button.TabIndex = 100000;
             button.TabStop = false;
             button.UseVisualStyleBackColor = true;
             // 
@@ -238,7 +238,7 @@ namespace u_net
             コマンド送信.Margin = new Padding(1, 0, 0, 0);
             コマンド送信.Name = "コマンド送信";
             コマンド送信.Size = new Size(70, 25);
-            コマンド送信.TabIndex = 8;
+            コマンド送信.TabIndex = 80000;
             コマンド送信.TabStop = false;
             コマンド送信.Text = "送信";
             コマンド送信.UseVisualStyleBackColor = true;
@@ -253,7 +253,7 @@ namespace u_net
             コマンド見積書.Margin = new Padding(1, 0, 0, 0);
             コマンド見積書.Name = "コマンド見積書";
             コマンド見積書.Size = new Size(70, 25);
-            コマンド見積書.TabIndex = 7;
+            コマンド見積書.TabIndex = 70000;
             コマンド見積書.TabStop = false;
             コマンド見積書.Text = "見積書";
             コマンド見積書.UseVisualStyleBackColor = true;
@@ -269,7 +269,7 @@ namespace u_net
             コマンド確定.Margin = new Padding(1, 0, 0, 0);
             コマンド確定.Name = "コマンド確定";
             コマンド確定.Size = new Size(70, 25);
-            コマンド確定.TabIndex = 10;
+            コマンド確定.TabIndex = 100000;
             コマンド確定.TabStop = false;
             コマンド確定.Text = "確定";
             コマンド確定.UseVisualStyleBackColor = true;
@@ -285,7 +285,7 @@ namespace u_net
             コマンド承認.Margin = new Padding(1, 0, 0, 0);
             コマンド承認.Name = "コマンド承認";
             コマンド承認.Size = new Size(70, 25);
-            コマンド承認.TabIndex = 4;
+            コマンド承認.TabIndex = 40000;
             コマンド承認.TabStop = false;
             コマンド承認.Text = "承認";
             コマンド承認.UseVisualStyleBackColor = true;
@@ -300,7 +300,7 @@ namespace u_net
             コマンド削除.Margin = new Padding(1, 0, 0, 0);
             コマンド削除.Name = "コマンド削除";
             コマンド削除.Size = new Size(70, 25);
-            コマンド削除.TabIndex = 3;
+            コマンド削除.TabIndex = 30000;
             コマンド削除.TabStop = false;
             コマンド削除.Text = "削除";
             コマンド削除.UseVisualStyleBackColor = true;
@@ -315,7 +315,7 @@ namespace u_net
             コマンド複写.Margin = new Padding(1, 0, 0, 0);
             コマンド複写.Name = "コマンド複写";
             コマンド複写.Size = new Size(70, 25);
-            コマンド複写.TabIndex = 9;
+            コマンド複写.TabIndex = 90000;
             コマンド複写.TabStop = false;
             コマンド複写.Text = "複写";
             コマンド複写.UseVisualStyleBackColor = true;
@@ -330,7 +330,7 @@ namespace u_net
             コマンド読込.Margin = new Padding(1, 0, 0, 0);
             コマンド読込.Name = "コマンド読込";
             コマンド読込.Size = new Size(70, 25);
-            コマンド読込.TabIndex = 2;
+            コマンド読込.TabIndex = 20000;
             コマンド読込.TabStop = false;
             コマンド読込.Text = "読込";
             コマンド読込.UseVisualStyleBackColor = true;
@@ -345,7 +345,7 @@ namespace u_net
             コマンド新規.Margin = new Padding(1, 0, 0, 0);
             コマンド新規.Name = "コマンド新規";
             コマンド新規.Size = new Size(70, 25);
-            コマンド新規.TabIndex = 1;
+            コマンド新規.TabIndex = 10000;
             コマンド新規.TabStop = false;
             コマンド新規.Text = "新規";
             コマンド新規.UseVisualStyleBackColor = true;
@@ -569,7 +569,7 @@ namespace u_net
             確定.Name = "確定";
             確定.ReadOnly = true;
             確定.Size = new Size(25, 21);
-            確定.TabIndex = 36;
+            確定.TabIndex = 3600;
             確定.TabStop = false;
             // 
             // label15
@@ -598,7 +598,7 @@ namespace u_net
             label4.Margin = new Padding(0);
             label4.Name = "label4";
             label4.Size = new Size(145, 22);
-            label4.TabIndex = 1;
+            label4.TabIndex = 0;
             label4.Text = "見積コード(&C)";
             label4.TextAlign = ContentAlignment.MiddleLeft;
             // 
@@ -633,7 +633,7 @@ namespace u_net
             見積版数.Margin = new Padding(4, 3, 4, 3);
             見積版数.Name = "見積版数";
             見積版数.Size = new Size(60, 21);
-            見積版数.TabIndex = 1;
+            見積版数.TabIndex = 2;
             見積版数.TabStop = false;
             見積版数.Enter += 見積版数_Enter;
             見積版数.Validating += 見積版数_Validating;
@@ -644,7 +644,7 @@ namespace u_net
             見積日選択ボタン.Location = new Point(275, 75);
             見積日選択ボタン.Name = "見積日選択ボタン";
             見積日選択ボタン.Size = new Size(21, 22);
-            見積日選択ボタン.TabIndex = 3;
+            見積日選択ボタン.TabIndex = 5;
             見積日選択ボタン.TabStop = false;
             見積日選択ボタン.Text = "▼";
             見積日選択ボタン.UseVisualStyleBackColor = true;
@@ -659,7 +659,7 @@ namespace u_net
             見積日.Margin = new Padding(3, 2, 3, 2);
             見積日.Name = "見積日";
             見積日.Size = new Size(150, 21);
-            見積日.TabIndex = 2;
+            見積日.TabIndex = 4;
             見積日.TextChanged += 見積日_TextChanged;
             見積日.Validating += 見積日_Validating;
             // 
@@ -674,7 +674,7 @@ namespace u_net
             ラベル3.Margin = new Padding(0);
             ラベル3.Name = "ラベル3";
             ラベル3.Size = new Size(120, 22);
-            ラベル3.TabIndex = 246;
+            ラベル3.TabIndex = 3;
             ラベル3.Text = "見積日(&D)";
             ラベル3.TextAlign = ContentAlignment.MiddleLeft;
             // 
@@ -687,7 +687,7 @@ namespace u_net
             件名.Margin = new Padding(3, 2, 3, 2);
             件名.Name = "件名";
             件名.Size = new Size(531, 21);
-            件名.TabIndex = 6;
+            件名.TabIndex = 10;
             件名.TextChanged += 件名_TextChanged;
             件名.Enter += 件名_Enter;
             // 
@@ -702,7 +702,7 @@ namespace u_net
             label1.Margin = new Padding(0);
             label1.Name = "label1";
             label1.Size = new Size(120, 22);
-            label1.TabIndex = 249;
+            label1.TabIndex = 9;
             label1.Text = "件名(&S)";
             label1.TextAlign = ContentAlignment.MiddleLeft;
             // 
@@ -731,7 +731,7 @@ namespace u_net
             承認.Name = "承認";
             承認.ReadOnly = true;
             承認.Size = new Size(25, 21);
-            承認.TabIndex = 37;
+            承認.TabIndex = 3700;
             承認.TabStop = false;
             // 
             // label8
@@ -759,7 +759,7 @@ namespace u_net
             削除.Name = "削除";
             削除.ReadOnly = true;
             削除.Size = new Size(25, 21);
-            削除.TabIndex = 38;
+            削除.TabIndex = 3800;
             削除.TabStop = false;
             // 
             // 改版ボタン
@@ -787,7 +787,7 @@ namespace u_net
             label9.Margin = new Padding(0);
             label9.Name = "label9";
             label9.Size = new Size(120, 22);
-            label9.TabIndex = 10013;
+            label9.TabIndex = 11;
             label9.Text = "顧客コード(&U)";
             label9.TextAlign = ContentAlignment.MiddleLeft;
             // 
@@ -802,7 +802,7 @@ namespace u_net
             label10.Margin = new Padding(0);
             label10.Name = "label10";
             label10.Size = new Size(120, 22);
-            label10.TabIndex = 10014;
+            label10.TabIndex = 14;
             label10.Text = "顧客名(&K)";
             label10.TextAlign = ContentAlignment.MiddleLeft;
             // 
@@ -817,7 +817,7 @@ namespace u_net
             label11.Margin = new Padding(0);
             label11.Name = "label11";
             label11.Size = new Size(120, 22);
-            label11.TabIndex = 10015;
+            label11.TabIndex = 16;
             label11.Text = "顧客担当者名(&H)";
             label11.TextAlign = ContentAlignment.MiddleLeft;
             // 
@@ -847,7 +847,7 @@ namespace u_net
             label13.Margin = new Padding(0);
             label13.Name = "label13";
             label13.Size = new Size(120, 22);
-            label13.TabIndex = 10017;
+            label13.TabIndex = 18;
             label13.Text = "電話番号(&T)";
             label13.TextAlign = ContentAlignment.MiddleLeft;
             // 
@@ -862,7 +862,7 @@ namespace u_net
             label14.Margin = new Padding(0);
             label14.Name = "label14";
             label14.Size = new Size(120, 22);
-            label14.TabIndex = 10018;
+            label14.TabIndex = 20;
             label14.Text = "ファックス番号(&F)";
             label14.TextAlign = ContentAlignment.MiddleLeft;
             // 
@@ -877,7 +877,7 @@ namespace u_net
             label16.Margin = new Padding(0);
             label16.Name = "label16";
             label16.Size = new Size(120, 22);
-            label16.TabIndex = 10019;
+            label16.TabIndex = 22;
             label16.Text = "納期(&L)";
             label16.TextAlign = ContentAlignment.MiddleLeft;
             // 
@@ -892,7 +892,7 @@ namespace u_net
             label18.Margin = new Padding(0);
             label18.Name = "label18";
             label18.Size = new Size(120, 22);
-            label18.TabIndex = 10020;
+            label18.TabIndex = 6;
             label18.Text = "担当者(&N)";
             label18.TextAlign = ContentAlignment.MiddleLeft;
             // 
@@ -907,7 +907,7 @@ namespace u_net
             label19.Margin = new Padding(0);
             label19.Name = "label19";
             label19.Size = new Size(120, 22);
-            label19.TabIndex = 10021;
+            label19.TabIndex = 24;
             label19.Text = "納入場所(&P)";
             label19.TextAlign = ContentAlignment.MiddleLeft;
             // 
@@ -922,7 +922,7 @@ namespace u_net
             label20.Margin = new Padding(0);
             label20.Name = "label20";
             label20.Size = new Size(120, 22);
-            label20.TabIndex = 10022;
+            label20.TabIndex = 26;
             label20.Text = "支払条件(&A)";
             label20.TextAlign = ContentAlignment.MiddleLeft;
             // 
@@ -935,7 +935,7 @@ namespace u_net
             顧客コード.Margin = new Padding(3, 2, 3, 2);
             顧客コード.Name = "顧客コード";
             顧客コード.Size = new Size(150, 21);
-            顧客コード.TabIndex = 7;
+            顧客コード.TabIndex = 12;
             顧客コード.TextChanged += 顧客コード_TextChanged;
             顧客コード.Enter += 顧客コード_Enter;
             顧客コード.Validating += 顧客コード_Validating;
@@ -946,7 +946,7 @@ namespace u_net
             顧客選択ボタン.Location = new Point(275, 150);
             顧客選択ボタン.Name = "顧客選択ボタン";
             顧客選択ボタン.Size = new Size(21, 22);
-            顧客選択ボタン.TabIndex = 9;
+            顧客選択ボタン.TabIndex = 13;
             顧客選択ボタン.TabStop = false;
             顧客選択ボタン.Text = "▼";
             顧客選択ボタン.UseVisualStyleBackColor = true;
@@ -961,7 +961,7 @@ namespace u_net
             顧客名.Margin = new Padding(3, 2, 3, 2);
             顧客名.Name = "顧客名";
             顧客名.Size = new Size(531, 21);
-            顧客名.TabIndex = 8;
+            顧客名.TabIndex = 15;
             顧客名.TextChanged += 顧客名_TextChanged;
             顧客名.Enter += 顧客名_Enter;
             顧客名.Validating += 顧客名_Validating;
@@ -976,7 +976,7 @@ namespace u_net
             顧客担当者名.Margin = new Padding(3, 2, 3, 2);
             顧客担当者名.Name = "顧客担当者名";
             顧客担当者名.Size = new Size(531, 21);
-            顧客担当者名.TabIndex = 10;
+            顧客担当者名.TabIndex = 17;
             顧客担当者名.TextChanged += 顧客担当者名_TextChanged;
             顧客担当者名.Enter += 顧客担当者名_Enter;
             顧客担当者名.Validating += 顧客担当者名_Validating;
@@ -993,7 +993,7 @@ namespace u_net
             納入場所.Margin = new Padding(4, 3, 4, 3);
             納入場所.Name = "納入場所";
             納入場所.Size = new Size(261, 21);
-            納入場所.TabIndex = 14;
+            納入場所.TabIndex = 25;
             納入場所.TextChanged += 納入場所_TextChanged;
             納入場所.Enter += 納入場所_Enter;
             // 
@@ -1006,7 +1006,7 @@ namespace u_net
             ファックス番号.Margin = new Padding(3, 2, 3, 2);
             ファックス番号.Name = "ファックス番号";
             ファックス番号.Size = new Size(242, 21);
-            ファックス番号.TabIndex = 12;
+            ファックス番号.TabIndex = 21;
             ファックス番号.TextChanged += ファックス番号_TextChanged;
             ファックス番号.Enter += ファックス番号_Enter;
             ファックス番号.Validating += ファックス番号_Validating;
@@ -1021,7 +1021,7 @@ namespace u_net
             納期.Margin = new Padding(3, 2, 3, 2);
             納期.Name = "納期";
             納期.Size = new Size(242, 21);
-            納期.TabIndex = 13;
+            納期.TabIndex = 23;
             納期.TextChanged += 納期_TextChanged;
             納期.Enter += 納期_Enter;
             // 
@@ -1037,7 +1037,7 @@ namespace u_net
             担当者コード.Margin = new Padding(4, 3, 4, 3);
             担当者コード.Name = "担当者コード";
             担当者コード.Size = new Size(60, 22);
-            担当者コード.TabIndex = 4;
+            担当者コード.TabIndex = 7;
             担当者コード.DrawItem += 担当者コード_DrawItem;
             担当者コード.SelectedIndexChanged += 担当者コード_SelectedIndexChanged;
             担当者コード.Enter += 担当者コード_Enter;
@@ -1053,7 +1053,7 @@ namespace u_net
             担当者名.Name = "担当者名";
             担当者名.ReadOnly = true;
             担当者名.Size = new Size(196, 21);
-            担当者名.TabIndex = 5;
+            担当者名.TabIndex = 8;
             担当者名.TabStop = false;
             // 
             // 支払条件
@@ -1067,7 +1067,7 @@ namespace u_net
             支払条件.Margin = new Padding(4, 3, 4, 3);
             支払条件.Name = "支払条件";
             支払条件.Size = new Size(261, 21);
-            支払条件.TabIndex = 15;
+            支払条件.TabIndex = 27;
             支払条件.TextChanged += 支払条件_TextChanged;
             支払条件.Enter += 支払条件_Enter;
             // 
@@ -1082,7 +1082,7 @@ namespace u_net
             有効期間.Margin = new Padding(4, 3, 4, 3);
             有効期間.Name = "有効期間";
             有効期間.Size = new Size(261, 21);
-            有効期間.TabIndex = 16;
+            有効期間.TabIndex = 29;
             有効期間.TextChanged += 有効期間_TextChanged;
             有効期間.Enter += 有効期間_Enter;
             // 
@@ -1097,7 +1097,7 @@ namespace u_net
             label21.Margin = new Padding(0);
             label21.Name = "label21";
             label21.Size = new Size(120, 22);
-            label21.TabIndex = 10038;
+            label21.TabIndex = 34;
             label21.Text = "メモ(&M):";
             label21.TextAlign = ContentAlignment.MiddleLeft;
             // 
@@ -1112,7 +1112,7 @@ namespace u_net
             合計金額表示.Margin = new Padding(4, 3, 4, 3);
             合計金額表示.Name = "合計金額表示";
             合計金額表示.Size = new Size(138, 21);
-            合計金額表示.TabIndex = 18;
+            合計金額表示.TabIndex = 33;
             合計金額表示.TextChanged += 合計金額表示_TextChanged;
             合計金額表示.Enter += 合計金額表示_Enter;
             合計金額表示.Validating += 合計金額表示_Validating;
@@ -1128,7 +1128,7 @@ namespace u_net
             label6.Margin = new Padding(0);
             label6.Name = "label6";
             label6.Size = new Size(120, 22);
-            label6.TabIndex = 10041;
+            label6.TabIndex = 32;
             label6.Text = "合計金額表示(&A)";
             label6.TextAlign = ContentAlignment.MiddleLeft;
             // 
@@ -1143,7 +1143,7 @@ namespace u_net
             label22.Margin = new Padding(0);
             label22.Name = "label22";
             label22.Size = new Size(120, 22);
-            label22.TabIndex = 10042;
+            label22.TabIndex = 36;
             label22.Text = "備考(&O)";
             label22.TextAlign = ContentAlignment.MiddleLeft;
             // 
@@ -1157,7 +1157,7 @@ namespace u_net
             メモ.Multiline = true;
             メモ.Name = "メモ";
             メモ.Size = new Size(313, 146);
-            メモ.TabIndex = 20;
+            メモ.TabIndex = 35;
             メモ.TextChanged += メモ_TextChanged;
             メモ.Enter += メモ_Enter;
             // 
@@ -1172,7 +1172,7 @@ namespace u_net
             label23.Margin = new Padding(0);
             label23.Name = "label23";
             label23.Size = new Size(120, 22);
-            label23.TabIndex = 10044;
+            label23.TabIndex = 30;
             label23.Text = "要承認(&R)";
             label23.TextAlign = ContentAlignment.MiddleLeft;
             // 
@@ -1186,7 +1186,7 @@ namespace u_net
             備考.Multiline = true;
             備考.Name = "備考";
             備考.Size = new Size(804, 54);
-            備考.TabIndex = 19;
+            備考.TabIndex = 37;
             備考.TextChanged += 備考_TextChanged;
             備考.Enter += 備考_Enter;
             // 
@@ -1199,7 +1199,7 @@ namespace u_net
             電話番号.Margin = new Padding(3, 2, 3, 2);
             電話番号.Name = "電話番号";
             電話番号.Size = new Size(242, 21);
-            電話番号.TabIndex = 11;
+            電話番号.TabIndex = 19;
             電話番号.TextChanged += 電話番号_TextChanged;
             電話番号.Enter += 電話番号_Enter;
             電話番号.Validating += 電話番号_Validating;
@@ -1216,7 +1216,7 @@ namespace u_net
             label3.Margin = new Padding(0);
             label3.Name = "label3";
             label3.Size = new Size(120, 22);
-            label3.TabIndex = 10048;
+            label3.TabIndex = 28;
             label3.Text = "有効期間(&V)";
             label3.TextAlign = ContentAlignment.MiddleLeft;
             // 
@@ -1231,7 +1231,7 @@ namespace u_net
             要承認.Margin = new Padding(4, 3, 4, 3);
             要承認.Name = "要承認";
             要承認.Size = new Size(171, 21);
-            要承認.TabIndex = 17;
+            要承認.TabIndex = 31;
             要承認.TextChanged += 要承認_TextChanged;
             要承認.Enter += 要承認_Enter;
             要承認.Validating += 要承認_Validating;
@@ -1305,7 +1305,7 @@ namespace u_net
             作成者コード.Name = "作成者コード";
             作成者コード.ReadOnly = true;
             作成者コード.Size = new Size(49, 21);
-            作成者コード.TabIndex = 23;
+            作成者コード.TabIndex = 2300;
             作成者コード.TabStop = false;
             // 
             // 更新者コード
@@ -1317,7 +1317,7 @@ namespace u_net
             更新者コード.Name = "更新者コード";
             更新者コード.ReadOnly = true;
             更新者コード.Size = new Size(49, 21);
-            更新者コード.TabIndex = 26;
+            更新者コード.TabIndex = 2600;
             更新者コード.TabStop = false;
             // 
             // 作成者名
@@ -1329,7 +1329,7 @@ namespace u_net
             作成者名.Name = "作成者名";
             作成者名.ReadOnly = true;
             作成者名.Size = new Size(122, 21);
-            作成者名.TabIndex = 24;
+            作成者名.TabIndex = 2400;
             作成者名.TabStop = false;
             // 
             // 更新者名
@@ -1341,7 +1341,7 @@ namespace u_net
             更新者名.Name = "更新者名";
             更新者名.ReadOnly = true;
             更新者名.Size = new Size(122, 21);
-            更新者名.TabIndex = 27;
+            更新者名.TabIndex = 2700;
             更新者名.TabStop = false;
             // 
             // 更新日時
@@ -1353,7 +1353,7 @@ namespace u_net
             更新日時.Name = "更新日時";
             更新日時.ReadOnly = true;
             更新日時.Size = new Size(177, 21);
-            更新日時.TabIndex = 25;
+            更新日時.TabIndex = 2500;
             更新日時.TabStop = false;
             // 
             // 作成日時
@@ -1365,7 +1365,7 @@ namespace u_net
             作成日時.Name = "作成日時";
             作成日時.ReadOnly = true;
             作成日時.Size = new Size(177, 21);
-            作成日時.TabIndex = 22;
+            作成日時.TabIndex = 2200;
             作成日時.TabStop = false;
             // 
             // 確定日時
@@ -1377,7 +1377,7 @@ namespace u_net
             確定日時.Name = "確定日時";
             確定日時.ReadOnly = true;
             確定日時.Size = new Size(177, 20);
-            確定日時.TabIndex = 28;
+            確定日時.TabIndex = 2800;
             確定日時.Visible = false;
             // 
             // 承認日時
@@ -1389,7 +1389,7 @@ namespace u_net
             承認日時.Name = "承認日時";
             承認日時.ReadOnly = true;
             承認日時.Size = new Size(177, 20);
-            承認日時.TabIndex = 30;
+            承認日時.TabIndex = 3000;
             承認日時.Visible = false;
             // 
             // 承認者名
@@ -1401,7 +1401,7 @@ namespace u_net
             承認者名.Name = "承認者名";
             承認者名.ReadOnly = true;
             承認者名.Size = new Size(122, 20);
-            承認者名.TabIndex = 32;
+            承認者名.TabIndex = 3200;
             承認者名.Visible = false;
             // 
             // 承認者コード
@@ -1413,7 +1413,7 @@ namespace u_net
             承認者コード.Name = "承認者コード";
             承認者コード.ReadOnly = true;
             承認者コード.Size = new Size(49, 20);
-            承認者コード.TabIndex = 31;
+            承認者コード.TabIndex = 3100;
             承認者コード.Visible = false;
             // 
             // 確定者コード
@@ -1425,7 +1425,7 @@ namespace u_net
             確定者コード.Name = "確定者コード";
             確定者コード.ReadOnly = true;
             確定者コード.Size = new Size(49, 20);
-            確定者コード.TabIndex = 29;
+            確定者コード.TabIndex = 2900;
             確定者コード.Visible = false;
             // 
             // label26
@@ -1533,7 +1533,7 @@ namespace u_net
             削除日時.Name = "削除日時";
             削除日時.ReadOnly = true;
             削除日時.Size = new Size(177, 20);
-            削除日時.TabIndex = 33;
+            削除日時.TabIndex = 3300;
             削除日時.Visible = false;
             // 
             // 削除者コード
@@ -1545,7 +1545,7 @@ namespace u_net
             削除者コード.Name = "削除者コード";
             削除者コード.ReadOnly = true;
             削除者コード.Size = new Size(49, 20);
-            削除者コード.TabIndex = 34;
+            削除者コード.TabIndex = 3400;
             削除者コード.Visible = false;
             // 
             // label32
@@ -1571,7 +1571,7 @@ namespace u_net
             見積コード.Margin = new Padding(3, 2, 3, 2);
             見積コード.Name = "見積コード";
             見積コード.Size = new Size(150, 21);
-            見積コード.TabIndex = 0;
+            見積コード.TabIndex = 1;
             見積コード.TextChanged += 見積コード_TextChanged;
             見積コード.KeyDown += 見積コード_KeyDown;
             見積コード.Validating += 見積コード_Validating;
@@ -1582,7 +1582,7 @@ namespace u_net
             見積明細1.Location = new Point(15, 460);
             見積明細1.Name = "見積明細1";
             見積明細1.Size = new Size(1050, 350);
-            見積明細1.TabIndex = 21;
+            見積明細1.TabIndex = 21000;
             // 
             // F_見積
             // 
