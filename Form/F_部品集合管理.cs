@@ -121,6 +121,10 @@ namespace u_net
             dataGridView1.DefaultCellStyle.ForeColor = Color.Black;
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
+            System.Type dgvtype = typeof(DataGridView);
+            System.Reflection.PropertyInfo dgvPropertyInfo = dgvtype.GetProperty("DoubleBuffered", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
+            dgvPropertyInfo.SetValue(dataGridView1, true, null);
+
             //dataGridView1.Columns[0].DefaultCellStyle.BackColor = Color.FromArgb(255, 255, 200); // 薄い黄色
             //dataGridView1.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
 
@@ -148,13 +152,13 @@ namespace u_net
         private void Form_Resize(object sender, EventArgs e)
         {
             try
-            {                
-                    //dataGridView1.Height = dataGridView1.Height + (this.Height - IntWindowHeight);
-                    //IntWindowHeight = this.Height;  // 高さ保存
+            {
+                //dataGridView1.Height = dataGridView1.Height + (this.Height - IntWindowHeight);
+                //IntWindowHeight = this.Height;  // 高さ保存
 
-                    //dataGridView1.Width = dataGridView1.Width + (this.Width - IntWindowWidth);
-                    //IntWindowWidth = this.Width;    // 幅保存
-                
+                //dataGridView1.Width = dataGridView1.Width + (this.Width - IntWindowWidth);
+                //IntWindowWidth = this.Width;    // 幅保存
+
             }
             catch (Exception ex)
             {
@@ -898,5 +902,11 @@ namespace u_net
 
         }
 
+        private void コマンド出力_Click(object sender, EventArgs e)
+        {
+            F_出力 targetform = new F_出力();
+            targetform.DataGridView = dataGridView1;
+            targetform.ShowDialog();
+        }
     }
 }
