@@ -578,6 +578,21 @@ namespace u_net
                     見積明細1.Detail.Focus();
                     return true;
                 }
+                else
+                {
+                    foreach(Row row in 見積明細1.Detail.Rows)
+                    {
+                        if (row.IsNewRow) continue;
+
+                        if (string.IsNullOrEmpty(row.Cells["品名"].Value?.ToString()))
+                        {
+
+                            MessageBox.Show("品名を入力してください。", "見積", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            return true;
+                            
+                        }
+                    }
+                }
 
                 return false;
             }
@@ -1043,6 +1058,10 @@ namespace u_net
                 this.削除日時.Text = null;
                 this.削除者コード.Text = null;
 
+                this.確定.Text = string.IsNullOrEmpty(確定日時.Text) ? "" : "■";
+                this.承認.Text = string.IsNullOrEmpty(承認者コード.Text) ? "" : "■";
+                this.削除.Text = string.IsNullOrEmpty(削除日時.Text) ? "" : "■";
+
                 return true;
             }
             catch (Exception ex)
@@ -1493,7 +1512,10 @@ namespace u_net
 
                 param = $" -user:{LoginUserName}{param}";
 
-                FunctionClass.GetShell(param);
+                if(!FunctionClass.GetShell(param)){
+                    return;
+
+                }
 
                 MessageBox.Show("見積書の送信を完了しました。\n[ ファックス管理 ] で送信状況を確認できます。",
                     "送信コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -1976,6 +1998,8 @@ namespace u_net
                     見積明細1.Detail.AllowUserToAddRows = true;
                     見積明細1.Detail.AllowUserToDeleteRows = true;
                     見積明細1.Detail.ReadOnly = false; //readonlyなのでaccessと真偽が逆になる  
+
+                    
                 }
                 else
                 {
@@ -2016,7 +2040,7 @@ namespace u_net
                 calendar.args = 見積日.Text;
             }
 
-            if (calendar.ShowDialog() == DialogResult.OK)
+            if (calendar.ShowDialog() == DialogResult.OK && 見積日.Enabled && !見積日.ReadOnly)
             {
                 // 日付選択フォームから選択した日付を取得
                 string selectedDate = calendar.SelectedDate;
@@ -2082,7 +2106,7 @@ namespace u_net
             {
                 F_検索 SearchForm = new F_検索();
                 SearchForm.FilterName = "顧客名フリガナ";
-                if (SearchForm.ShowDialog() == DialogResult.OK)
+                if (SearchForm.ShowDialog() == DialogResult.OK && 顧客コード.Enabled && !顧客コード.ReadOnly)
                 {
                     string SelectedCode = SearchForm.SelectedCode;
 

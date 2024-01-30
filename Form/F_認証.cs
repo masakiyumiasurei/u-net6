@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Diagnostics;
+using System.Net.Mail;
 using u_net.Public;
 
 namespace u_net
@@ -188,50 +189,25 @@ namespace u_net
         {
             try
             {
-                //MessageBox.Show("メール送信機能は未実装です。", "パスワード強制変更ボタン", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                // 使用コンピューター名とログオンユーザー名を取得
+                string computerName = CommonConstants.MyComputerName;
+                string userName = CommonConstants.MyUserName;
 
-                //DoCmd.SendObject acSendNoObject, acSendNoObject, acFormatTXT, _
-                //"postmaster@uinics.co.jp", , , "U-netパスワード強制変更依頼", _
-                //"使用コンピュータ：" & MyComputerName & vbCrLf _
-                //& "ログオンユーザー：" & MyUserName & vbCrLf + vbCrLf _
-                //& "このまま送信してください。" & vbCrLf _
-                //, True
+                // 送信先のメールアドレス（適切なものに置き換える）
+                string toAddress = "postmaster@uinics.co.jp";
 
-                // デフォルトのメールクライアントを起動して新しいメールを作成
-                try
-                {
-                    string mailtoLink = "C:\\Program Files\\Mozilla Thunderbird\\thunderbird.exe";
-                    System.Diagnostics.Process.Start(mailtoLink);
+                // メールの下書きを開く
+                string subject = "U-netパスワード強制変更依頼";
+                string body = $"使用コンピュータ：{computerName}\r\nログオンユーザー：{userName}\r\n\r\nこのまま送信してください。";
+                string mailtoLink = $"mailto:{toAddress}?subject={subject}&body={Uri.EscapeDataString(body)}";
 
-                    string email = "WhiteTigerxxx@yahoo.co.jp";
-                    string subject = "請求書の添付資料有り";
-                    string body = "一行目の文字列" + "%0D%0A" +
-                                  "二行目の文字列" + "%0D%0A" +
-                                  "三行目の文字列";
-                    string cc = "test1@yahoo.co.jp";
-                    string bcc = "test2@yahoo.co.jp";
-
-                    Process.Start(
-                                "mailto:" + email +     // 宛先
-                                "?" +
-                                "subject=" + subject +    // 件名  
-                                "&" +
-                                "body=" + body +       //本文 
-                                "&" +
-                                "cc=" + cc +        //CC
-                                "&" +
-                                "bcc=" + bcc          //BCC         
-                                );
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("メールを起動できませんでした。\nエラー: " + ex.Message, "メールコマンド", MessageBoxButtons.OK);
-                }
-
+                // デフォルトのメールクライアントを起動してメールの下書きを開く
+                System.Diagnostics.Process.Start(new ProcessStartInfo(mailtoLink) { UseShellExecute = true });
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"パスワード強制変更ボタン_Click - {ex.GetType().Name} : {ex.Message}", "パスワード強制変更", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                // 例外が発生した場合の処理
+                MessageBox.Show($"エラーが発生しました：{ex.Message}");
             }
         }
 
@@ -357,8 +333,8 @@ namespace u_net
 
             MessageBox.Show("システムを終了します。", CommonConstants.STR_APPTITLE, MessageBoxButtons.OK);
 
-            //自分自身のフォームを閉じる
-            this.Close();
+            
+            Application.Exit();
         }
 
         private bool ChangePassword(SqlConnection cn, string employeeCode, string newPassword)

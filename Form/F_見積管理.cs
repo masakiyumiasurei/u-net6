@@ -379,17 +379,22 @@ namespace u_net
                 dataGridView1.Columns[0].DefaultCellStyle.BackColor = Color.FromArgb(255, 255, 200); // 薄い黄色
                 dataGridView1.Columns[1].DefaultCellStyle.BackColor = Color.FromArgb(255, 255, 200); // 薄い黄色
 
-                dataGridView1.Columns[0].Width = 1500 / twipperdot; //1150
+                dataGridView1.Columns[0].Width = 1400 / twipperdot; //1150
                 dataGridView1.Columns[1].Width = 300 / twipperdot;
                 dataGridView1.Columns[2].Width = 1300 / twipperdot;
                 dataGridView1.Columns[3].Width = 2500 / twipperdot;
-                dataGridView1.Columns[4].Width = 4400 / twipperdot;
+                dataGridView1.Columns[4].Visible = false;
                 dataGridView1.Columns[5].Width = 4400 / twipperdot;
-                dataGridView1.Columns[6].Width = 1500 / twipperdot;
-                dataGridView1.Columns[7].Width = 400 / twipperdot;//1300
+                dataGridView1.Columns[6].Width = 4400 / twipperdot;
+                dataGridView1.Columns[7].Width = 1500 / twipperdot;//1300
                 dataGridView1.Columns[8].Width = 400 / twipperdot;
                 dataGridView1.Columns[9].Width = 400 / twipperdot;
                 dataGridView1.Columns[10].Width = 400 / twipperdot;
+                //dataGridView1.Columns[11].Width = 400 / twipperdot;
+
+
+                dataGridView1.Columns[6].DefaultCellStyle.Format = "#,###,###,##0";
+                dataGridView1.Columns[6].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
 
                 if (dataGridView1.Rows.Count <= 0)
                 {
