@@ -355,7 +355,7 @@ namespace MultiRowDesigner
                     DataRow newRow = dataTable.NewRow();
                     string strCode = FunctionClass.採番(cn, "PAR"); // 採番メソッドを実装してください
 
-                    newRow["部品コード"] = strCode.Substring(strCode.Length - 8); ;
+                    newRow["部品コード"] = strCode.Substring(strCode.Length - 8);
                     newRow["品名"] = gcMultiRow1.Rows[0].Cells["品名"].Value;
                     newRow["型番"] = gcMultiRow1.Rows[0].Cells["型番"].Value;
                     newRow["仕入先1単価"] = gcMultiRow1.Rows[0].Cells["発注単価"].Value;
@@ -370,7 +370,7 @@ namespace MultiRowDesigner
                     new SqlCommandBuilder(adapter);
                     adapter.Update(dataTable);
 
-                    gcMultiRow1.Rows[0].Cells["部品コード"].Value = strCode;
+                    gcMultiRow1.Rows[0].Cells["部品コード"].Value = strCode.Substring(strCode.Length - 8); ;
                     return true;
                 }
             }
@@ -638,22 +638,22 @@ namespace MultiRowDesigner
             //    return;
             //}
 
-            if (string.IsNullOrEmpty(gcMultiRow1.CurrentRow.Cells["部品コード"].Value?.ToString()) &&
-                !string.IsNullOrEmpty(gcMultiRow1.CurrentRow.Cells["部品コード"].Value?.ToString()) &&
-                !string.IsNullOrEmpty(gcMultiRow1.CurrentRow.Cells["部品コード"].Value?.ToString()))
-            {
-                Connect();
-                if (!SaveNewParts(FunctionClass.GetServerDate(cn), CommonConstants.LoginUserCode))
-                {
-                    e.Cancel = true;
-                }
-            }
+            //if (string.IsNullOrEmpty(gcMultiRow1.CurrentRow.Cells["部品コード"].Value?.ToString()) &&
+            //    !string.IsNullOrEmpty(gcMultiRow1.CurrentRow.Cells["部品コード"].Value?.ToString()) &&
+            //    !string.IsNullOrEmpty(gcMultiRow1.CurrentRow.Cells["部品コード"].Value?.ToString()))
+            //{
+            //    Connect();
+            //    if (!SaveNewParts(FunctionClass.GetServerDate(cn), CommonConstants.LoginUserCode))
+            //    {
+            //        e.Cancel = true;
+            //    }
+            //}
 
-            //accessのForm_AfterUpdateの処理
-            if (string.IsNullOrEmpty(gcMultiRow1.CurrentRow.Cells["必要数量"].Value?.ToString()))
-            {
-                gcMultiRow1.CurrentRow.Cells["必要数量"].Value = gcMultiRow1.CurrentRow.Cells["発注数量"].Value;
-            }
+            ////accessのForm_AfterUpdateの処理
+            //if (string.IsNullOrEmpty(gcMultiRow1.CurrentRow.Cells["必要数量"].Value?.ToString()))
+            //{
+            //    gcMultiRow1.CurrentRow.Cells["必要数量"].Value = gcMultiRow1.CurrentRow.Cells["発注数量"].Value;
+            //}
 
         }
 
@@ -689,7 +689,7 @@ namespace MultiRowDesigner
                             {
                                 MessageBox.Show("部品コードを未入力にすることはできません。\nこの発注部品を削除するときは、明細行を削除してください。",
                                     "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                                isError = true;
+                                return true;
                             }
 
                             if (IsAbolished(((string)varValue).PadLeft(8, '0')))
@@ -697,7 +697,7 @@ namespace MultiRowDesigner
                                 if (MessageBox.Show("指定された部品は廃止されています。\nよろしいですか？", "確認", MessageBoxButtons.YesNo,
                                         MessageBoxIcon.Question) == DialogResult.No)
                                 {
-                                    isError = true;
+                                    return true;
                                 }
                             }
                             break;
@@ -708,7 +708,7 @@ namespace MultiRowDesigner
                             {
                                 MessageBox.Show("部品を選択するか、" + strName + " を入力してください。",
                                     "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                                isError = true;
+                                return true;
                             }
                             break;
 
@@ -718,7 +718,7 @@ namespace MultiRowDesigner
                             {
                                 MessageBox.Show(strName + " を入力してください。",
                                     "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                                isError = true;
+                                return true;
                             }
                             // 追加の制約やチェックがあればここに追加
                             break;
@@ -727,7 +727,7 @@ namespace MultiRowDesigner
 
                             if (!FunctionClass.IsLimit_N(varValue, 12, 2, strName))
                             {
-                                isError = true;
+                                return true;
                             }
                             break;
 
@@ -737,7 +737,7 @@ namespace MultiRowDesigner
 
                             if (!FunctionClass.IsLimit_N(varValue, 8, 2, strName))
                             {
-                                isError = true;
+                                return true;
                             }
                             break;
 
@@ -746,13 +746,13 @@ namespace MultiRowDesigner
                             {
                                 MessageBox.Show(strName + " を入力してください。",
                                     "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                                isError = true;
+                                return true;
                             }
                             else if (varValue is not DateTime)
                             {
                                 strMsg = "日付以外は入力できません。" + "\n\n" + strName;
                                 MessageBox.Show(strMsg, "入力", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                isError = true;
+                                return true;
                             }
                             break;
 
@@ -762,7 +762,7 @@ namespace MultiRowDesigner
                                 MessageBox.Show(strName + " を入力してください。" + "\n\n"
                                     + "※ 買掛区分は入庫時に確認されるため、わからない場合でも入力してください。",
                                     "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                                isError = true;
+                                return true;
                             }
                             break;
 
@@ -1370,6 +1370,23 @@ namespace MultiRowDesigner
         {
             var targetRow = e.RowIndex;
             if (gcMultiRow1.Rows[e.RowIndex].IsNewRow) return;
+
+            if (string.IsNullOrEmpty(gcMultiRow1.CurrentRow.Cells["部品コード"].Value?.ToString()) &&
+                !string.IsNullOrEmpty(gcMultiRow1.CurrentRow.Cells["品名"].Value?.ToString()) &&
+                !string.IsNullOrEmpty(gcMultiRow1.CurrentRow.Cells["型番"].Value?.ToString()))
+            {
+                Connect();
+                if (!SaveNewParts(FunctionClass.GetServerDate(cn), CommonConstants.LoginUserCode))
+                {
+                    e.Cancel = true;
+                }
+            }
+
+            //accessのForm_AfterUpdateの処理
+            if (string.IsNullOrEmpty(gcMultiRow1.CurrentRow.Cells["必要数量"].Value?.ToString()))
+            {
+                gcMultiRow1.CurrentRow.Cells["必要数量"].Value = gcMultiRow1.CurrentRow.Cells["発注数量"].Value;
+            }
 
             if (IsErrorData(targetRow,false)) e.Cancel = true;
         }

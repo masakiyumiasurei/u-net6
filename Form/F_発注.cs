@@ -224,8 +224,9 @@ namespace u_net
 
             SetEditions(発注コード.Text);
 
-            string sql = "SELECT 氏名 as Display ,社員コード as Value FROM M社員 WHERE (退社 IS NULL) AND (削除日時 IS NULL) ORDER BY ふりがな";
+            string sql = "SELECT 社員コード as Display ,氏名 as Display2 ,社員コード as Value FROM M社員 WHERE (退社 IS NULL) AND (削除日時 IS NULL) ORDER BY ふりがな";
             ofn.SetComboBox(発注者コード, sql);
+            発注者コード.DrawMode = DrawMode.OwnerDrawFixed;
 
             try
             {
@@ -675,7 +676,7 @@ namespace u_net
                         break;
 
                     case "発注者コード":
-                        if (varValue == null || varValue == DBNull.Value)
+                        if (string.IsNullOrEmpty(varValue?.ToString()))
                         {
                             MessageBox.Show("発注者名を選択してください。", "発注者名", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             goto Exit_IsError;
@@ -698,7 +699,7 @@ namespace u_net
                         break;
 
                     case "仕入先担当者名":
-                        if (varValue == null || varValue == DBNull.Value)
+                        if (string.IsNullOrEmpty(varValue?.ToString()))
                         {
                             MessageBox.Show(controlObject.Name + " を入力してください。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                             goto Exit_IsError;
@@ -791,12 +792,14 @@ namespace u_net
             {
                 int count = 発注明細1.Detail.RowCount;
 
-                if (count == 0)
+                if ((IsDecided && 発注明細1.Detail.RowCount < 1) || (!IsDecided && 発注明細1.Detail.RowCount <= 1))
                 {
                     MessageBox.Show("明細行を1行以上入力してください。", "発注明細", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     発注明細1.Detail.Focus();
                     return true;
                 }
+
+        
 
                 return false;
             }
@@ -1145,7 +1148,11 @@ namespace u_net
                 チェック();
 
             Bye_コマンド確定_Click:
-                fn.WaitForm.Close();
+                if(fn.WaitForm != null)
+                {
+                    fn.WaitForm.Close();
+                }
+               
                 return;
             }
             catch (Exception ex)
@@ -1367,7 +1374,9 @@ namespace u_net
             {
                 // 日付選択フォームから選択した日付を取得
                 string selectedDate = dateSelectionForm.SelectedDate;
+                発注日.Focus();
                 発注日.Text = selectedDate;
+                
             }
         }
 
@@ -2480,6 +2489,7 @@ namespace u_net
 
         private void 仕入先担当者名_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
+            if (仕入先担当者名.Modified == false) return;
             if (IsError(sender as Control, false) == true) e.Cancel = true;
         }
 

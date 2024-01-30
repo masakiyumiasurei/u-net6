@@ -77,10 +77,10 @@ namespace u_net
                 this.発注者名.Text = fn.Zn(frmTarget.str発注者名).ToString();
 
                 if (frmTarget.dtm発注日開始 != DateTime.MinValue)
-                    this.発注日開始.Text = frmTarget.dtm発注日開始.ToString();
+                    this.発注日開始.Text = frmTarget.dtm発注日開始.ToString("yyyy/MM/dd");
 
                 if (frmTarget.dtm発注日終了 != DateTime.MinValue)
-                    this.発注日終了.Text = frmTarget.dtm発注日終了.ToString();
+                    this.発注日終了.Text = frmTarget.dtm発注日終了.ToString("yyyy/MM/dd");
 
                 this.発注者名.Text = fn.Zn(frmTarget.str発注者名).ToString();
                 this.購買コード開始.Text = fn.Zn(frmTarget.str購買コード開始).ToString();
@@ -167,7 +167,7 @@ namespace u_net
                 }
 
                 frmTarget.str発注コード開始 = Nz(発注コード開始.Text);
-                frmTarget.str発注コード開始 = Nz(発注コード終了.Text);
+                frmTarget.str発注コード終了 = Nz(発注コード終了.Text);
                 frmTarget.str発注者名 = Nz(発注者名.Text);
                 frmTarget.str購買コード開始 = Nz(購買コード開始.Text);
                 frmTarget.str購買コード終了 = Nz(購買コード終了.Text);
@@ -225,18 +225,21 @@ namespace u_net
                 else if (cnt < 0)
                 {
                     MessageBox.Show("エラーが発生したため、抽出できませんでした。", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    return;
+        
                 }
+                this.Close();
+
             }
             catch (Exception ex)
             {
                 Debug.WriteLine(this.Name + "_抽出ボタン_Click - " + ex.Message);
                 MessageBox.Show("エラーが発生しました。", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.Close();
             }
             finally
             {
                 //this.Painting = true;
-                this.Close();
+                
             }
         }
 

@@ -570,9 +570,8 @@ namespace u_net
         {
             try
             {
-                int count = 見積明細1.Detail.RowCount - 1;
-
-                if (count == 0)
+              
+                if ((IsDecided && 見積明細1.Detail.RowCount < 1) || (!IsDecided && 見積明細1.Detail.RowCount <= 1))
                 {
                     MessageBox.Show("明細行を1行以上入力してください。", "見積", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     見積明細1.Detail.Focus();
@@ -590,6 +589,31 @@ namespace u_net
                             MessageBox.Show("品名を入力してください。", "見積", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                             return true;
                             
+                        }
+
+                        if (string.IsNullOrEmpty(row.Cells["単価"].Value?.ToString()))
+                        {
+                            MessageBox.Show("単価を入力してください。", "見積", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            return true;
+                        }
+                        if (OriginalClass.IsNumeric(row.Cells["単価"].Value) == false)
+                        {
+                            MessageBox.Show("数字を入力してください。", "見積", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
+                            return true;
+                        }
+
+
+                        if (string.IsNullOrEmpty(row.Cells["数量"].Value?.ToString()))
+                        {
+                            MessageBox.Show("数量を入力してください。", "見積", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            return true;
+                        }
+                        if (OriginalClass.IsNumeric(row.Cells["数量"].Value) == false)
+                        {
+                            MessageBox.Show("数字を入力してください。", "見積", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
+                            return true;
                         }
                     }
                 }
