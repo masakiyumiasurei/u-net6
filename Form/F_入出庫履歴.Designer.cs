@@ -90,6 +90,7 @@
             // 
             // button4
             // 
+            button4.Enabled = false;
             button4.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             button4.ForeColor = Color.Blue;
             button4.ImageAlign = ContentAlignment.BottomLeft;
@@ -102,6 +103,7 @@
             // 
             // button3
             // 
+            button3.Enabled = false;
             button3.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             button3.ForeColor = Color.Blue;
             button3.ImageAlign = ContentAlignment.BottomLeft;
@@ -114,6 +116,7 @@
             // 
             // コマンドメーカー
             // 
+            コマンドメーカー.Enabled = false;
             コマンドメーカー.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             コマンドメーカー.ForeColor = Color.Blue;
             コマンドメーカー.ImageAlign = ContentAlignment.BottomLeft;
@@ -126,6 +129,7 @@
             // 
             // コマンドメール
             // 
+            コマンドメール.Enabled = false;
             コマンドメール.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             コマンドメール.ForeColor = Color.Blue;
             コマンドメール.ImageAlign = ContentAlignment.BottomLeft;
@@ -140,6 +144,7 @@
             // 
             コマンド更新.Enabled = false;
             コマンド更新.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            コマンド更新.ForeColor = Color.Blue;
             コマンド更新.ImageAlign = ContentAlignment.BottomLeft;
             コマンド更新.Location = new Point(647, 4);
             コマンド更新.Margin = new Padding(0, 2, 0, 2);
@@ -220,6 +225,7 @@
             // 
             // コマンドF9
             // 
+            コマンドF9.Enabled = false;
             コマンドF9.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             コマンドF9.ForeColor = Color.Blue;
             コマンドF9.ImageAlign = ContentAlignment.BottomLeft;
