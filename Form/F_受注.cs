@@ -40,7 +40,8 @@ namespace u_net
         private string beforkokyaku = "";
         private string befornouhin = "";
         private string beforshuka = "";
-
+        int intWindowHeight;
+        int intWindowWidth;
 
         private string BASE_CAPTION = "受注（製図指図書）";
 
@@ -250,6 +251,9 @@ namespace u_net
             try
             {
                 this.SuspendLayout();
+
+                intWindowHeight = this.Height;
+                intWindowWidth = this.Width;
 
                 // 作業用テーブルを開く
                 Connect();
@@ -2002,6 +2006,21 @@ namespace u_net
             return customerName;
         }
 
+        private void Form_Resize(object sender, EventArgs e)
+        {
+            try
+            {
+                受注明細1.Detail.Height = 受注明細1.Height + (this.Height - intWindowHeight);
+                intWindowHeight = this.Height;  // 高さ保存
+
+                受注明細1.Detail.Width = 受注明細1.Width + (this.Width - intWindowWidth);
+                intWindowWidth = this.Width;    // 幅保存                
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this.Name + "_Form_Resize - " + ex.Message);
+            }
+        }
         /// <summary>
         /// 合計欄を更新する
         /// </summary>

@@ -308,6 +308,10 @@ namespace u_net
                 {
                     filter = filter.Substring(0, filter.Length - 5); // 最後の " AND " を削除
                 }
+                else
+                {
+                    filter = "1=1";
+                }
 
                 string query = "SELECT * FROM Vユニット管理 WHERE 1=1 AND " + filter + " ORDER BY ユニットコード DESC ";
 

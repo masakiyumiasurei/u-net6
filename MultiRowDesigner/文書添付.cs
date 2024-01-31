@@ -155,6 +155,8 @@ namespace MultiRowDesigner
                     break;
                 case "削除ボタン":
 
+                    if (string.IsNullOrEmpty(gcMultiRow1.CurrentRow.Cells["添付文書コード"].Value?.ToString())) return;
+
                     if (MessageBox.Show("明細行(" + (e.RowIndex + 1) + ")を削除しますか？", "削除確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
                         Connect();
@@ -222,6 +224,8 @@ namespace MultiRowDesigner
             try
             {
                 if (gcMultiRow1.CurrentRow == null) return false;
+
+                if (string.IsNullOrEmpty(gcMultiRow1.CurrentRow.Cells["文書"].Value?.ToString())) return false;
 
                 string fileName = gcMultiRow1.CurrentRow.Cells["紙文書名"].Value.ToString();
                 byte[] fileBytes = (byte[])gcMultiRow1.CurrentRow.Cells["文書"].Value;

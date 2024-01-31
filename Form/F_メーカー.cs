@@ -884,6 +884,14 @@ namespace u_net
 
         private void コマンド仕入先_Click(object sender, EventArgs e)
         {
+
+          
+            if (Application.OpenForms["F_仕入先"] != null)
+            {
+                MessageBox.Show("指定されたウィンドウは既に開いています。", "警告", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
             F_仕入先 targetform = new F_仕入先();
 
             targetform.ShowDialog();
@@ -1236,7 +1244,14 @@ namespace u_net
             {
                 // 郵便番号APIを使用して住所情報を取得
                 string address = await OriginalClass.GetAddressFromZipCode(zipCode);
-                住所1.Text = address;
+                if (address.Substring(0, 3) == "エラー")
+                {
+                    住所1.Text = null;
+                }
+                else
+                {
+                    住所1.Text = address;
+                }
             }
             else
             {

@@ -2179,10 +2179,10 @@ namespace u_net
         {
             try
             {
-                //this.発注明細1.Height += (this.Height - intWindowHeight);
-                //this.発注明細1.Width += (this.Width - intWindowWidth);
-                //intWindowHeight = this.Height;
-                //intWindowWidth = this.Width;
+                this.発注明細1.Detail.Height += (this.Height - intWindowHeight);
+                this.発注明細1.Detail.Width += (this.Width - intWindowWidth);
+                intWindowHeight = this.Height;
+                intWindowWidth = this.Width;
 
             }
             catch (Exception ex)

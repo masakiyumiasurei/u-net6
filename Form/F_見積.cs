@@ -31,7 +31,8 @@ namespace u_net
         private bool setCombo = true;
 
         private string BASE_CAPTION = "見積";
-
+        int intWindowHeight;
+        int intWindowWidth;
 
         public string CurrentCode
         {
@@ -208,6 +209,10 @@ namespace u_net
                 this.SuspendLayout();
 
                 // データベース接続
+
+                intWindowHeight = this.Height;
+                intWindowWidth = this.Width;
+
                 Connect();
 
                 // 入力モードの分岐
@@ -252,7 +257,21 @@ namespace u_net
                 this.ResumeLayout();
             }
         }
+        private void Form_Resize(object sender, EventArgs e)
+        {
+            try
+            {
+                見積明細1.Detail.Height = 見積明細1.Height + (this.Height - intWindowHeight);
+                intWindowHeight = this.Height;  // 高さ保存
 
+                見積明細1.Detail.Width = 見積明細1.Width + (this.Width - intWindowWidth);
+                intWindowWidth = this.Width;    // 幅保存                
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this.Name + "_Form_Resize - " + ex.Message);
+            }
+        }
         private void Form_Unload(object sender, FormClosingEventArgs e)
         {
             try

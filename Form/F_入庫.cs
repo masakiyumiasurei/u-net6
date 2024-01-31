@@ -31,8 +31,9 @@ namespace u_net
         public string args = "";
         private string BASE_CAPTION = "入庫";
         private int selected_frame = 0;
-
-
+        int intWindowHeight;
+        int intWindowWidth;
+        bool setcombo = true;
 
 
 
@@ -166,14 +167,16 @@ namespace u_net
             LocalSetting localSetting = new LocalSetting();
             localSetting.LoadPlace(LoginUserCode, this);
 
-            MyApi myapi = new MyApi();
-            int xSize, ySize, intpixel, twipperdot;
+            //MyApi myapi = new MyApi();
+            //int xSize, ySize, intpixel, twipperdot;
 
-            //1インチ当たりのピクセル数 アクセスのサイズの引数がtwipなのでピクセルに変換する除算値を求める
-            intpixel = myapi.GetLogPixel();
-            twipperdot = myapi.GetTwipPerDot(intpixel);
+            ////1インチ当たりのピクセル数 アクセスのサイズの引数がtwipなのでピクセルに変換する除算値を求める
+            //intpixel = myapi.GetLogPixel();
+            //twipperdot = myapi.GetTwipPerDot(intpixel);
 
-
+            System.Type dgvtype = typeof(DataGridView);
+            System.Reflection.PropertyInfo dgvPropertyInfo = dgvtype.GetProperty("DoubleBuffered", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
+            dgvPropertyInfo.SetValue(入庫明細1, true, null);
 
 
             OriginalClass ofn = new OriginalClass();
@@ -182,6 +185,7 @@ namespace u_net
             ofn.SetComboBox(買掛区分コード設定, "SELECT 買掛区分 as Display,買掛区分コード as Display2, 買掛明細コード as Display3 , 買掛区分コード as Value FROM V買掛区分");
             買掛区分コード設定.DrawMode = DrawMode.OwnerDrawFixed;
 
+            //時間かかる
             ofn.SetComboBox(入庫コード, " SELECT 入庫コード as Display, 入庫コード as Value FROM T入庫 WHERE(発注コード IS NOT NULL) ORDER BY 入庫コード DESC");
 
             ofn.SetComboBox(入庫者コード, " SELECT 社員コード AS Display, 氏名 AS Display2, 社員コード as Value FROM M社員 WHERE(退社 IS NULL) AND(部 <> N'社長') AND(ふりがな <> N'ん') ORDER BY ふりがな");
@@ -193,6 +197,7 @@ namespace u_net
 
             ofn.SetComboBox(集計年月, " SELECT 集計年月 as Display, 集計年月 as Value FROM V集計年月");
 
+            setcombo = false;
             Connect();
 
             using (SqlCommand cmd = new SqlCommand("SP支払年月入力", cn))
@@ -209,19 +214,15 @@ namespace u_net
                 支払年月.DisplayMember = "支払年月";
                 支払年月.ValueMember = "支払年月";
                 支払年月.DataSource = dataTable;
-
-
-
             }
-
 
 
             try
             {
                 this.SuspendLayout();
 
-                int intWindowHeight = this.Height;
-                int intWindowWidth = this.Width;
+                 intWindowHeight = this.Height;
+                 intWindowWidth = this.Width;
 
 
                 Connect();
@@ -268,12 +269,32 @@ namespace u_net
             }
             finally
             {
+               
                 this.ResumeLayout();
                 fn.WaitForm.Close();
             }
         }
 
+        public void チェック()
+        {
+            if (string.IsNullOrEmpty(確定日時.Text))
+            {
+                確定.Text = "";
+            }
+            else
+            {
+                確定.Text = "■";
+            }
 
+            if (string.IsNullOrEmpty(無効日時.Text))
+            {
+                削除.Text = "";
+            }
+            else
+            {
+                削除.Text = "■";
+            }
+        }
 
         private bool SetRelay()
         {
@@ -744,7 +765,7 @@ namespace u_net
                     }
 
                     transaction.Commit();
-
+                    チェック();
                     return true;
                 }
                 catch (Exception ex)
@@ -920,7 +941,7 @@ namespace u_net
                         VariableSet.SetTable2Details(入庫明細1.Detail, strSQL, cn);
 
                         ChangedData(false);
-
+                        チェック();
                         // 動作制御
                         FunctionClass.LockData(this, this.IsDecided || this.IsDeleted || this.IsCompleted, "入庫コード");
                         this.コマンド複写.Enabled = true;
@@ -1026,7 +1047,6 @@ namespace u_net
                 strSQL = "SELECT * FROM V入庫ヘッダ WHERE 入庫コード ='" + codeString + "'";
 
 
-
                 VariableSet.SetTable2Form(this, strSQL, cn);
 
                 if (!string.IsNullOrEmpty(入庫日.Text))
@@ -1035,10 +1055,18 @@ namespace u_net
                     入庫日.Text = tempDate.ToString("yyyy/MM/dd");
 
                 }
+                if (!string.IsNullOrEmpty(TaxRate.Text))
+                {
+                    if (double.TryParse(TaxRate.Text, out double taxRate))
+                    {
+                        // 少数第1位まで表示する文字列に変換
+                        string formattedTaxRate = taxRate.ToString("F1");
 
+                        // TaxRate.Text に設定
+                        TaxRate.Text = formattedTaxRate;
+                    }                   
+                }
                 return true;
-
-
 
             }
             catch (Exception ex)
@@ -1049,7 +1077,21 @@ namespace u_net
             }
         }
 
+        private void Form_Resize(object sender, EventArgs e)
+        {
+            try
+            {                
+                入庫明細1.Detail.Height = 入庫明細1.Height + (this.Height - intWindowHeight);
+                intWindowHeight = this.Height;  // 高さ保存
 
+                入庫明細1.Detail.Width = 入庫明細1.Width + (this.Width - intWindowWidth);
+                intWindowWidth = this.Width;    // 幅保存                
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this.Name + "_Form_Resize - " + ex.Message);
+            }
+        }
 
 
         public string MonthAdd(long number, string TargetMonth)
@@ -1192,7 +1234,7 @@ namespace u_net
                 if (DeleteData(cn, CurrentCode))
                 {
                     MessageBox.Show("削除しました。", "削除コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+                    チェック();
                     // 棚卸中かどうかを確認する
                     if (FunctionClass.IsInventory(cn))
                     {
@@ -1621,6 +1663,7 @@ namespace u_net
 
         private void 入庫コード_Validated(object sender, EventArgs e)
         {
+            if (setcombo) return;
             UpdatedControl(sender as Control);
         }
 
