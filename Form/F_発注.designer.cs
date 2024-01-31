@@ -1234,8 +1234,8 @@ namespace u_net
             // 
             // 発注明細1
             // 
+            発注明細1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             発注明細1.AutoScroll = true;
-            発注明細1.Dock = DockStyle.Bottom;
             発注明細1.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             発注明細1.Location = new Point(0, 351);
             発注明細1.Margin = new Padding(4, 5, 4, 5);

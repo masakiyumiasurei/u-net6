@@ -633,6 +633,7 @@ namespace u_net
             // 
             // 入庫日選択ボタン
             // 
+            入庫日選択ボタン.Font = new Font("Yu Gothic UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             入庫日選択ボタン.Location = new Point(270, 71);
             入庫日選択ボタン.Margin = new Padding(4);
             入庫日選択ボタン.Name = "入庫日選択ボタン";
@@ -1155,17 +1156,18 @@ namespace u_net
             // 
             // 入庫明細1
             // 
+            入庫明細1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             入庫明細1.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             入庫明細1.Location = new Point(9, 275);
-            入庫明細1.Margin = new Padding(4);
+            入庫明細1.Margin = new Padding(4, 4, 4, 4);
             入庫明細1.Name = "入庫明細1";
-            入庫明細1.Size = new Size(1003, 250);
+            入庫明細1.Size = new Size(1027, 326);
             入庫明細1.TabIndex = 10171;
             // 
             // statusStrip1
             // 
             statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1, toolStripStatusLabel2 });
-            statusStrip1.Location = new Point(0, 539);
+            statusStrip1.Location = new Point(0, 605);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Padding = new Padding(1, 0, 19, 0);
             statusStrip1.Size = new Size(1036, 22);
@@ -1191,7 +1193,7 @@ namespace u_net
             買掛区分コード設定.Font = new Font("BIZ UDゴシック", 13F, FontStyle.Regular, GraphicsUnit.Point);
             買掛区分コード設定.FormattingEnabled = true;
             買掛区分コード設定.ImeMode = ImeMode.Disable;
-            買掛区分コード設定.Location = new Point(560, 333);
+            買掛区分コード設定.Location = new Point(556, 334);
             買掛区分コード設定.MaxDropDownItems = 9;
             買掛区分コード設定.Name = "買掛区分コード設定";
             買掛区分コード設定.Size = new Size(142, 26);
@@ -1205,7 +1207,7 @@ namespace u_net
             // 
             AutoScaleMode = AutoScaleMode.None;
             BackColor = SystemColors.Control;
-            ClientSize = new Size(1036, 561);
+            ClientSize = new Size(1036, 627);
             Controls.Add(買掛区分コード設定);
             Controls.Add(statusStrip1);
             Controls.Add(入庫明細1);
@@ -1286,6 +1288,7 @@ namespace u_net
             FormClosing += Form_Unload;
             Load += Form_Load;
             KeyDown += Form_KeyDown;
+            Resize += Form_Resize;
             panel1.ResumeLayout(false);
             statusStrip1.ResumeLayout(false);
             statusStrip1.PerformLayout();

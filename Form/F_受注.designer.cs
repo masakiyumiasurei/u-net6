@@ -547,7 +547,7 @@ namespace u_net
             Page2.Controls.Add(発送先);
             Page2.Controls.Add(発送先選択);
             Page2.Controls.Add(戻るボタン);
-            Page2.Location = new Point(0, 42);
+            Page2.Location = new Point(2, 0);
             Page2.Margin = new Padding(4, 3, 4, 3);
             Page2.Name = "Page2";
             Page2.Size = new Size(1180, 650);
@@ -1660,6 +1660,7 @@ namespace u_net
             // 
             // Page1
             // 
+            Page1.Controls.Add(Page2);
             Page1.Controls.Add(出荷予定日);
             Page1.Controls.Add(受注納期);
             Page1.Controls.Add(受注日);
@@ -1770,11 +1771,13 @@ namespace u_net
             // 
             // 受注明細1
             // 
+            受注明細1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             受注明細1.Location = new Point(12, 335);
             受注明細1.Margin = new Padding(5, 3, 5, 3);
             受注明細1.Name = "受注明細1";
             受注明細1.Size = new Size(1100, 300);
             受注明細1.TabIndex = 53;
+            受注明細1.Resize += Form_Resize;
             // 
             // ProductionNotice
             // 
@@ -2561,7 +2564,6 @@ namespace u_net
             AutoScroll = true;
             BackColor = SystemColors.Control;
             ClientSize = new Size(1184, 774);
-            Controls.Add(Page2);
             Controls.Add(panel2);
             Controls.Add(statusStrip1);
             Controls.Add(panel1);

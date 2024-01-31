@@ -57,6 +57,7 @@ namespace u_net
             lng棚卸指定 = 1;
             lng削除指定 = 1;
         }
+
         private void Form_Load(object sender, EventArgs e)
         {
 
@@ -90,20 +91,23 @@ namespace u_net
             dataGridView1.AllowUserToDeleteRows = false;
             dataGridView1.ReadOnly = true;
 
+            System.Type dgvtype = typeof(DataGridView);
+            System.Reflection.PropertyInfo dgvPropertyInfo = dgvtype.GetProperty("DoubleBuffered", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
+            dgvPropertyInfo.SetValue(dataGridView1, true, null);
 
-            myapi.GetFullScreen(out xSize, out ySize);
+            //myapi.GetFullScreen(out xSize, out ySize);
 
-            int x = 10, y = 10;
+            //int x = 10, y = 10;
 
-            this.Size = new Size(this.Width, ySize * myapi.GetTwipPerDot(intpixel) - 1200);
-            //accessのmovesizeメソッドの引数の座標単位はtwipなので以下で
+            //this.Size = new Size(this.Width, ySize * myapi.GetTwipPerDot(intpixel) - 1200);
+            ////accessのmovesizeメソッドの引数の座標単位はtwipなので以下で
 
-            this.Size = new Size(this.Width, ySize - 1200 / twipperdot);
+            //this.Size = new Size(this.Width, ySize - 1200 / twipperdot);
 
-            this.StartPosition = FormStartPosition.Manual; // 手動で位置を指定
-            int screenWidth = Screen.PrimaryScreen.Bounds.Width; // プライマリスクリーンの幅
-            x = (screenWidth - this.Width) / 2;
-            this.Location = new Point(x, y);
+            //this.StartPosition = FormStartPosition.Manual; // 手動で位置を指定
+            //int screenWidth = Screen.PrimaryScreen.Bounds.Width; // プライマリスクリーンの幅
+            //x = (screenWidth - this.Width) / 2;
+            //this.Location = new Point(x, y);
 
             InitializeFilter();
             DoUpdate();
@@ -241,7 +245,10 @@ namespace u_net
                 {
                     filter = filter.Substring(0, filter.Length - 5); // 最後の " AND " を削除
                 }
-
+                else
+                {
+                    filter = "1=1";
+                }
                 string query = "SELECT * FROM V入庫管理 WHERE 1=1 AND " + filter + " ORDER BY 入庫コード DESC ";
 
                 Connect();
@@ -265,14 +272,14 @@ namespace u_net
 
                 //0列目はaccessでは行ヘッダのため、ずらす
                 //dataGridView1.Columns[0].Width = 500 / twipperdot;
-                dataGridView1.Columns[0].Width = 1400 / twipperdot; //1150
+                dataGridView1.Columns[0].Width = 1600 / twipperdot; //1150
                 dataGridView1.Columns[1].Width = 1300 / twipperdot;
                 dataGridView1.Columns[2].Width = 1500 / twipperdot;
                 dataGridView1.Columns[3].Width = 1200 / twipperdot;
                 dataGridView1.Columns[4].Width = 1200 / twipperdot;
-                dataGridView1.Columns[5].Width = 1400 / twipperdot;
+                dataGridView1.Columns[5].Width = 1600 / twipperdot;
                 dataGridView1.Columns[6].Width = 400 / twipperdot;
-                dataGridView1.Columns[7].Width = 4000 / twipperdot;//1300
+                dataGridView1.Columns[7].Width = 4200 / twipperdot;//1300
                 dataGridView1.Columns[8].Width = 400 / twipperdot;
                 dataGridView1.Columns[9].Width = 400 / twipperdot;
                 dataGridView1.Columns[10].Width = 400 / twipperdot;
@@ -358,8 +365,6 @@ namespace u_net
             }
         }
 
-
-
         //選択行をクリアして先頭を表示して先頭行を選択
         private void Cleargrid(DataGridView dataGridView)
         {
@@ -370,9 +375,7 @@ namespace u_net
                 dataGridView.Rows[0].Selected = true;
                 dataGridView.FirstDisplayedScrollingRowIndex = 0; // 先頭行を表示
             }
-        }
-
-       
+        }       
 
         private void Form_KeyDown(object sender, KeyEventArgs e)
         {
@@ -451,15 +454,12 @@ namespace u_net
             this.Close();
         }
 
-
         private void コマンド抽出_Click(object sender, EventArgs e)
         {
             dataGridView1.Focus();
             F_入庫管理_抽出 form = new F_入庫管理_抽出();
             form.ShowDialog();
         }
-
-
 
         private void コマンド初期化_Click(object sender, EventArgs e)
         {
@@ -472,10 +472,6 @@ namespace u_net
             MessageBox.Show("現在開発中です。", "初期化マンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-
-
-
-
         private void コマンド検索_Click(object sender, EventArgs e)
         {
             dataGridView1.Focus(); // DataGridViewにフォーカスを設定
@@ -483,15 +479,11 @@ namespace u_net
             MessageBox.Show("現在開発中です。", "検索マンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-
-
         private void コマンド更新_Click(object sender, EventArgs e)
         {
             DoUpdate();
             Cleargrid(dataGridView1);
         }
-
-
 
 
         private void コマンド保守_Click(object sender, EventArgs e)
