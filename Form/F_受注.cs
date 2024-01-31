@@ -2473,7 +2473,7 @@ namespace u_net
                     this.確定.Text = "■";
 
                     // 承認者不在を確認し、承認処理実行フラグを設定する
-                    if (IsAbsence(cn, "007") >= 0)
+                    if (IsAbsence(cn, "007") < 0)
                     {
                         blnDoApprove = true;
                     }
