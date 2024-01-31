@@ -142,7 +142,7 @@
             this.Row.Cells.Add(this.OrderNumber);
             this.Row.Cells.Add(this.添付);
             this.Row.Height = 191;
-            this.Row.Width = 678;
+            this.Row.Width = 668;
             // 
             // ダイアログ
             // 
@@ -198,7 +198,7 @@
             // 
             // 添付ボタン
             // 
-            this.添付ボタン.Location = new System.Drawing.Point(248, 7);
+            this.添付ボタン.Location = new System.Drawing.Point(252, 78);
             this.添付ボタン.Name = "添付ボタン";
             this.添付ボタン.Size = new System.Drawing.Size(78, 31);
             cellStyle4.BackColor = System.Drawing.Color.White;
@@ -212,7 +212,7 @@
             // 
             // プレビューボタン
             // 
-            this.プレビューボタン.Location = new System.Drawing.Point(248, 49);
+            this.プレビューボタン.Location = new System.Drawing.Point(252, 113);
             this.プレビューボタン.Name = "プレビューボタン";
             this.プレビューボタン.Size = new System.Drawing.Size(78, 31);
             cellStyle5.BackColor = System.Drawing.Color.White;
@@ -226,9 +226,9 @@
             // 
             // 保存ボタン
             // 
-            this.保存ボタン.Location = new System.Drawing.Point(600, 110);
+            this.保存ボタン.Location = new System.Drawing.Point(477, 98);
             this.保存ボタン.Name = "保存ボタン";
-            this.保存ボタン.Size = new System.Drawing.Size(78, 31);
+            this.保存ボタン.Size = new System.Drawing.Size(85, 31);
             cellStyle6.BackColor = System.Drawing.Color.White;
             cellStyle6.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
             cellStyle6.ImeMode = System.Windows.Forms.ImeMode.Off;
@@ -241,7 +241,7 @@
             // 
             // 削除ボタン
             // 
-            this.削除ボタン.Location = new System.Drawing.Point(337, 7);
+            this.削除ボタン.Location = new System.Drawing.Point(341, 78);
             this.削除ボタン.Name = "削除ボタン";
             this.削除ボタン.Size = new System.Drawing.Size(78, 31);
             cellStyle7.BackColor = System.Drawing.Color.White;
@@ -255,7 +255,7 @@
             // 
             // 閉じるボタン
             // 
-            this.閉じるボタン.Location = new System.Drawing.Point(573, 152);
+            this.閉じるボタン.Location = new System.Drawing.Point(477, 137);
             this.閉じるボタン.Name = "閉じるボタン";
             this.閉じるボタン.Size = new System.Drawing.Size(85, 31);
             cellStyle8.BackColor = System.Drawing.Color.White;
@@ -287,9 +287,9 @@
             // SourcePath
             // 
             this.SourcePath.DataField = "SourcePath";
-            this.SourcePath.Location = new System.Drawing.Point(472, 67);
+            this.SourcePath.Location = new System.Drawing.Point(262, 29);
             this.SourcePath.Name = "SourcePath";
-            this.SourcePath.Size = new System.Drawing.Size(171, 16);
+            this.SourcePath.Size = new System.Drawing.Size(62, 16);
             cellStyle10.BackColor = System.Drawing.Color.White;
             border4.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
             cellStyle10.Border = border4;
@@ -300,13 +300,14 @@
             textLengthValidator4.LengthUnit = GrapeCity.Win.MultiRow.LengthUnit.TextElement;
             textLengthValidator4.MinimumLength = 10;
             this.SourcePath.Validators.Add(textLengthValidator4);
+            this.SourcePath.Visible = false;
             // 
             // DetailNumber
             // 
             this.DetailNumber.DataField = "DetailNumber";
-            this.DetailNumber.Location = new System.Drawing.Point(472, 90);
+            this.DetailNumber.Location = new System.Drawing.Point(262, 52);
             this.DetailNumber.Name = "DetailNumber";
-            this.DetailNumber.Size = new System.Drawing.Size(171, 16);
+            this.DetailNumber.Size = new System.Drawing.Size(62, 16);
             cellStyle11.BackColor = System.Drawing.Color.White;
             border5.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
             cellStyle11.Border = border5;
@@ -317,15 +318,16 @@
             textLengthValidator5.LengthUnit = GrapeCity.Win.MultiRow.LengthUnit.TextElement;
             textLengthValidator5.MinimumLength = 10;
             this.DetailNumber.Validators.Add(textLengthValidator5);
+            this.DetailNumber.Visible = false;
             // 
             // UpdateUserCode
             // 
             this.UpdateUserCode.DataField = "UpdateUserCode";
             this.UpdateUserCode.Enabled = false;
-            this.UpdateUserCode.Location = new System.Drawing.Point(507, 7);
+            this.UpdateUserCode.Location = new System.Drawing.Point(426, 4);
             this.UpdateUserCode.Name = "UpdateUserCode";
             this.UpdateUserCode.ReadOnly = true;
-            this.UpdateUserCode.Size = new System.Drawing.Size(136, 13);
+            this.UpdateUserCode.Size = new System.Drawing.Size(136, 20);
             cellStyle12.BackColor = System.Drawing.Color.White;
             border6.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
             cellStyle12.Border = border6;
@@ -341,10 +343,10 @@
             // 
             this.UpdateUserFullName.DataField = "UpdateUserFullName";
             this.UpdateUserFullName.Enabled = false;
-            this.UpdateUserFullName.Location = new System.Drawing.Point(507, 28);
+            this.UpdateUserFullName.Location = new System.Drawing.Point(426, 27);
             this.UpdateUserFullName.Name = "UpdateUserFullName";
             this.UpdateUserFullName.ReadOnly = true;
-            this.UpdateUserFullName.Size = new System.Drawing.Size(136, 13);
+            this.UpdateUserFullName.Size = new System.Drawing.Size(136, 20);
             cellStyle13.BackColor = System.Drawing.Color.White;
             border7.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
             cellStyle13.Border = border7;
@@ -360,10 +362,10 @@
             // 
             this.UpdateDate.DataField = "UpdateDate";
             this.UpdateDate.Enabled = false;
-            this.UpdateDate.Location = new System.Drawing.Point(507, 49);
+            this.UpdateDate.Location = new System.Drawing.Point(426, 50);
             this.UpdateDate.Name = "UpdateDate";
             this.UpdateDate.ReadOnly = true;
-            this.UpdateDate.Size = new System.Drawing.Size(136, 13);
+            this.UpdateDate.Size = new System.Drawing.Size(136, 20);
             cellStyle14.BackColor = System.Drawing.Color.White;
             border8.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
             cellStyle14.Border = border8;
@@ -442,7 +444,7 @@
             // 
             // labelCell6
             // 
-            this.labelCell6.Location = new System.Drawing.Point(390, 66);
+            this.labelCell6.Location = new System.Drawing.Point(180, 28);
             this.labelCell6.Name = "labelCell6";
             this.labelCell6.Size = new System.Drawing.Size(72, 16);
             cellStyle20.Border = border14;
@@ -452,10 +454,11 @@
             this.labelCell6.TabIndex = 31;
             this.labelCell6.TabStop = false;
             this.labelCell6.Value = "SourcePath:";
+            this.labelCell6.Visible = false;
             // 
             // labelCell7
             // 
-            this.labelCell7.Location = new System.Drawing.Point(390, 90);
+            this.labelCell7.Location = new System.Drawing.Point(180, 52);
             this.labelCell7.Name = "labelCell7";
             this.labelCell7.Size = new System.Drawing.Size(88, 16);
             cellStyle21.Border = border15;
@@ -465,12 +468,13 @@
             this.labelCell7.TabIndex = 32;
             this.labelCell7.TabStop = false;
             this.labelCell7.Value = "DetailNumber:";
+            this.labelCell7.Visible = false;
             // 
             // labelCell8
             // 
-            this.labelCell8.Location = new System.Drawing.Point(425, 7);
+            this.labelCell8.Location = new System.Drawing.Point(340, 3);
             this.labelCell8.Name = "labelCell8";
-            this.labelCell8.Size = new System.Drawing.Size(79, 13);
+            this.labelCell8.Size = new System.Drawing.Size(79, 20);
             cellStyle22.Border = border16;
             cellStyle22.Font = new System.Drawing.Font("BIZ UDゴシック", 9F);
             cellStyle22.ImeMode = System.Windows.Forms.ImeMode.Off;
@@ -481,9 +485,9 @@
             // 
             // labelCell9
             // 
-            this.labelCell9.Location = new System.Drawing.Point(425, 28);
+            this.labelCell9.Location = new System.Drawing.Point(340, 26);
             this.labelCell9.Name = "labelCell9";
-            this.labelCell9.Size = new System.Drawing.Size(79, 13);
+            this.labelCell9.Size = new System.Drawing.Size(79, 20);
             cellStyle23.Border = border17;
             cellStyle23.Font = new System.Drawing.Font("BIZ UDゴシック", 9F);
             cellStyle23.ImeMode = System.Windows.Forms.ImeMode.Off;
@@ -494,9 +498,9 @@
             // 
             // labelCell10
             // 
-            this.labelCell10.Location = new System.Drawing.Point(425, 49);
+            this.labelCell10.Location = new System.Drawing.Point(340, 49);
             this.labelCell10.Name = "labelCell10";
-            this.labelCell10.Size = new System.Drawing.Size(79, 13);
+            this.labelCell10.Size = new System.Drawing.Size(79, 20);
             cellStyle24.Border = border18;
             cellStyle24.Font = new System.Drawing.Font("BIZ UDゴシック", 9F);
             cellStyle24.ImeMode = System.Windows.Forms.ImeMode.Off;
@@ -508,7 +512,7 @@
             // Data
             // 
             this.Data.DataField = "Data";
-            this.Data.Location = new System.Drawing.Point(658, 10);
+            this.Data.Location = new System.Drawing.Point(585, 23);
             this.Data.Name = "Data";
             this.Data.ReadOnly = true;
             this.Data.Size = new System.Drawing.Size(10, 10);
@@ -551,7 +555,7 @@
             // 部品_資料添付テンプレート
             // 
             this.Height = 191;
-            this.Width = 678;
+            this.Width = 668;
 
         }
 

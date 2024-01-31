@@ -78,6 +78,7 @@
             // 
             // button4
             // 
+            button4.Enabled = false;
             button4.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             button4.ForeColor = Color.Blue;
             button4.ImageAlign = ContentAlignment.BottomLeft;
@@ -90,6 +91,7 @@
             // 
             // button3
             // 
+            button3.Enabled = false;
             button3.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             button3.ForeColor = Color.Blue;
             button3.ImageAlign = ContentAlignment.BottomLeft;
@@ -150,6 +152,7 @@
             // 
             コマンド保守.Enabled = false;
             コマンド保守.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            コマンド保守.ForeColor = Color.Blue;
             コマンド保守.ImageAlign = ContentAlignment.BottomLeft;
             コマンド保守.Location = new Point(715, 4);
             コマンド保守.Margin = new Padding(0, 2, 0, 2);
