@@ -297,6 +297,7 @@ namespace u_net.Public
         /// アクセスでは、enabledのがtureのコントロールをLockするようにしていたが、
         /// .netではコンボボックスとチェックボックスにはreadonlyがないため、enabledで制御する。
         /// コンボボックスとチェックボックスにはenabledの状態を条件に入れない
+        /// 子要素を取得するために、LockControlsを再帰的に実行する様にしている
         /// </summary>
         /// <param name="formObject"></param>
         /// <param name="lockedOn"></param>
@@ -304,11 +305,36 @@ namespace u_net.Public
         /// <param name="exControlName2"></param>
         public static void LockData(Form formObject, bool lockedOn, string? exControlName1 = null, string? exControlName2 = null)
         {
-            foreach (Control control in formObject.Controls)
+            LockControls(formObject.Controls, lockedOn, exControlName1, exControlName2);
+            //foreach (Control control in formObject.Controls)
+            //{                
+            //    if (control is TextBox)
+            //    {
+            //        if (control.Enabled && control.Name != exControlName1 && control.Name != exControlName2)
+            //        {
+            //            ((TextBox)control).ReadOnly = lockedOn;
+            //        }
+            //    }
+            //    else if (control is ComboBox)
+            //    {
+            //        if (control.Name != exControlName1 && control.Name != exControlName2)
+            //        {
+            //            ((ComboBox)control).Enabled = !lockedOn;
+            //        }
+            //    }
+            //    else if (control is CheckBox)
+            //    {
+            //        if (control.Name != exControlName1 && control.Name != exControlName2)
+            //        {
+            //            ((CheckBox)control).Enabled = !lockedOn;
+            //        }
+            //    }                
+            //}
+        }
+        private static void LockControls(Control.ControlCollection controls, bool lockedOn, string? exControlName1, string? exControlName2)
+        {
+            foreach (Control control in controls)
             {
-                //if (control.Enabled)
-                //{
-                //
                 if (control is TextBox)
                 {
                     if (control.Enabled && control.Name != exControlName1 && control.Name != exControlName2)
@@ -330,10 +356,14 @@ namespace u_net.Public
                         ((CheckBox)control).Enabled = !lockedOn;
                     }
                 }
-                //}
+
+                // パネルやグループボックスの場合、再帰的に呼び出す
+                if (control.HasChildren)
+                {
+                    LockControls(control.Controls, lockedOn, exControlName1, exControlName2);
+                }
             }
         }
-
 
         public static string GetNewCode(SqlConnection conn, string header)
         {

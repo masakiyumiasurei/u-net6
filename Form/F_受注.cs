@@ -37,6 +37,10 @@ namespace u_net
         private bool setCombo = true;
         private string tmpCCode = ""; // 依頼主コード退避用
         private string beforjuchu = "";
+        private string beforkokyaku = "";
+        private string befornouhin = "";
+        private string beforshuka = "";
+
 
         private string BASE_CAPTION = "受注（製図指図書）";
 
@@ -279,6 +283,7 @@ namespace u_net
                         this.受注コード.Text = varOpenArgs.Substring(0, varOpenArgs.IndexOf(','));
                         this.受注版数.Text = varOpenArgs.Substring(varOpenArgs.IndexOf(',') + 1);
                         UpdatedControl(this.受注コード);
+
                         ChangedData(false);
                     }
 
@@ -373,12 +378,12 @@ namespace u_net
                 //ヘッダ部を初期化する
                 VariableSet.SetControls(this);
                 this.受注コード.Text = 採番(cn, "A");
-                
+
                 setCombo = true;
                 OriginalClass ofn = new OriginalClass();
                 ofn.SetComboBox(受注版数, "SELECT 1 AS Value, 1 AS Display, '' AS Display2");
                 this.受注版数.SelectedIndex = 0;
-                
+
 
                 this.受注日.Text = DateTime.Now.ToString("yyyy/MM/dd");
                 this.発送方法コード.SelectedValue = "01";
@@ -525,7 +530,11 @@ namespace u_net
                         {
                             if (受注版数.Items.Count > 0) this.受注版数.SelectedIndex = 0;
                         }
-
+                        else
+                        {
+                            //コンボボックスのコントロールソースがセットされた時にIndex[0]になるためもう一度代入
+                            this.受注版数.Text = varOpenArgs.Substring(varOpenArgs.IndexOf(',') + 1);
+                        }
                         // 状態の表示
                         SetEditionStatus();
 
@@ -604,7 +613,7 @@ namespace u_net
                         this.受注承認ボタン.Enabled = this.IsDecided && !this.IsApproved && !this.IsInvalid;
                         this.受注完了承認ボタン.Enabled = this.IsFinished && !this.IsBilled;
 
-                        ChangedData(false);
+                        
 
                         fn.WaitForm.Close();
 
@@ -867,7 +876,7 @@ namespace u_net
                 }
 
                 // 表示データの承認状態を取得する（this.isapprovedには依存したくないから）
-                if (((DataRowView)受注版数.SelectedItem)?.Row.Field<string>("Display2")?.ToString()=="")
+                if (((DataRowView)受注版数.SelectedItem)?.Row.Field<string>("Display2")?.ToString() == "")
                 {
                     if (this.IsDecided)
                     {
@@ -880,34 +889,35 @@ namespace u_net
                         this.状態.ForeColor = Color.Black;
                     }
                 }
-                else if (this.受注版数.Items.Count > 0 && this.受注版数.Text == 受注版数.GetItemText(this.受注版数.Items[0]))
+                else
                 {
 
-                        if (this.受注版数.Text == 受注版数.GetItemText(this.受注版数.Items[0]))
+
+                    if (this.受注版数.Items.Count > 0 && this.受注版数.Text == 受注版数.GetItemText(this.受注版数.Items[0]))
+                    {
+                        this.状態.Text = "最新版";
+                        this.状態.ForeColor = Color.Red;
+                    }
+                    else
+                    {
+                        if (string.IsNullOrEmpty(((DataRowView)受注版数.Items[0])?.Row.Field<string>("Display2")?.ToString()))
                         {
-                            this.状態.Text = "最新版";
-                            this.状態.ForeColor = Color.Red;
+                            this.状態.Text = "改版中";
+                            this.状態.ForeColor = Color.Black;
                         }
                         else
                         {
-                            if (string.IsNullOrEmpty(((DataRowView)受注版数.Items[0])?.Row.Field<string>("Display2")?.ToString()))
-                            {
-                                this.状態.Text = "改版中";
+                            this.状態.Text = "旧版";
                             this.状態.ForeColor = Color.Black;
                         }
-                            else
-                            {
-                                this.状態.Text = "旧版";
-                            this.状態.ForeColor = Color.Black;
-                        }
-                        }
-                    
+                    }
+
                 }
-                else
-                {
-                    this.状態.Text = "";
-                    this.状態.ForeColor = Color.Black;
-                }
+                //else
+                //{
+                //    this.状態.Text = "";
+                //    this.状態.ForeColor = Color.Black;
+                //}
             }
             catch (Exception ex)
             {
@@ -1496,7 +1506,7 @@ namespace u_net
             {
                 foreach (Control control in Page1.Controls)
                 {
-                    if ((control is TextBox || control is ComboBox) && control.Visible)
+                    if (control is TextBox || control is ComboBox)
                     {
                         if (control.Name != exFieldName1 && control.Name != exFieldName2)
                         {
@@ -1508,9 +1518,11 @@ namespace u_net
                         }
                     }
                 }
+
+
                 foreach (Control control in Page2.Controls)
                 {
-                    if ((control is TextBox || control is ComboBox) && control.Visible)
+                    if (control is TextBox || control is ComboBox)
                     {
                         if (control.Name != exFieldName1 && control.Name != exFieldName2)
                         {
@@ -1521,7 +1533,27 @@ namespace u_net
                             }
                         }
                     }
+
+                    if (control is GroupBox groupBox)
+                    {
+                        foreach (Control chicontrol in groupBox.Controls)
+                        {
+                            if (chicontrol is TextBox || chicontrol is ComboBox)
+                            {
+                                if (chicontrol.Name != exFieldName1 && chicontrol.Name != exFieldName2)
+                                {
+                                    if (IsError(chicontrol))
+                                    {
+                                        chicontrol.Focus();
+                                        return true;
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
+
+
                 // 明細行数のチェック
                 int count = 受注明細1.Detail.RowCount - 1;
 
@@ -1635,14 +1667,14 @@ namespace u_net
                         }
                         break;
                     case "ClientCode":
-                        if (((ComboBox)controlObject).FindStringExact(varValue?.ToString()) == -1)
-                        {
-                            MessageBox.Show("指定した項目はリストにありません。", controlObject.Name, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            ((ComboBox)controlObject).DroppedDown = true;
-                            goto Exit_IsError;
-                        }
+                        //if (((ComboBox)controlObject).FindStringExact(varValue?.ToString()) == -1)
+                        //{
+                        //    MessageBox.Show("指定した項目はリストにありません。", controlObject.Name, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        //    ((ComboBox)controlObject).DroppedDown = true;
+                        //    goto Exit_IsError;
+                        //}
                         break;
-                    case "依頼主名":
+                    case "顧客担当者名":
                         if (!IsLimit(varValue, 30, false, controlObject.Name))
                             goto Exit_IsError;
                         break;
@@ -2460,7 +2492,7 @@ namespace u_net
 
                 if (RegTrans(CurrentCode, CurrentEdition, blnDoApprove))
                 {
-                    ChangedData(false);
+
                     LockData(this, IsDecided || IsInvalid, "受注コード", "受注版数");
 
                     // 新規モードのときは読込モードへ移行する
@@ -2473,6 +2505,7 @@ namespace u_net
                     // 状態の表示
                     SetEditionStatus();
 
+                    ChangedData(false);
                     // 動作制御
                     this.改版ボタン.Enabled = IsApproved;
                     this.受注承認ボタン.Enabled = IsDecided && !IsApproved;
@@ -2498,9 +2531,9 @@ namespace u_net
                     {
                         if (CheckWarning(this.CurrentCode, this.CurrentEdition))
                         {
-                            //Form form = new F_シリーズ危険在庫警告();
-                            //form.args = this.CurrentCode + "," + this.CurrentEdition
-                            //form.Show();
+                            F_シリーズ危険在庫警告 form = new F_シリーズ危険在庫警告();
+                            form.args = this.CurrentCode + "," + this.CurrentEdition;
+                            form.ShowDialog();
                         }
                     }
                 }
@@ -2854,6 +2887,7 @@ namespace u_net
                         Control activeControl = this.ActiveControl;
                         if (activeControl is System.Windows.Forms.ComboBox)
                         {
+                            e.Handled = true;
                             System.Windows.Forms.ComboBox activeComboBox = (System.Windows.Forms.ComboBox)activeControl;
                             activeComboBox.DroppedDown = true;
                         }
@@ -2998,7 +3032,7 @@ namespace u_net
 
         private void 受注日_Validating(object sender, CancelEventArgs e)
         {
-           // object originalValue = 受注日.Text;
+            // object originalValue = 受注日.Text;
             TextBox textBox = (TextBox)sender;
 
             if (textBox.Modified == false) return;
@@ -3055,7 +3089,7 @@ namespace u_net
                 {
                     calendar.args = 受注日.Text;
                 }
-                if (calendar.ShowDialog() == DialogResult.OK)
+                if (calendar.ShowDialog() == DialogResult.OK && !受注日.ReadOnly && 受注日.Enabled)
                 {
                     // 日付選択フォームから選択した日付を取得
                     string selectedDate = calendar.SelectedDate;
@@ -3100,7 +3134,11 @@ namespace u_net
 
             if (textBox.Modified == false) return;
 
-            if (IsError(textBox) == true) e.Cancel = true;
+            if (IsError(textBox) == true)
+            {
+                e.Cancel = true;
+                顧客コード.Text = beforkokyaku;
+            }
         }
 
         private void 顧客コード_Validated(object sender, EventArgs e)
@@ -3160,9 +3198,10 @@ namespace u_net
             }
             else
             {
+                beforkokyaku = 顧客コード.Text;
                 F_検索 SearchForm = new F_検索();
                 SearchForm.FilterName = "顧客名フリガナ";
-                if (SearchForm.ShowDialog() == DialogResult.OK)
+                if (SearchForm.ShowDialog() == DialogResult.OK && !顧客コード.ReadOnly && 顧客コード.Enabled)
                 {
                     string SelectedCode = SearchForm.SelectedCode;
 
@@ -3172,6 +3211,9 @@ namespace u_net
                     {
                         // エラー時は値を元に戻す
                         顧客コード.Undo();
+
+                        //F_検索から入力した時はundoできないので
+                        顧客コード.Text = beforkokyaku;
                     }
                     else
                     {
@@ -3228,7 +3270,11 @@ namespace u_net
 
             if (textBox.Modified == false) return;
 
-            if (IsError(textBox) == true) e.Cancel = true;
+            if (IsError(textBox) == true)
+            {
+                e.Cancel = true;
+                受注納期.Text = befornouhin;
+            }
         }
 
         private void 受注納期_Validated(object sender, EventArgs e)
@@ -3276,6 +3322,7 @@ namespace u_net
             }
             else
             {
+                befornouhin = 受注納期.Text;
                 // 日付選択フォームを作成し表示
                 F_カレンダー calendar = new F_カレンダー();
                 if (!string.IsNullOrEmpty(受注納期.Text))
@@ -3283,7 +3330,7 @@ namespace u_net
                     calendar.args = 受注納期.Text;
                 }
 
-                if (calendar.ShowDialog() == DialogResult.OK)
+                if (calendar.ShowDialog() == DialogResult.OK && !受注納期.ReadOnly && 受注納期.Enabled)
                 {
                     // 日付選択フォームから選択した日付を取得
                     string selectedDate = calendar.SelectedDate;
@@ -3302,9 +3349,13 @@ namespace u_net
 
             if (textBox.Modified == false) return;
 
-            if (IsError(textBox) == true) e.Cancel = true;
-        }
+            if (IsError(textBox) == true)
+            {
+                e.Cancel = true;
+                出荷予定日.Text = beforshuka;
 
+            }
+        }
         private void 出荷予定日_Validated(object sender, EventArgs e)
         {
             TextBox textBox = (TextBox)sender;
@@ -3343,9 +3394,10 @@ namespace u_net
             }
             else
             {
+                beforshuka = 出荷予定日.Text;
                 // 日付選択フォームを作成し表示
                 F_カレンダー calendar = new F_カレンダー();
-                if (calendar.ShowDialog() == DialogResult.OK)
+                if (calendar.ShowDialog() == DialogResult.OK && !出荷予定日.ReadOnly && 出荷予定日.Enabled)
                 {
                     // 日付選択フォームから選択した日付を取得
                     string selectedDate = calendar.SelectedDate;
@@ -3742,15 +3794,24 @@ namespace u_net
 
         private void Email作成ボタン_Click(object sender, EventArgs e)
         {
+            string toEmail = Convert.ToString(発送先メールアドレス.Text);
+
+            if (string.IsNullOrEmpty(toEmail))
+            {
+                MessageBox.Show("メールアドレスを入力してください。", "メールコマンド", MessageBoxButtons.OK);
+                発送先メールアドレス.Focus();
+                return;
+            }
+
+            // デフォルトのメールクライアントを起動して新しいメールを作成
             try
             {
-                // メールソフトを起動
-                // Me.Email作成ボタン.HyperlinkAddress = "mailto:" & Me.[発送先メールアドレス]
-                Process.Start("mailto:" + this.発送先メールアドレス.Text);
+                string mailtoLink = "mailto:" + toEmail;
+                System.Diagnostics.Process.Start(new ProcessStartInfo(mailtoLink) { UseShellExecute = true });
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("メールを起動できませんでした。\nエラー: " + ex.Message, "メールコマンド", MessageBoxButtons.OK);
             }
         }
 
@@ -4048,7 +4109,7 @@ namespace u_net
             {
                 // 日付選択フォームを作成し表示
                 F_カレンダー calendar = new F_カレンダー();
-                if (calendar.ShowDialog() == DialogResult.OK)
+                if (calendar.ShowDialog() == DialogResult.OK && !請求予定日.ReadOnly && 請求予定日.Enabled)
                 {
                     // 日付選択フォームから選択した日付を取得
                     string selectedDate = calendar.SelectedDate;
@@ -4106,7 +4167,7 @@ namespace u_net
         }
 
         private void 受注日_Enter(object sender, EventArgs e)
-        {            
+        {
             this.toolStripStatusLabel2.Text = "■西暦部分は2桁で入力。「/」は必要。　■[+]キー、[-]キーで1日増減。　■[space]キーでカレンダー表示。";
         }
 
@@ -4255,7 +4316,7 @@ namespace u_net
             請求コード.Text = 請求コード.Text.PadLeft(8, '0');
         }
 
-        
+
     }
 }
 

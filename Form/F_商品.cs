@@ -885,6 +885,7 @@ namespace u_net
                         Control activeControl = this.ActiveControl;
                         if (activeControl is System.Windows.Forms.ComboBox)
                         {
+                            e.Handled = true;
                             System.Windows.Forms.ComboBox activeComboBox = (System.Windows.Forms.ComboBox)activeControl;
                             activeComboBox.DroppedDown = true;
                         }
