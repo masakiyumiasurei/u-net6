@@ -107,13 +107,15 @@ namespace u_net
             label1 = new Label();
             補正値減少ボタン = new Button();
             補正値増加ボタン = new Button();
-            表示件数 = new TextBox();
-            label2 = new Label();
-            label3 = new Label();
             toolTip1 = new ToolTip(components);
+            panel2 = new Panel();
+            表示件数 = new TextBox();
+            label22 = new Label();
+            label23 = new Label();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel1.SuspendLayout();
             statusStrip1.SuspendLayout();
+            panel2.SuspendLayout();
             SuspendLayout();
             // 
             // コマンド終了
@@ -147,6 +149,7 @@ namespace u_net
             // 
             // dataGridView1
             // 
+            dataGridView1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = SystemColors.ButtonFace;
             dataGridViewCellStyle1.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
@@ -471,7 +474,7 @@ namespace u_net
             // statusStrip1
             // 
             statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1, toolStripStatusLabel2 });
-            statusStrip1.Location = new Point(0, 615);
+            statusStrip1.Location = new Point(0, 616);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Padding = new Padding(1, 0, 19, 0);
             statusStrip1.Size = new Size(939, 22);
@@ -507,6 +510,7 @@ namespace u_net
             // 更新者名
             // 
             更新者名.BackColor = SystemColors.Control;
+            更新者名.Enabled = false;
             更新者名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             更新者名.Location = new Point(652, 123);
             更新者名.Margin = new Padding(3, 2, 3, 2);
@@ -519,6 +523,7 @@ namespace u_net
             // 更新者コード
             // 
             更新者コード.BackColor = SystemColors.Control;
+            更新者コード.Enabled = false;
             更新者コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             更新者コード.Location = new Point(605, 123);
             更新者コード.Margin = new Padding(3, 2, 3, 2);
@@ -561,6 +566,7 @@ namespace u_net
             // 更新日時
             // 
             更新日時.BackColor = SystemColors.Control;
+            更新日時.Enabled = false;
             更新日時.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             更新日時.Location = new Point(605, 100);
             更新日時.Margin = new Padding(3, 2, 3, 2);
@@ -573,6 +579,7 @@ namespace u_net
             // 作成者名
             // 
             作成者名.BackColor = SystemColors.Control;
+            作成者名.Enabled = false;
             作成者名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             作成者名.Location = new Point(652, 77);
             作成者名.Margin = new Padding(3, 2, 3, 2);
@@ -585,6 +592,7 @@ namespace u_net
             // 作成者コード
             // 
             作成者コード.BackColor = SystemColors.Control;
+            作成者コード.Enabled = false;
             作成者コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             作成者コード.Location = new Point(605, 77);
             作成者コード.Margin = new Padding(3, 2, 3, 2);
@@ -627,6 +635,7 @@ namespace u_net
             // 作成日時
             // 
             作成日時.BackColor = SystemColors.Control;
+            作成日時.Enabled = false;
             作成日時.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             作成日時.Location = new Point(605, 54);
             作成日時.Margin = new Padding(3, 2, 3, 2);
@@ -756,7 +765,7 @@ namespace u_net
             Discontinued.Margin = new Padding(4, 3, 4, 3);
             Discontinued.Name = "Discontinued";
             Discontinued.Size = new Size(15, 14);
-            Discontinued.TabIndex = 12;
+            Discontinued.TabIndex = 13;
             Discontinued.UseVisualStyleBackColor = true;
             Discontinued.CheckedChanged += Discontinued_CheckedChanged;
             // 
@@ -806,7 +815,7 @@ namespace u_net
             label20.Margin = new Padding(0);
             label20.Name = "label20";
             label20.Size = new Size(85, 17);
-            label20.TabIndex = 23;
+            label20.TabIndex = 12;
             label20.Text = "廃止(&D)";
             label20.TextAlign = ContentAlignment.MiddleLeft;
             // 
@@ -829,6 +838,7 @@ namespace u_net
             // 在庫補正数量
             // 
             在庫補正数量.BackColor = SystemColors.Control;
+            在庫補正数量.Enabled = false;
             在庫補正数量.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             在庫補正数量.Location = new Point(605, 149);
             在庫補正数量.Margin = new Padding(3, 2, 3, 2);
@@ -862,7 +872,7 @@ namespace u_net
             補正値減少ボタン.Margin = new Padding(1, 0, 0, 0);
             補正値減少ボタン.Name = "補正値減少ボタン";
             補正値減少ボタン.Size = new Size(26, 25);
-            補正値減少ボタン.TabIndex = 12;
+            補正値減少ボタン.TabIndex = 120;
             補正値減少ボタン.Text = "-";
             補正値減少ボタン.UseVisualStyleBackColor = true;
             補正値減少ボタン.Click += 補正値減少ボタン_Click;
@@ -880,43 +890,56 @@ namespace u_net
             補正値増加ボタン.UseVisualStyleBackColor = true;
             補正値増加ボタン.Click += 補正値増加ボタン_Click;
             // 
+            // panel2
+            // 
+            panel2.Controls.Add(表示件数);
+            panel2.Controls.Add(label22);
+            panel2.Controls.Add(label23);
+            panel2.Dock = DockStyle.Bottom;
+            panel2.Location = new Point(0, 589);
+            panel2.Margin = new Padding(3, 2, 3, 2);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(939, 27);
+            panel2.TabIndex = 198;
+            // 
             // 表示件数
             // 
-            表示件数.Enabled = false;
-            表示件数.Location = new Point(77, 591);
+            表示件数.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            表示件数.Location = new Point(72, 4);
             表示件数.Margin = new Padding(3, 2, 3, 2);
             表示件数.Name = "表示件数";
-            表示件数.ReadOnly = true;
-            表示件数.Size = new Size(88, 19);
-            表示件数.TabIndex = 195;
+            表示件数.Size = new Size(88, 20);
+            表示件数.TabIndex = 84;
+            表示件数.TabStop = false;
+            表示件数.TextAlign = HorizontalAlignment.Right;
             // 
-            // label2
+            // label22
             // 
-            label2.AutoSize = true;
-            label2.Location = new Point(11, 593);
-            label2.Name = "label2";
-            label2.Size = new Size(53, 12);
-            label2.TabIndex = 196;
-            label2.Text = "表示件数";
+            label22.AutoSize = true;
+            label22.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label22.Location = new Point(7, 8);
+            label22.Name = "label22";
+            label22.Size = new Size(53, 12);
+            label22.TabIndex = 85;
+            label22.Text = "表示件数";
             // 
-            // label3
+            // label23
             // 
-            label3.AutoSize = true;
-            label3.Location = new Point(169, 593);
-            label3.Name = "label3";
-            label3.Size = new Size(17, 12);
-            label3.TabIndex = 197;
-            label3.Text = "件";
+            label23.AutoSize = true;
+            label23.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label23.Location = new Point(163, 8);
+            label23.Name = "label23";
+            label23.Size = new Size(17, 12);
+            label23.TabIndex = 86;
+            label23.Text = "件";
             // 
             // F_シリーズ
             // 
             AutoScaleDimensions = new SizeF(8F, 12F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
-            ClientSize = new Size(939, 637);
-            Controls.Add(表示件数);
-            Controls.Add(label2);
-            Controls.Add(label3);
+            ClientSize = new Size(939, 638);
+            Controls.Add(panel2);
             Controls.Add(補正値増加ボタン);
             Controls.Add(補正値減少ボタン);
             Controls.Add(label1);
@@ -961,6 +984,8 @@ namespace u_net
             panel1.ResumeLayout(false);
             statusStrip1.ResumeLayout(false);
             statusStrip1.PerformLayout();
+            panel2.ResumeLayout(false);
+            panel2.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -1062,13 +1087,11 @@ namespace u_net
         private System.Windows.Forms.TextBox 商品名;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox ClientName;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox 在庫数量;
         private System.Windows.Forms.CheckBox Discontinued;
         private System.Windows.Forms.CheckBox IsUnit;
         private System.Windows.Forms.CheckBox CustomerSerialNumberRequired;
         private System.Windows.Forms.TextBox 数量単位名;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.CheckBox 掛率有効;
         private System.Windows.Forms.Label 性別label;
         private System.Windows.Forms.TextBox 備考;
@@ -1106,10 +1129,13 @@ namespace u_net
         private DataGridViewTextBoxColumn 原価;
         private DataGridViewTextBoxColumn 機能;
         private DataGridViewTextBoxColumn 構成番号;
-        private TextBox 表示件数;
         protected ComboBox シリーズコード;
         private TextBox test;
         private ToolTip toolTip1;
+        private Panel panel2;
+        private TextBox 表示件数;
+        private Label label22;
+        private Label label23;
     }
 }
 

@@ -45,7 +45,9 @@
             gcMultiRow1.Template = 受注明細テンプレート1;
             gcMultiRow1.Text = "gcMultiRow1";
             gcMultiRow1.CellValidating += gcMultiRow1_CellValidating;
+            gcMultiRow1.CellFormatting += gcMultiRow1_CellFormatting;
             gcMultiRow1.CellEnter += gcMultiRow1_CellEnter;
+            gcMultiRow1.RowValidating += gcMultiRow1_RowValidating;
             gcMultiRow1.DefaultValuesNeeded += gcMultiRow1_DefaultValuesNeeded;
             gcMultiRow1.EditingControlShowing += gcMultiRow1_EditingControlShowing;
             gcMultiRow1.CellContentButtonClick += gcMultiRow1_CellContentButtonClick;
