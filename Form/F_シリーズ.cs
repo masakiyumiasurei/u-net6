@@ -18,6 +18,7 @@ using System.DirectoryServices;
 using Microsoft.EntityFrameworkCore.Metadata;
 using System.Reflection.Metadata.Ecma335;
 
+
 namespace u_net
 {
     public partial class F_シリーズ : Form
@@ -30,6 +31,7 @@ namespace u_net
         private const string STR_CODEHEADER = "SRS";
         private bool noUpd = false; //setcontrolメソッドなどで主キーコードが空に更新されたタイミングで画面更新処理を行わない様にする
         private int int在庫補正数量 = 0;
+        private string BASE_CAPTION = "シリーズ";
 
         public bool IsChanged
         {
@@ -82,7 +84,7 @@ namespace u_net
             fn.DoWait("しばらくお待ちください...");
 
             OriginalClass ofn = new OriginalClass();
-            ofn.SetComboBox(シリーズコード, "SELECT シリーズコード as Display,シリーズコード as Value FROM Mシリーズ ORDER BY シリーズコード DESC");
+            ofn.SetComboBox(シリーズコード, "SELECT シリーズコード as Display,シリーズコード as Value FROM Mシリーズ WHERE(無効日時 IS NULL) ORDER BY シリーズコード DESC");
 
             setCombo = false;
 
@@ -100,6 +102,11 @@ namespace u_net
             dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font("MS ゴシック", 9);
             dataGridView1.DefaultCellStyle.Font = new Font("MS ゴシック", 10);
             dataGridView1.DefaultCellStyle.ForeColor = Color.Black;
+
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridView1.AllowUserToAddRows = false;
+            dataGridView1.AllowUserToDeleteRows = false;
+            dataGridView1.ReadOnly = true;
 
             try
             {
@@ -375,10 +382,10 @@ namespace u_net
         private void コマンド登録_Click(object sender, EventArgs e)
         {
             //保存確認
-            if (MessageBox.Show("変更内容を保存しますか？", "保存確認",
-                MessageBoxButtons.OKCancel,
-                MessageBoxIcon.Question) == DialogResult.OK)
-            {
+            //if (MessageBox.Show("変更内容を保存しますか？", "保存確認",
+            //    MessageBoxButtons.OKCancel,
+            //    MessageBoxIcon.Question) == DialogResult.OK)
+            //{
                 if (!ErrCheck(this)) return;
 
                 if (!SaveData()) return;
@@ -394,7 +401,7 @@ namespace u_net
                 if (!SetGrid()) return;
                 在庫数量.Text = GetStock(CurrentCode, DateTime.Now, cn).ToString();
                 Cleargrid(dataGridView1);
-            }
+            //}
         }
 
         private bool SaveData()
@@ -477,10 +484,14 @@ namespace u_net
                 transaction.Commit();
 
                 //コンボボックスのソースを変更する必要がある
+                object code = シリーズコード.SelectedValue;
+
                 setCombo = true;
                 OriginalClass ofn = new OriginalClass();
-                ofn.SetComboBox(シリーズコード, "SELECT シリーズコード as Display,シリーズコード as Value FROM Mシリーズ ORDER BY シリーズコード DESC");
+                ofn.SetComboBox(シリーズコード, "SELECT シリーズコード as Display,シリーズコード as Value FROM Mシリーズ WHERE(無効日時 IS NULL) ORDER BY シリーズコード DESC");
                 setCombo = false;
+
+                シリーズコード.SelectedValue = code;
 
                 MessageBox.Show("登録を完了しました");
 
@@ -645,7 +656,7 @@ namespace u_net
 
         private void コマンド複写_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("現在開発中です。。", "コマンド複写", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("現在開発中です。", "コマンド複写", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private bool CopyData(string codeString)
@@ -929,7 +940,7 @@ namespace u_net
 
         private void コマンド商品参照_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("現在開発中です。。", "商品参照コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("現在開発中です。", "商品参照コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
         private void コマンド確定_Click(object sender, EventArgs e)
         {
@@ -947,11 +958,11 @@ namespace u_net
         {
             if (dataChanged)
             {
-                this.Name = this.Name + "*";
+                this.Text = this.BASE_CAPTION + "*";
             }
             else
             {
-                this.Name = this.Name;
+                this.Text = this.BASE_CAPTION;
             }
 
             if (this.ActiveControl == this.シリーズコード)
@@ -1155,12 +1166,14 @@ namespace u_net
 
         private void 補正値増加ボタン_Click(object sender, EventArgs e)
         {
+            if (!補正値.Enabled || 補正値.ReadOnly) return;
             補正値.Focus();
             補正値.Text = (long.Parse(this.補正値.Text) + 1).ToString();
         }
 
         private void 補正値減少ボタン_Click(object sender, EventArgs e)
         {
+            if (!補正値.Enabled || 補正値.ReadOnly) return;
             補正値.Focus();
             補正値.Text = (long.Parse(this.補正値.Text) - 1).ToString();
         }
@@ -1178,6 +1191,8 @@ namespace u_net
 
         private void 補正値_Validating(object sender, CancelEventArgs e)
         {
+            if (補正値.Modified == false) return;
+
             ErrCheck(this, "補正値");
         }
 
