@@ -18,6 +18,8 @@ using static u_net.Public.FunctionClass;
 using static u_net.CommonConstants;
 using static u_net.Public.OriginalClass;
 using System.Data.Common;
+using Color = System.Drawing.Color;
+using Control = System.Windows.Forms.Control;
 
 namespace u_net
 {
@@ -147,12 +149,12 @@ namespace u_net
 
             // DataGridViewの設定
             dataGridView1.AllowUserToResizeColumns = true;
-            dataGridView1.Font = new Font("MS ゴシック", 10);
-            dataGridView1.DefaultCellStyle.SelectionBackColor = Color.FromArgb(210, 210, 255);
+            dataGridView1.Font = new System.Drawing.Font("MS ゴシック", 10);
+          //  dataGridView1.DefaultCellStyle.SelectionBackColor = Color.FromArgb(210, 210, 255);
             dataGridView1.DefaultCellStyle.SelectionForeColor = Color.Black;
             dataGridView1.GridColor = Color.FromArgb(230, 230, 230);
-            dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font("MS ゴシック", 9);
-            dataGridView1.DefaultCellStyle.Font = new Font("MS ゴシック", 10);
+            dataGridView1.ColumnHeadersDefaultCellStyle.Font = new System.Drawing.Font("MS ゴシック", 9);
+            dataGridView1.DefaultCellStyle.Font = new System.Drawing.Font("MS ゴシック", 10);
             dataGridView1.DefaultCellStyle.ForeColor = Color.Black;
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
@@ -331,10 +333,12 @@ namespace u_net
                 //改版依頼中の受注データは表示しない
                 strWhere = FunctionClass.WhereString(strWhere, "not(1<受注版数 and 承認者コード is null)");
 
+                //出荷カラムが出荷完了日ではなく、ManufacturingCompletionApprovedDateがテキストボックスに設定されていた。
+                　
                 string query1 = "SELECT 受注コード, 受注版数 AS 版, 受注日, 出荷予定日, 受注納期, 注文番号, 顧客名, 自社担当者名, FORMAT(受注金額, N'#,0') AS 受注金額 " +
                                            " , CASE WHEN 確定日時 IS NOT NULL THEN '■' ELSE '' END AS 確定 " +
                                            " ,  承認者コード  AS 承認 " +
-                                           " , CASE WHEN 出荷完了日 IS NOT NULL THEN '■' ELSE '' END AS 出荷 " +
+                                           " , CASE WHEN ManufacturingCompletionApprovedDate IS NOT NULL THEN '■' ELSE '' END AS 出荷 " +
                                            " , CASE WHEN 完了承認者コード IS NOT NULL THEN '■' ELSE '' END AS 完了  " +
                                            ", 無効日 ,顧客コード";
 
@@ -505,7 +509,12 @@ namespace u_net
             }
         }
 
-
+        /// <summary>
+        /// 無効日の横線と選択行のボックス表示
+        /// CellPaintingで選択行の背景色をデフォルトのままにしておく
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void dataGridView1_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
         {
             //無効日がnullの行に線を引く
@@ -526,6 +535,47 @@ namespace u_net
                         rowBounds.Right, rowBounds.Top + rowBounds.Height / 2);
                 }
             }
+
+            if (e.RowIndex == dataGridView1.CurrentRow.Index)
+            {
+                // 太さ2の黒い線
+                Pen linePen = new Pen(Color.Black, 2);
+
+                // 座標計算
+
+                // 開始X 行ヘッダ表示の場合、行ヘッダ分右にずらす
+                int startX = dataGridView1.RowHeadersVisible ? dataGridView1.RowHeadersWidth : 0;
+
+                // 開始Y 行のTOPより1ピクセル下
+                // （1ピクセル下にしておかないと選択行を移動したとき
+                //   前に選択していた行の線の描画がきれいに消えない）
+                int startY = e.RowBounds.Top + 1;
+
+                // 終了X
+                // 開始X+表示される全列の幅-スクロールしないと見えない列の幅
+                int endX = startX + dataGridView1.Columns.GetColumnsWidth(DataGridViewElementStates.Visible)
+                    - dataGridView1.HorizontalScrollingOffset;
+
+                // 線を引く 上
+                e.Graphics.DrawLine(linePen, startX, startY, endX, startY);
+
+                // 線を引く 左
+                e.Graphics.DrawLine(linePen, startX, startY, startX, startY + e.RowBounds.Height - 1);
+
+                // 線を引く 右
+                e.Graphics.DrawLine(linePen, endX, startY, endX, startY + e.RowBounds.Height - 1);
+
+                // 下罫線を引くため開始Yを再計算
+                // （1ピクセル上にしておかないと選択行を移動したとき
+                //   前に選択していた行の線の描画がきれいに消えない）
+                startY = e.RowBounds.Top + e.RowBounds.Height - 1;
+
+                // 線を引く 下
+                e.Graphics.DrawLine(linePen, startX, startY, endX, startY);
+            }
+
+
+
         }
 
         private void dataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -555,7 +605,7 @@ namespace u_net
             {
                 if (e.Value != null && !string.IsNullOrWhiteSpace(e.Value.ToString()))
                 {
-                    e.CellStyle.ForeColor = Color.Red; // 赤                    
+                    e.CellStyle.ForeColor = Color.Red; // 赤                   
                 }
                 else
                 {
@@ -588,11 +638,22 @@ namespace u_net
                     TextFormatFlags.Right | TextFormatFlags.VerticalCenter);
                 //描画が完了したことを知らせる
                 e.Handled = true;
+
                 dataGridView1.ResumeLayout();
 
             }
+            if (e.RowIndex >= 0)
+            {
+                // 行選択時の背景色と前景色を変えない
+                if ((dataGridView1.Rows[e.RowIndex].Selected || dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Selected))
+                {
+                    e.CellStyle.SelectionBackColor = e.CellStyle.BackColor;
+                    e.CellStyle.SelectionForeColor = e.CellStyle.ForeColor;
+                }
+                
+            }
+            
         }
-
         //ダブルクリックで商品フォームを開く　商品コードを渡す
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {

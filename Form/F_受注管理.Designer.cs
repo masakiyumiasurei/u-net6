@@ -291,6 +291,7 @@
             dataGridView1.ReadOnly = true;
             dataGridView1.RowHeadersVisible = false;
             dataGridView1.RowTemplate.Height = 29;
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView1.ShowCellErrors = false;
             dataGridView1.Size = new Size(1180, 570);
             dataGridView1.TabIndex = 87;
