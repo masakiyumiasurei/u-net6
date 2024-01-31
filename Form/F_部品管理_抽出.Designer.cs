@@ -233,10 +233,10 @@
             UseButton2.AutoSize = true;
             UseButton2.Location = new Point(195, 22);
             UseButton2.Name = "UseButton2";
-            UseButton2.Size = new Size(85, 19);
+            UseButton2.Size = new Size(96, 19);
             UseButton2.TabIndex = 2;
             UseButton2.TabStop = true;
-            UseButton2.Text = "使用している";
+            UseButton2.Text = "使用していない";
             UseButton2.UseVisualStyleBackColor = true;
             // 
             // UseButton1
@@ -244,10 +244,10 @@
             UseButton1.AutoSize = true;
             UseButton1.Location = new Point(30, 22);
             UseButton1.Name = "UseButton1";
-            UseButton1.Size = new Size(96, 19);
+            UseButton1.Size = new Size(85, 19);
             UseButton1.TabIndex = 1;
             UseButton1.TabStop = true;
-            UseButton1.Text = "使用していない";
+            UseButton1.Text = "使用している";
             UseButton1.UseVisualStyleBackColor = true;
             // 
             // label5
