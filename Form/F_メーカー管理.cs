@@ -175,7 +175,7 @@ namespace u_net
                 // メーカーコード指定
                 if (!string.IsNullOrEmpty(strメーカーコード開始))
                 {
-                    filter += string.Format("(メーカーコード BETWEEN '{0}' AND '{1}') AND ",
+                    filter += string.Format("AND (メーカーコード BETWEEN '{0}' AND '{1}') ",
                                                                   strメーカーコード開始, strメーカーコード終了);
                 }
 
@@ -188,7 +188,7 @@ namespace u_net
                         string str1 = var1.ToString();
                         if (!string.IsNullOrEmpty(str1))
                         {
-                            filter += string.Format("メーカー名 LIKE '%{0}%' AND ", str1);
+                            filter += string.Format("AND メーカー名 LIKE '%{0}%' ", str1);
                         }
                     }
                 }
@@ -196,29 +196,29 @@ namespace u_net
                 // 担当者名指定
                 if (!string.IsNullOrEmpty(str担当者名))
                 {
-                    filter += string.Format("担当者名 LIKE '%{0}%' AND ", str担当者名);
+                    filter += string.Format("AND 担当者名 LIKE '%{0}%' ", str担当者名);
                 }
 
                 // 担当者メールアドレス指定
                 if (!string.IsNullOrEmpty(str担当者メールアドレス))
                 {
-                    filter += string.Format("担当者メールアドレス LIKE '%{0}%' AND ", str担当者メールアドレス);
+                    filter += string.Format("AND 担当者メールアドレス LIKE '%{0}%' ", str担当者メールアドレス);
                 }
                 // 更新日時
                 if (dtm更新日開始 != DateTime.MinValue)
                 {
-                    filter += "'" + dtm更新日開始 + "' <= 更新日時 AND ";
+                    filter += "AND '" + dtm更新日開始 + "' <= 更新日時 ";
                 }
                 if(dtm更新日終了 != DateTime.MinValue)
                 {
-                    filter += "更新日時 <= '" + dtm更新日終了 + "' AND ";
+                    filter += "AND 更新日時 <= '" + dtm更新日終了 + "' ";
                 }
 
 
                 // 更新者名
                 if (!string.IsNullOrEmpty(str更新者名))
                 {
-                    filter += string.Format("更新者名 LIKE '%{0}%' AND ", str更新者名);
+                    filter += string.Format("AND 更新者名 LIKE '%{0}%' ", str更新者名);
                 }
 
 
@@ -226,18 +226,18 @@ namespace u_net
                 switch (lngDeleted)
                 {
                     case 1:
-                        filter += "削除 IS NULL AND ";
+                        filter += "AND 削除 IS NULL ";
                         break;
                     case 2:
-                        filter += "削除 IS NOT NULL AND ";
+                        filter += "AND 削除 IS NOT NULL ";
                         break;
                 }
-                if (!string.IsNullOrEmpty(filter))
-                {
-                    filter = filter.Substring(0, filter.Length - 5); // 最後の " AND " を削除
-                }
+                //if (!string.IsNullOrEmpty(filter))
+                //{
+                //    filter = filter.Substring(0, filter.Length - 5); // 最後の " AND " を削除
+                //}
 
-                string query = "SELECT * FROM Vメーカー管理 WHERE 1=1 AND " + filter + " ORDER BY メーカーコード DESC ";
+                string query = "SELECT * FROM Vメーカー管理 WHERE 1=1 " + filter + " ORDER BY メーカーコード DESC ";
 
                 Connect();
                 DataGridUtils.SetDataGridView(cn, query, this.dataGridView1);

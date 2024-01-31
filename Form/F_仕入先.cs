@@ -909,9 +909,10 @@ namespace u_net
         private void コマンドメーカー_Click(object sender, EventArgs e)
         {
 
-            if (ActiveControl == コマンドメーカー)
+            if (Application.OpenForms["F_メーカー管理"] != null)
             {
-                GetNextControl(コマンドメーカー, false).Focus();
+                MessageBox.Show("指定されたウィンドウは既に開いています。", "警告", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
             }
 
             Form form = new F_メーカー管理();
@@ -1031,6 +1032,12 @@ namespace u_net
             switch (e.KeyCode)
             {
                 case Keys.Return:
+                    // 複数行入力可能な項目はEnterでフォーカス移動させない
+                    switch (this.ActiveControl.Name)
+                    {
+                        case "備考":
+                            return;
+                    }
                     SelectNextControl(ActiveControl, true, true, true, true);
                     break;
                 case Keys.Space: //コンボボックスならドロップダウン
@@ -1202,13 +1209,24 @@ namespace u_net
             {
                 // 郵便番号APIを使用して住所情報を取得
                 string address = await OriginalClass.GetAddressFromZipCode(zipCode);
-                住所1.Text = address;
+                if (address.Substring(0, 3) == "エラー")
+                {
+                    住所1.Text = null;
+                }
+                else
+                {
+                    住所1.Text = address;
+                }
+                
             }
             else
             {
                 // 郵便番号が正しい形式でない場合、エラーメッセージなどを表示
                 住所1.Text = null;
             }
+
+
+
 
             //UpdatedControl((Control)sender);
         }
@@ -1487,8 +1505,16 @@ namespace u_net
 
             if (OriginalClass.IsValidZipCode(zipCode) && string.IsNullOrEmpty(窓口住所1.Text))
             {
+                // 郵便番号APIを使用して住所情報を取得
                 string address = await OriginalClass.GetAddressFromZipCode(zipCode);
-                窓口住所1.Text = address;
+                if (address.Substring(0, 3) == "エラー")
+                {
+                    窓口住所1.Text = null;
+                }
+                else
+                {
+                    窓口住所1.Text = address;
+                }
             }
             else
             {
@@ -1721,8 +1747,16 @@ namespace u_net
 
             if (OriginalClass.IsValidZipCode(zipCode))
             {
+                // 郵便番号APIを使用して住所情報を取得
                 string address = await OriginalClass.GetAddressFromZipCode(zipCode);
-                手形発送先住所.Text = address;
+                if (address.Substring(0, 3) == "エラー")
+                {
+                    手形発送先住所.Text = null;
+                }
+                else
+                {
+                    手形発送先住所.Text = address;
+                }
             }
             else
             {
