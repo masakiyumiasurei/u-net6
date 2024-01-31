@@ -78,6 +78,7 @@
             // 
             // button4
             // 
+            button4.Enabled = false;
             button4.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             button4.ForeColor = Color.Blue;
             button4.ImageAlign = ContentAlignment.BottomLeft;
@@ -90,6 +91,7 @@
             // 
             // button3
             // 
+            button3.Enabled = false;
             button3.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             button3.ForeColor = Color.Blue;
             button3.ImageAlign = ContentAlignment.BottomLeft;
@@ -150,6 +152,7 @@
             // 
             コマンド保守.Enabled = false;
             コマンド保守.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            コマンド保守.ForeColor = Color.Blue;
             コマンド保守.ImageAlign = ContentAlignment.BottomLeft;
             コマンド保守.Location = new Point(715, 4);
             コマンド保守.Margin = new Padding(0, 2, 0, 2);
@@ -283,13 +286,14 @@
             // 
             dataGridView1.AllowUserToAddRows = false;
             dataGridView1.AllowUserToDeleteRows = false;
+            dataGridView1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Location = new Point(0, 36);
             dataGridView1.Margin = new Padding(3, 2, 3, 2);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
             dataGridView1.RowTemplate.Height = 29;
-            dataGridView1.Size = new Size(1300, 560);
+            dataGridView1.Size = new Size(1300, 555);
             dataGridView1.TabIndex = 87;
             dataGridView1.CellClick += dataGridView1_CellClick;
             dataGridView1.CellDoubleClick += dataGridView1_CellDoubleClick;
@@ -303,7 +307,7 @@
             panel2.Controls.Add(label1);
             panel2.Controls.Add(label2);
             panel2.Dock = DockStyle.Bottom;
-            panel2.Location = new Point(0, 600);
+            panel2.Location = new Point(0, 595);
             panel2.Margin = new Padding(3, 2, 3, 2);
             panel2.Name = "panel2";
             panel2.Size = new Size(1305, 27);
@@ -313,7 +317,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1305, 627);
+            ClientSize = new Size(1305, 622);
             Controls.Add(panel2);
             Controls.Add(dataGridView1);
             Controls.Add(panel1);

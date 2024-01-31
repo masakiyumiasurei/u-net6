@@ -76,6 +76,7 @@ namespace u_net
                 品名.Text = frmTarget.str品名;
                 型番.Text = frmTarget.str型番;
                 メーカー名.Text = frmTarget.strメーカー名;
+                仕入先名.Text = frmTarget.str仕入先名;
                 単価指定.SelectedValue = frmTarget.lng単価指定;
                 RohsStatusCode.SelectedValue = frmTarget.lngRohsStatusCode;
                 ChemSherpaVersion.Text = frmTarget.strChemSherpaVersion;
@@ -209,18 +210,19 @@ namespace u_net
                 else if (cnt < 0)
                 {
                     MessageBox.Show("エラーが発生したため、抽出できませんでした。", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    return;
+                    this.Close();
                 }
             }
             catch (Exception ex)
             {
                 Debug.WriteLine(this.Name + "_抽出ボタン_Click - " + ex.Message);
                 MessageBox.Show("エラーが発生しました。", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.Close();
             }
             finally
             {
                 //this.Painting = true;
-                this.Close();
+                
             }
         }
 

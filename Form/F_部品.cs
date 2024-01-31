@@ -372,6 +372,8 @@ namespace u_net
                         objControl1.Text = dteNow.ToString(); // ここでDateTimeをstringに変換して設定
                         objControl2.Text = CommonConstants.LoginUserCode;
                         objControl3.Text = CommonConstants.LoginUserFullName;
+
+                        随時登録.Text = "0";
                     }
 
                     objControl4 = this.更新日時;
@@ -488,8 +490,16 @@ namespace u_net
         private bool ErrCheck()
         {
             //入力確認    
-            if (!FunctionClass.IsError(this.部品コード)) return false;
-            if (!FunctionClass.IsError(this.版数)) return false;
+            if (IsError(this.部品コード)) return false; 
+            if (IsError(this.版数)) return false;
+            if (IsError(this.品名)) return false;
+            if (IsError(this.型番,true)) return false;
+            if (IsError(this.メーカーコード)) return false;
+            if (IsError(this.分類コード)) return false;
+            if (IsError(this.形状分類コード)) return false;
+            if (IsError(this.受入検査ランク)) return false;
+            if (IsError(this.CalcInventoryCode)) return false;
+
             return true;
         }
 
@@ -891,7 +901,7 @@ namespace u_net
                 F_部品履歴 targetform = new F_部品履歴();
 
                 targetform.args = CurrentCode;
-                targetform.args2 = CurrentEdition-1;
+                targetform.args2 = CurrentEdition - 1;
                 targetform.ShowDialog();
 
             }
@@ -1210,7 +1220,7 @@ namespace u_net
 
             Close(); // フォームを閉じる
         }
-        
+
 
 
         //private void UpdatePurGrid()
@@ -1339,7 +1349,7 @@ namespace u_net
         }
 
 
-        private bool IsError(Control controlObject)
+        private bool IsError(Control controlObject,bool Cancel = false)
         {
             try
             {
@@ -1353,22 +1363,25 @@ namespace u_net
                 {
                     case "部品コード":
                     case "品名":
-                        //if (string.IsNullOrEmpty(varValue.ToString()))
-                        //{
-                        //    MessageBox.Show(controlName + "を入力してください.", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                        //    return true;
-                        //}
+                        if (string.IsNullOrEmpty(varValue.ToString()))
+                        {
+                            MessageBox.Show(controlName + "を入力してください.", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            controlObject.Focus();
+                            return true;
+                        }
                         break;
                     case "型番":
-                        //if (Cancel)
-                        //{
-                        //if (string.IsNullOrEmpty(varValue.ToString()))
-                        //{
-                        //    MessageBox.Show(controlName + "を入力してください.", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                        //    return true;
-                        //}
-                        //}
-                        // 重複チェックなどを行う必要があれば、ここに追加してください。
+                        if (Cancel)
+                        {
+                            if (string.IsNullOrEmpty(varValue.ToString()))
+                            {
+                                MessageBox.Show(controlName + "を入力してください.", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                                controlObject.Focus();
+                                return true;
+                            }
+                        }
+                        
+               
                         DataTable rs1 = null;
                         string strPartsList = null;
 
@@ -1384,6 +1397,7 @@ namespace u_net
                                 }
 
                                 MessageBox.Show($"入力された型番は既に登録されています。{Environment.NewLine}{strPartsList}", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                                controlObject.Focus();
                                 return true;
                             }
 
@@ -1393,6 +1407,7 @@ namespace u_net
                         if (string.IsNullOrEmpty(varValue.ToString()))
                         {
                             MessageBox.Show(controlName + "を入力してください.", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            controlObject.Focus();
                             return true;
                         }
                         else
@@ -1401,6 +1416,8 @@ namespace u_net
                             string str2 = FunctionClass.GetMakerShortName(cn, controlObject.Text.ToString());
                             if (string.IsNullOrEmpty(str1) || string.IsNullOrEmpty(str2))
                             {
+                                MessageBox.Show("存在しないメーカーです。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                                controlObject.Focus();
                                 return true;
                             }
                             else
@@ -1418,6 +1435,7 @@ namespace u_net
                         {
                             if (!FunctionClass.IsLimit_N(varValue, 8, 2, controlName))
                             {
+                                controlObject.Focus();
                                 return true;
                             }
                         }
@@ -1426,6 +1444,7 @@ namespace u_net
                         if (string.IsNullOrEmpty(varValue.ToString()))
                         {
                             MessageBox.Show(controlName + "を入力してください.", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            controlObject.Focus();
                             return true;
                         }
                         GroupNumber.Text = 分類コード.Text;
@@ -1434,6 +1453,7 @@ namespace u_net
                         if (string.IsNullOrEmpty(varValue.ToString()))
                         {
                             MessageBox.Show("形状分類を指定してください.", "情報", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            controlObject.Focus();
                             return true;
                         }
                         FormGroupShortName.Text = 形状分類コード.Text;
@@ -1441,12 +1461,14 @@ namespace u_net
                     case "入数":
                         if (!FunctionClass.IsLimit_N(varValue, 8, 0, controlName))
                         {
+                            controlObject.Focus();
                             return true;
                         }
                         break;
                     case "単位数量":
                         if (!FunctionClass.IsLimit_N(varValue, 8, 0, controlName))
                         {
+                            controlObject.Focus();
                             return true;
                         }
                         break;
@@ -1457,6 +1479,7 @@ namespace u_net
                         if (string.IsNullOrEmpty(varValue.ToString()))
                         {
                             MessageBox.Show("在庫計算を指定してください.", "情報", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            controlObject.Focus();
                             return true;
                         }
                         break;
@@ -1464,12 +1487,14 @@ namespace u_net
                         if (string.IsNullOrEmpty(varValue.ToString()))
                         {
                             MessageBox.Show("受入検査ランクを指定してください.", "情報", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            controlObject.Focus();
                             return true;
                         }
                         break;
                     case "ロス率":
                         if (!FunctionClass.IsLimit_N(varValue, 8, 7, controlName))
                         {
+                            controlObject.Focus();
                             return true;
                         }
                         break;
@@ -1484,6 +1509,7 @@ namespace u_net
                         if (string.IsNullOrEmpty(varValue.ToString()))
                         {
                             MessageBox.Show("[" + controlObject.Tag + "]を入力してください.", "情報", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            controlObject.Focus();
                             return true;
                         }
                         break;
@@ -1493,6 +1519,7 @@ namespace u_net
                     case "在庫数量":
                         if (!FunctionClass.IsLimit_N(varValue, 8, 0, controlName))
                         {
+                            controlObject.Focus();
                             return true;
                         }
                         break;
@@ -1592,14 +1619,29 @@ namespace u_net
                         break;
                     case "仕入先1コード":
                         // 仕入先コードからの関連情報表示
+                        if (string.IsNullOrEmpty(controlObject.Text))
+                        {
+                            Supplier1Name.Text = null;
+                            return;
+                        }
                         Supplier1Name.Text = FunctionClass.GetSupplierName(cn, controlObject.Text.ToString());
                         break;
                     case "仕入先2コード":
                         // 仕入先コードからの関連情報表示
+                        if (string.IsNullOrEmpty(controlObject.Text))
+                        {
+                            Supplier2Name.Text = null;
+                            return;
+                        }
                         Supplier2Name.Text = FunctionClass.GetSupplierName(cn, controlObject.Text.ToString());
                         break;
                     case "仕入先3コード":
                         // 仕入先コードからの関連情報表示
+                        if (string.IsNullOrEmpty(controlObject.Text))
+                        {
+                            Supplier3Name.Text = null;
+                            return;
+                        }
                         Supplier3Name.Text = FunctionClass.GetSupplierName(cn, controlObject.Text.ToString());
                         break;
                     case "入数":
@@ -1967,6 +2009,7 @@ namespace u_net
 
         private void メーカーコード_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
+            if (メーカーコード.Modified == false) return;
             if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
@@ -2473,6 +2516,7 @@ namespace u_net
 
         private void 品名_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
+            if (品名.Modified == false) return;
             if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
@@ -2794,6 +2838,11 @@ namespace u_net
             e.Graphics.DrawLine(Pens.Black, new Point(5, 0), new Point(19, 0));
             e.Graphics.DrawLine(Pens.Black, new Point(19, 0), new Point(19, 254));
             e.Graphics.DrawLine(Pens.Black, new Point(5, 254), new Point(19, 254));
+        }
+
+        private void Rohs2ProvisionalRegisteredStatusCode_CheckedChanged(object sender, EventArgs e)
+        {
+            ChangedData(true);
         }
     }
 }

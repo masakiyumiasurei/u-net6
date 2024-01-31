@@ -199,6 +199,7 @@ namespace u_net
             無効日時 = new TextBox();
             toolTip1 = new ToolTip(components);
             pictureBox1 = new PictureBox();
+            随時登録 = new TextBox();
             panel1.SuspendLayout();
             仕入先1フレーム.SuspendLayout();
             statusStrip1.SuspendLayout();
@@ -940,7 +941,7 @@ namespace u_net
             // 
             過不足数量.Location = new Point(585, 380);
             過不足数量.Name = "過不足数量";
-            過不足数量.Size = new Size(70, 27);
+            過不足数量.Size = new Size(70, 23);
             過不足数量.TabIndex = 52;
             過不足数量.Visible = false;
             // 
@@ -969,22 +970,22 @@ namespace u_net
             // statusStrip1
             // 
             statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1, toolStripStatusLabel2 });
-            statusStrip1.Location = new Point(0, 683);
+            statusStrip1.Location = new Point(0, 686);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Padding = new Padding(1, 0, 19, 0);
-            statusStrip1.Size = new Size(1140, 25);
+            statusStrip1.Size = new Size(1140, 22);
             statusStrip1.TabIndex = 10001;
             statusStrip1.Text = "statusStrip1";
             // 
             // toolStripStatusLabel1
             // 
             toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            toolStripStatusLabel1.Size = new Size(0, 20);
+            toolStripStatusLabel1.Size = new Size(0, 17);
             // 
             // toolStripStatusLabel2
             // 
             toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            toolStripStatusLabel2.Size = new Size(111, 20);
+            toolStripStatusLabel2.Size = new Size(89, 17);
             toolStripStatusLabel2.Text = "各種項目の説明";
             // 
             // 部品コード
@@ -1451,6 +1452,7 @@ namespace u_net
             // RohsStatusCode
             // 
             RohsStatusCode.BackColor = Color.White;
+            RohsStatusCode.Enabled = false;
             RohsStatusCode.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             RohsStatusCode.FormattingEnabled = true;
             RohsStatusCode.ImeMode = ImeMode.NoControl;
@@ -1487,6 +1489,7 @@ namespace u_net
             Rohs2ProvisionalRegisteredStatusCode.Size = new Size(15, 14);
             Rohs2ProvisionalRegisteredStatusCode.TabIndex = 33;
             Rohs2ProvisionalRegisteredStatusCode.UseVisualStyleBackColor = true;
+            Rohs2ProvisionalRegisteredStatusCode.CheckedChanged += Rohs2ProvisionalRegisteredStatusCode_CheckedChanged;
             Rohs2ProvisionalRegisteredStatusCode.Validated += Rohs2ProvisionalRegisteredStatusCode_Validated;
             // 
             // label23
@@ -2240,7 +2243,7 @@ namespace u_net
             // 
             無効日時.Location = new Point(988, 201);
             無効日時.Name = "無効日時";
-            無効日時.Size = new Size(129, 27);
+            無効日時.Size = new Size(129, 23);
             無効日時.TabIndex = 10063;
             無効日時.Visible = false;
             // 
@@ -2253,10 +2256,19 @@ namespace u_net
             pictureBox1.TabStop = false;
             pictureBox1.Paint += pictureBox1_Paint;
             // 
+            // 随時登録
+            // 
+            随時登録.Location = new Point(585, 415);
+            随時登録.Name = "随時登録";
+            随時登録.Size = new Size(70, 23);
+            随時登録.TabIndex = 10065;
+            随時登録.Visible = false;
+            // 
             // F_部品
             // 
             BackColor = SystemColors.Control;
             ClientSize = new Size(1140, 708);
+            Controls.Add(随時登録);
             Controls.Add(無効日時);
             Controls.Add(部品集合参照ボタン);
             Controls.Add(集合名);
@@ -2588,6 +2600,7 @@ namespace u_net
         private TextBox 無効日時;
         private ToolTip toolTip1;
         private PictureBox pictureBox1;
+        private TextBox 随時登録;
     }
 }
 
