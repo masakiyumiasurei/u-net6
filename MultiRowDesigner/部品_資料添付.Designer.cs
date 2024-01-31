@@ -39,7 +39,8 @@
             gcMultiRow1.Location = new Point(-9, 0);
             gcMultiRow1.Margin = new Padding(4);
             gcMultiRow1.Name = "gcMultiRow1";
-            gcMultiRow1.Size = new Size(717, 583);
+            gcMultiRow1.ScrollBars = ScrollBars.Vertical;
+            gcMultiRow1.Size = new Size(691, 270);
             gcMultiRow1.TabIndex = 0;
             gcMultiRow1.Template = 部品_資料添付テンプレート1;
             gcMultiRow1.TemplateScaleSize = new SizeF(1.16666675F, 1.25F);
@@ -65,7 +66,7 @@
             Controls.Add(gcMultiRow1);
             Margin = new Padding(4);
             Name = "部品_資料添付";
-            Size = new Size(707, 583);
+            Size = new Size(683, 249);
             Load += 部品_資料添付_Load;
             ((System.ComponentModel.ISupportInitialize)gcMultiRow1).EndInit();
             ResumeLayout(false);
