@@ -191,7 +191,7 @@ namespace u_net
         {
             try
             {
-                string filter = string.Empty;
+                string filter = " AND ";
 
                 // 部品コード指定
                 if (!string.IsNullOrEmpty(str部品コード1) && !string.IsNullOrEmpty(str部品コード2))
@@ -311,7 +311,7 @@ namespace u_net
                     filter = filter.Substring(0, filter.Length - 5); // 最後の " AND " を削除
                 }
 
-                string query = "SELECT * FROM V部品管理 WHERE 1=1 AND " + filter + " ORDER BY 部品コード DESC ";
+                string query = "SELECT * FROM V部品管理 WHERE 1=1 " + filter + " ORDER BY 部品コード DESC ";
 
                 Connect();
                 DataGridUtils.SetDataGridView(cn, query, this.dataGridView1);

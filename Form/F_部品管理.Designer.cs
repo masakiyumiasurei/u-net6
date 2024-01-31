@@ -283,13 +283,14 @@
             // 
             dataGridView1.AllowUserToAddRows = false;
             dataGridView1.AllowUserToDeleteRows = false;
+            dataGridView1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Location = new Point(0, 36);
             dataGridView1.Margin = new Padding(3, 2, 3, 2);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
             dataGridView1.RowTemplate.Height = 29;
-            dataGridView1.Size = new Size(1300, 560);
+            dataGridView1.Size = new Size(1300, 555);
             dataGridView1.TabIndex = 87;
             dataGridView1.CellClick += dataGridView1_CellClick;
             dataGridView1.CellDoubleClick += dataGridView1_CellDoubleClick;
@@ -303,7 +304,7 @@
             panel2.Controls.Add(label1);
             panel2.Controls.Add(label2);
             panel2.Dock = DockStyle.Bottom;
-            panel2.Location = new Point(0, 600);
+            panel2.Location = new Point(0, 595);
             panel2.Margin = new Padding(3, 2, 3, 2);
             panel2.Name = "panel2";
             panel2.Size = new Size(1305, 27);
@@ -313,7 +314,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1305, 627);
+            ClientSize = new Size(1305, 622);
             Controls.Add(panel2);
             Controls.Add(dataGridView1);
             Controls.Add(panel1);
