@@ -336,6 +336,10 @@ namespace u_net
                 {
                     filter = filter.Substring(0, filter.Length - 5); // 最後の " AND " を削除
                 }
+                else
+                {
+                    filter = "1=1";
+                }
 
                 string query = "SELECT * FROM V製品一覧 WHERE 1=1 AND " + filter + " ORDER BY 製品コード DESC ";
 

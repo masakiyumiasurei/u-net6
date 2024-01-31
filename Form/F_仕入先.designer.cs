@@ -1103,7 +1103,7 @@ namespace u_net
             // 
             仕入先名フリガナ.BackColor = Color.White;
             仕入先名フリガナ.Font = new Font("BIZ UDPゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            仕入先名フリガナ.ImeMode = ImeMode.KatakanaHalf;
+            仕入先名フリガナ.ImeMode = ImeMode.Katakana;
             仕入先名フリガナ.Location = new Point(138, 66);
             仕入先名フリガナ.Margin = new Padding(3, 2, 3, 2);
             仕入先名フリガナ.Name = "仕入先名フリガナ";
@@ -1485,10 +1485,11 @@ namespace u_net
             Revision.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             Revision.AutoCompleteSource = AutoCompleteSource.ListItems;
             Revision.DropDownStyle = ComboBoxStyle.DropDownList;
+            Revision.Enabled = false;
             Revision.Font = new Font("BIZ UDPゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             Revision.FormattingEnabled = true;
             Revision.ImeMode = ImeMode.Disable;
-            Revision.Location = new Point(340, 11);
+            Revision.Location = new Point(340, 8);
             Revision.Margin = new Padding(4, 3, 4, 3);
             Revision.Name = "Revision";
             Revision.Size = new Size(100, 21);
@@ -1939,6 +1940,7 @@ namespace u_net
             // 
             手形発送先部署.BackColor = Color.White;
             手形発送先部署.Font = new Font("BIZ UDPゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            手形発送先部署.ImeMode = ImeMode.Hiragana;
             手形発送先部署.Location = new Point(133, 110);
             手形発送先部署.Margin = new Padding(3, 2, 3, 2);
             手形発送先部署.Name = "手形発送先部署";
