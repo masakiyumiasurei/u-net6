@@ -1064,7 +1064,7 @@ namespace u_net
             // 
             // 支払明細1
             // 
-            支払明細1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            支払明細1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             支払明細1.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             支払明細1.Location = new Point(9, 325);
             支払明細1.Margin = new Padding(4, 4, 4, 4);
@@ -1171,6 +1171,7 @@ namespace u_net
             FormClosing += Form_Unload;
             Load += Form_Load;
             KeyDown += Form_KeyDown;
+            Resize += Form_Resize;
             panel1.ResumeLayout(false);
             statusStrip1.ResumeLayout(false);
             statusStrip1.PerformLayout();

@@ -139,17 +139,18 @@ namespace u_net
         {
             try
             {
-                this.支払明細1.Height += (this.Height - intWindowHeight);
-                this.支払明細1.Width += (this.Width - intWindowWidth);
-                intWindowHeight = this.Height;
-                intWindowWidth = this.Width;
+                this.支払明細1.Detail.Height = this.支払明細1.Height + (this.Height - intWindowHeight);
+                intWindowHeight = this.Height;  // 高さ保存
 
+                this.支払明細1.Detail.Width = this.支払明細1.Width + (this.Width - intWindowWidth);
+                intWindowWidth = this.Width;    // 幅保存 
             }
             catch (Exception ex)
             {
                 Debug.Print($"{nameof(Form_Resize)} - {ex.Message}");
             }
         }
+
         private void SetPayeeInfo(string payeeCode)
         {
             Connect();
@@ -197,7 +198,7 @@ namespace u_net
                 // 支払一覧（月間）フォームの状態をチェック
                 else if (Application.OpenForms["F_支払一覧_月間"] != null)
                 {
-                          F_支払一覧_月間 objForm2 = (F_支払一覧_月間)Application.OpenForms["F_支払一覧_月間"];
+                    F_支払一覧_月間 objForm2 = (F_支払一覧_月間)Application.OpenForms["F_支払一覧_月間"];
 
                     //if (objForm2.DataCount > 0)
                     //{
@@ -695,7 +696,7 @@ namespace u_net
             }
             this.支払コード.Enabled = !isChanged;
 
-            this.コマンド複写.Enabled = !isChanged; 
+            this.コマンド複写.Enabled = !isChanged;
             this.コマンド削除.Enabled = !isChanged;
             this.コマンド登録.Enabled = isChanged;
 
@@ -737,6 +738,10 @@ namespace u_net
                 更新日時.Text = string.Empty;
                 更新者コード.Text = string.Empty;
                 更新者名.Text = null;
+                確定日時.Text = null;
+                確定者コード.Text = null;
+                無効日時.Text = null;
+                無効者コード.Text = null;
 
                 チェック();
 
@@ -756,7 +761,7 @@ namespace u_net
                 Connect();
 
                 Cursor.Current = Cursors.WaitCursor;
-                this.DoubleBuffered = true;                                
+                this.DoubleBuffered = true;
 
                 // 変更がある
                 if (IsDirty)
@@ -1007,7 +1012,7 @@ namespace u_net
                                 this.集計年月.Text = $"{dateValue.Year}/{dateValue.Month:D2}";
                         }
 
-                        if (this.支払年月.Text == null)
+                        if (this.支払年月.Text == "")
                         {
                             this.支払年月.Text = MonthAdd(1, controlObject.Text.ToString());
                         }
@@ -1022,9 +1027,9 @@ namespace u_net
                                 this.支払年月.Text = $"{dateValue.Year}/{dateValue.Month:D2}";
                         }
 
-                        if (this.集計年月.Text == null)
+                        if (this.集計年月.Text == "")
                         {
-                            this.集計年月.Text = MonthAdd(1, controlObject.Text.ToString());
+                            this.集計年月.Text = MonthAdd(-1, controlObject.Text.ToString());
                         }
 
                         break;
@@ -1062,7 +1067,7 @@ namespace u_net
                 fm.ShowDialog();
                 if (string.IsNullOrEmpty(strCertificateCode))
                 {
-                    MessageBox.Show("認証に失敗しました。" + Environment.NewLine + "承認できません。。", "承認", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("認証に失敗しました。" + Environment.NewLine + "承認できません。", "承認", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
 
@@ -1583,11 +1588,16 @@ namespace u_net
 
         private void 支払先コード_TextChanged(object sender, EventArgs e)
         {
+            if (支払先コード.Text != "") {
+                UpdatedControl(支払先コード);
+            }
             ChangedData(true);
         }
 
         private void 支払先検索ボタン_Click(object sender, EventArgs e)
         {
+            if (IsDecided) return;
+
             F_検索 SearchForm = new F_検索();
             SearchForm.FilterName = "支払先名フリガナ";
             if (SearchForm.ShowDialog() == DialogResult.OK)
@@ -1654,6 +1664,7 @@ namespace u_net
         {
             if (setCombo) return;
             FunctionClass.LimitText(支払年月, 7);
+            UpdatedControl(集計年月);
             ChangedData(true);
         }
 
@@ -1671,6 +1682,7 @@ namespace u_net
         {
             if (setCombo) return;
             FunctionClass.LimitText(集計年月, 7);
+            UpdatedControl(集計年月);
             ChangedData(true);
         }
 
