@@ -53,12 +53,12 @@ namespace u_net
 
         private void Form_Load(object sender, EventArgs e)
         {
+            foreach (Control control in Controls)
+            {
+                control.PreviewKeyDown += OriginalClass.ValidateCheck;
+            }
 
             timer.Start();
-
-            string LoginUserCode = CommonConstants.LoginUserCode;
-            LocalSetting localSetting = new LocalSetting();
-            localSetting.LoadPlace(LoginUserCode, this);
 
             Connect();
 
@@ -78,7 +78,7 @@ namespace u_net
             MyComputerName = GetComputerName();
             MyUserName = NetUserName();
 
-        // 接続対象サーバー設定
+            // 接続対象サーバー設定
             接続対象サーバー.Text = 接続文字列.Text.Contains("Secondary") ? "テストサーバー" : "運用サーバー";
 
             // その他の情報設定
@@ -94,21 +94,6 @@ namespace u_net
             接続タイムアウト_ADO.Text = cn.ConnectionTimeout.ToString();
             接続タイムアウト_Command.Text = cn.CommandTimeout.ToString();
 
-            
-        }
-
-
-
-
-        private void F_システム_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            string LoginUserCode = CommonConstants.LoginUserCode;
-            LocalSetting ls = new LocalSetting();
-            ls.SavePlace(LoginUserCode, this);
-        }
-
-        private void F_システム_FormClosed(object sender, FormClosedEventArgs e)
-        {
 
         }
 
@@ -156,7 +141,7 @@ namespace u_net
                     cmd.ExecuteNonQuery();
                 }
 
-                最新バージョン.Text = GetNewVersion(cn).ToString(); 
+                最新バージョン.Text = GetNewVersion(cn).ToString();
             }
         }
 
@@ -237,6 +222,16 @@ namespace u_net
         private void 閉じる_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void Form_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Return:
+                    SelectNextControl(ActiveControl, true, true, true, true);
+                    break;
+            }
         }
 
     }

@@ -106,13 +106,12 @@
             // 接続対象サーバー
             // 
             接続対象サーバー.BackColor = Color.White;
-            接続対象サーバー.Enabled = false;
             接続対象サーバー.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             接続対象サーバー.Location = new Point(169, 25);
             接続対象サーバー.Margin = new Padding(3, 2, 3, 2);
-            接続対象サーバー.Multiline = true;
             接続対象サーバー.Name = "接続対象サーバー";
-            接続対象サーバー.Size = new Size(275, 23);
+            接続対象サーバー.ReadOnly = true;
+            接続対象サーバー.Size = new Size(275, 20);
             接続対象サーバー.TabIndex = 1;
             // 
             // label2
@@ -133,13 +132,12 @@
             // サーバー名
             // 
             サーバー名.BackColor = Color.White;
-            サーバー名.Enabled = false;
             サーバー名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             サーバー名.Location = new Point(169, 52);
             サーバー名.Margin = new Padding(3, 2, 3, 2);
-            サーバー名.Multiline = true;
             サーバー名.Name = "サーバー名";
-            サーバー名.Size = new Size(275, 23);
+            サーバー名.ReadOnly = true;
+            サーバー名.Size = new Size(275, 20);
             サーバー名.TabIndex = 214;
             // 
             // label3
@@ -160,13 +158,12 @@
             // 接続状況
             // 
             接続状況.BackColor = Color.White;
-            接続状況.Enabled = false;
             接続状況.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             接続状況.Location = new Point(169, 79);
             接続状況.Margin = new Padding(3, 2, 3, 2);
-            接続状況.Multiline = true;
             接続状況.Name = "接続状況";
-            接続状況.Size = new Size(275, 23);
+            接続状況.ReadOnly = true;
+            接続状況.Size = new Size(275, 20);
             接続状況.TabIndex = 216;
             // 
             // label4
@@ -187,13 +184,12 @@
             // バージョン
             // 
             バージョン.BackColor = Color.White;
-            バージョン.Enabled = false;
             バージョン.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             バージョン.Location = new Point(169, 106);
             バージョン.Margin = new Padding(3, 2, 3, 2);
-            バージョン.Multiline = true;
             バージョン.Name = "バージョン";
-            バージョン.Size = new Size(275, 23);
+            バージョン.ReadOnly = true;
+            バージョン.Size = new Size(275, 20);
             バージョン.TabIndex = 218;
             // 
             // label5
@@ -214,13 +210,12 @@
             // 最新バージョン
             // 
             最新バージョン.BackColor = Color.White;
-            最新バージョン.Enabled = false;
             最新バージョン.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             最新バージョン.Location = new Point(169, 133);
             最新バージョン.Margin = new Padding(3, 2, 3, 2);
-            最新バージョン.Multiline = true;
             最新バージョン.Name = "最新バージョン";
-            最新バージョン.Size = new Size(275, 23);
+            最新バージョン.ReadOnly = true;
+            最新バージョン.Size = new Size(275, 20);
             最新バージョン.TabIndex = 220;
             // 
             // label6
@@ -241,13 +236,12 @@
             // ランタイムバージョン
             // 
             ランタイムバージョン.BackColor = Color.White;
-            ランタイムバージョン.Enabled = false;
             ランタイムバージョン.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             ランタイムバージョン.Location = new Point(169, 268);
             ランタイムバージョン.Margin = new Padding(3, 2, 3, 2);
-            ランタイムバージョン.Multiline = true;
             ランタイムバージョン.Name = "ランタイムバージョン";
-            ランタイムバージョン.Size = new Size(275, 23);
+            ランタイムバージョン.ReadOnly = true;
+            ランタイムバージョン.Size = new Size(275, 20);
             ランタイムバージョン.TabIndex = 230;
             // 
             // label7
@@ -268,13 +262,12 @@
             // OS
             // 
             OS.BackColor = Color.White;
-            OS.Enabled = false;
             OS.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             OS.Location = new Point(169, 241);
             OS.Margin = new Padding(3, 2, 3, 2);
-            OS.Multiline = true;
             OS.Name = "OS";
-            OS.Size = new Size(518, 23);
+            OS.ReadOnly = true;
+            OS.Size = new Size(518, 20);
             OS.TabIndex = 228;
             // 
             // label8
@@ -295,13 +288,12 @@
             // コンピュータ名
             // 
             コンピュータ名.BackColor = Color.White;
-            コンピュータ名.Enabled = false;
             コンピュータ名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             コンピュータ名.Location = new Point(169, 214);
             コンピュータ名.Margin = new Padding(3, 2, 3, 2);
-            コンピュータ名.Multiline = true;
             コンピュータ名.Name = "コンピュータ名";
-            コンピュータ名.Size = new Size(275, 23);
+            コンピュータ名.ReadOnly = true;
+            コンピュータ名.Size = new Size(275, 20);
             コンピュータ名.TabIndex = 226;
             // 
             // label9
@@ -322,13 +314,12 @@
             // クライアント日時
             // 
             クライアント日時.BackColor = Color.White;
-            クライアント日時.Enabled = false;
             クライアント日時.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             クライアント日時.Location = new Point(169, 187);
             クライアント日時.Margin = new Padding(3, 2, 3, 2);
-            クライアント日時.Multiline = true;
             クライアント日時.Name = "クライアント日時";
-            クライアント日時.Size = new Size(275, 23);
+            クライアント日時.ReadOnly = true;
+            クライアント日時.Size = new Size(275, 20);
             クライアント日時.TabIndex = 224;
             // 
             // label10
@@ -349,13 +340,12 @@
             // サーバー日時
             // 
             サーバー日時.BackColor = Color.White;
-            サーバー日時.Enabled = false;
             サーバー日時.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             サーバー日時.Location = new Point(169, 160);
             サーバー日時.Margin = new Padding(3, 2, 3, 2);
-            サーバー日時.Multiline = true;
             サーバー日時.Name = "サーバー日時";
-            サーバー日時.Size = new Size(275, 23);
+            サーバー日時.ReadOnly = true;
+            サーバー日時.Size = new Size(275, 20);
             サーバー日時.TabIndex = 222;
             // 
             // label12
@@ -376,13 +366,12 @@
             // 接続タイムアウト_Command
             // 
             接続タイムアウト_Command.BackColor = Color.White;
-            接続タイムアウト_Command.Enabled = false;
             接続タイムアウト_Command.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             接続タイムアウト_Command.Location = new Point(169, 376);
             接続タイムアウト_Command.Margin = new Padding(3, 2, 3, 2);
-            接続タイムアウト_Command.Multiline = true;
             接続タイムアウト_Command.Name = "接続タイムアウト_Command";
-            接続タイムアウト_Command.Size = new Size(275, 23);
+            接続タイムアウト_Command.ReadOnly = true;
+            接続タイムアウト_Command.Size = new Size(275, 20);
             接続タイムアウト_Command.TabIndex = 238;
             // 
             // label13
@@ -403,13 +392,12 @@
             // 接続タイムアウト_ADO
             // 
             接続タイムアウト_ADO.BackColor = Color.White;
-            接続タイムアウト_ADO.Enabled = false;
             接続タイムアウト_ADO.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             接続タイムアウト_ADO.Location = new Point(169, 349);
             接続タイムアウト_ADO.Margin = new Padding(3, 2, 3, 2);
-            接続タイムアウト_ADO.Multiline = true;
             接続タイムアウト_ADO.Name = "接続タイムアウト_ADO";
-            接続タイムアウト_ADO.Size = new Size(275, 23);
+            接続タイムアウト_ADO.ReadOnly = true;
+            接続タイムアウト_ADO.Size = new Size(275, 20);
             接続タイムアウト_ADO.TabIndex = 236;
             // 
             // label14
@@ -430,13 +418,12 @@
             // 接続タイムアウト_プロジェクト
             // 
             接続タイムアウト_プロジェクト.BackColor = Color.White;
-            接続タイムアウト_プロジェクト.Enabled = false;
             接続タイムアウト_プロジェクト.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             接続タイムアウト_プロジェクト.Location = new Point(169, 322);
             接続タイムアウト_プロジェクト.Margin = new Padding(3, 2, 3, 2);
-            接続タイムアウト_プロジェクト.Multiline = true;
             接続タイムアウト_プロジェクト.Name = "接続タイムアウト_プロジェクト";
-            接続タイムアウト_プロジェクト.Size = new Size(275, 23);
+            接続タイムアウト_プロジェクト.ReadOnly = true;
+            接続タイムアウト_プロジェクト.Size = new Size(275, 20);
             接続タイムアウト_プロジェクト.TabIndex = 234;
             // 
             // label15
@@ -457,13 +444,12 @@
             // ネットワークユーザー名
             // 
             ネットワークユーザー名.BackColor = Color.White;
-            ネットワークユーザー名.Enabled = false;
             ネットワークユーザー名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             ネットワークユーザー名.Location = new Point(169, 295);
             ネットワークユーザー名.Margin = new Padding(3, 2, 3, 2);
-            ネットワークユーザー名.Multiline = true;
             ネットワークユーザー名.Name = "ネットワークユーザー名";
-            ネットワークユーザー名.Size = new Size(275, 23);
+            ネットワークユーザー名.ReadOnly = true;
+            ネットワークユーザー名.Size = new Size(275, 20);
             ネットワークユーザー名.TabIndex = 232;
             // 
             // 接続文字列
@@ -647,13 +633,12 @@
             // test
             // 
             test.BackColor = Color.White;
-            test.Enabled = false;
             test.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             test.Location = new Point(590, 463);
             test.Margin = new Padding(3, 2, 3, 2);
-            test.Multiline = true;
             test.Name = "test";
-            test.Size = new Size(106, 23);
+            test.ReadOnly = true;
+            test.Size = new Size(106, 20);
             test.TabIndex = 255;
             // 
             // F_システム
@@ -706,9 +691,9 @@
             Controls.Add(閉じる);
             Name = "F_システム";
             StartPosition = FormStartPosition.CenterScreen;
-            FormClosing += F_システム_FormClosing;
-            FormClosed += F_システム_FormClosed;
+            Text = "システム設定";
             Load += Form_Load;
+            KeyDown += Form_KeyDown;
             ResumeLayout(false);
             PerformLayout();
         }
