@@ -388,11 +388,16 @@ namespace u_net
             form.ShowDialog();
         }
 
-        private void コマンド入出力_Click(object sender, EventArgs e)
-        {
-            dataGridView1.Focus(); // DataGridViewにフォーカスを設定
 
-            MessageBox.Show("現在開発中です。", "入出力コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        private void コマンド出力_Click(object sender, EventArgs e)
+        {
+            F_出力 targetform = new F_出力();
+            targetform.DataGridView = dataGridView1;
+            targetform.ShowDialog();
+
+            //dataGridView1.Focus(); // DataGridViewにフォーカスを設定
+
+            //MessageBox.Show("現在開発中です。", "出力コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void コマンド初期化_Click(object sender, EventArgs e)
@@ -470,7 +475,7 @@ namespace u_net
                         if (this.コマンド印刷.Enabled) コマンド印刷_Click(null, null);
                         break;
                     case Keys.F10:
-                        if (this.コマンド入出力.Enabled) コマンド入出力_Click(null, null);
+                        if (this.コマンド出力.Enabled) コマンド出力_Click(null, null);
                         break;
                     case Keys.F11:
                     //if (this.コマンド入出力.Enabled) コマンド入出力_Click(null, null);
@@ -530,5 +535,6 @@ namespace u_net
                 ascending = !ascending;
             }
         }
+
     }
 }

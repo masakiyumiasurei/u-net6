@@ -37,7 +37,7 @@
             コマンド仕入先 = new Button();
             コマンドメール = new Button();
             コマンド印刷 = new Button();
-            コマンド入出力 = new Button();
+            コマンド出力 = new Button();
             コマンド初期化 = new Button();
             コマンド検索 = new Button();
             コマンド抽出 = new Button();
@@ -63,7 +63,7 @@
             panel1.Controls.Add(コマンド仕入先);
             panel1.Controls.Add(コマンドメール);
             panel1.Controls.Add(コマンド印刷);
-            panel1.Controls.Add(コマンド入出力);
+            panel1.Controls.Add(コマンド出力);
             panel1.Controls.Add(コマンド初期化);
             panel1.Controls.Add(コマンド検索);
             panel1.Controls.Add(コマンド抽出);
@@ -78,6 +78,7 @@
             // 
             // button1
             // 
+            button1.Enabled = false;
             button1.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             button1.ForeColor = Color.Blue;
             button1.ImageAlign = ContentAlignment.BottomLeft;
@@ -90,6 +91,7 @@
             // 
             // button4
             // 
+            button4.Enabled = false;
             button4.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             button4.ForeColor = Color.Blue;
             button4.ImageAlign = ContentAlignment.BottomLeft;
@@ -102,6 +104,7 @@
             // 
             // button3
             // 
+            button3.Enabled = false;
             button3.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             button3.ForeColor = Color.Blue;
             button3.ImageAlign = ContentAlignment.BottomLeft;
@@ -129,6 +132,7 @@
             // 
             // コマンドメール
             // 
+            コマンドメール.Enabled = false;
             コマンドメール.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             コマンドメール.ForeColor = Color.Blue;
             コマンドメール.ImageAlign = ContentAlignment.BottomLeft;
@@ -141,7 +145,6 @@
             // 
             // コマンド印刷
             // 
-            コマンド印刷.Enabled = false;
             コマンド印刷.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             コマンド印刷.ForeColor = Color.Blue;
             コマンド印刷.ImageAlign = ContentAlignment.BottomLeft;
@@ -155,21 +158,20 @@
             コマンド印刷.UseVisualStyleBackColor = true;
             コマンド印刷.Click += コマンド印刷_Click;
             // 
-            // コマンド入出力
+            // コマンド出力
             // 
-            コマンド入出力.Enabled = false;
-            コマンド入出力.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            コマンド入出力.ForeColor = Color.Blue;
-            コマンド入出力.ImageAlign = ContentAlignment.BottomLeft;
-            コマンド入出力.Location = new Point(645, 4);
-            コマンド入出力.Margin = new Padding(0, 2, 0, 2);
-            コマンド入出力.Name = "コマンド入出力";
-            コマンド入出力.Size = new Size(70, 22);
-            コマンド入出力.TabIndex = 6;
-            コマンド入出力.Text = "入出力";
-            toolTip1.SetToolTip(コマンド入出力, "表示データの出力");
-            コマンド入出力.UseVisualStyleBackColor = true;
-            コマンド入出力.Click += コマンド入出力_Click;
+            コマンド出力.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            コマンド出力.ForeColor = Color.Blue;
+            コマンド出力.ImageAlign = ContentAlignment.BottomLeft;
+            コマンド出力.Location = new Point(645, 4);
+            コマンド出力.Margin = new Padding(0, 2, 0, 2);
+            コマンド出力.Name = "コマンド出力";
+            コマンド出力.Size = new Size(70, 22);
+            コマンド出力.TabIndex = 6;
+            コマンド出力.Text = "出力";
+            toolTip1.SetToolTip(コマンド出力, "表示データの出力");
+            コマンド出力.UseVisualStyleBackColor = true;
+            コマンド出力.Click += コマンド出力_Click;
             // 
             // コマンド初期化
             // 
@@ -314,7 +316,7 @@
             Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(3, 2, 3, 2);
             Name = "F_仕入先管理";
-            Text = "仕払先管理";
+            Text = "支払先管理";
             FormClosing += F_仕入先管理_FormClosing;
             Load += Form_Load;
             KeyDown += Form_KeyDown;
@@ -332,7 +334,7 @@
         private Button コマンド仕入先;
         private Button コマンドメール;
         private Button コマンド印刷;
-        private Button コマンド入出力;
+        private Button コマンド出力;
         private Button コマンド初期化;
         private Button コマンド抽出;
         private Button コマンド更新;
