@@ -309,10 +309,10 @@ namespace MultiRowDesigner
         private void gcMultiRow1_CellValidated(object sender, CellEventArgs e)
         {
 
-            switch (e.CellName)
-            {
-   
+            GcMultiRow grid = (GcMultiRow)sender;
 
+            switch (e.CellName)
+            {   
                 case "部品コード":
                     UpdatedControl(gcMultiRow1.CurrentCell);
                     break;
@@ -321,8 +321,14 @@ namespace MultiRowDesigner
                     break;
 
             }
-            F_入庫? f_入庫 = Application.OpenForms.OfType<F_入庫>().FirstOrDefault();
-            f_入庫.ChangedData(true);
+
+            // 値が変更されていれば変更済みとして処理
+            if (grid.EditingControl != null && grid.EditingControl.Text != gcMultiRow1.CurrentCell.DisplayText)
+            {
+                F_入庫? f_入庫 = Application.OpenForms.OfType<F_入庫>().FirstOrDefault();
+                f_入庫.ChangedData(true);
+            }
+           
         }
 
         private void UpdatedControl(Cell controlObject)
@@ -558,6 +564,7 @@ namespace MultiRowDesigner
                         {
                             string selectedCode = codeSelectionForm.SelectedCode;
 
+                            gcMultiRow1.EditingControl.Text = selectedCode; // <== 対応策
                             gcMultiRow1.CurrentCell.Value = selectedCode;
                             gcMultiRow1.CurrentCellPosition = new CellPosition(gcMultiRow1.CurrentRow.Index, gcMultiRow1.CurrentRow.Cells["品名"].CellIndex);
                         }

@@ -17,6 +17,8 @@ using Newtonsoft.Json.Linq;
 using System.Drawing.Imaging;
 using System.Drawing.Printing;
 using GrapeCity.Win.MultiRow;
+using Microsoft.IdentityModel.Tokens;
+using static System.ComponentModel.Design.ObjectSelectorEditor;
 
 namespace u_net
 {
@@ -34,7 +36,7 @@ namespace u_net
         int intWindowHeight;
         int intWindowWidth;
         bool setcombo = true;
-
+        bool changecombo = false;
 
 
         public F_入庫()
@@ -76,7 +78,9 @@ namespace u_net
             }
         }
 
-        // 現在の入庫コードを取得するプロパティ
+        /// <summary>
+        /// 現在の入庫コードを取得するプロパティ
+        /// </summary>
         public string CurrentCode
         {
             get
@@ -85,7 +89,7 @@ namespace u_net
             }
         }
 
-        // 現在のデータを登録したユーザーコードを取得するプロパティ
+        /// 現在のデータを登録したユーザーコードを取得するプロパティ
         public string InputUserCode
         {
             get
@@ -94,7 +98,9 @@ namespace u_net
             }
         }
 
-        // 現在のデータが編集されているかどうかを取得するプロパティ
+        /// <summary>
+        /// 現在のデータが編集されているかどうかを取得するプロパティ
+        /// </summary>
         public bool IsChanged
         {
             get
@@ -103,7 +109,9 @@ namespace u_net
             }
         }
 
-        // 現在のデータが棚卸処理されているかどうかを取得するプロパティ
+        /// <summary>
+        /// 現在のデータが棚卸処理されているかどうかを取得するプロパティ
+        /// </summary>
         public bool IsCompleted
         {
             get
@@ -112,7 +120,9 @@ namespace u_net
             }
         }
 
-        // 現在のデータが確定されているかどうかを取得するプロパティ
+        /// <summary>
+        /// 現在のデータが確定されているかどうかを取得するプロパティ
+        /// </summary>
         public bool IsDecided
         {
             get
@@ -121,7 +131,9 @@ namespace u_net
             }
         }
 
-        // 現在のデータが削除されているかどうかを取得するプロパティ
+        /// <summary>
+        /// 現在のデータが削除されているかどうかを取得するプロパティ
+        /// </summary>
         public bool IsDeleted
         {
             get
@@ -130,7 +142,9 @@ namespace u_net
             }
         }
 
-        // 現在のデータが新規データかどうかを取得するプロパティ
+        /// <summary>
+        /// 現在のデータが新規データかどうかを取得するプロパティ
+        /// </summary>
         public bool IsNewData
         {
             get
@@ -192,12 +206,14 @@ namespace u_net
             入庫者コード.DrawMode = DrawMode.OwnerDrawFixed;
 
 
-            ofn.SetComboBox(発注コード, " SELECT 発注コード as Display,発注版数 as Display2, Format(発注日,'yyyy/MM/dd') as Display3, 仕入先名 as Display4, 仕入先担当者名 as Display5, 発注コード as Value FROM V入庫_発注コード選択 ORDER BY 発注コード");
+            ofn.SetComboBox(発注コード, " SELECT 発注コード as Display,発注版数 as Display2, Format(発注日,'yyyy/MM/dd') as Display3, " +
+                "仕入先名 as Display4, 仕入先担当者名 as Display5, " +
+                 "発注コード as Value FROM V入庫_発注コード選択 ORDER BY 発注コード");
             発注コード.DrawMode = DrawMode.OwnerDrawFixed;
 
             ofn.SetComboBox(集計年月, " SELECT 集計年月 as Display, 集計年月 as Value FROM V集計年月");
 
-            setcombo = false;
+            
             Connect();
 
             using (SqlCommand cmd = new SqlCommand("SP支払年月入力", cn))
@@ -216,7 +232,7 @@ namespace u_net
                 支払年月.DataSource = dataTable;
             }
 
-
+            
             try
             {
                 this.SuspendLayout();
@@ -269,7 +285,9 @@ namespace u_net
             }
             finally
             {
-               
+                changecombo = false;
+                setcombo = false;
+                コマンド削除.Enabled = false;
                 this.ResumeLayout();
                 fn.WaitForm.Close();
             }
@@ -349,9 +367,9 @@ namespace u_net
                 this.コマンド登録.Enabled = false;
 
                 // 明細部動作制御
-                //SubForm.AllowAdditions = true;
-                //SubForm.AllowDeletions = true;
-                //SubForm.AllowEdits = true;
+                入庫明細1.Detail.AllowUserToAddRows = true;
+                入庫明細1.Detail.AllowUserToDeleteRows = true;
+                入庫明細1.Detail.ReadOnly = false;
 
                 success = true;
                 return success;
@@ -653,7 +671,6 @@ namespace u_net
             }
         }
 
-
         private bool SaveData()
         {
 
@@ -731,7 +748,6 @@ namespace u_net
             }
         }
 
-
         private bool RegTrans(string codeString)
         {
             Connect();
@@ -797,7 +813,6 @@ namespace u_net
             }
         }
 
-
         private bool IsError(Control controlObject)
         {
             try
@@ -835,9 +850,12 @@ namespace u_net
                     case "発注コード":
                         if (IsNewData)
                         {
+                            if (string.IsNullOrEmpty(varValue?.ToString())) return false;
+
                             if (string.IsNullOrEmpty((発注コード.SelectedItem as DataRowView)?.Row["Display2"]?.ToString() ?? null))
                             {
-                                MessageBox.Show("指定された発注データは登録されていないか、既に完了しています。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                                MessageBox.Show("指定された発注データは登録されていないか、既に完了しています。",
+                                    "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                                 goto Exit_IsError;
                             }
                         }
@@ -887,12 +905,9 @@ namespace u_net
             }
         }
 
-
-
-
         internal void ChangedData(bool isChanged)
         {
-            if (ActiveControl == null) return;
+           // if (ActiveControl == null) return;
 
             if (isChanged)
             {
@@ -914,15 +929,14 @@ namespace u_net
             this.コマンド削除.Enabled = !isChanged;
             this.コマンド登録.Enabled = isChanged;
 
-
         }
 
 
         public void UpdatedControl(Control controlObject)
         {
+            FunctionClass fn = new FunctionClass();
             try
-            {
-
+            {                
                 var varValue = controlObject.Text;
                 string strSQL;
                 DateTime dat1;
@@ -940,7 +954,6 @@ namespace u_net
                             "ORDER BY 明細番号";
                         VariableSet.SetTable2Details(入庫明細1.Detail, strSQL, cn);
 
-                        ChangedData(false);
                         チェック();
                         // 動作制御
                         FunctionClass.LockData(this, this.IsDecided || this.IsDeleted || this.IsCompleted, "入庫コード");
@@ -949,6 +962,7 @@ namespace u_net
                         入庫明細1.Detail.AllowUserToAddRows = !(this.IsDeleted || this.IsCompleted);
                         入庫明細1.Detail.AllowUserToDeleteRows = !(this.IsDeleted || this.IsCompleted);
                         入庫明細1.Detail.ReadOnly = (this.IsDeleted || this.IsCompleted);
+                        ChangedData(false);
                         break;
                     case "入庫日":
                         // 集計年月と支払年月を入力する
@@ -968,11 +982,34 @@ namespace u_net
                     case "発注コード":
                         if (発注コード.SelectedIndex == -1) return;
 
-                        FunctionClass fn = new FunctionClass();
+                        
                         fn.DoWait("発注データ読み込み中...");
+                        Connect();
+                        string sqlQuery = $"SELECT * FROM V入庫_発注コード選択 WHERE 発注コード = '{発注コード.Text}'";
+                        SqlCommand command = new SqlCommand(sqlQuery, cn);
 
-
-                        this.発注版数.Text = (発注コード.SelectedItem as DataRowView)?.Row["Display2"]?.ToString() ?? null;
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            // 結果がある場合、最初の行を取得
+                            if (reader.Read())
+                            {
+                                発注版数.Text = reader["発注版数"].ToString();
+                                仕入先コード.Text = reader["仕入先コード"].ToString();
+                                仕入先名.Text = reader["仕入先名"].ToString();
+                                SupplierCloseDay.Text = reader["CloseDay"].ToString();
+                                仕入先窓口電話番号.Text = reader["窓口電話番号"].ToString();
+                                仕入先担当者名.Text = reader["仕入先担当者名"].ToString();
+                                購買コード.Text = reader["購買コード"].ToString();
+                                シリーズ名.Text = reader["シリーズ名"].ToString();
+                                ロット番号1.Text = reader["ロット番号1"].ToString();
+                                ロット番号2.Text = reader["ロット番号2"].ToString();
+                                
+                            }
+                            else
+                            {
+                                Console.WriteLine("該当するデータがありません。");
+                            }
+                        }                
 
                         // 集計年月と支払年月を入力する
                         if (!string.IsNullOrEmpty(this.入庫日.Text) && !string.IsNullOrEmpty(this.SupplierCloseDay.Text))
@@ -1030,7 +1067,7 @@ namespace u_net
             }
             finally
             {
-
+                if(fn.WaitForm!=null) fn.WaitForm.Close();
 
             }
         }
@@ -1295,7 +1332,7 @@ namespace u_net
 
                 using (var cmd = new SqlCommand($"UPDATE T入庫 SET 無効日時=GETDATE() WHERE {strKey}", connectionObject))
                 {
-                    connectionObject.Open();
+                   // connectionObject.Open();
                     cmd.ExecuteNonQuery();
                 }
 
@@ -1524,6 +1561,7 @@ namespace u_net
 
         private void 発注コード_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (setcombo) return;
             発注版数.Text = (発注コード.SelectedItem as DataRowView)?.Row["Display2"]?.ToString() ?? null;
 
             UpdatedControl(sender as Control);
@@ -1533,7 +1571,8 @@ namespace u_net
 
         private void 発注コード_DrawItem(object sender, DrawItemEventArgs e)
         {
-            OriginalClass.SetComboBoxAppearance((ComboBox)sender, e, new int[] { 140, 20, 100, 300, 200 }, new string[] { "Display", "Display2", "Display3", "Display4", "Display5" });
+            OriginalClass.SetComboBoxAppearance((ComboBox)sender, e, new int[] { 140, 20, 100, 300, 200 },
+                new string[] { "Display", "Display2", "Display3", "Display4", "Display5" });
             発注コード.Invalidate();
             発注コード.DroppedDown = true;
         }
@@ -1550,6 +1589,7 @@ namespace u_net
 
         private void 発注コード_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
+            if (setcombo) return;
             if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
@@ -1594,7 +1634,7 @@ namespace u_net
         {
             入庫者名.Text = (入庫者コード.SelectedItem as DataRowView)?.Row["Display2"]?.ToString() ?? null;
 
-            UpdatedControl(sender as Control);
+         //   UpdatedControl(sender as Control);
         }
 
         private void 入庫者コード_TextChanged(object sender, EventArgs e)
@@ -1658,7 +1698,7 @@ namespace u_net
 
         private void 入庫コード_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (IsError(sender as Control) == true) e.Cancel = true;
+           // if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 入庫コード_Validated(object sender, EventArgs e)
@@ -1669,16 +1709,23 @@ namespace u_net
 
         private void 集計年月_SelectedIndexChanged(object sender, EventArgs e)
         {
+              if (setcombo) return;
+            changecombo=true;
             UpdatedControl(sender as Control);
         }
 
         private void 集計年月_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
+           
+            if (!changecombo) return;
             if (IsError(sender as Control) == true) e.Cancel = true;
+            changecombo = false;
         }
 
         private void 集計年月_TextChanged(object sender, EventArgs e)
         {
+            if (setcombo) return;
+            changecombo = true;
             ChangedData(true);
         }
 
@@ -1687,21 +1734,33 @@ namespace u_net
             MessageBox.Show("通常、支払年月を変更することはありません。" + Environment.NewLine +
                     "変更するときは、適切であると判断できる値を入力してください。",
                     "警告", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-
+            
         }
 
         private void 支払年月_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (setcombo) return;
+            changecombo = true;
             UpdatedControl(sender as Control);
         }
 
         private void 支払年月_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (IsError(sender as Control) == true) e.Cancel = true;
+            if (!changecombo) return;
+            if (IsError(sender as Control) == true)
+            {
+                e.Cancel = true;
+            }
+            else
+            {
+                changecombo = false;
+            }
         }
 
         private void 支払年月_TextChanged(object sender, EventArgs e)
         {
+            if (setcombo) return;
+            changecombo = true;
             ChangedData(true);
         }
 
@@ -1720,12 +1779,12 @@ namespace u_net
 
         private void 摘要_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (IsError(sender as Control) == true) e.Cancel = true;
+           // if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 摘要_Validated(object sender, EventArgs e)
         {
-            UpdatedControl(sender as Control);
+           // UpdatedControl(sender as Control);
         }
 
         private void 入庫日_TextChanged(object sender, EventArgs e)
@@ -1735,11 +1794,17 @@ namespace u_net
 
         private void 入庫日_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
+            TextBox textBox = (TextBox)sender;
+            if (textBox.Modified == false) return;
+
             if (IsError(sender as Control) == true) e.Cancel = true;
         }
 
         private void 入庫日_Validated(object sender, EventArgs e)
         {
+            TextBox textBox = (TextBox)sender;
+            if (textBox.Modified == false) return;
+
             UpdatedControl(sender as Control);
         }
 

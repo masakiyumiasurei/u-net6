@@ -918,14 +918,14 @@ namespace u_net
             // 
             // 部品集合明細1
             // 
+            部品集合明細1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             部品集合明細1.AutoScroll = true;
             部品集合明細1.AutoSize = true;
-            部品集合明細1.Dock = DockStyle.Bottom;
             部品集合明細1.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            部品集合明細1.Location = new Point(0, 165);
+            部品集合明細1.Location = new Point(0, 202);
             部品集合明細1.Margin = new Padding(4);
             部品集合明細1.Name = "部品集合明細1";
-            部品集合明細1.Size = new Size(1148, 437);
+            部品集合明細1.Size = new Size(1148, 401);
             部品集合明細1.TabIndex = 11;
             // 
             // F_部品集合
@@ -991,6 +991,7 @@ namespace u_net
             FormClosing += Form_Unload;
             Load += Form_Load;
             KeyDown += Form_KeyDown;
+            Resize += Form_Resize;
             panel1.ResumeLayout(false);
             statusStrip1.ResumeLayout(false);
             statusStrip1.PerformLayout();

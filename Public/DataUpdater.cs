@@ -14,7 +14,23 @@ using Microsoft.IdentityModel.Tokens;
 namespace u_net.Public
 {
     public class DataUpdater
-    {
+    {/// <summary>
+     /// フォームのコントロールと同名のカラムに保存する
+     /// 子要素のコントロールを取得するため再帰的に呼び出している
+     /// </summary>
+     /// <param name="form">対象フォーム</param>
+     /// <param name="connection"></param>
+     /// <param name="tableName">登録テーブル</param>
+     /// <param name="condition">where文　そのまま</param>
+     /// <param name="ukname">主キー（コンボボックスの場合TEXTの値を登録したい時）</param>
+     /// <param name="transaction"></param>
+     /// <param name="ukname2">（コンボボックスの場合TEXTの値を登録したい時）</param>
+     /// <param name="cmbname1">（コンボボックスの場合TEXTの値を登録したい時）</param>
+     /// <param name="cmbname2">（コンボボックスの場合TEXTの値を登録したい時）</param>
+     /// <param name="cmbname3">（コンボボックスの場合TEXTの値を登録したい時）</param>
+     /// <param name="cmbname4">（コンボボックスの場合TEXTの値を登録したい時）</param>
+     /// <param name="cmbname5">（コンボボックスの場合TEXTの値を登録したい時）</param>
+     /// <returns></returns>
         public static bool UpdateOrInsertDataFrom(Form form, SqlConnection connection, string tableName, string condition,
             string ukname, SqlTransaction transaction,string ukname2 = "", string cmbname1 = "", string cmbname2 = "", string cmbname3 = "", string cmbname4 = "", string cmbname5 = "")
         {
@@ -157,7 +173,23 @@ namespace u_net.Public
 
 
 
-
+        /// <summary>
+        /// 文書フォーム用
+        /// </summary>
+        /// <param name="form"></param>
+        /// <param name="connection"></param>
+        /// <param name="tableName"></param>
+        /// <param name="condition"></param>
+        /// <param name="ukname"></param>
+        /// <param name="transaction"></param>
+        /// <param name="CustomFormName"></param>
+        /// <param name="ukname2"></param>
+        /// <param name="cmbname1"></param>
+        /// <param name="cmbname2"></param>
+        /// <param name="cmbname3"></param>
+        /// <param name="cmbname4"></param>
+        /// <param name="cmbname5"></param>
+        /// <returns></returns>
         public static bool UpdateOrInsertDataFromCustom(Form form, SqlConnection connection, string tableName, string condition,
             string ukname, SqlTransaction transaction,string CustomFormName, string ukname2 = "", string cmbname1 = "", string cmbname2 = "", string cmbname3 = "", string cmbname4 = "", string cmbname5 = "")
         {
@@ -305,7 +337,16 @@ namespace u_net.Public
 
 
 
-
+        /// <summary>
+        /// 明細情報の登録
+        /// </summary>
+        /// <param name="multiRow"></param>
+        /// <param name="connection"></param>
+        /// <param name="tableName"></param>
+        /// <param name="condition">where条件</param>
+        /// <param name="ukname">コンボボックスのDisplayTextを登録したい場合</param>
+        /// <param name="transaction"></param>
+        /// <returns></returns>
         public static bool UpdateOrInsertDetails(GcMultiRow multiRow, SqlConnection connection, string tableName, string condition,
             string ukname, SqlTransaction transaction)
         {

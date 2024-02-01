@@ -28,6 +28,8 @@ namespace u_net
         public string args = "";
         private string BASE_CAPTION = "部品購買設定";
         private int selected_frame = 0;
+        private int intWindowHeight = 0;
+        private int intWindowWidth = 0;
 
         public F_部品購買設定()
         {
@@ -120,19 +122,19 @@ namespace u_net
             LocalSetting localSetting = new LocalSetting();
             localSetting.LoadPlace(LoginUserCode, this);
 
-            MyApi myapi = new MyApi();
-            int xSize, ySize, intpixel, twipperdot;
+            //MyApi myapi = new MyApi();
+            //int xSize, ySize, intpixel, twipperdot;
 
-            //1インチ当たりのピクセル数 アクセスのサイズの引数がtwipなのでピクセルに変換する除算値を求める
-            intpixel = myapi.GetLogPixel();
-            twipperdot = myapi.GetTwipPerDot(intpixel);
+            ////1インチ当たりのピクセル数 アクセスのサイズの引数がtwipなのでピクセルに変換する除算値を求める
+            //intpixel = myapi.GetLogPixel();
+            //twipperdot = myapi.GetTwipPerDot(intpixel);
 
             try
             {
                 this.SuspendLayout();
 
-                int intWindowHeight = this.Height;
-                int intWindowWidth = this.Width;
+                 intWindowHeight = this.Height;
+                 intWindowWidth = this.Width;
 
 
                 if (!string.IsNullOrEmpty(args))
@@ -224,7 +226,21 @@ namespace u_net
             return true;
         }
 
+        private void Form_Resize(object sender, EventArgs e)
+        {
+            try
+            {
+                this.部品購買設定明細1.Height += (this.Height - intWindowHeight);
+                this.部品購買設定明細1.Width += (this.Width - intWindowWidth);
+                intWindowHeight = this.Height;
+                intWindowWidth = this.Width;
 
+            }
+            catch (Exception ex)
+            {
+                Debug.Print($"{nameof(Form_Resize)} - {ex.Message}");
+            }
+        }
 
         private void コマンド終了_Click(object sender, EventArgs e)
         {

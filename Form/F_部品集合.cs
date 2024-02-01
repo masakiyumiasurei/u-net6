@@ -24,6 +24,7 @@ using MultiRowDesigner;
 using GrapeCity.Win.MultiRow;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using ComboBox = System.Windows.Forms.ComboBox;
+//using DocumentFormat.OpenXml.Presentation;
 
 namespace u_net
 {
@@ -170,15 +171,16 @@ namespace u_net
             localSetting.LoadPlace(LoginUserCode, this);
 
             OriginalClass ofn = new OriginalClass();
-            ofn.SetComboBox(分類コード, "SELECT 分類記号 as Display,対象部品名 as Display2 ,分類コード as Value FROM M部品分類 ORDER BY 分類記号");
+            ofn.SetComboBox(分類コード, "SELECT 分類記号 as Display,対象部品名 as Display2 ,分類コード as Value FROM M部品分類 " +
+                " ORDER BY 分類記号");
             分類コード.DrawMode = DrawMode.OwnerDrawFixed;
 
-            MyApi myapi = new MyApi();
-            int xSize, ySize, intpixel, twipperdot;
+            //MyApi myapi = new MyApi();
+            //int xSize, ySize, intpixel, twipperdot;
 
-            //1インチ当たりのピクセル数 アクセスのサイズの引数がtwipなのでピクセルに変換する除算値を求める
-            intpixel = myapi.GetLogPixel();
-            twipperdot = myapi.GetTwipPerDot(intpixel);
+            ////1インチ当たりのピクセル数 アクセスのサイズの引数がtwipなのでピクセルに変換する除算値を求める
+            //intpixel = myapi.GetLogPixel();
+            //twipperdot = myapi.GetTwipPerDot(intpixel);
 
             try
             {
@@ -242,7 +244,8 @@ namespace u_net
 
                 Connect();
 
-                部品集合コード.Text = FunctionClass.採番(cn, CH_ORDER).ToString();
+                string result = FunctionClass.採番(cn, CH_ORDER).ToString();
+                部品集合コード.Text = result.Substring(result.Length - 8);
                 部品集合版数.Text = "1";
 
                 // 明細部の初期化
@@ -1150,10 +1153,12 @@ namespace u_net
                         {
                             continue;
                         }
-
-                        if (Convert.ToInt32(dataTable.Rows[i]["明細番号"]) == 1)
+                        if (dataTable.Rows[i]["明細番号"] != DBNull.Value)
                         {
-                            dataTable.Rows[i]["購買対象"] = -1;
+                            if (Convert.ToInt32(dataTable.Rows[i]["明細番号"]) == 1)
+                            {
+                                dataTable.Rows[i]["購買対象"] = -1;
+                            }
                         }
                     }
                     部品集合明細1.Detail.DataSource = dataTable; // 更新した DataTable を再セット
@@ -1332,7 +1337,7 @@ namespace u_net
                 if (IsDeleted)
                 {
                     intRes = MessageBox.Show($"部品集合：{CurrentCode}（第 {CurrentEdition} 版）{Environment.NewLine}{Environment.NewLine}" +
-                        "この部品集合データは削除されています。{Environment.NewLine}{Environment.NewLine}" +
+                        $"この部品集合データは削除されています。{Environment.NewLine}{Environment.NewLine}" +
                         "復元しますか？", "削除コマンド", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                     if (intRes == DialogResult.No)
@@ -1343,10 +1348,10 @@ namespace u_net
                     if (!IsApproved && CurrentEdition > 1)
                     {
                         intRes = MessageBox.Show($"部品集合：{CurrentCode}（第 {CurrentEdition} 版）{Environment.NewLine}{Environment.NewLine}" +
-                            "この部品集合データは改版中です。{Environment.NewLine}" +
-                            "前版に戻しますか？{Environment.NewLine}{Environment.NewLine}" +
-                            "[はい]を選択した場合、第 {CurrentEdition} 版のデータは完全に削除され、復元することはできません。{Environment.NewLine}" +
-                            "[いいえ]を選択した場合、全ての版に対して削除され、再度削除コマンドを実行することにより復元することができます。{Environment.NewLine}",
+                            $"この部品集合データは改版中です。{Environment.NewLine}" +
+                            $"前版に戻しますか？{Environment.NewLine}{Environment.NewLine}" +
+                            $"[はい]を選択した場合、第 {CurrentEdition} 版のデータは完全に削除され、復元することはできません。{Environment.NewLine}" +
+                            $"[いいえ]を選択した場合、全ての版に対して削除され、再度削除コマンドを実行することにより復元することができます。{Environment.NewLine}",
                             "削除コマンド", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
 
                         if (intRes == DialogResult.Cancel)
@@ -1373,8 +1378,8 @@ namespace u_net
                     else
                     {
                         intRes = MessageBox.Show($"部品集合：{CurrentCode}（第 {CurrentEdition} 版）{Environment.NewLine}{Environment.NewLine}" +
-                            "この部品集合データを削除します。{Environment.NewLine}" +
-                            "削除後、再度削除コマンドを実行することにより復元することができます。{Environment.NewLine}{Environment.NewLine}" +
+                            $"この部品集合データを削除します。{Environment.NewLine}" +
+                            $"削除後、再度削除コマンドを実行することにより復元することができます。{Environment.NewLine}{Environment.NewLine}" +
                             "削除しますか？", "削除コマンド", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                         if (intRes == DialogResult.No)
@@ -1556,6 +1561,7 @@ namespace u_net
                         Control activeControl = this.ActiveControl;
                         if (activeControl is System.Windows.Forms.ComboBox)
                         {
+                            e.Handled = true;
                             System.Windows.Forms.ComboBox activeComboBox = (System.Windows.Forms.ComboBox)activeControl;
                             activeComboBox.DroppedDown = true;
                         }
@@ -1796,15 +1802,17 @@ namespace u_net
 
         private void 分類コード_DrawItem(object sender, DrawItemEventArgs e)
         {
+            //OriginalClass.SetComboBoxAppearance((ComboBox)sender, e, new int[] { 50 }, new string[] { "Display" });
             OriginalClass.SetComboBoxAppearance((ComboBox)sender, e, new int[] { 50, 500 }, new string[] { "Display", "Display2" });
+
             分類コード.Invalidate();
-            分類コード.DroppedDown = true;
+            // 分類コード.DroppedDown = true;
         }
 
         private void 分類コード_SelectedIndexChanged(object sender, EventArgs e)
         {
             Connect();
-            string sql = $"select 対象部品名 from M部品分類 WHERE 分類コード= {分類コード.Text}";
+            string sql = $"select 対象部品名 from M部品分類 WHERE 分類記号= '{分類コード.Text}'";
             集合分類.Text = OriginalClass.GetScalar<string>(cn, sql);
             cn.Close();
             ChangedData(true);

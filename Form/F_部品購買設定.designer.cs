@@ -853,11 +853,12 @@ namespace u_net
             // 
             // 部品購買設定明細1
             // 
+            部品購買設定明細1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             部品購買設定明細1.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             部品購買設定明細1.Location = new Point(9, 174);
             部品購買設定明細1.Margin = new Padding(4, 4, 4, 4);
             部品購買設定明細1.Name = "部品購買設定明細1";
-            部品購買設定明細1.Size = new Size(922, 302);
+            部品購買設定明細1.Size = new Size(933, 302);
             部品購買設定明細1.TabIndex = 10209;
             // 
             // label5

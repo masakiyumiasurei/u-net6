@@ -292,6 +292,13 @@ namespace u_net.Public
                 MessageBox.Show("データの読み込み中にエラーが発生しました: " + ex.Message, "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        /// <summary>
+        /// 複数列のコンボボックスの値を描画する
+        /// </summary>
+        /// <param name="cb">対象コンボボックス</param>
+        /// <param name="e"></param>
+        /// <param name="fieldWidth">枠幅</param>
+        /// <param name="fieldName">カラム名</param>
         public static void SetComboBoxAppearance(ComboBox cb, DrawItemEventArgs e, int[] fieldWidth, String[] fieldName)
         {
             DataTable dt = (DataTable)cb.DataSource;
@@ -299,14 +306,17 @@ namespace u_net.Public
             Pen p = new Pen(Color.Gray);
             Brush b = new SolidBrush(e.ForeColor);
 
+            //背景の描画
             e.DrawBackground();
 
            int width = 0;
 
             for (int i = 0; i < fieldName.Length; i++)
             {
+                //テキストの描画
                 e.Graphics.DrawString(Convert.ToString(dt.Rows[e.Index][fieldName[i]]), e.Font, b, width, e.Bounds.Y);
 
+                //縦線の描画
                 e.Graphics.DrawLine(p, width + fieldWidth[i], e.Bounds.Top, width + fieldWidth[i], e.Bounds.Bottom);
 
                 width = width + fieldWidth[i];
@@ -314,6 +324,7 @@ namespace u_net.Public
 
             cb.DropDownWidth = width;
 
+            //選択状態の描画
             if (Convert.ToBoolean(e.State & DrawItemState.Selected)) ControlPaint.DrawFocusRectangle(e.Graphics, e.Bounds);
         }
 

@@ -43,7 +43,7 @@ namespace MultiRowDesigner
         {
             InitializeComponent();
         }
-        public void Connect()        
+        public void Connect()
         {
             Connection connectionInfo = new Connection();
             string connectionString = connectionInfo.Getconnect();
@@ -59,7 +59,7 @@ namespace MultiRowDesigner
             //// MultiRowの設定
             //gcMultiRow1.Template = template1;
             //gcMultiRow1.EditMode = EditMode.EditOnEnter; // 常時入力モード
-            
+
 
             gcMultiRow1.ShortcutKeyManager.Unregister(Keys.Enter);
             gcMultiRow1.ShortcutKeyManager.Register(SelectionActions.MoveToNextCell, Keys.Enter);
@@ -159,10 +159,10 @@ namespace MultiRowDesigner
                     {
                         gcMultiRow1.EndEdit(); //編集の終了
                         string selectedCode = form.SelectedCode;
-                        
-                       
+
+
                         gcMultiRow1.EditingControl.Text = selectedCode; // <== 対応策
-                        
+
                         gcMultiRow1.CurrentRow.Cells["部品コード"].Value = selectedCode;
 
                         //品名にセル移動した時にvaledatedを実行しないようにするため
@@ -170,7 +170,7 @@ namespace MultiRowDesigner
                         UpdatedControl(gcMultiRow1.CurrentCell);
 
                         F_部品集合 ParentForm = Application.OpenForms.OfType<F_部品集合>().FirstOrDefault();
-                        ParentForm.ChangedData(true);                        
+                        ParentForm.ChangedData(true);
 
                     }
 
@@ -353,8 +353,8 @@ namespace MultiRowDesigner
                 });
 
                 F_部品集合 ParentForm = Application.OpenForms.OfType<F_部品集合>().FirstOrDefault();
-                    ParentForm.ChangedData(true);
-               
+                ParentForm.ChangedData(true);
+
             }
             catch (Exception ex)
             {
