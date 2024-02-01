@@ -215,15 +215,16 @@ namespace u_net
                     MessageBox.Show("エラーが発生したため、抽出できませんでした。", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     return;
                 }
+                else
+                {
+                    this.Close();
+                    return;
+                }
             }
             catch (Exception ex)
             {
                 Debug.WriteLine(this.Name + "_抽出ボタン_Click - " + ex.Message);
                 MessageBox.Show("エラーが発生しました。\n" + ex.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
-                //this.Painting = true;
                 this.Close();
             }
         }
@@ -244,6 +245,7 @@ namespace u_net
                 setflg = true;
                 string SelectedCode = SearchForm.SelectedCode;
                 支払先コード.Text = SelectedCode;
+                支払先名.Text = GetPayee(SelectedCode);
                 支払先名.Focus();
             }
         }
