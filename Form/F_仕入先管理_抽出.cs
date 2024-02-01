@@ -164,12 +164,18 @@ namespace u_net
         private void 仕入先コード_Validated(object sender, EventArgs e)
         {
             Connect();
-            this.仕入先名.Text = FunctionClass.GetSupplierName(cn, Nz(this.仕入先コード.Text));
+            if (this.仕入先コード.Text != "")
+            {
+                this.仕入先名.Text = FunctionClass.GetSupplierName(cn, Nz(this.仕入先コード.Text));
+            }
         }
         private void 仕入先コード_TextChanged(object sender, EventArgs e)
         {
             Connect();
-            this.仕入先名.Text = FunctionClass.GetSupplierName(cn, Nz(this.仕入先コード.Text));
+            if (this.仕入先コード.Text != "")
+            {
+                this.仕入先名.Text = FunctionClass.GetSupplierName(cn, Nz(this.仕入先コード.Text));
+            }
         }
 
         // Nz メソッドの代替

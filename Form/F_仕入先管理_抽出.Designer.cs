@@ -94,7 +94,6 @@
             仕入先コード.Name = "仕入先コード";
             仕入先コード.Size = new Size(160, 23);
             仕入先コード.TabIndex = 2;
-            仕入先コード.Click += 仕入先コード_Click;
             仕入先コード.TextChanged += 仕入先コード_TextChanged;
             仕入先コード.DoubleClick += 仕入先コード_DoubleClick;
             仕入先コード.KeyDown += 仕入先コード_KeyDown;
