@@ -30,6 +30,8 @@ namespace u_net
         public string args = "";
         private string BASE_CAPTION = "製品";
         private int selected_frame = 0;
+        int intWindowHeight;
+        int intWindowWidth;
         public bool IsDirty = false;
 
         public F_製品()
@@ -89,7 +91,7 @@ namespace u_net
             }
         }
 
- 
+
 
 
         public bool IsNewData
@@ -259,7 +261,7 @@ namespace u_net
             }
         }
 
-        
+
         public bool GoNewMode()
         {
             try
@@ -276,7 +278,7 @@ namespace u_net
                 VariableSet.SetControls(this);
 
 
-                this.製品コード.Text = Right(FunctionClass.採番(cn, "PRO"),8);
+                this.製品コード.Text = Right(FunctionClass.採番(cn, "PRO"), 8);
                 this.製品版数.Text = 1.ToString();
                 this.指導書変更.Checked = false;
 
@@ -343,7 +345,7 @@ namespace u_net
 
                 this.製品コード.Focus();
 
-                FunctionClass.LockData(this, true,"製品コード");
+                FunctionClass.LockData(this, true, "製品コード");
 
 
                 // ボタンの状態を設定
@@ -443,8 +445,8 @@ namespace u_net
         }
 
 
-        
- 
+
+
         private bool ErrCheck()
         {
             //入力確認    
@@ -452,7 +454,7 @@ namespace u_net
             if (!FunctionClass.IsError(this.シリーズ名)) return false;
             if (!FunctionClass.IsError(this.識別コード)) return false;
 
-            if((IsDecided && 製品明細1.Detail.RowCount < 1) || (!IsDecided && 製品明細1.Detail.RowCount <= 1))
+            if ((IsDecided && 製品明細1.Detail.RowCount < 1) || (!IsDecided && 製品明細1.Detail.RowCount <= 1))
             {
                 MessageBox.Show("１つ以上の明細が必要です。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return false;
@@ -503,11 +505,11 @@ namespace u_net
 
             コマンド登録.Enabled = isChanged;
         }
-       
 
 
 
-    
+
+
         private bool IsError(Control controlObject)
         {
             try
@@ -526,7 +528,7 @@ namespace u_net
                             return true;
                         }
                         break;
-                 
+
                     default:
                         // 他のコントロールに対するエラーチェックロジックを追加してください。
                         break;
@@ -549,8 +551,8 @@ namespace u_net
             try
             {
                 string strSQL;
-                
-                
+
+
                 Connect();
 
                 switch (controlObject.Name)
@@ -593,7 +595,7 @@ namespace u_net
                         // 状態の表示
                         SetEditionStatus();
 
-                        
+
 
 
                         // 動作を制御する
@@ -644,7 +646,7 @@ namespace u_net
                         // 状態の表示
                         SetEditionStatus();
 
-                        
+
 
                         // 動作を制御する
                         FunctionClass.LockData(this, this.IsDecided || this.IsDeleted, "製品コード", "製品版数");
@@ -765,7 +767,7 @@ namespace u_net
             }
         }
 
-        private bool LoadHeader(Form formObject, string codeString,int editionNumber)
+        private bool LoadHeader(Form formObject, string codeString, int editionNumber)
         {
             try
             {
@@ -775,7 +777,7 @@ namespace u_net
 
                 strSQL = "SELECT * FROM V製品ヘッダ WHERE 製品コード ='" + codeString + "' and 製品版数 = " + editionNumber;
 
-    
+
                 if (string.IsNullOrEmpty(確定日時.Text))
                 {
                     確定表示.SendToBack();
@@ -784,7 +786,7 @@ namespace u_net
                 {
                     確定表示.BringToFront();
                 }
- 
+
                 if (string.IsNullOrEmpty(承認日時.Text))
                 {
                     承認表示.SendToBack();
@@ -832,7 +834,7 @@ namespace u_net
         {
 
             Connect();
-            
+
             {
                 try
                 {
@@ -881,9 +883,9 @@ namespace u_net
                     objControl5.Text = CommonConstants.LoginUserCode;
                     objControl6.Text = CommonConstants.LoginUserFullName;
 
-                    
+
                     // 登録処理
-                    if (RegTrans(CurrentCode,CurrentEdition,false))
+                    if (RegTrans(CurrentCode, CurrentEdition, false))
                     {
                         return true;
                     }
@@ -911,7 +913,7 @@ namespace u_net
             }
         }
 
-        private bool RegTrans(string codeString,int editionNumber,bool updatePreEdition)
+        private bool RegTrans(string codeString, int editionNumber, bool updatePreEdition)
         {
             Connect();
             SqlTransaction transaction = cn.BeginTransaction();
@@ -922,7 +924,7 @@ namespace u_net
 
                     string strwhere = "製品コード='" + codeString + "' and 製品版数 =" + editionNumber;
                     // ヘッダ部の登録
-                    if (!DataUpdater.UpdateOrInsertDataFrom(this, cn, "M製品", strwhere, "製品コード", transaction,"製品版数"))
+                    if (!DataUpdater.UpdateOrInsertDataFrom(this, cn, "M製品", strwhere, "製品コード", transaction, "製品版数"))
                     {
                         transaction.Rollback();  // 変更をキャンセル
                         return false;
@@ -958,13 +960,13 @@ namespace u_net
                     if (IsApproved)
                     {
                         // 対象製品の型式マスタを更新する
-                        if (!UpdateModelMaster(CurrentCode, CurrentEdition,cn,transaction))
+                        if (!UpdateModelMaster(CurrentCode, CurrentEdition, cn, transaction))
                         {
                             transaction.Rollback(); // 変更をキャンセル
                             return false;
                         }
                     }
-                    
+
                     transaction.Commit();
 
                     return true;
@@ -982,7 +984,7 @@ namespace u_net
         private bool UpdateModelMaster(string productCode, int productEdition, SqlConnection cn, SqlTransaction transaction)
         {
             var result = false;
-            
+
             try
             {
                 using (SqlCommand cmd = new SqlCommand())
@@ -1025,16 +1027,16 @@ namespace u_net
                             continue;
                         }
 
-                        if(string.IsNullOrEmpty(製品明細1.Detail.Rows[i].Cells["削除対象"].Value?.ToString()))
+                        if (string.IsNullOrEmpty(製品明細1.Detail.Rows[i].Cells["削除対象"].Value?.ToString()))
                         {
                             製品明細1.Detail.Rows[i].Cells["削除対象"].Value = false;
                         }
 
-                        if((bool)製品明細1.Detail.Rows[i].Cells["削除対象"].Value)
+                        if ((bool)製品明細1.Detail.Rows[i].Cells["削除対象"].Value)
                         {
                             continue;
                         }
-                        
+
                         string currentModelName = 製品明細1.Detail.Rows[i].Cells["型式名"].Value.ToString();
 
 
@@ -1054,7 +1056,7 @@ namespace u_net
 
                     }
 
-              
+
 
                     result = true; // 成功
                 }
@@ -1068,7 +1070,7 @@ namespace u_net
             return result;
         }
 
-        
+
         private void Form_KeyDown(object sender, KeyEventArgs e)
         {
 
@@ -1194,7 +1196,7 @@ namespace u_net
                 }
 
 
-                
+
                 fn.DoWait("改版しています...");
 
                 CommonConnect();
@@ -1298,10 +1300,10 @@ namespace u_net
                         continue;
                     }
 
-                    if(string.IsNullOrEmpty(製品明細1.Detail.Rows[i].Cells["削除対象"].Value?.ToString()))
-                        {
-                            製品明細1.Detail.Rows[i].Cells["削除対象"].Value = false;
-                        }
+                    if (string.IsNullOrEmpty(製品明細1.Detail.Rows[i].Cells["削除対象"].Value?.ToString()))
+                    {
+                        製品明細1.Detail.Rows[i].Cells["削除対象"].Value = false;
+                    }
 
                     if (Convert.ToBoolean(製品明細1.Detail.Rows[i].Cells["削除対象"].Value))
                     {
@@ -1328,7 +1330,10 @@ namespace u_net
         }
         private void 変更ボタン_Click(object sender, EventArgs e)
         {
-            FunctionClass.LockData(this, false);
+            if (コマンド新規.Enabled == true)
+            {
+                FunctionClass.LockData(this, false);
+            }
         }
 
         private void コマンド読込_Click(object sender, EventArgs e)
@@ -1546,8 +1551,8 @@ namespace u_net
                     return;
                 };
 
-                
-                
+
+
 
                 // 登録前の確定日を保存しておく
                 varSaved1 = 確定日時.Text;
@@ -1572,13 +1577,13 @@ namespace u_net
                     // 版数のソース更新
                     UpdateEditionList(CurrentCode);
 
-                    
+
                     FunctionClass.LockData(this, IsDecided || IsDeleted, "製品コード", "製品版数");
 
                     // RoHS対応状況を表示する
                     RoHS対応.Text = GetRohsStatus();
 
-                    
+
 
                     // 新規モードのときは修正モードへ移行する
                     if (IsNewData)
@@ -1638,7 +1643,7 @@ namespace u_net
                 string strHeadCode = CommonConstants.USER_CODE_TECH; // 承認者を指定する
 
                 // ログオンユーザーが指定ユーザーなら認証者コードにユーザーコードを設定する
-                if (CommonConstants.LoginUserCode != strHeadCode)   
+                if (CommonConstants.LoginUserCode != strHeadCode)
                 {
                     using (var authenticationForm = new F_認証())
                     {
@@ -1674,7 +1679,7 @@ namespace u_net
                     承認者コード.Text = CommonConstants.strCertificateCode;
                     承認者名.Text = FunctionClass.GetUserFullName(cn, CommonConstants.strCertificateCode);
                 }
-         
+
 
                 // サーバーへ登録する
                 if (RegTrans(CurrentCode, CurrentEdition, 1 < CurrentEdition))
@@ -1884,10 +1889,10 @@ namespace u_net
                         無効日時.Text = FunctionClass.GetServerDate(cn).ToString();
                         無効者コード.Text = CommonConstants.strCertificateCode;
                     }
-              
+
 
                     // 表示データを登録する
-                    if (RegTrans(CurrentCode, CurrentEdition,false))
+                    if (RegTrans(CurrentCode, CurrentEdition, false))
                     {
                         if (IsDeleted)
                             MessageBox.Show("削除されました。", "削除コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -1979,7 +1984,7 @@ namespace u_net
                         {
                             MessageBox.Show("改版を取り消しました。", "削除コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                            
+
 
                             // 前版を表示する
                             製品版数.Focus();
@@ -2148,25 +2153,25 @@ namespace u_net
             targetform.args = CurrentCode;
             targetform.ShowDialog();
         }
-  
+
         private void コマンドユニット_Click(object sender, EventArgs e)
         {
-            
+
             F_ユニット targetform = new F_ユニット();
 
-            if(製品明細1.Detail.CurrentRow != null)
+            if (製品明細1.Detail.CurrentRow != null)
             {
                 string args = 製品明細1.Detail.CurrentRow.Cells["ユニットコード"].Value?.ToString() + "," + 製品明細1.Detail.CurrentRow.Cells["ユニット版数"].Value?.ToString();
 
-                if(args != ",")
+                if (args != ",")
                 {
                     targetform.args = args;
                 }
- 
+
             }
 
             targetform.ShowDialog();
-            
+
         }
 
         private void コマンドユニット表_Click(object sender, EventArgs e)
@@ -2220,14 +2225,14 @@ namespace u_net
                 paoRep.PageStart();
 
                 //ヘッダー
-                paoRep.Write("製品コード",製品コード.Text != "" ? 製品コード.Text : " ");
+                paoRep.Write("製品コード", 製品コード.Text != "" ? 製品コード.Text : " ");
                 paoRep.Write("製品版数", 製品版数.Text != "" ? 製品版数.Text : " ");
                 paoRep.Write("製品名", 品名.Text != "" ? 品名.Text : " ");
                 paoRep.Write("シリーズ名", シリーズ名.Text != "" ? シリーズ名.Text : " ");
 
-                if(製品明細1.Detail.SortOrder != 0)
+                if (製品明細1.Detail.SortOrder != 0)
                 {
-                    paoRep.Write("確認表示","（確認用）");
+                    paoRep.Write("確認表示", "（確認用）");
                 }
                 else
                 {
@@ -2344,8 +2349,8 @@ namespace u_net
                 無効日時.Text = FunctionClass.GetServerDate(cn).ToString();
 
 
-        
-                if (RegTrans(codeString, editionNumber,false))
+
+                if (RegTrans(codeString, editionNumber, false))
                 {
                     return true;
                 }
@@ -2541,7 +2546,7 @@ namespace u_net
                 {
                     SeriesCode.Text = formattedCode;
                 }
-                
+
             }
         }
 
@@ -2720,6 +2725,22 @@ namespace u_net
         private void 備考_Leave(object sender, EventArgs e)
         {
             toolStripStatusLabel1.Text = "各種項目の説明";
+        }
+
+        private void Form_Resize(object sender, EventArgs e)
+        {
+            try
+            {
+                this.製品明細1.Detail.Height = this.製品明細1.Height + (this.Height - intWindowHeight);
+                intWindowHeight = this.Height;  // 高さ保存
+
+                this.製品明細1.Detail.Width = this.製品明細1.Width + (this.Width - intWindowWidth);
+                intWindowWidth = this.Width;    // 幅保存 
+            }
+            catch (Exception ex)
+            {
+                Debug.Print($"{nameof(Form_Resize)} - {ex.Message}");
+            }
         }
     }
 }
