@@ -35,8 +35,17 @@ namespace MultiRowDesigner
         {
             get
             {
-                return string.IsNullOrEmpty(gcMultiRow1.CurrentRow.Cells["部品コード"].Value?.ToString()) ? ""
-                    : gcMultiRow1.CurrentRow.Cells["部品コード"].Value?.ToString();
+                if (gcMultiRow1.RowCount > 0)
+                {
+                    var CurrentRow = gcMultiRow1.CurrentRow;
+
+                    if (CurrentRow.Cells["部品コード"] != null && CurrentRow.Cells["部品コード"].Value != null)
+                    {
+                        return CurrentRow.Cells["部品コード"].Value.ToString();
+                    }
+                }
+
+                return "";
             }
         }
         public 部品集合明細()

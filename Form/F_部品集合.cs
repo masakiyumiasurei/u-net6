@@ -1667,7 +1667,24 @@ namespace u_net
 
                     // 修正モードへ移行する
                     if (!GoModifyMode())
+                    {
+                        intRes = MessageBox.Show("エラーが発生しました。" + Environment.NewLine +
+                                            "強制終了しますか？　" + CurrentCode, "修正コマンド", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+
+                        switch(intRes)
+                        {
+                            case DialogResult.Yes:
+                                this.Close();
+                                break;
+                            case DialogResult.No:
+                            case DialogResult.Cancel:
+                                return;
+                        }
+                    }
+                    else
+                    {
                         goto Bye_コマンド修正_Click;
+                    }
                 }
 
                 // 変更されているときは登録確認を行う
@@ -1675,9 +1692,6 @@ namespace u_net
                 switch (intRes)
                 {
                     case DialogResult.Yes:
-                        // エラーチェック
-                        // if (IsErrorData("製品コード", "製品版数"))
-                        //     return;
 
                         // 登録処理
                         if (!SaveData())

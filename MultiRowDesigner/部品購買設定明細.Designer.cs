@@ -35,6 +35,9 @@
             // 
             // gcMultiRow1
             // 
+            gcMultiRow1.AllowAutoExtend = true;
+            gcMultiRow1.AllowClipboard = false;
+            gcMultiRow1.ClipboardCopyMode = GrapeCity.Win.MultiRow.ClipboardCopyMode.Disable;
             gcMultiRow1.EditMode = GrapeCity.Win.MultiRow.EditMode.EditOnEnter;
             gcMultiRow1.Location = new Point(0, 0);
             gcMultiRow1.Margin = new Padding(5);

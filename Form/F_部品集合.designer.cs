@@ -923,7 +923,7 @@ namespace u_net
             部品集合明細1.AutoSize = true;
             部品集合明細1.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             部品集合明細1.Location = new Point(0, 202);
-            部品集合明細1.Margin = new Padding(4);
+            部品集合明細1.Margin = new Padding(4, 4, 4, 4);
             部品集合明細1.Name = "部品集合明細1";
             部品集合明細1.Size = new Size(1148, 401);
             部品集合明細1.TabIndex = 11;
@@ -932,6 +932,7 @@ namespace u_net
             // 
             BackColor = SystemColors.Control;
             ClientSize = new Size(1148, 624);
+            Controls.Add(statusStrip1);
             Controls.Add(部品集合明細1);
             Controls.Add(無効日時);
             Controls.Add(承認日時);
@@ -946,7 +947,6 @@ namespace u_net
             Controls.Add(備考);
             Controls.Add(集合分類);
             Controls.Add(部品集合コード);
-            Controls.Add(statusStrip1);
             Controls.Add(更新者名);
             Controls.Add(更新者コード);
             Controls.Add(label7);

@@ -29,6 +29,7 @@ namespace u_net
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(F_部品購買設定));
             コマンド終了 = new Button();
             コマンド登録 = new Button();
             panel1 = new Panel();
@@ -684,7 +685,7 @@ namespace u_net
             statusStrip1.Location = new Point(0, 509);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Padding = new Padding(1, 0, 19, 0);
-            statusStrip1.Size = new Size(942, 22);
+            statusStrip1.Size = new Size(962, 22);
             statusStrip1.TabIndex = 10195;
             statusStrip1.Text = "statusStrip1";
             // 
@@ -855,20 +856,21 @@ namespace u_net
             // 
             部品購買設定明細1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             部品購買設定明細1.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            部品購買設定明細1.Location = new Point(9, 174);
+            部品購買設定明細1.Location = new Point(9, 177);
             部品購買設定明細1.Margin = new Padding(4, 4, 4, 4);
             部品購買設定明細1.Name = "部品購買設定明細1";
-            部品購買設定明細1.Size = new Size(933, 302);
+            部品購買設定明細1.Size = new Size(953, 302);
             部品購買設定明細1.TabIndex = 10209;
             // 
             // label5
             // 
             label5.AllowDrop = true;
+            label5.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             label5.AutoEllipsis = true;
             label5.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             label5.ForeColor = SystemColors.ActiveCaptionText;
             label5.ImageAlign = ContentAlignment.MiddleLeft;
-            label5.Location = new Point(9, 480);
+            label5.Location = new Point(9, 483);
             label5.Margin = new Padding(0);
             label5.Name = "label5";
             label5.Size = new Size(634, 21);
@@ -879,9 +881,10 @@ namespace u_net
             // F_部品購買設定
             // 
             BackColor = SystemColors.Control;
-            ClientSize = new Size(942, 531);
-            Controls.Add(label5);
+            ClientSize = new Size(962, 531);
+            Controls.Add(statusStrip1);
             Controls.Add(部品購買設定明細1);
+            Controls.Add(label5);
             Controls.Add(部品集合版数);
             Controls.Add(無効日時);
             Controls.Add(承認日時);
@@ -894,7 +897,6 @@ namespace u_net
             Controls.Add(label2);
             Controls.Add(備考);
             Controls.Add(部品集合コード);
-            Controls.Add(statusStrip1);
             Controls.Add(更新者名);
             Controls.Add(更新者コード);
             Controls.Add(label7);
@@ -926,6 +928,7 @@ namespace u_net
             Controls.Add(コマンド複写);
             Controls.Add(コマンド読込);
             Controls.Add(panel1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             ImeMode = ImeMode.Off;
             KeyPreview = true;
             MaximizeBox = false;
@@ -935,6 +938,7 @@ namespace u_net
             Text = "部品購買設定";
             Load += Form_Load;
             KeyDown += Form_KeyDown;
+            Resize += Form_Resize;
             panel1.ResumeLayout(false);
             statusStrip1.ResumeLayout(false);
             statusStrip1.PerformLayout();
