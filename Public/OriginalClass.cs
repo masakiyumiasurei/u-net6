@@ -306,6 +306,7 @@ namespace u_net.Public
             Pen p = new Pen(Color.Gray);
             Brush b = new SolidBrush(e.ForeColor);
 
+           // cb.DropDownWidth = 550;
             //背景の描画
             e.DrawBackground();
 
@@ -322,7 +323,11 @@ namespace u_net.Public
                 width = width + fieldWidth[i];
             }
 
-            cb.DropDownWidth = width;
+            //こいつがドロップダウンの悪さをしている模様！
+            //クリック１回目：開いてはいるが見えない？
+            //クリック２回目：閉じた
+            //クリック３回目以降：普通に開く
+           // cb.DropDownWidth = width;
 
             //選択状態の描画
             if (Convert.ToBoolean(e.State & DrawItemState.Selected)) ControlPaint.DrawFocusRectangle(e.Graphics, e.Bounds);
@@ -355,7 +360,7 @@ namespace u_net.Public
                 width = width + fieldWidth[i];
             }
 
-            cb.DropDownWidth = width;
+          // cb.DropDownWidth = width;
 
             if (Convert.ToBoolean(e.State & DrawItemState.Selected)) ControlPaint.DrawFocusRectangle(e.Graphics, e.Bounds);
         }

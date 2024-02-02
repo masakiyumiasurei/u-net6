@@ -17,6 +17,7 @@ namespace u_net
         public F_部品管理_抽出()
         {
             InitializeComponent();
+            分類記号.DropDownWidth = 550;
         }
 
         private void Form_Load(object sender, EventArgs e)

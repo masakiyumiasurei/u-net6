@@ -483,6 +483,7 @@
             // 
             this.買掛区分.DataField = "買掛区分";
             this.買掛区分.DisplayMember = "買掛区分";
+            this.買掛区分.DropDownWidth = 150;
             this.買掛区分.Location = new System.Drawing.Point(473, 0);
             this.買掛区分.Name = "買掛区分";
             this.買掛区分.Size = new System.Drawing.Size(122, 54);

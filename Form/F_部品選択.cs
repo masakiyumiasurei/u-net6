@@ -74,6 +74,10 @@ namespace u_net
             dataGridView1.DefaultCellStyle.Font = new Font("MS ゴシック", 10);
             dataGridView1.DefaultCellStyle.ForeColor = Color.Black;
 
+            System.Type dgvtype = typeof(DataGridView);
+            System.Reflection.PropertyInfo dgvPropertyInfo = dgvtype.GetProperty("DoubleBuffered", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
+            dgvPropertyInfo.SetValue(dataGridView1, true, null);
+
 
 
             myapi.GetFullScreen(out xSize, out ySize);
@@ -100,6 +104,7 @@ namespace u_net
 
             ofn.SetComboBox(分類記号, "SELECT 分類記号 as Display, 対象部品名 as Display2, 分類記号 as Value FROM M部品分類 ORDER BY 分類記号");
             分類記号.DrawMode = DrawMode.OwnerDrawFixed;
+            分類記号.DropDownWidth = 550;
 
             this.RoHS対応.DataSource = new KeyValuePair<int, String>[] {
                 new KeyValuePair<int, String>(1, "対応している"),

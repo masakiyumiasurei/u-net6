@@ -48,7 +48,7 @@ namespace u_net
             this.MinimizeBox = false; //最小化ボタンを無効化
 
             InitializeComponent();
-
+            分類コード.DropDownWidth = 550;
         }
 
         public string CurrentCode

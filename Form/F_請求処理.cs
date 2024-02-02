@@ -166,6 +166,10 @@ namespace u_net
             LocalSetting localSetting = new LocalSetting();
             localSetting.LoadPlace(LoginUserCode, this);
 
+            System.Type dgvtype = typeof(DataGridView);
+            System.Reflection.PropertyInfo dgvPropertyInfo = dgvtype.GetProperty("DoubleBuffered", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
+            dgvPropertyInfo.SetValue(dataGridView1, true, null);
+
             try
             {
                 Connect();

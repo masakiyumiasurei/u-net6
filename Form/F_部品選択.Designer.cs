@@ -29,10 +29,6 @@
         private void InitializeComponent()
         {
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            表示件数 = new TextBox();
-            コマンドキャンセル = new Button();
-            label1 = new Label();
-            コマンド確定 = new Button();
             statusStrip1 = new StatusStrip();
             toolStripStatusLabel1 = new ToolStripStatusLabel();
             部品指定方法 = new TabControl();
@@ -49,64 +45,28 @@
             RoHS対応 = new ComboBox();
             RoHS対応_ラベル = new Label();
             dataGridView1 = new DataGridView();
+            panel1 = new Panel();
             注釈2_ラベル = new Label();
+            コマンド確定 = new Button();
+            label1 = new Label();
+            コマンドキャンセル = new Button();
+            表示件数 = new TextBox();
             statusStrip1.SuspendLayout();
             部品指定方法.SuspendLayout();
             ページ分類抽出.SuspendLayout();
             ページ型番抽出.SuspendLayout();
             ページ追加条件.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            panel1.SuspendLayout();
             SuspendLayout();
-            // 
-            // 表示件数
-            // 
-            表示件数.BackColor = SystemColors.Window;
-            表示件数.Enabled = false;
-            表示件数.Font = new Font("BIZ UDゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            表示件数.Location = new Point(85, 387);
-            表示件数.Name = "表示件数";
-            表示件数.ReadOnly = true;
-            表示件数.Size = new Size(100, 21);
-            表示件数.TabIndex = 0;
-            表示件数.TabStop = false;
-            // 
-            // コマンドキャンセル
-            // 
-            コマンドキャンセル.Font = new Font("BIZ UDゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            コマンドキャンセル.Location = new Point(512, 420);
-            コマンドキャンセル.Name = "コマンドキャンセル";
-            コマンドキャンセル.Size = new Size(102, 24);
-            コマンドキャンセル.TabIndex = 3;
-            コマンドキャンセル.Text = "キャンセル";
-            コマンドキャンセル.Click += キャンセルボタン_Click;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("BIZ UDゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(19, 390);
-            label1.Name = "label1";
-            label1.Size = new Size(63, 14);
-            label1.TabIndex = 2;
-            label1.Text = "表示件数";
-            // 
-            // コマンド確定
-            // 
-            コマンド確定.Font = new Font("BIZ UDゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            コマンド確定.Location = new Point(392, 420);
-            コマンド確定.Name = "コマンド確定";
-            コマンド確定.Size = new Size(102, 24);
-            コマンド確定.TabIndex = 2;
-            コマンド確定.Text = "確 定";
-            コマンド確定.Click += コマンド確定_Click;
             // 
             // statusStrip1
             // 
             statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1 });
-            statusStrip1.Location = new Point(0, 450);
+            statusStrip1.Location = new Point(0, 585);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Padding = new Padding(1, 0, 19, 0);
-            statusStrip1.Size = new Size(635, 25);
+            statusStrip1.Size = new Size(766, 25);
             statusStrip1.TabIndex = 111;
             statusStrip1.Text = "statusStrip1";
             // 
@@ -271,39 +231,89 @@
             // 
             // dataGridView1
             // 
+            dataGridView1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(17, 85);
+            dataGridView1.Location = new Point(0, 85);
             dataGridView1.Name = "dataGridView1";
             dataGridViewCellStyle1.Format = "N2";
             dataGridViewCellStyle1.NullValue = null;
             dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle1;
             dataGridView1.RowTemplate.Height = 25;
-            dataGridView1.Size = new Size(610, 293);
+            dataGridView1.Size = new Size(766, 428);
             dataGridView1.TabIndex = 113;
             dataGridView1.CellDoubleClick += dataGridView1_CellDoubleClick;
             dataGridView1.CellPainting += DataGridView1_CellPainting;
             dataGridView1.KeyDown += dataGridView1_KeyDown;
             // 
+            // panel1
+            // 
+            panel1.Controls.Add(注釈2_ラベル);
+            panel1.Controls.Add(コマンド確定);
+            panel1.Controls.Add(label1);
+            panel1.Controls.Add(コマンドキャンセル);
+            panel1.Controls.Add(表示件数);
+            panel1.Dock = DockStyle.Bottom;
+            panel1.Location = new Point(0, 515);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(766, 70);
+            panel1.TabIndex = 116;
+            // 
             // 注釈2_ラベル
             // 
             注釈2_ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            注釈2_ラベル.Location = new Point(19, 422);
+            注釈2_ラベル.Location = new Point(29, 37);
             注釈2_ラベル.Name = "注釈2_ラベル";
             注釈2_ラベル.Size = new Size(348, 28);
-            注釈2_ラベル.TabIndex = 115;
+            注釈2_ラベル.TabIndex = 120;
             注釈2_ラベル.Text = "[操作方法]\r\n←→キーで抽出条件を設定し、↑↓キーで部品を選択します。";
+            // 
+            // コマンド確定
+            // 
+            コマンド確定.Font = new Font("BIZ UDゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            コマンド確定.Location = new Point(534, 33);
+            コマンド確定.Name = "コマンド確定";
+            コマンド確定.Size = new Size(102, 24);
+            コマンド確定.TabIndex = 117;
+            コマンド確定.Text = "確 定";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("BIZ UDゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.Location = new Point(36, 9);
+            label1.Name = "label1";
+            label1.Size = new Size(63, 14);
+            label1.TabIndex = 118;
+            label1.Text = "表示件数";
+            // 
+            // コマンドキャンセル
+            // 
+            コマンドキャンセル.Font = new Font("BIZ UDゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            コマンドキャンセル.Location = new Point(654, 33);
+            コマンドキャンセル.Name = "コマンドキャンセル";
+            コマンドキャンセル.Size = new Size(102, 24);
+            コマンドキャンセル.TabIndex = 119;
+            コマンドキャンセル.Text = "キャンセル";
+            // 
+            // 表示件数
+            // 
+            表示件数.BackColor = SystemColors.Window;
+            表示件数.Enabled = false;
+            表示件数.Font = new Font("BIZ UDゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            表示件数.Location = new Point(102, 6);
+            表示件数.Name = "表示件数";
+            表示件数.ReadOnly = true;
+            表示件数.Size = new Size(100, 21);
+            表示件数.TabIndex = 116;
+            表示件数.TabStop = false;
             // 
             // F_部品選択
             // 
-            ClientSize = new Size(635, 475);
-            Controls.Add(注釈2_ラベル);
+            ClientSize = new Size(766, 610);
             Controls.Add(dataGridView1);
+            Controls.Add(panel1);
             Controls.Add(部品指定方法);
             Controls.Add(statusStrip1);
-            Controls.Add(コマンド確定);
-            Controls.Add(label1);
-            Controls.Add(コマンドキャンセル);
-            Controls.Add(表示件数);
             Name = "F_部品選択";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "部品選択";
@@ -319,16 +329,13 @@
             ページ型番抽出.PerformLayout();
             ページ追加条件.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
 
-
         #endregion
-        private TextBox 表示件数;
-        private Button コマンドキャンセル;
-        private Label label1;
-        private Button コマンド確定;
         private StatusStrip statusStrip1;
         private ToolStripStatusLabel toolStripStatusLabel1;
         private TabControl 部品指定方法;
@@ -343,8 +350,13 @@
         private ComboBox 分類記号;
         private Label 分類記号_ラベル;
         private Label 型番文字列_ラベル;
-        private Label 注釈2_ラベル;
         private Button 検索ボタン;
         private TextBox 型番文字列;
+        private Panel panel1;
+        private Label 注釈2_ラベル;
+        private Button コマンド確定;
+        private Label label1;
+        private Button コマンドキャンセル;
+        private TextBox 表示件数;
     }
 }

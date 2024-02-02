@@ -116,7 +116,7 @@ namespace u_net
         {
             get
             {
-                return !IsNull(棚卸コード.Text);
+                return !string.IsNullOrEmpty(棚卸コード.Text);
             }
         }
 
@@ -127,7 +127,7 @@ namespace u_net
         {
             get
             {
-                return !IsNull(確定日時.Text);
+                return !string.IsNullOrEmpty(確定日時.Text);
             }
         }
 
@@ -138,7 +138,7 @@ namespace u_net
         {
             get
             {
-                return !IsNull(無効日時.Text);
+                return !string.IsNullOrEmpty(無効日時.Text);
             }
         }
 
@@ -198,18 +198,20 @@ namespace u_net
             //入庫明細用
             ofn.SetComboBox(買掛区分コード設定, "SELECT 買掛区分 as Display,買掛区分コード as Display2, 買掛明細コード as Display3 , 買掛区分コード as Value FROM V買掛区分");
             買掛区分コード設定.DrawMode = DrawMode.OwnerDrawFixed;
+            買掛区分コード設定.DropDownWidth = 200;
 
             //時間かかる
             ofn.SetComboBox(入庫コード, " SELECT 入庫コード as Display, 入庫コード as Value FROM T入庫 WHERE(発注コード IS NOT NULL) ORDER BY 入庫コード DESC");
 
             ofn.SetComboBox(入庫者コード, " SELECT 社員コード AS Display, 氏名 AS Display2, 社員コード as Value FROM M社員 WHERE(退社 IS NULL) AND(部 <> N'社長') AND(ふりがな <> N'ん') ORDER BY ふりがな");
             入庫者コード.DrawMode = DrawMode.OwnerDrawFixed;
-
+            入庫者コード.DropDownWidth = 200;
 
             ofn.SetComboBox(発注コード, " SELECT 発注コード as Display,発注版数 as Display2, Format(発注日,'yyyy/MM/dd') as Display3, " +
                 "仕入先名 as Display4, 仕入先担当者名 as Display5, " +
                  "発注コード as Value FROM V入庫_発注コード選択 ORDER BY 発注コード");
             発注コード.DrawMode = DrawMode.OwnerDrawFixed;
+            発注コード.DropDownWidth = 720;
 
             ofn.SetComboBox(集計年月, " SELECT 集計年月 as Display, 集計年月 as Value FROM V集計年月");
 
@@ -285,6 +287,12 @@ namespace u_net
             }
             finally
             {
+                // 明細部動作制御  2024/2/2 寺西さんより　一旦、明細は編集できない様にして欲しいということで、finalyに設定する
+                入庫明細1.Detail.AllowUserToAddRows = false;
+                入庫明細1.Detail.AllowUserToDeleteRows = false;
+                入庫明細1.Detail.ReadOnly = true;
+
+                ChangedData(false);
                 changecombo = false;
                 setcombo = false;
                 コマンド削除.Enabled = false;
@@ -366,10 +374,10 @@ namespace u_net
                 this.コマンド確定.Enabled = false;
                 this.コマンド登録.Enabled = false;
 
-                // 明細部動作制御
-                入庫明細1.Detail.AllowUserToAddRows = true;
-                入庫明細1.Detail.AllowUserToDeleteRows = true;
-                入庫明細1.Detail.ReadOnly = false;
+                //// 明細部動作制御
+                //入庫明細1.Detail.AllowUserToAddRows = false;
+                //入庫明細1.Detail.AllowUserToDeleteRows = false;
+                //入庫明細1.Detail.ReadOnly = true;
 
                 success = true;
                 return success;
@@ -959,9 +967,11 @@ namespace u_net
                         FunctionClass.LockData(this, this.IsDecided || this.IsDeleted || this.IsCompleted, "入庫コード");
                         this.コマンド複写.Enabled = true;
                         this.コマンド削除.Enabled = !(this.IsDeleted || this.IsCompleted);
-                        入庫明細1.Detail.AllowUserToAddRows = !(this.IsDeleted || this.IsCompleted);
-                        入庫明細1.Detail.AllowUserToDeleteRows = !(this.IsDeleted || this.IsCompleted);
-                        入庫明細1.Detail.ReadOnly = (this.IsDeleted || this.IsCompleted);
+
+                        //いったん明細は編集不可とするため、laoa時のfinalyに記載している
+                        //入庫明細1.Detail.AllowUserToAddRows = !(this.IsDeleted || this.IsCompleted);
+                        //入庫明細1.Detail.AllowUserToDeleteRows = !(this.IsDeleted || this.IsCompleted);
+                        //入庫明細1.Detail.ReadOnly = (this.IsDeleted || this.IsCompleted);
                         ChangedData(false);
                         break;
                     case "入庫日":
