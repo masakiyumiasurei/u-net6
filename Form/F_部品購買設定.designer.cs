@@ -105,9 +105,11 @@ namespace u_net
             無効日時 = new TextBox();
             部品集合版数 = new TextBox();
             部品購買設定明細1 = new MultiRowDesigner.部品購買設定明細();
+            panel2 = new Panel();
             label5 = new Label();
             panel1.SuspendLayout();
             statusStrip1.SuspendLayout();
+            panel2.SuspendLayout();
             SuspendLayout();
             // 
             // コマンド終了
@@ -862,6 +864,15 @@ namespace u_net
             部品購買設定明細1.Size = new Size(953, 302);
             部品購買設定明細1.TabIndex = 10209;
             // 
+            // panel2
+            // 
+            panel2.Controls.Add(label5);
+            panel2.Dock = DockStyle.Bottom;
+            panel2.Location = new Point(0, 487);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(962, 22);
+            panel2.TabIndex = 10211;
+            // 
             // label5
             // 
             label5.AllowDrop = true;
@@ -870,11 +881,11 @@ namespace u_net
             label5.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             label5.ForeColor = SystemColors.ActiveCaptionText;
             label5.ImageAlign = ContentAlignment.MiddleLeft;
-            label5.Location = new Point(9, 483);
+            label5.Location = new Point(5, 0);
             label5.Margin = new Padding(0);
             label5.Name = "label5";
             label5.Size = new Size(634, 21);
-            label5.TabIndex = 10210;
+            label5.TabIndex = 10211;
             label5.Text = "※購買指定部品を変更した時点で設定内容が有効となり、登録操作は必要ありません。";
             label5.TextAlign = ContentAlignment.MiddleLeft;
             // 
@@ -882,9 +893,8 @@ namespace u_net
             // 
             BackColor = SystemColors.Control;
             ClientSize = new Size(962, 531);
+            Controls.Add(panel2);
             Controls.Add(statusStrip1);
-            Controls.Add(部品購買設定明細1);
-            Controls.Add(label5);
             Controls.Add(部品集合版数);
             Controls.Add(無効日時);
             Controls.Add(承認日時);
@@ -928,6 +938,7 @@ namespace u_net
             Controls.Add(コマンド複写);
             Controls.Add(コマンド読込);
             Controls.Add(panel1);
+            Controls.Add(部品購買設定明細1);
             Icon = (Icon)resources.GetObject("$this.Icon");
             ImeMode = ImeMode.Off;
             KeyPreview = true;
@@ -942,6 +953,7 @@ namespace u_net
             panel1.ResumeLayout(false);
             statusStrip1.ResumeLayout(false);
             statusStrip1.PerformLayout();
+            panel2.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -1026,6 +1038,7 @@ namespace u_net
         private TextBox 無効日時;
         public TextBox 部品集合版数;
         private MultiRowDesigner.部品購買設定明細 部品購買設定明細1;
+        private Panel panel2;
         private Label label5;
     }
 }

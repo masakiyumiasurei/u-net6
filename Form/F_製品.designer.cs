@@ -166,10 +166,11 @@ namespace u_net
             // 
             panel1.BackColor = SystemColors.ActiveCaption;
             panel1.Controls.Add(コマンド新規);
-            panel1.Location = new Point(0, 1);
+            panel1.Dock = DockStyle.Top;
+            panel1.Location = new Point(0, 0);
             panel1.Margin = new Padding(4, 3, 4, 3);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1036, 42);
+            panel1.Size = new Size(1139, 42);
             panel1.TabIndex = 81;
             // 
             // コマンド新規
@@ -1118,7 +1119,7 @@ namespace u_net
             statusStrip1.Location = new Point(0, 592);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Padding = new Padding(1, 0, 19, 0);
-            statusStrip1.Size = new Size(1036, 22);
+            statusStrip1.Size = new Size(1139, 22);
             statusStrip1.TabIndex = 10195;
             statusStrip1.Text = "statusStrip1";
             // 
@@ -1131,10 +1132,11 @@ namespace u_net
             // 
             // 製品明細1
             // 
+            製品明細1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             製品明細1.Location = new Point(9, 248);
             製品明細1.Margin = new Padding(4);
             製品明細1.Name = "製品明細1";
-            製品明細1.Size = new Size(1015, 348);
+            製品明細1.Size = new Size(1117, 340);
             製品明細1.TabIndex = 10196;
             // 
             // 承認表示
@@ -1182,7 +1184,7 @@ namespace u_net
             // F_製品
             // 
             BackColor = SystemColors.Control;
-            ClientSize = new Size(1036, 614);
+            ClientSize = new Size(1139, 614);
             Controls.Add(製品明細1);
             Controls.Add(statusStrip1);
             Controls.Add(SupersededDate);
@@ -1260,6 +1262,7 @@ namespace u_net
             FormClosing += Form_Unload;
             Load += Form_Load;
             KeyDown += Form_KeyDown;
+            Resize += Form_Resize;
             panel1.ResumeLayout(false);
             statusStrip1.ResumeLayout(false);
             statusStrip1.PerformLayout();
