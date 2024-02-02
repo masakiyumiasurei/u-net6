@@ -160,10 +160,11 @@ namespace u_net
             // 
             panel1.BackColor = SystemColors.ActiveCaption;
             panel1.Controls.Add(コマンド新規);
-            panel1.Location = new Point(0, 1);
+            panel1.Dock = DockStyle.Top;
+            panel1.Location = new Point(0, 0);
             panel1.Margin = new Padding(4, 3, 4, 3);
             panel1.Name = "panel1";
-            panel1.Size = new Size(974, 42);
+            panel1.Size = new Size(1193, 42);
             panel1.TabIndex = 81;
             // 
             // コマンド新規
@@ -996,10 +997,10 @@ namespace u_net
             // statusStrip1
             // 
             statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1 });
-            statusStrip1.Location = new Point(0, 592);
+            statusStrip1.Location = new Point(0, 614);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Padding = new Padding(1, 0, 19, 0);
-            statusStrip1.Size = new Size(970, 22);
+            statusStrip1.Size = new Size(1193, 22);
             statusStrip1.TabIndex = 10195;
             statusStrip1.Text = "statusStrip1";
             // 
@@ -1066,10 +1067,11 @@ namespace u_net
             // 
             // 製品明細参照1
             // 
+            製品明細参照1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             製品明細参照1.Location = new Point(10, 270);
             製品明細参照1.Margin = new Padding(4);
             製品明細参照1.Name = "製品明細参照1";
-            製品明細参照1.Size = new Size(946, 299);
+            製品明細参照1.Size = new Size(1170, 328);
             製品明細参照1.TabIndex = 10198;
             // 
             // 承認表示
@@ -1103,7 +1105,7 @@ namespace u_net
             // F_製品参照
             // 
             BackColor = SystemColors.Control;
-            ClientSize = new Size(970, 614);
+            ClientSize = new Size(1193, 636);
             Controls.Add(製品明細参照1);
             Controls.Add(廃止);
             Controls.Add(廃止_ラベル);
@@ -1175,6 +1177,7 @@ namespace u_net
             FormClosing += Form_Unload;
             Load += Form_Load;
             KeyDown += Form_KeyDown;
+            Resize += Form_Resize;
             panel1.ResumeLayout(false);
             statusStrip1.ResumeLayout(false);
             statusStrip1.PerformLayout();

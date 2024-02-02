@@ -28,46 +28,45 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.gcMultiRow1 = new GrapeCity.Win.MultiRow.GcMultiRow();
-            this.製品明細参照テンプレート1 = new MultiRowDesigner.製品明細参照テンプレート();
-            ((System.ComponentModel.ISupportInitialize)(this.gcMultiRow1)).BeginInit();
-            this.SuspendLayout();
+            gcMultiRow1 = new GrapeCity.Win.MultiRow.GcMultiRow();
+            製品明細参照テンプレート1 = new 製品明細参照テンプレート();
+            ((System.ComponentModel.ISupportInitialize)gcMultiRow1).BeginInit();
+            SuspendLayout();
             // 
             // gcMultiRow1
             // 
-            this.gcMultiRow1.BackColor = System.Drawing.Color.White;
-            this.gcMultiRow1.EditMode = GrapeCity.Win.MultiRow.EditMode.EditOnEnter;
-            this.gcMultiRow1.Location = new System.Drawing.Point(0, 0);
-            this.gcMultiRow1.Margin = new System.Windows.Forms.Padding(4);
-            this.gcMultiRow1.Name = "gcMultiRow1";
-            this.gcMultiRow1.Size = new System.Drawing.Size(940, 299);
-            this.gcMultiRow1.TabIndex = 0;
-            this.gcMultiRow1.Template = this.製品明細参照テンプレート1;
-            this.gcMultiRow1.TemplateScaleSize = new System.Drawing.SizeF(1.166667F, 1.25F);
-            this.gcMultiRow1.Text = "gcMultiRow1";
-            this.gcMultiRow1.CellEnter += new System.EventHandler<GrapeCity.Win.MultiRow.CellEventArgs>(this.gcMultiRow1_CellEnter);
+            gcMultiRow1.BackColor = Color.White;
+            gcMultiRow1.EditMode = GrapeCity.Win.MultiRow.EditMode.EditOnEnter;
+            gcMultiRow1.Location = new Point(0, 0);
+            gcMultiRow1.Margin = new Padding(4);
+            gcMultiRow1.Name = "gcMultiRow1";
+            gcMultiRow1.Size = new Size(1170, 327);
+            gcMultiRow1.TabIndex = 0;
+            gcMultiRow1.Template = 製品明細参照テンプレート1;
+            gcMultiRow1.TemplateScaleSize = new SizeF(1.166667F, 1.25F);
+            gcMultiRow1.Text = "gcMultiRow1";
+            gcMultiRow1.CellEnter += gcMultiRow1_CellEnter;
             // 
             // 製品明細参照テンプレート1
             // 
-            this.製品明細参照テンプレート1.Height = 65;
+            製品明細参照テンプレート1.Height = 65;
             // 
             // 
             // 
-            this.製品明細参照テンプレート1.Row.Height = 17;
-            this.製品明細参照テンプレート1.Row.Width = 1259;
-            this.製品明細参照テンプレート1.Width = 1259;
+            製品明細参照テンプレート1.Row.Height = 17;
+            製品明細参照テンプレート1.Row.Width = 1259;
+            製品明細参照テンプレート1.Width = 1259;
             // 
             // 製品明細参照
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.gcMultiRow1);
-            this.Margin = new System.Windows.Forms.Padding(4);
-            this.Name = "製品明細参照";
-            this.Size = new System.Drawing.Size(941, 299);
-            ((System.ComponentModel.ISupportInitialize)(this.gcMultiRow1)).EndInit();
-            this.ResumeLayout(false);
-
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(gcMultiRow1);
+            Margin = new Padding(4);
+            Name = "製品明細参照";
+            Size = new Size(1172, 329);
+            ((System.ComponentModel.ISupportInitialize)gcMultiRow1).EndInit();
+            ResumeLayout(false);
         }
 
         #endregion

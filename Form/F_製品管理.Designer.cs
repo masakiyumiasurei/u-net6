@@ -116,7 +116,7 @@
             コマンド指導書設定.Size = new Size(70, 22);
             コマンド指導書設定.TabIndex = 10;
             コマンド指導書設定.TabStop = false;
-            コマンド指導書設定.Text = "指設定";
+            コマンド指導書設定.Text = "指導設定";
             toolTip1.SetToolTip(コマンド指導書設定, "指導書変更の設定");
             コマンド指導書設定.UseVisualStyleBackColor = true;
             コマンド指導書設定.Click += コマンド指導書設定_Click;

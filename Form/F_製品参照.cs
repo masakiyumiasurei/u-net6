@@ -30,6 +30,8 @@ namespace u_net
         public string args = "";
         private string BASE_CAPTION = "製品参照";
         private int selected_frame = 0;
+        int intWindowHeight;
+        int intWindowWidth;
         public bool IsDirty = false;
 
         public F_製品参照()
@@ -543,7 +545,7 @@ namespace u_net
                         // 動作を制御する
                         FunctionClass.LockData(this, this.IsDecided || this.IsDeleted, "製品コード");
                         this.製品版数.Enabled = false; // 版数を編集可能にする
-         
+
                         製品明細参照1.Detail.AllowUserToAddRows = !this.IsDecided;
                         製品明細参照1.Detail.AllowUserToDeleteRows = !this.IsDecided;
                         製品明細参照1.Detail.ReadOnly = this.IsDecided;
@@ -599,7 +601,7 @@ namespace u_net
 
                         // 動作を制御する
                         FunctionClass.LockData(this, this.IsDecided || this.IsDeleted, "製品コード", "製品版数");
-        
+
                         製品明細参照1.Detail.AllowUserToAddRows = !this.IsDecided;
                         製品明細参照1.Detail.AllowUserToDeleteRows = !this.IsDecided;
                         製品明細参照1.Detail.ReadOnly = this.IsDecided;
@@ -650,7 +652,7 @@ namespace u_net
 
         }
 
-      
+
 
         public void SetEditionStatus()
         {
@@ -709,7 +711,7 @@ namespace u_net
                     承認表示.BringToFront();
                 }
 
-               
+
 
 
                 VariableSet.SetTable2Form(this, strSQL, cn);
@@ -1083,7 +1085,7 @@ namespace u_net
             return;
         }
 
-       
+
 
         private bool CopyData(string codeString, int editionNumber)
         {
@@ -1123,7 +1125,7 @@ namespace u_net
                 this.承認者コード.Text = null;
                 this.承認者名.Text = null;
                 this.廃止.Text = null;
-         
+
                 return true;
             }
             catch (Exception ex)
@@ -1181,7 +1183,7 @@ namespace u_net
                 return false;
             }
         }
-      
+
 
         private void コマンド読込_Click(object sender, EventArgs e)
         {
@@ -1303,7 +1305,7 @@ namespace u_net
             }
         }
 
-        
+
 
         private void コマンド確定_Click(object sender, EventArgs e)
         {
@@ -1524,7 +1526,7 @@ namespace u_net
                     // ■ 値集合ソースをクリアする必要はないのか？
 
                     品名.Focus();
-       
+
                     コマンド新規.Enabled = false;
                     コマンド読込.Enabled = true;
                     コマンド承認.Enabled = false;
@@ -2082,7 +2084,7 @@ namespace u_net
             targetform.args = CurrentCode + "," + CurrentEdition;
             targetform.ShowDialog();
         }
-   
+
         private void コマンドユニット_Click(object sender, EventArgs e)
         {
             F_ユニット参照 targetform = new F_ユニット参照();
@@ -2432,7 +2434,7 @@ namespace u_net
 
 
 
-     
+
 
         // 各コントロールの処理
 
@@ -2474,7 +2476,7 @@ namespace u_net
             製品コード.DroppedDown = true;
         }
 
-       
+
 
         private void 製品版数_DrawItem(object sender, DrawItemEventArgs e)
         {
@@ -2570,7 +2572,7 @@ namespace u_net
             }
         }
 
-       
+
 
 
         private void 製品コード_Enter(object sender, EventArgs e)
@@ -2631,6 +2633,22 @@ namespace u_net
         private void 備考_Leave(object sender, EventArgs e)
         {
             toolStripStatusLabel1.Text = "各種項目の説明";
+        }
+
+        private void Form_Resize(object sender, EventArgs e)
+        {
+            try
+            {
+                this.製品明細参照1.Detail.Height = this.製品明細参照1.Height + (this.Height - intWindowHeight);
+                intWindowHeight = this.Height;  // 高さ保存
+
+                this.製品明細参照1.Detail.Width = this.製品明細参照1.Width + (this.Width - intWindowWidth);
+                intWindowWidth = this.Width;    // 幅保存 
+            }
+            catch (Exception ex)
+            {
+                Debug.Print($"{nameof(Form_Resize)} - {ex.Message}");
+            }
         }
     }
 }
