@@ -892,6 +892,7 @@ namespace u_net
             仕入先1単価.Name = "仕入先1単価";
             仕入先1単価.Size = new Size(88, 20);
             仕入先1単価.TabIndex = 15;
+            仕入先1単価.TextAlign = HorizontalAlignment.Right;
             仕入先1単価.TextChanged += 仕入先1単価_TextChanged;
             仕入先1単価.Enter += 仕入先1単価_Enter;
             仕入先1単価.Leave += 仕入先1単価_Leave;
@@ -1171,6 +1172,7 @@ namespace u_net
             仕入先2単価.Name = "仕入先2単価";
             仕入先2単価.Size = new Size(88, 20);
             仕入先2単価.TabIndex = 20;
+            仕入先2単価.TextAlign = HorizontalAlignment.Right;
             仕入先2単価.TextChanged += 仕入先2単価_TextChanged;
             仕入先2単価.Enter += 仕入先2単価_Enter;
             仕入先2単価.Leave += 仕入先2単価_Leave;
@@ -1290,6 +1292,7 @@ namespace u_net
             仕入先3単価.Name = "仕入先3単価";
             仕入先3単価.Size = new Size(88, 20);
             仕入先3単価.TabIndex = 25;
+            仕入先3単価.TextAlign = HorizontalAlignment.Right;
             仕入先3単価.TextChanged += 仕入先3単価_TextChanged;
             仕入先3単価.Enter += 仕入先3単価_Enter;
             仕入先3単価.Leave += 仕入先3単価_Leave;
@@ -1872,6 +1875,7 @@ namespace u_net
             入数.Name = "入数";
             入数.Size = new Size(88, 20);
             入数.TabIndex = 55;
+            入数.TextAlign = HorizontalAlignment.Right;
             入数.TextChanged += 入数_TextChanged;
             入数.Enter += 入数_Enter;
             入数.Leave += 入数_Leave;
@@ -1903,6 +1907,7 @@ namespace u_net
             単位数量.Name = "単位数量";
             単位数量.Size = new Size(88, 20);
             単位数量.TabIndex = 57;
+            単位数量.TextAlign = HorizontalAlignment.Right;
             単位数量.TextChanged += 単位数量_TextChanged;
             単位数量.Enter += 単位数量_Enter;
             単位数量.Leave += 単位数量_Leave;
@@ -1934,6 +1939,7 @@ namespace u_net
             StandardDeliveryDay.Name = "StandardDeliveryDay";
             StandardDeliveryDay.Size = new Size(88, 20);
             StandardDeliveryDay.TabIndex = 59;
+            StandardDeliveryDay.TextAlign = HorizontalAlignment.Right;
             StandardDeliveryDay.TextChanged += StandardDeliveryDay_TextChanged;
             StandardDeliveryDay.Enter += StandardDeliveryDay_Enter;
             StandardDeliveryDay.Leave += StandardDeliveryDay_Leave;
@@ -2011,6 +2017,7 @@ namespace u_net
             ロス率.Name = "ロス率";
             ロス率.Size = new Size(88, 20);
             ロス率.TabIndex = 65;
+            ロス率.TextAlign = HorizontalAlignment.Right;
             ロス率.TextChanged += ロス率_TextChanged;
             ロス率.Enter += ロス率_Enter;
             ロス率.Leave += ロス率_Leave;
@@ -2059,6 +2066,7 @@ namespace u_net
             InventoryAmount.Size = new Size(88, 20);
             InventoryAmount.TabIndex = 10053;
             InventoryAmount.TabStop = false;
+            InventoryAmount.TextAlign = HorizontalAlignment.Right;
             InventoryAmount.TextChanged += InventoryAmount_TextChanged;
             InventoryAmount.Validating += InventoryAmount_Validating;
             InventoryAmount.Validated += InventoryAmount_Validated;
