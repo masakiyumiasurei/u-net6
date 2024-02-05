@@ -41,9 +41,37 @@ namespace MultiRowDesigner
         {
             gcMultiRow1.ShortcutKeyManager.Unregister(Keys.Enter);
             gcMultiRow1.ShortcutKeyManager.Register(SelectionActions.MoveToNextCell, Keys.Enter);
+            gcMultiRow1.DataError += new EventHandler<DataErrorEventArgs>(gcMultiRow1_DataError);
 
         }
 
+        bool errFlg = false;
+        private void gcMultiRow1_DataError(object sender, DataErrorEventArgs e)
+        {
+            if (errFlg)
+            {
+                errFlg = false;
+                return;
+            }
+            GcMultiRow gcMultiRow = sender as GcMultiRow;
+
+            if (e.Exception is ArgumentException || e.Exception is FormatException)
+            {
+                if (gcMultiRow.Rows[e.RowIndex].Cells[e.CellIndex] is TextBoxCell)
+                {
+                    TextBoxCell textBoxCell1 = gcMultiRow.Rows[e.RowIndex].Cells[e.CellIndex] as TextBoxCell;
+
+                    if (textBoxCell1.Name == "ユニット版数")
+                    {
+                        e.ThrowException = false;
+
+                        MessageBox.Show("数値を入力してください。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                        Console.WriteLine(e.Exception.Message);
+                    }
+                }
+            }
+        }
         private void gcMultiRow1_RowsRemoved(object sender, RowsRemovedEventArgs e)
         {
             F_製品? f_製品 = Application.OpenForms.OfType<F_製品>().FirstOrDefault();
@@ -59,7 +87,7 @@ namespace MultiRowDesigner
                 gcMultiRow1.Rows[i].Cells["明細番号"].Value = i + 1;
                 gcMultiRow1.Rows[i].Cells["製品コード"].Value = f_製品.製品コード.Text;
                 gcMultiRow1.Rows[i].Cells["製品版数"].Value = f_製品.製品版数.Text;
-                
+
 
             }
 
@@ -111,7 +139,7 @@ namespace MultiRowDesigner
                                 return;
                             }
 
-                            if(gcMultiRow1.ReadOnly == true)
+                            if (gcMultiRow1.ReadOnly == true)
                             {
                                 MessageBox.Show("編集はできません。", "削除", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                                 return;
@@ -122,7 +150,7 @@ namespace MultiRowDesigner
                                 gcMultiRow1.Rows.RemoveAt(e.RowIndex);
                             }
                             break;
-                        
+
 
                         default:
                             break;
@@ -210,11 +238,48 @@ namespace MultiRowDesigner
 
                 default:
                     break;
-             }
+            }
 
         }
 
+        private bool IsErrorData(int rowIndex, bool cancel)
+        {
+            try
+            {
+                // エラーチェック
+                bool isError = false;
+                foreach (var cell in gcMultiRow1.Rows[rowIndex].Cells)
+                {
+                    var varValue = cell.Value;
+                    string strName = cell.Name;
 
+                    switch (strName)
+                    {
+                        case "型式名":
+                        case "ユニットコード":
+                            if (varValue == DBNull.Value)
+                            {
+                                MessageBox.Show($"[{strName}] を入力してください。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                                goto Exit_IsError;
+                            }
+                            break;
+
+                    }
+                }
+                return false; // エラーなしの場合
+
+            Exit_IsError:
+                // エラー発生後の処理
+                isError = true;
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"{Name}_IsError - {ex.Message}");
+                return true;
+            }
+        }
         private bool IsError(Cell controlObject)
         {
             try
@@ -234,7 +299,7 @@ namespace MultiRowDesigner
                             goto Exit_IsError;
                         }
                         break;
-    
+
                 }
 
                 return false; // エラーなしの場合
@@ -254,6 +319,7 @@ namespace MultiRowDesigner
 
         private void gcMultiRow1_CellValidating(object sender, CellValidatingEventArgs e)
         {
+            errFlg = true;
             gcMultiRow1.EndEdit();
             //gcMultiRow1.CancelEdit();
             //e.Cancel = true;
@@ -331,7 +397,7 @@ namespace MultiRowDesigner
 
 
 
-                 
+
                 }
 
 
@@ -390,6 +456,7 @@ namespace MultiRowDesigner
                     {
                         string selectedCode = codeSelectionForm.SelectedCode;
 
+                        gcMultiRow1.EditingControl.Text = selectedCode;
                         gcMultiRow1.CurrentCell.Value = selectedCode;
                         gcMultiRow1.CurrentCellPosition = new CellPosition(gcMultiRow1.CurrentRow.Index, gcMultiRow1.CurrentRow.Cells["品名"].CellIndex);
                     }
@@ -411,7 +478,7 @@ namespace MultiRowDesigner
         {
             ComboBoxEditingControl combo = sender as ComboBoxEditingControl;
             if (combo.SelectedIndex < 0) return;
-            gcMultiRow1.CurrentRow.Cells["削除対象"].Value = ((DataRowView)combo.SelectedItem)?.Row.Field<bool>("Display2").ToString() ;
+            gcMultiRow1.CurrentRow.Cells["削除対象"].Value = ((DataRowView)combo.SelectedItem)?.Row.Field<bool>("Display2").ToString();
 
 
 
@@ -420,10 +487,13 @@ namespace MultiRowDesigner
 
         private void gcMultiRow1_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
-            gcMultiRow1.EndEdit();
+            errFlg = true;
+            //  gcMultiRow1.EndEdit();
+
 
             if (e.KeyCode == Keys.Return)
             {
+                gcMultiRow1.EndEdit();
 
                 if (gcMultiRow1.CurrentCell.RowIndex == null || gcMultiRow1.CurrentCell.CellIndex == null) return;
 
@@ -475,7 +545,7 @@ namespace MultiRowDesigner
 
         }
 
-        
+
 
         private void gcMultiRow1_RowDragMoveCompleted(object sender, DragMoveCompletedEventArgs e)
         {
@@ -513,6 +583,12 @@ namespace MultiRowDesigner
             gcMultiRow1.CurrentRow.Cells["カレント"].Style.BackColor = Color.White;
         }
 
-        
+        private void gcMultiRow1_RowValidating(object sender, CellCancelEventArgs e)
+        {
+            var targetRow = e.RowIndex;
+            if (gcMultiRow1.Rows[e.RowIndex].IsNewRow) return;
+
+            if (IsErrorData(targetRow, false)) e.Cancel = true;
+        }
     }
 }

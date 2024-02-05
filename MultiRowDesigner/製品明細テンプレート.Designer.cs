@@ -59,6 +59,7 @@
             GrapeCity.Win.MultiRow.Border border3 = new GrapeCity.Win.MultiRow.Border();
             GrapeCity.Win.MultiRow.CellStyle cellStyle6 = new GrapeCity.Win.MultiRow.CellStyle();
             GrapeCity.Win.MultiRow.Border border4 = new GrapeCity.Win.MultiRow.Border();
+            GrapeCity.Win.MultiRow.RangeValidator rangeValidator1 = new GrapeCity.Win.MultiRow.RangeValidator();
             GrapeCity.Win.MultiRow.CellStyle cellStyle7 = new GrapeCity.Win.MultiRow.CellStyle();
             GrapeCity.Win.MultiRow.Border border5 = new GrapeCity.Win.MultiRow.Border();
             GrapeCity.Win.MultiRow.TextLengthValidator textLengthValidator2 = new GrapeCity.Win.MultiRow.TextLengthValidator();
@@ -482,10 +483,15 @@
             border4.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
             cellStyle6.Border = border4;
             cellStyle6.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
+            cellStyle6.Format = "N0";
             cellStyle6.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.ユニット版数.Style = cellStyle6;
             this.ユニット版数.TabIndex = 5;
             this.ユニット版数.TabStop = false;
+            rangeValidator1.MaxValue = "99999";
+            rangeValidator1.MinValue = "1";
+            rangeValidator1.Name = "数値";
+            this.ユニット版数.Validators.Add(rangeValidator1);
             // 
             // ユニットコード
             // 

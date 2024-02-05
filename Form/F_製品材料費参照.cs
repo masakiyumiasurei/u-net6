@@ -71,7 +71,7 @@ namespace u_net
 
             製品コード.DrawMode = DrawMode.OwnerDrawFixed;
             ofn.SetComboBox(製品コード, "SELECT 製品コード as Value , 製品コード as Display, MAX(製品版数) AS Display2 FROM M製品 GROUP BY 製品コード ORDER BY 製品コード DESC");
-
+            製品コード.DropDownWidth = 200;
 
 
             this.製品版数.Text = Convert.ToInt32(args.Substring(0, args.IndexOf(","))).ToString();

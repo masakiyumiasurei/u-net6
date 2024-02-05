@@ -33,7 +33,7 @@ namespace u_net
         int intWindowHeight;
         int intWindowWidth;
         public bool IsDirty = false;
-
+        bool setCmb = true;
         public F_製品()
         {
             this.Text = "製品";       // ウィンドウタイトルを設定
@@ -90,9 +90,6 @@ namespace u_net
                 return string.IsNullOrEmpty(製品版数.Text) ? 0 : Int32.Parse(製品版数.Text);
             }
         }
-
-
-
 
         public bool IsNewData
         {
@@ -186,29 +183,31 @@ namespace u_net
             LocalSetting localSetting = new LocalSetting();
             localSetting.LoadPlace(LoginUserCode, this);
 
-            MyApi myapi = new MyApi();
-            int xSize, ySize, intpixel, twipperdot;
+            //MyApi myapi = new MyApi();
+            //int xSize, ySize, intpixel, twipperdot;
 
-            //1インチ当たりのピクセル数 アクセスのサイズの引数がtwipなのでピクセルに変換する除算値を求める
-            intpixel = myapi.GetLogPixel();
-            twipperdot = myapi.GetTwipPerDot(intpixel);
+            ////1インチ当たりのピクセル数 アクセスのサイズの引数がtwipなのでピクセルに変換する除算値を求める
+            //intpixel = myapi.GetLogPixel();
+            //twipperdot = myapi.GetTwipPerDot(intpixel);
 
 
             OriginalClass ofn = new OriginalClass();
             ofn.SetComboBox(製品コード, "SELECT A.製品コード as Value, A.製品コード as Display, A.最新版数 as Display3, { fn REPLACE(STR(CONVERT(bit, M製品.無効日時), 1, 0), '1', '×') } AS Display2 FROM M製品 INNER JOIN (SELECT 製品コード, MAX(製品版数) AS 最新版数 FROM M製品 GROUP BY 製品コード) A ON M製品.製品コード = A.製品コード AND M製品.製品版数 = A.最新版数 ORDER BY A.製品コード DESC");
             製品コード.DrawMode = DrawMode.OwnerDrawFixed;
-
+            製品コード.DropDownWidth = 130;
 
             ofn.SetComboBox(SeriesCode, "SELECT シリーズコード as Value,シリーズコード as Display,シリーズ名 as Display2 FROM Mシリーズ WHERE 無効日時 IS NULL ORDER BY シリーズ名");
             SeriesCode.DrawMode = DrawMode.OwnerDrawFixed;
+            SeriesCode.DropDownWidth= 200;
 
+            製品版数.DropDownWidth = 60;
 
             try
             {
                 this.SuspendLayout();
 
-                int intWindowHeight = this.Height;
-                int intWindowWidth = this.Width;
+                intWindowHeight = this.Height;
+                intWindowWidth = this.Width;
 
 
                 if (string.IsNullOrEmpty(args)) // 新規
@@ -241,10 +240,7 @@ namespace u_net
 
                     UpdatedControl(製品コード);
                 }
-                args = null;
-
-
-
+                args = "";
 
                 // 成功時の処理
                 return;
@@ -270,9 +266,6 @@ namespace u_net
                 string strSQL = "";
 
                 Connect();
-
-
-
 
                 // ヘッダ部の初期化
                 VariableSet.SetControls(this);
@@ -305,6 +298,7 @@ namespace u_net
                 this.コマンド承認.Enabled = false;
                 this.コマンド確定.Enabled = false;
                 this.コマンド登録.Enabled = false;
+                指導書変更.Enabled = false;
 
                 // 明細部動作制御
                 製品明細1.Detail.AllowUserToAddRows = true;
@@ -312,6 +306,7 @@ namespace u_net
                 製品明細1.Detail.ReadOnly = false;
                 製品明細1.Detail.AllowRowMove = true;
 
+              //  setCmb = false;
                 success = true;
                 return success;
             }
@@ -345,13 +340,13 @@ namespace u_net
 
                 this.製品コード.Focus();
 
-                FunctionClass.LockData(this, true, "製品コード");
+                FunctionClass.LockData(this, true, "製品コード", "製品版数");
 
 
                 // ボタンの状態を設定
                 this.コマンド新規.Enabled = true;
                 this.コマンド読込.Enabled = false;
-
+              //  setCmb = false;
 
                 success = true;
                 return success;
@@ -683,6 +678,11 @@ namespace u_net
                 Debug.Print(this.Name + "_UpdatedControl - " + ex.Message);
                 fn.WaitForm.Close();
             }
+            finally
+            {
+                changeCmb = false;
+                changeSeries = false;
+            }
         }
 
 
@@ -830,6 +830,21 @@ namespace u_net
             }
         }
 
+        private void Form_Resize(object sender, EventArgs e)
+        {
+            try
+            {
+                this.製品明細1.Detail.Height += (this.Height - intWindowHeight);
+                this.製品明細1.Detail.Width += (this.Width - intWindowWidth);
+                intWindowHeight = this.Height;
+                intWindowWidth = this.Width;
+
+            }
+            catch (Exception ex)
+            {
+                Debug.Print($"{nameof(Form_Resize)} - {ex.Message}");
+            }
+        }
         private bool SaveData()
         {
 
@@ -1086,7 +1101,16 @@ namespace u_net
                 case Keys.Return:
                     SelectNextControl(ActiveControl, true, true, true, true);
                     break;
-
+                case Keys.Space: //コンボボックスならドロップダウン
+                    {
+                        Control activeControl = this.ActiveControl;
+                        if (activeControl is System.Windows.Forms.ComboBox)
+                        {
+                            System.Windows.Forms.ComboBox activeComboBox = (System.Windows.Forms.ComboBox)activeControl;
+                            activeComboBox.DroppedDown = true;
+                        }
+                    }
+                    break;
                 case Keys.F1:
                     if (コマンド新規.Enabled) コマンド新規_Click(sender, e);
                     break;
@@ -2495,6 +2519,7 @@ namespace u_net
         }
         private void 製品コード_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (setCmb) return;
             製品版数.Text = ((DataRowView)製品コード.SelectedItem)?.Row.Field<Int16>("Display3").ToString();
             UpdatedControl(sender as Control);
         }
@@ -2515,23 +2540,57 @@ namespace u_net
             製品コード.DroppedDown = true;
         }
 
+        bool changeCmb = false;
+        bool changeSeries=false;
         private void SeriesCode_SelectedIndexChanged(object sender, EventArgs e)
         {
-            シリーズ名.Text = ((DataRowView)SeriesCode.SelectedItem)?.Row.Field<String>("Display2")?.ToString();
+            //イベントの連鎖でシリーズ名とシリーズコードが相互に消しあう状態を防ぐ
+            changeCmb = true;
 
-            UpdatedControl(sender as Control);
+            if(!changeSeries)
+            シリーズ名.Text = ((DataRowView)SeriesCode.SelectedItem)?.Row.Field<String>("Display2")?.ToString();
+            
+          //  UpdatedControl(sender as Control);
         }
 
         private void SeriesCode_TextChanged(object sender, EventArgs e)
         {
-            if (SeriesCode.SelectedValue == null)
+            if (setCmb) return;
+            //シリーズ名を手入力で変更した場合に、シリーズ名をnullにしてしまう事を防ぐ
+            if (SeriesCode.SelectedValue == null && !changeSeries)
             {
                 シリーズ名.Text = null;
             }
 
             FunctionClass.LimitText(sender as Control, 8);
-
             ChangedData(true);
+        }
+
+        private void シリーズ名_TextChanged(object sender, EventArgs e)
+        {
+            if (setCmb) return;
+            if (!changeCmb)
+            {
+                //手入力で修正した場合
+                FunctionClass.LimitText(sender as Control, 30);
+                changeSeries = true;
+                SeriesCode.SelectedIndex = -1;
+                ChangedData(true);                
+            }
+            changeCmb = false;
+           
+        }
+
+        private void シリーズ名_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (シリーズ名.Modified == false) return;
+            if (IsError(sender as Control) == true)
+            {
+                e.Cancel = true;
+                changeCmb = true; //undo時にtectchangeイベントが実行されるのを防ぐ
+                シリーズ名.Undo();
+                changeCmb = false;
+            }
         }
 
         private void SeriesCode_KeyDown(object sender, KeyEventArgs e)
@@ -2574,21 +2633,7 @@ namespace u_net
             FunctionClass.LimitText(sender as Control, 5);
         }
 
-        private void シリーズ名_TextChanged(object sender, EventArgs e)
-        {
-            FunctionClass.LimitText(sender as Control, 30);
-            ChangedData(true);
-        }
-
-        private void シリーズ名_Validating(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-
-            if (シリーズ名.Modified == false) return;
-
-            if (IsError(sender as Control) == true) e.Cancel = true;
-
-
-        }
+       
 
         private void 識別コード_TextChanged(object sender, EventArgs e)
         {
@@ -2704,6 +2749,7 @@ namespace u_net
 
         private void シリーズ名_Leave(object sender, EventArgs e)
         {
+            changeSeries = false;
             toolStripStatusLabel1.Text = "各種項目の説明";
         }
 
@@ -2727,20 +2773,6 @@ namespace u_net
             toolStripStatusLabel1.Text = "各種項目の説明";
         }
 
-        private void Form_Resize(object sender, EventArgs e)
-        {
-            try
-            {
-                this.製品明細1.Detail.Height = this.製品明細1.Height + (this.Height - intWindowHeight);
-                intWindowHeight = this.Height;  // 高さ保存
 
-                this.製品明細1.Detail.Width = this.製品明細1.Width + (this.Width - intWindowWidth);
-                intWindowWidth = this.Width;    // 幅保存 
-            }
-            catch (Exception ex)
-            {
-                Debug.Print($"{nameof(Form_Resize)} - {ex.Message}");
-            }
-        }
     }
 }

@@ -139,43 +139,31 @@ namespace u_net
             dataGridView1.AllowUserToDeleteRows = false;
             dataGridView1.ReadOnly = true;
 
+            System.Type dgvtype = typeof(DataGridView);
+            System.Reflection.PropertyInfo dgvPropertyInfo = dgvtype.GetProperty("DoubleBuffered", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
+            dgvPropertyInfo.SetValue(dataGridView1, true, null);
 
-            myapi.GetFullScreen(out xSize, out ySize);
 
-            int x = 10, y = 10;
+            //myapi.GetFullScreen(out xSize, out ySize);
 
-            this.Size = new Size(this.Width, ySize * myapi.GetTwipPerDot(intpixel) - 1200);
-            //accessのmovesizeメソッドの引数の座標単位はtwipなので以下で
+            //int x = 10, y = 10;
 
-            this.Size = new Size(this.Width, ySize - 1200 / twipperdot);
+            //this.Size = new Size(this.Width, ySize * myapi.GetTwipPerDot(intpixel) - 1200);
+            ////accessのmovesizeメソッドの引数の座標単位はtwipなので以下で
 
-            this.StartPosition = FormStartPosition.Manual; // 手動で位置を指定
-            int screenWidth = Screen.PrimaryScreen.Bounds.Width; // プライマリスクリーンの幅
-            x = (screenWidth - this.Width) / 2;
-            this.Location = new Point(x, y);
+            //this.Size = new Size(this.Width, ySize - 1200 / twipperdot);
+
+            //this.StartPosition = FormStartPosition.Manual; // 手動で位置を指定
+            //int screenWidth = Screen.PrimaryScreen.Bounds.Width; // プライマリスクリーンの幅
+            //x = (screenWidth - this.Width) / 2;
+            //this.Location = new Point(x, y);
 
             InitializeFilter();
             DoUpdate();
             fn.WaitForm.Close();
         }
 
-        private void Form_Resize(object sender, EventArgs e)
-        {
-            try
-            {
-
-                dataGridView1.Height = dataGridView1.Height + (this.Height - intWindowHeight);
-                intWindowHeight = this.Height;  // 高さ保存
-
-                dataGridView1.Width = dataGridView1.Width + (this.Width - intWindowWidth);
-                intWindowWidth = this.Width;    // 幅保存
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(this.Name + "_Form_Resize - " + ex.Message);
-            }
-        }
+        
 
 
         private void F_製品管理_FormClosing(object sender, FormClosingEventArgs e)
@@ -713,6 +701,7 @@ namespace u_net
 
                         if (DoUpdate() == -1)
                             MessageBox.Show("エラーが発生したため、抽出できませんでした。", "コマンド指導書変更有り", MessageBoxButtons.OK);
+                        fn.WaitForm.Close();
                     }
                     break;
 
