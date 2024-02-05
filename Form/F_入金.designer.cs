@@ -718,17 +718,17 @@ namespace u_net
             // statusStrip1
             // 
             statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1 });
-            statusStrip1.Location = new Point(0, 488);
+            statusStrip1.Location = new Point(0, 491);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Padding = new Padding(1, 0, 19, 0);
-            statusStrip1.Size = new Size(958, 25);
+            statusStrip1.Size = new Size(958, 22);
             statusStrip1.TabIndex = 10195;
             statusStrip1.Text = "statusStrip1";
             // 
             // toolStripStatusLabel1
             // 
             toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            toolStripStatusLabel1.Size = new Size(111, 20);
+            toolStripStatusLabel1.Size = new Size(89, 17);
             toolStripStatusLabel1.Text = "各種項目の説明";
             // 
             // label5
@@ -851,7 +851,6 @@ namespace u_net
             // 領収コード
             // 
             領収コード.BackColor = Color.White;
-            領収コード.Enabled = false;
             領収コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             領収コード.ImeMode = ImeMode.Disable;
             領収コード.Location = new Point(122, 267);
@@ -863,7 +862,6 @@ namespace u_net
             // 請求コード
             // 
             請求コード.BackColor = Color.White;
-            請求コード.Enabled = false;
             請求コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             請求コード.ImeMode = ImeMode.Disable;
             請求コード.Location = new Point(122, 293);
@@ -876,7 +874,7 @@ namespace u_net
             // 
             入金明細1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             入金明細1.Location = new Point(9, 323);
-            入金明細1.Margin = new Padding(4);
+            入金明細1.Margin = new Padding(4, 4, 4, 4);
             入金明細1.Name = "入金明細1";
             入金明細1.Size = new Size(948, 159);
             入金明細1.TabIndex = 10201;
