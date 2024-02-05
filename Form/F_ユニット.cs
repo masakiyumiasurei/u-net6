@@ -551,7 +551,7 @@ namespace u_net
                         }
 
                         // RoHS対応状況を表示する
-                        this.RoHS対応.Text = GetRohsStatus();
+                        this.RoHS対応表示.Text = GetRohsStatus();
 
                         // 製品材料費を表示する 
                         //明細処理
@@ -597,7 +597,7 @@ namespace u_net
 
 
                         // RoHS対応状況を表示する
-                        this.RoHS対応.Text = GetRohsStatus();
+                        this.RoHS対応表示.Text = GetRohsStatus();
 
 
 
@@ -1365,7 +1365,7 @@ namespace u_net
                     FunctionClass.LockData(this, IsDecided || IsDeleted, "ユニットコード", "ユニット版数");
 
                     // RoHS対応状況を表示する
-                    RoHS対応.Text = GetRohsStatus();
+                    RoHS対応表示.Text = GetRohsStatus();
 
 
 
@@ -1555,7 +1555,7 @@ namespace u_net
                     ChangedData(false);
 
                     // RoHS対応状況を表示する
-                    RoHS対応.Text = GetRohsStatus();
+                    RoHS対応表示.Text = GetRohsStatus();
 
 
                     // 新規モードのときは修正モードへ移行する

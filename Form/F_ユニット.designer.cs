@@ -93,7 +93,7 @@ namespace u_net
             label1 = new Label();
             改版ボタン = new Button();
             型番 = new TextBox();
-            RoHS対応 = new TextBox();
+            RoHS対応表示 = new TextBox();
             識別コード = new TextBox();
             label2 = new Label();
             label3 = new Label();
@@ -748,21 +748,21 @@ namespace u_net
             型番.Enter += 型番_Enter;
             型番.Leave += 型番_Leave;
             // 
-            // RoHS対応
+            // RoHS対応表示
             // 
-            RoHS対応.BackColor = SystemColors.Window;
-            RoHS対応.Enabled = false;
-            RoHS対応.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            RoHS対応.ImeMode = ImeMode.Disable;
-            RoHS対応.Location = new Point(122, 147);
-            RoHS対応.Margin = new Padding(3, 2, 3, 2);
-            RoHS対応.Name = "RoHS対応";
-            RoHS対応.ReadOnly = true;
-            RoHS対応.Size = new Size(20, 20);
-            RoHS対応.TabIndex = 14;
-            RoHS対応.TabStop = false;
-            RoHS対応.Enter += RoHS対応_Enter;
-            RoHS対応.Leave += RoHS対応_Leave;
+            RoHS対応表示.BackColor = SystemColors.Window;
+            RoHS対応表示.Enabled = false;
+            RoHS対応表示.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            RoHS対応表示.ImeMode = ImeMode.Disable;
+            RoHS対応表示.Location = new Point(122, 147);
+            RoHS対応表示.Margin = new Padding(3, 2, 3, 2);
+            RoHS対応表示.Name = "RoHS対応表示";
+            RoHS対応表示.ReadOnly = true;
+            RoHS対応表示.Size = new Size(20, 20);
+            RoHS対応表示.TabIndex = 14;
+            RoHS対応表示.TabStop = false;
+            RoHS対応表示.Enter += RoHS対応_Enter;
+            RoHS対応表示.Leave += RoHS対応_Leave;
             // 
             // 識別コード
             // 
@@ -1066,7 +1066,7 @@ namespace u_net
             Controls.Add(確定日時);
             Controls.Add(label2);
             Controls.Add(識別コード);
-            Controls.Add(RoHS対応);
+            Controls.Add(RoHS対応表示);
             Controls.Add(型番);
             Controls.Add(改版ボタン);
             Controls.Add(ユニット版数);
@@ -1191,7 +1191,7 @@ namespace u_net
         private Label label1;
         private Button 改版ボタン;
         private TextBox 型番;
-        private TextBox RoHS対応;
+        private TextBox RoHS対応表示;
         private TextBox 識別コード;
         private Label label2;
         private Label label3;
