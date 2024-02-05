@@ -589,6 +589,7 @@
             cellStyle6.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
             this.置換不可表示.Style = cellStyle6;
             this.置換不可表示.TabIndex = 4;
+            this.置換不可表示.TabStop = false;
             // 
             // 部品コード
             // 
