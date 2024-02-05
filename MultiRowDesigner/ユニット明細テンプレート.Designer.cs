@@ -568,7 +568,7 @@
             border3.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
             cellStyle5.Border = border3;
             cellStyle5.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
-            cellStyle5.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
+            cellStyle5.ImeMode = System.Windows.Forms.ImeMode.Alpha;
             this.構成番号.Style = cellStyle5;
             this.構成番号.TabIndex = 3;
             textLengthValidator1.LengthUnit = GrapeCity.Win.MultiRow.LengthUnit.TextElement;
@@ -589,6 +589,7 @@
             cellStyle6.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
             this.置換不可表示.Style = cellStyle6;
             this.置換不可表示.TabIndex = 4;
+            this.置換不可表示.TabStop = false;
             // 
             // 部品コード
             // 
@@ -600,7 +601,7 @@
             border5.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
             cellStyle7.Border = border5;
             cellStyle7.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
-            cellStyle7.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
+            cellStyle7.ImeMode = System.Windows.Forms.ImeMode.Alpha;
             this.部品コード.Style = cellStyle7;
             this.部品コード.TabIndex = 5;
             textLengthValidator2.LengthUnit = GrapeCity.Win.MultiRow.LengthUnit.TextElement;
