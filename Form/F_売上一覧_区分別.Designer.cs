@@ -361,7 +361,7 @@
             Margin = new Padding(3, 2, 3, 2);
             Name = "F_売上一覧_区分別";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "売上一覧_区分別";
+            Text = "売上一覧（売上区分別）";
             FormClosing += F_売上一覧_区分別_FormClosing;
             Load += Form_Load;
             panel1.ResumeLayout(false);

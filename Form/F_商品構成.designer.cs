@@ -602,7 +602,6 @@ namespace u_net
             // 定価
             // 
             定価.BackColor = Color.White;
-            定価.Enabled = false;
             定価.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             定価.ImeMode = ImeMode.NoControl;
             定価.Location = new Point(94, 359);
@@ -621,6 +620,7 @@ namespace u_net
             売値掛率.Location = new Point(94, 383);
             売値掛率.Margin = new Padding(3, 2, 3, 2);
             売値掛率.Name = "売値掛率";
+            売値掛率.ReadOnly = true;
             売値掛率.Size = new Size(136, 20);
             売値掛率.TabIndex = 9;
             売値掛率.TextChanged += 売値掛率_TextChanged;
@@ -723,7 +723,6 @@ namespace u_net
             // 原価
             // 
             原価.BackColor = Color.White;
-            原価.Enabled = false;
             原価.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             原価.ImeMode = ImeMode.NoControl;
             原価.Location = new Point(94, 431);
@@ -737,7 +736,6 @@ namespace u_net
             // 粗利
             // 
             粗利.BackColor = Color.White;
-            粗利.Enabled = false;
             粗利.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             粗利.ImeMode = ImeMode.NoControl;
             粗利.Location = new Point(94, 455);
@@ -779,6 +777,7 @@ namespace u_net
             // 
             // 確定ボタン
             // 
+            確定ボタン.Enabled = false;
             確定ボタン.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             確定ボタン.Location = new Point(528, 481);
             確定ボタン.Margin = new Padding(4, 2, 4, 2);
