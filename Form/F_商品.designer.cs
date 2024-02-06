@@ -1090,7 +1090,7 @@ namespace u_net
             // 
             // 商品明細1
             // 
-            商品明細1.Dock = DockStyle.Bottom;
+            商品明細1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             商品明細1.Location = new Point(0, 437);
             商品明細1.Margin = new Padding(5, 3, 5, 3);
             商品明細1.Name = "商品明細1";
@@ -1254,6 +1254,7 @@ namespace u_net
             Text = "商品";
             Load += Form_Load;
             KeyDown += F_商品_KeyDown;
+            Resize += F_商品_Resize;
             panel1.ResumeLayout(false);
             statusStrip1.ResumeLayout(false);
             statusStrip1.PerformLayout();

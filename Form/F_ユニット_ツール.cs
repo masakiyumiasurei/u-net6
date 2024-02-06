@@ -88,19 +88,29 @@ namespace u_net
 
         private void 部品一括変更ボタン_Click(object sender, EventArgs e)
         {
-            F_ユニット? f_ユニット = Application.OpenForms.OfType<F_ユニット>().FirstOrDefault();
+            F_ユニット? fm = Application.OpenForms.OfType<F_ユニット>().FirstOrDefault();
+            F_ユニット参照? fm2 = Application.OpenForms.OfType<F_ユニット参照>().FirstOrDefault();
 
-            if (f_ユニット.IsDecided)
+            if (fm != null)
             {
-                MessageBox.Show("確定されているので、データを変更できません。", "ツールコマンド", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return;
+                if (fm.IsDecided) 
+                {
+                    MessageBox.Show("確定されているので、データを変更できません。", "ツールコマンド", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
+            }
+            else
+           // if (fm2 != null)
+            {
+                //if (fm2.IsDecided)
+                //{
+                    MessageBox.Show("参照からは、データを変更できません。", "ツールコマンド", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                //}
             }
 
-
             F_ユニット部品一括変更 targetform = new F_ユニット部品一括変更();
-
             targetform.ShowDialog();
-
         }
 
         private void 使用製品検索ボタン_Click(object sender, EventArgs e)
@@ -115,9 +125,18 @@ namespace u_net
         {
             try
             {
-                F_ユニット? f_ユニット = Application.OpenForms.OfType<F_ユニット>().FirstOrDefault();
+                F_ユニット? fm = Application.OpenForms.OfType<F_ユニット>().FirstOrDefault();
+                F_ユニット参照? fm2 = Application.OpenForms.OfType<F_ユニット参照>().FirstOrDefault();
+                if (fm != null)
+                {
+                    MessageBox.Show("現在の材料費は　" + fm.ユニット明細1.Detail.ColumnFooters[0].Cells["製品材料費"].Value.ToString() + "　円です。", "ツールコマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
 
-                MessageBox.Show("現在の材料費は　" + f_ユニット.ユニット明細1.Detail.ColumnFooters[0].Cells["製品材料費"].Value.ToString() + "　円です。", "ツールコマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (fm2 != null)
+                {
+                    MessageBox.Show("現在の材料費は　" + fm2.ユニット明細参照1.Detail.ColumnFooters[0].Cells["製品材料費"].Value.ToString() + "　円です。", "ツールコマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+
 
             }
             catch (Exception ex)
@@ -134,10 +153,17 @@ namespace u_net
         private void コマンド出力_Click(object sender, EventArgs e)
         {
             Connect();
-
-            F_ユニット? f_ユニット = Application.OpenForms.OfType<F_ユニット>().FirstOrDefault();
-
-            string sqlQuery = "SELECT * FROM V部品表 where ユニットコード='" + f_ユニット.CurrentCode + "' and ユニット版数=" + f_ユニット.CurrentEdition + " ORDER BY 明細番号";
+            string sqlQuery = "";
+            F_ユニット? fm = Application.OpenForms.OfType<F_ユニット>().FirstOrDefault();
+            F_ユニット参照? fm2 = Application.OpenForms.OfType<F_ユニット参照>().FirstOrDefault();
+            if (fm != null)
+            {
+                sqlQuery = "SELECT * FROM V部品表 where ユニットコード='" + fm.CurrentCode + "' and ユニット版数=" + fm.CurrentEdition + " ORDER BY 明細番号";
+            }
+            else if (fm2!=null)
+            {
+                sqlQuery = "SELECT * FROM V部品表 where ユニットコード='" + fm2.CurrentCode + "' and ユニット版数=" + fm2.CurrentEdition + " ORDER BY 明細番号";
+            }
 
             // 新しいDataGridViewを作成
             DataGridView dataGridView1 = new DataGridView();

@@ -44,7 +44,7 @@ namespace u_net
                 // 対象フォームが読み込まれていないときはすぐに終了する
                 if (Application.OpenForms["F_受注管理"] == null)
                 {
-                    MessageBox.Show("[文書]画面が起動していない状態では実行できません。", "警告", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    MessageBox.Show("[受注管理]画面が起動していない状態では実行できません。", "警告", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     this.Close();
                     return;
                 }

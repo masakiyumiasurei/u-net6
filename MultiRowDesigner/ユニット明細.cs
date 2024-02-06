@@ -354,22 +354,18 @@ namespace MultiRowDesigner
         }
 
         private void gcMultiRow1_CellValidated(object sender, CellEventArgs e)
-        {
-
+        {            
             switch (e.CellName)
             {
-
 
                 case "部品コード":
                     UpdatedControl(gcMultiRow1.CurrentCell);
                     break;
-
-               
+                                  
 
             }
-
-            F_ユニット? f_ユニット = Application.OpenForms.OfType<F_ユニット>().FirstOrDefault();
-            f_ユニット.ChangedData(true);
+            
+           
         }
 
         private void UpdatedControl(Cell controlObject)
@@ -412,6 +408,8 @@ namespace MultiRowDesigner
                                 }
                             }
                         }
+                        F_ユニット? f_ユニット = Application.OpenForms.OfType<F_ユニット>().FirstOrDefault();
+                        f_ユニット.ChangedData(true);
 
                         break;
 
@@ -510,10 +508,11 @@ namespace MultiRowDesigner
 
         private void gcMultiRow1_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
-            gcMultiRow1.EndEdit();
+            
 
             if (e.KeyCode == Keys.Return)
             {
+                gcMultiRow1.EndEdit();
 
                 if (gcMultiRow1.CurrentCell.RowIndex == null || gcMultiRow1.CurrentCell.CellIndex == null) return;
 

@@ -32,7 +32,9 @@ namespace u_net
         public string args = "";
         private string BASE_CAPTION = "入金";
         private int selected_frame = 0;
-
+        int intWindowHeight;
+        int intWindowWidth;
+        string originalstr = ""; 
         public F_入金()
         {
             this.Text = "入金";       // ウィンドウタイトルを設定
@@ -116,8 +118,8 @@ namespace u_net
             {
                 this.SuspendLayout();
 
-                int intWindowHeight = this.Height;
-                int intWindowWidth = this.Width;
+                intWindowHeight = this.Height;
+                intWindowWidth = this.Width;
 
 
                 if (string.IsNullOrEmpty(args))
@@ -620,7 +622,21 @@ namespace u_net
             }
         }
 
+        private void Form_Resize(object sender, EventArgs e)
+        {
+            try
+            {
+                this.入金明細1.Detail.Height += (this.Height - intWindowHeight);
+                this.入金明細1.Detail.Width += (this.Width - intWindowWidth);
+                intWindowHeight = this.Height;
+                intWindowWidth = this.Width;
 
+            }
+            catch (Exception ex)
+            {
+                Debug.Print($"{nameof(Form_Resize)} - {ex.Message}");
+            }
+        }
 
         private void コマンド登録_Click(object sender, EventArgs e)
         {
@@ -1254,6 +1270,7 @@ namespace u_net
 
         private void 顧客コード_Enter(object sender, EventArgs e)
         {
+            originalstr = 顧客コード.Text;
             toolStripStatusLabel1.Text = "■入金した顧客の顧客コードを入力します。　■[space]キーで検索ウィンドウを表示します。";
         }
 
@@ -1354,7 +1371,11 @@ namespace u_net
         private void 顧客コード_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
             if (this.顧客コード.Modified == false) return;
-            if (IsError(sender as System.Windows.Forms.Control, false) == true) e.Cancel = true;
+            if (IsError(sender as System.Windows.Forms.Control, false) == true)
+            {
+                e.Cancel = true;
+                顧客コード.Text = originalstr;
+            }
         }
 
         private void 顧客コード_TextChanged(object sender, EventArgs e)
@@ -1379,6 +1400,13 @@ namespace u_net
                 {
                     control.Text = strCode;
                 }
+                // BeginInvokeを使用してフォーカス移動を遅延させる
+                //this.BeginInvoke(new System.Action(() =>
+                //{
+                //    SelectNextControl(ActiveControl, true, true, true, true);
+                //}));
+
+                //e.Handled = true; // イベントが処理されたことを示す
             }
         }
 

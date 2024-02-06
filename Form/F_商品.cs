@@ -109,21 +109,25 @@ namespace u_net
             OriginalClass ofn = new OriginalClass();
             ofn.SetComboBox(数量単位コード, "SELECT 単位コード as Display, 単位名 as Display2,単位コード as Value FROM M単位");
             数量単位コード.DrawMode = DrawMode.OwnerDrawFixed;
+            数量単位コード.DropDownWidth = 550;
 
             ofn.SetComboBox(シリーズコード, "SELECT シリーズコード as Display ,シリーズ名 as Display2, シリーズコード as Value " +
                 "FROM Mシリーズ where 無効日時 IS NULL ORDER BY シリーズ名");
             シリーズコード.DrawMode = DrawMode.OwnerDrawFixed;
+            シリーズコード.DropDownWidth = 600;
 
             ofn.SetComboBox(商品分類コード, "SELECT 商品分類コード as Display,分類名 as Display2,分類内容 as Display3," +
                 "商品分類コード as Value FROM M商品分類");
-            //ofn.SetComboBox(商品分類コード, "SELECT 商品分類コード as Display,分類名 as Display2," +
-            //    "商品分類コード as Value FROM M商品分類");
             商品分類コード.DrawMode = DrawMode.OwnerDrawFixed;
+            商品分類コード.DropDownWidth = 600;
+
 
             ofn.SetComboBox(売上区分コード, "SELECT 売上区分名 as Display,売上区分コード as Value FROM M売上区分");
             ofn.SetComboBox(FlowCategoryCode, "SELECT Code as Display,Name as Display2,Code as Value FROM ManufactureFlow");
             setCombo = true;
             FlowCategoryCode.DrawMode = DrawMode.OwnerDrawFixed;
+            FlowCategoryCode.DropDownWidth = 550;
+
 
             ofn.SetComboBox(商品コード, "SELECT M商品.商品コード as Display ,M商品.商品コード as Value " +
                 "FROM M商品 INNER JOIN M商品明細 ON M商品.商品コード = M商品明細.商品コード " +

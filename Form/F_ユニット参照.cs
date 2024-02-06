@@ -31,7 +31,8 @@ namespace u_net
         private string BASE_CAPTION = "ユニット参照";
         private int selected_frame = 0;
         public bool IsDirty = false;
-
+        int intWindowHeight ;
+        int intWindowWidth ;
         public F_ユニット参照()
         {
             this.Text = "ユニット参照";       // ウィンドウタイトルを設定
@@ -174,19 +175,17 @@ namespace u_net
                 control.PreviewKeyDown += OriginalClass.ValidateCheck;
             }
 
-
-
             //実行中フォーム起動
             string LoginUserCode = CommonConstants.LoginUserCode;//テスト用 ログインユーザを実行中にどのように管理するか決まったら修正
             LocalSetting localSetting = new LocalSetting();
             localSetting.LoadPlace(LoginUserCode, this);
 
-            MyApi myapi = new MyApi();
-            int xSize, ySize, intpixel, twipperdot;
+            //MyApi myapi = new MyApi();
+            //int xSize, ySize, intpixel, twipperdot;
 
-            //1インチ当たりのピクセル数 アクセスのサイズの引数がtwipなのでピクセルに変換する除算値を求める
-            intpixel = myapi.GetLogPixel();
-            twipperdot = myapi.GetTwipPerDot(intpixel);
+            ////1インチ当たりのピクセル数 アクセスのサイズの引数がtwipなのでピクセルに変換する除算値を求める
+            //intpixel = myapi.GetLogPixel();
+            //twipperdot = myapi.GetTwipPerDot(intpixel);
 
 
             OriginalClass ofn = new OriginalClass();
@@ -194,14 +193,12 @@ namespace u_net
             ユニットコード.DrawMode = DrawMode.OwnerDrawFixed;
 
 
-
-
             try
             {
                 this.SuspendLayout();
 
-                int intWindowHeight = this.Height;
-                int intWindowWidth = this.Width;
+                intWindowHeight = this.Height;
+                intWindowWidth = this.Width;
 
 
                 if (string.IsNullOrEmpty(args)) // 新規
@@ -225,8 +222,6 @@ namespace u_net
                     this.ユニットコード.Text = args.Substring(0, args.IndexOf(","));
                 }
                 args = null;
-
-
 
 
                 // 成功時の処理
@@ -362,7 +357,21 @@ namespace u_net
         }
 
 
+        private void Form_Resize(object sender, EventArgs e)
+        {
+            try
+            {
+                this.ユニット明細参照1.Detail.Height += (this.Height - intWindowHeight);
+                this.ユニット明細参照1.Detail.Width += (this.Width - intWindowWidth);
+                intWindowHeight = this.Height;
+                intWindowWidth = this.Width;
 
+            }
+            catch (Exception ex)
+            {
+                Debug.Print($"{nameof(Form_Resize)} - {ex.Message}");
+            }
+        }
 
         private bool ErrCheck()
         {

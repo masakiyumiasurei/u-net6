@@ -698,6 +698,7 @@ namespace u_net
             // ユニット版数
             // 
             ユニット版数.BackColor = Color.FromArgb(255, 255, 153);
+            ユニット版数.DropDownWidth = 60;
             ユニット版数.Enabled = false;
             ユニット版数.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             ユニット版数.FormattingEnabled = true;
@@ -999,10 +1000,10 @@ namespace u_net
             ユニット明細1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             ユニット明細1.AutoScroll = true;
             ユニット明細1.AutoSize = true;
-            ユニット明細1.Location = new Point(5, 191);
+            ユニット明細1.Location = new Point(5, 198);
             ユニット明細1.Margin = new Padding(4);
             ユニット明細1.Name = "ユニット明細1";
-            ユニット明細1.Size = new Size(1204, 373);
+            ユニット明細1.Size = new Size(1216, 367);
             ユニット明細1.TabIndex = 10197;
             // 
             // 承認表示
@@ -1051,10 +1052,10 @@ namespace u_net
             // 
             BackColor = SystemColors.Control;
             ClientSize = new Size(1221, 590);
+            Controls.Add(statusStrip1);
             Controls.Add(ユニット明細1);
             Controls.Add(label5);
             Controls.Add(廃止);
-            Controls.Add(statusStrip1);
             Controls.Add(更新者名);
             Controls.Add(更新者コード);
             Controls.Add(label7);
@@ -1117,6 +1118,7 @@ namespace u_net
             FormClosing += Form_Unload;
             Load += Form_Load;
             KeyDown += Form_KeyDown;
+            Resize += Form_Resize;
             panel1.ResumeLayout(false);
             statusStrip1.ResumeLayout(false);
             statusStrip1.PerformLayout();

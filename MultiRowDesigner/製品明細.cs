@@ -339,11 +339,8 @@ namespace MultiRowDesigner
 
         private void gcMultiRow1_CellValidated(object sender, CellEventArgs e)
         {
-
             switch (e.CellName)
             {
-
-
                 case "ユニットコード":
                     UpdatedControl(gcMultiRow1.CurrentCell);
                     break;
@@ -351,10 +348,7 @@ namespace MultiRowDesigner
                     UpdatedControl(gcMultiRow1.CurrentCell);
                     break;
 
-            }
-
-            F_製品? f_製品 = Application.OpenForms.OfType<F_製品>().FirstOrDefault();
-            f_製品.ChangedData(true);
+            }            
         }
 
         private void UpdatedControl(Cell controlObject)
@@ -393,15 +387,12 @@ namespace MultiRowDesigner
                             }
                         }
 
+                        F_製品? f_製品 = Application.OpenForms.OfType<F_製品>().FirstOrDefault();
+                        f_製品.ChangedData(true);
+
                         break;
 
-
-
-
                 }
-
-
-
             }
             catch (Exception ex)
             {

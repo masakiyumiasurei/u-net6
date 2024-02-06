@@ -68,10 +68,9 @@
             顧客名.BackColor = Color.White;
             顧客名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             顧客名.ImeMode = ImeMode.Hiragana;
-            顧客名.Location = new Point(126, 110);
-            顧客名.Margin = new Padding(3, 2, 3, 2);
+            顧客名.Location = new Point(144, 147);
             顧客名.Name = "顧客名";
-            顧客名.Size = new Size(413, 20);
+            顧客名.Size = new Size(471, 20);
             顧客名.TabIndex = 8;
             顧客名.Validated += 顧客名_Validated;
             // 
@@ -79,10 +78,9 @@
             // 
             入金日開始.BackColor = Color.White;
             入金日開始.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            入金日開始.Location = new Point(126, 50);
-            入金日開始.Margin = new Padding(3, 2, 3, 2);
+            入金日開始.Location = new Point(144, 67);
             入金日開始.Name = "入金日開始";
-            入金日開始.Size = new Size(160, 20);
+            入金日開始.Size = new Size(182, 20);
             入金日開始.TabIndex = 2;
             入金日開始.KeyPress += 入金日開始_KeyPress;
             入金日開始.Leave += 入金日開始_Leave;
@@ -94,10 +92,10 @@
             入金コード1ラベル.Font = new Font("BIZ UDゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             入金コード1ラベル.ForeColor = SystemColors.ActiveCaptionText;
             入金コード1ラベル.ImageAlign = ContentAlignment.MiddleLeft;
-            入金コード1ラベル.Location = new Point(25, 20);
+            入金コード1ラベル.Location = new Point(29, 27);
             入金コード1ラベル.Margin = new Padding(0);
             入金コード1ラベル.Name = "入金コード1ラベル";
-            入金コード1ラベル.Size = new Size(101, 17);
+            入金コード1ラベル.Size = new Size(115, 23);
             入金コード1ラベル.TabIndex = 1;
             入金コード1ラベル.Text = "入金コード(&C)";
             入金コード1ラベル.TextAlign = ContentAlignment.MiddleLeft;
@@ -108,9 +106,11 @@
             請求指定.Controls.Add(購買データ抽出指定2);
             請求指定.Controls.Add(購買データ抽出指定1);
             請求指定.Font = new Font("BIZ UDゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            請求指定.Location = new Point(25, 221);
+            請求指定.Location = new Point(29, 295);
+            請求指定.Margin = new Padding(3, 4, 3, 4);
             請求指定.Name = "請求指定";
-            請求指定.Size = new Size(525, 57);
+            請求指定.Padding = new Padding(3, 4, 3, 4);
+            請求指定.Size = new Size(600, 76);
             請求指定.TabIndex = 207;
             請求指定.TabStop = false;
             請求指定.Text = "請求指定(&B)";
@@ -118,7 +118,8 @@
             // 購買データ抽出指定3
             // 
             購買データ抽出指定3.AutoSize = true;
-            購買データ抽出指定3.Location = new Point(341, 22);
+            購買データ抽出指定3.Location = new Point(390, 29);
+            購買データ抽出指定3.Margin = new Padding(3, 4, 3, 4);
             購買データ抽出指定3.Name = "購買データ抽出指定3";
             購買データ抽出指定3.Size = new Size(95, 18);
             購買データ抽出指定3.TabIndex = 3;
@@ -129,7 +130,8 @@
             // 購買データ抽出指定2
             // 
             購買データ抽出指定2.AutoSize = true;
-            購買データ抽出指定2.Location = new Point(197, 22);
+            購買データ抽出指定2.Location = new Point(225, 29);
+            購買データ抽出指定2.Margin = new Padding(3, 4, 3, 4);
             購買データ抽出指定2.Name = "購買データ抽出指定2";
             購買データ抽出指定2.Size = new Size(95, 18);
             購買データ抽出指定2.TabIndex = 2;
@@ -140,7 +142,8 @@
             // 購買データ抽出指定1
             // 
             購買データ抽出指定1.AutoSize = true;
-            購買データ抽出指定1.Location = new Point(30, 22);
+            購買データ抽出指定1.Location = new Point(34, 29);
+            購買データ抽出指定1.Margin = new Padding(3, 4, 3, 4);
             購買データ抽出指定1.Name = "購買データ抽出指定1";
             購買データ抽出指定1.Size = new Size(109, 18);
             購買データ抽出指定1.TabIndex = 1;
@@ -151,9 +154,10 @@
             // 抽出ボタン
             // 
             抽出ボタン.Font = new Font("BIZ UDゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            抽出ボタン.Location = new Point(311, 370);
+            抽出ボタン.Location = new Point(355, 493);
+            抽出ボタン.Margin = new Padding(3, 4, 3, 4);
             抽出ボタン.Name = "抽出ボタン";
-            抽出ボタン.Size = new Size(114, 23);
+            抽出ボタン.Size = new Size(130, 31);
             抽出ボタン.TabIndex = 14;
             抽出ボタン.Text = "抽出(&O)";
             抽出ボタン.UseVisualStyleBackColor = true;
@@ -162,9 +166,10 @@
             // キャンセルボタン
             // 
             キャンセルボタン.Font = new Font("BIZ UDゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            キャンセルボタン.Location = new Point(430, 370);
+            キャンセルボタン.Location = new Point(491, 493);
+            キャンセルボタン.Margin = new Padding(3, 4, 3, 4);
             キャンセルボタン.Name = "キャンセルボタン";
-            キャンセルボタン.Size = new Size(114, 23);
+            キャンセルボタン.Size = new Size(130, 31);
             キャンセルボタン.TabIndex = 15;
             キャンセルボタン.Text = "キャンセル(&X)";
             キャンセルボタン.UseVisualStyleBackColor = true;
@@ -173,10 +178,10 @@
             // 入金日開始選択ボタン
             // 
             入金日開始選択ボタン.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            入金日開始選択ボタン.Location = new Point(292, 50);
-            入金日開始選択ボタン.Margin = new Padding(4, 3, 4, 3);
+            入金日開始選択ボタン.Location = new Point(334, 67);
+            入金日開始選択ボタン.Margin = new Padding(5, 4, 5, 4);
             入金日開始選択ボタン.Name = "入金日開始選択ボタン";
-            入金日開始選択ボタン.Size = new Size(25, 23);
+            入金日開始選択ボタン.Size = new Size(29, 31);
             入金日開始選択ボタン.TabIndex = 3;
             入金日開始選択ボタン.TabStop = false;
             入金日開始選択ボタン.Text = "▼";
@@ -186,10 +191,10 @@
             // 入金日終了選択ボタン
             // 
             入金日終了選択ボタン.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            入金日終了選択ボタン.Location = new Point(514, 50);
-            入金日終了選択ボタン.Margin = new Padding(4, 3, 4, 3);
+            入金日終了選択ボタン.Location = new Point(587, 67);
+            入金日終了選択ボタン.Margin = new Padding(5, 4, 5, 4);
             入金日終了選択ボタン.Name = "入金日終了選択ボタン";
-            入金日終了選択ボタン.Size = new Size(25, 23);
+            入金日終了選択ボタン.Size = new Size(29, 31);
             入金日終了選択ボタン.TabIndex = 5;
             入金日終了選択ボタン.TabStop = false;
             入金日終了選択ボタン.Text = "▼";
@@ -203,10 +208,10 @@
             出荷予定日2ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             出荷予定日2ラベル.ForeColor = SystemColors.ActiveCaptionText;
             出荷予定日2ラベル.ImageAlign = ContentAlignment.MiddleLeft;
-            出荷予定日2ラベル.Location = new Point(321, 50);
+            出荷予定日2ラベル.Location = new Point(367, 67);
             出荷予定日2ラベル.Margin = new Padding(0);
             出荷予定日2ラベル.Name = "出荷予定日2ラベル";
-            出荷予定日2ラベル.Size = new Size(21, 17);
+            出荷予定日2ラベル.Size = new Size(24, 23);
             出荷予定日2ラベル.TabIndex = 10012;
             出荷予定日2ラベル.Text = "～";
             出荷予定日2ラベル.TextAlign = ContentAlignment.MiddleLeft;
@@ -215,10 +220,9 @@
             // 
             入金日終了.BackColor = Color.White;
             入金日終了.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            入金日終了.Location = new Point(345, 50);
-            入金日終了.Margin = new Padding(3, 2, 3, 2);
+            入金日終了.Location = new Point(394, 67);
             入金日終了.Name = "入金日終了";
-            入金日終了.Size = new Size(160, 20);
+            入金日終了.Size = new Size(182, 20);
             入金日終了.TabIndex = 4;
             入金日終了.KeyPress += 入金日終了_KeyPress;
             入金日終了.Leave += 入金日終了_Leave;
@@ -230,20 +234,22 @@
             入金日1ラベル.Font = new Font("BIZ UDゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             入金日1ラベル.ForeColor = SystemColors.ActiveCaptionText;
             入金日1ラベル.ImageAlign = ContentAlignment.MiddleLeft;
-            入金日1ラベル.Location = new Point(25, 50);
+            入金日1ラベル.Location = new Point(29, 67);
             入金日1ラベル.Margin = new Padding(0);
             入金日1ラベル.Name = "入金日1ラベル";
-            入金日1ラベル.Size = new Size(87, 17);
+            入金日1ラベル.Size = new Size(99, 23);
             入金日1ラベル.TabIndex = 10014;
             入金日1ラベル.Text = "入金日(&D)";
             入金日1ラベル.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // 入金区分コード
             // 
+            入金区分コード.Font = new Font("Yu Gothic UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             入金区分コード.FormattingEnabled = true;
-            入金区分コード.Location = new Point(126, 140);
+            入金区分コード.Location = new Point(144, 187);
+            入金区分コード.Margin = new Padding(3, 4, 3, 4);
             入金区分コード.Name = "入金区分コード";
-            入金区分コード.Size = new Size(189, 23);
+            入金区分コード.Size = new Size(215, 25);
             入金区分コード.TabIndex = 9;
             入金区分コード.KeyPress += 入金区分コード_KeyPress;
             // 
@@ -253,9 +259,11 @@
             削除指定.Controls.Add(削除指定Button2);
             削除指定.Controls.Add(削除指定Button1);
             削除指定.Font = new Font("BIZ UDゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            削除指定.Location = new Point(25, 284);
+            削除指定.Location = new Point(29, 379);
+            削除指定.Margin = new Padding(3, 4, 3, 4);
             削除指定.Name = "削除指定";
-            削除指定.Size = new Size(525, 63);
+            削除指定.Padding = new Padding(3, 4, 3, 4);
+            削除指定.Size = new Size(600, 84);
             削除指定.TabIndex = 208;
             削除指定.TabStop = false;
             削除指定.Text = "削除指定(&R)";
@@ -263,7 +271,8 @@
             // 削除指定Button3
             // 
             削除指定Button3.AutoSize = true;
-            削除指定Button3.Location = new Point(341, 22);
+            削除指定Button3.Location = new Point(390, 29);
+            削除指定Button3.Margin = new Padding(3, 4, 3, 4);
             削除指定Button3.Name = "削除指定Button3";
             削除指定Button3.Size = new Size(95, 18);
             削除指定Button3.TabIndex = 4;
@@ -274,7 +283,8 @@
             // 削除指定Button2
             // 
             削除指定Button2.AutoSize = true;
-            削除指定Button2.Location = new Point(197, 22);
+            削除指定Button2.Location = new Point(225, 29);
+            削除指定Button2.Margin = new Padding(3, 4, 3, 4);
             削除指定Button2.Name = "削除指定Button2";
             削除指定Button2.Size = new Size(109, 18);
             削除指定Button2.TabIndex = 2;
@@ -285,7 +295,8 @@
             // 削除指定Button1
             // 
             削除指定Button1.AutoSize = true;
-            削除指定Button1.Location = new Point(30, 22);
+            削除指定Button1.Location = new Point(34, 29);
+            削除指定Button1.Margin = new Padding(3, 4, 3, 4);
             削除指定Button1.Name = "削除指定Button1";
             削除指定Button1.Size = new Size(123, 18);
             削除指定Button1.TabIndex = 1;
@@ -300,10 +311,10 @@
             label6.Font = new Font("BIZ UDゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             label6.ForeColor = SystemColors.ActiveCaptionText;
             label6.ImageAlign = ContentAlignment.MiddleLeft;
-            label6.Location = new Point(25, 110);
+            label6.Location = new Point(29, 147);
             label6.Margin = new Padding(0);
             label6.Name = "label6";
-            label6.Size = new Size(85, 17);
+            label6.Size = new Size(97, 23);
             label6.TabIndex = 10027;
             label6.Text = "顧客名(&N)";
             label6.TextAlign = ContentAlignment.MiddleLeft;
@@ -315,10 +326,10 @@
             自社担当者名ラベル.Font = new Font("BIZ UDゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             自社担当者名ラベル.ForeColor = SystemColors.ActiveCaptionText;
             自社担当者名ラベル.ImageAlign = ContentAlignment.MiddleLeft;
-            自社担当者名ラベル.Location = new Point(25, 140);
+            自社担当者名ラベル.Location = new Point(29, 187);
             自社担当者名ラベル.Margin = new Padding(0);
             自社担当者名ラベル.Name = "自社担当者名ラベル";
-            自社担当者名ラベル.Size = new Size(101, 17);
+            自社担当者名ラベル.Size = new Size(115, 23);
             自社担当者名ラベル.TabIndex = 10028;
             自社担当者名ラベル.Text = "入金区分(&G)";
             自社担当者名ラベル.TextAlign = ContentAlignment.MiddleLeft;
@@ -327,10 +338,9 @@
             // 
             顧客コード.BackColor = Color.White;
             顧客コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            顧客コード.Location = new Point(126, 80);
-            顧客コード.Margin = new Padding(3, 2, 3, 2);
+            顧客コード.Location = new Point(144, 107);
             顧客コード.Name = "顧客コード";
-            顧客コード.Size = new Size(160, 20);
+            顧客コード.Size = new Size(182, 20);
             顧客コード.TabIndex = 6;
             顧客コード.TextChanged += 顧客コード_TextChanged;
             顧客コード.KeyDown += 顧客コード_KeyDown;
@@ -339,10 +349,10 @@
             // 顧客コード検索ボタン
             // 
             顧客コード検索ボタン.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            顧客コード検索ボタン.Location = new Point(292, 80);
-            顧客コード検索ボタン.Margin = new Padding(4, 3, 4, 3);
+            顧客コード検索ボタン.Location = new Point(334, 107);
+            顧客コード検索ボタン.Margin = new Padding(5, 4, 5, 4);
             顧客コード検索ボタン.Name = "顧客コード検索ボタン";
-            顧客コード検索ボタン.Size = new Size(25, 23);
+            顧客コード検索ボタン.Size = new Size(29, 31);
             顧客コード検索ボタン.TabIndex = 7;
             顧客コード検索ボタン.TabStop = false;
             顧客コード検索ボタン.Text = "▼";
@@ -353,10 +363,9 @@
             // 
             入金コード開始.BackColor = Color.White;
             入金コード開始.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            入金コード開始.Location = new Point(126, 20);
-            入金コード開始.Margin = new Padding(3, 2, 3, 2);
+            入金コード開始.Location = new Point(144, 27);
             入金コード開始.Name = "入金コード開始";
-            入金コード開始.Size = new Size(189, 20);
+            入金コード開始.Size = new Size(215, 20);
             入金コード開始.TabIndex = 0;
             入金コード開始.KeyDown += 入金コード開始_KeyDown;
             入金コード開始.Leave += 入金コード開始_Leave;
@@ -368,10 +377,10 @@
             入金コード2ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             入金コード2ラベル.ForeColor = SystemColors.ActiveCaptionText;
             入金コード2ラベル.ImageAlign = ContentAlignment.MiddleLeft;
-            入金コード2ラベル.Location = new Point(321, 20);
+            入金コード2ラベル.Location = new Point(367, 27);
             入金コード2ラベル.Margin = new Padding(0);
             入金コード2ラベル.Name = "入金コード2ラベル";
-            入金コード2ラベル.Size = new Size(21, 17);
+            入金コード2ラベル.Size = new Size(24, 23);
             入金コード2ラベル.TabIndex = 10033;
             入金コード2ラベル.Text = "～";
             入金コード2ラベル.TextAlign = ContentAlignment.MiddleLeft;
@@ -380,10 +389,9 @@
             // 
             入金コード終了.BackColor = Color.White;
             入金コード終了.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            入金コード終了.Location = new Point(345, 20);
-            入金コード終了.Margin = new Padding(3, 2, 3, 2);
+            入金コード終了.Location = new Point(394, 27);
             入金コード終了.Name = "入金コード終了";
-            入金コード終了.Size = new Size(189, 20);
+            入金コード終了.Size = new Size(215, 20);
             入金コード終了.TabIndex = 1;
             入金コード終了.KeyDown += 入金コード終了_KeyDown;
             入金コード終了.Leave += 入金コード終了_Leave;
@@ -392,10 +400,9 @@
             // 
             入金金額終了.BackColor = Color.White;
             入金金額終了.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            入金金額終了.Location = new Point(345, 170);
-            入金金額終了.Margin = new Padding(3, 2, 3, 2);
+            入金金額終了.Location = new Point(394, 227);
             入金金額終了.Name = "入金金額終了";
-            入金金額終了.Size = new Size(189, 20);
+            入金金額終了.Size = new Size(215, 20);
             入金金額終了.TabIndex = 11;
             入金金額終了.Leave += 入金金額終了_Leave;
             // 
@@ -406,10 +413,10 @@
             label1.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             label1.ForeColor = SystemColors.ActiveCaptionText;
             label1.ImageAlign = ContentAlignment.MiddleLeft;
-            label1.Location = new Point(321, 170);
+            label1.Location = new Point(367, 227);
             label1.Margin = new Padding(0);
             label1.Name = "label1";
-            label1.Size = new Size(21, 17);
+            label1.Size = new Size(24, 23);
             label1.TabIndex = 10037;
             label1.Text = "～";
             label1.TextAlign = ContentAlignment.MiddleLeft;
@@ -418,10 +425,9 @@
             // 
             入金金額開始.BackColor = Color.White;
             入金金額開始.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            入金金額開始.Location = new Point(126, 170);
-            入金金額開始.Margin = new Padding(3, 2, 3, 2);
+            入金金額開始.Location = new Point(144, 227);
             入金金額開始.Name = "入金金額開始";
-            入金金額開始.Size = new Size(189, 20);
+            入金金額開始.Size = new Size(215, 20);
             入金金額開始.TabIndex = 10;
             入金金額開始.Leave += 入金金額開始_Leave;
             // 
@@ -432,10 +438,10 @@
             label2.Font = new Font("BIZ UDゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             label2.ForeColor = SystemColors.ActiveCaptionText;
             label2.ImageAlign = ContentAlignment.MiddleLeft;
-            label2.Location = new Point(25, 170);
+            label2.Location = new Point(29, 227);
             label2.Margin = new Padding(0);
             label2.Name = "label2";
-            label2.Size = new Size(101, 17);
+            label2.Size = new Size(115, 23);
             label2.TabIndex = 10036;
             label2.Text = "入金金額(&A)";
             label2.TextAlign = ContentAlignment.MiddleLeft;
@@ -447,19 +453,19 @@
             顧客コードラベル.Font = new Font("BIZ UDゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             顧客コードラベル.ForeColor = SystemColors.ActiveCaptionText;
             顧客コードラベル.ImageAlign = ContentAlignment.MiddleLeft;
-            顧客コードラベル.Location = new Point(25, 80);
+            顧客コードラベル.Location = new Point(29, 107);
             顧客コードラベル.Margin = new Padding(0);
             顧客コードラベル.Name = "顧客コードラベル";
-            顧客コードラベル.Size = new Size(101, 17);
+            顧客コードラベル.Size = new Size(115, 23);
             顧客コードラベル.TabIndex = 10038;
             顧客コードラベル.Text = "顧客コード(&U)";
             顧客コードラベル.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // F_入金管理_抽出
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(577, 406);
+            ClientSize = new Size(659, 541);
             Controls.Add(顧客コードラベル);
             Controls.Add(入金金額終了);
             Controls.Add(label1);
@@ -485,10 +491,13 @@
             Controls.Add(顧客名);
             Controls.Add(入金日開始);
             Controls.Add(入金コード1ラベル);
+            KeyPreview = true;
+            Margin = new Padding(3, 4, 3, 4);
             Name = "F_入金管理_抽出";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "入金管理 _抽出";
             Load += Form_Load;
+            KeyDown += Form_KeyDown;
             請求指定.ResumeLayout(false);
             請求指定.PerformLayout();
             削除指定.ResumeLayout(false);

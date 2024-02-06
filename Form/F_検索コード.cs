@@ -37,6 +37,14 @@ namespace u_net
 
         private void 検索ボタン_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(検索コード.Text))
+            {
+                MessageBox.Show("検索コードを指定してください。", this.Name, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
+                検索コード.Focus();
+               return;
+            }
+
             MidForm parentform = (MidForm)Obj;
             parentform.SearchCode(this.検索コード.Text);
             Close();

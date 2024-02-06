@@ -90,14 +90,12 @@ namespace u_net
             FunctionClass fn = new FunctionClass();
             fn.DoWait("しばらくお待ちください...");
 
+            //MyApi myapi = new MyApi();
+            //int xSize, ySize, intpixel, twipperdot;
 
-
-            MyApi myapi = new MyApi();
-            int xSize, ySize, intpixel, twipperdot;
-
-            //1インチ当たりのピクセル数 アクセスのサイズの引数がtwipなのでピクセルに変換する除算値を求める
-            intpixel = myapi.GetLogPixel();
-            twipperdot = myapi.GetTwipPerDot(intpixel);
+            ////1インチ当たりのピクセル数 アクセスのサイズの引数がtwipなのでピクセルに変換する除算値を求める
+            //intpixel = myapi.GetLogPixel();
+            //twipperdot = myapi.GetTwipPerDot(intpixel);
 
             try
             {
@@ -230,7 +228,7 @@ namespace u_net
             twipperdot = myapi.GetTwipPerDot(intpixel);
 
             //0列目はaccessでは行ヘッダのため、ずらす
-            対象ユニット.Columns[0].Width = 1000 / twipperdot;
+            対象ユニット.Columns[0].Width = 1100 / twipperdot;
             対象ユニット.Columns[1].Width = 400 / twipperdot;
             対象ユニット.Columns[2].Width = 2750 / twipperdot;
             対象ユニット.Columns[3].Width = 2750 / twipperdot;
@@ -339,12 +337,13 @@ namespace u_net
                 // 検索処理
                 string strKey = "";
                 int lngi = 1;
-
+                bool isSelectedRowFound = false;
                 // 対象ユニットの処理
                 foreach (DataGridViewRow row in 対象ユニット.Rows)
                 {
                     if (row.Selected)
                     {
+                        isSelectedRowFound = true;
                         if (strKey == "")
                         {
                             strKey = $"ユニットコード='{row.Cells["コード"].Value}' AND ユニット版数={row.Cells["E"].Value}";
@@ -357,9 +356,15 @@ namespace u_net
                     lngi++;
                 }
 
+                if (!isSelectedRowFound)
+                {
+                    MessageBox.Show("行を選択してください。", "選択エラー", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
                 if (strKey == "")
                 {
-                    strKey = "1=0";
+                    strKey = "1=1";
                 }
 
                 string strSQL = "SELECT B.英字部 + LTRIM(STR(MAX(B.数字部))) AS 末尾構成番号 " +

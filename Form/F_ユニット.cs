@@ -31,6 +31,8 @@ namespace u_net
         private string BASE_CAPTION = "ユニット";
         private int selected_frame = 0;
         public bool IsDirty = false;
+        int intWindowHeight ;
+        int intWindowWidth ;
 
         public F_ユニット()
         {
@@ -94,7 +96,21 @@ namespace u_net
         {
             get
             {
-                return ユニット明細1.Detail.CurrentRow.Cells["部品コード"].Value?.ToString();
+                if (ユニット明細1?.Detail?.CurrentRow != null)
+                {
+                    // "部品コード"のセルが存在するか確認
+                    var cell = ユニット明細1.Detail.CurrentRow.Cells["部品コード"];
+                    if (cell != null)
+                    {
+                        // セルのValueがnullでないか確認
+                        if (cell.Value != null)
+                        {
+                            return cell.Value.ToString();
+                        }
+                    }
+                }
+                // 上記のいずれかがnullの場合は、適切なデフォルト値やnullを返す
+                return null;
 
             }
         }
@@ -186,14 +202,12 @@ namespace u_net
             ユニットコード.DrawMode = DrawMode.OwnerDrawFixed;
 
 
-
-
             try
             {
                 this.SuspendLayout();
 
-                int intWindowHeight = this.Height;
-                int intWindowWidth = this.Width;
+                intWindowHeight = this.Height;
+                intWindowWidth = this.Width;
 
 
                 if (string.IsNullOrEmpty(args)) // 新規
@@ -292,6 +306,22 @@ namespace u_net
             {
                 Console.WriteLine(this.Name + "_GoNewMode - " + ex.Message);
                 return false;
+            }
+        }
+
+        private void Form_Resize(object sender, EventArgs e)
+        {
+            try
+            {
+                this.ユニット明細1.Detail.Height += (this.Height - intWindowHeight);
+                this.ユニット明細1.Detail.Width += (this.Width - intWindowWidth);
+                intWindowHeight = this.Height;
+                intWindowWidth = this.Width;
+
+            }
+            catch (Exception ex)
+            {
+                Debug.Print($"{nameof(Form_Resize)} - {ex.Message}");
             }
         }
 
@@ -2255,6 +2285,7 @@ namespace u_net
             try
             {
                 long recordsAffected = 0;
+                
 
                 foreach (Row row in ユニット明細1.Detail.Rows)
                 {
@@ -2291,15 +2322,12 @@ namespace u_net
                             }
                         }
 
-
                         row.Cells["ユニット材料費"].Value = price / pieces;
 
-
+                        //追加件数
                         recordsAffected++;
                     }
-
                 }
-
 
                 return recordsAffected;
             }

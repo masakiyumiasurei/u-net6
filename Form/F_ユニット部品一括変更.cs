@@ -207,11 +207,16 @@ namespace u_net
 
         private void 実行ボタン_Click(object sender, EventArgs e)
         {
-
-            F_ユニット? f_ユニット = Application.OpenForms.OfType<F_ユニット>().FirstOrDefault();
-
             try
             {
+
+                F_ユニット? f_ユニット = Application.OpenForms.OfType<F_ユニット>().FirstOrDefault();
+            // F_ユニットまたはF_ユニット参照のインスタンスをf_ユニット変数に代入
+
+            //Form? f_ユニット = Application.OpenForms.OfType<F_ユニット>().FirstOrDefault();
+                // F_ユニットが開かれていない場合、F_ユニット参照の新しいインスタンスを作成
+                //f_ユニット = new F_ユニット参照(); 結局参照フォームは登録なし
+                        
                 string strSource = this.変更元部品コード.Text;
                 string strDestination = this.変更先部品コード.Text;
                 string strName = this.変更先品名.Text;
@@ -227,7 +232,10 @@ namespace u_net
                 string strOperation = 変更操作コード.SelectedValue?.ToString();
                 string strNote = this.変更内容.Text;
 
-                long lngCount = f_ユニット.ChangeParts(
+                if (f_ユニット != null)
+                {
+
+                    long lngCount = f_ユニット.ChangeParts(
                     strSource,
                     strDestination,
                     strName,
@@ -244,19 +252,61 @@ namespace u_net
                     strNote
                 );
 
-                if (lngCount >= 0)
-                {
-                    MessageBox.Show($"{lngCount} 件変更しました。", "情報", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                    // １件以上の変更があった場合のみ、ユニットデータに対し「変更あり」とする
-                    if (lngCount > 0)
+                    if (lngCount >= 0)
                     {
-                        f_ユニット.ChangedData(true);
+                        MessageBox.Show($"{lngCount} 件変更しました。", "情報", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        // １件以上の変更があった場合のみ、ユニットデータに対し「変更あり」とする
+                        if (lngCount > 0)
+                        {
+                            f_ユニット.ChangedData(true);
+                        }
+                    }
+
+                    else
+                    {
+                        MessageBox.Show("エラーが発生したため変更できませんでした。", "警告", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     }
                 }
                 else
                 {
-                    MessageBox.Show("エラーが発生したため変更できませんでした。", "警告", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    // F_ユニットが開かれていない場合、F_ユニット参照の新しいインスタンスを作成
+                    F_ユニット参照? referance = Application.OpenForms.OfType<F_ユニット参照>().FirstOrDefault();
+                    referance = new F_ユニット参照();
+
+                    long lngCount = referance.ChangeParts(
+                    strSource,
+                    strDestination,
+                    strName,
+                    strModel,
+                    strMaker,
+                    lngPrice,
+                    strForm,
+                    lngPieces,
+                    strRoHS,
+                    strNcc,
+                    strAbolition,
+                    blnChangeLog,
+                    strOperation,
+                    strNote
+                );
+
+                    if (lngCount >= 0)
+                    {
+                        MessageBox.Show($"{lngCount} 件変更しました。", "情報", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        // １件以上の変更があった場合のみ、ユニットデータに対し「変更あり」とする
+                        if (lngCount > 0)
+                        {
+                            referance.ChangedData(true);
+                        }
+                    }
+
+                    else
+                    {
+                        MessageBox.Show("エラーが発生したため変更できませんでした。", "警告", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
+
                 }
 
                 this.Close();

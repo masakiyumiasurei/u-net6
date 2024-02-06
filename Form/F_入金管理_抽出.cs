@@ -58,10 +58,10 @@ namespace u_net
                 入金コード終了.Text = frmTarget.str入金コード終了;
 
                 if (frmTarget.dtm入金日開始 != DateTime.MinValue)
-                    入金日開始.Text = frmTarget.dtm入金日開始.ToString();
+                    入金日開始.Text = frmTarget.dtm入金日開始.ToString("yyyy/MM/dd");
 
                 if (frmTarget.dtm入金日終了 != DateTime.MinValue)
-                    入金日終了.Text = frmTarget.dtm入金日終了.ToString();
+                    入金日終了.Text = frmTarget.dtm入金日終了.ToString("yyyy/MM/dd");
 
                 顧客コード.Text = frmTarget.str顧客コード;
                 顧客名.Text = frmTarget.str顧客名;
@@ -167,6 +167,8 @@ namespace u_net
                     MessageBox.Show("エラーが発生したため、抽出できませんでした。", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     return;
                 }
+
+                this.Close();
             }
             catch (Exception ex)
             {
@@ -177,7 +179,7 @@ namespace u_net
             finally
             {
                 
-                this.Close();
+               // this.Close();
             }
         }
 
@@ -343,15 +345,7 @@ namespace u_net
             {
                 form.args = 入金日開始.Text;
             }
-
-            if (form.ShowDialog() == DialogResult.OK)
-            {
-                // 日付選択フォームから選択した日付を取得
-                string selectedDate = form.SelectedDate;
-
-                入金日開始.Text = selectedDate;
-                入金日開始.Focus();
-            }
+                       
 
             if (e.KeyChar == ' ')
             {
@@ -402,16 +396,7 @@ namespace u_net
             {
                 form.args = 入金日終了.Text;
             }
-
-            if (form.ShowDialog() == DialogResult.OK)
-            {
-                // 日付選択フォームから選択した日付を取得
-                string selectedDate = form.SelectedDate;
-
-                // フォームAの日付コントロールに選択した日付を設定
-                入金日終了.Text = selectedDate;
-                入金日終了.Focus();
-            }
+                       
 
             if (e.KeyChar == ' ')
             {
@@ -455,6 +440,25 @@ namespace u_net
             }
         }
 
-
+        private void Form_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Return:
+                    SelectNextControl(ActiveControl, true, true, true, true);
+                    break;
+                case Keys.Space: //コンボボックスならドロップダウン
+                    {
+                        Control activeControl = this.ActiveControl;
+                        if (activeControl is System.Windows.Forms.ComboBox)
+                        {
+                            e.Handled = true;
+                            System.Windows.Forms.ComboBox activeComboBox = (System.Windows.Forms.ComboBox)activeControl;
+                            activeComboBox.DroppedDown = true;
+                        }
+                    }
+                    break;
+            }
+        }
     }
 }

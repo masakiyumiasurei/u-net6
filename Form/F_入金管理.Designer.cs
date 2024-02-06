@@ -315,6 +315,7 @@
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "F_入金管理";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "入金管理";
             FormClosing += Form_FormClosing;
             Load += Form_Load;

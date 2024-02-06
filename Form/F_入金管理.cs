@@ -235,7 +235,9 @@ namespace u_net
             str入金金額終了 = "";
             lng請求指定 = 1;
             lng削除指定 = 1;
-        }
+            str顧客コード="";
+        
+    }
 
         //フィルタ設定その１　－　全表示（但し、削除データは除く）
         private void SetFilter1()
@@ -304,19 +306,24 @@ namespace u_net
             一覧.DefaultCellStyle.ForeColor = Color.Black;
             一覧.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
-            myapi.GetFullScreen(out xSize, out ySize);
+            System.Type dgvtype = typeof(DataGridView);
+            System.Reflection.PropertyInfo dgvPropertyInfo = dgvtype.GetProperty("DoubleBuffered", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
+            dgvPropertyInfo.SetValue(一覧, true, null);
 
-            int x = 10, y = 10;
 
-            this.Size = new Size(this.Width, ySize * myapi.GetTwipPerDot(intpixel) - 1200);
-            //accessのmovesizeメソッドの引数の座標単位はtwipなので以下で
+            //myapi.GetFullScreen(out xSize, out ySize);
 
-            this.Size = new Size(this.Width, ySize - 1200 / twipperdot);
+            //int x = 10, y = 10;
 
-            this.StartPosition = FormStartPosition.Manual; // 手動で位置を指定
-            int screenWidth = Screen.PrimaryScreen.Bounds.Width; // プライマリスクリーンの幅
-            x = (screenWidth - this.Width) / 2;
-            this.Location = new Point(x, y);
+            //this.Size = new Size(this.Width, ySize * myapi.GetTwipPerDot(intpixel) - 1200);
+            ////accessのmovesizeメソッドの引数の座標単位はtwipなので以下で
+
+            //this.Size = new Size(this.Width, ySize - 1200 / twipperdot);
+
+            //this.StartPosition = FormStartPosition.Manual; // 手動で位置を指定
+            //int screenWidth = Screen.PrimaryScreen.Bounds.Width; // プライマリスクリーンの幅
+            //x = (screenWidth - this.Width) / 2;
+            //this.Location = new Point(x, y);
 
             intSortSettings = 1;
 

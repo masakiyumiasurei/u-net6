@@ -73,20 +73,24 @@ namespace u_net
             dataGridView1.DefaultCellStyle.Font = new Font("MS ゴシック", 10);
             dataGridView1.DefaultCellStyle.ForeColor = Color.Black;
 
+            System.Type dgvtype = typeof(DataGridView);
+            System.Reflection.PropertyInfo dgvPropertyInfo = dgvtype.GetProperty("DoubleBuffered", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
+            dgvPropertyInfo.SetValue(dataGridView1, true, null);
 
-            myapi.GetFullScreen(out xSize, out ySize);
 
-            int x = 10, y = 10;
+            //myapi.GetFullScreen(out xSize, out ySize);
 
-            this.Size = new Size(this.Width, ySize * myapi.GetTwipPerDot(intpixel) - 1200);
-            //accessのmovesizeメソッドの引数の座標単位はtwipなので以下で
+            //int x = 10, y = 10;
 
-            this.Size = new Size(this.Width, ySize - 1200 / twipperdot);
+            //this.Size = new Size(this.Width, ySize * myapi.GetTwipPerDot(intpixel) - 1200);
+            ////accessのmovesizeメソッドの引数の座標単位はtwipなので以下で
 
-            this.StartPosition = FormStartPosition.Manual; // 手動で位置を指定
-            int screenWidth = Screen.PrimaryScreen.Bounds.Width; // プライマリスクリーンの幅
-            x = (screenWidth - this.Width) / 2;
-            this.Location = new Point(x, y);
+            //this.Size = new Size(this.Width, ySize - 1200 / twipperdot);
+
+            //this.StartPosition = FormStartPosition.Manual; // 手動で位置を指定
+            //int screenWidth = Screen.PrimaryScreen.Bounds.Width; // プライマリスクリーンの幅
+            //x = (screenWidth - this.Width) / 2;
+            //this.Location = new Point(x, y);
 
 
             dataGridView1.ReadOnly = true;

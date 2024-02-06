@@ -445,7 +445,6 @@ namespace u_net
             // 
             // コマンドツール
             // 
-            コマンドツール.Enabled = false;
             コマンドツール.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             コマンドツール.ForeColor = Color.Blue;
             コマンドツール.ImageAlign = ContentAlignment.BottomLeft;
@@ -625,6 +624,7 @@ namespace u_net
             // 
             // label6
             // 
+            label6.Font = new Font("Yu Gothic UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             label6.Location = new Point(738, 95);
             label6.Name = "label6";
             label6.Size = new Size(72, 17);
@@ -634,6 +634,7 @@ namespace u_net
             // 
             // label8
             // 
+            label8.Font = new Font("Yu Gothic UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             label8.Location = new Point(738, 72);
             label8.Name = "label8";
             label8.Size = new Size(72, 17);
@@ -657,6 +658,7 @@ namespace u_net
             // 
             // label9
             // 
+            label9.Font = new Font("Yu Gothic UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             label9.Location = new Point(738, 50);
             label9.Name = "label9";
             label9.Size = new Size(72, 17);
@@ -699,7 +701,7 @@ namespace u_net
             ユニット版数.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             ユニット版数.FormattingEnabled = true;
             ユニット版数.ImeMode = ImeMode.Disable;
-            ユニット版数.Location = new Point(338, 48);
+            ユニット版数.Location = new Point(341, 48);
             ユニット版数.Name = "ユニット版数";
             ユニット版数.Size = new Size(54, 21);
             ユニット版数.TabIndex = 4;
@@ -709,9 +711,10 @@ namespace u_net
             // 
             // label1
             // 
-            label1.Location = new Point(292, 50);
+            label1.Font = new Font("Yu Gothic UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.Location = new Point(286, 49);
             label1.Name = "label1";
-            label1.Size = new Size(54, 17);
+            label1.Size = new Size(57, 17);
             label1.TabIndex = 3;
             label1.Text = "版数(&E)";
             // 
@@ -776,6 +779,7 @@ namespace u_net
             // 
             // label3
             // 
+            label3.Font = new Font("Yu Gothic UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             label3.Location = new Point(564, 95);
             label3.Name = "label3";
             label3.Size = new Size(40, 17);
@@ -785,6 +789,7 @@ namespace u_net
             // 
             // label4
             // 
+            label4.Font = new Font("Yu Gothic UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             label4.Location = new Point(564, 73);
             label4.Name = "label4";
             label4.Size = new Size(40, 17);
@@ -794,6 +799,7 @@ namespace u_net
             // 
             // label10
             // 
+            label10.Font = new Font("Yu Gothic UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             label10.Location = new Point(564, 49);
             label10.Name = "label10";
             label10.Size = new Size(40, 17);
@@ -891,6 +897,7 @@ namespace u_net
             // 
             // label7
             // 
+            label7.Font = new Font("Yu Gothic UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             label7.Location = new Point(738, 120);
             label7.Name = "label7";
             label7.Size = new Size(72, 17);
@@ -931,26 +938,26 @@ namespace u_net
             statusStrip1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             statusStrip1.Dock = DockStyle.None;
             statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1 });
-            statusStrip1.Location = new Point(0, 568);
+            statusStrip1.Location = new Point(0, 565);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Padding = new Padding(1, 0, 19, 0);
-            statusStrip1.Size = new Size(111, 22);
+            statusStrip1.Size = new Size(133, 25);
             statusStrip1.TabIndex = 10195;
             statusStrip1.Text = "statusStrip1";
             // 
             // toolStripStatusLabel1
             // 
             toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            toolStripStatusLabel1.Size = new Size(89, 17);
+            toolStripStatusLabel1.Size = new Size(111, 20);
             toolStripStatusLabel1.Text = "各種項目の説明";
             // 
             // ユニット明細参照1
             // 
             ユニット明細参照1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             ユニット明細参照1.Location = new Point(5, 195);
-            ユニット明細参照1.Margin = new Padding(4, 4, 4, 4);
+            ユニット明細参照1.Margin = new Padding(4);
             ユニット明細参照1.Name = "ユニット明細参照1";
-            ユニット明細参照1.Size = new Size(1018, 369);
+            ユニット明細参照1.Size = new Size(1031, 369);
             ユニット明細参照1.TabIndex = 10197;
             // 
             // 廃止
@@ -1091,6 +1098,7 @@ namespace u_net
             FormClosing += Form_Unload;
             Load += Form_Load;
             KeyDown += Form_KeyDown;
+            Resize += Form_Resize;
             panel1.ResumeLayout(false);
             statusStrip1.ResumeLayout(false);
             statusStrip1.PerformLayout();
@@ -1183,7 +1191,7 @@ namespace u_net
         internal ToolStripStatusLabel toolStripStatusLabel1;
         private CheckBox 廃止;
         private Label label5;
-        private MultiRowDesigner.ユニット明細参照 ユニット明細参照1;
+        public MultiRowDesigner.ユニット明細参照 ユニット明細参照1;
         private ToolTip toolTip1;
         private TextBox 承認表示;
         private TextBox 削除表示;
