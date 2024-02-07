@@ -285,8 +285,8 @@ namespace u_net
             tabControl1.Location = new Point(12, 12);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(547, 394);
-            tabControl1.TabIndex = 199;
+            tabControl1.Size = new Size(547, 372);
+            tabControl1.TabIndex = 1;
             // 
             // ページ55
             // 
@@ -311,7 +311,7 @@ namespace u_net
             ページ55.Location = new Point(4, 22);
             ページ55.Name = "ページ55";
             ページ55.Padding = new Padding(3);
-            ページ55.Size = new Size(539, 368);
+            ページ55.Size = new Size(539, 346);
             ページ55.TabIndex = 0;
             ページ55.Text = "　 基本情報";
             ページ55.UseVisualStyleBackColor = true;
@@ -319,11 +319,12 @@ namespace u_net
             // 郵便番号
             // 
             郵便番号.Font = new Font("BIZ UDPゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            郵便番号.Location = new Point(176, 110);
+            郵便番号.ImeMode = ImeMode.Disable;
+            郵便番号.Location = new Point(135, 87);
             郵便番号.Mask = "000-0000";
             郵便番号.Name = "郵便番号";
             郵便番号.Size = new Size(135, 20);
-            郵便番号.TabIndex = 211;
+            郵便番号.TabIndex = 3;
             郵便番号.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
             郵便番号.VisibleChanged += 会社名1_TextChanged;
             // 
@@ -331,8 +332,8 @@ namespace u_net
             // 
             表示名.BackColor = Color.White;
             表示名.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            表示名.ImeMode = ImeMode.Off;
-            表示名.Location = new Point(176, 140);
+            表示名.ImeMode = ImeMode.Hiragana;
+            表示名.Location = new Point(135, 111);
             表示名.Margin = new Padding(3, 2, 3, 2);
             表示名.Name = "表示名";
             表示名.Size = new Size(312, 21);
@@ -343,8 +344,8 @@ namespace u_net
             // 
             会社名2.BackColor = Color.White;
             会社名2.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            会社名2.ImeMode = ImeMode.Off;
-            会社名2.Location = new Point(176, 80);
+            会社名2.ImeMode = ImeMode.Hiragana;
+            会社名2.Location = new Point(135, 63);
             会社名2.Margin = new Padding(3, 2, 3, 2);
             会社名2.Name = "会社名2";
             会社名2.Size = new Size(310, 21);
@@ -355,10 +356,11 @@ namespace u_net
             // 
             会社コード.BackColor = Color.White;
             会社コード.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            会社コード.Location = new Point(176, 20);
+            会社コード.ImeMode = ImeMode.Disable;
+            会社コード.Location = new Point(135, 15);
             会社コード.Margin = new Padding(3, 2, 3, 2);
             会社コード.Name = "会社コード";
-            会社コード.Size = new Size(135, 21);
+            会社コード.Size = new Size(100, 21);
             会社コード.TabIndex = 0;
             会社コード.Validated += 会社コード_Validated;
             // 
@@ -366,13 +368,13 @@ namespace u_net
             // 
             ラベル64.AllowDrop = true;
             ラベル64.AutoEllipsis = true;
-            ラベル64.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            ラベル64.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             ラベル64.ForeColor = SystemColors.ActiveCaptionText;
             ラベル64.ImageAlign = ContentAlignment.MiddleLeft;
-            ラベル64.Location = new Point(25, 200);
+            ラベル64.Location = new Point(15, 160);
             ラベル64.Margin = new Padding(0);
             ラベル64.Name = "ラベル64";
-            ラベル64.Size = new Size(133, 20);
+            ラベル64.Size = new Size(118, 20);
             ラベル64.TabIndex = 207;
             ラベル64.Text = "電話番号";
             ラベル64.TextAlign = ContentAlignment.MiddleLeft;
@@ -381,13 +383,13 @@ namespace u_net
             // 
             頭文字ラベル.AllowDrop = true;
             頭文字ラベル.AutoEllipsis = true;
-            頭文字ラベル.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            頭文字ラベル.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             頭文字ラベル.ForeColor = SystemColors.ActiveCaptionText;
             頭文字ラベル.ImageAlign = ContentAlignment.MiddleLeft;
-            頭文字ラベル.Location = new Point(25, 170);
+            頭文字ラベル.Location = new Point(15, 136);
             頭文字ラベル.Margin = new Padding(0);
             頭文字ラベル.Name = "頭文字ラベル";
-            頭文字ラベル.Size = new Size(133, 20);
+            頭文字ラベル.Size = new Size(118, 20);
             頭文字ラベル.TabIndex = 206;
             頭文字ラベル.Text = "住所2";
             頭文字ラベル.TextAlign = ContentAlignment.MiddleLeft;
@@ -396,7 +398,8 @@ namespace u_net
             // 
             頭文字.BackColor = Color.White;
             頭文字.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            頭文字.Location = new Point(176, 170);
+            頭文字.ImeMode = ImeMode.Hiragana;
+            頭文字.Location = new Point(135, 136);
             頭文字.Margin = new Padding(3, 2, 3, 2);
             頭文字.Name = "頭文字";
             頭文字.ReadOnly = true;
@@ -408,13 +411,13 @@ namespace u_net
             // 
             勤務地コードラベル.AllowDrop = true;
             勤務地コードラベル.AutoEllipsis = true;
-            勤務地コードラベル.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            勤務地コードラベル.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             勤務地コードラベル.ForeColor = SystemColors.ActiveCaptionText;
             勤務地コードラベル.ImageAlign = ContentAlignment.MiddleLeft;
-            勤務地コードラベル.Location = new Point(25, 230);
+            勤務地コードラベル.Location = new Point(15, 184);
             勤務地コードラベル.Margin = new Padding(0);
             勤務地コードラベル.Name = "勤務地コードラベル";
-            勤務地コードラベル.Size = new Size(133, 20);
+            勤務地コードラベル.Size = new Size(118, 20);
             勤務地コードラベル.TabIndex = 208;
             勤務地コードラベル.Text = "FAX番号";
             勤務地コードラベル.TextAlign = ContentAlignment.MiddleLeft;
@@ -423,13 +426,13 @@ namespace u_net
             // 
             ラベル99.AllowDrop = true;
             ラベル99.AutoEllipsis = true;
-            ラベル99.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            ラベル99.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             ラベル99.ForeColor = SystemColors.ActiveCaptionText;
             ラベル99.ImageAlign = ContentAlignment.MiddleLeft;
-            ラベル99.Location = new Point(25, 140);
+            ラベル99.Location = new Point(15, 111);
             ラベル99.Margin = new Padding(0);
             ラベル99.Name = "ラベル99";
-            ラベル99.Size = new Size(133, 20);
+            ラベル99.Size = new Size(118, 20);
             ラベル99.TabIndex = 205;
             ラベル99.Text = "住所1";
             ラベル99.TextAlign = ContentAlignment.MiddleLeft;
@@ -438,13 +441,13 @@ namespace u_net
             // 
             ふりがな_ラベル.AllowDrop = true;
             ふりがな_ラベル.AutoEllipsis = true;
-            ふりがな_ラベル.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            ふりがな_ラベル.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             ふりがな_ラベル.ForeColor = SystemColors.ActiveCaptionText;
             ふりがな_ラベル.ImageAlign = ContentAlignment.MiddleLeft;
-            ふりがな_ラベル.Location = new Point(25, 80);
+            ふりがな_ラベル.Location = new Point(15, 63);
             ふりがな_ラベル.Margin = new Padding(0);
             ふりがな_ラベル.Name = "ふりがな_ラベル";
-            ふりがな_ラベル.Size = new Size(133, 20);
+            ふりがな_ラベル.Size = new Size(118, 20);
             ふりがな_ラベル.TabIndex = 202;
             ふりがな_ラベル.Text = "会社名2";
             ふりがな_ラベル.TextAlign = ContentAlignment.MiddleLeft;
@@ -453,8 +456,8 @@ namespace u_net
             // 
             会社名1.BackColor = Color.White;
             会社名1.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            会社名1.ImeMode = ImeMode.Off;
-            会社名1.Location = new Point(176, 50);
+            会社名1.ImeMode = ImeMode.Hiragana;
+            会社名1.Location = new Point(135, 39);
             会社名1.Margin = new Padding(3, 2, 3, 2);
             会社名1.Name = "会社名1";
             会社名1.Size = new Size(310, 21);
@@ -465,13 +468,13 @@ namespace u_net
             // 
             氏名_ラベル.AllowDrop = true;
             氏名_ラベル.AutoEllipsis = true;
-            氏名_ラベル.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            氏名_ラベル.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             氏名_ラベル.ForeColor = SystemColors.ActiveCaptionText;
             氏名_ラベル.ImageAlign = ContentAlignment.MiddleLeft;
-            氏名_ラベル.Location = new Point(25, 50);
+            氏名_ラベル.Location = new Point(15, 39);
             氏名_ラベル.Margin = new Padding(0);
             氏名_ラベル.Name = "氏名_ラベル";
-            氏名_ラベル.Size = new Size(133, 20);
+            氏名_ラベル.Size = new Size(118, 20);
             氏名_ラベル.TabIndex = 200;
             氏名_ラベル.Text = "会社名1";
             氏名_ラベル.TextAlign = ContentAlignment.MiddleLeft;
@@ -481,7 +484,7 @@ namespace u_net
             代表者氏名.BackColor = Color.White;
             代表者氏名.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             代表者氏名.ImeMode = ImeMode.Hiragana;
-            代表者氏名.Location = new Point(176, 260);
+            代表者氏名.Location = new Point(135, 208);
             代表者氏名.Margin = new Padding(3, 2, 3, 2);
             代表者氏名.Name = "代表者氏名";
             代表者氏名.Size = new Size(249, 21);
@@ -492,7 +495,8 @@ namespace u_net
             // 
             FAX番号.BackColor = Color.White;
             FAX番号.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            FAX番号.Location = new Point(176, 230);
+            FAX番号.ImeMode = ImeMode.Disable;
+            FAX番号.Location = new Point(135, 184);
             FAX番号.Margin = new Padding(3, 2, 3, 2);
             FAX番号.Name = "FAX番号";
             FAX番号.ReadOnly = true;
@@ -504,13 +508,13 @@ namespace u_net
             // 
             部_ラベル.AllowDrop = true;
             部_ラベル.AutoEllipsis = true;
-            部_ラベル.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            部_ラベル.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             部_ラベル.ForeColor = SystemColors.ActiveCaptionText;
             部_ラベル.ImageAlign = ContentAlignment.MiddleLeft;
-            部_ラベル.Location = new Point(25, 260);
+            部_ラベル.Location = new Point(15, 208);
             部_ラベル.Margin = new Padding(0);
             部_ラベル.Name = "部_ラベル";
-            部_ラベル.Size = new Size(133, 20);
+            部_ラベル.Size = new Size(118, 20);
             部_ラベル.TabIndex = 210;
             部_ラベル.Text = "代表者氏名";
             部_ラベル.TextAlign = ContentAlignment.MiddleLeft;
@@ -519,13 +523,13 @@ namespace u_net
             // 
             ラベル93.AllowDrop = true;
             ラベル93.AutoEllipsis = true;
-            ラベル93.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            ラベル93.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             ラベル93.ForeColor = SystemColors.ActiveCaptionText;
             ラベル93.ImageAlign = ContentAlignment.MiddleLeft;
-            ラベル93.Location = new Point(25, 110);
+            ラベル93.Location = new Point(15, 87);
             ラベル93.Margin = new Padding(0);
             ラベル93.Name = "ラベル93";
-            ラベル93.Size = new Size(133, 20);
+            ラベル93.Size = new Size(118, 20);
             ラベル93.TabIndex = 203;
             ラベル93.Text = "郵便番号";
             ラベル93.TextAlign = ContentAlignment.MiddleLeft;
@@ -534,7 +538,8 @@ namespace u_net
             // 
             電話番号.BackColor = Color.White;
             電話番号.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            電話番号.Location = new Point(176, 200);
+            電話番号.ImeMode = ImeMode.Disable;
+            電話番号.Location = new Point(135, 160);
             電話番号.Margin = new Padding(3, 2, 3, 2);
             電話番号.Name = "電話番号";
             電話番号.ReadOnly = true;
@@ -546,13 +551,13 @@ namespace u_net
             // 
             社員コード_ラベル.AllowDrop = true;
             社員コード_ラベル.AutoEllipsis = true;
-            社員コード_ラベル.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            社員コード_ラベル.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             社員コード_ラベル.ForeColor = SystemColors.ActiveCaptionText;
             社員コード_ラベル.ImageAlign = ContentAlignment.MiddleLeft;
-            社員コード_ラベル.Location = new Point(25, 20);
+            社員コード_ラベル.Location = new Point(15, 15);
             社員コード_ラベル.Margin = new Padding(0);
             社員コード_ラベル.Name = "社員コード_ラベル";
-            社員コード_ラベル.Size = new Size(133, 20);
+            社員コード_ラベル.Size = new Size(118, 20);
             社員コード_ラベル.TabIndex = 199;
             社員コード_ラベル.Text = "会社コード";
             社員コード_ラベル.TextAlign = ContentAlignment.MiddleLeft;
@@ -571,7 +576,7 @@ namespace u_net
             ページ56.Location = new Point(4, 22);
             ページ56.Name = "ページ56";
             ページ56.Padding = new Padding(3);
-            ページ56.Size = new Size(539, 368);
+            ページ56.Size = new Size(539, 346);
             ページ56.TabIndex = 1;
             ページ56.Text = "　  税・会計";
             ページ56.UseVisualStyleBackColor = true;
@@ -580,10 +585,10 @@ namespace u_net
             // 
             label13.AllowDrop = true;
             label13.AutoEllipsis = true;
-            label13.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            label13.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             label13.ForeColor = SystemColors.ActiveCaptionText;
             label13.ImageAlign = ContentAlignment.MiddleLeft;
-            label13.Location = new Point(282, 50);
+            label13.Location = new Point(289, 39);
             label13.Margin = new Padding(0);
             label13.Name = "label13";
             label13.Size = new Size(27, 20);
@@ -595,10 +600,10 @@ namespace u_net
             // 
             label12.AllowDrop = true;
             label12.AutoEllipsis = true;
-            label12.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            label12.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             label12.ForeColor = SystemColors.ActiveCaptionText;
             label12.ImageAlign = ContentAlignment.MiddleLeft;
-            label12.Location = new Point(195, 20);
+            label12.Location = new Point(202, 16);
             label12.Margin = new Padding(0);
             label12.Name = "label12";
             label12.Size = new Size(27, 20);
@@ -612,8 +617,8 @@ namespace u_net
             groupBox2.Controls.Add(label5);
             groupBox2.Controls.Add(円未満端数処理1);
             groupBox2.Controls.Add(label4);
-            groupBox2.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            groupBox2.Location = new Point(31, 285);
+            groupBox2.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            groupBox2.Location = new Point(15, 265);
             groupBox2.Name = "groupBox2";
             groupBox2.Size = new Size(495, 72);
             groupBox2.TabIndex = 7;
@@ -623,23 +628,23 @@ namespace u_net
             // 円未満端数処理2
             // 
             円未満端数処理2.FormattingEnabled = true;
-            円未満端数処理2.Location = new Point(354, 31);
+            円未満端数処理2.Location = new Point(354, 25);
             円未満端数処理2.Name = "円未満端数処理2";
-            円未満端数処理2.Size = new Size(103, 21);
-            円未満端数処理2.TabIndex = 9;
+            円未満端数処理2.Size = new Size(103, 20);
+            円未満端数処理2.TabIndex = 7;
             円未満端数処理2.TextChanged += 会社名1_TextChanged;
             // 
             // label5
             // 
             label5.AllowDrop = true;
             label5.AutoEllipsis = true;
-            label5.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            label5.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             label5.ForeColor = SystemColors.ActiveCaptionText;
             label5.ImageAlign = ContentAlignment.MiddleLeft;
-            label5.Location = new Point(251, 31);
+            label5.Location = new Point(251, 25);
             label5.Margin = new Padding(0);
             label5.Name = "label5";
-            label5.Size = new Size(133, 20);
+            label5.Size = new Size(100, 20);
             label5.TabIndex = 250;
             label5.Text = "消費税計算";
             label5.TextAlign = ContentAlignment.MiddleLeft;
@@ -647,23 +652,23 @@ namespace u_net
             // 円未満端数処理1
             // 
             円未満端数処理1.FormattingEnabled = true;
-            円未満端数処理1.Location = new Point(117, 31);
+            円未満端数処理1.Location = new Point(117, 25);
             円未満端数処理1.Name = "円未満端数処理1";
-            円未満端数処理1.Size = new Size(103, 21);
-            円未満端数処理1.TabIndex = 8;
+            円未満端数処理1.Size = new Size(103, 20);
+            円未満端数処理1.TabIndex = 6;
             円未満端数処理1.TextChanged += 会社名1_TextChanged;
             // 
             // label4
             // 
             label4.AllowDrop = true;
             label4.AutoEllipsis = true;
-            label4.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            label4.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             label4.ForeColor = SystemColors.ActiveCaptionText;
             label4.ImageAlign = ContentAlignment.MiddleLeft;
-            label4.Location = new Point(14, 31);
+            label4.Location = new Point(14, 25);
             label4.Margin = new Padding(0);
             label4.Name = "label4";
-            label4.Size = new Size(133, 20);
+            label4.Size = new Size(100, 20);
             label4.TabIndex = 248;
             label4.Text = "数量×単価時";
             label4.TextAlign = ContentAlignment.MiddleLeft;
@@ -675,10 +680,10 @@ namespace u_net
             groupBox1.Controls.Add(label3);
             groupBox1.Controls.Add(税計算タイミング);
             groupBox1.Controls.Add(label2);
-            groupBox1.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            groupBox1.Location = new Point(33, 77);
+            groupBox1.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            groupBox1.Location = new Point(15, 65);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(493, 202);
+            groupBox1.Size = new Size(493, 195);
             groupBox1.TabIndex = 3;
             groupBox1.TabStop = false;
             groupBox1.Text = "消費税";
@@ -687,7 +692,7 @@ namespace u_net
             // 
             dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = SystemColors.ButtonFace;
-            dataGridViewCellStyle1.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle1.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
             dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
@@ -701,7 +706,7 @@ namespace u_net
             dataGridView1.Name = "dataGridView1";
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = SystemColors.GradientInactiveCaption;
-            dataGridViewCellStyle2.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle2.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             dataGridViewCellStyle2.ForeColor = SystemColors.WindowText;
             dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
@@ -709,15 +714,15 @@ namespace u_net
             dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dataGridView1.RowTemplate.Height = 21;
             dataGridView1.Size = new Size(474, 117);
-            dataGridView1.TabIndex = 201;
+            dataGridView1.TabIndex = 3;
             // 
             // 消費税処理方法
             // 
             消費税処理方法.FormattingEnabled = true;
-            消費税処理方法.Location = new Point(124, 173);
+            消費税処理方法.Location = new Point(124, 167);
             消費税処理方法.Name = "消費税処理方法";
-            消費税処理方法.Size = new Size(103, 21);
-            消費税処理方法.TabIndex = 6;
+            消費税処理方法.Size = new Size(103, 20);
+            消費税処理方法.TabIndex = 5;
             消費税処理方法.SelectedIndexChanged += 会社名1_TextChanged;
             消費税処理方法.TextChanged += 会社名1_TextChanged;
             // 
@@ -725,13 +730,13 @@ namespace u_net
             // 
             label3.AllowDrop = true;
             label3.AutoEllipsis = true;
-            label3.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            label3.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             label3.ForeColor = SystemColors.ActiveCaptionText;
             label3.ImageAlign = ContentAlignment.MiddleLeft;
-            label3.Location = new Point(12, 173);
+            label3.Location = new Point(12, 167);
             label3.Margin = new Padding(0);
             label3.Name = "label3";
-            label3.Size = new Size(133, 20);
+            label3.Size = new Size(106, 20);
             label3.TabIndex = 246;
             label3.Text = "消費税処理方法";
             label3.TextAlign = ContentAlignment.MiddleLeft;
@@ -739,10 +744,10 @@ namespace u_net
             // 税計算タイミング
             // 
             税計算タイミング.FormattingEnabled = true;
-            税計算タイミング.Location = new Point(124, 143);
+            税計算タイミング.Location = new Point(124, 142);
             税計算タイミング.Name = "税計算タイミング";
-            税計算タイミング.Size = new Size(103, 21);
-            税計算タイミング.TabIndex = 5;
+            税計算タイミング.Size = new Size(103, 20);
+            税計算タイミング.TabIndex = 4;
             税計算タイミング.SelectedIndexChanged += 会社名1_TextChanged;
             税計算タイミング.TextChanged += 会社名1_TextChanged;
             // 
@@ -750,13 +755,13 @@ namespace u_net
             // 
             label2.AllowDrop = true;
             label2.AutoEllipsis = true;
-            label2.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            label2.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             label2.ForeColor = SystemColors.ActiveCaptionText;
             label2.ImageAlign = ContentAlignment.MiddleLeft;
-            label2.Location = new Point(12, 143);
+            label2.Location = new Point(12, 142);
             label2.Margin = new Padding(0);
             label2.Name = "label2";
-            label2.Size = new Size(133, 20);
+            label2.Size = new Size(106, 20);
             label2.TabIndex = 244;
             label2.Text = "税計算タイミング";
             label2.TextAlign = ContentAlignment.MiddleLeft;
@@ -765,7 +770,7 @@ namespace u_net
             // 
             支払期日.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             支払期日.FormattingEnabled = true;
-            支払期日.Location = new Point(237, 50);
+            支払期日.Location = new Point(244, 39);
             支払期日.Name = "支払期日";
             支払期日.Size = new Size(42, 21);
             支払期日.TabIndex = 2;
@@ -776,7 +781,7 @@ namespace u_net
             // 
             支払期間.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             支払期間.FormattingEnabled = true;
-            支払期間.Location = new Point(128, 50);
+            支払期間.Location = new Point(135, 39);
             支払期間.Name = "支払期間";
             支払期間.Size = new Size(103, 21);
             支払期間.TabIndex = 1;
@@ -787,7 +792,7 @@ namespace u_net
             // 
             自社締日.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             自社締日.FormattingEnabled = true;
-            自社締日.Location = new Point(128, 20);
+            自社締日.Location = new Point(135, 15);
             自社締日.Name = "自社締日";
             自社締日.Size = new Size(64, 21);
             自社締日.TabIndex = 0;
@@ -798,10 +803,10 @@ namespace u_net
             // 
             label25.AllowDrop = true;
             label25.AutoEllipsis = true;
-            label25.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            label25.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             label25.ForeColor = SystemColors.ActiveCaptionText;
             label25.ImageAlign = ContentAlignment.MiddleLeft;
-            label25.Location = new Point(25, 50);
+            label25.Location = new Point(15, 39);
             label25.Margin = new Padding(0);
             label25.Name = "label25";
             label25.Size = new Size(81, 20);
@@ -813,13 +818,13 @@ namespace u_net
             // 
             label27.AllowDrop = true;
             label27.AutoEllipsis = true;
-            label27.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            label27.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             label27.ForeColor = SystemColors.ActiveCaptionText;
             label27.ImageAlign = ContentAlignment.MiddleLeft;
-            label27.Location = new Point(25, 20);
+            label27.Location = new Point(15, 15);
             label27.Margin = new Padding(0);
             label27.Name = "label27";
-            label27.Size = new Size(133, 20);
+            label27.Size = new Size(118, 20);
             label27.TabIndex = 207;
             label27.Text = "自社締日";
             label27.TextAlign = ContentAlignment.MiddleLeft;
@@ -830,7 +835,7 @@ namespace u_net
             ページ79.Location = new Point(4, 22);
             ページ79.Name = "ページ79";
             ページ79.Padding = new Padding(3);
-            ページ79.Size = new Size(539, 368);
+            ページ79.Size = new Size(539, 346);
             ページ79.TabIndex = 2;
             ページ79.Text = "　銀行・表示";
             // 
@@ -846,105 +851,109 @@ namespace u_net
             groupBox3.Controls.Add(label8);
             groupBox3.Controls.Add(label7);
             groupBox3.Controls.Add(label6);
-            groupBox3.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            groupBox3.Location = new Point(17, 18);
+            groupBox3.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            groupBox3.Location = new Point(15, 15);
             groupBox3.Name = "groupBox3";
-            groupBox3.Size = new Size(480, 174);
+            groupBox3.Size = new Size(425, 153);
             groupBox3.TabIndex = 0;
             groupBox3.TabStop = false;
             groupBox3.Text = "取引銀行";
             // 
             // 取引銀行2口座番号
             // 
-            取引銀行2口座番号.Location = new Point(171, 130);
+            取引銀行2口座番号.ImeMode = ImeMode.Disable;
+            取引銀行2口座番号.Location = new Point(135, 116);
             取引銀行2口座番号.Name = "取引銀行2口座番号";
-            取引銀行2口座番号.Size = new Size(107, 21);
+            取引銀行2口座番号.Size = new Size(107, 19);
             取引銀行2口座番号.TabIndex = 4;
             取引銀行2口座番号.TextChanged += 会社名1_TextChanged;
             // 
             // 取引銀行1口座番号
             // 
-            取引銀行1口座番号.Location = new Point(171, 60);
+            取引銀行1口座番号.ImeMode = ImeMode.Disable;
+            取引銀行1口座番号.Location = new Point(135, 53);
             取引銀行1口座番号.Name = "取引銀行1口座番号";
-            取引銀行1口座番号.Size = new Size(107, 21);
+            取引銀行1口座番号.Size = new Size(107, 19);
             取引銀行1口座番号.TabIndex = 2;
             取引銀行1口座番号.TextChanged += 会社名1_TextChanged;
             // 
             // 取引銀行2名称
             // 
-            取引銀行2名称.Location = new Point(171, 100);
+            取引銀行2名称.ImeMode = ImeMode.Hiragana;
+            取引銀行2名称.Location = new Point(135, 93);
             取引銀行2名称.Name = "取引銀行2名称";
-            取引銀行2名称.Size = new Size(262, 21);
+            取引銀行2名称.Size = new Size(262, 19);
             取引銀行2名称.TabIndex = 3;
             取引銀行2名称.TextChanged += 会社名1_TextChanged;
             // 
             // 取引銀行1名称
             // 
-            取引銀行1名称.Location = new Point(171, 30);
+            取引銀行1名称.ImeMode = ImeMode.Hiragana;
+            取引銀行1名称.Location = new Point(135, 30);
             取引銀行1名称.Name = "取引銀行1名称";
-            取引銀行1名称.Size = new Size(262, 21);
+            取引銀行1名称.Size = new Size(262, 19);
             取引銀行1名称.TabIndex = 1;
             取引銀行1名称.TextChanged += 会社名1_TextChanged;
             // 
             // label11
             // 
-            label11.AutoSize = true;
-            label11.Location = new Point(93, 130);
+            label11.Location = new Point(66, 116);
             label11.Name = "label11";
-            label11.Size = new Size(63, 14);
+            label11.Size = new Size(63, 20);
             label11.TabIndex = 5;
             label11.Text = "口座番号";
+            label11.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // label10
             // 
-            label10.AutoSize = true;
-            label10.Location = new Point(93, 100);
+            label10.Location = new Point(66, 93);
             label10.Name = "label10";
-            label10.Size = new Size(35, 14);
+            label10.Size = new Size(63, 20);
             label10.TabIndex = 4;
             label10.Text = "名称";
+            label10.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // label9
             // 
-            label9.AutoSize = true;
-            label9.Location = new Point(6, 100);
+            label9.Location = new Point(6, 93);
             label9.Name = "label9";
-            label9.Size = new Size(46, 14);
+            label9.Size = new Size(46, 20);
             label9.TabIndex = 3;
             label9.Text = "銀行2";
+            label9.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // label8
             // 
-            label8.AutoSize = true;
-            label8.Location = new Point(93, 60);
+            label8.Location = new Point(66, 53);
             label8.Name = "label8";
-            label8.Size = new Size(63, 14);
+            label8.Size = new Size(63, 20);
             label8.TabIndex = 2;
             label8.Text = "口座番号";
+            label8.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // label7
             // 
-            label7.AutoSize = true;
-            label7.Location = new Point(93, 30);
+            label7.Location = new Point(66, 30);
             label7.Name = "label7";
-            label7.Size = new Size(35, 14);
+            label7.Size = new Size(63, 20);
             label7.TabIndex = 1;
             label7.Text = "名称";
+            label7.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // label6
             // 
-            label6.AutoSize = true;
             label6.Location = new Point(6, 30);
             label6.Name = "label6";
-            label6.Size = new Size(44, 14);
+            label6.Size = new Size(44, 20);
             label6.TabIndex = 0;
             label6.Text = "銀行1";
+            label6.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // tabPage1
             // 
             tabPage1.Location = new Point(4, 22);
             tabPage1.Name = "tabPage1";
-            tabPage1.Size = new Size(539, 368);
+            tabPage1.Size = new Size(539, 346);
             tabPage1.TabIndex = 3;
             tabPage1.Text = "顧客項目設定";
             tabPage1.UseVisualStyleBackColor = true;
@@ -952,7 +961,7 @@ namespace u_net
             // statusStrip1
             // 
             statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1, toolStripStatusLabel2 });
-            statusStrip1.Location = new Point(0, 454);
+            statusStrip1.Location = new Point(0, 426);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Padding = new Padding(1, 0, 19, 0);
             statusStrip1.Size = new Size(571, 22);
@@ -983,22 +992,22 @@ namespace u_net
             // 
             // 閉じるボタン
             // 
-            閉じるボタン.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            閉じるボタン.Location = new Point(466, 412);
+            閉じるボタン.Font = new Font("BIZ UDPゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            閉じるボタン.Location = new Point(462, 390);
             閉じるボタン.Name = "閉じるボタン";
-            閉じるボタン.Size = new Size(93, 32);
-            閉じるボタン.TabIndex = 1;
+            閉じるボタン.Size = new Size(93, 28);
+            閉じるボタン.TabIndex = 10;
             閉じるボタン.Text = "閉じる";
             閉じるボタン.UseVisualStyleBackColor = true;
             閉じるボタン.Click += コマンド終了_Click;
             // 
             // コマンド登録
             // 
-            コマンド登録.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            コマンド登録.Location = new Point(367, 412);
+            コマンド登録.Font = new Font("BIZ UDPゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            コマンド登録.Location = new Point(363, 390);
             コマンド登録.Name = "コマンド登録";
-            コマンド登録.Size = new Size(93, 32);
-            コマンド登録.TabIndex = 201;
+            コマンド登録.Size = new Size(93, 28);
+            コマンド登録.TabIndex = 9;
             コマンド登録.Text = "登録";
             コマンド登録.UseVisualStyleBackColor = true;
             コマンド登録.Click += コマンド登録_Click;
@@ -1008,7 +1017,7 @@ namespace u_net
             AutoScaleDimensions = new SizeF(8F, 12F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
-            ClientSize = new Size(571, 476);
+            ClientSize = new Size(571, 448);
             Controls.Add(コマンド登録);
             Controls.Add(閉じるボタン);
             Controls.Add(statusStrip1);
