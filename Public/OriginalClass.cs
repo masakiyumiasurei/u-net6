@@ -291,6 +291,13 @@ namespace u_net.Public
             {
                 MessageBox.Show("データの読み込み中にエラーが発生しました: " + ex.Message, "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            finally
+            {
+                if (cn != null && cn.State == ConnectionState.Open)
+                {
+                    cn.Close();
+                }
+            }
         }
         /// <summary>
         /// 複数列のコンボボックスの値を描画する

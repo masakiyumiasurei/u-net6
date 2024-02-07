@@ -617,7 +617,7 @@ namespace u_net
                         this.受注承認ボタン.Enabled = this.IsDecided && !this.IsApproved && !this.IsInvalid;
                         this.受注完了承認ボタン.Enabled = this.IsFinished && !this.IsBilled;
 
-                        
+
 
                         fn.WaitForm.Close();
 

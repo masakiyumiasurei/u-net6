@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -117,16 +118,25 @@ namespace MultiRowDesigner
             if (combo.SelectedItem != null)
             {
                 var a = Int32.Parse(((DataRowView)combo.SelectedItem)?.Row["Value"].ToString());
-                var v = a.ToString("000");
+                if (a == 11) // 空白が選択された場合
+                {
+                    // 備考コードと備考セルの値をクリアする
+                    gcMultiRow1.CurrentRow.Cells["備考コード"].Value = DBNull.Value; // もしくは適切なデフォルト値
+                    gcMultiRow1.CurrentRow.Cells["備考"].Value = DBNull.Value; // もしくは適切なデフォルト値
+                }
+                else
+                {
+                    var v = a.ToString("000");
 
-                gcMultiRow1.CurrentRow.Cells["備考コード"].Value = v;
+                    gcMultiRow1.CurrentRow.Cells["備考コード"].Value = v;
 
-                string strSQL = $"select 摘要内容 from M摘要 where 内容コード={a}";
-                Connect();
-                string str摘要内容 = OriginalClass.GetScalar<string>(cn, strSQL);
-                gcMultiRow1.CurrentRow.Cells["備考"].Value = str摘要内容;
-            }    
-
+                    string strSQL = $"select 摘要内容 from M摘要 where 内容コード={a}";
+                    Connect();
+                    string str摘要内容 = OriginalClass.GetScalar<string>(cn, strSQL);
+                    gcMultiRow1.CurrentRow.Cells["備考"].Value = str摘要内容;
+                    cn.Close();
+                }
+            }
         }
         
 
@@ -291,6 +301,7 @@ namespace MultiRowDesigner
 
         private void gcMultiRow1_CellValidated(object sender, CellEventArgs e)
         {
+            if (!validateFlg) return;
             if (e.RowIndex >= 0 && e.CellIndex >= 0)
             {
                 switch (e.CellName)

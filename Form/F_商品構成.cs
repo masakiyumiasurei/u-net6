@@ -17,6 +17,7 @@ using System.ComponentModel;
 using System.DirectoryServices;
 using Microsoft.EntityFrameworkCore.Metadata;
 using MultiRowDesigner;
+using System.Globalization;
 
 namespace u_net
 {
@@ -70,6 +71,11 @@ namespace u_net
                 ofn.SetComboBox(商品分類名, "SELECT 分類名 as Value,分類名 as Display, 分類内容 as Display2 FROM M商品分類 ORDER BY 分類名; ");
                 商品分類名.DrawMode = DrawMode.OwnerDrawFixed;
                 商品分類名.SelectedIndex = -1;
+                商品分類名.DropDownWidth = 300;
+
+                System.Type dgvtype = typeof(DataGridView);
+                System.Reflection.PropertyInfo dgvPropertyInfo = dgvtype.GetProperty("DoubleBuffered", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
+                dgvPropertyInfo.SetValue(商品コード, true, null);
 
                 // [受注]フォームが閉じているときは初期状態で開く
                 if (Application.OpenForms["F_受注"] == null)
@@ -133,8 +139,6 @@ namespace u_net
             }
 
         }
-
-
 
         public string GetBrandName(string brandCode)
         {
@@ -212,7 +216,7 @@ namespace u_net
                             this.顧客名.Text = null;
                             curDiscount = 100;
                         }
-                        this.売値掛率.Text = curDiscount.ToString();
+                        this.売値掛率.Text = curDiscount.ToString("N0");
                     }
                 }
             }
@@ -304,7 +308,6 @@ namespace u_net
             }
         }
 
-
         private void Read_DataGridView()
         {
             List<object> selectedItems = new List<object>();
@@ -324,7 +327,6 @@ namespace u_net
                 }
             }
         }
-
 
 
         private void UpdatedControl(Control controlObject)
@@ -358,7 +360,6 @@ namespace u_net
                     break;
                 case "商品分類名":
                     分類内容.Text = ((DataRowView)商品分類名.SelectedItem)?.Row.Field<String>("Display2")?.ToString();
-
 
                     SetItemList(controlObject.Text);
 
@@ -399,9 +400,9 @@ namespace u_net
                     Read_DataGridView();
                     WriteProduct(out str型番, out cur定価, out cur原価);
                     型番.Text = str型番;
-                    定価.Text = cur定価.ToString();
+                    定価.Text = cur定価.ToString("N0");
 
-                    原価.Text = cur原価.ToString();
+                    原価.Text = cur原価.ToString("N0");
 
                     単価.Text = string.IsNullOrEmpty(単価.Text) ? "0" : 単価.Text;
                     原価.Text = string.IsNullOrEmpty(原価.Text) ? "0" : 原価.Text;
@@ -409,10 +410,10 @@ namespace u_net
                     粗利.Text = string.IsNullOrEmpty(粗利.Text) ? "0" : 粗利.Text;
                     売値掛率.Text = string.IsNullOrEmpty(売値掛率.Text) ? "0" : 売値掛率.Text;
 
-                    単価.Text = GetSellingPrice(decimal.Parse(定価.Text), decimal.Parse(売値掛率.Text)).ToString();
+                    単価.Text = GetSellingPrice(decimal.Parse(定価.Text), decimal.Parse(売値掛率.Text)).ToString("N0");
 
                     // 粗利計算
-                    粗利.Text = (Convert.ToDecimal(単価.Text) - Convert.ToDecimal(原価.Text)).ToString();
+                    粗利.Text = (Convert.ToDecimal(単価.Text) - Convert.ToDecimal(原価.Text)).ToString("N0");
                     break;
                 case "売値掛率":
                     // 定価が存在するなら金額計算を行う
@@ -426,16 +427,16 @@ namespace u_net
                         売値掛率.Text = string.IsNullOrEmpty(売値掛率.Text) ? "0" : 売値掛率.Text;
 
                         // 単価計算
-                        単価.Text = GetSellingPrice(decimal.Parse(定価.Text), decimal.Parse(売値掛率.Text)).ToString();
+                        単価.Text = GetSellingPrice(decimal.Parse(定価.Text), decimal.Parse(売値掛率.Text)).ToString("N0");
                         // 粗利計算
-                        粗利.Text = (Convert.ToDecimal(単価.Text) - Convert.ToDecimal(原価.Text)).ToString();
+                        粗利.Text = (Convert.ToDecimal(単価.Text) - Convert.ToDecimal(原価.Text)).ToString("N0");
                     }
                     break;
                 case "掛率有効":
                     if (掛率有効.Checked)
                     {
                         // 掛率が有効になるときは保持しておいた掛率を設定する
-                        売値掛率.Text = curDiscount.ToString();
+                        売値掛率.Text = curDiscount.ToString("N0");
                     }
                     else
                     {
@@ -462,18 +463,17 @@ namespace u_net
                         売値掛率.Text = string.IsNullOrEmpty(売値掛率.Text) ? "0" : 売値掛率.Text;
 
                         // 単価計算
-                        単価.Text = GetSellingPrice(decimal.Parse(定価.Text), decimal.Parse(売値掛率.Text)).ToString();
+                        単価.Text = GetSellingPrice(decimal.Parse(定価.Text), decimal.Parse(売値掛率.Text)).ToString("N0");
                         // 粗利計算
-                        粗利.Text = (Convert.ToDecimal(単価.Text) - Convert.ToDecimal(原価.Text)).ToString();
+                        粗利.Text = (Convert.ToDecimal(単価.Text) - Convert.ToDecimal(原価.Text)).ToString("N0");
                     }
                     break;
                 case "単価":
                     // 粗利計算
-                    粗利.Text = (Convert.ToDecimal(単価.Text) - Convert.ToDecimal(原価.Text)).ToString();
+                    粗利.Text = (Convert.ToDecimal(単価.Text) - Convert.ToDecimal(原価.Text)).ToString("N0");
                     break;
             }
         }
-
 
         private void WriteProduct(out string strProduct, out decimal curPrice, out decimal curCost)
         {
@@ -514,8 +514,6 @@ namespace u_net
         }
 
 
-
-
         private void SetItemList(string Code)
         {
             if (Code == "System.Data.DataRowView") return;
@@ -542,9 +540,9 @@ namespace u_net
 
             //0列目はaccessでは行ヘッダのため、ずらす
             商品コード.Columns[0].Width = 1300 / twipperdot;
-            商品コード.Columns[1].Width = 2500 / twipperdot;
+            商品コード.Columns[1].Width = 2950 / twipperdot;
             商品コード.Columns[2].Width = 1500 / twipperdot;
-            商品コード.Columns[3].Width = 2500 / twipperdot;
+            商品コード.Columns[3].Width = 3500 / twipperdot;
             商品コード.Columns[4].Width = 1000 / twipperdot;
             商品コード.Columns[5].Visible = false;
             商品コード.Columns[6].Visible = false;
@@ -552,10 +550,10 @@ namespace u_net
             商品コード.Columns[8].Visible = false;
             商品コード.Columns[9].Visible = false;
             商品コード.Columns[10].Width = 2500 / twipperdot;
+
+            // データの読み込みと設定後に選択をクリア
+            商品コード.ClearSelection();
         }
-
-
-
 
         private void SetModelList(string productCode)
         {
@@ -589,25 +587,14 @@ namespace u_net
             型式名.Columns[2].Width = 2150 / twipperdot;
             型式名.Columns[3].Width = 1500 / twipperdot;
             型式名.Columns[4].Width = 1500 / twipperdot;
-            型式名.Columns[5].Width = 5000 / twipperdot;
+            型式名.Columns[5].Width = 6500 / twipperdot;
             型式名.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             型式名.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             型式名.Columns[4].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
 
-
-
-
+            // データの読み込みと設定後に選択をクリア
+            型式名.ClearSelection();
         }
-
-
-
-
-
-
-
-
-
-
 
 
         private void 掛率有効_CheckedChanged(object sender, EventArgs e)
@@ -619,7 +606,8 @@ namespace u_net
         {
             F_受注 frmOrder = Application.OpenForms.OfType<F_受注>().FirstOrDefault();
             GcMultiRow frmParent = frmOrder.受注明細1.Detail;
-
+            
+            frmParent.EditingControl.Text= 商品コード.SelectedRows[0].Cells[0].Value.ToString();
             frmParent.CurrentRow.Cells["商品コード"].Value = 商品コード.SelectedRows[0].Cells[0].Value.ToString();
             frmParent.CurrentRow.Cells["品名"].Value = 商品コード.SelectedRows[0].Cells[3].Value.ToString();
             frmParent.CurrentRow.Cells["型番"].Value = 型番.Text;
@@ -632,8 +620,7 @@ namespace u_net
 
             frmOrder.受注明細1.strArticle = 商品コード.SelectedRows[0].Cells[3].Value.ToString();
             frmOrder.受注明細1.strModel = 型番.Text;
-            frmOrder.受注明細1.intPrice = int.Parse(単価.Text);
-
+            frmOrder.受注明細1.intPrice = int.Parse(単価.Text, NumberStyles.AllowThousands, CultureInfo.InvariantCulture);
 
             frmOrder.ChangedData(true);
 
@@ -647,42 +634,6 @@ namespace u_net
         {
             Close();
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
         private void 顧客コード_Enter(object sender, EventArgs e)
@@ -988,6 +939,17 @@ namespace u_net
             {
                 case Keys.Return:
                     SelectNextControl(ActiveControl, true, true, true, true);
+                    break;
+                case Keys.Space: //コンボボックスならドロップダウン
+                    {
+                        Control activeControl = this.ActiveControl;
+                        if (activeControl is System.Windows.Forms.ComboBox)
+                        {
+                            e.Handled = true;
+                            System.Windows.Forms.ComboBox activeComboBox = (System.Windows.Forms.ComboBox)activeControl;
+                            activeComboBox.DroppedDown = true;
+                        }
+                    }
                     break;
             }
         }

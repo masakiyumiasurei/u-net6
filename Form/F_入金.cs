@@ -34,7 +34,7 @@ namespace u_net
         private int selected_frame = 0;
         int intWindowHeight;
         int intWindowWidth;
-        string originalstr = ""; 
+        string originalstr = "";
         public F_入金()
         {
             this.Text = "入金";       // ウィンドウタイトルを設定
@@ -150,7 +150,7 @@ namespace u_net
 
                         入金コード.Text = args;
 
-                        UpdatedControl(入金コード);                                              
+                        UpdatedControl(入金コード);
 
                         // 編集による変更がない状態へ遷移
                         ChangedData(false);
@@ -345,7 +345,7 @@ namespace u_net
                         {
                             MessageBox.Show(controlObject.Name + "を入力してください。", "警告",
                                 MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                            return ;
+                            return;
                         }
                         Connect();
                         string str1 = GetCustomerName(cn, 顧客コード.Text);
@@ -354,7 +354,7 @@ namespace u_net
                         {
                             MessageBox.Show("指定された顧客データはありません。", controlObject.Name,
                                 MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                            return ;
+                            return;
                         }
                         else
                         {
@@ -725,6 +725,8 @@ namespace u_net
 
                 switch (controlObject.Name)
                 {
+                    case "入金月":
+                    case "売掛年月":
                     case "入金日":
                         if (varValue == null || string.IsNullOrEmpty(varValue.ToString()))
                         {
@@ -985,7 +987,7 @@ namespace u_net
         {
             MessageBox.Show("現在開発中です。", "確定コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
-                
+
 
         private void コマンド部品定数表_Click(object sender, EventArgs e)
         {
@@ -1198,6 +1200,14 @@ namespace u_net
             switch (e.KeyCode)
             {
                 case Keys.Return:
+                    switch (this.ActiveControl.Name)
+                    {
+                        //改行させるため
+                        case "送付状摘要":
+                        
+                            return;
+                    }
+
                     SelectNextControl(ActiveControl, true, true, true, true);
                     break;
 
@@ -1419,7 +1429,7 @@ namespace u_net
         {
             FunctionClass.LimitText(sender as System.Windows.Forms.Control, 9);
         }
-        
+
         private void 入金コード_Validated(object sender, EventArgs e)
         {
             UpdatedControl(入金コード);
@@ -1450,7 +1460,8 @@ namespace u_net
 
         private void 入金日_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (IsError(sender as System.Windows.Forms.Control, false) == true) ;// e.Cancel = true;
+            if (string.IsNullOrEmpty(入金日.Text)) return;
+            if (IsError(sender as System.Windows.Forms.Control, false) == true)  e.Cancel = true;
         }
 
         private void 入金日_KeyPress(object sender, KeyPressEventArgs e)
@@ -1468,6 +1479,11 @@ namespace u_net
         {
             ChangedData(true);
         }
-        
+
+        private void 入金月_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (string.IsNullOrEmpty(入金月.Text)) return;
+            if (IsError(sender as System.Windows.Forms.Control, false) == true) e.Cancel=true;
+        }
     }
 }

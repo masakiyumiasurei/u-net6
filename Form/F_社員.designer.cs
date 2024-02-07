@@ -143,7 +143,7 @@ namespace u_net
             label25 = new Label();
             ユーザーグループ１_ラベル = new Label();
             ユーザー名_ラベル = new Label();
-            ページ79 = new TabPage();
+            個人情報 = new TabPage();
             生年月日 = new TextBox();
             ラベル108 = new Label();
             住所2 = new TextBox();
@@ -166,7 +166,7 @@ namespace u_net
             tabControl1.SuspendLayout();
             ページ55.SuspendLayout();
             ページ56.SuspendLayout();
-            ページ79.SuspendLayout();
+            個人情報.SuspendLayout();
             statusStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -512,7 +512,7 @@ namespace u_net
             // 
             tabControl1.Controls.Add(ページ55);
             tabControl1.Controls.Add(ページ56);
-            tabControl1.Controls.Add(ページ79);
+            tabControl1.Controls.Add(個人情報);
             tabControl1.ItemSize = new Size(84, 18);
             tabControl1.Location = new Point(12, 49);
             tabControl1.Name = "tabControl1";
@@ -802,7 +802,6 @@ namespace u_net
             承認順序.Location = new Point(160, 355);
             承認順序.Margin = new Padding(3, 2, 3, 2);
             承認順序.Name = "承認順序";
-            承認順序.ReadOnly = true;
             承認順序.Size = new Size(51, 20);
             承認順序.TabIndex = 30;
             承認順序.TextChanged += 承認順序_TextChanged;
@@ -815,7 +814,6 @@ namespace u_net
             担当地区コード.Location = new Point(160, 331);
             担当地区コード.Margin = new Padding(3, 2, 3, 2);
             担当地区コード.Name = "担当地区コード";
-            担当地区コード.ReadOnly = true;
             担当地区コード.Size = new Size(51, 20);
             担当地区コード.TabIndex = 28;
             担当地区コード.TextChanged += 担当地区コード_TextChanged;
@@ -1012,7 +1010,6 @@ namespace u_net
             頭文字.Location = new Point(160, 134);
             頭文字.Margin = new Padding(3, 2, 3, 2);
             頭文字.Name = "頭文字";
-            頭文字.ReadOnly = true;
             頭文字.Size = new Size(34, 20);
             頭文字.TabIndex = 12;
             頭文字.TextChanged += 頭文字_TextChanged;
@@ -1289,7 +1286,6 @@ namespace u_net
             チーム名.Location = new Point(160, 235);
             チーム名.Margin = new Padding(3, 2, 3, 2);
             チーム名.Name = "チーム名";
-            チーム名.ReadOnly = true;
             チーム名.Size = new Size(306, 20);
             チーム名.TabIndex = 20;
             チーム名.TextChanged += チーム名_TextChanged;
@@ -1446,6 +1442,7 @@ namespace u_net
             パスワード.Name = "パスワード";
             パスワード.Size = new Size(204, 20);
             パスワード.TabIndex = 4;
+            パスワード.UseSystemPasswordChar = true;
             パスワード.TextChanged += textBox9_TextChanged;
             // 
             // ユーザー名
@@ -1535,28 +1532,28 @@ namespace u_net
             ユーザー名_ラベル.Text = "ユーザー名";
             ユーザー名_ラベル.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // ページ79
+            // 個人情報
             // 
-            ページ79.Controls.Add(生年月日);
-            ページ79.Controls.Add(ラベル108);
-            ページ79.Controls.Add(住所2);
-            ページ79.Controls.Add(住所2_ラベル);
-            ページ79.Controls.Add(携帯電話番号);
-            ページ79.Controls.Add(ファックス番号);
-            ページ79.Controls.Add(電話番号);
-            ページ79.Controls.Add(住所1);
-            ページ79.Controls.Add(郵便番号);
-            ページ79.Controls.Add(ラベル58);
-            ページ79.Controls.Add(ファックスラベル);
-            ページ79.Controls.Add(住所1_ラベル);
-            ページ79.Controls.Add(電話番号_ラベル);
-            ページ79.Controls.Add(郵便番号_ラベル);
-            ページ79.Location = new Point(4, 22);
-            ページ79.Name = "ページ79";
-            ページ79.Padding = new Padding(3);
-            ページ79.Size = new Size(907, 420);
-            ページ79.TabIndex = 2;
-            ページ79.Text = "個人情報";
+            個人情報.Controls.Add(生年月日);
+            個人情報.Controls.Add(ラベル108);
+            個人情報.Controls.Add(住所2);
+            個人情報.Controls.Add(住所2_ラベル);
+            個人情報.Controls.Add(携帯電話番号);
+            個人情報.Controls.Add(ファックス番号);
+            個人情報.Controls.Add(電話番号);
+            個人情報.Controls.Add(住所1);
+            個人情報.Controls.Add(郵便番号);
+            個人情報.Controls.Add(ラベル58);
+            個人情報.Controls.Add(ファックスラベル);
+            個人情報.Controls.Add(住所1_ラベル);
+            個人情報.Controls.Add(電話番号_ラベル);
+            個人情報.Controls.Add(郵便番号_ラベル);
+            個人情報.Location = new Point(4, 22);
+            個人情報.Name = "個人情報";
+            個人情報.Padding = new Padding(3);
+            個人情報.Size = new Size(907, 420);
+            個人情報.TabIndex = 2;
+            個人情報.Text = "個人情報";
             // 
             // 生年月日
             // 
@@ -1789,8 +1786,8 @@ namespace u_net
             ページ55.PerformLayout();
             ページ56.ResumeLayout(false);
             ページ56.PerformLayout();
-            ページ79.ResumeLayout(false);
-            ページ79.PerformLayout();
+            個人情報.ResumeLayout(false);
+            個人情報.PerformLayout();
             statusStrip1.ResumeLayout(false);
             statusStrip1.PerformLayout();
             ResumeLayout(false);
@@ -1905,7 +1902,7 @@ namespace u_net
         private Label label25;
         private Label ユーザーグループ１_ラベル;
         private Label ユーザー名_ラベル;
-        private TabPage ページ79;
+        private TabPage 個人情報;
         private Button 退社年月日選択ボタン;
         private Button 入社年月日選択ボタン;
         private TextBox 確定;

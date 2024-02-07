@@ -35,7 +35,7 @@ namespace MultiRowDesigner
                 "SELECT right(replace(str(内容コード),' ','0'),3) as Value," +
                 " right(replace(str(内容コード),' ','0'),3) as Display , 摘要内容 as Display2 " +
                 "FROM M摘要 WHERE 摘要使用名='入金' AND 項目名='備考'");
-
+            備考コード.DropDownWidth = 600;
 
             this.領収証出力コード.DataSource = new KeyValuePair<String, String>[] {
                 new KeyValuePair<String, String>("01", "する"),

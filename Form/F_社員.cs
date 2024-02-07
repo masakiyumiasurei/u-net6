@@ -142,7 +142,7 @@ namespace u_net
                 control.PreviewKeyDown += OriginalClass.ValidateCheck;
             }
 
-            this.tabControl1.TabPages.Remove(this.ページ79);
+            this.tabControl1.TabPages.Remove(this.個人情報);
 
             //実行中フォーム起動
             string LoginUserCode = CommonConstants.LoginUserCode;
@@ -452,7 +452,7 @@ namespace u_net
                         objControl6.Text = varSaved6.ToString();
                         //transaction.Rollback(); 関数内でロールバック入れた
                         return false;
-                    }                                        
+                    }
 
                     // トランザクションをコミット
                     transaction.Commit();
@@ -695,7 +695,7 @@ namespace u_net
                     this.コマンド新規.Enabled = false;
                     this.コマンド読込.Enabled = true;
                 }
-                               
+
             }
             catch (Exception ex)
             {
@@ -749,7 +749,7 @@ namespace u_net
                 string strMsg;
                 string strMsgPlus;
 
-                strCode = this.CurrentCode;                
+                strCode = this.CurrentCode;
 
                 DialogResult intRes;
 
@@ -805,7 +805,7 @@ namespace u_net
             try
             {
                 string strKey;
-                string strUpdate;                
+                string strUpdate;
 
                 bool isDeleted = false;
 
@@ -835,7 +835,7 @@ namespace u_net
                     cmd.Parameters.AddWithValue("@CodeString", codeString);
                     cmd.Parameters.AddWithValue("@EditionNumber", editionNumber);
                     cmd.Parameters.AddWithValue("@DeleteTime", deleteTime);
-                    cmd.Parameters.AddWithValue("@DeleteUser", deleteUser);                    
+                    cmd.Parameters.AddWithValue("@DeleteUser", deleteUser);
 
                     string sql = "UPDATE M社員 SET " + strUpdate +
                                  ",更新日時=@DeleteTime,更新者コード=@DeleteUser WHERE " + strKey;
@@ -922,7 +922,7 @@ namespace u_net
             try
             {
                 // ペインティングを無効にする
-                this.SuspendLayout();                
+                this.SuspendLayout();
 
                 // エラーチェック
                 if (!this.IsDecided)
@@ -948,7 +948,7 @@ namespace u_net
                     this.確定者コード.Text = CommonConstants.LoginUserCode;
                 }
 
-                
+
                 fn.DoWait("登録しています...");
 
                 // データの保存と確認
@@ -978,12 +978,13 @@ namespace u_net
             }
             finally
             {
+                チェック();
                 // ペインティングを再開する
                 this.ResumeLayout();
             }
         }
 
-    
+
 
         private void コマンド登録_Click(object sender, EventArgs e)
         {
@@ -991,7 +992,7 @@ namespace u_net
             if (MessageBox.Show("変更内容を保存しますか？", "保存確認",
                 MessageBoxButtons.OKCancel,
                 MessageBoxIcon.Question) == DialogResult.OK)
-            {                
+            {
                 FunctionClass fn = new FunctionClass();
                 fn.DoWait("登録しています...");
                 if (!SaveData())
@@ -1320,7 +1321,7 @@ namespace u_net
 
         private void 社員コード_Validating(object sender, CancelEventArgs e)
         {
-            if(!IsNewData) IsError(社員コード);
+            if (!IsNewData) IsError(社員コード);
         }
 
         private void 社員コード_TextChanged(object sender, EventArgs e)

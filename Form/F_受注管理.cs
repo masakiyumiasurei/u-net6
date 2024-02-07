@@ -150,7 +150,7 @@ namespace u_net
             // DataGridViewの設定
             dataGridView1.AllowUserToResizeColumns = true;
             dataGridView1.Font = new System.Drawing.Font("MS ゴシック", 10);
-          //  dataGridView1.DefaultCellStyle.SelectionBackColor = Color.FromArgb(210, 210, 255);
+            //  dataGridView1.DefaultCellStyle.SelectionBackColor = Color.FromArgb(210, 210, 255);
             dataGridView1.DefaultCellStyle.SelectionForeColor = Color.Black;
             dataGridView1.GridColor = Color.FromArgb(230, 230, 230);
             dataGridView1.ColumnHeadersDefaultCellStyle.Font = new System.Drawing.Font("MS ゴシック", 9);
@@ -334,7 +334,7 @@ namespace u_net
                 strWhere = FunctionClass.WhereString(strWhere, "not(1<受注版数 and 承認者コード is null)");
 
                 //出荷カラムが出荷完了日ではなく、ManufacturingCompletionApprovedDateがテキストボックスに設定されていた。
-                　
+
                 string query1 = "SELECT 受注コード, 受注版数 AS 版, 受注日, 出荷予定日, 受注納期, 注文番号, 顧客名, 自社担当者名, FORMAT(受注金額, N'#,0') AS 受注金額 " +
                                            " , CASE WHEN 確定日時 IS NOT NULL THEN '■' ELSE '' END AS 確定 " +
                                            " ,  承認者コード  AS 承認 " +
@@ -597,7 +597,7 @@ namespace u_net
                     else
                     {
                         e.CellStyle.ForeColor = Color.Black; // 黒
-                    }                    
+                    }
                 }
                 e.Value = "■"; // 値を"■"に設定
             }
@@ -613,7 +613,7 @@ namespace u_net
                 }
                 e.Value = "■"; // 値を"■"に設定
             }
-            
+
         }
 
         private void DataGridView1_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
@@ -650,9 +650,9 @@ namespace u_net
                     e.CellStyle.SelectionBackColor = e.CellStyle.BackColor;
                     e.CellStyle.SelectionForeColor = e.CellStyle.ForeColor;
                 }
-                
+
             }
-            
+
         }
         //ダブルクリックで商品フォームを開く　商品コードを渡す
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -745,7 +745,7 @@ namespace u_net
 
         private void コマンド出力_Click(object sender, EventArgs e)
         {
-            
+
             this.dataGridView1.Focus();
             F_受注管理出力 form = new F_受注管理出力();
             form.ShowDialog();
@@ -1143,6 +1143,6 @@ namespace u_net
             FunctionKeyDown(sender, e);
         }
 
-        
+
     }
 }

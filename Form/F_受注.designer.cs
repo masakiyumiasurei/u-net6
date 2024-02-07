@@ -403,22 +403,22 @@ namespace u_net
             // 
             statusStrip1.ImageScalingSize = new Size(20, 20);
             statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1, toolStripStatusLabel2 });
-            statusStrip1.Location = new Point(0, 749);
+            statusStrip1.Location = new Point(0, 752);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Padding = new Padding(1, 0, 19, 0);
-            statusStrip1.Size = new Size(1184, 25);
+            statusStrip1.Size = new Size(1184, 22);
             statusStrip1.TabIndex = 110;
             statusStrip1.Text = "statusStrip1";
             // 
             // toolStripStatusLabel1
             // 
             toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            toolStripStatusLabel1.Size = new Size(0, 20);
+            toolStripStatusLabel1.Size = new Size(0, 17);
             // 
             // toolStripStatusLabel2
             // 
             toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            toolStripStatusLabel2.Size = new Size(111, 20);
+            toolStripStatusLabel2.Size = new Size(89, 17);
             toolStripStatusLabel2.Text = "各種項目の説明";
             // 
             // notifyIcon1
@@ -547,7 +547,7 @@ namespace u_net
             Page2.Controls.Add(発送先);
             Page2.Controls.Add(発送先選択);
             Page2.Controls.Add(戻るボタン);
-            Page2.Location = new Point(2, 0);
+            Page2.Location = new Point(2, -1);
             Page2.Margin = new Padding(4, 3, 4, 3);
             Page2.Name = "Page2";
             Page2.Size = new Size(1180, 650);
@@ -2576,6 +2576,7 @@ namespace u_net
             FormClosing += Form_Unload;
             Load += Form_Load;
             KeyDown += F_受注_KeyDown;
+            Resize += Form_Resize;
             panel1.ResumeLayout(false);
             statusStrip1.ResumeLayout(false);
             statusStrip1.PerformLayout();
