@@ -195,19 +195,10 @@ namespace u_net
                
             }
 
-            // ウィンドウサイズを調整する
-            //int lngX, lngy;
-            //myapi.GetFullScreen(out lngX, out lngy);
-            //intWindowHeight = this.Height;
-            //intWindowWidth = this.Width;
-            //this.Width = intWindowWidth;
-            //this.Height = lngy * myapi.GetTwipPerDot(myapi.GetLogPixel()) - 1200;
-            //Form_Resize(sender, e);
-
-            //実行中フォーム起動
-            //string LoginUserCode = CommonConstants.LoginUserCode;
-            //LocalSetting localSetting = new LocalSetting();
-            //localSetting.LoadPlace(LoginUserCode, this);
+            //ダブルバッファ処理設定
+            System.Type dgvtype = typeof(DataGridView);
+            System.Reflection.PropertyInfo dgvPropertyInfo = dgvtype.GetProperty("DoubleBuffered", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
+            dgvPropertyInfo.SetValue(リスト, true, null);
 
 
             // 一覧を表示する
@@ -231,25 +222,6 @@ namespace u_net
             toolStripStatusLabel2.Text = "■確定するには、確定したい項目をダブルクリックするか、選択後[Enter]キーを押下します。　■[Function]キーあるいは←→キーで抽出条件を変更します。";
 
         }
-
-
-        private void F_検索_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            //string LoginUserCode = CommonConstants.LoginUserCode;
-            //LocalSetting test = new LocalSetting();
-            //test.SavePlace(LoginUserCode, this);
-        }
-
-
-        //private void Form_Resize(object sender, EventArgs e)
-        //{
-        //    this.SuspendLayout();
-        //    リスト.Height += (this.Height - intWindowHeight);
-        //    リスト.Width += (this.Width - intWindowWidth);
-        //    intWindowHeight = this.Height;
-        //    intWindowWidth = this.Width;
-        //    this.ResumeLayout();
-        //}
 
         private void リスト_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
