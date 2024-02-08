@@ -31,6 +31,11 @@ namespace u_net
         }
         private void Form_Load(object sender, EventArgs e)
         {
+            foreach (Control control in Controls)
+            {
+                control.PreviewKeyDown += OriginalClass.ValidateCheck;
+            }
+
             this.検索コード.Text = _検索コード;
 
         }

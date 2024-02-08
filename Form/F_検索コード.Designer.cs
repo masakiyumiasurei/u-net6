@@ -35,14 +35,16 @@
             label2 = new Label();
             statusStrip1 = new StatusStrip();
             toolStripStatusLabel1 = new ToolStripStatusLabel();
+            groupBox1 = new GroupBox();
             statusStrip1.SuspendLayout();
+            groupBox1.SuspendLayout();
             SuspendLayout();
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(97, 25);
+            label1.Location = new Point(12, 19);
             label1.Name = "label1";
             label1.Size = new Size(197, 12);
             label1.TabIndex = 1;
@@ -51,10 +53,11 @@
             // 検索コード
             // 
             検索コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            検索コード.Location = new Point(97, 69);
+            検索コード.ImeMode = ImeMode.Disable;
+            検索コード.Location = new Point(84, 49);
             検索コード.Margin = new Padding(3, 2, 3, 2);
             検索コード.Name = "検索コード";
-            検索コード.Size = new Size(249, 20);
+            検索コード.Size = new Size(175, 20);
             検索コード.TabIndex = 2;
             検索コード.Enter += 検索コード_Enter;
             検索コード.KeyDown += 検索コード_KeyDown;
@@ -64,7 +67,7 @@
             // 検索ボタン
             // 
             検索ボタン.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            検索ボタン.Location = new Point(196, 120);
+            検索ボタン.Location = new Point(119, 125);
             検索ボタン.Margin = new Padding(3, 2, 3, 2);
             検索ボタン.Name = "検索ボタン";
             検索ボタン.Size = new Size(95, 24);
@@ -76,7 +79,7 @@
             // キャンセルボタン
             // 
             キャンセルボタン.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            キャンセルボタン.Location = new Point(295, 120);
+            キャンセルボタン.Location = new Point(218, 125);
             キャンセルボタン.Margin = new Padding(3, 2, 3, 2);
             キャンセルボタン.Name = "キャンセルボタン";
             キャンセルボタン.Size = new Size(95, 24);
@@ -88,9 +91,9 @@
             // label2
             // 
             label2.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label2.Location = new Point(12, 69);
+            label2.Location = new Point(12, 49);
             label2.Name = "label2";
-            label2.Size = new Size(79, 20);
+            label2.Size = new Size(72, 20);
             label2.TabIndex = 1;
             label2.Text = "コード(&C)";
             label2.TextAlign = ContentAlignment.MiddleLeft;
@@ -98,10 +101,10 @@
             // statusStrip1
             // 
             statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1 });
-            statusStrip1.Location = new Point(0, 156);
+            statusStrip1.Location = new Point(0, 155);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Padding = new Padding(1, 0, 12, 0);
-            statusStrip1.Size = new Size(402, 22);
+            statusStrip1.Size = new Size(321, 22);
             statusStrip1.TabIndex = 9;
             statusStrip1.Text = "statusStrip1";
             // 
@@ -112,24 +115,35 @@
             toolStripStatusLabel1.Size = new Size(89, 17);
             toolStripStatusLabel1.Text = "各種項目の説明";
             // 
+            // groupBox1
+            // 
+            groupBox1.Controls.Add(label2);
+            groupBox1.Controls.Add(label1);
+            groupBox1.Controls.Add(検索コード);
+            groupBox1.Location = new Point(7, -1);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new Size(305, 121);
+            groupBox1.TabIndex = 10;
+            groupBox1.TabStop = false;
+            // 
             // F_検索コード
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(402, 178);
-            Controls.Add(statusStrip1);
-            Controls.Add(検索ボタン);
+            ClientSize = new Size(321, 177);
             Controls.Add(キャンセルボタン);
-            Controls.Add(label2);
-            Controls.Add(検索コード);
-            Controls.Add(label1);
+            Controls.Add(検索ボタン);
+            Controls.Add(groupBox1);
+            Controls.Add(statusStrip1);
             Margin = new Padding(3, 2, 3, 2);
             Name = "F_検索コード";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "F_検索コード";
+            Text = "コード検索";
             Load += Form_Load;
             statusStrip1.ResumeLayout(false);
             statusStrip1.PerformLayout();
+            groupBox1.ResumeLayout(false);
+            groupBox1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -143,5 +157,6 @@
         private Label label2;
         private StatusStrip statusStrip1;
         private ToolStripStatusLabel toolStripStatusLabel1;
+        private GroupBox groupBox1;
     }
 }
