@@ -61,10 +61,12 @@
             表示件数 = new TextBox();
             label1 = new Label();
             label2 = new Label();
+            panel3 = new Panel();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             statusStrip1.SuspendLayout();
             panel2.SuspendLayout();
+            panel3.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
@@ -194,6 +196,7 @@
             // 
             // コマンド初期化
             // 
+            コマンド初期化.Enabled = false;
             コマンド初期化.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             コマンド初期化.ForeColor = Color.Blue;
             コマンド初期化.ImageAlign = ContentAlignment.BottomLeft;
@@ -208,6 +211,7 @@
             // 
             // コマンド検索
             // 
+            コマンド検索.Enabled = false;
             コマンド検索.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             コマンド検索.ForeColor = Color.Blue;
             コマンド検索.ImageAlign = ContentAlignment.BottomLeft;
@@ -222,6 +226,7 @@
             // 
             // コマンド抽出
             // 
+            コマンド抽出.Enabled = false;
             コマンド抽出.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             コマンド抽出.ForeColor = Color.Blue;
             コマンド抽出.ImageAlign = ContentAlignment.BottomLeft;
@@ -268,12 +273,13 @@
             dataGridView1.AllowUserToAddRows = false;
             dataGridView1.AllowUserToDeleteRows = false;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(3, 61);
+            dataGridView1.Dock = DockStyle.Fill;
+            dataGridView1.Location = new Point(0, 32);
             dataGridView1.Margin = new Padding(3, 2, 3, 2);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
             dataGridView1.RowTemplate.Height = 29;
-            dataGridView1.Size = new Size(1032, 513);
+            dataGridView1.Size = new Size(1035, 595);
             dataGridView1.TabIndex = 87;
             dataGridView1.CellClick += dataGridView1_CellClick;
             dataGridView1.CellDoubleClick += dataGridView1_CellDoubleClick;
@@ -286,12 +292,13 @@
             シリーズコード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             シリーズコード.FormattingEnabled = true;
             シリーズコード.ImeMode = ImeMode.Disable;
-            シリーズコード.Location = new Point(742, 35);
+            シリーズコード.Location = new Point(750, 3);
             シリーズコード.Name = "シリーズコード";
             シリーズコード.Size = new Size(78, 21);
             シリーズコード.TabIndex = 6;
             シリーズコード.TabStop = false;
             シリーズコード.Visible = false;
+            シリーズコード.DrawItem += シリーズコード_DrawItem;
             シリーズコード.Enter += シリーズコード_Enter;
             シリーズコード.KeyDown += シリーズコード_KeyDown;
             シリーズコード.Leave += シリーズコード_Leave;
@@ -301,7 +308,7 @@
             現在日.BackColor = Color.White;
             現在日.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             現在日.ImeMode = ImeMode.Disable;
-            現在日.Location = new Point(72, 35);
+            現在日.Location = new Point(81, 5);
             現在日.Margin = new Padding(3, 2, 3, 2);
             現在日.Name = "現在日";
             現在日.Size = new Size(139, 20);
@@ -316,7 +323,7 @@
             メーカーコード_ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             メーカーコード_ラベル.ForeColor = SystemColors.ActiveCaptionText;
             メーカーコード_ラベル.ImageAlign = ContentAlignment.MiddleLeft;
-            メーカーコード_ラベル.Location = new Point(5, 36);
+            メーカーコード_ラベル.Location = new Point(13, 5);
             メーカーコード_ラベル.Margin = new Padding(0);
             メーカーコード_ラベル.Name = "メーカーコード_ラベル";
             メーカーコード_ラベル.Size = new Size(68, 19);
@@ -330,7 +337,7 @@
             今日の日付.Enabled = false;
             今日の日付.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             今日の日付.ImeMode = ImeMode.Disable;
-            今日の日付.Location = new Point(427, 35);
+            今日の日付.Location = new Point(435, 4);
             今日の日付.Margin = new Padding(3, 2, 3, 2);
             今日の日付.Name = "今日の日付";
             今日の日付.Size = new Size(139, 20);
@@ -344,7 +351,7 @@
             label3.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             label3.ForeColor = SystemColors.ActiveCaptionText;
             label3.ImageAlign = ContentAlignment.MiddleLeft;
-            label3.Location = new Point(349, 36);
+            label3.Location = new Point(352, 5);
             label3.Margin = new Padding(0);
             label3.Name = "label3";
             label3.Size = new Size(81, 17);
@@ -359,7 +366,7 @@
             抽出シリーズ_ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             抽出シリーズ_ラベル.ForeColor = SystemColors.ActiveCaptionText;
             抽出シリーズ_ラベル.ImageAlign = ContentAlignment.MiddleLeft;
-            抽出シリーズ_ラベル.Location = new Point(637, 38);
+            抽出シリーズ_ラベル.Location = new Point(645, 7);
             抽出シリーズ_ラベル.Margin = new Padding(0);
             抽出シリーズ_ラベル.Name = "抽出シリーズ_ラベル";
             抽出シリーズ_ラベル.Size = new Size(102, 17);
@@ -373,7 +380,7 @@
             シリーズ名.BackColor = Color.White;
             シリーズ名.Enabled = false;
             シリーズ名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            シリーズ名.Location = new Point(826, 35);
+            シリーズ名.Location = new Point(834, 4);
             シリーズ名.Margin = new Padding(3, 2, 3, 2);
             シリーズ名.Name = "シリーズ名";
             シリーズ名.ReadOnly = true;
@@ -386,7 +393,7 @@
             現在日戻るボタン.Font = new Font("BIZ UDPゴシック", 12F, FontStyle.Regular, GraphicsUnit.Point);
             現在日戻るボタン.ForeColor = Color.Black;
             現在日戻るボタン.ImageAlign = ContentAlignment.BottomLeft;
-            現在日戻るボタン.Location = new Point(214, 35);
+            現在日戻るボタン.Location = new Point(222, 4);
             現在日戻るボタン.Margin = new Padding(0, 2, 0, 2);
             現在日戻るボタン.Name = "現在日戻るボタン";
             現在日戻るボタン.Size = new Size(25, 22);
@@ -402,7 +409,7 @@
             現在日選択ボタン.Font = new Font("BIZ UDPゴシック", 6F, FontStyle.Regular, GraphicsUnit.Point);
             現在日選択ボタン.ForeColor = Color.Black;
             現在日選択ボタン.ImageAlign = ContentAlignment.BottomLeft;
-            現在日選択ボタン.Location = new Point(238, 35);
+            現在日選択ボタン.Location = new Point(247, 4);
             現在日選択ボタン.Margin = new Padding(0, 2, 0, 2);
             現在日選択ボタン.Name = "現在日選択ボタン";
             現在日選択ボタン.Size = new Size(25, 22);
@@ -418,7 +425,7 @@
             現在日進むボタン.Font = new Font("BIZ UDPゴシック", 12F, FontStyle.Regular, GraphicsUnit.Point);
             現在日進むボタン.ForeColor = Color.Black;
             現在日進むボタン.ImageAlign = ContentAlignment.BottomLeft;
-            現在日進むボタン.Location = new Point(262, 35);
+            現在日進むボタン.Location = new Point(272, 4);
             現在日進むボタン.Margin = new Padding(0, 2, 0, 2);
             現在日進むボタン.Name = "現在日進むボタン";
             現在日進むボタン.Size = new Size(25, 22);
@@ -448,10 +455,10 @@
             // 
             // panel2
             // 
-            panel2.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             panel2.Controls.Add(表示件数);
             panel2.Controls.Add(label1);
             panel2.Controls.Add(label2);
+            panel2.Dock = DockStyle.Bottom;
             panel2.Location = new Point(0, 578);
             panel2.Margin = new Padding(3, 2, 3, 2);
             panel2.Name = "panel2";
@@ -489,23 +496,33 @@
             label2.TabIndex = 86;
             label2.Text = "件";
             // 
+            // panel3
+            // 
+            panel3.Controls.Add(label3);
+            panel3.Controls.Add(メーカーコード_ラベル);
+            panel3.Controls.Add(現在日);
+            panel3.Controls.Add(現在日進むボタン);
+            panel3.Controls.Add(今日の日付);
+            panel3.Controls.Add(現在日選択ボタン);
+            panel3.Controls.Add(抽出シリーズ_ラベル);
+            panel3.Controls.Add(現在日戻るボタン);
+            panel3.Controls.Add(シリーズ名);
+            panel3.Controls.Add(シリーズコード);
+            panel3.Dock = DockStyle.Top;
+            panel3.Location = new Point(0, 32);
+            panel3.Margin = new Padding(3, 2, 3, 2);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(1035, 31);
+            panel3.TabIndex = 10004;
+            // 
             // F_シリーズ在庫参照
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1035, 627);
+            Controls.Add(panel3);
             Controls.Add(panel2);
             Controls.Add(statusStrip1);
-            Controls.Add(現在日進むボタン);
-            Controls.Add(現在日選択ボタン);
-            Controls.Add(現在日戻るボタン);
-            Controls.Add(シリーズコード);
-            Controls.Add(シリーズ名);
-            Controls.Add(抽出シリーズ_ラベル);
-            Controls.Add(今日の日付);
-            Controls.Add(label3);
-            Controls.Add(現在日);
-            Controls.Add(メーカーコード_ラベル);
             Controls.Add(dataGridView1);
             Controls.Add(panel1);
             Icon = (Icon)resources.GetObject("$this.Icon");
@@ -517,6 +534,7 @@
             Text = "シリーズ在庫参照";
             FormClosing += F_シリーズ在庫参照_FormClosing;
             Load += Form_Load;
+            Resize += Form_Resize;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
@@ -524,6 +542,8 @@
             statusStrip1.PerformLayout();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
+            panel3.ResumeLayout(false);
+            panel3.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -686,5 +706,6 @@
         private TextBox 表示件数;
         private Label label1;
         private Label label2;
+        private Panel panel3;
     }
 }

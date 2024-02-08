@@ -73,7 +73,7 @@
             抽出ボタン.Location = new Point(200, 171);
             抽出ボタン.Name = "抽出ボタン";
             抽出ボタン.Size = new Size(102, 24);
-            抽出ボタン.TabIndex = 3;
+            抽出ボタン.TabIndex = 4;
             抽出ボタン.Text = "抽出(&O)";
             抽出ボタン.UseVisualStyleBackColor = true;
             抽出ボタン.Click += 抽出ボタン_Click;
@@ -83,7 +83,7 @@
             キャンセルボタン.Location = new Point(308, 171);
             キャンセルボタン.Name = "キャンセルボタン";
             キャンセルボタン.Size = new Size(102, 24);
-            キャンセルボタン.TabIndex = 4;
+            キャンセルボタン.TabIndex = 5;
             キャンセルボタン.Text = "キャンセル(&X)";
             キャンセルボタン.UseVisualStyleBackColor = true;
             キャンセルボタン.MouseClick += キャンセルボタン_MouseClick;
@@ -124,7 +124,7 @@
             送信日終了.Margin = new Padding(3, 2, 3, 2);
             送信日終了.Name = "送信日終了";
             送信日終了.Size = new Size(102, 20);
-            送信日終了.TabIndex = 2;
+            送信日終了.TabIndex = 3;
             送信日終了.Click += 送信日終了_Click;
             送信日終了.DoubleClick += 送信日終了_DoubleClick;
             // 

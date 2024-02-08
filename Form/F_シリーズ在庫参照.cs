@@ -31,6 +31,7 @@ namespace u_net
         public F_シリーズ在庫参照()
         {
             InitializeComponent();
+            this.シリーズコード.DropDownWidth = 442;
         }
         public void Connect()
         {
@@ -84,6 +85,10 @@ namespace u_net
             intWindowHeight = this.Height;
             intWindowWidth = this.Width;
 
+            //コンボボックスの設定
+            OriginalClass ofn = new OriginalClass();
+            ofn.SetComboBox(シリーズコード, "SELECT Mシリーズ.シリーズコード AS Value, Mシリーズ.シリーズ名 AS Display FROM Mシリーズ ORDER BY Mシリーズ WHERE 無効日時 IS NULL ORDER BY シリーズ名");
+
             // DataGridViewの設定
             dataGridView1.AllowUserToResizeColumns = true;
             dataGridView1.Font = new Font("MS ゴシック", 10);
@@ -94,15 +99,18 @@ namespace u_net
             dataGridView1.DefaultCellStyle.Font = new Font("MS ゴシック", 10);
             dataGridView1.DefaultCellStyle.ForeColor = Color.Black;
 
+            System.Type dgvtype = typeof(DataGridView);
+            System.Reflection.PropertyInfo dgvPropertyInfo = dgvtype.GetProperty("DoubleBuffered", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
+            dgvPropertyInfo.SetValue(dataGridView1, true, null);
 
             myapi.GetFullScreen(out xSize, out ySize);
 
             int x = 10, y = 10;
 
-            this.Size = new Size(this.Width, ySize * myapi.GetTwipPerDot(intpixel) - 1200);
+            this.Size = new System.Drawing.Size(this.Width, ySize * myapi.GetTwipPerDot(intpixel) - 1200);
             //accessのmovesizeメソッドの引数の座標単位はtwipなので以下で
 
-            this.Size = new Size(this.Width, ySize - 1200 / twipperdot);
+            this.Size = new System.Drawing.Size(this.Width, ySize - 1200 / twipperdot);
 
             this.StartPosition = FormStartPosition.Manual; // 手動で位置を指定
             int screenWidth = Screen.PrimaryScreen.Bounds.Width; // プライマリスクリーンの幅
@@ -123,17 +131,15 @@ namespace u_net
         {
             try
             {
-                
-                    dataGridView1.Height = dataGridView1.Height + (this.Height - intWindowHeight);
-                    intWindowHeight = this.Height;  // 高さ保存
+                dataGridView1.Height = dataGridView1.Height + (this.Height - intWindowHeight);
+                intWindowHeight = this.Height;  // 高さ保存
 
-                    dataGridView1.Width = dataGridView1.Width + (this.Width - intWindowWidth);
-                    intWindowWidth = this.Width;    // 幅保存
-                
+                dataGridView1.Width = dataGridView1.Width + (this.Width - intWindowWidth);
+                intWindowWidth = this.Width;    // 幅保存     　
             }
             catch (Exception ex)
             {
-                MessageBox.Show(this.Name + "_Form_Resize - " + ex.Message);
+                MessageBox.Show(this.Name + "_Form_Resize - " + ex.Message);
             }
         }
 
@@ -181,7 +187,7 @@ namespace u_net
                     SqlDataReader reader = cmd.ExecuteReader();
 
                     // レコードセットを設定
-                    DataTable dataTable = new DataTable();
+                    System.Data.DataTable dataTable = new System.Data.DataTable();
                     dataTable.Load(reader);
                     dataGridView1.DataSource = dataTable;
 
@@ -672,6 +678,13 @@ namespace u_net
         private void シリーズコード_Leave(object sender, EventArgs e)
         {
             toolStripStatusLabel1.Text = "各種項目の説明";
+        }
+
+        private void シリーズコード_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            OriginalClass.SetComboBoxAppearance((ComboBox)sender, e, new int[] { 70, 340 }, new string[] { "Value", "Display" });
+            シリーズコード.Invalidate();
+            シリーズコード.DroppedDown = true;
         }
     }
 }

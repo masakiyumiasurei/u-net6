@@ -319,7 +319,7 @@ namespace u_net
             Margin = new Padding(3, 2, 3, 2);
             Name = "F_シリーズ危険在庫警告";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "シリーズ危険在庫警告";
+            Text = "危険在庫警告";
             Load += Form_Load;
             ((System.ComponentModel.ISupportInitialize)newDataSet).EndInit();
             ((System.ComponentModel.ISupportInitialize)combBox商品コードBindingSource).EndInit();

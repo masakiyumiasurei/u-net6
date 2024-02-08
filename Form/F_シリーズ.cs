@@ -79,6 +79,10 @@ namespace u_net
 
         private void Form_Load(object sender, EventArgs e)
         {
+            foreach (Control control in Controls)
+            {
+                control.PreviewKeyDown += OriginalClass.ValidateCheck;
+            }
 
             FunctionClass fn = new FunctionClass();
             fn.DoWait("しばらくお待ちください...");
@@ -103,10 +107,15 @@ namespace u_net
             dataGridView1.DefaultCellStyle.Font = new Font("MS ゴシック", 10);
             dataGridView1.DefaultCellStyle.ForeColor = Color.Black;
 
+            System.Type dgvtype = typeof(DataGridView);
+            System.Reflection.PropertyInfo dgvPropertyInfo = dgvtype.GetProperty("DoubleBuffered", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
+            dgvPropertyInfo.SetValue(dataGridView1, true, null);
+
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView1.AllowUserToAddRows = false;
             dataGridView1.AllowUserToDeleteRows = false;
             dataGridView1.ReadOnly = true;
+
 
             try
             {
@@ -386,21 +395,21 @@ namespace u_net
             //    MessageBoxButtons.OKCancel,
             //    MessageBoxIcon.Question) == DialogResult.OK)
             //{
-                if (!ErrCheck(this)) return;
+            if (!ErrCheck(this)) return;
 
-                if (!SaveData()) return;
+            if (!SaveData()) return;
 
-                シリーズコード.Enabled = true;
-                ChangedData(false);
+            シリーズコード.Enabled = true;
+            ChangedData(false);
 
-                if (IsNewData)
-                {
-                    コマンド新規.Enabled = true;
-                    コマンド修正.Enabled = false;
-                }
-                if (!SetGrid()) return;
-                在庫数量.Text = GetStock(CurrentCode, DateTime.Now, cn).ToString();
-                Cleargrid(dataGridView1);
+            if (IsNewData)
+            {
+                コマンド新規.Enabled = true;
+                コマンド修正.Enabled = false;
+            }
+            if (!SetGrid()) return;
+            在庫数量.Text = GetStock(CurrentCode, DateTime.Now, cn).ToString();
+            Cleargrid(dataGridView1);
             //}
         }
 
@@ -1151,7 +1160,7 @@ namespace u_net
                 }
             }
         }
-                
+
 
 
         private void シリーズ名_TextChanged(object sender, EventArgs e)
@@ -1200,6 +1209,7 @@ namespace u_net
         {
             ChangedData(true);
         }
+
     }
 }
 
