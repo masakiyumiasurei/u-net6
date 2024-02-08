@@ -88,7 +88,7 @@
             今日の日付.BackColor = Color.White;
             今日の日付.Enabled = false;
             今日の日付.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            今日の日付.ImeMode = ImeMode.Disable;
+            今日の日付.ImeMode = ImeMode.NoControl;
             今日の日付.Location = new Point(119, 14);
             今日の日付.Margin = new Padding(3, 2, 3, 2);
             今日の日付.Name = "今日の日付";
