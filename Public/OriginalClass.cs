@@ -230,7 +230,7 @@ namespace u_net.Public
 
 
         /// <summary>
-        /// コンボボックスのソースをセットする。SQLにはDisply とValueのカラムを指定する必要がある
+        /// コンボボックスのソースをセットする。SQLにはDisplayとValueのカラムを指定する必要がある
         /// </summary>
         /// <param name="comboBox">対象のコンボボックス</param>
         /// <param name="sqlQuery">ソースのクエリ</param>
