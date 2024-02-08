@@ -24,11 +24,6 @@ namespace u_net
         private void Form_Load(object sender, EventArgs e)
         {
 
-            //string LoginUserCode = CommonConstants.LoginUserCode;
-            //LocalSetting localSetting = new LocalSetting();
-            //localSetting.LoadPlace(LoginUserCode, this);
-
-
             foreach (Control control in Controls)
             {
                 control.PreviewKeyDown += OriginalClass.ValidateCheck;

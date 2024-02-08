@@ -78,6 +78,7 @@
             // 
             // button4
             // 
+            button4.Enabled = false;
             button4.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             button4.ForeColor = Color.Blue;
             button4.ImageAlign = ContentAlignment.BottomLeft;
@@ -90,6 +91,7 @@
             // 
             // button3
             // 
+            button3.Enabled = false;
             button3.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             button3.ForeColor = Color.Blue;
             button3.ImageAlign = ContentAlignment.BottomLeft;
@@ -98,6 +100,7 @@
             button3.Name = "button3";
             button3.Size = new Size(70, 22);
             button3.TabIndex = 10;
+            button3.TabStop = false;
             button3.UseVisualStyleBackColor = true;
             // 
             // コマンドメーカー
@@ -134,6 +137,7 @@
             // 
             コマンド印刷.Enabled = false;
             コマンド印刷.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            コマンド印刷.ForeColor = Color.Blue;
             コマンド印刷.ImageAlign = ContentAlignment.BottomLeft;
             コマンド印刷.Location = new Point(647, 4);
             コマンド印刷.Margin = new Padding(0, 2, 0, 2);
@@ -149,6 +153,7 @@
             // 
             コマンド入出力.Enabled = false;
             コマンド入出力.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            コマンド入出力.ForeColor = Color.Blue;
             コマンド入出力.ImageAlign = ContentAlignment.BottomLeft;
             コマンド入出力.Location = new Point(715, 4);
             コマンド入出力.Margin = new Padding(0, 2, 0, 2);
@@ -281,14 +286,14 @@
             // 
             dataGridView1.AllowUserToAddRows = false;
             dataGridView1.AllowUserToDeleteRows = false;
-            dataGridView1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(0, 36);
+            dataGridView1.Dock = DockStyle.Fill;
+            dataGridView1.Location = new Point(0, 32);
             dataGridView1.Margin = new Padding(3, 2, 3, 2);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
             dataGridView1.RowTemplate.Height = 29;
-            dataGridView1.Size = new Size(1054, 386);
+            dataGridView1.Size = new Size(1054, 417);
             dataGridView1.TabIndex = 87;
             dataGridView1.CellClick += dataGridView1_CellClick;
             dataGridView1.CellDoubleClick += dataGridView1_CellDoubleClick;
@@ -299,10 +304,10 @@
             // 
             // panel2
             // 
-            panel2.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             panel2.Controls.Add(表示件数);
             panel2.Controls.Add(label1);
             panel2.Controls.Add(label2);
+            panel2.Dock = DockStyle.Bottom;
             panel2.Location = new Point(0, 422);
             panel2.Margin = new Padding(3, 2, 3, 2);
             panel2.Name = "panel2";
