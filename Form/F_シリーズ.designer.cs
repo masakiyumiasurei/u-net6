@@ -127,6 +127,7 @@ namespace u_net
             コマンド終了.Name = "コマンド終了";
             コマンド終了.Size = new Size(70, 25);
             コマンド終了.TabIndex = 0;
+            コマンド終了.TabStop = false;
             コマンド終了.Text = "終了";
             toolTip1.SetToolTip(コマンド終了, "終了");
             コマンド終了.UseVisualStyleBackColor = true;
@@ -143,6 +144,7 @@ namespace u_net
             コマンド登録.Name = "コマンド登録";
             コマンド登録.Size = new Size(70, 25);
             コマンド登録.TabIndex = 1;
+            コマンド登録.TabStop = false;
             コマンド登録.Text = "登録";
             コマンド登録.UseVisualStyleBackColor = true;
             コマンド登録.Click += コマンド登録_Click;
@@ -161,7 +163,7 @@ namespace u_net
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.EditMode = DataGridViewEditMode.EditOnEnter;
             dataGridView1.ImeMode = ImeMode.On;
-            dataGridView1.Location = new Point(2, 261);
+            dataGridView1.Location = new Point(2, 228);
             dataGridView1.Margin = new Padding(4, 3, 4, 3);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
@@ -174,8 +176,8 @@ namespace u_net
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
             dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dataGridView1.RowTemplate.Height = 21;
-            dataGridView1.Size = new Size(937, 325);
-            dataGridView1.TabIndex = 109;
+            dataGridView1.Size = new Size(937, 295);
+            dataGridView1.TabIndex = 12;
             dataGridView1.CellDoubleClick += dataGridView1_CellDoubleClick;
             dataGridView1.CellPainting += DataGridView1_CellPainting;
             // 
@@ -202,6 +204,7 @@ namespace u_net
             // 
             // button4
             // 
+            button4.Enabled = false;
             button4.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             button4.ForeColor = Color.Blue;
             button4.ImageAlign = ContentAlignment.BottomLeft;
@@ -210,10 +213,12 @@ namespace u_net
             button4.Name = "button4";
             button4.Size = new Size(70, 25);
             button4.TabIndex = 11;
+            button4.TabStop = false;
             button4.UseVisualStyleBackColor = true;
             // 
             // button3
             // 
+            button3.Enabled = false;
             button3.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             button3.ForeColor = Color.Blue;
             button3.ImageAlign = ContentAlignment.BottomLeft;
@@ -222,10 +227,12 @@ namespace u_net
             button3.Name = "button3";
             button3.Size = new Size(70, 25);
             button3.TabIndex = 10;
+            button3.TabStop = false;
             button3.UseVisualStyleBackColor = true;
             // 
             // コマンド製品
             // 
+            コマンド製品.Enabled = false;
             コマンド製品.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             コマンド製品.ForeColor = Color.Blue;
             コマンド製品.ImageAlign = ContentAlignment.BottomLeft;
@@ -234,6 +241,7 @@ namespace u_net
             コマンド製品.Name = "コマンド製品";
             コマンド製品.Size = new Size(70, 25);
             コマンド製品.TabIndex = 9;
+            コマンド製品.TabStop = false;
             コマンド製品.UseVisualStyleBackColor = true;
             // 
             // コマンド商品参照
@@ -247,6 +255,7 @@ namespace u_net
             コマンド商品参照.Name = "コマンド商品参照";
             コマンド商品参照.Size = new Size(70, 25);
             コマンド商品参照.TabIndex = 8;
+            コマンド商品参照.TabStop = false;
             コマンド商品参照.Text = "対商品";
             コマンド商品参照.UseVisualStyleBackColor = true;
             コマンド商品参照.Click += コマンド商品参照_Click;
@@ -262,6 +271,7 @@ namespace u_net
             コマンド確定.Name = "コマンド確定";
             コマンド確定.Size = new Size(70, 25);
             コマンド確定.TabIndex = 7;
+            コマンド確定.TabStop = false;
             コマンド確定.Text = "確定";
             コマンド確定.UseVisualStyleBackColor = true;
             コマンド確定.Click += コマンド確定_Click;
@@ -277,6 +287,7 @@ namespace u_net
             コマンド承認.Name = "コマンド承認";
             コマンド承認.Size = new Size(70, 25);
             コマンド承認.TabIndex = 6;
+            コマンド承認.TabStop = false;
             コマンド承認.Text = "承認";
             コマンド承認.UseVisualStyleBackColor = true;
             コマンド承認.Click += コマンド承認_Click;
@@ -292,6 +303,7 @@ namespace u_net
             コマンド削除.Name = "コマンド削除";
             コマンド削除.Size = new Size(70, 25);
             コマンド削除.TabIndex = 5;
+            コマンド削除.TabStop = false;
             コマンド削除.Text = "削除";
             コマンド削除.UseVisualStyleBackColor = true;
             コマンド削除.Click += コマンド削除_Click;
@@ -307,6 +319,7 @@ namespace u_net
             コマンド複写.Name = "コマンド複写";
             コマンド複写.Size = new Size(70, 25);
             コマンド複写.TabIndex = 4;
+            コマンド複写.TabStop = false;
             コマンド複写.Text = "複写";
             コマンド複写.UseVisualStyleBackColor = true;
             コマンド複写.Click += コマンド複写_Click;
@@ -322,6 +335,7 @@ namespace u_net
             コマンド修正.Name = "コマンド修正";
             コマンド修正.Size = new Size(70, 25);
             コマンド修正.TabIndex = 3;
+            コマンド修正.TabStop = false;
             コマンド修正.Text = "修正";
             コマンド修正.UseVisualStyleBackColor = true;
             コマンド修正.Click += コマンド修正_Click;
@@ -337,6 +351,7 @@ namespace u_net
             コマンド新規.Name = "コマンド新規";
             コマンド新規.Size = new Size(70, 25);
             コマンド新規.TabIndex = 2;
+            コマンド新規.TabStop = false;
             コマンド新規.Text = "新規";
             コマンド新規.UseVisualStyleBackColor = true;
             コマンド新規.Click += コマンド新規_Click;
@@ -474,7 +489,7 @@ namespace u_net
             // statusStrip1
             // 
             statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1, toolStripStatusLabel2 });
-            statusStrip1.Location = new Point(0, 616);
+            statusStrip1.Location = new Point(0, 551);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Padding = new Padding(1, 0, 19, 0);
             statusStrip1.Size = new Size(939, 22);
@@ -499,7 +514,7 @@ namespace u_net
             label16.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             label16.ForeColor = SystemColors.ActiveCaptionText;
             label16.ImageAlign = ContentAlignment.MiddleLeft;
-            label16.Location = new Point(281, 143);
+            label16.Location = new Point(281, 119);
             label16.Margin = new Padding(0);
             label16.Name = "label16";
             label16.Size = new Size(145, 27);
@@ -512,7 +527,7 @@ namespace u_net
             更新者名.BackColor = SystemColors.Control;
             更新者名.Enabled = false;
             更新者名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            更新者名.Location = new Point(652, 123);
+            更新者名.Location = new Point(590, 123);
             更新者名.Margin = new Padding(3, 2, 3, 2);
             更新者名.Multiline = true;
             更新者名.Name = "更新者名";
@@ -525,7 +540,7 @@ namespace u_net
             更新者コード.BackColor = SystemColors.Control;
             更新者コード.Enabled = false;
             更新者コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            更新者コード.Location = new Point(605, 123);
+            更新者コード.Location = new Point(544, 123);
             更新者コード.Margin = new Padding(3, 2, 3, 2);
             更新者コード.Multiline = true;
             更新者コード.Name = "更新者コード";
@@ -540,7 +555,7 @@ namespace u_net
             label14.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             label14.ForeColor = SystemColors.ActiveCaptionText;
             label14.ImageAlign = ContentAlignment.MiddleLeft;
-            label14.Location = new Point(518, 125);
+            label14.Location = new Point(457, 126);
             label14.Margin = new Padding(0);
             label14.Name = "label14";
             label14.Size = new Size(85, 17);
@@ -555,7 +570,7 @@ namespace u_net
             label13.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             label13.ForeColor = SystemColors.ActiveCaptionText;
             label13.ImageAlign = ContentAlignment.MiddleLeft;
-            label13.Location = new Point(518, 100);
+            label13.Location = new Point(457, 102);
             label13.Margin = new Padding(0);
             label13.Name = "label13";
             label13.Size = new Size(85, 17);
@@ -568,7 +583,7 @@ namespace u_net
             更新日時.BackColor = SystemColors.Control;
             更新日時.Enabled = false;
             更新日時.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            更新日時.Location = new Point(605, 100);
+            更新日時.Location = new Point(544, 100);
             更新日時.Margin = new Padding(3, 2, 3, 2);
             更新日時.Multiline = true;
             更新日時.Name = "更新日時";
@@ -581,7 +596,7 @@ namespace u_net
             作成者名.BackColor = SystemColors.Control;
             作成者名.Enabled = false;
             作成者名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            作成者名.Location = new Point(652, 77);
+            作成者名.Location = new Point(590, 77);
             作成者名.Margin = new Padding(3, 2, 3, 2);
             作成者名.Multiline = true;
             作成者名.Name = "作成者名";
@@ -594,7 +609,7 @@ namespace u_net
             作成者コード.BackColor = SystemColors.Control;
             作成者コード.Enabled = false;
             作成者コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            作成者コード.Location = new Point(605, 77);
+            作成者コード.Location = new Point(544, 77);
             作成者コード.Margin = new Padding(3, 2, 3, 2);
             作成者コード.Multiline = true;
             作成者コード.Name = "作成者コード";
@@ -609,7 +624,7 @@ namespace u_net
             label12.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             label12.ForeColor = SystemColors.ActiveCaptionText;
             label12.ImageAlign = ContentAlignment.MiddleLeft;
-            label12.Location = new Point(518, 79);
+            label12.Location = new Point(457, 79);
             label12.Margin = new Padding(0);
             label12.Name = "label12";
             label12.Size = new Size(85, 17);
@@ -624,7 +639,7 @@ namespace u_net
             label10.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             label10.ForeColor = SystemColors.ActiveCaptionText;
             label10.ImageAlign = ContentAlignment.MiddleLeft;
-            label10.Location = new Point(518, 54);
+            label10.Location = new Point(457, 54);
             label10.Margin = new Padding(0);
             label10.Name = "label10";
             label10.Size = new Size(85, 17);
@@ -637,7 +652,7 @@ namespace u_net
             作成日時.BackColor = SystemColors.Control;
             作成日時.Enabled = false;
             作成日時.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            作成日時.Location = new Point(605, 54);
+            作成日時.Location = new Point(544, 54);
             作成日時.Margin = new Padding(3, 2, 3, 2);
             作成日時.Multiline = true;
             作成日時.Name = "作成日時";
@@ -652,7 +667,7 @@ namespace u_net
             label9.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             label9.ForeColor = SystemColors.ActiveCaptionText;
             label9.ImageAlign = ContentAlignment.MiddleLeft;
-            label9.Location = new Point(3, 241);
+            label9.Location = new Point(3, 208);
             label9.Margin = new Padding(0);
             label9.Name = "label9";
             label9.Size = new Size(135, 17);
@@ -665,9 +680,8 @@ namespace u_net
             在庫下限数量.BackColor = Color.White;
             在庫下限数量.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             在庫下限数量.ImeMode = ImeMode.Disable;
-            在庫下限数量.Location = new Point(117, 115);
+            在庫下限数量.Location = new Point(119, 98);
             在庫下限数量.Margin = new Padding(3, 2, 3, 2);
-            在庫下限数量.Multiline = true;
             在庫下限数量.Name = "在庫下限数量";
             在庫下限数量.Size = new Size(161, 20);
             在庫下限数量.TabIndex = 6;
@@ -681,7 +695,7 @@ namespace u_net
             label8.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             label8.ForeColor = SystemColors.ActiveCaptionText;
             label8.ImageAlign = ContentAlignment.MiddleLeft;
-            label8.Location = new Point(2, 178);
+            label8.Location = new Point(2, 147);
             label8.Margin = new Padding(0);
             label8.Name = "label8";
             label8.Size = new Size(107, 20);
@@ -693,6 +707,7 @@ namespace u_net
             // 
             シリーズコード.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             シリーズコード.AutoCompleteSource = AutoCompleteSource.ListItems;
+            シリーズコード.BackColor = Color.FromArgb(255, 255, 153);
             シリーズコード.Location = new Point(119, 51);
             シリーズコード.Name = "シリーズコード";
             シリーズコード.Size = new Size(121, 20);
@@ -707,7 +722,7 @@ namespace u_net
             label7.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             label7.ForeColor = SystemColors.ActiveCaptionText;
             label7.ImageAlign = ContentAlignment.MiddleLeft;
-            label7.Location = new Point(2, 116);
+            label7.Location = new Point(2, 99);
             label7.Margin = new Padding(0);
             label7.Name = "label7";
             label7.Size = new Size(107, 17);
@@ -718,9 +733,9 @@ namespace u_net
             // シリーズ名
             // 
             シリーズ名.ImeMode = ImeMode.Off;
-            シリーズ名.Location = new Point(118, 83);
+            シリーズ名.Location = new Point(119, 75);
             シリーズ名.Name = "シリーズ名";
-            シリーズ名.Size = new Size(357, 19);
+            シリーズ名.Size = new Size(256, 19);
             シリーズ名.TabIndex = 4;
             シリーズ名.TextChanged += シリーズ名_TextChanged;
             // 
@@ -731,7 +746,7 @@ namespace u_net
             label5.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             label5.ForeColor = SystemColors.ActiveCaptionText;
             label5.ImageAlign = ContentAlignment.MiddleLeft;
-            label5.Location = new Point(2, 83);
+            label5.Location = new Point(2, 75);
             label5.Margin = new Padding(0);
             label5.Name = "label5";
             label5.Size = new Size(87, 17);
@@ -744,11 +759,10 @@ namespace u_net
             在庫数量.BackColor = Color.White;
             在庫数量.Enabled = false;
             在庫数量.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            在庫数量.ImeMode = ImeMode.Hiragana;
-            在庫数量.Location = new Point(117, 147);
+            在庫数量.ImeMode = ImeMode.Disable;
+            在庫数量.Location = new Point(119, 123);
             在庫数量.Margin = new Padding(3, 2, 3, 2);
             在庫数量.MaxLength = 48;
-            在庫数量.Multiline = true;
             在庫数量.Name = "在庫数量";
             在庫数量.ReadOnly = true;
             在庫数量.Size = new Size(161, 20);
@@ -761,7 +775,7 @@ namespace u_net
             Discontinued.AutoSize = true;
             Discontinued.CheckAlign = ContentAlignment.MiddleRight;
             Discontinued.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            Discontinued.Location = new Point(117, 213);
+            Discontinued.Location = new Point(119, 173);
             Discontinued.Margin = new Padding(4, 3, 4, 3);
             Discontinued.Name = "Discontinued";
             Discontinued.Size = new Size(15, 14);
@@ -776,7 +790,7 @@ namespace u_net
             label11.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             label11.ForeColor = SystemColors.ActiveCaptionText;
             label11.ImageAlign = ContentAlignment.MiddleLeft;
-            label11.Location = new Point(2, 148);
+            label11.Location = new Point(2, 124);
             label11.Margin = new Padding(0);
             label11.Name = "label11";
             label11.Size = new Size(87, 17);
@@ -811,7 +825,7 @@ namespace u_net
             label20.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             label20.ForeColor = SystemColors.ActiveCaptionText;
             label20.ImageAlign = ContentAlignment.MiddleLeft;
-            label20.Location = new Point(3, 210);
+            label20.Location = new Point(3, 172);
             label20.Margin = new Padding(0);
             label20.Name = "label20";
             label20.Size = new Size(85, 17);
@@ -824,9 +838,8 @@ namespace u_net
             補正値.BackColor = Color.White;
             補正値.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             補正値.ImeMode = ImeMode.Disable;
-            補正値.Location = new Point(117, 178);
+            補正値.Location = new Point(119, 147);
             補正値.Margin = new Padding(3, 2, 3, 2);
-            補正値.Multiline = true;
             補正値.Name = "補正値";
             補正値.Size = new Size(161, 20);
             補正値.TabIndex = 11;
@@ -840,7 +853,7 @@ namespace u_net
             在庫補正数量.BackColor = SystemColors.Control;
             在庫補正数量.Enabled = false;
             在庫補正数量.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            在庫補正数量.Location = new Point(605, 149);
+            在庫補正数量.Location = new Point(544, 149);
             在庫補正数量.Margin = new Padding(3, 2, 3, 2);
             在庫補正数量.Multiline = true;
             在庫補正数量.Name = "在庫補正数量";
@@ -856,7 +869,7 @@ namespace u_net
             label1.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             label1.ForeColor = SystemColors.ActiveCaptionText;
             label1.ImageAlign = ContentAlignment.MiddleLeft;
-            label1.Location = new Point(428, 231);
+            label1.Location = new Point(428, 198);
             label1.Margin = new Padding(0);
             label1.Name = "label1";
             label1.Size = new Size(511, 27);
@@ -868,11 +881,12 @@ namespace u_net
             // 
             補正値減少ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             補正値減少ボタン.ImageAlign = ContentAlignment.BottomLeft;
-            補正値減少ボタン.Location = new Point(282, 178);
+            補正値減少ボタン.Location = new Point(283, 146);
             補正値減少ボタン.Margin = new Padding(1, 0, 0, 0);
             補正値減少ボタン.Name = "補正値減少ボタン";
-            補正値減少ボタン.Size = new Size(26, 25);
+            補正値減少ボタン.Size = new Size(24, 24);
             補正値減少ボタン.TabIndex = 120;
+            補正値減少ボタン.TabStop = false;
             補正値減少ボタン.Text = "-";
             補正値減少ボタン.UseVisualStyleBackColor = true;
             補正値減少ボタン.Click += 補正値減少ボタン_Click;
@@ -881,11 +895,12 @@ namespace u_net
             // 
             補正値増加ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             補正値増加ボタン.ImageAlign = ContentAlignment.BottomLeft;
-            補正値増加ボタン.Location = new Point(315, 178);
+            補正値増加ボタン.Location = new Point(311, 146);
             補正値増加ボタン.Margin = new Padding(1, 0, 0, 0);
             補正値増加ボタン.Name = "補正値増加ボタン";
-            補正値増加ボタン.Size = new Size(26, 25);
+            補正値増加ボタン.Size = new Size(24, 24);
             補正値増加ボタン.TabIndex = 194;
+            補正値増加ボタン.TabStop = false;
             補正値増加ボタン.Text = "+";
             補正値増加ボタン.UseVisualStyleBackColor = true;
             補正値増加ボタン.Click += 補正値増加ボタン_Click;
@@ -896,7 +911,7 @@ namespace u_net
             panel2.Controls.Add(label22);
             panel2.Controls.Add(label23);
             panel2.Dock = DockStyle.Bottom;
-            panel2.Location = new Point(0, 589);
+            panel2.Location = new Point(0, 524);
             panel2.Margin = new Padding(3, 2, 3, 2);
             panel2.Name = "panel2";
             panel2.Size = new Size(939, 27);
@@ -938,7 +953,7 @@ namespace u_net
             AutoScaleDimensions = new SizeF(8F, 12F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
-            ClientSize = new Size(939, 638);
+            ClientSize = new Size(939, 573);
             Controls.Add(panel2);
             Controls.Add(補正値増加ボタン);
             Controls.Add(補正値減少ボタン);
@@ -976,6 +991,7 @@ namespace u_net
             KeyPreview = true;
             Margin = new Padding(3, 2, 3, 2);
             Name = "F_シリーズ";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "シリーズ";
             FormClosing += Form_FormClosing;
             Load += Form_Load;
