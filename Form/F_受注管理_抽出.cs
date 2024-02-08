@@ -966,6 +966,17 @@ namespace u_net
                 case Keys.Return:
                     SelectNextControl(ActiveControl, true, true, true, true);
                     break;
+                case Keys.Space: //コンボボックスならドロップダウン
+                    {
+                        Control activeControl = this.ActiveControl;
+                        if (activeControl is System.Windows.Forms.ComboBox)
+                        {
+                            e.Handled = true;
+                            System.Windows.Forms.ComboBox activeComboBox = (System.Windows.Forms.ComboBox)activeControl;
+                            activeComboBox.DroppedDown = true;
+                        }
+                    }
+                    break;
             }
         }
 

@@ -434,7 +434,7 @@ namespace MultiRowDesigner
                             if (varValue == DBNull.Value || string.IsNullOrEmpty(varValue?.ToString()))
                             {
                                 MessageBox.Show(cellName + "を入力してください。", cellName, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                                
+
                                 //gcMultiRow1.Rows[rowIndex].Cells["品名"].Selected=true;
                                 gcMultiRow1.CurrentCell = gcMultiRow1.Rows[rowIndex].Cells[cellName];
                                 gcMultiRow1.BeginEdit(true);
@@ -461,9 +461,9 @@ namespace MultiRowDesigner
                             {
                                 gcMultiRow1.CurrentCell = gcMultiRow1.Rows[rowIndex].Cells[cellName];
                                 gcMultiRow1.BeginEdit(true);
-                                return true;                                
+                                return true;
                             }
-                                break;
+                            break;
                         case "SettingSheet":
                             if (varValue == DBNull.Value || string.IsNullOrEmpty((string)varValue))
                             {
@@ -500,9 +500,9 @@ namespace MultiRowDesigner
                                 return true;
                             }
                             break;
-                        case "備考":                            
-                            if (gcMultiRow1.CurrentRow.Cells["SettingSheet"].Value?.ToString() == "01" && varValue==DBNull.Value)
-                            { 
+                        case "備考":
+                            if (gcMultiRow1.CurrentRow.Cells["SettingSheet"].Value?.ToString() == "01" && varValue == DBNull.Value)
+                            {
                                 MessageBox.Show("設定明細内容を入力してください。", "設定明細内容", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                                 gcMultiRow1.CurrentCell = gcMultiRow1.Rows[rowIndex].Cells[cellName];
                                 gcMultiRow1.BeginEdit(true);
@@ -510,7 +510,7 @@ namespace MultiRowDesigner
                             }
                             break;
                         case "シリアル番号付加":
-                            if (varValue == DBNull.Value||string.IsNullOrEmpty(varValue?.ToString()))
+                            if (varValue == DBNull.Value || string.IsNullOrEmpty(varValue?.ToString()))
                             {
                                 MessageBox.Show("シリアル番号の指示を選択してください。", "入力", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                                 gcMultiRow1.CurrentCell = gcMultiRow1.Rows[rowIndex].Cells[cellName];
@@ -519,8 +519,7 @@ namespace MultiRowDesigner
                             }
                             break;
                         case "CustomerSerialNumberFrom":
-                            if ((bool?)gcMultiRow1.CurrentRow.Cells["CustomerSerialNumberRequired"].Value == true
-                                && (gcMultiRow1.CurrentRow.Cells["ラインコード"].Value?.ToString() == "001" || gcMultiRow1.CurrentRow.Cells["ラインコード"].Value?.ToString() == "005"))
+                            if (gcMultiRow1.CurrentRow.Cells["ラインコード"].Value?.ToString() == "001" || gcMultiRow1.CurrentRow.Cells["ラインコード"].Value?.ToString() == "005")
                             {
                                 if (varValue == DBNull.Value || string.IsNullOrEmpty((string)varValue))
                                 {
@@ -532,8 +531,7 @@ namespace MultiRowDesigner
                             }
                             break;
                         case "CustomerSerialNumberTo":
-                            if ((bool?)gcMultiRow1.CurrentRow.Cells["CustomerSerialNumberRequired"].Value == true
-                                && (gcMultiRow1.CurrentRow.Cells["ラインコード"].Value?.ToString() == "001" || gcMultiRow1.CurrentRow.Cells["ラインコード"].Value?.ToString() == "005"))
+                            if (gcMultiRow1.CurrentRow.Cells["ラインコード"].Value?.ToString() == "001" || gcMultiRow1.CurrentRow.Cells["ラインコード"].Value?.ToString() == "005")
                             {
                                 if (varValue == DBNull.Value || string.IsNullOrEmpty((string)varValue))
                                 {
@@ -652,8 +650,9 @@ namespace MultiRowDesigner
                         }
                         break;
                     case "CustomerSerialNumberFrom":
-                        if ((bool?)gcMultiRow1.CurrentRow.Cells["CustomerSerialNumberRequired"].Value == true
-                            && (gcMultiRow1.CurrentRow.Cells["ラインコード"].Value?.ToString() == "001" || gcMultiRow1.CurrentRow.Cells["ラインコード"].Value?.ToString() == "005"))
+                        if (gcMultiRow1.CurrentRow.Cells["CustomerSerialNumberRequired"].Value?.ToString() != "0"
+                            && (gcMultiRow1.CurrentRow.Cells["ラインコード"].Value?.ToString() == "001"
+                            || gcMultiRow1.CurrentRow.Cells["ラインコード"].Value?.ToString() == "005"))
                         {
                             if (string.IsNullOrEmpty(varValue))
                             {
@@ -663,8 +662,9 @@ namespace MultiRowDesigner
                         }
                         break;
                     case "CustomerSerialNumberTo":
-                        if ((bool?)gcMultiRow1.CurrentRow.Cells["CustomerSerialNumberRequired"].Value == true
-                            && (gcMultiRow1.CurrentRow.Cells["ラインコード"].Value?.ToString() == "001" || gcMultiRow1.CurrentRow.Cells["ラインコード"].Value?.ToString() == "005"))
+                        if (gcMultiRow1.CurrentRow.Cells["CustomerSerialNumberRequired"].Value?.ToString() != "0"
+                            && (gcMultiRow1.CurrentRow.Cells["ラインコード"].Value?.ToString() == "001"
+                            || gcMultiRow1.CurrentRow.Cells["ラインコード"].Value?.ToString() == "005"))
                         {
                             if (string.IsNullOrEmpty(varValue))
                             {

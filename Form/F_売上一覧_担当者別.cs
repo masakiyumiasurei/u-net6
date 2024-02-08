@@ -38,7 +38,7 @@ namespace u_net
             cn.Open();
         }
 
-      
+
         private void Form_Load(object sender, EventArgs e)
         {
 
@@ -140,7 +140,7 @@ namespace u_net
             }
         }
 
-        
+
 
 
         private void コマンド終了_Click(object sender, EventArgs e)
@@ -148,7 +148,7 @@ namespace u_net
             this.Close();
         }
 
-       
+
 
         private void F_売上一覧_担当者別_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -207,7 +207,7 @@ namespace u_net
 
         private void 集計年月_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+
 
             str集計年度 = 集計年度.Text;
 
@@ -238,7 +238,7 @@ namespace u_net
 
 
 
-        private  bool Filtering(string yearString)
+        private bool Filtering(string yearString)
         {
             bool success = false;
 
@@ -247,9 +247,9 @@ namespace u_net
             try
             {
 
-                
-               
-                using (SqlCommand command =  new SqlCommand("SP売上一覧_担当者別", cn))
+
+
+                using (SqlCommand command = new SqlCommand("SP売上一覧_担当者別", cn))
                 {
                     command.CommandType = CommandType.StoredProcedure;
                     command.Parameters.AddWithValue("@SalesYear", yearString);
@@ -309,7 +309,7 @@ namespace u_net
 
 
                 }
-                
+
             }
             catch (Exception ex)
             {
@@ -382,6 +382,6 @@ namespace u_net
 
 
 
-     
+
     }
 }

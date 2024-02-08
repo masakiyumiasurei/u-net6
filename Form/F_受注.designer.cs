@@ -34,26 +34,6 @@ namespace u_net
             コマンド終了 = new Button();
             コマンド登録 = new Button();
             panel1 = new Panel();
-            コマンド在庫 = new Button();
-            コマンド全在庫 = new Button();
-            コマンド商品 = new Button();
-            コマンド顧客 = new Button();
-            コマンド確定 = new Button();
-            コマンド承認 = new Button();
-            コマンド削除 = new Button();
-            コマンド複写 = new Button();
-            コマンド読込 = new Button();
-            コマンド新規 = new Button();
-            statusStrip1 = new StatusStrip();
-            toolStripStatusLabel1 = new ToolStripStatusLabel();
-            toolStripStatusLabel2 = new ToolStripStatusLabel();
-            notifyIcon1 = new NotifyIcon(components);
-            panel2 = new Panel();
-            完了承認者コード = new TextBox();
-            承認者コード = new TextBox();
-            否認ボタン = new Button();
-            受注承認ボタン = new Button();
-            受注完了承認ボタン = new Button();
             Page2 = new Panel();
             登録日 = new TextBox();
             請求予定日選択ボタン = new Button();
@@ -128,6 +108,26 @@ namespace u_net
             発送先2 = new RadioButton();
             発送先1 = new RadioButton();
             戻るボタン = new Button();
+            コマンド在庫 = new Button();
+            コマンド全在庫 = new Button();
+            コマンド商品 = new Button();
+            コマンド顧客 = new Button();
+            コマンド確定 = new Button();
+            コマンド承認 = new Button();
+            コマンド削除 = new Button();
+            コマンド複写 = new Button();
+            コマンド読込 = new Button();
+            コマンド新規 = new Button();
+            statusStrip1 = new StatusStrip();
+            toolStripStatusLabel1 = new ToolStripStatusLabel();
+            toolStripStatusLabel2 = new ToolStripStatusLabel();
+            notifyIcon1 = new NotifyIcon(components);
+            panel2 = new Panel();
+            完了承認者コード = new TextBox();
+            承認者コード = new TextBox();
+            否認ボタン = new Button();
+            受注承認ボタン = new Button();
+            受注完了承認ボタン = new Button();
             Page1 = new Panel();
             出荷予定日 = new TextBox();
             受注納期 = new TextBox();
@@ -188,12 +188,12 @@ namespace u_net
             備考 = new TextBox();
             label4 = new Label();
             panel1.SuspendLayout();
-            statusStrip1.SuspendLayout();
-            panel2.SuspendLayout();
             Page2.SuspendLayout();
             出荷情報.SuspendLayout();
             発送先.SuspendLayout();
             発送先選択.SuspendLayout();
+            statusStrip1.SuspendLayout();
+            panel2.SuspendLayout();
             Page1.SuspendLayout();
             SuspendLayout();
             // 
@@ -241,278 +241,12 @@ namespace u_net
             panel1.Controls.Add(コマンド新規);
             panel1.Controls.Add(コマンド登録);
             panel1.Controls.Add(コマンド終了);
-            panel1.Location = new Point(0, 1);
+            panel1.Dock = DockStyle.Top;
+            panel1.Location = new Point(0, 0);
             panel1.Margin = new Padding(4, 3, 4, 3);
             panel1.Name = "panel1";
             panel1.Size = new Size(1180, 42);
             panel1.TabIndex = 81;
-            // 
-            // コマンド在庫
-            // 
-            コマンド在庫.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            コマンド在庫.ForeColor = Color.Blue;
-            コマンド在庫.ImageAlign = ContentAlignment.BottomLeft;
-            コマンド在庫.Location = new Point(473, 6);
-            コマンド在庫.Margin = new Padding(1, 0, 0, 0);
-            コマンド在庫.Name = "コマンド在庫";
-            コマンド在庫.Size = new Size(70, 25);
-            コマンド在庫.TabIndex = 11;
-            コマンド在庫.TabStop = false;
-            コマンド在庫.Text = "在庫";
-            コマンド在庫.UseVisualStyleBackColor = true;
-            コマンド在庫.Click += コマンド在庫_Click;
-            // 
-            // コマンド全在庫
-            // 
-            コマンド全在庫.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            コマンド全在庫.ForeColor = Color.Blue;
-            コマンド全在庫.ImageAlign = ContentAlignment.BottomLeft;
-            コマンド全在庫.Location = new Point(406, 6);
-            コマンド全在庫.Margin = new Padding(1, 0, 0, 0);
-            コマンド全在庫.Name = "コマンド全在庫";
-            コマンド全在庫.Size = new Size(70, 25);
-            コマンド全在庫.TabIndex = 10;
-            コマンド全在庫.TabStop = false;
-            コマンド全在庫.Text = "全在庫";
-            コマンド全在庫.UseVisualStyleBackColor = true;
-            コマンド全在庫.Click += コマンド全在庫_Click;
-            // 
-            // コマンド商品
-            // 
-            コマンド商品.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            コマンド商品.ForeColor = Color.Blue;
-            コマンド商品.ImageAlign = ContentAlignment.BottomLeft;
-            コマンド商品.Location = new Point(339, 6);
-            コマンド商品.Margin = new Padding(1, 0, 0, 0);
-            コマンド商品.Name = "コマンド商品";
-            コマンド商品.Size = new Size(70, 25);
-            コマンド商品.TabIndex = 9;
-            コマンド商品.TabStop = false;
-            コマンド商品.Text = "商品";
-            コマンド商品.UseVisualStyleBackColor = true;
-            コマンド商品.Click += コマンド商品_Click;
-            // 
-            // コマンド顧客
-            // 
-            コマンド顧客.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            コマンド顧客.ForeColor = Color.Blue;
-            コマンド顧客.ImageAlign = ContentAlignment.BottomLeft;
-            コマンド顧客.Location = new Point(271, 6);
-            コマンド顧客.Margin = new Padding(1, 0, 0, 0);
-            コマンド顧客.Name = "コマンド顧客";
-            コマンド顧客.Size = new Size(70, 25);
-            コマンド顧客.TabIndex = 8;
-            コマンド顧客.TabStop = false;
-            コマンド顧客.Text = "顧客";
-            コマンド顧客.UseVisualStyleBackColor = true;
-            コマンド顧客.Click += コマンド顧客_Click;
-            // 
-            // コマンド確定
-            // 
-            コマンド確定.Enabled = false;
-            コマンド確定.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            コマンド確定.ForeColor = Color.Blue;
-            コマンド確定.ImageAlign = ContentAlignment.BottomLeft;
-            コマンド確定.Location = new Point(612, 6);
-            コマンド確定.Margin = new Padding(1, 0, 0, 0);
-            コマンド確定.Name = "コマンド確定";
-            コマンド確定.Size = new Size(70, 25);
-            コマンド確定.TabIndex = 7;
-            コマンド確定.TabStop = false;
-            コマンド確定.Text = "確定";
-            コマンド確定.UseVisualStyleBackColor = true;
-            コマンド確定.Click += コマンド確定_Click;
-            // 
-            // コマンド承認
-            // 
-            コマンド承認.Enabled = false;
-            コマンド承認.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            コマンド承認.ForeColor = Color.Blue;
-            コマンド承認.ImageAlign = ContentAlignment.BottomLeft;
-            コマンド承認.Location = new Point(545, 6);
-            コマンド承認.Margin = new Padding(1, 0, 0, 0);
-            コマンド承認.Name = "コマンド承認";
-            コマンド承認.Size = new Size(70, 25);
-            コマンド承認.TabIndex = 6;
-            コマンド承認.TabStop = false;
-            コマンド承認.Text = "承認";
-            コマンド承認.UseVisualStyleBackColor = true;
-            コマンド承認.Click += コマンド承認_Click;
-            // 
-            // コマンド削除
-            // 
-            コマンド削除.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            コマンド削除.ForeColor = Color.Red;
-            コマンド削除.ImageAlign = ContentAlignment.BottomLeft;
-            コマンド削除.Location = new Point(199, 6);
-            コマンド削除.Margin = new Padding(1, 0, 0, 0);
-            コマンド削除.Name = "コマンド削除";
-            コマンド削除.Size = new Size(70, 25);
-            コマンド削除.TabIndex = 5;
-            コマンド削除.TabStop = false;
-            コマンド削除.Text = "削除";
-            コマンド削除.UseVisualStyleBackColor = true;
-            コマンド削除.Click += コマンド削除_Click;
-            // 
-            // コマンド複写
-            // 
-            コマンド複写.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            コマンド複写.ForeColor = Color.Blue;
-            コマンド複写.ImageAlign = ContentAlignment.BottomLeft;
-            コマンド複写.Location = new Point(134, 6);
-            コマンド複写.Margin = new Padding(1, 0, 0, 0);
-            コマンド複写.Name = "コマンド複写";
-            コマンド複写.Size = new Size(70, 25);
-            コマンド複写.TabIndex = 4;
-            コマンド複写.TabStop = false;
-            コマンド複写.Text = "複写";
-            コマンド複写.UseVisualStyleBackColor = true;
-            コマンド複写.Click += コマンド複写_Click;
-            // 
-            // コマンド読込
-            // 
-            コマンド読込.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            コマンド読込.ForeColor = Color.Blue;
-            コマンド読込.ImageAlign = ContentAlignment.BottomLeft;
-            コマンド読込.Location = new Point(68, 6);
-            コマンド読込.Margin = new Padding(1, 0, 0, 0);
-            コマンド読込.Name = "コマンド読込";
-            コマンド読込.Size = new Size(70, 25);
-            コマンド読込.TabIndex = 3;
-            コマンド読込.TabStop = false;
-            コマンド読込.Text = "読込";
-            コマンド読込.UseVisualStyleBackColor = true;
-            コマンド読込.Click += コマンド読込_Click;
-            // 
-            // コマンド新規
-            // 
-            コマンド新規.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            コマンド新規.ForeColor = Color.Blue;
-            コマンド新規.ImageAlign = ContentAlignment.BottomLeft;
-            コマンド新規.Location = new Point(3, 6);
-            コマンド新規.Margin = new Padding(1, 0, 0, 0);
-            コマンド新規.Name = "コマンド新規";
-            コマンド新規.Size = new Size(70, 25);
-            コマンド新規.TabIndex = 2;
-            コマンド新規.TabStop = false;
-            コマンド新規.Text = "新規";
-            コマンド新規.UseVisualStyleBackColor = true;
-            コマンド新規.Click += コマンド新規_Click;
-            // 
-            // statusStrip1
-            // 
-            statusStrip1.ImageScalingSize = new Size(20, 20);
-            statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1, toolStripStatusLabel2 });
-            statusStrip1.Location = new Point(0, 752);
-            statusStrip1.Name = "statusStrip1";
-            statusStrip1.Padding = new Padding(1, 0, 19, 0);
-            statusStrip1.Size = new Size(1184, 22);
-            statusStrip1.TabIndex = 110;
-            statusStrip1.Text = "statusStrip1";
-            // 
-            // toolStripStatusLabel1
-            // 
-            toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            toolStripStatusLabel1.Size = new Size(0, 17);
-            // 
-            // toolStripStatusLabel2
-            // 
-            toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            toolStripStatusLabel2.Size = new Size(89, 17);
-            toolStripStatusLabel2.Text = "各種項目の説明";
-            // 
-            // notifyIcon1
-            // 
-            notifyIcon1.Text = "notifyIcon1";
-            notifyIcon1.Visible = true;
-            // 
-            // panel2
-            // 
-            panel2.AutoScroll = true;
-            panel2.BackColor = Color.FromArgb(150, 150, 150);
-            panel2.Controls.Add(完了承認者コード);
-            panel2.Controls.Add(承認者コード);
-            panel2.Controls.Add(否認ボタン);
-            panel2.Controls.Add(受注承認ボタン);
-            panel2.Controls.Add(受注完了承認ボタン);
-            panel2.Location = new Point(2, 698);
-            panel2.Margin = new Padding(4, 3, 4, 3);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(1180, 42);
-            panel2.TabIndex = 82;
-            // 
-            // 完了承認者コード
-            // 
-            完了承認者コード.BackColor = Color.Black;
-            完了承認者コード.BorderStyle = BorderStyle.None;
-            完了承認者コード.Cursor = Cursors.IBeam;
-            完了承認者コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            完了承認者コード.Location = new Point(755, 8);
-            完了承認者コード.Margin = new Padding(3, 2, 3, 2);
-            完了承認者コード.Multiline = true;
-            完了承認者コード.Name = "完了承認者コード";
-            完了承認者コード.ReadOnly = true;
-            完了承認者コード.Size = new Size(25, 25);
-            完了承認者コード.TabIndex = 35;
-            完了承認者コード.TabStop = false;
-            // 
-            // 承認者コード
-            // 
-            承認者コード.BackColor = Color.Black;
-            承認者コード.BorderStyle = BorderStyle.None;
-            承認者コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            承認者コード.Location = new Point(421, 8);
-            承認者コード.Margin = new Padding(3, 2, 3, 2);
-            承認者コード.Multiline = true;
-            承認者コード.Name = "承認者コード";
-            承認者コード.ReadOnly = true;
-            承認者コード.Size = new Size(25, 25);
-            承認者コード.TabIndex = 34;
-            承認者コード.TabStop = false;
-            // 
-            // 否認ボタン
-            // 
-            否認ボタン.Enabled = false;
-            否認ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            否認ボタン.ImageAlign = ContentAlignment.BottomLeft;
-            否認ボタン.Location = new Point(550, 6);
-            否認ボタン.Margin = new Padding(1, 0, 0, 0);
-            否認ボタン.Name = "否認ボタン";
-            否認ボタン.Size = new Size(100, 25);
-            否認ボタン.TabIndex = 7;
-            否認ボタン.TabStop = false;
-            否認ボタン.Text = "否認";
-            否認ボタン.UseVisualStyleBackColor = true;
-            否認ボタン.Click += 否認ボタン_Click;
-            // 
-            // 受注承認ボタン
-            // 
-            受注承認ボタン.Enabled = false;
-            受注承認ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            受注承認ボタン.ImageAlign = ContentAlignment.BottomLeft;
-            受注承認ボタン.Location = new Point(450, 6);
-            受注承認ボタン.Margin = new Padding(1, 0, 0, 0);
-            受注承認ボタン.Name = "受注承認ボタン";
-            受注承認ボタン.Size = new Size(100, 25);
-            受注承認ボタン.TabIndex = 6;
-            受注承認ボタン.TabStop = false;
-            受注承認ボタン.Text = "承認";
-            受注承認ボタン.UseVisualStyleBackColor = true;
-            受注承認ボタン.Click += 受注承認ボタン_Click;
-            // 
-            // 受注完了承認ボタン
-            // 
-            受注完了承認ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            受注完了承認ボタン.ImageAlign = ContentAlignment.BottomLeft;
-            受注完了承認ボタン.Location = new Point(650, 6);
-            受注完了承認ボタン.Margin = new Padding(1, 0, 0, 0);
-            受注完了承認ボタン.Name = "受注完了承認ボタン";
-            受注完了承認ボタン.Size = new Size(100, 25);
-            受注完了承認ボタン.TabIndex = 1;
-            受注完了承認ボタン.TabStop = false;
-            受注完了承認ボタン.Text = "完了承認";
-            受注完了承認ボタン.UseVisualStyleBackColor = true;
-            受注完了承認ボタン.Click += 受注完了承認ボタン_Click;
             // 
             // Page2
             // 
@@ -547,7 +281,7 @@ namespace u_net
             Page2.Controls.Add(発送先);
             Page2.Controls.Add(発送先選択);
             Page2.Controls.Add(戻るボタン);
-            Page2.Location = new Point(2, -1);
+            Page2.Location = new Point(0, 0);
             Page2.Margin = new Padding(4, 3, 4, 3);
             Page2.Name = "Page2";
             Page2.Size = new Size(1180, 650);
@@ -1658,13 +1392,280 @@ namespace u_net
             戻るボタン.UseVisualStyleBackColor = true;
             戻るボタン.Click += 戻るボタン_Click;
             // 
+            // コマンド在庫
+            // 
+            コマンド在庫.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            コマンド在庫.ForeColor = Color.Blue;
+            コマンド在庫.ImageAlign = ContentAlignment.BottomLeft;
+            コマンド在庫.Location = new Point(473, 6);
+            コマンド在庫.Margin = new Padding(1, 0, 0, 0);
+            コマンド在庫.Name = "コマンド在庫";
+            コマンド在庫.Size = new Size(70, 25);
+            コマンド在庫.TabIndex = 11;
+            コマンド在庫.TabStop = false;
+            コマンド在庫.Text = "在庫";
+            コマンド在庫.UseVisualStyleBackColor = true;
+            コマンド在庫.Click += コマンド在庫_Click;
+            // 
+            // コマンド全在庫
+            // 
+            コマンド全在庫.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            コマンド全在庫.ForeColor = Color.Blue;
+            コマンド全在庫.ImageAlign = ContentAlignment.BottomLeft;
+            コマンド全在庫.Location = new Point(406, 6);
+            コマンド全在庫.Margin = new Padding(1, 0, 0, 0);
+            コマンド全在庫.Name = "コマンド全在庫";
+            コマンド全在庫.Size = new Size(70, 25);
+            コマンド全在庫.TabIndex = 10;
+            コマンド全在庫.TabStop = false;
+            コマンド全在庫.Text = "全在庫";
+            コマンド全在庫.UseVisualStyleBackColor = true;
+            コマンド全在庫.Click += コマンド全在庫_Click;
+            // 
+            // コマンド商品
+            // 
+            コマンド商品.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            コマンド商品.ForeColor = Color.Blue;
+            コマンド商品.ImageAlign = ContentAlignment.BottomLeft;
+            コマンド商品.Location = new Point(339, 6);
+            コマンド商品.Margin = new Padding(1, 0, 0, 0);
+            コマンド商品.Name = "コマンド商品";
+            コマンド商品.Size = new Size(70, 25);
+            コマンド商品.TabIndex = 9;
+            コマンド商品.TabStop = false;
+            コマンド商品.Text = "商品";
+            コマンド商品.UseVisualStyleBackColor = true;
+            コマンド商品.Click += コマンド商品_Click;
+            // 
+            // コマンド顧客
+            // 
+            コマンド顧客.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            コマンド顧客.ForeColor = Color.Blue;
+            コマンド顧客.ImageAlign = ContentAlignment.BottomLeft;
+            コマンド顧客.Location = new Point(271, 6);
+            コマンド顧客.Margin = new Padding(1, 0, 0, 0);
+            コマンド顧客.Name = "コマンド顧客";
+            コマンド顧客.Size = new Size(70, 25);
+            コマンド顧客.TabIndex = 8;
+            コマンド顧客.TabStop = false;
+            コマンド顧客.Text = "顧客";
+            コマンド顧客.UseVisualStyleBackColor = true;
+            コマンド顧客.Click += コマンド顧客_Click;
+            // 
+            // コマンド確定
+            // 
+            コマンド確定.Enabled = false;
+            コマンド確定.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            コマンド確定.ForeColor = Color.Blue;
+            コマンド確定.ImageAlign = ContentAlignment.BottomLeft;
+            コマンド確定.Location = new Point(612, 6);
+            コマンド確定.Margin = new Padding(1, 0, 0, 0);
+            コマンド確定.Name = "コマンド確定";
+            コマンド確定.Size = new Size(70, 25);
+            コマンド確定.TabIndex = 7;
+            コマンド確定.TabStop = false;
+            コマンド確定.Text = "確定";
+            コマンド確定.UseVisualStyleBackColor = true;
+            コマンド確定.Click += コマンド確定_Click;
+            // 
+            // コマンド承認
+            // 
+            コマンド承認.Enabled = false;
+            コマンド承認.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            コマンド承認.ForeColor = Color.Blue;
+            コマンド承認.ImageAlign = ContentAlignment.BottomLeft;
+            コマンド承認.Location = new Point(545, 6);
+            コマンド承認.Margin = new Padding(1, 0, 0, 0);
+            コマンド承認.Name = "コマンド承認";
+            コマンド承認.Size = new Size(70, 25);
+            コマンド承認.TabIndex = 6;
+            コマンド承認.TabStop = false;
+            コマンド承認.Text = "承認";
+            コマンド承認.UseVisualStyleBackColor = true;
+            コマンド承認.Click += コマンド承認_Click;
+            // 
+            // コマンド削除
+            // 
+            コマンド削除.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            コマンド削除.ForeColor = Color.Red;
+            コマンド削除.ImageAlign = ContentAlignment.BottomLeft;
+            コマンド削除.Location = new Point(199, 6);
+            コマンド削除.Margin = new Padding(1, 0, 0, 0);
+            コマンド削除.Name = "コマンド削除";
+            コマンド削除.Size = new Size(70, 25);
+            コマンド削除.TabIndex = 5;
+            コマンド削除.TabStop = false;
+            コマンド削除.Text = "削除";
+            コマンド削除.UseVisualStyleBackColor = true;
+            コマンド削除.Click += コマンド削除_Click;
+            // 
+            // コマンド複写
+            // 
+            コマンド複写.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            コマンド複写.ForeColor = Color.Blue;
+            コマンド複写.ImageAlign = ContentAlignment.BottomLeft;
+            コマンド複写.Location = new Point(134, 6);
+            コマンド複写.Margin = new Padding(1, 0, 0, 0);
+            コマンド複写.Name = "コマンド複写";
+            コマンド複写.Size = new Size(70, 25);
+            コマンド複写.TabIndex = 4;
+            コマンド複写.TabStop = false;
+            コマンド複写.Text = "複写";
+            コマンド複写.UseVisualStyleBackColor = true;
+            コマンド複写.Click += コマンド複写_Click;
+            // 
+            // コマンド読込
+            // 
+            コマンド読込.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            コマンド読込.ForeColor = Color.Blue;
+            コマンド読込.ImageAlign = ContentAlignment.BottomLeft;
+            コマンド読込.Location = new Point(68, 6);
+            コマンド読込.Margin = new Padding(1, 0, 0, 0);
+            コマンド読込.Name = "コマンド読込";
+            コマンド読込.Size = new Size(70, 25);
+            コマンド読込.TabIndex = 3;
+            コマンド読込.TabStop = false;
+            コマンド読込.Text = "読込";
+            コマンド読込.UseVisualStyleBackColor = true;
+            コマンド読込.Click += コマンド読込_Click;
+            // 
+            // コマンド新規
+            // 
+            コマンド新規.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            コマンド新規.ForeColor = Color.Blue;
+            コマンド新規.ImageAlign = ContentAlignment.BottomLeft;
+            コマンド新規.Location = new Point(3, 6);
+            コマンド新規.Margin = new Padding(1, 0, 0, 0);
+            コマンド新規.Name = "コマンド新規";
+            コマンド新規.Size = new Size(70, 25);
+            コマンド新規.TabIndex = 2;
+            コマンド新規.TabStop = false;
+            コマンド新規.Text = "新規";
+            コマンド新規.UseVisualStyleBackColor = true;
+            コマンド新規.Click += コマンド新規_Click;
+            // 
+            // statusStrip1
+            // 
+            statusStrip1.ImageScalingSize = new Size(20, 20);
+            statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1, toolStripStatusLabel2 });
+            statusStrip1.Location = new Point(0, 741);
+            statusStrip1.Name = "statusStrip1";
+            statusStrip1.Padding = new Padding(1, 0, 19, 0);
+            statusStrip1.Size = new Size(1180, 22);
+            statusStrip1.TabIndex = 110;
+            statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripStatusLabel1
+            // 
+            toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            toolStripStatusLabel1.Size = new Size(0, 17);
+            // 
+            // toolStripStatusLabel2
+            // 
+            toolStripStatusLabel2.Name = "toolStripStatusLabel2";
+            toolStripStatusLabel2.Size = new Size(89, 17);
+            toolStripStatusLabel2.Text = "各種項目の説明";
+            // 
+            // notifyIcon1
+            // 
+            notifyIcon1.Text = "notifyIcon1";
+            notifyIcon1.Visible = true;
+            // 
+            // panel2
+            // 
+            panel2.AutoScroll = true;
+            panel2.BackColor = Color.FromArgb(150, 150, 150);
+            panel2.Controls.Add(完了承認者コード);
+            panel2.Controls.Add(承認者コード);
+            panel2.Controls.Add(否認ボタン);
+            panel2.Controls.Add(受注承認ボタン);
+            panel2.Controls.Add(受注完了承認ボタン);
+            panel2.Dock = DockStyle.Bottom;
+            panel2.Location = new Point(0, 699);
+            panel2.Margin = new Padding(4, 3, 4, 3);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(1180, 42);
+            panel2.TabIndex = 82;
+            // 
+            // 完了承認者コード
+            // 
+            完了承認者コード.BackColor = Color.Black;
+            完了承認者コード.BorderStyle = BorderStyle.None;
+            完了承認者コード.Cursor = Cursors.IBeam;
+            完了承認者コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            完了承認者コード.Location = new Point(755, 8);
+            完了承認者コード.Margin = new Padding(3, 2, 3, 2);
+            完了承認者コード.Multiline = true;
+            完了承認者コード.Name = "完了承認者コード";
+            完了承認者コード.ReadOnly = true;
+            完了承認者コード.Size = new Size(25, 25);
+            完了承認者コード.TabIndex = 35;
+            完了承認者コード.TabStop = false;
+            // 
+            // 承認者コード
+            // 
+            承認者コード.BackColor = Color.Black;
+            承認者コード.BorderStyle = BorderStyle.None;
+            承認者コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            承認者コード.Location = new Point(421, 8);
+            承認者コード.Margin = new Padding(3, 2, 3, 2);
+            承認者コード.Multiline = true;
+            承認者コード.Name = "承認者コード";
+            承認者コード.ReadOnly = true;
+            承認者コード.Size = new Size(25, 25);
+            承認者コード.TabIndex = 34;
+            承認者コード.TabStop = false;
+            // 
+            // 否認ボタン
+            // 
+            否認ボタン.Enabled = false;
+            否認ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            否認ボタン.ImageAlign = ContentAlignment.BottomLeft;
+            否認ボタン.Location = new Point(550, 6);
+            否認ボタン.Margin = new Padding(1, 0, 0, 0);
+            否認ボタン.Name = "否認ボタン";
+            否認ボタン.Size = new Size(100, 25);
+            否認ボタン.TabIndex = 7;
+            否認ボタン.TabStop = false;
+            否認ボタン.Text = "否認";
+            否認ボタン.UseVisualStyleBackColor = true;
+            否認ボタン.Click += 否認ボタン_Click;
+            // 
+            // 受注承認ボタン
+            // 
+            受注承認ボタン.Enabled = false;
+            受注承認ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            受注承認ボタン.ImageAlign = ContentAlignment.BottomLeft;
+            受注承認ボタン.Location = new Point(450, 6);
+            受注承認ボタン.Margin = new Padding(1, 0, 0, 0);
+            受注承認ボタン.Name = "受注承認ボタン";
+            受注承認ボタン.Size = new Size(100, 25);
+            受注承認ボタン.TabIndex = 6;
+            受注承認ボタン.TabStop = false;
+            受注承認ボタン.Text = "承認";
+            受注承認ボタン.UseVisualStyleBackColor = true;
+            受注承認ボタン.Click += 受注承認ボタン_Click;
+            // 
+            // 受注完了承認ボタン
+            // 
+            受注完了承認ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            受注完了承認ボタン.ImageAlign = ContentAlignment.BottomLeft;
+            受注完了承認ボタン.Location = new Point(650, 6);
+            受注完了承認ボタン.Margin = new Padding(1, 0, 0, 0);
+            受注完了承認ボタン.Name = "受注完了承認ボタン";
+            受注完了承認ボタン.Size = new Size(100, 25);
+            受注完了承認ボタン.TabIndex = 1;
+            受注完了承認ボタン.TabStop = false;
+            受注完了承認ボタン.Text = "完了承認";
+            受注完了承認ボタン.UseVisualStyleBackColor = true;
+            受注完了承認ボタン.Click += 受注完了承認ボタン_Click;
+            // 
             // Page1
             // 
-            Page1.Controls.Add(Page2);
             Page1.Controls.Add(出荷予定日);
             Page1.Controls.Add(受注納期);
+            Page1.Controls.Add(Page2);
             Page1.Controls.Add(受注日);
-            Page1.Controls.Add(受注明細1);
             Page1.Controls.Add(ProductionNotice);
             Page1.Controls.Add(label23);
             Page1.Controls.Add(改版履歴);
@@ -1719,9 +1720,10 @@ namespace u_net
             Page1.Controls.Add(注文番号);
             Page1.Controls.Add(備考);
             Page1.Controls.Add(label4);
-            Page1.Location = new Point(0, 45);
+            Page1.Controls.Add(受注明細1);
+            Page1.Location = new Point(0, 42);
             Page1.Name = "Page1";
-            Page1.Size = new Size(1163, 647);
+            Page1.Size = new Size(1180, 650);
             Page1.TabIndex = 10051;
             // 
             // 出荷予定日
@@ -1772,10 +1774,10 @@ namespace u_net
             // 受注明細1
             // 
             受注明細1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            受注明細1.Location = new Point(12, 335);
+            受注明細1.Location = new Point(3, 344);
             受注明細1.Margin = new Padding(5, 3, 5, 3);
             受注明細1.Name = "受注明細1";
-            受注明細1.Size = new Size(1100, 300);
+            受注明細1.Size = new Size(1177, 303);
             受注明細1.TabIndex = 53;
             受注明細1.Resize += Form_Resize;
             // 
@@ -2563,12 +2565,13 @@ namespace u_net
             AutoScaleMode = AutoScaleMode.None;
             AutoScroll = true;
             BackColor = SystemColors.Control;
-            ClientSize = new Size(1184, 774);
+            ClientSize = new Size(1127, 780);
             Controls.Add(panel2);
             Controls.Add(statusStrip1);
-            Controls.Add(panel1);
             Controls.Add(Page1);
+            Controls.Add(panel1);
             Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             KeyPreview = true;
             Margin = new Padding(3, 2, 3, 2);
             Name = "F_受注";
@@ -2578,10 +2581,6 @@ namespace u_net
             KeyDown += F_受注_KeyDown;
             Resize += Form_Resize;
             panel1.ResumeLayout(false);
-            statusStrip1.ResumeLayout(false);
-            statusStrip1.PerformLayout();
-            panel2.ResumeLayout(false);
-            panel2.PerformLayout();
             Page2.ResumeLayout(false);
             Page2.PerformLayout();
             出荷情報.ResumeLayout(false);
@@ -2590,6 +2589,10 @@ namespace u_net
             発送先.PerformLayout();
             発送先選択.ResumeLayout(false);
             発送先選択.PerformLayout();
+            statusStrip1.ResumeLayout(false);
+            statusStrip1.PerformLayout();
+            panel2.ResumeLayout(false);
+            panel2.PerformLayout();
             Page1.ResumeLayout(false);
             Page1.PerformLayout();
             ResumeLayout(false);
