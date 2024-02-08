@@ -290,6 +290,7 @@ namespace u_net
             // 
             // ページ55
             // 
+            ページ55.BackColor = SystemColors.Control;
             ページ55.Controls.Add(郵便番号);
             ページ55.Controls.Add(表示名);
             ページ55.Controls.Add(会社名2);
@@ -314,7 +315,6 @@ namespace u_net
             ページ55.Size = new Size(539, 346);
             ページ55.TabIndex = 0;
             ページ55.Text = "　 基本情報";
-            ページ55.UseVisualStyleBackColor = true;
             // 
             // 郵便番号
             // 
@@ -564,6 +564,7 @@ namespace u_net
             // 
             // ページ56
             // 
+            ページ56.BackColor = SystemColors.Control;
             ページ56.Controls.Add(label13);
             ページ56.Controls.Add(label12);
             ページ56.Controls.Add(groupBox2);
@@ -579,7 +580,6 @@ namespace u_net
             ページ56.Size = new Size(539, 346);
             ページ56.TabIndex = 1;
             ページ56.Text = "　  税・会計";
-            ページ56.UseVisualStyleBackColor = true;
             // 
             // label13
             // 
@@ -951,12 +951,12 @@ namespace u_net
             // 
             // tabPage1
             // 
+            tabPage1.BackColor = SystemColors.Control;
             tabPage1.Location = new Point(4, 22);
             tabPage1.Name = "tabPage1";
             tabPage1.Size = new Size(539, 346);
             tabPage1.TabIndex = 3;
             tabPage1.Text = "顧客項目設定";
-            tabPage1.UseVisualStyleBackColor = true;
             // 
             // statusStrip1
             // 
@@ -1028,6 +1028,7 @@ namespace u_net
             KeyPreview = true;
             Margin = new Padding(3, 2, 3, 2);
             Name = "F_会社情報";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "会社情報";
             FormClosing += Form_Unload;
             Load += Form_Load;
