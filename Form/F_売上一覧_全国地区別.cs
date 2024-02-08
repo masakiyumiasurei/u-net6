@@ -39,7 +39,7 @@ namespace u_net
             cn.Open();
         }
 
-      
+
         private void Form_Load(object sender, EventArgs e)
         {
 
@@ -72,6 +72,11 @@ namespace u_net
             x = (screenWidth - this.Width) / 2;
             this.Location = new Point(x, y);
 
+            System.Type dgvtype = typeof(DataGridView);
+            System.Reflection.PropertyInfo dgvPropertyInfo = dgvtype.GetProperty("DoubleBuffered", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
+            dgvPropertyInfo.SetValue(dataGridView1, true, null);
+
+
             Connect();
 
             using (SqlCommand cmd = new SqlCommand("SP売上年度", cn))
@@ -94,27 +99,12 @@ namespace u_net
             OriginalClass ofn = new OriginalClass();
 
             ofn.SetComboBox(自社担当者コード, "SELECT 社員コード as Display, 氏名 as Display2, 社員コード as Value FROM M社員 WHERE ([パート] = 0) AND (退社 IS NULL) AND (ふりがな <> N'ん') AND (部 = N'営業部') AND (削除日時 IS NULL) ORDER BY ふりがな");
+            自社担当者コード.DropDownWidth = 330;
             自社担当者コード.DrawMode = DrawMode.OwnerDrawFixed;
+
         }
 
-        private void Form_Resize(object sender, EventArgs e)
-        {
-            try
-            {
-                if (this.Height > 800)
-                {
-                    dataGridView1.Height = dataGridView1.Height + (this.Height - intWindowHeight);
-                    intWindowHeight = this.Height;  // 高さ保存
-
-                    dataGridView1.Width = dataGridView1.Width + (this.Width - intWindowWidth);
-                    intWindowWidth = this.Width;    // 幅保存
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(this.Name + "_Form_Resize - " + ex.Message);
-            }
-        }
+        
 
         private void DataGridView1_CellPainting(object sender,
     DataGridViewCellPaintingEventArgs e)
@@ -144,7 +134,7 @@ namespace u_net
             }
         }
 
-        
+
 
 
         private void コマンド終了_Click(object sender, EventArgs e)
@@ -152,7 +142,7 @@ namespace u_net
             this.Close();
         }
 
-       
+
 
         private void F_売上一覧_全国地区別_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -177,6 +167,7 @@ namespace u_net
                 }
 
                 F_出力 targetform = new F_出力();
+                targetform.cutFlg= true;
                 targetform.DataGridView = dataGridView1;
                 targetform.ShowDialog();
 
@@ -211,7 +202,7 @@ namespace u_net
 
         private void 集計年月_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+
 
             str集計年度 = 集計年度.Text;
 
@@ -221,7 +212,7 @@ namespace u_net
             FunctionClass fn = new FunctionClass();
             fn.DoWait("集計しています...");
 
-            if (Filtering(集計年度.Text,自社担当者コード.Text))
+            if (Filtering(集計年度.Text, 自社担当者コード.Text))
             {
                 コピーボタン.Enabled = true;
             }
@@ -242,7 +233,7 @@ namespace u_net
 
 
 
-        private  bool Filtering(string yearString,string salesmancodeString)
+        private bool Filtering(string yearString, string salesmancodeString)
         {
             bool success = false;
 
@@ -251,9 +242,9 @@ namespace u_net
             try
             {
 
-                
-               
-                using (SqlCommand command =  new SqlCommand("SP売上一覧_全国地区別", cn))
+
+
+                using (SqlCommand command = new SqlCommand("SP売上一覧_全国地区別", cn))
                 {
                     command.CommandType = CommandType.StoredProcedure;
                     command.Parameters.AddWithValue("@SalesYear", yearString);
@@ -313,7 +304,7 @@ namespace u_net
 
 
                 }
-                
+
             }
             catch (Exception ex)
             {
@@ -387,7 +378,7 @@ namespace u_net
         {
             自社担当者名.Text = (自社担当者コード.SelectedItem as DataRowView)?.Row.Field<String>("Display2")?.ToString() ?? null;
 
-            
+
 
             str自社担当者コード = 自社担当者コード.Text;
 

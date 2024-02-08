@@ -151,6 +151,10 @@ namespace u_net
             dataGridView1.AllowUserToDeleteRows = false;
             dataGridView1.ReadOnly = true;
 
+            System.Type dgvtype = typeof(DataGridView);
+            System.Reflection.PropertyInfo dgvPropertyInfo = dgvtype.GetProperty("DoubleBuffered", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
+            dgvPropertyInfo.SetValue(dataGridView1, true, null);
+
 
             myapi.GetFullScreen(out xSize, out ySize);
 
@@ -214,24 +218,7 @@ namespace u_net
 
         }
 
-
-        private void Form_Resize(object sender, EventArgs e)
-        {
-            try
-            {
-
-                //dataGridView1.Height = dataGridView1.Height + (this.Height - intWindowHeight);
-                //intWindowHeight = this.Height;  // 高さ保存
-
-                //dataGridView1.Width = dataGridView1.Width + (this.Width - intWindowWidth);
-                //intWindowWidth = this.Width;    // 幅保存
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(this.Name + "_Form_Resize - " + ex.Message);
-            }
-        }
+       
         public bool DoUpdate()
         {
             if (string.IsNullOrEmpty(集計年度.Text)) return false;
@@ -242,7 +229,7 @@ namespace u_net
             bool result = true;
             try
             {
-                SetGrid(TheYear,SalesmanCode,str顧客コード,str顧客名);
+                SetGrid(TheYear, SalesmanCode, str顧客コード, str顧客名);
                 //AddTotalRow(dataGridView1);
 
                 if (dataGridView1.RowCount > 0)
@@ -263,7 +250,7 @@ namespace u_net
             return result;
         }
 
-        private bool SetGrid(int year,string SalesmanCode,string CustomerCode = null,string CustomerName = null)
+        private bool SetGrid(int year, string SalesmanCode, string CustomerCode = null, string CustomerName = null)
         {
             bool success = false;
 
@@ -336,7 +323,7 @@ namespace u_net
 
                     string strCustomerName = string.Empty;
                     string strSalesDivisionName = string.Empty;
-                    string strCustomerCode = string.Empty; 
+                    string strCustomerCode = string.Empty;
 
                     foreach (DataGridViewRow row in dataGridView1.Rows)
                     {
@@ -364,16 +351,12 @@ namespace u_net
 
                         for (int col = 6; col <= 18; col++)
                         {
-                            if(row.Index % 2 == 0)
+                            if (row.Index % 2 == 0)
                             {
                                 row.Cells[col].Style.BackColor = Color.FromArgb(230, 230, 230);
                             }
 
-                            
                         }
-
-
-                        
 
                     }
 
@@ -386,8 +369,6 @@ namespace u_net
                         }
                     }
 
-
-                    
 
                 }
 
@@ -559,14 +540,14 @@ namespace u_net
             try
             {
 
-                if(dataGridView1.CurrentCell.RowIndex < 0 || dataGridView1.CurrentCell.ColumnIndex < 6)
+                if (dataGridView1.CurrentCell.RowIndex < 0 || dataGridView1.CurrentCell.ColumnIndex < 6)
                 {
                     return;
                 }
-                
+
                 MessageBox.Show($"{SalesmanCode} : {TheYear}");
 
-    
+
             }
             catch (Exception ex)
             {
@@ -604,7 +585,7 @@ namespace u_net
                         break;
                     case Keys.F4:
                         if (this.コマンド更新.Enabled) コマンド更新_Click(null, null);
-                        
+
                         break;
                     case Keys.F5:
                         if (this.コマンド顧客参照.Enabled) コマンド顧客参照_Click(null, null);
@@ -624,7 +605,7 @@ namespace u_net
                         if (this.コマンド更新.Enabled) コマンド更新_Click(null, null);
                         break;
                     case Keys.F11:
-                        
+
                         break;
                     case Keys.F12:
                         if (this.コマンド終了.Enabled) コマンド終了_Click(null, null);
@@ -783,7 +764,7 @@ namespace u_net
                     cmd.CommandText = strSQL2;
                     cmd.ExecuteNonQuery(); // 新規データの挿入
                 }
-                
+
 
                 return true;
             }
@@ -1012,13 +993,13 @@ namespace u_net
 
                 if (DoUpdate())
                 {
-                    
 
-                        コマンドコピー.Enabled = true;
-                        コマンド出力.Enabled = true;
-                        コマンド更新.Enabled = true;
-                    
-                      
+
+                    コマンドコピー.Enabled = true;
+                    コマンド出力.Enabled = true;
+                    コマンド更新.Enabled = true;
+
+
                 }
                 else
                 {
@@ -1093,7 +1074,7 @@ namespace u_net
         {
             F_売上計画_抽出 targetform = new F_売上計画_抽出();
             targetform.ShowDialog();
-            
+
         }
 
         private void コマンド重要顧客_Click(object sender, EventArgs e)
@@ -1123,12 +1104,19 @@ namespace u_net
                     dRow = dt.NewRow();
                     foreach (DataGridViewCell cell in row.Cells)
                     {
-                        dRow[cell.ColumnIndex] = cell.Value;
+                        // 数値型の場合、小数点以下を削除
+                        if (cell.Value != null && (cell.Value is decimal || cell.Value is double || cell.Value is float))
+                        {
+                            double numericValue = Convert.ToDouble(cell.Value);
+                            dRow[cell.ColumnIndex] = Math.Floor(numericValue); // 小数点以下を削除
+                        }
+                        else
+                        {
+                            dRow[cell.ColumnIndex] = cell.Value;
+                        }
                     }
                     dt.Rows.Add(dRow);
                 }
-
-             
 
                 // DataTableをエクセルに追加
                 var exws1 = wb.Worksheets.Add(dt);
@@ -1167,7 +1155,7 @@ namespace u_net
                 exws1.Range(exws1.Cell(3, 1), exws1.Cell(lngRows + 2, lngCols + 1)).Style.Border.InsideBorder = XLBorderStyleValues.Thin;
                 exws1.Range(exws1.Cell(3, 1), exws1.Cell(lngRows + 2, lngCols + 1)).Style.Border.OutsideBorder = XLBorderStyleValues.Thin;
 
-               
+
 
 
                 // 顧客名の不要な罫線をなくす
@@ -1198,7 +1186,7 @@ namespace u_net
                     }
                 }
 
-                
+
 
                 // 顧客コード文字列を顧客名の下へ移動し、顧客コード列を削除する
                 // 同時に過去の売上金額を出力する
@@ -1245,7 +1233,7 @@ namespace u_net
                 exws1.Cell(2, 1).Value = TheYear + "年度 売上計画　（担当者：" + SalesmanName + "）";
 
 
-                
+
 
 
                 string file_pass = "";
@@ -1262,7 +1250,7 @@ namespace u_net
 
                 MessageBox.Show("データがファイルに保存されました。");
 
-              
+
                 try
                 {
                     Process.Start(new ProcessStartInfo(file_pass) { UseShellExecute = true });
@@ -1272,7 +1260,7 @@ namespace u_net
                 {
                     MessageBox.Show("Excelを開く際にエラーが発生しました: " + ex.Message);
                 }
-                
+
             }
         }
 
@@ -1344,7 +1332,7 @@ namespace u_net
 
                 if (DoUpdate())
                 {
-                   
+
                     コマンド更新.Enabled = true;
                     コマンドコピー.Enabled = true;
                     コマンド出力.Enabled = true;
@@ -1445,7 +1433,7 @@ namespace u_net
             toolStripStatusLabel1.Text = "各種項目の説明";
         }
 
-        
+
     }
 
 

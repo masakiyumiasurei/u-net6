@@ -57,10 +57,14 @@
             自社担当者_ラベル = new Label();
             自社担当者コード = new ComboBox();
             自社担当者名 = new TextBox();
+            panel3 = new Panel();
+            panel4 = new Panel();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel2.SuspendLayout();
             statusStrip1.SuspendLayout();
+            panel3.SuspendLayout();
+            panel4.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
@@ -281,7 +285,7 @@
             // 表示件数
             // 
             表示件数.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            表示件数.Location = new Point(72, 4);
+            表示件数.Location = new Point(73, 7);
             表示件数.Margin = new Padding(3, 2, 3, 2);
             表示件数.Name = "表示件数";
             表示件数.Size = new Size(88, 20);
@@ -293,7 +297,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(7, 8);
+            label1.Location = new Point(8, 11);
             label1.Name = "label1";
             label1.Size = new Size(53, 12);
             label1.TabIndex = 85;
@@ -302,7 +306,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(163, 8);
+            label2.Location = new Point(164, 11);
             label2.Name = "label2";
             label2.Size = new Size(19, 15);
             label2.TabIndex = 86;
@@ -312,14 +316,14 @@
             // 
             dataGridView1.AllowUserToAddRows = false;
             dataGridView1.AllowUserToDeleteRows = false;
-            dataGridView1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(0, 75);
+            dataGridView1.Dock = DockStyle.Fill;
+            dataGridView1.Location = new Point(0, 73);
             dataGridView1.Margin = new Padding(3, 2, 3, 2);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
             dataGridView1.RowTemplate.Height = 29;
-            dataGridView1.Size = new Size(1054, 472);
+            dataGridView1.Size = new Size(1054, 455);
             dataGridView1.TabIndex = 1;
             dataGridView1.CellClick += dataGridView1_CellClick;
             dataGridView1.CellDoubleClick += dataGridView1_CellDoubleClick;
@@ -330,20 +334,17 @@
             // panel2
             // 
             panel2.Controls.Add(statusStrip1);
-            panel2.Controls.Add(表示件数);
-            panel2.Controls.Add(label1);
-            panel2.Controls.Add(label2);
             panel2.Dock = DockStyle.Bottom;
-            panel2.Location = new Point(0, 535);
+            panel2.Location = new Point(0, 562);
             panel2.Margin = new Padding(3, 2, 3, 2);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1054, 48);
+            panel2.Size = new Size(1054, 21);
             panel2.TabIndex = 88;
             // 
             // statusStrip1
             // 
             statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1 });
-            statusStrip1.Location = new Point(0, 26);
+            statusStrip1.Location = new Point(0, -1);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Padding = new Padding(1, 0, 19, 0);
             statusStrip1.Size = new Size(1054, 22);
@@ -363,7 +364,7 @@
             集計年度_ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             集計年度_ラベル.ForeColor = SystemColors.ActiveCaptionText;
             集計年度_ラベル.ImageAlign = ContentAlignment.MiddleLeft;
-            集計年度_ラベル.Location = new Point(9, 41);
+            集計年度_ラベル.Location = new Point(16, 9);
             集計年度_ラベル.Margin = new Padding(0);
             集計年度_ラベル.Name = "集計年度_ラベル";
             集計年度_ラベル.Size = new Size(75, 20);
@@ -377,7 +378,7 @@
             集計年度.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             集計年度.FormattingEnabled = true;
             集計年度.ImeMode = ImeMode.Disable;
-            集計年度.Location = new Point(87, 41);
+            集計年度.Location = new Point(94, 9);
             集計年度.Name = "集計年度";
             集計年度.Size = new Size(68, 21);
             集計年度.TabIndex = 2;
@@ -390,7 +391,7 @@
             年度_ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             年度_ラベル.ForeColor = SystemColors.ActiveCaptionText;
             年度_ラベル.ImageAlign = ContentAlignment.MiddleLeft;
-            年度_ラベル.Location = new Point(156, 41);
+            年度_ラベル.Location = new Point(163, 9);
             年度_ラベル.Margin = new Padding(0);
             年度_ラベル.Name = "年度_ラベル";
             年度_ラベル.Size = new Size(75, 20);
@@ -405,7 +406,7 @@
             自社担当者_ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             自社担当者_ラベル.ForeColor = SystemColors.ActiveCaptionText;
             自社担当者_ラベル.ImageAlign = ContentAlignment.MiddleLeft;
-            自社担当者_ラベル.Location = new Point(657, 43);
+            自社担当者_ラベル.Location = new Point(664, 11);
             自社担当者_ラベル.Margin = new Padding(0);
             自社担当者_ラベル.Name = "自社担当者_ラベル";
             自社担当者_ラベル.Size = new Size(97, 20);
@@ -419,7 +420,7 @@
             自社担当者コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             自社担当者コード.FormattingEnabled = true;
             自社担当者コード.ImeMode = ImeMode.Disable;
-            自社担当者コード.Location = new Point(757, 43);
+            自社担当者コード.Location = new Point(764, 11);
             自社担当者コード.Name = "自社担当者コード";
             自社担当者コード.Size = new Size(50, 21);
             自社担当者コード.TabIndex = 4;
@@ -431,7 +432,7 @@
             // 
             自社担当者名.Enabled = false;
             自社担当者名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            自社担当者名.Location = new Point(813, 44);
+            自社担当者名.Location = new Point(820, 12);
             自社担当者名.Margin = new Padding(3, 2, 3, 2);
             自社担当者名.Name = "自社担当者名";
             自社担当者名.ReadOnly = true;
@@ -439,19 +440,40 @@
             自社担当者名.TabIndex = 90;
             自社担当者名.TabStop = false;
             // 
+            // panel3
+            // 
+            panel3.Controls.Add(年度_ラベル);
+            panel3.Controls.Add(自社担当者名);
+            panel3.Controls.Add(集計年度_ラベル);
+            panel3.Controls.Add(自社担当者コード);
+            panel3.Controls.Add(集計年度);
+            panel3.Controls.Add(自社担当者_ラベル);
+            panel3.Dock = DockStyle.Top;
+            panel3.Location = new Point(0, 32);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(1054, 41);
+            panel3.TabIndex = 91;
+            // 
+            // panel4
+            // 
+            panel4.Controls.Add(表示件数);
+            panel4.Controls.Add(label2);
+            panel4.Controls.Add(label1);
+            panel4.Dock = DockStyle.Bottom;
+            panel4.Location = new Point(0, 528);
+            panel4.Name = "panel4";
+            panel4.Size = new Size(1054, 34);
+            panel4.TabIndex = 10197;
+            // 
             // F_売上計画
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1054, 583);
-            Controls.Add(自社担当者名);
-            Controls.Add(自社担当者コード);
-            Controls.Add(自社担当者_ラベル);
-            Controls.Add(年度_ラベル);
-            Controls.Add(集計年度);
-            Controls.Add(集計年度_ラベル);
-            Controls.Add(panel2);
             Controls.Add(dataGridView1);
+            Controls.Add(panel4);
+            Controls.Add(panel3);
+            Controls.Add(panel2);
             Controls.Add(panel1);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(3, 2, 3, 2);
@@ -461,15 +483,17 @@
             FormClosing += F_売上計画_FormClosing;
             Load += Form_Load;
             KeyDown += Form_KeyDown;
-            Resize += Form_Resize;
             panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
             statusStrip1.ResumeLayout(false);
             statusStrip1.PerformLayout();
+            panel3.ResumeLayout(false);
+            panel3.PerformLayout();
+            panel4.ResumeLayout(false);
+            panel4.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -627,5 +651,7 @@
         private TextBox 自社担当者名;
         private StatusStrip statusStrip1;
         internal ToolStripStatusLabel toolStripStatusLabel1;
+        private Panel panel3;
+        private Panel panel4;
     }
 }

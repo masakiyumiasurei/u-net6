@@ -31,6 +31,7 @@ namespace u_net
         public string args = "";
         private string BASE_CAPTION = "出力";
         private int selected_frame = 0;
+        public bool cutFlg=false;  //少数以下をカットする場合
 
         public DataGridView DataGridView;
 
@@ -55,6 +56,7 @@ namespace u_net
             {
                 control.PreviewKeyDown += OriginalClass.ValidateCheck;
             }
+
         }
 
         private void Form_KeyDown(object sender, KeyEventArgs e)
@@ -93,7 +95,11 @@ namespace u_net
                 }
             }
         }
-
+        /// <summary>
+        /// cutFlgがtrueの時は少数以下を削除して出力する
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void 実行ボタン_Click(object sender, EventArgs e)
         {
             using (XLWorkbook wb = new XLWorkbook())
@@ -109,10 +115,25 @@ namespace u_net
                 // 行のデータをDataTableに追加
                 foreach (DataGridViewRow row in DataGridView.Rows)
                 {
+                    if (row.IsNewRow) continue; // 新しい行の追加をスキップ
+
                     DataRow dRow = dt.NewRow();
                     foreach (DataGridViewCell cell in row.Cells)
                     {
-                        dRow[cell.ColumnIndex] = cell.Value;
+                        object value = cell.Value;
+
+                        // cutFlgがtrueで、かつ値が小数を含む数値型の場合、小数点以下を削除
+                        if (cutFlg && value != null && (value is decimal || value is double || value is float))
+                        {
+                            double numericValue = Convert.ToDouble(value);
+                            dRow[cell.ColumnIndex] = Math.Floor(numericValue);
+                        }
+                        else
+                        {
+                            // その他の場合は元の値を使用
+                            dRow[cell.ColumnIndex] = value;
+                        }
+
                     }
                     dt.Rows.Add(dRow);
                 }

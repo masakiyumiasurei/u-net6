@@ -51,8 +51,10 @@
             コピーボタン = new Button();
             label2 = new Label();
             toolTip1 = new ToolTip(components);
+            panel3 = new Panel();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            panel3.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
@@ -74,7 +76,7 @@
             panel1.Location = new Point(0, 0);
             panel1.Margin = new Padding(4, 2, 4, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1054, 32);
+            panel1.Size = new Size(966, 32);
             panel1.TabIndex = 83;
             // 
             // button4
@@ -242,12 +244,13 @@
             dataGridView1.AllowUserToAddRows = false;
             dataGridView1.AllowUserToDeleteRows = false;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(0, 63);
+            dataGridView1.Dock = DockStyle.Fill;
+            dataGridView1.Location = new Point(0, 64);
             dataGridView1.Margin = new Padding(3, 2, 3, 2);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
             dataGridView1.RowTemplate.Height = 29;
-            dataGridView1.Size = new Size(1054, 428);
+            dataGridView1.Size = new Size(966, 457);
             dataGridView1.TabIndex = 87;
             dataGridView1.CellClick += dataGridView1_CellClick;
             dataGridView1.CellPainting += DataGridView1_CellPainting;
@@ -256,10 +259,10 @@
             // panel2
             // 
             panel2.Dock = DockStyle.Bottom;
-            panel2.Location = new Point(0, 495);
+            panel2.Location = new Point(0, 521);
             panel2.Margin = new Padding(3, 2, 3, 2);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1054, 10);
+            panel2.Size = new Size(966, 10);
             panel2.TabIndex = 88;
             // 
             // 集計年度
@@ -268,7 +271,7 @@
             集計年度.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             集計年度.FormattingEnabled = true;
             集計年度.ImeMode = ImeMode.Disable;
-            集計年度.Location = new Point(95, 37);
+            集計年度.Location = new Point(95, 5);
             集計年度.Name = "集計年度";
             集計年度.Size = new Size(114, 21);
             集計年度.TabIndex = 2;
@@ -281,7 +284,7 @@
             メーカーコード_ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             メーカーコード_ラベル.ForeColor = SystemColors.ActiveCaptionText;
             メーカーコード_ラベル.ImageAlign = ContentAlignment.MiddleLeft;
-            メーカーコード_ラベル.Location = new Point(4, 37);
+            メーカーコード_ラベル.Location = new Point(4, 5);
             メーカーコード_ラベル.Margin = new Padding(0);
             メーカーコード_ラベル.Name = "メーカーコード_ラベル";
             メーカーコード_ラベル.Size = new Size(102, 17);
@@ -296,7 +299,7 @@
             label1.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             label1.ForeColor = SystemColors.ActiveCaptionText;
             label1.ImageAlign = ContentAlignment.MiddleLeft;
-            label1.Location = new Point(212, 38);
+            label1.Location = new Point(212, 6);
             label1.Margin = new Padding(0);
             label1.Name = "label1";
             label1.Size = new Size(51, 17);
@@ -310,7 +313,7 @@
             コピーボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             コピーボタン.ForeColor = Color.Black;
             コピーボタン.ImageAlign = ContentAlignment.BottomLeft;
-            コピーボタン.Location = new Point(277, 37);
+            コピーボタン.Location = new Point(277, 5);
             コピーボタン.Margin = new Padding(0, 2, 0, 2);
             コピーボタン.Name = "コピーボタン";
             コピーボタン.Size = new Size(137, 22);
@@ -327,7 +330,7 @@
             label2.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             label2.ForeColor = SystemColors.ActiveCaptionText;
             label2.ImageAlign = ContentAlignment.MiddleLeft;
-            label2.Location = new Point(428, 38);
+            label2.Location = new Point(428, 6);
             label2.Margin = new Padding(0);
             label2.Name = "label2";
             label2.Size = new Size(357, 17);
@@ -335,18 +338,27 @@
             label2.Text = "※選択されたセルの内容をコピーします。";
             label2.TextAlign = ContentAlignment.MiddleLeft;
             // 
+            // panel3
+            // 
+            panel3.Controls.Add(集計年度);
+            panel3.Controls.Add(label2);
+            panel3.Controls.Add(メーカーコード_ラベル);
+            panel3.Controls.Add(コピーボタン);
+            panel3.Controls.Add(label1);
+            panel3.Dock = DockStyle.Top;
+            panel3.Location = new Point(0, 32);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(966, 32);
+            panel3.TabIndex = 91;
+            // 
             // F_売上一覧_担当者別
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1054, 505);
-            Controls.Add(label2);
-            Controls.Add(コピーボタン);
-            Controls.Add(label1);
-            Controls.Add(集計年度);
-            Controls.Add(メーカーコード_ラベル);
-            Controls.Add(panel2);
+            ClientSize = new Size(966, 531);
             Controls.Add(dataGridView1);
+            Controls.Add(panel3);
+            Controls.Add(panel2);
             Controls.Add(panel1);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(3, 2, 3, 2);
@@ -357,6 +369,7 @@
             Load += Form_Load;
             panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            panel3.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -509,5 +522,6 @@
         private Button コピーボタン;
         private Label label2;
         private ToolTip toolTip1;
+        private Panel panel3;
     }
 }

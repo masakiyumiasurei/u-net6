@@ -21,7 +21,6 @@ namespace u_net
 
         int intWindowHeight = 0;
         int intWindowWidth = 0;
-
         public string args = "";
 
         private Control? previousControl;
@@ -71,6 +70,11 @@ namespace u_net
             x = (screenWidth - this.Width) / 2;
             this.Location = new Point(x, y);
 
+            System.Type dgvtype = typeof(DataGridView);
+            System.Reflection.PropertyInfo dgvPropertyInfo = dgvtype.GetProperty("DoubleBuffered", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
+            dgvPropertyInfo.SetValue(dataGridView1, true, null);
+
+
             Connect();
 
             using (SqlCommand cmd = new SqlCommand("SP売上年度", cn))
@@ -87,24 +91,19 @@ namespace u_net
                 集計年度.ValueMember = "売上年度";
                 集計年度.DataSource = dataTable;
 
-
             }
-
 
         }
 
         private void Form_Resize(object sender, EventArgs e)
         {
             try
-            {
-                if (this.Height > 800)
-                {
+            {                
                     dataGridView1.Height = dataGridView1.Height + (this.Height - intWindowHeight);
                     intWindowHeight = this.Height;  // 高さ保存
 
                     dataGridView1.Width = dataGridView1.Width + (this.Width - intWindowWidth);
-                    intWindowWidth = this.Width;    // 幅保存
-                }
+                    intWindowWidth = this.Width;    // 幅保存                
             }
             catch (Exception ex)
             {
@@ -140,15 +139,10 @@ namespace u_net
             }
         }
 
-
-
-
         private void コマンド終了_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-
-
 
         private void F_売上一覧_担当者別_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -174,6 +168,7 @@ namespace u_net
 
                 F_出力 targetform = new F_出力();
                 targetform.DataGridView = dataGridView1;
+                targetform.cutFlg = true;
                 targetform.ShowDialog();
 
             }
@@ -207,8 +202,6 @@ namespace u_net
 
         private void 集計年月_SelectedIndexChanged(object sender, EventArgs e)
         {
-
-
             str集計年度 = 集計年度.Text;
 
             if (string.IsNullOrEmpty(集計年度.Text)) return;
@@ -227,15 +220,8 @@ namespace u_net
                 MessageBox.Show($"エラーが発生しました。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
 
-
-
-
             fn.WaitForm.Close();
         }
-
-
-
-
 
 
         private bool Filtering(string yearString)
@@ -246,14 +232,10 @@ namespace u_net
 
             try
             {
-
-
-
                 using (SqlCommand command = new SqlCommand("SP売上一覧_担当者別", cn))
                 {
                     command.CommandType = CommandType.StoredProcedure;
                     command.Parameters.AddWithValue("@SalesYear", yearString);
-
 
                     // データベースからデータを取得して DataGridView に設定
                     using (SqlDataAdapter adapter = new SqlDataAdapter(command))
@@ -276,9 +258,6 @@ namespace u_net
 
                     success = true;
 
-
-
-
                     MyApi myapi = new MyApi();
                     int xSize, ySize, intpixel, twipperdot;
 
@@ -291,7 +270,7 @@ namespace u_net
 
                     //0列目はaccessでは行ヘッダのため、ずらす
                     //dataGridView1.Columns[0].Width = 500 / twipperdot;
-                    dataGridView1.Columns[0].Width = 1000 / twipperdot; //1150
+                    dataGridView1.Columns[0].Width = 1200 / twipperdot; //1150
                     dataGridView1.Columns[1].Width = 1300 / twipperdot;
                     dataGridView1.Columns[2].Width = 1300 / twipperdot;
                     dataGridView1.Columns[3].Width = 1300 / twipperdot;
@@ -305,8 +284,6 @@ namespace u_net
                     dataGridView1.Columns[11].Width = 1300 / twipperdot;
                     dataGridView1.Columns[12].Width = 1300 / twipperdot;
                     dataGridView1.Columns[13].Width = 1300 / twipperdot;
-
-
 
                 }
 
@@ -326,10 +303,8 @@ namespace u_net
                 int rowCount = dataGridView.Rows.Count;
                 int colCount = dataGridView.Columns.Count;
 
-
                 BindingSource bindingSource = (BindingSource)dataGridView.DataSource;
                 bindingSource.AddNew();
-
 
                 // 合計行に表示する文字列
                 dataGridView.Rows[rowCount].Cells[0].Value = "(合計)";
@@ -348,7 +323,6 @@ namespace u_net
                         {
                             sum += Convert.ToInt64(cellValue);
                         }
-
                     }
 
                     // 合計をセルに表示
@@ -365,7 +339,6 @@ namespace u_net
         }
 
 
-
         private void dataGridView1_Sorted(object sender, EventArgs e)
         {
             AddTotalRow(dataGridView1);
@@ -378,9 +351,6 @@ namespace u_net
                 dataGridView1.Rows.RemoveAt(dataGridView1.Rows.Count - 1);
             }
         }
-
-
-
 
 
     }

@@ -40,7 +40,7 @@ namespace u_net
             cn.Open();
         }
 
-      
+
         private void Form_Load(object sender, EventArgs e)
         {
 
@@ -73,8 +73,11 @@ namespace u_net
             x = (screenWidth - this.Width) / 2;
             this.Location = new Point(x, y);
 
+            System.Type dgvtype = typeof(DataGridView);
+            System.Reflection.PropertyInfo dgvPropertyInfo = dgvtype.GetProperty("DoubleBuffered", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
+            dgvPropertyInfo.SetValue(dataGridView1, true, null);
 
-            
+
 
             Connect();
 
@@ -87,7 +90,7 @@ namespace u_net
                 顧客名.Text = FunctionClass.GetCustomerName(cn, str顧客コード);
             }
 
-            
+
 
 
 
@@ -95,24 +98,7 @@ namespace u_net
 
         }
 
-        private void Form_Resize(object sender, EventArgs e)
-        {
-            try
-            {
-                if (this.Height > 800)
-                {
-                    dataGridView1.Height = dataGridView1.Height + (this.Height - intWindowHeight);
-                    intWindowHeight = this.Height;  // 高さ保存
 
-                    dataGridView1.Width = dataGridView1.Width + (this.Width - intWindowWidth);
-                    intWindowWidth = this.Width;    // 幅保存
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(this.Name + "_Form_Resize - " + ex.Message);
-            }
-        }
 
         private void DataGridView1_CellPainting(object sender,
     DataGridViewCellPaintingEventArgs e)
@@ -142,7 +128,7 @@ namespace u_net
             }
         }
 
-        
+
 
 
         private void コマンド終了_Click(object sender, EventArgs e)
@@ -150,7 +136,7 @@ namespace u_net
             this.Close();
         }
 
-       
+
 
         private void F_売上明細参照_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -175,6 +161,7 @@ namespace u_net
                 }
 
                 F_出力 targetform = new F_出力();
+                targetform.cutFlg = true;
                 targetform.DataGridView = dataGridView1;
                 targetform.ShowDialog();
 
@@ -187,12 +174,12 @@ namespace u_net
         }
 
 
-      
 
 
 
 
-        private  bool Filtering(string CustomerCode,string SalesMonthS,string SalesMonthE)
+
+        private bool Filtering(string CustomerCode, string SalesMonthS, string SalesMonthE)
         {
             bool success = false;
 
@@ -202,8 +189,8 @@ namespace u_net
             {
 
                 FunctionClass fn = new FunctionClass();
-               
-                using (SqlCommand command =  new SqlCommand("SP売上明細参照", cn))
+
+                using (SqlCommand command = new SqlCommand("SP売上明細参照", cn))
                 {
                     command.CommandType = CommandType.StoredProcedure;
                     command.Parameters.AddWithValue("@CustomerCode", fn.Zn(CustomerCode));
@@ -248,7 +235,7 @@ namespace u_net
 
                     //0列目はaccessでは行ヘッダのため、ずらす
                     //dataGridView1.Columns[0].Width = 500 / twipperdot;
-                    dataGridView1.Columns[0].Width = 1250 / twipperdot; 
+                    dataGridView1.Columns[0].Width = 1250 / twipperdot;
                     dataGridView1.Columns[1].Width = 1200 / twipperdot;
                     dataGridView1.Columns[2].Width = 3600 / twipperdot;
                     dataGridView1.Columns[3].Width = 3600 / twipperdot;
@@ -267,10 +254,10 @@ namespace u_net
 
                     foreach (DataGridViewRow row in dataGridView1.Rows)
                     {
-           
+
                         if (!row.IsNewRow && row.Cells.Count > 5 && row.Cells[5].Value != null)
                         {
-                  
+
                             TotalAmount += Convert.ToInt32(row.Cells[5].Value);
                         }
 
@@ -306,7 +293,7 @@ namespace u_net
             bool result = true;
             try
             {
-                Filtering(str顧客コード,str売上年月開始,str売上年月終了);
+                Filtering(str顧客コード, str売上年月開始, str売上年月終了);
 
 
             }
@@ -345,7 +332,7 @@ namespace u_net
 
 
             DoUpdate();
-            
+
 
 
             fn.WaitForm.Close();
@@ -355,7 +342,7 @@ namespace u_net
         private F_検索 SearchForm;
 
 
-  
+
         private void 顧客コード検索ボタン_Click(object sender, EventArgs e)
         {
             SearchForm = new F_検索();
@@ -431,7 +418,7 @@ namespace u_net
 
             str顧客コード = Nz(顧客コード.Text);
 
-            顧客名.Text = FunctionClass.GetCustomerName(cn,str顧客コード);
+            顧客名.Text = FunctionClass.GetCustomerName(cn, str顧客コード);
 
             売上年月.SelectedValue = DBNull.Value;
 
@@ -439,6 +426,30 @@ namespace u_net
             ofn.SetComboBox(売上年月, "SELECT 売上年月日 as Display, 売上年月日 as Value FROM V売上明細参照_年月一覧 WHERE 顧客コード='" + str顧客コード + "' ORDER BY 売上年月日 DESC");
 
 
+
+        }
+
+        private void F_売上明細参照_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Space: //コンボボックスならドロップダウン
+                    {
+                        Control activeControl = this.ActiveControl;
+                        if (activeControl is System.Windows.Forms.ComboBox)
+                        {
+                            e.Handled = true;
+                            System.Windows.Forms.ComboBox activeComboBox = (System.Windows.Forms.ComboBox)activeControl;
+                            activeComboBox.DroppedDown = true;
+                        }
+                    }
+                    break;
+                case Keys.Return:
+
+                    SelectNextControl(ActiveControl, true, true, true, true);
+                    break;
+
+            }
 
         }
     }

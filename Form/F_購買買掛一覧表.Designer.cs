@@ -45,14 +45,15 @@
             コマンド終了 = new Button();
             dataGridView1 = new DataGridView();
             panel2 = new Panel();
-            集計年度 = new ComboBox();
-            メーカーコード_ラベル = new Label();
+            label2 = new Label();
             label1 = new Label();
             コピーボタン = new Button();
-            label2 = new Label();
+            メーカーコード_ラベル = new Label();
+            集計年度 = new ComboBox();
             toolTip1 = new ToolTip(components);
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            panel2.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
@@ -247,14 +248,14 @@
             // 
             dataGridView1.AllowUserToAddRows = false;
             dataGridView1.AllowUserToDeleteRows = false;
-            dataGridView1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(0, 63);
+            dataGridView1.Dock = DockStyle.Fill;
+            dataGridView1.Location = new Point(0, 70);
             dataGridView1.Margin = new Padding(3, 2, 3, 2);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
             dataGridView1.RowTemplate.Height = 29;
-            dataGridView1.Size = new Size(1054, 428);
+            dataGridView1.Size = new Size(1054, 435);
             dataGridView1.TabIndex = 87;
             dataGridView1.CellClick += dataGridView1_CellClick;
             dataGridView1.CellPainting += DataGridView1_CellPainting;
@@ -262,39 +263,32 @@
             // 
             // panel2
             // 
-            panel2.Dock = DockStyle.Bottom;
-            panel2.Location = new Point(0, 495);
+            panel2.Controls.Add(label2);
+            panel2.Controls.Add(label1);
+            panel2.Controls.Add(コピーボタン);
+            panel2.Controls.Add(メーカーコード_ラベル);
+            panel2.Controls.Add(集計年度);
+            panel2.Dock = DockStyle.Top;
+            panel2.Location = new Point(0, 32);
             panel2.Margin = new Padding(3, 2, 3, 2);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1054, 10);
+            panel2.Size = new Size(1054, 38);
             panel2.TabIndex = 88;
             // 
-            // 集計年度
+            // label2
             // 
-            集計年度.BackColor = Color.White;
-            集計年度.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            集計年度.FormattingEnabled = true;
-            集計年度.ImeMode = ImeMode.Disable;
-            集計年度.Location = new Point(95, 37);
-            集計年度.Name = "集計年度";
-            集計年度.Size = new Size(114, 21);
-            集計年度.TabIndex = 2;
-            集計年度.SelectedIndexChanged += 集計年月_SelectedIndexChanged;
-            // 
-            // メーカーコード_ラベル
-            // 
-            メーカーコード_ラベル.AllowDrop = true;
-            メーカーコード_ラベル.AutoEllipsis = true;
-            メーカーコード_ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            メーカーコード_ラベル.ForeColor = SystemColors.ActiveCaptionText;
-            メーカーコード_ラベル.ImageAlign = ContentAlignment.MiddleLeft;
-            メーカーコード_ラベル.Location = new Point(4, 38);
-            メーカーコード_ラベル.Margin = new Padding(0);
-            メーカーコード_ラベル.Name = "メーカーコード_ラベル";
-            メーカーコード_ラベル.Size = new Size(102, 20);
-            メーカーコード_ラベル.TabIndex = 1;
-            メーカーコード_ラベル.Text = "集計年月(&Y)";
-            メーカーコード_ラベル.TextAlign = ContentAlignment.MiddleLeft;
+            label2.AllowDrop = true;
+            label2.AutoEllipsis = true;
+            label2.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label2.ForeColor = SystemColors.ActiveCaptionText;
+            label2.ImageAlign = ContentAlignment.MiddleLeft;
+            label2.Location = new Point(442, 9);
+            label2.Margin = new Padding(0);
+            label2.Name = "label2";
+            label2.Size = new Size(357, 20);
+            label2.TabIndex = 90;
+            label2.Text = "※選択されたセルの内容をコピーします。";
+            label2.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // label1
             // 
@@ -303,7 +297,7 @@
             label1.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             label1.ForeColor = SystemColors.ActiveCaptionText;
             label1.ImageAlign = ContentAlignment.MiddleLeft;
-            label1.Location = new Point(212, 38);
+            label1.Location = new Point(226, 9);
             label1.Margin = new Padding(0);
             label1.Name = "label1";
             label1.Size = new Size(51, 20);
@@ -317,7 +311,7 @@
             コピーボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             コピーボタン.ForeColor = Color.Black;
             コピーボタン.ImageAlign = ContentAlignment.BottomLeft;
-            コピーボタン.Location = new Point(277, 37);
+            コピーボタン.Location = new Point(291, 8);
             コピーボタン.Margin = new Padding(0, 2, 0, 2);
             コピーボタン.Name = "コピーボタン";
             コピーボタン.Size = new Size(137, 22);
@@ -327,33 +321,40 @@
             コピーボタン.UseVisualStyleBackColor = true;
             コピーボタン.Click += コピーボタン_Click;
             // 
-            // label2
+            // メーカーコード_ラベル
             // 
-            label2.AllowDrop = true;
-            label2.AutoEllipsis = true;
-            label2.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label2.ForeColor = SystemColors.ActiveCaptionText;
-            label2.ImageAlign = ContentAlignment.MiddleLeft;
-            label2.Location = new Point(428, 38);
-            label2.Margin = new Padding(0);
-            label2.Name = "label2";
-            label2.Size = new Size(357, 20);
-            label2.TabIndex = 90;
-            label2.Text = "※選択されたセルの内容をコピーします。";
-            label2.TextAlign = ContentAlignment.MiddleLeft;
+            メーカーコード_ラベル.AllowDrop = true;
+            メーカーコード_ラベル.AutoEllipsis = true;
+            メーカーコード_ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            メーカーコード_ラベル.ForeColor = SystemColors.ActiveCaptionText;
+            メーカーコード_ラベル.ImageAlign = ContentAlignment.MiddleLeft;
+            メーカーコード_ラベル.Location = new Point(18, 9);
+            メーカーコード_ラベル.Margin = new Padding(0);
+            メーカーコード_ラベル.Name = "メーカーコード_ラベル";
+            メーカーコード_ラベル.Size = new Size(88, 20);
+            メーカーコード_ラベル.TabIndex = 1;
+            メーカーコード_ラベル.Text = "集計年月(&Y)";
+            メーカーコード_ラベル.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // 集計年度
+            // 
+            集計年度.BackColor = Color.White;
+            集計年度.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            集計年度.FormattingEnabled = true;
+            集計年度.ImeMode = ImeMode.Disable;
+            集計年度.Location = new Point(109, 8);
+            集計年度.Name = "集計年度";
+            集計年度.Size = new Size(114, 21);
+            集計年度.TabIndex = 2;
+            集計年度.SelectedIndexChanged += 集計年月_SelectedIndexChanged;
             // 
             // F_購買買掛一覧表
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1054, 505);
-            Controls.Add(label2);
-            Controls.Add(コピーボタン);
-            Controls.Add(label1);
-            Controls.Add(集計年度);
-            Controls.Add(メーカーコード_ラベル);
-            Controls.Add(panel2);
             Controls.Add(dataGridView1);
+            Controls.Add(panel2);
             Controls.Add(panel1);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(3, 2, 3, 2);
@@ -364,6 +365,7 @@
             Load += Form_Load;
             panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            panel2.ResumeLayout(false);
             ResumeLayout(false);
         }
 

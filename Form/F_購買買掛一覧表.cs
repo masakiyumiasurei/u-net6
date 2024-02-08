@@ -72,6 +72,10 @@ namespace u_net
             x = (screenWidth - this.Width) / 2;
             this.Location = new Point(x, y);
 
+            System.Type dgvtype = typeof(DataGridView);
+            System.Reflection.PropertyInfo dgvPropertyInfo = dgvtype.GetProperty("DoubleBuffered", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
+            dgvPropertyInfo.SetValue(dataGridView1, true, null);
+
             Connect();
 
             using (SqlCommand cmd = new SqlCommand("SP売上年度", cn))
@@ -94,24 +98,7 @@ namespace u_net
 
         }
 
-        private void Form_Resize(object sender, EventArgs e)
-        {
-            try
-            {
-                if (this.Height > 800)
-                {
-                    dataGridView1.Height = dataGridView1.Height + (this.Height - intWindowHeight);
-                    intWindowHeight = this.Height;  // 高さ保存
 
-                    dataGridView1.Width = dataGridView1.Width + (this.Width - intWindowWidth);
-                    intWindowWidth = this.Width;    // 幅保存
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(this.Name + "_Form_Resize - " + ex.Message);
-            }
-        }
 
         private void DataGridView1_CellPainting(object sender,
     DataGridViewCellPaintingEventArgs e)
@@ -174,6 +161,7 @@ namespace u_net
                 }
 
                 F_出力 targetform = new F_出力();
+                targetform.cutFlg = true;
                 targetform.DataGridView = dataGridView1;
                 targetform.ShowDialog();
 
@@ -314,7 +302,7 @@ namespace u_net
                     //0列目はaccessでは行ヘッダのため、ずらす
                     //dataGridView1.Columns[0].Width = 500 / twipperdot;
                     dataGridView1.Columns[0].Width = 1900 / twipperdot; //1150
-                    for(int i = 1; i < 13; i++)
+                    for (int i = 1; i < 13; i++)
                     {
                         dataGridView1.Columns[i].Width = 1350 / twipperdot;
                         dataGridView1.Columns[i].DefaultCellStyle.Format = "#,###,###,##0";
@@ -376,13 +364,13 @@ namespace u_net
 
                 bindingSource.AddNew();
 
-                dataGridView.Rows[rowCount+1].Cells[0].Value = "(半期合計)";
+                dataGridView.Rows[rowCount + 1].Cells[0].Value = "(半期合計)";
 
                 long sum2 = 0;
 
                 for (int col = 1; col <= 6; col++)
                 {
-                    
+
 
                     // データグリッドビューのセルの値が数値であることを仮定
                     object cellValue = dataGridView.Rows[rowCount].Cells[col].Value;
@@ -392,7 +380,7 @@ namespace u_net
                     }
                 }
 
-                dataGridView.Rows[rowCount+1].Cells[6].Value = sum2;
+                dataGridView.Rows[rowCount + 1].Cells[6].Value = sum2;
 
                 long sum3 = 0;
 

@@ -38,7 +38,7 @@ namespace u_net
             this.MinimizeBox = false; //最小化ボタンを無効化
 
             InitializeComponent();
-
+            dataGridView1.AllowUserToAddRows = false;
         }
 
 
@@ -129,6 +129,7 @@ namespace u_net
                 OriginalClass ofn = new OriginalClass();
                 ofn.SetComboBox(自社担当者コード, "SELECT [社員コード] as Value, 社員コード as Display, 氏名 AS Display2 FROM M社員 WHERE ([パート] = 0) AND (退社 IS NULL) AND (ふりがな <> N'ん') AND (部 = N'営業部') AND (削除日時 IS NULL) ORDER BY ふりがな");
                 自社担当者コード.DrawMode = DrawMode.OwnerDrawFixed;
+                自社担当者コード.DropDownWidth = 300;
 
                 //開いているフォームのインスタンスを作成する
                 F_売上計画 frmTarget = Application.OpenForms.OfType<F_売上計画>().FirstOrDefault();
@@ -197,12 +198,12 @@ namespace u_net
             dataGridView1.Columns[1].Width = 1500 / twipperdot;
             dataGridView1.Columns[2].Width = 5000 / twipperdot;
 
-            BindingSource bindingSource1 = (BindingSource)dataGridView1.DataSource;
-            bindingSource1.AddNew();
+            //BindingSource bindingSource1 = (BindingSource)dataGridView1.DataSource;
+            // bindingSource1.AddNew();
 
 
-            dataGridView1.Rows[dataGridView1.RowCount - 1].Selected = false;
-            dataGridView1.FirstDisplayedScrollingRowIndex = 0;
+            // dataGridView1.Rows[dataGridView1.RowCount - 1].Selected = false;
+            // dataGridView1.FirstDisplayedScrollingRowIndex = 0;
 
 
         }
@@ -212,7 +213,7 @@ namespace u_net
         {
             if (dataGridView1.SelectedRows.Count <= 0)
             {
-                重要顧客追加ボタン.Enabled = false;
+                重要顧客追加ボタン.Enabled = true;  //起動時のaddnewを外したため、無条件にtrueにする
                 重要顧客削除ボタン.Enabled = false;
                 顧客参照ボタン.Enabled = false;
                 顧客上移動ボタン.Enabled = false;
@@ -220,17 +221,26 @@ namespace u_net
             }
             else
             {
+                //重要顧客追加ボタン.Enabled = true;
+                //重要顧客削除ボタン.Enabled = (dataGridView1.SelectedRows[0].Index != dataGridView1.Rows.Count - 1);
+                //顧客参照ボタン.Enabled = (dataGridView1.SelectedRows[0].Index != dataGridView1.Rows.Count - 1);
+                //顧客上移動ボタン.Enabled = (dataGridView1.SelectedRows[0].Index != dataGridView1.Rows.Count - 1 && dataGridView1.SelectedRows[0].Index != 0);
+                //顧客下移動ボタン.Enabled = (dataGridView1.SelectedRows[0].Index != dataGridView1.Rows.Count - 1 && dataGridView1.SelectedRows[0].Index != dataGridView1.Rows.Count - 2);
+
                 重要顧客追加ボタン.Enabled = true;
-                重要顧客削除ボタン.Enabled = (dataGridView1.SelectedRows[0].Index != dataGridView1.Rows.Count - 1);
-                顧客参照ボタン.Enabled = (dataGridView1.SelectedRows[0].Index != dataGridView1.Rows.Count - 1);
+                重要顧客削除ボタン.Enabled = true;
+                顧客参照ボタン.Enabled = true;
                 顧客上移動ボタン.Enabled = (dataGridView1.SelectedRows[0].Index != dataGridView1.Rows.Count - 1 && dataGridView1.SelectedRows[0].Index != 0);
                 顧客下移動ボタン.Enabled = (dataGridView1.SelectedRows[0].Index != dataGridView1.Rows.Count - 1 && dataGridView1.SelectedRows[0].Index != dataGridView1.Rows.Count - 2);
+
+
+
             }
 
 
         }
 
-        
+
 
         private void キャンセルボタン_Click(object sender, EventArgs e)
         {
@@ -300,33 +310,43 @@ namespace u_net
                 string SelectedCode = SearchForm.SelectedCode;
                 string SelectedName = SearchForm.SelectedName;
 
-                if (dataGridView1.SelectedRows.Count > 0)
+                if (dataGridView1.DataSource is BindingSource bindingSource1)
                 {
-                    int selectedIndex = dataGridView1.SelectedRows[0].Index;
+                    // 新しい行をBindingSourceに追加
+                    DataRowView newRow = (DataRowView)bindingSource1.AddNew();
 
-                    BindingSource bindingSource1 = (BindingSource)dataGridView1.DataSource;
+                    // 新しい行に値をセット
+                    newRow[1] = SelectedCode;
+                    newRow[2] = SelectedName;
 
-                    bindingSource1.AddNew();
-
-                    // データソースからDataTableを取得
-                    DataTable dataTable = (bindingSource1.DataSource as DataTable);
-
-                    //値をセット
-                    dataTable.Rows[dataGridView1.RowCount - 2][1] = SelectedCode;
-                    dataTable.Rows[dataGridView1.RowCount - 2][2] = SelectedName;
-
-                    for(int idx=dataGridView1.RowCount-2; idx > selectedIndex; idx--)
-                    {
-                        // 行データの交換
-                        object[] obj = dataTable.Rows[idx].ItemArray;
-                        object[] obj2 = dataTable.Rows[idx-1].ItemArray;
-
-                        dataTable.Rows[idx].ItemArray = obj2;
-                        dataTable.Rows[idx - 1].ItemArray = obj;
-                    }
+                    // BindingSourceを通じて変更を確定
+                    bindingSource1.EndEdit();
 
 
-                    
+                    //if (dataGridView1.SelectedRows.Count > 0)
+                    //{
+                    //    int selectedIndex = dataGridView1.SelectedRows[0].Index;
+
+                    //    BindingSource bindingSource1 = (BindingSource)dataGridView1.DataSource;
+
+                    //    bindingSource1.AddNew();
+
+                    //    // データソースからDataTableを取得
+                    //    DataTable dataTable = (bindingSource1.DataSource as DataTable);
+
+                    //    //値をセット
+                    //    dataTable.Rows[dataGridView1.RowCount - 2][1] = SelectedCode;
+                    //    dataTable.Rows[dataGridView1.RowCount - 2][2] = SelectedName;
+
+                    //    for(int idx=dataGridView1.RowCount-2; idx > selectedIndex; idx--)
+                    //    {
+                    //        // 行データの交換
+                    //        object[] obj = dataTable.Rows[idx].ItemArray;
+                    //        object[] obj2 = dataTable.Rows[idx-1].ItemArray;
+
+                    //        dataTable.Rows[idx].ItemArray = obj2;
+                    //        dataTable.Rows[idx - 1].ItemArray = obj;
+                    //    }
 
                     // Noの列も交換
                     //object leftValue = dataTable.Rows[currentIndex][0];
@@ -334,7 +354,7 @@ namespace u_net
                     //dataTable.Rows[newIndex][0] = leftValue;
 
                     // 連番を振り直す
-                    for (int i = 0; i < bindingSource1.Count - 1; i++)
+                    for (int i = 0; i < bindingSource1.Count; i++)
                     {
                         ((DataRowView)bindingSource1[i])[0] = i + 1;
                     }
@@ -342,9 +362,9 @@ namespace u_net
                     // BindingSourceをリセットして変更を反映
                     bindingSource1.ResetBindings(false);
 
-
                     dataGridView1.ClearSelection();
-                    dataGridView1.Rows[selectedIndex].Selected = true;
+                    int newIndex = bindingSource1.Count - 1; // 新しく追加された行のインデックス
+                    dataGridView1.Rows[newIndex].Selected = true;
                 }
 
 
@@ -373,7 +393,7 @@ namespace u_net
                 }
             }
 
-   
+
         }
 
         private void 顧客参照ボタン_Click(object sender, EventArgs e)
@@ -394,13 +414,13 @@ namespace u_net
         private void 顧客上移動ボタン_Click(object sender, EventArgs e)
         {
 
-            ChangeRow(true) ;
- 
+            ChangeRow(true);
+
         }
 
         private void 顧客下移動ボタン_Click(object sender, EventArgs e)
         {
-            
+
             ChangeRow(false);
 
         }

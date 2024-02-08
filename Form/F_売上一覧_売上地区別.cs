@@ -38,7 +38,7 @@ namespace u_net
             cn.Open();
         }
 
-      
+
         private void Form_Load(object sender, EventArgs e)
         {
 
@@ -70,6 +70,11 @@ namespace u_net
             int screenWidth = Screen.PrimaryScreen.Bounds.Width; // プライマリスクリーンの幅
             x = (screenWidth - this.Width) / 2;
             this.Location = new Point(x, y);
+
+            System.Type dgvtype = typeof(DataGridView);
+            System.Reflection.PropertyInfo dgvPropertyInfo = dgvtype.GetProperty("DoubleBuffered", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
+            dgvPropertyInfo.SetValue(dataGridView1, true, null);
+
 
             Connect();
 
@@ -140,7 +145,7 @@ namespace u_net
             }
         }
 
-        
+
 
 
         private void コマンド終了_Click(object sender, EventArgs e)
@@ -148,7 +153,7 @@ namespace u_net
             this.Close();
         }
 
-       
+
 
         private void F_売上一覧_売上地区別_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -174,6 +179,7 @@ namespace u_net
 
                 F_出力 targetform = new F_出力();
                 targetform.DataGridView = dataGridView1;
+                targetform.cutFlg = true;
                 targetform.ShowDialog();
 
             }
@@ -207,7 +213,7 @@ namespace u_net
 
         private void 集計年月_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+
 
             str集計年度 = 集計年度.Text;
 
@@ -237,7 +243,7 @@ namespace u_net
 
 
 
-        private  bool Filtering(string yearString)
+        private bool Filtering(string yearString)
         {
             bool success = false;
 
@@ -246,9 +252,9 @@ namespace u_net
             try
             {
 
-                
-               
-                using (SqlCommand command =  new SqlCommand("SP売上一覧_売上地区別", cn))
+
+
+                using (SqlCommand command = new SqlCommand("SP売上一覧_売上地区別", cn))
                 {
                     command.CommandType = CommandType.StoredProcedure;
                     command.Parameters.AddWithValue("@SalesYear", yearString);
@@ -290,7 +296,7 @@ namespace u_net
 
                     //0列目はaccessでは行ヘッダのため、ずらす
                     //dataGridView1.Columns[0].Width = 500 / twipperdot;
-                    dataGridView1.Columns[0].Width = 1150 / twipperdot; //1150
+                    dataGridView1.Columns[0].Width = 1250 / twipperdot; //1150
                     dataGridView1.Columns[1].Width = 1300 / twipperdot;
                     dataGridView1.Columns[2].Width = 1300 / twipperdot;
                     dataGridView1.Columns[3].Width = 1300 / twipperdot;
@@ -308,7 +314,7 @@ namespace u_net
 
 
                 }
-                
+
             }
             catch (Exception ex)
             {
@@ -381,6 +387,6 @@ namespace u_net
 
 
 
-     
+
     }
 }

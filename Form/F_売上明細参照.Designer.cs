@@ -58,9 +58,11 @@
             顧客コード = new TextBox();
             顧客コード検索ボタン = new Button();
             toolTip1 = new ToolTip(components);
+            panel3 = new Panel();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel2.SuspendLayout();
+            panel3.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
@@ -257,12 +259,13 @@
             dataGridView1.AllowUserToAddRows = false;
             dataGridView1.AllowUserToDeleteRows = false;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(0, 92);
+            dataGridView1.Dock = DockStyle.Fill;
+            dataGridView1.Location = new Point(0, 97);
             dataGridView1.Margin = new Padding(3, 2, 3, 2);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
             dataGridView1.RowTemplate.Height = 29;
-            dataGridView1.Size = new Size(1054, 399);
+            dataGridView1.Size = new Size(1054, 396);
             dataGridView1.TabIndex = 87;
             dataGridView1.CellPainting += DataGridView1_CellPainting;
             // 
@@ -365,7 +368,7 @@
             売上年月.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             売上年月.FormattingEnabled = true;
             売上年月.ImeMode = ImeMode.Disable;
-            売上年月.Location = new Point(100, 61);
+            売上年月.Location = new Point(107, 33);
             売上年月.Name = "売上年月";
             売上年月.Size = new Size(114, 21);
             売上年月.TabIndex = 5;
@@ -378,7 +381,7 @@
             メーカーコード_ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             メーカーコード_ラベル.ForeColor = SystemColors.ActiveCaptionText;
             メーカーコード_ラベル.ImageAlign = ContentAlignment.MiddleLeft;
-            メーカーコード_ラベル.Location = new Point(9, 61);
+            メーカーコード_ラベル.Location = new Point(16, 33);
             メーカーコード_ラベル.Margin = new Padding(0);
             メーカーコード_ラベル.Name = "メーカーコード_ラベル";
             メーカーコード_ラベル.Size = new Size(102, 17);
@@ -391,7 +394,7 @@
             顧客名.BackColor = Color.White;
             顧客名.Enabled = false;
             顧客名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            顧客名.Location = new Point(251, 38);
+            顧客名.Location = new Point(258, 10);
             顧客名.Margin = new Padding(3, 2, 3, 2);
             顧客名.Name = "顧客名";
             顧客名.Size = new Size(466, 20);
@@ -404,7 +407,7 @@
             label1.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             label1.ForeColor = SystemColors.ActiveCaptionText;
             label1.ImageAlign = ContentAlignment.MiddleLeft;
-            label1.Location = new Point(9, 37);
+            label1.Location = new Point(16, 9);
             label1.Margin = new Padding(0);
             label1.Name = "label1";
             label1.Size = new Size(102, 17);
@@ -417,7 +420,7 @@
             顧客コード.BackColor = Color.White;
             顧客コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             顧客コード.ImeMode = ImeMode.Disable;
-            顧客コード.Location = new Point(100, 37);
+            顧客コード.Location = new Point(107, 9);
             顧客コード.Margin = new Padding(3, 2, 3, 2);
             顧客コード.Name = "顧客コード";
             顧客コード.Size = new Size(114, 20);
@@ -429,7 +432,7 @@
             // 
             // 顧客コード検索ボタン
             // 
-            顧客コード検索ボタン.Location = new Point(217, 36);
+            顧客コード検索ボタン.Location = new Point(224, 8);
             顧客コード検索ボタン.Margin = new Padding(4);
             顧客コード検索ボタン.Name = "顧客コード検索ボタン";
             顧客コード検索ボタン.Size = new Size(29, 23);
@@ -438,33 +441,45 @@
             顧客コード検索ボタン.UseVisualStyleBackColor = true;
             顧客コード検索ボタン.Click += 顧客コード検索ボタン_Click;
             // 
+            // panel3
+            // 
+            panel3.Controls.Add(売上年月);
+            panel3.Controls.Add(顧客コード検索ボタン);
+            panel3.Controls.Add(メーカーコード_ラベル);
+            panel3.Controls.Add(顧客コード);
+            panel3.Controls.Add(label1);
+            panel3.Controls.Add(顧客名);
+            panel3.Dock = DockStyle.Top;
+            panel3.Location = new Point(0, 32);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(1054, 65);
+            panel3.TabIndex = 10006;
+            // 
             // F_売上明細参照
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1054, 525);
-            Controls.Add(顧客コード検索ボタン);
-            Controls.Add(顧客コード);
-            Controls.Add(顧客名);
-            Controls.Add(label1);
-            Controls.Add(売上年月);
-            Controls.Add(メーカーコード_ラベル);
-            Controls.Add(panel2);
             Controls.Add(dataGridView1);
+            Controls.Add(panel3);
+            Controls.Add(panel2);
             Controls.Add(panel1);
             Icon = (Icon)resources.GetObject("$this.Icon");
+            KeyPreview = true;
             Margin = new Padding(3, 2, 3, 2);
             Name = "F_売上明細参照";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "売上明細参照";
             FormClosing += F_売上明細参照_FormClosing;
             Load += Form_Load;
+            KeyDown += F_売上明細参照_KeyDown;
             panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
+            panel3.ResumeLayout(false);
+            panel3.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -623,5 +638,6 @@
         private TextBox 表示件数;
         private Label label2;
         private ToolTip toolTip1;
+        private Panel panel3;
     }
 }

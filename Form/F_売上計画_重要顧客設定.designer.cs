@@ -325,7 +325,6 @@ namespace u_net
             // 
             // 重要顧客追加ボタン
             // 
-            重要顧客追加ボタン.Enabled = false;
             重要顧客追加ボタン.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             重要顧客追加ボタン.Location = new Point(109, 311);
             重要顧客追加ボタン.Margin = new Padding(4);
@@ -340,6 +339,8 @@ namespace u_net
             // 
             // dataGridView1
             // 
+            dataGridView1.AllowUserToAddRows = false;
+            dataGridView1.AllowUserToDeleteRows = false;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Location = new Point(100, 66);
             dataGridView1.Name = "dataGridView1";
