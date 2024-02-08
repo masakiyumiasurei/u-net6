@@ -85,20 +85,26 @@ namespace u_net
         {
             FunctionClass fn = new FunctionClass();
             fn.DoWait("しばらくお待ちください...");
-            //実行中フォーム起動
-            //string LoginUserCode = "000";//テスト用 ログインユーザを実行中にどのように管理するか決まったら修正
-            LocalSetting localSetting = new LocalSetting();
-            localSetting.LoadPlace(CommonConstants.LoginUserCode, this);
 
-            //MyApi myapi = new MyApi();
-            //int xSize, ySize, intpixel, twipperdot;
+            //実行中フォーム起動
+            string LoginUserCode = CommonConstants.LoginUserCode;
+            LocalSetting localSetting = new LocalSetting();
+            localSetting.LoadPlace(LoginUserCode, this);
+
+            MyApi myapi = new MyApi();
+            int xSize, ySize, intpixel, twipperdot;
 
             ////1インチ当たりのピクセル数 アクセスのサイズの引数がtwipなのでピクセルに変換する除算値を求める
-            //intpixel = myapi.GetLogPixel();
-            //twipperdot = myapi.GetTwipPerDot(intpixel);
+            intpixel = myapi.GetLogPixel();
+            twipperdot = myapi.GetTwipPerDot(intpixel);
 
             intWindowHeight = this.Height;
             intWindowWidth = this.Width;
+
+            //ダブルバッファ処理設定
+            System.Type dgvtype = typeof(DataGridView);
+            System.Reflection.PropertyInfo dgvPropertyInfo = dgvtype.GetProperty("DoubleBuffered", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
+            dgvPropertyInfo.SetValue(dataGridView1, true, null);
 
             // DataGridViewの設定
             dataGridView1.AllowUserToResizeColumns = true;
@@ -122,13 +128,11 @@ namespace u_net
         {
             try
             {
-
                 dataGridView1.Height = dataGridView1.Height + (this.Height - intWindowHeight);
                 intWindowHeight = this.Height;  // 高さ保存
 
                 dataGridView1.Width = dataGridView1.Width + (this.Width - intWindowWidth);
                 intWindowWidth = this.Width;    // 幅保存
-
             }
             catch (Exception ex)
             {
@@ -628,6 +632,33 @@ namespace u_net
         private void コマンド非表示_Click(object sender, EventArgs e)
         {
             MessageBox.Show("非表示は使用できません ", "非表示コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void コマンド表示_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "■選択中の送信文書をプレビューします。　■実際に送信されたFAXイメージは確認できません。";
+        }
+
+        private void コマンド表示_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "各種項目の説明";
+        }
+
+        private void コマンド参照_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "■送信元データを参照します。";
+        }
+
+        private void コマンド参照_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "各種項目の説明";
+        }
+
+        private void F_ファックス管理_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            string LoginUserCode = CommonConstants.LoginUserCode;
+            LocalSetting test = new LocalSetting();
+            test.SavePlace(LoginUserCode, this);
         }
     }
 }
