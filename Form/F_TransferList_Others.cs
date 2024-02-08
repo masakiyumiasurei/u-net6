@@ -51,6 +51,9 @@ namespace u_net
                     return;
                 }
 
+                System.Type dgvtype = typeof(DataGridView);
+                System.Reflection.PropertyInfo dgvPropertyInfo = dgvtype.GetProperty("DoubleBuffered", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
+                dgvPropertyInfo.SetValue(dataGridView1, true, null);
 
                 // 表示する月の範囲を設定
                 int numberOfMonths = 2;  // 今月を含む前後の月数
