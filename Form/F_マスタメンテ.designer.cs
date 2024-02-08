@@ -31,6 +31,7 @@ namespace u_net
         {
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
@@ -49,9 +50,10 @@ namespace u_net
             DataGridViewCellStyle dataGridViewCellStyle19 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle20 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle21 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(F_マスタメンテ));
             受注区分dataGrid = new DataGridView();
+            受注区分コード = new DataGridViewTextBoxColumn();
+            受注区分名 = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn2 = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn3 = new DataGridViewTextBoxColumn();
@@ -146,8 +148,6 @@ namespace u_net
             郵便番号 = new DataGridViewTextBoxColumn();
             住所１ = new DataGridViewTextBoxColumn();
             住所２ = new DataGridViewTextBoxColumn();
-            受注区分コード = new DataGridViewTextBoxColumn();
-            受注区分名 = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)受注区分dataGrid).BeginInit();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)発送方法dataGrid).BeginInit();
@@ -190,6 +190,23 @@ namespace u_net
             受注区分dataGrid.Size = new Size(225, 205);
             受注区分dataGrid.TabIndex = 109;
             受注区分dataGrid.CellEnter += dataGridView1_CellEnter;
+            // 
+            // 受注区分コード
+            // 
+            受注区分コード.DataPropertyName = "受注区分コード";
+            dataGridViewCellStyle2.NullValue = null;
+            受注区分コード.DefaultCellStyle = dataGridViewCellStyle2;
+            受注区分コード.HeaderText = "コード";
+            受注区分コード.Name = "受注区分コード";
+            受注区分コード.Resizable = DataGridViewTriState.True;
+            受注区分コード.Width = 70;
+            // 
+            // 受注区分名
+            // 
+            受注区分名.DataPropertyName = "受注区分名";
+            受注区分名.HeaderText = "受注区分";
+            受注区分名.Name = "受注区分名";
+            受注区分名.Width = 120;
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -344,6 +361,7 @@ namespace u_net
             button10.Name = "button10";
             button10.Size = new Size(70, 25);
             button10.TabIndex = 19;
+            button10.TabStop = false;
             button10.UseVisualStyleBackColor = true;
             // 
             // button9
@@ -357,6 +375,7 @@ namespace u_net
             button9.Name = "button9";
             button9.Size = new Size(70, 25);
             button9.TabIndex = 18;
+            button9.TabStop = false;
             button9.UseVisualStyleBackColor = true;
             // 
             // button8
@@ -370,6 +389,7 @@ namespace u_net
             button8.Name = "button8";
             button8.Size = new Size(70, 25);
             button8.TabIndex = 17;
+            button8.TabStop = false;
             button8.UseVisualStyleBackColor = true;
             // 
             // button7
@@ -383,6 +403,7 @@ namespace u_net
             button7.Name = "button7";
             button7.Size = new Size(70, 25);
             button7.TabIndex = 16;
+            button7.TabStop = false;
             button7.UseVisualStyleBackColor = true;
             // 
             // button6
@@ -396,6 +417,7 @@ namespace u_net
             button6.Name = "button6";
             button6.Size = new Size(70, 25);
             button6.TabIndex = 15;
+            button6.TabStop = false;
             button6.UseVisualStyleBackColor = true;
             // 
             // button5
@@ -409,6 +431,7 @@ namespace u_net
             button5.Name = "button5";
             button5.Size = new Size(70, 25);
             button5.TabIndex = 14;
+            button5.TabStop = false;
             button5.UseVisualStyleBackColor = true;
             // 
             // button2
@@ -422,6 +445,7 @@ namespace u_net
             button2.Name = "button2";
             button2.Size = new Size(70, 25);
             button2.TabIndex = 13;
+            button2.TabStop = false;
             button2.UseVisualStyleBackColor = true;
             // 
             // button1
@@ -435,6 +459,7 @@ namespace u_net
             button1.Name = "button1";
             button1.Size = new Size(70, 25);
             button1.TabIndex = 12;
+            button1.TabStop = false;
             button1.UseVisualStyleBackColor = true;
             // 
             // button4
@@ -448,6 +473,7 @@ namespace u_net
             button4.Name = "button4";
             button4.Size = new Size(70, 25);
             button4.TabIndex = 11;
+            button4.TabStop = false;
             button4.UseVisualStyleBackColor = true;
             // 
             // button3
@@ -461,6 +487,7 @@ namespace u_net
             button3.Name = "button3";
             button3.Size = new Size(70, 25);
             button3.TabIndex = 10;
+            button3.TabStop = false;
             button3.UseVisualStyleBackColor = true;
             // 
             // コマンド登録
@@ -473,6 +500,7 @@ namespace u_net
             コマンド登録.Name = "コマンド登録";
             コマンド登録.Size = new Size(70, 25);
             コマンド登録.TabIndex = 1;
+            コマンド登録.TabStop = false;
             コマンド登録.Text = "登録";
             コマンド登録.UseVisualStyleBackColor = true;
             コマンド登録.Click += コマンド登録_Click;
@@ -486,6 +514,7 @@ namespace u_net
             コマンド終了.Name = "コマンド終了";
             コマンド終了.Size = new Size(70, 25);
             コマンド終了.TabIndex = 0;
+            コマンド終了.TabStop = false;
             コマンド終了.Text = "終了";
             コマンド終了.UseVisualStyleBackColor = true;
             コマンド終了.Click += コマンド終了_Click;
@@ -1076,23 +1105,6 @@ namespace u_net
             住所２.Name = "住所２";
             住所２.Width = 190;
             // 
-            // 受注区分コード
-            // 
-            受注区分コード.DataPropertyName = "受注区分コード";
-            dataGridViewCellStyle2.NullValue = null;
-            受注区分コード.DefaultCellStyle = dataGridViewCellStyle2;
-            受注区分コード.HeaderText = "コード";
-            受注区分コード.Name = "受注区分コード";
-            受注区分コード.Resizable = DataGridViewTriState.True;
-            受注区分コード.Width = 70;
-            // 
-            // 受注区分名
-            // 
-            受注区分名.DataPropertyName = "受注区分名";
-            受注区分名.HeaderText = "受注区分";
-            受注区分名.Name = "受注区分名";
-            受注区分名.Width = 120;
-            // 
             // F_マスタメンテ
             // 
             AutoScaleDimensions = new SizeF(8F, 12F);
@@ -1126,6 +1138,7 @@ namespace u_net
             KeyPreview = true;
             Margin = new Padding(3, 2, 3, 2);
             Name = "F_マスタメンテ";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "マスタメンテ";
             FormClosing += Form_FormClosing;
             Load += Form_Load;
