@@ -60,9 +60,11 @@
             Next3Button = new Button();
             Next4Button = new Button();
             toolTip1 = new ToolTip(components);
+            panel3 = new Panel();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)購買申請明細).BeginInit();
             panel2.SuspendLayout();
+            panel3.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
@@ -89,6 +91,7 @@
             // 
             // button4
             // 
+            button4.Enabled = false;
             button4.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             button4.ForeColor = Color.Blue;
             button4.ImageAlign = ContentAlignment.BottomLeft;
@@ -101,6 +104,7 @@
             // 
             // button3
             // 
+            button3.Enabled = false;
             button3.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             button3.ForeColor = Color.Blue;
             button3.ImageAlign = ContentAlignment.BottomLeft;
@@ -128,6 +132,7 @@
             // 
             // button2
             // 
+            button2.Enabled = false;
             button2.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             button2.ForeColor = Color.Blue;
             button2.ImageAlign = ContentAlignment.BottomLeft;
@@ -289,12 +294,13 @@
             購買申請明細.AllowUserToAddRows = false;
             購買申請明細.AllowUserToDeleteRows = false;
             購買申請明細.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            購買申請明細.Location = new Point(3, 63);
+            購買申請明細.Dock = DockStyle.Fill;
+            購買申請明細.Location = new Point(0, 62);
             購買申請明細.Margin = new Padding(3, 2, 3, 2);
             購買申請明細.Name = "購買申請明細";
             購買申請明細.ReadOnly = true;
             購買申請明細.RowTemplate.Height = 29;
-            購買申請明細.Size = new Size(1147, 501);
+            購買申請明細.Size = new Size(1173, 506);
             購買申請明細.TabIndex = 1;
             購買申請明細.CellClick += dataGridView1_CellClick;
             購買申請明細.CellDoubleClick += dataGridView1_CellDoubleClick;
@@ -361,7 +367,7 @@
             // 前々月ボタン
             // 
             前々月ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            前々月ボタン.Location = new Point(0, 35);
+            前々月ボタン.Location = new Point(3, 4);
             前々月ボタン.Name = "前々月ボタン";
             前々月ボタン.Size = new Size(75, 23);
             前々月ボタン.TabIndex = 1;
@@ -372,7 +378,7 @@
             // 前月ボタン
             // 
             前月ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            前月ボタン.Location = new Point(72, 35);
+            前月ボタン.Location = new Point(75, 4);
             前月ボタン.Name = "前月ボタン";
             前月ボタン.Size = new Size(75, 23);
             前月ボタン.TabIndex = 2;
@@ -383,7 +389,7 @@
             // 当月ボタン
             // 
             当月ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            当月ボタン.Location = new Point(145, 35);
+            当月ボタン.Location = new Point(148, 4);
             当月ボタン.Name = "当月ボタン";
             当月ボタン.Size = new Size(75, 23);
             当月ボタン.TabIndex = 3;
@@ -394,7 +400,7 @@
             // 翌月ボタン
             // 
             翌月ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            翌月ボタン.Location = new Point(218, 35);
+            翌月ボタン.Location = new Point(221, 4);
             翌月ボタン.Name = "翌月ボタン";
             翌月ボタン.Size = new Size(75, 23);
             翌月ボタン.TabIndex = 4;
@@ -405,7 +411,7 @@
             // 翌々月ボタン
             // 
             翌々月ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            翌々月ボタン.Location = new Point(291, 35);
+            翌々月ボタン.Location = new Point(294, 4);
             翌々月ボタン.Name = "翌々月ボタン";
             翌々月ボタン.Size = new Size(75, 23);
             翌々月ボタン.TabIndex = 5;
@@ -416,7 +422,7 @@
             // Next3Button
             // 
             Next3Button.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            Next3Button.Location = new Point(362, 35);
+            Next3Button.Location = new Point(365, 4);
             Next3Button.Name = "Next3Button";
             Next3Button.Size = new Size(75, 23);
             Next3Button.TabIndex = 6;
@@ -427,7 +433,7 @@
             // Next4Button
             // 
             Next4Button.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            Next4Button.Location = new Point(435, 35);
+            Next4Button.Location = new Point(438, 4);
             Next4Button.Name = "Next4Button";
             Next4Button.Size = new Size(75, 23);
             Next4Button.TabIndex = 7;
@@ -435,20 +441,30 @@
             Next4Button.UseVisualStyleBackColor = true;
             Next4Button.Click += Next4Button_Click;
             // 
+            // panel3
+            // 
+            panel3.Controls.Add(前々月ボタン);
+            panel3.Controls.Add(Next4Button);
+            panel3.Controls.Add(前月ボタン);
+            panel3.Controls.Add(Next3Button);
+            panel3.Controls.Add(当月ボタン);
+            panel3.Controls.Add(翌々月ボタン);
+            panel3.Controls.Add(翌月ボタン);
+            panel3.Dock = DockStyle.Top;
+            panel3.Location = new Point(0, 32);
+            panel3.Margin = new Padding(3, 2, 3, 2);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(1173, 30);
+            panel3.TabIndex = 89;
+            // 
             // F_購買申請管理
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1173, 595);
-            Controls.Add(Next4Button);
-            Controls.Add(Next3Button);
-            Controls.Add(翌々月ボタン);
-            Controls.Add(翌月ボタン);
-            Controls.Add(当月ボタン);
-            Controls.Add(前月ボタン);
-            Controls.Add(前々月ボタン);
-            Controls.Add(panel2);
             Controls.Add(購買申請明細);
+            Controls.Add(panel3);
+            Controls.Add(panel2);
             Controls.Add(panel1);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(3, 2, 3, 2);
@@ -463,6 +479,7 @@
             ((System.ComponentModel.ISupportInitialize)購買申請明細).EndInit();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
+            panel3.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -624,5 +641,6 @@
         private TextBox 合計金額;
         private Label label3;
         private ToolTip toolTip1;
+        private Panel panel3;
     }
 }
