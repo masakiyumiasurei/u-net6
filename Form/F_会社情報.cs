@@ -219,7 +219,9 @@ namespace u_net
                 string query = "SELECT 適用日,消費税区分名,消費税率 FROM T消費税";
                 DataGridUtils.SetDataGridView(cn, query, this.dataGridView1);
 
-                // 成功時の処理
+                // ％表記
+                dataGridView1.Columns[2].DefaultCellStyle.Format = "P2";
+                
                 return;
             }
             catch (Exception ex)
@@ -318,12 +320,38 @@ namespace u_net
                     DateTime now = DateTime.Now;
                     string strwhere = " 1=1 ";
 
-                    if (!DataUpdater.UpdateOrInsertDataFrom(this, cn, "会社情報", strwhere, "", transaction, "円未満端数処理1", "円未満端数処理2"))
+                    if (!DataUpdater.UpdateOrInsertDataFrom(this, cn, "会社情報", strwhere, "", transaction))
                     {
                         //transaction.Rollback(); 関数内でロールバック入れた
                         return false;
                     }
 
+                    string sql = "DELETE FROM T消費税 ";
+                    SqlCommand command = new SqlCommand(sql, cn, transaction);
+                    command.ExecuteNonQuery();
+
+                    foreach (DataGridViewRow row in dataGridView1.Rows)
+                    {
+                        if (!row.IsNewRow)
+                        {                            
+                            string 適用日 = row.Cells["適用日"].Value.ToString();
+                            string 消費税区分名 = row.Cells["消費税区分名"].Value.ToString();
+                            string 消費税率 = row.Cells["消費税率"].Value.ToString();
+
+                            // データベースにデータを挿入
+                            string insertSql = "INSERT INTO T消費税 (適用日,消費税区分名,消費税率) " +
+                                "VALUES (@適用日, @消費税区分名,@消費税率)";
+
+
+                            using (SqlCommand insertCommand = new SqlCommand(insertSql, cn, transaction))
+                            {
+                                insertCommand.Parameters.AddWithValue("@適用日", 適用日);
+                                insertCommand.Parameters.AddWithValue("@消費税区分名", 消費税区分名);
+                                insertCommand.Parameters.AddWithValue("@消費税率", 消費税率);
+                                insertCommand.ExecuteNonQuery();
+                            }
+                        }
+                    }
                     // トランザクションをコミット
                     transaction.Commit();
 

@@ -78,7 +78,6 @@ namespace u_net
         private void 抽出ボタン_Click(object sender, EventArgs e)
         {
 
-
             try
             {
                 F_売掛一覧? frmTarget = Application.OpenForms.OfType<F_売掛一覧>().FirstOrDefault();
