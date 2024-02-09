@@ -422,7 +422,7 @@
             this.labelCell1.Name = "labelCell1";
             this.labelCell1.Size = new System.Drawing.Size(100, 21);
             cellStyle26.Border = border13;
-            cellStyle26.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
+            cellStyle26.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
             cellStyle26.ImeMode = System.Windows.Forms.ImeMode.Off;
             cellStyle26.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleRight;
             this.labelCell1.Style = cellStyle26;
@@ -435,7 +435,7 @@
             this.labelCell3.Name = "labelCell3";
             this.labelCell3.Size = new System.Drawing.Size(200, 21);
             cellStyle27.Border = border14;
-            cellStyle27.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
+            cellStyle27.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
             cellStyle27.ImeMode = System.Windows.Forms.ImeMode.Off;
             cellStyle27.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleLeft;
             this.labelCell3.Style = cellStyle27;
@@ -448,7 +448,7 @@
             this.labelCell2.Name = "labelCell2";
             this.labelCell2.Size = new System.Drawing.Size(100, 21);
             cellStyle28.Border = border15;
-            cellStyle28.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
+            cellStyle28.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
             cellStyle28.ImeMode = System.Windows.Forms.ImeMode.Off;
             cellStyle28.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleRight;
             this.labelCell2.Style = cellStyle28;
