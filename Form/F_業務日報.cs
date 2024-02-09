@@ -31,6 +31,8 @@ namespace u_net
         private int selected_frame = 0;
         private string str状況 = "";
         private bool cmbflg = true;
+        int intWindowHeight;
+        int intWindowWidth;
 
         public F_業務日報()
         {
@@ -69,6 +71,7 @@ namespace u_net
             {
                 control.PreviewKeyDown += OriginalClass.ValidateCheck;
             }
+
             FunctionClass fn = new FunctionClass();
             fn.DoWait("しばらくお待ちください...");
 
@@ -218,7 +221,7 @@ namespace u_net
             {
 
 
-                string strSQL="";
+                string strSQL = "";
                 string strSQL2 = "";
 
                 switch (controlObject.Name)
@@ -238,13 +241,13 @@ namespace u_net
 
                         if (!LoadHeader()) throw new Exception("初期化に失敗しました。");
 
-                         strSQL = $"SELECT 明細番号,実績内容,項目 " +
-                               $"FROM T業務日報明細実績 left join M業務日報項目 on T業務日報明細実績.項目コード=M業務日報項目.項目コード " +
-                               $"WHERE 日報コード= '{日報コード.Text}' ORDER BY 明細番号";
+                        strSQL = $"SELECT 明細番号,実績内容,項目 " +
+                              $"FROM T業務日報明細実績 left join M業務日報項目 on T業務日報明細実績.項目コード=M業務日報項目.項目コード " +
+                              $"WHERE 日報コード= '{日報コード.Text}' ORDER BY 明細番号";
 
-                         strSQL2 = $"SELECT 明細番号,予定内容,項目 " +
-                                        $"FROM T業務日報明細予定 left join M業務日報項目 on T業務日報明細予定.項目コード = M業務日報項目.項目コード " +
-                                        $"WHERE 日報コード= '{日報コード.Text}' ORDER BY 明細番号";
+                        strSQL2 = $"SELECT 明細番号,予定内容,項目 " +
+                                       $"FROM T業務日報明細予定 left join M業務日報項目 on T業務日報明細予定.項目コード = M業務日報項目.項目コード " +
+                                       $"WHERE 日報コード= '{日報コード.Text}' ORDER BY 明細番号";
 
 
                         if (!VariableSet.SetTable2Details(業務日報明細実績1.Detail, strSQL, cn))
@@ -302,7 +305,6 @@ namespace u_net
             string LoginUserCode = CommonConstants.LoginUserCode;//テスト用 ログインユーザを実行中にどのように管理するか決まったら修正
             LocalSetting test = new LocalSetting();
             test.SavePlace(LoginUserCode, this);
-
         }
 
         private void コマンド終了_Click(object sender, EventArgs e)
@@ -400,6 +402,7 @@ namespace u_net
                 string selectedDate = dateSelectionForm.SelectedDate;
                 日付.Text = selectedDate;
                 UpdatedControl(this.日付);
+                日付.Focus();
             }
         }
 
@@ -426,7 +429,7 @@ namespace u_net
         private void 状況_Enter(object sender, EventArgs e)
         {
             toolStripStatusLabel1.Text = "■表示日付での各ユーザーの登録状態です。表示したいユーザーを選択してください。";
-          //  社員コード.SelectedValue = 状況.SelectedRows[0].Cells[10].Value;
+            //  社員コード.SelectedValue = 状況.SelectedRows[0].Cells[10].Value;
         }
 
         private void 状況_Leave(object sender, EventArgs e)
@@ -455,6 +458,27 @@ namespace u_net
         private void 状況_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             社員コード.SelectedValue = 状況.SelectedRows[0].Cells[10].Value;
+        }
+
+        private void Form_Resize(object sender, EventArgs e)
+        {
+            try
+            {
+                業務日報明細実績1.Detail.Height = 業務日報明細実績1.Height + (this.Height - intWindowHeight);
+                intWindowHeight = this.Height;  // 高さ保存
+
+                業務日報明細実績1.Detail.Width = 業務日報明細実績1.Width + (this.Width - intWindowWidth);
+                intWindowWidth = this.Width;    // 幅保存     　
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this.Name + "_Form_Resize - " + ex.Message);
+            }
+        }
+
+        private void コマンド確定_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
