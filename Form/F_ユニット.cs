@@ -42,6 +42,7 @@ namespace u_net
 
             InitializeComponent();
 
+            this.ユニットコード.DropDownWidth = 110;
         }
 
         public void Connect()
@@ -198,7 +199,7 @@ namespace u_net
 
 
             OriginalClass ofn = new OriginalClass();
-            ofn.SetComboBox(ユニットコード, "SELECT A.ユニットコード as Value, A.ユニットコード as Display , A.最新版数 as Display3, { fn REPLACE(STR(CONVERT(bit, Mユニット.無効日時), 1, 0), '1', '×') } AS Display2 FROM Mユニット INNER JOIN (SELECT ユニットコード, MAX(ユニット版数) AS 最新版数 FROM Mユニット GROUP BY ユニットコード) A ON Mユニット.ユニットコード = A.ユニットコード AND Mユニット.ユニット版数 = A.最新版数 ORDER BY A.ユニットコード DESC");
+            ofn.SetComboBox(ユニットコード, "SELECT A.ユニットコード as Value, A.ユニットコード as Display1 , A.最新版数 as Display3, { fn REPLACE(STR(CONVERT(bit, Mユニット.無効日時), 1, 0), '1', '×') } AS Display2 FROM Mユニット INNER JOIN (SELECT ユニットコード, MAX(ユニット版数) AS 最新版数 FROM Mユニット GROUP BY ユニットコード) A ON Mユニット.ユニットコード = A.ユニットコード AND Mユニット.ユニット版数 = A.最新版数 ORDER BY A.ユニットコード DESC");
             ユニットコード.DrawMode = DrawMode.OwnerDrawFixed;
 
 
@@ -2373,8 +2374,7 @@ namespace u_net
 
         private void ユニットコード_DrawItem(object sender, DrawItemEventArgs e)
         {
-
-            OriginalClass.SetComboBoxAppearance((ComboBox)sender, e, new int[] { 100, 30 }, new string[] { "Display", "Display2" });
+            OriginalClass.SetComboBoxAppearance((ComboBox)sender, e, new int[] { 75, 16 }, new string[] { "Display1", "Display2" });
             ユニットコード.Invalidate();
             ユニットコード.DroppedDown = true;
         }

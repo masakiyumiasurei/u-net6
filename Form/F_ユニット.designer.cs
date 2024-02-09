@@ -497,7 +497,7 @@ namespace u_net
             品名.Location = new Point(122, 71);
             品名.Margin = new Padding(3, 2, 3, 2);
             品名.Name = "品名";
-            品名.Size = new Size(403, 20);
+            品名.Size = new Size(341, 20);
             品名.TabIndex = 7;
             品名.TextChanged += 品名_TextChanged;
             品名.Enter += 品名_Enter;
@@ -521,12 +521,13 @@ namespace u_net
             // ユニットコード
             // 
             ユニットコード.BackColor = Color.FromArgb(255, 255, 153);
+            ユニットコード.DropDownWidth = 104;
             ユニットコード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             ユニットコード.FormattingEnabled = true;
             ユニットコード.ImeMode = ImeMode.Disable;
             ユニットコード.Location = new Point(122, 48);
             ユニットコード.Name = "ユニットコード";
-            ユニットコード.Size = new Size(139, 21);
+            ユニットコード.Size = new Size(102, 21);
             ユニットコード.TabIndex = 2;
             ユニットコード.DrawItem += ユニットコード_DrawItem;
             ユニットコード.SelectedIndexChanged += ユニットコード_SelectedIndexChanged;
@@ -585,7 +586,7 @@ namespace u_net
             無効者コード.BackColor = SystemColors.Control;
             無効者コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             無効者コード.ImeMode = ImeMode.NoControl;
-            無効者コード.Location = new Point(595, 121);
+            無効者コード.Location = new Point(561, 121);
             無効者コード.Margin = new Padding(3, 2, 3, 2);
             無効者コード.Name = "無効者コード";
             無効者コード.ReadOnly = true;
@@ -615,7 +616,7 @@ namespace u_net
             更新日時.Enabled = false;
             更新日時.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             更新日時.ImeMode = ImeMode.NoControl;
-            更新日時.Location = new Point(749, 96);
+            更新日時.Location = new Point(715, 96);
             更新日時.Margin = new Padding(3, 2, 3, 2);
             更新日時.Name = "更新日時";
             更新日時.ReadOnly = true;
@@ -626,7 +627,7 @@ namespace u_net
             // label6
             // 
             label6.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label6.Location = new Point(677, 97);
+            label6.Location = new Point(643, 97);
             label6.Name = "label6";
             label6.Size = new Size(72, 17);
             label6.TabIndex = 10163;
@@ -636,7 +637,7 @@ namespace u_net
             // label8
             // 
             label8.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label8.Location = new Point(677, 74);
+            label8.Location = new Point(643, 74);
             label8.Name = "label8";
             label8.Size = new Size(72, 17);
             label8.TabIndex = 10159;
@@ -649,7 +650,7 @@ namespace u_net
             作成者コード.Enabled = false;
             作成者コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             作成者コード.ImeMode = ImeMode.NoControl;
-            作成者コード.Location = new Point(749, 72);
+            作成者コード.Location = new Point(715, 72);
             作成者コード.Margin = new Padding(3, 2, 3, 2);
             作成者コード.Name = "作成者コード";
             作成者コード.ReadOnly = true;
@@ -660,7 +661,7 @@ namespace u_net
             // label9
             // 
             label9.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label9.Location = new Point(677, 52);
+            label9.Location = new Point(643, 52);
             label9.Name = "label9";
             label9.Size = new Size(72, 17);
             label9.TabIndex = 10157;
@@ -673,7 +674,7 @@ namespace u_net
             作成日時.Enabled = false;
             作成日時.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             作成日時.ImeMode = ImeMode.NoControl;
-            作成日時.Location = new Point(749, 50);
+            作成日時.Location = new Point(715, 50);
             作成日時.Margin = new Padding(3, 2, 3, 2);
             作成日時.Name = "作成日時";
             作成日時.ReadOnly = true;
@@ -687,7 +688,7 @@ namespace u_net
             作成者名.Enabled = false;
             作成者名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             作成者名.ImeMode = ImeMode.NoControl;
-            作成者名.Location = new Point(788, 72);
+            作成者名.Location = new Point(754, 72);
             作成者名.Margin = new Padding(3, 2, 3, 2);
             作成者名.Name = "作成者名";
             作成者名.ReadOnly = true;
@@ -703,7 +704,7 @@ namespace u_net
             ユニット版数.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             ユニット版数.FormattingEnabled = true;
             ユニット版数.ImeMode = ImeMode.Disable;
-            ユニット版数.Location = new Point(338, 48);
+            ユニット版数.Location = new Point(321, 48);
             ユニット版数.Name = "ユニット版数";
             ユニット版数.Size = new Size(54, 21);
             ユニット版数.TabIndex = 4;
@@ -714,7 +715,7 @@ namespace u_net
             // label1
             // 
             label1.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(288, 50);
+            label1.Location = new Point(271, 50);
             label1.Name = "label1";
             label1.Size = new Size(54, 17);
             label1.TabIndex = 3;
@@ -724,7 +725,7 @@ namespace u_net
             // 改版ボタン
             // 
             改版ボタン.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            改版ボタン.Location = new Point(406, 46);
+            改版ボタン.Location = new Point(389, 46);
             改版ボタン.Margin = new Padding(4);
             改版ボタン.Name = "改版ボタン";
             改版ボタン.RightToLeft = RightToLeft.Yes;
@@ -797,7 +798,7 @@ namespace u_net
             // label3
             // 
             label3.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label3.Location = new Point(564, 95);
+            label3.Location = new Point(530, 95);
             label3.Name = "label3";
             label3.Size = new Size(40, 17);
             label3.TabIndex = 10177;
@@ -807,7 +808,7 @@ namespace u_net
             // label4
             // 
             label4.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label4.Location = new Point(564, 73);
+            label4.Location = new Point(530, 73);
             label4.Name = "label4";
             label4.Size = new Size(40, 17);
             label4.TabIndex = 10176;
@@ -817,7 +818,7 @@ namespace u_net
             // label10
             // 
             label10.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label10.Location = new Point(564, 49);
+            label10.Location = new Point(530, 49);
             label10.Name = "label10";
             label10.Size = new Size(40, 17);
             label10.TabIndex = 10175;
@@ -831,7 +832,7 @@ namespace u_net
             確定日時.Enabled = false;
             確定日時.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             確定日時.ImeMode = ImeMode.NoControl;
-            確定日時.Location = new Point(600, 47);
+            確定日時.Location = new Point(566, 47);
             確定日時.Margin = new Padding(3, 2, 3, 2);
             確定日時.Name = "確定日時";
             確定日時.Size = new Size(20, 20);
@@ -846,7 +847,7 @@ namespace u_net
             無効日時.Enabled = false;
             無効日時.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             無効日時.ImeMode = ImeMode.NoControl;
-            無効日時.Location = new Point(600, 93);
+            無効日時.Location = new Point(566, 93);
             無効日時.Margin = new Padding(3, 2, 3, 2);
             無効日時.Name = "無効日時";
             無効日時.Size = new Size(20, 20);
@@ -861,7 +862,7 @@ namespace u_net
             承認日時.Enabled = false;
             承認日時.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             承認日時.ImeMode = ImeMode.NoControl;
-            承認日時.Location = new Point(600, 71);
+            承認日時.Location = new Point(566, 71);
             承認日時.Margin = new Padding(3, 2, 3, 2);
             承認日時.Name = "承認日時";
             承認日時.Size = new Size(20, 20);
@@ -875,7 +876,7 @@ namespace u_net
             確定者コード.Enabled = false;
             確定者コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             確定者コード.ImeMode = ImeMode.NoControl;
-            確定者コード.Location = new Point(440, 121);
+            確定者コード.Location = new Point(406, 121);
             確定者コード.Margin = new Padding(3, 2, 3, 2);
             確定者コード.Name = "確定者コード";
             確定者コード.ReadOnly = true;
@@ -889,7 +890,7 @@ namespace u_net
             承認者名.BackColor = SystemColors.Control;
             承認者名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             承認者名.ImeMode = ImeMode.NoControl;
-            承認者名.Location = new Point(544, 121);
+            承認者名.Location = new Point(510, 121);
             承認者名.Margin = new Padding(3, 2, 3, 2);
             承認者名.Name = "承認者名";
             承認者名.ReadOnly = true;
@@ -903,7 +904,7 @@ namespace u_net
             承認者コード.BackColor = SystemColors.Control;
             承認者コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             承認者コード.ImeMode = ImeMode.NoControl;
-            承認者コード.Location = new Point(492, 121);
+            承認者コード.Location = new Point(458, 121);
             承認者コード.Margin = new Padding(3, 2, 3, 2);
             承認者コード.Name = "承認者コード";
             承認者コード.ReadOnly = true;
@@ -915,7 +916,7 @@ namespace u_net
             // label7
             // 
             label7.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label7.Location = new Point(677, 122);
+            label7.Location = new Point(643, 122);
             label7.Name = "label7";
             label7.Size = new Size(72, 17);
             label7.TabIndex = 10187;
@@ -928,7 +929,7 @@ namespace u_net
             更新者名.Enabled = false;
             更新者名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             更新者名.ImeMode = ImeMode.NoControl;
-            更新者名.Location = new Point(788, 120);
+            更新者名.Location = new Point(754, 120);
             更新者名.Margin = new Padding(3, 2, 3, 2);
             更新者名.Name = "更新者名";
             更新者名.ReadOnly = true;
@@ -942,7 +943,7 @@ namespace u_net
             更新者コード.Enabled = false;
             更新者コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             更新者コード.ImeMode = ImeMode.NoControl;
-            更新者コード.Location = new Point(749, 120);
+            更新者コード.Location = new Point(715, 120);
             更新者コード.Margin = new Padding(3, 2, 3, 2);
             更新者コード.Name = "更新者コード";
             更新者コード.ReadOnly = true;
@@ -1001,7 +1002,7 @@ namespace u_net
             ユニット明細1.AutoScroll = true;
             ユニット明細1.AutoSize = true;
             ユニット明細1.Location = new Point(5, 198);
-            ユニット明細1.Margin = new Padding(4);
+            ユニット明細1.Margin = new Padding(4, 4, 4, 4);
             ユニット明細1.Name = "ユニット明細1";
             ユニット明細1.Size = new Size(1216, 367);
             ユニット明細1.TabIndex = 10197;
@@ -1013,7 +1014,7 @@ namespace u_net
             承認表示.Enabled = false;
             承認表示.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             承認表示.ImeMode = ImeMode.NoControl;
-            承認表示.Location = new Point(600, 71);
+            承認表示.Location = new Point(566, 71);
             承認表示.Margin = new Padding(3, 2, 3, 2);
             承認表示.Name = "承認表示";
             承認表示.Size = new Size(20, 20);
@@ -1027,7 +1028,7 @@ namespace u_net
             削除表示.Enabled = false;
             削除表示.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             削除表示.ImeMode = ImeMode.NoControl;
-            削除表示.Location = new Point(600, 94);
+            削除表示.Location = new Point(566, 94);
             削除表示.Margin = new Padding(3, 2, 3, 2);
             削除表示.Name = "削除表示";
             削除表示.Size = new Size(20, 20);
@@ -1041,7 +1042,7 @@ namespace u_net
             確定表示.Enabled = false;
             確定表示.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             確定表示.ImeMode = ImeMode.NoControl;
-            確定表示.Location = new Point(600, 48);
+            確定表示.Location = new Point(566, 48);
             確定表示.Margin = new Padding(3, 2, 3, 2);
             確定表示.Name = "確定表示";
             確定表示.Size = new Size(20, 20);
