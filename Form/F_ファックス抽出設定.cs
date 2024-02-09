@@ -176,20 +176,12 @@ namespace u_net
         {
             送信日開始選択_Click(sender,e);
         }
-
-        private void 送信日開始_Click(object sender, EventArgs e)
-        {
-            送信日開始選択_Click(sender, e);
-        }
+              
 
         private void 送信日終了_DoubleClick(object sender, EventArgs e)
         {
             送信日終了選択_Click(sender, e);
         }
 
-        private void 送信日終了_Click(object sender, EventArgs e)
-        {
-            送信日終了選択_Click(sender, e);
-        }
     }
 }

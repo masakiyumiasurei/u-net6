@@ -580,6 +580,8 @@ namespace u_net
                 var result = MessageBox.Show($"以下の文書を再送します。{Environment.NewLine}よろしいですか？{Environment.NewLine}{Environment.NewLine}{str1}",
                                               "再送コマンド", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
+                if(result == DialogResult.No) return;
+                
 
                 fn.DoWait("再送信しています...");
 

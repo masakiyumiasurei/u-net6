@@ -155,6 +155,9 @@ namespace u_net
 
             dataGridView2.ClearSelection();
 
+            System.Type dgvtype = typeof(DataGridView);
+            System.Reflection.PropertyInfo dgvPropertyInfo = dgvtype.GetProperty("DoubleBuffered", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
+            dgvPropertyInfo.SetValue(dataGridView1, true, null);
 
 
             Connect();
@@ -173,37 +176,15 @@ namespace u_net
                 売掛年月.DisplayMember = "売掛年月";
                 売掛年月.ValueMember = "売掛年月";
                 売掛年月.DataSource = dataTable;
-
-
-
+                
             }
 
             売掛年月.DrawMode = DrawMode.OwnerDrawFixed;
 
-
-
             SetInitial();
-
-
         }
 
-        private void Form_Resize(object sender, EventArgs e)
-        {
-            try
-            {
-
-                dataGridView1.Height = dataGridView1.Height + (this.Height - intWindowHeight);
-                intWindowHeight = this.Height;  // 高さ保存
-
-                dataGridView1.Width = dataGridView1.Width + (this.Width - intWindowWidth);
-                intWindowWidth = this.Width;    // 幅保存
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(this.Name + "_Form_Resize - " + ex.Message);
-            }
-        }
+     
 
 
         private void SetInitial()
@@ -224,6 +205,22 @@ namespace u_net
             bool result = true;
             try
             {
+                switch (lng完了指定)
+                {
+                    case 1:
+                        radioButton1.Checked = true;
+                        break;
+                    case 2:
+                        radioButton2.Checked = true;
+                        break;
+                    case 0:
+                        radioButton3.Checked = true;
+                        break;
+
+                    default:
+
+                        break;
+                }
                 Filtering(SalesMonth, str顧客名, str担当者名, lng完了指定, str締日, dtm支払日開始, dtm支払日終了);
                 GetTotal();
 
@@ -279,9 +276,7 @@ namespace u_net
                         dataGridView1.DataSource = bindingSource;
                     }
 
-
                     表示件数.Text = dataGridView1.RowCount.ToString();
-
 
                     success = true;
 
@@ -297,9 +292,9 @@ namespace u_net
                     intWindowWidth = this.Width;
 
                     //0列目はaccessでは行ヘッダのため、ずらす
-                    dataGridView1.Columns[0].Width = 1050 / twipperdot;
-                    dataGridView1.Columns[1].Width = 3950 / twipperdot;
-                    dataGridView1.Columns[2].Width = 600 / twipperdot;
+                    dataGridView1.Columns[0].Width = 1150 / twipperdot;
+                    dataGridView1.Columns[1].Width = 4100 / twipperdot;
+                    dataGridView1.Columns[2].Width = 800 / twipperdot;
                     dataGridView1.Columns[3].Width = 1400 / twipperdot;
                     dataGridView1.Columns[4].Width = 1240 / twipperdot;
                     dataGridView1.Columns[5].Width = 1240 / twipperdot;
@@ -329,8 +324,6 @@ namespace u_net
                         {
                             row.DefaultCellStyle.BackColor = Color.White;
                         }
-
-
 
                     }
 
@@ -365,8 +358,6 @@ namespace u_net
             dataGridView2.Columns[3].HeaderText = "相殺金額";
             dataGridView2.Columns[4].HeaderText = "残高金額";
 
-
-
             // 各列の合計値を計算
             int[] sumValues = new int[5];
 
@@ -377,7 +368,6 @@ namespace u_net
 
             // DataGridView2 に合計値を挿入
             dataGridView2.Rows.Add(new object[] { sumValues[0], sumValues[1], sumValues[2], sumValues[3], sumValues[4] });
-
 
 
             MyApi myapi = new MyApi();
@@ -399,9 +389,7 @@ namespace u_net
 
             dataGridView2.ClearSelection();
 
-
         }
-
 
 
         private void DataGridView1_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
@@ -445,10 +433,7 @@ namespace u_net
                     F_売掛明細 targetform = new F_売掛明細();
                     targetform.ShowDialog();
                 }
-
-
             }
-
         }
 
 
@@ -464,8 +449,6 @@ namespace u_net
                 {
                     row.DefaultCellStyle.BackColor = Color.White;
                 }
-
-
 
             }
         }
@@ -699,8 +682,6 @@ namespace u_net
 
             }
 
-
-
             paoRep.Output();
         }
 
@@ -773,16 +754,12 @@ namespace u_net
 
                     CurRow++;
 
-
                 }
 
                 page++;
-
                 paoRep.PageEnd();
 
             }
-
-
 
             paoRep.Output();
         }

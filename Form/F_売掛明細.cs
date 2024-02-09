@@ -94,6 +94,10 @@ namespace u_net
             dataGridView1.AllowUserToDeleteRows = false;
             dataGridView1.ReadOnly = true;
 
+            System.Type dgvtype = typeof(DataGridView);
+            System.Reflection.PropertyInfo dgvPropertyInfo = dgvtype.GetProperty("DoubleBuffered", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
+            dgvPropertyInfo.SetValue(dataGridView1, true, null);
+
 
             if (!SetRelay())
             {
@@ -110,12 +114,10 @@ namespace u_net
 
         private bool SetRelay()
         {
-
             FunctionClass fn = new FunctionClass();
 
             try
             {
-
 
                 fn.DoWait("集計しています...");
 
@@ -164,9 +166,7 @@ namespace u_net
 
             try
             {
-
                 FunctionClass fn = new FunctionClass();
-
 
                 using (SqlCommand command = new SqlCommand("SP売掛明細_回収", cn))
                 {
@@ -188,12 +188,9 @@ namespace u_net
                         dataGridView1.DataSource = bindingSource;
                     }
 
-
                     表示件数.Text = dataGridView1.RowCount.ToString();
 
-
                     success = true;
-
 
                     MyApi myapi = new MyApi();
                     int xSize, ySize, intpixel, twipperdot;
@@ -212,13 +209,8 @@ namespace u_net
                     dataGridView1.Columns[3].Width = 1500 / twipperdot;
                     dataGridView1.Columns[4].Width = 5100 / twipperdot;
 
-
                     dataGridView1.Columns[3].DefaultCellStyle.Format = "#,###,###,##0";
                     dataGridView1.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-
-
-
-
 
                 }
 
@@ -339,7 +331,6 @@ namespace u_net
 
         private void Form_KeyDown(object sender, KeyEventArgs e)
         {
-
             switch (e.KeyCode)
             {
                 case Keys.Return:
@@ -347,12 +338,6 @@ namespace u_net
                     break;
             }
         }
-
-
-
-
-
-
 
 
         private void コマンド入金_Click(object sender, EventArgs e)
@@ -456,8 +441,6 @@ namespace u_net
         }
 
 
-
-
         private void 顧客コード_Validated(object sender, EventArgs e)
         {
             FunctionClass fn = new FunctionClass();
@@ -522,8 +505,11 @@ namespace u_net
             if (SearchForm.ShowDialog() == DialogResult.OK)
             {
                 string SelectedCode = SearchForm.SelectedCode;
-
                 顧客コード.Text = SelectedCode;
+
+                CancelEventArgs validatingEventArgs = new CancelEventArgs();
+                //iserrorの中で顧客名などを設定しているため　キャンセルイベントをインスタンス化する
+                顧客コード_Validating(顧客コード, validatingEventArgs);
                 顧客コード_Validated(sender, e);
 
             }

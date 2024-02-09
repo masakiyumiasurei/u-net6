@@ -85,9 +85,7 @@ namespace u_net
             label13 = new Label();
             label12 = new Label();
             groupBox2 = new GroupBox();
-            円未満端数処理2 = new ComboBox();
             label5 = new Label();
-            円未満端数処理1 = new ComboBox();
             label4 = new Label();
             groupBox1 = new GroupBox();
             dataGridView1 = new DataGridView();
@@ -119,6 +117,8 @@ namespace u_net
             process1 = new System.Diagnostics.Process();
             閉じるボタン = new Button();
             コマンド登録 = new Button();
+            円未満端数処理1 = new TextBox();
+            円未満端数処理2 = new TextBox();
             tabControl1.SuspendLayout();
             ページ55.SuspendLayout();
             ページ56.SuspendLayout();
@@ -614,8 +614,8 @@ namespace u_net
             // groupBox2
             // 
             groupBox2.Controls.Add(円未満端数処理2);
-            groupBox2.Controls.Add(label5);
             groupBox2.Controls.Add(円未満端数処理1);
+            groupBox2.Controls.Add(label5);
             groupBox2.Controls.Add(label4);
             groupBox2.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             groupBox2.Location = new Point(15, 265);
@@ -624,15 +624,6 @@ namespace u_net
             groupBox2.TabIndex = 7;
             groupBox2.TabStop = false;
             groupBox2.Text = "円未満端数処理";
-            // 
-            // 円未満端数処理2
-            // 
-            円未満端数処理2.FormattingEnabled = true;
-            円未満端数処理2.Location = new Point(354, 25);
-            円未満端数処理2.Name = "円未満端数処理2";
-            円未満端数処理2.Size = new Size(103, 20);
-            円未満端数処理2.TabIndex = 7;
-            円未満端数処理2.TextChanged += 会社名1_TextChanged;
             // 
             // label5
             // 
@@ -648,15 +639,6 @@ namespace u_net
             label5.TabIndex = 250;
             label5.Text = "消費税計算";
             label5.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // 円未満端数処理1
-            // 
-            円未満端数処理1.FormattingEnabled = true;
-            円未満端数処理1.Location = new Point(117, 25);
-            円未満端数処理1.Name = "円未満端数処理1";
-            円未満端数処理1.Size = new Size(103, 20);
-            円未満端数処理1.TabIndex = 6;
-            円未満端数処理1.TextChanged += 会社名1_TextChanged;
             // 
             // label4
             // 
@@ -961,22 +943,22 @@ namespace u_net
             // statusStrip1
             // 
             statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1, toolStripStatusLabel2 });
-            statusStrip1.Location = new Point(0, 426);
+            statusStrip1.Location = new Point(0, 423);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Padding = new Padding(1, 0, 19, 0);
-            statusStrip1.Size = new Size(571, 22);
+            statusStrip1.Size = new Size(571, 25);
             statusStrip1.TabIndex = 200;
             statusStrip1.Text = "statusStrip1";
             // 
             // toolStripStatusLabel1
             // 
             toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            toolStripStatusLabel1.Size = new Size(0, 17);
+            toolStripStatusLabel1.Size = new Size(0, 20);
             // 
             // toolStripStatusLabel2
             // 
             toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            toolStripStatusLabel2.Size = new Size(89, 17);
+            toolStripStatusLabel2.Size = new Size(111, 20);
             toolStripStatusLabel2.Text = "各種項目の説明";
             // 
             // process1
@@ -1012,6 +994,20 @@ namespace u_net
             コマンド登録.UseVisualStyleBackColor = true;
             コマンド登録.Click += コマンド登録_Click;
             // 
+            // 円未満端数処理1
+            // 
+            円未満端数処理1.Location = new Point(97, 26);
+            円未満端数処理1.Name = "円未満端数処理1";
+            円未満端数処理1.Size = new Size(100, 19);
+            円未満端数処理1.TabIndex = 251;
+            // 
+            // 円未満端数処理2
+            // 
+            円未満端数処理2.Location = new Point(325, 26);
+            円未満端数処理2.Name = "円未満端数処理2";
+            円未満端数処理2.Size = new Size(100, 19);
+            円未満端数処理2.TabIndex = 252;
+            // 
             // F_会社情報
             // 
             AutoScaleDimensions = new SizeF(8F, 12F);
@@ -1038,6 +1034,7 @@ namespace u_net
             ページ55.PerformLayout();
             ページ56.ResumeLayout(false);
             groupBox2.ResumeLayout(false);
+            groupBox2.PerformLayout();
             groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ページ79.ResumeLayout(false);
@@ -1125,9 +1122,7 @@ namespace u_net
         private Label label3;
         private ComboBox 税計算タイミング;
         private Label label2;
-        private ComboBox 円未満端数処理2;
         private Label label5;
-        private ComboBox 円未満端数処理1;
         private Label label4;
         private GroupBox groupBox3;
         private TextBox 取引銀行2口座番号;
@@ -1148,6 +1143,8 @@ namespace u_net
         private DataGridViewButtonColumn 消費税率ボタン;
         private Button コマンド登録;
         private MaskedTextBox 郵便番号;
+        private TextBox 円未満端数処理2;
+        private TextBox 円未満端数処理1;
     }
 }
 

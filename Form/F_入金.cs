@@ -129,12 +129,14 @@ namespace u_net
                     {
                         throw new Exception("初期化に失敗しました。");
                     }
+                    //可能な場合はリレー入力する 売掛一覧から来た時
+                    if (SetRelay())
+                    {
+                        if (fn.WaitForm != null) fn.WaitForm.Close();
+                    }
                     else
                     {
-                        if (SetRelay())
-                        {
-                            if (fn.WaitForm != null) fn.WaitForm.Close();
-                        }
+                        throw new Exception("初期化に失敗しました。");
                     }
                 }
                 else
@@ -258,9 +260,10 @@ namespace u_net
                     // 一覧のデータ件数が1件以上表示されているときのみリレー入力する
                     if (int.Parse(fm.表示件数.Text) > 0)
                     {
-                        this.入金月.Text = fm.SalesMonth.ToString();
+                        this.入金月.Text = fm.SalesMonth.ToString("yyyy/MM");
                         this.顧客コード.Focus();
                         this.顧客コード.Text = fm.CustomerCode;
+                        UpdatedControl(顧客コード);
                     }
                 }
 
@@ -333,7 +336,7 @@ namespace u_net
                         if (DateTime.TryParse(入金日.Text, out DateTime parsedDate))
                             入金日.Text = string.Format("{0:yyyy/MM/dd}", parsedDate);
 
-                        if (DateTime.TryParse(入金日.Text, out DateTime parsedDate2))
+                        if (DateTime.TryParse(入金月.Text, out DateTime parsedDate2))
                             入金月.Text = string.Format("{0:yyyy/MM}", parsedDate2);
 
                         ChangedData(false);
