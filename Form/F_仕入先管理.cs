@@ -76,8 +76,8 @@ namespace u_net
         {
             FunctionClass fn = new FunctionClass();
             fn.DoWait("しばらくお待ちください...");
+
             //実行中フォーム起動
-            //string LoginUserCode = "000";//テスト用 ログインユーザを実行中にどのように管理するか決まったら修正
             LocalSetting localSetting = new LocalSetting();
             localSetting.LoadPlace(CommonConstants.LoginUserCode, this);
 
@@ -100,6 +100,12 @@ namespace u_net
             dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font("MS ゴシック", 9);
             dataGridView1.DefaultCellStyle.Font = new Font("MS ゴシック", 10);
             dataGridView1.DefaultCellStyle.ForeColor = Color.Black;
+
+            //ダブルバッファ処理設定
+            System.Type dgvtype = typeof(DataGridView);
+            System.Reflection.PropertyInfo dgvPropertyInfo = dgvtype.GetProperty("DoubleBuffered", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
+            dgvPropertyInfo.SetValue(dataGridView1, true, null);
+
 
             //dataGridView1.Columns[0].DefaultCellStyle.BackColor = Color.FromArgb(255, 255, 200); // 薄い黄色
             //dataGridView1.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
@@ -513,9 +519,8 @@ namespace u_net
 
         private void F_仕入先管理_FormClosing(object sender, FormClosingEventArgs e)
         {
-            string LoginUserCode = "000";//テスト用 ログインユーザを実行中にどのように管理するか決まったら修正
-            LocalSetting test = new LocalSetting();
-            test.SavePlace(LoginUserCode, this);
+            LocalSetting localSetting = new LocalSetting();
+            localSetting.SavePlace(CommonConstants.LoginUserCode, this);
         }
 
 
