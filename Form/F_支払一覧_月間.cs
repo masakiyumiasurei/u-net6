@@ -83,6 +83,11 @@ namespace u_net
         private void Form_Load(object sender, EventArgs e)
         {
 
+            System.Type dgvtype = typeof(DataGridView);
+            System.Reflection.PropertyInfo dgvPropertyInfo = dgvtype.GetProperty("DoubleBuffered", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
+            dgvPropertyInfo.SetValue(dataGridView1, true, null);
+
+
             foreach (Control control in Controls)
             {
                 control.PreviewKeyDown += OriginalClass.ValidateCheck;
@@ -150,7 +155,7 @@ namespace u_net
                 集計年月.ValueMember = "集計年月";
                 集計年月.DataSource = dataTable;
 
-
+                //集計年月.SelectedIndex = -1;
             }
 
 
@@ -163,11 +168,11 @@ namespace u_net
             try
             {
 
-                dataGridView1.Height = dataGridView1.Height + (this.Height - intWindowHeight);
-                intWindowHeight = this.Height;  // 高さ保存
+                //dataGridView1.Height = dataGridView1.Height + (this.Height - intWindowHeight);
+                //intWindowHeight = this.Height;  // 高さ保存
 
-                dataGridView1.Width = dataGridView1.Width + (this.Width - intWindowWidth);
-                intWindowWidth = this.Width;    // 幅保存
+                //dataGridView1.Width = dataGridView1.Width + (this.Width - intWindowWidth);
+                //intWindowWidth = this.Width;    // 幅保存
 
             }
             catch (Exception ex)
@@ -177,7 +182,7 @@ namespace u_net
         }
         public bool DoUpdate()
         {
-            if (string.IsNullOrEmpty(集計年月.Text)) return false;
+            if (string.IsNullOrEmpty(集計年月.Text)) return true;
 
             FunctionClass fn = new FunctionClass();
             fn.DoWait("集計しています...");
@@ -186,10 +191,12 @@ namespace u_net
             try
             {
                 SetGrid(dtm集計年月);
-                AddTotalRow(dataGridView1);
+
 
                 if (dataGridView1.RowCount > 0)
                 {
+                    AddTotalRow(dataGridView1);
+
                     dataGridView1.Rows[0].Selected = true;
                     dataGridView1.FirstDisplayedScrollingRowIndex = 0;
                 }
@@ -430,6 +437,9 @@ namespace u_net
                     case Keys.F9:
                         if (this.コマンド印刷.Enabled) コマンド印刷_Click(null, null);
                         break;
+                    case Keys.F10:
+                        if (this.コマンド出力.Enabled) コマンド出力_Click(null, null);
+                        break;
                     case Keys.F11:
                         if (this.コマンド入出力.Enabled) コマンド入出力_Click(null, null);
                         break;
@@ -475,6 +485,7 @@ namespace u_net
                         // コマンド支払通知.Enabled = true;
                         コマンド印刷.Enabled = true;
                         コマンド入出力.Enabled = true;
+                        コマンド出力.Enabled = true;
                         コピーボタン.Enabled = true;
                     }
                     else
@@ -484,6 +495,7 @@ namespace u_net
                         // コマンド支払通知.Enabled = false;
                         コマンド印刷.Enabled = false;
                         コマンド入出力.Enabled = false;
+                        コマンド出力.Enabled = false;
                         コピーボタン.Enabled = false;
                     }
                 }
@@ -495,6 +507,7 @@ namespace u_net
                     // コマンド支払通知.Enabled = false;
                     コマンド印刷.Enabled = false;
                     コマンド入出力.Enabled = false;
+                    コマンド出力.Enabled = false;
                     コピーボタン.Enabled = false;
                 }
 
@@ -670,11 +683,6 @@ namespace u_net
             paoRep.Output();
         }
 
-        private void コマンド保守_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void コマンド支払通知_Click(object sender, EventArgs e)
         {
             string param = $" -user:{CommonConstants.LoginUserName}" +
@@ -761,6 +769,7 @@ namespace u_net
                         // コマンド支払通知.Enabled = true;
                         コマンド印刷.Enabled = true;
                         コマンド入出力.Enabled = true;
+                        コマンド出力.Enabled = true;
                         コピーボタン.Enabled = true;
                     }
                     else
@@ -770,6 +779,7 @@ namespace u_net
                         // コマンド支払通知.Enabled = false;
                         コマンド印刷.Enabled = false;
                         コマンド入出力.Enabled = false;
+                        コマンド出力.Enabled = false;
                         コピーボタン.Enabled = false;
                     }
                 }
@@ -782,6 +792,7 @@ namespace u_net
                     // コマンド支払通知.Enabled = false;
                     コマンド印刷.Enabled = false;
                     コマンド入出力.Enabled = false;
+                    コマンド出力.Enabled = false;
                     コピーボタン.Enabled = false;
                 }
 
@@ -798,6 +809,13 @@ namespace u_net
             string LoginUserCode = CommonConstants.LoginUserCode;
             LocalSetting test = new LocalSetting();
             test.SavePlace(LoginUserCode, this);
+        }
+
+        private void コマンド出力_Click(object sender, EventArgs e)
+        {
+            F_出力 targetform = new F_出力();
+            targetform.DataGridView = dataGridView1;
+            targetform.ShowDialog();
         }
     }
 }

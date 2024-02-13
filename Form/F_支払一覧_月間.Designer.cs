@@ -37,7 +37,7 @@
             コマンド支払先 = new Button();
             コマンド明細参照 = new Button();
             コマンド印刷 = new Button();
-            コマンド保守 = new Button();
+            コマンド出力 = new Button();
             コマンド初期化 = new Button();
             コマンド検索 = new Button();
             コマンド抽出 = new Button();
@@ -50,13 +50,15 @@
             panel2 = new Panel();
             toolTip1 = new ToolTip(components);
             コピーボタン = new Button();
-            集計年月_ラベル = new Label();
-            集計年月 = new ComboBox();
-            月度_ラベル = new Label();
+            panel3 = new Panel();
             label3 = new Label();
+            月度_ラベル = new Label();
+            集計年月 = new ComboBox();
+            集計年月_ラベル = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel2.SuspendLayout();
+            panel3.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
@@ -68,7 +70,7 @@
             panel1.Controls.Add(コマンド支払先);
             panel1.Controls.Add(コマンド明細参照);
             panel1.Controls.Add(コマンド印刷);
-            panel1.Controls.Add(コマンド保守);
+            panel1.Controls.Add(コマンド出力);
             panel1.Controls.Add(コマンド初期化);
             panel1.Controls.Add(コマンド検索);
             panel1.Controls.Add(コマンド抽出);
@@ -181,22 +183,22 @@
             コマンド印刷.UseVisualStyleBackColor = true;
             コマンド印刷.Click += コマンド印刷_Click;
             // 
-            // コマンド保守
+            // コマンド出力
             // 
-            コマンド保守.Enabled = false;
-            コマンド保守.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            コマンド保守.ForeColor = Color.Blue;
-            コマンド保守.ImageAlign = ContentAlignment.BottomLeft;
-            コマンド保守.Location = new Point(645, 4);
-            コマンド保守.Margin = new Padding(0, 2, 0, 2);
-            コマンド保守.Name = "コマンド保守";
-            コマンド保守.Size = new Size(70, 22);
-            コマンド保守.TabIndex = 6;
-            コマンド保守.TabStop = false;
-            コマンド保守.Text = "保守";
-            toolTip1.SetToolTip(コマンド保守, "保守");
-            コマンド保守.UseVisualStyleBackColor = true;
-            コマンド保守.Click += コマンド保守_Click;
+            コマンド出力.Enabled = false;
+            コマンド出力.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            コマンド出力.ForeColor = Color.Blue;
+            コマンド出力.ImageAlign = ContentAlignment.BottomLeft;
+            コマンド出力.Location = new Point(645, 4);
+            コマンド出力.Margin = new Padding(0, 2, 0, 2);
+            コマンド出力.Name = "コマンド出力";
+            コマンド出力.Size = new Size(70, 22);
+            コマンド出力.TabIndex = 6;
+            コマンド出力.TabStop = false;
+            コマンド出力.Text = "出力";
+            toolTip1.SetToolTip(コマンド出力, "出力");
+            コマンド出力.UseVisualStyleBackColor = true;
+            コマンド出力.Click += コマンド出力_Click;
             // 
             // コマンド初期化
             // 
@@ -312,12 +314,13 @@
             dataGridView1.AllowUserToAddRows = false;
             dataGridView1.AllowUserToDeleteRows = false;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(0, 75);
+            dataGridView1.Dock = DockStyle.Fill;
+            dataGridView1.Location = new Point(0, 32);
             dataGridView1.Margin = new Padding(3, 2, 3, 2);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
             dataGridView1.RowTemplate.Height = 29;
-            dataGridView1.Size = new Size(1054, 440);
+            dataGridView1.Size = new Size(1054, 510);
             dataGridView1.TabIndex = 1;
             dataGridView1.CellClick += dataGridView1_CellClick;
             dataGridView1.CellDoubleClick += dataGridView1_CellDoubleClick;
@@ -340,58 +343,30 @@
             // コピーボタン
             // 
             コピーボタン.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            コピーボタン.Location = new Point(335, 38);
+            コピーボタン.Location = new Point(334, 4);
             コピーボタン.Margin = new Padding(4);
             コピーボタン.Name = "コピーボタン";
             コピーボタン.RightToLeft = RightToLeft.Yes;
             コピーボタン.Size = new Size(163, 26);
-            コピーボタン.TabIndex = 5;
+            コピーボタン.TabIndex = 93;
             コピーボタン.Text = "クリップボードへコピー";
             toolTip1.SetToolTip(コピーボタン, "選択範囲をクリップボードへコピーします");
             コピーボタン.UseVisualStyleBackColor = true;
             コピーボタン.Click += コピーボタン_Click;
             // 
-            // 集計年月_ラベル
+            // panel3
             // 
-            集計年月_ラベル.AllowDrop = true;
-            集計年月_ラベル.AutoEllipsis = true;
-            集計年月_ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            集計年月_ラベル.ForeColor = SystemColors.ActiveCaptionText;
-            集計年月_ラベル.ImageAlign = ContentAlignment.MiddleLeft;
-            集計年月_ラベル.Location = new Point(9, 41);
-            集計年月_ラベル.Margin = new Padding(0);
-            集計年月_ラベル.Name = "集計年月_ラベル";
-            集計年月_ラベル.Size = new Size(75, 20);
-            集計年月_ラベル.TabIndex = 1;
-            集計年月_ラベル.Text = "集計年月(&M)";
-            集計年月_ラベル.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // 集計年月
-            // 
-            集計年月.BackColor = SystemColors.Window;
-            集計年月.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            集計年月.FormattingEnabled = true;
-            集計年月.ImeMode = ImeMode.Disable;
-            集計年月.Location = new Point(87, 41);
-            集計年月.Name = "集計年月";
-            集計年月.Size = new Size(102, 21);
-            集計年月.TabIndex = 2;
-            集計年月.SelectedIndexChanged += 集計年月_SelectedIndexChanged;
-            // 
-            // 月度_ラベル
-            // 
-            月度_ラベル.AllowDrop = true;
-            月度_ラベル.AutoEllipsis = true;
-            月度_ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            月度_ラベル.ForeColor = SystemColors.ActiveCaptionText;
-            月度_ラベル.ImageAlign = ContentAlignment.MiddleLeft;
-            月度_ラベル.Location = new Point(192, 41);
-            月度_ラベル.Margin = new Padding(0);
-            月度_ラベル.Name = "月度_ラベル";
-            月度_ラベル.Size = new Size(56, 20);
-            月度_ラベル.TabIndex = 89;
-            月度_ラベル.Text = "月";
-            月度_ラベル.TextAlign = ContentAlignment.MiddleLeft;
+            panel3.Controls.Add(label3);
+            panel3.Controls.Add(コピーボタン);
+            panel3.Controls.Add(月度_ラベル);
+            panel3.Controls.Add(集計年月);
+            panel3.Controls.Add(集計年月_ラベル);
+            panel3.Dock = DockStyle.Top;
+            panel3.Location = new Point(0, 32);
+            panel3.Margin = new Padding(3, 2, 3, 2);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(1054, 39);
+            panel3.TabIndex = 91;
             // 
             // label3
             // 
@@ -400,24 +375,62 @@
             label3.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             label3.ForeColor = SystemColors.ActiveCaptionText;
             label3.ImageAlign = ContentAlignment.MiddleLeft;
-            label3.Location = new Point(502, 44);
+            label3.Location = new Point(501, 10);
             label3.Margin = new Padding(0);
             label3.Name = "label3";
             label3.Size = new Size(259, 20);
-            label3.TabIndex = 90;
+            label3.TabIndex = 95;
             label3.Text = "※選択されたセルの内容をコピーします。";
             label3.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // 月度_ラベル
+            // 
+            月度_ラベル.AllowDrop = true;
+            月度_ラベル.AutoEllipsis = true;
+            月度_ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            月度_ラベル.ForeColor = SystemColors.ActiveCaptionText;
+            月度_ラベル.ImageAlign = ContentAlignment.MiddleLeft;
+            月度_ラベル.Location = new Point(191, 7);
+            月度_ラベル.Margin = new Padding(0);
+            月度_ラベル.Name = "月度_ラベル";
+            月度_ラベル.Size = new Size(56, 20);
+            月度_ラベル.TabIndex = 94;
+            月度_ラベル.Text = "月";
+            月度_ラベル.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // 集計年月
+            // 
+            集計年月.BackColor = SystemColors.Window;
+            集計年月.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            集計年月.FormattingEnabled = true;
+            集計年月.ImeMode = ImeMode.Disable;
+            集計年月.Location = new Point(86, 7);
+            集計年月.Name = "集計年月";
+            集計年月.Size = new Size(102, 21);
+            集計年月.TabIndex = 92;
+            集計年月.SelectedIndexChanged += 集計年月_SelectedIndexChanged;
+            // 
+            // 集計年月_ラベル
+            // 
+            集計年月_ラベル.AllowDrop = true;
+            集計年月_ラベル.AutoEllipsis = true;
+            集計年月_ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            集計年月_ラベル.ForeColor = SystemColors.ActiveCaptionText;
+            集計年月_ラベル.ImageAlign = ContentAlignment.MiddleLeft;
+            集計年月_ラベル.Location = new Point(8, 7);
+            集計年月_ラベル.Margin = new Padding(0);
+            集計年月_ラベル.Name = "集計年月_ラベル";
+            集計年月_ラベル.Size = new Size(75, 20);
+            集計年月_ラベル.TabIndex = 91;
+            集計年月_ラベル.Text = "集計年月(&M)";
+            集計年月_ラベル.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // F_支払一覧_月間
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1054, 542);
-            Controls.Add(label3);
-            Controls.Add(コピーボタン);
-            Controls.Add(月度_ラベル);
-            Controls.Add(集計年月);
-            Controls.Add(集計年月_ラベル);
+            Controls.Add(panel3);
             Controls.Add(panel2);
             Controls.Add(dataGridView1);
             Controls.Add(panel1);
@@ -434,6 +447,7 @@
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
+            panel3.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -444,7 +458,7 @@
         private Button コマンド支払先;
         private Button コマンド明細参照;
         private Button コマンド印刷;
-        private Button コマンド保守;
+        private Button コマンド出力;
         private Button コマンド初期化;
         private Button コマンド抽出;
         private Button コマンド更新;
@@ -554,7 +568,7 @@
 
         //private newDataSetTableAdapters.Vメーカー管理TableAdapter vメーカー管理TableAdapter;
 
-        private DataGridView dataGridView1;
+        internal DataGridView dataGridView1;
         private DataGridViewTextBoxColumn 商品コードDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn 基本型式名DataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn シリーズ名DataGridViewTextBoxColumn;
@@ -584,10 +598,11 @@
         private Button コマンド検索;
         private Button コマンド入出力;
         private ToolTip toolTip1;
-        private Label 集計年月_ラベル;
-        internal ComboBox 集計年月;
-        private Label 月度_ラベル;
-        private Button コピーボタン;
+        private Panel panel3;
         private Label label3;
+        private Button コピーボタン;
+        private Label 月度_ラベル;
+        internal ComboBox 集計年月;
+        private Label 集計年月_ラベル;
     }
 }

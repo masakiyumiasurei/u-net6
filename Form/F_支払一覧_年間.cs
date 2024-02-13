@@ -98,6 +98,11 @@ namespace u_net
 
         private void Form_Load(object sender, EventArgs e)
         {
+
+            System.Type dgvtype = typeof(DataGridView);
+            System.Reflection.PropertyInfo dgvPropertyInfo = dgvtype.GetProperty("DoubleBuffered", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
+            dgvPropertyInfo.SetValue(dataGridView1, true, null);
+
             foreach (Control control in Controls)
             {
                 control.PreviewKeyDown += OriginalClass.ValidateCheck;
@@ -165,7 +170,7 @@ namespace u_net
                 集計年度.ValueMember = "支払年度";
                 集計年度.DataSource = dataTable;
 
-
+                //集計年度.SelectedIndex = -1;
             }
 
             OriginalClass ofn = new OriginalClass();
@@ -179,11 +184,11 @@ namespace u_net
             try
             {
 
-                dataGridView1.Height = dataGridView1.Height + (this.Height - intWindowHeight);
-                intWindowHeight = this.Height;  // 高さ保存
+                //dataGridView1.Height = dataGridView1.Height + (this.Height - intWindowHeight);
+                //intWindowHeight = this.Height;  // 高さ保存
 
-                dataGridView1.Width = dataGridView1.Width + (this.Width - intWindowWidth);
-                intWindowWidth = this.Width;    // 幅保存
+                //dataGridView1.Width = dataGridView1.Width + (this.Width - intWindowWidth);
+                //intWindowWidth = this.Width;    // 幅保存
 
             }
             catch (Exception ex)
@@ -193,7 +198,7 @@ namespace u_net
         }
         public bool DoUpdate()
         {
-            if (string.IsNullOrEmpty(集計年度.Text)) return false;
+            if (string.IsNullOrEmpty(集計年度.Text)) return true;
 
             FunctionClass fn = new FunctionClass();
             fn.DoWait("集計しています...");
@@ -202,10 +207,11 @@ namespace u_net
             try
             {
                 SetGrid(str集計年度, str支払区分コード);
-                AddTotalRow(dataGridView1);
+
 
                 if (dataGridView1.RowCount > 0)
                 {
+                    AddTotalRow(dataGridView1);
                     dataGridView1.Rows[0].Selected = true;
                     dataGridView1.FirstDisplayedScrollingRowIndex = 0;
                 }
@@ -285,7 +291,7 @@ namespace u_net
                         dataGridView1.Columns[col].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                     }
 
-                    
+
 
 
                 }
@@ -351,7 +357,7 @@ namespace u_net
         private void dataGridView1_Sorted(object sender, EventArgs e)
         {
             AddTotalRow(dataGridView1);
-            
+
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -442,6 +448,9 @@ namespace u_net
                     case Keys.F9:
                         if (this.コマンド印刷.Enabled) コマンド印刷_Click(null, null);
                         break;
+                    case Keys.F10:
+                        if (this.コマンド出力.Enabled) コマンド出力_Click(null, null);
+                        break;
                     case Keys.F11:
                         if (this.コマンド入出力.Enabled) コマンド入出力_Click(null, null);
                         break;
@@ -488,6 +497,7 @@ namespace u_net
                         // コマンド支払通知.Enabled = true;
                         コマンド印刷.Enabled = true;
                         コマンド入出力.Enabled = true;
+                        コマンド出力.Enabled = true;
                         コピーボタン.Enabled = true;
                     }
                     else
@@ -497,6 +507,7 @@ namespace u_net
                         // コマンド支払通知.Enabled = false;
                         コマンド印刷.Enabled = false;
                         コマンド入出力.Enabled = false;
+                        コマンド出力.Enabled = false;
                         コピーボタン.Enabled = false;
                     }
                 }
@@ -508,6 +519,7 @@ namespace u_net
                     // コマンド支払通知.Enabled = false;
                     コマンド印刷.Enabled = false;
                     コマンド入出力.Enabled = false;
+                    コマンド出力.Enabled = false;
                     コピーボタン.Enabled = false;
                 }
 
@@ -585,7 +597,7 @@ namespace u_net
                 paoRep.Write("タイトル", 集計年度.Text.ToString() + "年度支払一覧表");
 
                 paoRep.Write("支払区分", 支払区分コード.Text.ToString() != "" ? 支払区分コード.Text.ToString() : "（全て）");
-                for(var i = 2; i <= 13; i++)
+                for (var i = 2; i <= 13; i++)
                 {
                     int ii = (i >= 2 && i <= 10) ? i + 2 : (i >= 11 && i <= 13) ? i - 10 : i;
                     paoRep.Write("合計" + (ii).ToString() + "月", string.Format("{0:#,0}", totalRow.Cells[i].Value) != "" ? string.Format("{0:#,0}", totalRow.Cells[i].Value) : " ");
@@ -600,7 +612,7 @@ namespace u_net
                 //明細
                 for (var i = 0; i < maxRow; i++)
                 {
-                    if (CurRow >= dataGridView1.RowCount-1) break;
+                    if (CurRow >= dataGridView1.RowCount - 1) break;
 
                     DataGridViewRow targetRow = dataGridView1.Rows[CurRow];
 
@@ -642,11 +654,6 @@ namespace u_net
 
 
             paoRep.Output();
-        }
-
-        private void コマンド保守_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void コマンド支払通知_Click(object sender, EventArgs e)
@@ -731,6 +738,7 @@ namespace u_net
                         // コマンド支払通知.Enabled = true;
                         コマンド印刷.Enabled = true;
                         コマンド入出力.Enabled = true;
+                        コマンド出力.Enabled = true;
                         コピーボタン.Enabled = true;
                     }
                     else
@@ -740,6 +748,7 @@ namespace u_net
                         // コマンド支払通知.Enabled = false;
                         コマンド印刷.Enabled = false;
                         コマンド入出力.Enabled = false;
+                        コマンド出力.Enabled = false;
                         コピーボタン.Enabled = false;
                     }
                 }
@@ -752,6 +761,7 @@ namespace u_net
                     // コマンド支払通知.Enabled = false;
                     コマンド印刷.Enabled = false;
                     コマンド入出力.Enabled = false;
+                    コマンド出力.Enabled = false;
                     コピーボタン.Enabled = false;
                 }
 
@@ -787,6 +797,7 @@ namespace u_net
                         // コマンド支払通知.Enabled = true;
                         コマンド印刷.Enabled = true;
                         コマンド入出力.Enabled = true;
+                        コマンド出力.Enabled = true;
                         コピーボタン.Enabled = true;
                     }
                     else
@@ -797,6 +808,7 @@ namespace u_net
                         // コマンド支払通知.Enabled = false;
                         コマンド印刷.Enabled = false;
                         コマンド入出力.Enabled = false;
+                        コマンド出力.Enabled = false;
                         コピーボタン.Enabled = false;
                     }
                 }
@@ -808,6 +820,7 @@ namespace u_net
                     // コマンド支払通知.Enabled = false;
                     コマンド印刷.Enabled = false;
                     コマンド入出力.Enabled = false;
+                    コマンド出力.Enabled = false;
                     コピーボタン.Enabled = false;
                 }
 
@@ -817,6 +830,20 @@ namespace u_net
             {
                 MessageBox.Show($"エラーが発生しました。\n{ex.Message}", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void コマンド出力_Click(object sender, EventArgs e)
+        {
+            F_出力 targetform = new F_出力();
+            targetform.DataGridView = dataGridView1;
+            targetform.ShowDialog();
+        }
+
+        private void F_支払一覧_年間_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            string LoginUserCode = CommonConstants.LoginUserCode;
+            LocalSetting test = new LocalSetting();
+            test.SavePlace(LoginUserCode, this);
         }
     }
 }
