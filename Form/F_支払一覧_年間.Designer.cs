@@ -37,28 +37,30 @@
             コマンド支払先 = new Button();
             コマンド明細参照 = new Button();
             コマンド印刷 = new Button();
-            コマンド保守 = new Button();
+            コマンド出力 = new Button();
             コマンド初期化 = new Button();
             コマンド検索 = new Button();
             コマンド抽出 = new Button();
             コマンド更新 = new Button();
             コマンド終了 = new Button();
-            表示件数 = new TextBox();
-            label1 = new Label();
-            label2 = new Label();
             dataGridView1 = new DataGridView();
-            panel2 = new Panel();
             toolTip1 = new ToolTip(components);
             コピーボタン = new Button();
             集計年度_ラベル = new Label();
-            集計年度 = new ComboBox();
             年度_ラベル = new Label();
             支払区分_ラベル = new Label();
             支払区分コード = new ComboBox();
             label3 = new Label();
+            集計年度 = new ComboBox();
+            label2 = new Label();
+            label1 = new Label();
+            表示件数 = new TextBox();
+            panel2 = new Panel();
+            panel3 = new Panel();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel2.SuspendLayout();
+            panel3.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
@@ -70,7 +72,7 @@
             panel1.Controls.Add(コマンド支払先);
             panel1.Controls.Add(コマンド明細参照);
             panel1.Controls.Add(コマンド印刷);
-            panel1.Controls.Add(コマンド保守);
+            panel1.Controls.Add(コマンド出力);
             panel1.Controls.Add(コマンド初期化);
             panel1.Controls.Add(コマンド検索);
             panel1.Controls.Add(コマンド抽出);
@@ -183,22 +185,22 @@
             コマンド印刷.UseVisualStyleBackColor = true;
             コマンド印刷.Click += コマンド印刷_Click;
             // 
-            // コマンド保守
+            // コマンド出力
             // 
-            コマンド保守.Enabled = false;
-            コマンド保守.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            コマンド保守.ForeColor = Color.Blue;
-            コマンド保守.ImageAlign = ContentAlignment.BottomLeft;
-            コマンド保守.Location = new Point(645, 4);
-            コマンド保守.Margin = new Padding(0, 2, 0, 2);
-            コマンド保守.Name = "コマンド保守";
-            コマンド保守.Size = new Size(70, 22);
-            コマンド保守.TabIndex = 6;
-            コマンド保守.TabStop = false;
-            コマンド保守.Text = "保守";
-            toolTip1.SetToolTip(コマンド保守, "保守");
-            コマンド保守.UseVisualStyleBackColor = true;
-            コマンド保守.Click += コマンド保守_Click;
+            コマンド出力.Enabled = false;
+            コマンド出力.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            コマンド出力.ForeColor = Color.Blue;
+            コマンド出力.ImageAlign = ContentAlignment.BottomLeft;
+            コマンド出力.Location = new Point(645, 4);
+            コマンド出力.Margin = new Padding(0, 2, 0, 2);
+            コマンド出力.Name = "コマンド出力";
+            コマンド出力.Size = new Size(70, 22);
+            コマンド出力.TabIndex = 6;
+            コマンド出力.TabStop = false;
+            コマンド出力.Text = "出力";
+            toolTip1.SetToolTip(コマンド出力, "出力");
+            コマンド出力.UseVisualStyleBackColor = true;
+            コマンド出力.Click += コマンド出力_Click;
             // 
             // コマンド初期化
             // 
@@ -279,47 +281,18 @@
             コマンド終了.UseVisualStyleBackColor = true;
             コマンド終了.Click += コマンド終了_Click;
             // 
-            // 表示件数
-            // 
-            表示件数.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            表示件数.Location = new Point(72, 4);
-            表示件数.Margin = new Padding(3, 2, 3, 2);
-            表示件数.Name = "表示件数";
-            表示件数.Size = new Size(88, 20);
-            表示件数.TabIndex = 84;
-            表示件数.TabStop = false;
-            表示件数.TextAlign = HorizontalAlignment.Right;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(7, 8);
-            label1.Name = "label1";
-            label1.Size = new Size(53, 12);
-            label1.TabIndex = 85;
-            label1.Text = "表示件数";
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(163, 8);
-            label2.Name = "label2";
-            label2.Size = new Size(19, 15);
-            label2.TabIndex = 86;
-            label2.Text = "件";
-            // 
             // dataGridView1
             // 
             dataGridView1.AllowUserToAddRows = false;
             dataGridView1.AllowUserToDeleteRows = false;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(0, 75);
+            dataGridView1.Dock = DockStyle.Fill;
+            dataGridView1.Location = new Point(0, 32);
             dataGridView1.Margin = new Padding(3, 2, 3, 2);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
             dataGridView1.RowTemplate.Height = 29;
-            dataGridView1.Size = new Size(1054, 440);
+            dataGridView1.Size = new Size(1054, 510);
             dataGridView1.TabIndex = 1;
             dataGridView1.CellClick += dataGridView1_CellClick;
             dataGridView1.CellDoubleClick += dataGridView1_CellDoubleClick;
@@ -327,22 +300,10 @@
             dataGridView1.Sorted += dataGridView1_Sorted;
             dataGridView1.KeyDown += dataGridView1_KeyDown;
             // 
-            // panel2
-            // 
-            panel2.Controls.Add(表示件数);
-            panel2.Controls.Add(label1);
-            panel2.Controls.Add(label2);
-            panel2.Dock = DockStyle.Bottom;
-            panel2.Location = new Point(0, 515);
-            panel2.Margin = new Padding(3, 2, 3, 2);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(1054, 27);
-            panel2.TabIndex = 88;
-            // 
             // コピーボタン
             // 
             コピーボタン.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            コピーボタン.Location = new Point(577, 41);
+            コピーボタン.Location = new Point(582, 5);
             コピーボタン.Margin = new Padding(4);
             コピーボタン.Name = "コピーボタン";
             コピーボタン.RightToLeft = RightToLeft.Yes;
@@ -360,25 +321,13 @@
             集計年度_ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             集計年度_ラベル.ForeColor = SystemColors.ActiveCaptionText;
             集計年度_ラベル.ImageAlign = ContentAlignment.MiddleLeft;
-            集計年度_ラベル.Location = new Point(9, 41);
+            集計年度_ラベル.Location = new Point(14, 5);
             集計年度_ラベル.Margin = new Padding(0);
             集計年度_ラベル.Name = "集計年度_ラベル";
             集計年度_ラベル.Size = new Size(75, 20);
             集計年度_ラベル.TabIndex = 1;
             集計年度_ラベル.Text = "集計年度(&Y)";
             集計年度_ラベル.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // 集計年度
-            // 
-            集計年度.BackColor = SystemColors.Window;
-            集計年度.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            集計年度.FormattingEnabled = true;
-            集計年度.ImeMode = ImeMode.Disable;
-            集計年度.Location = new Point(87, 41);
-            集計年度.Name = "集計年度";
-            集計年度.Size = new Size(68, 21);
-            集計年度.TabIndex = 2;
-            集計年度.SelectedIndexChanged += 集計年度_SelectedIndexChanged;
             // 
             // 年度_ラベル
             // 
@@ -387,7 +336,7 @@
             年度_ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             年度_ラベル.ForeColor = SystemColors.ActiveCaptionText;
             年度_ラベル.ImageAlign = ContentAlignment.MiddleLeft;
-            年度_ラベル.Location = new Point(156, 41);
+            年度_ラベル.Location = new Point(161, 5);
             年度_ラベル.Margin = new Padding(0);
             年度_ラベル.Name = "年度_ラベル";
             年度_ラベル.Size = new Size(75, 20);
@@ -402,7 +351,7 @@
             支払区分_ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             支払区分_ラベル.ForeColor = SystemColors.ActiveCaptionText;
             支払区分_ラベル.ImageAlign = ContentAlignment.MiddleLeft;
-            支払区分_ラベル.Location = new Point(286, 42);
+            支払区分_ラベル.Location = new Point(291, 6);
             支払区分_ラベル.Margin = new Padding(0);
             支払区分_ラベル.Name = "支払区分_ラベル";
             支払区分_ラベル.Size = new Size(75, 20);
@@ -416,7 +365,7 @@
             支払区分コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             支払区分コード.FormattingEnabled = true;
             支払区分コード.ImeMode = ImeMode.Disable;
-            支払区分コード.Location = new Point(360, 42);
+            支払区分コード.Location = new Point(365, 6);
             支払区分コード.Name = "支払区分コード";
             支払区分コード.Size = new Size(170, 21);
             支払区分コード.TabIndex = 4;
@@ -429,7 +378,7 @@
             label3.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             label3.ForeColor = SystemColors.ActiveCaptionText;
             label3.ImageAlign = ContentAlignment.MiddleLeft;
-            label3.Location = new Point(744, 43);
+            label3.Location = new Point(749, 7);
             label3.Margin = new Padding(0);
             label3.Name = "label3";
             label3.Size = new Size(259, 20);
@@ -437,18 +386,82 @@
             label3.Text = "※選択されたセルの内容をコピーします。";
             label3.TextAlign = ContentAlignment.MiddleLeft;
             // 
+            // 集計年度
+            // 
+            集計年度.BackColor = SystemColors.Window;
+            集計年度.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            集計年度.FormattingEnabled = true;
+            集計年度.ImeMode = ImeMode.Disable;
+            集計年度.Location = new Point(92, 5);
+            集計年度.Name = "集計年度";
+            集計年度.Size = new Size(68, 21);
+            集計年度.TabIndex = 2;
+            集計年度.SelectedIndexChanged += 集計年度_SelectedIndexChanged;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(163, 8);
+            label2.Name = "label2";
+            label2.Size = new Size(19, 15);
+            label2.TabIndex = 86;
+            label2.Text = "件";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.Location = new Point(7, 8);
+            label1.Name = "label1";
+            label1.Size = new Size(53, 12);
+            label1.TabIndex = 85;
+            label1.Text = "表示件数";
+            // 
+            // 表示件数
+            // 
+            表示件数.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            表示件数.Location = new Point(72, 4);
+            表示件数.Margin = new Padding(3, 2, 3, 2);
+            表示件数.Name = "表示件数";
+            表示件数.Size = new Size(88, 20);
+            表示件数.TabIndex = 84;
+            表示件数.TabStop = false;
+            表示件数.TextAlign = HorizontalAlignment.Right;
+            // 
+            // panel2
+            // 
+            panel2.Controls.Add(表示件数);
+            panel2.Controls.Add(label1);
+            panel2.Controls.Add(label2);
+            panel2.Dock = DockStyle.Bottom;
+            panel2.Location = new Point(0, 515);
+            panel2.Margin = new Padding(3, 2, 3, 2);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(1054, 27);
+            panel2.TabIndex = 88;
+            // 
+            // panel3
+            // 
+            panel3.Controls.Add(label3);
+            panel3.Controls.Add(集計年度);
+            panel3.Controls.Add(コピーボタン);
+            panel3.Controls.Add(集計年度_ラベル);
+            panel3.Controls.Add(支払区分コード);
+            panel3.Controls.Add(年度_ラベル);
+            panel3.Controls.Add(支払区分_ラベル);
+            panel3.Dock = DockStyle.Top;
+            panel3.Location = new Point(0, 32);
+            panel3.Margin = new Padding(3, 2, 3, 2);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(1054, 38);
+            panel3.TabIndex = 89;
+            // 
             // F_支払一覧_年間
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1054, 542);
-            Controls.Add(label3);
-            Controls.Add(コピーボタン);
-            Controls.Add(支払区分コード);
-            Controls.Add(支払区分_ラベル);
-            Controls.Add(年度_ラベル);
-            Controls.Add(集計年度);
-            Controls.Add(集計年度_ラベル);
+            Controls.Add(panel3);
             Controls.Add(panel2);
             Controls.Add(dataGridView1);
             Controls.Add(panel1);
@@ -457,6 +470,7 @@
             Name = "F_支払一覧_年間";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "支払一覧表（年間）";
+            FormClosing += F_支払一覧_年間_FormClosing;
             Load += Form_Load;
             KeyDown += Form_KeyDown;
             Resize += Form_Resize;
@@ -464,6 +478,7 @@
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
+            panel3.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -474,14 +489,11 @@
         private Button コマンド支払先;
         private Button コマンド明細参照;
         private Button コマンド印刷;
-        private Button コマンド保守;
+        private Button コマンド出力;
         private Button コマンド初期化;
         private Button コマンド抽出;
         private Button コマンド更新;
         private Button コマンド終了;
-        private TextBox 表示件数;
-        private Label label1;
-        private Label label2;
         private DataGridViewTextBoxColumn 受注明細コードDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn 受注コードDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn 受注版数DataGridViewTextBoxColumn;
@@ -584,7 +596,7 @@
 
         //private newDataSetTableAdapters.Vメーカー管理TableAdapter vメーカー管理TableAdapter;
 
-        private DataGridView dataGridView1;
+        internal DataGridView dataGridView1;
         private DataGridViewTextBoxColumn 商品コードDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn 基本型式名DataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn シリーズ名DataGridViewTextBoxColumn;
@@ -609,17 +621,20 @@
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn60;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn61;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn62;
-        //private newDataSetTableAdapters.Qメーカー管理TableAdapter qメーカー管理TableAdapter;
-        private Panel panel2;
         private Button コマンド検索;
         private Button コマンド入出力;
         private ToolTip toolTip1;
         private Label 集計年度_ラベル;
-        internal ComboBox 集計年度;
         private Label 年度_ラベル;
         private Label 支払区分_ラベル;
         internal ComboBox 支払区分コード;
         private Button コピーボタン;
         private Label label3;
+        internal ComboBox 集計年度;
+        private Label label2;
+        private Label label1;
+        private TextBox 表示件数;
+        private Panel panel2;
+        private Panel panel3;
     }
 }

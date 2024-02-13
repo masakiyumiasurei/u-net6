@@ -186,26 +186,26 @@ namespace u_net
                 if (Application.OpenForms["F_支払一覧_年間"] != null)
                 {
                     //フォームが完成したらコメント外す
-                    //F_支払一覧_年間 objForm1 = (F_支払一覧_年間)Application.OpenForms["F_支払一覧_年間"];
+                    F_支払一覧_年間 objForm1 = (F_支払一覧_年間)Application.OpenForms["F_支払一覧_年間"];
 
-                    //if (objForm1.DataCount > 0)
-                    //{
-                    //    this.集計年月.Text = $"{objForm1.PayMonth.Year}/{objForm1.PayMonth.Month:D2}";
-                    //    this.支払先コード.Text = objForm1.PayeeCode;
-                    //    SetPayeeInfo(objForm1.PayeeCode);
-                    //}
+                    if (objForm1.dataGridView1.RowCount > 0)
+                    {
+                        this.集計年月.Text = $"{objForm1.PayMonth.Year}/{objForm1.PayMonth.Month:D2}";
+                        this.支払先コード.Text = objForm1.PayeeCode;
+                        SetPayeeInfo(objForm1.PayeeCode);
+                    }
                 }
                 // 支払一覧（月間）フォームの状態をチェック
                 else if (Application.OpenForms["F_支払一覧_月間"] != null)
                 {
                     F_支払一覧_月間 objForm2 = (F_支払一覧_月間)Application.OpenForms["F_支払一覧_月間"];
 
-                    //if (objForm2.DataCount > 0)
-                    //{
-                    //    this.集計年月.Text = $"{objForm2.dtm集計年月.Year}/{objForm2.dtm集計年月.Month:D2}";
-                    //    this.支払先コード.Text = objForm2.PayeeCode;
-                    //    SetPayeeInfo(objForm2.PayeeCode);
-                    //}
+                    if (objForm2.dataGridView1.RowCount > 0)
+                    {
+                        this.集計年月.Text = $"{objForm2.dtm集計年月.Year}/{objForm2.dtm集計年月.Month:D2}";
+                        this.支払先コード.Text = objForm2.PayeeCode;
+                        SetPayeeInfo(objForm2.PayeeCode);
+                    }
                 }
 
                 result = true;

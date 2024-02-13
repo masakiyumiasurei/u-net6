@@ -32,10 +32,12 @@
             // 
             // F_スタートアップ
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(305, 93);
+            ClientSize = new Size(267, 70);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "F_スタートアップ";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "スタートアップ";
             Load += F_スタートアップ_Load;
             ResumeLayout(false);

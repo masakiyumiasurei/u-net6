@@ -38,6 +38,8 @@ namespace u_net
         private bool setCombo = true;
         private bool Terminate;//強制終了用フラグ
         private bool setProduct = false;
+        int intWindowHeight;
+        int intWindowWidth;
 
         const int WM_UNDO = 0x0304; // Windows message for undo
 
@@ -142,6 +144,8 @@ namespace u_net
             this.MinimizeBox = false; //最小化ボタンを無効化
 
             InitializeComponent();
+
+            申請者コード.DropDownWidth = 204;
         }
         public void Connect()
         {
@@ -176,7 +180,6 @@ namespace u_net
 
 
             //実行中フォーム起動
-            //string LoginUserCode = "000";//テスト用 ログインユーザを実行中にどのように管理するか決まったら修正
             LocalSetting localSetting = new LocalSetting();
             localSetting.LoadPlace(CommonConstants.LoginUserCode, this);
 
@@ -1518,10 +1521,6 @@ namespace u_net
 
         private void Form_Unload(object sender, FormClosingEventArgs e)
         {
-            ////string LoginUserCode = "000";//テスト用 ログインユーザを実行中にどのように管理するか決まったら修正
-            //LocalSetting test = new LocalSetting();
-            //test.SavePlace(CommonConstants.LoginUserCode, this);
-
             try
             {
                 if (IsChanged)
@@ -1821,7 +1820,7 @@ namespace u_net
                             商品コード.Text = null;
                             シリーズ名.Text = null;
                         }
-                        
+
                         break;
 
                     case "IsManufacturing":
@@ -2039,7 +2038,7 @@ namespace u_net
 
         private void 購買申請版数_Validated(object sender, EventArgs e)
         {
-            
+
         }
 
         private void 購買納期_Validated(object sender, EventArgs e)
@@ -2066,13 +2065,14 @@ namespace u_net
                 dateSelectionForm.args = 購買納期.Text;
             }
 
-            if (dateSelectionForm.ShowDialog() == DialogResult.OK && !購買納期.ReadOnly)
+            if (dateSelectionForm.ShowDialog() == DialogResult.OK && !購買納期.ReadOnly && 購買納期.Enabled)
             {
                 // 日付選択フォームから選択した日付を取得
                 string selectedDate = dateSelectionForm.SelectedDate;
 
                 // フォームAの日付コントロールに選択した日付を設定
                 購買納期.Text = selectedDate;
+                購買納期.Focus();
             }
         }
 
@@ -2252,13 +2252,14 @@ namespace u_net
                 dateSelectionForm.args = 出荷予定日.Text;
             }
 
-            if (dateSelectionForm.ShowDialog() == DialogResult.OK && !出荷予定日.ReadOnly)
+            if (dateSelectionForm.ShowDialog() == DialogResult.OK && !出荷予定日.ReadOnly && 出荷予定日.Enabled)
             {
                 // 日付選択フォームから選択した日付を取得
                 string selectedDate = dateSelectionForm.SelectedDate;
 
                 // フォームAの日付コントロールに選択した日付を設定
                 出荷予定日.Text = selectedDate;
+                出荷予定日.Focus();
             }
         }
 
@@ -2280,7 +2281,7 @@ namespace u_net
 
         private void 商品コード_KeyDown(object sender, KeyEventArgs e)
         {
-          
+
             if (e.KeyCode == Keys.Return)
             {
 
@@ -2384,13 +2385,14 @@ namespace u_net
                 dateSelectionForm.args = 申請日.Text;
             }
 
-            if (dateSelectionForm.ShowDialog() == DialogResult.OK && !申請日.ReadOnly)
+            if (dateSelectionForm.ShowDialog() == DialogResult.OK && !申請日.ReadOnly && 申請日.Enabled)
             {
                 // 日付選択フォームから選択した日付を取得
                 string selectedDate = dateSelectionForm.SelectedDate;
 
                 // フォームAの日付コントロールに選択した日付を設定
                 申請日.Text = selectedDate;
+                申請日.Focus();
             }
         }
 
@@ -2500,7 +2502,7 @@ namespace u_net
 
         private void 申請者コード_DrawItem(object sender, DrawItemEventArgs e)
         {
-            OriginalClass.SetComboBoxAppearance((ComboBox)sender, e, new int[] { 50, 300 }, new string[] { "Display", "Display2" });
+            OriginalClass.SetComboBoxAppearance((ComboBox)sender, e, new int[] { 34, 170 }, new string[] { "Display", "Display2" });
             申請者コード.Invalidate();
             申請者コード.DroppedDown = true;
         }
@@ -2548,5 +2550,19 @@ namespace u_net
         {
             UpdatedControl(購買申請版数);
         }
+
+        private void Form_Resize(object sender, EventArgs e)
+        {
+            try
+            {
+                intWindowHeight = this.Height;  // 高さ保存
+                intWindowWidth = this.Width;    // 幅保存     　
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this.Name + "_Form_Resize - " + ex.Message);
+            }
+        }
+
     }
 }

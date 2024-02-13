@@ -139,6 +139,11 @@ namespace u_net
             int intSelectionMode = (int)gridobject.SelectionMode;
             gridobject.ScrollBars = ScrollBars.Both;
 
+            //ダブルバッファ処理設定
+            System.Type dgvtype = typeof(DataGridView);
+            System.Reflection.PropertyInfo dgvPropertyInfo = dgvtype.GetProperty("DoubleBuffered", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
+            dgvPropertyInfo.SetValue(gridobject, true, null);
+
 
             // 抽出条件を初期化する
             InitializeFilter();

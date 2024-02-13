@@ -290,7 +290,8 @@ namespace u_net
 
         private void 見積日開始_Leave(object sender, EventArgs e)
         {
-            FunctionClass.AdjustRange(見積日開始, 見積日終了, sender as Control);
+            toolStripStatusLabel1.Text = "各種項目の説明";
+            //FunctionClass.AdjustRange(見積日開始, 見積日終了, sender as Control);
         }
 
         private void 見積日開始選択ボタン_Click(object sender, EventArgs e)
@@ -366,7 +367,8 @@ namespace u_net
 
         private void 見積日終了_Leave(object sender, EventArgs e)
         {
-            FunctionClass.AdjustRange(見積日開始, 見積日終了, sender as Control);
+            toolStripStatusLabel1.Text = "各種項目の説明";
+            //FunctionClass.AdjustRange(見積日開始, 見積日終了, sender as Control);
         }
 
         private void 見積日終了選択ボタン_Click(object sender, EventArgs e)
@@ -388,6 +390,7 @@ namespace u_net
 
                 // フォームAの日付コントロールに選択した日付を設定
                 見積日終了.Text = selectedDate;
+                見積日終了.Focus();
             }
         }
 
@@ -431,6 +434,7 @@ namespace u_net
         {
             long lng1;
             lng1 = this.担当者名.Items.Count;
+            toolStripStatusLabel1.Text = "■担当者を選択します。";
         }
 
         private void 顧客名_TextChanged(object sender, EventArgs e)
@@ -441,5 +445,31 @@ namespace u_net
             }
             setflg = false;
         }
+
+        private void 見積日開始_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "■見積日範囲の始点を指定します。";
+        }
+
+        private void 見積日終了_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "■見積日範囲の終点を指定します。";
+        }
+
+        private void 担当者名_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "各種項目の説明";
+        }
+
+        private void Form_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Return:
+                    SelectNextControl(ActiveControl, true, true, true, true);
+                    break;
+            }
+        }
+
     }
 }

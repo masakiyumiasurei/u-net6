@@ -78,6 +78,11 @@ namespace u_net
 
         private void Form_Load(object sender, EventArgs e)
         {
+
+            System.Type dgvtype = typeof(DataGridView);
+            System.Reflection.PropertyInfo dgvPropertyInfo = dgvtype.GetProperty("DoubleBuffered", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
+            dgvPropertyInfo.SetValue(dataGridView1, true, null);
+
             foreach (Control control in Controls)
             {
                 control.PreviewKeyDown += OriginalClass.ValidateCheck;
@@ -233,11 +238,11 @@ namespace u_net
             try
             {
 
-                dataGridView1.Height = dataGridView1.Height + (this.Height - intWindowHeight);
-                intWindowHeight = this.Height;  // 高さ保存
+                //dataGridView1.Height = dataGridView1.Height + (this.Height - intWindowHeight);
+                //intWindowHeight = this.Height;  // 高さ保存
 
-                dataGridView1.Width = dataGridView1.Width + (this.Width - intWindowWidth);
-                intWindowWidth = this.Width;    // 幅保存
+                //dataGridView1.Width = dataGridView1.Width + (this.Width - intWindowWidth);
+                //intWindowWidth = this.Width;    // 幅保存
 
             }
             catch (Exception ex)
@@ -248,13 +253,15 @@ namespace u_net
 
         private void F_製品管理_FormClosing(object sender, FormClosingEventArgs e)
         {
-
+            string LoginUserCode = CommonConstants.LoginUserCode;
+            LocalSetting test = new LocalSetting();
+            test.SavePlace(LoginUserCode, this);
         }
 
         public bool DoUpdate()
         {
-            if (string.IsNullOrEmpty(集計年月.Text)) return false;
-            if (string.IsNullOrEmpty(支払先コード.Text)) return false;
+            if (string.IsNullOrEmpty(集計年月.Text)) return true;
+            if (string.IsNullOrEmpty(支払先コード.Text)) return true;
 
             FunctionClass fn = new FunctionClass();
             fn.DoWait("集計しています...");

@@ -135,6 +135,8 @@ namespace u_net
             this.MinimizeBox = false; //最小化ボタンを無効化
 
             InitializeComponent();
+
+            this.担当者コード.DropDownWidth = 204;
         }
         public void Connect()
         {
@@ -166,8 +168,7 @@ namespace u_net
 
             //コンボボックスの設定
             OriginalClass ofn = new OriginalClass();
-
-            ofn.SetComboBox(担当者コード, "SELECT 社員コード AS Value, 社員コード AS Display, 氏名 AS Display2 FROM M社員 WHERE (退社 IS NULL) AND ([パート] = 0) AND (削除日時 IS NULL) AND (ふりがな <> N'ん') ORDER BY ふりがな");
+            ofn.SetComboBox(担当者コード, "SELECT 社員コード AS Value, 社員コード AS Display1, 氏名 AS Display2 FROM M社員 WHERE (退社 IS NULL) AND (パート = 0) AND (削除日時 IS NULL) AND (ふりがな <> N'ん') ORDER BY ふりがな");
 
             this.納入場所.DataSource = new KeyValuePair<String, String>[] {
                 new KeyValuePair<String, String>("御社指定場所", "御社指定場所"),
@@ -337,6 +338,7 @@ namespace u_net
                                             "見積コード　：　" + CurrentCode, "警告", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         }
                     }
+
                     return;
                 }
 
@@ -2095,12 +2097,13 @@ namespace u_net
 
                 // 日付コントロールに選択した日付を設定
                 見積日.Text = selectedDate;
+                見積日.Focus();
             }
         }
 
         private void 担当者コード_DrawItem(object sender, DrawItemEventArgs e)
         {
-            OriginalClass.SetComboBoxAppearance((ComboBox)sender, e, new int[] { 50, 130 }, new string[] { "Display", "Display2" });
+            OriginalClass.SetComboBoxAppearance((ComboBox)sender, e, new int[] { 34, 170 }, new string[] { "Display1", "Display2" });
             担当者コード.Invalidate();
             担当者コード.DroppedDown = true;
         }

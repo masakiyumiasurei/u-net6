@@ -222,6 +222,7 @@ namespace u_net
             コマンド確定.Text = "確定";
             toolTip1.SetToolTip(コマンド確定, "確定登録");
             コマンド確定.UseVisualStyleBackColor = true;
+            コマンド確定.Click += コマンド確定_Click;
             // 
             // コマンド承認
             // 
@@ -878,10 +879,12 @@ namespace u_net
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "F_業務日報";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "業務日報";
             FormClosing += Form_Unload;
             Load += Form_Load;
             KeyDown += Form_KeyDown;
+            Resize += Form_Resize;
             panel1.ResumeLayout(false);
             statusStrip1.ResumeLayout(false);
             statusStrip1.PerformLayout();
