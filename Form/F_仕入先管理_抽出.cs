@@ -219,5 +219,19 @@ namespace u_net
             fm.args = this.仕入先コード.Text;
             fm.ShowDialog();
         }
+
+        private void Form_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Return:
+                    SelectNextControl(ActiveControl, true, true, true, true);
+                    e.Handled = true;
+                    e.SuppressKeyPress = true;
+                    break;
+            }
+        }
+
+
     }
 }
