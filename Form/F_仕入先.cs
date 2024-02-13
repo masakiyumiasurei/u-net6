@@ -31,6 +31,8 @@ namespace u_net
         public string args = "";
         private string BASE_CAPTION = "仕入先";
         private bool setCombo = true;
+        int intWindowHeight;
+        int intWindowWidth;
 
         public bool IsInvalid
         {
@@ -120,7 +122,6 @@ namespace u_net
 
 
             //実行中フォーム起動
-            //string LoginUserCode = "000";//テスト用 ログインユーザを実行中にどのように管理するか決まったら修正
             LocalSetting localSetting = new LocalSetting();
             localSetting.LoadPlace(CommonConstants.LoginUserCode, this);
 
@@ -274,7 +275,6 @@ namespace u_net
                 this.コマンド修正.Enabled = true;
                 this.コマンド複写.Enabled = false;
                 this.コマンド削除.Enabled = false;
-                this.コマンドメール.Enabled = false;
                 // this.コマンド承認.Enabled = false;
                 // this.コマンド確定.Enabled = false;
                 this.コマンド登録.Enabled = false;
@@ -310,7 +310,6 @@ namespace u_net
                 this.仕入先コード.Enabled = !isChanged;
                 this.コマンド複写.Enabled = !isChanged;
                 this.コマンド削除.Enabled = !isChanged;
-                this.コマンドメール.Enabled = !isChanged;
                 this.コマンド登録.Enabled = isChanged;
             }
             catch (Exception ex)
@@ -356,7 +355,7 @@ namespace u_net
             }
         }
 
-       
+
 
 
         private void コマンド登録_Click(object sender, EventArgs e)
@@ -437,7 +436,7 @@ namespace u_net
             更新者コード.Text = CommonConstants.LoginUserCode;
             更新者名.Text = CommonConstants.LoginUserFullName;
 
-            
+
             using (SqlTransaction transaction = cn.BeginTransaction())
             {
                 try
@@ -954,7 +953,6 @@ namespace u_net
 
         private void Form_Unload(object sender, FormClosingEventArgs e)
         {
-            //string LoginUserCode = "000";//テスト用 ログインユーザを実行中にどのように管理するか決まったら修正
             LocalSetting test = new LocalSetting();
             test.SavePlace(CommonConstants.LoginUserCode, this);
 
@@ -1074,11 +1072,8 @@ namespace u_net
                     if (コマンドメーカー.Enabled) コマンドメーカー_Click(sender, e);
                     break;
                 case Keys.F6:
-                    //if (コマンドメール.Enabled)
-                    //{
-                    //    コマンドメール.Focus();
-                    //    コマンドメール_Click(sender, e);
-                    //}
+                    break;
+                case Keys.F7:
                     break;
                 case Keys.F8:
                     if (コマンド印刷.Enabled) コマンド印刷_Click(sender, e);
@@ -1168,7 +1163,6 @@ namespace u_net
             FunctionClass.LockData(this, this.IsDeleted, "仕入先コード");
             this.コマンド複写.Enabled = true;
             this.コマンド削除.Enabled = !this.IsDeleted;
-            this.コマンドメール.Enabled = !this.IsDeleted;
         }
 
 
@@ -1217,7 +1211,7 @@ namespace u_net
                 {
                     住所1.Text = address;
                 }
-                
+
             }
             else
             {
@@ -1398,7 +1392,6 @@ namespace u_net
 
         private void 郵便番号_TextChanged(object sender, EventArgs e)
         {
-            //FunctionClass.LimitText(((TextBox)sender), 7);
             ChangedData(true);
         }
 
@@ -1803,6 +1796,90 @@ namespace u_net
         {
 
         }
+
+        private void 仕入先コード_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Text = "各種項目の説明";
+        }
+
+        private void 代表者名_Enter(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Text = "■仕入先の代表者名を入力します。　■全角１５文字まで入力できます。";
+        }
+
+        private void 代表者名_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Text = "各種項目の説明";
+        }
+
+        private void 評価ランク_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Text = "各種項目の説明";
+        }
+
+        private void 窓口住所1_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Text = "各種項目の説明";
+        }
+
+        private void 窓口住所2_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Text = "各種項目の説明";
+        }
+
+        private void 窓口メールアドレス_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Text = "各種項目の説明";
+        }
+
+        private void 担当者名_Leave_1(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Text = "各種項目の説明";
+        }
+
+        private void 支払先専用_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Text = "各種項目の説明";
+        }
+
+        private void 振込手数料上限金額_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Text = "各種項目の説明";
+        }
+
+        private void 手形発送先郵便番号_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Text = "各種項目の説明";
+        }
+
+        private void 手形発送先住所_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Text = "各種項目の説明";
+        }
+
+        private void 手形発送先建物名_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Text = "各種項目の説明";
+        }
+
+        private void 手形発送先電話番号_Leave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Text = "各種項目の説明";
+        }
+
+        private void Form_Resize(object sender, EventArgs e)
+        {
+            try
+            {
+                intWindowHeight = this.Height;  // 高さ保存
+                intWindowWidth = this.Width;    // 幅保存     　
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this.Name + "_Form_Resize - " + ex.Message);
+            }
+        }
+
     }
 
 
