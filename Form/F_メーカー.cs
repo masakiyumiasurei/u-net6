@@ -1088,6 +1088,8 @@ namespace u_net
             {
                 case Keys.Return:
                     SelectNextControl(ActiveControl, true, true, true, true);
+                    e.Handled = true;
+                    e.SuppressKeyPress = true;
                     break;
                 case Keys.F1:
                     if (コマンド新規.Enabled)
@@ -1277,6 +1279,7 @@ namespace u_net
 
         private void メーカーコード_Validated(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(メーカーコード.Text)) return;  //コードが空のレコードがあるので...
             UpdatedControl((Control)sender);
         }
 

@@ -1346,6 +1346,8 @@ namespace u_net
             }
 
         Bye_コマンド読込_Click:
+            this.コマンド削除.Enabled = false;
+            this.コマンド見積書.Enabled = false;
             return;
 
         Err_コマンド読込_Click:
@@ -1897,6 +1899,9 @@ namespace u_net
                             return;
                     }
                     SelectNextControl(ActiveControl, true, true, true, true);
+                    e.Handled = true;
+                    e.SuppressKeyPress = true;
+
                     break;
                 case Keys.F1:
                     if (コマンド新規.Enabled)

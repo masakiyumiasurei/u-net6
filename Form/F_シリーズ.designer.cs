@@ -687,6 +687,7 @@ namespace u_net
             在庫下限数量.TabIndex = 6;
             在庫下限数量.TextAlign = HorizontalAlignment.Right;
             在庫下限数量.TextChanged += 在庫下限数量_TextChanged;
+            在庫下限数量.Validating += 在庫下限数量_Validating;
             // 
             // label8
             // 
