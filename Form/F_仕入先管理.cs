@@ -100,6 +100,7 @@ namespace u_net
             dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font("MS ゴシック", 9);
             dataGridView1.DefaultCellStyle.Font = new Font("MS ゴシック", 10);
             dataGridView1.DefaultCellStyle.ForeColor = Color.Black;
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
             //dataGridView1.Columns[0].DefaultCellStyle.BackColor = Color.FromArgb(255, 255, 200); // 薄い黄色
             //dataGridView1.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;

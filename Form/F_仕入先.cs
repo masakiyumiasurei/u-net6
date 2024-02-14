@@ -667,8 +667,10 @@ namespace u_net
 
                 CommonConnect();
                 // 初期値設定
+                string code = FunctionClass.GetNewCode(cn, CommonConstants.CH_SUPPLIER);
+                this.仕入先コード.Text = code.Substring(code.Length - 8);
 
-                仕入先コード.Text = FunctionClass.GetNewCode(cn, CommonConstants.CH_SUPPLIER).Substring(8);
+               // 仕入先コード.Text = FunctionClass.GetNewCode(cn, CommonConstants.CH_SUPPLIER).Substring(8);
                 Revision.Text = "1";
                 作成日時.Text = null;
                 作成者コード.Text = null;
@@ -1111,7 +1113,6 @@ namespace u_net
                         FunctionClass fn = new FunctionClass();
                         fn.DoWait("読み込んでいます...");
 
-
                         LoadHeader(this, this.仕入先コード.Text);
 
                         if (振込手数料負担コード.SelectedValue != null && 振込手数料負担コード.SelectedValue.ToString() == "3")
@@ -1126,11 +1127,11 @@ namespace u_net
 
                         this.コマンド複写.Enabled = true;
                         this.コマンド削除.Enabled = true;
+                        ChangedData(false);
                         fn.WaitForm.Close();
                         break;
 
                     case "振込手数料負担コード":
-
 
                         if (controlObject is ComboBox comboBox)
                         {

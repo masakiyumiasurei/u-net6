@@ -40,6 +40,7 @@ namespace u_net
         private bool setProduct = false;
         int intWindowHeight;
         int intWindowWidth;
+        
 
         const int WM_UNDO = 0x0304; // Windows message for undo
 
@@ -186,6 +187,8 @@ namespace u_net
             //コンボボックスの設定
             OriginalClass ofn = new OriginalClass();
             ofn.SetComboBox(購買申請コード, "SELECT 購買申請コード as Display,購買申請コード as Value FROM T購買申請 ORDER BY 購買申請コード DESC");
+            
+            //購買申請コードを登録してから、updatcontrolで行う
             ofn.SetComboBox(購買申請版数, "SELECT 購買申請版数 as Display , 購買申請版数 as Value FROM T購買申請 ORDER BY 購買申請版数 DESC");
             //ofn.SetComboBox(商品コード, "SELECT 商品コード as Display, 商品名 as Display2, シリーズ名 as Display3, 商品コード as Value FROM M商品 ORDER BY 商品コード DESC");
             //ofn.SetComboBox(商品コード, "SELECT M商品.商品コード  as Display, M商品.商品名  as Display2, Mシリーズ.シリーズ名  as Display3, - CONVERT (int, CONVERT (bit, ISNULL(M商品.シリーズコード, 0)))  as Display4, 商品コード as Value FROM M商品 LEFT OUTER JOIN Mシリーズ ON M商品.シリーズコード = Mシリーズ.シリーズコード ORDER BY M商品.商品名");
@@ -1755,7 +1758,6 @@ namespace u_net
                                 "ORDER BY 購買申請版数 DESC");
 
 
-
                         //同一コードのデータ表示
                         strSQL = $"SELECT * FROM V購買申請 " +
                                  $"WHERE 購買申請コード='{this.CurrentCode}' AND 購買申請版数={this.CurrentEdition}";
@@ -1854,7 +1856,7 @@ namespace u_net
                 if (!string.IsNullOrEmpty(材料単価.Text))
                 {
                     decimal val = decimal.Parse(材料単価.Text);
-                    材料単価.Text = val.ToString("N2");
+                    材料単価.Text = val.ToString("N0");
                 }
 
                 if (!string.IsNullOrEmpty(確認者コード3.Text))
@@ -2531,6 +2533,7 @@ namespace u_net
 
         private void 購買申請コード_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (setCombo) return;
             try
             {
                 if (購買申請コード.SelectedIndex == 0) return;
@@ -2548,6 +2551,7 @@ namespace u_net
 
         private void 購買申請版数_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (setCombo) return;
             UpdatedControl(購買申請版数);
         }
 
