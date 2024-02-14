@@ -61,9 +61,11 @@
             部品コード_ラベル = new Label();
             型番 = new TextBox();
             toolTip1 = new ToolTip(components);
+            panel3 = new Panel();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel2.SuspendLayout();
+            panel3.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
@@ -275,12 +277,13 @@
             dataGridView1.AllowUserToDeleteRows = false;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Columns.AddRange(new DataGridViewColumn[] { 日付, 購買コード, シリーズ名, 備考, 入出庫コード, 入庫数量, 出庫数量 });
-            dataGridView1.Location = new Point(0, 86);
+            dataGridView1.Dock = DockStyle.Fill;
+            dataGridView1.Location = new Point(0, 32);
             dataGridView1.Margin = new Padding(3, 2, 3, 2);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
             dataGridView1.RowTemplate.Height = 29;
-            dataGridView1.Size = new Size(1054, 340);
+            dataGridView1.Size = new Size(1054, 454);
             dataGridView1.TabIndex = 87;
             // 
             // 日付
@@ -363,7 +366,7 @@
             部品コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             部品コード.FormattingEnabled = true;
             部品コード.ImeMode = ImeMode.Off;
-            部品コード.Location = new Point(95, 37);
+            部品コード.Location = new Point(101, 4);
             部品コード.Name = "部品コード";
             部品コード.Size = new Size(139, 21);
             部品コード.TabIndex = 2;
@@ -377,7 +380,7 @@
             品名.BackColor = Color.White;
             品名.Enabled = false;
             品名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            品名.Location = new Point(240, 38);
+            品名.Location = new Point(246, 5);
             品名.Margin = new Padding(3, 2, 3, 2);
             品名.Name = "品名";
             品名.Size = new Size(466, 20);
@@ -390,10 +393,10 @@
             部品コード_ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             部品コード_ラベル.ForeColor = SystemColors.ActiveCaptionText;
             部品コード_ラベル.ImageAlign = ContentAlignment.MiddleLeft;
-            部品コード_ラベル.Location = new Point(3, 38);
+            部品コード_ラベル.Location = new Point(9, 5);
             部品コード_ラベル.Margin = new Padding(0);
             部品コード_ラベル.Name = "部品コード_ラベル";
-            部品コード_ラベル.Size = new Size(102, 20);
+            部品コード_ラベル.Size = new Size(89, 20);
             部品コード_ラベル.TabIndex = 1;
             部品コード_ラベル.Text = "部品コード(&C)";
             部品コード_ラベル.TextAlign = ContentAlignment.MiddleLeft;
@@ -403,21 +406,31 @@
             型番.BackColor = Color.White;
             型番.Enabled = false;
             型番.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            型番.Location = new Point(240, 62);
+            型番.Location = new Point(246, 29);
             型番.Margin = new Padding(3, 2, 3, 2);
             型番.Name = "型番";
             型番.Size = new Size(466, 20);
             型番.TabIndex = 92;
+            // 
+            // panel3
+            // 
+            panel3.Controls.Add(部品コード_ラベル);
+            panel3.Controls.Add(部品コード);
+            panel3.Controls.Add(型番);
+            panel3.Controls.Add(品名);
+            panel3.Dock = DockStyle.Top;
+            panel3.Location = new Point(0, 32);
+            panel3.Margin = new Padding(3, 2, 3, 2);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(1054, 58);
+            panel3.TabIndex = 89;
             // 
             // F_入出庫履歴
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1054, 486);
-            Controls.Add(部品コード);
-            Controls.Add(品名);
-            Controls.Add(部品コード_ラベル);
-            Controls.Add(型番);
+            Controls.Add(panel3);
             Controls.Add(panel2);
             Controls.Add(dataGridView1);
             Controls.Add(panel1);
@@ -432,8 +445,9 @@
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
+            panel3.ResumeLayout(false);
+            panel3.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -595,5 +609,6 @@
         private Label 部品コード_ラベル;
         private TextBox 型番;
         private ToolTip toolTip1;
+        private Panel panel3;
     }
 }
