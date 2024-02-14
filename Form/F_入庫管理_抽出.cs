@@ -154,9 +154,17 @@ namespace u_net
                 {
                     frmTarget.dtm入庫日開始 = Nz(DateTime.Parse(入庫日開始.Text));
                 }
+                else
+                {
+                    frmTarget.dtm入庫日開始 = DateTime.MinValue;
+                }
                 if (!string.IsNullOrEmpty(入庫日終了.Text))
                 {
                     frmTarget.dtm入庫日終了 = Nz(DateTime.Parse(入庫日終了.Text));
+                }
+                else
+                {
+                    frmTarget.dtm入庫日終了 = DateTime.MinValue;
                 }
 
                 frmTarget.str入庫者名 = Nz(入庫者名.Text);

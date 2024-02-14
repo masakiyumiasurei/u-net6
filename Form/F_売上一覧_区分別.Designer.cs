@@ -52,10 +52,12 @@
             年月度 = new ComboBox();
             メーカーコード_ラベル = new Label();
             toolTip1 = new ToolTip(components);
+            panel3 = new Panel();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
+            panel3.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
@@ -258,12 +260,13 @@
             dataGridView1.AllowUserToAddRows = false;
             dataGridView1.AllowUserToDeleteRows = false;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(0, 63);
+            dataGridView1.Dock = DockStyle.Fill;
+            dataGridView1.Location = new Point(0, 68);
             dataGridView1.Margin = new Padding(3, 2, 3, 2);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
             dataGridView1.RowTemplate.Height = 29;
-            dataGridView1.Size = new Size(1054, 428);
+            dataGridView1.Size = new Size(1054, 427);
             dataGridView1.TabIndex = 87;
             dataGridView1.CellDoubleClick += dataGridView1_CellDoubleClick;
             dataGridView1.CellPainting += DataGridView1_CellPainting;
@@ -326,7 +329,7 @@
             年月度.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             年月度.FormattingEnabled = true;
             年月度.ImeMode = ImeMode.Disable;
-            年月度.Location = new Point(95, 37);
+            年月度.Location = new Point(100, 9);
             年月度.Name = "年月度";
             年月度.Size = new Size(114, 21);
             年月度.TabIndex = 2;
@@ -339,7 +342,7 @@
             メーカーコード_ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             メーカーコード_ラベル.ForeColor = SystemColors.ActiveCaptionText;
             メーカーコード_ラベル.ImageAlign = ContentAlignment.MiddleLeft;
-            メーカーコード_ラベル.Location = new Point(4, 37);
+            メーカーコード_ラベル.Location = new Point(9, 9);
             メーカーコード_ラベル.Margin = new Padding(0);
             メーカーコード_ラベル.Name = "メーカーコード_ラベル";
             メーカーコード_ラベル.Size = new Size(88, 17);
@@ -347,15 +350,25 @@
             メーカーコード_ラベル.Text = "年月度(&M)";
             メーカーコード_ラベル.TextAlign = ContentAlignment.MiddleLeft;
             // 
+            // panel3
+            // 
+            panel3.Controls.Add(メーカーコード_ラベル);
+            panel3.Controls.Add(年月度);
+            panel3.Dock = DockStyle.Top;
+            panel3.Location = new Point(0, 32);
+            panel3.Margin = new Padding(3, 2, 3, 2);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(1054, 36);
+            panel3.TabIndex = 92;
+            // 
             // F_売上一覧_区分別
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1054, 669);
-            Controls.Add(年月度);
-            Controls.Add(メーカーコード_ラベル);
-            Controls.Add(panel2);
             Controls.Add(dataGridView1);
+            Controls.Add(panel3);
+            Controls.Add(panel2);
             Controls.Add(panel1);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(3, 2, 3, 2);
@@ -369,6 +382,7 @@
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView2).EndInit();
+            panel3.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -522,5 +536,6 @@
         private TextBox 表示件数;
         private Label label1;
         private ToolTip toolTip1;
+        private Panel panel3;
     }
 }

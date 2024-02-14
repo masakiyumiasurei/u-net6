@@ -41,6 +41,10 @@ namespace u_net
         private void Form_Load(object sender, EventArgs e)
         {
 
+            System.Type dgvtype = typeof(DataGridView);
+            System.Reflection.PropertyInfo dgvPropertyInfo = dgvtype.GetProperty("DoubleBuffered", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
+            dgvPropertyInfo.SetValue(dataGridView1, true, null);
+
             string LoginUserCode = CommonConstants.LoginUserCode;
             LocalSetting localSetting = new LocalSetting();
             localSetting.LoadPlace(LoginUserCode, this);
@@ -72,10 +76,10 @@ namespace u_net
 
 
             OriginalClass ofn = new OriginalClass();
-            ofn.SetComboBox(部品コード, "SELECT 部品コード as Display,品名 as Display2,型番 as Display3,部品コード as Value FROM M部品");
+            ofn.SetComboBox(部品コード, "SELECT 部品コード as Display,品名 as Display2,型番 as Display3,部品コード as Value FROM M部品 ORDER BY 品名, 型番");
             部品コード.DrawMode = DrawMode.OwnerDrawFixed;
 
-            
+            部品コード.DropDownWidth = 700;
 
             if (!string.IsNullOrEmpty(args))
             {
@@ -95,14 +99,14 @@ namespace u_net
         {
             try
             {
-                if (this.Height > 800)
-                {
-                    dataGridView1.Height = dataGridView1.Height + (this.Height - intWindowHeight);
-                    intWindowHeight = this.Height;  // 高さ保存
+                //if (this.Height > 800)
+                //{
+                //    dataGridView1.Height = dataGridView1.Height + (this.Height - intWindowHeight);
+                //    intWindowHeight = this.Height;  // 高さ保存
 
-                    dataGridView1.Width = dataGridView1.Width + (this.Width - intWindowWidth);
-                    intWindowWidth = this.Width;    // 幅保存
-                }
+                //    dataGridView1.Width = dataGridView1.Width + (this.Width - intWindowWidth);
+                //    intWindowWidth = this.Width;    // 幅保存
+                //}
             }
             catch (Exception ex)
             {

@@ -306,7 +306,7 @@ namespace u_net
                 製品明細1.Detail.ReadOnly = false;
                 製品明細1.Detail.AllowRowMove = true;
 
-              //  setCmb = false;
+                setCmb = false;
                 success = true;
                 return success;
             }
@@ -346,7 +346,7 @@ namespace u_net
                 // ボタンの状態を設定
                 this.コマンド新規.Enabled = true;
                 this.コマンド読込.Enabled = false;
-              //  setCmb = false;
+                setCmb = false;
 
                 success = true;
                 return success;
@@ -564,7 +564,7 @@ namespace u_net
                         // 設定されているため、最新版となる
                         if (string.IsNullOrEmpty(args))
                         {
-                            this.製品版数.Text = ((DataRowView)製品コード.SelectedItem)?.Row.Field<String>("Display3")?.ToString();
+                            this.製品版数.Text = ((DataRowView)製品コード.SelectedItem)?.Row.Field<Int16>("Display3").ToString();
                         }
 
                         // ヘッダ部の表示

@@ -59,10 +59,11 @@ namespace u_net
 
                 ofn.SetComboBox(売上地区コード, "SELECT Code as Display, AreaName as Display2 , Code as Value FROM SalesArea ORDER BY Number; ");
                 売上地区コード.DrawMode = DrawMode.OwnerDrawFixed;
+                売上地区コード.DropDownWidth = 300;
 
                 ofn.SetComboBox(担当者コード, "SELECT [社員コード] as Display, 氏名 AS Display2 , 社員コード as Value FROM M社員 WHERE ([パート] = 0) AND (退社 IS NULL) AND (ふりがな <> N'ん') AND (部 = N'営業部') AND (削除日時 IS NULL) ORDER BY ふりがな");
                 担当者コード.DrawMode = DrawMode.OwnerDrawFixed;
-
+                担当者コード.DropDownWidth = 300;
 
 
                 //F_入庫管理 frmTarget = new F_入庫管理(); // NEWだと開いてるインスタンスにならない
@@ -150,7 +151,7 @@ namespace u_net
 
         private void 売上地区コード_DrawItem(object sender, DrawItemEventArgs e)
         {
-            OriginalClass.SetComboBoxAppearance((ComboBox)sender, e, new int[] { 50, 300 }, new string[] { "Display", "Display2" });
+            OriginalClass.SetComboBoxAppearance((ComboBox)sender, e, new int[] { 50, 250 }, new string[] { "Display", "Display2" });
             売上地区コード.Invalidate();
             売上地区コード.DroppedDown = true;
         }
@@ -170,7 +171,7 @@ namespace u_net
 
         private void 担当者コード_DrawItem(object sender, DrawItemEventArgs e)
         {
-            OriginalClass.SetComboBoxAppearance((ComboBox)sender, e, new int[] { 50, 300 }, new string[] { "Display", "Display2" });
+            OriginalClass.SetComboBoxAppearance((ComboBox)sender, e, new int[] { 50, 250 }, new string[] { "Display", "Display2" });
             担当者コード.Invalidate();
             担当者コード.DroppedDown = true;
         }
