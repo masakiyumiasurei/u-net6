@@ -319,6 +319,15 @@ namespace MultiRowDesigner
 
         private void gcMultiRow1_CellValidating(object sender, CellValidatingEventArgs e)
         {
+            GcMultiRow grid = (GcMultiRow)sender;
+
+            // 値が変更されていれば変更済みとして処理
+            if (grid.EditingControl != null && grid.EditingControl.Text != gcMultiRow1.CurrentCell.DisplayText)
+            {
+                F_製品? f_製品 = Application.OpenForms.OfType<F_製品>().FirstOrDefault();
+                f_製品.ChangedData(true);
+            }
+
             errFlg = true;
             gcMultiRow1.EndEdit();
             //gcMultiRow1.CancelEdit();
@@ -335,6 +344,8 @@ namespace MultiRowDesigner
                     break;
 
             }
+
+            
         }
 
         private void gcMultiRow1_CellValidated(object sender, CellEventArgs e)
@@ -386,9 +397,7 @@ namespace MultiRowDesigner
                                 }
                             }
                         }
-
-                        F_製品? f_製品 = Application.OpenForms.OfType<F_製品>().FirstOrDefault();
-                        f_製品.ChangedData(true);
+                        
 
                         break;
 
@@ -450,6 +459,9 @@ namespace MultiRowDesigner
                         gcMultiRow1.EditingControl.Text = selectedCode;
                         gcMultiRow1.CurrentCell.Value = selectedCode;
                         gcMultiRow1.CurrentCellPosition = new CellPosition(gcMultiRow1.CurrentRow.Index, gcMultiRow1.CurrentRow.Cells["品名"].CellIndex);
+
+                        F_製品? f_製品 = Application.OpenForms.OfType<F_製品>().FirstOrDefault();
+                        f_製品.ChangedData(true);
                     }
                     break;
 
