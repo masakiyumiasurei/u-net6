@@ -145,9 +145,8 @@ namespace u_net
             this.tabControl1.TabPages.Remove(this.個人情報);
 
             //実行中フォーム起動
-            string LoginUserCode = CommonConstants.LoginUserCode;
             LocalSetting localSetting = new LocalSetting();
-            localSetting.LoadPlace(LoginUserCode, this);
+            localSetting.LoadPlace(CommonConstants.LoginUserCode, this);
 
             //コンボボックスの設定
             OriginalClass ofn = new OriginalClass();
@@ -323,9 +322,8 @@ namespace u_net
 
         private void Form_Unload(object sender, FormClosingEventArgs e)
         {
-            string LoginUserCode = CommonConstants.LoginUserCode;
             LocalSetting test = new LocalSetting();
-            test.SavePlace(LoginUserCode, this);
+            test.SavePlace(CommonConstants.LoginUserCode, this);
 
             try
             {
@@ -1351,6 +1349,8 @@ namespace u_net
 
                 case Keys.Return:
                     SelectNextControl(ActiveControl, true, true, true, true);
+                    e.Handled = true;
+                    e.SuppressKeyPress = true;
                     break;
                 case Keys.F1:
                     if (コマンド新規.Enabled)
@@ -1410,5 +1410,19 @@ namespace u_net
         {
             コマンドメール_Click(sender, e);
         }
+
+        private void Form_Resize(object sender, EventArgs e)
+        {
+            try
+            {
+                intWindowHeight = this.Height;  // 高さ保存
+                intWindowWidth = this.Width;    // 幅保存     　
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this.Name + "_Form_Resize - " + ex.Message);
+            }
+        }
+
     }
 }

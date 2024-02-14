@@ -585,7 +585,7 @@ namespace u_net
             ページ55.Padding = new Padding(3);
             ページ55.Size = new Size(907, 420);
             ページ55.TabIndex = 0;
-            ページ55.Text = "　　　基本";
+            ページ55.Text = "　　　基本　　　";
             ページ55.UseVisualStyleBackColor = true;
             // 
             // Email作成ボタン
@@ -848,16 +848,15 @@ namespace u_net
             // 
             勤務地名.BackColor = Color.WhiteSmoke;
             勤務地名.Enabled = false;
-            勤務地名.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            勤務地名.Font = new Font("BIZ UDPゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             勤務地名.ForeColor = SystemColors.WindowFrame;
             勤務地名.Location = new Point(235, 186);
             勤務地名.Margin = new Padding(3, 2, 3, 2);
             勤務地名.Name = "勤務地名";
             勤務地名.ReadOnly = true;
-            勤務地名.Size = new Size(163, 21);
+            勤務地名.Size = new Size(163, 20);
             勤務地名.TabIndex = 237;
             勤務地名.TabStop = false;
-            勤務地名.Visible = false;
             // 
             // 承認順序ラベル
             // 
@@ -1396,14 +1395,14 @@ namespace u_net
             ページ56.Padding = new Padding(3);
             ページ56.Size = new Size(907, 420);
             ページ56.TabIndex = 1;
-            ページ56.Text = "　アカウント";
+            ページ56.Text = "　　アカウント　　";
             ページ56.UseVisualStyleBackColor = true;
             // 
             // textBox11
             // 
             textBox11.BackColor = Color.White;
             textBox11.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            textBox11.ImeMode = ImeMode.Off;
+            textBox11.ImeMode = ImeMode.Disable;
             textBox11.Location = new Point(160, 130);
             textBox11.Margin = new Padding(3, 2, 3, 2);
             textBox11.Name = "textBox11";
@@ -1553,7 +1552,7 @@ namespace u_net
             個人情報.Padding = new Padding(3);
             個人情報.Size = new Size(907, 420);
             個人情報.TabIndex = 2;
-            個人情報.Text = "個人情報";
+            個人情報.Text = "　　個人情報　　";
             // 
             // 生年月日
             // 
@@ -1776,10 +1775,12 @@ namespace u_net
             KeyPreview = true;
             Margin = new Padding(3, 2, 3, 2);
             Name = "F_社員";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "社員";
             FormClosing += Form_Unload;
             Load += Form_Load;
             KeyDown += Form_KeyDown;
+            Resize += Form_Resize;
             panel1.ResumeLayout(false);
             tabControl1.ResumeLayout(false);
             ページ55.ResumeLayout(false);
