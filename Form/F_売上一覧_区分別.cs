@@ -43,6 +43,10 @@ namespace u_net
         private void Form_Load(object sender, EventArgs e)
         {
 
+            System.Type dgvtype = typeof(DataGridView);
+            System.Reflection.PropertyInfo dgvPropertyInfo = dgvtype.GetProperty("DoubleBuffered", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
+            dgvPropertyInfo.SetValue(dataGridView1, true, null);
+
             string LoginUserCode = CommonConstants.LoginUserCode;//テスト用 ログインユーザを実行中にどのように管理するか決まったら修正
             LocalSetting localSetting = new LocalSetting();
             localSetting.LoadPlace(LoginUserCode, this);
@@ -100,14 +104,14 @@ namespace u_net
         {
             try
             {
-                if (this.Height > 800)
-                {
-                    dataGridView1.Height = dataGridView1.Height + (this.Height - intWindowHeight);
-                    intWindowHeight = this.Height;  // 高さ保存
+                //if (this.Height > 800)
+                //{
+                //    dataGridView1.Height = dataGridView1.Height + (this.Height - intWindowHeight);
+                //    intWindowHeight = this.Height;  // 高さ保存
 
-                    dataGridView1.Width = dataGridView1.Width + (this.Width - intWindowWidth);
-                    intWindowWidth = this.Width;    // 幅保存
-                }
+                //    dataGridView1.Width = dataGridView1.Width + (this.Width - intWindowWidth);
+                //    intWindowWidth = this.Width;    // 幅保存
+                //}
             }
             catch (Exception ex)
             {
@@ -309,11 +313,13 @@ namespace u_net
                     dataGridView2.Columns[5].Width = 1500 / twipperdot;
                     dataGridView2.Columns[6].Width = 1500 / twipperdot;
 
-                    for(int col = 1; col <= 6; col++)
-                    {
-                        dataGridView2.Columns[col].DefaultCellStyle.Format = "#,###,###,##0";
-                    }
-                    
+                    //for(int col = 1; col <= 6; col++)
+                    //{
+                    //    dataGridView2.Columns[col].DefaultCellStyle.Format = "#,###,###,##0";
+                    //}
+                    dataGridView2.Rows[0].DefaultCellStyle.Format = "#,###,###,##0";
+                    dataGridView2.Rows[1].DefaultCellStyle.Format = "#,###,###,##0";
+                    dataGridView2.Rows[2].DefaultCellStyle.Format = "#,0.0";
 
                 }
 

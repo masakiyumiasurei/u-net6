@@ -32,7 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(F_振込一覧));
             panel1 = new Panel();
             コマンド入出力 = new Button();
-            コマンドF8 = new Button();
+            コマンド出力 = new Button();
             コマンド支払通知 = new Button();
             コマンド支払先 = new Button();
             コマンド締切 = new Button();
@@ -54,16 +54,18 @@
             月度_ラベル = new Label();
             締切_ラベル = new Label();
             締切 = new TextBox();
+            panel3 = new Panel();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel2.SuspendLayout();
+            panel3.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
             // 
             panel1.BackColor = SystemColors.ActiveCaption;
             panel1.Controls.Add(コマンド入出力);
-            panel1.Controls.Add(コマンドF8);
+            panel1.Controls.Add(コマンド出力);
             panel1.Controls.Add(コマンド支払通知);
             panel1.Controls.Add(コマンド支払先);
             panel1.Controls.Add(コマンド締切);
@@ -97,19 +99,21 @@
             コマンド入出力.UseVisualStyleBackColor = true;
             コマンド入出力.Click += コマンド入出力_Click;
             // 
-            // コマンドF8
+            // コマンド出力
             // 
-            コマンドF8.Enabled = false;
-            コマンドF8.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            コマンドF8.ForeColor = Color.Blue;
-            コマンドF8.ImageAlign = ContentAlignment.BottomLeft;
-            コマンドF8.Location = new Point(496, 4);
-            コマンドF8.Margin = new Padding(0, 2, 0, 2);
-            コマンドF8.Name = "コマンドF8";
-            コマンドF8.Size = new Size(70, 22);
-            コマンドF8.TabIndex = 11;
-            コマンドF8.TabStop = false;
-            コマンドF8.UseVisualStyleBackColor = true;
+            コマンド出力.Enabled = false;
+            コマンド出力.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            コマンド出力.ForeColor = Color.Blue;
+            コマンド出力.ImageAlign = ContentAlignment.BottomLeft;
+            コマンド出力.Location = new Point(496, 4);
+            コマンド出力.Margin = new Padding(0, 2, 0, 2);
+            コマンド出力.Name = "コマンド出力";
+            コマンド出力.Size = new Size(70, 22);
+            コマンド出力.TabIndex = 11;
+            コマンド出力.TabStop = false;
+            コマンド出力.Text = "出力";
+            コマンド出力.UseVisualStyleBackColor = true;
+            コマンド出力.Click += コマンド出力_Click;
             // 
             // コマンド支払通知
             // 
@@ -309,12 +313,13 @@
             dataGridView1.AllowUserToAddRows = false;
             dataGridView1.AllowUserToDeleteRows = false;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(0, 75);
+            dataGridView1.Dock = DockStyle.Fill;
+            dataGridView1.Location = new Point(0, 77);
             dataGridView1.Margin = new Padding(3, 2, 3, 2);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
             dataGridView1.RowTemplate.Height = 29;
-            dataGridView1.Size = new Size(1054, 440);
+            dataGridView1.Size = new Size(1054, 438);
             dataGridView1.TabIndex = 1;
             dataGridView1.CellClick += dataGridView1_CellClick;
             dataGridView1.CellDoubleClick += dataGridView1_CellDoubleClick;
@@ -341,7 +346,7 @@
             支払年月_ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             支払年月_ラベル.ForeColor = SystemColors.ActiveCaptionText;
             支払年月_ラベル.ImageAlign = ContentAlignment.MiddleLeft;
-            支払年月_ラベル.Location = new Point(9, 41);
+            支払年月_ラベル.Location = new Point(6, 11);
             支払年月_ラベル.Margin = new Padding(0);
             支払年月_ラベル.Name = "支払年月_ラベル";
             支払年月_ラベル.Size = new Size(75, 20);
@@ -355,7 +360,7 @@
             支払年月.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             支払年月.FormattingEnabled = true;
             支払年月.ImeMode = ImeMode.Disable;
-            支払年月.Location = new Point(87, 41);
+            支払年月.Location = new Point(84, 11);
             支払年月.Name = "支払年月";
             支払年月.Size = new Size(102, 21);
             支払年月.TabIndex = 2;
@@ -370,7 +375,7 @@
             月度_ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             月度_ラベル.ForeColor = SystemColors.ActiveCaptionText;
             月度_ラベル.ImageAlign = ContentAlignment.MiddleLeft;
-            月度_ラベル.Location = new Point(192, 41);
+            月度_ラベル.Location = new Point(189, 11);
             月度_ラベル.Margin = new Padding(0);
             月度_ラベル.Name = "月度_ラベル";
             月度_ラベル.Size = new Size(56, 20);
@@ -385,7 +390,7 @@
             締切_ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             締切_ラベル.ForeColor = SystemColors.ActiveCaptionText;
             締切_ラベル.ImageAlign = ContentAlignment.MiddleLeft;
-            締切_ラベル.Location = new Point(268, 41);
+            締切_ラベル.Location = new Point(265, 11);
             締切_ラベル.Margin = new Padding(0);
             締切_ラベル.Name = "締切_ラベル";
             締切_ラベル.Size = new Size(56, 20);
@@ -399,7 +404,7 @@
             締切.Enabled = false;
             締切.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             締切.ImeMode = ImeMode.NoControl;
-            締切.Location = new Point(325, 41);
+            締切.Location = new Point(322, 11);
             締切.Margin = new Padding(3, 2, 3, 2);
             締切.Name = "締切";
             締切.ReadOnly = true;
@@ -407,18 +412,28 @@
             締切.TabIndex = 91;
             締切.TabStop = false;
             // 
+            // panel3
+            // 
+            panel3.Controls.Add(支払年月_ラベル);
+            panel3.Controls.Add(締切);
+            panel3.Controls.Add(支払年月);
+            panel3.Controls.Add(締切_ラベル);
+            panel3.Controls.Add(月度_ラベル);
+            panel3.Dock = DockStyle.Top;
+            panel3.Location = new Point(0, 32);
+            panel3.Margin = new Padding(3, 2, 3, 2);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(1054, 45);
+            panel3.TabIndex = 89;
+            // 
             // F_振込一覧
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1054, 542);
-            Controls.Add(締切);
-            Controls.Add(締切_ラベル);
-            Controls.Add(月度_ラベル);
-            Controls.Add(支払年月);
-            Controls.Add(支払年月_ラベル);
-            Controls.Add(panel2);
             Controls.Add(dataGridView1);
+            Controls.Add(panel3);
+            Controls.Add(panel2);
             Controls.Add(panel1);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(3, 2, 3, 2);
@@ -433,8 +448,9 @@
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
+            panel3.ResumeLayout(false);
+            panel3.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -589,5 +605,7 @@
         private Label 月度_ラベル;
         private Label 締切_ラベル;
         private TextBox 締切;
+        private Panel panel3;
+        private Button コマンド出力;
     }
 }

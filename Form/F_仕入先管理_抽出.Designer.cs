@@ -64,10 +64,10 @@
             label7.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             label7.ForeColor = SystemColors.ActiveCaptionText;
             label7.ImageAlign = ContentAlignment.MiddleLeft;
-            label7.Location = new Point(24, 56);
+            label7.Location = new Point(7, 33);
             label7.Margin = new Padding(0);
             label7.Name = "label7";
-            label7.Size = new Size(85, 17);
+            label7.Size = new Size(96, 20);
             label7.TabIndex = 3;
             label7.Text = "仕入先名(&N)";
             label7.TextAlign = ContentAlignment.MiddleLeft;
@@ -77,22 +77,21 @@
             仕入先名.BackColor = Color.White;
             仕入先名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             仕入先名.ImeMode = ImeMode.Hiragana;
-            仕入先名.Location = new Point(124, 51);
+            仕入先名.Location = new Point(108, 33);
             仕入先名.Margin = new Padding(3, 2, 3, 2);
-            仕入先名.Multiline = true;
             仕入先名.Name = "仕入先名";
-            仕入先名.Size = new Size(413, 23);
+            仕入先名.Size = new Size(349, 20);
             仕入先名.TabIndex = 4;
             // 
             // 仕入先コード
             // 
             仕入先コード.BackColor = Color.White;
             仕入先コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            仕入先コード.Location = new Point(124, 23);
+            仕入先コード.ImeMode = ImeMode.Disable;
+            仕入先コード.Location = new Point(108, 9);
             仕入先コード.Margin = new Padding(3, 2, 3, 2);
-            仕入先コード.Multiline = true;
             仕入先コード.Name = "仕入先コード";
-            仕入先コード.Size = new Size(160, 23);
+            仕入先コード.Size = new Size(104, 20);
             仕入先コード.TabIndex = 2;
             仕入先コード.TextChanged += 仕入先コード_TextChanged;
             仕入先コード.DoubleClick += 仕入先コード_DoubleClick;
@@ -106,10 +105,10 @@
             label5.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             label5.ForeColor = SystemColors.ActiveCaptionText;
             label5.ImageAlign = ContentAlignment.MiddleLeft;
-            label5.Location = new Point(26, 26);
+            label5.Location = new Point(7, 9);
             label5.Margin = new Padding(0);
             label5.Name = "label5";
-            label5.Size = new Size(96, 17);
+            label5.Size = new Size(96, 20);
             label5.TabIndex = 1;
             label5.Text = "仕入先コード(&C)";
             label5.TextAlign = ContentAlignment.MiddleLeft;
@@ -121,10 +120,10 @@
             label1.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             label1.ForeColor = SystemColors.ActiveCaptionText;
             label1.ImageAlign = ContentAlignment.MiddleLeft;
-            label1.Location = new Point(24, 86);
+            label1.Location = new Point(7, 57);
             label1.Margin = new Padding(0);
             label1.Name = "label1";
-            label1.Size = new Size(85, 17);
+            label1.Size = new Size(96, 20);
             label1.TabIndex = 5;
             label1.Text = "フリガナ(&F)";
             label1.TextAlign = ContentAlignment.MiddleLeft;
@@ -133,12 +132,11 @@
             // 
             仕入先名フリガナ.BackColor = Color.White;
             仕入先名フリガナ.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            仕入先名フリガナ.ImeMode = ImeMode.Hiragana;
-            仕入先名フリガナ.Location = new Point(124, 82);
+            仕入先名フリガナ.ImeMode = ImeMode.Katakana;
+            仕入先名フリガナ.Location = new Point(108, 57);
             仕入先名フリガナ.Margin = new Padding(3, 2, 3, 2);
-            仕入先名フリガナ.Multiline = true;
             仕入先名フリガナ.Name = "仕入先名フリガナ";
-            仕入先名フリガナ.Size = new Size(413, 23);
+            仕入先名フリガナ.Size = new Size(349, 20);
             仕入先名フリガナ.TabIndex = 6;
             // 
             // Discontinued
@@ -146,10 +144,10 @@
             Discontinued.Controls.Add(確定指定Button3);
             Discontinued.Controls.Add(確定指定Button2);
             Discontinued.Controls.Add(確定指定Button1);
-            Discontinued.Location = new Point(39, 119);
+            Discontinued.Location = new Point(7, 96);
             Discontinued.Name = "Discontinued";
-            Discontinued.Size = new Size(525, 63);
-            Discontinued.TabIndex = 203;
+            Discontinued.Size = new Size(450, 63);
+            Discontinued.TabIndex = 7;
             Discontinued.TabStop = false;
             Discontinued.Text = "確定指定(&D)";
             Discontinued.Visible = false;
@@ -157,7 +155,7 @@
             // 確定指定Button3
             // 
             確定指定Button3.AutoSize = true;
-            確定指定Button3.Location = new Point(347, 22);
+            確定指定Button3.Location = new Point(333, 22);
             確定指定Button3.Name = "確定指定Button3";
             確定指定Button3.Size = new Size(77, 19);
             確定指定Button3.TabIndex = 204;
@@ -168,7 +166,7 @@
             // 確定指定Button2
             // 
             確定指定Button2.AutoSize = true;
-            確定指定Button2.Location = new Point(195, 22);
+            確定指定Button2.Location = new Point(183, 22);
             確定指定Button2.Name = "確定指定Button2";
             確定指定Button2.Size = new Size(85, 19);
             確定指定Button2.TabIndex = 2;
@@ -192,10 +190,10 @@
             intComposedChipMount.Controls.Add(承認指定button3);
             intComposedChipMount.Controls.Add(承認指定button2);
             intComposedChipMount.Controls.Add(承認指定button1);
-            intComposedChipMount.Location = new Point(39, 197);
+            intComposedChipMount.Location = new Point(7, 165);
             intComposedChipMount.Name = "intComposedChipMount";
-            intComposedChipMount.Size = new Size(525, 63);
-            intComposedChipMount.TabIndex = 205;
+            intComposedChipMount.Size = new Size(450, 63);
+            intComposedChipMount.TabIndex = 8;
             intComposedChipMount.TabStop = false;
             intComposedChipMount.Text = "承認指定(&A)";
             intComposedChipMount.Visible = false;
@@ -203,7 +201,7 @@
             // 承認指定button3
             // 
             承認指定button3.AutoSize = true;
-            承認指定button3.Location = new Point(347, 22);
+            承認指定button3.Location = new Point(333, 22);
             承認指定button3.Name = "承認指定button3";
             承認指定button3.Size = new Size(77, 19);
             承認指定button3.TabIndex = 204;
@@ -214,7 +212,7 @@
             // 承認指定button2
             // 
             承認指定button2.AutoSize = true;
-            承認指定button2.Location = new Point(195, 22);
+            承認指定button2.Location = new Point(183, 22);
             承認指定button2.Name = "承認指定button2";
             承認指定button2.Size = new Size(85, 19);
             承認指定button2.TabIndex = 2;
@@ -238,17 +236,17 @@
             Deleted.Controls.Add(削除指定Button3);
             Deleted.Controls.Add(削除指定Button2);
             Deleted.Controls.Add(削除指定Button1);
-            Deleted.Location = new Point(39, 283);
+            Deleted.Location = new Point(7, 234);
             Deleted.Name = "Deleted";
-            Deleted.Size = new Size(525, 63);
-            Deleted.TabIndex = 207;
+            Deleted.Size = new Size(450, 63);
+            Deleted.TabIndex = 9;
             Deleted.TabStop = false;
             Deleted.Text = "削除指定(&D)";
             // 
             // 削除指定Button3
             // 
             削除指定Button3.AutoSize = true;
-            削除指定Button3.Location = new Point(347, 22);
+            削除指定Button3.Location = new Point(333, 22);
             削除指定Button3.Name = "削除指定Button3";
             削除指定Button3.Size = new Size(77, 19);
             削除指定Button3.TabIndex = 204;
@@ -259,7 +257,7 @@
             // 削除指定Button2
             // 
             削除指定Button2.AutoSize = true;
-            削除指定Button2.Location = new Point(195, 22);
+            削除指定Button2.Location = new Point(183, 22);
             削除指定Button2.Name = "削除指定Button2";
             削除指定Button2.Size = new Size(85, 19);
             削除指定Button2.TabIndex = 2;
@@ -280,20 +278,20 @@
             // 
             // 抽出ボタン
             // 
-            抽出ボタン.Location = new Point(314, 369);
+            抽出ボタン.Location = new Point(224, 305);
             抽出ボタン.Name = "抽出ボタン";
             抽出ボタン.Size = new Size(114, 23);
-            抽出ボタン.TabIndex = 208;
+            抽出ボタン.TabIndex = 10;
             抽出ボタン.Text = "抽出(&O)";
             抽出ボタン.UseVisualStyleBackColor = true;
             抽出ボタン.Click += 抽出ボタン_Click;
             // 
             // キャンセルボタン
             // 
-            キャンセルボタン.Location = new Point(433, 369);
+            キャンセルボタン.Location = new Point(343, 305);
             キャンセルボタン.Name = "キャンセルボタン";
             キャンセルボタン.Size = new Size(114, 23);
-            キャンセルボタン.TabIndex = 209;
+            キャンセルボタン.TabIndex = 11;
             キャンセルボタン.Text = "キャンセル(&X)";
             キャンセルボタン.UseVisualStyleBackColor = true;
             キャンセルボタン.MouseClick += キャンセルボタン_MouseClick;
@@ -301,10 +299,10 @@
             // 仕入先選択ボタン
             // 
             仕入先選択ボタン.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            仕入先選択ボタン.Location = new Point(290, 23);
+            仕入先選択ボタン.Location = new Point(214, 8);
             仕入先選択ボタン.Margin = new Padding(4, 3, 4, 3);
             仕入先選択ボタン.Name = "仕入先選択ボタン";
-            仕入先選択ボタン.Size = new Size(25, 23);
+            仕入先選択ボタン.Size = new Size(22, 22);
             仕入先選択ボタン.TabIndex = 10010;
             仕入先選択ボタン.TabStop = false;
             仕入先選択ボタン.Text = "▼";
@@ -314,10 +312,10 @@
             // 仕入先参照ボタン
             // 
             仕入先参照ボタン.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            仕入先参照ボタン.Location = new Point(322, 23);
+            仕入先参照ボタン.Location = new Point(238, 8);
             仕入先参照ボタン.Margin = new Padding(4, 3, 4, 3);
             仕入先参照ボタン.Name = "仕入先参照ボタン";
-            仕入先参照ボタン.Size = new Size(25, 23);
+            仕入先参照ボタン.Size = new Size(22, 22);
             仕入先参照ボタン.TabIndex = 10011;
             仕入先参照ボタン.TabStop = false;
             仕入先参照ボタン.Text = "▶";
@@ -329,7 +327,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(577, 410);
+            ClientSize = new Size(469, 338);
             Controls.Add(仕入先参照ボタン);
             Controls.Add(仕入先選択ボタン);
             Controls.Add(キャンセルボタン);
@@ -344,8 +342,10 @@
             Controls.Add(仕入先コード);
             Controls.Add(label5);
             Name = "F_仕入先管理_抽出";
-            Text = "仕入先管理_抽出";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "仕入先管理－抽出";
             Load += Form_Load;
+            KeyDown += Form_KeyDown;
             Discontinued.ResumeLayout(false);
             Discontinued.PerformLayout();
             intComposedChipMount.ResumeLayout(false);

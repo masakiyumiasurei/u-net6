@@ -56,6 +56,9 @@ namespace u_net
 
         private void Form_Load(object sender, EventArgs e)
         {
+            System.Type dgvtype = typeof(DataGridView);
+            System.Reflection.PropertyInfo dgvPropertyInfo = dgvtype.GetProperty("DoubleBuffered", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
+            dgvPropertyInfo.SetValue(型式, true, null);
 
             foreach (Control control in Controls)
             {

@@ -176,7 +176,7 @@ namespace u_net
                 売掛年月.DisplayMember = "売掛年月";
                 売掛年月.ValueMember = "売掛年月";
                 売掛年月.DataSource = dataTable;
-                
+
             }
 
             売掛年月.DrawMode = DrawMode.OwnerDrawFixed;
@@ -184,7 +184,7 @@ namespace u_net
             SetInitial();
         }
 
-     
+
 
 
         private void SetInitial()
@@ -382,9 +382,9 @@ namespace u_net
 
             //0列目はaccessでは行ヘッダのため、ずらす
             dataGridView2.Columns[0].Width = 1400 / twipperdot;
-            dataGridView2.Columns[1].Width = 1240 / twipperdot;
-            dataGridView2.Columns[2].Width = 1240 / twipperdot;
-            dataGridView2.Columns[3].Width = 1240 / twipperdot;
+            dataGridView2.Columns[1].Width = 1400 / twipperdot;
+            dataGridView2.Columns[2].Width = 1400 / twipperdot;
+            dataGridView2.Columns[3].Width = 1400 / twipperdot;
             dataGridView2.Columns[4].Width = 1400 / twipperdot;
 
             dataGridView2.ClearSelection();
@@ -490,7 +490,7 @@ namespace u_net
                         if (this.コマンド印刷.Enabled) コマンド印刷_Click(null, null);
                         break;
                     case Keys.F11:
-                        if (this.コマンド入出力.Enabled) コマンド入出力_Click(null, null);
+                        if (this.コマンド出力.Enabled) コマンド入出力_Click(null, null);
                         break;
                     case Keys.F10:
                         if (this.コマンド検収.Enabled) コマンド検収_Click(null, null);
@@ -566,6 +566,7 @@ namespace u_net
                 if (DoUpdate())
                 {
                     コマンド印刷.Enabled = dataGridView1.RowCount > 0;
+                    コマンド出力.Enabled = dataGridView1.RowCount > 0;
                 }
                 else
                 {
@@ -820,6 +821,7 @@ namespace u_net
                 コマンド詳細.Enabled = true;
                 コマンド売掛資料.Enabled = 0 < dataGridView1.RowCount;
                 コマンド印刷.Enabled = 0 < dataGridView1.RowCount;
+                コマンド出力.Enabled = 0 < dataGridView1.RowCount;
                 コマンド更新.Enabled = true;
             }
             else
@@ -922,6 +924,13 @@ namespace u_net
             string LoginUserCode = CommonConstants.LoginUserCode;
             LocalSetting test = new LocalSetting();
             test.SavePlace(LoginUserCode, this);
+        }
+
+        private void コマンド出力_Click(object sender, EventArgs e)
+        {
+            F_出力 targetform = new F_出力();
+            targetform.DataGridView = dataGridView1;
+            targetform.ShowDialog();
         }
     }
 }

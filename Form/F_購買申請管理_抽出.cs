@@ -42,6 +42,11 @@ namespace u_net
                     return;
                 }
 
+                foreach (Control control in Controls)
+                {
+                    control.PreviewKeyDown += OriginalClass.ValidateCheck;
+                }
+
                 //開いているフォームのインスタンスを作成する
                 F_購買申請管理 frmTarget = Application.OpenForms.OfType<F_購買申請管理>().FirstOrDefault();
 
