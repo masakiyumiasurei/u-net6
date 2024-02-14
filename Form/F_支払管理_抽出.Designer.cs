@@ -98,7 +98,7 @@
             groupBox3.Location = new Point(17, 126);
             groupBox3.Name = "groupBox3";
             groupBox3.Size = new Size(374, 50);
-            groupBox3.TabIndex = 14;
+            groupBox3.TabIndex = 9;
             groupBox3.TabStop = false;
             groupBox3.Text = "確定指定(&D)";
             // 
@@ -144,7 +144,7 @@
             groupBox4.Location = new Point(17, 190);
             groupBox4.Name = "groupBox4";
             groupBox4.Size = new Size(374, 50);
-            groupBox4.TabIndex = 15;
+            groupBox4.TabIndex = 10;
             groupBox4.TabStop = false;
             groupBox4.Text = "承認指定(&A)";
             // 
@@ -190,7 +190,7 @@
             groupBox5.Location = new Point(17, 255);
             groupBox5.Name = "groupBox5";
             groupBox5.Size = new Size(374, 50);
-            groupBox5.TabIndex = 16;
+            groupBox5.TabIndex = 11;
             groupBox5.TabStop = false;
             groupBox5.Text = "削除指定(&R)";
             // 
@@ -232,7 +232,7 @@
             抽出ボタン.Location = new Point(190, 322);
             抽出ボタン.Name = "抽出ボタン";
             抽出ボタン.Size = new Size(102, 24);
-            抽出ボタン.TabIndex = 9;
+            抽出ボタン.TabIndex = 12;
             抽出ボタン.Text = "抽出(&O)";
             抽出ボタン.UseVisualStyleBackColor = true;
             抽出ボタン.Click += 抽出ボタン_Click;
@@ -242,7 +242,7 @@
             キャンセルボタン.Location = new Point(299, 322);
             キャンセルボタン.Name = "キャンセルボタン";
             キャンセルボタン.Size = new Size(102, 24);
-            キャンセルボタン.TabIndex = 10;
+            キャンセルボタン.TabIndex = 13;
             キャンセルボタン.Text = "キャンセル(&X)";
             キャンセルボタン.UseVisualStyleBackColor = true;
             キャンセルボタン.Click += キャンセルボタン_Click;
@@ -251,7 +251,7 @@
             // 支払先選択ボタン
             // 
             支払先選択ボタン.Location = new Point(227, 69);
-            支払先選択ボタン.Margin = new Padding(4, 4, 4, 4);
+            支払先選択ボタン.Margin = new Padding(4);
             支払先選択ボタン.Name = "支払先選択ボタン";
             支払先選択ボタン.Size = new Size(21, 21);
             支払先選択ボタン.TabIndex = 21008;
@@ -286,7 +286,7 @@
             支払先コード_ラベル.Margin = new Padding(0);
             支払先コード_ラベル.Name = "支払先コード_ラベル";
             支払先コード_ラベル.Size = new Size(95, 20);
-            支払先コード_ラベル.TabIndex = 9;
+            支払先コード_ラベル.TabIndex = 5;
             支払先コード_ラベル.Text = "支払先コード(&C)";
             支払先コード_ラベル.TextAlign = ContentAlignment.MiddleLeft;
             // 
@@ -346,7 +346,7 @@
             // 支払先参照ボタン
             // 
             支払先参照ボタン.Location = new Point(250, 69);
-            支払先参照ボタン.Margin = new Padding(4, 4, 4, 4);
+            支払先参照ボタン.Margin = new Padding(4);
             支払先参照ボタン.Name = "支払先参照ボタン";
             支払先参照ボタン.Size = new Size(21, 21);
             支払先参照ボタン.TabIndex = 21010;
@@ -393,10 +393,12 @@
             Controls.Add(groupBox3);
             Controls.Add(支払先名);
             Controls.Add(振込指定_ラベル);
+            KeyPreview = true;
             Name = "F_支払管理_抽出";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "支払管理_抽出";
+            Text = "支払管理 - 抽出";
             Load += Form_Load;
+            KeyDown += Form_KeyDown;
             groupBox3.ResumeLayout(false);
             groupBox3.PerformLayout();
             groupBox4.ResumeLayout(false);
