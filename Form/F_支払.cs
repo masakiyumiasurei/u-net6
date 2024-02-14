@@ -353,9 +353,8 @@ namespace u_net
             fn.DoWait("しばらくお待ちください...");
 
             //実行中フォーム起動
-            string LoginUserCode = CommonConstants.LoginUserCode;
             LocalSetting localSetting = new LocalSetting();
-            localSetting.LoadPlace(LoginUserCode, this);
+            localSetting.LoadPlace(CommonConstants.LoginUserCode, this);
 
             支払コードcmb();
             setCombo = true; //コンボのセットでsetcomboをfalseにしているので
@@ -531,9 +530,8 @@ namespace u_net
 
         private void Form_Unload(object sender, FormClosingEventArgs e)
         {
-            string LoginUserCode = CommonConstants.LoginUserCode;
             LocalSetting test = new LocalSetting();
-            test.SavePlace(LoginUserCode, this);
+            test.SavePlace(CommonConstants.LoginUserCode, this);
 
             try
             {
@@ -1468,6 +1466,8 @@ namespace u_net
                             return;
                     }
                     SelectNextControl(ActiveControl, true, true, true, true);
+                    e.Handled = true;
+                    e.SuppressKeyPress = true;
                     break;
                 case Keys.Space: //コンボボックスならドロップダウン
                     {
