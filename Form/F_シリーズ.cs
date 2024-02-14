@@ -146,9 +146,8 @@ namespace u_net
                 if (!SetGrid()) return;
                 fn.WaitForm.Close();
 
-                string LoginUserCode = "000";//テスト用 ログインユーザを実行中にどのように管理するか決まったら修正
                 LocalSetting localSetting = new LocalSetting();
-                localSetting.LoadPlace(LoginUserCode, this);
+                localSetting.SavePlace(CommonConstants.LoginUserCode, this);
 
             }
             catch (Exception ex)
@@ -951,9 +950,8 @@ namespace u_net
                     }
                 }
 
-                string LoginUserCode = "000";//テスト用 ログインユーザを実行中にどのように管理するか決まったら修正
-                LocalSetting test = new LocalSetting();
-                test.SavePlace(LoginUserCode, this);
+                LocalSetting localSetting = new LocalSetting();
+                localSetting.SavePlace(CommonConstants.LoginUserCode, this);
 
                 //実行中フォーム起動
 
