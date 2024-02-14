@@ -186,13 +186,14 @@ namespace u_net
             //コンボボックスの設定
             OriginalClass ofn = new OriginalClass();
             ofn.SetComboBox(購買申請コード, "SELECT 購買申請コード as Display,購買申請コード as Value FROM T購買申請 ORDER BY 購買申請コード DESC");
-            //ofn.SetComboBox(購買申請版数, "SELECT 購買申請版数 as Display , 購買申請版数 as Value FROM T購買申請 ORDER BY 購買申請版数 DESC");
+            ofn.SetComboBox(購買申請版数, "SELECT 購買申請版数 as Display , 購買申請版数 as Value FROM T購買申請 ORDER BY 購買申請版数 DESC");
             //ofn.SetComboBox(商品コード, "SELECT 商品コード as Display, 商品名 as Display2, シリーズ名 as Display3, 商品コード as Value FROM M商品 ORDER BY 商品コード DESC");
             //ofn.SetComboBox(商品コード, "SELECT M商品.商品コード  as Display, M商品.商品名  as Display2, Mシリーズ.シリーズ名  as Display3, - CONVERT (int, CONVERT (bit, ISNULL(M商品.シリーズコード, 0)))  as Display4, 商品コード as Value FROM M商品 LEFT OUTER JOIN Mシリーズ ON M商品.シリーズコード = Mシリーズ.シリーズコード ORDER BY M商品.商品名");
             商品コード.DrawMode = DrawMode.OwnerDrawFixed;
+            商品コード.DropDownWidth = 700;
             ofn.SetComboBox(申請者コード, "SELECT [社員コード] as Display, 氏名 as Display2 ,社員コード as Value FROM M社員 WHERE (退社 IS NULL) AND (削除日時 IS NULL) AND (ふりがな <> N'ん') ORDER BY ふりがな");
             申請者コード.DrawMode = DrawMode.OwnerDrawFixed;
-
+            申請者コード.DropDownWidth = 350;
 
             try
             {
@@ -280,7 +281,7 @@ namespace u_net
                 Connect();
 
                 this.購買申請コード.Text = FunctionClass.採番(cn, "PUR");
-                this.購買申請版数.Text = "1";
+                this.購買申請版数.SelectedValue = 1;
 
                 // 編集による変更がない状態へ遷移する
                 //ChangedData(false);
@@ -1636,6 +1637,9 @@ namespace u_net
                     if (ActiveControl.Name != "備考")
                     {
                         SelectNextControl(ActiveControl, true, true, true, true);
+                        e.Handled = true;
+                        e.SuppressKeyPress = true;
+
                     }
                     break;
 

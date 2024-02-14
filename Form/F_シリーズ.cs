@@ -32,6 +32,8 @@ namespace u_net
         private bool noUpd = false; //setcontrolメソッドなどで主キーコードが空に更新されたタイミングで画面更新処理を行わない様にする
         private int int在庫補正数量 = 0;
         private string BASE_CAPTION = "シリーズ";
+        int intWindowHeight;
+        int intWindowWidth;
 
         public bool IsChanged
         {
@@ -93,8 +95,8 @@ namespace u_net
             setCombo = false;
 
 
-            int intWindowHeight = this.Height;
-            int intWindowWidth = this.Width;
+            intWindowHeight = this.Height;
+            intWindowWidth = this.Width;
             previousControl = null;
 
             // DataGridViewの設定
@@ -156,6 +158,7 @@ namespace u_net
             }
             finally
             {
+                ChangedData(false);
                 this.ResumeLayout();
             }
         }
@@ -345,7 +348,7 @@ namespace u_net
             }
         }
         private bool ErrCheck(Control argscontrol, string? tname = null)
-        {
+        {            
             foreach (Control control in argscontrol.Controls)
                 //入力確認
                 if (string.IsNullOrEmpty(tname) || tname == control.Name)
@@ -357,37 +360,53 @@ namespace u_net
                             break;
                         case "在庫下限数量":
                             if (!FunctionClass.IsError(control)) return false;
-                            if (OriginalClass.IsNumeric(control))
+                            if (!OriginalClass.IsNumeric(在庫下限数量.Text))
                             {
                                 MessageBox.Show("数字を入力してください。: ", "数値判定エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-                                return false;
+                                return true;
                             }
                             double result;
-                            double.TryParse(control.Text, out result);
+                            double.TryParse(在庫下限数量.Text, out result);
                             if (result < 0)
                             {
                                 MessageBox.Show("0 以上の値を入力してください。", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                return false;
+                                return true;
                             }
                             break;
                         case "補正値":
                             if (!FunctionClass.IsError(control))
                             {
                                 MessageBox.Show("在庫数量を補正しないときは 0 を入力してください。", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                return false;
+                                return true;
                             }
-                            if (OriginalClass.IsNumeric(control))
+                            if (!OriginalClass.IsNumeric(補正値.Text))
                             {
                                 MessageBox.Show("数字を入力してください。: ", "数値判定エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                return false;
+                                return true;
                             }
                             break;
                     }
                 }
-            return true;
+            return false;
         }
 
+        private void Form_Resize(object sender, EventArgs e)
+        {
+            try
+            {
+
+                dataGridView1.Height = dataGridView1.Height + (this.Height - intWindowHeight);
+                intWindowHeight = this.Height;  // 高さ保存
+
+                dataGridView1.Width = dataGridView1.Width + (this.Width - intWindowWidth);
+                intWindowWidth = this.Width;    // 幅保存                
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this.Name + "_Form_Resize - " + ex.Message);
+            }
+        }
         private void コマンド登録_Click(object sender, EventArgs e)
         {
             //保存確認
@@ -1202,7 +1221,7 @@ namespace u_net
         {
             if (補正値.Modified == false) return;
 
-            ErrCheck(this, "補正値");
+            if (ErrCheck(this, "補正値")) e.Cancel=true;
         }
 
         private void 補正値_TextChanged(object sender, EventArgs e)
@@ -1210,6 +1229,12 @@ namespace u_net
             ChangedData(true);
         }
 
+        private void 在庫下限数量_Validating(object sender, CancelEventArgs e)
+        {
+            if (在庫下限数量.Modified == false) return;
+
+           if( ErrCheck(this, "在庫下限数量")) e.Cancel=true;
+        }
     }
 }
 
