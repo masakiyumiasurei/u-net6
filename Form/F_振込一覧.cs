@@ -142,11 +142,11 @@ namespace u_net
             try
             {
 
-                dataGridView1.Height = dataGridView1.Height + (this.Height - intWindowHeight);
-                intWindowHeight = this.Height;  // 高さ保存
+                //dataGridView1.Height = dataGridView1.Height + (this.Height - intWindowHeight);
+                //intWindowHeight = this.Height;  // 高さ保存
 
-                dataGridView1.Width = dataGridView1.Width + (this.Width - intWindowWidth);
-                intWindowWidth = this.Width;    // 幅保存
+                //dataGridView1.Width = dataGridView1.Width + (this.Width - intWindowWidth);
+                //intWindowWidth = this.Width;    // 幅保存
 
             }
             catch (Exception ex)

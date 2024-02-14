@@ -278,12 +278,12 @@
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Columns.AddRange(new DataGridViewColumn[] { 日付, 購買コード, シリーズ名, 備考, 入出庫コード, 入庫数量, 出庫数量 });
             dataGridView1.Dock = DockStyle.Fill;
-            dataGridView1.Location = new Point(0, 32);
+            dataGridView1.Location = new Point(0, 90);
             dataGridView1.Margin = new Padding(3, 2, 3, 2);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
             dataGridView1.RowTemplate.Height = 29;
-            dataGridView1.Size = new Size(1054, 454);
+            dataGridView1.Size = new Size(1054, 341);
             dataGridView1.TabIndex = 87;
             // 
             // 日付
@@ -430,9 +430,9 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1054, 486);
+            Controls.Add(dataGridView1);
             Controls.Add(panel3);
             Controls.Add(panel2);
-            Controls.Add(dataGridView1);
             Controls.Add(panel1);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(3, 2, 3, 2);
