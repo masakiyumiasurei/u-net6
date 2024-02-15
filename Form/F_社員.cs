@@ -150,7 +150,9 @@ namespace u_net
 
             //コンボボックスの設定
             OriginalClass ofn = new OriginalClass();
-            ofn.SetComboBox(勤務地コード, "SELECT 営業所名 Display ,営業所コード Value FROM M営業所");
+            ofn.SetComboBox(勤務地コード, "SELECT 営業所コード as Display ,営業所名 Display2 ,営業所コード Value FROM M営業所");
+            勤務地コード.DrawMode = DrawMode.OwnerDrawFixed;
+            勤務地コード.DropDownWidth = 350;
 
             this.パート.DataSource = new KeyValuePair<byte, String>[] {
                 new KeyValuePair<byte, String>(0, "正社員"),
@@ -1063,7 +1065,7 @@ namespace u_net
             // ヘッダ部の表示
             LoadHeader(this, codeString, editionNumber);
 
-            FunctionClass.LockData(this, this.IsDeleted, "社員コード");
+            FunctionClass.LockData(this, this.IsDeleted || IsDecided, "社員コード");
             this.コマンド複写.Enabled = true;
             this.コマンド削除.Enabled = true;
             this.コマンドメール.Enabled = !this.IsDeleted;
@@ -1089,6 +1091,22 @@ namespace u_net
             }
 
             VariableSet.SetTable2Form(this, strSQL, cn);
+            
+
+            if (!string.IsNullOrEmpty(入社年月日.Text))
+            {
+                DateTime tempDate = DateTime.Parse(入社年月日.Text);
+                入社年月日.Text = tempDate.ToString("yyyy/MM/dd");
+
+            }
+
+            if (!string.IsNullOrEmpty(退社.Text))
+            {
+                DateTime tempDate = DateTime.Parse(退社.Text);
+                退社.Text = tempDate.ToString("yyyy/MM/dd");
+
+            }
+
             loadHeader = true;
 
             return loadHeader;
@@ -1171,7 +1189,7 @@ namespace u_net
         {
             // 日付選択フォームを作成し表示
             dateSelectionForm = new F_カレンダー();
-            if (dateSelectionForm.ShowDialog() == DialogResult.OK)
+            if (dateSelectionForm.ShowDialog() == DialogResult.OK && 入社年月日.Enabled && !入社年月日.ReadOnly)
             {
                 // 日付選択フォームから選択した日付を取得
                 string selectedDate = dateSelectionForm.SelectedDate;
@@ -1185,7 +1203,7 @@ namespace u_net
         {
             // 日付選択フォームを作成し表示
             dateSelectionForm = new F_カレンダー();
-            if (dateSelectionForm.ShowDialog() == DialogResult.OK)
+            if (dateSelectionForm.ShowDialog() == DialogResult.OK && 退社.Enabled && !退社.ReadOnly)
             {
                 // 日付選択フォームから選択した日付を取得
                 string selectedDate = dateSelectionForm.SelectedDate;
@@ -1424,5 +1442,24 @@ namespace u_net
             }
         }
 
+        private void 勤務地コード_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            勤務地名.Text = ((DataRowView)勤務地コード.SelectedItem)?.Row.Field<String>("Display2")?.ToString();
+        }
+
+        private void 勤務地コード_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            OriginalClass.SetComboBoxAppearance((ComboBox)sender, e, new int[] { 50, 300 }, new string[] { "Display", "Display2" });
+            勤務地コード.Invalidate();
+            勤務地コード.DroppedDown = true;
+        }
+
+        private void 勤務地コード_TextChanged(object sender, EventArgs e)
+        {
+            if (勤務地コード.SelectedValue == null)
+            {
+                勤務地名.Text = null;
+            }
+        }
     }
 }
