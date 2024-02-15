@@ -349,6 +349,8 @@ namespace u_net
             {
                 case Keys.Return:
                     SelectNextControl(ActiveControl, true, true, true, true);
+                    e.Handled = true;
+                    e.SuppressKeyPress = true;
                     break;
                 case Keys.Space: //コンボボックスならドロップダウン
                     {

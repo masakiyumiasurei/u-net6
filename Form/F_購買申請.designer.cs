@@ -328,22 +328,22 @@ namespace u_net
             // statusStrip1
             // 
             statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1, toolStripStatusLabel2 });
-            statusStrip1.Location = new Point(0, 534);
+            statusStrip1.Location = new Point(0, 531);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Padding = new Padding(1, 0, 19, 0);
-            statusStrip1.Size = new Size(876, 22);
+            statusStrip1.Size = new Size(876, 25);
             statusStrip1.TabIndex = 10001;
             statusStrip1.Text = "statusStrip1";
             // 
             // toolStripStatusLabel1
             // 
             toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            toolStripStatusLabel1.Size = new Size(0, 17);
+            toolStripStatusLabel1.Size = new Size(0, 20);
             // 
             // toolStripStatusLabel2
             // 
             toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            toolStripStatusLabel2.Size = new Size(89, 17);
+            toolStripStatusLabel2.Size = new Size(111, 20);
             toolStripStatusLabel2.Text = "各種項目の説明";
             // 
             // 購買申請コード
@@ -351,13 +351,13 @@ namespace u_net
             購買申請コード.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             購買申請コード.AutoCompleteSource = AutoCompleteSource.ListItems;
             購買申請コード.BackColor = Color.Yellow;
-            購買申請コード.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            購買申請コード.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             購買申請コード.FormattingEnabled = true;
             購買申請コード.ImeMode = ImeMode.Disable;
             購買申請コード.Location = new Point(150, 60);
             購買申請コード.Margin = new Padding(4, 3, 4, 3);
             購買申請コード.Name = "購買申請コード";
-            購買申請コード.Size = new Size(135, 21);
+            購買申請コード.Size = new Size(135, 20);
             購買申請コード.TabIndex = 0;
             購買申請コード.SelectedIndexChanged += 購買申請コード_SelectedIndexChanged;
             購買申請コード.TextChanged += 購買申請コード_TextChanged;
@@ -412,13 +412,13 @@ namespace u_net
             購買申請版数.AutoCompleteSource = AutoCompleteSource.ListItems;
             購買申請版数.BackColor = Color.Yellow;
             購買申請版数.DropDownStyle = ComboBoxStyle.DropDownList;
-            購買申請版数.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            購買申請版数.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             購買申請版数.FormattingEnabled = true;
             購買申請版数.ImeMode = ImeMode.Disable;
             購買申請版数.Location = new Point(365, 60);
             購買申請版数.Margin = new Padding(4, 3, 4, 3);
             購買申請版数.Name = "購買申請版数";
-            購買申請版数.Size = new Size(60, 21);
+            購買申請版数.Size = new Size(60, 20);
             購買申請版数.TabIndex = 1;
             購買申請版数.TabStop = false;
             購買申請版数.SelectedIndexChanged += 購買申請版数_SelectedIndexChanged;
@@ -511,8 +511,9 @@ namespace u_net
             // 
             // 備考
             // 
+            備考.AcceptsReturn = true;
             備考.BackColor = Color.White;
-            備考.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            備考.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             備考.ImeMode = ImeMode.Hiragana;
             備考.Location = new Point(150, 345);
             備考.Margin = new Padding(3, 2, 3, 2);
@@ -542,12 +543,12 @@ namespace u_net
             // 材料単価
             // 
             材料単価.BackColor = Color.White;
-            材料単価.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            材料単価.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             材料単価.ImeMode = ImeMode.Disable;
             材料単価.Location = new Point(150, 270);
             材料単価.Margin = new Padding(3, 2, 3, 2);
             材料単価.Name = "材料単価";
-            材料単価.Size = new Size(100, 21);
+            材料単価.Size = new Size(100, 19);
             材料単価.TabIndex = 11;
             材料単価.TextAlign = HorizontalAlignment.Right;
             材料単価.TextChanged += 材料単価_TextChanged;
@@ -630,12 +631,12 @@ namespace u_net
             // 出荷予定日
             // 
             出荷予定日.BackColor = Color.White;
-            出荷予定日.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            出荷予定日.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             出荷予定日.ImeMode = ImeMode.Disable;
             出荷予定日.Location = new Point(150, 320);
             出荷予定日.Margin = new Padding(3, 2, 3, 2);
             出荷予定日.Name = "出荷予定日";
-            出荷予定日.Size = new Size(100, 21);
+            出荷予定日.Size = new Size(100, 19);
             出荷予定日.TabIndex = 14;
             出荷予定日.TextChanged += 出荷予定日_TextChanged;
             出荷予定日.Enter += 出荷予定日_Enter;
@@ -648,7 +649,7 @@ namespace u_net
             // 登録者名
             // 
             登録者名.BackColor = SystemColors.Control;
-            登録者名.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            登録者名.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             登録者名.Location = new Point(680, 120);
             登録者名.Margin = new Padding(3, 2, 3, 2);
             登録者名.Multiline = true;
@@ -735,12 +736,12 @@ namespace u_net
             // 
             // 購買納期
             // 
-            購買納期.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            購買納期.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             購買納期.ForeColor = SystemColors.WindowText;
             購買納期.ImeMode = ImeMode.Disable;
             購買納期.Location = new Point(150, 295);
             購買納期.Name = "購買納期";
-            購買納期.Size = new Size(100, 21);
+            購買納期.Size = new Size(100, 19);
             購買納期.TabIndex = 12;
             購買納期.TextChanged += 購買納期_TextChanged;
             購買納期.Enter += 購買納期_Enter;
@@ -768,7 +769,7 @@ namespace u_net
             // 登録日時
             // 
             登録日時.BackColor = SystemColors.Control;
-            登録日時.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            登録日時.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             登録日時.Location = new Point(635, 95);
             登録日時.Margin = new Padding(3, 2, 3, 2);
             登録日時.Multiline = true;
@@ -811,12 +812,12 @@ namespace u_net
             // 申請日
             // 
             申請日.BackColor = Color.White;
-            申請日.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            申請日.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             申請日.ImeMode = ImeMode.Disable;
             申請日.Location = new Point(150, 95);
             申請日.Margin = new Padding(3, 2, 3, 2);
             申請日.Name = "申請日";
-            申請日.Size = new Size(131, 21);
+            申請日.Size = new Size(131, 19);
             申請日.TabIndex = 2;
             申請日.TextChanged += 申請者コード_TextChanged;
             申請日.KeyPress += 申請日_KeyPress;
@@ -851,11 +852,11 @@ namespace u_net
             // 
             // 数量
             // 
-            数量.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            数量.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             数量.ImeMode = ImeMode.Disable;
             数量.Location = new Point(150, 245);
             数量.Name = "数量";
-            数量.Size = new Size(100, 21);
+            数量.Size = new Size(100, 19);
             数量.TabIndex = 10;
             数量.TextAlign = HorizontalAlignment.Right;
             数量.TextChanged += 数量_TextChanged;
@@ -895,24 +896,24 @@ namespace u_net
             // 申請者名
             // 
             申請者名.BackColor = Color.White;
-            申請者名.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            申請者名.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             申請者名.ImeMode = ImeMode.KatakanaHalf;
             申請者名.Location = new Point(229, 120);
             申請者名.Margin = new Padding(3, 2, 3, 2);
             申請者名.Name = "申請者名";
-            申請者名.Size = new Size(244, 21);
+            申請者名.Size = new Size(244, 19);
             申請者名.TabIndex = 35;
             申請者名.TabStop = false;
             // 
             // 商品名
             // 
             商品名.BackColor = Color.White;
-            商品名.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            商品名.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             商品名.ImeMode = ImeMode.Off;
             商品名.Location = new Point(150, 170);
             商品名.Margin = new Padding(3, 2, 3, 2);
             商品名.Name = "商品名";
-            商品名.Size = new Size(364, 21);
+            商品名.Size = new Size(364, 19);
             商品名.TabIndex = 6;
             商品名.TextChanged += 商品名_TextChanged;
             商品名.Enter += 商品名_Enter;
@@ -923,12 +924,12 @@ namespace u_net
             // ロット番号2
             // 
             ロット番号2.BackColor = Color.White;
-            ロット番号2.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            ロット番号2.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             ロット番号2.ImeMode = ImeMode.Disable;
             ロット番号2.Location = new Point(275, 220);
             ロット番号2.Margin = new Padding(3, 2, 3, 2);
             ロット番号2.Name = "ロット番号2";
-            ロット番号2.Size = new Size(100, 21);
+            ロット番号2.Size = new Size(100, 19);
             ロット番号2.TabIndex = 9;
             ロット番号2.TextAlign = HorizontalAlignment.Right;
             ロット番号2.TextChanged += ロット番号2_TextChanged;
@@ -938,12 +939,12 @@ namespace u_net
             // ロット番号1
             // 
             ロット番号1.BackColor = Color.White;
-            ロット番号1.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            ロット番号1.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             ロット番号1.ImeMode = ImeMode.Disable;
             ロット番号1.Location = new Point(150, 220);
             ロット番号1.Margin = new Padding(3, 2, 3, 2);
             ロット番号1.Name = "ロット番号1";
-            ロット番号1.Size = new Size(100, 21);
+            ロット番号1.Size = new Size(100, 19);
             ロット番号1.TabIndex = 8;
             ロット番号1.TextAlign = HorizontalAlignment.Right;
             ロット番号1.TextChanged += ロット番号1_TextChanged;
@@ -953,13 +954,13 @@ namespace u_net
             // シリーズ名
             // 
             シリーズ名.BackColor = Color.White;
-            シリーズ名.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            シリーズ名.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             シリーズ名.ImeMode = ImeMode.NoControl;
             シリーズ名.Location = new Point(150, 195);
             シリーズ名.Margin = new Padding(3, 2, 3, 2);
             シリーズ名.Name = "シリーズ名";
             シリーズ名.ReadOnly = true;
-            シリーズ名.Size = new Size(364, 21);
+            シリーズ名.Size = new Size(364, 19);
             シリーズ名.TabIndex = 7;
             シリーズ名.TabStop = false;
             // 
@@ -967,13 +968,13 @@ namespace u_net
             // 
             申請者コード.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             申請者コード.AutoCompleteSource = AutoCompleteSource.ListItems;
-            申請者コード.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            申請者コード.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             申請者コード.FormattingEnabled = true;
             申請者コード.ImeMode = ImeMode.Disable;
             申請者コード.Location = new Point(150, 120);
             申請者コード.Margin = new Padding(4, 3, 4, 3);
             申請者コード.Name = "申請者コード";
-            申請者コード.Size = new Size(75, 21);
+            申請者コード.Size = new Size(75, 20);
             申請者コード.TabIndex = 4;
             申請者コード.DrawItem += 申請者コード_DrawItem;
             申請者コード.SelectedIndexChanged += 申請者コード_SelectedIndexChanged;
@@ -986,13 +987,13 @@ namespace u_net
             // 
             商品コード.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             商品コード.AutoCompleteSource = AutoCompleteSource.ListItems;
-            商品コード.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            商品コード.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             商品コード.FormattingEnabled = true;
             商品コード.ImeMode = ImeMode.Disable;
             商品コード.Location = new Point(150, 145);
             商品コード.Margin = new Padding(4, 3, 4, 3);
             商品コード.Name = "商品コード";
-            商品コード.Size = new Size(120, 21);
+            商品コード.Size = new Size(120, 20);
             商品コード.TabIndex = 5;
             商品コード.DrawItem += 商品コード_DrawItem;
             商品コード.SelectedIndexChanged += 商品コード_SelectedIndexChanged;
@@ -1122,6 +1123,7 @@ namespace u_net
             // 
             // 申請日選択ボタン
             // 
+            申請日選択ボタン.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             申請日選択ボタン.Location = new Point(283, 95);
             申請日選択ボタン.Name = "申請日選択ボタン";
             申請日選択ボタン.Size = new Size(20, 20);
@@ -1134,6 +1136,7 @@ namespace u_net
             // 
             // 購買納期選択ボタン
             // 
+            購買納期選択ボタン.Font = new Font("MS UI Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point);
             購買納期選択ボタン.Location = new Point(253, 295);
             購買納期選択ボタン.Name = "購買納期選択ボタン";
             購買納期選択ボタン.Size = new Size(21, 20);
@@ -1146,6 +1149,7 @@ namespace u_net
             // 
             // 出荷予定日選択ボタン
             // 
+            出荷予定日選択ボタン.Font = new Font("MS UI Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point);
             出荷予定日選択ボタン.Location = new Point(253, 320);
             出荷予定日選択ボタン.Name = "出荷予定日選択ボタン";
             出荷予定日選択ボタン.Size = new Size(21, 20);
@@ -1375,7 +1379,7 @@ namespace u_net
             // 登録者コード
             // 
             登録者コード.BackColor = SystemColors.Control;
-            登録者コード.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            登録者コード.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             登録者コード.Location = new Point(635, 120);
             登録者コード.Margin = new Padding(3, 2, 3, 2);
             登録者コード.Multiline = true;
@@ -1508,7 +1512,6 @@ namespace u_net
             FormClosing += Form_Unload;
             Load += Form_Load;
             KeyDown += Form_KeyDown;
-            Resize += Form_Resize;
             panel1.ResumeLayout(false);
             statusStrip1.ResumeLayout(false);
             statusStrip1.PerformLayout();

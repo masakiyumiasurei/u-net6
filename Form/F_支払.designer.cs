@@ -1070,7 +1070,7 @@ namespace u_net
             支払明細1.Margin = new Padding(4, 4, 4, 4);
             支払明細1.Name = "支払明細1";
             支払明細1.Size = new Size(868, 217);
-            支払明細1.TabIndex = 10206;
+            支払明細1.TabIndex = 19;
             // 
             // AdjustPayable
             // 
@@ -1167,6 +1167,7 @@ namespace u_net
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "F_支払";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = " 支払";
             FormClosing += Form_Unload;
             Load += Form_Load;

@@ -90,7 +90,6 @@ namespace u_net
             }
 
             //実行中フォーム起動
-
             LocalSetting localSetting = new LocalSetting();
             localSetting.LoadPlace(CommonConstants.LoginUserCode, this);
 
@@ -115,10 +114,10 @@ namespace u_net
             dataGridView1.DefaultCellStyle.ForeColor = Color.Black;
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
+            //ダブルバッファ処理設定
             System.Type dgvtype = typeof(DataGridView);
             System.Reflection.PropertyInfo dgvPropertyInfo = dgvtype.GetProperty("DoubleBuffered", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
             dgvPropertyInfo.SetValue(dataGridView1, true, null);
-
 
             //myapi.GetFullScreen(out xSize, out ySize);
 
@@ -140,7 +139,7 @@ namespace u_net
             fn.WaitForm.Close();
         }
 
-        
+
 
         public int DoUpdate()
         {
@@ -544,5 +543,19 @@ namespace u_net
 
             MessageBox.Show("現在開発中です。", "印刷コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
+
+        private void Form_Resize(object sender, EventArgs e)
+        {
+            try
+            {
+                intWindowHeight = this.Height;  // 高さ保存
+                intWindowWidth = this.Width;    // 幅保存     　
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this.Name + "_Form_Resize - " + ex.Message);
+            }
+        }
+
     }
 }

@@ -188,5 +188,22 @@ namespace u_net
             toolStripStatusLabel1.Text = "各種項目の説明";
         }
 
+        private void Form_KyeDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void Form_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Return:
+                    SelectNextControl(ActiveControl, true, true, true, true);
+                    e.Handled = true;
+                    e.SuppressKeyPress = true;
+                    break;
+            }
+        }
+
     }
 }

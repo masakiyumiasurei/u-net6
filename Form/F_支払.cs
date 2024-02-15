@@ -18,7 +18,7 @@ using System.Drawing.Imaging;
 using System.Drawing.Printing;
 using static u_net.CommonConstants;
 using static u_net.Public.FunctionClass;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+//using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.Data.Common;
 using static System.ComponentModel.Design.ObjectSelectorEditor;
 using Microsoft.Identity.Client.NativeInterop;
@@ -353,9 +353,8 @@ namespace u_net
             fn.DoWait("しばらくお待ちください...");
 
             //実行中フォーム起動
-            string LoginUserCode = CommonConstants.LoginUserCode;
             LocalSetting localSetting = new LocalSetting();
-            localSetting.LoadPlace(LoginUserCode, this);
+            localSetting.LoadPlace(CommonConstants.LoginUserCode, this);
 
             支払コードcmb();
             setCombo = true; //コンボのセットでsetcomboをfalseにしているので
@@ -531,9 +530,8 @@ namespace u_net
 
         private void Form_Unload(object sender, FormClosingEventArgs e)
         {
-            string LoginUserCode = CommonConstants.LoginUserCode;
             LocalSetting test = new LocalSetting();
-            test.SavePlace(LoginUserCode, this);
+            test.SavePlace(CommonConstants.LoginUserCode, this);
 
             try
             {
@@ -686,10 +684,10 @@ namespace u_net
             }
 
             // コードにフォーカスがある状態でサブフォームから呼び出されたときの対処
-            if (this.ActiveControl == this.支払明細1)
-            {
-                this.集計年月.Focus();
-            }
+            //if (this.ActiveControl == this.支払明細1)
+            //{
+            //    this.集計年月.Focus();
+            //}
             if (this.ActiveControl == this.支払コード)
             {
                 this.集計年月.Focus();
@@ -738,10 +736,12 @@ namespace u_net
                 更新日時.Text = string.Empty;
                 更新者コード.Text = string.Empty;
                 更新者名.Text = null;
-                確定日時.Text = null;
-                確定者コード.Text = null;
-                無効日時.Text = null;
-                無効者コード.Text = null;
+
+                //以下の情報はコピーしない模様
+                //確定日時.Text = null;
+                //確定者コード.Text = null;
+                //無効日時.Text = null;
+                //無効者コード.Text = null;
 
                 チェック();
 
@@ -1468,6 +1468,8 @@ namespace u_net
                             return;
                     }
                     SelectNextControl(ActiveControl, true, true, true, true);
+                    e.Handled = true;
+                    e.SuppressKeyPress = true;
                     break;
                 case Keys.Space: //コンボボックスならドロップダウン
                     {
@@ -1526,8 +1528,10 @@ namespace u_net
             }
         }
 
+        string shukei = "";
         private void 集計年月_Enter(object sender, EventArgs e)
-        {
+        {            
+            shukei= 集計年月.SelectedItem?.ToString() ?? "";
             toolStripStatusLabel1.Text = "■支払一覧に反映されるされる集計月を入力します。";
         }
 
@@ -1536,8 +1540,10 @@ namespace u_net
             toolStripStatusLabel1.Text = "各種項目の説明";
         }
 
+        string shiharai= "";
         private void 支払年月_Enter(object sender, EventArgs e)
         {
+            shiharai= 支払年月.SelectedItem?.ToString() ?? "";
             toolStripStatusLabel1.Text = "■振込一覧に反映される支払月を入力します。";
         }
 
@@ -1576,7 +1582,7 @@ namespace u_net
         private void 支払先コード_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
             if (this.支払先コード.Modified == false) return;
-            if (IsError(sender as Control, false) == true) e.Cancel = true;
+            if (IsError(sender as Control, false) == true) ;// e.Cancel = true;
 
         }
 
@@ -1605,6 +1611,7 @@ namespace u_net
                 string SelectedCode = SearchForm.SelectedCode;
                 支払先コード.Text = SelectedCode;
                 UpdatedControl(支払先コード);
+                支払先コード.Focus();
             }
         }
 
@@ -1657,6 +1664,8 @@ namespace u_net
 
         private void 支払年月_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
+            if (支払年月.SelectedItem == null) return;
+            if (支払年月.SelectedItem.ToString() == shukei) return;
             if (IsError(sender as Control, false) == true) e.Cancel = true;
         }
 
@@ -1664,7 +1673,7 @@ namespace u_net
         {
             if (setCombo) return;
             FunctionClass.LimitText(支払年月, 7);
-            UpdatedControl(集計年月);
+            UpdatedControl(支払年月);
             ChangedData(true);
         }
 
@@ -1675,6 +1684,8 @@ namespace u_net
 
         private void 集計年月_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
+            if (集計年月.SelectedItem == null) return;
+            if (集計年月.SelectedItem.ToString() == shukei) return;   
             if (IsError(sender as Control, false) == true) e.Cancel = true;
         }
 
@@ -1688,6 +1699,7 @@ namespace u_net
 
         private void 振込指定_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
+            
             if (IsError(sender as Control, false) == true) e.Cancel = true;
         }
 
