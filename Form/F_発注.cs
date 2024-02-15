@@ -131,7 +131,7 @@ namespace u_net
         {
             get
             {
-                int lastEdition = GetLastEdition(cn, CurrentCode);
+                int lastEdition = GetLastEdition( CurrentCode);
                 return CurrentEdition == lastEdition;
             }
         }
@@ -227,6 +227,9 @@ namespace u_net
             string sql = "SELECT 社員コード as Display ,氏名 as Display2 ,社員コード as Value FROM M社員 WHERE (退社 IS NULL) AND (削除日時 IS NULL) ORDER BY ふりがな";
             ofn.SetComboBox(発注者コード, sql);
             発注者コード.DrawMode = DrawMode.OwnerDrawFixed;
+            発注者コード.DropDownWidth = 550;
+
+            ofn.SetComboBox(発注コード, "SELECT 発注コード as Display ,発注コード as Value FROM V発注_最新版 ORDER BY 発注コード DESC");
 
             try
             {
@@ -414,16 +417,21 @@ namespace u_net
             if (SaveData(CurrentCode, CurrentEdition))
             {
                 // 登録に成功した
-                ChangedData(false); // データ変更取り消し
+                ChangedData(false);
 
+                //コンボボックスのソースを変えるとcurrentcodeが変わるので
+                string tmpcode = CurrentCode;
                 if (this.IsNewData)
                 {
                     // 新規モードのとき
                     this.コマンド新規.Enabled = true;
                     this.コマンド読込.Enabled = false;
                     //発注版数に追加したレコードを入れ直す
+                    setCombo = true;
                     OriginalClass ofn = new OriginalClass();
                     ofn.SetComboBox(発注コード, "SELECT 発注コード as Display ,発注コード as Value FROM V発注_最新版 ORDER BY 発注コード DESC");
+                    setCombo = false;
+                    発注コード.SelectedValue = tmpcode;
                 }
                 this.コマンド承認.Enabled = this.IsDecided;
                 this.コマンド確定.Enabled = true;
@@ -590,19 +598,18 @@ namespace u_net
 
         }
 
-        public int GetLastEdition(SqlConnection connectionObject, string code)
+        public int GetLastEdition( string code)
         {
             //最終版数を返す
 
             int lastEdition = 0;
-
+            Connect();
             try
             {
-                using (SqlCommand command = new SqlCommand("SELECT 最新版数 FROM V発注_最新版 WHERE 発注コード=@Code", connectionObject))
+                using (SqlCommand command = new SqlCommand("SELECT 最新版数 FROM V発注_最新版 WHERE 発注コード=@Code", cn))
                 {
                     command.Parameters.AddWithValue("@Code", code);
-
-                    connectionObject.Open();
+                                        
                     object result = command.ExecuteScalar();
 
                     if (result != null && result != DBNull.Value)
@@ -622,7 +629,7 @@ namespace u_net
             }
             finally
             {
-                connectionObject.Close();
+                cn.Close();
             }
 
             return lastEdition;
@@ -1200,6 +1207,8 @@ namespace u_net
                     コマンド読込.Enabled = true;
                     コマンド承認.Enabled = false;
 
+                    発注コード.Enabled = false;
+                    発注版数.Enabled = false;
                     // 明細部制御
                     発注明細1.Detail.AllowUserToAddRows = true;
                     発注明細1.Detail.AllowUserToDeleteRows = true;
@@ -2049,7 +2058,7 @@ namespace u_net
 
                         FunctionClass.LockData(this, IsDecided || IsDeleted, "発注コード", "発注版数");
 
-                        ChangedData(false);
+                        
                         発注版数.Enabled = true;
 
                         if (IsLastEdition && IsApproved && !IsDeleted)
@@ -2064,7 +2073,9 @@ namespace u_net
                         //編集モード
                         発注明細1.Detail.AllowUserToAddRows = (!IsDecided && !IsDeleted);
                         発注明細1.Detail.AllowUserToDeleteRows = (!IsDecided && !IsDeleted);
-                        発注明細1.Detail.ReadOnly = (IsDecided || IsDeleted); //readonlyなのでaccessと真偽が逆になる                                                                       
+                        発注明細1.Detail.ReadOnly = (IsDecided || IsDeleted); //readonlyなのでaccessと真偽が逆になる
+                                                                          //
+                        ChangedData(false);
 
                         コマンド複写.Enabled = true;
                         コマンド削除.Enabled = IsLastEdition && !IsDeleted;
@@ -2076,9 +2087,6 @@ namespace u_net
                         コマンド確定.Enabled = !IsApproved && !IsDeleted;
 
                        
-
-
-
 
                         break;
 
@@ -2203,6 +2211,12 @@ namespace u_net
             switch (e.KeyCode)
             {
                 case Keys.Return:
+                    switch (this.ActiveControl.Name)
+                    {
+                        case "備考":
+                        case "摘要":
+                            return;
+                    }
                     SelectNextControl(ActiveControl, true, true, true, true);
                     break;
                 case Keys.Space: //コンボボックスならドロップダウン

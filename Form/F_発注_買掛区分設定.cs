@@ -88,8 +88,10 @@ namespace u_net
                     this.発注コード.Text = frmOrder.発注コード.Text;
                     this.発注版数.Text = frmOrder.発注版数.Text;
 
+                    int 行番号 = frmOrder.発注明細1.Detail.CurrentRow.Index + 1;
+
                     this.明細番号.Text = frmOrder.発注明細1.Detail.CurrentRow.Cells["明細番号"].Value?.ToString();
-                    this.行番号.Text = frmOrder.発注明細1.Detail.CurrentRow.Cells["行番号"].Value?.ToString();
+                    this.行番号.Text = 行番号.ToString();
                     this.買掛区分.Text = frmOrder.発注明細1.Detail.CurrentRow.Cells["買掛区分"].Value?.ToString();
                     this.部品コード.Text = frmOrder.発注明細1.Detail.CurrentRow.Cells["部品コード"].Value?.ToString();
                     this.品名.Text = frmOrder.発注明細1.Detail.CurrentRow.Cells["品名"].Value?.ToString();

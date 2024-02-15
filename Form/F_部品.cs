@@ -108,6 +108,7 @@ namespace u_net
             OriginalClass ofn = new OriginalClass();
             ofn.SetComboBox(分類コード, "SELECT 分類記号 as Display,対象部品名 as Display2,分類コード as Value FROM M部品分類");
             分類コード.DrawMode = DrawMode.OwnerDrawFixed;
+            分類コード.DropDownWidth = 600;
             ofn.SetComboBox(形状分類コード, "SELECT 部品形状名 as Display,部品形状コード as Value FROM M部品形状");
             ofn.SetComboBox(RohsStatusCode, "SELECT Name as Display,Code as Value FROM rohsStatusCode");
 
@@ -645,6 +646,11 @@ namespace u_net
                             dataTable.Rows.Add();
                         }
 
+                        部品使用先.Columns[0].Width = 70;
+                        部品使用先.Columns[1].Width = 20;
+                        部品使用先.Columns[2].Width = 195;
+                        部品使用先.Columns[3].Width = 20;
+                        部品使用先.Font = new Font("MS ゴシック", 9);
                         部品使用先.Columns[部品使用先.ColumnCount - 1].Selected = true;
                     }
                 }
@@ -2599,7 +2605,7 @@ namespace u_net
 
         private void 分類コード_DrawItem(object sender, DrawItemEventArgs e)
         {
-            OriginalClass.SetComboBoxAppearance((ComboBox)sender, e, new int[] { 50, 500 }, new string[] { "Display", "Display2" });
+            OriginalClass.SetComboBoxAppearance((ComboBox)sender, e, new int[] { 50, 550 }, new string[] { "Display", "Display2" });
             分類コード.Invalidate();
             分類コード.DroppedDown = true;
         }

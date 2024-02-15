@@ -53,7 +53,9 @@ namespace MultiRowDesigner
             gcMultiRow1.RowsRemoved += gcMultiRow1_RowsRemoved;
             gcMultiRow1.CellValidating += gcMultiRow1_CellValidating;
             gcMultiRow1.CellValidated += gcMultiRow1_CellValidated;
+            gcMultiRow1.CellValueChanged += gcMultiRow1_CellValueChanged;
             gcMultiRow1.CellFormatting += gcMultiRow1_CellFormatting;
+            gcMultiRow1.CellBeginEdit += gcMultiRow1_CellBeginEdit;
             gcMultiRow1.CellEnter += gcMultiRow1_CellEnter;
             gcMultiRow1.RowValidating += gcMultiRow1_RowValidating;
             gcMultiRow1.DefaultValuesNeeded += gcMultiRow1_DefaultValuesNeeded;

@@ -1231,6 +1231,7 @@ namespace u_net
             入庫状況.Size = new Size(20, 19);
             入庫状況.TabIndex = 10118;
             入庫状況.TabStop = false;
+            入庫状況.Visible = false;
             // 
             // 発注明細1
             // 
