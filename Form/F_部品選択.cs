@@ -54,6 +54,10 @@ namespace u_net
         {
             bleloading = true;
 
+            //string LoginUserCode = CommonConstants.LoginUserCode;
+            //LocalSetting localSetting = new LocalSetting();
+            //localSetting.LoadPlace(LoginUserCode, this);
+
             MyApi myapi = new MyApi();
             int xSize, ySize, intpixel, twipperdot;
 
@@ -105,6 +109,7 @@ namespace u_net
             ofn.SetComboBox(分類記号, "SELECT 分類記号 as Display, 対象部品名 as Display2, 分類記号 as Value FROM M部品分類 ORDER BY 分類記号");
             分類記号.DrawMode = DrawMode.OwnerDrawFixed;
             分類記号.DropDownWidth = 550;
+            分類記号.DropDownHeight = 2000;
 
             this.RoHS対応.DataSource = new KeyValuePair<int, String>[] {
                 new KeyValuePair<int, String>(1, "対応している"),
@@ -119,10 +124,17 @@ namespace u_net
             lngRoHS対応 = 1;
 
             分類記号.SelectedIndex = -1;
-            
+
 
             bleloading = false;
 
+        }
+
+        private void F_部品選択_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            //string LoginUserCode = CommonConstants.LoginUserCode;
+            //LocalSetting test = new LocalSetting();
+            //test.SavePlace(LoginUserCode, this);
         }
 
         private void DoDecide(string codeString)
@@ -130,7 +142,8 @@ namespace u_net
             SelectedCode = codeString;
 
             DialogResult = DialogResult.OK;
-            Close();
+            //Close();
+            this.Hide();
 
 
         }
@@ -192,7 +205,7 @@ namespace u_net
                     dataGridView1.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
                     dataGridView1.ResumeLayout();
 
-                    lngCount = dataGridView1.Rows.Count - 1; // FixedRowsの分を除外
+                    lngCount = dataGridView1.Rows.Count; // FixedRowsの分を除外
                     dataGridView1.Visible = true;
                     dataGridView1.Focus();
                 }
@@ -217,7 +230,7 @@ namespace u_net
 
                 //0列目はaccessでは行ヘッダのため、ずらす
                 //dataGridView1.Columns[0].Width = 500 / twipperdot;
-                dataGridView1.Columns[0].Width = 1000 / twipperdot;
+                dataGridView1.Columns[0].Width = 1300 / twipperdot;
                 dataGridView1.Columns[1].Width = 350 / twipperdot;
                 dataGridView1.Columns[2].Width = 3250 / twipperdot;
                 dataGridView1.Columns[3].Width = 3250 / twipperdot;
@@ -267,7 +280,8 @@ namespace u_net
         {
 
             DialogResult = DialogResult.Cancel;
-            this.Close();
+            //Close();
+            this.Hide();
         }
 
 
@@ -278,14 +292,18 @@ namespace u_net
 
 
             str分類記号 = 分類記号.Text;
-            str型番 = "";
-            型番文字列.Text = null;
+            
 
             if (bleDontAfterUpdate)
             {
+                
+
                 bleDontAfterUpdate = false;
                 return;
             }
+
+            str型番 = "";
+            型番文字列.Text = null;
 
             bleDontKeyUp = false;
 
@@ -420,10 +438,11 @@ namespace u_net
                     break;
                 case (int)Keys.Return:
                     e.Handled = true;
+                    bleDontAfterUpdate = true;
                     str分類記号 = 分類記号.Text;
                     str型番 = ""; // 分類条件が指定されたら型番条件は却下
                     型番文字列.Text = null;
-                    bleDontAfterUpdate = true;
+                    
                     bleDontKeyUp = true;
                     分類記号.SelectedValue = str分類記号;
                     SetSource();
@@ -436,7 +455,37 @@ namespace u_net
                         comboBox.DroppedDown = true;
                     }
                     break;
+                case (int)Keys.Up:
+                    e.Handled = true;
+                    dataGridView1.Focus();
+                    if (dataGridView1.CurrentRow == null) return;
+                    int idx = dataGridView1.CurrentRow.Index;
+                    if(idx != dataGridView1.RowCount - 1)
+                    {
+                        dataGridView1.Rows[idx].Selected = false;
+                        idx -= 1;
+                        dataGridView1.Rows[idx].Selected = true;
+                        dataGridView1.CurrentCell = dataGridView1.Rows[idx].Cells[0];
+
+                    }
+                    break;
+                case (int)Keys.Down:
+                    e.Handled = true;
+                    dataGridView1.Focus();
+                    if (dataGridView1.CurrentRow == null) return;
+                    int idx2 = dataGridView1.CurrentRow.Index;
+                    if (idx2 != 0)
+                    {
+                        dataGridView1.Rows[idx2].Selected = false;
+                        idx2 += 1;
+                        dataGridView1.Rows[idx2].Selected = true;
+                        dataGridView1.CurrentCell = dataGridView1.Rows[idx2].Cells[0];
+
+                    }
+                    break;
+
             }
+
         }
 
         private void 型番文字列_KeyDown(object sender, KeyEventArgs e)
@@ -455,12 +504,42 @@ namespace u_net
                     e.Handled = true;
                     break;
                 case (int)Keys.Return:
+                    e.Handled = true;
+                    bleDontAfterUpdate = true;
                     str分類記号 = ""; // 型番条件が指定されたら分類条件は却下
                     this.分類記号.Text = null; // Nullを設定
                     this.対象部品名.Text = null; // Nullを設定
                     str型番 = this.型番文字列.Text;
                     bleDontKeyUp = true;
                     SetSource();
+                    break;
+                case (int)Keys.Up:
+                    e.Handled = true;
+                    dataGridView1.Focus();
+                    if (dataGridView1.CurrentRow == null) return;
+                    int idx = dataGridView1.CurrentRow.Index;
+                    if (idx != dataGridView1.RowCount - 1)
+                    {
+                        dataGridView1.Rows[idx].Selected = false;
+                        idx -= 1;
+                        dataGridView1.Rows[idx].Selected = true;
+                        dataGridView1.CurrentCell = dataGridView1.Rows[idx].Cells[0];
+
+                    }
+                    break;
+                case (int)Keys.Down:
+                    e.Handled = true;
+                    dataGridView1.Focus();
+                    if (dataGridView1.CurrentRow == null) return;
+                    int idx2 = dataGridView1.CurrentRow.Index;
+                    if (idx2 != 0)
+                    {
+                        dataGridView1.Rows[idx2].Selected = false;
+                        idx2 += 1;
+                        dataGridView1.Rows[idx2].Selected = true;
+                        dataGridView1.CurrentCell = dataGridView1.Rows[idx2].Cells[0];
+
+                    }
                     break;
             }
         }
@@ -489,6 +568,34 @@ namespace u_net
                     ComboBox combo = sender as ComboBox;
                     combo.DroppedDown = true;
                     e.Handled = true;
+                    break;
+                case (int)Keys.Up:
+                    e.Handled = true;
+                    dataGridView1.Focus();
+                    if (dataGridView1.CurrentRow == null) return;
+                    int idx = dataGridView1.CurrentRow.Index;
+                    if (idx != dataGridView1.RowCount - 1)
+                    {
+                        dataGridView1.Rows[idx].Selected = false;
+                        idx -= 1;
+                        dataGridView1.Rows[idx].Selected = true;
+                        dataGridView1.CurrentCell = dataGridView1.Rows[idx].Cells[0];
+
+                    }
+                    break;
+                case (int)Keys.Down:
+                    e.Handled = true;
+                    dataGridView1.Focus();
+                    if (dataGridView1.CurrentRow == null) return;
+                    int idx2 = dataGridView1.CurrentRow.Index;
+                    if (idx2 != 0)
+                    {
+                        dataGridView1.Rows[idx2].Selected = false;
+                        idx2 += 1;
+                        dataGridView1.Rows[idx2].Selected = true;
+                        dataGridView1.CurrentCell = dataGridView1.Rows[idx2].Cells[0];
+
+                    }
                     break;
             }
         }
@@ -556,6 +663,11 @@ namespace u_net
         private void F_部品選択_Shown(object sender, EventArgs e)
         {
             分類記号.Focus();
+        }
+
+        private void 分類記号_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+       
         }
     }
 

@@ -63,17 +63,17 @@
             // statusStrip1
             // 
             statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1 });
-            statusStrip1.Location = new Point(0, 585);
+            statusStrip1.Location = new Point(0, 588);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Padding = new Padding(1, 0, 19, 0);
-            statusStrip1.Size = new Size(766, 25);
+            statusStrip1.Size = new Size(766, 22);
             statusStrip1.TabIndex = 111;
             statusStrip1.Text = "statusStrip1";
             // 
             // toolStripStatusLabel1
             // 
             toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            toolStripStatusLabel1.Size = new Size(111, 20);
+            toolStripStatusLabel1.Size = new Size(89, 17);
             toolStripStatusLabel1.Text = "各種項目の説明";
             // 
             // 部品指定方法
@@ -93,10 +93,10 @@
             ページ分類抽出.Controls.Add(対象部品名);
             ページ分類抽出.Controls.Add(分類記号);
             ページ分類抽出.Controls.Add(分類記号_ラベル);
-            ページ分類抽出.Location = new Point(4, 29);
+            ページ分類抽出.Location = new Point(4, 24);
             ページ分類抽出.Name = "ページ分類抽出";
             ページ分類抽出.Padding = new Padding(3);
-            ページ分類抽出.Size = new Size(610, 37);
+            ページ分類抽出.Size = new Size(610, 42);
             ページ分類抽出.TabIndex = 2;
             ページ分類抽出.Text = "分類抽出";
             ページ分類抽出.UseVisualStyleBackColor = true;
@@ -130,6 +130,7 @@
             分類記号.SelectedIndexChanged += 分類記号_SelectedIndexChanged;
             分類記号.TextChanged += 分類記号_TextChanged;
             分類記号.KeyDown += 分類記号_KeyDown;
+            分類記号.PreviewKeyDown += 分類記号_PreviewKeyDown;
             // 
             // 分類記号_ラベル
             // 
@@ -145,10 +146,10 @@
             ページ型番抽出.Controls.Add(検索ボタン);
             ページ型番抽出.Controls.Add(型番文字列);
             ページ型番抽出.Controls.Add(型番文字列_ラベル);
-            ページ型番抽出.Location = new Point(4, 29);
+            ページ型番抽出.Location = new Point(4, 24);
             ページ型番抽出.Name = "ページ型番抽出";
             ページ型番抽出.Padding = new Padding(3);
-            ページ型番抽出.Size = new Size(610, 37);
+            ページ型番抽出.Size = new Size(610, 42);
             ページ型番抽出.TabIndex = 1;
             ページ型番抽出.Text = "型番抽出";
             ページ型番抽出.UseVisualStyleBackColor = true;
@@ -189,10 +190,10 @@
             ページ追加条件.Controls.Add(注釈_ラベル);
             ページ追加条件.Controls.Add(RoHS対応);
             ページ追加条件.Controls.Add(RoHS対応_ラベル);
-            ページ追加条件.Location = new Point(4, 29);
+            ページ追加条件.Location = new Point(4, 24);
             ページ追加条件.Name = "ページ追加条件";
             ページ追加条件.Padding = new Padding(3);
-            ページ追加条件.Size = new Size(610, 37);
+            ページ追加条件.Size = new Size(610, 42);
             ページ追加条件.TabIndex = 0;
             ページ追加条件.Text = "追加条件";
             ページ追加条件.UseVisualStyleBackColor = true;
@@ -253,7 +254,7 @@
             panel1.Controls.Add(コマンドキャンセル);
             panel1.Controls.Add(表示件数);
             panel1.Dock = DockStyle.Bottom;
-            panel1.Location = new Point(0, 515);
+            panel1.Location = new Point(0, 518);
             panel1.Name = "panel1";
             panel1.Size = new Size(766, 70);
             panel1.TabIndex = 116;
@@ -319,6 +320,7 @@
             Name = "F_部品選択";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "部品選択";
+            FormClosing += F_部品選択_FormClosing;
             Load += Form_Load;
             Shown += F_部品選択_Shown;
             KeyDown += F_部品選択_KeyDown;

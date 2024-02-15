@@ -540,7 +540,7 @@ namespace MultiRowDesigner
 
 
 
-        private F_部品選択 codeSelectionForm;
+        private F_部品選択 codeSelectionForm = new F_部品選択();
         private void gcMultiRow1_KeyPress(object sender, KeyPressEventArgs e)
         {
           if (e.KeyChar == ' ')
@@ -559,7 +559,7 @@ namespace MultiRowDesigner
                         e.Handled = true;
 
 
-                        codeSelectionForm = new F_部品選択();
+          
                         if (codeSelectionForm.ShowDialog() == DialogResult.OK)
                         {
                             string selectedCode = codeSelectionForm.SelectedCode;

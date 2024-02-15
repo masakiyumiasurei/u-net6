@@ -362,11 +362,11 @@ namespace u_net
         }
 
 
-        private F_部品選択 codeSelectionForm;
+        private F_部品選択 codeSelectionForm = new F_部品選択();
 
         private void 変更元部品コード選択ボタン_Click(object sender, EventArgs e)
         {
-            codeSelectionForm = new F_部品選択();
+      
             if (codeSelectionForm.ShowDialog() == DialogResult.OK)
             {
                 string selectedCode = codeSelectionForm.SelectedCode;
@@ -408,7 +408,7 @@ namespace u_net
 
         private void 変更先部品コード選択ボタン_Click(object sender, EventArgs e)
         {
-            codeSelectionForm = new F_部品選択();
+
             if (codeSelectionForm.ShowDialog() == DialogResult.OK)
             {
                 string selectedCode = codeSelectionForm.SelectedCode;
