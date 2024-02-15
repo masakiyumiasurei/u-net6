@@ -187,24 +187,7 @@ namespace u_net
             ls.SavePlace(CommonConstants.LoginUserCode, this);
         }
 
-        private void Form_Resize(object sender, EventArgs e)
-        {
-            try
-            {
-
-                購買申請明細.Height = 購買申請明細.Height + (this.Height - intWindowHeight);
-                intWindowHeight = this.Height;  // 高さ保存
-
-                購買申請明細.Width = 購買申請明細.Width + (this.Width - intWindowWidth);
-                intWindowWidth = this.Width;    // 幅保存
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(this.Name + "_Form_Resize - " + ex.Message);
-            }
-        }
-
+  
         private void InitializeFilter()
         {
             this.dtm申請日開始 = DateTime.MinValue;
@@ -562,11 +545,11 @@ namespace u_net
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0) // ヘッダー行でない場合
-            {
-                購買申請明細.ClearSelection();
-                購買申請明細.Rows[e.RowIndex].Selected = true;
-            }
+            //if (e.RowIndex >= 0) // ヘッダー行でない場合
+            //{
+            //    購買申請明細.ClearSelection();
+            //    購買申請明細.Rows[e.RowIndex].Selected = true;
+            //}
         }
 
 
@@ -600,13 +583,13 @@ namespace u_net
         //選択行をクリアして先頭を表示して先頭行を選択
         private void Cleargrid(DataGridView dataGridView)
         {
-            dataGridView.ClearSelection();
+            //dataGridView.ClearSelection();
 
-            if (dataGridView.Rows.Count > 0)
-            {
-                dataGridView.Rows[0].Selected = true;
-                dataGridView.FirstDisplayedScrollingRowIndex = 0; // 先頭行を表示
-            }
+            //if (dataGridView.Rows.Count > 0)
+            //{
+            //    dataGridView.Rows[0].Selected = true;
+            //    dataGridView.FirstDisplayedScrollingRowIndex = 0; // 先頭行を表示
+            //}
         }
 
         private void コマンド終了_Click(object sender, EventArgs e)
@@ -872,79 +855,6 @@ namespace u_net
         {
             gridobject.SuspendLayout();
             gridobject.ResumeLayout(false);
-        }
-
-        private void 購買申請明細_MouseDown(object sender, MouseEventArgs e)
-        {
-            // マウスボタン確保
-            int intButton = (int)e.Button;
-            int fixedRowsCount = 0;
-
-            foreach (DataGridViewRow row in gridobject.Rows)
-            {
-                if (row.Frozen)
-                {
-                    fixedRowsCount++;
-                }
-            }
-            // gridobject の対応する処理を行う
-            gridobject.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            gridobject.CurrentCell = gridobject.Rows[fixedRowsCount + gridobject.CurrentCell.RowIndex].Cells[gridobject.CurrentCell.ColumnIndex];
-            // DataGridView で指定した列が選択された状態にする例
-            foreach (DataGridViewRow row in gridobject.SelectedRows)
-            {
-                //gridobject.Rows[gridobject.CurrentCell.RowIndex].Cells[gridobject.MouseCol].Selected = true;
-            }
-            gridobject.FirstDisplayedScrollingRowIndex = gridobject.Rows[0].Index;
-            // 選択する行の開始位置（FixedRowsに相当する部分）を指定
-            int startRowIndex = gridobject.Rows.GetFirstRow(DataGridViewElementStates.Visible);
-
-            // 選択する行の終了位置（DataGridViewの最終行）を指定
-            int endRowIndex = gridobject.Rows.Count - 1;
-
-            // DataGridViewでの行の選択範囲を設定
-            for (int i = startRowIndex; i <= endRowIndex; i++)
-            {
-                gridobject.Rows[i].Selected = true;
-            }
-        }
-
-        private void 購買申請明細_MouseUp(object sender, MouseEventArgs e)
-        {
-            try
-            {
-                int intSort = 0; // 初期値を設定する必要があります
-
-
-                if ((e.Button & MouseButtons.Left) == 0 || gridobject.HitTest(e.X, e.Y).RowIndex != 0)
-                    return;
-
-                gridobject.SuspendLayout();
-                gridobject.ResumeLayout(false);
-
-                if (intSort == 0) /* flexSortStringNoCaseAscending の具体的な値 */
-                {
-                    //gridobject.Sort = 1; /* flexSortStringNoCaseDescending の具体的な値 */
-                    intSort = 1; /* flexSortStringNoCaseDescending の具体的な値 */
-                }
-                else
-                {
-                    //gridobject.Sort = 0; /* flexSortStringNoCaseAscending の具体的な値 */
-                    intSort = 0; /* flexSortStringNoCaseAscending の具体的な値 */
-                }
-
-
-                gridobject.SelectionMode = (DataGridViewSelectionMode)intSelectionMode;
-                //gridobject.TopRow = gridobject.Selection.TopRow; // カーソルを先頭行へ移動させる
-                FormatGrid(); // FormatGrid メソッドが存在すると仮定します
-
-                gridobject.SuspendLayout();
-                gridobject.ResumeLayout(true);
-            }
-            catch (Exception ex)
-            {
-                Debug.Print("購買申請明細_MouseUp - " + ex.Message);
-            }
         }
 
         private void 前月ボタン_Click(object sender, EventArgs e)

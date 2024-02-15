@@ -156,21 +156,34 @@ namespace u_net
 
                 if (!string.IsNullOrEmpty(申請日開始.Text))
                     frmTarget.dtm申請日開始 = Nz(DateTime.Parse(申請日開始.Text));
+                else
+                    frmTarget.dtm申請日開始 = DateTime.MinValue;
 
                 if (!string.IsNullOrEmpty(申請日終了.Text))
                     frmTarget.dtm申請日終了 = Nz(DateTime.Parse(申請日終了.Text));
+                else
+                    frmTarget.dtm申請日終了 = DateTime.MinValue;
 
                 if (!string.IsNullOrEmpty(購買納期開始.Text))
                     frmTarget.dtm購買納期開始 = Nz(DateTime.Parse(購買納期開始.Text));
+                else
+                    frmTarget.dtm購買納期開始 = DateTime.MinValue;
 
                 if (!string.IsNullOrEmpty(購買納期終了.Text))
                     frmTarget.dtm購買納期終了 = Nz(DateTime.Parse(購買納期終了.Text));
+                else
+                    frmTarget.dtm購買納期終了 = DateTime.MinValue;
 
                 if (!string.IsNullOrEmpty(出荷予定日開始.Text))
                     frmTarget.dtm出荷予定日開始 = Nz(DateTime.Parse(出荷予定日開始.Text));
+                else
+                    frmTarget.dtm出荷予定日開始 = DateTime.MinValue;
 
                 if (!string.IsNullOrEmpty(出荷予定日終了.Text))
                     frmTarget.dtm出荷予定日終了 = Nz(DateTime.Parse(出荷予定日終了.Text));
+                else
+                    frmTarget.dtm出荷予定日終了 = DateTime.MinValue;
+
 
                 frmTarget.str基本型式名 = Nz(基本型式名.Text);
                 frmTarget.strシリーズ名 = Nz(シリーズ名.Text);
@@ -180,7 +193,11 @@ namespace u_net
                     frmTarget.str申請者コード = 申請者コード.SelectedValue.ToString();
                     frmTarget.str申請者名 = Nz(申請者コード.Text);
                 }
-
+                else
+                {
+                    frmTarget.str申請者コード = "";
+                    frmTarget.str申請者名 = "";
+                }
 
                 // 承認指定
                 if (承認指定Button1.Checked)
@@ -827,6 +844,8 @@ namespace u_net
             {
                 case Keys.Return:
                     SelectNextControl(ActiveControl, true, true, true, true);
+                    e.Handled = true;
+                    e.SuppressKeyPress = true;
                     break;
             }
         }
