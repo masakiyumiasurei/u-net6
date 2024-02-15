@@ -1087,9 +1087,14 @@ namespace u_net
             switch (e.KeyCode)
             {
                 case Keys.Return:
+                    switch (this.ActiveControl.Name)
+                    {
+                        case "備考":
+                            return;
+                    }
                     SelectNextControl(ActiveControl, true, true, true, true);
-                    e.Handled = true;
-                    e.SuppressKeyPress = true;
+                    //e.Handled = true;
+                    //e.SuppressKeyPress = true;
                     break;
                 case Keys.F1:
                     if (コマンド新規.Enabled)
@@ -1236,16 +1241,16 @@ namespace u_net
 
 
 
-        private async void 郵便番号_Validated(object sender, EventArgs e)
+        private void 郵便番号_Validated(object sender, EventArgs e)
         {
             // 郵便番号のテキストボックスの内容を取得
             string zipCode = 郵便番号.Text;
 
             // 郵便番号が正しい形式かどうかを確認
-            if (OriginalClass.IsValidZipCode(zipCode) && string.IsNullOrEmpty(住所1.Text))
+            if (OriginalClass.IsValidZipCode(zipCode))
             {
                 // 郵便番号APIを使用して住所情報を取得
-                string address = await OriginalClass.GetAddressFromZipCode(zipCode);
+                string address = OriginalClass.GetAddressFromZipCode(zipCode);
                 if (address.Substring(0, 3) == "エラー")
                 {
                     住所1.Text = null;
@@ -1292,16 +1297,15 @@ namespace u_net
 
         private void メーカーコード_KeyDown(object sender, KeyEventArgs e)
         {
-            // 入力された値がエラー値の場合、textプロパティが設定できなくなるときの対処
-            if (e.KeyCode == Keys.Return) // Enter キーが押されたとき
+            if (e.KeyCode == Keys.Return)
             {
-                string strCode = メーカーコード.Text;
-                if (string.IsNullOrEmpty(strCode)) return;
+                TextBox textBox = (TextBox)sender;
+                string formattedCode = textBox.Text.Trim().PadLeft(8, '0');
 
-                strCode = strCode.PadLeft(8, '0'); // ゼロで桁を埋める例
-                if (strCode != メーカーコード.Text)
+                if (formattedCode != textBox.Text || string.IsNullOrEmpty(textBox.Text))
                 {
-                    メーカーコード.Text = strCode;
+                    textBox.Text = formattedCode;
+                    UpdatedControl(sender as Control);
                 }
             }
         }

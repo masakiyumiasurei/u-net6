@@ -1194,16 +1194,16 @@ namespace u_net
             }
         }
 
-        private async void 郵便番号_Validated(object sender, EventArgs e)
+        private void 郵便番号_Validated(object sender, EventArgs e)
         {
             // 郵便番号のテキストボックスの内容を取得
             string zipCode = 郵便番号.Text;
 
             // 郵便番号が正しい形式かどうかを確認
-            if (OriginalClass.IsValidZipCode(zipCode) && string.IsNullOrEmpty(住所1.Text))
+            if (OriginalClass.IsValidZipCode(zipCode))
             {
                 // 郵便番号APIを使用して住所情報を取得
-                string address = await OriginalClass.GetAddressFromZipCode(zipCode);
+                string address = OriginalClass.GetAddressFromZipCode(zipCode);
                 if (address.Substring(0, 3) == "エラー")
                 {
                     住所1.Text = null;
@@ -1493,14 +1493,14 @@ namespace u_net
             ChangedData(true);
         }
 
-        private async void 窓口郵便番号_Validated(object sender, EventArgs e)
+        private void 窓口郵便番号_Validated(object sender, EventArgs e)
         {
             string zipCode = 窓口郵便番号.Text;
 
-            if (OriginalClass.IsValidZipCode(zipCode) && string.IsNullOrEmpty(窓口住所1.Text))
+            if (OriginalClass.IsValidZipCode(zipCode))
             {
                 // 郵便番号APIを使用して住所情報を取得
-                string address = await OriginalClass.GetAddressFromZipCode(zipCode);
+                string address = OriginalClass.GetAddressFromZipCode(zipCode);
                 if (address.Substring(0, 3) == "エラー")
                 {
                     窓口住所1.Text = null;
@@ -1735,14 +1735,14 @@ namespace u_net
             toolStripStatusLabel2.Text = "■手形の発送先郵便番号を入力します。　■「-」は省略します。";
         }
 
-        private async void 手形発送先郵便番号_Validated(object sender, EventArgs e)
+        private void 手形発送先郵便番号_Validated(object sender, EventArgs e)
         {
             string zipCode = 手形発送先郵便番号.Text;
 
             if (OriginalClass.IsValidZipCode(zipCode))
             {
                 // 郵便番号APIを使用して住所情報を取得
-                string address = await OriginalClass.GetAddressFromZipCode(zipCode);
+                string address = OriginalClass.GetAddressFromZipCode(zipCode);
                 if (address.Substring(0, 3) == "エラー")
                 {
                     手形発送先住所.Text = null;
