@@ -72,7 +72,8 @@ namespace u_net.Public
         /// </summary>
         /// <param name="zipCode"></param>
         /// <returns></returns>
-        public static async Task<string> GetAddressFromZipCode(string zipCode)
+
+        public static string GetAddressFromZipCode(string zipCode)
         {
             using (var httpClient = new HttpClient())
             {
@@ -80,7 +81,7 @@ namespace u_net.Public
 
                 try
                 {
-                    var response = await httpClient.GetStringAsync(apiUrl);
+                    var response = Task.Run(async () => await httpClient.GetStringAsync(apiUrl)).Result;
                     var result = JObject.Parse(response);
                     if (result["results"][0]["address1"].ToString() != null)
                     {

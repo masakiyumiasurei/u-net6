@@ -988,7 +988,6 @@ namespace u_net
             // 勤務地コード
             // 
             勤務地コード.DisplayMember = "Code";
-            勤務地コード.DropDownStyle = ComboBoxStyle.DropDownList;
             勤務地コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             勤務地コード.FormattingEnabled = true;
             勤務地コード.ImeMode = ImeMode.Disable;
@@ -998,7 +997,10 @@ namespace u_net
             勤務地コード.Size = new Size(68, 21);
             勤務地コード.TabIndex = 16;
             勤務地コード.ValueMember = "Code";
+            勤務地コード.DrawItem += 勤務地コード_DrawItem;
+            勤務地コード.SelectedIndexChanged += 勤務地コード_SelectedIndexChanged;
             勤務地コード.TextUpdate += 勤務地コード_TextUpdate;
+            勤務地コード.TextChanged += 勤務地コード_TextChanged;
             勤務地コード.Validating += 勤務地コード_Validating;
             // 
             // 頭文字

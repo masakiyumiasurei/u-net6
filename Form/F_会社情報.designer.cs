@@ -331,7 +331,7 @@ namespace u_net
             // 表示名
             // 
             表示名.BackColor = Color.White;
-            表示名.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            表示名.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             表示名.ImeMode = ImeMode.Hiragana;
             表示名.Location = new Point(135, 111);
             表示名.Margin = new Padding(3, 2, 3, 2);
@@ -343,7 +343,7 @@ namespace u_net
             // 会社名2
             // 
             会社名2.BackColor = Color.White;
-            会社名2.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            会社名2.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             会社名2.ImeMode = ImeMode.Hiragana;
             会社名2.Location = new Point(135, 63);
             会社名2.Margin = new Padding(3, 2, 3, 2);
@@ -355,7 +355,7 @@ namespace u_net
             // 会社コード
             // 
             会社コード.BackColor = Color.White;
-            会社コード.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            会社コード.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             会社コード.ImeMode = ImeMode.Disable;
             会社コード.Location = new Point(135, 15);
             会社コード.Margin = new Padding(3, 2, 3, 2);
@@ -397,7 +397,7 @@ namespace u_net
             // 頭文字
             // 
             頭文字.BackColor = Color.White;
-            頭文字.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            頭文字.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             頭文字.ImeMode = ImeMode.Hiragana;
             頭文字.Location = new Point(135, 136);
             頭文字.Margin = new Padding(3, 2, 3, 2);
@@ -455,7 +455,7 @@ namespace u_net
             // 会社名1
             // 
             会社名1.BackColor = Color.White;
-            会社名1.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            会社名1.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             会社名1.ImeMode = ImeMode.Hiragana;
             会社名1.Location = new Point(135, 39);
             会社名1.Margin = new Padding(3, 2, 3, 2);
@@ -482,7 +482,7 @@ namespace u_net
             // 代表者氏名
             // 
             代表者氏名.BackColor = Color.White;
-            代表者氏名.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            代表者氏名.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             代表者氏名.ImeMode = ImeMode.Hiragana;
             代表者氏名.Location = new Point(135, 208);
             代表者氏名.Margin = new Padding(3, 2, 3, 2);
@@ -494,7 +494,7 @@ namespace u_net
             // FAX番号
             // 
             FAX番号.BackColor = Color.White;
-            FAX番号.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            FAX番号.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             FAX番号.ImeMode = ImeMode.Disable;
             FAX番号.Location = new Point(135, 184);
             FAX番号.Margin = new Padding(3, 2, 3, 2);
@@ -537,7 +537,7 @@ namespace u_net
             // 電話番号
             // 
             電話番号.BackColor = Color.White;
-            電話番号.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            電話番号.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             電話番号.ImeMode = ImeMode.Disable;
             電話番号.Location = new Point(135, 160);
             電話番号.Margin = new Padding(3, 2, 3, 2);
@@ -750,7 +750,7 @@ namespace u_net
             // 
             // 支払期日
             // 
-            支払期日.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            支払期日.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             支払期日.FormattingEnabled = true;
             支払期日.Location = new Point(244, 39);
             支払期日.Name = "支払期日";
@@ -761,7 +761,7 @@ namespace u_net
             // 
             // 支払期間
             // 
-            支払期間.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            支払期間.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             支払期間.FormattingEnabled = true;
             支払期間.Location = new Point(135, 39);
             支払期間.Name = "支払期間";
@@ -772,7 +772,7 @@ namespace u_net
             // 
             // 自社締日
             // 
-            自社締日.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            自社締日.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             自社締日.FormattingEnabled = true;
             自社締日.Location = new Point(135, 15);
             自社締日.Name = "自社締日";

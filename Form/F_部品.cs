@@ -1416,22 +1416,22 @@ namespace u_net
                             controlObject.Focus();
                             return true;
                         }
-                        else
-                        {
-                            string str1 = FunctionClass.GetMakerName(cn, controlObject.Text.ToString());
-                            string str2 = FunctionClass.GetMakerShortName(cn, controlObject.Text.ToString());
-                            if (string.IsNullOrEmpty(str1) || string.IsNullOrEmpty(str2))
-                            {
-                                MessageBox.Show("存在しないメーカーです。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                                controlObject.Focus();
-                                return true;
-                            }
-                            else
-                            {
-                                MakerName.Text = str1;
-                                MakerShortName.Text = str2;
-                            }
-                        }
+                        //else
+                        //{
+                        //    string str1 = FunctionClass.GetMakerName(cn, controlObject.Text.ToString());
+                        //    string str2 = FunctionClass.GetMakerShortName(cn, controlObject.Text.ToString());
+                        //    if (string.IsNullOrEmpty(str1) || string.IsNullOrEmpty(str2))
+                        //    {
+                        //        MessageBox.Show("存在しないメーカーです。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        //        controlObject.Focus();
+                        //        return true;
+                        //    }
+                        //    else
+                        //    {
+                        //        MakerName.Text = str1;
+                        //        MakerShortName.Text = str2;
+                        //    }
+                        //}
 
                         break;
                     case "仕入先1単価":
@@ -1661,6 +1661,23 @@ namespace u_net
                     case "ロス率":
                         controlObject.Text = float.Parse(controlObject.Text.ToString()).ToString();
                         // Me.Controls(ControlName).Value = Me.Controls(ControlName).Value / 100;
+                        break;
+                    case "メーカーコード":
+
+                        string str1 = FunctionClass.GetMakerName(cn, controlObject.Text.ToString());
+                        string str2 = FunctionClass.GetMakerShortName(cn, controlObject.Text.ToString());
+                        if (string.IsNullOrEmpty(str1) || string.IsNullOrEmpty(str2))
+                        {
+                            MessageBox.Show("存在しないメーカーです。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            controlObject.Focus();
+                            return;
+                        }
+                        else
+                        {
+                            MakerName.Text = str1;
+                            MakerShortName.Text = str2;
+                        }
+                        
                         break;
                 }
             }

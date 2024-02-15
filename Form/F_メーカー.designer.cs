@@ -820,6 +820,7 @@ namespace u_net
             メーカーコード.Name = "メーカーコード";
             メーカーコード.Size = new Size(92, 21);
             メーカーコード.TabIndex = 1;
+            メーカーコード.KeyDown += メーカーコード_KeyDown;
             メーカーコード.Validating += メーカーコード_Validating;
             メーカーコード.Validated += メーカーコード_Validated;
             // 

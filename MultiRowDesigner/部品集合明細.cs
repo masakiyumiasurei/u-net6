@@ -120,6 +120,8 @@ namespace MultiRowDesigner
             }
         }
 
+        private F_部品選択 form = new F_部品選択();
+
         private void gcMultiRow1_KeyPress(object sender, KeyPressEventArgs e)
         {
             //spaceキー
@@ -132,7 +134,7 @@ namespace MultiRowDesigner
 
                     case "部品コード":
                         e.Handled = true;　//スペースの本来の挙動（空白入力）を制御する
-                        F_部品選択 form = new F_部品選択();
+                        
                         if (form.ShowDialog() == DialogResult.OK)
                         {
                             gcMultiRow1.EndEdit(); //編集の終了
@@ -163,7 +165,7 @@ namespace MultiRowDesigner
             {
                 case "部品コード":
 
-                    F_部品選択 form = new F_部品選択();
+
                     if (form.ShowDialog() == DialogResult.OK)
                     {
                         gcMultiRow1.EndEdit(); //編集の終了
