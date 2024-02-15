@@ -185,6 +185,11 @@ namespace u_net
             this.MinimizeBox = false; //最小化ボタンを無効化
 
             InitializeComponent();
+
+            納品書送付コード.DropDownWidth = 140;
+            請求書送付コード.DropDownWidth = 140;
+            発送方法コード.DropDownWidth = 140;
+            自社担当者コード.DropDownWidth = 140;
         }
 
         public void Connect()
@@ -213,6 +218,9 @@ namespace u_net
             //実行中フォーム起動
             FunctionClass fn = new FunctionClass();
             fn.DoWait("しばらくお待ちください...");
+
+            LocalSetting localSetting = new LocalSetting();
+            localSetting.LoadPlace(CommonConstants.LoginUserCode, this);
 
             //コンボボックスの設定
             OriginalClass ofn = new OriginalClass();
@@ -369,9 +377,8 @@ namespace u_net
             }
             finally
             {
-                // ウィンドウの配置を保存する（Accessにて、受注では保存していない）
-                //LocalSetting localSetting = new LocalSetting();
-                //localSetting.SavePlace(CommonConstants.LoginUserCode, this);
+                LocalSetting localSetting = new LocalSetting();
+                localSetting.SavePlace(CommonConstants.LoginUserCode, this);
             }
         }
 
@@ -3600,8 +3607,9 @@ namespace u_net
         private void 発送先登録ボタン_Click(object sender, EventArgs e)
         {
             // Accessの「GoToPage 2」の代わり
-            this.Page1.Hide();
             this.Page2.Show();
+            this.Page1.Hide();
+            発送先名.Focus();
         }
 
         private void 発送先1_CheckedChanged(object sender, EventArgs e)
@@ -4176,8 +4184,9 @@ namespace u_net
         private void 戻るボタン_Click(object sender, EventArgs e)
         {
             // Accessの「GoToPage 1」の代わり
-            this.Page1.Show();
             this.Page2.Hide();
+            this.Page1.Show();
+            受注日.Focus();
         }
 
         private void 受注コード_Enter(object sender, EventArgs e)
