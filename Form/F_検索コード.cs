@@ -37,7 +37,19 @@ namespace u_net
             }
 
             this.検索コード.Text = _検索コード;
+            
 
+        }
+
+        private void Form_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+
+                case Keys.Return:
+                    検索ボタン_Click(sender, e);
+                    break;
+            }
         }
 
         private void 検索ボタン_Click(object sender, EventArgs e)
@@ -47,7 +59,7 @@ namespace u_net
                 MessageBox.Show("検索コードを指定してください。", this.Name, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
                 検索コード.Focus();
-               return;
+                return;
             }
 
             MidForm parentform = (MidForm)Obj;
@@ -72,6 +84,7 @@ namespace u_net
                 {
                     this.ActiveControl.Text = strCode;
                 }
+                検索ボタン_Click(sender, e);
             }
         }
         private void 検索コード_Enter(object sender, EventArgs e)
@@ -92,6 +105,11 @@ namespace u_net
         private void 検索コード_Leave(object sender, EventArgs e)
         {
             this.toolStripStatusLabel1.Text = "各種項目の説明";
+        }
+
+        private void F_検索コード_Shown(object sender, EventArgs e)
+        {
+            検索コード.Focus();
         }
     }
 }

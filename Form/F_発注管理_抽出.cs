@@ -78,9 +78,13 @@ namespace u_net
 
                 if (frmTarget.dtm発注日開始 != DateTime.MinValue)
                     this.発注日開始.Text = frmTarget.dtm発注日開始.ToString("yyyy/MM/dd");
+                else
+                    frmTarget.dtm発注日開始 = DateTime.MinValue;
 
                 if (frmTarget.dtm発注日終了 != DateTime.MinValue)
                     this.発注日終了.Text = frmTarget.dtm発注日終了.ToString("yyyy/MM/dd");
+                else
+                    frmTarget.dtm発注日終了 = DateTime.MinValue;
 
                 this.発注者名.Text = fn.Zn(frmTarget.str発注者名).ToString();
                 this.購買コード開始.Text = fn.Zn(frmTarget.str購買コード開始).ToString();
@@ -334,6 +338,9 @@ namespace u_net
             {
                 case Keys.Return:
                     SelectNextControl(ActiveControl, true, true, true, true);
+                    e.Handled = true;
+                    e.SuppressKeyPress = true;
+
                     break;
 
                 case Keys.Space: //コンボボックスならドロップダウン
@@ -353,7 +360,11 @@ namespace u_net
         {
             string strCode = ((Control)sender).Text;
             if (string.IsNullOrEmpty(strCode))
+            {
+                FunctionClass.AdjustRange(発注コード開始, 発注コード終了, sender as Control);
                 return;
+            }
+                
 
             strCode = FunctionClass.FormatCode("ORD", strCode);
             if (strCode != ((Control)sender).Text)
@@ -368,7 +379,10 @@ namespace u_net
         {
             string strCode = ((Control)sender).Text;
             if (string.IsNullOrEmpty(strCode))
+            {
+                FunctionClass.AdjustRange(発注コード開始, 発注コード終了, sender as Control);
                 return;
+            }
 
             strCode = FunctionClass.FormatCode("ORD", strCode);
             if (strCode != ((Control)sender).Text)
@@ -389,7 +403,10 @@ namespace u_net
         {
             string strCode = ((Control)sender).Text;
             if (string.IsNullOrEmpty(strCode))
+            {
+                FunctionClass.AdjustRange(購買コード開始, 購買コード終了, sender as Control);
                 return;
+            }
 
             strCode = FunctionClass.FormatCode("BUY", strCode);
             if (strCode != ((Control)sender).Text)
@@ -403,7 +420,10 @@ namespace u_net
         {
             string strCode = ((Control)sender).Text;
             if (string.IsNullOrEmpty(strCode))
+            {
+                FunctionClass.AdjustRange(購買コード開始, 購買コード終了, sender as Control);
                 return;
+            }
 
             strCode = FunctionClass.FormatCode("BUY", strCode);
             if (strCode != ((Control)sender).Text)

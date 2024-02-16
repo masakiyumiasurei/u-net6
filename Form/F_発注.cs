@@ -883,7 +883,7 @@ namespace u_net
                     MessageBox.Show("エラーのため新規モードへ移行できません。", "新規コマンド", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     return;
                 }
-
+                ChangedData(false);
 
             }
             finally
@@ -1345,7 +1345,7 @@ namespace u_net
             }
             finally
             {
-                fn.WaitForm.Close();
+                if(fn.WaitForm!=null) fn.WaitForm.Close();
                 Application.DoEvents();
             }
         }
@@ -1485,9 +1485,10 @@ namespace u_net
                     MessageBox.Show("削除できませんでした。" + Environment.NewLine + Environment.NewLine +
                                     "発注コード　：　" + this.CurrentCode, "削除コマンド", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
-
-            Bye_コマンド削除_Click:
-                fn.WaitForm.Close();
+                if (cn != null && cn.State == ConnectionState.Open) cn.Close();
+                
+                Bye_コマンド削除_Click:
+                if(fn.WaitForm!=null) fn.WaitForm.Close();
 
                 return;
 
@@ -2004,6 +2005,10 @@ namespace u_net
                 MessageBox.Show("読み込み時エラーです" + ex.Message, "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
+            finally
+            {
+                if (cn != null && cn.State == ConnectionState.Open) cn.Close();
+            }
         }
 
         public bool LoadDetails(string strSQL, GcMultiRow multiRow)
@@ -2021,13 +2026,16 @@ namespace u_net
                         multiRow.DataSource = dataTable;
                     }
                 }
-                return true;
+                if (cn != null && cn.State == ConnectionState.Open) cn.Close() ;
+                    return true;
             }
             catch (Exception ex)
             {
+                if (cn != null && cn.State == ConnectionState.Open) cn.Close();
                 MessageBox.Show("読み込み時エラーです" + ex.Message, "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             return false;
+            
         }
 
         private void UpdatedControl(string controlName)
@@ -2218,6 +2226,8 @@ namespace u_net
                             return;
                     }
                     SelectNextControl(ActiveControl, true, true, true, true);
+                    e.Handled = true;
+                    e.SuppressKeyPress = true;
                     break;
                 case Keys.Space: //コンボボックスならドロップダウン
                     {
@@ -2326,8 +2336,10 @@ namespace u_net
             toolStripStatusLabel1.Text = "各種項目の説明";
         }
 
+        string tmpcode = "";
         private void 仕入先コード_Enter(object sender, EventArgs e)
         {
+            tmpcode = 仕入先コード.Text;
             toolStripStatusLabel1.Text = "■仕入先コードを入力します。　■コードは８桁で先頭の 0 は省略できます。";
         }
 
@@ -2448,7 +2460,16 @@ namespace u_net
 
         private void 仕入先コード_Validated(object sender, EventArgs e)
         {
+            if (仕入先コード.ReadOnly) return;
+            if(string.IsNullOrEmpty(仕入先コード.Text))
+            {
+                仕入先名.Text = string.Empty;
+                return;
+            }
+
+            if (tmpcode == 仕入先コード.Text) return;
             UpdatedControl("仕入先コード");
+            tmpcode = 仕入先コード.Text;
         }
 
         private void 仕入先コード_Validating(object sender, System.ComponentModel.CancelEventArgs e)
