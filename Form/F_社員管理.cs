@@ -156,6 +156,8 @@ namespace u_net
                 {
                     this.表示件数.Text = null; // Nullの代わりにC#ではnullを使用
                 }
+
+                dataGridView1.Focus();
             }
             catch (Exception ex)
             {
@@ -405,24 +407,29 @@ namespace u_net
 
         private void コマンド更新_Click(object sender, EventArgs e)
         {
+            FunctionClass fn = new FunctionClass();
+
             try
             {
-                FunctionClass fn = new FunctionClass();
+                
                 fn.DoWait("しばらくお待ちください...");
 
                 InitializeFilter();
                 DoUpdate();
+
+                fn.WaitForm.Close();
             }
             catch (Exception ex)
             {
                 MessageBox.Show("エラーが発生しました。", "更新コマンド", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                fn.WaitForm.Close();
                 this.Close();
             }
         }
 
         private void コマンド検索_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("現在開発中です。\n コードで検索するときに使用します。", "検索コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("現在開発中です。", "検索コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void コマンド社員_Click(object sender, EventArgs e)
@@ -489,7 +496,7 @@ namespace u_net
                                 string selectedData = dataGridView1.SelectedRows[0].Cells[0].Value.ToString(); // 1列目のデータを取得
 
                                 // 仕入先フォームを作成し、引数を設定して表示
-                                F_仕入先 targetform = new F_仕入先();
+                                F_社員 targetform = new F_社員();
                                 targetform.args = selectedData;
                                 targetform.ShowDialog();
                             }
