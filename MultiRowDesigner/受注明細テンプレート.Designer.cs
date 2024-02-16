@@ -572,7 +572,7 @@
             this.商品コード.Location = new System.Drawing.Point(60, 21);
             this.商品コード.Name = "商品コード";
             this.商品コード.Size = new System.Drawing.Size(100, 21);
-            cellStyle1.Font = new System.Drawing.Font("BIZ UDPゴシック", 9.75F);
+            cellStyle1.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
             cellStyle1.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.商品コード.Style = cellStyle1;
             this.商品コード.TabIndex = 11;
@@ -605,7 +605,7 @@
             this.CustomerSerialNumberFrom.Location = new System.Drawing.Point(60, 42);
             this.CustomerSerialNumberFrom.Name = "CustomerSerialNumberFrom";
             this.CustomerSerialNumberFrom.Size = new System.Drawing.Size(260, 21);
-            cellStyle4.Font = new System.Drawing.Font("BIZ UDPゴシック", 9.75F);
+            cellStyle4.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
             cellStyle4.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.CustomerSerialNumberFrom.Style = cellStyle4;
             this.CustomerSerialNumberFrom.TabIndex = 14;
@@ -616,7 +616,7 @@
             this.CustomerSerialNumberTo.Location = new System.Drawing.Point(320, 42);
             this.CustomerSerialNumberTo.Name = "CustomerSerialNumberTo";
             this.CustomerSerialNumberTo.Size = new System.Drawing.Size(260, 21);
-            cellStyle5.Font = new System.Drawing.Font("BIZ UDPゴシック", 9.75F);
+            cellStyle5.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
             cellStyle5.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.CustomerSerialNumberTo.Style = cellStyle5;
             this.CustomerSerialNumberTo.TabIndex = 15;
@@ -691,7 +691,7 @@
             this.数量.ShowSpinButton = GrapeCity.Win.MultiRow.CellButtonVisibility.NotShown;
             this.数量.ShowSpinButtonInEditState = false;
             this.数量.Size = new System.Drawing.Size(90, 21);
-            cellStyle11.Font = new System.Drawing.Font("BIZ UDPゴシック", 9.75F);
+            cellStyle11.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
             cellStyle11.ImeMode = System.Windows.Forms.ImeMode.Disable;
             cellStyle11.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleRight;
             this.数量.Style = cellStyle11;
@@ -718,7 +718,7 @@
             this.単価.ShowSpinButton = GrapeCity.Win.MultiRow.CellButtonVisibility.NotShown;
             this.単価.ShowSpinButtonInEditState = false;
             this.単価.Size = new System.Drawing.Size(90, 21);
-            cellStyle13.Font = new System.Drawing.Font("BIZ UDPゴシック", 9.75F);
+            cellStyle13.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
             cellStyle13.ImeMode = System.Windows.Forms.ImeMode.Disable;
             cellStyle13.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleRight;
             this.単価.Style = cellStyle13;
@@ -732,7 +732,7 @@
             this.受注金額.Location = new System.Drawing.Point(580, 0);
             this.受注金額.Name = "受注金額";
             this.受注金額.Size = new System.Drawing.Size(140, 21);
-            cellStyle14.Font = new System.Drawing.Font("BIZ UDPゴシック", 9.75F);
+            cellStyle14.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
             cellStyle14.Format = "N0";
             cellStyle14.ImeMode = System.Windows.Forms.ImeMode.Off;
             cellStyle14.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleRight;
@@ -748,7 +748,7 @@
             this.原価.ShowSpinButton = GrapeCity.Win.MultiRow.CellButtonVisibility.NotShown;
             this.原価.ShowSpinButtonInEditState = false;
             this.原価.Size = new System.Drawing.Size(100, 21);
-            cellStyle15.Font = new System.Drawing.Font("BIZ UDPゴシック", 9.75F);
+            cellStyle15.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
             cellStyle15.ImeMode = System.Windows.Forms.ImeMode.Disable;
             cellStyle15.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleRight;
             this.原価.Style = cellStyle15;
@@ -762,7 +762,7 @@
             this.summaryCell1.Location = new System.Drawing.Point(820, 0);
             this.summaryCell1.Name = "summaryCell1";
             this.summaryCell1.Size = new System.Drawing.Size(140, 21);
-            cellStyle16.Font = new System.Drawing.Font("BIZ UDPゴシック", 9.75F);
+            cellStyle16.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
             cellStyle16.Format = "N0";
             cellStyle16.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             cellStyle16.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleRight;
@@ -776,7 +776,7 @@
             this.summaryCell2.Location = new System.Drawing.Point(960, 0);
             this.summaryCell2.Name = "summaryCell2";
             this.summaryCell2.Size = new System.Drawing.Size(100, 21);
-            cellStyle17.Font = new System.Drawing.Font("BIZ UDPゴシック", 9.75F);
+            cellStyle17.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
             cellStyle17.Format = "N0";
             cellStyle17.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             cellStyle17.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleRight;
@@ -853,7 +853,7 @@
             this.受注合計.Location = new System.Drawing.Point(380, 0);
             this.受注合計.Name = "受注合計";
             this.受注合計.Size = new System.Drawing.Size(100, 21);
-            cellStyle50.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
+            cellStyle50.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
             cellStyle50.Format = "N0";
             cellStyle50.ImeMode = System.Windows.Forms.ImeMode.Off;
             cellStyle50.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleRight;
@@ -892,7 +892,7 @@
             this.税込合計金額.Location = new System.Drawing.Point(740, 0);
             this.税込合計金額.Name = "税込合計金額";
             this.税込合計金額.Size = new System.Drawing.Size(100, 21);
-            cellStyle53.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
+            cellStyle53.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
             cellStyle53.Format = "N0";
             cellStyle53.ImeMode = System.Windows.Forms.ImeMode.Off;
             cellStyle53.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleRight;
@@ -933,7 +933,7 @@
             this.受注消費税.Calculation = expression5;
             this.受注消費税.Location = new System.Drawing.Point(560, 0);
             this.受注消費税.Name = "受注消費税";
-            cellStyle56.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
+            cellStyle56.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
             cellStyle56.Format = "N0";
             cellStyle56.ImeMode = System.Windows.Forms.ImeMode.Off;
             cellStyle56.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleRight;
