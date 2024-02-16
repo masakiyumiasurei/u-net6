@@ -480,7 +480,7 @@ namespace u_net
             // 無効日
             // 
             無効日.BackColor = Color.White;
-            無効日.Font = new Font("BIZ UDPゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            無効日.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             無効日.ImeMode = ImeMode.Hiragana;
             無効日.Location = new Point(715, 325);
             無効日.Margin = new Padding(3, 2, 3, 2);
@@ -493,7 +493,7 @@ namespace u_net
             // 承認日時
             // 
             承認日時.BackColor = Color.White;
-            承認日時.Font = new Font("BIZ UDPゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            承認日時.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             承認日時.ImeMode = ImeMode.Hiragana;
             承認日時.Location = new Point(715, 275);
             承認日時.Margin = new Padding(3, 2, 3, 2);
@@ -506,7 +506,7 @@ namespace u_net
             // ManufacturingCompletionApprovedDate
             // 
             ManufacturingCompletionApprovedDate.BackColor = Color.White;
-            ManufacturingCompletionApprovedDate.Font = new Font("BIZ UDPゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            ManufacturingCompletionApprovedDate.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             ManufacturingCompletionApprovedDate.ImeMode = ImeMode.Hiragana;
             ManufacturingCompletionApprovedDate.Location = new Point(715, 300);
             ManufacturingCompletionApprovedDate.Margin = new Padding(3, 2, 3, 2);
@@ -519,7 +519,7 @@ namespace u_net
             // 確定者コード
             // 
             確定者コード.BackColor = Color.White;
-            確定者コード.Font = new Font("BIZ UDPゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            確定者コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             確定者コード.ImeMode = ImeMode.Hiragana;
             確定者コード.Location = new Point(715, 250);
             確定者コード.Margin = new Padding(3, 2, 3, 2);
@@ -532,7 +532,7 @@ namespace u_net
             // 確定日時
             // 
             確定日時.BackColor = Color.White;
-            確定日時.Font = new Font("BIZ UDPゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            確定日時.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             確定日時.ImeMode = ImeMode.Hiragana;
             確定日時.Location = new Point(715, 225);
             確定日時.Margin = new Padding(3, 2, 3, 2);
@@ -677,7 +677,7 @@ namespace u_net
             // 請求コード
             // 
             請求コード.BackColor = Color.White;
-            請求コード.Font = new Font("BIZ UDPゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            請求コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             請求コード.ImeMode = ImeMode.NoControl;
             請求コード.Location = new Point(715, 150);
             請求コード.Margin = new Padding(3, 2, 3, 2);
@@ -735,7 +735,7 @@ namespace u_net
             // TaxRate
             // 
             TaxRate.BackColor = Color.White;
-            TaxRate.Font = new Font("BIZ UDPゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            TaxRate.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             TaxRate.ImeMode = ImeMode.Disable;
             TaxRate.Location = new Point(715, 75);
             TaxRate.Margin = new Padding(3, 2, 3, 2);
@@ -1030,7 +1030,7 @@ namespace u_net
             // InvoiceFaxToNumber
             // 
             InvoiceFaxToNumber.BackColor = Color.White;
-            InvoiceFaxToNumber.Font = new Font("BIZ UDPゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            InvoiceFaxToNumber.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             InvoiceFaxToNumber.ImeMode = ImeMode.Disable;
             InvoiceFaxToNumber.Location = new Point(150, 200);
             InvoiceFaxToNumber.Margin = new Padding(3, 2, 3, 2);
@@ -1236,7 +1236,7 @@ namespace u_net
             // 発送先郵便番号
             // 
             発送先郵便番号.BackColor = Color.White;
-            発送先郵便番号.Font = new Font("BIZ UDPゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            発送先郵便番号.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             発送先郵便番号.ImeMode = ImeMode.Disable;
             発送先郵便番号.Location = new Point(150, 50);
             発送先郵便番号.Margin = new Padding(3, 2, 3, 2);
@@ -1264,7 +1264,7 @@ namespace u_net
             // 発送先メールアドレス
             // 
             発送先メールアドレス.BackColor = Color.White;
-            発送先メールアドレス.Font = new Font("BIZ UDPゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            発送先メールアドレス.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             発送先メールアドレス.ImeMode = ImeMode.Alpha;
             発送先メールアドレス.Location = new Point(150, 200);
             発送先メールアドレス.Margin = new Padding(3, 2, 3, 2);
@@ -1293,7 +1293,7 @@ namespace u_net
             // 発送先FAX
             // 
             発送先FAX.BackColor = Color.White;
-            発送先FAX.Font = new Font("BIZ UDPゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            発送先FAX.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             発送先FAX.ImeMode = ImeMode.Disable;
             発送先FAX.Location = new Point(150, 150);
             発送先FAX.Margin = new Padding(3, 2, 3, 2);
@@ -1307,7 +1307,7 @@ namespace u_net
             // 発送先TEL
             // 
             発送先TEL.BackColor = Color.White;
-            発送先TEL.Font = new Font("BIZ UDPゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            発送先TEL.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             発送先TEL.ImeMode = ImeMode.Disable;
             発送先TEL.Location = new Point(150, 125);
             発送先TEL.Margin = new Padding(3, 2, 3, 2);
@@ -1897,11 +1897,11 @@ namespace u_net
             // 発送方法
             // 
             発送方法.BackColor = Color.White;
-            発送方法.Enabled = false;
             発送方法.Font = new Font("BIZ UDPゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             発送方法.Location = new Point(192, 305);
             発送方法.Margin = new Padding(3, 2, 3, 2);
             発送方法.Name = "発送方法";
+            発送方法.ReadOnly = true;
             発送方法.Size = new Size(150, 20);
             発送方法.TabIndex = 10098;
             // 
@@ -1927,11 +1927,11 @@ namespace u_net
             // 請求書送付
             // 
             請求書送付.BackColor = Color.White;
-            請求書送付.Enabled = false;
             請求書送付.Font = new Font("BIZ UDPゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             請求書送付.Location = new Point(192, 280);
             請求書送付.Margin = new Padding(3, 2, 3, 2);
             請求書送付.Name = "請求書送付";
+            請求書送付.ReadOnly = true;
             請求書送付.Size = new Size(150, 20);
             請求書送付.TabIndex = 10097;
             // 
@@ -1957,11 +1957,11 @@ namespace u_net
             // 納品書送付
             // 
             納品書送付.BackColor = Color.White;
-            納品書送付.Enabled = false;
             納品書送付.Font = new Font("BIZ UDPゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             納品書送付.Location = new Point(192, 255);
             納品書送付.Margin = new Padding(3, 2, 3, 2);
             納品書送付.Name = "納品書送付";
+            納品書送付.ReadOnly = true;
             納品書送付.Size = new Size(150, 20);
             納品書送付.TabIndex = 10096;
             // 
@@ -2040,7 +2040,6 @@ namespace u_net
             // 顧客名
             // 
             顧客名.BackColor = Color.White;
-            顧客名.Enabled = false;
             顧客名.Font = new Font("BIZ UDPゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             顧客名.ImeMode = ImeMode.NoControl;
             顧客名.Location = new Point(127, 130);
@@ -2252,7 +2251,7 @@ namespace u_net
             // 
             発送先登録ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             発送先登録ボタン.ImageAlign = ContentAlignment.BottomLeft;
-            発送先登録ボタン.Location = new Point(987, 15);
+            発送先登録ボタン.Location = new Point(985, 18);
             発送先登録ボタン.Margin = new Padding(3, 2, 3, 2);
             発送先登録ボタン.Name = "発送先登録ボタン";
             発送先登録ボタン.Size = new Size(80, 30);
@@ -2506,7 +2505,7 @@ namespace u_net
             // 注文番号
             // 
             注文番号.BackColor = Color.White;
-            注文番号.Font = new Font("BIZ UDPゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            注文番号.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             注文番号.ImeMode = ImeMode.Off;
             注文番号.Location = new Point(127, 80);
             注文番号.Margin = new Padding(3, 2, 3, 2);
