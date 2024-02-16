@@ -135,7 +135,7 @@
             抽出ボタン.Name = "抽出ボタン";
             抽出ボタン.Size = new Size(114, 23);
             抽出ボタン.TabIndex = 24;
-            抽出ボタン.Text = "抽出(&O)";
+            抽出ボタン.Text = "抽出(&F)";
             抽出ボタン.UseVisualStyleBackColor = true;
             抽出ボタン.Click += 抽出ボタン_Click;
             // 

@@ -43,12 +43,20 @@ namespace u_net
 
             InitializeComponent();
         }
+
         public void Connect()
         {
-            Connection connectionInfo = new Connection();
-            string connectionString = connectionInfo.Getconnect();
-            cn = new SqlConnection(connectionString);
-            cn.Open();
+            try
+            {
+                Connection connectionInfo = new Connection();
+                string connectionString = connectionInfo.Getconnect();
+                cn = new SqlConnection(connectionString);
+                cn.Open();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("接続に失敗しました。\n\n" + ex.Message, "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
 
@@ -604,29 +612,37 @@ namespace u_net
 
         private void 確定ボタン_Click(object sender, EventArgs e)
         {
-            F_受注 frmOrder = Application.OpenForms.OfType<F_受注>().FirstOrDefault();
-            GcMultiRow frmParent = frmOrder.受注明細1.Detail;
-            
-            frmParent.EditingControl.Text= 商品コード.SelectedRows[0].Cells[0].Value.ToString();
-            frmParent.CurrentRow.Cells["商品コード"].Value = 商品コード.SelectedRows[0].Cells[0].Value.ToString();
-            frmParent.CurrentRow.Cells["品名"].Value = 商品コード.SelectedRows[0].Cells[3].Value.ToString();
-            frmParent.CurrentRow.Cells["型番"].Value = 型番.Text;
-            frmParent.CurrentRow.Cells["単価"].Value = 単価.Text;
-            frmParent.CurrentRow.Cells["原価"].Value = 原価.Text;
-            frmParent.CurrentRow.Cells["売上区分コード"].Value = 商品コード.SelectedRows[0].Cells[6].Value.ToString();
-            frmParent.CurrentRow.Cells["ラインコード"].Value = 商品コード.SelectedRows[0].Cells[7].Value.ToString();
-            frmParent.CurrentRow.Cells["単位コード"].Value = 商品コード.SelectedRows[0].Cells[8].Value.ToString();
-            frmParent.CurrentRow.Cells["CustomerSerialNumberRequired"].Value = 商品コード.SelectedRows[0].Cells[9].Value.ToString();
+            try
+            {
+                F_受注 frmOrder = Application.OpenForms.OfType<F_受注>().FirstOrDefault();
+                GcMultiRow frmParent = frmOrder.受注明細1.Detail;
 
-            frmOrder.受注明細1.strArticle = 商品コード.SelectedRows[0].Cells[3].Value.ToString();
-            frmOrder.受注明細1.strModel = 型番.Text;
-            frmOrder.受注明細1.intPrice = int.Parse(単価.Text, NumberStyles.AllowThousands, CultureInfo.InvariantCulture);
+                frmParent.EditingControl.Text = 商品コード.SelectedRows[0].Cells[0].Value.ToString();
+                frmParent.CurrentRow.Cells["商品コード"].Value = 商品コード.SelectedRows[0].Cells[0].Value.ToString();
+                frmParent.CurrentRow.Cells["品名"].Value = 商品コード.SelectedRows[0].Cells[3].Value.ToString();
+                frmParent.CurrentRow.Cells["型番"].Value = 型番.Text;
+                frmParent.CurrentRow.Cells["単価"].Value = 単価.Text;
+                frmParent.CurrentRow.Cells["原価"].Value = 原価.Text;
+                frmParent.CurrentRow.Cells["売上区分コード"].Value = 商品コード.SelectedRows[0].Cells[6].Value.ToString();
+                frmParent.CurrentRow.Cells["ラインコード"].Value = 商品コード.SelectedRows[0].Cells[7].Value.ToString();
+                frmParent.CurrentRow.Cells["単位コード"].Value = 商品コード.SelectedRows[0].Cells[8].Value.ToString();
+                frmParent.CurrentRow.Cells["CustomerSerialNumberRequired"].Value = 商品コード.SelectedRows[0].Cells[9].Value.ToString();
 
-            frmOrder.ChangedData(true);
+                frmOrder.受注明細1.strArticle = 商品コード.SelectedRows[0].Cells[3].Value.ToString();
+                frmOrder.受注明細1.strModel = 型番.Text;
+                frmOrder.受注明細1.intPrice = int.Parse(単価.Text, NumberStyles.AllowThousands, CultureInfo.InvariantCulture);
 
-            frmParent.CurrentCellPosition = new CellPosition(frmParent.CurrentRow.Index, frmParent.CurrentRow.Cells["型番"].CellIndex);
+                frmOrder.ChangedData(true);
 
-            Close();
+                frmParent.CurrentCellPosition = new CellPosition(frmParent.CurrentRow.Index, frmParent.CurrentRow.Cells["型番"].CellIndex);
+
+                Close();
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(this.Name + "確定ボタン_Click - " + " : " + ex.Message);
+            }
 
         }
 

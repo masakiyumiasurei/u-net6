@@ -671,7 +671,7 @@ namespace u_net
             label9.Margin = new Padding(0);
             label9.Name = "label9";
             label9.Size = new Size(135, 17);
-            label9.TabIndex = 15;
+            label9.TabIndex = 11;
             label9.Text = "シリーズ管理(&M)";
             label9.TextAlign = ContentAlignment.MiddleLeft;
             // 
@@ -700,7 +700,7 @@ namespace u_net
             label8.Margin = new Padding(0);
             label8.Name = "label8";
             label8.Size = new Size(107, 20);
-            label8.TabIndex = 10;
+            label8.TabIndex = 9;
             label8.Text = "在庫補正数量(&A)";
             label8.TextAlign = ContentAlignment.MiddleLeft;
             // 
@@ -780,7 +780,7 @@ namespace u_net
             Discontinued.Margin = new Padding(4, 3, 4, 3);
             Discontinued.Name = "Discontinued";
             Discontinued.Size = new Size(15, 14);
-            Discontinued.TabIndex = 13;
+            Discontinued.TabIndex = 14;
             Discontinued.UseVisualStyleBackColor = true;
             Discontinued.CheckedChanged += Discontinued_CheckedChanged;
             // 
@@ -830,7 +830,7 @@ namespace u_net
             label20.Margin = new Padding(0);
             label20.Name = "label20";
             label20.Size = new Size(85, 17);
-            label20.TabIndex = 12;
+            label20.TabIndex = 13;
             label20.Text = "廃止(&D)";
             label20.TextAlign = ContentAlignment.MiddleLeft;
             // 
@@ -843,7 +843,8 @@ namespace u_net
             補正値.Margin = new Padding(3, 2, 3, 2);
             補正値.Name = "補正値";
             補正値.Size = new Size(161, 20);
-            補正値.TabIndex = 11;
+            補正値.TabIndex = 10;
+            補正値.TabStop = false;
             補正値.TextAlign = HorizontalAlignment.Right;
             補正値.TextChanged += 補正値_TextChanged;
             補正値.Enter += 補正値_Enter;

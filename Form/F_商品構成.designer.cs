@@ -562,6 +562,7 @@ namespace u_net
             定価.Size = new Size(136, 20);
             定価.TabIndex = 21011;
             定価.TabStop = false;
+            定価.TextAlign = HorizontalAlignment.Right;
             // 
             // 売値掛率
             // 
@@ -574,6 +575,7 @@ namespace u_net
             売値掛率.ReadOnly = true;
             売値掛率.Size = new Size(136, 20);
             売値掛率.TabIndex = 9;
+            売値掛率.TextAlign = HorizontalAlignment.Right;
             売値掛率.TextChanged += 売値掛率_TextChanged;
             売値掛率.Enter += 売値掛率_Enter;
             売値掛率.Leave += 売値掛率_Leave;
@@ -665,6 +667,7 @@ namespace u_net
             単価.Size = new Size(136, 20);
             単価.TabIndex = 21016;
             単価.TabStop = false;
+            単価.TextAlign = HorizontalAlignment.Right;
             単価.TextChanged += 単価_TextChanged;
             単価.Enter += 単価_Enter;
             単価.Leave += 単価_Leave;
@@ -683,6 +686,7 @@ namespace u_net
             原価.Size = new Size(136, 20);
             原価.TabIndex = 21017;
             原価.TabStop = false;
+            原価.TextAlign = HorizontalAlignment.Right;
             // 
             // 粗利
             // 
@@ -696,6 +700,7 @@ namespace u_net
             粗利.Size = new Size(136, 20);
             粗利.TabIndex = 21018;
             粗利.TabStop = false;
+            粗利.TextAlign = HorizontalAlignment.Right;
             // 
             // 確定済単価_ラベル
             // 
