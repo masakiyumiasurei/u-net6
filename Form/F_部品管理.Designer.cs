@@ -87,6 +87,7 @@
             button4.Name = "button4";
             button4.Size = new Size(70, 22);
             button4.TabIndex = 11;
+            button4.TabStop = false;
             button4.UseVisualStyleBackColor = true;
             // 
             // button3
@@ -100,6 +101,7 @@
             button3.Name = "button3";
             button3.Size = new Size(70, 22);
             button3.TabIndex = 10;
+            button3.TabStop = false;
             button3.UseVisualStyleBackColor = true;
             // 
             // コマンド部品
@@ -112,6 +114,7 @@
             コマンド部品.Name = "コマンド部品";
             コマンド部品.Size = new Size(70, 22);
             コマンド部品.TabIndex = 9;
+            コマンド部品.TabStop = false;
             コマンド部品.Text = "部品";
             toolTip1.SetToolTip(コマンド部品, "部品データの参照");
             コマンド部品.UseVisualStyleBackColor = true;
@@ -128,6 +131,7 @@
             コマンド入出履歴.Name = "コマンド入出履歴";
             コマンド入出履歴.Size = new Size(70, 22);
             コマンド入出履歴.TabIndex = 8;
+            コマンド入出履歴.TabStop = false;
             コマンド入出履歴.Text = "入出履歴";
             toolTip1.SetToolTip(コマンド入出履歴, "入出庫履歴の参照");
             コマンド入出履歴.UseVisualStyleBackColor = true;
@@ -143,6 +147,7 @@
             コマンド出力.Name = "コマンド出力";
             コマンド出力.Size = new Size(70, 22);
             コマンド出力.TabIndex = 7;
+            コマンド出力.TabStop = false;
             コマンド出力.Text = "出力";
             toolTip1.SetToolTip(コマンド出力, "表示データの出力");
             コマンド出力.UseVisualStyleBackColor = true;
@@ -159,6 +164,7 @@
             コマンド保守.Name = "コマンド保守";
             コマンド保守.Size = new Size(70, 22);
             コマンド保守.TabIndex = 6;
+            コマンド保守.TabStop = false;
             コマンド保守.Text = "保守";
             toolTip1.SetToolTip(コマンド保守, "保守");
             コマンド保守.UseVisualStyleBackColor = true;
@@ -174,6 +180,7 @@
             コマンド更新.Name = "コマンド更新";
             コマンド更新.Size = new Size(70, 22);
             コマンド更新.TabIndex = 5;
+            コマンド更新.TabStop = false;
             コマンド更新.Text = "更新";
             toolTip1.SetToolTip(コマンド更新, "最新の情報に更新");
             コマンド更新.UseVisualStyleBackColor = true;
@@ -189,6 +196,7 @@
             コマンド初期化.Name = "コマンド初期化";
             コマンド初期化.Size = new Size(70, 22);
             コマンド初期化.TabIndex = 4;
+            コマンド初期化.TabStop = false;
             コマンド初期化.Text = "初期化";
             toolTip1.SetToolTip(コマンド初期化, "抽出条件の初期化");
             コマンド初期化.UseVisualStyleBackColor = true;
@@ -204,6 +212,7 @@
             コマンド検索.Name = "コマンド検索";
             コマンド検索.Size = new Size(70, 22);
             コマンド検索.TabIndex = 3;
+            コマンド検索.TabStop = false;
             コマンド検索.Text = "検索";
             toolTip1.SetToolTip(コマンド検索, "コードによる検索");
             コマンド検索.UseVisualStyleBackColor = true;
@@ -219,6 +228,7 @@
             コマンド抽出.Name = "コマンド抽出";
             コマンド抽出.Size = new Size(70, 22);
             コマンド抽出.TabIndex = 2;
+            コマンド抽出.TabStop = false;
             コマンド抽出.Text = "抽出";
             toolTip1.SetToolTip(コマンド抽出, "抽出条件の設定");
             コマンド抽出.UseVisualStyleBackColor = true;
@@ -234,6 +244,7 @@
             コマンド印刷プレビュー.Name = "コマンド印刷プレビュー";
             コマンド印刷プレビュー.Size = new Size(70, 22);
             コマンド印刷プレビュー.TabIndex = 1;
+            コマンド印刷プレビュー.TabStop = false;
             コマンド印刷プレビュー.Text = "印刷P";
             toolTip1.SetToolTip(コマンド印刷プレビュー, "印刷プレビュー");
             コマンド印刷プレビュー.UseVisualStyleBackColor = true;
@@ -248,6 +259,7 @@
             コマンド終了.Name = "コマンド終了";
             コマンド終了.Size = new Size(70, 22);
             コマンド終了.TabIndex = 0;
+            コマンド終了.TabStop = false;
             コマンド終了.Text = "終了";
             toolTip1.SetToolTip(コマンド終了, "終了");
             コマンド終了.UseVisualStyleBackColor = true;
@@ -286,14 +298,14 @@
             // 
             dataGridView1.AllowUserToAddRows = false;
             dataGridView1.AllowUserToDeleteRows = false;
-            dataGridView1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(0, 36);
+            dataGridView1.Dock = DockStyle.Fill;
+            dataGridView1.Location = new Point(0, 32);
             dataGridView1.Margin = new Padding(3, 2, 3, 2);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
             dataGridView1.RowTemplate.Height = 29;
-            dataGridView1.Size = new Size(1300, 555);
+            dataGridView1.Size = new Size(1305, 563);
             dataGridView1.TabIndex = 87;
             dataGridView1.CellClick += dataGridView1_CellClick;
             dataGridView1.CellDoubleClick += dataGridView1_CellDoubleClick;
@@ -318,10 +330,11 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1305, 622);
-            Controls.Add(panel2);
             Controls.Add(dataGridView1);
+            Controls.Add(panel2);
             Controls.Add(panel1);
             Icon = (Icon)resources.GetObject("$this.Icon");
+            KeyPreview = true;
             Margin = new Padding(3, 2, 3, 2);
             MaximizeBox = false;
             MinimizeBox = false;
