@@ -100,11 +100,13 @@
             コマンド入力.Name = "コマンド入力";
             コマンド入力.Size = new Size(70, 22);
             コマンド入力.TabIndex = 13;
+            コマンド入力.TabStop = false;
             コマンド入力.Text = "入力";
             コマンド入力.UseVisualStyleBackColor = true;
             // 
             // button1
             // 
+            button1.Enabled = false;
             button1.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             button1.ForeColor = Color.Blue;
             button1.ImageAlign = ContentAlignment.BottomLeft;
@@ -113,6 +115,7 @@
             button1.Name = "button1";
             button1.Size = new Size(70, 22);
             button1.TabIndex = 12;
+            button1.TabStop = false;
             button1.UseVisualStyleBackColor = true;
             // 
             // コマンド生産
@@ -126,6 +129,7 @@
             コマンド生産.Name = "コマンド生産";
             コマンド生産.Size = new Size(70, 22);
             コマンド生産.TabIndex = 11;
+            コマンド生産.TabStop = false;
             コマンド生産.Text = "生産";
             コマンド生産.UseVisualStyleBackColor = true;
             // 
@@ -139,6 +143,7 @@
             コマンド受注.Name = "コマンド受注";
             コマンド受注.Size = new Size(70, 22);
             コマンド受注.TabIndex = 1;
+            コマンド受注.TabStop = false;
             コマンド受注.Text = "受注";
             コマンド受注.UseVisualStyleBackColor = true;
             コマンド受注.Click += コマンド受注_Click;
@@ -153,6 +158,7 @@
             コマンド顧客.Name = "コマンド顧客";
             コマンド顧客.Size = new Size(70, 22);
             コマンド顧客.TabIndex = 6;
+            コマンド顧客.TabStop = false;
             コマンド顧客.Text = "顧客";
             コマンド顧客.UseVisualStyleBackColor = true;
             コマンド顧客.Click += コマンド顧客_Click;
@@ -167,6 +173,7 @@
             コマンド出力.Name = "コマンド出力";
             コマンド出力.Size = new Size(70, 22);
             コマンド出力.TabIndex = 11;
+            コマンド出力.TabStop = false;
             コマンド出力.Text = "出力";
             コマンド出力.UseVisualStyleBackColor = true;
             コマンド出力.Click += コマンド出力_Click;
@@ -181,6 +188,7 @@
             コマンド更新.Name = "コマンド更新";
             コマンド更新.Size = new Size(70, 22);
             コマンド更新.TabIndex = 10;
+            コマンド更新.TabStop = false;
             コマンド更新.Text = "更新";
             コマンド更新.UseVisualStyleBackColor = true;
             コマンド更新.Click += コマンド更新_Click;
@@ -195,6 +203,7 @@
             コマンド全表示.Name = "コマンド全表示";
             コマンド全表示.Size = new Size(70, 22);
             コマンド全表示.TabIndex = 5;
+            コマンド全表示.TabStop = false;
             コマンド全表示.Text = "全表示";
             コマンド全表示.UseVisualStyleBackColor = true;
             コマンド全表示.Click += コマンド全表示_Click;
@@ -209,6 +218,7 @@
             コマンド初期化.Name = "コマンド初期化";
             コマンド初期化.Size = new Size(70, 22);
             コマンド初期化.TabIndex = 4;
+            コマンド初期化.TabStop = false;
             コマンド初期化.Text = "初期化";
             コマンド初期化.UseVisualStyleBackColor = true;
             コマンド初期化.Click += コマンド初期化_Click;
@@ -223,6 +233,7 @@
             コマンド検索.Name = "コマンド検索";
             コマンド検索.Size = new Size(70, 22);
             コマンド検索.TabIndex = 3;
+            コマンド検索.TabStop = false;
             コマンド検索.Text = "検索";
             コマンド検索.UseVisualStyleBackColor = true;
             コマンド検索.Click += コマンド検索_Click;
@@ -237,6 +248,7 @@
             コマンド抽出.Name = "コマンド抽出";
             コマンド抽出.Size = new Size(70, 22);
             コマンド抽出.TabIndex = 2;
+            コマンド抽出.TabStop = false;
             コマンド抽出.Text = "抽出";
             コマンド抽出.UseVisualStyleBackColor = true;
             コマンド抽出.Click += コマンド抽出_Click;
@@ -250,34 +262,37 @@
             コマンド終了.Name = "コマンド終了";
             コマンド終了.Size = new Size(70, 22);
             コマンド終了.TabIndex = 0;
+            コマンド終了.TabStop = false;
             コマンド終了.Text = "終了";
             コマンド終了.UseVisualStyleBackColor = true;
             コマンド終了.Click += コマンド終了_Click;
             // 
             // 有効件数
             // 
-            有効件数.Font = new Font("Yu Gothic UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            有効件数.Location = new Point(72, 4);
+            有効件数.Font = new Font("BIZ UDPゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            有効件数.Location = new Point(72, 7);
             有効件数.Margin = new Padding(3, 2, 3, 2);
             有効件数.Name = "有効件数";
-            有効件数.Size = new Size(88, 25);
+            有効件数.Size = new Size(88, 20);
             有効件数.TabIndex = 0;
             // 
             // 表示件数ラベル
             // 
             表示件数ラベル.AutoSize = true;
-            表示件数ラベル.Location = new Point(6, 6);
+            表示件数ラベル.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            表示件数ラベル.Location = new Point(6, 9);
             表示件数ラベル.Name = "表示件数ラベル";
-            表示件数ラベル.Size = new Size(55, 15);
+            表示件数ラベル.Size = new Size(53, 12);
             表示件数ラベル.TabIndex = 85;
             表示件数ラベル.Text = "表示件数";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(164, 6);
+            label2.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label2.Location = new Point(164, 9);
             label2.Name = "label2";
-            label2.Size = new Size(19, 15);
+            label2.Size = new Size(17, 12);
             label2.TabIndex = 86;
             label2.Text = "件";
             // 
@@ -327,63 +342,67 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(751, 6);
+            label1.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.Location = new Point(776, 11);
             label1.Name = "label1";
-            label1.Size = new Size(217, 15);
+            label1.Size = new Size(236, 12);
             label1.TabIndex = 93;
             label1.Text = "※合計金額に未承認データは含まれません。";
             // 
             // 税込合計金額
             // 
-            税込合計金額.Font = new Font("Yu Gothic UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            税込合計金額.Location = new Point(637, 4);
+            税込合計金額.Font = new Font("BIZ UDPゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            税込合計金額.Location = new Point(637, 7);
             税込合計金額.Margin = new Padding(3, 2, 3, 2);
             税込合計金額.Name = "税込合計金額";
-            税込合計金額.Size = new Size(88, 25);
+            税込合計金額.Size = new Size(133, 20);
             税込合計金額.TabIndex = 3;
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(552, 6);
+            label3.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label3.Location = new Point(552, 9);
             label3.Name = "label3";
-            label3.Size = new Size(79, 15);
+            label3.Size = new Size(77, 12);
             label3.TabIndex = 91;
             label3.Text = "税込合計金額";
             // 
             // 合計金額
             // 
-            合計金額.Font = new Font("Yu Gothic UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            合計金額.Location = new Point(436, 4);
+            合計金額.Font = new Font("BIZ UDPゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            合計金額.Location = new Point(436, 7);
             合計金額.Margin = new Padding(3, 2, 3, 2);
             合計金額.Name = "合計金額";
-            合計金額.Size = new Size(88, 25);
+            合計金額.Size = new Size(88, 20);
             合計金額.TabIndex = 2;
             // 
             // 合計金額ラベル
             // 
             合計金額ラベル.AutoSize = true;
-            合計金額ラベル.Location = new Point(375, 6);
+            合計金額ラベル.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            合計金額ラベル.Location = new Point(375, 9);
             合計金額ラベル.Name = "合計金額ラベル";
-            合計金額ラベル.Size = new Size(55, 15);
+            合計金額ラベル.Size = new Size(53, 12);
             合計金額ラベル.TabIndex = 89;
             合計金額ラベル.Text = "合計金額";
             // 
             // 合計数量
             // 
-            合計数量.Font = new Font("Yu Gothic UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            合計数量.Location = new Point(268, 4);
+            合計数量.Font = new Font("BIZ UDPゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            合計数量.Location = new Point(268, 7);
             合計数量.Margin = new Padding(3, 2, 3, 2);
             合計数量.Name = "合計数量";
-            合計数量.Size = new Size(88, 25);
+            合計数量.Size = new Size(88, 20);
             合計数量.TabIndex = 1;
             // 
             // 合計数量ラベル
             // 
             合計数量ラベル.AutoSize = true;
-            合計数量ラベル.Location = new Point(207, 6);
+            合計数量ラベル.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            合計数量ラベル.Location = new Point(207, 9);
             合計数量ラベル.Name = "合計数量ラベル";
-            合計数量ラベル.Size = new Size(55, 15);
+            合計数量ラベル.Size = new Size(53, 12);
             合計数量ラベル.TabIndex = 87;
             合計数量ラベル.Text = "合計数量";
             // 
