@@ -143,6 +143,8 @@ namespace u_net
                     this.Close();
                     return;
                 }
+
+                this.Close();
             }
             catch (Exception ex)
             {

@@ -94,6 +94,10 @@ namespace u_net
         private void Form_Load(object sender, EventArgs e)
         {
 
+            System.Type dgvtype = typeof(DataGridView);
+            System.Reflection.PropertyInfo dgvPropertyInfo = dgvtype.GetProperty("DoubleBuffered", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
+            dgvPropertyInfo.SetValue(dataGridView1, true, null);
+
             //実行中フォーム起動
             string LoginUserCode = CommonConstants.LoginUserCode;
             LocalSetting localSetting = new LocalSetting();
@@ -149,11 +153,11 @@ namespace u_net
             try
             {
                 
-                    dataGridView1.Height = dataGridView1.Height + (this.Height - intWindowHeight);
-                    intWindowHeight = this.Height;  // 高さ保存
+                    //dataGridView1.Height = dataGridView1.Height + (this.Height - intWindowHeight);
+                    //intWindowHeight = this.Height;  // 高さ保存
 
-                    dataGridView1.Width = dataGridView1.Width + (this.Width - intWindowWidth);
-                    intWindowWidth = this.Width;    // 幅保存
+                    //dataGridView1.Width = dataGridView1.Width + (this.Width - intWindowWidth);
+                    //intWindowWidth = this.Width;    // 幅保存
                 
             }
             catch (Exception ex)
@@ -292,7 +296,7 @@ namespace u_net
                 // 更新者名
                 if (!string.IsNullOrEmpty(str更新者名))
                 {
-                    filter += "更新者名 = '" + str更新者名 + "' AND ";
+                    filter += string.Format("更新者名 LIKE '%{0}%' AND ", str更新者名);
                 }
               
 
@@ -334,7 +338,7 @@ namespace u_net
 
                 //0列目はaccessでは行ヘッダのため、ずらす
                 //dataGridView1.Columns[0].Width = 500 / twipperdot;
-                dataGridView1.Columns[0].Width = 1050 / twipperdot; //1150
+                dataGridView1.Columns[0].Width = 1300 / twipperdot; //1150
                 dataGridView1.Columns[1].Width = 300 / twipperdot;
                 dataGridView1.Columns[2].Width = 400 / twipperdot;
                 dataGridView1.Columns[3].Width = 300 / twipperdot;
@@ -495,36 +499,47 @@ namespace u_net
                 switch (e.KeyCode)
                 {
                     case Keys.F1:
+                        e.Handled = true;
                         if (this.コマンド抽出.Enabled) コマンド抽出_Click(null, null);
                         break;
                     case Keys.F2:
+                        e.Handled = true;
                         if (this.コマンド検索.Enabled) コマンド検索_Click(null, null);
                         break;
                     case Keys.F3:
+                        e.Handled = true;
                         if (this.コマンド初期化.Enabled) コマンド初期化_Click(null, null);
                         break;
                     case Keys.F4:
+                        e.Handled = true;
                         if (this.コマンド更新.Enabled) コマンド更新_Click(null, null);
                         break;
                     case Keys.F5:
+                        e.Handled = true;
                         if (this.コマンド部品.Enabled) コマンド部品_Click(null, null);
                         break;
                     case Keys.F6:
-                        //if (this.コマンド入出履歴.Enabled) コマンド_Click(null, null);
+                        e.Handled = true;
+                        if (this.コマンド入出履歴.Enabled) コマンド入出履歴_Click(null, null);
                         break;
                     case Keys.F9:
+                        e.Handled = true;
                         if (this.コマンド印刷プレビュー.Enabled) コマンド印刷プレビュー_Click(null, null);
                         break;
                     case Keys.F10:
+                        e.Handled = true;
                         if (this.コマンド出力.Enabled) コマンド出力_Click(null, null);
                         break;
                     case Keys.F11:
+                        e.Handled = true;
                         if (this.コマンド保守.Enabled) コマンド保守_Click(null, null);
                         break;
                     case Keys.F12:
+                        e.Handled = true;
                         if (this.コマンド終了.Enabled) コマンド終了_Click(null, null);
                         break;
                     case Keys.Return:
+                        e.Handled = true;
                         if (this.ActiveControl == this.dataGridView1)
                         {
                             if (dataGridView1.SelectedRows.Count > 0)

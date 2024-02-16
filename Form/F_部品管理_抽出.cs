@@ -55,12 +55,15 @@ namespace u_net
 
                 ofn.SetComboBox(分類記号, "SELECT 分類記号 as Display,対象部品名 as Display2,分類記号 as Value FROM M部品分類 ORDER BY 分類記号");
                 分類記号.DrawMode = DrawMode.OwnerDrawFixed;
+                分類記号.DropDownWidth = 550;
 
                 ofn.SetComboBox(形状, "SELECT 形状省略名 as Display, 部品形状名 as Display2, 形状省略名 as Value FROM M部品形状 ORDER BY 形状省略名");
                 形状.DrawMode = DrawMode.OwnerDrawFixed;
+                形状.DropDownWidth = 150;
 
                 ofn.SetComboBox(RohsStatusCode, "SELECT Name as Display, Sign as Display2,Code as Value FROM rohsStatusCode");
-                形状.DrawMode = DrawMode.OwnerDrawFixed;
+                RohsStatusCode.DrawMode = DrawMode.OwnerDrawFixed;
+                RohsStatusCode.DropDownWidth = 150;
 
                 this.単価指定.DataSource = new KeyValuePair<long, String>[] {
                     new KeyValuePair<long, String>(1, "有り"),
@@ -155,7 +158,7 @@ namespace u_net
                 frmTarget.str仕入先名 = Nz(仕入先名.Text);
                 frmTarget.lng単価指定 = 単価指定.SelectedValue != null ? Convert.ToInt64(単価指定.SelectedValue) : 0;
                 frmTarget.lngRohsStatusCode = RohsStatusCode.SelectedValue != null ? Convert.ToInt64(RohsStatusCode.SelectedValue) : 0;
-                frmTarget.strChemSherpaVersion = Nz(更新者名.Text);
+                frmTarget.strChemSherpaVersion = Nz(ChemSherpaVersion.Text);
 
                 frmTarget.str更新者名 = Nz(更新者名.Text);
 
@@ -213,6 +216,7 @@ namespace u_net
                     MessageBox.Show("エラーが発生したため、抽出できませんでした。", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     this.Close();
                 }
+                this.Close();
             }
             catch (Exception ex)
             {
@@ -282,7 +286,7 @@ namespace u_net
 
         private void 形状_DrawItem(object sender, DrawItemEventArgs e)
         {
-            OriginalClass.SetComboBoxAppearance((ComboBox)sender, e, new int[] { 50, 200 }, new string[] { "Display", "Display2" });
+            OriginalClass.SetComboBoxAppearance((ComboBox)sender, e, new int[] { 50, 100 }, new string[] { "Display", "Display2" });
             形状.Invalidate();
             形状.DroppedDown = true;
         }
@@ -292,7 +296,7 @@ namespace u_net
 
         private void RohsStatusCode_DrawItem(object sender, DrawItemEventArgs e)
         {
-            OriginalClass.SetComboBoxAppearance((ComboBox)sender, e, new int[] { 200, 50 }, new string[] { "Display", "Display2" });
+            OriginalClass.SetComboBoxAppearance((ComboBox)sender, e, new int[] { 100, 50 }, new string[] { "Display", "Display2" });
             RohsStatusCode.Invalidate();
             RohsStatusCode.DroppedDown = true;
         }
@@ -337,7 +341,7 @@ namespace u_net
             switch (e.KeyCode)
             {
                 case Keys.Return:
-                    SelectNextControl(ActiveControl, true, true, true, true);
+                    抽出ボタン_Click(sender, e);
                     break;
             }
         }

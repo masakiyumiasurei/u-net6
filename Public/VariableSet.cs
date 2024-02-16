@@ -273,11 +273,14 @@ namespace u_net.Public
                 else if (childControl is ComboBox comboBox)
                 {
                     comboBox.SelectedIndex = -1; // ComboBoxの選択をクリア
-                    comboBox.Text= null;
+                    comboBox.Text = null;
                 }
                 else if (childControl is CheckBox checkBox)
                 {
                     checkBox.Checked = false; // CheckBoxのチェックを外す
+                }else if (childControl is MaskedTextBox maskedText)
+                {
+                    maskedText.Text = null;
                 }
             }
         }

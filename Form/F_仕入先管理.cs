@@ -383,9 +383,7 @@ namespace u_net
 
         private void コマンド印刷_Click(object sender, EventArgs e)
         {
-            dataGridView1.Focus(); // DataGridViewにフォーカスを設定
-
-            MessageBox.Show("現在開発中です。", "印刷コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("現在開発中です。\n 表示リストを印刷するときに使用します。", "印刷コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void コマンド抽出_Click(object sender, EventArgs e)
@@ -409,9 +407,7 @@ namespace u_net
 
         private void コマンド初期化_Click(object sender, EventArgs e)
         {
-            InitializeFilter();
-            DoUpdate();
-            Cleargrid(dataGridView1);
+            MessageBox.Show("現在開発中です。\n 表示リストを初期化するときに使用します。", "初期化コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void コマンド全表示_Click(object sender, EventArgs e)

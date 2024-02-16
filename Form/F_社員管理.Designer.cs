@@ -87,6 +87,7 @@
             コマンド入出力.Name = "コマンド入出力";
             コマンド入出力.Size = new Size(70, 22);
             コマンド入出力.TabIndex = 12;
+            コマンド入出力.TabStop = false;
             コマンド入出力.Text = "入出力";
             コマンド入出力.UseVisualStyleBackColor = true;
             コマンド入出力.Click += コマンド入出力_Click;
@@ -102,6 +103,7 @@
             コマンドF8.Name = "コマンドF8";
             コマンドF8.Size = new Size(70, 22);
             コマンドF8.TabIndex = 11;
+            コマンドF8.TabStop = false;
             コマンドF8.UseVisualStyleBackColor = true;
             // 
             // コマンドF7
@@ -115,6 +117,7 @@
             コマンドF7.Name = "コマンドF7";
             コマンドF7.Size = new Size(70, 22);
             コマンドF7.TabIndex = 10;
+            コマンドF7.TabStop = false;
             コマンドF7.UseVisualStyleBackColor = true;
             // 
             // コマンド社員
@@ -127,6 +130,7 @@
             コマンド社員.Name = "コマンド社員";
             コマンド社員.Size = new Size(70, 22);
             コマンド社員.TabIndex = 9;
+            コマンド社員.TabStop = false;
             コマンド社員.Text = "社員";
             toolTip1.SetToolTip(コマンド社員, "社員データの参照");
             コマンド社員.UseVisualStyleBackColor = true;
@@ -142,6 +146,7 @@
             コマンドメール.Name = "コマンドメール";
             コマンドメール.Size = new Size(70, 22);
             コマンドメール.TabIndex = 8;
+            コマンドメール.TabStop = false;
             コマンドメール.Text = "メール";
             toolTip1.SetToolTip(コマンドメール, "メールの作成");
             コマンドメール.UseVisualStyleBackColor = true;
@@ -158,6 +163,7 @@
             コマンド印刷.Name = "コマンド印刷";
             コマンド印刷.Size = new Size(70, 22);
             コマンド印刷.TabIndex = 7;
+            コマンド印刷.TabStop = false;
             コマンド印刷.Text = "印刷";
             コマンド印刷.UseVisualStyleBackColor = true;
             コマンド印刷.Click += コマンド印刷_Click;
@@ -173,6 +179,7 @@
             コマンド保守.Name = "コマンド保守";
             コマンド保守.Size = new Size(70, 22);
             コマンド保守.TabIndex = 6;
+            コマンド保守.TabStop = false;
             コマンド保守.Text = "保守";
             コマンド保守.UseVisualStyleBackColor = true;
             コマンド保守.Click += コマンド保守_Click;
@@ -187,6 +194,7 @@
             コマンド初期化.Name = "コマンド初期化";
             コマンド初期化.Size = new Size(70, 22);
             コマンド初期化.TabIndex = 4;
+            コマンド初期化.TabStop = false;
             コマンド初期化.Text = "初期化";
             toolTip1.SetToolTip(コマンド初期化, "抽出条件の初期化");
             コマンド初期化.UseVisualStyleBackColor = true;
@@ -202,6 +210,7 @@
             コマンド検索.Name = "コマンド検索";
             コマンド検索.Size = new Size(70, 22);
             コマンド検索.TabIndex = 3;
+            コマンド検索.TabStop = false;
             コマンド検索.Text = "検索";
             toolTip1.SetToolTip(コマンド検索, "全文検索");
             コマンド検索.UseVisualStyleBackColor = true;
@@ -217,6 +226,7 @@
             コマンド抽出.Name = "コマンド抽出";
             コマンド抽出.Size = new Size(70, 22);
             コマンド抽出.TabIndex = 2;
+            コマンド抽出.TabStop = false;
             コマンド抽出.Text = "抽出";
             toolTip1.SetToolTip(コマンド抽出, "抽出条件の設定");
             コマンド抽出.UseVisualStyleBackColor = true;
@@ -232,6 +242,7 @@
             コマンド更新.Name = "コマンド更新";
             コマンド更新.Size = new Size(70, 22);
             コマンド更新.TabIndex = 1;
+            コマンド更新.TabStop = false;
             コマンド更新.Text = "更新";
             toolTip1.SetToolTip(コマンド更新, "最新の情報に更新");
             コマンド更新.UseVisualStyleBackColor = true;
@@ -246,6 +257,7 @@
             コマンド終了.Name = "コマンド終了";
             コマンド終了.Size = new Size(70, 22);
             コマンド終了.TabIndex = 0;
+            コマンド終了.TabStop = false;
             コマンド終了.Text = "終了";
             toolTip1.SetToolTip(コマンド終了, "終了");
             コマンド終了.UseVisualStyleBackColor = true;
@@ -320,6 +332,7 @@
             Controls.Add(panel2);
             Controls.Add(panel1);
             Icon = (Icon)resources.GetObject("$this.Icon");
+            KeyPreview = true;
             Margin = new Padding(3, 2, 3, 2);
             Name = "F_社員管理";
             StartPosition = FormStartPosition.CenterScreen;
