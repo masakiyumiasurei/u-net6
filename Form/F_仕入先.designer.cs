@@ -729,7 +729,7 @@ namespace u_net
             Contact3PhoneNumber.Margin = new Padding(3, 2, 3, 2);
             Contact3PhoneNumber.Name = "Contact3PhoneNumber";
             Contact3PhoneNumber.Size = new Size(100, 20);
-            Contact3PhoneNumber.TabIndex = 235;
+            Contact3PhoneNumber.TabIndex = 25;
             Contact3PhoneNumber.TextChanged += Contact1PhoneNumber3_TextChanged;
             // 
             // 担当者名３
@@ -741,7 +741,7 @@ namespace u_net
             担当者名３.Margin = new Padding(3, 2, 3, 2);
             担当者名３.Name = "担当者名３";
             担当者名３.Size = new Size(142, 20);
-            担当者名３.TabIndex = 234;
+            担当者名３.TabIndex = 24;
             担当者名３.TextChanged += 担当者名3_TextChanged;
             担当者名３.Enter += 担当者名3_Enter;
             // 
@@ -766,7 +766,7 @@ namespace u_net
             Contact2PhoneNumber.Margin = new Padding(3, 2, 3, 2);
             Contact2PhoneNumber.Name = "Contact2PhoneNumber";
             Contact2PhoneNumber.Size = new Size(100, 20);
-            Contact2PhoneNumber.TabIndex = 232;
+            Contact2PhoneNumber.TabIndex = 22;
             Contact2PhoneNumber.TextChanged += Contact1PhoneNumber2_TextChanged;
             // 
             // 担当者名２
@@ -778,7 +778,7 @@ namespace u_net
             担当者名２.Margin = new Padding(3, 2, 3, 2);
             担当者名２.Name = "担当者名２";
             担当者名２.Size = new Size(141, 20);
-            担当者名２.TabIndex = 231;
+            担当者名２.TabIndex = 21;
             担当者名２.TextChanged += 担当者名2_TextChanged;
             担当者名２.Enter += 担当者名2_Enter;
             // 
@@ -1557,6 +1557,7 @@ namespace u_net
             ActiveDate.ReadOnly = true;
             ActiveDate.Size = new Size(188, 20);
             ActiveDate.TabIndex = 196;
+            ActiveDate.TabStop = false;
             // 
             // label3
             // 
@@ -1584,6 +1585,7 @@ namespace u_net
             無効日時.ReadOnly = true;
             無効日時.Size = new Size(188, 20);
             無効日時.TabIndex = 194;
+            無効日時.TabStop = false;
             // 
             // 無効者名
             // 
@@ -1596,6 +1598,7 @@ namespace u_net
             無効者名.ReadOnly = true;
             無効者名.Size = new Size(142, 20);
             無効者名.TabIndex = 192;
+            無効者名.TabStop = false;
             // 
             // 無効者コード
             // 
@@ -1608,6 +1611,7 @@ namespace u_net
             無効者コード.ReadOnly = true;
             無効者コード.Size = new Size(47, 20);
             無効者コード.TabIndex = 191;
+            無効者コード.TabStop = false;
             // 
             // label1
             // 
@@ -1635,6 +1639,7 @@ namespace u_net
             更新者名.ReadOnly = true;
             更新者名.Size = new Size(142, 20);
             更新者名.TabIndex = 186;
+            更新者名.TabStop = false;
             // 
             // 更新者コード
             // 
@@ -1647,6 +1652,7 @@ namespace u_net
             更新者コード.ReadOnly = true;
             更新者コード.Size = new Size(47, 20);
             更新者コード.TabIndex = 185;
+            更新者コード.TabStop = false;
             // 
             // label14
             // 
@@ -1689,6 +1695,7 @@ namespace u_net
             更新日時.ReadOnly = true;
             更新日時.Size = new Size(188, 20);
             更新日時.TabIndex = 184;
+            更新日時.TabStop = false;
             // 
             // 作成者名
             // 
@@ -1701,6 +1708,7 @@ namespace u_net
             作成者名.ReadOnly = true;
             作成者名.Size = new Size(142, 20);
             作成者名.TabIndex = 183;
+            作成者名.TabStop = false;
             // 
             // 作成者コード
             // 
@@ -1713,6 +1721,7 @@ namespace u_net
             作成者コード.ReadOnly = true;
             作成者コード.Size = new Size(47, 20);
             作成者コード.TabIndex = 182;
+            作成者コード.TabStop = false;
             // 
             // label12
             // 
@@ -1755,6 +1764,7 @@ namespace u_net
             作成日時.ReadOnly = true;
             作成日時.Size = new Size(188, 20);
             作成日時.TabIndex = 181;
+            作成日時.TabStop = false;
             // 
             // 支払
             // 
