@@ -16,6 +16,7 @@ using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.InkML;
 using GrapeCity.Win.BarCode.ValueType;
 using GrapeCity.Win.MultiRow;
+using Microsoft.IdentityModel.Tokens;
 using u_net;
 using u_net.Public;
 
@@ -1163,6 +1164,11 @@ namespace MultiRowDesigner
                     case "発注納期":
                         e.Handled = true; //スペースの本来の挙動（空白入力）を制御する
 
+                        if (!string.IsNullOrEmpty(gcMultiRow1.CurrentRow.Cells["発注納期"].Value.ToString()))
+                        {
+                            fm.args = gcMultiRow1.CurrentRow.Cells["発注納期"].Value.ToString();
+                        }
+
                         if (fm.ShowDialog() == DialogResult.OK && gcMultiRow1.ReadOnly == false)
                         {
                             // 日付選択フォームから選択した日付を取得
@@ -1314,6 +1320,11 @@ namespace MultiRowDesigner
                         }
                         break;
                     case "発注納期":
+
+                        if (!string.IsNullOrEmpty(gcMultiRow1.CurrentRow.Cells["発注納期"].Value.ToString()))
+                        {
+                            fm.args = gcMultiRow1.CurrentRow.Cells["発注納期"].Value.ToString();
+                        }
 
                         if (fm.ShowDialog() == DialogResult.OK && gcMultiRow1.ReadOnly == false)
                         {

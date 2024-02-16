@@ -693,7 +693,7 @@ namespace u_net
                     case "仕入先コード":
                         Connect();
                         string str1 = FunctionClass.GetSupplierName(cn, (varValue == null || varValue == DBNull.Value) ? null : varValue.ToString());
-
+                        cn.Close();
                         if (string.IsNullOrEmpty(str1))
                         {
                             MessageBox.Show("指定された仕入先データはありません。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -1638,23 +1638,25 @@ namespace u_net
                 fn.DoWait("発注書を作成しています...");
 
             //注意　レポート出力テストのため外部システムの実行をコメント
+            // 20240216 他システムから出力しているようなのでコメント外す
 
-            //string param = $" -sv:{ServerInstanceName.Replace(" ", "_")} -pv:porder,{CurrentCode.TrimEnd().Replace(" ", "_")}," +
-            //    $"{CurrentEdition.ToString().Replace(" ", "_")}";
-            //param = $" -user:{LoginUserName}{param}";
-            //FunctionClass.GetShell(param);
+            string param = $" -sv:{ServerInstanceName.Replace(" ", "_")} -pv:porder,{CurrentCode.TrimEnd().Replace(" ", "_")}," +
+                $"{CurrentEdition.ToString().Replace(" ", "_")}";
+            param = $" -user:{LoginUserName}{param}";
+            FunctionClass.GetShell(param);
 
             Bye_コマンド発注書_Click:
 
                 fn.WaitForm.Close();
 
-                発注書印刷();
+                //このシステムからは出力しない模様
+               // 発注書印刷();
 
                 return;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("エラーが発生しました。", "発注書コマンド", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("エラーが発生しました。", "発注書コマンド"+ ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             }
         }
@@ -2326,8 +2328,9 @@ namespace u_net
             }
         }
 
+        
         private void 発注コード_Enter(object sender, EventArgs e)
-        {
+        {            
             toolStripStatusLabel1.Text = "■発注コードを入力します。";
         }
 
@@ -2544,8 +2547,9 @@ namespace u_net
             if (IsError(sender as Control, false) == true) e.Cancel = true;
         }
 
+        
         private void 発注者コード_TextChanged(object sender, EventArgs e)
-        {
+        {                        
             ChangedData(true);
         }
 
@@ -2556,11 +2560,17 @@ namespace u_net
 
         private void 発注者コード_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (IsError(sender as Control, false) == true) e.Cancel = true;
+            if (IsError(sender as Control, false) == true)
+            {
+                e.Cancel = true;
+                発注者コード.Text = hachucode;
+            }
         }
 
+        string hachucode = "";
         private void 発注者コード_Enter(object sender, EventArgs e)
         {
+            hachucode = 発注者コード.Text;
             //何のための処理か？？
             int listCount = 発注者コード.Items.Count;
         }
