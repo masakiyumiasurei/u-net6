@@ -22,6 +22,8 @@ namespace u_net
         public F_受注管理_抽出()
         {
             InitializeComponent();
+
+            自社担当者コード.DropDownWidth = 200;
         }
 
         SqlConnection cn;
@@ -137,7 +139,7 @@ namespace u_net
                     {
                         未完了承認.Checked = true;
                     }
-                    
+
                     if (frmTarget.byt無効日 == 1)
                     {
                         削除済み.Checked = true;
@@ -321,13 +323,13 @@ namespace u_net
                     }
                     else
                     {
-                        frmTarget.ble出荷指定 = false;                        
+                        frmTarget.ble出荷指定 = false;
                     }
 
                     if (受注完了承認指定.Checked)
                     {
                         frmTarget.ble受注完了承認指定 = true;
-                        
+
                         if (完了承認済み.Checked)
                         {
                             frmTarget.byt受注完了承認 = 1;
@@ -473,7 +475,7 @@ namespace u_net
         private void 受注コード1_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
-            {                
+            {
                 int keyAscii = ChangeBig(e.KeyChar);
 
                 //// イベントを処理したことを示す
@@ -510,7 +512,7 @@ namespace u_net
         private void 受注コード2_KeyDown(object sender, KeyEventArgs e)
         {
             try
-            {                
+            {
                 string strCode = FunctionClass.FormatCode("A", e.KeyCode.ToString());
 
                 ////// イベントを処理したことを示す
@@ -526,7 +528,7 @@ namespace u_net
         private void 受注コード2_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
-            {                
+            {
                 ////e.KeyChar = ChangeBig(e.KeyChar);
                 int keyAscii = ChangeBig(e.KeyChar);
 
@@ -824,7 +826,7 @@ namespace u_net
 
         private void 出荷予定日1_Leave(object sender, EventArgs e)
         {
-            FunctionClass.AdjustRange(出荷予定日1, 出荷予定日2,出荷予定日1);
+            FunctionClass.AdjustRange(出荷予定日1, 出荷予定日2, 出荷予定日1);
         }
 
         private void 出荷予定日1選択ボタン_Click(object sender, EventArgs e)
@@ -978,6 +980,27 @@ namespace u_net
                     }
                     break;
             }
+        }
+
+        private void 受注承認指定_ラベル_Click(object sender, EventArgs e)
+        {
+            受注承認指定.Checked = !(受注承認指定.Checked);
+            受注承認.Enabled = 受注承認指定.Checked;
+            受注承認.Focus();
+        }
+
+        private void 出荷指定_ラベル_Click(object sender, EventArgs e)
+        {
+            出荷指定.Checked = !(出荷指定.Checked);
+            出荷指定.Enabled = 出荷指定.Checked;
+            出荷指定.Focus();
+        }
+
+        private void 受注完了承認指定_ラベル_Click(object sender, EventArgs e)
+        {
+            受注完了承認指定.Checked = !(受注完了承認指定.Checked);
+            受注完了承認指定.Enabled = 受注完了承認指定.Checked;
+            受注完了承認指定.Focus();
         }
 
         // Nz メソッドの代替
