@@ -179,6 +179,7 @@ namespace u_net
             コマンド終了.Name = "コマンド終了";
             コマンド終了.Size = new Size(70, 20);
             コマンド終了.TabIndex = 0;
+            コマンド終了.TabStop = false;
             コマンド終了.Text = "終了";
             toolTip1.SetToolTip(コマンド終了, "終了");
             コマンド終了.UseVisualStyleBackColor = true;
@@ -195,6 +196,7 @@ namespace u_net
             コマンド登録.Name = "コマンド登録";
             コマンド登録.Size = new Size(70, 20);
             コマンド登録.TabIndex = 1;
+            コマンド登録.TabStop = false;
             コマンド登録.Text = "登録";
             コマンド登録.UseVisualStyleBackColor = true;
             コマンド登録.Click += コマンド登録_Click;
@@ -217,7 +219,7 @@ namespace u_net
             panel1.Location = new Point(0, 1);
             panel1.Margin = new Padding(4, 3, 4, 3);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1468, 42);
+            panel1.Size = new Size(939, 42);
             panel1.TabIndex = 81;
             // 
             // コマンドF8
@@ -231,6 +233,7 @@ namespace u_net
             コマンドF8.Name = "コマンドF8";
             コマンドF8.Size = new Size(70, 20);
             コマンドF8.TabIndex = 11;
+            コマンドF8.TabStop = false;
             コマンドF8.UseVisualStyleBackColor = true;
             // 
             // コマンドF7
@@ -244,6 +247,7 @@ namespace u_net
             コマンドF7.Name = "コマンドF7";
             コマンドF7.Size = new Size(70, 20);
             コマンドF7.TabIndex = 10;
+            コマンドF7.TabStop = false;
             コマンドF7.UseVisualStyleBackColor = true;
             // 
             // コマンドF6
@@ -257,6 +261,7 @@ namespace u_net
             コマンドF6.Name = "コマンドF6";
             コマンドF6.Size = new Size(70, 20);
             コマンドF6.TabIndex = 9;
+            コマンドF6.TabStop = false;
             コマンドF6.UseVisualStyleBackColor = true;
             // 
             // コマンドメール
@@ -270,6 +275,7 @@ namespace u_net
             コマンドメール.Name = "コマンドメール";
             コマンドメール.Size = new Size(70, 20);
             コマンドメール.TabIndex = 8;
+            コマンドメール.TabStop = false;
             コマンドメール.Text = "メール";
             toolTip1.SetToolTip(コマンドメール, "メールの作成");
             コマンドメール.UseVisualStyleBackColor = true;
@@ -285,6 +291,7 @@ namespace u_net
             コマンド確定.Name = "コマンド確定";
             コマンド確定.Size = new Size(70, 20);
             コマンド確定.TabIndex = 7;
+            コマンド確定.TabStop = false;
             コマンド確定.Text = "確定";
             コマンド確定.UseVisualStyleBackColor = true;
             コマンド確定.Click += コマンド確定_Click;
@@ -300,6 +307,7 @@ namespace u_net
             コマンド承認.Name = "コマンド承認";
             コマンド承認.Size = new Size(70, 20);
             コマンド承認.TabIndex = 6;
+            コマンド承認.TabStop = false;
             コマンド承認.Text = "承認";
             コマンド承認.UseVisualStyleBackColor = true;
             コマンド承認.Click += コマンド承認_Click;
@@ -315,6 +323,7 @@ namespace u_net
             コマンド削除.Name = "コマンド削除";
             コマンド削除.Size = new Size(70, 20);
             コマンド削除.TabIndex = 5;
+            コマンド削除.TabStop = false;
             コマンド削除.Text = "削除";
             コマンド削除.UseVisualStyleBackColor = true;
             コマンド削除.Click += コマンド削除_Click;
@@ -330,6 +339,7 @@ namespace u_net
             コマンド複写.Name = "コマンド複写";
             コマンド複写.Size = new Size(70, 20);
             コマンド複写.TabIndex = 4;
+            コマンド複写.TabStop = false;
             コマンド複写.Text = "複写";
             コマンド複写.UseVisualStyleBackColor = true;
             コマンド複写.Click += コマンド複写_Click;
@@ -344,6 +354,7 @@ namespace u_net
             コマンド読込.Name = "コマンド読込";
             コマンド読込.Size = new Size(70, 20);
             コマンド読込.TabIndex = 3;
+            コマンド読込.TabStop = false;
             コマンド読込.Text = "読込";
             コマンド読込.UseVisualStyleBackColor = true;
             コマンド読込.Click += コマンド読込_Click;
@@ -359,6 +370,7 @@ namespace u_net
             コマンド新規.Name = "コマンド新規";
             コマンド新規.Size = new Size(70, 20);
             コマンド新規.TabIndex = 2;
+            コマンド新規.TabStop = false;
             コマンド新規.Text = "新規";
             コマンド新規.UseVisualStyleBackColor = true;
             コマンド新規.Click += コマンド新規_Click;

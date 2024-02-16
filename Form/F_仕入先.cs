@@ -473,7 +473,7 @@ namespace u_net
                         コマンド修正.Enabled = false;
                         コマンド複写.Enabled = true;
                         コマンド削除.Enabled = true;
-                        コマンド承認.Enabled = false;
+                        //コマンド承認.Enabled = false;
                     }
                     return true;
 
@@ -639,9 +639,11 @@ namespace u_net
             }
             else
             {
-                if (!FunctionClass.IsError(this.窓口郵便番号)) return false;
+                
                 if (!FunctionClass.IsError(this.仕入先名)) return false;
                 if (!FunctionClass.IsError(this.仕入先名フリガナ)) return false;
+                if (!FunctionClass.IsError(this.評価ランク)) return false;
+                if (!FunctionClass.IsError(this.窓口郵便番号)) return false;
                 if (!FunctionClass.IsError(this.窓口住所1)) return false;
                 if (!FunctionClass.IsError(this.窓口電話番号1)) return false;
                 if (!FunctionClass.IsError(this.窓口電話番号2)) return false;
@@ -650,7 +652,7 @@ namespace u_net
                 if (!FunctionClass.IsError(this.窓口ファックス番号2)) return false;
                 if (!FunctionClass.IsError(this.窓口ファックス番号3)) return false;
                 if (!FunctionClass.IsError(this.支払先専用)) return false;
-                if (!FunctionClass.IsError(this.評価ランク)) return false;
+                
                 if (!FunctionClass.IsError(this.担当者名)) return false;
             }
 
@@ -777,7 +779,7 @@ namespace u_net
 
                         var authForm = new F_認証();
                         authForm.ShowDialog();
-                        if (string.IsNullOrEmpty(CommonConstants.LoginUserCode))
+                        if (string.IsNullOrEmpty(CommonConstants.strCertificateCode))
                         {
 
                             //while (strCertificateCode == "")
@@ -812,7 +814,7 @@ namespace u_net
                     {
                         var authForm = new F_認証();
                         authForm.ShowDialog();
-                        if (string.IsNullOrEmpty(CommonConstants.LoginUserCode))
+                        if (string.IsNullOrEmpty(CommonConstants.strCertificateCode))
                         {
                             MessageBox.Show("削除操作は取り消されました。", "削除コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             return;
@@ -938,7 +940,7 @@ namespace u_net
 
         private void コマンド承認_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("現在開発中です。", "承認コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("承認コマンドは使えません。", "承認コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void コマンド確定_Click(object sender, EventArgs e)
@@ -1105,8 +1107,12 @@ namespace u_net
                 switch (strName)
                 {
                     case "仕入先コード":
+                        if (string.IsNullOrEmpty(仕入先コード.Text)) return;
+
                         FunctionClass fn = new FunctionClass();
                         fn.DoWait("読み込んでいます...");
+
+                        
 
                         LoadHeader(this, this.仕入先コード.Text);
 
