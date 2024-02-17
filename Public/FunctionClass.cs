@@ -235,8 +235,13 @@ namespace u_net.Public
         }
 
 
-
-        //取得したコードをリサイクルテーブルへ戻す 登録処理を中断した時用
+        /// <summary>
+        /// 取得したコードをリサイクルテーブルへ戻す 登録処理を中断した時用
+        /// </summary>
+        /// <param name="connection"></param>
+        /// <param name="codeString">主キー</param>
+        /// <returns></returns>
+        
         public static bool ReturnCode(SqlConnection connection, string codeString)
         {
             bool success = false;

@@ -197,30 +197,37 @@ namespace u_net
             {
                 string filter = string.Empty;
 
-                // 仕入先コード指定
+                // 部品集合コード指定
                 if (!string.IsNullOrEmpty(str部品集合コード開始))
                 {
                     filter += string.Format(" and (部品集合コード BETWEEN '{0}' AND '{1}') ",
                                                                   str部品集合コード開始, str部品集合コード終了);
                 }
 
-                // 仕入先名指定
+                // 集合分類指定
                 if (!string.IsNullOrEmpty(str分類名))
                 {
                     filter += string.Format(" and GP= '{0}'  ", str分類名);
                 }
 
-                // 担当者名指定
+                // 集合名指定
                 if (!string.IsNullOrEmpty(str集合名))
                 {
                     filter += string.Format(" and 集合名 LIKE '%{0}%' ", str集合名);
                 }
 
-                // 担当者メールアドレス指定
+                // 更新日指定
                 if (dtm更新日開始 != DateTime.MinValue && dtm更新日終了 != DateTime.MinValue)
                 {
                     filter += string.Format(" and '{0}' <= 更新日時 AND 更新日時 <= '{1}' ", dtm更新日開始, dtm更新日終了);
                 }
+
+                // 更新者名指定
+                if (!string.IsNullOrEmpty(str更新者名))
+                {
+                    filter += string.Format(" and 更新者名= '{0}'  ", str更新者名);
+                }
+
                 // 確定指定
                 switch (lng確定指定)
                 {

@@ -429,6 +429,7 @@
             // 
             // F_部品集合管理_抽出
             // 
+            AcceptButton = 抽出ボタン;
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(467, 496);

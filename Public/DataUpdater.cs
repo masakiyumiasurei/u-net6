@@ -67,6 +67,7 @@ namespace u_net.Public
 
                         // データベースに新規データを追加
                         SqlCommandBuilder cmdBuilder = new SqlCommandBuilder(adapter);
+                        
                         adapter.Update(dataSet, tableName);
                     }
                 }

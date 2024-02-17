@@ -57,6 +57,7 @@ namespace u_net
 
                 ofn.SetComboBox(分類名, "SELECT 分類記号 as Display,対象部品名 as Display2,分類記号 as Value FROM M部品分類 ORDER BY 分類記号");
                 分類名.DrawMode = DrawMode.OwnerDrawFixed;
+                分類名.DropDownWidth = 550;
 
                 //開いているフォームのインスタンスを作成する
                 F_部品集合管理 frmTarget = Application.OpenForms.OfType<F_部品集合管理>().FirstOrDefault();
@@ -73,10 +74,10 @@ namespace u_net
                 this.集合名.Text = frmTarget.str集合名;
 
                 if (frmTarget.dtm更新日開始 != DateTime.MinValue)
-                    this.更新日開始.Text = frmTarget.dtm更新日開始.ToString();
+                    this.更新日開始.Text = frmTarget.dtm更新日開始.ToString("yyyy/MM/dd");
 
                 if (frmTarget.dtm更新日終了 != DateTime.MinValue)
-                    this.更新日終了.Text = frmTarget.dtm更新日終了.ToString();
+                    this.更新日終了.Text = frmTarget.dtm更新日終了.ToString("yyyy/MM/dd");
 
                 this.更新者名.Text = frmTarget.str更新者名;
 
@@ -299,7 +300,12 @@ namespace u_net
             switch (e.KeyCode)
             {
                 case Keys.Return:
-                    SelectNextControl(ActiveControl, true, true, true, true);
+                    //SelectNextControl(ActiveControl, true, true, true, true);
+                    //e.Handled = true;
+                    //e.SuppressKeyPress = true;
+                    抽出ボタン_Click( sender, e);
+
+
                     break;
 
             }

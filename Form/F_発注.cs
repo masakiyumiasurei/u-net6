@@ -1475,7 +1475,7 @@ namespace u_net
                 fn.DoWait("登録しています...");
 
                 Connect();
-                // 削除に成功すれば新規モードへ移行する
+                // 削除に成功すれば新規モードへ移行する　　※注意　第6引数は「いいえ」がtrueとなる様になっている　つまり現版のみを削除する
                 if (DeleteData(cn, this.CurrentCode, this.CurrentEdition, FunctionClass.GetServerDate(cn), LoginUserCode, intRes == (int)DialogResult.No))
                 {
                     コマンド新規_Click(sender, e);

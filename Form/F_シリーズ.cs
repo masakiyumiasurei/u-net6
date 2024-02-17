@@ -17,6 +17,7 @@ using System.ComponentModel;
 using System.DirectoryServices;
 using Microsoft.EntityFrameworkCore.Metadata;
 using System.Reflection.Metadata.Ecma335;
+using System.Net;
 
 
 namespace u_net
@@ -157,7 +158,7 @@ namespace u_net
             }
             finally
             {
-                ChangedData(false);
+                //ChangedData(false);
                 this.ResumeLayout();
             }
         }
@@ -178,9 +179,9 @@ namespace u_net
                 在庫下限数量.Text = "0";
                 在庫補正数量.Text = "0";
                 補正値.Text = "0";
-
+                ChangedData(false);
                 FunctionClass.LockData(this, false);
-                シリーズ名.Focus();
+                
                 シリーズコード.Enabled = false;
                 コマンド新規.Enabled = false;
                 コマンド修正.Enabled = true;
@@ -198,6 +199,10 @@ namespace u_net
                 Debug.WriteLine("GoNewMode - " + ex.Message);
                 noUpd = false;
                 return false;
+            }
+            finally
+            {
+                if(cn.State==ConnectionState.Open) cn.Close();
             }
         }
 
@@ -273,6 +278,10 @@ namespace u_net
                 MessageBox.Show("グリッドの初期化に失敗しました。\n" + ex.Message, "エラー");
                 return false;
             }
+            finally
+            {
+                if (cn.State == ConnectionState.Open) cn.Close();
+            }
         }
         private void DataGridView1_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
@@ -347,7 +356,7 @@ namespace u_net
             }
         }
         private bool ErrCheck(Control argscontrol, string? tname = null)
-        {            
+        {
             foreach (Control control in argscontrol.Controls)
                 //入力確認
                 if (string.IsNullOrEmpty(tname) || tname == control.Name)
@@ -413,7 +422,7 @@ namespace u_net
             //    MessageBoxButtons.OKCancel,
             //    MessageBoxIcon.Question) == DialogResult.OK)
             //{
-            if (!ErrCheck(this)) return;
+            if (ErrCheck(this)) return;
 
             if (!SaveData()) return;
 
@@ -426,7 +435,9 @@ namespace u_net
                 コマンド修正.Enabled = false;
             }
             if (!SetGrid()) return;
+            Connect();
             在庫数量.Text = GetStock(CurrentCode, DateTime.Now, cn).ToString();
+            cn.Close();
             Cleargrid(dataGridView1);
             //}
         }
@@ -511,7 +522,7 @@ namespace u_net
                 transaction.Commit();
 
                 //コンボボックスのソースを変更する必要がある
-                object code = シリーズコード.SelectedValue;
+                object code = シリーズコード.Text;
 
                 setCombo = true;
                 OriginalClass ofn = new OriginalClass();
@@ -545,6 +556,10 @@ namespace u_net
                 // エラーメッセージを表示またはログに記録
                 MessageBox.Show("データの保存中にエラーが発生しました: " + ex.Message, "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
+            }
+            finally
+            {
+                if (cn.State == ConnectionState.Open) cn.Close();
             }
         }
 
@@ -765,6 +780,14 @@ namespace u_net
                 }
                 SetGrid();
                 Cleargrid(dataGridView1);
+
+                string tmpcode = シリーズコード.Text;
+                setCombo = true;
+                OriginalClass ofn = new OriginalClass();
+                ofn.SetComboBox(シリーズコード, "SELECT シリーズコード as Display,シリーズコード as Value FROM Mシリーズ WHERE(無効日時 IS NULL) ORDER BY シリーズコード DESC");
+                setCombo = false;
+                シリーズコード.Text = tmpcode;
+
                 this.ResumeLayout();
             }
             else
@@ -1018,6 +1041,8 @@ namespace u_net
                     break;
                 case Keys.Return:
                     SelectNextControl(ActiveControl, true, true, true, true);
+                    e.Handled = true;
+                    e.SuppressKeyPress = true;
                     break;
                 case Keys.F1:
                     if (コマンド新規.Enabled)
@@ -1219,7 +1244,7 @@ namespace u_net
         {
             if (補正値.Modified == false) return;
 
-            if (ErrCheck(this, "補正値")) e.Cancel=true;
+            if (ErrCheck(this, "補正値")) e.Cancel = true;
         }
 
         private void 補正値_TextChanged(object sender, EventArgs e)
@@ -1231,7 +1256,19 @@ namespace u_net
         {
             if (在庫下限数量.Modified == false) return;
 
-           if( ErrCheck(this, "在庫下限数量")) e.Cancel=true;
+            if (ErrCheck(this, "在庫下限数量")) e.Cancel = true;
+        }
+
+        private void F_シリーズ_Shown(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(args))
+            {
+                シリーズ名.Focus();
+            }
+            else
+            {
+                シリーズコード.Focus();
+            }
         }
     }
 }
