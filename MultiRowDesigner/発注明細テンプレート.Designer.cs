@@ -636,7 +636,8 @@
             cellStyle12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(204)))), ((int)(((byte)(255)))));
             border10.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
             cellStyle12.Border = border10;
-            cellStyle12.Font = new System.Drawing.Font("BIZ UDPゴシック", 9.75F);
+            cellStyle12.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
+            cellStyle12.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleRight;
             this.行番号.Style = cellStyle12;
             this.行番号.TabIndex = 1;
             this.行番号.ValueFormat = "%1%";
