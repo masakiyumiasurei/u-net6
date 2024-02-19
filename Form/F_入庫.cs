@@ -1846,6 +1846,7 @@ namespace u_net
 
                 // フォームAの日付コントロールに選択した日付を設定
                 入庫日.Text = selectedDate;
+                入庫日.Focus();
             }
         }
 
