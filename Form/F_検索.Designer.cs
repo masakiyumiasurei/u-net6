@@ -49,9 +49,11 @@
             toolStripStatusLabel1 = new ToolStripStatusLabel();
             toolStripStatusLabel2 = new ToolStripStatusLabel();
             groupBox1 = new GroupBox();
+            panel1 = new Panel();
             ((System.ComponentModel.ISupportInitialize)リスト).BeginInit();
             statusStrip1.SuspendLayout();
             groupBox1.SuspendLayout();
+            panel1.SuspendLayout();
             SuspendLayout();
             // 
             // リスト
@@ -67,11 +69,11 @@
             // 
             // 表示件数
             // 
-            表示件数.Font = new Font("ＭＳ Ｐゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            表示件数.Location = new Point(80, 600);
+            表示件数.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            表示件数.Location = new Point(67, 6);
             表示件数.Name = "表示件数";
             表示件数.ReadOnly = true;
-            表示件数.Size = new Size(100, 21);
+            表示件数.Size = new Size(100, 20);
             表示件数.TabIndex = 0;
             表示件数.TabStop = false;
             // 
@@ -207,13 +209,13 @@
             // 
             // label1
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("ＭＳ Ｐゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(10, 600);
+            label1.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.Location = new Point(8, 6);
             label1.Name = "label1";
-            label1.Size = new Size(63, 14);
+            label1.Size = new Size(53, 20);
             label1.TabIndex = 2;
             label1.Text = "表示件数";
+            label1.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // 検索ボタン
             // 
@@ -229,22 +231,22 @@
             // statusStrip1
             // 
             statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1, toolStripStatusLabel2 });
-            statusStrip1.Location = new Point(0, 630);
+            statusStrip1.Location = new Point(0, 617);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Padding = new Padding(1, 0, 19, 0);
-            statusStrip1.Size = new Size(837, 25);
+            statusStrip1.Size = new Size(837, 22);
             statusStrip1.TabIndex = 111;
             statusStrip1.Text = "statusStrip1";
             // 
             // toolStripStatusLabel1
             // 
             toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            toolStripStatusLabel1.Size = new Size(0, 20);
+            toolStripStatusLabel1.Size = new Size(0, 17);
             // 
             // toolStripStatusLabel2
             // 
             toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            toolStripStatusLabel2.Size = new Size(111, 20);
+            toolStripStatusLabel2.Size = new Size(89, 17);
             toolStripStatusLabel2.Text = "各種項目の説明";
             // 
             // groupBox1
@@ -267,15 +269,24 @@
             groupBox1.TabIndex = 112;
             groupBox1.TabStop = false;
             // 
+            // panel1
+            // 
+            panel1.Controls.Add(label1);
+            panel1.Controls.Add(表示件数);
+            panel1.Dock = DockStyle.Bottom;
+            panel1.Location = new Point(0, 586);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(837, 31);
+            panel1.TabIndex = 113;
+            // 
             // F_検索
             // 
-            ClientSize = new Size(837, 655);
+            ClientSize = new Size(837, 639);
+            Controls.Add(panel1);
             Controls.Add(検索ボタン);
             Controls.Add(キャンセルボタン);
             Controls.Add(groupBox1);
             Controls.Add(statusStrip1);
-            Controls.Add(label1);
-            Controls.Add(表示件数);
             Controls.Add(リスト);
             Name = "F_検索";
             StartPosition = FormStartPosition.CenterScreen;
@@ -286,6 +297,8 @@
             statusStrip1.ResumeLayout(false);
             statusStrip1.PerformLayout();
             groupBox1.ResumeLayout(false);
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -314,5 +327,6 @@
         private ToolStripStatusLabel toolStripStatusLabel1;
         private ToolStripStatusLabel toolStripStatusLabel2;
         private GroupBox groupBox1;
+        private Panel panel1;
     }
 }

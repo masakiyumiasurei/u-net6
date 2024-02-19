@@ -210,7 +210,7 @@ namespace u_net
             Filtering(FilterNumber, FilterName);
 
             //列幅を自動調整する
-          //  リスト.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
+            //  リスト.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
 
             //選択範囲を行全体に設定
             リスト.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
