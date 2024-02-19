@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using u_net.Public;
 using Microsoft.Data.SqlClient;
+using System.Diagnostics;
 
 namespace u_net
 {
@@ -53,7 +54,7 @@ namespace u_net
         }
 
 
- 
+
 
 
 
@@ -130,7 +131,7 @@ namespace u_net
                     break;
             }
 
-            
+
             SqlDataAdapter adapter = new SqlDataAdapter(query, cn);
             DataTable dataTable = new DataTable();
             adapter.Fill(dataTable);
@@ -138,6 +139,10 @@ namespace u_net
             // DataGridViewにデータをバインド
             リスト.DataSource = dataTable;
 
+            リスト.Columns[0].Width = 30;
+            リスト.Columns[1].Width = 200;
+            リスト.Columns[2].Width = 60;
+            リスト.Columns[3].Width = 15;
 
             // 件数を表示する
             表示件数.Text = リスト.RowCount.ToString();
@@ -177,7 +182,7 @@ namespace u_net
             //    リスト.Value = リスト.Column[0, 1];
             //}
 
-            
+
         }
 
 
@@ -192,7 +197,7 @@ namespace u_net
                 MessageBox.Show("呼び出しに失敗しました。\n管理者に連絡してください。", this.Name, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 DialogResult = DialogResult.Cancel;
                 this.Close();
-               
+
             }
 
             //ダブルバッファ処理設定
@@ -205,7 +210,7 @@ namespace u_net
             Filtering(FilterNumber, FilterName);
 
             //列幅を自動調整する
-            リスト.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
+          //  リスト.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
 
             //選択範囲を行全体に設定
             リスト.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
@@ -295,7 +300,7 @@ namespace u_net
                     Filtering(FilterNumber, FilterName);
                     break;
                 case Keys.F1:
-                    フィルタ_ア_Click(sender,e);
+                    フィルタ_ア_Click(sender, e);
                     break;
                 case Keys.F2:
                     フィルタ_カ_Click(sender, e);
@@ -330,7 +335,7 @@ namespace u_net
                 case Keys.F12:
                     フィルタ_全て_Click(sender, e);
                     break;
-                
+
             }
         }
 
@@ -410,7 +415,7 @@ namespace u_net
 
         }
 
-       
+
 
         private void フィルタ_ア_Click(object sender, EventArgs e)
         {
@@ -484,7 +489,21 @@ namespace u_net
             Filtering(FilterNumber, FilterName);
         }
 
-        
+        private void F_検索_Resize(object sender, EventArgs e)
+        {
+            try
+            {
+                this.リスト.Height += (this.Height - intWindowHeight);
+                this.リスト.Width += (this.Width - intWindowWidth);
+                intWindowHeight = this.Height;
+                intWindowWidth = this.Width;
+
+            }
+            catch (Exception ex)
+            {
+                Debug.Print($"{nameof(F_検索_Resize)} - {ex.Message}");
+            }
+        }
     }
 
 

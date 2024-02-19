@@ -1548,22 +1548,22 @@ namespace u_net
             // 
             statusStrip1.ImageScalingSize = new Size(20, 20);
             statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1, toolStripStatusLabel2 });
-            statusStrip1.Location = new Point(0, 758);
+            statusStrip1.Location = new Point(0, 755);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Padding = new Padding(1, 0, 19, 0);
-            statusStrip1.Size = new Size(1195, 22);
+            statusStrip1.Size = new Size(1195, 25);
             statusStrip1.TabIndex = 110;
             statusStrip1.Text = "statusStrip1";
             // 
             // toolStripStatusLabel1
             // 
             toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            toolStripStatusLabel1.Size = new Size(0, 17);
+            toolStripStatusLabel1.Size = new Size(0, 20);
             // 
             // toolStripStatusLabel2
             // 
             toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            toolStripStatusLabel2.Size = new Size(89, 17);
+            toolStripStatusLabel2.Size = new Size(111, 20);
             toolStripStatusLabel2.Text = "各種項目の説明";
             // 
             // notifyIcon1
@@ -1581,7 +1581,7 @@ namespace u_net
             panel2.Controls.Add(受注承認ボタン);
             panel2.Controls.Add(受注完了承認ボタン);
             panel2.Dock = DockStyle.Bottom;
-            panel2.Location = new Point(0, 716);
+            panel2.Location = new Point(0, 713);
             panel2.Margin = new Padding(4, 3, 4, 3);
             panel2.Name = "panel2";
             panel2.Size = new Size(1195, 42);
@@ -1897,6 +1897,7 @@ namespace u_net
             // 発送方法
             // 
             発送方法.BackColor = Color.White;
+            発送方法.Enabled = false;
             発送方法.Font = new Font("BIZ UDPゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             発送方法.Location = new Point(192, 305);
             発送方法.Margin = new Padding(3, 2, 3, 2);
@@ -1927,6 +1928,7 @@ namespace u_net
             // 請求書送付
             // 
             請求書送付.BackColor = Color.White;
+            請求書送付.Enabled = false;
             請求書送付.Font = new Font("BIZ UDPゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             請求書送付.Location = new Point(192, 280);
             請求書送付.Margin = new Padding(3, 2, 3, 2);
@@ -1957,6 +1959,7 @@ namespace u_net
             // 納品書送付
             // 
             納品書送付.BackColor = Color.White;
+            納品書送付.Enabled = false;
             納品書送付.Font = new Font("BIZ UDPゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             納品書送付.Location = new Point(192, 255);
             納品書送付.Margin = new Padding(3, 2, 3, 2);
