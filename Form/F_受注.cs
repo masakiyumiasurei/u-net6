@@ -3249,6 +3249,7 @@ namespace u_net
                     else
                     {
                         UpdatedControl(顧客コード);
+                        顧客コード.Focus();
                     }
                 }
             }
