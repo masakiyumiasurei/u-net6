@@ -43,7 +43,6 @@ namespace u_net
             コマンド削除 = new Button();
             コマンド複写 = new Button();
             コマンド修正 = new Button();
-            
             コマンド = new Button();
             摘要 = new TextBox();
             摘要_ラベル = new Label();
@@ -290,8 +289,6 @@ namespace u_net
             コマンド修正.Text = "修正";
             コマンド修正.UseVisualStyleBackColor = true;
             コマンド修正.Click += コマンド修正_Click;
-            
-            
             // 
             // コマンド
             // 
@@ -482,11 +479,13 @@ namespace u_net
             入庫日選択ボタン.Location = new Point(270, 71);
             入庫日選択ボタン.Margin = new Padding(4);
             入庫日選択ボタン.Name = "入庫日選択ボタン";
-            入庫日選択ボタン.Size = new Size(20, 20);
+            入庫日選択ボタン.Size = new Size(22, 22);
             入庫日選択ボタン.TabIndex = 10122;
             入庫日選択ボタン.TabStop = false;
             入庫日選択ボタン.Text = "▼";
+            入庫日選択ボタン.TextAlign = ContentAlignment.TopCenter;
             入庫日選択ボタン.UseVisualStyleBackColor = true;
+            入庫日選択ボタン.Visible = false;
             入庫日選択ボタン.Click += 入庫日選択ボタン_Click;
             // 
             // 入庫コード
@@ -1143,7 +1142,7 @@ namespace u_net
 
         #endregion
 
-        
+
         private CalendarColumn calendarColumn1;
 
 
