@@ -185,6 +185,7 @@ namespace u_net
             コマンド購買.TabIndex = 1011;
             コマンド購買.TabStop = false;
             コマンド購買.Text = "購買参照";
+            toolTip1.SetToolTip(コマンド購買, "購買データの参照");
             コマンド購買.UseVisualStyleBackColor = true;
             コマンド購買.Click += コマンド購買_Click;
             // 
@@ -609,6 +610,7 @@ namespace u_net
             仕入先名.Name = "仕入先名";
             仕入先名.Size = new Size(384, 20);
             仕入先名.TabIndex = 10071;
+            仕入先名.TabStop = false;
             // 
             // 仕入先担当者名
             // 
@@ -1337,6 +1339,7 @@ namespace u_net
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "F_発注";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = " 発注";
             FormClosing += Form_Unload;
             Load += Form_Load;

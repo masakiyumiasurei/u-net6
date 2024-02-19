@@ -61,7 +61,6 @@ namespace u_net
                                       //  args = string.IsNullOrEmpty(openargs) ? "" : openargs;
 
             InitializeComponent();
-
         }
         public string CurrentCode
         {
@@ -227,7 +226,7 @@ namespace u_net
             string sql = "SELECT 社員コード as Display ,氏名 as Display2 ,社員コード as Value FROM M社員 WHERE (退社 IS NULL) AND (削除日時 IS NULL) ORDER BY ふりがな";
             ofn.SetComboBox(発注者コード, sql);
             発注者コード.DrawMode = DrawMode.OwnerDrawFixed;
-            発注者コード.DropDownWidth = 550;
+            発注者コード.DropDownWidth = 200;
 
             ofn.SetComboBox(発注コード, "SELECT 発注コード as Display ,発注コード as Value FROM V発注_最新版 ORDER BY 発注コード DESC");
 
@@ -2403,7 +2402,7 @@ namespace u_net
 
         private void 発注者コード_DrawItem(object sender, DrawItemEventArgs e)
         {
-            OriginalClass.SetComboBoxAppearance((ComboBox)sender, e, new int[] { 50, 500 }, new string[] { "Display", "Display2" });
+            OriginalClass.SetComboBoxAppearance((ComboBox)sender, e, new int[] { 50, 150 }, new string[] { "Display", "Display2" });
             発注者コード.Invalidate();
             発注者コード.DroppedDown = true;
         }
