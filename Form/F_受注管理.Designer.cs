@@ -471,7 +471,7 @@
             履歴トグル.Appearance = Appearance.Button;
             履歴トグル.AutoSize = true;
             履歴トグル.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            履歴トグル.Location = new Point(366, 2);
+            履歴トグル.Location = new Point(366, 4);
             履歴トグル.Name = "履歴トグル";
             履歴トグル.Size = new Size(72, 22);
             履歴トグル.TabIndex = 10015;
