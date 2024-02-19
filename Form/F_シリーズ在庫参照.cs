@@ -87,7 +87,8 @@ namespace u_net
 
             //コンボボックスの設定
             OriginalClass ofn = new OriginalClass();
-            ofn.SetComboBox(シリーズコード, "SELECT Mシリーズ.シリーズコード AS Value, Mシリーズ.シリーズ名 AS Display FROM Mシリーズ ORDER BY Mシリーズ WHERE 無効日時 IS NULL ORDER BY シリーズ名");
+            ofn.SetComboBox(シリーズコード, "SELECT Mシリーズ.シリーズコード AS Value, Mシリーズ.シリーズ名 AS Display FROM Mシリーズ WHERE 無効日時 IS NULL ORDER BY シリーズ名");
+            シリーズコード.DropDownWidth = 410;
 
             // DataGridViewの設定
             dataGridView1.AllowUserToResizeColumns = true;
@@ -127,21 +128,7 @@ namespace u_net
             DoUpdate();
         }
 
-        private void Form_Resize(object sender, EventArgs e)
-        {
-            try
-            {
-                dataGridView1.Height = dataGridView1.Height + (this.Height - intWindowHeight);
-                intWindowHeight = this.Height;  // 高さ保存
-
-                dataGridView1.Width = dataGridView1.Width + (this.Width - intWindowWidth);
-                intWindowWidth = this.Width;    // 幅保存     　
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(this.Name + "_Form_Resize - " + ex.Message);
-            }
-        }
+        
 
         public int DoUpdate()
         {
@@ -387,11 +374,6 @@ namespace u_net
         }
 
 
-
-
-
-
-
         private void F_シリーズ在庫参照_FormClosing(object sender, FormClosingEventArgs e)
         {
             string LoginUserCode = CommonConstants.LoginUserCode;
@@ -405,15 +387,11 @@ namespace u_net
         }
 
 
-
         private void コマンド更新_Click(object sender, EventArgs e)
         {
             DoUpdate();
             Cleargrid(dataGridView1);
         }
-
-
-
 
 
         private void コマンドシリーズ_Click(object sender, EventArgs e)
@@ -447,7 +425,6 @@ namespace u_net
                 cmd.Parameters.Add(new SqlParameter("@TargetDate", SqlDbType.DateTime)).Value = TargetDay;
 
                 SqlDataReader reader = cmd.ExecuteReader();
-
 
             }
         }
