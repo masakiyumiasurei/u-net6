@@ -674,6 +674,7 @@
             // ラインコード
             // 
             this.ラインコード.DataField = "ラインコード";
+            this.ラインコード.DropDownWidth = 200;
             this.ラインコード.Location = new System.Drawing.Point(240, 0);
             this.ラインコード.Name = "ラインコード";
             cellStyle10.Font = new System.Drawing.Font("BIZ UDPゴシック", 9.75F);

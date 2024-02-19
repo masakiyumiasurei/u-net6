@@ -144,7 +144,10 @@ namespace u_net
                 dataGridView1.Columns[9].Width = 1000 / twipperdot;
                 dataGridView1.Columns[10].Width = 1000 / twipperdot;
 
-                for (int lngRow = dataGridView1.FirstDisplayedCell.RowIndex; lngRow < dataGridView1.Rows.Count; lngRow++)
+                //レコードがない時はフォームを閉じる
+                if (dataGridView1.FirstDisplayedCell == null) return false;
+
+                    for (int lngRow = dataGridView1.FirstDisplayedCell.RowIndex; lngRow < dataGridView1.Rows.Count; lngRow++)
                 {
                     
                     dataGridView1.Rows[lngRow].Cells[0].Style.BackColor = Color.FromArgb(250, 250, 150);

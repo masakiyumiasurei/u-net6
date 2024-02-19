@@ -60,7 +60,7 @@
             リスト.Location = new Point(10, 80);
             リスト.Name = "リスト";
             リスト.RowTemplate.Height = 25;
-            リスト.Size = new Size(765, 500);
+            リスト.Size = new Size(827, 500);
             リスト.TabIndex = 0;
             リスト.CellMouseDoubleClick += リスト_CellMouseDoubleClick;
             リスト.KeyDown += リスト_KeyDown;
@@ -229,22 +229,22 @@
             // statusStrip1
             // 
             statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1, toolStripStatusLabel2 });
-            statusStrip1.Location = new Point(0, 633);
+            statusStrip1.Location = new Point(0, 630);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Padding = new Padding(1, 0, 19, 0);
-            statusStrip1.Size = new Size(794, 22);
+            statusStrip1.Size = new Size(837, 25);
             statusStrip1.TabIndex = 111;
             statusStrip1.Text = "statusStrip1";
             // 
             // toolStripStatusLabel1
             // 
             toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            toolStripStatusLabel1.Size = new Size(0, 17);
+            toolStripStatusLabel1.Size = new Size(0, 20);
             // 
             // toolStripStatusLabel2
             // 
             toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            toolStripStatusLabel2.Size = new Size(89, 17);
+            toolStripStatusLabel2.Size = new Size(111, 20);
             toolStripStatusLabel2.Text = "各種項目の説明";
             // 
             // groupBox1
@@ -269,7 +269,7 @@
             // 
             // F_検索
             // 
-            ClientSize = new Size(794, 655);
+            ClientSize = new Size(837, 655);
             Controls.Add(検索ボタン);
             Controls.Add(キャンセルボタン);
             Controls.Add(groupBox1);
@@ -281,6 +281,7 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "検索";
             Load += Form_Load;
+            Resize += F_検索_Resize;
             ((System.ComponentModel.ISupportInitialize)リスト).EndInit();
             statusStrip1.ResumeLayout(false);
             statusStrip1.PerformLayout();

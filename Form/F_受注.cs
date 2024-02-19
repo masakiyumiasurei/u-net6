@@ -419,6 +419,9 @@ namespace u_net
                 //ヘッダ部を制御する
                 LockData(this, false);
                 this.受注日.Focus();
+
+                ChangedData(false);
+
                 this.受注コード.Enabled = false;
                 this.受注版数.Enabled = false;
                 this.改版ボタン.Enabled = false;
@@ -440,7 +443,7 @@ namespace u_net
 
                 this.状態.Text = "";
                 this.状態.ForeColor = Color.Black;
-                ChangedData(false);
+                
 
                 return true;
             }
@@ -1750,7 +1753,7 @@ namespace u_net
                     case "納品書送付コード":
                     case "請求書送付コード":
                     case "発送方法コード":
-                        if (((ComboBox)controlObject).FindStringExact(varValue?.ToString()) == -1)
+                        if (!string.IsNullOrEmpty(varValue?.ToString()) && ((ComboBox)controlObject).FindStringExact(varValue?.ToString()) == -1)
                         {
                             //MessageBox.Show("指定した項目はリストにありません。", controlObject.Name, MessageBoxButtons.OK, MessageBoxIcon.Information);
                             ((ComboBox)controlObject).DroppedDown = true;
@@ -2324,8 +2327,8 @@ namespace u_net
                 GetNextControl(コマンド商品, false).Focus();
             }
 
-            Form form = new F_商品();
-            form.Show();
+            Form form = new F_商品管理();
+            form.ShowDialog();
         }
 
         private void コマンド全在庫_Click(object sender, EventArgs e)
@@ -2336,7 +2339,7 @@ namespace u_net
             }
 
             F_シリーズ在庫参照 form = new F_シリーズ在庫参照();
-            form.Show();
+            form.ShowDialog();
         }
 
         private void コマンド在庫_Click(object sender, EventArgs e)
@@ -2348,7 +2351,7 @@ namespace u_net
 
             F_シリーズ危険在庫警告 form = new F_シリーズ危険在庫警告();
             form.args = this.CurrentCode + ',' + this.CurrentEdition;
-            form.Show();
+            form.ShowDialog();
         }
 
         private void コマンド承認_Click(object sender, EventArgs e)
@@ -2928,6 +2931,8 @@ namespace u_net
                             return;
                     }
                     SelectNextControl(ActiveControl, true, true, true, true);
+                    e.Handled = true;
+                    e.SuppressKeyPress = true;
                     break;
                 case Keys.F1:
                     if (コマンド新規.Enabled)
@@ -3457,8 +3462,13 @@ namespace u_net
         }
 
         private void 納品書送付コード_Validating(object sender, CancelEventArgs e)
-        {
-            if (IsError((Control)sender) == true) e.Cancel = true;
+        {            
+            if (tmpstr == this.納品書送付コード.Text) return;
+            if (IsError((Control)sender) == true)
+            {
+                e.Cancel = true;
+                納品書送付コード.Text = tmpstr;
+            }
         }
 
         private void 請求書送付コード_DrawItem(object sender, DrawItemEventArgs e)
@@ -3483,7 +3493,12 @@ namespace u_net
 
         private void 請求書送付コード_Validating(object sender, CancelEventArgs e)
         {
-            if (IsError((Control)sender) == true) e.Cancel = true;
+            if (tmpstr == this.請求書送付コード.Text) return;
+            if (IsError((Control)sender) == true)
+            {
+                e.Cancel = true;
+                請求書送付コード.Text=tmpstr;
+            }
         }
 
         private void 発送方法コード_DrawItem(object sender, DrawItemEventArgs e)
@@ -3508,7 +3523,12 @@ namespace u_net
 
         private void 発送方法コード_Validating(object sender, CancelEventArgs e)
         {
-            if (IsError((Control)sender) == true) e.Cancel = true;
+            if (tmpstr == this.発送方法コード.Text) return;
+            if (IsError((Control)sender) == true)
+            {
+                e.Cancel = true;
+                発送方法コード.Text = tmpstr;
+            }
         }
 
         private void 自社担当者コード_DrawItem(object sender, DrawItemEventArgs e)
@@ -3527,7 +3547,13 @@ namespace u_net
 
         private void 自社担当者コード_Validating(object sender, CancelEventArgs e)
         {
-            if (IsError((Control)sender) == true) e.Cancel = true;
+            if (tmpstr == this.自社担当者コード.Text) return;
+            if (IsError((Control)sender) == true)
+            {
+                e.Cancel = true;
+                自社担当者コード.Text = tmpstr;
+            }
+            
         }
 
         private void 自社担当者コード_Validated(object sender, EventArgs e)
@@ -4224,23 +4250,28 @@ namespace u_net
             this.toolStripStatusLabel2.Text = "■西暦部分は2桁で入力。「/」は必要。　■[+]キー、[-]キーで1日増減。　■[space]キーでカレンダー表示。";
         }
 
+        string tmpstr = "";
         private void 納品書送付コード_Enter(object sender, EventArgs e)
         {
+            tmpstr = 納品書送付コード.Text;
             this.toolStripStatusLabel2.Text = "■2文字入力。　■[space]キーで選択。";
         }
 
         private void 請求書送付コード_Enter(object sender, EventArgs e)
         {
+            tmpstr = 請求書送付コード.Text;
             this.toolStripStatusLabel2.Text = "■2文字入力。　■[space]キーで選択。";
         }
 
         private void 発送方法コード_Enter(object sender, EventArgs e)
         {
+            tmpstr = 発送方法コード.Text;
             this.toolStripStatusLabel2.Text = "■2文字入力。　■[space]キーで選択。";
         }
 
         private void 自社担当者コード_Enter(object sender, EventArgs e)
         {
+            tmpstr = 自社担当者コード.Text;
             this.toolStripStatusLabel2.Text = "■3字入力。　■[space]キーで選択。";
         }
 
