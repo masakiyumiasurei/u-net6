@@ -563,6 +563,7 @@ namespace u_net
             // ComposedChipMount
             // 
             ComposedChipMount.BackColor = SystemColors.Control;
+            ComposedChipMount.Enabled = false;
             ComposedChipMount.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             ComposedChipMount.Location = new Point(618, 187);
             ComposedChipMount.Margin = new Padding(3, 2, 3, 2);
@@ -575,6 +576,7 @@ namespace u_net
             // 削除
             // 
             削除.BackColor = SystemColors.Control;
+            削除.Enabled = false;
             削除.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             削除.Location = new Point(618, 162);
             削除.Margin = new Padding(3, 2, 3, 2);
@@ -770,7 +772,7 @@ namespace u_net
             label8.Margin = new Padding(0);
             label8.Name = "label8";
             label8.Size = new Size(85, 17);
-            label8.TabIndex = 10;
+            label8.TabIndex = 9;
             label8.Text = "商品分類(&G)";
             label8.TextAlign = ContentAlignment.MiddleLeft;
             // 
@@ -1140,7 +1142,7 @@ namespace u_net
             商品分類コード.Location = new Point(125, 152);
             商品分類コード.Name = "商品分類コード";
             商品分類コード.Size = new Size(49, 21);
-            商品分類コード.TabIndex = 191;
+            商品分類コード.TabIndex = 10;
             商品分類コード.ValueMember = "分類コード";
             商品分類コード.DrawItem += 商品分類コード_DrawItem;
             商品分類コード.SelectedIndexChanged += 商品分類コード_SelectedIndexChanged;
