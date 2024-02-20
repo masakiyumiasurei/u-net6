@@ -538,6 +538,7 @@
             this.入数.DataField = "入数";
             this.入数.Location = new System.Drawing.Point(557, 0);
             this.入数.Name = "入数";
+            this.入数.ReadOnly = true;
             this.入数.Size = new System.Drawing.Size(58, 34);
             border5.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
             cellStyle6.Border = border5;

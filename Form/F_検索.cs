@@ -139,10 +139,10 @@ namespace u_net
             // DataGridViewにデータをバインド
             リスト.DataSource = dataTable;
 
-            リスト.Columns[0].Width = 30;
-            リスト.Columns[1].Width = 200;
-            リスト.Columns[2].Width = 60;
-            リスト.Columns[3].Width = 15;
+            //リスト.Columns[0].Width = 150;
+            //リスト.Columns[1].Width = 400;
+            //リスト.Columns[2].Width = 200;
+            //リスト.Columns[3].Width = 35;
 
             // 件数を表示する
             表示件数.Text = リスト.RowCount.ToString();
@@ -210,7 +210,7 @@ namespace u_net
             Filtering(FilterNumber, FilterName);
 
             //列幅を自動調整する
-            //  リスト.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
+            リスト.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
 
             //選択範囲を行全体に設定
             リスト.SelectionMode = DataGridViewSelectionMode.FullRowSelect;

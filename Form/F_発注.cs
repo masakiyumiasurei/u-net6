@@ -130,7 +130,7 @@ namespace u_net
         {
             get
             {
-                int lastEdition = GetLastEdition( CurrentCode);
+                int lastEdition = GetLastEdition(CurrentCode);
                 return CurrentEdition == lastEdition;
             }
         }
@@ -365,14 +365,15 @@ namespace u_net
                 this.発注コード.Focus();
 
                 FunctionClass.LockData(this, true, "発注コード", "発注版数");
+
+                ChangedData(false);
+
                 this.コマンド新規.Enabled = true;
                 this.コマンド読込.Enabled = false;
                 this.コマンド複写.Enabled = false;
                 this.コマンド確定.Enabled = false;
                 this.コマンド登録.Enabled = false;
 
-                // 編集による変更がない状態へ遷移
-                ChangedData(false);
 
                 result = true;
                 return result;
@@ -597,7 +598,7 @@ namespace u_net
 
         }
 
-        public int GetLastEdition( string code)
+        public int GetLastEdition(string code)
         {
             //最終版数を返す
 
@@ -608,7 +609,7 @@ namespace u_net
                 using (SqlCommand command = new SqlCommand("SELECT 最新版数 FROM V発注_最新版 WHERE 発注コード=@Code", cn))
                 {
                     command.Parameters.AddWithValue("@Code", code);
-                                        
+
                     object result = command.ExecuteScalar();
 
                     if (result != null && result != DBNull.Value)
@@ -805,7 +806,7 @@ namespace u_net
                     return true;
                 }
 
-        
+
 
                 return false;
             }
@@ -832,9 +833,9 @@ namespace u_net
             // キー情報を表示するコントロールを制御する
             // コードにフォーカスがある状態でサブフォームから呼び出されたときの対処
 
-            if (ActiveControl == 発注コード) 発注日.Focus();
+            //if (ActiveControl == 発注コード) 発注日.Focus();
             発注コード.Enabled = !isChanged;
-            if (ActiveControl == 発注版数) 発注日.Focus();
+            //if (ActiveControl == 発注版数) 発注日.Focus();
             発注版数.Enabled = !isChanged;
 
             コマンド複写.Enabled = !isChanged;
@@ -990,7 +991,7 @@ namespace u_net
                     strHeadCode = USER_CODE_TECH;
                 }
 
-                if(LoginUserCode == strHeadCode)
+                if (LoginUserCode == strHeadCode)
                 {
                     //ログオンユーザーが承認可能ユーザーなら認証済みユーザーとする
                     strCertificateCode = LoginUserCode;
@@ -1154,11 +1155,11 @@ namespace u_net
                 チェック();
 
             Bye_コマンド確定_Click:
-                if(fn.WaitForm != null)
+                if (fn.WaitForm != null)
                 {
                     fn.WaitForm.Close();
                 }
-               
+
                 return;
             }
             catch (Exception ex)
@@ -1344,7 +1345,7 @@ namespace u_net
             }
             finally
             {
-                if(fn.WaitForm!=null) fn.WaitForm.Close();
+                if (fn.WaitForm != null) fn.WaitForm.Close();
                 Application.DoEvents();
             }
         }
@@ -1384,7 +1385,7 @@ namespace u_net
                 string selectedDate = dateSelectionForm.SelectedDate;
                 発注日.Focus();
                 発注日.Text = selectedDate;
-                
+
             }
         }
 
@@ -1485,9 +1486,9 @@ namespace u_net
                                     "発注コード　：　" + this.CurrentCode, "削除コマンド", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
                 if (cn != null && cn.State == ConnectionState.Open) cn.Close();
-                
+
                 Bye_コマンド削除_Click:
-                if(fn.WaitForm!=null) fn.WaitForm.Close();
+                if (fn.WaitForm != null) fn.WaitForm.Close();
 
                 return;
 
@@ -1636,26 +1637,26 @@ namespace u_net
 
                 fn.DoWait("発注書を作成しています...");
 
-            //注意　レポート出力テストのため外部システムの実行をコメント
-            // 20240216 他システムから出力しているようなのでコメント外す
+                //注意　レポート出力テストのため外部システムの実行をコメント
+                // 20240216 他システムから出力しているようなのでコメント外す
 
-            string param = $" -sv:{ServerInstanceName.Replace(" ", "_")} -pv:porder,{CurrentCode.TrimEnd().Replace(" ", "_")}," +
-                $"{CurrentEdition.ToString().Replace(" ", "_")}";
-            param = $" -user:{LoginUserName}{param}";
-            FunctionClass.GetShell(param);
+                string param = $" -sv:{ServerInstanceName.Replace(" ", "_")} -pv:porder,{CurrentCode.TrimEnd().Replace(" ", "_")}," +
+                    $"{CurrentEdition.ToString().Replace(" ", "_")}";
+                param = $" -user:{LoginUserName}{param}";
+                FunctionClass.GetShell(param);
 
             Bye_コマンド発注書_Click:
 
                 fn.WaitForm.Close();
 
                 //このシステムからは出力しない模様
-               // 発注書印刷();
+                // 発注書印刷();
 
                 return;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("エラーが発生しました。", "発注書コマンド"+ ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("エラーが発生しました。", "発注書コマンド" + ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             }
         }
@@ -2027,8 +2028,8 @@ namespace u_net
                         multiRow.DataSource = dataTable;
                     }
                 }
-                if (cn != null && cn.State == ConnectionState.Open) cn.Close() ;
-                    return true;
+                if (cn != null && cn.State == ConnectionState.Open) cn.Close();
+                return true;
             }
             catch (Exception ex)
             {
@@ -2036,7 +2037,7 @@ namespace u_net
                 MessageBox.Show("読み込み時エラーです" + ex.Message, "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             return false;
-            
+
         }
 
         private void UpdatedControl(string controlName)
@@ -2067,7 +2068,7 @@ namespace u_net
 
                         FunctionClass.LockData(this, IsDecided || IsDeleted, "発注コード", "発注版数");
 
-                        
+
                         発注版数.Enabled = true;
 
                         if (IsLastEdition && IsApproved && !IsDeleted)
@@ -2095,7 +2096,7 @@ namespace u_net
                         コマンド承認.Enabled = IsDecided && !IsApproved && !IsDeleted;
                         コマンド確定.Enabled = !IsApproved && !IsDeleted;
 
-                       
+
 
                         break;
 
@@ -2138,7 +2139,7 @@ namespace u_net
 
                     case "発注者コード":
                         Connect();
-                        string sql = $"SELECT 氏名  FROM M社員 WHERE 社員コード= {発注者コード.Text}";
+                        string sql = $"SELECT 氏名  FROM M社員 WHERE 社員コード='{発注者コード.Text}'";
                         発注者名.Text = OriginalClass.GetScalar<string>(cn, sql);
                         cn.Close();
 
@@ -2220,8 +2221,10 @@ namespace u_net
             switch (e.KeyCode)
             {
                 case Keys.Return:
+
                     switch (this.ActiveControl.Name)
                     {
+                        case "発注コード":
                         case "備考":
                         case "摘要":
                             return;
@@ -2287,7 +2290,7 @@ namespace u_net
 
         private void 発注コード_Validated(object sender, EventArgs e)
         {
-            
+
         }
 
         private void 発注コード_Validating(object sender, System.ComponentModel.CancelEventArgs e)
@@ -2327,9 +2330,9 @@ namespace u_net
             }
         }
 
-        
+
         private void 発注コード_Enter(object sender, EventArgs e)
-        {            
+        {
             toolStripStatusLabel1.Text = "■発注コードを入力します。";
         }
 
@@ -2412,10 +2415,7 @@ namespace u_net
             //エラーとなっている
         }
 
-        private void 在庫管理_CheckedChanged(object sender, EventArgs e)
-        {
-            ChangedData(true);
-        }
+
 
         bool isEntering = true;
         bool originalValue = false;
@@ -2423,35 +2423,60 @@ namespace u_net
         {
             toolStripStatusLabel1.Text = "■在庫管理を行う場合はチェックを入れます。";
             // Enter イベント発生時に現在の値を保存
-            isEntering = true;
-            originalValue = 在庫管理.Checked;
+            //isEntering = true;
+            //originalValue = 在庫管理.Checked;
         }
 
         private void 在庫管理_Leave(object sender, EventArgs e)
         {
             toolStripStatusLabel1.Text = "各種項目の説明";
         }
-        private void 在庫管理_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+
+        // イベントハンドラの購読を管理するためのフラグ
+        private bool ignoreCheckedChanged = false;
+
+        private void 在庫管理_CheckedChanged(object sender, EventArgs e)
         {
+            if (ignoreCheckedChanged) return; // イベントの処理をスキップ
+
+
             if (IsError(sender as Control, false) == true)
             {
-                if (isEntering)
-                {
-                    // 変更前の値と現在の値を比較し、エラーがある場合は元に戻す
-                    if (在庫管理.Checked != originalValue)
-                    {
-                        在庫管理.Checked = originalValue;
-                        //e.Cancel = true; // 逃げれなくなるのでコメント
-                    }
-
-                    // Enter イベントの処理が完了したのでフラグをリセット
-                    isEntering = false;
-                }
-                else
-                {
-                    // 通常の Validating イベントの処理をここに記述
-                }
+                // イベントハンドラの一時的な解除
+                ignoreCheckedChanged = true;
+                // チェック状態を元に戻す
+                在庫管理.Checked = !在庫管理.Checked;
+                // イベントハンドラの再購読
+                ignoreCheckedChanged = false;
             }
+            else
+            {
+                ChangedData(true);
+            }
+
+        }
+
+        private void 在庫管理_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            //if (IsError(sender as Control, false) == true)
+            //{
+            //    if (isEntering)
+            //    {
+            //        // 変更前の値と現在の値を比較し、エラーがある場合は元に戻す
+            //        if (在庫管理.Checked != originalValue)
+            //        {
+            //            在庫管理.Checked = originalValue;
+            //            //e.Cancel = true; // 逃げれなくなるのでコメント
+            //        }
+
+            //        // Enter イベントの処理が完了したのでフラグをリセット
+            //        isEntering = false;
+            //    }
+            //    else
+            //    {
+            //        // 通常の Validating イベントの処理をここに記述
+            //    }
+            //}
         }
 
         private void 仕入先コード_TextChanged(object sender, EventArgs e)
@@ -2463,7 +2488,7 @@ namespace u_net
         private void 仕入先コード_Validated(object sender, EventArgs e)
         {
             if (仕入先コード.ReadOnly) return;
-            if(string.IsNullOrEmpty(仕入先コード.Text))
+            if (string.IsNullOrEmpty(仕入先コード.Text))
             {
                 仕入先名.Text = string.Empty;
                 return;
@@ -2546,12 +2571,16 @@ namespace u_net
             if (IsError(sender as Control, false) == true) e.Cancel = true;
         }
 
-        
+
         private void 発注者コード_TextChanged(object sender, EventArgs e)
-        {                        
+        {
             ChangedData(true);
         }
 
+        private void 発注者コード_SelectedValueChanged(object sender, EventArgs e)
+        {
+            UpdatedControl("発注者コード");
+        }
         private void 発注者コード_Validated(object sender, EventArgs e)
         {
             UpdatedControl("発注者コード");
@@ -2648,15 +2677,11 @@ namespace u_net
             FunctionClass.LimitText(((TextBox)sender), 2000);
             ChangedData(true);
         }
+                
 
-        private void NoCredit_Validated(object sender, EventArgs e)
+        private void NoCredit_CheckedChanged(object sender, EventArgs e)
         {
             ChangedData(true);
-        }
-
-        private void NoCredit_Validating(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            if (IsError(sender as Control, false) == true) e.Cancel = true;
         }
     }
 }
