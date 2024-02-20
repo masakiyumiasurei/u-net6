@@ -348,7 +348,7 @@ namespace MultiRowDesigner
 
         private bool SaveNewParts(DateTime savedDate, string userCode)
         {
-            //1レコードだけの登録なのか？？
+            
             Connect();
             try
             {
@@ -827,26 +827,42 @@ namespace MultiRowDesigner
                 case "必要数量":
                 case "品名":
                 case "部品コード":
-
+                    string oldValue = "";
                     validateFlg = false;
                     GcMultiRow grid = (GcMultiRow)sender;
                     // セルが編集中の場合
                     if (grid.IsCurrentCellInEditMode)
                     {
+                        int currentRowIndex = e.RowIndex;
+                        
+                        //string a = gcMultiRow1.Rows[currentRowIndex].Cells["発注納期"].Value.ToString();
+                        if(spaceFlg)
+                        {
+                            oldValue = gcMultiRow1.CurrentCell.DisplayText;
+                        }
+                        else
+                        {
+                            oldValue = e.FormattedValue?.ToString() ?? string.Empty;
+                        }
+                        
+
+
                         // 値が変更されていなければエラーチェックを行わない validatedも実行しない様にするためフラグをfalseに
                         //ダブルクリックイベントから入力後に来た時はDisplayTextが変更後の値になっているので、dblflgでチェックする
                         if (grid.EditingControl.Text == gcMultiRow1.CurrentCell.DisplayText && dblflg == false)
                         {
+                            spaceFlg = false;
                             validateFlg = false;
                             return;
                         }
 
                         //フラグを戻す
+                        spaceFlg = false;
                         dblflg = false;
                         //validatedも実行するためフラグをtrueに
                         validateFlg = true;
                         // 編集用コントロールに不正な文字列が設定されている場合
-                        if (IsError(grid.EditingControl, false, e.CellName) == true)
+                        if (IsError(grid.EditingControl, false, e.CellName, oldValue) == true)
                         {
                             // 元の値に戻す
                             grid.EditingControl.Text = gcMultiRow1.CurrentCell.DisplayText;
@@ -889,15 +905,17 @@ namespace MultiRowDesigner
 
         }
 
-        public bool IsError(Control controlObject, bool cancel,string strName)
+        public bool IsError(Control controlObject, bool cancel,string strName, object varValue)
         {
             F_発注 ParentForm = Application.OpenForms.OfType<F_発注>().FirstOrDefault();
             try
             {
-                object varValue = controlObject.Text;
+
+                //object varValue = controlObject.Text;
                 //string strName = controlObject.Name;
                 string strMsg;
                 bool isError = false;
+               
 
                 if (varValue is decimal decimalValue)
                 {
@@ -968,7 +986,7 @@ namespace MultiRowDesigner
                         break;
 
                     case "発注納期":
-                        if (varValue == DBNull.Value || varValue =="")
+                        if (varValue == DBNull.Value || varValue == "")
                         {
                             MessageBox.Show(strName + " を入力してください。",
                                 "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -983,7 +1001,8 @@ namespace MultiRowDesigner
                         break;
 
                     case "買掛区分":
-                        if (varValue == DBNull.Value || varValue == "")
+                        //コンボボックスはeditcontrolの挙動が異なるのでeditcontrolから値を取得
+                        if (varValue == "")
                         {
                             MessageBox.Show(strName + " を入力してください。" + "\n\n"
                                 + "※ 買掛区分は入庫時に確認されるため、わからない場合でも入力してください。",
@@ -1129,6 +1148,7 @@ namespace MultiRowDesigner
             }
         }
 
+        bool spaceFlg = false;
         private void gcMultiRow1_KeyPress(object sender, KeyPressEventArgs e)
         {
             F_カレンダー fm = new F_カレンダー();
@@ -1162,6 +1182,7 @@ namespace MultiRowDesigner
                         break;
 
                     case "発注納期":
+                        spaceFlg = true;
                         e.Handled = true; //スペースの本来の挙動（空白入力）を制御する
 
                         if (!string.IsNullOrEmpty(gcMultiRow1.CurrentRow.Cells["発注納期"].Value.ToString()))

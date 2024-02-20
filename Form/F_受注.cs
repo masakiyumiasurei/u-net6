@@ -227,6 +227,7 @@ namespace u_net
 
             ofn.SetComboBox(受注コード, "SELECT A.受注コード AS Value, A.最新版数, A.受注コード AS Display, { fn REPLACE(STR(CONVERT(bit, T受注.無効日), 1, 0), '1', '×') } AS Display2 " +
                 "FROM T受注 INNER JOIN (SELECT TOP 100 受注コード, MAX(受注版数) AS 最新版数 FROM T受注 GROUP BY 受注コード ORDER BY T受注.受注コード DESC) A ON T受注.受注コード = A.受注コード AND T受注.受注版数 = A.最新版数 ORDER BY A.受注コード DESC");
+            受注コード.DropDownWidth = 350;
             //ofn.SetComboBox(受注版数, "SELECT 1 AS Value, 1 AS Display, '' AS Display2");
             //this.受注版数.SelectedIndex = 0;
 

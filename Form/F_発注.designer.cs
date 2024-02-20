@@ -533,6 +533,7 @@ namespace u_net
             発注者コード.Size = new Size(83, 21);
             発注者コード.TabIndex = 8;
             発注者コード.DrawItem += 発注者コード_DrawItem;
+            発注者コード.SelectedValueChanged += 発注者コード_SelectedValueChanged;
             発注者コード.TextChanged += 発注者コード_TextChanged;
             発注者コード.Enter += 発注者コード_Enter;
             発注者コード.Validating += 発注者コード_Validating;
@@ -863,10 +864,9 @@ namespace u_net
             NoCredit.Size = new Size(15, 14);
             NoCredit.TabIndex = 20;
             NoCredit.UseVisualStyleBackColor = true;
+            NoCredit.CheckedChanged += NoCredit_CheckedChanged;
             NoCredit.Enter += NoCredit_Enter;
             NoCredit.Leave += NoCredit_Leave;
-            NoCredit.Validating += NoCredit_Validating;
-            NoCredit.Validated += NoCredit_Validated;
             // 
             // 登録者_ラベル
             // 
