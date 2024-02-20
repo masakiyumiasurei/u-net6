@@ -796,6 +796,7 @@ namespace u_net
             分類コード.TabIndex = 8;
             分類コード.DrawItem += 分類コード_DrawItem;
             分類コード.SelectedIndexChanged += 分類コード_SelectedIndexChanged;
+            分類コード.TextChanged += 分類コード_TextChanged;
             分類コード.Enter += 分類コード_Enter;
             分類コード.Leave += 分類コード_Leave;
             // 
@@ -923,7 +924,7 @@ namespace u_net
             部品集合明細1.AutoSize = true;
             部品集合明細1.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             部品集合明細1.Location = new Point(0, 202);
-            部品集合明細1.Margin = new Padding(4, 4, 4, 4);
+            部品集合明細1.Margin = new Padding(4);
             部品集合明細1.Name = "部品集合明細1";
             部品集合明細1.Size = new Size(1148, 401);
             部品集合明細1.TabIndex = 11;

@@ -330,6 +330,8 @@ namespace u_net
                     "{ fn REPLACE(STR(CONVERT(bit, 承認日時), 1, 0), '1', '■') } AS Display2 FROM M部品集合 " +
                     $"WHERE 部品集合コード = N'{CurrentCode}' ORDER BY 部品集合版数 DESC";
             ofn.SetComboBox(部品集合版数, strSQL);
+            部品集合版数.DrawMode = DrawMode.OwnerDrawFixed;
+            部品集合版数.DropDownWidth = 100;
         }
 
         private void UpdatedControl(Control controlObject)
@@ -376,12 +378,14 @@ namespace u_net
                         // 動作を制御する
                         LockData(this, this.IsDecided, "部品集合コード");
                         this.部品集合版数.Enabled = true;
-                        this.部品集合版数.Enabled = false; // 版数を編集可にする
+                 
 
                         部品集合明細1.Detail.AllowUserToAddRows = !this.IsDecided;
                         部品集合明細1.Detail.AllowUserToDeleteRows = !this.IsDecided;
                         部品集合明細1.Detail.ReadOnly = this.IsDecided;
                         部品集合明細1.Detail.AllowRowMove = !this.IsDecided;
+
+                        ChangedData(false);
 
                         this.コマンド複写.Enabled = !this.IsDirty;
                         this.コマンド削除.Enabled = true;
@@ -405,8 +409,10 @@ namespace u_net
                         LockData(this, this.IsDecided, "部品集合コード", "部品集合版数");
                         部品集合明細1.Detail.AllowUserToAddRows = !this.IsDecided;
                         部品集合明細1.Detail.AllowUserToDeleteRows = !this.IsDecided;
-                        部品集合明細1.Detail.ReadOnly = !this.IsDecided;
+                        部品集合明細1.Detail.ReadOnly = this.IsDecided;
                         部品集合明細1.Detail.AllowRowMove = !this.IsDecided;
+
+                        ChangedData(false);
 
                         this.コマンド複写.Enabled = !this.IsDirty;
                         this.コマンド削除.Enabled = true;
@@ -435,6 +441,8 @@ namespace u_net
                 strSQL = "SELECT * FROM V部品集合ヘッダ WHERE 部品集合コード='" + CurrentCode + "' AND 部品集合版数= " + CurrentEdition;
 
                 if (!VariableSet.SetTable2Form(this, strSQL, cn)) return false;
+
+                チェック();
 
                 return true;
             }
@@ -759,7 +767,7 @@ namespace u_net
                         sql = $"UPDATE M部品集合 SET 無効日時=NULL,無効者コード=NULL WHERE {strKey}";
                     }
 
-                    SqlCommand cmd = new SqlCommand(sql, cn);
+                    SqlCommand cmd = new SqlCommand(sql, cn,transaction);
                     cmd.ExecuteNonQuery();
                 }
 
@@ -1520,6 +1528,8 @@ namespace u_net
                 this.無効日時.Text = null;
                 this.無効者コード.Text = null;
 
+                チェック();
+
                 return true;
             }
             catch (Exception ex)
@@ -1554,9 +1564,14 @@ namespace u_net
             switch (e.KeyCode)
             {
                 case Keys.Return:
+                    switch (this.ActiveControl.Name)
+                    {
+                        case "備考":
+                            return;
+                    }
                     SelectNextControl(ActiveControl, true, true, true, true);
-                    e.Handled = true;
-                    e.SuppressKeyPress = true;
+                    //e.Handled = true;
+                    //e.SuppressKeyPress = true;
                     break;
                 case Keys.Space: //コンボボックスならドロップダウン
                     {
@@ -1673,7 +1688,7 @@ namespace u_net
                         intRes = MessageBox.Show("エラーが発生しました。" + Environment.NewLine +
                                             "強制終了しますか？　" + CurrentCode, "修正コマンド", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
 
-                        switch(intRes)
+                        switch (intRes)
                         {
                             case DialogResult.Yes:
                                 this.Close();
@@ -1836,9 +1851,14 @@ namespace u_net
 
         private void 部品集合版数_DrawItem(object sender, DrawItemEventArgs e)
         {
-            OriginalClass.SetComboBoxAppearance((ComboBox)sender, e, new int[] { 50, 100 }, new string[] { "Display", "Display2" });
+            OriginalClass.SetComboBoxAppearance((ComboBox)sender, e, new int[] { 50, 50 }, new string[] { "Display", "Display2" });
             部品集合版数.Invalidate();
             部品集合版数.DroppedDown = true;
+        }
+
+        private void 分類コード_TextChanged(object sender, EventArgs e)
+        {
+            ChangedData(true);
         }
     }
 }
