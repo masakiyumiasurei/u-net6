@@ -44,7 +44,7 @@
             説明ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             説明ラベル.ForeColor = SystemColors.ActiveCaptionText;
             説明ラベル.ImageAlign = ContentAlignment.MiddleLeft;
-            説明ラベル.Location = new Point(29, 21);
+            説明ラベル.Location = new Point(26, 9);
             説明ラベル.Margin = new Padding(0);
             説明ラベル.Name = "説明ラベル";
             説明ラベル.Size = new Size(291, 40);
@@ -59,10 +59,10 @@
             ラベル8.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             ラベル8.ForeColor = SystemColors.ActiveCaptionText;
             ラベル8.ImageAlign = ContentAlignment.MiddleLeft;
-            ラベル8.Location = new Point(73, 74);
+            ラベル8.Location = new Point(70, 49);
             ラベル8.Margin = new Padding(0);
             ラベル8.Name = "ラベル8";
-            ラベル8.Size = new Size(247, 35);
+            ラベル8.Size = new Size(215, 35);
             ラベル8.TabIndex = 10014;
             ラベル8.Text = "印刷イメージをプレビューします。";
             ラベル8.TextAlign = ContentAlignment.MiddleLeft;
@@ -74,10 +74,10 @@
             ラベル10.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             ラベル10.ForeColor = SystemColors.ActiveCaptionText;
             ラベル10.ImageAlign = ContentAlignment.MiddleLeft;
-            ラベル10.Location = new Point(73, 118);
+            ラベル10.Location = new Point(70, 93);
             ラベル10.Margin = new Padding(0);
             ラベル10.Name = "ラベル10";
-            ラベル10.Size = new Size(247, 35);
+            ラベル10.Size = new Size(215, 35);
             ラベル10.TabIndex = 10020;
             ラベル10.Text = "Excelへ出力します。";
             ラベル10.TextAlign = ContentAlignment.MiddleLeft;
@@ -85,7 +85,7 @@
             // 閉じるボタン
             // 
             閉じるボタン.Font = new Font("BIZ UDゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            閉じるボタン.Location = new Point(213, 166);
+            閉じるボタン.Location = new Point(168, 144);
             閉じるボタン.Name = "閉じるボタン";
             閉じるボタン.Size = new Size(97, 23);
             閉じるボタン.TabIndex = 3;
@@ -97,7 +97,7 @@
             // 
             エクセル出力ボタン.Font = new Font("BIZ UDゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             エクセル出力ボタン.Image = (Image)resources.GetObject("エクセル出力ボタン.Image");
-            エクセル出力ボタン.Location = new Point(29, 118);
+            エクセル出力ボタン.Location = new Point(27, 93);
             エクセル出力ボタン.Name = "エクセル出力ボタン";
             エクセル出力ボタン.Size = new Size(35, 35);
             エクセル出力ボタン.TabIndex = 2;
@@ -108,7 +108,7 @@
             // 
             印刷ボタン.Font = new Font("BIZ UDゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             印刷ボタン.Image = (Image)resources.GetObject("印刷ボタン.Image");
-            印刷ボタン.Location = new Point(29, 74);
+            印刷ボタン.Location = new Point(27, 49);
             印刷ボタン.Name = "印刷ボタン";
             印刷ボタン.Size = new Size(35, 35);
             印刷ボタン.TabIndex = 1;
@@ -119,7 +119,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(365, 208);
+            ClientSize = new Size(294, 184);
             Controls.Add(印刷ボタン);
             Controls.Add(エクセル出力ボタン);
             Controls.Add(ラベル10);
@@ -127,6 +127,7 @@
             Controls.Add(閉じるボタン);
             Controls.Add(説明ラベル);
             Name = "F_受注管理出力";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "受注管理出力";
             Load += Form_Load;
             ResumeLayout(false);
