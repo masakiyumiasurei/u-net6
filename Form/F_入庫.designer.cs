@@ -476,7 +476,7 @@ namespace u_net
             // 入庫日選択ボタン
             // 
             入庫日選択ボタン.Font = new Font("Yu Gothic UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            入庫日選択ボタン.Location = new Point(270, 71);
+            入庫日選択ボタン.Location = new Point(224, 70);
             入庫日選択ボタン.Margin = new Padding(4);
             入庫日選択ボタン.Name = "入庫日選択ボタン";
             入庫日選択ボタン.Size = new Size(22, 22);
@@ -485,7 +485,6 @@ namespace u_net
             入庫日選択ボタン.Text = "▼";
             入庫日選択ボタン.TextAlign = ContentAlignment.TopCenter;
             入庫日選択ボタン.UseVisualStyleBackColor = true;
-            入庫日選択ボタン.Visible = false;
             入庫日選択ボタン.Click += 入庫日選択ボタン_Click;
             // 
             // 入庫コード

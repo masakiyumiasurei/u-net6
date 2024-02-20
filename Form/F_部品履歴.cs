@@ -109,6 +109,7 @@ namespace u_net
             OriginalClass ofn = new OriginalClass();
             ofn.SetComboBox(分類コード, "SELECT 分類記号 as Display,対象部品名 as Display2,分類コード as Value FROM M部品分類");
             分類コード.DrawMode = DrawMode.OwnerDrawFixed;
+            分類コード.DropDownWidth = 600;
             ofn.SetComboBox(形状分類コード, "SELECT 部品形状名 as Display,部品形状コード as Value FROM M部品形状");
             ofn.SetComboBox(RoHS在庫状況, "SELECT Name as Display,Code as Value FROM rohsStatusCode");
 
@@ -145,8 +146,8 @@ namespace u_net
                 new KeyValuePair<int, String>(3, "非対応"),
                 new KeyValuePair<int, String>(4, "未調査"),
             };
-            this.RoHS.DisplayMember = "Value";
-            this.RoHS.ValueMember = "Key";
+            this.RoHS在庫状況.DisplayMember = "Value";
+            this.RoHS在庫状況.ValueMember = "Key";
 
             this.受入検査ランク.DataSource = new KeyValuePair<string, string>[] {
             new KeyValuePair<string, string>("A         ", "A         "),
@@ -236,8 +237,9 @@ namespace u_net
         {
             get
             {
-                //return string.IsNullOrEmpty(版数.Text) ? 0 : int.Parse(版数.Text);
-                return 0;
+                return int.TryParse(版数.Text, out int 変換結果) ? 変換結果 : 0;
+
+                //return 0;
             }
         }
 
@@ -252,6 +254,10 @@ namespace u_net
 
         private bool DoRegister()
         {
+
+            //Accessの登録処理に不具合があるため、この処理は行わない
+            return false;
+
 
             Connect();
             SqlTransaction transaction = cn.BeginTransaction();
@@ -913,7 +919,7 @@ namespace u_net
                 }
                 else
                 {
-                    strSQL = "SELECT * FROM V部品履歴読込 WHERE 部品コード ='" + codeString + "' AND 部品版数= " + editionNumber;
+                    strSQL = "SELECT * FROM V部品履歴読込 WHERE 部品コード ='" + codeString + "' AND 版数= " + editionNumber;
                 }
 
 
@@ -1119,7 +1125,7 @@ namespace u_net
 
                         if (string.IsNullOrEmpty(varValue.ToString()))
                         {
-                            MessageBox.Show("[" + controlObject.Tag + "]を指定してください。", "情報", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show(controlName + "を指定してください。", "情報", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             return true;
                         }
                         break;
@@ -1854,7 +1860,7 @@ namespace u_net
 
         private void 分類コード_DrawItem(object sender, DrawItemEventArgs e)
         {
-            OriginalClass.SetComboBoxAppearance((ComboBox)sender, e, new int[] { 50, 500 }, new string[] { "Display", "Display2" });
+            OriginalClass.SetComboBoxAppearance((ComboBox)sender, e, new int[] { 50, 550 }, new string[] { "Display", "Display2" });
             分類コード.Invalidate();
             分類コード.DroppedDown = true;
         }

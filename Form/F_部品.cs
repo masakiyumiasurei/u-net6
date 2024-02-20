@@ -378,7 +378,7 @@ namespace u_net
                         objControl2.Text = CommonConstants.LoginUserCode;
                         objControl3.Text = CommonConstants.LoginUserFullName;
 
-                        随時登録.Text = "0";
+
                     }
 
                     objControl4 = this.更新日時;
@@ -395,6 +395,10 @@ namespace u_net
 
 
                     string strwhere = " 部品コード='" + this.部品コード.Text + "'";
+
+                    随時登録.Text = "0";
+                    Revision.Text = "1";
+
 
                     if (!DataUpdater.UpdateOrInsertDataFrom(this, cn, "M部品", strwhere, "部品コード", transaction))
                     {
