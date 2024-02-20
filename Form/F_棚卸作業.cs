@@ -66,6 +66,11 @@ namespace u_net
         {
             try
             {
+
+                System.Type dgvtype = typeof(DataGridView);
+                System.Reflection.PropertyInfo dgvPropertyInfo = dgvtype.GetProperty("DoubleBuffered", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
+                dgvPropertyInfo.SetValue(dataGridView1, true, null);
+
                 foreach (Control control in Controls)
                 {
                     control.PreviewKeyDown += OriginalClass.ValidateCheck;

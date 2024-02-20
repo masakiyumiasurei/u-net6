@@ -385,7 +385,7 @@ namespace u_net
             strSearchCode = "";
             str品名 = "";
             str型番 = "";
- 
+
             // リストを更新する
             if (DoUpdate() == -1)
                 MessageBox.Show("エラーが発生しました。", "初期化コマンド", MessageBoxButtons.OK);
@@ -412,7 +412,7 @@ namespace u_net
             if (DoUpdate() == -1)
                 MessageBox.Show("更新できませんでした。", "更新コマンド", MessageBoxButtons.OK);
 
-  
+
 
         }
 
@@ -478,7 +478,7 @@ namespace u_net
 
                 //フッダー
                 paoRep.Write("出力日時", now.ToString("yyyy年M月dd日"));
-                paoRep.Write("ページ", ( page + "/" + maxPage + "ページ").ToString());
+                paoRep.Write("ページ", (page + "/" + maxPage + "ページ").ToString());
 
                 sum = 0;
 
@@ -495,8 +495,8 @@ namespace u_net
 
                     paoRep.Write("在庫数量", string.Format("{0:#,0}", targetRow["在庫数量"]) != "" ? string.Format("{0:#,0}", targetRow["在庫数量"]) : " ", i + 1);
                     paoRep.Write("仕入先1単価", string.Format("{0:#,0.00}", targetRow["仕入先1単価"]) != "" ? string.Format("{0:#,0.00}", targetRow["仕入先1単価"]) : " ", i + 1);
-                    long money = (long)Math.Floor(Convert.ToDecimal(targetRow["仕入先1単価"] != DBNull.Value ? targetRow["仕入先1単価"] : 0) * Convert.ToInt32(targetRow["在庫数量"] != DBNull.Value ? targetRow["在庫数量"] : 0 ));
-                    paoRep.Write("金額",  string.Format("{0:#,0}", money) , i + 1);
+                    long money = (long)Math.Floor(Convert.ToDecimal(targetRow["仕入先1単価"] != DBNull.Value ? targetRow["仕入先1単価"] : 0) * Convert.ToInt32(targetRow["在庫数量"] != DBNull.Value ? targetRow["在庫数量"] : 0));
+                    paoRep.Write("金額", string.Format("{0:#,0}", money), i + 1);
 
                     sum += money;
 
@@ -505,7 +505,7 @@ namespace u_net
 
                 }
 
-                paoRep.Write("合計金額",  string.Format("{0:#,0}", sum));
+                paoRep.Write("合計金額", string.Format("{0:#,0}", sum));
 
 
                 page++;
@@ -760,6 +760,13 @@ namespace u_net
                     在庫修正許可.Checked = false;
                 }
             }
+        }
+
+        private void コマンド出力_Click(object sender, EventArgs e)
+        {
+            F_出力 targetform = new F_出力();
+            targetform.DataGridView = dataGridView1;
+            targetform.ShowDialog();
         }
     }
 }

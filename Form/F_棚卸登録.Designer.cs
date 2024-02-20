@@ -33,7 +33,7 @@
             panel1 = new Panel();
             コマンド更新 = new Button();
             コマンド保守 = new Button();
-            コマンドF7 = new Button();
+            コマンド出力 = new Button();
             コマンド部品 = new Button();
             コマンド棚卸表 = new Button();
             コマンド登録 = new Button();
@@ -54,10 +54,12 @@
             label3 = new Label();
             在庫修正許可 = new CheckBox();
             開始ボタン = new Button();
+            panel3 = new Panel();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel2.SuspendLayout();
             statusStrip1.SuspendLayout();
+            panel3.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
@@ -65,7 +67,7 @@
             panel1.BackColor = SystemColors.ActiveCaption;
             panel1.Controls.Add(コマンド更新);
             panel1.Controls.Add(コマンド保守);
-            panel1.Controls.Add(コマンドF7);
+            panel1.Controls.Add(コマンド出力);
             panel1.Controls.Add(コマンド部品);
             panel1.Controls.Add(コマンド棚卸表);
             panel1.Controls.Add(コマンド登録);
@@ -115,19 +117,20 @@
             コマンド保守.Enter += コマンド保守_Enter;
             コマンド保守.Leave += コマンド保守_Leave;
             // 
-            // コマンドF7
+            // コマンド出力
             // 
-            コマンドF7.Enabled = false;
-            コマンドF7.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            コマンドF7.ForeColor = Color.Blue;
-            コマンドF7.ImageAlign = ContentAlignment.BottomLeft;
-            コマンドF7.Location = new Point(428, 4);
-            コマンドF7.Margin = new Padding(0, 2, 0, 2);
-            コマンドF7.Name = "コマンドF7";
-            コマンドF7.Size = new Size(70, 22);
-            コマンドF7.TabIndex = 10;
-            コマンドF7.TabStop = false;
-            コマンドF7.UseVisualStyleBackColor = true;
+            コマンド出力.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            コマンド出力.ForeColor = Color.Blue;
+            コマンド出力.ImageAlign = ContentAlignment.BottomLeft;
+            コマンド出力.Location = new Point(428, 4);
+            コマンド出力.Margin = new Padding(0, 2, 0, 2);
+            コマンド出力.Name = "コマンド出力";
+            コマンド出力.Size = new Size(70, 22);
+            コマンド出力.TabIndex = 10;
+            コマンド出力.TabStop = false;
+            コマンド出力.Text = "出力";
+            コマンド出力.UseVisualStyleBackColor = true;
+            コマンド出力.Click += コマンド出力_Click;
             // 
             // コマンド部品
             // 
@@ -301,14 +304,14 @@
             // 
             dataGridView1.AllowUserToAddRows = false;
             dataGridView1.AllowUserToDeleteRows = false;
-            dataGridView1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(0, 85);
+            dataGridView1.Dock = DockStyle.Fill;
+            dataGridView1.Location = new Point(0, 87);
             dataGridView1.Margin = new Padding(3, 2, 3, 2);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
             dataGridView1.RowTemplate.Height = 29;
-            dataGridView1.Size = new Size(866, 394);
+            dataGridView1.Size = new Size(866, 391);
             dataGridView1.TabIndex = 87;
             dataGridView1.CellDoubleClick += dataGridView1_CellDoubleClick;
             dataGridView1.CellPainting += DataGridView1_CellPainting;
@@ -319,15 +322,15 @@
             // 
             // panel2
             // 
-            panel2.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             panel2.Controls.Add(statusStrip1);
             panel2.Controls.Add(表示件数);
             panel2.Controls.Add(label1);
             panel2.Controls.Add(label2);
-            panel2.Location = new Point(0, 479);
+            panel2.Dock = DockStyle.Bottom;
+            panel2.Location = new Point(0, 478);
             panel2.Margin = new Padding(3, 2, 3, 2);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1054, 50);
+            panel2.Size = new Size(866, 50);
             panel2.TabIndex = 88;
             // 
             // statusStrip1
@@ -336,7 +339,7 @@
             statusStrip1.Location = new Point(0, 28);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Padding = new Padding(1, 0, 19, 0);
-            statusStrip1.Size = new Size(1054, 22);
+            statusStrip1.Size = new Size(866, 22);
             statusStrip1.TabIndex = 111;
             statusStrip1.Text = "statusStrip1";
             // 
@@ -349,7 +352,7 @@
             // label3
             // 
             label3.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label3.Location = new Point(3, 34);
+            label3.Location = new Point(2, 3);
             label3.Name = "label3";
             label3.Size = new Size(673, 20);
             label3.TabIndex = 89;
@@ -361,7 +364,7 @@
             在庫修正許可.AutoSize = true;
             在庫修正許可.Cursor = Cursors.SizeAll;
             在庫修正許可.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            在庫修正許可.Location = new Point(15, 61);
+            在庫修正許可.Location = new Point(14, 30);
             在庫修正許可.Name = "在庫修正許可";
             在庫修正許可.Size = new Size(198, 16);
             在庫修正許可.TabIndex = 1;
@@ -372,7 +375,7 @@
             // 開始ボタン
             // 
             開始ボタン.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            開始ボタン.Location = new Point(715, 39);
+            開始ボタン.Location = new Point(714, 8);
             開始ボタン.Margin = new Padding(4);
             開始ボタン.Name = "開始ボタン";
             開始ボタン.RightToLeft = RightToLeft.Yes;
@@ -383,16 +386,26 @@
             開始ボタン.Visible = false;
             開始ボタン.Click += 開始ボタン_Click;
             // 
+            // panel3
+            // 
+            panel3.Controls.Add(label3);
+            panel3.Controls.Add(開始ボタン);
+            panel3.Controls.Add(在庫修正許可);
+            panel3.Dock = DockStyle.Top;
+            panel3.Location = new Point(0, 32);
+            panel3.Margin = new Padding(3, 2, 3, 2);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(866, 55);
+            panel3.TabIndex = 112;
+            // 
             // F_棚卸登録
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(866, 528);
-            Controls.Add(開始ボタン);
-            Controls.Add(在庫修正許可);
-            Controls.Add(label3);
-            Controls.Add(panel2);
             Controls.Add(dataGridView1);
+            Controls.Add(panel3);
+            Controls.Add(panel2);
             Controls.Add(panel1);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(3, 2, 3, 2);
@@ -409,14 +422,15 @@
             panel2.PerformLayout();
             statusStrip1.ResumeLayout(false);
             statusStrip1.PerformLayout();
+            panel3.ResumeLayout(false);
+            panel3.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
         private Panel panel1;
         private Button コマンド保守;
-        private Button コマンドF7;
+        private Button コマンド出力;
         private Button コマンド部品;
         private Button コマンド棚卸表;
         private Button コマンド登録;
@@ -565,5 +579,6 @@
         private Label label3;
         private CheckBox 在庫修正許可;
         private Button 開始ボタン;
+        private Panel panel3;
     }
 }
