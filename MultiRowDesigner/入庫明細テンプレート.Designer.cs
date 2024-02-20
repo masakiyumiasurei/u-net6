@@ -43,7 +43,6 @@
             GrapeCity.Win.MultiRow.CellStyle cellStyle29 = new GrapeCity.Win.MultiRow.CellStyle();
             GrapeCity.Win.MultiRow.CellStyle cellStyle30 = new GrapeCity.Win.MultiRow.CellStyle();
             GrapeCity.Win.MultiRow.CellStyle cellStyle31 = new GrapeCity.Win.MultiRow.CellStyle();
-            GrapeCity.Win.MultiRow.CellStyle cellStyle32 = new GrapeCity.Win.MultiRow.CellStyle();
             GrapeCity.Win.MultiRow.CellStyle cellStyle2 = new GrapeCity.Win.MultiRow.CellStyle();
             GrapeCity.Win.MultiRow.CellStyle cellStyle4 = new GrapeCity.Win.MultiRow.CellStyle();
             GrapeCity.Win.MultiRow.Border border3 = new GrapeCity.Win.MultiRow.Border();
@@ -91,7 +90,6 @@
             this.入庫数量ボタン = new GrapeCity.Win.MultiRow.ButtonCell();
             this.入庫単価ボタン = new GrapeCity.Win.MultiRow.ButtonCell();
             this.入庫金額ボタン = new GrapeCity.Win.MultiRow.ButtonCell();
-            this.買掛区分コード設定 = new GrapeCity.Win.MultiRow.ComboBoxCell();
             this.明細削除ボタン = new GrapeCity.Win.MultiRow.ButtonCell();
             this.発注明細番号 = new GrapeCity.Win.MultiRow.TextBoxCell();
             this.全入庫 = new GrapeCity.Win.MultiRow.TextBoxCell();
@@ -148,7 +146,6 @@
             this.columnHeaderSection1.Cells.Add(this.入庫数量ボタン);
             this.columnHeaderSection1.Cells.Add(this.入庫単価ボタン);
             this.columnHeaderSection1.Cells.Add(this.入庫金額ボタン);
-            this.columnHeaderSection1.Cells.Add(this.買掛区分コード設定);
             this.columnHeaderSection1.Height = 66;
             this.columnHeaderSection1.Name = "columnHeaderSection1";
             this.columnHeaderSection1.Width = 856;
@@ -284,7 +281,7 @@
             // 
             this.買掛区分ボタン.Location = new System.Drawing.Point(473, 0);
             this.買掛区分ボタン.Name = "買掛区分ボタン";
-            this.買掛区分ボタン.Size = new System.Drawing.Size(122, 44);
+            this.買掛区分ボタン.Size = new System.Drawing.Size(122, 49);
             cellStyle27.BackColor = System.Drawing.SystemColors.Control;
             cellStyle27.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
             cellStyle27.ImeMode = System.Windows.Forms.ImeMode.Off;
@@ -349,17 +346,6 @@
             this.入庫金額ボタン.Style = cellStyle31;
             this.入庫金額ボタン.TabIndex = 20;
             this.入庫金額ボタン.Value = "入庫金額";
-            // 
-            // 買掛区分コード設定
-            // 
-            this.買掛区分コード設定.Location = new System.Drawing.Point(473, 44);
-            this.買掛区分コード設定.Name = "買掛区分コード設定";
-            this.買掛区分コード設定.Size = new System.Drawing.Size(122, 22);
-            cellStyle32.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
-            cellStyle32.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            cellStyle32.SelectionForeColor = System.Drawing.Color.Black;
-            this.買掛区分コード設定.Style = cellStyle32;
-            this.買掛区分コード設定.TabIndex = 21;
             // 
             // 明細削除ボタン
             // 
@@ -649,7 +635,6 @@
         private GrapeCity.Win.MultiRow.TextBoxCell 入庫金額;
         private GrapeCity.Win.MultiRow.TextBoxCell 買掛区分コード;
         private GrapeCity.Win.MultiRow.TextBoxCell 買掛明細コード;
-        private GrapeCity.Win.MultiRow.ComboBoxCell 買掛区分コード設定;
         private GrapeCity.Win.MultiRow.TextBoxCell 明細番号;
         private GrapeCity.Win.MultiRow.TextBoxCell 入庫コード;
     }

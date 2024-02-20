@@ -120,11 +120,11 @@
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="エクセル出力ボタン.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAAAwAAAAQCAYAAAAiYZ4HAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAADQSURBVDhPY5A38PeSMwh4DMT/seB3svr+hQzIACj4WM4w4JKcYWAHBkZobIAqB2tAFUACSBr+
-        gwxAFiSsAYjBzoNycGjwP4KsAYjf4tWADEBqQGop0yCnHxAGZN+QNw6SlDX0k5I3CLgpZxAYilODop6f
-        OpD9GYgPQ/FnkBhODSAgr+8fCOT/A4sDbYQK49YADLpwqBgw7ANiocLYNZDsJJATQB4FexjocaD4Dbye
-        xgeQNUASn75/OV4MTqABjxjkDQM8QQyoTbgxUI2MUaAHABArrp5WkjFLAAAAAElFTkSuQmCC
+        iVBORw0KGgoAAAANSUhEUgAAAAwAAAAQCAYAAAAiYZ4HAAAABGdBTUEAALGPC/xhBQAAANBJREFUOE9j
+        kDfw95IzCHgMxP+x4Hey+v6FDMgAKPhYzjDgkpxhYAcGRmhsgCoHa0AVQAJIGv6DDEAWJKwBiMHOg3Jw
+        aPA/gqwBiN/i1YAMQGpAainTIKcfEAZk35A3DpKUNfSTkjcIuClnEBiKU4Oinp86kP0ZiA9D8WeQGE4N
+        ICCv7x8I5P8DiwNthArj1gAMunCoGDDsA2Khwtg1kOwkkBNAHgV7GOhxoPgNvJ7GB5A1QBKfvn85XgxO
+        oAGPGOQNAzxBDKhNuDFQjYxRoAcAECuunlaSMUsAAAAASUVORK5CYII=
 </value>
   </data>
   <data name="印刷ボタン.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">

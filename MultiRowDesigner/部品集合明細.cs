@@ -105,6 +105,8 @@ namespace MultiRowDesigner
         {
             if (e.KeyCode == Keys.Return)
             {
+                gcMultiRow1.EndEdit();
+
                 if (gcMultiRow1.CurrentCell.RowIndex == null || gcMultiRow1.CurrentCell.CellIndex == null) return;
 
                 if (gcMultiRow1.CurrentCell.Name == "部品コード")
@@ -432,6 +434,13 @@ namespace MultiRowDesigner
                 case "明細削除ボタン":
                     // 新規行の場合、何もしない
                     if (gcMultiRow1.Rows[e.RowIndex].IsNewRow == true) return;
+
+
+                    if (gcMultiRow1.ReadOnly == true)
+                    {
+                        MessageBox.Show("編集はできません。", "削除", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        return;
+                    }
 
                     // 削除確認
                     if (MessageBox.Show("明細行(" + (e.RowIndex + 1) + ")を削除しますか？", "明細削除", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
