@@ -1317,7 +1317,7 @@ namespace u_net
         private CalendarColumn calendarColumn3;
         private System.Windows.Forms.Button コマンド終了;
         private System.Windows.Forms.Button コマンド登録;
-        
+
 
         private CalendarColumn 登録日;
         private System.Windows.Forms.Panel panel1;
@@ -1331,7 +1331,7 @@ namespace u_net
         private System.Windows.Forms.Button コマンド削除;
         private System.Windows.Forms.Button コマンド複写;
         private System.Windows.Forms.Button コマンド修正;
-        
+
         private System.Windows.Forms.StatusStrip statusStrip1;
         internal System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
 
@@ -1377,15 +1377,15 @@ namespace u_net
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label4;
-        
+
         private Label label18;
         private Label label19;
-        
+
         private NotifyIcon notifyIcon1;
         private Button button1;
         private Label label20;
         private Label label21;
-        
+
         private MultiRowDesigner.商品明細 商品明細1;
         private TextBox 分類名;
         private ComboBox 商品分類コード;

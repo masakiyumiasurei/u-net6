@@ -37,7 +37,7 @@ namespace u_net
             this.Text = "商品";       // ウィンドウタイトルを設定
             this.MaximizeBox = false;  // 最大化ボタンを無効化
                                        // 親フォームを直接指定
-         //   this.MdiParent = CommonConstants.GetParent();
+                                       //   this.MdiParent = CommonConstants.GetParent();
             InitializeComponent();
         }
         public void Connect()
@@ -137,7 +137,7 @@ namespace u_net
             intWindowWidth = this.Width;
 
             previousControl = null;
-                      
+
 
             try
             {
@@ -1135,7 +1135,7 @@ namespace u_net
 
         private void 数量単位コード_TextChanged(object sender, EventArgs e)
         {
-           // if (!FunctionClass.LimitText(this.数量単位コード, 2)) return;
+            // if (!FunctionClass.LimitText(this.数量単位コード, 2)) return;
             if (this.数量単位コード.SelectedValue == null)
             {
                 数量単位名.Text = null;
@@ -1337,7 +1337,7 @@ namespace u_net
         private void 数量単位コード_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (数量単位コード.SelectedItem != null)
-            {                
+            {
                 数量単位名.Text = ((DataRowView)数量単位コード.SelectedItem)?.Row.Field<String>("Display2")?.ToString();
                 ChangedData(true);
             }

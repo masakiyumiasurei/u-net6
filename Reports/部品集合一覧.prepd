@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <PrintDefine>
-<PrintSetting Name="レポート定義ファイル" Ver="9.2.4" >
+<PrintSetting Name="レポート定義ファイル" Ver="9.2.0" >
 <PrintAttrs>
 <FontAttr AttrName="Font1" Name="ＭＳ Ｐゴシック" Size="10" />
 <FontAttr AttrName="Font2" Name="ＭＳ Ｐゴシック" Size="16" />
@@ -35,27 +35,27 @@
 <Text Name="Text40" X="15" Y="12" Width="179.9" Height="7.2" Text="部品集合一覧" Align="Center" VAlign="Middle" FontAttr="Font2" />
 <Text Name="出力日時" X="35" Y="288" Width="57" Height="4.3" Text="*出力日時*" Align="Left" VAlign="Middle" FontAttr="Font3" />
 <Text Name="ページ" X="154" Y="288" Width="40" Height="4.3" Text="*ページ*" Align="Right" VAlign="Middle" FontAttr="Font3" />
-<Text Name="Text32" X="15" Y="21" Width="23" Height="6" Text="集合分類" BackColor="Silver" Align="Left" VAlign="Middle" FontAttr="Font1" LineAttr="Line5" />
+<Text Name="集合分類ラベル" X="15" Y="21" Width="23" Height="6" Text="集合分類名" BackColor="Silver" Align="Left" VAlign="Middle" FontAttr="Font1" LineAttr="Line5" IntervalY="6" />
 <Line Name="Line2" StartX="15" StartY="10" EndX="195" EndY="10" LineAttr="Line1" />
 <Line Name="Line3" StartX="15" StartY="20" EndX="195" EndY="20" LineAttr="Line1" />
-<Text Name="Text37" X="38" Y="21" Width="156.8" Height="6" Text="GP" BackColor="Silver" Align="Left" VAlign="Middle" FontAttr="Font1" LineAttr="Line6" />
+<Text Name="GPラベル" X="38" Y="21" Width="156.8" Height="6" Text="*GPラベル*" BackColor="Silver" Align="Left" VAlign="Middle" FontAttr="Font1" LineAttr="Line6" IntervalY="6" />
 <Text Name="Text38" X="15" Y="288" Width="20" Height="4.3" Text="出力日時 ：" Align="Left" VAlign="Middle" FontAttr="Font3" />
-<Text Name="Text39" X="15" Y="28" Width="30" Height="5" Text="部品集合コード" Align="Left" VAlign="Middle" FontAttr="Font1" />
-<Line Name="Line6" StartX="15" StartY="32.8" EndX="194" EndY="32.8" LineAttr="Line1" />
-<Text Name="Text30" X="46" Y="28" Width="60" Height="5" Text="集合名" Align="Left" VAlign="Middle" FontAttr="Font1" />
-<Text Name="Text31" X="107" Y="28" Width="40" Height="5" Text="更新日時" Align="Left" VAlign="Middle" FontAttr="Font1" />
-<Text Name="Text32" X="148" Y="28" Width="30" Height="5" Text="更新者名" Align="Left" VAlign="Middle" FontAttr="Font1" />
-<Text Name="Text33" X="179" Y="28" Width="5" Height="5" Text="確" Align="Center" VAlign="Middle" FontAttr="Font1" />
-<Text Name="Text34" X="184" Y="28" Width="5" Height="5" Text="承" Align="Center" VAlign="Middle" FontAttr="Font1" />
-<Text Name="Text35" X="189" Y="28" Width="5" Height="5" Text="削" Align="Center" VAlign="Middle" FontAttr="Font1" />
-<Text Name="部品集合コード" X="15" Y="33" Width="20" Height="6" Text="*部品集合コード*" Align="Left" VAlign="Middle" FontAttr="Font1" IntervalY="6" Repeat="42" />
-<Text Name="版数" X="35" Y="33" Width="10" Height="6" Text="*版数*" Align="Left" VAlign="Middle" FontAttr="Font1" IntervalY="6" Repeat="42" />
-<Text Name="集合名" X="46" Y="33" Width="60" Height="6" Text="*集合名*" Align="Left" VAlign="Middle" FontAttr="Font1" IntervalY="6" Repeat="42" />
-<Text Name="更新日時" X="107" Y="33" Width="40" Height="6" Text="*更新日時*" Align="Left" VAlign="Middle" FontAttr="Font1" IntervalY="6" Repeat="42" />
-<Text Name="更新者名" X="148" Y="33" Width="30" Height="6" Text="*更新者名*" Align="Left" VAlign="Middle" FontAttr="Font1" IntervalY="6" Repeat="42" />
-<Text Name="確定" X="179" Y="33" Width="5" Height="6" Text="*確定*" Align="Center" VAlign="Middle" FontAttr="Font1" IntervalY="6" Repeat="42" />
-<Text Name="承認" X="184" Y="33" Width="5" Height="6" Text="*承認*" Align="Center" VAlign="Middle" FontAttr="Font1" IntervalY="6" Repeat="42" />
-<Text Name="削除" X="189" Y="33" Width="5" Height="6" Text="*削除*" Align="Center" VAlign="Middle" FontAttr="Font1" IntervalY="6" Repeat="42" />
-<Line Name="横罫線" StartX="15" StartY="39" EndX="194" EndY="39" LineAttr="Line1" IntervalY="6" Repeat="42" />
+<Text Name="部品集合コードラベル" X="16" Y="21" Width="30" Height="5" Text="部品集合コード" Align="Left" VAlign="Middle" FontAttr="Font1" IntervalY="6" />
+<Line Name="横罫線1" StartX="16" StartY="28" EndX="194" EndY="28" LineAttr="Line1" IntervalY="6" Repeat="37" />
+<Text Name="集合名ラベル" X="46" Y="21" Width="60" Height="5" Text="集合名" Align="Left" VAlign="Middle" FontAttr="Font1" IntervalY="6" />
+<Text Name="更新日時ラベル" X="106" Y="21" Width="40" Height="5" Text="更新日時" Align="Left" VAlign="Middle" FontAttr="Font1" IntervalY="6" />
+<Text Name="更新者名ラベル" X="148" Y="21" Width="30" Height="5" Text="更新者名" Align="Left" VAlign="Middle" FontAttr="Font1" IntervalY="6" />
+<Text Name="確ラベル" X="178" Y="21" Width="5" Height="5" Text="確" Align="Center" VAlign="Middle" FontAttr="Font1" IntervalY="6" />
+<Text Name="承ラベル" X="184" Y="21" Width="5" Height="5" Text="承" Align="Center" VAlign="Middle" FontAttr="Font1" IntervalY="6" />
+<Text Name="削ラベル" X="190" Y="21" Width="5" Height="5" Text="削" Align="Center" VAlign="Middle" FontAttr="Font1" IntervalY="6" />
+<Text Name="部品集合コード" X="15" Y="21" Width="20" Height="6" Text="*部品集合コード*" Align="Left" VAlign="Middle" FontAttr="Font1" IntervalY="6" Repeat="42" />
+<Text Name="版数" X="35" Y="21" Width="10" Height="6" Text="*版数*" Align="Left" VAlign="Middle" FontAttr="Font1" IntervalY="6" Repeat="42" />
+<Text Name="集合名" X="46" Y="21" Width="60" Height="6" Text="*集合名*" Align="Left" VAlign="Middle" FontAttr="Font1" IntervalY="6" Repeat="42" />
+<Text Name="更新日時" X="107" Y="21" Width="40" Height="6" Text="*更新日時*" Align="Left" VAlign="Middle" FontAttr="Font1" IntervalY="6" Repeat="42" />
+<Text Name="更新者名" X="148" Y="21" Width="30" Height="6" Text="*更新者名*" Align="Left" VAlign="Middle" FontAttr="Font1" IntervalY="6" Repeat="42" />
+<Text Name="確定" X="179" Y="21" Width="5" Height="6" Text="*確定*" Align="Center" VAlign="Middle" FontAttr="Font1" IntervalY="6" Repeat="42" />
+<Text Name="承認" X="184" Y="21" Width="5" Height="6" Text="*承認*" Align="Center" VAlign="Middle" FontAttr="Font1" IntervalY="6" Repeat="42" />
+<Text Name="削除" X="189" Y="21" Width="5" Height="6" Text="*削除*" Align="Center" VAlign="Middle" FontAttr="Font1" IntervalY="6" Repeat="42" />
+<Line Name="横罫線2" StartX="16" StartY="28" EndX="194" EndY="28" LineAttr="Line1" IntervalY="6" Repeat="37" />
 </PrintObjects>
 </PrintDefine>
