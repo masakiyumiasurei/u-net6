@@ -542,9 +542,12 @@ namespace u_net
                     previousControl.Focus();
                 }
             }
+
+            Connect();
             //新規採番したコードを商品明細にセット
             string original = FunctionClass.採番(cn, "ITM");
             string originalcode = original.Substring(original.Length - 8);
+
 
             if (CopyData(originalcode))
             {
@@ -860,11 +863,11 @@ namespace u_net
         {
             if (dataChanged)
             {
-                this.Text = this.Name + "*";
+                this.Text = "商品*";
             }
             else
             {
-                this.Text = this.Name;
+                this.Text = "商品";
             }
 
             if (this.ActiveControl == this.商品コード)
@@ -883,7 +886,15 @@ namespace u_net
             switch (e.KeyCode)
             {
                 case Keys.Return:
+                    switch (this.ActiveControl.Name)
+                    {
+                        case "商品コード":
+                            //case "備考":
+                            return;
+                    }
                     SelectNextControl(ActiveControl, true, true, true, true);
+                    e.Handled = true;
+                    e.SuppressKeyPress = true;
                     break;
                 case Keys.Space: //コンボボックスならドロップダウン
                     {
@@ -1183,7 +1194,6 @@ namespace u_net
                 ChangedData(true);
         }
 
-
         public bool DetectRepeatedID(int currentNumber, string targetID, string exName)
         {
             // 型式名の重複を検出する
@@ -1265,9 +1275,8 @@ namespace u_net
         {
             OriginalClass.SetComboBoxAppearance((ComboBox)sender, e, new int[] { 100, 500 }, new string[] { "Display", "Display2" });
             シリーズコード.Invalidate();
-            シリーズコード.DroppedDown = true;
+            //  シリーズコード.DroppedDown = true;
         }
-
 
         private void シリーズコード_Validating(object sender, CancelEventArgs e)
         {
@@ -1280,9 +1289,11 @@ namespace u_net
             {
                 MessageBox.Show("シリーズを選択してください。" + Environment.NewLine + "シリーズは事前に登録されている必要があります。",
                     this.Name, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                e.Cancel = true;
                 シリーズコード.Text = ""; // テキストボックスをクリア
                 シリーズコード.SelectedValue = DBNull.Value;
                 シリーズ名.Text = "";
+                シリーズコード.DroppedDown = true;
             }
 
             if (!FunctionClass.LimitText(this.シリーズコード, 8)) return;

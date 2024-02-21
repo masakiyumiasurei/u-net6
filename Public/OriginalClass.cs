@@ -315,6 +315,8 @@ namespace u_net.Public
         /// <param name="fieldName">カラム名</param>
         public static void SetComboBoxAppearance(ComboBox cb, DrawItemEventArgs e, int[] fieldWidth, String[] fieldName)
         {
+            if (e.Index < 0) return;
+
             DataTable dt = (DataTable)cb.DataSource;
 
             Pen p = new Pen(Color.Gray);
@@ -328,8 +330,9 @@ namespace u_net.Public
 
             for (int i = 0; i < fieldName.Length; i++)
             {
-                //テキストの描画
-                e.Graphics.DrawString(Convert.ToString(dt.Rows[e.Index][fieldName[i]]), e.Font, b, width, e.Bounds.Y);
+                
+                    //テキストの描画
+                    e.Graphics.DrawString(Convert.ToString(dt.Rows[e.Index][fieldName[i]]), e.Font, b, width, e.Bounds.Y);
 
                 //縦線の描画
                 e.Graphics.DrawLine(p, width + fieldWidth[i], e.Bounds.Top, width + fieldWidth[i], e.Bounds.Bottom);

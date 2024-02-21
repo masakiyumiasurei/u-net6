@@ -1151,6 +1151,8 @@ namespace u_net
             // 
             // シリーズコード
             // 
+            シリーズコード.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            シリーズコード.AutoCompleteSource = AutoCompleteSource.ListItems;
             シリーズコード.BackColor = Color.White;
             シリーズコード.DrawMode = DrawMode.OwnerDrawFixed;
             シリーズコード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);

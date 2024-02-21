@@ -282,6 +282,7 @@ namespace MultiRowDesigner
             cellStyle4.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
             cellStyle4.Format = "N0";
             cellStyle4.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            cellStyle4.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleRight;
             this.定価.Style = cellStyle4;
             this.定価.TabIndex = 2;
             textLengthValidator2.LengthUnit = GrapeCity.Win.MultiRow.LengthUnit.TextElement;
@@ -299,6 +300,7 @@ namespace MultiRowDesigner
             cellStyle5.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
             cellStyle5.Format = "N0";
             cellStyle5.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            cellStyle5.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleRight;
             this.原価.Style = cellStyle5;
             this.原価.TabIndex = 3;
             textLengthValidator3.LengthUnit = GrapeCity.Win.MultiRow.LengthUnit.Byte;
