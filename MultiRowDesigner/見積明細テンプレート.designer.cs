@@ -306,7 +306,7 @@
             this.型番.Location = new System.Drawing.Point(60, 21);
             this.型番.Name = "型番";
             this.型番.Size = new System.Drawing.Size(360, 21);
-            cellStyle1.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
+            cellStyle1.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
             cellStyle1.ImeMode = System.Windows.Forms.ImeMode.Off;
             this.型番.Style = cellStyle1;
             this.型番.TabIndex = 3;
@@ -317,7 +317,7 @@
             this.品名.Location = new System.Drawing.Point(60, 0);
             this.品名.Name = "品名";
             this.品名.Size = new System.Drawing.Size(360, 21);
-            cellStyle2.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
+            cellStyle2.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
             cellStyle2.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
             this.品名.Style = cellStyle2;
             this.品名.TabIndex = 2;
@@ -348,7 +348,7 @@
             this.数量.ShowSpinButton = GrapeCity.Win.MultiRow.CellButtonVisibility.NotShown;
             this.数量.ShowSpinButtonInEditState = false;
             this.数量.Size = new System.Drawing.Size(80, 42);
-            cellStyle4.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
+            cellStyle4.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
             cellStyle4.Format = "N1";
             cellStyle4.ImeMode = System.Windows.Forms.ImeMode.Disable;
             cellStyle4.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleRight;
@@ -366,7 +366,7 @@
             this.単価.ShowSpinButton = GrapeCity.Win.MultiRow.CellButtonVisibility.NotShown;
             this.単価.ShowSpinButtonInEditState = false;
             this.単価.Size = new System.Drawing.Size(100, 42);
-            cellStyle5.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
+            cellStyle5.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
             cellStyle5.Format = "N2";
             cellStyle5.ImeMode = System.Windows.Forms.ImeMode.Disable;
             cellStyle5.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleRight;
@@ -381,7 +381,7 @@
             this.金額.Location = new System.Drawing.Point(760, 0);
             this.金額.Name = "金額";
             this.金額.Size = new System.Drawing.Size(100, 42);
-            cellStyle6.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
+            cellStyle6.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
             cellStyle6.Format = "N0";
             cellStyle6.ImeMode = System.Windows.Forms.ImeMode.Disable;
             cellStyle6.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleRight;
@@ -408,7 +408,7 @@
             this.合計金額.Location = new System.Drawing.Point(360, 0);
             this.合計金額.Name = "合計金額";
             this.合計金額.Size = new System.Drawing.Size(100, 21);
-            cellStyle25.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
+            cellStyle25.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
             cellStyle25.Format = "N0";
             cellStyle25.ImeMode = System.Windows.Forms.ImeMode.Off;
             cellStyle25.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleRight;
@@ -463,7 +463,7 @@
             this.summaryCell1.Location = new System.Drawing.Point(100, 0);
             this.summaryCell1.Name = "summaryCell1";
             this.summaryCell1.Size = new System.Drawing.Size(100, 21);
-            cellStyle29.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
+            cellStyle29.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
             cellStyle29.Format = "N0";
             cellStyle29.ImeMode = System.Windows.Forms.ImeMode.Off;
             cellStyle29.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleRight;
@@ -530,7 +530,7 @@
             this.標準単価.ShowSpinButton = GrapeCity.Win.MultiRow.CellButtonVisibility.NotShown;
             this.標準単価.ShowSpinButtonInEditState = false;
             this.標準単価.Size = new System.Drawing.Size(100, 42);
-            cellStyle7.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
+            cellStyle7.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
             cellStyle7.Format = "N0";
             cellStyle7.ImeMode = System.Windows.Forms.ImeMode.Disable;
             cellStyle7.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleRight;
@@ -551,7 +551,7 @@
             border1.Right = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.DarkGray);
             border1.Top = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.DarkGray);
             cellStyle8.Border = border1;
-            cellStyle8.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
+            cellStyle8.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
             cellStyle8.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleRight;
             this.行番号.Style = cellStyle8;
             this.行番号.TabIndex = 1;
@@ -564,7 +564,7 @@
             this.明細備考.Location = new System.Drawing.Point(860, 0);
             this.明細備考.Name = "明細備考";
             this.明細備考.Size = new System.Drawing.Size(140, 42);
-            cellStyle9.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
+            cellStyle9.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
             cellStyle9.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
             cellStyle9.Multiline = GrapeCity.Win.MultiRow.MultiRowTriState.True;
             cellStyle9.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.TopLeft;
@@ -578,7 +578,7 @@
             this.単位.Location = new System.Drawing.Point(500, 0);
             this.単位.Name = "単位";
             this.単位.Size = new System.Drawing.Size(60, 42);
-            cellStyle13.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
+            cellStyle13.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
             cellStyle13.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
             this.単位.Style = cellStyle13;
             this.単位.TabIndex = 5;

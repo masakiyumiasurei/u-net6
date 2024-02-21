@@ -1548,22 +1548,22 @@ namespace u_net
             // 
             statusStrip1.ImageScalingSize = new Size(20, 20);
             statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1, toolStripStatusLabel2 });
-            statusStrip1.Location = new Point(0, 755);
+            statusStrip1.Location = new Point(0, 758);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Padding = new Padding(1, 0, 19, 0);
-            statusStrip1.Size = new Size(1195, 25);
+            statusStrip1.Size = new Size(1195, 22);
             statusStrip1.TabIndex = 110;
             statusStrip1.Text = "statusStrip1";
             // 
             // toolStripStatusLabel1
             // 
             toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            toolStripStatusLabel1.Size = new Size(0, 20);
+            toolStripStatusLabel1.Size = new Size(0, 17);
             // 
             // toolStripStatusLabel2
             // 
             toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            toolStripStatusLabel2.Size = new Size(111, 20);
+            toolStripStatusLabel2.Size = new Size(89, 17);
             toolStripStatusLabel2.Text = "各種項目の説明";
             // 
             // notifyIcon1
@@ -1581,7 +1581,7 @@ namespace u_net
             panel2.Controls.Add(受注承認ボタン);
             panel2.Controls.Add(受注完了承認ボタン);
             panel2.Dock = DockStyle.Bottom;
-            panel2.Location = new Point(0, 713);
+            panel2.Location = new Point(0, 716);
             panel2.Margin = new Padding(4, 3, 4, 3);
             panel2.Name = "panel2";
             panel2.Size = new Size(1195, 42);
@@ -2235,7 +2235,7 @@ namespace u_net
             // 
             // 受注コード
             // 
-            受注コード.BackColor = Color.White;
+            受注コード.BackColor = Color.FromArgb(255, 255, 153);
             受注コード.DrawMode = DrawMode.OwnerDrawFixed;
             受注コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             受注コード.FormattingEnabled = true;
