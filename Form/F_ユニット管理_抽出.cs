@@ -274,18 +274,21 @@ namespace u_net
                 else if (cnt < 0)
                 {
                     MessageBox.Show("エラーが発生したため、抽出できませんでした。", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    this.Close();
                     return;
                 }
+                this.Close();
             }
             catch (Exception ex)
             {
                 Debug.WriteLine(this.Name + "_抽出ボタン_Click - " + ex.Message);
                 MessageBox.Show("エラーが発生しました。", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.Close();
             }
             finally
             {
                 //this.Painting = true;
-                this.Close();
+                
             }
         }
 
@@ -340,6 +343,7 @@ namespace u_net
         {
             if (e.KeyChar == ' ')
             {
+                e.Handled = true;
                 更新日開始選択_Click(sender, e);
             }
         }
@@ -377,6 +381,7 @@ namespace u_net
         {
             if (e.KeyChar == ' ')
             {
+                e.Handled = true;
                 更新日終了選択_Click(sender, e);
             }
         }

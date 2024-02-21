@@ -376,6 +376,10 @@ namespace MultiRowDesigner
             {
                 // UpdatedControlの本体
 
+                F_ユニット? f_ユニット = Application.OpenForms.OfType<F_ユニット>().FirstOrDefault();
+
+                if (f_ユニット.IsApproved) return;
+
                 object varParm = controlObject.Value;
                 switch (controlObject.Name)
                 {
@@ -408,7 +412,7 @@ namespace MultiRowDesigner
                                 }
                             }
                         }
-                        F_ユニット? f_ユニット = Application.OpenForms.OfType<F_ユニット>().FirstOrDefault();
+                        
                         f_ユニット.ChangedData(true);
 
                         break;

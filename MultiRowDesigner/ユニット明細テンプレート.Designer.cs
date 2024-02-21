@@ -528,7 +528,6 @@
             // 
             // 明細削除ボタン
             // 
-            this.明細削除ボタン.ButtonCommand = GrapeCity.Win.MultiRow.RowActionButtonCommands.Remove;
             this.明細削除ボタン.Location = new System.Drawing.Point(2, 2);
             this.明細削除ボタン.Name = "明細削除ボタン";
             this.明細削除ボタン.Size = new System.Drawing.Size(20, 20);
