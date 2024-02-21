@@ -59,8 +59,8 @@
 <Line Name="横罫線1" StartX="16" StartY="30" EndX="84" EndY="30" LineAttr="Line2" IntervalY="6" />
 <Line Name="横罫線2" StartX="86" StartY="30" EndX="194" EndY="30" LineAttr="Line2" IntervalY="6" />
 <Text Name="集合名" X="102" Y="24" Width="75.9" Height="5" Text="*集合名*" Align="Left" VAlign="Middle" FontAttr="Font1" IntervalY="6" />
-<Text Name="承認ラベル" X="178" Y="23" Width="12" Height="5" Text="*承認ラベル*" Align="Left" VAlign="Middle" FontAttr="Font1" IntervalY="6" />
-<Text Name="承認" X="190" Y="23" Width="5" Height="5" Text="*承認*" Align="Left" VAlign="Middle" FontAttr="Font1" IntervalY="6" />
+<Text Name="承認ラベル" X="178" Y="24" Width="12" Height="5" Text="*承認ラベル*" Align="Left" VAlign="Middle" FontAttr="Font1" IntervalY="6" />
+<Text Name="承認" X="190" Y="24" Width="5" Height="5" Text="*承認*" Align="Left" VAlign="Middle" FontAttr="Font1" IntervalY="6" />
 <Text Name="Noラベル" X="15" Y="24" Width="10" Height="5" Text="*Noラベル*" Align="Right" VAlign="Middle" FontAttr="Font1" IntervalY="6" />
 <Text Name="購ラベル" X="26" Y="24" Width="6" Height="5" Text="*購ラベル*" Align="Center" VAlign="Middle" FontAttr="Font1" IntervalY="6" />
 <Text Name="部品コードラベル" X="33" Y="24" Width="20" Height="5" Text="*部品コード*" Align="Left" VAlign="Middle" FontAttr="Font1" IntervalY="6" />
@@ -75,7 +75,7 @@
 <Line Name="横罫線7" StartX="60" StartY="30" EndX="72" EndY="30" LineAttr="Line1" IntervalY="6" />
 <Line Name="横罫線8" StartX="72" StartY="30" EndX="132" EndY="30" LineAttr="Line1" IntervalY="6" />
 <Line Name="横罫線9" StartX="134" StartY="30" EndX="194" EndY="30" LineAttr="Line1" IntervalY="6" />
-<Text Name="明細番号" X="15" Y="24" Width="10" Height="6" Text="*明細番号*" Align="Left" VAlign="Middle" FontAttr="Font1" IntervalY="6" />
+<Text Name="明細番号" X="15" Y="24" Width="10" Height="6" Text="*明細番号*" Align="Right" VAlign="Middle" FontAttr="Font1" IntervalY="6" />
 <Text Name="購買対象" X="26" Y="24" Width="6" Height="6" Text="*購買対象*" Align="Center" VAlign="Middle" FontAttr="Font1" IntervalY="6" />
 <Text Name="部品コード" X="33" Y="24" Width="20" Height="6" Text="*部品コード*" Align="Left" VAlign="Middle" FontAttr="Font1" IntervalY="6" />
 <Text Name="廃止" X="54" Y="24" Width="6" Height="6" Text="*廃止*" Align="Center" VAlign="Middle" FontAttr="Font1" IntervalY="6" />

@@ -175,12 +175,12 @@ namespace MultiRowDesigner
             // object cellValue = gcMultiRow1[e.CellIndex, e.RowIndex].Value;
 
             string columnName = gcMultiRow1.Columns[e.CellIndex].Name;
-
+            decimal tmpdecimal;
             // セルの値が数値で、かつマイナスの場合
             if (!gcMultiRow1.Rows[e.RowIndex].IsNewRow && (columnName == "定価" || columnName == "原価")
                 && e.Value != null && e.Value != DBNull.Value)
             {
-                if (Convert.ToDecimal(e.Value) < 0)
+                if (decimal.TryParse(e.Value.ToString(),out tmpdecimal) && tmpdecimal < 0)
                 {
                     // 赤色のフォントを設定
                     e.CellStyle.ForeColor = Color.Red;
@@ -339,12 +339,13 @@ namespace MultiRowDesigner
 
             string columnName = gcMultiRow1.Columns[e.CellIndex].Name;
             string newValue = e.FormattedValue?.ToString() ?? ""; // 変更後の値
-
+            decimal tmpdecimal;
 
             switch (columnName)
             {
                 case "型式名":
-                    //明細番号を取得
+                    if (gcMultiRow1.Rows[e.RowIndex].Cells["明細番号"].Value == null) return;
+                        //明細番号を取得
                     int currentNumber = int.Parse(gcMultiRow1.Rows[e.RowIndex].Cells["明細番号"].Value.ToString());
 
                     if (string.IsNullOrWhiteSpace(newValue))
@@ -373,11 +374,21 @@ namespace MultiRowDesigner
                         MessageBox.Show(columnName + " を入力してください。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         return;
                     }
-
+                    if (!decimal.TryParse(newValue, out tmpdecimal))
+                    {
+                        e.Cancel = true;
+                        MessageBox.Show("数値を入力してください。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        return;
+                    }
                     break;
 
                 case "原価":
-                    // コメントアウトしていた
+                    if (!decimal.TryParse(newValue, out tmpdecimal))
+                    {
+                        e.Cancel = true;
+                        MessageBox.Show("数値を入力してください。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        return;
+                    }
                     break;
 
                 case "機能":

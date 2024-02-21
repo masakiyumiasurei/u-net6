@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Irony.Parsing;
 using Microsoft.Data.SqlClient;
 using Pao.Reports;
 using u_net.Public;
@@ -149,22 +150,7 @@ namespace u_net
             fn.WaitForm.Close();
         }
 
-        private void Form_Resize(object sender, EventArgs e)
-        {
-            try
-            {
-                //dataGridView1.Height = dataGridView1.Height + (this.Height - IntWindowHeight);
-                //IntWindowHeight = this.Height;  // 高さ保存
-
-                //dataGridView1.Width = dataGridView1.Width + (this.Width - IntWindowWidth);
-                //IntWindowWidth = this.Width;    // 幅保存
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(this.Name + "_Form_Resize - " + ex.Message);
-            }
-        }
+        
 
         public int DoUpdate()
         {
@@ -576,102 +562,168 @@ namespace u_net
 
         private void コマンド印刷_Click(object sender, EventArgs e)
         {
-            IReport paoRep = ReportCreator.GetPreview();
-            paoRep.LoadDefFile("../../../Reports/部品集合一覧.prepd");
-
-            Connect();
-
-            DataRowCollection report;
-
-            string sqlQuery = "SELECT * FROM V部品集合管理 WHERE 1=1 " + filterString;
-
-            using (SqlCommand command = new SqlCommand(sqlQuery, cn))
+            try
             {
-                using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+
+                IReport paoRep = ReportCreator.GetPreview();
+                paoRep.LoadDefFile("../../../Reports/部品集合一覧.prepd");
+
+                Connect();
+
+                DataRowCollection report;
+                DataTable dt = new DataTable();
+                DataTable dt2 = new DataTable();
+                string sqlQuery = "";
+                int cnt = 0;
+                int cnt2 = 0;
+                int meisaiCnt = 0;
+
+                sqlQuery = "SELECT GP FROM V部品集合管理 WHERE 1=1 " + filterString + " group by GP";
+                using (SqlCommand command = new SqlCommand(sqlQuery, cn))
                 {
-                    DataSet dataSet = new DataSet();
-
-                    adapter.Fill(dataSet);
-
-                    report = dataSet.Tables[0].Rows;
-                }
-            }
-
-            //最大行数
-            int maxRow = 37;
-            //現在の行
-            int CurRow = 0;
-            //行数
-            int RowCount = maxRow;
-
-            if (report.Count > 0)
-            {
-                RowCount = report.Count;
-            }
-
-            int page = 1;
-            double maxPage = Math.Ceiling((double)RowCount / maxRow);
-
-            DateTime now = DateTime.Now;
-
-            int lenB;
-
-            //描画すべき行がある限りページを増やす
-            while (RowCount > 0)
-            {
-                RowCount -= maxRow;
-
-                paoRep.PageStart();
-
-                //ヘッダー
-
-                //paoRep.Write("ファックス番号", 仕入先ファックス番号.Text != "" ? 仕入先ファックス番号.Text : " ");
-                //paoRep.Write("担当者名", 仕入先担当者名.Text != "" ? 仕入先担当者名.Text : " ");
-                //paoRep.Write("購買コード", 購買コード.Text != "" ? 購買コード.Text : " ");
-                //paoRep.Write("シリーズ名", シリーズ名.Text != "" ? シリーズ名.Text : " ");
-                //paoRep.Write("ロット番号", ロット番号.Text != "" ? ロット番号.Text : " ");
-                //paoRep.Write("無効日時", 無効日時.Text != "" ? 無効日時.Text : " ");
-                //paoRep.Write("承認者名", 承認者名.Text != "" ? 承認者名.Text : " ");
-                //paoRep.Write("発注者名", 発注者名.Text != "" ? 発注者名.Text : " ");
-                //paoRep.Write("無効日時表示", 無効日時.Text != "" ? "＜この注文書は無効です。＞" : " ");
-                //paoRep.Write("発注版数表示", int.TryParse(発注版数.Text, out int version) && version > 1 ?
-                //    "（第 " + 発注版数.Text + " 版）" : " ");
-
-
-
-                //フッダー
-
-                paoRep.Write("出力日時", now.ToString("yyyy年M月d日"));
-                paoRep.Write("ページ", (page + "/" + maxPage + " ページ").ToString());
-
-                //明細
-                for (var i = 0; i < maxRow; i++)
-                {
-                    if (CurRow >= report.Count) break;
-
-                    DataRow targetRow = report[CurRow];
-
-                    //paoRep.Write("明細番号", (CurRow + 1).ToString(), i + 1);  //連番にしたい時はこちら。明細番号は歯抜けがあるので
-                    paoRep.Write("部品集合コード", targetRow["部品集合コード"].ToString() != "" ? targetRow["部品集合コード"].ToString() : " ", i + 1);
-                    paoRep.Write("版数", targetRow["部品集合版数"].ToString() != "" ? $"({targetRow["部品集合版数"].ToString()})" : " ", i + 1);
-                    paoRep.Write("集合名", targetRow["集合名"].ToString() != "" ? targetRow["集合名"].ToString() : " ", i + 1);
-                    paoRep.Write("更新日時", targetRow["更新日時"].ToString() != "" ? targetRow["更新日時"].ToString() : " ", i + 1);
-                    paoRep.Write("更新者名", targetRow["更新者名"].ToString() != "" ? targetRow["更新者名"].ToString() : " ", i + 1);
-                    paoRep.Write("確定", targetRow["確定"].ToString() != "" ? targetRow["確定"].ToString() : " ", i + 1);
-                    paoRep.Write("承認", targetRow["承認"].ToString() != "" ? targetRow["承認"].ToString() : " ", i + 1);
-                    paoRep.Write("削除", targetRow["削除"].ToString() != "" ? targetRow["削除"].ToString() : " ", i + 1);
-                    paoRep.Write("横罫線", i + 1);
-
-                    CurRow++;
+                    using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+                    {
+                        adapter.Fill(dt2);
+                        cnt = dt2.Rows.Count;
+                    }
                 }
 
-                page++;
 
-                paoRep.PageEnd();
 
+                sqlQuery = $"SELECT * FROM V部品集合管理 WHERE 1=1 {filterString} order by 集合名";
+
+                using (SqlCommand command = new SqlCommand(sqlQuery, cn))
+                {
+                    using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+                    {
+                        //DataSet dataSet = new DataSet();
+                        adapter.Fill(dt);
+                        cnt2 = dt.Rows.Count;
+                        report = dt.Rows;
+                    }
+                }
+
+                //最大行数
+                int maxRow = 42;
+                //現在の行
+                int CurRow = 0;
+                //行数
+                int RowCount = maxRow;
+
+                //if (report.Count > 0)
+                //{
+                RowCount = cnt + cnt2;
+
+                int page = 1;
+                double maxPage = Math.Ceiling((double)RowCount / maxRow);
+
+                DateTime now = DateTime.Now;
+                int lenB;
+                int i = 0;
+
+                //描画すべき行がある限りページを増やす
+                while (RowCount > 0)
+                {
+                    i = 0;
+                    RowCount -= maxRow;
+                    paoRep.PageStart();
+                      
+
+                    // 1つ目のループ: GP をグループヘッダーとしてグループ化
+                    var distinctGPs = dt.AsEnumerable()
+                        .OrderBy(row => row["GP"])
+                        .Select(row => row["GP"].ToString())
+                        .Distinct();
+
+                    //GPヘッダー明細                     
+                    foreach (var gp in distinctGPs)
+                    {
+                        if (CurRow >= dt.Rows.Count) break;
+
+                        paoRep.Write("集合分類ラベル", "集合分類", i + 1);
+                        paoRep.Write("GPラベル", gp.ToString() != "" ? gp.ToString() : " ", i + 1);
+
+                        i++;
+
+                        paoRep.Write("部品集合コードラベル", "部品集合コード", i + 1);
+                        paoRep.Write("集合名ラベル", "集合名", i + 1);
+                        paoRep.Write("更新日時ラベル", "更新日時", i + 1);
+                        paoRep.Write("更新者名ラベル", "更新者名", i + 1);
+                        paoRep.Write("確ラベル", "確", i + 1);
+                        paoRep.Write("削ラベル", "削", i + 1);
+                        paoRep.Write("承ラベル", "承", i + 1);
+                        paoRep.Write("横罫線1", i + 1);
+
+                        i++;
+                                           
+                        // DataTableから特定のGP値に一致する行のみを抽出
+                        var meisaiRow = dt.AsEnumerable().Where(row => row.Field<String>("GP") == gp).ToList();
+                        meisaiCnt = 1;
+
+                        foreach (DataRow targetRow in meisaiRow)
+                        {
+                            if (CurRow >= dt.Rows.Count) break;
+
+                            //paoRep.Write("明細番号", (CurRow + 1).ToString(), i + 1);  //連番にしたい時はこちら。明細番号は歯抜けがあるので
+                            paoRep.Write("部品集合コード", targetRow["部品集合コード"].ToString() != "" ? targetRow["部品集合コード"].ToString() : " ", i + 1);
+                            paoRep.Write("版数", targetRow["部品集合版数"].ToString() != "" ? $"({targetRow["部品集合版数"].ToString()})" : " ", i + 1);
+                            paoRep.Write("集合名", targetRow["集合名"].ToString() != "" ? targetRow["集合名"].ToString() : " ", i + 1);
+                            paoRep.Write("更新日時", targetRow["更新日時"].ToString() != "" ? targetRow["更新日時"].ToString() : " ", i + 1);
+                            paoRep.Write("更新者名", targetRow["更新者名"].ToString() != "" ? targetRow["更新者名"].ToString() : " ", i + 1);
+                            paoRep.Write("確定", targetRow["確定"].ToString() != "" ? targetRow["確定"].ToString() : " ", i + 1);
+                            paoRep.Write("承認", targetRow["承認"].ToString() != "" ? targetRow["承認"].ToString() : " ", i + 1);
+                            paoRep.Write("削除", targetRow["削除"].ToString() != "" ? targetRow["削除"].ToString() : " ", i + 1);
+                            paoRep.Write("横罫線2", i + 1);
+                            i++;
+                            CurRow++;
+                            meisaiCnt--;
+
+                            //行がmaxrowまで増えたら改ページ
+                            if (i >= maxRow )
+                            {
+                                //フッダー
+                                paoRep.Write("出力日時", now.ToString(""));
+                                paoRep.Write("ページ", (page + "/" + maxPage + " ページ").ToString());
+
+                                paoRep.PageEnd();
+                                page++;
+                                i = 0;
+                                RowCount -= maxRow;
+                                paoRep.PageStart();
+
+                                //ラベル行は表示させない
+                                
+                                paoRep.Write("集合分類ラベル", "", i + 1);
+                                paoRep.Write("GPラベル", "", i + 1);                                
+
+                                paoRep.Write("部品集合コードラベル", "", i + 1);
+                                paoRep.Write("集合名ラベル", "", i + 1);
+                                paoRep.Write("更新日時ラベル", "", i + 1);
+                                paoRep.Write("更新者名ラベル", "", i + 1);
+                                paoRep.Write("確ラベル", "", i + 1);
+                                paoRep.Write("削ラベル", "", i + 1);
+                                paoRep.Write("承ラベル", "", i + 1);
+                                // paoRep.Write("横罫線1", i + 1);                                
+                                                                    
+                            }                            
+                        }
+                    }
+                    paoRep.Write("出力日時", now.ToString("yyyy年M月d日"));
+                    paoRep.Write("ページ", (page + "/" + maxPage + " ページ").ToString());
+                    page++;
+
+                    paoRep.PageEnd();
+
+                }
+                paoRep.Output();
+
+                if (cn != null && cn.State == ConnectionState.Open) cn.Close();
             }
-            paoRep.Output();
-
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.StackTrace);
+                MessageBox.Show("エラーです" + ex.Message);            
+            }
         }
 
         private void コマンド印刷明細_Click(object sender, EventArgs e)
@@ -687,7 +739,7 @@ namespace u_net
             DataTable dt2 = new DataTable();
             DataTable dt3 = new DataTable();
             //string sqlQuery = "SELECT * FROM V部品集合明細一覧 WHERE 1=1 and 部品集合コード between '00000001' and '00000047'" + filterString;
-            string sqlQuery = "SELECT * FROM V部品集合明細一覧 WHERE 1=1 " + filterString;
+            string sqlQuery = "SELECT * FROM V部品集合明細一覧 WHERE 1=1 " + filterString + " order by GP,集合名,部品集合コード,明細番号";
 
             using (SqlCommand command = new SqlCommand(sqlQuery, cn))
             {
@@ -726,6 +778,8 @@ namespace u_net
 
             //印字する残行数
             int RowCount = 0;
+
+            //空白行ができるため、開始時に総ページ数を算出できず
 
             int cnt = dt?.Rows.Count ?? 0;
             int cnt2 = dt2?.Rows.Count ?? 0;
@@ -805,7 +859,7 @@ namespace u_net
                         if (i >= maxRow || meisaiRow.Count > (maxRow - i - 2))
                         {
                             //フッダー
-                            paoRep.Write("出力日時", now.ToString("yyyy年M月d日"));
+                            paoRep.Write("出力日時", now.ToString());
                             paoRep.Write("ページ", (page + " ページ").ToString());
 
                             paoRep.PageEnd();
@@ -874,7 +928,7 @@ namespace u_net
                             if (i >= maxRow)
                             {
                                 //フッダー
-                                paoRep.Write("出力日時", now.ToString("yyyy年M月d日"));
+                                paoRep.Write("出力日時", now.ToString());
                                 paoRep.Write("ページ", (page + " ページ").ToString());
 
                                 paoRep.PageEnd();
@@ -896,7 +950,7 @@ namespace u_net
 
                 page++;
 
-                paoRep.Write("出力日時", now.ToString("yyyy年M月d日"));
+                paoRep.Write("出力日時", now.ToString());
                 paoRep.Write("ページ", (page + " ページ").ToString());
 
                 paoRep.PageEnd();
@@ -904,9 +958,8 @@ namespace u_net
             }
 
             //最終ページフッダー
-
             paoRep.Output();
-
+            if (cn != null && cn.State == ConnectionState.Open) cn.Close();
         }
 
         private void コマンド出力_Click(object sender, EventArgs e)
