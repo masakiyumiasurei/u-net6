@@ -139,6 +139,7 @@ namespace u_net
             コマンド終了.Name = "コマンド終了";
             コマンド終了.Size = new Size(70, 25);
             コマンド終了.TabIndex = 0;
+            コマンド終了.TabStop = false;
             コマンド終了.Text = "終了";
             コマンド終了.UseVisualStyleBackColor = true;
             コマンド終了.Click += コマンド終了_Click;
@@ -153,6 +154,7 @@ namespace u_net
             コマンド登録.Name = "コマンド登録";
             コマンド登録.Size = new Size(70, 25);
             コマンド登録.TabIndex = 1;
+            コマンド登録.TabStop = false;
             コマンド登録.Text = "登録";
             コマンド登録.UseVisualStyleBackColor = true;
             コマンド登録.Click += コマンド登録_Click;
@@ -180,6 +182,7 @@ namespace u_net
             // 
             // button4
             // 
+            button4.Enabled = false;
             button4.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             button4.ForeColor = Color.Blue;
             button4.ImageAlign = ContentAlignment.BottomLeft;
@@ -188,10 +191,12 @@ namespace u_net
             button4.Name = "button4";
             button4.Size = new Size(70, 25);
             button4.TabIndex = 11;
+            button4.TabStop = false;
             button4.UseVisualStyleBackColor = true;
             // 
             // button3
             // 
+            button3.Enabled = false;
             button3.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             button3.ForeColor = Color.Blue;
             button3.ImageAlign = ContentAlignment.BottomLeft;
@@ -200,10 +205,12 @@ namespace u_net
             button3.Name = "button3";
             button3.Size = new Size(70, 25);
             button3.TabIndex = 10;
+            button3.TabStop = false;
             button3.UseVisualStyleBackColor = true;
             // 
             // コマンド製品
             // 
+            コマンド製品.Enabled = false;
             コマンド製品.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             コマンド製品.ForeColor = Color.Blue;
             コマンド製品.ImageAlign = ContentAlignment.BottomLeft;
@@ -212,6 +219,7 @@ namespace u_net
             コマンド製品.Name = "コマンド製品";
             コマンド製品.Size = new Size(70, 25);
             コマンド製品.TabIndex = 9;
+            コマンド製品.TabStop = false;
             コマンド製品.UseVisualStyleBackColor = true;
             // 
             // コマンドシリーズ
@@ -224,6 +232,7 @@ namespace u_net
             コマンドシリーズ.Name = "コマンドシリーズ";
             コマンドシリーズ.Size = new Size(70, 25);
             コマンドシリーズ.TabIndex = 8;
+            コマンドシリーズ.TabStop = false;
             コマンドシリーズ.Text = "シリーズ";
             コマンドシリーズ.UseVisualStyleBackColor = true;
             コマンドシリーズ.Click += コマンドシリーズ_Click;
@@ -232,12 +241,14 @@ namespace u_net
             // 
             コマンド確定.Enabled = false;
             コマンド確定.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            コマンド確定.ForeColor = Color.Blue;
             コマンド確定.ImageAlign = ContentAlignment.BottomLeft;
             コマンド確定.Location = new Point(612, 6);
             コマンド確定.Margin = new Padding(1, 0, 0, 0);
             コマンド確定.Name = "コマンド確定";
             コマンド確定.Size = new Size(70, 25);
             コマンド確定.TabIndex = 7;
+            コマンド確定.TabStop = false;
             コマンド確定.Text = "確定";
             コマンド確定.UseVisualStyleBackColor = true;
             コマンド確定.Click += コマンド確定_Click;
@@ -246,12 +257,14 @@ namespace u_net
             // 
             コマンド承認.Enabled = false;
             コマンド承認.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            コマンド承認.ForeColor = Color.Blue;
             コマンド承認.ImageAlign = ContentAlignment.BottomLeft;
             コマンド承認.Location = new Point(545, 6);
             コマンド承認.Margin = new Padding(1, 0, 0, 0);
             コマンド承認.Name = "コマンド承認";
             コマンド承認.Size = new Size(70, 25);
             コマンド承認.TabIndex = 6;
+            コマンド承認.TabStop = false;
             コマンド承認.Text = "承認";
             コマンド承認.UseVisualStyleBackColor = true;
             コマンド承認.Click += コマンド承認_Click;
@@ -266,6 +279,7 @@ namespace u_net
             コマンド削除.Name = "コマンド削除";
             コマンド削除.Size = new Size(70, 25);
             コマンド削除.TabIndex = 5;
+            コマンド削除.TabStop = false;
             コマンド削除.Text = "削除";
             コマンド削除.UseVisualStyleBackColor = true;
             コマンド削除.Click += コマンド削除_Click;
@@ -280,6 +294,7 @@ namespace u_net
             コマンド複写.Name = "コマンド複写";
             コマンド複写.Size = new Size(70, 25);
             コマンド複写.TabIndex = 4;
+            コマンド複写.TabStop = false;
             コマンド複写.Text = "複写";
             コマンド複写.UseVisualStyleBackColor = true;
             コマンド複写.Click += コマンド複写_Click;
@@ -294,6 +309,7 @@ namespace u_net
             コマンド修正.Name = "コマンド修正";
             コマンド修正.Size = new Size(70, 25);
             コマンド修正.TabIndex = 3;
+            コマンド修正.TabStop = false;
             コマンド修正.Text = "修正";
             コマンド修正.UseVisualStyleBackColor = true;
             コマンド修正.Click += コマンド修正_Click;
@@ -308,6 +324,7 @@ namespace u_net
             コマンド新規.Name = "コマンド新規";
             コマンド新規.Size = new Size(70, 25);
             コマンド新規.TabIndex = 2;
+            コマンド新規.TabStop = false;
             コマンド新規.Text = "新規";
             コマンド新規.UseVisualStyleBackColor = true;
             コマンド新規.Click += コマンド新規_Click;
@@ -441,17 +458,17 @@ namespace u_net
             // statusStrip1
             // 
             statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1 });
-            statusStrip1.Location = new Point(0, 667);
+            statusStrip1.Location = new Point(0, 670);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Padding = new Padding(1, 0, 19, 0);
-            statusStrip1.Size = new Size(1012, 25);
+            statusStrip1.Size = new Size(1012, 22);
             statusStrip1.TabIndex = 110;
             statusStrip1.Text = "statusStrip1";
             // 
             // toolStripStatusLabel1
             // 
             toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            toolStripStatusLabel1.Size = new Size(111, 20);
+            toolStripStatusLabel1.Size = new Size(89, 17);
             toolStripStatusLabel1.Text = "各種項目の説明";
             // 
             // 売上区分コード
@@ -546,6 +563,7 @@ namespace u_net
             // ComposedChipMount
             // 
             ComposedChipMount.BackColor = SystemColors.Control;
+            ComposedChipMount.Enabled = false;
             ComposedChipMount.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             ComposedChipMount.Location = new Point(618, 187);
             ComposedChipMount.Margin = new Padding(3, 2, 3, 2);
@@ -558,6 +576,7 @@ namespace u_net
             // 削除
             // 
             削除.BackColor = SystemColors.Control;
+            削除.Enabled = false;
             削除.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             削除.Location = new Point(618, 162);
             削除.Margin = new Padding(3, 2, 3, 2);
@@ -712,6 +731,7 @@ namespace u_net
             作成日時.ReadOnly = true;
             作成日時.Size = new Size(188, 20);
             作成日時.TabIndex = 27;
+            作成日時.TabStop = false;
             // 
             // label9
             // 
@@ -752,7 +772,7 @@ namespace u_net
             label8.Margin = new Padding(0);
             label8.Name = "label8";
             label8.Size = new Size(85, 17);
-            label8.TabIndex = 10;
+            label8.TabIndex = 9;
             label8.Text = "商品分類(&G)";
             label8.TextAlign = ContentAlignment.MiddleLeft;
             // 
@@ -878,6 +898,7 @@ namespace u_net
             IsUnit.Name = "IsUnit";
             IsUnit.Size = new Size(15, 14);
             IsUnit.TabIndex = 36;
+            IsUnit.TabStop = false;
             IsUnit.UseVisualStyleBackColor = true;
             IsUnit.CheckedChanged += IsUnit_CheckedChanged;
             // 
@@ -1121,7 +1142,7 @@ namespace u_net
             商品分類コード.Location = new Point(125, 152);
             商品分類コード.Name = "商品分類コード";
             商品分類コード.Size = new Size(49, 21);
-            商品分類コード.TabIndex = 191;
+            商品分類コード.TabIndex = 10;
             商品分類コード.ValueMember = "分類コード";
             商品分類コード.DrawItem += 商品分類コード_DrawItem;
             商品分類コード.SelectedIndexChanged += 商品分類コード_SelectedIndexChanged;
@@ -1154,7 +1175,7 @@ namespace u_net
             数量単位コード.Location = new Point(125, 282);
             数量単位コード.Name = "数量単位コード";
             数量単位コード.Size = new Size(79, 21);
-            数量単位コード.TabIndex = 192;
+            数量単位コード.TabIndex = 20;
             数量単位コード.DrawItem += 数量単位コード_DrawItem;
             数量単位コード.SelectedIndexChanged += 数量単位コード_SelectedIndexChanged;
             数量単位コード.TextChanged += 数量単位コード_TextChanged;

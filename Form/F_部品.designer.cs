@@ -825,6 +825,7 @@ namespace u_net
             // 
             // 仕入先1コード検索ボタン
             // 
+            仕入先1コード検索ボタン.Font = new Font("Yu Gothic UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             仕入先1コード検索ボタン.Location = new Point(215, 23);
             仕入先1コード検索ボタン.Margin = new Padding(4);
             仕入先1コード検索ボタン.Name = "仕入先1コード検索ボタン";
@@ -943,7 +944,7 @@ namespace u_net
             // 
             過不足数量.Location = new Point(585, 380);
             過不足数量.Name = "過不足数量";
-            過不足数量.Size = new Size(70, 23);
+            過不足数量.Size = new Size(70, 27);
             過不足数量.TabIndex = 52;
             過不足数量.Visible = false;
             // 
@@ -972,22 +973,22 @@ namespace u_net
             // statusStrip1
             // 
             statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1, toolStripStatusLabel2 });
-            statusStrip1.Location = new Point(0, 686);
+            statusStrip1.Location = new Point(0, 683);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Padding = new Padding(1, 0, 19, 0);
-            statusStrip1.Size = new Size(1140, 22);
+            statusStrip1.Size = new Size(1140, 25);
             statusStrip1.TabIndex = 10001;
             statusStrip1.Text = "statusStrip1";
             // 
             // toolStripStatusLabel1
             // 
             toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            toolStripStatusLabel1.Size = new Size(0, 17);
+            toolStripStatusLabel1.Size = new Size(0, 20);
             // 
             // toolStripStatusLabel2
             // 
             toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            toolStripStatusLabel2.Size = new Size(89, 17);
+            toolStripStatusLabel2.Size = new Size(111, 20);
             toolStripStatusLabel2.Text = "各種項目の説明";
             // 
             // 部品コード
@@ -1012,6 +1013,7 @@ namespace u_net
             // 
             // メーカーコード検索ボタン
             // 
+            メーカーコード検索ボタン.Font = new Font("Yu Gothic UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             メーカーコード検索ボタン.Location = new Point(215, 125);
             メーカーコード検索ボタン.Margin = new Padding(4);
             メーカーコード検索ボタン.Name = "メーカーコード検索ボタン";
@@ -1036,6 +1038,7 @@ namespace u_net
             // 
             // 改版ボタン
             // 
+            改版ボタン.Font = new Font("Yu Gothic UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             改版ボタン.Location = new Point(383, 48);
             改版ボタン.Margin = new Padding(4);
             改版ボタン.Name = "改版ボタン";
@@ -1049,6 +1052,7 @@ namespace u_net
             // 
             // 資料ボタン
             // 
+            資料ボタン.Font = new Font("Yu Gothic UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             資料ボタン.Location = new Point(477, 85);
             資料ボタン.Margin = new Padding(4);
             資料ボタン.Name = "資料ボタン";
@@ -1105,6 +1109,7 @@ namespace u_net
             // 
             // 仕入先2コード検索ボタン
             // 
+            仕入先2コード検索ボタン.Font = new Font("Yu Gothic UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             仕入先2コード検索ボタン.Location = new Point(216, 22);
             仕入先2コード検索ボタン.Margin = new Padding(4);
             仕入先2コード検索ボタン.Name = "仕入先2コード検索ボタン";
@@ -1225,6 +1230,7 @@ namespace u_net
             // 
             // 仕入先3コード検索ボタン
             // 
+            仕入先3コード検索ボタン.Font = new Font("Yu Gothic UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             仕入先3コード検索ボタン.Location = new Point(216, 22);
             仕入先3コード検索ボタン.Margin = new Padding(4);
             仕入先3コード検索ボタン.Name = "仕入先3コード検索ボタン";
@@ -1302,6 +1308,7 @@ namespace u_net
             // 上移動ボタン
             // 
             上移動ボタン.Enabled = false;
+            上移動ボタン.Font = new Font("Yu Gothic UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             上移動ボタン.Location = new Point(564, 259);
             上移動ボタン.Margin = new Padding(4);
             上移動ボタン.Name = "上移動ボタン";
@@ -1313,6 +1320,7 @@ namespace u_net
             // 下移動ボタン
             // 
             下移動ボタン.Enabled = false;
+            下移動ボタン.Font = new Font("Yu Gothic UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             下移動ボタン.Location = new Point(564, 289);
             下移動ボタン.Margin = new Padding(4);
             下移動ボタン.Name = "下移動ボタン";
@@ -1359,6 +1367,8 @@ namespace u_net
             // 
             // 分類コード
             // 
+            分類コード.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            分類コード.AutoCompleteSource = AutoCompleteSource.ListItems;
             分類コード.BackColor = Color.White;
             分類コード.DisplayMember = "分類コード";
             分類コード.DrawMode = DrawMode.OwnerDrawFixed;
@@ -1413,7 +1423,7 @@ namespace u_net
             GroupName.Location = new Point(221, 415);
             GroupName.Margin = new Padding(3, 2, 3, 2);
             GroupName.Name = "GroupName";
-            GroupName.Size = new Size(336, 20);
+            GroupName.Size = new Size(411, 20);
             GroupName.TabIndex = 10021;
             GroupName.TabStop = false;
             // 
@@ -2137,7 +2147,6 @@ namespace u_net
             label3.Size = new Size(112, 20);
             label3.TabIndex = 10058;
             label3.Text = "履歴";
-            label3.Visible = false;
             // 
             // 備考
             // 
@@ -2253,7 +2262,7 @@ namespace u_net
             // 
             無効日時.Location = new Point(988, 201);
             無効日時.Name = "無効日時";
-            無効日時.Size = new Size(129, 23);
+            無効日時.Size = new Size(129, 27);
             無効日時.TabIndex = 10063;
             無効日時.Visible = false;
             // 
@@ -2268,9 +2277,9 @@ namespace u_net
             // 
             // 随時登録
             // 
-            随時登録.Location = new Point(585, 415);
+            随時登録.Location = new Point(661, 379);
             随時登録.Name = "随時登録";
-            随時登録.Size = new Size(70, 23);
+            随時登録.Size = new Size(70, 27);
             随時登録.TabIndex = 10065;
             随時登録.Visible = false;
             // 
@@ -2278,7 +2287,7 @@ namespace u_net
             // 
             Revision.Location = new Point(679, 412);
             Revision.Name = "Revision";
-            Revision.Size = new Size(70, 23);
+            Revision.Size = new Size(70, 27);
             Revision.TabIndex = 10066;
             Revision.Visible = false;
             // 

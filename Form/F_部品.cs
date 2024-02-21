@@ -1764,7 +1764,18 @@ namespace u_net
             switch (e.KeyCode)
             {
                 case Keys.Return:
+                    switch (this.ActiveControl.Name)
+                    {
+                        case "備考":
+                            return;
+                            
+                        case "部品コード":
+                            SelectNextControl(ActiveControl, true, true, true, true);
+                            return;
+                    }
                     SelectNextControl(ActiveControl, true, true, true, true);
+                    e.Handled = true;
+                    e.SuppressKeyPress = true;
                     break;
 
                 case Keys.F1:
@@ -2041,7 +2052,11 @@ namespace u_net
         private void メーカーコード_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
             if (メーカーコード.Modified == false) return;
-            if (IsError(sender as Control) == true) e.Cancel = true;
+            if (IsError(sender as Control) == true)
+            {
+                メーカーコード.Undo();
+                e.Cancel = true;
+            }
         }
 
         private void メーカーコード_TextChanged(object sender, EventArgs e)
@@ -2200,6 +2215,7 @@ namespace u_net
         {
             if (e.KeyChar == (char)Keys.Space)
             {
+                e.Handled = true;
                 仕入先1コード検索ボタン_Click(sender, e);
             }
 
@@ -2261,10 +2277,9 @@ namespace u_net
         {
             if (e.KeyChar == (char)Keys.Space)
             {
+                e.Handled = true;
                 仕入先2コード検索ボタン_Click(sender, e);
             }
-
-
         }
 
         private void 仕入先3コード_Validated(object sender, EventArgs e)
@@ -2321,15 +2336,10 @@ namespace u_net
         {
             if (e.KeyChar == (char)Keys.Space)
             {
+                e.Handled = true;
                 仕入先3コード検索ボタン_Click(sender, e);
             }
-
-
         }
-
-
-
-
 
 
         private void 仕入先1コード検索ボタン_Click(object sender, EventArgs e)
@@ -2594,11 +2604,19 @@ namespace u_net
         }
 
 
-
-
         private void 分類コード_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
             if (IsError(sender as Control) == true) e.Cancel = true;
+            bool isPartialMatch = 分類コード.Items.Cast<DataRowView>()
+            .Any(item => item.Row.Field<string>("Display").IndexOf(分類コード.Text, StringComparison.OrdinalIgnoreCase) >= 0);
+
+            if (!isPartialMatch)
+            {
+                MessageBox.Show("その値はリストにありません","",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                分類コード.Text = tmpstr; // 入力を元に戻す
+                e.Cancel = true; 
+            }
+            GroupName.Text = ((DataRowView)分類コード.SelectedItem)?.Row.Field<String>("Display2")?.ToString();
         }
 
         private void 分類コード_SelectedIndexChanged(object sender, EventArgs e)
@@ -2613,6 +2631,18 @@ namespace u_net
             {
                 GroupName.Text = null;
             }
+
+            //var matchingItem = 分類コード.Items.Cast<DataRowView>().FirstOrDefault(item => item.Row.Field<String>("Display") == 分類コード.Text);
+            //if (matchingItem != null)
+            //{
+            //    // 一致する項目があれば、そのDisplay2の値をテキストボックスに設定
+            //    GroupName.Text = matchingItem.Row.Field<String>("Display2");
+            //}
+            //else
+            //{
+            //    // 一致する項目がない場合は、テキストボックスをクリア
+            //    GroupName.Text = "";
+            //}
         }
 
         private void 分類コード_KeyPress(object sender, KeyPressEventArgs e)
@@ -2635,8 +2665,10 @@ namespace u_net
             分類コード.DroppedDown = true;
         }
 
+        
         private void 部品コード_Enter(object sender, EventArgs e)
         {
+            selected_frame = 0;
             toolStripStatusLabel2.Text = "■読み込む部品データの部品コードを入力します。";
         }
 
@@ -2647,6 +2679,7 @@ namespace u_net
 
         private void 品名_Enter(object sender, EventArgs e)
         {
+            selected_frame = 0;
             toolStripStatusLabel2.Text = "■全角で25文字まで入力可。　■機種依存文字は入力できません。";
         }
 
@@ -2657,6 +2690,7 @@ namespace u_net
 
         private void 型番_Enter(object sender, EventArgs e)
         {
+            selected_frame = 0;
             toolStripStatusLabel2.Text = "■半角50文字まで入力可。　■機種依存文字は入力できません。";
         }
 
@@ -2667,6 +2701,7 @@ namespace u_net
 
         private void メーカーコード_Enter(object sender, EventArgs e)
         {
+            selected_frame = 0;
             toolStripStatusLabel2.Text = "■メーカーコードを入力します。　■8文字まで入力可。　■[space]キーで検索ウィンドウを開きます。";
         }
 
@@ -2675,8 +2710,11 @@ namespace u_net
             toolStripStatusLabel2.Text = "各種項目の説明";
         }
 
+        private string tmpstr = "";
         private void 分類コード_Enter(object sender, EventArgs e)
         {
+            selected_frame = 0;
+            tmpstr = 分類コード.Text;
             toolStripStatusLabel2.Text = "■[space]キーでドロップダウンリストを開きます。";
         }
 
@@ -2687,6 +2725,7 @@ namespace u_net
 
         private void 形状分類コード_Enter(object sender, EventArgs e)
         {
+            selected_frame = 0;
             toolStripStatusLabel2.Text = "■[space]キーでドロップダウンリストを開きます。";
         }
 
@@ -2697,6 +2736,7 @@ namespace u_net
 
         private void JampAis_Enter(object sender, EventArgs e)
         {
+            selected_frame = 0;
             toolStripStatusLabel2.Text = "■在庫部品について、RoHSの対応状況を入力します。　■[space]キーでドロップダウンリストを表示します。";
         }
 
@@ -2707,6 +2747,7 @@ namespace u_net
 
         private void 非含有証明書_Enter(object sender, EventArgs e)
         {
+            selected_frame = 0;
             toolStripStatusLabel2.Text = "■RoHS指令に基づく非含有証明書の進捗状況を選択します。　■[space]キーでドロップダウンリストを表示します。";
         }
 
@@ -2717,6 +2758,7 @@ namespace u_net
 
         private void RoHS資料_Enter(object sender, EventArgs e)
         {
+            selected_frame = 0;
             toolStripStatusLabel2.Text = "■RoHSに関する資料の有無を入力します。　■[space]キーでドロップダウンリストを表示します。";
         }
 
@@ -2727,6 +2769,7 @@ namespace u_net
 
         private void Rohs1ChemSherpaStatusCode_Enter(object sender, EventArgs e)
         {
+            selected_frame = 0;
             toolStripStatusLabel2.Text = "■RoHS1のchemSHERPAデータの入手状況を入力します。　■[space]キーでドロップダウンリストを表示します。";
         }
         private void Rohs1ChemSherpaStatusCode_Leave(object sender, EventArgs e)
@@ -2736,6 +2779,7 @@ namespace u_net
 
         private void Rohs2JampAisStatusCode_Enter(object sender, EventArgs e)
         {
+            selected_frame = 0;
             toolStripStatusLabel2.Text = "■在庫部品について、RoHSの対応状況を入力します。　■[space]キーでドロップダウンリストを表示します。";
         }
 
@@ -2746,6 +2790,7 @@ namespace u_net
 
         private void Rohs2NonInclusionCertificationStatusCode_Enter(object sender, EventArgs e)
         {
+            selected_frame = 0;
             toolStripStatusLabel2.Text = "■RoHS指令に基づく非含有証明書の進捗状況を選択します。　■[space]キーでドロップダウンリストを表示します。";
         }
 
@@ -2756,6 +2801,7 @@ namespace u_net
 
         private void Rohs2DocumentStatusCode_Enter(object sender, EventArgs e)
         {
+            selected_frame = 0;
             toolStripStatusLabel2.Text = "■RoHSに関する資料の有無を入力します。　■[space]キーでドロップダウンリストを表示します。";
         }
 
@@ -2766,6 +2812,7 @@ namespace u_net
 
         private void Rohs2ChemSherpaStatusCode_Enter(object sender, EventArgs e)
         {
+            selected_frame = 0;
             toolStripStatusLabel2.Text = "■RoHS2のchemSHERPAデータの入手状況を入力します。　■[space]キーでドロップダウンリストを表示します。";
         }
 
@@ -2776,6 +2823,7 @@ namespace u_net
 
         private void ChemSherpaVersion_Enter(object sender, EventArgs e)
         {
+            selected_frame = 0;
             toolStripStatusLabel2.Text = "■入手したchemSHERPAのバージョンを入力します。　■10文字まで入力可。";
         }
 
@@ -2786,6 +2834,7 @@ namespace u_net
 
         private void 入数_Enter(object sender, EventArgs e)
         {
+            selected_frame = 0;
             toolStripStatusLabel2.Text = "■含まれる部品の数量です。購買時にこの値によって除算されます。";
         }
 
@@ -2796,6 +2845,7 @@ namespace u_net
 
         private void 単位数量_Enter(object sender, EventArgs e)
         {
+            selected_frame = 0;
             toolStripStatusLabel2.Text = "■発注可能な最低数量です。";
         }
 
@@ -2806,6 +2856,7 @@ namespace u_net
 
         private void StandardDeliveryDay_Enter(object sender, EventArgs e)
         {
+            selected_frame = 0;
             toolStripStatusLabel2.Text = "■部品の標準納期を入力します。単位は[日]で入力してください。";
         }
 
@@ -2816,6 +2867,7 @@ namespace u_net
 
         private void ShelfNumber_Enter(object sender, EventArgs e)
         {
+            selected_frame = 0;
             toolStripStatusLabel2.Text = "■部品が保管されている棚番号です。";
         }
 
@@ -2826,6 +2878,7 @@ namespace u_net
 
         private void CalcInventoryCode_Enter(object sender, EventArgs e)
         {
+            selected_frame = 0;
             toolStripStatusLabel2.Text = "■[space]キーでドロップダウンリストを表示します。";
         }
 
@@ -2836,6 +2889,7 @@ namespace u_net
 
         private void ロス率_Enter(object sender, EventArgs e)
         {
+            selected_frame = 0;
             toolStripStatusLabel2.Text = "■在庫のロス率を係数で入力します。　■少数部は7桁まで入力できますが、表示は3桁です。";
         }
 
@@ -2846,6 +2900,7 @@ namespace u_net
 
         private void 受入検査ランク_Enter(object sender, EventArgs e)
         {
+            selected_frame = 0;
             toolStripStatusLabel2.Text = "■[space]キーでドロップダウンリストを表示します。";
         }
 
@@ -2856,6 +2911,7 @@ namespace u_net
 
         private void 備考_Enter(object sender, EventArgs e)
         {
+            selected_frame = 0;
             toolStripStatusLabel2.Text = "■全角2000文字まで入力できます。";
         }
 

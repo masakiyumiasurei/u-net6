@@ -372,7 +372,7 @@ namespace u_net
             入庫者コード_ラベル.Location = new Point(9, 96);
             入庫者コード_ラベル.Margin = new Padding(0);
             入庫者コード_ラベル.Name = "入庫者コード_ラベル";
-            入庫者コード_ラベル.Size = new Size(100, 17);
+            入庫者コード_ラベル.Size = new Size(95, 19);
             入庫者コード_ラベル.TabIndex = 5;
             入庫者コード_ラベル.Text = "入庫者(&M)";
             入庫者コード_ラベル.TextAlign = ContentAlignment.MiddleLeft;
@@ -402,7 +402,7 @@ namespace u_net
             入庫日_ラベル.Location = new Point(9, 73);
             入庫日_ラベル.Margin = new Padding(0);
             入庫日_ラベル.Name = "入庫日_ラベル";
-            入庫日_ラベル.Size = new Size(100, 17);
+            入庫日_ラベル.Size = new Size(95, 17);
             入庫日_ラベル.TabIndex = 3;
             入庫日_ラベル.Text = "入庫日(&D)";
             入庫日_ラベル.TextAlign = ContentAlignment.MiddleLeft;
@@ -443,7 +443,7 @@ namespace u_net
             // 
             仕入先名.BackColor = SystemColors.Window;
             仕入先名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            仕入先名.ImeMode = ImeMode.NoControl;
+            仕入先名.ImeMode = ImeMode.Hiragana;
             仕入先名.Location = new Point(453, 71);
             仕入先名.Margin = new Padding(3, 2, 3, 2);
             仕入先名.Name = "仕入先名";
@@ -514,7 +514,7 @@ namespace u_net
             入庫コードラベル.Location = new Point(9, 50);
             入庫コードラベル.Margin = new Padding(0);
             入庫コードラベル.Name = "入庫コードラベル";
-            入庫コードラベル.Size = new Size(100, 17);
+            入庫コードラベル.Size = new Size(95, 19);
             入庫コードラベル.TabIndex = 1;
             入庫コードラベル.Text = "入庫コード(&C)";
             入庫コードラベル.TextAlign = ContentAlignment.MiddleLeft;
@@ -570,7 +570,7 @@ namespace u_net
             // 
             仕入先担当者名.BackColor = SystemColors.Window;
             仕入先担当者名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            仕入先担当者名.ImeMode = ImeMode.NoControl;
+            仕入先担当者名.ImeMode = ImeMode.Hiragana;
             仕入先担当者名.Location = new Point(453, 145);
             仕入先担当者名.Margin = new Padding(3, 2, 3, 2);
             仕入先担当者名.Name = "仕入先担当者名";
@@ -631,7 +631,7 @@ namespace u_net
             発注コード_ラベル.Location = new Point(9, 121);
             発注コード_ラベル.Margin = new Padding(0);
             発注コード_ラベル.Name = "発注コード_ラベル";
-            発注コード_ラベル.Size = new Size(100, 17);
+            発注コード_ラベル.Size = new Size(95, 17);
             発注コード_ラベル.TabIndex = 7;
             発注コード_ラベル.Text = "発注コード(&O)";
             発注コード_ラベル.TextAlign = ContentAlignment.MiddleLeft;
@@ -685,7 +685,7 @@ namespace u_net
             集計年月_ラベル.Location = new Point(9, 147);
             集計年月_ラベル.Margin = new Padding(0);
             集計年月_ラベル.Name = "集計年月_ラベル";
-            集計年月_ラベル.Size = new Size(100, 17);
+            集計年月_ラベル.Size = new Size(95, 20);
             集計年月_ラベル.TabIndex = 9;
             集計年月_ラベル.Text = "集計年月(&A)";
             集計年月_ラベル.TextAlign = ContentAlignment.MiddleLeft;
@@ -716,7 +716,7 @@ namespace u_net
             支払年月_ラベル.Location = new Point(9, 171);
             支払年月_ラベル.Margin = new Padding(0);
             支払年月_ラベル.Name = "支払年月_ラベル";
-            支払年月_ラベル.Size = new Size(100, 17);
+            支払年月_ラベル.Size = new Size(95, 18);
             支払年月_ラベル.TabIndex = 11;
             支払年月_ラベル.Text = "支払年月(&P)";
             支払年月_ラベル.TextAlign = ContentAlignment.MiddleLeft;
@@ -731,6 +731,7 @@ namespace u_net
             TaxRate.Name = "TaxRate";
             TaxRate.Size = new Size(116, 20);
             TaxRate.TabIndex = 16;
+            TaxRate.TextAlign = HorizontalAlignment.Right;
             // 
             // 消費税率_ラベル
             // 
@@ -742,7 +743,7 @@ namespace u_net
             消費税率_ラベル.Location = new Point(9, 246);
             消費税率_ラベル.Margin = new Padding(0);
             消費税率_ラベル.Name = "消費税率_ラベル";
-            消費税率_ラベル.Size = new Size(100, 19);
+            消費税率_ラベル.Size = new Size(95, 19);
             消費税率_ラベル.TabIndex = 15;
             消費税率_ラベル.Text = "消費税率(&T)";
             消費税率_ラベル.TextAlign = ContentAlignment.MiddleLeft;
@@ -771,7 +772,7 @@ namespace u_net
             // 
             シリーズ名.BackColor = SystemColors.Window;
             シリーズ名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            シリーズ名.ImeMode = ImeMode.NoControl;
+            シリーズ名.ImeMode = ImeMode.Hiragana;
             シリーズ名.Location = new Point(453, 197);
             シリーズ名.Margin = new Padding(3, 2, 3, 2);
             シリーズ名.Name = "シリーズ名";
@@ -1033,13 +1034,13 @@ namespace u_net
             // 
             買掛区分コード設定.BackColor = Color.White;
             買掛区分コード設定.DrawMode = DrawMode.OwnerDrawFixed;
-            買掛区分コード設定.Font = new Font("BIZ UDゴシック", 13F, FontStyle.Regular, GraphicsUnit.Point);
+            買掛区分コード設定.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             買掛区分コード設定.FormattingEnabled = true;
             買掛区分コード設定.ImeMode = ImeMode.Disable;
-            買掛区分コード設定.Location = new Point(556, 334);
+            買掛区分コード設定.Location = new Point(560, 338);
             買掛区分コード設定.MaxDropDownItems = 9;
             買掛区分コード設定.Name = "買掛区分コード設定";
-            買掛区分コード設定.Size = new Size(142, 26);
+            買掛区分コード設定.Size = new Size(140, 21);
             買掛区分コード設定.TabIndex = 10173;
             買掛区分コード設定.DrawItem += 買掛区分コード設定_DrawItem;
             買掛区分コード設定.SelectedIndexChanged += 買掛区分コード設定_SelectedIndexChanged;

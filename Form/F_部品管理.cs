@@ -148,23 +148,7 @@ namespace u_net
             Cleargrid(dataGridView1);
         }
 
-        private void Form_Resize(object sender, EventArgs e)
-        {
-            try
-            {
-                
-                    //dataGridView1.Height = dataGridView1.Height + (this.Height - intWindowHeight);
-                    //intWindowHeight = this.Height;  // 高さ保存
-
-                    //dataGridView1.Width = dataGridView1.Width + (this.Width - intWindowWidth);
-                    //intWindowWidth = this.Width;    // 幅保存
-                
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(this.Name + "_Form_Resize - " + ex.Message);
-            }
-        }
+        
 
         public int DoUpdate()
         {
@@ -340,7 +324,7 @@ namespace u_net
                 //dataGridView1.Columns[0].Width = 500 / twipperdot;
                 dataGridView1.Columns[0].Width = 1300 / twipperdot; //1150
                 dataGridView1.Columns[1].Width = 300 / twipperdot;
-                dataGridView1.Columns[2].Width = 400 / twipperdot;
+                dataGridView1.Columns[2].Width = 440 / twipperdot;
                 dataGridView1.Columns[3].Width = 300 / twipperdot;
                 dataGridView1.Columns[4].Width = 2800 / twipperdot;
                 dataGridView1.Columns[5].Width = 2800 / twipperdot;
@@ -350,10 +334,15 @@ namespace u_net
                 dataGridView1.Columns[9].Width = 600 / twipperdot;
                 dataGridView1.Columns[10].Width = 1000 / twipperdot;
                 dataGridView1.Columns[11].Width = 400 / twipperdot;
-                dataGridView1.Columns[12].Width = 1200 / twipperdot;
+                dataGridView1.Columns[12].Width = 1230 / twipperdot;
                 dataGridView1.Columns[13].Width = 1400 / twipperdot;
                 dataGridView1.Columns[14].Width = 300 / twipperdot;
 
+                //金額列　カンマと右付け
+                dataGridView1.Columns["単価"].DefaultCellStyle.Format = "#,###,###,##0";
+                dataGridView1.Columns["単価"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+
+                dataGridView1.Columns["更新日時"].DefaultCellStyle.Format = "yyyy/MM/dd";
 
                 return dataGridView1.RowCount;
             }
