@@ -1568,7 +1568,7 @@ namespace u_net
             // 
             // 見積コード
             // 
-            見積コード.BackColor = Color.White;
+            見積コード.BackColor = Color.FromArgb(255, 255, 153);
             見積コード.Font = new Font("BIZ UDゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             見積コード.ImeMode = ImeMode.Disable;
             見積コード.Location = new Point(125, 50);
