@@ -498,6 +498,7 @@ namespace u_net
             入庫コード.Name = "入庫コード";
             入庫コード.Size = new Size(139, 21);
             入庫コード.TabIndex = 2;
+            入庫コード.SelectedIndexChanged += 入庫コード_SelectedIndexChanged;
             入庫コード.TextChanged += 入庫コード_TextChanged;
             入庫コード.KeyDown += 入庫コード_KeyDown;
             入庫コード.KeyPress += 入庫コード_KeyPress;
