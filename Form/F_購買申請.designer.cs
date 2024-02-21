@@ -328,29 +328,29 @@ namespace u_net
             // statusStrip1
             // 
             statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1, toolStripStatusLabel2 });
-            statusStrip1.Location = new Point(0, 531);
+            statusStrip1.Location = new Point(0, 534);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Padding = new Padding(1, 0, 19, 0);
-            statusStrip1.Size = new Size(876, 25);
+            statusStrip1.Size = new Size(876, 22);
             statusStrip1.TabIndex = 10001;
             statusStrip1.Text = "statusStrip1";
             // 
             // toolStripStatusLabel1
             // 
             toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            toolStripStatusLabel1.Size = new Size(0, 20);
+            toolStripStatusLabel1.Size = new Size(0, 17);
             // 
             // toolStripStatusLabel2
             // 
             toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            toolStripStatusLabel2.Size = new Size(111, 20);
+            toolStripStatusLabel2.Size = new Size(89, 17);
             toolStripStatusLabel2.Text = "各種項目の説明";
             // 
             // 購買申請コード
             // 
             購買申請コード.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             購買申請コード.AutoCompleteSource = AutoCompleteSource.ListItems;
-            購買申請コード.BackColor = Color.Yellow;
+            購買申請コード.BackColor = Color.FromArgb(255, 255, 153);
             購買申請コード.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             購買申請コード.FormattingEnabled = true;
             購買申請コード.ImeMode = ImeMode.Disable;
