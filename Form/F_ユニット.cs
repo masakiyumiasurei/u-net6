@@ -33,6 +33,8 @@ namespace u_net
         public bool IsDirty = false;
         int intWindowHeight ;
         int intWindowWidth ;
+        bool copyflg = false;
+        bool saveflg = false;
 
         public F_ユニット()
         {
@@ -199,7 +201,7 @@ namespace u_net
 
 
             OriginalClass ofn = new OriginalClass();
-            ofn.SetComboBox(ユニットコード, "SELECT A.ユニットコード as Value, A.ユニットコード as Display1 , A.最新版数 as Display3, { fn REPLACE(STR(CONVERT(bit, Mユニット.無効日時), 1, 0), '1', '×') } AS Display2 FROM Mユニット INNER JOIN (SELECT ユニットコード, MAX(ユニット版数) AS 最新版数 FROM Mユニット GROUP BY ユニットコード) A ON Mユニット.ユニットコード = A.ユニットコード AND Mユニット.ユニット版数 = A.最新版数 ORDER BY A.ユニットコード DESC");
+            ofn.SetComboBox(ユニットコード, "SELECT A.ユニットコード as Value, A.ユニットコード as Display , A.最新版数 as Display3, { fn REPLACE(STR(CONVERT(bit, Mユニット.無効日時), 1, 0), '1', '×') } AS Display2 FROM Mユニット INNER JOIN (SELECT ユニットコード, MAX(ユニット版数) AS 最新版数 FROM Mユニット GROUP BY ユニットコード) A ON Mユニット.ユニットコード = A.ユニットコード AND Mユニット.ユニット版数 = A.最新版数 ORDER BY A.ユニットコード DESC");
             ユニットコード.DrawMode = DrawMode.OwnerDrawFixed;
 
 
@@ -460,6 +462,10 @@ namespace u_net
                 return false;
             }
 
+            if (!FunctionClass.IsError(this.品名)) return false;
+            if (!FunctionClass.IsError(this.型番)) return false;
+            if (!FunctionClass.IsError(this.識別コード)) return false;
+
             return true;
         }
 
@@ -544,12 +550,17 @@ namespace u_net
         {
             FunctionClass fn = new FunctionClass();
 
+            //ユニットコードコンボボックスの先頭行が読み込まれないようにするため
+            if (copyflg) return;
+            if (saveflg) return;
+
             try
             {
                 string strSQL;
 
 
                 Connect();
+
 
                 switch (controlObject.Name)
                 {
@@ -665,6 +676,7 @@ namespace u_net
             {
                 // 例外処理
                 Debug.Print(this.Name + "_UpdatedControl - " + ex.Message);
+                if (fn.WaitForm == null) return;
                 fn.WaitForm.Close();
             }
         }
@@ -1150,10 +1162,13 @@ namespace u_net
 
                 }
 
+                copyflg = true;
 
                 // 表示情報の更新
                 this.ユニットコード.Text = codeString;
                 this.ユニット版数.Text = editionNumber.ToString();
+
+                copyflg = false;
 
                 this.作成日時.Text = null;
                 this.作成者コード.Text = null;
@@ -1579,6 +1594,9 @@ namespace u_net
                 if (SaveData())
                 {
 
+
+                    var unitCode = ユニットコード.Text;
+
                     // 版数のソース更新
                     UpdateEditionList(CurrentCode);
                     // 製品版数.Requery();
@@ -1595,8 +1613,15 @@ namespace u_net
                         コマンド新規.Enabled = true;
                         コマンド読込.Enabled = false;
 
+                        saveflg = true;
+
                         OriginalClass ofn = new OriginalClass();
                         ofn.SetComboBox(ユニットコード, "SELECT A.ユニットコード as Value, A.ユニットコード as Display , A.最新版数 as Display3, { fn REPLACE(STR(CONVERT(bit, Mユニット.無効日時), 1, 0), '1', '×') } AS Display2 FROM Mユニット INNER JOIN (SELECT ユニットコード, MAX(ユニット版数) AS 最新版数 FROM Mユニット GROUP BY ユニットコード) A ON Mユニット.ユニットコード = A.ユニットコード AND Mユニット.ユニット版数 = A.最新版数 ORDER BY A.ユニットコード DESC");
+
+                        saveflg = false;
+
+                        ユニットコード.SelectedValue = unitCode;
+                        ユニットコード_SelectedIndexChanged(sender, e);
 
                     }
 
@@ -2360,7 +2385,7 @@ namespace u_net
         private void ユニットコード_SelectedIndexChanged(object sender, EventArgs e)
         {
             ユニット版数.Text = ((DataRowView)ユニットコード.SelectedItem)?.Row.Field<Int16>("Display3").ToString();
-            UpdatedControl(sender as Control);
+            UpdatedControl(ユニットコード);
         }
 
         private void ユニットコード_TextChanged(object sender, EventArgs e)
@@ -2374,7 +2399,7 @@ namespace u_net
 
         private void ユニットコード_DrawItem(object sender, DrawItemEventArgs e)
         {
-            OriginalClass.SetComboBoxAppearance((ComboBox)sender, e, new int[] { 75, 16 }, new string[] { "Display1", "Display2" });
+            OriginalClass.SetComboBoxAppearance((ComboBox)sender, e, new int[] { 75, 16 }, new string[] { "Display", "Display2" });
             ユニットコード.Invalidate();
             ユニットコード.DroppedDown = true;
         }
