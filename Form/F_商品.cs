@@ -523,6 +523,7 @@ namespace u_net
                         this.Close();
                     }
                 }
+                商品名.Focus();
             }
             catch (Exception ex)
             {
