@@ -165,10 +165,11 @@ namespace u_net
             panel1.Controls.Add(コマンド削除);
             panel1.Controls.Add(コマンド新規);
             panel1.Controls.Add(コマンド商品);
-            panel1.Location = new Point(0, 1);
+            panel1.Dock = DockStyle.Top;
+            panel1.Location = new Point(0, 0);
             panel1.Margin = new Padding(4, 3, 4, 3);
             panel1.Name = "panel1";
-            panel1.Size = new Size(876, 42);
+            panel1.Size = new Size(888, 42);
             panel1.TabIndex = 81;
             // 
             // コマンド削除
@@ -331,7 +332,7 @@ namespace u_net
             statusStrip1.Location = new Point(0, 534);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Padding = new Padding(1, 0, 19, 0);
-            statusStrip1.Size = new Size(876, 22);
+            statusStrip1.Size = new Size(888, 22);
             statusStrip1.TabIndex = 10001;
             statusStrip1.Text = "statusStrip1";
             // 
@@ -351,7 +352,7 @@ namespace u_net
             購買申請コード.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             購買申請コード.AutoCompleteSource = AutoCompleteSource.ListItems;
             購買申請コード.BackColor = Color.FromArgb(255, 255, 153);
-            購買申請コード.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            購買申請コード.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             購買申請コード.FormattingEnabled = true;
             購買申請コード.ImeMode = ImeMode.Disable;
             購買申請コード.Location = new Point(150, 60);
@@ -368,12 +369,12 @@ namespace u_net
             // 
             // 確認_製造部ボタン
             // 
-            確認_製造部ボタン.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            確認_製造部ボタン.Font = new Font("BIZ UDPゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             確認_製造部ボタン.ImageAlign = ContentAlignment.BottomLeft;
-            確認_製造部ボタン.Location = new Point(680, 242);
+            確認_製造部ボタン.Location = new Point(619, 241);
             確認_製造部ボタン.Margin = new Padding(3, 2, 3, 2);
             確認_製造部ボタン.Name = "確認_製造部ボタン";
-            確認_製造部ボタン.Size = new Size(130, 27);
+            確認_製造部ボタン.Size = new Size(130, 24);
             確認_製造部ボタン.TabIndex = 18;
             確認_製造部ボタン.TabStop = false;
             確認_製造部ボタン.Text = "製造部確認(&G)";
@@ -387,7 +388,7 @@ namespace u_net
             ラベル86.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             ラベル86.ForeColor = SystemColors.ActiveCaptionText;
             ラベル86.ImageAlign = ContentAlignment.MiddleLeft;
-            ラベル86.Location = new Point(545, 345);
+            ラベル86.Location = new Point(498, 343);
             ラベル86.Margin = new Padding(0);
             ラベル86.Name = "ラベル86";
             ラベル86.Size = new Size(272, 44);
@@ -410,9 +411,9 @@ namespace u_net
             // 
             購買申請版数.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             購買申請版数.AutoCompleteSource = AutoCompleteSource.ListItems;
-            購買申請版数.BackColor = Color.Yellow;
+            購買申請版数.BackColor = Color.FromArgb(255, 255, 153);
             購買申請版数.DropDownStyle = ComboBoxStyle.DropDownList;
-            購買申請版数.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            購買申請版数.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             購買申請版数.FormattingEnabled = true;
             購買申請版数.ImeMode = ImeMode.Disable;
             購買申請版数.Location = new Point(365, 60);
@@ -432,7 +433,7 @@ namespace u_net
             製造部確認_ラベル.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             製造部確認_ラベル.ForeColor = SystemColors.ActiveCaptionText;
             製造部確認_ラベル.ImageAlign = ContentAlignment.MiddleLeft;
-            製造部確認_ラベル.Location = new Point(545, 245);
+            製造部確認_ラベル.Location = new Point(498, 245);
             製造部確認_ラベル.Margin = new Padding(0);
             製造部確認_ラベル.Name = "製造部確認_ラベル";
             製造部確認_ラベル.Size = new Size(85, 17);
@@ -444,7 +445,7 @@ namespace u_net
             // 
             確認_製造部.BackColor = SystemColors.Control;
             確認_製造部.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            確認_製造部.Location = new Point(635, 245);
+            確認_製造部.Location = new Point(588, 243);
             確認_製造部.Margin = new Padding(3, 2, 3, 2);
             確認_製造部.Multiline = true;
             確認_製造部.Name = "確認_製造部";
@@ -460,7 +461,7 @@ namespace u_net
             完了_ラベル.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             完了_ラベル.ForeColor = SystemColors.ActiveCaptionText;
             完了_ラベル.ImageAlign = ContentAlignment.MiddleLeft;
-            完了_ラベル.Location = new Point(545, 195);
+            完了_ラベル.Location = new Point(498, 195);
             完了_ラベル.Margin = new Padding(0);
             完了_ラベル.Name = "完了_ラベル";
             完了_ラベル.Size = new Size(85, 17);
@@ -472,7 +473,7 @@ namespace u_net
             // 
             完了.BackColor = SystemColors.Control;
             完了.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            完了.Location = new Point(635, 195);
+            完了.Location = new Point(588, 193);
             完了.Margin = new Padding(3, 2, 3, 2);
             完了.Multiline = true;
             完了.Name = "完了";
@@ -485,7 +486,7 @@ namespace u_net
             // 
             削除.BackColor = SystemColors.Control;
             削除.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            削除.Location = new Point(635, 220);
+            削除.Location = new Point(588, 218);
             削除.Margin = new Padding(3, 2, 3, 2);
             削除.Multiline = true;
             削除.Name = "削除";
@@ -501,7 +502,7 @@ namespace u_net
             削除_ラベル.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             削除_ラベル.ForeColor = SystemColors.ActiveCaptionText;
             削除_ラベル.ImageAlign = ContentAlignment.MiddleLeft;
-            削除_ラベル.Location = new Point(545, 220);
+            削除_ラベル.Location = new Point(498, 220);
             削除_ラベル.Margin = new Padding(0);
             削除_ラベル.Name = "削除_ラベル";
             削除_ラベル.Size = new Size(85, 17);
@@ -519,7 +520,7 @@ namespace u_net
             備考.Margin = new Padding(3, 2, 3, 2);
             備考.Multiline = true;
             備考.Name = "備考";
-            備考.Size = new Size(364, 146);
+            備考.Size = new Size(307, 146);
             備考.TabIndex = 16;
             備考.TextChanged += 備考_TextChanged;
             備考.Enter += 備考_Enter;
@@ -531,7 +532,7 @@ namespace u_net
             // 
             Scheduled.BackColor = SystemColors.Control;
             Scheduled.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            Scheduled.Location = new Point(635, 170);
+            Scheduled.Location = new Point(588, 168);
             Scheduled.Margin = new Padding(3, 2, 3, 2);
             Scheduled.Multiline = true;
             Scheduled.Name = "Scheduled";
@@ -577,7 +578,7 @@ namespace u_net
             生産計画_ラベル.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             生産計画_ラベル.ForeColor = SystemColors.ActiveCaptionText;
             生産計画_ラベル.ImageAlign = ContentAlignment.MiddleLeft;
-            生産計画_ラベル.Location = new Point(545, 170);
+            生産計画_ラベル.Location = new Point(498, 170);
             生産計画_ラベル.Margin = new Padding(0);
             生産計画_ラベル.Name = "生産計画_ラベル";
             生産計画_ラベル.Size = new Size(85, 17);
@@ -592,7 +593,7 @@ namespace u_net
             承認_ラベル.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             承認_ラベル.ForeColor = SystemColors.ActiveCaptionText;
             承認_ラベル.ImageAlign = ContentAlignment.MiddleLeft;
-            承認_ラベル.Location = new Point(545, 145);
+            承認_ラベル.Location = new Point(498, 145);
             承認_ラベル.Margin = new Padding(0);
             承認_ラベル.Name = "承認_ラベル";
             承認_ラベル.Size = new Size(85, 17);
@@ -604,7 +605,7 @@ namespace u_net
             // 
             確認_営業部.BackColor = SystemColors.Control;
             確認_営業部.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            確認_営業部.Location = new Point(635, 145);
+            確認_営業部.Location = new Point(588, 143);
             確認_営業部.Margin = new Padding(3, 2, 3, 2);
             確認_営業部.Multiline = true;
             確認_営業部.Name = "確認_営業部";
@@ -631,7 +632,7 @@ namespace u_net
             // 出荷予定日
             // 
             出荷予定日.BackColor = Color.White;
-            出荷予定日.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            出荷予定日.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             出荷予定日.ImeMode = ImeMode.Disable;
             出荷予定日.Location = new Point(150, 320);
             出荷予定日.Margin = new Padding(3, 2, 3, 2);
@@ -650,7 +651,7 @@ namespace u_net
             // 
             登録者名.BackColor = SystemColors.Control;
             登録者名.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            登録者名.Location = new Point(680, 120);
+            登録者名.Location = new Point(633, 118);
             登録者名.Margin = new Padding(3, 2, 3, 2);
             登録者名.Multiline = true;
             登録者名.Name = "登録者名";
@@ -696,7 +697,7 @@ namespace u_net
             登録者_ラベル.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             登録者_ラベル.ForeColor = SystemColors.ActiveCaptionText;
             登録者_ラベル.ImageAlign = ContentAlignment.MiddleLeft;
-            登録者_ラベル.Location = new Point(545, 120);
+            登録者_ラベル.Location = new Point(498, 120);
             登録者_ラベル.Margin = new Padding(0);
             登録者_ラベル.Name = "登録者_ラベル";
             登録者_ラベル.Size = new Size(85, 17);
@@ -726,7 +727,7 @@ namespace u_net
             登録日時_ラベル.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             登録日時_ラベル.ForeColor = SystemColors.ActiveCaptionText;
             登録日時_ラベル.ImageAlign = ContentAlignment.MiddleLeft;
-            登録日時_ラベル.Location = new Point(545, 95);
+            登録日時_ラベル.Location = new Point(498, 95);
             登録日時_ラベル.Margin = new Padding(0);
             登録日時_ラベル.Name = "登録日時_ラベル";
             登録日時_ラベル.Size = new Size(85, 17);
@@ -736,7 +737,7 @@ namespace u_net
             // 
             // 購買納期
             // 
-            購買納期.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            購買納期.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             購買納期.ForeColor = SystemColors.WindowText;
             購買納期.ImeMode = ImeMode.Disable;
             購買納期.Location = new Point(150, 295);
@@ -770,7 +771,7 @@ namespace u_net
             // 
             登録日時.BackColor = SystemColors.Control;
             登録日時.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            登録日時.Location = new Point(635, 95);
+            登録日時.Location = new Point(588, 93);
             登録日時.Margin = new Padding(3, 2, 3, 2);
             登録日時.Multiline = true;
             登録日時.Name = "登録日時";
@@ -812,7 +813,7 @@ namespace u_net
             // 申請日
             // 
             申請日.BackColor = Color.White;
-            申請日.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            申請日.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             申請日.ImeMode = ImeMode.Disable;
             申請日.Location = new Point(150, 95);
             申請日.Margin = new Padding(3, 2, 3, 2);
@@ -828,7 +829,7 @@ namespace u_net
             // 版数_ラベル
             // 
             版数_ラベル.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            版数_ラベル.Location = new Point(300, 60);
+            版数_ラベル.Location = new Point(304, 60);
             版数_ラベル.Name = "版数_ラベル";
             版数_ラベル.Size = new Size(60, 20);
             版数_ラベル.TabIndex = 10057;
@@ -901,7 +902,7 @@ namespace u_net
             申請者名.Location = new Point(229, 120);
             申請者名.Margin = new Padding(3, 2, 3, 2);
             申請者名.Name = "申請者名";
-            申請者名.Size = new Size(244, 19);
+            申請者名.Size = new Size(212, 19);
             申請者名.TabIndex = 35;
             申請者名.TabStop = false;
             // 
@@ -913,7 +914,7 @@ namespace u_net
             商品名.Location = new Point(150, 170);
             商品名.Margin = new Padding(3, 2, 3, 2);
             商品名.Name = "商品名";
-            商品名.Size = new Size(364, 19);
+            商品名.Size = new Size(307, 19);
             商品名.TabIndex = 6;
             商品名.TextChanged += 商品名_TextChanged;
             商品名.Enter += 商品名_Enter;
@@ -960,7 +961,7 @@ namespace u_net
             シリーズ名.Margin = new Padding(3, 2, 3, 2);
             シリーズ名.Name = "シリーズ名";
             シリーズ名.ReadOnly = true;
-            シリーズ名.Size = new Size(364, 19);
+            シリーズ名.Size = new Size(307, 19);
             シリーズ名.TabIndex = 7;
             シリーズ名.TabStop = false;
             // 
@@ -968,7 +969,7 @@ namespace u_net
             // 
             申請者コード.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             申請者コード.AutoCompleteSource = AutoCompleteSource.ListItems;
-            申請者コード.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            申請者コード.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             申請者コード.FormattingEnabled = true;
             申請者コード.ImeMode = ImeMode.Disable;
             申請者コード.Location = new Point(150, 120);
@@ -1026,7 +1027,7 @@ namespace u_net
             終了_ラベル.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             終了_ラベル.ForeColor = SystemColors.ActiveCaptionText;
             終了_ラベル.ImageAlign = ContentAlignment.MiddleLeft;
-            終了_ラベル.Location = new Point(545, 270);
+            終了_ラベル.Location = new Point(498, 272);
             終了_ラベル.Margin = new Padding(0);
             終了_ラベル.Name = "終了_ラベル";
             終了_ラベル.Size = new Size(85, 17);
@@ -1038,7 +1039,7 @@ namespace u_net
             // 
             終了入力.BackColor = SystemColors.Control;
             終了入力.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            終了入力.Location = new Point(635, 270);
+            終了入力.Location = new Point(588, 270);
             終了入力.Margin = new Padding(3, 2, 3, 2);
             終了入力.Multiline = true;
             終了入力.Name = "終了入力";
@@ -1054,7 +1055,7 @@ namespace u_net
             ラベル89.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             ラベル89.ForeColor = SystemColors.ActiveCaptionText;
             ラベル89.ImageAlign = ContentAlignment.MiddleLeft;
-            ラベル89.Location = new Point(680, 145);
+            ラベル89.Location = new Point(633, 142);
             ラベル89.Margin = new Padding(0);
             ラベル89.Name = "ラベル89";
             ラベル89.Size = new Size(99, 21);
@@ -1069,7 +1070,7 @@ namespace u_net
             ラベル106.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             ラベル106.ForeColor = SystemColors.ActiveCaptionText;
             ラベル106.ImageAlign = ContentAlignment.MiddleLeft;
-            ラベル106.Location = new Point(680, 170);
+            ラベル106.Location = new Point(633, 167);
             ラベル106.Margin = new Padding(0);
             ラベル106.Name = "ラベル106";
             ラベル106.Size = new Size(99, 21);
@@ -1084,7 +1085,7 @@ namespace u_net
             ラベル96.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             ラベル96.ForeColor = SystemColors.ActiveCaptionText;
             ラベル96.ImageAlign = ContentAlignment.MiddleLeft;
-            ラベル96.Location = new Point(680, 195);
+            ラベル96.Location = new Point(633, 192);
             ラベル96.Margin = new Padding(0);
             ラベル96.Name = "ラベル96";
             ラベル96.Size = new Size(177, 21);
@@ -1099,7 +1100,7 @@ namespace u_net
             ラベル91.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             ラベル91.ForeColor = SystemColors.ActiveCaptionText;
             ラベル91.ImageAlign = ContentAlignment.MiddleLeft;
-            ラベル91.Location = new Point(545, 400);
+            ラベル91.Location = new Point(498, 398);
             ラベル91.Margin = new Padding(0);
             ラベル91.Name = "ラベル91";
             ラベル91.Size = new Size(312, 21);
@@ -1109,12 +1110,12 @@ namespace u_net
             // 
             // 終了ボタン
             // 
-            終了ボタン.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            終了ボタン.Font = new Font("BIZ UDPゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             終了ボタン.ImageAlign = ContentAlignment.BottomLeft;
-            終了ボタン.Location = new Point(680, 270);
+            終了ボタン.Location = new Point(619, 268);
             終了ボタン.Margin = new Padding(3, 2, 3, 2);
             終了ボタン.Name = "終了ボタン";
-            終了ボタン.Size = new Size(130, 27);
+            終了ボタン.Size = new Size(130, 24);
             終了ボタン.TabIndex = 25;
             終了ボタン.TabStop = false;
             終了ボタン.Text = "終了設定(&F)";
@@ -1285,7 +1286,7 @@ namespace u_net
             無効者コード.BackColor = Color.White;
             無効者コード.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             無効者コード.ImeMode = ImeMode.Hiragana;
-            無効者コード.Location = new Point(640, 500);
+            無効者コード.Location = new Point(593, 498);
             無効者コード.Margin = new Padding(3, 2, 3, 2);
             無効者コード.Name = "無効者コード";
             無効者コード.Size = new Size(84, 21);
@@ -1297,7 +1298,7 @@ namespace u_net
             無効日時.BackColor = Color.White;
             無効日時.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             無効日時.ImeMode = ImeMode.Hiragana;
-            無効日時.Location = new Point(640, 475);
+            無効日時.Location = new Point(593, 473);
             無効日時.Margin = new Padding(3, 2, 3, 2);
             無効日時.Name = "無効日時";
             無効日時.Size = new Size(84, 21);
@@ -1309,7 +1310,7 @@ namespace u_net
             終了者コード.BackColor = Color.White;
             終了者コード.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             終了者コード.ImeMode = ImeMode.Hiragana;
-            終了者コード.Location = new Point(640, 450);
+            終了者コード.Location = new Point(593, 448);
             終了者コード.Margin = new Padding(3, 2, 3, 2);
             終了者コード.Name = "終了者コード";
             終了者コード.Size = new Size(84, 21);
@@ -1321,7 +1322,7 @@ namespace u_net
             終了日時.BackColor = Color.White;
             終了日時.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             終了日時.ImeMode = ImeMode.Hiragana;
-            終了日時.Location = new Point(640, 425);
+            終了日時.Location = new Point(593, 423);
             終了日時.Margin = new Padding(3, 2, 3, 2);
             終了日時.Name = "終了日時";
             終了日時.Size = new Size(84, 21);
@@ -1332,7 +1333,7 @@ namespace u_net
             // 
             無効者コード_ラベル.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             無効者コード_ラベル.ForeColor = SystemColors.ActiveCaptionText;
-            無効者コード_ラベル.Location = new Point(545, 500);
+            無効者コード_ラベル.Location = new Point(498, 498);
             無効者コード_ラベル.Name = "無効者コード_ラベル";
             無効者コード_ラベル.Size = new Size(97, 18);
             無効者コード_ラベル.TabIndex = 10085;
@@ -1344,7 +1345,7 @@ namespace u_net
             // 
             無効日時_ラベル.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             無効日時_ラベル.ForeColor = SystemColors.ActiveCaptionText;
-            無効日時_ラベル.Location = new Point(545, 475);
+            無効日時_ラベル.Location = new Point(498, 473);
             無効日時_ラベル.Name = "無効日時_ラベル";
             無効日時_ラベル.Size = new Size(97, 18);
             無効日時_ラベル.TabIndex = 10084;
@@ -1356,7 +1357,7 @@ namespace u_net
             // 
             終了者コード_ラベル.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             終了者コード_ラベル.ForeColor = SystemColors.ActiveCaptionText;
-            終了者コード_ラベル.Location = new Point(545, 450);
+            終了者コード_ラベル.Location = new Point(498, 448);
             終了者コード_ラベル.Name = "終了者コード_ラベル";
             終了者コード_ラベル.Size = new Size(99, 18);
             終了者コード_ラベル.TabIndex = 10083;
@@ -1368,7 +1369,7 @@ namespace u_net
             // 
             終了日時_ラベル.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             終了日時_ラベル.ForeColor = SystemColors.ActiveCaptionText;
-            終了日時_ラベル.Location = new Point(545, 425);
+            終了日時_ラベル.Location = new Point(498, 423);
             終了日時_ラベル.Name = "終了日時_ラベル";
             終了日時_ラベル.Size = new Size(97, 18);
             終了日時_ラベル.TabIndex = 10082;
@@ -1380,7 +1381,7 @@ namespace u_net
             // 
             登録者コード.BackColor = SystemColors.Control;
             登録者コード.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            登録者コード.Location = new Point(635, 120);
+            登録者コード.Location = new Point(588, 118);
             登録者コード.Margin = new Padding(3, 2, 3, 2);
             登録者コード.Multiline = true;
             登録者コード.Name = "登録者コード";
@@ -1416,7 +1417,7 @@ namespace u_net
             // F_購買申請
             // 
             BackColor = SystemColors.Control;
-            ClientSize = new Size(876, 556);
+            ClientSize = new Size(888, 556);
             Controls.Add(ItemRevision);
             Controls.Add(ItemRevision_ラベル);
             Controls.Add(登録者コード);
