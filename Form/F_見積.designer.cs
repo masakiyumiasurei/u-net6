@@ -629,7 +629,7 @@ namespace u_net
             // 
             見積版数.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             見積版数.AutoCompleteSource = AutoCompleteSource.ListItems;
-            見積版数.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            見積版数.Font = new Font("BIZ UDゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             見積版数.FormattingEnabled = true;
             見積版数.ImeMode = ImeMode.Disable;
             見積版数.Location = new Point(421, 50);
