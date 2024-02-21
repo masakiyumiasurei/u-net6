@@ -656,7 +656,7 @@ namespace u_net
             // 見積日
             // 
             見積日.BackColor = Color.White;
-            見積日.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            見積日.Font = new Font("BIZ UDゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             見積日.ImeMode = ImeMode.Disable;
             見積日.Location = new Point(125, 75);
             見積日.Margin = new Padding(3, 2, 3, 2);
@@ -684,7 +684,7 @@ namespace u_net
             // 件名
             // 
             件名.BackColor = Color.White;
-            件名.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            件名.Font = new Font("BIZ UDゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             件名.ImeMode = ImeMode.Hiragana;
             件名.Location = new Point(125, 125);
             件名.Margin = new Padding(3, 2, 3, 2);
@@ -932,7 +932,7 @@ namespace u_net
             // 顧客コード
             // 
             顧客コード.BackColor = Color.White;
-            顧客コード.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            顧客コード.Font = new Font("BIZ UDゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             顧客コード.ImeMode = ImeMode.Disable;
             顧客コード.Location = new Point(125, 150);
             顧客コード.Margin = new Padding(3, 2, 3, 2);
@@ -1003,7 +1003,7 @@ namespace u_net
             // ファックス番号
             // 
             ファックス番号.BackColor = Color.White;
-            ファックス番号.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            ファックス番号.Font = new Font("BIZ UDゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             ファックス番号.ImeMode = ImeMode.Disable;
             ファックス番号.Location = new Point(125, 250);
             ファックス番号.Margin = new Padding(3, 2, 3, 2);
@@ -1018,7 +1018,7 @@ namespace u_net
             // 納期
             // 
             納期.BackColor = Color.White;
-            納期.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            納期.Font = new Font("BIZ UDゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             納期.ImeMode = ImeMode.NoControl;
             納期.Location = new Point(125, 275);
             納期.Margin = new Padding(3, 2, 3, 2);
@@ -1034,7 +1034,7 @@ namespace u_net
             担当者コード.AutoCompleteSource = AutoCompleteSource.ListItems;
             担当者コード.DrawMode = DrawMode.OwnerDrawFixed;
             担当者コード.DropDownWidth = 217;
-            担当者コード.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            担当者コード.Font = new Font("BIZ UDゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             担当者コード.FormattingEnabled = true;
             担当者コード.ImeMode = ImeMode.Disable;
             担当者コード.Location = new Point(125, 100);
@@ -1197,7 +1197,7 @@ namespace u_net
             // 電話番号
             // 
             電話番号.BackColor = Color.White;
-            電話番号.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            電話番号.Font = new Font("BIZ UDゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             電話番号.ImeMode = ImeMode.Disable;
             電話番号.Location = new Point(125, 225);
             電話番号.Margin = new Padding(3, 2, 3, 2);
@@ -1569,7 +1569,7 @@ namespace u_net
             // 見積コード
             // 
             見積コード.BackColor = Color.White;
-            見積コード.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            見積コード.Font = new Font("BIZ UDゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
             見積コード.ImeMode = ImeMode.Disable;
             見積コード.Location = new Point(125, 50);
             見積コード.Margin = new Padding(3, 2, 3, 2);
