@@ -241,6 +241,7 @@
             cellStyle4.Format = "N0";
             cellStyle4.ImageAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleLeft;
             cellStyle4.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            cellStyle4.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleRight;
             this.支払金額.Style = cellStyle4;
             this.支払金額.TabIndex = 3;
             requiredTypeValidator1.RequiredType = typeof(decimal);
