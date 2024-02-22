@@ -130,7 +130,11 @@ namespace u_net.Public
                             break;
 
                         case ComboBox comboBox:
-                            if (control.Name == ukname || control.Name == ukname2 || control.Name == cmbname1 || control.Name == cmbname2 || control.Name == cmbname3 || control.Name == cmbname4 || control.Name == cmbname5)
+                            if (string.IsNullOrEmpty(comboBox.Text))
+                            {
+                                controlValue = DBNull.Value;
+                            }
+                            else if (control.Name == ukname || control.Name == ukname2 || control.Name == cmbname1 || control.Name == cmbname2 || control.Name == cmbname3 || control.Name == cmbname4 || control.Name == cmbname5)
                             {
                                 controlValue = comboBox.Text;
                             }
@@ -138,9 +142,9 @@ namespace u_net.Public
                             {
                                 controlValue = comboBox.SelectedValue;
                             }
-                            else 
+                            else
                             {
-                                controlValue = DBNull.Value; 
+                                controlValue = DBNull.Value;
                             }
                             break;
 

@@ -427,6 +427,8 @@ namespace MultiRowDesigner
                         }
                     }
 
+                    varPre入庫数量 = Convert.ToDecimal(gcMultiRow1.CurrentRow.Cells["入庫数量"].Value ?? 0);
+
                     break;
 
                 case "発注明細番号":

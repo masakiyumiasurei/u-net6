@@ -1132,6 +1132,7 @@ namespace u_net
             Text = " 入庫（発注）";
             FormClosing += Form_Unload;
             Load += Form_Load;
+            Shown += F_入庫_Shown;
             KeyDown += Form_KeyDown;
             Resize += Form_Resize;
             panel1.ResumeLayout(false);

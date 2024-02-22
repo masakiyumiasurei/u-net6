@@ -38,6 +38,8 @@ namespace u_net
         bool setcombo = true;
         bool changecombo = false;
         bool loaded = false;
+        string strUndo = "";
+        bool blnUndo = false;
 
 
         public F_入庫()
@@ -297,14 +299,18 @@ namespace u_net
                 changecombo = false;
                 setcombo = false;
                 loaded = true;
-                コマンド削除.Enabled = false;
+                //コマンド削除.Enabled = false;
                 this.ResumeLayout();
                 fn.WaitForm.Close();
 
-                発注コード.Focus();
+                
             }
         }
 
+        private void F_入庫_Shown(object sender, EventArgs e)
+        {
+            発注コード.Focus();
+        }
         public void チェック()
         {
             if (string.IsNullOrEmpty(確定日時.Text))
@@ -771,7 +777,7 @@ namespace u_net
 
                     string strwhere = "入庫コード='" + this.入庫コード.Text + "'";
                     // ヘッダ部の登録
-                    if (!DataUpdater.UpdateOrInsertDataFrom(this, cn, "T入庫", strwhere, "入庫コード", transaction))
+                    if (!DataUpdater.UpdateOrInsertDataFrom(this, cn, "T入庫", strwhere, "入庫コード", transaction, "集計年月", "支払年月")) 
                     {
                         transaction.Rollback();  // 変更をキャンセル
                         return false;
@@ -1054,16 +1060,16 @@ namespace u_net
                         // 入力文字が削除されたとき以外は書式を整える
                         if (!string.IsNullOrEmpty(varValue))
                         {
-                            this.集計年月.Text = $"{Convert.ToDateTime(varValue).Year}/{Convert.ToDateTime(varValue).Month.ToString("D2")}";
+                            this.集計年月.Text = $"{Convert.ToDateTime(varValue).Year}/{Convert.ToDateTime(varValue).Month.ToString().PadLeft(2, ' ')}";
                             dat1 = FunctionClass.GetPayDay(cn, DateTime.Parse(集計年月.Text));
-                            this.支払年月.Text = $"{dat1.Year}/{dat1.Month.ToString("D2")}";
+                            this.支払年月.Text = $"{dat1.Year}/{dat1.Month.ToString().PadLeft(2, ' ')}";
                         }
                         break;
                     case "支払年月":
                         // 入力文字が削除されたとき以外は書式を整える
                         if (!string.IsNullOrEmpty(varValue))
                         {
-                            this.支払年月.Text = $"{Convert.ToDateTime(varValue).Year}/{Convert.ToDateTime(varValue).Month.ToString("D2")}";
+                            this.支払年月.Text = $"{Convert.ToDateTime(varValue).Year}/{Convert.ToDateTime(varValue).Month.ToString().PadLeft(2, ' ')}";
                         }
                         if (string.IsNullOrEmpty(this.集計年月.Text))
                         {
@@ -1100,7 +1106,7 @@ namespace u_net
                 strSQL = "SELECT * FROM V入庫ヘッダ WHERE 入庫コード ='" + codeString + "'";
 
 
-                VariableSet.SetTable2Form(this, strSQL, cn);
+                VariableSet.SetTable2Form(this, strSQL, cn,"集計年月","支払年月");
 
                 if (!string.IsNullOrEmpty(入庫日.Text))
                 {
@@ -1152,7 +1158,7 @@ namespace u_net
             DateTime dtmNew = DateTime.Parse(TargetMonth + "/1");
             dtmNew = dtmNew.AddMonths((int)number);
 
-            return dtmNew.ToString("yyyy/MM");
+            return dtmNew.ToString("yyyy/ M");
         }
 
         private void コマンド修正_Click(object sender, EventArgs e)
@@ -1740,7 +1746,12 @@ namespace u_net
         {
 
             if (!changecombo) return;
-            if (IsError(sender as Control) == true) e.Cancel = true;
+            if (IsError(sender as Control) == true)
+            {
+                e.Cancel = true;
+                集計年月.Text = strUndo;
+                blnUndo = true;
+            }
             changecombo = false;
         }
 
@@ -1753,10 +1764,12 @@ namespace u_net
 
         private void 集計年月_Enter(object sender, EventArgs e)
         {
+            if (blnUndo) return;
             MessageBox.Show("通常、支払年月を変更することはありません。" + Environment.NewLine +
                     "変更するときは、適切であると判断できる値を入力してください。",
                     "警告", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
+            strUndo = 集計年月.Text;
         }
 
         private void 支払年月_SelectedIndexChanged(object sender, EventArgs e)
@@ -1771,7 +1784,10 @@ namespace u_net
             if (!changecombo) return;
             if (IsError(sender as Control) == true)
             {
+                
                 e.Cancel = true;
+                支払年月.Text = strUndo;
+                blnUndo = true;
             }
             else
             {
@@ -1788,9 +1804,12 @@ namespace u_net
 
         private void 支払年月_Enter(object sender, EventArgs e)
         {
+            if (blnUndo) return;
             MessageBox.Show("通常、支払年月を変更することはありません。" + Environment.NewLine +
                     "変更するときは、適切であると判断できる値を入力してください。",
                     "警告", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
+            strUndo = 支払年月.Text;
         }
 
         private void 摘要_TextChanged(object sender, EventArgs e)
@@ -1906,6 +1925,6 @@ namespace u_net
             toolStripStatusLabel2.Text = "各種項目の説明";
         }
 
-        
+       
     }
 }
