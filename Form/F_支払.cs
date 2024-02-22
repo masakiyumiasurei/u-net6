@@ -18,7 +18,6 @@ using System.Drawing.Imaging;
 using System.Drawing.Printing;
 using static u_net.CommonConstants;
 using static u_net.Public.FunctionClass;
-//using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.Data.Common;
 using static System.ComponentModel.Design.ObjectSelectorEditor;
 using Microsoft.Identity.Client.NativeInterop;

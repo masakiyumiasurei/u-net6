@@ -1,17 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using Microsoft.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using u_net.Public;
-using Microsoft.Data.SqlClient;
-
-namespace u_net
+﻿namespace u_net
 {
     public partial class F_MdiParent : Form
     {

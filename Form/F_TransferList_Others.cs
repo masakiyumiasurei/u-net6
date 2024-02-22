@@ -1,13 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.ComponentModel;
 using u_net.Public;
 
 namespace u_net
@@ -118,7 +109,7 @@ namespace u_net
             dataGridView1.ReadOnly = true;
 
             MyApi myapi = new MyApi();
-            int xSize, ySize, intpixel, twipperdot;
+            int intpixel, twipperdot;
 
             //1インチ当たりのピクセル数 アクセスのサイズの引数がtwipなのでピクセルに変換する除算値を求める
             intpixel = myapi.GetLogPixel();
@@ -179,7 +170,7 @@ namespace u_net
 
                 SetList(dtm支払年月, str支払先コード);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
 
             }
@@ -212,7 +203,7 @@ namespace u_net
 
                 SetList(dtm支払年月, str支払先コード);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
 
             }
