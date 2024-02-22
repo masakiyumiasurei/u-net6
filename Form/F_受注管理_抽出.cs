@@ -51,10 +51,10 @@ namespace u_net
                     return;
                 }
 
-                foreach (Control control in Controls)
-                {
-                    control.PreviewKeyDown += OriginalClass.ValidateCheck;
-                }
+                //foreach (Control control in Controls)
+                //{
+                //    control.PreviewKeyDown += OriginalClass.ValidateCheck;
+                //}
                 //コンボボックスの設定
                 OriginalClass ofn = new OriginalClass();
                 ofn.SetComboBox(自社担当者コード, "SELECT T受注.[自社担当者コード] AS Value, T受注.[自社担当者コード] AS Display, T受注.自社担当者名 AS Display2 FROM T受注 INNER JOIN V受注_最大版数 ON T受注.[受注コード] = V受注_最大版数.[受注コード] AND T受注.受注版数 = V受注_最大版数.最大版数 LEFT OUTER JOIN M社員 ON T受注.[自社担当者コード] = M社員.[社員コード] GROUP BY T受注.[自社担当者コード], T受注.自社担当者名, M社員.ふりがな ORDER BY M社員.ふりがな");
@@ -69,6 +69,7 @@ namespace u_net
                     {
                         受注日1.Text = frmTarget.dte受注日1.ToShortDateString();
                     }
+
 
                     if (frmTarget.dte受注日2 != DateTime.MinValue)
                     {
@@ -259,23 +260,36 @@ namespace u_net
 
                     frmTarget.str受注コード1 = Nz(受注コード1.Text);
                     frmTarget.str受注コード2 = Nz(受注コード2.Text);
+
                     if (!string.IsNullOrEmpty(受注日1.Text))
                         frmTarget.dte受注日1 = Nz(DateTime.Parse(受注日1.Text));
+                    else
+                        frmTarget.dte受注日1 = DateTime.MinValue;
 
                     if (!string.IsNullOrEmpty(受注日2.Text))
                         frmTarget.dte受注日2 = Nz(DateTime.Parse(受注日2.Text));
+                    else
+                        frmTarget.dte受注日2 = DateTime.MinValue;
 
                     if (!string.IsNullOrEmpty(出荷予定日1.Text))
                         frmTarget.dte出荷予定日1 = Nz(DateTime.Parse(出荷予定日1.Text));
+                    else
+                        frmTarget.dte出荷予定日1 = DateTime.MinValue;
 
                     if (!string.IsNullOrEmpty(出荷予定日2.Text))
                         frmTarget.dte出荷予定日2 = Nz(DateTime.Parse(出荷予定日2.Text));
+                    else
+                        frmTarget.dte出荷予定日2 = DateTime.MinValue;
 
                     if (!string.IsNullOrEmpty(受注納期1.Text))
                         frmTarget.dte受注納期1 = Nz(DateTime.Parse(受注納期1.Text));
+                    else
+                        frmTarget.dte受注納期1 = DateTime.MinValue;
 
                     if (!string.IsNullOrEmpty(受注納期2.Text))
                         frmTarget.dte受注納期2 = Nz(DateTime.Parse(受注納期2.Text));
+                    else
+                        frmTarget.dte受注納期2 = DateTime.MinValue;
 
                     frmTarget.str注文番号 = Nz(注文番号.Text);
                     frmTarget.str顧客コード = Nz(顧客コード.Text);
@@ -310,9 +324,13 @@ namespace u_net
 
                             if (!string.IsNullOrEmpty(出荷予定日1.Text))
                                 frmTarget.dte出荷予定日1 = Nz(DateTime.Parse(出荷予定日1.Text));
+                            else
+                                frmTarget.dte出荷予定日1 = DateTime.MinValue;
 
                             if (!string.IsNullOrEmpty(出荷予定日2.Text))
                                 frmTarget.dte出荷予定日2 = Nz(DateTime.Parse(出荷予定日2.Text));
+                            else
+                                frmTarget.dte出荷予定日2 = DateTime.MinValue;
                         }
                         else
                         {
@@ -380,6 +398,16 @@ namespace u_net
             FunctionClass.LimitText(this.ActiveControl, 8);
         }
 
+        private void 顧客コード_Validating(object sender, CancelEventArgs e)
+        {
+            TextBox textBox = (TextBox)sender;
+
+            if (textBox.Modified == false) return;
+
+            if (IsError(textBox) == true) ;// e.Cancel = true;
+        }
+
+
         private void 顧客コード_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             顧客コード検索ボタン_Click(this, EventArgs.Empty);
@@ -392,7 +420,13 @@ namespace u_net
                 if (e.KeyCode == Keys.Return)
                 {
                     string strCode = ActiveControl.Text;
-                    if (string.IsNullOrEmpty(strCode)) return;
+                    if (string.IsNullOrEmpty(strCode))
+                    {
+                        顧客名.Text = string.Empty;
+                        SelectNextControl(ActiveControl, true, true, true, true);
+                        return;
+                    }
+
 
                     strCode = strCode.PadLeft(8, '0'); // "00000000" の形式に整形
 
@@ -400,6 +434,9 @@ namespace u_net
                     {
                         ActiveControl.Text = strCode;
                     }
+
+                    if (IsError(顧客コード) == true) ;
+                    SelectNextControl(ActiveControl, true, true, true, true);
                 }
             }
             catch (Exception ex)
@@ -891,14 +928,7 @@ namespace u_net
             int keyAscii = ChangeBig(e.KeyChar);
         }
 
-        private void 顧客コード_Validating(object sender, CancelEventArgs e)
-        {
-            TextBox textBox = (TextBox)sender;
 
-            if (textBox.Modified == false) return;
-
-            if (IsError(textBox) == true) ;// e.Cancel = true;
-        }
 
         private void 自社担当者コード_DrawItem(object sender, DrawItemEventArgs e)
         {
@@ -966,7 +996,15 @@ namespace u_net
             switch (e.KeyCode)
             {
                 case Keys.Return:
+                    switch (this.ActiveControl.Name)
+                    {
+                        case "顧客コード":
+
+                            return;
+                    }
                     SelectNextControl(ActiveControl, true, true, true, true);
+                    e.Handled = true;
+                    e.SuppressKeyPress = true;
                     break;
                 case Keys.Space: //コンボボックスならドロップダウン
                     {
@@ -1002,6 +1040,13 @@ namespace u_net
             受注完了承認指定.Enabled = 受注完了承認指定.Checked;
             受注完了承認指定.Focus();
         }
+
+        private void 自社担当者コード_Validated(object sender, EventArgs e)
+        {
+            自社担当者名.Text = ((DataRowView)自社担当者コード.SelectedItem)?.Row.Field<String>("Display2")?.ToString();
+        }
+
+
 
         // Nz メソッドの代替
         private T Nz<T>(T value)

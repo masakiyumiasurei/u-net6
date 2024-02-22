@@ -244,6 +244,7 @@
             this.columnHeaderCell1.Name = "columnHeaderCell1";
             this.columnHeaderCell1.SelectionMode = GrapeCity.Win.MultiRow.MultiRowSelectionMode.None;
             this.columnHeaderCell1.Size = new System.Drawing.Size(80, 21);
+            cellStyle28.BackColor = System.Drawing.Color.Transparent;
             border3.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.DarkGray);
             cellStyle28.Border = border3;
             cellStyle28.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
@@ -258,6 +259,7 @@
             this.columnHeaderCell2.Name = "columnHeaderCell2";
             this.columnHeaderCell2.SelectionMode = GrapeCity.Win.MultiRow.MultiRowSelectionMode.None;
             this.columnHeaderCell2.Size = new System.Drawing.Size(100, 21);
+            cellStyle29.BackColor = System.Drawing.Color.Transparent;
             border4.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.DarkGray);
             cellStyle29.Border = border4;
             cellStyle29.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
@@ -273,6 +275,7 @@
             this.columnHeaderCell3.ResizeMode = GrapeCity.Win.MultiRow.ResizeMode.None;
             this.columnHeaderCell3.SelectionMode = GrapeCity.Win.MultiRow.MultiRowSelectionMode.None;
             this.columnHeaderCell3.Size = new System.Drawing.Size(80, 21);
+            cellStyle30.BackColor = System.Drawing.Color.Transparent;
             border5.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.DarkGray);
             cellStyle30.Border = border5;
             cellStyle30.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
@@ -288,6 +291,7 @@
             this.columnHeaderCell4.ResizeMode = GrapeCity.Win.MultiRow.ResizeMode.None;
             this.columnHeaderCell4.SelectionMode = GrapeCity.Win.MultiRow.MultiRowSelectionMode.None;
             this.columnHeaderCell4.Size = new System.Drawing.Size(90, 21);
+            cellStyle31.BackColor = System.Drawing.Color.Transparent;
             border6.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.DarkGray);
             cellStyle31.Border = border6;
             cellStyle31.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
@@ -303,6 +307,7 @@
             this.columnHeaderCell5.ResizeMode = GrapeCity.Win.MultiRow.ResizeMode.None;
             this.columnHeaderCell5.SelectionMode = GrapeCity.Win.MultiRow.MultiRowSelectionMode.None;
             this.columnHeaderCell5.Size = new System.Drawing.Size(80, 21);
+            cellStyle32.BackColor = System.Drawing.Color.Transparent;
             border7.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.DarkGray);
             cellStyle32.Border = border7;
             cellStyle32.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
@@ -318,6 +323,7 @@
             this.columnHeaderCell6.ResizeMode = GrapeCity.Win.MultiRow.ResizeMode.None;
             this.columnHeaderCell6.SelectionMode = GrapeCity.Win.MultiRow.MultiRowSelectionMode.None;
             this.columnHeaderCell6.Size = new System.Drawing.Size(90, 21);
+            cellStyle33.BackColor = System.Drawing.Color.Transparent;
             border8.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.DarkGray);
             cellStyle33.Border = border8;
             cellStyle33.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
@@ -333,6 +339,7 @@
             this.columnHeaderCell7.ResizeMode = GrapeCity.Win.MultiRow.ResizeMode.None;
             this.columnHeaderCell7.SelectionMode = GrapeCity.Win.MultiRow.MultiRowSelectionMode.None;
             this.columnHeaderCell7.Size = new System.Drawing.Size(140, 21);
+            cellStyle34.BackColor = System.Drawing.Color.Transparent;
             border9.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.DarkGray);
             cellStyle34.Border = border9;
             cellStyle34.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
@@ -348,6 +355,7 @@
             this.columnHeaderCell8.ResizeMode = GrapeCity.Win.MultiRow.ResizeMode.None;
             this.columnHeaderCell8.SelectionMode = GrapeCity.Win.MultiRow.MultiRowSelectionMode.None;
             this.columnHeaderCell8.Size = new System.Drawing.Size(100, 21);
+            cellStyle35.BackColor = System.Drawing.Color.Transparent;
             border10.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.DarkGray);
             cellStyle35.Border = border10;
             cellStyle35.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
@@ -363,6 +371,7 @@
             this.columnHeaderCell9.ResizeMode = GrapeCity.Win.MultiRow.ResizeMode.None;
             this.columnHeaderCell9.SelectionMode = GrapeCity.Win.MultiRow.MultiRowSelectionMode.None;
             this.columnHeaderCell9.Size = new System.Drawing.Size(140, 21);
+            cellStyle36.BackColor = System.Drawing.Color.Transparent;
             border11.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.DarkGray);
             cellStyle36.Border = border11;
             cellStyle36.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
@@ -378,6 +387,7 @@
             this.columnHeaderCell10.ResizeMode = GrapeCity.Win.MultiRow.ResizeMode.None;
             this.columnHeaderCell10.SelectionMode = GrapeCity.Win.MultiRow.MultiRowSelectionMode.None;
             this.columnHeaderCell10.Size = new System.Drawing.Size(100, 21);
+            cellStyle37.BackColor = System.Drawing.Color.Transparent;
             border12.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.DarkGray);
             cellStyle37.Border = border12;
             cellStyle37.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
@@ -393,6 +403,7 @@
             this.columnHeaderCell11.ResizeMode = GrapeCity.Win.MultiRow.ResizeMode.None;
             this.columnHeaderCell11.SelectionMode = GrapeCity.Win.MultiRow.MultiRowSelectionMode.None;
             this.columnHeaderCell11.Size = new System.Drawing.Size(100, 21);
+            cellStyle38.BackColor = System.Drawing.Color.Transparent;
             border13.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.DarkGray);
             cellStyle38.Border = border13;
             cellStyle38.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
@@ -408,6 +419,7 @@
             this.columnHeaderCell12.ResizeMode = GrapeCity.Win.MultiRow.ResizeMode.None;
             this.columnHeaderCell12.SelectionMode = GrapeCity.Win.MultiRow.MultiRowSelectionMode.None;
             this.columnHeaderCell12.Size = new System.Drawing.Size(480, 21);
+            cellStyle39.BackColor = System.Drawing.Color.Transparent;
             border14.Bottom = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.DarkGray);
             border14.Left = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.DarkGray);
             border14.Right = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.DarkGray);
@@ -426,6 +438,7 @@
             this.columnHeaderCell20.ResizeMode = GrapeCity.Win.MultiRow.ResizeMode.None;
             this.columnHeaderCell20.SelectionMode = GrapeCity.Win.MultiRow.MultiRowSelectionMode.None;
             this.columnHeaderCell20.Size = new System.Drawing.Size(420, 21);
+            cellStyle40.BackColor = System.Drawing.Color.Transparent;
             border15.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.DarkGray);
             cellStyle40.Border = border15;
             cellStyle40.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
@@ -441,6 +454,7 @@
             this.columnHeaderCell21.ResizeMode = GrapeCity.Win.MultiRow.ResizeMode.None;
             this.columnHeaderCell21.SelectionMode = GrapeCity.Win.MultiRow.MultiRowSelectionMode.None;
             this.columnHeaderCell21.Size = new System.Drawing.Size(260, 21);
+            cellStyle41.BackColor = System.Drawing.Color.Transparent;
             border16.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.DarkGray);
             cellStyle41.Border = border16;
             cellStyle41.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
@@ -456,6 +470,7 @@
             this.columnHeaderCell25.ResizeMode = GrapeCity.Win.MultiRow.ResizeMode.None;
             this.columnHeaderCell25.SelectionMode = GrapeCity.Win.MultiRow.MultiRowSelectionMode.None;
             this.columnHeaderCell25.Size = new System.Drawing.Size(260, 21);
+            cellStyle42.BackColor = System.Drawing.Color.Transparent;
             border17.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.DarkGray);
             cellStyle42.Border = border17;
             cellStyle42.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
@@ -471,6 +486,7 @@
             this.columnHeaderCell26.ResizeMode = GrapeCity.Win.MultiRow.ResizeMode.None;
             this.columnHeaderCell26.SelectionMode = GrapeCity.Win.MultiRow.MultiRowSelectionMode.None;
             this.columnHeaderCell26.Size = new System.Drawing.Size(120, 21);
+            cellStyle43.BackColor = System.Drawing.Color.Transparent;
             border18.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.DarkGray);
             cellStyle43.Border = border18;
             cellStyle43.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
@@ -486,6 +502,7 @@
             this.columnHeaderCell27.ResizeMode = GrapeCity.Win.MultiRow.ResizeMode.None;
             this.columnHeaderCell27.SelectionMode = GrapeCity.Win.MultiRow.MultiRowSelectionMode.None;
             this.columnHeaderCell27.Size = new System.Drawing.Size(120, 21);
+            cellStyle44.BackColor = System.Drawing.Color.Transparent;
             border19.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.DarkGray);
             cellStyle44.Border = border19;
             cellStyle44.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
@@ -501,6 +518,7 @@
             this.columnHeaderCell30.ResizeMode = GrapeCity.Win.MultiRow.ResizeMode.None;
             this.columnHeaderCell30.SelectionMode = GrapeCity.Win.MultiRow.MultiRowSelectionMode.None;
             this.columnHeaderCell30.Size = new System.Drawing.Size(120, 21);
+            cellStyle45.BackColor = System.Drawing.Color.Transparent;
             border20.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.DarkGray);
             cellStyle45.Border = border20;
             cellStyle45.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
@@ -516,6 +534,7 @@
             this.columnHeaderCell31.ResizeMode = GrapeCity.Win.MultiRow.ResizeMode.None;
             this.columnHeaderCell31.SelectionMode = GrapeCity.Win.MultiRow.MultiRowSelectionMode.None;
             this.columnHeaderCell31.Size = new System.Drawing.Size(1000, 21);
+            cellStyle46.BackColor = System.Drawing.Color.Transparent;
             border21.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.DarkGray);
             cellStyle46.Border = border21;
             cellStyle46.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
@@ -530,6 +549,7 @@
             this.cornerHeaderCell1.Name = "cornerHeaderCell1";
             this.cornerHeaderCell1.SelectionMode = GrapeCity.Win.MultiRow.MultiRowSelectionMode.None;
             this.cornerHeaderCell1.Size = new System.Drawing.Size(30, 84);
+            cellStyle47.BackColor = System.Drawing.Color.Transparent;
             border22.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.DarkGray);
             cellStyle47.Border = border22;
             cellStyle47.Font = new System.Drawing.Font("BIZ UDPゴシック", 8F);
@@ -544,6 +564,7 @@
             this.columnHeaderCell13.ResizeMode = GrapeCity.Win.MultiRow.ResizeMode.None;
             this.columnHeaderCell13.SelectionMode = GrapeCity.Win.MultiRow.MultiRowSelectionMode.None;
             this.columnHeaderCell13.Size = new System.Drawing.Size(120, 21);
+            cellStyle48.BackColor = System.Drawing.Color.Transparent;
             border23.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.DarkGray);
             cellStyle48.Border = border23;
             cellStyle48.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
@@ -558,6 +579,7 @@
             this.cornerHeaderCell2.Name = "cornerHeaderCell2";
             this.cornerHeaderCell2.SelectionMode = GrapeCity.Win.MultiRow.MultiRowSelectionMode.None;
             this.cornerHeaderCell2.Size = new System.Drawing.Size(30, 84);
+            cellStyle49.BackColor = System.Drawing.Color.Transparent;
             border24.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.DarkGray);
             cellStyle49.Border = border24;
             cellStyle49.Font = new System.Drawing.Font("BIZ UDPゴシック", 8F);
@@ -976,6 +998,7 @@
             this.明細番号.ShowIndicator = false;
             this.明細番号.ShowRowError = false;
             this.明細番号.Size = new System.Drawing.Size(30, 84);
+            cellStyle24.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             border1.Bottom = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.DarkGray);
             border1.Left = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.DarkGray);
             border1.Right = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.DarkGray);

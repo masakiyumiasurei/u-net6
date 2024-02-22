@@ -444,7 +444,7 @@ namespace u_net
 
                 this.状態.Text = "";
                 this.状態.ForeColor = Color.Black;
-                
+
 
                 return true;
             }
@@ -2927,6 +2927,7 @@ namespace u_net
                     // 複数行入力可能な項目はEnterでフォーカス移動させない
                     switch (this.ActiveControl.Name)
                     {
+                        case "受注コード":
                         case "備考":
                         case "改版履歴":
                             return;
@@ -3464,7 +3465,7 @@ namespace u_net
         }
 
         private void 納品書送付コード_Validating(object sender, CancelEventArgs e)
-        {            
+        {
             if (tmpstr == this.納品書送付コード.Text) return;
             if (IsError((Control)sender) == true)
             {
@@ -3499,7 +3500,7 @@ namespace u_net
             if (IsError((Control)sender) == true)
             {
                 e.Cancel = true;
-                請求書送付コード.Text=tmpstr;
+                請求書送付コード.Text = tmpstr;
             }
         }
 
@@ -3555,7 +3556,7 @@ namespace u_net
                 e.Cancel = true;
                 自社担当者コード.Text = tmpstr;
             }
-            
+
         }
 
         private void 自社担当者コード_Validated(object sender, EventArgs e)
@@ -4377,7 +4378,36 @@ namespace u_net
             請求コード.Text = 請求コード.Text.PadLeft(8, '0');
         }
 
+        private void 受注コード_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Return)
+            {
+                ComboBox comboBox = sender as ComboBox;
+                if (comboBox != null)
+                {
+                    string strCode = this.受注コード.Text;
+                    if (string.IsNullOrEmpty(strCode))
+                        return;
 
+                    strCode = FunctionClass.FormatCode("A", strCode);
+
+                    if (strCode != this.受注コード.Text)
+                    {
+                        this.受注コード.Text = strCode;
+                    }
+                }
+            }
+        }
+
+        private void 顧客名_Enter(object sender, EventArgs e)
+        {
+            顧客名.BackColor = Color.LightGray;
+        }
+
+        private void 顧客名_Leave(object sender, EventArgs e)
+        {
+            顧客名.BackColor = Color.White;
+        }
     }
 }
 

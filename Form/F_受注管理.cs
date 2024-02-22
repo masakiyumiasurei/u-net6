@@ -473,10 +473,11 @@ namespace u_net
                     初期表示ボタン.ForeColor = Color.FromArgb(0, 0, 0);
                     dtePrevious = DateTime.Now.AddDays(-1);
                     FunctionClass func = new FunctionClass();
-                    do
+                        
+                    while (func.OfficeClosed(cn, dtePrevious) == 1)
                     {
                         dtePrevious = dtePrevious.AddDays(-1);
-                    } while (func.OfficeClosed(cn, dtePrevious) == 1);
+                    }
 
                     if (dte受注日1.Date == DateTime.Now.Date && dte受注日2.Date == DateTime.Now.Date)
                     {

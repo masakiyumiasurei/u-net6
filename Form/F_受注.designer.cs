@@ -1548,22 +1548,22 @@ namespace u_net
             // 
             statusStrip1.ImageScalingSize = new Size(20, 20);
             statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1, toolStripStatusLabel2 });
-            statusStrip1.Location = new Point(0, 758);
+            statusStrip1.Location = new Point(0, 755);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Padding = new Padding(1, 0, 19, 0);
-            statusStrip1.Size = new Size(1195, 22);
+            statusStrip1.Size = new Size(1195, 25);
             statusStrip1.TabIndex = 110;
             statusStrip1.Text = "statusStrip1";
             // 
             // toolStripStatusLabel1
             // 
             toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            toolStripStatusLabel1.Size = new Size(0, 17);
+            toolStripStatusLabel1.Size = new Size(0, 20);
             // 
             // toolStripStatusLabel2
             // 
             toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            toolStripStatusLabel2.Size = new Size(89, 17);
+            toolStripStatusLabel2.Size = new Size(111, 20);
             toolStripStatusLabel2.Text = "各種項目の説明";
             // 
             // notifyIcon1
@@ -1581,7 +1581,7 @@ namespace u_net
             panel2.Controls.Add(受注承認ボタン);
             panel2.Controls.Add(受注完了承認ボタン);
             panel2.Dock = DockStyle.Bottom;
-            panel2.Location = new Point(0, 716);
+            panel2.Location = new Point(0, 713);
             panel2.Margin = new Padding(4, 3, 4, 3);
             panel2.Name = "panel2";
             panel2.Size = new Size(1195, 42);
@@ -2052,6 +2052,8 @@ namespace u_net
             顧客名.Size = new Size(400, 20);
             顧客名.TabIndex = 6;
             顧客名.TabStop = false;
+            顧客名.Enter += 顧客名_Enter;
+            顧客名.Leave += 顧客名_Leave;
             // 
             // 顧客コード検索ボタン
             // 
@@ -2248,6 +2250,7 @@ namespace u_net
             受注コード.SelectedIndexChanged += 受注コード_SelectedIndexChanged;
             受注コード.TextChanged += 受注コード_TextChanged;
             受注コード.Enter += 受注コード_Enter;
+            受注コード.KeyDown += 受注コード_KeyDown;
             受注コード.KeyPress += 受注コード_KeyPress;
             // 
             // 発送先登録ボタン

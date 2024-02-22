@@ -232,6 +232,10 @@ namespace u_net
             {
                 Console.WriteLine($"GetCusInfo - {ex.Message}");
             }
+            finally
+            {
+                if (cn != null && cn.State == ConnectionState.Open) cn.Close();
+            }
         }
 
         private void SeparateSeries(string modelNumber)
@@ -343,90 +347,75 @@ namespace u_net
             decimal cur定価;
             decimal cur原価;
             long lngi;
-
-            Connect();
-
-            switch (controlObject.Name)
+            try
             {
-                case "顧客コード":
-                    // 顧客名の表示と掛率の設定
-                    // 顧客コードが選択されたときは必ず掛率を有効にする
-                    GetCusInfo(controlObject.Text);
-                    if (!string.IsNullOrEmpty(定価.Text) && !string.IsNullOrEmpty(売値掛率.Text))
-                    {
-                        単価.Text = string.IsNullOrEmpty(単価.Text) ? "0" : 単価.Text;
-                        原価.Text = string.IsNullOrEmpty(原価.Text) ? "0" : 原価.Text;
-                        定価.Text = string.IsNullOrEmpty(定価.Text) ? "0" : 定価.Text;
-                        粗利.Text = string.IsNullOrEmpty(粗利.Text) ? "0" : 粗利.Text;
-                        売値掛率.Text = string.IsNullOrEmpty(売値掛率.Text) ? "0" : 売値掛率.Text;
+                Connect();
 
-                        // 単価計算
-                        単価.Text = GetSellingPrice(decimal.Parse(定価.Text), decimal.Parse(売値掛率.Text)).ToString();
-                        // 粗利計算
-                        粗利.Text = (Convert.ToDecimal(単価.Text) - Convert.ToDecimal(原価.Text)).ToString();
-                    }
-                    break;
-                case "商品分類名":
-                    分類内容.Text = ((DataRowView)商品分類名.SelectedItem)?.Row.Field<String>("Display2")?.ToString();
+                switch (controlObject.Name)
+                {
+                    case "顧客コード":
+                        // 顧客名の表示と掛率の設定
+                        // 顧客コードが選択されたときは必ず掛率を有効にする
+                        GetCusInfo(controlObject.Text);
+                        if (!string.IsNullOrEmpty(定価.Text) && !string.IsNullOrEmpty(売値掛率.Text))
+                        {
+                            単価.Text = string.IsNullOrEmpty(単価.Text) ? "0" : 単価.Text;
+                            原価.Text = string.IsNullOrEmpty(原価.Text) ? "0" : 原価.Text;
+                            定価.Text = string.IsNullOrEmpty(定価.Text) ? "0" : 定価.Text;
+                            粗利.Text = string.IsNullOrEmpty(粗利.Text) ? "0" : 粗利.Text;
+                            売値掛率.Text = string.IsNullOrEmpty(売値掛率.Text) ? "0" : 売値掛率.Text;
 
-                    SetItemList(controlObject.Text);
+                            // 単価計算
+                            単価.Text = GetSellingPrice(decimal.Parse(定価.Text), decimal.Parse(売値掛率.Text)).ToString();
+                            // 粗利計算
+                            粗利.Text = (Convert.ToDecimal(単価.Text) - Convert.ToDecimal(原価.Text)).ToString();
+                        }
+                        break;
+                    case "商品分類名":
+                        分類内容.Text = ((DataRowView)商品分類名.SelectedItem)?.Row.Field<String>("Display2")?.ToString();
 
-                    // 商品リストを先読みする
-                    lngi = 商品コード.Rows.Count;
-                    break;
-                case "商品コード":
+                        SetItemList(controlObject.Text);
 
-                    if (商品コード.SelectedRows.Count <= 0) return;
+                        // 商品リストを先読みする
+                        lngi = 商品コード.Rows.Count;
+                        break;
+                    case "商品コード":
 
-                    SetModelList(商品コード.SelectedRows[0].Cells[0].Value.ToString());
+                        if (商品コード.SelectedRows.Count <= 0) return;
 
-                    // 型式リストを先読みする
-                    lngi = 型式名.Rows.Count;
-                    // 型番初期化
-                    型番.Text = null;
-                    // 各金額初期化
-                    定価.Text = 0.ToString();
-                    単価.Text = 0.ToString();
-                    原価.Text = 0.ToString();
-                    粗利.Text = 0.ToString();
-                    // 関連情報を設定する
-                    if (商品コード.SelectedRows[0].Cells[5].Value.ToString() == "")
-                    {
-                        // 互換性を維持するためのコード（旧データには掛率有効情報は無い）
-                        掛率有効.Checked = true;
-                    }
-                    else if (商品コード.SelectedRows[0].Cells[5].Value.ToString() == "0")
-                    {
-                        掛率有効.Checked = false;
-                    }
-                    else
-                    {
-                        掛率有効.Checked = true;
-                    }
-                    break;
-                case "型式名":
-                    Read_DataGridView();
-                    WriteProduct(out str型番, out cur定価, out cur原価);
-                    型番.Text = str型番;
-                    定価.Text = cur定価.ToString("N0");
+                        SetModelList(商品コード.SelectedRows[0].Cells[0].Value.ToString());
 
-                    原価.Text = cur原価.ToString("N0");
+                        // 型式リストを先読みする
+                        lngi = 型式名.Rows.Count;
+                        // 型番初期化
+                        型番.Text = null;
+                        // 各金額初期化
+                        定価.Text = 0.ToString();
+                        単価.Text = 0.ToString();
+                        原価.Text = 0.ToString();
+                        粗利.Text = 0.ToString();
+                        // 関連情報を設定する
+                        if (商品コード.SelectedRows[0].Cells[5].Value.ToString() == "")
+                        {
+                            // 互換性を維持するためのコード（旧データには掛率有効情報は無い）
+                            掛率有効.Checked = true;
+                        }
+                        else if (商品コード.SelectedRows[0].Cells[5].Value.ToString() == "0")
+                        {
+                            掛率有効.Checked = false;
+                        }
+                        else
+                        {
+                            掛率有効.Checked = true;
+                        }
+                        break;
+                    case "型式名":
+                        Read_DataGridView();
+                        WriteProduct(out str型番, out cur定価, out cur原価);
+                        型番.Text = str型番;
+                        定価.Text = cur定価.ToString("N0");
 
-                    単価.Text = string.IsNullOrEmpty(単価.Text) ? "0" : 単価.Text;
-                    原価.Text = string.IsNullOrEmpty(原価.Text) ? "0" : 原価.Text;
-                    定価.Text = string.IsNullOrEmpty(定価.Text) ? "0" : 定価.Text;
-                    粗利.Text = string.IsNullOrEmpty(粗利.Text) ? "0" : 粗利.Text;
-                    売値掛率.Text = string.IsNullOrEmpty(売値掛率.Text) ? "0" : 売値掛率.Text;
-
-                    単価.Text = GetSellingPrice(decimal.Parse(定価.Text), decimal.Parse(売値掛率.Text)).ToString("N0");
-
-                    // 粗利計算
-                    粗利.Text = (Convert.ToDecimal(単価.Text) - Convert.ToDecimal(原価.Text)).ToString("N0");
-                    break;
-                case "売値掛率":
-                    // 定価が存在するなら金額計算を行う
-                    if (!string.IsNullOrEmpty(定価.Text))
-                    {
+                        原価.Text = cur原価.ToString("N0");
 
                         単価.Text = string.IsNullOrEmpty(単価.Text) ? "0" : 単価.Text;
                         原価.Text = string.IsNullOrEmpty(原価.Text) ? "0" : 原価.Text;
@@ -434,53 +423,83 @@ namespace u_net
                         粗利.Text = string.IsNullOrEmpty(粗利.Text) ? "0" : 粗利.Text;
                         売値掛率.Text = string.IsNullOrEmpty(売値掛率.Text) ? "0" : 売値掛率.Text;
 
-                        // 単価計算
                         単価.Text = GetSellingPrice(decimal.Parse(定価.Text), decimal.Parse(売値掛率.Text)).ToString("N0");
+
                         // 粗利計算
                         粗利.Text = (Convert.ToDecimal(単価.Text) - Convert.ToDecimal(原価.Text)).ToString("N0");
-                    }
-                    break;
-                case "掛率有効":
-                    if (掛率有効.Checked)
-                    {
-                        // 掛率が有効になるときは保持しておいた掛率を設定する
-                        売値掛率.Text = curDiscount.ToString("N0");
-                    }
-                    else
-                    {
-                        // 掛率が無効になるときは現在の掛率を保持しておく
-                        単価.Text = string.IsNullOrEmpty(単価.Text) ? "0" : 単価.Text;
-                        原価.Text = string.IsNullOrEmpty(原価.Text) ? "0" : 原価.Text;
-                        定価.Text = string.IsNullOrEmpty(定価.Text) ? "0" : 定価.Text;
-                        粗利.Text = string.IsNullOrEmpty(粗利.Text) ? "0" : 粗利.Text;
-                        売値掛率.Text = string.IsNullOrEmpty(売値掛率.Text) ? "0" : 売値掛率.Text;
+                        break;
+                    case "売値掛率":
+                        // 定価が存在するなら金額計算を行う
+                        if (!string.IsNullOrEmpty(定価.Text))
+                        {
 
-                        curDiscount = decimal.Parse(売値掛率.Text);
-                        売値掛率.Text = 100.ToString();
-                    }
+                            単価.Text = string.IsNullOrEmpty(単価.Text) ? "0" : 単価.Text;
+                            原価.Text = string.IsNullOrEmpty(原価.Text) ? "0" : 原価.Text;
+                            定価.Text = string.IsNullOrEmpty(定価.Text) ? "0" : 定価.Text;
+                            粗利.Text = string.IsNullOrEmpty(粗利.Text) ? "0" : 粗利.Text;
+                            売値掛率.Text = string.IsNullOrEmpty(売値掛率.Text) ? "0" : 売値掛率.Text;
 
-                    売値掛率.Enabled = 掛率有効.Checked;
+                            // 単価計算
+                            単価.Text = GetSellingPrice(decimal.Parse(定価.Text), decimal.Parse(売値掛率.Text)).ToString("N0");
+                            // 粗利計算
+                            粗利.Text = (Convert.ToDecimal(単価.Text) - Convert.ToDecimal(原価.Text)).ToString("N0");
+                        }
+                        break;
+                    case "掛率有効":
+                        if (掛率有効.Checked)
+                        {
+                            // 掛率が有効になるときは保持しておいた掛率を設定する
+                            売値掛率.Text = curDiscount.ToString("N0");
+                        }
+                        else
+                        {
+                            // 掛率が無効になるときは現在の掛率を保持しておく
+                            単価.Text = string.IsNullOrEmpty(単価.Text) ? "0" : 単価.Text;
+                            原価.Text = string.IsNullOrEmpty(原価.Text) ? "0" : 原価.Text;
+                            定価.Text = string.IsNullOrEmpty(定価.Text) ? "0" : 定価.Text;
+                            粗利.Text = string.IsNullOrEmpty(粗利.Text) ? "0" : 粗利.Text;
+                            売値掛率.Text = string.IsNullOrEmpty(売値掛率.Text) ? "0" : 売値掛率.Text;
 
-                    // 定価が存在するなら金額計算を行う
-                    if (!string.IsNullOrEmpty(定価.Text))
-                    {
-                        単価.Text = string.IsNullOrEmpty(単価.Text) ? "0" : 単価.Text;
-                        原価.Text = string.IsNullOrEmpty(原価.Text) ? "0" : 原価.Text;
-                        定価.Text = string.IsNullOrEmpty(定価.Text) ? "0" : 定価.Text;
-                        粗利.Text = string.IsNullOrEmpty(粗利.Text) ? "0" : 粗利.Text;
-                        売値掛率.Text = string.IsNullOrEmpty(売値掛率.Text) ? "0" : 売値掛率.Text;
+                            curDiscount = decimal.Parse(売値掛率.Text);
+                            売値掛率.Text = 100.ToString();
+                        }
 
-                        // 単価計算
-                        単価.Text = GetSellingPrice(decimal.Parse(定価.Text), decimal.Parse(売値掛率.Text)).ToString("N0");
+                        売値掛率.Enabled = 掛率有効.Checked;
+
+                        // 定価が存在するなら金額計算を行う
+                        if (!string.IsNullOrEmpty(定価.Text))
+                        {
+                            単価.Text = string.IsNullOrEmpty(単価.Text) ? "0" : 単価.Text;
+                            原価.Text = string.IsNullOrEmpty(原価.Text) ? "0" : 原価.Text;
+                            定価.Text = string.IsNullOrEmpty(定価.Text) ? "0" : 定価.Text;
+                            粗利.Text = string.IsNullOrEmpty(粗利.Text) ? "0" : 粗利.Text;
+                            売値掛率.Text = string.IsNullOrEmpty(売値掛率.Text) ? "0" : 売値掛率.Text;
+
+                            // 単価計算
+                            単価.Text = GetSellingPrice(decimal.Parse(定価.Text), decimal.Parse(売値掛率.Text)).ToString("N0");
+                            // 粗利計算
+                            粗利.Text = (Convert.ToDecimal(単価.Text) - Convert.ToDecimal(原価.Text)).ToString("N0");
+                        }
+                        break;
+                    case "単価":
                         // 粗利計算
                         粗利.Text = (Convert.ToDecimal(単価.Text) - Convert.ToDecimal(原価.Text)).ToString("N0");
-                    }
-                    break;
-                case "単価":
-                    // 粗利計算
-                    粗利.Text = (Convert.ToDecimal(単価.Text) - Convert.ToDecimal(原価.Text)).ToString("N0");
-                    break;
+                        break;
+                }
+
+                if (decimal.TryParse(粗利.Text, out decimal result) && result < 0)
+                {
+                    粗利.ForeColor = Color.Red;
+                }
+
+                if (cn != null && cn.State == ConnectionState.Open) cn.Close();
             }
+            catch (Exception ex)
+            {
+
+            }
+
+
         }
 
         private void WriteProduct(out string strProduct, out decimal curPrice, out decimal curCost)
@@ -532,6 +551,8 @@ namespace u_net
 
             DataGridUtils.SetDataGridView(cn, strSQL, 商品コード);
 
+            if (cn != null && cn.State == ConnectionState.Open) cn.Close();
+
             商品コード.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             商品コード.MultiSelect = false;
             商品コード.RowHeadersVisible = false;
@@ -574,6 +595,8 @@ namespace u_net
             Connect();
 
             DataGridUtils.SetDataGridView(cn, strSQL, 型式名);
+
+            if (cn != null && cn.State == ConnectionState.Open) cn.Close();
 
             型式名.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             型式名.MultiSelect = true;
@@ -650,7 +673,6 @@ namespace u_net
         {
             Close();
         }
-
 
         private void 顧客コード_Enter(object sender, EventArgs e)
         {

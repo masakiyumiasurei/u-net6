@@ -99,10 +99,10 @@
             受注納期1ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             受注納期1ラベル.ForeColor = SystemColors.ActiveCaptionText;
             受注納期1ラベル.ImageAlign = ContentAlignment.MiddleLeft;
-            受注納期1ラベル.Location = new Point(9, 93);
+            受注納期1ラベル.Location = new Point(10, 124);
             受注納期1ラベル.Margin = new Padding(0);
             受注納期1ラベル.Name = "受注納期1ラベル";
-            受注納期1ラベル.Size = new Size(100, 20);
+            受注納期1ラベル.Size = new Size(114, 27);
             受注納期1ラベル.TabIndex = 10;
             受注納期1ラベル.Text = "受注納期(&L)";
             受注納期1ラベル.TextAlign = ContentAlignment.MiddleLeft;
@@ -112,10 +112,9 @@
             受注日1.BackColor = Color.White;
             受注日1.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             受注日1.ImeMode = ImeMode.Disable;
-            受注日1.Location = new Point(113, 44);
-            受注日1.Margin = new Padding(3, 2, 3, 2);
+            受注日1.Location = new Point(129, 59);
             受注日1.Name = "受注日1";
-            受注日1.Size = new Size(90, 20);
+            受注日1.Size = new Size(102, 20);
             受注日1.TabIndex = 5;
             受注日1.Leave += 受注日1_Leave;
             受注日1.MouseDoubleClick += 受注日1_MouseDoubleClick;
@@ -128,10 +127,10 @@
             受注コード1ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             受注コード1ラベル.ForeColor = SystemColors.ActiveCaptionText;
             受注コード1ラベル.ImageAlign = ContentAlignment.MiddleLeft;
-            受注コード1ラベル.Location = new Point(9, 20);
+            受注コード1ラベル.Location = new Point(10, 27);
             受注コード1ラベル.Margin = new Padding(0);
             受注コード1ラベル.Name = "受注コード1ラベル";
-            受注コード1ラベル.Size = new Size(100, 20);
+            受注コード1ラベル.Size = new Size(114, 27);
             受注コード1ラベル.TabIndex = 1;
             受注コード1ラベル.Text = "受注コード(&C)";
             受注コード1ラベル.TextAlign = ContentAlignment.MiddleLeft;
@@ -141,10 +140,9 @@
             出荷予定日1.BackColor = Color.White;
             出荷予定日1.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             出荷予定日1.ImeMode = ImeMode.Disable;
-            出荷予定日1.Location = new Point(113, 68);
-            出荷予定日1.Margin = new Padding(3, 2, 3, 2);
+            出荷予定日1.Location = new Point(129, 91);
             出荷予定日1.Name = "出荷予定日1";
-            出荷予定日1.Size = new Size(90, 20);
+            出荷予定日1.Size = new Size(102, 20);
             出荷予定日1.TabIndex = 8;
             出荷予定日1.Leave += 出荷予定日1_Leave;
             出荷予定日1.MouseDoubleClick += 出荷予定日1_MouseDoubleClick;
@@ -157,10 +155,10 @@
             受注日1ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             受注日1ラベル.ForeColor = SystemColors.ActiveCaptionText;
             受注日1ラベル.ImageAlign = ContentAlignment.MiddleLeft;
-            受注日1ラベル.Location = new Point(9, 43);
+            受注日1ラベル.Location = new Point(10, 57);
             受注日1ラベル.Margin = new Padding(0);
             受注日1ラベル.Name = "受注日1ラベル";
-            受注日1ラベル.Size = new Size(100, 20);
+            受注日1ラベル.Size = new Size(114, 27);
             受注日1ラベル.TabIndex = 4;
             受注日1ラベル.Text = "受注日(&D)";
             受注日1ラベル.TextAlign = ContentAlignment.MiddleLeft;
@@ -170,10 +168,9 @@
             受注納期1.BackColor = Color.White;
             受注納期1.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             受注納期1.ImeMode = ImeMode.Disable;
-            受注納期1.Location = new Point(113, 92);
-            受注納期1.Margin = new Padding(3, 2, 3, 2);
+            受注納期1.Location = new Point(129, 123);
             受注納期1.Name = "受注納期1";
-            受注納期1.Size = new Size(90, 20);
+            受注納期1.Size = new Size(102, 20);
             受注納期1.TabIndex = 11;
             受注納期1.Leave += 受注納期1_Leave;
             受注納期1.MouseDoubleClick += 受注納期1_MouseDoubleClick;
@@ -186,10 +183,10 @@
             出荷予定日1ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             出荷予定日1ラベル.ForeColor = SystemColors.ActiveCaptionText;
             出荷予定日1ラベル.ImageAlign = ContentAlignment.MiddleLeft;
-            出荷予定日1ラベル.Location = new Point(9, 68);
+            出荷予定日1ラベル.Location = new Point(10, 91);
             出荷予定日1ラベル.Margin = new Padding(0);
             出荷予定日1ラベル.Name = "出荷予定日1ラベル";
-            出荷予定日1ラベル.Size = new Size(100, 20);
+            出荷予定日1ラベル.Size = new Size(114, 27);
             出荷予定日1ラベル.TabIndex = 7;
             出荷予定日1ラベル.Text = "出荷予定日(&S)";
             出荷予定日1ラベル.TextAlign = ContentAlignment.MiddleLeft;
@@ -199,10 +196,9 @@
             受注コード1.BackColor = Color.White;
             受注コード1.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             受注コード1.ImeMode = ImeMode.Disable;
-            受注コード1.Location = new Point(113, 20);
-            受注コード1.Margin = new Padding(3, 2, 3, 2);
+            受注コード1.Location = new Point(129, 27);
             受注コード1.Name = "受注コード1";
-            受注コード1.Size = new Size(112, 20);
+            受注コード1.Size = new Size(127, 20);
             受注コード1.TabIndex = 2;
             受注コード1.KeyDown += 受注コード1_KeyDown;
             受注コード1.KeyPress += 受注コード1_KeyPress;
@@ -212,9 +208,10 @@
             // キャンセルボタン
             // 
             キャンセルボタン.Font = new Font("BIZ UDゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            キャンセルボタン.Location = new Point(293, 512);
+            キャンセルボタン.Location = new Point(335, 683);
+            キャンセルボタン.Margin = new Padding(3, 4, 3, 4);
             キャンセルボタン.Name = "キャンセルボタン";
-            キャンセルボタン.Size = new Size(114, 23);
+            キャンセルボタン.Size = new Size(130, 31);
             キャンセルボタン.TabIndex = 30;
             キャンセルボタン.Text = "キャンセル";
             キャンセルボタン.UseVisualStyleBackColor = true;
@@ -223,9 +220,10 @@
             // 抽出ボタン
             // 
             抽出ボタン.Font = new Font("BIZ UDゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            抽出ボタン.Location = new Point(174, 512);
+            抽出ボタン.Location = new Point(199, 683);
+            抽出ボタン.Margin = new Padding(3, 4, 3, 4);
             抽出ボタン.Name = "抽出ボタン";
-            抽出ボタン.Size = new Size(114, 23);
+            抽出ボタン.Size = new Size(130, 31);
             抽出ボタン.TabIndex = 29;
             抽出ボタン.Text = "抽出";
             抽出ボタン.UseVisualStyleBackColor = true;
@@ -234,7 +232,8 @@
             // 削除済み
             // 
             削除済み.AutoSize = true;
-            削除済み.Location = new Point(30, 22);
+            削除済み.Location = new Point(34, 29);
+            削除済み.Margin = new Padding(3, 4, 3, 4);
             削除済み.Name = "削除済み";
             削除済み.Size = new Size(71, 16);
             削除済み.TabIndex = 1;
@@ -245,7 +244,8 @@
             // 未削除
             // 
             未削除.AutoSize = true;
-            未削除.Location = new Point(169, 22);
+            未削除.Location = new Point(193, 29);
+            未削除.Margin = new Padding(3, 4, 3, 4);
             未削除.Name = "未削除";
             未削除.Size = new Size(59, 16);
             未削除.TabIndex = 2;
@@ -258,9 +258,11 @@
             削除.Controls.Add(未削除);
             削除.Controls.Add(削除済み);
             削除.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            削除.Location = new Point(9, 457);
+            削除.Location = new Point(10, 609);
+            削除.Margin = new Padding(3, 4, 3, 4);
             削除.Name = "削除";
-            削除.Size = new Size(399, 46);
+            削除.Padding = new Padding(3, 4, 3, 4);
+            削除.Size = new Size(456, 61);
             削除.TabIndex = 28;
             削除.TabStop = false;
             削除.Text = "削除指定";
@@ -268,7 +270,8 @@
             // 未完了承認
             // 
             未完了承認.AutoSize = true;
-            未完了承認.Location = new Point(169, 22);
+            未完了承認.Location = new Point(193, 29);
+            未完了承認.Margin = new Padding(3, 4, 3, 4);
             未完了承認.Name = "未完了承認";
             未完了承認.Size = new Size(59, 16);
             未完了承認.TabIndex = 2;
@@ -280,9 +283,11 @@
             受注完了承認.Controls.Add(未完了承認);
             受注完了承認.Controls.Add(完了承認済み);
             受注完了承認.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            受注完了承認.Location = new Point(9, 394);
+            受注完了承認.Location = new Point(10, 525);
+            受注完了承認.Margin = new Padding(3, 4, 3, 4);
             受注完了承認.Name = "受注完了承認";
-            受注完了承認.Size = new Size(399, 57);
+            受注完了承認.Padding = new Padding(3, 4, 3, 4);
+            受注完了承認.Size = new Size(456, 76);
             受注完了承認.TabIndex = 27;
             受注完了承認.TabStop = false;
             // 
@@ -290,7 +295,8 @@
             // 
             完了承認済み.AutoSize = true;
             完了承認済み.Checked = true;
-            完了承認済み.Location = new Point(30, 22);
+            完了承認済み.Location = new Point(34, 29);
+            完了承認済み.Margin = new Padding(3, 4, 3, 4);
             完了承認済み.Name = "完了承認済み";
             完了承認済み.Size = new Size(71, 16);
             完了承認済み.TabIndex = 1;
@@ -301,7 +307,8 @@
             // 受注完了承認指定
             // 
             受注完了承認指定.AutoSize = true;
-            受注完了承認指定.Location = new Point(13, 395);
+            受注完了承認指定.Location = new Point(15, 527);
+            受注完了承認指定.Margin = new Padding(3, 4, 3, 4);
             受注完了承認指定.Name = "受注完了承認指定";
             受注完了承認指定.Size = new Size(15, 14);
             受注完了承認指定.TabIndex = 26;
@@ -312,7 +319,8 @@
             // 
             出荷済み.AutoSize = true;
             出荷済み.Checked = true;
-            出荷済み.Location = new Point(30, 22);
+            出荷済み.Location = new Point(34, 29);
+            出荷済み.Margin = new Padding(3, 4, 3, 4);
             出荷済み.Name = "出荷済み";
             出荷済み.Size = new Size(71, 16);
             出荷済み.TabIndex = 1;
@@ -324,7 +332,8 @@
             // 未出荷
             // 
             未出荷.AutoSize = true;
-            未出荷.Location = new Point(30, 79);
+            未出荷.Location = new Point(34, 105);
+            未出荷.Margin = new Padding(3, 4, 3, 4);
             未出荷.Name = "未出荷";
             未出荷.Size = new Size(59, 16);
             未出荷.TabIndex = 2;
@@ -339,10 +348,10 @@
             出荷日ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             出荷日ラベル.ForeColor = SystemColors.ActiveCaptionText;
             出荷日ラベル.ImageAlign = ContentAlignment.MiddleLeft;
-            出荷日ラベル.Location = new Point(57, 47);
+            出荷日ラベル.Location = new Point(65, 63);
             出荷日ラベル.Margin = new Padding(0);
             出荷日ラベル.Name = "出荷日ラベル";
-            出荷日ラベル.Size = new Size(50, 20);
+            出荷日ラベル.Size = new Size(57, 27);
             出荷日ラベル.TabIndex = 10035;
             出荷日ラベル.Text = "出荷日";
             出荷日ラベル.TextAlign = ContentAlignment.MiddleLeft;
@@ -352,10 +361,9 @@
             出荷完了日1.BackColor = Color.White;
             出荷完了日1.Enabled = false;
             出荷完了日1.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            出荷完了日1.Location = new Point(115, 47);
-            出荷完了日1.Margin = new Padding(3, 2, 3, 2);
+            出荷完了日1.Location = new Point(131, 63);
             出荷完了日1.Name = "出荷完了日1";
-            出荷完了日1.Size = new Size(86, 20);
+            出荷完了日1.Size = new Size(98, 20);
             出荷完了日1.TabIndex = 2;
             出荷完了日1.Leave += 出荷完了日1_Leave;
             // 
@@ -363,10 +371,10 @@
             // 
             出荷完了日1選択ボタン.Enabled = false;
             出荷完了日1選択ボタン.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            出荷完了日1選択ボタン.Location = new Point(204, 46);
-            出荷完了日1選択ボタン.Margin = new Padding(4, 3, 4, 3);
+            出荷完了日1選択ボタン.Location = new Point(233, 61);
+            出荷完了日1選択ボタン.Margin = new Padding(5, 4, 5, 4);
             出荷完了日1選択ボタン.Name = "出荷完了日1選択ボタン";
-            出荷完了日1選択ボタン.Size = new Size(22, 22);
+            出荷完了日1選択ボタン.Size = new Size(25, 29);
             出荷完了日1選択ボタン.TabIndex = 25;
             出荷完了日1選択ボタン.TabStop = false;
             出荷完了日1選択ボタン.Text = "▼";
@@ -378,10 +386,9 @@
             出荷完了日2.BackColor = Color.White;
             出荷完了日2.Enabled = false;
             出荷完了日2.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            出荷完了日2.Location = new Point(252, 48);
-            出荷完了日2.Margin = new Padding(3, 2, 3, 2);
+            出荷完了日2.Location = new Point(288, 64);
             出荷完了日2.Name = "出荷完了日2";
-            出荷完了日2.Size = new Size(86, 20);
+            出荷完了日2.Size = new Size(98, 20);
             出荷完了日2.TabIndex = 3;
             出荷完了日2.Leave += 出荷完了日2_Leave;
             // 
@@ -392,10 +399,10 @@
             出荷完了日2ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             出荷完了日2ラベル.ForeColor = SystemColors.ActiveCaptionText;
             出荷完了日2ラベル.ImageAlign = ContentAlignment.MiddleLeft;
-            出荷完了日2ラベル.Location = new Point(230, 48);
+            出荷完了日2ラベル.Location = new Point(263, 64);
             出荷完了日2ラベル.Margin = new Padding(0);
             出荷完了日2ラベル.Name = "出荷完了日2ラベル";
-            出荷完了日2ラベル.Size = new Size(20, 20);
+            出荷完了日2ラベル.Size = new Size(23, 27);
             出荷完了日2ラベル.TabIndex = 10036;
             出荷完了日2ラベル.Text = "～";
             出荷完了日2ラベル.TextAlign = ContentAlignment.MiddleLeft;
@@ -404,10 +411,10 @@
             // 
             出荷完了日2選択ボタン.Enabled = false;
             出荷完了日2選択ボタン.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            出荷完了日2選択ボタン.Location = new Point(341, 47);
-            出荷完了日2選択ボタン.Margin = new Padding(4, 3, 4, 3);
+            出荷完了日2選択ボタン.Location = new Point(390, 63);
+            出荷完了日2選択ボタン.Margin = new Padding(5, 4, 5, 4);
             出荷完了日2選択ボタン.Name = "出荷完了日2選択ボタン";
-            出荷完了日2選択ボタン.Size = new Size(22, 22);
+            出荷完了日2選択ボタン.Size = new Size(25, 29);
             出荷完了日2選択ボタン.TabIndex = 27;
             出荷完了日2選択ボタン.TabStop = false;
             出荷完了日2選択ボタン.Text = "▼";
@@ -425,16 +432,19 @@
             出荷.Controls.Add(未出荷);
             出荷.Controls.Add(出荷済み);
             出荷.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            出荷.Location = new Point(9, 271);
+            出荷.Location = new Point(10, 361);
+            出荷.Margin = new Padding(3, 4, 3, 4);
             出荷.Name = "出荷";
-            出荷.Size = new Size(399, 117);
+            出荷.Padding = new Padding(3, 4, 3, 4);
+            出荷.Size = new Size(456, 156);
             出荷.TabIndex = 25;
             出荷.TabStop = false;
             // 
             // 出荷指定
             // 
             出荷指定.AutoSize = true;
-            出荷指定.Location = new Point(13, 271);
+            出荷指定.Location = new Point(15, 361);
+            出荷指定.Margin = new Padding(3, 4, 3, 4);
             出荷指定.Name = "出荷指定";
             出荷指定.Size = new Size(15, 14);
             出荷指定.TabIndex = 24;
@@ -444,7 +454,8 @@
             // 受注承認指定
             // 
             受注承認指定.AutoSize = true;
-            受注承認指定.Location = new Point(14, 217);
+            受注承認指定.Location = new Point(16, 289);
+            受注承認指定.Margin = new Padding(3, 4, 3, 4);
             受注承認指定.Name = "受注承認指定";
             受注承認指定.Size = new Size(15, 14);
             受注承認指定.TabIndex = 22;
@@ -454,7 +465,8 @@
             // 承認済み
             // 
             承認済み.AutoSize = true;
-            承認済み.Location = new Point(30, 22);
+            承認済み.Location = new Point(34, 29);
+            承認済み.Margin = new Padding(3, 4, 3, 4);
             承認済み.Name = "承認済み";
             承認済み.Size = new Size(71, 16);
             承認済み.TabIndex = 1;
@@ -465,7 +477,8 @@
             // 未承認
             // 
             未承認.AutoSize = true;
-            未承認.Location = new Point(169, 22);
+            未承認.Location = new Point(193, 29);
+            未承認.Margin = new Padding(3, 4, 3, 4);
             未承認.Name = "未承認";
             未承認.Size = new Size(59, 16);
             未承認.TabIndex = 2;
@@ -478,19 +491,21 @@
             受注承認.Controls.Add(未承認);
             受注承認.Controls.Add(承認済み);
             受注承認.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            受注承認.Location = new Point(9, 217);
+            受注承認.Location = new Point(10, 289);
+            受注承認.Margin = new Padding(3, 4, 3, 4);
             受注承認.Name = "受注承認";
-            受注承認.Size = new Size(399, 48);
+            受注承認.Padding = new Padding(3, 4, 3, 4);
+            受注承認.Size = new Size(456, 64);
             受注承認.TabIndex = 23;
             受注承認.TabStop = false;
             // 
             // 顧客コード検索ボタン
             // 
             顧客コード検索ボタン.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            顧客コード検索ボタン.Location = new Point(205, 140);
-            顧客コード検索ボタン.Margin = new Padding(4, 3, 4, 3);
+            顧客コード検索ボタン.Location = new Point(234, 187);
+            顧客コード検索ボタン.Margin = new Padding(5, 4, 5, 4);
             顧客コード検索ボタン.Name = "顧客コード検索ボタン";
-            顧客コード検索ボタン.Size = new Size(22, 22);
+            顧客コード検索ボタン.Size = new Size(25, 29);
             顧客コード検索ボタン.TabIndex = 16;
             顧客コード検索ボタン.TabStop = false;
             顧客コード検索ボタン.Text = "▼";
@@ -501,11 +516,10 @@
             // 
             自社担当者名.BackColor = SystemColors.Control;
             自社担当者名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            自社担当者名.Location = new Point(173, 191);
-            自社担当者名.Margin = new Padding(3, 2, 3, 2);
+            自社担当者名.Location = new Point(198, 255);
             自社担当者名.Name = "自社担当者名";
             自社担当者名.ReadOnly = true;
-            自社担当者名.Size = new Size(133, 20);
+            自社担当者名.Size = new Size(151, 20);
             自社担当者名.TabIndex = 21;
             自社担当者名.TabStop = false;
             // 
@@ -515,23 +529,24 @@
             自社担当者コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             自社担当者コード.FormattingEnabled = true;
             自社担当者コード.ImeMode = ImeMode.Disable;
-            自社担当者コード.Location = new Point(113, 190);
+            自社担当者コード.Location = new Point(129, 253);
+            自社担当者コード.Margin = new Padding(3, 4, 3, 4);
             自社担当者コード.Name = "自社担当者コード";
-            自社担当者コード.Size = new Size(56, 21);
+            自社担当者コード.Size = new Size(63, 21);
             自社担当者コード.TabIndex = 20;
             自社担当者コード.DrawItem += 自社担当者コード_DrawItem;
             自社担当者コード.SelectedIndexChanged += 自社担当者コード_SelectedIndexChanged;
+            自社担当者コード.Validated += 自社担当者コード_Validated;
             // 
             // 顧客名
             // 
             顧客名.BackColor = SystemColors.Control;
             顧客名.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             顧客名.ImeMode = ImeMode.NoControl;
-            顧客名.Location = new Point(113, 165);
-            顧客名.Margin = new Padding(3, 2, 3, 2);
+            顧客名.Location = new Point(129, 220);
             顧客名.Name = "顧客名";
             顧客名.ReadOnly = true;
-            顧客名.Size = new Size(295, 20);
+            顧客名.Size = new Size(337, 20);
             顧客名.TabIndex = 18;
             顧客名.TabStop = false;
             // 
@@ -540,10 +555,9 @@
             顧客コード.BackColor = Color.White;
             顧客コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             顧客コード.ImeMode = ImeMode.Disable;
-            顧客コード.Location = new Point(113, 141);
-            顧客コード.Margin = new Padding(3, 2, 3, 2);
+            顧客コード.Location = new Point(129, 188);
             顧客コード.Name = "顧客コード";
-            顧客コード.Size = new Size(90, 20);
+            顧客コード.Size = new Size(102, 20);
             顧客コード.TabIndex = 16;
             顧客コード.TextChanged += 顧客コード_TextChanged;
             顧客コード.KeyDown += 顧客コード_KeyDown;
@@ -558,10 +572,10 @@
             自社担当者名ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             自社担当者名ラベル.ForeColor = SystemColors.ActiveCaptionText;
             自社担当者名ラベル.ImageAlign = ContentAlignment.MiddleLeft;
-            自社担当者名ラベル.Location = new Point(9, 191);
+            自社担当者名ラベル.Location = new Point(10, 255);
             自社担当者名ラベル.Margin = new Padding(0);
             自社担当者名ラベル.Name = "自社担当者名ラベル";
-            自社担当者名ラベル.Size = new Size(100, 20);
+            自社担当者名ラベル.Size = new Size(114, 27);
             自社担当者名ラベル.TabIndex = 19;
             自社担当者名ラベル.Text = "自社担当者(&H)";
             自社担当者名ラベル.TextAlign = ContentAlignment.MiddleLeft;
@@ -573,10 +587,10 @@
             label6.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             label6.ForeColor = SystemColors.ActiveCaptionText;
             label6.ImageAlign = ContentAlignment.MiddleLeft;
-            label6.Location = new Point(9, 165);
+            label6.Location = new Point(10, 220);
             label6.Margin = new Padding(0);
             label6.Name = "label6";
-            label6.Size = new Size(100, 20);
+            label6.Size = new Size(114, 27);
             label6.TabIndex = 17;
             label6.Text = "顧客名";
             label6.TextAlign = ContentAlignment.MiddleLeft;
@@ -588,10 +602,10 @@
             顧客名ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             顧客名ラベル.ForeColor = SystemColors.ActiveCaptionText;
             顧客名ラベル.ImageAlign = ContentAlignment.MiddleLeft;
-            顧客名ラベル.Location = new Point(9, 141);
+            顧客名ラベル.Location = new Point(10, 188);
             顧客名ラベル.Margin = new Padding(0);
             顧客名ラベル.Name = "顧客名ラベル";
-            顧客名ラベル.Size = new Size(100, 20);
+            顧客名ラベル.Size = new Size(114, 27);
             顧客名ラベル.TabIndex = 15;
             顧客名ラベル.Text = "顧客コード(&U)";
             顧客名ラベル.TextAlign = ContentAlignment.MiddleLeft;
@@ -603,10 +617,10 @@
             注文番号ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             注文番号ラベル.ForeColor = SystemColors.ActiveCaptionText;
             注文番号ラベル.ImageAlign = ContentAlignment.MiddleLeft;
-            注文番号ラベル.Location = new Point(9, 118);
+            注文番号ラベル.Location = new Point(10, 157);
             注文番号ラベル.Margin = new Padding(0);
             注文番号ラベル.Name = "注文番号ラベル";
-            注文番号ラベル.Size = new Size(100, 20);
+            注文番号ラベル.Size = new Size(114, 27);
             注文番号ラベル.TabIndex = 13;
             注文番号ラベル.Text = "注文番号(&N)";
             注文番号ラベル.TextAlign = ContentAlignment.MiddleLeft;
@@ -616,20 +630,19 @@
             注文番号.BackColor = Color.White;
             注文番号.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             注文番号.ImeMode = ImeMode.Alpha;
-            注文番号.Location = new Point(113, 117);
-            注文番号.Margin = new Padding(3, 2, 3, 2);
+            注文番号.Location = new Point(129, 156);
             注文番号.Name = "注文番号";
-            注文番号.Size = new Size(213, 20);
+            注文番号.Size = new Size(243, 20);
             注文番号.TabIndex = 14;
             注文番号.KeyPress += 注文番号_KeyPress;
             // 
             // 受注納期2選択ボタン
             // 
             受注納期2選択ボタン.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            受注納期2選択ボタン.Location = new Point(344, 90);
-            受注納期2選択ボタン.Margin = new Padding(4, 3, 4, 3);
+            受注納期2選択ボタン.Location = new Point(393, 120);
+            受注納期2選択ボタン.Margin = new Padding(5, 4, 5, 4);
             受注納期2選択ボタン.Name = "受注納期2選択ボタン";
-            受注納期2選択ボタン.Size = new Size(22, 22);
+            受注納期2選択ボタン.Size = new Size(25, 29);
             受注納期2選択ボタン.TabIndex = 13;
             受注納期2選択ボタン.TabStop = false;
             受注納期2選択ボタン.Text = "▼";
@@ -639,10 +652,10 @@
             // 出荷予定日2選択ボタン
             // 
             出荷予定日2選択ボタン.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            出荷予定日2選択ボタン.Location = new Point(344, 66);
-            出荷予定日2選択ボタン.Margin = new Padding(4, 3, 4, 3);
+            出荷予定日2選択ボタン.Location = new Point(393, 88);
+            出荷予定日2選択ボタン.Margin = new Padding(5, 4, 5, 4);
             出荷予定日2選択ボタン.Name = "出荷予定日2選択ボタン";
-            出荷予定日2選択ボタン.Size = new Size(22, 22);
+            出荷予定日2選択ボタン.Size = new Size(25, 29);
             出荷予定日2選択ボタン.TabIndex = 9;
             出荷予定日2選択ボタン.TabStop = false;
             出荷予定日2選択ボタン.Text = "▼";
@@ -652,10 +665,10 @@
             // 受注日2選択ボタン
             // 
             受注日2選択ボタン.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            受注日2選択ボタン.Location = new Point(344, 42);
-            受注日2選択ボタン.Margin = new Padding(4, 3, 4, 3);
+            受注日2選択ボタン.Location = new Point(393, 56);
+            受注日2選択ボタン.Margin = new Padding(5, 4, 5, 4);
             受注日2選択ボタン.Name = "受注日2選択ボタン";
-            受注日2選択ボタン.Size = new Size(22, 22);
+            受注日2選択ボタン.Size = new Size(25, 29);
             受注日2選択ボタン.TabIndex = 5;
             受注日2選択ボタン.TabStop = false;
             受注日2選択ボタン.Text = "▼";
@@ -669,10 +682,10 @@
             label4.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             label4.ForeColor = SystemColors.ActiveCaptionText;
             label4.ImageAlign = ContentAlignment.MiddleLeft;
-            label4.Location = new Point(231, 91);
+            label4.Location = new Point(264, 121);
             label4.Margin = new Padding(0);
             label4.Name = "label4";
-            label4.Size = new Size(20, 20);
+            label4.Size = new Size(23, 27);
             label4.TabIndex = 10024;
             label4.Text = "～";
             label4.TextAlign = ContentAlignment.MiddleLeft;
@@ -682,10 +695,9 @@
             受注納期2.BackColor = Color.White;
             受注納期2.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             受注納期2.ImeMode = ImeMode.Disable;
-            受注納期2.Location = new Point(251, 91);
-            受注納期2.Margin = new Padding(3, 2, 3, 2);
+            受注納期2.Location = new Point(287, 121);
             受注納期2.Name = "受注納期2";
-            受注納期2.Size = new Size(90, 20);
+            受注納期2.Size = new Size(102, 20);
             受注納期2.TabIndex = 12;
             受注納期2.Leave += 受注納期2_Leave;
             受注納期2.MouseDoubleClick += 受注納期2_MouseDoubleClick;
@@ -696,10 +708,9 @@
             出荷予定日2.BackColor = Color.White;
             出荷予定日2.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             出荷予定日2.ImeMode = ImeMode.Disable;
-            出荷予定日2.Location = new Point(251, 67);
-            出荷予定日2.Margin = new Padding(3, 2, 3, 2);
+            出荷予定日2.Location = new Point(287, 89);
             出荷予定日2.Name = "出荷予定日2";
-            出荷予定日2.Size = new Size(90, 20);
+            出荷予定日2.Size = new Size(102, 20);
             出荷予定日2.TabIndex = 9;
             出荷予定日2.Leave += 出荷予定日2_Leave;
             出荷予定日2.MouseDoubleClick += 出荷予定日2_MouseDoubleClick;
@@ -710,10 +721,9 @@
             受注日2.BackColor = Color.White;
             受注日2.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             受注日2.ImeMode = ImeMode.Disable;
-            受注日2.Location = new Point(251, 43);
-            受注日2.Margin = new Padding(3, 2, 3, 2);
+            受注日2.Location = new Point(287, 57);
             受注日2.Name = "受注日2";
-            受注日2.Size = new Size(90, 20);
+            受注日2.Size = new Size(102, 20);
             受注日2.TabIndex = 6;
             受注日2.Leave += 受注日2_Leave;
             受注日2.MouseDoubleClick += 受注日2_MouseDoubleClick;
@@ -726,10 +736,10 @@
             出荷予定日2ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             出荷予定日2ラベル.ForeColor = SystemColors.ActiveCaptionText;
             出荷予定日2ラベル.ImageAlign = ContentAlignment.MiddleLeft;
-            出荷予定日2ラベル.Location = new Point(231, 43);
+            出荷予定日2ラベル.Location = new Point(264, 57);
             出荷予定日2ラベル.Margin = new Padding(0);
             出荷予定日2ラベル.Name = "出荷予定日2ラベル";
-            出荷予定日2ラベル.Size = new Size(20, 20);
+            出荷予定日2ラベル.Size = new Size(23, 27);
             出荷予定日2ラベル.TabIndex = 10012;
             出荷予定日2ラベル.Text = "～";
             出荷予定日2ラベル.TextAlign = ContentAlignment.MiddleLeft;
@@ -741,10 +751,10 @@
             label2.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             label2.ForeColor = SystemColors.ActiveCaptionText;
             label2.ImageAlign = ContentAlignment.MiddleLeft;
-            label2.Location = new Point(231, 67);
+            label2.Location = new Point(264, 89);
             label2.Margin = new Padding(0);
             label2.Name = "label2";
-            label2.Size = new Size(20, 20);
+            label2.Size = new Size(23, 27);
             label2.TabIndex = 10018;
             label2.Text = "～";
             label2.TextAlign = ContentAlignment.MiddleLeft;
@@ -752,10 +762,10 @@
             // 受注納期1選択ボタン
             // 
             受注納期1選択ボタン.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            受注納期1選択ボタン.Location = new Point(205, 91);
-            受注納期1選択ボタン.Margin = new Padding(4, 3, 4, 3);
+            受注納期1選択ボタン.Location = new Point(234, 121);
+            受注納期1選択ボタン.Margin = new Padding(5, 4, 5, 4);
             受注納期1選択ボタン.Name = "受注納期1選択ボタン";
-            受注納期1選択ボタン.Size = new Size(22, 22);
+            受注納期1選択ボタン.Size = new Size(25, 29);
             受注納期1選択ボタン.TabIndex = 11;
             受注納期1選択ボタン.TabStop = false;
             受注納期1選択ボタン.Text = "▼";
@@ -765,10 +775,10 @@
             // 出荷予定日1選択ボタン
             // 
             出荷予定日1選択ボタン.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            出荷予定日1選択ボタン.Location = new Point(205, 67);
-            出荷予定日1選択ボタン.Margin = new Padding(4, 3, 4, 3);
+            出荷予定日1選択ボタン.Location = new Point(234, 89);
+            出荷予定日1選択ボタン.Margin = new Padding(5, 4, 5, 4);
             出荷予定日1選択ボタン.Name = "出荷予定日1選択ボタン";
-            出荷予定日1選択ボタン.Size = new Size(22, 22);
+            出荷予定日1選択ボタン.Size = new Size(25, 29);
             出荷予定日1選択ボタン.TabIndex = 7;
             出荷予定日1選択ボタン.TabStop = false;
             出荷予定日1選択ボタン.Text = "▼";
@@ -778,10 +788,10 @@
             // 受注日1選択ボタン
             // 
             受注日1選択ボタン.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            受注日1選択ボタン.Location = new Point(205, 43);
-            受注日1選択ボタン.Margin = new Padding(4, 3, 4, 3);
+            受注日1選択ボタン.Location = new Point(234, 57);
+            受注日1選択ボタン.Margin = new Padding(5, 4, 5, 4);
             受注日1選択ボタン.Name = "受注日1選択ボタン";
-            受注日1選択ボタン.Size = new Size(22, 22);
+            受注日1選択ボタン.Size = new Size(25, 29);
             受注日1選択ボタン.TabIndex = 3;
             受注日1選択ボタン.TabStop = false;
             受注日1選択ボタン.Text = "▼";
@@ -793,10 +803,9 @@
             受注コード2.BackColor = Color.White;
             受注コード2.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             受注コード2.ImeMode = ImeMode.Disable;
-            受注コード2.Location = new Point(248, 20);
-            受注コード2.Margin = new Padding(3, 2, 3, 2);
+            受注コード2.Location = new Point(283, 27);
             受注コード2.Name = "受注コード2";
-            受注コード2.Size = new Size(112, 20);
+            受注コード2.Size = new Size(127, 20);
             受注コード2.TabIndex = 3;
             受注コード2.KeyDown += 受注コード2_KeyDown;
             受注コード2.KeyPress += 受注コード2_KeyPress;
@@ -810,10 +819,10 @@
             受注コード2ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             受注コード2ラベル.ForeColor = SystemColors.ActiveCaptionText;
             受注コード2ラベル.ImageAlign = ContentAlignment.MiddleLeft;
-            受注コード2ラベル.Location = new Point(228, 20);
+            受注コード2ラベル.Location = new Point(261, 27);
             受注コード2ラベル.Margin = new Padding(0);
             受注コード2ラベル.Name = "受注コード2ラベル";
-            受注コード2ラベル.Size = new Size(20, 20);
+            受注コード2ラベル.Size = new Size(23, 27);
             受注コード2ラベル.TabIndex = 10033;
             受注コード2ラベル.Text = "～";
             受注コード2ラベル.TextAlign = ContentAlignment.MiddleLeft;
@@ -825,10 +834,10 @@
             受注承認指定_ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             受注承認指定_ラベル.ForeColor = SystemColors.ActiveCaptionText;
             受注承認指定_ラベル.ImageAlign = ContentAlignment.MiddleLeft;
-            受注承認指定_ラベル.Location = new Point(27, 212);
+            受注承認指定_ラベル.Location = new Point(31, 283);
             受注承認指定_ラベル.Margin = new Padding(0);
             受注承認指定_ラベル.Name = "受注承認指定_ラベル";
-            受注承認指定_ラベル.Size = new Size(83, 20);
+            受注承認指定_ラベル.Size = new Size(95, 27);
             受注承認指定_ラベル.TabIndex = 10034;
             受注承認指定_ラベル.Text = "受注承認指定";
             受注承認指定_ラベル.TextAlign = ContentAlignment.MiddleLeft;
@@ -841,10 +850,10 @@
             出荷指定_ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             出荷指定_ラベル.ForeColor = SystemColors.ActiveCaptionText;
             出荷指定_ラベル.ImageAlign = ContentAlignment.MiddleLeft;
-            出荷指定_ラベル.Location = new Point(27, 267);
+            出荷指定_ラベル.Location = new Point(31, 356);
             出荷指定_ラベル.Margin = new Padding(0);
             出荷指定_ラベル.Name = "出荷指定_ラベル";
-            出荷指定_ラベル.Size = new Size(83, 20);
+            出荷指定_ラベル.Size = new Size(95, 27);
             出荷指定_ラベル.TabIndex = 10035;
             出荷指定_ラベル.Text = "出荷指定";
             出荷指定_ラベル.TextAlign = ContentAlignment.MiddleLeft;
@@ -857,10 +866,10 @@
             受注完了承認指定_ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             受注完了承認指定_ラベル.ForeColor = SystemColors.ActiveCaptionText;
             受注完了承認指定_ラベル.ImageAlign = ContentAlignment.MiddleLeft;
-            受注完了承認指定_ラベル.Location = new Point(28, 391);
+            受注完了承認指定_ラベル.Location = new Point(32, 521);
             受注完了承認指定_ラベル.Margin = new Padding(0);
             受注完了承認指定_ラベル.Name = "受注完了承認指定_ラベル";
-            受注完了承認指定_ラベル.Size = new Size(105, 20);
+            受注完了承認指定_ラベル.Size = new Size(120, 27);
             受注完了承認指定_ラベル.TabIndex = 10036;
             受注完了承認指定_ラベル.Text = "受注完了承認指定";
             受注完了承認指定_ラベル.TextAlign = ContentAlignment.MiddleLeft;
@@ -868,9 +877,9 @@
             // 
             // F_受注管理_抽出
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(419, 548);
+            ClientSize = new Size(479, 731);
             Controls.Add(受注完了承認指定_ラベル);
             Controls.Add(出荷指定_ラベル);
             Controls.Add(受注承認指定_ラベル);
@@ -916,6 +925,7 @@
             Controls.Add(受注日1);
             Controls.Add(受注コード1ラベル);
             KeyPreview = true;
+            Margin = new Padding(3, 4, 3, 4);
             Name = "F_受注管理_抽出";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "受注管理 - 抽出";

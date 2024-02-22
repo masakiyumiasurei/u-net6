@@ -103,7 +103,18 @@ namespace u_net
                     break;
 
                 case Keys.Return:
-                    OKボタン_Click( sender, e);
+                    //switch (this.ActiveControl.Name)
+                    //{
+                    //    case "ユーザー名":
+                    //        return;
+                    //}
+
+                    if (enterflg == false)
+                    {
+                        OKボタン_Click(sender, e);
+                        return;
+                    }
+                    enterflg = false;
                     break;
             }
         }
@@ -172,7 +183,7 @@ namespace u_net
                 MessageBox.Show($"OKボタン_Click - {ex.GetType().Name} : {ex.Message}", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        
+
         private void キャンセルボタン_Click(object sender, EventArgs e)
         {
             //If Forms.Count >= 4 Then
@@ -213,7 +224,7 @@ namespace u_net
 
         private void ユーザー名_SelectedIndexChanged(object sender, EventArgs e)
         {
-            パスワード.Focus();
+            //  パスワード.Focus();
         }
 
         private void ユーザー名_Enter(object sender, EventArgs e)
@@ -241,8 +252,10 @@ namespace u_net
             }
         }
 
+        bool enterflg = false;
         private void パスワード_Enter(object sender, EventArgs e)
         {
+            
             toolStripStatusLabel2.Text = "■本システムで有効なパスワードを入力します。";
         }
         private void パスワード_TextChanged(object sender, EventArgs e)
@@ -324,7 +337,7 @@ namespace u_net
         {
             int openFormCount = Application.OpenForms.Count;
 
-            if(openFormCount >= 2 && !string.IsNullOrEmpty(CommonConstants.LoginUserCode))
+            if (openFormCount >= 2 && !string.IsNullOrEmpty(CommonConstants.LoginUserCode))
             {
                 this.Close();
                 return;
@@ -333,7 +346,7 @@ namespace u_net
 
             MessageBox.Show("システムを終了します。", CommonConstants.STR_APPTITLE, MessageBoxButtons.OK);
 
-            
+
             Application.Exit();
         }
 
@@ -420,6 +433,16 @@ namespace u_net
             return EmployeePassword;
         }
 
+        private void ユーザー名_DropDownClosed(object sender, EventArgs e)
+        {
+            パスワード.Focus();
+            enterflg = true;
+        }
+
+        private void F_認証_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+        }
     }
 }
 

@@ -464,8 +464,11 @@ namespace u_net.Public
         }
 
 
-
-        // 入力英小文字を英大文字に変換する
+        /// <summary>
+        /// 入力英小文字を英大文字に変換する
+        /// </summary>
+        /// <param name="intKey"></param>
+        /// <returns></returns>       
         public static int ChangeBig(int intKey)
         {
             string strCharacter;

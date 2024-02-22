@@ -120,14 +120,13 @@ namespace MultiRowDesigner
                 case "備考":
                     if (gcMultiRow1.CurrentRow.Cells["SettingSheet"].Value?.ToString() == "02")
                     {
-                        control.ReadOnly = true;
+                        gcMultiRow1.CurrentRow.Cells["備考"].ReadOnly = true;
                     }
                     else
                     {
-                        control.ReadOnly = false;
+                        gcMultiRow1.CurrentRow.Cells["備考"].ReadOnly = false;
                     }
                     break;
-
             }
 
             //フォーカスインしただけで変更状態になってしまう為コメントアウト、Validatingイベント内に記載
@@ -156,15 +155,14 @@ namespace MultiRowDesigner
                         break;
                     case "商品コード":
                         e.Handled = true;
-
-
                         F_商品構成2 targetform = new F_商品構成2();
 
                         targetform.ShowDialog();
                         break;
+                    
                 }
             }
-
+            
         }
 
         private void gcMultiRow1_CellDoubleClick(object sender, EventArgs e)
@@ -179,9 +177,6 @@ namespace MultiRowDesigner
 
                     targetform.ShowDialog();
                     break;
-
-
-
             }
         }
 
@@ -263,10 +258,16 @@ namespace MultiRowDesigner
             {
                 case "明細削除ボタン":
                     // 新規行の場合、何もしない
-                    if (gcMultiRow.Rows[e.RowIndex].IsNewRow == true) return;
+                    if (gcMultiRow.Rows[e.RowIndex].IsNewRow == true)
+                    {
+                        MessageBox.Show("新規行は削除できません。", "削除ボタン", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                    //編集不可であれば何もしない AllowUserToDeleteRows がfalseの時
+                    if (!gcMultiRow.AllowUserToDeleteRows) return;
 
                     // 削除確認
-                    if (MessageBox.Show("明細行(" + (e.RowIndex + 1) + ")を削除しますか？", "承認コマンド", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    if (MessageBox.Show("明細行(" + (e.RowIndex + 1) + ")を削除しますか？", "削除ボタン", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
                         gcMultiRow.Rows.RemoveAt(e.RowIndex);
                     }
@@ -303,6 +304,7 @@ namespace MultiRowDesigner
         private void gcMultiRow1_CellValidating(object sender, CellValidatingEventArgs e)
         {
             GcMultiRow grid = (GcMultiRow)sender;
+            if (grid.ReadOnly) return;
 
             switch (e.CellName)
             {
@@ -364,6 +366,7 @@ namespace MultiRowDesigner
 
         private void gcMultiRow1_RowValidating(object sender, CellCancelEventArgs e)
         {
+            if (gcMultiRow1.ReadOnly) return;
             var targetRow = e.RowIndex;
             if (gcMultiRow1.Rows[e.RowIndex].IsNewRow) return;
 
