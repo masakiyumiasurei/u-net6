@@ -346,13 +346,13 @@ namespace u_net
 
                 //targetform.MdiParent = this.MdiParent; 
                 targetform.args = selectedData;
-                
+
                 //this.Enabled = false;
                 //targetform.FormClosed += (s, args) => { this.Enabled = true; };
-                
+
                 targetform.ShowDialog();
                 //targetform.Show();
-               
+
             }
         }
 

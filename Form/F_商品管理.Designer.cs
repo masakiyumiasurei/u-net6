@@ -311,6 +311,7 @@
             Controls.Add(dataGridView1);
             Controls.Add(panel1);
             Icon = (Icon)resources.GetObject("$this.Icon");
+            KeyPreview = true;
             Margin = new Padding(3, 2, 3, 2);
             Name = "F_商品管理";
             StartPosition = FormStartPosition.CenterScreen;

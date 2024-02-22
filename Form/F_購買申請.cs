@@ -1681,7 +1681,7 @@ namespace u_net
                     if (コマンド削除.Enabled) コマンド削除_Click(sender, e);
                     break;
 
-                case Keys.F5:
+                case Keys.F6:
                     if (コマンド商品.Enabled) コマンド商品_Click(sender, e);
                     break;
 

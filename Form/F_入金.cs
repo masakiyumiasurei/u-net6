@@ -1348,6 +1348,7 @@ namespace u_net
                 // 日付選択フォームから選択した日付を取得
                 string selectedDate = dateSelectionForm.SelectedDate;
                 入金日.Text = selectedDate;
+                入金日.Focus();
             }
         }
 
@@ -1361,6 +1362,7 @@ namespace u_net
 
                 顧客コード.Text = SelectedCode;
                 UpdatedControl(顧客コード);
+                顧客コード.Focus();
             }
         }
 

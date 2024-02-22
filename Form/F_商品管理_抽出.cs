@@ -271,6 +271,7 @@ namespace u_net
         {
             if (e.KeyChar == ' ')
             {
+                e.Handled = true;
                 更新日開始選択ボタン_Click(sender, e);
             }
         }
@@ -324,6 +325,7 @@ namespace u_net
         {
             if (e.KeyChar == ' ')
             {
+                e.Handled = true;
                 更新日終了選択ボタン_Click(sender, e);
             }
         }
@@ -339,6 +341,8 @@ namespace u_net
             {
                 case Keys.Return:
                     SelectNextControl(ActiveControl, true, true, true, true);
+                    e.Handled = true;
+                    e.SuppressKeyPress = true;
                     break;
             }
         }

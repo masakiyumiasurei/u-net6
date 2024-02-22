@@ -71,10 +71,7 @@ namespace MultiRowDesigner
             }
 
         }
-        private void gcMultiRow1_CellContentClick(object sender, CellEventArgs e)
-        {
 
-        }
 
         private void gcMultiRow1_CellEnter(object sender, CellEventArgs e)
         {
@@ -89,10 +86,12 @@ namespace MultiRowDesigner
                         switch (e.CellName)
                         {
                             case "型式名":
+                                  //  tmpvalue = gcMultiRow1.Rows[e.RowIndex].Cells["型式名"].Value.ToString();
                                 gcMultiRow1.ImeMode = ImeMode.Off;
                                 objForm.toolStripStatusLabel1.Text = "■半角４８文字まで入力できます。　■英数字は半角文字で入力し、半角カタカナは使用しないでください。";
                                 break;
                             case "定価":
+                               // tmpvalue = gcMultiRow1.Rows[e.RowIndex].Cells["定価"]?.Value.ToString();
                                 objForm.toolStripStatusLabel1.Text = "■型式ごとの定価を設定します。　■マイナス価格を設定することも可能です。";
                                 gcMultiRow1.ImeMode = ImeMode.Disable;
                                 break;
@@ -175,12 +174,12 @@ namespace MultiRowDesigner
             // object cellValue = gcMultiRow1[e.CellIndex, e.RowIndex].Value;
 
             string columnName = gcMultiRow1.Columns[e.CellIndex].Name;
-
+            decimal tmpdecimal;
             // セルの値が数値で、かつマイナスの場合
             if (!gcMultiRow1.Rows[e.RowIndex].IsNewRow && (columnName == "定価" || columnName == "原価")
                 && e.Value != null && e.Value != DBNull.Value)
             {
-                if (Convert.ToDecimal(e.Value) < 0)
+                if (decimal.TryParse(e.Value.ToString(), out tmpdecimal) && tmpdecimal < 0)
                 {
                     // 赤色のフォントを設定
                     e.CellStyle.ForeColor = Color.Red;
@@ -206,7 +205,7 @@ namespace MultiRowDesigner
 
             }
         }
-        
+
         private void gcMultiRow1_RowsRemoved(object sender, RowsRemovedEventArgs e)
         {
             F_商品? form = Application.OpenForms.OfType<F_商品>().FirstOrDefault();
@@ -339,11 +338,13 @@ namespace MultiRowDesigner
 
             string columnName = gcMultiRow1.Columns[e.CellIndex].Name;
             string newValue = e.FormattedValue?.ToString() ?? ""; // 変更後の値
-
+            decimal tmpdecimal;
 
             switch (columnName)
             {
                 case "型式名":
+                    if (gcMultiRow1.Rows[e.RowIndex].Cells["明細番号"].Value == null ||
+                        gcMultiRow1.Rows[e.RowIndex].Cells["明細番号"].Value == DBNull.Value) return;
                     //明細番号を取得
                     int currentNumber = int.Parse(gcMultiRow1.Rows[e.RowIndex].Cells["明細番号"].Value.ToString());
 
@@ -352,6 +353,8 @@ namespace MultiRowDesigner
                         e.Cancel = true;
                         MessageBox.Show(columnName + " を入力してください。", "エラー",
                             MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        // gcMultiRow1.Rows[e.RowIndex].Cells["型式名"].Value = tmpvalue;
+                        gcMultiRow1.EditingControl.Text = gcMultiRow1.CurrentCell.DisplayText;
                         return;
                     }
 
@@ -361,6 +364,7 @@ namespace MultiRowDesigner
                         e.Cancel = true;
                         MessageBox.Show("型式名が重複しています。", "エラー",
                             MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        gcMultiRow1.EditingControl.Text = gcMultiRow1.CurrentCell.DisplayText;
                     }
 
                     break;
@@ -371,18 +375,57 @@ namespace MultiRowDesigner
                     {
                         e.Cancel = true;
                         MessageBox.Show(columnName + " を入力してください。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        //gcMultiRow1.Rows[e.RowIndex].Cells["定価"].Value = tmpvalue;
+                        gcMultiRow1.EditingControl.Text = gcMultiRow1.CurrentCell.DisplayText;
                         return;
                     }
-
+                    if (!decimal.TryParse(newValue, out tmpdecimal))
+                    {
+                        e.Cancel = true;
+                        MessageBox.Show("数値を入力してください。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        //gcMultiRow1.Rows[e.RowIndex].Cells["定価"].Value = tmpvalue;
+                        gcMultiRow1.EditingControl.Text = gcMultiRow1.CurrentCell.DisplayText;
+                        return;
+                    }
                     break;
 
                 case "原価":
-                    // コメントアウトしていた
+                    if (!decimal.TryParse(newValue, out tmpdecimal) && !string.IsNullOrEmpty(newValue))
+                    {
+                        e.Cancel = true;
+                        MessageBox.Show("数値を入力してください。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        return;
+                    }
                     break;
 
                 case "機能":
                     // コメントアウトしていた
                     break;
+            }
+        }
+
+        private void gcMultiRow1_RowValidating(object sender, CellCancelEventArgs e)
+        {
+            var row = gcMultiRow1.Rows[e.RowIndex];
+
+            if (row.IsNewRow) return;
+
+            string 型式名 = row.Cells["型式名"].Value?.ToString() ?? "";
+            string 定価 = row.Cells["定価"].Value?.ToString() ?? "";
+
+            if (string.IsNullOrWhiteSpace(型式名))
+            {
+                MessageBox.Show("「型式名」を入力してください。", "型式名", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                gcMultiRow1.CurrentCell = gcMultiRow1.Rows[e.RowIndex].Cells["型式名"];
+                gcMultiRow1.BeginEdit(true);
+                e.Cancel = true;
+            }
+            if (string.IsNullOrWhiteSpace(定価))
+            {
+                MessageBox.Show("「定価」を入力してください。", "定価", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                gcMultiRow1.CurrentCell = gcMultiRow1.Rows[e.RowIndex].Cells["型式名"];
+                gcMultiRow1.BeginEdit(true);
+                e.Cancel = true;
             }
         }
 
@@ -418,5 +461,38 @@ namespace MultiRowDesigner
             return result;
         }
 
+        private void gcMultiRow1_DefaultValuesNeeded(object sender, RowEventArgs e)
+        {
+            e.Row.Cells["定価"].Value = 0;
+            e.Row.Cells["原価"].Value = 0;
+
+        }
+
+        string tmpvalue = "";
+        private void gcMultiRow1_CellContentClick(object sender, CellEventArgs e)
+        {
+            switch (e.CellName)
+            {
+                case "形式名":
+                    tmpvalue = gcMultiRow1.Rows[e.RowIndex].Cells["形式名"].Value.ToString();
+                    break;
+                case "定価":
+                    tmpvalue = gcMultiRow1.Rows[e.RowIndex].Cells["定価"].Value.ToString();
+                    break;
+            }
+        }
+
+        private void gcMultiRow1_CellClick(object sender, CellEventArgs e)
+        {
+            switch (e.CellName)
+            {
+                case "形式名":
+                    tmpvalue = gcMultiRow1.Rows[e.RowIndex].Cells["形式名"].Value.ToString();
+                    break;
+                case "定価":
+                    tmpvalue = gcMultiRow1.Rows[e.RowIndex].Cells["定価"].Value.ToString();
+                    break;
+            }
+        }
     }
 }
