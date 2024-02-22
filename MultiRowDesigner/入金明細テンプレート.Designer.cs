@@ -283,9 +283,10 @@
             this.入金金額.Size = new System.Drawing.Size(112, 17);
             border3.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
             cellStyle7.Border = border3;
-            cellStyle7.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
+            cellStyle7.Font = new System.Drawing.Font("BIZ UDゴシック", 9F);
             cellStyle7.Format = "N0";
             cellStyle7.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            cellStyle7.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleRight;
             this.入金金額.Style = cellStyle7;
             this.入金金額.TabIndex = 5;
             // 

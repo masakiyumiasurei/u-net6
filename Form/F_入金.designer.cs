@@ -718,17 +718,17 @@ namespace u_net
             // statusStrip1
             // 
             statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1 });
-            statusStrip1.Location = new Point(0, 488);
+            statusStrip1.Location = new Point(0, 491);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Padding = new Padding(1, 0, 19, 0);
-            statusStrip1.Size = new Size(958, 25);
+            statusStrip1.Size = new Size(958, 22);
             statusStrip1.TabIndex = 10195;
             statusStrip1.Text = "statusStrip1";
             // 
             // toolStripStatusLabel1
             // 
             toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            toolStripStatusLabel1.Size = new Size(111, 20);
+            toolStripStatusLabel1.Size = new Size(89, 17);
             toolStripStatusLabel1.Text = "各種項目の説明";
             // 
             // label5
@@ -875,7 +875,7 @@ namespace u_net
             // 
             入金明細1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             入金明細1.Location = new Point(9, 323);
-            入金明細1.Margin = new Padding(4);
+            入金明細1.Margin = new Padding(4, 4, 4, 4);
             入金明細1.Name = "入金明細1";
             入金明細1.Size = new Size(948, 159);
             入金明細1.TabIndex = 10201;
@@ -883,7 +883,7 @@ namespace u_net
             // 入金日選択ボタン
             // 
             入金日選択ボタン.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            入金日選択ボタン.Location = new Point(231, 72);
+            入金日選択ボタン.Location = new Point(227, 72);
             入金日選択ボタン.Margin = new Padding(4);
             入金日選択ボタン.Name = "入金日選択ボタン";
             入金日選択ボタン.Size = new Size(20, 20);
@@ -896,7 +896,7 @@ namespace u_net
             // 顧客コード検索ボタン
             // 
             顧客コード検索ボタン.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            顧客コード検索ボタン.Location = new Point(231, 96);
+            顧客コード検索ボタン.Location = new Point(227, 96);
             顧客コード検索ボタン.Margin = new Padding(4);
             顧客コード検索ボタン.Name = "顧客コード検索ボタン";
             顧客コード検索ボタン.Size = new Size(20, 20);
@@ -962,6 +962,7 @@ namespace u_net
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "F_入金";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "入金";
             FormClosing += Form_Unload;
             Load += Form_Load;
