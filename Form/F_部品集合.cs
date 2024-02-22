@@ -357,7 +357,7 @@ namespace u_net
                         if (string.IsNullOrEmpty(args))
                         {
                             Connect();
-                            string mysql = "SELECT max(部品集合版数) FROM M部品集合 where 発注コード='" + CurrentCode + "'";
+                            string mysql = "SELECT max(部品集合版数) FROM M部品集合 where 部品集合コード='" + CurrentCode + "'";
                             部品集合版数.Text = OriginalClass.GetScalar<string>(cn, mysql);
                             cn.Close();
                         }
@@ -429,6 +429,8 @@ namespace u_net
             finally
             {
                 if (fn.WaitForm != null) fn.WaitForm.Close();
+                combosetFlg = false;
+
             }
         }
 
@@ -714,11 +716,13 @@ namespace u_net
                 }
                 else
                 {
-
-                    objControl1.Text = varSaved1?.ToString();
-                    objControl2.Text = varSaved2?.ToString();
-                    objControl3.Text = varSaved3?.ToString();
-                    return false;
+                    if (IsNewData)
+                    {
+                        objControl1.Text = varSaved1?.ToString() ?? "";
+                        objControl2.Text = varSaved2?.ToString() ?? "";
+                        objControl3.Text = varSaved3?.ToString() ?? "";
+                    }
+                        return false;
                 }
 
             }
@@ -1803,7 +1807,7 @@ namespace u_net
             }
             finally
             {
-
+                combosetFlg = false;
             }
         }
 

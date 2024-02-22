@@ -429,7 +429,6 @@
             // 
             // F_部品集合管理_抽出
             // 
-            AcceptButton = 抽出ボタン;
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(467, 496);
@@ -452,6 +451,7 @@
             Controls.Add(集合名);
             Controls.Add(分類内容);
             Controls.Add(集合分類_ラベル);
+            KeyPreview = true;
             Margin = new Padding(3, 4, 3, 4);
             Name = "F_部品集合管理_抽出";
             StartPosition = FormStartPosition.CenterScreen;

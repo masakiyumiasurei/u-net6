@@ -658,7 +658,7 @@ namespace u_net
                                            
                         // DataTableから特定のGP値に一致する行のみを抽出
                         var meisaiRow = dt.AsEnumerable().Where(row => row.Field<String>("GP") == gp).ToList();
-                        meisaiCnt = 1;
+                        meisaiCnt = 0;
 
                         foreach (DataRow targetRow in meisaiRow)
                         {
@@ -673,10 +673,20 @@ namespace u_net
                             paoRep.Write("確定", targetRow["確定"].ToString() != "" ? targetRow["確定"].ToString() : " ", i + 1);
                             paoRep.Write("承認", targetRow["承認"].ToString() != "" ? targetRow["承認"].ToString() : " ", i + 1);
                             paoRep.Write("削除", targetRow["削除"].ToString() != "" ? targetRow["削除"].ToString() : " ", i + 1);
-                            paoRep.Write("横罫線2", i + 1);
+                            meisaiCnt++;
+
+                            //GPの明細がない場合は横線を引かない
+                            if (meisaiRow.Count<= meisaiCnt)
+                            {
+                                paoRep.Write("横罫線2", "", i + 1);
+                            }
+                            else
+                            {
+                                paoRep.Write("横罫線2", i + 1);                                
+                            }
+                            
                             i++;
-                            CurRow++;
-                            meisaiCnt--;
+                            CurRow++;                            
 
                             //行がmaxrowまで増えたら改ページ
                             if (i >= maxRow )
@@ -739,7 +749,7 @@ namespace u_net
             DataTable dt2 = new DataTable();
             DataTable dt3 = new DataTable();
             //string sqlQuery = "SELECT * FROM V部品集合明細一覧 WHERE 1=1 and 部品集合コード between '00000001' and '00000047'" + filterString;
-            string sqlQuery = "SELECT * FROM V部品集合明細一覧 WHERE 1=1 " + filterString + " order by GP,集合名,部品集合コード,明細番号";
+            string sqlQuery = "SELECT * FROM V部品集合明細一覧 WHERE 1=1 " + filterString + " order by GP,部品集合コード,明細番号";
 
             using (SqlCommand command = new SqlCommand(sqlQuery, cn))
             {
@@ -894,6 +904,14 @@ namespace u_net
                         paoRep.Write("分類ラベル", "分類", i + 1);
                         paoRep.Write("型番ラベル", "型番", i + 1);
                         paoRep.Write("メーカー名ラベル", "メーカー名", i + 1);
+
+                        paoRep.Write("横罫線3", i + 1);
+                        paoRep.Write("横罫線4", i + 1);
+                        paoRep.Write("横罫線5", i + 1);
+                        paoRep.Write("横罫線6", i + 1);
+                        paoRep.Write("横罫線7", i + 1);
+                        paoRep.Write("横罫線8", i + 1);
+                        paoRep.Write("横罫線9", i + 1);
 
                         i++;
 

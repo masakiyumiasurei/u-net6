@@ -306,7 +306,17 @@ namespace u_net
                     //e.Handled = true;
                     //e.SuppressKeyPress = true;
                     抽出ボタン_Click( sender, e);
-
+                    break;
+                case Keys.Space: //コンボボックスならドロップダウン
+                    {
+                        Control activeControl = this.ActiveControl;
+                        if (activeControl is System.Windows.Forms.ComboBox)
+                        {
+                            e.Handled = true;
+                            System.Windows.Forms.ComboBox activeComboBox = (System.Windows.Forms.ComboBox)activeControl;
+                            activeComboBox.DroppedDown = true;
+                        }
+                    }                    
 
                     break;
 
