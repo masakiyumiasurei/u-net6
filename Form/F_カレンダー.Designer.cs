@@ -798,7 +798,6 @@
             Name = "F_カレンダー";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "カレンダー";
-            FormClosing += F_カレンダー_FormClosing;
             Load += Form_Open;
             ResumeLayout(false);
             PerformLayout();

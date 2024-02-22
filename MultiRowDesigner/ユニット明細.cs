@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.Versioning;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -11,6 +12,7 @@ using GrapeCity.Win.MultiRow;
 using u_net;
 using u_net.Public;
 
+[assembly: SupportedOSPlatform("windows")]
 namespace MultiRowDesigner
 {
     public partial class ユニット明細 : UserControl

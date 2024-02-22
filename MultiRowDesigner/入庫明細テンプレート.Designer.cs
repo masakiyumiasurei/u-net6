@@ -69,12 +69,12 @@
             GrapeCity.Win.MultiRow.Border border12 = new GrapeCity.Win.MultiRow.Border();
             GrapeCity.Win.MultiRow.CellStyle cellStyle15 = new GrapeCity.Win.MultiRow.CellStyle();
             GrapeCity.Win.MultiRow.Border border13 = new GrapeCity.Win.MultiRow.Border();
-            GrapeCity.Win.MultiRow.CellStyle cellStyle16 = new GrapeCity.Win.MultiRow.CellStyle();
-            GrapeCity.Win.MultiRow.Border border14 = new GrapeCity.Win.MultiRow.Border();
             GrapeCity.Win.MultiRow.CellStyle cellStyle3 = new GrapeCity.Win.MultiRow.CellStyle();
             GrapeCity.Win.MultiRow.Border border2 = new GrapeCity.Win.MultiRow.Border();
+            GrapeCity.Win.MultiRow.CellStyle cellStyle16 = new GrapeCity.Win.MultiRow.CellStyle();
+            GrapeCity.Win.MultiRow.Border border14 = new GrapeCity.Win.MultiRow.Border();
+            GrapeCity.Win.MultiRow.Expression expression1 = new GrapeCity.Win.MultiRow.Expression();
             GrapeCity.Win.MultiRow.CellStyle cellStyle17 = new GrapeCity.Win.MultiRow.CellStyle();
-            GrapeCity.Win.MultiRow.Border border15 = new GrapeCity.Win.MultiRow.Border();
             this.columnHeaderSection1 = new GrapeCity.Win.MultiRow.ColumnHeaderSection();
             this.型番ボタン = new GrapeCity.Win.MultiRow.ButtonCell();
             this.メーカー名ボタン = new GrapeCity.Win.MultiRow.ButtonCell();
@@ -102,11 +102,11 @@
             this.発注残数量 = new GrapeCity.Win.MultiRow.TextBoxCell();
             this.入庫数量 = new GrapeCity.Win.MultiRow.TextBoxCell();
             this.入庫単価 = new GrapeCity.Win.MultiRow.TextBoxCell();
-            this.入庫金額 = new GrapeCity.Win.MultiRow.TextBoxCell();
             this.買掛区分コード = new GrapeCity.Win.MultiRow.TextBoxCell();
             this.買掛明細コード = new GrapeCity.Win.MultiRow.TextBoxCell();
             this.明細番号 = new GrapeCity.Win.MultiRow.TextBoxCell();
             this.入庫コード = new GrapeCity.Win.MultiRow.TextBoxCell();
+            this.入庫金額 = new GrapeCity.Win.MultiRow.SummaryCell();
             // 
             // Row
             // 
@@ -123,10 +123,10 @@
             this.Row.Cells.Add(this.発注残数量);
             this.Row.Cells.Add(this.入庫数量);
             this.Row.Cells.Add(this.入庫単価);
-            this.Row.Cells.Add(this.入庫金額);
             this.Row.Cells.Add(this.買掛区分コード);
             this.Row.Cells.Add(this.買掛明細コード);
             this.Row.Cells.Add(this.入庫コード);
+            this.Row.Cells.Add(this.入庫金額);
             this.Row.Height = 54;
             this.Row.Width = 856;
             // 
@@ -379,6 +379,7 @@
             // 
             // 全入庫
             // 
+            this.全入庫.DataField = "全入庫";
             this.全入庫.Location = new System.Drawing.Point(44, 0);
             this.全入庫.Name = "全入庫";
             this.全入庫.Size = new System.Drawing.Size(20, 54);
@@ -395,6 +396,7 @@
             this.部品コード.DataField = "部品コード";
             this.部品コード.Location = new System.Drawing.Point(92, 0);
             this.部品コード.Name = "部品コード";
+            this.部品コード.ReadOnly = true;
             this.部品コード.Size = new System.Drawing.Size(68, 54);
             border5.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
             cellStyle6.Border = border5;
@@ -409,6 +411,7 @@
             this.品名.DataField = "品名";
             this.品名.Location = new System.Drawing.Point(160, 0);
             this.品名.Name = "品名";
+            this.品名.ReadOnly = true;
             this.品名.Size = new System.Drawing.Size(238, 18);
             border1.Left = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
             border1.Right = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
@@ -425,6 +428,7 @@
             this.型番.DataField = "型番";
             this.型番.Location = new System.Drawing.Point(160, 18);
             this.型番.Name = "型番";
+            this.型番.ReadOnly = true;
             this.型番.Size = new System.Drawing.Size(238, 18);
             border6.Left = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
             border6.Right = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
@@ -440,6 +444,7 @@
             this.メーカー名.DataField = "メーカー名";
             this.メーカー名.Location = new System.Drawing.Point(160, 36);
             this.メーカー名.Name = "メーカー名";
+            this.メーカー名.ReadOnly = true;
             this.メーカー名.Size = new System.Drawing.Size(238, 18);
             border7.Bottom = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
             border7.Left = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
@@ -456,6 +461,7 @@
             this.納期.DataField = "納期";
             this.納期.Location = new System.Drawing.Point(398, 0);
             this.納期.Name = "納期";
+            this.納期.ReadOnly = true;
             this.納期.Size = new System.Drawing.Size(75, 54);
             border8.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
             cellStyle9.Border = border8;
@@ -484,6 +490,7 @@
             this.発注残数量.DataField = "発注残数量";
             this.発注残数量.Location = new System.Drawing.Point(595, 0);
             this.発注残数量.Name = "発注残数量";
+            this.発注残数量.ReadOnly = true;
             this.発注残数量.Size = new System.Drawing.Size(61, 54);
             border9.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
             cellStyle11.Border = border9;
@@ -520,31 +527,17 @@
             this.入庫単価.Style = cellStyle13;
             this.入庫単価.TabIndex = 12;
             // 
-            // 入庫金額
-            // 
-            this.入庫金額.Location = new System.Drawing.Point(778, 0);
-            this.入庫金額.Name = "入庫金額";
-            this.入庫金額.Size = new System.Drawing.Size(78, 54);
-            border12.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
-            cellStyle14.Border = border12;
-            cellStyle14.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            cellStyle14.Format = "N2";
-            cellStyle14.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.入庫金額.Style = cellStyle14;
-            this.入庫金額.TabIndex = 13;
-            this.入庫金額.TabStop = false;
-            // 
             // 買掛区分コード
             // 
             this.買掛区分コード.DataField = "買掛区分コード";
             this.買掛区分コード.Location = new System.Drawing.Point(483, 0);
             this.買掛区分コード.Name = "買掛区分コード";
             this.買掛区分コード.Size = new System.Drawing.Size(15, 54);
-            border13.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
-            cellStyle15.Border = border13;
-            cellStyle15.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
-            cellStyle15.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.買掛区分コード.Style = cellStyle15;
+            border12.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
+            cellStyle14.Border = border12;
+            cellStyle14.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
+            cellStyle14.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.買掛区分コード.Style = cellStyle14;
             this.買掛区分コード.TabIndex = 14;
             this.買掛区分コード.Visible = false;
             // 
@@ -554,11 +547,11 @@
             this.買掛明細コード.Location = new System.Drawing.Point(508, 0);
             this.買掛明細コード.Name = "買掛明細コード";
             this.買掛明細コード.Size = new System.Drawing.Size(15, 54);
-            border14.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
-            cellStyle16.Border = border14;
-            cellStyle16.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
-            cellStyle16.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.買掛明細コード.Style = cellStyle16;
+            border13.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
+            cellStyle15.Border = border13;
+            cellStyle15.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
+            cellStyle15.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.買掛明細コード.Style = cellStyle15;
             this.買掛明細コード.TabIndex = 15;
             this.買掛明細コード.Visible = false;
             // 
@@ -584,14 +577,27 @@
             this.入庫コード.Location = new System.Drawing.Point(332, 0);
             this.入庫コード.Name = "入庫コード";
             this.入庫コード.Size = new System.Drawing.Size(15, 54);
-            cellStyle17.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(204)))), ((int)(((byte)(255)))));
-            border15.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
-            cellStyle17.Border = border15;
-            cellStyle17.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
-            cellStyle17.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.入庫コード.Style = cellStyle17;
+            cellStyle16.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(204)))), ((int)(((byte)(255)))));
+            border14.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
+            cellStyle16.Border = border14;
+            cellStyle16.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
+            cellStyle16.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.入庫コード.Style = cellStyle16;
             this.入庫コード.TabIndex = 16;
             this.入庫コード.Visible = false;
+            // 
+            // 入庫金額
+            // 
+            expression1.ExpressionString = "入庫数量 * 入庫単価";
+            this.入庫金額.Calculation = expression1;
+            this.入庫金額.Location = new System.Drawing.Point(778, 0);
+            this.入庫金額.Name = "入庫金額";
+            this.入庫金額.Size = new System.Drawing.Size(78, 54);
+            cellStyle17.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
+            cellStyle17.Format = "N0";
+            cellStyle17.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.入庫金額.Style = cellStyle17;
+            this.入庫金額.TabIndex = 17;
             // 
             // 入庫明細テンプレート
             // 
@@ -632,10 +638,10 @@
         private GrapeCity.Win.MultiRow.TextBoxCell 発注残数量;
         private GrapeCity.Win.MultiRow.TextBoxCell 入庫数量;
         private GrapeCity.Win.MultiRow.TextBoxCell 入庫単価;
-        private GrapeCity.Win.MultiRow.TextBoxCell 入庫金額;
         private GrapeCity.Win.MultiRow.TextBoxCell 買掛区分コード;
         private GrapeCity.Win.MultiRow.TextBoxCell 買掛明細コード;
         private GrapeCity.Win.MultiRow.TextBoxCell 明細番号;
         private GrapeCity.Win.MultiRow.TextBoxCell 入庫コード;
+        private GrapeCity.Win.MultiRow.SummaryCell 入庫金額;
     }
 }
