@@ -197,7 +197,6 @@
             // 
             // 明細番号
             // 
-            this.明細番号.DataField = "明細番号";
             this.明細番号.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.明細番号.Location = new System.Drawing.Point(20, 0);
             this.明細番号.Name = "明細番号";

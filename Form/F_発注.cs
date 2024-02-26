@@ -1921,7 +1921,7 @@ namespace u_net
         {
             SearchForm = new F_検索();
             SearchForm.FilterName = "仕入先名フリガナ";
-            if (SearchForm.ShowDialog() == DialogResult.OK)
+            if (SearchForm.ShowDialog() == DialogResult.OK && !仕入先コード.ReadOnly)
             {
                 string SelectedCode = SearchForm.SelectedCode;
 

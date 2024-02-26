@@ -1207,7 +1207,7 @@ namespace u_net
                     {
                         //改行させるため
                         case "送付状摘要":
-                        
+
                             return;
                     }
 
@@ -1349,6 +1349,7 @@ namespace u_net
                 string selectedDate = dateSelectionForm.SelectedDate;
                 入金日.Text = selectedDate;
                 入金日.Focus();
+                ChangedData(true);
             }
         }
 
@@ -1356,7 +1357,7 @@ namespace u_net
         {
             SearchForm = new F_検索();
             SearchForm.FilterName = "顧客名フリガナ";
-            if (SearchForm.ShowDialog() == DialogResult.OK)
+            if (SearchForm.ShowDialog() == DialogResult.OK && !顧客コード.ReadOnly)
             {
                 string SelectedCode = SearchForm.SelectedCode;
 
@@ -1466,7 +1467,7 @@ namespace u_net
         private void 入金日_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
             if (string.IsNullOrEmpty(入金日.Text)) return;
-            if (IsError(sender as System.Windows.Forms.Control, false) == true)  e.Cancel = true;
+            if (IsError(sender as System.Windows.Forms.Control, false) == true) e.Cancel = true;
         }
 
         private void 入金日_KeyPress(object sender, KeyPressEventArgs e)
@@ -1488,7 +1489,12 @@ namespace u_net
         private void 入金月_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
             if (string.IsNullOrEmpty(入金月.Text)) return;
-            if (IsError(sender as System.Windows.Forms.Control, false) == true) e.Cancel=true;
+            if (IsError(sender as System.Windows.Forms.Control, false) == true) e.Cancel = true;
+        }
+
+        private void 入金日_TextChanged(object sender, EventArgs e)
+        {
+            ChangedData(true);
         }
     }
 }

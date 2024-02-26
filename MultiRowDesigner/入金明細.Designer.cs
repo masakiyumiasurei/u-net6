@@ -69,6 +69,7 @@
             Margin = new Padding(4, 5, 4, 5);
             Name = "入金明細";
             Size = new Size(1147, 492);
+            Load += 入金明細_Load;
             ((System.ComponentModel.ISupportInitialize)gcMultiRow1).EndInit();
             ResumeLayout(false);
         }

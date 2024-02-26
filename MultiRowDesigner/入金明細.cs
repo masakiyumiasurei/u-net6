@@ -45,6 +45,8 @@ namespace MultiRowDesigner
         {            
             gcMultiRow1.ShortcutKeyManager.Unregister(Keys.Enter);
             gcMultiRow1.ShortcutKeyManager.Register(SelectionActions.MoveToNextCell, Keys.Enter);
+
+
         }
 
         private void gcMultiRow1_EditingControlShowing(object sender, EditingControlShowingEventArgs e)
@@ -54,22 +56,11 @@ namespace MultiRowDesigner
             ComboBoxEditingControl comboBox = e.Control as ComboBoxEditingControl;
             if (textBox != null)
             {
-                //textBox.PreviewKeyDown -= gcMultiRow1_PreviewKeyDown;
-                //textBox.PreviewKeyDown += gcMultiRow1_PreviewKeyDown;
-                //textBox.KeyPress -= new KeyPressEventHandler(gcMultiRow1_KeyPress);
-                //textBox.KeyPress += new KeyPressEventHandler(gcMultiRow1_KeyPress);
-
-                //textBox.DoubleClick -= gcMultiRow1_CellDoubleClick;
-                //textBox.DoubleClick += gcMultiRow1_CellDoubleClick;
+                
 
             }
             else if (comboBox != null)
-            {
-                //comboBox.PreviewKeyDown -= gcMultiRow1_PreviewKeyDown;
-                //comboBox.PreviewKeyDown += gcMultiRow1_PreviewKeyDown;
-                //comboBox.KeyPress -= new KeyPressEventHandler(gcMultiRow1_KeyPress);
-                //comboBox.KeyPress += new KeyPressEventHandler(gcMultiRow1_KeyPress);
-
+            {                
                 comboBox.SelectedIndexChanged -= 入金区分コード_SelectedIndexChanged;
                 comboBox.SelectedIndexChanged -= 備考コード_SelectedIndexChanged;
                 comboBox.DrawItem -= 備考コード_DrawItem;
@@ -80,6 +71,7 @@ namespace MultiRowDesigner
                     case "入金区分コード":
                         
                         comboBox.SelectedIndexChanged += 入金区分コード_SelectedIndexChanged;
+                        comboBox.DrawMode = DrawMode.Normal; //備考を開けると、drowmodeが変わってしまうため、nomalに戻す
                         break;
 
                     case "備考コード":
@@ -115,8 +107,11 @@ namespace MultiRowDesigner
         private void 入金区分コード_SelectedIndexChanged(object sender, EventArgs e)
         {
             ComboBoxEditingControl combo = sender as ComboBoxEditingControl;
-            if (combo.SelectedItem != null)
+            if (combo.SelectedItem is DataRowView selectedRow)
             {
+                string myvar=selectedRow["Value"]?.ToString();
+                if (string.IsNullOrEmpty(myvar)) return;
+
                 var a = Int32.Parse(((DataRowView)combo.SelectedItem)?.Row["Value"].ToString());
                 if (a == 11) // 空白が選択された場合
                 {
@@ -157,11 +152,10 @@ namespace MultiRowDesigner
                         ParentForm.ChangedData(true);
                         
                     }
-
                     break;
-               
             }
         }
+
         private void gcMultiRow1_CellEnter(object sender, CellEventArgs e)
         {
             u_net.F_入金 objForm = (u_net.F_入金)Application.OpenForms["F_入金"];
@@ -194,9 +188,7 @@ namespace MultiRowDesigner
         private void gcMultiRow1_DefaultValuesNeeded(object sender, RowEventArgs e)
         {
             F_入金 ParentForm = Application.OpenForms.OfType<F_入金>().FirstOrDefault();
-
-            e.Row.Cells["入金コード"].Value = ParentForm.CurrentCode;
-            
+            e.Row.Cells["入金コード"].Value = ParentForm.CurrentCode;            
         }
 
         private void gcMultiRow1_KeyPress(object sender, KeyPressEventArgs e)
@@ -217,11 +209,12 @@ namespace MultiRowDesigner
                         break;                    
                 }
             }
-
         }
 
         private void gcMultiRow1_CellValidating(object sender, CellValidatingEventArgs e)
         {
+            GcMultiRow grid = (GcMultiRow)sender;
+            if (grid.ReadOnly) return;
             //更新前の値の取得
             object oldValue = e.FormattedValue;
 
@@ -231,11 +224,10 @@ namespace MultiRowDesigner
             switch (e.CellName)
             {
                 case "入金区分コード":
-                case "入金金額":
-                
+                case "入金金額":                
 
                     validateFlg = false;
-                    GcMultiRow grid = (GcMultiRow)sender;
+                    
                     // セルが編集中の場合
                     if (grid.IsCurrentCellInEditMode)
                     {
@@ -262,8 +254,7 @@ namespace MultiRowDesigner
 
 
         public bool IsError(Control controlObject, bool cancel)
-        {
-            
+        {            
             try
             {
                 object varValue = controlObject.Text;
@@ -301,7 +292,11 @@ namespace MultiRowDesigner
 
         private void gcMultiRow1_CellValidated(object sender, CellEventArgs e)
         {
+            GcMultiRow grid = (GcMultiRow)sender;
+            if (grid.ReadOnly) return;
+
             if (!validateFlg) return;
+
             if (e.RowIndex >= 0 && e.CellIndex >= 0)
             {
                 switch (e.CellName)

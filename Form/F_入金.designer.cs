@@ -479,6 +479,7 @@ namespace u_net
             入金日.Name = "入金日";
             入金日.Size = new Size(102, 20);
             入金日.TabIndex = 4;
+            入金日.TextChanged += 入金日_TextChanged;
             入金日.Enter += 入金日_Enter;
             入金日.KeyPress += 入金日_KeyPress;
             入金日.Leave += 入金日_Leave;
@@ -718,17 +719,17 @@ namespace u_net
             // statusStrip1
             // 
             statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1 });
-            statusStrip1.Location = new Point(0, 491);
+            statusStrip1.Location = new Point(0, 488);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Padding = new Padding(1, 0, 19, 0);
-            statusStrip1.Size = new Size(958, 22);
+            statusStrip1.Size = new Size(958, 25);
             statusStrip1.TabIndex = 10195;
             statusStrip1.Text = "statusStrip1";
             // 
             // toolStripStatusLabel1
             // 
             toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            toolStripStatusLabel1.Size = new Size(89, 17);
+            toolStripStatusLabel1.Size = new Size(111, 20);
             toolStripStatusLabel1.Text = "各種項目の説明";
             // 
             // label5
@@ -875,7 +876,7 @@ namespace u_net
             // 
             入金明細1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             入金明細1.Location = new Point(9, 323);
-            入金明細1.Margin = new Padding(4, 4, 4, 4);
+            入金明細1.Margin = new Padding(4);
             入金明細1.Name = "入金明細1";
             入金明細1.Size = new Size(948, 159);
             入金明細1.TabIndex = 10201;

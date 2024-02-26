@@ -30,7 +30,8 @@ namespace MultiRowDesigner
             
             ofn.SetComboBox(入金区分コード, 
                 "SELECT 入金区分コード as Value , 入金区分名 as Display FROM M入金区分 ORDER BY OrderNumber");
-
+            入金区分コード.DropDownWidth = 300;
+                
             ofn.SetComboBox(備考コード,
                 "SELECT right(replace(str(内容コード),' ','0'),3) as Value," +
                 " right(replace(str(内容コード),' ','0'),3) as Display , 摘要内容 as Display2 " +
@@ -43,12 +44,7 @@ namespace MultiRowDesigner
             };
             this.領収証出力コード.DisplayMember = "Value";
             this.領収証出力コード.ValueMember = "Key";
-
-            
+                        
         }
-
-
-
-
     }
 }

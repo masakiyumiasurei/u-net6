@@ -206,7 +206,6 @@ namespace u_net
             setflg = true;
         }
 
-
         private void 顧客コード_KeyDown(object sender, KeyEventArgs e)
         {
             switch (e.KeyCode)
@@ -271,16 +270,17 @@ namespace u_net
         {
             if (e.KeyCode == Keys.Return)
             {
-                string strCode = ActiveControl.Text;
+                string strCode = 入金コード開始.Text;
 
                 if (string.IsNullOrEmpty(strCode))
                     return;
 
                 strCode = FunctionClass.FormatCode("B", strCode);
 
-                if (strCode != ActiveControl.Text)
+                if (strCode != 入金コード開始.Text)
                 {
-                    ActiveControl.Text = strCode;
+                    入金コード開始.Text = strCode;
+                    SelectNextControl(ActiveControl, true, true, true, true);
                 }
             }
         }
@@ -294,16 +294,17 @@ namespace u_net
         {
             if (e.KeyCode == Keys.Return)
             {
-                string strCode = ActiveControl.Text;
+                string strCode = 入金コード終了.Text;
 
                 if (string.IsNullOrEmpty(strCode))
                     return;
 
                 strCode = FunctionClass.FormatCode("B", strCode);
 
-                if (strCode != ActiveControl.Text)
+                if (strCode != 入金コード終了.Text)
                 {
-                    ActiveControl.Text = strCode;
+                    入金コード終了.Text = strCode;
+                    SelectNextControl(ActiveControl, true, true, true, true);
                 }
             }
         }
@@ -344,8 +345,7 @@ namespace u_net
             if (!string.IsNullOrEmpty(入金日開始.Text))
             {
                 form.args = 入金日開始.Text;
-            }
-                       
+            }                       
 
             if (e.KeyChar == ' ')
             {
@@ -445,6 +445,13 @@ namespace u_net
             switch (e.KeyCode)
             {
                 case Keys.Return:
+                    switch (this.ActiveControl.Name)
+                    {
+                        case "入金コード開始":
+                        case "入金コード終了":
+                        
+                            return;
+                    }
                     SelectNextControl(ActiveControl, true, true, true, true);
                     break;
                 case Keys.Space: //コンボボックスならドロップダウン
