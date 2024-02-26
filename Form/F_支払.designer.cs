@@ -960,6 +960,7 @@ namespace u_net
             // 
             振込指定.BackColor = SystemColors.Window;
             振込指定.DropDownHeight = 200;
+            振込指定.DropDownStyle = ComboBoxStyle.DropDownList;
             振込指定.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             振込指定.FormattingEnabled = true;
             振込指定.ImeMode = ImeMode.Disable;

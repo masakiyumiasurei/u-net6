@@ -19,6 +19,9 @@ using System.Drawing.Printing;
 using static u_net.CommonConstants;
 using static u_net.Public.FunctionClass;
 using System.Data.Common;
+using DocumentFormat.OpenXml.Bibliography;
+using DocumentFormat.OpenXml.Office2016.Drawing.ChartDrawing;
+using static System.ComponentModel.Design.ObjectSelectorEditor;
 
 namespace u_net
 {
@@ -43,25 +46,14 @@ namespace u_net
         {
             get
             {
-                return "SELECT A.CloseMonth as Display,A.CloseMonth as Value FROM (SELECT STR({ fn YEAR(DATEADD(month,-12,GETDATE())) }, 4, 0) + '/' + STR({ fn MONTH(DATEADD(month,-12,GETDATE())) }, 2, 0) AS CloseMonth " +
-                    "UNION ALL SELECT STR({ fn YEAR(DATEADD(month,-11,GETDATE())) }, 4, 0) + '/' + STR({ fn MONTH(DATEADD(month,-11,GETDATE())) }, 2, 0) AS CloseMonth " +
-                    "UNION ALL SELECT STR({ fn YEAR(DATEADD(month,-10,GETDATE())) }, 4, 0) + '/' + STR({ fn MONTH(DATEADD(month,-10,GETDATE())) }, 2, 0) AS CloseMonth " +
-                    "UNION ALL SELECT STR({ fn YEAR(DATEADD(month,-9,GETDATE())) }, 4, 0) + '/' + STR({ fn MONTH(DATEADD(month,-9,GETDATE())) }, 2, 0) AS CloseMonth " +
-                    "UNION ALL SELECT STR({ fn YEAR(DATEADD(month,-8,GETDATE())) }, 4, 0) + '/' + STR({ fn MONTH(DATEADD(month,-8,GETDATE())) }, 2, 0) AS CloseMonth " +
-                    "UNION ALL SELECT STR({ fn YEAR(DATEADD(month,-7,GETDATE())) }, 4, 0) + '/' + STR({ fn MONTH(DATEADD(month,-7,GETDATE())) }, 2, 0) AS CloseMonth " +
-                    "UNION ALL SELECT STR({ fn YEAR(DATEADD(month,-6,GETDATE())) }, 4, 0) + '/' + STR({ fn MONTH(DATEADD(month,-6,GETDATE())) }, 2, 0) AS CloseMonth " +
-                    "UNION ALL SELECT STR({ fn YEAR(DATEADD(month,-5,GETDATE())) }, 4, 0) + '/' + STR({ fn MONTH(DATEADD(month,-5,GETDATE())) }, 2, 0) AS CloseMonth " +
-                    "UNION ALL SELECT STR({ fn YEAR(DATEADD(month,-4,GETDATE())) }, 4, 0) + '/' + STR({ fn MONTH(DATEADD(month,-4,GETDATE())) }, 2, 0) AS CloseMonth " +
-                    "UNION ALL SELECT STR({ fn YEAR(DATEADD(month,-3,GETDATE())) }, 4, 0) + '/' + STR({ fn MONTH(DATEADD(month,-3,GETDATE())) }, 2, 0) AS CloseMonth " +
-                    "UNION ALL SELECT STR({ fn YEAR(DATEADD(month,-2,GETDATE())) }, 4, 0) + '/' + STR({ fn MONTH(DATEADD(month,-2,GETDATE())) }, 2, 0) AS CloseMonth " +
-                    "UNION ALL SELECT STR({ fn YEAR(DATEADD(month,-1,GETDATE())) }, 4, 0) + '/' + STR({ fn MONTH(DATEADD(month,-1,GETDATE())) }, 2, 0) AS CloseMonth " +
-                    "UNION ALL SELECT STR({ fn YEAR(GETDATE()) }, 4, 0) + '/' + STR({ fn MONTH(GETDATE()) }, 2, 0) AS CloseMonth " +
-                    "UNION ALL SELECT STR({ fn YEAR(DATEADD(month,1,GETDATE())) }, 4, 0) + '/' + STR({ fn MONTH(DATEADD(month,1,GETDATE())) }, 2, 0) AS CloseMonth " +
-                    "UNION ALL SELECT STR({ fn YEAR(DATEADD(month,2,GETDATE())) }, 4, 0) + '/' + STR({ fn MONTH(DATEADD(month,2,GETDATE())) }, 2, 0) AS CloseMonth " +
-                    "UNION ALL SELECT STR({ fn YEAR(DATEADD(month,3,GETDATE())) }, 4, 0) + '/' + STR({ fn MONTH(DATEADD(month,3,GETDATE())) }, 2, 0) AS CloseMonth " +
-                    "UNION ALL SELECT STR({ fn YEAR(DATEADD(month,4,GETDATE())) }, 4, 0) + '/' + STR({ fn MONTH(DATEADD(month,4,GETDATE())) }, 2, 0) AS CloseMonth " +
-                    ") AS A LEFT OUTER JOIN(SELECT STR( YEAR(CloseMonth) ,4 ,0 ) + '/' + STR( MONTH(CloseMonth) ,2 ,0 ) AS CloseMonth " +
-                    "FROM T振込繰越残高 GROUP BY CloseMonth) AS B ON A.CloseMonth = B.CloseMonth WHERE B.CloseMonth IS NULL ORDER BY A.CloseMonth";
+                return "select 支払年月 as Display,支払年月 as Value from " +
+                "(SELECT STR({ fn YEAR(DATEADD(month,-1,GETDATE())) }, 4, 0) +'/' + STR({ fn MONTH(DATEADD(month,-1,GETDATE())) }, 2, 0) AS 支払年月 " +
+                "UNION ALL " +
+                "SELECT STR({ fn YEAR(GETDATE()) }, 4, 0) +'/' + STR({ fn MONTH(GETDATE()) }, 2, 0) AS 支払年月 " +
+                "UNION ALL " +
+                "SELECT STR({ fn YEAR(DATEADD(month,1,GETDATE())) }, 4, 0) +'/' + STR({ fn MONTH(DATEADD(month,1,GETDATE())) }, 2, 0) AS 支払年月 " +
+                "UNION ALL " +
+                "SELECT STR({ fn YEAR(DATEADD(month,2,GETDATE())) }, 4, 0) +'/' + STR({ fn MONTH(DATEADD(month,2,GETDATE())) }, 2, 0) AS 支払年月) as T "; 
             }
         }
         public void Connect()

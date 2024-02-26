@@ -1153,6 +1153,7 @@ namespace u_net
                 {
                     this.確定日時.Text = GetServerDate(cn).ToString();
                     this.確定者コード.Text = LoginUserCode;
+                    
                 }
 
                 // 登録する
@@ -1530,7 +1531,7 @@ namespace u_net
         string shukei = "";
         private void 集計年月_Enter(object sender, EventArgs e)
         {            
-            shukei= 集計年月.SelectedItem?.ToString() ?? "";
+            shukei= 集計年月.Text ?? "";
             toolStripStatusLabel1.Text = "■支払一覧に反映されるされる集計月を入力します。";
         }
 
@@ -1542,7 +1543,7 @@ namespace u_net
         string shiharai= "";
         private void 支払年月_Enter(object sender, EventArgs e)
         {
-            shiharai= 支払年月.SelectedItem?.ToString() ?? "";
+            shiharai= 支払年月.Text ?? "";
             toolStripStatusLabel1.Text = "■振込一覧に反映される支払月を入力します。";
         }
 
@@ -1551,8 +1552,10 @@ namespace u_net
             toolStripStatusLabel1.Text = "各種項目の説明";
         }
 
+        string hurikomi = "";
         private void 振込指定_Enter(object sender, EventArgs e)
         {
+            hurikomi=支払年月.Text ?? "";
             toolStripStatusLabel1.Text = "■振込一覧に反映される支払月を入力します。";
         }
 
@@ -1663,9 +1666,12 @@ namespace u_net
 
         private void 支払年月_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (支払年月.SelectedItem == null) return;
-            if (支払年月.SelectedItem.ToString() == shukei) return;
-            if (IsError(sender as Control, false) == true) e.Cancel = true;
+
+            if (支払年月.Text == shiharai) return;            
+            if (IsError(sender as Control, false) == true)
+            {
+                e.Cancel = true;                
+            }
         }
 
         private void 支払年月_TextChanged(object sender, EventArgs e)
@@ -1683,9 +1689,14 @@ namespace u_net
 
         private void 集計年月_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (集計年月.SelectedItem == null) return;
-            if (集計年月.SelectedItem.ToString() == shukei) return;   
-            if (IsError(sender as Control, false) == true) e.Cancel = true;
+            
+            if (集計年月.Text == shukei) return;
+            //if (string.IsNullOrEmpty(集計年月.Text)) return;
+            if (IsError(sender as Control, false) == true)
+            {
+                e.Cancel = true;
+                集計年月.Text = shukei;
+            }
         }
 
         private void 集計年月_TextChanged(object sender, EventArgs e)
@@ -1698,10 +1709,16 @@ namespace u_net
 
         private void 振込指定_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
+            //
+            if (振込指定.Text == hurikomi) return;
             
-            if (IsError(sender as Control, false) == true) e.Cancel = true;
-        }
+            if (IsError(sender as Control, false) == true)
+            {
+                e.Cancel = true;
+                振込指定.Text = hurikomi;
 
+            }
+        }
         private void 振込指定_TextChanged(object sender, EventArgs e)
         {
             if (setCombo) return;
