@@ -120,7 +120,10 @@ namespace u_net
                     UpdatedControl(this.商品コード);
                     // this.シリーズ名.Value = frmParentControls.シリーズ名.Value;
                     this.型番.Text = frmParent.CurrentRow.Cells["型番"].Value?.ToString();
-                    this.確定済単価.Text = frmParent.CurrentRow.Cells["単価"].Value?.ToString();
+
+                    decimal value = Convert.ToDecimal(frmParent.CurrentRow.Cells["単価"].Value ?? 0);
+                    this.確定済単価.Text = value.ToString("N0");
+                    //this.確定済単価.Text = frmParent.CurrentRow.Cells["単価"].Value?.ToString();
 
                     // 単価を計算・設定する
                     SeparateSeries(型番.Text);
@@ -131,10 +134,10 @@ namespace u_net
                     粗利.Text = string.IsNullOrEmpty(粗利.Text) ? "0" : 粗利.Text;
                     売値掛率.Text = string.IsNullOrEmpty(売値掛率.Text) ? "0" : 売値掛率.Text;
 
-                    this.単価.Text = GetSellingPrice(decimal.Parse(定価.Text), decimal.Parse(売値掛率.Text)).ToString();
+                    this.単価.Text = GetSellingPrice(decimal.Parse(定価.Text), decimal.Parse(売値掛率.Text)).ToString("N0");
 
                     // 粗利を計算・設定する
-                    this.粗利.Text = (decimal.Parse(単価.Text) - decimal.Parse(原価.Text)).ToString();
+                    this.粗利.Text = (decimal.Parse(単価.Text) - decimal.Parse(原価.Text)).ToString("N0");
                 }
 
                 // 受注データの承認状況により確定可／不可を制御する
@@ -309,8 +312,8 @@ namespace u_net
 
                 // 定価と原価を設定
                 // 定価の列名と原価の列名は適切に変更してください
-                this.定価.Text = curFixedPrice.ToString();
-                this.原価.Text = curCostPrice.ToString();
+                this.定価.Text = curFixedPrice.ToString("N0");
+                this.原価.Text = curCostPrice.ToString("N0");
             }
             catch (Exception ex)
             {
@@ -366,9 +369,9 @@ namespace u_net
                             売値掛率.Text = string.IsNullOrEmpty(売値掛率.Text) ? "0" : 売値掛率.Text;
 
                             // 単価計算
-                            単価.Text = GetSellingPrice(decimal.Parse(定価.Text), decimal.Parse(売値掛率.Text)).ToString();
+                            単価.Text = GetSellingPrice(decimal.Parse(定価.Text), decimal.Parse(売値掛率.Text)).ToString("N0");
                             // 粗利計算
-                            粗利.Text = (Convert.ToDecimal(単価.Text) - Convert.ToDecimal(原価.Text)).ToString();
+                            粗利.Text = (Convert.ToDecimal(単価.Text) - Convert.ToDecimal(原価.Text)).ToString("N0");
                         }
                         break;
                     case "商品分類名":
@@ -750,12 +753,10 @@ namespace u_net
             UpdatedControl(sender as Control);
         }
 
-
         private void 型式名_SelectionChanged(object sender, EventArgs e)
         {
             UpdatedControl(sender as Control);
         }
-
 
         private bool IsError(Control controlObject)
         {
@@ -835,7 +836,6 @@ namespace u_net
                 return true;
             }
         }
-
 
         private void 型番_Validating(object sender, CancelEventArgs e)
         {

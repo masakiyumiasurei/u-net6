@@ -48,7 +48,75 @@ namespace u_net
 
         private F_検索 SearchForm;
 
+        /// <summary>
+        /// 時刻が表示される不具合の解消用
+        /// </summary>
+        /// <param name="dataGridView"></param>
         private void ExportToExcel(DataGridView dataGridView)
+        {
+            // ClosedXMLでワークブックを作成
+            var wb = new XLWorkbook();
+            var ws = wb.AddWorksheet("Sheet1");
+
+            // DataGridViewからDataTableにデータを移行
+            var dt = new DataTable();
+            foreach (DataGridViewColumn col in dataGridView.Columns)
+            {
+                dt.Columns.Add(col.Name, typeof(string)); // 一旦すべての列を文字列として扱う
+            }
+            foreach (DataGridViewRow row in dataGridView.Rows)
+            {
+                if (row.IsNewRow) continue; // 新しい行（編集用の空行）は除外
+                DataRow dRow = dt.NewRow();
+                foreach (DataGridViewCell cell in row.Cells)
+                {
+                    // DBNull はそのまま代入
+                    if (cell.Value == DBNull.Value)
+                    {
+                        dRow[cell.ColumnIndex] = cell.Value;
+                    }
+                    // DateTime の値はフォーマットを適用
+                    else if (cell.ValueType == typeof(System.DateTime))
+                    {
+                        System.DateTime date = (System.DateTime)cell.Value;
+                        dRow[cell.ColumnIndex] = date.ToString("yyyy-MM-dd");
+                    }
+                    // それ以外の値は ToString で文字列に変換
+                    else if (cell.Value != null)
+                    {
+                        dRow[cell.ColumnIndex] = cell.Value.ToString();
+                    }
+                    // null の場合は空文字列を代入
+                    else
+                    {
+                        dRow[cell.ColumnIndex] = "";
+                    }
+                }
+                dt.Rows.Add(dRow);
+            }
+
+            // DataTableをワークシートに追加
+            ws.Cell(1, 1).InsertTable(dt);
+
+            // ClosedXMLでの書式設定の問題が解消されるかテスト
+            ws.Columns().AdjustToContents(); // 列幅を内容に合わせて調整
+
+            // ファイルを保存する
+            SaveFileDialog saveDialog = new SaveFileDialog();
+            saveDialog.Filter = "Excel File|*.xlsx";
+            if (saveDialog.ShowDialog() == DialogResult.OK)
+            {
+                wb.SaveAs(saveDialog.FileName);
+            }
+
+        }
+
+        /// <summary>
+        /// 時刻の書式がおかしいので廃止　とりあえずboolでオバーライドしておいておく
+        /// </summary>
+        /// <param name="dataGridView"></param>
+        /// <param name="aa"></param>
+        private void ExportToExcel(DataGridView dataGridView,bool aa)
         {
             using (XLWorkbook wb = new XLWorkbook())
             {
@@ -66,13 +134,39 @@ namespace u_net
                     DataRow dRow = dt.NewRow();
                     foreach (DataGridViewCell cell in row.Cells)
                     {
-                        dRow[cell.ColumnIndex] = cell.Value;
+                        dRow[cell.ColumnIndex] = cell.Value ?? DBNull.Value; 
                     }
                     dt.Rows.Add(dRow);
                 }
 
                 // DataTableをエクセルに追加
-                wb.Worksheets.Add(dt);
+                var ws = wb.Worksheets.Add(dt);
+
+                // DataTableをエクセルに追加
+               // wb.Worksheets.Add(dt);
+
+                // 列幅を自動調整
+                ws.ColumnsUsed().AdjustToContents();
+
+                // DataGridViewからエクスポートされた列に日付フォーマットを適用
+                for (int colIndex = 0; colIndex < dataGridView.Columns.Count; colIndex++)
+                {
+                    var col = dataGridView.Columns[colIndex];
+                    if (col.ValueType == typeof(System.DateTime)) // 列がDateTime型の場合
+                    {
+                        // 対象列の全てのセルに対してフォーマットを適用
+                        foreach (var cell in ws.Column(colIndex + 1).CellsUsed())
+                        {
+                            cell.Style.DateFormat.Format = "yyyy-MM-dd";
+                        }
+                        //ws.Column(colIndex + 1).Style.DateFormat.Format = @"yyyy\-MM\-dd";
+                    }
+                    // 列名で判断する場合はこっち
+                    // if (col.HeaderText.Equals("出荷完了日") || col.HeaderText.Equals("出荷予定日"))
+                    // {
+                    //     ws.Column(colIndex + 1).Style.DateFormat.Format = "yyyy-mm-dd";
+                    // }
+                }
 
                 // ファイルを保存するか、直接開くかをユーザーに選択させる場合
                 SaveFileDialog saveDialog = new SaveFileDialog();
@@ -102,9 +196,11 @@ namespace u_net
                 }
 
                 // Display completion message
-                MessageBox.Show("完了しました。", "Excelへ出力", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                
                 F_受注管理　frmTarget = Application.OpenForms.OfType<F_受注管理>().FirstOrDefault();
                 ExportToExcel(frmTarget.dataGridView1);
+
+                MessageBox.Show("完了しました。", "Excelへ出力", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.Close();
             }
             catch (Exception ex)
@@ -234,7 +330,11 @@ namespace u_net
                     paoRep.Write("注文番号", targetRow["注文番号"].ToString() != "" ? targetRow["注文番号"].ToString() : " ", i + 1);
                     paoRep.Write("顧客コード", targetRow["顧客コード"].ToString() != "" ? targetRow["顧客コード"].ToString().PadLeft(8, '0') : " ", i + 1);
                     paoRep.Write("顧客名", targetRow["顧客名"].ToString() != "" ? targetRow["顧客名"].ToString() : " ", i + 1);
-                    paoRep.Write("自社担当者名", targetRow["自社担当者名"].ToString() != "" ? targetRow["自社担当者名"].ToString() : " ", i + 1);                    
+                    paoRep.Write("自社担当者名", targetRow["自社担当者名"].ToString() != "" ? targetRow["自社担当者名"].ToString() : " ", i + 1);
+
+                    paoRep.Write("無効日", targetRow["無効日"].ToString() != "" ?
+                        "=======================================================================================================================================================" 
+                        : " ", i + 1);
 
                     CurRow++;
                 }

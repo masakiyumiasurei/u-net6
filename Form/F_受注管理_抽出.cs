@@ -1,4 +1,5 @@
 ﻿using GrapeCity.Win.MultiRow;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -95,6 +96,17 @@ namespace u_net
                     {
                         受注納期2.Text = frmTarget.dte受注納期2.ToShortDateString();
                     }
+
+                    if (frmTarget.dte出荷完了日1 != DateTime.MinValue)
+                    {
+                        出荷完了日1.Text = frmTarget.dte出荷完了日1.ToShortDateString();
+                    }
+
+                    if (frmTarget.dte出荷完了日2 != DateTime.MinValue)
+                    {
+                        出荷完了日2.Text = frmTarget.dte出荷完了日2.ToShortDateString();
+                    }
+
 
                     注文番号.Text = frmTarget.str注文番号;
                     顧客コード.Text = frmTarget.str顧客コード;
@@ -261,35 +273,17 @@ namespace u_net
                     frmTarget.str受注コード1 = Nz(受注コード1.Text);
                     frmTarget.str受注コード2 = Nz(受注コード2.Text);
 
-                    if (!string.IsNullOrEmpty(受注日1.Text))
-                        frmTarget.dte受注日1 = Nz(DateTime.Parse(受注日1.Text));
-                    else
-                        frmTarget.dte受注日1 = DateTime.MinValue;
+                    DateTime dt;
 
-                    if (!string.IsNullOrEmpty(受注日2.Text))
-                        frmTarget.dte受注日2 = Nz(DateTime.Parse(受注日2.Text));
-                    else
-                        frmTarget.dte受注日2 = DateTime.MinValue;
+                    frmTarget.dte受注日1 = DateTime.TryParse(受注日1.Text,out dt) ? dt : DateTime.MinValue;
+                    frmTarget.dte受注日2 = DateTime.TryParse(受注日2.Text, out dt) ? dt : DateTime.MinValue;
+                    frmTarget.dte出荷予定日1 = DateTime.TryParse(出荷予定日1.Text, out dt) ? dt : DateTime.MinValue;
+                    frmTarget.dte出荷予定日2 = DateTime.TryParse(出荷予定日2.Text, out dt) ? dt : DateTime.MinValue;                                       
 
-                    if (!string.IsNullOrEmpty(出荷予定日1.Text))
-                        frmTarget.dte出荷予定日1 = Nz(DateTime.Parse(出荷予定日1.Text));
-                    else
-                        frmTarget.dte出荷予定日1 = DateTime.MinValue;
-
-                    if (!string.IsNullOrEmpty(出荷予定日2.Text))
-                        frmTarget.dte出荷予定日2 = Nz(DateTime.Parse(出荷予定日2.Text));
-                    else
-                        frmTarget.dte出荷予定日2 = DateTime.MinValue;
-
-                    if (!string.IsNullOrEmpty(受注納期1.Text))
-                        frmTarget.dte受注納期1 = Nz(DateTime.Parse(受注納期1.Text));
-                    else
-                        frmTarget.dte受注納期1 = DateTime.MinValue;
-
-                    if (!string.IsNullOrEmpty(受注納期2.Text))
-                        frmTarget.dte受注納期2 = Nz(DateTime.Parse(受注納期2.Text));
-                    else
-                        frmTarget.dte受注納期2 = DateTime.MinValue;
+                    frmTarget.dte受注納期1 = DateTime.TryParse(受注納期1.Text, out dt) ? dt : DateTime.MinValue;
+                    frmTarget.dte受注納期2 = DateTime.TryParse(受注納期2.Text, out dt) ? dt : DateTime.MinValue;
+                    frmTarget.dte出荷完了日1 = DateTime.TryParse(出荷完了日1.Text, out dt) ? dt : DateTime.MinValue;
+                    frmTarget.dte出荷完了日2 = DateTime.TryParse(出荷完了日2.Text, out dt) ? dt : DateTime.MinValue;                                      
 
                     frmTarget.str注文番号 = Nz(注文番号.Text);
                     frmTarget.str顧客コード = Nz(顧客コード.Text);
@@ -322,15 +316,9 @@ namespace u_net
                         {
                             frmTarget.byt出荷 = 1;
 
-                            if (!string.IsNullOrEmpty(出荷予定日1.Text))
-                                frmTarget.dte出荷予定日1 = Nz(DateTime.Parse(出荷予定日1.Text));
-                            else
-                                frmTarget.dte出荷予定日1 = DateTime.MinValue;
-
-                            if (!string.IsNullOrEmpty(出荷予定日2.Text))
-                                frmTarget.dte出荷予定日2 = Nz(DateTime.Parse(出荷予定日2.Text));
-                            else
-                                frmTarget.dte出荷予定日2 = DateTime.MinValue;
+                            frmTarget.dte出荷予定日1 = DateTime.TryParse(出荷予定日1.Text, out dt) ? dt : DateTime.MinValue;
+                            frmTarget.dte出荷予定日2 = DateTime.TryParse(出荷予定日2.Text, out dt) ? dt : DateTime.MinValue;
+                                                        
                         }
                         else
                         {
@@ -500,7 +488,9 @@ namespace u_net
                     {
                         ((Control)sender).Text = strCode;
                     }
+                    SelectNextControl(ActiveControl, true, true, true, true);
                 }
+                
             }
             catch (Exception ex)
             {
@@ -550,10 +540,23 @@ namespace u_net
         {
             try
             {
-                string strCode = FunctionClass.FormatCode("A", e.KeyCode.ToString());
+                // 入力された値がエラー値の場合、textプロパティが設定できなくなるときの対処
+                string strCode = ((Control)sender).Text;
 
-                ////// イベントを処理したことを示す
-                ////e.Handled = true;
+                if (e.KeyCode == Keys.Return)
+                {
+                    if (string.IsNullOrEmpty(strCode)) return;
+
+                    // FormatCode メソッドが FormatCode("A", strCode) に対応すると仮定
+                    strCode = FunctionClass.FormatCode("A", strCode);
+
+                    if (strCode != ((Control)sender).Text)
+                    {
+                        ((Control)sender).Text = strCode;
+                    }
+                    SelectNextControl(ActiveControl, true, true, true, true);
+                }
+                
             }
             catch (Exception ex)
             {
@@ -614,7 +617,12 @@ namespace u_net
 
         private void 受注日1_Leave(object sender, EventArgs e)
         {
-            FunctionClass.AdjustRange(受注日1, 受注日2, 受注日1);
+            if (!string.IsNullOrEmpty(受注日1.Text) && !DateTime.TryParse(受注日1.Text, out _))
+            {
+                MessageBox.Show("日付を入力してください", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            FunctionClass.範囲指定(受注日1, 受注日2, true);
         }
 
         private void 受注日1選択ボタン_Click(object sender, EventArgs e)
@@ -664,7 +672,12 @@ namespace u_net
 
         private void 受注日2_Leave(object sender, EventArgs e)
         {
-            FunctionClass.AdjustRange(受注日2, 受注日1, 受注日2);
+            if (!string.IsNullOrEmpty(受注日2.Text) && !DateTime.TryParse(受注日2.Text, out _))
+            {
+                MessageBox.Show("日付を入力してください", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            FunctionClass.範囲指定(受注日1, 受注日2, false);
         }
 
         private void 受注日2選択ボタン_Click(object sender, EventArgs e)
@@ -717,7 +730,12 @@ namespace u_net
 
         private void 受注納期1_Leave(object sender, EventArgs e)
         {
-            FunctionClass.AdjustRange(受注納期1, 受注納期2, 受注納期1);
+            if (!string.IsNullOrEmpty(受注納期1.Text) && !DateTime.TryParse(受注納期1.Text, out _))
+            {
+                MessageBox.Show("日付を入力してください", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            FunctionClass.範囲指定(受注納期1, 受注納期2, true);
         }
 
         private void 受注納期1選択ボタン_Click(object sender, EventArgs e)
@@ -767,7 +785,12 @@ namespace u_net
 
         private void 受注納期2_Leave(object sender, EventArgs e)
         {
-            FunctionClass.AdjustRange(受注納期2, 受注納期1, 受注納期2);
+            if (!string.IsNullOrEmpty(受注納期2.Text) && !DateTime.TryParse(受注納期2.Text, out _))
+            {
+                MessageBox.Show("日付を入力してください", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            FunctionClass.範囲指定(受注納期1, 受注納期2, false);
         }
 
         private void 受注納期2選択ボタン_Click(object sender, EventArgs e)
@@ -790,7 +813,12 @@ namespace u_net
 
         private void 出荷完了日1_Leave(object sender, EventArgs e)
         {
-            FunctionClass.AdjustRange(出荷完了日1, 出荷完了日2, 出荷完了日1);
+            if (!string.IsNullOrEmpty(出荷完了日1.Text) && !DateTime.TryParse(出荷完了日1.Text, out _))
+            {
+                MessageBox.Show("日付を入力してください", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            FunctionClass.範囲指定(出荷完了日1, 出荷完了日2,true);
         }
 
         private void 出荷完了日1選択ボタン_Click(object sender, EventArgs e)
@@ -813,7 +841,14 @@ namespace u_net
 
         private void 出荷完了日2_Leave(object sender, EventArgs e)
         {
-            FunctionClass.AdjustRange(出荷完了日2, 出荷完了日1, 出荷完了日2);
+
+            if (!string.IsNullOrEmpty(出荷完了日2.Text) && !DateTime.TryParse(出荷完了日2.Text, out _))
+            {
+                MessageBox.Show("日付を入力してください","",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                return;
+            }
+                
+                FunctionClass.範囲指定(出荷完了日1, 出荷完了日2,false);
         }
 
         private void 出荷完了日2選択ボタン_Click(object sender, EventArgs e)
@@ -863,7 +898,12 @@ namespace u_net
 
         private void 出荷予定日1_Leave(object sender, EventArgs e)
         {
-            FunctionClass.AdjustRange(出荷予定日1, 出荷予定日2, 出荷予定日1);
+            if (!string.IsNullOrEmpty(出荷予定日1.Text) && !DateTime.TryParse(出荷予定日1.Text, out _))
+            {
+                MessageBox.Show("日付を入力してください", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            FunctionClass.範囲指定(出荷予定日1, 出荷予定日2, true);
         }
 
         private void 出荷予定日1選択ボタン_Click(object sender, EventArgs e)
@@ -905,7 +945,12 @@ namespace u_net
 
         private void 出荷予定日2_Leave(object sender, EventArgs e)
         {
-            FunctionClass.範囲指定(出荷予定日1, 出荷予定日2);
+            if (!string.IsNullOrEmpty(出荷予定日2.Text) && !DateTime.TryParse(出荷予定日2.Text, out _))
+            {
+                MessageBox.Show("日付を入力してください", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            FunctionClass.範囲指定(出荷予定日1, 出荷予定日2,false);
         }
 
         private void 出荷予定日2選択ボタン_Click(object sender, EventArgs e)
@@ -927,8 +972,6 @@ namespace u_net
             ////KeyAscii = ChangeBig(KeyAscii);
             int keyAscii = ChangeBig(e.KeyChar);
         }
-
-
 
         private void 自社担当者コード_DrawItem(object sender, DrawItemEventArgs e)
         {
@@ -999,8 +1042,10 @@ namespace u_net
                     switch (this.ActiveControl.Name)
                     {
                         case "顧客コード":
+                        case "受注コード1":
+                        case "受注コード2":
 
-                            return;
+                        return;
                     }
                     SelectNextControl(ActiveControl, true, true, true, true);
                     e.Handled = true;
