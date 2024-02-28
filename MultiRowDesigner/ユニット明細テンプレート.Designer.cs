@@ -553,7 +553,8 @@
             cellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(204)))), ((int)(((byte)(255)))));
             border2.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
             cellStyle4.Border = border2;
-            cellStyle4.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
+            cellStyle4.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Bold);
+            cellStyle4.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleRight;
             this.明細番号.Style = cellStyle4;
             this.明細番号.TabIndex = 2;
             // 
@@ -634,6 +635,7 @@
             cellStyle9.Border = border7;
             cellStyle9.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
             cellStyle9.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
+            cellStyle9.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
             this.RohsStatusSign.Style = cellStyle9;
             this.RohsStatusSign.TabIndex = 7;
             // 
@@ -757,6 +759,7 @@
             cellStyle17.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
             cellStyle17.Format = "N0";
             cellStyle17.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
+            cellStyle17.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleRight;
             this.入数.Style = cellStyle17;
             this.入数.TabIndex = 15;
             // 
