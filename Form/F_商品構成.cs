@@ -29,6 +29,7 @@ namespace u_net
         public string args = "";
         //public string CurrentCode = "";
         private bool setCombo = false;
+        private bool setCheck = false;
 
         private int intKeyCode;
         private decimal curDiscount;
@@ -249,46 +250,31 @@ namespace u_net
                 decimal curFixedPrice = 0;
                 decimal curCostPrice = 0;
 
-                foreach (DataGridViewRow row in 型式名.Rows)
-                {
-                    string strFetch = row.Cells["型式名"].Value.ToString();
-                    int intPosition = str1.IndexOf(strFetch, StringComparison.OrdinalIgnoreCase);
-
-                    if (intPosition != -1)
-                    {
-                        row.Selected = true;
-                        str1 = str1.Substring(intPosition + strFetch.Length);
-                        curFixedPrice += Convert.ToDecimal(row.Cells["定価"].Value);
-                        curCostPrice += Convert.ToDecimal(row.Cells["原価"].Value);
-                        break;
-                    }
-                }
-
                 // 型番から型式名を取得し、設定する
-                int lngLength = 2;
+                int lngLength = 1;
+                int str1Length = str1.Length;
 
-                while (2 <= str1.Length)
+                while (2 <= str1Length)
                 {
-                    string strOption = str1.Substring(0, lngLength);
+                    string strOption = str1.Substring(str1Length - lngLength, lngLength);
 
-                    if (strOption.EndsWith("-") || strOption.EndsWith("/") || strOption == str1)
+                    if (strOption.StartsWith("-") || strOption.StartsWith("/") || strOption == str1)
                     {
-                        if (strOption.EndsWith("/") || strOption.EndsWith("-"))
+                        if (strOption.StartsWith("-"))
                         {
-                            strOption = str1.Substring(0, lngLength - 1);
+                            strOption = str1.Substring(str1Length - (lngLength - 1), lngLength - 1);
                         }
 
-                        str1 = str1.Substring(strOption.Length); // 残りの文字列を設定する
+                        string str2 = str1;
+                        str1 = str1.Substring(0, str1Length - strOption.Length); // 残りの文字列を設定する
 
-                        if (strOption.StartsWith("-")) // オプションと特殊で場合分け
+                        if (strOption.EndsWith("-")) // オプションと特殊で場合分け
                         {
-                            strOption = strOption.Substring(1, strOption.Length - 1); // Mid 関数の代わり
-
+                            strOption = strOption.Substring(0, strOption.Length - 1); // Mid 関数の代わり
                         }
                         else
                         {
                             strOption = strOption.Substring(0, strOption.Length); // Mid 関数の代わり
-
                         }
 
                         DataGridViewRow selectedRow = 型式名.Rows
@@ -300,15 +286,72 @@ namespace u_net
                             selectedRow.Selected = true;
                             curFixedPrice += Convert.ToDecimal(selectedRow.Cells["定価"].Value);
                             curCostPrice += Convert.ToDecimal(selectedRow.Cells["原価"].Value);
+
+                            lngLength = 2;
+                        }
+                        else
+                        {
+                            str1 = str2;
+                            lngLength++;
+
                         }
 
-                        lngLength = 2;
+                        
                     }
                     else
                     {
                         lngLength++;
                     }
+
+                    str1Length = str1.Length; // 更新された str1 の長さを再計算
                 }
+
+
+                //// 型番から型式名を取得し、設定する
+                //int lngLength = 1;
+
+                //while (2 <= str1.Length)
+                //{
+                //    string strOption = str1.Substring(0, lngLength);
+
+                //    if (strOption.EndsWith("-") || strOption.EndsWith("/") || strOption == str1)
+                //    {
+                //        if (strOption.EndsWith("/") || strOption.EndsWith("-"))
+                //        {
+                //            strOption = str1.Substring(0, lngLength - 1);
+                //        }
+
+                //        str1 = str1.Substring(strOption.Length); // 残りの文字列を設定する
+
+                //        if (strOption.StartsWith("-")) // オプションと特殊で場合分け
+                //        {
+                //            strOption = strOption.Substring(1, strOption.Length - 1); // Mid 関数の代わり
+
+                //        }
+                //        else
+                //        {
+                //            strOption = strOption.Substring(0, strOption.Length); // Mid 関数の代わり
+
+                //        }
+
+                //        DataGridViewRow selectedRow = 型式名.Rows
+                //            .Cast<DataGridViewRow>()
+                //            .FirstOrDefault(r => r.Cells["型式名"].Value.ToString() == strOption);
+
+                //        if (selectedRow != null)
+                //        {
+                //            selectedRow.Selected = true;
+                //            curFixedPrice += Convert.ToDecimal(selectedRow.Cells["定価"].Value);
+                //            curCostPrice += Convert.ToDecimal(selectedRow.Cells["原価"].Value);
+                //        }
+
+                //        lngLength = 2;
+                //    }
+                //    else
+                //    {
+                //        lngLength++;
+                //    }
+                //}
 
                 // 定価と原価を設定
                 // 定価の列名と原価の列名は適切に変更してください
@@ -398,6 +441,8 @@ namespace u_net
                         原価.Text = 0.ToString();
                         粗利.Text = 0.ToString();
                         // 関連情報を設定する
+                        setCheck = true;
+
                         if (商品コード.SelectedRows[0].Cells[5].Value.ToString() == "")
                         {
                             // 互換性を維持するためのコード（旧データには掛率有効情報は無い）
@@ -411,6 +456,8 @@ namespace u_net
                         {
                             掛率有効.Checked = true;
                         }
+
+                        setCheck = false;
                         break;
                     case "型式名":
                         Read_DataGridView();
@@ -493,6 +540,10 @@ namespace u_net
                 if (decimal.TryParse(粗利.Text, out decimal result) && result < 0)
                 {
                     粗利.ForeColor = Color.Red;
+                }
+                else
+                {
+                    粗利.ForeColor = Color.Black;
                 }
 
                 if (cn != null && cn.State == ConnectionState.Open) cn.Close();
@@ -633,6 +684,7 @@ namespace u_net
 
         private void 掛率有効_CheckedChanged(object sender, EventArgs e)
         {
+            if (setCheck) return;
             UpdatedControl(sender as Control);
         }
 
@@ -656,7 +708,7 @@ namespace u_net
 
                 frmOrder.受注明細1.strArticle = 商品コード.SelectedRows[0].Cells[3].Value.ToString();
                 frmOrder.受注明細1.strModel = 型番.Text;
-                frmOrder.受注明細1.intPrice = int.Parse(単価.Text, NumberStyles.AllowThousands, CultureInfo.InvariantCulture);
+                frmOrder.受注明細1.intPrice = int.Parse(単価.Text, NumberStyles.AllowThousands | NumberStyles.AllowLeadingSign, CultureInfo.InvariantCulture);
 
                 frmOrder.ChangedData(true);
 
@@ -918,6 +970,16 @@ namespace u_net
         private void 単価_Validated(object sender, EventArgs e)
         {
             UpdatedControl(sender as Control);
+
+            if(decimal.TryParse(単価.Text, out decimal result))
+            {
+                if (-1000 < result && result < 1000) return;
+
+                if(result.ToString() != result.ToString("N0"))
+                {
+                    単価.Text = result.ToString("N0");
+                }
+            }
         }
 
         private void 単価_Validating(object sender, CancelEventArgs e)
@@ -927,9 +989,13 @@ namespace u_net
 
         private void 単価_TextChanged(object sender, EventArgs e)
         {
+
             if (string.IsNullOrEmpty(単価.Text))
             {
                 単価.Text = "0";
+            }else if(単価.Text == "-")
+            {
+                return;
             }
 
             単価.Text = string.IsNullOrEmpty(単価.Text) ? "0" : 単価.Text;
@@ -938,8 +1004,25 @@ namespace u_net
             粗利.Text = string.IsNullOrEmpty(粗利.Text) ? "0" : 粗利.Text;
             売値掛率.Text = string.IsNullOrEmpty(売値掛率.Text) ? "0" : 売値掛率.Text;
 
-            粗利.Text = (Convert.ToDecimal(単価.Text) - Convert.ToDecimal(原価.Text)).ToString();
+            粗利.Text = (Convert.ToDecimal(単価.Text) - Convert.ToDecimal(原価.Text)).ToString("N0");
 
+            if (decimal.TryParse(単価.Text, out decimal result2) && result2 < 0)
+            {
+                単価.ForeColor = Color.Red;
+            }
+            else
+            {
+                単価.ForeColor = Color.Black;
+            }
+
+            if (decimal.TryParse(粗利.Text, out decimal result) && result < 0)
+            {
+                粗利.ForeColor = Color.Red;
+            }
+            else
+            {
+                粗利.ForeColor = Color.Black;
+            }
         }
 
         private void 売値掛率_Validating(object sender, CancelEventArgs e)
@@ -965,9 +1048,9 @@ namespace u_net
             if (!string.IsNullOrEmpty(定価.Text))
             {
                 // 単価計算
-                単価.Text = GetSellingPrice(decimal.Parse(定価.Text), decimal.Parse(売値掛率.Text)).ToString();
+                単価.Text = GetSellingPrice(decimal.Parse(定価.Text), decimal.Parse(売値掛率.Text)).ToString("N0");
                 // 粗利計算
-                粗利.Text = (Convert.ToDecimal(単価.Text) - Convert.ToDecimal(原価.Text)).ToString();
+                粗利.Text = (Convert.ToDecimal(単価.Text) - Convert.ToDecimal(原価.Text)).ToString("N0");
             }
         }
 
