@@ -991,6 +991,11 @@ namespace u_net
                     break;
             }
         }
+
+        private void 掛率有効_ラベル_Click(object sender, EventArgs e)
+        {
+            this.掛率有効.Checked = !(this.掛率有効.Checked);
+        }
     }
 }
 
