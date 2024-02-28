@@ -91,6 +91,7 @@
             // 
             // button4
             // 
+            button4.Enabled = false;
             button4.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             button4.ForeColor = Color.Blue;
             button4.ImageAlign = ContentAlignment.BottomLeft;
@@ -99,18 +100,21 @@
             button4.Name = "button4";
             button4.Size = new Size(70, 22);
             button4.TabIndex = 11;
+            button4.TabStop = false;
             button4.UseVisualStyleBackColor = true;
             // 
             // button3
             // 
+            button3.Enabled = false;
             button3.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            button3.ForeColor = SystemColors.ControlText;
+            button3.ForeColor = Color.Blue;
             button3.ImageAlign = ContentAlignment.BottomLeft;
             button3.Location = new Point(428, 4);
             button3.Margin = new Padding(0, 2, 0, 2);
             button3.Name = "button3";
             button3.Size = new Size(70, 22);
             button3.TabIndex = 7;
+            button3.TabStop = false;
             button3.UseVisualStyleBackColor = true;
             // 
             // コマンド受注
@@ -123,6 +127,7 @@
             コマンド受注.Name = "コマンド受注";
             コマンド受注.Size = new Size(70, 22);
             コマンド受注.TabIndex = 1;
+            コマンド受注.TabStop = false;
             コマンド受注.Text = "受注";
             コマンド受注.UseVisualStyleBackColor = true;
             コマンド受注.Click += コマンド受注_Click;
@@ -137,6 +142,7 @@
             コマンド顧客.Name = "コマンド顧客";
             コマンド顧客.Size = new Size(70, 22);
             コマンド顧客.TabIndex = 6;
+            コマンド顧客.TabStop = false;
             コマンド顧客.Text = "顧客";
             コマンド顧客.UseVisualStyleBackColor = true;
             コマンド顧客.Click += コマンド顧客_Click;
@@ -151,6 +157,7 @@
             コマンド更新.Name = "コマンド更新";
             コマンド更新.Size = new Size(70, 22);
             コマンド更新.TabIndex = 10;
+            コマンド更新.TabStop = false;
             コマンド更新.Text = "更新";
             コマンド更新.UseVisualStyleBackColor = true;
             コマンド更新.Click += コマンド更新_Click;
@@ -159,13 +166,14 @@
             // 
             コマンド確認.Enabled = false;
             コマンド確認.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            コマンド確認.ForeColor = SystemColors.ControlText;
+            コマンド確認.ForeColor = Color.Blue;
             コマンド確認.ImageAlign = ContentAlignment.BottomLeft;
             コマンド確認.Location = new Point(715, 4);
             コマンド確認.Margin = new Padding(0, 2, 0, 2);
             コマンド確認.Name = "コマンド確認";
             コマンド確認.Size = new Size(70, 22);
             コマンド確認.TabIndex = 11;
+            コマンド確認.TabStop = false;
             コマンド確認.Text = "確認";
             コマンド確認.UseVisualStyleBackColor = true;
             // 
@@ -173,13 +181,14 @@
             // 
             コマンド取消.Enabled = false;
             コマンド取消.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            コマンド取消.ForeColor = SystemColors.ControlText;
+            コマンド取消.ForeColor = Color.Blue;
             コマンド取消.ImageAlign = ContentAlignment.BottomLeft;
             コマンド取消.Location = new Point(207, 4);
             コマンド取消.Margin = new Padding(0, 2, 0, 2);
             コマンド取消.Name = "コマンド取消";
             コマンド取消.Size = new Size(70, 22);
             コマンド取消.TabIndex = 5;
+            コマンド取消.TabStop = false;
             コマンド取消.Text = "取消";
             コマンド取消.UseVisualStyleBackColor = true;
             // 
@@ -187,13 +196,14 @@
             // 
             コマンド削除.Enabled = false;
             コマンド削除.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            コマンド削除.ForeColor = SystemColors.ControlText;
+            コマンド削除.ForeColor = Color.Blue;
             コマンド削除.ImageAlign = ContentAlignment.BottomLeft;
             コマンド削除.Location = new Point(139, 4);
             コマンド削除.Margin = new Padding(0, 2, 0, 2);
             コマンド削除.Name = "コマンド削除";
             コマンド削除.Size = new Size(70, 22);
             コマンド削除.TabIndex = 4;
+            コマンド削除.TabStop = false;
             コマンド削除.Text = "削除";
             コマンド削除.UseVisualStyleBackColor = true;
             // 
@@ -201,13 +211,14 @@
             // 
             コマンド修正.Enabled = false;
             コマンド修正.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            コマンド修正.ForeColor = SystemColors.ControlText;
+            コマンド修正.ForeColor = Color.Blue;
             コマンド修正.ImageAlign = ContentAlignment.BottomLeft;
             コマンド修正.Location = new Point(71, 4);
             コマンド修正.Margin = new Padding(0, 2, 0, 2);
             コマンド修正.Name = "コマンド修正";
             コマンド修正.Size = new Size(70, 22);
             コマンド修正.TabIndex = 3;
+            コマンド修正.TabStop = false;
             コマンド修正.Text = "修正";
             コマンド修正.UseVisualStyleBackColor = true;
             // 
@@ -215,13 +226,14 @@
             // 
             コマンド新規.Enabled = false;
             コマンド新規.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            コマンド新規.ForeColor = SystemColors.ControlText;
+            コマンド新規.ForeColor = Color.Blue;
             コマンド新規.ImageAlign = ContentAlignment.BottomLeft;
             コマンド新規.Location = new Point(3, 4);
             コマンド新規.Margin = new Padding(0, 2, 0, 2);
             コマンド新規.Name = "コマンド新規";
             コマンド新規.Size = new Size(70, 22);
             コマンド新規.TabIndex = 2;
+            コマンド新規.TabStop = false;
             コマンド新規.Text = "新規";
             コマンド新規.UseVisualStyleBackColor = true;
             // 
@@ -229,12 +241,14 @@
             // 
             コマンド複写.Enabled = false;
             コマンド複写.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            コマンド複写.ForeColor = Color.Blue;
             コマンド複写.ImageAlign = ContentAlignment.BottomLeft;
             コマンド複写.Location = new Point(579, 4);
             コマンド複写.Margin = new Padding(0, 2, 0, 2);
             コマンド複写.Name = "コマンド複写";
             コマンド複写.Size = new Size(70, 22);
             コマンド複写.TabIndex = 9;
+            コマンド複写.TabStop = false;
             コマンド複写.Text = "複写";
             コマンド複写.UseVisualStyleBackColor = true;
             // 
@@ -247,6 +261,7 @@
             コマンド終了.Name = "コマンド終了";
             コマンド終了.Size = new Size(70, 22);
             コマンド終了.TabIndex = 0;
+            コマンド終了.TabStop = false;
             コマンド終了.Text = "終了";
             コマンド終了.UseVisualStyleBackColor = true;
             コマンド終了.Click += コマンド終了_Click;
@@ -293,7 +308,7 @@
             dataGridView1.RowHeadersVisible = false;
             dataGridView1.RowTemplate.Height = 29;
             dataGridView1.Size = new Size(847, 358);
-            dataGridView1.TabIndex = 87;
+            dataGridView1.TabIndex = 0;
             dataGridView1.CellClick += dataGridView1_CellClick;
             dataGridView1.CellDoubleClick += dataGridView1_CellDoubleClick;
             dataGridView1.CellPainting += DataGridView1_CellPainting;
@@ -364,10 +379,10 @@
             // 本日登録分ボタン
             // 
             本日登録分ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            本日登録分ボタン.Location = new Point(244, 38);
+            本日登録分ボタン.Location = new Point(242, 38);
             本日登録分ボタン.Margin = new Padding(3, 2, 3, 2);
             本日登録分ボタン.Name = "本日登録分ボタン";
-            本日登録分ボタン.Size = new Size(75, 22);
+            本日登録分ボタン.Size = new Size(75, 20);
             本日登録分ボタン.TabIndex = 3;
             本日登録分ボタン.Text = "本日変更分";
             toolTip1.SetToolTip(本日登録分ボタン, "本日受注分を抽出");
@@ -377,10 +392,10 @@
             // 前日登録分ボタン
             // 
             前日登録分ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            前日登録分ボタン.Location = new Point(317, 38);
+            前日登録分ボタン.Location = new Point(316, 38);
             前日登録分ボタン.Margin = new Padding(3, 2, 3, 2);
             前日登録分ボタン.Name = "前日登録分ボタン";
-            前日登録分ボタン.Size = new Size(75, 22);
+            前日登録分ボタン.Size = new Size(75, 20);
             前日登録分ボタン.TabIndex = 4;
             前日登録分ボタン.Text = "前日変更分";
             toolTip1.SetToolTip(前日登録分ボタン, "前日登録分を抽出");
@@ -390,10 +405,10 @@
             // 検索ボタン
             // 
             検索ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            検索ボタン.Location = new Point(565, 38);
+            検索ボタン.Location = new Point(557, 39);
             検索ボタン.Margin = new Padding(3, 2, 3, 2);
             検索ボタン.Name = "検索ボタン";
-            検索ボタン.Size = new Size(47, 22);
+            検索ボタン.Size = new Size(47, 20);
             検索ボタン.TabIndex = 2;
             検索ボタン.Text = "検索";
             toolTip1.SetToolTip(検索ボタン, "コードで検索します");
@@ -402,36 +417,39 @@
             // 
             // label4
             // 
-            label4.AutoSize = true;
             label4.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label4.Location = new Point(6, 42);
+            label4.Location = new Point(8, 39);
             label4.Name = "label4";
-            label4.Size = new Size(53, 12);
+            label4.Size = new Size(53, 20);
             label4.TabIndex = 94;
             label4.Text = "承認情報";
+            label4.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // 承認情報
             // 
+            承認情報.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             承認情報.FormattingEnabled = true;
-            承認情報.Location = new Point(67, 38);
+            承認情報.Location = new Point(67, 39);
             承認情報.Name = "承認情報";
-            承認情報.Size = new Size(168, 23);
+            承認情報.Size = new Size(168, 20);
             承認情報.TabIndex = 6;
             // 
             // 検索コードラベル
             // 
-            検索コードラベル.AutoSize = true;
             検索コードラベル.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            検索コードラベル.Location = new Point(410, 42);
+            検索コードラベル.Location = new Point(403, 38);
             検索コードラベル.Name = "検索コードラベル";
-            検索コードラベル.Size = new Size(62, 12);
+            検索コードラベル.Size = new Size(62, 20);
             検索コードラベル.TabIndex = 96;
             検索コードラベル.Text = "検索コード";
+            検索コードラベル.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // 検索コード
             // 
-            検索コード.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            検索コード.Location = new Point(471, 39);
+            検索コード.BackColor = Color.FromArgb(255, 255, 153);
+            検索コード.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            検索コード.ImeMode = ImeMode.Disable;
+            検索コード.Location = new Point(466, 39);
             検索コード.Margin = new Padding(3, 2, 3, 2);
             検索コード.Name = "検索コード";
             検索コード.Size = new Size(88, 19);
@@ -443,13 +461,12 @@
             // 履歴トグル
             // 
             履歴トグル.Appearance = Appearance.Button;
-            履歴トグル.AutoSize = true;
             履歴トグル.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            履歴トグル.Location = new Point(610, 38);
+            履歴トグル.Location = new Point(611, 39);
             履歴トグル.Margin = new Padding(3, 2, 3, 2);
             履歴トグル.Name = "履歴トグル";
-            履歴トグル.Size = new Size(72, 22);
-            履歴トグル.TabIndex = 6;
+            履歴トグル.Size = new Size(72, 20);
+            履歴トグル.TabIndex = 5;
             履歴トグル.Text = "履歴モード";
             履歴トグル.UseVisualStyleBackColor = true;
             履歴トグル.Validating += 履歴トグル_Validating;

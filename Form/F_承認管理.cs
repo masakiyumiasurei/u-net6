@@ -538,13 +538,13 @@ namespace u_net
                 switch (e.KeyCode)
                 {
                     case Keys.F5:
-                        コマンド顧客_Click(null, null);
+                        コマンド顧客_Click(sender, e);
                         break;
                     case Keys.F10:
-                        コマンド更新_Click(null, null);
+                        コマンド更新_Click(sender, e);
                         break;
                     case Keys.F12:
-                        コマンド終了_Click(null, null);
+                        コマンド終了_Click(sender, e);
                         break;
                 }
             }
