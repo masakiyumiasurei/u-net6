@@ -53,7 +53,7 @@ namespace MultiRowDesigner
         private void gcMultiRow1_TextChanged(object sender, EventArgs e)
         {
             Control control = sender as Control;
-            
+
             switch (gcMultiRow1.CurrentCell.Name)
             {
                 case "品名":
@@ -173,7 +173,7 @@ namespace MultiRowDesigner
                 case "単価":
                 case "単位":
                 case "標準単価":
-                    
+
                     // セルが編集中の場合
                     if (grid.IsCurrentCellInEditMode)
                     {
@@ -300,6 +300,51 @@ namespace MultiRowDesigner
         {
             this.IsOrderByOn = true;
         }
+
+        private void gcMultiRow1_CellValidated(object sender, CellEventArgs e)
+        {
+            //switch (e.CellName)
+            //{                                
+            //    case "数量":
+            //    case "単価":
+
+
+            //        int total = Convert.ToInt32(gcMultiRow1.ColumnFooters[0].Cells["合計金額"].Value ?? 0); 
+            //        if (total >= 0)
+            //        {
+            //            gcMultiRow1.ColumnFooters[0].Cells["合計金額"].cellStyle
+            //        }
+
+            //        break;
+               
+            //}
+        }
+
+        //private void multiRow_OwnerDrawCell(object sender, GrapeCity.Win.MultiRow.OwnerDrawCellEventArgs e)
+        //{
+        //    // 対象のSummaryCellであるか確認
+        //    if (e.Scope == GrapeCity.Win.MultiRow.CellScope.Row && e.CellName == "YourSummaryCellName")
+        //    {
+        //        // セルの値を取得
+        //        var value = Convert.ToDecimal(e.Value);
+
+        //        // 値がマイナスの場合、背景色を赤に設定
+        //        if (value < 0)
+        //        {                   
+        //            e.ForeColor = Color.Red; // 背景が赤い場合はテキストを白にするなど、読みやすさを考慮
+        //        }
+        //        else
+        //        {                    
+        //            e.ForeColor = Color.Black; // テキスト色を黒に設定
+        //        }
+
+        //        // テキストの描画
+        //        e.DrawBackground();
+        //        e.DrawText();
+        //        // さらなる描画処理をキャンセル
+        //        e.Handled = true;
+        //    }
+        //}
 
     }
 }

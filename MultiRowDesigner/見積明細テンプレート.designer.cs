@@ -52,9 +52,8 @@
             GrapeCity.Win.MultiRow.CellStyle cellStyle2 = new GrapeCity.Win.MultiRow.CellStyle();
             GrapeCity.Win.MultiRow.CellStyle cellStyle3 = new GrapeCity.Win.MultiRow.CellStyle();
             GrapeCity.Win.MultiRow.CellStyle cellStyle4 = new GrapeCity.Win.MultiRow.CellStyle();
-            GrapeCity.Win.MultiRow.CellStyle cellStyle5 = new GrapeCity.Win.MultiRow.CellStyle();
             GrapeCity.Win.MultiRow.Expression expression1 = new GrapeCity.Win.MultiRow.Expression();
-            GrapeCity.Win.MultiRow.CellStyle cellStyle6 = new GrapeCity.Win.MultiRow.CellStyle();
+            GrapeCity.Win.MultiRow.CellStyle cellStyle5 = new GrapeCity.Win.MultiRow.CellStyle();
             GrapeCity.Win.MultiRow.Border border12 = new GrapeCity.Win.MultiRow.Border();
             GrapeCity.Win.MultiRow.MathStatistics mathStatistics1 = new GrapeCity.Win.MultiRow.MathStatistics();
             GrapeCity.Win.MultiRow.CellStyle cellStyle25 = new GrapeCity.Win.MultiRow.CellStyle();
@@ -66,14 +65,15 @@
             GrapeCity.Win.MultiRow.Border border15 = new GrapeCity.Win.MultiRow.Border();
             GrapeCity.Win.MultiRow.MathStatistics mathStatistics2 = new GrapeCity.Win.MultiRow.MathStatistics();
             GrapeCity.Win.MultiRow.CellStyle cellStyle29 = new GrapeCity.Win.MultiRow.CellStyle();
-            GrapeCity.Win.MultiRow.CellStyle cellStyle11 = new GrapeCity.Win.MultiRow.CellStyle();
-            GrapeCity.Win.MultiRow.CellStyle cellStyle12 = new GrapeCity.Win.MultiRow.CellStyle();
             GrapeCity.Win.MultiRow.CellStyle cellStyle10 = new GrapeCity.Win.MultiRow.CellStyle();
-            GrapeCity.Win.MultiRow.Border border2 = new GrapeCity.Win.MultiRow.Border();
-            GrapeCity.Win.MultiRow.CellStyle cellStyle7 = new GrapeCity.Win.MultiRow.CellStyle();
-            GrapeCity.Win.MultiRow.CellStyle cellStyle8 = new GrapeCity.Win.MultiRow.CellStyle();
-            GrapeCity.Win.MultiRow.Border border1 = new GrapeCity.Win.MultiRow.Border();
+            GrapeCity.Win.MultiRow.CellStyle cellStyle11 = new GrapeCity.Win.MultiRow.CellStyle();
             GrapeCity.Win.MultiRow.CellStyle cellStyle9 = new GrapeCity.Win.MultiRow.CellStyle();
+            GrapeCity.Win.MultiRow.Border border2 = new GrapeCity.Win.MultiRow.Border();
+            GrapeCity.Win.MultiRow.CellStyle cellStyle6 = new GrapeCity.Win.MultiRow.CellStyle();
+            GrapeCity.Win.MultiRow.CellStyle cellStyle7 = new GrapeCity.Win.MultiRow.CellStyle();
+            GrapeCity.Win.MultiRow.Border border1 = new GrapeCity.Win.MultiRow.Border();
+            GrapeCity.Win.MultiRow.CellStyle cellStyle8 = new GrapeCity.Win.MultiRow.CellStyle();
+            GrapeCity.Win.MultiRow.CellStyle cellStyle12 = new GrapeCity.Win.MultiRow.CellStyle();
             GrapeCity.Win.MultiRow.CellStyle cellStyle13 = new GrapeCity.Win.MultiRow.CellStyle();
             GrapeCity.Win.MultiRow.CellStyle cellStyle14 = new GrapeCity.Win.MultiRow.CellStyle();
             this.columnHeaderSection1 = new GrapeCity.Win.MultiRow.ColumnHeaderSection();
@@ -90,7 +90,6 @@
             this.型番 = new GrapeCity.Win.MultiRow.TextBoxCell();
             this.品名 = new GrapeCity.Win.MultiRow.TextBoxCell();
             this.明細削除ボタン = new GrapeCity.Win.MultiRow.ButtonCell();
-            this.数量 = new GrapeCity.Win.MultiRow.NumericUpDownCell();
             this.単価 = new GrapeCity.Win.MultiRow.NumericUpDownCell();
             this.金額 = new GrapeCity.Win.MultiRow.SummaryCell();
             this.columnFooterSection1 = new GrapeCity.Win.MultiRow.ColumnFooterSection();
@@ -107,13 +106,13 @@
             this.明細備考 = new GrapeCity.Win.MultiRow.TextBoxCell();
             this.単位 = new GrapeCity.Win.MultiRow.TextBoxCell();
             this.初期ソート順 = new GrapeCity.Win.MultiRow.NumericUpDownCell();
+            this.数量 = new GrapeCity.Win.MultiRow.TextBoxCell();
             // 
             // Row
             // 
             this.Row.Cells.Add(this.型番);
             this.Row.Cells.Add(this.品名);
             this.Row.Cells.Add(this.明細削除ボタン);
-            this.Row.Cells.Add(this.数量);
             this.Row.Cells.Add(this.単価);
             this.Row.Cells.Add(this.金額);
             this.Row.Cells.Add(this.標準単価);
@@ -124,6 +123,7 @@
             this.Row.Cells.Add(this.見積版数);
             this.Row.Cells.Add(this.単位);
             this.Row.Cells.Add(this.初期ソート順);
+            this.Row.Cells.Add(this.数量);
             this.Row.Height = 42;
             this.Row.Width = 1000;
             // 
@@ -338,24 +338,6 @@
             this.明細削除ボタン.TabStop = false;
             this.明細削除ボタン.Value = "×";
             // 
-            // 数量
-            // 
-            this.数量.DataField = "数量";
-            this.数量.DecimalPlaces = 1;
-            this.数量.InterceptArrowKeys = false;
-            this.数量.Location = new System.Drawing.Point(420, 0);
-            this.数量.Name = "数量";
-            this.数量.ShowSpinButton = GrapeCity.Win.MultiRow.CellButtonVisibility.NotShown;
-            this.数量.ShowSpinButtonInEditState = false;
-            this.数量.Size = new System.Drawing.Size(80, 42);
-            cellStyle4.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
-            cellStyle4.Format = "N1";
-            cellStyle4.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            cellStyle4.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleRight;
-            this.数量.Style = cellStyle4;
-            this.数量.TabIndex = 4;
-            this.数量.ThousandsSeparator = true;
-            // 
             // 単価
             // 
             this.単価.DataField = "単価";
@@ -366,11 +348,11 @@
             this.単価.ShowSpinButton = GrapeCity.Win.MultiRow.CellButtonVisibility.NotShown;
             this.単価.ShowSpinButtonInEditState = false;
             this.単価.Size = new System.Drawing.Size(100, 42);
-            cellStyle5.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
-            cellStyle5.Format = "N2";
-            cellStyle5.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            cellStyle5.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleRight;
-            this.単価.Style = cellStyle5;
+            cellStyle4.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
+            cellStyle4.Format = "N2";
+            cellStyle4.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            cellStyle4.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleRight;
+            this.単価.Style = cellStyle4;
             this.単価.TabIndex = 7;
             this.単価.ThousandsSeparator = true;
             // 
@@ -381,11 +363,11 @@
             this.金額.Location = new System.Drawing.Point(760, 0);
             this.金額.Name = "金額";
             this.金額.Size = new System.Drawing.Size(100, 42);
-            cellStyle6.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
-            cellStyle6.Format = "N0";
-            cellStyle6.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            cellStyle6.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleRight;
-            this.金額.Style = cellStyle6;
+            cellStyle5.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
+            cellStyle5.Format = "N0";
+            cellStyle5.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            cellStyle5.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleRight;
+            this.金額.Style = cellStyle5;
             this.金額.TabIndex = 8;
             // 
             // columnFooterSection1
@@ -477,8 +459,8 @@
             this.見積コード.Location = new System.Drawing.Point(920, 21);
             this.見積コード.Name = "見積コード";
             this.見積コード.Size = new System.Drawing.Size(40, 21);
-            cellStyle11.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
-            this.見積コード.Style = cellStyle11;
+            cellStyle10.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
+            this.見積コード.Style = cellStyle10;
             this.見積コード.TabIndex = 57;
             this.見積コード.TabStop = false;
             this.見積コード.Visible = false;
@@ -492,9 +474,9 @@
             this.見積版数.ShowSpinButton = GrapeCity.Win.MultiRow.CellButtonVisibility.NotShown;
             this.見積版数.ShowSpinButtonInEditState = false;
             this.見積版数.Size = new System.Drawing.Size(40, 21);
-            cellStyle12.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
-            cellStyle12.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleRight;
-            this.見積版数.Style = cellStyle12;
+            cellStyle11.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
+            cellStyle11.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleRight;
+            this.見積版数.Style = cellStyle11;
             this.見積版数.TabIndex = 58;
             this.見積版数.TabStop = false;
             this.見積版数.ThousandsSeparator = true;
@@ -512,10 +494,10 @@
             border2.Left = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.DarkGray);
             border2.Right = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.DarkGray);
             border2.Top = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.DarkGray);
-            cellStyle10.Border = border2;
-            cellStyle10.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
-            cellStyle10.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
-            this.明細番号.Style = cellStyle10;
+            cellStyle9.Border = border2;
+            cellStyle9.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
+            cellStyle9.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
+            this.明細番号.Style = cellStyle9;
             this.明細番号.TabIndex = 0;
             this.明細番号.TabStop = false;
             this.明細番号.ValueFormat = "%1%";
@@ -530,11 +512,11 @@
             this.標準単価.ShowSpinButton = GrapeCity.Win.MultiRow.CellButtonVisibility.NotShown;
             this.標準単価.ShowSpinButtonInEditState = false;
             this.標準単価.Size = new System.Drawing.Size(100, 42);
-            cellStyle7.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
-            cellStyle7.Format = "N0";
-            cellStyle7.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            cellStyle7.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleRight;
-            this.標準単価.Style = cellStyle7;
+            cellStyle6.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
+            cellStyle6.Format = "N0";
+            cellStyle6.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            cellStyle6.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleRight;
+            this.標準単価.Style = cellStyle6;
             this.標準単価.TabIndex = 6;
             this.標準単価.ThousandsSeparator = true;
             // 
@@ -550,10 +532,10 @@
             border1.Left = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.DarkGray);
             border1.Right = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.DarkGray);
             border1.Top = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.DarkGray);
-            cellStyle8.Border = border1;
-            cellStyle8.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
-            cellStyle8.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleRight;
-            this.行番号.Style = cellStyle8;
+            cellStyle7.Border = border1;
+            cellStyle7.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
+            cellStyle7.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleRight;
+            this.行番号.Style = cellStyle7;
             this.行番号.TabIndex = 1;
             this.行番号.TabStop = false;
             this.行番号.ValueFormat = "%1%";
@@ -564,12 +546,12 @@
             this.明細備考.Location = new System.Drawing.Point(860, 0);
             this.明細備考.Name = "明細備考";
             this.明細備考.Size = new System.Drawing.Size(140, 42);
-            cellStyle9.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
-            cellStyle9.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
-            cellStyle9.Multiline = GrapeCity.Win.MultiRow.MultiRowTriState.True;
-            cellStyle9.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.TopLeft;
-            cellStyle9.WordWrap = GrapeCity.Win.MultiRow.MultiRowTriState.True;
-            this.明細備考.Style = cellStyle9;
+            cellStyle8.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
+            cellStyle8.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
+            cellStyle8.Multiline = GrapeCity.Win.MultiRow.MultiRowTriState.True;
+            cellStyle8.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.TopLeft;
+            cellStyle8.WordWrap = GrapeCity.Win.MultiRow.MultiRowTriState.True;
+            this.明細備考.Style = cellStyle8;
             this.明細備考.TabIndex = 9;
             // 
             // 単位
@@ -578,9 +560,9 @@
             this.単位.Location = new System.Drawing.Point(500, 0);
             this.単位.Name = "単位";
             this.単位.Size = new System.Drawing.Size(60, 42);
-            cellStyle13.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
-            cellStyle13.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
-            this.単位.Style = cellStyle13;
+            cellStyle12.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
+            cellStyle12.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
+            this.単位.Style = cellStyle12;
             this.単位.TabIndex = 5;
             // 
             // 初期ソート順
@@ -591,10 +573,10 @@
             this.初期ソート順.ShowSpinButton = GrapeCity.Win.MultiRow.CellButtonVisibility.NotShown;
             this.初期ソート順.ShowSpinButtonInEditState = false;
             this.初期ソート順.Size = new System.Drawing.Size(40, 21);
-            cellStyle14.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
-            cellStyle14.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            cellStyle14.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleRight;
-            this.初期ソート順.Style = cellStyle14;
+            cellStyle13.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
+            cellStyle13.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            cellStyle13.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleRight;
+            this.初期ソート順.Style = cellStyle13;
             this.初期ソート順.TabIndex = 59;
             this.初期ソート順.TabStop = false;
             this.初期ソート順.ThousandsSeparator = true;
@@ -604,6 +586,18 @@
             0,
             0});
             this.初期ソート順.Visible = false;
+            // 
+            // 数量
+            // 
+            this.数量.DataField = "数量";
+            this.数量.Location = new System.Drawing.Point(420, 0);
+            this.数量.Name = "数量";
+            this.数量.Size = new System.Drawing.Size(80, 42);
+            cellStyle14.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
+            cellStyle14.Format = "N1";
+            cellStyle14.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.数量.Style = cellStyle14;
+            this.数量.TabIndex = 4;
             // 
             // 見積明細テンプレート
             // 
@@ -631,11 +625,10 @@
         private GrapeCity.Win.MultiRow.TextBoxCell 型番;
         private GrapeCity.Win.MultiRow.TextBoxCell 品名;
         private GrapeCity.Win.MultiRow.ButtonCell 明細削除ボタン;
-        private GrapeCity.Win.MultiRow.NumericUpDownCell 数量;
         private GrapeCity.Win.MultiRow.NumericUpDownCell 単価;
         private GrapeCity.Win.MultiRow.SummaryCell 金額;
         private GrapeCity.Win.MultiRow.ColumnFooterSection columnFooterSection1;
-        private GrapeCity.Win.MultiRow.SummaryCell 合計金額;
+        public GrapeCity.Win.MultiRow.SummaryCell 合計金額;
         private GrapeCity.Win.MultiRow.LabelCell labelCell1;
         private GrapeCity.Win.MultiRow.TextBoxCell 見積コード;
         private GrapeCity.Win.MultiRow.NumericUpDownCell 見積版数;
@@ -650,5 +643,6 @@
         private GrapeCity.Win.MultiRow.TextBoxCell 単位;
         private GrapeCity.Win.MultiRow.ButtonCell 行番号ボタン;
         private GrapeCity.Win.MultiRow.NumericUpDownCell 初期ソート順;
+        private GrapeCity.Win.MultiRow.TextBoxCell 数量;
     }
 }

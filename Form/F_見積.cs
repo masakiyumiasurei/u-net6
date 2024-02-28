@@ -424,6 +424,10 @@ namespace u_net
                 this.見積コード.Focus();
                 // 見積コードコントロールが使用可能になってからLockDataをコールすること
                 LockData(this, true, "見積コード", "見積版数");
+                見積明細1.Detail.AllowUserToAddRows = false;
+                見積明細1.Detail.AllowUserToDeleteRows = false;
+                見積明細1.Detail.ReadOnly = true; //readonlyなのでaccessと真偽が逆になる
+
                 this.コマンド新規.Enabled = true;
                 this.コマンド読込.Enabled = false;
                 this.コマンド複写.Enabled = false;
@@ -591,7 +595,7 @@ namespace u_net
         {
             try
             {
-              
+
                 if ((IsDecided && 見積明細1.Detail.RowCount < 1) || (!IsDecided && 見積明細1.Detail.RowCount <= 1))
                 {
                     MessageBox.Show("明細行を1行以上入力してください。", "見積", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -600,7 +604,7 @@ namespace u_net
                 }
                 else
                 {
-                    foreach(Row row in 見積明細1.Detail.Rows)
+                    foreach (Row row in 見積明細1.Detail.Rows)
                     {
                         if (row.IsNewRow) continue;
 
@@ -609,7 +613,7 @@ namespace u_net
 
                             MessageBox.Show("品名を入力してください。", "見積", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                             return true;
-                            
+
                         }
 
                         if (string.IsNullOrEmpty(row.Cells["単価"].Value?.ToString()))
@@ -1559,7 +1563,8 @@ namespace u_net
 
                 param = $" -user:{LoginUserName}{param}";
 
-                if(!FunctionClass.GetShell(param)){
+                if (!FunctionClass.GetShell(param))
+                {
                     return;
 
                 }
@@ -1585,7 +1590,7 @@ namespace u_net
         private void 文書グループ登録ボタン_Click(object sender, EventArgs e)
         {
             Connect();
-                        
+
             string strDocumentCode = CurrentCode;
             if (string.IsNullOrEmpty(strDocumentCode)) return;
             // 本データがグループに登録済みかどうかを判断する
@@ -1594,7 +1599,7 @@ namespace u_net
                 case 0:
                     // グループに登録済みでない場合
                     F_グループ form = new F_グループ();
-                    form.args= strDocumentCode;
+                    form.args = strDocumentCode;
                     form.ShowDialog();
                     break;
                 case 1:
@@ -1896,6 +1901,7 @@ namespace u_net
                     // 複数行入力可能な項目はEnterでフォーカス移動させない
                     switch (this.ActiveControl.Name)
                     {
+                        case "見積コード":
                         case "備考":
                         case "メモ":
                             return;
@@ -1985,6 +1991,30 @@ namespace u_net
             }
         }
 
+        private void 見積コード_KeyDown(object sender, KeyEventArgs e)
+        {
+            string strCode;
+
+            switch (e.KeyCode)
+            {
+                case Keys.Return:
+                    strCode = 見積コード.Text;
+                    if (string.IsNullOrEmpty(strCode))
+                        return;
+
+                    strCode = FormatCode(CH_ESTIMATE, strCode);
+                    //if (strCode != Convert.ToString(見積コード.Text))
+                    //{
+                    見積コード.Text = strCode;
+                    SelectNextControl(ActiveControl, true, true, true, true);
+                    e.Handled = true;
+                    e.SuppressKeyPress = true;
+                    UpdatedControl(見積コード);
+                    //}
+                    break;
+            }
+        }
+
         private void 見積コード_Validating(object sender, CancelEventArgs e)
         {
             TextBox textBox = (TextBox)sender;
@@ -2013,11 +2043,23 @@ namespace u_net
             if (IsError((Control)sender) == true) e.Cancel = true;
         }
 
+        bool loadflg = false;
         private void 見積版数_Validated(object sender, EventArgs e)
         {
             if (setCombo) return;
-
+            if (loadflg)
+            {
+                loadflg = false;
+                return;
+            }
             UpdatedControl((Control)sender);
+        }
+
+        private void 見積版数_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (setCombo) return;
+            UpdatedControl((Control)sender);
+            loadflg = true;
         }
 
         private void 改版ボタン_Click(object sender, EventArgs e)
@@ -2049,7 +2091,7 @@ namespace u_net
                     見積明細1.Detail.AllowUserToDeleteRows = true;
                     見積明細1.Detail.ReadOnly = false; //readonlyなのでaccessと真偽が逆になる  
 
-                    
+
                 }
                 else
                 {
@@ -2171,6 +2213,7 @@ namespace u_net
                     else
                     {
                         UpdatedControl(顧客コード);
+                        顧客コード.Focus();
                     }
                 }
             }
@@ -2421,25 +2464,7 @@ namespace u_net
             this.toolStripStatusLabel2.Text = "■入力した内容は見積書へ表示されません。　■最大入力文字数は500文字（全角文字）です。";
         }
 
-        private void 見積コード_KeyDown(object sender, KeyEventArgs e)
-        {
-            string strCode;
 
-            switch (e.KeyCode)
-            {
-                case Keys.Return:
-                    strCode = 見積コード.Text;
-                    if (string.IsNullOrEmpty(strCode))
-                        return;
-
-                    strCode = FormatCode(CH_ESTIMATE, strCode);
-                    if (strCode != Convert.ToString(見積コード.Text))
-                    {
-                        見積コード.Text = strCode;
-                    }
-                    break;
-            }
-        }
     }
 }
 
