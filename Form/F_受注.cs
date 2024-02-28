@@ -230,6 +230,7 @@ namespace u_net
             受注コード.DropDownWidth = 350;
             //ofn.SetComboBox(受注版数, "SELECT 1 AS Value, 1 AS Display, '' AS Display2");
             //this.受注版数.SelectedIndex = 0;
+            this.受注版数.DropDownWidth = 80;
 
             ofn.SetComboBox(ClientCode, "SELECT Code AS Value, Name AS Display FROM ClientDataSource");
             ofn.SetComboBox(納品書送付コード, "SELECT right(replace(str(納品書送付コード),' ','0'),2) AS Value, right(replace(str(納品書送付コード),' ','0'),2) AS Display, 送付処理 AS Display2 FROM M納品書送付処理");
@@ -3058,7 +3059,7 @@ namespace u_net
 
         private void 受注版数_DrawItem(object sender, DrawItemEventArgs e)
         {
-            OriginalClass.SetComboBoxAppearance((ComboBox)sender, e, new int[] { 50, 50 }, new string[] { "Display", "Display2" });
+            OriginalClass.SetComboBoxAppearance((ComboBox)sender, e, new int[] { 30, 50 }, new string[] { "Display", "Display2" });
             受注版数.Invalidate();
             受注版数.DroppedDown = true;
         }

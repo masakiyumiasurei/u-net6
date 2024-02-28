@@ -292,7 +292,7 @@ namespace u_net
             MinimizeBox = false;
             Name = "F_製品_ツール";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = " 製品_ツール";
+            Text = "ユニット - ツール";
             FormClosing += Form_Unload;
             Load += Form_Load;
             statusStrip1.ResumeLayout(false);

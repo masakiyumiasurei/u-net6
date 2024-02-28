@@ -447,6 +447,7 @@ namespace u_net
             掛率有効_ラベル.TabIndex = 11;
             掛率有効_ラベル.Text = "掛率有効";
             掛率有効_ラベル.TextAlign = ContentAlignment.MiddleLeft;
+            掛率有効_ラベル.Click += 掛率有効_ラベル_Click;
             // 
             // 顧客コード
             // 
