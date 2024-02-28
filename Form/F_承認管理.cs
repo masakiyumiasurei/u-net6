@@ -170,6 +170,11 @@ namespace u_net
             dataGridView1.DefaultCellStyle.ForeColor = Color.Black;
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
+            //ダブルバッファ処理設定
+            System.Type dgvtype = typeof(DataGridView);
+            System.Reflection.PropertyInfo dgvPropertyInfo = dgvtype.GetProperty("DoubleBuffered", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
+            dgvPropertyInfo.SetValue(dataGridView1, true, null);
+
             // 行番号の非表示設定はdataGridView画面プロパティにおいて、RowHeadersVisible = Falseに設定している。表示時、Trueに戻すこと
 
             myapi.GetFullScreen(out xSize, out ySize);
@@ -200,14 +205,13 @@ namespace u_net
         {
             try
             {
-                if (this.Height > 800)
-                {
-                    dataGridView1.Height = dataGridView1.Height + (this.Height - intWindowHeight);
-                    intWindowHeight = this.Height;  // 高さ保存
 
-                    dataGridView1.Width = dataGridView1.Width + (this.Width - intWindowWidth);
-                    intWindowWidth = this.Width;    // 幅保存
-                }
+                dataGridView1.Height = dataGridView1.Height + (this.Height - intWindowHeight);
+                intWindowHeight = this.Height;  // 高さ保存
+
+                dataGridView1.Width = dataGridView1.Width + (this.Width - intWindowWidth);
+                intWindowWidth = this.Width;    // 幅保存
+
             }
             catch (Exception ex)
             {
@@ -463,7 +467,7 @@ namespace u_net
             {
                 F_受注 targetform = new F_受注();
 
-                targetform.varOpenArgs = $"{CurrentCode} , {CurrentEdition}";
+                targetform.varOpenArgs = $"{CurrentCode},{CurrentEdition}";
                 targetform.ShowDialog();
             }
         }
@@ -538,6 +542,9 @@ namespace u_net
                 switch (e.KeyCode)
                 {
                     case Keys.F5:
+                        コマンド受注_Click(sender, e);                        
+                        break;
+                    case Keys.F6:
                         コマンド顧客_Click(sender, e);
                         break;
                     case Keys.F10:
@@ -558,7 +565,7 @@ namespace u_net
         {
             F_受注 targetform = new F_受注();
 
-            targetform.varOpenArgs = $"{CurrentCode} , {CurrentEdition}";
+            targetform.varOpenArgs = $"{CurrentCode},{CurrentEdition}";
             targetform.ShowDialog();
         }
 

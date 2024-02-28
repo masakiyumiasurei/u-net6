@@ -907,8 +907,6 @@ namespace u_net
                 }
                 else
                 {
-
-
                     if (this.受注版数.Items.Count > 0 && this.受注版数.Text == 受注版数.GetItemText(this.受注版数.Items[0]))
                     {
                         this.状態.Text = "最新版";
@@ -927,13 +925,8 @@ namespace u_net
                             this.状態.ForeColor = Color.Black;
                         }
                     }
-
                 }
-                //else
-                //{
-                //    this.状態.Text = "";
-                //    this.状態.ForeColor = Color.Black;
-                //}
+                
             }
             catch (Exception ex)
             {

@@ -547,7 +547,7 @@ namespace u_net
             statusStrip1.Location = new Point(0, 819);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Padding = new Padding(1, 0, 19, 0);
-            statusStrip1.Size = new Size(1240, 22);
+            statusStrip1.Size = new Size(1036, 22);
             statusStrip1.TabIndex = 110;
             statusStrip1.Text = "statusStrip1";
             // 
@@ -1589,7 +1589,7 @@ namespace u_net
             見積明細1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             見積明細1.Location = new Point(15, 460);
             見積明細1.Name = "見積明細1";
-            見積明細1.Size = new Size(1026, 350);
+            見積明細1.Size = new Size(1021, 350);
             見積明細1.TabIndex = 36;
             // 
             // F_見積
@@ -1597,7 +1597,7 @@ namespace u_net
             AutoScaleDimensions = new SizeF(8F, 12F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
-            ClientSize = new Size(1240, 841);
+            ClientSize = new Size(1036, 841);
             Controls.Add(見積明細1);
             Controls.Add(見積コード);
             Controls.Add(label32);

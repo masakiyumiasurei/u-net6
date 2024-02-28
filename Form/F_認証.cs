@@ -87,6 +87,8 @@ namespace u_net
             }
         }
 
+        bool enterflg = false;
+
         private void Form_KeyDown(object sender, KeyEventArgs e)
         {
             switch (e.KeyCode)
@@ -103,9 +105,11 @@ namespace u_net
                     break;
 
                 case Keys.Return:
+                    if (enterflg) return;
                     //switch (this.ActiveControl.Name)
                     //{
-                    //    case "ユーザー名":
+                    //    case "パスワード":
+                    //        OKボタン_Click(sender, e);
                     //        return;
                     //}
 
@@ -185,13 +189,7 @@ namespace u_net
         }
 
         private void キャンセルボタン_Click(object sender, EventArgs e)
-        {
-            //If Forms.Count >= 4 Then
-            //    If Not LoginUserCode = "" Then
-            //        DoCmd.Close acForm, "認証", acSavePrompt
-            //        Exit Sub
-            //    End If
-            //End If
+        {           
 
             ログイン_end();
         }
@@ -252,15 +250,16 @@ namespace u_net
             }
         }
 
-        bool enterflg = false;
+        
         private void パスワード_Enter(object sender, EventArgs e)
         {
-            
+
             toolStripStatusLabel2.Text = "■本システムで有効なパスワードを入力します。";
         }
         private void パスワード_TextChanged(object sender, EventArgs e)
         {
             FunctionClass.LimitText(this.ActiveControl, 20);
+            enterflg = false;
         }
         private void パスワード_Leave(object sender, EventArgs e)
         {
