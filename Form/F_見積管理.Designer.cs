@@ -271,6 +271,7 @@
             表示件数.Size = new Size(88, 23);
             表示件数.TabIndex = 0;
             表示件数.TabStop = false;
+            表示件数.TextAlign = HorizontalAlignment.Right;
             // 
             // label1
             // 
@@ -332,6 +333,7 @@
             Controls.Add(dataGridView1);
             Controls.Add(panel1);
             Icon = (Icon)resources.GetObject("$this.Icon");
+            KeyPreview = true;
             Margin = new Padding(3, 2, 3, 2);
             Name = "F_見積管理";
             StartPosition = FormStartPosition.CenterScreen;

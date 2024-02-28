@@ -84,9 +84,9 @@
             panel1.Controls.Add(コマンド終了);
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
-            panel1.Margin = new Padding(4, 2, 4, 2);
+            panel1.Margin = new Padding(5, 3, 5, 3);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1032, 32);
+            panel1.Size = new Size(1179, 43);
             panel1.TabIndex = 83;
             // 
             // コマンド入力
@@ -95,10 +95,10 @@
             コマンド入力.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             コマンド入力.ForeColor = Color.Blue;
             コマンド入力.ImageAlign = ContentAlignment.BottomLeft;
-            コマンド入力.Location = new Point(578, 4);
-            コマンド入力.Margin = new Padding(0, 2, 0, 2);
+            コマンド入力.Location = new Point(661, 5);
+            コマンド入力.Margin = new Padding(0, 3, 0, 3);
             コマンド入力.Name = "コマンド入力";
-            コマンド入力.Size = new Size(70, 22);
+            コマンド入力.Size = new Size(80, 29);
             コマンド入力.TabIndex = 13;
             コマンド入力.TabStop = false;
             コマンド入力.Text = "入力";
@@ -110,10 +110,10 @@
             button1.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             button1.ForeColor = Color.Blue;
             button1.ImageAlign = ContentAlignment.BottomLeft;
-            button1.Location = new Point(498, 4);
-            button1.Margin = new Padding(0, 2, 0, 2);
+            button1.Location = new Point(569, 5);
+            button1.Margin = new Padding(0, 3, 0, 3);
             button1.Name = "button1";
-            button1.Size = new Size(70, 22);
+            button1.Size = new Size(80, 29);
             button1.TabIndex = 12;
             button1.TabStop = false;
             button1.UseVisualStyleBackColor = true;
@@ -124,10 +124,10 @@
             コマンド生産.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             コマンド生産.ForeColor = Color.Blue;
             コマンド生産.ImageAlign = ContentAlignment.BottomLeft;
-            コマンド生産.Location = new Point(429, 4);
-            コマンド生産.Margin = new Padding(0, 2, 0, 2);
+            コマンド生産.Location = new Point(490, 5);
+            コマンド生産.Margin = new Padding(0, 3, 0, 3);
             コマンド生産.Name = "コマンド生産";
-            コマンド生産.Size = new Size(70, 22);
+            コマンド生産.Size = new Size(80, 29);
             コマンド生産.TabIndex = 11;
             コマンド生産.TabStop = false;
             コマンド生産.Text = "生産";
@@ -138,10 +138,10 @@
             コマンド受注.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             コマンド受注.ForeColor = Color.Blue;
             コマンド受注.ImageAlign = ContentAlignment.BottomLeft;
-            コマンド受注.Location = new Point(291, 4);
-            コマンド受注.Margin = new Padding(0, 2, 0, 2);
+            コマンド受注.Location = new Point(333, 5);
+            コマンド受注.Margin = new Padding(0, 3, 0, 3);
             コマンド受注.Name = "コマンド受注";
-            コマンド受注.Size = new Size(70, 22);
+            コマンド受注.Size = new Size(80, 29);
             コマンド受注.TabIndex = 1;
             コマンド受注.TabStop = false;
             コマンド受注.Text = "受注";
@@ -153,10 +153,10 @@
             コマンド顧客.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             コマンド顧客.ForeColor = Color.Blue;
             コマンド顧客.ImageAlign = ContentAlignment.BottomLeft;
-            コマンド顧客.Location = new Point(360, 4);
-            コマンド顧客.Margin = new Padding(0, 2, 0, 2);
+            コマンド顧客.Location = new Point(411, 5);
+            コマンド顧客.Margin = new Padding(0, 3, 0, 3);
             コマンド顧客.Name = "コマンド顧客";
-            コマンド顧客.Size = new Size(70, 22);
+            コマンド顧客.Size = new Size(80, 29);
             コマンド顧客.TabIndex = 6;
             コマンド顧客.TabStop = false;
             コマンド顧客.Text = "顧客";
@@ -168,10 +168,10 @@
             コマンド出力.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             コマンド出力.ForeColor = Color.Blue;
             コマンド出力.ImageAlign = ContentAlignment.BottomLeft;
-            コマンド出力.Location = new Point(647, 4);
-            コマンド出力.Margin = new Padding(0, 2, 0, 2);
+            コマンド出力.Location = new Point(739, 5);
+            コマンド出力.Margin = new Padding(0, 3, 0, 3);
             コマンド出力.Name = "コマンド出力";
-            コマンド出力.Size = new Size(70, 22);
+            コマンド出力.Size = new Size(80, 29);
             コマンド出力.TabIndex = 11;
             コマンド出力.TabStop = false;
             コマンド出力.Text = "出力";
@@ -183,10 +183,10 @@
             コマンド更新.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             コマンド更新.ForeColor = Color.Blue;
             コマンド更新.ImageAlign = ContentAlignment.BottomLeft;
-            コマンド更新.Location = new Point(715, 4);
-            コマンド更新.Margin = new Padding(0, 2, 0, 2);
+            コマンド更新.Location = new Point(817, 5);
+            コマンド更新.Margin = new Padding(0, 3, 0, 3);
             コマンド更新.Name = "コマンド更新";
-            コマンド更新.Size = new Size(70, 22);
+            コマンド更新.Size = new Size(80, 29);
             コマンド更新.TabIndex = 10;
             コマンド更新.TabStop = false;
             コマンド更新.Text = "更新";
@@ -198,10 +198,10 @@
             コマンド全表示.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             コマンド全表示.ForeColor = Color.Blue;
             コマンド全表示.ImageAlign = ContentAlignment.BottomLeft;
-            コマンド全表示.Location = new Point(207, 4);
-            コマンド全表示.Margin = new Padding(0, 2, 0, 2);
+            コマンド全表示.Location = new Point(237, 5);
+            コマンド全表示.Margin = new Padding(0, 3, 0, 3);
             コマンド全表示.Name = "コマンド全表示";
-            コマンド全表示.Size = new Size(70, 22);
+            コマンド全表示.Size = new Size(80, 29);
             コマンド全表示.TabIndex = 5;
             コマンド全表示.TabStop = false;
             コマンド全表示.Text = "全表示";
@@ -213,10 +213,10 @@
             コマンド初期化.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             コマンド初期化.ForeColor = Color.Blue;
             コマンド初期化.ImageAlign = ContentAlignment.BottomLeft;
-            コマンド初期化.Location = new Point(139, 4);
-            コマンド初期化.Margin = new Padding(0, 2, 0, 2);
+            コマンド初期化.Location = new Point(159, 5);
+            コマンド初期化.Margin = new Padding(0, 3, 0, 3);
             コマンド初期化.Name = "コマンド初期化";
-            コマンド初期化.Size = new Size(70, 22);
+            コマンド初期化.Size = new Size(80, 29);
             コマンド初期化.TabIndex = 4;
             コマンド初期化.TabStop = false;
             コマンド初期化.Text = "初期化";
@@ -228,10 +228,10 @@
             コマンド検索.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             コマンド検索.ForeColor = Color.Blue;
             コマンド検索.ImageAlign = ContentAlignment.BottomLeft;
-            コマンド検索.Location = new Point(71, 4);
-            コマンド検索.Margin = new Padding(0, 2, 0, 2);
+            コマンド検索.Location = new Point(81, 5);
+            コマンド検索.Margin = new Padding(0, 3, 0, 3);
             コマンド検索.Name = "コマンド検索";
-            コマンド検索.Size = new Size(70, 22);
+            コマンド検索.Size = new Size(80, 29);
             コマンド検索.TabIndex = 3;
             コマンド検索.TabStop = false;
             コマンド検索.Text = "検索";
@@ -243,10 +243,10 @@
             コマンド抽出.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             コマンド抽出.ForeColor = Color.Blue;
             コマンド抽出.ImageAlign = ContentAlignment.BottomLeft;
-            コマンド抽出.Location = new Point(3, 4);
-            コマンド抽出.Margin = new Padding(0, 2, 0, 2);
+            コマンド抽出.Location = new Point(3, 5);
+            コマンド抽出.Margin = new Padding(0, 3, 0, 3);
             コマンド抽出.Name = "コマンド抽出";
-            コマンド抽出.Size = new Size(70, 22);
+            コマンド抽出.Size = new Size(80, 29);
             コマンド抽出.TabIndex = 2;
             コマンド抽出.TabStop = false;
             コマンド抽出.Text = "抽出";
@@ -257,10 +257,10 @@
             // 
             コマンド終了.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             コマンド終了.ForeColor = Color.Red;
-            コマンド終了.Location = new Point(783, 4);
-            コマンド終了.Margin = new Padding(0, 2, 0, 2);
+            コマンド終了.Location = new Point(895, 5);
+            コマンド終了.Margin = new Padding(0, 3, 0, 3);
             コマンド終了.Name = "コマンド終了";
-            コマンド終了.Size = new Size(70, 22);
+            コマンド終了.Size = new Size(80, 29);
             コマンド終了.TabIndex = 0;
             コマンド終了.TabStop = false;
             コマンド終了.Text = "終了";
@@ -270,17 +270,16 @@
             // 有効件数
             // 
             有効件数.Font = new Font("BIZ UDPゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            有効件数.Location = new Point(72, 7);
-            有効件数.Margin = new Padding(3, 2, 3, 2);
+            有効件数.Location = new Point(82, 9);
             有効件数.Name = "有効件数";
-            有効件数.Size = new Size(88, 20);
+            有効件数.Size = new Size(100, 20);
             有効件数.TabIndex = 0;
             // 
             // 表示件数ラベル
             // 
             表示件数ラベル.AutoSize = true;
             表示件数ラベル.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            表示件数ラベル.Location = new Point(6, 9);
+            表示件数ラベル.Location = new Point(7, 12);
             表示件数ラベル.Name = "表示件数ラベル";
             表示件数ラベル.Size = new Size(53, 12);
             表示件数ラベル.TabIndex = 85;
@@ -290,7 +289,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label2.Location = new Point(164, 9);
+            label2.Location = new Point(187, 12);
             label2.Name = "label2";
             label2.Size = new Size(17, 12);
             label2.TabIndex = 86;
@@ -302,15 +301,14 @@
             dataGridView1.AllowUserToDeleteRows = false;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Dock = DockStyle.Fill;
-            dataGridView1.Location = new Point(0, 60);
-            dataGridView1.Margin = new Padding(3, 2, 3, 2);
+            dataGridView1.Location = new Point(0, 80);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
             dataGridView1.RowHeadersVisible = false;
             dataGridView1.RowTemplate.Height = 29;
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView1.ShowCellErrors = false;
-            dataGridView1.Size = new Size(1032, 419);
+            dataGridView1.Size = new Size(1179, 559);
             dataGridView1.TabIndex = 87;
             dataGridView1.CellClick += dataGridView1_CellClick;
             dataGridView1.CellDoubleClick += dataGridView1_CellDoubleClick;
@@ -333,17 +331,16 @@
             panel2.Controls.Add(表示件数ラベル);
             panel2.Controls.Add(label2);
             panel2.Dock = DockStyle.Bottom;
-            panel2.Location = new Point(0, 479);
-            panel2.Margin = new Padding(3, 2, 3, 2);
+            panel2.Location = new Point(0, 639);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1032, 34);
+            panel2.Size = new Size(1179, 45);
             panel2.TabIndex = 88;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(776, 11);
+            label1.Location = new Point(887, 15);
             label1.Name = "label1";
             label1.Size = new Size(236, 12);
             label1.TabIndex = 93;
@@ -352,17 +349,16 @@
             // 税込合計金額
             // 
             税込合計金額.Font = new Font("BIZ UDPゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            税込合計金額.Location = new Point(637, 7);
-            税込合計金額.Margin = new Padding(3, 2, 3, 2);
+            税込合計金額.Location = new Point(728, 9);
             税込合計金額.Name = "税込合計金額";
-            税込合計金額.Size = new Size(133, 20);
+            税込合計金額.Size = new Size(151, 20);
             税込合計金額.TabIndex = 3;
             // 
             // label3
             // 
             label3.AutoSize = true;
             label3.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label3.Location = new Point(552, 9);
+            label3.Location = new Point(631, 12);
             label3.Name = "label3";
             label3.Size = new Size(77, 12);
             label3.TabIndex = 91;
@@ -371,17 +367,16 @@
             // 合計金額
             // 
             合計金額.Font = new Font("BIZ UDPゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            合計金額.Location = new Point(436, 7);
-            合計金額.Margin = new Padding(3, 2, 3, 2);
+            合計金額.Location = new Point(498, 9);
             合計金額.Name = "合計金額";
-            合計金額.Size = new Size(88, 20);
+            合計金額.Size = new Size(127, 20);
             合計金額.TabIndex = 2;
             // 
             // 合計金額ラベル
             // 
             合計金額ラベル.AutoSize = true;
             合計金額ラベル.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            合計金額ラベル.Location = new Point(375, 9);
+            合計金額ラベル.Location = new Point(429, 12);
             合計金額ラベル.Name = "合計金額ラベル";
             合計金額ラベル.Size = new Size(53, 12);
             合計金額ラベル.TabIndex = 89;
@@ -390,17 +385,16 @@
             // 合計数量
             // 
             合計数量.Font = new Font("BIZ UDPゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            合計数量.Location = new Point(268, 7);
-            合計数量.Margin = new Padding(3, 2, 3, 2);
+            合計数量.Location = new Point(306, 9);
             合計数量.Name = "合計数量";
-            合計数量.Size = new Size(88, 20);
+            合計数量.Size = new Size(105, 20);
             合計数量.TabIndex = 1;
             // 
             // 合計数量ラベル
             // 
             合計数量ラベル.AutoSize = true;
             合計数量ラベル.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            合計数量ラベル.Location = new Point(207, 9);
+            合計数量ラベル.Location = new Point(237, 12);
             合計数量ラベル.Name = "合計数量ラベル";
             合計数量ラベル.Size = new Size(53, 12);
             合計数量ラベル.TabIndex = 87;
@@ -409,10 +403,9 @@
             // 初期表示ボタン
             // 
             初期表示ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            初期表示ボタン.Location = new Point(10, 4);
-            初期表示ボタン.Margin = new Padding(3, 2, 3, 2);
+            初期表示ボタン.Location = new Point(11, 5);
             初期表示ボタン.Name = "初期表示ボタン";
-            初期表示ボタン.Size = new Size(75, 22);
+            初期表示ボタン.Size = new Size(86, 29);
             初期表示ボタン.TabIndex = 1;
             初期表示ボタン.Text = "受注残";
             初期表示ボタン.UseVisualStyleBackColor = true;
@@ -421,10 +414,9 @@
             // 本日受注分ボタン
             // 
             本日受注分ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            本日受注分ボタン.Location = new Point(81, 4);
-            本日受注分ボタン.Margin = new Padding(3, 2, 3, 2);
+            本日受注分ボタン.Location = new Point(93, 5);
             本日受注分ボタン.Name = "本日受注分ボタン";
-            本日受注分ボタン.Size = new Size(75, 22);
+            本日受注分ボタン.Size = new Size(86, 29);
             本日受注分ボタン.TabIndex = 2;
             本日受注分ボタン.Text = "本日受注分";
             本日受注分ボタン.UseVisualStyleBackColor = true;
@@ -433,10 +425,9 @@
             // 前日受注分ボタン
             // 
             前日受注分ボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            前日受注分ボタン.Location = new Point(155, 4);
-            前日受注分ボタン.Margin = new Padding(3, 2, 3, 2);
+            前日受注分ボタン.Location = new Point(177, 5);
             前日受注分ボタン.Name = "前日受注分ボタン";
-            前日受注分ボタン.Size = new Size(75, 22);
+            前日受注分ボタン.Size = new Size(86, 29);
             前日受注分ボタン.TabIndex = 3;
             前日受注分ボタン.Text = "前日受注分";
             前日受注分ボタン.UseVisualStyleBackColor = true;
@@ -445,10 +436,9 @@
             // 前ページボタン
             // 
             前ページボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            前ページボタン.Location = new Point(269, 4);
-            前ページボタン.Margin = new Padding(3, 2, 3, 2);
+            前ページボタン.Location = new Point(307, 5);
             前ページボタン.Name = "前ページボタン";
-            前ページボタン.Size = new Size(47, 22);
+            前ページボタン.Size = new Size(54, 29);
             前ページボタン.TabIndex = 4;
             前ページボタン.Text = "↑";
             前ページボタン.UseVisualStyleBackColor = true;
@@ -457,10 +447,9 @@
             // 次ページボタン
             // 
             次ページボタン.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            次ページボタン.Location = new Point(312, 4);
-            次ページボタン.Margin = new Padding(3, 2, 3, 2);
+            次ページボタン.Location = new Point(357, 5);
             次ページボタン.Name = "次ページボタン";
-            次ページボタン.Size = new Size(47, 22);
+            次ページボタン.Size = new Size(54, 29);
             次ページボタン.TabIndex = 5;
             次ページボタン.Text = "↓";
             次ページボタン.UseVisualStyleBackColor = true;
@@ -471,7 +460,8 @@
             履歴トグル.Appearance = Appearance.Button;
             履歴トグル.AutoSize = true;
             履歴トグル.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            履歴トグル.Location = new Point(366, 4);
+            履歴トグル.Location = new Point(418, 5);
+            履歴トグル.Margin = new Padding(3, 4, 3, 4);
             履歴トグル.Name = "履歴トグル";
             履歴トグル.Size = new Size(72, 22);
             履歴トグル.TabIndex = 10015;
@@ -488,23 +478,22 @@
             panel4.Controls.Add(本日受注分ボタン);
             panel4.Controls.Add(前ページボタン);
             panel4.Dock = DockStyle.Top;
-            panel4.Location = new Point(0, 32);
-            panel4.Margin = new Padding(3, 2, 3, 2);
+            panel4.Location = new Point(0, 43);
             panel4.Name = "panel4";
-            panel4.Size = new Size(1032, 28);
+            panel4.Size = new Size(1179, 37);
             panel4.TabIndex = 10016;
             // 
             // F_受注管理
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1032, 513);
+            ClientSize = new Size(1179, 684);
             Controls.Add(dataGridView1);
             Controls.Add(panel4);
             Controls.Add(panel2);
             Controls.Add(panel1);
             Icon = (Icon)resources.GetObject("$this.Icon");
-            Margin = new Padding(3, 2, 3, 2);
+            KeyPreview = true;
             Name = "F_受注管理";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "受注管理";

@@ -638,6 +638,7 @@ namespace u_net
             見積版数.Size = new Size(60, 21);
             見積版数.TabIndex = 2;
             見積版数.TabStop = false;
+            見積版数.SelectedIndexChanged += 見積版数_SelectedIndexChanged;
             見積版数.Enter += 見積版数_Enter;
             見積版数.Validating += 見積版数_Validating;
             見積版数.Validated += 見積版数_Validated;
@@ -1160,6 +1161,7 @@ namespace u_net
             メモ.Margin = new Padding(3, 2, 3, 2);
             メモ.Multiline = true;
             メモ.Name = "メモ";
+            メモ.ScrollBars = ScrollBars.Vertical;
             メモ.Size = new Size(354, 146);
             メモ.TabIndex = 35;
             メモ.TextChanged += メモ_TextChanged;
@@ -1189,6 +1191,7 @@ namespace u_net
             備考.Margin = new Padding(3, 2, 3, 2);
             備考.Multiline = true;
             備考.Name = "備考";
+            備考.ScrollBars = ScrollBars.Vertical;
             備考.Size = new Size(820, 54);
             備考.TabIndex = 37;
             備考.TextChanged += 備考_TextChanged;

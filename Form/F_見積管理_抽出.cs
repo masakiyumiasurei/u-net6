@@ -63,7 +63,13 @@ namespace u_net
                 }
 
                 this.担当者名.Text = frmTarget.str担当者名;
-                this.顧客コード.Text = frmTarget.str顧客コード;
+
+                if(!string.IsNullOrEmpty(frmTarget.str顧客コード))
+                {
+                    setflg = true;
+                    this.顧客コード.Text = frmTarget.str顧客コード;
+                }
+                
                 this.顧客名.Text = frmTarget.str顧客名;
                 this.件名.Text = frmTarget.str件名;
 
@@ -154,6 +160,7 @@ namespace u_net
                 }
 
                 frmTarget.str担当者名 = Nz(担当者名.Text);
+                
                 frmTarget.str顧客コード = Nz(顧客コード.Text);
                 frmTarget.str顧客名 = Nz(顧客名.Text);
                 frmTarget.str件名 = Nz(件名.Text);
@@ -267,6 +274,7 @@ namespace u_net
         {
             if (e.KeyChar == ' ')
             {
+                e.Handled = true;
                 // 日付選択フォームを作成し表示
                 F_カレンダー form = new F_カレンダー();
                 if (!string.IsNullOrEmpty(見積日開始.Text))
@@ -291,7 +299,7 @@ namespace u_net
         private void 見積日開始_Leave(object sender, EventArgs e)
         {
             toolStripStatusLabel1.Text = "各種項目の説明";
-            //FunctionClass.AdjustRange(見積日開始, 見積日終了, sender as Control);
+            FunctionClass.範囲指定(見積日開始, 見積日終了, true);
         }
 
         private void 見積日開始選択ボタン_Click(object sender, EventArgs e)
@@ -344,6 +352,7 @@ namespace u_net
         {
             if (e.KeyChar == ' ')
             {
+                e.Handled = true;
                 // 日付選択フォームを作成し表示
                 F_カレンダー form = new F_カレンダー();
                 if (!string.IsNullOrEmpty(見積日終了.Text))
@@ -368,7 +377,7 @@ namespace u_net
         private void 見積日終了_Leave(object sender, EventArgs e)
         {
             toolStripStatusLabel1.Text = "各種項目の説明";
-            //FunctionClass.AdjustRange(見積日開始, 見積日終了, sender as Control);
+            FunctionClass.範囲指定(見積日開始, 見積日終了, false);
         }
 
         private void 見積日終了選択ボタン_Click(object sender, EventArgs e)

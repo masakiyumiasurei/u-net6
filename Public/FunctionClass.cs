@@ -540,7 +540,51 @@ namespace u_net.Public
             }
         }
 
+        /// <summary>
+        /// 開始日も終了日も無効なら終了日をクリア,終了日が開始日より前の場合は、開始日で終了日を上書き
+        /// 
+        /// </summary>
+        /// <param name="startTextBox">自分自身のテキストボックスコントール</param>
+        /// <param name="endTextBox">比較対象テキストボックスコントール</param>
+        ///  /// <param name="isStartSide">開始側のコントロールはtrue,終了側はfalse</param>
+        public static void 範囲指定(TextBox startTextBox, TextBox endTextBox, bool isStartSide)
+        {
+            
+            // 終了日が空のときは開始日の値を終了日に設定
+            if (!isStartSide && string.IsNullOrEmpty(endTextBox.Text))
+            {
+                 startTextBox.Text="";
+            }
+            else if(!isStartSide && string.IsNullOrEmpty(startTextBox.Text))
+            {
+                startTextBox.Text= endTextBox.Text;
+            }
+            // 開始日が空のときは終了日の値を開始日に設定
+            else if (isStartSide && string.IsNullOrEmpty(startTextBox.Text))
+            {
+                endTextBox.Text="";
+            }
+            else if (isStartSide && string.IsNullOrEmpty(endTextBox.Text))
+            {
+                endTextBox.Text = startTextBox.Text;
+            }
+            else
+            {
+                // テキストボックスの値を比較
+                var comparisonResult = string.Compare(startTextBox.Text, endTextBox.Text);
 
+                if (isStartSide && comparisonResult > 0)
+                {
+                    // 開始日のLeaveイベントで、終了日の方が小さい時は開始日を終了日に合わせる
+                    endTextBox.Text = startTextBox.Text;
+                }
+                else if (!isStartSide && comparisonResult > 0)
+                {
+                    // 終了日のLeaveイベントで、終了日の方が小さい時は終了日を開始日に合わせる
+                    startTextBox.Text = endTextBox.Text;
+                }
+            }
+        }
 
         public static long AnsiInStrB(object? start = null, string? str1 = null, object? str2 = null, int? compare = 0)
         {
@@ -2634,51 +2678,51 @@ namespace u_net.Public
 
 
 
-        public static void 範囲指定(Control control1, Control control2)
-        {
-            // エラーハンドリングを追加
-            try
-            {
-                Form frmOn = control1.FindForm(); // コントロールが所属するフォーム
-                Control ctlCurrent = control1;    // 調整元の値のあるコントロール
-                Control ctlTarget = control2;     // 調整先のコントロール
+        //public static void 範囲指定(Control control1, Control control2)
+        //{
+        //    // エラーハンドリングを追加
+        //    try
+        //    {
+        //        Form frmOn = control1.FindForm(); // コントロールが所属するフォーム
+        //        Control ctlCurrent = control1;    // 調整元の値のあるコントロール
+        //        Control ctlTarget = control2;     // 調整先のコントロール
 
-                // ２つのコントロールを含むフォームが違っていれば何もしない
-                if (ctlCurrent.Parent != ctlTarget.Parent)
-                    return;
+        //        // ２つのコントロールを含むフォームが違っていれば何もしない
+        //        if (ctlCurrent.Parent != ctlTarget.Parent)
+        //            return;
 
-                if (frmOn.ActiveControl.Name == ctlCurrent.Name)
-                {
-                    ctlCurrent = control1;
-                    ctlTarget = control2;
-                }
-                else
-                {
-                    ctlCurrent = control2;
-                    ctlTarget = control1;
-                }
+        //        if (frmOn.ActiveControl.Name == ctlCurrent.Name)
+        //        {
+        //            ctlCurrent = control1;
+        //            ctlTarget = control2;
+        //        }
+        //        else
+        //        {
+        //            ctlCurrent = control2;
+        //            ctlTarget = control1;
+        //        }
 
-                // どちらかのコントロール値が null のときは両方の値を null に設定する
-                if (ctlCurrent.Text == "" || ctlTarget.Text == "")
-                {
-                    ctlTarget.Text = ctlCurrent.Text;
-                }
+        //        // どちらかのコントロール値が null のときは両方の値を null に設定する
+        //        if (ctlCurrent.Text == "" || ctlTarget.Text == "")
+        //        {
+        //            ctlTarget.Text = ctlCurrent.Text;
+        //        }
 
-                // コントロール1の値 <= コントロール2の値 とする
-                if (Convert.ToDouble(control1.Text) > Convert.ToDouble(control2.Text))
-                {
-                    ctlTarget.Text = ctlCurrent.Text;
-                }
-            }
-            catch (FormatException)
-            {
-                Console.WriteLine("Control1またはControl2のConvertに失敗しました。");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("範囲指定 - " + ex.GetType().Name + " : " + ex.Message);
-            }
-        }
+        //        // コントロール1の値 <= コントロール2の値 とする
+        //        if (Convert.ToDouble(control1.Text) > Convert.ToDouble(control2.Text))
+        //        {
+        //            ctlTarget.Text = ctlCurrent.Text;
+        //        }
+        //    }
+        //    catch (FormatException)
+        //    {
+        //        Console.WriteLine("Control1またはControl2のConvertに失敗しました。");
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Console.WriteLine("範囲指定 - " + ex.GetType().Name + " : " + ex.Message);
+        //    }
+        //}
 
 
 

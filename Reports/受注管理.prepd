@@ -5,27 +5,23 @@
 <FontAttr AttrName="Font1" Name="ＭＳ ゴシック" Size="9" />
 <FontAttr AttrName="Font2" Name="ＭＳ Ｐゴシック" Size="16" Bold="True" />
 <FontAttr AttrName="Font3" Name="ＭＳ Ｐゴシック" Size="9" />
-<FontAttr AttrName="Font4" Name="ＭＳ Ｐゴシック" Size="10" Color="White" />
-<FontAttr AttrName="Font5" Name="ＭＳ Ｐゴシック" Size="7" Color="White" />
-<FontAttr AttrName="Font6" Name="ＭＳ ゴシック" Size="10" Color="White" />
-<FontAttr AttrName="Font7" Name="ＭＳ ゴシック" Size="10" />
-<FontAttr AttrName="Font8" Name="ＭＳ ゴシック" Size="8" />
-<FontAttr AttrName="Font9" Name="ＭＳ Ｐゴシック" Size="9" Color="Red" />
+<FontAttr AttrName="Font4" Name="ＭＳ ゴシック" Size="8" />
+<FontAttr AttrName="Font5" Name="ＭＳ Ｐゴシック" Size="9" Color="Red" />
 <LineAttr AttrName="Line1" Width="0.3" />
 <LineAttr AttrName="Line2" Color="Silver" Width="1" />
 <LineAttr AttrName="Line3" Color="Transparent" Width="0" />
 <LineAttr AttrName="Line4" Width="0.1" />
-<LineAttr AttrName="Line5" Color="White" Width="0.1" />
-<LineAttr AttrName="Line6" Color="White" Width="0.1" />
-<LineAttr AttrName="Line7" Color="White" Width="0.1" />
-<LineAttr AttrName="Line8" Color="White" Width="0.1" />
-<LineAttr AttrName="Line9" Color="White" Width="0.1" />
-<LineAttr AttrName="Line10" Color="White" Width="0.1" />
-<LineAttr AttrName="Line11" Color="White" Width="0.1" />
-<LineAttr AttrName="Line12" Color="White" Width="0.1" />
-<LineAttr AttrName="Line13" Color="White" Width="0.1" />
-<LineAttr AttrName="Line14" Color="White" Width="0.1" />
-<LineAttr AttrName="Line15" Color="White" Width="0.1" />
+<LineAttr AttrName="Line5" Color="Transparent" Width="0" />
+<LineAttr AttrName="Line6" Color="Transparent" Width="0" />
+<LineAttr AttrName="Line7" Width="0.1" />
+<LineAttr AttrName="Line8" Width="0.1" />
+<LineAttr AttrName="Line9" Width="0.1" />
+<LineAttr AttrName="Line10" Width="0.1" />
+<LineAttr AttrName="Line11" Width="0.1" />
+<LineAttr AttrName="Line12" Width="0.1" />
+<LineAttr AttrName="Line13" Width="0.1" />
+<LineAttr AttrName="Line14" Width="0.1" />
+<LineAttr AttrName="Line15" Width="0.1" />
 <LineAttr AttrName="Line16" Width="0.1" />
 <LineAttr AttrName="Line17" Width="0.1" />
 <LineAttr AttrName="Line18" Width="0.1" />
@@ -36,62 +32,37 @@
 <LineAttr AttrName="Line23" Width="0.1" />
 <LineAttr AttrName="Line24" Width="0.1" />
 <LineAttr AttrName="Line25" Width="0.1" />
-<LineAttr AttrName="Line26" Width="0.1" />
-<LineAttr AttrName="Line27" Width="0.1" />
-<LineAttr AttrName="Line28" Color="Transparent" Width="0" />
-<LineAttr AttrName="Line29" Color="Transparent" Width="0" />
-<LineAttr AttrName="Line30" Color="Transparent" Width="0" />
-<LineAttr AttrName="Line31" Width="0.1" />
-<LineAttr AttrName="Line32" Width="0.1" />
-<LineAttr AttrName="Line33" Width="0.1" />
-<LineAttr AttrName="Line34" Width="0.1" />
-<LineAttr AttrName="Line35" Width="0.1" />
-<LineAttr AttrName="Line36" Width="0.1" />
-<LineAttr AttrName="Line37" Width="0.1" />
-<LineAttr AttrName="Line38" Width="0.1" />
-<LineAttr AttrName="Line39" Width="0.1" />
-<LineAttr AttrName="Line40" Width="0.1" />
-<LineAttr AttrName="Line41" Width="0.1" />
-<LineAttr AttrName="Line42" Width="0.1" />
-<LineAttr AttrName="Line43" Width="0.1" />
-<LineAttr AttrName="Line44" Width="0.1" />
-<LineAttr AttrName="Line45" Width="0.1" />
-<LineAttr AttrName="Line46" Width="0.1" />
-<LineAttr AttrName="Line47" Width="0.1" />
-<LineAttr AttrName="Line48" Width="0.1" />
-<LineAttr AttrName="Line49" Width="0.1" />
-<LineAttr AttrName="Line50" Width="0.1" />
-<LineAttr AttrName="Line51" Color="Transparent" Width="0" />
+<LineAttr AttrName="Line26" Color="Transparent" Width="0" />
 </PrintAttrs>
 <Paper Size="A4" Direction="True" />
 <Design FontAttr="Font1" LineAttr="Line1" GridWidth="2" DesignScale="100" GridFit="True" ObjLock="False" X="0" Y="0" Width="297" Height="210" DisplayRepeatObject="False" RepeatObjectColor="Silver" ImageSizeType="Clip" />
 </PrintSetting>
 <PrintObjects>
-<Text Name="Text1" X="5" Y="5" Width="287" Height="6.8" Text="部品管理" Align="Center" VAlign="Middle" FontAttr="Font2" />
-<Text Name="CH_ラベル" X="5" Y="16" Width="8" Height="4" Text="CH" BackColor="Transparent" Align="Center" VAlign="Bottom" FontAttr="Font3" LineAttr="Line4" />
-<Text Name="出力日時" X="10" Y="200" Width="60" Height="6" Text="*出力日時*" Align="Left" VAlign="Middle" FontAttr="Font8" />
-<Text Name="ページ数" X="228" Y="200" Width="60" Height="6" Text="*ページ数*" Align="Right" VAlign="Middle" FontAttr="Font8" />
+<Text Name="Text1" X="5" Y="5" Width="287" Height="6.8" Text="受注管理" Align="Center" VAlign="Middle" FontAttr="Font2" />
+<Text Name="CH_ラベル" X="5" Y="16" Width="8" Height="4" Text="CH" Align="Center" VAlign="Bottom" FontAttr="Font3" LineAttr="Line4" />
+<Text Name="出力日時" X="10" Y="200" Width="60" Height="6" Text="*出力日時*" Align="Left" VAlign="Middle" FontAttr="Font4" />
+<Text Name="ページ数" X="228" Y="200" Width="60" Height="6" Text="*ページ数*" Align="Right" VAlign="Middle" FontAttr="Font4" />
 <Line Name="Line1" StartX="5" StartY="13" EndX="292" EndY="13" LineAttr="Line2" />
 <Line Name="Line2" StartX="5" StartY="199" EndX="294" EndY="198" LineAttr="Line2" />
-<Text Name="受注コード_ラベル" X="13" Y="16" Width="20" Height="4" Text="受注コード" BackColor="Transparent" Align="Center" VAlign="Middle" FontAttr="Font3" LineAttr="Line31" />
-<Text Name="版数_ラベル" X="33" Y="16" Width="6" Height="4" Text="版" BackColor="Transparent" Align="Center" VAlign="Middle" FontAttr="Font3" LineAttr="Line32" />
-<Text Name="受注日_ラベル" X="39" Y="16" Width="20" Height="4" Text="受注日" BackColor="Transparent" Align="Center" VAlign="Middle" FontAttr="Font3" LineAttr="Line34" />
-<Text Name="出荷予定日_ラベル" X="59" Y="16" Width="20" Height="4" Text="出荷予定日" BackColor="Transparent" Align="Center" VAlign="Middle" FontAttr="Font3" LineAttr="Line35" />
-<Text Name="受注納期_ラベル" X="79" Y="16" Width="20" Height="4" Text="受注納期" BackColor="Transparent" Align="Center" VAlign="Middle" FontAttr="Font3" LineAttr="Line36" />
-<Text Name="注文番号_ラベル" X="99" Y="16" Width="54" Height="4" Text="注文番号" BackColor="Transparent" Align="Center" VAlign="Middle" FontAttr="Font3" LineAttr="Line37" />
-<Text Name="顧客コード_ラベル" X="153" Y="16" Width="22" Height="4" Text="顧客コード" BackColor="Transparent" Align="Center" VAlign="Middle" FontAttr="Font3" LineAttr="Line38" />
-<Text Name="顧客名_ラベル" X="175" Y="16" Width="95" Height="4" Text="顧 客 名" BackColor="Transparent" Align="Center" VAlign="Middle" FontAttr="Font3" LineAttr="Line39" />
-<Text Name="担当者名_ラベル" X="270" Y="16" Width="22" Height="4" Text="担当者名" BackColor="Transparent" Align="Center" VAlign="Middle" FontAttr="Font3" LineAttr="Line40" />
-<Text Name="Text39" X="5" Y="21" Width="8" Height="4" Text="　" BackColor="Transparent" Align="Center" VAlign="Middle" FontAttr="Font3" LineAttr="Line41" IntervalY="4" Repeat="44" />
-<Text Name="受注コード" X="13" Y="21" Width="20" Height="4" Text="*受注コード*" BackColor="Transparent" Align="Center" VAlign="Middle" FontAttr="Font3" LineAttr="Line42" IntervalY="4" Repeat="44" />
-<Text Name="受注版数" X="33" Y="21" Width="6" Height="4" Text="*受注版数*" BackColor="Transparent" Align="Left" VAlign="Middle" FontAttr="Font3" LineAttr="Line43" IntervalY="4" Repeat="44" />
-<Text Name="受注日" X="39" Y="21" Width="20" Height="4" Text="*受注日*" BackColor="Transparent" Align="Center" VAlign="Middle" FontAttr="Font3" LineAttr="Line44" IntervalY="4" Repeat="44" />
-<Text Name="出荷予定日" X="59" Y="21" Width="20" Height="4" Text="*出荷予定日*" BackColor="Transparent" Align="Center" VAlign="Middle" FontAttr="Font3" LineAttr="Line45" IntervalY="4" Repeat="44" />
-<Text Name="受注納期" X="79" Y="21" Width="20" Height="4" Text="*受注納期*" BackColor="Transparent" Align="Center" VAlign="Middle" FontAttr="Font3" LineAttr="Line46" IntervalY="4" Repeat="44" />
-<Text Name="注文番号" X="99" Y="21" Width="54" Height="4" Text="*注文番号*" BackColor="Transparent" Align="Left" VAlign="Middle" FontAttr="Font3" LineAttr="Line47" IntervalY="4" Repeat="44" />
-<Text Name="顧客コード" X="153" Y="21" Width="22" Height="4" Text="*顧客コード*" BackColor="Transparent" Align="Center" VAlign="Middle" FontAttr="Font3" LineAttr="Line48" IntervalY="4" Repeat="44" />
-<Text Name="顧客名" X="175" Y="21" Width="95" Height="4" Text="*顧客名*" BackColor="Transparent" Align="Left" VAlign="Middle" FontAttr="Font3" LineAttr="Line49" IntervalY="4" Repeat="44" />
-<Text Name="自社担当者名" X="270" Y="21" Width="22" Height="4" Text="*自社担当者名*" BackColor="Transparent" Align="Left" VAlign="Middle" FontAttr="Font3" LineAttr="Line50" IntervalY="4" Repeat="44" />
-<Text Name="無効日" X="5" Y="21" Width="287" Height="4" Text="*無効日*" BackColor="Transparent" Align="Center" VAlign="Middle" FontAttr="Font9" IntervalY="4" Repeat="44" />
+<Text Name="受注コード_ラベル" X="13" Y="16" Width="20" Height="4" Text="受注コード" Align="Center" VAlign="Middle" FontAttr="Font3" LineAttr="Line7" />
+<Text Name="版数_ラベル" X="33" Y="16" Width="6" Height="4" Text="版" Align="Center" VAlign="Middle" FontAttr="Font3" LineAttr="Line8" />
+<Text Name="受注日_ラベル" X="39" Y="16" Width="20" Height="4" Text="受注日" Align="Center" VAlign="Middle" FontAttr="Font3" LineAttr="Line9" />
+<Text Name="出荷予定日_ラベル" X="59" Y="16" Width="20" Height="4" Text="出荷予定日" Align="Center" VAlign="Middle" FontAttr="Font3" LineAttr="Line10" />
+<Text Name="受注納期_ラベル" X="79" Y="16" Width="20" Height="4" Text="受注納期" Align="Center" VAlign="Middle" FontAttr="Font3" LineAttr="Line11" />
+<Text Name="注文番号_ラベル" X="99" Y="16" Width="54" Height="4" Text="注文番号" Align="Center" VAlign="Middle" FontAttr="Font3" LineAttr="Line12" />
+<Text Name="顧客コード_ラベル" X="153" Y="16" Width="22" Height="4" Text="顧客コード" Align="Center" VAlign="Middle" FontAttr="Font3" LineAttr="Line13" />
+<Text Name="顧客名_ラベル" X="175" Y="16" Width="95" Height="4" Text="顧 客 名" Align="Center" VAlign="Middle" FontAttr="Font3" LineAttr="Line14" />
+<Text Name="担当者名_ラベル" X="270" Y="16" Width="22" Height="4" Text="担当者名" Align="Center" VAlign="Middle" FontAttr="Font3" LineAttr="Line15" />
+<Text Name="Text39" X="5" Y="21" Width="8" Height="4" Text="　" Align="Center" VAlign="Middle" FontAttr="Font3" LineAttr="Line16" IntervalY="4" Repeat="44" />
+<Text Name="受注コード" X="13" Y="21" Width="20" Height="4" Text="*受注コード*" Align="Center" VAlign="Middle" FontAttr="Font3" LineAttr="Line17" IntervalY="4" Repeat="44" />
+<Text Name="受注版数" X="33" Y="21" Width="6" Height="4" Text="*受注版数*" Align="Left" VAlign="Middle" FontAttr="Font3" LineAttr="Line18" IntervalY="4" Repeat="44" />
+<Text Name="受注日" X="39" Y="21" Width="20" Height="4" Text="*受注日*" Align="Center" VAlign="Middle" FontAttr="Font3" LineAttr="Line19" IntervalY="4" Repeat="44" />
+<Text Name="出荷予定日" X="59" Y="21" Width="20" Height="4" Text="*出荷予定日*" Align="Center" VAlign="Middle" FontAttr="Font3" LineAttr="Line20" IntervalY="4" Repeat="44" />
+<Text Name="受注納期" X="79" Y="21" Width="20" Height="4" Text="*受注納期*" Align="Center" VAlign="Middle" FontAttr="Font3" LineAttr="Line21" IntervalY="4" Repeat="44" />
+<Text Name="注文番号" X="99" Y="21" Width="54" Height="4" Text="*注文番号*" Align="Left" VAlign="Middle" FontAttr="Font3" LineAttr="Line22" IntervalY="4" Repeat="44" />
+<Text Name="顧客コード" X="153" Y="21" Width="22" Height="4" Text="*顧客コード*" Align="Center" VAlign="Middle" FontAttr="Font3" LineAttr="Line23" IntervalY="4" Repeat="44" />
+<Text Name="顧客名" X="175" Y="21" Width="95" Height="4" Text="*顧客名*" Align="Left" VAlign="Middle" FontAttr="Font3" LineAttr="Line24" IntervalY="4" Repeat="44" />
+<Text Name="自社担当者名" X="270" Y="21" Width="22" Height="4" Text="*自社担当者名*" Align="Left" VAlign="Middle" FontAttr="Font3" LineAttr="Line25" IntervalY="4" Repeat="44" />
+<Text Name="無効日" X="5" Y="21" Width="287" Height="4" Text="*無効日*" Align="Center" VAlign="Middle" FontAttr="Font5" IntervalY="4" Repeat="44" />
 </PrintObjects>
 </PrintDefine>

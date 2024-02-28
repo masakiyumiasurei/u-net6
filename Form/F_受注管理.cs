@@ -289,7 +289,7 @@ namespace u_net
                     switch (byt出荷)
                     {
                         case 1:
-                            if (Convert.ToDouble(dte出荷完了日1) == 0)
+                            if (dte出荷完了日1 == DateTime.MinValue)
                             {
                                 strWhere = FunctionClass.WhereString(strWhere, "出荷完了日 is not null");
                             }
@@ -437,7 +437,9 @@ namespace u_net
                 dataGridView1.Columns[11].Width = 400 / twipperdot;    //出荷
                 dataGridView1.Columns[12].Width = 400 / twipperdot;　　//完了
                 dataGridView1.Columns[13].Visible = false; //無効日
-                dataGridView1.Columns[14].Visible = false;　//顧客コード　受注管理表の出力のため
+                dataGridView1.Columns[14].Visible = false; //顧客コード　受注管理表の出力のため
+
+                dataGridView1.Columns["受注金額"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
 
                 //    Font fontSO = new Font(this.dataGridView1.DefaultCellStyle.Font.FontFamily
                 //, this.dataGridView1.DefaultCellStyle.Font.Size , FontStyle.Strikeout);
@@ -1012,31 +1014,7 @@ namespace u_net
         private void 前日受注分ボタン_Click(object sender, EventArgs e)
         {
             try
-            {
-                //if (frmSub != null)
-                //{
-                //    frmSub.Focus(); // サブフォームにフォーカスを設定
-
-                //    Connect();
-                //    // 初期化処理
-                //    InitializeFilter();
-
-                //    // 前日の日付を取得
-                //    DateTime dtePrevious = DateTime.Today.AddDays(-1);
-
-                //    // 営業日が見つかるまで前日の日付を更新
-                //    while (FunctionClass.OfficeClosed(cn, dtePrevious))
-                //    {
-                //        dtePrevious = dtePrevious.AddDays(-1);
-                //    }
-
-                //    // 受注日を更新
-                //    this.dte受注日1 = dtePrevious;
-                //    this.dte受注日2 = dtePrevious;
-
-                //    // フィルタリング処理
-                //    Filtering();
-                //}
+            {                
 
                 // サブフォームにフォーカスを設定
                 this.dataGridView1.Focus();
@@ -1072,20 +1050,7 @@ namespace u_net
         {
             try
             {
-                //if (frmSub != null)
-                //{
-                //    frmSub.Focus(); // サブフォームにフォーカスを設定
-
-                //    // 初期化処理
-                //    InitializeFilter();
-
-                //    // 本日の日付を設定
-                //    this.dte受注日1 = DateTime.Today;
-                //    this.dte受注日2 = DateTime.Today;
-
-                //    // フィルタリング処理
-                //    Filtering();
-                //}
+                
                 this.dataGridView1.Focus();
 
                 // 初期化処理
