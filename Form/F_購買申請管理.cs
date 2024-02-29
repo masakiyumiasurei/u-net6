@@ -573,11 +573,7 @@ namespace u_net
 
         private void dataGridView1_KeyDown(object sender, KeyEventArgs e)
         {
-            // Shiftキーが押されているときは何もしない
-            if (e.Shift)
-            {
-                e.SuppressKeyPress = true;
-            }
+            F_購買申請管理_KeyDown(sender, e);
         }
 
         //選択行をクリアして先頭を表示して先頭行を選択
