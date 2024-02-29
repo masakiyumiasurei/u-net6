@@ -275,6 +275,7 @@ namespace u_net
             キャンセルボタン.Name = "キャンセルボタン";
             キャンセルボタン.Size = new Size(70, 20);
             キャンセルボタン.TabIndex = 5;
+            キャンセルボタン.TabStop = false;
             キャンセルボタン.Text = "キャンセル";
             キャンセルボタン.UseVisualStyleBackColor = false;
             キャンセルボタン.Click += キャンセルボタン_Click;

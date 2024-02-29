@@ -200,7 +200,7 @@ namespace u_net
             SeriesCode.DrawMode = DrawMode.OwnerDrawFixed;
             SeriesCode.DropDownWidth= 200;
 
-            製品版数.DropDownWidth = 60;
+            製品版数.DropDownWidth = 80;
 
             try
             {
@@ -2618,7 +2618,7 @@ namespace u_net
 
         private void 製品版数_DrawItem(object sender, DrawItemEventArgs e)
         {
-            OriginalClass.SetComboBoxAppearance((ComboBox)sender, e, new int[] { 30, 30 }, new string[] { "Display", "Display2" });
+            OriginalClass.SetComboBoxAppearance((ComboBox)sender, e, new int[] { 30, 50 }, new string[] { "Display", "Display2" });
             製品版数.Invalidate();
             製品版数.DroppedDown = true;
         }

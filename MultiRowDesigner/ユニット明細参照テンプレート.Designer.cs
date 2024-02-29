@@ -541,7 +541,8 @@
             cellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(204)))), ((int)(((byte)(255)))));
             border2.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
             cellStyle2.Border = border2;
-            cellStyle2.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
+            cellStyle2.Font = new System.Drawing.Font("BIZ UDゴシック", 10F, System.Drawing.FontStyle.Bold);
+            cellStyle2.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleRight;
             this.明細番号.Style = cellStyle2;
             this.明細番号.TabIndex = 2;
             // 
@@ -553,7 +554,7 @@
             this.構成番号.Size = new System.Drawing.Size(78, 20);
             border3.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
             cellStyle3.Border = border3;
-            cellStyle3.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
+            cellStyle3.Font = new System.Drawing.Font("BIZ UDゴシック", 10F);
             cellStyle3.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
             this.構成番号.Style = cellStyle3;
             this.構成番号.TabIndex = 1;
@@ -584,7 +585,7 @@
             this.部品コード.Size = new System.Drawing.Size(65, 20);
             border5.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
             cellStyle5.Border = border5;
-            cellStyle5.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
+            cellStyle5.Font = new System.Drawing.Font("BIZ UDゴシック", 10F);
             cellStyle5.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
             this.部品コード.Style = cellStyle5;
             this.部品コード.TabIndex = 2;
@@ -617,6 +618,7 @@
             cellStyle7.Border = border7;
             cellStyle7.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
             cellStyle7.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
+            cellStyle7.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
             this.RoHS.Style = cellStyle7;
             this.RoHS.TabIndex = 4;
             // 
@@ -671,7 +673,7 @@
             this.型番.Size = new System.Drawing.Size(204, 20);
             border11.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
             cellStyle11.Border = border11;
-            cellStyle11.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
+            cellStyle11.Font = new System.Drawing.Font("BIZ UDゴシック", 10F);
             cellStyle11.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
             this.型番.Style = cellStyle11;
             this.型番.TabIndex = 8;
@@ -713,7 +715,7 @@
             this.単価.Size = new System.Drawing.Size(68, 20);
             border14.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
             cellStyle14.Border = border14;
-            cellStyle14.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
+            cellStyle14.Font = new System.Drawing.Font("BIZ UDゴシック", 10F);
             cellStyle14.Format = "N2";
             cellStyle14.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
             cellStyle14.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleRight;
@@ -729,9 +731,10 @@
             this.入数.Size = new System.Drawing.Size(54, 20);
             border15.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
             cellStyle15.Border = border15;
-            cellStyle15.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
+            cellStyle15.Font = new System.Drawing.Font("BIZ UDゴシック", 10F);
             cellStyle15.Format = "N0";
             cellStyle15.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
+            cellStyle15.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleRight;
             this.入数.Style = cellStyle15;
             this.入数.TabIndex = 12;
             // 

@@ -83,24 +83,24 @@
             // 顧客名
             // 
             顧客名.BackColor = Color.White;
-            顧客名.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            顧客名.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             顧客名.ImeMode = ImeMode.Hiragana;
             顧客名.Location = new Point(105, 84);
             顧客名.Margin = new Padding(3, 2, 3, 2);
             顧客名.Name = "顧客名";
-            顧客名.Size = new Size(293, 21);
+            顧客名.Size = new Size(293, 19);
             顧客名.TabIndex = 9;
             顧客名.TextChanged += 顧客名_TextChanged;
             // 
             // 見積日開始
             // 
             見積日開始.BackColor = Color.White;
-            見積日開始.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            見積日開始.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             見積日開始.ImeMode = ImeMode.Disable;
             見積日開始.Location = new Point(105, 9);
             見積日開始.Margin = new Padding(3, 2, 3, 2);
             見積日開始.Name = "見積日開始";
-            見積日開始.Size = new Size(83, 21);
+            見積日開始.Size = new Size(97, 19);
             見積日開始.TabIndex = 2;
             見積日開始.TextChanged += 見積日開始_Leave;
             見積日開始.Enter += 見積日開始_Enter;
@@ -141,12 +141,12 @@
             // 件名
             // 
             件名.BackColor = Color.White;
-            件名.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            件名.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             件名.ImeMode = ImeMode.Hiragana;
             件名.Location = new Point(105, 109);
             件名.Margin = new Padding(3, 2, 3, 2);
             件名.Name = "件名";
-            件名.Size = new Size(293, 21);
+            件名.Size = new Size(293, 19);
             件名.TabIndex = 11;
             // 
             // 確定指定
@@ -220,7 +220,7 @@
             // 見積日開始選択ボタン
             // 
             見積日開始選択ボタン.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            見積日開始選択ボタン.Location = new Point(189, 8);
+            見積日開始選択ボタン.Location = new Point(204, 8);
             見積日開始選択ボタン.Margin = new Padding(4, 3, 4, 3);
             見積日開始選択ボタン.Name = "見積日開始選択ボタン";
             見積日開始選択ボタン.Size = new Size(22, 22);
@@ -233,7 +233,7 @@
             // 見積日終了選択ボタン
             // 
             見積日終了選択ボタン.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            見積日終了選択ボタン.Location = new Point(317, 8);
+            見積日終了選択ボタン.Location = new Point(347, 8);
             見積日終了選択ボタン.Margin = new Padding(4, 3, 4, 3);
             見積日終了選択ボタン.Name = "見積日終了選択ボタン";
             見積日終了選択ボタン.Size = new Size(22, 22);
@@ -250,7 +250,7 @@
             出荷予定日2ラベル.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             出荷予定日2ラベル.ForeColor = SystemColors.ActiveCaptionText;
             出荷予定日2ラベル.ImageAlign = ContentAlignment.MiddleLeft;
-            出荷予定日2ラベル.Location = new Point(212, 10);
+            出荷予定日2ラベル.Location = new Point(227, 10);
             出荷予定日2ラベル.Margin = new Padding(0);
             出荷予定日2ラベル.Name = "出荷予定日2ラベル";
             出荷予定日2ラベル.Size = new Size(21, 17);
@@ -261,12 +261,12 @@
             // 見積日終了
             // 
             見積日終了.BackColor = Color.White;
-            見積日終了.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            見積日終了.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             見積日終了.ImeMode = ImeMode.Disable;
-            見積日終了.Location = new Point(233, 9);
+            見積日終了.Location = new Point(248, 9);
             見積日終了.Margin = new Padding(3, 2, 3, 2);
             見積日終了.Name = "見積日終了";
-            見積日終了.Size = new Size(83, 21);
+            見積日終了.Size = new Size(97, 19);
             見積日終了.TabIndex = 3;
             見積日終了.TextChanged += 見積日終了_Leave;
             見積日終了.Enter += 見積日終了_Enter;
@@ -292,7 +292,7 @@
             // 顧客コード選択ボタン
             // 
             顧客コード選択ボタン.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            顧客コード選択ボタン.Location = new Point(219, 59);
+            顧客コード選択ボタン.Location = new Point(219, 57);
             顧客コード選択ボタン.Margin = new Padding(4, 3, 4, 3);
             顧客コード選択ボタン.Name = "顧客コード選択ボタン";
             顧客コード選択ボタン.Size = new Size(22, 22);
@@ -305,12 +305,12 @@
             // 顧客コード
             // 
             顧客コード.BackColor = Color.White;
-            顧客コード.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            顧客コード.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             顧客コード.ImeMode = ImeMode.Disable;
             顧客コード.Location = new Point(105, 59);
             顧客コード.Margin = new Padding(3, 2, 3, 2);
             顧客コード.Name = "顧客コード";
-            顧客コード.Size = new Size(113, 21);
+            顧客コード.Size = new Size(113, 19);
             顧客コード.TabIndex = 7;
             顧客コード.Validated += 顧客コード_Validated;
             // 
@@ -331,12 +331,12 @@
             // 
             // 担当者名
             // 
-            担当者名.Font = new Font("BIZ UDPゴシック", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            担当者名.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             担当者名.FormattingEnabled = true;
             担当者名.ImeMode = ImeMode.Disable;
             担当者名.Location = new Point(105, 34);
             担当者名.Name = "担当者名";
-            担当者名.Size = new Size(162, 21);
+            担当者名.Size = new Size(162, 20);
             担当者名.TabIndex = 5;
             担当者名.Enter += 担当者名_Enter;
             担当者名.Leave += 担当者名_Leave;
@@ -476,6 +476,7 @@
             Controls.Add(顧客名);
             Controls.Add(見積日開始);
             Controls.Add(出荷予定日1ラベル);
+            KeyPreview = true;
             Name = "F_見積管理_抽出";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "見積管理 - 抽出";

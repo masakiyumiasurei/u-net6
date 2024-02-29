@@ -547,7 +547,7 @@ namespace u_net
             statusStrip1.Location = new Point(0, 819);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Padding = new Padding(1, 0, 19, 0);
-            statusStrip1.Size = new Size(1240, 22);
+            statusStrip1.Size = new Size(1036, 22);
             statusStrip1.TabIndex = 110;
             statusStrip1.Text = "statusStrip1";
             // 
@@ -638,6 +638,7 @@ namespace u_net
             見積版数.Size = new Size(60, 21);
             見積版数.TabIndex = 2;
             見積版数.TabStop = false;
+            見積版数.SelectedIndexChanged += 見積版数_SelectedIndexChanged;
             見積版数.Enter += 見積版数_Enter;
             見積版数.Validating += 見積版数_Validating;
             見積版数.Validated += 見積版数_Validated;
@@ -1160,6 +1161,7 @@ namespace u_net
             メモ.Margin = new Padding(3, 2, 3, 2);
             メモ.Multiline = true;
             メモ.Name = "メモ";
+            メモ.ScrollBars = ScrollBars.Vertical;
             メモ.Size = new Size(354, 146);
             メモ.TabIndex = 35;
             メモ.TextChanged += メモ_TextChanged;
@@ -1189,6 +1191,7 @@ namespace u_net
             備考.Margin = new Padding(3, 2, 3, 2);
             備考.Multiline = true;
             備考.Name = "備考";
+            備考.ScrollBars = ScrollBars.Vertical;
             備考.Size = new Size(820, 54);
             備考.TabIndex = 37;
             備考.TextChanged += 備考_TextChanged;
@@ -1586,7 +1589,7 @@ namespace u_net
             見積明細1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             見積明細1.Location = new Point(15, 460);
             見積明細1.Name = "見積明細1";
-            見積明細1.Size = new Size(1026, 350);
+            見積明細1.Size = new Size(1021, 350);
             見積明細1.TabIndex = 36;
             // 
             // F_見積
@@ -1594,7 +1597,7 @@ namespace u_net
             AutoScaleDimensions = new SizeF(8F, 12F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
-            ClientSize = new Size(1240, 841);
+            ClientSize = new Size(1036, 841);
             Controls.Add(見積明細1);
             Controls.Add(見積コード);
             Controls.Add(label32);

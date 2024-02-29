@@ -279,7 +279,7 @@ namespace u_net
                 // 見積日指定
                 if (this.dtm見積日開始 != DateTime.MinValue && this.dtm見積日終了 != DateTime.MinValue)
                 {
-                    tmpstr = $"見積日 BETWEEN '{this.dtm見積日開始}' AND '{this.dtm見積日終了}'";
+                    tmpstr = $"見積日 BETWEEN '{this.dtm見積日開始.Date.ToString("yyyy/MM/dd")}' AND '{this.dtm見積日終了.Date.ToString("yyyy/MM/dd")}'";
                     strFilter = FunctionClass.WhereString(strFilter, tmpstr);
                 }
 
@@ -379,7 +379,7 @@ namespace u_net
                 dataGridView1.Columns[0].DefaultCellStyle.BackColor = Color.FromArgb(255, 255, 200); // 薄い黄色
                 dataGridView1.Columns[1].DefaultCellStyle.BackColor = Color.FromArgb(255, 255, 200); // 薄い黄色
 
-                dataGridView1.Columns[0].Width = 1400 / twipperdot; //1150
+                dataGridView1.Columns[0].Width = 1500 / twipperdot; //1150
                 dataGridView1.Columns[1].Width = 300 / twipperdot;
                 dataGridView1.Columns[2].Width = 1300 / twipperdot;
                 dataGridView1.Columns[3].Width = 2500 / twipperdot;
@@ -844,7 +844,7 @@ namespace u_net
                 {
                     case 0:
                         // グループに登録済みでない場合
-                        
+
                         F_グループ form = new F_グループ();
                         form.args = strDocumentCode;
                         form.ShowDialog();

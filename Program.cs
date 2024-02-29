@@ -16,13 +16,7 @@ namespace u_net
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-
-            // Application.Run(new F_入庫管理());
-            // Application.Run(new F_シリーズ());
-
-            //Application.Run(new F_売上一覧_担当者別());
-            //Application.Run(new F_商品管理());
-            Application.Run(new F_振込一覧());
+            Application.Run(new F_メイン());
 
         }
     }

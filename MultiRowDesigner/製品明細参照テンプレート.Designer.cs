@@ -466,13 +466,14 @@
             // RoHS対応
             // 
             this.RoHS対応.DataField = "RoHS対応";
-            this.RoHS対応.Location = new System.Drawing.Point(704, 0);
+            this.RoHS対応.Location = new System.Drawing.Point(704, 2);
             this.RoHS対応.Name = "RoHS対応";
             this.RoHS対応.Size = new System.Drawing.Size(24, 17);
             border7.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
             cellStyle7.Border = border7;
             cellStyle7.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
             cellStyle7.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            cellStyle7.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
             this.RoHS対応.Style = cellStyle7;
             this.RoHS対応.TabIndex = 9;
             this.RoHS対応.TabStop = false;
@@ -500,7 +501,7 @@
             this.ユニット材料費.Size = new System.Drawing.Size(88, 17);
             border9.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
             cellStyle9.Border = border9;
-            cellStyle9.Font = new System.Drawing.Font("BIZ UDPゴシック", 10F);
+            cellStyle9.Font = new System.Drawing.Font("BIZ UDゴシック", 10F);
             cellStyle9.Format = "N2";
             cellStyle9.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             cellStyle9.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleRight;
@@ -547,7 +548,8 @@
             cellStyle12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(204)))), ((int)(((byte)(255)))));
             border11.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
             cellStyle12.Border = border11;
-            cellStyle12.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
+            cellStyle12.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F, System.Drawing.FontStyle.Bold);
+            cellStyle12.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleRight;
             this.明細番号.Style = cellStyle12;
             this.明細番号.TabIndex = 10000;
             this.明細番号.TabStop = false;
