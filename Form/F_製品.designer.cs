@@ -1133,6 +1133,7 @@ namespace u_net
             // 製品明細1
             // 
             製品明細1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            製品明細1.AutoScroll = true;
             製品明細1.Location = new Point(9, 248);
             製品明細1.Margin = new Padding(4);
             製品明細1.Name = "製品明細1";

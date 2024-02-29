@@ -303,6 +303,7 @@
             購買申請明細.CellClick += dataGridView1_CellClick;
             購買申請明細.CellDoubleClick += dataGridView1_CellDoubleClick;
             購買申請明細.CellEnter += 購買申請明細_CellEnter;
+            購買申請明細.CellFormatting += 購買申請明細_CellFormatting;
             購買申請明細.CellLeave += 購買申請明細_CellLeave;
             購買申請明細.CellPainting += DataGridView1_CellPainting;
             購買申請明細.ColumnHeaderMouseClick += dataGridView1_ColumnHeaderMouseClick;

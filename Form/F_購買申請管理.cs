@@ -187,7 +187,7 @@ namespace u_net
             ls.SavePlace(CommonConstants.LoginUserCode, this);
         }
 
-  
+
         private void InitializeFilter()
         {
             this.dtm申請日開始 = DateTime.MinValue;
@@ -339,12 +339,12 @@ namespace u_net
                 if (string.IsNullOrEmpty(strFilter))
                 {
                     //strSQL = "SELECT * FROM V購買申請管理 ORDER BY 購買申請コード DESC";
-                    strSQL = "SELECT 購買申請コード,購買申請版数,申請日,購買納期,出荷予定日,基本型式名,シリーズ名,ロット番号,FORMAT(数量, N'#0') AS 数量,FORMAT(材料単価, N'#0') AS 材料単価,FORMAT(小計, N'#0') AS 小計,申請者名,承認,完了,製造部確認,終了,削除 FROM V購買申請管理 ORDER BY 購買申請コード DESC";
+                    strSQL = "SELECT * FROM V購買申請管理 ORDER BY 購買申請コード DESC";
                 }
                 else
                 {
                     //strSQL = $"SELECT * FROM V購買申請管理 WHERE {strFilter} ORDER BY 購買申請コード DESC";
-                    strSQL = $"SELECT 購買申請コード,購買申請版数,申請日,購買納期,出荷予定日,基本型式名,シリーズ名,ロット番号,FORMAT(数量, N'#0') AS 数量,FORMAT(材料単価, N'#0') AS 材料単価,FORMAT(小計, N'#0') AS 小計,申請者名,承認,完了,製造部確認,終了,削除 FROM V購買申請管理 WHERE {strFilter}  ORDER BY 購買申請コード DESC";
+                    strSQL = $"SELECT * FROM V購買申請管理 WHERE {strFilter}  ORDER BY 購買申請コード DESC";
                 }
 
                 using (SqlCommand command = new SqlCommand(strSQL, cn))
@@ -386,7 +386,7 @@ namespace u_net
             {
                 TotalMoney = 0;
 
-                if(gridobject.Rows.Count <= 0)
+                if (gridobject.Rows.Count <= 0)
                 {
                     合計金額.Text = "0";
                     税込合計金額.Text = "0";
@@ -445,13 +445,29 @@ namespace u_net
                 gridobject.Columns[8].Width = 800 / twipperdot; //数量
                 gridobject.Columns[9].Width = 1200 / twipperdot; //材料単価
                 gridobject.Columns[10].Width = 1200 / twipperdot; //小計
-                gridobject.Columns[11].Width = 1200 / twipperdot; //申請者名
-                gridobject.Columns[12].Width = 300 / twipperdot; //承
-                gridobject.Columns[13].Width = 300 / twipperdot; //完
-                gridobject.Columns[14].Width = 300 / twipperdot; //製
-                gridobject.Columns[15].Width = 300 / twipperdot; //終
-                gridobject.Columns[16].Width = 300 / twipperdot; //削
+                gridobject.Columns[11].Visible=false; //申請者コード
+                gridobject.Columns[12].Width = 1200 / twipperdot; //申請者名
+                gridobject.Columns[13].Width = 300 / twipperdot; //承
+                gridobject.Columns[14].Width = 300 / twipperdot; //完
+                gridobject.Columns[15].Width = 300 / twipperdot; //製
+                gridobject.Columns[16].Width = 300 / twipperdot; //終
+                gridobject.Columns[17].Width = 300 / twipperdot; //削
+                gridobject.Columns[18].Visible = false;
+                gridobject.Columns[19].Visible = false;
+                gridobject.Columns[20].Visible = false;
+                gridobject.Columns[21].Visible = false;
+                gridobject.Columns[22].Visible = false;
+                gridobject.Columns[23].Visible = false;
+                gridobject.Columns[24].Visible = false;
+                gridobject.Columns[25].Visible = false;
 
+                gridobject.Columns[8].DefaultCellStyle.Format = "N0";
+                gridobject.Columns[10].DefaultCellStyle.Format = "N0";
+                gridobject.Columns[7].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                gridobject.Columns[8].DefaultCellStyle.Alignment= DataGridViewContentAlignment.MiddleRight;
+                gridobject.Columns[9].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                gridobject.Columns[10].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                //材料単価はセルごとにフォーマットが異なるので、cellformattingで行う
 
                 // カーソル位置の復元などの後処理
                 gridobject.ResumeLayout();
@@ -499,6 +515,29 @@ namespace u_net
             }
         }
 
+        private void 購買申請明細_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            //材料単価の表示調整
+            if (e.ColumnIndex == 9 && e.Value != null)
+            {
+                // e.Valueは、対象のセルの値
+                decimal value;
+                if (Decimal.TryParse(e.Value.ToString(), out value))
+                {
+                    // 小数部分が0かどうかをチェック
+                    if (value == Math.Floor(value))
+                    {
+                        // 小数部分が0の場合は整数形式で表示
+                        e.Value = String.Format("{0:N0}", value);
+                    }
+                    else
+                    {
+                        // 小数部分が0でない場合は小数第1位まで表示
+                        e.Value = String.Format("{0:N1}", value);
+                    }
+                }
+            }
+        }
         private void DataGridView1_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
             //列ヘッダーかどうか調べる
@@ -995,5 +1034,7 @@ namespace u_net
             form.args = CurrentCode + "," + CurrentEdition;
             form.ShowDialog();
         }
+
+        
     }
 }
