@@ -735,7 +735,6 @@ namespace u_net
             // 製品版数
             // 
             製品版数.BackColor = Color.FromArgb(255, 255, 153);
-            製品版数.Enabled = false;
             製品版数.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             製品版数.FormattingEnabled = true;
             製品版数.ImeMode = ImeMode.Disable;

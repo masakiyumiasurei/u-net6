@@ -127,6 +127,7 @@ namespace u_net
             廃止表示 = new TextBox();
             確定表示 = new TextBox();
             toolTip1 = new ToolTip(components);
+            削除表示 = new TextBox();
             panel1.SuspendLayout();
             statusStrip1.SuspendLayout();
             SuspendLayout();
@@ -999,6 +1000,7 @@ namespace u_net
             無効日時.TabIndex = 10185;
             無効日時.TabStop = false;
             無効日時.Visible = false;
+            無効日時.TextChanged += 無効日時_TextChanged;
             // 
             // 状態
             // 
@@ -1132,6 +1134,7 @@ namespace u_net
             // 
             // 製品明細1
             // 
+            製品明細1.AllowDrop = true;
             製品明細1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             製品明細1.AutoScroll = true;
             製品明細1.Location = new Point(9, 248);
@@ -1182,10 +1185,26 @@ namespace u_net
             確定表示.TabIndex = 10197;
             確定表示.TabStop = false;
             // 
+            // 削除表示
+            // 
+            削除表示.BackColor = Color.Black;
+            削除表示.Enabled = false;
+            削除表示.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            削除表示.ImeMode = ImeMode.NoControl;
+            削除表示.Location = new Point(798, 142);
+            削除表示.Margin = new Padding(3, 2, 3, 2);
+            削除表示.Name = "削除表示";
+            削除表示.ReadOnly = true;
+            削除表示.Size = new Size(24, 20);
+            削除表示.TabIndex = 10200;
+            削除表示.TabStop = false;
+            削除表示.Visible = false;
+            // 
             // F_製品
             // 
             BackColor = SystemColors.Control;
             ClientSize = new Size(1139, 614);
+            Controls.Add(削除表示);
             Controls.Add(製品明細1);
             Controls.Add(statusStrip1);
             Controls.Add(SupersededDate);
@@ -1373,6 +1392,7 @@ namespace u_net
         private TextBox 廃止表示;
         private TextBox 確定表示;
         private ToolTip toolTip1;
+        private TextBox 削除表示;
     }
 }
 
