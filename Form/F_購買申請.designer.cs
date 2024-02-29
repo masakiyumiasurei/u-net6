@@ -1512,6 +1512,7 @@ namespace u_net
             Text = "購買申請";
             FormClosing += Form_Unload;
             Load += Form_Load;
+            Shown += F_購買申請_Shown;
             KeyDown += Form_KeyDown;
             panel1.ResumeLayout(false);
             statusStrip1.ResumeLayout(false);

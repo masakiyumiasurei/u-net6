@@ -40,7 +40,8 @@ namespace u_net
         private bool setProduct = false;
         int intWindowHeight;
         int intWindowWidth;
-        
+        private bool loaded = false;
+
 
         const int WM_UNDO = 0x0304; // Windows message for undo
 
@@ -187,7 +188,7 @@ namespace u_net
             //コンボボックスの設定
             OriginalClass ofn = new OriginalClass();
             ofn.SetComboBox(購買申請コード, "SELECT 購買申請コード as Display,購買申請コード as Value FROM T購買申請 ORDER BY 購買申請コード DESC");
-            
+
             //購買申請コードを登録してから、updatcontrolで行う
             ofn.SetComboBox(購買申請版数, "SELECT 購買申請版数 as Display , 購買申請版数 as Value FROM T購買申請 ORDER BY 購買申請版数 DESC");
             //ofn.SetComboBox(商品コード, "SELECT 商品コード as Display, 商品名 as Display2, シリーズ名 as Display3, 商品コード as Value FROM M商品 ORDER BY 商品コード DESC");
@@ -240,6 +241,8 @@ namespace u_net
                 }
                 fn.WaitForm.Close();
 
+                loaded = true;
+
                 if (Terminate)
                     MessageBox.Show("強制終了指示", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 // 成功時の処理
@@ -286,8 +289,7 @@ namespace u_net
                 this.購買申請コード.Text = FunctionClass.採番(cn, "PUR");
                 this.購買申請版数.SelectedValue = 1;
 
-                // 編集による変更がない状態へ遷移する
-                //ChangedData(false);
+                
 
                 // データを初期化する
                 //this.申請日.Text = DateTime.Now.Date.ToString();
@@ -306,6 +308,9 @@ namespace u_net
                 this.無効日時.Text = null;
                 this.無効者コード.Text = null;
                 this.ItemRevision.Text = "1";
+
+                // 編集による変更がない状態へ遷移する
+                ChangedData(false);
 
                 //インターフェースを制御する
                 FunctionClass.LockData(this, false);
@@ -415,8 +420,12 @@ namespace u_net
                             MessageBox.Show(controlObject.Name + " を入力してください。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                             goto Exit_IsError;
                         }
-                        if (!IsLimit_N(varValue, 14, 0, controlObject.Name))
+
+                        if (!FunctionClass.IsLimit_N(varValue, 14, 0, controlObject.Name))
                             goto Exit_IsError;
+
+          
+                        
                         break;
                     case "材料単価":
                         if (string.IsNullOrEmpty(varValue.ToString()) || varValue.Equals(DBNull.Value))
@@ -424,8 +433,12 @@ namespace u_net
                             MessageBox.Show(controlObject.Name + " を入力してください。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                             goto Exit_IsError;
                         }
-                        if (!IsLimit_N(varValue, 14, 2, controlObject.Name))
+
+                        if (!FunctionClass.IsLimit_N(varValue, 14, 2, controlObject.Name))
                             goto Exit_IsError;
+
+             
+                        
                         break;
                     case "購買納期":
                         if (string.IsNullOrEmpty(varValue.ToString()) || varValue.Equals(DBNull.Value))
@@ -495,13 +508,13 @@ namespace u_net
 
                 SendMessage(controlObject.Handle, WM_UNDO, IntPtr.Zero, IntPtr.Zero);
 
-                return false;
+                return true;
 
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"{this.Name}_IsError - {ex.GetType().Name} : {ex.Message}");
-                return false;
+                return true;
             }
         }
 
@@ -527,6 +540,8 @@ namespace u_net
 
         public void ChangedData(bool isChanged)
         {
+            if (loaded == false) return;
+
             try
             {
                 if (isChanged)
@@ -573,7 +588,7 @@ namespace u_net
                 VariableSet.SetControls(this);
 
                 // 編集による変更がない状態へ遷移
-                //ChangedData(false);
+                ChangedData(false);
 
                 this.購買申請コード.Enabled = true;
                 this.購買申請コード.Focus();
@@ -2055,22 +2070,23 @@ namespace u_net
         }
 
         // 日付選択フォームへの参照を保持するための変数
-        private F_カレンダー dateSelectionForm;
+        private F_カレンダー dateSelectionForm1 = new F_カレンダー();
+        private F_カレンダー dateSelectionForm2 = new F_カレンダー();
+        private F_カレンダー dateSelectionForm3 = new F_カレンダー();
 
         private void 購買納期選択ボタン_Click(object sender, EventArgs e)
         {
-            // 日付選択フォームを作成し表示
-            dateSelectionForm = new F_カレンダー();
+
 
             if (!string.IsNullOrEmpty(購買納期.Text))
             {
-                dateSelectionForm.args = 購買納期.Text;
+                dateSelectionForm2.args = 購買納期.Text;
             }
 
-            if (dateSelectionForm.ShowDialog() == DialogResult.OK && !購買納期.ReadOnly && 購買納期.Enabled)
+            if (dateSelectionForm2.ShowDialog() == DialogResult.OK && !購買納期.ReadOnly && 購買納期.Enabled)
             {
                 // 日付選択フォームから選択した日付を取得
-                string selectedDate = dateSelectionForm.SelectedDate;
+                string selectedDate = dateSelectionForm2.SelectedDate;
 
                 // フォームAの日付コントロールに選択した日付を設定
                 購買納期.Text = selectedDate;
@@ -2196,7 +2212,7 @@ namespace u_net
 
         private void 購買申請コード_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            IsError(sender as Control, e.Cancel);
+            if (IsError(sender as Control, e.Cancel)) e.Cancel = true;
         }
 
         private void 購買申請版数_Validating(object sender, System.ComponentModel.CancelEventArgs e)
@@ -2212,7 +2228,7 @@ namespace u_net
         {
             TextBox textBox = (TextBox)sender;
 
-            if (textBox.Modified == false) return;
+            //if (textBox.Modified == false) return;
 
             if (IsError(textBox, false) == true) e.Cancel = true;
         }
@@ -2226,7 +2242,7 @@ namespace u_net
         {
             TextBox textBox = (TextBox)sender;
 
-            if (textBox.Modified == false) return;
+            //if (textBox.Modified == false) return;
 
             if (IsError(textBox, false) == true) e.Cancel = true;
         }
@@ -2239,25 +2255,22 @@ namespace u_net
 
         private void 出荷予定日_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            sender = this.出荷予定日;
-            F_カレンダー form = new F_カレンダー();
-            form.ShowDialog();
+            出荷予定日選択ボタン_Click(sender, e);
         }
 
         private void 出荷予定日選択ボタン_Click(object sender, EventArgs e)
         {
-            // 日付選択フォームを作成し表示
-            dateSelectionForm = new F_カレンダー();
+  
 
             if (!string.IsNullOrEmpty(出荷予定日.Text))
             {
-                dateSelectionForm.args = 出荷予定日.Text;
+                dateSelectionForm3.args = 出荷予定日.Text;
             }
 
-            if (dateSelectionForm.ShowDialog() == DialogResult.OK && !出荷予定日.ReadOnly && 出荷予定日.Enabled)
+            if (dateSelectionForm3.ShowDialog() == DialogResult.OK && !出荷予定日.ReadOnly && 出荷予定日.Enabled)
             {
                 // 日付選択フォームから選択した日付を取得
-                string selectedDate = dateSelectionForm.SelectedDate;
+                string selectedDate = dateSelectionForm3.SelectedDate;
 
                 // フォームAの日付コントロールに選択した日付を設定
                 出荷予定日.Text = selectedDate;
@@ -2272,7 +2285,7 @@ namespace u_net
 
         private void 商品コード_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            IsError(sender as Control, e.Cancel);
+            if (IsError(sender as Control, e.Cancel)) e.Cancel = true;
         }
 
         private void 商品コード_TextChanged(object sender, EventArgs e)
@@ -2307,7 +2320,7 @@ namespace u_net
         {
             TextBox textBox = (TextBox)sender;
 
-            if (textBox.Modified == false) return;
+            //if (textBox.Modified == false) return;
 
             if (IsError(textBox, false) == true) e.Cancel = true;
         }
@@ -2325,7 +2338,7 @@ namespace u_net
 
         private void 申請者コード_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            IsError(sender as Control, e.Cancel);
+            if (IsError(sender as Control, e.Cancel)) e.Cancel = true;
         }
 
         private void 申請者コード_TextChanged(object sender, EventArgs e)
@@ -2364,9 +2377,7 @@ namespace u_net
 
         private void 申請日_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            sender = this.申請日;
-            F_カレンダー form = new F_カレンダー();
-            form.ShowDialog();
+            申請日選択ボタン_Click(sender, e);
         }
 
         private void 申請日_KeyPress(object sender, KeyPressEventArgs e)
@@ -2379,18 +2390,17 @@ namespace u_net
 
         private void 申請日選択ボタン_Click(object sender, EventArgs e)
         {
-            // 日付選択フォームを作成し表示
-            dateSelectionForm = new F_カレンダー();
+   
 
             if (!string.IsNullOrEmpty(申請日.Text))
             {
-                dateSelectionForm.args = 申請日.Text;
+                dateSelectionForm1.args = 申請日.Text;
             }
 
-            if (dateSelectionForm.ShowDialog() == DialogResult.OK && !申請日.ReadOnly && 申請日.Enabled)
+            if (dateSelectionForm1.ShowDialog() == DialogResult.OK && !申請日.ReadOnly && 申請日.Enabled)
             {
                 // 日付選択フォームから選択した日付を取得
-                string selectedDate = dateSelectionForm.SelectedDate;
+                string selectedDate = dateSelectionForm1.SelectedDate;
 
                 // フォームAの日付コントロールに選択した日付を設定
                 申請日.Text = selectedDate;
@@ -2407,7 +2417,7 @@ namespace u_net
         {
             TextBox textBox = (TextBox)sender;
 
-            if (textBox.Modified == false) return;
+            //if (textBox.Modified == false) return;
 
             if (IsError(textBox, false) == true) e.Cancel = true;
         }
@@ -2427,7 +2437,7 @@ namespace u_net
         {
             TextBox textBox = (TextBox)sender;
 
-            if (textBox.Modified == false) return;
+            //if (textBox.Modified == false) return;
 
             if (IsError(textBox, false) == true) e.Cancel = true;
         }
@@ -2442,7 +2452,7 @@ namespace u_net
         {
             TextBox textBox = (TextBox)sender;
 
-            if (textBox.Modified == false) return;
+            //if (textBox.Modified == false) return;
 
             if (IsError(textBox, false) == true) e.Cancel = true;
 
@@ -2452,7 +2462,7 @@ namespace u_net
         {
             TextBox textBox = (TextBox)sender;
 
-            if (textBox.Modified == false) return;
+            //if (textBox.Modified == false) return;
 
             if (IsError(textBox, false) == true) e.Cancel = true;
         }
@@ -2461,27 +2471,15 @@ namespace u_net
         {
             TextBox textBox = (TextBox)sender;
 
-            if (textBox.Modified == false) return;
+            //if (textBox.Modified == false) return;
 
             if (IsError(textBox, false) == true) e.Cancel = true;
         }
 
         private void 購買納期_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            try
-            {
-                F_カレンダー form = new F_カレンダー();
-                // objParent に購買納期の参照を設定
-                sender = this.購買納期;
 
-                // カレンダーフォームを作成して表示
-                form.ShowDialog();
-            }
-            catch (Exception ex)
-            {
-                // エラーが発生した場合の処理
-                MessageBox.Show($"エラーが発生しました: {ex.Message}", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            購買納期選択ボタン_Click(sender, e);
         }
 
         private void 購買納期_KeyPress(object sender, KeyPressEventArgs e)
@@ -2497,7 +2495,7 @@ namespace u_net
         {
             TextBox textBox = (TextBox)sender;
 
-            if (textBox.Modified == false) return;
+            //if (textBox.Modified == false) return;
 
             if (IsError(textBox, false) == true) e.Cancel = true;
         }
@@ -2568,5 +2566,12 @@ namespace u_net
             }
         }
 
+        private void F_購買申請_Shown(object sender, EventArgs e)
+        {
+            if(購買申請コード.Enabled == false)
+            {
+                申請者コード.Focus();
+            }
+        }
     }
 }
