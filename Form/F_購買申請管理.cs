@@ -402,10 +402,10 @@ namespace u_net
                 for (int row = 0; row < gridobject.Rows.Count; row++)
                 {
                     // 承認のチェック
-                    if (gridobject.Rows[row].Cells[12].Value.ToString() == "■")
+                    if (gridobject.Rows[row].Cells[13].Value.ToString() == "■")
                     {
                         // 削除のチェック
-                        if (gridobject.Rows[row].Cells[16].Value.ToString() != "■")
+                        if (gridobject.Rows[row].Cells[17].Value.ToString() != "■")
                         {
                             // 小計のチェック
                             if (gridobject.Rows[row].Cells[10].Value.ToString() != "")
@@ -460,6 +460,11 @@ namespace u_net
                 gridobject.Columns[23].Visible = false;
                 gridobject.Columns[24].Visible = false;
                 gridobject.Columns[25].Visible = false;
+                gridobject.Columns[26].Visible = false;
+                gridobject.Columns[27].Visible = false;
+                gridobject.Columns[28].Visible = false;
+                gridobject.Columns[29].Visible = false;
+
 
                 gridobject.Columns[8].DefaultCellStyle.Format = "N0";
                 gridobject.Columns[10].DefaultCellStyle.Format = "N0";
@@ -637,8 +642,11 @@ namespace u_net
         private void コマンド購買申請_Click(object sender, EventArgs e)
         {
             購買申請明細.Focus();
+            objParent = this;
             F_購買申請 form = new F_購買申請();
+            form.args = CurrentCode + "," + CurrentEdition;
             form.ShowDialog();
+
         }
 
         private void コマンド保守_Click(object sender, EventArgs e)

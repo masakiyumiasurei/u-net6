@@ -329,22 +329,22 @@ namespace u_net
             // statusStrip1
             // 
             statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1, toolStripStatusLabel2 });
-            statusStrip1.Location = new Point(0, 534);
+            statusStrip1.Location = new Point(0, 531);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Padding = new Padding(1, 0, 19, 0);
-            statusStrip1.Size = new Size(888, 22);
+            statusStrip1.Size = new Size(888, 25);
             statusStrip1.TabIndex = 10001;
             statusStrip1.Text = "statusStrip1";
             // 
             // toolStripStatusLabel1
             // 
             toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            toolStripStatusLabel1.Size = new Size(0, 17);
+            toolStripStatusLabel1.Size = new Size(0, 20);
             // 
             // toolStripStatusLabel2
             // 
             toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            toolStripStatusLabel2.Size = new Size(89, 17);
+            toolStripStatusLabel2.Size = new Size(111, 20);
             toolStripStatusLabel2.Text = "各種項目の説明";
             // 
             // 購買申請コード
@@ -412,7 +412,6 @@ namespace u_net
             購買申請版数.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             購買申請版数.AutoCompleteSource = AutoCompleteSource.ListItems;
             購買申請版数.BackColor = Color.FromArgb(255, 255, 153);
-            購買申請版数.DropDownStyle = ComboBoxStyle.DropDownList;
             購買申請版数.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             購買申請版数.FormattingEnabled = true;
             購買申請版数.ImeMode = ImeMode.Disable;
@@ -821,6 +820,7 @@ namespace u_net
             申請日.Size = new Size(131, 19);
             申請日.TabIndex = 2;
             申請日.TextChanged += 申請者コード_TextChanged;
+            申請日.Enter += 申請日_Enter;
             申請日.KeyPress += 申請日_KeyPress;
             申請日.MouseDoubleClick += 申請日_MouseDoubleClick;
             申請日.Validating += 申請日_Validating;
@@ -980,6 +980,7 @@ namespace u_net
             申請者コード.DrawItem += 申請者コード_DrawItem;
             申請者コード.SelectedIndexChanged += 申請者コード_SelectedIndexChanged;
             申請者コード.TextChanged += 申請者コード_TextChanged;
+            申請者コード.Enter += 申請者コード_Enter;
             申請者コード.KeyPress += 申請者コード_KeyPress;
             申請者コード.Validating += 申請者コード_Validating;
             申請者コード.Validated += 申請者コード_Validated;

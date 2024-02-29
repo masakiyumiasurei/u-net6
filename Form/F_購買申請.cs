@@ -190,11 +190,16 @@ namespace u_net
             ofn.SetComboBox(購買申請コード, "SELECT 購買申請コード as Display,購買申請コード as Value FROM T購買申請 ORDER BY 購買申請コード DESC");
 
             //購買申請コードを登録してから、updatcontrolで行う
-            ofn.SetComboBox(購買申請版数, "SELECT 購買申請版数 as Display , 購買申請版数 as Value FROM T購買申請 ORDER BY 購買申請版数 DESC");
-            //ofn.SetComboBox(商品コード, "SELECT 商品コード as Display, 商品名 as Display2, シリーズ名 as Display3, 商品コード as Value FROM M商品 ORDER BY 商品コード DESC");
-            //ofn.SetComboBox(商品コード, "SELECT M商品.商品コード  as Display, M商品.商品名  as Display2, Mシリーズ.シリーズ名  as Display3, - CONVERT (int, CONVERT (bit, ISNULL(M商品.シリーズコード, 0)))  as Display4, 商品コード as Value FROM M商品 LEFT OUTER JOIN Mシリーズ ON M商品.シリーズコード = Mシリーズ.シリーズコード ORDER BY M商品.商品名");
+            //ofn.SetComboBox(購買申請版数, "SELECT 購買申請版数 as Display , 購買申請版数 as Value FROM T購買申請 ORDER BY 購買申請版数 DESC");
+
+            ofn.SetComboBox(商品コード, "SELECT M商品.商品コード  as Display, M商品.商品名  as Display2, Mシリーズ.シリーズ名  as Display3," +
+                " - CONVERT (int, CONVERT (bit, ISNULL(M商品.シリーズコード, 0)))  as Display4," +
+                " 商品コード as Value FROM M商品 " +
+                "LEFT OUTER JOIN Mシリーズ ON M商品.シリーズコード = Mシリーズ.シリーズコード " +
+                "ORDER BY M商品.商品名");
             商品コード.DrawMode = DrawMode.OwnerDrawFixed;
             商品コード.DropDownWidth = 700;
+
             ofn.SetComboBox(申請者コード, "SELECT [社員コード] as Display, 氏名 as Display2 ,社員コード as Value FROM M社員 WHERE (退社 IS NULL) AND (削除日時 IS NULL) AND (ふりがな <> N'ん') ORDER BY ふりがな");
             申請者コード.DrawMode = DrawMode.OwnerDrawFixed;
             申請者コード.DropDownWidth = 350;
@@ -288,8 +293,7 @@ namespace u_net
 
                 this.購買申請コード.Text = FunctionClass.採番(cn, "PUR");
                 this.購買申請版数.SelectedValue = 1;
-
-                
+                this.購買申請版数.Text = "1";
 
                 // データを初期化する
                 //this.申請日.Text = DateTime.Now.Date.ToString();
@@ -407,14 +411,30 @@ namespace u_net
                             goto Bye_IsError;
                         if (!FunctionClass.IsLimit_N(varValue, 7, 2, controlObject.Name))
                             goto Exit_IsError;
-                        if (int.Parse(varValue.ToString()) < 0)
+                        if (decimal.TryParse(varValue.ToString(), out decimal dec))
                         {
-                            string strMsg = "正数値を入力してください。" + Environment.NewLine + Environment.NewLine + controlObject.Name;
+                            if (dec < 0)
+                            {
+                                string strMsg = "正数値を入力してください。" + Environment.NewLine + Environment.NewLine + controlObject.Name;
+                                MessageBox.Show(strMsg, "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                                goto Exit_IsError;
+                            }
+                        }
+                        else
+                        {
+                            string strMsg = "数値を入力してください。" + Environment.NewLine + Environment.NewLine + controlObject.Name;
                             MessageBox.Show(strMsg, "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                             goto Exit_IsError;
                         }
                         break;
                     case "数量":
+                        if (!int.TryParse(varValue.ToString(), out _))
+                        {
+                            string strMsg = "数値を入力してください。" + Environment.NewLine + Environment.NewLine + controlObject.Name;
+                            MessageBox.Show(strMsg, "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            goto Exit_IsError;
+                        }
+
                         if (string.IsNullOrEmpty(varValue.ToString()) || varValue.Equals(DBNull.Value))
                         {
                             MessageBox.Show(controlObject.Name + " を入力してください。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -424,10 +444,17 @@ namespace u_net
                         if (!FunctionClass.IsLimit_N(varValue, 14, 0, controlObject.Name))
                             goto Exit_IsError;
 
-          
-                        
+
+
                         break;
                     case "材料単価":
+                        if (!decimal.TryParse(varValue.ToString(), out _))
+                        {
+                            string strMsg = "数値を入力してください。" + Environment.NewLine + Environment.NewLine + controlObject.Name;
+                            MessageBox.Show(strMsg, "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            goto Exit_IsError;
+                        }
+
                         if (string.IsNullOrEmpty(varValue.ToString()) || varValue.Equals(DBNull.Value))
                         {
                             MessageBox.Show(controlObject.Name + " を入力してください。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -437,8 +464,7 @@ namespace u_net
                         if (!FunctionClass.IsLimit_N(varValue, 14, 2, controlObject.Name))
                             goto Exit_IsError;
 
-             
-                        
+
                         break;
                     case "購買納期":
                         if (string.IsNullOrEmpty(varValue.ToString()) || varValue.Equals(DBNull.Value))
@@ -650,6 +676,15 @@ namespace u_net
                         コマンド読込.Enabled = false;
                     }
                     確認_製造部ボタン.Enabled = true;
+
+                    //版数のソース更新 改版時のため用
+                    OriginalClass ofn = new OriginalClass();
+
+                    ofn.SetComboBox(購買申請版数, " SELECT 購買申請版数 as Display,購買申請版数 as Value " +
+                            "FROM T購買申請 " +
+                            "WHERE (購買申請コード = '" + CurrentCode + "') " +
+                            "ORDER BY 購買申請版数 DESC");
+                    購買申請版数.SelectedIndex = 0;
                 }
                 else
                 {
@@ -668,9 +703,6 @@ namespace u_net
                 fn.WaitForm.Close();
             }
         }
-
-
-
 
 
         private bool SaveData(string code, int edition)
@@ -846,8 +878,6 @@ namespace u_net
         private bool ErrCheck()
         {
             //入力確認    
-
-
             return true;
         }
 
@@ -897,7 +927,6 @@ namespace u_net
                     "複写コマンド", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 goto Bye_コマンド複写_Click;
             }
-
 
         Bye_コマンド複写_Click:
             fn.WaitForm.Close();
@@ -1171,9 +1200,13 @@ namespace u_net
         {
             try
             {
+                //ItemRevisionは既定値で1を入れているため
+                if (string.IsNullOrEmpty(ItemRevision.Text))
+                    ItemRevision.Text = "1";
+
                 string strKey = $"購買申請コード='{code}' AND 購買申請版数={edition}";
 
-                DataUpdater.UpdateOrInsertDataFrom(this, cn, "T購買申請", strKey, "購買申請コード", transaction);
+                DataUpdater.UpdateOrInsertDataFrom(this, cn, "T購買申請", strKey, "購買申請コード", transaction, "購買申請版数");
             }
             catch (Exception ex)
             {
@@ -1295,7 +1328,7 @@ namespace u_net
             }
             finally
             {
-                fn.WaitForm.Close();
+                if (fn.WaitForm != null) fn.WaitForm.Close();
             }
         }
 
@@ -1342,8 +1375,9 @@ namespace u_net
                 this.終了入力.Text = null;
 
                 // 複写に成功すればインターフェースを更新する
-                if (CopyData(CurrentCode, CurrentEdition + 1))
+                if (CopyData(CurrentCode, (int)CurrentEdition + 1))
                 {
+
                     // 変更された
                     ChangedData(true);
                     // ヘッダ部制御
@@ -1351,6 +1385,9 @@ namespace u_net
                     // 個別にReadOnlyを設定
                     LockCtl();
                     申請日.Focus();
+                    購買申請コード.Enabled = false;
+                    購買申請版数.Enabled = false;
+
                     コマンド新規.Enabled = false;
                     コマンド読込.Enabled = true;
                     コマンド改版.Enabled = false;
@@ -1652,13 +1689,20 @@ namespace u_net
             {
                 case Keys.Return:
                     // 備考でEnter押下時、フォーカス移動しないで改行する
-                    if (ActiveControl.Name != "備考")
-                    {
-                        SelectNextControl(ActiveControl, true, true, true, true);
-                        e.Handled = true;
-                        e.SuppressKeyPress = true;
 
+                    switch (ActiveControl.Name)
+                    {
+                        case "備考":
+                        case "購買申請コード":
+
+
+                            return;
                     }
+
+                    SelectNextControl(ActiveControl, true, true, true, true);
+                    e.Handled = true;
+                    e.SuppressKeyPress = true;
+
                     break;
 
                 case Keys.Space: //コンボボックスならドロップダウン
@@ -1782,6 +1826,7 @@ namespace u_net
                         FunctionClass.LockData(this, IsDecided || IsDeleted, "購買申請コード", "購買申請版数");
                         // 個別にReadOnlyを設定
                         LockCtl();
+
 
                         ChangedData(false);
 
@@ -2049,6 +2094,7 @@ namespace u_net
                 if (strCode != 購買申請コード.Text)
                 {
                     購買申請コード.Text = strCode;
+                    SelectNextControl(ActiveControl, true, true, true, true);
                 }
             }
         }
@@ -2212,7 +2258,12 @@ namespace u_net
 
         private void 購買申請コード_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (IsError(sender as Control, e.Cancel)) e.Cancel = true;
+            if (tmpshinseisha == 購買申請コード.Text) return;
+            if (IsError(sender as Control, e.Cancel))
+            {
+                e.Cancel = true;
+                購買申請コード.Text = tmpshinseisha;
+            }
         }
 
         private void 購買申請版数_Validating(object sender, System.ComponentModel.CancelEventArgs e)
@@ -2228,8 +2279,8 @@ namespace u_net
         {
             TextBox textBox = (TextBox)sender;
 
-            //if (textBox.Modified == false) return;
-
+            if (textBox.Modified == false) return;
+            if (tmpshinsei == 申請日.Text) return;
             if (IsError(textBox, false) == true) e.Cancel = true;
         }
 
@@ -2260,7 +2311,7 @@ namespace u_net
 
         private void 出荷予定日選択ボタン_Click(object sender, EventArgs e)
         {
-  
+
 
             if (!string.IsNullOrEmpty(出荷予定日.Text))
             {
@@ -2360,6 +2411,7 @@ namespace u_net
         {
             if (e.KeyChar == ' ')
             {
+                e.Handled = true;
                 出荷予定日選択ボタン_Click(sender, e);
             }
         }
@@ -2384,13 +2436,14 @@ namespace u_net
         {
             if (e.KeyChar == ' ')
             {
+                e.Handled = true;
                 申請日選択ボタン_Click(sender, e);
             }
         }
 
         private void 申請日選択ボタン_Click(object sender, EventArgs e)
         {
-   
+
 
             if (!string.IsNullOrEmpty(申請日.Text))
             {
@@ -2486,6 +2539,7 @@ namespace u_net
         {
             if (e.KeyChar == ' ')
             {
+                e.Handled = true;
                 // 購買納期選択ボタンのクリックイベントを呼び出す
                 購買納期選択ボタン_Click(sender, e);
             }
@@ -2568,10 +2622,22 @@ namespace u_net
 
         private void F_購買申請_Shown(object sender, EventArgs e)
         {
-            if(購買申請コード.Enabled == false)
+            if (購買申請コード.Enabled == false)
             {
                 申請者コード.Focus();
             }
+        }
+
+        string tmpshinsei = "";
+        private void 申請日_Enter(object sender, EventArgs e)
+        {
+            tmpshinsei = 申請日.Text;
+        }
+
+        string tmpshinseisha="";
+        private void 申請者コード_Enter(object sender, EventArgs e)
+        {
+            tmpshinseisha = 申請者コード.Text;
         }
     }
 }
