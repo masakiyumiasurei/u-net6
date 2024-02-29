@@ -34,6 +34,8 @@ namespace u_net
         int intWindowWidth;
         public bool IsDirty = false;
         bool setCmb = true;
+        bool saveflg = false;
+        bool copyflg = false;
         public F_製品()
         {
             this.Text = "製品";       // ウィンドウタイトルを設定
@@ -198,7 +200,7 @@ namespace u_net
 
             ofn.SetComboBox(SeriesCode, "SELECT シリーズコード as Value,シリーズコード as Display,シリーズ名 as Display2 FROM Mシリーズ WHERE 無効日時 IS NULL ORDER BY シリーズ名");
             SeriesCode.DrawMode = DrawMode.OwnerDrawFixed;
-            SeriesCode.DropDownWidth= 200;
+            SeriesCode.DropDownWidth = 200;
 
             製品版数.DropDownWidth = 80;
 
@@ -282,7 +284,7 @@ namespace u_net
                 VariableSet.SetTable2Details(製品明細1.Detail, strSQL, cn);
 
                 // ヘッダ部動作制御
-                FunctionClass.LockData(this, false);
+                FunctionClass.LockData(this, false, "指導書変更");
 
                 this.品名.Focus();
                 this.製品コード.Enabled = false;
@@ -340,7 +342,7 @@ namespace u_net
 
                 this.製品コード.Focus();
 
-                FunctionClass.LockData(this, true, "製品コード", "製品版数");
+                FunctionClass.LockData(this, true, "製品コード", "製品版数", "指導書変更");
 
 
                 // ボタンの状態を設定
@@ -543,6 +545,10 @@ namespace u_net
         {
             FunctionClass fn = new FunctionClass();
 
+
+            if (saveflg) return;
+            if (copyflg) return;
+
             try
             {
                 string strSQL;
@@ -594,7 +600,7 @@ namespace u_net
 
 
                         // 動作を制御する
-                        FunctionClass.LockData(this, this.IsDecided || this.IsDeleted, "製品コード");
+                        FunctionClass.LockData(this, this.IsDecided || this.IsDeleted, "製品コード", "指導書変更");
                         this.製品版数.Enabled = true; // 版数を編集可能にする
                         this.改版ボタン.Enabled = this.IsLatestEdition && this.IsApproved;
                         製品明細1.Detail.AllowUserToAddRows = !this.IsDecided;
@@ -644,7 +650,7 @@ namespace u_net
 
 
                         // 動作を制御する
-                        FunctionClass.LockData(this, this.IsDecided || this.IsDeleted, "製品コード", "製品版数");
+                        FunctionClass.LockData(this, this.IsDecided || this.IsDeleted, "製品コード", "製品版数", "指導書変更");
                         this.改版ボタン.Enabled = this.IsLatestEdition && this.IsApproved;
                         製品明細1.Detail.AllowUserToAddRows = !this.IsDecided;
                         製品明細1.Detail.AllowUserToDeleteRows = !this.IsDecided;
@@ -676,6 +682,7 @@ namespace u_net
             {
                 // 例外処理
                 Debug.Print(this.Name + "_UpdatedControl - " + ex.Message);
+                if (fn.WaitForm == null) return;
                 fn.WaitForm.Close();
             }
             finally
@@ -746,7 +753,7 @@ namespace u_net
 
             if (IsApproved)
             {
-                if (CurrentEdition == Convert.ToInt32(製品版数.Text))
+                if (CurrentEdition.ToString() == 製品版数.GetItemText(製品版数.Items[0]))
                 {
                     状態.Text = "最新版";
                     状態.ForeColor = Color.Red;
@@ -755,7 +762,7 @@ namespace u_net
                 {
                     状態.ForeColor = Color.Black;
 
-                    if (製品版数.GetItemText(製品版数.Items[0]) == "")
+                    if (string.IsNullOrEmpty(((DataRowView)製品版数.Items[0])?.Row.Field<String>("Display2")))
                     {
                         状態.Text = "改版中";
                     }
@@ -796,7 +803,7 @@ namespace u_net
                     承認表示.BringToFront();
                 }
 
-                if (SupersededDate == null || string.IsNullOrEmpty(SupersededDate.Text))
+                if (廃止.Text == null || string.IsNullOrEmpty(廃止.Text))
                 {
                     廃止表示.SendToBack();
                 }
@@ -816,6 +823,16 @@ namespace u_net
                 {
                     状態.ForeColor = Color.Black;
                 }
+
+                if (string.IsNullOrEmpty(無効日時.Text))
+                {
+                    削除表示.Visible = false;
+                }
+                else
+                {
+                    削除表示.Visible = true;
+                }
+
 
                 return true;
 
@@ -1230,7 +1247,7 @@ namespace u_net
                     // データ変更とする
                     ChangedData(true);
                     // ヘッダ部制御
-                    FunctionClass.LockData(this, false);
+                    FunctionClass.LockData(this, false, "指導書変更");
                     this.品名.Focus();
                     this.改版ボタン.Enabled = false;
                     this.コマンド新規.Enabled = false;
@@ -1275,10 +1292,14 @@ namespace u_net
 
                 }
 
+                copyflg = true;
 
                 // 表示情報の更新
                 this.製品コード.Text = codeString;
                 this.製品版数.Text = editionNumber.ToString();
+
+                copyflg = false;
+
                 this.指導書変更.Checked = false;
                 this.状態.Text = null;
                 this.作成日時.Text = null;
@@ -1292,7 +1313,7 @@ namespace u_net
                 this.承認日時.Text = null;
                 this.承認者コード.Text = null;
                 this.承認者名.Text = null;
-                this.廃止.Text = null;
+                //this.廃止.Text = null;
                 this.SupersededDate = null;
 
                 return true;
@@ -1356,7 +1377,7 @@ namespace u_net
         {
             if (コマンド新規.Enabled == true)
             {
-                FunctionClass.LockData(this, false);
+                FunctionClass.LockData(this, false, "指導書変更");
             }
         }
 
@@ -1602,7 +1623,7 @@ namespace u_net
                     UpdateEditionList(CurrentCode);
 
 
-                    FunctionClass.LockData(this, IsDecided || IsDeleted, "製品コード", "製品版数");
+                    FunctionClass.LockData(this, IsDecided || IsDeleted, "製品コード", "製品版数", "指導書変更");
 
                     // RoHS対応状況を表示する
                     RoHS対応.Text = GetRohsStatus();
@@ -1763,7 +1784,7 @@ namespace u_net
                     // データ変更とする
                     ChangedData(true);
                     // ヘッダ部制御
-                    FunctionClass.LockData(this, false);
+                    FunctionClass.LockData(this, false, "指導書変更");
 
                     // ■ 値集合ソースをクリアする必要はないのか？
 
@@ -1807,6 +1828,8 @@ namespace u_net
                 if (SaveData())
                 {
 
+                    var productCode = 製品コード.Text;
+
                     // 版数のソース更新
                     UpdateEditionList(CurrentCode);
                     // 製品版数.Requery();
@@ -1823,8 +1846,16 @@ namespace u_net
                         コマンド新規.Enabled = true;
                         コマンド読込.Enabled = false;
 
+                        saveflg = true;
+
                         OriginalClass ofn = new OriginalClass();
                         ofn.SetComboBox(製品コード, "SELECT A.製品コード as Value, A.製品コード as Display, A.最新版数 as Display3, { fn REPLACE(STR(CONVERT(bit, M製品.無効日時), 1, 0), '1', '×') } AS Display2 FROM M製品 INNER JOIN (SELECT 製品コード, MAX(製品版数) AS 最新版数 FROM M製品 GROUP BY 製品コード) A ON M製品.製品コード = A.製品コード AND M製品.製品版数 = A.最新版数 ORDER BY A.製品コード DESC");
+
+                        saveflg = false;
+
+                        製品コード.SelectedValue = productCode;
+                        製品コード_SelectedIndexChanged(sender, e);
+                    
                     }
 
                     if (!IsApproved)
@@ -2521,7 +2552,7 @@ namespace u_net
         {
             if (setCmb) return;
             製品版数.Text = ((DataRowView)製品コード.SelectedItem)?.Row.Field<Int16>("Display3").ToString();
-            UpdatedControl(sender as Control);
+            UpdatedControl(製品コード);
         }
 
         private void 製品コード_TextChanged(object sender, EventArgs e)
@@ -2541,16 +2572,16 @@ namespace u_net
         }
 
         bool changeCmb = false;
-        bool changeSeries=false;
+        bool changeSeries = false;
         private void SeriesCode_SelectedIndexChanged(object sender, EventArgs e)
         {
             //イベントの連鎖でシリーズ名とシリーズコードが相互に消しあう状態を防ぐ
             changeCmb = true;
 
-            if(!changeSeries)
-            シリーズ名.Text = ((DataRowView)SeriesCode.SelectedItem)?.Row.Field<String>("Display2")?.ToString();
-            
-          //  UpdatedControl(sender as Control);
+            if (!changeSeries)
+                シリーズ名.Text = ((DataRowView)SeriesCode.SelectedItem)?.Row.Field<String>("Display2")?.ToString();
+
+            //  UpdatedControl(sender as Control);
         }
 
         private void SeriesCode_TextChanged(object sender, EventArgs e)
@@ -2575,10 +2606,10 @@ namespace u_net
                 FunctionClass.LimitText(sender as Control, 30);
                 changeSeries = true;
                 SeriesCode.SelectedIndex = -1;
-                ChangedData(true);                
+                ChangedData(true);
             }
             changeCmb = false;
-           
+
         }
 
         private void シリーズ名_Validating(object sender, System.ComponentModel.CancelEventArgs e)
@@ -2633,7 +2664,7 @@ namespace u_net
             FunctionClass.LimitText(sender as Control, 5);
         }
 
-       
+
 
         private void 識別コード_TextChanged(object sender, EventArgs e)
         {
@@ -2773,6 +2804,16 @@ namespace u_net
             toolStripStatusLabel1.Text = "各種項目の説明";
         }
 
-
+        private void 無効日時_TextChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(無効日時.Text))
+            {
+                削除表示.Visible = false;
+            }
+            else
+            {
+                削除表示.Visible = true;
+            }
+        }
     }
 }

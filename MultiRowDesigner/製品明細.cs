@@ -43,6 +43,8 @@ namespace MultiRowDesigner
             gcMultiRow1.ShortcutKeyManager.Register(SelectionActions.MoveToNextCell, Keys.Enter);
             gcMultiRow1.DataError += new EventHandler<DataErrorEventArgs>(gcMultiRow1_DataError);
 
+   
+
         }
 
         bool errFlg = false;
@@ -579,6 +581,7 @@ namespace MultiRowDesigner
         private void gcMultiRow1_RowEnter(object sender, CellEventArgs e)
         {
             gcMultiRow1.CurrentRow.Cells["カレント"].Style.BackColor = Color.DeepPink;
+
         }
 
         private void gcMultiRow1_RowLeave(object sender, CellEventArgs e)

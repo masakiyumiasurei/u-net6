@@ -308,9 +308,10 @@ namespace u_net.Public
         /// <param name="lockedOn"></param>
         /// <param name="exControlName1"></param>
         /// <param name="exControlName2"></param>
-        public static void LockData(Form formObject, bool lockedOn, string? exControlName1 = null, string? exControlName2 = null)
+        /// <param name="exControlName3"></param>
+        public static void LockData(Form formObject, bool lockedOn, string? exControlName1 = null, string? exControlName2 = null,string? exControlName3 = null)
         {
-            LockControls(formObject.Controls, lockedOn, exControlName1, exControlName2);
+            LockControls(formObject.Controls, lockedOn, exControlName1, exControlName2,exControlName3);
             //foreach (Control control in formObject.Controls)
             //{                
             //    if (control is TextBox)
@@ -336,27 +337,27 @@ namespace u_net.Public
             //    }                
             //}
         }
-        private static void LockControls(Control.ControlCollection controls, bool lockedOn, string? exControlName1, string? exControlName2)
+        private static void LockControls(Control.ControlCollection controls, bool lockedOn, string? exControlName1, string? exControlName2,string? exControlName3 = null)
         {
             foreach (Control control in controls)
             {
                 if (control is TextBox)
                 {
-                    if (control.Enabled && control.Name != exControlName1 && control.Name != exControlName2)
+                    if (control.Enabled && control.Name != exControlName1 && control.Name != exControlName2 && control.Name != exControlName3)
                     {
                         ((TextBox)control).ReadOnly = lockedOn;
                     }
                 }
                 else if (control is ComboBox)
                 {
-                    if (control.Name != exControlName1 && control.Name != exControlName2)
+                    if (control.Name != exControlName1 && control.Name != exControlName2 && control.Name != exControlName3)
                     {
                         ((ComboBox)control).Enabled = !lockedOn;
                     }
                 }
                 else if (control is CheckBox)
                 {
-                    if (control.Name != exControlName1 && control.Name != exControlName2)
+                    if (control.Name != exControlName1 && control.Name != exControlName2 && control.Name != exControlName3)
                     {
                         ((CheckBox)control).Enabled = !lockedOn;
                     }
@@ -365,7 +366,7 @@ namespace u_net.Public
                 // パネルやグループボックスの場合、再帰的に呼び出す
                 if (control.HasChildren)
                 {
-                    LockControls(control.Controls, lockedOn, exControlName1, exControlName2);
+                    LockControls(control.Controls, lockedOn, exControlName1, exControlName2,exControlName3);
                 }
             }
         }

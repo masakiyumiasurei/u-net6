@@ -544,7 +544,7 @@ namespace u_net
 
                         // 動作を制御する
                         FunctionClass.LockData(this, this.IsDecided || this.IsDeleted, "製品コード");
-                        this.製品版数.Enabled = false; // 版数を編集可能にする
+                        this.製品版数.Enabled = true; // 版数を編集可能にする
 
                         製品明細参照1.Detail.AllowUserToAddRows = !this.IsDecided;
                         製品明細参照1.Detail.AllowUserToDeleteRows = !this.IsDecided;

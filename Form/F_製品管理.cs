@@ -224,7 +224,7 @@ namespace u_net
                         filter += "指導書変更 IS NOT NULL AND ";
                         break;
                     case 2:
-                        filter += "指導書変更 IS NOT AND ";
+                        filter += "指導書変更 IS NULL AND ";
                         break;
                 }
 

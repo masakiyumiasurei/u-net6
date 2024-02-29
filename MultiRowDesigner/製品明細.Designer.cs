@@ -36,14 +36,16 @@
             // gcMultiRow1
             // 
             gcMultiRow1.BackColor = Color.White;
+            gcMultiRow1.Dock = DockStyle.Fill;
             gcMultiRow1.EditMode = GrapeCity.Win.MultiRow.EditMode.EditOnEnter;
             gcMultiRow1.Location = new Point(0, 0);
-            gcMultiRow1.Margin = new Padding(5, 5, 5, 5);
+            gcMultiRow1.Margin = new Padding(4);
+            gcMultiRow1.MultiSelect = false;
             gcMultiRow1.Name = "gcMultiRow1";
-            gcMultiRow1.Size = new Size(1481, 537);
+            gcMultiRow1.Size = new Size(1296, 403);
             gcMultiRow1.TabIndex = 0;
             gcMultiRow1.Template = 製品明細テンプレート1;
-            gcMultiRow1.TemplateScaleSize = new SizeF(1.33333373F, 1.66666675F);
+            gcMultiRow1.TemplateScaleSize = new SizeF(1.166667F, 1.25F);
             gcMultiRow1.Text = "gcMultiRow1";
             gcMultiRow1.RowsAdded += gcMultiRow1_RowsAdded;
             gcMultiRow1.RowsRemoved += gcMultiRow1_RowsRemoved;
@@ -70,12 +72,12 @@
             // 
             // 製品明細
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(gcMultiRow1);
-            Margin = new Padding(5, 5, 5, 5);
+            Margin = new Padding(4);
             Name = "製品明細";
-            Size = new Size(1481, 537);
+            Size = new Size(1296, 403);
             Load += 製品明細_Load;
             ((System.ComponentModel.ISupportInitialize)gcMultiRow1).EndInit();
             ResumeLayout(false);
