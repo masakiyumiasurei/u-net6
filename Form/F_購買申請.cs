@@ -25,6 +25,7 @@ using System.Runtime.InteropServices;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 using System.Data.Common;
 using Microsoft.Identity.Client;
+using Microsoft.IdentityModel.Tokens;
 
 namespace u_net
 {
@@ -40,7 +41,7 @@ namespace u_net
         private bool setProduct = false;
         int intWindowHeight;
         int intWindowWidth;
-        private bool loaded = false;
+        private bool loaded = true;
 
 
         const int WM_UNDO = 0x0304; // Windows message for undo
@@ -246,7 +247,7 @@ namespace u_net
                 }
                 fn.WaitForm.Close();
 
-                loaded = true;
+                loaded = false;
 
                 if (Terminate)
                     MessageBox.Show("強制終了指示", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -566,7 +567,7 @@ namespace u_net
 
         public void ChangedData(bool isChanged)
         {
-            if (loaded == false) return;
+            if (loaded == true) return;
 
             try
             {
@@ -679,12 +680,13 @@ namespace u_net
 
                     //版数のソース更新 改版時のため用
                     OriginalClass ofn = new OriginalClass();
-
+                    setCombo = true;
                     ofn.SetComboBox(購買申請版数, " SELECT 購買申請版数 as Display,購買申請版数 as Value " +
                             "FROM T購買申請 " +
                             "WHERE (購買申請コード = '" + CurrentCode + "') " +
                             "ORDER BY 購買申請版数 DESC");
                     購買申請版数.SelectedIndex = 0;
+                    setCombo = false;
                 }
                 else
                 {
@@ -1142,59 +1144,6 @@ namespace u_net
             return success;
         }
 
-        private bool ExecuteSQL(string sqlString)
-        {
-            bool success = false;
-            SqlTransaction transaction = null;
-
-            Connection connectionInfo = new Connection();
-            string connectionString = connectionInfo.Getconnect();
-            cn = new SqlConnection(connectionString);
-            cn.Open();
-
-            try
-            {
-                transaction = cn.BeginTransaction();
-
-                using (SqlCommand command = new SqlCommand(sqlString, cn, transaction))
-                {
-                    command.ExecuteNonQuery();
-                }
-
-                transaction.Commit();
-                success = true;
-            }
-            catch (SqlException ex)
-            {
-                if (transaction != null)
-                {
-                    transaction.Rollback();
-                }
-
-                Console.WriteLine($"SQL Error in ExecuteSQL: {ex.Number} - {ex.Message}");
-                Console.WriteLine($"StackTrace: {ex.StackTrace}");
-            }
-
-            catch (Exception ex)
-            {
-                if (transaction != null)
-                {
-                    transaction.Rollback();
-                }
-
-                Console.WriteLine($"Error in ExecuteSQL: {ex.Message}");
-                Console.WriteLine($"StackTrace: {ex.StackTrace}");
-            }
-            finally
-            {
-                if (cn.State == System.Data.ConnectionState.Open)
-                {
-                    cn.Close();
-                }
-            }
-
-            return success;
-        }
 
         private bool SaveHeader(Form inputForm, string code, int edition, SqlTransaction transaction)
         {
@@ -1567,8 +1516,6 @@ namespace u_net
             MessageBox.Show("このコマンドは使用できません。", "確定コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-
-
         private void コマンド終了_Click(object sender, EventArgs e)
         {
             Close(); // フォームを閉じる
@@ -1673,7 +1620,6 @@ namespace u_net
                 Debug.WriteLine($"Error in コマンド商品_Click: {ex.Message}");
             }
         }
-
 
         private void Form_KeyDown(object sender, KeyEventArgs e)
         {
@@ -2106,7 +2052,7 @@ namespace u_net
 
         private void 購買納期_Validated(object sender, EventArgs e)
         {
-            UpdatedControl(sender as Control);
+          //  UpdatedControl(sender as Control);
         }
 
         private void 購買納期_TextChanged(object sender, EventArgs e)
@@ -2142,7 +2088,7 @@ namespace u_net
 
         private void 材料単価_Validated(object sender, EventArgs e)
         {
-            UpdatedControl(sender as Control);
+           // UpdatedControl(sender as Control);
         }
 
         private void 材料単価_TextChanged(object sender, EventArgs e)
@@ -2272,7 +2218,7 @@ namespace u_net
 
             //if (textBox.Modified == false) return;
 
-            if (IsError(sender as Control, false) == true) e.Cancel = true;
+           // if (IsError(sender as Control, false) == true) e.Cancel = true;
         }
 
         private void 申請日_Validating(object sender, System.ComponentModel.CancelEventArgs e)
@@ -2280,20 +2226,20 @@ namespace u_net
             TextBox textBox = (TextBox)sender;
 
             if (textBox.Modified == false) return;
-            if (tmpshinsei == 申請日.Text) return;
+           // if (tmpshinsei == 申請日.Text) return;
             if (IsError(textBox, false) == true) e.Cancel = true;
         }
 
         private void 出荷予定日_Validated(object sender, EventArgs e)
         {
-            UpdatedControl(sender as Control);
+           // UpdatedControl(sender as Control);
         }
 
         private void 出荷予定日_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
             TextBox textBox = (TextBox)sender;
 
-            //if (textBox.Modified == false) return;
+            if (textBox.Modified == false) return;
 
             if (IsError(textBox, false) == true) e.Cancel = true;
         }
@@ -2336,7 +2282,7 @@ namespace u_net
 
         private void 商品コード_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (IsError(sender as Control, e.Cancel)) e.Cancel = true;
+            //if (IsError(sender as Control, e.Cancel)) e.Cancel = true;
         }
 
         private void 商品コード_TextChanged(object sender, EventArgs e)
@@ -2350,7 +2296,7 @@ namespace u_net
 
             if (e.KeyCode == Keys.Return)
             {
-
+                e.Handled = true;
                 string strCode = 商品コード.Text.ToString();
                 string formattedCode = strCode.Trim().PadLeft(8, '0');
 
@@ -2364,14 +2310,15 @@ namespace u_net
 
         private void 商品名_Validated(object sender, EventArgs e)
         {
+            TextBox textBox = (TextBox)sender;
+            if (textBox.Modified == false) return;
             UpdatedControl(sender as Control);
         }
 
         private void 商品名_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
             TextBox textBox = (TextBox)sender;
-
-            //if (textBox.Modified == false) return;
+            if (textBox.Modified == false) return;
 
             if (IsError(textBox, false) == true) e.Cancel = true;
         }
@@ -2384,7 +2331,7 @@ namespace u_net
 
         private void 申請者コード_Validated(object sender, EventArgs e)
         {
-            UpdatedControl(sender as Control);
+            //UpdatedControl(sender as Control);
         }
 
         private void 申請者コード_Validating(object sender, System.ComponentModel.CancelEventArgs e)
@@ -2470,7 +2417,7 @@ namespace u_net
         {
             TextBox textBox = (TextBox)sender;
 
-            //if (textBox.Modified == false) return;
+            if (textBox.Modified == false) return;
 
             if (IsError(textBox, false) == true) e.Cancel = true;
         }
@@ -2505,26 +2452,32 @@ namespace u_net
         {
             TextBox textBox = (TextBox)sender;
 
-            //if (textBox.Modified == false) return;
-
+            if (textBox.Modified == false) return;
             if (IsError(textBox, false) == true) e.Cancel = true;
+            if (string.IsNullOrEmpty(textBox.Text)) return;
 
+            decimal value = decimal.Parse(textBox.Text);
+            ロット番号1.Text = value.ToString("F2");
         }
 
         private void ロット番号2_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
+            
             TextBox textBox = (TextBox)sender;
 
-            //if (textBox.Modified == false) return;
-
+            if (textBox.Modified == false) return;           
             if (IsError(textBox, false) == true) e.Cancel = true;
+            if (string.IsNullOrEmpty(textBox.Text)) return;
+
+            decimal value = decimal.Parse(textBox.Text);
+            ロット番号2.Text = value.ToString("F2");
         }
 
         private void 材料単価_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
             TextBox textBox = (TextBox)sender;
 
-            //if (textBox.Modified == false) return;
+            if (textBox.Modified == false) return;
 
             if (IsError(textBox, false) == true) e.Cancel = true;
         }
@@ -2549,7 +2502,7 @@ namespace u_net
         {
             TextBox textBox = (TextBox)sender;
 
-            //if (textBox.Modified == false) return;
+            if (textBox.Modified == false) return;
 
             if (IsError(textBox, false) == true) e.Cancel = true;
         }
@@ -2607,18 +2560,7 @@ namespace u_net
             UpdatedControl(購買申請版数);
         }
 
-        private void Form_Resize(object sender, EventArgs e)
-        {
-            try
-            {
-                intWindowHeight = this.Height;  // 高さ保存
-                intWindowWidth = this.Width;    // 幅保存     　
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(this.Name + "_Form_Resize - " + ex.Message);
-            }
-        }
+        
 
         private void F_購買申請_Shown(object sender, EventArgs e)
         {
