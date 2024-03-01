@@ -256,11 +256,13 @@ namespace MultiRowDesigner
                 bool isError = false;
 
 
+               
+
                 object varValue = controlObject.Value;
                 switch (controlObject.Name)
                 {
                     case "構成番号":
-                        if (varValue == null)
+                        if (string.IsNullOrEmpty(varValue?.ToString()))
                         {
                             MessageBox.Show($"[{controlObject.Name}] を入力してください。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                             goto Exit_IsError;
@@ -275,7 +277,7 @@ namespace MultiRowDesigner
 
                         break;
                     case "部品コード":
-                        if (varValue == null)
+                        if (string.IsNullOrEmpty(varValue?.ToString()))
                         {
                             MessageBox.Show($"[{controlObject.Name}] を入力してください。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                             goto Exit_IsError;
@@ -341,6 +343,10 @@ namespace MultiRowDesigner
             gcMultiRow1.EndEdit();
             //gcMultiRow1.CancelEdit();
             //e.Cancel = true;
+
+            GcMultiRow grid = (GcMultiRow)sender;
+
+            if (grid.IsCurrentCellInEditMode == false) return;
 
             switch (e.CellName)
             {
