@@ -295,7 +295,7 @@ namespace MultiRowDesigner
                 {
                     case "型式名":
                     case "ユニットコード":
-                        if (varValue == null)
+                        if (string.IsNullOrEmpty(varValue?.ToString()))
                         {
                             MessageBox.Show($"[{controlObject.Name}] を入力してください。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                             goto Exit_IsError;
@@ -322,6 +322,8 @@ namespace MultiRowDesigner
         private void gcMultiRow1_CellValidating(object sender, CellValidatingEventArgs e)
         {
             GcMultiRow grid = (GcMultiRow)sender;
+
+            if (grid.IsCurrentCellInEditMode == false) return;
 
             // 値が変更されていれば変更済みとして処理
             if (grid.EditingControl != null && grid.EditingControl.Text != gcMultiRow1.CurrentCell.DisplayText)
@@ -591,6 +593,10 @@ namespace MultiRowDesigner
 
         private void gcMultiRow1_RowValidating(object sender, CellCancelEventArgs e)
         {
+
+            F_製品? f_製品 = Application.OpenForms.OfType<F_製品>().FirstOrDefault();
+            if (f_製品.IsApproved) return;
+
             var targetRow = e.RowIndex;
             if (gcMultiRow1.Rows[e.RowIndex].IsNewRow) return;
 

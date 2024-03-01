@@ -243,7 +243,7 @@ namespace u_net
             }
             catch (Exception ex)
             {
-                MessageBox.Show("初期化に失敗しました。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("指定ユニットを開くことはできません。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 this.Close();
             }
             finally
