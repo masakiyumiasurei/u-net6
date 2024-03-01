@@ -543,6 +543,7 @@
             border5.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
             cellStyle6.Border = border5;
             cellStyle6.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
+            cellStyle6.ImageAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleRight;
             cellStyle6.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.入数.Style = cellStyle6;
             this.入数.TabIndex = 6;
@@ -584,6 +585,7 @@
             border8.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
             cellStyle9.Border = border8;
             cellStyle9.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
+            cellStyle9.ImageAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleRight;
             cellStyle9.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.発注数量.Style = cellStyle9;
             this.発注数量.TabIndex = 9;
@@ -683,6 +685,8 @@
             cellStyle15.Border = border13;
             cellStyle15.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
             cellStyle15.Format = "N2";
+            cellStyle15.ImageAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleRight;
+            cellStyle15.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.発注単価.Style = cellStyle15;
             this.発注単価.TabIndex = 10;
             // 
@@ -758,6 +762,7 @@
             cellStyle20.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter;
             this.買掛区分修正ボタン.Style = cellStyle20;
             this.買掛区分修正ボタン.TabIndex = 48;
+            this.買掛区分修正ボタン.TabStop = false;
             this.買掛区分修正ボタン.Value = "修正";
             // 
             // 発注明細テンプレート

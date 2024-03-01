@@ -213,9 +213,6 @@ namespace u_net
                 表示件数.Text = lngCount.ToString();
 
 
-
-
-
                 MyApi myapi = new MyApi();
                 int xSize, ySize, intpixel, twipperdot;
 
@@ -236,8 +233,6 @@ namespace u_net
                 dataGridView1.Columns[3].Width = 3250 / twipperdot;
                 dataGridView1.Columns[4].Width = 1200 / twipperdot;
                 dataGridView1.Columns[5].Width = 400 / twipperdot;
-
-
 
             }
             catch (Exception ex)
@@ -284,20 +279,14 @@ namespace u_net
             this.Hide();
         }
 
-
-
         private void 分類記号_SelectedIndexChanged(object sender, EventArgs e)
         {
             対象部品名.Text = ((DataRowView)分類記号.SelectedItem)?.Row.Field<String>("Display2")?.ToString();
 
-
             str分類記号 = 分類記号.Text;
             
-
             if (bleDontAfterUpdate)
-            {
-                
-
+            {                
                 bleDontAfterUpdate = false;
                 return;
             }
@@ -307,8 +296,9 @@ namespace u_net
 
             bleDontKeyUp = false;
 
-            SetSource();
-
+            if (分類記号.DroppedDown) return;
+            
+                SetSource();               
 
         }
 
@@ -437,12 +427,13 @@ namespace u_net
                     e.Handled = true;
                     break;
                 case (int)Keys.Return:
+                case (int)Keys.Tab:
                     e.Handled = true;
                     bleDontAfterUpdate = true;
                     str分類記号 = 分類記号.Text;
                     str型番 = ""; // 分類条件が指定されたら型番条件は却下
                     型番文字列.Text = null;
-                    
+
                     bleDontKeyUp = true;
                     分類記号.SelectedValue = str分類記号;
                     SetSource();
@@ -455,34 +446,34 @@ namespace u_net
                         comboBox.DroppedDown = true;
                     }
                     break;
-                case (int)Keys.Up:
-                    e.Handled = true;
-                    dataGridView1.Focus();
-                    if (dataGridView1.CurrentRow == null) return;
-                    int idx = dataGridView1.CurrentRow.Index;
-                    if(idx != dataGridView1.RowCount - 1)
-                    {
-                        dataGridView1.Rows[idx].Selected = false;
-                        idx -= 1;
-                        dataGridView1.Rows[idx].Selected = true;
-                        dataGridView1.CurrentCell = dataGridView1.Rows[idx].Cells[0];
+                //case (int)Keys.Up:
+                //    e.Handled = true;
+                //    dataGridView1.Focus();
+                //    if (dataGridView1.CurrentRow == null) return;
+                //    int idx = dataGridView1.CurrentRow.Index;
+                //    if(idx != dataGridView1.RowCount - 1)
+                //    {
+                //        dataGridView1.Rows[idx].Selected = false;
+                //        idx -= 1;
+                //        dataGridView1.Rows[idx].Selected = true;
+                //        dataGridView1.CurrentCell = dataGridView1.Rows[idx].Cells[0];
 
-                    }
-                    break;
-                case (int)Keys.Down:
-                    e.Handled = true;
-                    dataGridView1.Focus();
-                    if (dataGridView1.CurrentRow == null) return;
-                    int idx2 = dataGridView1.CurrentRow.Index;
-                    if (idx2 != 0)
-                    {
-                        dataGridView1.Rows[idx2].Selected = false;
-                        idx2 += 1;
-                        dataGridView1.Rows[idx2].Selected = true;
-                        dataGridView1.CurrentCell = dataGridView1.Rows[idx2].Cells[0];
+                //    }
+                //    break;
+                //case (int)Keys.Down:
+                //    e.Handled = true;
+                //    dataGridView1.Focus();
+                //    if (dataGridView1.CurrentRow == null) return;
+                //    int idx2 = dataGridView1.CurrentRow.Index;
+                //    if (idx2 != 0)
+                //    {
+                //        dataGridView1.Rows[idx2].Selected = false;
+                //        idx2 += 1;
+                //        dataGridView1.Rows[idx2].Selected = true;
+                //        dataGridView1.CurrentCell = dataGridView1.Rows[idx2].Cells[0];
 
-                    }
-                    break;
+                //    }
+                //    break;
 
             }
 
@@ -569,33 +560,33 @@ namespace u_net
                     combo.DroppedDown = true;
                     e.Handled = true;
                     break;
-                case (int)Keys.Up:
-                    e.Handled = true;
-                    dataGridView1.Focus();
-                    if (dataGridView1.CurrentRow == null) return;
-                    int idx = dataGridView1.CurrentRow.Index;
-                    if (idx != dataGridView1.RowCount - 1)
-                    {
-                        dataGridView1.Rows[idx].Selected = false;
-                        idx -= 1;
-                        dataGridView1.Rows[idx].Selected = true;
-                        dataGridView1.CurrentCell = dataGridView1.Rows[idx].Cells[0];
+                //case (int)Keys.Up:
+                //    e.Handled = true;
+                //    dataGridView1.Focus();
+                //    if (dataGridView1.CurrentRow == null) return;
+                //    int idx = dataGridView1.CurrentRow.Index;
+                //    if (idx != dataGridView1.RowCount - 1)
+                //    {
+                //        dataGridView1.Rows[idx].Selected = false;
+                //        idx -= 1;
+                //        dataGridView1.Rows[idx].Selected = true;
+                //        dataGridView1.CurrentCell = dataGridView1.Rows[idx].Cells[0];
 
-                    }
-                    break;
-                case (int)Keys.Down:
-                    e.Handled = true;
-                    dataGridView1.Focus();
-                    if (dataGridView1.CurrentRow == null) return;
-                    int idx2 = dataGridView1.CurrentRow.Index;
-                    if (idx2 != 0)
-                    {
-                        dataGridView1.Rows[idx2].Selected = false;
-                        idx2 += 1;
-                        dataGridView1.Rows[idx2].Selected = true;
-                        dataGridView1.CurrentCell = dataGridView1.Rows[idx2].Cells[0];
+                //    }
+                //    break;
+                //case (int)Keys.Down:
+                //    e.Handled = true;
+                //    dataGridView1.Focus();
+                //    if (dataGridView1.CurrentRow == null) return;
+                //    int idx2 = dataGridView1.CurrentRow.Index;
+                //    if (idx2 != 0)
+                //    {
+                //        dataGridView1.Rows[idx2].Selected = false;
+                //        idx2 += 1;
+                //        dataGridView1.Rows[idx2].Selected = true;
+                //        dataGridView1.CurrentCell = dataGridView1.Rows[idx2].Cells[0];
 
-                    }
+                //    }
                     break;
             }
         }
@@ -639,12 +630,12 @@ namespace u_net
 
         private void RoHS対応_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (RoHS対応.DroppedDown) return;
             if (this.RoHS対応.SelectedItem != null)
             {
                 KeyValuePair<int, string> selectedValue = (KeyValuePair<int, string>)this.RoHS対応.SelectedItem;
                 lngRoHS対応 = selectedValue.Key;
             }
-
             SetSource();
         }
 
@@ -667,7 +658,11 @@ namespace u_net
 
         private void 分類記号_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
-       
+            if (e.KeyCode == Keys.Tab)
+            {
+                // Tabキーの処理
+                e.IsInputKey = true; // これにより、KeyDownイベントでTabキーが捕捉されるようになる
+            }
         }
     }
 

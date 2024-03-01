@@ -35,8 +35,6 @@ namespace u_net
             //アプリケーションの最終リリースバージョンを設定する
             strAppLastVer = GetLastVersion(cn);
 
-            //サウンド　後で
-
 
 
             F_メイン fm = new F_メイン();
