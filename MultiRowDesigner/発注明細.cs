@@ -89,11 +89,12 @@ namespace MultiRowDesigner
 
         private void 発注明細_Load(object sender, EventArgs e)
         {
+
             gcMultiRow1.ShortcutKeyManager.Unregister(Keys.Enter);
             gcMultiRow1.ShortcutKeyManager.Register(SelectionActions.MoveToNextCell, Keys.Enter);
 
-            gcMultiRow1.ProcessFirstClick = false;
-            // gcMultiRow1.["発注数量"].ForeColor = Color.Red;
+            gcMultiRow1.CellDoubleClick += gcMultiRow1_CellDoubleClick;
+
         }
 
         private void gcMultiRow1_DefaultValuesNeeded(object sender, RowEventArgs e)
@@ -1518,8 +1519,14 @@ namespace MultiRowDesigner
                     gcMultiRow1.BeginEdit(true); // 編集モードにする
 
                 }
-                // 処理が完了したら、行の変更フラグをリセット
-                rowChanged[e.RowIndex] = false;
+                else
+                {
+                    // 処理が完了したら、行の変更フラグをリセット
+                    rowChanged[e.RowIndex] = false;
+                }
+                
+                
+               
             }
         }
 
@@ -1601,7 +1608,299 @@ namespace MultiRowDesigner
                             }
                         }
                         break;
-                    
+
+                    case "発注納期":
+
+                        if (!string.IsNullOrEmpty(gcMultiRow1.CurrentRow.Cells["発注納期"].Value.ToString()))
+                        {
+                            fm.args = gcMultiRow1.CurrentRow.Cells["発注納期"].Value.ToString();
+                        }
+
+                        if (fm.ShowDialog() == DialogResult.OK && gcMultiRow1.ReadOnly == false)
+                        {
+                            dblflg = true;
+                            // 日付選択フォームから選択した日付を取得
+                            string selectedDate = fm.SelectedDate;
+                            gcMultiRow1.CurrentCell.Value = selectedDate;
+                            gcMultiRow1.EditingControl.Text = selectedDate; // <== 対応策
+                            gcMultiRow1.CurrentCellPosition =
+                                    new CellPosition(gcMultiRow1.CurrentRow.Index, gcMultiRow1.CurrentRow.Cells["必要数量"].CellIndex);
+
+                        }
+                        break;
+                    case "回答納期":
+                        if (parentform.IsApproved)
+                        {
+                            if (fm.ShowDialog() == DialogResult.OK && gcMultiRow1.ReadOnly == false)
+                            {
+                                dblflg = true;
+                                // 日付選択フォームから選択した日付を取得
+                                string selectedDate = fm.SelectedDate;
+                                gcMultiRow1.CurrentCell.Value = selectedDate;
+                                gcMultiRow1.EditingControl.Text = selectedDate; // <== 対応策
+                                gcMultiRow1.CurrentCellPosition =
+                                        new CellPosition(gcMultiRow1.CurrentRow.Index, gcMultiRow1.CurrentRow.Cells["買掛区分"].CellIndex);
+
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("この発注データは承認されていません。\n承認前の回答納期の設定はできません。",
+                                                parentform.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        }
+                        break;
+                    default:
+
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.Print(this.Name + "_CellDoubleClick - " + ex.Message);
+                return;
+            }
+        }
+
+        private void gcMultiRow1_CellDoubleClick(object sender, CellEventArgs e)
+        {
+            F_カレンダー fm = new F_カレンダー();
+            F_発注? parentform = Application.OpenForms.OfType<F_発注>().FirstOrDefault();
+            F_発注_買掛区分設定 kaiform = new F_発注_買掛区分設定();
+            try
+            {
+                switch (gcMultiRow1.CurrentCell.Name)
+                {
+                    case "部品コード":
+
+
+                        if (form.ShowDialog() == DialogResult.OK && gcMultiRow1.ReadOnly == false)
+                        {
+                            string selectedCode = form.SelectedCode;
+
+                            if (IsAbolished(selectedCode.PadLeft(8, '0')))
+                            {
+                                if (MessageBox.Show("指定された部品は廃止されています。\nよろしいですか？", "確認", MessageBoxButtons.YesNo,
+                                        MessageBoxIcon.Question) == DialogResult.No)
+                                {
+
+                                    return;
+                                }
+                            }
+                            gcMultiRow1.EditingControl.Text = selectedCode; // <== 対応策
+                            gcMultiRow1.CurrentCell.Value = selectedCode;
+                            UpdatedControl(gcMultiRow1.CurrentCell);
+
+                            gcMultiRow1.CurrentCellPosition =
+                                new CellPosition(gcMultiRow1.CurrentRow.Index, gcMultiRow1.CurrentRow.Cells["品名"].CellIndex);
+                        }
+
+                        break;
+                    case "買掛区分枠":
+                        if (!parentform.IsDecided)
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            if (parentform.IsApproved)
+                            {
+                                MessageBox.Show("この発注データは承認されています。\n承認後の区分設定はできません。",
+                                                parentform.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            }
+                            else
+                            {
+
+                                //form.ShowDialog();
+                                if (parentform.buttonCnt == 0)
+                                {
+                                    kaiform.ShowDialog();
+
+                                    return;
+                                }
+                                else
+                                {
+                                    //元に戻す
+                                    parentform.buttonCnt = 0;
+                                }
+                            }
+                        }
+                        break;
+                    case "買掛区分": //コンボボックスはダブルクリックイベントがきかないため移動
+                        if (!parentform.IsDecided)
+                        {
+                            ComboBoxEditingControl combo = sender as ComboBoxEditingControl;
+                            combo.DroppedDown = true;
+                        }
+                        else
+                        {
+                            if (parentform.IsApproved)
+                            {
+                                MessageBox.Show("この発注データは承認されています。\n承認後の区分設定はできません。",
+                                                parentform.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            }
+                            else
+                            {
+                                //form.ShowDialog();
+                                if (parentform.buttonCnt == 0)
+                                {
+                                    kaiform.ShowDialog();
+
+                                    return;
+                                }
+                                else
+                                {
+                                    //元に戻す
+                                    parentform.buttonCnt = 0;
+                                }
+                            }
+                        }
+                        break;
+                    case "発注納期":
+
+                        if (!string.IsNullOrEmpty(gcMultiRow1.CurrentRow.Cells["発注納期"].Value.ToString()))
+                        {
+                            fm.args = gcMultiRow1.CurrentRow.Cells["発注納期"].Value.ToString();
+                        }
+
+                        if (fm.ShowDialog() == DialogResult.OK && gcMultiRow1.ReadOnly == false)
+                        {
+                            dblflg = true;
+                            // 日付選択フォームから選択した日付を取得
+                            string selectedDate = fm.SelectedDate;
+                            gcMultiRow1.CurrentCell.Value = selectedDate;
+                            gcMultiRow1.EditingControl.Text = selectedDate; // <== 対応策
+                            gcMultiRow1.CurrentCellPosition =
+                                    new CellPosition(gcMultiRow1.CurrentRow.Index, gcMultiRow1.CurrentRow.Cells["必要数量"].CellIndex);
+
+                        }
+                        break;
+                    case "回答納期":
+                        if (parentform.IsApproved)
+                        {
+                            if (fm.ShowDialog() == DialogResult.OK && gcMultiRow1.ReadOnly == false)
+                            {
+                                dblflg = true;
+                                // 日付選択フォームから選択した日付を取得
+                                string selectedDate = fm.SelectedDate;
+                                gcMultiRow1.CurrentCell.Value = selectedDate;
+                                gcMultiRow1.EditingControl.Text = selectedDate; // <== 対応策
+                                gcMultiRow1.CurrentCellPosition =
+                                        new CellPosition(gcMultiRow1.CurrentRow.Index, gcMultiRow1.CurrentRow.Cells["買掛区分"].CellIndex);
+
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("この発注データは承認されていません。\n承認前の回答納期の設定はできません。",
+                                                parentform.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        }
+                        break;
+                    default:
+
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.Print(this.Name + "_CellDoubleClick - " + ex.Message);
+                return;
+            }
+        }
+
+        private void gcMultiRow1_CellContentDoubleClick(object sender, CellEventArgs e)
+        {
+            F_カレンダー fm = new F_カレンダー();
+            F_発注? parentform = Application.OpenForms.OfType<F_発注>().FirstOrDefault();
+            F_発注_買掛区分設定 kaiform = new F_発注_買掛区分設定();
+            try
+            {
+                switch (gcMultiRow1.CurrentCell.Name)
+                {
+                    case "部品コード":
+
+
+                        if (form.ShowDialog() == DialogResult.OK && gcMultiRow1.ReadOnly == false)
+                        {
+                            string selectedCode = form.SelectedCode;
+
+                            if (IsAbolished(selectedCode.PadLeft(8, '0')))
+                            {
+                                if (MessageBox.Show("指定された部品は廃止されています。\nよろしいですか？", "確認", MessageBoxButtons.YesNo,
+                                        MessageBoxIcon.Question) == DialogResult.No)
+                                {
+
+                                    return;
+                                }
+                            }
+                            gcMultiRow1.EditingControl.Text = selectedCode; // <== 対応策
+                            gcMultiRow1.CurrentCell.Value = selectedCode;
+                            UpdatedControl(gcMultiRow1.CurrentCell);
+
+                            gcMultiRow1.CurrentCellPosition =
+                                new CellPosition(gcMultiRow1.CurrentRow.Index, gcMultiRow1.CurrentRow.Cells["品名"].CellIndex);
+                        }
+
+                        break;
+                    case "買掛区分枠":
+                        if (!parentform.IsDecided)
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            if (parentform.IsApproved)
+                            {
+                                MessageBox.Show("この発注データは承認されています。\n承認後の区分設定はできません。",
+                                                parentform.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            }
+                            else
+                            {
+
+                                //form.ShowDialog();
+                                if (parentform.buttonCnt == 0)
+                                {
+                                    kaiform.ShowDialog();
+
+                                    return;
+                                }
+                                else
+                                {
+                                    //元に戻す
+                                    parentform.buttonCnt = 0;
+                                }
+                            }
+                        }
+                        break;
+                    case "買掛区分": //コンボボックスはダブルクリックイベントがきかないため移動
+                        if (!parentform.IsDecided)
+                        {
+                            ComboBoxEditingControl combo = sender as ComboBoxEditingControl;
+                            combo.DroppedDown = true;
+                        }
+                        else
+                        {
+                            if (parentform.IsApproved)
+                            {
+                                MessageBox.Show("この発注データは承認されています。\n承認後の区分設定はできません。",
+                                                parentform.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            }
+                            else
+                            {
+                                //form.ShowDialog();
+                                if (parentform.buttonCnt == 0)
+                                {
+                                    kaiform.ShowDialog();
+
+                                    return;
+                                }
+                                else
+                                {
+                                    //元に戻す
+                                    parentform.buttonCnt = 0;
+                                }
+                            }
+                        }
+                        break;
                     case "発注納期":
 
                         if (!string.IsNullOrEmpty(gcMultiRow1.CurrentRow.Cells["発注納期"].Value.ToString()))

@@ -44,7 +44,6 @@ namespace MultiRowDesigner
             gcMultiRow1.Location = new Point(0, 0);
             gcMultiRow1.Margin = new Padding(5);
             gcMultiRow1.Name = "gcMultiRow1";
-            gcMultiRow1.ProcessFirstClick = false;
             gcMultiRow1.Size = new Size(1537, 672);
             gcMultiRow1.TabIndex = 0;
             gcMultiRow1.Template = 発注明細テンプレート1;
@@ -61,8 +60,10 @@ namespace MultiRowDesigner
             gcMultiRow1.RowValidating += gcMultiRow1_RowValidating;
             gcMultiRow1.DefaultValuesNeeded += gcMultiRow1_DefaultValuesNeeded;
             gcMultiRow1.EditingControlShowing += gcMultiRow1_EditingControlShowing;
+            gcMultiRow1.CellDoubleClick += gcMultiRow1_CellDoubleClick;
             gcMultiRow1.CellContentClick += gcMultiRow1_CellContentButtonClick;
             gcMultiRow1.CellContentButtonClick += gcMultiRow1_CellContentButtonClick;
+            gcMultiRow1.CellContentDoubleClick += gcMultiRow1_CellContentDoubleClick;
             gcMultiRow1.CellMouseDoubleClick += gcMultiRow1_CellMouseDoubleClick;
             gcMultiRow1.Sorted += gcMultiRow1_Sorted;
             gcMultiRow1.KeyPress += gcMultiRow1_KeyPress;

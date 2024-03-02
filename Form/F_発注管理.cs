@@ -169,8 +169,8 @@ namespace u_net
             x = (screenWidth - this.Width) / 2;
             this.Location = new Point(x, y);
 
-            //LocalSetting localSetting = new LocalSetting();
-            //localSetting.LoadPlace(CommonConstants.LoginUserCode, this);
+            LocalSetting localSetting = new LocalSetting();
+            localSetting.LoadPlace(CommonConstants.LoginUserCode, this);
             this.dataGridView1.Focus();
 
             InitializeFilter();
