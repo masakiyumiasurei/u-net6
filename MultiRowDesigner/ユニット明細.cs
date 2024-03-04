@@ -136,7 +136,7 @@ namespace MultiRowDesigner
                                 gcMultiRow1.Rows.RemoveAt(e.RowIndex);
                             }
                             break;
-                        
+
 
 
                         case "置換不可指定ボタン":
@@ -147,7 +147,7 @@ namespace MultiRowDesigner
                             {
                                 gcMultiRow1.CurrentRow.Cells["置換不可"].Value = -1;
                                 gcMultiRow1.CurrentRow.Cells["置換不可表示"].Value = "■";
-                                
+
                             }
                             else
                             {
@@ -155,7 +155,7 @@ namespace MultiRowDesigner
                                 gcMultiRow1.CurrentRow.Cells["置換不可表示"].Value = "";
                             }
 
-                            
+
                             f_ユニット.ChangedData(true);
                             break;
                         default:
@@ -256,7 +256,7 @@ namespace MultiRowDesigner
                 bool isError = false;
 
 
-               
+
 
                 object varValue = controlObject.Value;
                 switch (controlObject.Name)
@@ -318,7 +318,7 @@ namespace MultiRowDesigner
                     continue;
                 }
 
-                if(gcMultiRow1.CurrentRow.Index == i)
+                if (gcMultiRow1.CurrentRow.Index == i)
                 {
                     //自分自身は対象としない
                     continue;
@@ -362,18 +362,18 @@ namespace MultiRowDesigner
         }
 
         private void gcMultiRow1_CellValidated(object sender, CellEventArgs e)
-        {            
+        {
             switch (e.CellName)
             {
 
                 case "部品コード":
                     UpdatedControl(gcMultiRow1.CurrentCell);
                     break;
-                                  
+
 
             }
-            
-           
+
+
         }
 
         private void UpdatedControl(Cell controlObject)
@@ -420,12 +420,12 @@ namespace MultiRowDesigner
                                 }
                             }
                         }
-                        
+
                         f_ユニット.ChangedData(true);
 
                         break;
 
-                    
+
 
                 }
 
@@ -454,11 +454,11 @@ namespace MultiRowDesigner
                 textBox.KeyPress -= new KeyPressEventHandler(gcMultiRow1_KeyPress);
                 textBox.KeyPress += new KeyPressEventHandler(gcMultiRow1_KeyPress);
 
-                if (gcMultiRow1.CurrentCell.Name == "部品コード")
-                {
-                    textBox.DoubleClick -= gcMultiRow1_CellDoubleClick;
-                    textBox.DoubleClick += gcMultiRow1_CellDoubleClick;
-                }
+                //if (gcMultiRow1.CurrentCell.Name == "部品コード")
+                //{
+                //    textBox.DoubleClick -= gcMultiRow1_CellDoubleClick;
+                //    textBox.DoubleClick += gcMultiRow1_CellDoubleClick;
+                //}
             }
             else if (comboBox != null)
             {
@@ -479,25 +479,25 @@ namespace MultiRowDesigner
 
         private void gcMultiRow1_CellDoubleClick(object sender, EventArgs e)
         {
-            if (gcMultiRow1.CurrentCell.RowIndex == null || gcMultiRow1.CurrentCell.CellIndex == null) return;
+            //if (gcMultiRow1.CurrentCell.RowIndex == null || gcMultiRow1.CurrentCell.CellIndex == null) return;
 
-            switch (gcMultiRow1.CurrentCell.Name)
-            {
-                case "部品コード":
+            //switch (gcMultiRow1.CurrentCell.Name)
+            //{
+            //    case "部品コード":
 
-                    //codeSelectionForm = new F_部品選択();
-                    if (codeSelectionForm.ShowDialog() == DialogResult.OK)
-                    {
-                        string selectedCode = codeSelectionForm.SelectedCode;
+            //        //codeSelectionForm = new F_部品選択();
+            //        if (codeSelectionForm.ShowDialog() == DialogResult.OK)
+            //        {
+            //            string selectedCode = codeSelectionForm.SelectedCode;
 
-                        gcMultiRow1.CurrentCell.Value = selectedCode;
-                        gcMultiRow1.CurrentCellPosition = new CellPosition(gcMultiRow1.CurrentRow.Index, gcMultiRow1.CurrentRow.Cells["品名"].CellIndex);
-                    }
-                    break;
+            //            gcMultiRow1.CurrentCell.Value = selectedCode;
+            //            gcMultiRow1.CurrentCellPosition = new CellPosition(gcMultiRow1.CurrentRow.Index, gcMultiRow1.CurrentRow.Cells["品名"].CellIndex);
+            //        }
+            //        break;
 
 
 
-            }
+            //}
         }
 
         private void 変更操作コード_DrawItem(object sender, DrawItemEventArgs e)
@@ -520,7 +520,7 @@ namespace MultiRowDesigner
 
         private void gcMultiRow1_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
-            
+
 
             if (e.KeyCode == Keys.Return)
             {
@@ -546,7 +546,7 @@ namespace MultiRowDesigner
 
 
 
-        
+
         private void gcMultiRow1_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == ' ')
@@ -601,8 +601,27 @@ namespace MultiRowDesigner
             gcMultiRow1.CurrentRow.Cells["カレント"].Style.BackColor = Color.White;
         }
 
+        private void gcMultiRow1_CellDoubleClick(object sender, CellEventArgs e)
+        {
+            if (gcMultiRow1.CurrentCell.RowIndex == null || gcMultiRow1.CurrentCell.CellIndex == null) return;
+
+            switch (gcMultiRow1.CurrentCell.Name)
+            {
+                case "部品コード":
+
+                    //codeSelectionForm = new F_部品選択();
+                    if (codeSelectionForm.ShowDialog() == DialogResult.OK)
+                    {
+                        string selectedCode = codeSelectionForm.SelectedCode;
+
+                        gcMultiRow1.CurrentCell.Value = selectedCode;
+                        gcMultiRow1.CurrentCellPosition = new CellPosition(gcMultiRow1.CurrentRow.Index, gcMultiRow1.CurrentRow.Cells["品名"].CellIndex);
+                    }
+                    break;
 
 
 
+            }
+        }
     }
 }
