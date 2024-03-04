@@ -18,6 +18,7 @@ using static u_net.CommonConstants;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 using Pao.Reports;
 using DocumentFormat.OpenXml.Office2013.Excel;
+//using DocumentFormat.OpenXml.Wordprocessing;
 //using DocumentFormat.OpenXml.Spreadsheet;
 
 namespace u_net
@@ -195,10 +196,10 @@ namespace u_net
                             // 請求処理者コードがNULLの場合
                             string name = MyApi.NetUserName();
                             string code = FunctionClass.employeeCode(cn, name);
-                            //row["請求処理者コード"] = code;
+                            row["請求処理者コード"] = code;
 
                             //テスト用
-                            row["請求処理者コード"] = "855";
+                            //row["請求処理者コード"] = "855";
 
 
                             using (SqlCommandBuilder commandBuilder = new SqlCommandBuilder(adapter))
@@ -209,10 +210,10 @@ namespace u_net
                         else
                         {
                             // 請求処理者コードがNULLでない場合
-                            MessageBox.Show("現在、" + FunctionClass.EmployeeName(cn, row["請求処理者コード"]?.ToString()) +
-                                           " さんが請求処理をしています。\n請求処理は実行できません。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            Close();
-                            return;
+                            //MessageBox.Show("現在、" + FunctionClass.EmployeeName(cn, row["請求処理者コード"]?.ToString()) +
+                            //               " さんが請求処理をしています。\n請求処理は実行できません。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            //Close();
+                            //return;
                         }
                     }
                     else
@@ -367,11 +368,11 @@ namespace u_net
                         {
                             表示件数.Text = reader["件数"].ToString();
                             前回請求金額合計.Text = (reader["前回請求金額合計"] is DBNull) ? "0" : Convert.ToInt32(reader["前回請求金額合計"]).ToString("#,##0");
-                            入金金額合計.Text = (reader["入金金額合計"] is DBNull) ? "0" : Convert.ToInt32(reader["入金金額合計"]).ToString("#,##0");
-                            販売金額合計.Text = (reader["販売金額合計"] is DBNull) ? "0" : Convert.ToInt32(reader["販売金額合計"]).ToString("#,##0");
-                            販売金額消費税合計.Text = (reader["販売金額消費税合計"] is DBNull) ? "0" : Convert.ToInt32(reader["販売金額消費税合計"]).ToString("#,##0");
-                            販売金額総合計.Text = (reader["販売金額総合計"] is DBNull) ? "0" : Convert.ToInt32(reader["販売金額総合計"]).ToString("#,##0");
-                            今回請求金額合計.Text = (reader["今回請求金額合計"] is DBNull) ? "0" : Convert.ToInt32(reader["今回請求金額合計"]).ToString("#,##0");
+                            入金金額合計.Text = (reader["入金金額合計"] is DBNull) ? "0" : Convert.ToDecimal(reader["入金金額合計"]).ToString("#,##0");
+                            販売金額合計.Text = (reader["販売金額合計"] is DBNull) ? "0" : Convert.ToDecimal(reader["販売金額合計"]).ToString("#,##0");
+                            販売金額消費税合計.Text = (reader["販売金額消費税合計"] is DBNull) ? "0" : Convert.ToDecimal(reader["販売金額消費税合計"]).ToString("#,##0");
+                            販売金額総合計.Text = (reader["販売金額総合計"] is DBNull) ? "0" : Convert.ToDecimal(reader["販売金額総合計"]).ToString("#,##0");
+                            今回請求金額合計.Text = (reader["今回請求金額合計"] is DBNull) ? "0" : Convert.ToDecimal(reader["今回請求金額合計"]).ToString("#,##0");
 
                             if (dte請求締日 != DateTime.MinValue)
                                 請求締日.Text = dte請求締日.ToString("yyyy/MM/dd");
@@ -402,16 +403,17 @@ namespace u_net
                 dataGridView1.Columns[4].Visible = false;
                 dataGridView1.Columns[5].Width = 1100 / twipperdot;
                 dataGridView1.Columns[6].Width = 1300 / twipperdot;
-                dataGridView1.Columns[7].Width = 1270 / twipperdot;
+                dataGridView1.Columns[7].Width = 1300 / twipperdot;
                 dataGridView1.Columns[8].Width = 1300 / twipperdot;
-                dataGridView1.Columns[9].Width = 1300 / twipperdot;
-                dataGridView1.Columns[10].Width = 1150 / twipperdot;
-                dataGridView1.Columns[11].Width = 1300 / twipperdot;
-                dataGridView1.Columns[12].Width = 1300 / twipperdot;
+                dataGridView1.Columns[9].Width = 1400 / twipperdot;
+                dataGridView1.Columns[10].Width = 1300 / twipperdot;
+                dataGridView1.Columns[11].Width = 1400 / twipperdot;
+                dataGridView1.Columns[12].Width = 1400 / twipperdot;
 
                 for (int i = 7; i <= 12; i++)
                 {
                     dataGridView1.Columns[i].DefaultCellStyle.Format = "#,###,###,##0";
+                    dataGridView1.Columns[i].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 }
 
                 dataGridView1.Columns[6].DefaultCellStyle.Format = "yyyy/MM/dd";
@@ -494,7 +496,7 @@ namespace u_net
                 bool shainFlg = false;
                 string code = "";
 
-                string[,] noOutArray = new string[2, dataGridView1.Rows.Count-1];
+                string[,] noOutArray = new string[2, dataGridView1.Rows.Count];
 
                 if (printCheck)
                 {
@@ -519,7 +521,7 @@ namespace u_net
 
                 //顧客番号を順番に取得して請求書を発行する　accessでブレイクして確認して処理を作成する
 
-                while (lngi <= dataGridView1.Rows.Count - 1)
+                while (lngi <= dataGridView1.Rows.Count)
                 {
                     dataGridView1.CurrentCell = dataGridView1[0, (int)lngi - 1];
 
@@ -682,8 +684,9 @@ namespace u_net
                     MessageBox.Show("担当営業情報がDBに存在していません。担当営業を空白で出力します", "");
                 }
 
+                DataTable sortedTable = SortDataTable(resultTable, "BillingToName1Furigana", "伝票日付", "コード");
 
-                report = resultTable.Rows;
+                report = sortedTable.Rows;
 
                 //最大行数
                 int maxRow = 16;
@@ -753,7 +756,7 @@ namespace u_net
                     paoRep.Write("今回御請求額", (繰越金額 + 御買上計).ToString("N0"));
 
 
-                    paoRep.Write("請求日", row.Field<DateTime>("請求日").ToString("yyyy年MM月dd日"));
+                    paoRep.Write("請求日", row.Field<DateTime>("請求日").ToString("yyyy/MM/dd"));
                     //paoRep.Write("請求コード", row["請求コード"].ToString() != "" ? row["請求コード"].ToString() : " ");
 
                     paoRep.Write("会社名1", 会社情報.Rows[0]["会社名1"].ToString() != "" ? 会社情報.Rows[0]["会社名1"].ToString() : " ");
@@ -862,6 +865,16 @@ namespace u_net
             {
                 MessageBox.Show($"エラーが発生しました: " + e.Message, "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+
+        static DataTable SortDataTable(DataTable dataTable, params string[] columnNames)
+        {
+            // 指定された列で順にソート
+            string sortExpression = string.Join(", ", columnNames);
+            dataTable.DefaultView.Sort = sortExpression;
+            dataTable = dataTable.DefaultView.ToTable();
+            return dataTable;
         }
 
         private void dataGridView1_KeyDown(object sender, KeyEventArgs e)

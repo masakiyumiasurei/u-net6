@@ -47,6 +47,8 @@ namespace u_net
                     return;
                 }
 
+                月次締日.Checked = true;
+
                 請求締日.Text = DateTime.Now.ToString("yyyy/MM/dd");
 
                 //開いているフォームのインスタンスを作成する
@@ -183,15 +185,20 @@ namespace u_net
 
         private void 顧客コード_KeyDown(object sender, KeyEventArgs e)
         {
-            switch (e.KeyCode)
+
+            if (e.KeyCode == Keys.Return)
             {
-                case Keys.Return:
-                    if (this.ActiveControl.Text != "")
-                    {
-                        this.ActiveControl.Text = FunctionClass.FormatCode(this.ActiveControl.Text, "00000000");
-                    }
-                    break;
+                TextBox textBox = (TextBox)sender;
+                string formattedCode = textBox.Text.Trim().PadLeft(8, '0');
+
+                if (formattedCode != textBox.Text || string.IsNullOrEmpty(textBox.Text))
+                {
+                    textBox.Text = formattedCode;
+                    Connect();
+                    顧客名.Text = FunctionClass.GetCustomerName(cn, Nz(顧客コード.Text));
+                }
             }
+        
         }
 
         private void 請求締日選択ボタン_Click(object sender, EventArgs e)
