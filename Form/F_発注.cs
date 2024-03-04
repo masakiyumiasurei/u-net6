@@ -833,9 +833,9 @@ namespace u_net
             // キー情報を表示するコントロールを制御する
             // コードにフォーカスがある状態でサブフォームから呼び出されたときの対処
 
-            //if (ActiveControl == 発注コード) 発注日.Focus();
+            if (ActiveControl == 発注コード) 発注日.Focus();
             発注コード.Enabled = !isChanged;
-            //if (ActiveControl == 発注版数) 発注日.Focus();
+            if (ActiveControl == 発注版数) 発注日.Focus();
             発注版数.Enabled = !isChanged;
 
             コマンド複写.Enabled = !isChanged;
@@ -1567,7 +1567,7 @@ namespace u_net
                 if (CopyData(code, 1))
                 {
                     ChangedData(true);
-                    FunctionClass.LockData(this, false);
+                    FunctionClass.LockData(this, false,"発注コード", "発注版数");
                     this.発注日.Focus();
 
                     this.改版ボタン.Enabled = false;
@@ -1647,7 +1647,7 @@ namespace u_net
 
             Bye_コマンド発注書_Click:
 
-                fn.WaitForm.Close();
+                if(fn.WaitForm!=null) fn.WaitForm.Close();
 
                 //このシステムからは出力しない模様
                 // 発注書印刷();
@@ -1656,6 +1656,7 @@ namespace u_net
             }
             catch (Exception ex)
             {
+                if (fn.WaitForm != null) fn.WaitForm.Close();
                 MessageBox.Show("エラーが発生しました。", "発注書コマンド" + ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             }
