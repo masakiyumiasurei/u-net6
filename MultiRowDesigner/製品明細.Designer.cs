@@ -37,7 +37,6 @@
             // 
             gcMultiRow1.BackColor = Color.White;
             gcMultiRow1.Dock = DockStyle.Fill;
-            gcMultiRow1.EditMode = GrapeCity.Win.MultiRow.EditMode.EditOnEnter;
             gcMultiRow1.Location = new Point(0, 0);
             gcMultiRow1.Margin = new Padding(4);
             gcMultiRow1.MultiSelect = false;
@@ -56,6 +55,7 @@
             gcMultiRow1.RowLeave += gcMultiRow1_RowLeave;
             gcMultiRow1.RowValidating += gcMultiRow1_RowValidating;
             gcMultiRow1.EditingControlShowing += gcMultiRow1_EditingControlShowing;
+            gcMultiRow1.CellDoubleClick += gcMultiRow1_CellDoubleClick;
             gcMultiRow1.CellContentClick += gcMultiRow1_CellContentClick;
             gcMultiRow1.ModifiedChanged += gcMultiRow1_ModifiedChanged;
             gcMultiRow1.RowDragMoveCompleted += gcMultiRow1_RowDragMoveCompleted;

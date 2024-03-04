@@ -630,6 +630,28 @@ namespace u_net
 
             int lenB;
 
+            DataTable dataTable = new DataTable();
+
+            // 列の作成と追加
+            foreach (DataGridViewColumn column in dataGridView1.Columns)
+            {
+                dataTable.Columns.Add(column.Name, column.ValueType);
+            }
+
+            // 行の追加
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                DataRow dataRow = dataTable.NewRow();
+                foreach (DataGridViewCell cell in row.Cells)
+                {
+                    dataRow[cell.ColumnIndex] = cell.Value;
+                }
+                dataTable.Rows.Add(dataRow);
+            }
+
+            dataTable.DefaultView.Sort = "顧客名";
+            DataTable sortedTable = dataTable.DefaultView.ToTable();
+
             //描画すべき行がある限りページを増やす
             while (RowCount > 0)
             {
@@ -649,20 +671,20 @@ namespace u_net
                 //明細
                 for (var i = 0; i < maxRow; i++)
                 {
-                    if (CurRow >= dataGridView1.RowCount - 1) break;
+                    if (CurRow >= dataGridView1.RowCount) break;
 
-                    DataGridViewRow targetRow = dataGridView1.Rows[CurRow];
+                    DataRow targetRow = sortedTable.Rows[CurRow];
 
                     paoRep.Write("行番号", (CurRow + 1).ToString(), i + 1);
-                    paoRep.Write("顧客コード", targetRow.Cells["顧客コード"].Value.ToString() != "" ? targetRow.Cells["顧客コード"].Value.ToString() : " ", i + 1);
-                    paoRep.Write("顧客名", targetRow.Cells["顧客名"].Value.ToString() != "" ? targetRow.Cells["顧客名"].Value.ToString() : " ", i + 1);
-                    paoRep.Write("売上金額", string.Format("{0:#,0}", targetRow.Cells["売上金額"].Value) != "" ? string.Format("{0:#,0}", targetRow.Cells["売上金額"].Value) : " ", i + 1);
+                    paoRep.Write("顧客コード", targetRow["顧客コード"].ToString() != "" ? targetRow["顧客コード"].ToString() : " ", i + 1);
+                    paoRep.Write("顧客名", targetRow["顧客名"].ToString() != "" ? targetRow["顧客名"].ToString() : " ", i + 1);
+                    paoRep.Write("売上金額", string.Format("{0:#,0}", targetRow["売上金額"]) != "" ? string.Format("{0:#,0}", targetRow["売上金額"]) : " ", i + 1);
 
 
 
 
                     paoRep.z_Objects.SetObject("顧客名", i + 1);
-                    lenB = Encoding.Default.GetBytes(targetRow.Cells["顧客名"].Value.ToString()).Length;
+                    lenB = Encoding.Default.GetBytes(targetRow["顧客名"].ToString()).Length;
                     if (26 < lenB)
                     {
                         paoRep.z_Objects.z_Text.z_FontAttr.Size = 8;
@@ -729,7 +751,7 @@ namespace u_net
                 //明細
                 for (var i = 0; i < maxRow; i++)
                 {
-                    if (CurRow >= dataGridView1.RowCount - 1) break;
+                    if (CurRow >= dataGridView1.RowCount) break;
 
                     DataGridViewRow targetRow = dataGridView1.Rows[CurRow];
 

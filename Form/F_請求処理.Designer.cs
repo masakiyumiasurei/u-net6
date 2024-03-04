@@ -404,7 +404,7 @@
             締め取り消しボタン.Font = new Font("BIZ UDゴシック", 13F, FontStyle.Regular, GraphicsUnit.Point);
             締め取り消しボタン.Image = (Image)resources.GetObject("締め取り消しボタン.Image");
             締め取り消しボタン.Location = new Point(458, 3);
-            締め取り消しボタン.Margin = new Padding(4, 4, 4, 4);
+            締め取り消しボタン.Margin = new Padding(4);
             締め取り消しボタン.Name = "締め取り消しボタン";
             締め取り消しボタン.RightToLeft = RightToLeft.Yes;
             締め取り消しボタン.Size = new Size(54, 26);
@@ -419,7 +419,7 @@
             開始ボタン.Font = new Font("BIZ UDゴシック", 13F, FontStyle.Regular, GraphicsUnit.Point);
             開始ボタン.ForeColor = Color.FromArgb(0, 0, 64);
             開始ボタン.Location = new Point(401, 3);
-            開始ボタン.Margin = new Padding(4, 4, 4, 4);
+            開始ボタン.Margin = new Padding(4);
             開始ボタン.Name = "開始ボタン";
             開始ボタン.RightToLeft = RightToLeft.Yes;
             開始ボタン.Size = new Size(54, 26);
@@ -435,7 +435,7 @@
             請求明細書プレビューボタン.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             請求明細書プレビューボタン.Image = (Image)resources.GetObject("請求明細書プレビューボタン.Image");
             請求明細書プレビューボタン.Location = new Point(344, 3);
-            請求明細書プレビューボタン.Margin = new Padding(4, 4, 4, 4);
+            請求明細書プレビューボタン.Margin = new Padding(4);
             請求明細書プレビューボタン.Name = "請求明細書プレビューボタン";
             請求明細書プレビューボタン.RightToLeft = RightToLeft.Yes;
             請求明細書プレビューボタン.Size = new Size(54, 26);
@@ -564,6 +564,7 @@
             Controls.Add(panel2);
             Controls.Add(panel1);
             Icon = (Icon)resources.GetObject("$this.Icon");
+            KeyPreview = true;
             Margin = new Padding(3, 2, 3, 2);
             Name = "F_請求処理";
             Text = "請求処理";
