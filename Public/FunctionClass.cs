@@ -1702,11 +1702,15 @@ namespace u_net.Public
         }
 
 
-
+        /// <summary>
+        /// 接続オブジェクトからサーバー名を取得する関数
+        /// 接続文字列のData Source=以下から最初の「;」までを取得する
+        /// </summary>
+        /// <param name="connection"></param>
+        /// <returns></returns>
         public static string GetServerName(SqlConnection connection)
         {
-            // 接続オブジェクトからサーバー名を取得する関数
-
+            
             string serverName = "";
 
             try

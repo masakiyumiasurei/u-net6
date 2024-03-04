@@ -413,6 +413,7 @@ namespace u_net
             発注版数.Name = "発注版数";
             発注版数.Size = new Size(54, 21);
             発注版数.TabIndex = 4;
+            発注版数.SelectedIndexChanged += 発注版数_SelectedIndexChanged;
             発注版数.Enter += 発注版数_Enter;
             発注版数.Leave += 発注版数_Leave;
             発注版数.Validating += 発注版数_Validating;

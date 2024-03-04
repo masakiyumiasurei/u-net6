@@ -884,6 +884,8 @@ namespace u_net
                     return;
                 }
                 ChangedData(false);
+                発注コード.Enabled = false;
+                発注版数.Enabled = false;
 
             }
             finally
@@ -1567,7 +1569,7 @@ namespace u_net
                 if (CopyData(code, 1))
                 {
                     ChangedData(true);
-                    FunctionClass.LockData(this, false,"発注コード", "発注版数");
+                    FunctionClass.LockData(this, false, "発注コード", "発注版数");
                     this.発注日.Focus();
 
                     this.改版ボタン.Enabled = false;
@@ -1647,7 +1649,7 @@ namespace u_net
 
             Bye_コマンド発注書_Click:
 
-                if(fn.WaitForm!=null) fn.WaitForm.Close();
+                if (fn.WaitForm != null) fn.WaitForm.Close();
 
                 //このシステムからは出力しない模様
                 // 発注書印刷();
@@ -2678,11 +2680,17 @@ namespace u_net
             FunctionClass.LimitText(((TextBox)sender), 2000);
             ChangedData(true);
         }
-                
+
 
         private void NoCredit_CheckedChanged(object sender, EventArgs e)
         {
             ChangedData(true);
+        }
+
+        private void 発注版数_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (setCombo) return;
+            UpdatedControl("発注版数");
         }
     }
 }
