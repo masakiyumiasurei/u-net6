@@ -178,7 +178,7 @@ namespace u_net
             コマンド購買.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             コマンド購買.ForeColor = Color.Blue;
             コマンド購買.ImageAlign = ContentAlignment.BottomLeft;
-            コマンド購買.Location = new Point(510, 5);
+            コマンド購買.Location = new Point(506, 5);
             コマンド購買.Margin = new Padding(3, 2, 3, 2);
             コマンド購買.Name = "コマンド購買";
             コマンド購買.Size = new Size(70, 20);
@@ -194,7 +194,7 @@ namespace u_net
             コマンド部品.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             コマンド部品.ForeColor = Color.Blue;
             コマンド部品.ImageAlign = ContentAlignment.BottomLeft;
-            コマンド部品.Location = new Point(440, 5);
+            コマンド部品.Location = new Point(436, 5);
             コマンド部品.Margin = new Padding(3, 2, 3, 2);
             コマンド部品.Name = "コマンド部品";
             コマンド部品.Size = new Size(70, 20);
@@ -211,7 +211,7 @@ namespace u_net
             コマンド送信.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             コマンド送信.ForeColor = Color.Blue;
             コマンド送信.ImageAlign = ContentAlignment.BottomLeft;
-            コマンド送信.Location = new Point(370, 5);
+            コマンド送信.Location = new Point(366, 5);
             コマンド送信.Margin = new Padding(3, 2, 3, 2);
             コマンド送信.Name = "コマンド送信";
             コマンド送信.Size = new Size(70, 20);
@@ -228,7 +228,7 @@ namespace u_net
             コマンド発注書.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             コマンド発注書.ForeColor = Color.Blue;
             コマンド発注書.ImageAlign = ContentAlignment.BottomLeft;
-            コマンド発注書.Location = new Point(300, 5);
+            コマンド発注書.Location = new Point(296, 5);
             コマンド発注書.Margin = new Padding(3, 2, 3, 2);
             コマンド発注書.Name = "コマンド発注書";
             コマンド発注書.Size = new Size(70, 20);
@@ -413,6 +413,7 @@ namespace u_net
             発注版数.Name = "発注版数";
             発注版数.Size = new Size(54, 21);
             発注版数.TabIndex = 4;
+            発注版数.SelectedIndexChanged += 発注版数_SelectedIndexChanged;
             発注版数.Enter += 発注版数_Enter;
             発注版数.Leave += 発注版数_Leave;
             発注版数.Validating += 発注版数_Validating;

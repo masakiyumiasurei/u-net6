@@ -85,8 +85,11 @@ namespace u_net
                 localSetting.LoadPlace(LoginUserCode, this);
 
                 OriginalClass ofn = new OriginalClass();
-                ofn.SetComboBox(日付, "SELECT TOP 5 日付 as Value, 日付 as Display FROM T業務日報 " +
+                ofn.SetComboBox(日付, "SELECT TOP 5 convert(date,日付) as Value, format(convert(date,日付),'yyyy/MM/dd') as Display,LEFT(DATENAME(weekday, 日付), 1) as Display2" +
+                    " FROM T業務日報 " +
                     "WHERE 日付 < getdate() GROUP BY 日付 ORDER BY 日付 DESC; ");
+                日付.DrawMode = DrawMode.OwnerDrawFixed;
+                日付.DropDownWidth = 150;
 
                 ofn.SetComboBox(社員コード, "SELECT 社員コード as Value, 氏名 as Display " +
                     "FROM M社員 WHERE [ふりがな]<>'ん' And 業務日報順序 Is Not Null And Not (部='製造部' And [パート]=1) ORDER BY [ふりがな]; ");
@@ -158,15 +161,23 @@ namespace u_net
 
             状況.Columns[0].Width = 60;
             状況.Columns[1].Width = 100;
-            状況.Columns[2].Width = 30;
-            状況.Columns[3].Width = 30;
-            状況.Columns[4].Width = 30;
-            状況.Columns[5].Width = 30;
-            状況.Columns[6].Width = 30;
-            状況.Columns[7].Width = 30;
-            状況.Columns[8].Width = 30;
+            状況.Columns[2].Width = 40;
+            状況.Columns[3].Width = 40;
+            状況.Columns[4].Width = 40;
+            状況.Columns[5].Width = 40;
+            状況.Columns[6].Width = 40;
+            状況.Columns[7].Width = 40;
+            状況.Columns[8].Width = 40;
             状況.Columns[9].Visible = false; //日付
             状況.Columns[10].Visible = false;//社員コード
+
+            状況.AllowUserToResizeColumns = true;
+            状況.Font = new Font("MS ゴシック", 9);
+            状況.DefaultCellStyle.SelectionBackColor = Color.FromArgb(210, 210, 255);
+            状況.DefaultCellStyle.SelectionForeColor = Color.Black;
+            状況.GridColor = Color.FromArgb(230, 230, 230);
+            状況.ColumnHeadersDefaultCellStyle.Font = new Font("MS ゴシック", 9);
+            状況.DefaultCellStyle.Font = new Font("MS ゴシック", 9);
 
         }
 
@@ -479,6 +490,12 @@ namespace u_net
         private void コマンド確定_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void 日付_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            OriginalClass.SetComboBoxAppearance((ComboBox)sender, e, new int[] { 100, 50 }, new string[] { "Display", "Display2" });
+            日付.Invalidate();
         }
     }
 }

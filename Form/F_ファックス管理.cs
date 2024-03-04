@@ -64,13 +64,7 @@ namespace u_net
 
         public override void SearchCode(string codeString)
         {
-            //strSearchCode = codeString;
-            //str仕入先コード開始 = strSearchCode;
-            //str仕入先コード終了 = strSearchCode;
-            //if (DoUpdate() == -1)
-            //{
-            //    MessageBox.Show("エラーが発生しました。");
-            //}
+            
 
         }
 
@@ -124,21 +118,7 @@ namespace u_net
             fn.WaitForm.Close();
         }
 
-        private void Form_Resize(object sender, EventArgs e)
-        {
-            try
-            {
-                dataGridView1.Height = dataGridView1.Height + (this.Height - intWindowHeight);
-                intWindowHeight = this.Height;  // 高さ保存
-
-                dataGridView1.Width = dataGridView1.Width + (this.Width - intWindowWidth);
-                intWindowWidth = this.Width;    // 幅保存
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(this.Name + "_Form_Resize - " + ex.Message);
-            }
-        }
+        
 
         public int DoUpdate()
         {
@@ -208,11 +188,11 @@ namespace u_net
 
                 //0列目はaccessでは行ヘッダのため、ずらす
 
-                dataGridView1.Columns[0].Width = 1300 / twipperdot; //1150
+                dataGridView1.Columns[0].Width = 1600 / twipperdot; //1150
                 dataGridView1.Columns[1].Width = 2200 / twipperdot;
                 dataGridView1.Columns[2].Visible = false;
                 dataGridView1.Columns[3].Width = 1500 / twipperdot;
-                dataGridView1.Columns[4].Width = 1400 / twipperdot;
+                dataGridView1.Columns[4].Width = 1600 / twipperdot;
                 dataGridView1.Columns[5].Width = 520 / twipperdot;
                 dataGridView1.Columns[6].Width = 1300 / twipperdot;
                 dataGridView1.Columns[7].Width = 4000 / twipperdot;//1300
@@ -226,7 +206,7 @@ namespace u_net
                 for (int row = 0; row < dataGridView1.Rows.Count; row++)
                 {
                     // 行番号を表示する
-                    dataGridView1.Rows[row].Cells[0].Value = (row + 1);
+                   // dataGridView1.Rows[row].Cells[0].Value = (row + 1);
 
                     object cellValue = dataGridView1.Rows[row].Cells[10].Value;
 
@@ -432,24 +412,7 @@ namespace u_net
                         //if (this.コマンド終了.Enabled) コマンド終了_Click(null, null);
                         break;
                     case Keys.Return:
-                        //if (this.ActiveControl == this.dataGridView1)
-                        //{
-                        //    if (dataGridView1.SelectedRows.Count > 0)
-                        //    {
-                        //        // DataGridView1で選択された行が存在する場合
-                        //        string selectedData = dataGridView1.SelectedRows[0].Cells[0].Value.ToString(); // 1列目のデータを取得
-
-                        //        // 仕入先フォームを作成し、引数を設定して表示
-                        //        F_仕入先 targetform = new F_仕入先();
-                        //        targetform.args = selectedData;
-                        //        targetform.ShowDialog();
-                        //    }
-                        //    else
-                        //    {
-                        //        // ユーザーが行を選択していない場合のエラーハンドリング
-                        //        MessageBox.Show("行が選択されていません。");
-                        //    }
-                        //}
+                        
                         break;
                 }
             }

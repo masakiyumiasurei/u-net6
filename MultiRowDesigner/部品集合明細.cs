@@ -95,8 +95,8 @@ namespace MultiRowDesigner
                 textBox.KeyPress -= new KeyPressEventHandler(gcMultiRow1_KeyPress);
                 textBox.KeyPress += new KeyPressEventHandler(gcMultiRow1_KeyPress);
 
-                textBox.DoubleClick -= gcMultiRow1_CellDoubleClick;
-                textBox.DoubleClick += gcMultiRow1_CellDoubleClick;
+                //textBox.DoubleClick -= gcMultiRow1_CellDoubleClick;
+                //textBox.DoubleClick += gcMultiRow1_CellDoubleClick;
 
             }
         }
@@ -135,11 +135,11 @@ namespace MultiRowDesigner
                 {
 
                     case "部品コード":
-                        e.Handled = true;　//スペースの本来の挙動（空白入力）を制御する
-                        
+                        e.Handled = true; //スペースの本来の挙動（空白入力）を制御する
+
                         if (form.ShowDialog() == DialogResult.OK)
                         {
-                            gcMultiRow1.EndEdit(); //編集の終了
+                            
                             string selectedCode = form.SelectedCode;
 
                             gcMultiRow1.EditingControl.Text = selectedCode; // <== 対応策
@@ -149,7 +149,7 @@ namespace MultiRowDesigner
                             //品名にセル移動した時にvaledatedを実行しないようにするため
                             validatedflg = true;
                             UpdatedControl(gcMultiRow1.CurrentCell);
-
+                            
                             //次のセルに変更しないと値が反映しないため
                             gcMultiRow1.CurrentCellPosition =
                            new CellPosition(gcMultiRow1.CurrentRow.Index, gcMultiRow1.CurrentRow.Cells["品名"].CellIndex);
@@ -163,32 +163,7 @@ namespace MultiRowDesigner
         private void gcMultiRow1_CellDoubleClick(object sender, EventArgs e)
         {
 
-            switch (gcMultiRow1.CurrentCell.Name)
-            {
-                case "部品コード":
-
-
-                    if (form.ShowDialog() == DialogResult.OK)
-                    {
-                        gcMultiRow1.EndEdit(); //編集の終了
-                        string selectedCode = form.SelectedCode;
-
-
-                        gcMultiRow1.EditingControl.Text = selectedCode; // <== 対応策
-
-                        gcMultiRow1.CurrentRow.Cells["部品コード"].Value = selectedCode;
-
-                        //品名にセル移動した時にvaledatedを実行しないようにするため
-                        validatedflg = true;
-                        UpdatedControl(gcMultiRow1.CurrentCell);
-
-                        F_部品集合 ParentForm = Application.OpenForms.OfType<F_部品集合>().FirstOrDefault();
-                        ParentForm.ChangedData(true);
-
-                    }
-
-                    break;
-            }
+           
         }
         private void gcMultiRow1_CellContentClick(object sender, CellEventArgs e)
         {
@@ -540,11 +515,6 @@ namespace MultiRowDesigner
             }
         }
 
-        private void gcMultiRow1_RowsAdded(object sender, RowsAddedEventArgs e)
-        {
-
-        }
-
         private void gcMultiRow1_RowDragMoveCompleted(object sender, DragMoveCompletedEventArgs e)
         {
             F_部品集合 ParentForm = Application.OpenForms.OfType<F_部品集合>().FirstOrDefault();
@@ -555,6 +525,39 @@ namespace MultiRowDesigner
                 NumberDetails("明細番号");
 
             });
+        }
+
+        private void gcMultiRow1_CellDoubleClick(object sender, CellEventArgs e)
+        {
+            switch (gcMultiRow1.CurrentCell.Name)
+            {
+                case "部品コード":
+
+
+                    if (form.ShowDialog() == DialogResult.OK)
+                    {
+                        //gcMultiRow1.EndEdit(); //編集の終了
+                        string selectedCode = form.SelectedCode;
+                        int idx = gcMultiRow1.CurrentRow.Index;
+
+                        gcMultiRow1.EditingControl.Text = selectedCode; // <== 対応策
+
+                        gcMultiRow1.CurrentRow.Cells["部品コード"].Value = selectedCode;
+
+                        //品名にセル移動した時にvaledatedを実行しないようにするため
+                        validatedflg = true;
+                        UpdatedControl(gcMultiRow1.CurrentCell);
+
+                        F_部品集合 ParentForm = Application.OpenForms.OfType<F_部品集合>().FirstOrDefault();
+                        ParentForm.ChangedData(true);
+
+                        gcMultiRow1.CurrentCellPosition =
+                               new CellPosition(idx, gcMultiRow1.CurrentRow.Cells["品名"].CellIndex);
+
+                    }
+
+                    break;
+            }
         }
     }
 }

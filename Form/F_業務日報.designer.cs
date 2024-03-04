@@ -472,6 +472,7 @@ namespace u_net
             日付.Name = "日付";
             日付.Size = new Size(136, 21);
             日付.TabIndex = 2;
+            日付.DrawItem += 日付_DrawItem;
             日付.SelectedIndexChanged += 日付_SelectedIndexChanged;
             日付.Enter += 日付_Enter;
             日付.Leave += 日付_Leave;

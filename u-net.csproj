@@ -188,11 +188,16 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="System.Management" Version="8.0.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Form\F_接続設定.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Form\F_文書管理_抽出.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -355,6 +360,12 @@
     <Reference Include="Pao.Reports">
       <HintPath>lib\Pao.Reports.dll</HintPath>
     </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Form\F_接続設定.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
 
 </Project>

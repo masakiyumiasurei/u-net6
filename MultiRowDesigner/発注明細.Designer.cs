@@ -40,7 +40,6 @@ namespace MultiRowDesigner
             // 
             gcMultiRow1.AllowRowMove = true;
             gcMultiRow1.Dock = DockStyle.Fill;
-            gcMultiRow1.EditMode = GrapeCity.Win.MultiRow.EditMode.EditOnEnter;
             gcMultiRow1.Location = new Point(0, 0);
             gcMultiRow1.Margin = new Padding(5);
             gcMultiRow1.Name = "gcMultiRow1";
@@ -63,8 +62,6 @@ namespace MultiRowDesigner
             gcMultiRow1.CellDoubleClick += gcMultiRow1_CellDoubleClick;
             gcMultiRow1.CellContentClick += gcMultiRow1_CellContentButtonClick;
             gcMultiRow1.CellContentButtonClick += gcMultiRow1_CellContentButtonClick;
-            gcMultiRow1.CellContentDoubleClick += gcMultiRow1_CellContentDoubleClick;
-            gcMultiRow1.CellMouseDoubleClick += gcMultiRow1_CellMouseDoubleClick;
             gcMultiRow1.Sorted += gcMultiRow1_Sorted;
             gcMultiRow1.KeyPress += gcMultiRow1_KeyPress;
             gcMultiRow1.PreviewKeyDown += gcMultiRow1_PreviewKeyDown;
