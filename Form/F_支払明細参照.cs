@@ -270,7 +270,7 @@ namespace u_net
             try
             {
                 SetGrid(dtm集計年月, str支払先コード, str支払区分コード);
-                SetTotal(dataGridView1);
+                //SetTotal(dataGridView1);
 
                 if (dataGridView1.RowCount > 0)
                 {
@@ -476,17 +476,17 @@ namespace u_net
 
         private void dataGridView1_Sorted(object sender, EventArgs e)
         {
-            SetTotal(dataGridView1);
+            //SetTotal(dataGridView1);
 
             
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex == -1 && e.ColumnIndex > 0)
-            {
-                dataGridView1.Rows.RemoveAt(dataGridView1.Rows.Count - 1);
-            }
+            //if (e.RowIndex == -1 && e.ColumnIndex > 0)
+            //{
+            //    dataGridView1.Rows.RemoveAt(dataGridView1.Rows.Count - 1);
+            //}
         }
 
         private void DataGridView1_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
