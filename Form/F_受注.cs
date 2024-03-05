@@ -42,6 +42,7 @@ namespace u_net
         private string beforshuka = "";
         int intWindowHeight;
         int intWindowWidth;
+        F_検索 SearchForm = new F_検索();
 
         private string BASE_CAPTION = "受注（製図指図書）";
 
@@ -505,7 +506,7 @@ namespace u_net
             {
                 this.注文番号.Focus();
             }
-
+            受注コード.Enabled = !dataChanged;
             受注版数.Enabled = !dataChanged;
             コマンド複写.Enabled = !dataChanged;
             コマンド削除.Enabled = !dataChanged;
@@ -3226,7 +3227,7 @@ namespace u_net
             else
             {
                 beforkokyaku = 顧客コード.Text;
-                F_検索 SearchForm = new F_検索();
+                
                 SearchForm.FilterName = "顧客名フリガナ";
                 if (SearchForm.ShowDialog() == DialogResult.OK && !顧客コード.ReadOnly && 顧客コード.Enabled)
                 {
