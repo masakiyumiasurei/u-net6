@@ -565,6 +565,7 @@ namespace MultiRowDesigner
                             string selectedCode = codeSelectionForm.SelectedCode;
 
                             gcMultiRow1.CurrentCell.Value = selectedCode;
+                            gcMultiRow1.EditingControl.Text = selectedCode;
                             gcMultiRow1.CurrentCellPosition = new CellPosition(gcMultiRow1.CurrentRow.Index, gcMultiRow1.CurrentRow.Cells["品名"].CellIndex);
                         }
                         break;
@@ -615,6 +616,7 @@ namespace MultiRowDesigner
                         string selectedCode = codeSelectionForm.SelectedCode;
 
                         gcMultiRow1.CurrentCell.Value = selectedCode;
+                        gcMultiRow1.EditingControl.Text = selectedCode;
                         gcMultiRow1.CurrentCellPosition = new CellPosition(gcMultiRow1.CurrentRow.Index, gcMultiRow1.CurrentRow.Cells["品名"].CellIndex);
                     }
                     break;

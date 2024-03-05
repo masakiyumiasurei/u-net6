@@ -392,7 +392,7 @@ namespace u_net
 
         private void dataGridView1_KeyDown(object sender, KeyEventArgs e)
         {
-            Form_KeyDown(sender, e);
+            //Form_KeyDown(sender, e);
         }
 
 
@@ -582,7 +582,9 @@ namespace u_net
                 paoRep.PageStart();
 
                 //ヘッダー
-                paoRep.Write("タイトル", string.Format("yyyy年M月", 集計年月.Text) + "支払一覧表");
+                DateTime dtm集計年月 = DateTime.ParseExact(集計年月.Text, "yyyy/MM", null);
+
+                paoRep.Write("タイトル", dtm集計年月.ToString("yyyy年M月") + "支払一覧表");
 
                 for (var i = 1; i <= 12; i++)
                 {
