@@ -209,11 +209,11 @@ namespace u_net
                         }
                         else
                         {
-                            // 請求処理者コードがNULLでない場合
-                            //MessageBox.Show("現在、" + FunctionClass.EmployeeName(cn, row["請求処理者コード"]?.ToString()) +
-                            //               " さんが請求処理をしています。\n請求処理は実行できません。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            //Close();
-                            //return;
+                            //請求処理者コードがNULLでない場合
+                            MessageBox.Show("現在、" + FunctionClass.EmployeeName(cn, row["請求処理者コード"]?.ToString()) +
+                                           " さんが請求処理をしています。\n請求処理は実行できません。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            Close();
+                            return;
                         }
                     }
                     else
