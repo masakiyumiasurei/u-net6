@@ -131,6 +131,7 @@ namespace u_net
                 支払年月.DataSource = dataTable;
 
                 支払年月.DrawMode = DrawMode.OwnerDrawFixed;
+                支払年月.DropDownWidth = 150;
             }
 
 
@@ -633,6 +634,7 @@ namespace u_net
                             支払年月.DataSource = dataTable;
 
                             支払年月.DrawMode = DrawMode.OwnerDrawFixed;
+                            支払年月.DropDownWidth = 150;
                         }
 
                         支払年月.SelectedIndex = idx;
