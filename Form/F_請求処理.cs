@@ -401,7 +401,7 @@ namespace u_net
                 dataGridView1.Columns[2].Width = 1500 / twipperdot;
                 dataGridView1.Columns[3].Width = 3900 / twipperdot;
                 dataGridView1.Columns[4].Visible = false;
-                dataGridView1.Columns[5].Width = 1100 / twipperdot;
+                dataGridView1.Columns[5].Width = 1200 / twipperdot;
                 dataGridView1.Columns[6].Width = 1300 / twipperdot;
                 dataGridView1.Columns[7].Width = 1300 / twipperdot;
                 dataGridView1.Columns[8].Width = 1300 / twipperdot;

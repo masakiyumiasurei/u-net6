@@ -1116,6 +1116,12 @@ namespace u_net
             switch (e.KeyCode)
             {
                 case Keys.Return:
+                    switch (this.ActiveControl.Name)
+                    {
+                        case "備考":
+                            return;
+
+                    }
                     SelectNextControl(ActiveControl, true, true, true, true);
                     break;
                 case Keys.Space: //コンボボックスならドロップダウン
@@ -1123,6 +1129,7 @@ namespace u_net
                         Control activeControl = this.ActiveControl;
                         if (activeControl is System.Windows.Forms.ComboBox)
                         {
+                            e.Handled = true;
                             System.Windows.Forms.ComboBox activeComboBox = (System.Windows.Forms.ComboBox)activeControl;
                             activeComboBox.DroppedDown = true;
                         }
@@ -1855,7 +1862,7 @@ namespace u_net
 
                         製品コード.SelectedValue = productCode;
                         製品コード_SelectedIndexChanged(sender, e);
-                    
+
                     }
 
                     if (!IsApproved)
@@ -2548,6 +2555,7 @@ namespace u_net
 
             }
         }
+
         private void 製品コード_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (setCmb) return;
@@ -2572,6 +2580,8 @@ namespace u_net
         }
 
         bool changeCmb = false;
+
+        //手入力で修正した場合
         bool changeSeries = false;
         private void SeriesCode_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -2592,7 +2602,10 @@ namespace u_net
             {
                 シリーズ名.Text = null;
             }
-
+            else
+            {
+                SeriesCode_SelectedIndexChanged(sender, e);
+            }
             FunctionClass.LimitText(sender as Control, 8);
             ChangedData(true);
         }
@@ -2629,12 +2642,14 @@ namespace u_net
             if (e.KeyCode == Keys.Return)
             {
 
-                string strCode = SeriesCode.ToString();
+                string strCode = SeriesCode.Text;
                 string formattedCode = strCode.Trim().PadLeft(8, '0');
 
                 if (formattedCode != strCode || string.IsNullOrEmpty(strCode))
                 {
                     SeriesCode.Text = formattedCode;
+                    changeSeries = false;
+                    SeriesCode_SelectedIndexChanged(sender, e);
                 }
 
             }
