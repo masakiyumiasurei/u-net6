@@ -57,13 +57,11 @@ namespace MultiRowDesigner
                 textBox.GotFocus -= gcMultiRow1_GotFocus;
                 textBox.GotFocus += gcMultiRow1_GotFocus;
 
-
-
-                if (gcMultiRow1.CurrentCell.Name == "商品コード")
-                {
-                    textBox.DoubleClick -= gcMultiRow1_CellDoubleClick;
-                    textBox.DoubleClick += gcMultiRow1_CellDoubleClick;
-                }
+                //if (gcMultiRow1.CurrentCell.Name == "商品コード")
+                //{
+                //    textBox.DoubleClick -= gcMultiRow1_CellDoubleClick;
+                //    textBox.DoubleClick += gcMultiRow1_CellDoubleClick;
+                //}
             }
             else if (comboBox != null)
             {
@@ -155,17 +153,17 @@ namespace MultiRowDesigner
                         break;
                     case "商品コード":
                         e.Handled = true;
-                        F_商品構成2 targetform = new F_商品構成2();
 
+                        F_商品構成2 targetform = new F_商品構成2();
                         targetform.ShowDialog();
                         break;
-                    
+
                 }
             }
-            
+
         }
 
-        private void gcMultiRow1_CellDoubleClick(object sender, EventArgs e)
+        private void gcMultiRow1_CellDoubleClick(object sender, CellEventArgs e)
         {
             if (gcMultiRow1.CurrentCell.RowIndex == null || gcMultiRow1.CurrentCell.CellIndex == null) return;
 
@@ -174,10 +172,23 @@ namespace MultiRowDesigner
                 case "商品コード":
 
                     F_商品構成2 targetform = new F_商品構成2();
-
                     targetform.ShowDialog();
                     break;
             }
+        }
+
+        private void gcMultiRow1_CellDoubleClick(object sender, EventArgs e)
+        {
+            //if (gcMultiRow1.CurrentCell.RowIndex == null || gcMultiRow1.CurrentCell.CellIndex == null) return;
+
+            //switch (gcMultiRow1.CurrentCell.Name)
+            //{
+            //    case "商品コード":
+
+            //        F_商品構成2 targetform = new F_商品構成2();
+            //        targetform.ShowDialog();
+            //        break;
+            //}
         }
 
         private void ラインコード_DrawItem(object sender, DrawItemEventArgs e)
@@ -701,5 +712,7 @@ namespace MultiRowDesigner
             e.Row.Cells["Specification"].Value = "02";
             e.Row.Cells["ParameterSheet"].Value = "02";
         }
+
+        
     }
 }

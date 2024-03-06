@@ -403,7 +403,7 @@ namespace u_net
 
         private void dataGridView1_KeyDown(object sender, KeyEventArgs e)
         {
-            Form_KeyDown(sender, e);
+            //Form_KeyDown(sender, e);
         }
 
 

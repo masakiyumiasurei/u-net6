@@ -435,6 +435,7 @@
             Controls.Add(panel2);
             Controls.Add(panel1);
             Icon = (Icon)resources.GetObject("$this.Icon");
+            KeyPreview = true;
             Margin = new Padding(3, 2, 3, 2);
             Name = "F_支払一覧_月間";
             StartPosition = FormStartPosition.CenterScreen;

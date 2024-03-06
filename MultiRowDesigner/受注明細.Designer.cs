@@ -37,7 +37,6 @@
             // 
             gcMultiRow1.BackColor = Color.White;
             gcMultiRow1.Dock = DockStyle.Fill;
-            gcMultiRow1.EditMode = GrapeCity.Win.MultiRow.EditMode.EditOnEnter;
             gcMultiRow1.Location = new Point(0, 0);
             gcMultiRow1.Name = "gcMultiRow1";
             gcMultiRow1.Size = new Size(1100, 338);
@@ -50,6 +49,7 @@
             gcMultiRow1.RowValidating += gcMultiRow1_RowValidating;
             gcMultiRow1.DefaultValuesNeeded += gcMultiRow1_DefaultValuesNeeded;
             gcMultiRow1.EditingControlShowing += gcMultiRow1_EditingControlShowing;
+            gcMultiRow1.CellDoubleClick += gcMultiRow1_CellDoubleClick;
             gcMultiRow1.CellContentButtonClick += gcMultiRow1_CellContentButtonClick;
             // 
             // 受注明細テンプレート1
