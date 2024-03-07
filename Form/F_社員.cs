@@ -88,6 +88,8 @@ namespace u_net
             this.MinimizeBox = false; //最小化ボタンを無効化
 
             InitializeComponent();
+
+            this.tabControl1.TabPages.Remove(this.個人情報);
         }
 
         public void Connect()

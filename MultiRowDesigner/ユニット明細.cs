@@ -62,7 +62,6 @@ namespace MultiRowDesigner
                 gcMultiRow1.Rows[i].Cells["ユニットコード"].Value = f_ユニット.ユニットコード.Text;
                 gcMultiRow1.Rows[i].Cells["ユニット版数"].Value = f_ユニット.ユニット版数.Text;
 
-
             }
 
             f_ユニット.ChangedData(true);
@@ -255,9 +254,6 @@ namespace MultiRowDesigner
                 // エラーチェック
                 bool isError = false;
 
-
-
-
                 object varValue = controlObject.Value;
                 switch (controlObject.Name)
                 {
@@ -369,11 +365,7 @@ namespace MultiRowDesigner
                 case "部品コード":
                     UpdatedControl(gcMultiRow1.CurrentCell);
                     break;
-
-
             }
-
-
         }
 
         private void UpdatedControl(Cell controlObject)
@@ -424,12 +416,7 @@ namespace MultiRowDesigner
                         f_ユニット.ChangedData(true);
 
                         break;
-
-
-
                 }
-
-
 
             }
             catch (Exception ex)
@@ -513,15 +500,11 @@ namespace MultiRowDesigner
             if (combo.SelectedIndex < 0) return;
             gcMultiRow1.CurrentRow.Cells["削除対象"].Value = ((DataRowView)combo.SelectedItem)?.Row.Field<bool>("Display2").ToString();
 
-
-
         }
 
 
         private void gcMultiRow1_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
-
-
             if (e.KeyCode == Keys.Return)
             {
                 gcMultiRow1.EndEdit();
@@ -530,7 +513,6 @@ namespace MultiRowDesigner
 
                 if (gcMultiRow1.CurrentCell.Name == "部品コード")
                 {
-
                     string strCode = gcMultiRow1.CurrentCell.Value.ToString();
                     string formattedCode = strCode.Trim().PadLeft(8, '0');
 
@@ -541,10 +523,7 @@ namespace MultiRowDesigner
                     }
                 }
             }
-
         }
-
-
 
 
         private void gcMultiRow1_KeyPress(object sender, KeyPressEventArgs e)
@@ -570,27 +549,10 @@ namespace MultiRowDesigner
                         }
                         break;
 
-
-
                 }
             }
 
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         private void gcMultiRow1_RowEnter(object sender, CellEventArgs e)
         {
@@ -611,7 +573,7 @@ namespace MultiRowDesigner
                 case "部品コード":
 
                     //codeSelectionForm = new F_部品選択();
-                    if (codeSelectionForm.ShowDialog() == DialogResult.OK)
+                    if (codeSelectionForm.ShowDialog() == DialogResult.OK && gcMultiRow1.ReadOnly==false)
                     {
                         string selectedCode = codeSelectionForm.SelectedCode;
 
@@ -620,8 +582,6 @@ namespace MultiRowDesigner
                         gcMultiRow1.CurrentCellPosition = new CellPosition(gcMultiRow1.CurrentRow.Index, gcMultiRow1.CurrentRow.Cells["品名"].CellIndex);
                     }
                     break;
-
-
 
             }
         }

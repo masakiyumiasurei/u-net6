@@ -473,6 +473,7 @@ namespace u_net
             備考.Margin = new Padding(3, 2, 3, 2);
             備考.Multiline = true;
             備考.Name = "備考";
+            備考.ScrollBars = ScrollBars.Vertical;
             備考.Size = new Size(580, 65);
             備考.TabIndex = 16;
             備考.TextChanged += 備考_TextChanged;

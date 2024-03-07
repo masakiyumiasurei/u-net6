@@ -350,8 +350,7 @@ namespace u_net
                 //this.Enabled = false;
                 //targetform.FormClosed += (s, args) => { this.Enabled = true; };
 
-                targetform.ShowDialog();
-                //targetform.Show();
+                targetform.ShowDialog();                
 
             }
         }
@@ -491,7 +490,7 @@ namespace u_net
                 // 商品フォームを作成し、引数を設定して表示
                 F_商品 targetform = new F_商品();
                 targetform.args = selectedData;
-                //targetform.Show();
+                
                 targetform.ShowDialog();
             }
             else

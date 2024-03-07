@@ -76,7 +76,7 @@ namespace MultiRowDesigner
         private void gcMultiRow1_CellEnter(object sender, CellEventArgs e)
         {
             u_net.F_商品 objForm = (u_net.F_商品)Application.OpenForms["F_商品"];
-
+            TextBoxCell textBoxCell=sender as TextBoxCell;
             if (objForm != null)
             {
                 switch (gcMultiRow1.CurrentCell)
@@ -86,12 +86,14 @@ namespace MultiRowDesigner
                         switch (e.CellName)
                         {
                             case "型式名":
-                                  //  tmpvalue = gcMultiRow1.Rows[e.RowIndex].Cells["型式名"].Value.ToString();
+                                //  tmpvalue = gcMultiRow1.Rows[e.RowIndex].Cells["型式名"].Value.ToString();
                                 gcMultiRow1.ImeMode = ImeMode.Off;
                                 objForm.toolStripStatusLabel1.Text = "■半角４８文字まで入力できます。　■英数字は半角文字で入力し、半角カタカナは使用しないでください。";
                                 break;
                             case "定価":
-                               // tmpvalue = gcMultiRow1.Rows[e.RowIndex].Cells["定価"]?.Value.ToString();
+                                // tmpvalue = gcMultiRow1.Rows[e.RowIndex].Cells["定価"]?.Value.ToString();
+                               
+
                                 objForm.toolStripStatusLabel1.Text = "■型式ごとの定価を設定します。　■マイナス価格を設定することも可能です。";
                                 gcMultiRow1.ImeMode = ImeMode.Disable;
                                 break;

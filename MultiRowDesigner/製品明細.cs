@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -534,7 +536,6 @@ namespace MultiRowDesigner
                     case "ユニットコード":
                         e.Handled = true;
 
-
                         codeSelectionForm = new F_ユニット選択();
                         if (codeSelectionForm.ShowDialog() == DialogResult.OK)
                         {
@@ -545,8 +546,6 @@ namespace MultiRowDesigner
                             gcMultiRow1.CurrentCellPosition = new CellPosition(gcMultiRow1.CurrentRow.Index, gcMultiRow1.CurrentRow.Cells["品名"].CellIndex);
                         }
                         break;
-
-
 
                 }
             }
@@ -606,29 +605,35 @@ namespace MultiRowDesigner
 
         private void gcMultiRow1_CellDoubleClick(object sender, CellEventArgs e)
         {
-            if (gcMultiRow1.CurrentCell.RowIndex == null || gcMultiRow1.CurrentCell.CellIndex == null) return;
-
-            switch (gcMultiRow1.CurrentCell.Name)
+            try
             {
-                case "ユニットコード":
+                if (gcMultiRow1.CurrentCell.RowIndex == null || gcMultiRow1.CurrentCell.CellIndex == null) return;
 
-                    codeSelectionForm = new F_ユニット選択();
-                    if (codeSelectionForm.ShowDialog() == DialogResult.OK)
-                    {
-                        string selectedCode = codeSelectionForm.SelectedCode;
+                switch (gcMultiRow1.CurrentCell.Name)
+                {
+                    case "ユニットコード":
 
-                        gcMultiRow1.EditingControl.Text = selectedCode;
-                        gcMultiRow1.CurrentCell.Value = selectedCode;
-                        gcMultiRow1.CurrentCellPosition = new CellPosition(gcMultiRow1.CurrentRow.Index, gcMultiRow1.CurrentRow.Cells["品名"].CellIndex);
+                        codeSelectionForm = new F_ユニット選択();
+                        if (codeSelectionForm.ShowDialog() == DialogResult.OK && gcMultiRow1.ReadOnly==false)
+                        {
+                            if (gcMultiRow1.EditingControl == null) return;
+                            string selectedCode = codeSelectionForm.SelectedCode;
+                            
+                            gcMultiRow1.EditingControl.Text = selectedCode;
+                            gcMultiRow1.CurrentCell.Value = selectedCode;
+                            gcMultiRow1.CurrentCellPosition = new CellPosition(gcMultiRow1.CurrentRow.Index, gcMultiRow1.CurrentRow.Cells["品名"].CellIndex);
 
-                        F_製品? f_製品 = Application.OpenForms.OfType<F_製品>().FirstOrDefault();
-                        f_製品.ChangedData(true);
-                    }
-                    break;
-
-
-
+                            F_製品? f_製品 = Application.OpenForms.OfType<F_製品>().FirstOrDefault();
+                            f_製品.ChangedData(true);
+                        }
+                        break;
+                }
             }
+            catch(Exception ex)
+            {
+                Debug.Print($"{Name}ユニット追加 - {ex.GetType().ToString()} : {ex.Message}");
+            }
+                
         }
     }
 }

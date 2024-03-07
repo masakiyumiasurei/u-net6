@@ -64,8 +64,7 @@ namespace u_net
             ユーザー名.Name = "ユーザー名";
             ユーザー名.Size = new Size(185, 21);
             ユーザー名.TabIndex = 0;
-            ユーザー名.SelectedIndexChanged += ユーザー名_SelectedIndexChanged;
-            ユーザー名.DropDownClosed += ユーザー名_DropDownClosed;
+            ユーザー名.SelectionChangeCommitted += ユーザー名_SelectionChangeCommitted;
             ユーザー名.Enter += ユーザー名_Enter;
             ユーザー名.Leave += ユーザー名_Leave;
             ユーザー名.Validating += ユーザー名_Validating;
