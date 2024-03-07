@@ -415,6 +415,15 @@ namespace u_net
                 this.ReceiptComment.Text = ((DataRowView)ReceiptCommentCode.SelectedItem)?.Row.Field<String>("Display2")?.ToString();
                 this.ProductionPlanned.Text = "0";
 
+
+
+                this.確定.Text = string.IsNullOrEmpty(確定日時.Text) ? "" : "■";
+                this.承認.Text = string.IsNullOrEmpty(承認者コード.Text) ? "" : "■";
+                this.生産計画.Text = ProductionPlanned.Text == "0" ? null : "■";
+                this.完了.Text = string.IsNullOrEmpty(完了承認者コード.Text) ? "" : "■";
+                //this.在庫締め.Text = string.IsNullOrEmpty(確定日時.Text) ? "" : "■";
+                this.削除.Text = string.IsNullOrEmpty(無効日.Text) ? "" : "■";
+
                 setCombo = false;
                 //明細部を初期化する
                 LoadDetails(this.受注明細1.Detail, this.CurrentCode);
@@ -465,9 +474,18 @@ namespace u_net
                 VariableSet.SetControls(this);
                 LoadDetails(this.受注明細1.Detail, this.CurrentCode);
 
+                
+                LockData(this, true, "受注コード");
+
+                this.確定.Text = string.IsNullOrEmpty(確定日時.Text) ? "" : "■";
+                this.承認.Text = string.IsNullOrEmpty(承認者コード.Text) ? "" : "■";
+                this.生産計画.Text = ProductionPlanned.Text == "0" ? null : "■";
+                this.完了.Text = string.IsNullOrEmpty(完了承認者コード.Text) ? "" : "■";
+                //this.在庫締め.Text = string.IsNullOrEmpty(確定日時.Text) ? "" : "■";
+                this.削除.Text = string.IsNullOrEmpty(無効日.Text) ? "" : "■";
+
                 // 未変更状態にする
                 ChangedData(false);
-                LockData(this, true, "受注コード");
 
                 this.受注コード.Enabled = true;
                 this.受注版数.Enabled = true;
@@ -623,6 +641,9 @@ namespace u_net
                         {
                             this.否認ボタン.Enabled = 1 < this.CurrentEdition;
                         }
+
+                        ChangedData(false);
+
                         this.コマンド複写.Enabled = true;
                         this.コマンド削除.Enabled = !(this.IsApprovedCompletion || this.IsInvalid || this.状態.Text == "改版中");
                         this.コマンド承認.Enabled = this.IsDecided && !this.IsApproved && !this.IsInvalid;
@@ -654,10 +675,12 @@ namespace u_net
                             if (this.IsDecided)
                             {
                                 this.状態.Text = "承認待ち";
+                                状態.ForeColor = Color.Black;
                             }
                             else
                             {
                                 this.状態.Text = "未確定";
+                                状態.ForeColor = Color.Black;
                             }
                         }
 
@@ -710,6 +733,9 @@ namespace u_net
                         {
                             this.否認ボタン.Enabled = 1 < this.CurrentEdition;
                         }
+
+                        ChangedData(false);
+
                         this.コマンド複写.Enabled = true;
                         this.コマンド削除.Enabled = !(this.IsApprovedCompletion || this.IsInvalid || this.状態.Text == "改版中");
                         this.コマンド承認.Enabled = this.IsDecided && !this.IsApproved && !this.IsInvalid;
@@ -717,7 +743,7 @@ namespace u_net
                         this.受注承認ボタン.Enabled = this.IsDecided && !this.IsApproved && !this.IsInvalid;
                         this.受注完了承認ボタン.Enabled = this.IsFinished && !this.IsBilled;
 
-                        ChangedData(false);
+
 
                         fn.WaitForm.Close();
                         break;
@@ -927,7 +953,7 @@ namespace u_net
                         }
                     }
                 }
-                
+
             }
             catch (Exception ex)
             {
@@ -999,7 +1025,7 @@ namespace u_net
 
                 this.確定.Text = string.IsNullOrEmpty(確定日時.Text) ? "" : "■";
                 this.承認.Text = string.IsNullOrEmpty(承認者コード.Text) ? "" : "■";
-                this.生産計画.Text = string.IsNullOrEmpty(ProductionPlanned.Text?.Replace("0", "")) ? "" : "■";
+                this.生産計画.Text = ProductionPlanned.Text == "0" ? null : "■";
                 this.完了.Text = string.IsNullOrEmpty(完了承認者コード.Text) ? "" : "■";
                 //this.在庫締め.Text = string.IsNullOrEmpty(確定日時.Text) ? "" : "■";
                 this.削除.Text = string.IsNullOrEmpty(無効日.Text) ? "" : "■";
@@ -1381,7 +1407,7 @@ namespace u_net
                 {
                     command.Connection = connectionObject;
                     command.CommandText = strSQL1;
-                    connectionObject.Open();
+                    //connectionObject.Open();
                     command.ExecuteNonQuery();
 
                     command.CommandText = strSQL2;
@@ -2272,6 +2298,7 @@ namespace u_net
                         }
                     }
 
+                    Connect();
                     if (DeleteData(cn, this.CurrentCode, this.CurrentEdition))
                     {
                         MessageBox.Show("削除しました。", "削除コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -3227,7 +3254,7 @@ namespace u_net
             else
             {
                 beforkokyaku = 顧客コード.Text;
-                
+
                 SearchForm.FilterName = "顧客名フリガナ";
                 if (SearchForm.ShowDialog() == DialogResult.OK && !顧客コード.ReadOnly && 顧客コード.Enabled)
                 {
@@ -4402,6 +4429,37 @@ namespace u_net
         private void 顧客名_Leave(object sender, EventArgs e)
         {
             顧客名.BackColor = Color.White;
+        }
+
+        private void 承認者コード_TextChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(承認者コード.Text))
+            {
+                承認表示_赤.Visible = false;
+                承認表示_紫.Visible = false;
+            }
+            else if(承認者コード.Text == "000")
+            {
+                承認表示_赤.Visible = false;
+                承認表示_紫.Visible = true;
+            }
+            else
+            {
+                承認表示_赤.Visible = true;
+                承認表示_紫.Visible = false;
+            }
+        }
+
+        private void 完了承認者コード_TextChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(完了承認者コード.Text))
+            {
+                完了承認表示.Visible = false;
+            }
+            else
+            {
+                完了承認表示.Visible = true;
+            }
         }
     }
 }

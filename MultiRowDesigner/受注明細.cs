@@ -111,21 +111,21 @@ namespace MultiRowDesigner
 
         private void gcMultiRow1_GotFocus(object sender, EventArgs e)
         {
-            TextBox control = sender as TextBox;
+            //TextBox control = sender as TextBox;
 
-            switch (gcMultiRow1.CurrentCell.Name)
-            {
-                case "備考":
-                    if (gcMultiRow1.CurrentRow.Cells["SettingSheet"].Value?.ToString() == "02")
-                    {
-                        gcMultiRow1.CurrentRow.Cells["備考"].ReadOnly = true;
-                    }
-                    else
-                    {
-                        gcMultiRow1.CurrentRow.Cells["備考"].ReadOnly = false;
-                    }
-                    break;
-            }
+            //switch (gcMultiRow1.CurrentCell.Name)
+            //{
+            //    case "備考":
+            //        if (gcMultiRow1.CurrentRow.Cells["SettingSheet"].Value?.ToString() == "02")
+            //        {
+            //            gcMultiRow1.CurrentRow.Cells["備考"].ReadOnly = true;
+            //        }
+            //        else
+            //        {
+            //            gcMultiRow1.CurrentRow.Cells["備考"].ReadOnly = false;
+            //        }
+            //        break;
+            //}
 
             //フォーカスインしただけで変更状態になってしまう為コメントアウト、Validatingイベント内に記載
             //ParentForm.ChangedData(true);
@@ -248,6 +248,15 @@ namespace MultiRowDesigner
                                 break;
                             case "備考":
                                 objForm.toolStripStatusLabel2.Text = "■設定明細内容を入力。■全角８２文字まで入力できます。";
+
+                                if (gcMultiRow1.CurrentRow.Cells["SettingSheet"].Value?.ToString() == "02")
+                                {
+                                    gcMultiRow1.CurrentRow.Cells["備考"].ReadOnly = true;
+                                }
+                                else
+                                {
+                                    gcMultiRow1.CurrentRow.Cells["備考"].ReadOnly = false;
+                                }
                                 break;
                             default:
                                 objForm.toolStripStatusLabel2.Text = "各種項目の説明";
@@ -303,7 +312,7 @@ namespace MultiRowDesigner
             string columnName = gcMultiRow1.Columns[e.CellIndex].Name;
 
             // セルの値が数値で、かつマイナスの場合
-            if (!gcMultiRow1.Rows[e.RowIndex].IsNewRow && (columnName == "summaryCell2")
+            if (!gcMultiRow1.Rows[e.RowIndex].IsNewRow && (columnName == "単価" || columnName == "受注金額" || columnName == "原価" || columnName == "summaryCell1" || columnName == "summaryCell2")
                 && e.Value != null && e.Value != DBNull.Value)
             {
                 if (Convert.ToDecimal(e.Value) < 0)

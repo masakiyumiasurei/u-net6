@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <PrintDefine>
-<PrintSetting Name="レポート定義ファイル" Ver="9.2.4" >
+<PrintSetting Name="レポート定義ファイル" Ver="9.2.0" >
 <PrintAttrs>
 <FontAttr AttrName="Font1" Name="ＭＳ ゴシック" Size="9" />
 <FontAttr AttrName="Font2" Name="ＭＳ Ｐゴシック" Size="16" Bold="True" />
@@ -55,7 +55,7 @@
 <Text Name="担当者名_ラベル" X="270" Y="16" Width="22" Height="4" Text="担当者名" Align="Center" VAlign="Middle" FontAttr="Font3" LineAttr="Line15" />
 <Text Name="Text39" X="5" Y="21" Width="8" Height="4" Text="　" Align="Center" VAlign="Middle" FontAttr="Font3" LineAttr="Line16" IntervalY="4" Repeat="44" />
 <Text Name="受注コード" X="13" Y="21" Width="20" Height="4" Text="*受注コード*" Align="Center" VAlign="Middle" FontAttr="Font3" LineAttr="Line17" IntervalY="4" Repeat="44" />
-<Text Name="受注版数" X="33" Y="21" Width="6" Height="4" Text="*受注版数*" Align="Left" VAlign="Middle" FontAttr="Font3" LineAttr="Line18" IntervalY="4" Repeat="44" />
+<Text Name="受注版数" X="33" Y="21" Width="6" Height="4" Text="*受注版数*" Align="Right" VAlign="Middle" FontAttr="Font3" LineAttr="Line18" IntervalY="4" Repeat="44" />
 <Text Name="受注日" X="39" Y="21" Width="20" Height="4" Text="*受注日*" Align="Center" VAlign="Middle" FontAttr="Font3" LineAttr="Line19" IntervalY="4" Repeat="44" />
 <Text Name="出荷予定日" X="59" Y="21" Width="20" Height="4" Text="*出荷予定日*" Align="Center" VAlign="Middle" FontAttr="Font3" LineAttr="Line20" IntervalY="4" Repeat="44" />
 <Text Name="受注納期" X="79" Y="21" Width="20" Height="4" Text="*受注納期*" Align="Center" VAlign="Middle" FontAttr="Font3" LineAttr="Line21" IntervalY="4" Repeat="44" />

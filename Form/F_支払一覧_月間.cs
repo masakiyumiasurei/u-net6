@@ -346,7 +346,7 @@ namespace u_net
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex == -1 && e.ColumnIndex > 0)
+            if (e.RowIndex == -1 && e.ColumnIndex >= 0)
             {
                 dataGridView1.Rows.RemoveAt(dataGridView1.Rows.Count - 1);
             }
