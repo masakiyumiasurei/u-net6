@@ -189,7 +189,7 @@ namespace u_net
         }
 
         private void キャンセルボタン_Click(object sender, EventArgs e)
-        {           
+        {
 
             ログイン_end();
         }
@@ -250,7 +250,7 @@ namespace u_net
             }
         }
 
-        
+
         private void パスワード_Enter(object sender, EventArgs e)
         {
 
@@ -435,12 +435,20 @@ namespace u_net
         private void ユーザー名_DropDownClosed(object sender, EventArgs e)
         {
             パスワード.Focus();
-            enterflg = true;
+            //enterflg = true;
         }
 
         private void F_認証_KeyPress(object sender, KeyPressEventArgs e)
         {
 
+        }
+
+        private void ユーザー名_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            this.BeginInvoke(new Action(() => {
+                パスワード.Focus();
+            }));
+            enterflg = true;
         }
     }
 }
