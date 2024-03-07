@@ -336,20 +336,19 @@ namespace u_net
         //ダブルクリックで商品フォームを開く　商品コードを渡す
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            //if (e.Button != MouseButtons.Left) return; // 左ボタンのダブルクリック以外は無視
-
+            
             if (e.RowIndex >= 0) // ヘッダー行でない場合
             {
                 string selectedData = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString(); // 1列目のデータを取得
 
-                F_商品 targetform = new F_商品();
-
-                //targetform.MdiParent = this.MdiParent; 
+                F_商品 targetform = new F_商品();                
                 targetform.args = selectedData;
 
-                //this.Enabled = false;
+                //targetform.MdiParent = this.MdiParent;
                 //targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                //this.Enabled = false;
 
+                //targetform.Show();
                 targetform.ShowDialog();                
 
             }

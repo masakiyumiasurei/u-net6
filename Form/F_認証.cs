@@ -434,7 +434,7 @@ namespace u_net
 
         private void ユーザー名_DropDownClosed(object sender, EventArgs e)
         {
-            パスワード.Focus();
+            //パスワード.Focus();
             //enterflg = true;
         }
 
@@ -445,6 +445,7 @@ namespace u_net
 
         private void ユーザー名_SelectionChangeCommitted(object sender, EventArgs e)
         {
+            //ドロップダウンの選択が反映されてから実行させる
             this.BeginInvoke(new Action(() => {
                 パスワード.Focus();
             }));

@@ -24,8 +24,7 @@
         private void F_MidParent_Load(object sender, EventArgs e)
         {
 
-            F_商品管理 frm = new F_商品管理();
-           
+            F_メイン frm = new F_メイン();           
             //親フォームをこのフォームにする
             frm.MdiParent = this;
             
