@@ -377,10 +377,10 @@ namespace u_net
                         this.合計数量.Text = GetScalar<int>(cn, sql).ToString("#,0");
 
                         sql = $"SELECT SUM(受注金額) AS num FROM SalesOrderList where {strWhere} and 無効日 is null and 承認者コード is not null";
-                        this.合計金額.Text = GetScalar<int>(cn, sql).ToString("#,0");
+                        this.合計金額.Text = GetScalar<decimal>(cn, sql).ToString("#,0");
 
                         sql = $"SELECT SUM(税込受注金額) AS num FROM SalesOrderList where {strWhere} and 無効日 is null and 承認者コード is not null";
-                        this.税込合計金額.Text = GetScalar<int>(cn, sql).ToString("#,0");
+                        this.税込合計金額.Text = GetScalar<decimal>(cn, sql).ToString("#,0");
 
                     }
                     else

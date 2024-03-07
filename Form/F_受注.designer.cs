@@ -123,6 +123,8 @@ namespace u_net
             toolStripStatusLabel2 = new ToolStripStatusLabel();
             notifyIcon1 = new NotifyIcon(components);
             panel2 = new Panel();
+            完了承認表示 = new TextBox();
+            承認表示_赤 = new TextBox();
             完了承認者コード = new TextBox();
             承認者コード = new TextBox();
             否認ボタン = new Button();
@@ -187,6 +189,7 @@ namespace u_net
             備考 = new TextBox();
             label4 = new Label();
             受注明細1 = new MultiRowDesigner.受注明細();
+            承認表示_紫 = new TextBox();
             panel1.SuspendLayout();
             Page2.SuspendLayout();
             出荷情報.SuspendLayout();
@@ -1548,22 +1551,22 @@ namespace u_net
             // 
             statusStrip1.ImageScalingSize = new Size(20, 20);
             statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1, toolStripStatusLabel2 });
-            statusStrip1.Location = new Point(0, 755);
+            statusStrip1.Location = new Point(0, 758);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Padding = new Padding(1, 0, 19, 0);
-            statusStrip1.Size = new Size(1195, 25);
+            statusStrip1.Size = new Size(1195, 22);
             statusStrip1.TabIndex = 110;
             statusStrip1.Text = "statusStrip1";
             // 
             // toolStripStatusLabel1
             // 
             toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            toolStripStatusLabel1.Size = new Size(0, 20);
+            toolStripStatusLabel1.Size = new Size(0, 17);
             // 
             // toolStripStatusLabel2
             // 
             toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            toolStripStatusLabel2.Size = new Size(111, 20);
+            toolStripStatusLabel2.Size = new Size(89, 17);
             toolStripStatusLabel2.Text = "各種項目の説明";
             // 
             // notifyIcon1
@@ -1575,17 +1578,50 @@ namespace u_net
             // 
             panel2.AutoScroll = true;
             panel2.BackColor = Color.FromArgb(150, 150, 150);
+            panel2.Controls.Add(承認表示_紫);
+            panel2.Controls.Add(完了承認表示);
+            panel2.Controls.Add(承認表示_赤);
             panel2.Controls.Add(完了承認者コード);
             panel2.Controls.Add(承認者コード);
             panel2.Controls.Add(否認ボタン);
             panel2.Controls.Add(受注承認ボタン);
             panel2.Controls.Add(受注完了承認ボタン);
             panel2.Dock = DockStyle.Bottom;
-            panel2.Location = new Point(0, 713);
+            panel2.Location = new Point(0, 716);
             panel2.Margin = new Padding(4, 3, 4, 3);
             panel2.Name = "panel2";
             panel2.Size = new Size(1195, 42);
             panel2.TabIndex = 82;
+            // 
+            // 完了承認表示
+            // 
+            完了承認表示.BackColor = Color.Red;
+            完了承認表示.BorderStyle = BorderStyle.None;
+            完了承認表示.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            完了承認表示.Location = new Point(755, 8);
+            完了承認表示.Margin = new Padding(3, 2, 3, 2);
+            完了承認表示.Multiline = true;
+            完了承認表示.Name = "完了承認表示";
+            完了承認表示.ReadOnly = true;
+            完了承認表示.Size = new Size(25, 25);
+            完了承認表示.TabIndex = 37;
+            完了承認表示.TabStop = false;
+            完了承認表示.Visible = false;
+            // 
+            // 承認表示_赤
+            // 
+            承認表示_赤.BackColor = Color.Red;
+            承認表示_赤.BorderStyle = BorderStyle.None;
+            承認表示_赤.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            承認表示_赤.Location = new Point(421, 8);
+            承認表示_赤.Margin = new Padding(3, 2, 3, 2);
+            承認表示_赤.Multiline = true;
+            承認表示_赤.Name = "承認表示_赤";
+            承認表示_赤.ReadOnly = true;
+            承認表示_赤.Size = new Size(25, 25);
+            承認表示_赤.TabIndex = 36;
+            承認表示_赤.TabStop = false;
+            承認表示_赤.Visible = false;
             // 
             // 完了承認者コード
             // 
@@ -1601,6 +1637,7 @@ namespace u_net
             完了承認者コード.Size = new Size(25, 25);
             完了承認者コード.TabIndex = 35;
             完了承認者コード.TabStop = false;
+            完了承認者コード.TextChanged += 完了承認者コード_TextChanged;
             // 
             // 承認者コード
             // 
@@ -1615,6 +1652,7 @@ namespace u_net
             承認者コード.Size = new Size(25, 25);
             承認者コード.TabIndex = 34;
             承認者コード.TabStop = false;
+            承認者コード.TextChanged += 承認者コード_TextChanged;
             // 
             // 否認ボタン
             // 
@@ -2564,6 +2602,21 @@ namespace u_net
             受注明細1.TabIndex = 53;
             受注明細1.Resize += Form_Resize;
             // 
+            // 承認表示_紫
+            // 
+            承認表示_紫.BackColor = Color.Fuchsia;
+            承認表示_紫.BorderStyle = BorderStyle.None;
+            承認表示_紫.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            承認表示_紫.Location = new Point(421, 8);
+            承認表示_紫.Margin = new Padding(3, 2, 3, 2);
+            承認表示_紫.Multiline = true;
+            承認表示_紫.Name = "承認表示_紫";
+            承認表示_紫.ReadOnly = true;
+            承認表示_紫.Size = new Size(25, 25);
+            承認表示_紫.TabIndex = 38;
+            承認表示_紫.TabStop = false;
+            承認表示_紫.Visible = false;
+            // 
             // F_受注
             // 
             AutoScaleMode = AutoScaleMode.None;
@@ -2764,6 +2817,9 @@ namespace u_net
         private Label label4;
         private TextBox 発送先郵便番号;
         private TextBox 登録日;
+        private TextBox 完了承認表示;
+        private TextBox 承認表示_赤;
+        private TextBox 承認表示_紫;
     }
 }
 
