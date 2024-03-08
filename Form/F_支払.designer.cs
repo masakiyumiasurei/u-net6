@@ -773,7 +773,7 @@ namespace u_net
             label3.Name = "label3";
             label3.Size = new Size(40, 20);
             label3.TabIndex = 10177;
-            label3.Text = "廃止";
+            label3.Text = "削除";
             label3.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // 確定
