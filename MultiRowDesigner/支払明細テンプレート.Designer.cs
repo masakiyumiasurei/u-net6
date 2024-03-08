@@ -181,6 +181,7 @@
             cellStyle13.Font = new System.Drawing.Font("BIZ UDゴシック", 9F);
             cellStyle13.Format = "N0";
             cellStyle13.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            cellStyle13.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleRight;
             this.合計金額.Style = cellStyle13;
             this.合計金額.TabIndex = 1;
             // 
