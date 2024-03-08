@@ -80,7 +80,7 @@
             部.Location = new Point(97, 33);
             部.Name = "部";
             部.Size = new Size(126, 21);
-            部.TabIndex = 2;
+            部.TabIndex = 1;
             // 
             // 年度_ラベル
             // 
@@ -106,7 +106,7 @@
             年度.Margin = new Padding(3, 2, 3, 2);
             年度.Name = "年度";
             年度.Size = new Size(70, 20);
-            年度.TabIndex = 1;
+            年度.TabIndex = 2;
             // 
             // F_年間教育計画_抽出
             // 
