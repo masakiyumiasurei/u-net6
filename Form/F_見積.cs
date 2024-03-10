@@ -33,6 +33,7 @@ namespace u_net
         private string BASE_CAPTION = "見積";
         int intWindowHeight;
         int intWindowWidth;
+        bool copyflg = false;
 
         public string CurrentCode
         {
@@ -656,6 +657,8 @@ namespace u_net
         {
             FunctionClass fn = new FunctionClass();
 
+            if (copyflg) return;
+
             try
             {
                 switch (controlObject.Name)
@@ -791,6 +794,8 @@ namespace u_net
             見積明細1.Detail.AllowUserToDeleteRows = !this.IsDecided && !this.IsDeleted;
             見積明細1.Detail.ReadOnly = !(!this.IsDecided && !this.IsDeleted); //readonlyなのでaccessと真偽が逆になる  
 
+            ChangedData(false);
+
             this.コマンド複写.Enabled = true;
             this.コマンド削除.Enabled = this.IsLastEdition && !this.IsDeleted;
             this.コマンド見積書.Enabled = !this.IsDeleted;
@@ -803,7 +808,7 @@ namespace u_net
                                         (this.WithApproval && !this.IsApproved)) &&
                                        !this.IsDeleted;
 
-            ChangedData(false);
+            
         }
 
         /// <summary>
@@ -1082,12 +1087,16 @@ namespace u_net
                 // 明細部のキー情報を設定する
                 見積明細1.UpdateCodeAndEdition(codeString, editionNumber);
 
+                copyflg = true;
+
                 // キー情報を設定する
                 this.見積コード.Text = codeString;
                 if (editionNumber != -1)
                 {
                     this.見積版数.Text = editionNumber.ToString();
                 }
+
+                copyflg = false;
 
                 // 初期値を設定する
                 this.見積日.Text = DateTime.Now.ToString("yyyy/MM/dd");

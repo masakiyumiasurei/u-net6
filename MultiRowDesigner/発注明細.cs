@@ -1033,6 +1033,7 @@ namespace MultiRowDesigner
         {
             GcMultiRow gcMultiRow = sender as GcMultiRow;
             F_発注? parentform = Application.OpenForms.OfType<F_発注>().FirstOrDefault();
+            
             switch (e.CellName)
             {
                 case "行番号ボタン":
@@ -1080,6 +1081,12 @@ namespace MultiRowDesigner
                 case "明細削除ボタン":
                     // 新規行の場合、何もしない
                     if (gcMultiRow.Rows[e.RowIndex].IsNewRow == true) return;
+
+                    if (gcMultiRow1.ReadOnly == true)
+                    {
+                        MessageBox.Show("編集はできません。", "削除", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        return;
+                    }
 
                     // 削除確認
                     if (MessageBox.Show("明細行(" + (e.RowIndex + 1) + ")を削除しますか？", "明細削除", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)

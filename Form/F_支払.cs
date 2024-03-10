@@ -37,7 +37,7 @@ namespace u_net
         int intWindowWidth;
         public bool IsDirty = false;
         private bool setCombo = true;
-
+        private bool copyflg = false;
         public F_支払()
         {
             this.Text = "支払";       // ウィンドウタイトルを設定
@@ -507,16 +507,23 @@ namespace u_net
                 支払先コード.Focus();
                 支払コード.Enabled = false;
 
-                コマンド新規.Enabled = false;
-                コマンド修正.Enabled = true;
-                コマンド複写.Enabled = false;
-                コマンド削除.Enabled = false;
-                コマンド登録.Enabled = false;
 
                 // 明細部動作制御
                 支払明細1.Detail.AllowUserToDeleteRows = true;
                 支払明細1.Detail.ReadOnly = false;
                 支払明細1.Detail.AllowUserToAddRows = true;
+
+
+                ChangedData(false);
+
+                コマンド新規.Enabled = false;
+                コマンド修正.Enabled = true;
+                コマンド複写.Enabled = false;
+                コマンド削除.Enabled = false;
+                コマンド登録.Enabled = false;
+                コマンド確定.Enabled = false;
+
+                
                 setCombo = false;
                 return true;
             }
@@ -724,9 +731,11 @@ namespace u_net
                     }
                     支払明細1.Detail.DataSource = dataTable; // 更新した DataTable を再セット
                 }
-
+                copyflg = true;
 
                 支払コード.Text = codeString;
+
+                copyflg = false;
 
                 削除.Text = null;
                 作成日時.Text = null;
@@ -962,6 +971,9 @@ namespace u_net
         private void UpdatedControl(Control controlObject)
         {
             FunctionClass fn = new FunctionClass();
+
+            if (copyflg) return;
+
             try
             {
                 string strSQL;
@@ -1237,7 +1249,7 @@ namespace u_net
                     fm.ShowDialog();
                     if (string.IsNullOrEmpty(strCertificateCode))
                     {
-                        MessageBox.Show("承認に失敗しました。" + Environment.NewLine + "承認できません。", "承認", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("承認に失敗しました。" + Environment.NewLine + "実行できません。", "削除", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         return;
                     }
 
