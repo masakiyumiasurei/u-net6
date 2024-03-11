@@ -1723,6 +1723,7 @@ namespace u_net
             // 
             BackColor = SystemColors.Control;
             ClientSize = new Size(636, 536);
+            ControlBox = false;
             Controls.Add(label23);
             Controls.Add(label1);
             Controls.Add(システム設定ボタン);
@@ -1733,7 +1734,6 @@ namespace u_net
             Controls.Add(statusStrip1);
             Controls.Add(コマンド終了);
             Controls.Add(ログインユーザー名);
-            Icon = (Icon)resources.GetObject("$this.Icon");
             KeyPreview = true;
             Name = "F_メイン";
             StartPosition = FormStartPosition.CenterScreen;

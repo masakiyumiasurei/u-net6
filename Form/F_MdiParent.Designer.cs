@@ -31,16 +31,16 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(F_MdiParent));
             SuspendLayout();
             // 
-            // F_MidParent
+            // F_MdiParent
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(934, 562);
+            ClientSize = new Size(1067, 749);
             Icon = (Icon)resources.GetObject("$this.Icon");
             IsMdiContainer = true;
-            Margin = new Padding(4);
-            Name = "F_MidParent";
-            Text = "main";
+            Margin = new Padding(5, 5, 5, 5);
+            Name = "F_MdiParent";
+            Text = "Uinics U-net Client";
             WindowState = FormWindowState.Maximized;
             Load += F_MidParent_Load;
             ResumeLayout(false);

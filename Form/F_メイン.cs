@@ -288,19 +288,29 @@ namespace u_net
 
             if (string.IsNullOrEmpty(LoginUserCode)) return;
             F_受注管理 fm = new F_受注管理();
+                        
             fm.ShowDialog();
         }
 
         private void 商品登録ボタン_Click(object sender, EventArgs e)
         {
             F_商品 fm = new F_商品();
-            fm.ShowDialog();
+            fm.MdiParent = this.MdiParent;
+            fm.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+            fm.Show();
+            //fm.ShowDialog();
         }
 
         private void 商品管理ボタン_Click(object sender, EventArgs e)
         {
             F_商品管理 fm = new F_商品管理();
-            fm.ShowDialog();
+            fm.MdiParent = this.MdiParent;
+            fm.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            fm.Show();
+            //fm.ShowDialog();
         }
 
         private void シリーズ登録ボタン_Click(object sender, EventArgs e)

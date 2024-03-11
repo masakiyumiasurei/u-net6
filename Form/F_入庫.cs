@@ -341,6 +341,7 @@ namespace u_net
             if (f_発注管理 != null)
             {
                 発注コード.Text = f_発注管理.CurrentCode;
+                UpdatedControl(発注コード);
             }
 
 
