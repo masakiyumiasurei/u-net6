@@ -881,6 +881,7 @@
             this.カレント.Location = new System.Drawing.Point(0, 0);
             this.カレント.Name = "カレント";
             this.カレント.ReadOnly = true;
+            this.カレント.Selectable = false;
             this.カレント.Size = new System.Drawing.Size(1482, 24);
             border1.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
             cellStyle1.Border = border1;

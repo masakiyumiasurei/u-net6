@@ -455,7 +455,7 @@ namespace u_net
             氏名_ラベル.Margin = new Padding(0);
             氏名_ラベル.Name = "氏名_ラベル";
             氏名_ラベル.Size = new Size(100, 21);
-            氏名_ラベル.TabIndex = 3;
+            氏名_ラベル.TabIndex = 1;
             氏名_ラベル.Text = "氏名(&N)";
             氏名_ラベル.TextAlign = ContentAlignment.MiddleLeft;
             // 
@@ -471,7 +471,7 @@ namespace u_net
             日付.Location = new Point(122, 48);
             日付.Name = "日付";
             日付.Size = new Size(136, 21);
-            日付.TabIndex = 2;
+            日付.TabIndex = 4;
             日付.DrawItem += 日付_DrawItem;
             日付.SelectedIndexChanged += 日付_SelectedIndexChanged;
             日付.Enter += 日付_Enter;
@@ -488,7 +488,7 @@ namespace u_net
             日付_ラベル.Margin = new Padding(0);
             日付_ラベル.Name = "日付_ラベル";
             日付_ラベル.Size = new Size(108, 21);
-            日付_ラベル.TabIndex = 1;
+            日付_ラベル.TabIndex = 3;
             日付_ラベル.Text = "日付(&D)";
             日付_ラベル.TextAlign = ContentAlignment.MiddleLeft;
             // 
@@ -639,7 +639,7 @@ namespace u_net
             社員コード.Location = new Point(122, 72);
             社員コード.Name = "社員コード";
             社員コード.Size = new Size(136, 21);
-            社員コード.TabIndex = 4;
+            社員コード.TabIndex = 2;
             社員コード.SelectedIndexChanged += 社員コード_SelectedIndexChanged;
             社員コード.Enter += 社員コード_Enter;
             社員コード.Leave += 社員コード_Leave;
@@ -799,6 +799,7 @@ namespace u_net
             本日の一言.Margin = new Padding(3, 2, 3, 2);
             本日の一言.Multiline = true;
             本日の一言.Name = "本日の一言";
+            本日の一言.ReadOnly = true;
             本日の一言.Size = new Size(743, 60);
             本日の一言.TabIndex = 17;
             // 

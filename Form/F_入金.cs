@@ -728,8 +728,8 @@ namespace u_net
 
                 switch (controlObject.Name)
                 {
-                    case "入金月":
-                    case "売掛年月":
+                    //case "入金月":
+                    //case "売掛年月":
                     case "入金日":
                         if (varValue == null || string.IsNullOrEmpty(varValue.ToString()))
                         {

@@ -85,6 +85,8 @@ namespace u_net
             label13 = new Label();
             label12 = new Label();
             groupBox2 = new GroupBox();
+            円未満端数処理2 = new TextBox();
+            円未満端数処理1 = new TextBox();
             label5 = new Label();
             label4 = new Label();
             groupBox1 = new GroupBox();
@@ -117,8 +119,6 @@ namespace u_net
             process1 = new System.Diagnostics.Process();
             閉じるボタン = new Button();
             コマンド登録 = new Button();
-            円未満端数処理1 = new TextBox();
-            円未満端数処理2 = new TextBox();
             tabControl1.SuspendLayout();
             ページ55.SuspendLayout();
             ページ56.SuspendLayout();
@@ -318,7 +318,7 @@ namespace u_net
             // 
             // 郵便番号
             // 
-            郵便番号.Font = new Font("BIZ UDPゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            郵便番号.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             郵便番号.ImeMode = ImeMode.Disable;
             郵便番号.Location = new Point(135, 87);
             郵便番号.Mask = "000-0000";
@@ -331,12 +331,12 @@ namespace u_net
             // 表示名
             // 
             表示名.BackColor = Color.White;
-            表示名.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            表示名.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             表示名.ImeMode = ImeMode.Hiragana;
             表示名.Location = new Point(135, 111);
             表示名.Margin = new Padding(3, 2, 3, 2);
             表示名.Name = "表示名";
-            表示名.Size = new Size(312, 21);
+            表示名.Size = new Size(312, 19);
             表示名.TabIndex = 4;
             表示名.TextChanged += 会社名1_TextChanged;
             // 
@@ -348,19 +348,19 @@ namespace u_net
             会社名2.Location = new Point(135, 63);
             会社名2.Margin = new Padding(3, 2, 3, 2);
             会社名2.Name = "会社名2";
-            会社名2.Size = new Size(310, 21);
+            会社名2.Size = new Size(310, 19);
             会社名2.TabIndex = 2;
             会社名2.TextChanged += 会社名1_TextChanged;
             // 
             // 会社コード
             // 
             会社コード.BackColor = Color.White;
-            会社コード.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            会社コード.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             会社コード.ImeMode = ImeMode.Disable;
             会社コード.Location = new Point(135, 15);
             会社コード.Margin = new Padding(3, 2, 3, 2);
             会社コード.Name = "会社コード";
-            会社コード.Size = new Size(100, 21);
+            会社コード.Size = new Size(100, 19);
             会社コード.TabIndex = 0;
             会社コード.Validated += 会社コード_Validated;
             // 
@@ -397,13 +397,13 @@ namespace u_net
             // 頭文字
             // 
             頭文字.BackColor = Color.White;
-            頭文字.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            頭文字.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             頭文字.ImeMode = ImeMode.Hiragana;
             頭文字.Location = new Point(135, 136);
             頭文字.Margin = new Padding(3, 2, 3, 2);
             頭文字.Name = "頭文字";
             頭文字.ReadOnly = true;
-            頭文字.Size = new Size(312, 21);
+            頭文字.Size = new Size(312, 19);
             頭文字.TabIndex = 5;
             頭文字.TextChanged += 会社名1_TextChanged;
             // 
@@ -460,7 +460,7 @@ namespace u_net
             会社名1.Location = new Point(135, 39);
             会社名1.Margin = new Padding(3, 2, 3, 2);
             会社名1.Name = "会社名1";
-            会社名1.Size = new Size(310, 21);
+            会社名1.Size = new Size(310, 19);
             会社名1.TabIndex = 1;
             会社名1.TextChanged += 会社名1_TextChanged;
             // 
@@ -487,20 +487,20 @@ namespace u_net
             代表者氏名.Location = new Point(135, 208);
             代表者氏名.Margin = new Padding(3, 2, 3, 2);
             代表者氏名.Name = "代表者氏名";
-            代表者氏名.Size = new Size(249, 21);
+            代表者氏名.Size = new Size(249, 19);
             代表者氏名.TabIndex = 8;
             代表者氏名.TextChanged += 会社名1_TextChanged;
             // 
             // FAX番号
             // 
             FAX番号.BackColor = Color.White;
-            FAX番号.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            FAX番号.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             FAX番号.ImeMode = ImeMode.Disable;
             FAX番号.Location = new Point(135, 184);
             FAX番号.Margin = new Padding(3, 2, 3, 2);
             FAX番号.Name = "FAX番号";
             FAX番号.ReadOnly = true;
-            FAX番号.Size = new Size(208, 21);
+            FAX番号.Size = new Size(208, 19);
             FAX番号.TabIndex = 7;
             FAX番号.TextChanged += 会社名1_TextChanged;
             // 
@@ -537,13 +537,13 @@ namespace u_net
             // 電話番号
             // 
             電話番号.BackColor = Color.White;
-            電話番号.Font = new Font("BIZ UDPゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            電話番号.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             電話番号.ImeMode = ImeMode.Disable;
             電話番号.Location = new Point(135, 160);
             電話番号.Margin = new Padding(3, 2, 3, 2);
             電話番号.Name = "電話番号";
             電話番号.ReadOnly = true;
-            電話番号.Size = new Size(208, 21);
+            電話番号.Size = new Size(208, 19);
             電話番号.TabIndex = 6;
             電話番号.TextChanged += 会社名1_TextChanged;
             // 
@@ -624,6 +624,22 @@ namespace u_net
             groupBox2.TabIndex = 7;
             groupBox2.TabStop = false;
             groupBox2.Text = "円未満端数処理";
+            // 
+            // 円未満端数処理2
+            // 
+            円未満端数処理2.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            円未満端数処理2.Location = new Point(325, 26);
+            円未満端数処理2.Name = "円未満端数処理2";
+            円未満端数処理2.Size = new Size(100, 19);
+            円未満端数処理2.TabIndex = 252;
+            // 
+            // 円未満端数処理1
+            // 
+            円未満端数処理1.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            円未満端数処理1.Location = new Point(97, 26);
+            円未満端数処理1.Name = "円未満端数処理1";
+            円未満端数処理1.Size = new Size(100, 19);
+            円未満端数処理1.TabIndex = 251;
             // 
             // label5
             // 
@@ -754,7 +770,7 @@ namespace u_net
             支払期日.FormattingEnabled = true;
             支払期日.Location = new Point(244, 39);
             支払期日.Name = "支払期日";
-            支払期日.Size = new Size(42, 21);
+            支払期日.Size = new Size(42, 20);
             支払期日.TabIndex = 2;
             支払期日.SelectedIndexChanged += 会社名1_TextChanged;
             支払期日.TextChanged += 会社名1_TextChanged;
@@ -765,7 +781,7 @@ namespace u_net
             支払期間.FormattingEnabled = true;
             支払期間.Location = new Point(135, 39);
             支払期間.Name = "支払期間";
-            支払期間.Size = new Size(103, 21);
+            支払期間.Size = new Size(103, 20);
             支払期間.TabIndex = 1;
             支払期間.SelectedIndexChanged += 会社名1_TextChanged;
             支払期間.TextChanged += 会社名1_TextChanged;
@@ -776,7 +792,7 @@ namespace u_net
             自社締日.FormattingEnabled = true;
             自社締日.Location = new Point(135, 15);
             自社締日.Name = "自社締日";
-            自社締日.Size = new Size(64, 21);
+            自社締日.Size = new Size(64, 20);
             自社締日.TabIndex = 0;
             自社締日.SelectedIndexChanged += 会社名1_TextChanged;
             自社締日.TextChanged += 会社名1_TextChanged;
@@ -843,6 +859,7 @@ namespace u_net
             // 
             // 取引銀行2口座番号
             // 
+            取引銀行2口座番号.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             取引銀行2口座番号.ImeMode = ImeMode.Disable;
             取引銀行2口座番号.Location = new Point(135, 116);
             取引銀行2口座番号.Name = "取引銀行2口座番号";
@@ -852,6 +869,7 @@ namespace u_net
             // 
             // 取引銀行1口座番号
             // 
+            取引銀行1口座番号.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
             取引銀行1口座番号.ImeMode = ImeMode.Disable;
             取引銀行1口座番号.Location = new Point(135, 53);
             取引銀行1口座番号.Name = "取引銀行1口座番号";
@@ -943,22 +961,22 @@ namespace u_net
             // statusStrip1
             // 
             statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1, toolStripStatusLabel2 });
-            statusStrip1.Location = new Point(0, 423);
+            statusStrip1.Location = new Point(0, 426);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Padding = new Padding(1, 0, 19, 0);
-            statusStrip1.Size = new Size(571, 25);
+            statusStrip1.Size = new Size(571, 22);
             statusStrip1.TabIndex = 200;
             statusStrip1.Text = "statusStrip1";
             // 
             // toolStripStatusLabel1
             // 
             toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            toolStripStatusLabel1.Size = new Size(0, 20);
+            toolStripStatusLabel1.Size = new Size(0, 17);
             // 
             // toolStripStatusLabel2
             // 
             toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            toolStripStatusLabel2.Size = new Size(111, 20);
+            toolStripStatusLabel2.Size = new Size(89, 17);
             toolStripStatusLabel2.Text = "各種項目の説明";
             // 
             // process1
@@ -993,20 +1011,6 @@ namespace u_net
             コマンド登録.Text = "登録";
             コマンド登録.UseVisualStyleBackColor = true;
             コマンド登録.Click += コマンド登録_Click;
-            // 
-            // 円未満端数処理1
-            // 
-            円未満端数処理1.Location = new Point(97, 26);
-            円未満端数処理1.Name = "円未満端数処理1";
-            円未満端数処理1.Size = new Size(100, 19);
-            円未満端数処理1.TabIndex = 251;
-            // 
-            // 円未満端数処理2
-            // 
-            円未満端数処理2.Location = new Point(325, 26);
-            円未満端数処理2.Name = "円未満端数処理2";
-            円未満端数処理2.Size = new Size(100, 19);
-            円未満端数処理2.TabIndex = 252;
             // 
             // F_会社情報
             // 

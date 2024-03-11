@@ -791,8 +791,8 @@ namespace u_net
 
         private void 年間教育計画表ボタン_Click(object sender, EventArgs e)
         {
-            //F_教育計画管理 fm = new F_教育計画管理();
-            //fm.ShowDialog();
+            F_年間教育計画 fm = new F_年間教育計画();
+            fm.ShowDialog();
         }
 
         private void 資格認定登録ボタン_Click(object sender, EventArgs e)

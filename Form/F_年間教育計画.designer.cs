@@ -296,6 +296,7 @@ namespace u_net
             年度.Location = new Point(111, 105);
             年度.Margin = new Padding(3, 2, 3, 2);
             年度.Name = "年度";
+            年度.ReadOnly = true;
             年度.Size = new Size(68, 20);
             年度.TabIndex = 2;
             年度.TextChanged += 年度_TextChanged;
@@ -322,7 +323,7 @@ namespace u_net
             // 受講者コード
             // 
             受講者コード.BackColor = SystemColors.Window;
-            受講者コード.DropDownWidth = 217;
+            受講者コード.DropDownWidth = 150;
             受講者コード.Enabled = false;
             受講者コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             受講者コード.FormattingEnabled = true;
@@ -331,6 +332,7 @@ namespace u_net
             受講者コード.Name = "受講者コード";
             受講者コード.Size = new Size(79, 21);
             受講者コード.TabIndex = 3;
+            受講者コード.DrawItem += 受講者コード_DrawItem;
             受講者コード.SelectedIndexChanged += 受講者コード_SelectedIndexChanged;
             受講者コード.Enter += 受講者コード_Enter;
             受講者コード.KeyDown += 受講者コード_KeyDown;
@@ -459,6 +461,7 @@ namespace u_net
             受講者名.Size = new Size(170, 20);
             受講者名.TabIndex = 10199;
             受講者名.TabStop = false;
+            受講者名.TextChanged += 受講者名_TextChanged;
             // 
             // 教育名_ラベル
             // 
@@ -484,6 +487,7 @@ namespace u_net
             教育名.Location = new Point(111, 152);
             教育名.Margin = new Padding(3, 2, 3, 2);
             教育名.Name = "教育名";
+            教育名.ReadOnly = true;
             教育名.Size = new Size(350, 20);
             教育名.TabIndex = 4;
             教育名.TextChanged += 教育名_TextChanged;
@@ -501,6 +505,7 @@ namespace u_net
             教育機関名.Location = new Point(111, 175);
             教育機関名.Margin = new Padding(3, 2, 3, 2);
             教育機関名.Name = "教育機関名";
+            教育機関名.ReadOnly = true;
             教育機関名.Size = new Size(350, 20);
             教育機関名.TabIndex = 5;
             教育機関名.TextChanged += 教育機関名_TextChanged;
@@ -533,6 +538,7 @@ namespace u_net
             日付1.Location = new Point(111, 198);
             日付1.Margin = new Padding(3, 2, 3, 2);
             日付1.Name = "日付1";
+            日付1.ReadOnly = true;
             日付1.Size = new Size(104, 20);
             日付1.TabIndex = 6;
             日付1.TextChanged += 日付1_TextChanged;
@@ -606,6 +612,7 @@ namespace u_net
             日付2.Location = new Point(262, 198);
             日付2.Margin = new Padding(3, 2, 3, 2);
             日付2.Name = "日付2";
+            日付2.ReadOnly = true;
             日付2.Size = new Size(104, 20);
             日付2.TabIndex = 7;
             日付2.TextChanged += 日付2_TextChanged;
@@ -623,6 +630,7 @@ namespace u_net
             備考.Location = new Point(111, 221);
             備考.Margin = new Padding(3, 2, 3, 2);
             備考.Name = "備考";
+            備考.ReadOnly = true;
             備考.Size = new Size(350, 20);
             備考.TabIndex = 8;
             備考.TextChanged += 備考_TextChanged;
@@ -790,10 +798,10 @@ namespace u_net
             // 
             // 年間教育計画サブ1
             // 
-            年間教育計画サブ1.Dock = DockStyle.Bottom;
+            年間教育計画サブ1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             年間教育計画サブ1.Font = new Font("Yu Gothic UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             年間教育計画サブ1.Location = new Point(0, 267);
-            年間教育計画サブ1.Margin = new Padding(4, 4, 4, 4);
+            年間教育計画サブ1.Margin = new Padding(4);
             年間教育計画サブ1.Name = "年間教育計画サブ1";
             年間教育計画サブ1.Size = new Size(883, 301);
             年間教育計画サブ1.TabIndex = 21031;
@@ -893,6 +901,7 @@ namespace u_net
             FormClosing += Form_Unload;
             Load += Form_Load;
             KeyDown += Form_KeyDown;
+            Resize += Form_Resize;
             panel1.ResumeLayout(false);
             操作.ResumeLayout(false);
             操作.PerformLayout();

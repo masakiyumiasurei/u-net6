@@ -268,7 +268,7 @@ namespace u_net
                 dataGridView1.Columns[7].Width = 2300 / twipperdot;//1300
                 dataGridView1.Columns[8].Width = 350 / twipperdot;
                 dataGridView1.Columns[9].Width = 350 / twipperdot;
-                dataGridView1.Columns[9].Width = 350 / twipperdot;
+                dataGridView1.Columns[10].Width = 350 / twipperdot;
 
                 dataGridView1.Columns["支払金額"].DefaultCellStyle.Format = "#,###,###,##0";
                 dataGridView1.Columns["支払金額"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;

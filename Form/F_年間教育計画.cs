@@ -36,6 +36,8 @@ namespace u_net
         private string BASE_CAPTION = "年間教育計画";
         private int selected_frame = 0;
         public bool IsDirty = false;
+        private int intWindowHeight;
+        private int intWindowWidth;
 
         public object? var年度;
         public object? var部;
@@ -167,7 +169,7 @@ namespace u_net
                 OriginalClass ofn = new OriginalClass();
                 ofn.SetComboBox(受講者コード, "SELECT 社員コード as Value,氏名 as Display FROM M社員" +
                     " WHERE 退社 IS NULL AND 削除日時 IS NULL ORDER BY ふりがな");
-                //受講者コード.DrawMode = DrawMode.OwnerDrawFixed;
+                this.受講者コード.DropDownWidth = 150;
 
                 this.SuspendLayout();
 
@@ -208,8 +210,8 @@ namespace u_net
 
                 // 入金日指定
                 if (int.TryParse(var年度?.ToString(), out int num))
-                {                    
-                    strFilter = WhereString(strFilter, "年度=" +  num );
+                {
+                    strFilter = WhereString(strFilter, "年度=" + num);
                 }
 
 
@@ -261,7 +263,7 @@ namespace u_net
                 return;
             }
         }
-      
+
 
 
 
@@ -581,6 +583,8 @@ namespace u_net
             {
                 case Keys.Return:
                     SelectNextControl(ActiveControl, true, true, true, true);
+                    e.Handled = true;
+                    e.SuppressKeyPress = true;
                     break;
             }
         }
@@ -1033,6 +1037,34 @@ namespace u_net
         }
 
         private void キャンセル_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Form_Resize(object sender, EventArgs e)
+        {
+            try
+            {
+                年間教育計画サブ1.Detail.Height = 年間教育計画サブ1.Height + (this.Height - intWindowHeight);
+                intWindowHeight = this.Height;  // 高さ保存
+
+                年間教育計画サブ1.Detail.Width = 年間教育計画サブ1.Width + (this.Width - intWindowWidth);
+                intWindowWidth = this.Width;    // 幅保存     　
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this.Name + "_Form_Resize - " + ex.Message);
+            }
+        }
+
+        private void 受講者コード_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            OriginalClass.SetComboBoxAppearance((ComboBox)sender, e, new int[] { 30, 120 }, new string[] { "Value", "Display" });
+            受講者コード.Invalidate();
+            受講者コード.DroppedDown = true;
+        }
+
+        private void 受講者名_TextChanged(object sender, EventArgs e)
         {
 
         }
