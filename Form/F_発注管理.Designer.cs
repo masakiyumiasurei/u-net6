@@ -328,6 +328,7 @@
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "F_発注管理";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "発注管理";
             FormClosing += F_発注管理_FormClosing;
             Load += Form_Load;
