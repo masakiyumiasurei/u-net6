@@ -92,7 +92,7 @@ namespace MultiRowDesigner
 
             gcMultiRow1.ShortcutKeyManager.Unregister(Keys.Enter);
             gcMultiRow1.ShortcutKeyManager.Register(SelectionActions.MoveToNextCell, Keys.Enter);
-                       
+
         }
 
         private void gcMultiRow1_DefaultValuesNeeded(object sender, RowEventArgs e)
@@ -130,7 +130,7 @@ namespace MultiRowDesigner
                 comboBox.PreviewKeyDown -= gcMultiRow1_PreviewKeyDown;
                 comboBox.PreviewKeyDown += gcMultiRow1_PreviewKeyDown;
                 comboBox.KeyPress -= new KeyPressEventHandler(gcMultiRow1_KeyPress);
-                comboBox.KeyPress += new KeyPressEventHandler(gcMultiRow1_KeyPress);                              
+                comboBox.KeyPress += new KeyPressEventHandler(gcMultiRow1_KeyPress);
 
 
                 if (gcMultiRow1.CurrentCell.Name == "買掛区分")
@@ -166,6 +166,22 @@ namespace MultiRowDesigner
             try
             {
                 sortFlg = false;
+
+                //ソートの▲▼表示をリセット
+                foreach (ColumnHeaderSection section in gcMultiRow1.ColumnHeaders)
+                {
+                    foreach (Cell cell in section.Cells)
+                    {
+                        if (cell is ColumnHeaderCell)
+                        {
+                            ColumnHeaderCell columnHeaderCell = cell as ColumnHeaderCell;
+                            columnHeaderCell.SortGlyphDirection = System.Windows.Forms.SortOrder.None;
+                        }
+                    }
+                }
+
+                //並び順を初期にリセット
+                gcMultiRow1.Sort("明細番号", System.Windows.Forms.SortOrder.Ascending);
 
                 NumberDetails("行番号");
                 ResetOrderColor();
@@ -293,6 +309,17 @@ namespace MultiRowDesigner
         {
             //セルがマイナスの場合の処理
             // ヘッダーセルの場合は無視
+            if (e.CellName == "発注合計金額")
+            {
+                if (Convert.ToDecimal(gcMultiRow1.ColumnFooters[0].Cells["発注合計金額"].Value) < 0)
+                {
+                    gcMultiRow1.ColumnFooters[0].Cells["発注合計金額"].Style.ForeColor = Color.Red;
+                }
+                else
+                {
+                    gcMultiRow1.ColumnFooters[0].Cells["発注合計金額"].Style.ForeColor = Color.Black;
+                }
+            }
 
             if (gcMultiRow1.Rows.Count == 0 || e.RowIndex < 0 || e.RowIndex >= gcMultiRow1.Rows.Count)
                 return;
@@ -304,14 +331,24 @@ namespace MultiRowDesigner
             string columnName = gcMultiRow1.Columns[e.CellIndex].Name;
 
             // セルの値が数値で、かつマイナスの場合
-            if (!gcMultiRow1.Rows[e.RowIndex].IsNewRow && (columnName == "発注数量")
+            if (!gcMultiRow1.Rows[e.RowIndex].IsNewRow && (columnName == "発注数量" || columnName == "必要数量")
                 && e.Value != null && e.Value != DBNull.Value)
             {
                 if (Convert.ToDecimal(e.Value) < 0)
                 {   // 赤色のフォントを設定
                     e.CellStyle.ForeColor = Color.Red;
                 }
+
+
+
             }
+
+
+
+
+
+
+
         }
         private void ResetNumber()
         {
@@ -1033,7 +1070,7 @@ namespace MultiRowDesigner
         {
             GcMultiRow gcMultiRow = sender as GcMultiRow;
             F_発注? parentform = Application.OpenForms.OfType<F_発注>().FirstOrDefault();
-            
+
             switch (e.CellName)
             {
                 case "行番号ボタン":
@@ -1233,7 +1270,7 @@ namespace MultiRowDesigner
             }
         }
 
-            
+
         private void gcMultiRow1_CellValidated(object sender, CellEventArgs e)
         {
             if (!validateFlg) return;
@@ -1337,8 +1374,8 @@ namespace MultiRowDesigner
                 {
                     // 処理が完了したら、行の変更フラグをリセット
                     rowChanged[e.RowIndex] = false;
-                }     
-               
+                }
+
             }
         }
 
@@ -1348,12 +1385,18 @@ namespace MultiRowDesigner
             {
                 rowChanged[e.RowIndex] = false;
             }
+
+
+
         }
 
         // 値が変更された時
-        private void gcMultiRow1_CellValueChanged(object sender, CellEventArgs e)
+        public void gcMultiRow1_CellValueChanged(object sender, CellEventArgs e)
         {
             rowChanged[e.RowIndex] = true;
+
+
+
         }
 
         private void gcMultiRow1_CellDoubleClick(object sender, CellEventArgs e)
@@ -1649,6 +1692,26 @@ namespace MultiRowDesigner
                 return;
             }
         }
-       
+
+        private void gcMultiRow1_CellMouseClick(object sender, CellMouseEventArgs e)
+        {
+
+            if (gcMultiRow1.CurrentCell.Name != "部品コード") return;
+
+            if (e.Button == MouseButtons.Right)
+            {
+                F_発注履歴 fm = new F_発注履歴();
+
+                if (fm.ShowDialog() == DialogResult.OK && gcMultiRow1.ReadOnly == false)
+                {
+             
+                    string selectedDate = fm.SelectedCode;
+                    gcMultiRow1.CurrentCell.Value = selectedDate;
+                    UpdatedControl(gcMultiRow1.CurrentCell);
+                    gcMultiRow1.CurrentCellPosition = new CellPosition(gcMultiRow1.CurrentRow.Index, gcMultiRow1.CurrentRow.Cells["品名"].CellIndex);
+
+                }
+            }
+        }
     }
 }

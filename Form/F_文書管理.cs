@@ -88,18 +88,18 @@ namespace u_net
         {
             try
             {
-                //dataGridView1.Height = dataGridView1.Height + (this.Height - intWindowHeight);
-                //intWindowHeight = this.Height;  // 高さ保存
+                dataGridView1.Height = dataGridView1.Height + (this.Height - intWindowHeight);
+                intWindowHeight = this.Height;  // 高さ保存
 
-                //dataGridView1.Width = dataGridView1.Width + (this.Width - intWindowWidth);
-                //intWindowWidth = this.Width;    // 幅保存
-
+                dataGridView1.Width = dataGridView1.Width + (this.Width - intWindowWidth);
+                intWindowWidth = this.Width;    // 幅保存     　
             }
             catch (Exception ex)
             {
-                MessageBox.Show(this.Name + "_Form_Resize - " + ex.Message);
+                MessageBox.Show(this.Name + "_Form_Resize - " + ex.Message);
             }
         }
+
 
         private void F_支払管理_Load(object sender, EventArgs e)
         {
@@ -135,6 +135,12 @@ namespace u_net
             dataGridView1.AllowUserToAddRows = false;
             dataGridView1.AllowUserToDeleteRows = false;
             dataGridView1.ReadOnly = true;
+
+            //ダブルバッファ処理設定
+            System.Type dgvtype = typeof(DataGridView);
+            System.Reflection.PropertyInfo dgvPropertyInfo = dgvtype.GetProperty("DoubleBuffered", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
+            dgvPropertyInfo.SetValue(dataGridView1, true, null);
+
 
 
             myapi.GetFullScreen(out xSize, out ySize);

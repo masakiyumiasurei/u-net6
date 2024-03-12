@@ -732,8 +732,8 @@ namespace u_net
 
         private void 旧文書管理ボタン_Click(object sender, EventArgs e)
         {
-            //F_文書管理 fm = new F_文書管理();
-            //fm.ShowDialog();
+            F_文書管理 fm = new F_文書管理();
+            fm.ShowDialog();
         }
 
         private void 月間予定表ボタン_Click(object sender, EventArgs e)

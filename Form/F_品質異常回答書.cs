@@ -298,14 +298,14 @@ namespace u_net
             }
         }
 
-
-
         private void F_品質異常回答書_KeyDown(object sender, KeyEventArgs e)
         {
             switch (e.KeyCode)
             {
                 case Keys.Return:
                     SelectNextControl(ActiveControl, true, true, true, true);
+                    e.Handled = true;
+                    e.SuppressKeyPress = true;
                     break;
             }
         }
