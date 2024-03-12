@@ -61,7 +61,7 @@
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
             dataGridView1.RowTemplate.Height = 29;
-            dataGridView1.Size = new Size(666, 227);
+            dataGridView1.Size = new Size(1009, 613);
             dataGridView1.TabIndex = 1;
             dataGridView1.CellClick += dataGridView1_CellClick;
             dataGridView1.CellDoubleClick += dataGridView1_CellDoubleClick;
@@ -76,16 +76,16 @@
             panel2.Controls.Add(更新ボタン);
             panel2.Controls.Add(label1);
             panel2.Dock = DockStyle.Bottom;
-            panel2.Location = new Point(0, 227);
+            panel2.Location = new Point(0, 613);
             panel2.Margin = new Padding(3, 2, 3, 2);
             panel2.Name = "panel2";
-            panel2.Size = new Size(666, 43);
+            panel2.Size = new Size(1009, 43);
             panel2.TabIndex = 88;
             // 
             // キャンセルボタン
             // 
             キャンセルボタン.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            キャンセルボタン.Location = new Point(544, 8);
+            キャンセルボタン.Location = new Point(899, 6);
             キャンセルボタン.Margin = new Padding(4);
             キャンセルボタン.Name = "キャンセルボタン";
             キャンセルボタン.RightToLeft = RightToLeft.Yes;
@@ -98,20 +98,20 @@
             // OKボタン
             // 
             OKボタン.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            OKボタン.Location = new Point(430, 8);
+            OKボタン.Location = new Point(785, 6);
             OKボタン.Margin = new Padding(4);
             OKボタン.Name = "OKボタン";
             OKボタン.RightToLeft = RightToLeft.Yes;
             OKボタン.Size = new Size(106, 27);
             OKボタン.TabIndex = 2;
-            OKボタン.Text = "OK(&O)";
+            OKボタン.Text = "OK";
             OKボタン.UseVisualStyleBackColor = true;
             OKボタン.Click += OKボタン_Click;
             // 
             // 更新ボタン
             // 
             更新ボタン.Font = new Font("BIZ UDゴシック", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            更新ボタン.Location = new Point(316, 8);
+            更新ボタン.Location = new Point(671, 6);
             更新ボタン.Margin = new Padding(4);
             更新ボタン.Name = "更新ボタン";
             更新ボタン.RightToLeft = RightToLeft.Yes;
@@ -125,7 +125,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(666, 270);
+            ClientSize = new Size(1009, 656);
             Controls.Add(dataGridView1);
             Controls.Add(panel2);
             Icon = (Icon)resources.GetObject("$this.Icon");
