@@ -44,6 +44,11 @@ namespace u_net
             return "Data Source=" + _ServerName + ";Initial Catalog=" + _DBName + ";User Id=" + _Login 
                 + ";Password=" + _Password + ";TrustServerCertificate=True";
         }
+
+        public string GetServerName()
+        {
+            return _ServerName;
+        }
     }
 
     internal class CommonConnection
@@ -82,6 +87,11 @@ namespace u_net
         {
             return "Data Source=" + _ServerName + ";Initial Catalog=" + _DBName + ";User Id=" + _Login
                 + ";Password=" + _Password + ";TrustServerCertificate=True";
+        }
+
+        public string GetServerName()
+        {
+            return _DBName;
         }
     }
 }

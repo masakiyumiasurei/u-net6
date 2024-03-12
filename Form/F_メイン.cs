@@ -202,7 +202,10 @@ namespace u_net
 
         private void コマンド終了_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            DialogResult result = MessageBox.Show("終了しますか？", "終了確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+                Application.Exit();
         }
 
         private void Form_Unload(object sender, FormClosingEventArgs e)
@@ -258,7 +261,13 @@ namespace u_net
 
                 //親フォームにログインユーザ名と接続先を表示する
                 F_MdiParent frmTarget = Application.OpenForms.OfType<F_MdiParent>().FirstOrDefault();
-                frmTarget.toolStripStatusLabel1.Text = LoginUserFullName;
+                
+
+                Connection connection=new Connection();
+                string sname = connection.GetServerName();
+
+
+                frmTarget.toolStripStatusLabel1.Text = $"ログイン：{LoginUserFullName}   　 接続先:{sname}";
 
             }
             catch (Exception ex)
