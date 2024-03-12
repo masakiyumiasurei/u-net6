@@ -35,6 +35,7 @@ namespace u_net
         private Timer timer;
 
         private void Timer_Tick(object sender, EventArgs e)
+        
         {
             // 現在の日時を取得してテキストボックスに表示
             クライアント日時.Text = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
@@ -182,17 +183,21 @@ namespace u_net
 
         private void 接続テストボタン_Click(object sender, EventArgs e)
         {
-            string message = "接続はDBアクセスの度に行っているため、";
-
-            MessageBox.Show(message, "バージョンアップ", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            if (UserSettings.SaveClientPreference(2))
+            {
+                string message = "接続先をテストサーバに変更しました。";
+                MessageBox.Show(message, "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         private void 接続運用ボタン_Click(object sender, EventArgs e)
         {
-            string message = "OPEN処理はDBアクセスの度に行っているため、この処理は不要かと思います";
-            MessageBox.Show(message, "確認", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            if (UserSettings.SaveClientPreference(1))
+            {
+                string message = "接続先を本番サーバに変更しました。";
+                MessageBox.Show(message, "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
-
 
         private void 接続設定ボタン_Click(object sender, EventArgs e)
         {

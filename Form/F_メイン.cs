@@ -202,7 +202,7 @@ namespace u_net
 
         private void コマンド終了_Click(object sender, EventArgs e)
         {
-            Close();
+            Application.Exit();
         }
 
         private void Form_Unload(object sender, FormClosingEventArgs e)
@@ -255,6 +255,10 @@ namespace u_net
 
                 FunctionClass fn = new FunctionClass();
                 this.ログインユーザー名.Text = fn.Zn(LoginUserFullName).ToString();
+
+                //親フォームにログインユーザ名と接続先を表示する
+                F_MdiParent frmTarget = Application.OpenForms.OfType<F_MdiParent>().FirstOrDefault();
+                frmTarget.toolStripStatusLabel1.Text = LoginUserFullName;
 
             }
             catch (Exception ex)
