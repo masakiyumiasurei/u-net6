@@ -193,6 +193,7 @@
             this.明細行数.Size = new System.Drawing.Size(68, 17);
             cellStyle22.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
             cellStyle22.ImeMode = System.Windows.Forms.ImeMode.Off;
+            cellStyle22.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleRight;
             this.明細行数.Style = cellStyle22;
             this.明細行数.TabIndex = 1;
             // 
@@ -217,6 +218,7 @@
             cellStyle24.Font = new System.Drawing.Font("BIZ UDPゴシック", 9F);
             cellStyle24.Format = "N0";
             cellStyle24.ImeMode = System.Windows.Forms.ImeMode.Off;
+            cellStyle24.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleRight;
             this.発注合計金額.Style = cellStyle24;
             this.発注合計金額.TabIndex = 3;
             // 
@@ -545,6 +547,7 @@
             cellStyle6.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
             cellStyle6.ImageAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleRight;
             cellStyle6.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            cellStyle6.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleRight;
             this.入数.Style = cellStyle6;
             this.入数.TabIndex = 6;
             this.入数.TabStop = false;
@@ -572,7 +575,9 @@
             border7.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
             cellStyle8.Border = border7;
             cellStyle8.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
+            cellStyle8.Format = "N0";
             cellStyle8.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            cellStyle8.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleRight;
             this.必要数量.Style = cellStyle8;
             this.必要数量.TabIndex = 8;
             // 
@@ -585,8 +590,10 @@
             border8.Outline = new GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Gray);
             cellStyle9.Border = border8;
             cellStyle9.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
+            cellStyle9.Format = "N0";
             cellStyle9.ImageAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleRight;
             cellStyle9.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            cellStyle9.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleRight;
             this.発注数量.Style = cellStyle9;
             this.発注数量.TabIndex = 9;
             // 
@@ -601,6 +608,7 @@
             cellStyle10.Border = border9;
             cellStyle10.Font = new System.Drawing.Font("BIZ UDゴシック", 9.75F);
             cellStyle10.Format = "M";
+            cellStyle10.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleRight;
             this.回答納期.Style = cellStyle10;
             this.回答納期.TabIndex = 11;
             // 
@@ -687,6 +695,7 @@
             cellStyle15.Format = "N2";
             cellStyle15.ImageAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleRight;
             cellStyle15.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            cellStyle15.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleRight;
             this.発注単価.Style = cellStyle15;
             this.発注単価.TabIndex = 10;
             // 

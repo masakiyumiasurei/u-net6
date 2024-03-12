@@ -30,6 +30,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Diagnostics.Eventing.Reader;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
+using DocumentFormat.OpenXml.Drawing;
 
 namespace u_net
 {
@@ -53,6 +54,8 @@ namespace u_net
         public int intWindowWidth = 0;
         public int buttonCnt = 0; //何故か明細のボタンクリックで2回買掛区分編集フォームが開くため
         bool setCombo = true;
+        bool copyflg = false;
+        bool loadflg = false;
         public F_発注()
         {
             this.Text = "発注";       // ウィンドウタイトルを設定
@@ -416,6 +419,9 @@ namespace u_net
             // 登録処理
             if (SaveData(CurrentCode, CurrentEdition))
             {
+
+                SetEditions(CurrentCode);
+
                 // 登録に成功した
                 ChangedData(false);
 
@@ -1247,12 +1253,14 @@ namespace u_net
                     発注明細1.Detail.DataSource = dataTable; // 更新した DataTable を再セット
                 }
 
-
+                copyflg = true;
 
                 発注コード.Text = codeString;
                 SetEditions(codeString);
                 発注版数.Text = editionNumber.ToString();
                 発注日.Text = DateTime.Now.ToString();
+
+                copyflg = false;
 
                 //'複写のときのみ購買情報を削除する
                 //→改版時は購買情報を残すことにする
@@ -1999,7 +2007,15 @@ namespace u_net
 
                 strSQL = "SELECT * FROM V発注ヘッダ WHERE 発注コード='" + CurrentCode + "' AND 発注版数= " + CurrentEdition;
 
-                if (!VariableSet.SetTable2Form(this, strSQL, cn)) return false;
+                loadflg = true;
+
+                if (!VariableSet.SetTable2Form(this, strSQL, cn))
+                {
+                    loadflg = false;
+                    return false;
+                }
+
+                loadflg = false;
 
                 チェック();
 
@@ -2032,6 +2048,7 @@ namespace u_net
                     }
                 }
                 if (cn != null && cn.State == ConnectionState.Open) cn.Close();
+
                 return true;
             }
             catch (Exception ex)
@@ -2047,6 +2064,9 @@ namespace u_net
         {
             try
             {
+
+                if (copyflg) return;
+
                 switch (controlName)
                 {
                     case "発注コード":
@@ -2440,6 +2460,7 @@ namespace u_net
 
         private void 在庫管理_CheckedChanged(object sender, EventArgs e)
         {
+            if (loadflg) return;
             if (ignoreCheckedChanged) return; // イベントの処理をスキップ
 
 

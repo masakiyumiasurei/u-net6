@@ -167,6 +167,22 @@ namespace MultiRowDesigner
             {
                 sortFlg = false;
 
+                //ソートの▲▼表示をリセット
+                foreach (ColumnHeaderSection section in gcMultiRow1.ColumnHeaders)
+                {
+                    foreach (Cell cell in section.Cells)
+                    {
+                        if (cell is ColumnHeaderCell)
+                        {
+                            ColumnHeaderCell columnHeaderCell = cell as ColumnHeaderCell;
+                            columnHeaderCell.SortGlyphDirection = System.Windows.Forms.SortOrder.None;
+                        }
+                    }
+                }
+
+                //並び順を初期にリセット
+                gcMultiRow1.Sort("明細番号", System.Windows.Forms.SortOrder.Ascending);
+
                 NumberDetails("行番号");
                 ResetOrderColor();
             }
@@ -293,6 +309,17 @@ namespace MultiRowDesigner
         {
             //セルがマイナスの場合の処理
             // ヘッダーセルの場合は無視
+            if(e.CellName == "発注合計金額")
+            {
+                if (Convert.ToDecimal(gcMultiRow1.ColumnFooters[0].Cells["発注合計金額"].Value) < 0)
+                {
+                    gcMultiRow1.ColumnFooters[0].Cells["発注合計金額"].Style.ForeColor = Color.Red;
+                }
+                else
+                {
+                    gcMultiRow1.ColumnFooters[0].Cells["発注合計金額"].Style.ForeColor = Color.Black;
+                }
+            }
 
             if (gcMultiRow1.Rows.Count == 0 || e.RowIndex < 0 || e.RowIndex >= gcMultiRow1.Rows.Count)
                 return;
@@ -304,14 +331,24 @@ namespace MultiRowDesigner
             string columnName = gcMultiRow1.Columns[e.CellIndex].Name;
 
             // セルの値が数値で、かつマイナスの場合
-            if (!gcMultiRow1.Rows[e.RowIndex].IsNewRow && (columnName == "発注数量")
+            if (!gcMultiRow1.Rows[e.RowIndex].IsNewRow && (columnName == "発注数量" || columnName == "必要数量")
                 && e.Value != null && e.Value != DBNull.Value)
             {
                 if (Convert.ToDecimal(e.Value) < 0)
                 {   // 赤色のフォントを設定
                     e.CellStyle.ForeColor = Color.Red;
                 }
+
+               
+                
             }
+
+
+           
+
+
+
+
         }
         private void ResetNumber()
         {
@@ -1348,12 +1385,18 @@ namespace MultiRowDesigner
             {
                 rowChanged[e.RowIndex] = false;
             }
+
+
+            
         }
 
         // 値が変更された時
-        private void gcMultiRow1_CellValueChanged(object sender, CellEventArgs e)
+        public void gcMultiRow1_CellValueChanged(object sender, CellEventArgs e)
         {
             rowChanged[e.RowIndex] = true;
+
+
+
         }
 
         private void gcMultiRow1_CellDoubleClick(object sender, CellEventArgs e)
