@@ -140,7 +140,7 @@ namespace u_net
                 string strLastVersion;
                 int inti;
 
-                this.Text = STR_APPTITLE + " Ver." + STR_APPVERSION;
+                this.Text = STR_APPTITLE + " Ver." + strAppVer; // STR_APPVERSION;
 
                 //// クライアント情報取得
                 MyOsName = SysVersion();
@@ -265,8 +265,9 @@ namespace u_net
 
                 Connection connection=new Connection();
                 string sname = connection.GetServerName();
-
-
+                
+                //開発用のため
+                if(frmTarget!=null)
                 frmTarget.toolStripStatusLabel1.Text = $"ログイン：{LoginUserFullName}   　 接続先:{sname}";
 
             }
