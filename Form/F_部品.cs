@@ -499,10 +499,10 @@ namespace u_net
         private bool ErrCheck()
         {
             //入力確認    
-            if (IsError(this.部品コード)) return false; 
+            if (IsError(this.部品コード)) return false;
             if (IsError(this.版数)) return false;
             if (IsError(this.品名)) return false;
-            if (IsError(this.型番,true)) return false;
+            if (IsError(this.型番, true)) return false;
             if (IsError(this.メーカーコード)) return false;
             if (IsError(this.分類コード)) return false;
             if (IsError(this.形状分類コード)) return false;
@@ -714,6 +714,8 @@ namespace u_net
             // 各コントロールの値をクリア
             VariableSet.SetControls(this);
 
+            ChangedData(false);
+
             // コントロールを操作
             部品コード.Enabled = true;
             部品コード.Focus();
@@ -764,15 +766,12 @@ namespace u_net
                     if (!string.IsNullOrEmpty(currentCode))
                     {
                         // 部品コードが採番された場合、番号を戻す処理
-                        if (FunctionClass.Recycle(cn, "PAR" + currentCode))
+                        if (!FunctionClass.Recycle(cn, "PAR" + currentCode))
                         {
                             MessageBox.Show("部品コードは破棄されました。" + Environment.NewLine + Environment.NewLine +
                                             "部品コード： " + currentCode, "通知", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
-                        else
-                        {
-                            MessageBox.Show("部品コードを戻す際にエラーが発生しました。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
+
                     }
                 }
 
@@ -1363,7 +1362,7 @@ namespace u_net
         }
 
 
-        private bool IsError(Control controlObject,bool Cancel = false)
+        private bool IsError(Control controlObject, bool Cancel = false)
         {
             try
             {
@@ -1394,8 +1393,8 @@ namespace u_net
                                 return true;
                             }
                         }
-                        
-               
+
+
                         DataTable rs1 = null;
                         string strPartsList = null;
 
@@ -1685,7 +1684,7 @@ namespace u_net
                             MakerName.Text = str1;
                             MakerShortName.Text = str2;
                         }
-                        
+
                         break;
                 }
             }
@@ -1768,7 +1767,7 @@ namespace u_net
                     {
                         case "備考":
                             return;
-                            
+
                         case "部品コード":
                             SelectNextControl(ActiveControl, true, true, true, true);
                             return;
@@ -2574,7 +2573,13 @@ namespace u_net
 
         private void 部品コード_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (IsError(sender as Control) == true) e.Cancel = true;
+            if (部品コード.Text == 変更前部品コード) return;
+
+            if (IsError(sender as Control) == true)
+            {
+                e.Cancel = true;
+                部品コード.Text = 変更前部品コード;
+            }
         }
 
         private void 部品コード_SelectedIndexChanged(object sender, EventArgs e)
@@ -2612,9 +2617,9 @@ namespace u_net
 
             if (!isPartialMatch)
             {
-                MessageBox.Show("その値はリストにありません","",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                MessageBox.Show("その値はリストにありません", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 分類コード.Text = tmpstr; // 入力を元に戻す
-                e.Cancel = true; 
+                e.Cancel = true;
             }
             GroupName.Text = ((DataRowView)分類コード.SelectedItem)?.Row.Field<String>("Display2")?.ToString();
         }
@@ -2665,9 +2670,10 @@ namespace u_net
             分類コード.DroppedDown = true;
         }
 
-        
+        string 変更前部品コード;
         private void 部品コード_Enter(object sender, EventArgs e)
         {
+            変更前部品コード = 部品コード.Text;
             selected_frame = 0;
             toolStripStatusLabel2.Text = "■読み込む部品データの部品コードを入力します。";
         }
@@ -2930,6 +2936,11 @@ namespace u_net
         private void Rohs2ProvisionalRegisteredStatusCode_CheckedChanged(object sender, EventArgs e)
         {
             ChangedData(true);
+        }
+
+        private void 部品コード_TextChanged(object sender, EventArgs e)
+        {
+            FunctionClass.LimitText(sender as Control,9);
         }
     }
 }

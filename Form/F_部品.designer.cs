@@ -944,7 +944,7 @@ namespace u_net
             // 
             過不足数量.Location = new Point(585, 380);
             過不足数量.Name = "過不足数量";
-            過不足数量.Size = new Size(70, 27);
+            過不足数量.Size = new Size(70, 23);
             過不足数量.TabIndex = 52;
             過不足数量.Visible = false;
             // 
@@ -973,22 +973,22 @@ namespace u_net
             // statusStrip1
             // 
             statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1, toolStripStatusLabel2 });
-            statusStrip1.Location = new Point(0, 683);
+            statusStrip1.Location = new Point(0, 686);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Padding = new Padding(1, 0, 19, 0);
-            statusStrip1.Size = new Size(1140, 25);
+            statusStrip1.Size = new Size(1140, 22);
             statusStrip1.TabIndex = 10001;
             statusStrip1.Text = "statusStrip1";
             // 
             // toolStripStatusLabel1
             // 
             toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            toolStripStatusLabel1.Size = new Size(0, 20);
+            toolStripStatusLabel1.Size = new Size(0, 17);
             // 
             // toolStripStatusLabel2
             // 
             toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            toolStripStatusLabel2.Size = new Size(111, 20);
+            toolStripStatusLabel2.Size = new Size(89, 17);
             toolStripStatusLabel2.Text = "各種項目の説明";
             // 
             // 部品コード
@@ -1005,6 +1005,7 @@ namespace u_net
             部品コード.Size = new Size(102, 21);
             部品コード.TabIndex = 2;
             部品コード.SelectedIndexChanged += 部品コード_SelectedIndexChanged;
+            部品コード.TextChanged += 部品コード_TextChanged;
             部品コード.Enter += 部品コード_Enter;
             部品コード.KeyDown += 部品コード_KeyDown;
             部品コード.Leave += 部品コード_Leave;
@@ -2262,7 +2263,7 @@ namespace u_net
             // 
             無効日時.Location = new Point(988, 201);
             無効日時.Name = "無効日時";
-            無効日時.Size = new Size(129, 27);
+            無効日時.Size = new Size(129, 23);
             無効日時.TabIndex = 10063;
             無効日時.Visible = false;
             // 
@@ -2279,7 +2280,7 @@ namespace u_net
             // 
             随時登録.Location = new Point(661, 379);
             随時登録.Name = "随時登録";
-            随時登録.Size = new Size(70, 27);
+            随時登録.Size = new Size(70, 23);
             随時登録.TabIndex = 10065;
             随時登録.Visible = false;
             // 
@@ -2287,7 +2288,7 @@ namespace u_net
             // 
             Revision.Location = new Point(679, 412);
             Revision.Name = "Revision";
-            Revision.Size = new Size(70, 27);
+            Revision.Size = new Size(70, 23);
             Revision.TabIndex = 10066;
             Revision.Visible = false;
             // 

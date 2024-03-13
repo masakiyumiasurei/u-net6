@@ -101,6 +101,7 @@ namespace u_net
             toolTip1 = new ToolTip(components);
             ログインユーザーボタン = new Button();
             状況 = new DataGridView();
+            確定表示 = new TextBox();
             panel1.SuspendLayout();
             statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)状況).BeginInit();
@@ -565,6 +566,7 @@ namespace u_net
             確定コード.Size = new Size(20, 20);
             確定コード.TabIndex = 10179;
             確定コード.TabStop = false;
+            確定コード.TextChanged += 確定コード_TextChanged;
             // 
             // 確定者コード
             // 
@@ -832,10 +834,26 @@ namespace u_net
             状況.CellClick += 状況_CellClick;
             状況.Enter += 状況_Enter;
             // 
+            // 確定表示
+            // 
+            確定表示.BackColor = Color.Red;
+            確定表示.BorderStyle = BorderStyle.FixedSingle;
+            確定表示.Enabled = false;
+            確定表示.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            確定表示.ImeMode = ImeMode.NoControl;
+            確定表示.Location = new Point(122, 98);
+            確定表示.Margin = new Padding(3, 2, 3, 2);
+            確定表示.Name = "確定表示";
+            確定表示.Size = new Size(20, 20);
+            確定表示.TabIndex = 21016;
+            確定表示.TabStop = false;
+            確定表示.Visible = false;
+            // 
             // F_業務日報
             // 
             BackColor = SystemColors.Control;
             ClientSize = new Size(888, 642);
+            Controls.Add(確定表示);
             Controls.Add(状況);
             Controls.Add(ログインユーザーボタン);
             Controls.Add(本日の一言);
@@ -971,6 +989,7 @@ namespace u_net
         private ToolTip toolTip1;
         private Button ログインユーザーボタン;
         private DataGridView 状況;
+        private TextBox 確定表示;
     }
 }
 

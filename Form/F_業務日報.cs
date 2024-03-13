@@ -134,6 +134,8 @@ namespace u_net
 
         }
 
+  
+
         private void SetRowSource(DateTime targetDate)
         {
             string strTargetDate = targetDate.ToString("yyyy/MM/dd");
@@ -189,7 +191,10 @@ namespace u_net
                 string strSQL;
                 strSQL = "SELECT * FROM V業務日報 WHERE 日報コード='" + 日報コード.Text + "'";
 
+                確定コード.Text = null;
+
                 if (!VariableSet.SetTable2Form(this, strSQL, cn)) return false;
+
 
                 return true;
             }
@@ -496,6 +501,18 @@ namespace u_net
         {
             OriginalClass.SetComboBoxAppearance((ComboBox)sender, e, new int[] { 100, 50 }, new string[] { "Display", "Display2" });
             日付.Invalidate();
+        }
+
+        private void 確定コード_TextChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(確定コード.Text))
+            {
+                確定表示.Visible = false;
+            }
+            else
+            {
+                確定表示.Visible = true;
+            }
         }
     }
 }
