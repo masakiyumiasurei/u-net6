@@ -64,7 +64,7 @@ namespace u_net
         //データベース操作のモジュールに設定されていた変数
         public static byte bytConStatus;               // 接続状態（レベル）
         public static int ConnNumber;                   // 接続番号
-        public static string strAppVer;                // アプリケーションのバージョン
+        public static string strAppVer= System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();                // アプリケーションのバージョン
         public static string strAppLastVer;            // アプリケーションの最終リリースバージョン
         public static string ConnectionStr;
 

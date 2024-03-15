@@ -38,18 +38,26 @@ namespace u_net.Public
         }
 
         /// <summary>
-        /// userSettings.jsonから設定を読み込む 
+        /// userSettings.jsonから設定を読み込む 　ファイルが見つからない時は本番環境を返す
         /// </summary>
         /// <returns></returns>         
         public static int LoadClientPreference()
         {
             string fileName = "userSettings.json";
-            string jsonString = File.ReadAllText(fileName);
-            using (JsonDocument doc = JsonDocument.Parse(jsonString))
+            if (File.Exists(fileName))
             {
-                JsonElement root = doc.RootElement;
-                int preference = root.GetProperty("ClientSettings").GetProperty("Preference").GetInt32();
-                return preference;
+                string jsonString = File.ReadAllText(fileName);
+                using (JsonDocument doc = JsonDocument.Parse(jsonString))
+                {
+                    JsonElement root = doc.RootElement;
+                    int preference = root.GetProperty("ClientSettings").GetProperty("Preference").GetInt32();
+                    return preference;
+                }
+            }
+            else
+            {
+                //ファイルが存在しない時は本番環境を返す
+                return 1;
             }
         }
 
