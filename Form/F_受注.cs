@@ -2239,11 +2239,11 @@ namespace u_net
                     using (F_認証 targetform = new F_認証())
                     {
                         targetform.args = this.承認者コード.Text;
-                        targetform.MdiParent = this.MdiParent;
-                        targetform.FormClosed += (s, args) => { this.Enabled = true; };
-                        this.Enabled = false;
+                        //targetform.MdiParent = this.MdiParent;
+                        //targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                        //this.Enabled = false;
 
-                        targetform.Show();
+                        targetform.ShowDialog();
 
 
                         if (string.IsNullOrEmpty(strCertificateCode))
@@ -2294,11 +2294,11 @@ namespace u_net
                     using (F_認証 targetform = new F_認証())
                     {
                         targetform.args = this.自社担当者コード.Text;
-                        targetform.MdiParent = this.MdiParent;
-                        targetform.FormClosed += (s, args) => { this.Enabled = true; };
-                        this.Enabled = false;
+                        //targetform.MdiParent = this.MdiParent;
+                        //targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                        //this.Enabled = false;
 
-                        targetform.Show();
+                        targetform.ShowDialog();
 
 
                         if (string.IsNullOrEmpty(strCertificateCode))
@@ -2430,11 +2430,11 @@ namespace u_net
                 using (F_認証 targetform = new F_認証())
                 {
                     targetform.args = "007";
-                    targetform.MdiParent = this.MdiParent;
-                    targetform.FormClosed += (s, args) => { this.Enabled = true; };
-                    this.Enabled = false;
+                    //targetform.MdiParent = this.MdiParent;
+                    //targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                    //this.Enabled = false;
 
-                    targetform.Show();
+                    targetform.ShowDialog();
 
 
                     if (string.IsNullOrEmpty(strCertificateCode))
@@ -2801,11 +2801,11 @@ namespace u_net
                 using (F_認証 targetform = new F_認証())
                 {
                     targetform.args = "007";
-                    targetform.MdiParent = this.MdiParent;
-                    targetform.FormClosed += (s, args) => { this.Enabled = true; };
-                    this.Enabled = false;
+                    //targetform.MdiParent = this.MdiParent;
+                    //targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                    //this.Enabled = false;
 
-                    targetform.Show();
+                    targetform.ShowDialog();
 
 
                     if (string.IsNullOrEmpty(strCertificateCode))

@@ -1066,11 +1066,11 @@ namespace u_net
                     // 認証する
                     F_認証 targetform = new F_認証();
                     targetform.args = strHeadCode;
-                    targetform.MdiParent = this.MdiParent;
-                    targetform.FormClosed += (s, args) => { this.Enabled = true; };
-                    this.Enabled = false;
+                    //targetform.MdiParent = this.MdiParent;
+                    //targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                    //this.Enabled = false;
 
-                    targetform.Show();
+                    targetform.ShowDialog();
 
 
                     // 認証フォームが閉じていれば、認証不成立となる

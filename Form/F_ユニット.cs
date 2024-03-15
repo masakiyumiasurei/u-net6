@@ -1473,11 +1473,11 @@ namespace u_net
                     {
                         authenticationForm.args = strHeadCode;
 
-                        authenticationForm.MdiParent = this.MdiParent;
-                        authenticationForm.FormClosed += (s, args) => { this.Enabled = true; };
-                        this.Enabled = false;
+                        //authenticationForm.MdiParent = this.MdiParent;
+                        //authenticationForm.FormClosed += (s, args) => { this.Enabled = true; };
+                        //this.Enabled = false;
 
-                        authenticationForm.Show();
+                        authenticationForm.ShowDialog();
 
                         //authenticationForm.ShowDialog();
 
@@ -1691,11 +1691,11 @@ namespace u_net
                         using (var authenticationForm = new F_認証())
                         {
                             authenticationForm.args = strHeadCode;
-                            authenticationForm.MdiParent = this.MdiParent;
-                            authenticationForm.FormClosed += (s, args) => { this.Enabled = true; };
-                            this.Enabled = false;
+                            //authenticationForm.MdiParent = this.MdiParent;
+                            //authenticationForm.FormClosed += (s, args) => { this.Enabled = true; };
+                            //this.Enabled = false;
 
-                            authenticationForm.Show();
+                            authenticationForm.ShowDialog();
 
 
                             if (string.IsNullOrEmpty(CommonConstants.strCertificateCode))

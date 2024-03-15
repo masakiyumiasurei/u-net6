@@ -2935,11 +2935,11 @@ namespace u_net
                     using (var targetform = new F_認証())
                     {
                         targetform.args = str1;
-                        targetform.MdiParent = this.MdiParent;
-                        targetform.FormClosed += (s, args) => { this.Enabled = true; };
-                        this.Enabled = false;
+                        //targetform.MdiParent = this.MdiParent;
+                        //targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                        //this.Enabled = false;
 
-                        targetform.Show();
+                        targetform.ShowDialog();
 
 
                         if (string.IsNullOrEmpty(CommonConstants.strCertificateCode))
@@ -3286,11 +3286,11 @@ namespace u_net
                 using (var targetform = new F_認証())
                 {
                     targetform.args = strCertifier;
-                    targetform.MdiParent = this.MdiParent;
-                    targetform.FormClosed += (s, args) => { this.Enabled = true; };
-                    this.Enabled = false;
+                    //targetform.MdiParent = this.MdiParent;
+                    //targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                    //this.Enabled = false;
 
-                    targetform.Show();
+                    targetform.ShowDialog();
 
 
                     if (string.IsNullOrEmpty(CommonConstants.strCertificateCode))
@@ -3759,11 +3759,11 @@ namespace u_net
                     using (var targetform = new F_認証())
                     {
                         targetform.args = str1;
-                        targetform.MdiParent = this.MdiParent;
-                        targetform.FormClosed += (s, args) => { this.Enabled = true; };
-                        this.Enabled = false;
+                        //targetform.MdiParent = this.MdiParent;
+                        //targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                        //this.Enabled = false;
 
-                        targetform.Show();
+                        targetform.ShowDialog();
 
 
                         if (string.IsNullOrEmpty(CommonConstants.strCertificateCode))
@@ -3955,11 +3955,11 @@ namespace u_net
                     using (var targetform = new F_認証())
                     {
                         targetform.args = str1;
-                        targetform.MdiParent = this.MdiParent;
-                        targetform.FormClosed += (s, args) => { this.Enabled = true; };
-                        this.Enabled = false;
+                        //targetform.MdiParent = this.MdiParent;
+                        //targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                        //this.Enabled = false;
 
-                        targetform.Show();
+                        targetform.ShowDialog();
 
 
                         if (string.IsNullOrEmpty(CommonConstants.strCertificateCode))
@@ -4013,11 +4013,11 @@ namespace u_net
                     using (var targetform = new F_認証())
                     {
                         targetform.args = str2;
-                        targetform.MdiParent = this.MdiParent;
-                        targetform.FormClosed += (s, args) => { this.Enabled = true; };
-                        this.Enabled = false;
+                        //targetform.MdiParent = this.MdiParent;
+                        //targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                        //this.Enabled = false;
 
-                        targetform.Show();
+                        targetform.ShowDialog();
 
 
                         if (string.IsNullOrEmpty(CommonConstants.strCertificateCode))
@@ -4072,11 +4072,11 @@ namespace u_net
                     using (var targetform = new F_認証())
                     {
                         targetform.args = str3;
-                        targetform.MdiParent = this.MdiParent;
-                        targetform.FormClosed += (s, args) => { this.Enabled = true; };
-                        this.Enabled = false;
+                        //targetform.MdiParent = this.MdiParent;
+                        //targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                        //this.Enabled = false;
 
-                        targetform.Show();
+                        targetform.ShowDialog();
 
 
                         if (string.IsNullOrEmpty(CommonConstants.strCertificateCode))
@@ -4130,11 +4130,11 @@ namespace u_net
                     using (var targetform = new F_認証())
                     {
                         targetform.args = str4;
-                        targetform.MdiParent = this.MdiParent;
-                        targetform.FormClosed += (s, args) => { this.Enabled = true; };
-                        this.Enabled = false;
+                        //targetform.MdiParent = this.MdiParent;
+                        //targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                        //this.Enabled = false;
 
-                        targetform.Show();
+                        targetform.ShowDialog();
 
 
                         if (string.IsNullOrEmpty(CommonConstants.strCertificateCode))
@@ -4188,11 +4188,11 @@ namespace u_net
                     using (var targetform = new F_認証())
                     {
                         targetform.args = str5;
-                        targetform.MdiParent = this.MdiParent;
-                        targetform.FormClosed += (s, args) => { this.Enabled = true; };
-                        this.Enabled = false;
+                        //targetform.MdiParent = this.MdiParent;
+                        //targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                        //this.Enabled = false;
 
-                        targetform.Show();
+                        targetform.ShowDialog();
 
 
                         if (string.IsNullOrEmpty(CommonConstants.strCertificateCode))
@@ -4246,11 +4246,11 @@ namespace u_net
                     using (var targetform = new F_認証())
                     {
                         targetform.args = str6;
-                        targetform.MdiParent = this.MdiParent;
-                        targetform.FormClosed += (s, args) => { this.Enabled = true; };
-                        this.Enabled = false;
+                        //targetform.MdiParent = this.MdiParent;
+                        //targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                        //this.Enabled = false;
 
-                        targetform.Show();
+                        targetform.ShowDialog();
 
 
                         if (string.IsNullOrEmpty(CommonConstants.strCertificateCode))

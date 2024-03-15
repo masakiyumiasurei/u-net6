@@ -1166,11 +1166,11 @@ namespace MultiRowDesigner
                             if (parentform.buttonCnt == 0)
                             {
 
-                                targetform.MdiParent = parent.MdiParent;
-                                targetform.FormClosed += (s, args) => { this.Enabled = true; };
-                                this.Enabled = false;
+                                //targetform.MdiParent = parent.MdiParent;
+                                //targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                                //this.Enabled = false;
 
-                                targetform.Show();
+                                targetform.ShowDialog();
 
 
                                 return;
@@ -1457,11 +1457,11 @@ namespace MultiRowDesigner
                                 //form.ShowDialog();
                                 if (parentform.buttonCnt == 0)
                                 {
-                                    kaiform.MdiParent = parentform.MdiParent;
-                                    kaiform.FormClosed += (s, args) => { this.Enabled = true; };
-                                    this.Enabled = false;
+                                    //kaiform.MdiParent = parentform.MdiParent;
+                                    //kaiform.FormClosed += (s, args) => { this.Enabled = true; };
+                                    //this.Enabled = false;
 
-                                    kaiform.Show();
+                                    kaiform.ShowDialog();
                                                                         
 
                                     return;
@@ -1492,11 +1492,11 @@ namespace MultiRowDesigner
                                 //form.ShowDialog();
                                 if (parentform.buttonCnt == 0)
                                 {
-                                    kaiform.MdiParent = parentform.MdiParent;
-                                    kaiform.FormClosed += (s, args) => { this.Enabled = true; };
-                                    this.Enabled = false;
+                                    //kaiform.MdiParent = parentform.MdiParent;
+                                    //kaiform.FormClosed += (s, args) => { this.Enabled = true; };
+                                    //this.Enabled = false;
 
-                                    kaiform.Show();
+                                    kaiform.ShowDialog();
 
                                     return;
                                 }
@@ -1614,11 +1614,11 @@ namespace MultiRowDesigner
                                 //form.ShowDialog();
                                 if (parentform.buttonCnt == 0)
                                 {
-                                    kaiform.MdiParent = parentform.MdiParent;
-                                    kaiform.FormClosed += (s, args) => { this.Enabled = true; };
-                                    this.Enabled = false;
+                                    //kaiform.MdiParent = parentform.MdiParent;
+                                    //kaiform.FormClosed += (s, args) => { this.Enabled = true; };
+                                    //this.Enabled = false;
 
-                                    kaiform.Show();
+                                    kaiform.ShowDialog();
                                     //kaiform.ShowDialog();
 
                                     return;
@@ -1649,11 +1649,11 @@ namespace MultiRowDesigner
                                 //form.ShowDialog();
                                 if (parentform.buttonCnt == 0)
                                 {
-                                    kaiform.MdiParent = parentform.MdiParent;
-                                    kaiform.FormClosed += (s, args) => { this.Enabled = true; };
-                                    this.Enabled = false;
+                                    //kaiform.MdiParent = parentform.MdiParent;
+                                    //kaiform.FormClosed += (s, args) => { this.Enabled = true; };
+                                    //this.Enabled = false;
 
-                                    kaiform.Show();
+                                    kaiform.ShowDialog();
 
                                     // kaiform.ShowDialog();
 

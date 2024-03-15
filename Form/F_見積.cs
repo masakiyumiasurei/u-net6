@@ -1471,11 +1471,11 @@ namespace u_net
                         using (F_認証 targetform = new F_認証())
                         {
                             targetform.args = str1;
-                            targetform.MdiParent = this.MdiParent;
-                            targetform.FormClosed += (s, args) => { this.Enabled = true; };
-                            this.Enabled = false;
+                            //targetform.MdiParent = this.MdiParent;
+                            //targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                            //this.Enabled = false;
 
-                            targetform.Show();
+                            targetform.ShowDialog();
 
 
                             if (string.IsNullOrEmpty(strCertificateCode))
@@ -1669,11 +1669,11 @@ namespace u_net
                     using (F_認証 targetform = new F_認証())
                     {
                         targetform.args = strHeadCode;
-                        targetform.MdiParent = this.MdiParent;
-                        targetform.FormClosed += (s, args) => { this.Enabled = true; };
-                        this.Enabled = false;
+                        //targetform.MdiParent = this.MdiParent;
+                        //targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                        //this.Enabled = false;
 
-                        targetform.Show();
+                        targetform.ShowDialog();
 
 
                         if (string.IsNullOrEmpty(strCertificateCode))

@@ -142,11 +142,11 @@ namespace u_net
                 // 認証処理
                 F_認証 targetform = new F_認証();
 
-                targetform.MdiParent = this.MdiParent;
-                targetform.FormClosed += (s, args) => { this.Enabled = true; };
-                this.Enabled = false;
+                //targetform.MdiParent = this.MdiParent;
+                //targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                //this.Enabled = false;
 
-                targetform.Show();
+                targetform.ShowDialog();
 
                 if (string.IsNullOrEmpty(strCertificateCode))
                 {

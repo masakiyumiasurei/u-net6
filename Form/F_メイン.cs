@@ -222,11 +222,11 @@ namespace u_net
                 {
                     // ログインコードが未設定の場合、認証フォームを開く
                     F_認証 targetform = new F_認証();
-                    targetform.MdiParent = this.MdiParent;
-                    targetform.FormClosed += (s, args) => { this.Enabled = true; };
-                    this.Enabled = false;
+                    //targetform.MdiParent = this.MdiParent;
+                    //targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                    //this.Enabled = false;
 
-                    targetform.Show();
+                    targetform.ShowDialog();
 
 
                     if (!string.IsNullOrEmpty(strCertificateCode))
@@ -294,11 +294,12 @@ namespace u_net
             if (string.IsNullOrEmpty(LoginUserCode)) return;
             F_受注 targetform = new F_受注();
 
-            targetform.MdiParent = this.MdiParent;
-            targetform.FormClosed += (s, args) => { this.Enabled = true; };
-            this.Enabled = false;
+            //targetform.MdiParent = this.MdiParent;
+            //targetform.FormClosed += (s, args) => { this.Enabled = true; };
+            //this.Enabled = false;
 
-            targetform.Show();
+            //targetform.Show();
+            targetform.ShowDialog();
         }
 
         private void 受注管理ボタン_Click(object sender, EventArgs e)
@@ -1089,11 +1090,11 @@ namespace u_net
                 {
                     F_認証 fm = new F_認証();
                     fm.args = strEmployeeCode;
-                    fm.MdiParent = this.MdiParent;
-                    fm.FormClosed += (s, args) => { this.Enabled = true; };
-                    this.Enabled = false;
+                    //fm.MdiParent = this.MdiParent;
+                    //fm.FormClosed += (s, args) => { this.Enabled = true; };
+                    //this.Enabled = false;
 
-                    fm.Show();
+                    fm.ShowDialog();
 
                     // 認証が不成立ならば処理終了
                     if (string.IsNullOrEmpty(strCertificateCode))

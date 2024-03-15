@@ -778,11 +778,11 @@ namespace u_net
                     {
 
                         var targetform = new F_認証();
-                        targetform.MdiParent = this.MdiParent;
-                        targetform.FormClosed += (s, args) => { this.Enabled = true; };
-                        this.Enabled = false;
+                        //targetform.MdiParent = this.MdiParent;
+                        //targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                        //this.Enabled = false;
 
-                        targetform.Show();
+                        targetform.ShowDialog();
 
                         if (string.IsNullOrEmpty(CommonConstants.strCertificateCode))
                         {
@@ -818,11 +818,11 @@ namespace u_net
                     if (MessageBox.Show(strMsg, "削除コマンド", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
                         var targetform = new F_認証();
-                        targetform.MdiParent = this.MdiParent;
-                        targetform.FormClosed += (s, args) => { this.Enabled = true; };
-                        this.Enabled = false;
+                        //targetform.MdiParent = this.MdiParent;
+                        //targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                        //this.Enabled = false;
 
-                        targetform.Show();
+                        targetform.ShowDialog();
 
                         if (string.IsNullOrEmpty(CommonConstants.strCertificateCode))
                         {

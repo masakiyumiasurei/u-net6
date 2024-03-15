@@ -156,11 +156,11 @@ namespace MultiRowDesigner
 
                         F_受注? parent = Application.OpenForms.OfType<F_受注>().FirstOrDefault();
                         F_商品構成2 targetform = new F_商品構成2();
-                        targetform.MdiParent = parent.MdiParent;
-                        targetform.FormClosed += (s, args) => { this.Enabled = true; };
-                        this.Enabled = false;
+                        //targetform.MdiParent = parent.MdiParent;
+                        //targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                        //this.Enabled = false;
 
-                        targetform.Show();
+                        targetform.ShowDialog();
 
                         break;
 
@@ -179,12 +179,12 @@ namespace MultiRowDesigner
 
                     F_受注? parent = Application.OpenForms.OfType<F_受注>().FirstOrDefault();
                     F_商品構成2 targetform = new F_商品構成2();
-                    targetform.MdiParent = parent.MdiParent;
-                    targetform.FormClosed += (s, args) => { this.Enabled = true; };
-                    this.Enabled = false;
+                    //targetform.MdiParent = parent.MdiParent;
+                    //targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                    //this.Enabled = false;
 
-                    targetform.Show();
-
+                    //targetform.Show();
+                    targetform.ShowDialog();
                     break;
             }
         }
