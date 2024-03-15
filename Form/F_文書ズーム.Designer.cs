@@ -193,9 +193,8 @@
             Name = "F_文書ズーム";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "文書ズーム";
-            FormClosing += F_文書ズーム_FormClosing;
             Load += Form_Load;
-            KeyDown += F_文書ズーム_KeyDown;
+            KeyDown += Form_KeyDown;
             Resize += F_文書ズーム_Resize;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
