@@ -163,7 +163,12 @@ namespace u_net
                 F_出力 targetform = new F_出力();
                 targetform.cutFlg = true;
                 targetform.DataGridView = dataGridView1;
-                targetform.ShowDialog();
+                targetform.MdiParent = this.MdiParent;
+                targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                this.Enabled = false;
+
+                targetform.Show();
+
 
             }
             catch (Exception ex)

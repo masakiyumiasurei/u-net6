@@ -1472,7 +1472,14 @@ namespace u_net
                     using (var authenticationForm = new F_認証())
                     {
                         authenticationForm.args = strHeadCode;
-                        authenticationForm.ShowDialog();
+
+                        authenticationForm.MdiParent = this.MdiParent;
+                        authenticationForm.FormClosed += (s, args) => { this.Enabled = true; };
+                        this.Enabled = false;
+
+                        authenticationForm.Show();
+
+                        //authenticationForm.ShowDialog();
 
                         if (string.IsNullOrEmpty(CommonConstants.strCertificateCode))
                         {
@@ -1684,7 +1691,12 @@ namespace u_net
                         using (var authenticationForm = new F_認証())
                         {
                             authenticationForm.args = strHeadCode;
-                            authenticationForm.ShowDialog();
+                            authenticationForm.MdiParent = this.MdiParent;
+                            authenticationForm.FormClosed += (s, args) => { this.Enabled = true; };
+                            this.Enabled = false;
+
+                            authenticationForm.Show();
+
 
                             if (string.IsNullOrEmpty(CommonConstants.strCertificateCode))
                             {
@@ -1832,7 +1844,12 @@ namespace u_net
             F_ユニット_ツール targetform = new F_ユニット_ツール();
 
             targetform.args = CurrentCode;
-            targetform.ShowDialog();
+
+            targetform.MdiParent = this.MdiParent;
+            targetform.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            targetform.Show();
         }
 
         private void コマンド部品_Click(object sender, EventArgs e)
@@ -1840,7 +1857,11 @@ namespace u_net
             F_部品 targetform = new F_部品();
 
             targetform.args = CurrentPartsCode;
-            targetform.ShowDialog();
+            targetform.MdiParent = this.MdiParent;
+            targetform.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            targetform.Show();
         }
 
         private void コマンド部品表_Click(object sender, EventArgs e)

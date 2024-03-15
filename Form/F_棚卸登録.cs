@@ -284,7 +284,12 @@ namespace u_net
                 // 部品フォームを作成し、引数を設定して表示
                 F_部品 targetform = new F_部品();
                 targetform.args = selectedData;
-                targetform.ShowDialog();
+                targetform.MdiParent = this.MdiParent;
+                targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                this.Enabled = false;
+
+                targetform.Show();
+
             }
             else
             {
@@ -362,15 +367,25 @@ namespace u_net
 
         private void コマンド抽出_Click(object sender, EventArgs e)
         {
-            F_棚卸登録抽出設定 form = new F_棚卸登録抽出設定();
-            form.ShowDialog();
+            F_棚卸登録抽出設定 targetform = new F_棚卸登録抽出設定();
+            targetform.MdiParent = this.MdiParent;
+            targetform.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            targetform.Show();
+
         }
 
         private void コマンド検索_Click(object sender, EventArgs e)
         {
 
-            F_検索コード form = new F_検索コード(this, null);
-            form.ShowDialog();
+            F_検索コード targetform = new F_検索コード(this, null);
+            targetform.MdiParent = this.MdiParent;
+            targetform.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            targetform.Show();
+
 
         }
 
@@ -532,7 +547,12 @@ namespace u_net
                 // 部品フォームを作成し、引数を設定して表示
                 F_部品 targetform = new F_部品();
                 targetform.args = selectedData;
-                targetform.ShowDialog();
+                targetform.MdiParent = this.MdiParent;
+                targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                this.Enabled = false;
+
+                targetform.Show();
+
             }
             else
             {
@@ -766,7 +786,12 @@ namespace u_net
         {
             F_出力 targetform = new F_出力();
             targetform.DataGridView = dataGridView1;
-            targetform.ShowDialog();
+            targetform.MdiParent = this.MdiParent;
+            targetform.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            targetform.Show();
+
         }
     }
 }

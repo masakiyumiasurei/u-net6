@@ -398,7 +398,12 @@ namespace u_net
 
 
             F_支払 targetform = new F_支払();
-            targetform.ShowDialog();
+            targetform.MdiParent = this.MdiParent;
+            targetform.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            targetform.Show();
+
         }
 
         private void dataGridView1_KeyDown(object sender, KeyEventArgs e)
@@ -550,13 +555,23 @@ namespace u_net
         {
             F_仕入先 targetform = new F_仕入先();
             targetform.args = PayeeCode;
-            targetform.ShowDialog();
+            targetform.MdiParent = this.MdiParent;
+            targetform.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            targetform.Show();
+
         }
 
         private void コマンド明細参照_Click(object sender, EventArgs e)
         {
             F_支払明細参照 targetform = new F_支払明細参照();
-            targetform.ShowDialog();
+            targetform.MdiParent = this.MdiParent;
+            targetform.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            targetform.Show();
+
         }
 
 
@@ -717,7 +732,12 @@ namespace u_net
 
 
             F_支払 targetform = new F_支払();
-            targetform.ShowDialog();
+            targetform.MdiParent = this.MdiParent;
+            targetform.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            targetform.Show();
+
         }
 
 
@@ -836,7 +856,12 @@ namespace u_net
         {
             F_出力 targetform = new F_出力();
             targetform.DataGridView = dataGridView1;
-            targetform.ShowDialog();
+            targetform.MdiParent = this.MdiParent;
+            targetform.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            targetform.Show();
+
         }
 
         private void F_支払一覧_年間_FormClosing(object sender, FormClosingEventArgs e)

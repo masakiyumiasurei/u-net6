@@ -1064,9 +1064,14 @@ namespace u_net
                 else
                 {
                     // 認証する
-                    F_認証 fm = new F_認証();
-                    fm.args = strHeadCode;
-                    fm.ShowDialog();
+                    F_認証 targetform = new F_認証();
+                    targetform.args = strHeadCode;
+                    targetform.MdiParent = this.MdiParent;
+                    targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                    this.Enabled = false;
+
+                    targetform.Show();
+
 
                     // 認証フォームが閉じていれば、認証不成立となる
                     if (string.IsNullOrEmpty(strCertificateCode))
@@ -1324,16 +1329,26 @@ namespace u_net
         private void コマンド部品_Click(object sender, EventArgs e)
         {
             //部品集合明細 subform = Application.OpenForms.OfType<部品集合明細>().FirstOrDefault();
-            F_部品 fm = new F_部品();
+            F_部品 targetform = new F_部品();
 
-            fm.args = 部品集合明細1.PartsCode;
-            fm.ShowDialog();
+            targetform.args = 部品集合明細1.PartsCode;
+            targetform.MdiParent = this.MdiParent;
+            targetform.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            targetform.Show();
+
         }
 
         private void コマンドユニット管理_Click(object sender, EventArgs e)
         {
-            F_ユニット管理 fm = new F_ユニット管理();
-            fm.ShowDialog();
+            F_ユニット管理 targetform = new F_ユニット管理();
+            targetform.MdiParent = this.MdiParent;
+            targetform.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            targetform.Show();
+
         }
 
         private F_検索 SearchForm;

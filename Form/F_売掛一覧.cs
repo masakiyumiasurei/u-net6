@@ -426,12 +426,22 @@ namespace u_net
                 if (string.IsNullOrEmpty(dataGridView1.SelectedRows[0].Cells[8].Value?.ToString()))
                 {
                     F_入金 targetform = new F_入金();
-                    targetform.ShowDialog();
+                    targetform.MdiParent = this.MdiParent;
+                    targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                    this.Enabled = false;
+
+                    targetform.Show();
+
                 }
                 else
                 {
                     F_売掛明細 targetform = new F_売掛明細();
-                    targetform.ShowDialog();
+                    targetform.MdiParent = this.MdiParent;
+                    targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                    this.Enabled = false;
+
+                    targetform.Show();
+
                 }
             }
         }
@@ -517,7 +527,12 @@ namespace u_net
         private void コマンド抽出_Click(object sender, EventArgs e)
         {
             F_売掛一覧_抽出 targetform = new F_売掛一覧_抽出();
-            targetform.ShowDialog();
+            targetform.MdiParent = this.MdiParent;
+            targetform.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            targetform.Show();
+
         }
 
         private void コマンド検索_Click(object sender, EventArgs e)
@@ -581,14 +596,24 @@ namespace u_net
 
         private void コマンド入金_Click(object sender, EventArgs e)
         {
-            F_入金 form = new F_入金();
-            form.ShowDialog();
+            F_入金 targetform = new F_入金();
+            targetform.MdiParent = this.MdiParent;
+            targetform.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            targetform.Show();
+
         }
 
         private void コマンド詳細_Click(object sender, EventArgs e)
         {
             F_売掛明細 targetform = new F_売掛明細();
-            targetform.ShowDialog();
+            targetform.MdiParent = this.MdiParent;
+            targetform.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            targetform.Show();
+
         }
 
         private void コマンド顧客_Click(object sender, EventArgs e)
@@ -952,7 +977,12 @@ namespace u_net
         {
             F_出力 targetform = new F_出力();
             targetform.DataGridView = dataGridView1;
-            targetform.ShowDialog();
+            targetform.MdiParent = this.MdiParent;
+            targetform.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            targetform.Show();
+
         }
     }
 }

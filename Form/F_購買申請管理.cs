@@ -583,7 +583,12 @@ namespace u_net
                 F_購買申請 targetform = new F_購買申請();
 
                 targetform.args = selectedData;
-                targetform.ShowDialog();
+                targetform.MdiParent = this.MdiParent;
+                targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                this.Enabled = false;
+
+                targetform.Show();
+
             }
         }
 
@@ -643,9 +648,14 @@ namespace u_net
         {
             購買申請明細.Focus();
             objParent = this;
-            F_購買申請 form = new F_購買申請();
-            form.args = CurrentCode + "," + CurrentEdition;
-            form.ShowDialog();
+            F_購買申請 targetform = new F_購買申請();
+            targetform.args = CurrentCode + "," + CurrentEdition;
+            targetform.MdiParent = this.MdiParent;
+            targetform.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            targetform.Show();
+
 
         }
 
@@ -666,8 +676,13 @@ namespace u_net
         {
             購買申請明細.Focus();
             objParent = this;
-            F_購買申請管理_抽出 form = new F_購買申請管理_抽出();
-            form.ShowDialog();
+            F_購買申請管理_抽出 targetform = new F_購買申請管理_抽出();
+            targetform.MdiParent = this.MdiParent;
+            targetform.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            targetform.Show();
+
         }
 
         private void コマンド入出力_Click(object sender, EventArgs e)
@@ -808,9 +823,14 @@ namespace u_net
                     case Keys.Return:
                         if (ActiveControl == 購買申請明細)
                         {
-                            F_購買申請 form = new F_購買申請();
-                            form.args = CurrentCode + "," + CurrentEdition;
-                            form.ShowDialog();
+                            F_購買申請 targetform = new F_購買申請();
+                            targetform.args = CurrentCode + "," + CurrentEdition;
+                            targetform.MdiParent = this.MdiParent;
+                            targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                            this.Enabled = false;
+
+                            targetform.Show();
+
                         }
                         break;
                 }
@@ -1034,11 +1054,16 @@ namespace u_net
         {
             購買申請明細.Focus();
             objParent = this;
-            F_購買申請 form = new F_購買申請();
-            form.args = CurrentCode + "," + CurrentEdition;
-            form.ShowDialog();
+            F_購買申請 targetform = new F_購買申請();
+            targetform.args = CurrentCode + "," + CurrentEdition;
+            targetform.MdiParent = this.MdiParent;
+            targetform.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            targetform.Show();
+
         }
 
-        
+
     }
 }

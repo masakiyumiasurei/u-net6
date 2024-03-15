@@ -317,8 +317,13 @@ namespace u_net
 
         private void コマンド抽出_Click(object sender, EventArgs e)
         {
-            F_文書管理_抽出 form = new F_文書管理_抽出();
-            form.ShowDialog();
+            F_文書管理_抽出 targetform = new F_文書管理_抽出();
+            targetform.MdiParent = this.MdiParent;
+            targetform.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            targetform.Show();
+
         }
 
         private void コマンド初期化_Click(object sender, EventArgs e)
@@ -384,7 +389,12 @@ namespace u_net
 
                                 F_文書 targetform = new F_文書();
                                 targetform.args = CurrentCode + "," + CurrentEdition;
-                                targetform.ShowDialog();
+                                targetform.MdiParent = this.MdiParent;
+                                targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                                this.Enabled = false;
+
+                                targetform.Show();
+
                             }
                             else
                             {
@@ -425,7 +435,12 @@ namespace u_net
 
                 F_文書 targetform = new F_文書();
                 targetform.args = CurrentCode + "," + CurrentEdition;
-                targetform.ShowDialog();
+                targetform.MdiParent = this.MdiParent;
+                targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                this.Enabled = false;
+
+                targetform.Show();
+
             }
         }
         private void DataGridView1_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
@@ -478,7 +493,12 @@ namespace u_net
 
                 F_文書 targetform = new F_文書();
                 targetform.args = CurrentCode + "," + CurrentEdition;
-                targetform.ShowDialog();
+                targetform.MdiParent = this.MdiParent;
+                targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                this.Enabled = false;
+
+                targetform.Show();
+
             }
             else
             {
@@ -507,14 +527,24 @@ namespace u_net
                         F_グループ targetform = new F_グループ();
 
                         targetform.args = strDocumentCode;
-                        targetform.ShowDialog();
+                        targetform.MdiParent = this.MdiParent;
+                        targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                        this.Enabled = false;
+
+                        targetform.Show();
+
                         break;
                     case 1:
                         // グループに登録されている場合
                         F_リンク targetform2 = new F_リンク();
 
                         targetform2.args = strDocumentCode;
-                        targetform2.ShowDialog();
+                        targetform2.MdiParent = this.MdiParent;
+                        targetform2.FormClosed += (s, args) => { this.Enabled = true; };
+                        this.Enabled = false;
+
+                        targetform2.Show();
+
                         break;
                     case -1:
                         // エラーの場合

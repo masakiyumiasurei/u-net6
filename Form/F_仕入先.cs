@@ -777,8 +777,13 @@ namespace u_net
                     else
                     {
 
-                        var authForm = new F_認証();
-                        authForm.ShowDialog();
+                        var targetform = new F_認証();
+                        targetform.MdiParent = this.MdiParent;
+                        targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                        this.Enabled = false;
+
+                        targetform.Show();
+
                         if (string.IsNullOrEmpty(CommonConstants.strCertificateCode))
                         {
 
@@ -812,8 +817,13 @@ namespace u_net
 
                     if (MessageBox.Show(strMsg, "削除コマンド", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
-                        var authForm = new F_認証();
-                        authForm.ShowDialog();
+                        var targetform = new F_認証();
+                        targetform.MdiParent = this.MdiParent;
+                        targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                        this.Enabled = false;
+
+                        targetform.Show();
+
                         if (string.IsNullOrEmpty(CommonConstants.strCertificateCode))
                         {
                             MessageBox.Show("削除操作は取り消されました。", "削除コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);

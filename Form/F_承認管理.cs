@@ -468,7 +468,12 @@ namespace u_net
                 F_受注 targetform = new F_受注();
 
                 targetform.varOpenArgs = $"{CurrentCode},{CurrentEdition}";
-                targetform.ShowDialog();
+                targetform.MdiParent = this.MdiParent;
+                targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                this.Enabled = false;
+
+                targetform.Show();
+
             }
         }
 
@@ -566,7 +571,12 @@ namespace u_net
             F_受注 targetform = new F_受注();
 
             targetform.varOpenArgs = $"{CurrentCode},{CurrentEdition}";
-            targetform.ShowDialog();
+            targetform.MdiParent = this.MdiParent;
+            targetform.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            targetform.Show();
+
         }
 
         private void コマンド顧客_Click(object sender, EventArgs e)

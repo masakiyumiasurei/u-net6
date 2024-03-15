@@ -1010,9 +1010,14 @@ namespace u_net
 
                     // 認証フォームを開く
                     // 認証が成功すると strCertificateCode が設定される
-                    F_認証 fm = new F_認証();
-                    fm.args = strHeadCode;
-                    fm.ShowDialog();
+                    F_認証 targetform = new F_認証();
+                    targetform.args = strHeadCode;
+                    targetform.MdiParent = this.MdiParent;
+                    targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                    this.Enabled = false;
+
+                    targetform.Show();
+
                     if (string.IsNullOrEmpty(strCertificateCode))
                     {
                         MessageBox.Show("承認に失敗しました。" + Environment.NewLine + "承認できません。", "承認", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -1468,9 +1473,14 @@ namespace u_net
                 {
                     // 認証フォームを開く
                     // 認証が成功すると strCertificateCode が設定される
-                    F_認証 fm = new F_認証();
-                    fm.args = str1;
-                    fm.ShowDialog();
+                    F_認証 targetform = new F_認証();
+                    targetform.args = str1;
+                    targetform.MdiParent = this.MdiParent;
+                    targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                    this.Enabled = false;
+
+                    targetform.Show();
+
 
 
                     if (string.IsNullOrEmpty(strCertificateCode))
@@ -1607,16 +1617,21 @@ namespace u_net
 
         private void コマンド部品_Click(object sender, EventArgs e)
         {
-            F_部品 fm = new F_部品();
-            fm.args = 発注明細1.CurrentPartsCode;          //発注明細のカレントレコードを渡す
-            if (fm.args == "")
+            F_部品 targetform = new F_部品();
+            targetform.args = 発注明細1.CurrentPartsCode;          //発注明細のカレントレコードを渡す
+            if (targetform.args == "")
             {
                 MessageBox.Show("明細を選択してください。", "コマンド部品", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
 
-            fm.ShowDialog();
+            targetform.MdiParent = this.MdiParent;
+            targetform.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            targetform.Show();
+
         }
 
         private void コマンド発注書_Click(object sender, EventArgs e)

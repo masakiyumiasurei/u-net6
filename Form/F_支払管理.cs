@@ -293,8 +293,13 @@ namespace u_net
         private void コマンド抽出_Click(object sender, EventArgs e)
         {
             //dataGridView1.Focus();
-            F_支払管理_抽出 form = new F_支払管理_抽出();
-            form.ShowDialog();
+            F_支払管理_抽出 targetform = new F_支払管理_抽出();
+            targetform.MdiParent = this.MdiParent;
+            targetform.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            targetform.Show();
+
         }
 
         private void コマンド初期化_Click(object sender, EventArgs e)
@@ -322,7 +327,12 @@ namespace u_net
             {
                 F_支払 targetform = new F_支払();
                 targetform.args = CurrentCode;
-                targetform.ShowDialog();
+                targetform.MdiParent = this.MdiParent;
+                targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                this.Enabled = false;
+
+                targetform.Show();
+
             }
             else
             {
@@ -372,7 +382,12 @@ namespace u_net
 
                                 F_支払 targetform = new F_支払();
                                 targetform.args = CurrentCode;
-                                targetform.ShowDialog();
+                                targetform.MdiParent = this.MdiParent;
+                                targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                                this.Enabled = false;
+
+                                targetform.Show();
+
                             }
                             else
                             {
@@ -393,8 +408,13 @@ namespace u_net
 
         private void コマンド承認_Click(object sender, EventArgs e)
         {
-            F_支払管理_承認 fm = new F_支払管理_承認();
-            fm.ShowDialog();
+            F_支払管理_承認 targetform = new F_支払管理_承認();
+            targetform.MdiParent = this.MdiParent;
+            targetform.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            targetform.Show();
+
         }
 
         //選択行をクリアして先頭を表示して先頭行を選択
@@ -420,7 +440,12 @@ namespace u_net
 
                 F_支払 targetform = new F_支払();
                 targetform.args = selectedData;
-                targetform.ShowDialog();
+                targetform.MdiParent = this.MdiParent;
+                targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                this.Enabled = false;
+
+                targetform.Show();
+
             }
         }
         private void DataGridView1_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)

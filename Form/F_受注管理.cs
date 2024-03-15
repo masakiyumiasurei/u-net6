@@ -673,7 +673,12 @@ namespace u_net
                 F_受注 targetform = new F_受注();
 
                 targetform.varOpenArgs = selectedData;
-                targetform.ShowDialog();
+                targetform.MdiParent = this.MdiParent;
+                targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                this.Enabled = false;
+
+                targetform.Show();
+
             }
         }
 
@@ -737,8 +742,13 @@ namespace u_net
 
                 this.dataGridView1.Focus(); // サブフォームにフォーカスを設定
                 // 受注管理_抽出フォームを開く
-                F_受注管理_抽出 form = new F_受注管理_抽出();
-                form.ShowDialog();
+                F_受注管理_抽出 targetform = new F_受注管理_抽出();
+                targetform.MdiParent = this.MdiParent;
+                targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                this.Enabled = false;
+
+                targetform.Show();
+
             }
             catch (Exception ex)
             {
@@ -750,8 +760,13 @@ namespace u_net
         {
 
             this.dataGridView1.Focus();
-            F_受注管理出力 form = new F_受注管理出力();
-            form.ShowDialog();
+            F_受注管理出力 targetform = new F_受注管理出力();
+            targetform.MdiParent = this.MdiParent;
+            targetform.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            targetform.Show();
+
         }
 
         private void コマンド初期化_Click(object sender, EventArgs e)
@@ -788,8 +803,13 @@ namespace u_net
         private void コマンド検索_Click(object sender, EventArgs e)
         {
             this.dataGridView1.Focus();
-            F_検索コード form = new F_検索コード(this, "A");
-            form.ShowDialog();
+            F_検索コード targetform = new F_検索コード(this, "A");
+            targetform.MdiParent = this.MdiParent;
+            targetform.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            targetform.Show();
+
         }
 
 
@@ -881,9 +901,14 @@ namespace u_net
                     case Keys.Return:
                         if (ActiveControl == this.dataGridView1)
                         {
-                            F_受注 form = new F_受注();
-                            form.varOpenArgs = $"{CurrentCode},{CurrentEdition}";
-                            form.ShowDialog();
+                            F_受注 targetform = new F_受注();
+                            targetform.varOpenArgs = $"{CurrentCode},{CurrentEdition}";
+                            targetform.MdiParent = this.MdiParent;
+                            targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                            this.Enabled = false;
+
+                            targetform.Show();
+
                         }
                         break;
                 }
@@ -905,9 +930,14 @@ namespace u_net
         private void コマンド受注_Click(object sender, EventArgs e)
         {
             this.dataGridView1.Focus();
-            F_受注 form = new F_受注();
-            form.varOpenArgs = $"{CurrentCode},{CurrentEdition}";
-            form.ShowDialog();
+            F_受注 targetform = new F_受注();
+            targetform.varOpenArgs = $"{CurrentCode},{CurrentEdition}";
+            targetform.MdiParent = this.MdiParent;
+            targetform.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            targetform.Show();
+
         }
 
         private void コマンド顧客_Click(object sender, EventArgs e)

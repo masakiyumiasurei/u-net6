@@ -1427,10 +1427,15 @@ namespace u_net
                 // ログオンユーザーが指定ユーザーなら認証者コードにユーザーコードを設定する
                 if (CommonConstants.LoginUserCode != strHeadCode)
                 {
-                    using (var authenticationForm = new F_認証())
+                    using (var targetform = new F_認証())
                     {
-                        authenticationForm.args = strHeadCode;
-                        authenticationForm.ShowDialog();
+                        targetform.args = strHeadCode;
+                        targetform.MdiParent = this.MdiParent;
+                        targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                        this.Enabled = false;
+
+                        targetform.Show();
+
 
                         if (string.IsNullOrEmpty(CommonConstants.strCertificateCode))
                         {
@@ -1650,10 +1655,15 @@ namespace u_net
                     // ログオンユーザーが指定ユーザーなら認証者コードにユーザーコードを設定する
                     if (CommonConstants.LoginUserCode != strHeadCode)
                     {
-                        using (var authenticationForm = new F_認証())
+                        using (var targetform = new F_認証())
                         {
-                            authenticationForm.args = strHeadCode;
-                            authenticationForm.ShowDialog();
+                            targetform.args = strHeadCode;
+                            targetform.MdiParent = this.MdiParent;
+                            targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                            this.Enabled = false;
+
+                            targetform.Show();
+
 
                             if (string.IsNullOrEmpty(CommonConstants.strCertificateCode))
                             {
@@ -2082,7 +2092,12 @@ namespace u_net
             F_ユニット構成番号検索 targetform = new F_ユニット構成番号検索();
 
             targetform.args = CurrentCode + "," + CurrentEdition;
-            targetform.ShowDialog();
+            targetform.MdiParent = this.MdiParent;
+            targetform.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            targetform.Show();
+
         }
 
         private void コマンドユニット_Click(object sender, EventArgs e)
@@ -2100,7 +2115,12 @@ namespace u_net
 
             }
 
-            targetform.ShowDialog();
+            targetform.MdiParent = this.MdiParent;
+            targetform.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            targetform.Show();
+
         }
 
         private void コマンドユニット表_Click(object sender, EventArgs e)

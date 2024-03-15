@@ -350,7 +350,12 @@ namespace u_net
      
                 F_入金 targetform = new F_入金();
                 targetform.args = selectedData;
-                targetform.ShowDialog();
+                targetform.MdiParent = this.MdiParent;
+                targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                this.Enabled = false;
+
+                targetform.Show();
+
             }
             else
             {

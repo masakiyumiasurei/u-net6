@@ -901,8 +901,13 @@ namespace u_net
 
         private void コマンド抽出_Click(object sender, EventArgs e)
         {
-            F_請求条件設定 fm = new F_請求条件設定();
-            fm.ShowDialog();
+            F_請求条件設定 targetform = new F_請求条件設定();
+            targetform.MdiParent = this.MdiParent;
+            targetform.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            targetform.Show();
+
         }
 
         private void コマンド顧客_Click(object sender, EventArgs e)
@@ -918,8 +923,13 @@ namespace u_net
 
         private void コマンド締め実行_Click(object sender, EventArgs e)
         {
-            F_締め処理 fm = new F_締め処理();
-            fm.ShowDialog();
+            F_締め処理 targetform = new F_締め処理();
+            targetform.MdiParent = this.MdiParent;
+            targetform.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            targetform.Show();
+
         }
 
         private void コマンド締め取消_Click(object sender, EventArgs e)

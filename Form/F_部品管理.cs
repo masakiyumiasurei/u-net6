@@ -393,7 +393,12 @@ namespace u_net
                 F_部品 targetform = new F_部品();
 
                 targetform.args = selectedData;
-                targetform.ShowDialog();
+                targetform.MdiParent = this.MdiParent;
+                targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                this.Enabled = false;
+
+                targetform.Show();
+
             }
         }
 
@@ -455,8 +460,13 @@ namespace u_net
         private void コマンド抽出_Click(object sender, EventArgs e)
         {
             dataGridView1.Focus();
-            F_部品管理_抽出 form = new F_部品管理_抽出();
-            form.ShowDialog();
+            F_部品管理_抽出 targetform = new F_部品管理_抽出();
+            targetform.MdiParent = this.MdiParent;
+            targetform.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            targetform.Show();
+
         }
 
 
@@ -474,11 +484,16 @@ namespace u_net
 
         private void コマンド検索_Click(object sender, EventArgs e)
         {
-            F_検索コード form = new F_検索コード(this, null);
-            form.ShowDialog();
+            F_検索コード targetform = new F_検索コード(this, null);
+            targetform.MdiParent = this.MdiParent;
+            targetform.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            targetform.Show();
+
         }
 
-  
+
 
         private void Form_KeyDown(object sender, KeyEventArgs e)
         {
@@ -539,7 +554,12 @@ namespace u_net
                                 // 部品フォームを作成し、引数を設定して表示
                                 F_部品 targetform = new F_部品();
                                 targetform.args = selectedData;
-                                targetform.ShowDialog();
+                                targetform.MdiParent = this.MdiParent;
+                                targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                                this.Enabled = false;
+
+                                targetform.Show();
+
                             }
                             else
                             {
@@ -579,7 +599,12 @@ namespace u_net
                 // 部品フォームを作成し、引数を設定して表示
                 F_部品 targetform = new F_部品();
                 targetform.args = selectedData;
-                targetform.ShowDialog();
+                targetform.MdiParent = this.MdiParent;
+                targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                this.Enabled = false;
+
+                targetform.Show();
+
             }
             else
             {
@@ -592,7 +617,12 @@ namespace u_net
         {
             F_入出庫履歴 targetform = new F_入出庫履歴();
 
-            targetform.ShowDialog();
+            targetform.MdiParent = this.MdiParent;
+            targetform.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            targetform.Show();
+
         }
 
         private void コマンド印刷プレビュー_Click(object sender, EventArgs e)
@@ -737,7 +767,12 @@ namespace u_net
         {
             F_出力 targetform = new F_出力();
             targetform.DataGridView = dataGridView1;
-            targetform.ShowDialog();
+            targetform.MdiParent = this.MdiParent;
+            targetform.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            targetform.Show();
+
         }
 
         private void コマンド保守_Click(object sender, EventArgs e)

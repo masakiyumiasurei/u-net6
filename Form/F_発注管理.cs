@@ -487,9 +487,14 @@ namespace u_net
             if (e.RowIndex >= 0) // ヘッダー行でない場合
             {
 
-                F_発注 fm = new F_発注();
-                fm.args = $"{CurrentCode} , {CurrentEdition}";
-                fm.ShowDialog();
+                F_発注 targetform = new F_発注();
+                targetform.args = $"{CurrentCode} , {CurrentEdition}";
+                targetform.MdiParent = this.MdiParent;
+                targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                this.Enabled = false;
+
+                targetform.Show();
+
             }
         }
 
@@ -594,9 +599,14 @@ namespace u_net
                                 // DataGridView1で選択された行が存在する場合
                                 string selectedData = dataGridView1.SelectedRows[0].Cells[0].Value.ToString(); // 1列目のデータを取得
 
-                                F_発注 fm = new F_発注();
-                                fm.args = $"{CurrentCode} , {CurrentEdition}";
-                                fm.ShowDialog();
+                                F_発注 targetform = new F_発注();
+                                targetform.args = $"{CurrentCode} , {CurrentEdition}";
+                                targetform.MdiParent = this.MdiParent;
+                                targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                                this.Enabled = false;
+
+                                targetform.Show();
+
                             }
                             else
                             {
@@ -627,8 +637,13 @@ namespace u_net
         private void コマンド抽出_Click(object sender, EventArgs e)
         {
             dataGridView1.Focus();
-            F_発注管理_抽出 form = new F_発注管理_抽出();
-            form.ShowDialog();
+            F_発注管理_抽出 targetform = new F_発注管理_抽出();
+            targetform.MdiParent = this.MdiParent;
+            targetform.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            targetform.Show();
+
         }
 
         private void コマンド初期化_Click(object sender, EventArgs e)
@@ -648,8 +663,13 @@ namespace u_net
         {
             dataGridView1.Focus(); // DataGridViewにフォーカスを設定
 
-            F_検索コード form = new F_検索コード(this, "ORD");
-            form.ShowDialog();
+            F_検索コード targetform = new F_検索コード(this, "ORD");
+            targetform.MdiParent = this.MdiParent;
+            targetform.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            targetform.Show();
+
         }
 
         private void コマンド更新_Click(object sender, EventArgs e)
@@ -670,9 +690,14 @@ namespace u_net
 
         private void コマンド発注_Click(object sender, EventArgs e)
         {
-            F_発注 fm = new F_発注();
-            fm.args = $"{CurrentCode} , {CurrentEdition}";
-            fm.ShowDialog();
+            F_発注 targetform = new F_発注();
+            targetform.args = $"{CurrentCode} , {CurrentEdition}";
+            targetform.MdiParent = this.MdiParent;
+            targetform.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            targetform.Show();
+
         }
 
         private void コマンド印刷_Click(object sender, EventArgs e)
@@ -744,8 +769,13 @@ namespace u_net
 
                 // 入庫フォーム側でリレー入力を行う                
 
-                F_入庫 fm = new F_入庫();
-                fm.ShowDialog();
+                F_入庫 targetform = new F_入庫();
+                targetform.MdiParent = this.MdiParent;
+                targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                this.Enabled = false;
+
+                targetform.Show();
+
 
             }
             catch (Exception ex)
@@ -757,8 +787,13 @@ namespace u_net
 
         private void コマンド入庫履歴_Click(object sender, EventArgs e)
         {
-            F_入庫履歴 fm = new F_入庫履歴();
-            fm.ShowDialog();
+            F_入庫履歴 targetform = new F_入庫履歴();
+            targetform.MdiParent = this.MdiParent;
+            targetform.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            targetform.Show();
+
         }
 
     }

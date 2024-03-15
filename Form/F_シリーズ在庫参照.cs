@@ -320,7 +320,13 @@ namespace u_net
                 F_シリーズ targetform = new F_シリーズ();
 
                 targetform.args = selectedData;
-                targetform.ShowDialog();
+
+                targetform.MdiParent = this.MdiParent;
+                targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                this.Enabled = false;
+
+                targetform.Show();
+                                
             }
         }
 
@@ -404,7 +410,13 @@ namespace u_net
                 // シリーズフォームを作成し、引数を設定して表示
                 F_シリーズ targetform = new F_シリーズ();
                 targetform.args = selectedData;
-                targetform.ShowDialog();
+
+                targetform.MdiParent = this.MdiParent;
+                targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                this.Enabled = false;
+
+                targetform.Show();
+
             }
             else
             {
@@ -519,7 +531,12 @@ namespace u_net
                 targetform.lng在庫数量 = CurrentStock;
                 targetform.lng補正数量 = CurrentAdjust;
 
-                targetform.ShowDialog();
+                targetform.MdiParent = this.MdiParent;
+                targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                this.Enabled = false;
+
+                targetform.Show();
+
 
                 DoUpdate();
             }

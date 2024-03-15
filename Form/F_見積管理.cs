@@ -192,9 +192,14 @@ namespace u_net
                     case Keys.Return:
                         if (ActiveControl == this.dataGridView1)
                         {
-                            F_見積 form = new F_見積();
-                            form.varOpenArgs = $"{CurrentCode},{CurrentEdition}";
-                            form.ShowDialog();
+                            F_見積 targetform = new F_見積();
+                            targetform.varOpenArgs = $"{CurrentCode},{CurrentEdition}";
+                            targetform.MdiParent = this.MdiParent;
+                            targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                            this.Enabled = false;
+
+                            targetform.Show();
+
                         }
                         break;
                 }
@@ -589,9 +594,14 @@ namespace u_net
 
             if (e.RowIndex >= 0) // ヘッダー行でない場合
             {
-                F_見積 form = new F_見積();
-                form.varOpenArgs = $"{CurrentCode},{CurrentEdition}";
-                form.ShowDialog();
+                F_見積 targetform = new F_見積();
+                targetform.varOpenArgs = $"{CurrentCode},{CurrentEdition}";
+                targetform.MdiParent = this.MdiParent;
+                targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                this.Enabled = false;
+
+                targetform.Show();
+
             }
         }
 
@@ -657,8 +667,13 @@ namespace u_net
                 objParent = this;
 
                 // 見積管理_抽出フォームを開く
-                F_見積管理_抽出 form = new F_見積管理_抽出();
-                form.ShowDialog();
+                F_見積管理_抽出 targetform = new F_見積管理_抽出();
+                targetform.MdiParent = this.MdiParent;
+                targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                this.Enabled = false;
+
+                targetform.Show();
+
             }
             catch (Exception ex)
             {
@@ -769,8 +784,13 @@ namespace u_net
         {
             dataGridView1.Focus();
 
-            F_検索コード form = new F_検索コード(this, CommonConstants.CH_ESTIMATE);
-            form.ShowDialog();
+            F_検索コード targetform = new F_検索コード(this, CommonConstants.CH_ESTIMATE);
+            targetform.MdiParent = this.MdiParent;
+            targetform.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            targetform.Show();
+
         }
 
 
@@ -780,9 +800,14 @@ namespace u_net
         private void コマンド見積_Click(object sender, EventArgs e)
         {
             dataGridView1.Focus();
-            F_見積 form = new F_見積();
-            form.varOpenArgs = $"{CurrentCode},{CurrentEdition}";
-            form.ShowDialog();
+            F_見積 targetform = new F_見積();
+            targetform.varOpenArgs = $"{CurrentCode},{CurrentEdition}";
+            targetform.MdiParent = this.MdiParent;
+            targetform.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            targetform.Show();
+
         }
 
         private void コマンド見積書_Click(object sender, EventArgs e)
@@ -845,15 +870,25 @@ namespace u_net
                     case 0:
                         // グループに登録済みでない場合
 
-                        F_グループ form = new F_グループ();
-                        form.args = strDocumentCode;
-                        form.ShowDialog();
+                        F_グループ targetform = new F_グループ();
+                        targetform.args = strDocumentCode;
+                        targetform.MdiParent = this.MdiParent;
+                        targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                        this.Enabled = false;
+
+                        targetform.Show();
+
                         break;
                     case 1:
                         // グループに登録済みの場合
-                        F_リンク form2 = new F_リンク();
-                        form2.args = strDocumentCode;
-                        form2.ShowDialog();
+                        F_リンク targetform2 = new F_リンク();
+                        targetform2.args = strDocumentCode;
+                        targetform2.MdiParent = this.MdiParent;
+                        targetform2.FormClosed += (s, args) => { this.Enabled = true; };
+                        this.Enabled = false;
+
+                        targetform2.Show();
+
                         break;
                     case -1:
                         // エラーのため実行できない場合

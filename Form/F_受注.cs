@@ -2236,10 +2236,15 @@ namespace u_net
                     }
 
                     // 認証
-                    using (F_認証 authForm = new F_認証())
+                    using (F_認証 targetform = new F_認証())
                     {
-                        authForm.args = this.承認者コード.Text;
-                        authForm.ShowDialog();
+                        targetform.args = this.承認者コード.Text;
+                        targetform.MdiParent = this.MdiParent;
+                        targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                        this.Enabled = false;
+
+                        targetform.Show();
+
 
                         if (string.IsNullOrEmpty(strCertificateCode))
                         {
@@ -2286,10 +2291,15 @@ namespace u_net
                     }
 
                     // 認証
-                    using (F_認証 authForm = new F_認証())
+                    using (F_認証 targetform = new F_認証())
                     {
-                        authForm.args = this.自社担当者コード.Text;
-                        authForm.ShowDialog();
+                        targetform.args = this.自社担当者コード.Text;
+                        targetform.MdiParent = this.MdiParent;
+                        targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                        this.Enabled = false;
+
+                        targetform.Show();
+
 
                         if (string.IsNullOrEmpty(strCertificateCode))
                         {
@@ -2350,8 +2360,13 @@ namespace u_net
                 GetNextControl(コマンド商品, false).Focus();
             }
 
-            Form form = new F_商品管理();
-            form.ShowDialog();
+            Form targetform = new F_商品管理();
+            targetform.MdiParent = this.MdiParent;
+            targetform.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            targetform.Show();
+
         }
 
         private void コマンド全在庫_Click(object sender, EventArgs e)
@@ -2361,8 +2376,13 @@ namespace u_net
                 GetNextControl(コマンド全在庫, false).Focus();
             }
 
-            F_シリーズ在庫参照 form = new F_シリーズ在庫参照();
-            form.ShowDialog();
+            F_シリーズ在庫参照 targetform = new F_シリーズ在庫参照();
+            targetform.MdiParent = this.MdiParent;
+            targetform.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            targetform.Show();
+
         }
 
         private void コマンド在庫_Click(object sender, EventArgs e)
@@ -2372,9 +2392,14 @@ namespace u_net
                 GetNextControl(コマンド在庫, false).Focus();
             }
 
-            F_シリーズ危険在庫警告 form = new F_シリーズ危険在庫警告();
-            form.args = this.CurrentCode + ',' + this.CurrentEdition;
-            form.ShowDialog();
+            F_シリーズ危険在庫警告 targetform = new F_シリーズ危険在庫警告();
+            targetform.args = this.CurrentCode + ',' + this.CurrentEdition;
+            targetform.MdiParent = this.MdiParent;
+            targetform.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            targetform.Show();
+
         }
 
         private void コマンド承認_Click(object sender, EventArgs e)
@@ -2402,10 +2427,15 @@ namespace u_net
                 }
 
                 // 認証する
-                using (F_認証 authForm = new F_認証())
+                using (F_認証 targetform = new F_認証())
                 {
-                    authForm.args = "007";
-                    authForm.ShowDialog();
+                    targetform.args = "007";
+                    targetform.MdiParent = this.MdiParent;
+                    targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                    this.Enabled = false;
+
+                    targetform.Show();
+
 
                     if (string.IsNullOrEmpty(strCertificateCode))
                     {
@@ -2583,9 +2613,14 @@ namespace u_net
                     {
                         if (CheckWarning(this.CurrentCode, this.CurrentEdition))
                         {
-                            F_シリーズ危険在庫警告 form = new F_シリーズ危険在庫警告();
-                            form.args = this.CurrentCode + "," + this.CurrentEdition;
-                            form.ShowDialog();
+                            F_シリーズ危険在庫警告 targetform = new F_シリーズ危険在庫警告();
+                            targetform.args = this.CurrentCode + "," + this.CurrentEdition;
+                            targetform.MdiParent = this.MdiParent;
+                            targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                            this.Enabled = false;
+
+                            targetform.Show();
+
                         }
                     }
                 }
@@ -2763,10 +2798,15 @@ namespace u_net
                     goto Bye_受注承認ボタン_Click;*/
 
                 // 認証する
-                using (F_認証 authForm = new F_認証())
+                using (F_認証 targetform = new F_認証())
                 {
-                    authForm.args = "007";
-                    authForm.ShowDialog();
+                    targetform.args = "007";
+                    targetform.MdiParent = this.MdiParent;
+                    targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                    this.Enabled = false;
+
+                    targetform.Show();
+
 
                     if (string.IsNullOrEmpty(strCertificateCode))
                     {

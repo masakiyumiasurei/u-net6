@@ -735,9 +735,14 @@ namespace u_net
 
         private void コマンドシリーズ_Click(object sender, EventArgs e)
         {
-            F_シリーズ fm = new F_シリーズ();
-            fm.args = シリーズコード.Text;
-            fm.ShowDialog();
+            F_シリーズ targetform = new F_シリーズ();
+            targetform.args = シリーズコード.Text;
+            targetform.MdiParent = this.MdiParent;
+            targetform.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            targetform.Show();
+
         }
 
         private void コマンド承認_Click(object sender, EventArgs e)

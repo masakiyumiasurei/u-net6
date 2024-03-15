@@ -670,11 +670,14 @@ namespace u_net
             {
 
 
-
                 F_メーカー管理 targetform = new F_メーカー管理();
 
+                targetform.MdiParent = this.MdiParent;
+                targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                this.Enabled = false;
 
-                targetform.ShowDialog();
+                targetform.Show();
+
 
             }
             catch (Exception ex)
@@ -692,7 +695,12 @@ namespace u_net
                 F_入出庫履歴 targetform = new F_入出庫履歴();
 
                 targetform.args = 部品コード.Text;
-                targetform.ShowDialog();
+                targetform.MdiParent = this.MdiParent;
+                targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                this.Enabled = false;
+
+                targetform.Show();
+
 
             }
             catch (Exception ex)
@@ -745,10 +753,15 @@ namespace u_net
 
                 // ログインユーザーが表示データの登録ユーザーでなければ認証する
 
-                using (var authenticationForm = new F_認証())
+                using (var targetform = new F_認証())
                 {
-                    authenticationForm.args = CommonConstants.USER_CODE_TECH;
-                    authenticationForm.ShowDialog();
+                    targetform.args = CommonConstants.USER_CODE_TECH;
+                    targetform.MdiParent = this.MdiParent;
+                    targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                    this.Enabled = false;
+
+                    targetform.Show();
+
 
                     if (string.IsNullOrEmpty(CommonConstants.strCertificateCode))
                     {
@@ -889,8 +902,12 @@ namespace u_net
             {
                 F_仕入先管理 targetform = new F_仕入先管理();
 
+                targetform.MdiParent = this.MdiParent;
+                targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                this.Enabled = false;
 
-                targetform.ShowDialog();
+                targetform.Show();
+
             }
             catch (Exception ex)
             {
@@ -1267,7 +1284,12 @@ namespace u_net
                 F_部品集合 targetform = new F_部品集合();
 
                 targetform.args = 部品集合コード.Text + "," + 部品集合版数.Text;
-                targetform.ShowDialog();
+                targetform.MdiParent = this.MdiParent;
+                targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                this.Enabled = false;
+
+                targetform.Show();
+
             }
             else
             {
@@ -2037,7 +2059,12 @@ namespace u_net
             F_部品 targetform = new F_部品();
             targetform.args = CurrentCode;
 
-            targetform.ShowDialog();
+            targetform.MdiParent = this.MdiParent;
+            targetform.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            targetform.Show();
+
         }
 
         private void RoHS_TextChanged(object sender, EventArgs e)

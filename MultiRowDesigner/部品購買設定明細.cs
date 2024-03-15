@@ -50,9 +50,14 @@ namespace MultiRowDesigner
                     switch (e.CellName)
                     {
                         case "部品参照ボタン":
-                            F_部品 fm = new F_部品();
-                            fm.args = gcMultiRow1.CurrentRow.Cells["部品コード"]?.Value.ToString();
-                            fm.ShowDialog();
+                            F_部品 targetform = new F_部品();
+                            targetform.args = gcMultiRow1.CurrentRow.Cells["部品コード"]?.Value.ToString();
+                            targetform.MdiParent = parentform.MdiParent;
+                            targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                            this.Enabled = false;
+
+                            targetform.Show();
+
                             break;
 
                         case "購買指定ボタン":

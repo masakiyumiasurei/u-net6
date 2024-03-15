@@ -110,7 +110,12 @@ namespace u_net
             }
 
             F_ユニット部品一括変更 targetform = new F_ユニット部品一括変更();
-            targetform.ShowDialog();
+            targetform.MdiParent = this.MdiParent;
+            targetform.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            targetform.Show();
+
         }
 
         private void 使用製品検索ボタン_Click(object sender, EventArgs e)
@@ -118,7 +123,12 @@ namespace u_net
             F_ユニット使用製品参照 targetform = new F_ユニット使用製品参照();
 
             targetform.args = strUnitCode;
-            targetform.ShowDialog();
+            targetform.MdiParent = this.MdiParent;
+            targetform.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            targetform.Show();
+
         }
 
         private void 材料費の強制取得ボタン_Click(object sender, EventArgs e)
@@ -182,7 +192,12 @@ namespace u_net
 
             F_出力 targetform = new F_出力();
             targetform.DataGridView = dataGridView1;
-            targetform.ShowDialog();
+            targetform.MdiParent = this.MdiParent;
+            targetform.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            targetform.Show();
+
         }
     }
 }

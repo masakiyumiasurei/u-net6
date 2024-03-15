@@ -122,33 +122,55 @@ namespace u_net
         private void 全国地区別売上一覧ボタン_Click(object sender, EventArgs e)
         {
             F_売上一覧_全国地区別 fm = new F_売上一覧_全国地区別();
-            fm.ShowDialog();
+            fm.MdiParent = this.MdiParent;
+            fm.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            fm.Show();
+
         }
 
         private void 売上一覧_売上地区別ボタン_Click(object sender, EventArgs e)
         {
             F_売上一覧_売上地区別 fm = new F_売上一覧_売上地区別();
-            fm.ShowDialog();
+            fm.MdiParent = this.MdiParent;
+            fm.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            fm.Show();
+
         }
 
         private void 区分別年度売上一覧ボタン_Click(object sender, EventArgs e)
         {
             F_売上一覧_区分別_年度 fm = new F_売上一覧_区分別_年度();
-            fm.ShowDialog();
+            fm.MdiParent = this.MdiParent;
+            fm.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            fm.Show();
         }
 
 
         private void 売上一覧_区分別ボタン_Click(object sender, EventArgs e)
         {
             F_売上一覧_区分別 fm = new F_売上一覧_区分別();
-            fm.ShowDialog();
+            fm.MdiParent = this.MdiParent;
+            fm.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            fm.Show();
         }
 
 
         private void 売上明細参照ボタン_Click(object sender, EventArgs e)
         {
             F_売上明細参照 fm = new F_売上明細参照();
-            fm.ShowDialog();
+            fm.MdiParent = this.MdiParent;
+            fm.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            fm.Show();
         }
 
 
@@ -156,13 +178,21 @@ namespace u_net
         private void 売上計画ボタン_Click(object sender, EventArgs e)
         {
             F_売上計画 fm = new F_売上計画();
-            fm.ShowDialog();
+            fm.MdiParent = this.MdiParent;
+            fm.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            fm.Show();
         }
 
         private void 担当者別売上一覧ボタン_Click(object sender, EventArgs e)
         {
             F_売上一覧_担当者別 fm = new F_売上一覧_担当者別();
-            fm.ShowDialog();
+            fm.MdiParent = this.MdiParent;
+            fm.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            fm.Show();
         }
 
         

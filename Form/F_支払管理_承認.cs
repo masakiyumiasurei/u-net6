@@ -140,9 +140,14 @@ namespace u_net
                 }
 
                 // 認証処理
-                F_認証 fm = new F_認証();
+                F_認証 targetform = new F_認証();
 
-                fm.ShowDialog();
+                targetform.MdiParent = this.MdiParent;
+                targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                this.Enabled = false;
+
+                targetform.Show();
+
                 if (string.IsNullOrEmpty(strCertificateCode))
                 {
                     MessageBox.Show("認証に失敗しました。" + Environment.NewLine + "承認できません。。", "承認", MessageBoxButtons.OK, MessageBoxIcon.Information);

@@ -1073,9 +1073,14 @@ namespace u_net
                 strAppCode1 = USER_CODE_MANAGE;      // 承認者1を指定する（管理部長）
                 strAppCode2 = USER_CODE_GA;          // 承認者2を指定する（業務チーム）
 
-                F_認証 fm = new F_認証();
+                F_認証 targetform = new F_認証();
 
-                fm.ShowDialog();
+                targetform.MdiParent = this.MdiParent;
+                targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                this.Enabled = false;
+
+                targetform.Show();
+
                 if (string.IsNullOrEmpty(strCertificateCode))
                 {
                     MessageBox.Show("認証に失敗しました。" + Environment.NewLine + "承認できません。", "承認", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -1244,9 +1249,14 @@ namespace u_net
 
                 if (LoginUserCode != strDelUserCode)
                 {
-                    F_認証 fm = new F_認証();
-                    fm.args = strDelUserCode;
-                    fm.ShowDialog();
+                    F_認証 targetform = new F_認証();
+                    targetform.args = strDelUserCode;
+                    targetform.MdiParent = this.MdiParent;
+                    targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                    this.Enabled = false;
+
+                    targetform.Show();
+
                     if (string.IsNullOrEmpty(strCertificateCode))
                     {
                         MessageBox.Show("承認に失敗しました。" + Environment.NewLine + "実行できません。", "削除", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -1666,9 +1676,14 @@ namespace u_net
 
         private void 支払先参照ボタン_Click(object sender, EventArgs e)
         {
-            F_仕入先 fm = new F_仕入先();
-            fm.args = 支払先コード.Text;
-            fm.ShowDialog();
+            F_仕入先 targetform = new F_仕入先();
+            targetform.args = 支払先コード.Text;
+            targetform.MdiParent = this.MdiParent;
+            targetform.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            targetform.Show();
+
         }
 
         private void 支払年月_Validated(object sender, EventArgs e)

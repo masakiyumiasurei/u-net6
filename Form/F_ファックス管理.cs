@@ -340,7 +340,13 @@ namespace u_net
         {
             //dataGridView1.Focus();
             F_ファックス抽出設定 form = new F_ファックス抽出設定();
-            form.ShowDialog();
+
+            form.MdiParent = this.MdiParent;
+            form.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            form.Show();
+                       
         }
 
         private void コマンド入出力_Click(object sender, EventArgs e)
@@ -446,13 +452,27 @@ namespace u_net
                 case CommonConstants.CH_ESTIMATE:
                     F_見積 form = new F_見積();
                     form.varOpenArgs = $"{documentCode},{documentEdition}";
-                    form.ShowDialog();
+
+                    form.MdiParent = this.MdiParent;
+                    form.FormClosed += (s, args) => { this.Enabled = true; };
+                    this.Enabled = false;
+
+                    form.Show();
+
+                   
                     isOpened = true;
                     break;
                 case CommonConstants.CH_ORDER:
-                    F_発注 fm = new F_発注();
-                    fm.args = $"{documentCode} , {documentEdition}";
-                    fm.ShowDialog();
+                    F_発注 targetform = new F_発注();
+                    targetform.args = $"{documentCode} , {documentEdition}";
+
+                    targetform.MdiParent = this.MdiParent;
+                    targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                    this.Enabled = false;
+
+                    targetform.Show();
+
+
                     isOpened = true;
                     break;
             }

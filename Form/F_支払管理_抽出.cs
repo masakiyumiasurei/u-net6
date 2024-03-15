@@ -374,9 +374,14 @@ namespace u_net
 
         private void 支払先参照ボタン_Click(object sender, EventArgs e)
         {
-            F_仕入先 fm = new F_仕入先();
-            fm.args = 支払先コード.Text;
-            fm.ShowDialog();
+            F_仕入先 targetform = new F_仕入先();
+            targetform.args = 支払先コード.Text;
+            targetform.MdiParent = this.MdiParent;
+            targetform.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            targetform.Show();
+
         }
 
         private void 振込指定_Enter(object sender, EventArgs e)

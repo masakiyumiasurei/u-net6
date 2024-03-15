@@ -98,7 +98,12 @@ namespace u_net
             F_製品? f_製品 = Application.OpenForms.OfType<F_製品>().FirstOrDefault();
 
             targetform.args = f_製品.CurrentCode + "," + f_製品.CurrentEdition;
-            targetform.ShowDialog();
+            targetform.MdiParent = this.MdiParent;
+            targetform.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            targetform.Show();
+
         }
 
         private void 全印刷ボタン_Click(object sender, EventArgs e)
@@ -278,7 +283,12 @@ namespace u_net
 
             F_出力 targetform = new F_出力();
             targetform.DataGridView = dataGridView1;
-            targetform.ShowDialog();
+            targetform.MdiParent = this.MdiParent;
+            targetform.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            targetform.Show();
+
         }
     }
 }

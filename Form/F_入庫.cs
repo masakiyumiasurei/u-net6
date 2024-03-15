@@ -1277,10 +1277,15 @@ namespace u_net
                 // ログインユーザーが表示データの登録ユーザーでなければ認証する
                 if (CommonConstants.LoginUserCode != InputUserCode)
                 {
-                    using (var authenticationForm = new F_認証())
+                    using (var targetform = new F_認証())
                     {
-                        authenticationForm.args = InputUserCode;
-                        authenticationForm.ShowDialog();
+                        targetform.args = InputUserCode;
+                        targetform.MdiParent = this.MdiParent;
+                        targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                        this.Enabled = false;
+
+                        targetform.Show();
+
 
                         if (string.IsNullOrEmpty(CommonConstants.strCertificateCode))
                         {
@@ -1386,13 +1391,23 @@ namespace u_net
             if (IsNull(発注コード.Text))
             {
                 F_発注 targetform = new F_発注();
-                targetform.ShowDialog();
+                targetform.MdiParent = this.MdiParent;
+                targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                this.Enabled = false;
+
+                targetform.Show();
+
             }
             else
             {
                 F_発注 targetform = new F_発注();
                 targetform.args = $"{発注コード.Text},{発注版数.Text}";
-                targetform.ShowDialog();
+                targetform.MdiParent = this.MdiParent;
+                targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                this.Enabled = false;
+
+                targetform.Show();
+
             }
         }
 
@@ -1400,7 +1415,12 @@ namespace u_net
         {
             F_仕入先 targetform = new F_仕入先();
             targetform.args = SupplierCode;
-            targetform.ShowDialog();
+            targetform.MdiParent = this.MdiParent;
+            targetform.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            targetform.Show();
+
         }
 
         private void コマンド承認_Click(object sender, EventArgs e)

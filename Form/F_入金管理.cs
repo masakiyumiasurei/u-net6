@@ -690,7 +690,12 @@ namespace u_net
 
                                 F_入金 targetform = new F_入金();
                                 targetform.args = CurrentCode;
-                                targetform.ShowDialog();
+                                targetform.MdiParent = this.MdiParent;
+                                targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                                this.Enabled = false;
+
+                                targetform.Show();
+
                             }
                             else
                             {
@@ -717,8 +722,13 @@ namespace u_net
         {
             一覧.Focus();
             objParent = this;
-            F_入金管理_抽出 form = new F_入金管理_抽出();
-            form.ShowDialog();
+            F_入金管理_抽出 targetform = new F_入金管理_抽出();
+            targetform.MdiParent = this.MdiParent;
+            targetform.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            targetform.Show();
+
         }
 
         private void コマンド初期化_Click(object sender, EventArgs e)
@@ -739,8 +749,13 @@ namespace u_net
         {
             一覧.Focus(); // DataGridViewにフォーカスを設定
 
-            F_検索コード form = new F_検索コード(this, "B");
-            form.ShowDialog();
+            F_検索コード targetform = new F_検索コード(this, "B");
+            targetform.MdiParent = this.MdiParent;
+            targetform.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            targetform.Show();
+
         }
 
         private void コマンド更新_Click(object sender, EventArgs e)
@@ -770,9 +785,14 @@ namespace u_net
         private void コマンド入金_Click(object sender, EventArgs e)
         {
             一覧.Focus();
-            F_入金 form = new F_入金();
-            form.args = CurrentCode;
-            form.ShowDialog();
+            F_入金 targetform = new F_入金();
+            targetform.args = CurrentCode;
+            targetform.MdiParent = this.MdiParent;
+            targetform.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            targetform.Show();
+
         }
 
         private void コマンド顧客_Click(object sender, EventArgs e)
@@ -1041,9 +1061,14 @@ namespace u_net
                     return;
                 }
 
-                F_入金 form = new F_入金();
-                form.args = CurrentCode;
-                form.ShowDialog();
+                F_入金 targetform = new F_入金();
+                targetform.args = CurrentCode;
+                targetform.MdiParent = this.MdiParent;
+                targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                this.Enabled = false;
+
+                targetform.Show();
+
 
             }
             catch (Exception ex)

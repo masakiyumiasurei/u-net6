@@ -894,7 +894,12 @@ namespace u_net
 
             F_仕入先 targetform = new F_仕入先();
 
-            targetform.ShowDialog();
+            targetform.MdiParent = this.MdiParent;
+            targetform.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            targetform.Show();
+
         }
 
         private void コマンドメール_Click(object sender, EventArgs e)

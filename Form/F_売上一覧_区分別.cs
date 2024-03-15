@@ -404,8 +404,13 @@ namespace u_net
             }
 
             dataGridView1.Focus();
-            F_売上一覧_区分別_抽出 form = new F_売上一覧_区分別_抽出();
-            form.ShowDialog();
+            F_売上一覧_区分別_抽出 targetform = new F_売上一覧_区分別_抽出();
+            targetform.MdiParent = this.MdiParent;
+            targetform.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            targetform.Show();
+
         }
 
         private void コマンド顧客_Click(object sender, EventArgs e)

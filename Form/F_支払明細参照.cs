@@ -520,7 +520,12 @@ namespace u_net
 
             F_発注 targetform = new F_発注();
             targetform.args = OrderCode + "," + OrderEdition;
-            targetform.ShowDialog();
+            targetform.MdiParent = this.MdiParent;
+            targetform.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            targetform.Show();
+
         }
 
         private void dataGridView1_KeyDown(object sender, KeyEventArgs e)
@@ -577,7 +582,12 @@ namespace u_net
 
                                 F_発注 targetform = new F_発注();
                                 targetform.args = OrderCode + "," + OrderEdition;
-                                targetform.ShowDialog();
+                                targetform.MdiParent = this.MdiParent;
+                                targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                                this.Enabled = false;
+
+                                targetform.Show();
+
                             }
                             else
                             {
@@ -657,7 +667,12 @@ namespace u_net
         {
             F_仕入先 targetform = new F_仕入先();
             targetform.args = str支払先コード;
-            targetform.ShowDialog();
+            targetform.MdiParent = this.MdiParent;
+            targetform.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            targetform.Show();
+
         }
 
 
@@ -668,7 +683,12 @@ namespace u_net
         {
             F_発注 targetform = new F_発注();
             targetform.args = OrderCode + "," + OrderEdition;
-            targetform.ShowDialog();
+            targetform.MdiParent = this.MdiParent;
+            targetform.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            targetform.Show();
+
         }
 
         private void コマンド更新_Click(object sender, EventArgs e)
@@ -881,7 +901,12 @@ namespace u_net
         {
             F_仕入先 targetform = new F_仕入先();
             targetform.args = 支払先コード.Text;
-            targetform.ShowDialog();
+            targetform.MdiParent = this.MdiParent;
+            targetform.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            targetform.Show();
+
         }
 
 

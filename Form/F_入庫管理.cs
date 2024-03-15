@@ -333,7 +333,12 @@ namespace u_net
                 F_入庫 targetform = new F_入庫();
 
                 targetform.args = selectedData;
-                targetform.ShowDialog();
+                targetform.MdiParent = this.MdiParent;
+                targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                this.Enabled = false;
+
+                targetform.Show();
+
             }
         }
 
@@ -457,8 +462,13 @@ namespace u_net
         private void コマンド抽出_Click(object sender, EventArgs e)
         {
             dataGridView1.Focus();
-            F_入庫管理_抽出 form = new F_入庫管理_抽出();
-            form.ShowDialog();
+            F_入庫管理_抽出 targetform = new F_入庫管理_抽出();
+            targetform.MdiParent = this.MdiParent;
+            targetform.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            targetform.Show();
+
         }
 
         private void コマンド初期化_Click(object sender, EventArgs e)
@@ -503,7 +513,12 @@ namespace u_net
                 // 入庫フォームを作成し、引数を設定して表示
                 F_入庫 targetform = new F_入庫();
                 targetform.args = selectedData;
-                targetform.ShowDialog();
+                targetform.MdiParent = this.MdiParent;
+                targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                this.Enabled = false;
+
+                targetform.Show();
+
             }
             else
             {
@@ -522,7 +537,12 @@ namespace u_net
                 // 発注フォームを作成し、引数を設定して表示
                 F_発注 targetform = new F_発注();
                 targetform.args = selectedData;
-                targetform.ShowDialog();
+                targetform.MdiParent = this.MdiParent;
+                targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                this.Enabled = false;
+
+                targetform.Show();
+
             }
             else
             {

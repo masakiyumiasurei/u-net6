@@ -832,8 +832,12 @@ namespace u_net
 
         private void コマンド抽出_Click(object sender, EventArgs e)
         {
-            F_年間教育計画_抽出 fm = new F_年間教育計画_抽出();
-            fm.ShowDialog();
+            F_年間教育計画_抽出 targetform = new F_年間教育計画_抽出();
+            targetform.MdiParent = this.MdiParent;
+            targetform.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            targetform.Show();
         }
 
         private void 実行ボタン_Click(object sender, EventArgs e)

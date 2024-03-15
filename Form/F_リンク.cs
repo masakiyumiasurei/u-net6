@@ -241,14 +241,24 @@ namespace u_net
                         // 同一フォームが既に開かれている場合
                         F_文書 bunshoform2 = new F_文書();
                         bunshoform2.args = $"{documentCode},{documentEdition}";
-                        bunshoform2.ShowDialog();
+                        bunshoform2.MdiParent = this.MdiParent;
+                        bunshoform2.FormClosed += (s, args) => { this.Enabled = true; };
+                        this.Enabled = false;
+
+                        bunshoform2.Show();
+
                     }
                     else
                     {
                         // 同一フォームが開かれていない場合
                         F_文書 bunshoform = new F_文書();
                         bunshoform.args = $"{documentCode},{documentEdition}";
-                        bunshoform.ShowDialog();
+                        bunshoform.MdiParent = this.MdiParent;
+                        bunshoform.FormClosed += (s, args) => { this.Enabled = true; };
+                        this.Enabled = false;
+
+                        bunshoform.Show();
+
                     }
 
                     isOpen = true;
@@ -257,14 +267,24 @@ namespace u_net
                 case CommonConstants.CH_ESTIMATE:
                     F_見積 fm = new F_見積();
                     fm.varOpenArgs = $"{documentCode},{documentEdition}";
-                    fm.ShowDialog();
+                    fm.MdiParent = this.MdiParent;
+                    fm.FormClosed += (s, args) => { this.Enabled = true; };
+                    this.Enabled = false;
+
+                    fm.Show();
+
                     isOpen = true;
                     break;
 
                 case "ORD":
                     F_発注 fm2 = new F_発注();
                     fm2.args = $"{documentCode},{documentEdition}";
-                    fm2.ShowDialog();
+                    fm2.MdiParent = this.MdiParent;
+                    fm2.FormClosed += (s, args) => { this.Enabled = true; };
+                    this.Enabled = false;
+
+                    fm2.Show();
+
                     isOpen = true;
                     break;
             }

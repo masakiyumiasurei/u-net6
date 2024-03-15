@@ -1073,14 +1073,24 @@ namespace u_net
         private void コマンド抽出_Click(object sender, EventArgs e)
         {
             F_売上計画_抽出 targetform = new F_売上計画_抽出();
-            targetform.ShowDialog();
+            targetform.MdiParent = this.MdiParent;
+            targetform.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            targetform.Show();
+
 
         }
 
         private void コマンド重要顧客_Click(object sender, EventArgs e)
         {
             F_売上計画_重要顧客設定 targetform = new F_売上計画_重要顧客設定();
-            targetform.ShowDialog();
+            targetform.MdiParent = this.MdiParent;
+            targetform.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            targetform.Show();
+
         }
 
         private void コマンド出力_Click(object sender, EventArgs e)

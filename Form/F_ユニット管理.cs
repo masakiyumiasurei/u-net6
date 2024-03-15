@@ -396,7 +396,13 @@ namespace u_net
                 F_ユニット targetform = new F_ユニット();
 
                 targetform.args = CurrentCode + "," + CurrentEdition;
-                targetform.ShowDialog();
+
+                targetform.MdiParent = this.MdiParent;
+                targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                this.Enabled = false;
+
+                targetform.Show();
+
             }
         }
 
@@ -454,7 +460,12 @@ namespace u_net
 
                                 F_ユニット targetform = new F_ユニット();
                                 targetform.args = selectedCode + "," + selectedEdition;
-                                targetform.ShowDialog();
+                                targetform.MdiParent = this.MdiParent;
+                                targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                                this.Enabled = false;
+
+                                targetform.Show();
+
                             }
                             else
                             {
@@ -477,8 +488,13 @@ namespace u_net
         private void コマンド抽出_Click(object sender, EventArgs e)
         {
             dataGridView1.Focus();
-            F_ユニット管理_抽出 form = new F_ユニット管理_抽出();
-            form.ShowDialog();
+            F_ユニット管理_抽出 targetform = new F_ユニット管理_抽出();
+            targetform.MdiParent = this.MdiParent;
+            targetform.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            targetform.Show();
+
         }
 
         private void コマンド検索_Click(object sender, EventArgs e)
@@ -532,7 +548,12 @@ namespace u_net
 
                 F_ユニット targetform = new F_ユニット();
                 targetform.args = selectedCode + "," + selectedEdition;
-                targetform.ShowDialog();
+                targetform.MdiParent = this.MdiParent;
+                targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                this.Enabled = false;
+
+                targetform.Show();
+
             }
             else
             {
@@ -722,7 +743,12 @@ namespace u_net
             F_ユニット参照 targetform = new F_ユニット参照();
 
             targetform.args = CurrentCode + "," + CurrentEdition;
-            targetform.ShowDialog();
+            targetform.MdiParent = this.MdiParent;
+            targetform.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            targetform.Show();
+
         }
 
 

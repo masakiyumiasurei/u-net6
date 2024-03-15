@@ -1468,10 +1468,15 @@ namespace u_net
 
                     if (LoginUserCode != str1)
                     {
-                        using (F_認証 authForm = new F_認証())
+                        using (F_認証 targetform = new F_認証())
                         {
-                            authForm.args = str1;
-                            authForm.ShowDialog();
+                            targetform.args = str1;
+                            targetform.MdiParent = this.MdiParent;
+                            targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                            this.Enabled = false;
+
+                            targetform.Show();
+
 
                             if (string.IsNullOrEmpty(strCertificateCode))
                             {
@@ -1607,15 +1612,25 @@ namespace u_net
             {
                 case 0:
                     // グループに登録済みでない場合
-                    F_グループ form = new F_グループ();
-                    form.args = strDocumentCode;
-                    form.ShowDialog();
+                    F_グループ targetform = new F_グループ();
+                    targetform.args = strDocumentCode;
+                    targetform.MdiParent = this.MdiParent;
+                    targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                    this.Enabled = false;
+
+                    targetform.Show();
+
                     break;
                 case 1:
                     // グループに登録済みの場合
-                    F_リンク form2 = new F_リンク();
-                    form2.args = strDocumentCode;
-                    form2.ShowDialog();
+                    F_リンク targetform2 = new F_リンク();
+                    targetform2.args = strDocumentCode;
+                    targetform2.MdiParent = this.MdiParent;
+                    targetform2.FormClosed += (s, args) => { this.Enabled = true; };
+                    this.Enabled = false;
+
+                    targetform2.Show();
+
                     break;
                 case -1:
                     // エラーのため実行できない場合
@@ -1651,10 +1666,15 @@ namespace u_net
                 }
                 else
                 {
-                    using (F_認証 authForm = new F_認証())
+                    using (F_認証 targetform = new F_認証())
                     {
-                        authForm.args = strHeadCode;
-                        authForm.ShowDialog();
+                        targetform.args = strHeadCode;
+                        targetform.MdiParent = this.MdiParent;
+                        targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                        this.Enabled = false;
+
+                        targetform.Show();
+
 
                         if (string.IsNullOrEmpty(strCertificateCode))
                         {

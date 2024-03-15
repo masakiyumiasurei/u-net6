@@ -503,10 +503,15 @@ namespace u_net
             if (e.RowIndex >= 0) // ヘッダー行でない場合
             {
                 this.dataGridView1.Focus();
-                F_受注 form = new F_受注();
-                form.varOpenArgs = $"{dataGridView1.SelectedRows[0].Cells[2].Value?.ToString()}," +
+                F_受注 targetform = new F_受注();
+                targetform.varOpenArgs = $"{dataGridView1.SelectedRows[0].Cells[2].Value?.ToString()}," +
                     $"{dataGridView1.SelectedRows[0].Cells[3].Value?.ToString()}";
-                form.ShowDialog();
+                targetform.MdiParent = this.MdiParent;
+                targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                this.Enabled = false;
+
+                targetform.Show();
+
 
             }
         }
@@ -569,8 +574,13 @@ namespace u_net
             try
             {
                 this.dataGridView1.Focus(); // サブフォームにフォーカスを設定
-                F_出荷管理_抽出 form = new F_出荷管理_抽出();
-                form.ShowDialog();
+                F_出荷管理_抽出 targetform = new F_出荷管理_抽出();
+                targetform.MdiParent = this.MdiParent;
+                targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                this.Enabled = false;
+
+                targetform.Show();
+
             }
             catch (Exception ex)
             {
@@ -581,9 +591,14 @@ namespace u_net
         private void コマンド出力_Click(object sender, EventArgs e)
         {
             this.dataGridView1.Focus();
-            F_出力 form = new F_出力();
-            form.DataGridView = dataGridView1;
-            form.ShowDialog();
+            F_出力 targetform = new F_出力();
+            targetform.DataGridView = dataGridView1;
+            targetform.MdiParent = this.MdiParent;
+            targetform.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            targetform.Show();
+
         }
 
         private void コマンド更新_Click(object sender, EventArgs e)
@@ -704,10 +719,14 @@ namespace u_net
         {
 
             this.dataGridView1.Focus();
-            F_受注 form = new F_受注();
-            form.varOpenArgs = $"{dataGridView1.SelectedRows[0].Cells[2].Value?.ToString()}," +
+            F_受注 targetform = new F_受注();
+            targetform.varOpenArgs = $"{dataGridView1.SelectedRows[0].Cells[2].Value?.ToString()}," +
                 $"{dataGridView1.SelectedRows[0].Cells[3].Value?.ToString()}";
-            form.ShowDialog();
+            targetform.MdiParent = this.MdiParent;
+            targetform.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            targetform.Show();
 
         }
 

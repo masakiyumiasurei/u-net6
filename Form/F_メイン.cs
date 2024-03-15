@@ -221,8 +221,13 @@ namespace u_net
                 if (LoginUserCode == "")
                 {
                     // ログインコードが未設定の場合、認証フォームを開く
-                    F_認証 fm = new F_認証();
-                    fm.ShowDialog();
+                    F_認証 targetform = new F_認証();
+                    targetform.MdiParent = this.MdiParent;
+                    targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                    this.Enabled = false;
+
+                    targetform.Show();
+
 
                     if (!string.IsNullOrEmpty(strCertificateCode))
                     {
@@ -287,8 +292,13 @@ namespace u_net
             }
 
             if (string.IsNullOrEmpty(LoginUserCode)) return;
-            F_受注 fm = new F_受注();
-            fm.ShowDialog();
+            F_受注 targetform = new F_受注();
+
+            targetform.MdiParent = this.MdiParent;
+            targetform.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            targetform.Show();
         }
 
         private void 受注管理ボタン_Click(object sender, EventArgs e)
@@ -301,9 +311,14 @@ namespace u_net
             }
 
             if (string.IsNullOrEmpty(LoginUserCode)) return;
-            F_受注管理 fm = new F_受注管理();
-                        
-            fm.ShowDialog();
+            F_受注管理 targetform = new F_受注管理();
+
+            targetform.MdiParent = this.MdiParent;
+            targetform.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            targetform.Show();
+
         }
 
         private void 商品登録ボタン_Click(object sender, EventArgs e)
@@ -329,8 +344,14 @@ namespace u_net
 
         private void シリーズ登録ボタン_Click(object sender, EventArgs e)
         {
-            F_シリーズ fm = new F_シリーズ();
-            fm.ShowDialog();
+            F_シリーズ targetform = new F_シリーズ();
+            targetform.MdiParent = this.MdiParent;
+            targetform.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            targetform.Show();
+
+            //fm.ShowDialog();
         }
 
 
@@ -370,20 +391,38 @@ namespace u_net
 
         private void 出荷管理ボタン_Click(object sender, EventArgs e)
         {
-            F_出荷管理旧 fm = new F_出荷管理旧();
-            fm.ShowDialog();
+            F_出荷管理旧 targetform = new F_出荷管理旧();
+            targetform.MdiParent = this.MdiParent;
+            targetform.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            targetform.Show();
+
+           // fm.ShowDialog();
         }
 
         private void シリーズ在庫参照ボタン_Click(object sender, EventArgs e)
         {
-            F_シリーズ在庫参照 fm = new F_シリーズ在庫参照();
-            fm.ShowDialog();
+            F_シリーズ在庫参照 targetform = new F_シリーズ在庫参照();
+
+            targetform.MdiParent = this.MdiParent;
+            targetform.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            targetform.Show();
+                       
         }
 
         private void 売上分析ボタン_Click(object sender, EventArgs e)
         {
-            F_売上分析 fm = new F_売上分析();
-            fm.ShowDialog();
+            F_売上分析 targetform = new F_売上分析();
+
+            targetform.MdiParent = this.MdiParent;
+            targetform.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            targetform.Show();
+                        
         }
 
         private void 売上計画ボタン_Click(object sender, EventArgs e)
@@ -396,8 +435,14 @@ namespace u_net
 
         private void システム設定ボタン_Click(object sender, EventArgs e)
         {
-            F_システム fm = new F_システム();
-            fm.ShowDialog();
+            F_システム targetform = new F_システム();
+
+            targetform.MdiParent = this.MdiParent;
+            targetform.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            targetform.Show();
+                        
         }
 
         private void ユーアイホームボタン_Click(object sender, EventArgs e)
@@ -461,20 +506,34 @@ namespace u_net
 
         private void 入庫入力ボタン_Click(object sender, EventArgs e)
         {
-            F_入庫 fm = new F_入庫();
-            fm.ShowDialog();
+            F_入庫 targetform = new F_入庫();
+
+            targetform.MdiParent = this.MdiParent;
+            targetform.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            targetform.Show();           
         }
 
         private void 入庫管理ボタン_Click(object sender, EventArgs e)
         {
             F_入庫管理 fm = new F_入庫管理();
-            fm.ShowDialog();
+            fm.MdiParent = this.MdiParent;
+            fm.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            fm.Show();
+                        
         }
 
         private void 入庫完了ボタン_Click(object sender, EventArgs e)
         {
             F_入庫完了 fm = new F_入庫完了();
-            fm.ShowDialog();
+            fm.MdiParent = this.MdiParent;
+            fm.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            fm.Show();
         }
 
         private void 部品納期管理ボタン_Click(object sender, EventArgs e)
@@ -487,25 +546,41 @@ namespace u_net
         private void 購買買掛一覧表ボタン_Click(object sender, EventArgs e)
         {
             F_購買買掛一覧表 fm = new F_購買買掛一覧表();
-            fm.ShowDialog();
+            fm.MdiParent = this.MdiParent;
+            fm.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            fm.Show();
         }
 
         private void 仕入先別買掛一覧表ボタン_Click(object sender, EventArgs e)
         {
             F_仕入先別買掛一覧表 fm = new F_仕入先別買掛一覧表();
-            fm.ShowDialog();
+            fm.MdiParent = this.MdiParent;
+            fm.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            fm.Show();
         }
 
         private void 仕入先登録ボタン_Click(object sender, EventArgs e)
         {
             F_仕入先 fm = new F_仕入先();
-            fm.ShowDialog();
+            fm.MdiParent = this.MdiParent;
+            fm.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            fm.Show();
         }
 
         private void 支払先管理ボタン_Click(object sender, EventArgs e)
         {
             F_仕入先管理 fm = new F_仕入先管理();
-            fm.ShowDialog();
+            fm.MdiParent = this.MdiParent;
+            fm.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            fm.Show();
         }
 
         private void 部品棚卸入力ボタン_Click(object sender, EventArgs e)
@@ -525,67 +600,111 @@ namespace u_net
         private void 棚卸作業ボタン_Click(object sender, EventArgs e)
         {
             F_棚卸作業 fm = new F_棚卸作業();
-            fm.ShowDialog();
+            fm.MdiParent = this.MdiParent;
+            fm.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            fm.Show();
         }
 
         private void 製品登録ボタン_Click(object sender, EventArgs e)
         {
             F_製品 fm = new F_製品();
-            fm.ShowDialog();
+            fm.MdiParent = this.MdiParent;
+            fm.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            fm.Show();
         }
 
         private void 製品管理ボタン_Click(object sender, EventArgs e)
         {
             F_製品管理 fm = new F_製品管理();
-            fm.ShowDialog();
+            fm.MdiParent = this.MdiParent;
+            fm.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            fm.Show();
         }
 
         private void ユニット登録ボタン_Click(object sender, EventArgs e)
         {
             F_ユニット fm = new F_ユニット();
-            fm.ShowDialog();
+            fm.MdiParent = this.MdiParent;
+            fm.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            fm.Show();
         }
 
         private void ユニット管理ボタン_Click(object sender, EventArgs e)
         {
             F_ユニット管理 fm = new F_ユニット管理();
-            fm.ShowDialog();
+            fm.MdiParent = this.MdiParent;
+            fm.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            fm.Show();
         }
 
         private void 部品登録ボタン_Click(object sender, EventArgs e)
         {
             F_部品 fm = new F_部品();
-            fm.ShowDialog();
+            fm.MdiParent = this.MdiParent;
+            fm.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            fm.Show();
         }
 
         private void 部品管理_Click(object sender, EventArgs e)
         {
             F_部品管理 fm = new F_部品管理();
-            fm.ShowDialog();
+            fm.MdiParent = this.MdiParent;
+            fm.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            fm.Show();
         }
 
         private void メーカー登録ボタン_Click(object sender, EventArgs e)
         {
             F_メーカー fm = new F_メーカー();
-            fm.ShowDialog();
+            fm.MdiParent = this.MdiParent;
+            fm.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            fm.Show();
         }
 
         private void メーカー管理ボタン_Click(object sender, EventArgs e)
         {
             F_メーカー管理 fm = new F_メーカー管理();
-            fm.ShowDialog();
+            fm.MdiParent = this.MdiParent;
+            fm.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            fm.Show();
         }
 
         private void 部品集合登録ボタン_Click(object sender, EventArgs e)
         {
             F_部品集合 fm = new F_部品集合();
-            fm.ShowDialog();
+            fm.MdiParent = this.MdiParent;
+            fm.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            fm.Show();
         }
 
         private void 部品集合管理ボタン_Click(object sender, EventArgs e)
         {
             F_部品集合管理 fm = new F_部品集合管理();
-            fm.ShowDialog();
+            fm.MdiParent = this.MdiParent;
+            fm.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            fm.Show();
         }
 
         private void 製品情報ボタン_Click(object sender, EventArgs e)
@@ -597,55 +716,91 @@ namespace u_net
         private void 入金入力ボタン_Click(object sender, EventArgs e)
         {
             F_入金 fm = new F_入金();
-            fm.ShowDialog();
+            fm.MdiParent = this.MdiParent;
+            fm.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            fm.Show();
         }
 
         private void 入金管理ボタン_Click(object sender, EventArgs e)
         {
             F_入金管理 fm = new F_入金管理();
-            fm.ShowDialog();
+            fm.MdiParent = this.MdiParent;
+            fm.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            fm.Show();
         }
 
         private void 支払入力ボタン_Click(object sender, EventArgs e)
         {
             F_支払 fm = new F_支払();
-            fm.ShowDialog();
+            fm.MdiParent = this.MdiParent;
+            fm.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            fm.Show();
         }
 
         private void 支払管理ボタン_Click(object sender, EventArgs e)
         {
             F_支払管理 fm = new F_支払管理();
-            fm.ShowDialog();
+            fm.MdiParent = this.MdiParent;
+            fm.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            fm.Show();
         }
 
         private void 売掛一覧ボタン_Click(object sender, EventArgs e)
         {
             F_売掛一覧 fm = new F_売掛一覧();
-            fm.ShowDialog();
+            fm.MdiParent = this.MdiParent;
+            fm.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            fm.Show();
         }
 
         private void 請求処理ボタン_Click(object sender, EventArgs e)
         {
             F_請求処理 fm = new F_請求処理();
-            fm.ShowDialog();
+            fm.MdiParent = this.MdiParent;
+            fm.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            fm.Show();
         }
 
         private void 支払一覧_年間ボタン_Click(object sender, EventArgs e)
         {
             F_支払一覧_年間 fm = new F_支払一覧_年間();
-            fm.ShowDialog();
+            fm.MdiParent = this.MdiParent;
+            fm.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            fm.Show();
         }
 
         private void 支払一覧_月間ボタン_Click(object sender, EventArgs e)
         {
             F_支払一覧_月間 fm = new F_支払一覧_月間();
-            fm.ShowDialog();
+            fm.MdiParent = this.MdiParent;
+            fm.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            fm.Show();
         }
 
         private void 振込一覧表ボタン_Click(object sender, EventArgs e)
         {
             F_振込一覧 fm = new F_振込一覧();
-            fm.ShowDialog();
+            fm.MdiParent = this.MdiParent;
+            fm.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            fm.Show();
         }
 
         private void サポート記録ボタン_Click(object sender, EventArgs e)
@@ -743,7 +898,11 @@ namespace u_net
         private void 旧文書管理ボタン_Click(object sender, EventArgs e)
         {
             F_文書管理 fm = new F_文書管理();
-            fm.ShowDialog();
+            fm.MdiParent = this.MdiParent;
+            fm.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            fm.Show();
         }
 
         private void 月間予定表ボタン_Click(object sender, EventArgs e)
@@ -755,7 +914,11 @@ namespace u_net
         private void ファックス管理ボタン_Click(object sender, EventArgs e)
         {
             F_ファックス管理 fm = new F_ファックス管理();
-            fm.ShowDialog();
+            fm.MdiParent = this.MdiParent;
+            fm.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            fm.Show();
         }
 
         private void ファックス送付ボタン_Click(object sender, EventArgs e)
@@ -787,7 +950,11 @@ namespace u_net
         private void 旧業務日報ボタン_Click(object sender, EventArgs e)
         {
             F_業務日報 fm = new F_業務日報();
-            fm.ShowDialog();
+            fm.MdiParent = this.MdiParent;
+            fm.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            fm.Show();
         }
 
         private void 教育計画管理ボタン_Click(object sender, EventArgs e)
@@ -806,7 +973,11 @@ namespace u_net
         private void 年間教育計画表ボタン_Click(object sender, EventArgs e)
         {
             F_年間教育計画 fm = new F_年間教育計画();
-            fm.ShowDialog();
+            fm.MdiParent = this.MdiParent;
+            fm.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            fm.Show();
         }
 
         private void 資格認定登録ボタン_Click(object sender, EventArgs e)
@@ -850,13 +1021,21 @@ namespace u_net
         private void 社員登録ボタン_Click(object sender, EventArgs e)
         {
             F_社員 fm = new F_社員();
-            fm.ShowDialog();
+            fm.MdiParent = this.MdiParent;
+            fm.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            fm.Show();
         }
 
         private void 社員管理ボタン_Click(object sender, EventArgs e)
         {
             F_社員管理 fm = new F_社員管理();
-            fm.ShowDialog();
+            fm.MdiParent = this.MdiParent;
+            fm.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            fm.Show();
         }
 
         private void 消費税登録ボタン_Click(object sender, EventArgs e)
@@ -874,13 +1053,21 @@ namespace u_net
         private void 地区マスタメンテボタン_Click(object sender, EventArgs e)
         {
             F_地区マスタ fm = new F_地区マスタ();
-            fm.ShowDialog();
+            fm.MdiParent = this.MdiParent;
+            fm.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            fm.Show();
         }
 
         private void マスタメンテボタン_Click(object sender, EventArgs e)
         {
             F_マスタメンテ fm = new F_マスタメンテ();
-            fm.ShowDialog();
+            fm.MdiParent = this.MdiParent;
+            fm.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            fm.Show();
         }
 
         private void 休日ボタン_Click(object sender, EventArgs e)
@@ -902,7 +1089,11 @@ namespace u_net
                 {
                     F_認証 fm = new F_認証();
                     fm.args = strEmployeeCode;
-                    fm.ShowDialog();
+                    fm.MdiParent = this.MdiParent;
+                    fm.FormClosed += (s, args) => { this.Enabled = true; };
+                    this.Enabled = false;
+
+                    fm.Show();
 
                     // 認証が不成立ならば処理終了
                     if (string.IsNullOrEmpty(strCertificateCode))
@@ -952,7 +1143,11 @@ namespace u_net
         private void 承認管理ボタン_Click(object sender, EventArgs e)
         {
             F_承認管理 fm = new F_承認管理();
-            fm.ShowDialog();
+            fm.MdiParent = this.MdiParent;
+            fm.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            fm.Show();
         }
 
         private void 見積入力ボタン_Click(object sender, EventArgs e)
@@ -966,7 +1161,11 @@ namespace u_net
 
             if (string.IsNullOrEmpty(LoginUserCode)) return;
             F_見積 fm = new F_見積();
-            fm.ShowDialog();
+            fm.MdiParent = this.MdiParent;
+            fm.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            fm.Show();
         }
 
         private void 見積管理ボタン_Click(object sender, EventArgs e)
@@ -980,43 +1179,71 @@ namespace u_net
 
             if (string.IsNullOrEmpty(LoginUserCode)) return;
             F_見積管理 fm = new F_見積管理();
-            fm.ShowDialog();
+            fm.MdiParent = this.MdiParent;
+            fm.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            fm.Show();
         }
 
         private void 商品構成ボタン_Click(object sender, EventArgs e)
         {
             F_商品構成2 fm = new F_商品構成2();
-            fm.ShowDialog();
+            fm.MdiParent = this.MdiParent;
+            fm.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            fm.Show();
         }
 
         private void 購買申請入力ボタン_Click(object sender, EventArgs e)
         {
             F_購買申請 fm = new F_購買申請();
-            fm.ShowDialog();
+            fm.MdiParent = this.MdiParent;
+            fm.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            fm.Show();
         }
 
         private void 購買申請管理ボタン_Click(object sender, EventArgs e)
         {
             F_購買申請管理 fm = new F_購買申請管理();
-            fm.ShowDialog();
+            fm.MdiParent = this.MdiParent;
+            fm.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            fm.Show();
         }
 
         private void 発注入力ボタン_Click(object sender, EventArgs e)
         {
             F_発注 fm = new F_発注();
-            fm.ShowDialog();
+            fm.MdiParent = this.MdiParent;
+            fm.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            fm.Show();
         }
 
         private void 発注管理ボタン_Click(object sender, EventArgs e)
         {
             F_発注管理 fm = new F_発注管理();
-            fm.ShowDialog();
+            fm.MdiParent = this.MdiParent;
+            fm.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            fm.Show();
         }
 
         private void 会社情報ボタン_Click(object sender, EventArgs e)
         {
             F_会社情報 fm = new F_会社情報();
-            fm.ShowDialog();
+            fm.MdiParent = this.MdiParent;
+            fm.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            fm.Show();
         }
     }
 }

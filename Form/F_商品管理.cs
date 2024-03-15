@@ -426,7 +426,12 @@ namespace u_net
         {
             dataGridView1.Focus();
             F_商品管理_抽出 form = new F_商品管理_抽出();
-            form.ShowDialog();
+
+            form.MdiParent = this.MdiParent;
+            form.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            form.Show();
         }
 
         private void コマンド入出力_Click(object sender, EventArgs e)
@@ -490,8 +495,12 @@ namespace u_net
                 // 商品フォームを作成し、引数を設定して表示
                 F_商品 targetform = new F_商品();
                 targetform.args = selectedData;
-                
-                targetform.ShowDialog();
+
+                targetform.MdiParent = this.MdiParent;
+                targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                this.Enabled = false;
+
+                targetform.Show();
             }
             else
             {
@@ -545,7 +554,13 @@ namespace u_net
                                 // 商品フォームを作成し、引数を設定して表示
                                 F_商品 targetform = new F_商品();
                                 targetform.args = selectedData;
-                                targetform.ShowDialog();
+
+                                targetform.MdiParent = this.MdiParent;
+                                targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                                this.Enabled = false;
+
+                                targetform.Show();
+                               // targetform.ShowDialog();
                             }
                             else
                             {

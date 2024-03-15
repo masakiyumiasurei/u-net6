@@ -331,8 +331,13 @@ namespace u_net
                 string selectedData2 = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
                 F_部品集合 targetform = new F_部品集合();
                 targetform.args = $"{selectedData}, {selectedData2}";
-                //targetform.args = selectedData;
-                targetform.ShowDialog();
+                
+                targetform.MdiParent = this.MdiParent;
+                targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                this.Enabled = false;
+
+                targetform.Show();
+
             }
         }
 
@@ -394,8 +399,13 @@ namespace u_net
         private void コマンド抽出_Click(object sender, EventArgs e)
         {
             dataGridView1.Focus();
-            F_部品集合管理_抽出 form = new F_部品集合管理_抽出();
-            form.ShowDialog();
+            F_部品集合管理_抽出 targetform = new F_部品集合管理_抽出();
+            targetform.MdiParent = this.MdiParent;
+            targetform.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            targetform.Show();
+
         }
 
         private void コマンド入出力_Click(object sender, EventArgs e)
@@ -523,12 +533,17 @@ namespace u_net
         {
             if (dataGridView1.SelectedRows.Count > 0)
             {
-                F_部品購買設定 fm = new F_部品購買設定();
+                F_部品購買設定 targetform = new F_部品購買設定();
                 string selectedData = dataGridView1.SelectedRows[0].Cells[0].Value.ToString(); // 1列目のデータを取得
                 string selectedData2 = dataGridView1.SelectedRows[0].Cells[1].Value.ToString();
 
-                fm.args = $"{selectedData}, {selectedData2}";
-                fm.ShowDialog();
+                targetform.args = $"{selectedData}, {selectedData2}";
+                targetform.MdiParent = this.MdiParent;
+                targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                this.Enabled = false;
+
+                targetform.Show();
+
             }
             else
             {
@@ -543,9 +558,14 @@ namespace u_net
             {
                 string selectedData = dataGridView1.SelectedRows[0].Cells[0].Value.ToString(); // 1列目のデータを取得
                 string selectedData2 = dataGridView1.SelectedRows[0].Cells[1].Value.ToString();
-                F_部品集合 fm = new F_部品集合();
-                fm.args = $"{selectedData}, {selectedData2}";
-                fm.ShowDialog();
+                F_部品集合 targetform = new F_部品集合();
+                targetform.args = $"{selectedData}, {selectedData2}";
+                targetform.MdiParent = this.MdiParent;
+                targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                this.Enabled = false;
+
+                targetform.Show();
+
             }
             else
             {
@@ -984,7 +1004,12 @@ namespace u_net
         {
             F_出力 targetform = new F_出力();
             targetform.DataGridView = dataGridView1;
-            targetform.ShowDialog();
+            targetform.MdiParent = this.MdiParent;
+            targetform.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            targetform.Show();
+
         }
     }
 }

@@ -410,7 +410,12 @@ namespace u_net
                 F_製品 targetform = new F_製品();
 
                 targetform.args = CurrentCode + "," + CurrentEdition;
-                targetform.ShowDialog();
+                targetform.MdiParent = this.MdiParent;
+                targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                this.Enabled = false;
+
+                targetform.Show();
+
             }
         }
 
@@ -438,7 +443,12 @@ namespace u_net
 
                             F_製品 targetform = new F_製品();
                             targetform.args = selectedData + "," + selectedEdition;
-                            targetform.ShowDialog();
+                            targetform.MdiParent = this.MdiParent;
+                            targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                            this.Enabled = false;
+
+                            targetform.Show();
+
                         }
                         else
                         {
@@ -563,12 +573,22 @@ namespace u_net
                     if (shiftOn)
                     {
                         F_製品管理_汎用キー抽出 targetform = new F_製品管理_汎用キー抽出();
-                        targetform.ShowDialog();
+                        targetform.MdiParent = this.MdiParent;
+                        targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                        this.Enabled = false;
+
+                        targetform.Show();
+
                     }
                     else
                     {
                         F_製品管理_抽出 targetform = new F_製品管理_抽出();
-                        targetform.ShowDialog();
+                        targetform.MdiParent = this.MdiParent;
+                        targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                        this.Enabled = false;
+
+                        targetform.Show();
+
                     }
 
                     break;
@@ -633,7 +653,12 @@ namespace u_net
 
                             F_製品 targetform = new F_製品();
                             targetform.args = selectedData + "," + selectedEdition;
-                            targetform.ShowDialog();
+                            targetform.MdiParent = this.MdiParent;
+                            targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                            this.Enabled = false;
+
+                            targetform.Show();
+
                         }
                         else
                         {
@@ -651,7 +676,12 @@ namespace u_net
                     {
                         F_製品材料費参照 targetform = new F_製品材料費参照();
                         targetform.args = CurrentCode + "," + CurrentEdition;
-                        targetform.ShowDialog();
+                        targetform.MdiParent = this.MdiParent;
+                        targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                        this.Enabled = false;
+
+                        targetform.Show();
+
                     }
 
                     break;
@@ -718,7 +748,12 @@ namespace u_net
 
                             F_製品参照 targetform = new F_製品参照();
                             targetform.args = selectedData + "," + selectedEdition;
-                            targetform.ShowDialog();
+                            targetform.MdiParent = this.MdiParent;
+                            targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                            this.Enabled = false;
+
+                            targetform.Show();
+
                         }
                         else
                         {
@@ -789,7 +824,12 @@ namespace u_net
             F_製品管理_汎用キー設定 targetform = new F_製品管理_汎用キー設定();
             targetform.strCode = CurrentCode;
             targetform.intEdition = CurrentEdition;
-            targetform.ShowDialog();
+            targetform.MdiParent = this.MdiParent;
+            targetform.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            targetform.Show();
+
         }
 
         public void UpdateRow()

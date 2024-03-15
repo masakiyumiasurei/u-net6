@@ -2932,10 +2932,15 @@ namespace u_net
                 }
                 else
                 {
-                    using (var authenticationForm = new F_認証())
+                    using (var targetform = new F_認証())
                     {
-                        authenticationForm.args = str1;
-                        authenticationForm.ShowDialog();
+                        targetform.args = str1;
+                        targetform.MdiParent = this.MdiParent;
+                        targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                        this.Enabled = false;
+
+                        targetform.Show();
+
 
                         if (string.IsNullOrEmpty(CommonConstants.strCertificateCode))
                         {
@@ -3278,10 +3283,15 @@ namespace u_net
                     strCertifier = 発信者コード.Text;
                 }
 
-                using (var authenticationForm = new F_認証())
+                using (var targetform = new F_認証())
                 {
-                    authenticationForm.args = strCertifier;
-                    authenticationForm.ShowDialog();
+                    targetform.args = strCertifier;
+                    targetform.MdiParent = this.MdiParent;
+                    targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                    this.Enabled = false;
+
+                    targetform.Show();
+
 
                     if (string.IsNullOrEmpty(CommonConstants.strCertificateCode))
                     {
@@ -3669,14 +3679,24 @@ namespace u_net
                         F_グループ targetform = new F_グループ();
 
                         targetform.args = strDocumentCode;
-                        targetform.ShowDialog();
+                        targetform.MdiParent = this.MdiParent;
+                        targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                        this.Enabled = false;
+
+                        targetform.Show();
+
                         break;
                     case 1:
                         // グループに登録されている場合
                         F_リンク targetform2 = new F_リンク();
 
                         targetform2.args = strDocumentCode;
-                        targetform2.ShowDialog();
+                        targetform2.MdiParent = this.MdiParent;
+                        targetform2.FormClosed += (s, args) => { this.Enabled = true; };
+                        this.Enabled = false;
+
+                        targetform2.Show();
+
                         break;
                     case -1:
                         // エラーの場合
@@ -3736,10 +3756,15 @@ namespace u_net
                 }
                 else
                 {
-                    using (var authenticationForm = new F_認証())
+                    using (var targetform = new F_認証())
                     {
-                        authenticationForm.args = str1;
-                        authenticationForm.ShowDialog();
+                        targetform.args = str1;
+                        targetform.MdiParent = this.MdiParent;
+                        targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                        this.Enabled = false;
+
+                        targetform.Show();
+
 
                         if (string.IsNullOrEmpty(CommonConstants.strCertificateCode))
                         {
@@ -3927,10 +3952,15 @@ namespace u_net
                 }
                 else
                 {
-                    using (var authenticationForm = new F_認証())
+                    using (var targetform = new F_認証())
                     {
-                        authenticationForm.args = str1;
-                        authenticationForm.ShowDialog();
+                        targetform.args = str1;
+                        targetform.MdiParent = this.MdiParent;
+                        targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                        this.Enabled = false;
+
+                        targetform.Show();
+
 
                         if (string.IsNullOrEmpty(CommonConstants.strCertificateCode))
                         {
@@ -3980,10 +4010,15 @@ namespace u_net
                 }
                 else
                 {
-                    using (var authenticationForm = new F_認証())
+                    using (var targetform = new F_認証())
                     {
-                        authenticationForm.args = str2;
-                        authenticationForm.ShowDialog();
+                        targetform.args = str2;
+                        targetform.MdiParent = this.MdiParent;
+                        targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                        this.Enabled = false;
+
+                        targetform.Show();
+
 
                         if (string.IsNullOrEmpty(CommonConstants.strCertificateCode))
                         {
@@ -4034,10 +4069,15 @@ namespace u_net
                 }
                 else
                 {
-                    using (var authenticationForm = new F_認証())
+                    using (var targetform = new F_認証())
                     {
-                        authenticationForm.args = str3;
-                        authenticationForm.ShowDialog();
+                        targetform.args = str3;
+                        targetform.MdiParent = this.MdiParent;
+                        targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                        this.Enabled = false;
+
+                        targetform.Show();
+
 
                         if (string.IsNullOrEmpty(CommonConstants.strCertificateCode))
                         {
@@ -4087,10 +4127,15 @@ namespace u_net
                 }
                 else
                 {
-                    using (var authenticationForm = new F_認証())
+                    using (var targetform = new F_認証())
                     {
-                        authenticationForm.args = str4;
-                        authenticationForm.ShowDialog();
+                        targetform.args = str4;
+                        targetform.MdiParent = this.MdiParent;
+                        targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                        this.Enabled = false;
+
+                        targetform.Show();
+
 
                         if (string.IsNullOrEmpty(CommonConstants.strCertificateCode))
                         {
@@ -4140,10 +4185,15 @@ namespace u_net
                 }
                 else
                 {
-                    using (var authenticationForm = new F_認証())
+                    using (var targetform = new F_認証())
                     {
-                        authenticationForm.args = str5;
-                        authenticationForm.ShowDialog();
+                        targetform.args = str5;
+                        targetform.MdiParent = this.MdiParent;
+                        targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                        this.Enabled = false;
+
+                        targetform.Show();
+
 
                         if (string.IsNullOrEmpty(CommonConstants.strCertificateCode))
                         {
@@ -4193,10 +4243,15 @@ namespace u_net
                 }
                 else
                 {
-                    using (var authenticationForm = new F_認証())
+                    using (var targetform = new F_認証())
                     {
-                        authenticationForm.args = str6;
-                        authenticationForm.ShowDialog();
+                        targetform.args = str6;
+                        targetform.MdiParent = this.MdiParent;
+                        targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                        this.Enabled = false;
+
+                        targetform.Show();
+
 
                         if (string.IsNullOrEmpty(CommonConstants.strCertificateCode))
                         {
@@ -6208,7 +6263,12 @@ namespace u_net
 
             targetform.args = CurrentCode + "," + CurrentEdition;
 
-            targetform.ShowDialog();
+            targetform.MdiParent = this.MdiParent;
+            targetform.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            targetform.Show();
+
         }
 
         #endregion
@@ -7888,7 +7948,12 @@ namespace u_net
 
             targetform.args = CurrentCode + "," + CurrentEdition;
 
-            targetform.ShowDialog();
+            targetform.MdiParent = this.MdiParent;
+            targetform.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            targetform.Show();
+
         }
 
         #endregion
@@ -8020,7 +8085,12 @@ namespace u_net
 
             targetform.args = CurrentCode + "," + CurrentEdition;
 
-            targetform.ShowDialog();
+            targetform.MdiParent = this.MdiParent;
+            targetform.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            targetform.Show();
+
         }
 
         #endregion
@@ -8864,7 +8934,12 @@ namespace u_net
             F_文書 targetform = new F_文書();
 
             targetform.args = 設計製作依頼書_検討依頼書コード.Text + ",1";
-            targetform.ShowDialog();
+            targetform.MdiParent = this.MdiParent;
+            targetform.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            targetform.Show();
+
         }
 
         private void 設計製作依頼書_リンク1ボタン_Enter(object sender, EventArgs e)
@@ -8884,7 +8959,12 @@ namespace u_net
             F_受注 targetform = new F_受注();
 
             targetform.varOpenArgs = 設計製作依頼書_受注コード.Text;
-            targetform.ShowDialog();
+            targetform.MdiParent = this.MdiParent;
+            targetform.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            targetform.Show();
+
         }
 
         private void 設計製作依頼書_リンク2ボタン_Enter(object sender, EventArgs e)
@@ -8904,7 +8984,12 @@ namespace u_net
             F_受注 targetform = new F_受注();
 
             targetform.varOpenArgs = 設計製作依頼書_受注コード.Text;
-            targetform.ShowDialog();
+            targetform.MdiParent = this.MdiParent;
+            targetform.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            targetform.Show();
+
         }
 
         private void 設計製作依頼書_受注コード_KeyDown(object sender, KeyEventArgs e)
@@ -9517,7 +9602,12 @@ namespace u_net
             F_年間教育計画 targetform = new F_年間教育計画();
 
             targetform.args = CurrentCode + "," + CurrentEdition;
-            targetform.ShowDialog();
+            targetform.MdiParent = this.MdiParent;
+            targetform.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            targetform.Show();
+
         }
 
         #endregion
@@ -9532,7 +9622,12 @@ namespace u_net
             F_受注 targetform = new F_受注();
 
             targetform.varOpenArgs = 非該当証明発行依頼書_受注コード.Text;
-            targetform.ShowDialog();
+            targetform.MdiParent = this.MdiParent;
+            targetform.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            targetform.Show();
+
         }
 
         private void 非該当証明発行依頼書_受注コード_KeyDown(object sender, KeyEventArgs e)
@@ -9592,7 +9687,12 @@ namespace u_net
             F_受注 targetform = new F_受注();
 
             targetform.varOpenArgs = 非該当証明発行依頼書_受注コード.Text;
-            targetform.ShowDialog();
+            targetform.MdiParent = this.MdiParent;
+            targetform.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            targetform.Show();
+
         }
 
         private void 非該当証明発行依頼書_顧客名_TextChanged(object sender, EventArgs e)
@@ -10008,7 +10108,12 @@ namespace u_net
 
             targetform.args = CurrentCode + "," + CurrentEdition;
 
-            targetform.ShowDialog();
+            targetform.MdiParent = this.MdiParent;
+            targetform.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            targetform.Show();
+
         }
 
         #endregion
@@ -10023,13 +10128,23 @@ namespace u_net
                 F_受注 targetform = new F_受注();
 
                 targetform.varOpenArgs = 不具合調査修理依頼書_受注コード.Text;
-                targetform.ShowDialog();
+                targetform.MdiParent = this.MdiParent;
+                targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                this.Enabled = false;
+
+                targetform.Show();
+
             }
             else
             {
                 F_受注管理 targetform = new F_受注管理();
 
-                targetform.ShowDialog();
+                targetform.MdiParent = this.MdiParent;
+                targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                this.Enabled = false;
+
+                targetform.Show();
+
             }
         }
 
@@ -10070,16 +10185,26 @@ namespace u_net
                 F_受注 targetform = new F_受注();
 
                 targetform.varOpenArgs = 不具合調査修理依頼書_受注コード.Text;
-                targetform.ShowDialog();
+                targetform.MdiParent = this.MdiParent;
+                targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                this.Enabled = false;
+
+                targetform.Show();
+
             }
             else
             {
                 F_受注管理 targetform = new F_受注管理();
 
-                targetform.ShowDialog();
+                targetform.MdiParent = this.MdiParent;
+                targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                this.Enabled = false;
+
+                targetform.Show();
+
             }
 
-            
+
         }
 
         private void 不具合調査修理依頼書_受注コード参照ボタン_Enter(object sender, EventArgs e)
@@ -10457,7 +10582,12 @@ namespace u_net
 
             targetform.args = CurrentCode + "," + CurrentEdition;
 
-            targetform.ShowDialog();
+            targetform.MdiParent = this.MdiParent;
+            targetform.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            targetform.Show();
+
         }
 
         #endregion

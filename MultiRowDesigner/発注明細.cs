@@ -1160,12 +1160,18 @@ namespace MultiRowDesigner
                         }
                         else
                         {
-                            F_発注_買掛区分設定 form = new F_発注_買掛区分設定();
+                            F_発注 parent = Application.OpenForms.OfType<F_発注>().FirstOrDefault();
+                            F_発注_買掛区分設定 targetform = new F_発注_買掛区分設定();
                             //form.ShowDialog();
                             if (parentform.buttonCnt == 0)
                             {
 
-                                form.ShowDialog();
+                                targetform.MdiParent = parent.MdiParent;
+                                targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                                this.Enabled = false;
+
+                                targetform.Show();
+
 
                                 return;
                             }
@@ -1451,7 +1457,12 @@ namespace MultiRowDesigner
                                 //form.ShowDialog();
                                 if (parentform.buttonCnt == 0)
                                 {
-                                    kaiform.ShowDialog();
+                                    kaiform.MdiParent = parentform.MdiParent;
+                                    kaiform.FormClosed += (s, args) => { this.Enabled = true; };
+                                    this.Enabled = false;
+
+                                    kaiform.Show();
+                                                                        
 
                                     return;
                                 }
@@ -1481,7 +1492,11 @@ namespace MultiRowDesigner
                                 //form.ShowDialog();
                                 if (parentform.buttonCnt == 0)
                                 {
-                                    kaiform.ShowDialog();
+                                    kaiform.MdiParent = parentform.MdiParent;
+                                    kaiform.FormClosed += (s, args) => { this.Enabled = true; };
+                                    this.Enabled = false;
+
+                                    kaiform.Show();
 
                                     return;
                                 }
@@ -1599,7 +1614,12 @@ namespace MultiRowDesigner
                                 //form.ShowDialog();
                                 if (parentform.buttonCnt == 0)
                                 {
-                                    kaiform.ShowDialog();
+                                    kaiform.MdiParent = parentform.MdiParent;
+                                    kaiform.FormClosed += (s, args) => { this.Enabled = true; };
+                                    this.Enabled = false;
+
+                                    kaiform.Show();
+                                    //kaiform.ShowDialog();
 
                                     return;
                                 }
@@ -1629,7 +1649,13 @@ namespace MultiRowDesigner
                                 //form.ShowDialog();
                                 if (parentform.buttonCnt == 0)
                                 {
-                                    kaiform.ShowDialog();
+                                    kaiform.MdiParent = parentform.MdiParent;
+                                    kaiform.FormClosed += (s, args) => { this.Enabled = true; };
+                                    this.Enabled = false;
+
+                                    kaiform.Show();
+
+                                    // kaiform.ShowDialog();
 
                                     return;
                                 }

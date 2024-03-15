@@ -175,9 +175,15 @@ namespace MultiRowDesigner
                     switch (e.CellName)
                     {
                         case "部品参照ボタン":
-                            F_部品 fm = new F_部品();
-                            fm.args = PartsCode;
-                            fm.ShowDialog();
+                            F_部品集合 ParentForm = Application.OpenForms.OfType<F_部品集合>().FirstOrDefault();
+                            F_部品 targetform = new F_部品();
+                            targetform.args = PartsCode;
+                            targetform.MdiParent = ParentForm.MdiParent;
+                            targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                            this.Enabled = false;
+
+                            targetform.Show();
+
                             break;
                         default:
                             break;

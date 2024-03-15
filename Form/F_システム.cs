@@ -124,9 +124,16 @@ namespace u_net
 
             if (result == DialogResult.Yes)
             {
-                F_認証 fm = new F_認証();
-                fm.args = "014";
-                fm.ShowDialog();
+                F_認証 targetform = new F_認証();
+                targetform.args = "014";
+
+                targetform.MdiParent = this.MdiParent;
+                targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                this.Enabled = false;
+
+                targetform.Show();
+
+                //targetform.ShowDialog();
 
                 if (string.IsNullOrEmpty(strCertificateCode))
                 {

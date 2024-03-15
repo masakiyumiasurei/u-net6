@@ -1441,10 +1441,15 @@ namespace u_net
 
                 // 認証する
 
-                using (var authenticationForm = new F_認証())
+                using (var targetform = new F_認証())
                 {
-                    authenticationForm.args = "007";
-                    authenticationForm.ShowDialog();
+                    targetform.args = "007";
+                    targetform.MdiParent = this.MdiParent;
+                    targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                    this.Enabled = false;
+
+                    targetform.Show();
+
 
                     if (string.IsNullOrEmpty(CommonConstants.strCertificateCode))
                     {
@@ -1602,7 +1607,7 @@ namespace u_net
         {
             try
             {
-                F_商品 form = new F_商品();
+                F_商品 targetform = new F_商品();
                 if (this.ActiveControl != null && this.ActiveControl.Parent != null)
                 {
                     int previousIndex = this.ActiveControl.Parent.Controls.GetChildIndex(this.ActiveControl) - 1;
@@ -1611,8 +1616,12 @@ namespace u_net
                         this.ActiveControl.Parent.Controls[previousIndex].Focus();
                     }
                 }
-                // Open the "商品" form
-                form.ShowDialog();
+                targetform.MdiParent = this.MdiParent;
+                targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                this.Enabled = false;
+
+                targetform.Show();
+
             }
             catch (Exception ex)
             {

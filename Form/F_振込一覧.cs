@@ -379,25 +379,45 @@ namespace u_net
                 case 12:
                     str支払先コード = CurrentCode;
                     F_手形 targetform = new F_手形();
-                    targetform.ShowDialog();
+                    targetform.MdiParent = this.MdiParent;
+                    targetform.FormClosed += (s, args) => { this.Enabled = true; };
+                    this.Enabled = false;
+
+                    targetform.Show();
+
                     break;
 
                 case 13:
                     str支払先コード = CurrentCode;
                     F_相殺 targetform2 = new F_相殺();
-                    targetform2.ShowDialog();
+                    targetform2.MdiParent = this.MdiParent;
+                    targetform2.FormClosed += (s, args) => { this.Enabled = true; };
+                    this.Enabled = false;
+
+                    targetform2.Show();
+
                     break;
 
                 case 14:
                     str支払先コード = CurrentCode;
                     F_TransferList_Others targetform3 = new F_TransferList_Others();
-                    targetform3.ShowDialog();
+                    targetform3.MdiParent = this.MdiParent;
+                    targetform3.FormClosed += (s, args) => { this.Enabled = true; };
+                    this.Enabled = false;
+
+                    targetform3.Show();
+
                     break;
 
                 case 15:
                     str支払先コード = CurrentCode;
                     F_振込繰越 targetform4 = new F_振込繰越();
-                    targetform4.ShowDialog();
+                    targetform4.MdiParent = this.MdiParent;
+                    targetform4.FormClosed += (s, args) => { this.Enabled = true; };
+                    this.Enabled = false;
+
+                    targetform4.Show();
+
                     break;
             }
 
@@ -540,7 +560,12 @@ namespace u_net
         {
             F_仕入先 targetform = new F_仕入先();
             targetform.args = CurrentCode;
-            targetform.ShowDialog();
+            targetform.MdiParent = this.MdiParent;
+            targetform.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            targetform.Show();
+
         }
 
         private void コマンド印刷_Click(object sender, EventArgs e)
@@ -829,7 +854,12 @@ namespace u_net
         {
             F_出力 targetform = new F_出力();
             targetform.DataGridView = dataGridView1;
-            targetform.ShowDialog();
+            targetform.MdiParent = this.MdiParent;
+            targetform.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            targetform.Show();
+
         }
     }
 }

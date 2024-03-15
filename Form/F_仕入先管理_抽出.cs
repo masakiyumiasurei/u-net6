@@ -215,9 +215,14 @@ namespace u_net
 
         private void 仕入先参照ボタン_Click(object sender, EventArgs e)
         {
-            F_仕入先 fm = new F_仕入先();
-            fm.args = this.仕入先コード.Text;
-            fm.ShowDialog();
+            F_仕入先 targetform = new F_仕入先();
+            targetform.args = this.仕入先コード.Text;
+            targetform.MdiParent = this.MdiParent;
+            targetform.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            targetform.Show();
+
         }
 
         private void Form_KeyDown(object sender, KeyEventArgs e)
