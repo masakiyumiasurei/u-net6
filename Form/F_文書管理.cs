@@ -278,7 +278,7 @@ namespace u_net
 
                 //0列目はaccessでは行ヘッダのため、ずらす
 
-                dataGridView1.Columns[0].Width = 1300 / twipperdot; //1150
+                dataGridView1.Columns[0].Width = 1800 / twipperdot; //1150
                 dataGridView1.Columns[1].Width = 350 / twipperdot;
                 dataGridView1.Columns[2].Width = 2200 / twipperdot;
                 dataGridView1.Columns[3].Width = 4100 / twipperdot;

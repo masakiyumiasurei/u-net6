@@ -434,9 +434,26 @@ namespace u_net
                 //this.文書コード.Text = Right(FunctionClass.採番(cn, "UNI"), 8);
                 //this.版数.Text = 1.ToString();
 
-                this.文書名.Focus();
+                文書名.Enabled = true;
+                文書フローコード.Enabled = true;
+                発信者コード.Enabled = true;
+                送信先1ボタン.Enabled = true;
+                送信先2ボタン.Enabled = true;
+                送信先3ボタン.Enabled = true;
+                送信先4ボタン.Enabled = true;
+                送信先5ボタン.Enabled = true;
+                送信先6ボタン.Enabled = true;
+                回答日1選択ボタン.Enabled = true;
+                回答日2選択ボタン.Enabled = true;
+                回答日3選択ボタン.Enabled = true;
+                回答日4選択ボタン.Enabled = true;
+                回答日5選択ボタン.Enabled = true;
+                回答日6選択ボタン.Enabled = true;
+
                 this.文書コード.Enabled = false;
                 this.版数.Enabled = false;
+
+                this.文書名.Focus();
 
 
                 this.改版ボタン.Enabled = false;
@@ -1939,7 +1956,7 @@ namespace u_net
             foreach (var row in 文書添付.Detail.Rows)
             {
                 // 各行の添付カラムを更新する処理を書く
-                if (row.Cells["文書"].Value != null && row.Cells["紙文書名"].Value != null)
+                if (row.Cells["文書"].Value != DBNull.Value && row.Cells["紙文書名"].Value != DBNull.Value)
                 {
                     row.Cells["添付"].Value = 文書添付.GetIcon((byte[])row.Cells["文書"].Value, row.Cells["紙文書名"].Value.ToString());
                 }
@@ -2134,6 +2151,11 @@ namespace u_net
             switch (e.KeyCode)
             {
                 case Keys.Return:
+                    TextBox textBox = sender as TextBox;
+                    if(textBox != null)
+                    {
+                        if (textBox.Multiline == true) return;
+                    }
                     SelectNextControl(ActiveControl, true, true, true, true);
                     break;
 

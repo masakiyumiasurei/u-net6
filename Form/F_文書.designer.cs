@@ -181,7 +181,6 @@ namespace u_net
             承認者コード2 = new TextBox();
             承認2ボタン = new Button();
             送信先2ボタン = new Button();
-            確定者コード = new TextBox();
             承認日時 = new TextBox();
             完了承認日時 = new TextBox();
             無効日時 = new TextBox();
@@ -651,6 +650,7 @@ namespace u_net
             承認者コード2表示 = new TextBox();
             承認者コード1表示 = new TextBox();
             承認者コード6表示 = new TextBox();
+            確定者コード = new TextBox();
             panel1.SuspendLayout();
             statusStrip1.SuspendLayout();
             システム配布記録パネル.SuspendLayout();
@@ -2566,21 +2566,6 @@ namespace u_net
             送信先2ボタン.UseVisualStyleBackColor = true;
             送信先2ボタン.Click += (this.送信先2ボタン_Click);
             // 
-            // 確定者コード
-            // 
-            確定者コード.BackColor = SystemColors.Window;
-            確定者コード.Enabled = false;
-            確定者コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            確定者コード.ImeMode = ImeMode.NoControl;
-            確定者コード.Location = new Point(526, 281);
-            確定者コード.Margin = new Padding(3, 2, 3, 2);
-            確定者コード.Name = "確定者コード";
-            確定者コード.ReadOnly = true;
-            確定者コード.Size = new Size(49, 20);
-            確定者コード.TabIndex = 10246;
-            確定者コード.TabStop = false;
-            確定者コード.Visible = false;
-            // 
             // 承認日時
             // 
             承認日時.BackColor = SystemColors.Window;
@@ -3560,7 +3545,6 @@ namespace u_net
             文書添付パネル.Controls.Add(更新日時);
             文書添付パネル.Controls.Add(label7);
             文書添付パネル.Controls.Add(更新者コード);
-            文書添付パネル.Controls.Add(確定者コード);
             文書添付パネル.Controls.Add(承認日時);
             文書添付パネル.Controls.Add(完了承認日時);
             文書添付パネル.Controls.Add(無効日時);
@@ -4164,6 +4148,7 @@ namespace u_net
             // 
             // panel2
             // 
+            panel2.Controls.Add(確定者コード);
             panel2.Controls.Add(完了承認者コード);
             panel2.Controls.Add(完了承認ボタン);
             panel2.Controls.Add(否認ボタン);
@@ -9648,7 +9633,7 @@ namespace u_net
             確定表示.Enabled = false;
             確定表示.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             確定表示.ImeMode = ImeMode.NoControl;
-            確定表示.Location = new Point(379, 151);
+            確定表示.Location = new Point(380, 153);
             確定表示.Margin = new Padding(3, 2, 3, 2);
             確定表示.Name = "確定表示";
             確定表示.ReadOnly = true;
@@ -9741,6 +9726,18 @@ namespace u_net
             承認者コード6表示.TabIndex = 10306;
             承認者コード6表示.TabStop = false;
             承認者コード6表示.Visible = false;
+            // 
+            // 確定者コード
+            // 
+            確定者コード.BackColor = Color.White;
+            確定者コード.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            確定者コード.ImeMode = ImeMode.Hiragana;
+            確定者コード.Location = new Point(715, 3);
+            確定者コード.Margin = new Padding(3, 2, 3, 2);
+            確定者コード.Name = "確定者コード";
+            確定者コード.Size = new Size(74, 20);
+            確定者コード.TabIndex = 10312;
+            確定者コード.Visible = false;
             // 
             // F_文書
             // 
@@ -9891,6 +9888,7 @@ namespace u_net
             議事録パネル.ResumeLayout(false);
             議事録パネル.PerformLayout();
             panel2.ResumeLayout(false);
+            panel2.PerformLayout();
             教育訓練実施要領書パネル.ResumeLayout(false);
             教育訓練実施要領書パネル.PerformLayout();
             出向依頼書パネル.ResumeLayout(false);
@@ -10047,7 +10045,7 @@ namespace u_net
         private TextBox 承認者コード2;
         private Button 承認2ボタン;
         private Button 送信先2ボタン;
-        private TextBox 確定者コード;
+   
         private TextBox 承認日時;
         private TextBox 完了承認日時;
         private TextBox 無効日時;
@@ -10251,7 +10249,6 @@ namespace u_net
         private Panel 新規販売取引申請書パネル;
         private Button 新規販売取引申請書_新規顧客登録ボタン;
         private Label label67;
-        internal ComboBox comboBox1;
         private TextBox 是正予防会議通知書_顧客名;
         private TextBox 新規販売取引申請書_版数;
         private TextBox 新規販売取引申請書_文書コード;
@@ -10558,6 +10555,7 @@ namespace u_net
         private TextBox 承認者コード2表示;
         private TextBox 承認者コード1表示;
         private TextBox 承認者コード6表示;
+        private TextBox 確定者コード;
     }
 }
 
