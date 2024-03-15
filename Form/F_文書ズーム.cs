@@ -82,6 +82,11 @@ namespace u_net
                 }
 
                 文字サイズ.Text = テキスト.Font.Size.ToString();
+                TextBox textBox = TargetControl as TextBox;
+                テキスト.ReadOnly = textBox.ReadOnly;
+                
+
+
 
             }
             catch (Exception ex)
@@ -119,8 +124,9 @@ namespace u_net
                         break;
                 }
 
-                テキスト.Enabled = TargetControl.Enabled;
-                if (!テキスト.Enabled)
+                TextBox textBox = TargetControl as TextBox;
+                テキスト.ReadOnly = textBox.ReadOnly;
+                if (テキスト.ReadOnly)
                 {
                     テキスト.ImeMode = ImeMode.Disable;
                 }
