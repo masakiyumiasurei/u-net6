@@ -2145,9 +2145,6 @@ namespace u_net
 
         private void Form_KeyDown(object sender, KeyEventArgs e)
         {
-
-
-
             switch (e.KeyCode)
             {
                 case Keys.Return:

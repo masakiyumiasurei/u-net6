@@ -34,8 +34,8 @@ namespace u_net
         public Control ctlTarget;
         public string strCode;
         public int intEdition;
-        public long lngMaxByte=4000;
-        private int intSelStart=0;
+        public long lngMaxByte = 4000;
+        private int intSelStart = 0;
 
         public string CurrentCode
         {
@@ -101,7 +101,7 @@ namespace u_net
         {
             try
             {
-                
+
                 switch (TargetControl.Name)
                 {
                     case "本文1":
@@ -159,16 +159,6 @@ namespace u_net
             return value;
         }
 
-        private void F_文書ズーム_KeyDown(object sender, KeyEventArgs e)
-        {
-
-        }
-
-        private void F_文書ズーム_FormClosing(object sender, FormClosingEventArgs e)
-        {
-
-        }
-
         private void F_文書ズーム_Resize(object sender, EventArgs e)
         {
 
@@ -191,11 +181,11 @@ namespace u_net
             paoRep.Write("文書コード", string.IsNullOrEmpty(CurrentCode) ? " " : CurrentCode);
             paoRep.Write("文書版数", string.IsNullOrEmpty(CurrentEdition.ToString()) ? " " : CurrentEdition.ToString());
             paoRep.Write("対象", string.IsNullOrEmpty(対象.Text) ? " " : 対象.Text);
-            paoRep.Write("テキスト", string.IsNullOrEmpty(テキスト.Text) ? " " : テキスト.Text); 
-            
+            paoRep.Write("テキスト", string.IsNullOrEmpty(テキスト.Text) ? " " : テキスト.Text);
+
             paoRep.PageEnd();
 
-            
+
 
 
 
@@ -275,6 +265,18 @@ namespace u_net
                 OKボタン_Click(sender, e);
             }
 
+        }
+
+        private void Form_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Return:
+                    SelectNextControl(ActiveControl, true, true, true, true);
+                    e.Handled = true;
+                    e.SuppressKeyPress = true;
+                    break;
+            }
         }
     }
 }
