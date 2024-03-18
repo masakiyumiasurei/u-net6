@@ -25,6 +25,7 @@ namespace u_net
         public string str窓口ファックス番号 = "";
         public string str担当者名 = "";
         public int lng削除指定 = 0;
+        public string str仕入先コード = "";
         //public DateTime dtm更新日開始 = DateTime.MinValue;
         //public DateTime dtm更新日終了 = DateTime.MinValue;
         //public string str更新者名 = "";
@@ -51,6 +52,7 @@ namespace u_net
             cn = new SqlConnection(connectionString);
             cn.Open();
         }
+
         public override void SearchCode(string codeString)
         {
             strSearchCode = codeString;
@@ -71,8 +73,10 @@ namespace u_net
             this.str窓口電話番号 = "";
             this.str窓口ファックス番号 = "";
             this.lng削除指定 = 1;
-        }
-        private void Form_Load(object sender, EventArgs e)
+            this.str仕入先コード = "";
+
+    }
+    private void Form_Load(object sender, EventArgs e)
         {
             FunctionClass fn = new FunctionClass();
             fn.DoWait("しばらくお待ちください...");
@@ -422,7 +426,10 @@ namespace u_net
 
         private void コマンド初期化_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("現在開発中です。\n 表示リストを初期化するときに使用します。", "初期化コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            InitializeFilter();
+            DoUpdate();
+            Cleargrid(dataGridView1);
+            //MessageBox.Show("現在開発中です。\n 表示リストを初期化するときに使用します。", "初期化コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void コマンド全表示_Click(object sender, EventArgs e)
@@ -432,6 +439,7 @@ namespace u_net
             Cleargrid(dataGridView1);
         }
 
+        
         private void コマンド更新_Click(object sender, EventArgs e)
         {
 
@@ -442,7 +450,13 @@ namespace u_net
 
         private void コマンド検索_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("現在開発中です。\n コードで検索するときに使用します。", "検索コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            F_検索コード targetform = new F_検索コード(this, null);
+            targetform.MdiParent = this.MdiParent;
+            targetform.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            targetform.Show();
+            //MessageBox.Show("現在開発中です。\n コードで検索するときに使用します。", "検索コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void コマンド仕入先_Click(object sender, EventArgs e)

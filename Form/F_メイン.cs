@@ -294,12 +294,12 @@ namespace u_net
             if (string.IsNullOrEmpty(LoginUserCode)) return;
             F_受注 targetform = new F_受注();
 
-            //targetform.MdiParent = this.MdiParent;
-            //targetform.FormClosed += (s, args) => { this.Enabled = true; };
-            //this.Enabled = false;
+            targetform.MdiParent = this.MdiParent;
+            targetform.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
 
-            //targetform.Show();
-            targetform.ShowDialog();
+            targetform.Show();
+            //targetform.ShowDialog();
         }
 
         private void 受注管理ボタン_Click(object sender, EventArgs e)

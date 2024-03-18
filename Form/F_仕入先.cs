@@ -679,6 +679,7 @@ namespace u_net
                 更新日時.Text = null;
                 更新者コード.Text = null;
                 更新者名.Text = null;
+                ActiveDate.Text = null;
 
                 // インターフェース更新
                 仕入先コード.Enabled = false;
@@ -1017,7 +1018,7 @@ namespace u_net
                         CommonConnect();
 
                         // 初版データのときのみ採番された番号を戻す
-                        if (!FunctionClass.ReturnNewCode(cn, CommonConstants.CH_MAKER, CurrentCode))
+                        if (!FunctionClass.ReturnNewCode(cn, CommonConstants.CH_SUPPLIER, CurrentCode))
                         {
                             MessageBox.Show("エラーのためコードは破棄されました。" + Environment.NewLine +
                                 "仕入先コード　：　" + CurrentCode, BASE_CAPTION, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);

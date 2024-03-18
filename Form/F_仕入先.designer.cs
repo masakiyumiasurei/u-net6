@@ -723,7 +723,7 @@ namespace u_net
             // Contact3PhoneNumber
             // 
             Contact3PhoneNumber.BackColor = Color.White;
-            Contact3PhoneNumber.Font = new Font("BIZ UDPゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            Contact3PhoneNumber.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             Contact3PhoneNumber.ImeMode = ImeMode.Disable;
             Contact3PhoneNumber.Location = new Point(272, 248);
             Contact3PhoneNumber.Margin = new Padding(3, 2, 3, 2);
@@ -760,7 +760,7 @@ namespace u_net
             // Contact2PhoneNumber
             // 
             Contact2PhoneNumber.BackColor = Color.White;
-            Contact2PhoneNumber.Font = new Font("BIZ UDPゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            Contact2PhoneNumber.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             Contact2PhoneNumber.ImeMode = ImeMode.Disable;
             Contact2PhoneNumber.Location = new Point(272, 224);
             Contact2PhoneNumber.Margin = new Padding(3, 2, 3, 2);
@@ -1332,22 +1332,22 @@ namespace u_net
             // statusStrip1
             // 
             statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1, toolStripStatusLabel2 });
-            statusStrip1.Location = new Point(0, 762);
+            statusStrip1.Location = new Point(0, 759);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Padding = new Padding(1, 0, 19, 0);
-            statusStrip1.Size = new Size(882, 22);
+            statusStrip1.Size = new Size(882, 25);
             statusStrip1.TabIndex = 10001;
             statusStrip1.Text = "statusStrip1";
             // 
             // toolStripStatusLabel1
             // 
             toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            toolStripStatusLabel1.Size = new Size(0, 17);
+            toolStripStatusLabel1.Size = new Size(0, 20);
             // 
             // toolStripStatusLabel2
             // 
             toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            toolStripStatusLabel2.Size = new Size(89, 17);
+            toolStripStatusLabel2.Size = new Size(111, 20);
             toolStripStatusLabel2.Text = "各種項目の説明";
             // 
             // tabControl1
@@ -1419,10 +1419,10 @@ namespace u_net
             基本.Controls.Add(電話番号2);
             基本.Controls.Add(電話番号1);
             基本.Controls.Add(住所2);
-            基本.Location = new Point(4, 24);
+            基本.Location = new Point(4, 29);
             基本.Name = "基本";
             基本.Padding = new Padding(3);
-            基本.Size = new Size(845, 672);
+            基本.Size = new Size(845, 667);
             基本.TabIndex = 0;
             基本.Text = "　　　基本　　　";
             // 
@@ -1782,10 +1782,10 @@ namespace u_net
             支払.Controls.Add(label33);
             支払.Controls.Add(label40);
             支払.Controls.Add(振込手数料上限金額);
-            支払.Location = new Point(4, 24);
+            支払.Location = new Point(4, 29);
             支払.Name = "支払";
             支払.Padding = new Padding(3);
-            支払.Size = new Size(845, 672);
+            支払.Size = new Size(845, 667);
             支払.TabIndex = 1;
             支払.Text = "　　　支払　　　";
             // 

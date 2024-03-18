@@ -47,6 +47,7 @@ namespace u_net
                 // F_仕入先管理クラスからデータを取得し、現在のフォームのコントロールに設定
                 this.仕入先名.Text = frmTarget.str仕入先名;
                 仕入先名フリガナ.Text = frmTarget.str仕入先名フリガナ;
+                仕入先コード.Text= frmTarget.str仕入先コード開始;
 
                 switch (frmTarget.lng削除指定)
                 {
@@ -80,7 +81,9 @@ namespace u_net
                 F_仕入先管理? frmTarget = Application.OpenForms.OfType<F_仕入先管理>().FirstOrDefault();
                 //F_仕入先管理 frmTarget = new F_仕入先管理();
 
-                // frmTarget.仕入先コード = Nz(仕入先コード.Text);
+                //仕入先コードの入力欄は一つだが、条件式は開始と終了をもっているので．．．
+                frmTarget.str仕入先コード開始 = Nz(仕入先コード.Text);
+                frmTarget.str仕入先コード終了 = Nz(仕入先コード.Text);
                 frmTarget.str仕入先名 = Nz(仕入先名.Text);
                 frmTarget.str仕入先名フリガナ = Nz(仕入先名フリガナ.Text);
 
