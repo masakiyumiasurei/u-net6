@@ -105,83 +105,91 @@ namespace u_net
 
         private void Form_Load(object sender, EventArgs e)
         {
-
-            string LoginUserCode = CommonConstants.LoginUserCode;
-            LocalSetting localSetting = new LocalSetting();
-            localSetting.LoadPlace(LoginUserCode, this);
-
-            MyApi myapi = new MyApi();
-            int xSize, ySize, intpixel, twipperdot;
-
-            //1インチ当たりのピクセル数 アクセスのサイズの引数がtwipなのでピクセルに変換する除算値を求める
-            intpixel = myapi.GetLogPixel();
-            twipperdot = myapi.GetTwipPerDot(intpixel);
-
-            intWindowHeight = this.Height;
-            intWindowWidth = this.Width;
-
-            // DataGridViewの設定
-            dataGridView1.AllowUserToResizeColumns = true;
-            dataGridView1.Font = new Font("MS ゴシック", 10);
-            dataGridView1.DefaultCellStyle.SelectionBackColor = Color.FromArgb(210, 210, 255);
-            dataGridView1.DefaultCellStyle.SelectionForeColor = Color.Black;
-            dataGridView1.GridColor = Color.FromArgb(230, 230, 230);
-            dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font("MS ゴシック", 9);
-            dataGridView1.DefaultCellStyle.Font = new Font("MS ゴシック", 10);
-            dataGridView1.DefaultCellStyle.ForeColor = Color.Black;
-
-            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView1.AllowUserToAddRows = false;
-            dataGridView1.AllowUserToDeleteRows = false;
-            dataGridView1.ReadOnly = true;
-
-            dataGridView2.AllowUserToResizeColumns = true;
-            dataGridView2.Font = new Font("MS ゴシック", 10);
-            dataGridView2.DefaultCellStyle.SelectionBackColor = Color.FromArgb(210, 210, 255);
-            dataGridView2.DefaultCellStyle.SelectionForeColor = Color.Black;
-            dataGridView2.GridColor = Color.FromArgb(230, 230, 230);
-            dataGridView2.ColumnHeadersDefaultCellStyle.Font = new Font("MS ゴシック", 9);
-            dataGridView2.DefaultCellStyle.Font = new Font("MS ゴシック", 10);
-            dataGridView2.DefaultCellStyle.ForeColor = Color.Black;
-
-            dataGridView2.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView2.AllowUserToAddRows = false;
-            dataGridView2.AllowUserToDeleteRows = false;
-            dataGridView2.ReadOnly = true;
-            dataGridView2.Enabled = false;
-
-            // 一番左の選択列を非表示に
-            dataGridView2.RowHeadersVisible = false;
-
-            dataGridView2.ClearSelection();
-
-            System.Type dgvtype = typeof(DataGridView);
-            System.Reflection.PropertyInfo dgvPropertyInfo = dgvtype.GetProperty("DoubleBuffered", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
-            dgvPropertyInfo.SetValue(dataGridView1, true, null);
-
-
-            Connect();
-
-            using (SqlCommand cmd = new SqlCommand("SP売掛一覧_売掛年月", cn))
+            try
             {
-                cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
-                SqlDataReader reader = cmd.ExecuteReader();
+                string LoginUserCode = CommonConstants.LoginUserCode;
+                LocalSetting localSetting = new LocalSetting();
+                localSetting.LoadPlace(LoginUserCode, this);
 
-                // レコードセットを設定
-                DataTable dataTable = new DataTable();
-                dataTable.Load(reader);
+                MyApi myapi = new MyApi();
+                int xSize, ySize, intpixel, twipperdot;
+
+                //1インチ当たりのピクセル数 アクセスのサイズの引数がtwipなのでピクセルに変換する除算値を求める
+                intpixel = myapi.GetLogPixel();
+                twipperdot = myapi.GetTwipPerDot(intpixel);
+
+                intWindowHeight = this.Height;
+                intWindowWidth = this.Width;
+
+                // DataGridViewの設定
+                dataGridView1.AllowUserToResizeColumns = true;
+                dataGridView1.Font = new Font("MS ゴシック", 10);
+                dataGridView1.DefaultCellStyle.SelectionBackColor = Color.FromArgb(210, 210, 255);
+                dataGridView1.DefaultCellStyle.SelectionForeColor = Color.Black;
+                dataGridView1.GridColor = Color.FromArgb(230, 230, 230);
+                dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font("MS ゴシック", 9);
+                dataGridView1.DefaultCellStyle.Font = new Font("MS ゴシック", 10);
+                dataGridView1.DefaultCellStyle.ForeColor = Color.Black;
+
+                dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+                dataGridView1.AllowUserToAddRows = false;
+                dataGridView1.AllowUserToDeleteRows = false;
+                dataGridView1.ReadOnly = true;
+
+                dataGridView2.AllowUserToResizeColumns = true;
+                dataGridView2.Font = new Font("MS ゴシック", 10);
+                dataGridView2.DefaultCellStyle.SelectionBackColor = Color.FromArgb(210, 210, 255);
+                dataGridView2.DefaultCellStyle.SelectionForeColor = Color.Black;
+                dataGridView2.GridColor = Color.FromArgb(230, 230, 230);
+                dataGridView2.ColumnHeadersDefaultCellStyle.Font = new Font("MS ゴシック", 9);
+                dataGridView2.DefaultCellStyle.Font = new Font("MS ゴシック", 10);
+                dataGridView2.DefaultCellStyle.ForeColor = Color.Black;
+
+                dataGridView2.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+                dataGridView2.AllowUserToAddRows = false;
+                dataGridView2.AllowUserToDeleteRows = false;
+                dataGridView2.ReadOnly = true;
+                dataGridView2.Enabled = false;
+
+                // 一番左の選択列を非表示に
+                dataGridView2.RowHeadersVisible = false;
+
+                dataGridView2.ClearSelection();
+
+                System.Type dgvtype = typeof(DataGridView);
+                System.Reflection.PropertyInfo dgvPropertyInfo = dgvtype.GetProperty("DoubleBuffered", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
+                dgvPropertyInfo.SetValue(dataGridView1, true, null);
 
 
-                売掛年月.DisplayMember = "売掛年月";
-                売掛年月.ValueMember = "売掛年月";
-                売掛年月.DataSource = dataTable;
+                Connect();
 
+                using (SqlCommand cmd = new SqlCommand("SP売掛一覧_売掛年月", cn))
+                {
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    // レコードセットを設定
+                    DataTable dataTable = new DataTable();
+                    dataTable.Load(reader);
+
+
+                    売掛年月.DisplayMember = "売掛年月";
+                    売掛年月.ValueMember = "売掛年月";
+                    売掛年月.DataSource = dataTable;
+
+                }
+
+                売掛年月.DrawMode = DrawMode.OwnerDrawFixed;
+
+                SetInitial();
             }
-
-            売掛年月.DrawMode = DrawMode.OwnerDrawFixed;
-
-            SetInitial();
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+                MessageBox.Show(this.Name + "Error - " + ex.Message);
+            }
         }
 
 
@@ -333,6 +341,7 @@ namespace u_net
             catch (Exception ex)
             {
                 Console.WriteLine("Error: " + ex.Message);
+                MessageBox.Show(this.Name + "Error - " + ex.Message);
             }
 
             return success;
