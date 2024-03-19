@@ -17,7 +17,7 @@ namespace u_net
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new F_MdiParent());
-            //Application.Run(new F_部品集合管理());
+            //Application.Run(new F_社員管理());
         }
     }
 }

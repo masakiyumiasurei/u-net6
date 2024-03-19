@@ -196,6 +196,7 @@ namespace u_net
             }
             finally
             {
+                
                 fn.WaitForm.Close();
             }
         }
@@ -210,6 +211,9 @@ namespace u_net
 
         private void Form_Unload(object sender, FormClosingEventArgs e)
         {
+            F_MdiParent frmTarget = Application.OpenForms.OfType<F_MdiParent>().FirstOrDefault();
+            LocalSetting localSetting = new LocalSetting();
+            localSetting.SavePlace(CommonConstants.LoginUserCode, frmTarget);
             LoginUserCode = "";
         }
 
@@ -266,7 +270,10 @@ namespace u_net
 
                 //親フォームにログインユーザ名と接続先を表示する
                 F_MdiParent frmTarget = Application.OpenForms.OfType<F_MdiParent>().FirstOrDefault();
-                
+               
+                //実行中フォーム起動
+                LocalSetting localSetting = new LocalSetting();
+                localSetting.LoadPlace(CommonConstants.LoginUserCode, frmTarget);
 
                 Connection connection=new Connection();
                 string sname = connection.GetServerName();

@@ -60,9 +60,18 @@ namespace u_net
 
         public override void SearchCode(string codeString)
         {
-            strSearchCode = codeString;
-            str社員コード開始 = strSearchCode;
-            str社員コード終了 = strSearchCode;
+
+            string lastThreeChars="";
+
+            if (codeString.Length >= 3)
+            {
+                // codeStringの右から3文字を取得します。
+                 lastThreeChars = codeString.Substring(codeString.Length - 3);
+            }
+
+            str社員コード開始 = lastThreeChars;
+            str社員コード終了 = lastThreeChars;
+
             if (DoUpdate() == -1)
             {
                 MessageBox.Show("エラーが発生しました。");
@@ -194,13 +203,13 @@ namespace u_net
                 // 社員コード開始指定
                 if (!string.IsNullOrEmpty(str社員コード開始))
                 {
-                    filter += string.Format("社員コード開始 >= '{0}' AND ", str社員コード開始);
+                    filter += string.Format("社員コード >= '{0}' AND ", str社員コード開始);
                 }
 
                 // 社員コード終了指定
                 if (!string.IsNullOrEmpty(str社員コード終了))
                 {
-                    filter += string.Format("社員コード終了 <= '{0}' AND ", str社員コード終了);
+                    filter += string.Format("社員コード <= '{0}' AND ", str社員コード終了);
                 }
 
                 // 電話番号指定
@@ -219,6 +228,18 @@ namespace u_net
                         filter += "退社 IS NOT NULL AND ";
                         break;
                 }
+
+                // 削除指定
+                switch (lng削除指定)
+                {
+                    case 1:
+                        filter +=  "削除日時 IS NULL and ";
+                        break;
+                    case 2:
+                        filter += "削除日時 IS not NULL and ";
+                        break;
+                }
+
 
                 if (!string.IsNullOrEmpty(filter))
                 {
@@ -437,9 +458,16 @@ namespace u_net
             }
         }
 
+        
         private void コマンド検索_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("現在開発中です。", "検索コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            F_検索コード targetform = new F_検索コード(this, null);
+            targetform.MdiParent = this.MdiParent;
+            targetform.FormClosed += (s, args) => { this.Enabled = true; };
+            this.Enabled = false;
+
+            targetform.Show();
+            // MessageBox.Show("現在開発中です。", "検索コマンド", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void コマンド社員_Click(object sender, EventArgs e)

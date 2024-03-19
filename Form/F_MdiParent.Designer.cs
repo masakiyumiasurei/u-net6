@@ -47,7 +47,7 @@
             // toolStripStatusLabel1
             // 
             toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            toolStripStatusLabel1.Size = new Size(1016, 17);
+            toolStripStatusLabel1.Size = new Size(1047, 17);
             toolStripStatusLabel1.Spring = true;
             toolStripStatusLabel1.TextAlign = ContentAlignment.MiddleRight;
             // 
@@ -62,7 +62,6 @@
             Margin = new Padding(5);
             Name = "F_MdiParent";
             Text = "Uinics U-net Client";
-            WindowState = FormWindowState.Maximized;
             Load += F_MidParent_Load;
             statusStrip1.ResumeLayout(false);
             statusStrip1.PerformLayout();

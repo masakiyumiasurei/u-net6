@@ -84,7 +84,7 @@ namespace u_net.Public
                             control.Left = (int)lngLeft;
                             control.Top = (int)lngTop;
                             control.Width = (int)lngWidth;
-                            control.Height = (int)lngHeight;
+                            control.Height = (int)lngHeight;                            
                         }
                     }
                 }
