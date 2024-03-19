@@ -586,7 +586,9 @@ namespace u_net
             {
 
                 IReport paoRep = ReportCreator.GetPreview();
-                paoRep.LoadDefFile("../../../Reports/部品集合一覧.prepd");
+                string appPath = System.IO.Path.GetDirectoryName(Application.ExecutablePath) + "\\";
+                paoRep.LoadDefFile($"{appPath}Reports/部品集合一覧.prepd");
+                //paoRep.LoadDefFile("../../../Reports/部品集合一覧.prepd");
 
                 Connect();
 
@@ -759,9 +761,9 @@ namespace u_net
         private void コマンド印刷明細_Click(object sender, EventArgs e)
         {
             IReport paoRep = ReportCreator.GetPreview();
-
-            paoRep.LoadDefFile("../../../Reports/部品集合明細一覧.prepd");
-
+            string appPath = System.IO.Path.GetDirectoryName(Application.ExecutablePath) + "\\";
+            paoRep.LoadDefFile($"{appPath}Reports/部品集合明細一覧.prepd");
+            //paoRep.LoadDefFile("../../../Reports/部品集合明細一覧.prepd");
             Connect();
 
             //  DataRowCollection report;

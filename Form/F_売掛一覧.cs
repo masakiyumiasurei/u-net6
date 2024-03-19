@@ -635,7 +635,9 @@ namespace u_net
         {
             IReport paoRep = ReportCreator.GetPreview();
 
-            paoRep.LoadDefFile("../../../Reports/売上一覧表_売掛資料.prepd");
+            string appPath = System.IO.Path.GetDirectoryName(Application.ExecutablePath) + "\\";
+            paoRep.LoadDefFile($"{appPath}Reports/売上一覧表_売掛資料.prepd");
+           // paoRep.LoadDefFile("../../../Reports/売上一覧表_売掛資料.prepd");
 
             //最大行数
             int maxRow = 51;
@@ -736,8 +738,9 @@ namespace u_net
         private void コマンド印刷_Click(object sender, EventArgs e)
         {
             IReport paoRep = ReportCreator.GetPreview();
-
-            paoRep.LoadDefFile("../../../Reports/売上一覧表.prepd");
+            string appPath = System.IO.Path.GetDirectoryName(Application.ExecutablePath) + "\\";
+            paoRep.LoadDefFile($"{appPath}Reports/売上一覧表.prepd");
+            //paoRep.LoadDefFile("../../../Reports/売上一覧表.prepd");
 
             //最大行数
             int maxRow = 51;

@@ -442,7 +442,9 @@ namespace u_net
         {
             IReport paoRep = ReportCreator.GetPreview();
 
-            paoRep.LoadDefFile("../../../Reports/棚卸表.prepd");
+            string appPath = System.IO.Path.GetDirectoryName(Application.ExecutablePath) + "\\";
+            paoRep.LoadDefFile($"{appPath}Reports/棚卸表.prepd");
+          //  paoRep.LoadDefFile("../../../Reports/棚卸表.prepd");
 
             Connect();
 

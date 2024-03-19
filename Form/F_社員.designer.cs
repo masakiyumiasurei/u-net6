@@ -133,7 +133,7 @@ namespace u_net
             退社年月日_ラベル = new Label();
             社員コード_ラベル = new Label();
             ページ56 = new TabPage();
-            textBox11 = new TextBox();
+            ユーザグループ３ = new TextBox();
             ユーザグループ２ = new TextBox();
             ユーザグループ１ = new TextBox();
             パスワード = new TextBox();
@@ -1394,7 +1394,7 @@ namespace u_net
             // 
             // ページ56
             // 
-            ページ56.Controls.Add(textBox11);
+            ページ56.Controls.Add(ユーザグループ３);
             ページ56.Controls.Add(ユーザグループ２);
             ページ56.Controls.Add(ユーザグループ１);
             ページ56.Controls.Add(パスワード);
@@ -1412,16 +1412,17 @@ namespace u_net
             ページ56.Text = "　　アカウント　　";
             ページ56.UseVisualStyleBackColor = true;
             // 
-            // textBox11
+            // ユーザグループ３
             // 
-            textBox11.BackColor = Color.White;
-            textBox11.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            textBox11.ImeMode = ImeMode.Disable;
-            textBox11.Location = new Point(160, 130);
-            textBox11.Margin = new Padding(3, 2, 3, 2);
-            textBox11.Name = "textBox11";
-            textBox11.Size = new Size(204, 20);
-            textBox11.TabIndex = 10;
+            ユーザグループ３.BackColor = Color.White;
+            ユーザグループ３.Font = new Font("BIZ UDゴシック", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            ユーザグループ３.ImeMode = ImeMode.Disable;
+            ユーザグループ３.Location = new Point(160, 130);
+            ユーザグループ３.Margin = new Padding(3, 2, 3, 2);
+            ユーザグループ３.Name = "ユーザグループ３";
+            ユーザグループ３.Size = new Size(204, 20);
+            ユーザグループ３.TabIndex = 10;
+            ユーザグループ３.TextChanged += ユーザグループ３_TextChanged;
             // 
             // ユーザグループ２
             // 
@@ -1433,6 +1434,7 @@ namespace u_net
             ユーザグループ２.Name = "ユーザグループ２";
             ユーザグループ２.Size = new Size(204, 20);
             ユーザグループ２.TabIndex = 8;
+            ユーザグループ２.TextChanged += ユーザグループ２_TextChanged;
             // 
             // ユーザグループ１
             // 
@@ -1444,6 +1446,7 @@ namespace u_net
             ユーザグループ１.Name = "ユーザグループ１";
             ユーザグループ１.Size = new Size(204, 20);
             ユーザグループ１.TabIndex = 6;
+            ユーザグループ１.TextChanged += ユーザグループ１_TextChanged;
             // 
             // パスワード
             // 
@@ -1907,7 +1910,7 @@ namespace u_net
         private TextBox 部;
         private Label 退社年月日_ラベル;
         private Label 社員コード_ラベル;
-        private TextBox textBox11;
+        private TextBox ユーザグループ３;
         private TextBox ユーザグループ２;
         private TextBox ユーザグループ１;
         private TextBox パスワード;

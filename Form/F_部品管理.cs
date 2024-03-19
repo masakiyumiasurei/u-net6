@@ -631,7 +631,9 @@ namespace u_net
 
             IReport paoRep = ReportCreator.GetPreview();
 
-            paoRep.LoadDefFile("../../../Reports/部品管理.prepd");
+            string appPath = System.IO.Path.GetDirectoryName(Application.ExecutablePath) + "\\";
+            paoRep.LoadDefFile($"{appPath}Reports/部品管理.prepd");
+            //paoRep.LoadDefFile("../../../Reports/部品管理.prepd");
 
             //最大行数
             int maxRow = 30;

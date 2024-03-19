@@ -851,11 +851,15 @@ namespace u_net
             IReport paoRep = ReportCreator.GetPreview();
             if (shainFlg)
             {
-                paoRep.LoadDefFile("../../../Reports/領収書.prepd");
+                string appPath = System.IO.Path.GetDirectoryName(Application.ExecutablePath) + "\\";
+                paoRep.LoadDefFile($"{appPath}Reports/領収書.prepd");
+                //paoRep.LoadDefFile("../../../Reports/領収書.prepd");
             }
             else
             {
-                paoRep.LoadDefFile("../../../Reports/領収書社員なし.prepd");
+                string appPath = System.IO.Path.GetDirectoryName(Application.ExecutablePath) + "\\";
+                paoRep.LoadDefFile($"{appPath}Reports/領収書社員なし.prepd");
+                //paoRep.LoadDefFile("../../../Reports/領収書社員なし.prepd");
             }
             Connect();
 

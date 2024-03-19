@@ -1867,8 +1867,9 @@ namespace u_net
         private void コマンド部品表_Click(object sender, EventArgs e)
         {
             IReport paoRep = ReportCreator.GetPreview();
-
-            paoRep.LoadDefFile("../../../Reports/部品表.prepd");
+            string appPath = System.IO.Path.GetDirectoryName(Application.ExecutablePath) + "\\";
+            paoRep.LoadDefFile($"{appPath}Reports/部品表.prepd");
+            //paoRep.LoadDefFile("../../../Reports/部品表.prepd");
 
             Connect();
 
@@ -2014,8 +2015,9 @@ namespace u_net
 
 
             IReport paoRep = ReportCreator.GetPreview();
-
-            paoRep.LoadDefFile("../../../Reports/部品定数表.prepd");
+            string appPath = System.IO.Path.GetDirectoryName(Application.ExecutablePath) + "\\";
+            paoRep.LoadDefFile($"{appPath}Reports/部品定数表.prepd");
+            //paoRep.LoadDefFile("../../../Reports/部品定数表.prepd");
 
             Connect();
 

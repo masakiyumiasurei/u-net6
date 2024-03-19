@@ -228,7 +228,10 @@ namespace u_net
         private void コマンド印刷(DataGridView dataGridView)
         {
             IReport paoRep = ReportCreator.GetPreview();
-            paoRep.LoadDefFile("../../../Reports/受注管理.prepd");
+
+            string appPath = System.IO.Path.GetDirectoryName(Application.ExecutablePath) + "\\";
+            paoRep.LoadDefFile($"{appPath}Reports/受注管理.prepd");
+            //paoRep.LoadDefFile("../../../Reports/受注管理.prepd");
 
             Connect();
 

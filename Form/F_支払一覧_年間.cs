@@ -578,8 +578,9 @@ namespace u_net
         private void コマンド印刷_Click(object sender, EventArgs e)
         {
             IReport paoRep = ReportCreator.GetPreview();
-
-            paoRep.LoadDefFile("../../../Reports/支払一覧表_年間.prepd");
+            string appPath = System.IO.Path.GetDirectoryName(Application.ExecutablePath) + "\\";
+            paoRep.LoadDefFile($"{appPath}Reports/支払一覧表_年間.prepd");
+          //  paoRep.LoadDefFile("../../../Reports/支払一覧表_年間.prepd");
 
             //最大行数
             int maxRow = 27;

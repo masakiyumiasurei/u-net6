@@ -1692,7 +1692,9 @@ namespace u_net
 
             IReport paoRep = ReportCreator.GetPreview();
 
-            paoRep.LoadDefFile("../../../Reports/発注書.prepd");
+            string appPath = System.IO.Path.GetDirectoryName(Application.ExecutablePath) + "\\";
+            paoRep.LoadDefFile($"{appPath}Reports/発注書.prepd");
+            //paoRep.LoadDefFile("../../../Reports/発注書.prepd");
 
             Connect();
 

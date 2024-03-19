@@ -168,7 +168,9 @@ namespace u_net
         {
             IReport paoRep = ReportCreator.GetPreview();
 
-            paoRep.LoadDefFile("../../../Reports/文書ズーム.prepd");
+            string appPath = System.IO.Path.GetDirectoryName(Application.ExecutablePath) + "\\";
+            paoRep.LoadDefFile($"{appPath}Reports/文書ズーム.prepd");
+          //  paoRep.LoadDefFile("../../../Reports/文書ズーム.prepd");
 
 
             DateTime now = DateTime.Now;

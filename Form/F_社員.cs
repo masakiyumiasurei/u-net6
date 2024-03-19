@@ -393,6 +393,7 @@ namespace u_net
 
         private bool SaveData()
         {
+            
             Connect();
             SqlTransaction transaction = cn.BeginTransaction();
             {
@@ -991,11 +992,22 @@ namespace u_net
         private void コマンド登録_Click(object sender, EventArgs e)
         {
             //保存確認
-            if (MessageBox.Show("変更内容を保存しますか？", "保存確認",
-                MessageBoxButtons.OKCancel,
-                MessageBoxIcon.Question) == DialogResult.OK)
-            {
-                FunctionClass fn = new FunctionClass();
+            //if (MessageBox.Show("変更内容を保存しますか？", "保存確認",
+            //    MessageBoxButtons.OKCancel,
+            //    MessageBoxIcon.Question) == DialogResult.OK)
+            //{
+
+            if (!FunctionClass.IsError(社員コード)) return ;
+            if (!FunctionClass.IsError(ふりがな)) return ;
+            if (!FunctionClass.IsError(役職名)) return ;
+            if (IsError(パート)) return ;
+            if (!FunctionClass.IsError(勤務地コード)) return ;
+            if (!FunctionClass.IsError(部)) return ;
+            if (!FunctionClass.IsError(チーム名)) return ;
+            if (!FunctionClass.IsError(氏名)) return ;
+            if (!FunctionClass.IsError(パスワード)) return ;
+
+            FunctionClass fn = new FunctionClass();
                 fn.DoWait("登録しています...");
                 if (!SaveData())
                 {
@@ -1014,7 +1026,7 @@ namespace u_net
                 コマンド承認.Enabled = this.IsDecided;
                 コマンド確定.Enabled = true;
                 fn.WaitForm.Close();
-            }
+            //}
 
         }
 
@@ -1093,7 +1105,7 @@ namespace u_net
             }
 
             VariableSet.SetTable2Form(this, strSQL, cn);
-            
+
 
             if (!string.IsNullOrEmpty(入社年月日.Text))
             {
@@ -1150,10 +1162,18 @@ namespace u_net
                             return true;
                         }
                         break;
-                    case "氏名":
-                    case "ふりがな":
                     case "パート":
+                        if (varValue == null || string.IsNullOrWhiteSpace(varValue.ToString()))
+                        {
+                            MessageBox.Show("社員分類を入力してください。", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            パート.Focus();
+                            return true;
+                        }
+                        break;
+                    case "氏名":
+                    case "ふりがな":                   
                     case "部":
+                    case "役職名":
                         if (varValue == null || string.IsNullOrWhiteSpace(varValue.ToString()))
                         {
                             MessageBox.Show($"[ {strName} ]を入力してください。", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -1462,6 +1482,21 @@ namespace u_net
             {
                 勤務地名.Text = null;
             }
+        }
+
+        private void ユーザグループ１_TextChanged(object sender, EventArgs e)
+        {
+            ChangedData(true);
+        }
+
+        private void ユーザグループ２_TextChanged(object sender, EventArgs e)
+        {
+            ChangedData(true);
+        }
+
+        private void ユーザグループ３_TextChanged(object sender, EventArgs e)
+        {
+            ChangedData(true);
         }
     }
 }

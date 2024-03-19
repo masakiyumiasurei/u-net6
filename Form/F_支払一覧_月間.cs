@@ -567,7 +567,9 @@ namespace u_net
         {
             IReport paoRep = ReportCreator.GetPreview();
 
-            paoRep.LoadDefFile("../../../Reports/支払一覧表_月間.prepd");
+            string appPath = System.IO.Path.GetDirectoryName(Application.ExecutablePath) + "\\";
+            paoRep.LoadDefFile($"{appPath}Reports/支払一覧表_月間.prepd");
+           // paoRep.LoadDefFile("../../../Reports/支払一覧表_月間.prepd");
 
             //最大行数
             int maxRow = 27;

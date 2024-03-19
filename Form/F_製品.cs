@@ -2264,8 +2264,9 @@ namespace u_net
         private void コマンドユニット表_Click(object sender, EventArgs e)
         {
             IReport paoRep = ReportCreator.GetPreview();
-
-            paoRep.LoadDefFile("../../../Reports/ユニット表.prepd");
+            string appPath = System.IO.Path.GetDirectoryName(Application.ExecutablePath) + "\\";
+            paoRep.LoadDefFile($"{appPath}Reports/ユニット表.prepd");
+           // paoRep.LoadDefFile("../../../Reports/ユニット表.prepd");
 
             Connect();
 

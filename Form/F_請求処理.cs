@@ -625,11 +625,15 @@ namespace u_net
                 IReport paoRep = ReportCreator.GetPreview();
                 if (shainFlg)
                 {
-                    paoRep.LoadDefFile("../../../Reports/請求明細書.prepd");
+                    string appPath = System.IO.Path.GetDirectoryName(Application.ExecutablePath) + "\\";
+                    paoRep.LoadDefFile($"{appPath}Reports/請求明細書.prepd");
+                    //paoRep.LoadDefFile("../../../Reports/請求明細書.prepd");
                 }
                 else
                 {
-                    paoRep.LoadDefFile("../../../Reports/請求明細書_社印なし.prepd");
+                    string appPath = System.IO.Path.GetDirectoryName(Application.ExecutablePath) + "\\";
+                    paoRep.LoadDefFile($"{appPath}Reports/請求明細書_社印なし.prepd");
+                    //paoRep.LoadDefFile("../../../Reports/請求明細書_社印なし.prepd");
                 }
                 Connect();
 

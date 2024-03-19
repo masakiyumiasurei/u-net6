@@ -85,6 +85,22 @@ namespace u_net
                         break;
                 }
 
+                switch (frmTarget.lng削除指定)
+                {
+                    case 1:
+                        削除指定Button1.Checked = true;
+                        break;
+                    case 2:
+                        削除指定Button2.Checked = true;
+                        break;
+                    case 0:
+                        削除指定Button3.Checked = true;
+                        break;
+
+                    default:
+
+                        break;
+                }
             }
             catch (Exception ex)
             {
@@ -127,6 +143,19 @@ namespace u_net
                 else if (退社指定Button3.Checked)
                 {
                     frmTarget.lng退社指定 = 0;
+                }
+
+                if (削除指定Button1.Checked)
+                {
+                    frmTarget.lng削除指定 = 1;
+                }
+                else if (削除指定Button2.Checked)
+                {
+                    frmTarget.lng削除指定 = 2;
+                }
+                else if (削除指定Button3.Checked)
+                {
+                    frmTarget.lng削除指定 = 0;
                 }
 
                 long cnt = frmTarget.DoUpdate();
